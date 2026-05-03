@@ -1,231 +1,298 @@
-Return-Path: <devicetree+bounces-292348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292297-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id JGy6Ngy69mnnXwIAu9opvQ
-	(envelope-from <devicetree+bounces-292348-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:59:24 +0200
+	id wObqLL789WntRAIAu9opvQ
+	(envelope-from <devicetree+bounces-292297-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 15:31:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3887F4B433A
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:59:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CA94B2287
+	for <lists+devicetree@lfdr.de>; Sat, 02 May 2026 15:31:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 761DD30080A3
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 02:51:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16AE2300C918
+	for <lists+devicetree@lfdr.de>; Sat,  2 May 2026 13:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF8B3603C3;
-	Sun,  3 May 2026 02:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793F922F388;
+	Sat,  2 May 2026 13:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="yKfjR2zD"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="R614C1MV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918E9340281;
-	Sun,  3 May 2026 02:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC9A221F24
+	for <devicetree@vger.kernel.org>; Sat,  2 May 2026 13:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777776661; cv=none; b=oozaOKJrUb51gk0YdJsusTr8oAeYYzqI2/l0K5XwhpXvBIlOwyq1d9DegII72gZp5OFbqOyeVH/NyNnQavkv/8uop6pGO6Byz3dNGZO0FO/wHXFc9s3x3GFYNtkXUabDq2uUtL7Pxc3XFxUfnjCvj3PUsaUYR5GPqQWo3DNNOPQ=
+	t=1777728698; cv=none; b=NreM4t36AYd4Up4qwdQo1yj8c7rpTwDZR+ZOitia4lR/iBVxR3s2iQu1++CnFHZL4e2rXiKiypQkZvvzt1oN+rkkR7wp7gHk2WmtMlmkraj9tqw4P8wB+MKMC3R3I/p+/0XJeZHgswwNs6DT1UwuEhWXZthnKpvmWeYCd4pEbPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777776661; c=relaxed/simple;
-	bh=SWduPrPv7Hs1tnivvKljivRKChxKhiE0bWPaYXn0xWI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ggc1MV4zcExki33IK6CGyFIBku7+FqB/0OSQW518BwHJxtNYCVfP5w9U+i6hPM2sIHUJFqXYkPPn7DIjQivE+9OKsEqIGz9VgbNZPHKG1UqSKiwk+6tNBoiiM3L9wNiwqrwboZsAlVn5Ep+dA2IMDR5cVycHex73o1nWHD+XWbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=yKfjR2zD; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4g7TmT5w3Xz9t9n;
-	Sun,  3 May 2026 04:50:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1777776649;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1jmyfPlNX23L/mOTTiiXLgc1RStN2ndJcGiPbqaR3dc=;
-	b=yKfjR2zDF2QVZrLp6pEZKOu5gV9mYEU6Mk+OazS9IYYjoW0P1NXTpKq7Ae5UQJSoN1fMVk
-	Py0EhjKLEREv1fLBw1nLuWuG+8b6Nchn/RSJY2fNe/PM6J1JTzxhW/UZq/7vIoLUtFW0yv
-	s/PhL+ePEglLuFZ2T85rkVBy2g3mxQr9ESJxq7FeavP7m/KsikGyglB8V6Qyl7ADK2vsQs
-	Lxhmp7Xe6woXw6Mnbz99982wWZTODw85yb/GWfgkOKPdRZ/cyznxkWLCjKUekPCqE/xvOl
-	Y1dm6O0e2sCtnnsQk52zamiI5kTPe7Pgs+s5gkLBMtHXR9qEtHKQGw5gdQ8nHg==
-Message-ID: <0875e4a1-f112-4619-a229-2f6f9197f21c@mailbox.org>
-Date: Sun, 3 May 2026 03:25:29 +0200
+	s=arc-20240116; t=1777728698; c=relaxed/simple;
+	bh=lkmiyBtoSj6syPErmZWpl5ZaHRgasik6AHT5LgoudWA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rEs8vKJP0+71xm/ozOwhaVVPAyJHhjGZWNVEIXo9R4GZTG1UXvfWjucZFttfZrfgZOibvPmQ4Pa2T0SHJ+2pWr26uNZuyjJKj6Iuo893RDaAjVX6wF0MRtVLDXHZfmcHrA2e3+doaIbLYYL7+6ck2BP1+zK9lihePMjHws4ac3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=R614C1MV; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-35e576110adso1941356a91.0
+        for <devicetree@vger.kernel.org>; Sat, 02 May 2026 06:31:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1777728696; x=1778333496; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5MLqLxOUOJNZlsERU0GicRjBWqhmqv+EmlMe22clUuo=;
+        b=R614C1MVGR1bF74HUskGFkTdB6Ihd62D8nXwxyN2ndnBpAxlm1RPNVCwYiXOofsvao
+         pyTASvzHCOOV/tdf4tw804sFy4rk3Xx4nJhNhy0ed0AjZhEMYaLQPYHfMOHtJmalmt8R
+         h1ttxD3mNgxmMvwOzyoEukIdFYqyqUzrTkabBr9Hu7mqlH59VlWi84WV5waxblOcdUNY
+         MrG2/mAWVXXp7m7QSHXX1oXZb3tBUiaHDjuc+i/CSBee1VbXUzaGF9A/YAyaFYj2msi9
+         JOFQhgYkdlzuRryYVvrza2tAGQUWqnWpkO5GeFwDyEi5nwhg0tEawJOGN6Od+7ARuH9z
+         8C8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777728696; x=1778333496;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5MLqLxOUOJNZlsERU0GicRjBWqhmqv+EmlMe22clUuo=;
+        b=CFz6a6Z4s2KnnQqjZJJ9kA8SG3tXPD+/n0Cp5yFyRhxzwlRj9uO+XQ9j1XcUX7WDrA
+         bhTG7gqIbwK+RumjBQdSXw7tSDZ/R9OQGKYBeiNsHUlaOjaPil2Pwv9G55Hyy7sDz0+0
+         sgS/YeXOnZjMaIcYWZM1l1363P8KUCW6+ltAsHC3O+/GH/JFU+qnupjfzYMeWdydSCTU
+         De60hc3Xwime2+ziga35LJ273PkhyR72hDUfB9VpSiyg3/xMZm7gIzQTUbLMP5U33wnM
+         d4ZYy2Gxx0PxzzAK4NVE2FkkmEx68QCcOedI5jc7qx5MobEV+k9USAADLMizv2bXkZbJ
+         e2Ng==
+X-Forwarded-Encrypted: i=1; AFNElJ9NIoFK+wKjsFEvQamQJ3gL68EwV+5NfxPndRy/HcbJc/XURYm6BrSTXdJF1SuvKj/GqspcFWXzwAp/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxm4LqCBFFqHxoHx85Mx4uhWT5iFSXERYOxmXMAP3gsBHj4HV8j
+	2GgvfXSFkofNXHm4cv6+UPpG74xcNGqzb6GKljoa7BnpwLzvLw5GsBjrufpPpqP87A0=
+X-Gm-Gg: AeBDiesBnY+WVWdggoN+a5PhrZ3gz4z4Z9n7p0X1dACAZuUK8xOiVykCsVNNjNRDiev
+	lVEB3xqgaDBVOdi1KSB4VoDvOI6hnxkaNLRQRZloiQ8K78tKxT3pwmJkY70b1MtVONJGo5a1yrJ
+	Mt5zl7qQyi4Jzx2zsemA7ToeVZKNBOnU/TeO6blWEjEn2N8X9UGCBzggs6L2iY8uXt+YlE+cAp2
+	ZSvRQXMtLuRYOXNYdzkm37O6n0sjzNjSC6HY+KfrfO/2j6LxWuTA36iFYQ6kmFnveGsszDo23gX
+	SdrTsvUllcx4WM3AxL6zfnezsWeA+MOW5KpIRqHrXD0cVmsVEUSltJRApVUkC+3ac24G99yA5YK
+	gki7MIAuQlH2FdhYPyn7oHwRuEjcHZjxC/WKYydCFHroUk1oqsE2D/vBaRTDVh+hWFm/nHj/bRA
+	pvfH//glEfELyqnViMrqFz5QapA2fAQHACRs9v8L1p+QUmOC4FDSqCAQ==
+X-Received: by 2002:a17:90b:44:b0:35b:e4f0:f9b4 with SMTP id 98e67ed59e1d1-3650c4b9096mr2766949a91.10.1777728696153;
+        Sat, 02 May 2026 06:31:36 -0700 (PDT)
+Received: from [127.0.1.1] ([2a12:a305:4::3016])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-364ec02ab2fsm5647937a91.14.2026.05.02.06.31.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 May 2026 06:31:35 -0700 (PDT)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH v10 0/3] spi: support the SpacemiT K1 SPI controller
+Date: Sat, 02 May 2026 21:30:50 -0400
+Message-Id: <20260502-spi-spacemit-k1-v10-0-f412e1ae8a34@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 7/7] arm64: dts: renesas: r8a779md: Add support for R-Car
- M3Le R8A779MD Geist
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-arm-kernel@lists.infradead.org,
- Nguyen Tran <nguyen.tran.pz@bp.renesas.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Stephen Boyd <sboyd@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20260419193718.133174-1-marek.vasut+renesas@mailbox.org>
- <20260419193718.133174-8-marek.vasut+renesas@mailbox.org>
- <CAMuHMdX17D3n_5vxsvmaSmionjOqrEdPygjPdYuu6a0DR7b83w@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdX17D3n_5vxsvmaSmionjOqrEdPygjPdYuu6a0DR7b83w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: btp1myu5i1sycqg3wd8pncfykxy8hp97
-X-MBO-RS-ID: 0401f179b09affd0292
-X-Rspamd-Queue-Id: 3887F4B433A
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEql9mkC/2WPwU7DMAyGX6XKmUx22qztTrwH4pAElxm0dYuzC
+ DTt3XFXDogdfLD9+/t/X41QZhKza64mU2Xh+agNwlNj0j4c38nymw6MA7eFDnorJ9YKiQ5c7Cd
+ agtH3qUVE74xenTJN/HVHvryuvVziB6WyYBbFnqXM+fvuWYdF90tHeKDXwYL1LcXYDaHDbvucW
+ ZKUkDdpPpjFoI5/EO4xYB0VMU29b6P32IL7h7itITOdL/p+WZObGISs7hWya2q/AZsTqvj2A9P
+ yVQszAQAA
+X-Change-ID: 20260407-spi-spacemit-k1-e0957c311152
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
+ Alex Elder <elder@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Guodong Xu <guodong@riscstar.com>, 
+ Alex Elder <elder@riscstar.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.15.1
+X-Rspamd-Queue-Id: 11CA94B2287
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [3.94 / 15.00];
+	DATE_IN_FUTURE(4.00)[11];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292297-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292348-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[mailbox.org:s=mail20150812];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[lists.infradead.org,bp.renesas.com,kernel.org,gmail.com,ideasonboard.com,renesas.com,baylibre.com,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[mailbox.org,reject];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:url,0.0.0.0:email,mailbox.org:dkim,mailbox.org:mid]
+	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar-com.20251104.gappssmtp.com:dkim,riscstar.com:mid,riscstar.com:email]
 
-On 4/29/26 3:59 PM, Geert Uytterhoeven wrote:
+This series adds support for the SPI controller found in the SpacemiT
+K1 SoC.  The driver currently supports only master mode.  The controller
+has two 32-entry FIFOs and supports PIO and DMA for transfers.
 
-Hello Geert,
+Starting with v8, I am taking over from Alex Elder to shepherd this
+series upstream.  Alex developed versions 1 through 7.
 
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
-> 
-> This include is not needed?
+Version 10 fixes a buffer-offset + unsigned underflow on 16/32 bpw
+transfers (8 bpw worked because bytes == 1), reported by Mark Brown.
 
-It is not.
+(Note, this is a distinct series from the QSPI driver, which was
+merged recently.)
 
->> +#include "salvator-panel-aa104xd12.dtso"
->> +
->> +&{/panel} {
->> +       data-mapping = "jeida-24";
-> 
-> Is there any specific reason Geist needs "jeida-24", while all other
-> boards use "jeida-18"?
+End-to-end tested on Banana Pi BPI-F3 with a GigaDevice GD25Q64E SPI
+NOR wired to the spi3 GPIO header pins.
 
-This is a leftover, it should be jeida-18 , the Geist board pulls LVDS 
-output(LVDS0) pin 19 MODE=L , which on the aa104xd12 means 6-bit mode.
+BR,
+Guodong
 
-> It looks like the major difference between Salvator-X(S) and Geist vs.
-> Draak and Ebisu is that the former connect to lvds0, and the latter to lvds1.
-> So what about renaming
-> salvator-panel-aa104xd12.dtso to lvds0-panel-aa104xd12.dtso, and
-> draak-ebisu-panel-aa104xd12.dtso to lvds1-panel-aa104xd12.dtso?
+Between version 9 and version 10:
+ Patch 2:
+  - Initialise tx_resid/rx_resid to transfer->len (matching the
+      "bytes left in transfer" struct comment and the byte-stride
+      decrement in the per-word helpers) and divide by drv_data->bytes
+      where the FIFO burst is capped in words.
 
-Will do in V2, although in a slightly different way.
+Here is version 9 of this series:
+  https://patch.msgid.link/20260427-spi-spacemit-k1-v9-0-ff753b551302@riscstar.com
 
-[...]
+Between version 8 and version 9:
+ Patch 1:
+  - Subject prefixes in the order of "spi: dt-bindings: ..."
+ Patch 2:
+  - k1_spi_dma_prep(): nested ternary to switch.
+  - k1_spi_ssp_isr(): return IRQ_NONE based on SSP_STATUS bits
+  - k1_spi_ssp_isr(): rename reading of SSP_STATUS to 'status' (and
+      'top_ctrl' for SSP_TOP_CTRL); stop overwriting it.
 
->> +       x22_clk: x22-clock {
->> +               compatible = "fixed-clock";
->> +               #clock-cells = <0>;
->> +               clock-frequency = <33000000>;
->> +       };
-> 
-> X22 is not wired to anything; should we keep it?
+Here is version 8 of this series:
+  https://patch.msgid.link/20260410-spi-spacemit-k1-v8-0-53ebb48a4146@riscstar.com
 
-DT is supposed to be hardware description, the xtal is there and the 
-resistor footprint to connect it to the SoC is on the PCB, so someone 
-might populate it and use the xtal. This isn't a particularly convincing 
-argument for keeping the x22 node though.
+Between version 7 and version 8:
+  - Use // comments for the file header (Mark Brown)
+  - Remove open-coded DMA mapping (k1_spi_map_dma_buffer(),
+    k1_spi_unmap_dma_buffer(), k1_spi_map_dma_buffers(), the dummy
+    buffer, k1_spi_io struct); use SPI core DMA mapping via
+    transfer->tx_sg/rx_sg instead
+  - Add can_dma() callback, replacing open-coded transfer length
+    checks
+  - Add set_cs() callback for chip select control via the
+    TOP_HOLD_FRAME_LOW bit
+  - Switch from transfer_one_message() to transfer_one()
+  - DMA completion calls spi_finalize_current_transfer() directly
+    instead of using a completion
+  - Add SSP_STATUS_BCE (bit count error) to error detection
+  - Return IRQ_NONE early if no transfer is active, before
+    acknowledging interrupts
+  - Simplify k1_spi_driver_data struct
+  - ~160 fewer lines of code
 
-[...]
+Here is version 7 of this series:
+  https://lore.kernel.org/lkml/20251114185745.2838358-1-elder@riscstar.com/
 
->> +&audio_clk_a {
->> +       clock-frequency = <22579200>;
->> +};
->> +
->> +&avb {
->> +       pinctrl-0 = <&avb_pins>;
->> +       pinctrl-names = "default";
->> +       phy-handle = <&phy0>;
->> +       tx-internal-delay-ps = <2000>;
->> +       status = "okay";
->> +
->> +       phy0: ethernet-phy@0 {
-> 
-> compatible = "ethernet-phy-id0022.1622";
-> 
->> +               rxc-skew-ps = <1500>;
->> +               reg = <0>;
->> +               interrupt-parent = <&gpio2>;
->> +               interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-> 
-> interrupts-extended = <&gpio2 11 IRQ_TYPE_LEVEL_LOW>;
-> 
->> +               reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
->> +               reset-assert-us = <100>;
->> +               reset-deassert-us = <100>;
-> 
-> Do we need these two? We don't have them in e.g.
-> arch/arm64/boot/dts/renesas/salvator-common.dtsi
+Between version 6 and version 7:
+  - DIV_ROUND_UP_ULL() is now used when setting the speed, to address
+    two errors reported by the Intel kernel test robot on 32-bit builds
+  - Fixed a bug interpreting the resource pointer in k1_spi_dma_cleanup()
+  - The driver is now built as a module by default, if ARCH_SPACEMIT
+    is defined
 
-I believe we should add them, the KSZ9031 PHY does require 100us delay 
-after reset is deasserted and before MDIO access is possible:
+Here is version 6 of this series:
+  https://lore.kernel.org/lkml/20251027125504.297033-1-elder@riscstar.com/
 
-https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/KSZ9031RNX-Data-Sheet-DS00002117.pdf
+Between version 5 and version 6:
+  - Rebase only
 
-FIGURE 7-5: POWER-UP/POWER-DOWN/RESET TIMING
+Here is version 5 of this series:
+  https://lore.kernel.org/lkml/20251013123309.2252042-1-elder@riscstar.com/
 
-"
-Note 2: After the de-assertion of reset, wait a minimum of 100 µs before 
-starting programming on the MIIM (MDC/MDIO)
-interface
-"
+Between version 4 and version 5:
+  - Added Yixun's Reviewed-by tag on patch 3
 
-[...]
+Here is version 4 of this series:
+  https://lore.kernel.org/lkml/20250925121714.2514932-1-elder@riscstar.com/
 
->> +       pwm2_pins: pwm2 {
->> +               groups = "pwm2_a";
->> +               function = "pwm2";
->> +       };
-> 
-> What is pwm2 used for?
+Between version 3 and version 4 (all suggested by Yixun):
+  - Fixed an underrun/overrun comment error
+  - Renamed a pinctrl node
+  - Formatted dmas and dma-names properties on one line
 
-The signal is accessible on the EXIO connector D (LBSC) .
-It is up to user to use the pin for their purposes.
+Here is version 3 of this series:
+  https://lore.kernel.org/lkml/20250922161717.1590690-1-elder@riscstar.com/
 
-[...]
+Between version 2 and version 3:
+  - Add Conor's Acked-by to patch 1
+  - Add Rob's Reviewed-by to patch 1
+  - Added imply_PDMA to the SPI_SPACEMIT_K1 Kconfig option
+  - Fixed a bug pointed out by Vivian (and Troy) in word-sized reads
+  - Added a comment stating we use 1, 2, or 4 bytes per word
+  - Cleaned up DMA channels properly in case of failure setting up
+  - No longer use devm_*() for allocating DMA channels or buffer
+  - Moved the SPI controller into the dma-bus memory region
 
-The rest is addressed, thanks !
+Here is version 2 of this series:
+  https://lore.kernel.org/lkml/20250919155914.935608-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Use enum rather than const for the binding compatible string
+  - Omit the label and status property in the binding example
+  - The spi-spacemit-k1.o make target is now added in sorted order
+  - The SPI_SPACEMIT_K1 config option is added in sorted order
+  - The SPI_SPACEMIT_K1 config does *not* depend on MMP_PDMA,
+    however MMP_PDMA is checked at runtime, and if not enabled,
+    DMA will not be used
+  - Read/modify/writes of registers no longer use an additional
+    "virt" variable to hold the address accessed
+  - The k1_spi_driver_data->ioaddr field has been renamed base
+  - The DMA address for the base address is maintained, rather than
+    saving the DMA address of the data register
+  - The spi-max-frequency property value is now bounds checked
+  - A local variable is now initialized to 0 in k1_spi_write_word()
+  - The driver name is now "k1-spi"
+  - DT aliases are used rather than spacemit,k1-ssp-id for bus number
+  - The order of two pin control properties was changed as requested
+  - Clock names and DMA names are now on one line in the "k1.dtsi"
+  - The interrupts property is used rather than interrupts-extended
+
+Here is version 1 of this series:
+  https://lore.kernel.org/lkml/20250917220724.288127-1-elder@riscstar.com/
+
+Alex Elder (3):
+  dt-bindings: spi: add SpacemiT K1 SPI support
+  spi: spacemit: introduce SpacemiT K1 SPI controller driver
+  riscv: dts: spacemit: define a SPI controller node
+
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Alex Elder (3):
+      spi: dt-bindings: add SpacemiT K1 SPI support
+      spi: spacemit: introduce SpacemiT K1 SPI controller driver
+      riscv: dts: spacemit: define a SPI controller node
+
+ .../devicetree/bindings/spi/spacemit,k1-spi.yaml   |  84 +++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   7 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |  20 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  15 +
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-spacemit-k1.c                      | 789 +++++++++++++++++++++
+ 7 files changed, 925 insertions(+)
+---
+base-commit: 559f264e403e4d58d56a17595c60a1de011c5e20
+change-id: 20260407-spi-spacemit-k1-e0957c311152
+
+Best regards,
+--  
+Guodong Xu <guodong@riscstar.com>
+
 
