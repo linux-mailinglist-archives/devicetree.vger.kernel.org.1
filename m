@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-292433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292434-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBNfE12P92kEjAIAu9opvQ
-	(envelope-from <devicetree+bounces-292433-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 20:09:33 +0200
+	id mONvDzSQ92k6jAIAu9opvQ
+	(envelope-from <devicetree+bounces-292434-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 20:13:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AF14B6EBB
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 20:09:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C45764B6EDE
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 20:13:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ABE0E3009148
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 18:09:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 13B573008793
+	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 18:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 808DA39A070;
-	Sun,  3 May 2026 18:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6834D39A7FA;
+	Sun,  3 May 2026 18:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PamGlYs/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgMBReOV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3363590AE;
-	Sun,  3 May 2026 18:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450E423E33D;
+	Sun,  3 May 2026 18:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777831770; cv=none; b=uwR4+vRyACajRwyk7tLifHSH7LqnrCV+JL6ClnQnIBEmx5QG0Lgj/BO1hRDc5GPJKJ9u5Miz59YXa3A+Iy9tcwgYX1NdxP1iyqhlkiWK7V2La/MGsnUEGnTDcDW3OQCFL4PhNHwxRyR2Jy9NUnlHZgCVggfo0GRHUAvpyZTcU28=
+	t=1777831985; cv=none; b=F5S3BCIqns241rVYT7Ezdikk//HX1zNO0l+JDG+JMEJFRG7fY1srf7ZjI5iMVxphyT4+ifrh8+KvuEar+el4ptn9SdsqeqomkuX6GhoZK0jyq7TmbLwRVgH3IhikyHhQHqt/adInuCT5n1vAoQMuCCepkh53wmgb57JF4J4OBxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777831770; c=relaxed/simple;
-	bh=PNshguIxTl4GJp7I1c2BUQ1EKe5B/TBcOdJ5hudy+5g=;
+	s=arc-20240116; t=1777831985; c=relaxed/simple;
+	bh=6klYnKC4RXHOdJ3ZuuclrwuTvOEpiEC/KlJrZ4KodOo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D0tLEZSbleVs0a/fzeCBiBScg39DdXw1KZ8RUgYKLx5ABJSJtjNuB3HFT7lY03JwpGtREg8bJ9SoDULyj4aWDbZrSFcy1Jy8jrsXusgD/Ycnns5k2Cfw5cXdHGSbLIATCs4xlwN5pFGuiNMAPZEATgvZv0c5vtZU825yO3teUm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PamGlYs/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC161C2BCC9;
-	Sun,  3 May 2026 18:09:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CBO7ViCgcLYpqjcv9VACu5WD98Nm3/1Zf04bWz7y2LuDxNNWCkxqUjSm9RxCraeNnkKPrCVA/MAf6ih3kBn5fqvilcU4qIkkDn2rtUtF1O5tGtGtxBdAeJrQWY0BC5YOkayyg0PJCt93EeY+rZ3s7qy1EyWIwxb5hlPwOtr/1F0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgMBReOV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE02C2BCB4;
+	Sun,  3 May 2026 18:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777831770;
-	bh=PNshguIxTl4GJp7I1c2BUQ1EKe5B/TBcOdJ5hudy+5g=;
+	s=k20201202; t=1777831985;
+	bh=6klYnKC4RXHOdJ3ZuuclrwuTvOEpiEC/KlJrZ4KodOo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PamGlYs/ZwXpRIaoXrQegy5PszNxk/y9cZMZfNbPYtu1RbkQQt/1+fjEVfceCrxX3
-	 vHqqomXBglK9bskAB+oM9s6p6T4iXP94D0eVxJXgrReRb/O8EAWl2hJhD8LTDKO1X1
-	 gGmkISg+aUA22JhseGgE69hbf4VWvh2jn55xg0hJ//znhmd+8OuvJgddCx3QNMhXaC
-	 Ut2B9mSMV9qkpLOxIDcZywRBvbyitAqj3hzA8F9oyFQ4i0Aj2Gel4RVtQMg3KwwxtE
-	 zxc0WcDmREtNHLhnzhjuEh0R/fOy0r2lDL5mlITVHV9iI4fdeCVONozerNeWu+lVxK
-	 0UfEjLFpTdq5g==
-Date: Sun, 3 May 2026 19:09:26 +0100
+	b=PgMBReOVIQqxZTLgYWJyxf+rLTn2fDZeQbxZHAYeMzS6Ece6sF/iExepd0VJyAi2U
+	 wPT9CqaMrcD1oH57ZGu4tLb4V3L8Gbr7wwRrKeYoYyIVaMy1mAAElXI4QHsmYWkETF
+	 YjvsQNAqZ/Ru7myxJWUoAnqXsRa9gyp5Dql6i7tNF9lLyb8tA3sqhTbq/2RG69MRrj
+	 WM+V+cjJmIhfqqWbH/CIbI9ZDMaQto5RsALldjiMyhVsZ5HMliottF/6TvOwiAwIA9
+	 YpaxX+g+CdpI0H6LLWgzk0M5g9EFE7QCTOkRerBYnCy/5Blai1ITaKpxQrSheZJ7H6
+	 yN13oFVERHO8w==
+Date: Sun, 3 May 2026 19:13:01 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] schemas: Allow clocks: property in cache nodes
-Message-ID: <20260503-vagabond-barge-dac8ececfc11@spud>
-References: <20260503154439.27362-1-marek.vasut+renesas@mailbox.org>
+To: Markus Stockhausen <markus.stockhausen@gmx.de>
+Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jdelvare@suse.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: lm75: Add
+ ti,alert-polarity-active-high property
+Message-ID: <20260503-ravioli-spirits-476c1d1152bc@spud>
+References: <20260502190408.3577731-1-markus.stockhausen@gmx.de>
+ <20260502190408.3577731-2-markus.stockhausen@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,100 +62,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eM0xHKcgk7arIq0j"
+	protocol="application/pgp-signature"; boundary="j1lCQ+r1Alurczau"
 Content-Disposition: inline
-In-Reply-To: <20260503154439.27362-1-marek.vasut+renesas@mailbox.org>
-X-Rspamd-Queue-Id: A0AF14B6EBB
+In-Reply-To: <20260502190408.3577731-2-markus.stockhausen@gmx.de>
+X-Rspamd-Queue-Id: C45764B6EDE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292433-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292434-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_TO(0.00)[gmx.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,glider.be:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
 
---eM0xHKcgk7arIq0j
+--j1lCQ+r1Alurczau
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 03, 2026 at 05:44:13PM +0200, Marek Vasut wrote:
-> Renesas R-Mobile APE6 currently describes clock which supply the cache
-> controller in their DT using "clocks" property. This is not the only
-> hardware that has cache controller clock controllable via some sort of
-> clock controller, for example Altera SoCFPGA Cyclone V and Arria V also
-> has controllable cache controller clock. Allow clocks: property in cache
-> controller node to allow users to fully describe such hardware.
+On Sat, May 02, 2026 at 09:04:07PM +0200, Markus Stockhausen wrote:
+> The LM75 alert pin is asserted based on the value of alert polarity bit of
+> the configuration register. The device/driver default is 0 which means al=
+ert
+> pin is configured to be active-low. A value of 1 maps to inverted (active=
+-high).
+>=20
+> Add an optional boolean property "ti,alert-polarity-active-high" to
+> override the alert pin polarity. When absent, the default active-low
+> polarity is kept.
+>=20
+> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
 
-Hmm, shouldn't these cache controllers have dedicated bindings that
-enforce their clock requirements?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
->=20
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
->  dtschema/schemas/cache.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/dtschema/schemas/cache.yaml b/dtschema/schemas/cache.yaml
-> index 73d345f..dee1cd5 100644
-> --- a/dtschema/schemas/cache.yaml
-> +++ b/dtschema/schemas/cache.yaml
-> @@ -33,6 +33,9 @@ properties:
->    compatible:
->      const: cache
-> =20
-> +  clocks:
-> +    maxItems: 1
-> +
->    power-domains:
->      maxItems: 1
-> =20
-> --=20
-> 2.53.0
->=20
->=20
-
---eM0xHKcgk7arIq0j
+--j1lCQ+r1Alurczau
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafePVgAKCRB4tDGHoIJi
-0n6WAQC+uQdAl3MVRNz6gWaCxG/Ka7dQmw1C4FssO+r/KRc3iwD/WqudPKI1Kuix
-PcPTmIbr/yWmQcaar78FVil5wnqJFQQ=
-=59Jr
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafeQLQAKCRB4tDGHoIJi
+0rpEAP4gNXB8UozmLy3fgcBpQiGh/JAciUwbwkxxC0VcQs5YNgD/QnYoL4m6kQCc
+Gqxznm5rGlmKbwLRwepqpawknoK50wc=
+=LHJW
 -----END PGP SIGNATURE-----
 
---eM0xHKcgk7arIq0j--
+--j1lCQ+r1Alurczau--
 
