@@ -1,81 +1,94 @@
-Return-Path: <devicetree+bounces-292338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292348-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0gNSE3Ch9mmiXAIAu9opvQ
-	(envelope-from <devicetree+bounces-292338-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 03:14:24 +0200
+	id JGy6Ngy69mnnXwIAu9opvQ
+	(envelope-from <devicetree+bounces-292348-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:59:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95454B3F8C
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 03:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3887F4B433A
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:59:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4EB8A30082AD
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 01:07:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 761DD30080A3
+	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 02:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF1E0220F3E;
-	Sun,  3 May 2026 01:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF8B3603C3;
+	Sun,  3 May 2026 02:51:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="N2JoHuYi"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="yKfjR2zD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C341BBBE5;
-	Sun,  3 May 2026 01:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918E9340281;
+	Sun,  3 May 2026 02:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777770428; cv=none; b=hQnIu7MPVPWV4hRLzuJvIUck9xTxjgrO36s5N/Ls8y8MUm7feQtw8VRjuWUro5CuMtbKq2LxCNCPWbs91nRRi7PIjnem8Zjft8ccsnWMOOcmtQksoTgjrGcRfNLkJysLKxQUFdp3Q3u+BYe7llkPq5/DCgQlWmSlbeyNuxEs6oo=
+	t=1777776661; cv=none; b=oozaOKJrUb51gk0YdJsusTr8oAeYYzqI2/l0K5XwhpXvBIlOwyq1d9DegII72gZp5OFbqOyeVH/NyNnQavkv/8uop6pGO6Byz3dNGZO0FO/wHXFc9s3x3GFYNtkXUabDq2uUtL7Pxc3XFxUfnjCvj3PUsaUYR5GPqQWo3DNNOPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777770428; c=relaxed/simple;
-	bh=xHVeCTvro9mydvIDUiH+Ipm5YcNn5dH+Gj8qneqcIhc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rUwm0ETkUfve5cyV3ABsbA4lH1PjUIqofG+jMlM0lKVuIBhY46hhOR259+/nrQ0JJ5bnWH0uZT4ue97C9S37q6dGb6xXeNG2bQ9sdoOyFpHUJAll+eENbkhDqoQt2JibP34lkW1rleziorehDGce/TPCVnF0vWDSJZ9PS/nlqM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=N2JoHuYi; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iTliig7XY22fu4H32jB0NZpBHHicET4PgwXZUH5txE4=; b=N2JoHuYiOIPFUgca2LUzPPX8pT
-	qqh1+MInrcZI0EbTccvR75qQWgPnTk8kfEwc6xO8PVxqeJO9qAwf3FkV9PA53pj3WHYSBUrPKXWhU
-	3Uhi1k5uBi/zqgUeMQMajSkAJiGg3bU447q8BzAJsjL36J0mgWNyvhWjeJ3pPZ0HcOA0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wJLIO-0014NM-Ld; Sun, 03 May 2026 03:06:56 +0200
-Date: Sun, 3 May 2026 03:06:56 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: ciprian.regus@analog.com
-Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 5/5] dt-bindings: net: Add bindings for the
- ADIN1140
-Message-ID: <05ae6249-1f40-4530-b2dc-e52e4f454c0d@lunn.ch>
-References: <20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com>
- <20260503-adin1140-driver-v1-5-dd043cdd88f0@analog.com>
+	s=arc-20240116; t=1777776661; c=relaxed/simple;
+	bh=SWduPrPv7Hs1tnivvKljivRKChxKhiE0bWPaYXn0xWI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ggc1MV4zcExki33IK6CGyFIBku7+FqB/0OSQW518BwHJxtNYCVfP5w9U+i6hPM2sIHUJFqXYkPPn7DIjQivE+9OKsEqIGz9VgbNZPHKG1UqSKiwk+6tNBoiiM3L9wNiwqrwboZsAlVn5Ep+dA2IMDR5cVycHex73o1nWHD+XWbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=yKfjR2zD; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4g7TmT5w3Xz9t9n;
+	Sun,  3 May 2026 04:50:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1777776649;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1jmyfPlNX23L/mOTTiiXLgc1RStN2ndJcGiPbqaR3dc=;
+	b=yKfjR2zDF2QVZrLp6pEZKOu5gV9mYEU6Mk+OazS9IYYjoW0P1NXTpKq7Ae5UQJSoN1fMVk
+	Py0EhjKLEREv1fLBw1nLuWuG+8b6Nchn/RSJY2fNe/PM6J1JTzxhW/UZq/7vIoLUtFW0yv
+	s/PhL+ePEglLuFZ2T85rkVBy2g3mxQr9ESJxq7FeavP7m/KsikGyglB8V6Qyl7ADK2vsQs
+	Lxhmp7Xe6woXw6Mnbz99982wWZTODw85yb/GWfgkOKPdRZ/cyznxkWLCjKUekPCqE/xvOl
+	Y1dm6O0e2sCtnnsQk52zamiI5kTPe7Pgs+s5gkLBMtHXR9qEtHKQGw5gdQ8nHg==
+Message-ID: <0875e4a1-f112-4619-a229-2f6f9197f21c@mailbox.org>
+Date: Sun, 3 May 2026 03:25:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260503-adin1140-driver-v1-5-dd043cdd88f0@analog.com>
-X-Rspamd-Queue-Id: A95454B3F8C
+Subject: Re: [PATCH 7/7] arm64: dts: renesas: r8a779md: Add support for R-Car
+ M3Le R8A779MD Geist
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+ Nguyen Tran <nguyen.tran.pz@bp.renesas.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Stephen Boyd <sboyd@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20260419193718.133174-1-marek.vasut+renesas@mailbox.org>
+ <20260419193718.133174-8-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdX17D3n_5vxsvmaSmionjOqrEdPygjPdYuu6a0DR7b83w@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdX17D3n_5vxsvmaSmionjOqrEdPygjPdYuu6a0DR7b83w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: btp1myu5i1sycqg3wd8pncfykxy8hp97
+X-MBO-RS-ID: 0401f179b09affd0292
+X-Rspamd-Queue-Id: 3887F4B433A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [4.84 / 15.00];
@@ -87,57 +100,132 @@ X-Spamd-Result: default: False [4.84 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292338-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[lunn.ch:s=20171124];
+	TAGGED_FROM(0.00)[bounces-292348-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[mailbox.org:s=mail20150812];
 	RCVD_COUNT_THREE(0.00)[4];
 	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[lists.infradead.org,bp.renesas.com,kernel.org,gmail.com,ideasonboard.com,renesas.com,baylibre.com,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
+	DMARC_POLICY_ALLOW(0.00)[mailbox.org,reject];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.825];
+	NEURAL_HAM(-0.00)[-0.996];
 	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,lunn.ch:dkim,lunn.ch:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:url,0.0.0.0:email,mailbox.org:dkim,mailbox.org:mid]
 
-> +  The ADIN1140 (also called AD3306) is a low power single port
-> +  10BASE-T1S MAC-PHY. It integrates an Ethernet PHY with a MAC
-> +  and all the associated analog circuitry.
-> +  The device implements the Open Alliance TC6 10BASE-T1x MAC-PHY
+On 4/29/26 3:59 PM, Geert Uytterhoeven wrote:
 
-The device _tries_ to implements the Open Alliance TC6 10BASE-T1x MAC-PHY.
+Hello Geert,
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet@0 {
-> +            compatible = "adi,adin1140";
-> +            reg = <0>;
-> +            spi-max-frequency = <23000000>;
-> +
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+> 
+> This include is not needed?
 
-Table 1: OPEN serial 10BASE-T1x Interface Pin Definition
+It is not.
 
-IRQn MAC-PHY Interrupt Request (Active Low)
+>> +#include "salvator-panel-aa104xd12.dtso"
+>> +
+>> +&{/panel} {
+>> +       data-mapping = "jeida-24";
+> 
+> Is there any specific reason Geist needs "jeida-24", while all other
+> boards use "jeida-18"?
 
-Or is this something else which the device gets wrong?
+This is a leftover, it should be jeida-18 , the Geist board pulls LVDS 
+output(LVDS0) pin 19 MODE=L , which on the aa104xd12 means 6-bit mode.
 
-	Andrew
+> It looks like the major difference between Salvator-X(S) and Geist vs.
+> Draak and Ebisu is that the former connect to lvds0, and the latter to lvds1.
+> So what about renaming
+> salvator-panel-aa104xd12.dtso to lvds0-panel-aa104xd12.dtso, and
+> draak-ebisu-panel-aa104xd12.dtso to lvds1-panel-aa104xd12.dtso?
+
+Will do in V2, although in a slightly different way.
+
+[...]
+
+>> +       x22_clk: x22-clock {
+>> +               compatible = "fixed-clock";
+>> +               #clock-cells = <0>;
+>> +               clock-frequency = <33000000>;
+>> +       };
+> 
+> X22 is not wired to anything; should we keep it?
+
+DT is supposed to be hardware description, the xtal is there and the 
+resistor footprint to connect it to the SoC is on the PCB, so someone 
+might populate it and use the xtal. This isn't a particularly convincing 
+argument for keeping the x22 node though.
+
+[...]
+
+>> +&audio_clk_a {
+>> +       clock-frequency = <22579200>;
+>> +};
+>> +
+>> +&avb {
+>> +       pinctrl-0 = <&avb_pins>;
+>> +       pinctrl-names = "default";
+>> +       phy-handle = <&phy0>;
+>> +       tx-internal-delay-ps = <2000>;
+>> +       status = "okay";
+>> +
+>> +       phy0: ethernet-phy@0 {
+> 
+> compatible = "ethernet-phy-id0022.1622";
+> 
+>> +               rxc-skew-ps = <1500>;
+>> +               reg = <0>;
+>> +               interrupt-parent = <&gpio2>;
+>> +               interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> 
+> interrupts-extended = <&gpio2 11 IRQ_TYPE_LEVEL_LOW>;
+> 
+>> +               reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
+>> +               reset-assert-us = <100>;
+>> +               reset-deassert-us = <100>;
+> 
+> Do we need these two? We don't have them in e.g.
+> arch/arm64/boot/dts/renesas/salvator-common.dtsi
+
+I believe we should add them, the KSZ9031 PHY does require 100us delay 
+after reset is deasserted and before MDIO access is possible:
+
+https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/KSZ9031RNX-Data-Sheet-DS00002117.pdf
+
+FIGURE 7-5: POWER-UP/POWER-DOWN/RESET TIMING
+
+"
+Note 2: After the de-assertion of reset, wait a minimum of 100 µs before 
+starting programming on the MIIM (MDC/MDIO)
+interface
+"
+
+[...]
+
+>> +       pwm2_pins: pwm2 {
+>> +               groups = "pwm2_a";
+>> +               function = "pwm2";
+>> +       };
+> 
+> What is pwm2 used for?
+
+The signal is accessible on the EXIO connector D (LBSC) .
+It is up to user to use the pin for their purposes.
+
+[...]
+
+The rest is addressed, thanks !
 
