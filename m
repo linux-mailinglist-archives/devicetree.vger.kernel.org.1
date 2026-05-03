@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-292349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292350-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGlUAIm79mkNYAIAu9opvQ
-	(envelope-from <devicetree+bounces-292349-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 05:05:45 +0200
+	id IMy5Mci99mlbYAIAu9opvQ
+	(envelope-from <devicetree+bounces-292350-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 05:15:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D36E4B437D
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 05:05:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 203AA4B43DB
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 05:15:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F08DA3001FEC
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 03:05:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 075FF300915A
+	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 03:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BCC35B62F;
-	Sun,  3 May 2026 03:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFC4935E921;
+	Sun,  3 May 2026 03:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WOqFdeGN"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="X1Fze2et"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED2C1E5B9A;
-	Sun,  3 May 2026 03:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D88522F388;
+	Sun,  3 May 2026 03:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777777542; cv=none; b=gJ/PWduH0LzqcTUXybThrI+RXTJ/HQDdFi7v5XTsKOffsFdURhqp+UYuxmLdgV1W7mpa+4eJ6VxRN6YAPJBtIJX9iPqvoCwey8LUzepon+RPMg5ffMN0E49aIbAJ8Xgbw6kS5SWhj6jeFKcY5yyFyAkFRKijqRU6BQtHyu+L6Rg=
+	t=1777778115; cv=none; b=lSf2N4omdgXZyZhshmcGa018QOXhi8lLsh6h8GQnNh1APRJA6Ld0ICDNfzsAo4w0Oll92hvRRH7qqrRVqEQd1Q4dcNAU+u2sNG8ZUMhb0r6PxFcm4ffLEp6wZcSlMCezuB1IKiAR8uNjbssIPkXI+sxcDaeOHVsQejVQH0z1LvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777777542; c=relaxed/simple;
-	bh=Bc7uubLHk/7Zvz+FjYl0CF0BcrblwRhjO8Bk4lzFuR4=;
+	s=arc-20240116; t=1777778115; c=relaxed/simple;
+	bh=uszX8nktAYPhBwqPGg9ArZG92U7lZm0cjvtfUsKt9IQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HQYAeARtPW6ogWF6+hdY4GR8i/3mcDpuQKis9n0J3calRZ3kR6NVAtDDuMtpfIPzNIBsadzNJ16RTEFiidiwbRP4NvLlVDbD8PUthJmdp2ICb5y8Ld6N9lbhjSaN1PD2cBJScMiptSiy2J6+0+7FTkJ2uaAHOHbMc+N/u5KJW1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WOqFdeGN; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=dnmwtErkLfTEcSw1JuTam4bNOVvY8HhEoadg5oDzXYWJvvIj6SXq213GVOb0X8I6SuYJ53HYO5L1bYiT1LwHSs+nd0qXz5R2iSPVSNOhsSOsjrlN9t7gUHhIn8ut4aDKakarSTBJjddBD+ujkQ0TNnVA1FpQ1jQmhakPcyQYFAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=X1Fze2et; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,42 +39,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=vTkWlde2JHlNLRGm1ttbizoIX10aHI1/8IxqhQI+Whc=; b=WOqFdeGNyDYHYFP7rc3MuSp8dU
-	+Nq7spbXhTu22v9VhEL/bpGGO7Ny+KaFWZxNAfsJ0HQvqdYex7LnMbsUU5CcnClNP8nNEc2vlJqj1
-	z9ZnXFUs5K0tXBKfOy6LB27Y7HO6yRUvlHLIJRj8EWGVWE1xUyY3lEZWpWfi41LUNU0k=;
+	bh=3Ud8a0f7cDkt/L/85rROuudOvlxnH0qdkSWe2s+aBps=; b=X1Fze2et52QjyiV6ocLwbVnDp6
+	Mu8ZoBovYc0lzK8m/eV2ysKglzRfhE/eeXeW0IG6MZzanNENe+5dv3d/gY8XDucWrZTLFNVBzTLTF
+	G4BkuygvqDpXvB8y0sVfEPYBjAsnsKSTBXtRWb4Df1fvcFTlj9iFFAsedarC0I+Z8Spo=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1wJN8j-0015D5-2u; Sun, 03 May 2026 05:05:05 +0200
-Date: Sun, 3 May 2026 05:05:05 +0200
+	id 1wJNIM-0015GF-IK; Sun, 03 May 2026 05:15:02 +0200
+Date: Sun, 3 May 2026 05:15:02 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Alex Elder <elder@riscstar.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
-	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
-	arnd@arndb.de, gregkh@linuxfoundation.org, daniel@riscstar.com,
-	mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
-	alexandre.torgue@foss.st.com, ast@kernel.org,
-	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
-	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
-	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
-	julianbraha@gmail.com, livelycarpet87@gmail.com,
-	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
-	rohan.g.thomas@altera.com, sdf@fomichev.me,
-	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
-	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 09/12] gpio: tc956x: add TC956x/QPS615 support
-Message-ID: <3666e3e6-e6f3-4cbf-b9fe-caa394fbab7c@lunn.ch>
-References: <20260501155421.3329862-1-elder@riscstar.com>
- <20260501155421.3329862-10-elder@riscstar.com>
- <736fb3b7-c88a-4ec4-96ad-d1b79cc48d30@lunn.ch>
- <30cec7dd-ac3c-47ab-896a-c29992bd5ba5@riscstar.com>
+To: ciprian.regus@analog.com
+Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/5] net: ethernet: adi: Add a driver for the
+ ADIN1140 MACPHY
+Message-ID: <5fb5e72c-2cd3-4582-afa5-eec1ea6ab84d@lunn.ch>
+References: <20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com>
+ <20260503-adin1140-driver-v1-4-dd043cdd88f0@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,101 +74,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <30cec7dd-ac3c-47ab-896a-c29992bd5ba5@riscstar.com>
-X-Rspamd-Queue-Id: 9D36E4B437D
+In-Reply-To: <20260503-adin1140-driver-v1-4-dd043cdd88f0@analog.com>
+X-Rspamd-Queue-Id: 203AA4B43DB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-292349-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-292350-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[50];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Sat, May 02, 2026 at 08:45:48PM -0500, Alex Elder wrote:
-> On 5/1/26 1:36 PM, Andrew Lunn wrote:
-> > > + * There is a TC956X PCI power controller driver that accesses the
-> > > + * direction and output value registers for GPIOs 2 and 3.  These
-> > > + * GPIOs control the reset signal for the two downstream PCIe ports.
-> > > + * Their values will never change during operation of this driver, and
-> > > + * this driver reserves these two GPIOS.
-> > 
-> > Why doesn't this power controller driver actually use this driver to
-> > control the GPIOs? Chicken/egg?
-> 
-> I am not the one with authority on this, but yes, that's my
-> understanding.  *Something* about this chip requires that the
-> PCIe ports need to have some configuration done on them *before*
-> PCIe is powered up.  So that driver uses the I2C interface to
-> apply these settings.  Meanwhile this driver uses the PCIe-mapped
-> memory to manage the GPIO registers.
+> +enum adin1140_statistics_entry {
+> +	rx_frames,
+> +	rx_broadcast_frames,
+> +	rx_multicast_frames,
+> +	rx_unicast_frames,
+> +	rx_crc_errors,
+> +	rx_align_errors,
+> +	rx_preamble_errors,
+> +	rx_short_frame_errors,
+> +	rx_long_frame_errors,
+> +	rx_phy_errors,
+> +	rx_fifo_full_dropped,
+> +	rx_addr_filter_dropped,
+> +	rx_ifg_errors,
+> +	tx_frames,
+> +	tx_broadcast_frames,
+> +	tx_multicast_frames,
+> +	tx_unicast_frames,
+> +	tx_single_collision,
+> +	tx_multi_collision,
+> +	tx_deferred,
+> +	tx_late_collision,
+> +	tx_excess_collision,
+> +	tx_underrun,
+> +};
 
-The diagram you have is:
+Many of these seem to be ethtool_eth_mac_stats. Please use that to
+report the.  You should only use the free form strings/values for none
+standard statistics.
 
-
-              ----------------------------------
-              |              Host              |
-              ------+...+----------+........+---
-                    |i2c|          |  PCIe  |
-    ----------------+...+----------+........+------
-    | TC956x        |I2C|          |upstream|     |
-    |               -----        --+--------+---  |
-    |  -----  ------  -------    | PCIe switch |  |
-    |  |SPI|  |GPIO|  |reset|    |             |  |
-    |  -----  ------  |clock|    | DS3 DS2 DS1 |  |
-    |                 -------    ---++--++--++--  |
-    |  -----  ------     downstream//    \\  \\   |  downstream
-    |  |MCU|  |SRAM|    /==========/      \\  \===== PCIe port 1
-    |  -----  ------   //PCIe port 3       \\     |
-    |                  ||                   \======= downstream
-    |  ----+-----------++-----------+----         |  PCIe port 2
-    |  | M | internal PCIe endpoint | M |         |
-    |  | S |------------------------| S |  ------ |
-    |  | I |   PCIe   |  |   PCIe   | I |  |UART| |
-    |  | G |function 0|  |function 1| G |  ------ |
-    |  | E |----++----|  |----++----| E |         |
-    |  | N |  eMAC 0  |  |  eMAC 1  | N |         |
-    --------+.......+------+.....+-----------------
-            |USXGMII|      |SGMII|
-          --+.......+--  --+.....+--
-          |  ARQ113C  |  | QEP8121 |
-          |    PHY    |  |   PHY   |
-          -------------  -----------
-
-The two Ethernet controllers are hanging off port 3 of the
-switch. However, the GPIO block is just floating in space. What
-address space is it in?
-
-I'm wondering if the GPIO controller should be a device/driver of its
-own? It probes first. The PCI power controller driver then probes, and
-has phandles to the GPIO controller so it can activate ports 1 and
-2. Parallel to that the Ethernet driver(s) can probe, also using
-phandles to the GPIO they need.
-
-Looking at this diagram, putting the GPIO controller within one of the
-port 3 functions is wrong. But maybe the diagram is not accurate.
-
-     Andrew
+	Andrew
 
