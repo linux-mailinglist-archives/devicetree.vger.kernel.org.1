@@ -1,170 +1,137 @@
-Return-Path: <devicetree+bounces-292345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292346-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNufMcCx9mmgXgIAu9opvQ
-	(envelope-from <devicetree+bounces-292345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:24:00 +0200
+	id sOWwBMW39mmnXwIAu9opvQ
+	(envelope-from <devicetree+bounces-292346-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:49:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F65F4B4268
-	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 796654B42C6
+	for <lists+devicetree@lfdr.de>; Sun, 03 May 2026 04:49:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5319030028CA
-	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 02:23:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6F4773001CE5
+	for <lists+devicetree@lfdr.de>; Sun,  3 May 2026 02:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC63C3914EE;
-	Sun,  3 May 2026 02:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92FDC275AE4;
+	Sun,  3 May 2026 02:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="ji7vaJUN"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XWLuIj4W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2441345CAF
-	for <devicetree@vger.kernel.org>; Sun,  3 May 2026 02:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABDA221F24;
+	Sun,  3 May 2026 02:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777775027; cv=none; b=N3v/Vf9BV48GEkr/5KzL/OOJpXXZ2+HGjPl+9OJ4QUvcWZOU2a0nFg5HFz3LPHglFgL/vsrpU0jyh57mF++O+qIVbWDmPzEaqNvO+6vwBwdpRVY6ShbqfCoka0eIIuKriEYJOst5h6JbR2dvfzhnatjOEsvMBGqEYt8wddMvw90=
+	t=1777776573; cv=none; b=nNhx7zkW8QISv16bWR1IbL3C3z4Id8VetUdnasTNjMVU9SRf2acfKZd+v4ycivHiLY0nB0evWjY1hKgIAcYupmB7G7mG6zfPQrdAoKLHfUINpsOZgHbpZag+fui16cyIVHlFzWhc/S0KQInOcNuu/u4avcqBxzLVLn3zAmEhQHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777775027; c=relaxed/simple;
-	bh=Lg5HT63X6f+bfQfEb0j4Ta/UIv9kP8NkdsygInHEr8Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U+VUb69lcBTFWTEql1WDDbkjS1BOhulXqDKimHT8aM8caZmiHUHXJ+gIVxRcu/3XfLyADSNIUB7tXf6UrvMNhIUHrAsZKb9nFHCuw5q7qPawWk6/FFPkXDM/0KWHDT5a7ZZOk2843QVTs7z61SP1LdfGzCQyLLzW3RS28QoavAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=ji7vaJUN; arc=none smtp.client-ip=209.85.160.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-50d87610513so31611181cf.3
-        for <devicetree@vger.kernel.org>; Sat, 02 May 2026 19:23:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1777775021; x=1778379821; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6zleKM47mpduavdnaP2aBKf2rkXt6X2UG0Frna4ddag=;
-        b=ji7vaJUNx8YA6RVhs3aqpTb63SpMMMPLRla8X/V3s+XeLyYphjnM0adNDT4UxthXTp
-         MkUCfvMy5fLLgih1UjEJIxq76rmjCuA9grdaqcDs7TQjRziaGIwlXlw9S3NYoW1JbYUN
-         WboMLBGy2zgG//HYSPoxzK/g8ZtbiegETnLHiaSFBKmCoCV4coD+n1ZD90NmRy2m9YSD
-         P3v4YAd9CLAK5Yh9Cev86ckiGQSc0Rih+vHaZADNpEFMBlVDNchsh9KUPTW9iXbY3ujy
-         yUVjoFhENNpwjeUUvmdSbj2Pu/R5ZQYlR2PZCx61FNTyX2sydH+RkzppPyF01a4eWOmO
-         F68Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777775021; x=1778379821;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6zleKM47mpduavdnaP2aBKf2rkXt6X2UG0Frna4ddag=;
-        b=UNsrDx7wftYsueWA+n0KYFcNbUJ2UVVow/NXvqZX8NK2NgDHJq12wDDq8M/vud4aZU
-         qJvU1tjMorN1T3jmaH4cGxRePjgWuRQPWqNFRyR/RZmTwxnKPbPGa0oAkZW4l3L1pRjN
-         vDdb/voFbN6weg1zxRJZ2n+LWKVXv2ZKw07Pby/2SDNasNt13x47sT6m6VG503p5hfKf
-         hQgQAeJD2ABhzTuaBV60EANLT3AhBQFjDO/paKH0nJM20yHlphnzTMc/LPJfQjD+eBQD
-         AjNPfJ+xo/tdBB4vjF5gk+FmRlCoMjdb1UtZNMdhW3cRKaKatAHjP4lof/i/Esx7o9fS
-         MTNw==
-X-Forwarded-Encrypted: i=1; AFNElJ+btkz5ZXP3N1OIzpy+ywqObbZsaA/Uo4+HQ7DkAEyfM8pFBUsAQlPfIYdCTgd3qALsT3jRMoFAGndC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxx083eDsIYLegMGOiKHMoM7ZRIrKC72Nsc47GdniEwd8ZCb7U4
-	8Us29QcPZTXgO9acvqS4wwnsuzTy0+9Q87qUhcAtBJcqd6FkqAxb0z4LLLfevoywxiw=
-X-Gm-Gg: AeBDieu1Mx8mjZMkIflIG5z4HkURiPL4/cSPZBG3oaAIO2pV62dOUsXy3hzsk7L2xOy
-	YkRJWDpC7OZkycJFW+K2s0W4eBy6vNXiNmBkisL0ofenaLoyRFW48ZDWCkBywq3RTgSYRlf3wpl
-	IK0EM6iMxRH9NJvt15zGrv2oYWxtSuJ9+lXySKqNT0T8JBhUE1x7rlzwDP84dUAvcOeQCfONArG
-	eSdeJaZTHd/1aP5kok60TZuaHiY7vU2aUAg3RemWaOju53CBPt3RdyjqCsMFtJ4AJHltDkxWUAX
-	wMPYKbz0fldSDu/lqgZR6qWNgBWtzX/udgKkSARQstY4KrbbGYn37B7b0jg4YYmXs3oilrf7vOl
-	aJjRwfiwuA2vavycJtbxWAimMfa7xvDkMo85GDR4ohm8qhQDz5zhzM499lhiM+G2NpfNz3j1RZK
-	x2H4s8KDZviPhG6PZFxqQqZaCpRF5fS+okTZyln3cSr6qEy0GHVOuFcB+5XqaE6Ppk0UPEo4HZx
-	g==
-X-Received: by 2002:a05:620a:2a0f:b0:8cf:e946:bb56 with SMTP id af79cd13be357-8fd1833a52fmr796002985a.44.1777775021562;
-        Sat, 02 May 2026 19:23:41 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8fc2c349572sm652634685a.28.2026.05.02.19.23.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 May 2026 19:23:41 -0700 (PDT)
-Message-ID: <5a8cde2d-2871-4f9a-be16-66c38005fd9e@riscstar.com>
-Date: Sat, 2 May 2026 21:23:37 -0500
+	s=arc-20240116; t=1777776573; c=relaxed/simple;
+	bh=GFGdjCNf3F5kPxCTiB48JwetFydKfpJwz84jgiWDQos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D/lMyCaJHiGwxZPPWOIMIY/802mIR37jtKvnTIhuXvvlot8fpcpfC5hkFUiJ3QZ1TOIrUkZDDJZGivRF4iG8vpjQjPAhsbsjzQF0OORfqoTHIzSqm6nbTFMRBRjY9vLc55RG/Z7wjF3AlrDVrbAxxTyVGbjRWGqXUBz1NLhKZow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XWLuIj4W; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=YmcxZf7SutD2K2WWcfwCmG8slAmsQJ99Yyc78yb8540=; b=XWLuIj4WipvGPsgidcptl/Qh5N
+	U+weMbENiXqUhZ9K+Huxv3/eFR240BNp8ysGxJUv5weTFCmXBQJGDCLuNAubJCXHxy2cX7WXz2k3j
+	OSsuuVcLs2dG3en05lRl41CWSaZ0IdcY0XVOyrk3VAoopjAUPxvah4wC+M7cYy7dpHHY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wJMst-00158d-Un; Sun, 03 May 2026 04:48:43 +0200
+Date: Sun, 3 May 2026 04:48:43 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Alex Elder <elder@riscstar.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
+	arnd@arndb.de, gregkh@linuxfoundation.org, daniel@riscstar.com,
+	mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
+	alexandre.torgue@foss.st.com, ast@kernel.org,
+	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
+	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
+	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
+	julianbraha@gmail.com, livelycarpet87@gmail.com,
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+	rohan.g.thomas@altera.com, sdf@fomichev.me,
+	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
+	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 09/12] gpio: tc956x: add TC956x/QPS615 support
+Message-ID: <3e5a42cc-53b8-4065-a32a-d754be40b4c7@lunn.ch>
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-10-elder@riscstar.com>
+ <736fb3b7-c88a-4ec4-96ad-d1b79cc48d30@lunn.ch>
+ <30cec7dd-ac3c-47ab-896a-c29992bd5ba5@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 11/12] misc: tc956x_pci: add TC956x/QPS615
- support
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- pabeni@redhat.com, maxime.chevallier@bootlin.com,
- rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org,
- brgl@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
- daniel@riscstar.com, mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
- alexandre.torgue@foss.st.com, ast@kernel.org, boon.khai.ng@altera.com,
- chenchuangyu@xiaomi.com, chenhuacai@kernel.org, daniel@iogearbox.net,
- hawk@kernel.org, hkallweit1@gmail.com, inochiama@gmail.com,
- john.fastabend@gmail.com, julianbraha@gmail.com, livelycarpet87@gmail.com,
- matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
- prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
- rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
- weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
- bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260501155421.3329862-1-elder@riscstar.com>
- <20260501155421.3329862-12-elder@riscstar.com>
- <20260502094559.15c3f479@kernel.org>
- <649428a4-9505-4a1a-bbbe-bd90be9b8155@riscstar.com>
- <20260502191427.34048082@kernel.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20260502191427.34048082@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 0F65F4B4268
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <30cec7dd-ac3c-47ab-896a-c29992bd5ba5@riscstar.com>
+X-Rspamd-Queue-Id: 796654B42C6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292345-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-292346-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,bootlin.com,armlinux.org.uk,kernel.org,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[49];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_GT_50(0.00)[50];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[riscstar.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,riscstar-com.20251104.gappssmtp.com:dkim]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-On 5/2/26 9:14 PM, Jakub Kicinski wrote:
-> On Sat, 2 May 2026 21:06:33 -0500 Alex Elder wrote:
->>> drivers/misc/tc956x_pci.c:541:17: error: call to undeclared function 'u32_get_bits'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
->>>     541 |         chip->rev_id = u32_get_bits(val, NCID_REV_ID_MASK);
->>>         |                        ^
->>
->> Yeah I think I noticed an error like that shows up with 32-bit builds?
->> In any case we didn't see it during development, and we'll make sure
->> <linux/bitfield.h> gets included.
-> 
-> on x86 it hits on all configs, I suspected you're building for ARM?
+> It's possible gpio-regmap.c *could* be used.  We started with
+> vendor code and this code got separated at some point along
+> the way.  It was working, and I don't think I pursued other
+> options at that point.  I'll look at this possibility before we
+> send out the next version.
 
-Yes.  I'll spend a little more time trying to build on other
-architectures.  I normally like to add COMPILE_TEST.
+The GPIO subsystem has made a big effort to provide generic code,
+since GPIOs are pretty simple things with a lot in common. So if the
+generic code works, or can be made to work with minor changes, you
+should use it.
 
-					-Alex
+> What do you mean instantiate it twice?
 
+I _think_ you need one instance for the first 32 GPIOs, and a second
+one for the remaining GPIOs. But maybe config->reg_stride might allow
+it to work with a single instance?
+
+   Andrew
 
