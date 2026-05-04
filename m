@@ -1,199 +1,474 @@
-Return-Path: <devicetree+bounces-292636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292639-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0EVsD1ua+GlgxAIAu9opvQ
-	(envelope-from <devicetree+bounces-292636-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 15:08:43 +0200
+	id sPSGFWea+GlgxAIAu9opvQ
+	(envelope-from <devicetree+bounces-292639-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 15:08:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304514BD7AE
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 15:08:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFFEB4BD7E8
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 15:08:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C6B10300981D
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 13:07:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C5D3C30314E1
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 13:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10743D813C;
-	Mon,  4 May 2026 13:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41CA3D9DAB;
+	Mon,  4 May 2026 13:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="cMwf+4U7"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="vRzD39VN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013070.outbound.protection.outlook.com [40.107.162.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDDE3D88E5;
-	Mon,  4 May 2026 13:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777900056; cv=fail; b=cy255GxLXL3RXM4S2rzZyxSHeCNIqxBY5ruj+7HnXMZi6LJH+UQ3vtOuGQ77YGEA2UzTfehJ8ynPdZ7dQIk789QmOpkPp3vIxptKiiO+Fn7H7z1Zz7mlAPdErLaM3/iNcXdLx/rn81BcCg6VBpHPJBYUTZM71UOQ3KgtQzC9gg0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777900056; c=relaxed/simple;
-	bh=GWnnPBQ31+Wdxi8CMnmxHpOyNdbS2BeZxJqSicD2z8I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=uYgWO2I+UAZ0+1MAZdQZDCEzQxJxUYFH6haJeagDcmR9bgcBvq3BrMbp7jP9RnaYn9BV2Aahgb4qrWd4R0GHrK6oTT6IEyKULgj17Q5hsCAGadKBZ2/aILES+fth6ULO6HJ+Ij7INgk0xDWy/u4ZoxBpiNFf0f6uD5gn5amU3n4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=cMwf+4U7; arc=fail smtp.client-ip=40.107.162.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KVbmn3SVJihRlknkiBShJUQLH6EQuc+lx0NrEqz7LnN38o6CxsdMwVnI8C6dgiYtF1pReWHJgXdBdqMq1WpoWkyldOoZMtPAd+03/YqvNKPrYA+stEXmvmJxoG04r4WXp1i7iHv93jI3DqaWlWwWHfBbqxXyfCQIou/ixdp5GwtOfDy0fz0CGKQYxOz78ya2enWQnNeJLIqPGJtX/8FPGF/e+D8Mi/WgpTsudkJIG8Vl4RsNFDbBTrbC38xtP24hQsB44PQvgoXDAtgeXZ+ROv0M82u4X7dOTMPoVwVf9SwpbtQJrfCUrlaSCef/mEmPesMt0ZoP++yy41peXo19+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=povR5NNTB5IFgCshnMtk/P6aa49ykPVE0y/ORjCr9BM=;
- b=X/dP03B+zHo4SCh0UQb3X+IOKEHy7w76PLv2m3vbWJIuYJbyRi4ZqHkE4N8vKf11CRKb3K+AeA/zloF/ZewxglTFLR4+N8kbggSrV+P5nY5fZJkbaR6/eNfVjqyCl+YNEZ5xcLURJ48eBSZB/iMDqxsuTgTB06IgEyYnqvW+ZnuoXCF73EsdCBW2MDRUX11PNd+sqANW1i8+JEiuNHhfvn7zLMEScUMBdR13gJ2hOfR8J0KcwjUrIwxw8/m9o+F48VZ+DbNEHWHcN6+ZA9OpTZb3zU2PpORDT7AN8UOvfK2WYu0qnco2kEpDQl7zSCzU6kQ9wZ4KvKJa8sPGMR+AFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=povR5NNTB5IFgCshnMtk/P6aa49ykPVE0y/ORjCr9BM=;
- b=cMwf+4U7QOOCprl3Se8VdGaBT9SWfQDBPY07PESFNz/Leso3LQeqe2T4ZFMc8IcTOKTsIYSe3PUSNXDrLMaJFAH7EtrAiuMZk49OESTBhmAeTL87VIfcAvtvcr1vEDQZGlzKb5Wc71oWEdx1EoOdFqX/n8muLlcD67ExxgdCrLoSuM9czz9cZKOqvgyLHumf47Tdl86V6bsgPnylsCH6XGaqljSEogvrwg2XXiEdugBXyWY6eapmFQHKgloblFZrFG/nPeUiPKYDTwvpghKM7qkRvLRnkQO2FjBOOcttBxIXi0Dy/L+V9wB4cNw7auRZco18cZAaZDsNPBH1xDHmLA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV1PR04MB9135.eurprd04.prod.outlook.com (2603:10a6:150:26::19)
- by AS1PR04MB9502.eurprd04.prod.outlook.com (2603:10a6:20b:4d0::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
- 2026 13:07:30 +0000
-Received: from GV1PR04MB9135.eurprd04.prod.outlook.com
- ([fe80::3826:2706:1e81:c9e2]) by GV1PR04MB9135.eurprd04.prod.outlook.com
- ([fe80::3826:2706:1e81:c9e2%5]) with mapi id 15.20.9870.023; Mon, 4 May 2026
- 13:07:29 +0000
-Date: Mon, 4 May 2026 16:07:24 +0300
-From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	Marco Felsch <m.felsch@pengutronix.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: bridge: ldb: Require reg property
- only for i.MX6SX/8MP LDBs
-Message-ID: <q2sfuv2qqzbhn6hlsavp352v7oj7ph3lmadn7nq7wzgexvtxkv@utcythnlzzno>
-References: <20260329-fsl_ldb_schema_fix-v1-1-351372754bc0@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260329-fsl_ldb_schema_fix-v1-1-351372754bc0@nxp.com>
-X-ClientProxiedBy: FR4P281CA0044.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c7::8) To GV1PR04MB9135.eurprd04.prod.outlook.com
- (2603:10a6:150:26::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B363D813C
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 13:07:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777900077; cv=none; b=nFT9YLgohan0aWtsV3h+9PqR+ox+Z9QtxVavYz0zbey/ZbgEqL5pwW2jdMRDmz3YVsdQQMee+k991zKUaUVkM+eVjDMu4Z2aQp/RoB90Bfdb833paau7aKNmqJXp2+os+gtjCmDwAb1/Y6A6oioThY++p8FXlTlV5xUSGm3fdPI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777900077; c=relaxed/simple;
+	bh=SfrLhYfvia58mIrqMwiqY24xvyzZfeN95GCFj9Ymlu8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eHtFqFkTDDTWs1OJsyPVP7tvD2j+HdS8TEWwOiBdVHVLwzBbqULBmw7y2zwSy+zsBZILiDKqfnNFMhXkQJzwTh2zScKtw+fwovYttY7+/CdapN17YEnzZh8vBP0vFu3vBHtTXAKVwILnEhtly/oV6Kpfp+mjVtoPaQFBQb5nfeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=vRzD39VN; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-8b4aeddfacaso42786766d6.0
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 06:07:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1777900075; x=1778504875; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=orEuFxihbtCw78bb0MGSYlMJ0pgE+offZfO0F9CrVb0=;
+        b=vRzD39VN3deczejGqt9SufnxB8wHk6NHfv9oYhWXRya1NwOOjMIr9pvl/sNUvMCl9H
+         FOi1wFLMGpO1uG+7ISWuUgc9msPeJIczmqB/JK/kknw36JtsV1Iog4u/ZSQcDuZcwLdW
+         3crdaBslFVDS7hgCZcj0Ga1++6O3wReejN6gK2qSHNq0CB2w8thMmsCPbk37852ToJev
+         W14PGnDaI6D/WpVMtBJJILy2gxHKuZh2ppEJq3aRW9hwUJ9+G+JTC/mf9DX7+06Y/fl7
+         qq9mCTQYjdFGU+GBx6FzsXtT+MCOhrPDHsqpdEwrGLNgfM69naPCqIzNylOrB/g52E+E
+         GfUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777900075; x=1778504875;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=orEuFxihbtCw78bb0MGSYlMJ0pgE+offZfO0F9CrVb0=;
+        b=fYUiVconHwnmBOwTAIHhZ3EWnD8SjsaX2hddYzyAdDXAtNK0S7BauJyoQitpylJGR3
+         NDCVO0przjvSJ72QV/j5cxtPTjM2T0tZwEN8xEnn7I9Je3AEN+VlsgY8Cd6995EKO2KK
+         R2EmSLI9bbAlO5ypcQ1PrFWeP4nHdQMjCQ/UqOVIdGIwhCH0la7MaNcHYVYqeiLj3Vqq
+         DUmnKIkMPcVYLQpxRUnZuTde97OolVgDTPKMciT6G9zki5mlxiwppVnwMS8U35hLdcsW
+         BfDM19N3n/hq1UpAowZQcV0qVSyPsh0asAe0p0EmNPReCqOL49dAVEq5lipGvLCgKm0c
+         4WsQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9q6QZesPhArToP277NAWsmXWzaRjSOtcLQ7RQdA85b7RlNt3WSesWxnI+sbekrioef6PGTugvVr6Kw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoyuhEizmlvbTxRQTy10VO6bVPXiYbb1wZiCZpHi9eniME914b
+	lnVZnsjAZZuzCc4N8bG+jwWMnVezPK1RU80EcMCEdPaQCDnrbDYEZ0soX6SDrJAi+Y4=
+X-Gm-Gg: AeBDieugrMKSfrnOueJI75ax8evNyWX4zLzNW51fAKfoFe67sBPWpgK0VhgWk1qBVZ5
+	HhtZVWlZ1RPA9uJikSXt4rWs7VX4pusqoexuEP8uigTrPRvDfSSnf0DFuoD3DhM8Azflq4NE41g
+	USXS+1b76e527Kgk/2oiohe2DC6qjUz3ahogmiFu1tKRWKcLvfdLO7AXpHdqF7Xk/KnuACjyw9G
+	0sO7MmoHas/1tuJVRLb63wo9aETbphSmFpmy2GcjxOSkmkAcoCPYmErz5Uj00pPo51IHHhmvkiv
+	ah9sFpi/i9r+/SYNU1fFMn2gywb1vH7491co2yGh3SsXNV23Q58bfYWelr963nb7lshMRLTbhRQ
+	6jnzdFLE8YC1RZFAl75L1Ost7AutEpkQMZhJcxLoavH+8quF7dOvTuOdISENTRYiLL+QtPkkImG
+	WLRwLU1RS4sGNfJRItxZcpS+4LRPlAcJTF7mOgz8JjZNc93Nc0OjiUIQyMI7prJfeDY2nuH/g4x
+	w==
+X-Received: by 2002:a05:6214:5342:b0:8ac:b4d5:50ec with SMTP id 6a1803df08f44-8b668a1fafbmr160317526d6.38.1777900074368;
+        Mon, 04 May 2026 06:07:54 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8b53c6b8398sm130363776d6.37.2026.05.04.06.07.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 May 2026 06:07:53 -0700 (PDT)
+Message-ID: <53fb87c9-25f3-4da1-aa7b-104c10c92a06@riscstar.com>
+Date: Mon, 4 May 2026 08:07:50 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9135:EE_|AS1PR04MB9502:EE_
-X-MS-Office365-Filtering-Correlation-Id: 497d34ea-a374-4e7f-a645-08dea9de1858
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014|22082099003|18002099003|56012099003|27256017;
-X-Microsoft-Antispam-Message-Info:
- hoVSKub3FDvuylTOoERhpLOkKLZgtw4HaWrz3vm8s0AkAAOV8Z23FvzclUtx/ZuZ1hJupfNIk+mbGuqHJ/zcpQX/h9xiDSh72Rpfaqu9bANyxwcgU/yNytYtu+yZDh1aLGOA15VTe7TSQK/qU/guY9bx2S+Zd6Qscyb9t06qEEESCx3Hlsdrxqvmuhcuh42ncPLp2nPsDDUSiHlkryiEqt84ucH0dB+G0prlnUtzOd31Z5K+VbemOv2cMLeHqXaQ0HocoTGW4WllPjlIs+onFF0JRlh7HWI+DFdCbthVG88IIMIq/HpJj66T2HjuhJgFKjKlG1VfIEKjfamiuSm8625CoNPM+Gvm/rW2wZ7GcPCg37jHecLv+4lembF2NFbrXq98Wx0MvYZnEJK/gamBGYx8t63Dhi6XCw5dNVsVlWMmAm868qzb+JHkgSJAvWLlnjXZYMIU8sx7wiznXqyhxAi9ezp8j/rOKEWfsfF82X6YBRbnLTm2XB79eD5O3zOnhsERxH+re3i95X4FSwL7YuIedp/bROVIWdOLvn6NtyU1Y6PMtXdrhz+dKQzqq3oUvvbLKSJhPg+nXtzbWRzyF2BZbn0gKpFIM2Ze3Y3lUTpR8/bVv8LfvxHP5vrxASa1S1CFxvuXom0NRs3+FEr6I11K2VpqqLbwjeilueW/BiemZr2SEixziXq1uGAGlHzWK+2rKsh+LszKn1o1VDBz07egEqYjbR1G1pb8CjqszrNJtT30Te5IyN8h6Qrm4uN7
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9135.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014)(22082099003)(18002099003)(56012099003)(27256017);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?t9BtU41ja/Ahxb0xtXmw5zXRh38KJYRA1f1OaZBbBYPyx2fJgnKZwA8O9LnY?=
- =?us-ascii?Q?ha2yj3UTLUSUfUskXBEVvEWi2zLAFqnE/iSGbnBNcxMoMTVdXnbv05GT3YBe?=
- =?us-ascii?Q?wcxQ8ss31Tv8+nnX4uRd9KgNj4wwYZXdsR41Jkvepw1o++PlBVesuWcmh0iN?=
- =?us-ascii?Q?IQnmCYv2aNK2HydCJraoyhZWW5VtVcXNOJ7tkOJI8YCoPNo/1qHsJUTgwsuP?=
- =?us-ascii?Q?a3gQTtIhhTj8ZjxqmwCN+5A7drnCvzoltgv3g3VkeO6jIvxc1RMhuowMecYN?=
- =?us-ascii?Q?xj3NUmbsfROgFX1f1Hy/iIljoiHTLGAoZQZ7rsfw+0URD7Of3BPV5dfz7b9p?=
- =?us-ascii?Q?8lSUO3pre5C8yh98mElaLOhUwWo8XDRaN57eAoKXFnd0omJiVDHDyaRciSWX?=
- =?us-ascii?Q?W444nJS6oPkH0iRHQh38SUhrF9TRMgY2REkNbm2mxyBw77I1hPEWe2LMDxYP?=
- =?us-ascii?Q?YVqfOFVN1KCnAOOUA2G81IA7XSD6cYZTGuW5PtVuCGsCZZDu/ti/wt/6zKX1?=
- =?us-ascii?Q?bBD7OIkB6Mj0l4V84R14RaSiYXrNxmqGJW4v7GR3il5eV3GbMug7lPlkh/HU?=
- =?us-ascii?Q?Fv3f/LkTRE29wxJc6ENvFheQ+wzhwfa8ZsTE80Bwu3cQ7V5HnKNE7Y/AqoOO?=
- =?us-ascii?Q?L9T3+51hXK2zqUItQIX7+I1BP/ho9dSyWD6km59kEaglDaYVQ3AqIdNi6bmv?=
- =?us-ascii?Q?eHE11aZFMXjeQk0J7BapzabgRPvCAy5bxud1nQNWyPE7F/URYl4Tl0cd9lBp?=
- =?us-ascii?Q?a5O2MIWSLKSfZyFmWlzxtsfmqASaqWEcBb0GSHsTHL5uE79w56XRzoGBmIR9?=
- =?us-ascii?Q?AgOBBlxYGyaOAGRBVTb1TCsbKZv6LMHGZynx85rqCDPjWsNVeNKSxPSJJpt4?=
- =?us-ascii?Q?4OiDdzor7Ftgcez09SSbgFxpvkT/4Cdm8B01iLJRk6iNK9PU2RALWPBdwhDw?=
- =?us-ascii?Q?2IABqx0zPnMHd4L1d3nwJ8Wv0+PwizeCT4MARqH88cwLErl+Lb36uKE2yQjr?=
- =?us-ascii?Q?f5NFYYp6zdPRcbUDAUBNv5Y84n1rdngvLYbASMhq0F5xBKYL+UtzlTU2PNXo?=
- =?us-ascii?Q?LsOrvqEFenu3SXOvGVjfnRm5gwNG7cV9VbzVvu2TjZmLS3u2ZkKUMeNtDM3Q?=
- =?us-ascii?Q?9saY+ZEv4v703z7rt1ETWjMRT3yiKj0PIOFts+7UrXGmVXFYNrZ4LeemfsCb?=
- =?us-ascii?Q?mEK95P/i7G7PFHPX0cndaXzg4Ugon0oqHhucigh/mOxLLI1DzoAq8o2BXXx1?=
- =?us-ascii?Q?ocnlH7G4ebf/9DRPxAbmCLOgWpoAs4MCvN0wHjKnsOKqLEsrXCOFMyDPaL87?=
- =?us-ascii?Q?DaysALCk6Hqs3oJFcCrtgjRTN8acMUaXnt0QLDdPMt030DJuoT3x7yrsBuOr?=
- =?us-ascii?Q?mHj3bR46CFTDmfJ7hIusuFxWE1r6EBIdf8HG/2cEZHA89WIkxTzBSp4NrsLh?=
- =?us-ascii?Q?z2ut13A3r67DgLPYA26oQxjGJ08a0JJjglB8uj8O6R44qGYc9ApWI7vHLa9U?=
- =?us-ascii?Q?Lkk/Ab7G6ZwaoP+Spk2XGhhiFW0yoxvYkFImix/AlVcSYia0fIBPKvMkgq1K?=
- =?us-ascii?Q?eK8bGYqimw5BT9/GtcDR2EqchZ2m0phLQM22YtrRzeXRR/NJntn8ZPEbdQOP?=
- =?us-ascii?Q?uywWfXg+uVGgaAD0KzOxf6PuH6nJcWBaZS5GyK1XWm+A/ik/MYrywWyP2tu2?=
- =?us-ascii?Q?UmnumnZjToSaLrvnjW3uHfeV3dhC8UBdIhlUvEDI+mvi1mwRPFj+ZS8ZN/7C?=
- =?us-ascii?Q?nqZy663YVKWu8n9a7/AX0YpUarNx2gM=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 497d34ea-a374-4e7f-a645-08dea9de1858
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9135.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 13:07:29.2027
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uMAjfU8407cmXSSfpoZtaJZ79WIJtQxkj+uWe9TNEciUp1GXSwJEL0Br0Z/e9o5/NcRL7UUlYDdHqP7dXovYhA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9502
-X-Rspamd-Queue-Id: 304514BD7AE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 09/12] gpio: tc956x: add TC956x/QPS615 support
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: daniel@riscstar.com, mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
+ alexandre.torgue@foss.st.com, ast@kernel.org, boon.khai.ng@altera.com,
+ chenchuangyu@xiaomi.com, chenhuacai@kernel.org, daniel@iogearbox.net,
+ hawk@kernel.org, hkallweit1@gmail.com, inochiama@gmail.com,
+ john.fastabend@gmail.com, julianbraha@gmail.com, livelycarpet87@gmail.com,
+ matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+ rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
+ weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
+ bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
+ rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org,
+ arnd@arndb.de, gregkh@linuxfoundation.org
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-10-elder@riscstar.com>
+ <CAMRc=McWXCqyv1LmWMuEMmE3HqaURx_eMD8rkDs9AJT+7W2aYw@mail.gmail.com>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <CAMRc=McWXCqyv1LmWMuEMmE3HqaURx_eMD8rkDs9AJT+7W2aYw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: DFFEB4BD7E8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-292639-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292636-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,kernel.org,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lunn.ch,davemloft.net,google.com,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiu.palcu@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,denx.de,pengutronix.de,lists.freedesktop.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim]
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,riscstar.com:mid,riscstar.com:email]
 
-Hi Ying,
+On 5/4/26 7:46 AM, Bartosz Golaszewski wrote:
+> On Fri, 1 May 2026 17:54:17 +0200, Alex Elder <elder@riscstar.com> said:
+>> Toshiba TC956x is an Ethernet-AVB/TSN bridge and is essentially
+>> a small and highly-specialized SoC.  TC956x includes a GPIO block that
+>> can be accessed, alongside several other peripherals, via two PCIe
+>> endpoint functions.  The PCIe function driver creates an auxiliary
+>> device for the GPIO block, and that device gets bound to this auxiliary
+>> device driver.
+>>
+>> Co-developed-by: Daniel Thompson <daniel@riscstar.com>
+>> Signed-off-by: Daniel Thompson <daniel@riscstar.com>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
 
-On Sun, Mar 29, 2026 at 03:51:54PM +0800, Liu Ying wrote:
-> LDB's parent device could be a syscon which doesn't allow a reg property
-> to be present in it's child devices, e.g., NXP i.MX93 Media blk-ctrl
-> has a child device NXP i.MX93 Parallel Display Format Configuration(PDFC)
-> without a reg property(LDB is also a child device of the Media blk-ctrl).
-> To make the LDB schema be able to describe LDBs without the reg property
-> like i.MX93 LDB, require the reg property only for i.MX6SX/8MP LDBs.
+Thanks Bartosz, I've got some responses below.
+
+>> ---
+>>   drivers/gpio/Kconfig       |  11 ++
+>>   drivers/gpio/Makefile      |   1 +
+>>   drivers/gpio/gpio-tc956x.c | 209 +++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 221 insertions(+)
+>>   create mode 100644 drivers/gpio/gpio-tc956x.c
+>>
+>> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+>> index 020e51e30317a..746cedea7e91d 100644
+>> --- a/drivers/gpio/Kconfig
+>> +++ b/drivers/gpio/Kconfig
+>> @@ -1646,6 +1646,17 @@ config GPIO_TC3589X
+>>   	  This enables support for the GPIOs found on the TC3589X
+>>   	  I/O Expander.
+>>
+>> +config GPIO_TC956X
+>> +	tristate "Toshiba TC956X GPIO support"
+>> +	depends on TOSHIBA_TC956X_PCI
+>> +	default m if TOSHIBA_TC956X_PCI
+>> +	help
+>> +	  This enables support for the GPIO controller embedded in the Toshiba
+>> +	  TC956X (and Qualcomm QPS615).  This device connects to the host
+>> +	  via PCIe port, which is the upstream port on an internal PCIe
+>> +	  switch.  On some platforms, a few of the GPIO lines are used to
+>> +	  manage external resets.
+>> +
+>>   config GPIO_TIMBERDALE
+>>   	bool "Support for timberdale GPIO IP"
+>>   	depends on MFD_TIMBERDALE
+>> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+>> index b267598b517de..c3584e7cba9b4 100644
+>> --- a/drivers/gpio/Makefile
+>> +++ b/drivers/gpio/Makefile
+>> @@ -178,6 +178,7 @@ obj-$(CONFIG_GPIO_SYSCON)		+= gpio-syscon.o
+>>   obj-$(CONFIG_GPIO_TANGIER)		+= gpio-tangier.o
+>>   obj-$(CONFIG_GPIO_TB10X)		+= gpio-tb10x.o
+>>   obj-$(CONFIG_GPIO_TC3589X)		+= gpio-tc3589x.o
+>> +obj-$(CONFIG_GPIO_TC956X)		+= gpio-tc956x.o
+>>   obj-$(CONFIG_GPIO_TEGRA186)		+= gpio-tegra186.o
+>>   obj-$(CONFIG_GPIO_TEGRA)		+= gpio-tegra.o
+>>   obj-$(CONFIG_GPIO_THUNDERX)		+= gpio-thunderx.o
+>> diff --git a/drivers/gpio/gpio-tc956x.c b/drivers/gpio/gpio-tc956x.c
+>> new file mode 100644
+>> index 0000000000000..12221d8f812d9
+>> --- /dev/null
+>> +++ b/drivers/gpio/gpio-tc956x.c
+>> @@ -0,0 +1,209 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +/*
+>> + * Copyright (C) 2026 by RISCstar Solutions Corporation.  All rights reserved.
+>> + */
+>> +
+>> +/*
+>> + * The Toshiba TC956X implements a PCIe Gen 3 switch that connects an
+>> + * upstream x4 port to two downstream PCIe x2 ports.  It incorporates
+>> + * an internal endpoint on a internal PCIe port that implements two
+>> + * Synopsys XGMAC Ethernet interfaces.
+>> + *
+>> + * 35 GPIOs are also implemented by an embedded GPIO controller.  Three
+>> + * registers control the first 32 GPIOs (other than 20 and 21, which are
+>> + * reserved).  Three other registers control GPIOs 32 through 36. GPIOs
+>> + * 22-24, 27-28, 31, and 34 are treated as "input only".
+>> + *
+>> + * There is a TC956X PCI power controller driver that accesses the
+>> + * direction and output value registers for GPIOs 2 and 3.  These
+>> + * GPIOs control the reset signal for the two downstream PCIe ports.
+>> + * Their values will never change during operation of this driver, and
+>> + * this driver reserves these two GPIOS.
+>> + */
+>> +
+>> +#include <linux/auxiliary_bus.h>
+>> +#include <linux/dev_printk.h>
 > 
-> Fixes: 8aa2f0ac08d3 ("dt-bindings: display: bridge: ldb: Add check for reg and reg-names")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> This is implied by device.h which is guarnteed by platform_device.h. Please
+> drop it.
 
-Acked-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+OK, I'll drop it.
 
--- 
-Thanks,
-Laurentiu
+>> +#include <linux/gpio/driver.h>
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#define DRIVER_NAME		"tc956x-gpio"
+>> +
+>> +#define TC956X_GPIO_COUNT	37	/* Number of GPIOs (20-21 reserved) */
+>> +
+>> +/* The GPIO offsets are relative to 0x1200 in TC956X SFR space */
+>> +#define GPIO_IN0_OFFSET		0x00		/* Input value (0-31) */
+>> +#define GPIO_EN0_OFFSET		0x08		/* 0: out; 1: in (0-31) */
+>> +#define GPIO_OUT0_OFFSET	0x10		/* Output value (0-31) */
+>> +
+>> +#define GPIO_IN1_OFFSET		0x04		/* Input value (32-36) */
+>> +#define GPIO_EN1_OFFSET		0x0c		/* 0: out; 1: in (32-36) */
+>> +#define GPIO_OUT1_OFFSET	0x14		/* Output value (32-36) */
+>> +
+>> +/*
+>> + * struct tc956x_gpio - Information related to the embedded GPIO controller
+>> + * @chip:		GPIO chip structure
+>> + * @regmap:		MMIO register map for SFR GPIO region access
+>> + * @input_only:		Bitmap indicating which GPIOs are input-only
+>> + */
+>> +struct tc956x_gpio {
+>> +	struct gpio_chip chip;
+>> +	struct regmap *regmap;
+>> +	DECLARE_BITMAP(input_only, TC956X_GPIO_COUNT);
+>> +};
+>> +
+>> +static int tc956x_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
+>> +{
+>> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+>> +	u32 reg;
+>> +	u32 val;
+>> +
+>> +	if (test_bit(offset, gpio->input_only))
+>> +		return GPIO_LINE_DIRECTION_IN;
+>> +
+>> +	reg = offset < 32 ? GPIO_EN0_OFFSET : GPIO_EN1_OFFSET;
+>> +
+>> +	regmap_read(gpio->regmap, reg, &val);
+>> +	if (val & BIT(offset % 32))
+>> +		return GPIO_LINE_DIRECTION_IN;
+>> +
+>> +	return GPIO_LINE_DIRECTION_OUT;
+>> +}
+>> +
+>> +static int tc956x_gpio_direction_input(struct gpio_chip *gc,
+>> +				       unsigned int offset)
+>> +{
+>> +	u32 reg = offset < 32 ? GPIO_EN0_OFFSET : GPIO_EN1_OFFSET;
+>> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+>> +	u32 mask = BIT(offset % 32);
+>> +
+>> +	return regmap_update_bits(gpio->regmap, reg, mask, mask);
+>> +}
+>> +
+>> +static int tc956x_gpio_direction_output(struct gpio_chip *gc,
+>> +					unsigned int offset, int value)
+>> +{
+>> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+>> +	u32 vreg;
+>> +	u32 dreg;
+>> +	u32 mask;
+>> +
+>> +	if (test_bit(offset, gpio->input_only))
+>> +		return -EINVAL;
+>> +
+>> +	if (offset < 32) {
+>> +		vreg = GPIO_OUT0_OFFSET;
+>> +		dreg = GPIO_EN0_OFFSET;
+>> +	} else {
+>> +		vreg = GPIO_OUT1_OFFSET;
+>> +		dreg = GPIO_EN1_OFFSET;
+>> +	}
+>> +	mask = BIT(offset % 32);
+>> +
+>> +	/* Set output value first, then direction */
+>> +	regmap_update_bits(gpio->regmap, vreg, mask, value ? mask : 0);
+>> +
+>> +	return regmap_update_bits(gpio->regmap, dreg, mask, 0);
+>> +}
+>> +
+>> +static int tc956x_gpio_get(struct gpio_chip *gc, unsigned int offset)
+>> +{
+>> +	u32 reg = offset < 32 ? GPIO_IN0_OFFSET : GPIO_IN1_OFFSET;
+>> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+>> +	u32 val;
+>> +
+>> +	regmap_read(gpio->regmap, reg, &val);
+>> +
+>> +	return val & BIT(offset % 32) ? 1 : 0;
+>> +}
+>> +
+>> +static int tc956x_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
+>> +{
+>> +	u32 reg = offset < 32 ? GPIO_OUT0_OFFSET : GPIO_OUT1_OFFSET;
+>> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+>> +	u32 mask = BIT(offset % 32);
+>> +
+>> +	return regmap_update_bits(gpio->regmap, reg, mask, value ? mask : 0);
+>> +}
+>> +
+>> +static int tc956x_gpio_init_valid_mask(struct gpio_chip *gc,
+>> +				       unsigned long *valid_mask,
+>> +				       unsigned int ngpios)
+>> +{
+>> +	/*
+>> +	 * GPIOs 2 and 3 are used by the PCI power control driver, and
+>> +	 * we don't allow them to be used.  GPIOs 20 and 21 are reserved
+>> +	 * (and not usable).
+>> +	 */
+>> +	bitmap_fill(valid_mask, ngpios);
+>> +	bitmap_clear(valid_mask, 2, 2);
+>> +	bitmap_clear(valid_mask, 20, 2);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tc956x_gpio_probe(struct auxiliary_device *adev,
+>> +			     const struct auxiliary_device_id *id)
+>> +{
+>> +	struct device *dev = &adev->dev;
+>> +	struct tc956x_gpio *gpio;
+>> +	struct gpio_chip *gc;
+>> +
+>> +	if (!dev->platform_data)
+>> +		return -EINVAL;
+>> +
+>> +	gpio = devm_kzalloc(dev, sizeof(*gpio), GFP_KERNEL);
+>> +	if (!gpio)
+>> +		return -ENOMEM;
+> 
+> Add newline.
+
+I will add a newline here.
+
+> 
+>> +	gpio->regmap = dev->platform_data;
+> 
+> It's not clear whether this is an mmio regmap or a slow-bus one that can fail.
+> In the code above you're checking the return values of regmap operations quite
+> inconsistently. Could you please verify if you need it and either always check
+> them or not at all?
+
+You're right.  I'm returning the result of regmap_update_bits()
+from two callback functions.  But yes, this is an MMIO regmap.
+
+I will return 0 and ignore the return value of regmap_update_bits()
+in those spots, and will add some comments that make it clear that
+this is an MMIO regmap.
+
+>> +
+>> +	/* Mark GPIOs 22, 23, 24, 27, 28, 31, and 34 as input only */
+>> +	bitmap_set(gpio->input_only, 22, 3);
+>> +	bitmap_set(gpio->input_only, 27, 2);
+>> +	set_bit(31, gpio->input_only);
+>> +	set_bit(34, gpio->input_only);
+>> +
+>> +	gc = &gpio->chip;
+>> +
+>> +	gc->label = DRIVER_NAME;
+>> +	gc->parent = dev->parent;
+>> +
+>> +	gc->get_direction = tc956x_gpio_get_direction;
+>> +	gc->direction_input = tc956x_gpio_direction_input;
+>> +	gc->direction_output = tc956x_gpio_direction_output;
+>> +	gc->get = tc956x_gpio_get;
+>> +	gc->set = tc956x_gpio_set;
+>> +	gc->init_valid_mask = tc956x_gpio_init_valid_mask;
+>> +
+>> +	gc->base = -1;
+>> +	gc->ngpio = TC956X_GPIO_COUNT;
+>> +	gc->can_sleep = false;
+> 
+> This makes me think this is an MMIO regmap after all.
+
+You are correct.
+
+> 
+>> +
+>> +	dev_set_drvdata(dev, gpio);
+> 
+> There's no corresponding dev_get_drvdata().
+
+I hadn't noticed that.  We're only using the GPIO chip data
+field (gc->gpiodev->data) instead.  I'll drop this call.
+
+>> +
+>> +	return devm_gpiochip_add_data(dev, gc, gpio);
+>> +}
+>> +
+>> +static const struct auxiliary_device_id tc956x_gpio_ids[] = {
+>> +	{ .name = "tc956x_pci.tc9564-gpio", },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(auxiliary, tc956x_gpio_ids);
+>> +
+>> +static struct auxiliary_driver tc956x_gpio_driver = {
+>> +	.name		= DRIVER_NAME,
+>> +	.probe          = tc956x_gpio_probe,
+>> +	.id_table       = tc956x_gpio_ids,
+>> +	.driver = {
+>> +		.name		= DRIVER_NAME,
+>> +		.owner		= THIS_MODULE,
+>> +		.probe_type	= PROBE_PREFER_ASYNCHRONOUS,
+>> +	},
+>> +};
+>> +module_auxiliary_driver(tc956x_gpio_driver);
+>> +
+>> +MODULE_DESCRIPTION("Toshiba TC956X PCIe GPIO Driver");
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_ALIAS("auxiliary:" DRIVER_NAME);
+>> --
+>> 2.51.0
+>>
+>>
+> 
+> There are a few minor issues but overall looks good!
+
+Thank you very much for the review Bartosz.  I'll implement
+all of your suggestions in the next version.
+
+					-Alex
+
+
+> 
+> Bart
+
 
