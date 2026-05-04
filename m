@@ -1,78 +1,82 @@
-Return-Path: <devicetree+bounces-292607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292604-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBG1NRGG+GkZwQIAu9opvQ
-	(envelope-from <devicetree+bounces-292607-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 13:42:09 +0200
+	id 0DkNNOCB+GnIwAIAu9opvQ
+	(envelope-from <devicetree+bounces-292604-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 13:24:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EA24BC8D1
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 13:42:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301264BC51F
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 13:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C09523004D80
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 11:42:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33951301B70D
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 11:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867FC3AD516;
-	Mon,  4 May 2026 11:42:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836E73A9D9D;
+	Mon,  4 May 2026 11:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Dv1aWkL+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKjpZmuv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB3A2DB7BE;
-	Mon,  4 May 2026 11:42:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3E9390C9A;
+	Mon,  4 May 2026 11:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777894924; cv=none; b=edkv8Z95/a+uOIfHhCV0pdKtkd49RhEjKrdjpOjp5hehOW+Of+xzSmVwCnTzNb0f9/+CCY5hfmWxAH7iQ0AWb7+8jjge3f6SdXvvykl8NP5R7ZWlcMOr0Ra7ODAhzgbMPMYtHv9vs1HPJjBlGX0/KDaJhFs2qoPR8kT7v4kxGzI=
+	t=1777893824; cv=none; b=EJUF3CdqyPbUtFXBIlm0KwfvE85Ya7fXnVkKxQejaY5VPV6dsgEFtqGciCNBifQUlBO1+jRpR8x+tPPEWuvRQG5sh2uQDqqT7ZSKAaDcSfgzMiYRDVYvSlR1FPX2p2lGZpehF6Mdj7ZqJNbelKafp9pAPFgf9Fk68ihwwsXvREw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777894924; c=relaxed/simple;
-	bh=qvUHI/Jk7Wsh27+QYlR/yeU+sPK3Rc0MiyiH2vd7ixI=;
+	s=arc-20240116; t=1777893824; c=relaxed/simple;
+	bh=1w+MzSobxxhh4/Z6BnF1Kps4Ui5Z89S5baW8VF7cW6E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nghqTsy9MImqk4qr/7SW91hucfRoEQeD6dYEfdg1mIlNJYM28nw3wd5qvnQRL+mF89ldX9a8st1yOsslwMA2dIRYfvzH9Pev4qtXGkQC8FhsDZQo8BzoVGH0v8PUgqWsSM4TrQKW2DhMkPlGPAcDBm29P8v7w4UqgwIYFiczVoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Dv1aWkL+; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1777894923; x=1809430923;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qvUHI/Jk7Wsh27+QYlR/yeU+sPK3Rc0MiyiH2vd7ixI=;
-  b=Dv1aWkL+D+5CpjjOr4zJJ9mvrGQpTT4bu2DGXF9xdWcnRB5bcOBzbtgP
-   Y9MLDSl0LZ551O+tfWzd7yiOZr4qqrkijIS+tuof4L9LwKDUkvHHrWS5t
-   D7s6CiqpJTcyO4ExWEG4Wz08R9TOWnKlT/lYZwGs6w8rxPk3pTxvPa91b
-   S3THVBazBW59i9QpgAWQco1nmxNrv6D8s7lapRZRCZb/oHziabWDvriQN
-   Ln/+6o1y5a/y/Rw+iIWr9wXmCs5s5HonxGJCuRpGLQa1kZoOGmHOdv3c3
-   AQkSQl+MJlyBMuWOmapiWUbBUK8mfCSegRAq3cQxad8CUmW5LgS4fewrn
-   Q==;
-X-CSE-ConnectionGUID: kwPboVQHROWOl0kiDT9bZw==
-X-CSE-MsgGUID: ojvSGE7cQZ67cHA8Mz2oog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11775"; a="78799444"
-X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; 
-   d="scan'208";a="78799444"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2026 04:42:03 -0700
-X-CSE-ConnectionGUID: UT9/K/HOTzO9pCin0KW4CQ==
-X-CSE-MsgGUID: yg58v6N7TmOc+ld9Y045bw==
-X-ExtLoop1: 1
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa003.fm.intel.com with ESMTP; 04 May 2026 04:42:00 -0700
-Date: Mon, 4 May 2026 19:19:12 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Phil Pemberton <philpem@philpem.me.uk>
-Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tom Rix <trix@redhat.com>,
-	Florian Fainelli <f.fainelli@gmail.com>, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] fpga: ts73xx-fpga: add OF match table for device
- tree probing
-Message-ID: <afiAsAUkNdVkXwFO@yilunxu-OptiPlex-7050>
-References: <20260409122016.3940462-1-philpem@philpem.me.uk>
- <20260409122016.3940462-3-philpem@philpem.me.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N0dFc4eZIZ46VUvzwRvR6u5SmhRGPeUpL947lQK1hGEW21LL9YCVWQrgFwg79I9SGvnDxVzUgMCOqakBDnu+wkWFGZpDiR3DMC22XWelSy1EUcb7Fv16rviPreyUgg3fR+Rkey7f666ycbVSL0xWHAdSEaMgRcd3ZJG1qLdQM/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKjpZmuv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17416C2BCB8;
+	Mon,  4 May 2026 11:23:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777893824;
+	bh=1w+MzSobxxhh4/Z6BnF1Kps4Ui5Z89S5baW8VF7cW6E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bKjpZmuvT3AASZNwdOzNxp2knijQMyMENFMHM5uqAOrV+70C3W/V+G62NSkeLnjzL
+	 d7IH3uPHFHyq6SvUwEUCu6X33eAaaVpuGEI+NWlgvBQgKDyKKsXmUsMFbxJTZk5XmB
+	 Lo3jNju8AYgqS3cynz2WeFDWRkxL7rvgwSY5jsqgL9E7bn8S4dT+McwB5oeSR6cyY8
+	 GE5Y1kovSElzmwnbUck5r3saI9Xt0dB57LfWOdOonvUwnNHfNwZ0RJwogibRCtfsn8
+	 L4L0/hTuWlEatyhi8lNXCX9h5krZSukJ7LkRsewUB1J58/zkoNMLAc9tK7EMOodhSX
+	 SWLdQcNbZAOaQ==
+Date: Mon, 4 May 2026 16:53:26 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	linux-media@vger.kernel.org, netdev@vger.kernel.org,
+	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	robin.clark@oss.qualcomm.com, sean@poorly.run,
+	akhilpo@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+	jesszhan0024@gmail.com, marijn.suijten@somainline.org,
+	airlied@gmail.com, simona@ffwll.ch, vikash.garodia@oss.qualcomm.com,
+	dikshita.agarwal@oss.qualcomm.com, bod@kernel.org,
+	mchehab@kernel.org, elder@kernel.org, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, jjohnson@kernel.org, mathieu.poirier@linaro.org,
+	trilokkumar.soni@oss.qualcomm.com, pavan.kondeti@oss.qualcomm.com,
+	jorge.ramirez@oss.qualcomm.com, tonyh@qti.qualcomm.com,
+	vignesh.viswanathan@oss.qualcomm.com,
+	srinivas.kandagatla@oss.qualcomm.com,
+	amirreza.zarrabi@oss.qualcomm.com, jens.wiklander@linaro.org,
+	op-tee@lists.trustedfirmware.org, apurupa@qti.qualcomm.com,
+	skare@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v4 03/15] firmware: qcom_scm: Migrate to generic PAS
+ service
+Message-ID: <afiBrt7g1Y4-Eozu@sumit-xelite>
+References: <20260427095603.1157963-1-sumit.garg@kernel.org>
+ <20260427095603.1157963-4-sumit.garg@kernel.org>
+ <20260429104841.l555xd2izoyrqjp4@hu-mojha-hyd.qualcomm.com>
+ <afStf3iBDtP2z6Eo@sumit-xelite>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,53 +85,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260409122016.3940462-3-philpem@philpem.me.uk>
-X-Rspamd-Queue-Id: D1EA24BC8D1
+In-Reply-To: <afStf3iBDtP2z6Eo@sumit-xelite>
+X-Rspamd-Queue-Id: 301264BC51F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,redhat.com,gmail.com,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292604-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292607-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yilun.xu@linux.intel.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,philpem.me.uk:email,intel.com:dkim,intel.com:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
 
-On Thu, Apr 09, 2026 at 01:20:16PM +0100, Phil Pemberton wrote:
-> The ts73xx-fpga driver currently only matches by platform device name,
-> which prevents it from being probed when the device is described in a
-> device tree. Add an of_device_id table so the driver can match against
-> the "technologic,ts7300-fpga" compatible string.
+On Fri, May 01, 2026 at 07:11:19PM +0530, Sumit Garg wrote:
+> On Wed, Apr 29, 2026 at 04:18:41PM +0530, Mukesh Ojha wrote:
+> > On Mon, Apr 27, 2026 at 03:25:51PM +0530, Sumit Garg wrote:
+> > > From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> > > 
+> > > With the availability of generic PAS service, let's add SCM calls as
+> > > a backend to keep supporting legacy QTEE interfaces. The exported
+> > > qcom_scm* wrappers will get dropped once all the client drivers get
+> > > migrated as part of future patches.
+> > > 
+> > > Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> > > ---
+> > >  drivers/firmware/qcom/Kconfig    |   1 +
+> > >  drivers/firmware/qcom/qcom_scm.c | 335 ++++++++++++++-----------------
+> > >  2 files changed, 155 insertions(+), 181 deletions(-)
+> > >  
+> > > diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+> > > index 9b06a69d3a6d..d87a962e93da 100644
+> > > --- a/drivers/firmware/qcom/qcom_scm.c
+> > > +++ b/drivers/firmware/qcom/qcom_scm.c
+> > >  
+> > > -/**
+> > > - * qcom_scm_pas_shutdown() - Shut down the remote processor
+> > > - * @pas_id:	peripheral authentication service id
+> > > - *
+> > > - * Returns 0 on success.
+> > > - */
+> > > -int qcom_scm_pas_shutdown(u32 pas_id)
+> > > +static int __qcom_scm_pas_set_remote_state(struct device *dev, u32 state,
+> > > +					   u32 pas_id)
+> > > +{
+> > > +	struct qcom_scm_desc desc = {
+> > > +		.svc = QCOM_SCM_SVC_BOOT,
+> > > +		.cmd = QCOM_SCM_BOOT_SET_REMOTE_STATE,
+> > > +		.arginfo = QCOM_SCM_ARGS(2),
+> > > +		.args[0] = state,
+> > > +		.args[1] = pas_id,
+> > > +		.owner = ARM_SMCCC_OWNER_SIP,
+> > > +	};
+> > > +	struct qcom_scm_res res;
+> > > +	int ret;
+> > > +
+> > > +	ret = qcom_scm_call(dev, &desc, &res);
+> > > +
+> > > +	return ret ? : res.result[0];
+> > > +}
+> > > +
+> > > +int qcom_scm_set_remote_state(u32 state, u32 id)
+> > 
+> > s/id/pas_id
 > 
-> The TS-7350 and TS-7390 use different FPGAs with a different programming
-> interface, so while the driver is named "ts73xx-fpga", it doesn't apply
-> to them.
-> 
-> Signed-off-by: Phil Pemberton <philpem@philpem.me.uk>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> Ack.
+>
 
-Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+Coming back to this comment again, since this is a temporary wrapper
+which is going to be dropped as part of 2nd last patch, I don't think
+there is value to fix them as they maintain existing APIs interface.
 
-Applied this series to for-next.
+-Sumit
 
