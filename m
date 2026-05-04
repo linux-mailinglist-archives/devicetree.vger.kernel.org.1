@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-292471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292469-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MyCN8r492lwowIAu9opvQ
-	(envelope-from <devicetree+bounces-292471-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 03:39:22 +0200
+	id mP+yCrn492lwowIAu9opvQ
+	(envelope-from <devicetree+bounces-292469-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 03:39:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE354B7FCA
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 03:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F364B7FB5
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 03:39:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 65C3D300D620
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 01:39:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E45E430068D3
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 01:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03ADC201004;
-	Mon,  4 May 2026 01:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCA51E834B;
+	Mon,  4 May 2026 01:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="oVc5RjWT"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="EO1A0PwH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11023087.outbound.protection.outlook.com [40.93.196.87])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11023102.outbound.protection.outlook.com [40.93.201.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E325D19D8BC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A469FCA6B;
 	Mon,  4 May 2026 01:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.87
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.102
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777858734; cv=fail; b=eN2V0BtzsY4F7kh71U+ij7OUOJDzXyDPKq+LVEKfRT5x755ejVMBA5sbC/ihJz0TEJufR6nqSSRgsK46q+oeSa5YVo5o3/Jssy7Ii32t6msYbuh/qBuSCdc4H2fvpOFD/+7O8/IX25JS8hQomqUECQJbW4XKIIy+/mLiUfniKKc=
+	t=1777858733; cv=fail; b=U8puFXAKu/P+7msCSRZPDxH8z88cL8V+xlLWYexHz8TmARAjUVK4IMckSjSeFdD8CBYZXJu7VyowB2gyF8tho+JGpxYuMcZd2f8zT6QBD9vsrWHZaBZSUCTTuIdcgS0f+OifQSceXYWbRYW4HCperPAqJmcKytvAedeXRVx1Hx8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777858734; c=relaxed/simple;
-	bh=6ucJcCFeod8tYjdHcEDHv3tGepa1WY4yxfMfYg1hpEs=;
+	s=arc-20240116; t=1777858733; c=relaxed/simple;
+	bh=ObP8N1UtvWKp2CtmzxJN3VKa1vOSFezLpJd8KJulKic=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eX9+qv1Z2P3BFWTGXhvBSpK0odcGbpXy+Gk6Ex6W1qM4d/Ejqq1KenGLQ3ZDN1SPCVh8QZL02H0aMQKOAuJ1zx76eUemO9y/QHROhUHEhMry0oVAex8PpTCHb+eZAABSVRwRtFmcNYYQFArj5i+ddATkgbhjKbJyYYDVsx6RMbI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=oVc5RjWT; arc=fail smtp.client-ip=40.93.196.87
+	 In-Reply-To:To:Cc; b=EcwNNFPaCVDclO+Bb08sa/CRZKmYE9SVMd4iP5m70E8kVwsNUaw8bRp1cp/xIpSOUPWStoOu8TdyasAzKA4klt30kFb2XpzZZQFn+WyRbq1XJ0XvIaAwSV9KS+n6b0qKU1iJ1ysYNL672qCOjTMR/1hTsjgRlHnJTrhIztyR0dY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=EO1A0PwH; arc=fail smtp.client-ip=40.93.201.102
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rSNzCaMJRFHO+2IBNd1eOeVfQ3h0g7QDlgE1V7GndGjx8+jyKNjG785q/oly1s9jcZXp6wsjF6Q8NISpBFgOu31Sf1g1n9HxzLEBvFgG0ewyTATpBDfe5tH777PNZqHb2y3OGZVem8ouN5BtgwarOhXIP/lN/LFxURpvT0yPDU0OKbzX5Fw1M1QBVr10vl4vR7FOjrbpyEr2BKCDfM8h6dy3FKzYGJiwxjxxKWiYd+NATYfy/Y6qNv8qYZ/hkhPU6YveWD5DKtviL8bbWBT7GYEqV41RRjIhweXUzuNGYhYX3gcKRkUSG7t+f9fbWNpfYBsKKb7rMrvicUUsQ+8C9A==
+ b=Z7ho8KuA4zbYpx10i/9yQy0csnu4bw3Of1vWh1xGV7fi8wmaqL10yjXBN+ROWJNChnWWraJisap1Lwd00IKaKrDlI+JQkq4TTJBHFK7aEj5ff6P2f+mJhSIR5gnRvDv0cX21CkHF33OpcbEBYQB/ClsOSNQ2lr8MktXuElFYw3n0u66o9ztdU+zrAdy5E/IBXHJU549jVVzv9/KCPE29nSs5Azm7U2GD9s3dbwiHRwT9pDYi6otaGobNRsobXD+hq4zx21HrkeOGY+b5vp/SweVaI7cvBo5GT66UVgmkUo4j7Zki5bDH7oJlIUWzYkrbf0G3syA2TRLkn2ZiQ1HJdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ON9zurSJSI4QQT1BMl1VRtFngSU5U/rUteO/tCC7Fn0=;
- b=Ht8d4rvPLhxvz4MyzA4fP/uyIyLm0n9wv3uIpHIL8WdQcFBFJ1ReAuw+9qNmC3whE8xOlhIfXL0L1SIrF9rEfH2HR8DjF/OOnOXbB17E7ZBgA7pkjVq5m4IIvn7BEKtF02buBbgsKOLnSSEg8pKe8AXuKGvLJJ9uMYCg6bYmwqhv6dB/rUlonrow4XRaqQv9iJTwVDiKZeHT3sIRjfte0Xb1jpyhiDolCjRFG36D/nzPQMswh0HZO0vjuJyfYfDXdYWlCVHxouqBLQIoHepid57xwOnckggYGvZDWMY3yGubRmA4Rgvyg6WdFo5oqF9GM09FizYAc6E49SJODAzrkg==
+ bh=IYcdBHIqFgEvILxmZRBX4ED3Al8Q+GCzZear3xHG+wc=;
+ b=V5uAGLZvQGMkRpdZBeni4pHzQk+E+q8HyZxsrTvYxFblkIbN3oUMfMmB8ci5xzXlwobxb/IUMwzNeciuGmseYWYhvYOLwp1otebiS1u+e0a8gKezwAG2AxYs1JcPe0jKg1kCRpxSY96Cg7oCbmVear4W49LgwM0kXTAPTeB+jYTu2JXsIiBKGRgrA7Ymnt02i0PJiu5gF82o7ogdOv6KTmRE30GD7mTuDeJPXZHLDpGRPdHKMIgWwHsH7uCaL2qPw8B+6yD7kTKton4JKbgm615SMktzyXDM8vtsZogRPy/HEQhTjdBNGNCu/29hlZXW0hyZaanDNJZKQGxNUdPlJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
  64.62.143.114) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
  dmarc=none action=none header.from=axiado.com; dkim=none (message not
@@ -48,17 +48,17 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ON9zurSJSI4QQT1BMl1VRtFngSU5U/rUteO/tCC7Fn0=;
- b=oVc5RjWTLQiXXm1RC5GyCSLKkyzIWsbiU+XavLpYK5/+aiVtAJFQbQ3+0VkP1F/oK5J7iel/XJXZBa+t+H3aNDg0907TilyoBB01GL9SIIteJh1XNgActl7jptgG+btDmIekNsqGreLOhGmC2c+e6rK4yX7b686eyFfVe4Se2BkRBLWTGfNpnrg2g9mTW+OsqSu/GoS5P+1rgyzVkW7NrFKgZSpqp3O9hl+0nH9RJnEad0Z7n5v5NtvlKDvqxmFwn94mVeCePlOTlLwuCx1ckmMzH0TuRxPc6br67s4d/XgGyy8zSzO1C22oLOFfIPjaklilt/artpX93dVKHgTrcQ==
-Received: from DS7PR05CA0101.namprd05.prod.outlook.com (2603:10b6:8:56::21) by
- LV0PR18MB927459.namprd18.prod.outlook.com (2603:10b6:408:33d::10) with
+ bh=IYcdBHIqFgEvILxmZRBX4ED3Al8Q+GCzZear3xHG+wc=;
+ b=EO1A0PwHRzNoeqLcb9Rh+jx6pg9MmYBCUIZ7oIMTof6n0BiCpSC0y3CsLy5xMK6OY9wZ444tblzx7TLhz+YxrdIWuW4KbogsDHIxjbRJBKtU8oYwoZjP/xkQdcb/JY1eVZQQBHHa1oxzLpUDhJ+S9Tp9fO9Tg02JGjegnu9rzYwc/fQZ24cyUg5vdAYxJ5exmx3bI0p/IeD9innYXsElGiHIOlPRgb7IFp3s8MbyUYcBfmVU+oorrGuD4wd95us7KzVZV/L7/FXXRKX+y//clEcj5EH+EWIyJmUU1xjPjNDy5LfPJm2iUOgU38iv7FBf1t3eVTIC7y4wp+4JL34d7g==
+Received: from DM6PR03CA0076.namprd03.prod.outlook.com (2603:10b6:5:333::9) by
+ EAYPR18MB988325.namprd18.prod.outlook.com (2603:10b6:303:2be::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
  2026 01:38:47 +0000
-Received: from DM2PEPF00003FC3.namprd04.prod.outlook.com
- (2603:10b6:8:56:cafe::3e) by DS7PR05CA0101.outlook.office365.com
- (2603:10b6:8:56::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.13 via Frontend Transport; Mon,
+Received: from DS2PEPF000061C5.namprd02.prod.outlook.com
+ (2603:10b6:5:333:cafe::c) by DM6PR03CA0076.outlook.office365.com
+ (2603:10b6:5:333::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.25 via Frontend Transport; Mon,
  4 May 2026 01:38:47 +0000
 X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 64.62.143.114)
  smtp.mailfrom=axiado.com; dkim=none (message not signed)
@@ -67,15 +67,16 @@ Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
  designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
  client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
 Received: from smtp.corp.axiado.com (64.62.143.114) by
- DM2PEPF00003FC3.mail.protection.outlook.com (10.167.23.21) with Microsoft
+ DS2PEPF000061C5.mail.protection.outlook.com (10.167.23.72) with Microsoft
  SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.9
  via Frontend Transport; Mon, 4 May 2026 01:38:47 +0000
 Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
-	by smtp.corp.axiado.com (Postfix) with ESMTPS id D0A204186B5B;
+	by smtp.corp.axiado.com (Postfix) with ESMTPS id DA0084186B5D;
 	Sun,  3 May 2026 18:36:50 -0700 (PDT)
 From: Tzu-Hao Wei <twei@axiado.com>
-Date: Mon, 04 May 2026 09:38:33 +0800
-Subject: [PATCH RESEND v3 2/4] phy: axiado: add Axiado eMMC PHY driver
+Date: Mon, 04 May 2026 09:38:34 +0800
+Subject: [PATCH RESEND v3 3/4] MAINTAINERS: Add Axiado AX3000 eMMC PHY
+ driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +84,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-2-3ab7eb45b0c5@axiado.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-3-3ab7eb45b0c5@axiado.com>
 References: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-0-3ab7eb45b0c5@axiado.com>
 In-Reply-To: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-0-3ab7eb45b0c5@axiado.com>
 To: SriNavmani A <srinavmani@axiado.com>, 
@@ -96,46 +97,46 @@ Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  openbmc@lists.ozlabs.org, Tzu-Hao Wei <twei@axiado.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9023; i=twei@axiado.com;
- h=from:subject:message-id; bh=YBprfDKFNQn6DMWhRJHAypcI9/qyZHy+Jg3oeuFZQSY=;
- b=owEB7QES/pANAwAKAXgQMF3EWvHXAcsmYgBp9/imRhvYgYqDBP5EjqAtK/SumOryJWzA+erZb
- T7TrAf/BL2JAbMEAAEKAB0WIQSZyWINOowtFmDvdYF4EDBdxFrx1wUCaff4pgAKCRB4EDBdxFrx
- 1zwfC/9GEP5H3mgQG2et/viQlGShEh7I+YkyYgnvnoD1Gxj09VC/GxbfHo/KGJuPnma/4QQ0XEt
- hJg1+gsr7ITB7YSNhwn2gF63eO8zNC13DTb4UjmSNl1aLOfOAbqoo2RSwXYOYv7M+9r8dHyc2Ma
- UkNEIV7/cgn2+hgh2SWiDOgY1qN/F/l1jDzwi5ybT7CINk+ws4qjzAwwC64GFPL+8lgHK+decvf
- NzQKzv01n+gwUSf0Mx0TMNS4xL+Zbkj/86kcLZUyMym9jn+hTCnjNhQbXDxSCh/SVrYNq94BCxD
- CbOOr8RtPUl/5cCxXepp0czxyu4STGw4FzyfiuCYbbkAO8sMi4OOneryHZYngPqCsaIcvEiNdES
- 0riycpjJI7LCyGbLiuQcfM4VSP5MJHa7qpsdLwSimlmindF3fqKX0cgFXvHTHXoW7y/3PwfQtlv
- Hk2bt9tJir0mxbSSQGTi9y6uT+CjwYgV1tnrpVcE2++qvdZQQdM46fHJxjFZekTikqJnA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1110; i=twei@axiado.com;
+ h=from:subject:message-id; bh=ObP8N1UtvWKp2CtmzxJN3VKa1vOSFezLpJd8KJulKic=;
+ b=owEB7QES/pANAwAKAXgQMF3EWvHXAcsmYgBp9/imCt0F8unvqVG9sFNz2lbvnTw+kWUwuQQq/
+ Rurflle7CmJAbMEAAEKAB0WIQSZyWINOowtFmDvdYF4EDBdxFrx1wUCaff4pgAKCRB4EDBdxFrx
+ 16sHDACpIbPbJIEub3P25V72awHnfbBt1BfnE2L8zeQ2jT766wxs2VnuqT4qRyUxX2ru9UMiye5
+ S/Ld4SuHqoljOsz0Ip6xWn7cE1WCnLaitkL7tiQ/8VBFyelO9eFDnVlefMFupbakVXyC4A8Za0y
+ //eGa2cFtUNwXbrtlXVQutozMXCS79wYCJamr8YM1xcHIXaL4HP4WkkU5ciOd3zgxHZl8KOEeS2
+ 6vqPg2Lz4SyGGoAsBoLe9YKY+4f1jLXSTDCC94ho3owJqXioQOPqGpTgxSiIXdf6P5rUbTGHPv2
+ w2EFmL/fKW2hO8BmWSd+9n7Au2sLmxN3Dy8ANHNgwuFDpg/klw5nXojUXa504jLj8IyZGsNA/xQ
+ 3FrDhlZ6mwaELtt2K650z7X81r5l6++isJH/fG7TCx1JkIsGturdMWTZuDXPpgIP4ucgjpVFlyH
+ BC5NhSkpJYP1/JGNN4DiRGSzIIwXZxIxi8Pr/TbXODRFMCUj4OvrSs2AUVGbaWGUzMyRM=
 X-Developer-Key: i=twei@axiado.com; a=openpgp;
  fpr=99C9620D3A8C2D1660EF75817810305DC45AF1D7
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM2PEPF00003FC3:EE_|LV0PR18MB927459:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb3d705d-46fd-4b00-e3da-08dea97de2a8
+X-MS-TrafficTypeDiagnostic: DS2PEPF000061C5:EE_|EAYPR18MB988325:EE_
+X-MS-Office365-Filtering-Correlation-Id: 253ec410-f2e9-411f-5c45-08dea97de2c9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|1800799024|82310400026|34020700016|42112799006|36860700016|18002099003|22082099003|56012099003;
+	BCL:0;ARA:13230040|376014|7416014|1800799024|82310400026|34020700016|42112799006|36860700016|13003099007|18002099003|22082099003|56012099003;
 X-Microsoft-Antispam-Message-Info:
-	Tl9VpJkmOoTO65tDQPahiY8+PdblLfJ7XfH9uHgqxvnIJ6X5+JjguY6wpeLF8Wd8sUSP/KaO8BKZ0/XGm2BuKx2TRjgDDB5JYENmeq3a2ZKlWKd0nc+3eRgU7+CZWcwvPpgMwiDjBLO0LdoWpKlvSBQ51uww8xPOZciB9UPjgGiR4NxhM1PF7uTcDGivEPGpR3P4C2XHf3tmAnlnEIylnR3/OpwlD+rEzEj+YFB23XLYT80xvPcbRnJL28nL22ucT/K46blmbRXryScStEwAPzzRZlIXVSGqLyDzt6jZTa7Hm+3ExnYrP2BxjHzaoj7rmKWGLnO4TY07glDrjj+MKPr3MvVi86w29SFT5eMK2QK1uCkUFFFCX+bIChtcXYhwyReN8RSwgWa+9R/0n2tWrdCgCZjfs6306IP3Z8Djq7zcsZE4pI0FNGxMvXPYqHF793jwESDBMqTPApFZw73AQ7nP0A7vt2xjIh708U/NgI4gi13scaTFM3VAq9BEoESATAQauNhKNUt46Rd4qNNS1yORBIHUDyBA38LO9yd9XStcLOuuq/Jza7YXFB62WlOAZo36od7I/RfnC1+I7f5RilTNG3L3ltIcJC/gHKSH8DEzJXgX4hw3MZfC+3GwQ6B4UoSe1cUfUpewSVLL0S+e2Ey/kpfJjX+Eb+gsPysw+bUhsTmtAWkD2BR2AmF3K9ofenBiCFQIi+CTrMsKO1mKYjtbIT6f5eI9gzUCZSjzaBE=
+	7+/37unoblo7j3VmPHXUFyMwbd6HWnxl+0rsx3PYwqbFe7kyITomYproIYgyX9gIuqL/SRS3sYeKIT/2W2YsWD0zoqze2LNBIQRUs/acX3cjLDjw21jsjf6KORB31Umo7khtbMkQhgFfvTuUyVAM+jMCsRHKaT0deLaOdknQK6z1y7NVS2b+Q8VZEZ+9eLLfltSGKYnwrDDKnpBzEZxmtLc7lRvqOVjktJ/jNTrtXl0nFacMlXYOWG7rnsGrKeOdazKdedhI/oWhyleDDUabqYR8DcaUcEuz9+DJp9Dh6myixUwzITBYD+5OZKSQi5YSIlzPZ9MHCc24A8zwOrABppFSWnmN9Umgix2VlJcCzjIIXqsj4fYELlwNfjPgIJxBvnW+rAM/o80YcF5+cKBlUd9qRK9zE/jb1oWD2yAwi2osrVlsqgvZsqUdr5HdX9RYwp8ylT7t2ZDgVawxkZPi1emMJPLThWCAWG9fAgIFfO7E4sqlg5u3fekW2k0Z0dUu0P9r/jUOpT/U0u+MFgl15dx+B4ZcSdSnydSX+xINlhFu/YDtuXi2BkdHJ94DxwKR9LiXD1pfmHDUv+xd21MB/9kPt5y9hJlI+egDcYlV1NkjZHJN6p0v5qmLiKwtN6Ujys8onIej0S8y6IOEBKvXm/uSOisRq4KzAWhkMxtTO4gfxWH1EX42IOkr8WrVUJXKq8NvCn35Z4g6gLOW2C58tCVlyOc4NPZdVIBWbCqWQYE=
 X-Forefront-Antispam-Report:
-	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(82310400026)(34020700016)(42112799006)(36860700016)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
+	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(82310400026)(34020700016)(42112799006)(36860700016)(13003099007)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	+GSiwcnUSDp4IrpUJlkCN+4u1he6WIMzzGbfPHxN0s3W8WtbInU0b/fcfbD+T3EHVr4V9x7Bp3WXzfghjm2QUSuJNOJRej8Q9xR90ngdYetuR1TnLj+AWHKzGL9aDS4KsB6DMnfP/7hkvlPis2EVLvHLKe9Yzq5M495e6gJVu5Bf5un8Xtj9Qml/xai16Zg6hH61CaSJJ3z7RnnIfrF2yirjDieB4E1vonMy/96BGYcI92D2obBWy+d/ngtkqdrCXrjneYPRWOkgSqQ2uNIwyitDuXo89opJ2ke7wtdIO4kzZgpOIMRTU1CjS94oEdt3aMK3AwPm9ChtEI43bNVES8B2W5W71PGO+CKFZwiieS53m+bp6NfBdCQI92+ALJB1DlPkS3KRWMcCHmdPIVWYj67DILDlj2XWQ5FPk/wloPSI8HF9499dA/KxHMUp2+VD
+	GAmNrxx/X8aO+Abrv61Dp3ek62Du67HpJATJCmkYSXoGLNFizAGCCHsA4L9AJh6IVswiTtlwAlL4iiJgVwJ+heveFe6yIcDa3xq57atMp56VEve1SK8lmRwjTPgLrUz+W6vB4vJYDS6hzJkh15qRigUqe5F2NgZ1v7oAJPcsPY9tnbVJbP3SFvUoiRG4IvM7s9AwuUR+5Rf3aOTg039lmjs53L2d5sv2BAWrxZQRwjx7usaNXUEVTuR/qpWbQO6Qldmj1+Lwsxcb06qM2KufFlrOo/LgQ8QWa/MRsAWrlChEjiusMOofi2NL+/lr/A99HIRxCPMfRGQFpmIahdDsE9iYDDhEMk5is8smyY3IQFhly4PH4o84eNnTHCTOx144OOIovme2f2KYoWC/r7uxZ40oud6D/8ieSLm6koRMjOdru8okXM2MIRaDK3+HlyIs
 X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 01:38:47.0640
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 01:38:47.2771
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb3d705d-46fd-4b00-e3da-08dea97de2a8
+X-MS-Exchange-CrossTenant-Network-Message-Id: 253ec410-f2e9-411f-5c45-08dea97de2c9
 X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DM2PEPF00003FC3.namprd04.prod.outlook.com
+	DS2PEPF000061C5.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV0PR18MB927459
-X-Rspamd-Queue-Id: 6FE354B7FCA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: EAYPR18MB988325
+X-Rspamd-Queue-Id: B0F364B7FB5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.84 / 15.00];
@@ -147,12 +148,12 @@ X-Spamd-Result: default: False [1.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-292471-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-292469-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[axiado.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,axiado.com:email,axiado.com:dkim,axiado.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:url,analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:email];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -165,294 +166,36 @@ X-Spamd-Result: default: False [1.84 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
 
-From: SriNavmani A <srinavmani@axiado.com>
+Add SriNavmani, Prasad and me as maintainers for Axiado AX3000 eMMC PHY
+driver
 
-It provides the required configurations for Axiado eMMC PHY driver for
-HS200 mode.
-
-Signed-off-by: SriNavmani A <srinavmani@axiado.com>
-Co-developed-by: Prasad Bolisetty <pbolisetty@axiado.com>
-Signed-off-by: Prasad Bolisetty <pbolisetty@axiado.com>
+Acked-by: Prasad Bolisetty <pbolisetty@axiado.com>
 Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
 ---
- drivers/phy/Kconfig                  |   1 +
- drivers/phy/Makefile                 |   1 +
- drivers/phy/axiado/Kconfig           |  11 ++
- drivers/phy/axiado/Makefile          |   1 +
- drivers/phy/axiado/phy-axiado-emmc.c | 217 +++++++++++++++++++++++++++++++++++
- 5 files changed, 231 insertions(+)
+ MAINTAINERS | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 678dd0452f0aa0597773433f04d2a9ba77474d2a..b802274ea45a84bd36d7c0b7fb90e368a5c018b4 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -103,6 +103,7 @@ config PHY_NXP_PTN3222
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 67db88b04537b431c927b73624993233eef43e3f..c33b0aa94de81c89b674e44d4813c4e3b95b7b2d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4254,6 +4254,16 @@ W:	https://ez.analog.com/linux-software-drivers
+ F:	Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
+ F:	drivers/hwmon/axi-fan-control.c
  
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
-+source "drivers/phy/axiado/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
- source "drivers/phy/cadence/Kconfig"
- source "drivers/phy/freescale/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index bfb27fb5a494283d7fd05dd670ebd1b12df8b1a1..f1b9e4a8673bcde3fdc0fdc06a3deddb5785ced1 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
- obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
- obj-y					+= allwinner/	\
- 					   amlogic/	\
-+					   axiado/	\
- 					   broadcom/	\
- 					   cadence/	\
- 					   freescale/	\
-diff --git a/drivers/phy/axiado/Kconfig b/drivers/phy/axiado/Kconfig
-new file mode 100644
-index 0000000000000000000000000000000000000000..d159e0345345987c7f48dcd12d3237997735d2b5
---- /dev/null
-+++ b/drivers/phy/axiado/Kconfig
-@@ -0,0 +1,11 @@
-+#
-+# PHY drivers for Axiado platforms
-+#
++AXIADO EMMC PHY DRIVER
++M:	SriNavmani A <srinavmani@axiado.com>
++M:	Tzu-Hao Wei <twei@axiado.com>
++M:	Prasad Bolisetty <pbolisetty@axiado.com>
++L:	linux-phy@lists.infradead.org (moderated for non-subscribers)
++S:	Maintained
++F:	Documentation/devicetree/bindings/phy/axiado,ax3000-emmc-phy.yaml
++F:	drivers/phy/axiado/Kconfig
++F:	drivers/phy/axiado/phy-axiado-emmc.c
 +
-+config PHY_AX3000_EMMC
-+	tristate "Axiado eMMC PHY driver"
-+	depends on OF && (ARCH_AXIADO || COMPILE_TEST)
-+	select GENERIC_PHY
-+	help
-+	  Enables this to support for the AX3000 EMMC PHY driver.
-+	  If unsure, say N.
-diff --git a/drivers/phy/axiado/Makefile b/drivers/phy/axiado/Makefile
-new file mode 100644
-index 0000000000000000000000000000000000000000..1e2b1ba016092eaffdbd7acbd9cdc8577d79b35c
---- /dev/null
-+++ b/drivers/phy/axiado/Makefile
-@@ -0,0 +1 @@
-+obj-$(CONFIG_PHY_AX3000_EMMC)		+= phy-axiado-emmc.o
-diff --git a/drivers/phy/axiado/phy-axiado-emmc.c b/drivers/phy/axiado/phy-axiado-emmc.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..e0e2174776ad027df0a10a8c4741b1b4ef9ef40e
---- /dev/null
-+++ b/drivers/phy/axiado/phy-axiado-emmc.c
-@@ -0,0 +1,217 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Axiado eMMC PHY driver
-+ *
-+ * Copyright (C) 2017 Arasan Chip Systems Inc.
-+ * Copyright (C) 2022-2026 Axiado Corporation (or its affiliates).
-+ *
-+ * Based on Arasan Driver (sdhci-pci-arasan.c)
-+ * sdhci-pci-arasan.c - Driver for Arasan PCI Controller with integrated phy.
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+
-+/* Arasan eMMC 5.1 - PHY configuration registers */
-+#define CAP_REG_IN_S1_MSB		0x04
-+#define PHY_CTRL_1			0x38
-+#define PHY_CTRL_2			0x3c
-+#define PHY_CTRL_3			0x40
-+#define STATUS				0x50
-+
-+#define DLL_ENBL	BIT(26)
-+#define RTRIM_EN	BIT(21)
-+#define PDB_ENBL	BIT(23)
-+#define RETB_ENBL	BIT(1)
-+
-+#define REN_STRB	BIT(27)
-+#define REN_CMD_EN	GENMASK(20, 12)
-+
-+/* Pull-UP Enable on CMD Line */
-+#define PU_CMD_EN	GENMASK(11, 3)
-+
-+/* Selection value for the optimum delay from 1-32 output tap lines */
-+#define OTAP_DLY	0x02
-+/* DLL charge pump current trim default [1000] */
-+#define DLL_TRM_ICP	0x08
-+/* Select the frequency range of DLL Operation */
-+#define FRQ_SEL	0x01
-+
-+#define OTAP_SEL_MASK		GENMASK(10, 7)
-+#define DLL_TRM_MASK		GENMASK(25, 22)
-+#define DLL_FRQSEL_MASK		GENMASK(27, 25)
-+
-+#define OTAP_SEL(x)		(FIELD_PREP(OTAP_SEL_MASK, x) | OTAPDLY_EN)
-+#define DLL_TRM(x)		(FIELD_PREP(DLL_TRM_MASK, x) | DLL_ENBL)
-+#define DLL_FRQSEL(x)	FIELD_PREP(DLL_FRQSEL_MASK, x)
-+
-+#define OTAPDLY_EN	BIT(11)
-+
-+#define SEL_DLY_RXCLK	BIT(18)
-+#define SEL_DLY_TXCLK	BIT(19)
-+
-+#define CALDONE_MASK	0x40
-+#define DLL_RDY_MASK	0x1
-+#define MAX_CLK_BUF0	BIT(20)
-+#define MAX_CLK_BUF1	BIT(21)
-+#define MAX_CLK_BUF2	BIT(22)
-+
-+#define CLK_MULTIPLIER	0xc008e
-+#define POLL_TIMEOUT_MS	3000
-+#define POLL_DELAY_US	100
-+
-+struct axiado_emmc_phy {
-+	void __iomem *reg_base;
-+	struct device *dev;
-+};
-+
-+static int axiado_emmc_phy_init(struct phy *phy)
-+{
-+	struct axiado_emmc_phy *ax_phy = phy_get_drvdata(phy);
-+	struct device *dev = ax_phy->dev;
-+	u32 val;
-+	int ret;
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_1);
-+	writel(val | RETB_ENBL | RTRIM_EN, ax_phy->reg_base + PHY_CTRL_1);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_3);
-+	writel(val | PDB_ENBL, ax_phy->reg_base + PHY_CTRL_3);
-+
-+	ret = readl_poll_timeout(ax_phy->reg_base + STATUS, val,
-+				 val & CALDONE_MASK, POLL_DELAY_US,
-+				 POLL_TIMEOUT_MS * 1000);
-+	if (ret) {
-+		dev_err(dev, "PHY calibration timeout\n");
-+		return ret;
-+	}
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_1);
-+	writel(val | REN_CMD_EN | PU_CMD_EN, ax_phy->reg_base + PHY_CTRL_1);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_2);
-+	writel(val | REN_STRB, ax_phy->reg_base + PHY_CTRL_2);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_3);
-+	writel(val | MAX_CLK_BUF0 | MAX_CLK_BUF1 | MAX_CLK_BUF2,
-+	       ax_phy->reg_base + PHY_CTRL_3);
-+
-+	writel(CLK_MULTIPLIER, ax_phy->reg_base + CAP_REG_IN_S1_MSB);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_3);
-+	writel(val | SEL_DLY_RXCLK | SEL_DLY_TXCLK,
-+	       ax_phy->reg_base + PHY_CTRL_3);
-+
-+	return 0;
-+}
-+
-+static int axiado_emmc_phy_power_on(struct phy *phy)
-+{
-+	struct axiado_emmc_phy *ax_phy = phy_get_drvdata(phy);
-+	struct device *dev = ax_phy->dev;
-+	u32 val;
-+	int ret;
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_1);
-+	writel(val | RETB_ENBL, ax_phy->reg_base + PHY_CTRL_1);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_3);
-+	writel(val | PDB_ENBL, ax_phy->reg_base + PHY_CTRL_3);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_2);
-+	writel(val | OTAP_SEL(OTAP_DLY), ax_phy->reg_base + PHY_CTRL_2);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_1);
-+	writel(val | DLL_TRM(DLL_TRM_ICP), ax_phy->reg_base + PHY_CTRL_1);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_3);
-+	writel(val | DLL_FRQSEL(FRQ_SEL), ax_phy->reg_base + PHY_CTRL_3);
-+
-+	ret = read_poll_timeout(readl, val, val & DLL_RDY_MASK, POLL_DELAY_US,
-+				POLL_TIMEOUT_MS * 1000, false,
-+				ax_phy->reg_base + STATUS);
-+	if (ret) {
-+		dev_err(dev, "DLL ready timeout\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int axiado_emmc_phy_power_off(struct phy *phy)
-+{
-+	struct axiado_emmc_phy *ax_phy = phy_get_drvdata(phy);
-+	u32 val;
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_1);
-+	val &= ~(DLL_TRM_MASK | DLL_ENBL);
-+	writel(val, ax_phy->reg_base + PHY_CTRL_1);
-+
-+	val = readl(ax_phy->reg_base + PHY_CTRL_3);
-+	val &= ~(DLL_FRQSEL_MASK | PDB_ENBL);
-+	writel(val, ax_phy->reg_base + PHY_CTRL_3);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops axiado_emmc_phy_ops = {
-+	.init = axiado_emmc_phy_init,
-+	.power_on = axiado_emmc_phy_power_on,
-+	.power_off = axiado_emmc_phy_power_off,
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct of_device_id axiado_emmc_phy_of_match[] = {
-+	{ .compatible = "axiado,ax3000-emmc-phy" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, axiado_emmc_phy_of_match);
-+
-+static int axiado_emmc_phy_probe(struct platform_device *pdev)
-+{
-+	struct axiado_emmc_phy *ax_phy;
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+	struct phy *generic_phy;
-+
-+	if (!dev->of_node)
-+		return -ENODEV;
-+
-+	ax_phy = devm_kzalloc(dev, sizeof(*ax_phy), GFP_KERNEL);
-+	if (!ax_phy)
-+		return -ENOMEM;
-+
-+	ax_phy->reg_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(ax_phy->reg_base))
-+		return PTR_ERR(ax_phy->reg_base);
-+
-+	ax_phy->dev = dev;
-+
-+	generic_phy = devm_phy_create(dev, dev->of_node, &axiado_emmc_phy_ops);
-+	if (IS_ERR(generic_phy))
-+		return dev_err_probe(dev, PTR_ERR(generic_phy),
-+				     "failed to create PHY\n");
-+
-+	phy_set_drvdata(generic_phy, ax_phy);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static struct platform_driver axiado_emmc_phy_driver = {
-+	.probe = axiado_emmc_phy_probe,
-+	.driver = {
-+		.name = "axiado-emmc-phy",
-+		.of_match_table = axiado_emmc_phy_of_match,
-+	},
-+};
-+module_platform_driver(axiado_emmc_phy_driver);
-+
-+MODULE_DESCRIPTION("AX3000 eMMC PHY Driver");
-+MODULE_AUTHOR("Axiado Corporation");
-+MODULE_LICENSE("GPL");
+ AXI SPI ENGINE
+ M:	Michael Hennerich <michael.hennerich@analog.com>
+ M:	Nuno Sá <nuno.sa@analog.com>
 
 -- 
 2.34.1
