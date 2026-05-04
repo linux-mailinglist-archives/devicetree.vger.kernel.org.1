@@ -1,169 +1,143 @@
-Return-Path: <devicetree+bounces-292773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2J1xDvf/+Gko4AIAu9opvQ
-	(envelope-from <devicetree+bounces-292773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:15 +0200
+	id 8CF/DxEA+Wko4AIAu9opvQ
+	(envelope-from <devicetree+bounces-292775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C8924C3830
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:14 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DECDE4C3862
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E7ED3069627
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 20:19:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0136B3025179
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 20:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02F130CD85;
-	Mon,  4 May 2026 20:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CfBYXHu8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C3D31B114;
+	Mon,  4 May 2026 20:21:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4212F2607;
-	Mon,  4 May 2026 20:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C74630E853
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 20:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777925995; cv=none; b=OFAnaNTKWk7H2VKuAi4ba1OJ91rPMFYIh6bfiSyhxvsxQDogf541yB/pa0Tu5mmILBDQUdbbp45KXdZJsxo4lwtk2MwHm+oXfXi6e6w7DwA+BUZ9ujBX5QybeFE7A6Q5+aMOi4RYsSWSpXHJyKUBtqrhI4/VC54CYwI6iVknbME=
+	t=1777926114; cv=none; b=URR1T1kTNCxbmvoj3tMRbRcyJOsbMh4nptwXNFfcnuJiRlZs+4RvR46FS9Ikb7A9M5i9hMA0TxXrcvVb+5+Z7W3eYd+C8zYuBxMw7/rzLmuRTHzjVIuMUx4kUj8wlPVpozowOgaDPUoFoBZInTPfNknIkefVQRGmH/G2TD7qPsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777925995; c=relaxed/simple;
-	bh=RZjRMBUvteVfcBcvWC92zO6Uwu/jRF4NZPRcaMv6rCM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GwwADniNV+ViVgVOY1fq5bT8AOUjjUBchFTysko4jyLnzALMu1gaJKM+HzHpap6YADbHa1YxRJyDK/uZnq+65Yh/OQRhBlFBbvXJIHOjdwQ3ROxPbmtsxKV313BJ445aRr1a15jotaHnjCdAU1swL9MHIKJOAYXmeS2x2qD9psE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CfBYXHu8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0093C2BCB8;
-	Mon,  4 May 2026 20:19:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777925995;
-	bh=RZjRMBUvteVfcBcvWC92zO6Uwu/jRF4NZPRcaMv6rCM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CfBYXHu8GrvhUmdFfPln1AR4BRTSzBXmkz7cG4nERmcL+zNPVVjfEVgAVlx0UU0UB
-	 7WoTe89QKv2D6/eAvfJ7lXhgDOW7XbmSS0xXEM915JkcIIVPUjdYsL5dZbQN0ZxTqN
-	 hAoJiJLjJoiatwHITrTTxyFOCF6CCH2W2u3uLmebCsBBWtLBmWR3jLmmhOlusHy/El
-	 eoqok9mrRRRj5yHiKp+doeHDDcNMfoj/1GioxJ78vqhNjFADXICQoXnkTdxxnTI3wR
-	 4T9+57QhtnP1EXQQO9FRXyOBOTDWYdIt43h4dRBYF/j5r81EDkyqgMELLmZ/ZeujVe
-	 HYiZeUZhRxSPQ==
-Message-ID: <4a41079d-4e3a-438c-9996-c756206c0c3a@kernel.org>
-Date: Mon, 4 May 2026 22:19:50 +0200
+	s=arc-20240116; t=1777926114; c=relaxed/simple;
+	bh=V/85oQttdHGcKWzfEk3TKfcIxxxpc5yEguI3HRpcOMo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lcEomT6f+2eqX/LLk4WnC2weGdzwTtMD+4pDeGQ8OS/QhphKolMUuyXlC/6BF2vooI7WwcFQUThtAGVeSXrAhsX2TdRH080DGcgYkDS4BVZctKcYplIF+aOgxmfpamOa/9PpBHLQCDtm10aI+iKUOZ8y9AHKo5ZPmucEZeSGMi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1wJznX-0007WV-3d; Mon, 04 May 2026 22:21:47 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH 0/4] i.MX LDB DT cleanups
+Date: Mon, 04 May 2026 22:21:40 +0200
+Message-Id: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: monaco-evk: Extract common EVK
- hardware into shared dtsi
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Umang Chheda <umang.chheda@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, richardcochran@gmail.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260427170505.1494703-1-umang.chheda@oss.qualcomm.com>
- <20260427170505.1494703-2-umang.chheda@oss.qualcomm.com>
- <9ece279f-2f57-466a-9af1-9fc8670c8ef9@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9ece279f-2f57-466a-9af1-9fc8670c8ef9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8C8924C3830
+X-B4-Tracking: v=1; b=H4sIANX/+GkC/x3LSwqAMAwA0atI1gbS+sWriAttowakSiMiiHe3u
+ HwM84ByFFbosgciX6KyhwSTZ+DWMSyM4pPBkq2pohKvBg2e+yEONz/hLDcrtlNBpfWuIs+Q1iP
+ yH9LZD+/7AZL914tmAAAA
+X-Change-ID: 20260504-v7-1-topic-ldb-fixes-8b3042dc50de
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, laurentiu.palcu@oss.nxp.com, 
+ victor.liu@nxp.com
+Cc: kernel@pengutronix.de, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Marco Felsch <m.felsch@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: DECDE4C3862
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292773-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,denx.de,nxp.com,pengutronix.de,oss.nxp.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292775-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.955];
 	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
 
-On 04/05/2026 14:57, Konrad Dybcio wrote:
-> On 4/27/26 7:05 PM, Umang Chheda wrote:
->> The monaco-ac EVK is a new board variant which shares the majority of
->> its hardware description with the existing monaco-evk board.
->>
->> In preparation for adding this variant, extract the common hardware
->> nodes from monaco-evk.dts into a new shared monaco-evk-common.dtsi
->> include file, and update monaco-evk.dts to include it and keep only
->> board-specific overrides.
->>
->> No functional change intended.
->>
->> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
->> ---
-> 
-> The patch is a bit difficult to view as-is, but the gist of it is that
-> the resulting monaco-evk.dts is:
+Hi,
 
-Diff should be fixed and since this is not even b4, than producing
-proper patch detecting rename is trivial. :/
+this cleanup prepares the LDB dt-bindings for the upcoming i.MX93 and
+i.MX94 LDB support and is a different abborach than [1]. This approach
+should be easier to maintain [2] and far more flexible for upcoming
+BLK-CTRL or IOMUX_GPR syscon sub-devices.
+
+Please be informed: I didn't do runtime tests but since the LDB driver
+never used the reg (nor reg-names) property, it should be safe to remove
+them.
+
+Regards,
+  Marco
+
+[1] https://lore.kernel.org/all/20260329-fsl_ldb_schema_fix-v1-1-351372754bc0@nxp.com/
+[2] https://lore.kernel.org/all/2mkih6id2cfqjfksfvvitzlcnyfz7r4rs4f7bhtvdhf7scwzue@bb4ucnfxa4l4/#t
+
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+Marco Felsch (4):
+      Revert "dt-bindings: display: bridge: ldb: Add check for reg and reg-names"
+      Revert "dt-bindings: display: bridge: ldb: Fill in reg property"
+      ARM: dts: imx6sx: remove LDB reg property
+      arm64: dts: imx8mp: remove LDB reg and reg-names property
+
+ .../bindings/display/bridge/fsl,ldb.yaml           | 25 +---------------------
+ arch/arm/boot/dts/nxp/imx/imx6sx.dtsi              |  3 +--
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi          |  4 +---
+ 3 files changed, 3 insertions(+), 29 deletions(-)
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20260504-v7-1-topic-ldb-fixes-8b3042dc50de
 
 Best regards,
-Krzysztof
+-- 
+Marco Felsch <m.felsch@pengutronix.de>
+
 
