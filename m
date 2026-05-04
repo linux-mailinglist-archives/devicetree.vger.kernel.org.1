@@ -1,158 +1,226 @@
-Return-Path: <devicetree+bounces-292812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292662-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDuBAyBD+Wmw7QIAu9opvQ
-	(envelope-from <devicetree+bounces-292812-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 03:08:48 +0200
+	id gIDLBgCe+GnHxAIAu9opvQ
+	(envelope-from <devicetree+bounces-292662-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 15:24:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A6334C5A3A
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 03:08:47 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF13C4BDD3E
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 15:24:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1C23A300E4AC
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 01:08:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A093630248C7
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 13:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2EA934C121;
-	Tue,  5 May 2026 01:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C063DA5B2;
+	Mon,  4 May 2026 13:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rV3BWpoz"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Vfe34t3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF654282F13;
-	Tue,  5 May 2026 01:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7593D890D
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 13:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777943306; cv=none; b=cMQLYkFbdw7ErJ4B4UY5snNIk++lSpYkdzdJAyD7SLISKWuK3zUB6OK5lyXR/hQ+lEwqQBxpIRIxXasSyE86HVLVBVnTNRqcVSEhy0cle5uD0Kfsf6dKAkNkxNZfAVd8XSfjqI2VhT84bcbEQuGIuOWz9P6Eg4RFNy41PRr3ObE=
+	t=1777900878; cv=none; b=H4tEX2KuDFlDq/rWcPl2w0Ve/d6+wCM/GR0CBWCutNVPDueZLAeHdNVPTK+hGAmpkU3lyocxzyWiQVDeKuEc0WGH4kATYhzgwV50/f37ASYNLcEi4EVPM+OUb0AFpYpJ+FnBUs6BZG+2FV8MXbKd2+ifpHSPnkZBH4//tnY6F7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777943306; c=relaxed/simple;
-	bh=34SnF4ox1aSe/aAWyBq10Zp2YK6OXLutbpM5B9Kz1Fk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=m1KsdghYd8/vJMXKsmvSmxr5In/jGNN/hHkcSJthzKMEeRiO86FQsWDp7txMZOzEsXWu2RmAW2qmHncYTdXeFQoa0CxG+rwnuCHAziNDZAHDeuEP7FqoAT396xbPiiD/aAzYxBZBVYOCLB5YZiP47Fr7aYgrXUBJhP21wKZeNP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rV3BWpoz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CAA2C2BCB9;
-	Tue,  5 May 2026 01:08:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777943306;
-	bh=34SnF4ox1aSe/aAWyBq10Zp2YK6OXLutbpM5B9Kz1Fk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=rV3BWpozZVowYvmIDCLnek7p89rPqljYoRXbuiae4MeCwlJsvlYqlbUE8OHJffqGa
-	 CTST4ddMbz439MtHCkhiY07YWmjqGg3ukxT1AQApfZLGRZ05k7NhC7POzAZCmuZCHk
-	 gJhOTRuyogbwuEG9vTEejcGrgmNu/SRADKIEWaDnG39THAuUYozVuWvE5wi57TgbrY
-	 HpRE1yNf4G4MrQI51zYPd12qxwaM9rD9Vb62qk8KdGSmeX2o5hArwqCPVweupInAW7
-	 Mr1upzLC/xLiatfNVT3rU/aO8+PqbEAVWWBRIxrdMl1MyYwKpOUACeRuYygfini6vz
-	 GSvScwC+PIoyw==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
- Alex Elder <elder@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- Guodong Xu <guodong@riscstar.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Alex Elder <elder@riscstar.com>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
- Yixun Lan <dlan@kernel.org>
-In-Reply-To: <20260502-spi-spacemit-k1-v10-0-f412e1ae8a34@riscstar.com>
-References: <20260502-spi-spacemit-k1-v10-0-f412e1ae8a34@riscstar.com>
-Subject: Re: (subset) [PATCH v10 0/3] spi: support the SpacemiT K1 SPI
- controller
-Message-Id: <177790086504.458539.6865488467267899231.b4-ty@b4>
-Date: Mon, 04 May 2026 22:21:05 +0900
+	s=arc-20240116; t=1777900878; c=relaxed/simple;
+	bh=RRcMT5aXF695WT2y3yloWwLGYO0Wery2Qd+Ip0HySMg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=dt/0SSn18iw5lt/OxBN+koDkGBjPkkjme/yUtc3y4ojoXOo4deTZIrN24mJC/Y1ARjir3l5tHDiy0P3daSuBFGhUUKDbs9m/M9eZWctWybtGVAoccGnrO9FSQKZ/vdx47hV4Gz4wVPYerGP8RFeDc+Pr9BqeSOGhPDmFeBTvx2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Vfe34t3l; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-67bb5ad91bfso5181110a12.0
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 06:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1777900875; x=1778505675; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cu51mh4jahJU18+vQyHL65Jaia7lK69Ad8pkf9BheHQ=;
+        b=Vfe34t3lpzoBSlxMarmtHtJZ6Tq8MHmt9dUapF07HnO9QtHzkXSFoBbdbpjPA/dNPd
+         LSHmqVNmgtS/Qcz5ksymrf9ETnAbokCKpfuGVccUjzpRCz3iZfwmdp5yZYdVq8Qt2rXb
+         kdmeUi0CpFyYSoEkHdYKBEQXmmzp9qGQOvMJyM1TVUQzcM5LKckfhLkLah/YA0tu/aWL
+         AEKft72sUUKEP3w0ESKp/LA2MAZHBaBmQ35/ntiwCWK00l+dTtboshhep/kHmoHX4Y+4
+         G+tTJq9M8uDty92qngjUPNEuJEfMnojvoEJikJPylhqyWkRItzTDCliU/KwFuZt80ntD
+         2dDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777900875; x=1778505675;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Cu51mh4jahJU18+vQyHL65Jaia7lK69Ad8pkf9BheHQ=;
+        b=I6ALt85lHTcbb05/9ifR71hPp9MiNmUKBLOc7Ayhadel74o0BO8j+0Vy4D9BfNHgXm
+         EHS3K91/lJTekI33Sab/Ok1SsaZS5TbCSuIb1ytwMWi/ffgFmZ2To81a7LK5nux/wLPm
+         5vFdqrNmIt896IAGAm+qiTRWVgeY6uo5gWMD9JyxTm4xPkDLD1xS8wxJ+URmPSfirp5U
+         w12wC+VL8pphL1Zfx8BRQ1XZpa6d7gwiYdOzNpOPBrCcffDLmYVh92Be3zM2yY9D7dVL
+         1W3W67+uj3WeyInlmXOdHs0pfL4dD9RC9ePrtPVOVk1AKvw6fhcvERZZortlVtLsCw4Q
+         Pz8A==
+X-Forwarded-Encrypted: i=1; AFNElJ87TvR6gS25vxesdrsrin0UiZhEty+uxgfsa7GJETrUhKudwLQyQ76+DYhJlTqkq1DSGzv/y3asg+cR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQiNM2ikzgrZsASuT9n6bma9Nf0Rz9xPE29Vc9V7GgUamsSltv
+	hvYL1xKAcZjsZcn2LCxUi3gBzP6F8GdxkSxUEjunQ8FYHDQgNvlxXjNOIGupKAr8fJ4=
+X-Gm-Gg: AeBDietg2rj+gucT3S2M5Mtwy9MXdKlPr8d9FrjqJSF00s+joqPUFbsYFNvRYNIBcUF
+	oKPqWkxJjIrZWFu0ZAAI0Vr2wN3b9QfLkYfYSWR91Pz1TFbeI1hhAydveRAC2wMVlNVrQFSfJCl
+	enqyT/KSEAFR3EuNACRpk6GW4FJ1FYcrqA5zBMIiKe/BWU11Oeg3x8ro56IVuAYOMvAB6UPRjFF
+	VwM9/Nb1N7DBv/Y/HFnDjGdtHzRo33ubA4M3fPfCz/KNtQPS/h4h9a1J+LQ+c/l1LtJ9iyV7BsJ
+	nlR1kTpCGBJZ+weoMxzbckyoc3QIStVC9m5TIcjAcsvHE7HghhUdFNyBE2PKyC1zkPdk7M4k2n9
+	z/+qs8nL0ryaY9PN/scl92ekJ/GMajBkAGlcvw7xNkWjuHYYrAk0ZD5Yod3fPMd3bUJwVurPFso
+	MFlrwYjlTZb+tbQRmRrmpUrcQAncNRC0WpcWQlaK+V6p1rmcw1Sm+JhUbDrqd6yQZ5Qy+l1Fw7A
+	Yp2kv0=
+X-Received: by 2002:a05:6402:2b99:b0:671:eac2:d328 with SMTP id 4fb4d7f45d1cf-67c1992a1c7mr4428495a12.10.1777900875106;
+        Mon, 04 May 2026 06:21:15 -0700 (PDT)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67b85e28ef8sm3367092a12.2.2026.05.04.06.21.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 May 2026 06:21:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1588; i=broonie@kernel.org;
- h=from:subject:message-id; bh=34SnF4ox1aSe/aAWyBq10Zp2YK6OXLutbpM5B9Kz1Fk=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp+UMFLHaHKQ85u2MfDU74qEc2lkM81xXRg/6Fw
- /dRLkjDwxGJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaflDBQAKCRAk1otyXVSH
- 0CDgB/sHRRmGxal7lOmgd5I2zdzP4apuqC1J/pECcJjR3SW2mmOYq60tzTbpLsrkKTbhoXm/CZW
- hRDRMlMYUSCHv0UokFuRAZ/I5ttyVXrObmeCBfm8kPb0/mogWU+j9JBHjpZneiFINAeaBrWQGm0
- Yn8eoJ4L04nG8+zsjZHXK5iU5g3ko97yEea3tPqr4WMR40igylxHYDuvJCg0rF5swTE6maHZMf7
- vXtvSjYwrEdlMedy6EWVR3Z44cYpLYUGmNvKYrolVDDwOqt0iXmopU/ubu8xbIhsgIhX8liEp4L
- J6fO6rniE2F09IPCG28tZ4ePCFtEPlXPgqGwlMYu2OwX0Z5m
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Rspamd-Queue-Id: 1A6334C5A3A
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 04 May 2026 15:21:11 +0200
+Message-Id: <DI9X9D3TTIRE.1CGHQI2LEZ1UL@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Luca Weiss"
+ <luca.weiss@fairphone.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Jeff Johnson"
+ <jeff.johnson@oss.qualcomm.com>, "Baochen Qiang"
+ <baochen.qiang@oss.qualcomm.com>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Alexander Koskovich" <AKoskovich@pm.me>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Bartosz
+ Golaszewski" <brgl@kernel.org>, "Marcel Holtmann" <marcel@holtmann.org>,
+ "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>, "Balakrishna Godavarthi"
+ <quic_bgodavar@quicinc.com>, "Rocky Liao" <quic_rjliao@quicinc.com>,
+ "Johannes Berg" <johannes@sipsolutions.net>, "Jeff Johnson"
+ <jjohnson@kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-bluetooth@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
+ <ath11k@lists.infradead.org>
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: milos-fairphone-fp6: Enable
+ WiFi
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260403-milos-fp6-bt-wifi-v2-0-393322b27c5f@fairphone.com>
+ <20260403-milos-fp6-bt-wifi-v2-7-393322b27c5f@fairphone.com>
+ <4fbs4arx6sez6fffy75ctmzecfvitr6aocau3cczlr2ps2ptld@v7wpa2irsihl>
+ <2514523f-a43f-4470-a69b-3d5175d10385@oss.qualcomm.com>
+ <DI789NOBWJHK.1V3SFQLCFLS4P@fairphone.com>
+ <870d16bb-b426-4285-a299-deb09ae90243@oss.qualcomm.com>
+In-Reply-To: <870d16bb-b426-4285-a299-deb09ae90243@oss.qualcomm.com>
+X-Rspamd-Queue-Id: AF13C4BDD3E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292812-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292662-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,pm.me,gmail.com,holtmann.org,quicinc.com,sipsolutions.net,lists.sr.ht,vger.kernel.org,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,fairphone.com:email,fairphone.com:dkim,fairphone.com:mid]
 
-On Sat, 02 May 2026 21:30:50 -0400, Guodong Xu wrote:
-> spi: support the SpacemiT K1 SPI controller
-> 
-> This series adds support for the SPI controller found in the SpacemiT
-> K1 SoC.  The driver currently supports only master mode.  The controller
-> has two 32-entry FIFOs and supports PIO and DMA for transfers.
-> 
-> Starting with v8, I am taking over from Alex Elder to shepherd this
-> series upstream.  Alex developed versions 1 through 7.
-> 
-> [...]
+On Mon May 4, 2026 at 3:10 PM CEST, Konrad Dybcio wrote:
+> On 5/1/26 11:20 AM, Luca Weiss wrote:
+>> Hi Konrad,
+>>=20
+>> On Tue Apr 7, 2026 at 3:16 PM CEST, Konrad Dybcio wrote:
+>>> On 4/3/26 9:35 PM, Dmitry Baryshkov wrote:
+>>>> On Fri, Apr 03, 2026 at 03:52:53PM +0200, Luca Weiss wrote:
+>>>>> Configure and enable the WiFi node, and add the required pinctrl to
+>>>>> provide the sleep clock from the PMK8550 (PMK7635) to WCN6755.
+>>>>>
+>>>>> Thanks to Alexander Koskovich for helping with the bringup, adding
+>>>>> the missing pinctrl to make the WPSS stop crashing.
+>>>>>
+>>>>> Link: https://lore.kernel.org/linux-arm-msm/DBF7OWAWQ94M.FSCP4DPF8ZJY=
+@fairphone.com/
+>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 19 ++++++++++++++=
+++++-
+>>>>>  1 file changed, 18 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/=
+arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>>>>> index db72418b7195..d8ac495ca7c8 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>>>>> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>>>>> @@ -242,7 +242,7 @@ wcn6750-pmu {
+>>>>> =20
+>>>>>  		clocks =3D <&rpmhcc RPMH_RF_CLK1>;
+>>>>> =20
+>>>>> -		pinctrl-0 =3D <&bluetooth_enable_default>;
+>>>>> +		pinctrl-0 =3D <&bluetooth_enable_default>, <&pmk8550_sleep_clk_def=
+ault>;
+>>>>>  		pinctrl-names =3D "default";
+>>>>> =20
+>>>>>  		regulators {
+>>>>> @@ -766,6 +766,17 @@ &pmiv0104_eusb2_repeater {
+>>>>>  	qcom,tune-usb2-preem =3D /bits/ 8 <0x6>;
+>>>>>  };
+>>>>> =20
+>>>>> +&pmk8550_gpios {
+>>>>> +	pmk8550_sleep_clk_default: sleep-clk-default-state {
+>>>>> +		pins =3D "gpio5";
+>>>>> +		function =3D "func1";
+>>>>> +		input-disable;
+>>>>> +		output-enable;
+>>>>
+>>>> Hmm, if it's a sleep_clk, should it not be handled via the power
+>>>> sequencer?
+>>>
+>>> If you mean that it may be needed to toggle it with specific timings,
+>>> possibly..  seems that WCN6855 has a "xo-clk" GPIO defined. I requested
+>>> access to some docs that I think should have the answer, hopefully shou=
+ld
+>>> get it soon.
+>>=20
+>> Did you manage to get anything there yet?
+>
+> Yeah, sorry, it got lost in the sea of emails..
+>
+> The PDF talks about the electrical requirements of the clock signal and
+> the section titled "Power-up sequence timing" doesn't mention it at all,
+> so my assumption would be "OK so long as it's ticking before you power
+> up the WCN"
 
-Applied to
+Thanks for checking!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.2
+Is this an R-b then?
 
-Thanks!
-
-[1/3] spi: dt-bindings: add SpacemiT K1 SPI support
-      https://git.kernel.org/broonie/spi/c/b610d5333c4b
-[2/3] spi: spacemit: introduce SpacemiT K1 SPI controller driver
-      https://git.kernel.org/broonie/spi/c/efcd8b9d1111
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Regards
+Luca
 
