@@ -1,86 +1,84 @@
-Return-Path: <devicetree+bounces-292716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFyPCJTJ+Gls0wIAu9opvQ
-	(envelope-from <devicetree+bounces-292716-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:30:12 +0200
+	id 4EcOOJLJ+Gls0wIAu9opvQ
+	(envelope-from <devicetree+bounces-292715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:30:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A654C15B9
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5574C4C15B1
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AF8CB301B4DF
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 16:30:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D8BBD3019CBA
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 16:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C323E3D89;
-	Mon,  4 May 2026 16:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30C13E3C58;
+	Mon,  4 May 2026 16:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uLj+zuSl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f8BZMc7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1116E3E3155
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 16:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E88B3E3C45
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 16:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777912202; cv=none; b=ZfFV/AhLViXuCZCTZxyogVGY2Rikk+JZob4OM/fa1F4OBJJizqKCvtKmaEIuQPoEfBPl28QusL2C/OKM7AaeQsA7afBK9fBmS6hCBDZVDxIWXAb+I8GQuw680k4kjUsB4k5J3cAvl2RhfTVqla3PNhdm3F5Q4muzuXHcMDk6rz4=
+	t=1777912201; cv=none; b=sFIoTU4PLizyjBIVjesVnhWBNvD5V0MVlU3BvrsQxLce6W8T2ErzMUbTULcSCUy97XhzuprnmylKfRZftH8QGOoVwiqbBeizQ7yaHbO9tewXipvRP6vUckqYGZI+g1AlYKb8QDCJKt5yjcr44o0oWMxeTSN43XJmhWidR4vjE5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777912202; c=relaxed/simple;
-	bh=zQPnmLqFrFXjyZHDa1Pk823AqDYDK0kMLO58Q2tjToQ=;
+	s=arc-20240116; t=1777912201; c=relaxed/simple;
+	bh=7a4mitWB+CP8nQNV9k3Hn5b6MfzrVl6jjOTLFj2jUWk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Dgoc02FYmxhyRmhPw3VINFXril9KfnP5CuHnXCFAIALyso6oZmiOtEMN3+DtI7VJljVY6q1oiezkDGBuq5FUQao+QeM3XG7NGl3sBERblVMaIBFgsGKgVtXjuRJnqhKyXSCLQf8SIMMBhRQPsLgR8ATbnx4cFjLMkHhInYP4qjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uLj+zuSl; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:To:Cc; b=j6IzVT/f+/QfPxbJ/BDiZO39a52FKzf1xT87uoPzotfwaVjyp7SiToCva7yze78+n1GicNX+2anlSEqUxvEBeUXfSQclzprFy49JqXW15sfmv8NAU8gBjsdWZT9MeRCgzYSs4BSvdI5gpJGV0ARSTWUHuArj0YwfyGgrtfuok/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f8BZMc7u; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48a7fe4f40bso45232375e9.0
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 09:29:58 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488ba840146so37499485e9.1
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 09:29:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777912197; x=1778516997; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1777912198; x=1778516998; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/HBe6/RKQNP31V5r+MzBqvaSoTBZDkASk3JvxbQczeU=;
-        b=uLj+zuSl5/V/r+09uBx+hk04EElQag4VP68QagMKfowYOHJffrontI2cq9RiK2NxSh
-         7tXgQFoxr6czguMsXu4wtHpLWJy/uSQgICjRRCcuWJS6hCLWubWXHffPlnOcEmSLFm3N
-         flZw7E6ga1HnjwBQg/NuwKHNplQPZ/dC3iOySSUcQU55GOxMIXN88nL4tNNVTGTcJln5
-         01oOdp0IvyyK4jE/mu8VHr/IeUjid7zm/E7BElh0Jqo/0T6IlDwVFJyXU4FW3fiU3ew9
-         qHKZWEwivbD5hxULmLLK1EkbO1kd2flde80q2ZGDHARxbXX5M/YC0hqRFIeDS2gyQOFQ
-         3sCw==
+        bh=5+VdzbAXe/Rlb0p/Xi6bXIiDc5JUDQVJT5OnBZINtDw=;
+        b=f8BZMc7u8Br8te45osA2JWJo0lGCFLK9XFmAZUDTZ4yxKlhFFGUN2HL19nvXKiVgTY
+         4UrF5QRZ4ZPREkD4OwpM3+u5x5S/gjBJPkVDzwFhlczkMzfSxZBS16PC5ZaJHeUHmgor
+         asPo3gr8aY0nvLA1zO/hYSu4LTuVqOC/K1wAacS69/wArYne4jWKs33Gcp6e67gkIyua
+         M4Bh6/3Vr1ro0ugwGAaXP0H5dOOzC2okKFP40sxI12htVFbY3VOqvvJpq/EABWeLqup3
+         3AWvJrJgtUWa6TV8PaDLpNXJ3PZ3W817D1IYOEmzW3y0dl1uUxq4rTmfQRff8rF7KZPJ
+         jBjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777912197; x=1778516997;
+        d=1e100.net; s=20251104; t=1777912198; x=1778516998;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=/HBe6/RKQNP31V5r+MzBqvaSoTBZDkASk3JvxbQczeU=;
-        b=A0WorI2V+ohlGKS6+usQhdS8d1Ot06P17mOuovV4Fothcp8cgw/rKqGn4Up8IXoKPO
-         s2bqicmT9UnYPS9YlniCGcuI/vly61LgigGiKJN0n2rx89g0LBvFhL2GLP3kyYHlKz7W
-         Qkxr2J3h8roSfGsosV1Vgd2WuS+FeOmwTlSV6oy2KIs7NwNcGyZrH2TvA47tE6lDQePZ
-         kutMu5NL9GjAGmpymIpPI0cnPfGkOGJsEBmbZwpjgz47sg0uFEN8XtAdluynpGCmSAGx
-         bNlu86KsbLBIo4b/jh3+IFfS5i86FF0lWhlS+oSSAaK0Q2rawSyZVj+vKmGpnEuNTyb4
-         eRAQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9Tn8vJgPLxoVk9Uv8KYxwNLpIZTbBRf+ICNTCnj2Vimqazp13R65ZhHIn4prwjppNA6Q/erpSPwYMj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQlbILm7pvm2/YEf9qK/gZrMmsTN7KdYZzNNJtFgml+ZYiosqs
-	mxg0aP7+72X0Va3rS1DyMl0XpmJmLAkwFJbIjGtPHPyJLqKgPWrIJJkoUiul7DDykClI7PAW7Sy
-	dFgZz4Wn05g==
-X-Gm-Gg: AeBDiespz90RwvTHQZYT+13ns1nVD5NECSGOTvxGMEwyNJLFDGSBaP9E6Kltu9R1oQz
-	y2EGe+9sHK4tU5K8fs+R1FL55FDO8fbZkxgYyczUDVb/8iLovWNDqQ9lwwKgUz3xFJvssgM20+Q
-	9aRaTcen4E1jQ4GlMiZvqlzYr5jRoSP5kZYcwJKi9Tdrb20lwLB4w7lt+PAVZwhgiPWmydTRmRV
-	5Jg0dKF3qoLf8zWG/wkqtQcU5+kPXpsLRw7RqWz78u1lbBdh1N1nrK3L/e4jZIxCT2YF03vdcPh
-	JpGuQUCJ6D7p1IwqJ36NcBN1fsd1+9b6yaezMaB8DgS9zo1nZdAMm6h4R29nFXXjMQLbIR5M/5S
-	hLJgsDC3Pz8Bs85HuGXa5Giz1MeEvwcCVJcEmDfjjOwti+3T66KfRcBJiGz9/VgRPBxLTsUxC11
-	SF8X0kV7BfdlT18JIthYL9j6wXFBzqhNpd+WsgCQr+D//WI7Gu3D8XLXQ=
-X-Received: by 2002:a05:600c:45d5:b0:488:a2ac:a334 with SMTP id 5b1f17b1804b1-48a9853c933mr166504675e9.3.1777912196820;
-        Mon, 04 May 2026 09:29:56 -0700 (PDT)
+        bh=5+VdzbAXe/Rlb0p/Xi6bXIiDc5JUDQVJT5OnBZINtDw=;
+        b=gpTSANC3DQ+Cx0QdTPSRui8iv7dVxxRSF/8OPh8BhU/2/5pz8Na/I4vl5cTPLzs3o3
+         nuyczuCbf367ceshv2vWqU4mUnLnu5c/r/Xr/HrcwJuyZ8EDUib3hnAYoP+lSCEX5hJX
+         dLWZY09I+ypTic5Rj253rawsaQg/lgGboQj6RcuwctYq9SYJ3w2UoU22DZIvHvFqf6s7
+         hYrnhw4oiA5MiN+/Jq5v+28oMYBxqbaYaYu3BnrgkiQqfNr54DpLV21sUpJ3b8Y9IqDk
+         3oVlgOnCJAxqr7H+mSVRxxxqTT2izI8YhlEvO6FIE/rkxbDgcaXiAQYRPh7KQpiy87uJ
+         J6yA==
+X-Forwarded-Encrypted: i=1; AFNElJ+lWx1H7Dc2cyljCXW2WZYgGPtutDB4Xk3K4zHP7MpMaHfBgckKL/De1gZHtYZn107KdkBGlHwWOMFM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB1wg8TTYFvzYG61hjiJi1CsGjg28cGtHBkfay4p6lMZIM/6L6
+	LPn+7vN5jjIMJXC/QApOZvRCKjSK013O3py2CIKKstwzCsQkpPa8tiWFREHsVCZ2kCw=
+X-Gm-Gg: AeBDieuqTdD4mDg9x5CMSMb8zAmlTbrHl4vHYMNv1dP/+37ldzK3+q5PiCuLPBnepnP
+	npHtmlhZwW3zGIHLMghsN/KKovsg3NAFndF2Gek+4OHb4skx1W5hofhfHuFSzsapjZ0UlRuuZtq
+	ZsbBj03csdl+AIYheS/XNnjBexsaxq33E06KnC2qmHSDPJJ4SXAagFVA79LnKna7G1HryjSrkrQ
+	1qRrppRbZxt/Q1AOMZn+61Ct6v06DW6hg+C03aA6WFuAfb42jIRNvqp6r3KWJHXQGT7ufL6AgSS
+	WPrr++Iy2+WMpsqxAq8R5v3EK+MV1USHxLurVrbabmjGybElfihBQ6bJhY6p1t3vAivMN0wNt5E
+	7MlYGoKspoZ2tYNem8LohSSTYDygmbLeCc2Ilhy1pZkBZRUZMgbW3CRa8ulKr6L4LAtOU7qoDED
+	IEQsXz1SgBAQKorUPQzRbJWS093CoWbxOIuIxALpN/QGSyuXXLMXYcoYFknkS5gAUaDw==
+X-Received: by 2002:a05:600c:3e07:b0:489:201c:dc46 with SMTP id 5b1f17b1804b1-48a98640536mr168020275e9.12.1777912197519;
+        Mon, 04 May 2026 09:29:57 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
         by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a82301b7bsm405071055e9.11.2026.05.04.09.29.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 May 2026 09:29:56 -0700 (PDT)
+        Mon, 04 May 2026 09:29:57 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 04 May 2026 18:29:49 +0200
-Subject: [PATCH RFC v2 1/6] arm64: dts: qcom: add PMIC5 Gen3 macros for
- channel numbers
+Date: Mon, 04 May 2026 18:29:50 +0200
+Subject: [PATCH RFC v2 2/6] arm64: dts: qcom: pmk8550: add VADC node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-topic-sm8x50-adc5-gen3-v2-1-5cc04d6ecda0@linaro.org>
+Message-Id: <20260504-topic-sm8x50-adc5-gen3-v2-2-5cc04d6ecda0@linaro.org>
 References: <20260504-topic-sm8x50-adc5-gen3-v2-0-5cc04d6ecda0@linaro.org>
 In-Reply-To: <20260504-topic-sm8x50-adc5-gen3-v2-0-5cc04d6ecda0@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -99,395 +97,110 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=18612;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1597;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=zQPnmLqFrFXjyZHDa1Pk823AqDYDK0kMLO58Q2tjToQ=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp+MmAndPDN/Y85TGnzzRV4RFOyjdmaP3OcXzQ0fN+
- Cc/sU9iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCafjJgAAKCRB33NvayMhJ0dGeD/
- 4ppT/Hn5iS5ENjnWwGDJA0RRvajyn3dCxOX9SMYedIxzLAupbyB2t5OgZuJTZv1ZKzLCKVEaEUVZYh
- QTs495uGk6qF7gMchgcz8niDZ/IFWwVzVLTu0goWJ+D/0goyW5//jYdjxgr/irsbKOo4biDhSLgoYd
- E0Y+WHgwwWaft+zWEru4wT1ymVuecNgFP6oodVHu5CSHnwLnmNFK+s6jhPa0C4zRbBLsBoYmX+KdrQ
- RabG/h0Fff2+HyC6o8T73yvF7Z/15AncJy4BRpq8YmbQH0ZfgB6Bwpsy4WzQBfRbgZ+d6LA2LUeuvj
- IwEqeu/0cqQ6c0czkJMFeQqJEgNpnEuIUMpa8k+Un1xV68lAYt+dnqZvuC+yyk2CCB0xEZBrv1zimE
- FMvKx1gLEP9AMvZzmTEp9ePxI0ViwwPpFKndgZMw3mfs207cZJiuaGr3lwRkZ7aMNzwbv+cXM/c26W
- p3yLrv7ZO17eh/eeLaUQTnGk7kja1Ja6CXJOhqRof/Cjwoao40oB4jPPNiq5qXIC5k73xzbV4QxLRP
- JK2xYacF7YAL6YYjBsBS4Rbg18tD5HgBWqrbw5URFd7+WiikeiLnclV+daayBrjjl4oepBWP5OBwNo
- VQ0n3Lq9zz31rWFwQGvMGKGuit2x6d0NZWegIwcnc+rSUKdiL72wuRNQr2zA==
+ bh=7a4mitWB+CP8nQNV9k3Hn5b6MfzrVl6jjOTLFj2jUWk=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp+MmA2HAoftt8ljk1CUAVolLq3pN2NCRdXTJL8H9C
+ jo1jMpuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCafjJgAAKCRB33NvayMhJ0fqmD/
+ 9LC03AW8uj+0Hpr/XqW10Uuk7oLHVtzWJXQt2H6BKeUNi2JUbMIv/+aHRudIP4Vq+ol7a9+T8R/Xv0
+ uDMOH8ewkfpe+OWUXWz6lh/W2Im9T0bi8goGVcnGQInuR0L8Kn7S3WWcnrknNaB2E8qbXqJ7/y+DBG
+ rhzW2AIPqLbWx1ahXMycQqt0BrVF+JHS5TJxHRGthxoGaSCSlP4zbWQdE+7V1B0d7sAhUItn9CrNRK
+ UbVuox21wwOxfiKvLqCAXERSO18351WBFz82ZkJBDMns2YUJSVE4UC4lClOvgHICoMfrFKxYJqgzPd
+ JCvNZ3UswP5DuM3iZkUj0o0//41YeEE0s8YSJCnicwWBv2m8WU0XZ/VU/IYURynYa93B7XdEvfcLl4
+ a2DWXEZhIexwuIx529EiZSU7mZWukdBXHVwuOts6N6CRnBasaZb5tDT1F5HfNIfKEDTwH/eNNwqrNv
+ T8iy+j9QNYgCs8JvI3zIxWmQdekJZBqduOahOGvtCRq0xDIapyDavNbVyxl2GddMoR+6yIBASoFM31
+ wBAA2ajFQ0gnQ6OXdEsPltncmmvdXIrzEMevmxrNHgr1wdhbMkjoUXqOCNPyjR8Fwtt/BBMHcdY08M
+ KRTQAt6nVxC5btASySUh5SfPk5JBLAlEOIF/+qU1W3z20B1K85FffahGur2A==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Rspamd-Queue-Id: A1A654C15B9
+X-Rspamd-Queue-Id: 5574C4C15B1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [3.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[linaro.org:+];
+	DMARC_POLICY_ALLOW(0.00)[linaro.org,none];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292715-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	R_DKIM_ALLOW(0.00)[linaro.org:s=google];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292716-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.35.40:email,0.0.23.212:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	NEURAL_HAM(-0.00)[-0.190];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email,0.0.0.3:email]
 
-Add the PMIC5 Gen3 macros to calculate the channel numbers which
-is a combination of SPMI bus number and a constant for the sensor
-type and configuration.
-
-The macros definitions were taken out of [1] where it was initially
-in the dt-bindings include directory but since those are not hardware
-bindings but logical numbers, they can be moved to local includes
-instead to make the DT source more readable.
-
-[1] https://lore.kernel.org/all/20250826083657.4005727-4-jishnu.prakash@oss.qualcomm.com/
+Add the VADC node and the initial pmk8550 adc channels.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h | 88 ++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h   | 46 +++++++++++
- arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h  | 85 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h | 22 ++++++
- arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h  | 52 +++++++++++++
- 5 files changed, 293 insertions(+)
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h b/arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h
-new file mode 100644
-index 000000000000..a8aac9ae6f40
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h
-@@ -0,0 +1,88 @@
-+ /* SPDX-License-Identifier: GPL-2.0 */
-+ /*
-+  * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+  */
+diff --git a/arch/arm64/boot/dts/qcom/pmk8550.dtsi b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+index 3049eb6b46d7..515cae060f27 100644
+--- a/arch/arm64/boot/dts/qcom/pmk8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+@@ -7,6 +7,7 @@
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/spmi/spmi.h>
++#include "qcom,pmk8550-adc5-gen3.h"
+ 
+ / {
+ 	reboot-mode {
+@@ -44,6 +45,35 @@ pon_resin: resin {
+ 			};
+ 		};
+ 
++		pmk8550_vadc: adc@9000 {
++			compatible = "qcom,spmi-adc5-gen3";
++			reg = <0x9000>, <0x9100>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			interrupts = <0x0 0x90 0x1 IRQ_TYPE_EDGE_RISING>,
++				     <0x0 0x91 0x1 IRQ_TYPE_EDGE_RISING>;
++			#io-channel-cells = <1>;
++			#thermal-sensor-cells = <1>;
 +
-+#ifndef _QCOM_ADC5_GEN3_CHANNELS_H
-+#define _QCOM_ADC5_GEN3_CHANNELS_H
++			channel@0 {
++				reg = <PMK8550_ADC5_GEN3_REF_GND(0)>;
++				label = "pmk8550_offset_ref";
++				qcom,pre-scaling = <1 1>;
++			};
 +
-+/* ADC channels for PMIC5 Gen3 */
++			channel@1 {
++				reg = <PMK8550_ADC5_GEN3_1P25VREF(0)>;
++				label = "pmk8550_vref_1p25";
++				qcom,pre-scaling = <1 1>;
++			};
 +
-+#define ADC5_GEN3_REF_GND			0x00
-+#define ADC5_GEN3_1P25VREF			0x01
-+#define ADC5_GEN3_VREF_VADC			0x02
-+#define ADC5_GEN3_DIE_TEMP			0x03
++			channel@3 {
++				reg = <PMK8550_ADC5_GEN3_DIE_TEMP(0)>;
++				label = "pmk8550_die_temp";
++				qcom,pre-scaling = <1 1>;
++			};
++		};
 +
-+#define ADC5_GEN3_AMUX1_THM			0x04
-+#define ADC5_GEN3_AMUX2_THM			0x05
-+#define ADC5_GEN3_AMUX3_THM			0x06
-+#define ADC5_GEN3_AMUX4_THM			0x07
-+#define ADC5_GEN3_AMUX5_THM			0x08
-+#define ADC5_GEN3_AMUX6_THM			0x09
-+#define ADC5_GEN3_AMUX1_GPIO			0x0a
-+#define ADC5_GEN3_AMUX2_GPIO			0x0b
-+#define ADC5_GEN3_AMUX3_GPIO			0x0c
-+#define ADC5_GEN3_AMUX4_GPIO			0x0d
-+
-+#define ADC5_GEN3_CHG_TEMP			0x10
-+#define ADC5_GEN3_USB_SNS_V_16			0x11
-+#define ADC5_GEN3_VIN_DIV16_MUX			0x12
-+#define ADC5_GEN3_VREF_BAT_THERM		0x15
-+#define ADC5_GEN3_IIN_FB			0x17
-+#define ADC5_GEN3_TEMP_ALARM_LITE		0x18
-+#define ADC5_GEN3_IIN_SMB			0x19
-+#define ADC5_GEN3_ICHG_SMB			0x1b
-+#define ADC5_GEN3_ICHG_FB			0xa1
-+
-+/* 30k pull-up1 */
-+#define ADC5_GEN3_AMUX1_THM_30K_PU		0x24
-+#define ADC5_GEN3_AMUX2_THM_30K_PU		0x25
-+#define ADC5_GEN3_AMUX3_THM_30K_PU		0x26
-+#define ADC5_GEN3_AMUX4_THM_30K_PU		0x27
-+#define ADC5_GEN3_AMUX5_THM_30K_PU		0x28
-+#define ADC5_GEN3_AMUX6_THM_30K_PU		0x29
-+#define ADC5_GEN3_AMUX1_GPIO_30K_PU		0x2a
-+#define ADC5_GEN3_AMUX2_GPIO_30K_PU		0x2b
-+#define ADC5_GEN3_AMUX3_GPIO_30K_PU		0x2c
-+#define ADC5_GEN3_AMUX4_GPIO_30K_PU		0x2d
-+
-+/* 100k pull-up2 */
-+#define ADC5_GEN3_AMUX1_THM_100K_PU		0x44
-+#define ADC5_GEN3_AMUX2_THM_100K_PU		0x45
-+#define ADC5_GEN3_AMUX3_THM_100K_PU		0x46
-+#define ADC5_GEN3_AMUX4_THM_100K_PU		0x47
-+#define ADC5_GEN3_AMUX5_THM_100K_PU		0x48
-+#define ADC5_GEN3_AMUX6_THM_100K_PU		0x49
-+#define ADC5_GEN3_AMUX1_GPIO_100K_PU		0x4a
-+#define ADC5_GEN3_AMUX2_GPIO_100K_PU		0x4b
-+#define ADC5_GEN3_AMUX3_GPIO_100K_PU		0x4c
-+#define ADC5_GEN3_AMUX4_GPIO_100K_PU		0x4d
-+
-+/* 400k pull-up3 */
-+#define ADC5_GEN3_AMUX1_THM_400K_PU		0x64
-+#define ADC5_GEN3_AMUX2_THM_400K_PU		0x65
-+#define ADC5_GEN3_AMUX3_THM_400K_PU		0x66
-+#define ADC5_GEN3_AMUX4_THM_400K_PU		0x67
-+#define ADC5_GEN3_AMUX5_THM_400K_PU		0x68
-+#define ADC5_GEN3_AMUX6_THM_400K_PU		0x69
-+#define ADC5_GEN3_AMUX1_GPIO_400K_PU		0x6a
-+#define ADC5_GEN3_AMUX2_GPIO_400K_PU		0x6b
-+#define ADC5_GEN3_AMUX3_GPIO_400K_PU		0x6c
-+#define ADC5_GEN3_AMUX4_GPIO_400K_PU		0x6d
-+
-+/* 1/3 Divider */
-+#define ADC5_GEN3_AMUX1_GPIO_DIV3		0x8a
-+#define ADC5_GEN3_AMUX2_GPIO_DIV3		0x8b
-+#define ADC5_GEN3_AMUX3_GPIO_DIV3		0x8c
-+#define ADC5_GEN3_AMUX4_GPIO_DIV3		0x8d
-+
-+#define ADC5_GEN3_VPH_PWR			0x8e
-+#define ADC5_GEN3_VBAT_SNS_QBG			0x8f
-+
-+#define ADC5_GEN3_VBAT_SNS_CHGR			0x94
-+#define ADC5_GEN3_VBAT_2S_MID_QBG		0x96
-+#define ADC5_GEN3_VBAT_2S_MID_CHGR		0x9d
-+
-+#define ADC5_GEN3_OFFSET_EXT2			0xf8
-+
-+#endif /* _QCOM_ADC5_GEN3_CHANNELS_H */
-diff --git a/arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h b/arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h
-new file mode 100644
-index 000000000000..2a6338812d4e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h
-@@ -0,0 +1,46 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _QCOM_PM8550_ACD5_GEN3_H
-+#define _QCOM_PM8550_ACD5_GEN3_H
-+
-+#include "qcom,adc5-gen3-channels.h"
-+
-+/* ADC channels for PM8550_ADC for PMIC5 Gen3 */
-+#define PM8550_ADC5_GEN3_REF_GND(sid)			((sid) << 8 | ADC5_GEN3_REF_GND)
-+#define PM8550_ADC5_GEN3_1P25VREF(sid)			((sid) << 8 | ADC5_GEN3_1P25VREF)
-+#define PM8550_ADC5_GEN3_VREF_VADC(sid)			((sid) << 8 | ADC5_GEN3_VREF_VADC)
-+#define PM8550_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | ADC5_GEN3_DIE_TEMP)
-+
-+#define PM8550_ADC5_GEN3_AMUX_THM1(sid)			((sid) << 8 | ADC5_GEN3_AMUX1_THM)
-+#define PM8550_ADC5_GEN3_AMUX_THM2(sid)			((sid) << 8 | ADC5_GEN3_AMUX2_THM)
-+#define PM8550_ADC5_GEN3_AMUX_THM3(sid)			((sid) << 8 | ADC5_GEN3_AMUX3_THM)
-+#define PM8550_ADC5_GEN3_AMUX_THM4(sid)			((sid) << 8 | ADC5_GEN3_AMUX4_THM)
-+#define PM8550_ADC5_GEN3_AMUX_THM5(sid)			((sid) << 8 | ADC5_GEN3_AMUX5_THM)
-+#define PM8550_ADC5_GEN3_AMUX_THM6_GPIO2(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM)
-+#define PM8550_ADC5_GEN3_AMUX1_GPIO3(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO)
-+#define PM8550_ADC5_GEN3_AMUX2_GPIO4(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_GPIO)
-+#define PM8550_ADC5_GEN3_AMUX3_GPIO7(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO)
-+#define PM8550_ADC5_GEN3_AMUX4_GPIO12(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_GPIO)
-+
-+/* 100k pull-up */
-+#define PM8550_ADC5_GEN3_AMUX_THM1_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_THM_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX_THM2_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_THM_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX_THM3_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_THM_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX_THM4_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_THM_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX_THM5_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX_THM6_GPIO2_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX6_THM_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX1_GPIO3_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX2_GPIO4_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX2_GPIO_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX3_GPIO7_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX3_GPIO_100K_PU)
-+#define PM8550_ADC5_GEN3_AMUX4_GPIO12_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX4_GPIO_100K_PU)
-+
-+/* 1/3 Divider */
-+#define PM8550_ADC5_GEN3_AMUX3_GPIO7_DIV3(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO_DIV3)
-+#define PM8550_ADC5_GEN3_AMUX4_GPIO12_DIV3(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_GPIO_DIV3)
-+
-+#define PM8550_ADC5_GEN3_VPH_PWR(sid)			((sid) << 8 | ADC5_GEN3_VPH_PWR)
-+
-+#endif /* _QCOM_PM8550_ACD5_GEN3_H */
-diff --git a/arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h b/arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h
-new file mode 100644
-index 000000000000..312daa846f79
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h
-@@ -0,0 +1,85 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _QCOM_PM8550B_ACD5_GEN3_H
-+#define _QCOM_PM8550B_ACD5_GEN3_H
-+
-+#include "qcom,adc5-gen3-channels.h"
-+
-+/* ADC channels for PM8550B_ADC for PMIC5 Gen3 */
-+#define PM8550B_ADC5_GEN3_REF_GND(sid)			((sid) << 8 | ADC5_GEN3_REF_GND)
-+#define PM8550B_ADC5_GEN3_1P25VREF(sid)			((sid) << 8 | ADC5_GEN3_1P25VREF)
-+#define PM8550B_ADC5_GEN3_VREF_VADC(sid)		((sid) << 8 | ADC5_GEN3_VREF_VADC)
-+#define PM8550B_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | ADC5_GEN3_DIE_TEMP)
-+
-+#define PM8550B_ADC5_GEN3_AMUX_THM1_BATT_THERM(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM)
-+#define PM8550B_ADC5_GEN3_AMUX_THM2_BATT_ID(sid)	((sid) << 8 | ADC5_GEN3_AMUX2_THM)
-+#define PM8550B_ADC5_GEN3_AMUX_THM3_SMB_TEMP_V(sid)	((sid) << 8 | ADC5_GEN3_AMUX3_THM)
-+#define PM8550B_ADC5_GEN3_AMUX_THM4_USB_THERM(sid)	((sid) << 8 | ADC5_GEN3_AMUX4_THM)
-+#define PM8550B_ADC5_GEN3_AMUX_THM5_OPTION(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM)
-+#define PM8550B_ADC5_GEN3_AMUX_THM6_GPIO10(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM)
-+#define PM8550B_ADC5_GEN3_AMUX1_GPIO1(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO)
-+#define PM8550B_ADC5_GEN3_AMUX2_GPIO5(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_GPIO)
-+#define PM8550B_ADC5_GEN3_AMUX3_GPIO6(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO)
-+#define PM8550B_ADC5_GEN3_AMUX4_GPIO12(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_GPIO)
-+
-+#define PM8550B_ADC5_GEN3_CHG_TEMP(sid)			((sid) << 8 | ADC5_GEN3_CHG_TEMP)
-+#define PM8550B_ADC5_GEN3_USB_SNS_V_16(sid)		((sid) << 8 | ADC5_GEN3_USB_SNS_V_16)
-+#define PM8550B_ADC5_GEN3_VIN_DIV16_MUX(sid)		((sid) << 8 | ADC5_GEN3_VIN_DIV16_MUX)
-+#define PM8550B_ADC5_GEN3_VREF_BAT_THERM(sid)		((sid) << 8 | ADC5_GEN3_VREF_BAT_THERM)
-+#define PM8550B_ADC5_GEN3_IIN_FB(sid)			((sid) << 8 | ADC5_GEN3_IIN_FB)
-+#define PM8550B_ADC5_GEN3_TEMP_ALARM_LITE(sid)		((sid) << 8 | ADC5_GEN3_TEMP_ALARM_LITE)
-+#define PM8550B_ADC5_GEN3_SMB_IIN(sid)			((sid) << 8 | ADC5_GEN3_IIN_SMB)
-+#define PM8550B_ADC5_GEN3_SMB_ICHG(sid)			((sid) << 8 | ADC5_GEN3_ICHG_SMB)
-+#define PM8550B_ADC5_GEN3_ICHG_FB(sid)			((sid) << 8 | ADC5_GEN3_ICHG_FB)
-+
-+/* 30k pull-up */
-+#define PM8550B_ADC5_GEN3_AMUX_THM1_BATT_THERM_30K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM2_BATT_ID_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_THM_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM3_SMB_TEMP_V_30K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX3_THM_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM4_USB_THERM_30K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX4_THM_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM5_OPTION_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM6_GPIO10_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX1_GPIO1_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX2_GPIO5_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_GPIO_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX3_GPIO6_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO_30K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX4_GPIO12_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_GPIO_30K_PU)
-+
-+/* 100k pull-up */
-+#define PM8550B_ADC5_GEN3_AMUX_THM1_BATT_THERM_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM2_BATT_ID_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX2_THM_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM3_SMB_TEMP_V_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX3_THM_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM4_USB_THERM_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX4_THM_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM5_OPTION_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM6_GPIO10_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX1_GPIO1_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX2_GPIO5_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_GPIO_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX3_GPIO6_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO_100K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX4_GPIO12_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_GPIO_100K_PU)
-+
-+/* 400k pull-up */
-+#define PM8550B_ADC5_GEN3_AMUX_THM1_BATT_THERM_400K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM2_BATT_ID_400K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX2_THM_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM3_SMB_TEMP_V_400K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX3_THM_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM4_USB_THERM_400K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX4_THM_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM5_OPTION_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX_THM6_GPIO10_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX1_GPIO1_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX2_GPIO5_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_GPIO_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX3_GPIO6_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO_400K_PU)
-+#define PM8550B_ADC5_GEN3_AMUX4_GPIO12_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_GPIO_400K_PU)
-+
-+/* 1/3 Divider */
-+#define PM8550B_ADC5_GEN3_AMUX1_GPIO1_DIV3(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_DIV3)
-+#define PM8550B_ADC5_GEN3_AMUX2_GPIO5_DIV3(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_GPIO_DIV3)
-+#define PM8550B_ADC5_GEN3_AMUX3_GPIO6_DIV3(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_GPIO_DIV3)
-+
-+#define PM8550B_ADC5_GEN3_VPH_PWR(sid)			((sid) << 8 | ADC5_GEN3_VPH_PWR)
-+#define PM8550B_ADC5_GEN3_VBAT_SNS_QBG(sid)		((sid) << 8 | ADC5_GEN3_VBAT_SNS_QBG)
-+#define PM8550B_ADC5_GEN3_VBAT_SNS_CHGR(sid)		((sid) << 8 | ADC5_GEN3_VBAT_SNS_CHGR)
-+#define PM8550B_ADC5_GEN3_VBAT_2S_MID_QBG(sid)		((sid) << 8 | ADC5_GEN3_VBAT_2S_MID_QBG)
-+#define PM8550B_ADC5_GEN3_VBAT_2S_MID_CHGR(sid)		((sid) << 8 | ADC5_GEN3_VBAT_2S_MID_CHGR)
-+
-+#endif /* _QCOM_PM8550B_ACD5_GEN3_H */
-diff --git a/arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h b/arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h
-new file mode 100644
-index 000000000000..7a261a7a9cb0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _QCOM_PM8550VX_ACD5_GEN3_H
-+#define _QCOM_PM8550VX_ACD5_GEN3_H
-+
-+#include "qcom,adc5-gen3-channels.h"
-+
-+/* ADC channels for PM8550VX_ADC for PMIC5 Gen3 */
-+#define PM8550VS_ADC5_GEN3_REF_GND(sid)			((sid) << 8 | ADC5_GEN3_REF_GND)
-+#define PM8550VS_ADC5_GEN3_1P25VREF(sid)			((sid) << 8 | ADC5_GEN3_1P25VREF)
-+#define PM8550VS_ADC5_GEN3_VREF_VADC(sid)			((sid) << 8 | ADC5_GEN3_VREF_VADC)
-+#define PM8550VS_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | ADC5_GEN3_DIE_TEMP)
-+
-+#define PM8550VE_ADC5_GEN3_OFFSET_REF(sid)			((sid) << 8 | ADC5_GEN3_REF_GND)
-+#define PM8550VE_ADC5_GEN3_1P25VREF(sid)			((sid) << 8 | ADC5_GEN3_1P25VREF)
-+#define PM8550VE_ADC5_GEN3_VREF_VADC(sid)			((sid) << 8 | ADC5_GEN3_VREF_VADC)
-+#define PM8550VE_ADC5_GEN3_DIE_TEMP(sid)		((sid) << 8 | ADC5_GEN3_DIE_TEMP)
-+
-+#endif /* _QCOM_PM8550VX_ACD5_GEN3_H */
-diff --git a/arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h b/arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h
-new file mode 100644
-index 000000000000..60b3b9c60d4e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h
-@@ -0,0 +1,52 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _QCOM_PMK8550_ACD5_GEN3_H
-+#define _QCOM_PMK8550_ACD5_GEN3_H
-+
-+#include "qcom,adc5-gen3-channels.h"
-+
-+/* ADC channels for PMK8550_ADC for PMIC5 Gen3 */
-+#define PMK8550_ADC5_GEN3_REF_GND(sid)			((sid) << 8 | ADC5_GEN3_REF_GND)
-+#define PMK8550_ADC5_GEN3_1P25VREF(sid)			((sid) << 8 | ADC5_GEN3_1P25VREF)
-+#define PMK8550_ADC5_GEN3_VREF_VADC(sid)		((sid) << 8 | ADC5_GEN3_VREF_VADC)
-+#define PMK8550_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | ADC5_GEN3_DIE_TEMP)
-+
-+#define PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM)
-+#define PMK8550_ADC5_GEN3_AMUX_THM2_GPIO1(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_THM)
-+#define PMK8550_ADC5_GEN3_AMUX_THM3_GPIO2(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_THM)
-+#define PMK8550_ADC5_GEN3_AMUX_THM4_GPIO3(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_THM)
-+#define PMK8550_ADC5_GEN3_AMUX_THM5_GPIO4(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM)
-+#define PMK8550_ADC5_GEN3_AMUX_THM6_GPIO5(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM)
-+#define PMK8550_ADC5_GEN3_AMUX1_GPIO6(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO)
-+
-+/* 30k pull-up */
-+#define PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_30K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM_30K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM2_GPIO1_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_THM_30K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM3_GPIO2_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_THM_30K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM4_GPIO3_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_THM_30K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM5_GPIO4_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_30K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM6_GPIO5_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM_30K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX1_GPIO6_30K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_30K_PU)
-+
-+/* 100k pull-up */
-+#define PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_100K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM_100K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM2_GPIO1_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_THM_100K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM3_GPIO2_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_THM_100K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM4_GPIO3_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_THM_100K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM5_GPIO4_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_100K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM6_GPIO5_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM_100K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX1_GPIO6_100K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_100K_PU)
-+
-+/* 400k pull-up */
-+#define PMK8550_ADC5_GEN3_AMUX_THM1_XO_THERM_400K_PU(sid)	((sid) << 8 | ADC5_GEN3_AMUX1_THM_400K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM2_GPIO1_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX2_THM_400K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM3_GPIO2_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX3_THM_400K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM4_GPIO3_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX4_THM_400K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM5_GPIO4_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX5_THM_400K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX_THM6_GPIO5_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX6_THM_400K_PU)
-+#define PMK8550_ADC5_GEN3_AMUX1_GPIO6_400K_PU(sid)		((sid) << 8 | ADC5_GEN3_AMUX1_GPIO_400K_PU)
-+
-+#endif /* _QCOM_PMK8550_ACD5_GEN3_H */
+ 		pmk8550_rtc: rtc@6100 {
+ 			compatible = "qcom,pmk8350-rtc";
+ 			reg = <0x6100>, <0x6200>;
 
 -- 
 2.34.1
