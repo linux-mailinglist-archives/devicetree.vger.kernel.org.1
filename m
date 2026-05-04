@@ -1,508 +1,420 @@
-Return-Path: <devicetree+bounces-292624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gH7oHc2U+Gn0wgIAu9opvQ
-	(envelope-from <devicetree+bounces-292624-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:45:01 +0200
+	id oPL6Ek+V+GkKwwIAu9opvQ
+	(envelope-from <devicetree+bounces-292626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:47:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 298534BD1FD
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:45:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2DE4BD32A
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0856B300B1AF
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 12:44:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84240301FA42
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 12:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4233D4132;
-	Mon,  4 May 2026 12:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A0E3D75BD;
+	Mon,  4 May 2026 12:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ixYBxpJC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OGBJyAl1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E3C29E116
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 12:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8F33D6CA1
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 12:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777898661; cv=none; b=tJNo9Nfruc+QfQgHzeWkfy3m/bP72f7ME67PeiYwTbyc0mL+uV7GWmS0wo5vp/k6kmXfwaUjs4ja1oWrFPoMEKDCvvRaHkf9CWz5M3cnmae+vs+zGoium4gZRo6pcokZ/pexTgdwi0pNoiO5+4+X71s71hP79x+H+1vHcPJC9v0=
+	t=1777898820; cv=none; b=NB4B3kCyjVaUc1bsF7SOLrxo2UADxfCIPj/69YAWwNNDvcJ0w0DnODxcfHQgeTm3E5FPZU2c5YDD7wXJQYwF+hzrML9VWaEJi6hspBbnF6QgqM9JKTk5LgaIpRUVOOlWoDfCXa0b1fWzS7yPjWjWD8kGX0oXbcnb2Z38wrtygsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777898661; c=relaxed/simple;
-	bh=rrOIGT0whi5Rw+dQf/vHXUlI6F/g9aneDp9M4Aaqnqk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lvcoq1YDkDO7TkhXRrMOF6ql8C0M9/YxvLV/51eHRITrZ0CXUE5Sh1lV+StAj8leYWPI2lqlvKtv+I/0wFQC079fUam+IuoUcRaNy/7PPgLsjBXN2KVhpTIfr2VEjDcWC+FgWly9A54wBKP3DaZgKfh0eTjrg0MGga6eyTWvCYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ixYBxpJC; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-488b8bc6bc9so24819675e9.3
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 05:44:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777898650; x=1778503450; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=29DSsXZsWXZav9BRgsUmTtQvE8JjTg55XGr0k5jPXE8=;
-        b=ixYBxpJCGWOVCgVd/bPI7xWZbUQ9MDKIbFDGc6+X8/OfeT0E/bg0y5wXNkcZJYq6uU
-         NVvFfIn50S8vT322MSSG0sd4LIQlhoJEHCV08+61DvGrURHhIez/YohjQw1A58ewN1Lt
-         m3pscskvZoIPC3gqkIjkgGbkaDwhVX2PtjUWjTHKoCbJaPuMIUgLPAIFrhK5D7Ca7s4h
-         nLtVc9LllnOtksxcLznueQdU/x1bY29Qnvf9G02NuEMSsvWmntotekSvktGbSiXqTIE1
-         BzxHNpJYpt7zkWwSQ5tpBFingAxst/2urq48Km1frR0EK1n7HgEJALDZhhqq6Nf3T2Yk
-         KcVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777898650; x=1778503450;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=29DSsXZsWXZav9BRgsUmTtQvE8JjTg55XGr0k5jPXE8=;
-        b=W3IOBY1dCGYQLMYhW3TFao4n9WJhX9vRpxJFSTQIKN1ojn+SGEm3bz39AregfMlJp5
-         QDEUoO9kebkOV5IzVy8E7nYCuqAz7GJqRMWsGJxs3LhQ5KXmfLXN0imBhZO7cwSTqz7i
-         TElpVmlW2J7FYv3/lRwaZGzy3117jeChr66LtrOTlbab1uABYaSFgBh9L/c0/nMin0Oc
-         uLoqpEal9q2CfjuxpJHvtm8CVB+lgBwSL+d59BvNLjmXTD6NjjDV94f58B8YA2Totg7F
-         kNORMWGxVm5XE9QzmZFyhmO0brQ6cxJrihLrnEKfLLqWsEwhM/regGz/DDp770/2biv5
-         zkGg==
-X-Forwarded-Encrypted: i=1; AFNElJ9MJ09oxy3ONY10PK7UTE+lEY1SKFj3GjWbEesOTr5s0dOIbaJ+ECBxhRwBy7d/SpqKTs9PgGyVOiJq@vger.kernel.org
-X-Gm-Message-State: AOJu0YztfM4bbvYUku4xwSHgIZjwPlR3nYOUUgg8e6xTUzLtHmyijDW1
-	6AF9PXOUgBxSR7hRaD0RmiEU0xiWI2yHk11MzvJr28vPdTQxKzekN+CJrqDFO47SzNoB71rzEYV
-	8cUeAc2XrlA==
-X-Gm-Gg: AeBDievghU3BtR0YcT+rqTYbXm/99uZ76kZfPltr45AU7ta+WfbrT7/oHVI7rZx0e/w
-	8judRiWSdwkTXP/VAtwwAeX1ZrGKrVWN1c4M0i3IZXk61tRyMOGkckW3AP+eXH5j6Lk/kG9DkN4
-	leKQsg2sseaqIXppSxCtGIhIDHN07rNARVY2f/5546SretkPln+IGQ3KSgKzzPUMQGibGq6nACx
-	EKLO+NUDaAPCJoWH/jQSFFmI7BRScxv8uwkvnJ6wNpOcHhDPilGTxyMAOCv3rVzZtn2QZ8d3hvx
-	53x2M+ZTYp0RMwLyjjhRLViPkORkfTEciM5TtRR9mI1APReQQDau3HpZnoCDyb4lqLcrgXYJrrr
-	8W12PdiIg2+e2oRp8qQttyomflq1UEu5SaWN2wA3rrrzWN9IxbdHITw63KYIN7cRwfAOsbqPtZo
-	rL8LXwCMqCJaJiSx871eVuWuaNf4uDVzF7tjRpRnp1N3QrPKM8c2TP0w0=
-X-Received: by 2002:a05:600c:859a:b0:48a:581c:ead with SMTP id 5b1f17b1804b1-48a98637facmr111494475e9.10.1777898650231;
-        Mon, 04 May 2026 05:44:10 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-44a986aab44sm26919443f8f.29.2026.05.04.05.44.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 May 2026 05:44:09 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 04 May 2026 14:44:06 +0200
-Subject: [PATCH v3 2/2] regulator: add SGM3804 Dual Output driver
+	s=arc-20240116; t=1777898820; c=relaxed/simple;
+	bh=rqUjvxcIwiqSouVgzp0n5ZgMfAUUu7DpPnpF7Rlw/9s=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RSBKtWIUkPAs0IB9vJpUqlbE5CVOVzRtC1Q/B0jPN+mKOaeTuuR43Ri5zvIlv3G4kZqQxxIPKuLHVnVWimbrO6s3RAM8cKdP+Ii+tdM3x0qrU5LRfSgcT6onfVPicAafiITXj4Vv6rYooVt0uUPiFN+m+uywALBYlGlXFvNqqFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OGBJyAl1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B1C3C2BCF7
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 12:47:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777898820;
+	bh=rqUjvxcIwiqSouVgzp0n5ZgMfAUUu7DpPnpF7Rlw/9s=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=OGBJyAl1TjQZbVY5CtXGfiHBLAU1gRj8gd0FACUZB771ov0GZu+G1xoXpSR81gydI
+	 zpWuEd+5mnBDwON1NP21pV9a+LTy5iTL73cZVuLlG2anjTyhdh8y/WOxpmjyr1+HUt
+	 180dRkFoUBFPPAM9ivep+LrErcm52NMiX1bGCj7N5GUBdEgtpwFbfEqoXCoUbV2z1t
+	 H59g4LinNbzcftf/BN9ok7WYFF0sjqxBnD4JAF6CutxRzQrJu8dc1hKvATSq4V2ilu
+	 A11iwwfqpPkmg0G+6zmx0sBXaa4TFweqgwMXUlzy0DZ0Y8ts3L57hpPUlHKvjIJypF
+	 9zAVotyBPR41g==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-393800f638bso14545211fa.1
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 05:47:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ90/XEHO5VoTvpSGm8pJIiXEN7uGATtc8x9zXww5CkjGIdNpow2ldrNgsuYvdm1IbVpqd0VQ6ikyBwI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyYXNSGh7OzXCCYou/Ge/3aTsHdEcOIbAwpTNzy0DQ9ecbE+Hs
+	dOtyjxngKPZYdiviHRlIhR+vJBGh5ZjrdUZuLy4VKgigEnUfoTp/r0w4QrxuPtyGw9CNk6gwvcz
+	fw3F3mqZSuwzZSgavYb9pO7wnIYyZ7GIt+nCKK0/t4Q==
+X-Received: by 2002:a2e:bc85:0:b0:38e:dd8e:d213 with SMTP id
+ 38308e7fff4ca-393785df5ebmr29416331fa.27.1777898818194; Mon, 04 May 2026
+ 05:46:58 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 4 May 2026 12:46:56 +0000
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 4 May 2026 12:46:56 +0000
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260501155421.3329862-10-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-2-c4783443890b@linaro.org>
-References: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-0-c4783443890b@linaro.org>
-In-Reply-To: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-0-c4783443890b@linaro.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- KancyJoe <kancy2333@outlook.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10751;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Kk/ZMsGKHebvpPpc8smbsG87iC9ElVBwSEwR/cSOBfs=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp+JSXMBXZT8EoSzlZc0xRs/1u1wDsMZAGsxgalNWL
- jwuybDCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCafiUlwAKCRB33NvayMhJ0aM2EA
- CYuDAWXNj6khq/j3A2iDokLRWMKGN0kES362SICXRQsN7tj8cSRzlhx6AzSSyC+25o5DUIjulwVzM2
- KShZsdtgmsrXsMxrOc5l1xvWh56jg96GhE9MIxGiO8O1PM+fisvD2jRACObxtRcsnW6y8Od73rr+nv
- PQ7xVhiisZMM/0dgpb9rPX7nlQnbCRYDtcLGkqtuYN8xQNKgnbTdpctxNLliZqSb5+IjLBz+i5op8d
- p3ZxlhCKKUhF8owYlS7VNryoCEgRkvOGvk41hDZtH4Mr9zKHAvVsZpNi6LqwhIC+i38fPIDii4TvRi
- 672ASsjskZUOL/QywiO8GsEsXyhYAPWR7RLrLCwgXdxz78CEDIhnMp8/k2b/L2nVhT8gw+4GzwgD5i
- 4/XbI32fc7gnKjyyPC4dE2xc3ggs9/l32b1Au/EJ+wq444dlIcnifa/gqqMn67UiH8bNjzzBjNMMGj
- 07PV3En4md/bz+HFpj6V7yL0rq+F8S6q7arTNU+FfWBkuJAG+Ym9S6dZd9YsDA+SnjCKi1SlUlxlKJ
- xXSQPQ6AmSNFNP/NQUMZOmEeJOEWN+ww1AxKsybiyQXlXDDk3dTTEiF3etLS6nhzgL/0liHJfxnPNH
- +15GVgczrtQHJe7Zg1DJUu2DKzAvwhQnT7BvHOiCYxHaScLXGMuyPA1RtXog==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Rspamd-Queue-Id: 298534BD1FD
+References: <20260501155421.3329862-1-elder@riscstar.com> <20260501155421.3329862-10-elder@riscstar.com>
+Date: Mon, 4 May 2026 12:46:56 +0000
+X-Gmail-Original-Message-ID: <CAMRc=McWXCqyv1LmWMuEMmE3HqaURx_eMD8rkDs9AJT+7W2aYw@mail.gmail.com>
+X-Gm-Features: AVHnY4L8JCAMw1XcvfyTBeV19iii982i6k_b0CsUw3tYvQ3XSnjDUNr1XEgVtqw
+Message-ID: <CAMRc=McWXCqyv1LmWMuEMmE3HqaURx_eMD8rkDs9AJT+7W2aYw@mail.gmail.com>
+Subject: Re: [PATCH net-next 09/12] gpio: tc956x: add TC956x/QPS615 support
+To: Alex Elder <elder@riscstar.com>
+Cc: daniel@riscstar.com, mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com, 
+	alexandre.torgue@foss.st.com, ast@kernel.org, boon.khai.ng@altera.com, 
+	chenchuangyu@xiaomi.com, chenhuacai@kernel.org, daniel@iogearbox.net, 
+	hawk@kernel.org, hkallweit1@gmail.com, inochiama@gmail.com, 
+	john.fastabend@gmail.com, julianbraha@gmail.com, livelycarpet87@gmail.com, 
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com, 
+	rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn, 
+	weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org, 
+	bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com, 
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org, 
+	brgl@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: DC2DE4BD32A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,outlook.com,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,kernel.org,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lunn.ch,davemloft.net,google.com,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar.com:email,mail.gmail.com:mid];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-292626-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292624-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid,config.dev:url]
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-From: KancyJoe <kancy2333@outlook.com>
+On Fri, 1 May 2026 17:54:17 +0200, Alex Elder <elder@riscstar.com> said:
+> Toshiba TC956x is an Ethernet-AVB/TSN bridge and is essentially
+> a small and highly-specialized SoC.  TC956x includes a GPIO block that
+> can be accessed, alongside several other peripherals, via two PCIe
+> endpoint functions.  The PCIe function driver creates an auxiliary
+> device for the GPIO block, and that device gets bound to this auxiliary
+> device driver.
+>
+> Co-developed-by: Daniel Thompson <daniel@riscstar.com>
+> Signed-off-by: Daniel Thompson <daniel@riscstar.com>
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  drivers/gpio/Kconfig       |  11 ++
+>  drivers/gpio/Makefile      |   1 +
+>  drivers/gpio/gpio-tc956x.c | 209 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 221 insertions(+)
+>  create mode 100644 drivers/gpio/gpio-tc956x.c
+>
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index 020e51e30317a..746cedea7e91d 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -1646,6 +1646,17 @@ config GPIO_TC3589X
+>  	  This enables support for the GPIOs found on the TC3589X
+>  	  I/O Expander.
+>
+> +config GPIO_TC956X
+> +	tristate "Toshiba TC956X GPIO support"
+> +	depends on TOSHIBA_TC956X_PCI
+> +	default m if TOSHIBA_TC956X_PCI
+> +	help
+> +	  This enables support for the GPIO controller embedded in the Toshiba
+> +	  TC956X (and Qualcomm QPS615).  This device connects to the host
+> +	  via PCIe port, which is the upstream port on an internal PCIe
+> +	  switch.  On some platforms, a few of the GPIO lines are used to
+> +	  manage external resets.
+> +
+>  config GPIO_TIMBERDALE
+>  	bool "Support for timberdale GPIO IP"
+>  	depends on MFD_TIMBERDALE
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index b267598b517de..c3584e7cba9b4 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -178,6 +178,7 @@ obj-$(CONFIG_GPIO_SYSCON)		+= gpio-syscon.o
+>  obj-$(CONFIG_GPIO_TANGIER)		+= gpio-tangier.o
+>  obj-$(CONFIG_GPIO_TB10X)		+= gpio-tb10x.o
+>  obj-$(CONFIG_GPIO_TC3589X)		+= gpio-tc3589x.o
+> +obj-$(CONFIG_GPIO_TC956X)		+= gpio-tc956x.o
+>  obj-$(CONFIG_GPIO_TEGRA186)		+= gpio-tegra186.o
+>  obj-$(CONFIG_GPIO_TEGRA)		+= gpio-tegra.o
+>  obj-$(CONFIG_GPIO_THUNDERX)		+= gpio-thunderx.o
+> diff --git a/drivers/gpio/gpio-tc956x.c b/drivers/gpio/gpio-tc956x.c
+> new file mode 100644
+> index 0000000000000..12221d8f812d9
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-tc956x.c
+> @@ -0,0 +1,209 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +/*
+> + * Copyright (C) 2026 by RISCstar Solutions Corporation.  All rights reserved.
+> + */
+> +
+> +/*
+> + * The Toshiba TC956X implements a PCIe Gen 3 switch that connects an
+> + * upstream x4 port to two downstream PCIe x2 ports.  It incorporates
+> + * an internal endpoint on a internal PCIe port that implements two
+> + * Synopsys XGMAC Ethernet interfaces.
+> + *
+> + * 35 GPIOs are also implemented by an embedded GPIO controller.  Three
+> + * registers control the first 32 GPIOs (other than 20 and 21, which are
+> + * reserved).  Three other registers control GPIOs 32 through 36. GPIOs
+> + * 22-24, 27-28, 31, and 34 are treated as "input only".
+> + *
+> + * There is a TC956X PCI power controller driver that accesses the
+> + * direction and output value registers for GPIOs 2 and 3.  These
+> + * GPIOs control the reset signal for the two downstream PCIe ports.
+> + * Their values will never change during operation of this driver, and
+> + * this driver reserves these two GPIOS.
+> + */
+> +
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/dev_printk.h>
 
-Add support for the SG Micro SGM3804 Single Inductor Dual Output
-Buck/Boost Converter used to power LCD panels a provide positive
-and negative power rails with configurable voltage and active
-discharge function for each output.
+This is implied by device.h which is guarnteed by platform_device.h. Please
+drop it.
 
-The SGM3804 is powered by the enable GPIO pins inputs and only
-supports I2C write messages.
-In order to add flexibility and simplify the driver, the
-regmap cache is enabled and populated with default values
-since we can't write registers when the 2 GPIOs are down.
+> +#include <linux/gpio/driver.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define DRIVER_NAME		"tc956x-gpio"
+> +
+> +#define TC956X_GPIO_COUNT	37	/* Number of GPIOs (20-21 reserved) */
+> +
+> +/* The GPIO offsets are relative to 0x1200 in TC956X SFR space */
+> +#define GPIO_IN0_OFFSET		0x00		/* Input value (0-31) */
+> +#define GPIO_EN0_OFFSET		0x08		/* 0: out; 1: in (0-31) */
+> +#define GPIO_OUT0_OFFSET	0x10		/* Output value (0-31) */
+> +
+> +#define GPIO_IN1_OFFSET		0x04		/* Input value (32-36) */
+> +#define GPIO_EN1_OFFSET		0x0c		/* 0: out; 1: in (32-36) */
+> +#define GPIO_OUT1_OFFSET	0x14		/* Output value (32-36) */
+> +
+> +/*
+> + * struct tc956x_gpio - Information related to the embedded GPIO controller
+> + * @chip:		GPIO chip structure
+> + * @regmap:		MMIO register map for SFR GPIO region access
+> + * @input_only:		Bitmap indicating which GPIOs are input-only
+> + */
+> +struct tc956x_gpio {
+> +	struct gpio_chip chip;
+> +	struct regmap *regmap;
+> +	DECLARE_BITMAP(input_only, TC956X_GPIO_COUNT);
+> +};
+> +
+> +static int tc956x_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
+> +{
+> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+> +	u32 reg;
+> +	u32 val;
+> +
+> +	if (test_bit(offset, gpio->input_only))
+> +		return GPIO_LINE_DIRECTION_IN;
+> +
+> +	reg = offset < 32 ? GPIO_EN0_OFFSET : GPIO_EN1_OFFSET;
+> +
+> +	regmap_read(gpio->regmap, reg, &val);
+> +	if (val & BIT(offset % 32))
+> +		return GPIO_LINE_DIRECTION_IN;
+> +
+> +	return GPIO_LINE_DIRECTION_OUT;
+> +}
+> +
+> +static int tc956x_gpio_direction_input(struct gpio_chip *gc,
+> +				       unsigned int offset)
+> +{
+> +	u32 reg = offset < 32 ? GPIO_EN0_OFFSET : GPIO_EN1_OFFSET;
+> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+> +	u32 mask = BIT(offset % 32);
+> +
+> +	return regmap_update_bits(gpio->regmap, reg, mask, mask);
+> +}
+> +
+> +static int tc956x_gpio_direction_output(struct gpio_chip *gc,
+> +					unsigned int offset, int value)
+> +{
+> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+> +	u32 vreg;
+> +	u32 dreg;
+> +	u32 mask;
+> +
+> +	if (test_bit(offset, gpio->input_only))
+> +		return -EINVAL;
+> +
+> +	if (offset < 32) {
+> +		vreg = GPIO_OUT0_OFFSET;
+> +		dreg = GPIO_EN0_OFFSET;
+> +	} else {
+> +		vreg = GPIO_OUT1_OFFSET;
+> +		dreg = GPIO_EN1_OFFSET;
+> +	}
+> +	mask = BIT(offset % 32);
+> +
+> +	/* Set output value first, then direction */
+> +	regmap_update_bits(gpio->regmap, vreg, mask, value ? mask : 0);
+> +
+> +	return regmap_update_bits(gpio->regmap, dreg, mask, 0);
+> +}
+> +
+> +static int tc956x_gpio_get(struct gpio_chip *gc, unsigned int offset)
+> +{
+> +	u32 reg = offset < 32 ? GPIO_IN0_OFFSET : GPIO_IN1_OFFSET;
+> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+> +	u32 val;
+> +
+> +	regmap_read(gpio->regmap, reg, &val);
+> +
+> +	return val & BIT(offset % 32) ? 1 : 0;
+> +}
+> +
+> +static int tc956x_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
+> +{
+> +	u32 reg = offset < 32 ? GPIO_OUT0_OFFSET : GPIO_OUT1_OFFSET;
+> +	struct tc956x_gpio *gpio = gpiochip_get_data(gc);
+> +	u32 mask = BIT(offset % 32);
+> +
+> +	return regmap_update_bits(gpio->regmap, reg, mask, value ? mask : 0);
+> +}
+> +
+> +static int tc956x_gpio_init_valid_mask(struct gpio_chip *gc,
+> +				       unsigned long *valid_mask,
+> +				       unsigned int ngpios)
+> +{
+> +	/*
+> +	 * GPIOs 2 and 3 are used by the PCI power control driver, and
+> +	 * we don't allow them to be used.  GPIOs 20 and 21 are reserved
+> +	 * (and not usable).
+> +	 */
+> +	bitmap_fill(valid_mask, ngpios);
+> +	bitmap_clear(valid_mask, 2, 2);
+> +	bitmap_clear(valid_mask, 20, 2);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tc956x_gpio_probe(struct auxiliary_device *adev,
+> +			     const struct auxiliary_device_id *id)
+> +{
+> +	struct device *dev = &adev->dev;
+> +	struct tc956x_gpio *gpio;
+> +	struct gpio_chip *gc;
+> +
+> +	if (!dev->platform_data)
+> +		return -EINVAL;
+> +
+> +	gpio = devm_kzalloc(dev, sizeof(*gpio), GFP_KERNEL);
+> +	if (!gpio)
+> +		return -ENOMEM;
 
-Signed-off-by: KancyJoe <kancy2333@outlook.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/regulator/Kconfig             |   7 +
- drivers/regulator/Makefile            |   1 +
- drivers/regulator/sgm3804-regulator.c | 297 ++++++++++++++++++++++++++++++++++
- 3 files changed, 305 insertions(+)
+Add newline.
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index e8002526cfb0..9335c1bd0c5b 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1590,6 +1590,13 @@ config REGULATOR_SUN20I
- 	help
- 	  This driver supports the internal LDOs in the Allwinner D1 SoC.
- 
-+config REGULATOR_SGM3804
-+	tristate "SGMicro SGM3804 voltage regulator"
-+	depends on I2C && OF
-+	select REGMAP_I2C
-+	help
-+	  This driver supports SGMicro SGM3804 dual-output voltage regulator.
-+
- config REGULATOR_SY7636A
- 	tristate "Silergy SY7636A voltage regulator"
- 	depends on MFD_SY7636A
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 35639f3115fd..7c345c7caee7 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -181,6 +181,7 @@ obj-$(CONFIG_REGULATOR_STM32_PWR) += stm32-pwr.o
- obj-$(CONFIG_REGULATOR_STPMIC1) += stpmic1_regulator.o
- obj-$(CONFIG_REGULATOR_STW481X_VMMC) += stw481x-vmmc.o
- obj-$(CONFIG_REGULATOR_SUN20I) += sun20i-regulator.o
-+obj-$(CONFIG_REGULATOR_SGM3804) += sgm3804-regulator.o
- obj-$(CONFIG_REGULATOR_SY7636A) += sy7636a-regulator.o
- obj-$(CONFIG_REGULATOR_SY8106A) += sy8106a-regulator.o
- obj-$(CONFIG_REGULATOR_SY8824X) += sy8824x.o
-diff --git a/drivers/regulator/sgm3804-regulator.c b/drivers/regulator/sgm3804-regulator.c
-new file mode 100644
-index 000000000000..182dcf763afb
---- /dev/null
-+++ b/drivers/regulator/sgm3804-regulator.c
-@@ -0,0 +1,297 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// SGMicro SGM3804 regulator Driver
-+//
-+// Copyright (C) 2025 Kancy Joe <kancy2333@outlook.com>
-+// Copyright (C) 2026 Linaro Limited
-+// Author: Neil Armstrong <neil.armstrong@linaro.org>
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+#include <linux/gpio/consumer.h>
-+
-+#define SGM3804_POS_RAIL_VOLTAGE_REG	0x0
-+#define SGM3804_NEG_RAIL_VOLTAGE_REG	0x1
-+#define SGM3804_RAIL_DISCHARGE_REG	0x3
-+
-+#define RAIL_VOLTAGE_MASK	GENMASK(5, 0)
-+
-+#define POS_RAIL_DISCHARGE_EN	BIT(1)
-+#define NEG_RAIL_DISCHARGE_EN	BIT(0)
-+
-+#define RAIL_VOLTAGE_INVALID		RAIL_VOLTAGE_MASK
-+#define RAIL_DISCHARGE_REG_DEFAULT	(POS_RAIL_DISCHARGE_EN | NEG_RAIL_DISCHARGE_EN)
-+
-+#define SGM3804_VOLTAGES_COUNT	40
-+
-+enum {
-+	SGM3804_POS_RAIL = 0,
-+	SGM3804_NEG_RAIL,
-+	SGM3804_RAIL_COUNT,
-+};
-+
-+/*
-+ * The registers are only writable when the gpio is enabled, so
-+ * we need to use the cache for read operations and set the regmap
-+ * as cache_only when both GPIOs are down.
-+ */
-+struct sgm3804_data {
-+	struct regmap *regmap;
-+	/* Protects the regcache state update */
-+	struct mutex lock;
-+	struct gpio_desc *gpios[SGM3804_RAIL_COUNT];
-+};
-+
-+static const struct linear_range sgm3804_voltages[] = {
-+	REGULATOR_LINEAR_RANGE(2400000, 0x20, 0x2f, 100000),
-+	REGULATOR_LINEAR_RANGE(4000000, 0x00, 0x17, 100000),
-+};
-+
-+/*
-+ * The cache is populated with those hardware default values
-+ * so the regmap_update_bits operation will use the cached
-+ * value to build a new register value and write it when GPIOs
-+ * are enabled.
-+ */
-+static const struct reg_default sgm3804_reg_defaults[] = {
-+	{ SGM3804_POS_RAIL_VOLTAGE_REG, RAIL_VOLTAGE_INVALID },
-+	{ SGM3804_NEG_RAIL_VOLTAGE_REG, RAIL_VOLTAGE_INVALID },
-+	{ SGM3804_RAIL_DISCHARGE_REG, RAIL_DISCHARGE_REG_DEFAULT },
-+};
-+
-+/* Registers are only writable */
-+static bool sgm3804_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case SGM3804_POS_RAIL_VOLTAGE_REG:
-+	case SGM3804_NEG_RAIL_VOLTAGE_REG:
-+	case SGM3804_RAIL_DISCHARGE_REG:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+/*
-+ * Since all registers are only writeable, regmap will only read from the cache data.
-+ */
-+static bool sgm3804_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	return false;
-+}
-+
-+static const struct regmap_config sgm3804_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x03,
-+	.writeable_reg = sgm3804_writeable_reg,
-+	.readable_reg = sgm3804_readable_reg,
-+	.cache_type = REGCACHE_MAPLE,
-+	.reg_defaults = sgm3804_reg_defaults,
-+	.num_reg_defaults = ARRAY_SIZE(sgm3804_reg_defaults),
-+};
-+
-+static int sgm3804_sync_regcache_state(struct sgm3804_data *ctx)
-+{
-+	guard(mutex)(&ctx->lock);
-+
-+	/* If both GPIOs are down, IC is powered down and I2C writes will fail */
-+	if (!gpiod_get_value_cansleep(ctx->gpios[SGM3804_POS_RAIL]) &&
-+	    !gpiod_get_value_cansleep(ctx->gpios[SGM3804_NEG_RAIL])) {
-+		regcache_cache_only(ctx->regmap, true);
-+		regcache_mark_dirty(ctx->regmap);
-+	} else {
-+		/* At least a GPIO is up, we can write registers */
-+		regcache_cache_only(ctx->regmap, false);
-+		return regcache_sync(ctx->regmap);
-+	}
-+
-+	return 0;
-+}
-+
-+static int sgm3804_get_voltage_sel(struct regulator_dev *rdev)
-+{
-+	int ret;
-+
-+	ret = regulator_get_voltage_sel_regmap(rdev);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Force setting a voltage on probe */
-+	if (ret == RAIL_VOLTAGE_INVALID)
-+		return -ENOTRECOVERABLE;
-+
-+	return ret;
-+}
-+
-+static int sgm3804_enable(struct regulator_dev *rdev)
-+{
-+	struct sgm3804_data *ctx = rdev->reg_data;
-+	int ret;
-+
-+	ret = gpiod_set_value_cansleep(ctx->gpios[rdev_get_id(rdev)], 1);
-+	if (ret)
-+		return ret;
-+
-+	ret = sgm3804_sync_regcache_state(ctx);
-+	if (ret)
-+		goto err;
-+
-+	return 0;
-+
-+err:
-+	gpiod_set_value(ctx->gpios[rdev_get_id(rdev)], 0);
-+	return ret;
-+}
-+
-+static int sgm3804_disable(struct regulator_dev *rdev)
-+{
-+	struct sgm3804_data *ctx = rdev->reg_data;
-+	int ret;
-+
-+	ret = gpiod_set_value_cansleep(ctx->gpios[rdev_get_id(rdev)], 0);
-+	if (ret)
-+		return ret;
-+
-+	return sgm3804_sync_regcache_state(ctx);
-+}
-+
-+static int sgm3804_is_enabled(struct regulator_dev *rdev)
-+{
-+	struct sgm3804_data *ctx = rdev->reg_data;
-+
-+	return gpiod_get_value_cansleep(ctx->gpios[rdev_get_id(rdev)]);
-+}
-+
-+static const struct regulator_ops sgm3804_ops = {
-+	.list_voltage = regulator_list_voltage_linear_range,
-+	.map_voltage = regulator_map_voltage_linear_range,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = sgm3804_get_voltage_sel,
-+	.set_active_discharge = regulator_set_active_discharge_regmap,
-+	.enable = sgm3804_enable,
-+	.disable = sgm3804_disable,
-+	.is_enabled = sgm3804_is_enabled,
-+};
-+
-+static const struct regulator_desc sgm3804_regulator_desc[] = {
-+	/* Positive Output */
-+	{
-+		.name = "pos",
-+		.of_match = "pos",
-+		.supply_name = "vin",
-+		.id = SGM3804_POS_RAIL,
-+		.ops = &sgm3804_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.linear_ranges = sgm3804_voltages,
-+		.n_linear_ranges = ARRAY_SIZE(sgm3804_voltages),
-+		.n_voltages = SGM3804_VOLTAGES_COUNT,
-+		.vsel_reg = SGM3804_POS_RAIL_VOLTAGE_REG,
-+		.vsel_mask = RAIL_VOLTAGE_MASK,
-+		.active_discharge_on = POS_RAIL_DISCHARGE_EN,
-+		.active_discharge_mask = POS_RAIL_DISCHARGE_EN,
-+		.active_discharge_reg = SGM3804_RAIL_DISCHARGE_REG,
-+		.enable_time = 40000,
-+		.owner = THIS_MODULE,
-+	},
-+	/* Negative Output */
-+	{
-+		.name = "neg",
-+		.of_match = "neg",
-+		.supply_name = "vin",
-+		.id = SGM3804_NEG_RAIL,
-+		.ops = &sgm3804_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.linear_ranges = sgm3804_voltages,
-+		.n_linear_ranges = ARRAY_SIZE(sgm3804_voltages),
-+		.n_voltages = SGM3804_VOLTAGES_COUNT,
-+		.vsel_reg = SGM3804_NEG_RAIL_VOLTAGE_REG,
-+		.vsel_mask = RAIL_VOLTAGE_MASK,
-+		.active_discharge_on = NEG_RAIL_DISCHARGE_EN,
-+		.active_discharge_mask = NEG_RAIL_DISCHARGE_EN,
-+		.active_discharge_reg = SGM3804_RAIL_DISCHARGE_REG,
-+		.enable_time = 40000,
-+		.owner = THIS_MODULE,
-+	},
-+};
-+
-+static int sgm3804_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct sgm3804_data *ctx;
-+	int ret, i;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	mutex_init(&ctx->lock);
-+
-+	ctx->regmap = devm_regmap_init_i2c(i2c, &sgm3804_regmap_config);
-+	if (IS_ERR(ctx->regmap))
-+		return dev_err_probe(dev, PTR_ERR(ctx->regmap),
-+				     "failed to init regmap\n");
-+
-+	/* Set default values */
-+	for (i = 0; i < ARRAY_SIZE(sgm3804_regulator_desc); i++) {
-+		ctx->gpios[i] = devm_gpiod_get_index(dev, "enable",
-+						     i, GPIOD_ASIS);
-+		if (IS_ERR(ctx->gpios[i]))
-+			return dev_err_probe(dev, PTR_ERR(ctx->gpios[i]),
-+					"failed to get enable GPIO %d\n", i);
-+	}
-+
-+	ret = sgm3804_sync_regcache_state(ctx);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(sgm3804_regulator_desc); i++) {
-+		struct regulator_config config = { };
-+		struct regulator_dev *rdev;
-+
-+		config.dev = dev;
-+		config.regmap = ctx->regmap;
-+		config.of_node = dev->of_node;
-+		config.driver_data = ctx;
-+		rdev = devm_regulator_register(dev, &sgm3804_regulator_desc[i],
-+					       &config);
-+		if (IS_ERR(rdev))
-+			return dev_err_probe(dev, PTR_ERR(rdev),
-+					     "failed to register regulator %d\n", i);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id sgm3804_id[] = {
-+	{ "sgm3804" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, sgm3804_id);
-+
-+static const struct of_device_id sgm3804_of_match[] = {
-+	{ .compatible = "sgmicro,sgm3804" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sgm3804_of_match);
-+
-+static struct i2c_driver sgm3804_regulator_driver = {
-+	.driver = {
-+		.name = "sgm3804",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = sgm3804_of_match,
-+	},
-+	.probe = sgm3804_probe,
-+	.id_table = sgm3804_id,
-+};
-+
-+module_i2c_driver(sgm3804_regulator_driver);
-+
-+MODULE_DESCRIPTION("SGMicro SGM3804 regulator Driver");
-+MODULE_AUTHOR("Kancy Joe <kancy2333@outlook.com>");
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
-+MODULE_LICENSE("GPL");
+> +	gpio->regmap = dev->platform_data;
 
--- 
-2.34.1
+It's not clear whether this is an mmio regmap or a slow-bus one that can fail.
+In the code above you're checking the return values of regmap operations quite
+inconsistently. Could you please verify if you need it and either always check
+them or not at all?
 
+> +
+> +	/* Mark GPIOs 22, 23, 24, 27, 28, 31, and 34 as input only */
+> +	bitmap_set(gpio->input_only, 22, 3);
+> +	bitmap_set(gpio->input_only, 27, 2);
+> +	set_bit(31, gpio->input_only);
+> +	set_bit(34, gpio->input_only);
+> +
+> +	gc = &gpio->chip;
+> +
+> +	gc->label = DRIVER_NAME;
+> +	gc->parent = dev->parent;
+> +
+> +	gc->get_direction = tc956x_gpio_get_direction;
+> +	gc->direction_input = tc956x_gpio_direction_input;
+> +	gc->direction_output = tc956x_gpio_direction_output;
+> +	gc->get = tc956x_gpio_get;
+> +	gc->set = tc956x_gpio_set;
+> +	gc->init_valid_mask = tc956x_gpio_init_valid_mask;
+> +
+> +	gc->base = -1;
+> +	gc->ngpio = TC956X_GPIO_COUNT;
+> +	gc->can_sleep = false;
+
+This makes me think this is an MMIO regmap after all.
+
+> +
+> +	dev_set_drvdata(dev, gpio);
+
+There's no corresponding dev_get_drvdata().
+
+> +
+> +	return devm_gpiochip_add_data(dev, gc, gpio);
+> +}
+> +
+> +static const struct auxiliary_device_id tc956x_gpio_ids[] = {
+> +	{ .name = "tc956x_pci.tc9564-gpio", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, tc956x_gpio_ids);
+> +
+> +static struct auxiliary_driver tc956x_gpio_driver = {
+> +	.name		= DRIVER_NAME,
+> +	.probe          = tc956x_gpio_probe,
+> +	.id_table       = tc956x_gpio_ids,
+> +	.driver = {
+> +		.name		= DRIVER_NAME,
+> +		.owner		= THIS_MODULE,
+> +		.probe_type	= PROBE_PREFER_ASYNCHRONOUS,
+> +	},
+> +};
+> +module_auxiliary_driver(tc956x_gpio_driver);
+> +
+> +MODULE_DESCRIPTION("Toshiba TC956X PCIe GPIO Driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("auxiliary:" DRIVER_NAME);
+> --
+> 2.51.0
+>
+>
+
+There are a few minor issues but overall looks good!
+
+Bart
 
