@@ -1,201 +1,201 @@
-Return-Path: <devicetree+bounces-292468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292472-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QA4TArP492lwowIAu9opvQ
-	(envelope-from <devicetree+bounces-292468-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 03:38:59 +0200
+	id 5xNfGfoA+GlapAIAu9opvQ
+	(envelope-from <devicetree+bounces-292472-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 04:14:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860AD4B7FA0
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 03:38:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8CF84B8119
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 04:14:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A5FC730010E7
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 01:38:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7D43F300424D
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 02:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70DF31DF27D;
-	Mon,  4 May 2026 01:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDCD194C95;
+	Mon,  4 May 2026 02:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="Fw9VJu8p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NF5dlsJp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11021117.outbound.protection.outlook.com [52.101.52.117])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31C71991D4;
-	Mon,  4 May 2026 01:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.117
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777858733; cv=fail; b=ZTVdTGQaZB9jIoW0/USoquyJ/WsnTItiM/uyhBSt89aBbJCK/7fCph+8y1BpQdaeMqOfgTSXBAt8BeCnU7Zx3BPJwonf1kRQgWz51ei0/jlYOkLpR+eFu6OnyuYGqMlrfHy3K9SlHyejFR0iHDM1/fuVTjjOhZJqrbHxSCwd4T0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777858733; c=relaxed/simple;
-	bh=OqcxSOIdhk069zvjSWRuDXF1g9yF0T2LeYdlTXuw+yA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h6pcjCXG87647zBWAfFxA1x/FjOdODBlU1n35ZLHgGFU8wP+So0l+hk2FSFdDYqwlFJEYfjAYmz4K8R1+wUMcuKlD4fvcbEMRJx5VSNNoMzRttWoe4uAkQjtox5PTOxI4TiXNlj8rOYatUZ7UAcKAJJkfhQDrrqPFt7eWyVXWu4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=Fw9VJu8p; arc=fail smtp.client-ip=52.101.52.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=haNkDsznfQKIsTImARPpHw1+uL/yeZwlVOnDV6JE5ejz7Q3kiIjSMgPW3urAb5ilYKZWkfTO70J3WM4BYNmQ9caiOuftlbGIu9ETe+VJIBPlHXH/z4oMKxpipFyKMaA2aiLCEj5B0K2dTnAk3SddLD+wYwu0HFwY5GTdJczWZmwRpolnik1ikPl4ivqJUAvz+8hFCJ8HuSfIyBgEZuQllhhfS+WlxsfSrTMF33JO2A87pjQG6AzdHwhwZOLU7iDqrIbtn38h2IcL0R+u3Hc/faIPOQRzbZqu6SlZ9vxVx6V0b9Y+TS/VE5Hj2UOzlrZQxxzZUDh5Ba3SBOPtGzA+qQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DQbeyUpcxHP0UttbckzSvqDGia0H3PNtqqBpsfm0zQc=;
- b=yRZJuCSu7ssnyOo55gdta24jWeP5nGyt6lKT9qJYgwrUZW2pDpodGssTv6sN365pdN40LkywV27ZSuknCpYWk14hku7wd1yPg5HF7RZ4ax03az4uFdyDx+f3R/8lteeT8IWRWRmAe1TfpNpS+D1i/afuOWhr96kXd0W/5ypm/huZJF2PQlNQCZdHnucQdYXTWAySq4kftXrVtIv8DDmzRgv2SM4ZsyyQfbLmVvU58wDpoUp0uj55+ByD/6+IlcOaZAXs3Xu2zkMB+sosgDs7bJCFX59RZYk4njD7BHlJzK85w/+B+cE4d32fngY2UruKWuYh9S9ZFoNKW6PICWrUgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 64.62.143.114) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
- dmarc=none action=none header.from=axiado.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DQbeyUpcxHP0UttbckzSvqDGia0H3PNtqqBpsfm0zQc=;
- b=Fw9VJu8p+rBzfXmP0HU8eMjdm9vozXM/q5tOEtEG5+ESu197T3Fc62cTbccIkzdUPZBN3Eiue5b0u9adQ3iIqyN+zATDa3pbjMrDR6fqEwNheTreHgbFYMkRId881kYSD6JRaUzMDKQCpLNexCH9UptrA3QQFotU+l4brk/NfW5kRiObVdmwfd6uPNTInmNouvur+Y+ihSVrg8L7t8AM3PZt8hSWz3j4JfWD946z3LiJUGyvW2Eg8ho6FODd5arKvY8egsexQitTbiFqCdUnxRIFLgEi80Ns7xBILpu+/d1NGe+UtaPy1ZgZmdk8Hp0SAtkGeEWd7NFUEJYZAnd28w==
-Received: from MN0PR02CA0028.namprd02.prod.outlook.com (2603:10b6:208:530::22)
- by CH3PR18MB6379.namprd18.prod.outlook.com (2603:10b6:610:205::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
- 2026 01:38:47 +0000
-Received: from BL6PEPF00020E65.namprd04.prod.outlook.com
- (2603:10b6:208:530:cafe::65) by MN0PR02CA0028.outlook.office365.com
- (2603:10b6:208:530::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.25 via Frontend Transport; Mon,
- 4 May 2026 01:38:47 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 64.62.143.114)
- smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
- client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
-Received: from smtp.corp.axiado.com (64.62.143.114) by
- BL6PEPF00020E65.mail.protection.outlook.com (10.167.249.26) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.9
- via Frontend Transport; Mon, 4 May 2026 01:38:47 +0000
-Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
-	by smtp.corp.axiado.com (Postfix) with ESMTPS id E4E0440BFE07;
-	Sun,  3 May 2026 18:36:50 -0700 (PDT)
-From: Tzu-Hao Wei <twei@axiado.com>
-Date: Mon, 04 May 2026 09:38:35 +0800
-Subject: [PATCH RESEND v3 4/4] arm64: dts: axiado: Add eMMC PHY node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B27B179A3
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 02:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777860854; cv=none; b=cn4txKvYnhlY5lD6g+3hshbvkMcb5QRuGlY2YNxFuxUal4BS9apV2IPl7CHEBzYeRX2wS3yz44teqikDm4XS/7skjgqmS2IdPPXHJF8bm4sXsA5j9TG2QqtY1sKXTF20Z6WK58+sHYk+hEvjMg1NAqKJS5h/gFP5EVkcsHhnoJU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777860854; c=relaxed/simple;
+	bh=D/X8aO33uxsph/wF+tkGQ95Ammm9mqqNhHB81sh8Xgo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hwLNUaHJyx/LazK3n5VqQvHITlmlsPoC/MugrNVv85O2whzUsGxeEUc9STjtGA6gqnPitaUBip7amLQ9YkbZyahNHjbKv8/kONYd7I0J5cMBnQq9Vx8VbkDAI16qU3s+FoF5DJNX3EzTCXx8ADdRNur2u5MRAMGNllOnj+qZC1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NF5dlsJp; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-364d13df3ccso521341a91.3
+        for <devicetree@vger.kernel.org>; Sun, 03 May 2026 19:14:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777860852; x=1778465652; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+aGMILBpdA7Z2vP2ImAoYwoEz5ssc9d51Wzjj0viQYI=;
+        b=NF5dlsJp+YwawpYWnUlebYcr8dIYW0slo8ldtYGoh5KUpi017N1ssUcvXHVkm2J6VS
+         lSMt9nzqQgCUioeMM2eQW5YGqnUW5Wgbw6KdaLUWqG5fzTAT+4f4Gb4Ow0bMwMgPt9PQ
+         CTXfHzQ3WLNFnZXrKR+0mwpX1S+/f+H1ANbDfaSWqLYhbW04U/SgVZUTO7vVnW6qeCLY
+         x9nMeD02v4Wmwcw7Oa8mOYcJsKA80zxAklFE1iOyKzvcK8/C3RmOmi7YK5Lc34qMrAUK
+         oPQcjuZWG6FHMVb0/9BbOSSrhL9+78nJVMaPl7qihz6npKDBrNS7Q6w+nTBMuOnHw0Ny
+         BT4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777860852; x=1778465652;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+aGMILBpdA7Z2vP2ImAoYwoEz5ssc9d51Wzjj0viQYI=;
+        b=L3WLUkCFYHp321etz5209WahZp5zR46kAGtdkau0+HnJ0fuezZorxG/dGAQEWuASqk
+         C5z7nqpNPg1SsNy4rn4oBk4c+bv6Rz5e6Pwc+dM6iAokHlzyP7XzCEq2TASqJfSR2lUQ
+         nQby9ULkxckIuKdpScaQw4/9oJcI+FVf+DZJZ1gR7nYDwTg2vG0iKOaqnkChcTzxaF2j
+         Cyt0IXyjRaQaKL2UKnLDBTvG43Q93n/okZKGGgCc7u1GavTKn8mFR4ic4S6+SbyQ61AT
+         lYks2sKKEYvZvvm318h6K3GUIonDs3rWXQYCHzyfHPjLYl+CoC0RGO/6dpfQ88PUWbRO
+         jGqA==
+X-Gm-Message-State: AOJu0Yy9mvg20480WKBXXG6rzctuOl7vwWSxSB/MHeHJZ9hmKZGLVght
+	1oBptZEUYrzbNXCpUUVklJl0csj5Mzky042jwIHSVX+0pIriNogO/PpcsCvtot5h
+X-Gm-Gg: AeBDievJBZfq10W+lkXD5dKwTLuV9qzlbLX1P4HOOeDK/W253ItPOIvi1j/boA57POo
+	6o08ndVT1x/O5BcUgSKh5o8+Arft+G0FixKkoz/UTOoWFC0HtY62hLoDDBG8rVSl3qMrRkCQUAY
+	mwW4f0iVB+loyy2zhE5p3uBtaNcgRyqtGMQURsmJoLP4/+SLFRw+QM4FQoCpuzYRgDoIfVUqEi5
+	KFa70dQzsCReJZ2n/VeENyHNuGSefxhDSuvfe0sV7zWTj6D+nOJDBOLlMUJIRMv5QzUYuFW90kC
+	3xpqQCNczNserNdBcIhsWtm6VSmgk9YXMencwjNcKq5vf9zLt/jqtKhsh+FydqhNvTpj3azU3Ym
+	vr5mc5Xgzy2AYRE8RpEy/Bfe3JQRJZfMQ9FAN6O6eePknm779xKzsQsBUv9qu1OVAyZvXbWnuD+
+	Ub/53EzlnNRpFC46yk1xOsJwa0c3U5ZX7j7FN020FBkhU=
+X-Received: by 2002:a17:90b:2b45:b0:364:6f0d:c0fc with SMTP id 98e67ed59e1d1-3650ce8437bmr4116823a91.7.1777860852258;
+        Sun, 03 May 2026 19:14:12 -0700 (PDT)
+Received: from marchy ([2405:3800:95f:677d:ee8e:77ff:fed4:d18b])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-364ebec73aasm9365566a91.2.2026.05.03.19.14.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 May 2026 19:14:11 -0700 (PDT)
+From: Adam Azuddin <azuddinadam@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org,
+	Adam Azuddin <azuddinadam@gmail.com>
+Subject: [RFC PATCH v1 0/2] Migrate RAiO RA8875 from fbtft to DRM
+Date: Mon,  4 May 2026 10:13:49 +0800
+Message-ID: <20260504021355.72128-1-azuddinadam@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-4-3ab7eb45b0c5@axiado.com>
-References: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-0-3ab7eb45b0c5@axiado.com>
-In-Reply-To: <20260504-axiado-ax3000-add-emmc-phy-driver-support-v3-0-3ab7eb45b0c5@axiado.com>
-To: SriNavmani A <srinavmani@axiado.com>, 
- Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Tzu-Hao Wei <twei@axiado.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=893; i=twei@axiado.com;
- h=from:subject:message-id; bh=ifJe6BWD6fxFLW7464vvxiIMU26jLX4+q7GsF1xfii8=;
- b=owEB7QES/pANAwAKAXgQMF3EWvHXAcsmYgBp9/imgUinpDJX14V1CzjxLphTjoOP2HvAR2pG1
- EAPysVL9xiJAbMEAAEKAB0WIQSZyWINOowtFmDvdYF4EDBdxFrx1wUCaff4pgAKCRB4EDBdxFrx
- 18ryDACuj38i6Y1mevnGXobi/pkdCVNw7qH5n7A967oMJFnZ395kBPMoYdQwzS2Qo3StcZK8eHC
- uskHvUwYUwL0+Xr07mrDQyw3fjm42lgtBvSDknWVqc4rteBOeT7GybKl4xXyXmP6ITkQqYpOf+q
- L5FUdoES7CKSJ6bw7tsdJ8YdI/XoCa2fqdulNNL5DheTRhpYV3/6+la5GIcnA/P4jvgMnrkQhHk
- 6iD4dgH5S2W2ePRj01NwQ8g78Z1ZbSjr9YZrG+gc81XhU/f4u6Roo0SKm6og+1E4Q8kpR8/lsqN
- X0KpMOwmqiXvXbSEzEEMC1OE+wgU1kNIpEqVvdDhdrsaZ3VP5y8LJoisxSCAqYS5EEyaZBcqoPn
- DEMaqKPiDBEQa0ALJ5fzGrnbCiDENpGKRT6Wew1u6PR16NmbplcH0n2bUklzZD4v+AVShHXJLM+
- D/THH2l/0WdbWos2MbgTz0VBi3s/vB1zxFlxOkC6rqpUR9/kz/O5MNHf7K48ddTBiMSxw=
-X-Developer-Key: i=twei@axiado.com; a=openpgp;
- fpr=99C9620D3A8C2D1660EF75817810305DC45AF1D7
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E65:EE_|CH3PR18MB6379:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01ed07f4-e597-4376-4edb-08dea97de2da
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|36860700016|376014|42112799006|1800799024|34020700016|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	7UfVm++7dg+p4GBP2wG66ikCosIP/qBqHKKblAKIWxGE1/0OztKU70ljx9XFBKarAQAsAbOHxLKXArzTQqBAUzt4BfwXOpFWZDjHFk/CE4r5XUM3hYmt9JBhvHyIJMkL6bezt5W4ub2+TqEpSGkXyLYwhvQxJcT5HNJu7zeuhnq+Px07qE5Efc5sSr/kpO6Ba5m6LvMag1hmnjbn4qjJiPxXYdE7ENI5JXs+e1znNtp4pN+421tGV55kbMORTs7dPIV0TzFyGjpwwXIo2rFj+2b/mqioGrwBJ7GJyTyIAgqpcclAcRnOu1Gt/3YaUU+fpKQr0p9QWcAssbQHT5cLl6QKlLsRcmA6QTttksU01gWWxW06J3Mh5S+phKmmHb0yPpl+g4vrAHadFgYBZLHBL+EASUgFlThbRLZSGSADPaWPFVhpmdX3avqUGvGy/fo43aeLcvXNCY9sAZgRGtlIoeWmy06y8JVIF0yduCWYQdNepwlt1AALmK/ueCk+aEeRCJ7DfsgAmYfFn27NNujDhDB2CHB983AFy0pyCqiAGVmM3QKEPR1hBPea/XiXpKJ2T5cNrTZq/Sjxn6xF2GFN/r12dODtojJz8luTRLsKZYaf8HZx2dYL8xXJWu6Jz6U/wObGU5RPDNzK0dSgkEVx3Ojgft9DA4VZejgA02N64ak9LJS1W2eW3nekTrhtart5h8Lg+Vr+zL4XIhIgOM8NmZ2jED31VM6NOkQlFpvPXps=
-X-Forefront-Antispam-Report:
-	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(36860700016)(376014)(42112799006)(1800799024)(34020700016)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	agnI7VrtfjWSSkYtkaoJ1bn7/snqnJ/7lb4TyF/ti0z5vi3L9ksloHEz/awtDSAJNoR325g/PG6t7rYem3D60HVi9xROnIbrQbSyBkQvUhKw/7lcps6Evo2Jhmj4DoTz69/YX/e4KLcScxQSsJu4fGYorenwhI64BQzvIgxaNYv8N30ank544Ta13G3S6FNAHGwxpajhA9XHmv+Q9BYixjUnzWcTaqXse5I6+Jg/Xo7TR3DQ7LN7h0whNQxQdI788KFAQwNdp9c2Os3fU57HYHXhw6C3ZRLNvUN28H5jk5mzb7f5/b+mlvmGQTj+pAUb2W5Jca9Mm5hcjMlb2z/e5HZTG5ZprDY/yb1AK5bxEMU1fT44Zeve/vmWlSxfcrz2UMKipd7Rkqk0987pmPHFl0W4IIXeMVj3fZf+RNac6NWBPAMwWpfy/V08OFPSvhIB
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 01:38:47.3558
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01ed07f4-e597-4376-4edb-08dea97de2da
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF00020E65.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR18MB6379
-X-Rspamd-Queue-Id: 860AD4B7FA0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: C8CF84B8119
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-292468-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[axiado.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[4.204.166.96:email];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292472-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[3];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[twei@axiado.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[azuddinadam@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[axiado.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-0.998];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-From: SriNavmani A <srinavmani@axiado.com>
+This RFC migrates the old fbtft fb_ra8875 (drivers/staging/fbtft/)
+to a proper DRM/KMS driver. The RA8875 has a 2D Block Transfer Engine (BTE),
+a touch controller, and PWM backlight control. This driver currently
+implements only basic display pipe, with BTE and other subsystems as
+planned follow-up work.
 
-Add the eMMC PHY device tree node to the AX3000 SoC DTSI.
-AX3000 has one eMMC PHY interface.
+This driver does not use drm_mipi_dbi. The RA8875 SPI protocol is
+structurally incompatible with both Type C options drm_mipi_dbi supports.
+Type C1 encodes command/data as a 9th bit within a 9-bit SPI word. The
+RA8875 uses a full prefix byte (0x80 = command write, 0x00 = data write,
+0x40 = data read, 0xC0 = status read) sent as a separate 8-bit transaction.
+These are not the same thing and cannot be mapped to each other.
 
-Signed-off-by: SriNavmani A <srinavmani@axiado.com>
-Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
----
- arch/arm64/boot/dts/axiado/ax3000.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Type C3 models two transfer types via a D/CX GPIO. The RA8875 has four
+transfer cycle types and no D/CX pin. More critically, the GRAM write path
+is stateful: an MRWC register-address transaction followed by a streaming
+pixel pump under a single CS assertion. There is no way to express this
+through the dbi->command() dispatch model without either abusing the
+abstraction or reimplementing the transfer layer underneath it anyway.
 
-diff --git a/arch/arm64/boot/dts/axiado/ax3000.dtsi b/arch/arm64/boot/dts/axiado/ax3000.dtsi
-index 792f52e0c7dd42cbc54b0eb47e25b0fbf1a706b8..ccc8088bd8258cfb666268b14a3b0716a9ca69f4 100644
---- a/arch/arm64/boot/dts/axiado/ax3000.dtsi
-+++ b/arch/arm64/boot/dts/axiado/ax3000.dtsi
-@@ -507,6 +507,13 @@ uart3: serial@80520800 {
- 			clocks = <&refclk &refclk>;
- 			status = "disabled";
- 		};
-+
-+		emmc_phy: phy@80801c00 {
-+			compatible = "axiado,ax3000-emmc-phy";
-+			reg = <0x0 0x80801c00 0x0 0x1000>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	timer {
+Other than that, forcing DBI would actively obstruct the BTE
+implementation, which requires direct control of the SPI bus at the
+transaction level. A direct SPI implementation keeps this path clean.
+Any feedback on these would be valuable.
+
+Tested on Raspberry Pi 3B, 5" 800x480 display, kernel 7.0.0-rc3.
+
+Currently placed in drm/tiny for review purposes. The intention is to move
+to drivers/gpu/drm/ra8875/ in v2 to accommodate future BTE plane support
+and the touch input subsystem on the same SPI device node.
+
+Known limitation: at 25MHz SPI, full-screen throughput for 800x480 RGB565
+is physically capped at ~4-5fps. The driver mitigates this with damage
+tracking so only dirty regions are transferred. Full-screen animation and
+video are not achievable over SPI at this resolution and are not intended
+use cases for this hardware.
+
+Some questions:
+
+1. Register writes are currently capped at 1MHz. The datasheet allows
+   higher but some boards have signal integrity issues. Should this be
+   a DT property or is 1MHz a reasonable default?
+
+2. PLL initialization hardcodes a 20MHz crystal assumption
+   (PLLC1=0x0B, PLLC2=0x02). Should this be derived from a clock
+   subsystem node or a DT property?
+
+3. Currently using display-timings in the DT binding with
+   of_get_videomode(OF_USE_NATIVE_MODE) in the driver. Should this
+   use panel-timings instead, or is display-timings the correct
+   choice for a controller-level binding like this?
+
+4. Given planned BTE support as a DRM plane, is drm_simple_display_pipe
+   the right foundation or should this be a full drm_driver from the
+   start? Happy to restructure in v2 if consensus is to go full split now.
+
+Future work: PWM backlight via DRM backlight interface, BTE as a DRM plane
+or through drm_rect operations, touchscreen via input subsystem.
+
+
+Adam Azuddin (2):
+  dt-bindings: display: panel: Add RAiO RA8875 display controller
+  drm/tiny: Add RAiO RA8875 display controller driver
+
+ .../bindings/display/panel/raio,ra8875.yaml   |  76 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/tiny/Kconfig                  |  14 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/ra8875.c                 | 681 ++++++++++++++++++
+ 6 files changed, 780 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/raio,ra8875.yaml
+ create mode 100644 drivers/gpu/drm/tiny/ra8875.c
 
 -- 
-2.34.1
+2.54.0
 
 
