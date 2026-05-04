@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-292676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292677-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mN23GFKw+GkdzAIAu9opvQ
-	(envelope-from <devicetree+bounces-292676-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 16:42:26 +0200
+	id OLjVEemz+GmWzAIAu9opvQ
+	(envelope-from <devicetree+bounces-292677-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 16:57:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B792B4BFE89
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 16:42:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C594C0436
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 16:57:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 989B43032F41
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 14:41:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B1024301B07E
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 14:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37223DF015;
-	Mon,  4 May 2026 14:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798BF3DE428;
+	Mon,  4 May 2026 14:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="au9ugCWG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="alX7WODp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D773DE45C
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 14:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FA73D9DB4
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 14:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777905687; cv=none; b=ukQGNkG3m5SSh/DWTIuXLP4TSa8MWWzIkV5s0u3fa36+DQ1fCN+wqjsHyNUj2a0hDz8aDeI2fEH/GweyNzcSpC2NO5rXAJ/cefITRziTi+W2ZNpUcKfSJYLD3iZZKLqXiI9ozMdG24fLQ8BAxhajfZUYB7DzhB83Bh6pysDQI3E=
+	t=1777905716; cv=none; b=ce/MhZfjHBUWKuC3rH/NpsnkY6xD0CVbgW2NLOe8JxLeqaWOS/IdXkSwm8R6VC5qCYMEpKeKxU1FU7Z0uoKdB4ZAsjWNE2UX2jCDqDI/mbEiKKknIyazYNOadlPopQwBxJSyAj79mHte3Lrdxpn0aIPjzSLGkzy1LEIgcN/QD3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777905687; c=relaxed/simple;
-	bh=UMk6gznEFWFtiMdbbQFFlZkrxCOoLWZWOTTFHy55KrM=;
+	s=arc-20240116; t=1777905716; c=relaxed/simple;
+	bh=z4ClDao26narGkpzxkxbLuuYZwnOiaOwXZxQ6iS/WOA=;
 	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bN8roMaE1JLaUqDvtoMOoCg9R0ci/7feY7Cesr5Je0MC45/vat6/murERLA/Vz8IHwQ9cSKUsZkvbsi92ud+v0x00G/jzcueG/uqVs2VR183SvGSdzY+UDx2XcFYdJuqawPQOSr3DfX/yMsl3IM8rQJcML0228ZV6mU38FOd/TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=au9ugCWG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC206C2BD01
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 14:41:26 +0000 (UTC)
+	 To:Cc:Content-Type; b=KRGW2jGwI9dF5K01fWLWpytVtIpT0XOn+U5KfMzbyVwSOD+Gp0tEkh2ScSgy6kvQRAiwABuEGrVDH4WV7b4Ajj23quu5iSpURLQI6P9nDKfoI/wZN+NvnFhBQUd3pyi20M6t3Aa4NoQiv2P7a/5ljVnhhEEdgy+WaVzo17L2mSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=alX7WODp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 287AAC2BCFA
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 14:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777905686;
-	bh=UMk6gznEFWFtiMdbbQFFlZkrxCOoLWZWOTTFHy55KrM=;
+	s=k20201202; t=1777905716;
+	bh=z4ClDao26narGkpzxkxbLuuYZwnOiaOwXZxQ6iS/WOA=;
 	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=au9ugCWGP+Euffa/xDAni5La6kDaMHD3MzPLmvsA2cSuNuAf+o4NhIyD64zHq2L5F
-	 h+PI/ovXIq2emAz/ynrnA/FBeHk5HmlCOtoWh7Qp0QfsYTCVv45/+APt/SmAMFd88V
-	 lS3599qrrwPYRahD1ql0fBpfwcPX8tYnsiYsEWjeQDu3xFf2rDeqGVaZ3y7a36gMeM
-	 M5blinNaBcqQQbjBBIVHx/Nn0vqmo306hGqCWut6FxfDktG2qRRH1YXFvWjaWqUrqe
-	 yeKhOddkTzTi9FYbT7zDD/FtyLDPihheswgOQYSPctDlIAQ49afFArNNg2tIrrhHHT
-	 c4fNrPaRBjI0g==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-38e7d983f91so44313021fa.2
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 07:41:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+jHJWiUhN1cA8+2IYu9SrUrcHdOLhc7Oh2stvMsjagsXvlhNdXT89vhIlSVmfJQMf4upaVQJfHwhzX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGEUFGqgr9aG4luccGN5SF9iKfMeb2eYaRmr5UuZwrF7KfEX6u
-	7OLN3us1GpAr0MPBbOgOiCXyVYd2RW6S9hpLcYlijHpXWI/iPg1my41WXl4IHjpR5NCaU8S81Gu
-	0GXM8+3Wttcg76jRcxuod/Xch+qIQomhoTLz1ZlYAuQ==
-X-Received: by 2002:a2e:be0d:0:b0:38e:cab9:3647 with SMTP id
- 38308e7fff4ca-3937842a16bmr37456631fa.13.1777905685320; Mon, 04 May 2026
- 07:41:25 -0700 (PDT)
+	b=alX7WODpN39KoOyojy/Sn2eOaaGm3GLiOMwz2RcB/jqkwxcINgZfKWviHQDstClJ9
+	 nUhsuoUZlT7eF42W/+GRFswQCg7f93GWgohx+vV502YLQPkr5XKN++fq6c3H5PPor+
+	 i+M6ORB/yu0ulmIH67jb43WD3KIkZZC9xy+8qqa2J5pW/EUvhBb93gE2yn09rc+sBk
+	 szM+FgokpOAAOxhc0ik/DsX3mmjP2RwJhPEtbwJtFFcyFjoMdwG8GuytVYY8XNXx2g
+	 NP6U6P6IlPhX/2H1B6gwQRoxk9lt+cbC+q0QPpA4OZplk2fNy4ewP6VWOjMaydYCYC
+	 LI1oPK9Mrb+uA==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-38dd9f11a09so33905821fa.2
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 07:41:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/f+dvjPr+spTh/keyzLD0CCKykM1jkGSFb7hJSsnrQIf0FecUMFrlw1wrWS27GcnnHq75wYcm8C/7Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrhZYi+tbYOHLwR2sLTKVbNBRohZY2tJlB4RS/05Ti9k2XdxOm
+	cmpO5YJaDzCcpNeB4Wba1FguxlZ7wkQdqNilYz5JF9MGkJfbFFaZkhFcE691VSjVyYxHzEsX2ue
+	qwTUy5Rd2D3igfDNd9vgthyebYeO5X5rzoUJhVl4sTA==
+X-Received: by 2002:a05:651c:b13:b0:38d:e977:5533 with SMTP id
+ 38308e7fff4ca-393785b95e0mr37146491fa.26.1777905714769; Mon, 04 May 2026
+ 07:41:54 -0700 (PDT)
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 4 May 2026 14:41:23 +0000
+ HTTPREST; Mon, 4 May 2026 07:41:53 -0700
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 4 May 2026 14:41:23 +0000
+ HTTPREST; Mon, 4 May 2026 07:41:53 -0700
 From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260504131148.3622697-3-khristineandreea.barbulescu@oss.nxp.com>
+In-Reply-To: <20260504131148.3622697-4-khristineandreea.barbulescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260504131148.3622697-1-khristineandreea.barbulescu@oss.nxp.com> <20260504131148.3622697-3-khristineandreea.barbulescu@oss.nxp.com>
-Date: Mon, 4 May 2026 14:41:23 +0000
-X-Gmail-Original-Message-ID: <CAMRc=McqV7-R4b5D8Atj0XXt=BRVBPOod_=RQOyYuJk9vQff2w@mail.gmail.com>
-X-Gm-Features: AVHnY4IwqOf1wd7u01HaUABcS9MKFWPCAiciyd-hECZ2A9Dac8kob5RJY_KsY2Q
-Message-ID: <CAMRc=McqV7-R4b5D8Atj0XXt=BRVBPOod_=RQOyYuJk9vQff2w@mail.gmail.com>
-Subject: Re: [PATCH v9 2/7] pinctrl: s32cc: add/fix some comments
+References: <20260504131148.3622697-1-khristineandreea.barbulescu@oss.nxp.com> <20260504131148.3622697-4-khristineandreea.barbulescu@oss.nxp.com>
+Date: Mon, 4 May 2026 07:41:53 -0700
+X-Gmail-Original-Message-ID: <CAMRc=Mfgv-OD0cFZAmMROk40pgpT4xT6wJxnEWvqkVN7wX9CQQ@mail.gmail.com>
+X-Gm-Features: AVHnY4KioxtFWoxvVcXY6wMzFf0SRwYI0OQ6liv2xdIp_Qf3oiOkJNSF__25P2o
+Message-ID: <CAMRc=Mfgv-OD0cFZAmMROk40pgpT4xT6wJxnEWvqkVN7wX9CQQ@mail.gmail.com>
+Subject: Re: [PATCH v9 3/7] pinctrl: s32cc: remove inline specifiers
 To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
-Cc: Alberto Ruiz <aruizrui@redhat.com>, Christophe Lizzi <clizzi@redhat.com>, devicetree@vger.kernel.org, 
-	Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Vincent Guittot <vincent.guittot@linaro.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+Cc: Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
 	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, Larisa Grigore <larisa.grigore@nxp.com>, 
 	Lee Jones <lee@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
 	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
 	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Srinivas Kandagatla <srini@kernel.org>
+	Srinivas Kandagatla <srini@kernel.org>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Christophe Lizzi <clizzi@redhat.com>, devicetree@vger.kernel.org, 
+	Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Vincent Guittot <vincent.guittot@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: B792B4BFE89
+X-Rspamd-Queue-Id: 45C594C0436
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -95,13 +95,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292676-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com,pengutronix.de,linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,linuxfoundation.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,mail.gmail.com:mid];
+	TAGGED_FROM(0.00)[bounces-292677-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[31];
@@ -116,22 +116,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
 
-On Mon, 4 May 2026 15:11:43 +0200, Khristine Andreea Barbulescu
+On Mon, 4 May 2026 15:11:44 +0200, Khristine Andreea Barbulescu
 <khristineandreea.barbulescu@oss.nxp.com> said:
-> Add/fix some comments and print
-> statements.
+> Remove unnecessary inline specifiers from
+> static functions.
 >
 
-Why the line-break?
+Again: breaking the line too early.
 
-You're doing more than that: you're creating kerneldoc entries. I'm not sure
-it's worth it as these are not exported APIs but - if for some reason you
-really need it - it makes sense to mention it in the commit message.
+But the change is fine.
 
-I'd just stick with regular comments, not kerneldocs here.
-
-Bart
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
