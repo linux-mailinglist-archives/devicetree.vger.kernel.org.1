@@ -1,226 +1,190 @@
-Return-Path: <devicetree+bounces-292493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292495-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LvOHhVE+Gn9rwIAu9opvQ
-	(envelope-from <devicetree+bounces-292493-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 09:00:37 +0200
+	id mCAzFK9G+GmJsAIAu9opvQ
+	(envelope-from <devicetree+bounces-292495-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 09:11:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DA94B91A2
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 09:00:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96ADB4B9315
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 09:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFFA5300574E
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 07:00:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5998E3007374
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 07:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553FA2356D9;
-	Mon,  4 May 2026 07:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06FCF2D3ED2;
+	Mon,  4 May 2026 07:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GbONXA6d"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="EzEUO6aP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012051.outbound.protection.outlook.com [40.107.209.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FAACA5A
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 07:00:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777878031; cv=none; b=JlqkeM2kpePQHuiXTPzwTz2clC3ZgDM+ohcudqtcEJpV9DdMsBn4rfb59tCUk4g8HXMZ9S8VHpywcrnaV/G+q59+mk2VzgA9OuwVw3RyrJS9qL2iLQmiur4RR/8oz3JgwGaWVM+2WvHI80ERUNgQKcJlmcCkSOrvRElnNC3k7xM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777878031; c=relaxed/simple;
-	bh=v2YtCahVPmR4fkIqkNFB58bTUY2+rl+IivMbth/fUfs=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UJk5fmmNXroJVakma/YY7OONAImp6BUl2ofhW2MraKANjfJROVn+bA4y8XM3QF2l7/loTV7eGtrD6hC2mGLLijGUgdQWcO8RVUq8NTiPEPhLzKNjl0QLGeqzVEeVZkoFW2GAq/t8i/UNuBbwzfhD3JUJwlv36mHI6xjA4GHDrDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GbONXA6d; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488b150559bso24576465e9.1
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 00:00:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777878028; x=1778482828; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ig2G9MuhX/zFTO0paqrpp7sX2tVVOFfNXEQnXrmaj0=;
-        b=GbONXA6dM+PQzwQtmrhwFVyYs/MI6TJO0P4MLYKoyc8KYYymQFMnAeXxqUO0NLJfGC
-         OBQvFY0ucV9gVxj5aaUVIL89W/YBgkCCnmcz+riZr9Pyj/T3sobmtaR9vSmpowNzn2Xy
-         1swMV7dLwPvMO+XeVX7ZBuLYzYB9F6o2tB5VpvwQ6UH5i7YHNNbJRBTX7TdnL4Xs0j49
-         c5CXzOH4FeO52bGw2aVcHXpV5UQRijueu1myRg6Mt+sA6CO0CSIgzM8CKFM8yT/j4KFb
-         rimej7KuAfOkDYQ09Wct4eJYdFDcFlWS7q3UIzro7O9cmH8wrJYCqSYhv5CS9WpFyRja
-         XBhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777878028; x=1778482828;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/ig2G9MuhX/zFTO0paqrpp7sX2tVVOFfNXEQnXrmaj0=;
-        b=FxXcle/1+J1sHmDE7Fd326KWcFUO0Vb3Cc2BC5o/zTdIh44tyfmBIaxq6yr5X9naMQ
-         aNhHl02BEvsxRPjiSX2GjpP2Cj1AFnFQ6TAKF1Wm+HqOM8FcRm0xuYxLCriNJe6s8ugr
-         IFfCcjOBDUcG1iJC5iicj8cJRXszAe9MFu6i3KBR7Gq9/hyAHMVgiPGGVZPEZH22sN50
-         MhSUcfB/0DjlC9ydhPFx5d3XspbMo+BjsrtZJlVbqi+rNtd1f1nBl5sYWl+w9REx4RSG
-         NiDtJ5GWwHi2hbrrHs4SD8+lX2eJSmIUsbS5OQgmZa/BNhMZmnGtNg0ObwKSgI2j66x2
-         VLSA==
-X-Forwarded-Encrypted: i=1; AFNElJ8ZuSfzFBD3urY1Zp101m1fNsbbRgydU8DG9G+nhKkxsMhUGJ4cavjzlXuFOmr0QCUR1JBcFJ/PlX6n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxy9dhpvx8XQP4jSld+uWf1mOjVjfrJEgYOLUX46FY3HY98Dl/u
-	IPmhNq1IJYa503C7NjKmC80TTTzm+mpumTXAexPcShBtCpom5a4F0tZGuhnmxL036Yw=
-X-Gm-Gg: AeBDieuE+DNRhWO5mb6WhTTaL8KXRoxHqqZkcEJ3G3yMv4to70HUN7tdpyrxtZsFVA5
-	qzcAXWo7nIUkIOgv4roOTuctwch4Zjz1S0K9TlIJ1h/1w2Js8AKLxPsrW491TcUSp8/YLrgXVBk
-	ha2DmVmTPdQiTMWrJ1jBM02TDQFDD5YcgLfaSBRDrJeTjJcXBH5LZUkCLAnpamqRBBXD9Q50bW9
-	A/lIQr6f0RynPiF1ndeCJs1xWOIFpAnyMxYFNnNuSpPj0/weVochVdoynrK5O5JiuQPEjeplqQn
-	03UB0TpgP4wnV7FY9lJqvLHeNzuSDg4nNfYiQzcjniGejxVA73HPtLwqrCOMHQIaq0NpjBhnlwt
-	MY7V52SmBntakC/i2lI9A6u2mmQEXmYTBgjSId8aQ5xXh4Eu4hxVgGQvjsc1Nk1vLU9o2m7XreY
-	gDGJdhBtwSEqB47REWnxW9kn5LT8/FuuqyKjr07pvm5QlIlMtfXJ6evvHLAvBTRx06Ppwj3w4or
-	1XfXqwsf3cXDva9kQ==
-X-Received: by 2002:a05:600c:620c:b0:48a:97b6:7420 with SMTP id 5b1f17b1804b1-48a98670f8emr134808975e9.24.1777878027763;
-        Mon, 04 May 2026 00:00:27 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:4245:af61:1735:3752? ([2a01:e0a:106d:1080:4245:af61:1735:3752])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a8ebb2fa5sm213757985e9.12.2026.05.04.00.00.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 May 2026 00:00:27 -0700 (PDT)
-Message-ID: <d673c19d-f659-4549-8c2b-d64bfb0f9acf@linaro.org>
-Date: Mon, 4 May 2026 09:00:26 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5252C21F1;
+	Mon,  4 May 2026 07:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777878691; cv=fail; b=QYgi2aCq4QlBnMmqk5uv0ipeiGEiYXWF938Nq2TfABVYjc9slq32lLNBEcbE1W4x+KCOMhxClFLWI8eOpib4w6jVifxmnaOXa/bR8pOhrpN136IdRp8kQ4CB950zNrpNDkF5B8lUpXEioOENg3o1qVMesxVMyLIdaBauAwqHL5c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777878691; c=relaxed/simple;
+	bh=Z9mIbzC3PrvdKZfUsuU1STfvdcmRNORpCWqR3OxggMs=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=gfdk6hz55IeUDY1t5DYLIY/obY6RZfuIjAmyLM3VKQ0Fv5790O/Cj1cWz/t0V9etqUyILSIsu82tlKRwI/YHURaiD9Ema3C+4JNx/7lvnPEJD6XRw/JOTcGuzZHDmRtF4F7rAOEmBklSlQSLAm//3uw302/lGw6wjd1YsLP7sVw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=EzEUO6aP; arc=fail smtp.client-ip=40.107.209.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A7eQ8CWqTli7Mu+5fvao6O+fe5lEoXn0F3cRDyp7sKaAs+KAx9/l9uKBw45c603H38Kf/aZaGZVGHd2FB89oA0TOiDV+oyOsAEJWmdbZLNp7WXwc+kz3C+owvoYXJ5SS05Lt2VEVRzDDmn9NJ5aTYniU+s1nOUt83RdqpJ07LJ6cbtZxrcNXPf4f0c1RROYbZ2N/na5O33crBT72cER+CCNFWhAwrqOpiOeGk+QKt+kopf6d9ykTn+XDaEmsUm7FEzC8dIXfJCKn/OgLaZ5sww5A2InKX712L/GiaThESr4Gfhznr6W8K627svGUwtf0iXICpDHYD1gv6xEZ9sYBXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kqXC1ywNkkHeaQbOpbTdQ/VXL0esjiMcI6yWEjPOD/c=;
+ b=fKQfxpI4vJDxjCxIVn+MlwZovgs1cOv/Rb67AO/IyYwr7rjgkiwNn+AfLO5IQkJdWoVU1lMNVehtLZSYm6qH++iYGk+2flC0AHUadhSCYIW1ZE0J5Hj2kX+iIJ7SMQt3yIkK9uhILdFnGodEBASEnp0flOvK39mfns16gflvuYtX9+nhpSz2D6JkL0O4Hs0utJ24IX6so8Pr8fGRIJotC1MEBlr9oFDRAAWVjnn7J4yWZ/8msw5iodWuhdyTaSVnYIE9XM6p58pkmE6+IKgEHQiUxX9Rzf2L9yCKXG4VfFnlzVGG9mYwT3SHGKByD7p3xipim+PLblWP0a6NIQKFGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kqXC1ywNkkHeaQbOpbTdQ/VXL0esjiMcI6yWEjPOD/c=;
+ b=EzEUO6aPyHFveaYXh4VhzogZ+s5muZW0TITP1rP0VYOyR2HlvcKebrGj92SMnLSxNlekMjwvXOunObaNktSaNOWP9gDM9mr8XzEshhyFV30txRVeETW0kOi3P61dD753NJI+ybX9uupxxh7jn+2wLKqLSLvQP/6WPcj+8ikuugJ4qUdnzLfoy4Ys5bb8tKPMGW5oH+Rvg/lur+7VV0HM83tyO7vSm/GKm0E9cWXzaWNaTGsGsU3F4PtVL//Z3uqvVjMtjyvg4f1Q1PX4168w5WMwepc8ZnIomTV7VUyUKFe9ACiUcCNnGmbwNYYwVbB8P6HWz5HjaPwPmVKDHjcAgw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from DM8PR03MB6230.namprd03.prod.outlook.com (2603:10b6:8:3c::13) by
+ SN7PR03MB7181.namprd03.prod.outlook.com (2603:10b6:806:2e2::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
+ 2026 07:11:27 +0000
+Received: from DM8PR03MB6230.namprd03.prod.outlook.com
+ ([fe80::abad:9d80:7a13:9542]) by DM8PR03MB6230.namprd03.prod.outlook.com
+ ([fe80::abad:9d80:7a13:9542%4]) with mapi id 15.20.9870.023; Mon, 4 May 2026
+ 07:11:27 +0000
+From: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+Subject: [PATCH 0/2] arm64: dts: intel: set alias for i3c controllers for agilex5 variants and derivatives
+Date: Mon,  4 May 2026 15:07:15 +0800
+Message-ID: <cover.1777878392.git.adrian.ho.yin.ng@altera.com>
+X-Mailer: git-send-email 2.49.GIT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY1P220CA0011.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:59d::11) To DM8PR03MB6230.namprd03.prod.outlook.com
+ (2603:10b6:8:3c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: document the Renesas
- R63419 based dual-DSI video mode Display Panels
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20260430-topic-sm8650-ayaneo-pocket-s2-r63419-v2-0-91ac10453d0c@linaro.org>
- <20260430-topic-sm8650-ayaneo-pocket-s2-r63419-v2-1-91ac10453d0c@linaro.org>
- <20260503-magenta-aardwark-of-order-432352@quoll>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260503-magenta-aardwark-of-order-432352@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: E1DA94B91A2
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR03MB6230:EE_|SN7PR03MB7181:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7ad622a-11af-4100-2a77-08dea9ac5b69
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|56012099003|18002099003|55112099003;
+X-Microsoft-Antispam-Message-Info:
+	Q2se7btaX00go+FGUg7WhRys7t6ObFZ6que/rkpINFMBElrEFsFMtUwtGh8nlZszEpR4+eXltKuZXtzJyVkm4sjw1qAumoutyjRYYknLbycKHvhTPJZknAi3e9h4OS8HcNZAbYf3RkrhGbugSW0UGi0ZIZcsr3dZuFBry9ww3defFxT9BjXd34X135MIv7pJ7oDE2qZM/LY8CbBO6smraENjVb9SEKl3xCQbjZhxPN4MyCI5hVOz04dHarMS1GiMa1cmIXoIBSVsYb4Rg+duBMUfkn+L5s3YIJiBBUwILl/NQbC0RnD4oiai1nknTJvCM+es6ulbsS5MHJ/JY/rB+fL2DNxBgroN3cY7czI3O7xXA3us/moJIK2m7zZLYY+/L3QFB/kXvjGeO/CjqeCSgahBbfWVsKLSJNgtA1cJ9ztGakK9ftP1coH1Bjtw3yVRuwd1yFidk1UHNeBmTUNtRpoairaWIulU6n5K/0U7GydzMBuSJqBWLYJHquNkrioLQkJC2i3zbwzzGUGZ+7vk/TnRfyWgFaD5XptRFkEe8YI3K8yVVvemTKIXnnz3WArRjZE7mkFcVoHtBJ1GWifSUQhozW73oZ3hkJ+icKt2VMPhp1ua0jb1VH7wTC2nE/U0xYyf7UIzrcb5seJk8YMUP61go8/SJsxy81JRH6lSdjW5BCMT6Th1KFBaKzIoE27w
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR03MB6230.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(55112099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mP/IqEOPXwOR1Ai3hplQPYO9RKR6LA13NqA+An54TVIFns/sqWzDhjRGjVlx?=
+ =?us-ascii?Q?64TqnCTGJuA7oM0EEOJr8b2DdVNe8jDsrEM+/IaEyXhfYDj7QZJi1SkxPAUG?=
+ =?us-ascii?Q?wqXodmq0wMGKql2GsKG8w0CA3/5W7olmOlIWnrVZ4iGsEUEtswUuwkRwqjcD?=
+ =?us-ascii?Q?qAwu1j5y69HXVtwPJCQ5Pb9FFIsyw0TfjkoglM3YUYyYcrD1bQJ9wufBR9er?=
+ =?us-ascii?Q?v2F0pQQeF18+D50wvKggBNXdT5SCY/S15SrFEN6AC9q9b/lpszn8OGT3zVuC?=
+ =?us-ascii?Q?vxEAa1JNWNiH8OilagX2oS2diWWtajUBL2Mv+9awKKc/uNLQawBag4GTFmrr?=
+ =?us-ascii?Q?Jh1viUePPY7OOMMttBTARhJrikTiUiapPa1Wtqak3WZVMps1F2u5OIaSftpO?=
+ =?us-ascii?Q?B0CxnBl6IeD6S3v5Ir5vZFfSINlSZOTTD44y9w3gSwFnxAnTIGpa4o9dvQSP?=
+ =?us-ascii?Q?WsER5Dch3+lUIhKuRBFAE93svh+2ZMh+NfKenPncqD8nDYtEJqMX8FVQ1wFA?=
+ =?us-ascii?Q?juakAcDbYRHZgUENRARJG7dsUDnLkFjznlfAeBV9Foql5l5J119ijLgiUhaX?=
+ =?us-ascii?Q?D6NROEKcSl21GoTyTVc7sGk7K9vFy1VxvYCQNq4yOCdEaZnomgUjOh9Ax+KW?=
+ =?us-ascii?Q?yvh35Lb7biK1l9OZqJeELzP6XJKHRUZD3/83IoWhVQfR43yaQc5UxwJkZTa4?=
+ =?us-ascii?Q?ANWGAgZNbPhAeBGSTzE3nOhMCUgoZ4TIkqVN9oZFQVDVN1wM5BVs/SuLkRsr?=
+ =?us-ascii?Q?qlD+AL1ORlcAujKhWAlPi9YnTrxNqUvEBPmuzftm47HGCf9arOUG5yZYYrBn?=
+ =?us-ascii?Q?kJQU4Fl+6h49MoK/B7hpgm7/THCXqQu5dkXmSpPFOKehJZTcwTe5hR9nX39t?=
+ =?us-ascii?Q?rx3T8eCtwn/ppVAHk/7Ciz1qpvlZNNIrvPAGFj0rzl/P52tACaocSBR6fMP+?=
+ =?us-ascii?Q?5NSc3HzN1AB5gZY3PikyiBfqyhZSl67vaT8oTWsHu0pWbg3w+D2Gje4OqPVV?=
+ =?us-ascii?Q?6rllhm4aKEUDr07dd+EXcS2ztv7b0FtiiOzEmk/Jnegy+a0OO+JdKXOcBjBe?=
+ =?us-ascii?Q?9TNXmk4PpWeFHmylTCot4zqqRvw9pPYNPPptCwQqFoUBMSiDi+OuVQ6bTWJy?=
+ =?us-ascii?Q?Tc3zWmAt+nnlrMldIpa1Mayv36V4D7B8p4AImSq5t7jW7GcKOULtRRU324ht?=
+ =?us-ascii?Q?83acd+T8c3QMojIU/j0ta3E+Z7AgJd1j5mk0gLuw2wdNzUkYDPLAwonznh4L?=
+ =?us-ascii?Q?XuRmnnrsUBDXpeY6VLVGk2Q6NvEQ8f+wNK6n2QWzw7EvtGMkjsSzd4+Uz1c1?=
+ =?us-ascii?Q?dcjZWJwp3uW8r7wjBPH2OWIgndOdMwRETx+LUD0nYTOYkap2c/Ku9KW4BQ60?=
+ =?us-ascii?Q?Oo48nfPnuujgybHt+4vKVIEl1tktn3ZNivDT/4yXQ6FtPpyISH1IznhJdDA0?=
+ =?us-ascii?Q?SKwUxp+rU9qfroKh0DLqt3BRhEigbT8e4Dl2LmcIxxMmnO5Thr3JWlKtJv3U?=
+ =?us-ascii?Q?b6R4GAQZ6GLjt/c9sMg0h8KzcWUw916mxJdf+ZVJz27mJao7P32z5ahELpth?=
+ =?us-ascii?Q?AddV7ZEThxdG/KfiqlIyw5SOePRwTEzuVKKQxbmsV3zJ3YTrMXfWlgB+G4Z6?=
+ =?us-ascii?Q?FlN0Tdt9QeEZrjm1ZeFtzZ1xTmNknLRi/M726Hoy8XotSB9eye6hPtH3C0C/?=
+ =?us-ascii?Q?i0IWhPPMuJQ9C4EwDead0jSusktTKQfzgPVawYrLLo1Vqp/27CWQspPYYCwj?=
+ =?us-ascii?Q?uBGw+STNQqHSjvLjttk3CgGCoW46APw=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7ad622a-11af-4100-2a77-08dea9ac5b69
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR03MB6230.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 07:11:27.0469
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3ObLhlXA8HoDDAju35Mj935eJKhTgcLqyQhetoEyobWaVI1Ux+/gJNQoh8au9Q79zmGxY9J5Kq+Q5r064DQcwum98Zm5FMpDtXFTMsNNwlo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR03MB7181
+X-Rspamd-Queue-Id: 96ADB4B9315
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be,lists.freedesktop.org,vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-292493-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:email,linaro.org:dkim,linaro.org:replyto];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292495-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[altera.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adrian.ho.yin.ng@altera.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On 5/3/26 14:34, Krzysztof Kozlowski wrote:
-> On Thu, Apr 30, 2026 at 02:22:17PM +0200, Neil Armstrong wrote:
->> Document the Renesas R63419 based dual-DSI video mode Display Panels found
->> in the Ayaneo gaming handled devices.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../bindings/display/panel/renesas,r63419.yaml     | 93 ++++++++++++++++++++++
->>   1 file changed, 93 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r63419.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r63419.yaml
->> new file mode 100644
->> index 000000000000..17f166db3ca3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/panel/renesas,r63419.yaml
->> @@ -0,0 +1,93 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/panel/renesas,r63419.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Renesas R63419 based dual-DSI video mode Display Panel
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +
->> +description:
->> +  The Renesas R63419 is a generic DDIC used to control dual-DSI LCD panels.
->> +
->> +allOf:
->> +  - $ref: panel-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ayaneo,wt0600-2k
->> +      - ayaneo,wt0630-2k
-> 
-> Just like for all other panels (including other Renesas) you should have
-> fallback to indicate the actual panel IC, even if it is not used by the
-> driver.  Some SW still could fine that fallback usable.
+Agilex5 SoCFPGA variants and derivatives have 2 i3c controllers, a main
+master and a secondary master. Setting the alias for both i3c controllers
+to prevent bus id contention when both controllers are enabled which
+results in driver probe failures.
 
-Ack
+Adrian Ng Ho Yin (2):
+  arm64: dts: agilex5: set alias for i3c controllers for agilex5
+    variants
+  arm64: dts: agilex3: set alias for i3c controllers for agilex3
 
-Thanks,
-Neil
+ arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts         | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts         | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts    | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_modular.dts | 2 ++
+ arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts    | 2 ++
+ 5 files changed, 10 insertions(+)
 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.49.GIT
 
 
