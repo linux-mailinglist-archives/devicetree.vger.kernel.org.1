@@ -1,179 +1,292 @@
-Return-Path: <devicetree+bounces-292752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292754-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBk3E13l+Gl32wIAu9opvQ
-	(envelope-from <devicetree+bounces-292752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 20:28:45 +0200
+	id UEUOFj/m+Gkt2wIAu9opvQ
+	(envelope-from <devicetree+bounces-292754-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 20:32:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D0A4C2851
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 20:28:44 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7744D4C294B
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 20:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 59E3630684C1
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 18:25:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6DB4A301D334
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 18:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED96D3EBF2F;
-	Mon,  4 May 2026 18:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A673E8C56;
+	Mon,  4 May 2026 18:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X9Ag+iZ6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSUwpjzn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939333E9F96;
-	Mon,  4 May 2026 18:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B79A3E866C;
+	Mon,  4 May 2026 18:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777919099; cv=none; b=Fs1osqDclblC2/MtfFE2GWMzHHJdeEeQJDznxS292lmdHp5IgrNKBiyyHYhMYVDgWa8XSxOBxcdAAVTELpY7gJiCFK44dbEtB9qmMkMqbmiYrbHmaR6cKsFy8s4DA1drKfDD4ap2aePW21px2fXyNUasP6465Dbtwt4DdAI4iY4=
+	t=1777919199; cv=none; b=gH0SuY7zVvSgHxGIag6oyaXl2o8ki58n6IbtFduGHWJDEO6fa9wzG0md5LnGmExrblYjehiDNruo+KJjMmWrh/0tBkC67vSyJ6RcIzGNusZCEkZGwEgA+9gxP3Zke1p9BPtCyBm6dZrqILhdZPHtt1B6N68hmXapDaxrXVAeA6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777919099; c=relaxed/simple;
-	bh=GU4QVvFihDtlJ6mm+kq5xGELKC7sNPpkFTI44o4I8MI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tg5vgugjjMu66J4gpRY3hKGDiqUDG8HamRwC0Bg7hdDbJ9tl3RoF1RzO6Q4Cgn/rGOLrzpcYruznC+ePgtJQxBQ4mnvaOyQIT3Df/ilkgz3UUTwdc/b7Hx2Q6nBVL0kO0Oe4NVAO5FuDdPF+YHvGhKd/lFFjxvT4fOe0oS1JqTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X9Ag+iZ6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 68059C2BCF7;
-	Mon,  4 May 2026 18:24:59 +0000 (UTC)
+	s=arc-20240116; t=1777919199; c=relaxed/simple;
+	bh=37Ot73A4fj0D5GowVRnxYtFfCqaZs359WtRnBjznzU4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u0Wlbw9VVzBtnBMqNjnAG6n8y7HNIxocv/I7IiJcKANJbP0+pvxsbV/taGhgQwZFsEnfNEY5ehX8a4D2HBzU1iA7JWRdAb3doUUPDuPYHOBVIY9IlSxKO9t5GwilCvNbnpGN5r2xRTi/EQ0uXT3NLkEA59br982eIMDw5gEts8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSUwpjzn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB13C2BCB8;
+	Mon,  4 May 2026 18:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777919099;
-	bh=GU4QVvFihDtlJ6mm+kq5xGELKC7sNPpkFTI44o4I8MI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=X9Ag+iZ6EZ0Y9BhoLfKnpEnIALv2h9odzKx1MQa6gN3R4nPeT+Mg14hbROmo6pYpX
-	 1D/rwHCrc6C3HDrW5T2Uy3rBEJV20kI/nGEzGDOEes1136K3j2CmnIoxmb8teJYgCU
-	 g5e09B5HRQTa/k4t/rT5faGXoxmrjN68/cuzWxk0V8e0YvWVPkfjJbXP9yuRfgVu7w
-	 2opD4o562Jl+PugOLcz1xFjac8bFQZVNiayyEPWj+1GzL4M6MGDw3BD8fOmKDFVdvm
-	 x2bAriTyQYWJvKlNmU4bSg120cwOwYHVqVkuFR/Wtg+L61wSjRgZwugJGYgZbntZ5o
-	 82ZsExigdrvIg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B48DCD343B;
-	Mon,  4 May 2026 18:24:59 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Mon, 04 May 2026 21:25:05 +0300
-Subject: [PATCH 13/13] MAINTAINERS: add mt6323 drivers maintainer
+	s=k20201202; t=1777919199;
+	bh=37Ot73A4fj0D5GowVRnxYtFfCqaZs359WtRnBjznzU4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=qSUwpjznKGAEqwntxKcoOXrL6pCU2OsVZgZuRu6sMWy9TTRqw3IMQ/wn3Y+83vmIL
+	 16i17TFaz5Fpup7d0XO/401IatwBwzUCAYQuSM8FQhZzvwUcidtPMOboOK8mW/Bhnz
+	 Zr51HKy1HPDSSBQo/OOUn/h0SmqU9TY7QO0KFA9x/F4ceOudefmw+828sa6T0shDJq
+	 /ZjEPFj6LEeQrb4udjSwJ/p9tKPY+N/M6AIR0hYc/pQHjbry8JHkcFX0nYZfvd/K7d
+	 hdRu6Y3pMUuB/FPGz3scfHV189Z0poxi3nHnDnD2sViGH6x+NRGqABpjtxytX2lKDF
+	 1A5a8EQBsaDeQ==
+Date: Mon, 4 May 2026 19:26:29 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+ dlechner@baylibre.com, jean-baptiste.maneyrol@tdk.com,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ andriy.shevchenko@intel.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V4 04/10] iio: imu: inv_icm42607: Add PM support for
+ icm42607
+Message-ID: <20260504192629.64e2f1d9@jic23-huawei>
+In-Reply-To: <20260501221152.194251-5-macroalpha82@gmail.com>
+References: <20260501221152.194251-1-macroalpha82@gmail.com>
+	<20260501221152.194251-5-macroalpha82@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-mt6323-v1-13-799b58b355ff@protonmail.com>
-References: <20260504-mt6323-v1-0-799b58b355ff@protonmail.com>
-In-Reply-To: <20260504-mt6323-v1-0-799b58b355ff@protonmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Srinivas Kandagatla <srini@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Lee Jones <lee@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
- Ben Grisdale <bengris32@protonmail.ch>, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1777919095; l=1438;
- i=rva333@protonmail.com; s=20260325; h=from:subject:message-id;
- bh=IVcMJZ09jRgz+N+6u0mZ3SGFnZp8AgopNcJEHOCTJNc=;
- b=sGOiE3hgm56BrjQDzKGAj+m/O2IVz15/wAVId3APq3ZRUTQQDfaPwGa8RgJBYGeN7nDaBwYvr
- f0PDwqQvQRvBN/Or0xUv3NBMufyq8nsAz59qQxiQOJSsQ4iB3uMLrae
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=euuVBZGtA2Cqb8Dju84qpQPhvwxyUirJlXpqEPQWKBM=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260325 with
- auth_id=695
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Reply-To: rva333@protonmail.com
-X-Rspamd-Queue-Id: E4D0A4C2851
+X-Rspamd-Queue-Id: 7744D4C294B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-292754-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292752-lists,devicetree=lfdr.de,rva333.protonmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,intel.com,arm.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rva333@protonmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.996];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.ch,protonmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,protonmail.com:replyto,protonmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mediatek.com:email]
+	RCPT_COUNT_TWELVE(0.00)[14];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
 
-From: Roman Vivchar <rva333@protonmail.com>
+On Fri,  1 May 2026 17:11:43 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-Add myself as MediaTek mt6323 AUXADC, EFUSE and thermal driver maintainer.
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add power management support for the ICM42607 device driver.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
- MAINTAINERS | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+I think this suffers from usual problem we get when runtime_pm
+handles a regulator that we are also registering to be turned off
+via devm.  That devm path needs to check if device is already runtime
+suspended. Be careful about paths in probe() where we might check
+runtime suspend state that isn't set yet.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d1cc0e12fe1f..53493a24d00a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16337,6 +16337,18 @@ S:	Orphan
- F:	Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
- F:	drivers/mtd/nand/raw/mtk_*
- 
-+MEDIATEK PMIC AUXADC DRIVER
-+M:	Roman Vivchar <rva333@protonmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/mediatek,mt6323-auxadc.yaml
-+F:	drivers/iio/adc/mt6323-auxadc.c
-+
-+MEDIATEK PMIC EFUSE DRIVER
-+M:	Roman Vivchar <rva333@protonmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/mediatek,mt6323-efuse.yaml
-+F:	drivers/nvmem/mt6323-efuse.c
-+
- MEDIATEK PMIC LED DRIVER
- M:	Sen Chu <sen.chu@mediatek.com>
- M:	Sean Wang <sean.wang@mediatek.com>
-@@ -16345,6 +16357,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
- F:	drivers/leds/leds-mt6323.c
- 
-+MEDIATEK PMIC THERMAL DRIVER
-+M:	Roman Vivchar <rva333@protonmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/mediatek,mt6323-thermal.yaml
-+F:	drivers/thermal/mediatek/pmic_thermal.c
-+
- MEDIATEK RANDOM NUMBER GENERATOR SUPPORT
- M:	Sean Wang <sean.wang@mediatek.com>
- S:	Maintained
+https://sashiko.dev/#/patchset/20260501221152.194251-1-macroalpha82%40gmail.com
+Has quite a bit to say no the series in general. It may
+not always be right but some of the stuff in this patch is.
 
--- 
-2.53.0
+> ---
+>  drivers/iio/imu/inv_icm42607/inv_icm42607.h   |   2 +
+>  .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 177 ++++++++++++++++++
+>  .../iio/imu/inv_icm42607/inv_icm42607_i2c.c   |   1 +
+>  .../iio/imu/inv_icm42607/inv_icm42607_spi.c   |   1 +
+>  4 files changed, 181 insertions(+)
+> 
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607.h b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> index 763d731ccc60..7facc114adc5 100644
+> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> @@ -11,6 +11,7 @@
+>  #include <linux/iio/common/inv_sensors_timestamp.h>
+>  #include <linux/iio/iio.h>
+>  #include <linux/mutex.h>
+> +#include <linux/pm.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  
+> @@ -390,6 +391,7 @@ struct inv_icm42607_sensor_state {
+>  typedef int (*inv_icm42607_bus_setup)(struct inv_icm42607_state *);
+>  
+>  extern const struct regmap_config inv_icm42607_regmap_config;
+> +extern const struct dev_pm_ops inv_icm42607_pm_ops;
+>  
+>  u32 inv_icm42607_odr_to_period(enum inv_icm42607_odr odr);
+>  
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+> index 1ac3a573863c..af3784040b7a 100644
+> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/irq.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> @@ -106,6 +107,62 @@ u32 inv_icm42607_odr_to_period(enum inv_icm42607_odr odr)
+>  	return odr_periods[odr];
+>  }
+>  
+> +static int inv_icm42607_set_pwr_mgmt0(struct inv_icm42607_state *st,
+> +				      enum inv_icm42607_sensor_mode gyro,
+> +				      enum inv_icm42607_sensor_mode accel,
+> +				      bool temp, unsigned int *sleep_ms)
+> +{
+> +	enum inv_icm42607_sensor_mode oldgyro = st->conf.gyro.mode;
+> +	enum inv_icm42607_sensor_mode oldaccel = st->conf.accel.mode;
+> +	bool oldtemp = st->conf.temp_en;
+> +	unsigned int sleepval;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	if (gyro == oldgyro && accel == oldaccel && temp == oldtemp)
+> +		return 0;
+> +
+> +	val = FIELD_PREP(INV_ICM42607_PWR_MGMT0_GYRO_MODE_MASK, gyro);
+> +	val |= FIELD_PREP(INV_ICM42607_PWR_MGMT0_ACCEL_MODE_MASK, accel);
+> +	if (!temp)
+> +		val |= INV_ICM42607_PWR_MGMT0_ACCEL_LP_CLK_SEL;
+> +	ret = regmap_write(st->map, INV_ICM42607_REG_PWR_MGMT0, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->conf.gyro.mode = gyro;
+> +	st->conf.accel.mode = accel;
+> +	st->conf.temp_en = temp;
+> +
+> +	sleepval = 0;
+> +	if (temp && !oldtemp) {
+> +		if (sleepval < INV_ICM42607_TEMP_STARTUP_TIME_MS)
+> +			sleepval = INV_ICM42607_TEMP_STARTUP_TIME_MS;
+> +	}
+> +	if (accel != oldaccel && oldaccel == INV_ICM42607_SENSOR_MODE_OFF) {
+> +		usleep_range(200, 300);
+> +		if (sleepval < INV_ICM42607_ACCEL_STARTUP_TIME_MS)
+> +			sleepval = INV_ICM42607_ACCEL_STARTUP_TIME_MS;
+> +	}
+> +	if (gyro != oldgyro) {
+> +		if (oldgyro == INV_ICM42607_SENSOR_MODE_OFF) {
+> +			usleep_range(200, 300);
+> +			if (sleepval < INV_ICM42607_GYRO_STARTUP_TIME_MS)
+> +				sleepval = INV_ICM42607_GYRO_STARTUP_TIME_MS;
+> +		} else if (gyro == INV_ICM42607_SENSOR_MODE_OFF) {
+> +			if (sleepval < INV_ICM42607_GYRO_STOP_TIME_MS)
+> +				sleepval = INV_ICM42607_GYRO_STOP_TIME_MS;
+> +		}
+> +	}
+> +
+> +	if (sleep_ms)
+> +		*sleep_ms = sleepval;
+> +	else if (sleepval)
+> +		msleep(sleepval);
+> +
+> +	return 0;
+> +}
+> +
+>  int inv_icm42607_debugfs_reg(struct iio_dev *indio_dev, unsigned int reg,
+>  			     unsigned int writeval, unsigned int *readval)
+>  {
+> @@ -313,10 +370,130 @@ int inv_icm42607_core_probe(struct regmap *regmap, int chip,
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = devm_pm_runtime_set_active_enabled(dev);
+
+This will interact with the status setup you need as mentioned above for devm
+code to work right.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, INV_ICM42607_SUSPEND_DELAY_MS);
+> +	pm_runtime_use_autosuspend(dev);
+> +
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_NS_GPL(inv_icm42607_core_probe, "IIO_ICM42607");
+>  
+> +/*
+> + * Suspend saves sensors state and turns everything off.
+> + * Check first if runtime suspend has not already done the job.
+> + */
+> +static int inv_icm42607_suspend(struct device *dev)
+> +{
+> +	struct inv_icm42607_state *st = dev_get_drvdata(dev);
+> +	struct device *accel_dev;
+> +	bool wakeup;
+> +	int accel_conf;
+> +	int ret = 0;
+
+Always set before use so no need to init here.
+
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	st->suspended.gyro = st->conf.gyro.mode;
+> +	st->suspended.accel = st->conf.accel.mode;
+> +	st->suspended.temp = st->conf.temp_en;
+> +	if (pm_runtime_suspended(dev))
+> +		return 0;
+> +
+> +	/* keep chip on and wake-up capable if APEX and wakeup on */
+> +	accel_dev = &st->indio_accel->dev;
+
+Never set at this point in series. (Sashiko raised this)
 
 
+> +	wakeup = st->apex.on && device_may_wakeup(accel_dev);
+> +	if (wakeup) {
+> +		/* keep accel on and setup irq for wakeup */
+> +		accel_conf = st->conf.accel.mode;
+> +		enable_irq_wake(st->irq);
+> +		disable_irq(st->irq);
+> +	} else {
+> +		accel_conf = INV_ICM42607_SENSOR_MODE_OFF;
+> +	}
+> +
+> +	ret = inv_icm42607_set_pwr_mgmt0(st, INV_ICM42607_SENSOR_MODE_OFF,
+> +					 INV_ICM42607_SENSOR_MODE_OFF, false,
+> +					 NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!wakeup)
+> +		regulator_disable(st->vddio_supply);
+> +
+> +	return 0;
+> +}
 
