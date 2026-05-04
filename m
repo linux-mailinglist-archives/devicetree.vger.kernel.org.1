@@ -1,350 +1,173 @@
-Return-Path: <devicetree+bounces-292695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292697-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPRXCFy6+Gnh0AIAu9opvQ
-	(envelope-from <devicetree+bounces-292695-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 17:25:16 +0200
+	id 2LetJly/+Gnh0AIAu9opvQ
+	(envelope-from <devicetree+bounces-292697-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 17:46:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA4E4C0A46
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 17:25:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10BA14C0DBC
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 17:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4BAE5301829F
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 15:25:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 02FB0301A3A8
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 15:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55403E0247;
-	Mon,  4 May 2026 15:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA2B217659;
+	Mon,  4 May 2026 15:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lcb9BiGo";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g++7TpOb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Iol6vBuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0223DE459
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 15:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA1212E1E9;
+	Mon,  4 May 2026 15:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777908297; cv=none; b=uxpf3l3lJ5Z2YMdb9izXzB90LTgyYollchGTJnbG3uVB0xnWvJ3PxXl0KsKNylZTH5caKQXyOBCyXBo1nS8rHT9PkzQpsnP5Wu9m0KZSJbNmsWMmtsRp2eh1CHP0joacn0Rc+Twu4v1PbjVlYYHKwCIalctYus7wIN7Z7NBW9Xs=
+	t=1777909592; cv=none; b=rZgSEkjslaYPEL7RG3Yhf1KWTQNHKZju15yX9hS4WOFKf7wPiS3beOmUrmqBszej0Y54663xPf01l3rMUBP4EVGcA28XdZ2I6557tsqibQboRMNs5PNLTSFHNSr7rmELSrxG8Oq6m6vi7r0MIOUJiNjr67df60LN++/9FsEoJNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777908297; c=relaxed/simple;
-	bh=24HMZQ9Ms/gngLZDovaC0SQfcgVkxbPvUEiAJQvC/nw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UvAC/kkdX0RkDgAevqQRh0HCaiS0aLRSmy54x3wqi3mbTHjWyvZmSOGgwg77+53DNyQ2trYNjRC6X1mHiShWo8+HDSk8321UFCByDph+rZ4YidtgpeEFMlmvZhMUPVFKoc0UkM/ISkCxJ/xd5GPcEHykCXf4zx7pfxkG2RY4Cr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lcb9BiGo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g++7TpOb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 644B4GAf1152055
-	for <devicetree@vger.kernel.org>; Mon, 4 May 2026 15:24:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Hf6N3xo6cjBW+8Z3N+x8sxSpWyuJxm0UgHE+MChhex4=; b=lcb9BiGo++zVI34r
-	d6uFn6mGXX62p9s8ZK77g7KT+CVdcqmgMtM1IyiTqkSo+uZdY+Nlkuj7DA6D+ZSZ
-	pbVPgJmZPKK2DefzmLaSkWxwlYpvcTN3PpF/321pUZ7NqnqoD1NcnviUMqTsxiZt
-	spoE/9Yyp/QmyZMwM5aec/+FR5X7WYJ9kdfugRR7x8tgGEdw6SC/3rS6+LRbcrCl
-	xDu7zEfTFZERb6feWZ4dzEfgHCiIR1QRsqjVm5uCNzogWOTkltctr5QCNI5JxYpj
-	Uyw1lqexFxlfECTeNmwJpo7G6hgUggXyV6NeUdu6Z0uWXYODBSiOX0tHXVGO7zyK
-	1XWwuA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dxscy919t-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 04 May 2026 15:24:55 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2b2e6ee9444so37756495ad.1
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 08:24:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777908295; x=1778513095; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hf6N3xo6cjBW+8Z3N+x8sxSpWyuJxm0UgHE+MChhex4=;
-        b=g++7TpObeSjaMXOJT+7mA4/LFlwkJHAKmZdlTrrZQRTR98YJQ99CEHm/1NJm8/5U8g
-         hVzK7tRo0SFjpmAF24S78sB74KCP4Y8QLSfg1gv6B6wW89yVpPj/eJEAo/njpjWJyp+I
-         EdX/q6lmvJW3I6MH5WWK412/RRvwdeBT3I/QI7hF+NsDJLPssGFan8QRk6gpmlbtkFU7
-         QA2kz1QUvvSXHDxtXtwbuuuOhIIWgnm4KxTeJEnwbDfoUZmcW6zubVta1inF34iGgbJ9
-         kdQaEDd6QvlC81nBvE7ghbKzvDFmab5BRIVkWmVmSn5slEkUOMKG/TuEWPdBg1E6twAj
-         +BAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777908295; x=1778513095;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Hf6N3xo6cjBW+8Z3N+x8sxSpWyuJxm0UgHE+MChhex4=;
-        b=AnB0/lJzirioE/nVcIVEcJE+E263Txyu0sYV78BzBuDho7oauzpNUpD+UO8XwUJKzy
-         nQ3spjlWnPLYHaLu8HUmZewAcqMoncnTA/cO1nu3vGXfr8/WbcrcXazmBTcnIRHhn2LW
-         iA0nLq1U5LxGdUWScdNioHNvM7nfwg7dXP+ebpbZtQsG2aIK1nJx5ELBYfGVSZsfl1dQ
-         2M0eNcZL63p70xjFXIkVXXn3tWYqMYbU1DmfeKhp/fiEUMm4/eE+f578fOzkZSGAbR0c
-         CNoINDqU+cp4+2wwmAaNWIdfrp7MHPppYRkhvShauBiuD2O6S4Ihbvg5t7L+X8zkNOxq
-         VwvA==
-X-Forwarded-Encrypted: i=1; AFNElJ860B0cSNgK/rWRebj6rzJo/YuVcFyarQTg/70F0uLuISv8Fv/pbV8MWK6bWOlnTPIPXv2Nb6SZVydw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwI0NFIcW597d6CxVXN/FPOfkplSkfK/2t5dYDrn+PbizngRE9n
-	OowSrHWkXACk1jYNGUizVMY3uVsnqjOQBeZdZ2NBW/3ft4Q93frhingEhfidELMP3n5j8eAwRY2
-	K/KqjZQqumI7qI9I30yolqq9L1CAuaxsR08hI1pxaMDB/QwZPfMRSjQmN0PbMLBhZ
-X-Gm-Gg: AeBDiev9vM6HAbgSpIXTW38J7A1x+DD/qEIFWp2mDgxZeWuM3+bEeTEMyLOG3SqDhO0
-	+htRu6nQ8LSL52EgqYGjD8qcVAttI5z8nUZJHtRCI7ziZ8TyfMawSmVLcnqRolGbttvatR7pM6P
-	l8a1uaibxo01ri3uUJ+GQZk0GWH7PWbFDlsobmfpHjyJNiIpOvEX5WeCPpMjeIkE3bzkeZSI8NG
-	LpNJUzwHKjA0HeUEP56ElfAb1xku8TX5iAbtbxg/9rqAvnoX7UsvVnHgaqrmtzZIhde2T49vUpR
-	Vrx2OOtyO6PChSv7tB9HsQVZlWMwIxhoDlrK5cvFMmqCz3f4j8P5UBCHFV4Sv/eUNCNUqQbR/Bd
-	rqw8ml2Io8g13kOz7bF1wzXm4/wBkoEJ7Ajh6JgSqkHv9tDZs9pPoqj3mf0VOCgj1eNFH89t8FV
-	ASMulqsOkcf71EW91YJr4bfoBtWPc=
-X-Received: by 2002:a17:902:f788:b0:2ba:21c2:d6cb with SMTP id d9443c01a7336-2ba21c2d8e1mr36393785ad.16.1777908294673;
-        Mon, 04 May 2026 08:24:54 -0700 (PDT)
-X-Received: by 2002:a17:902:f788:b0:2ba:21c2:d6cb with SMTP id d9443c01a7336-2ba21c2d8e1mr36393345ad.16.1777908294018;
-        Mon, 04 May 2026 08:24:54 -0700 (PDT)
-Received: from ?IPV6:2409:4070:2111:4f3e:25a4:b9da:3138:5b7c? ([2409:4070:2111:4f3e:25a4:b9da:3138:5b7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b9caa7ee38sm104462535ad.16.2026.05.04.08.24.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 May 2026 08:24:53 -0700 (PDT)
-Message-ID: <a0b4db09-2656-429f-8ebf-b8cc10c054a3@oss.qualcomm.com>
-Date: Mon, 4 May 2026 20:54:41 +0530
+	s=arc-20240116; t=1777909592; c=relaxed/simple;
+	bh=CYm8FgIgQtg6b7/viqj1XeEfaiD+lR1XoYD/Zo8+3S8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mv8Oin54sv7pdSADxbv17ZMSO59BeH8GBfffihwALK8xwhdmEFGzbBhymvZCastYxT6DFz15R38T8lzSjQ8PtGJdOCkgLCJQuVJTOvfWAhjbgA7rv4UFQ2HOEDNdJ0wDR76TZqGFb1sTxvIdN7U71npCM8Vd1Mb/nYLUkuFgtdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Iol6vBuZ; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1777909591; x=1809445591;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CYm8FgIgQtg6b7/viqj1XeEfaiD+lR1XoYD/Zo8+3S8=;
+  b=Iol6vBuZItkTfDUZl09ajLX73op7uTRIh55Gz1eiPNfo940+Pt8ynSFg
+   9hX6obJkq4aCw3+IbGjkq7KNW4g5QsetsdF2ElcNDq2KsmdKqjhhWYtUu
+   +SuGv3i2Bt3sKim84mLe7tymYA2BZJxx1oDtWcEE59S8Q/IFSwpFlqLbW
+   X5n1S/iH6JhtP6rtG6EshwGTbvfKjhkrsqg7InCCGI4SFBNugiBUYaO8R
+   rdyVWrWEGnx4iulEE2oU7Zf34cg+XEVTht9ZDJQlzWrQyrOd7TZ6ZsZca
+   Ksdf9oqB0tA3un7hz7mgRgKhyTsC8Z3vDKwUPbMUN6t2ywvXO7G/HorSp
+   w==;
+X-CSE-ConnectionGUID: CQjKUIIoSEunGm5EJqWEEA==
+X-CSE-MsgGUID: 2gExH5dBQL6rZAInIF3gPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="77787471"
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; 
+   d="scan'208";a="77787471"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2026 08:46:30 -0700
+X-CSE-ConnectionGUID: VMcrsg8cS8CMuL9ZS0UB2Q==
+X-CSE-MsgGUID: qfWQx1tpQiiuiA7Qy9jWCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,215,1770624000"; 
+   d="scan'208";a="259201174"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.198])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 May 2026 08:46:27 -0700
+Date: Mon, 4 May 2026 18:46:25 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Piyush Patle <piyushpatle228@gmail.com>
+Cc: Andreas Klinger <ak@it-klinger.de>, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 08/11] iio: adc: hx711: split variable assignments in
+ hx711_read and hx711_reset
+Message-ID: <afi_UWFCSUYruPFG@ashevche-desk.local>
+References: <20260503120949.80292-1-piyushpatle228@gmail.com>
+ <20260503120949.80292-9-piyushpatle228@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V10 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC
- thermal monitoring
-To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
-        subbaraman.narayanamurthy@oss.qualcomm.com,
-        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
-        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
-        lukasz.luba@arm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
-        neil.armstrong@linaro.org, stephan.gerhold@linaro.org
-References: <20260130115421.2197892-1-jishnu.prakash@oss.qualcomm.com>
- <20260130115421.2197892-5-jishnu.prakash@oss.qualcomm.com>
- <addDTiI8MB2b_AzJ@mai.linaro.org>
- <12d683aa-44c2-4e2d-8459-78ba9f2ab61e@oss.qualcomm.com>
- <f46ef4af-1c05-4473-9226-901d3393ea89@oss.qualcomm.com>
- <7e619cef-ed08-4454-905c-05ab0939d60e@oss.qualcomm.com>
- <e1845fc5-254e-4481-b783-5e631d4e506b@oss.qualcomm.com>
-Content-Language: en-US
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <e1845fc5-254e-4481-b783-5e631d4e506b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA0MDE1MSBTYWx0ZWRfXyWaPHsfKzquq
- I7o9gAFUMMW9pn9cRwyTwlAzmhxZkSqBYuD1mq3VVwyr8+0wIWnp4Y9MeBWzJVKGW/XYtFkZevi
- CKDC7PMSPe2J4/Y1lw6WHvw1qXUfMROLZLIdJbXFAm6Hq/rLbq0uAZegeXD7b369FzoGsIL0ENr
- 7am1yNUrJHfY5A26iPm2tI/zeHGwqoHmXM5tx7Ho2frS+wd0mroEEom5FxYZGaYCMf6AxO76oHG
- 6IAG86Gwfbku0fUY/NIkn+fwdE2SHQg76MvuY560LhKoHxtJAYEWqRiM/R8z7/JaK4swKJY/r8W
- 3QwZokhIRTFDtNLXKJEXeo0V6CpfruDDWS7gBXYKkj9swbsktwEWK1QqyJosB6JJWXWgYYz9s8v
- IA7CUBGfl+qKcFkhcO54yO0kU6GmIY1cO2IFVz44x+lfs3QL9dBNL2LJKOsXk9+TGYOXhJUAxA1
- 7I8WQl0OmxdPuUvflYg==
-X-Proofpoint-ORIG-GUID: f2bptFtem1xbiuCc3AA0rk6Dfk_0XkvJ
-X-Proofpoint-GUID: f2bptFtem1xbiuCc3AA0rk6Dfk_0XkvJ
-X-Authority-Analysis: v=2.4 cv=C47ZDwP+ c=1 sm=1 tr=0 ts=69f8ba47 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=uLTcNiWXy3B0Tm635-QA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-04_05,2026-04-30_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 phishscore=0 adultscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605040151
-X-Rspamd-Queue-Id: 7BA4E4C0A46
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260503120949.80292-9-piyushpatle228@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 10BA14C0DBC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linaro.org,gmail.com,intel.com,arm.com,vger.kernel.org,chromium.org,quicinc.com];
-	TAGGED_FROM(0.00)[bounces-292695-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292697-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jishnu.prakash@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
 
-Hi Daniel,
-
-On 4/27/2026 1:48 PM, Daniel Lezcano wrote:
+On Sun, May 03, 2026 at 05:39:37PM +0530, Piyush Patle wrote:
+> Separate the initial value assignments from the declarations in
+> hx711_read() and hx711_reset().
 > 
-> Hi Jishnu,
+> This is a small preparatory cleanup before the later loop-iterator and
+> variant-specific changes adjust the local variable layout in these
+> functions.
 > 
-> On 4/25/26 12:37, Jishnu Prakash wrote:
->> Hi Daniel,
-> 
-> [ ... ]
-> 
-> 
+> No functional change.
 
 ...
 
-> 
-> [ ... ]
-> 
->>> [ ... ]
->>>
->>>>>> +    dev_dbg(adc_tm5->dev, "channel:%s, low_temp(mdegC):%d, high_temp(mdegC):%d\n",
->>>>>> +        prop->common_props.label, low_temp, high_temp);
->>>>>> +
->>>>>> +    guard(adc5_gen3)(adc_tm5);
->>>>>> +    if (high_temp == INT_MAX && low_temp == -INT_MAX)
->>>>>> +        return adc_tm5_gen3_disable_channel(prop);
->>>>>
->>>>> Why disable the channel instead of returning an errno ?
->>>>>
->>>>
->>>> This is the convention we follow in our existing ADC_TM driver at
->>>> drivers/thermal/qcom/qcom-spmi-adc-tm5.c. If both upper and lower
->>>> thresholds are meant to be disabled, we disable the channel fully
->>>> in HW to save some power and it can be enabled later if this API
->>>> is called for it with valid thresholds.
->>>>
->>>> Is it considered invalid in the thermal framework to try to disable
->>>> both thresholds? Should I both disable the channel and return some
->>>> error from here?
->>>
->>> Well, if the channel is disabled, then the temperature sensor of the thermal zone is disabled, consequently the thermal zone is disabled from a HW POV but enabled from the kernel POV.
->>>
->>> Why not add the 'change_mode' ops and then disable the thermal zone (+ pm_runtime) ?
->>>
->>
->> I have a doubt about this part - if the thermal framework sends threshold values
->> of (-INT_MAX, INT_MAX) in the .set_trips callback, doesn't it mean that the
->> framework is already trying to disable the thermal sensor?
-> 
-> No, let me clarify this:
-> 
->  * the thermal thresholds are set by the userspace to get notification when a temperature is crossing the way up or/and down a specified limit. Thresholds can be deleted, added, flushed, etc ...
-> 
->  * the thermal trips are specified by the firmware and should not be changed even if I agree there are the writable trip points which IMO we can consider for debug purpose
-> 
-> If you specify a trip/threshold point with min=-INT_MAX and max=INT_MAX, semantically speaking it is correct but in practice these temperatures won't be reached so it is like the trip point is disabled but it is a side effect.
-> 
-> A trip point is a property of a thermal zone.
-> 
-> A thermal sensor is represented by a thermal zone.
-> 
-> A thermal zone can be enabled without trip points or thresholds. The userspace is still able to read a temperature through netlink or sysfs.
-> 
+>  	int i, ret;
+>  	int value = 0;
+> -	int val = gpiod_get_value(hx711_data->gpiod_dout);
+> +	int val;
+> +
 
-Thanks for your explanation, I understand the convention now.
+> +	val = gpiod_get_value(hx711_data->gpiod_dout);
 
->> Or does it just mean threshold monitoring functionality can be disabled for now,
->> but other functionality like temperature reading is still expected to work?
->>
->> Please note that adc_tm5_gen3_disable_channel() only disables the threshold
->> monitoring and interrupt generation functionality - the get_temp() call to read
->> temperature will still work.
-> 
-> Above you stated we receive a notification when the conversion is finished. So how do you read the temperature if there is no interrupt telling to read the converted value ?
-> 
+This line should be coupled with the conditional
 
-I think you are talking about the immediate conversion here, which is called in get_temp() -
-let me try explaining with an example, to avoid missing anything again.
+>  
+>  	/* we double check if it's really down */
+>  	if (val)
 
-On an ADC SDAM, we have 8 channels which can be used for either immediate read or
-ADC_TM functionality. So by convention, we reserve the first channel of the first
-SDAM for *all* immediate reads and use all the remaining channels for ADC_TM.
+	/* we double check if it's really down */
+	val = gpiod_get_value(hx711_data->gpiod_dout);
+	if (val)
 
-So if we have SDAM 0 and SDAM 1 used for ADC, channel 0 of SDAM 0 is used for all
-immediate conversions and channels 1-7 of SDAM 0 and channels 0-7 of SDAM 1 can
-all be used for ADC_TM functionality.
+...
 
-Now if channel 5 of SDAM 0 is used to monitor the xo-therm ADC thermistor and we call
-adc_tm5_gen3_disable_channel() on it, threshold monitoring and interrupt generation
-from channel 5 alone would be stopped, but it would not change for other channels.
+>  static int hx711_reset(struct hx711_data *hx711_data)
+>  {
+> -	int val = hx711_wait_for_ready(hx711_data);
+> +	int val;
+> +
+> +	val = hx711_wait_for_ready(hx711_data);
+>  
+>  	if (val) {
 
-So if we wanted to read the xo-therm thermistor's temperature through the get_temp()
-callback, it would still work, as calling get_temp() results in an immediate
-conversion request done through channel 0 of SDAM 0 to read this thermistor's temperature.
+Ditto.
 
+	val = hx711_wait_for_ready(hx711_data);
+	if (val) {
 
->> Perhaps I should not have used the wording
->> "disable the channel" above, as calling adc_tm5_gen3_disable_channel() is not
->> exactly the same as fully disabling the thermal zone.
->>
->> Please let me know if any change is needed there - should I return any error
->> after calling adc_tm5_gen3_disable_channel() ?
-> 
-> I understand, your point. Perhaps just put it apart and address it later as an optimization when the driver is merged and everything is clarified.
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
 
-OK, I'll do as you suggest. For now, I'll just drop this special case check:
-
-        if (high_temp == INT_MAX && low_temp == -INT_MAX)
-
-and try adding it in a separate change later.
-
-Thanks,
-Jishnu
-
-
->>> [ ... ]
->>>
->>>>>> +    /*
->>>>>> +     * Skipping first SDAM IRQ as it is requested in parent driver.
->>>>>> +     * If there is a TM violation on that IRQ, the parent driver calls
->>>>>> +     * the notifier (adctm_event_handler) exposed from this driver to handle it.
->>>>>> +     */
->>>>>> +    for (i = 1; i < adc_tm5->dev_data->num_sdams; i++) {
->>>>>> +        ret = devm_request_threaded_irq(dev,
->>>>>> +                        adc_tm5->dev_data->base[i].irq,
->>>>>> +                        NULL, adctm5_gen3_isr, IRQF_ONESHOT,
->>>>>> +                        adc_tm5->dev_data->base[i].irq_name,
->>>>>> +                        adc_tm5);
->>>>>
->>>>> The threaded interrupts set the isr in a thread and from the thread
->>>>> handling the event, there is a work queue scheduled. Why not use the
->>>>> top and bottom halves of the threaded interrupt ? Hopefully you should
->>>>> be able to remove the lock.
->>>>
->>>> Yes, I can use the top and bottom halves of the threaded interrupt as you
->>>> suggested. But what exactly do you mean by removing the lock?
->>>>
->>>> If you meant the mutex lock used in this driver, we cannot remove that.
->>>> This is because the ADC_TM driver needs to write into several registers
->>>> shared with the main ADC driver for setting new thresholds, so we
->>>> have to share a mutex between the drivers to prevent concurrency issues.
->>>
->>> When using a workqueue tampering with registers while an interrupt handler is doing the same, the lock is needed.
->>>
->>> But if the workqueue is replaced by threaded interrupt, the lock *may* not be needed because the design may prevent race conditions.
->>>
->>> That may be not true in this case, I did not investigate deeper in the code to figure it out. Let's see the next version
->>>
->>
->> I think a lock will not be needed with the change I planned, but you
->> can judge it in the next version.
-> 
-> Sure, thanks
-> 
->   -- Daniel
 
 
