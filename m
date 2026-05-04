@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-292622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uONZAF6V+GnnwgIAu9opvQ
-	(envelope-from <devicetree+bounces-292622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:47:26 +0200
+	id gH7oHc2U+Gn0wgIAu9opvQ
+	(envelope-from <devicetree+bounces-292624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:45:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702414BD334
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:47:25 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 298534BD1FD
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:45:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 59342301D4E2
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 12:44:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0856B300B1AF
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 12:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A02536607C;
-	Mon,  4 May 2026 12:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4233D4132;
+	Mon,  4 May 2026 12:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bFLMn8aa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ixYBxpJC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E21B3D5251
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 12:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E3C29E116
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 12:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777898654; cv=none; b=TQekcMyf8ovejfU/dwpq6uzyj/XdkCkJVHNbModQx5UVp+uFET0J7Yl1nA4Y8/MqP81bsZvudnjZq7DbpqVaZP3lerrQLo95TJqW9nBtIsTGRav/yJQWwMx024ZeFIc5+685IKtnMX4us/o3KVRDk3dBEOIFi9FdUYvMT9vNWgs=
+	t=1777898661; cv=none; b=tJNo9Nfruc+QfQgHzeWkfy3m/bP72f7ME67PeiYwTbyc0mL+uV7GWmS0wo5vp/k6kmXfwaUjs4ja1oWrFPoMEKDCvvRaHkf9CWz5M3cnmae+vs+zGoium4gZRo6pcokZ/pexTgdwi0pNoiO5+4+X71s71hP79x+H+1vHcPJC9v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777898654; c=relaxed/simple;
-	bh=Yf+ezV/ex2fXE7v1XIOFqfVG6Ppky/elVOrZycOL2AM=;
+	s=arc-20240116; t=1777898661; c=relaxed/simple;
+	bh=rrOIGT0whi5Rw+dQf/vHXUlI6F/g9aneDp9M4Aaqnqk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RVuoEJ1dC8UCEnKaXN8V3+msTisKCYQQWmsqCOEUv/O7aSCcKgNX539nWjeY+j3JtRjds79yYehkXZX5DsZPIYNh9uMP2HYkywQt7eWvfCeN22YYI1sJHkU2Dq+5oclTQGh9UoklRhz6uX+x+Su9UNpVi+rX74F4BAte5wH0UKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bFLMn8aa; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:To:Cc; b=lvcoq1YDkDO7TkhXRrMOF6ql8C0M9/YxvLV/51eHRITrZ0CXUE5Sh1lV+StAj8leYWPI2lqlvKtv+I/0wFQC079fUam+IuoUcRaNy/7PPgLsjBXN2KVhpTIfr2VEjDcWC+FgWly9A54wBKP3DaZgKfh0eTjrg0MGga6eyTWvCYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ixYBxpJC; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-44dd5cb0f81so540428f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 05:44:11 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-488b8bc6bc9so24819675e9.3
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 05:44:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1777898649; x=1778503449; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1777898650; x=1778503450; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=F+jx+pjMnzl4Jh5BQnRePl+s4iGeKiFeE2oPGdddko4=;
-        b=bFLMn8aajitLXG+4Qj9y4zRmO8bmdscsLMG+QfdaG8hctdEPE5AsAjI/jvwNvsypHe
-         TiLFne+3LhCtJ3CAYcwYq/fPAYkcAhNXj6cwYRw1dEbZXPOLnENIjCejGxXzGKGAsUvh
-         pAD6n8Mo//l6ueNZXt2yxyyt1Iq4I1VdBtWPInt4MUag5DDISz2I1vl7hz8YbkyxCuAA
-         CsHQXyxWIQmCH03k5My+9hpJe2zQXp9S+Ogvc6cqLz3NrHIAhbKbP144zlRW5v7QPu0M
-         V2BonvPJ9FFWB7sOtEkWeXObUxC5AeH7g126bbpsN75Q5UuuHo35hs2CPyOrY8yihvop
-         uXVw==
+        bh=29DSsXZsWXZav9BRgsUmTtQvE8JjTg55XGr0k5jPXE8=;
+        b=ixYBxpJCGWOVCgVd/bPI7xWZbUQ9MDKIbFDGc6+X8/OfeT0E/bg0y5wXNkcZJYq6uU
+         NVvFfIn50S8vT322MSSG0sd4LIQlhoJEHCV08+61DvGrURHhIez/YohjQw1A58ewN1Lt
+         m3pscskvZoIPC3gqkIjkgGbkaDwhVX2PtjUWjTHKoCbJaPuMIUgLPAIFrhK5D7Ca7s4h
+         nLtVc9LllnOtksxcLznueQdU/x1bY29Qnvf9G02NuEMSsvWmntotekSvktGbSiXqTIE1
+         BzxHNpJYpt7zkWwSQ5tpBFingAxst/2urq48Km1frR0EK1n7HgEJALDZhhqq6Nf3T2Yk
+         KcVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777898649; x=1778503449;
+        d=1e100.net; s=20251104; t=1777898650; x=1778503450;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=F+jx+pjMnzl4Jh5BQnRePl+s4iGeKiFeE2oPGdddko4=;
-        b=rg5bFCr38bVjYlwoScD0SkKyibg8GaPd5CRXjwIMP0GepY0sXb7UAs5RmDxVQBqM0X
-         WJ/ASpicctalKzHquSxH3xOn7iJx8175K97GZR5n34oYFItMQONTWAsonmkGMlg2tvK6
-         IL1j2Tz5UQwJpDp/AoPjxsnxZL5wH1/H9bHY8SdYp8TCxEVNSqfdqpIwyHxbgCZZG7DU
-         +PR6w6qr1jqA5Q1Gh8CxriIvjdaW5NM1L4ngKrIjFXicr9Ubma0FYwHrt4N7h0VgQ+D3
-         jn3Q54PKYB7RivR2muxWzcrBJLklFKhiG4jSY83fn4HDyla3O1fKFFGPHUJA6OHgxbES
-         UXxw==
-X-Forwarded-Encrypted: i=1; AFNElJ/EwY/+V0ZnZ/LBGv6R9VRw5NdoikAIlkZON4aOiLyOWasxgB+FZ5H6HGWnrJAcZIPT96atOK0xiH3R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZG4rYZOkdOPHCCXD0O3G9z4DPG8JriAY9WhEsn6CbeoTOZyyR
-	FECx1pwOy+P/mx7lsGxn/UmLAyWDUYHL+A5aTru2Gg1nlehmv4OFryN7OXD00qquBow=
-X-Gm-Gg: AeBDietuHiOat8y5xdpJhkdxnek7i52cftXIjVRclIVcoPvhSciNkRGIsJKhOpC/80g
-	FGry03D6ooaP3eN56rOr7aTsGVWqjzW1bFz3BxbtBv9RZ1mUwe1mvjOb71JF7z6OVy5GBkqK0U/
-	kspISJV2Lo6iukwN8b2Dwsix8TzHx699wNbTJ2y0ZQ18JbJBEmQkIjwBKdG3crUv2D5aJE3uBQu
-	kBH/eQLWRoyHlYvVMgetl/3717ZkbeB8psaQlJcn7hdy4b5CqvR1P7xSALYSNZD1LHvfs9QjKyu
-	3V6T43DsHniKwJZfQW3P3sYDbXokLZZeTNauVcvIJQY2JdK/g2thxX+SC/eI3Llnn7vbtyoT1JZ
-	7RLJzWdumCH9OySxSPKzRnxjZMtoxrC18t7dk8cap93WWdjD3zkFuuYRdjgUdOzZA1uhVRIMfTB
-	/z2TpDQlgjhsXdmglG8lBKynJGa8F58J6xa/ou0JJrpSvLoZCE2AOi+2Y=
-X-Received: by 2002:a05:6000:4408:b0:43d:799c:b2cb with SMTP id ffacd0b85a97d-44950b3f14amr15719982f8f.24.1777898649356;
-        Mon, 04 May 2026 05:44:09 -0700 (PDT)
+        bh=29DSsXZsWXZav9BRgsUmTtQvE8JjTg55XGr0k5jPXE8=;
+        b=W3IOBY1dCGYQLMYhW3TFao4n9WJhX9vRpxJFSTQIKN1ojn+SGEm3bz39AregfMlJp5
+         QDEUoO9kebkOV5IzVy8E7nYCuqAz7GJqRMWsGJxs3LhQ5KXmfLXN0imBhZO7cwSTqz7i
+         TElpVmlW2J7FYv3/lRwaZGzy3117jeChr66LtrOTlbab1uABYaSFgBh9L/c0/nMin0Oc
+         uLoqpEal9q2CfjuxpJHvtm8CVB+lgBwSL+d59BvNLjmXTD6NjjDV94f58B8YA2Totg7F
+         kNORMWGxVm5XE9QzmZFyhmO0brQ6cxJrihLrnEKfLLqWsEwhM/regGz/DDp770/2biv5
+         zkGg==
+X-Forwarded-Encrypted: i=1; AFNElJ9MJ09oxy3ONY10PK7UTE+lEY1SKFj3GjWbEesOTr5s0dOIbaJ+ECBxhRwBy7d/SpqKTs9PgGyVOiJq@vger.kernel.org
+X-Gm-Message-State: AOJu0YztfM4bbvYUku4xwSHgIZjwPlR3nYOUUgg8e6xTUzLtHmyijDW1
+	6AF9PXOUgBxSR7hRaD0RmiEU0xiWI2yHk11MzvJr28vPdTQxKzekN+CJrqDFO47SzNoB71rzEYV
+	8cUeAc2XrlA==
+X-Gm-Gg: AeBDievghU3BtR0YcT+rqTYbXm/99uZ76kZfPltr45AU7ta+WfbrT7/oHVI7rZx0e/w
+	8judRiWSdwkTXP/VAtwwAeX1ZrGKrVWN1c4M0i3IZXk61tRyMOGkckW3AP+eXH5j6Lk/kG9DkN4
+	leKQsg2sseaqIXppSxCtGIhIDHN07rNARVY2f/5546SretkPln+IGQ3KSgKzzPUMQGibGq6nACx
+	EKLO+NUDaAPCJoWH/jQSFFmI7BRScxv8uwkvnJ6wNpOcHhDPilGTxyMAOCv3rVzZtn2QZ8d3hvx
+	53x2M+ZTYp0RMwLyjjhRLViPkORkfTEciM5TtRR9mI1APReQQDau3HpZnoCDyb4lqLcrgXYJrrr
+	8W12PdiIg2+e2oRp8qQttyomflq1UEu5SaWN2wA3rrrzWN9IxbdHITw63KYIN7cRwfAOsbqPtZo
+	rL8LXwCMqCJaJiSx871eVuWuaNf4uDVzF7tjRpRnp1N3QrPKM8c2TP0w0=
+X-Received: by 2002:a05:600c:859a:b0:48a:581c:ead with SMTP id 5b1f17b1804b1-48a98637facmr111494475e9.10.1777898650231;
+        Mon, 04 May 2026 05:44:10 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-44a986aab44sm26919443f8f.29.2026.05.04.05.44.08
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-44a986aab44sm26919443f8f.29.2026.05.04.05.44.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 May 2026 05:44:08 -0700 (PDT)
+        Mon, 04 May 2026 05:44:09 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 04 May 2026 14:44:05 +0200
-Subject: [PATCH v3 1/2] regulator: dt-bindings: document the SGM3804 Dual
- Output regulator
+Date: Mon, 04 May 2026 14:44:06 +0200
+Subject: [PATCH v3 2/2] regulator: add SGM3804 Dual Output driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-1-c4783443890b@linaro.org>
+Message-Id: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-2-c4783443890b@linaro.org>
 References: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-0-c4783443890b@linaro.org>
 In-Reply-To: <20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-0-c4783443890b@linaro.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -98,30 +98,30 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  KancyJoe <kancy2333@outlook.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2643;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10751;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Yf+ezV/ex2fXE7v1XIOFqfVG6Ppky/elVOrZycOL2AM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp+JSWlUCBqPMdYxIMWe3KG4NJH2Rfiz7vgrqAEyzr
- 0oRt3AmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCafiUlgAKCRB33NvayMhJ0TsKEA
- C+VDM6dhdsxU8v+TVMqO/UnFrBr+6V/2Lx6qFiw7VTqEjvcBTWrFckH0LDHm0zFj+lXebXbjN/k43o
- L9StJe6DwWHqfFTy5xQL8/o3/AaAXId02iDNaH1MplreCId//q3/n7yX3sPOfZ6lpmPi+ORXC528hZ
- Dwk0iPSEYiG8Ev/KF1nkt/XusHJ9v0XK0DB+DyASasXXnhls8LBgNSjA68vJeLwQyYa19Ud56R8Pn6
- tlm96dP1DUFwe2igOt997Bumy+Wqt6ZSSbi440xRTwEHNOJCnAqP/STxFDnIIXFFlq9Aiy0Oj4o6hX
- hO0IcjW5vpA1PVbZ63vhSS25JPGMrbpBG7+JyDy8+vgpFNO885hJp9YMAJ/uD99qyRN050TOtc0HiP
- 6tHxd8/FBO2E/X5Rh9SGKqd2CZhJTy7PRpyGrfunQBc1IbuIzL0la/EB1DgTTBXnMlqHdHUk3askZz
- JKQoMzoFSDhshGgAvOp4vb7aeR2L/pOd1KtbTQnfN3jHXbIYUA9YnBe3RhL45J6ZVteE6SsEqt+drp
- j+J2x/VGI93yt3Y5BtI4jhTYFj+MXFRZ3HK0YVMuEHJ4k5O2JZQNCvI0Ip0007Xab4O7bKm3GIQepk
- M0z7b0CrePm08LYETxlO6cOAyOxBYmydXcGS44ddq4WmyffnZXOQSXbCqHXQ==
+ bh=Kk/ZMsGKHebvpPpc8smbsG87iC9ElVBwSEwR/cSOBfs=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp+JSXMBXZT8EoSzlZc0xRs/1u1wDsMZAGsxgalNWL
+ jwuybDCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCafiUlwAKCRB33NvayMhJ0aM2EA
+ CYuDAWXNj6khq/j3A2iDokLRWMKGN0kES362SICXRQsN7tj8cSRzlhx6AzSSyC+25o5DUIjulwVzM2
+ KShZsdtgmsrXsMxrOc5l1xvWh56jg96GhE9MIxGiO8O1PM+fisvD2jRACObxtRcsnW6y8Od73rr+nv
+ PQ7xVhiisZMM/0dgpb9rPX7nlQnbCRYDtcLGkqtuYN8xQNKgnbTdpctxNLliZqSb5+IjLBz+i5op8d
+ p3ZxlhCKKUhF8owYlS7VNryoCEgRkvOGvk41hDZtH4Mr9zKHAvVsZpNi6LqwhIC+i38fPIDii4TvRi
+ 672ASsjskZUOL/QywiO8GsEsXyhYAPWR7RLrLCwgXdxz78CEDIhnMp8/k2b/L2nVhT8gw+4GzwgD5i
+ 4/XbI32fc7gnKjyyPC4dE2xc3ggs9/l32b1Au/EJ+wq444dlIcnifa/gqqMn67UiH8bNjzzBjNMMGj
+ 07PV3En4md/bz+HFpj6V7yL0rq+F8S6q7arTNU+FfWBkuJAG+Ym9S6dZd9YsDA+SnjCKi1SlUlxlKJ
+ xXSQPQ6AmSNFNP/NQUMZOmEeJOEWN+ww1AxKsybiyQXlXDDk3dTTEiF3etLS6nhzgL/0liHJfxnPNH
+ +15GVgczrtQHJe7Zg1DJUu2DKzAvwhQnT7BvHOiCYxHaScLXGMuyPA1RtXog==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Rspamd-Queue-Id: 702414BD334
+X-Rspamd-Queue-Id: 298534BD1FD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -131,7 +131,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292622-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-292624-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -139,107 +139,368 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[3e:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim,linaro.org:mid,config.dev:url]
 
-Document the SG Micro SGM3804 Single Inductor Dual Output Buck/Boost
-Converter used to power LCD panels a provide positive and negative
-power rails with configurable voltage and active discharge function
-for each output.
+From: KancyJoe <kancy2333@outlook.com>
 
+Add support for the SG Micro SGM3804 Single Inductor Dual Output
+Buck/Boost Converter used to power LCD panels a provide positive
+and negative power rails with configurable voltage and active
+discharge function for each output.
+
+The SGM3804 is powered by the enable GPIO pins inputs and only
+supports I2C write messages.
+In order to add flexibility and simplify the driver, the
+regmap cache is enabled and populated with default values
+since we can't write registers when the 2 GPIOs are down.
+
+Signed-off-by: KancyJoe <kancy2333@outlook.com>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/regulator/sgmicro,sgm3804.yaml        | 77 ++++++++++++++++++++++
- 1 file changed, 77 insertions(+)
+ drivers/regulator/Kconfig             |   7 +
+ drivers/regulator/Makefile            |   1 +
+ drivers/regulator/sgm3804-regulator.c | 297 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 305 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml b/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+index e8002526cfb0..9335c1bd0c5b 100644
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -1590,6 +1590,13 @@ config REGULATOR_SUN20I
+ 	help
+ 	  This driver supports the internal LDOs in the Allwinner D1 SoC.
+ 
++config REGULATOR_SGM3804
++	tristate "SGMicro SGM3804 voltage regulator"
++	depends on I2C && OF
++	select REGMAP_I2C
++	help
++	  This driver supports SGMicro SGM3804 dual-output voltage regulator.
++
+ config REGULATOR_SY7636A
+ 	tristate "Silergy SY7636A voltage regulator"
+ 	depends on MFD_SY7636A
+diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+index 35639f3115fd..7c345c7caee7 100644
+--- a/drivers/regulator/Makefile
++++ b/drivers/regulator/Makefile
+@@ -181,6 +181,7 @@ obj-$(CONFIG_REGULATOR_STM32_PWR) += stm32-pwr.o
+ obj-$(CONFIG_REGULATOR_STPMIC1) += stpmic1_regulator.o
+ obj-$(CONFIG_REGULATOR_STW481X_VMMC) += stw481x-vmmc.o
+ obj-$(CONFIG_REGULATOR_SUN20I) += sun20i-regulator.o
++obj-$(CONFIG_REGULATOR_SGM3804) += sgm3804-regulator.o
+ obj-$(CONFIG_REGULATOR_SY7636A) += sy7636a-regulator.o
+ obj-$(CONFIG_REGULATOR_SY8106A) += sy8106a-regulator.o
+ obj-$(CONFIG_REGULATOR_SY8824X) += sy8824x.o
+diff --git a/drivers/regulator/sgm3804-regulator.c b/drivers/regulator/sgm3804-regulator.c
 new file mode 100644
-index 000000000000..5ea475f8f8b6
+index 000000000000..182dcf763afb
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/sgmicro,sgm3804.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/regulator/sgm3804-regulator.c
+@@ -0,0 +1,297 @@
++// SPDX-License-Identifier: GPL-2.0-only
++//
++// SGMicro SGM3804 regulator Driver
++//
++// Copyright (C) 2025 Kancy Joe <kancy2333@outlook.com>
++// Copyright (C) 2026 Linaro Limited
++// Author: Neil Armstrong <neil.armstrong@linaro.org>
 +
-+title: SG Micro SGM3804 Single Inductor Dual Output Buck/Boost Converter
++#include <linux/err.h>
++#include <linux/i2c.h>
++#include <linux/module.h>
++#include <linux/regmap.h>
++#include <linux/regulator/driver.h>
++#include <linux/regulator/of_regulator.h>
++#include <linux/gpio/consumer.h>
 +
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
++#define SGM3804_POS_RAIL_VOLTAGE_REG	0x0
++#define SGM3804_NEG_RAIL_VOLTAGE_REG	0x1
++#define SGM3804_RAIL_DISCHARGE_REG	0x3
 +
-+description:
-+  The SGM3804 is a dual voltage regulator, designed to support positive/negative
-+  supply for driving LCD panels. It support software-configurable output
-+  switching. The output voltages can be programmed via an I2C compatible interface.
++#define RAIL_VOLTAGE_MASK	GENMASK(5, 0)
 +
-+properties:
-+  compatible:
-+    const: sgmicro,sgm3804
++#define POS_RAIL_DISCHARGE_EN	BIT(1)
++#define NEG_RAIL_DISCHARGE_EN	BIT(0)
 +
-+  reg:
-+    maxItems: 1
++#define RAIL_VOLTAGE_INVALID		RAIL_VOLTAGE_MASK
++#define RAIL_DISCHARGE_REG_DEFAULT	(POS_RAIL_DISCHARGE_EN | NEG_RAIL_DISCHARGE_EN)
 +
-+  enable-gpios:
-+    minItems: 2
-+    description:
-+      GPIO specifiers to enable the positive and negative outputs.
++#define SGM3804_VOLTAGES_COUNT	40
 +
-+  vin-supply: true
++enum {
++	SGM3804_POS_RAIL = 0,
++	SGM3804_NEG_RAIL,
++	SGM3804_RAIL_COUNT,
++};
 +
-+patternProperties:
-+  "^(pos|neg)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
++/*
++ * The registers are only writable when the gpio is enabled, so
++ * we need to use the cache for read operations and set the regmap
++ * as cache_only when both GPIOs are down.
++ */
++struct sgm3804_data {
++	struct regmap *regmap;
++	/* Protects the regcache state update */
++	struct mutex lock;
++	struct gpio_desc *gpios[SGM3804_RAIL_COUNT];
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - enable-gpios
-+  - pos
-+  - neg
++static const struct linear_range sgm3804_voltages[] = {
++	REGULATOR_LINEAR_RANGE(2400000, 0x20, 0x2f, 100000),
++	REGULATOR_LINEAR_RANGE(4000000, 0x00, 0x17, 100000),
++};
 +
-+additionalProperties: false
++/*
++ * The cache is populated with those hardware default values
++ * so the regmap_update_bits operation will use the cached
++ * value to build a new register value and write it when GPIOs
++ * are enabled.
++ */
++static const struct reg_default sgm3804_reg_defaults[] = {
++	{ SGM3804_POS_RAIL_VOLTAGE_REG, RAIL_VOLTAGE_INVALID },
++	{ SGM3804_NEG_RAIL_VOLTAGE_REG, RAIL_VOLTAGE_INVALID },
++	{ SGM3804_RAIL_DISCHARGE_REG, RAIL_DISCHARGE_REG_DEFAULT },
++};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++/* Registers are only writable */
++static bool sgm3804_writeable_reg(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case SGM3804_POS_RAIL_VOLTAGE_REG:
++	case SGM3804_NEG_RAIL_VOLTAGE_REG:
++	case SGM3804_RAIL_DISCHARGE_REG:
++		return true;
++	default:
++		return false;
++	}
++}
 +
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++/*
++ * Since all registers are only writeable, regmap will only read from the cache data.
++ */
++static bool sgm3804_readable_reg(struct device *dev, unsigned int reg)
++{
++	return false;
++}
 +
-+        regulator@3e {
-+            compatible = "sgmicro,sgm3804";
-+            reg = <0x3e>;
++static const struct regmap_config sgm3804_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = 0x03,
++	.writeable_reg = sgm3804_writeable_reg,
++	.readable_reg = sgm3804_readable_reg,
++	.cache_type = REGCACHE_MAPLE,
++	.reg_defaults = sgm3804_reg_defaults,
++	.num_reg_defaults = ARRAY_SIZE(sgm3804_reg_defaults),
++};
 +
-+            vin-supply = <&vin_reg>;
++static int sgm3804_sync_regcache_state(struct sgm3804_data *ctx)
++{
++	guard(mutex)(&ctx->lock);
 +
-+            enable-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>,
-+                           <&gpio 18 GPIO_ACTIVE_HIGH>;
++	/* If both GPIOs are down, IC is powered down and I2C writes will fail */
++	if (!gpiod_get_value_cansleep(ctx->gpios[SGM3804_POS_RAIL]) &&
++	    !gpiod_get_value_cansleep(ctx->gpios[SGM3804_NEG_RAIL])) {
++		regcache_cache_only(ctx->regmap, true);
++		regcache_mark_dirty(ctx->regmap);
++	} else {
++		/* At least a GPIO is up, we can write registers */
++		regcache_cache_only(ctx->regmap, false);
++		return regcache_sync(ctx->regmap);
++	}
 +
-+            pos {
-+                regulator-name = "outpos";
-+                regulator-min-microvolt = <5000000>;
-+                regulator-max-microvolt = <5000000>;
-+            };
++	return 0;
++}
 +
-+            neg {
-+                regulator-name = "outneg";
-+                regulator-min-microvolt = <5000000>;
-+                regulator-max-microvolt = <5000000>;
-+            };
-+        };
-+    };
-+...
++static int sgm3804_get_voltage_sel(struct regulator_dev *rdev)
++{
++	int ret;
 +
++	ret = regulator_get_voltage_sel_regmap(rdev);
++	if (ret < 0)
++		return ret;
++
++	/* Force setting a voltage on probe */
++	if (ret == RAIL_VOLTAGE_INVALID)
++		return -ENOTRECOVERABLE;
++
++	return ret;
++}
++
++static int sgm3804_enable(struct regulator_dev *rdev)
++{
++	struct sgm3804_data *ctx = rdev->reg_data;
++	int ret;
++
++	ret = gpiod_set_value_cansleep(ctx->gpios[rdev_get_id(rdev)], 1);
++	if (ret)
++		return ret;
++
++	ret = sgm3804_sync_regcache_state(ctx);
++	if (ret)
++		goto err;
++
++	return 0;
++
++err:
++	gpiod_set_value(ctx->gpios[rdev_get_id(rdev)], 0);
++	return ret;
++}
++
++static int sgm3804_disable(struct regulator_dev *rdev)
++{
++	struct sgm3804_data *ctx = rdev->reg_data;
++	int ret;
++
++	ret = gpiod_set_value_cansleep(ctx->gpios[rdev_get_id(rdev)], 0);
++	if (ret)
++		return ret;
++
++	return sgm3804_sync_regcache_state(ctx);
++}
++
++static int sgm3804_is_enabled(struct regulator_dev *rdev)
++{
++	struct sgm3804_data *ctx = rdev->reg_data;
++
++	return gpiod_get_value_cansleep(ctx->gpios[rdev_get_id(rdev)]);
++}
++
++static const struct regulator_ops sgm3804_ops = {
++	.list_voltage = regulator_list_voltage_linear_range,
++	.map_voltage = regulator_map_voltage_linear_range,
++	.set_voltage_sel = regulator_set_voltage_sel_regmap,
++	.get_voltage_sel = sgm3804_get_voltage_sel,
++	.set_active_discharge = regulator_set_active_discharge_regmap,
++	.enable = sgm3804_enable,
++	.disable = sgm3804_disable,
++	.is_enabled = sgm3804_is_enabled,
++};
++
++static const struct regulator_desc sgm3804_regulator_desc[] = {
++	/* Positive Output */
++	{
++		.name = "pos",
++		.of_match = "pos",
++		.supply_name = "vin",
++		.id = SGM3804_POS_RAIL,
++		.ops = &sgm3804_ops,
++		.type = REGULATOR_VOLTAGE,
++		.linear_ranges = sgm3804_voltages,
++		.n_linear_ranges = ARRAY_SIZE(sgm3804_voltages),
++		.n_voltages = SGM3804_VOLTAGES_COUNT,
++		.vsel_reg = SGM3804_POS_RAIL_VOLTAGE_REG,
++		.vsel_mask = RAIL_VOLTAGE_MASK,
++		.active_discharge_on = POS_RAIL_DISCHARGE_EN,
++		.active_discharge_mask = POS_RAIL_DISCHARGE_EN,
++		.active_discharge_reg = SGM3804_RAIL_DISCHARGE_REG,
++		.enable_time = 40000,
++		.owner = THIS_MODULE,
++	},
++	/* Negative Output */
++	{
++		.name = "neg",
++		.of_match = "neg",
++		.supply_name = "vin",
++		.id = SGM3804_NEG_RAIL,
++		.ops = &sgm3804_ops,
++		.type = REGULATOR_VOLTAGE,
++		.linear_ranges = sgm3804_voltages,
++		.n_linear_ranges = ARRAY_SIZE(sgm3804_voltages),
++		.n_voltages = SGM3804_VOLTAGES_COUNT,
++		.vsel_reg = SGM3804_NEG_RAIL_VOLTAGE_REG,
++		.vsel_mask = RAIL_VOLTAGE_MASK,
++		.active_discharge_on = NEG_RAIL_DISCHARGE_EN,
++		.active_discharge_mask = NEG_RAIL_DISCHARGE_EN,
++		.active_discharge_reg = SGM3804_RAIL_DISCHARGE_REG,
++		.enable_time = 40000,
++		.owner = THIS_MODULE,
++	},
++};
++
++static int sgm3804_probe(struct i2c_client *i2c)
++{
++	struct device *dev = &i2c->dev;
++	struct sgm3804_data *ctx;
++	int ret, i;
++
++	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
++	if (!ctx)
++		return -ENOMEM;
++
++	mutex_init(&ctx->lock);
++
++	ctx->regmap = devm_regmap_init_i2c(i2c, &sgm3804_regmap_config);
++	if (IS_ERR(ctx->regmap))
++		return dev_err_probe(dev, PTR_ERR(ctx->regmap),
++				     "failed to init regmap\n");
++
++	/* Set default values */
++	for (i = 0; i < ARRAY_SIZE(sgm3804_regulator_desc); i++) {
++		ctx->gpios[i] = devm_gpiod_get_index(dev, "enable",
++						     i, GPIOD_ASIS);
++		if (IS_ERR(ctx->gpios[i]))
++			return dev_err_probe(dev, PTR_ERR(ctx->gpios[i]),
++					"failed to get enable GPIO %d\n", i);
++	}
++
++	ret = sgm3804_sync_regcache_state(ctx);
++	if (ret)
++		return ret;
++
++	for (i = 0; i < ARRAY_SIZE(sgm3804_regulator_desc); i++) {
++		struct regulator_config config = { };
++		struct regulator_dev *rdev;
++
++		config.dev = dev;
++		config.regmap = ctx->regmap;
++		config.of_node = dev->of_node;
++		config.driver_data = ctx;
++		rdev = devm_regulator_register(dev, &sgm3804_regulator_desc[i],
++					       &config);
++		if (IS_ERR(rdev))
++			return dev_err_probe(dev, PTR_ERR(rdev),
++					     "failed to register regulator %d\n", i);
++	}
++
++	return 0;
++}
++
++static const struct i2c_device_id sgm3804_id[] = {
++	{ "sgm3804" },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, sgm3804_id);
++
++static const struct of_device_id sgm3804_of_match[] = {
++	{ .compatible = "sgmicro,sgm3804" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, sgm3804_of_match);
++
++static struct i2c_driver sgm3804_regulator_driver = {
++	.driver = {
++		.name = "sgm3804",
++		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
++		.of_match_table = sgm3804_of_match,
++	},
++	.probe = sgm3804_probe,
++	.id_table = sgm3804_id,
++};
++
++module_i2c_driver(sgm3804_regulator_driver);
++
++MODULE_DESCRIPTION("SGMicro SGM3804 regulator Driver");
++MODULE_AUTHOR("Kancy Joe <kancy2333@outlook.com>");
++MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
++MODULE_LICENSE("GPL");
 
 -- 
 2.34.1
