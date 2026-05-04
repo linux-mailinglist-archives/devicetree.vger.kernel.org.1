@@ -1,146 +1,222 @@
-Return-Path: <devicetree+bounces-292613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292625-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jzChDJeO+Gk9wgIAu9opvQ
-	(envelope-from <devicetree+bounces-292613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:18:31 +0200
+	id sJAsC0GV+GkOwwIAu9opvQ
+	(envelope-from <devicetree+bounces-292625-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:46:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8062C4BCD0A
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FD14BD2EB
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 14:46:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 50C9230179E5
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 12:12:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E8FF301808A
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 12:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BB63CF020;
-	Mon,  4 May 2026 12:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tnLX/bCt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBECD3D333D;
+	Mon,  4 May 2026 12:46:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAAC3C1419;
-	Mon,  4 May 2026 12:12:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4913D6CA2
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 12:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777896729; cv=none; b=NM24bzj626N51TeFAPdjdL6hoqG0eBHGHmqMH5lQdxJ++0qgc15nJDGOY/7VK22LShvM5cNg4yjtikTV56zVxpHFzZM72jLA7I+oH0ibWNvBHLXWQfvBwC9qt+KMSOk+0BQXJS87xq6k3AaVlkMe8ueH/znaxau58NaKYRp3AHQ=
+	t=1777898814; cv=none; b=pqvLXQppurb+jCzr7OOctVpz9ZzSnFdH1QgHNzBbuxTEHwgX5t3SiClN40d11zwSpTgZKnZbc1u83h6UpXiHvVZTQeuLN80H0FGfjqZ/zb14sEFQwIzBD7QTbUnkYoqio1lNYDyZSJde7Yx7Ej2GhswAadHLufJx0k4J5Xkdz3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777896729; c=relaxed/simple;
-	bh=2WT+1xuEUaii2BhLVWdlXp1efGYUUNZfjVLiullujCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wd0mTyn5oA3HiZPS2cLWQGQwBgBOkjhnkMrIj5FCpxRumNtgsl7qOw62mYCDFR7znB7VmJPhOSv0ptmWvLrhd77B3HhX4QDB2rYI+ZqnShOkBF9IbcrUWsgoeEIDVTMRl/RI8COJI0FAjrI9BWy0BFokFIdkvCEqua7kd248BX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tnLX/bCt; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=IC6q3csUL/lRdwOp3q5oUmclja9Dv8UZMrCr2gsPnZQ=; b=tnLX/bCtCqEfcPK2EY6LtUJT5Y
-	0cfNtcI/YKijnzSx6FsvlU/2Q+ZYu2bZmfh5EMUkOP5XgbEsXEa2wBjFz5+dhZ38HH7gfYWiTLiif
-	n+q+JiLLi6XNQCt1oyB8lg2WYzk0YRBYSoGbWGbovU7bKFHVCepUvDuIyCm1fEkSSbkg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wJs9F-001FxV-5R; Mon, 04 May 2026 14:11:41 +0200
-Date: Mon, 4 May 2026 14:11:41 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Regus, Ciprian" <Ciprian.Regus@analog.com>
-Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 5/5] dt-bindings: net: Add bindings for the
- ADIN1140
-Message-ID: <f2caaf38-06af-4ccb-b8f9-a7dba4ae87ad@lunn.ch>
-References: <20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com>
- <20260503-adin1140-driver-v1-5-dd043cdd88f0@analog.com>
- <05ae6249-1f40-4530-b2dc-e52e4f454c0d@lunn.ch>
- <2de08ad6ba73477299b6aace38b6de4b@analog.com>
+	s=arc-20240116; t=1777898814; c=relaxed/simple;
+	bh=mf48U3dZmpqt3p7RmvGUUMOB0UHyUtn3OAbikvFAdqk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iMSQUxnIkqk75kTjOINalz0JEz6u8GXg97nVZ9Mer9AAttse7iYCZPc4vERDuHQ6EjJePOPjTrz0nQc0v5C5SeOdazhz7KRqX3SLq+0eVTHZDmNZsNmXDIY6KQgosyJ7RrQBA4LJ5SBr4nwRnPPexYpdQFaQmylSGURjKHdB1is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-479d5ff103aso1819981b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 05:46:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777898807; x=1778503607;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=znJkm+yheaBiOtiXBHrScjCf5aNJhz18eCP9uLN0zvY=;
+        b=UNtV0ua3T/LksTBQxerzx+Ujy/NPE57zmeHIGtWht6JNGP97OiXoq2brirPYF89Mj4
+         9R4OEgOTFPZaI4Z2wYtgXO5IftRrZk/pddie+rzimjgCGAqcEQX37AZPLLKB+1u1Midc
+         ZAlYtzftVhptVkgotA6uV8cwiFgS4KAC+iQyKK6r1iTjyAM7O6ALCUsYEPSl1lxxQzrt
+         ykNDpf7e45qUQSD/gHO9zQGxItLOHRMburivz0DmtcQsnfpYUMChqskTD+2g6WCq0v6g
+         EGlPifTqLytm8iL5CSPFWbiXXMnZyfgvRMvSP6m6HKQFK714NKJ+kNyGQGN/HY7+K90s
+         kPhg==
+X-Forwarded-Encrypted: i=1; AFNElJ+ogrAAdYcgGjux5xAGsHj5JWR4AKj5tPne3lZw2yie8ROnbyJlJwmBywtm8WUYnvFQfzfI6FbHurn6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkO+uQlrAv34XSH5+uPnbkma5vvmK3tufTBUh/P4Rsnq2OqUP5
+	WcLeW0Ky6z8pVnSPHjRubDnj/1HObrSC5N7z0QG6liz0Nb6/+MucRq5/UmrPYheL
+X-Gm-Gg: AeBDietcrHkgh8HsuUiYeFoGvq4prrwvPQqsO3caIHvyqGHrDT9gQDFWs2ekRnmlLZK
+	OnN/+O7OjKv/D5PWiwfQJOPnUDYZeqUioF78+5gefWrrasRAlzKxSWNy3V4LLEHVa6TIrwp+Hk8
+	0d5kIjdYYc1ujrY7fK5mkLZS7WERVaOGiHevCmobJOxBPMX+szhr7tKOnE3zOMDouKdkppzjkbL
+	sMInhDzLxar9q5E+/IOqw+kb1UoaJvGacdTfTF/Y0/NXR5GkMxaiy4usTgJYAszuC9wZSRdHkZI
+	hppBAm3YmgDPTr3BLI9gSxszo/rGXCxthcoveOw+o0b4YOIbm3c3w/oy+bJdnpYgAQIMwIO8oxc
+	ySgNLt9eMjgu6Wkz/CJFlnLvw4siDArq8NXVCKkQEPW+T9Nnhs/NLycEgZX3D8HkUUPMp/yKj7w
+	KtBxsiLkVDMTX5yWMav6yEOIIx7opzprYp/US5qfWAGl3vN6Qp6czpngJOcIM75yaO5ak/5JY=
+X-Received: by 2002:a05:6808:1709:b0:479:db65:8dbc with SMTP id 5614622812f47-47c8925e3ffmr4593118b6e.30.1777898807196;
+        Mon, 04 May 2026 05:46:47 -0700 (PDT)
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com. [209.85.160.53])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-43454951a95sm10529375fac.7.2026.05.04.05.46.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 May 2026 05:46:46 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-4094b31a037so2428432fac.1
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 05:46:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9qsbT3x16fwm8aXwIU3IjsQiy/QHJhvxG0IwwqXXvD6FYU3EC61v4NPA9PrLUHwDIh8VE2DCCCHi1S@vger.kernel.org
+X-Received: by 2002:a05:6122:130a:b0:56c:da22:6921 with SMTP id
+ 71dfb90a1353d-5750c5281a9mr3577419e0c.5.1777898480344; Mon, 04 May 2026
+ 05:41:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2de08ad6ba73477299b6aace38b6de4b@analog.com>
-X-Rspamd-Queue-Id: 8062C4BCD0A
+References: <cover.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <cover.1775636898.git.tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 4 May 2026 14:41:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUqdEZaK4C2zNjZ3Rh0TaiLrROUeWK-R5WZU+ULpArBrQ@mail.gmail.com>
+X-Gm-Features: AVHnY4LvtR9sYYwFkbyXTFSDx7n1q3qDBs-g1S0RCiV3vvmXtOpqt-05ZZXwFh0
+Message-ID: <CAMuHMdUqdEZaK4C2zNjZ3Rh0TaiLrROUeWK-R5WZU+ULpArBrQ@mail.gmail.com>
+Subject: Re: [PATCH v6 00/21] Add support for DU and DSI on the Renesas RZ/G3E SoC
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com, 
+	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 83FD14BD2EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292613-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[lunn.ch:s=20171124];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[lunn.ch,none];
+	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be,baylibre.com,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292625-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	NEURAL_SPAM(0.00)[0.424];
-	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid,0.0.0.0:email]
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.917];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,renesas.com:email]
 
-> > > +        ethernet@0 {
-> > > +            compatible = "adi,adin1140";
-> > > +            reg = <0>;
-> > > +            spi-max-frequency = <23000000>;
-> > > +
-> > > +            interrupt-parent = <&gpio>;
-> > > +            interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-> > 
-> > Table 1: OPEN serial 10BASE-T1x Interface Pin Definition
-> > 
-> > IRQn MAC-PHY Interrupt Request (Active Low)
-> > 
-> > Or is this something else which the device gets wrong?
-> 
-> The device generates interrupts correctly (the IRQ signal remains
-> asserted while there are active interrupt conditions that have not
-> been cleared yet). The oa_tc6 driver requests the interrupt with
-> the IRQF_TRIGGER_FALLING flag set
+Hi Tommaso,
 
-Ah, that is a bug in oa_tc6.c. A falling edge appears to work, until
-it does not and then all interrupts stop. So bugs like this are not
-obvious. I've been looking out for this more over the last few years
-since PHYs are level, not edge, but many developers get them wrong in
-DT.
+On Wed, 8 Apr 2026 at 12:37, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> This patch series adds support for the 2 Display Units (DUs) and MIPI DSI
+> interface found on the Renesas RZ/G3E SoC.
+>
+> RZ/G3E SoC has 2 LCD controller (LCDC0 and LCDC1), both are composed
+> of Frame Compression Processor (FCPVD), Video Signal Processor (VSPD),
+> and Display Unit (DU).
+>
+> LCDC0 is connected to LVDS (single or dual channel) and DSI.
+> LCDC1 is connected to LVDS (single ch), DSI, and GPIO (Parallel I/F).
 
-Please could you submit a patch to net to fix this?
+Thanks for your series!
 
-       Andrew
+> Tommaso Merciai (21):
+>   clk: renesas: rzv2h: Add PLLDSI clk mux support
+>   clk: renesas: r9a09g047: Add CLK_PLLETH_LPCLK support
+>   clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1} clocks
+>   clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1}_DIV7 clocks
+>   clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1}_CSDIV clocks
+>   clk: renesas: r9a09g047: Add support for SMUX2_DSI{0,1}_CLK
+>   clk: renesas: r9a09g047: Add support for DSI clocks and resets
+>   clk: renesas: r9a09g047: Add support for LCDC{0,1} clocks and resets
+
+I have queued these in an immutable branch, targeted for renesas-clk
+for v7.2, and for consumption by the DRM patch(es) that have a hard
+dependency on the addition to include/linux/clk/renesas.h.
+
+>   dt-bindings: display: renesas,rzg2l-du: Refuse port@1 for RZ/G2UL
+>   dt-bindings: display: renesas,rzg2l-du: Add support for RZ/G3E SoC
+>   dt-bindings: display: bridge: renesas,dsi: Add support for RZ/G3E SoC
+>   drm: renesas: rz-du: mipi_dsi: Add out_port to OF data
+>   drm: renesas: rz-du: mipi_dsi: Add RZ_MIPI_DSI_FEATURE_GPO0R feature
+>   drm: renesas: rz-du: mipi_dsi: Add support for RZ/G3E
+>   drm: renesas: rz-du: Add RZ/G3E support
+>   media: dt-bindings: media: renesas,vsp1: Document RZ/G3E
+>   media: dt-bindings: media: renesas,fcp: Document RZ/G3E SoC
+>   arm64: dts: renesas: r9a09g047: Add fcpvd{0,1} nodes
+>   arm64: dts: renesas: r9a09g047: Add vspd{0,1} nodes
+>   arm64: dts: renesas: r9a09g047: Add DU{0,1} and DSI nodes
+>   arm64: dts: renesas: r9a09g047e57-smarc: Enable DU0 and DSI support
+
+The following changes since commit 254f49634ee16a731174d2ae34bc50bd5f45e731:
+
+  Linux 7.1-rc1 (2026-04-26 14:19:00 -0700)
+
+are available in the Git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git
+tags/clk-renesas-rzg3e-plldsi-tag
+
+for you to fetch changes up to 272a6e2ad164094045af520299b5df3ce1763061:
+
+  clk: renesas: r9a09g047: Add support for LCDC{0,1} clocks and resets
+(2026-05-04 14:03:08 +0200)
+
+----------------------------------------------------------------
+clk: renesas: rzg3e: Add support for DSI clocks
+
+RZ/G3E Clock Pulse Generator PLLDSI limits, shared by clock and MIPI DSI
+driver source files.
+
+----------------------------------------------------------------
+Tommaso Merciai (8):
+      clk: renesas: rzv2h: Add PLLDSI clk mux support
+      clk: renesas: r9a09g047: Add CLK_PLLETH_LPCLK support
+      clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1} clocks
+      clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1}_DIV7 clocks
+      clk: renesas: r9a09g047: Add CLK_PLLDSI{0,1}_CSDIV clocks
+      clk: renesas: r9a09g047: Add support for SMUX2_DSI{0,1}_CLK
+      clk: renesas: r9a09g047: Add support for DSI clocks and resets
+      clk: renesas: r9a09g047: Add support for LCDC{0,1} clocks and resets
+
+ drivers/clk/renesas/r9a09g047-cpg.c |  84 +++++++++++++++++
+ drivers/clk/renesas/rzv2h-cpg.c     | 181 ++++++++++++++++++++++++++++++++++++
+ drivers/clk/renesas/rzv2h-cpg.h     |  12 +++
+ include/linux/clk/renesas.h         |  20 ++++
+ 4 files changed, 297 insertions(+)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
