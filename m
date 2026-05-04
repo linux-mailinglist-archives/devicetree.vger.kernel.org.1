@@ -1,169 +1,307 @@
-Return-Path: <devicetree+bounces-292688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292674-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4IC7JNi3+Gn1zAIAu9opvQ
-	(envelope-from <devicetree+bounces-292688-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 17:14:32 +0200
+	id gCYIKaKv+GkPzAIAu9opvQ
+	(envelope-from <devicetree+bounces-292674-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 16:39:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8581A4C085D
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 17:14:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FC64BFD3C
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 16:39:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9B631301C8B5
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 14:56:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F0CCD3033504
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 14:38:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD7F3E023E;
-	Mon,  4 May 2026 14:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831C03793B3;
+	Mon,  4 May 2026 14:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="rZWMKMgL"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="v1OAtEQ/";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="V2KO/UXm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F32378812;
-	Mon,  4 May 2026 14:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953E529E116;
+	Mon,  4 May 2026 14:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777906593; cv=none; b=Cws1r00e08TqMCXoxyxTa8jV4V2t2DC9Hwl8wXD/0XVm9fZoLHly00BhOnC4fjub6GPJ9Y1frz3OJksG2NvNkwAqsUXYpk34jA93Qn53MlFIFnINC6BzBdoSrkx6sAdEPwnKegRxg6lX0BMO0PXhzF7hktYqqo6G/Rm+SSKnnmw=
+	t=1777905489; cv=none; b=EAei33c23s0RvgnJqs5t3I9NRMlGc7PrzWl2uT/IOpLU+JwkoOt7FIDjUxzUX0tHJ0jSdL3u+O9ATjrwWClBEd1DM5lKZ3XxEDsk1um2tr/mKnzGxzBfnXQgwRhWE3K/qmpn2OARg1wfewuJweorB+gpKXZHiT0xSk1sLJG1Ceg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777906593; c=relaxed/simple;
-	bh=KtagOfNLEs02cUVPj4FT+pAk0pBIYBNPgs62jaR0P04=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SN5MiwxExtWN+KuS21TBdMMq9ue8e0FcAzyhuBi/L5MKAK2+pcmUXwnFy1KHUtLuf7meW9kGuXHQ4M2nN/aT59h/fpFGFj4mMRANGSe6Mzrf3UjWM0n1JuT17iobB0eQWAdSM86cwg1Hl2xC4gjnWGLC6ACCSCgEdoVR8S/DQOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=rZWMKMgL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9353C2BCC4;
-	Mon,  4 May 2026 14:56:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1777906593;
-	bh=KtagOfNLEs02cUVPj4FT+pAk0pBIYBNPgs62jaR0P04=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rZWMKMgLDxLk8OfQEWZkHQ2/vZEF0UzjawV1RjbsheUbUR0tnauJh5gj5Ey5UfcDf
-	 H+BJVA+E3umxco6Q9Ic/zwyrI1E3tp4zGaooZbUCwpYQSS7Q/M+DbU4EuhAuwKuyw0
-	 PlNfJx6LjogUGtJRiBAidVhHmbbM/0lv9OhL/QtY=
-Date: Mon, 4 May 2026 16:25:41 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: zain_zhou@realsil.com.cn
-Cc: linux-staging@lists.linux.dev, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] staging: i3c: add Realtek RTS490x I3C HUB driver
-Message-ID: <2026050412-bush-rosy-959d@gregkh>
-References: <20260430121354.6253-1-zain_zhou@realsil.com.cn>
- <20260430121354.6253-2-zain_zhou@realsil.com.cn>
+	s=arc-20240116; t=1777905489; c=relaxed/simple;
+	bh=TNTaMNn9Qx6juhS0o5aGXz+wACJyj+lXsh9rSoIO/eo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mfvLsDpOhNQa32v6wQupciiyxBJReax2s0kEIOkuEta41q3dXenuIdebsa8d8qxTs3P9YEDiTDYzSDrnxZK2km0MykJQvbPQlHH45OcsWbw8q4QSPeoGcH2S49ze1/98NkYqAre8gc3W3N7lXSmlhCOM9S73wkvSaW/3i7iGbUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=v1OAtEQ/; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=V2KO/UXm; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4g8PPz2KwFz9v0b;
+	Mon,  4 May 2026 16:37:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1777905479;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wBBgH/SwekkvEUj5hUEj4xBQU7ZFg8QEvCj3rWtRhYY=;
+	b=v1OAtEQ/iIuJbMejFNzyBoxHginAmhPCOi7gulFDDj4GOMs5ylY4snBvuOLhUT2IgvBLzd
+	iLelwOZucftPCXtvPEFUu2kYEIelPmprnM6FKSozLzROJ+RjJR5ZvayQKFPYwVonsDV8Q5
+	J4zXgPByuLAWwz9zGIz9GXfnEj5kQfYAJMevXvhCrOFY5QOoGbHH0uSqXfK0HJ8ENEjZwa
+	RAcxEulictj1kqtqSICD3NFvSm/b1iVN4hR1G+cedt3jnujmNLVcMqszV5Yb/gxjdQK8gb
+	Vpb4NKKnTHIR7okjrNgmhTD6OGSJQjrr9x0xS6ZrXiFt4ZD+KeJHt6Pj8lTwMA==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b="V2KO/UXm";
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1777905477;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wBBgH/SwekkvEUj5hUEj4xBQU7ZFg8QEvCj3rWtRhYY=;
+	b=V2KO/UXmenPspVl241dUMK//P4ADnYPSie9K4/xxflqBjBKGkU/ixNsP75QKC2faSQdFvR
+	QqF0kWmx0H4ldrB95bVZx0s+3SMc/wFSJv3cw5Ex6aHYN+zp35SrNsYkiaQfleK26AlY4+
+	opZo5ze60f7EfaJ5drzy+ZRf6GZXaLGdiDTJvH4f3otGnEYIZvHb1+F8RuFLaHu3kG0Pbx
+	eVZlLgAyY2LTG9tn4rzfp0LivH8wxc8sE+G4M0Zz4vjXHPi2nYOp0Nt04ZHFf+cQER3Par
+	Y2T45IG8AZF1gvWJa7ZtNfGToACSVYWYFfgQr3evEEUb8O5cziRLcLopsyLEiQ==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: Simplify AA1024XD12 display DTO
+Date: Mon,  4 May 2026 16:37:15 +0200
+Message-ID: <20260504143751.42753-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260430121354.6253-2-zain_zhou@realsil.com.cn>
-X-Rspamd-Queue-Id: 8581A4C085D
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: qtdtonkhjf5zyfsokwgws7cdwn8ejha3
+X-MBO-RS-ID: db7a51eb740a63470bb
+X-Rspamd-Queue-Id: 78FC64BFD3C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292688-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,glider.be,gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292674-lists,devicetree=lfdr.de,renesas];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,realsil.com.cn:email,linuxfoundation.org:dkim]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,mailbox.org:dkim,mailbox.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email]
 
-On Thu, Apr 30, 2026 at 08:13:54PM +0800, zain_zhou@realsil.com.cn wrote:
-> From: zain_zhou <zain_zhou@realsil.com.cn>
-> 
-> Add driver for Realtek RTS490x series I3C HUB devices (RTS4900,
-> RTS4901, RTS4902, RTS4903, RTS4904, RTS4906).
-> 
-> The I3C HUB is a smart device that provides:
->   - voltage compatibility across I3C Controller and Target devices
->   - bus capacitance isolation
->   - address conflict isolation
->   - I3C port expansion (up to 8 target ports)
->   - dual controller port support
->   - I3C and SMBus device compatibility
->   - GPIO expansion via target ports
-> 
-> The driver supports:
->   - Device Tree based configuration of LDO, pull-up, IO strength
->     and per-port mode (I3C/SMBus/GPIO/disabled)
->   - Logical I3C bus registration per target port
->   - SMBus agent functionality with IBI and polling modes
->   - GPIO chip with IRQ support
->   - DebugFS interface for register access and DT config inspection
->   - IBI (In-Band Interrupt) handling
-> 
-> The driver is placed in staging as it has known issues to be resolved
-> before mainlining; see drivers/staging/rts490x/TODO for details.
-> 
-> Signed-off-by: zain_zhou <zain_zhou@realsil.com.cn>
+Simplify the AA1024XD12 display DTO, move all the differences into the
+panel-aa104xd12.dtsi , rename OF_GRAPH links to generic lvds_panel_out
+and lvds_panel_in names, and parametrize the LVDS output in use using
+RENESAS_LVDS_OUTPUT macro. No functional change.
 
-We need a real name, not an email alias.
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../renesas/draak-ebisu-panel-aa104xd12.dtso  | 33 +---------
+ .../boot/dts/renesas/panel-aa104xd12.dtsi     | 64 +++++++++++++------
+ .../dts/renesas/salvator-panel-aa104xd12.dtso | 33 +---------
+ 3 files changed, 47 insertions(+), 83 deletions(-)
 
-And no, please don't add new drivers to drivers/staging/ especially when
-it is so easy to fix them up properly "first" before adding them to the
-kernel tree.
+diff --git a/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dtso b/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dtso
+index 90767d74e21b2..2ab7e947a05b9 100644
+--- a/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dtso
++++ b/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dtso
+@@ -6,36 +6,5 @@
+  * Copyright 2021 Ideas on Board Oy
+  */
+ 
+-/dts-v1/;
+-/plugin/;
+-
+-&{/} {
++#define RENESAS_LVDS_OUTPUT	lvds1
+ #include "panel-aa104xd12.dtsi"
+-};
+-
+-&{/panel} {
+-	backlight = <&backlight>;
+-
+-	port {
+-		panel_in: endpoint {
+-			remote-endpoint = <&lvds1_out>;
+-		};
+-	};
+-};
+-
+-&lvds1 {
+-	status = "okay";
+-
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		port@1 {
+-			reg = <1>;
+-
+-			lvds1_out: endpoint {
+-				remote-endpoint = <&panel_in>;
+-			};
+-		};
+-	};
+-};
+diff --git a/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi b/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
+index 4b1f0982b9e4a..11113a13a337d 100644
+--- a/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
++++ b/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
+@@ -5,26 +5,52 @@
+  * Copyright (C) 2014 Renesas Electronics Corp.
+  */
+ 
+-panel {
+-	compatible = "mitsubishi,aa104xd12", "panel-lvds";
+-
+-	width-mm = <210>;
+-	height-mm = <158>;
+-	data-mapping = "jeida-18";
+-
+-	panel-timing {
+-		/* 1024x768 @65Hz */
+-		clock-frequency = <65000000>;
+-		hactive = <1024>;
+-		vactive = <768>;
+-		hsync-len = <136>;
+-		hfront-porch = <20>;
+-		hback-porch = <160>;
+-		vfront-porch = <3>;
+-		vback-porch = <29>;
+-		vsync-len = <6>;
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	panel {
++		compatible = "mitsubishi,aa104xd12", "panel-lvds";
++		backlight = <&backlight>;
++
++		width-mm = <210>;
++		height-mm = <158>;
++		data-mapping = "jeida-18";
++
++		panel-timing {
++			/* 1024x768 @65Hz */
++			clock-frequency = <65000000>;
++			hactive = <1024>;
++			vactive = <768>;
++			hsync-len = <136>;
++			hfront-porch = <20>;
++			hback-porch = <160>;
++			vfront-porch = <3>;
++			vback-porch = <29>;
++			vsync-len = <6>;
++		};
++
++		port {
++			lvds_panel_in: endpoint {
++				remote-endpoint = <&lvds_panel_out>;
++			};
++		};
+ 	};
++};
++
++&RENESAS_LVDS_OUTPUT {
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@1 {
++			reg = <1>;
+ 
+-	port {
++			lvds_panel_out: endpoint {
++				remote-endpoint = <&lvds_panel_in>;
++			};
++		};
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso b/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso
+index 7807c3f80409a..4eb3e06ce52bb 100644
+--- a/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso
++++ b/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dtso
+@@ -6,36 +6,5 @@
+  * Copyright 2021 Ideas on Board Oy
+  */
+ 
+-/dts-v1/;
+-/plugin/;
+-
+-&{/} {
++#define RENESAS_LVDS_OUTPUT	lvds0
+ #include "panel-aa104xd12.dtsi"
+-};
+-
+-&{/panel} {
+-	backlight = <&backlight>;
+-
+-	port {
+-		panel_in: endpoint {
+-			remote-endpoint = <&lvds0_out>;
+-		};
+-	};
+-};
+-
+-&lvds0 {
+-	status = "okay";
+-
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		port@1 {
+-			reg = <1>;
+-
+-			lvds0_out: endpoint {
+-				remote-endpoint = <&panel_in>;
+-			};
+-		};
+-	};
+-};
+-- 
+2.53.0
 
-Your TODO file is pretty easy:
-
-> diff --git a/drivers/staging/rts490x/TODO b/drivers/staging/rts490x/TODO
-> new file mode 100644
-> index 000000000000..0be2d7693d68
-> --- /dev/null
-> +++ b/drivers/staging/rts490x/TODO
-> @@ -0,0 +1,19 @@
-> +TODO list for rts490xa-i3c-hub staging driver
-> +==============================================
-> +
-> +- Move driver out of staging once the following are addressed:
-> +  - Add proper DT binding schema validation (dt-schema)
-> +  - Clean up open-coded OF property parsing; use device_property_* APIs
-> +    instead of of_property_read_* where possible
-> +  - Remove use of full_name / sscanf for node name parsing; use
-> +    of_node_name_eq() and fwnode helpers instead
-> +  - Replace global mutex (i3c_hub_regmap_mutex) with per-device locking
-> +  - Add kernel-doc comments for all exported/public functions
-> +  - Resolve TODO comment in i3c_hub_hw_configure_tp() regarding MUX
-> +    connection verification
-> +  - Remove TBD comment in i3c_hub_probe() regarding DEV_CMD security lock
-> +  - Review and fix potential locking issues in i3c_hub_delayed_work()
-> +    when registering logical buses
-> +  - Fix error handling in i3c_hub_delayed_work(): early return on failure
-> +    does not unregister already-registered logical buses, causing resource
-> +    leak; needs proper cleanup on error path
-
-All of those you could do this week.  Don't add stuff to staging that
-you are going to maintain, as it will be more work in the end.  Just do
-the needed extra effort and then merge it to the proper place in the
-tree.
-
-thanks,
-
-greg k-h
 
