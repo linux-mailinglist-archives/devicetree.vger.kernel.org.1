@@ -1,102 +1,84 @@
-Return-Path: <devicetree+bounces-292713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNMGETHH+GlQ0gIAu9opvQ
-	(envelope-from <devicetree+bounces-292713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:20:01 +0200
+	id WHQdEY7J+Gls0wIAu9opvQ
+	(envelope-from <devicetree+bounces-292714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:30:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0AC4C1491
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:20:00 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72B84C15A2
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 18:30:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E571300F518
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 16:19:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3DC2C3009CF1
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 16:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2A5C3E1D06;
-	Mon,  4 May 2026 16:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0010B3E3C5B;
+	Mon,  4 May 2026 16:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OTIXkGfW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tVx5DkmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012006.outbound.protection.outlook.com [52.101.53.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C309234CFDD;
-	Mon,  4 May 2026 16:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777911545; cv=fail; b=fDYsY/nEERREWVfVtNfR9XuPXdZmKCvLXZxLj0e2qUfi38hdxIq+Ryd3seqHc9xzwwUDvpf2VjNsVSGgyUNg8Y3aYsaGFx2VemSPscWoCS7ir79kiDkCDc9o2BCIkTWh8EANWUPRiO0yov2Coy4eUe4Kw0veV3M0IkKSBSQykgg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777911545; c=relaxed/simple;
-	bh=h3p/EPXa4eKghWqt2IqUSIcmSdQ7qXMwcg/3FM7DzQI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KhopVApw5plYjOpbMv24UsAfnSCddeV1cvojEraWveH1jJBcwaLi/WBxjddAyGp/8gscjcONhycq00WACHDC4LRCrob4w06iqsSAi1MB7VxUtVCJM4/fmT1rar7WM1gAj0Tu+NyuyQGy0y11usnaOEDVfmOV297kkC/nwks1bS4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OTIXkGfW; arc=fail smtp.client-ip=52.101.53.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GXsFHNME/3kSMfcu5AsxQ+UFL4PTCan2CjKoakM1m1jjf94HprSwoozkgubK+9oJE5C5eOOk8BpqRSI33Pg+JCHjRJJ7LFBsZwR9dofyr+WJgOO51VqRgABuceub+Ww6fv0oLJq+8HpkKlGzLyMKu32LmvPR2uhDz5dLQ361K/nwiRquLmW4WZYHYlXA6Xc063KW4+0HITdLD2esWUXKzZVPc13VEfmqGg1LSDDfZF4uGtU1DM78C5mkGyFFbDINuhMNVxpSn5+XK3UbjAeXne9WPE80IT5FJdF69so4E+o29AIEoV1SpzP43GyAxG04D3g6UwaSnkekpJ4LGqDBgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jd8/MlqB+QnhmtODRMTPeeoRMCr4XUoO7cnvLhgsMpE=;
- b=ZifI5NeaxToOKGBohgRPl3zjA3MeXx5+SbOeZ/JXlVlxr0VqHARHHGLYsfS8t7LZ2/oB0ClRwXrdeyyqTKS2BTDjW76T1ngBRdhACyE/1u27VKgFW/n2IRhBrAlWCyVHYjzk37Wl1udvXztqk0mJ9Gxxfohzb7knjsf9Lq6NLmyB4Qwuh/nszdu1qzD2sCUCy0bvt3hneRoih8TIh04IRN8H/0l3JmKVIDa5f81rkosBKGz6lS/v0IhsrEu/EX2O2YDAzLlE4d+C14RuvwlllXXBGJq1X/3Db0N4HMwmdte/7KF+HF7fyMjXpogB/atCB81ZkCM6tYJRw2K4CRmYfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jd8/MlqB+QnhmtODRMTPeeoRMCr4XUoO7cnvLhgsMpE=;
- b=OTIXkGfWYqQs/Hs328aafgWsNxjRsTHqK6ry2oP6HXlDAlA9dwkDjsx80J5RalotxbZTlFvWQvAeha1pGz38KlrVg82FgXM6eQv7u41fw8Ui7Wz4UXCVjNXbXOMLZW/YCLCiXIBDD1wN7OF+VJ/gVWQ/gq/MPT50va31Cl3ua+Q=
-Received: from SA9PR13CA0004.namprd13.prod.outlook.com (2603:10b6:806:21::9)
- by IA3PR10MB8537.namprd10.prod.outlook.com (2603:10b6:208:583::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 4 May
- 2026 16:19:01 +0000
-Received: from SA2PEPF00003AEB.namprd02.prod.outlook.com
- (2603:10b6:806:21:cafe::1b) by SA9PR13CA0004.outlook.office365.com
- (2603:10b6:806:21::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.14 via Frontend Transport; Mon,
- 4 May 2026 16:19:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SA2PEPF00003AEB.mail.protection.outlook.com (10.167.248.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Mon, 4 May 2026 16:19:01 +0000
-Received: from DLEE208.ent.ti.com (157.170.170.97) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 4 May
- 2026 11:19:00 -0500
-Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE208.ent.ti.com
- (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 4 May
- 2026 11:19:00 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 4 May 2026 11:19:00 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 644GJ0941084486;
-	Mon, 4 May 2026 11:19:00 -0500
-Date: Mon, 4 May 2026 11:19:00 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Judith Mendez <jm@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: Add k3-am62l3-beaglebadge
-Message-ID: <20260504161900.sivd2s4roiqtnsc7@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20260501233148.4180391-1-jm@ti.com>
- <20260501233148.4180391-3-jm@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10873E3150
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 16:29:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777912201; cv=none; b=TskCzzNZArYChWMiwnxdTJjPoG2gFFXBHIGWW8Dcvvv1EXlHyhIWt83jTwuayV3hexvBVCnXqcuyV/H4+HZbdVy6+9zalT5IEt/wqhnZe+cVAKzl+DbugldvI9G5BK2UjNK4zVuHSOF7dNqendNpg7Iof3lNKl/ABwEXZm3Tt0Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777912201; c=relaxed/simple;
+	bh=N/w1uFHYZt1PLkaWQZseHCertmTa8aPXuLRhAgnU2M4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pL7Nweod3TE9h8Z/mmwTKPTmb2yztaHv5FqCHELy0qrcLGDmm+esCQoSeRq5f0fJYfvGpU8vt742tlybMpMNWB7C+KE8rVf0dpfkXFlWAy8ygCqxSlwKWqNCD7hlVcua7o+vLrl+ZwzNIy6BxZRoXsRa469l3mIQJiP2uAQ1k1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tVx5DkmF; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4891f625344so45611455e9.0
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 09:29:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1777912196; x=1778516996; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k5pF50GtcmXJGYs4kvpe2nAmtHNKe2SntljuXTtOF6A=;
+        b=tVx5DkmFzJKHMc22eB41ap3FzmkBiD0TtQYHVfV3pMh2g2Y1UKt0CgaH94yWt+aT6A
+         oIPHz5RF+PTrCWYFe6Kiwv5P63SfFXxWIY+pDTF5ZJIQC4BgSENMDZAYofccyGJf0Nfl
+         Dfggnn1D9gF4FAmbT4dJ0D9IdLWLr4VOkXxA6aWIacLBXltS5Dr/7BJ6fWpsK3xqbAnD
+         d1fsgOYuTgXcvdF1w9yca4zaVQ7uxxVVOG2aZku01UWG2zoDkBnmX8IX6JkvO1nSQQVp
+         52O6IBncT/RbdWjknvnvjbubcEA+/5a82jCaN8Eu398yKVuAntTPI0x0jrzkWkUkSeZW
+         XBaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777912196; x=1778516996;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k5pF50GtcmXJGYs4kvpe2nAmtHNKe2SntljuXTtOF6A=;
+        b=qnB93mb/TNyIDbYr7Q5WgaG7WhboNW1Eyn9aolC2gJ9MtsQUr5X+630c9247F4EYn+
+         Ax6l62iaGKeBEI2A1n0mPxvpbRB/Fa9lTLsvG8enV2sM8NOaPl7OlhYZrXHIyfmaAEce
+         2MSe6sVEJdmbJHgreZBuzFD8XhFv5mImo1kAPs+I7k5sDWc+gQdRuqZPXLuJuUO8n7vH
+         nlLaDGngM85M67kis60gPpK/66GQbTsSX5g3lUooiVlk3bkYkf0erc9tys2aH5tT+Grw
+         CWTH6PmyC1rp2OYNt9YjBtjpsYvb8WzMujhIpOCEIHOqxsLBQtshld/jGw+p0Bj9U+Ak
+         yvsg==
+X-Forwarded-Encrypted: i=1; AFNElJ/Ydh+vDK/PoBPHS4x2yjUlAJWoCmJjm+uJMSQvGr3xXVENHwzbzsVnaej4nqLNjH+QIY4QRp3BGx19@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhCTMQ2YIo1av6UONTB/3CaR4fqADIpWUcE6GbdWxX/U38Ow5I
+	a9iy34VxXluLHgodC9yrulN/aRnfM3F4LPrY6orgr7zTBx96PecPmueABOznVjlZVuM=
+X-Gm-Gg: AeBDievYk0deMLNdVe2fBIhTMO+KY74neTtIFAredBprJQfn5dji4F9izmIrnhDiFey
+	a0U94VKwOUnIw2BPl0IRSGxArfxffSMrgAJRYv2luK3UHluZQOBuNd1konR0Arn6lbLaJ79bWU/
+	k/C2AiN1MUW2/cfzLmBnLX+bSxe+lsrt/OPHf9N2/D19xNETiF0ugiPp0IljqD2Myhm9BA5IKzD
+	Totx+FVlDDknz8pzPO6/3gnibvM3ZwLvZawUUi70lhE0Zy/6isDlEcn0D7cG9tAz4AiSy123mu1
+	iMjxnM8iniUFPPHlBeBRo7Wo2+BDmdPxFsESkwVLNdeUfth77y9+x3zjDTZs8jRbSvHXvj6KYAq
+	mLiO8MYNU8uf+XT/lApgi9EKXJxLSJCQ1OwbaB2iXClKZJ/Wiog4odTC4YY41bdd+gvajXehzzC
+	YOwLhAb2QYzzWu2mz9XVzM4L7cXCIL3D6avPbb0oojQD0xRd3Y5J0fYBI=
+X-Received: by 2002:a05:600c:528f:b0:48a:79d8:a8d6 with SMTP id 5b1f17b1804b1-48d14243e52mr4131275e9.7.1777912196063;
+        Mon, 04 May 2026 09:29:56 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a82301b7bsm405071055e9.11.2026.05.04.09.29.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 May 2026 09:29:55 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH RFC v2 0/6] arm64: dts: qcom: sm8[56]50: add PMIC5 Gen3 ADC
+ channels
+Date: Mon, 04 May 2026 18:29:48 +0200
+Message-Id: <20260504-topic-sm8x50-adc5-gen3-v2-0-5cc04d6ecda0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,147 +86,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20260501233148.4180391-3-jm@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003AEB:EE_|IA3PR10MB8537:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6a34acc-e86f-4f75-af91-08dea9f8da32
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	zdTmkpLiH6vFMYi4+OkxTduCyOiiSmXyFh9yGEFUXDpX7g8Tv18E7MfwXl0/0KLJFc8ZlShkWwk/Yf03U2yCMFa+UW8yJ1AQqqinUV8J6TanvXSqAPQED+jzuzDs+YsPAIHJ76jC14/4iO/cjJQMMfEhNq0gZM1Keg0VMTSnPG+12cZciPV6EsvaYqcbXofURMP74XnOAn41w3iEoc+3WZoesf7XNmOxXZLd8hkprSiRwZQwrrVPndgeVvRCvB21ynPGgAOrUNnLyQRow6BqEoRB/PVc1IhuVEVmcC3BwJhZnUVSBF+DxOQ/mtswWxqV5hClRghISMyYEGDy24xOu8cxPJSgtQvLsICe1qKC4uJ+TiAP6M40CaaJApvvPLaaGrZbo+rMEeSoKMM25HCet5kInRMtbkPgR6+jHMimQleFx7TSwq4i5pFOE9b6bSrfBFmEqck20bUiqKHFwVclEvudqKvdwPdJ5puj5dq2i6yBusxoVkDfWkSj6EpwWyHTnaRavrlfFU40GLANtT/+h4HscJM8aQDYpVEeYrL3TK0Y2zYMcksIf2Vsix6vD04TM4Pyrjh6f/uTbF8z5Nz/J4jpfiyZCWsc8UWK2+wESqBEf04NbJ9PwvtlF8InGzHyP3Mi+h7Yj12KzX+wZUEV0hufrCuBczXFT/Y/0NzyOS4=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	4iruFnY2LVce4Zj/xau+rqQLc3q00nPKTv4iumMOZamXQoBku+KhSUqXWZCwd9QS8sSG/3WLVwt8jIiQSUn2np6hJy4HAnK3urmT0roC4hGNsSs1JAmUOLkw3gcJ6I8B6ZmCj6A8iF4k3Pm9/V9xrudAlwWK572PtFlAKBZ+i+HOlTcfJ5UB2CM3zLHRu0CJSgjhoqsZX+yiumAIZxaPNvrLBVWO4Tn7/YB7P2NRsb3DaddJNdfb/X49+AgijbMmmYKW/a2syOqdEntufjxbGo8nrdA2KGRpoKkb4LMIffQEZFh5UJGK2vgxVu7ql2yVxFv1vaViYAV6zGO9Nhput2/gmgXkMGfji4PVSHx3yKcLeq6PcjfeDMtAaoqDSWuQepIUe+YuWX2jEXUeJYUzn2rYHXmFbGvl4YVhskhVxcivVRX6BsACvLJiJ+UBpH1l
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2026 16:19:01.0217
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6a34acc-e86f-4f75-af91-08dea9f8da32
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF00003AEB.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8537
-X-Rspamd-Queue-Id: 9C0AC4C1491
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHzJ+GkC/4WNTQ6CMBSEr0Le2ppaqAVXJiYewK1h0Z9XqNGWt
+ EgwhLsLeACXM/nmmwkSRocJTtkEEQeXXPBLYLsMdCt9g8SZJQOj7EgLJkgfOqdJepUjp0QazUm
+ DPidobFVYZfKcK1jGXUTrxk18h9v1AvWvTG/1QN2vyhVrXepD/Gz3w2GD/z0NB0JJKQW1QlVUC
+ n5+Oi9j2IfYQD3P8xe6/gHR1AAAAA==
+X-Change-ID: 20260427-topic-sm8x50-adc5-gen3-edf94fbd335b
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2432;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=N/w1uFHYZt1PLkaWQZseHCertmTa8aPXuLRhAgnU2M4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBp+Ml/cvc12e3FmhugnVJJohzy/hmwUGIapXCMXNMT
+ UoJE4B+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCafjJfwAKCRB33NvayMhJ0X4lD/
+ 9BcK2Aicq6aiYN9fbVcG+64PtFkYfUzduvnyhVHvESo7K/oHXL77CS1eWUlQKEVJ6aw0aZIo2/U7xk
+ 9zdfDYVuvc2Ir1C/cxuqJ7luakaBSsTWzn/mP5NJNUYngaddp7IW6SlUbriLt5QHDrfnt4MAT/kMdq
+ khMSHj6PMf6IyQRHXOojW5TZ0wLSJx3MPTvXPF/+M9O+GqHtqsO7a1A3E6WXrHeEwQoduTQVh+qHlx
+ bynddkg2jYeNT8RzqmXWRV3+A8EwcZJPkMRMM0SuNNhAypdU7Z+wmA75rrMuL+5Ti0INGkJtIIsOVN
+ QcZK8T8FWeBU4h21SVKb67iNjtxy2BSAD+KCF+I/qJMWLJVjvpyLVx6DqrGT9uqIF0XsUrtu5PHV8q
+ aEtQyDtTxdFlO8lYcjdBY2dNtkSB2qtWgogIv7LNFdpyTWKhs4c5iwjRB4Ag/h0Wfi80Wxu0vZQcL+
+ iknyhhrAROrqHi2SmU8n2G6ikTGqw1qNtt20utovKOaHrddXn87hUlkpYhqCSOKSL9mLxhbr3qohhF
+ O3n8Ouk1loKLIZXIhTHAXzNOl9IeDwV01+GQwi++NouJZweVAvjaaa/geNPgTjuvGp7JM9HIcuyDRX
+ 6YrzYnzS3vKvNSEJpBHiMa/0UtqT5+H0WxlA3gzw0f4mKoeYLLDB+jR9rUvQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Rspamd-Queue-Id: D72B84C15A2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292713-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,ti.com:dkim,ti.com:url,bryanbrattlof.com:mid,0.0.0.2:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ti.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bb@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292714-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,linaro.org:mid,msgid.link:url]
 
-On May  1, 2026 thus sayeth Judith Mendez:
-> BeagleBoard.org BeagleBadge is a compact, affordable open source
-> hardware single board computer based on the Texas Instruments AM62L3
-> SoC designed for IoT and embedded applications with low power consumption.
-> Expansion is provided over open standards based headers including
-> QWIIC and GPIO interfaces.
-> 
-> https://beagleboard.org/
-> https://github.com/beagleboard/BeagleBadge
-> 
-> Co-developed-by: Andrew Davis <afd@ti.com>
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile            |   1 +
->  arch/arm64/boot/dts/ti/k3-am62l3-badge.dts | 655 +++++++++++++++++++++
+Now the bindings and driver was merged for the SPMI PMIC5 Gen3 ADC
+found on the PMK8550 which allow reading ADC data on the PMK8550
+and other PMICs on the system.
 
-...
+First, add the PMIC5 Gen3 macros to calculate the channel numbers which
+is a combination of SPMI bus number and a constant for the sensor
+type and configuration.
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-badge.dts 
-> b/arch/arm64/boot/dts/ti/k3-am62l3-badge.dts
-> new file mode 100644
-> index 000000000000..0125d3fec5e9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-badge.dts
-> @@ -0,0 +1,655 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * https://www.beagleboard.org/boards/beaglebadge
-> + *
-> + * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include "k3-am62l3.dtsi"
-> +#include "k3-pinctrl.h"
-> +
-> +/ {
-> +	compatible = "beagle,am62l3-badge", "ti,am62l3";
+The macros definitions were taken out of [1] where it was initially
+in the dt-bindings include directory but since those are not hardware
+bindings but logical numbers, they can be moved to local includes
+instead to make the DT source more readable.
 
-I noticed the $subject calls it the k3-am62l3-beaglebadge do we want to 
-name the DT that as well?
+[1] https://lore.kernel.org/all/20250826083657.4005727-4-jishnu.prakash@oss.qualcomm.com/
 
-> +	model = "BeagleBoard.org BeagleBadge";
-> +
+Finally add the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
+other PMICS on the system.
 
-...
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Removed stray line from patch 2, added review tag
+- Added missing header file
+- Link to v1: https://patch.msgid.link/20260427-topic-sm8x50-adc5-gen3-v1-0-8a70f7b90a75@linaro.org
 
-> +&sdhci2 {
-> +	vmmc-supply = <&wlan_en>;
-> +	bus-width = <4>;
-> +	non-removable;
-> +	cap-power-off-card;
-> +	keep-power-in-suspend;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc2_pins_default>;
-> +	ti,driver-strength-ohm = <50>;
-> +	ti,fails-without-test-cd;
-> +	status = "okay";
-> +
-> +	wlcore: wlcore@2 {
-> +		compatible = "ti,cc3300";
+---
+Neil Armstrong (6):
+      arm64: dts: qcom: add PMIC5 Gen3 macros for channel numbers
+      arm64: dts: qcom: pmk8550: add VADC node
+      arm64: dts: qcom: sm8550-qrd: add SPMI ADC channels and thermal nodes
+      arm64: dts: qcom: sm8550-hdk: add SPMI ADC channels and thermal nodes
+      arm64: dts: qcom: sm8650-qrd: add SPMI ADC channels and thermal nodes
+      arm64: dts: qcom: sm8650-hdk: add SPMI ADC channels and thermal nodes
 
-Sadly this only exists on our evil vendor tree :/
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi              |  30 +++
+ arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h |  88 +++++++
+ arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h   |  46 ++++
+ arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h  |  85 +++++++
+ arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h |  22 ++
+ arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h  |  52 ++++
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts            | 279 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts            | 279 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts            | 279 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts            | 279 +++++++++++++++++++++
+ 10 files changed, 1439 insertions(+)
+---
+base-commit: b9303e6bff706758c167af686b5315ad00233bf8
+change-id: 20260427-topic-sm8x50-adc5-gen3-edf94fbd335b
 
-> +		reg = <2>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <52 IRQ_TYPE_EDGE_RISING>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wlirq_pins_default>;
-> +	};
-> +};
-> +
+Best regards,
+--  
+Neil Armstrong <neil.armstrong@linaro.org>
 
-Scanning over the bootlog it looks like the VTM driver is active but 
-we're missing the thermal-zones{} node which is causing it issues.
-
-~Bryan
 
