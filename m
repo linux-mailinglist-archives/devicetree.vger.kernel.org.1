@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-292734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292736-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4GVkFDHY+GlJ2QIAu9opvQ
-	(envelope-from <devicetree+bounces-292734-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 19:32:33 +0200
+	id SDhYJzDb+GnG2QIAu9opvQ
+	(envelope-from <devicetree+bounces-292736-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 19:45:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047ED4C1F63
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 19:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CAE4C2188
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 19:45:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D92BB300B1F5
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 17:32:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B2C15300D379
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 17:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA83D3E3DB3;
-	Mon,  4 May 2026 17:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E049A3E715F;
+	Mon,  4 May 2026 17:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R0uak8Fx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkTiNQib"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851A63E2772;
-	Mon,  4 May 2026 17:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19EB3E7145;
+	Mon,  4 May 2026 17:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777915946; cv=none; b=GbcsYG3XOnO9X44qwHBUWKdwkZQO8vQjGXrt3kWCz1vfzGjoWv4bq+OsbLvoaitZsPmaiIVCV0kAnddNrifZm5OgbTNfMipC9EHH3K1K/a1KzAw1PdQSlT7qID27QyqAltJPktOHaUbb+DrnB3OQU+TYzxPfjgRPlzRifmyZjCM=
+	t=1777916666; cv=none; b=lOJLGutuEwudETstNdTqX5uCNW7iddD5R3jcj+/wkvlyRrpnlIiEr/euZnKZgO+zbtYoMzx1Sp5LQTKUyI7T03aSwW4xBxSGTdS44XUJWXaGKY4+8QO4xyUlwlqfkh5JKDkXrzrb6DxOo+1a+s3H5FS7JHRxmCehldOl4BS10a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777915946; c=relaxed/simple;
-	bh=PsrW77BE83jmuKFMHLw6qCe+MVjSplndO6+//9KRHl4=;
+	s=arc-20240116; t=1777916666; c=relaxed/simple;
+	bh=lAE33L4SBAL04KBWBPn8XrtNmFuqdqZRS8edpVpz8lw=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=itfmHR5OAJSViFXwY7oDSCMv6CHO5NerN4abZ8vf0h89xvlORoHA0zYCO54q4vHpEpjvarI+oRtlLxwU42RJkKDEg50rAfgTsLQkGmKCBit2zrUMcNxWOg30evzk5ZfLhEB/kSXBwILKBSVl6MtFpKgg0Q+Y0LXJz2KZ7ReRarA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R0uak8Fx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93370C2BCF4;
-	Mon,  4 May 2026 17:32:20 +0000 (UTC)
+	 MIME-Version:Content-Type; b=kSIRpi4Sby7a+z+a8g8XOK+vy1M7m4b5IRa6CQyYoBXGZaKj9WxjlbX/z/ESXwi0l7o9QkyFueqHYdyg1nFsWuw5c/6bd0f3+5qKXcPIEAE/CsLB1ums6VYOlNUOX9FOCa1Ihbnxfvwl5l8Wvn3hMkj9/mp4PhEFfLqDdoCEbn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkTiNQib; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE1F3C2BCB8;
+	Mon,  4 May 2026 17:44:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777915946;
-	bh=PsrW77BE83jmuKFMHLw6qCe+MVjSplndO6+//9KRHl4=;
+	s=k20201202; t=1777916666;
+	bh=lAE33L4SBAL04KBWBPn8XrtNmFuqdqZRS8edpVpz8lw=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=R0uak8Fx2TUyNNhedfkTdxdW2rlGxnE4RdtQOOhU4dGWyo36JgzpR4NykcY1Qs8f1
-	 jzO2aongzbSvRyuQOKx1GM2TJM1lc8g21WfrgMLNkCblAFTOUeui5lb369CW7XsAVs
-	 CSfPDoX3iDTGUyvvcOwm2DLN+FITyGOy678qBPzYxkM2IlumDa4T5wQjzy9+Vbut73
-	 2VF0CRpW0uoY/4C7u861xeu2Z/VE3D31Ukj4fdrQjbEJQgaugvOtvEZiRXQhHli4cU
-	 nKfZ9ravFI/9eS9uHPWc1Uq9WUHpdlHAWg/FE46F+6OJXa9Rl5YO18LJCalAcpSOV+
-	 EwHHbDdPtVe0Q==
-Date: Mon, 4 May 2026 18:32:15 +0100
+	b=SkTiNQibA+I2sTuELpGZXbcTOXcbR8hYqS0n28C1amRl+XuWV6JMdaJe2QwElv1QD
+	 Q68nYkFSIIfrzum9M9zAShe/ejfhUBGU6OwEO9zibzuu/ndgIQPyamDVnw0OKQ7hcG
+	 i2SLWClrK4byIOa6dh8ZU1msJ5leNNXQTzH5QlcFfhRhNo+qPHshICH2wub7kgt8uT
+	 GylrtjYW+Td3ADfs58zWVCIQQT9vZ5xAd/CtaseuDtEV/O9oea7IjUClMsrh67b6or
+	 EZ7cqmqjNGdRuRQFE+ZlXcquNEF+vaiOeyS7173yM5oeCmOx6BRVQV+AgcFyGz8N3U
+	 ekYRoHAKz9MPQ==
+Date: Mon, 4 May 2026 18:44:15 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Salih Erim <salih.erim@amd.com>
 Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
  <git@amd.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
  <dlechner@baylibre.com>, <michal.simek@amd.com>, <conall.ogriofa@amd.com>,
  <erimsalih@gmail.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Guenter Roeck
- <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] iio: adc: add Versal SysMon driver
-Message-ID: <20260504183215.37c8ae65@jic23-huawei>
-In-Reply-To: <20260502111951.538488-3-salih.erim@amd.com>
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/5] iio: adc: versal-sysmon: add threshold event
+ support
+Message-ID: <20260504184415.7b6688f5@jic23-huawei>
+In-Reply-To: <20260502111951.538488-5-salih.erim@amd.com>
 References: <20260502111951.538488-1-salih.erim@amd.com>
-	<20260502111951.538488-3-salih.erim@amd.com>
+	<20260502111951.538488-5-salih.erim@amd.com>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 047ED4C1F63
+X-Rspamd-Queue-Id: 39CAE4C2188
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
@@ -80,113 +80,84 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292734-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-292736-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,amd.com,analog.com,baylibre.com,gmail.com,vger.kernel.org,roeck-us.net];
+	FREEMAIL_CC(0.00)[kernel.org,amd.com,analog.com,baylibre.com,gmail.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amd.com:email]
 
-On Sat, 2 May 2026 12:19:48 +0100
+On Sat, 2 May 2026 12:19:50 +0100
 Salih Erim <salih.erim@amd.com> wrote:
 
-> Add the AMD/Xilinx Versal System Monitor (SysMon) IIO driver.
+> Add threshold event support for temperature and supply voltage
+> channels.
 > 
-> The driver is split into a bus-agnostic core module
-> (versal-sysmon-core) and a memory-mapped I/O platform driver
-> (versal-sysmon). The core uses the regmap API so that different
-> bus implementations can share the same IIO logic.
+> Temperature events:
+>   - Rising/falling threshold with configurable values
+>   - Over-temperature (OT) alarm with separate thresholds
+>   - Per-channel hysteresis configuration
 > 
-> The core provides:
->   - Static temperature channels (current max/min, peak max/min)
->   - Supply voltage channels parsed from DT container nodes
->   - Temperature satellite channels parsed from DT container nodes
->   - read_raw for IIO_CHAN_INFO_RAW and IIO_CHAN_INFO_PROCESSED
->   - read_label using the DT label property
-
-Various comments inline.  One thing to check.
-Is this one strictly a hardware monitoring device? Or does it
-get used for more general ADC purposes?  Did you consider an HWMON driver
-for it? The above sounds a lot like hwmon. So why IIO for this one?
-
-I wasn't awake enough on v1 to raise this!  Sorry about that.
-+CC Guenter and linux-hwmon for that discussion.
-
-Thanks,
-
-Jonathan
-
+> Supply voltage events:
+>   - Rising/falling threshold per supply channel
+>   - Per-channel alarm enable via alarm configuration registers
 > 
-> The MMIO platform driver provides:
->   - Memory-mapped register access via custom regmap callbacks
->   - NPI unlock before every register write (platform management
->     controller may re-lock NPI unpredictably on Versal devices)
+> The interrupt handler masks active threshold interrupts (which are
+> level-sensitive) and schedules a delayed worker to poll for condition
+> clear before unmasking. When no hardware IRQ is available (irq <= 0),
+> event channels are not created and interrupt init is skipped, since
+> the I2C regmap backend cannot be called from atomic context.
 > 
-> Threshold events, oversampling, and I2C bus support are added in
-> subsequent patches.
+> When disabling a supply channel alarm, the group interrupt remains
+> active if any other channel in the same alarm group still has an
+> alarm enabled.
 > 
-> Co-developed-by: Michal Simek <michal.simek@amd.com>
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Named constants replace magic numbers for hysteresis bit positions
+> (SYSMON_OT_HYST_BIT, SYSMON_TEMP_HYST_BIT) and alarm register width
+> (SYSMON_ALARM_BITS_PER_REG).
+> 
+> Hysteresis values are validated to single-bit range (0 or 1) before
+> writing to the hardware register.
+> 
 > Signed-off-by: Salih Erim <salih.erim@amd.com>
+A few minor comments inline to add to what Andy found.
 
-
-
+>  drivers/iio/adc/versal-sysmon-core.c | 539 ++++++++++++++++++++++++++-
+>  drivers/iio/adc/versal-sysmon.h      |  36 ++
+>  2 files changed, 574 insertions(+), 1 deletion(-)
+> 
 > diff --git a/drivers/iio/adc/versal-sysmon-core.c b/drivers/iio/adc/versal-sysmon-core.c
-> new file mode 100644
-> index 00000000000..37736c2900b
-> --- /dev/null
+> index 37736c2900b..857fe21db7a 100644
+> --- a/drivers/iio/adc/versal-sysmon-core.c
 > +++ b/drivers/iio/adc/versal-sysmon-core.c
-> @@ -0,0 +1,320 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * AMD Versal SysMon core driver
-> + *
-> + * Copyright (C) 2019 - 2022, Xilinx, Inc.
-> + * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "versal-sysmon.h"
-> +
-> +#define SYSMON_CHAN_TEMP(_chan, _address, _ext) {		\
+
+>  
+> +/* OT and TEMP hysteresis bit positions in SYSMON_TEMP_EV_CFG */
+> +#define SYSMON_OT_HYST_BIT		BIT(0)
+> +#define SYSMON_TEMP_HYST_BIT		BIT(1)
+
+You use a mix of these defines and manual shift.  Use FIELD_GET()
+/FIELD_PREP() to avoid that.
+>  
+> +#define SYSMON_CHAN_TEMP_EVENT(_chan, _address, _ext, _events) {	\
 > +	.type = IIO_TEMP,					\
 > +	.indexed = 1,						\
 > +	.address = _address,					\
 > +	.channel = _chan,					\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
-> +		BIT(IIO_CHAN_INFO_PROCESSED),			\
-Why do you need raw and processed?  There are a few reasons that can show
-up in a driver.
-1) Non linear transforms that aren't reversable and we need to be
-   able to threshold on the raw.
-2) History - don't copy this but some drivers used _PROCESSED and
-   reviewers (i.e. mostly me) weren't paying attention. We then needed
-   to add _raw for buffered / events and so ended up with both.
-
-1 might apply here I guess?  If so add a comment to that affect above
-.info_mask_separate being assigned.  I don't want this to get copied
-into most drivers where things aren't non linear.
-
-
+> +	.event_spec = _events,					\
+> +	.num_event_specs = ARRAY_SIZE(_events),			\
 > +	.scan_type = {						\
 > +		.sign = 's',					\
 > +		.realbits = 15,					\
@@ -195,170 +166,119 @@ into most drivers where things aren't non linear.
 > +	},							\
 > +	.datasheet_name = _ext,					\
 
-Can we rename _ext.  We still have legacy .extended_name in here
-and people might assume that is in use (definitely don't use that!)
-_name or something like that instead of _ext?
- 
-> +}
-> +
-> +/* Static temperature channels (always present) */
-> +static const struct iio_chan_spec temp_channels[] = {
-> +	SYSMON_CHAN_TEMP(0, SYSMON_TEMP_MAX, "temp"),
-> +	SYSMON_CHAN_TEMP(1, SYSMON_TEMP_MIN, "min"),
-> +	SYSMON_CHAN_TEMP(2, SYSMON_TEMP_MAX_MAX, "max_max"),
-> +	SYSMON_CHAN_TEMP(3, SYSMON_TEMP_MIN_MIN, "min_min"),
-> +};
-> +
-> +static void sysmon_q8p7_to_millicelsius(int raw_data, int *val)
-> +{
-> +	*val = ((s16)raw_data * SYSMON_MILLI) >> SYSMON_FRACTIONAL_SHIFT;
-> +}
-> +
-> +static void sysmon_supply_rawtoprocessed(int raw_data, int *val)
-> +{
-> +	int mantissa, format, exponent;
-> +
-> +	mantissa = FIELD_GET(SYSMON_MANTISSA_MASK, raw_data);
-> +	exponent = SYSMON_SUPPLY_MANTISSA_BITS - FIELD_GET(SYSMON_MODE_MASK, raw_data);
-> +	format = FIELD_GET(SYSMON_FMT_MASK, raw_data);
-> +	/*
-> +	 * When format bit is set the mantissa is two's complement
-> +	 * (per hardware spec); sign-extend to int for correct arithmetic.
-> +	 */
-> +	if (format)
-> +		mantissa = (int)(s16)mantissa;
-> +
-> +	*val = (mantissa * SYSMON_MILLI) >> exponent;
+As before - consider renaming this.
+
 > +}
 
-> +/**
-> + * sysmon_parse_fw() - Parse firmware nodes and configure IIO channels.
-> + * @indio_dev: IIO device instance
-> + * @dev: Parent device
-> + *
-> + * Reads supply-channels and temperature-channels container nodes from
-> + * firmware and builds the IIO channel array. Static temperature channels
-> + * are prepended, followed by supply and satellite channels from DT.
-> + *
-> + * Return: 0 on success, negative errno on failure.
-> + */
-> +static int sysmon_parse_fw(struct iio_dev *indio_dev, struct device *dev)
+> +
+> +static int sysmon_read_event_value(struct iio_dev *indio_dev,
+> +				   const struct iio_chan_spec *chan,
+> +				   enum iio_event_type type,
+> +				   enum iio_event_direction dir,
+> +				   enum iio_event_info info, int *val,
+> +				   int *val2)
 > +{
-> +	unsigned int idx, temp_chan_idx, volt_chan_idx;
-> +	struct fwnode_handle *supply_node, *temp_node;
-> +	unsigned int num_supply = 0, num_temp = 0;
-> +	struct iio_chan_spec *sysmon_channels;
-> +	const char *label;
-> +	u32 reg;
+> +	struct sysmon *sysmon = iio_priv(indio_dev);
+> +	unsigned int reg_val;
+> +	u32 mask, shift;
+> +	int offset;
 > +	int ret;
 > +
-> +	supply_node = device_get_named_child_node(dev, "supply-channels");
-> +	if (supply_node)
-> +		num_supply = fwnode_get_child_node_count(supply_node);
+> +	guard(mutex)(&sysmon->lock);
 > +
-> +	temp_node = device_get_named_child_node(dev, "temperature-channels");
-> +	if (temp_node)
-> +		num_temp = fwnode_get_child_node_count(temp_node);
+> +	if (chan->type == IIO_TEMP) {
+> +		if (info == IIO_EV_INFO_VALUE) {
+> +			offset = sysmon_temp_thresh_offset(chan->address, dir);
+> +			if (offset < 0)
+> +				return offset;
+> +			ret = regmap_read(sysmon->regmap, offset, &reg_val);
+> +			if (ret)
+> +				return ret;
+> +			sysmon_q8p7_to_millicelsius(reg_val, val);
+> +			return IIO_VAL_INT;
+> +		}
+> +		if (info == IIO_EV_INFO_HYSTERESIS) {
+> +			mask = (chan->address == SYSMON_ADDR_OT_EVENT) ?
+> +				SYSMON_OT_HYST_BIT : SYSMON_TEMP_HYST_BIT;
 
-Once you have these using __free() look closely at the various exit points.
-Most can be direct returns and as this is only called from probe() you can
-use dev_err_probe() to simplify things a little.
+Not a massive amount of sharing for OT_EVENT vs others. Maybe just split it
+and then you can use FIELD_GET() and get shift handling included via the mask.
 
-> diff --git a/drivers/iio/adc/versal-sysmon.c b/drivers/iio/adc/versal-sysmon.c
-> new file mode 100644
-> index 00000000000..c597934e869
-> --- /dev/null
-> +++ b/drivers/iio/adc/versal-sysmon.c
+			ret = regmap_read(sysmon->regmap, SYSMON_TEMP_EV_CFG,
+				  	  &reg_val);
+			if (ret)
+				return ret;
+			if (chan->addres == SYSMBO_ADDR_OT_EVENT) {
+				*val = FIELD_GET(SYSMON_OT_HYST_BIT, reg_val);
+			else
+				*val = FIELD_GET(YSMON_TEMP_HYST_BIT, reg_val);
+
+
+
+> +			*val = (reg_val & mask) >> shift;
+			}
+> +			shift = (chan->address == SYSMON_ADDR_OT_EVENT) ? 0 : 1;
+> +			ret = regmap_read(sysmon->regmap, SYSMON_TEMP_EV_CFG,
+> +					  &reg_val);
+> +			if (ret)
+> +				return ret;
+> +			*val = (reg_val & mask) >> shift;
+> +			return IIO_VAL_INT;
+> +		}
 
 > +
-> +static int sysmon_platform_probe(struct platform_device *pdev)
+> +static int sysmon_write_event_value(struct iio_dev *indio_dev,
+> +				    const struct iio_chan_spec *chan,
+> +				    enum iio_event_type type,
+> +				    enum iio_event_direction dir,
+> +				    enum iio_event_info info, int val, int val2)
 > +{
-> +	struct sysmon_mmio *mmio;
-> +	struct regmap *regmap;
-> +	int irq;
+> +	struct sysmon *sysmon = iio_priv(indio_dev);
+> +	unsigned int reg_val;
+> +	u32 mask, shift;
+> +	u32 raw_val;
+> +	int offset;
+> +	int ret;
 > +
-> +	mmio = devm_kzalloc(&pdev->dev, sizeof(*mmio), GFP_KERNEL);
-> +	if (!mmio)
-> +		return -ENOMEM;
+> +	guard(mutex)(&sysmon->lock);
 > +
-> +	mmio->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(mmio->base))
-> +		return PTR_ERR(mmio->base);
-> +
-> +	regmap = devm_regmap_init(&pdev->dev, NULL, mmio,
-> +				  &sysmon_mmio_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
-> +
-> +	irq = platform_get_irq_optional(pdev, 0);
+> +	if (chan->type == IIO_TEMP) {
+> +		if (info == IIO_EV_INFO_VALUE) {
+> +			offset = sysmon_temp_thresh_offset(chan->address, dir);
+> +			if (offset < 0)
+> +				return offset;
+> +			sysmon_millicelsius_to_q8p7(&raw_val, val);
+> +			return regmap_write(sysmon->regmap, offset, raw_val);
+> +		}
+> +		if (info == IIO_EV_INFO_HYSTERESIS) {
+> +			mask = (chan->address == SYSMON_ADDR_OT_EVENT) ?
+> +				SYSMON_OT_HYST_BIT : SYSMON_TEMP_HYST_BIT;
+> +			shift = (chan->address == SYSMON_ADDR_OT_EVENT) ? 0 : 1;
+> +			if (val & ~1)
 
-Could you instead use fwnode_irq_get(dev_fwnode(dev), 0) in the
-shared code to get  this?  There may be subtle differences in
-handling but those will be in strange corner cases that probably
-don't apply here.
+Just to confirm - this only has hysteresis values of 0 or 1?  That's unusually
+small given hysteresis should be in same units as _raw.
 
+Also similar to above, I'd split the two cases and use FIELD_PREP()
+
+> +				return -EINVAL;
+> +			return regmap_update_bits(sysmon->regmap,
+> +						  SYSMON_TEMP_EV_CFG,
+> +						  mask, val << shift);
+> +		}
+> +	} else if (chan->type == IIO_VOLTAGE) {
+> +		offset = sysmon_supply_thresh_offset(chan->address, dir);
+> +		if (offset < 0)
+> +			return offset;
+> +		ret = regmap_read(sysmon->regmap, offset, &reg_val);
+> +		if (ret)
+> +			return ret;
+> +		sysmon_supply_processedtoraw(val, reg_val, &raw_val);
+> +		return regmap_write(sysmon->regmap, offset, raw_val);
+> +	}
 > +
-> +	return sysmon_core_probe(&pdev->dev, regmap, irq);
+> +	return -EINVAL;
 > +}
 
-> diff --git a/drivers/iio/adc/versal-sysmon.h b/drivers/iio/adc/versal-sysmon.h
-> new file mode 100644
-> index 00000000000..fc4d2338328
-> --- /dev/null
-> +++ b/drivers/iio/adc/versal-sysmon.h
-> @@ -0,0 +1,69 @@
-
-> +
-> +/* Q8.7 fractional shift */
-> +#define SYSMON_FRACTIONAL_SHIFT		7U
-> +#define SYSMON_SUPPLY_MANTISSA_BITS	16
-> +
-> +/* Signed milli scale (MILLI from linux/units.h is unsigned long) */
-> +#define SYSMON_MILLI			1000
-
-Cast that one rather than defining the number again.  I see you discussed
-this with Andy but no conclusion reached.
-
-> +
-> +/**
-> + * struct sysmon - Driver data for Versal SysMon
-> + * @dev: pointer to device struct
-> + * @indio_dev: pointer to the iio device (needed for work callbacks)
-> + * @regmap: register map for hardware access
-> + * @lock: mutex for serializing user-space access
-
-Normally we talk about what data is protected. The comment below
-is better.  Also ignore checkpatch, you don't need it commented down there
-- in kernel-doc is absolutely fine.
-
-> + * @irq: interrupt number
-> + */
-> +struct sysmon {
-> +	struct device *dev;
-
-I'm always a bit in two minds about this. You can always get the dev
-from the regmap but it can be a little more ugly than strictly necessary.
-See how bad it is using regmap_get_device()
-
-> +	struct iio_dev *indio_dev;
-This smells backwards. Given this sysmon structure is allocated in the
-private area of iio_priv() we should never need to go in this direction.
-I don't think you really use this beyond one place where you can easily pass
-it to. Anyhow this indio_dev pointer needs to go.
-
-> +	struct regmap *regmap;
-> +	/* Serializes access to device registers and state */
-> +	struct mutex lock;
-> +	int irq;
-
-It's relatively rare to need to keep irq around after probe() and
-I don't think you need to here.  Just store it in a local variable
-that you pass into the interrupt init functions.
-
-> +};
-> +
-> +int sysmon_core_probe(struct device *dev, struct regmap *regmap, int irq);
-> +
-> +#endif /* _VERSAL_SYSMON_H_ */
 
 
