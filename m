@@ -1,44 +1,45 @@
-Return-Path: <devicetree+bounces-292775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292777-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CF/DxEA+Wko4AIAu9opvQ
-	(envelope-from <devicetree+bounces-292775-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:41 +0200
+	id EMByCBIA+WmY4AIAu9opvQ
+	(envelope-from <devicetree+bounces-292777-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECDE4C3862
-	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:40 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 404734C3863
+	for <lists+devicetree@lfdr.de>; Mon, 04 May 2026 22:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0136B3025179
-	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 20:21:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 66E9A300D4D8
+	for <lists+devicetree@lfdr.de>; Mon,  4 May 2026 20:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C3D31B114;
-	Mon,  4 May 2026 20:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750882F6577;
+	Mon,  4 May 2026 20:22:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C74630E853
-	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 20:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48163C6A39
+	for <devicetree@vger.kernel.org>; Mon,  4 May 2026 20:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777926114; cv=none; b=URR1T1kTNCxbmvoj3tMRbRcyJOsbMh4nptwXNFfcnuJiRlZs+4RvR46FS9Ikb7A9M5i9hMA0TxXrcvVb+5+Z7W3eYd+C8zYuBxMw7/rzLmuRTHzjVIuMUx4kUj8wlPVpozowOgaDPUoFoBZInTPfNknIkefVQRGmH/G2TD7qPsE=
+	t=1777926120; cv=none; b=elTJG9KU8DGUpWXrf4/poqXvlReQaEc0AmxlG5A0iFjJq76ps3wUS1wbvztSZFyHNdh7zQaQKr+MgEDnwLBr/xfkVLpTWVrPaWaDEibkOBA7mWiritT+Mi3w8DYcNrAHjodRLz3pocc5InSrJISlbGQ+hWjW5ezeWb/TLvcLeYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777926114; c=relaxed/simple;
-	bh=V/85oQttdHGcKWzfEk3TKfcIxxxpc5yEguI3HRpcOMo=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lcEomT6f+2eqX/LLk4WnC2weGdzwTtMD+4pDeGQ8OS/QhphKolMUuyXlC/6BF2vooI7WwcFQUThtAGVeSXrAhsX2TdRH080DGcgYkDS4BVZctKcYplIF+aOgxmfpamOa/9PpBHLQCDtm10aI+iKUOZ8y9AHKo5ZPmucEZeSGMi8=
+	s=arc-20240116; t=1777926120; c=relaxed/simple;
+	bh=GjX+Zl01+xvHUVCSI7brDzkX1/1clyd15YAzu3xxyvk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=aOxNxHbkoTlK0QMjAxTc3rBl6gwz9GGkN2TEL9RIDAYoKwAsN4lxN0botNah0tlS2+kNf1iihh4A445X516HIgrlKW/60/GBZhedJ88Jq+SVloYXRJueilGu8GKdytAd0kO2E32UoPxAfc4/DBRS1/vC3S9GfVdQe6qncCViHL8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1wJznX-0007WV-3d; Mon, 04 May 2026 22:21:47 +0200
+	id 1wJznX-0007WV-BD; Mon, 04 May 2026 22:21:47 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
-Subject: [PATCH 0/4] i.MX LDB DT cleanups
-Date: Mon, 04 May 2026 22:21:40 +0200
-Message-Id: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
+Date: Mon, 04 May 2026 22:21:41 +0200
+Subject: [PATCH 1/4] Revert "dt-bindings: display: bridge: ldb: Add check
+ for reg and reg-names"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,10 +48,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANX/+GkC/x3LSwqAMAwA0atI1gbS+sWriAttowakSiMiiHe3u
- HwM84ByFFbosgciX6KyhwSTZ+DWMSyM4pPBkq2pohKvBg2e+yEONz/hLDcrtlNBpfWuIs+Q1iP
- yH9LZD+/7AZL914tmAAAA
-X-Change-ID: 20260504-v7-1-topic-ldb-fixes-8b3042dc50de
+Message-Id: <20260504-v7-1-topic-ldb-fixes-v1-1-0125d937ff7f@pengutronix.de>
+References: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
+In-Reply-To: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
@@ -73,71 +73,88 @@ X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
 X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: DECDE4C3862
+X-Rspamd-Queue-Id: 404734C3863
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-292777-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[pengutronix.de];
 	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,denx.de,nxp.com,pengutronix.de,oss.nxp.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-292775-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.955];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.970];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-Hi,
+This reverts commit 8aa2f0ac08d3b207ba54e98698c9d696b86452a7.
 
-this cleanup prepares the LDB dt-bindings for the upcoming i.MX93 and
-i.MX94 LDB support and is a different abborach than [1]. This approach
-should be easier to maintain [2] and far more flexible for upcoming
-BLK-CTRL or IOMUX_GPR syscon sub-devices.
+The LDB is either part of the IOMUX_GPR (i.MX6SX) or the BLKCTRL
+(i.MX8MP, i.MX93) register space. Both IOMUX_GPR and BLKCTRL are
+register ranges with loose register definitions. E.g.
 
-Please be informed: I didn't do runtime tests but since the LDB driver
-never used the reg (nor reg-names) property, it should be safe to remove
-them.
+  - On the i.MX8MP there is one register which controls the AXI
+    threshold for two different IPs (BIT(31:16) - IP1, BIT(15:0) - IP2).
+  - On the i.MX6SX IOMUXC_GPR5 controlls: CSI2 mux, WDOG3 settings, PXP
+    handshake, ...
 
-Regards,
-  Marco
+In conclusion: it can't be ensured that one register belongs to one
+dedicated IP and the LDB is rather an exception than the rule.
 
-[1] https://lore.kernel.org/all/20260329-fsl_ldb_schema_fix-v1-1-351372754bc0@nxp.com/
-[2] https://lore.kernel.org/all/2mkih6id2cfqjfksfvvitzlcnyfz7r4rs4f7bhtvdhf7scwzue@bb4ucnfxa4l4/#t
+Therefore remove the 'reg' and 'reg-names' property requirement.
 
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
-Marco Felsch (4):
-      Revert "dt-bindings: display: bridge: ldb: Add check for reg and reg-names"
-      Revert "dt-bindings: display: bridge: ldb: Fill in reg property"
-      ARM: dts: imx6sx: remove LDB reg property
-      arm64: dts: imx8mp: remove LDB reg and reg-names property
+ Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml | 10 ----------
+ 1 file changed, 10 deletions(-)
 
- .../bindings/display/bridge/fsl,ldb.yaml           | 25 +---------------------
- arch/arm/boot/dts/nxp/imx/imx6sx.dtsi              |  3 +--
- arch/arm64/boot/dts/freescale/imx8mp.dtsi          |  4 +---
- 3 files changed, 3 insertions(+), 29 deletions(-)
----
-base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
-change-id: 20260504-v7-1-topic-ldb-fixes-8b3042dc50de
+diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+index 7f380879fffdfef28d9a35d7fbf87fdf28377b43..828b7a40e9b6cf27f76d1cd3009505b03cbe09f1 100644
+--- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+@@ -68,7 +68,6 @@ required:
+   - compatible
+   - clocks
+   - ports
+-  - reg
+ 
+ allOf:
+   - if:
+@@ -83,15 +82,6 @@ allOf:
+         ports:
+           properties:
+             port@2: false
+-  - if:
+-      not:
+-        properties:
+-          compatible:
+-            contains:
+-              const: fsl,imx6sx-ldb
+-    then:
+-      required:
+-        - reg-names
+ 
+   - if:
+       properties:
 
-Best regards,
 -- 
-Marco Felsch <m.felsch@pengutronix.de>
+2.47.3
 
 
