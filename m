@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-293006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCP9J3rT+WlHEQMAu9opvQ
-	(envelope-from <devicetree+bounces-293006-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 13:24:42 +0200
+	id 6FWTAV3R+WlHEQMAu9opvQ
+	(envelope-from <devicetree+bounces-293007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 13:15:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 193FC4CC8E7
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 13:24:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C84A4CC556
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 13:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A0D431DCAE7
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 11:04:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D25E325A746
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 11:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6281D3845C1;
-	Tue,  5 May 2026 10:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7539A426EB0;
+	Tue,  5 May 2026 10:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="BSAwxvNn"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="XQ67Wtdx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B4738237D;
-	Tue,  5 May 2026 10:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C96426EB8;
+	Tue,  5 May 2026 10:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777978747; cv=none; b=r9ZkM55+TckF9hh5tzwJyly/gsParIKjt/erYdm/XNvChofPY/TK/GQOA/ODJOwYbCLwY8DAe6yOiEfXmAjQyuxlJX7/cxHoz+pgHNXnFNiAi2tv12rBUVHZW/7kOtFZZg0JTloxQgEoBxJU7OGfAI3olzgnPlKJYADB178dE1E=
+	t=1777978751; cv=none; b=uC2W6keHAr4M89dBuQqI08y2/mZmOtPP+jniZsAe0q/0stjp1v8NKP2rBM0InB3GJ5eJXTUYIepPnbn9SEJoq2BOYmC7zOLdinMQv21uai+vPoSuqY2vQe97t8CGjz8M27UAzB+raa2JDjVS8RnI8IxBnE5UlZXIMAKwkkMnLOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777978747; c=relaxed/simple;
-	bh=+TI5vsVQxIRaX64nbDgruf049V5My5Wp2bprF8ZD6ZM=;
+	s=arc-20240116; t=1777978751; c=relaxed/simple;
+	bh=s2ZgeklFxlgyOz1Wnu5KDvbApKc575qGLfg7+7E0+K8=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lvrCdbuX2qceoZXcRY/pWlql8qWt2vJHbVdKUZgsu3AZTgkFNoMLkjWRbpt5iyvA8eE754f44ZuGszhFO9U8dL/yWMH8XTUTrmiL9f86P+0qXEKrSqQmLweqV6imsbqWEANBTODxqgneGymt6V2auAIZ2xw+CMRml5RUD7WK+vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=BSAwxvNn; arc=none smtp.client-ip=211.75.126.72
+	 MIME-Version:Content-Type; b=bO15PRskPQbsJ8Sdr2/HWL+2nNUjVRSKAXPS57GvrUh3Yv8OfoP+KGWZjZYjCV5sVTsM5EgU6EK+FrlA8A0tOzw7hfCvhpPL9kC63jCJkqkXXZhmzFmjsEk/auFJHcKHpEHqDts82G0hfCM6svzTzsyKd3UfWwat0wG0Ht7vHEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=XQ67Wtdx; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 645AwcMuB1171994, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 645AwcN431171996, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1777978718; bh=+weT3KNEWHRZNkAbVSTMGJxpE357XP50uaxJaJN6zaQ=;
+	t=1777978718; bh=tAJhk27tpW5Xpntp31c3+nM/LaggP06QbC7a84S+snc=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=BSAwxvNnxeKq53eNbASK9q+fR0UVjwn053a9HQEJnofJaGi6PsbHM7JBGwxw0MnRA
-	 4YeEd7dIj3+ECjtk09LkoBgdAxv1fxnsOcw/UlW0XZ/UHh0LaQ4U79HkqSUrBN1o0V
-	 mqfh6z2j3SqYnpD2PHb19kZN9EdaKRCNyw8ktE/TCFZouPqWfejeVYYHxyLcV/uDl4
-	 b3ooxEghLByozK0BBQOGA9xp07UKGwCHTt5G6Fw5CiV334esHKWHuGrL/bOglwzzKr
-	 hltxjeYshh1MctPBPk4qRks+i3ySyCCA9OnS7Tyv3nkMlSn3OMGOkG+SB/Hu6D655I
-	 cYqWn3m1UE5kA==
+	b=XQ67WtdxH3ZXsJEykG4/BOM036OW3bkwxxETnEiDCe6u5CUK3LTuzsK9tZwvgk16O
+	 /uQ3w/cieB89hZ8HiKdf02fj0G4j0I6Wr5tledW8f2v8k9DfHXP6Cfp+qP++fEzX16
+	 JY/sWg7jYmrdVdThsOq2BZ9CqF5lQJFjxu3IBlvxsd+bCZZMbYBce0JHj03XOs4mb3
+	 jSY6Y89y0g0Z3gYpCokTQW0075l/mKe3BDmqR4nLITtIMjKzkKNnp27uekZncLPNxh
+	 A0+s7VAXy2fLPDoi3ILhb7FnyUzGfxIYdHhEtWqw4ribyAqjWbMY3f3qDNxUcY+tV4
+	 xxEa/7owRU2sw==
 Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.27/5.94) with ESMTPS id 645AwcMuB1171994
+	by rtits2.realtek.com.tw (8.15.2/3.27/5.94) with ESMTPS id 645AwcN431171996
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Tue, 5 May 2026 18:58:38 +0800
 Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
@@ -63,14 +63,15 @@ CC: <james.tai@realtek.com>, <eleanor.lin@realtek.com>, <afaerber@suse.com>,
         <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-        Linus Walleij
-	<linusw@kernel.org>
-Subject: [PATCH 2/3] arm64: dts: realtek: Add pinctrl support for RTD1625
-Date: Tue, 5 May 2026 18:58:36 +0800
-Message-ID: <20260505105838.1014771-1-eleanor.lin@realtek.com>
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH 3/3] ARM: realtek: MAINTAINERS: Include pin controller drivers
+Date: Tue, 5 May 2026 18:58:37 +0800
+Message-ID: <20260505105838.1014771-2-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260505103955.1010130-1-eleanor.lin@realtek.com>
+In-Reply-To: <20260505105838.1014771-1-eleanor.lin@realtek.com>
 References: <20260505103955.1010130-1-eleanor.lin@realtek.com>
+ <20260505105838.1014771-1-eleanor.lin@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,75 +80,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Rspamd-Queue-Id: 193FC4CC8E7
+X-Rspamd-Queue-Id: 5C84A4CC556
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
 	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293006-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293007-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[realtek.com:+];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ff100000:email,4e000:email,4f200:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:email,realtek.com:dkim,realtek.com:mid,glider.be:email]
 
-Add the pinctrl nodes for the Realtek RTD1625 SoC.
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+No dedicated maintainers are shown for Realtek SoC pin controllers,
+except pinctrl subsystem maintainer, which means reduced review and
+impression of abandoned drivers.  Pin controller drivers are essential
+part of an SoC, so in case of lack of dedicated entry at least cover it
+by the SoC platform maintainers.
+
+Acked-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
- arch/arm64/boot/dts/realtek/kent.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index ae006ce24420..8d4293cd4c03 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -150,6 +150,26 @@ uart0: serial@7800 {
- 				reg-shift = <2>;
- 				status = "disabled";
- 			};
-+
-+			iso_pinctrl: pinctrl@4e000 {
-+				compatible = "realtek,rtd1625-iso-pinctrl";
-+				reg = <0x4e000 0x1a4>;
-+			};
-+
-+			main2_pinctrl: pinctrl@4f200 {
-+				compatible = "realtek,rtd1625-main2-pinctrl";
-+				reg = <0x4f200 0x50>;
-+			};
-+
-+			isom_pinctrl: pinctrl@146200 {
-+				compatible = "realtek,rtd1625-isom-pinctrl";
-+				reg = <0x146200 0x34>;
-+			};
-+
-+			ve4_pinctrl: pinctrl@14e000 {
-+				compatible = "realtek,rtd1625-ve4-pinctrl";
-+				reg = <0x14e000 0x84>;
-+			};
- 		};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b66b739ae2ca..0f8b8264e6e1 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3356,6 +3356,7 @@ F:	Documentation/devicetree/bindings/arm/realtek.yaml
+ F:	arch/arm/boot/dts/realtek/
+ F:	arch/arm/mach-realtek/
+ F:	arch/arm64/boot/dts/realtek/
++F:	drivers/pinctrl/realtek/
  
- 		gic: interrupt-controller@ff100000 {
+ ARM/RISC-V/RENESAS ARCHITECTURE
+ M:	Geert Uytterhoeven <geert+renesas@glider.be>
 -- 
 2.34.1
 
