@@ -1,128 +1,144 @@
-Return-Path: <devicetree+bounces-293138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECFfGgsB+ml1HAMAu9opvQ
-	(envelope-from <devicetree+bounces-293138-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:39:07 +0200
+	id ADzpFjQB+ml1HAMAu9opvQ
+	(envelope-from <devicetree+bounces-293139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:39:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE9E4CF91C
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:39:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0E9C4CF95E
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:39:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 511ED3029E42
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 14:35:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DA66C304CE8E
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 14:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85213D171B;
-	Tue,  5 May 2026 14:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF90039A06A;
+	Tue,  5 May 2026 14:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NoKtBwyR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KO+i3xKK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67212426D2A
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 14:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437E93E92BD;
+	Tue,  5 May 2026 14:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777991698; cv=none; b=o69nLxWi4p63FEXwncWs1Ty3kmkS0N7HNQnPzxXqVf1t8ZSwI2n3nU6gSczrK0oF9S53a5ZIbmyN0zA6ZEoobFRJaOU4eFHknC/5tH/mS+mWFI7JKriXknN/tY/W3xhQGswy/Cv/+XIIty2rWfPgEgnUsmZe3UYVzLIqsSkFVGE=
+	t=1777991724; cv=none; b=YZ5z8kQHdpbOd4Vw+hSnb2oUKTF8k+32E0qm9FQtalfnE6slqzFO8V8A1BTLVnDujkeZT8jgtrxImFPQXIPNRnKgfwRZSbM62RkdD2vJ8QQXojO2ef65b7lVN2X6G01GuRX0KvTmFZU2H2cxBMk3mu6tdU3bwAifWX8UktATZMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777991698; c=relaxed/simple;
-	bh=1qrTxLA4I8o8v3b/IBW8RF/TdQ7lq2xCRJqsETjYLeM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=koImojd/Wfntv+8qXCDDaVzAmCRxDpGqIVUjVTaK9qa5jQPzP60QWF9/sfPqMTvs+gWI1C5W+TANdA2agRiZLXj8G8fLGWSMGzwyYApIE1qTsSOuSFhRFoeC+H/br7J8dE/3+BDA1r726PKnjbTfDnmmM4oeNHH7Td5hPjPKa9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NoKtBwyR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E890AC2BCF7
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 14:34:57 +0000 (UTC)
+	s=arc-20240116; t=1777991724; c=relaxed/simple;
+	bh=ii98T0ORWI4eOp0vAtOI8TmApKV+7CPQEZwItTTv1Mk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=txJgvuQcvP9AcVHU/i+WC/MDddLQBB5uncA0JBUWv6IJfM/EOWPjQovz1PmfKoZOieB9eWF9J0kTDsoqHK/vluVe5ruti37mlOXspaqYDHX8RiXEoS35z5RULUukZEkXT8+EzfwCNEbWu44pqXiqAuFYMliBAx4xHxHokYU/14k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KO+i3xKK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB646C2BCF4;
+	Tue,  5 May 2026 14:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777991697;
-	bh=1qrTxLA4I8o8v3b/IBW8RF/TdQ7lq2xCRJqsETjYLeM=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=NoKtBwyRtUm29XohPg9Vga7qRpKLoSJAiXprhcVvuKvhWjRLaq4OhM3yfiHoKFeEj
-	 +NdIf79aoH9Noor7TQDGf5pTuW8bsEsch5pAJBOIH6OtNuNCIEXSDSuRE4GoIQCAcV
-	 EjYKmDqBeR3QIkS/NPWXSH5KeScrs6t7km0CkVNkILE61DmjczrmwTIHuqr0QEnx0o
-	 9I38oHaw0eBjADetlE/6gArE3P0tjlB9mEYTLuI7agP3zUQOsV2ZBqoH/2ggLUO6UE
-	 CM3FbFP59P0tDBashJX7cyiNxTcAQHYNiq7k5TymiLNxMhtC4rrBCKRu8gpnxWlp9o
-	 hJJbUTZqKpEKg==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-38a01c80c34so53348841fa.0
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 07:34:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8iMvdXMKeiAGCG0x9AvAssnyb8FEG80l0giiuaLDV2Skxz0nuleNbRaF31NZ4O9BmsUQeNgSLzKuZN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNXCB845g8P1HjLf06soDZRNSEGr1bUuy5hs7MQ5Jq7RyH/ItG
-	VWo26Cv3PW+0zkm7d9C/tTHvdaOh6NbGehpmEn248kDMAE/uzlJMy985q6EdYBSli3r9j1VDE7h
-	yOjalB1iVgFaCoAyu8IpYvFVaOyyuYtQ=
-X-Received: by 2002:a2e:a591:0:b0:393:ba06:158f with SMTP id
- 38308e7fff4ca-393ba06170amr11719431fa.16.1777991696235; Tue, 05 May 2026
- 07:34:56 -0700 (PDT)
+	s=k20201202; t=1777991723;
+	bh=ii98T0ORWI4eOp0vAtOI8TmApKV+7CPQEZwItTTv1Mk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=KO+i3xKK2+gAmUJCxlumoP2AJBoSkpkqEF1/4M6NHqFMahQs2+lQR/6+GQBqCB4e3
+	 0yAeXS+fDmRUDlg3BQkaq6bNywz/lRD6V9nnLtXmbmZtdOPTr8qljP//lQY6zdtf7E
+	 mvf96yOlxMF9JjwrQ3BRtxZ4UTj7gp318X5TF2RHNiDT7Ipx1AJy6mK0DQdFmNOhza
+	 ev359JLwPcqckx9WfLrwraZVQQKTlaHx/o1djBLRLNq7QaZJq/D7FTpWj6icfjsNsT
+	 hTjzspnweHODkSsUTD98gYBlC2AYo0MTv/obk2HI8IddFJyAACteHxpkJX0pfo631c
+	 1zLnuFdJyGTfQ==
+Date: Tue, 5 May 2026 15:35:10 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+Cc: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+ <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 6/6] docs: iio: adc: ad4691: add driver documentation
+Message-ID: <20260505153510.7feea4b0@jic23-huawei>
+In-Reply-To: <20260430-ad4692-multichannel-sar-adc-driver-v9-6-33e439e4fb87@analog.com>
+References: <20260430-ad4692-multichannel-sar-adc-driver-v9-0-33e439e4fb87@analog.com>
+	<20260430-ad4692-multichannel-sar-adc-driver-v9-6-33e439e4fb87@analog.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl> <20260428-h616-t113s-hstimer-v3-4-7e02178a93ee@mmpsystems.pl>
-In-Reply-To: <20260428-h616-t113s-hstimer-v3-4-7e02178a93ee@mmpsystems.pl>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 5 May 2026 22:34:43 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66r8mJ9Qqexs6AwLeG2m_h-1zCeaMoqPMXpysQhnS483g@mail.gmail.com>
-X-Gm-Features: AVHnY4I0j_jYZqPgBwS8DEio1jLky1bndj5AzLllz7WoZK4WiA5673CmQRhWO50
-Message-ID: <CAGb2v66r8mJ9Qqexs6AwLeG2m_h-1zCeaMoqPMXpysQhnS483g@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] arm64: dts: allwinner: h616: add hstimer node
-To: Michal Piekos <michal.piekos@mmpsystems.pl>
-Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, Andre Przywara <andre.przywara@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: ADE9E4CF91C
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: A0E9C4CF95E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293138-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293139-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,arm.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,gmail.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[wens@kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mmpsystems.pl:email,mail.gmail.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:url,analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-On Wed, Apr 29, 2026 at 12:29=E2=80=AFAM Michal Piekos
-<michal.piekos@mmpsystems.pl> wrote:
->
-> Describe high speed timer block on Allwinner H616.
->
-> Tested on Orange Pi Zero 3:
-> - hstimer is registered as clocksource
-> - switching clocksource at runtime works
-> - after rating increase hstimer operates as a broadcast clockevent device
->
-> Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+On Thu, 30 Apr 2026 13:16:48 +0300
+Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wrote:
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+> From: Radu Sabau <radu.sabau@analog.com>
+> 
+> Add RST documentation for the AD4691 family ADC driver covering
+> supported devices, IIO channels, operating modes, oversampling,
+> reference voltage, LDO supply, reset, GP pins, SPI offload support,
+> and buffer data format.
+> 
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+
+> diff --git a/Documentation/iio/ad4691.rst b/Documentation/iio/ad4691.rst
+> new file mode 100644
+> index 000000000000..38e2ad28a713
+> --- /dev/null
+> +++ b/Documentation/iio/ad4691.rst
+
+
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 24e4502b8292..819d8b6eb6bb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1491,6 +1491,7 @@ S:	Supported
+>  W:	https://ez.analog.com/linux-software-drivers
+>  F:	Documentation/devicetree/bindings/iio/adc/adi,ad4691.yaml
+>  F:	drivers/iio/adc/ad4691.c
+> +F:	drivers/iio/adc/ad4691.rst
+Not there. (Sashiko got this one)
+
+>  
+>  ANALOG DEVICES INC AD4695 DRIVER
+>  M:	Michael Hennerich <michael.hennerich@analog.com>
+> 
+
 
