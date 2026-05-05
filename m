@@ -1,79 +1,65 @@
-Return-Path: <devicetree+bounces-293246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293245-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wjCrJ7U0+ml8KwMAu9opvQ
-	(envelope-from <devicetree+bounces-293246-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:19:33 +0200
+	id MH6ECbM0+mlLKwMAu9opvQ
+	(envelope-from <devicetree+bounces-293245-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:19:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A7D4D28FB
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:19:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65D4D4D28F2
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:19:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7974E300A66E
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 18:19:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D40303040978
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 18:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D49B4A33E9;
-	Tue,  5 May 2026 18:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26823E717B;
+	Tue,  5 May 2026 18:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eveGNBOR"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="bwpaPBEY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A861539B952;
-	Tue,  5 May 2026 18:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BF314B08A;
+	Tue,  5 May 2026 18:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778005167; cv=none; b=VVE1zf+ErPvFfq1ZeHWjcQXVtbrhmxis9sCzO96EsG21FSf5BLd5xrqkn01gUhqaiNpbFoAUSiPyJrv13owQL/PP6hpS4D4KMLrsD5Svxn2vzU/77qY7wnNj5kF6oLy0PF6TsjHLAyXDqv3rVh4uCvUulbXNh2BozP/0nEzDZQw=
+	t=1778005166; cv=none; b=ejKMor+a7Bnb1gwHoXEUjAxIrXiI8Q/Sm9+X22o5IUxtrfChm7J2/RkjRo/te+cpeWNCcrjs9Z97lCfqznSKAHC6AkhKE1dk8RsY3ic14RX79CnajgDeB2eN1SLCYwpLZTfV4VIyz+Lxhj8GI5OCNykOOJ+AXiURfpo+KLyQI2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778005167; c=relaxed/simple;
-	bh=pBxc7D93t0f0QZtmD0TKOUx/5ScHJ9VgFzmhUFh8+P0=;
+	s=arc-20240116; t=1778005166; c=relaxed/simple;
+	bh=1h76UCxeu5irplD2zuDzm51pIdNtqy5JLRJjUgnE/0o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Az9oP1CGSF8B5qWp1x7y/91wAggP/FI1j5a/0HgNZncJsWPJXtTgoAOwCirn+CFA4Gjqjk1onBdpHR9CvQPPRvje/Q60/+L1k70nCr/0B+8+THeUzcgUbrPCniKHe+i4LRaYqDd690hRrov+M5yP4a8SUHpXiEbK75LO2P3bx+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eveGNBOR; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=C4BWEjGmMD9j3EuEN3QomZ/CS3VUxXXf2wO9Xg0DuJpKbzpO3dHNh69aUFBVjVuYy8AptYE8A7nra2d5YizRV0ZyEcmAtkB/96gI13/NuY523CpDcRis09ObW693sbU5sWpVLCOy4ikSGIWEUhRJeuEMEAOu+30eS+up0/gINSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=bwpaPBEY; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=CZieGdswKQbAOybvHi0PMqwJLD1M3MBzPazARBFonZA=; b=eveGNBORgDJ20PJlLoNRQhaMgV
-	cts1zTnfdjoMi0WghO+3TnFOgTrS0fd173ms8UnoRGUIhXCNlsz/uIDZ89vOiYo7dEQM633M23WHo
-	DxyysTzdgLniY+9H/XYKgpFj/oRx2KB1p+4fIUhoR3ncoFa5zhNscugF7TsQNlEuX9a83b22cQcdm
-	fxuzxHLN9ks+Os1DVlGI/r0WnBZczEBlt+yJoCCh+WXpyI8UKIDh2MqcrOkvjRy7WX2tIxNnajgRg
-	eoCBwkS7QYJ7ZZ719f8TKMjYuclU9iXoPPKUY258ND2tPTJbIKVGWeMg+Yo0ZY9lVAFtMe0FwAZ+4
-	OWL0bNTg==;
+	bh=u1URRL+D0IW55GxDynNyuWn3Vy4glMcloxA1EwhRJKk=; b=bwpaPBEYmEDx62hZUYUWPQDLi8
+	tMB7vkwQVMm62ZrY/wO0b1XJRTZZZt87h6knJMK5aERnj8JmIFBXWCd9Lcyeknjmjqi9YcN8qYc3y
+	XtEm4jLv4QObWULVUrqNQzds4s60zQiIRf5opGW3Cjd646VNB5DbCWeXeGSQWCHbH2hLaJDxvD3g4
+	Zcq2Ch4Z4zpybgarvXQjhmJMSzZQYSYhFrODqgqQPGoR7QooqsyjNwx1paLSm4OtsOBW8t+oxZFft
+	W55avGO3XYqmNfrgYitVLA5O6n9y61wIfdE9SdXhKDvtbjoMRKnDSvmaDGumCcZdV3NYeuiAPjEjo
+	t+8A6Urg==;
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Brian Norris <briannorris@chromium.org>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Gray Huang <gray.huang@wesion.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
-	Doug Anderson <dianders@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	chrome-platform@lists.linux.dev,
 	linux-rockchip@lists.infradead.org,
-	Julius Werner <jwerner@chromium.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/7] dts: Add /firmware/#{address,size}-cells to Chromium-based DTs
-Date: Tue,  5 May 2026 20:19:08 +0200
-Message-ID: <177800448363.3286457.17373798042642521210.b4-ty@sntech.de>
+	linux-kernel@vger.kernel.org,
+	nick@khadas.com
+Subject: Re: (subset) [PATCH v2 0/7] arm64: dts: rockchip: Add peripheral support for Khadas Edge 2L
+Date: Tue,  5 May 2026 20:19:09 +0200
+Message-ID: <177800448365.3286457.203841726866148802.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260428200712.2660635-1-briannorris@chromium.org>
-References: <20260428200712.2660635-1-briannorris@chromium.org>
+In-Reply-To: <20260429063712.2150938-1-gray.huang@wesion.com>
+References: <20260429063712.2150938-1-gray.huang@wesion.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,75 +68,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: A8A7D4D28FB
+X-Rspamd-Queue-Id: 65D4D4D28F2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293246-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-293245-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,gmail.com,collabora.com,chromium.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[sntech.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
 
 
-On Tue, 28 Apr 2026 13:06:52 -0700, Brian Norris wrote:
-> Chromium/Depthcharge bootloaders may dynamically add a few device nodes
-> to a system's DTB under a /firmware node. A typical DT looks something
-> like the following:
+On Wed, 29 Apr 2026 14:37:05 +0800, Gray Huang wrote:
+> This patch series adds support for several key peripherals to the
+> Khadas Edge 2L board, which is based on the Rockchip RK3576 SoC.
 > 
->   ## From a RK3399 Gru/Kevin Chromebook:
->   # find /sys/firmware/devicetree/base/firmware
->   /sys/firmware/devicetree/base/firmware
->   /sys/firmware/devicetree/base/firmware/coreboot
->   /sys/firmware/devicetree/base/firmware/coreboot/ram-code
->   /sys/firmware/devicetree/base/firmware/coreboot/compatible
->   /sys/firmware/devicetree/base/firmware/coreboot/board-id
->   /sys/firmware/devicetree/base/firmware/coreboot/reg
->   /sys/firmware/devicetree/base/firmware/coreboot/name
->   /sys/firmware/devicetree/base/firmware/chromeos
->   /sys/firmware/devicetree/base/firmware/chromeos/readonly-firmware-version
->   /sys/firmware/devicetree/base/firmware/chromeos/active-ec-firmware
->   /sys/firmware/devicetree/base/firmware/chromeos/firmware-version
->   /sys/firmware/devicetree/base/firmware/chromeos/nonvolatile-context-storage
->   /sys/firmware/devicetree/base/firmware/chromeos/vboot-shared-data
->   /sys/firmware/devicetree/base/firmware/chromeos/nonvolatile-context-size
->   /sys/firmware/devicetree/base/firmware/chromeos/nonvolatile-context-offset
->   /sys/firmware/devicetree/base/firmware/chromeos/hardware-id
->   /sys/firmware/devicetree/base/firmware/chromeos/compatible
->   /sys/firmware/devicetree/base/firmware/chromeos/firmware-type
->   /sys/firmware/devicetree/base/firmware/chromeos/fmap-offset
->   /sys/firmware/devicetree/base/firmware/chromeos/name
->   /sys/firmware/devicetree/base/firmware/ranges
->   /sys/firmware/devicetree/base/firmware/name
+> These patches build upon the basic board support that was previously
+> applied to the rockchip tree. This series enables essential
+> functionalities including power management, RTC, wireless connectivity,
+> graphics, display output, and USB support.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/7] arm64: dts: rockchip: Add #{address,size}-cells to Chromium-based /firmware
-      commit: 0b74f1a037672980c477bbe6b3848fb5341eb4f1
-[2/7] ARM: dts: rockchip: Add #{address,size}-cells to Chromium-based /firmware
-      commit: 98461edf564a35ee00a97a64f5463eaece586546
+[2/7] arm64: dts: rockchip: Add HYM8563 RTC for Khadas Edge 2L
+      commit: e477eff6303b3c5cb9bdbe5f6568ce1ef74b5f66
+[3/7] arm64: dts: rockchip: Add AP6275P wireless support for Khadas Edge 2L
+      commit: 76cf96cd9e21aa6c3846d1449aef991a32d3e13b
+
+Some remarks:
+- when individual patches from the previous version were already applied,
+  please rebase your patch series on top of the relevant branch:
+  https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/log/?h=for-next
+  or just linux-next in general
+- I've renamed the rtc node, nodes should always be named generically,
+  in this case rtc@51
+- as Diederik wrote, please don't do unrelated changes
+  I've removed the cpu_l0 / cpu_b0 re-sorting from the wifi patch
+- For the cpu nodes, you can do a separate patch with the sorting, and
+  also add supplies for the other cores. I.e. while the kernel only "needs"
+  the supply from one core for each cluster, each core should have its
+  supply declared in the DT.
+  - rk3576-evb2-v10.dts does it correctly
+  - rk3576-evb1-v10.dts is also mssing the supplies
+
 
 Best regards,
 -- 
