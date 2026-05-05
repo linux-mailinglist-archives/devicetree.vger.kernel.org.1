@@ -1,138 +1,194 @@
-Return-Path: <devicetree+bounces-293198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293200-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCM9AcQZ+mm5JQMAu9opvQ
-	(envelope-from <devicetree+bounces-293198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:24:36 +0200
+	id mG6pE3oa+mkJJgMAu9opvQ
+	(envelope-from <devicetree+bounces-293200-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:27:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12C94D1374
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:24:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFABC4D1429
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F12293004421
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 16:24:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E487D3037891
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 16:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC42389452;
-	Tue,  5 May 2026 16:24:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DymjIbDB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A6348BD42;
+	Tue,  5 May 2026 16:24:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999C22E4257;
-	Tue,  5 May 2026 16:24:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E5B480958
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 16:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777998268; cv=none; b=s/8mMvfU2rohnatsVwuEMv2K3NOeWJYPsp1G/1dpleFFQ2tv4tJqxHgI9yTBpvlM5aT6K57Cz1eBwRiO+DVBTzGUNJOuWQIDbVxZZ5AGopG7Qd1unAMnKMbJy9DlkaEkCzIW6ytWlbRaLLXVR5iJll65qzC3K8Z/BxKfHl/wRsc=
+	t=1777998299; cv=none; b=VRYDDFS7fEGWKqHmYIexp+jTof45jA9fYW5/mPbPf7oGqVD5SxFSObvw2W3kJQCvpUZH8FrcevTZNzdiwgX2luysDVpitERXdAEJ2yFdLcNW4QiylyIuKqgQCX48XwJEk4A4OvvUedW2j7ksNqj8MHbJ0ybKMSnV1RUjNqxrCOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777998268; c=relaxed/simple;
-	bh=/UB6MuZVu1wH16AzcLmdudUfOsdVTK2ldP8gyOgjFPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C2AeWCii3tFVdULl87sOr9iDQqV76VJQWld7/MTw+1G41NFNCXJeMhVxEaAQ4F50DM0wWPj3qbeprEEg4F0movHYYxcl7ncZYkok/ZtHqCBo8FeFMO8o6akOus8dYYBQ7uW8+0t/qcnF/lHqw8ZEIMN2JmeE3n8c9p1lZq6T4bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DymjIbDB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FE04C2BCB4;
-	Tue,  5 May 2026 16:24:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777998268;
-	bh=/UB6MuZVu1wH16AzcLmdudUfOsdVTK2ldP8gyOgjFPU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DymjIbDBQ7v6YinmHZT129hxnR1yEV9gg47ge9IsQCkBSYyRCpSnwcOrTtIeDZDRh
-	 0lMbiFmww7nZ0Vc30/FxtzNNXkIt1sqUU9YhfUVbedlc+fBHvZhMyf+N4wa1sPF4AH
-	 Yvq99bP9c9LrJoFISFgD+7ySYNdysewK9HCAdvPWIpXHbd2OV769hoK0xYjUGqDshr
-	 mTvvF2tbXoWHqTJVd/EBKql9FqCBn0mhCYk24ReAK0GGiTr4bnwomSLpBF1HuHn3lQ
-	 /CJAuDuf+GPU4TTIxhJbEHibX5pN2ELu+nKCiyruCzepomKKL7fQGGGi9l/5LlWvV+
-	 /+TuUeEJv3YPg==
-Date: Tue, 5 May 2026 17:24:21 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Manikandan Muralidharan <manikandan.m@microchip.com>
-Cc: alexandre.belloni@bootlin.com, Frank.Li@nxp.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	linux@armlinux.org.uk, mturquette@baylibre.com, sboyd@kernel.org,
-	Ryan.Wanner@microchip.com, tytso@mit.edu,
-	romain.sioen@microchip.com, aubin.constans@microchip.com,
-	cristian.birsan@microchip.com, adrian.hunter@intel.com,
-	jarkko.nikula@linux.intel.com, npitre@baylibre.com,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: i3c: mipi-i3c-hci: add Microchip
- SAMA7D65 compatible
-Message-ID: <20260505-prewar-disarm-04392f03d61e@spud>
-References: <20260505071327.125787-1-manikandan.m@microchip.com>
- <20260505071327.125787-2-manikandan.m@microchip.com>
+	s=arc-20240116; t=1777998299; c=relaxed/simple;
+	bh=ajnOZwCq/PnZN7aH7cLkkTdAAF7vLV6z6+ahVx1kXwo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uXtsgk4HNALH6zLQv+lPMM8jmdR2zAP6rgme7fz7c/uzVy5Xi/6KPj1O4ZkksttJAA22iBKZl68Wi1xOGwtcYmhnNu0fOAsMhCjFTXSTQSEd38NzFmnANTEDRqK97KQEBn3GV3/FPhacHO8OzKsCL3CtpG6AL9AGY6p2X6vBZcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5a86c1fe573so4090917e87.3
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 09:24:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777998293; x=1778603093;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xhE1GPrxyKAsw37Q2fShYI5FmXFiAGB5BC0k4Zz9C/U=;
+        b=pNLPSjx25ffu8ru9kOyPjAo6gonTslgyxCM01naaNIQLosKDOsM8KxXThTm9HCVnQ+
+         bYtDaHpB6Pm7MfYJFHnNc+MB22LKJhrwji+aThZZ009axvSJ3z6OWmALUg6vALuRHcR9
+         y5c5ID9bFIIvNg5rt7OJyOWkj962nFsBC/XgMjmzw5cnv7XFuZD4ZX/HbQR9J3Ry37oD
+         e62z0XJi14gdseZW23/XoTqUmeAAliCk63r6YyQhbeuPFMKGAJt1uVxqWhxzmu0t5NdF
+         AMLpMAQ7w+e4OOtlJUrNO09LF6soHTu6YAIiG79esz00WNdAU8e2u7r63vquOInjSYa7
+         CtAQ==
+X-Forwarded-Encrypted: i=1; AFNElJ84oSct15vnET590GFHrSgPUH9BeXvvpPgTlKEnwLO23huGC38AGpyMh16MF+1hmKZUVtFiqjvvg881@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0WFE33sSsKqiUbC9u4DT7C3bVwg+rIrqZQWXDAwbUkoghqlZX
+	2hmZ5ZkA3w2Ej2Ln4Ost3daZnAWtvWd+orwJaKRXMWr+bHNkzM1VDPdjAmTnETZy
+X-Gm-Gg: AeBDiesjB0IDEseabzTK9Zn97kImW5MGdPI67JIvqpZUrD84dK7GrW872DlElRIVyLc
+	dCb6YBQHHcDUlvAkC9WVcN+U67iLZ5AJFUM88mNGQp68lgGA8RekFOv8omlTfaHNygbjINcbwp2
+	KkG0VKFIWUBw/yDfnIXP37Eo0yAgdc0SJ/xePU2uUke41agv++p6Rjj2Cjr9BOF/U7v0HoT7CXi
+	wu1pu64hZu/qjwCV5Z2QIvLNTi1Fmx9oCH0wYEJaLq6VFq7/g2GkfBcITbbPgUjOFMjJK+Dg1Ac
+	8I9Am2bs3euHiUr5vvMa6fHkMoD3FhhY/qhW6otD5cCADHUAWmNpy946FYNMfUYz5b4ob/OHOsc
+	2d173FSU6aXZzgPTmDczIDfu8dem+KhwA8eWQdVuT90p21VmuGHB1Cp1beds2wXEZEWNvEJOEvi
+	q/mMlc4eGNQgN31Qzza1966Sn0P/EBYil/0QdAeEJvRqNYUF/Iil0a04+PCCFm/nFBEUbftrcuX
+	/1k
+X-Received: by 2002:a05:6512:1193:b0:5a8:74c3:5d9b with SMTP id 2adb3069b0e04-5a874c35f1emr2921659e87.0.1777998293115;
+        Tue, 05 May 2026 09:24:53 -0700 (PDT)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8616598c0sm3616218e87.83.2026.05.05.09.24.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 May 2026 09:24:52 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-38e84ed22bdso56803901fa.2
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 09:24:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+GDjmUqyMwbweMEoCJ+yOM44WV4u9sPwRWqKQeSp6QM4JT3BtOLpruByvDec2YeuyWKmAgy7ElSZDe@vger.kernel.org
+X-Received: by 2002:a2e:bc88:0:b0:393:940e:d5eb with SMTP id
+ 38308e7fff4ca-393940edd6bmr44531191fa.3.1777998292458; Tue, 05 May 2026
+ 09:24:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0l+HBF2vu6FcRNjE"
-Content-Disposition: inline
-In-Reply-To: <20260505071327.125787-2-manikandan.m@microchip.com>
-X-Rspamd-Queue-Id: F12C94D1374
+References: <20250307002628.10684-1-andre.przywara@arm.com>
+ <20250307002628.10684-9-andre.przywara@arm.com> <afoRe6DI4GJIVtg4@shepard> <20260505182017.10d71c11@ryzen.lan>
+In-Reply-To: <20260505182017.10d71c11@ryzen.lan>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Wed, 6 May 2026 00:24:37 +0800
+X-Gmail-Original-Message-ID: <CAGb2v666gCJiMpeWKpANHPufCp-nVJvdky+Gj87zUagvcrwTiw@mail.gmail.com>
+X-Gm-Features: AVHnY4J2M27F_ij2YPG2EBXpDPE1R3Ey_Ifi-Xq3Eypf1d-qnvtALFOdRCX5tAU
+Message-ID: <CAGb2v666gCJiMpeWKpANHPufCp-nVJvdky+Gj87zUagvcrwTiw@mail.gmail.com>
+Subject: Re: [PATCH v4 08/14] clk: sunxi-ng: a523: add system mod clocks
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Paul Kocialkowski <paulk@sys-base.io>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: CFABC4D1429
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[csie.org : SPF not aligned (relaxed), No valid DKIM,quarantine,sampled_out];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[sys-base.io,baylibre.com,kernel.org,gmail.com,sholland.org,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-293200-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293198-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:email]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[wens@csie.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@csie.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.918];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,sys-base.io:email,csie.org:replyto]
+
+On Wed, May 6, 2026 at 12:20=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> On Tue, 5 May 2026 17:49:15 +0200
+> Paul Kocialkowski <paulk@sys-base.io> wrote:
+>
+> Hi Paul,
+>
+> > On Fri 07 Mar 25, 00:26, Andre Przywara wrote:
+> > > Add the clocks driving some core system related subsystems of the SoC=
+:
+> > > the "CE" crypto engine, the high speed timers, the DRAM and the assoc=
+iated
+> > > MBUS clock, and the PCIe clock.
+> > >
+> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > > ---
+> > >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 135 +++++++++++++++++++++++=
+++
+> > >  1 file changed, 135 insertions(+)
+> > >
+> > > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sun=
+xi-ng/ccu-sun55i-a523.c
+> > > index 17a4ffc0b7f52..c59f3f789d052 100644
+> > > --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> > > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> >
+> > [...]
+> >
+> > > +static const struct clk_parent_data hstimer_parents[] =3D {
+> > > +   { .fw_name =3D "hosc" },
+> > > +   { .fw_name =3D "iosc" },
+> > > +   { .fw_name =3D "losc" },
+> > > +   { .hw =3D &pll_periph0_200M_clk.hw },
+> > > +};
+> > > +static SUNXI_CCU_MP_DATA_WITH_MUX_GATE(hstimer0_clk, "hstimer0",
+> > > +                                  hstimer_parents, 0x730,
+> > > +                                  0, 0,    /* M */
+> >
+> > I was looking at the A523 ccu code and see lots of
+> > SUNXI_CCU_MP_DATA_WITH_MUX_GATE with no M.
+> >
+> > Was there a particular reason for not using SUNXI_CCU_M_DATA_WITH_MUX_G=
+ATE
+> > instead? It would surely be less confusing.
+> >
+> > One difference would be that the ops end up as ccu_div_ops instead of
+> > ccu_mp_ops. Do you need ccu_mp_ops for some reason?
+>
+> Yes, please double check that (as it *is* confusing), but to me it
+> looks like the CCU_M_ version has just a pure divider, whereas in
+> CCU_MP_ the P is a *shift*, and the M a divider. Those timer clocks just
+> feature a shift, which I don't think we have seen before?
+
+We now have SUNXI_CCU_P_DATA_WITH_MUX_GATE() which was recently added by
+me exactly for the timer clocks in the MCU CCU [1].
 
 
---0l+HBF2vu6FcRNjE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+ChenYu
 
-On Tue, May 05, 2026 at 12:43:23PM +0530, Manikandan Muralidharan wrote:
-> Add the microchip,sama7d65-i3c-hci compatible string to the MIPI I3C
-> HCI binding. The Microchip SAMA7D65 I3C controller is based on the
-> MIPI HCI specification but requires two clocks, so add a conditional
-> constraint when this compatible is present.
->=20
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-
---0l+HBF2vu6FcRNjE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafoZtQAKCRB4tDGHoIJi
-0t5tAP9j1Ts8TV5Nm9gBaXbBndqBbbHst/jK10FipNvviPDt+wD/T1eaRHjorVh5
-jpi/+IbbVA5d+oR7IgRe2HlgNZMqRQU=
-=SHjI
------END PGP SIGNATURE-----
-
---0l+HBF2vu6FcRNjE--
+[1] https://lore.kernel.org/all/20250911174710.3149589-5-wens@kernel.org/
 
