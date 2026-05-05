@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-293140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293141-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCtwINsB+ml1HAMAu9opvQ
-	(envelope-from <devicetree+bounces-293140-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:42:35 +0200
+	id oKqOJhsC+ml1HAMAu9opvQ
+	(envelope-from <devicetree+bounces-293141-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:43:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78F24CF9D1
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:42:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A004CF9F7
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 16:43:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9315F3061DCE
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 14:36:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19A70300C93F
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 14:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B78E366553;
-	Tue,  5 May 2026 14:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C7247277B;
+	Tue,  5 May 2026 14:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWmiCI0n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lieVFvq/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CF0370D6B
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 14:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911BD4657E5
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 14:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777991815; cv=none; b=BIT4V33GNPnoqW0qqbVPH1hpAP72+zk8WCFOA5vpkcNBZZnw8trQYqYAmwxGDCXT7KuNh5qRY8wdOXTthHPNf32acddG4ww3aSMeC8MQWbJviK5XZgHcHBhGxooCm0hNx4uEFub0oVaUf6RHYAOSYg01k0kpfu0XFYxqzMq0LSs=
+	t=1777992014; cv=none; b=Zqz7q83/+qaIUmdOxwXUFCTZEazFX8wGBQ0Iu8qJHrBNFl3uABQhqleOV8r1yu8c6JIRnhhIB5Ksga5ZXYLmrQb/HXI7q0b8cOLQrVPjnU+cdHiKBrleDAQqddoGF601EMj8myuZFfOQ6443Q7DS16pHfE25npR2aiC4ipgdM68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777991815; c=relaxed/simple;
-	bh=NgiGLGYytpsX1pgqNn5cf1PRDgS58OvOTWHFQqfn3bA=;
+	s=arc-20240116; t=1777992014; c=relaxed/simple;
+	bh=oMMYfcqr5QWyyTjFtgne0KbL76H6vB+g+XD/Ejp7WPs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hasSPb4TxGKdfNe7cv6Zx5+ovFnPnfgUkxC4TKCFCoy+LDeCh9KYZWxG6a8njZ3o2DUhgsB/arJn/jhRhAUpS5dHc4J+UBzTmKK5VFUFQHUcHzun5az1ERIXwXqaKYjBznybBk5sAdtApywn2fQkdleQo6vb1ZPA0+h6ndxPkKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWmiCI0n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33C1AC2BCF6
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 14:36:55 +0000 (UTC)
+	 To:Cc:Content-Type; b=NCDTtVP743kThs5Bn7/PYuAfIGaU/6V9saDl3hyaknfbcI0+vvRD+DiZafw+03E9v/t11vfSI9JH8MCBQWW9tQMxsjJ944Z/LY6uRrhToAeUbxZHFT8hyJRc1OsX0nsfqrWFLHsyCik2Q4GWRJGufHNxVILUGE3lwB3SJnq8N5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lieVFvq/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A20EC2BCF4
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 14:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777991815;
-	bh=NgiGLGYytpsX1pgqNn5cf1PRDgS58OvOTWHFQqfn3bA=;
+	s=k20201202; t=1777992014;
+	bh=oMMYfcqr5QWyyTjFtgne0KbL76H6vB+g+XD/Ejp7WPs=;
 	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=RWmiCI0nBv/UTy4FGEg7lrvr09YUX19lour1NiIK6RnPunEXWKepTzMpQ9KhNMW/n
-	 GuYyQHTqPGiTjsjqd1fFkIBI57zroopOggbhR5vxspnfiAi4gx0iT5BDxwtfRlNnI3
-	 w2mto6h8n++NrczrbNAf9J/X0zfkeJ6QXxw2Pfwla54OMCo8FPfcTKlSJMXv8v5p9L
-	 A4gavqn6xJsUgaUfFTp987IntjK7Tg7pto0RcrvP0Ec+DrlNG8YcKCPtmCWiys9wxF
-	 wzuKaE+XBXkQPLWmdL8oXkPSDkWSEnUpo3Vzw2Awrfjtoy1c2pTK3DZy/BKF/xqlDq
-	 txV/tdezXmgQg==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3939d2bd7ecso22032061fa.0
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 07:36:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8IXAmbSr69HngeSBskIRHzcE20HBwX6ZmD2azrtEGGsbRgBHgHIgErT8vxNf78rmkHT4HScirISVf6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3QPCTleoMmwuDjd+aMDPFzaQsfTq6QQ/6CUqiPVLUo5lIKRf9
-	5NAayLiBnnImM6JSvlSevO8i8opj8K/LDQyibzU2jdqwP8Xtoucy0CZMcWIseGdwq6Rhz6s3azO
-	tNNr7lEE3u3a+2vC43gQ6OXMlGwSLGi4=
-X-Received: by 2002:a2e:a812:0:b0:38e:7f8b:7f1b with SMTP id
- 38308e7fff4ca-393b2a578e2mr14991301fa.13.1777991813597; Tue, 05 May 2026
- 07:36:53 -0700 (PDT)
+	b=lieVFvq/RMV0PQA00/M/Kw9VNeYljZNknzOo5rq30W8jUJgvhSM6NKkzThGIxa2Nx
+	 sYtQYXYu2hD0BTnPWmSSk6cgUJEZOgyNvsbfBuSPK0DbABDlAY2tYVjHOs55zFeddm
+	 UGc9S3WSLB+8cgwT1mdwdp68E4PVVwAGiLvIQj539ILcQyGLePswEoCgvzij+cXiU+
+	 T3h8qzRSXWX9GVCk67G1tGmlOWjXZD5f7i3qumIqT6kWaMfvSzEfhdxqIKlw89vjLD
+	 SCmAXWR0a2G8JyMSnzjPuqf8t7QR+MPNnNDXTAAlmfyG4APE8ZcuJV2gyGHSJSu4PK
+	 y4iIJcXldQ6+A==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-393800f638bso26843151fa.1
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 07:40:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9b2AekaX/8hHbt0NR/9wTFrqj842PYZ7vvlbZpI+ZpNzgk3/5Za5xqnCI6nlRq6KR8jy9RC+caGZZr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxE5WAX3LLJZjCAVZvAuoakWED8iMHQgXsMyNFFDdXCmmKK0AqR
+	Z6kWGu+5BrU2aySWywrJ6spClIF/W2tcFcE32/VtUcZy7T6QsRZLfHkY8n2KRqfGpRapbkLvh0t
+	7pcluLWwo46NpAoiaDPqtCPLi/MQCHzk=
+X-Received: by 2002:a05:651c:1550:b0:38e:cab9:362f with SMTP id
+ 38308e7fff4ca-393b4aee55fmr16699711fa.5.1777992012684; Tue, 05 May 2026
+ 07:40:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,10 +63,10 @@ References: <20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl> <20260
 In-Reply-To: <20260428-h616-t113s-hstimer-v3-3-7e02178a93ee@mmpsystems.pl>
 Reply-To: wens@kernel.org
 From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 5 May 2026 22:36:38 +0800
-X-Gmail-Original-Message-ID: <CAGb2v650GZbwnhaGwOxZk5nVgUyuvwqE3GcHxDk+BZ26Q5KE8Q@mail.gmail.com>
-X-Gm-Features: AVHnY4JCAjDbIT8r8nJuAn49eNRODzDKBY5vH6JTPS5Yu21u8RVJw3ugY1TH6gw
-Message-ID: <CAGb2v650GZbwnhaGwOxZk5nVgUyuvwqE3GcHxDk+BZ26Q5KE8Q@mail.gmail.com>
+Date: Tue, 5 May 2026 22:39:59 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67em9sO-R25hfH2_2WhD+cGfxEFQ6DeY9gobZoHdpRYdg@mail.gmail.com>
+X-Gm-Features: AVHnY4JJpxD2X70zsLR6EJJtacKJo_DgD2S2p0UG0bbAjRuSSF1pdG6HAo4DjV4
+Message-ID: <CAGb2v67em9sO-R25hfH2_2WhD+cGfxEFQ6DeY9gobZoHdpRYdg@mail.gmail.com>
 Subject: Re: [PATCH v3 3/4] arm: dts: allwinner: t113s: add hstimer node
 To: Michal Piekos <michal.piekos@mmpsystems.pl>
 Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
@@ -77,19 +77,19 @@ Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org
 	linux-sunxi@lists.linux.dev, Andre Przywara <andre.przywara@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: E78F24CF9D1
+X-Rspamd-Queue-Id: E8A004CF9F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293140-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293141-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -109,8 +109,8 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_REPLYTO(0.00)[wens@kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,mmpsystems.pl:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.45.230.0:email,mail.gmail.com:mid,0.0.0.1:email,1c81000:email]
 
 On Wed, Apr 29, 2026 at 12:29=E2=80=AFAM Michal Piekos
 <michal.piekos@mmpsystems.pl> wrote:
@@ -123,6 +123,46 @@ On Wed, Apr 29, 2026 at 12:29=E2=80=AFAM Michal Piekos
 > - after rating increase hstimer operates as a broadcast clockevent device
 >
 > Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+> ---
+>  arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi b/arch/arm/boot=
+/dts/allwinner/sun8i-t113s.dtsi
+> index 424f4a2487e2..40e76cfc8a1d 100644
+> --- a/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-t113s.dtsi
+> @@ -34,6 +34,17 @@ cpu1: cpu@1 {
+>                 };
+>         };
+>
+> +       soc {
+> +               hstimer@3008000 {
+> +                       compatible =3D "allwinner,sun20i-d1-hstimer";
+> +                       reg =3D <0x03008000 0x1000>;
+> +                       interrupts =3D <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&ccu CLK_BUS_HSTIMER>;
+> +                       resets =3D <&ccu RST_BUS_HSTIMER>;
+> +               };
+> +       };
+> +
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+Actually this could probably be added to the common risc-v dtsi file instea=
+d:
+
+    arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+
+That way both the D1 and T113 / T113s benefit.
+
+ChenYu
+
+>         gic: interrupt-controller@1c81000 {
+>                 compatible =3D "arm,gic-400";
+>                 reg =3D <0x03021000 0x1000>,
+>
+> --
+> 2.43.0
+>
+>
 
