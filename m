@@ -1,142 +1,125 @@
-Return-Path: <devicetree+bounces-292927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292928-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aB3BDgOy+Wld/AIAu9opvQ
-	(envelope-from <devicetree+bounces-292927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:01:55 +0200
+	id iMLlEHqz+Wly/QIAu9opvQ
+	(envelope-from <devicetree+bounces-292928-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:08:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53624C9109
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:01:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3674C92DF
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 94FE93050E9F
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 09:00:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 918F0307C56D
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 09:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFD33C4547;
-	Tue,  5 May 2026 09:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF70386440;
+	Tue,  5 May 2026 09:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hd2gXySX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MU3wpuF1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA703254AF;
-	Tue,  5 May 2026 09:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB41A1CAA65;
+	Tue,  5 May 2026 09:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777971633; cv=none; b=A4My0FGp4YyxC0cDR/CPNoFbGlb5ovkZ2yaTFwFWo1LEpM/7hrf8jyuz7ym8xn30UFhbyIenRLWTvzdUPDND0424xLFJ/bh9AL77z5kG9+yj/AtL9Ej00StAPmARxBcq+IVZ8dKvM4KjpqRyF42M55xR+GTFEeIaijuWvvaHXBM=
+	t=1777971848; cv=none; b=vDKYaVujnQSXjagO9lpHOBXB04WKYfZm11WmhzVR/b9ROZZFqogSkqsTk86CAej3ASypXH1wVtRuvk7JKPtvQl+6K3+NgEQITKmWuFVLHmDMQEZHaSpyejxr9kwShkGasZdjlZINCvfFAQcMrdzdau7WbrCKBvMy0mHuZQjDn6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777971633; c=relaxed/simple;
-	bh=q/NatlP+cOQS2FmvC7zHrLNZ8KeWMGRc9gqXfXgWdIE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nb8DpQYxQOnNYnOmNesestvnDHM2LOGbUkmMdIDxKLG4gng4fMYhMr46RBjONzJd52BDT37L7uE2D179okDYVfhQe1wEIdvujU6v8dp0vTCc33jb95JNqgVZw2EjVrkNx7K9/4rxNOWhbg1IeYbcxNv0MMULRghY6bVlH8V0QRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hd2gXySX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B73AEC2BCB4;
-	Tue,  5 May 2026 09:00:32 +0000 (UTC)
+	s=arc-20240116; t=1777971848; c=relaxed/simple;
+	bh=QS/TAwi+F6sxlbynaevB4JAyYHuFZYYbP0/LjLtIoNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lNHaISqHsWR9mHRgUZ1wDXpRNK0F5TIZZT86Nx83yhZNvDl/2rcw474AZvOliTYKUyr03+Y7U7guzSsDb04LswFH0rzOcQcGLWHVB7C+HyaSqPZswwJCfAq63WeOPSGBqExs0za58vQMH9L3irUh/F/ERY67Yx9NoHASmbdxnvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MU3wpuF1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D3EC2BCB4;
+	Tue,  5 May 2026 09:04:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777971633;
-	bh=q/NatlP+cOQS2FmvC7zHrLNZ8KeWMGRc9gqXfXgWdIE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Hd2gXySX/yopYveQ7ncqd+JJxc8m6aieD1vGJWHaXXGkOMVFdYUNrAKL1bg/Wz2Zw
-	 m02e1kw5xEjz4DRaZNRvCWJiMe6CxA1obf5297rzFoE0oQhwTlNL6Dl0y5d2akJURZ
-	 pvlUZZHEPPihMWjNF7RBMXwLdvMTiQ5vatUSE5qpWiRwbSKB9FWktUzA+AB1cXwV/0
-	 SZ+GokEtmPxemeWde0C0e9IdA1snN8dypwKniHjbY9kYJlR2iiwt51/88Wd4nLJr+j
-	 XG+iDHKM9h1t3XiKeq6Oyo0emqs60ivK30sH54wfK/T+HP+PCRXbKljSqVuFHMEsnl
-	 so0BNnYIRNfww==
-Date: Tue, 05 May 2026 04:00:30 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1777971848;
+	bh=QS/TAwi+F6sxlbynaevB4JAyYHuFZYYbP0/LjLtIoNM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MU3wpuF1+3UVbvhTQxWB114yJgJq28kJIk2PpeWslSj6lBHCfuqorOTDGJBJC3TlR
+	 2bjjkGytnHG/C48DY//2SYkW22RFjAU18Vn3f9uA7KZYcnn7q6qApKwWoBhZY4Bn2A
+	 k6BDIYT+7EPdvmWo6hWebGzFDXuYlb/wgOlD0wzeq6CXCaCVmx1HOvILrciZ8MEcS1
+	 03YAqnpGy3yTD2pYnghJp1AxS9n1Nb+0cu4Ev8gzUE2z8UWozTQ77IRebBadfOjShO
+	 RIeBMUMohHPVEvblGZzME+okAA8seljhxudNVCLUSxqlV4LeBO8Lut8zvRhiwpLa/a
+	 +XXtbdcdqVMRw==
+Date: Tue, 5 May 2026 11:04:05 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: interconnect: document the RPM
+ Network-On-Chip interconnect in Shikra SoC
+Message-ID: <20260505-sweet-quixotic-taipan-de60cf@quoll>
+References: <20260504-shikra_icc-v2-0-81076171e010@oss.qualcomm.com>
+ <20260504-shikra_icc-v2-1-81076171e010@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ray Jui <rjui@broadcom.com>, Eric Anholt <eric@anholt.net>, 
- Srinivas Kandagatla <srini@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Scott Branden <sbranden@broadcom.com>, Stefan Wahren <wahrenst@gmx.net>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- linux-rpi-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Kees Cook <kees@kernel.org>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-hardening@vger.kernel.org
-To: Gregor Herburger <gregor.herburger@linutronix.de>
-In-Reply-To: <20260505-rpi-otp-driver-v2-1-e9176ec72837@linutronix.de>
-References: <20260505-rpi-otp-driver-v2-0-e9176ec72837@linutronix.de>
- <20260505-rpi-otp-driver-v2-1-e9176ec72837@linutronix.de>
-Message-Id: <177797163082.1577508.5643979416868173390.robh@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: raspberrypi,bcm2835-firmware: Add
- bcm2712-firmware compatible
-X-Rspamd-Queue-Id: E53624C9109
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260504-shikra_icc-v2-1-81076171e010@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 8E3674C92DF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RSPAMD_URIBL_FAIL(0.00)[linutronix.de:query timed out];
-	FREEMAIL_CC(0.00)[broadcom.com,anholt.net,kernel.org,vger.kernel.org,lists.infradead.org,gmx.net];
-	TAGGED_FROM(0.00)[bounces-292927-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292928-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.28.175.192:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
+On Mon, May 04, 2026 at 09:41:13AM +0000, Raviteja Laggyshetty wrote:
+> +    then:
+> +      properties:
+> +        clocks: false
+> +        clock-names: false
+> +      patternProperties:
+> +        '^interconnect-[a-z0-9]+$': false
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    system_noc: interconnect@1880000 {
 
-On Tue, 05 May 2026 09:25:09 +0200, Gregor Herburger wrote:
-> Add a compatible string for the bcm2712 firmware.
-> 
-> Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
-> ---
->  .../devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml     | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+b4 diff shows me:
 
-My bot found errors running 'make dt_binding_check' on your patch:
+    -+    snoc: interconnect@1880000 {
+    ++    system_noc: interconnect@1880000 {
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml:26:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+Drop the label, instead of changing it.
 
-dtschema/dtc warnings/errors:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260505-rpi-otp-driver-v2-1-e9176ec72837@linutronix.de
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
