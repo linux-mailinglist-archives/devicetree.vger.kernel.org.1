@@ -1,143 +1,132 @@
-Return-Path: <devicetree+bounces-292996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AO5nBE7M+WlHEQMAu9opvQ
-	(envelope-from <devicetree+bounces-292996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:54:06 +0200
+	id gNBiOHbM+WlHEQMAu9opvQ
+	(envelope-from <devicetree+bounces-292998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:54:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7707A4CBECD
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:54:05 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CEF24CBF19
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2304330A8705
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 10:40:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0833430E4C8E
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 10:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821E14014A4;
-	Tue,  5 May 2026 10:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C8D40759D;
+	Tue,  5 May 2026 10:42:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="XpBxw0RZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iB3LP/gB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D5534BA5B;
-	Tue,  5 May 2026 10:40:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BB3407586
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 10:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777977617; cv=none; b=RvMWFy9tenqZ5FhrFtfYQo9hr5Ke+Ryp8t5qZ6NgX5wzIiVJ5JQQQN7oCIXcyTUC997I3seqP2Qlz0mbJXsEs2NMhXmniuMEPG2iW7wMinfXb1KNp+8Lp+a2h/AwFxQFK7TQ1hSo+soC7scjq89AUIFxxBcxMtjqh4k/jphTCes=
+	t=1777977727; cv=none; b=aBRZE3EBZhUpSYtL5LANMt9/9hIaZZbePyy4/Y5gk6iMfDIAwuZ0/HlO5Th/FIbqger5eBjx1A80uKAQQbdPpqirTbGbceQvyXLJjrbHBZmTsJjqSj0sXoAViV1ipmYPs0oD7nrJeEQYwVx+HO1726f0mTmAEI7tobHi763YxGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777977617; c=relaxed/simple;
-	bh=mNl9xK6Bk3ISCTbctcscXvb4dxmPHVw7qC8/sl6A1qg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T3lftuwn3IJbLD5GDRnJVY684UPg4QfG1DAww0nmXRzZwE34qRzcn7GQE2cNg/p4qJwV2YqQ4HQIlDd3vlFzYnKEJkCvYykvTca59pSFR0Ml7eY+wQAdlvqfRNwihV0oMy3I65znViR3UO20yyrh0/NBT77Jan0RgFH4oOTjKEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=XpBxw0RZ; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 645AdthiF1157147, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1777977595; bh=NIgVwvY6IewK6TNQqYKcV//Qio7X17sC+8U3nqOmNuc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type:Content-Transfer-Encoding;
-	b=XpBxw0RZfi7E2dbNjI6FzZW7e9Dppg2iAMATHucJFAQAulNe7EmP0GsysbeV9PAi9
-	 dCI01Y0x3fNl0XrweM3lo2NPK4x9NOQrxxBqz2l3hWEzj2l27HvfVA67OQlMP2D2Et
-	 bgNIX6Qs7p0XizgXQtqYn/6SXG6wXNQ7akbgVdaEJNLQyNNrYYcWcLsNf/YRSYCc9M
-	 5wj1Z8GeVnjVVIDsBADxOvc8nV9nxW9j5qchsrxIYu4UFrvzFpSK03AjIc+7MqQ9PE
-	 9vWaUMNsoHc28lgbwyKYJotfMHJa06oKMySKePPQjcf8HSE39X0FmGNcw6WUt1UXrI
-	 Nzl0iEFTyHNrg==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.27/5.94) with ESMTPS id 645AdthiF1157147
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 5 May 2026 18:39:55 +0800
-Received: from RTKEXHMBS04.realtek.com.tw (10.21.1.54) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Tue, 5 May 2026 18:39:55 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS04.realtek.com.tw
- (10.21.1.54) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Tue, 5 May 2026 18:39:55 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <soc@kernel.org>
-CC: <james.tai@realtek.com>, <eleanor.lin@realtek.com>, <afaerber@suse.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>
-Subject: [PATCH 1/3] MAINTAINERS: Add maintainers for ARM/REALTEK ARCHITECTURE
-Date: Tue, 5 May 2026 18:39:53 +0800
-Message-ID: <20260505103955.1010130-2-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260505103955.1010130-1-eleanor.lin@realtek.com>
-References: <20260505103955.1010130-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1777977727; c=relaxed/simple;
+	bh=QAxbkpqBCKTE79BmMO4+ohI26sWtDnSzhbxpx26l2V8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WhVpjw+WQo4WsYaYNsKzLKVdG3Pq8JEdAMkpQjXHn+rcNqwCvVP47L45j/orXAZiDsiaez2OU2CNtO1Tu9cQKI24QBWGYMYkFs0/DPjuaHkyypg0tDF93Y6FzFIYTM9LU4HMnmZaiV/s76pw4RclzEskZ6tZEFov/t7RoOEyXbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iB3LP/gB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBF8DC2BCB9
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 10:42:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777977726;
+	bh=QAxbkpqBCKTE79BmMO4+ohI26sWtDnSzhbxpx26l2V8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=iB3LP/gBTdkL681ekJ6SD7SzFnjeEi0S7q13Uso5teGhN4R9KYvcrXC4myk/6zJ9Y
+	 2psnd+tfE0mclve2Zz2qh9NG4Ht3aPQe37v+qJerfkOQ/ImhraqadrpeVodLewPo12
+	 PaU+AnLGj7Tf7GtmVl9ZyCQgl973aaKYdipuKSCq4BUg6N3orsVxuXcZyb3FQoBELf
+	 CBUarz8RynkQW0ZE/REclid3FDXRanLQIi+zq/ELKKn4xQaMeymZPrk7vs5czGy2ER
+	 c9Ac3gL9ItUiB9KwHsuNCbxzkt7LXDN+O76QcEREmz/T3dpZfcxc/ZocILw7NNJLph
+	 im4ok6XRSXD/Q==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-392445f11c5so67348741fa.1
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 03:42:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ81GJDhsmM9jO7VEad+G3wCPXn5nNQVNpr9DlyO8wqv/cIZG/w+59TkRfRDRnBgGqG4Qol9WiN/h/gL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhfVdGmAk+CZGJj1ILQyPi+6m0DFKTOwSasSE4TQPxKXBo0iek
+	CpuMrwA2JW6CQlCUx9jykssd52iC19fC/pOeNT+t8y5g+l5rxEUnyA+soXr3FX7OmVHJQm4eADP
+	Mx8Gphad5abCBl3fw28Nchov5bPPbeOU=
+X-Received: by 2002:a2e:bc09:0:b0:393:9cf1:78a with SMTP id
+ 38308e7fff4ca-393b2bda7c5mr11198661fa.22.1777977725320; Tue, 05 May 2026
+ 03:42:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20260430081242.3686993-1-arnd@kernel.org> <20260430081242.3686993-4-arnd@kernel.org>
+In-Reply-To: <20260430081242.3686993-4-arnd@kernel.org>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 5 May 2026 12:41:51 +0200
+X-Gmail-Original-Message-ID: <CAD++jLkDmQ5eK3Lzg4N2X=_iQMoeh9TWh67hvOLBh1r_x=afoQ@mail.gmail.com>
+X-Gm-Features: AVHnY4LQ-69b-VeuKsX-tQijtzj4ctkK9Gpn7v8pkwosSSN69m0jMPm2kOmRFFg
+Message-ID: <CAD++jLkDmQ5eK3Lzg4N2X=_iQMoeh9TWh67hvOLBh1r_x=afoQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3 omap] ARM: dts: omap2: add stlc4560 spi-wireless node
+To: Arnd Bergmann <arnd@kernel.org>
+Cc: netdev@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
+	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
+	Bartosz Golaszewski <brgl@kernel.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
+	"David S. Miller" <davem@davemloft.net>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Eric Dumazet <edumazet@google.com>, Felipe Balbi <balbi@kernel.org>, Jakub Kicinski <kuba@kernel.org>, 
+	Johannes Berg <johannes@sipsolutions.net>, Kevin Hilman <khilman@baylibre.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, linux-wireless@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-omap@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 7707A4CBECD
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 5CEF24CBF19
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-292996-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-292998-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,arndb.de,iki.fi,kemnade.info,kernel.org,baylibre.com,davemloft.net,gmail.com,google.com,sipsolutions.net,redhat.com,atomide.com,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,realtek.com:dkim,realtek.com:mid,suse.de:email,infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,suse.com:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arndb.de:email]
 
-Add James Tai and Yu-Chun Lin as co-maintainers for the ARM/REALTEK
-ARCHITECTURE to continue supporting Realtek SoCs.
+On Thu, Apr 30, 2026 at 10:13=E2=80=AFAM Arnd Bergmann <arnd@kernel.org> wr=
+ote:
 
-Additionally, based on the discussion, move Andreas Färber to a
-reviewer role and update his email address accordingly.
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> Converted from the platform_device creation in board-n8x0.c.
+>
+> Link: https://lore.kernel.org/all/20230314163201.955689-1-arnd@kernel.org=
+/
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 
-Link: https://lore.kernel.org/lkml/bbabf0f1-99fa-4822-85c8-df76ce89da01@suse.com/
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Acked-by: James Tai <james.tai@realtek.com>
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
- MAINTAINERS | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 71f6968fa695..b66b739ae2ca 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3346,7 +3346,9 @@ F:	drivers/irqchip/irq-rda-intc.c
- F:	drivers/tty/serial/rda-uart.c
- 
- ARM/REALTEK ARCHITECTURE
--M:	Andreas Färber <afaerber@suse.de>
-+M:	James Tai <james.tai@realtek.com>
-+M:	Yu-Chun Lin <eleanor.lin@realtek.com>
-+R:	Andreas Färber <afaerber@suse.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-realtek-soc@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--- 
-2.34.1
-
+Yours,
+Linus Walleij
 
