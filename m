@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-293280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCKkNJFG+mmOLwMAu9opvQ
-	(envelope-from <devicetree+bounces-293280-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 21:35:45 +0200
+	id eALFJGFH+mmOLwMAu9opvQ
+	(envelope-from <devicetree+bounces-293281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 21:39:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673B14D325E
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 21:35:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9544D32D0
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 21:39:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 96CF630067A7
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 19:35:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EBB343040C6A
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 19:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866293D6CC5;
-	Tue,  5 May 2026 19:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323E348C8AD;
+	Tue,  5 May 2026 19:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NbvT44tr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gP1GZCu9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634EB3CBE74;
-	Tue,  5 May 2026 19:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F94E2EC0A6;
+	Tue,  5 May 2026 19:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778009741; cv=none; b=SZcbunD+SqHhsOyb71JBOmdXV6YadoCBD5iqkf93Ywhf3VGuLAWLeydY8amZUMuqLU3tllvDEJiX6ZmvN/ZrK/JAy698O7OmB0mbwd8JQlHP0Sr3aX0AzEg3CetDzTGofopij4zw/MyZS+zbjEUDqw0sLuU1vEy7PzfFf6KFEpM=
+	t=1778009949; cv=none; b=ULo/3C0ienF5H3HUze73chKazhFvsjicBUiG3JIoAgLBG7O1+xibhUC6a96kmsE8hrV4SlGWPPGTLTKODCCaXpjHQ2Ls+GWC86TWuQ0nst9oYZuJhPnQBXzPtJ5VOFcDQI+T+4fwa8LLJ+zrbETX+D6hjWdbJMnW7iwv5OTw3Pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778009741; c=relaxed/simple;
-	bh=P0xQWvqkG5HbL2Qs5vliqZ7IJtLJCrMcA9mw0zBM5bA=;
+	s=arc-20240116; t=1778009949; c=relaxed/simple;
+	bh=K5AwDX7FfPa71rodjgfq618inTJ4hiG1ghywEeULFwA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S4kHheLWkxakSdbZd7nD37e+MGv1lWLGzgh8bvk5WnM3CYthzeL9BdjoMVXLn4aFBChhhatJR2LruZ0Bqgp99jwisIBOeT/oAYyWWxfjYVjd0T5Hzos9cE5JMth2N2c5O+liYS/LHoS9eeHnXcHZG2fPFyFte0hC/M/V+u12jqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NbvT44tr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 077F6C2BCB4;
-	Tue,  5 May 2026 19:35:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XZprekGxm4t7CWGETgf3DYa2r54o+gELEpVX0NDp0RCO/QDUmQURmeAHRl2UI6poT1I6940E+Xx7/agJsGrTrPIxm2W3gPWsY+hBWrr6Ci98ZqI4gv1NowCWLj47cpRk/pDMSMu/EI8FsuTzfNUYhYBVUiEV18W3PNmxfMmf8Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gP1GZCu9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83637C2BCB4;
+	Tue,  5 May 2026 19:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778009741;
-	bh=P0xQWvqkG5HbL2Qs5vliqZ7IJtLJCrMcA9mw0zBM5bA=;
+	s=k20201202; t=1778009948;
+	bh=K5AwDX7FfPa71rodjgfq618inTJ4hiG1ghywEeULFwA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NbvT44trIrer+CaoL7bvNBTBzqPm5Vaiz8uaxZcm5uCkC0DRfQfQDMyParpd4jEkI
-	 iCe86Pw9imHp9AEsjHpZ20qApsvep2onxMYVvWM9MFFPMPqQzNTY4gY3Wk05GcDMH3
-	 PyO0u/GAON11E60giGNjCVlJRLkmXdaXiDZWxkUBEAHjG8v3+MhqDWSJsEcfxPGdZ0
-	 8+l2xxLD5oB3JzVlMdAdYJrT3l0KCNNXnK0Y1tcRZSVyjUlS8Pn+lICjX4S5dzqjdm
-	 i+nCBD1h5G9Riilw9nUDz7rp7/ZyJeBD3IGZ1/sHvGM50Gzbm0ENBcVEKn/OzLXLtW
-	 kaShwQeg0zLkw==
-Date: Tue, 5 May 2026 14:35:38 -0500
+	b=gP1GZCu9X50ZuXhRtGDWUVXBVTMV2ayTF2kNCKe1eWmdfAPlu7bROwmmJ7b7pXaDb
+	 adXkDCUs/VZwJmWjN0Aa5mwfkgciSk/ucjM5XOlP4ZsEVKtl6KepahPCsykVS8uiJB
+	 NFmzPhKq8sdyDVUQK0RXOUKX8Bx2xyeAoCK4grr7Z/7LNYTa6l+0N9ndSifq1tMXTy
+	 i2Q5XZfwLJIYWBB+BHZ53hlp0RTJN7JmY+ptZ0WUsvvBmKrxMF5R7QVLbGtdQ09xL+
+	 ThgmwkUQ50U+2+nQnCUpyHB1hDC2yGK1CT+rUg58e+O1NGRSN3QGQOAXV8yWUqGRDj
+	 jp9F65J3cttwA==
+Date: Tue, 5 May 2026 14:39:06 -0500
 From: Rob Herring <robh@kernel.org>
 To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -59,11 +59,11 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Louis Chauvet <louis.chauvet@bootlin.com>,
 	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 03/15] dt-bindings: mfd: syscon: Add
- ti,am625-dss-dpi0-clk-ctrl compatible
-Message-ID: <20260505193538.GA3785056-robh@kernel.org>
+Subject: Re: [PATCH 04/15] dt-bindings: display: ti,am625-oldi: Add optional
+ power-domain for OLDI
+Message-ID: <20260505193906.GA3796761-robh@kernel.org>
 References: <20260420-beagley-ai-display-v1-0-f628543dfd14@ideasonboard.com>
- <20260420-beagley-ai-display-v1-3-f628543dfd14@ideasonboard.com>
+ <20260420-beagley-ai-display-v1-4-f628543dfd14@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,8 +72,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260420-beagley-ai-display-v1-3-f628543dfd14@ideasonboard.com>
-X-Rspamd-Queue-Id: 673B14D325E
+In-Reply-To: <20260420-beagley-ai-display-v1-4-f628543dfd14@ideasonboard.com>
+X-Rspamd-Queue-Id: 0E9544D32D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
@@ -82,12 +82,12 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293280-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293281-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	RCPT_COUNT_TWELVE(0.00)[19];
@@ -102,48 +102,43 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Mon, Apr 20, 2026 at 03:54:10PM +0300, Tomi Valkeinen wrote:
-> The DPI output pipeline in K3 SoCs contains the display subsystem (DSS)
-> which produces the in-SoC parallel video signal, and a DPI block which
-> adjusts the signal to the external MIPI DPI output.
+On Mon, Apr 20, 2026 at 03:54:11PM +0300, Tomi Valkeinen wrote:
+> On some SoCs the OLDI blocks belong to the same power-domain as the main
+> DSS block, but on some more recent SoCs the OLDI blocks have a
+> controllable power-domain.
 > 
-> The DSS IP has registers to configure whether the data and sync signals
-> are driven on rising or falling clock edge, and on some SoCs these are
-> automatically conveyed to the DPI block which needs that configuration
-> to properly output the MIPI DPI signal.
+> Add the power-domain to the DT binding.
 > 
-> However, on some SoCs the DPI block configuration has to be done
-> manually, using an extra register outside the DSS, DPI0_CLK_CTRL in
-> MAIN_CTRL_MMR_CFG0 block, which controls the DPI block's behavior. Note
-> that while the register is named "CLK_CTRL", it's not really related to
-> clocks, but the sync and data signals.
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> ---
+>  Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Currently the DPI0_CLK_CTRL is never written, so it's always 0, meaning
-> the data and sync are always driven on a rising clock edge regardless of
-> the DSS configuration.
-> 
-> DPI0_CLK_CTRL register seems to be an independent "quirk" register,
-> inside MAIN_CTRL_MMR_CFG0 block, which contains general purpose system
-> registers. The registers surrounding DPI0_CLK_CTRL seem to be controlled
-> by the system firmware or linux clock drivers. So, it is just this
-> single register we can map, and we can't create a syscon node for the
-> whole (or big parts of) MAIN_CTRL_MMR_CFG0.
-> 
-> I see two options to handle the register:
-> 
-> 1) We could add that single register to the DSS binding as a new reg
->    block. That feels wrong, as it's not a DSS register.
-> 2) Add it as a syscon node, which can then be used by tidss driver.
->    It is a bit silly to create a syscon node for a single 32-bit
->    register, though.
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> index 8203ec5e5bb3..61c3eb0a0776 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> @@ -29,6 +29,10 @@ properties:
+>    clock-names:
+>      const: serial
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +    description: phandle to the associated power domain
 
-Is it really 1 register and nothing else in that h/w block? That's quite 
-unusual.
+Drop generic descriptions.
 
-Rob
+> +
+>    ti,companion-oldi:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> 
+> -- 
+> 2.43.0
+> 
 
