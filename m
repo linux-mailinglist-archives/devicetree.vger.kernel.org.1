@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-292970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OOeUHu3J+WmgEAMAu9opvQ
-	(envelope-from <devicetree+bounces-292970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:43:57 +0200
+	id ILI2EOHJ+WmgEAMAu9opvQ
+	(envelope-from <devicetree+bounces-292972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:43:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDD24CBB34
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:43:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F264CBB17
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 12:43:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 322AA3206B7C
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 10:22:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 53E9F313DF30
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 10:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1664279E3;
-	Tue,  5 May 2026 10:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B942E429810;
+	Tue,  5 May 2026 10:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LYiRbjgP"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VExg2mms"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277F63EE1F2
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 10:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45048427A1C
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 10:14:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777976087; cv=none; b=sxfAYCvTUOHCSYVvW3M7SmfBEPJQcN7qGR51ZGxUVoLHOfehsrDUPpFK3AavVnCsXgKCK+wSV/U2pKcM1wD4T2Aj3EEWchkBYpCG/4Dhv/GKLWVlG+KB4w/safilNOwZ6qWtj4K2aEQN7nvLXj/1A+id+bflsPZY8zaOelgSceo=
+	t=1777976090; cv=none; b=MrWGt35B7rcM3N8S00sqNA93PO5Fae0qmjGToxR1mLcAojkyWYin+nrDrbQnsKZ0EURZt6PLRwWKWVC1H35Z6+iSvylVM/sVUAWjr/A0Sm0zzDCIdH6BjX9de3uVbjD5Z+1wui9oW3Ok+RTfElBgo1/dG1RaQtvfu78pgtb7k4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777976087; c=relaxed/simple;
-	bh=eezztA9v+rSOklQCE/FfyjtBlHaxBC0vn9qkEasd9OY=;
+	s=arc-20240116; t=1777976090; c=relaxed/simple;
+	bh=c9/tfIFhuF55QlbUqQ19y2/pm4iUf2fDl9rfd66AzIQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DIgJ9cRje2dwHG0eoZ3ifHoetEvYTj2Z7hKCp+KVqPg/KJmeBRgTwclq9cCCODXlEhQCA/z6U8J7yimqAEA93DYKBHdBOt+8ZRKJA4W7EN0LJ43GP5D2GQoYk1lA9PXzj+TqY7WHO+tBogWF4rz/LA52EnY9j9A5wkDR5HPrifg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LYiRbjgP; arc=none smtp.client-ip=209.85.210.178
+	 MIME-Version; b=ULtOqbVEA2CwrQqzBoV4OT7CSkpJB3hDJERFcMsfCn8eojjKvsj7swI8h0U538//NX/nRoXcaESyObX5w3A7Bn5wMwLL9uuLZ9mnBxqlX2Wc4NSgvVErnlMpCEPwhkgI4ikRsEsV/y/vHtw+dZxGDU1U9VavCdRRFMeC6lmWuv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VExg2mms; arc=none smtp.client-ip=209.85.210.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-83975e992e1so208156b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 03:14:46 -0700 (PDT)
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-83538fbd0b2so1119251b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 03:14:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1777976085; x=1778580885; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1777976088; x=1778580888; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KiZn9yahVCKfivdy6D+vGj6i1ru0Ro/xrrS9779vU3o=;
-        b=LYiRbjgPsiRKxPMt32BCgm0PKQ0/hrtmM3VZ7Ya7azgyDHwfiO5l/8g28DqUXJhH43
-         j6Wkdoe/s/TPgo+tkuMxV2A9jvoSw/ha9BDfgEHGqfMA7BgEwrTd7vmvAl7Z9umDdXlP
-         oGVfyLWwoXBo6lmYHVGCYMlJzvnvURIfK1z0o=
+        bh=U/+HU1QYQZmhqORfdmiy8w2qez1W1MQHoWlaTLfNyCo=;
+        b=VExg2mmsr05+NWmVxDjYa0EWYq3W+h/+S7XD1ozovsKFr74B7doJYiYpiVSFpvaiWi
+         Phx/ZwhkEn5SIYJksFSfQTwbUVqnL9srQ4EUQRnNRPNaKgeDcp2TbqxPpjgxNemAZjD2
+         CnizYqvOYCQIVjrzuGYH7K4XlRNzPKuFHJABQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777976085; x=1778580885;
+        d=1e100.net; s=20251104; t=1777976088; x=1778580888;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=KiZn9yahVCKfivdy6D+vGj6i1ru0Ro/xrrS9779vU3o=;
-        b=PZZqGP8t7KW+Y7x/Rggll/2dU9la6pmCJfJC0Y37zUXlSODY56QF4LOYzYuun78+D1
-         xBy1+lEiTuzWKwD11umPbreVqZ/3OtqGzSYJEtWtdlLzEn9YhxeCZU5YV7M3fp+1/XDU
-         t3yQqt9cybXdPoBxs2NehbZ06LB97hY1QKY75mx/+/UMwRp+F7sNwpMxYqM7VcRRhtmt
-         XDiwCGr78y4uD/6HbvjH+aK8d026wVeIDahjSqGJp0nIPG5SnQd9dok79ICvCM35Sz5b
-         o/zD4oi80LV4aNRjZ04FRD6WIE7x3IURn+REvITStNUnWuKXZr3ZLpoM8+mYyUQnJITU
-         S8Iw==
-X-Forwarded-Encrypted: i=1; AFNElJ+R+V5OdkWct1ExGdXXJU4XPCwNXWAMyauArMIICu6+O8pQfz7O56dnkGqN/AjeDiyM5dp64ALKqpi6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSqwHW7BixrLJxWBGsSL8WYrRqyBsOyAPW40xQ7MAkE5o42BAS
-	FdwlPFgKQRk5b07dkwFO9F2aMbeRxtY5NQUXMcFRtpDujSafU4kdWZt5vwfh9SP2kw==
-X-Gm-Gg: AeBDievVRuzZNgwlj0bCUxZhOnpYlbbW2hISZqKHMFcFpzBiyM6+BUJ4hBb2/gxpqBw
-	MW7rDS7u9AxikMKwMWkrehmymGxK+EYGOQbxjwlChnrdwLpFSY66Lo378cp4A2h36sqTifR9hmx
-	O2PC0AdKwvH8aKBctnIdCgbzp4aqLZ4y1f/yMZlSfa20p+6dhTlABo2DC3eWiCDlmaTEGQgjDMQ
-	wkOXJffHEp43hsAgju0msS/GcDIGHpCCRP4Jk8W+DIMxOD+S1ujmshgahrXSxExXs6YpyvxjGey
-	THlQXP5cr3DOQQ+Y+UNIYZPARCRwKPnIuKVTIo6ON3qpIDM9K1Zw/WBZRduo2JoKWuEmLc5P/H8
-	6Bb9myHFEi7NpZ1SI0T4evMg7FfQYM41lEbmtTCq1olFqLMDIenY4s53pFIlqlGnHotblsx3hdN
-	dI0WzBH9Bf5l7o8cXGm2cb6i8D73FquJob+caAugpfjnnP8nh7MpPB9PcbuI5cDGzotnyt2sb0K
-	lXDheKiLNC97tOLrlxvpLwRY5BF4w==
-X-Received: by 2002:a05:6a00:391a:b0:838:a46:ce96 with SMTP id d2e1a72fcca58-83923d96a0emr2448390b3a.27.1777976085583;
-        Tue, 05 May 2026 03:14:45 -0700 (PDT)
+        bh=U/+HU1QYQZmhqORfdmiy8w2qez1W1MQHoWlaTLfNyCo=;
+        b=HeV2obT35lyLSSw1Ymb3DHgzVwbBeGerG6Ijxvngmk3nkiOmSMfRXgqeVrGpIEAebM
+         HsvIIGapkq5VtXYSNtKjLc0FzlXryRO4YeM1g/yZs5k/Pg3cGHNpkqYTdZcPu6GWxcvm
+         v8E13YwMxLxIbyOtPwRa/7p/P1u7RNm/C3K+MEQWSGQFUmXHzqmc6hiXLR23o0dSAtTr
+         i0GWHxir+5dzA4z70B+UGNr71tTCYLfDXPUT202AAghe1OHJdZUEDCgL/ed0ZW78fOJN
+         VVZ+8oSM+VN0eDZTelMsBWqe6kWLMEAIah2t1LF5nbHwOhh/dDf9On3/8XrEFugaJtwo
+         0N7Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9pKr1jHkMk5SBf/M5A9dHOo9UwJIsHyXMiaAdWJ9sVtaLga008skcomHPJAXetu3WjHq8IxcIZ1nlJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlDZajyAKyLwztVHZygGTbbgNIaotb+TzhXr1TUE/GFq9laHwk
+	7wIXiavA7T8LGnIpidsTQPsBovZ4Im1Kl7WBUGfGOJTxc4nD/XCAJXKn40EVm41La3C8VU7bAQ3
+	Q8KQ=
+X-Gm-Gg: AeBDietlGS5EkWnB+E9L0Zzmhd1cdh2JCxSKZa0d2BrFfvdzP+utBdO5tBqRjNBuVz9
+	5HAVKW4Zbli08v3NDlVh5ufeqZ7XNKjdvLihEOcRRxCliWflwCTPRR/UjXcoQaLYScQXz7QjWOH
+	LHvYUGHVjL0hQ9e2ge+ss4Ic+iGlNm3OIHBoKgkdYSqXgRXuLYyYvhTIis4UxVGD5sEi7Mp6/3L
+	pJJpQGa/yH0XNBkFnoFHq3lqC91061a9RR+Fgi45jnPIHm/Q5iBs2tnx7CvmjCiyfKINX+RRXqX
+	WqixIyInWhYgViaFNS6GYipLch641kiN/f/pTmM+bnAYn5qVFYBzxUkWTFOY9ti07f2wN5MbCry
+	u2e40A22FqDFiZc62szMUp5IpTDUCsRRZRUMtIKf+cjb/iqUYKAIILBk2YtDpe6epU2JtZfgX4E
+	ZNXi9575Toc0fVXgkeRKt5QDun54Kx0voMyVybdUorMf90ME9MdaC+qKnJbiDII5C+rh7gviy0f
+	ysKG+Yb/D4Yqv2JcMZGd47E1IngTw==
+X-Received: by 2002:a05:6a00:1956:b0:82f:5c3f:94c6 with SMTP id d2e1a72fcca58-8352d26b9f5mr12659407b3a.28.1777976088522;
+        Tue, 05 May 2026 03:14:48 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:f1d4:2ef0:7d08:9dd8])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-839679c8462sm1666121b3a.38.2026.05.05.03.14.40
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-839679c8462sm1666121b3a.38.2026.05.05.03.14.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 03:14:43 -0700 (PDT)
+        Tue, 05 May 2026 03:14:47 -0700 (PDT)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
@@ -82,9 +83,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 09/16] arm64: dts: mediatek: mt8195-cherry: Add MT6359 PMIC supplies
-Date: Tue,  5 May 2026 18:13:59 +0800
-Message-ID: <20260505101408.1796563-10-wenst@chromium.org>
+Subject: [PATCH v2 10/16] arm64: dts: mediatek: mt8195-cherry: Add MT6315 PMIC supplies
+Date: Tue,  5 May 2026 18:14:00 +0800
+Message-ID: <20260505101408.1796563-11-wenst@chromium.org>
 X-Mailer: git-send-email 2.54.0.545.g6539524ca2-goog
 In-Reply-To: <20260505101408.1796563-1-wenst@chromium.org>
 References: <20260505101408.1796563-1-wenst@chromium.org>
@@ -95,7 +96,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: EEDD24CBB34
+X-Rspamd-Queue-Id: A4F264CBB17
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -104,13 +105,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_TO(0.00)[gmail.com,collabora.com];
-	TAGGED_FROM(0.00)[bounces-292970-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-292972-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -125,51 +126,54 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,chromium.org:dkim,chromium.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.6:email,chromium.org:email,chromium.org:dkim,chromium.org:mid,0.0.0.7:email]
 
-The MT6359 PMIC has a number of power inputs for its various buck and
-LDO regulators. The binding recently gained property definitions for
-them.
+The MT8195 Cherry design has two MT6315 PMICs. One has 4 outputs ganged
+together; the other has 2 outputs ganged together, and the other two
+unused.
 
-Add the supplies for the PMIC regulators to the common design dtsi file.
+Add supplies for these two PMICs. Since the outputs are ganged together,
+just add the supply for the first one.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
 Changes since v1:
-- Moved supplies to top level PMIC node
+- Moved supplies to PMIC top level node
+- Added all supplies
+
+All supplies are connected, but since the regulators are ganged
+together, only one regulator node is present.
 ---
- arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index f1ff64a84267..0b9fedac842c 100644
+index 0b9fedac842c..cf9855618494 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -1312,6 +1312,23 @@ pins-report-sw {
+@@ -1472,6 +1472,10 @@ &spmi {
+ 	mt6315@6 {
+ 		compatible = "mediatek,mt6315-regulator";
+ 		reg = <0x6 SPMI_USID>;
++		pvdd1-supply = <&pp4200_z2>;
++		pvdd2-supply = <&pp4200_z2>;
++		pvdd3-supply = <&pp4200_z2>;
++		pvdd4-supply = <&pp4200_z2>;
  
- &pmic {
- 	interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
-+	vsys-smps-supply = <&pp4200_z2>;
-+	vsys-vcore-supply = <&pp4200_z2>;
-+	vsys-vgpu11-supply = <&pp4200_z2>;
-+	vsys-vgpu12-supply = <&pp4200_z2>;
-+	vsys-vpa-supply = <&pp4200_z2>;
-+	vsys-vproc1-supply = <&pp4200_z2>;
-+	vsys-vproc2-supply = <&pp4200_z2>;
-+	vsys-vpu-supply = <&pp4200_z2>;
-+	vsys-vs1-supply = <&pp4200_z2>;
-+	vsys-vs2-supply = <&pp4200_z2>;
-+	vsys-vmodem-supply = <&pp4200_z2>;
-+	vsys-ldo1-supply = <&pp4200_z2>;
-+	vsys-ldo2-supply = <&pp4200_z2>;
-+	vs1-ldo1-supply = <&mt6359_vs1_buck_reg>;
-+	vs1-ldo2-supply = <&mt6359_vs1_buck_reg>;
-+	vs2-ldo1-supply = <&mt6359_vs2_buck_reg>;
-+	vs2-ldo2-supply = <&mt6359_vs2_buck_reg>;
- };
+ 		regulators {
+ 			mt6315_6_vbuck1: vbuck1 {
+@@ -1489,6 +1493,10 @@ mt6315_6_vbuck1: vbuck1 {
+ 	mt6315@7 {
+ 		compatible = "mediatek,mt6315-regulator";
+ 		reg = <0x7 SPMI_USID>;
++		pvdd1-supply = <&pp4200_z2>;
++		pvdd2-supply = <&pp4200_z2>;
++		pvdd3-supply = <&pp4200_z2>;
++		pvdd4-supply = <&pp4200_z2>;
  
- &scp {
+ 		regulators {
+ 			mt6315_7_vbuck1: vbuck1 {
 -- 
 2.54.0.545.g6539524ca2-goog
 
