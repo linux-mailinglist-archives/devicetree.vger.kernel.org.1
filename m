@@ -1,251 +1,164 @@
-Return-Path: <devicetree+bounces-293097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293100-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBzBORn1+WksFgMAu9opvQ
-	(envelope-from <devicetree+bounces-293097-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 15:48:09 +0200
+	id YBXeFTr1+WksFgMAu9opvQ
+	(envelope-from <devicetree+bounces-293100-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 15:48:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BDC84CEC50
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 15:48:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F234CEC7D
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 15:48:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B64513051D3E
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 13:47:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9182B3029767
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 13:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566A947ECC3;
-	Tue,  5 May 2026 13:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C915B47ECE2;
+	Tue,  5 May 2026 13:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d+21tP3w";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Gh3/rHO8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQQymP0J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B89547ECD0
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 13:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B60147DFB8;
+	Tue,  5 May 2026 13:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777988850; cv=none; b=tOlnZvdcRQnZefqyOh9kMyTJ+PpmQkDEqCI+mj4BfPck+m+FEd171I2ER+i0qPIg5AgrtPxuvVl1Umb1lcmO8yjgTmZRz48Hz2LLdXUFb1o0gMQbIrCHbHx1qLuK8pwQtAaaU82BzfpYwx57l2K2OPsKfrmPLd/uwJwg6k9Otfg=
+	t=1777988901; cv=none; b=ien0yzTvNU37xcaAzWVJE3nZS5ntv5P+VWFc09KzEtK6HdvOM0J6nA61Xwszx1ShX6RC7kr7QOd6pNr5chRyTXXLWaCqzFClwrku3stNbVQ7j5Hn8lgJzb6vvNbDs6wnkvOrxHEhm6DmztR8XWXRj92RssUGKdEz4iuP3nOw3qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777988850; c=relaxed/simple;
-	bh=X0lJ93HuV+UQAuwXDcwrBvXaZUotHEOYc3plzcPp+u0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DI3cxNsUNCKtqnC8mOIcJkk5EkTWaCKBhqbs33EFlU1Ck2ASlo3/NKCYT899zy3eoxZunonxYGeDlu33P9G/i96dEXOUuBkuO769qBgHWAsui+4jJgp9wO+uhi0Q6cic3Q1A4l754nBngtKMnJdP1VudvgcYnZczNpEu76YDank=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d+21tP3w; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Gh3/rHO8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64595YCF4028241
-	for <devicetree@vger.kernel.org>; Tue, 5 May 2026 13:47:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rl0ti4q20LzWc0i4p3ljvY3l3C/vISHSfDt1Ly+KG44=; b=d+21tP3wBchLVwVP
-	/FbQD14AwZdOxm2vroESniRXZHTZ3948vZ0VRZwGTDQuEDuWlrSqB7XvaEbcF8B8
-	e8tW4RHT5csriqWL2lhWDr83ps1uyjvdlOJy7d3JZK8YZ0wiCARAYTLr5ZftSGF0
-	6y9qtjbSx9p6pcmHAK3ejCV6kt/djny8rTQCdoYSh/4IBvrpzpYJAtvw0zfoWO3U
-	8zcAReSSM5F37RgovsPDzNSAo1JVEPuxhhVzg8SiolqUV7ioRu8GZsD9zD8GWgrf
-	Y1fL5JMAzXEHLqyxQPdExzoiUmjCuxxgmeesLHBVu51I1/rBEoamfu7JVbb0rqAX
-	9pBM/w==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dydm6s329-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 May 2026 13:47:27 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-35fb22422efso1493764a91.1
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 06:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777988846; x=1778593646; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rl0ti4q20LzWc0i4p3ljvY3l3C/vISHSfDt1Ly+KG44=;
-        b=Gh3/rHO8xtkdO6M/JPOYvYfQ+7JmQ6cPhB1XjJCyU2zcinMqh5lGxMJ6jPKJDgBnbe
-         WUl3bztX6m0vt8lMzfKViE5mdRuh6lqan/eYY70UirMAp9997DejTuP6O5ieHNzO1j4B
-         3q4uyc0epcnJ4/0cmB1oW8R+CiA27w4OSDiAT/34ZtNrHC/DtbQqJlYJnNUAIK6SJgvX
-         brJk5EFRCaKIzUy6XKgexIfnK4QwOMDdtgBCwF+I9G63p5rNBRtWuXYJ6yQ11Ftr9voq
-         ExeCjn2g5iZjtGo+Am2Becyor9KtcOpt0Ubmx31LjvGfCNOCu2auv4IpLb2j6r4FiUyS
-         QoVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777988846; x=1778593646;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rl0ti4q20LzWc0i4p3ljvY3l3C/vISHSfDt1Ly+KG44=;
-        b=izvBd45BMP2424dJEzlD7gnN7ikt81YxTLle1yqV4trwCdpZLkZLDwGAR3OLYo48KL
-         F3pWyWtoltdV8eG9RYWIPH4tpNAKo1LrSL1oQKctxyG4Evp/POLV9Ty6JIXRSh7z9A9r
-         uJWzAnYmlsVi3SyaTWX7MYlhLMolzbpVSxPYr9W3wQNJQdQYN3amsXpQM1NDEr4fATJ+
-         aDDpp3lRP0Eyu8T4qv8HoMywrSSGVRvSMAsAovg7BWOCMqce/5obzttEurEyKQkloiKM
-         o2xYD8IEryxP6IUeFOzJVt7yNdhwXjUT/rZLK0xUeXuMX84n6YhiEcWrPK89iI2wsGoX
-         nYEw==
-X-Forwarded-Encrypted: i=1; AFNElJ/7JA6u59H3Po6uy79D5lwOaU62GbnzqpiW5j9wTIH76w9+RyPQpt4AdYuq0Mi3VVCVTldRP9OFVyJW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLAP4RprDxSnzOpSStUhtBY50ENxALjRes55pn5INm8A/9KdjW
-	XELd2u0VQrXN5p7mZ5URKHOabcpwe/f+sGxqkMQNWWhPlMe66JjDnZxyVng1IHb03Mi5IUThRNf
-	RDxJ6ney0JqBU5SNIw8Q92bKPKJftZw9LCSJ3+JxF4ZFhVH+kiTtfHgkMhxIDhvz5
-X-Gm-Gg: AeBDieuBSlD96jUby6nDmKpfc1lrhNWtxuA+xkTmAaNuqobxkSBxiPIooou5AVoelc1
-	OLdcGYTX/HdA3gyAxUlqtdBOKHVL2ALcshLbx/OQdR4HublZQQdXrGBM83/X3MK0QjW3WmIzREl
-	YQNW+cGDbOVcNlB6kZJV0+7TGtgdY4j5Yhq6otldNF/EBFmEVcnrqNa3rvB1xpskTMxASclIodr
-	vJFk3zO37PzlBzWE7I6RQsW5a76NW8/FB3eaFQgoAJf5+A79/Aad3Q5AmhqCrw2kbGW40x5sCWK
-	oeKEQCxfVH0ae6Z9iJyrLN5W7WP8lcKaOxAkxbH5mZzUeaZ4JURFHat62Z4vREOEGhhCwPnvsHj
-	fAnJk2kHMZXMcYwB+ATd2ZVPnxtTa86f4FilK45WIC7e8BwkdSNEXWaE9/EG6
-X-Received: by 2002:a17:90b:3d12:b0:35f:b204:c62c with SMTP id 98e67ed59e1d1-3650cb63481mr7629130a91.0.1777988845037;
-        Tue, 05 May 2026 06:47:25 -0700 (PDT)
-X-Received: by 2002:a17:90b:3d12:b0:35f:b204:c62c with SMTP id 98e67ed59e1d1-3650cb63481mr7629063a91.0.1777988843143;
-        Tue, 05 May 2026 06:47:23 -0700 (PDT)
-Received: from [192.168.0.5] ([49.204.27.125])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8024ffdef6sm7653976a12.29.2026.05.05.06.47.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 May 2026 06:47:22 -0700 (PDT)
-Message-ID: <7461207d-aa05-4272-a9c0-360e6abfb0a6@oss.qualcomm.com>
-Date: Tue, 5 May 2026 19:17:17 +0530
+	s=arc-20240116; t=1777988901; c=relaxed/simple;
+	bh=AG0oKwGOLP7O1AKKR+FpbgNj0bCG/wVgOoeQV3TqI0c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BK8yjgdAQRuW2vZWts6FBM7t98xuRufDG083tHkdFB10l1+it8YuQtKEiiptBQGUI1Tsh8iQV8sMKl8TBG3IYqtVXxBzYDFn/t8kaGNiu1zqJo2Nty1QoMH7ZVXVeTl0efmPVoRySBo1kj6yHKkICzmP44IfPThgzvC+MzB3vBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQQymP0J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32D42C2BCB4;
+	Tue,  5 May 2026 13:48:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777988901;
+	bh=AG0oKwGOLP7O1AKKR+FpbgNj0bCG/wVgOoeQV3TqI0c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qQQymP0JMuJLCD/jYY8/0Y0PKc2gOEr7Jedi1Aw2st+I2JzEGvC709NwpL+YHivz2
+	 tkYlQSW4xCrOBj+TorwBIVmIXDz47Ym519qG/rR18hdeQvKOSa4Mwy0pjmVw69hcKb
+	 MR12+5n2hof8yV4KH8xa6Ho9zLe/ydUU1JNUIa4BpzsF6TR7tzAJ7vdJ03cCJF1dj6
+	 GTwoASfa78iolU9CsZOWqozr2ibFTyeim3b7V+V08Y0+xZfjRkMf3mQTG9izHJp9qf
+	 JBtIPDpGnZ+MgicoeFDLfNwVwfqUFtOgNVKzAKKAxAtlQh71knfVtl9JW6tHa0askv
+	 Baj7+Hj25B+Sw==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 2B4DD5FEF9; Tue, 05 May 2026 21:48:19 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-media@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] arm64: allwinner: h616: Support Video Engine
+Date: Tue,  5 May 2026 21:48:04 +0800
+Message-ID: <20260505134812.408316-1-wens@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: monaco-evk: Extract common EVK
- hardware into shared dtsi
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260427170505.1494703-1-umang.chheda@oss.qualcomm.com>
- <20260427170505.1494703-2-umang.chheda@oss.qualcomm.com>
- <36ghmwuwqgm3d432nkklw4igl6wpr5snug7jpha6ioz52qev7f@4g5pxcjxx5rg>
- <6cea3306-280b-4f01-be46-28e546cebbda@oss.qualcomm.com>
- <uxklfc663dzdjxd5e7gd6mftddty2nxqypoandbwakydgrjhaa@s5mskp2tlfch>
-Content-Language: en-US
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-In-Reply-To: <uxklfc663dzdjxd5e7gd6mftddty2nxqypoandbwakydgrjhaa@s5mskp2tlfch>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA1MDEzMSBTYWx0ZWRfXwmeASgVXNt4k
- F8cd/vZbCiZp5atXb8XYl1GJYU57lUCqf2MPnzidjpdNgNHWh4BWY1XiFUChV3PmUueGIPZ00xe
- fQT/aKLrQf1ecF35+JYbR6oxBiqlKZNTeNia5DMQxH0h3QCkkx6MH0phe7FETbGtcKvqKU3csVv
- viCdT0QTEtNBOBrwUUSsGIYWJdkf/1ycwaFvKgAZlxEqIiy64peja56yls1X7NLXy+6BagrRIkG
- sPPhGNTvbvvEDh/7em7qk/xcxO2TffjV+n2uPPVgrEUm5/XHwH1HMjy6RZ53qp1u0PT81VhJ5/H
- mKHOp5KeldJ2aXnZ+IuXYssG1iQs4MZm8AtPlo74O/umDS15K6rXO4WfKOy1Xh/ep+Gs2CfL4Uw
- ue3zrguYj1TvA4G+ukyCX4ZjBG8aA+yyZzITRvcTOu8/4vNRyzEy5R0/XSf3I3AZBT8tFxkls56
- BHrafWKtsIrXgcI01Mw==
-X-Authority-Analysis: v=2.4 cv=K4AS2SWI c=1 sm=1 tr=0 ts=69f9f4ef cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=9uzW0PS53YT52NB8YZ7Mfg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=7OoR382vXO5eJJLDGIEA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-GUID: 7M5mYTcQIyteqZe7BvdLSnt4OmKlHcDy
-X-Proofpoint-ORIG-GUID: 7M5mYTcQIyteqZe7BvdLSnt4OmKlHcDy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-05_02,2026-04-30_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 malwarescore=0 phishscore=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 impostorscore=0 spamscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605050131
-X-Rspamd-Queue-Id: 8BDC84CEC50
+X-Rspamd-Queue-Id: 89F234CEC7D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-293097-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TAGGED_FROM(0.00)[bounces-293100-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 
-Hi Dmitry,
+Hi folks,
 
-On 5/5/2026 4:58 AM, Dmitry Baryshkov wrote:
-> On Tue, May 05, 2026 at 12:56:15AM +0530, Umang Chheda wrote:
->> Hello Dmitry,
->>
->>
->> On 5/5/2026 12:14 AM, Dmitry Baryshkov wrote:
->>> On Mon, Apr 27, 2026 at 10:35:02PM +0530, Umang Chheda wrote:
->>>> The monaco-ac EVK is a new board variant which shares the majority of
->>>> its hardware description with the existing monaco-evk board.
->>>
->>> No, this is not a good reason. Is there a common PCB? There was a long
->>> discussion for it for the Hamoa / Purwa EVK.
->>
->> PCB is not common for these 2 boards.
->>
->> Also, not sure if I mis-understood you - You had mentioned to have a
->> common file for both the variants [1] in the earlier version of patch
->> hence refactored it this way.
-> 
-> There was an explicit question if PCB is the same as a prerequisite for
-> the unification of DTS
+This series adds support for the Cedar video engine found in the
+Allwinner H616 SoC. On the way, it also fixes some issues with the
+DT representation for the Allwinner H6 SoC.
+
+Patch 1 fixes the video engine's number of IOMMU endpoints on the
+H6 in the DT binding.
+
+Patch 2 fixes the video engine's number of SRAM regions on the
+H6 in the DT binding.
+
+Patch 3 adds a new compatible for the H616's video engine.
+
+Patch 4 adds the new compatible for the H616's video engine to the
+cedrus driver.
+
+Patch 5 adds the video engine's missing SRAM region to the H6 dtsi.
+
+Patch 6 adds the video engine's missing IOMMU endpoint to the H6 dtsi.
+
+Patch 7 adds a device node for the video engine to the H616 dtsi.
 
 
-Thanks for the clarification.
+Patches 1-4 should go through the media tree, while patches 5-7 will go
+through the soc tree via the sunxi tree.
 
-This was discussed in the earlier v2 [1] — even though the PCB is not
-common, the majority of the hardware blocks and their wiring are
-functionally identical between monaco-evk and monaco-ac-evk, with only
-difference in H/W being 4 PMIC in monaco-evk v/s 2 PMIC on monaco-ac-evk
-and the rail which is supplied to the SDHC controller.
 
-The intent here is to avoid duplication across the two boards rather
-than imply a shared PCB, similar to what was discussed earlier.
+Please have a look.
 
-If this approach is still not acceptable without a common PCB, can I
-drop the refactoring and keep the DTS files fully separate ?
 
-[1]
-https://lore.kernel.org/all/8f79000d-ccbb-403c-871c-7a36423c9eee@oss.qualcomm.com/
+Thanks
+ChenYu
 
-> 
->>
->> [1]
->> https://lore.kernel.org/lkml/7r6373fo56alzqa4e2zzdnsgwfhgdkmbhxe4cvdo4p7fg3zren@eyiml4uedfbn/
->>
->>>
->>>>
->>>> In preparation for adding this variant, extract the common hardware
->>>> nodes from monaco-evk.dts into a new shared monaco-evk-common.dtsi
->>>> include file, and update monaco-evk.dts to include it and keep only
->>>> board-specific overrides.
->>>>
->>>> No functional change intended.
->>>>
->>>> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
->>>> ---
->>>
->>
->> Thanks,
->> Umang
->>
-> 
 
-Thanks,
-Umang
+Chen-Yu Tsai (6):
+  dt-bindings: media: sun4i-a10-video-engine: Fix IOMMU count for H6
+  dt-bindings: media: sun4i-a10-video-engine: Fix SRAM count for H6
+  dt-bindings: media: sun4i-a10-video-engine: Add H616 compatible
+  drivers: staging: media: sunxi: cedrus: add H616 variant
+  arm64: dts: allwinner: sun50i-h6: Add missing SRAM region for video
+    engine
+  arm64: dts: allwinner: sun50i-h6: Add missing IOMMU for video engine
 
+Jernej Skrabec (1):
+  arm64: dts: allwinner: sun50i-h616: Add video engine
+
+ .../allwinner,sun4i-a10-video-engine.yaml     | 45 ++++++++++++++++++-
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  4 +-
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 12 +++++
+ drivers/staging/media/sunxi/cedrus/cedrus.c   |  4 ++
+ 4 files changed, 61 insertions(+), 4 deletions(-)
+
+-- 
+2.47.3
 
 
