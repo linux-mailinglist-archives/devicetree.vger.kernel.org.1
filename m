@@ -1,216 +1,132 @@
-Return-Path: <devicetree+bounces-293199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4E8aGvUa+mkJJgMAu9opvQ
-	(envelope-from <devicetree+bounces-293199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:29:41 +0200
+	id eKKAMhgb+mkJJgMAu9opvQ
+	(envelope-from <devicetree+bounces-293201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:30:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5FC44D149D
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:29:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EA34D14D1
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1A2E530285FD
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 16:25:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2980B3053D30
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 16:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF6948AE04;
-	Tue,  5 May 2026 16:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DCC48AE04;
+	Tue,  5 May 2026 16:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="M+F3yhx7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YsdVYyQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24424.protonmail.ch (mail-24424.protonmail.ch [109.224.244.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0C648B38E;
-	Tue,  5 May 2026 16:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1301C38BF81;
+	Tue,  5 May 2026 16:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777998298; cv=none; b=Gy0FZ5QHkj69wvRYV+Yg7j6EUEs60djiGpC3HzWedN0SEZd8Fs5OZDq0XZlfQ/0Tz/XHf+iesVYRaAiSrN4LHHxV8jNLhftZws7Yw14SfUB+VWpmPiIx9GSO4FU8tHpTdNtbHTdBgRFWMrEuq4yKVqzjsJ7tgtNyb/qA/loxjNs=
+	t=1777998322; cv=none; b=hJmknESBinOTpgIudhC1vx8ETcO3JWAQN6cO3wouNB2QLDEXbpvVTnEh/bZ/McmhArOr4w0yjclWrLoESWLEK1j4NKda1g7/Phabu93L1h5MSznUcOQyP2JYC4pbSLi9YOXtDUQHpAywN5IJyYSHsqrsXRrMeKyiDyDqgVOD5n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777998298; c=relaxed/simple;
-	bh=zNiWv6rRMr8VglHjj6vRucPyNjtedqguSDscHAx+XdI=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=luEpCdg32rCvNyqLhfSDPbugRL4PjyeZVSW9XKrz3/5G9ufj+RmaOefdTpwOnH5i+4MUYMOO/UFZRvA37sAjcGahWCLJuRPkJwotFqCwsFTHmCgJZDty+VA+Jb4A/gfyFKiou/IgjZsXtLPuw/7U7W56pgmghLPMEH7jgOodn9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=M+F3yhx7; arc=none smtp.client-ip=109.224.244.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1777998287; x=1778257487;
-	bh=ASWqzKjXrD7GPPPq7eqcATqg6A70mPRmdB4ZyDBwEK0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=M+F3yhx7dJ2rhFSJAZcFeXyevkNolOGRHAyGx9L5V9zEwV48mNW0/j1DxaK2EZV3A
-	 sOI77K5RJdv6vOQ4iT0XOz7d7KLFmOkC+jHajqCLIfMwCKTNmoZk26ZlwEiaoyoM9j
-	 b0Jm6p/Ff5EtNIHmXiEyFH/VfiVWcUCBVrOwkIFsGzbQoFISKrRmmTf1YBwE6BKG50
-	 jEC/Wpla8r4KX6aKV8Ln+iyPz5DRcWZf6WmD+D+yqDdYEw+FuY37PxcYMtVcMYDeHg
-	 ZFaIG7dN5yXP2FY+Ojke22qfg31drHoBz2zpt6/kca1w+FzeqPMI0bs85GKPo37cug
-	 sJC/bk/aU+nQA==
-Date: Tue, 05 May 2026 16:24:41 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Srinivas Kandagatla <srini@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Lee Jones <lee@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, Ben Grisdale <bengris32@protonmail.ch>
-Subject: Re: [PATCH 05/13] nvmem: add mt6323 PMIC EFUSE driver
-Message-ID: <Bn1O24yJ2aBvKUTpiFUzxnqbuuybRirR73G7R38ghYtwhFvQqWJb3HPgcikEa1otDw6n07nX_g8khZUHXJ_QRA--LrV5yj5Mcg1QzrWt6vA=@protonmail.com>
-In-Reply-To: <afmjfWtt7Vii6xfH@ashevche-desk.local>
-References: <20260504-mt6323-v1-0-799b58b355ff@protonmail.com> <20260504-mt6323-v1-5-799b58b355ff@protonmail.com> <afmjfWtt7Vii6xfH@ashevche-desk.local>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: 70e68a78b3333f71307d661d5a8c93410d5d2dc7
+	s=arc-20240116; t=1777998322; c=relaxed/simple;
+	bh=P3PUsEhxiyv0MVCPjH1f+nJYAM60mYlApLVeqBXtLlk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tXqVhSPwoaGfxD/W7GLKngt/SGJ/OKotq1A53k65vV8GvkL9oV1lgNdAntJUfS/JFESilleA0Fz60BLrgGRO7YGhYhkvYXtkzDviPS5PX2/s6r3cMxlNkms6DV+WjnVUoDE3p8ZAEnnTWAxbRsmoNYbnB6C6YZMG1FdxQI7br6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YsdVYyQY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80061C2BCF5;
+	Tue,  5 May 2026 16:25:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777998321;
+	bh=P3PUsEhxiyv0MVCPjH1f+nJYAM60mYlApLVeqBXtLlk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YsdVYyQYtQM6np3dFH11uwV6G7629W81Acc5Aa/jC1laJ6HtyxornDPLKpkz9n3tn
+	 l6cbWBKdb+G3t3/1e+z1tQe14bofctaiuYfofAoDjqGwiM9HypyyqJaz42CHpnTBa+
+	 0eHDpDylvC69XTPGQFs4YpI+VXvbZGs1nzqan7bNuWMJ3aivvv67msnJiNqU+rh/Uj
+	 a5Tf91KZwbqx1NAcjiGCohb96ITlBifSdW9PXAqjy81Eg7k8bQzRSEFHWCVcfRMY6s
+	 WjxVWSZFZkpmhynV2imqu3dGE39tRL4ECs13/wwfSML9WDM16wP62i6k3FHGQzZig3
+	 RJI22RucIcCSA==
+Date: Tue, 5 May 2026 17:25:17 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Swark Yang <syang@axiado.com>
+Cc: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: cadence: Add Axiado AX3000
+Message-ID: <20260505-eggplant-little-87b6134a95ba@spud>
+References: <20260504-axiado-ax3000-cadence-i2c-support-v1-0-97ed2fdc0b7b@axiado.com>
+ <20260504-axiado-ax3000-cadence-i2c-support-v1-1-97ed2fdc0b7b@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: D5FC44D149D
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SnZyNtcB4rZeJFCl"
+Content-Disposition: inline
+In-Reply-To: <20260504-axiado-ax3000-cadence-i2c-support-v1-1-97ed2fdc0b7b@axiado.com>
+X-Rspamd-Queue-Id: 46EA34D14D1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-293201-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293199-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,intel.com,arm.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rva333@protonmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[protonmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:dkim,protonmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[axiado.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
 
-On Tuesday, May 5th, 2026 at 11:00 AM, Andy Shevchenko <andriy.shevchenko@i=
-ntel.com> wrote:
 
-> On Mon, May 04, 2026 at 09:24:57PM +0300, Roman Vivchar via B4 Relay wrot=
-e:
->=20
-> > Add support for the EFUSE controller found in the Mediatek MT6323 PMIC.
-> > The MT6323 EFUSE stores 24 bytes of hardware-related data, such as
-> > thermal sensor calibration values.
->=20
-> Besides below comments, check for the similar issues that previous patche=
-s in
-> the series have.
->=20
-> ...
->=20
-> > +#include <linux/device.h>
->=20
-> Not needed as platform_device.h implies this ("is this good or bad?" is a
-> different story).
->=20
-> > +#include <linux/io.h>
-> > +#include <linux/mfd/mt6323/registers.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/nvmem-provider.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regmap.h>
->=20
-> Follow IWYU. At least missing types.h.
->=20
-> ...
->=20
-> > +struct mt6323_efuse {
-> > +=09struct regmap *regmap;
-> > +};
->=20
-> Do you really need a custom wrapper data structure? Can't regmap be used
-> directly?
->=20
-> ...
->=20
-> > +static int mt6323_efuse_read(void *context, unsigned int offset, void =
-*val,
-> > +=09=09=09     size_t bytes)
-> > +{
-> > +=09struct mt6323_efuse *efuse =3D context;
-> > +=09u32 tmp;
->=20
-> > +=09u16 *buf =3D val;
->=20
-> Really? CPU order all the time?
->=20
-> > +=09int i, ret;
->=20
-> Why is 'i' signed?
->=20
-> > +=09for (i =3D 0; i < bytes; i +=3D 2) {
->=20
-> sizeof()?
->=20
-> And since 'i' is used only inside the loop
->=20
-> =09for (size_t i =3D 0; i < bytes; i +=3D sizeof(*buf)) {
->=20
-> > +=09=09ret =3D regmap_read(efuse->regmap,
-> > +=09=09=09=09  MT6323_EFUSE_DOUT_BASE + offset + i, &tmp);
-> > +=09=09if (ret)
-> > +=09=09=09return ret;
-> > +=09=09buf[i / 2] =3D tmp;
-> > +=09}
->=20
-> + blank line.
->=20
-> Isn't this reimplementation of bulk read? Why the latter may not be used?
+--SnZyNtcB4rZeJFCl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yes, but the PWRAP (the regmap which the driver uses) doesn't support read
-callback, only reg_read is implemented in the driver.
-It hits the map->cache_type =3D=3D REGCACHE_NONE in the regmap_read_raw, an=
-d falls
-for the !map->read check, so regmap_bulk_read neither the regmap_read_raw
-can be used.
+On Mon, May 04, 2026 at 11:26:43PM -0700, Swark Yang wrote:
+> The Axiado AX3000 SoC integrates the Cadence I2C controller.
+> Add a specific compatible string "axiado,ax3000-i2c" to support
+> its hardware features, including SMBus Quick command capability.
+>=20
+> Signed-off-by: Swark Yang <syang@axiado.com>
 
-Technically the PMIC is not continuous address space, but rather non-MMIO F=
-SM,
-so it makes sense to not implement the read callback. I guess the custom
-implementation is fine then?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-All other suggestions will be applied for v2.
+--SnZyNtcB4rZeJFCl
+Content-Type: application/pgp-signature; name="signature.asc"
 
->=20
-> > +=09return 0;
-> > +}
->=20
-> ...
->=20
-> > +static const struct of_device_id mt6323_efuse_of_match[] =3D {
-> > +=09{ .compatible =3D "mediatek,mt6323-efuse" },
-> > +=09{ /* sentinel */ },
->=20
-> Having trailing comma in the terminator is nonsense. Do we expect anythin=
-g
-> behind it?
->=20
-> > +};
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
->=20
->
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Roman
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafoZ7QAKCRB4tDGHoIJi
+0rlUAQD+nb4X/sN7660Y9aXpeiu8qfjC2cP3Djl/gh68JLcFswD9G966+as4y2ZW
+WY7GCArjHENU9Xu82cwWyEnS+8g6WQA=
+=eHFt
+-----END PGP SIGNATURE-----
+
+--SnZyNtcB4rZeJFCl--
 
