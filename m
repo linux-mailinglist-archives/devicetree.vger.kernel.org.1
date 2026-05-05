@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-292835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKAHIe5n+Wmt8QIAu9opvQ
-	(envelope-from <devicetree+bounces-292835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 05:45:50 +0200
+	id yBi8Euln+Wmt8QIAu9opvQ
+	(envelope-from <devicetree+bounces-292836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 05:45:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FF1A4C6409
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 05:45:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC594C6400
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 05:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 24A62301A92B
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 03:44:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 21F6230117E2
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 03:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7EF3BF69C;
-	Tue,  5 May 2026 03:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505AA3B0AD3;
+	Tue,  5 May 2026 03:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="WcNABeYC";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="med/3/Er"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="oLSL65Uv";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kZ+0ehCm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966DC3AEF3B;
-	Tue,  5 May 2026 03:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BFA3BFE5C;
+	Tue,  5 May 2026 03:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777952645; cv=none; b=f5o1sjwRh5cqHh5tW+KjGaO9ZFC9kL09pHNnAkGpgpPVzV5z1E+ifBVRsjyDcFTHHgyiyOi1xv+d0J7QZ1PwR6RVgk4dSJtBHN3Qw5AWQZBLq5FcWS+MSjdMvIHjDRrxVDOLbaUh9uAjNs4nLGrZz90Ti995fpXhNnI3/4KJ4wI=
+	t=1777952648; cv=none; b=aK3ilChuhgegXVjK+X/Om0El7OUOH8N1Wz/0OVS8dFTV2ODnMJw3rvCJPDah9VxMR8/W3ixXTq841gMnGPU5BK4DowaYRG1EX/qoI5cDmnClv4kf0uFcoltGh3OUGgP3Quwhyzix5rabbXSraxtOHxPxrN67H19FtkaeAfD1kII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777952645; c=relaxed/simple;
-	bh=B7PnpgLk9fOgRys2BUSDz0BqEi+yzK6zlm6jlVD80eE=;
+	s=arc-20240116; t=1777952648; c=relaxed/simple;
+	bh=8/OT+6MgMkaeIPy8tLBM2JUR3lMlzfK++fkIZT1vOmc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=P3iHam+c5S+ID2BU1rCF0dCvNJKVmf5a5L+W/4qwWgMR+G1y+iJ61O2s8uBoYLxyhqAg3FvztflnUAvCaUdSGQU079AcMJ4svk09I8dqT1HZ1IH4HbiYw24A4KhZUnSm2fivjDeetsfdVGNvmEmXsK9IY7FUPP2hzYv+u8lQ7A8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=WcNABeYC; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=med/3/Er; arc=none smtp.client-ip=80.241.56.161
+	 MIME-Version; b=V4MbTOOsg1RncI97wN8+j5RPuiNSeO8y6zrSxtFRHXQOzJLpy8xPmkh3LDLfmrfqu+n4iIUEfcvzBsW8DRTXHHF6dOlxBway+r6NX6sW5vLaMR19Wk+/toZLcYoB3XFeJGd0ilJAlDDvx4UyQCxwMjiqG+VTgHmmWCSzEm3+Sz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=oLSL65Uv; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kZ+0ehCm; arc=none smtp.client-ip=80.241.56.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
 Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4g8krx6FV6z9tw8;
-	Tue,  5 May 2026 05:44:01 +0200 (CEST)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4g8ks02mJ8z9tQt;
+	Tue,  5 May 2026 05:44:04 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1777952641;
+	t=1777952644;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=lKs36l33LjxXtK5zLdlYl9mdFNuvitANVVnZZJYiHag=;
-	b=WcNABeYC39EwaGQoBtOiBKb3MzgdaaQaCch2BIiP0UEljLH3h2H3IT2UXCUaS77ARufmwM
-	wddITgUE3a41krWsbRSXJiHx50N7i8tIBPXf1XWRj9Uw9e2Rq+ScwNuKg1WhPY50KoTGlI
-	xPgsatU6FjCdy86Bw1c0o7mhp5YZAXNympYXWtDPn8/HxFzxNb1BAal75+ergrHU/JuDzc
-	jTQP9ZeHDzzC7vucx9tMGm6kQCGYCv4RSq8zF/VFJGHuaR4xc8eLDNk/Rx3TUrYAcKopV4
-	40cE0bGQDHG331DmzznaItpaGBTBimUByhnMqrsQfEDB10bv4E6ies93x3t2Xw==
+	bh=/m74OQYKUXFFOiQNF59JcHanEYm/tE0exDQOuRLJjFs=;
+	b=oLSL65UvwJ+yvDI2HcguKPfgzmI87OVDfzEA8jQOuoB4goW8mokJenNVxR9kaLPv4r/ojS
+	Zta0Fy03u7VT73PyNco+XiXgHaVerZ9IXV/XQphhR6bhyIh3Iw80lclbeEHX9JwNcEX0+O
+	zNQUzZtTSYPEbwLdBqCU6XcO5TsAE5eRBysgKx/bPZCMF6ZWrEmSiQuqVk54Hfv16d7CAZ
+	8B3RrqH8HsVzYkyx/VYseBG60xzyI2V5fUIL3Hx/sAhlsrOSeY5JRcVrOBK1QwsOxHiECF
+	kjy9nFQdnO++xEQj8dkOc5P6mf/L1q0Quj8cbe3kXkICIWB+Cn2GirT4q5jOHw==
 From: Marek Vasut <marek.vasut+renesas@mailbox.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1777952639;
+	t=1777952642;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=lKs36l33LjxXtK5zLdlYl9mdFNuvitANVVnZZJYiHag=;
-	b=med/3/Erh+tT0Ae1dwGSxEX61HHV5X61QtYHRi6mEL7DWHjZjpT7GC6XYILzwvnjTQimfF
-	9f/IAUNpGjHxHSbFgZ/Uuo0pamjjXss0a6Luxe7CRZWRkfEN3fKJA3J/feh7vM3S1ydwAJ
-	ELD/dJirmiQs2PSuWFStmCLgvyPmRObb4t/jjldpz1bh4ouTeTkCmRdyegt+Gd0RHIm5MM
-	KITxvw0Jaq65FNKIOK1Cy2jlDFL7ddlFpL2cR0K3GZmkB8ik8Lm/D64J3WgfyVh1VsKSZn
-	ywDUh50oPNXnhUJFSBYY1LlsQcZyEQkbfvEUS+gYttBRYSWayivC3ZrZGa0mmg==
+	bh=/m74OQYKUXFFOiQNF59JcHanEYm/tE0exDQOuRLJjFs=;
+	b=kZ+0ehCmohar/6f72/mQ4nTuQMCL6RXwOYS+F5zZVLeOqCn6B/kEaiZMb+32sux4xZ/pr1
+	FDMMYNT59euH6vpzVlFLRLfieptRSwiN7aPLWsIdK8Jv0X7opJ7KQChcxArQxlExCe7Fqo
+	cKOrJlCA7S7GFZDHoSk9d3d45Qolbv1N6IdNbtJK0LR0ToIohRj735Uu9zSrGUg/PHrVqT
+	YNBmJTz3eJw8h3piH6DM1+/KRkRda3SNG32kPMbqaN/TdccLCx6K3+SSh1Pi7wsTLdY+pj
+	NR8b/KBPB2yoBgHNt/N/lMxusbRaiZu9z6PJscd7fb77khCNQ4T+BwaLKe6j4Q==
 To: linux-arm-kernel@lists.infradead.org
 Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -76,9 +76,9 @@ Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 10/11] arm64: dts: renesas: white-hawk: Specify ethernet PHY reset timings
-Date: Tue,  5 May 2026 05:42:51 +0200
-Message-ID: <20260505034325.167797-11-marek.vasut+renesas@mailbox.org>
+Subject: [PATCH 11/11] arm64: dts: renesas: gray-hawk: Specify ethernet PHY reset timings
+Date: Tue,  5 May 2026 05:42:52 +0200
+Message-ID: <20260505034325.167797-12-marek.vasut+renesas@mailbox.org>
 In-Reply-To: <20260505034325.167797-1-marek.vasut+renesas@mailbox.org>
 References: <20260505034325.167797-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
@@ -88,9 +88,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: orhfs1wfo8wtgrezgfwrexybbqgdicr4
-X-MBO-RS-ID: 91f77169026af94cd62
-X-Rspamd-Queue-Id: 7FF1A4C6409
+X-MBO-RS-ID: 9b29a8112ffd5352392
+X-MBO-RS-META: 4a5qc889kq1kq3ho7iq6urqypgq6wmzu
+X-Rspamd-Queue-Id: DAC594C6400
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [3.84 / 15.00];
@@ -103,7 +103,7 @@ X-Spamd-Result: default: False [3.84 / 15.00];
 	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,glider.be,gmail.com,vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
 	DMARC_POLICY_ALLOW(0.00)[mailbox.org,reject];
-	TAGGED_FROM(0.00)[bounces-292835-lists,devicetree=lfdr.de,renesas];
+	TAGGED_FROM(0.00)[bounces-292836-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
 	R_DKIM_ALLOW(0.00)[mailbox.org:s=mail20150812];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -119,10 +119,10 @@ X-Spamd-Result: default: False [3.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c09:e001:a7::/64:c];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:url,mailbox.org:email,mailbox.org:dkim,mailbox.org:mid,glider.be:email,0.0.0.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:url,mailbox.org:email,mailbox.org:dkim,mailbox.org:mid,glider.be:email,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
 The KSZ9031RNX reference manual [1] DS00002096H page 60 FIGURE 7-7:
 POWER-UP/POWER-DOWN/RESET TIMING Note 2 states, that after the
@@ -151,14 +151,14 @@ Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Cc: linux-renesas-soc@vger.kernel.org
 ---
- arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi | 2 ++
+ arch/arm64/boot/dts/renesas/gray-hawk-single.dtsi | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-index b4024e85ae5aa..c5045bda45c33 100644
---- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-@@ -169,6 +169,8 @@ avb0_phy: ethernet-phy@0 {
+diff --git a/arch/arm64/boot/dts/renesas/gray-hawk-single.dtsi b/arch/arm64/boot/dts/renesas/gray-hawk-single.dtsi
+index 792a4aa8f4a9d..274493720b14e 100644
+--- a/arch/arm64/boot/dts/renesas/gray-hawk-single.dtsi
++++ b/arch/arm64/boot/dts/renesas/gray-hawk-single.dtsi
+@@ -213,6 +213,8 @@ avb0_phy: ethernet-phy@0 {
  			reg = <0>;
  			interrupts-extended = <&gpio7 5 IRQ_TYPE_LEVEL_LOW>;
  			reset-gpios = <&gpio7 10 GPIO_ACTIVE_LOW>;
