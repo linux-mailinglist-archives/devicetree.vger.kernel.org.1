@@ -1,222 +1,166 @@
-Return-Path: <devicetree+bounces-292856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMuAFPSP+WlN9wIAu9opvQ
-	(envelope-from <devicetree+bounces-292856-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 08:36:36 +0200
+	id WOf/OFWP+WlN9wIAu9opvQ
+	(envelope-from <devicetree+bounces-292853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 08:33:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A494C741B
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 08:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61D1F4C73B1
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 08:33:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B38D3029604
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 06:36:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5484B301A161
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 06:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1CA23CC9E8;
-	Tue,  5 May 2026 06:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255863C1966;
+	Tue,  5 May 2026 06:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="Q/wh2bEZ"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="mJRHjQnU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11022075.outbound.protection.outlook.com [40.107.200.75])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2365425A2BB;
-	Tue,  5 May 2026 06:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.75
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777962981; cv=fail; b=S16/W+bOp6W/sTD4yt/xCw1SNOZp0a7cTDZmWpq229DM5qL08L0iXUyYWA1wv9/Jk+G1O7BfPYggkPP7EtetX69XIjwnEcdFcy7grYajzzU7vLJdvRLnn4yfZWyI/z3A/sukCeAzmomxwJCiPFe+MpzZfkekevx9imFv4+YsC4M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777962981; c=relaxed/simple;
-	bh=MK3OswMhVZmw/T7fK7dq9GX/ghxdskdK82VTH194LCI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cjTMY7W1GcoamOVK3mDODRcV3USk3uqhLpR5UeMh9ZfQ2DLPvfWBDQ2YuEfT1inNHAY+fd96go0uWU3AR9dLHee6/M9/pLF8cL522Ey5BkxBhlMvnzeittVod0Ur582uqDBktYsgzAQGl12IUHZRpMjBKdeD+fP02VIwAQShgUc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=Q/wh2bEZ; arc=fail smtp.client-ip=40.107.200.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U1f/NW/djUWu5/31Mjbv8A2oX348YvbT/yF0scGKoPqfAZXpw+pcJFxD/nuFrR7CQCvqkiGVLBFpHlwuuhmNBlaLoajxBiMD1efQd09Hcm1M9Og21kxqa4HhuRWY5ZppAEUAkE7U+k2Kf1szAoAuShs8hIB8haZMTf7tufv2FUMRP3KH9YHLZoHM+FJTr5Q4Pp/tEXJOWJ6mLU/73ItGzj+3t1WJ1dNCBCNCya/D38Z7ZlLzg+QZF7nmyZupd93p43s4gCTcE2uNS4Nk60tw1pUFgr0r3I7kb5OddospdBMbEQKKUK6zPfE2AIpIN3nXRa00Uyn6U7FHZt2yab/gCQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KfSxdNYmNgkg+5z0UqbdnOVxDBUxyFjYlgRWmS/GfNw=;
- b=REWYFJfiYzDShRsGi0lHiSzxWgBTZ82PSrS+M3sBQ/3WefnafZmL+UTYkpYzh8pUwosv9C8iVjzPJAA8t5QVlpULBQitKr4dQ7z4J5K9RohpNTw3WyGaxz3TaB0eE0Qr+9O/Og/qDErf+AZoPGTb5m5FSyGriaJptTj3v0a2LTxmE6kNnXTalqWWPj4lQcykTxAKpRWA6qa+Bh5lG5uoNzj9Zwsm521supfjhtbXFG0ekx0CujK9rZxIrmwCvWYkcHBzcA9MvloHe+hu7zEuFxbuG/OZuBXpNHz4SLADWCCZvpGxRRVq7DUyLlC8Xp9+RTfae5w3t8B8Pm3FBMelkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 64.62.143.114) smtp.rcpttodomain=amd.com smtp.mailfrom=axiado.com; dmarc=none
- action=none header.from=axiado.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KfSxdNYmNgkg+5z0UqbdnOVxDBUxyFjYlgRWmS/GfNw=;
- b=Q/wh2bEZU8xv+4j+Hyhc0EOTv5fewzR7DI9ZwDKcP+yu6TNTUq4LGO5hQLt7tAiSIaA7DDsRXgFgZ/ce0J+Qo2r2rky5drRpd2C98XflG2cshjGTWSuOwemBIshcfgw/LOBIQYo/2lqeVa0YgphSUwO5hcEHbVZnrqfRB9NZqB5YC9vpiFVVKHWKEAiJKQKe6M8OaxaK2BgBEN8hhRBfqUeir00pBbSFmIuYYdfQG7ttl8vdFj0DzmaM/QkqZ1I7cMVH6kd2lMZZbdoSQmRjAfbBRXu38DG9J2J3GdCP5PM/KcIebxvw0gg4e7R6vYB4jCLY4DNSkSRONLW0lqGZ4g==
-Received: from BN1PR13CA0018.namprd13.prod.outlook.com (2603:10b6:408:e2::23)
- by BL4PR18MB6406.namprd18.prod.outlook.com (2603:10b6:208:5a6::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Tue, 5 May
- 2026 06:36:15 +0000
-Received: from BN3PEPF0000B074.namprd04.prod.outlook.com
- (2603:10b6:408:e2:cafe::22) by BN1PR13CA0018.outlook.office365.com
- (2603:10b6:408:e2::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.14 via Frontend Transport; Tue,
- 5 May 2026 06:36:15 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 64.62.143.114)
- smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
- client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
-Received: from smtp.corp.axiado.com (64.62.143.114) by
- BN3PEPF0000B074.mail.protection.outlook.com (10.167.243.119) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.9
- via Frontend Transport; Tue, 5 May 2026 06:36:15 +0000
-Received: from [127.0.0.1] (vm-swbuild01.axiadoRD [10.4.1.181])
-	by smtp.corp.axiado.com (Postfix) with ESMTPS id C2F9F4186B5B;
-	Mon,  4 May 2026 23:34:17 -0700 (PDT)
-From: Swark Yang <syang@axiado.com>
-Date: Mon, 04 May 2026 23:26:44 -0700
-Subject: [PATCH 2/2] i2c: cadence: Add support for Axiado AX3000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B52A3A383A;
+	Tue,  5 May 2026 06:33:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1777962835; cv=none; b=sAndRF5aUgSfqeB6i0RQ3YAVKN6MLDc8euZb0pDpVZPjwKMKUfqdmVtangeMVe6zWh0jRbsLmLvFIuw5/2j3PvvgqtMNtujv5MhYtLhx5Ax5RKURAILtgNCzGo82Q2SjJ38vyZAs6G8vjrl1XKMqW5a5Jr1DeFXIOWvPFlUCdwY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1777962835; c=relaxed/simple;
+	bh=jAIaYDkSBSVChTdmNPZ8YCi79SVo0E14jpZaYpeNCI0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pfZIw0lN14bLySEGmz5VvGh3ktMbUr4Gp5RiEQg/QFbs7Onyx0TEJOICzFr3Lqt0iXFWltEgTUuNbONbhqBiHl8t7hMZjNOxYjw8+S91B/lNQrr5d1UtubGB0EO0Jdy8VAm4yMuTVjAShM2Ie6l4w9tieqiuwmKJqZ1d4WhrG+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=mJRHjQnU; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=sDuvub1778pFatrBftHPmBbzNs+W0zYjZGDQ4MGF/Sg=; b=mJRHjQnU1i3UVnMzked5o+Kfdj
+	XFd8nziBpu7uVBFatCGtXDQIXbDKdeSPI96BWqcpFvFseWYgXB0qZguFhuSWq3Jzx4JkLmvl5ydSy
+	V8gvI0LyZbe7eH8cv7jynG90GjmpIqaqvK2T1lJx3m7wqWW/k9GvpIfdygOvec5364sRs4kXJ6dJB
+	IDWnn1Xhs0kVlZ7ihFTKT50u5KTTLTA99N4L5dIX63OZ+atGSc3kEaj7Ha+ed+mrqmJxK1lgcqiMP
+	Vuz+vWKm3Xdfid0hL/0dWCOZR7bNdRg12FIxlOcxzyyzFWA6+m40fqoNxhW3sVAi8dCJzonlFuPUy
+	Si/EA3Rw==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wK9Lq-0004vM-1M;
+	Tue, 05 May 2026 08:33:50 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wK9Lq-000KOQ-0O;
+	Tue, 05 May 2026 08:33:49 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Paul Gerber <paul.gerber@tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	linux-renesas-soc@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: add TQMa8MPxS board
+Date: Tue,  5 May 2026 08:33:43 +0200
+Message-ID: <20260505063346.1799500-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260504-axiado-ax3000-cadence-i2c-support-v1-2-97ed2fdc0b7b@axiado.com>
-References: <20260504-axiado-ax3000-cadence-i2c-support-v1-0-97ed2fdc0b7b@axiado.com>
-In-Reply-To: <20260504-axiado-ax3000-cadence-i2c-support-v1-0-97ed2fdc0b7b@axiado.com>
-To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Swark Yang <syang@axiado.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2053; i=syang@axiado.com;
- h=from:subject:message-id; bh=MK3OswMhVZmw/T7fK7dq9GX/ghxdskdK82VTH194LCI=;
- b=owGbwMvMwCHWlWK8+EozbyzjabUkhsyf/fd+yrP4GTd2Ci0QjQu9ad/f4vL1OV+N3gTR2q628
- tM8Bs87SlkYxDgYZMUUWb7qfMs/mat9r3PvylKYOaxMIEMYuDgFYCKtmxkZbsnvu7wk2vXhvz8H
- NN1cHumXNTpf0lwlvlx1prTmZ5HwvQz/Y92Na1Lv63zwXvSvcvW/8qa55XM0l/7aNfWk9ec7a9a
- 8YAYA
-X-Developer-Key: i=syang@axiado.com; a=openpgp;
- fpr=F52CF66FC96D2BDE89BDA9758A6433A3D4830D5D
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B074:EE_|BL4PR18MB6406:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2c9320a-b336-417a-ca51-08deaa709b9c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700016|7416014|34020700016|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	nstgBGbnYgGpZhthaTFsnoDmKH3UTROVRKUBj1c+g9/1QBhlJ+HOqPpMvOLyMsgdhGn7Glee/qFpjNFN+VfvkOTqvDX55FsfyglmMisT+WUi4esRXRckVHGaHyT+qjTIZ1lftp2iFtF3ePPUtqEFIygLre3vCIJaqt/yvW36P0TisIlWgKJXccf8B+t7DdEP0IFJFH0tJ9f/9RjMVBFDCnI2sbgec6CEOLeS0Yv4Ow51Txq7+C0PD4N4DrMCw+lKxohkzERsJe+g2dT6eqbTi/gLgUoZLXX9Ff5xOaKiHH7cV+6MpZSuxQVirVLGKzNnkiavRRKnDZahZQvGe9WUscXJkbTPFUPF4syO84FQkJJdZSLOkSMKROSYolG+VAx36j3a5wa4/RIL23rTyu3yNAORQaKmtk+XrFOrf6ABVOJlD2yZV6SEuDQ06BKxB6L+VRPe6WvTphU1RTxhaOLjmESTkSmLX9y7hibxI4CDMqxkeAGjw/GJRNR9xkzNyl155U6M8RHIjBUDN2xpUQ4A7bGQAm6GdUCcJMbCjabaenxfFRYVW6UFk4eQt2vtsQBj5OcpRbLEHI2q93etTW6g4+q8DBFy94ORvbea/kycTGNcgqSfLcQSjS+H+Aw63P97jo02o5/B4MPQdIvFQHDai+pA3wcl+mQX6Ovq8JTj3vFiztGXw/9fFma0VCfUaLAzdzF5TNpaqLQMKQqS+c2nREHlSszvxhHICrO2WWB9Y/Y=
-X-Forefront-Antispam-Report:
-	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(7416014)(34020700016)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	twioRanEHxaeqXArftVSeTpqipyN//tyIn0AzD0QyjI8ty1APn6ZO2figXJewiaD7Vk3ceJVgxROrfQSHVx9lEo4mhdTPYLa/1BIJpEb3xT2c5PwBjVNZCu2b2KtucdHQ8DokvHC84g3mmAdtlsWvJLrs0/gAfPrFgvhmhlvyJhXYUs8munX9sFHqnvcu1iRmTQalDYFO9UoeBY7KpzzlRDbiwQvwWvcMUFEu5gRIcIfL7IMNZiq3tlbd7K3Q9grjPy+m4NytZkGx+dDKof0w1CFfofZ7KSeFgJlPLxhx+i+2LUcngZkYETJK4KBIlqeysEM6NoVS0alAilUOAl7TioCUHMYucDRZnXgz7lJ4cLgSVms9Nm85wNNJ5MDNT7IoOdnl3ysk9BsNPW15I9ofhphV3NkWTTUa7S1NkXfMxvpBQdZzv7DWu0wbN0IDKZ3
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 06:36:15.5279
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2c9320a-b336-417a-ca51-08deaa709b9c
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN3PEPF0000B074.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR18MB6406
-X-Rspamd-Queue-Id: 12A494C741B
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27991/Mon May  4 08:24:39 2026)
+X-Rspamd-Queue-Id: 61D1F4C73B1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[axiado.com:email,axiado.com:dkim,axiado.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TAGGED_FROM(0.00)[bounces-292856-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,glider.be];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292853-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[axiado.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[axiado.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[syang@axiado.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-The Axiado AX3000 SoC integrates a Cadence I2C controller
-that supports SMBus Quick commands.
+From: Paul Gerber <paul.gerber@tq-group.com>
 
-Introduce the "axiado,ax3000-i2c" compatible string and
-add a new quirk CDNS_I2C_QUIRK_SMBUS_QUICK to enable
-this functionality. This allows the controller to support
-I2C_FUNC_SMBUS_QUICK, enabling features such as bus scanning
-via quick write commands.
+TQMa8MPxS is a SOM family using NXP i.MX8MP CPU family.
+MB-SMARC-2 is an evaluation mainbord for this SOM
 
-Signed-off-by: Swark Yang <syang@axiado.com>
+The SOM needs a mainboard, therefore we provide two compatibles here:
+
+"tq,imx8mp-<SOM>" for the module and
+"tq,imx8mp-<SOM>-<SBC>"
+
+Signed-off-by: Paul Gerber <paul.gerber@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- drivers/i2c/busses/i2c-cadence.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/i2c/busses/i2c-cadence.c b/drivers/i2c/busses/i2c-cadence.c
-index 0fb728ade92e..8079c045f936 100644
---- a/drivers/i2c/busses/i2c-cadence.c
-+++ b/drivers/i2c/busses/i2c-cadence.c
-@@ -128,6 +128,7 @@
- #define CDNS_I2C_TIMEOUT_MAX	0xFF
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 0023cd1268075..b69c34752ace6 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1300,6 +1300,18 @@ properties:
+           - const: tq,imx8mp-tqma8mpql            # TQ-Systems GmbH i.MX8MP TQMa8MPQL SOM
+           - const: fsl,imx8mp
  
- #define CDNS_I2C_BROKEN_HOLD_BIT	BIT(0)
-+#define CDNS_I2C_QUIRKS_ENABLE_SMBUS_QUICK_CFG BIT(1)
- #define CDNS_I2C_POLL_US	100000
- #define CDNS_I2C_POLL_US_ATOMIC	10
- #define CDNS_I2C_TIMEOUT_US	500000
-@@ -1175,10 +1176,14 @@ static int cdns_i2c_master_xfer_atomic(struct i2c_adapter *adap, struct i2c_msg
-  */
- static u32 cdns_i2c_func(struct i2c_adapter *adap)
- {
-+	struct cdns_i2c *id = adap->algo_data;
- 	u32 func = I2C_FUNC_I2C | I2C_FUNC_10BIT_ADDR |
- 			(I2C_FUNC_SMBUS_EMUL & ~I2C_FUNC_SMBUS_QUICK) |
- 			I2C_FUNC_SMBUS_BLOCK_DATA;
- 
-+	if (id->quirks & CDNS_I2C_QUIRKS_ENABLE_SMBUS_QUICK_CFG)
-+		func |= I2C_FUNC_SMBUS_QUICK;
++      - description:
++          TQMa8MPxS is a series of SOM featuring NXP i.MX8MP system-on-chip
++          variants. It has the SMARC-2.0 form factor and is designed to be
++          placed on different carrier boards. All CPU variants use the same
++          device tree hence only one compatible is needed. MB-SMARC-2 is a
++          carrier reference design.
++        items:
++          - enum:
++              - tq,imx8mp-tqma8mpqs-mb-smarc-2    # TQ-Systems GmbH i.MX8MP TQMa8MPQS SOM on MB-SMARC-2
++          - const: tq,imx8mp-tqma8mpqs            # TQ-Systems GmbH i.MX8MP TQMa8MPQS SOM
++          - const: fsl,imx8mp
 +
- #if IS_ENABLED(CONFIG_I2C_SLAVE)
- 	func |= I2C_FUNC_SLAVE;
- #endif
-@@ -1442,9 +1447,14 @@ static const struct cdns_platform_data r1p10_i2c_def = {
- 	.quirks = CDNS_I2C_BROKEN_HOLD_BIT,
- };
- 
-+static const struct cdns_platform_data ax3000_i2c_def = {
-+	.quirks = CDNS_I2C_QUIRKS_ENABLE_SMBUS_QUICK_CFG,
-+};
-+
- static const struct of_device_id cdns_i2c_of_match[] = {
- 	{ .compatible = "cdns,i2c-r1p10", .data = &r1p10_i2c_def },
- 	{ .compatible = "cdns,i2c-r1p14",},
-+	{ .compatible = "axiado,ax3000-i2c", .data = &ax3000_i2c_def },
- 	{ /* end of table */ }
- };
- MODULE_DEVICE_TABLE(of, cdns_i2c_of_match);
-
+       - description: Variscite VAR-SOM-MX8M Plus based boards
+         items:
+           - const: variscite,var-som-mx8mp-symphony
 -- 
-2.34.1
+2.43.0
 
 
