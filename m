@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-293318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BXKITFo+mnwOgMAu9opvQ
-	(envelope-from <devicetree+bounces-293318-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 23:59:13 +0200
+	id gHrcLaRl+mm3OgMAu9opvQ
+	(envelope-from <devicetree+bounces-293320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 23:48:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB8114D425C
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 23:59:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6684D40BA
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 23:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F0913086FAF
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 21:46:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 339C03036199
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 21:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2814B8DD8;
-	Tue,  5 May 2026 21:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F4A4C041D;
+	Tue,  5 May 2026 21:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kFgFZPfc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CqEek4MM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB29A4A13AB
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 21:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FB94B8DDD
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 21:46:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778017594; cv=none; b=prt7JgL3nXDmptN7FR5w87/kIvg09qlriajPwLHPR+DFUqa6Pe3FINXmaIQ7Jnm5H2MtWKvDNpNiaINiyr5v8EeQVo9HRVFiNvfi9HveGHK8rGoaRwjw03Va94XXpk6ckYTZ+CV1//E8wB8872QAKWSwxcM8M8jatFlCm3h6ygM=
+	t=1778017596; cv=none; b=NY1ebcht2WE3Ii8cuChqEjN2xuQHsmaIWuJtpcTO8feySABoTAmFvwtkFPN4iurnkieboxotN6xoVps4LobTRNkVKQVdEyAi9rEG3iP2n5xsGqE2Hx4SfYtkQbNGHLjzSVM6CnnUIv9G+5MzsbMJ6GDTGWZ3Xyxc2lPV5Ojubwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778017594; c=relaxed/simple;
-	bh=xZigL0OFV7rRN9lHipXRuwMkkZcjBhyZqYX79Yp/D9c=;
+	s=arc-20240116; t=1778017596; c=relaxed/simple;
+	bh=DZKEanc292MoU5uFVUkAMMRJ7zjKboXEf5oxvifSHrc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WB8O87cNs6raFrlW7NkwMSBHtuEoHwBtoYhYLONN7rQNHHg2UwM9mxo1Vlqdz8WxmdrdGvdNiQSV9aIUDMqnBfNf8IxkXZg1imZby8VyjQwrgWmVIs3FCzXskExhlb0vtlhOM4mQz+JN6FhuECkHmRLEd5lWnjc4Rpo94UPfjNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kFgFZPfc; arc=none smtp.client-ip=209.85.128.47
+	 MIME-Version; b=t98K1Q9PzT5yonxCdftJN/4iaR5x9cybk9zPXYUnXB+9TVD939FWl1S034lK7IkcKOMKB0POjxJYgSTMiKNiO0zsyoY/0E0u/bTNDy2bkklSC4d0UQU0SmV4e44RF57Bpxtp6sZbF8VXAWyo9T4Q9DjlkLdy3LUy6q+6ubccc2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CqEek4MM; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48374014a77so67833665e9.3
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 14:46:32 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-488b8bc6bc9so36488505e9.3
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 14:46:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778017591; x=1778622391; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778017593; x=1778622393; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SXJTZZAJCg4e2s+0fA35+r08icRvHfE8yzEV3CKV5+g=;
-        b=kFgFZPfccnzd4ovdwr484ee0BOvG0Z4Qng/xSirCApkx3LqrcDFcbFhSx4qvSz52N0
-         quUyZMf1bnYdAelL00nn+ZMxvjATU9hmye09xNPFHpaSMnp2dyzLC7VoFUrrT+hMSjFK
-         6l05+APrYQUl5XKq11pdNyDBOkFHGc6vGSySEupHkijufLU8d6Xa/rBUCbJTLuJX+3Gh
-         uCXDzWiwoWRyQqfOcewQXmahD84YqOBUSnLoi7VUEPqr6Ox32tx5xX6y8ejfvCNi9hh7
-         BZwq74+cwH7TY6coXy8sNTY+cXhDxMKUa37Y40e0DyF2+EY7YLeu7khFr8A6a86J/stm
-         56Lw==
+        bh=IJBvhYuyv/JdwansPLGJPjqYXoVeTZUEnpdVBNEj1Pw=;
+        b=CqEek4MMjrUAPYiQp80urURuawoVLaqQL66hrMJcxu4tLxfzc7GKFscLt7egNyZMaY
+         YJE1f5eXZWEnTB7yeuP/bUGQ3BsV2UQGU7QrL3EksKPEc7zCs2MWudkoP3OyghxChCbU
+         v74qfPFG3L/pcu082NyCB8IKEE8KSDXhQD2cI3pUmCCteawNZJoEWbBWhhffAXdA4w0P
+         jmqZ1Fo/KO4BMJ/u16QE0sZYdlkmvWjGFLIcPXIdfnc351oyozeyEiIYVQwFLFSCh90g
+         PXkgWoKqB1RGKguYozJa4cYqfEtXLVuYRWXx4T7/Oq4Fd7UMMGlF9vPBH8FcYvwyVs3j
+         ZpkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778017591; x=1778622391;
+        d=1e100.net; s=20251104; t=1778017593; x=1778622393;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=SXJTZZAJCg4e2s+0fA35+r08icRvHfE8yzEV3CKV5+g=;
-        b=rTyq5+fbjCyJoeKhBdN0l1SHCnRU9yovquq/VA+uk4lCLSosHrKUWcD+ADQ5reoyiQ
-         POcxBx4Dm3cmhUHONBYHuq4+HvAuJ+7VGvgLn4SAakNE1zu+rIQS7tX1EmZFb3eSiYrU
-         PZeQG7oZV1N/d3oF+sITZYO6ehvVefGtyRDLM7kXIiW469J5lqex+tIhoWWBY9AkOGJ1
-         +K32/SatwyXzzH2pnAR+SIVcpBa85SxsZpNIYLkpmC2ZsBHHTFAv63E1BDWQ1RR8niZd
-         29E7bQzTbIk0hY00B3grP5DfDxssTrECAfflED8efv56JNArZBBDQcjUcqBJlrh5io/+
-         Yv7w==
-X-Forwarded-Encrypted: i=1; AFNElJ/a0VOicPZDTp37QWhY//7brpHIZCMs27kI2hFoFOtEx/heeZnzLHKKaD9EXH33XwbnBVndpQfKi6eK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG+AKTGRfGBZxU6eV4nKJHDFwEFIp0ksqgTXLu/PaSiE/AjKXv
-	zw05UbrK6rL14SCmVK8/xi5PRYf5U6aEWurTeRJepL0XIbAy2AuYgVmz
-X-Gm-Gg: AeBDies2xoI6kS+Dl6/sutiDYWMdcwebdnJ4r7IvOlnKclBumvO7vxQ/CE+bcd3hvtC
-	45R4lCiTkyJnIoWEgceWM3V9H/k1KvSFXhSKIO1+EgZ5ETtnuvhBdr67pLLJ93HJObn86g9Vw3Z
-	aoQzsYKaCEdvQjzDOSLmPat2zR0HwQlVCv7EcAyV7StnVnhyOkB8c9gDW15StGKWZ86QZbBw7Om
-	h2vr3JW36tzgg2Ac2ca0qM4/WOsFa3nrAdpN/b3FwCiyl8jeLMclX/Vu5VlGADcgnNUwKDXHpIO
-	91rucnWmnCH86wL1IdJZNVeAHDpmfoJyXhyZgnPsOCL1Bfx3ATjIsR9G/7Vvzo8y0z77whoYY4W
-	/3YOv4PRSo4vc2SEltCzv4iob9BU5ToVgehwrmDfHVR/Gg0PIYLjOL3OYW4RVjOCFgxZbnD4vTs
-	N/QtPgWjEaigebiRcl9tyy6jXP7AIQqQ==
-X-Received: by 2002:a05:600c:a404:b0:483:2c98:4368 with SMTP id 5b1f17b1804b1-48e51f3bc75mr12952935e9.18.1778017591191;
-        Tue, 05 May 2026 14:46:31 -0700 (PDT)
+        bh=IJBvhYuyv/JdwansPLGJPjqYXoVeTZUEnpdVBNEj1Pw=;
+        b=c/VcCrd9xk8WZ8bjIYFFUsuIEVFqX988z7c0tKZVeRxCd5ivU8MSUsGSNh0N/zTLHr
+         FM5dn7ChCjSi4kNIV1N2dH4xZ1zZoC29QUbfHCu1F8rtAKFb0U5wik/DmMqygK4PRsd3
+         mb37c8FrzgtwRYIjGKpMTZzgC7bSqp3LujAlMsXtRr4Zjmmuw2WY6SKHSmnLZcRY/7J5
+         ED8UYNek7sXwnVrs5zS5ypqjTbSk0PmdRgD01GKjOPnr6G4EGCmf8kUK8D5De57PH3DS
+         PwWElEsaPhBatwyJetI+BZGvWn8Hy4tlE6mid8J/Txe8KlTMU+AAS0VsWcAmJgZhkDnI
+         n1bg==
+X-Forwarded-Encrypted: i=1; AFNElJ+bE5wlC5Z2rd4cx0YToWwgsEuUIGnaD88/Czsp8YBd+paTUQqMJ8Zu7a9yhfB66l3vEDRPMfWeEQVi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4ZhwLa6TF94jzFROFHOpNweCVAH6mxuxxYqD7tR4mIJsECIp7
+	xJ5K2OCpkcvNNXobCSdB55vlwgvk7nHw4MprdSewXdeuMTnSFuqGf7N3
+X-Gm-Gg: AeBDietuh321EuunNmE+npHyx+G+nSlMbo+ZIQ+jEK3UATXQqE5iEllqzD2Lkg71EGF
+	/z0V1wOyOF+O6ygupkZRilzvjJAO72JqtVQd5EPfQxdvbNlSOepYvusGzzEWgsexXnN5GAQu0Ye
+	wYRcs+PUV0qmTmxCYlZ8PWDE2nQcIl6CmdXCGonMcJEORMKTLBzBlk1f3Dta7n0tzK9WKJSC0F6
+	WjewBEZZ3WCKV9LA6TB978NoRYHCSYMXauIQ4AvRSZ0F09cdM0KUeS5jSmN3P5iTzENc/ACBBg8
+	wewHxB3+LeEJrf7MTzJUscuMSHaF2nnlMmMJPb/4AK2cQZ9YBi5G9Gm13vUEwqnpTu3A0+OUToJ
+	ROOAl9XbmktQxBiQiCIF/URPrR+oKMY/eMSt0VCNgQSFSNnwUHKk2AqHaSzUuJf6kQSBgFI9OeG
+	Hc5jPKRueH9in/5PRvxmgu4SfrflfvVg==
+X-Received: by 2002:a05:600c:45c6:b0:48a:93f8:dd02 with SMTP id 5b1f17b1804b1-48e521e6090mr12630715e9.14.1778017593036;
+        Tue, 05 May 2026 14:46:33 -0700 (PDT)
 Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a824f9f0dsm411556165e9.15.2026.05.05.14.46.30
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48a824f9f0dsm411556165e9.15.2026.05.05.14.46.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 14:46:30 -0700 (PDT)
+        Tue, 05 May 2026 14:46:32 -0700 (PDT)
 From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 To: linux-mediatek@lists.infradead.org
 Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
 	Philipp Zabel <p.zabel@pengutronix.de>,
 	David Airlie <airlied@gmail.com>,
@@ -92,9 +92,9 @@ Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 1/2] arm64: dts: mediatek: mt8167: Add DRM nodes
-Date: Tue,  5 May 2026 22:44:59 +0100
-Message-ID: <20260505214541.333657-2-l.scorcia@gmail.com>
+Subject: [PATCH v4 2/2] drm/mediatek: dsi: Add compatible for mt8167-dsi
+Date: Tue,  5 May 2026 22:45:00 +0100
+Message-ID: <20260505214541.333657-3-l.scorcia@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260505214541.333657-1-l.scorcia@gmail.com>
 References: <20260505214541.333657-1-l.scorcia@gmail.com>
@@ -105,398 +105,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: DB8114D425C
+X-Rspamd-Queue-Id: EE6684D40BA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293318-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FREEMAIL_CC(0.00)[gmail.com,collabora.com,kernel.org,pengutronix.de,ffwll.ch,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-293320-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,collabora.com,pengutronix.de,ffwll.ch,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.800];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-Add all the DRM nodes required to get DSI to work on MT8167 SoC.
+The mt8167 DSI controller is fully compatible with the one found in
+mt2701. Unfortunately the device tree has a dedicated compatible for
+mt8167 since 2022 and it cannot be changed with a fallback nor removed at
+this point. The only way to get the device to work is to add the
+compatible to the driver.
 
 Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8167.dtsi | 317 +++++++++++++++++++++++
- 1 file changed, 317 insertions(+)
+ drivers/gpu/drm/mediatek/mtk_dsi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-index 27cf32d7ae35..32d3895baaa6 100644
---- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-@@ -16,6 +16,20 @@
- / {
- 	compatible = "mediatek,mt8167";
+diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+index 5aa71fcdcfab..167e33fef025 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dsi.c
++++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+@@ -1305,6 +1305,7 @@ static const struct mtk_dsi_driver_data mt8188_dsi_driver_data = {
  
-+	aliases {
-+		aal0 = &aal;
-+		ccorr0 = &ccorr;
-+		color0 = &color;
-+		dither0 = &dither;
-+		dsi0 = &dsi;
-+		gamma0 = &gamma;
-+		ovl0 = &ovl0;
-+		pwm0 = &disp_pwm;
-+		rdma0 = &rdma0;
-+		rdma1 = &rdma1;
-+		wdma0 = &wdma;
-+	};
-+
- 	soc {
- 		topckgen: topckgen@10000000 {
- 			compatible = "mediatek,mt8167-topckgen", "syscon";
-@@ -120,10 +134,303 @@ iommu: m4u@10203000 {
- 			#iommu-cells = <1>;
- 		};
- 
-+		disp_pwm: pwm@1100f000 {
-+			compatible = "mediatek,mt8167-disp-pwm", "mediatek,mt8173-disp-pwm";
-+			reg = <0 0x1100f000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_PWM_26M>, <&mmsys CLK_MM_DISP_PWM_MM>;
-+			clock-names = "main", "mm";
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			#pwm-cells = <2>;
-+			status = "disabled";
-+		};
-+
- 		mmsys: syscon@14000000 {
- 			compatible = "mediatek,mt8167-mmsys", "syscon";
- 			reg = <0 0x14000000 0 0x1000>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
- 			#clock-cells = <1>;
-+
-+			port {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				mmsys_main: endpoint@0 {
-+					reg = <0>;
-+					remote-endpoint = <&ovl0_in>;
-+				};
-+
-+				mmsys_ext: endpoint@1 {
-+					reg = <1>;
-+					remote-endpoint = <&rdma1_in>;
-+				};
-+			};
-+		};
-+
-+		ovl0: ovl0@14007000 {
-+			compatible = "mediatek,mt8167-disp-ovl";
-+			reg = <0 0x14007000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-+			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_DISP_OVL0>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					ovl0_in: endpoint {
-+						remote-endpoint = <&mmsys_main>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					ovl0_out: endpoint {
-+						remote-endpoint = <&color_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		rdma0: rdma0@14009000 {
-+			compatible = "mediatek,mt8167-disp-rdma", "mediatek,mt2701-disp-rdma";
-+			reg = <0 0x14009000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					rdma0_in: endpoint {
-+						remote-endpoint = <&dither_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					rdma0_out: endpoint {
-+						remote-endpoint = <&dsi_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		rdma1: rdma1@1400a000 {
-+			compatible = "mediatek,mt8167-disp-rdma", "mediatek,mt2701-disp-rdma";
-+			reg = <0 0x1400a000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
-+			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					rdma1_in: endpoint {
-+						remote-endpoint = <&mmsys_ext>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					rdma1_out: endpoint { };
-+				};
-+			};
-+		};
-+
-+		wdma: wdma0@1400b000 {
-+			compatible = "mediatek,mt8167-disp-wdma", "mediatek,mt8173-disp-wdma";
-+			reg = <0 0x1400b000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_WDMA>;
-+			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+		};
-+
-+		color: color@1400c000 {
-+			compatible = "mediatek,mt8167-disp-color";
-+			reg = <0 0x1400c000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_COLOR>;
-+			interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					color_in: endpoint {
-+						remote-endpoint = <&ovl0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					color_out: endpoint {
-+						remote-endpoint = <&ccorr_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		ccorr: ccorr@1400d000 {
-+			compatible = "mediatek,mt8167-disp-ccorr", "mediatek,mt8183-disp-ccorr";
-+			reg = <0 0x1400d000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_CCORR>;
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					ccorr_in: endpoint {
-+						remote-endpoint = <&color_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					ccorr_out: endpoint {
-+						remote-endpoint = <&aal_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		aal: aal@1400e000 {
-+			compatible = "mediatek,mt8167-disp-aal", "mediatek,mt8173-disp-aal";
-+			reg = <0 0x1400e000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_AAL>;
-+			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					aal_in: endpoint {
-+						remote-endpoint = <&ccorr_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					aal_out: endpoint {
-+						remote-endpoint = <&gamma_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		gamma: gamma@1400f000 {
-+			compatible = "mediatek,mt8167-disp-gamma", "mediatek,mt8173-disp-gamma";
-+			reg = <0 0x1400f000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_GAMMA>;
-+			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					gamma_in: endpoint {
-+						remote-endpoint = <&aal_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					gamma_out: endpoint {
-+						remote-endpoint = <&dither_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		dither: dither@14010000 {
-+			compatible = "mediatek,mt8167-disp-dither", "mediatek,mt8183-disp-dither";
-+			reg = <0 0x14010000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DISP_DITHER>;
-+			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					dither_in: endpoint {
-+						remote-endpoint = <&gamma_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					dither_out: endpoint {
-+						remote-endpoint = <&rdma0_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		dsi: dsi@14012000 {
-+			compatible = "mediatek,mt8167-dsi";
-+			reg = <0 0x14012000 0 0x1000>;
-+			clocks = <&mmsys CLK_MM_DSI_ENGINE>, <&mmsys CLK_MM_DSI_DIGITAL>,
-+				 <&mipi_tx>;
-+			clock-names = "engine", "digital", "hs";
-+			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>;
-+			phys = <&mipi_tx>;
-+			phy-names = "dphy";
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-+			status = "disabled";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					dsi_in: endpoint {
-+						remote-endpoint = <&rdma0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					dsi_out: endpoint { };
-+				};
-+			};
-+		};
-+
-+		mutex: mutex@14015000 {
-+			compatible = "mediatek,mt8167-disp-mutex";
-+			reg = <0 0x14015000 0 0x1000>;
-+			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
-+			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
- 		};
- 
- 		larb0: larb@14016000 {
-@@ -145,6 +452,16 @@ smi_common: smi@14017000 {
- 			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
- 		};
- 
-+		mipi_tx: dsi-phy@14018000 {
-+			compatible = "mediatek,mt8167-mipi-tx", "mediatek,mt2701-mipi-tx";
-+			reg = <0 0x14018000 0 0x90>;
-+			clocks = <&topckgen CLK_TOP_MIPI_26M_DBG>;
-+			clock-output-names = "mipi_tx0_pll";
-+			#clock-cells = <0>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		imgsys: syscon@15000000 {
- 			compatible = "mediatek,mt8167-imgsys", "syscon";
- 			reg = <0 0x15000000 0 0x1000>;
+ static const struct of_device_id mtk_dsi_of_match[] = {
+ 	{ .compatible = "mediatek,mt2701-dsi", .data = &mt2701_dsi_driver_data },
++	{ .compatible = "mediatek,mt8167-dsi", .data = &mt2701_dsi_driver_data },
+ 	{ .compatible = "mediatek,mt8173-dsi", .data = &mt8173_dsi_driver_data },
+ 	{ .compatible = "mediatek,mt8183-dsi", .data = &mt8183_dsi_driver_data },
+ 	{ .compatible = "mediatek,mt8186-dsi", .data = &mt8186_dsi_driver_data },
 -- 
 2.43.0
 
