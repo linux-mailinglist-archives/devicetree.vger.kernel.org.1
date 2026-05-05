@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-293164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293163-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iC7NJqYK+mlsIgMAu9opvQ
-	(envelope-from <devicetree+bounces-293164-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:20:06 +0200
+	id yKvnJqEK+mlsIgMAu9opvQ
+	(envelope-from <devicetree+bounces-293163-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:20:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0A44D01AE
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:20:05 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6262B4D01A7
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:19:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A307309907B
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E92D308A1B9
 	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 15:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734B43A9624;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52DDE3A7824;
 	Tue,  5 May 2026 15:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=evaemmerich.com header.i=@evaemmerich.com header.b="UvP70VJw"
+	dkim=pass (2048-bit key) header.d=evaemmerich.com header.i=@evaemmerich.com header.b="BLc8j8hm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from box.halemmerich.com (box.halemmerich.com [172.104.217.94])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D24433AD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DBC378D93;
 	Tue,  5 May 2026 15:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.104.217.94
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777994219; cv=none; b=r5LgDFXX6HQ6TcFyIF3nHlqxzvTGgiSU+Gz/9gV9UC1c88z/quVjVBOv7P+w2A+mexMJ6oSNOWYUMshJSN9WxBTGLM+kJibwn1ZsfrDuuxON73f4rFjylMiibgskIA5xNuQhqOZjk9MZoG6/86kJvXIh6DREnbhIdOS0/QRueT0=
+	t=1777994219; cv=none; b=D0jNZAgLzvcmegBILJ5288GgaQjk1LEld03+4KEw6fQ1DvHjxItfhd3vJTQS4Bjs5ZCbT9DevTTX8zql0TCntZ3Yjf3KOQKVqNJKuLgvyO8Nshx49IkQzH+u9ijR26HYsH3lJ06ikVGpuzv4ZVet7w0XbAi9PO5OtoRPH+aL09w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1777994219; c=relaxed/simple;
-	bh=q0INGxZ2KZaBX9AUyiCz8IVpmcl83M7qPvZmM/17j4o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X1WoHYV1MfFQrPqsvPCsHn/aqcr1s+B6CWxSywVV7wSOI3rHTF1xhzm+zK6tvkwMS3Ow7Sxzi3WHZOyyasHt2ECdoDWSsnisV1Pv4cBgwpjDY3IBOG+Xq9wtewPkVGreroO5fg1zUZp2rizaJk81zslZ9vf5cqZeruZnex4D5TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=evaemmerich.com; spf=pass smtp.mailfrom=evaemmerich.com; dkim=pass (2048-bit key) header.d=evaemmerich.com header.i=@evaemmerich.com header.b=UvP70VJw; arc=none smtp.client-ip=172.104.217.94
+	bh=hpiOQlSFquQKr5gnd92XM526pjpmXHyPi5XnfI2YBtg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=HI+g8aEPZKOtw1r4zP22Vbur91qP/DF7JIeOJ79GqyhN1F5BZjlcmDy2OtE0lRXt9KYClIv4wBHtQN0WV6TKrois43wUvYIkYk8t2xk8Z17gpYwU7HC17UApRE8V6VRuoEMGrhPWZDWeE+baPEy+QybePtMwfW+hFsa4JuaIgNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=evaemmerich.com; spf=pass smtp.mailfrom=evaemmerich.com; dkim=pass (2048-bit key) header.d=evaemmerich.com header.i=@evaemmerich.com header.b=BLc8j8hm; arc=none smtp.client-ip=172.104.217.94
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=evaemmerich.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=evaemmerich.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=evaemmerich.com;
-	s=mail; t=1777993897;
-	bh=q0INGxZ2KZaBX9AUyiCz8IVpmcl83M7qPvZmM/17j4o=;
-	h=From:To:Cc:Subject:Date:From;
-	b=UvP70VJwaOH+zb/AvwFo1nTSLPmzcUvwSG0AdFItgDZj5D8sPvdnCKRBW21EelKDl
-	 G+QMQcaoQ3Q5ScEBtc9YHEwmoDy+Yspxt5W7qbBod6mhSeJ+pQT2+Gpgy6BcMW/Z+H
-	 L4WqayHNc437xE+MBbnHLZUZjt8mvxyuGxpje2OBazHQc3LAOTzmRtdXa2oKHPWHs2
-	 m+VnkWoy2j6NByBRy3BwdOcmjb7wwc27lBAbrDa5zRdAZEXOJn09ANmpwYozknMMsn
-	 7iUk+f1mgh+J6f0JZvsOR45pYNt/p8FswA0trZTp8DpxSE2iwsvI5iJURWBo0e+WMc
-	 wLhwZdgUVT6jw==
+	s=mail; t=1777993901;
+	bh=hpiOQlSFquQKr5gnd92XM526pjpmXHyPi5XnfI2YBtg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=BLc8j8hmK+kR7wAYf3kPMiQFa7cZsyAhfDGcVyqV5HlPxYSJwQHgX/TD/kdCnocHo
+	 SFdufr3mcqSHS3CQwrKXcf68nK0F7coadS7+Lpm2B0kx63a0i0pAJVSekqLd1d5hlq
+	 gJ9pm7mk+mGsxaysQZU+HL/jVLny9MVomhfzQ+0jwO/ONTUH0xvm5lwQqudjR+0WMm
+	 AfGSEW7BDp9t13kRgYMBnyztC/lPXfKwFkhd29qzvOjR1oUkSTbAQYeHNaFfu+p2CE
+	 Tk0kLvl8k/Uu/q04MEBVSeP+JOjsZPQAFGfATiYniv3cdWe6fJpAKi/SwgEf8Du1xY
+	 Geo/GLYTzNjlg==
 Received: from authenticated-user (box.halemmerich.com [172.104.217.94])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by box.halemmerich.com (Postfix) with ESMTPSA id BF3053E9DB;
-	Tue,  5 May 2026 08:11:36 -0700 (PDT)
+	by box.halemmerich.com (Postfix) with ESMTPSA id 6EDEF3EF7A;
+	Tue,  5 May 2026 08:11:40 -0700 (PDT)
 From: Eva Emmerich <eva@evaemmerich.com>
 To: linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
 Cc: Eva Emmerich <eva@evaemmerich.com>
-Subject: [PATCH 1/2] arm64: dts: rockchip: add usbc to rk3588s-roc-pc
-Date: Tue,  5 May 2026 17:10:15 +0200
-Message-ID: <20260505151015.179413-2-eva@evaemmerich.com>
+Subject: [PATCH 2/2] arm64: dts: rockchip: rk3588s-roc-pc set hym8563 rtc as wakeup source
+Date: Tue,  5 May 2026 17:10:16 +0200
+Message-ID: <20260505151015.179413-3-eva@evaemmerich.com>
+In-Reply-To: <20260505151015.179413-2-eva@evaemmerich.com>
+References: <20260505151015.179413-2-eva@evaemmerich.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,184 +68,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: ED0A44D01AE
+X-Rspamd-Queue-Id: 6262B4D01A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[evaemmerich.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[evaemmerich.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293164-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[evaemmerich.com:s=mail];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,meta];
-	TO_DN_SOME(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[evaemmerich.com,quarantine];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-293163-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[evaemmerich.com:+];
-	NEURAL_SPAM(0.00)[0.229];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.51:email];
 	FROM_NEQ_ENVFROM(0.00)[eva@evaemmerich.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.51:email];
 	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.22:email,evaemmerich.com:email,evaemmerich.com:dkim,evaemmerich.com:mid,0.0.0.0:email,0.0.0.1:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,evaemmerich.com:email,evaemmerich.com:dkim,evaemmerich.com:mid,0.0.0.22:email]
 
 Signed-off-by: Eva Emmerich <eva@evaemmerich.com>
 ---
- .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 105 ++++++++++++++++++
- 1 file changed, 105 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
-index 7e179862da6e..84ba09528215 100644
+index 84ba09528215..d4513f6b154a 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
-@@ -110,6 +110,7 @@ vcc12v_dcin: regulator-vcc12v-dcin {
- 	};
- 
- 	vbus5v0_typec: regulator-vbus5v0-typec {
-+		status = "okay";
- 		compatible = "regulator-fixed";
- 		enable-active-high;
- 		gpio = <&gpio1 RK_PB1 GPIO_ACTIVE_HIGH>;
-@@ -315,6 +316,72 @@ hym8563: rtc@51 {
+@@ -315,6 +315,7 @@ hym8563: rtc@51 {
+ 		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
  		pinctrl-names = "default";
  		pinctrl-0 = <&hym8563_int>;
++		wakeup-source;
  	};
-+
-+	usbc0: fusb302@22 {
-+		status = "okay";
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus5v0_typec>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				usbc0_role_sw: endpoint@0 {
-+					remote-endpoint = <&dwc3_0_role_switch>;
-+				};
-+			};
-+		};
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+
-+			altmodes {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				altmode@0 {
-+					reg = <0>;
-+					svid = <0xff01>;
-+					vdo = <0xffffffff>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					dp_altmode_mux: endpoint {
-+						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
- };
  
- &i2c3 {
-@@ -401,6 +468,10 @@ typec5v_pwren: typec5v-pwren {
- 		vcc5v0_host_en: vcc5v0-host-en {
- 			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
- 	};
- };
- 
-@@ -770,6 +841,40 @@ &u2phy0 {
- 	status = "okay";
- };
- 
-+&usbdp_phy0 {
-+	status = "okay";
-+	orientation-switch;
-+	svid = <0xff01>;
-+	sbu1-dc-gpios = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		usbdp_phy0_orientation_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_altmode_mux>;
-+		};
-+	};
-+};
-+&usb_host0_xhci {
-+	status = "okay";
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		dwc3_0_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
-+};
-+
-+
- &u2phy0_otg {
- 	status = "okay";
- };
+ 	usbc0: fusb302@22 {
 -- 
 2.51.2
 
