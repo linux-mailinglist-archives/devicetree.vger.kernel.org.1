@@ -1,70 +1,65 @@
-Return-Path: <devicetree+bounces-293153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293152-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LiAKlMI+mkEIgMAu9opvQ
-	(envelope-from <devicetree+bounces-293153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:10:11 +0200
+	id wJT4JToI+mkEIgMAu9opvQ
+	(envelope-from <devicetree+bounces-293152-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:09:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150244CFFD5
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:10:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0281A4CFFB7
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:09:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 98F6130D2ACF
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 15:02:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8EF8630CD25B
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 15:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C8448125F;
-	Tue,  5 May 2026 15:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFBA480DCD;
+	Tue,  5 May 2026 15:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="D85IxtV+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lazprdTv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB10B480971;
-	Tue,  5 May 2026 15:02:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F7A480971;
+	Tue,  5 May 2026 15:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777993346; cv=none; b=LoJqSkutPAWyEpBTl8ag7gLRGwTPhGEGNDl/R80wXq7gjb20mM0UOxkTxNsmT1cMqbtot9d8iKkHY7PJkATptZS88C133CUa0HOxMSfXK4bNasSqQxkoJTWsbITNgo5tD+cWO8ctDk1bnBk2vFHkAepYlIK9PlZKN5gLnpNn3+Y=
+	t=1777993342; cv=none; b=SEAC7ErBfVUpZTPD+P2dzgpbApLCNDugU8wPjuqQGgkf7hB/ReTO5hBDyLGrNGX29xndD0hbBGT7GSJqj2Ij3O0f0RwWgSBV7fhFytnJSOWoaGH6CFyWkYkWgyhsQbpW1MmX6etXYsqZSzzuXIBnUWupKpZ9nE7p0v/tw62L470=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777993346; c=relaxed/simple;
-	bh=D5NM9D45U+HRxtr4zS0rhyXNBvtlLryblFSilZm8AM4=;
+	s=arc-20240116; t=1777993342; c=relaxed/simple;
+	bh=eS08/QgzE3JbtlTNsuaiLEoeEhYoU1U2MF4qhRHE0Ug=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SFy+fT1GWafNf30cnCGWqw+9MhK4RYmHx1dIw/2oLwB618IyLQHNHoVdYUnwn5bD9F3ivwrc63J7DjsyC+WUCvupG6jA/xSBjImXesUzDkYC0iYqhSaksek7Ik6CrmsoWf8d1hh8POtLW5+g+Sr91Whs+nfXj8LN9a++hOeA7dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=D85IxtV+; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+qiW4xxubIB0MR1bojP/4mlYxoFshGCTX1h3dtN3LIM=; b=D85IxtV+T0xm75lvOV74ujn0fs
-	FpNxV4oHsYQcQCqXOB5aTfzjdGn8BdOX5ag1CfvPMAIE+agsMBIQoO7MBGZRP8OI1OG4dx2mFMNEr
-	4PSkrkKLdUtIhIsFg4PLNRWVGYEaDtA0LalI60SnFoLP4b2Jt9MHvC2zOZn97MummApo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wKHHo-001U0Q-NX; Tue, 05 May 2026 17:02:12 +0200
-Date: Tue, 5 May 2026 17:02:12 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Paul Gerber <paul.gerber@tq-group.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: add initial device tree for
- TQMa8MPQS with i.MX8MP
-Message-ID: <710ae855-0f44-4b2d-8afe-415b30afd37e@lunn.ch>
-References: <20260505063346.1799500-1-alexander.stein@ew.tq-group.com>
- <20260505063346.1799500-2-alexander.stein@ew.tq-group.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qvdb0PZef+Ph1z0xpyHPqVZl/i2mKkLLCVhqd9+dAH20knSHEpNzd1jA3fqFJbLfYS89KyRsHQTtInq8vKpRuPtaZRI1uSR4N7Ea2an3xBqBExmUMZciaOHRqvxCK/dPt9Ba0hyfE8bmEGq7m6CUQwf17huQTBFc+Wb3w48q1VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lazprdTv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE28C2BCF4;
+	Tue,  5 May 2026 15:02:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1777993341;
+	bh=eS08/QgzE3JbtlTNsuaiLEoeEhYoU1U2MF4qhRHE0Ug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lazprdTvVHFYN0YWddYG3A+WsXHlfN59MJt9MRCbgKQYUkIatoZ9/dlrrcCYeTxun
+	 c8ReBGxtigw1Ldey+xKqTN1WlUsBtNiqZSsHf5P3SFTR6WAD9uMppjX9teFaHlXMOS
+	 bGlJ7v3a1QHFwxjgBHy7mSYQc+zg7+PlSGv9mc+usD01t/7QVa7TY4/IRo2CbUuUkb
+	 QHgwEWd5lu2VPC1wdeUWSkBaat4l54UpLWI3qz4BAjtYzZ+kYehCJfoiUGzs7Y9Rr1
+	 0KJZUaGKLYxDH65FCvlKSqKxR7KUO598QIuBGJQdXOxvEnQiYVOY+3I59I1UFij8Hm
+	 OQINZn9hcZY+w==
+Date: Tue, 5 May 2026 16:02:17 +0100
+From: Lee Jones <lee@kernel.org>
+To: "Escala, Edelweise" <Edelweise.Escala@analog.com>
+Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 2/2] leds: ltc3220: Add Support for LTC3220 18 channel
+ LED Driver
+Message-ID: <20260505150217.GD2661693@google.com>
+References: <20260417-ltc3220-driver-v6-0-18157871eddd@analog.com>
+ <20260417-ltc3220-driver-v6-2-18157871eddd@analog.com>
+ <20260430171145.GA2661693@google.com>
+ <DS0PR03MB7228ACA655995A9CAC025B35ED312@DS0PR03MB7228.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,48 +68,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260505063346.1799500-2-alexander.stein@ew.tq-group.com>
-X-Rspamd-Queue-Id: 150244CFFD5
+In-Reply-To: <DS0PR03MB7228ACA655995A9CAC025B35ED312@DS0PR03MB7228.namprd03.prod.outlook.com>
+X-Rspamd-Queue-Id: 0281A4CFFB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293153-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,glider.be,tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,ew.tq-group.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293152-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-> +/* GBE1 */
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy3>;
-> +	fsl,magic-packet;
+On Mon, 04 May 2026, Escala, Edelweise wrote:
 
-One of my FAQs: Has WoL been tested?
+> Hello Lee,
+> 
+> Thank you for the review.
+> 
+> > > +static const struct regmap_config ltc3220_regmap_config = {
+> > > +	.reg_bits = 8,
+> > > +	.val_bits = 8,
+> > > +	.max_register = LTC3220_GRAD_BLINK_REG, };
+> > 
+> > .cache_type?
+> > 
+> 
+> I will add 
+> .cache_type = REGCACHE_FLAT,
 
-    Andrew
+No need to reply to review comments that you agree with.
+
+-- 
+Lee Jones
 
