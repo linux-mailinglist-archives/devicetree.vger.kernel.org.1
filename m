@@ -1,101 +1,96 @@
-Return-Path: <devicetree+bounces-293062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293064-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGHTF+zi+WmlEwMAu9opvQ
-	(envelope-from <devicetree+bounces-293062-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:30:36 +0200
+	id CNMoFYLl+Wn2EwMAu9opvQ
+	(envelope-from <devicetree+bounces-293064-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:41:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017A74CD855
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F91C4CDBD0
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:41:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 510AF3017E50
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 12:28:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B19E7307E638
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 12:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAA4426EC5;
-	Tue,  5 May 2026 12:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE618439016;
+	Tue,  5 May 2026 12:37:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gmAGs33x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZsgfeJ5j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D57426D31
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 12:28:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3313143635A
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 12:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777984085; cv=none; b=YKOZxNDEhnJr0A1sZw8sXROct6n9qe26khmzgZynm0z2a/TUpgbqMQcEbvj9DdLeR0SehawrKnSJOCJILw1wg38tbISXKxijigJ7o0TA8I0KVo27lXcJDCF8439F2470cq8//iK1xVJs5JmTLdcAy0ptmTkp7ooTL/8erEz6yck=
+	t=1777984634; cv=none; b=fBbjZXN6ssmGSfSx6Z1BmFcXwN+ITLZnMOz09sM2SdOJhsSFQqD7qu/uJn0rb9yx/23knOTNE1F/ALKvn+j96EdB83t0M2/aWckf8I2k+2hNQUnKN4IwVCY6UHDXzLMJhf1Fubk/JzyCZCGP2uA6X1/HCLfdZ3DVthl9n/PtIiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777984085; c=relaxed/simple;
-	bh=d77DDmzgnmcHx3cTaNtpA9lUv2zQrDoXlqbrem3EQEo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=T+YXm9FT93JTmWpGUSODrX2s4Ck5K8wr/vWAfkvLT4l/yfnpKHDdVevTtgyvLqm5RNUSAsisfeyPZAcgCCVfcdLm4GR/9wmdavyQqGjrT7D7+OcvbKi9qfhl5P9zW8C46BDTVTTqCTsmYvgi+i8DRMfKCLM1b9aleR4w/giS664=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gmAGs33x; arc=none smtp.client-ip=209.85.210.173
+	s=arc-20240116; t=1777984634; c=relaxed/simple;
+	bh=fXYtnePBRLtV+M4SHHrrefJnYJ79aRxHuZxbqdakfzE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MM/H6x+SBVUJHXuyA+TWmDBvrOmw+CAQaDCUgql6cEWomdWiNSw04XX5KT2WiQQ+yyGTRQ7JLnxkbpis5Bh//zvWYbZNPjC9X8aXbB/6Bvr1PAiMXE41KT1z8XRYFhBGaBdSCpcGkpPIcFK4dwAU3MF4BtV1xZiV6qanX56X9do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZsgfeJ5j; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-826c4c6d95dso249474b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 05:28:03 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-488b0046078so44722975e9.1
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 05:37:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777984083; x=1778588883; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OSw7bxIHIV1P5OerjJyAkdF5p1j1kfhvLlHpMyBu4HE=;
-        b=gmAGs33xXGjJLxsP/zpv4/pGLxSx+xedB2kO4KDi8xqHrt4fjrEL0eIuYl+ap/Ofd3
-         FuLKvB1ZdJnk4dA12gPdscMc3uRUXH86l1MxQbRUwDEsk8BmGMnr8ZyoJNDxjud6WBQ1
-         rO1by+uj66b+d2i15ZlgpnfUVrHpcipZIlhuXUIFxRDmYQwGKLBddQjN633YKBV+aBcb
-         06T25a+8tIP0g+y3GsLrfn8GVjp7e0bVgCj3+2Z8PSFbYQkFysOtrhjgIzT6ml32e4Mb
-         CvHHqvmNo0/2IgFJIrSCXyC7vX6ikPo5W4huPCJD9veMiXr6Pbk2G/HnH9CrPCW0csi6
-         Kl8g==
+        d=gmail.com; s=20251104; t=1777984632; x=1778589432; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sKnGr22K/Ed7RFCo6QissygXi05auc89BmYlf72LcYQ=;
+        b=ZsgfeJ5jGI/yhISdBSH1TWDgJFLomKXfyba5DrDehUzJkhTsPGd6RABMbRZEJEN5Ts
+         tICbFaAdiErnN25B05J1Wl62U4MYT5r5Nm0x0qhvstvLuYXFysLHNRTsBPmHwj89KmIj
+         5chKY+aWKlZCDia59v9roenVFJX6+6qrAzub8a1cLkcFNDw+nBBeIDf7oGe1rzUS/mIp
+         I6uomdejjeb375EB4MTQ6jv40FbyygNWuEdr9mqwo9s1mYPRCldL2t9AksECrxmuZ4bb
+         xO/VXl82zR7LsxeaWUZa/KULMnQFROrwZBaZKHZYvhVkR7rmrDnIJiTVu2DsnZVelOre
+         9fRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777984083; x=1778588883;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OSw7bxIHIV1P5OerjJyAkdF5p1j1kfhvLlHpMyBu4HE=;
-        b=h4A6WFx7fMmoskKqFQ04La1tJPPbavp68h2MO2CRgRKtYXxEN8xlbJ7r7abaCYCSjZ
-         n1Hhy5awN+8xI7ngd5V6A5dpvU6hkjtsmO5ahTyL0+Ao7Oxa1JX7aovDtJ/NAb4M4y0V
-         mQaAYtCIAC5Gq4OyVSi5KxNEip8iEbck/FewIAI4FV8HjRaVp8ROp7YmUvjojzn9A20u
-         kimepjAMDuNSFvjiwYljwBGQKADzRKSGTKBvT3/Zjcyi+pg9LFB3G1WGgPKlrHcgFTIW
-         iDwMCTyJI7FVD5EbHet9L7dUTwlJryE3tjV1w0Hn81Naks+20YyCuA7PcwyboAZiV9OS
-         cjcg==
-X-Gm-Message-State: AOJu0YyU5VOIgDOglPFN4CB1KXsy1w9WTr1U/K2jn2nF94GY1k9a+vo2
-	KOdGi9UGKxZg/4fM3/gmYiBk2jr+UwbiicArgPWFz5BakwYk3Uj7xrdz
-X-Gm-Gg: AeBDiet8jwKs8iBKF7fB40iVX+4fZxIJooTux5D7/UyXWVu0LAxITjUwkNeXQeHmZ/A
-	XsCtE+Quk/QE8GtDsdn7KSLu7LfCEhNVBQZ6KnfmX3LSoauqla01/vdIjxoP0ZKihCacHKUhNkz
-	8/xxkxld4AHYhIiv4rwjo8f90B4Ft2dvPY1eKk2UjRaN03QNIYyXBICCyB7b9+PfOw4g2UmwRn0
-	/20QGp3xu5QQwBu5HzpuIvPQZg37FZiN1Z1wkucVx8kqsHOB1gnGJjhoA8NHfyA/1mnMOBBxMJA
-	mfpNNI2qL69bdzhNPTIDBAO9c26LutF0EKdJUA35qgsIh5/Ge4ItFFR4XLIZCc2RMdLrXGqSF7j
-	WaBGfJaTj/CRSZKQxrBuMeM324ibLKHjy1qBwIp82v7vxDZLdZQ2cH3S/HoF/2SkYlgndcv72bx
-	XsmTMuYv6UcxjKmZcI831lc5QGNXv7n+Bo
-X-Received: by 2002:a05:6a00:2346:b0:838:d607:b4cf with SMTP id d2e1a72fcca58-838d607bc64mr2134946b3a.5.1777984082872;
-        Tue, 05 May 2026 05:28:02 -0700 (PDT)
-Received: from marchy ([2405:3800:88c:d085:ee8e:77ff:fed4:d18b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-839685a8125sm2247312b3a.61.2026.05.05.05.28.02
+        d=1e100.net; s=20251104; t=1777984632; x=1778589432;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sKnGr22K/Ed7RFCo6QissygXi05auc89BmYlf72LcYQ=;
+        b=hbjUlC1/fORBiP9QNsnaBYVoDz4UTfHa6GvLLTbqY9GOUTVF0byrrjcULDYP/Uvxdn
+         h08HgGjXn0IYTFoWS6OICfqogvfF1kKdyyyxpOnS4YHcDP8Jr/uu3TlApSRt6KA+OvMd
+         YTCwTlpDHKFcilr0R1ZyQQjn7HlfjWqraZNXPzHXZYuPo675ZiYh5rM6hwEj04UYrUPy
+         zSZBGlXYNEv43Yi/GTBB0bP/JWg43+8hJzTPfT7Uw6hnlDz79zLAeBA1PS+eCPzRUVT8
+         V+JIdQsgkQHE4R/OoH6C4ey71OtCcLTcNsBPqlHt+oohv0TNmVXwOfffWOe2G+KIWPzR
+         RILw==
+X-Forwarded-Encrypted: i=1; AFNElJ/DRyf2xEW4O/zLUpOuqxrCFv49dasr2iYTCf60tGkq9LSA3Oae2hRtCgiND6AwvJ7qY2A2wUVyRO0h@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcQxyNB22xPBnfNND+FFZ3IdzkfXDbUZbyriFNVBAx75ZY4fD5
+	kDm/MZr6tvik+iLoctdAFFRx+YjCWZENmGE2JjB3rdxZVg3bdeVtVGW6e+9xWQ==
+X-Gm-Gg: AeBDievmrQ90gH+wL/aUP5QE1sQ6pFzjkgoQAAUrXGr6P6zANsF8crpCRhupwBRH9HE
+	I+q7C7YZH7YEHJIkIHV4kJH6PfG+7Zmog540pEjfVwXewEPX7VRwBquHXQpNgbqWLnt8cW/P8bo
+	H00FlVFSZnPDq4NeTml/c7Pd6l+xgWPULvGJZm0GeAjN970M08OK8zX71DI7OiKOTEs7edKMeZL
+	80Yj93dJM0Gzs4ul0dK4rrU84G7a5W3KppQHgwk279nQmuemPlKeyXawNwnzLX4OqNH2lKKsISh
+	t77SWTUjX/JHd2Ju/AKdky+DWlduAmsbeO/Oh/c98YY5DIu3FWz44UFeV/lmWviQZkNPNLMc7Ek
+	cNxHi32KnkQWR/guTpJxGs5QwoL7MJDBJMWodm0hfP8FveewCYCGlqflVPMc0UP7YQKlE061/6u
+	DhdwIANg8SHqVslO78kFLGKwF3W+lnZdo83ddeLrhlIfZX1j42e1zHwoO96BQ=
+X-Received: by 2002:a05:600c:698d:b0:489:ad:7b5b with SMTP id 5b1f17b1804b1-48a9866e8a5mr231113835e9.24.1777984631419;
+        Tue, 05 May 2026 05:37:11 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:1da3:f63c:84a5:197e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45055960902sm4703780f8f.28.2026.05.05.05.37.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 05:28:02 -0700 (PDT)
-From: Adam Azuddin <azuddinadam@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: devicetree@vger.kernel.org,
-	Adam Azuddin <azuddinadam@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	LiangCheng Wang <zaq14760@gmail.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v1 2/2] drm/tiny: Add RAiO RA8875 display controller driver
-Date: Tue,  5 May 2026 20:26:30 +0800
-Message-ID: <20260505122636.11859-3-azuddinadam@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260505122636.11859-1-azuddinadam@gmail.com>
-References: <20260505122636.11859-1-azuddinadam@gmail.com>
+        Tue, 05 May 2026 05:37:11 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 0/5] Add audio support for RZ/G3L SMARC EVK
+Date: Tue,  5 May 2026 13:36:58 +0100
+Message-ID: <20260505123708.134069-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,793 +98,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 017A74CD855
+X-Rspamd-Queue-Id: 1F91C4CDBD0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,redhat.com];
+	TAGGED_FROM(0.00)[bounces-293064-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-293062-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[azuddinadam@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree];
-	NEURAL_HAM(-0.00)[-0.995];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
-Add a DRM tiny driver for the RAiO RA8875 SPI-connected TFT display
-controller. The driver supports display resolutions up to 800x480
-and uses the GEM shmem helper for buffer management.
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Signed-off-by: Adam Azuddin <azuddinadam@gmail.com>
----
- MAINTAINERS                   |   6 +
- drivers/gpu/drm/tiny/Kconfig  |  14 +
- drivers/gpu/drm/tiny/Makefile |   1 +
- drivers/gpu/drm/tiny/ra8875.c | 681 ++++++++++++++++++++++++++++++++++
- 4 files changed, 702 insertions(+)
- create mode 100644 drivers/gpu/drm/tiny/ra8875.c
+Hi All,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 54b941d6e8b2..962fdbdbccf3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8268,6 +8268,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
- F:	drivers/gpu/drm/panel/panel-raydium-rm67191.c
- 
-+DRM DRIVER FOR RAIO RA8875 PANELS
-+M:	Adam Azuddin <azuddinadam@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/panel/raio,ra8875.yaml
-+F:	drivers/gpu/drm/tiny/ra8875.c
-+
- DRM DRIVER FOR SAMSUNG DB7430 PANELS
- M:	Linus Walleij <linusw@kernel.org>
- S:	Maintained
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index f0e72d4b6a47..519f0f6e3bb4 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -195,6 +195,20 @@ config TINYDRM_REPAPER
- 
- 	  If M is selected the module will be called repaper.
- 
-+config TINYDRM_RA8875
-+	tristate "DRM support for RA8875 display panels"
-+	depends on DRM && SPI
-+	select DRM_CLIENT_SELECTION
-+	select DRM_KMS_HELPER
-+	select DRM_GEM_SHMEM_HELPER
-+	select BACKLIGHT_CLASS_DEVICE
-+	select VIDEOMODE_HELPERS
-+	help
-+	  DRM driver for the following RAiO RA8875 based LCD panels:
-+	  * East Rising 5.00" TFT LCD (ER-TFTM070-5V4)
-+
-+	  If M is selected the module will be called ra8875.
-+
- config TINYDRM_SHARP_MEMORY
- 	tristate "DRM support for Sharp Memory LCD panels"
- 	depends on DRM && SPI
-diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-index 48d30bf6152f..17e5e7766309 100644
---- a/drivers/gpu/drm/tiny/Makefile
-+++ b/drivers/gpu/drm/tiny/Makefile
-@@ -14,4 +14,5 @@ obj-$(CONFIG_TINYDRM_ILI9341)		+= ili9341.o
- obj-$(CONFIG_TINYDRM_ILI9486)		+= ili9486.o
- obj-$(CONFIG_TINYDRM_MI0283QT)		+= mi0283qt.o
- obj-$(CONFIG_TINYDRM_REPAPER)		+= repaper.o
-+obj-$(CONFIG_TINYDRM_RA8875)		+= ra8875.o
- obj-$(CONFIG_TINYDRM_SHARP_MEMORY)	+= sharp-memory.o
-diff --git a/drivers/gpu/drm/tiny/ra8875.c b/drivers/gpu/drm/tiny/ra8875.c
-new file mode 100644
-index 000000000000..632343197250
---- /dev/null
-+++ b/drivers/gpu/drm/tiny/ra8875.c
-@@ -0,0 +1,681 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * DRM driver for RAiO ra8875 controller
-+ *
-+ * Copyright 2026 Adam Azuddin <azuddinadam@gmail.com>
-+ */
-+#include <linux/mod_devicetable.h>
-+#include <linux/bits.h>
-+#include <linux/array_size.h>
-+#include <linux/container_of.h>
-+#include <linux/device/devres.h>
-+#include <linux/err.h>
-+#include <linux/iosys-map.h>
-+#include <linux/dev_printk.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+#include <linux/string.h>
-+#include <video/of_display_timing.h>
-+#include <video/of_videomode.h>
-+#include <video/videomode.h>
-+
-+#include <drm/drm_gem.h>
-+#include <drm/drm_gem_shmem_helper.h>
-+#include <drm/drm_connector.h>
-+#include <drm/drm_damage_helper.h>
-+#include <drm/drm_framebuffer.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_mode.h>
-+#include <drm/drm_mode_config.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/drm_rect.h>
-+#include <drm/drm_simple_kms_helper.h>
-+#include <drm/drm_gem_framebuffer_helper.h>
-+#include <drm/clients/drm_client_setup.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_drv.h>
-+#include <drm/drm_fbdev_shmem.h>
-+#include <drm/drm_gem_atomic_helper.h>
-+#include <drm/drm_managed.h>
-+
-+#define RA8875_MAX_SPI_SPEED 25000000
-+#define RA8875_REG_SPI_SPEED 1000000
-+
-+#define RA8875_DATAWRITE	 0x00
-+#define RA8875_CMDWRITE		 0x80
-+#define RA8875_PWRR		 0x01
-+#define RA8875_PWRR_DISPON	 BIT(7)
-+#define RA8875_PWRR_DISPOFF	 0x00
-+#define RA8875_MRWC		 0x02
-+#define RA8875_PLLC1		 0x88
-+#define RA8875_PLLC1_PLLDIVN_11	 0x0B
-+#define RA8875_PLLC2		 0x89
-+#define RA8875_PLLC2_DIVK_4	 0x02
-+#define RA8875_SYSR		 0x10
-+#define RA8875_SYSR_16BPP	 0x0C
-+#define RA8875_PCSR		 0x04
-+#define RA8875_PCSR_PCLK_INV	 BIT(7)
-+#define RA8875_PCSR_2CLK	 0x01
-+#define RA8875_HDWR		 0x14
-+#define RA8875_HNDFTR		 0x15
-+#define RA8875_HNDR		 0x16
-+#define RA8875_HSTR		 0x17
-+#define RA8875_HPWR		 0x18
-+#define RA8875_VDHR0		 0x19
-+#define RA8875_VDHR1		 0x1A
-+#define RA8875_VNDR0		 0x1B
-+#define RA8875_VNDR1		 0x1C
-+#define RA8875_VSTR0		 0x1D
-+#define RA8875_VSTR1		 0x1E
-+#define RA8875_VPWR		 0x1F
-+#define RA8875_HSAW0		 0x30
-+#define RA8875_HSAW1		 0x31
-+#define RA8875_VSAW0		 0x32
-+#define RA8875_VSAW1		 0x33
-+#define RA8875_HEAW0		 0x34
-+#define RA8875_HEAW1		 0x35
-+#define RA8875_VEAW0		 0x36
-+#define RA8875_VEAW1		 0x37
-+#define RA8875_MWCR0		 0x40
-+#define RA8875_MWCR0_GFXMODE	 0x00
-+#define RA8875_MWCR0_LRTD	 0x00
-+#define RA8875_CURH0		 0x46
-+#define RA8875_CURH1		 0x47
-+#define RA8875_CURV0		 0x48
-+#define RA8875_CURV1		 0x49
-+#define RA8875_P1CR		 0x8A
-+#define RA8875_P1CR_ENABLE	 BIT(7)
-+#define RA8875_P1CR_DISABLE	 0x00
-+#define RA8875_P1CR_SYS_CLK_DIV2 0x01
-+#define RA8875_P1DCR		 0x8B
-+#define RA8875_P1DCR_HALF	 0x80
-+
-+DEFINE_DRM_GEM_FOPS(ra8875_fops);
-+
-+static const struct drm_driver ra8875_driver = {
-+	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
-+	DRM_GEM_SHMEM_DRIVER_OPS,
-+	DRM_FBDEV_SHMEM_DRIVER_OPS,
-+	.fops = &ra8875_fops,
-+	.name = "ra8875",
-+	.desc = "RAiO RA8875",
-+	.major = 1,
-+	.minor = 0,
-+};
-+
-+struct ra8875_device {
-+	struct drm_device drm;
-+	struct spi_device *spi;
-+	struct gpio_desc *rst_gpio;
-+	struct drm_simple_display_pipe pipe;
-+	struct drm_connector connector;
-+	struct drm_display_mode mode;
-+	struct regulator *vcc;
-+	void *txbuf;
-+};
-+
-+static const struct drm_mode_config_funcs ra8875_modeconfig_funcs = {
-+	.fb_create = drm_gem_fb_create_with_dirty,
-+	.atomic_check = drm_atomic_helper_check,
-+	.atomic_commit = drm_atomic_helper_commit,
-+};
-+
-+static const struct drm_connector_funcs ra8875_connector_funcs = {
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.reset = drm_atomic_helper_connector_reset,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+};
-+
-+static int ra8875_connector_get_modes(struct drm_connector *connector)
-+{
-+	struct ra8875_device *ra8875 =
-+		container_of(connector, struct ra8875_device, connector);
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &ra8875->mode);
-+	if (!mode)
-+		return 0;
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	drm_mode_set_name(mode);
-+
-+	drm_mode_probed_add(connector, mode);
-+	return 1;
-+}
-+
-+static const struct drm_connector_helper_funcs ra8875_connector_helper_funcs = {
-+	.get_modes = ra8875_connector_get_modes
-+};
-+
-+static const struct of_device_id ra8875_of_match[] = {
-+	{ .compatible = "raio,ra8875" },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, ra8875_of_match);
-+
-+static const struct spi_device_id ra8875_id[] = { { "ra8875", 0 }, {} };
-+
-+MODULE_DEVICE_TABLE(spi, ra8875_id);
-+
-+static int ra8875_write_reg(struct ra8875_device *ra8875, u8 reg, u8 val)
-+{
-+	u8 cmd[2] = { RA8875_CMDWRITE, reg };
-+	u8 data[2] = { RA8875_DATAWRITE, val };
-+
-+	struct spi_transfer t_cmd = {
-+		.tx_buf = cmd,
-+		.len = 2,
-+		.speed_hz = RA8875_REG_SPI_SPEED,
-+	};
-+	struct spi_transfer t_data = {
-+		.tx_buf = data,
-+		.len = 2,
-+		.speed_hz = RA8875_REG_SPI_SPEED,
-+	};
-+	struct spi_message m;
-+	int ret;
-+
-+	spi_message_init(&m);
-+	spi_message_add_tail(&t_cmd, &m);
-+	spi_message_add_tail(&t_data, &m);
-+
-+	ret = spi_sync(ra8875->spi, &m);
-+	if (ret)
-+		dev_err(&ra8875->spi->dev,
-+			"write_reg(0x%02x, 0x%02x) failed: %d\n", reg, val,
-+			ret);
-+	return ret;
-+}
-+
-+static int ra8875_hw_init(struct ra8875_device *ra8875,
-+			  struct drm_display_mode *mode)
-+{
-+	u8 hdwr, hndr, hstr, hpwr, vpwr;
-+	u16 vdhr, vndr, vstr;
-+	int ret;
-+
-+	/* Assumes 20MHz crystal. PLL output = 20MHz * (11+1) = 240MHz */
-+	ret = ra8875_write_reg(ra8875, RA8875_PLLC1, RA8875_PLLC1_PLLDIVN_11);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_PLLC2, RA8875_PLLC2_DIVK_4);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(200, 500);
-+
-+	ret = ra8875_write_reg(ra8875, RA8875_PCSR,
-+			       RA8875_PCSR_PCLK_INV | RA8875_PCSR_2CLK);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_SYSR, RA8875_SYSR_16BPP);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(1000, 2000);
-+
-+	/* Graphics mode, left-to-right top-to-down write direction */
-+	ret = ra8875_write_reg(ra8875, RA8875_MWCR0,
-+			       RA8875_MWCR0_GFXMODE | RA8875_MWCR0_LRTD);
-+	if (ret)
-+		return ret;
-+
-+	/* Horizontal timing */
-+	hdwr = (mode->hdisplay / 8) - 1;
-+	hndr = ((mode->htotal - mode->hdisplay) / 8) - 1;
-+	hstr = ((mode->hsync_start - mode->hdisplay) / 8) - 1;
-+	hpwr = ((mode->hsync_end - mode->hsync_start) / 8) - 1;
-+
-+	ret = ra8875_write_reg(ra8875, RA8875_HDWR, hdwr);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HNDFTR, 0x00);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HNDR, hndr);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HSTR, hstr);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HPWR, hpwr);
-+	if (ret)
-+		return ret;
-+
-+	/* Vertical timing */
-+	vdhr = mode->vdisplay - 1;
-+	vndr = mode->vtotal - mode->vdisplay - 1;
-+	vstr = mode->vsync_start - mode->vdisplay - 1;
-+	vpwr = mode->vsync_end - mode->vsync_start - 1;
-+
-+	ret = ra8875_write_reg(ra8875, RA8875_VDHR0, vdhr & 0xFF);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VDHR1, (vdhr >> 8) & 0x01);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VNDR0, vndr & 0xFF);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VNDR1, (vndr >> 8) & 0x01);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VSTR0, vstr & 0xFF);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VSTR1, (vstr >> 8) & 0x01);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VPWR, vpwr);
-+	if (ret)
-+		return ret;
-+
-+	ret = ra8875_write_reg(ra8875, RA8875_P1CR,
-+			       RA8875_P1CR_ENABLE | RA8875_P1CR_SYS_CLK_DIV2);
-+	if (ret)
-+		return ret;
-+
-+	/* 50% duty cycle; full brightness washes out the display */
-+	ret = ra8875_write_reg(ra8875, RA8875_P1DCR, RA8875_P1DCR_HALF);
-+	if (ret)
-+		return ret;
-+	usleep_range(10000, 11000);
-+
-+	/* Display on */
-+	ret = ra8875_write_reg(ra8875, RA8875_PWRR, RA8875_PWRR_DISPON);
-+	if (ret)
-+		return ret;
-+	usleep_range(10000, 11000);
-+
-+	return 0;
-+}
-+
-+static int ra8875_clear_screen(struct ra8875_device *ra8875,
-+			       struct drm_display_mode *mode)
-+{
-+	int width = mode->hdisplay;
-+	int height = mode->vdisplay;
-+	u8 *txbuf = ra8875->txbuf;
-+	u8 cmd[2] = { RA8875_CMDWRITE, RA8875_MRWC };
-+	struct spi_transfer t_data = {
-+		.tx_buf = txbuf,
-+		.len = 1 + width * height * 2,
-+		.speed_hz = ra8875->spi->max_speed_hz,
-+	};
-+	struct spi_message m;
-+	int ret;
-+
-+	/* Set active window to full screen */
-+	ret = ra8875_write_reg(ra8875, RA8875_HSAW0, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HSAW1, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VSAW0, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VSAW1, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HEAW0, (width - 1) & 0xFF);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_HEAW1, ((width - 1) >> 8) & 0x03);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VEAW0, (height - 1) & 0xFF);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_VEAW1,
-+			       ((height - 1) >> 8) & 0x01);
-+	if (ret)
-+		return ret;
-+
-+	/* Set cursor to 0,0 */
-+	ret = ra8875_write_reg(ra8875, RA8875_CURH0, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_CURH1, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_CURV0, 0);
-+	if (ret)
-+		return ret;
-+	ret = ra8875_write_reg(ra8875, RA8875_CURV1, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = spi_write(ra8875->spi, cmd, 2);
-+	if (ret)
-+		return ret;
-+
-+	memset(txbuf, 0, 1 + width * height * 2);
-+	txbuf[0] = RA8875_DATAWRITE;
-+
-+	spi_message_init(&m);
-+	spi_message_add_tail(&t_data, &m);
-+	return spi_sync(ra8875->spi, &m);
-+}
-+
-+static void ra8875_pipe_enable(struct drm_simple_display_pipe *pipe,
-+			       struct drm_crtc_state *crtc_state,
-+			       struct drm_plane_state *plane_state)
-+{
-+	int ret;
-+	struct ra8875_device *ra8875 =
-+		container_of(pipe->crtc.dev, struct ra8875_device, drm);
-+	struct drm_display_mode *mode = &crtc_state->mode;
-+
-+	ret = ra8875_hw_init(ra8875, mode);
-+	if (ret) {
-+		dev_err(ra8875->drm.dev, "Failed hw_init: %d\n", ret);
-+		return;
-+	}
-+
-+	ret = ra8875_clear_screen(ra8875, mode);
-+	if (ret) {
-+		dev_err(ra8875->drm.dev, "Failed to clear screen: %d\n", ret);
-+		return;
-+	}
-+}
-+
-+static void ra8875_pipe_disable(struct drm_simple_display_pipe *pipe)
-+{
-+	struct ra8875_device *ra8875 =
-+		container_of(pipe->crtc.dev, struct ra8875_device, drm);
-+
-+	if (ra8875_write_reg(ra8875, RA8875_P1CR, RA8875_P1CR_DISABLE))
-+		dev_err(ra8875->drm.dev, "Failed to disable P1CR\n");
-+	if (ra8875_write_reg(ra8875, RA8875_P1DCR, 0x00))
-+		dev_err(ra8875->drm.dev, "Failed to disable P1DCR\n");
-+	if (ra8875_write_reg(ra8875, RA8875_PWRR, RA8875_PWRR_DISPOFF))
-+		dev_err(ra8875->drm.dev, "Failed to turn off display\n");
-+
-+	if (ra8875->rst_gpio)
-+		gpiod_set_value_cansleep(ra8875->rst_gpio, 0);
-+
-+	if (ra8875->vcc)
-+		regulator_disable(ra8875->vcc);
-+}
-+
-+static void ra8875_pipe_update(struct drm_simple_display_pipe *pipe,
-+			       struct drm_plane_state *old_plane_state)
-+{
-+	struct drm_plane_state *state = pipe->plane.state;
-+	struct drm_shadow_plane_state *shadow_plane_state =
-+		to_drm_shadow_plane_state(state);
-+	struct drm_framebuffer *fb = state->fb;
-+	struct drm_atomic_helper_damage_iter iter;
-+	struct drm_rect damage;
-+	struct iosys_map *map = &shadow_plane_state->data[0];
-+	struct spi_transfer t_data;
-+	struct spi_message m;
-+
-+	struct ra8875_device *ra8875 =
-+		container_of(pipe->crtc.dev, struct ra8875_device, drm);
-+	u16 *src_row;
-+	u16 *dst_row;
-+	u8 cmd[2] = { RA8875_CMDWRITE, RA8875_MRWC };
-+	u8 *txbuf = ra8875->txbuf;
-+	unsigned int offset;
-+	int width, height, r, p, idx;
-+
-+	if (!pipe->crtc.state->active)
-+		return;
-+
-+	if (!fb)
-+		return;
-+
-+	if (!drm_dev_enter(&ra8875->drm, &idx))
-+		return;
-+
-+	if (iosys_map_is_null(map)) {
-+		dev_err(&ra8875->spi->dev, "Shadow map is null\n");
-+		goto exit;
-+	}
-+
-+	drm_atomic_helper_damage_iter_init(&iter, old_plane_state, state);
-+	drm_atomic_for_each_plane_damage(&iter, &damage) {
-+		width = drm_rect_width(&damage);
-+		height = drm_rect_height(&damage);
-+
-+		if (ra8875_write_reg(ra8875, RA8875_HSAW0, damage.x1 & 0xFF))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_HSAW1,
-+				     (damage.x1 >> 8) & 0x03))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_VSAW0, damage.y1 & 0xFF))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_VSAW1,
-+				     (damage.y1 >> 8) & 0x01))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_HEAW0,
-+				     (damage.x2 - 1) & 0xFF))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_HEAW1,
-+				     ((damage.x2 - 1) >> 8) & 0x03))
-+			goto exit;
-+
-+		if (ra8875_write_reg(ra8875, RA8875_VEAW0,
-+				     (damage.y2 - 1) & 0xFF))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_VEAW1,
-+				     ((damage.y2 - 1) >> 8) & 0x01))
-+			goto exit;
-+
-+		if (ra8875_write_reg(ra8875, RA8875_CURH0, damage.x1 & 0xFF))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_CURH1,
-+				     (damage.x1 >> 8) & 0x03))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_CURV0, damage.y1 & 0xFF))
-+			goto exit;
-+		if (ra8875_write_reg(ra8875, RA8875_CURV1,
-+				     (damage.y1 >> 8) & 0x01))
-+			goto exit;
-+
-+		/* MRWC command and pixel data are sent as separate SPI messages;
-+		 * the RA8875 does not require CS to be held between them.
-+		 */
-+		if (spi_write(ra8875->spi, cmd, 2))
-+			goto exit;
-+
-+		offset =
-+			drm_fb_clip_offset(fb->pitches[0], fb->format, &damage);
-+
-+		txbuf[0] = RA8875_DATAWRITE;
-+		for (r = 0; r < height; r++) {
-+			src_row = (u16 *)(map->vaddr + offset +
-+					  r * fb->pitches[0]);
-+			dst_row = (u16 *)(txbuf + 1 + r * width * 2);
-+			for (p = 0; p < width; p++)
-+				dst_row[p] = swab16(src_row[p]);
-+		}
-+
-+		memset(&t_data, 0, sizeof(t_data));
-+		t_data.tx_buf = txbuf;
-+		t_data.len = 1 + height * width * 2;
-+		t_data.speed_hz = ra8875->spi->max_speed_hz;
-+
-+		spi_message_init(&m);
-+		spi_message_add_tail(&t_data, &m);
-+		if (spi_sync(ra8875->spi, &m))
-+			goto exit;
-+	}
-+exit:
-+	drm_dev_exit(idx);
-+}
-+
-+static const u32 ra8875_pipe_formats[] = {
-+	DRM_FORMAT_RGB565,
-+};
-+
-+static const struct drm_simple_display_pipe_funcs ra8875_pipe_funcs = {
-+	.enable = ra8875_pipe_enable,
-+	.disable = ra8875_pipe_disable,
-+	.update = ra8875_pipe_update,
-+	DRM_GEM_SIMPLE_DISPLAY_PIPE_SHADOW_PLANE_FUNCS,
-+};
-+
-+static int ra8875_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct ra8875_device *ra8875;
-+	struct drm_connector *connector;
-+	struct drm_device *drm;
-+	struct videomode vm;
-+	size_t bufsize;
-+	int ret;
-+
-+	ra8875 = devm_drm_dev_alloc(dev, &ra8875_driver, struct ra8875_device,
-+				    drm);
-+
-+	if (IS_ERR(ra8875))
-+		return PTR_ERR(ra8875);
-+
-+	ra8875->vcc = devm_regulator_get_optional(dev, "vcc");
-+	if (IS_ERR(ra8875->vcc)) {
-+		if (PTR_ERR(ra8875->vcc) != -ENODEV)
-+			return dev_err_probe(dev, PTR_ERR(ra8875->vcc),
-+					     "Failed to get regulator\n");
-+		ra8875->vcc = NULL;
-+	}
-+
-+	if (ra8875->vcc) {
-+		ret = regulator_enable(ra8875->vcc);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to enable regulator\n");
-+	}
-+
-+	ra8875->rst_gpio =
-+		devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ra8875->rst_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ra8875->rst_gpio),
-+				     "Failed to get reset GPIO\n");
-+
-+	usleep_range(10000, 20000);
-+
-+	ra8875->spi = spi;
-+
-+	spi->mode = SPI_MODE_0;
-+	spi->bits_per_word = 8;
-+
-+	spi->cs_setup.value = 10;
-+	spi->cs_setup.unit = SPI_DELAY_UNIT_USECS;
-+	spi->cs_inactive.value = 10;
-+	spi->cs_inactive.unit = SPI_DELAY_UNIT_USECS;
-+	spi->cs_hold.value = 10;
-+	spi->cs_hold.unit = SPI_DELAY_UNIT_USECS;
-+
-+	spi->max_speed_hz = min(spi->max_speed_hz, RA8875_MAX_SPI_SPEED);
-+
-+	ret = spi_setup(spi);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to setup SPI\n");
-+
-+	/* Hardware Reset */
-+	if (ra8875->rst_gpio) {
-+		ret = gpiod_set_value_cansleep(ra8875->rst_gpio, 0);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to assert reset GPIO\n");
-+		usleep_range(10000, 20000);
-+		ret = gpiod_set_value_cansleep(ra8875->rst_gpio, 1);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to deassert reset GPIO\n");
-+		usleep_range(100000, 110000);
-+	}
-+
-+	ret = of_get_videomode(dev->of_node, &vm, OF_USE_NATIVE_MODE);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get videomode\n");
-+
-+	drm_display_mode_from_videomode(&vm, &ra8875->mode);
-+	ra8875->mode.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	drm = &ra8875->drm;
-+
-+	ret = drmm_mode_config_init(drm);
-+	if (ret)
-+		return ret;
-+
-+	drm->mode_config.min_width = ra8875->mode.hdisplay;
-+	drm->mode_config.max_width = ra8875->mode.hdisplay;
-+	drm->mode_config.min_height = ra8875->mode.vdisplay;
-+	drm->mode_config.max_height = ra8875->mode.vdisplay;
-+
-+	drm->mode_config.funcs = &ra8875_modeconfig_funcs;
-+
-+	bufsize = 1 + (size_t)ra8875->mode.hdisplay * ra8875->mode.vdisplay * 2;
-+	ra8875->txbuf = devm_kzalloc(&spi->dev, bufsize, GFP_KERNEL);
-+	if (!ra8875->txbuf)
-+		return -ENOMEM;
-+
-+	connector = &ra8875->connector;
-+	drm_connector_helper_add(connector, &ra8875_connector_helper_funcs);
-+
-+	ret = drmm_connector_init(drm, connector, &ra8875_connector_funcs,
-+				  DRM_MODE_CONNECTOR_SPI, NULL);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to init connector\n");
-+
-+	connector->status = connector_status_connected;
-+
-+	ret = drm_simple_display_pipe_init(drm,
-+					   &ra8875->pipe,
-+					   &ra8875_pipe_funcs,
-+					   ra8875_pipe_formats,
-+					   ARRAY_SIZE(ra8875_pipe_formats),
-+					   NULL, connector);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to init display pipe\n");
-+
-+	drm_plane_enable_fb_damage_clips(&ra8875->pipe.plane);
-+
-+	spi_set_drvdata(spi, drm);
-+	drm_mode_config_reset(drm);
-+
-+	ret = drm_dev_register(drm, 0);
-+	if (ret)
-+		return ret;
-+
-+	drm_client_setup(drm, drm_format_info(DRM_FORMAT_RGB565));
-+	return 0;
-+}
-+
-+static void ra8875_remove(struct spi_device *spi)
-+{
-+	struct drm_device *drm = spi_get_drvdata(spi);
-+
-+	drm_dev_unplug(drm);
-+	drm_atomic_helper_shutdown(drm);
-+}
-+
-+static void ra8875_shutdown(struct spi_device *spi)
-+{
-+	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
-+}
-+
-+static struct spi_driver ra8875_spi_driver = {
-+	.driver = {
-+		.name = "ra8875",
-+		.of_match_table = ra8875_of_match,
-+	},
-+	.id_table = ra8875_id,
-+	.probe = ra8875_probe,
-+	.remove = ra8875_remove,
-+	.shutdown = ra8875_shutdown,
-+};
-+module_spi_driver(ra8875_spi_driver);
-+
-+MODULE_DESCRIPTION("RAiO RA8875 DRM driver");
-+MODULE_AUTHOR("Adam Azuddin <azuddinadam@gmail.com>");
-+MODULE_LICENSE("GPL");
+This patch series aims to add audio support for the RZ/G3L SMARC EVK
+platform using the SSIF-2 interface. PDM/SPDIF support is planned for a
+later date.
+
+DMA device nodes have been added to the SoC DTSI so that SSI can use DMA.
+SSI0 signals are connected to the DA7212 audio codec on the RZ/G3L SMARC
+EVK. These signals are muxed with SD2 signals and are enabled through
+the SYS.4 switch on the RZ/G3L SMARC SoM board. The audio clocks and MCK
+are provided by the 5P35023B Versa Clock generator.
+
+This patch series depend up on [1] and [2]
+[1] https://lore.kernel.org/all/20260505071544.8965-1-biju.das.jz@bp.renesas.com/
+[2] https://lore.kernel.org/all/20260505070206.7932-1-biju.das.jz@bp.renesas.com/
+
+Biju Das (5):
+  arm64: dts: renesas: r9a08g046: Add DMAC node
+  arm64: dts: renesas: r9a08g046: Add SSI support
+  arm64: dts: renesas: r9a08g046: Add audio clock nodes
+  arm64: dts: renesas: rzg3l-smarc-som: Enable versa clock generator
+  arm64: dts: renesas: r9a08g046l48-smarc: Enable audio
+
+ arch/arm64/boot/dts/renesas/r9a08g046.dtsi    | 127 ++++++++++++++++++
+ .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  72 ++++++++++
+ .../boot/dts/renesas/rzg3l-smarc-som.dtsi     |  42 ++++++
+ 3 files changed, 241 insertions(+)
+
 -- 
-2.54.0
+2.43.0
 
 
