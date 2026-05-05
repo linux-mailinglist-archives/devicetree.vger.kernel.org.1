@@ -1,238 +1,220 @@
-Return-Path: <devicetree+bounces-292810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292817-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CLBtB2Q++WkB7QIAu9opvQ
-	(envelope-from <devicetree+bounces-292810-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 02:48:36 +0200
+	id CPVBAgdK+WnC7gIAu9opvQ
+	(envelope-from <devicetree+bounces-292817-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 03:38:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648A04C58A8
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 02:48:35 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299FD4C5CB6
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 03:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7E463003E86
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 00:48:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B92973010514
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 01:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7851E0DD8;
-	Tue,  5 May 2026 00:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85283624C5;
+	Tue,  5 May 2026 01:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aDPRA2Wy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Ps5NW4mT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ihLjpHy3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A855E1D9A5F
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 00:48:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF07355F41
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 01:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777942108; cv=none; b=LN20gztCY4tD5dqL/Yurxc53CpFW8oNBU8z+FwtpjjogOwe7XiGnDzFYYf63IQEUIZPNrDLdRa0JLXV11QdhVVfZJoI6TViUqETgqU/RzWNubjxCOVcxhb9Fa8mPYp/dVZkzBncyW1/HWrVtitqVb4q482PWjbjxRhsnw7LofBk=
+	t=1777945061; cv=none; b=G7oYZ9seJ0UbxWtdQmKfKnY3+LnUgNKpncCzneCkMfEW8bdHn6ZjVEoIf2CFsu+e55ycAkgST6hcvTVW1Cx9nP2UAwtcFQ0fFqcUaIUpcIxm6kY9zkxXbtT40S4WSPR703rK/wW9QjficGutMDmuL31MdbT1qpxcVRXJ7P/GnfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777942108; c=relaxed/simple;
-	bh=CtxzZiqK2ihDTrGqRz+E/Pc/e8H9A+jWiivbzUAHaps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ND/XKqx4Fmg8RGiJAuXq0EVQ3SzLyMpNJGB+HKIjKV+Zaq038E1pvMqj8tIjyOXwitrviYAxgQ7LD4jTENDeNNFU04d4juTE9LMNZ4SZfmQfwFQn38EpecoAW0+Be+DwypaYPtNV2w1GsqoKbCF42enuCOrC8DbmrbQ5HLRwGVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aDPRA2Wy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Ps5NW4mT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 644JxQVp331125
-	for <devicetree@vger.kernel.org>; Tue, 5 May 2026 00:48:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ZoqdR0XZGmUXKsPgvfPhc9Gc
-	8oHeFYnuRnafn7F91g4=; b=aDPRA2WyRiQ2rfgD2tgLPZxXkjUmxioa59YymOB4
-	NZL41rXZOyfIi57OANQ4K0g7YnUkG1UIn5agaNUCCfYrDi5JGWUTUvSnpho/Yie4
-	QSL/2DkJeFpbbVA8gwn0I1W7nwh0c82aEPdZabeaSP0DNHBYB/ymqWnNpCcUFH2H
-	TVHoucXJXImgiRuC+CYOyR0wz3MpXSqLncMijhzMYd3y4RR73eb6a8uaOr9GW2Gc
-	3OvBnrenu2CjOP/cOidJbrZN0lK6YinyjW2BYdUx2VUpkEfkQ0fJ8cNOC4hCaQHJ
-	vTPsBtQxwpS4c+cs2eupG9UkWw6lHKYXZFvMLXdf80OwDQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dxvr1a6px-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 May 2026 00:48:27 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50e575a50bcso64688091cf.0
-        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 17:48:26 -0700 (PDT)
+	s=arc-20240116; t=1777945061; c=relaxed/simple;
+	bh=ZxymY7j6qU+oQaIl07kvIXJxEX8gKu8ATWUfPuz0KDw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qUdwC63mQ8uhrOKSGxX7sHgzz27v412AN1tzPt+jpH8SjR0JhDU/loSWt8CGUmk5XUOroUeWO42kR6xJ8HtsIAbu5ipHmZHiCbZ5SwI9amk+MpwuGTkloUQCqMoC93rZDa2j4pU2V0zO3U1wtLlZIk12vxkTqxDoH0Wc//62nrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ihLjpHy3; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-83975e992e1so18107b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 04 May 2026 18:37:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1777942106; x=1778546906; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZoqdR0XZGmUXKsPgvfPhc9Gc8oHeFYnuRnafn7F91g4=;
-        b=Ps5NW4mTI1Z3+7UzrzhRW/yKZRYqh3GA6EbtFtLXqIx3oetU9s4amtyM/4JTSZWL/n
-         U5+2WB3f5IiEMpKQ7bYQA6/REE8RtnznUifzV1FSwXpb+eFFnxEi4T/UalSpeOXzEzGZ
-         HRwz9l9MbB14Qj5lSll7De6XHTL2cFbKtStQBnOZRyXUBsGfBPkkPPZAImIpz7ndSRnq
-         K/vx5BskQV8r9zgRLl1X5Yqic0Ub5aRg21DqZ63mdFk+uouSFcF2IatxbvdGFk061020
-         ufVHhOidoMRY0pLkmiEPlVwLo4pdC9us1OATvdpsNtZozyevVv5Q0r7Pu9cxWh0mCh8h
-         ZBtg==
+        d=gmail.com; s=20251104; t=1777945058; x=1778549858; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q2ubLRqm6894E/xfqMy1P4qorSpO675XYrOno1l/mUk=;
+        b=ihLjpHy3FXzt/va5G+pr/2hHEYfEgC7+5rt2jmYMrUkd4Xs7rJTDMw+2amh551uFnx
+         VP3ICl1EcOGDWReTJv6kApom9GZjO2xMGznkISXwu7ccSHbJfP1X6H8S+XjcLjsCgaNR
+         Jzd6eH4oZ+e45qW80c4JVBG6/p3AKCv0WATCjXaroiFYnEj8Dmib7qO9olLJgeq8bpD3
+         OjWQXBVkZ/PQlEWVj6u9R1+sfxLvqd7bZx0+0MW9MqM6JjGSD6ePiEgbQzNZw1kylkxu
+         dyYhjNNSXuT+SVx9LbkDYrow3iLcFimRPePvBdRkFEZJpQBXksGwCsMp0rXQBzhseZiH
+         ChYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777942106; x=1778546906;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZoqdR0XZGmUXKsPgvfPhc9Gc8oHeFYnuRnafn7F91g4=;
-        b=cyE2emfNSxLYQnkFqa3MnjvK6sZgSXKrcW70CKvJMXCy7TKblD4b43XXxGfQTfgqf+
-         cJdC+i0ONx5BgJW3nfW/dOKvZDCPW7xy9qEEtcSK2GMTYiMzSoM10BTk4tVtHJyUXjkd
-         4OARBCZZ+tYg2gTx2uOdnvLeA8JznDjcIgJHR3kJjZF0U2Vv2t5ERlk0ekuAdq9VPXrw
-         U5ENdwZLDr44hDsAUr9QdKMdyiF6mHVkDnhtNM30lu3xCrrUF7KLJ2WzXEiZgp0zPKyg
-         tJhYrIMC+tSNN+TFUbZYd4f2YD6sWbvy1E6wjyvOBylxVHxnqDPqAaMGgWd4x+nV0wpY
-         n0Lg==
-X-Forwarded-Encrypted: i=1; AFNElJ/wfw1HQN5rB3eP4nANgdpTZoNf5nGDs58ffThgLkIXzJjLpFz9G+nOJPeHLZQDcnc8BmaVc/m+StXt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBbDUUaR4JQtrs05s7VR8DAgKa2p9cCovTaz0AbZ5oWYy7KNuJ
-	Ho/s4Xj6Ordr03s9V//yHFa+31Ai/8d8qiqr9n5V0NdnV8DOzbINregj4KhECva7gQqfVLcLZ8V
-	JWhR2qCLAfE/eOiOpmT66reZ/qs9ar2qiRTgjRHdIS9Uxmq8hCAh7GkAbPelcaiyZ
-X-Gm-Gg: AeBDiet9OPPFDc2Hjxhmzj2xdX+RL1M2NeVrx4NPt8v5pK5q5DZesZRTniU0CbGnChb
-	ZVG1zBbSc6jJHCYeQR4R3feao7X3Pp0GGwx0UnGIJ0VFzUJYhiOI1E4JpgGBrBPLSyOf7d+PwQq
-	/m3an4/4bD9pEHNt8kmahLRDyor9+PE3Gnfv655UMprEPnlcTWSosRg3TF3sUFP3RdfXaTeX7HI
-	umVXIJ4nFtI/vd73IAlCrW4DVmxd/P7vrQZRmrGh66XoPdJkbO4QpHpSztvJj5yBk4UKRxBjXwU
-	Q+FAu4nk/FTMB8tXqIOYNbYsTRNbPgDvpYc//xX5KUCsVMqiTRwlPo/aD0okQ64lYLr90HLff9E
-	wRn1fEwgARLu/+yYvlH3RehpWdOZjBZQaYKrCjsx3i/0aAqew8HV3X77CfYS2LEaMNk/OCoCdtF
-	0vopQtwdOpldeNBVqibCQOR7eUzg6/aJlUa5U71V5fafmUdg==
-X-Received: by 2002:a05:622a:4d99:b0:50d:83d7:686c with SMTP id d75a77b69052e-5104bf98d55mr183328601cf.31.1777942105787;
-        Mon, 04 May 2026 17:48:25 -0700 (PDT)
-X-Received: by 2002:a05:622a:4d99:b0:50d:83d7:686c with SMTP id d75a77b69052e-5104bf98d55mr183328291cf.31.1777942105309;
-        Mon, 04 May 2026 17:48:25 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8670a37absm2603992e87.55.2026.05.04.17.48.22
+        d=1e100.net; s=20251104; t=1777945058; x=1778549858;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q2ubLRqm6894E/xfqMy1P4qorSpO675XYrOno1l/mUk=;
+        b=S+wVMCjEyVxFu/3qLIbaJI9gh/YMq94sq3RRY6XQiR6rgJJppZfzwpIACqv5uMk2CX
+         9mTkZOtM5i5GPchRZGNP5vVOnYWi7f5ZYob/+4moIJWbhKIiyf3bq6Hb4pZYjtG5GqfS
+         oplxAI7zNOA2J/Hwm+uU1lejK54UnqzWAjiHzcL9VIhYw8NYzl50eup047LCYzI7T50O
+         sMbqlPR2Ex/K4a8u1NnLZH/NUSJZxeLkxTPDVZPwyfTCOkk6vMlytWBm7ojzUopXATZb
+         Iz7AV9OzmclfOkgeYFscVRMew/e7NYWUN8sN7u/q3gWvlZ28VpEAu0thKTmR28axZNKP
+         Lt3Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9oExa7jVEBg1Bd37qgS2GJQNG48DTR1b72lTSHLj8CCSot7dr9rou3PpOqFFzaBfA8vq9rC7leXm9S@vger.kernel.org
+X-Gm-Message-State: AOJu0YwL8qUvPH5ugMn0vWm+7wrwSkoXNjIeZ1L4CY3vU+lTzCidi719
+	vkyQe1pKOl/JJX0ezt2Fswu3inzfJMMQypF/sRxrfsKni71mDkjzkYZx
+X-Gm-Gg: AeBDieuiXbUKYWzpblD+IFLSalKsORUJ20Lz3jkNzZoOZ7OlqkXQ2XAkMr9IBKfOVTi
+	CxAznC7iMDClZacMv2XQriOZynE5ZAj+dS4tcLnmOMtolf2fa/dS7aqviofEaiyNOSfdQMLZdXy
+	2uvf+uVHAwTtxSmPxFcdLsnNEGIiHpYZjURpsx+ZZJgpvqutKEd8T2munC86uRDLWkWCO3FtgY0
+	ajPA7Kn9HwIWyio/U+cWiLMv1Z7+HoXr35VWl2zz9A0Zj4fMvYAtL6LotgQ5n70YJF8K8PKFta2
+	TlckY9+Ibz3RhkHc4u+gX0Ee/2Trzz+m/b6cNNsCwmqHZk+Qv7xFtiLZ427YIdRvfcic8Fexap/
+	VSfmKaIUSkditUSdt1zlzYCRtt/iFohXUE0aHtfdUzmZUa6Mb425orINiGVbrLUT3NIQ1TYMSWL
+	kVfgVP381Ww30E71+Irn/I4sjyV8o0LcB+8O1WQSscIvXwaPR9ADkZKbum
+X-Received: by 2002:a05:6a20:244f:b0:3a2:bd1d:d67d with SMTP id adf61e73a8af0-3aa3b6d8fbdmr1166764637.34.1777945058179;
+        Mon, 04 May 2026 18:37:38 -0700 (PDT)
+Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83967dbf7d2sm230054b3a.49.2026.05.04.18.37.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 May 2026 17:48:23 -0700 (PDT)
-Date: Tue, 5 May 2026 03:48:21 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: syyang@lontium.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        maarten.lankhorst@linux.intel.com, rfoss@kernel.org,
-        mripard@kernel.org, Laurent.pinchart@ideasonboard.com,
-        tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, yangsunyun1993@gmail.com,
-        xmzhu@lontium.corp-partner.google.com, xmzhu@lontium.com,
-        rlyu@lontium.com, xbpeng@lontium.com
-Subject: Re: [PATCH v4 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI
- bridge
-Message-ID: <nqcq5h3io7o4jkvyywh2pzfuorj2grk3r5ogifs36obw7vawap@xv4ohryelqc7>
-References: <20260430094612.3408174-1-syyang@lontium.com>
- <20260430094612.3408174-3-syyang@lontium.com>
+        Mon, 04 May 2026 18:37:37 -0700 (PDT)
+Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
+	by twhmp6px (Postfix) with ESMTPS id B379C4163B75;
+	Tue,  5 May 2026 09:37:34 +0800 (CST)
+From: Cheng Ming Lin <linchengming884@gmail.com>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alvinzhou@mxic.com.tw,
+	Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: [PATCH v10 0/3] mtd: spi-nand: Add support for randomizer feature
+Date: Tue,  5 May 2026 09:34:50 +0800
+Message-Id: <20260505013453.980249-1-linchengming884@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260430094612.3408174-3-syyang@lontium.com>
-X-Proofpoint-ORIG-GUID: flggW1WuB8Flx79n1qasYslHtRlnvlcP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA1MDAwNCBTYWx0ZWRfXyG1KGmvuzzxm
- fcuRi4GS3zbIvZiBPiw3gNs4GTLvTbTb/jbTGs70tMAHGiHptvlTj5DkJzxTvOFsy7LiiIPBjaj
- SUlWTy6upfiDCP3VEWnw5ci9DxvsUilrN9Itvn7FA0tR+KqzTsQKGg7M/QBViY4+4+Dy2GAVf21
- 7MhaZZwQvZxyraRURDL66XI/DRMHantE+H/+Fp0B4dzpmN1b+V0Ug9MoQRTAy5HVkLTY1cQJSTb
- NqwhZWPmV5XNkPpj10t6PsjkZBk+RBkYwZJd7QVtaAGt70mVnZCettOKKTPoBPVZ+Fru5zlneNi
- 728cP/FwR8fcFY+7NpO1MFBRZGZ8c8xoy6RFQ0dvep5Zxlon5czWdNq/50d5XkyCz+N3BvdkNVb
- pzhdZPS67COCOF0klOTLmq2k72NCV3x1nzZEHIZy41OBhTbrC/Mpi58k1Lls/TzzlCk9fl+Q3A0
- yF/wF2TfbrlWNYGg1/A==
-X-Proofpoint-GUID: flggW1WuB8Flx79n1qasYslHtRlnvlcP
-X-Authority-Analysis: v=2.4 cv=RvL16imK c=1 sm=1 tr=0 ts=69f93e5b cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=Kz8-B0t5AAAA:8
- a=EUspDBNiAAAA:8 a=Th18vmrz9VDaD5OkdogA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=RuZk68QooNbwfxovefhk:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-04_06,2026-04-30_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605050004
-X-Rspamd-Queue-Id: 648A04C58A8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 299FD4C5CB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292810-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,lontium.com:email,qualcomm.com:dkim,qualcomm.com:email];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292817-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_HAS_DN(0.00)[]
 
-On Thu, Apr 30, 2026 at 05:46:12PM +0800, syyang@lontium.com wrote:
-> From: Sunyun Yang <syyang@lontium.com>
-> 
-> The LT7911EXC is an I2C-controlled bridge that Receiver eDP1.4
-> and output signal/dual port mipi.
+From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-MIPI what? DPI? CSI?
+This patch series introduces randomizer support for SPI NAND devices.
 
-> 
-> Signed-off-by: Sunyun Yang <syyang@lontium.com>
-> ---
->  drivers/gpu/drm/bridge/Kconfig             |  13 +
->  drivers/gpu/drm/bridge/Makefile            |   1 +
->  drivers/gpu/drm/bridge/lontium-lt7911exc.c | 493 +++++++++++++++++++++
->  3 files changed, 507 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/lontium-lt7911exc.c
-> 
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index c3209b0f4678..8cff2bf15b09 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -132,6 +132,19 @@ config DRM_ITE_IT6505
->  	help
->  	  ITE IT6505 DisplayPort bridge chip driver.
->  
-> +config DRM_LONTIUM_LT7911EXC
-> +	tristate "Lontium eDP/MIPI bridge"
+- Patch 1: add the nand-randomizer property to the generic nand-chip.yaml
+           bindings. Instead of using boolean properties, it introduces a
+           uint32 enum (0 or 1). If the property is omitted, the driver
+           will not interfere and will leave the randomizer in its current
+           state.
+- Patch 2: add the initialization logic and the set_randomizer callback
+           to the core framework. The core will now parse the device tree
+           properties and enable or disable the randomizer accordingly
+           during spinand_init.
+- Patch 3: implement the set_randomizer callback specifically for Macronix
+           chips (MX35LF/UF series) to handle the vendor-specific register
+           operations.
 
-MIPI DSI
+v10:
+* mtd: spi-nand: Add support for randomizer: set_randomizer call
+  now passes the rand_val directly.
 
-> +	depends on OF
-> +	select CRC32
-> +	select FW_LOADER
-> +	select DRM_PANEL
-> +	select DRM_KMS_HELPER
-> +	help
-> +	  DRM driver for the Lontium LT7911EXC bridge chip.
-> +	  The LT7911EXC converts eDP input to single/dual port
-> +	  MIPI DSI output.
-> +	  Please say Y if you have such hardware.
-> +
->  config DRM_LONTIUM_LT8912B
->  	tristate "Lontium LT8912B DSI/HDMI bridge"
->  	depends on OF
+v9:
+* Replaced 'nand-enable-randomizer'/'nand-disable-randomizer'
+  boolean properties with a single 'nand-randomizer' uint32 enum.	
+* Switched to use of_property_read_u32() to align with the new
+  binding.
 
+v8:
+* dt-bindings: spi-nand: macronix: Remove the chip-specific Application
+  Note link from the commit message to keep the binding generic.
+* mtd: spi-nand: macronix: Update the broken Application Note link and
+  move it here from the dt-binding patch per Miquel's suggestion.
 
-With those two fixed:
+v7:
+* Directly return the result in macronix_set_randomizer()
 
+v6:
+* Added mutual-exclusive constraints using not with required for
+  nand-randomizer-enable and nand-randomizer-disable properties based
+  on Krzysztof's feedback.
+* Simplified the return path in macronix_set_randomizer() to directly
+  return ret; and dropped unrelated formatting changes.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+v5:
+* Promoted the randomizer configuration to use generic NAND properties
+  (nand-randomizer-enable and nand-randomizer-disable) instead of
+  vendor-specific bindings.
+* Refactored the initialization architecture in core.c. The core framework
+  is now responsible for parsing the device tree properties and deciding
+  whether to enable or disable the randomizer.
 
+v4:
+* Fix a build error in spinand_randomizer_init() where a value was
+  returned from a void function. (Reported by kernel test robot)
+* Update the return type to int.
 
+v3:
+* Revert the device tree property to the vendor-specific
+  "mxic,randomizer-enable" to strictly follow vendor-specific bindings.
+
+* Update the 'set_randomizer' callback signature to accept a boolean
+  'enable' argument, allowing the feature to be explicitly enabled or
+  disabled.
+
+* Switch the implementation to use the standard SET_FEATURE command
+  to modify the Configuration Register (0x10), replacing the previous
+  special program command method.
+
+v2:
+* Create a global NAND DT property
+
+Cheng Ming Lin (3):
+  dt-bindings: mtd: nand: Add nand-randomizer property
+  mtd: spi-nand: Add support for randomizer
+  mtd: spi-nand: macronix: Enable randomizer support
+
+ .../devicetree/bindings/mtd/nand-chip.yaml    |  9 +++++
+ drivers/mtd/nand/spi/core.c                   | 20 ++++++++++
+ drivers/mtd/nand/spi/macronix.c               | 38 ++++++++++++++-----
+ include/linux/mtd/spinand.h                   |  9 +++++
+ 4 files changed, 66 insertions(+), 10 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
