@@ -1,327 +1,346 @@
-Return-Path: <devicetree+bounces-293048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293051-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKzBJ3jd+WlPEwMAu9opvQ
-	(envelope-from <devicetree+bounces-293048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:07:20 +0200
+	id ADcbNZ/h+WlPEwMAu9opvQ
+	(envelope-from <devicetree+bounces-293051-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:25:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA964CD373
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:07:19 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7816D4CD662
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 14:25:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37BF23080F8E
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 12:02:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 485F3301D5A6
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 12:24:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489F4425CFD;
-	Tue,  5 May 2026 12:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7114279F5;
+	Tue,  5 May 2026 12:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PABCs2RJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jfpLIXgl";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JQoTDrOs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1AE641B35F
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 12:02:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A15426D39
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 12:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777982542; cv=none; b=JVcC749mWKX3V6euP5pDHMzCGGHqE9MOdIkXkJhR30jK63unl8NRyd0QwUwDAkw1sbvsw5MwMH0dm+HFSXVnC+h4SMwipAtXG5cYsTyJhUtMGfw2aLMd+68gZ3JZiKJ7A8WEFbByiONvO5zzy1NWYqU9Y1RgAf6bs7y4cTwrG8o=
+	t=1777983895; cv=none; b=L3gIxqjoeygtgu6x7cKvNNOZpv1CQbRhFqgxbPwJihnaVAxVP9f+AYqUcDG69/b+y3U+5wNVYg41uVoJs6b+Cb+1hP5aF4JlVmXANapTmVMXEk+30jMmduY/vrsxyNdR9WNMXHJhZY0B17pWXPnXTje+glQwyeFqaoz6fzti4v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777982542; c=relaxed/simple;
-	bh=cNLr2taXbpX2OcE5yjZznFeiiGyGBLPTTQZdFmvHAlA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CM6/HFfEZ75VPFP9p6+UcqxJ8MyAyi+U1P+4sxkcZe+zuNFRWaWpFe/44oduikWhm6HDBKsWfvFmlV9BTntTRyqlDIU8jhmBIfZU0WN0iS4MlbcrDvi3c7EV3sVJV49UvAzHqQMz5J0K71qrfb2ueGNnpSOvSxnQF6v1uygRZ3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PABCs2RJ; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-43d7e23defbso2917281f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 05:02:18 -0700 (PDT)
+	s=arc-20240116; t=1777983895; c=relaxed/simple;
+	bh=LH5eI4O7oMmhHpNa4d3YP/b842GVrQFgBmayb5QmmyE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iTU/sAO+wvTXxEipdzh3FwH2WKv4S6RbUlBdHqHYCQFq9I9rQJ7jd9E3/d90J8yzpx/Ggzlxo57UeKNJ2DkWQSuwpIUUjJTWqg6l3N8hZMqkGpPg8NXfYVF6XUWyxySwfu263YpZRseQItUil8h12TbhsZt91IdEpl75P6WgG9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jfpLIXgl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JQoTDrOs; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6458u5Jv1346166
+	for <devicetree@vger.kernel.org>; Tue, 5 May 2026 12:24:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=zM9ocX8JV1Cv5KtYnJWxIR
+	FrysMjsRiAcB0T3nYcVGA=; b=jfpLIXglJKaJ8OuOjhw51F2WyyUpJkJWM9Kvb2
+	O/+ud7JRATo/qtWtNQpz34sRpyifkQjME0B+S0jSvzMtSvIhZVemUKcZe+g5n34L
+	5QpP+OG+ysHwtK3a8BjM+Gd25ocJD05gcvUyeV/z82/hkt4HhmDjsU+eoPWGgnrZ
+	IUXCO0XLEFgSVKCPDsJ7O7X+RQuwTKWqmtGMN/q+wyxUe4RQHIUvN//2hvr/NCkq
+	o64jCIj7ITZ53uwCglWQq8w9r5BGBWwILGNVdgeZWxDuAS2fhhTB8FUwWjK9sAIb
+	3thq0PDAjGDCuj08vvCLkLwK0DwuZn5ZHJKcYat+wXjyg3bg==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dxx2xc0q0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 05 May 2026 12:24:53 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-364c6c8e1b4so1908936a91.3
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 05:24:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777982537; x=1778587337; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DzsA6N6NmgWM0rNix94AHnL8OJvlx0hoitqTUcN+rEo=;
-        b=PABCs2RJ4CC/lCPPs/NDapQ5G+8ZMphKDzGr0QIBuvd913TZvcAdHW3VKkDnRzKJG0
-         2j7b1EPLkEAKS8k+Q5mIt/otvG6PBYiILVsfOQSV28jaEv6ra6a4putUVj+ku07e4a0y
-         YKCukfRtgiHBaGhMV3sIiaLDjq6uS3f/U7JZoBoT5PkReYKKaYNdWHvMaZdYHCpNAZql
-         eDYU+uuZZTHQLxcRcvYmtx1ZQtHx9IAmub+bqdQ9/fXBpvaKFklPRHOJ3mrJlWhBMLU+
-         zGz7gdNUSudjDpVbO3VXuUnkzHZQtMgpOsIUTEOw/5dTKirgEqY9YNTNaJ8GLZ41bHec
-         LcYw==
+        d=oss.qualcomm.com; s=google; t=1777983892; x=1778588692; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zM9ocX8JV1Cv5KtYnJWxIRFrysMjsRiAcB0T3nYcVGA=;
+        b=JQoTDrOsFZKN62JX5sKTMKb6QLAxm4gVh/fds/+kD01sS80wKSonrhRpuZqaiItLtk
+         pZ66MiP+INuanQgVJE1u3k7box1jx7dvW1Z6jiF2qbMXVyBdkysRXt9c1uDnVmpFreSN
+         MRmyuNgp220+4CWFyeVZC7CqX1Mn9g+ag8s9wCbqqlcols7S8m5aQkd4cqnJs/fFdu7q
+         FnFcpJafKsLA8yRpelLLDTruskg/nUP5jZ9aU98GqzZQS+nDPD9qgJJrOUDh/6nVPuIA
+         IH3BBCZimtL5aWVDvV+TnzDZixrmtE4MJjxQ/xvEouVq4/o0Xo6UVXW/B8woc2A4Jg4h
+         Nsqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777982537; x=1778587337;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DzsA6N6NmgWM0rNix94AHnL8OJvlx0hoitqTUcN+rEo=;
-        b=RdARsqLD/QBQe4vZAGk7AjIg8WXiYc0Y8y+AZgi5hZXwsLyVu82ySN51fYUZ1bWiNV
-         baEacnn673uF6PwK2Z/3aDzTMJuMv53pH4CyOOUEpINtnqfFr8fzn+4WgoKm8wizLh3m
-         0WG/EoDjKfiWEGqX0+ydlABkhqY2NzxhK6QnFZT4pJhwVJmqFB4GoVLtUk/TcRyM5LKp
-         //MSqp4KoEXnYlcUf04E90NwZTcOyhw9h1CVPZkubOH4BFpeCc4XSNTtDxLlSsOFKlYR
-         YIwkRCrHGICEmpTdWiA42imyWBN2Va5uaCQ7tkqtbCJgDQClFo+VwTgsHic2IJeOY7S7
-         t5+g==
-X-Forwarded-Encrypted: i=1; AFNElJ8NefwClcUviNeay/Cll3p2FBhD68SLi2LxbtvHprF6WtVB3QbshjAsSo0Y7tM+DHeedthNPhW2aD4d@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywa70MHtrDdCWKIvV5ejVej30lm9dT5PDdrJ5+ncMAKV+BHIIem
-	MWMFlJc6wvO9kQDa8GZun/p6op8Q6KAOZulyOfKIT7vmLG6iY/oHx0Nt
-X-Gm-Gg: AeBDieuSv5fPWojOxbo5VuXF7DUmmGmEMkULX5XiYW3dJw1vPcquCaFZJ0nrXsLyNXK
-	ZhKQaeUdFYHWDrNRsznLqO6NK/WSR7Ovy9PFXYwmfGjz++OJ8twmqnnLJAggY0cuZ5u2eDreoVF
-	OXFZn8wUK2MketWhWMufWSj+E1t7xbd1/YQfr9+23V19RRt1slzkGpx8uh9y8KkDCpbufi1ht4b
-	DAVC/rQVbryP5NkDSFmm4/g7VjrTa33AS9UiFEEAJC4T+n0PMCpqAhFVumJbhbz1E18dda93+Ln
-	3TmpFSoHQPBr2hXaxdsS0Z07wmoKqwUpQ/fRC7wfUG8Txc+jPLXT5C/LG76Li/dlKKBu6+yvMq1
-	1IKDqmcbGWJIKnpX+rmJ1jwGLDMh+Wo9AxOvuS05l2dWIE+yDBsRS2rstdQpFh2JKQcsnu+fCyj
-	1WlVZFrWslmsNmD+1CwUks+tl1kextxFRKBmQet/WA2OkdCsGqz8Ou0732t58q6b4r7gi12J5La
-	TQsCR70NfJmNKmwHWRfk2gS7x3PykEVB1t1AHeP/j2JUtOuDhCIh7lBjg==
-X-Received: by 2002:a05:6000:611:b0:43c:ffb1:2214 with SMTP id ffacd0b85a97d-44bb4722800mr24295650f8f.16.1777982536525;
-        Tue, 05 May 2026 05:02:16 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:7d2a:9b5b:a191:3b81])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45054b03e04sm4386398f8f.21.2026.05.05.05.02.15
+        d=1e100.net; s=20251104; t=1777983892; x=1778588692;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zM9ocX8JV1Cv5KtYnJWxIRFrysMjsRiAcB0T3nYcVGA=;
+        b=WPHcyi0brTYEI6+ApomgorH/wK243uAkeVoEbmTcVyQkaLzSxmyEoR8VKfbSvAyoF/
+         Yyd8e7GquXf+rN6nc7mskVPA2taZcKaR1lcFtux5ORHRqcPl1h7yXisGGaSv26xyPdMi
+         SlRvPomFhLurbfuz4I3G8cjlaxiH6pSVtrvUGD1sRiv6QOOR4CTHProQYeQQ3ldyUr2I
+         FUkReskL1pR7ZMOeXkITSSXXhIFogVgBMAVRTz2mUkR6m5D6sFGwXMFNo4vLn03y0p51
+         KhdKj3lKGYlbP/VsK9iQj8NC5BtL025c9Ku/nKDLM091ul0a26GTol7TIY2Ko+aIrDrY
+         IRtA==
+X-Forwarded-Encrypted: i=1; AFNElJ+dNLU9k5PgcEo4hJLXWTK9Pqeo1lOgPCagBTHx3cKpxE6ijuHniDmho9J87iqXVDucc98T+z5OS/Ce@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbOftE9Y9XpxdKUmqUawbbjMuIMXq5aAW9xP2J7dQLgW43JGf1
+	8zn0y2cvcD+F/P13X4zaSupIHlp1RZq5YPgRMOv2mOUkqWON1A2TLxquopIc5jmtb9AUsYF7wK2
+	f3Yxqn9GT4h7C1aEmD+wvymLfe1otvYEx+fyN9TKLF5ltB4zRMP/zKiJX418U3Xmk
+X-Gm-Gg: AeBDieudA3Hx48pxKweKYdHeFE4sl9r2V7Eldg705WNDco3eza7gQoxm0M3InateM5m
+	1VCfdHMtYuWdxdqNxxiwYiuJGSzEQd2rUjvUTByMxuakTmxVzV+4Z4xFNKEzNFhus+OyjGq9xZl
+	qXGnXF+sf3Y5U9PLdmy78rTpciJ+5ris0wuIYYXH9dK6Noze6GtgkadXrvDBKyw8caF7aVEJv1g
+	4Tnh6+MDBgPr0K2YlucNnlnScYMWFZ+Z9haEBXCfx8btpGjOWRIdYc4Q//BPKvDLJOS9BPwzy/X
+	5zu7/Htqx44cjXWmR2HOlEgACLzOnUeFcI7iSJjGtvG4/XNbSbgfVGN25aQ345YoBLK2CuDP5yU
+	1SxsDTt84hwCwbUJEz8k2zASZFDwTmDjWz4s0+UgmKDGdi+/iTQfA4SM+YvgFw+g=
+X-Received: by 2002:a17:90b:52:b0:362:bac0:1f64 with SMTP id 98e67ed59e1d1-3650ce6a50emr7493695a91.5.1777983892319;
+        Tue, 05 May 2026 05:24:52 -0700 (PDT)
+X-Received: by 2002:a17:90b:52:b0:362:bac0:1f64 with SMTP id 98e67ed59e1d1-3650ce6a50emr7493658a91.5.1777983891762;
+        Tue, 05 May 2026 05:24:51 -0700 (PDT)
+Received: from hu-uchheda-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c7ffbbaac5bsm12597998a12.6.2026.05.05.05.24.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 05:02:16 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: rzt2h-n2h-evk: Enable xSPI nodes
-Date: Tue,  5 May 2026 13:01:53 +0100
-Message-ID: <20260505120153.680979-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260505120153.680979-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260505120153.680979-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Tue, 05 May 2026 05:24:51 -0700 (PDT)
+From: Umang Chheda <umang.chheda@oss.qualcomm.com>
+Subject: [PATCH 0/8] ras: aest: extend AEST support to Device Tree frontend
+Date: Tue, 05 May 2026 17:53:44 +0530
+Message-Id: <20260505-aest-devicetree-support-v1-0-d5d6ffacf0a5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: EBA964CD373
+X-B4-Tracking: v=1; b=H4sIAFHh+WkC/y2Nyw6CMBQFf4V0bUkpFlJijP9hWJRywWukxT4MC
+ eHfreBykjlnVuLBIXjSZCtx8EGP1iQoThnRD2VGoNgnJpzxigkmqAIfaJ9MDcEBUB/n2bpAVVl
+ z3ksGxSBIWs8OBlz253t7sI/dE3T43f0NB++YkuHQyATeqz3ZZJe9WHDO5LkSVV6XpZS0oAGVc
+ RF7a8bbC01ccvXCTnUq13a6knbbvpxIDjDUAAAA
+X-Change-ID: 20260505-aest-devicetree-support-a3722d90e1f5
+To: Ruidong Tian <tianruidond@linux.alibaba.com>,
+        Tony Luck <tony.luck@intel.com>, Borislav Petkov <bp@alien8.de>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, catalin.marinas@arm.com,
+        will@kernel.org, lpieralisi@kernel.org, rafael@kernel.org,
+        mark.rutland@arm.com, Sudeep Holla <sudeep.holla@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-edac@vger.kernel.org,
+        Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Faruque Ansari <faruque.ansari@oss.qualcomm.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1777983885; l=6582;
+ i=umang.chheda@oss.qualcomm.com; s=20260328; h=from:subject:message-id;
+ bh=LH5eI4O7oMmhHpNa4d3YP/b842GVrQFgBmayb5QmmyE=;
+ b=3ZE7l0BmQXHEBtvIQQlZMIehnv47J5KCIJABD954SCjxyCAKrp5pFlLpT3ju9yY6mq/9BOf1y
+ qBvRhcfbsmpA6NqX2NeH2CJc8ykXczxKk/rMp09Odl012fDqBiyDm0r
+X-Developer-Key: i=umang.chheda@oss.qualcomm.com; a=ed25519;
+ pk=3+tjZ+PFFYphz0Vvu4B14pBQSzqcG0jZAQspTaDRQYA=
+X-Authority-Analysis: v=2.4 cv=U9eiy+ru c=1 sm=1 tr=0 ts=69f9e195 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8 a=SRrdq9N9AAAA:8 a=7CQSdrXTAAAA:8
+ a=EUspDBNiAAAA:8 a=TsauJuHQFXsEoDOOOOgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-ORIG-GUID: 4NsIrY3Bslzg0f9lAbnjZKac0GD-ZQ9C
+X-Proofpoint-GUID: 4NsIrY3Bslzg0f9lAbnjZKac0GD-ZQ9C
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA1MDExNyBTYWx0ZWRfXxWM+Kflh3Sb1
+ jYuRVSlwlQBMKg//NFaVYNiuCY1oXt5yhKCcjfi3app3xLf7ePTwLg6fGUQRN02AGisBlOs1Erk
+ zyBQgr8pJHV8VWB5urimx90Y36iLJmlTrX54rrWBtv0EzcEmX/ghbXTA/S4w3GP1qSFBRgIMRy1
+ eUd1Nc1EdmM+TYJkvi39wuCWEiY1BzxSZ2F15OxddSg6j3WLWf029PdClsbE2ZNV70Dq62xem5h
+ iG7/uBlS7hZN+jJhbuPSdSlLv82m+YGGWN1OiD9H4SlprzvlNXriK9DW/gL/NH2SDOW9DGDA8Mh
+ /oixs4pJmndoOObaxgUBubNel8h1iQUaO9AcLSDPwZnGOtatNAZjtc4kdxPezaW5rJu/uyafceA
+ lawXX3qjrJMrNL4E1LrOLADmlIaZMw5utXgImsYddNDQ7K2iOJGLVElIdi51JfwmaQNj1NEqXWk
+ 0l9xBp3hhnPh8XPR2Lw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-05_02,2026-04-30_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 adultscore=0 phishscore=0 spamscore=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605050117
+X-Rspamd-Queue-Id: 7816D4CD662
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293048-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
-	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_SPAM(0.00)[0.889];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293051-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,arm.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,alibaba.com:email,90d0000:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,renesas.com:email,0.4.147.224:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,0.12.53.0:email,1fb000:email,0.0.234.96:email]
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This series extends Tian Ruidong’s [1] ACPI-based AEST support series
+to also cover Device Tree based platforms.
 
-Enable the xSPI0 and xSPI1 controllers on the RZ/T2H N2H EVK board.
+While the existing AEST driver relies on the AEST ACPI table [3], many
+embedded Arm platforms use Device Tree exclusively and cannot use the
+driver today. This series adds a DT frontend that mirrors the ACPI
+implementation and feeds the same core driver, keeping ACPI and DT
+paths functionally equivalent.
 
-The xSPI0 controller is connected to an MX25LW51245 octal flash device.
-Although the hardware supports octal mode, configure the bus width to
-1-bit (x1) mode. Enabling octal mode causes the BootROM to fail loading
-the first-stage bootloader following a Watchdog Timer (WDT) reset.
+Along the way, several correctness issues were identified in the core
+driver and are fixed in the first part of this series.
 
-The xSPI1 controller is connected to an AT25SF128A flash device.
-Configure this interface for 4-bit (x4) mode to utilize the available
-data lines.
+The DT frontend is mutually exclusive with ACPI and does not introduce
+any DT-specific logic into the core.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+How to test with QEMU
+--------------------------
+Tian Ruidong's QEMU fork [2] emulates AEST MMIO error records on the
+virt machine.  To test the DT frontend:
+
+1. Build QEMU:
+
+     git clone https://github.com/winterddd/qemu.git
+     cd qemu
+     git checkout c5e2d5dec9fd62ba622314c40bff0fbecb4dfb34
+     ./configure --target-list=aarch64-softmmu
+     make -j$(nproc)
+
+2. Build the kernel with:
+
+     CONFIG_OF_AEST=y
+     CONFIG_AEST=y
+     CONFIG_ARM64_RAS_EXTN=y
+     CONFIG_RAS=y
+
+3. Add the following DT node to your virt machine DTB.  The QEMU
+   fork maps DRAM error records at 0x090d0000 (SPI 44) and CMN
+   vendor records at 0x090e0000 (SPI 45):
+
+     aest {
+         compatible = "arm,aest";
+         #address-cells = <2>;
+         #size-cells = <2>;
+         ranges;
+         interrupt-parent = <&gic>;
+
+         /* DRAM memory node — MMIO at 0x090d0000, SPI 44 */
+         aest-dram0@90d0000 {
+             compatible               = "arm,aest-memory";
+             arm,interface-type       = <1>;
+             arm,group-format         = <0>;
+             arm,interface-flags      = <0x22>;
+             arm,num-records          = <4>;
+             arm,record-impl          = /bits/ 64 <0x0>;
+             arm,status-report        = /bits/ 64 <0x0>;
+             arm,addr-mode            = /bits/ 64 <0x0>;
+             arm,proximity-domain     = <0>;
+             reg                      = <0x0 0x090d0000 0x0 0x1000>,
+                                        <0x0 0x090d0800 0x0 0x200>,
+                                        <0x0 0x090d0e00 0x0 0x100>;
+             reg-names                = "errblock", "fault-inject",
+                                        "err-group";
+             interrupts               = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+             interrupt-names          = "fhi";
+         };
+	};
+
+4. Boot QEMU with acpi=off:
+
+     ./qemu-system-aarch64 \
+       -machine virt,accel=tcg,gic-version=3 \
+       -cpu cortex-a57 -m 2G -smp 4 \
+       -kernel Image -dtb virt-aest.dtb \
+       -append "console=ttyAMA0 acpi=off earlycon" \
+       -nographic
+
+5. Verify probe:
+
+     dmesg | grep "DT AEST"
+     # Expected: DT AEST: registered 1 AEST error source(s) from DT
+     ls /sys/kernel/debug/aest/
+
+6. Inject a CE error via the QEMU MMIO fault injection registers.
+   The QEMU device accepts 64-bit accesses only (use devmem with
+   the 64-bit width flag):
+
+     devmem 0x090d0808 64 0x80000040   # CDOFF | CE inject
+
+   This triggers QEMU's error_record_inj_write() which sets
+   ERR<n>STATUS.V=1 and asserts the IRQ.  The kernel driver's
+   aest_irq_func() fires, reads the status, and logs:
+
+     AEST: {1}[Hardware Error]: Hardware error from AEST memory.90d0000
+     AEST: {1}[Hardware Error]: Error from memory at SRAT proximity domain 0x0
+
+Testing
+-------
+- Validated on Qualcomm's lemans-evk and monaco-evk board with DT boot.
+- Validated CE and UE injection via debugfs soft_inject.
+- Tested ACPI path is unaffected: ACPI boot continues to use
+  drivers/acpi/arm64/aest.c unchanged.
+
+[1] https://lore.kernel.org/lkml/20260122094656.73399-1-tianruidong@linux.alibaba.com/
+[2] https://github.com/winterddd/qemu/tree/error_record 
+[3] https://developer.arm.com/documentation/den0085/0200/
+
+Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
 ---
- .../dts/renesas/rzt2h-n2h-evk-common.dtsi     | 135 ++++++++++++++++++
- 1 file changed, 135 insertions(+)
+Umang Chheda (8):
+      ras: aest: Fix shared processor node handling and error log messages
+      ras: aest: Fix CE/UE error counts not incrementing in debugfs
+      ras: aest: Skip unimplemented records in debugfs
+      ras: aest: Add panic_on_ue module parameter
+      dt-bindings: arm: ras: Introduce bindings for ARM AEST
+      ras: aest: Add DT frontend for ARM AEST RAS error sources
+      arm64: dts: qcom: lemans: add AEST error nodes
+      arm64: dts: qcom: monaco: add AEST error nodes
 
-diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-index f87c2492f414..0894c9d38971 100644
---- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2025 Renesas Electronics Corp.
-  */
- 
-+#include <dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/net/mscc-phy-vsc8531.h>
-@@ -20,6 +21,8 @@ aliases {
- 		mmc0 = &sdhi0;
- 		mmc1 = &sdhi1;
- 		serial0 = &sci0;
-+		spi0 = &xspi0;
-+		spi1 = &xspi1;
- 	};
- 
- 	chosen {
-@@ -331,6 +334,59 @@ ctrl-pins {
- 				 <RZT2H_PORT_PINMUX(17, 4, 0x29)>; /* SD1_CD */
- 		};
- 	};
-+
-+	xspi0_pins: xspi0-group {
-+		clk-pins {
-+			pinmux = <RZT2H_PORT_PINMUX(5, 1, 0x1c)>, /* XSPI0_CKP */
-+				 <RZT2H_PORT_PINMUX(5, 2, 0x1c)>; /* XSPI0_CKN */
-+			input-schmitt-disable;
-+			slew-rate = <1>;
-+			drive-strength-microamp = <9000>;
-+		};
-+
-+		data-pins {
-+			pinmux = <RZT2H_PORT_PINMUX(5, 6, 0x1c)>, /* XSPI0_IO0 */
-+				 <RZT2H_PORT_PINMUX(5, 7, 0x1c)>, /* XSPI0_IO1 */
-+				 <RZT2H_PORT_PINMUX(6, 0, 0x1c)>, /* XSPI0_IO2 */
-+				 <RZT2H_PORT_PINMUX(6, 1, 0x1c)>, /* XSPI0_IO3 */
-+				 <RZT2H_PORT_PINMUX(6, 2, 0x1c)>, /* XSPI0_IO4 */
-+				 <RZT2H_PORT_PINMUX(6, 3, 0x1c)>, /* XSPI0_IO5 */
-+				 <RZT2H_PORT_PINMUX(6, 4, 0x1c)>, /* XSPI0_IO6 */
-+				 <RZT2H_PORT_PINMUX(6, 5, 0x1c)>; /* XSPI0_IO7 */
-+			input-schmitt-disable;
-+			slew-rate = <1>;
-+			drive-strength-microamp = <9000>;
-+		};
-+
-+		ctrl-pins {
-+			pinmux = <RZT2H_PORT_PINMUX(5, 3, 0x1c)>, /* XSPI0_CS0 */
-+				 <RZT2H_PORT_PINMUX(6, 6, 0x1c)>, /* XSPI0_RESET0 */
-+				 <RZT2H_PORT_PINMUX(5, 5, 0x1c)>; /* XSPI0_DS */
-+			input-schmitt-disable;
-+			slew-rate = <1>;
-+			drive-strength-microamp = <9000>;
-+		};
-+	};
-+
-+	xspi1_pins: xspi1-group {
-+		ctrl-pins {
-+			pinmux = <RZT2H_PORT_PINMUX(1, 0, 0x1c)>, /* XSPI1_CKP */
-+				 <RZT2H_PORT_PINMUX(1, 1, 0x1c)>; /* XSPI1_CS0 */
-+			input-schmitt-enable;
-+			slew-rate = <1>;
-+			drive-strength-microamp = <9000>;
-+		};
-+
-+		data-pins {
-+			pinmux = <RZT2H_PORT_PINMUX(1, 4, 0x1c)>, /* XSPI1_IO0 */
-+				 <RZT2H_PORT_PINMUX(1, 5, 0x1c)>, /* XSPI1_IO1 */
-+				 <RZT2H_PORT_PINMUX(1, 6, 0x1c)>, /* XSPI1_IO2 */
-+				 <RZT2H_PORT_PINMUX(1, 7, 0x1c)>; /* XSPI1_IO3 */
-+			input-schmitt-enable;
-+			slew-rate = <1>;
-+			drive-strength-microamp = <9000>;
-+		};
-+	};
- };
- 
- &sci0 {
-@@ -395,3 +451,82 @@ &wdt2 {
- 	timeout-sec = <60>;
- };
- 
-+&xspi0 {
-+	pinctrl-0 = <&xspi0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	assigned-clocks = <&cpg CPG_CORE R9A09G077_XSPI_CLK0>;
-+	assigned-clock-rates = <50000000>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		m25p,fast-read;
-+		spi-tx-bus-width = <1>;
-+		spi-rx-bus-width = <1>;
-+		vcc-supply = <&reg_3p3v>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2-0";
-+				reg = <0x00000000 0x00060000>;
-+				read-only;
-+			};
-+
-+			partition@1fb000 {
-+				label = "fip-0";
-+				reg = <0x00060000 0x007a0000>;
-+				read-only;
-+			};
-+
-+			partition@300000 {
-+				label = "user-0";
-+				reg = <0x800000 0x003800000>;
-+			};
-+		};
-+	};
-+};
-+
-+&xspi1 {
-+	pinctrl-0 = <&xspi1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	assigned-clocks = <&cpg CPG_CORE R9A09G077_XSPI_CLK1>;
-+	assigned-clock-rates = <50000000>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		m25p,fast-read;
-+		spi-tx-bus-width = <4>;
-+		spi-rx-bus-width = <4>;
-+		vcc-supply = <&reg_3p3v>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2-1";
-+				reg = <0x00000000 0x00060000>;
-+			};
-+
-+			partition@60000 {
-+				label = "fip-1";
-+				reg = <0x00060000 0x007a0000>;
-+			};
-+
-+			partition@800000 {
-+				label = "user-1";
-+				reg = <0x800000 0x800000>;
-+			};
-+		};
-+	};
-+};
--- 
-2.54.0
+ .../devicetree/bindings/arm/arm,aest.yaml          | 406 +++++++++++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi               |  41 ++
+ arch/arm64/boot/dts/qcom/monaco.dtsi               |  41 ++
+ drivers/ras/aest/Kconfig                           |  15 +-
+ drivers/ras/aest/Makefile                          |   2 +
+ drivers/ras/aest/aest-core.c                       |  63 +-
+ drivers/ras/aest/aest-of.c                         | 673 +++++++++++++++++++++
+ drivers/ras/aest/aest-sysfs.c                      |  27 +-
+ drivers/ras/aest/aest.h                            |  15 +-
+ include/dt-bindings/arm/aest.h                     |  43 ++
+ 10 files changed, 1310 insertions(+), 16 deletions(-)
+---
+base-commit: a67b7fd0dd1f6ccf3d128dc2099cdb07af1f6a09
+change-id: 20260505-aest-devicetree-support-a3722d90e1f5
+prerequisite-message-id: <20260122094656.73399-1-tianruidong@linux.alibaba.com>
+prerequisite-patch-id: c5a7c6431c6c1e6351241e694ee053800039d41d
+prerequisite-patch-id: 1f6e2c20829eee41a210dd8a538f1e8efcc65872
+prerequisite-patch-id: 5556287e3f46c2ed2c0431c53c7782e87bcbd866
+prerequisite-patch-id: 2edae0a136d7779b8f686181720e71d044a73311
+prerequisite-patch-id: b5190b2844dcb01e72f87a59f3a29548795fdb82
+prerequisite-patch-id: 7ba848583708b2ae776a7ce847bb056e3de7f77b
+prerequisite-patch-id: 397e5b22802b67942435f4f2968f0b1e210ba0e8
+prerequisite-patch-id: 2169f4b65537eecbd0ccbd2ad6b28c64ec44655d
+prerequisite-patch-id: b626f85d98747595b3240bc49e6ad9c9dd5c0fa9
+prerequisite-patch-id: 1323dfd2eebad2ef6514dbbce58ba08e8859f894
+prerequisite-patch-id: 95b826e5e329408437a3ef336c4f45d4d74f82bb
+prerequisite-patch-id: b60ff489a5a33c5d5220fa8144af7b7511769cba
+prerequisite-patch-id: 43f35a52b8a3d13c938ff08083403c1d3bd0df8b
+prerequisite-patch-id: c55d4e9117ca36d3c2cba82d550a618cb82bb745
+prerequisite-patch-id: 3885e10f318ae8101d6909b35d92a976cc359e3c
+prerequisite-patch-id: 92958cde05577f069c5659018a274bb39cfb6b24
+
+Best regards,
+--  
+Umang Chheda <umang.chheda@oss.qualcomm.com>
 
 
