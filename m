@@ -1,130 +1,189 @@
-Return-Path: <devicetree+bounces-293264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293266-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2I3HDhk9+mmjLAMAu9opvQ
-	(envelope-from <devicetree+bounces-293264-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:55:21 +0200
+	id gN4JAcY9+mmjLAMAu9opvQ
+	(envelope-from <devicetree+bounces-293266-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:58:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C5D4D2ED7
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:55:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532214D2F40
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 20:58:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3B69F3020C0C
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 18:55:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 132B830E308E
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 18:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C0A4A2E33;
-	Tue,  5 May 2026 18:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6CE04ADD8B;
+	Tue,  5 May 2026 18:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="lWWGss4A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J5HoPn+l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CE035A938;
-	Tue,  5 May 2026 18:55:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC780391822
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 18:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778007318; cv=none; b=YB2emV4aYGFbUp22yDflfAqImT9BTuqUZZyJ+gJZgozVUD4IVkfjZnfBBOPWzVXtJzmoP03xpAJOyOiU1tMa22FLevHyE9KTWvniVePkwsU3KXYXBjbaIJSM8bnuBSBiMyVVoXe6+x1oVwphY4J3y87A4SyTShBWSwFz8atC2k0=
+	t=1778007346; cv=none; b=OXZILO6jK1Bup8GY8pqwNRNojMljpYLQvh/bWbX6MM4mTrOxoTSWyh7+WqRC5CMGHEFr/X7vdkqnmPWvIf0A3j7/BjZBoItb6xYzysW+MIoNCmNoZB7X6IgLtzYQgc5MuAuSDIZbi5HQY9T17h15t2kiuHpvoCpBbrqoPBxukMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778007318; c=relaxed/simple;
-	bh=pZZvpuAnjZimKNBIbNC9vAqnsOr6JTXaC6NK68b/Gk8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DNoQz3211OSPfKu9wA05vOEI58xwUBCNuvtBNcMQSzu0BCN+gDdJuxs4Tf8r9itM/k5IuxTZ/OES4rlZG1LBOnSecpO3B88r5sXySJrw+VUW+gakyQxWyuxuJrsJsymkEhFqHHYhPO6LU3A6u8J9ibVR6j7mdMyYXiDHks/fcy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=lWWGss4A; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=EdUe4UPi1xfrH6SeZFh0BDIwDN7xDOV5Uww/aWy2a1s=; b=lWWGss4A+4AyrPW69TEmA9O98n
-	3luVcHPpCd55cDntRjiHdHeN0CKdMkn5Va2DankgUsHK5gvtEP0s/TK6VcXoKnNzg6bwhkB+IrdNJ
-	rh9FMCyXucbX08zIXSkHikJ5lwdAWE8NMTlJehqORiYOC9k/f56kFWTxA5YunsbOIaX8ezGxOoRa2
-	z1LOx5LSU4QWL22axnWabxNUiqBHwvkaRzUw3/4KsapoQQepYTHPyTxdZpTDctIUIiXy25002lx2I
-	TcuUL4Ro2HP+OXmTar1l/l79oSiX2e2XO4bN1BfUwP+0QQPzNzKhr8GLaRRqPiW0l9zLDnev7yHwR
-	vynbPytg==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Frank Li <Frank.li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Michael Riesch <michael.riesch@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v5 0/2] media: synopsys: csi2rx: add support for rk3588 variant
-Date: Tue,  5 May 2026 20:55:02 +0200
-Message-ID: <177800729427.3301010.1526029967373808485.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260305-rk3588-csi2rx-v5-0-3b7061d043ea@collabora.com>
-References: <20260305-rk3588-csi2rx-v5-0-3b7061d043ea@collabora.com>
+	s=arc-20240116; t=1778007346; c=relaxed/simple;
+	bh=Qrih9tbIxMYK3cVffn8rChfomShm6TcW+n2OQ6LGqGA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jYTvQMyNdwsE6xdaiOaxtcUthP4jc6OddFnm0Bg1XFSTYcI6/5KKvLwiLPv+9Ire2BpVYYPEWvevvFtzoEwfAH4MvYutcMvquT/Pq3mJpRSRqEyv8oDTM1n8EKh/Ibn86RSJBCCbym50hEWef54Dr61fae0NV4PH9DbGLwkYwOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J5HoPn+l; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3937a1f9f7aso4397931fa.0
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 11:55:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1778007342; x=1778612142; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gWLCp8e9dyR6o6t0FMX093JcFxR+HkBbCVvJsU9sLHM=;
+        b=J5HoPn+l6jV5hGSLKn4NHP9KvSnHq7N0LYbPkufjlgcYzDMkKr0IfithL78JM9fbbg
+         85ArIY0QlT6L0cjsX/6JBxZUaJ6FAwSxFBoj1S2D5G7dxbHpojgU7BiqL3CUhXP8aGpW
+         BcLEkXU7X95iiI9Qymp5qZ3Z28ktdMzSSdGwoIFTOAPlTCkz5BhLS3yW+7oKF6yul/AX
+         GcziERwiYn9d1/gBgIFIPrFoF48f87RgXuOO+63m29PbG7DVb+SdyoTf2Bw+BDRxdFMt
+         QjBiTuia3vTIj2qPCUnwL4Uo6AYhRHcAhmHbel0tm9zfctTQ/ifBoeXfb2+HuUzBFCrK
+         S0FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778007342; x=1778612142;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gWLCp8e9dyR6o6t0FMX093JcFxR+HkBbCVvJsU9sLHM=;
+        b=C6DyOkiWmtqR+EdQTWM8DcsLXtVycRNj7HHIx6rgdWz3U6hc0NysITP+MqRUbLiW/i
+         zQC6j1AQE6iMxFpiKeJUbOY8h/cQhIy3cU8gnAUTRXvQRgfzJZnrUoOHxMBG7fxcTZw+
+         bAKFAkFnBinPv/QxhJ94IWnz6POITH63pqDEWEpmsA+TEEzMII8ov+ljjqbbEF+Rjhgb
+         hZNSAaa2vigAOeqsyX6xtUyehxRoiHUceADdUJuZS98vScbdjcYyveh0chKjExRvBEzu
+         9e4ERtv8xhYMeKspy9s10KTn2BuTAct9elfAjeIX3Fptq36N3KIh1qH/NccHuCqCMUEU
+         jKtA==
+X-Forwarded-Encrypted: i=1; AFNElJ/nhmta1x/sep2PIrLzL7xDBSFo3FkfjvDpm4JDQy46mk1JsfJMy7uPY+WyxGCSDKp1TxfGTGS0TQlB@vger.kernel.org
+X-Gm-Message-State: AOJu0YycCTvr2OR7LzQlyVK75qqTRMO1tbJNqn6fIF3iUPynQ0P0XxXI
+	SMm91SQnOkeUOG+D7w4WmX8ZCC8m8pCzwbIW7SuzIbwTufhd29m6So6UTdCcNWePOFk=
+X-Gm-Gg: AeBDieuSuHSBSXaAO3szvOknAwn2KbEgB+SX97IuN1NlGGj6RQqL0juU5QAd0kPzsxl
+	q4pGgm5297tSxDAZNJagKVVPwrz/DLjVCiQDHWOhB1WuP6IO0U0EASvq7+nwh5PuzLuAMDWg1D1
+	sliOilTCmPoQWFxg5Xw7UB1U3LSNtrne/UtcZjsrNwOrCKl3fWbtjMX07Qaw3krxnjPNNUXXjIV
+	QR7rUU6kcf3U8k/l53k+UT0s1hulnTTkfYgsBDVeCtl46/9LonwSWsmLpcHmkbg6+I66PVoKwS+
+	2ubRzaN0VndwzqgfDS0F7f4TjPlE2X4/uqCQ3m01v2PtwNAPBZO5pKdwbqDlP2D6H5jAZ9E7dLm
+	t71FL692wWKIk9Nfv0WZUgqoeodeTEMZvMj80wpBxW3Mq90Pow5OXuyy3cTM2Uy05NtUI4RbeUE
+	BzXOzbkljQy6tvW8QAkcIaftO+bmySFWJeyzRXJhuNPEXtf7x5sbi4dvrfQZnXxEqS219yhsUdA
+	/ITGm8aDq6lPDa1
+X-Received: by 2002:a05:6512:1056:b0:5a7:4912:1a3e with SMTP id 2adb3069b0e04-5a8631b8d40mr1976270e87.3.1778007342013;
+        Tue, 05 May 2026 11:55:42 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a882e3589dsm654744e87.30.2026.05.05.11.55.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 May 2026 11:55:41 -0700 (PDT)
+Message-ID: <9da6d544-97f6-4915-8d53-e3fde7339695@linaro.org>
+Date: Tue, 5 May 2026 21:55:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc8280xp: gaokun3: describe rear
+ camera module information as musch as possible
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Martin Kepplinger-Novakovic <martink@posteo.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Martin Kepplinger <martin.kepplinger@puri.sm>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20260425105300.745044-1-mitltlatltl@gmail.com>
+ <20260425105300.745044-5-mitltlatltl@gmail.com>
+ <db441eb6-195e-4018-a84d-77b2d1531243@linaro.org>
+ <CAH2e8h4TYEMhjP9Vx7yYpKHAOR627Ovy2QZMT574oZPVDJX1oA@mail.gmail.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <CAH2e8h4TYEMhjP9Vx7yYpKHAOR627Ovy2QZMT574oZPVDJX1oA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: C4C5D4D2ED7
+X-Rspamd-Queue-Id: 532214D2F40
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293264-lists,devicetree=lfdr.de];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293266-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
 
-
-On Tue, 28 Apr 2026 09:27:22 +0200, Michael Riesch wrote:
-> Habidere,
+On 5/2/26 15:55, Pengyu Luo wrote:
+> On Thu, Apr 30, 2026 at 7:00 PM Vladimir Zapolskiy
+> <vladimir.zapolskiy@linaro.org> wrote:
+>>
+>> On 4/25/26 13:53, Pengyu Luo wrote:
+>>> The rear sensor is S5K3L6, describing it but dropping compatible
+>>> string, since there is no upstream driver. A funcitonal downstream
+>>> driver is in comment.
+>>>
+>>> The VCM is dw9714, describe it.
+>>>
+>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+>>> ---
+>>> Please take this patch as a RFC, I am not sure, how much I am allowed
+>>> to add without a sensor driver.
+>>> ---
+>>>    .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 129 +++++++++++++++++-
+>>>    1 file changed, 123 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
+>>> index 39e559e91289..76b1ecb3819d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
+>>> @@ -22,12 +22,18 @@
+>>>    #include "sc8280xp.dtsi"
+>>>    #include "sc8280xp-pmics.dtsi"
+>>>
+>>> +/* remove due to gpio pins collision, skip 2nd instance won't break things */
+>>> +/delete-node/ &cci1_i2c1;
+>>> +/delete-node/ &cci1_i2c1_default;
+>>> +/delete-node/ &cci1_i2c1_sleep;
+>>
+>> Instead of removal 'cci1_default' and 'cci1_sleep' nodes shall be rewritten
+>> by excluding 'cci1_i2c1_default' and 'cci1_i2c1_sleep' from them.
+>>
 > 
-> The Rockchip RK3588 features six MIPI CSI-2 receiver units:
->  - MIPI0: connected to MIPI DCPHY0
->  - MIPI1: connected to MIPI DCPHY1
->  - MIPI2: connected to MIPI DPHY0
->  - MIPI3: connected to MIPI DPHY0-1 (only with split DPHY0)
->  - MIPI4: connected to MIPI DPHY1
->  - MIPI5: connected to MIPI DPHY1-1 (only with split DPHY1)
+> Should we register an unused node?
 > 
-> [...]
 
-Applied, thanks!
+I believe unused nodes are found everywhere marked by status = "disabled"
+or if they do not produce a conflict for resources. I understand that a CCI
+IP with two ports are special, but likely (not always though) it should be
+acceptable to keep its device tree node as is.
 
-[2/2] arm64: dts: rockchip: add mipi csi-2 receiver nodes to rk3588
-      commit: 5052c99cf05271b91fe2b4e6540f7a7d9b6db62f
-
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Best wishes,
+Vladimir
 
