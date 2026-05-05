@@ -1,194 +1,146 @@
-Return-Path: <devicetree+bounces-293218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIcDCFEe+mmzJwMAu9opvQ
-	(envelope-from <devicetree+bounces-293218-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:44:01 +0200
+	id MMAlF80e+mkJJgMAu9opvQ
+	(envelope-from <devicetree+bounces-293220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:46:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD1E94D18AD
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:44:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0F84D1962
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 18:46:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BDFF23040C4D
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 16:42:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4B5E430A588B
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 16:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F677492518;
-	Tue,  5 May 2026 16:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61A8492188;
+	Tue,  5 May 2026 16:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8LjI1N6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oQV8x5Z6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A59A48C8BD;
-	Tue,  5 May 2026 16:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33A6429838;
+	Tue,  5 May 2026 16:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777999363; cv=none; b=ga8cAEobIcr61Ry87Gq7yRgiv4qsjm08M191UsKZmMC1Rs1jNEptOG8gOj6ONfFsNtpK4Etgy74KwK+gBLCTs8Gf+9vjL91/0M70hZ9t/ktBDW6DS1s3ALcXs0Up0rDo3WYZbAZAp59thQ1ioD6uVHZ+6G8u01z2MRVgTBE79e0=
+	t=1777999375; cv=none; b=ozjWPPSQalXo0nnVqyz+xfL+HlWxZ0eQ50165x2UVlyq7Me06nm4A8inOYfshbNQqucK895d08hIoyjqSzoOiXcrdub0vZ11kg5ULjT+CLcLTdmXJlQGt1pfxu9z3U3s1V2KFn36t65LOeNYOwYyEendBlPw7RIpBJrlZg9OvDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777999363; c=relaxed/simple;
-	bh=j5ysOc6zV4I9/lqIB0/kKQe/KsuyrTSbKhL3XC3llEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ShMze9ChhvexubMa7ItELZTP8SsP8ej+bxIs39cIFQGsjC979JLrgrn8zl4bN673NR4Y6hQmbQzx9nIx58vdsCwa63Ai6xDiawS1leofcY+JrCsQuLpJ0TIfK/152Nqe3QYOCqFr6yNOlTQ7kUUfbh4mzXMcI2rjwJYFdDA2QYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8LjI1N6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1FEEC2BCB4;
-	Tue,  5 May 2026 16:42:35 +0000 (UTC)
+	s=arc-20240116; t=1777999375; c=relaxed/simple;
+	bh=/ST3POmUMHpr3+tcwM9JD54cfRb54w9coIuMU0yzs70=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O8hFO5DFeVVhB9Xz4l1BmnoCbFECxqIhkmAcVz7RY1x7aee6+ZzpUawpzsMkjE3+f5OAqkeZ4uzFKN3OZJIjWpd1EMHS4y3xcPb8omdkdl/W11XkjYOiiatOZO/O3bALELjefhtOvunTBd+b5wzfc6OKixbo/puYQugxqqef3FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oQV8x5Z6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28395C2BCB4;
+	Tue,  5 May 2026 16:42:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777999363;
-	bh=j5ysOc6zV4I9/lqIB0/kKQe/KsuyrTSbKhL3XC3llEA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=J8LjI1N6VWmKbHH3fj98uYgF/OcqSe/2BWVQPE/hxE/Ayo8bIq/q3OX7xo0vOrY4R
-	 a7W0TAnwIqBHUFgPlCZ2U8jYC+69rv5HyHK89AKPJJYbbDvjOAOgYHCXpU78J63UXC
-	 7FOywL1Zwj2NyC8gagrRFuQE/fFHRruh0TIm1hLRG6MGaWfkzw62XxSvVJMUCYkfWe
-	 aWK8yQZU85MD+a9TwgjG18ojlQnYVXsCnVe2pwg1sY5jXCR+ZDhjey/Oib0/CAFnGr
-	 8WxqiYjWBxXzzgNqBUjbArqg7K3yOFmEyY1YGCIz8dLHo4oMjpKirxsCUIZp3yQr1T
-	 mZFgosUKsFkgA==
-Date: Tue, 5 May 2026 17:42:30 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Rodrigo Alencar <rodrigo.alencar@analog.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, David Lechner
- <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Andrew Morton
- <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
- <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v10 05/11] iio: core: add decimal value formatting into
- 64-bit value
-Message-ID: <20260505174230.5a5020fb@jic23-huawei>
-In-Reply-To: <keeskqikjulxcgc36zpzzvqw2osvm437hlchgcuovh5gkvmdr3@ishisbiujrrn>
-References: <20260415-adf41513-iio-driver-v10-0-df61046d5457@analog.com>
-	<20260415-adf41513-iio-driver-v10-5-df61046d5457@analog.com>
-	<keeskqikjulxcgc36zpzzvqw2osvm437hlchgcuovh5gkvmdr3@ishisbiujrrn>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20201202; t=1777999375;
+	bh=/ST3POmUMHpr3+tcwM9JD54cfRb54w9coIuMU0yzs70=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oQV8x5Z6wWRo4fgRVwQik/KgBI3JxnJMpMgww/lhGRfvZ/dKirsFDQtw2LSPW9h4P
+	 4ucQT1ilLHvEZXgwfibjABRb674+UsPgdl2kvG7D2o/4nRFd7pLw0hG+FFT2ZsaWbA
+	 u0QKNpIxcfX33bQr0kHM0hTTemwhMDWB4iya+s43fk6edm/T/KeU3xjAeqmMbUVETp
+	 DTlY0yGw2Zl1h+p6CQqtkZAQ7I6EgtEWNJmjQMlLz+ikEgcloxf1lLNU8LeXdpJmUe
+	 db13gSn6r0mhXFGUCIY/dlfo0SJwv1/S5rbR2xDl+j/yn4UAkjWSSLMz+DV0/T9YqT
+	 q0NGRGpVOhfxg==
+Date: Tue, 5 May 2026 17:42:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jon Nettleton <jon@solid-run.com>,
+	Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: soc: renesas: Add various SolidRun
+ RZ/G2 based boards
+Message-ID: <20260505-reusable-hastily-a014412c267c@spud>
+References: <20260503-rzg2-sr-boards-v1-0-8545677f93ca@solid-run.com>
+ <20260503-rzg2-sr-boards-v1-1-8545677f93ca@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: AD1E94D18AD
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="g06tqCVkPwAgzTSP"
+Content-Disposition: inline
+In-Reply-To: <20260503-rzg2-sr-boards-v1-1-8545677f93ca@solid-run.com>
+X-Rspamd-Queue-Id: CB0F84D1962
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-293220-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293218-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,solid-run.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Mon, 4 May 2026 11:42:38 +0100
-Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
 
-> On 26/04/15 10:51AM, Rodrigo Alencar wrote:
-> > Create new format types for iio values (IIO_VAL_DECIMAL64_*), which
-> > defines the representation of fixed decimal point values into a single
-> > 64-bit number. This new format increases the range of represented values,
-> > allowing for integer parts greater than 2^32, as bits are not "wasted"
-> > in the fractional part, which can be seen in IIO_VAL_INT_PLUS_MICRO and
-> > IIO_VAL_INT_PLUS_NANO. Helper macros are created to compose and decompose
-> > 64-bit decimals into integer values used in IIO formatting interfaces,
-> > which creates consistency and avoid error-prone manual assignments when
-> > using wordpart macros. When doing the parsing, kstrtodec64() is used with
-> > the scale defined by the specific decimal format type.
-> > 
-> > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>  
-> 
-> ...
-> 
-> > --- a/include/linux/iio/types.h
-> > +++ b/include/linux/iio/types.h
-> > @@ -7,6 +7,7 @@
-> >  #ifndef _IIO_TYPES_H_
-> >  #define _IIO_TYPES_H_
-> >  
-> > +#include <linux/wordpart.h>
-> >  #include <uapi/linux/iio/types.h>
-> >  
-> >  enum iio_event_info {
-> > @@ -34,6 +35,38 @@ enum iio_event_info {
-> >  #define IIO_VAL_FRACTIONAL_LOG2 11
-> >  #define IIO_VAL_CHAR 12
-> >  
-> > +#define IIO_VAL_DECIMAL64_BASE		100
-> > +#define IIO_VAL_DECIMAL64_MILLI		(IIO_VAL_DECIMAL64_BASE + 3)
-> > +#define IIO_VAL_DECIMAL64_MICRO		(IIO_VAL_DECIMAL64_BASE + 6)
-> > +#define IIO_VAL_DECIMAL64_NANO		(IIO_VAL_DECIMAL64_BASE + 9)
-> > +#define IIO_VAL_DECIMAL64_PICO		(IIO_VAL_DECIMAL64_BASE + 12)
-> > +
-> > +#define iio_val_s64_compose(_val0, _val1)				\
-> > +	({ (s64)((((u64)(_val1)) << 32) | (u32)(_val0)); })
-> > +
-> > +#define iio_val_s64_from_array(_vals)					\
-> > +	({								\
-> > +		const int *_arr = (const int *)(_vals);			\
-> > +		s64 _dec64 = iio_val_s64_compose(_arr[0], _arr[1]);	\
-> > +									\
-> > +		_dec64;							\
-> > +	})
-> > +
-> > +#define iio_val_s64_decompose(_dec64, _val0, _val1)			\
-> > +	do {								\
-> > +		s64 _tmp64 = (s64)(_dec64);				\
-> > +									\
-> > +		*(_val0) = lower_32_bits(_tmp64);			\
-> > +		*(_val1) = upper_32_bits(_tmp64);			\
-> > +	} while (0)
-> > +
-> > +#define iio_val_s64_array_populate(_dec64, _vals)			\
-> > +	do {								\
-> > +		int *_arr = (int *)(_vals);				\
-> > +									\
-> > +		iio_val_s64_decompose((_dec64), &_arr[0], &_arr[1]);	\
-> > +	} while (0)  
-> 
-> Hi Jonathan,
-> 
-> Are those macros ok? in terms of where they are declared or whether they
-> should be static inline functions? any preferences?
+--g06tqCVkPwAgzTSP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My preference would be for static inline functions rather than macros given
-all the types are known here.
+On Sun, May 03, 2026 at 01:17:58PM +0200, Josua Mayer wrote:
+> Add bindings for various SolidRun boards and System on Module built
+> around Renesas RZ/G2 family of SoCs:
+>=20
+> - RZ/G2L SoM
+> - RZ/V2L SoM
+>   (shares PCB with G2L and has very similar programming model)
+> - RZ/G2LC SoM
+> - RZ/G2UL SoM
+>   (shares PCB with G2LC but programming model differs largely)
+> - HummingBoard IIoT (RZ/G2L, RZ/V2L, RZ/G2LC)
+> - HummingBoard Pro (RZ/G2L, RZ/V2L)
+> - HummingBoard Ripple (RZ/G2L, RZ/V2L, RZ/G2LC, RZ/G2UL)
 
-> 
-> > +
-> >  enum iio_available_type {
-> >  	IIO_AVAIL_LIST,
-> >  	IIO_AVAIL_RANGE,
-> > 
-> > -- 
-> > 2.43.0
-> >   
-> 
+Missing signoff. Content looks okay.
 
+pw-bot: changes-requested
+
+Cheers,
+Conor.
+
+--g06tqCVkPwAgzTSP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafoeCwAKCRB4tDGHoIJi
+0nUdAQDx/iZXnu6bfWlDm644EkJZMUSRDcoz8vD+tuy/NsAtsAD+Kh5NsdW8wbct
+wq87fDe4qMkekK8dUGyw1+eSfVjT/gs=
+=wLhG
+-----END PGP SIGNATURE-----
+
+--g06tqCVkPwAgzTSP--
 
