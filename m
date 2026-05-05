@@ -1,123 +1,182 @@
-Return-Path: <devicetree+bounces-293152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJT4JToI+mkEIgMAu9opvQ
-	(envelope-from <devicetree+bounces-293152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:09:46 +0200
+	id eAN8AwkI+mkEIgMAu9opvQ
+	(envelope-from <devicetree+bounces-293154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:08:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0281A4CFFB7
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:09:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B524F4CFF73
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 17:08:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8EF8630CD25B
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 15:02:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2F0D2304929D
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 15:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFBA480DCD;
-	Tue,  5 May 2026 15:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A16480DD9;
+	Tue,  5 May 2026 15:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lazprdTv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DldJROvJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F7A480971;
-	Tue,  5 May 2026 15:02:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D450480DCD;
+	Tue,  5 May 2026 15:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777993342; cv=none; b=SEAC7ErBfVUpZTPD+P2dzgpbApLCNDugU8wPjuqQGgkf7hB/ReTO5hBDyLGrNGX29xndD0hbBGT7GSJqj2Ij3O0f0RwWgSBV7fhFytnJSOWoaGH6CFyWkYkWgyhsQbpW1MmX6etXYsqZSzzuXIBnUWupKpZ9nE7p0v/tw62L470=
+	t=1777993548; cv=none; b=aL+G8LyouKPuXuyBrFrBeNOccdDLkrrLU8cDowu4THsi0ocZcIGca57gfROqBb55qdQ8yFKF7guLEsKKcv1z/1izp0/agSdozouGRlnd+wv+YJMWbBalpjzhfBI34l5/qiHmoemO7rqXvvpMto6BBDVunET5pDEjNLyRVK8eawY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777993342; c=relaxed/simple;
-	bh=eS08/QgzE3JbtlTNsuaiLEoeEhYoU1U2MF4qhRHE0Ug=;
+	s=arc-20240116; t=1777993548; c=relaxed/simple;
+	bh=fjhctLjrzP8ABWybAS9/Xz+fkBSmi6e/VKPohchYNGw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qvdb0PZef+Ph1z0xpyHPqVZl/i2mKkLLCVhqd9+dAH20knSHEpNzd1jA3fqFJbLfYS89KyRsHQTtInq8vKpRuPtaZRI1uSR4N7Ea2an3xBqBExmUMZciaOHRqvxCK/dPt9Ba0hyfE8bmEGq7m6CUQwf17huQTBFc+Wb3w48q1VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lazprdTv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE28C2BCF4;
-	Tue,  5 May 2026 15:02:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=khclFOPjhhMNyyBC/aW65FFbGyTCxdKzzw+NnWdYKN2K+7kZHPc1Q9BKC1hPnbiHoglFihxgtJKF3zM1nq6zmRc6/rnjgc+aJ2x+OZJpb7AqW28lsqcIzUp1cxNeNtkuR9O3whO7KAcOmdhpGFLu/cusudIIzktRPV9IF+UcHdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DldJROvJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FAE2C2BCC7;
+	Tue,  5 May 2026 15:05:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777993341;
-	bh=eS08/QgzE3JbtlTNsuaiLEoeEhYoU1U2MF4qhRHE0Ug=;
+	s=k20201202; t=1777993547;
+	bh=fjhctLjrzP8ABWybAS9/Xz+fkBSmi6e/VKPohchYNGw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lazprdTvVHFYN0YWddYG3A+WsXHlfN59MJt9MRCbgKQYUkIatoZ9/dlrrcCYeTxun
-	 c8ReBGxtigw1Ldey+xKqTN1WlUsBtNiqZSsHf5P3SFTR6WAD9uMppjX9teFaHlXMOS
-	 bGlJ7v3a1QHFwxjgBHy7mSYQc+zg7+PlSGv9mc+usD01t/7QVa7TY4/IRo2CbUuUkb
-	 QHgwEWd5lu2VPC1wdeUWSkBaat4l54UpLWI3qz4BAjtYzZ+kYehCJfoiUGzs7Y9Rr1
-	 0KJZUaGKLYxDH65FCvlKSqKxR7KUO598QIuBGJQdXOxvEnQiYVOY+3I59I1UFij8Hm
-	 OQINZn9hcZY+w==
-Date: Tue, 5 May 2026 16:02:17 +0100
+	b=DldJROvJl+GnItu11wN0UY1H6kpVglyyugjbuNb0x52JurAYJp3+RIldpVzIMIpDH
+	 3UjyLAJ9kK1WNvj3gSQRs3BnPKMtVMdw/w90NVfsApy1YWCtUFAPVxGwQ3YDYGdpt5
+	 UIrav3YWYVCyZv7zW8B2l2uT0XPCZmoqAiHxn9gQMH3Kf+gH++H+nyUfbG+58tXsFK
+	 NcQBpoqwfWIw1c7gT36EjY2QkTAwdEHgq1T/Y5KbgzazK7Q7b8NQPPIlrahhBkUOAu
+	 nkD4JblRwUB+x3kManmAZCtgsYqpt4mYTuvxQ3I0ML9cSjyeSRp3zr9A9W0gOhNf5W
+	 a0cfPTqAE3G+w==
+Date: Tue, 5 May 2026 16:05:38 +0100
 From: Lee Jones <lee@kernel.org>
-To: "Escala, Edelweise" <Edelweise.Escala@analog.com>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	Andre Draszik <andre.draszik@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Christian Loehle <christian.loehle@arm.com>,
+	Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 2/2] leds: ltc3220: Add Support for LTC3220 18 channel
- LED Driver
-Message-ID: <20260505150217.GD2661693@google.com>
-References: <20260417-ltc3220-driver-v6-0-18157871eddd@analog.com>
- <20260417-ltc3220-driver-v6-2-18157871eddd@analog.com>
- <20260430171145.GA2661693@google.com>
- <DS0PR03MB7228ACA655995A9CAC025B35ED312@DS0PR03MB7228.namprd03.prod.outlook.com>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	John Stultz <john.stultz@linaro.org>,
+	Moritz Fischer <moritz.fischer@ettus.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>
+Subject: Re: [PATCH v21 08/13] mfd: core: Add firmware-node support to MFD
+ cells
+Message-ID: <20260505150538.GE2661693@google.com>
+References: <20260427-arm-psci-system_reset2-vendor-reboots-v21-0-dcf937775e73@oss.qualcomm.com>
+ <20260427-arm-psci-system_reset2-vendor-reboots-v21-8-dcf937775e73@oss.qualcomm.com>
+ <CAMRc=Mf+-04Zr7jjRoaxTzO3LKSMyQ7DzxJc=dHNSyThEUiq_Q@mail.gmail.com>
+ <c0677503-8073-4940-8eb0-c06b34f843d2@oss.qualcomm.com>
+ <CAMRc=MdxpSXiqAn-8Az4ig4N8TFVdE9psacPVG9J9KehuFnbwA@mail.gmail.com>
+ <d6112b9c-01ea-483c-98fe-b480e78872e5@oss.qualcomm.com>
+ <ce92a493-5016-41a2-8337-d2227cdf760a@oss.qualcomm.com>
+ <CAMRc=Md_OON4cAGcJ=jDu=VY_mw0qa8HPz4VCDxYLpr7JMxLRw@mail.gmail.com>
+ <37ab0178-1c9d-409e-bbaa-832f8075afa4@oss.qualcomm.com>
+ <CAMRc=Mcqa5RMarC+6pVYYvYsuJ03GQMtM=69bQMxyotN1u2B0w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <DS0PR03MB7228ACA655995A9CAC025B35ED312@DS0PR03MB7228.namprd03.prod.outlook.com>
-X-Rspamd-Queue-Id: 0281A4CFFB7
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=Mcqa5RMarC+6pVYYvYsuJ03GQMtM=69bQMxyotN1u2B0w@mail.gmail.com>
+X-Rspamd-Queue-Id: B524F4CFF73
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293152-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293154-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,linaro.org,linuxfoundation.org,arm.com,arndb.de,rock-chips.com,gmail.com,ettus.com];
+	RCPT_COUNT_TWELVE(0.00)[34];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
-On Mon, 04 May 2026, Escala, Edelweise wrote:
+On Thu, 30 Apr 2026, Bartosz Golaszewski wrote:
 
-> Hello Lee,
+> On Wed, Apr 29, 2026 at 6:10 PM Shivendra Pratap
+> <shivendra.pratap@oss.qualcomm.com> wrote:
+> >
+> >
+> >
+> > On 29-04-2026 15:20, Bartosz Golaszewski wrote:
+> > > On Wed, Apr 29, 2026 at 11:46 AM Shivendra Pratap
+> > > <shivendra.pratap@oss.qualcomm.com> wrote:
+> > >>
+> > >>>>
+> > >>>> If set, it would be called from MFD core and would do the name lookup
+> > >>>> and return the fwnode which would then be assigned to the cell device?
+> > >>>
+> > >>
+> > >> Or should we just drop this patch for fwnode in mfd-core?
+> > >>
+> > >> Export a new call in reboot-mode framework as:
+> > >> reboot_mode_register_node(struct reboot_mode_driver *reboot,
+> > >>                     struct device_node *np / fwnode)
+> > >>
+> > >> Use the parent node in psci-reboot-mode and find reboot-mode and call
+> > >> reboot_mode_register_node?
+> > >>
+> > >
+> > > No, I think the reboot-mode device (as pointed to by the dev field of
+> > > struct reboot_mode_driver) should be associated with the right fwnode
+> > > from the start so it should be handled in MFD core.
+> >
+> > Ack. something like should be fine?
+> >
+> > drivers/mfd/mfd-core.c :
+> > +       if (!pdev->dev.fwnode && cell->get_fwnode) {
+> > +               fwnode = cell->get_fwnode(parent);
+> > +               if (fwnode)
+> > +                       device_set_node(&pdev->dev, fwnode);
+> > +       }
+> >
 > 
-> Thank you for the review.
+> Possibly we could find a better name, but yeah the general idea is sound.
 > 
-> > > +static const struct regmap_config ltc3220_regmap_config = {
-> > > +	.reg_bits = 8,
-> > > +	.val_bits = 8,
-> > > +	.max_register = LTC3220_GRAD_BLINK_REG, };
-> > 
-> > .cache_type?
-> > 
-> 
-> I will add 
-> .cache_type = REGCACHE_FLAT,
+> Of course, let's maybe here from Lee if he's ok before sending a new version.
 
-No need to reply to review comments that you agree with.
+Send away - I'll review in the context of the whole submission.
 
 -- 
 Lee Jones
