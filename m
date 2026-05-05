@@ -1,131 +1,123 @@
-Return-Path: <devicetree+bounces-292941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-292942-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNIHC8a4+WntCgMAu9opvQ
-	(envelope-from <devicetree+bounces-292941-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:30:46 +0200
+	id oOpTNRq7+WmTCwMAu9opvQ
+	(envelope-from <devicetree+bounces-292942-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:40:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B2E4C9B83
-	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:30:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4097A4C9F80
+	for <lists+devicetree@lfdr.de>; Tue, 05 May 2026 11:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 446D6303F272
-	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 09:30:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 15C2430158B4
+	for <lists+devicetree@lfdr.de>; Tue,  5 May 2026 09:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A34320CBE;
-	Tue,  5 May 2026 09:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6607F326939;
+	Tue,  5 May 2026 09:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpNMpWwX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpJ7aJv+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E520A31F9A5
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 09:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E00B3264C8
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 09:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1777973406; cv=none; b=Kvi7LpCb+QlEduaQRGLCNbzeMkHMoVp05DhMg1G/SZNi9v86y3qkp5GzagobAvEYOX8X3g0iZVmPuCeaIiG5i5Ti9ktFS8T+GcS+oojKKTrQVcBq8kffSPIRsfCzhOZakBdH8yFWNEPH3ozz3V8INj1vjRtIRxTDTNDcg4QjU3w=
+	t=1777973826; cv=none; b=u7IrdFMMfhNE4PoL9PZTzrnP6joGgjCKCBBT5Q5VmCyIBVPw5p6dX12EpbTA655F9ZFU3XugXZnKbuTJQffy8/WsbZ3EtSkO6qj36j4tdQSf4cWsHd/TJLrOlzJcRBoP8pH+BbwzdYNhkS2jyajlwNjLYQmsc+OdGC3s2VBH0Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1777973406; c=relaxed/simple;
-	bh=iBvZb5NBOYvypj8flltjDiowahrIrfjpdsW4qgP9dns=;
+	s=arc-20240116; t=1777973826; c=relaxed/simple;
+	bh=byZsLH1qJnr5XUYqbpWssvf4t8TS4Pv9mhclLh+CHIA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H00pbr1nsiEIcoYXIfomp3Sdcwzn4u0IbuQvyrXYl67MabNJL86HkXjWreXImvlXdc5wFTq6MNbufQ7QPa0nfJHTuoRYBpyeRR721lFxqi76qEoGwO91dxPpD0lKVpVGw3aKRw0gJURamrfa2AYtWLcl4Q27E6CP75PuHEvbncc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpNMpWwX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E87C2BCF4
-	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 09:30:05 +0000 (UTC)
+	 To:Cc:Content-Type; b=t28RYrqidW/nwucb6onvo9HvJ/gYhuoOpmWPGAT0ngTn/3YO1E26xdOt5rVAVlooaoiY39b/+dY8Lu22CdNwvbaWgWqft3n+fcfrxxWJ/L4Yj1xTjQ/WvV3H82rPW61nryHOAvWky2wF213xYwWSzpDOJyAqBXxDYJDc2MWu6LA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpJ7aJv+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9514C2BCC7
+	for <devicetree@vger.kernel.org>; Tue,  5 May 2026 09:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777973405;
-	bh=iBvZb5NBOYvypj8flltjDiowahrIrfjpdsW4qgP9dns=;
+	s=k20201202; t=1777973825;
+	bh=byZsLH1qJnr5XUYqbpWssvf4t8TS4Pv9mhclLh+CHIA=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=VpNMpWwXyB/ezHR4NBP4ODBIXNLYMQ188/6XGY/0EIo3EnM2rpBOlT+dWY/MQ4OV0
-	 hX9FvscikjnJyJuztgB9czrpF4a1gSh4vaSZu8fuSLC1wGqWIxEZTq2mCvAmtcR8H2
-	 dia8NbIlmGyqrI3hsC9PV/HBemGh5dawiT+dUa+Aiuep9YiEBxbMd0vG9tKElXh0jq
-	 S1KkoF0bPk3vE5Un8AuCZ72bRLDA5lVomSxeSO/Bs7gsNMDEhhv+yvXCL+peIwi4Ov
-	 buL1jhufBK1CPk2I55VagxtSa1ppzX5jPP/sL6p/t0yfHspdylLelzGBOQEssLXgmN
-	 s+3ZBa6ivUmUg==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5a2c3dfb4a1so4763830e87.2
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 02:30:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+T+qMC2qAHOy6eYpd2PJTLiposvkwZ2Xq0IBFbwV5e7ss2dYUmE53iRDzMQKvhcgVVXjzly5qcSffJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzghSmffmjUr/EgcNBIDvGt1rVHa48Hc87rJWbK/BePUIpoMeKx
-	wT53U0/LZDAdW4OPHJPPFvxTWNJgA17izj0fppxDa4W16R3dEhVhXivsFCPm4BiCRUpLvyoYbdC
-	jTQZND/C/2AggiYiaWRNyIaoPjFIoqaw=
-X-Received: by 2002:a05:6512:3b0a:b0:5a8:6b96:9d10 with SMTP id
- 2adb3069b0e04-5a86b969d62mr3038495e87.40.1777973404397; Tue, 05 May 2026
- 02:30:04 -0700 (PDT)
+	b=VpJ7aJv+FYkJSmFmvhnwPPXv7pTTxYrV3Hu69+ZwvR1PP+1x/gVahlERL4p4WUWxK
+	 pTW3b/4Koy2may53/so0/iCadMQkEHjnsjsfnns1tnqr+dvpJVBI2MVw0RlazIRsPf
+	 PN+p2PpApn6KS/JvpotTuilvlB5crf2P5mHw4X+2U8g/DhDSVIri7JbMQdDLfsbGd4
+	 Rgo/iPVw27OFFkFPcjG6bRhSnM63WhDrimYUDCYVCHpl0FO5tCR7jg2jyX9tLJIItq
+	 GgJSB06zAcbdhcpboUtxMsO6OMiVNtk5RCY1ZeCH1c39N/2sWplzn+2s5I/FalG0XY
+	 FHQRUzfwXoLtQ==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-393a44854d2so14022841fa.3
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 02:37:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9EIgtpmfQIot+RMQ22M+PISTdJOZDXOMV41byPzLIQSWPCWs5VLzY12QqORa8yimDVMAdUNP9RuK2K@vger.kernel.org
+X-Gm-Message-State: AOJu0YynMq9/ifKIzAUwa48BumxXVD/xtKz1ybcQqD9XNwg6anRyJwAH
+	abtJgVW7DdEfTwNAKE5ASaQX2alGlQ+16OGTEdssJ4SyaF9F1MLk6oD7cdcD1lCQM5M3EtAG3yr
+	EP6geoexdeOrdxPpY3/Mnn7P+c5OOnxM=
+X-Received: by 2002:a05:651c:41dc:b0:38c:45f1:1eb7 with SMTP id
+ 38308e7fff4ca-393783ec7ecmr39396271fa.8.1777973824642; Tue, 05 May 2026
+ 02:37:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260504-nord-tlmm-v4-0-ccaa731ee8b3@oss.qualcomm.com>
-In-Reply-To: <20260504-nord-tlmm-v4-0-ccaa731ee8b3@oss.qualcomm.com>
+References: <20260428191029.809462-1-mohamedaymanworkspace@gmail.com>
+In-Reply-To: <20260428191029.809462-1-mohamedaymanworkspace@gmail.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 5 May 2026 11:29:52 +0200
-X-Gmail-Original-Message-ID: <CAD++jL=QK+Qzm2Y80HpKArVs7Kqbz9nV5wjj_1XzSQW8zGhgZQ@mail.gmail.com>
-X-Gm-Features: AVHnY4KVwZcEXHjIrqpN3eCjaCziqA6pzTQtchqPQylelmHffx2YGJEKMHDFEvE
-Message-ID: <CAD++jL=QK+Qzm2Y80HpKArVs7Kqbz9nV5wjj_1XzSQW8zGhgZQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] pinctrl: qcom: add support for the TLMM controller
- on Nord platforms
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+Date: Tue, 5 May 2026 11:36:53 +0200
+X-Gmail-Original-Message-ID: <CAD++jLnVncsU3xmzRE2Qd2N-PvbwN2085zQ_rYtirJJHaxpHFQ@mail.gmail.com>
+X-Gm-Features: AVHnY4KfHUdwiDmzBqLhufIE_2SrMZmBj7Ow-JJKquMo7HXRoyl_eHpQhojBhXg
+Message-ID: <CAD++jLnVncsU3xmzRE2Qd2N-PvbwN2085zQ_rYtirJJHaxpHFQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: ixp4xx: use phandle-based GPIOs in mi424wr
+To: Mohamed Ayman <mohamedaymanworkspace@gmail.com>
+Cc: Imre Kaloz <kaloz@openwrt.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Shawn Guo <shengchao.guo@oss.qualcomm.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-	Maulik Shah <maulik.shah@oss.qualcomm.com>, Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+	"moderated list:ARM/INTEL IXP4XX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: A2B2E4C9B83
+X-Rspamd-Queue-Id: 4097A4C9F80
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-292941-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oss.qualcomm.com,arndb.de,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-292942-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TO_DN_ALL(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,mail.gmail.com:mid]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
 
-On Mon, May 4, 2026 at 12:07=E2=80=AFPM Bartosz Golaszewski
-<bartosz.golaszewski@oss.qualcomm.com> wrote:
+On Tue, Apr 28, 2026 at 9:10=E2=80=AFPM Mohamed Ayman
+<mohamedaymanworkspace@gmail.com> wrote:
 
-> This adds DT bindings describing the TLMM controller on Qualcomm Nord
-> platforms and implements the pinctrl driver.
+> Convert remaining legacy integer GPIO specifiers to phandle-based
+> descriptors in intel-ixp42x-actiontec-mi424wr.dtsi.
 >
-> More info on the platform here:
->     https://lore.kernel.org/all/20260427003531.229671-1-shengchao.guo@oss=
-.qualcomm.com/
+> All other GPIOs in this file already use &gpio0/&gpio1. These are the
+> last remaining legacy users in the IXP4xx DTS files.
 >
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> Signed-off-by: Mohamed Ayman <mohamedaymanworkspace@gmail.com>
 
-v4 patchset applied because why not!
-Surely any remaining snags can be fixed in-tree.
+I signed this off and sent to the SoC maintainers for application.
 
 Yours,
 Linus Walleij
