@@ -1,126 +1,183 @@
-Return-Path: <devicetree+bounces-293610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OpZLydh+2kuaQMAu9opvQ
-	(envelope-from <devicetree+bounces-293610-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:41:27 +0200
+	id MET9Lu1i+2nLagMAu9opvQ
+	(envelope-from <devicetree+bounces-293612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:49:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FB4F4DD71C
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:41:27 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05AA4DD92E
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:49:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 53F29303D556
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 15:37:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 87980304FAFE
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 15:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419833FADE4;
-	Wed,  6 May 2026 15:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQvu6hdM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911A248AE23;
+	Wed,  6 May 2026 15:38:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF453CF68F;
-	Wed,  6 May 2026 15:37:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564F93EE1FD;
+	Wed,  6 May 2026 15:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778081846; cv=none; b=qszeHLzW42i2f5dUrBkPMYPNF/Ja59md6d82+ye6ONJIa55CGvZT7SUZMr2LbWc/KFCZ4fQiIWAief5dy2+2AyHeeNK8R3v160DHxZTpwvcybYkZDUzFRrEu+U6Rzo7LryMqHho8SIb27kYeAimne7CZreifkDrr0mod3oBAFA8=
+	t=1778081931; cv=none; b=gBfzbcVSrw0gszrcW9xrlL8kser/M8khauOIghtcoTReynXhJTIUyIuKW0btyaOchCP7hlVcHSdL0aPo1FVDAujR887KUZJmmm41mjBq2e3bT5iI3ifJy0wRLDri+kHowSggO1nOtb0akOxYqycaIj9GYUtFtArf7VyWNw2iEaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778081846; c=relaxed/simple;
-	bh=Lh8IyNcOsvb3e/MfNcreMdBJXDLwuzXVxIKBw+0229w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KE2o6DLxR5lVs7uVLlBgV0RualSG2Hnwg1uTRIbsBowFF+aNPZdT9/gTDFwaKp6AiWZY84eWm7ewsL2kRA7rg6bJz5hJGwmZwGNywZBhowwlmXC1pF9RSoevEU0GD6mmTunusYTOOiqOazNEiEEagDDzz+v6y6G7iHf/LmCZ9VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQvu6hdM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7753DC2BCB0;
-	Wed,  6 May 2026 15:37:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778081845;
-	bh=Lh8IyNcOsvb3e/MfNcreMdBJXDLwuzXVxIKBw+0229w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lQvu6hdMapYt7LjfZiB8CbVxjsPgfnyYf2ve9VHEGRnVn//q3Xhcs+bexhSA6TfBc
-	 0ORCKt9iT7NfpSzm5gqoBk9jJfYY+TwgMO/lmnG62pHXG1YyZLiQaTenLhcX32/N6X
-	 uLEONELKPyXzh1Ln6h3F0UfxfSpLSLgGkY1QgfCncDPVmu01nf6LecNW9PaHG6KVCv
-	 0oA5ui2FVrPmNFPMiiYeQ3+2rydIuZmZMUjPIGegDxvSNVjjfU2dx05CoQ14ynbDG0
-	 z+lmCuK7me75kq8tsxAl+92ylH9XydjjhnZH4e5I3l907a3G/Km3Q5cLcYzufydkgQ
-	 TwaZ/osjmiXLA==
-Date: Wed, 6 May 2026 10:37:23 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marius Cristea <marius.cristea@microchip.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	linux-hwmon@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v10 1/2] dt-bindings: hwmon: temperature: add support for
- EMC1812
-Message-ID: <177808184247.2172411.12359640916021641487.robh@kernel.org>
-References: <20260429-hw_mon-emc1812-v10-0-a8ca1d779502@microchip.com>
- <20260429-hw_mon-emc1812-v10-1-a8ca1d779502@microchip.com>
+	s=arc-20240116; t=1778081931; c=relaxed/simple;
+	bh=6sQcvJ02EAB9Lz/kHFbKX/FUadBZAXtEZqWiVpfYz4E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IZ7chOJdLt5ErZt3+Y65KZpxiWWjKUwgaGmk1RypLw8Qgz/zTT/sCwq0vq/0kSAaaI4ZddUmYmG/IuONs4vwwmAxb0ZIsB/h7Z1W8oZW6VP5N+fCB7vh6d2Rcdtm0FfFOWF7TxL25LeRS5AGHEM4ae7gTdSvIWxM0ShTfGzzj2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: esmtpsz20t1778081905t5dc8af55
+X-QQ-Originating-IP: 66bIYIjIjPtDUf7ZMQLWTQPiTh7x0N6Cl1Fw8/bZasU=
+Received: from [127.0.0.1] ( [116.234.74.217])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 06 May 2026 23:38:19 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4295684557063516514
+Message-ID: <859776B5671B36B9+577c19e4-3e66-4036-b26f-fe20287a1d43@radxa.com>
+Date: Wed, 6 May 2026 23:38:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260429-hw_mon-emc1812-v10-1-a8ca1d779502@microchip.com>
-X-Rspamd-Queue-Id: 2FB4F4DD71C
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 10/12] net: stmmac: tc956x: add TC956x/QPS615
+ support
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Alex Elder <elder@riscstar.com>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, maxime.chevallier@bootlin.com,
+ rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org,
+ brgl@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
+ Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
+ a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
+ boon.khai.ng@altera.com, chenchuangyu@xiaomi.com, chenhuacai@kernel.org,
+ daniel@iogearbox.net, hawk@kernel.org, hkallweit1@gmail.com,
+ inochiama@gmail.com, john.fastabend@gmail.com, julianbraha@gmail.com,
+ livelycarpet87@gmail.com, matthew.gerlach@altera.com,
+ mcoquelin.stm32@gmail.com, me@ziyao.cc,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+ rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
+ weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
+ bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-11-elder@riscstar.com>
+ <224E233C593EF171+8c8a43dd-5061-40f8-9eb7-f360eabf2ecc@radxa.com>
+ <4015f47a-af62-441d-b1b8-a8598f963970@lunn.ch>
+ <4C0D95BC59F1A4ED+53f3be85-2cdd-4058-8950-57970027d481@radxa.com>
+ <2af0fee3-d3d6-4434-847f-3fd2fbb841d3@lunn.ch>
+Content-Language: en-US
+From: Xilin Wu <sophon@radxa.com>
+In-Reply-To: <2af0fee3-d3d6-4434-847f-3fd2fbb841d3@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
+X-QQ-XMAILINFO: NMth3b25qZ/y3GsZOZbTcTtn7ivxtNnfDwhten1J2cIhmuHszCIWDEp5
+	62vFagLVkDtj/ihAfFxqCDAkwPknNTQ8rt2JdPO3DntsuJvxTDZwhwn6v9Q2Zr3fexxrdav
+	Z8tOqhADpYyVy9j/gfNlM6y7qT+IPNVQIh9ISw9xH2humwR+0QuQgfl/S6YVNPcViexfzng
+	Tu0rFdlhN+wyFpLgg5vpKp26j9ufuc6yKDetrb4Ryuw7818jy3rdUpAnCorwW/EAkH7GC45
+	9sHsQ0R5GNdl9foXYGG8tVWqi46VBH2HlSGhx+89L9ZEqbHo1NLEErlzEuRkNG3xqWER7V5
+	xHAS00ExpjcrZcs2qHWpfE/7l1GfoyFa/+5zYjXotwBHkWlBP0uJxiOf01OCq9uFnyyXzpb
+	OeRyO4nGN5aYqgEjRrsxivJFb6rJNwBktM1YIPpoCA2CwJtV6zvB9XDvhjuDv5ZYgiwB29H
+	gGz3Qd1kYxiEFMNOgAJK2zvON05qEvjOLsSde0Vo+LL6YZHv4M+VlHospu6p2a+wEMuEmHF
+	Jc2st9+8GhXzqMowizoLQAL9VnQzdAOXMjWoyRvsXqT7B4Vc0LM4XecnPl0Ziru2BKirpPA
+	qHkI1zSenEcKZXkvc23ex+ZqmzUztSiU4e/RZIrZsvktRyV/SbBD38JEeWOcNI+nTpBNslx
+	iSwfov58UuPq6538i53SLFp+W5xh7QCd1qKPQXAOljWV5AvuAyaKKulKBGYDttswirvo6r0
+	0oNQl9z2qpNBc/OtuZcFmGLL4vpn7ILM/Y7dCPvMO85opK0XJce6YlVCCUTeh04dthfKACl
+	k+pLhAPReZWtmYTjow9htBMh3OFHZxmVd7cppGF6kZYVWO2OeK+mNL2+FOSTHHcxXshpWZb
+	vErub9eGThX/A8VngZnkNdzGFFh+kutCnJM/uiHn4Af2yNS/MOKLin5rNs1vHhv3TxdC4hu
+	PJzWLeXYsrFARDQrb66jMt7nTlS2mT9f+K/V7dpZw3LpyIDgi3kTgwqwerOn2yClL/iZKrv
+	DZbuWNVc60wjyJ2QSJx9V51Y+lE9LALFS636snRufTrAe5eLiCLWBoPPg2wB9ETWOt9C2EA
+	ghCObbyLYQElz+mAyIcubIu/ppF34Od5oZzNMZsR0f9
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+X-QQ-RECHKSPAM: 0
+X-Rspamd-Queue-Id: B05AA4DD92E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[radxa.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293610-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293612-lists,devicetree=lfdr.de];
+	FORGED_MUA_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[riscstar.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[51];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sophon@radxa.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email]
+	NEURAL_HAM(-0.00)[-0.980];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[radxa.com:mid,radxa.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,armlinux.org.uk:email]
 
+On 5/6/2026 10:45 PM, Andrew Lunn wrote:
+>> Hi Andrew,
+>>
+>> Yes, the PHY is doing the WoL. And I guess this makes sense as it allows the
+>> MAC to power down during suspend to save power.
+>>
+>> The INTN pin of QCA8081 is connected to the ETH_0_INT_N of QPS615. And the
+>> INTN_WOL pin is connected to a SoC GPIO.
+>>
+>> Without this change, I can't get WoL to work. I have a working branch for
+>> our board here:
+>> https://github.com/strongtz/linux-radxa-qcom/commits/v7.0.2-8280-wip/
+> 
+> Please take a look at commit
+> 
+> commit 6911308d7d111a9c367293b52f2dc265819f2b60
+> Author: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Date:   Thu Oct 23 10:16:50 2025 +0100
+> 
+>      net: stmmac: convert to phylink-managed Wake-on-Lan
+> 
+> In particular:
+> 
+>      When STMMAC_FLAG_USE_PHY_WOL is not set, we provide the MAC's WoL
+>      capabilities to phylink, which then allows phylink to choose between
+>      the PHY and MAC for WoL depending on their individual capabilities
+>      as described in the phylink commit. This only augments the WoL
+>      functionality with PHYs that declare to the driver model that they are
+>      wake-up capable. Currently, very few PHY drivers support this.
+>      
+> Could you actually patch the PHY driver to make it list its
+> capabilities. That is the direction we want to go in the long term,
+> and not use STMMAC_FLAG_USE_PHY_WOL.
+> 
+>      Andrew
+> 
 
-On Wed, 29 Apr 2026 15:58:07 +0300, Marius Cristea wrote:
-> This is the devicetree schema for Microchip EMC1812/13/14/15/33
-> Multichannel Low-Voltage Remote Diode Sensor Family. It also
-> updates the MAINTAINERS file to include the new driver.
-> 
-> EMC1812 has one external remote temperature monitoring channel.
-> EMC1813 has two external remote temperature monitoring channels.
-> EMC1814 has three external remote temperature monitoring channels and
-> channels 2 and 3 support anti parallel diode.
-> EMC1815 has four external remote temperature monitoring channels and
-> channels 1/2  and 3/4 support anti parallel diode.
-> EMC1833 has two external remote temperature monitoring channels and
-> channels 1 and 2 support anti parallel diode.
-> Resistance Error Correction is supported on channels 1/2 and 3/4.
-> 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
->  .../bindings/hwmon/microchip,emc1812.yaml          | 193 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 199 insertions(+)
-> 
+Thanks for pointing this out! You are right that I should patch the PHY 
+driver. I have made WoL work without the change in the tc956x driver.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+-- 
+Best regards,
+Xilin Wu <sophon@radxa.com>
 
 
