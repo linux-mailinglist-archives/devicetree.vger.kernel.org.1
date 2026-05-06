@@ -1,135 +1,135 @@
-Return-Path: <devicetree+bounces-293352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEnlNc+d+mk8QQMAu9opvQ
-	(envelope-from <devicetree+bounces-293352-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 03:47:59 +0200
+	id +I7XCvmd+mk8QQMAu9opvQ
+	(envelope-from <devicetree+bounces-293354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 03:48:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 801B64D568F
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 03:47:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4FCF4D56C1
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 03:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CACE13017EF3
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 01:47:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D1DCD30471F0
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 01:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFC72367B5;
-	Wed,  6 May 2026 01:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6865C26ED3D;
+	Wed,  6 May 2026 01:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YdyS+2DL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n2z/wFuz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48EC81A3157;
-	Wed,  6 May 2026 01:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 445FB258EFF;
+	Wed,  6 May 2026 01:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778032075; cv=none; b=CimGDUQy6od52koCAlFtl/gbuuNhtbweXyrblAGY0CL11SDsZHCU1RNccLhKsBHgThO1KQr2RU9+Z6jTbFQMNPGfz0V2rJdTKndZCqZWFkvYi93cSVPqf8rbvo2QFBhXalsYET7ftKojvYQ0zx88fU71zOsyXLgMbCl/dXwTdv0=
+	t=1778032095; cv=none; b=WW+lVDfrBT5YWbgi2QKNR+lfnMBcY+TrQRI9dvhGTdtWmjQ2RrfmSK78NEaapeVnNvTkeqipsOtOe4VpyaBWjhzAwc10EMlNGO0eH7wUc+g0r8GRK0GJ39O9C9uLG87DD94MSg2fYoWWPg8eOnRqngudbHDtJA05MDE4pKeP/BE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778032075; c=relaxed/simple;
-	bh=dq4n2rXi6bWQ/HXhC18pEK/hPmy2rLxTxVTfaCPfj8o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PWDSAjfWZjXUlvSi0vAnwOT3BX7+9N0Jw+nDExssk90iRzsuNrdW34fdE3zUCVCtV/SvRIb+kw1ZXj4OO2kTij392AGCcxW/7xL90NiDJPr5ghxKWYJyIuPkAy8nQMgj+abOHYx5kwicWRBS+WWg+IGlaTbPhs7WWDe+QuFF67Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YdyS+2DL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DE19C2BCB4;
-	Wed,  6 May 2026 01:47:54 +0000 (UTC)
+	s=arc-20240116; t=1778032095; c=relaxed/simple;
+	bh=x76vxbmWDjAy8fq9ldzyLVAE10hUc0pSJJ+tjWhR50E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tJEw7wVDmLivQQXGJ5/feTOrIzq+/K2CKv9LXwEYyUdgmIjE1kcIkZ5owT9Cscc7tWFlLSPrjaiElodJYHrj+fbqRvhxXCCwUvT/FjMp81JtmHCvJXyIyyhr13vkUx4HCtZrAdGnKCq1GxF8f9h5Xe2yEemUJ8ErCIlSwlSeBog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2z/wFuz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346F3C2BCB4;
+	Wed,  6 May 2026 01:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778032074;
-	bh=dq4n2rXi6bWQ/HXhC18pEK/hPmy2rLxTxVTfaCPfj8o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YdyS+2DLodBz71jljKCplG4FZBljdfyl2Rw0roX/XQ85aOtU2I7CcqNF2A0kG5A//
-	 NzyKhanO+oBs1GKJZ/+jVaIKfFY1ZBu5EXHaUhFVvqz6fwAGFvkin91L8ubjNXtnh7
-	 o25ZvGb8CQLR9N4h85xEbobLDSeXWT/n1Q6fa988WYtAIuPdBY1VEZwO7nD4RnobgI
-	 hyBa9xCzUrYXv2WXolzNYAFjhR6OgRye3m/99B2127B4m11IA4kwZI6hPk2QBxAwE3
-	 wn65bgWJy/bPSIzurdvUiJVpeFoe6RVWkqcBEpBwZLwzQd1mqa4EEK201gJwibItot
-	 gn/oAoZtWy6wQ==
-Date: Tue, 5 May 2026 20:47:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: Chen Wandun <chenwandun1@gmail.com>
-Cc: kexec@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	loongarch@lists.linux.dev, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, akpm@linux-foundation.org,
-	bhe@redhat.com, rppt@kernel.org, pasha.tatashin@soleen.com,
-	pratyush@kernel.org, ruirui.yang@linux.dev, corbet@lwn.net,
-	skhan@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
-	chenhuacai@kernel.org, kernel@xen0n.name, pjw@kernel.org,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, saravanak@kernel.org,
-	chenwandun@lixiang.com, zhaomeijing@lixiang.com, everyzhao@126.com
-Subject: Re: [PATCH 01/11] of: reserved_mem: fix region count for nodes with
- multiple reg entries
-Message-ID: <20260506014752.GA280279-robh@kernel.org>
-References: <20260429065831.1510858-1-chenwandun@lixiang.com>
- <20260429065831.1510858-2-chenwandun@lixiang.com>
+	s=k20201202; t=1778032094;
+	bh=x76vxbmWDjAy8fq9ldzyLVAE10hUc0pSJJ+tjWhR50E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=n2z/wFuzcVRRK+8j+7JO+PrsEnBw8RUliZUkfvFBT0HQebF0pjhWCdGOUheUsQGKw
+	 H26F2Wah1/wzqfgC/f8Vord79L0OplCLdzribQXibgP+UxoBf0Ep41M8M7IyGfpeK0
+	 4gO2H3EqewbmNCmVRtOFlldMCH3xfUGhcoxQgmwSVdj2eelviRYnh0IsW4xtCXFEKr
+	 M8wbuFq+lDTRxQH3X0nWMlzvNkZBAk8C9DpfIwJl3s/FT6V3TKMqNpzhSy9VY7aY1Z
+	 pJftu36ZJgfdO3SnDpN3o2Ppo7gJKverWVnmWeF8A4BrwJaNam4/QS+XqgVzjrpgdt
+	 pj55Rex+zEDXw==
+Date: Tue, 5 May 2026 18:48:13 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: jensemil.schulzostergaard@microchip.com
+Cc: UNGLinuxDriver@microchip.com, andrew@lunn.ch, olteanv@gmail.com,
+ davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+ horms@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ woojung.huh@microchip.com, linux@armlinux.org.uk,
+ Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v4 9/9] net: dsa: lan9645x: add port statistics
+Message-ID: <20260505184813.09e384dc@kernel.org>
+In-Reply-To: <20260506014618.1616861-1-kuba@kernel.org>
+References: <20260430-dsa_lan9645x_switch_driver_base-v4-9-f1b6005fa8b7@microchip.com>
+	<20260506014618.1616861-1-kuba@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260429065831.1510858-2-chenwandun@lixiang.com>
-X-Rspamd-Queue-Id: 801B64D568F
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C4FCF4D56C1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,lists.linux.dev,linux-foundation.org,redhat.com,kernel.org,soleen.com,linux.dev,lwn.net,linuxfoundation.org,arm.com,xen0n.name,dabbelt.com,eecs.berkeley.edu,lixiang.com,126.com];
-	TAGGED_FROM(0.00)[bounces-293352-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-293354-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On Wed, Apr 29, 2026 at 02:58:21PM +0800, Chen Wandun wrote:
-> When a reserved-memory node contains multiple reg entries (e.g.,
-> reg = <base1 size1>, <base2 size2>), the count used for
-> total_reserved_mem_cnt is wrong in two places:
+On Tue,  5 May 2026 18:46:18 -0700 Jakub Kicinski wrote:
+> > +static const struct lan9645x_ethtool_stat lan9645x_port_ethtool_stats[] = {
+> > +	{ "rx_cat_drop",        SCNT_RX_CAT_DROP },
+> > +	{ "rx_red_prio_0",      SCNT_RX_RED_PRIO_0 },  
 > 
-> 1) __reserved_mem_reserve_reg() returns 0 on success regardless of how
->    many regions it reserved in memblock. The caller in
->    fdt_scan_reserved_mem() then increments count by just 1.
+> Per Documentation/networking/statistics.rst and the netdev stats hierarchy,
+> counters that have a standard uAPI must not be duplicated in ethtool -S.
+> 
+> The rx_cat_drop counter is summed into stats->rx_dropped in
+> lan9645x_stats_get_stats64():
+> 
+>     stats->rx_dropped = c[SCNT_RX_LONG] +
+>                         c[SCNT_DR_LOCAL] +
+>                         c[SCNT_DR_TAIL] +
+>                         c[SCNT_RX_CAT_DROP] +
+>                         ...
+> 
+> Since rtnl_link_stats64.rx_dropped is reachable via "ip -s link show",
+> does exposing rx_cat_drop here duplicate a value already covered by the
+> standard uAPI?
+> 
+> [ ... ]
+> 
+> > +	{ "tx_drop",            SCNT_TX_DROP },  
+> 
+> Similarly, tx_drop feeds stats->tx_dropped:
+> 
+>     stats->tx_dropped = c[SCNT_TX_DROP] + c[SCNT_TX_AGED];
+> 
+> Should tx_drop be dropped from the ethtool -S list for the same reason?
 
-Just to make sure, more than 1 worked before the referenced commits? It 
-would be easier to just define we only expect/support 1 entry.
-
-> 
-> 2) fdt_scan_reserved_mem_late() uses of_flat_dt_get_addr_size() which
->    only reads the first reg entry. Subsequent entries are never
->    initialized via fdt_init_reserved_mem_node(), so their metadata is
->    lost.
-> 
-> Fix both issues:
->  - Make __reserved_mem_reserve_reg() return the actual number of
->    regions successfully reserved. Update the caller to accumulate
->    the returned count.
->  - Rewrite fdt_scan_reserved_mem_late() to use
->    of_flat_dt_get_addr_size_prop() and iterate all reg entries,
->    initializing each one via fdt_init_reserved_mem_node().
-> 
-> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
-> Fixes: 00c9a452a235 ("of: reserved_mem: Add code to dynamically allocate reserved_mem array")
+Ignore this part, I need to update the AI prompts..
 
