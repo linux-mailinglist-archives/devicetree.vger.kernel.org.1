@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-293423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293424-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aERTANL6+mnjUwMAu9opvQ
-	(envelope-from <devicetree+bounces-293423-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:24:50 +0200
+	id EG7LM3f6+mnjUwMAu9opvQ
+	(envelope-from <devicetree+bounces-293424-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:23:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D55C4D7CFC
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:24:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB634D7CBE
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:23:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 269AC307C579
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 08:21:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 148DA3024FCE
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 08:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159B03E3157;
-	Wed,  6 May 2026 08:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3D4B3E3C66;
+	Wed,  6 May 2026 08:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESpEGV3s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IdFCZ/Wg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E363B36C5BB;
-	Wed,  6 May 2026 08:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE08175A7B;
+	Wed,  6 May 2026 08:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778055662; cv=none; b=j4EIHPT3UGOORip8g8fBwyABGetvV6u55ZAiGWHm68jcTOWg/ilkNFNTS/iXCzSG6wcYDCGjkN5QCynn4cdgdo3R1vpz6f0e1kEsbea7M4Cip8KPr7va0E08gPvmF0FgKvP/lDlmtve/f7A/3l8SKpfATirjLVg+Xp4NVpcAmIk=
+	t=1778055790; cv=none; b=Bp5UKNXml03390a/on4CCahaGlMZRiCTyC7Jh6jDNAkdHDJAGOm1/frdSIZyRRZTwAGsMgEseALsOM66LUGgVnVpuPEObqmZQwx7cANV/RKxQGZjJBQMc5cvYwYojKjxq814oILUBgVMdhagkFTB/M7ENLIr7Sp4YPzeI9Xf+AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778055662; c=relaxed/simple;
-	bh=G1nVPYRfl6s8rD9Wrm6hHq/1ImKn9a5LDjyEKm+0qkQ=;
+	s=arc-20240116; t=1778055790; c=relaxed/simple;
+	bh=2jEHqptD+qreSU/37Qicd0rNf1deow+eu2W5GdY5rk4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AsTO2ZU3ANc3JojKCXxSUICgjBoFYaCThnz4GonLkPMh/McJyFFmezpQF+YBJtJDuanLMWxaS0XDzAkcS8a1KZWq0aaL8VPulAb3YD52kJFk+Hf05rW34eCvbHiy9+FHccNUWTDlrsQqxRdpwcnuOjNd6vApR/OyLXP63i1SYtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESpEGV3s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9B1EC2BCB8;
-	Wed,  6 May 2026 08:21:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UAKyZA8x1MiCij/ZoEqza32V3TRy477IxTGdb+4ytuXQ6iOtX67uv9Z/oiPVuJZiFmuqKc4O2lO8OD7AyoGR9VV+G/GEilP5yTvd54n38p8SezfxIwzSzybIu6EgdS1MYJev0b3OgKsVExxnlHia7+xqykveomvJzOMjXtUr83Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IdFCZ/Wg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5AFCC2BCB8;
+	Wed,  6 May 2026 08:23:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778055661;
-	bh=G1nVPYRfl6s8rD9Wrm6hHq/1ImKn9a5LDjyEKm+0qkQ=;
+	s=k20201202; t=1778055790;
+	bh=2jEHqptD+qreSU/37Qicd0rNf1deow+eu2W5GdY5rk4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ESpEGV3sw6prPOvy2VWzP2bLdVwqTlr5OWx8qdIwByo7yhbxrrsvCCjmqkTbU5db9
-	 CZlKMy7AcOBMw5QcTF+9XgT8ITvbXb+72MvRd69deR16tnWGRYHHbcrDPdeALjveGV
-	 VJauU8nkLmsSMZMO03dHZZ2QFWZNoUnPK4cg56DEgyofaEezyXTlriqu8zD41rKIsZ
-	 K/HRm+pI6FepSutdc21blOfSf47T8SO1WDavdxp8G8z4E7ZKbuBgbaCmmXYRiusdo/
-	 7+jml5OFxEn13NSrenxNNBQv63/XpaUHUow8oI3Ss8KNJRgjPE927GREcY2M4r7mrD
-	 YsO17ezTXEOFw==
-Date: Wed, 6 May 2026 10:20:58 +0200
+	b=IdFCZ/Wg5p41hFpFXmRl5ongMb94g0DD1kDBcLKQVMbucJXPFB/iDU1h2dcVs1COq
+	 IClD23BDN7ejUQpjO5HA+DtMM0gVe/ZnIpgfhnPtJ8nnaKi+T0r94AVbMy5ponddPA
+	 QkKcbwZ1P2e8m0UXlZSjLToqOU76wH9QnJKVUrXhtUVSQDYeUtwR3qIKZfNOq2zXwb
+	 mjn1zG9vORpefObj43j5qa2dddVgac0TvOtbNc2s6EmEh8p4w5qvuy8LZCdn4rJ/q+
+	 qpXM4TpGF+gUjFqYkYB6g2ut6dthI1QwgVgHmxlgIVqNcNhXxWcz0YTYXW5RG0daSm
+	 khZRCdP2yypxg==
+Date: Wed, 6 May 2026 10:23:07 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ciprian Regus <ciprian.regus@analog.com>
-Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 5/5] dt-bindings: net: Add bindings for the
- ADIN1140
-Message-ID: <20260506-important-simple-crayfish-6897fd@quoll>
-References: <20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com>
- <20260503-adin1140-driver-v1-5-dd043cdd88f0@analog.com>
+To: Monish Chunara <monish.chunara@oss.qualcomm.com>
+Cc: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Nitin Rawat <nitin.rawat@oss.qualcomm.com>, Pradeep Pragallapati <pradeep.pragallapati@oss.qualcomm.com>, 
+	Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+Subject: Re: [PATCH V1] dt-bindings: mmc: sdhci-msm: Document the Shikra
+ compatible
+Message-ID: <20260506-arrogant-warthog-of-holiness-84ceea@quoll>
+References: <20260504071334.1061325-1-monish.chunara@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,97 +65,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260503-adin1140-driver-v1-5-dd043cdd88f0@analog.com>
-X-Rspamd-Queue-Id: 9D55C4D7CFC
+In-Reply-To: <20260504071334.1061325-1-monish.chunara@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 7AB634D7CBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293423-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293424-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 
-On Sun, May 03, 2026 at 02:24:54AM +0300, Ciprian Regus wrote:
-> Add DT bindings for the ADIN1140 10BASE-T1S MACPHY. Update the
-> MAINTAINERS entry to include the bindings file as well.
+On Mon, May 04, 2026 at 12:43:34PM +0530, Monish Chunara wrote:
+> Add the MSM SDHCI compatible name to support both eMMC and SD card for
+> Shikra, which uses 'shikra' as the fallback SoC.
 
-Beside other review, two things since I expect a v2 anyway:
-
-A nit, subject: drop second/last, redundant "bindings for the". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+How shikra can use shikra fallback?
 
 > 
-> Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
-> ---
->  .../devicetree/bindings/net/adi,adin1140.yaml      | 69 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 70 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/adi,adin1140.yaml b/Documentation/devicetree/bindings/net/adi,adin1140.yaml
-> new file mode 100644
-> index 000000000000..26cd40d36f9b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/adi,adin1140.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/adi,adin1140.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADI ADIN1140 10BASE-T1S MAC-PHY
-> +
-> +maintainers:
-> +  - Ciprian Regus <ciprian.regus@analog.com>
-> +
-> +description: |
-> +  The ADIN1140 (also called AD3306) is a low power single port
-> +  10BASE-T1S MAC-PHY. It integrates an Ethernet PHY with a MAC
-> +  and all the associated analog circuitry.
-> +  The device implements the Open Alliance TC6 10BASE-T1x MAC-PHY
-> +  Serial Interface specification and is compliant with the
-> +  IEEE 802.3cg-2019 Ethernet standard for 10 Mbps single pair
-> +  Ethernet (SPE). The device has a 4-wire SPI interface for
-> +  communication between the MAC and host processor.
-> +
-> +allOf:
-> +  - $ref: /schemas/net/ethernet-controller.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adin1140
-> +      - adi,ad3306
+> The SDHCI controller on Shikra is based on MSM SDHCI v5 IP. Hence,
+> document the compatible with "qcom,sdhci-msm-v5" as the fallback.
 
-I guess reversed order as numbers are before letters in most sorting.
+And here you repeat or state something contradictory. So shikra or
+sdhci-msm-v5?
 
+This should be just one paragraph where you state the device and its
+compatibility with any other devices or interfaces.
 
 Best regards,
 Krzysztof
