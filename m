@@ -1,272 +1,184 @@
-Return-Path: <devicetree+bounces-293594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDoYHURY+2n+ZQMAu9opvQ
-	(envelope-from <devicetree+bounces-293594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:03:32 +0200
+	id QD1rFxpa+2kuZwMAu9opvQ
+	(envelope-from <devicetree+bounces-293596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:11:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A994DCD4E
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1BEC4DCF1C
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:11:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A0102300A7FF
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 15:03:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 42EEC3017050
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 15:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79A73ED136;
-	Wed,  6 May 2026 15:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C80548B368;
+	Wed,  6 May 2026 15:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sEnTyHje"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="UsSieEfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152712D97B5
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 15:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C2247CC80;
+	Wed,  6 May 2026 15:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778079808; cv=none; b=Qhc3/SpbSD0Tf3D7OwxlgJ1pRCxSw78YcYTMmrBc2TK3pO2w0NC00XlwF7ccjo2xE+8xAX7mD9XBG7rb+KPIyp8epgBTAiFvxAW+ZZ1KNjgnroA4ya+Bh/1hf95HWn4LUE0clLT38LWEFgTBx0zBej+CQmHTKY95y9El/Muk6KI=
+	t=1778080260; cv=none; b=CHbaFxcG8hrrvv9S8NlN7BUoC3QbqIeaE2CLYxjzeA2ROu4v5KaCt5dx6gKDbcj9iqZ1XGx29qdEwW3rurnH+4wAGuBXvV0vHLp10PpJpvqjsVjUq4upLZcL9hP5miFhUQo9+9CkRTpCMDYPLirM7HBSV3zV6jUoZ7RwlbiGrIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778079808; c=relaxed/simple;
-	bh=B87l/+dXX9ZwdipiWVnNUuu8nCGR2/ZMqtA9tPmwvi4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=pD66A5/qLPM824kCwRdb9ETFP2i86d62dbf0fCuyd22t12x3CwxjThp6MieDs9g1G1gjqpUFZBC1FO7msQ89SzkEdfazDcM6ZOkM4dHiIoXwQsF69V/yDwsvSa60OE3HsniCoATl9Xiu+uG/tVe6GtKcVO3/nD53Z4s3t4JMACc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sEnTyHje; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b941762394aso951903266b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 08:03:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1778079805; x=1778684605; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J2mDJXIFYlupSX9LmHl3D1F2SQl0bbq2hvtOpkX4whw=;
-        b=sEnTyHjeVh00T6PqIxmybvTdjrHtr7o/WZkrO3oDRdJF887iZIdJErY339ntSQ4jsy
-         JmXeTv16gTh8NzAlQCo3F/SLLaewWOJlZ6cX1GVYADm/1Pp2tjGnbsVyM8LQwvldCBI4
-         wfgc2kt+Pgb0iKKRVeaBxuTZsOeld+66leTKs1YUtxwqR7GLuZ0ai1l1my3nuujuf9RJ
-         irAfFA8ureSarugLI+xy+6inavJTWetceJQ3Pg/vhV1U6neQ1WCyQt0IwyZKgm4ynyyv
-         /5HUg4qCGO2+htLLOPJOcA8J7S3EBX6/iuy8w1xN53029NIl7NIOi7ZupZ0F3kDY7bww
-         bBHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778079805; x=1778684605;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J2mDJXIFYlupSX9LmHl3D1F2SQl0bbq2hvtOpkX4whw=;
-        b=AS82sY+puYzkTrw7RCiS0qw1zDwPL6Uhevbc2En+uxMDvW6MP9GUVyQIhJBTlK5Wv3
-         fvUt3Z75dWNuBAwFRsIALaMGdeNn7Wu0Fgbh/82+vfDabAyVrt4heCRJ7hOT6o1/VZC4
-         e8V+jVRQAkA6ui8d6FBqPBuqwuw9+cS4Q7PVi/0jDf29GhjKTxxAmiOr3YstjxWdp1Ke
-         lsIt8izfU2UpAvRZ5w7+0mflapngN5CoqJZWMdzGPLze1Q/bBqRMw1cDDb2ZiHHIcxER
-         U7Rnaa2nHeAj3vZbg5gU6LPlZj8cJ260riPZDyBb7Q4TDzvOz7+amuRTom2ZzeqFPOcH
-         zi1w==
-X-Forwarded-Encrypted: i=1; AFNElJ9mNeAt0N21UFNFl4f5O7/YQY58e+w1LOVfNYOEk+zCFkMfOs2EKj2e6FI1OEajohCUa86gOgk/YxU8@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywt40JiLPWI6dFVDC9gznbOtHNorvu3ckgYasPx5ra22IBfqqJF
-	85GThH3Wg2AKb0PK+QEQoknjareIn0P8nMPKW/pqDiOwWgICWa/WkFq5Jzp7x6AGGVM=
-X-Gm-Gg: AeBDiesGtwgDhOVu5bYWKASYeiIFlkwIVqGAGUzOUu9+n8qZbeUUEwMARs70a4CDx+L
-	oUGeqJ7AumJ5TOy7J/XJOodCtZxOYrRLV9xOOvvrFN+WVDwTERDJ/uLQo7X65R7kPh/Jk38yBJc
-	HGJKRUyubkXokZZI75dTISWIl7bnFbTSGvBFnBjtcC3XtMQ85zqxVtzPpI2KdJcsRus2BuUVeDP
-	1RlXjm7gvCUyTR39aBlwcK4gV8ueEolwKj7kKyVK7+qzE4wGX/RsxXuTHR7LdG8vBLMQ6kFQQ7S
-	z7MxTvw16+g/EWH4GI+nC7wAFS26XfBhSmSvHOVHQOoTksgNWMh/dzQ1bsAH7nTisI6w+Bi8GOD
-	/d+h8TlTOnWI7Pfd62Xg67g91PgV6nNDh1g8z94EF8+Y7Ndz9nW7fLAmHlnjEBs1aoZDhqLpYlw
-	AweSeN18GrHyv02SbRTY/iw2H17im3kMxYcX3d0De7k+oHWG9aE3kF60XSndyND3c2tH4rFQzYw
-	v2OHuKJN4v7QoL7Aw==
-X-Received: by 2002:a17:907:fd8a:b0:bba:3bd7:17c7 with SMTP id a640c23a62f3a-bc56ac3654amr180224366b.7.1778079805146;
-        Wed, 06 May 2026 08:03:25 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:5798:67fd:c866:b378? ([2a01:e0a:106d:1080:5798:67fd:c866:b378])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45052953383sm12652260f8f.13.2026.05.06.08.03.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 May 2026 08:03:24 -0700 (PDT)
-Message-ID: <e2427d64-c7dd-4184-8824-f79cf15773d5@linaro.org>
-Date: Wed, 6 May 2026 17:03:23 +0200
+	s=arc-20240116; t=1778080260; c=relaxed/simple;
+	bh=uNe4YHbNe0yih5EqSi5yN6HvLD9qpae4iOn6P3ifclQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Z5AZPFP22CFSO/tnQtgT4z4s8XPvvvnLsRoeaY6tnYC7iNLYVHr/7GL+60KupxWuR2KONiWrNTMUitwU1OBZNFCfdcQQkmANOnxxm9nDS4XJw1LdlERLPeSle1MVP0IqPiGZjyJlJgluJdH4CC96xsyufiRIyqihbMsx+laPBLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=UsSieEfL; arc=none smtp.client-ip=195.78.66.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=BrySV1GGDNC+xsZXBQb7ZXd9wQjZLt31E8wC0iR2C68=; b=UsSieEfLSXnMNIrkartExrEioU
+	TR4r407Du+/cr370xNbt2a6XAYbpdgVPD0ZRAGd7MG7UOeoqJSF5jXFSSihUylVTR28wovjexzYjr
+	a0PZyGUOcgxFP7NFvJYRSJY1E16R7H2VfC5IhF4yAeNdxcOYgoZQXcpz9Mhh6Rwnaq2G/Kr6wznU4
+	aPRCCZVixV238llpesDyPY/pAMzgu60rOR2TRNG/6JphCEMGjgMcYPjPRJoLsmCl5qDxtfYkaVtyY
+	mBm9MlIkoXUKBb8YCw3POWei2vzxagzfUOU0TGRh4Wf/HH8wnPo5Mvd/Opleb5rJ6PkWSQimN+mQg
+	Q39vRbPg==;
+Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
+	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <michal.piekos@mmpsystems.pl>)
+	id 1wKdth-00000003arQ-2Y1c;
+	Wed, 06 May 2026 17:10:49 +0200
+From: Michal Piekos <michal.piekos@mmpsystems.pl>
+Subject: [PATCH v4 0/4] Add hstimer support for H616 and T113-S3
+Date: Wed, 06 May 2026 17:10:25 +0200
+Message-Id: <20260506-h616-t113s-hstimer-v4-0-591d425863d6@mmpsystems.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 2/2] phy: k1-usb: k3: add USB2 PHY support
-To: Yixun Lan <dlan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>
-Cc: Junzhong Pan <panjunzhong@linux.spacemit.com>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org, Yao Zi <me@ziyao.cc>
-References: <20260305-11-k3-usb2-phy-v4-0-15554fb933bc@kernel.org>
- <20260305-11-k3-usb2-phy-v4-2-15554fb933bc@kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260305-11-k3-usb2-phy-v4-2-15554fb933bc@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: C8A994DCD4E
+X-B4-Tracking: v=1; b=H4sIAOFZ+2kC/23NTQqDMBCG4auUrJuSSWI0XfUepQsbxxqoP2QkV
+ MS7NwoFKS7fD+aZmREGj8Sup5kFjJ5836XQ5xNzTdm9kPsqNZNCGqFB8caA4SOAIt7Q6FsM3Ei
+ rrNVFbcGxdDgErP1nQ++P1I2nsQ/T9iPCuv44e8RF4IJDWecan1jnLru17UATjdjSZXizlYxyx
+ 0hzyMjEoMnQVk44W5VHjNozxSGjEpOjkJAXpVWI/8yyLF8rshT2RgEAAA==
+X-Change-ID: 20260413-h616-t113s-hstimer-62939948f91c
+To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: Michal Piekos <michal.piekos@mmpsystems.pl>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778080247; l=2438;
+ i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
+ bh=uNe4YHbNe0yih5EqSi5yN6HvLD9qpae4iOn6P3ifclQ=;
+ b=oQ1AG4MBxvQI5uCw4WRR1azxML7awKTWm3YtQDaBEAp1UCxgGNtUzOfAlOfrIeAC8Qlm4J0V+
+ Nt/nzg2+a+wCihKeIKPmcnlcPQyUOpEICSVTteT2/jlvVF9acT7JRnE
+X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
+ pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
+X-Authenticated-Id: michal.piekos@mmpsystems.pl
+X-Rspamd-Queue-Id: D1BEC4DCF1C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-293594-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293596-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:email,linaro.org:dkim,linaro.org:replyto,ziyao.cc:email];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.612];
+	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[mmpsystems.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-On 3/5/26 02:00, Yixun Lan wrote:
-> Add USB2 PHY support for SpacemiT K3 SoC.
-> 
-> Register layout of handling USB disconnect operation has been changed,
-> So introducing a platform data to distinguish the different SoCs.
-> 
-> Reviewed-by: Yao Zi <me@ziyao.cc>
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> ---
->   drivers/phy/spacemit/phy-k1-usb2.c | 34 +++++++++++++++++++++++++++++-----
->   1 file changed, 29 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-> index 9215d0b223b2..87b943d9111f 100644
-> --- a/drivers/phy/spacemit/phy-k1-usb2.c
-> +++ b/drivers/phy/spacemit/phy-k1-usb2.c
-> @@ -51,6 +51,9 @@
->   #define PHY_K1_HS_HOST_DISC		0x40
->   #define  PHY_K1_HS_HOST_DISC_CLR		BIT(0)
->   
-> +#define PHY_K3_HS_HOST_DISC		0x20
-> +#define  PHY_K3_HS_HOST_DISC_CLR		BIT(8)
-> +
->   #define PHY_PLL_DIV_CFG			0x98
->   #define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
->   #define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
-> @@ -145,7 +148,7 @@ static int spacemit_usb2phy_exit(struct phy *phy)
->   	return 0;
->   }
->   
-> -static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
-> +static int spacemit_k1_usb2phy_disconnect(struct phy *phy, int port)
->   {
->   	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
->   
-> @@ -155,10 +158,27 @@ static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
->   	return 0;
->   }
->   
-> -static const struct phy_ops spacemit_usb2phy_ops = {
-> +static int spacemit_k3_usb2phy_disconnect(struct phy *phy, int port)
-> +{
-> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> +
-> +	regmap_update_bits(sphy->regmap_base, PHY_K3_HS_HOST_DISC,
-> +			   PHY_K3_HS_HOST_DISC_CLR, PHY_K3_HS_HOST_DISC_CLR);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops spacemit_k1_usb2phy_ops = {
->   	.init = spacemit_usb2phy_init,
->   	.exit = spacemit_usb2phy_exit,
-> -	.disconnect = spacemit_usb2phy_disconnect,
-> +	.disconnect = spacemit_k1_usb2phy_disconnect,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static const struct phy_ops spacemit_k3_usb2phy_ops = {
-> +	.init = spacemit_usb2phy_init,
-> +	.exit = spacemit_usb2phy_exit,
-> +	.disconnect = spacemit_k3_usb2phy_disconnect,
->   	.owner = THIS_MODULE,
->   };
->   
-> @@ -167,12 +187,15 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
->   	struct phy_provider *phy_provider;
->   	struct device *dev = &pdev->dev;
->   	struct spacemit_usb2phy *sphy;
-> +	const struct phy_ops *ops;
->   	void __iomem *base;
->   
->   	sphy = devm_kzalloc(dev, sizeof(*sphy), GFP_KERNEL);
->   	if (!sphy)
->   		return -ENOMEM;
->   
-> +	ops = device_get_match_data(dev);
-> +
->   	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
->   	if (IS_ERR(sphy->clk))
->   		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
-> @@ -185,7 +208,7 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
->   	if (IS_ERR(sphy->regmap_base))
->   		return dev_err_probe(dev, PTR_ERR(sphy->regmap_base), "Failed to init regmap\n");
->   
-> -	sphy->phy = devm_phy_create(dev, NULL, &spacemit_usb2phy_ops);
-> +	sphy->phy = devm_phy_create(dev, NULL, ops);
->   	if (IS_ERR(sphy->phy))
->   		return dev_err_probe(dev, PTR_ERR(sphy->phy), "Failed to create phy\n");
->   
-> @@ -196,7 +219,8 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id spacemit_usb2phy_dt_match[] = {
-> -	{ .compatible = "spacemit,k1-usb2-phy", },
-> +	{ .compatible = "spacemit,k1-usb2-phy", .data = &spacemit_k1_usb2phy_ops },
-> +	{ .compatible = "spacemit,k3-usb2-phy", .data = &spacemit_k3_usb2phy_ops },
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
-> 
+Add support for Allwinner D1 high speed timer in sun5i hstimer driver
+and describe corresponding nodes in dts for H616 and T113-S3 SoC's.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+D1 and H616 uses same model as existing driver except register shift
+compared to older variants. 
 
-Thanks,
-Neil
+Added register layout abstraction in the driver, extended the binding
+with new compatibles and wired up dts nodes for T113-S3 and H616 which
+uses D1 as fallback compatible.
+
+Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+---
+Changes in v4:
+- Move T113 related dts change to d1s-t113 for D1 to benefit too.
+- Link to v3: https://patch.msgid.link/20260428-h616-t113s-hstimer-v3-0-7e02178a93ee@mmpsystems.pl
+
+Changes in v3:
+- Removed left over dead code from v1
+- Link to v2: https://lore.kernel.org/r/20260426-h616-t113s-hstimer-v2-0-e65e9dc0c9da@mmpsystems.pl
+
+Changes in v2:
+- Change driver handling of different offsets to using quirks
+- Change from t113s to d1 as the fallback compatible string
+- Fix conditional compatible matching
+- Link to v1: https://lore.kernel.org/r/20260419-h616-t113s-hstimer-v1-0-1af74ebef7c5@mmpsystems.pl
+
+To: Daniel Lezcano <daniel.lezcano@kernel.org>
+To: Thomas Gleixner <tglx@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: Andre Przywara <andre.przywara@arm.com>
+
+---
+Michal Piekos (4):
+      dt-bindings: timer: allwinner,sun5i-a13-hstimer: add H616 and D1
+      clocksource/drivers/sun5i: add D1 hstimer support
+      arm: dts: allwinner: d1s-t113: add hstimer node
+      arm64: dts: allwinner: h616: add hstimer node
+
+ .../timer/allwinner,sun5i-a13-hstimer.yaml         |  9 ++-
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     | 10 +++
+ arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi  |  9 +++
+ drivers/clocksource/timer-sun5i.c                  | 84 +++++++++++++++++-----
+ 4 files changed, 92 insertions(+), 20 deletions(-)
+---
+base-commit: 74fe02ce122a6103f207d29fafc8b3a53de6abaf
+change-id: 20260413-h616-t113s-hstimer-62939948f91c
+
+Best regards,
+--  
+Michal Piekos <michal.piekos@mmpsystems.pl>
+
 
