@@ -1,152 +1,296 @@
-Return-Path: <devicetree+bounces-293565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293566-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMFtBVZU+2n+ZQMAu9opvQ
-	(envelope-from <devicetree+bounces-293565-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:46:46 +0200
+	id 6p0RJ/9S+2k5ZgMAu9opvQ
+	(envelope-from <devicetree+bounces-293566-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:41:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67F44DC853
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:46:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02154DC662
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0C5F30C178B
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:32:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0D169309D252
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27AA1480DCA;
-	Wed,  6 May 2026 14:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A09466B5D;
+	Wed,  6 May 2026 14:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XeMZZyp8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gBrxB4IJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D53472798;
-	Wed,  6 May 2026 14:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB022480DF1
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 14:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778077965; cv=none; b=VXa6weMKqxteFxT4u8iwPlT3etHBgcjSFbiaXX/FP6Jmv+utYvNMBKOyzaBK7pZfV/l0clIq2fAMaQU0xM+0/xt/fw8gMtsUMgi+sop3RLHzRjqvqYm91yt0lwQuL3vahQ7j/9NIvEGavH5bdTHbigw2ugPPRJBFsnyrB9oAnb4=
+	t=1778078079; cv=none; b=gIaHkt4QLs2naviCWYhvuwyZx/hWaPGb+O87cfKq+Yl+Er8Kkd9nCG3rrMNJiVGAs02+YL2HIdUo8iSsqgXTQ2OvAA4Q6C9CsEp+8uzUQuSEfMWtN+Cv+umVReXumW+3QiTd9sgUVb+7UM2jwntjezCAYl2ma+kjFGkMVsn9/gA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778077965; c=relaxed/simple;
-	bh=M4Op3MU8U7qnFirwJEpwL6TP+LDf5NNBUxWnDHHh+ew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qO+TGO4KochL4moZd+OlsPn7VDTnsH+Ps2cKnqdR+1OzkmiByEGF5+4Q2qqbQ6ZfY0TG4JsMlq+yKmU8iKnflNCyDmsJWl/RUe3hIAU0pKpqKk+7DGyzgXCNuC+MN5/JpIlN0osD7MZ5gK2TOO1BlXZ1WVSjI5Rx3vruetEbGB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XeMZZyp8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD95C2BCC7;
-	Wed,  6 May 2026 14:32:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778077964;
-	bh=M4Op3MU8U7qnFirwJEpwL6TP+LDf5NNBUxWnDHHh+ew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XeMZZyp8ExfOaWggSUq1pd6kDO03pFpo+gCgb8xbicGas9fdGsFXtK325XqXKS0cb
-	 TCfRe2GdYDmnGvdmJbSo1SEv0UbHebmojCXfG9pEFLDrxF2OHzWJvhA/ioc12ZUQMu
-	 s0KHBIWMjBsLHzrr5Q+SCQKSX075RA0TOC0WoGj4bMs3QjgZmi50cnEbe33lQaqnm2
-	 GU5QVVFNdOJW7qFwpJ1nTGAy2BX5C3lYp9lt/EKdzv70lagu1KDG3U2YWp/cJUH/tQ
-	 D4GUMexjSTCRQ8n1A63coMyxFXXvkekHcBAKl2LVI+m7DI1IUzpKj45SsL3I8Te8D6
-	 eznSX3yLHKyrw==
-Date: Wed, 6 May 2026 07:32:41 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: yunhui cui <cuiyunhui@bytedance.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	Nicolas Pitre <npitre@baylibre.com>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Chen Pei <cp0613@linux.alibaba.com>,
-	Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-	Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
-	Gong Shuai <gong.shuai@sanechips.com.cn>,
-	Gong Shuai <gsh517@gmail.com>, liu.qingtao2@zte.com.cn,
-	Reinette Chatre <reinette.chatre@intel.com>,
-	Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
-	Peter Newman <peternewman@google.com>,
-	Fenghua Yu <fenghua.yu@intel.com>,
-	James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>,
-	Dave Martin <Dave.Martin@arm.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1778078079; c=relaxed/simple;
+	bh=ZtQm1DLPCb49LaYGlv91MpW5MAdX/0m3eqnscUKai5g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pLPt2qn+IPoaXgwetI5mpTZglxr2SPZqcrLWvF8d5wOQLJMq3ckiXsLh9TXCWDb6nM8g3hvP1JjYA4HQppHGTJtgaWHsOEIEmL6rEPb4BvBOqw94nSZt0zQ0iHf1dAPiX7osPshgFuEp/KbZWNxxl1zR6DWPRN+bvJ7HW0yH+d8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gBrxB4IJ; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-488b0046078so57690545e9.1
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 07:34:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778078076; x=1778682876; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zqAP6HoJp4PDzUAz6DYhX+6+R5thQEEp6vdxh3M2Ufs=;
+        b=gBrxB4IJnNtNMw/0QTxYhg5X/M6wKtHWe+vXvzPEU9FiKZWDhd5GmukQk8B9ZED6LQ
+         CbLLuO5Dx8IVfjYlzcX/sFmDAO9TkUothV/wnXmOrgQ/+EMqfhiv1UT0OlS/CDYOLZ30
+         IttvhWVg9voJnntiC7mw1dHOZOGMkElKT5r4UcqFMk4We9m7wqUEuCT7B+FNpjfS5DNp
+         op9JCSyrsAjeG9iX6FCeKffM4i2F/RKiwCtVJZt+v4+z3SeHGQwT+ZirmX3mg/qQxQyW
+         xcJ/W7U2tCBQYnvdKg69LVaAIFzEu4aAub3heXewaSsIz3UCE9j840roUNYXAhkqVZdx
+         NxvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778078076; x=1778682876;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zqAP6HoJp4PDzUAz6DYhX+6+R5thQEEp6vdxh3M2Ufs=;
+        b=ZM87egRn0sXt6TGfIvZLLU1r/J1ZFdMdnEC445/eW18XKio5gCRwvYRiw1GB8wp5Db
+         jkV35NJIDHi3liMvz18m3kIn9SuuqzhY2A8bj+Cuk8Gjxgbp2YJY+n4dhyGz4EwSNpjy
+         8p00gd2DQr2LuSYXRjIZJcE7PdmU/zs5CO4Fi4TM219TweLDEhBvUw29z1DczboyE1sb
+         K0MJq2NVZYXqJypJhnOb0gEUEdq5rITp7VdS+tzvmZYhPw6FbrCmhAoSDyVj+VT2RyVu
+         gMwC0I3G3oRQpqh+jGOq2sqCL/PH1/sOZSqN21JyPnDAVjSzwPeZTu/W8/hB5TfRDek4
+         meRg==
+X-Forwarded-Encrypted: i=1; AFNElJ8brz03oIPiosx36yMkISov0rjRUb/ACgXDs/hRZyUiNXwlHSSIIsK9Ti6KV65A1Jvl+4/GX7Xz2Gs6@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywhku2DiphEwj2TI82Cs1VZZsIhMkAmyJsCX+SyrFy+sIdRDCI1
+	Yg0xj4QVMLwTe+J/ny/Ok6qWWQw2igfR9OipfeqNDSEgmMoOSMic9oGB
+X-Gm-Gg: AeBDietjxsFZbW4LnrjDY7YmVEZs+GhstA4H27lSwGQYmO+Fcvob8HZQERWI95ulIQ4
+	eh/Wfwswy/xfVn6gh5WIHdP6b/xYYgWP7SSWNZ54oADYmThlcm6t5LRxfKZmG/xommVnuZ/sIy0
+	CCQboVlIZ9Yzfoe3CJWHPw7iHAIaLlNxEID3oK53U4pEIXRqcFWEntbq25o8bvCfwD0ogm9ey66
+	JslJhLy4C5R9IEa1cb+fI9jx3h9/To5NuQ75kupsTkX8u6ZO5D6NjGa2m6tKsbR4Q5jM3ZXCvdw
+	1phCXUHsQLozV2VRUFnVdpIXuiyg4jx7ScDh16bemsT9q3WOUxCWq7bugFF5tFhak1qVdliwZid
+	grbJQzm10kbUeS352l34x3SFMixBv4Y26uY89CriDEQF8U9jz2iYTVila0IEHdJW6KmC6FMPftC
+	rFQWhk10ktlzJBCGcBVLTZksFm7ziMXx3lOOdrIekYgMFcwqaYcGFn
+X-Received: by 2002:a05:600c:1d18:b0:489:1f97:6b1d with SMTP id 5b1f17b1804b1-48e51f4844emr64680535e9.28.1778078075891;
+        Wed, 06 May 2026 07:34:35 -0700 (PDT)
+Received: from vitor-nb (dsl-113-208.bl27.telepac.pt. [176.79.113.208])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e530d8691sm42893115e9.2.2026.05.06.07.34.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 May 2026 07:34:35 -0700 (PDT)
+From: Vitor Soares <ivitro@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
-	Sunil V L <sunilvl@ventanamicro.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, x86@kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
+	Conor Dooley <conor+dt@kernel.org>,
+	Francesco Dolcini <francesco@dolcini.it>
+Cc: Vitor Soares <vitor.soares@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [External] [PATCH RFC v3 00/11] RISC-V: QoS: add CBQRI resctrl
- interface
-Message-ID: <aftRCQhRc585Jski@x1>
-References: <20260414-ssqosid-cbqri-rqsc-v7-0-v3-0-b3b2e7e9847a@kernel.org>
- <CAEEQ3wn3F-Wg-Wi+d5znpcgt5pfJVuRQCPvi4W7q4an+SLrOdQ@mail.gmail.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: ti: k3-am62-verdin: Add DSI to HDMI adapter overlay
+Date: Wed,  6 May 2026 15:34:26 +0100
+Message-ID: <20260506143427.348806-2-ivitro@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEEQ3wn3F-Wg-Wi+d5znpcgt5pfJVuRQCPvi4W7q4an+SLrOdQ@mail.gmail.com>
-X-Rspamd-Queue-Id: A67F44DC853
-X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: F02154DC662
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [6.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-293565-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,microchip.com,linux.alibaba.com,gmail.com,zte.com.cn,sanechips.com.cn,intel.com,amd.com,google.com,arm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293566-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
+	GREYLIST(0.00)[pass,meta];
+	TO_DN_SOME(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_SPAM(0.00)[0.585];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[44];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,toradex.com:url,toradex.com:email,0.0.0.48:email]
+X-Spam: Yes
 
-On Tue, May 05, 2026 at 12:46:14PM +0800, yunhui cui wrote:
-> Hi Drew,
-> 
-> On Wed, Apr 15, 2026 at 9:57 AM Drew Fustini <fustini@kernel.org> wrote:
-> > Changelog
-> > ---------
-> > Changes in v3:
-> 
-> Thanks for posting the series. Once the remaining issues are
-> addressed, are you considering moving this out of RFC in the next
-> revision?
+From: Vitor Soares <vitor.soares@toradex.com>
 
-I do intend to post as a real non-RFC patch series eventually but the
-two main open issues are:
+Add a device-tree overlay for the Toradex DSI to HDMI Adapter, an
+accessory that connects to the Verdin DSI_1 interface and provides a
+full-size HDMI Type-A output. The adapter is based on the Lontium
+LT8912B DSI-to-HDMI bridge.
 
-  - refactor support for bandwithd reservation and bandwidth weight on
-    Reinette's proof-of-concept once that is posted.
+The overlay is also combined with the Verdin AM62 carrier board device
+trees to provide ready-to-use DTBs for the Dahlia and Development Board
+carriers, in both WiFi and non-WiFi SoM variants.
 
-  - ACPI RQSC headers added to Linux through the standard ACPICA process
-    once the RQSC spec is ratified.
+Link: https://developer.toradex.com/hardware/accessories/add-ons/dsi-hdmi-adapter
+Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+---
+ arch/arm64/boot/dts/ti/Makefile               | 13 +++
+ .../dts/ti/k3-am625-verdin-dsi-to-hdmi.dtso   | 94 +++++++++++++++++++
+ 2 files changed, 107 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-hdmi.dtso
 
-Thanks,
-Drew
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 7642c06ca834..21db60cd19de 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -9,19 +9,32 @@
+ # alphabetically.
+ 
+ # Boards with AM62x SoC
++k3-am625-verdin-nonwifi-dahlia-dsi-to-hdmi-dtbs := k3-am625-verdin-nonwifi-dahlia.dtb \
++	k3-am625-verdin-dsi-to-hdmi.dtbo
++k3-am625-verdin-nonwifi-dev-dsi-to-hdmi-dtbs := k3-am625-verdin-nonwifi-dev.dtb \
++	k3-am625-verdin-dsi-to-hdmi.dtbo
++k3-am625-verdin-wifi-dahlia-dsi-to-hdmi-dtbs := k3-am625-verdin-wifi-dahlia.dtb \
++	k3-am625-verdin-dsi-to-hdmi.dtbo
++k3-am625-verdin-wifi-dev-dsi-to-hdmi-dtbs := k3-am625-verdin-wifi-dev.dtb \
++	k3-am625-verdin-dsi-to-hdmi.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-tqma62xx-mba62xx.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dsi-to-hdmi.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia-dsi-to-hdmi.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev-dsi-to-hdmi.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-ivy.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-mallow.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-yavia.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-zinnia.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia-dsi-to-hdmi.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev-dsi-to-hdmi.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-ivy.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-mallow.dtb
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-hdmi.dtso b/arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-hdmi.dtso
+new file mode 100644
+index 000000000000..a219faf0dcc6
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-hdmi.dtso
+@@ -0,0 +1,94 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright (c) Toradex
++ *
++ * Toradex DSI to HDMI Adapter on Verdin DSI_1
++ *
++ * https://developer.toradex.com/hardware/accessories/add-ons/dsi-hdmi-adapter
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++
++&{/} {
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pwm3_dsi_gpio>;
++		ddc-i2c-bus = <&main_i2c2>;
++		/* Verdin PWM_3_DSI (SODIMM 19) */
++		hpd-gpios = <&main_gpio1 17 GPIO_ACTIVE_HIGH>;
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&dsi_hdmi_bridge_out>;
++			};
++		};
++	};
++};
++
++&dsi_bridge {
++	status = "okay";
++};
++
++&dsi_bridge_ports {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	port@1 {
++		reg = <1>;
++
++		dsi_bridge_out: endpoint {
++			remote-endpoint = <&dsi_hdmi_bridge_in>;
++		};
++	};
++};
++
++&dss {
++	status = "okay";
++};
++
++/* Verdin PWM_3_DSI (SODIMM 19) repurposed as HDMI HPD GPIO */
++&epwm1 {
++	status = "disabled";
++};
++
++/* Verdin I2C_1 */
++&main_i2c1 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	hdmi@48 {
++		compatible = "lontium,lt8912b";
++		reg = <0x48>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_dsi1_bkl_en>;
++		/* Verdin GPIO_10_DSI (SODIMM 21) */
++		reset-gpios = <&main_gpio0 30 GPIO_ACTIVE_LOW>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				dsi_hdmi_bridge_in: endpoint {
++					data-lanes = <1 2 3 4>;
++					remote-endpoint = <&dsi_bridge_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				dsi_hdmi_bridge_out: endpoint {
++					remote-endpoint = <&hdmi_connector_in>;
++				};
++			};
++		};
++	};
++};
+-- 
+2.53.0
+
 
