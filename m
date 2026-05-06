@@ -1,67 +1,83 @@
-Return-Path: <devicetree+bounces-293575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDF7LENX+2n+ZQMAu9opvQ
-	(envelope-from <devicetree+bounces-293575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:59:15 +0200
+	id uPuWCu9W+2mrZgMAu9opvQ
+	(envelope-from <devicetree+bounces-293577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:57:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A1E4DCC4D
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:59:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7684DCBE1
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:57:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 49628309CFF9
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:45:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8DAB530D2E2C
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E32480942;
-	Wed,  6 May 2026 14:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817F0481657;
+	Wed,  6 May 2026 14:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="asJ2zJX1"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lPzQdyIN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2CF48033F;
-	Wed,  6 May 2026 14:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C0313C277F;
+	Wed,  6 May 2026 14:46:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778078745; cv=none; b=ghX7uln6OKOGnf6hylB+kMo9irVnR+HpwVpGwNuAtdYNlQcRIEv2ccw8TgpTVOJkTCMnelEC8JRyxhoVCnqBscHiOTQmB5s+GZoQ/w9ScuDWrktRfDPsenkwrGboHk8CTFqRtILqobxWy3yYvtHChCks8KKwSfeMahNq3VQt5v0=
+	t=1778078791; cv=none; b=qUYZg9ruY2HmkB7VFluyjmDe+PglNhosGPo5/dqlx3OJMyAQvvd8GCQ9m27lYVeU9DPKwJZRsFB3fujjX0MFac5ULYYnsuidL0eZTXw3zpb6qZBtt3mVtHl9dSI0jrjDLLvaF/GEZ+F+vSDzFwqhA8fGqhcrqChVTEDUAd+I57Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778078745; c=relaxed/simple;
-	bh=0KO8hApD0eGU7/dmfhl80Uq28cv6QcKZtN0DhSa6VO8=;
+	s=arc-20240116; t=1778078791; c=relaxed/simple;
+	bh=BBsfz60aUEgeqtpoRh3PBAM8J8mQ6w/W2WKceCw3UYo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rqmgmYJw1VH95uFOu/ekxDYwVVPixzb+chbz1CJluleazdlHiKkf0+imON4Kh1E4ZZx6QKoaLfrq43HIXvjapU2ULqmNXwaOq8uUmZnnpfB+jU0FLYoNLdlt1WfS4nZ2vsOn5kIXQyAWaSetwVBxYtq8Gny0yTK8bhR/Y3cfaA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=asJ2zJX1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C551CC2BCB0;
-	Wed,  6 May 2026 14:45:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778078745;
-	bh=0KO8hApD0eGU7/dmfhl80Uq28cv6QcKZtN0DhSa6VO8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=asJ2zJX1kDJF4N0879YgzX1aEN+OycWFuFs84uFQjFbe8XLl2JHLjmVHMoHBwAk6J
-	 EyTzWttjeZ93aH8W7WcFdePxJWrsBw+70Fkp1Sj/wAXvJJ9ZUP0h6gsAQLVvDjqXg+
-	 1JmbHeC6lmnatopx+tcxUwuh3OWiIVIg9v7sbG4queTxnNERHgV5fuJoHciimhrIva
-	 z6tiru0U8Vxnzc3gPBEsx2ByvC9Goicr/7n+uezz8eLpotdhh9lgEl05dnGU8nYkxS
-	 OEKJJCfqVKkDK1W7iVncEPYYt+PI8inusarD9Il7nm3cTLeZ9yidzQoX4xCLwhJW5m
-	 DVbx5oZerq5OA==
-Date: Wed, 6 May 2026 09:45:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: Chen Wandun <chenwandun1@gmail.com>
-Cc: kexec@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	loongarch@lists.linux.dev, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, akpm@linux-foundation.org,
-	bhe@redhat.com, rppt@kernel.org, pasha.tatashin@soleen.com,
-	pratyush@kernel.org, ruirui.yang@linux.dev, corbet@lwn.net,
-	skhan@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
-	chenhuacai@kernel.org, kernel@xen0n.name, pjw@kernel.org,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, saravanak@kernel.org,
-	chenwandun@lixiang.com, zhaomeijing@lixiang.com, everyzhao@126.com
-Subject: Re: [PATCH 05/11] of: reserved_mem: add linux,no-dump property
- support for reserved memory regions
-Message-ID: <20260506144542.GA2072596-robh@kernel.org>
-References: <20260429065831.1510858-1-chenwandun@lixiang.com>
- <20260429065831.1510858-6-chenwandun@lixiang.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=t2vYoS3eSkvWOCDVk2K3713BzZnizT4Jtg428ynU30q9UjVXmGnJi0KAaoPOQEda7SOfaZ1FnC3PX499srfyP2o6dD87sV1bGWLyjHrKBbltHQkriMUdA9rTaB3IhlK74gybf7w+RAtOxlKthOS0R+KUPX92CXO2ISgfTVRR8ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lPzQdyIN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=vyEPyUZJeX9dO6F6nRE5z42G4sCReKS00+GvfPpcSWM=; b=lPzQdyINhroAWnkNF/Qgri1OvX
+	sBk/9p971b+YnthhhMi3GnMwiaebMUyvGTxPL7iRNx1Ise2+lutlySwHs0KIdToFgYAOHZz4tuy7L
+	5BfnGqTk2MJAvy8DQoCx1v8ddewIDTqCDUWHNmERhbltK2nyc6BC1A4tHat7+Vc/TYqk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wKdVO-001ekY-Pc; Wed, 06 May 2026 16:45:42 +0200
+Date: Wed, 6 May 2026 16:45:42 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Xilin Wu <sophon@radxa.com>
+Cc: Alex Elder <elder@riscstar.com>, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, maxime.chevallier@bootlin.com,
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
+	arnd@arndb.de, gregkh@linuxfoundation.org,
+	Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
+	a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
+	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
+	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
+	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
+	julianbraha@gmail.com, livelycarpet87@gmail.com,
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+	rohan.g.thomas@altera.com, sdf@fomichev.me,
+	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
+	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 10/12] net: stmmac: tc956x: add TC956x/QPS615
+ support
+Message-ID: <2af0fee3-d3d6-4434-847f-3fd2fbb841d3@lunn.ch>
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-11-elder@riscstar.com>
+ <224E233C593EF171+8c8a43dd-5061-40f8-9eb7-f360eabf2ecc@radxa.com>
+ <4015f47a-af62-441d-b1b8-a8598f963970@lunn.ch>
+ <4C0D95BC59F1A4ED+53f3be85-2cdd-4058-8950-57970027d481@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,75 +86,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260429065831.1510858-6-chenwandun@lixiang.com>
-X-Rspamd-Queue-Id: D0A1E4DCC4D
+In-Reply-To: <4C0D95BC59F1A4ED+53f3be85-2cdd-4058-8950-57970027d481@radxa.com>
+X-Rspamd-Queue-Id: AE7684DCBE1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,lists.linux.dev,linux-foundation.org,redhat.com,kernel.org,soleen.com,linux.dev,lwn.net,linuxfoundation.org,arm.com,xen0n.name,dabbelt.com,eecs.berkeley.edu,lixiang.com,126.com];
-	TAGGED_FROM(0.00)[bounces-293575-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[riscstar.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-293577-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[51];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,armlinux.org.uk:email]
 
-On Wed, Apr 29, 2026 at 02:58:25PM +0800, Chen Wandun wrote:
-> Add a 'no_dump' field to struct reserved_mem and parse the
-> 'linux,no-dump' device tree property during reserved memory node
-> initialization. This property allows device tree authors to mark
-> specific reserved memory regions that should be excluded from kdump
-> vmcore dumps.
+> Hi Andrew,
 > 
-> Reserved memory regions used by device firmware (e.g., GPU, DSP, modem)
-> typically contain data that is not useful for kernel crash analysis and
-> can significantly increase vmcore size. The 'linux,no-dump' property
-> provides a declarative way to indicate these regions should be filtered
-> out when constructing the elfcorehdr for kdump.
+> Yes, the PHY is doing the WoL. And I guess this makes sense as it allows the
+> MAC to power down during suspend to save power.
 > 
-> The property is named with a 'linux,' prefix because kdump/vmcore is
-> Linux-specific and the property is an OS hint rather than a hardware
-> description, matching existing properties such as 'linux,cma-default'
-> and 'linux,usable-memory-range'.
+> The INTN pin of QCA8081 is connected to the ETH_0_INT_N of QPS615. And the
+> INTN_WOL pin is connected to a SoC GPIO.
 > 
-> The 'linux,no-dump' property is only effective when the region:
->  - Does not have 'no-map': these regions are already excluded from
->    vmcore since they are removed from the linear mapping (MEMBLOCK_NOMAP).
->  - Does not have 'reusable': CMA reusable regions are actively used by
->    the kernel for movable page allocations, and their contents are
->    valuable for crash analysis.
-> 
-> The no-dump status is also printed in the boot log alongside the
-> existing nomap and reusable flags for diagnostic purposes.
+> Without this change, I can't get WoL to work. I have a working branch for
+> our board here:
+> https://github.com/strongtz/linux-radxa-qcom/commits/v7.0.2-8280-wip/
 
-I think this property is the wrong way around and probably not needed. 
-The default should be exclude the regions, but if Linux is using the 
-regions (like CMA) then it can decide on its own to include them.
+Please take a look at commit
 
-With the restructuring that went into 7.1, it should be possible for the 
-CMA code (and code for any other regions) to set some flag for the 
-region.
+commit 6911308d7d111a9c367293b52f2dc265819f2b60
+Author: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Date:   Thu Oct 23 10:16:50 2025 +0100
 
-Rob
+    net: stmmac: convert to phylink-managed Wake-on-Lan
+
+In particular:
+
+    When STMMAC_FLAG_USE_PHY_WOL is not set, we provide the MAC's WoL
+    capabilities to phylink, which then allows phylink to choose between
+    the PHY and MAC for WoL depending on their individual capabilities
+    as described in the phylink commit. This only augments the WoL
+    functionality with PHYs that declare to the driver model that they are
+    wake-up capable. Currently, very few PHY drivers support this.
+    
+Could you actually patch the PHY driver to make it list its
+capabilities. That is the direction we want to go in the long term,
+and not use STMMAC_FLAG_USE_PHY_WOL.
+
+    Andrew
 
