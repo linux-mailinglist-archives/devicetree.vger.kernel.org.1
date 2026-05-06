@@ -1,292 +1,281 @@
-Return-Path: <devicetree+bounces-293390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293392-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YA+kCsTk+mm3TwMAu9opvQ
-	(envelope-from <devicetree+bounces-293390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:50:44 +0200
+	id mBnLKBvp+mlIUAMAu9opvQ
+	(envelope-from <devicetree+bounces-293392-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 09:09:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851984D6CB0
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:50:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 084E94D706B
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 09:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BB903013489
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 06:50:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 46D46303C4E2
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 07:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDAC7367F2E;
-	Wed,  6 May 2026 06:50:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF74347BD4;
+	Wed,  6 May 2026 07:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MZp+d2kR"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MYPeH8eE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011047.outbound.protection.outlook.com [40.107.130.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BD630C618
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 06:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778050240; cv=none; b=LsHFcW2jMN5sCqQuD7awRoZuXtPARp3oI0AjlYloZoa/cz3y1hvVVy00IiXDcOdD4M1eM2Owb+WGD3ycgFRLncQEEFOxffEfsWDnbxZxkP4IYs9AxZQKX0ClOJR9rY91YbcPcDqivoorv3TeYmxZsWw6jUJBqc+ZhFdXvcNf2nI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778050240; c=relaxed/simple;
-	bh=uxlX6Gcmsd9bWbw8fKTJPbfRFLUxFx8Sv/6fr1Litv4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TxSBIiin219VCoZiWACx2rUPJI0mSLYrUKIUaGtR07XxSFNenlqqeZlRdsW1vEc1n2EXAwOZ1ceWEXaoTaAzvNKKQM55o8naPH8M34Qg9HZWn805ATOiJpF9dEtwUi8wlTUbuoIfZJdkPqJ6ESSELJLeTLiZQhL0hUrTb2F52Ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MZp+d2kR; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-678adefbd26so11374989a12.3
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 23:50:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778050237; x=1778655037; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J7uzaq8Z+Qd3g9gr2RKexUjVoo4DK/9fbKzFG8oa4Gw=;
-        b=MZp+d2kRzAGGezO6AnfHTj25fsLtbHOBON+9sMVdSpIlL0EEe5jrdPGFf1ZYdDKrxT
-         XRbwHN8jMjhunmEVxbvWmYYXYt8N63s9BC/c20fsaqez/kdJiuitjV30/lXAcGi3K8Pz
-         O/L5DmRoAO7B25XcDibsJXFP/bPgwtynsXwhEFK45/hY78nmjbqh8to3ECLd24maIQL7
-         4+FIsnfR1LagVuuHilALgTtf7ClqGooqK9CALAbiVvpdFP9vr6OX1ZmKvk6pf4wuL+o0
-         2cD8OT/okIN1NnO1fMab13L46B7ENsHgoi2rB2oA59+iGR23Sb+WlX/4lBo2KkZSZl3s
-         k3nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778050237; x=1778655037;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J7uzaq8Z+Qd3g9gr2RKexUjVoo4DK/9fbKzFG8oa4Gw=;
-        b=lI2eMQ8JLLySHwE6ioG/a3ggHXVS3+vWFnTYdjD6oWlGaKrJBKsOjtvo37Z6DsNknZ
-         JChHQ+AhpaJ9cfyQOeFvKC7RI6U/uoR6smOY9JLLturEQB6zkQDCcQllidRqJk57lKky
-         oEvGAezh4IsTw1O75OTQq4LX+cxH0JPVbtiIU4j/U3FHCTSJk/XkgVBQhZYIfxeC8LeE
-         F0QLvQZkVniGjRwjr2s2VNSbku4Xr2+TkoiX7pUfexaEPa+nbI++LzAyLfwDOjGOjJc6
-         CG+5qoW/MQtxRdSSHmlJKnmTaP8LrGaLQhzXsZjBYt6elP7Z8imT2I6KadYrUYWUy3hj
-         ZNuA==
-X-Forwarded-Encrypted: i=1; AFNElJ+ojNj+LexHa1CznRfDJlBgA5k0j84JfIDPMj3HMl/b6Woo3FyHs8bfE2s3oxrdVIsJ3R9uu///98Ki@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy820+Mdoqo4GQMMbF/ADEP6n6w4J4rWl6Loe4nYyYrLcobjTw+
-	PKwxPoDcfymHyuhcYtR8I3raOTCNPDpPBQe9E5IqcHBJrJpe45wTnEX/
-X-Gm-Gg: AeBDies2AqdKG9Nm284U8xxevkKLd2+HRduWzYEORe0N7fTISXnVrcygZ/4D2oLB/83
-	O2X/pdrDHRKDRMCRWU19njYfnbAhx4kyQj7jPvFa2NjwxfcKRwqT6h4H7YI1B2qPLB/Hb5H6/i6
-	sK7xAPZAy1q/3LmK2iM+rPK9Y4MdoBZGWuC5eKl7sokHLKr9QXMZKv9bOjr1PxlJRzclZKeDbyn
-	/UJSi2D22Sm/lybdWkla3j7Z3O6eF4WrG7XT5X62ja8atlKLtXohnRrKxNeC0XnMGYpGIIuLhTm
-	Q5o3HcEq5kM+LwyowNGQcc1/3tmeI7oCxM9WBiSh40vP04P0UT9akjwGdRWmyoGXukxh6qFQ0ON
-	MggV6d/5ms2+GUIWL8ejosNy8/BGG4hB3Ptfoe9OpP95U8izTJaw+huDmu77VfdHjKAVyhq1PXV
-	jnYOzSR+9adVcqMSQCAmom8HNWwA==
-X-Received: by 2002:a05:6402:5112:b0:66c:304d:bf12 with SMTP id 4fb4d7f45d1cf-67d646af17amr674840a12.19.1778050237128;
-        Tue, 05 May 2026 23:50:37 -0700 (PDT)
-Received: from fedora ([2a00:20:d22c:fcce:9a0e:db2e:5657:8dc3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67cd91bb82asm979138a12.21.2026.05.05.23.50.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 23:50:36 -0700 (PDT)
-Date: Wed, 6 May 2026 08:50:33 +0200
-From: Wadim Mueller <wafgo01@gmail.com>
-To: William Breathitt Gray <wbg@kernel.org>
-Cc: linusw@kernel.org, brgl@kernel.org, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, robh@kernel.org, conor.dooley@microchip.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] counter: add GPIO-based quadrature encoder driver
-Message-ID: <4mklwzoe3g24rse57hcrztmq3u7lmr3czxs6jha4ltkys57o5z@rlrxjfjbpkeh>
-References: <20260501200749.20029-1-wafgo01@gmail.com>
- <20260504093648.530308-1-wbg@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C287121255A;
+	Wed,  6 May 2026 07:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778051180; cv=fail; b=SU2cGMuSRtKkq8iF8Eebnw/6L8FiKcxQvcxbw/b4cM0qoF018Rtl7Lk6hwNOnwD/B4Il8Fv4kmPvQmAB1u7AEVZyKpeqiMkwKbLLy6dFPLg/4UXJUCVlWbhJcefVryW6BsqzGYTjzuxd04isu93KtpIrR0v58ZnmthnevW2m0oM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778051180; c=relaxed/simple;
+	bh=NXic7DHtMH70C98OTHNdqdzTb6Y0Ifmthcx1ja9CGV0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=gDKih4VdGFLTxm1pbQYYEqNRksGHGlr2naNaHERoCSNW4KaskPYvoGjAligws8gCVRM1EeocYwDibFCLaoX+t96fYRmL34UbTKqsURJyZJM9sXQSQrz8asf2l2iRqA59LBFoDtIqyjtzHoKrNeWWVTvEgbBkW574MDnkEzLihVQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MYPeH8eE; arc=fail smtp.client-ip=40.107.130.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hqhPsl4oZqByI7kQ4l2Nek6d8o0UdIsWBu2pseoHRXP7/yIoxNBNz7FPCvXLdASzLkwmKa+KaED18OAc226nuI8WbVni2NOP+dKkhVYElOy0XPFPzaCWZwZuW3tt1CZ7E/q2xb/g/RpuAhknTyv1nOut8QJRXgLyGu+qi7bjXfV4J/aVXvm5uiAwajSA7xsumEjHkAomawmczw4ayDo+Ml7CSFtBIVOnthJBopt7vdA/ggujcoEwHu9Cky8GS+yho54aNpnDm8kiwQayMzyAh+XZ9UkO7zd6cOVhh9mVW1QYFj1V37mUGNINLs3jbcXGkkYlKAYkfDLy1C8s82vadQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NXic7DHtMH70C98OTHNdqdzTb6Y0Ifmthcx1ja9CGV0=;
+ b=Dlpus0FwjmDFuvFhlwGehRRySazw5Y5qaW0lrBr0IpRWGMZcHqlAlDyjcB5aspcge1wDV+G16LR2lWefqb2GB+bCLAALQL4VhtKNQXWXonERUdG1bZD5Rt5CnQmD1ctDEhL8hM6BPabtYR4Vh6POQliHw/JHkXKAAla6j9Qym+1neopcwRKCCJcN7MBQNiTIEHDjhBUzng+wiV7MfEa4fWW7Bp5X7IhGCtfFjfutigqz2GeChcOMWlQnPINX6gZGdTGrXd/CEVgqgxiJ+6KN2nhPU/NCyJFvNq4pMyN381YPNoWjUaXNAEQ9NKEH4t0mScLFd8r3LTpS21HcpRcktg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NXic7DHtMH70C98OTHNdqdzTb6Y0Ifmthcx1ja9CGV0=;
+ b=MYPeH8eEyjYgM3LyP3aPeSetEBHaV7OBubMtLgCFoPkRa5WJ4cDnK7mMJ300kKBuIbEEU2MScWS/fZW+cbZc4Dmt9xpEqF7ZZw0zF+uaZcct+SnJAdH1gfwzjgz+DgPQY5cR8R7eh3XmxIE41AVfvfBD4ux+/5s368IknXnXbCEroc0nzSNiFbqWjuHAp9/NM2W0vJPr9/sq7LhQnLP3yNvIZ9SUiwWU1rCGPLfW0M0gvZX4WUeZHddUaZDWmIJTfxP3V4Y6W8AgpKKS9vEbo0NvaikjOWoaNG18et696HVXIP1uDLPUp/xXawqe7eJ9zQl31TEBMGH0UCwwM161Og==
+Received: from DBBPR04MB7500.eurprd04.prod.outlook.com (2603:10a6:10:1f4::16)
+ by AM9PR04MB8068.eurprd04.prod.outlook.com (2603:10a6:20b:3b5::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Wed, 6 May
+ 2026 07:06:15 +0000
+Received: from DBBPR04MB7500.eurprd04.prod.outlook.com
+ ([fe80::c291:543b:4bde:cee7]) by DBBPR04MB7500.eurprd04.prod.outlook.com
+ ([fe80::c291:543b:4bde:cee7%6]) with mapi id 15.20.9891.008; Wed, 6 May 2026
+ 07:06:15 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Paolo Abeni <pabeni@redhat.com>
+CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, Claudiu Manoil <claudiu.manoil@nxp.com>, Vladimir
+ Oltean <vladimir.oltean@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "f.fainelli@gmail.com" <f.fainelli@gmail.com>, Frank
+ Li <frank.li@nxp.com>, "chleroy@kernel.org" <chleroy@kernel.org>,
+	"horms@kernel.org" <horms@kernel.org>, "linux@armlinux.org.uk"
+	<linux@armlinux.org.uk>
+Subject: RE: [PATCH v5 net-next 15/15] net: dsa: netc: add support for ethtool
+ private statistics
+Thread-Topic: [PATCH v5 net-next 15/15] net: dsa: netc: add support for
+ ethtool private statistics
+Thread-Index: AQHc2EvvKHBCmE+B9U+MrelUmBkfarX/NsOAgAFevYA=
+Date: Wed, 6 May 2026 07:06:14 +0000
+Message-ID:
+ <DBBPR04MB75005341C32C4798BA08D503883F2@DBBPR04MB7500.eurprd04.prod.outlook.com>
+References: <20260430024945.3413973-1-wei.fang@nxp.com>
+ <20260430024945.3413973-16-wei.fang@nxp.com>
+ <37382811-ba47-4432-9911-6c39acea4f86@redhat.com>
+In-Reply-To: <37382811-ba47-4432-9911-6c39acea4f86@redhat.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DBBPR04MB7500:EE_|AM9PR04MB8068:EE_
+x-ms-office365-filtering-correlation-id: aa0bcaba-2ac4-45e4-6033-08deab3df67d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|19092799006|1800799024|366016|38070700021|56012099003|22082099003|18002099003;
+x-microsoft-antispam-message-info:
+ rnE+BO0nIswEtT0siWV4vpDrE6lLtQkdww8Vpw9H8qt5n95NVxw52yO3Xl6MtHJwGBVv4I9NQ9fHWGf2dFVHErjzL/ABiV0NltI0NM+nG3aDZrjIm9mxN78fgt96lgCpyX/J4trnwajMPnGZXtC96gaYmJLZbI4vuXmQsrQTEHSBTbHcoHyuyTcqH6sxo4svH70Co0/kTJih+7TzIo7DadKcs6NH0JfrZYFUZyjPXDvquAbdd5P+a0Hm9RVvVPDxvAR8+abb+UdEDCKbsjPSokEwKBrQWpZNjiWxXHCi22VwM5r3HCGihjA/l1fjPxUSehmBqEmtPKzu5XJ+WDyNvUQvbxFmutrlYddGIpsN4kThqSeiTB3LN+fH/vf+b99njWOrSZMI586bbAjI4//pZk+Xr7AuGdopnCOJWM2usJXwPdgY5fBY619RzYcVdLMC888MbdGK0/V4tDMQ4KXiwB97vNZGeN9HrwS+/Y+A5pfDjFeJpLAP124/QyVyb8TdzjLMi1Tp7J7IQJxe9tOpW0MWM8gMLFRcmqQnx5jk9HmOzIxgT28pUa/QHNr5gjX23LpDPYSW6Nq0ZbtbPU6E9nIyDbgZ3r+G6plo5ZzFPgWfWp7PGnCQAuWSZN0awJjeHH1tz8ssG0S7XUaL0FcdPdDn4DJ/nZSQe1cGda4u/iYj2lNJR+slp16xMHgdcK53QlLCnVeS8CZz2aQ9WuQCY8fpZVVPyx7IsO6M/vpaqtaq7v7/2VfP1MkC1MpmMQ1g
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7500.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(19092799006)(1800799024)(366016)(38070700021)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?V3YzU3Vrc0diT0hNdE1uWUpoWThhc1hKSmVNc29HdFlBQ00wUklCWXFBSFo2?=
+ =?utf-8?B?MWdLNU1KRHV0ZndCd0RLTC94WHhpRjlLNG5hS3BZaVRmOVlXR3JhSHRYaWht?=
+ =?utf-8?B?UmZwV2ZmYjgxNHN3RUQ0dDBkZjg0ZXA5U1JqZTl5dTg5eWZyYjVtVkZYUUow?=
+ =?utf-8?B?R0M5Q0FDZStPU3RmUVlyQXJ3YzUzWFhyOU8vTzdWUVZuaGlnMWlxTnpnYU5n?=
+ =?utf-8?B?TFVyQ0IwbFYrWU84V1dBWWZON1FzTVpIM3JXeUJTSmgyWFJmd3doM3JqVEE2?=
+ =?utf-8?B?N3J0bFBTeXUyelE0d3ZLYzRjZTJvcFNvaW80NGJyL3JNQ3pGNU90UEN5VFRl?=
+ =?utf-8?B?MDQrU1JOVmFWWXY1Mk1qTEgzeHl0bEFtd3JDMXgzdmJ3enFaTWdCZUlCMFds?=
+ =?utf-8?B?YU5BQVllWUg2T0tBQkFJNURvK3M4c0ZGN0lsYXZoU0FKd3JJZjlQVG8vNGtW?=
+ =?utf-8?B?TWlvQ2ViVm1DRCtjbUIyRVlDZXJ1dFBFL2hVWEtkMDROYTNvQzJxRXd1Z0d0?=
+ =?utf-8?B?QTFCNUpBZ0gzYld4UDlES1FrVURXTWs3cTFBZVVEekpUNmJoQkxFUGpkZE41?=
+ =?utf-8?B?ZTJuMUc2UlNHRkFEcG1oWkdNajk1dk5PY3NqUTVYQWxHQlB0WFhmbEVuZ2o4?=
+ =?utf-8?B?SEhDblRnRUZnZ1huVDZGenRMYWY0TTR5OWl6S3F5VTUxNk83cktFTWthMEpF?=
+ =?utf-8?B?U1JOby84WWFQQVgwbHFMSmRSSDJiYjkyTHErTktOaUVkd2JLOElJdHVpZkdq?=
+ =?utf-8?B?c2lBa0ZLY0ZTUlhZMU92TFYzTTh5V0JObXR0bXR4UHVNVlR1YnJLc1VHQ09N?=
+ =?utf-8?B?WTlzUGFJOGZhbE1NVDFMcU54dWxlT3c2RHlLK2taTEpiOFFhaUtxYUNlSlR3?=
+ =?utf-8?B?ZklpdkxnS0drbmw2OUdveXMrblB5OHZhanI1ODMva3FEZ1dFd2NMcHFQVVJv?=
+ =?utf-8?B?YXRPSFV6RUU1Qi9ZdmcraC9qUkdhRW9tK0QrRmxNT3RzeGlxM25GWFRndzNT?=
+ =?utf-8?B?S2R2SzhBWW9BancrbWlBRktyODh6QTViSjd1akVGeGN6blQxeTdrZlRLNXFh?=
+ =?utf-8?B?OXNRN2M5S29BZnBhYkJJVVlYTTBQV2ZZWXBMNTVzUW9ZZ2wwZ1JvMGR0eEZZ?=
+ =?utf-8?B?N2NXNDFsbUhWdjBiWHJibXdmeTRuTDBmZjNTOWhocnJDd0hISjJZU0FHbmZI?=
+ =?utf-8?B?ZnlKTXZvclNTb1dOY2tRT2xpbnFidVkzU05tMDI1VXVkays2cXEybHdpS0Ew?=
+ =?utf-8?B?dTFTYkozRjlIR3QwMTBtMzlac3VuaGNvaUN6dVplK1RwV0UvOW5mNEZWU3hp?=
+ =?utf-8?B?ZVI2R1lrNWU0bnBKUXJGamExZ3VNdDBtZlkyd1lqbG9IQzJlTW84clQ3a2N1?=
+ =?utf-8?B?cUQ5eGRMOXhDT0pNVVFPSmZiSmNQRVhialJEZ0FzWlVBYVUyOFBQUFQwcldv?=
+ =?utf-8?B?TGYyWkxoNm8vNVVIZUw4eGxyZGFPRno5SEpPY0I5SUg4R0pBejN5dWdOSlhz?=
+ =?utf-8?B?MGlLelBrQStoZ2I5UGdYZDZDbTF0UkxJQTJHaktZUFBMV3JwL0kyeGh0MExw?=
+ =?utf-8?B?Sy9zdFhUL0tjVDR0SlVQRm8zYWFBMks0Mjkwb2ZKUjJJWkJHb0MrZWJLS3ZB?=
+ =?utf-8?B?R0FReHVySTlRNmJUWFFvMm9nZVRyblUvWmxoUnJqQWVFUllBT2xkalRDakd5?=
+ =?utf-8?B?dkZRZFlKY0NNUDQ5c0Erd3lHa3hIZERheUN6cGdkenRkZ1lyOHEzRC95cElu?=
+ =?utf-8?B?SUtUa0ticSs4K1VnTVlMUkNsZHl4c21ndjR1SzFiWmpIVWtKWGxZNGNtL2lw?=
+ =?utf-8?B?TVJMQWUrM1IySXQ5RHJKanZ2MEs0dVYxMHRoQVc5c2pyODBSRjNXQ3lKaEFG?=
+ =?utf-8?B?Ky9kOE9JZXIrb3hxWU5kdGR4Y2QvalJqNFlVRjlDQ3h4N0NWWDFlamVFNW9X?=
+ =?utf-8?B?Uk9HQ1lOUmRVOWxuak1mZlRteElhdTZNNzhEdFNoTGZObWFVb3g1VGxUTUFI?=
+ =?utf-8?B?WFdhckVnSEowS1pmeFZuem1LM3Nzb2JiZ0ZTUVVBdVd2TVpuQmU4a2xnYjRU?=
+ =?utf-8?B?dCtZZlJvc0N5SWU4anNsd0l1bkVUYkpwd1FnYkpMWTlEN1ZxSmdhMm1SQ1E4?=
+ =?utf-8?B?TmZsZjMwM3hGQk9POHhMdFlHQmY4NFpkYVNDMDlvRjRYc2dFZVdRMTZZbFZZ?=
+ =?utf-8?B?OXo1dHcvWXRWVFQ5M00wekoveDlMQlMyaUQ2bnBsWjJ0VS9xNEJHdHRBV044?=
+ =?utf-8?B?MXk4Vi9sa1QzWVU3MGNxdVdvRFhBSHo1N2FFR3pKbW9zK0xxcmJPN3VOcUd2?=
+ =?utf-8?Q?OMfvW60YqIGz5XM7D1?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260504093648.530308-1-wbg@kernel.org>
-X-Rspamd-Queue-Id: 851984D6CB0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7500.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa0bcaba-2ac4-45e4-6033-08deab3df67d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2026 07:06:14.9552
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ASd/N0xioz2IyjxVRo+/3IFcPITw0P0IdNrWV5QEfaLp71mLM47dZryinWDDuLPKspCFqaRsa+PymoP/gFi8iA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8068
+X-Rspamd-Queue-Id: 084E94D706B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [2.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293390-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293392-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev,nxp.com,lunn.ch,davemloft.net,google.com,kernel.org,gmail.com,armlinux.org.uk];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wafgo01@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[wei.fang@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	NEURAL_HAM(-0.00)[-0.996];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,libgpiod.readthedocs.io:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[DBBPR04MB7500.eurprd04.prod.outlook.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:email]
 
-On 2026-05-04 18:36, William Breathitt Gray wrote:
-> On Fri, May 01, 2026 at 10:07:46PM +0200, Wadim Mueller wrote:
-> > This series adds a new counter subsystem driver that implements
-> > quadrature encoder position tracking using plain GPIO pins with
-> > edge-triggered interrupts.
-> > 
-> > The driver is intended for low to medium speed rotary encoders where
-> > hardware counter peripherals (eQEP, FTM, etc.) are unavailable or
-> > already in use. It targets the same use-cases as interrupt-cnt.c but
-> > provides full quadrature decoding instead of simple pulse counting.
-> > 
-> > Features:
-> >   - X1, X2, X4 quadrature decoding and pulse-direction mode
-> >   - Optional index signal for zero-reset
-> >   - Configurable ceiling (position clamping)
-> >   - Standard counter subsystem sysfs + chrdev interface
-> >   - Enable/disable via sysfs with IRQ gating
-> > 
-> > Tested on TI AM64x (Cortex-A53) with a motor-driven rotary encoder
-> > at up to 2 kHz quadrature edge rate.
-> 
-> Hello Wadim,
-> 
-> This is certainly a neat idea! :-) Several times I have wished for a
-> convenient way to just plug in a quadrature encoder to the GPIO lines of
-> my system and immediately start reading position data. However, I want
-> to be sure this makes sense as a Counter subsystem driver before I
-> proceed with a full review.
-> 
-> If I understand correctly from my brief overview, the core approach in
-> the gpio-quadrature-encoder module is to take two GPIO lines (A and B),
-> setup interrupt service routines for them, compare their GPIO values on
-> each interrupt, and respectively update a persistent count based on the
-> quadrature relationship.
-> 
-> From that description, I don't immediately see a need for this to occur
-> in kernelspace. Couldn't the same design be accomplished effectively in
-> userspace via the libgpiod API[^1]? I believe that library allows you
-> to watch for GPIO edge events and request GPIO line values. (I'm CCing
-> the GPIO subsystem maintainers in case I'm missing something obvious
-> here.)
-> 
-> Although the Counter subsystem does provide an established user
-> interface for counter devices, I'm not sure that alone justifies a
-> kernel driver when the same can be achieved by an equivalent userspace
-> application. If you can argue for why this should exist in the kernel,
-> I'll feel more comfortable with accepting the Counter subsystem as the
-> right home for the gpio-quadrature-encoder module.
-> 
-> > Changes in v3:
-> >   - Pick up Acked-by: Conor Dooley on the DT binding patch.
-> >   - No code changes.
-> 
-> As an aside, you don't need to resend the patchset if there are no code
-> changes, I'll make sure to pick up the tags in the mail threads when the
-> patches are accepted. This helps reduce the amount the messages we need
-> to parse on the mailing list.
-> 
-> Thanks,
-> 
-> William Breathitt Gray
-> 
-> [^1] https://libgpiod.readthedocs.io/
-
-Hi,
-
-to give the discussion "why a kernel driver, gpiomon should be
-enough?" some real numbers, i did a small benchmark on the AM64x
-board where this driver was developed on. From my side the data
-below looks like a kernel side counter is the right tool for this
-job, but in the end this is of course your decision as a maintainter.
-Please tell me wether i should send a v4 or rather drop the series,
-so i know how to continue.
-
-Setup
------
-SoC:     TI AM64x, Cortex-A53 dual core, gpio-davinci
-Kernel:  6.6.32, CONFIG_PREEMPT=y, CONFIG_HZ=250, no isolcpus, no RT
-Source:  EHRPWM driving one GPIO line (square wave)
-Window:  2.0 s per point, 3 runs per point (mean +- stdev in the repo)
-A:       counter/gpio-quadrature-encoder, pulse-direction, B held low,
-         signal_a_action=rising-edge
-B:       gpiomon -c gpiochipN -e rising -F %o (libgpiod v2.1.2 CLI),
-         lines counted from the output file afterwards
-
-Both ways are seeing the same physical edge.
-
-Rising edge counts (mean error vs. expected, n=3)
--------------------------------------------------
-   f [Hz]   kernel err%   gpiomon err%
-     1000        -0.16          -0.13
-    10000        -0.42          -0.88
-    20000        -0.89          -3.18
-    50000        -2.37          -6.77
-    75002        -0.29         -10.93
-   100000        -0.65         -20.53
-   150000          n/a*        -42.46
-   200000          n/a*        -60.74
-
-CPU cost at 75 kHz
-------------------
-                 task CPU      sys irq+softirq (sum of 2 cores)
-  kernel:           0 %               ~50 %
-  gpiomon:        ~60 %               ~25 %
-
-Some interpretation
--------------------
-- Below ~10 kHz: not really distinguishable from quantization
-  noise (one rising edge of phase ambiguity per measurement
-  window). So no meanigful difference between the two paths here.
-
-- 20 - 100 kHz: gpiomon error grows more or less linear with the
-  rate while the kernel counter stays at the noise floor. At
-  75 kHz gpiomon is dropping roughly one event out of nine and
-  consums 60 % of one core in user/sys time, on top of the IRQ
-  work; the kernel counter looses ~0.3 % at zero task CPU.
-
-- *at >= 150 kHz the davinci-gpio bank IRQ saturates at around
-  200k irq/s. This is a SoC limit, not a software stack limit, and
-  applies to both paths. The bench harness aborts the kernel sweep
-  on >30 % apparent loss to stay away from soft-lockups; the
-  gpiomon numbers above this point are only listed to show that
-  the same hardware ceiling costs the userspace path much more
-  useable counts, because of the poll/read latency on top of the
-  IRQ.
-
-Honest caveats
---------------
-- "gpiomon" here is the libgpiod reference CLI: single threaded,
-  writes one text line per event into a file. A hand written uAPI
-  v2 consumer with a tight read() loop and a binary buffer would
-  most likley be cheaper. The IRQ rate ceiling at ~200k irq/s on
-  this SoC is not affected from this. Patches against the bench
-  are very welcome.
-- The driver is benchmarked in pulse-direction mode with B held
-  low, so one IRQ per edge. A real two channel quadrature source
-  would double the bank IRQ load accordingly.
-- CONFIG_HZ=250, no PREEMPT_RT, no isolcpus. PREEMPT_RT and pinning
-  would soften the userspace cliff but does not change the per-edge
-  cost of the kernel path.
-
-Reproducer, raw CSVs and plots:
-  https://github.com/wafgo/qenc-bench
-
-(README.md has the full sweep and plots; data/aggregate.csv has the
-table above with full precision.)
-
-What i would like to know
--------------------------
-My reading of the numbers is that on this kind of SoC a kernel side
-edge counter is the only way to get correct counts at industrial
-encoder rates without burning a whole core on a userspace listener,
-and that the proposed driver does exactly fit this role. But like i
-said, this is your subsystem and your call. So concretely:
-
-  - if you would like me to send a v4 (with whatever changes from
-    this round you want me to fold in) i am happy to do that;
-  - if you would rather not take the driver at all, please tell me
-    so and i will drop the series. I would just like to know either
-    way, so i can stop sitting on the branch.
-
-Thanks for taking the time to look at it.
-
+PiBPbiA0LzMwLzI2IDQ6NDkgQU0sIFdlaSBGYW5nIHdyb3RlOg0KPiA+IEltcGxlbWVudCB0aGUg
+ZXRodG9vbCBwcml2YXRlIHN0YXRpc3RpY3MgaW50ZXJmYWNlIHRvIGV4cG9zZSBhZGRpdGlvbmFs
+DQo+ID4gcG9ydC1sZXZlbCBhbmQgTUFDLWxldmVsIGNvdW50ZXJzIHRoYXQgYXJlIG5vdCBjb3Zl
+cmVkIGJ5IHRoZSBzdGFuZGFyZA0KPiA+IElFRUUgODAyLjMgc3RhdGlzdGljcy4gVGhlIHBNQUMg
+Y291bnRlcnMgYXJlIG9ubHkgcmVwb3J0ZWQgd2hlbiB0aGUgcG9ydA0KPiA+IHN1cHBvcnRzIEZy
+YW1lIFByZWVtcHRpb24gKDgwMi4xUWJ1LzgwMi4zYnIpLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1i
+eTogV2VpIEZhbmcgPHdlaS5mYW5nQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvbmV0
+L2RzYS9uZXRjL25ldGNfZXRodG9vbC5jICAgfCAxMDcNCj4gKysrKysrKysrKysrKysrKysrKysr
+KysrKysNCj4gPiAgZHJpdmVycy9uZXQvZHNhL25ldGMvbmV0Y19tYWluLmMgICAgICB8ICAgMyAr
+DQo+ID4gIGRyaXZlcnMvbmV0L2RzYS9uZXRjL25ldGNfc3dpdGNoLmggICAgfCAgIDkgKysrDQo+
+ID4gIGRyaXZlcnMvbmV0L2RzYS9uZXRjL25ldGNfc3dpdGNoX2h3LmggfCAgNTggKysrKysrKysr
+KysrKysNCj4gPiAgNCBmaWxlcyBjaGFuZ2VkLCAxNzcgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L2RzYS9uZXRjL25ldGNfZXRodG9vbC5jDQo+IGIvZHJp
+dmVycy9uZXQvZHNhL25ldGMvbmV0Y19ldGh0b29sLmMNCj4gPiBpbmRleCBhYzg5NDBiNWE4NWMu
+LjhkMDRkYjUzNDM0NyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL25ldC9kc2EvbmV0Yy9uZXRj
+X2V0aHRvb2wuYw0KPiA+ICsrKyBiL2RyaXZlcnMvbmV0L2RzYS9uZXRjL25ldGNfZXRodG9vbC5j
+DQo+ID4gQEAgLTE5LDYgKzE5LDU2IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZXRodG9vbF9ybW9u
+X2hpc3RfcmFuZ2UNCj4gbmV0Y19ybW9uX3Jhbmdlc1tdID0gew0KPiA+ICAJeyB9DQo+ID4gIH07
+DQo+ID4NCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBuZXRjX3BvcnRfc3RhdCBuZXRjX3BvcnRf
+Y291bnRlcnNbXSA9IHsNCj4gPiArCXsgTkVUQ19QVEdTTEFDUiwJInBvcnQgZ2F0ZSBsYXRlIGFy
+cml2YWwgZnJhbWVzIiB9LA0KPiA+ICsJeyBORVRDX1BTREZUQ1IsCSJwb3J0IFNERiB0cmFuc21p
+dCBmcmFtZXMiIH0sDQo+ID4gKwl7IE5FVENfUFNERkREQ1IsCSJwb3J0IFNERiBkcm9wIGR1cGxp
+Y2F0ZSBmcmFtZXMiIH0sDQo+ID4gKwl7IE5FVENfUFJYRENSLAkJInBvcnQgcnggZGlzY2FyZCBm
+cmFtZXMiIH0sDQo+ID4gKwl7IE5FVENfUFJYRENSUlIsCSJwb3J0IHJ4IGRpc2NhcmQgcmVhZC1y
+ZXNldCIgfSwNCj4gPiArCXsgTkVUQ19QUlhEQ1JSMCwJInBvcnQgcnggZGlzY2FyZCByZWFzb24g
+MCIgfSwNCj4gPiArCXsgTkVUQ19QUlhEQ1JSMSwJInBvcnQgcnggZGlzY2FyZCByZWFzb24gMSIg
+fSwNCj4gPiArCXsgTkVUQ19QVFhEQ1IsCQkicG9ydCB0eCBkaXNjYXJkIGZyYW1lcyIgfSwNCj4g
+PiArCXsgTkVUQ19QVFhEQ1JSUiwJInBvcnQgdHggZGlzY2FyZCByZWFkLXJlc2V0IiB9LA0KPiA+
+ICsJeyBORVRDX1BUWERDUlIwLAkicG9ydCB0eCBkaXNjYXJkIHJlYXNvbiAwIiB9LA0KPiA+ICsJ
+eyBORVRDX1BUWERDUlIxLAkicG9ydCB0eCBkaXNjYXJkIHJlYXNvbiAxIiB9LA0KPiA+ICsJeyBO
+RVRDX0JQRENSLAkJImJyaWRnZSBwb3J0IGRpc2NhcmQgZnJhbWVzIiB9LA0KPiA+ICsJeyBORVRD
+X0JQRENSUlIsCSJicmlkZ2UgcG9ydCBkaXNjYXJkIHJlYWQtcmVzZXQiIH0sDQo+ID4gKwl7IE5F
+VENfQlBEQ1JSMCwJImJyaWRnZSBwb3J0IGRpc2NhcmQgcmVhc29uIDAiIH0sDQo+ID4gKwl7IE5F
+VENfQlBEQ1JSMSwJImJyaWRnZSBwb3J0IGRpc2NhcmQgcmVhc29uIDEiIH0sDQo+ID4gK307DQo+
+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG5ldGNfcG9ydF9zdGF0IG5ldGNfZW1hY19j
+b3VudGVyc1tdID0gew0KPiA+ICsJeyBORVRDX1BNX1JPQ1QoMCksCSJlTUFDIHJ4IG9jdGV0cyIg
+fSwNCj4gPiArCXsgTkVUQ19QTV9SVkxBTigwKSwJImVNQUMgcnggVkxBTiBmcmFtZXMiIH0sDQo+
+ID4gKwl7IE5FVENfUE1fUkVSUigwKSwJImVNQUMgcnggZnJhbWUgZXJyb3JzIiB9LA0KPiA+ICsJ
+eyBORVRDX1BNX1JVQ0EoMCksCSJlTUFDIHJ4IHVuaWNhc3QgZnJhbWVzIiB9LA0KPiA+ICsJeyBO
+RVRDX1BNX1JEUlAoMCksCSJlTUFDIHJ4IGRyb3BwZWQgcGFja2V0cyIgfSwNCj4gPiArCXsgTkVU
+Q19QTV9SUEtUKDApLAkiZU1BQyByeCBwYWNrZXRzIiB9LA0KPiA+ICsJeyBORVRDX1BNX1RPQ1Qo
+MCksCSJlTUFDIHR4IG9jdGV0cyIgfSwNCj4gPiArCXsgTkVUQ19QTV9UVkxBTigwKSwJImVNQUMg
+dHggVkxBTiBmcmFtZXMiIH0sDQo+ID4gKwl7IE5FVENfUE1fVEZDUygwKSwJImVNQUMgdHggRkNT
+IGVycm9ycyIgfSwNCj4gPiArCXsgTkVUQ19QTV9UVUNBKDApLAkiZU1BQyB0eCB1bmljYXN0IGZy
+YW1lcyIgfSwNCj4gPiArCXsgTkVUQ19QTV9UUEtUKDApLAkiZU1BQyB0eCBwYWNrZXRzIiB9LA0K
+PiA+ICsJeyBORVRDX1BNX1RVTkQoMCksCSJlTUFDIHR4IHVuZGVyc2l6ZWQgcGFja2V0cyIgfSwN
+Cj4gPiArCXsgTkVUQ19QTV9USU9DVCgwKSwJImVNQUMgdHggaW52YWxpZCBvY3RldHMiIH0sDQo+
+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG5ldGNfcG9ydF9zdGF0IG5l
+dGNfcG1hY19jb3VudGVyc1tdID0gew0KPiA+ICsJeyBORVRDX1BNX1JPQ1QoMSksCSJwTUFDIHJ4
+IG9jdGV0cyIgfSwNCj4gPiArCXsgTkVUQ19QTV9SVkxBTigxKSwJInBNQUMgcnggVkxBTiBmcmFt
+ZXMiIH0sDQo+ID4gKwl7IE5FVENfUE1fUkVSUigxKSwJInBNQUMgcnggZnJhbWUgZXJyb3JzIiB9
+LA0KPiA+ICsJeyBORVRDX1BNX1JVQ0EoMSksCSJwTUFDIHJ4IHVuaWNhc3QgZnJhbWVzIiB9LA0K
+PiA+ICsJeyBORVRDX1BNX1JEUlAoMSksCSJwTUFDIHJ4IGRyb3BwZWQgcGFja2V0cyIgfSwNCj4g
+PiArCXsgTkVUQ19QTV9SUEtUKDEpLAkicE1BQyByeCBwYWNrZXRzIiB9LA0KPiA+ICsJeyBORVRD
+X1BNX1RPQ1QoMSksCSJwTUFDIHR4IG9jdGV0cyIgfSwNCj4gPiArCXsgTkVUQ19QTV9UVkxBTigx
+KSwJInBNQUMgdHggVkxBTiBmcmFtZXMiIH0sDQo+ID4gKwl7IE5FVENfUE1fVEZDUygxKSwJInBN
+QUMgdHggRkNTIGVycm9ycyIgfSwNCj4gPiArCXsgTkVUQ19QTV9UVUNBKDEpLAkicE1BQyB0eCB1
+bmljYXN0IGZyYW1lcyIgfSwNCj4gPiArCXsgTkVUQ19QTV9UUEtUKDEpLAkicE1BQyB0eCBwYWNr
+ZXRzIiB9LA0KPiA+ICsJeyBORVRDX1BNX1RVTkQoMSksCSJwTUFDIHR4IHVuZGVyc2l6ZWQgcGFj
+a2V0cyIgfSwNCj4gPiArCXsgTkVUQ19QTV9USU9DVCgxKSwJInBNQUMgdHggaW52YWxpZCBvY3Rl
+dHMiIH0sDQo+ID4gK307DQo+IA0KPiBTYXNoaWtvIHNheXM6DQo+IA0KPiBBcmUgdGhlc2Ugc3Rh
+bmRhcmQgTUFDIGFuZCBpbnRlcmZhY2Ugc3RhdGlzdGljcyBiZWluZyBkdXBsaWNhdGVkIGluIHRo
+ZQ0KPiBkcml2ZXItcHJpdmF0ZSBldGh0b29sIHN0cmluZ3M/DQo+IFRoZSBuZXR3b3JraW5nIHN1
+YnN5c3RlbSBndWlkZWxpbmVzIGluZGljYXRlIHRoYXQgc3RhdGlzdGljcyB3aGljaCBoYXZlDQo+
+IGEgc3RhbmRhcmQgdUFQSSBtdXN0IG5vdCBiZSBkdXBsaWNhdGVkIGluIGV0aHRvb2wgLVMuIFN0
+YW5kYXJkDQo+IGludGVyZmFjZXMgbGlrZSBzdHJ1Y3QgcnRubF9saW5rX3N0YXRzNjQgb3Igc3Ry
+dWN0IGV0aHRvb2xfZXRoX21hY19zdGF0cw0KPiBhbHJlYWR5IGV4aXN0IGZvciBjb3VudGVycyBz
+dWNoIGFzIHJ4IG9jdGV0cywgcnggcGFja2V0cywgZHJvcHBlZA0KPiBwYWNrZXRzLCBhbmQgRkNT
+IGVycm9ycy4NCj4gQ291bGQgdGhlc2UgbWV0cmljcyBiZSBleHBvc2VkIHRocm91Z2ggdGhlIHN0
+YW5kYXJkaXplZCBpbnRlcmZhY2VzDQo+IHJhdGhlciB0aGFuIGFkZGluZyB0aGVtIHRvIHRoZSBw
+cml2YXRlIHN0cmluZyBzZXRzPw0KPiANCg0KSSBkb24ndCB0aGluayBpdCBpcyBhbiBpc3N1ZS4g
+Rm9yIHRoZSBORVRDIHN3aXRjaCwgaXRzIHBvcnRzIHN1cHBvcnQgcHJlZW1wdGlvbiwNCnNvIGVh
+Y2ggcG9ydCBoYXMgdHdvIE1BQ3MgKGV4cHJlc3MgTUFDIGFuZCBwcmVlbXB0aXZlIE1BQykuIFRo
+ZSBkcml2ZXItDQpwcml2YXRlIHN0YXRpc3RpY3MgY2FuIGhlbHAgdXNlcnMgb2J0YWluIHN0YXRp
+c3RpY3MgZm9yIGVhY2ggTUFDLCBqdXN0IGxpa2UgdGhlDQpzdGFuZGFyZCBzdGF0aXN0aWNzIG9m
+IGV0aHRvb2wuIEhvd2V2ZXIsIHJ0bmxfbGlua19zdGF0czY0IHJldHJpZXZlcyB0aGUgY29tYmlu
+ZWQNCnN0YXRpc3RpY3Mgb2YgdGhlIHR3byBNQUNzLg0KDQpJbiBhZGRpdGlvbiwgZXRodG9vbF9l
+dGhfbWFjX3N0YXRzIG9ubHkgaGFzIHRoZSBGQ1MgZXJyb3IgY291bnRlciBmb3IgUlgsDQpub3Qg
+VFguIHdoYXQgSSBhZGRlZCB0byBkcml2ZXItcHJpdmF0ZSB3YXMgVFgncyBGQ1MgZXJyb3IgY291
+bnRlci4NCg0K
 
