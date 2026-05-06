@@ -1,222 +1,192 @@
-Return-Path: <devicetree+bounces-293391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293383-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OsWMtPn+mlIUAMAu9opvQ
-	(envelope-from <devicetree+bounces-293391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 09:03:47 +0200
+	id EBgEH67k+mmGTgMAu9opvQ
+	(envelope-from <devicetree+bounces-293383-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:50:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 691584D6EF4
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 09:03:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CE44D6C90
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:50:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EA2CE3004F4A
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 07:03:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B081A302BA1A
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 06:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6782A3385B6;
-	Wed,  6 May 2026 07:03:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003E536AB50;
+	Wed,  6 May 2026 06:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b="JeRvSI3C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cJE8m3o0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout70.expurgate.net (mxout70.expurgate.net [91.198.224.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809A0369972;
-	Wed,  6 May 2026 07:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.198.224.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFC736A008
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 06:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778051020; cv=none; b=sInlQitY+2t5cveA+caI9LVWYGt6wD1lh+o1NKiSh1OteM5CGQKaeU7CsuQcjS4M3nr4K7CrNQeuxubK09e2JX3bhdCyAmWOWC85jVbIc6xWsU6OUxwcKvjepqPs6eE6chGDAJRewn+jmcDvWPmup3xIEZsCSO/IVpwymkHvz3k=
+	t=1778050147; cv=none; b=b5f//lwC/egGACCogFZvFXVIMsRFy+GPvk5Sc7kCJakS+Zf9Se6MbNj2FjWr7iHLsOn8ivwGiT5IYwWphMXFnI0HQGU3A6nmpijEYpDX6724li7ifeCe4ZVqcllkZiQWTarax9sAHyaTCg0jh+PgzRHd9KbIstW8OjbgZr06JKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778051020; c=relaxed/simple;
-	bh=GQQ4tLKaodjP8OXQAc//QWaL9kDZOgafjgUyva4+Mys=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=BY+gc/dg/fQPOlr/cNREGJEg7x5FjjPUVUH/Dk5QpVTMZ9m1je+MoeqXbQp5M+xY+x9hn0AVaQwwlWX2ElJYo60H8NaDonJ8EUvJjrdGmH2mKCw/zVQY2aRcbDEezpYxTAPFTFFVFRaEjwr0otmtGcj/630G+imP5pnWzs9Vfjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de; spf=pass smtp.mailfrom=dev.tdt.de; dkim=temperror (0-bit key) header.d=dev.tdt.de header.i=@dev.tdt.de header.b=JeRvSI3C; arc=none smtp.client-ip=91.198.224.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dev.tdt.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dev.tdt.de
-Received: from [194.37.255.9] (helo=mxout.expurgate.net)
-	by relay.expurgate.net with smtp (Exim 4.92)
-	(envelope-from <prvs=76004fd39a=fe@dev.tdt.de>)
-	id 1wKW0g-006cbg-9V; Wed, 06 May 2026 08:45:30 +0200
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-	by relay.expurgate.net with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <fe@dev.tdt.de>)
-	id 1wKW0f-000f1P-Ka; Wed, 06 May 2026 08:45:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dev.tdt.de;
-	s=z1-selector1; t=1778049926;
-	bh=q8jnMdC7S4lRdaod9kLw6q0kgekMN7xuH/EWnvr0Mfs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=JeRvSI3C6m2dSQlia4vsFf2YGeKlxn0JmFInBJXbwS/+aZjrNsotc0Otg02T+kVCO
-	 pVaATOzb+n0UV8dcaTXWSLb/ZPKIVns72GeXgSy5qEYXn7w2dgmuMSW01Lx1wQ5Zuf
-	 yKoJIuGC5I2pEzKJFI7dnLyg7+aGk2c6CBiqjT+m5ZP+G5xENji6uK8xTTUrjeBMDf
-	 BCguBtu/4RZ2LBCxJlGZxEXRN37jr/f6X2kDrGk5kNTs5jCgEzaiC4LjcLCt4qcYPx
-	 AeB8kXWbKVBlOYTNQYrowOZWmQ95UlrJlrB8c8moUecivwSJ9M4NSk5j9/con58win
-	 OTjSjApJyIUtw==
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-	by securemail.tdt.de (Postfix) with ESMTP id CAB80240042;
-	Wed,  6 May 2026 08:45:26 +0200 (CEST)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-	by securemail.tdt.de (Postfix) with ESMTP id AD89C240040;
-	Wed,  6 May 2026 08:45:26 +0200 (CEST)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-	by mail.dev.tdt.de (Postfix) with ESMTP id 2ECC8248D2;
-	Wed,  6 May 2026 08:45:26 +0200 (CEST)
+	s=arc-20240116; t=1778050147; c=relaxed/simple;
+	bh=vF6eGn5qklDVbibC8z7iWkKkeqLbIWPS7CITIPlg/T0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r5UZQ4S7x64jdE4GyXu759YyCtPRppNhmCIMyrYON+KaHTjHb1cgP+V9xeOth4+XvMFsHCCWigXfVrz54h0EIzAhUWo0Qi2FzZbolGfd1mB3BVoriCQDHRoXZHez1MKYbr3Yxp6TXwHp8GExU6Ho9s9ixDjtQmLXYy6y6o4/tXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cJE8m3o0; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-488a14c31eeso45269245e9.0
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 23:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778050145; x=1778654945; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wGaUKl3/SrhNPHaQfJ2QhPN+oX72lXRnFK0yLcce7gI=;
+        b=cJE8m3o0DnnNOfZBebwyCWCmjQjeOd/Kkdwwj+IRcf+/4A6f0z0VxVS6SHsO2CSXgL
+         TfTMuDiw15ZPGdkGwWabIAFJ97OLkP/A47UixfcCv7OpDEB/1Vked0JmQlje8FG99a1f
+         vb+SJQ4sTG+jTb9fDiflPZnwys6pnU6jyxewFs4cGMrSssKmVkG1luPpGto6aRNGPxok
+         LjInGs+afNB7LTePXTm48zjXSeG0j+VFDrgBlUKr52foXguc866YsVkVuqwVU6Q9+JPq
+         FzKG5bKxCliq0m10o4NvIVmeI2c9N4DIbB3fgXw99ogyX4yVhJ9Zb3JIwNnlqKEWXNVl
+         SbCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778050145; x=1778654945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wGaUKl3/SrhNPHaQfJ2QhPN+oX72lXRnFK0yLcce7gI=;
+        b=bRwuAIWmejqKjqFumHP364PPUBq/wjeaUbqn/vgVzj3dLvOYM6oF+wAWItjFjdj3Z0
+         asBQRRpURvrURlpFyKekopsjaS0+DeZIPKO2sUw/cepC8WyUQ3qOSnd4n+P8zPIE2XTN
+         2Nzrp3q1jNLX1jfIVs+Upxqw3wWCnLv/j6IFG3H3VOg74J/iKlJypjIbfvWmv/Yc3H5E
+         ZWGLo0i6U3Lr9A9nLojR95/F1LrGIzZb0P7oQe8+WAVbRfBz3JaYm6V3UkCA6Lw8TzrO
+         A4VDsn0mwnn1bT44GKvOWEv6K+xWVy1e/pnj6wgKtc3OxK5+RJSnvrIopCQk1X9KMCjo
+         GyDA==
+X-Forwarded-Encrypted: i=1; AFNElJ8aS5Wz62UCsWWXojC63hvF0713haIAwBIwHNFYRtBh3Kra5a94dIryBMkW3ykjjtpcUVwmqaO7wTGf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI3fD9ar8B2aqvdh12k7tL0gqhECh7sDXXyBr3DFtJ7t9O+MJ5
+	98cmjD5w7EdWQJfqkBGUFCXalYz+oz8qCMG5EQFeFqzPS1U17QVB/RBE
+X-Gm-Gg: AeBDiesMPC6hP1qBvFrPq9pnRXnEZh5aFoSCPDcpRKNsS9K/hLTdXDQBpebpk8aCHtJ
+	XXnWPVb33RRQMtbkss96XpptQ8JocN8SuNffL95mDooeQJn6xBzGSTWXd2eLXOS0quZ8XvPYofF
+	w0cTBx+PUpdfUX64qPocHsNZo6VGUnLwhgv/5vCuWbv2ba2jjm9TwqEDN116KVLL6Hlpu+YH/fu
+	fkcCP1QAxOvtTZbw6AJZLA9iqajd1IHhu831+R9BlM94hbs2vTvq80kll2qrdpTkURrZVZ6aLeX
+	3l7kdLMqGhMshEuupuw+B2J/Mi6e/6lH8a4U+23+YyOjXVLwR0NUnAf3YNBfVarVB6qSeqoRgyO
+	87iUrlsvaoh3N32RAHpzG2PLIwGvll4Crd6HQ7Du6JFYcOhcOeuqBqHBeQTC76ZcsyQGJWbh1P+
+	qlFh+rg6T0Gf74FYOOqNXU1xE=
+X-Received: by 2002:a05:600c:a305:b0:489:2005:b36e with SMTP id 5b1f17b1804b1-48e51f444e4mr23183125e9.19.1778050144442;
+        Tue, 05 May 2026 23:49:04 -0700 (PDT)
+Received: from xeon ([188.163.112.56])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e53891d62sm38398835e9.1.2026.05.05.23.49.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 May 2026 23:49:03 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v6 0/6] media: lm3560: convert to use OF bindings
+Date: Wed,  6 May 2026 09:48:41 +0300
+Message-ID: <20260506064847.37795-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Date: Wed, 6 May 2026 08:45:26 +0200 (CEST)
-From: Florian Eckert <fe@dev.tdt.de>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?utf-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Sajid Dalvi <sdalvi@google.com>,
-	Ajay Agarwal <ajayagarwal@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Eckert.Florian@googlemail.com,
-	ms@dev.tdt.de
-Subject: Re: [PATCH v5 0/7] PCI: intel-gw: Fixes to make the driver working
- again
-In-Reply-To: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
-References: <20260417-pcie-intel-gw-v5-0-0a2b933fe04f@dev.tdt.de>
-Message-ID: <6f483189ec993e3e5f89bccec11cc02a@dev.tdt.de>
-X-Sender: fe@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.17
-Content-Transfer-Encoding: quoted-printable
-X-purgate-ID: 151534::1778049930-A141CF85-AE22F8A8/0/0
-X-purgate-type: clean
-X-purgate: clean
-X-Rspamd-Queue-Id: 691584D6EF4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: A5CE44D6C90
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tdt.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[dev.tdt.de:s=z1-selector1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[dev.tdt.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,googlemail.com,dev.tdt.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293391-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293383-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,dev.tdt.de:dkim,dev.tdt.de:mid];
-	TAGGED_RCPT(0.00)[devicetree,linaro,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fe@dev.tdt.de,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[maxlinear.com:query timed out,tdt.de:query timed out,dev.tdt.de:query timed out];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RBL_SEM_IPV6_FAIL(0.00)[2600:3c0a:e001:db::12fc:5321:query timed out];
-	SEM_URIBL_UNKNOWN_FAIL(0.00)[maxlinear.com:query timed out,dev.tdt.de:query timed out,tdt.de:query timed out];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 
-Just a friendly reminder. I hope I=E2=80=99ve incorporated all your comme=
-nts.
-If there=E2=80=99s anything else you=E2=80=99d like me to do, please let =
-me know.
+Add missing HWEN input pin and IN supply. Fix v4l2 subdev registration.
+Remove platform data and switch to OF device tree bindings.
 
-On 2026-04-17 10:35, Florian Eckert wrote:
-> This series fixes and improve the 'intel-gw' driver to work again with
-> the current dwc pcie framework. The following changes are:
->=20
-> * Move interrupt 'enable' to its own function to improve readability,
->   and add additional register writes just as the Maxlinear kernel does=20
-> in
->   their SDK.
-> * Enable clock for the PHY before PHY init call.
-> * Add missing 'start_link' callback. That was added to the PCIe dwc
->   framework.
-> * Move ATU base address assignment to the probe function and also add=20
-> the
->   the possibility to read it from the devicetree by dwc core.
-> * Update devicetree documentation for intel-gw-pcie.yaml
-> * Remove unused preprocessor define.
-> * Mark driver as orphaned as the maitainer's email no longer works
->=20
-> Signed-off-by: Florian Eckert <fe@dev.tdt.de>
-> ---
-> Changes in v5:
-> - Also add the DTS 'minItems' option for 'reg-names'.
-> - Add missing quotation marks to the DTS example change to make the DTS
->   bot hopefully happy.
-> - Link to v4:
-> https://lore.kernel.org/r/20260415-pcie-intel-gw-v4-0-ad45d2418c8e@dev.=
-tdt.de
->=20
-> Changes in v4:
-> - Add 'atu' to the end of the resource definition to ensure backwords
->   compatibility.
-> - Updated the commit description to explain why the MaxLinear SDK is=20
-> used
->   as a reference.
-> - Remove 'Rahul Tanwar <rtanwar@maxlinear.com>' out of the loop, as the=
-=20
-> email
->   address is no longer valid and is being rejected.
-> - Link to v3:
-> https://lore.kernel.org/r/20260401-pcie-intel-gw-v3-0-63b008c5b7b2@dev.=
-tdt.de
->=20
-> Changes in v3:
-> - Update commit messages.
-> - Correct the sample code for dt bindings by adding the missing=20
-> quotation
->   marks. Add 'minItems: 3' to avoid ABI issues.
-> - Move driver atu base assignment to probe function and keep backward
->   compatibility.
-> - Link to v2:
-> https://lore.kernel.org/r/20260330-pcie-intel-gw-v2-0-8bd07367a298@dev.=
-tdt.de
->=20
-> Changes in v2:
-> - Added additional information to the commit descriptions
-> - Add additional patch to mark driver as orphaned as the maintainer's
->   email no longer works.
-> - Fix wrong error path for enable clock before phy init.
-> - Add new patch to update the devicetree documentation for the 'atu'
->   resource
-> - Add additional recipients responsible for documenting the dervicetree
->   bindings.
-> - Link to v1:
-> https://lore.kernel.org/r/20260317-pcie-intel-gw-v1-0-7fe13726ad4f@dev.=
-tdt.de
->=20
-> ---
-> Florian Eckert (7):
->       MAINTAINERS: Remove bouncing intel-gw maintainer
->       PCI: intel-gw: Remove unused define
->       PCI: intel-gw: Move interrupt enable to own function
->       PCI: intel-gw: Enable clock before phy init
->       PCI: intel-gw: Add start_link callback function
->       PCI: intel-gw: Move driver atu base assignment to probe function
->       dt-bindings: PCI: intel,lgm-pcie: Add atu resource
->=20
->  .../devicetree/bindings/pci/intel-gw-pcie.yaml     |  9 ++-
->  MAINTAINERS                                        |  3 +-
->  drivers/pci/controller/dwc/pcie-intel-gw.c         | 73=20
-> +++++++++++++++-------
->  3 files changed, 58 insertions(+), 27 deletions(-)
-> ---
-> base-commit: 028ef9c96e96197026887c0f092424679298aae8
-> change-id: 20260317-pcie-intel-gw-50902113f9e1
->=20
-> Best regards,
+---
+Changes in v6:
+- fixed swapped current ranges for flash-max-microamp and led-max-microamp
+- for_each_available_child_of_node > device_for_each_child_node_scoped
+- pm_runtime_get_if_in_use > pm_runtime_get_if_active
+
+Changes in v5:
+- schema adjusted to take into account lm3559
+- device_for_each_child_node > for_each_available_child_of_node
+- lm3559 and lm3560 configuration was diverged with data match
+- removed redundant header
+
+Changes in v4:
+- fixed current being off by 10 in schema
+- label property from schema replaced with modern equivalents
+- lm3560_init_device moved before subdev registration
+- v4l2_device_unregister_subdev > v4l2_async_unregister_subdev
+- added subdevice cleanup if second led registration fails
+- added check if "reg" property exists for LED nodes
+- added missing fwnode_handle_put if device loop fails
+- added bitmap to monitor configured LED id
+- added pm_ptr() macro for PM operations pointer
+
+Changes in v3:
+- added note regarding lm3559 in the schema commit
+- lm3560 power on/off functions converted to be part of PM,
+  dropped redundant wrappers
+
+Changes in v2:
+- vendor properties swapped with generic LED properties
+- added mutex lock usage optimization
+- power supply and enable gpio commits squashed into PM
+  configuration since they are both required in making
+  proper on/off sequence.
+---
+
+Svyatoslav Ryhel (6):
+  dt-bindings: leds: Document TI LM3560 Synchronous Boost Flash Driver
+  media: i2c: lm3560: Fix v4l2 subdev registration
+  media: i2c: lm3560: Optimize mutex lock usage
+  media: i2c: lm3560: Convert to use OF bindings
+  media: i2c: lm3560: Add support for PM features
+  media: i2c: lm3560: Add proper support for LM3559
+
+ .../devicetree/bindings/leds/ti,lm3560.yaml   | 163 ++++++++
+ drivers/media/i2c/lm3560.c                    | 383 +++++++++++++++---
+ include/media/i2c/lm3560.h                    |  84 ----
+ 3 files changed, 479 insertions(+), 151 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/ti,lm3560.yaml
+ delete mode 100644 include/media/i2c/lm3560.h
+
+-- 
+2.51.0
+
 
