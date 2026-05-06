@@ -1,203 +1,338 @@
-Return-Path: <devicetree+bounces-293554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293556-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8EFgNvpP+2mSZQMAu9opvQ
-	(envelope-from <devicetree+bounces-293554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:28:10 +0200
+	id WGZ9Mu1Q+2mSZQMAu9opvQ
+	(envelope-from <devicetree+bounces-293556-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:32:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26234DC2AE
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:28:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F304DC3D2
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:32:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A9380316584C
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:16:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AAC6E31AD802
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5346480349;
-	Wed,  6 May 2026 14:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D4A480DE4;
+	Wed,  6 May 2026 14:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P0TWWejF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a3omOw4Q";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JwM9jMWi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C262E47799D
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 14:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0F5480962
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 14:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778076896; cv=none; b=gMRrk31jue1VXjEeBAznKDClY8onln+ELQb/yalMvuo4vNQ5RLAKcnLZOVBy4yTwDeF3R6WXBrGxLO0pHLSX3C1SwHsd0d0MPdCGeQd4pfhsMa8HkYqaZar2H3lmhUcgAD1tbi1+FxCbdY6TvFswBQB+G3dURJasNeCefW3Tooc=
+	t=1778076956; cv=none; b=NCUlp8MJtJVqi2Wb6S6xRYvhwFvwFt1zqCXdB2HH10bdvQTsfUsUPxYWS395gxJY8CaIgJI226OYOPCATclUAXHfgH61dVw+GSC0Nha7U65zc8Gb+URs8u92WJKYVq1xeeuF4jckmHX3a21cBN0Qz4eZKJyKbAbk/mTyoedrNU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778076896; c=relaxed/simple;
-	bh=S/kmyfCtgRcnnR6uKuRsciK1a6EFOEAiOWDDIUPH/n8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J1eFxDUpjlpVsglxyfQjXFPxPlr9I08WB+R93YwjVR8zEYM/F+Xha38K46sckDVXWjMVb3bQz1qCoATQCKjjDxL1yqRPhvHFW8Lyy9smDaWcXe8ZFEqW7Yhb0vF4urX64Nnfilk42AcsCRX9E+d7viN4nF99Ecn86Qo8Qf2oEIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P0TWWejF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CA24C2BCFB
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 14:14:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778076896;
-	bh=S/kmyfCtgRcnnR6uKuRsciK1a6EFOEAiOWDDIUPH/n8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=P0TWWejFiVyGwBeEGQrswyDGhgdW3tEtXcFMPmnguQ8KcsqeSQOXhsZoC63lqhyb1
-	 QmlbF8fsIgMfwR6YxJgd5qY2LHmYtDUROxTPmuthCQPOXlzWT7ZzmrslZSdS40CIYa
-	 DfwGCgJlb+o3MaVxHG7+SS0gk9F2yfPPrSRWQLVtGDnAWsMj5Wk7q0qHFt9N/GmUPR
-	 xmVXMFYvPwe9jmt/1m46Cgb6S3RYyniJIegzXa4HQ4n2fNZmzDK7g3vZhnCZlRi87C
-	 xFfN0ManqEBJD90kQ3GaX5yB9dl1NUv+v+wEObvaHsQ+zcnGyUPMi056dk50UzOwFc
-	 ipcCbzgIEgF7g==
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-bad54961385so1047515066b.2
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 07:14:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+xfmi5N0FBacejmOnGxqzPGsBYwjoENzhxF7EqUcpRJF+3R9T8w09rq6jh9XuRvS0/f8HmXJ8uYlFm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0DDn9EljO5/dxwZ9YyUmWRfmaIK50bLq75fvfM2M4u4+71WoD
-	Z07THgTtWlkjpj7mTqwGOWdxfuJmxFrYvJ64/pSCaSSWu5h/BpiD8+N3Ie9ngaOO7u1W5TRl/pM
-	O00Dr0tlWdrIEiZYPetJ83l7YwE0yoA==
-X-Received: by 2002:a17:906:ef02:b0:ba7:b198:7d25 with SMTP id
- a640c23a62f3a-bc56d13529bmr176376066b.21.1778076892767; Wed, 06 May 2026
- 07:14:52 -0700 (PDT)
+	s=arc-20240116; t=1778076956; c=relaxed/simple;
+	bh=77fJr5LiA/sxupPT8D6D6Tg2q69Ndutr+ng2W7NYQUc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YPJ9qU++PcYAN8kRNOALpSPR+1N7/z/zlNwYr90YngPTebTNiTIL+AhIpXtZN6cCGiO0PlVdtB854fZVHWU7ETAD50dRp+5s5ZNGqlEyhwY2VgrYCzOVCGfJXDUIFjwfnpFDK/Jr+t5GhX8u1zTACE1nsW9ZF0bATOwpgyblNjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a3omOw4Q; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JwM9jMWi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 646DK63L529408
+	for <devicetree@vger.kernel.org>; Wed, 6 May 2026 14:15:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	meGD3Bi0QGO28p7xtSgOSjUMqCXzjYkDyPriOZRTKRg=; b=a3omOw4QdhsyYJGa
+	si+XT6kwzHEmJtWJ34j54LJFoLnFRPyBE+tH1EZz99YBZmqTXh2F6vrHR5mWyTD/
+	Z+u/xy8szUADasJXV0Bi4KCPXCbEKAlG8/XjLhWVUPvfE6EvNDojpLpzNl7YodAE
+	fwHhjNyGBCZSVvxEnbJc29PaBaw5S+GqT4VZbLft5AcIEHZyurd3wJZMvvQaOStB
+	QF6jCgJHilepC2m/jhVYYBNkNADsupACM1pn4ovl2rKt5FeO/oOWSvX8NbHne2Ov
+	P7PfBXaYnsea66A7joZnbdFzc7Hlv5oc+8jr5+aegWfQ2TC0WiuiKq9OsM0QH2Jd
+	6A14rQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e015x9m7t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 May 2026 14:15:53 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-35fbb57764aso1113697a91.1
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 07:15:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778076953; x=1778681753; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=meGD3Bi0QGO28p7xtSgOSjUMqCXzjYkDyPriOZRTKRg=;
+        b=JwM9jMWi4hja4vvChls6LEpONAUWomJY7EmUeytJoSE+7TjlU8OZ9slh4BeShp0KAc
+         QrBvm2JkBfPAQh+FgAJmXvd1ns8QSc84xPsWaJK71+QH5CmJQcis7iaPbZeSvFYsZ60D
+         bR3BVAIIRcfMaFVfiYlMZyyM98HtLbL44PKxpnsXAFinVLPGH/DyeyUsUQwJRto1UknZ
+         Aqcn+UcpLY832MdHALhRwqch9xqDJlKTWJsh26Ak4wGanEuPFXyXGMpoDiQvnvEYJOPO
+         WWEez2VF2GaddErUhe+dz3Thx+yRpvCp5kkO6zatykauL5yAHHDBGlwAWS9hQdN19eqP
+         /2Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778076953; x=1778681753;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=meGD3Bi0QGO28p7xtSgOSjUMqCXzjYkDyPriOZRTKRg=;
+        b=gz/iXWYvNwtsPZAT4ZqOvop/UQ+Z0JnkCqojtg9Hde5CNb8762YemopOEh7t9s6Mg6
+         opovNJPAK4NHzEY+WM8Lc2yU3papHnXPTgIID/8JEqJaR/qB1MLhA/ZhUzJelKHKkJf7
+         vDnGnf2/iw6PjLrsXjYMNlZELLPARFufiPsQSQWxVyC6PXYqnvT3HOK8YUtSYWQ7Y31K
+         GVqibYeVj77qKudhQjeUK4gtYUeTzBeKKk5hocOjz8Nh4S3Hnd6OFAwbIj1VpYQFtz8l
+         Q04Tomf5lIjK6Dlkx9QExUlV7sky60qQzM6JMpwWspxPCdroYRxS0Hog5fzVW+egWNaL
+         5ksA==
+X-Forwarded-Encrypted: i=1; AFNElJ/hwB1NWG8fNtsbw/qqxKEuqBv9FNEEy6A+P9iPzD0C6Bdf33jx7ZGF92g8PWWWeTIQqCYhuqNNwEur@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdTdx3Uenu4pB/WubcRqOCJPZ0Dth9GaRFxksGB7lVpFq4z/0Z
+	4kpLSNn/aYObp2G/2QVmRPtNK6Ojco/MKA/wotvxN90lBL5iYLI3h0M/iFLntTfEL82u7TK2Suh
+	amkaTWeHLuXPZJDHB551nUM+ob6UFBVARZdT+Fs9ib1jWefiTO9/Z6neSgJ5t1nUj
+X-Gm-Gg: AeBDievtA+l2hODTT1l7hHdW/D7ombvkoC9Yzm95PSJThGoe1ivi1CHtpyGcUZQzgJy
+	nW1gG9EiRk+1tvljIj+no8OEixE2aKbYwNB7OYSkGpp4FjApiW2tcBlTlW1FRfiYLFwOFqJxbtB
+	SY3YLsqw2AXHvvuYfHf4ccDanNXKq11XiI+raVcqBHp7GaddPTz/mXzBOkE9/j47keVDQmMLGg4
+	N6CeGTJc50azUg6ceF945mCzSAhz+DnfB2e/WADGILf8BLdKBSIWbKJexz6d9GkzyyFNQlBLoOh
+	goWW2Z+Y9QIsMw+bX9QlcNyGr7YDdEmo0CQFgoUtnISoVfK07wBr0cqXO+0+yT3SeqQNt+F0Fzz
+	+yLKqc+P/K2f/oRsCPq9PUyHhyWwtp1MvvSFg/hWia+QtlVYC3TUlMIUiG8hdbdja
+X-Received: by 2002:a17:90b:1b48:b0:364:721e:42d3 with SMTP id 98e67ed59e1d1-365a96ec81cmr2744692a91.4.1778076953045;
+        Wed, 06 May 2026 07:15:53 -0700 (PDT)
+X-Received: by 2002:a17:90b:1b48:b0:364:721e:42d3 with SMTP id 98e67ed59e1d1-365a96ec81cmr2744637a91.4.1778076952422;
+        Wed, 06 May 2026 07:15:52 -0700 (PDT)
+Received: from [10.204.101.47] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-365b08d6c5csm1710667a91.1.2026.05.06.07.15.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 May 2026 07:15:51 -0700 (PDT)
+Message-ID: <6092c78d-b21a-4eb1-815a-87a530781705@oss.qualcomm.com>
+Date: Wed, 6 May 2026 19:45:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
- <20260504-v7-1-topic-ldb-fixes-v1-2-0125d937ff7f@pengutronix.de>
- <20260505141538.GA2547282-robh@kernel.org> <2bl2mwpk57xgkuye2gydliymjkzikiovnb7ovnb73olwtfkjwn@byn3732grvnh>
-In-Reply-To: <2bl2mwpk57xgkuye2gydliymjkzikiovnb7ovnb73olwtfkjwn@byn3732grvnh>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 6 May 2026 09:14:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLYS1sgU680KNR60+OvtNwEVKWovht7K2APO3sqeJe6Nw@mail.gmail.com>
-X-Gm-Features: AVHnY4JuaUtVhW_AwoHvUdOyEnlQ7azzni1rJEniHezJvRpnnGicHK1-9_FNIHQ
-Message-ID: <CAL_JsqLYS1sgU680KNR60+OvtNwEVKWovht7K2APO3sqeJe6Nw@mail.gmail.com>
-Subject: Re: [PATCH 2/4] Revert "dt-bindings: display: bridge: ldb: Fill in
- reg property"
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, laurentiu.palcu@oss.nxp.com, 
-	victor.liu@nxp.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: D26234DC2AE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 04/13] media: iris: Add iris vpu bus support
+To: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        iommu@lists.linux.dev
+References: <20260505-glymur-v4-0-17571dbd1caa@oss.qualcomm.com>
+ <20260505-glymur-v4-4-17571dbd1caa@oss.qualcomm.com>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <20260505-glymur-v4-4-17571dbd1caa@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Os1/DS/t c=1 sm=1 tr=0 ts=69fb4d19 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=B53-pikVkeDfK7DE9NMA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-GUID: 2FKZ2f6bgqRzUlqTYc5vuUPx1p-Dc_WC
+X-Proofpoint-ORIG-GUID: 2FKZ2f6bgqRzUlqTYc5vuUPx1p-Dc_WC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA2MDE0MCBTYWx0ZWRfXzQlwgFjC95Xe
+ HG/mA32GvBQHhQ5vXtlQ6lhOsyAOj8x+hSn6ZmE2IOmp1IhwiG/zE3HpAsySBF31TclG3X+knDr
+ 2zE6ShwfMb0oetVPx1vbUuoRJC6zB/YWltEx8Ul92lT87DuQbAFuoPWd2y66kBA4KW6MNW32t/u
+ 1hk2uqq+mQoF/UjN5lJh3sGvJ1rJ+mS6M2YiJi/7dKVSLzC9hG+qXd2b/yqsaD8a6RYjxgerfE0
+ xhKUWG6T54CZb5G/1Qf6iJJj6tF7irHfsm3KKc7/aOVYAwvmVpyiKV0OSqSXFpQtmf95Ytt0DtN
+ a+1HAEa9xBUQGDG2P959SdC9Nj9kqnHbupW0ERweWwtmGFsviBP3sdU6nlsi117R2ZGfYqq7XXW
+ 6hL2Su8JkDtY12nyoj5fju7n6IxyBmbdPzw+dstemiD5jt2VBhvRC5fyAekFvWeM1bVMJ1gTbbE
+ IqxeGPFtmUr1kplAGOQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-05_03,2026-05-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 spamscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 adultscore=0 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605060140
+X-Rspamd-Queue-Id: 28F304DC3D2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293554-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,denx.de,nxp.com,pengutronix.de,oss.nxp.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293556-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,linux.dev,kernel.org,linaro.org,gmail.com,8bytes.org,arm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-On Tue, May 5, 2026 at 10:46=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
->
-> On 26-05-05, Rob Herring wrote:
-> > On Mon, May 04, 2026 at 10:21:42PM +0200, Marco Felsch wrote:
-> > > This reverts commit 16c8d76abe83d75b578d72ee22d25a52c764e14a.
-> > >
-> > > Remove the 'reg' and 'reg-names' property from the LDB.
-> > >
-> > > The LDB is either part of the IOMUX_GPR (i.MX6SX) or the BLKCTRL
-> > > (i.MX8MP, i.MX93) register space. Both IOMUX_GPR and BLKCTRL are
-> > > register ranges with loose register definitions. E.g.
-> > >
-> > >   - On the i.MX8MP there is one register which controls the AXI
-> > >     threshold for two different IPs (BIT(31:16) - IP1, BIT(15:0) - IP=
-2).
-> > >   - On the i.MX6SX IOMUXC_GPR5 controlls: CSI2 mux, WDOG3 settings, P=
-XP
-> > >     handshake, ...
-> > >
-> > > In conclusion: it can't be ensured that one register belongs to one
-> > > dedicated IP and the LDB is rather an exception than the rule.
-> >
-> > It is fine if there's a child node for LDB if the LDB registers are
-> > consistent, but the other misc things are represented by the parent
-> > node. It is certainly not a requirement that either everything be in
-> > child nodes or nothing be in child nodes.
-> >
-> > What I don't see in this series is what problem does this fix? If you
-> > are going to break compatibility, then there had better be a good
-> > reason.
->
-> Hi Rob,
->
-> with the upcoming i.MX9x SoCs the parent syscon (BLKCTRL) controlls
-> multiple other IPs, e.g. a DPI mux added by commit 3feaa4342637
-> ("dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC subnode to schema and
-> example").
->
-> During the discussion of the above commit we agreed that the sub-devices
-> of the syscon shall not use the reg property due to the fact that one
-> register serves multiple purposes. In the above case the same register
-> controlling the dpi-mux also controlls MIPI-DSI bits. The MIPI-DSI bits
-> can be abstracted as drm-bridge as well. Two sub-devs using the same
-> 'reg' property below the same parent seems odd and I don't know if this
-> allowed either.
 
-It's not generally. There are some exceptions to define things at the
-bit-offset level rather than byte level.
+On 5/5/2026 12:29 PM, Vishnu Reddy wrote:
+> From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> 
+> On glymur platform, firmware loading needs a separate IOMMU mapping with
+> its own stream ID. This stream ID is defined in the device tree with the
+> assosiated firmware function ID in the iommu-map property. To create this
+> mapping, a separate child device is needed so the firmware memory can be
+> isolated in its own IOMMU context.
+> 
+> Introduced a new bus called iris-vpu-bus. This creates a dynamic device,
+> and its dma_configure() callback calls of_dma_configure_id() with the
+> function ID provided by the client to map the corresponding stream ID.
+> This sets up a dedicated IOMMU context for the child device.
+> 
+> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+> ---
+>   drivers/media/platform/qcom/iris/Makefile       |  4 ++
+>   drivers/media/platform/qcom/iris/iris_vpu_bus.c | 69 +++++++++++++++++++++++++
+>   include/linux/iris_vpu_bus.h                    | 25 +++++++++
+>   3 files changed, 98 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
+> index 2abbd3aeb4af..6f4052b98491 100644
+> --- a/drivers/media/platform/qcom/iris/Makefile
+> +++ b/drivers/media/platform/qcom/iris/Makefile
+> @@ -31,3 +31,7 @@ qcom-iris-objs += iris_platform_gen1.o
+>   endif
+>   
+>   obj-$(CONFIG_VIDEO_QCOM_IRIS) += qcom-iris.o
+> +
+> +ifdef CONFIG_VIDEO_QCOM_IRIS
+> +obj-y += iris_vpu_bus.o
+> +endif
+> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_bus.c b/drivers/media/platform/qcom/iris/iris_vpu_bus.c
+> new file mode 100644
+> index 000000000000..15ba4d9c563e
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_vpu_bus.c
+> @@ -0,0 +1,69 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/iris_vpu_bus.h>
+> +#include <linux/of_device.h>
+> +
+> +static int iris_vpu_bus_dma_configure(struct device *dev)
+> +{
+> +	const u32 *iommu_fid = dev_get_drvdata(dev);
+> +
+> +	return of_dma_configure_id(dev, dev->parent->of_node, true, iommu_fid);
+> +}
+> +
+> +const struct bus_type iris_vpu_bus_type = {
+> +	.name = "iris-vpu-bus",
+> +	.dma_configure = iris_vpu_bus_dma_configure,
+> +};
+> +EXPORT_SYMBOL_GPL(iris_vpu_bus_type);
+> +
+> +static void release_iris_vpu_bus_device(struct device *dev)
+> +{
+> +	kfree(dev);
+> +}
+> +
+> +struct device *create_iris_vpu_bus_device(struct device *parent_device, const char *name,
+> +					  u64 dma_mask, const u32 *iommu_fid)
+> +{
+> +	struct device *dev;
+> +	int ret;
+> +
+> +	dev = kzalloc_obj(*dev);
+> +	if (!dev)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	dev->release = release_iris_vpu_bus_device;
+> +	dev->bus = &iris_vpu_bus_type;
+> +	dev->parent = parent_device;
+> +	dev->coherent_dma_mask = dma_mask;
+> +	dev->dma_mask = &dev->coherent_dma_mask;
+> +
+> +	dev_set_name(dev, "%s", name);
+> +	dev_set_drvdata(dev, (void *)iommu_fid);
+> +
+> +	ret = device_register(dev);
+> +	if (ret) {
+> +		put_device(dev);
+> +		return ERR_PTR(ret);
+> +	}
+> +
+> +	return dev;
+> +}
+> +EXPORT_SYMBOL_GPL(create_iris_vpu_bus_device);
+> +
+> +static int __init iris_vpu_bus_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = bus_register(&iris_vpu_bus_type);
+> +	if (ret) {
+> +		pr_err("iris-vpu-bus registration failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +postcore_initcall(iris_vpu_bus_init);
+> diff --git a/include/linux/iris_vpu_bus.h b/include/linux/iris_vpu_bus.h
+> new file mode 100644
+> index 000000000000..750e878e489f
+> --- /dev/null
+> +++ b/include/linux/iris_vpu_bus.h
+> @@ -0,0 +1,25 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef _LINUX_IRIS_VPU_BUS_H
+> +#define _LINUX_IRIS_VPU_BUS_H
+> +
+> +#include <linux/device.h>
+> +
+> +#if IS_ENABLED(CONFIG_VIDEO_QCOM_IRIS)
+> +extern const struct bus_type iris_vpu_bus_type;
+> +
+> +struct device *create_iris_vpu_bus_device(struct device *parent_device, const char *name,
+> +					  u64 dma_mask, const u32 *iommu_fid);
+> +#else
+> +static inline struct device *create_iris_vpu_bus_device(struct device *parent_device,
+> +							const char *name, u64 dma_mask,
+> +							const u32 *iommu_fid)
+> +{
+> +	return NULL;
 
-> Now the LDB is also part of this BLKCTRL syscon device but requires the
-> reg property. TBH, I don't know why the reg property was added in the
-> first place, due to the above fact (multiple sub-devs - same register).
+change this to return ERR_PTR(-ENODEV);
 
-Probably because we asked for it, but we don't always get a complete
-picture of all the h/w functions (though we ask for that too).
+> +}
+> +#endif
+> +
+> +#endif /* _LINUX_IRIS_VPU_BUS_H */
+> 
 
-But nowhere have you said the LDB registers are mixed with other
-functions. If they aren't, then there is absolutely nothing to change
-in the binding. If they are, then yes, we shouldn't have 'reg'.
-
-> Of course, we could limit the breakage to i.MX9* SoCs only which is done
-> by:
->  - https://lore.kernel.org/all/20260329-fsl_ldb_schema_fix-v1-1-351372754=
-bc0@nxp.com/
-
-The rational for that doesn't answer my question either.
-
->
-> but I don't think that this would be nice from user and from maintainer
-> perspective, because:
->  1) The same LDB "IP" would have a different dt-binding
->     (user perspective)
-
-It's not the same if the register layout is different. The point of
-having sub nodes is because the sub-block is reused. If that's not the
-case, then there shouldn't be a sub node in the first place.
-
->  2) It introduces another dimension drivers need to care about
->     (maintainer perspective)
-
-I thought Linux didn't even look at 'reg' here.
-
-Rob
 
