@@ -1,97 +1,96 @@
-Return-Path: <devicetree+bounces-293694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293697-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id RL7dHoGy+2k8DgAAu9opvQ
-	(envelope-from <devicetree+bounces-293694-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 23:28:33 +0200
+	id TLDsMSCz+2lJDgAAu9opvQ
+	(envelope-from <devicetree+bounces-293697-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 23:31:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6CB4E095D
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 23:28:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8044E09A9
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 23:31:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C02AD3018BCE
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 21:22:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2F5A8300A308
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 21:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F40E435F5E7;
-	Wed,  6 May 2026 21:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4994835DA4C;
+	Wed,  6 May 2026 21:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="GXpETEK6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="wBLWbCBx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62028358388
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 21:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CFF35F5E7
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 21:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778102535; cv=none; b=J0stiQNWQG/VASP/+1eYKB80ovLdCw6kGYpGMX1b2/pxIno33DUDqi7OS/nD2GrlUUIp25up8AqhI77K9eJWgU+oc3ZBPkzC3wLqAYVjpS8CfETD3nMmpi80/iP4qSfim4lAuJ9AlUOwfpFV65nMaEUOMW1ZCQDoxyjOOgDmE5Y=
+	t=1778102670; cv=none; b=DTouQ8TN6MZcnuT+AT23HRJ8A3Eod/Sf1uKRH/RvDD+9M86qgA/+jYJQGBGM3oX4h9j8sX1742R44KauuKlXA/62Syu9GeIupxe492zJF3PGrrC5fS0JFyV8XZoTdv6Xdx9nBEf1tJxbRpfP7KZhlsaMf+UjHs2MUYt86dYlb94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778102535; c=relaxed/simple;
-	bh=TDFlAyJw1nUODGr7CJgiZNIw/mOTrHdvnPgaxqyWrIM=;
+	s=arc-20240116; t=1778102670; c=relaxed/simple;
+	bh=LYkVKahq53YapfUpu0qbpOHikxCfXJwIJbTvq43xNhY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=H8S7jdriM1hWjX1fXNJqh/09I8C7KFoi1SoHi1PMIqfBJTPqOy0pTP4tQXA84lmCkPH8UrVDcDdiwG2CPqXHLABYHwa77vnia6VQb3rxjL3GSXK4cvGdq3Rsx4cJAr49mbAMrruGTvbwTG3qoBKLtUX7Sygg0eWeE3neGb1Npoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=GXpETEK6; arc=none smtp.client-ip=209.85.216.51
+	 MIME-Version:Content-Type; b=gGjZSnwrSg/ebxVsa3enUAdVV1TBJYAufSOxWP+ZsckRQ5j3XnaDg0GUgT7pfVaVnc0y4bG4eBYQp0diiz55PisRBk+o48LZv6RsIP7i2fUkHi+5rScaAnwZZRnfrdplnU1GHgYiQ8ZCd8w18UbFbMiqTP0X/idL4GUzlMwMels=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=wBLWbCBx; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-3654ebfd57cso81644a91.1
-        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 14:22:13 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-82faf871346so49561b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 14:24:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778102533; x=1778707333; darn=vger.kernel.org;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778102668; x=1778707468; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=E+3kkHmTsm2rX61tkHXl0gWLDyLZTSYok7GwmcKQ3fQ=;
-        b=GXpETEK6PSp8V4gOKJ2seojB66tCYausMgQiarlrQpA8DfAVRX+xxFgQrNhA8Qtzgf
-         gpy8xp4WRYD5R3NGt98Pa3urG/Y5Ugy4DY7LcuoafImQl1E6n74lRZ9rDAW3mkuEJDre
-         tOpMMZcHlvmhAQohMVNVztCoIAR1XYVREuBxHe5mMHnaiLE+rhBaWycN/Cbk8GnAi2bs
-         CNy5pWS9tZBGxA4zcii+CHBW3Zh/P+0sXmVCZun8lK4CWdxCVgWbFNUABfveOXds34A5
-         k8J2Yz9/ZnRY+5MgSJ4l0rWLEdv0/Qj8iIVzT1gcbSjew6eebMsFAmYUhtNqHuiCZFB9
-         4lUA==
+        bh=5HjpaqU+mw9KsrlzGy2BBS92EqahjZUD+cu7IARQAvw=;
+        b=wBLWbCBxbq/pGPUTDjdGrpvbV08QPAuK54dnliOtOzJJUIM1oiN/+/D5L/EjfehVuS
+         zkedGEZIxx6PVEkbPSP2SCIzHG6kfQ/G4uhwmjcBUbXt7YN8kdOx+4SZR1xPAznT8orL
+         +kYyxA0wtS2mwPNYYRfsDd1r8t9zTSRjqhKvA2b6RpcOVJ2FkoVvyEKkU3QfCkJz6AaA
+         bG0mVrsSvg+DYgWYpO86h3OTKzC+Rtu1cUYGv8uOume4IrwyIpqwqIVHc1ttyQWgG3xE
+         2ZsL5uZ2ePnKY68CjKxFhIqwaPIDjpjj/jxJvBHIu4sKJcDzmpfJZmHlE6iDbZSaF9mI
+         rkgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778102533; x=1778707333;
+        d=1e100.net; s=20251104; t=1778102668; x=1778707468;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=E+3kkHmTsm2rX61tkHXl0gWLDyLZTSYok7GwmcKQ3fQ=;
-        b=kt2YprH/Afwss9MWA7f6qvU9eq6t3aRmLjWWCEPoyP2KTM2IU4FXblPuh5kH8Z+CdV
-         lb0C2bOO09i68ys4CvqxWswyulNCgXgGUMJHTAAbK53JdTmEptcgE7ybi4G9p6MHhI4O
-         0EA2Uoe+7+mF4YatvUENz2TxAshBagJzB9edWIlYMxjLu0hrgWRw90c16pzTKaBDOg5b
-         Mga9sXK31V7uQ4SEJkzMsKIy9oBccwc1eu8D30rynUpsiTMDhOYcNF4IZPKA6Pvx58u9
-         zy8xA4M2vnaz5Aqzx3PBl6Ez2rN3t64mj4CgZNNTN4TqpAJUUfLh4kotVOMkmRiMJrc1
-         QmOg==
-X-Gm-Message-State: AOJu0YxyOBFxjXiLdSTN7BBnjkt0JkVl6pQ5NLmKvcMbo0SIH7bGhyk+
-	GS84YmYZ+havv9IHGvBXZURWF06+Jfnd+xpy6P9BBXpuORhIUJhj1k1W5BZyk3qpSwbnmF/rbMc
-	UjEntKTM=
-X-Gm-Gg: AeBDietBXsO2DavmGu6JuDypGklVulqENtK7bvY5MtMiXRzhi6cTXbm7D29GoCjacfw
-	EWF/CCbhGmiy7muHO/G8RMxYx/JunjO7aJQGGu6L8A+0ZAzwFaWVz5buzVjnGQaQukeHxRYgR+k
-	2C7uWu3kzVj5SObQ7a3LPLvvUtVXBNezpmji7HO+GpG+cMM7OYsF/OypwUHjiNUasGb4xDkEOKt
-	kihvqXf/ZqtGuFbDM1e+OMNNSDfCo2RI62pbz6WZ9TE8GSEP5w7se8mZbfFOT7daah1IVHpOebK
-	3Tpnq6GodkUNGeTbJ+S7XDkXM28fR9n24BYSLhuuY6CkzvfntzEUOs31Vfzvfyen7G0W4OiVXDW
-	P/4bMYh+SxGvpiZRdTp2RDaIlxaSCxSSd+yiCyYd/ZbCAcVGAlpYcUqLs7eejPr7nWkU2yR9rJ0
-	6QuAjbLIGVg4XowlBbjTl9L9W0oSO7zw==
-X-Received: by 2002:a17:90b:548d:b0:35f:b647:d98a with SMTP id 98e67ed59e1d1-365ab9b8c53mr4534954a91.5.1778102533545;
-        Wed, 06 May 2026 14:22:13 -0700 (PDT)
+        bh=5HjpaqU+mw9KsrlzGy2BBS92EqahjZUD+cu7IARQAvw=;
+        b=djtrZjlaA72Xy79DM+i1ms9QWkm90xJCVez2GzcWd2UY87XLoctKRhUFO3cFjZxFKH
+         cmFHTZH5cTdy/1Jfe0E8ROUlTuze/55ZMS73aoV2d4QMFpI6UAGjBknEvokjWpjCXlyt
+         u2Gx3nE+AANeZZF4d/orllWLSsGi0bPIrmgTgnNlfpr2IjSONE1Qe3DmsoxiEeot4/N5
+         UwFTpCEyaf60ffU3ItXVSjbiCPdS7WN8OH26sr6B93+qANaAVPcoGn5lvsURNn+wsCG6
+         uM1HH6yhSnYYVkuIX+LMzHB+/T8U7U/1cWgO1y5F6Kc5xl40HYEB5+TerX6EL3mwkTMd
+         6A6w==
+X-Forwarded-Encrypted: i=1; AFNElJ+yQz4+Xu9nXKMVqwiYAop9rR1viKyuJNQW93YSZBx+3voZsLaZNHDTFoudBMU54Gtebwq8VPqO5n0d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJUnAHlafx4Hw13tLgUyA9MLQzGFhfl1/66R3H5zpL7AAr4tO7
+	5q4Y3mQtwnwC8iPS3Snw3vkzSON7G1Hp+E9Po5KgwOxPiDjYaqSNGU5wNAh9YO3Q0MA=
+X-Gm-Gg: AeBDievSw5er6IVp/RTpMIBdTz96WiaEjTcWpwMr894m8aBj6pxU+yLz9JfwUbgjice
+	w5KxrRDzxGuM57q2RDRikuK5EJASdfevULlupN/5iZenzG9VFxKMS67V+c6dd31JaogdeRqA0FU
+	G55yN7OSqrRuFDhPgggO9NVcYMljjf/46aa7TgQrnBN7VbbpGlSwyAXop2E9eWCpPn08WHN1C8g
+	6Js0ynqiof5vrUU7o3DwUIcSCCpy7qmJWVtEKVhus2vVyyczCIxb+Uje3jCS7L0BTBHVWIIRMZP
+	PRs5MOTbPyWULHupM5ieaYZDdPvr2mVGWql91bDTaaO5VZNvvUtWrKltCwntn1vR2VItBDfcHEm
+	sjwoyIq1gC9LZIy6LimBbR3Vee4Nhhvg67ajicVACvfP2rHiv/Z5R/cys6eiD75o+drU0+hy6gp
+	cXsMhbJjQVH5vckLBlwbPRyqs7BVpmcg==
+X-Received: by 2002:a05:6a00:6de7:b0:835:443e:4bc7 with SMTP id d2e1a72fcca58-83a5c0c483fmr5052149b3a.13.1778102668521;
+        Wed, 06 May 2026 14:24:28 -0700 (PDT)
 Received: from localhost ([97.126.187.42])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-365b08feeb0sm2272665a91.2.2026.05.06.14.22.12
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-839659498f1sm8113521b3a.17.2026.05.06.14.24.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 May 2026 14:22:13 -0700 (PDT)
+        Wed, 06 May 2026 14:24:28 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, 
+ Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
-In-Reply-To: <20250122164129.807247-1-ivo.g.dimitrov.75@gmail.com>
-References: <20250122164129.807247-1-ivo.g.dimitrov.75@gmail.com>
-Subject: Re: (subset) [PATCH v2 0/5] ASoC: cpcap: Implement jack headset
- detection
-Message-Id: <177810253253.236754.5359911875458195041.b4-ty@b4>
-Date: Wed, 06 May 2026 14:22:12 -0700
+ Conor Dooley <conor+dt@kernel.org>, 
+ Christopher Obbard <christopher.obbard@linaro.org>
+Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ettore Chimenti <ettore.chimenti@linaro.org>, 
+ Andrew Goodbody <andrew.goodbody@linaro.org>
+In-Reply-To: <20260502-wip-obbardc-omap-dm8168-evm-stdout-path-v1-1-d1e69c295c21@linaro.org>
+References: <20260502-wip-obbardc-omap-dm8168-evm-stdout-path-v1-1-d1e69c295c21@linaro.org>
+Subject: Re: [PATCH] ARM: dts: dm8168-evm: Set stdout-path to uart3
+Message-Id: <177810266773.238543.5630091098339148154.b4-ty@b4>
+Date: Wed, 06 May 2026 14:24:27 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,62 +100,47 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15.2
-X-Rspamd-Queue-Id: EC6CB4E095D
+X-Rspamd-Queue-Id: 5E8044E09A9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	TAGGED_FROM(0.00)[bounces-293694-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[kernel.org,atomide.com,gmail.com,perex.cz,suse.com];
-	MIME_TRACE(0.00)[0:+];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2600:3c0a:e001:db::12fc:5321:from];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293697-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DNSWL_BLOCKED(0.00)[2600:3c0a:e001:db::12fc:5321:from,97.126.187.42:received,100.90.174.1:received,209.85.216.51:received];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[97.126.187.42:received,100.90.174.1:received];
-	DWL_DNSWL_BLOCKED(0.00)[gappssmtp.com:dkim];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre-com.20251104.gappssmtp.com:dkim]
 X-Rspamd-Action: no action
 
 
-On Wed, 22 Jan 2025 18:41:24 +0200, Ivaylo Dimitrov wrote:
-> cpcap audio codec found on cpcap PMIC supports headset detection
-> and PTT button through its 3.5 mm jack. This series implements
-> support for those capabilities.
-> 
-> Changelog:
-> v2:
-> - cpcap.c: fix a typo
-> - dt-bindings: fix interrupts description and alignment
-> - motorola-cpcap-mapphone.dtsi: fix interrupts alignment
-> 
-> [...]
+On Sat, 02 May 2026 03:13:18 +0100, Christopher Obbard wrote:
+> Specify the board's default console UART by setting chosen/stdout-path
+> to uart3, so that early console output and /dev/console map to the
+> expected serial port by default.
 
 Applied, thanks!
 
-[1/5] arch: arm: dts: cpcap-mapphone: Set VAUDIO regulator always-on
-      commit: 009f64641db3fbfecf92dee910c57a41c3e77a4b
-[4/5] arch: arm: dts: cpcap-mapphone: Add audio-codec jack detection interrupts
-      commit: 164f88cd7e0c0fcb950e8b4ba5d8c26404334c88
+[1/1] ARM: dts: dm8168-evm: Set stdout-path to uart3
+      commit: b6aefeea7b4aa9158c1dcec8c050a678af7bf9b0
 
 Best regards,
 -- 
