@@ -1,116 +1,151 @@
-Return-Path: <devicetree+bounces-293476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293477-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kN4ADowh+2lvWwMAu9opvQ
-	(envelope-from <devicetree+bounces-293476-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 13:10:04 +0200
+	id uKfkKfYl+2kEXAMAu9opvQ
+	(envelope-from <devicetree+bounces-293477-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 13:28:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356EB4D99BF
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 13:10:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9284D9B80
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 13:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3EDE6300D4D8
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 11:09:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1DB6B3013ABC
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 11:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A07401A02;
-	Wed,  6 May 2026 11:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB7A3E1D01;
+	Wed,  6 May 2026 11:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="pDXWI7/I"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aGVkRYjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46D73B8BBF;
-	Wed,  6 May 2026 11:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72FBF368275;
+	Wed,  6 May 2026 11:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778065776; cv=none; b=re55aBFIxJeGELAFvyGjFMUparYw6fZXEg/R31iVJ3f55HaaIrFwXSBYprfswBDmtLWxf+s/cKlIw1h8DpasBtbeRjO9eLdBO/jLaOmll/OwowVvR8/BsCY3lqwDv2YQ+o5eAkPTZasQz4J9XK1t9eVAFYSptOuMO14G4QyHTGo=
+	t=1778066413; cv=none; b=uhHKMPoXGBvxOpfes3+JlCMBIPKLKES86fxvosVun02a+7hJ0t/7PkVOY4XADmkJRWeSuLya1VBCfVtg5D34dA9OaAVzx2iHeMw9xPUpXphheoCRErEgjMVr5wWgQz3GFZZQcoZz0vxMj5Atubp0+YYMBLIoDT9PPAREPgTKnfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778065776; c=relaxed/simple;
-	bh=4q6WV9KEc4o+Dj+3GeNNbmKzZEx09uKig1tfBAKFyDc=;
+	s=arc-20240116; t=1778066413; c=relaxed/simple;
+	bh=+nUdTQL/+FvfuWAAGXkRsJ122b/1Kj58MJeHDQn6nlY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p7yYsqWYZFZ8Dn4AHhp09leweGPDGmU7gyLzqvxoxiJn8+UAhLOY18siB172p6KpRyKmPdbi57YC9InfyUI80d3BEmdAxSEQIb7gjdnYlMeTQKmBly5sB2u5+b+MF/xCD7/BernHva/PGk82GdFrQNtIKoK3xPaX+wn/1Dv07Mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=pDXWI7/I; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id D182D1FAD3;
-	Wed,  6 May 2026 13:09:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1778065764;
-	bh=o8HflocaQEcJ3vQkB43/3HyBjFJ4JgOOt5cTkBLZlsU=; h=From:To:Subject;
-	b=pDXWI7/IAKUB7fkV5ppVl7pS8toPucnrAH/8DSZEo6YNzp0bn57QVxSremd8JcmvT
-	 Ni8KPDjDKGeGvqeQcOXkl7waFVraIl+XWuQfjbMfXjYVhLzKmin/hfOmO8UV/xRUEp
-	 eNA4oSSP0txOaCys/i8qYKEvCxlRhsfnoH03JeM7W0abwvv7vbcieNyo1WbOf60CKs
-	 3nrKjSztNVs2B9kcPaVYYGlhMK0FCnp3Im39G+k+3DYtIIOhtG8WYPJS0gyiZkejCP
-	 2166U57+lv2hRtJZOG5/mL8aJwtlIJTfVYcgESGXSrkd0JsmcZCVZ/pF3Mp4RVfwiZ
-	 5jNN7i4ytfjZg==
-Date: Wed, 6 May 2026 13:09:20 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Judith Mendez <jm@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH v3 0/2] Add AM62P silicon revision detection via NVMEM
-Message-ID: <20260506110920.GA53971@francesco-nb>
-References: <20260209172330.53623-1-jm@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LhvaG0wODLv1xhQsaS7H0MtoSbTX7BVTSu3s0AF86ndhLovunemS+xXWelL0BqIo0Zq5KTUHlku3vqDhB9ySK6AzV4wMLE/bVHiiji3LWrigK+DsVRvVKPxSQBmv2GBN1BDxmWFX8r3+kbifAmQbj1bmj9RDZLPVAPJIIscRoS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aGVkRYjy; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D970DC21;
+	Wed,  6 May 2026 13:20:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1778066408;
+	bh=+nUdTQL/+FvfuWAAGXkRsJ122b/1Kj58MJeHDQn6nlY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aGVkRYjyvzx1Epvvka4sDCYZKNzllTUbRdMRtNAQbie70SiIeQSnHPKyabi5fMyE5
+	 rHaIAWnZFjYt10UMzE/5omQOi2nzv0Wy245NqdR4pU9ECaghw+QubNYbh3/J0ssb0z
+	 DBMWmq9Xo87aj94QmlfUe+gQvshQPrNzsCKV5VXw=
+Date: Wed, 6 May 2026 14:20:09 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Robby Cai <robby.cai@nxp.com>
+Cc: Frank.Li@nxp.com, martink@posteo.de, rmfrfs@gmail.com, kernel@puri.sm,
+	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, martin.kepplinger@puri.sm, imx@lists.linux.dev,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: nxp,imx8mq-mipi-csi2: Fix example
+ endpoint label typo
+Message-ID: <20260506112009.GM1598374@killaraus.ideasonboard.com>
+References: <20260506090124.2960477-1-robby.cai@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260209172330.53623-1-jm@ti.com>
-X-Rspamd-Queue-Id: 356EB4D99BF
+In-Reply-To: <20260506090124.2960477-1-robby.cai@nxp.com>
+X-Rspamd-Queue-Id: 0A9284D9B80
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [4.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293476-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293477-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[nxp.com,posteo.de,gmail.com,puri.sm,kernel.org,pengutronix.de,lists.linux.dev,vger.kernel.org,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[dolcini.it:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	R_DKIM_ALLOW(0.00)[ideasonboard.com:s=mail];
+	MIME_TRACE(0.00)[0:+];
+	GREYLIST(0.00)[pass,body];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	NEURAL_SPAM(0.00)[0.259];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,dolcini.it:dkim]
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:dkim,ideasonboard.com:email,killaraus.ideasonboard.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,0.0.0.0:email]
 
-Hello Judith,
+Hi Robby,
 
-On Mon, Feb 09, 2026 at 11:23:28AM -0600, Judith Mendez wrote:
+Thank you for the patch.
 
-...
+On Wed, May 06, 2026 at 05:01:24PM +0800, Robby Cai wrote:
+> The example in imx8mq-mipi-csi2.yaml uses imx8mm_mipi_csi_{in,out} endpoint
+> labels, which is confusing for an i.MX8MQ binding. Rename the labels to
+> imx8mq_mipi_csi_{in,out} for consistency.
+> 
+> Fixes: 37255747ecbd ("media: dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and controller")
+> Signed-off-by: Robby Cai <robby.cai@nxp.com>
 
-> - NVMEM support is fully optional - the driver continues to work without
->   it and falls back to SR1.0 for AM62P devices
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Is this correct? Just wanted to be sure, given the issue we had with TI
-6.18 kernel on this very specific topic.
+> ---
+>  .../devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> index 4fcfc4fd3565..71f79651dd96 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> @@ -220,7 +220,7 @@ examples:
+>              port@0 {
+>                  reg = <0>;
+>  
+> -                imx8mm_mipi_csi_in: endpoint {
+> +                imx8mq_mipi_csi_in: endpoint {
+>                      remote-endpoint = <&imx477_out>;
+>                      data-lanes = <1 2 3 4>;
+>                  };
+> @@ -229,7 +229,7 @@ examples:
+>              port@1 {
+>                  reg = <1>;
+>  
+> -                imx8mm_mipi_csi_out: endpoint {
+> +                imx8mq_mipi_csi_out: endpoint {
+>                      remote-endpoint = <&csi_in>;
+>                  };
+>              };
 
-Francesco
+-- 
+Regards,
 
+Laurent Pinchart
 
