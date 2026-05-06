@@ -1,84 +1,86 @@
-Return-Path: <devicetree+bounces-293373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293374-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFR0K/He+mmGTgMAu9opvQ
-	(envelope-from <devicetree+bounces-293373-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:25:53 +0200
+	id gDsbBgjf+mmGTgMAu9opvQ
+	(envelope-from <devicetree+bounces-293374-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:26:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 497BD4D6925
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:25:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A664D6957
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:26:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 46429302C37D
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 06:25:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BACF43060F2E
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 06:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDD43016E0;
-	Wed,  6 May 2026 06:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53D230DECC;
+	Wed,  6 May 2026 06:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q1lyhs34"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IfAHogCU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F2A1A6820
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 06:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A87F30DD2A
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 06:25:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778048750; cv=none; b=ejes1A9Y69TCbBmU8IlYXuTlU7fzfE0ogAf3wwhyLjnjH0Us3ITaVwvD8YZAyBVDyQWbDQVBk0pYlOS7QzopUV3agHyCXNluJyLqGeFydqGXa44j9sEHk3tBX+UiG/m8k3FptY1qrtOY5CxsB2bGskkXeBkFMqVSG5dMLApcszI=
+	t=1778048754; cv=none; b=JCLXTiacSMA+X0Qo2x7ls2Ixuy7mM88ZCkfX1jSmjd7yvWqnYb+K9QtQ2cO2JiSLvCNoQt9nFxCtmobf2Ep6I65cWyH3fjpnmG84RTNRZKaASvgKcqK8lvuzD11h1F3sRwHjSg/RpCMCVvjFSwskbLodo9mlkctnGXkjjlsHksg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778048750; c=relaxed/simple;
-	bh=UjBqsNiiU9KCI7HYTN7euFjJJz+PKYjeOpuER7dUuqI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VPPvk7qQ7l1+35FBVb7cDT3L0VcM0liplnis5dE0mk4Zw+dY7IIuVZeYdHsd1ZWEecsh64H9iWLOMjFwpY6mHM0tZ00EIf08Cz+JMrzK6hRUeQvAb6Gsah4LyXmw1nk3MgNooOPZ73AHHaU9rw9xBXv1P8tAVUiV60es53Uym/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q1lyhs34; arc=none smtp.client-ip=209.85.214.169
+	s=arc-20240116; t=1778048754; c=relaxed/simple;
+	bh=Od/U653CYr2uV9LuMXpvcbgLnqmkdoHQYdxApWWdjZI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=XZ9ziIxvd7AoL8Ljulq2Z0kS9Y1SN64KhPKUuw/GcwmNJYNWBTz2flf+21Yr4mSHpVBppUeILkubUH6FSUdpGnBZ9GTxm4pZ0ePkUiwIvGOhVWNzeI2/EdBYspNp9hze/hCdjEa2cc+0NrLlgBpg9WpZYSaZ2xB29J1xnfsJd8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IfAHogCU; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2ad21f437eeso4653205ad.0
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 23:25:49 -0700 (PDT)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2ba6485d219so7688735ad.3
+        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 23:25:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778048748; x=1778653548; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=W7nDWMXGjrFtRUXalafYwWf9F5pGmxAL66BqMwA6cUc=;
-        b=Q1lyhs34SsOiudlVFRV8ybHurXOiDHQwgtZIY/BRsTfOl870IjU+3TQ1MKprpEqUVb
-         kPGokc371lVditO3beTZ/beNOxoO/AK2kS5O2rwEzBp58uAlTe9GKxm62cRtlqQZJxbC
-         zT41/02crYVGwGLSzuknuZg7z93fpedcCXnAnB7t3Wf7nGN+kMh9tRUMLJ6o4xvvCE35
-         xFKtGob5lVoZT9NKWdRPWzw2c003UDpwzvHLdzGpDofDNflwCiJbei4Sik+LFEi60USS
-         vaZiO3Grgs4vdQzXpAre8YGkRhdBuVre198rdJ8XRFhkbmSrvFbCN3Se1j2iXiywE5Hu
-         neVw==
+        d=gmail.com; s=20251104; t=1778048752; x=1778653552; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FzcBT6AuCoQj4AfTL/xvE8aMkT5NRGY46LoscvrSBko=;
+        b=IfAHogCUZKTr1Ex+uIwa/RXDGWLDI+IuyJbXJVstEKHO3qX0vEBriraYhiMjys/SUg
+         +0s3eTGhufuF+vntKaDWsy0KQq6u6ihxoQFdddYOLUKuTZkS/ikFR1Loen3vp0lmSpXv
+         gzywcs/59rvTgl693za8AWD8ELleD683W6LLXyp/B7yrurQDzC4IfaB4/ITEwH14ctM2
+         W9CfxB5iNkX85sfUBw+mOWgKacHKCznqDZp0pdiAm96qZGiAW4D7pEogUm8nzSHjDL4i
+         gySFJ4mWpy2BNXjoLUW94myqCO65O2ZWT/ZEIG436n/SiH70Gfxc7DBJqku9WFd7yvm6
+         gbHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778048748; x=1778653548;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W7nDWMXGjrFtRUXalafYwWf9F5pGmxAL66BqMwA6cUc=;
-        b=Xh/8uZHEyGZ4GWmiUX+q7v0i7Dyga2bAGUgdeuOvS5jGFLR312gqrcQ4qNjxC156sW
-         t+Dd80S5xo/q2svylrHS5eu9wh2SZVwVtGId5KRhGQPmZDX2WY7FKCQ/8QvLo7PmVxld
-         OB7zQ5DATt9ZAhQJRUXF6Z8nLpRcUi1K3Iu5dyOTCvtHFikwks373CvLqyWdS0Kud+c4
-         UmtADP9Z2AnZj+guNymo6QvlRHAxEk/o4AhfzMPsAVESk11Ih9H4D0dI/UMj5TikjF2a
-         LXpuB6ZVLDql5TbwPw8GLarU5BDvqloHo/eRnacL0Qyk7evIsRMi8mLERM2FhI2ynP5/
-         mhBw==
-X-Forwarded-Encrypted: i=1; AFNElJ9Ax6xcPoLXbhHJCDYsrCLmOZB2LKaemtBJ9Gpcwx/ZR0hcEZphrCtrRiFCdhag7mLHslDXN4VzvlU2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDM35iiHBNBuC7HvXUf37BhPav35kkU/n2CPFEAffkL5GR+zst
-	SI5ETbG7gVBZQZl/pQ/RzfuDEM5ygXzPpZ5iV++b7qsvrCDowVD4WcOh
-X-Gm-Gg: AeBDietnUjDjif33n6MOrRVkxEufjzpDEf7Y7w10LT3MLY2+6EFIJppw92i8r+OIDXi
-	vE/DI7NMTVERRQXp/FOWApEBaY9b4uAgtCCSsFDqEAlnUZpbuDfic2y6/8e6xvN47n0RpEhiO/y
-	mLvdhxNLJC5zvaFIsb/GTrvcg5w6+IW59jpNCxCaC5vv5qd1SG+H9YHc+psziijsKdEYBDTK83z
-	DLj9uFhoE2S2PZutxXu+E/A/E0BFsSAzcQEw3rjM3+Qwg9PYN0W8LE1keVk7jPuYu6SLWF1oKyE
-	+jG43gjh1F2Fzm9rgKk+VXDz9WcIQTaA7e3Jw46Xyb9nGcbHsqnSmD8iN+17hglh8+t4qQ1Qf2k
-	NszdVsrY3AYcpBd/6ziENoc2bwiXuf1yaE39jxB8dloTBdHz8ALri18oRhYh/F5ITUtP7rxBy++
-	GR/V3jTt71GQDPKFm4h/qQF5W0JD+2dpqpR0PokqX5X7srNOCR+T2Y8bwxViR9KcFXwDSTvX7Q2
-	vngMS1V6KDIJp1LPUJ4cw==
-X-Received: by 2002:a17:902:ea12:b0:2ba:6601:8e3d with SMTP id d9443c01a7336-2ba6601985emr33306655ad.9.1778048748474;
-        Tue, 05 May 2026 23:25:48 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1778048752; x=1778653552;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FzcBT6AuCoQj4AfTL/xvE8aMkT5NRGY46LoscvrSBko=;
+        b=kQJA5hG5WkqJZVKLa/nRgKLcHIPlN/feegm9i98lF4voal+W5CFn/++WPib0ZNVBwA
+         /VMyIoDFf95CrWz9wCyAW9oaWMwrbhyed34cvVn6Mr7rDwF+SzV+vSncW6AvdTOhJM9n
+         oyhtYI11mjJb3nAuyHZZyr5VJv9J2h18oOVYmpSazaCUwP/QLLUlTN4443j6xwZklSw/
+         5e2EanhMtZFe9VdGN9Ipj9VzS1BjOGCEK6ILohNFc8oWBsewe4RhoU3JyBwe8nOBuMdA
+         oZEwlMBZFD9v5rFlrSOONr+SIAU8321G1zB7gb4UZLKvwnFXoC3g25iM1DwiSLVfgTI1
+         +9uQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8jLuYkE6rPBPH0nnWoxYiyjNAdA3B5VX+E5dOXYZphNGdJfTZvh7n8TaxycoOuYcOr8QPLB0jKxWYN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA9DXzRPzblVeKZ8MWQr4FTFgixLHPjOpuSuzW7PeH9EX0ElSK
+	DJsR0p4LuhOxYW30PSmcogwV07sb6DhNE8k+4M07G+BQdjt78LuZvciF
+X-Gm-Gg: AeBDievrTSS6cf/zgFpVyubVJebk73HGdPPd6JveKQ30k+rUnoxCp0c9xxR1o9irr+h
+	IWFEbSTFyxqqVFkO95J88Ovqe7Pu8DWK3d1twry4f6OoPj24PziyHKK1kK/LhALdJxcM4jZOdO0
+	rTHpdOPm1M7cqMC6hMwMSRXEks6b5KngweOS/Qhtc6bn/7SyudagVLl56/kY7sKKpXLGdyrg7ir
+	NIK5uDgbaRTAialWnIAN2TTwfI15o728U35arf1TdiuP0oZMJ/DOGP+T1lOGwXFxKJLoY9qsvOp
+	CSsG+kytCoAia3W1/d0YfTx+dsIG8Shz0TmQIFp1AcVlMxdm7UTZy+ddnKx6jwJx4aURUjx3YVs
+	HCF3Hzywn2yBtDxzx1Tb5UvPMuNlP/fY7Td/nd2V1SW4FuFv6TlqA/PCs+nvqbTWvMucNllAAim
+	cJb6ixHliT/3o2WQKaMtT6t782gFKYwhaXs1Xev6DWVkIWaJkbHoYPANxOsTH3rzn8IvjZBuCd2
+	m15itR0jIaxp6sfctmpvQ==
+X-Received: by 2002:a17:902:ef11:b0:2ba:60a:3108 with SMTP id d9443c01a7336-2ba79bfcbe3mr18857875ad.34.1778048751750;
+        Tue, 05 May 2026 23:25:51 -0700 (PDT)
 Received: from [127.0.1.1] (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ba7bd2ab2esm16330865ad.4.2026.05.05.23.25.45
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ba7bd2ab2esm16330865ad.4.2026.05.05.23.25.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 23:25:47 -0700 (PDT)
+        Tue, 05 May 2026 23:25:51 -0700 (PDT)
 From: LiangCheng Wang <zaq14760@gmail.com>
-Subject: [PATCH 0/2] Add support for PIXPAPER 4.26 monochrome e-ink panel
-Date: Wed, 06 May 2026 14:25:36 +0800
-Message-Id: <20260506-bar-v1-0-12195406f4ef@gmail.com>
+Date: Wed, 06 May 2026 14:25:37 +0800
+Subject: [PATCH 1/2] dt-bindings: display: mayqueen,pixpaper: add
+ pixpaper-426m
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,10 +89,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAODe+mkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDUwNT3aTEIl1TI+M0o2TjNDNLY0sloMqCotS0zAqwKdGxtbUA6yhOo1U
- AAAA=
-X-Change-ID: 20260505-bar-523f2c3f6939
+Message-Id: <20260506-bar-v1-1-12195406f4ef@gmail.com>
+References: <20260506-bar-v1-0-12195406f4ef@gmail.com>
+In-Reply-To: <20260506-bar-v1-0-12195406f4ef@gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -99,83 +100,116 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, LiangCheng Wang <zaq14760@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778048746; l=1346;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778048746; l=2408;
  i=zaq14760@gmail.com; h=from:subject:message-id;
- bh=UjBqsNiiU9KCI7HYTN7euFjJJz+PKYjeOpuER7dUuqI=;
- b=4INSpmJ7FzhpAQwBk4GPstZZDtDnhd0yDSWfXPYdhLBJo9n1mxDzQpjOu97rFTpLPeUsFJ+s/
- n5yNe4ibHVBAjeVhs/oaJAsXjoX4FJyR8TGqG12JEwU/nASNPHzDri5
+ bh=Od/U653CYr2uV9LuMXpvcbgLnqmkdoHQYdxApWWdjZI=;
+ b=2Qc4tvZiVcWV5lqAfHk54NzvvVQ3T+uZL7e+d1WtUUUKEKKVI3LCqKOoMzvTvk9NeO/rj6nqO
+ GlAsPn0m1RSAX4zo0ZoPEGlq9nDjsjU3OCUwiytCaT3ANzFipmn8Chc
 X-Developer-Key: i=zaq14760@gmail.com; a=ed25519;
  pk=5IaLhzvMqasgGPT47dsa8HEpfb0/Dv2BZC0TzSLj6E0=
-X-Rspamd-Queue-Id: 497BD4D6925
+X-Rspamd-Queue-Id: 82A664D6957
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [4.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293373-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293374-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
+	GREYLIST(0.00)[pass,meta];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[zaq14760@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	NEURAL_SPAM(0.00)[0.768];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
 
-This patch series adds support for the Mayqueen Pixpaper 4.26
-monochrome e-ink display panel, controlled via SPI.
+Add the compatible string for the PIXPAPER 4.26 monochrome
+e-ink panel to the Mayqueen Pixpaper binding.
 
-The series includes:
-- Device tree binding updates for the Pixpaper 4.26 panel
-- A DRM tiny driver implementation for the Pixpaper 4.26 panel
-- A MAINTAINERS update for the Pixpaper DRM drivers and binding
-
-The panel supports 800x480 resolution with XRGB8888 framebuffer
-input and uses SPI, along with GPIO lines for reset, busy, and
-data/command control.
-
-The driver has been tested on:
-- Raspberry Pi 5
-with Linux kernel 7.1.0-rc1.
-
-Feedback is welcome.
+The new panel uses the same SPI and GPIO control interface as
+the existing Pixpaper panel, so extend the existing binding
+instead of adding a separate schema. Document the new compatible
+string and add an example node for pixpaper-426m.
 
 Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
 ---
-LiangCheng Wang (2):
-      dt-bindings: display: mayqueen,pixpaper: add pixpaper-426m
-      drm/tiny: add support for PIXPAPER 4.26 monochrome e-ink panel
+ .../bindings/display/mayqueen,pixpaper.yaml        | 25 +++++++++++++++++-----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
 
- .../bindings/display/mayqueen,pixpaper.yaml        |  25 +-
- MAINTAINERS                                        |   3 +-
- drivers/gpu/drm/tiny/Kconfig                       |  15 +
- drivers/gpu/drm/tiny/Makefile                      |   1 +
- drivers/gpu/drm/tiny/pixpaper-426m.c               | 828 +++++++++++++++++++++
- 5 files changed, 866 insertions(+), 6 deletions(-)
----
-base-commit: a293ec25d59dd96309058c70df5a4dd0f889a1e4
-change-id: 20260505-bar-523f2c3f6939
+diff --git a/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+index cd27f8ba5ae1d94660818525b5fa71db98c8acb7..4b0db2b079ebea244eb149a52ee1d8dbab0f60bb 100644
+--- a/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
++++ b/Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
+@@ -4,22 +4,23 @@
+ $id: http://devicetree.org/schemas/display/mayqueen,pixpaper.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Mayqueen Pixpaper e-ink display panel
++title: Mayqueen Pixpaper e-ink display panels
+ 
+ maintainers:
+   - LiangCheng Wang <zaq14760@gmail.com>
+ 
+ description:
+-  The Pixpaper is an e-ink display panel controlled via an SPI interface.
+-  The panel has a resolution of 122x250 pixels and requires GPIO pins for
+-  reset, busy, and data/command control.
++  Mayqueen Pixpaper e-ink display panels are controlled via an SPI interface
++  and require GPIO pins for reset, busy, and data/command control.
+ 
+ allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+ 
+ properties:
+   compatible:
+-    const: mayqueen,pixpaper
++    enum:
++      - mayqueen,pixpaper
++      - mayqueen,pixpaper-426m
+ 
+   reg:
+     maxItems: 1
+@@ -61,3 +62,17 @@ examples:
+             dc-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+         };
+     };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        display@0 {
++            compatible = "mayqueen,pixpaper-426m";
++            reg = <0>;
++            spi-max-frequency = <1000000>;
++            reset-gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
++            busy-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
++            dc-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
++        };
++    };
 
-Best regards,
 -- 
-LiangCheng Wang <zaq14760@gmail.com>
+2.34.1
 
 
