@@ -1,61 +1,84 @@
-Return-Path: <devicetree+bounces-293699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293700-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id /K9OIWK3+2kXDwAAu9opvQ
-	(envelope-from <devicetree+bounces-293699-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 23:49:22 +0200
+	id CIH5LAu/+2nqEAAAu9opvQ
+	(envelope-from <devicetree+bounces-293700-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 00:22:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD1F4E0B95
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 23:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F5F4E133B
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 00:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEF2230177A4
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 21:49:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BED993039C93
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 22:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395803563EB;
-	Wed,  6 May 2026 21:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD86233E368;
+	Wed,  6 May 2026 22:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duoMEFRw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UF/aj9HS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D17325491;
-	Wed,  6 May 2026 21:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CD42E612E;
+	Wed,  6 May 2026 22:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778104160; cv=none; b=MQsUzduMuWBc8aCyDA6ZC/YkPjy1CK0dAcgiqwhE9rJte1lICBtlIsZOIjihZsP4Pa9tjf8YWKeDVBZa4XER0pH7n7s+HQ063QCP6BrB7sSvw19M5uuR7vaO5Ic/80mhSABjISGnS/PNR4A7f5Yp2/fggOt+Wf8VzKMQqmxUtOg=
+	t=1778105957; cv=none; b=Z8SY7Khb2CQlRoZMh0JCnkE27OxikLixe8JX1Ftp0Za0K9Err073JzjHcb4ZrbTaJm7AwowGh+2SxUC6621bz1j1HLqgF2jQmH9q/vQAukprnlMF7sC3cyPc4eAHlvCYUK+0Wqn/UqEYV9eHyS0wNehm9AD+uSHuyEVKswnESIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778104160; c=relaxed/simple;
-	bh=kaai75P4sHBvfyP5m9fQX/O1M7ANvflzvb/96zLDMmo=;
+	s=arc-20240116; t=1778105957; c=relaxed/simple;
+	bh=gysC/lx1i73eA4zP8jwgbWYpicdKVkkAq/If5SfmOvk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fw0v4BXPF0t/q0LrzmoYG85TiXcRQJx/G8Uw2k9SgnqkMiPEEg8+K8qbdP9Uc/fEFeDVTfGiNieKOmAvbjhhyJhZhkxEddqVVDOVA+KBAgqL8SkBDXk1GX4wDocaz7DiLqkOK/+Mk1SSIOBeIiZKmTD/NAKBLtqmS7KxDn6EsfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duoMEFRw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D7A6C2BCB2;
-	Wed,  6 May 2026 21:49:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nv48ScvAih9VyVBnqcOp+kT3nFzwZAa14AqgflLGXZmkgp7Gd8TBdq89HV70jqsF0i8lN2uPdGNyvMGhAWSzbOgI+2PqSnSQTnMNOndbDfi29/r6Tiiqbq/V1K4ZBi1jfBNuTyzNTWmC4G4Elj42HLXBVu9o0SFKRVmZhUDNj5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UF/aj9HS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F5ECC2BCB0;
+	Wed,  6 May 2026 22:19:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778104159;
-	bh=kaai75P4sHBvfyP5m9fQX/O1M7ANvflzvb/96zLDMmo=;
+	s=k20201202; t=1778105957;
+	bh=gysC/lx1i73eA4zP8jwgbWYpicdKVkkAq/If5SfmOvk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=duoMEFRwjhQJnhtOX1ZUZ6O6C0fqYCU284nfd1nF6CiZUKzZSdtaDIez6MmEPpUop
-	 3FWesyZfiWy0kwubBi1gxzS76BX03s2szuz+Yl2jHHQx2Nz4cogq0guaVhYeRLH+cE
-	 ElbO5voumu2tfLEBsXlIdnGZ+zdenuL7UKBR54PJmjYVILmzpdy89n9zwyv/uat4ZW
-	 npP/7mmBhkCoBINAwlDwCBAoqDt6ApNR5Ys5/hFLgiUHE/JYjpheiFg+qTFbIte9ID
-	 p1FfvNpZi0mSIn5xVn6mwyK7doWlWXiosdoMQIwxZDPGsaAGgUou8GgPU6wceGn+XS
-	 SjlkpRdIfGvpQ==
-Date: Wed, 6 May 2026 16:49:17 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jun Yan <jerrysteve1101@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
-	luccafachinetti@gmail.com, linux-kernel@vger.kernel.org,
-	pzalewski@thegoodpenguin.co.uk, daniel@zonque.org,
-	devicetree@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] dt-bindings: leds: leds-is31fl32xx: Add
- powerdown-gpios property
-Message-ID: <177810415685.3271172.11733343287673514343.robh@kernel.org>
-References: <20260505145354.1267095-1-jerrysteve1101@gmail.com>
- <20260505145354.1267095-4-jerrysteve1101@gmail.com>
+	b=UF/aj9HS2SYPYHTIXkOa8lL3owagoxJHzGMhyRFSAxj+GJL8gP8yC5+XoLLz6s1x5
+	 X9cL5R+VcjnFIjQexqIW2yM4i2kvMQEHMnTIu0Lb82lcqBkA1Hg3vvTFnYScS91BuS
+	 2N40C7auuO3CTglHzgoaPeo24WGlW/+zx0190iYZVTD6bGYt2OnLQxGXS+Zi31QbCo
+	 BSVOloj3oH2LafE2j6H0SnRWGMGyru24IxEPo4APpEHqlKdF+7EKoOV6XhFqOa+f3G
+	 bqbSLPeKNIjTZdxVJ1+2t3TbHL1Z+PbeCe39zAx2EWiABfykEikLE4KgvyrMiahx6n
+	 +1VGvBd4tB8Jw==
+Date: Wed, 6 May 2026 17:19:15 -0500
+From: Rob Herring <robh@kernel.org>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+Cc: Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Marc Zyngier <maz@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Juergen Gross <jgross@suse.com>,
+	Stefano Stabellini <sstabellini@kernel.org>,
+	Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Prakash Gupta <prakash.gupta@oss.qualcomm.com>,
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, imx@lists.linux.dev,
+	xen-devel@lists.xenproject.org, linux-arm-msm@vger.kernel.org,
+	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Subject: Re: [PATCH v14 0/3] of: parsing of multi #{iommu,msi}-cells in maps
+Message-ID: <20260506221915.GA3290640-robh@kernel.org>
+References: <20260424-parse_iommu_cells-v14-0-fd02f11b6c38@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,26 +87,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260505145354.1267095-4-jerrysteve1101@gmail.com>
-X-Rspamd-Queue-Id: 1BD1F4E0B95
+In-Reply-To: <20260424-parse_iommu_cells-v14-0-fd02f11b6c38@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 16F5F4E133B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,thegoodpenguin.co.uk,zonque.org];
-	TAGGED_FROM(0.00)[bounces-293699-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[38];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[amd.com,8bytes.org,kernel.org,arm.com,nxp.com,pengutronix.de,google.com,gmail.com,suse.com,epam.com,oss.qualcomm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.xenproject.org];
+	TAGGED_FROM(0.00)[bounces-293700-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -91,30 +114,41 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-
-On Tue, 05 May 2026 22:53:52 +0800, Jun Yan wrote:
-> The IS31FL32XX series features an SDB shutdown pin.
-> Driving it low (active low) places the chip into hardware shutdown mode
-> for power saving, while all register contents are preserved
-> and registers are not reset.
+On Fri, Apr 24, 2026 at 11:26:07AM +0530, Vijayanand Jitta wrote:
+> So far our parsing of {iommu,msi}-map properties has always blindly
+> assumed that the output specifiers will always have exactly 1 cell.
+> This typically does happen to be the case, but is not actually enforced
+> (and the PCI msi-map binding even explicitly states support for 0 or 1
+> cells) - as a result we've now ended up with dodgy DTs out in the field
+> which depend on this behaviour to map a 1-cell specifier for a 2-cell
+> provider, despite that being bogus per the bindings themselves.
 > 
-> Add powerdown-gpios property to describe the GPIO connected to the
-> SDB pin of IS31FL32XX series LED controllers.
+> Since there is some potential use[1] in being able to map at least
+> single input IDs to multi-cell output specifiers (and properly support
+> 0-cell outputs as well), add support for properly parsing and using the
+> target nodes' #cells values, albeit with the unfortunate complication of
+> still having to work around expectations of the old behaviour too.
+> 							-- Robin.
 > 
-> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
-> ---
->  .../devicetree/bindings/leds/issl,is31fl32xx.yaml    | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> Unlike single #{}-cell, it is complex to establish a linear relation
+> between input 'id' and output specifier for multi-cell properties, thus
+> it is always expected that len never going to be > 1.
 > 
+> These changes have been tested on QEMU for the arm64 architecture.
+> 
+> Since, this would also need update in dt-schema, raised PR[2] for the
+> same.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Sashiko has some thoughts on the series:
 
+https://sashiko.dev/#/patchset/20260424-parse_iommu_cells-v14-0-fd02f11b6c38%40oss.qualcomm.com
+
+Rob
 
