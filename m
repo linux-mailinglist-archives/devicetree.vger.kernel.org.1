@@ -1,61 +1,82 @@
-Return-Path: <devicetree+bounces-293677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293679-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLKnJL+Z+2ladAMAu9opvQ
-	(envelope-from <devicetree+bounces-293677-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 21:42:55 +0200
+	id GDVwC0ma+2ladAMAu9opvQ
+	(envelope-from <devicetree+bounces-293679-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 21:45:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FB644DFE8A
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 21:42:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 799574DFEF7
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 21:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4FCF6300AB2E
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 19:42:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E0AC301C3FE
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 19:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED163382C3;
-	Wed,  6 May 2026 19:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993CA33A711;
+	Wed,  6 May 2026 19:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FuneFUWW"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="r8sFM1pw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7742E1722;
-	Wed,  6 May 2026 19:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E062E1722;
+	Wed,  6 May 2026 19:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778096572; cv=none; b=M83ezCn+1zWTlFsa4eWrS5R91v2XLoLACFICK1HhQiiTAeT19wKP1gF2dcJv1+VBUk3qPJCkKIPDEyseBQf2bQWASxyUAUur88W3yXixrlNGBjaJyJeqb44S4dhL2B06tNfPo2uMUDCZKwXJX1/8jeI626W+oWlfJ8zxygqQ2+c=
+	t=1778096674; cv=none; b=OsFFWEEj+n3pgBYEAclii23YHpU+N7TTK7Plm8P+d4Fx8sHj4WtvUvwJWge05/erMLRW8UzFks8EZGJmoJNQ0uqXeHiRYx1p//3b+FQYYvuEcXvAeNe3Bgadd/q1i7mHcueegshi3cBZIYFoCAvKJhyh1t/1KcV1UafoPH1NQhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778096572; c=relaxed/simple;
-	bh=3ROQhKBMqGZa4J8zWB0gtWFkp7WffPdiqeh3o40NAUE=;
+	s=arc-20240116; t=1778096674; c=relaxed/simple;
+	bh=0YUUrxVxCjt2QmOLirTyM0FZ+bSf6y2AZqT+AxHoPjg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SKVt7cSlddPS+WSdhPHM6YFyAZ8t/ro0elyU2jkp8ScepXF3ncCxxyYC+cgUHek6E5pnsokgdwWnSJHv8G1ap7fKt0acroeXFiLLOklfpgzqs5xz4W6Wt2lGp6vxbYNOIOCIWY1BycQ1+eN9BALGi31Ft4XUXbxY4DzzdA626Is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FuneFUWW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E237FC2BCB0;
-	Wed,  6 May 2026 19:42:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778096572;
-	bh=3ROQhKBMqGZa4J8zWB0gtWFkp7WffPdiqeh3o40NAUE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FuneFUWW5qPivTjUlTiv+IdFgTPUMjbTVCAhUxy2CutXuXqKOWwAEY/xX+RYquqM2
-	 HEtO1JvmQAbjUfgguxB/PkbObaBESsTPBYgx8pF41hnUsPiH3XYtntS4Xa+wsdxGMm
-	 fiUXX4JdjLDZTrVM50DF6r1EUp9VVf/HCWlNMT71n/wrXY33Zbd00Cpf23rg20U/Rm
-	 yr0mYL5RuQagJz6F6DfTPyvswNs/Z/FRCIqa+ep2JzmeTBWftEddRDBH8ZHs0MXfPg
-	 fStWeu4Vrq5z+c6S9gwaBYyHRM0jgQGMOsQGx5BNs+edsfJwLSx8KTZEBj0td7P0+5
-	 6U1cmd6rbrGuQ==
-Date: Wed, 6 May 2026 14:42:49 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jun Yan <jerrysteve1101@gmail.com>
-Cc: linux-kernel@vger.kernel.org, pzalewski@thegoodpenguin.co.uk,
-	lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	daniel@zonque.org, linux-leds@vger.kernel.org,
-	luccafachinetti@gmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: leds: leds-is31fl32xx: Add
- powerdown-gpios property
-Message-ID: <177809656918.2995969.7607110407322138109.robh@kernel.org>
-References: <20260429154449.730880-1-jerrysteve1101@gmail.com>
- <20260429154449.730880-4-jerrysteve1101@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=X8X2g1FNr2N682i62uKiZdyYIkuCaKGRUbWKzrrWd9H0EWaBCIyJrI1zTgzTAsEdTbRMCC6StGKB3UCI79HQjGtzOsm7vlj46lOZl7ayl2yvZWEf4RVDAyt2B+ROfxIcD2sPFDY/8M2Fl/zfYgoFt7XYo01uZuYt+i1vDuHKqVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=r8sFM1pw; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=K1q3NI3BsSpOEHU3gmV8o6cjnh4W3gSw9Ujwg8EaS+A=; b=r8sFM1pwHJMVxud91KWvxLzmcJ
+	gwRnbQDJaMv62Iq9lhwBZzABSwYGSEE82UrEms+6AWU5jNfdJfR411CccFSrQH9zjssZ/YoBWl7O2
+	DCTNp/nXrptBPLlYXwwXR0+qOG0wDZuVdAryAuBRIjI81zj4gUpXxwjsm7t7bhyEmcG0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wKi9o-001hEj-Dc; Wed, 06 May 2026 21:43:44 +0200
+Date: Wed, 6 May 2026 21:43:44 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Alex Elder <elder@riscstar.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
+	arnd@arndb.de, gregkh@linuxfoundation.org, daniel@riscstar.com,
+	mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
+	alexandre.torgue@foss.st.com, ast@kernel.org,
+	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
+	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
+	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
+	julianbraha@gmail.com, livelycarpet87@gmail.com,
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+	rohan.g.thomas@altera.com, sdf@fomichev.me,
+	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
+	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 09/12] gpio: tc956x: add TC956x/QPS615 support
+Message-ID: <7d7b6b89-3ef4-4891-a794-c8b11f39db34@lunn.ch>
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-10-elder@riscstar.com>
+ <736fb3b7-c88a-4ec4-96ad-d1b79cc48d30@lunn.ch>
+ <30cec7dd-ac3c-47ab-896a-c29992bd5ba5@riscstar.com>
+ <3666e3e6-e6f3-4cbf-b9fe-caa394fbab7c@lunn.ch>
+ <0751a051-9894-45be-92d6-0d46f2c39293@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,57 +85,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260429154449.730880-4-jerrysteve1101@gmail.com>
-X-Rspamd-Queue-Id: 2FB644DFE8A
+In-Reply-To: <0751a051-9894-45be-92d6-0d46f2c39293@riscstar.com>
+X-Rspamd-Queue-Id: 799574DFEF7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,thegoodpenguin.co.uk,kernel.org,zonque.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-293677-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail,lunn.ch:server fail];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293679-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+
+> >                ----------------------------------
+> >                |              Host              |
+> >                ------+...+----------+........+---
+> >                      |i2c|          |  PCIe  |
+> >      ----------------+...+----------+........+------
+> >      | TC956x        |I2C|          |upstream|     |
+> >      |               -----        --+--------+---  |
+> >      |  -----  ------  -------    | PCIe switch |  |
+> >      |  |SPI|  |GPIO|  |reset|    |             |  |
+> >      |  -----  ------  |clock|    | DS3 DS2 DS1 |  |
+> >      |                 -------    ---++--++--++--  |
+> >      |  -----  ------     downstream//    \\  \\   |  downstream
+> >      |  |MCU|  |SRAM|    /==========/      \\  \===== PCIe port 1
+> >      |  -----  ------   //PCIe port 3       \\     |
+> >      |                  ||                   \======= downstream
+> >      |  ----+-----------++-----------+----         |  PCIe port 2
+> >      |  | M | internal PCIe endpoint | M |         |
+> >      |  | S |------------------------| S |  ------ |
+> >      |  | I |   PCIe   |  |   PCIe   | I |  |UART| |
+> >      |  | G |function 0|  |function 1| G |  ------ |
+> >      |  | E |----++----|  |----++----| E |         |
+> >      |  | N |  eMAC 0  |  |  eMAC 1  | N |         |
+> >      --------+.......+------+.....+-----------------
+> >              |USXGMII|      |SGMII|
+> >            --+.......+--  --+.....+--
+> >            |  ARQ113C  |  | QEP8121 |
+> >            |    PHY    |  |   PHY   |
+> >            -------------  -----------
+> > 
 
 
-On Wed, 29 Apr 2026 23:44:47 +0800, Jun Yan wrote:
-> The IS31FL32XX series features an SDB shutdown pin.
-> Driving it low (active low) places the chip into hardware shutdown mode
-> for power saving, while all register contents are preserved
-> and registers are not reset.
-> 
-> Add powerdown-gpios property to describe the GPIO connected to the
-> SDB pin of IS31FL32XX series LED controllers.
-> 
-> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
-> ---
->  .../devicetree/bindings/leds/issl,is31fl32xx.yaml    | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
+> Because the internal endpoint won't operate until the PCIe
+> power controller has enabled power, this GPIO driver and
+> the PCIe power control driver won't interfere with each
+> other's access to the shared registers.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+What i find interesting is that there are two GPIOs, and two external
+downstream PCIe ports. A naive way of looking at this is that each
+external PCIe port has one GPIO. And the internal PCIe port does not
+have one. Hence the internal port might well work without any
+additional setup?  That was my thinking.
 
+But you are saying it is not as simple as this, and two GPIOs affect
+three ports? Do you have any idea what they actually do?
+
+      Andrew
 
