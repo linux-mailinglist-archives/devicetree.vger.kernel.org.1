@@ -1,158 +1,265 @@
-Return-Path: <devicetree+bounces-293597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEBeBeZb+2mUaAMAu9opvQ
-	(envelope-from <devicetree+bounces-293597-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:19:02 +0200
+	id MAs/MAdb+2kuZwMAu9opvQ
+	(envelope-from <devicetree+bounces-293600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:15:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051E34DD094
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:19:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B8D4DCFB2
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 68FF03006913
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 15:11:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DBA3D3029A59
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 15:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CA148B388;
-	Wed,  6 May 2026 15:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BCC47F2EE;
+	Wed,  6 May 2026 15:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="taGCJg+4"
+	dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b="DNQ17v0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBCE2D63F8;
-	Wed,  6 May 2026 15:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2552247CC80
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 15:14:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778080260; cv=none; b=HB8fmlnXor16X386IPW7J5ddGMRd8gFAzVJ5HamJTVrexec/qNMcRcwoAPczxbxX3apTZ0NlSlx1tSC6WsocpL6k/vy2Vb4Rw8NiPTgofq2tHXHzPGpEVKByjqpN8fndDY0gjbyb/QMlmIhxD5YvnKCpQwaU+bp2Ri4FmhR921U=
+	t=1778080450; cv=none; b=sOQfpBDs0bPrT9rK78PA+1K4NSUl5MCIWAROsGeFibrZbkLnZ25igqixQYCkN/B7j/l+ssiSg7XH6+QffBe9K0zBUHUwWQA0wiANbBRW1kbDtW2JD47eWgFnNJZ47iJ3GFbR35oGoI+N/GYhREhX6Z6zzi1U6rR0k/kF20ctacM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778080260; c=relaxed/simple;
-	bh=cCHCvUuPpHPu5/1mgf/ezZ1u0bRGr6TqCo7i9RhbRKk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ggyPHQFlx8KLOsElQ9S5JtDhhBPZ7V4xXVg4SV+XLj46VD0TpLM+gzlFfcSIIuVz3W6LfQppunBOSP2fO5BnlMp+uOWMUt/CVMX12R5jU9VJRP6436GVe3bIGDNVvA/BuKWY14PqxGcgW6ddhk9RsQSjT44Y+b3U0PJ8tszQxNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=taGCJg+4; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=uNFzzd95mcTYhcO+wG3xMSmWT3vJi7xx2yg5IbFJlII=; b=taGCJg+4P02MpniCDPcIubfA1w
-	NOEHJ7dt6xfUSyuW7VM5RKYK5msJBaLRIjZY27PWWEUPI0lOJeorgjzpKh77k9gFJUB+jFjGYeVXg
-	QyyIqDiotcKedsEVmKqLi21R3DPwDmAGrraZSJvPdfsB32ftCbtV3EDF59TFWRZwFH59D9Qv2T5Ei
-	gFqlhlaFiimxVTAF76ytqgf3G7QmY7CnKjqCDKPTTuQlu8l4PXSZbLlIGuvEeE9DckEpRgyr/WxVp
-	aPaoYc+VeDfUhFQKktR3J+gLHpcFkS2d89z9olQweL5x0OpwjqjKrYkG5JVSYvD/NsARnNbWLegEQ
-	17FMsUbw==;
-Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wKdtl-00000003avf-1ep8;
-	Wed, 06 May 2026 17:10:53 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Wed, 06 May 2026 17:10:29 +0200
-Subject: [PATCH v4 4/4] arm64: dts: allwinner: h616: add hstimer node
+	s=arc-20240116; t=1778080450; c=relaxed/simple;
+	bh=6uxmBcsusZraeh4PG9F1SE0HCI0qSLyvABncvHgVrrw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l5vktOl4v3ZvuVF8JWPW6vWkHZazCFvsT4WT7EZoqm56u+6u4LLgZWp3Zxf5hWaIyv6tWgqKBCkkkI9OGvQdJuAqwOT8BLbbeW1sJtayh9vDXpKKQZKQAxNoQiHNZCKI0C9D5spMIt1AsjFjP4bogZnogB2ehfpQl9AxBXDcrdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=DNQ17v0/; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imd-tec.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4891e5b9c1fso63572785e9.2
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 08:14:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=imd-tec.com; s=google; t=1778080447; x=1778685247; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IqBw8Kd6OtjjnQiFLsdPfhJ7HyL89HYldEhFC8X0GH0=;
+        b=DNQ17v0/9S0QPq+fGJQdHrALvbwpzxoj6RmDJFsbf5jLvjMPnlEVUcMS0jjgAi2AYf
+         O3eY5fGSaMIigEABwmqAlQZixfn+knoD9zRhu2O9DSwirSv94zWeiMESMzxl6TCbBWMP
+         TLfSKa+v0nbbPcd/i8ZY6jbCcMOby2N/V55r/ai0JV8u5eZ9QqrGLq98UkILHnhgGw5k
+         Pkyl6QmLeigrP2PPSrgSKMYif6f3l8aqWjVJM+X7FSAuORIf6ToEFK7rtpGnNPf1Tu+V
+         +FSwQHLjMzri9BFwvMPVDF4xvCTzpDUANtlWj40rv49LAoTy/YKBd8BSj6F0Hckm2vvC
+         42uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778080447; x=1778685247;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IqBw8Kd6OtjjnQiFLsdPfhJ7HyL89HYldEhFC8X0GH0=;
+        b=RU/B9xJEyZWzuP29BSIE3Nl/qipehlxRQfLnrLEhBI5iLjSs6n74NEUbaRgpXM+M+P
+         eI1aesPc1OqDmm0wJpm+LORJqnJKKwfyNBkaWse+Z07ig37UG7+Cvp1OWyDnA1HZnPrb
+         kRoLDsA9bJx10BAo/RsAx6YoziKfIFtnLVbGxVYB61/ov93w8/yEK82NtsBCQWS3tE6m
+         1/Q2s4zSeo/Al0F/Pfeh1fAS6kBIYtKHwg4Q8MfrXYrfdI5zMo1cLw3+nppV4xI+3WUz
+         qLXyLb/0AYJfoxJX/90pArv//8xSHFon1qaLdWt2LN2R+TUNZ064KnCqGzGG/c3AxYpN
+         Y/uw==
+X-Forwarded-Encrypted: i=1; AFNElJ9R4ZbnTqRmJvrbrYKefrFJ7hQQOvNmuDGDol8U3czrHHMjUQG6sGPBXR9ROigRHNHWKOdRclrzvHNI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy++Udeo5pLcXNmg9uYZYbFpH45GovyZ8yHzjlYBC2jQ7WVNxTp
+	Q/ujBm8UAQR/LRaIBwSotuqGHBE4/e1AOFszPSbzyW9+ivZ9ObXMCezIWQcFQ9vsdX4=
+X-Gm-Gg: AeBDiev6nAoAfPccTZtDJaQ9n2gR2uesjca9H85mJUTAjKHPJa7wELDd4gUDQQ57jAh
+	l2qu199VjMo6iAjnikIuK8VUoC3aDWuSwrD00p1W3+6ugjbp3hTRNTlp78voxDP5qaH0EdkD1ku
+	h2b5JYHJQrlMeDtvsm3NvV5AIpV4y/OLxiVrAtvpXuVx35TyOBEupchUTQqmiZfWlDSsG8If6/9
+	56C8vtwBMMzhmu29xfIEwfTr/81Vlt0o8QyUE1aMzoMGZ9i5Bl8VbFtD6z8w1u7kJ2TMuQEJXcF
+	ujeeJueSMxJUkjye+s7NN22Le4F2qw1bp6feYAL0Pbw7zIOCn29X1oHg1AXwg8BFagjt/y1B/y2
+	cfyZI/nA+8nYLRiK66bx5kZYls9g3f5oCvpPiPoVZ8Qg+GGwFUbSdWBkSDJZ5DkjMY9p16w4+lJ
+	oXwHD0TF88mbJzZ2vZ29+yE2n/tfe6qWv44wBCVHqI08UZp9S8zYyY5ZgqAIQpaIUG9gTdOC610
+	CRZx1/rriYPGq4mPERqp6OK4JjsUir4KxoQTA/hVzMzXf+ILe9SIg==
+X-Received: by 2002:a05:600c:a111:b0:480:1c69:9d36 with SMTP id 5b1f17b1804b1-48e51f2f83dmr51500945e9.17.1778080447300;
+        Wed, 06 May 2026 08:14:07 -0700 (PDT)
+Received: from will-Legion-Slim-5-16APH8 ([2a00:23c6:2736:8e01:5fbb:faec:b3da:7ea1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e538b26a3sm95055395e9.9.2026.05.06.08.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 May 2026 08:14:06 -0700 (PDT)
+Date: Wed, 6 May 2026 16:14:05 +0100
+From: William Bright <william.bright@imd-tec.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: Add IMDT QCS8550 SBC
+Message-ID: <aftavTZafl6bCQhD@will-Legion-Slim-5-16APH8>
+References: <20260505-imdt-qcs8550-sbc-rfc-v2-0-b4767d0dd421@imd-tec.com>
+ <20260505-imdt-qcs8550-sbc-rfc-v2-4-b4767d0dd421@imd-tec.com>
+ <20260506-aquatic-shrew-of-engineering-09fbe8@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260506-h616-t113s-hstimer-v4-4-591d425863d6@mmpsystems.pl>
-References: <20260506-h616-t113s-hstimer-v4-0-591d425863d6@mmpsystems.pl>
-In-Reply-To: <20260506-h616-t113s-hstimer-v4-0-591d425863d6@mmpsystems.pl>
-To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
-Cc: Michal Piekos <michal.piekos@mmpsystems.pl>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Andre Przywara <andre.przywara@arm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778080247; l=1212;
- i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=cCHCvUuPpHPu5/1mgf/ezZ1u0bRGr6TqCo7i9RhbRKk=;
- b=YaIWpieKroR4LhBuwpwPUIEiVX/E0tev90OjSQlNoABbG8TFy7srK/mHFIZeen5eNfos4OV4h
- ts9YcBuwMO1BcfPgU3pyJzO93l/Vzq3Tf4uMJE0xeg+OIuRNJOcE0gW
-X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
- pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: 051E34DD094
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260506-aquatic-shrew-of-engineering-09fbe8@quoll>
+X-Rspamd-Queue-Id: 38B8D4DCFB2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[imd-tec.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[imd-tec.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293597-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[imd-tec.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293600-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.45.233.232:email];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
-	NEURAL_HAM(-0.00)[-0.663];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[william.bright@imd-tec.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mmpsystems.pl:mid,mmpsystems.pl:email,0.45.218.72:email,30090a0:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imd-tec.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 
-Describe high speed timer block on Allwinner H616.
+On Wed, May 06, 2026 at 09:53:01AM +0200, Krzysztof Kozlowski wrote:
+> On Tue, May 05, 2026 at 09:09:54PM +0100, William Bright wrote:
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "cam_3v3_reg";
+> > + regulator-min-microvolt = <3300000>;
+> > + regulator-max-microvolt = <3300000>;
+> > + vin-supply = <&hr_cam_pwr>;
+> > + };
+> > +
+> > + display_panel_pwr_en: regulator-display-panel-en {
+>
+> Again, unused
+>
 
-Tested on Orange Pi Zero 3:
-- hstimer is registered as clocksource
-- switching clocksource at runtime works
-- after rating increase hstimer operates as a broadcast clockevent device
+For the camera regulators, I intended these to be used within device tree
+overlays (I.E a DTSO would be made for an AR1335 connected to CSI0).
+I don't have any camera device tree overlays in this patch series
+as the only camera I have tested is the OnSemi AR1335 which isn't supported
+upstream. So I will drop these camera regulator nodes.
 
-Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "dsi_5v_en";
+> > + regulator-min-microvolt = <5000000>;
+> > + regulator-max-microvolt = <5000000>;
+> > +
+> > + pinctrl-names = "default";
+> > + pinctrl-0 = <&dsi_5v_en_default>;
+> > +
+> > + gpio = <&tlmm 140 GPIO_ACTIVE_HIGH>;
+> > + enable-active-high;
+> > +
+> > + vin-supply = <&som_vph_pwr>;
+> > +
+> > + regulator-always-on;
+> > + regulator-boot-on;
+> > + };
+> > +
+> > + /* Enables 1V2, 1V8_CAM and 3V3_CAM */
+> > + hr_cam_pwr: regulator-hr-cam-pwr {
+>
+> And this becames unused after dropping fake regulators. Why don't you
+> have proper users of these controllable supplies?
+>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index bf054869e78b..1356e5df2562 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -237,6 +237,16 @@ timer0: timer@3009000 {
- 			clocks = <&osc24M>;
- 		};
- 
-+		hstimer@3005000 {
-+			compatible = "allwinner,sun50i-h616-hstimer",
-+				     "allwinner,sun20i-d1-hstimer";
-+			reg = <0x03005000 0x1000>;
-+			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_HSTIMER>;
-+			resets = <&ccu RST_BUS_HSTIMER>;
-+		};
-+
- 		watchdog: watchdog@30090a0 {
- 			compatible = "allwinner,sun50i-h616-wdt",
- 				     "allwinner,sun6i-a31-wdt";
+I will drop the on-board regulators for panels. These were intended to
+be used by a panel DTSO. So I will these back in when I 
+submit patches for a panel DTSO for this board.
 
--- 
-2.43.0
+> > + per_1v8_reg: regulator-per-1v8 {
+>
+> Drop node
+>
+
+I have omitted that its used by the LAN7430. I will add this
+usage in V3.
+
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "per_1v8_reg";
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + vin-supply = <&per_pwr>;
+> > + };
+> > +
+> > + per_3v3_reg: regulator-per-3v3 {
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "per_3v3_reg";
+> > + regulator-min-microvolt = <3300000>;
+> > + regulator-max-microvolt = <3300000>;
+> > + vin-supply = <&per_pwr>;
+> > + };
+> > +
+> > + per_5v_reg: regulator-per-5v {
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "per_5v_reg";
+> > + regulator-min-microvolt = <5000000>;
+> > + regulator-max-microvolt = <5000000>;
+> > + vin-supply = <&per_pwr>;
+> > + };
+>
+> Drop all these
+>
+
+per_3v3_reg: Used by the LAN7430 but omitted by accident so I will define 
+  that it's used by the LAN7430 in V3.
+per_5v_reg: Used by onboard audio but audio support is omitted within this 
+  patch series so I will drop this regulator.
+
+>
+> Probably most of them are to be dropped :/
+>
+
+For V3, I will go through all of these and eliminate any redundant regulators
+or add where they're used.
+Most of them likely became unused when removing SDHC4 whilst
+preparing this patch series.
+
+> > +&lpass_rxmacro {
+> > + status = "disabled";
+> > +};
+> > +
+> > +&lpass_tlmm {
+> > + status = "disabled";
+> > +};
+> > +
+> > +&lpass_txmacro {
+> > + status = "disabled";
+> > +};
+> > +
+> > +&lpass_vamacro {
+> > + status = "disabled";
+> > +};
+> > +
+> > +&lpass_wsa2macro {
+> > + status = "disabled";
+> > +};
+> > +
+> > +&lpass_wsamacro {
+> > + status = "disabled";
+> > +};
+>
+> Why are all these LPASS codecs disabled?
+>
+> Best regards,
+> Krzysztof
+>
+
+No audio driver support is included in this series, but disabling the LPASS
+codec nodes is unnecessary so I'll drop these changes in V3.
+Many thanks for your feedback.
+
+Best regards,
+William Bright
 
 
