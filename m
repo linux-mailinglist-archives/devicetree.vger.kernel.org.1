@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-293460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293461-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JB8Ak8P+2kTWAMAu9opvQ
-	(envelope-from <devicetree+bounces-293460-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 11:52:15 +0200
+	id kCC7AqwP+2mbVQMAu9opvQ
+	(envelope-from <devicetree+bounces-293461-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 11:53:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA204D8F63
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 11:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7373E4D8FD4
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 11:53:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D12D130309AC
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 09:49:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1DBFA30948B7
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 09:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400113E3165;
-	Wed,  6 May 2026 09:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F463ED136;
+	Wed,  6 May 2026 09:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BNKEG57w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9MOJmpe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF7A287503;
-	Wed,  6 May 2026 09:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79223EAC72;
+	Wed,  6 May 2026 09:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778060943; cv=none; b=Rrh0zts8l56qcFr91IrkuVLPMpFCnV9ZZDdShOXpAzbrC0oWV8sd0u4rcLQmaPTb9uIkJYSEWEFC+rvtO6WqXasyS3FdSkZg2w98bsyKWz19xs3y/WmsK2KLNcReKzGbBBv1EVqNFteAAGt55xC+drJ8dGujTsm3WXEv3PPa5q4=
+	t=1778060973; cv=none; b=SjOp4KZ/3lubGn92zoKEfcs6K1deseTn74S+TDZQb5//curUxJ7UQfllCByT2tJfnc64w2KNyOXMXosr/DXOHiEH4D1lMNwVXEJX7gwy+QfpNCNcnVg5UHA9p9OYlFgKAuQfFgmwSG3+6/qQLlCA4YJQHYTUewdEU9/jiLgaLoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778060943; c=relaxed/simple;
-	bh=XXKSxp/zS4TYdq5eOGTjJv8B0I2YZNg8KRqSEtv/RYs=;
+	s=arc-20240116; t=1778060973; c=relaxed/simple;
+	bh=+RQZ3oBZvyIXgi8UF/A7gRK/+3bLlULYhdC+9Ijd22c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SBFM5foRkQ/SLg6UeCRYj/fNmU+U87f5ZSGgW4UrXO4K1mqN8uskYLSo+XS6xiWbYoFdHrsEAug6QYoXY+Iv9mmFKopm5sT55DlEVk0ePKPRQW6zkTQxYxfkeWv7qDuZqeXsQp4sXc0A50KwgRkOS77FIUPSh7i16ONq9L6Otqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BNKEG57w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C785C2BCC4;
-	Wed,  6 May 2026 09:49:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=avaBoEpgHrwj42/vyu8F0ddagUzJp6J3wu9dzkNLPLaYZIQ4RDGJ2C8c5htUPW+FbgFFvyxPJQvxSg/NAJHUgYo8qRcWgzt+xYxqyedphtaN3nv4l3EKPq/BeK0nKSxF3mUECDL5KY7KhkySjbA+eeG4RBqTO1ezEZiWCcO2JHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9MOJmpe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 218ECC2BCC4;
+	Wed,  6 May 2026 09:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778060942;
-	bh=XXKSxp/zS4TYdq5eOGTjJv8B0I2YZNg8KRqSEtv/RYs=;
+	s=k20201202; t=1778060973;
+	bh=+RQZ3oBZvyIXgi8UF/A7gRK/+3bLlULYhdC+9Ijd22c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BNKEG57w4a82X1FUPJmzp86eqSXj1U/cBshiraI329C8RZJGloe710+k4CvABzOtx
-	 njYOukFyMQRQVR2FfyhVR46FYpQ0yBhyu0YyDT9S8TkdouefLsFXgtRRwUG0+EdYBC
-	 X61+MWkqxSbLizlga/sT683uFc3J8IJEFxrCTpSvi6TF94rh5Sa7niH6ezoBv0857M
-	 1IEgobknIqgPxidGv3LOLeuIbRg5VUEelsfxOGApB0/SRaIX8E8+ZYO+LdtOjprSgw
-	 2BoB2KdOQFTZkHi8+7FI3rBwfJJvU1zD1IJ/h8kUR6LTi6qB0rzJrXkZhgzyQ7n7Nv
-	 7dvopyqV3lIUQ==
-Date: Wed, 6 May 2026 11:49:00 +0200
+	b=Q9MOJmpeCvi3PcFwOwrkcqeWxZl3Q7Mpk2mN0W93NqyDNcr3+OApe/i3FY3MZ9E+k
+	 gA1vzaWxVKdLZC24zU12qikaxvPHY5ZJBxIE3bR2jQFJC3AltVxTTClvq/lhB7cZJ1
+	 oJFtbkdYs+ST/O2UOoN0IO7e4uJUbPI3oNxaT7/jL49768H8YJQ1j1SrXKiFSHs2kM
+	 62UQFsDK9nwtctDI+D6Y1G+S2Fn48XKSJrJ1mWfWbZOntsNhVheaEToYoMrgIkyAUy
+	 kjxPfN4gy0QQ1YliS4y3LlOanuhRrYHYcdqUaagKgE1hpcOGeNL29rw3ZANehdphYG
+	 sEfmeu/HifFBA==
+Date: Wed, 6 May 2026 11:49:31 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: "Catherine A. Frederick" <serenity@floorchan.org>
 Cc: andersson@kernel.org, sboyd@kernel.org, krzk+dt@kernel.org, 
 	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom,rpmcc: Add MSM8920
- compatible
-Message-ID: <20260506-frisky-glossy-bee-b33aac@quoll>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add initial support for MSM8920
+Message-ID: <20260506-berserk-charming-tody-f9ecc6@quoll>
 References: <20260505203845.192140-1-serenity@floorchan.org>
- <20260505203845.192140-2-serenity@floorchan.org>
+ <20260505203845.192140-3-serenity@floorchan.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +62,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260505203845.192140-2-serenity@floorchan.org>
-X-Rspamd-Queue-Id: 7AA204D8F63
+In-Reply-To: <20260505203845.192140-3-serenity@floorchan.org>
+X-Rspamd-Queue-Id: 7373E4D8FD4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
@@ -77,7 +76,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293460-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293461-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -93,24 +92,25 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,floorchan.org:email]
 
-On Tue, May 05, 2026 at 04:38:40PM -0400, Catherine A. Frederick wrote:
-> Document new qcom,rpmcc-msm8920 compatible with rpmcc changes.
+On Tue, May 05, 2026 at 04:38:41PM -0400, Catherine A. Frederick wrote:
+> Add initial support for MSM8920, which is essentially MSM8917 with
+> an MSM8953 modem glued onto it.
 > 
 > Signed-off-by: Catherine A. Frederick <serenity@floorchan.org>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/qcom/msm8920.dtsi | 55 +++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8920.dtsi
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8920.dtsi b/arch/arm64/boot/dts/qcom/msm8920.dtsi
+> new file mode 100644
+> index 000000000000..943cae72227a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8920.dtsi
 
-Please organize the patch documenting the compatible (DT bindings)
-before the patch using that compatible.
-See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
-
-With this fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+That's a dead code, unused. No need to add it.
 
 Best regards,
 Krzysztof
