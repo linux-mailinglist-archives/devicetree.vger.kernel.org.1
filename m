@@ -1,1054 +1,220 @@
-Return-Path: <devicetree+bounces-293375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293442-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IMJoIwLf+mmGTgMAu9opvQ
-	(envelope-from <devicetree+bounces-293375-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:26:10 +0200
+	id QAppOHcE+2mbVQMAu9opvQ
+	(envelope-from <devicetree+bounces-293442-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 11:05:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22B394D6950
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 08:26:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27AC04D8514
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 11:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 92243301F351
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 06:26:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86F0C30796FA
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 08:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F0C30DD0A;
-	Wed,  6 May 2026 06:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KbDwVtbp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE44B3EDAA4;
+	Wed,  6 May 2026 08:58:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2116.outbound.protection.partner.outlook.cn [139.219.17.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26DB730C62D
-	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 06:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778048758; cv=none; b=cuPMio4M9MtskVwHjg1jnw8dX9E7s5IDO19QzITGHnYeoZDblxXAv6UFMamCPVhBlKMHHupFslTV3MyU76jTc3pgDKeamfX6xqEb8ipSbe2EW10MUIIxxlbsZp9MvujEJsis3IC5zyygZokQhbd3viBcWJEVmBbotSkxOV4tRVk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778048758; c=relaxed/simple;
-	bh=A7+26qZVbyXCC2R0hVQ0TkMdb9RJCXQSrLDVNaniLmk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B6L1HZVYXLGzyitiokRUCcGW63Fwy7g3k2uKMwXybcB+lofM3Jz6pgN06ZZ98Y/F/tWF0zPOsPPEBpF03yvQ7RUkNIxNKY2+Lw/PUpnBRc8/NuDefhQsGY5M0pp+oneni5XjJATniZqPdTw8NpqfsyycIZZO5l9uOSyOXaJ+uMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KbDwVtbp; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-c798fc1a28cso2155088a12.3
-        for <devicetree@vger.kernel.org>; Tue, 05 May 2026 23:25:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778048755; x=1778653555; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+ge2ZVJqFatJtl/lagdEHlxFNzxn/xayE8pvfSwQrhY=;
-        b=KbDwVtbp6O9JXiZbyR+XepxyQ8mMkcVKzJlNkPxbhEFWrtsDyM25eNcsYRxbF8zrlu
-         6BXbRAULtppSaOatTfzAshmPek60DIo3FRrEoPOIJ+z4oh/qpVfX0cZB/WToe/fHLVST
-         DnY0p3nH9aZsZZarASQruOQ/ALxvoa4hwo1n1aw1h3tIqDqNOOMTO/0d9UCHtMkLYhD+
-         V/62ONB5/sqaxvANRwdH134xqxlBngQf/WXR1de9noScaHIJt5zfkYPxDK8/k8lLMl0z
-         zCKgdrsB/E97URd1C2oFdc3gi34NcP+DrshY82TaJtjcvXj5UFdz+l8qJCJM5GJBkr2i
-         u0+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778048755; x=1778653555;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+ge2ZVJqFatJtl/lagdEHlxFNzxn/xayE8pvfSwQrhY=;
-        b=eMESsd4P3UtOXbhGdOy00+vRGLSsanrrnFPA+qEad/Vv/B7WA+pH3WEKq5P9s2SjOq
-         NdwJqzl0Y58uruByOdCTro9exh25ykFKfFhv07c6PJjuiX5km9iepnhJghfYgn0LaXj1
-         dlzsXmXB7AcQEDWPkjqgy6kAusbd4PRKxPKyRkElBW4sQoKBPZ/KcQtFEdsX2PN4WA8K
-         KzYJ2JkNJcBJgqf8i2Kp5y7lNvOLby/xvkXZN91ZObMo9FMWs2rrNZ7jicvYWfO1JWCq
-         dm5I7kDnH6aPqkz1ZOf1oB4LtOr6sOA/wsfZGmBGyFPh5Z4/Kbv1gQK5aho6nz0ppIkv
-         gTBQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+2w3hyxeccS9lVn8klHvu9mMc12Ff8fiDfUApuFHBjA6xcy6G56OH6AmVBhs/2wfwlDP1dAbC/Emve@vger.kernel.org
-X-Gm-Message-State: AOJu0YydR8U507+UUuDJT1EVXRi9Kfby2nnWFe4fmIvyl6+5PyyN0MBq
-	Cb0qkZWEFhlSpHEhlm7CKvQfYCWx68qAOJUKVGHHiD/ifNHJ/2GJTJoP
-X-Gm-Gg: AeBDieubKIrdEZVuM3EgpY/1nYWsvk/+SmOFGNbk602M8CbNuH+8QqyuiLSYLpfHOsI
-	xGrWfv3ofx7pAmW92r8sCIi5cUaNBZDA5KXw8/voF3MmaPpdt4zMWs+av+57n55DAz/ZWBcIE7V
-	wST5VFlxYnxxpTwFGb+xXSnpmd/X50jvBd76OrYaC9IxNqo6jWyIyOdzBRyF12yWE81lNvOXDyS
-	srO+QW3JA5kRDz9rq4pG0KgIASnOnqj2SC/hODzvzGK8WJ+Y7qk+/5SNHuUhcBKh4/lI+HZ4xPw
-	zQpd4SrDoxj1xNpAl2M08C5zhBvpB9k3hKBEM91I09vJXCEYbjJyzHMr193x9imTSdsZoZ46ri9
-	xdPkSxc11tNy2yU4m9VA5R3fRGrMacSh3HBIWePIkV7EP6MfhKCvES0hODDG4zfklU/9Gt6DRBk
-	0DQ5hqiuJ+g6UBVvVHljjDlkkhKZXzbbMDerzSuppnE2foDwJXvNCwTHL9ceVLNc+le5MdZmPen
-	9ibnZFK7HQhDSneMfSLgw==
-X-Received: by 2002:a17:902:cec8:b0:2b2:57df:264d with SMTP id d9443c01a7336-2ba794b969emr21862815ad.33.1778048755227;
-        Tue, 05 May 2026 23:25:55 -0700 (PDT)
-Received: from [127.0.1.1] (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ba7bd2ab2esm16330865ad.4.2026.05.05.23.25.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 May 2026 23:25:54 -0700 (PDT)
-From: LiangCheng Wang <zaq14760@gmail.com>
-Date: Wed, 06 May 2026 14:25:38 +0800
-Subject: [PATCH 2/2] drm/tiny: add support for PIXPAPER 4.26 monochrome
- e-ink panel
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BB13EDAB8;
+	Wed,  6 May 2026 08:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.116
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778057934; cv=fail; b=DtOwQW37MqhL0GF9qS9N3/qxXh5g7rS/ssHrHciM+LoZFfL5jlJMCTCfNhJz+BxWxuLTgSr+UCzzjFd9UKH3iZu73O90gsM1rH6XyKI5EV9IgIT2lJ0/BDQMpHrRi2u2kU5VKWBpN6jxt0BUwTrCiedOaC6ZutOwmaviKXo+kAg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778057934; c=relaxed/simple;
+	bh=Zk4zOiWNbYQpvI40jer0If9lUD/pDnnhojW/u1puWLQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=temLJeNmnxzWHcbUC/ITlgeeYeEngnDFB2m2TzXtPqwDlxSPWBdNo7w/rvyRrTA7iYmNUyf5Lf/KfyASJaHO6bED0fcNi23iBYE6cIgtFsfnjdYkQTcjARm2Mnra5mazgw2ti+XeqaXpIMSPTgYmkVibeKBdJigDYZlbCoz3kCM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SC0Wzkk0vrpuWScp9rCO/JK1BPNv+D9ewqBaSxjPg0W186qsXXlu6G/pUwWN8iQ8sTVtOAC6ahw4x/u13z1inkNKlz6qaqb9ZwqH+tHewgRt9GExykDfqxkLtbvG7DU987KcAeRFJY1U3YjCktSJoSSvHPdAsOwwEATbP1r2En5O66z9x3fsYMNEywRUGdAgoJF6C9Uij792b+IIOJ+XVNuvnzNre7IPH2OAV1r984EmnN2ln2OH1/fDImpTBlUDvIDWhdqEJ+/Dooi7f81Hv8l9A1hVaQJKj2y0LtnsMNstTnejBkgTLQolSLFZNx9wZo2Oj2obpqzdlih33WeEUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zk4zOiWNbYQpvI40jer0If9lUD/pDnnhojW/u1puWLQ=;
+ b=bxz7RmD354ZUANIZr85XscV70m93ZQkdk8fQGxBSAeHoBR3oro+CGoUcPJfIyehgp+62VPPJR6+4qSugw5AVWg0ziFnDuhInzIVMJyGqavg34ygcOIHCAyMBx0YRN09aIInnkZOH3v5KZM/R4UOFPSPW2t01J3InNaewCGBqLEp5CdNUVEL1rFS3n1BMY3dGjlBG1rqjo0/oDvslvEwy115gymHqPgTfcVt+d3NSWRNECpQyMCMtPtDtvQTwFOrx5uRDjHgnumacmJdFI4rvnUCLCHF/KqJtupxY7aM4WT9JENrmSYMRYXm8ti0vNzgXF7YGXueglW8sKn4bq6xilQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6) by ZQ4PR01MB1282.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.27; Wed, 6 May
+ 2026 06:27:39 +0000
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e7d4:256c:b066:850d]) by
+ ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
+ with mapi id 15.20.9891.008; Wed, 6 May 2026 06:27:39 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Linus Walleij <linusw@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Alexandre Ghiti <alex@ghiti.fr>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Bartosz Golaszewski <brgl@kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, Lianfeng
+ Ouyang <lianfeng.ouyang@starfivetech.com>
+Subject: Re: [PATCH v1 11/20] dt-bindings: pinctrl: Add
+ starfive,jhb100-per1-pinctrl
+Thread-Topic: [PATCH v1 11/20] dt-bindings: pinctrl: Add
+ starfive,jhb100-per1-pinctrl
+Thread-Index: AQHc09tvLatUK5oq3keSy4c9Ncpt5LX0VuCAgAxERvA=
+Date: Wed, 6 May 2026 06:27:38 +0000
+Message-ID:
+ <ZQ4PR01MB1202F6E14D422C816A2975D8F23F2@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
+References: <20260424111330.702272-1-changhuang.liang@starfivetech.com>
+ <20260424111330.702272-12-changhuang.liang@starfivetech.com>
+ <CAD++jLk_AQjjCLkeuiyBtiQUsmzHEfqpigttJ7E9n1UE8h29Hg@mail.gmail.com>
+In-Reply-To:
+ <CAD++jLk_AQjjCLkeuiyBtiQUsmzHEfqpigttJ7E9n1UE8h29Hg@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1282:EE_
+x-ms-office365-filtering-correlation-id: 523ae080-c64a-481f-d929-08deab389208
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700021|18002099003|22082099003|56012099003;
+x-microsoft-antispam-message-info:
+ xBLOX4eJQlKH7sXpTuAu0CYDyoQNTVdpVpKGpp6+DLR8bU84TvZFrykf6jib7eEqLjDZ7fP0XCR5TwmNG5DmvtE+8EEsX5iN9eniMQBqbkkOGsB3oBuUkcJAQfaEe2BA27+bJvZyt7bSIqD7Uu3aE8nC0CXXUdETkKwadnFEaMF+VHgjfRbWJFr9f6XELxhL9bM4PrSsqiwNEKPqQlCJnYp060ja+metcqYZ2yFyyTBIWQx1n9w+XY4m8wwKGdTvU9D7VDOVH8q0v/F4oO/M5MXr8N8QNAcNmR0jtV/x9NT3/4vYPrNDSjxHKj8xeUSx445q6i/A6KXIEdekUe15UN8Vcj+t6Mdg5MW/0ed7guWksgRK/ZhyBytvdtVCAAad6ldaw5uqm2M0BznblaK4iUp8rvVC3e2bPh2WRqRTpZEwKYYkQJs5TMxRYbzj1hhgyatc3Tzc3yHAoGhArnvGSe59oNmgMckEFm/Qx7VejvEnXJtV50RwO4QKDoudvvdC1gVSbLFG9a5SS6kzZghzrzCo3lIrYqjCyj7KQGdODF0qw5LX/vNghbbBJ0zjNZ83
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700021)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?VzJaTGJFVklmTTRFWjRmdVplMTZzeUZUNmcvK3ROOWx4R25ZY0hKQ0xlS3d6?=
+ =?utf-8?B?NnNrVlhZc0Vpa2VUS051TUljL0pPZm9OMmdKMURkN1ZybUZ6L1pDa3g5OTMz?=
+ =?utf-8?B?MkRHTUM0bFE3WmtwRkNQdURwdml1ZGcxaGdOZzRMOFNkN3BWUFZoWUZuaXJ0?=
+ =?utf-8?B?ZVJyZ1JqUFdzR0JGb1gzU000V3F0OWc5SnlxNEova0J2Z2JXM2pER24xamhs?=
+ =?utf-8?B?Sk4xcE9QZFhMVmQ5dDRFeGJzN0xHN2IzNjhZOEd5WGtEVWFVK2ppaUd2WmVM?=
+ =?utf-8?B?TDRFRzVoeUZ2amRGakFXb2NtS28xZFR6aTU1VCtOeGJjMU5ubU9CeWtQNlB2?=
+ =?utf-8?B?REtnUmlCdW82T0JVaW5IUGo4aEZ1UjRuNmdCVUJEWVRyMFVuampWMVpXSmc4?=
+ =?utf-8?B?MWxDdHhzWUxlUTlBdG5scjZvSC9tM0pVWDdKMFQ1NmEzcjlrcDJ1OHg5dWR4?=
+ =?utf-8?B?UldCRVJ2NFU1VjYwa0pBRGNJY1djQ0N6RkxJWEVwZGErVjM5bWR6YmhUMUVD?=
+ =?utf-8?B?NGtCcDJHenJRc2xpa0w2N2lpNVgrcnY3WmZQUkZDcGR3d3I3QkUvamg2blEv?=
+ =?utf-8?B?bU5pc0llcGtIYkVTb04vaFJFaW5nS0xtWW91bHZmTjBxeExuK3M5YWhrOGIz?=
+ =?utf-8?B?RThEYWt0SWxvNjhubEc3cThtRWs5ODBrU2ZaYVkyZDVFdjllYVZRRmQrQ2Vn?=
+ =?utf-8?B?VWFROGVWb3Rkb3QxaGZzbXhaRnN2STJ6RjVLQWM3eTYvQ3JkTGZzSHkraWRi?=
+ =?utf-8?B?blZoNWJBOVpSSGdJbzJQT3VjS2VxWkZhNWJQMnNmZnRRdXZlQkpYVXFKczJk?=
+ =?utf-8?B?aHlxNlZ4T1luR2RhbXJaUlV0aGw5QjIycjhUcWR1aFYwU29aZVpvcWtqeE83?=
+ =?utf-8?B?VzlDYjd4VFJURWV4cUhlcFZnK1QzbzgycDVwNlRUOU9VZXA3RjFOcDYvWEVS?=
+ =?utf-8?B?Vk80ZDdhVzBlN3VPRXhxK2NtNDRRTUVsbXhKY2VOYmsvamsrTnV4ZEtMTkVu?=
+ =?utf-8?B?YS80N1JiOFdLQVRsQm90b0VlVVdPUTJEVlJZc3dFbzVxN3RwVmwwUHRZVGp2?=
+ =?utf-8?B?cWIwWTEwYnJucUNXK0EzTmx4dGhPWDFSNnJ0ZjV5ZE9OcytCVTh0L3JxZFda?=
+ =?utf-8?B?MlZlc0t2Nkc0cGdkZjRKSm12bTJ5dzBkd0tYZmhXUTdoNW1SVG1JTTdSRFZR?=
+ =?utf-8?B?VnZPSEdZOEZxTEpPR3AxQ0o2RWcxc2VTV0ZmWkVJYVJaZ3lCR1IwdVhKUENu?=
+ =?utf-8?B?bFJ1a0RFQ215Zk5qejZTNjFFUHp6VWNkdHVIV0VUaUd6NWJ6UEhYQ1hzaVBT?=
+ =?utf-8?B?bGJJbTYwQy8xR3YzM0VhNzRzVjFvSEU5M05jNXdSNTRRNUNHUFFKQit6RkNK?=
+ =?utf-8?B?KzUvZWJ5Qk45SlE2WjFRR3BKSWFCbW16TUd3UXpaU09tQnpCQ2Q0WktqdDRQ?=
+ =?utf-8?B?TzhLbDRmenBNdGs1Z2s2OHhUcDZHOHNVbEF1aDdvK2FEeUxDSU5tdnlQdDVS?=
+ =?utf-8?B?SzNLUFVKR3dDalBNZVFNWDVESWNIb3ZiUFUvNzZDV3BDcnkreHVlK2F4OGE1?=
+ =?utf-8?B?eE1NZ1VneTZQcmNkYzNCWEJ3emN3Rk5GaWR6Nis0RGZYbkVSYUwwVHhqNnVI?=
+ =?utf-8?B?bmd1L1JMbEFxSFArWUhock1iMXhvQXNhcXFkc1NaelhoQnBBcFBWSE5GdC9M?=
+ =?utf-8?B?SmlwVnZ0YWVBQytqSEJIYnBvb1diV2JkN05OMkhRSHl0bld2ZW9DbmdWSjl3?=
+ =?utf-8?B?MldFb0ZWS2FEVW41Z09WMjZkTmZJZlJ0RzZRQVNMMmFMNTdEaUFhM1UyaWt6?=
+ =?utf-8?B?VVJpY1pHOUdMTzJHempCNkxrN0NtWFV3NDlmK1YzT01rMHdmV2xsUThXWkYv?=
+ =?utf-8?B?MnBGZ0Nnalc1MURDT1NZazhDdlRobEdSbkY2dFJDbVFzaW04WWM0SXd1bHRn?=
+ =?utf-8?B?QmtXN0dYOU55SG5rZGJWcWsxTjdLUDRWN3NYN3JwQU4xT3ZwbThmWWVWZk9n?=
+ =?utf-8?B?ZEl6b1FMM2E0dkpXaXQvVkJRSWJHMllKbGtCMDBZMHgwMEpscHRUV25XbVdB?=
+ =?utf-8?B?c1Nja2xtMzc0YTJTSFFZWEpZR3VNa1I5MGNsQXk2d1dLK1pFbUx6NHVvSXd3?=
+ =?utf-8?B?aGZXWGkyUzFKS2NIVjc1eW9pcnRkOEFNMnc4U0hjT3l3REMvZERIOXdQbmZm?=
+ =?utf-8?B?NmJtaDMyWlQ3K3pvZUEvM0dIcmRTRy94Y0l3LytVd1BuOHNRS1pHTHRsd2hT?=
+ =?utf-8?B?Qm12UzA3MmhxbEpvNGM4WStWTFFiSElXeHdkOElaMmZyRW9yQlRSTFBrbE9w?=
+ =?utf-8?B?NDArbzJPUXppK2hsTFoxZkV1RnRyVUtoL3BLVGdKSkVvRE5Dc3hSUG5PSDZZ?=
+ =?utf-8?Q?v74umVy2bXkTa2Ak=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260506-bar-v1-2-12195406f4ef@gmail.com>
-References: <20260506-bar-v1-0-12195406f4ef@gmail.com>
-In-Reply-To: <20260506-bar-v1-0-12195406f4ef@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Wig Cheng <onlywig@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, LiangCheng Wang <zaq14760@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778048746; l=27804;
- i=zaq14760@gmail.com; h=from:subject:message-id;
- bh=A7+26qZVbyXCC2R0hVQ0TkMdb9RJCXQSrLDVNaniLmk=;
- b=S0KqlqJBp0CYrkbvDC5oVM/+oXDy5BxbSFKdYK9Xg91F8KJ0UvmnXATH5KcoKK38quFc9PQn3
- 9s9+/pUHoU2DutkoMvaH4vAmWsD1elrQ0S6XZf5rMcxYPMZn1C76Cvs
-X-Developer-Key: i=zaq14760@gmail.com; a=ed25519;
- pk=5IaLhzvMqasgGPT47dsa8HEpfb0/Dv2BZC0TzSLj6E0=
-X-Rspamd-Queue-Id: 22B394D6950
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 523ae080-c64a-481f-d929-08deab389208
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2026 06:27:38.9366
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FT7U2J//cYDqnfUIFM9Vzle5GDdI8fMQJNLsocuTcBYfDzz7+1oFzHfzSPPsdAUBq1RlGfsSYllTMBclfvEL/w8UULmIylFTvgLZqFmu1Kca1CAGqi3D59Sw6rjL27dK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1282
+X-Rspamd-Queue-Id: 27AC04D8514
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.64 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293375-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293442-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zaq14760@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.freedesktop.org:email,gitlab.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn:mid]
 
-Introduce a DRM driver for the Mayqueen Pixpaper 4.26
-monochrome e-ink display panel, which is controlled via SPI.
-The driver supports an 800x480 display with XRGB8888
-framebuffer input.
-
-Also, add Kconfig and Makefile entries for the driver and
-update MAINTAINERS for the Pixpaper DRM drivers and binding.
-
-Signed-off-by: LiangCheng Wang <zaq14760@gmail.com>
----
- MAINTAINERS                          |   3 +-
- drivers/gpu/drm/tiny/Kconfig         |  15 +
- drivers/gpu/drm/tiny/Makefile        |   1 +
- drivers/gpu/drm/tiny/pixpaper-426m.c | 828 +++++++++++++++++++++++++++++++++++
- 4 files changed, 846 insertions(+), 1 deletion(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 882214b0e7db53bb8cc8e75b5d2269ee0591ea20..eebd73ee1f531d3785ec963da03fbab265c2d188 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8234,11 +8234,12 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/repaper.txt
- F:	drivers/gpu/drm/tiny/repaper.c
- 
--DRM DRIVER FOR PIXPAPER E-INK PANEL
-+DRM DRIVER FOR PIXPAPER E-INK PANELS
- M:	LiangCheng Wang <zaq14760@gmail.com>
- L:	dri-devel@lists.freedesktop.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/display/mayqueen,pixpaper.yaml
-+F:	drivers/gpu/drm/tiny/pixpaper-426m.c
- F:	drivers/gpu/drm/tiny/pixpaper.c
- 
- DRM DRIVER FOR QEMU'S CIRRUS DEVICE
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index f0e72d4b6a4709564e63c758e857bdb4a320dbe7..f5867066518cb80a7c659e2ac5a675da719bf739 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -98,6 +98,21 @@ config DRM_PIXPAPER
- 
- 	  If M is selected, the module will be built as pixpaper.ko.
- 
-+config DRM_PIXPAPER_426M
-+	tristate "DRM support for PIXPAPER 4.26 monochrome display panel"
-+	depends on DRM && SPI
-+	select DRM_CLIENT_SELECTION
-+	select DRM_GEM_DMA_HELPER
-+	select DRM_KMS_HELPER
-+	help
-+	  DRM driver for the Mayqueen Pixpaper 4.26 monochrome e-ink
-+	  display panel.
-+
-+	  This driver supports SPI-connected 800x480 monochrome panels
-+	  with an XRGB8888 framebuffer input format.
-+
-+	  If M is selected, the module will be built as pixpaper-426m.ko.
-+
- config TINYDRM_HX8357D
- 	tristate "DRM support for HX8357D display panels"
- 	depends on DRM && SPI
-diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-index 48d30bf6152f979404ac1004174587823a30109e..037b751a1a851cc2f86f701ff71008bcb9c59f29 100644
---- a/drivers/gpu/drm/tiny/Makefile
-+++ b/drivers/gpu/drm/tiny/Makefile
-@@ -7,6 +7,7 @@ obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus-qemu.o
- obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
- obj-$(CONFIG_DRM_PANEL_MIPI_DBI)	+= panel-mipi-dbi.o
- obj-$(CONFIG_DRM_PIXPAPER)              += pixpaper.o
-+obj-$(CONFIG_DRM_PIXPAPER_426M)         += pixpaper-426m.o
- obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
- obj-$(CONFIG_TINYDRM_ILI9163)		+= ili9163.o
- obj-$(CONFIG_TINYDRM_ILI9225)		+= ili9225.o
-diff --git a/drivers/gpu/drm/tiny/pixpaper-426m.c b/drivers/gpu/drm/tiny/pixpaper-426m.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..159dcc246092fc583cf4f352fe5c41b1e1fae84c
---- /dev/null
-+++ b/drivers/gpu/drm/tiny/pixpaper-426m.c
-@@ -0,0 +1,828 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * DRM driver for PIXPAPER 4.26 monochrome e-ink panel
-+ *
-+ * Author: LiangCheng Wang <zaq14760@gmail.com>,
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+
-+#include <drm/clients/drm_client_setup.h>
-+#include <drm/drm_atomic.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_drv.h>
-+#include <drm/drm_fbdev_shmem.h>
-+#include <drm/drm_framebuffer.h>
-+#include <drm/drm_gem_atomic_helper.h>
-+#include <drm/drm_gem_shmem_helper.h>
-+#include <drm/drm_gem_framebuffer_helper.h>
-+#include <drm/drm_print.h>
-+#include <drm/drm_probe_helper.h>
-+
-+MODULE_IMPORT_NS("DMA_BUF");
-+
-+/* Panel visible resolution */
-+#define PIXPAPER_WIDTH    800
-+#define PIXPAPER_HEIGHT   480
-+
-+/*
-+ * The panel datasheet specifies an active area of 92.8 mm x 55.68 mm.
-+ * Round to whole millimeters for drm_display_info.
-+ */
-+#define PIXPAPER_WIDTH_MM   93
-+#define PIXPAPER_HEIGHT_MM  56
-+
-+/*
-+ * According to the panel datasheet, no RGB-style timing parameters
-+ * (porches, sync widths, or a dot clock) are provided. Define a minimal
-+ * fixed mode only to satisfy the DRM mode API for this SPI-driven
-+ * e-paper panel.
-+ */
-+#define PIXPAPER_HSYNC_LEN     1
-+#define PIXPAPER_HFRONT_PORCH  1
-+#define PIXPAPER_HBACK_PORCH   1
-+#define PIXPAPER_VSYNC_LEN     1
-+#define PIXPAPER_VFRONT_PORCH  1
-+#define PIXPAPER_VBACK_PORCH   1
-+#define PIXPAPER_MODE_REFRESH_HZ 1
-+#define PIXPAPER_MODE_CLOCK_KHZ \
-+	(((PIXPAPER_WIDTH + PIXPAPER_HFRONT_PORCH + PIXPAPER_HSYNC_LEN + \
-+	   PIXPAPER_HBACK_PORCH) * \
-+	  (PIXPAPER_HEIGHT + PIXPAPER_VFRONT_PORCH + PIXPAPER_VSYNC_LEN + \
-+	   PIXPAPER_VBACK_PORCH) * \
-+	  PIXPAPER_MODE_REFRESH_HZ) / 1000)
-+
-+#define PIXPAPER_SPI_BITS_PER_WORD 8
-+#define PIXPAPER_SPI_SPEED_DEFAULT 1000000
-+
-+#define PIXPAPER_PIXEL_THRESHOLD 128
-+
-+#define PIXPAPER_BUSY_TIMEOUT_MS 10000
-+#define PIXPAPER_BUSY_POLL_INITIAL_US_MIN 1000
-+#define PIXPAPER_BUSY_POLL_INITIAL_US_MAX 1500
-+#define PIXPAPER_BUSY_POLL_US_MIN 100
-+#define PIXPAPER_BUSY_POLL_US_MAX 200
-+
-+#define PIXPAPER_RAM_START_ADDR 0x00
-+
-+#define PIXPAPER_LUMA_R_WEIGHT 299
-+#define PIXPAPER_LUMA_G_WEIGHT 587
-+#define PIXPAPER_LUMA_B_WEIGHT 114
-+#define PIXPAPER_LUMA_DIVISOR 1000
-+#define PIXPAPER_LUMA_ROUNDING_BIAS 500
-+
-+#define PIXPAPER_CMD_DRIVER_OUTPUT_CTRL      0x01
-+#define PIXPAPER_CMD_BOOSTER_SOFT_START_CTRL 0x0C
-+#define PIXPAPER_CMD_TEMP_SENSOR_CONTROL     0x18
-+#define PIXPAPER_CMD_MASTER_ACTIVATION       0x20
-+#define PIXPAPER_CMD_DISPLAY_UPDATE_CTRL2    0x22
-+#define PIXPAPER_CMD_WRITE_RAM_BW            0x24
-+#define PIXPAPER_CMD_BORDER_WAVEFORM_CONTROL 0x3C
-+#define PIXPAPER_CMD_SET_RAM_X_START_END     0x44
-+#define PIXPAPER_CMD_SET_RAM_Y_START_END     0x45
-+#define PIXPAPER_CMD_SET_RAM_X_ADDR_COUNTER  0x4E
-+#define PIXPAPER_CMD_SET_RAM_Y_ADDR_COUNTER  0x4F
-+
-+#define PIXPAPER_DRIVER_OUTPUT_SM                BIT(1)
-+
-+#define PIXPAPER_BORDER_WAVEFORM_GS_TRANSITION   (0x0 << 6)
-+#define PIXPAPER_BORDER_WAVEFORM_LUT1_SEL        0x1
-+
-+#define PIXPAPER_UPDATE_CTRL2_ENABLE_CLK         BIT(7)
-+#define PIXPAPER_UPDATE_CTRL2_ENABLE_ANALOG      BIT(6)
-+#define PIXPAPER_UPDATE_CTRL2_LOAD_TEMP          BIT(5)
-+#define PIXPAPER_UPDATE_CTRL2_LOAD_LUT           BIT(4)
-+#define PIXPAPER_UPDATE_CTRL2_PATTERN_DISPLAY    BIT(2)
-+
-+#define PIXPAPER_TEMP_SENSOR_INTERNAL           0x80
-+#define PIXPAPER_SOFTSTART_A                    0xAE
-+#define PIXPAPER_SOFTSTART_B                    0xC7
-+#define PIXPAPER_SOFTSTART_C                    0xC3
-+#define PIXPAPER_SOFTSTART_D                    0xC0
-+#define PIXPAPER_SOFTSTART_E                    0x80
-+#define PIXPAPER_DRIVER_OUTPUT_GD_SM_TB         PIXPAPER_DRIVER_OUTPUT_SM
-+#define PIXPAPER_BORDER_LUT1                    \
-+	(PIXPAPER_BORDER_WAVEFORM_GS_TRANSITION | \
-+	 PIXPAPER_BORDER_WAVEFORM_LUT1_SEL)
-+#define PIXPAPER_UPDATE_INITIAL                 \
-+	(PIXPAPER_UPDATE_CTRL2_ENABLE_CLK | \
-+	PIXPAPER_UPDATE_CTRL2_ENABLE_ANALOG | \
-+	PIXPAPER_UPDATE_CTRL2_LOAD_TEMP | \
-+	PIXPAPER_UPDATE_CTRL2_LOAD_LUT | \
-+	PIXPAPER_UPDATE_CTRL2_PATTERN_DISPLAY)
-+struct pixpaper_error_ctx {
-+	int errno_code;
-+};
-+
-+struct pixpaper_init_seq {
-+	u8 cmd;
-+	const u8 *data;
-+	u8 len;
-+};
-+
-+struct pixpaper_panel {
-+	struct drm_device drm;
-+	struct drm_plane plane;
-+	struct drm_crtc crtc;
-+	struct drm_encoder encoder;
-+	struct drm_connector connector;
-+
-+	struct spi_device *spi;
-+	struct gpio_desc *reset;
-+	struct gpio_desc *busy;
-+	struct gpio_desc *dc;
-+};
-+
-+static const uint32_t pixpaper_formats[] = {
-+	DRM_FORMAT_XRGB8888,
-+};
-+
-+static void pixpaper_xrgb8888_to_bw(const void *src, void *dst, u32 height,
-+				    u32 width, u32 src_pitch, u32 dst_pitch);
-+
-+static const u8 pixpaper_init_temp_sensor[] = {
-+	PIXPAPER_TEMP_SENSOR_INTERNAL,
-+};
-+
-+static const u8 pixpaper_init_softstart[] = {
-+	PIXPAPER_SOFTSTART_A,
-+	PIXPAPER_SOFTSTART_B,
-+	PIXPAPER_SOFTSTART_C,
-+	PIXPAPER_SOFTSTART_D,
-+	PIXPAPER_SOFTSTART_E,
-+};
-+
-+static const u8 pixpaper_init_driver_output[] = {
-+	(PIXPAPER_HEIGHT - 1) & 0xff,
-+	(PIXPAPER_HEIGHT - 1) >> 8,
-+	PIXPAPER_DRIVER_OUTPUT_GD_SM_TB,
-+};
-+
-+static const u8 pixpaper_init_border[] = {
-+	PIXPAPER_BORDER_LUT1,
-+};
-+
-+static const u8 pixpaper_init_ram_x_window[] = {
-+	PIXPAPER_RAM_START_ADDR,
-+	PIXPAPER_RAM_START_ADDR,
-+	(PIXPAPER_WIDTH - 1) & 0xff,
-+	(PIXPAPER_WIDTH - 1) >> 8,
-+};
-+
-+static const u8 pixpaper_init_ram_y_window[] = {
-+	PIXPAPER_RAM_START_ADDR,
-+	PIXPAPER_RAM_START_ADDR,
-+	(PIXPAPER_HEIGHT - 1) & 0xff,
-+	(PIXPAPER_HEIGHT - 1) >> 8,
-+};
-+
-+static const u8 pixpaper_init_ram_x_counter[] = {
-+	PIXPAPER_RAM_START_ADDR,
-+	PIXPAPER_RAM_START_ADDR,
-+};
-+
-+static const u8 pixpaper_init_ram_y_counter[] = {
-+	PIXPAPER_RAM_START_ADDR,
-+	PIXPAPER_RAM_START_ADDR,
-+};
-+
-+static const struct pixpaper_init_seq pixpaper_init_seqs[] = {
-+	{
-+		.cmd = PIXPAPER_CMD_TEMP_SENSOR_CONTROL,
-+		.data = pixpaper_init_temp_sensor,
-+		.len = ARRAY_SIZE(pixpaper_init_temp_sensor),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_BOOSTER_SOFT_START_CTRL,
-+		.data = pixpaper_init_softstart,
-+		.len = ARRAY_SIZE(pixpaper_init_softstart),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_DRIVER_OUTPUT_CTRL,
-+		.data = pixpaper_init_driver_output,
-+		.len = ARRAY_SIZE(pixpaper_init_driver_output),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_BORDER_WAVEFORM_CONTROL,
-+		.data = pixpaper_init_border,
-+		.len = ARRAY_SIZE(pixpaper_init_border),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_SET_RAM_X_START_END,
-+		.data = pixpaper_init_ram_x_window,
-+		.len = ARRAY_SIZE(pixpaper_init_ram_x_window),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_SET_RAM_Y_START_END,
-+		.data = pixpaper_init_ram_y_window,
-+		.len = ARRAY_SIZE(pixpaper_init_ram_y_window),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_SET_RAM_X_ADDR_COUNTER,
-+		.data = pixpaper_init_ram_x_counter,
-+		.len = ARRAY_SIZE(pixpaper_init_ram_x_counter),
-+	},
-+	{
-+		.cmd = PIXPAPER_CMD_SET_RAM_Y_ADDR_COUNTER,
-+		.data = pixpaper_init_ram_y_counter,
-+		.len = ARRAY_SIZE(pixpaper_init_ram_y_counter),
-+	},
-+};
-+
-+static inline struct pixpaper_panel *to_pixpaper_panel(struct drm_device *drm)
-+{
-+	return container_of(drm, struct pixpaper_panel, drm);
-+}
-+
-+static void pixpaper_wait_busy(struct pixpaper_panel *panel)
-+{
-+	unsigned int timeout_ms = PIXPAPER_BUSY_TIMEOUT_MS;
-+	unsigned long timeout_jiffies = jiffies + msecs_to_jiffies(timeout_ms);
-+
-+	usleep_range(PIXPAPER_BUSY_POLL_INITIAL_US_MIN,
-+		     PIXPAPER_BUSY_POLL_INITIAL_US_MAX);
-+	while (gpiod_get_value_cansleep(panel->busy) != 0) {
-+		if (time_after(jiffies, timeout_jiffies)) {
-+			drm_warn(&panel->drm, "Busy wait timed out\n");
-+			return;
-+		}
-+		usleep_range(PIXPAPER_BUSY_POLL_US_MIN,
-+			     PIXPAPER_BUSY_POLL_US_MAX);
-+	}
-+}
-+
-+static void pixpaper_spi_write(struct pixpaper_panel *panel, int dc,
-+			       const void *buf, size_t len,
-+			       struct pixpaper_error_ctx *err)
-+{
-+	int ret;
-+
-+	if (err->errno_code || !len)
-+		return;
-+
-+	gpiod_set_value_cansleep(panel->dc, dc);
-+	usleep_range(1, 5);
-+
-+	ret = spi_write(panel->spi, buf, len);
-+	if (ret < 0)
-+		err->errno_code = ret;
-+}
-+
-+static void pixpaper_send_cmd(struct pixpaper_panel *panel, u8 cmd,
-+			      struct pixpaper_error_ctx *err)
-+{
-+	pixpaper_spi_write(panel, 0, &cmd, sizeof(cmd), err);
-+}
-+
-+static void pixpaper_send_data(struct pixpaper_panel *panel, u8 data,
-+			       struct pixpaper_error_ctx *err)
-+{
-+	pixpaper_spi_write(panel, 1, &data, sizeof(data), err);
-+}
-+
-+static void pixpaper_reset_ram_counters(struct pixpaper_panel *panel,
-+					struct pixpaper_error_ctx *err)
-+{
-+	if (err->errno_code)
-+		return;
-+
-+	pixpaper_send_cmd(panel, PIXPAPER_CMD_SET_RAM_X_ADDR_COUNTER, err);
-+	pixpaper_send_data(panel, PIXPAPER_RAM_START_ADDR, err);
-+	pixpaper_send_data(panel, PIXPAPER_RAM_START_ADDR, err);
-+
-+	pixpaper_send_cmd(panel, PIXPAPER_CMD_SET_RAM_Y_ADDR_COUNTER, err);
-+	pixpaper_send_data(panel, PIXPAPER_RAM_START_ADDR, err);
-+	pixpaper_send_data(panel, PIXPAPER_RAM_START_ADDR, err);
-+}
-+
-+static void pixpaper_write_ram(struct pixpaper_panel *panel, u8 cmd,
-+			       const u8 *buf, u32 len,
-+			       struct pixpaper_error_ctx *err)
-+{
-+	if (err->errno_code || !buf || !len)
-+		return;
-+
-+	pixpaper_reset_ram_counters(panel, err);
-+
-+	pixpaper_send_cmd(panel, cmd, err);
-+	pixpaper_spi_write(panel, 1, buf, len, err);
-+}
-+
-+static void pixpaper_send_init_seq(struct pixpaper_panel *panel,
-+				   const struct pixpaper_init_seq *seq,
-+				   struct pixpaper_error_ctx *err)
-+{
-+	if (err->errno_code || !seq->data || !seq->len)
-+		return;
-+
-+	pixpaper_send_cmd(panel, seq->cmd, err);
-+	pixpaper_spi_write(panel, 1, seq->data, seq->len, err);
-+}
-+
-+static void pixpaper_trigger_update(struct pixpaper_panel *panel,
-+				    struct pixpaper_error_ctx *err)
-+{
-+	if (err->errno_code)
-+		return;
-+
-+	pixpaper_send_cmd(panel, PIXPAPER_CMD_DISPLAY_UPDATE_CTRL2, err);
-+	pixpaper_send_data(panel, PIXPAPER_UPDATE_INITIAL, err);
-+	pixpaper_send_cmd(panel, PIXPAPER_CMD_MASTER_ACTIVATION, err);
-+	pixpaper_wait_busy(panel);
-+}
-+
-+static void *pixpaper_prepare_buffer(const void *vaddr,
-+				     const struct drm_framebuffer *fb,
-+				     u32 *dst_pitch,
-+				     struct pixpaper_error_ctx *err)
-+{
-+	void *dst;
-+
-+	if (err->errno_code)
-+		return NULL;
-+
-+	*dst_pitch = DIV_ROUND_UP(fb->width, 8);
-+	dst = kzalloc(*dst_pitch * fb->height, GFP_KERNEL);
-+	if (!dst) {
-+		err->errno_code = -ENOMEM;
-+		return NULL;
-+	}
-+
-+	pixpaper_xrgb8888_to_bw(vaddr, dst, fb->height, fb->width,
-+				fb->pitches[0], *dst_pitch);
-+
-+	return dst;
-+}
-+
-+static void pixpaper_write_image(struct pixpaper_panel *panel,
-+				 const u8 *buf, u32 len,
-+				 struct pixpaper_error_ctx *err)
-+{
-+	if (err->errno_code)
-+		return;
-+
-+	pixpaper_write_ram(panel, PIXPAPER_CMD_WRITE_RAM_BW, buf, len, err);
-+}
-+
-+static int pixpaper_panel_hw_init(struct pixpaper_panel *panel)
-+{
-+	struct pixpaper_error_ctx err = { .errno_code = 0 };
-+	u8 i;
-+
-+	gpiod_set_value_cansleep(panel->reset, 0);
-+	msleep(50);
-+	gpiod_set_value_cansleep(panel->reset, 1);
-+	msleep(50);
-+
-+	pixpaper_wait_busy(panel);
-+
-+	for (i = 0; i < ARRAY_SIZE(pixpaper_init_seqs); i++) {
-+		pixpaper_send_init_seq(panel, &pixpaper_init_seqs[i], &err);
-+		if (err.errno_code)
-+			goto init_fail;
-+	}
-+
-+	return 0;
-+
-+init_fail:
-+	drm_err(&panel->drm, "Hardware initialization failed (err=%d)\n",
-+		err.errno_code);
-+	return err.errno_code;
-+}
-+
-+static void pixpaper_xrgb8888_to_bw(const void *src, void *dst, u32 height,
-+				    u32 width, u32 src_pitch, u32 dst_pitch)
-+{
-+	const uint8_t *src_base = src;
-+	uint8_t *dst_pixels = dst;
-+
-+	if (dst == NULL || src == NULL)
-+		return;
-+
-+	for (u32 y = 0; y < height; y++) {
-+		uint8_t *dst_row = dst_pixels + y * dst_pitch;
-+		const uint8_t *src_row = src_base + y * src_pitch;
-+		const uint32_t *src_pixels = (const uint32_t *)src_row;
-+
-+		for (u32 x = 0; x < width; x++) {
-+			u32 src_x = width - 1 - x;
-+			uint8_t r, g, b;
-+			u8 bit;
-+			u32 bit_pos = x % 8;
-+			u32 byte_pos = x / 8;
-+			uint32_t gray_val;
-+			uint32_t pixel;
-+
-+			pixel = src_pixels[src_x];
-+			r = (pixel >> 16) & 0xFF;
-+			g = (pixel >> 8) & 0xFF;
-+			b = pixel & 0xFF;
-+
-+			gray_val = (r * PIXPAPER_LUMA_R_WEIGHT +
-+				    g * PIXPAPER_LUMA_G_WEIGHT +
-+				    b * PIXPAPER_LUMA_B_WEIGHT +
-+				    PIXPAPER_LUMA_ROUNDING_BIAS) /
-+				   PIXPAPER_LUMA_DIVISOR;
-+			bit = gray_val >= PIXPAPER_PIXEL_THRESHOLD;
-+
-+			if (bit)
-+				dst_row[byte_pos] |= BIT(7 - bit_pos);
-+			else
-+				dst_row[byte_pos] &= ~BIT(7 - bit_pos);
-+		}
-+	}
-+}
-+
-+static int pixpaper_plane_helper_atomic_check(struct drm_plane *plane,
-+					      struct drm_atomic_state *state)
-+{
-+	struct drm_plane_state *new_plane_state =
-+		drm_atomic_get_new_plane_state(state, plane);
-+	struct drm_crtc *new_crtc = new_plane_state->crtc;
-+	struct drm_crtc_state *new_crtc_state = NULL;
-+	int ret;
-+
-+	if (new_crtc)
-+		new_crtc_state = drm_atomic_get_new_crtc_state(state, new_crtc);
-+
-+	ret = drm_atomic_helper_check_plane_state(new_plane_state,
-+						  new_crtc_state, DRM_PLANE_NO_SCALING,
-+						  DRM_PLANE_NO_SCALING, false, false);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int pixpaper_crtc_helper_atomic_check(struct drm_crtc *crtc,
-+					     struct drm_atomic_state *state)
-+{
-+	struct drm_crtc_state *crtc_state =
-+		drm_atomic_get_new_crtc_state(state, crtc);
-+
-+	if (!crtc_state->enable)
-+		return 0;
-+
-+	return drm_atomic_helper_check_crtc_primary_plane(crtc_state);
-+}
-+
-+static void pixpaper_crtc_atomic_enable(struct drm_crtc *crtc,
-+					struct drm_atomic_state *state)
-+{
-+	struct pixpaper_panel *panel = to_pixpaper_panel(crtc->dev);
-+	struct drm_device *drm = &panel->drm;
-+	int idx;
-+
-+	if (!drm_dev_enter(drm, &idx))
-+		return;
-+
-+	drm_dev_exit(idx);
-+}
-+
-+static void pixpaper_crtc_atomic_disable(struct drm_crtc *crtc,
-+					 struct drm_atomic_state *state)
-+{
-+	struct pixpaper_panel *panel = to_pixpaper_panel(crtc->dev);
-+	struct drm_device *drm = &panel->drm;
-+	int idx;
-+
-+	if (!drm_dev_enter(drm, &idx))
-+		return;
-+
-+	drm_dev_exit(idx);
-+}
-+
-+static void pixpaper_plane_atomic_update(struct drm_plane *plane,
-+					 struct drm_atomic_state *state)
-+{
-+	struct drm_plane_state *plane_state =
-+		drm_atomic_get_new_plane_state(state, plane);
-+	struct drm_shadow_plane_state *shadow_plane_state =
-+		to_drm_shadow_plane_state(plane_state);
-+	struct pixpaper_panel *panel = to_pixpaper_panel(plane->dev);
-+
-+	if (!plane_state->crtc || !plane_state->fb || !plane_state->visible)
-+		return;
-+
-+	{
-+		struct drm_device *drm = &panel->drm;
-+		struct drm_framebuffer *fb = plane_state->fb;
-+		struct iosys_map map = shadow_plane_state->data[0];
-+		const void *vaddr = map.vaddr;
-+		int idx;
-+		struct pixpaper_error_ctx err = { .errno_code = 0 };
-+		uint32_t dst_pitch;
-+		void *dst = NULL;
-+		u32 dst_len;
-+
-+		if (!drm_dev_enter(drm, &idx))
-+			return;
-+
-+		if (fb->format->format != DRM_FORMAT_XRGB8888) {
-+			err.errno_code = -EINVAL;
-+			drm_err(drm, "Unsupported framebuffer format: 0x%08x\n",
-+				fb->format->format);
-+			goto update_cleanup;
-+		}
-+
-+		dst = pixpaper_prepare_buffer(vaddr, fb, &dst_pitch, &err);
-+		if (err.errno_code) {
-+			drm_err(drm, "Failed to allocate temporary buffer\n");
-+			goto update_cleanup;
-+		}
-+
-+		dst_len = dst_pitch * fb->height;
-+		pixpaper_write_image(panel, dst, dst_len, &err);
-+		if (err.errno_code)
-+			goto update_cleanup;
-+
-+		pixpaper_trigger_update(panel, &err);
-+		if (err.errno_code)
-+			goto update_cleanup;
-+update_cleanup:
-+		if (err.errno_code && err.errno_code != -ETIMEDOUT)
-+			drm_err(drm, "Frame update failed: %d\n",
-+				err.errno_code);
-+
-+		kfree(dst);
-+		drm_dev_exit(idx);
-+	}
-+}
-+
-+static int pixpaper_connector_get_modes(struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_create(connector->dev);
-+	if (!mode) {
-+		drm_err(connector->dev,
-+			"Failed to create mode for connector %s\n",
-+			connector->name);
-+		return 0;
-+	}
-+
-+	mode->hdisplay    = PIXPAPER_WIDTH;
-+	mode->hsync_start = PIXPAPER_WIDTH + PIXPAPER_HFRONT_PORCH;
-+	mode->hsync_end   = mode->hsync_start + PIXPAPER_HSYNC_LEN;
-+	mode->htotal      = mode->hsync_end + PIXPAPER_HBACK_PORCH;
-+
-+	mode->vdisplay    = PIXPAPER_HEIGHT;
-+	mode->vsync_start = PIXPAPER_HEIGHT + PIXPAPER_VFRONT_PORCH;
-+	mode->vsync_end   = mode->vsync_start + PIXPAPER_VSYNC_LEN;
-+	mode->vtotal      = mode->vsync_end + PIXPAPER_VBACK_PORCH;
-+
-+	mode->clock       = PIXPAPER_MODE_CLOCK_KHZ;
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	drm_mode_set_name(mode);
-+
-+	if (drm_mode_validate_size(mode, connector->dev->mode_config.max_width,
-+				   connector->dev->mode_config.max_height) != MODE_OK) {
-+		drm_warn(connector->dev,
-+			 "Mode %s (%dx%d) failed size validation against max %dx%d\n",
-+			 mode->name, mode->hdisplay, mode->vdisplay,
-+			 connector->dev->mode_config.max_width,
-+			 connector->dev->mode_config.max_height);
-+		drm_mode_destroy(connector->dev, mode);
-+		return 0;
-+		}
-+
-+		drm_mode_probed_add(connector, mode);
-+
-+		connector->display_info.width_mm  = PIXPAPER_WIDTH_MM;
-+		connector->display_info.height_mm = PIXPAPER_HEIGHT_MM;
-+
-+	return 1;
-+}
-+
-+static enum drm_mode_status pixpaper_mode_valid(const struct drm_display_mode *mode)
-+{
-+	if (mode->hdisplay == PIXPAPER_WIDTH &&
-+	    mode->vdisplay == PIXPAPER_HEIGHT)
-+		return MODE_OK;
-+
-+	return MODE_BAD;
-+}
-+
-+static enum drm_mode_status pixpaper_crtc_mode_valid(struct drm_crtc *crtc,
-+						     const struct drm_display_mode *mode)
-+{
-+	return pixpaper_mode_valid(mode);
-+}
-+
-+static const struct drm_plane_funcs pixpaper_plane_funcs = {
-+	.update_plane = drm_atomic_helper_update_plane,
-+	.disable_plane = drm_atomic_helper_disable_plane,
-+	.destroy = drm_plane_cleanup,
-+	DRM_GEM_SHADOW_PLANE_FUNCS,
-+};
-+
-+static const struct drm_plane_helper_funcs pixpaper_plane_helper_funcs = {
-+	DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
-+	.atomic_check = pixpaper_plane_helper_atomic_check,
-+	.atomic_update = pixpaper_plane_atomic_update,
-+};
-+
-+static const struct drm_crtc_funcs pixpaper_crtc_funcs = {
-+	.set_config = drm_atomic_helper_set_config,
-+	.page_flip = drm_atomic_helper_page_flip,
-+	.reset = drm_atomic_helper_crtc_reset,
-+	.destroy = drm_crtc_cleanup,
-+	.atomic_duplicate_state = drm_atomic_helper_crtc_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_crtc_destroy_state,
-+};
-+
-+static const struct drm_crtc_helper_funcs pixpaper_crtc_helper_funcs = {
-+	.mode_valid = pixpaper_crtc_mode_valid,
-+	.atomic_check = pixpaper_crtc_helper_atomic_check,
-+	.atomic_enable = pixpaper_crtc_atomic_enable,
-+	.atomic_disable = pixpaper_crtc_atomic_disable,
-+};
-+
-+static const struct drm_encoder_funcs pixpaper_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
-+static const struct drm_connector_funcs pixpaper_connector_funcs = {
-+	.reset = drm_atomic_helper_connector_reset,
-+	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.destroy = drm_connector_cleanup,
-+	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-+};
-+
-+static const struct drm_connector_helper_funcs pixpaper_connector_helper_funcs = {
-+	.get_modes = pixpaper_connector_get_modes,
-+};
-+
-+DEFINE_DRM_GEM_FOPS(pixpaper_fops);
-+
-+static struct drm_driver pixpaper_drm_driver = {
-+	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
-+	.fops = &pixpaper_fops,
-+	.name = "pixpaper-426m",
-+	.desc = "DRM driver for PIXPAPER 4.26 monochrome e-ink panel",
-+	.major = 1,
-+	.minor = 0,
-+	DRM_GEM_SHMEM_DRIVER_OPS,
-+	DRM_FBDEV_SHMEM_DRIVER_OPS,
-+};
-+
-+static int pixpaper_mode_config_valid(struct drm_device *dev,
-+				      const struct drm_display_mode *mode)
-+{
-+	return pixpaper_mode_valid(mode);
-+}
-+
-+static const struct drm_mode_config_funcs pixpaper_mode_config_funcs = {
-+	.fb_create = drm_gem_fb_create_with_dirty,
-+	.mode_valid = pixpaper_mode_config_valid,
-+	.atomic_check = drm_atomic_helper_check,
-+	.atomic_commit = drm_atomic_helper_commit,
-+};
-+
-+static int pixpaper_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct pixpaper_panel *panel;
-+	struct drm_device *drm;
-+	int ret;
-+
-+	panel = devm_drm_dev_alloc(dev, &pixpaper_drm_driver,
-+				   struct pixpaper_panel, drm);
-+	if (IS_ERR(panel))
-+		return PTR_ERR(panel);
-+
-+	drm = &panel->drm;
-+	panel->spi = spi;
-+	spi_set_drvdata(spi, panel);
-+
-+	ret = drmm_mode_config_init(drm);
-+	if (ret)
-+		return ret;
-+
-+	spi->mode = SPI_MODE_0;
-+	spi->bits_per_word = PIXPAPER_SPI_BITS_PER_WORD;
-+
-+	if (!spi->max_speed_hz) {
-+		drm_warn(drm,
-+			 "spi-max-frequency not specified in DT, using default %u Hz\n",
-+			 PIXPAPER_SPI_SPEED_DEFAULT);
-+		spi->max_speed_hz = PIXPAPER_SPI_SPEED_DEFAULT;
-+	}
-+
-+	ret = spi_setup(spi);
-+	if (ret < 0) {
-+		drm_err(drm, "SPI setup failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (!dev->dma_mask)
-+		dev->dma_mask = &dev->coherent_dma_mask;
-+	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-+	if (ret) {
-+		drm_err(drm, "Failed to set DMA mask: %d\n", ret);
-+		return ret;
-+	}
-+
-+	panel->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(panel->reset))
-+		return PTR_ERR(panel->reset);
-+
-+	panel->busy = devm_gpiod_get(dev, "busy", GPIOD_IN);
-+	if (IS_ERR(panel->busy))
-+		return PTR_ERR(panel->busy);
-+
-+	panel->dc = devm_gpiod_get(dev, "dc", GPIOD_OUT_HIGH);
-+	if (IS_ERR(panel->dc))
-+		return PTR_ERR(panel->dc);
-+
-+	ret = pixpaper_panel_hw_init(panel);
-+	if (ret) {
-+		drm_err(drm, "Panel hardware initialization failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	drm->mode_config.funcs = &pixpaper_mode_config_funcs;
-+	drm->mode_config.min_width = PIXPAPER_WIDTH;
-+	drm->mode_config.max_width = PIXPAPER_WIDTH;
-+	drm->mode_config.min_height = PIXPAPER_HEIGHT;
-+	drm->mode_config.max_height = PIXPAPER_HEIGHT;
-+
-+	ret = drm_universal_plane_init(drm, &panel->plane, 1, &pixpaper_plane_funcs,
-+				       pixpaper_formats, ARRAY_SIZE(pixpaper_formats), NULL,
-+				       DRM_PLANE_TYPE_PRIMARY, NULL);
-+	if (ret)
-+		return ret;
-+	drm_plane_helper_add(&panel->plane, &pixpaper_plane_helper_funcs);
-+
-+	ret = drm_crtc_init_with_planes(drm, &panel->crtc, &panel->plane, NULL,
-+					&pixpaper_crtc_funcs, NULL);
-+	if (ret)
-+		return ret;
-+	drm_crtc_helper_add(&panel->crtc, &pixpaper_crtc_helper_funcs);
-+
-+	ret = drm_encoder_init(drm, &panel->encoder, &pixpaper_encoder_funcs,
-+			       DRM_MODE_ENCODER_NONE, NULL);
-+	if (ret)
-+		return ret;
-+
-+	ret = drm_connector_init(drm, &panel->connector,
-+				 &pixpaper_connector_funcs,
-+				 DRM_MODE_CONNECTOR_SPI);
-+	if (ret)
-+		return ret;
-+
-+	drm_connector_helper_add(&panel->connector,
-+				 &pixpaper_connector_helper_funcs);
-+	drm_connector_attach_encoder(&panel->connector, &panel->encoder);
-+	panel->encoder.possible_crtcs = drm_crtc_mask(&panel->crtc);
-+
-+	drm_mode_config_reset(drm);
-+
-+	ret = drm_dev_register(drm, 0);
-+	if (ret)
-+		return ret;
-+
-+	drm_client_setup(drm, NULL);
-+
-+	return 0;
-+}
-+
-+static void pixpaper_remove(struct spi_device *spi)
-+{
-+	struct pixpaper_panel *panel = spi_get_drvdata(spi);
-+
-+	if (!panel)
-+		return;
-+
-+	drm_dev_unplug(&panel->drm);
-+	drm_atomic_helper_shutdown(&panel->drm);
-+}
-+
-+static const struct spi_device_id pixpaper_ids[] = { { "pixpaper-426m", 0 }, {} };
-+MODULE_DEVICE_TABLE(spi, pixpaper_ids);
-+
-+static const struct of_device_id pixpaper_dt_ids[] = {
-+	{ .compatible = "mayqueen,pixpaper-426m" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, pixpaper_dt_ids);
-+
-+static struct spi_driver pixpaper_spi_driver = {
-+	.driver = {
-+		.name = "pixpaper-426m",
-+		.of_match_table = pixpaper_dt_ids,
-+	},
-+	.id_table = pixpaper_ids,
-+	.probe = pixpaper_probe,
-+	.remove = pixpaper_remove,
-+};
-+
-+module_spi_driver(pixpaper_spi_driver);
-+
-+MODULE_AUTHOR("LiangCheng Wang");
-+MODULE_DESCRIPTION("DRM SPI driver for PIXPAPER 4.26 monochrome e-ink panel");
-+MODULE_LICENSE("GPL");
-
--- 
-2.34.1
-
+SGksIGxpbnVzDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldy4NCg0KPiBIaSBDaGFuZ2h1YW5nLA0K
+PiANCj4gdGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiANCj4gT24gRnJpLCBBcHIgMjQsIDIwMjYg
+YXQgMToxNOKAr1BNIENoYW5naHVhbmcgTGlhbmcNCj4gPGNoYW5naHVhbmcubGlhbmdAc3RhcmZp
+dmV0ZWNoLmNvbT4gd3JvdGU6DQo+IA0KPiA+IEFkZCBwaW5jdHJsIGJpbmRpbmdzIGZvciBTdGFy
+Rml2ZSBKSEIxMDAgU29DIFBlcmlwaGVyYWwtMShwZXIxKQ0KPiA+IHBpbmN0cmwgY29udHJvbGxl
+ci4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IENoYW5naHVhbmcgTGlhbmcgPGNoYW5naHVhbmcu
+bGlhbmdAc3RhcmZpdmV0ZWNoLmNvbT4NCj4gKC4uLikNCj4gDQo+ID4gKyAgVGhpcyBkb21haW4g
+Y29udGFpbnMgNCBJTyBncm91cHMgd2hpY2ggc3VwcG9ydCB2b2x0YWdlIGxldmVscyAxLjhWDQo+
+ID4gKyBhbmQgMy4zViAgZ3Bpb2Utc3BpIC0gY29tcHJpc2VzIFBBRF9HUElPX0MwIHRocm91Z2gg
+UEFEX0dQSU9fQzQuDQo+ID4gKyAgZ3Bpb2UtcXNwaTAgLSBjb21wcmlzZXMgUEFEX0dQSU9fQzUg
+dGhyb3VnaCBQQURfR1BJT19DMTEuDQo+ID4gKyAgZ3Bpb2UtcXNwaTEgLSBjb21wcmlzZXMgUEFE
+X0dQSU9fQzEyIHRocm91Z2ggUEFEX0dQSU9fQzE5Lg0KPiA+ICsgIGdwaW9lLXFzcGkyIC0gY29t
+cHJpc2VzIFBBRF9HUElPX0MyMCB0aHJvdWdoIFBBRF9HUElPX0MyNy4NCj4gPiArDQo+ID4gKyAg
+RWFjaCBvZiB0aGUgYWJvdmUgSU8gZ3JvdXBzIG11c3QgYmUgY29uZmlndXJlZCB3aXRoIGEgdm9s
+dGFnZQ0KPiA+ICsgc2V0dGluZyB0aGF0IG1hdGNoZXMgdGhlIGV4dGVybmFsICB2b2x0YWdlIGxl
+dmVsIHByb3ZpZGVkIHRvIHRoZSBJTyBncm91cC4NCj4gDQo+IFNvIHlvdXIgaGFyZHdhcmUgaGFz
+IGdyb3VwcyBhbmQgc3VwcG9ydCBzb21lIHByb3BlcnRpZXMgb24gdGhlIGdyb3VwIGxldmVsLg0K
+PiANCj4gU28gZXhwb3NlIHRoZXNlIGdyb3VwcyBhbmQgbWFrZSB0aGVzZSBwcm9wZXJ0aWVzIGNv
+bmZpZ3VyYWJsZSBwZXIgZ3JvdXANCj4gaW5zdGVhZCBvZiBpbnZlbnRpbmcgcGVyLWdyb3VwIHBy
+b3BlcnRpZXMuDQo+IA0KPiA+ICsgIGdwaW9lLXNwaS12cmVmOg0KPiA+ICsgIGdwaW9lLXFzcGkw
+LXZyZWY6DQo+ID4gKyAgZ3Bpb2UtcXNwaTEtdnJlZjoNCj4gPiArICBncGlvZS1xc3BpMi12cmVm
+Og0KPiANCj4gQ3JlYXRlIHByb3BlciBncm91cHMgaW4gdGhlIHBpbiBjb250cm9sbGVyIHRoZW4g
+dXNlIHRoZSBzdGFuZGFyZCBwaW5jZmcNCj4gcHJvcGVydHkgcG93ZXItc291cmNlID0gPC4uLj47
+IGZvciB0aGlzLg0KPiANCj4gRXhhbXBsZSBmb3IgYSBzaW1wbGUgZGVmYXVsdCBob2c6DQo+IA0K
+PiBwaW5jdHJsIHsNCj4gICAgIC8qIEhvZyB0aGUgUVNQSSBwaW5zICovDQo+ICAgICBwaW5jdHJs
+LW5hbWVzID0gImRlZmF1bHQiOw0KPiAgICAgcGluY3RybC0wID0gPCZxc3BpX2RlZmF1bHQ+Ow0K
+PiANCj4gICAgIHFzcGlfZGVmYXVsdDogcGluY3RybC1xc3BpIHsNCj4gICAgICAgICBjb25maWcg
+ew0KPiAgICAgICAgICAgICBncm91cHMgPSAiZ3Bpb2UtcXNwaS1waW5zIjsNCj4gICAgICAgICAg
+ICAgcG93ZXItc291cmNlID0gPDI+Ow0KPiAgICAgICAgIH07DQo+ICAgICB9Ow0KPiB9Ow0KPiAN
+Cj4gVGhlIGdyb3VwcyBjYW4gYmUgb3J0aG9nb25hbCB0byBvdGhlciBwaW4gaGFuZGxpbmcsIHRo
+YXQncyBmaW5lLg0KPiBJbXBsZW1lbnQgLnBpbl9jb25maWdfZ3JvdXBfc2V0IGluIHN0cnVjdCBw
+aW5jb25mX29wcy4NCg0KV2Ugd2lsbCB0cnkgdGhpcy4gVGhhbmtzLg0KDQpCZXN0IFJlZ2FyZHMs
+DQpDaGFuZ2h1YW5nDQo=
 
