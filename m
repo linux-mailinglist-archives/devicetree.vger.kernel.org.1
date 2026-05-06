@@ -1,186 +1,209 @@
-Return-Path: <devicetree+bounces-293414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id N34hG7P2+mmlUwMAu9opvQ
-	(envelope-from <devicetree+bounces-293414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:07:15 +0200
+	id yGOtCL/3+mmlUwMAu9opvQ
+	(envelope-from <devicetree+bounces-293417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:11:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7CE4D79A6
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:07:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC264D7AD9
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 10:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C9A3C300E605
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 08:07:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AB863013AB2
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 08:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1ADF3CF691;
-	Wed,  6 May 2026 08:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8D3C3E123C;
+	Wed,  6 May 2026 08:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="td1IkYNC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qacc7q2H";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VYmzkP/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-132.freemail.mail.aliyun.com (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A25EE29AAFD;
-	Wed,  6 May 2026 08:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6416D37AA86
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 08:09:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778054830; cv=none; b=Zbs0ePQ5EBq7OlHBEyM/kkgiItiDT2Ncd8VVZ5ynlk3jhL3mDyTikl3p/N7cefTzCyh6YZw87R6Ax1Qv4cY0CyK76QcrPYgt3jRTE5BShxZIsibkVtwSJRduNmkv017GTiWc0H7D6T0HSJJ7NQUVwMkU67gv6R0Gped0wxNTWVo=
+	t=1778054946; cv=none; b=VsAWrpLyWVbn38LVxGlWchVG0Aa3K5F45Lp72ZoET5kBRiJekz3Pi3qryE9l4Ku68DFP+tlKT+WR2YALKV3WuUyUVHNwq2RdwOLL6TUWVs/p2LM8RGMKOaZdrQXyrk2O8c0nq+Sig0Lf+CspSyOr2IZYTqs2+XjaamjIGMUif4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778054830; c=relaxed/simple;
-	bh=iKMzxwfQI6HXyEHu7gIpTADMD7Fgc5kRXy4XheAHrB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rkbNOYkS1q5joti8tGRe9Urg+bC/fx9NIXfJLsnn2lMN+h2vpbEhcfm6Z4CUukoKjDF5FJWWUthw4yykf+SC0e47qTLqNEXn87k00NB5lPuvpo1XA3g1iLQKs+L6VB94Kxasie8WlqSiKZJAlBGzZ4SHyKFV2TkMX0KgWC5ZCK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=td1IkYNC; arc=none smtp.client-ip=115.124.30.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1778054815; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=SemQ4rk+1S+T2WbH6vQx/Uai5q2lfPayKiOeZcu/Etc=;
-	b=td1IkYNCGXvZX40n+49UoY4177f6Eui+oAj+Xlu5XlpIEpAQnWTpvZPYewYEH8IG3WKAPuK58ouBISyXBAtRBaXipkG0oXm7RC7wQsqB8aBPHR0ugrL7DAVVgWVvazrcP2u5n+oMET3bHD5W5gtjzelseXAsDbTKEQcdcdPEX1I=
-X-Alimail-AntiSpam:AC=PASS;BC=-1|-1;BR=01201311R121e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037009110;MF=tianruidong@linux.alibaba.com;NM=1;PH=DS;RN=21;SR=0;TI=SMTPD_---0X2NRCzf_1778054813;
-Received: from 30.221.149.96(mailfrom:tianruidong@linux.alibaba.com fp:SMTPD_---0X2NRCzf_1778054813 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Wed, 06 May 2026 16:06:54 +0800
-Message-ID: <24e7a997-9479-447e-a1e2-cfab9a904668@linux.alibaba.com>
-Date: Wed, 6 May 2026 16:06:53 +0800
+	s=arc-20240116; t=1778054946; c=relaxed/simple;
+	bh=P+aIVfeZyl/NuFW9I6+W585jBf3YpKwwP6L50Z1Ia+0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oHvY4tvZkR5MI19TBVzxl5sSa8z2Q1bCEXmkqLZF6WpdTzV4kTJ5GqgIE5pUdrww+28RAoIlsSD/DzjrDBRjNUWsqm/BsXQadjHuBD1/T9BGn+wQ6OBCvEkZw+1oUHJEnRLbcmbWztjtX4eTJnzIJL+UtzIGbzeM6Fwj8ipm1X8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qacc7q2H; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VYmzkP/5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6467CfLQ1527930
+	for <devicetree@vger.kernel.org>; Wed, 6 May 2026 08:09:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XaAmCd+SBWMRZQ8hFYtrPf2PXb34pZuhF9Y+T5OYGPY=; b=Qacc7q2HcJQCjpOg
+	DHPXuyUNrLXR4o/TEjWIV4CfhvjDFKKsUKHyTDCnC1A0GB/qkdn/RbOJ1aLGHD1s
+	K3+M1njSiehcRjNeoCWq2u+LfEbmdVtK5I509I2nyqLqJzSuLgN/jhb1tqam9n3X
+	BKR3TLoB8WNYXr4WhQb4XrnVJ/vNr4kLtvn2mxFCqJrM/brvYteIpNyjnPEGvKmI
+	pVRvFLSs75tNKBsXaBKxWjQIyfbxOvhE318LwiDfWGYLgqNsJ/CjGR0gtScpy8tP
+	99sf4dSJjXyC0tjzyG7mlW5NGn89u8JGH16t/7fowtH1SjT7aKQcMRiaCB40K4dy
+	CLiX8w==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e012887s1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 May 2026 08:09:04 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-50df4c130dbso22987751cf.1
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 01:09:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778054944; x=1778659744; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XaAmCd+SBWMRZQ8hFYtrPf2PXb34pZuhF9Y+T5OYGPY=;
+        b=VYmzkP/5/8UReyvfpdz7AAAZ9+WwwW/xfWPdlANhpGWcxpxifwplYufH236GdZdCAg
+         1SXTQOICIpnJVi1VmRxRaK/BVjwa8q2RoL18lXEaJLzgtYAS/OuD60sQxihjm90D3WwV
+         7taYs7PunNZyGy1A6MIYsyyEMj84WiyPyNhQ9Cb5x1QYsm1TjQSN4/VLu/VksTUQV+Vj
+         wic7tIH9kB6+Ql+XeDzEMiMmuqcLDS5WoQGbAPDnPduNj0RZSFg4D1gPDOZ5jfu5J9fr
+         DF95leSPiH83l9o+qF6ukPir0XQUuErte5pPiCTNk05FcjKWp106mtCZWBhJp/svXnwj
+         LgeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778054944; x=1778659744;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XaAmCd+SBWMRZQ8hFYtrPf2PXb34pZuhF9Y+T5OYGPY=;
+        b=otUz/mCwFFGuTrXHF/nyOlPOHt7Vs+QR++xJYB67MI63AW/sPKI0nvG7LqCGNkdBs9
+         kB3AGgPtfkYi7QpazYPNVmDFTdJqsCjrNLpx2ALiCJ6VOBh1rVrx4rx98mCJHUyDp/pD
+         EAELq8ChLi7vFDAG0dPXj205F02OSHCEkAs+DFdmv1juBHXL5r4Vf8r8s5Syh0ypvJsC
+         hGGb7cV3iqc5ws1N3RXTtz24V8px89L2r6nvPx+nZzbOIFZ1+OdcgwZ7di/DOeocInx2
+         DZG7pttQy1Gd8GYeb4N6OnnKlYbuD59oO7lxQvMRsQk5aM3GHDeonw1cKrCu843BQNd/
+         A28g==
+X-Forwarded-Encrypted: i=1; AFNElJ8xu+3Ev4UVEc+S+5h7mhBy37uPWj5GkKKvcj8nvXQ4NyzEfgW8N/kmq3wi6aF8VTMIPy0pLz5T/Aos@vger.kernel.org
+X-Gm-Message-State: AOJu0YyomUeVbUtXHZgRCpNIY0YxPHIKfxJDucljOv03P6o8G7pidTKO
+	Y+ZPi/WhJ0gXeXAcoYyGkccVqrZrgUQwuW1lDm2Y8D8NhYnq4xLlIh246MvXPDQPmQTEZKdJs0Z
+	wVAZR77A3HA1rwz2+3n+8n+9dCZEIF+NKhwosSls9ZfcKYuuLIxR3CYICKiAV+8CJ
+X-Gm-Gg: AeBDieu09XvHtBjns/P/bOQdP1v6JyBsjAiHdXbob4iIDAA54/a7ZHEhkOjuk1XHAcF
+	q6jUfwwcUV49sPYcPV09PAiwsgXVv2HXnDkDH0pBxwNvWD5WgLSfiDG5fK+mxCj4gKtd2m8lYIP
+	ZtYesqsx//U310ZYz9iEnY2xDajGkhiYgnSXOkH9pmvNEOIl3E7EFXHqxgLM9X/1Ya50eKCsCUu
+	VexSN781OEYo2EdS+IjGqHkfbypXq/TRQQXKuvu9tmGXXe79pJk7VOPTwQAgUyw9NKfmu5BAZP6
+	eaRrkJ1O8iiFBz+kJOmDRDWo2jmj4pLZjxclUH7BvGS0GU3QQwbL60IvdHpUPnQyUEKOHeSB4Na
+	fnby5Nj1k7wBIUJ1I+bVcy9GA5RojHL1LlNPtQtYvBceZuLzlIF2RANrKg2Os
+X-Received: by 2002:ac8:7dca:0:b0:50e:474a:47e1 with SMTP id d75a77b69052e-51305285fd0mr90894741cf.10.1778054943585;
+        Wed, 06 May 2026 01:09:03 -0700 (PDT)
+X-Received: by 2002:ac8:7dca:0:b0:50e:474a:47e1 with SMTP id d75a77b69052e-51305285fd0mr90894561cf.10.1778054943140;
+        Wed, 06 May 2026 01:09:03 -0700 (PDT)
+Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:1cd7:fa68:b1e1:a93e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e530c1d07sm10955095e9.9.2026.05.06.01.09.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 May 2026 01:09:02 -0700 (PDT)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+To: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+        Chanhong Jung <happycpu@gmail.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] gpio: 74x164: seed the chain from DT at probe time
+Date: Wed,  6 May 2026 10:09:00 +0200
+Message-ID: <177805490864.4124.505982607018854833.b4-ty@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260429035134.1023330-1-happycpu@gmail.com>
+References: <cover.1776872453.git.happycpu@gmail.com> <20260429035134.1023330-1-happycpu@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] ras: aest: Add panic_on_ue module parameter
-To: Umang Chheda <umang.chheda@oss.qualcomm.com>,
- Ruidong Tian <tianruidond@linux.alibaba.com>, Tony Luck
- <tony.luck@intel.com>, Borislav Petkov <bp@alien8.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, catalin.marinas@arm.com,
- will@kernel.org, lpieralisi@kernel.org, rafael@kernel.org,
- mark.rutland@arm.com, Sudeep Holla <sudeep.holla@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260505-aest-devicetree-support-v1-0-d5d6ffacf0a5@oss.qualcomm.com>
- <20260505-aest-devicetree-support-v1-4-d5d6ffacf0a5@oss.qualcomm.com>
-From: Ruidong Tian <tianruidong@linux.alibaba.com>
-In-Reply-To: <20260505-aest-devicetree-support-v1-4-d5d6ffacf0a5@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6A7CE4D79A6
+X-Proofpoint-GUID: xOjlPlf_UfqHqCScjW9sPMpEKHbseU4j
+X-Proofpoint-ORIG-GUID: xOjlPlf_UfqHqCScjW9sPMpEKHbseU4j
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA2MDA3OCBTYWx0ZWRfX1y/wR9ZlFkHc
+ WxnI6RV/lmlai2ZUQwxyrtYlbNo/mn0k1Z7aLpbD1brraO9ThLs4WcMS+pDKhdD+YKHSF+lEA45
+ 1rHg2fCVJgOFe6epJ6baIkvtPoHMo7gVAjuQ9OqNQ++cRsO7/UXfFOBXC9c+pc4NU+s3xoHMfXl
+ bvvalpqVD/4VpswSkedTfK04LD/q+da0aQzoL6BUczT5k6aVM555eyKjvBonHhkZ+Ng/+V3qvio
+ qai3lIK3Dp3osRdg80L7MRB8TesK/RKhZ0D4zWn53RPLMgc3bI7bma6zIFs2WM5MXFMoxrn8N6L
+ Cipz+sNKf61KduHLtHqEXpTmqjC/EqUAc1h+k9JiVDXdJkCb4765mRX6pI3OeeEFxD1dJRj7Le+
+ ALGdRaOkVc9VE1QbI99N3+eXRMVLiOwPciIHx5ZgA9tY9DBTXp46hKT9X/zgfA0DrM7VbbK8vM7
+ VumgKeso4C0zlCIvPCA==
+X-Authority-Analysis: v=2.4 cv=A8xc+aWG c=1 sm=1 tr=0 ts=69faf720 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=h0xZeIPYvt9JjOhX5-wA:9 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-05_03,2026-04-30_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 phishscore=0 bulkscore=0 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605060078
+X-Rspamd-Queue-Id: 7FC264D7AD9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-7.66 / 15.00];
-	WHITELIST_DMARC(-7.00)[alibaba.com:D:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.alibaba.com,none];
-	R_DKIM_ALLOW(-0.20)[linux.alibaba.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293414-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	SEM_URIBL_UNKNOWN_FAIL(0.00)[linux.alibaba.com:server fail];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-293417-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tianruidong@linux.alibaba.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linux.alibaba.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,linux.alibaba.com:dkim,linux.alibaba.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bartosz.golaszewski@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 
 
-
-在 2026/5/5 20:23, Umang Chheda 写道:
-> The driver unconditionally calls panic() whenever an unrecoverable,
-> uncontainable UE (UET_UC or UET_UEU) is detected. There is no way
-> for the user to suppress this behaviour, which makes it difficult to
-> test UE injection or to run in environments where a kernel panic on
-> every UE is undesirable.
+On Wed, 29 Apr 2026 12:51:32 +0900, Chanhong Jung wrote:
+> This v2 reuses the existing lines-initial-states bitmask, as suggested
+> by Linus Walleij, instead of inventing a new property. That sidesteps
+> both the v1 review concerns at once: there is no vendor-specific
+> property to argue about, and the bit-N-equals-line-N convention is
+> already documented for nxp,pcf8575.
 > 
-> Add a module parameter `aest_panic_on_ue` When set to 0 the driver
-> logs the UE and continues instead of panicking.
+> Background (carried over from v1):
+> The 74HC595 / 74LVC594 family is push-pull output only. There is no
+> read-back path, no defined power-on state for the parallel outputs, and
+> __gen_74x164_write_config() always shifts the full chain on every
+> transaction. The driver therefore publishes whatever sits in
+> chip->buffer on the very first ->set() call, and today that buffer is
+> fresh from kzalloc(), so all outputs come up low. On boards with active-
+> low indicators or other signals whose initial level matters, the 0x00
+> publish glitches the chain before user space (or gpio-leds default-state
+> walking) gets a chance to run.
 > 
-> Usage:
->    # Boot time (kernel cmdline)
->    aest.aest_panic_on_ue=0
-> 
->    # Runtime
->    echo 0 > /sys/module/aest/parameters/aest_panic_on_ue
-> 
-> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+> [...]
 
-Hi Umang,
+Reluctantly applied.
 
-Thanks for the patch.
-
-I understand that this parameter is intended to facilitate UE injection 
-testing and to avoid kernel panics in certain environments. However, we 
-need to carefully consider the potential risks.
-
-When a UC (Uncontainable Error) or UEU (Unrecoverable Error) occurs, the 
-hardware state may be unpredictable, and data integrity cannot be 
-guaranteed. Allowing the system to continue running instead of panicking 
-in these scenarios could lead to silent data corruption or other 
-unforeseen side effects, which poses a significant risk to system stability.
-
-For the sake of robustness and data safety, I do not believe we should 
-expose an interface that allows users to suppress panic on such critical 
-errors.
-
-If the goal is primarily to ease testing, I suggest handling this via 
-local driver modifications in your test environment rather than 
-upstreaming it as a configurable runtime option.
+[1/2] dt-bindings: gpio: fairchild,74hc595: add lines-initial-states property
+      https://git.kernel.org/brgl/c/d6e1a94888f5a4306c9998944a0f29f7bcd49411
+[2/2] gpio: 74x164: support lines-initial-states for boot-time output state
+      https://git.kernel.org/brgl/c/cb77f8933467d08c8896674cd39ca98550a70fd6
 
 Best regards,
-Ruidong
-
-> ---
->   drivers/ras/aest/aest-core.c | 9 ++++++++-
->   1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/ras/aest/aest-core.c b/drivers/ras/aest/aest-core.c
-> index b4f4c975da1d..9ce782a66edf 100644
-> --- a/drivers/ras/aest/aest-core.c
-> +++ b/drivers/ras/aest/aest-core.c
-> @@ -22,6 +22,11 @@ DEFINE_PER_CPU(struct aest_device, percpu_adev);
->   #undef pr_fmt
->   #define pr_fmt(fmt) "AEST: " fmt
->   
-> +static bool aest_panic_on_ue;
-> +module_param(aest_panic_on_ue, bool, 0644);
-> +MODULE_PARM_DESC(aest_panic_on_ue,
-> +		 "Panic on unrecoverable error: 0=off 1=on (default: 1)");
-> +
->   #ifdef CONFIG_DEBUG_FS
->   struct dentry *aest_debugfs;
->   #endif
-> @@ -342,9 +347,11 @@ void aest_proc_record(struct aest_record *record, void *data, bool fake)
->   			aest_record_info(
->   				record,
->   				"Simulated error! Skip panic due to fault injection\n");
-> -		else
-> +		else if (aest_panic_on_ue)
->   			aest_panic(record, &regs,
->   				   "AEST: unrecoverable error encountered");
-> +		else
-> +			aest_record_err(record, "UE detected, panic suppressed\n");
->   	}
->   
->   	aest_log(record, &regs);
-> 
-
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
