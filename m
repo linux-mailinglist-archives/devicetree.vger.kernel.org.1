@@ -1,194 +1,200 @@
-Return-Path: <devicetree+bounces-293560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293562-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MIS9KZ1Y+2n+ZQMAu9opvQ
-	(envelope-from <devicetree+bounces-293560-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:05:01 +0200
+	id ULvhNfZP+2mSZQMAu9opvQ
+	(envelope-from <devicetree+bounces-293562-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:28:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A494DCD8A
-	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 17:05:00 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 755194DC29F
+	for <lists+devicetree@lfdr.de>; Wed, 06 May 2026 16:28:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3D6EA30D4FB6
-	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:24:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0A5A7300B1AD
+	for <lists+devicetree@lfdr.de>; Wed,  6 May 2026 14:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF56E47DFA7;
-	Wed,  6 May 2026 14:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pw5icEIr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F111D480DE7;
+	Wed,  6 May 2026 14:26:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6B13E3154;
-	Wed,  6 May 2026 14:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB8CE480DE2
+	for <devicetree@vger.kernel.org>; Wed,  6 May 2026 14:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778077482; cv=none; b=UOxfWx/4PWCC8y4oqe0aJZE5yylpkuvF3K+Odz25IAekbPPz3CNtscYB6CVMRsUKU8zdKYhh4R2nNv3CRW+vV2lylXcsRx/VhB90sUFAXqSTMfUPOzJfTlTPUVDPzFaUWQI9JFF/quK/UItJbtPkIZFbAgwMBvpHvEfQYWjF3MA=
+	t=1778077601; cv=none; b=p6aP/vHcQUfAEgIJe7zc2DkaNXXf4Qx8VMZUPoLSkmsXalu9PgvzsXNXYH+ensMS1dZi01FYsj8ee7xv5bfnT0GdTm4ojstyUb9wm2lne0r1gcLwNdLwkfbWwrFtGeRGkVRCkCbCgBSGFLR8ksj0b23fo8UTLwe2vO8xFpmuGn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778077482; c=relaxed/simple;
-	bh=IFE1HwYfKrZXFJN7UENU1SdUNpJMNU4rQ9/8HqqB0q0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=no9u3Sb21YB76IZmtIAJ1w7e7UBNNBCv1AbJWlTFcSITGosw0GHlz7NWgPhzyTNDY59Gqwr0UH6E0t2VAYeuwU64uici0v6an5mGwAlP5ezsvmT0kYnLeKGviyR6CdNkjEtm4O68zGFNQhc8euksmNhkYglNvcECKD5vniq8AHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pw5icEIr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35144C2BCB8;
-	Wed,  6 May 2026 14:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778077482;
-	bh=IFE1HwYfKrZXFJN7UENU1SdUNpJMNU4rQ9/8HqqB0q0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pw5icEIreGmy/VqZGl20gDlXv2UNHt5Bp71pfWvd5/v8by9qAin7cRhCwhWkzOqyq
-	 NWOJgEHkiXH66Tgd+v4KXWYMhIKnqBYEBDu9GOJ1UWPgHc1KuxL4lQNAIm+etEoGdx
-	 T0VZzGPoGV/OnlbDiH/qBN76pvzcU5VwHqO+0JlWqT7CQ+bTj88d8erDXItKBEUi02
-	 epg79TMzK8bMBxZSCLYLUN1JVwog+LntfPxXjppIeegRKknJWS8QMxIp5xHhEP5FtX
-	 JsenKz/PqeSVMf/gQ5RxE1N0YRU3rwnYzKUoR6WWR090TPoQJIgADDtMO3Z1PGLsVW
-	 qyDHxGSenWDSg==
-Message-ID: <73111cb1-2019-4faf-abc6-c7deea603eb1@kernel.org>
-Date: Wed, 6 May 2026 16:24:35 +0200
+	s=arc-20240116; t=1778077601; c=relaxed/simple;
+	bh=YJHhuXmcmAbbsrOx/1EkRrG2CsYJcpBD2mAbpq2+4uM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AfgNXRF2Hg4maGk+NLgHEn1mL3VKyZjow6uyovFUMwqmVgBNVHXy1M46rnj32MPbKknQxS+tM8jcZK1e+/KcyO9vMk1ap0iuLXr29CfNwVJSft2fPcRNVuLrQv7VEbE+TfAKgqX63I9bF5qODdFdLIdVi38JyOnNIgrgTP6wIzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ba60d78aff3so927547166b.2
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 07:26:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778077596; x=1778682396;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iGwBD/Xye3jm815Ej5TC/rh/kNzvD/6gf/0ous2Pk1s=;
+        b=VZ5JhNbr/THajKgGUW77hRAbyhYhVaZMTbum/dJAbqJ5emaUzoOAo9Z9+csnjvUy3r
+         KPw9gONW85NPdoEdnZ6HgpKLvlujngc6o+nSSj9C7LqmVJdQt0hU68jm8NY10XM4Ox+M
+         jBAW0CR4XL8PHgUd/9gHPEBPpCM0RH20SpPM5R2Qy6EnTrXxCvUqfWMLugKq4RWLGGQ7
+         jlQJtN2nY1ZrkZMHqYgn18+JMJQALwjh0YcnUZteXAILDGaCO+SULSWmWbdZWzx2qnlc
+         7BOJBcM9lrnTCeIt1K+CeNYVu7GUwV54sSTwWf8Itq5cLo+5IRJwvJLh+Jx9VSHj5rbM
+         UOnw==
+X-Forwarded-Encrypted: i=1; AFNElJ/H9UWqqMOJ9nikDmB3ou3HSDAMaOgJYtXPMLJJjw3syT7LNzSJlR0d0/Sh7FY2+UA5wmkMuREZr7hV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzLiIHgek6ovIOpF8Au/1ltKTDCimY0qKb0UBrLf21UlubsfKy
+	LVrrAcK5f+TuU4FMLsCtlTgo+nl/om4qlhmSkd5Zavf744U2i1yRj6D4jkfOo8blg7g=
+X-Gm-Gg: AeBDievCyucZ18DkBwLICx77m4KE3sN5q5VwtTqBwyol3YNUC3ZYA+ejF9xaTjgsL47
+	Nf1R2SDIJvNo7+BLVKVrkUP9VSbrEj/J4ggAn7DZPUXrGamW0b9eUZ+ZHGIoU8Saniay48PgJg9
+	ng/E6vbeoFDqsIRO1R8vpEnyA8QIpSP0qSDOHTYhF2HItqzYnHpF6JPf0YKXPLs2RprS6Sz3Z8k
+	1cf8i9a4jYba+3EqEf/wANJqmt7UQgKZM2UBXm3dHinc3UeaLQTdaN4m0AlMyamC3Ce10/Q7CK3
+	o4F+r1oOUTwfs24L/eXVD3EctJyi68Sl/j4W9B882HAeCihbPFHpmj6xaaeBQJwBdR0a44d3u3x
+	Sr4rGqCwUpSwSMBjPZQj1c1wPH1wUQ+/Lg669Qf+fDbzluwqY7lvvsD37QNmqqacBsfy1iXr8NM
+	VYXKD5+YQnOyvNTETIhPSQLTueiLhxUcQpGb9ztm5f6uNJOUl3M9Vs0N/D5KZcu4Iqnv7j3xA=
+X-Received: by 2002:a17:907:3d0c:b0:ba5:3e3a:81ee with SMTP id a640c23a62f3a-bc56d90f514mr198669366b.39.1778077595839;
+        Wed, 06 May 2026 07:26:35 -0700 (PDT)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com. [209.85.208.53])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bc55f214a5bsm90505666b.54.2026.05.06.07.26.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 May 2026 07:26:34 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-67bc6098640so7798437a12.0
+        for <devicetree@vger.kernel.org>; Wed, 06 May 2026 07:26:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+Puq8ojzd6rLp1Uv9XaVntGZdrXqJcu/2XSf9vlkmz4I1aZ5hYm5SyKMSZOa+qsrELejc6+HyvkoM9@vger.kernel.org
+X-Received: by 2002:a05:6402:1f46:b0:67d:1e9b:990d with SMTP id
+ 4fb4d7f45d1cf-67d642bc4b7mr1875234a12.16.1778077594610; Wed, 06 May 2026
+ 07:26:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: nxp,imx8mq-mipi-csi2: Fix example
- endpoint label typo
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Robby Cai <robby.cai@nxp.com>, Frank.Li@nxp.com, martink@posteo.de,
- rmfrfs@gmail.com, kernel@puri.sm, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, martin.kepplinger@puri.sm,
- imx@lists.linux.dev, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260506090124.2960477-1-robby.cai@nxp.com>
- <5ad1e2df-85f3-4f9a-ab9d-b6ae34eebed3@kernel.org>
- <20260506142155.GR1598374@killaraus.ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260506142155.GR1598374@killaraus.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 02A494DCD8A
+References: <20260413160331.2611829-1-antoine.bouyer@nxp.com> <20260413160331.2611829-10-antoine.bouyer@nxp.com>
+In-Reply-To: <20260413160331.2611829-10-antoine.bouyer@nxp.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 6 May 2026 16:26:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXrvn+kwBsc96SQxWMABZv3Y6EPc3FLU7f-pOi2+J+S1A@mail.gmail.com>
+X-Gm-Features: AVHnY4Jz5uRp9a-KMKa4ktgjK5kRGGM5ufVLGN1Ppw7eSDSfOOOzlRIBWUnB9YY
+Message-ID: <CAMuHMdXrvn+kwBsc96SQxWMABZv3Y6EPc3FLU7f-pOi2+J+S1A@mail.gmail.com>
+Subject: Re: [PATCH v1 09/11] media: platform: Add NXP Neoisp Image Signal Processor
+To: Antoine Bouyer <antoine.bouyer@nxp.com>
+Cc: julien.vuillaumier@nxp.com, alexi.birlinger@nxp.com, daniel.baluta@nxp.com, 
+	peng.fan@nxp.com, frank.li@nxp.com, jacopo.mondi@ideasonboard.com, 
+	laurent.pinchart@ideasonboard.com, mchehab@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, michael.riesch@collabora.com, 
+	anthony.mcgivern@arm.com, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	ai.luthra@ideasonboard.com, paul.elder@ideasonboard.com
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 755194DC29F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293560-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[nxp.com,posteo.de,gmail.com,puri.sm,kernel.org,pengutronix.de,lists.linux.dev,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-293562-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.713];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email]
 
-On 06/05/2026 16:21, Laurent Pinchart wrote:
-> On Wed, May 06, 2026 at 03:33:57PM +0200, Krzysztof Kozlowski wrote:
->> On 06/05/2026 11:01, Robby Cai wrote:
->>> The example in imx8mq-mipi-csi2.yaml uses imx8mm_mipi_csi_{in,out} endpoint
->>> labels, which is confusing for an i.MX8MQ binding. Rename the labels to
->>> imx8mq_mipi_csi_{in,out} for consistency.
->>>
->>> Fixes: 37255747ecbd ("media: dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and controller")
->>
->> Nothing to fix here. Otherwise explain the bug.
->>
->>> Signed-off-by: Robby Cai <robby.cai@nxp.com>
->>> ---
->>>  .../devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
->>> index 4fcfc4fd3565..71f79651dd96 100644
->>> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
->>> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
->>> @@ -220,7 +220,7 @@ examples:
->>>              port@0 {
->>>                  reg = <0>;
->>>  
->>> -                imx8mm_mipi_csi_in: endpoint {
->>> +                imx8mq_mipi_csi_in: endpoint {
->>
->> Drop the labels instead - they are not used.
-> 
-> I think the label has value, it improves readability of the example by
-> making the purpose of the endpoints more explicit. I won't fight for it
-> though, I know it's hard to change your mind.
+Hi Antoine,
 
-Then should not have imx8mq in the first place. The only information
-coming here is that it is input endpoint. IMO it is close to obvious
-from the opposite of "remote-endpoint = <&imx477_out>;" (if remote is
-OUT, then this must be IN). But keeping the redundant data or actually
-correcting wrong redundant data into correct redundant data, is still
-undesirable. Such patterns then keep spreading to new code.
+On Mon, 13 Apr 2026 at 18:10, Antoine Bouyer <antoine.bouyer@nxp.com> wrote:
+> First NXP neoisp driver version with the following contents:
+>
+> This driver was initially inspired from raspberrypi pisp_be driver. It
+> reuses same approach for ISP job scheduling.
+>
+> The Neoisp driver supports:
+> * 8, 10, 12, 14 and 16-bits RAW Bayer images input.
+> * Monochrome sensors input.
+> * RGB/YUV, IR and Greyscale output formats.
+>
+> The neoisp features are:
+> * Provides single context to limit amount of v4l2 devices.
+> * Supports M2M operations.
+> * Support SDR and HDR modes.
+> * Supports generic v4l2-isp framework for extensible Parameters and
+> Statistics buffers.
+> * Provides a `core_media_register` API to register neoisp's media entities
+> into another media graph.
+> * A module parameter to run in standalone mode with its own media device.
+>
+> Co-developed-by: Alexi Birlinger <alexi.birlinger@nxp.com>
+> Signed-off-by: Alexi Birlinger <alexi.birlinger@nxp.com>
+> Signed-off-by: Antoine Bouyer <antoine.bouyer@nxp.com>
 
-Best regards,
-Krzysztof
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/drivers/media/platform/nxp/neoisp/Kconfig
+> @@ -0,0 +1,15 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config VIDEO_NXP_NEOISP
+> +       tristate "NXP NEOISP v4l2 hardware driver"
+> +       depends on VIDEO_DEV
+
+depends on ARCH_MXC || COMPILE_TEST
+
+> +       select MEDIA_CONTROLLER
+> +       select VIDEOBUF2_DMA_CONTIG
+> +       select V4L2_ISP
+> +       help
+> +         Enable this to support the NXP NEO Image Signal Processing (ISP)
+> +         module present in various NXP SoCs. This module offers multiple
+> +         functions for processing RAW images and generating RGB or YUV images.
+> +
+> +         To compile this driver as a module, choose M here: the module
+> +         will be called neoisp.
+
+
+> +#define NEO_AUTOFOCUS_FIL0_COEFFS0_CAM0_COEFF2_MASK GENMASK(23, 16)
+> +#define NEO_AUTOFOCUS_FIL0_COEFFS0_CAM0_COEFF2_SET(x) (((x) & GENMASK(7, 0)) << 16)
+> +#define NEO_AUTOFOCUS_FIL0_COEFFS0_CAM0_COEFF2_GET(x) (((x) >> 16) &  GENMASK(7, 0))
+
+What about just:
+
+    #define NEO_AUTOFOCUS_FIL0_COEFFS0_CAM0_COEFF2 GENMASK(23, 16)
+
+and using the helpers from include/linux/bitfield.h in the driver code?
+
+    FIELD_PREP(NEO_AUTOFOCUS_FIL0_COEFFS0_CAM0_COEFF2, val)
+    FIELD_GET(NEO_AUTOFOCUS_FIL0_COEFFS0_CAM0_COEFF2, reg)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
