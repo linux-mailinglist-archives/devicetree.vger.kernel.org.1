@@ -1,179 +1,404 @@
-Return-Path: <devicetree+bounces-294060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0E2yEeCZ/Gk6RwAAu9opvQ
-	(envelope-from <devicetree+bounces-294060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:55:44 +0200
+	id gPwtD4ia/Gk6RwAAu9opvQ
+	(envelope-from <devicetree+bounces-294061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:58:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54B64E9AF4
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:55:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD25D4E9B82
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:58:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3305A3063979
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 13:52:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EB729303D573
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 13:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A02E3F9F53;
-	Thu,  7 May 2026 13:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBEB3CF02E;
+	Thu,  7 May 2026 13:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mG54V4UN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mirtsHe2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
+Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36E503890FE
-	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 13:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778161949; cv=pass; b=OTTkIHS8PBYARrStX3vxXnt1Ro9DOD+KG3RL4C1WR3LjzsdQMtSpdu7Pk5gocNXxho4G2+MG+meYalH0v7geol7+gtOo7KpgYufjUZD7DKwRFRexcWa/PqfuLoox5rVgT81F25IaZzrnlVsckNvHi+AFxN4UWnEJZjh6u+m0Ff0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778161949; c=relaxed/simple;
-	bh=KRwaHdksT4aTptGMK5j5s77NrG9FZxEiuA60DYpO1Io=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SVJY0c1y8O6UVHr4UhfADJRYmhsIoHYA75dkvI4p7l5/HPJTwYHZEdqDme9Hn0KZs37G8ZIxxyzAKXpg9XVO7JUtffxBoPznnv2BL5/PrdhmuSuqYisX2QOIuHu7AT3fZnV2NhylQv4OUnO7m2pKpsvF25PwPyrWOXPnE3rlH/Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mG54V4UN; arc=pass smtp.client-ip=74.125.82.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1242E3FA5C8
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 13:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778162128; cv=none; b=M8b/1omzvX/WOZ31F2FAqzkYOcDlcL/cl1Lau0crdnj6Vpz+NJjnHblRndSS/V3VQTmmnZI6+D+rQfgCtyQSmejBTcUUQPnZKm7ugX/YZW/gvsbhXf8ZdBrEo79lio4IRd/l1lrPv9ADGl6DSb6L4Ps9aVh28ZSMF+FIiSzCqqg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778162128; c=relaxed/simple;
+	bh=vLUqd2wF3I09DLEoj0Q1HeEyyR5NnRjBt5S4LdbbjVI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=huT/cft/vMa7UGgoX9aPphi3C99H5oKkgnnfehLyA0dQ3SF7Ls/4DxQpfJrpzmlRCGBOl433VEnD60OfijEASNmd5RWPyVFZCpCd2jpPBD7wvuFk8Ds8dt+w3bGEreC25ixyaCTThzg/pfNw/D8wrGj7/W8H0vgZs8mzyrseDHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mirtsHe2; arc=none smtp.client-ip=74.125.82.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f43.google.com with SMTP id a92af1059eb24-12c8f9846c8so1291078c88.0
-        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 06:52:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778161947; cv=none;
-        d=google.com; s=arc-20240605;
-        b=ahFgQLD47DFqPtkp2yhi458OfAejUgTFQiZDYXzz409AiEmPHimS5Sb8Wz5jX+QCQH
-         4Q5NB/c3rwsFNrqydiKnvaAw0s7xD7ic3rXs1FyW0hoGTQvxRkAMHUfp7CIqOfoenXn3
-         DDv0ydD0SjceUYAiGFKOFfsOZbeKVgXB0BHrPvuNQ0owNHTpenBt6IfndlHdZ1LwhLAb
-         EOU/SxVmNvFANrpZXmyGYX4Ny2adpTiaJhYefXV1l3lxfI6Tx3QJe3ZLJOo0zNCWZA+E
-         aqxS786hbD78CDds/qTQkRUTbsgqOw2S08G29GJdFe+Wui8tQ/6BCX39NT6awbL3J4Nn
-         6JTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=bGVpGj5HHW+JUpr36++44HV0d9D2Mz6mYHWRKyMr3NE=;
-        fh=gPF6bVuRFlB5WUpHjoOliY9P8LmH3648k3rNVgZS/9I=;
-        b=QUzXFg+8f3cnEh8IvUPN5F8GLNVxZae2AO3BWJh3s7uQS1I058VgG8T8ZcCN3jybA3
-         PM+kdBj7kpHh15gKUfK64mrHmeoFE+BnoiiQ73W5BUZMIE1NPQwoA5Ya6mNTMVwv2VbP
-         6KXYSYO66jJ+yWFNZsKcEZ7Pggt5bc8WnizMavOrXiEV2mqCvpXYn9Mz+O3zomYhEWjV
-         5kA+tGsNZwAXkujyQGZyf4tT+zYBdD1vs7yUuRYS8NSG99k2A5nYUl5BQja4inWerzft
-         kvm/BK2cK+g0TAfyIWIq5IA9yt6AAM/3nTZzoAMNYLr3kJICluZvOzD8JYr808tWWOBz
-         LAZQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-dl1-f51.google.com with SMTP id a92af1059eb24-12dca45ca21so1337627c88.1
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 06:55:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778161947; x=1778766747; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bGVpGj5HHW+JUpr36++44HV0d9D2Mz6mYHWRKyMr3NE=;
-        b=mG54V4UNDB5YKenS8iYZYRud1hqoDlh38IFqgTuGJBuoCyflUjZHg+nqTYOsXyyidL
-         rfp6QsjB8XDh/MfdHso8+mw6FOr9NjdajxYvlLdC0JceBpLOkxH4rnmZVrCnX/ZlUsRh
-         L53O8CCgcoJYDk5fXxl6wQkaVTHh2219ZTg5sAPf3LStpKbysdsVIBojXpoWi33oavDb
-         n6z90EHIp9NuqIbnGBlmthT29B4MVoztj6FF+P51VAFI6+DioSj0a20QuCZ2ByDJfUT8
-         MTHSynbxNv/nr/cblCnRDtgTgjBA7F0m3pBFQbGstMXI/JsjR1OsazQcUVzXwQ5ypP30
-         bMpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778161947; x=1778766747;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1778162125; x=1778766925; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bGVpGj5HHW+JUpr36++44HV0d9D2Mz6mYHWRKyMr3NE=;
-        b=i2K6VDS/hoGdctzzUQ9tbhvycFi5swRFkIOge3lwmLS0pqQYxsD3abi/eJVgu08tbv
-         Co4N7FNtaUtsrgo4681Rs/0bs/bl0CUDqt16h+LKwKd9B9YFIoqk7uzF0tLCBR0Osfxd
-         LazqIz2O9irafAECQ9T1sBYIZNGMrq5+gc9jBU9D0C4uMLtURt2SgyD09wiRV1CL+L6q
-         ihfnjj/4SgMKk8eEeLiie06IfCDxeD2FaFmjf1iWUA1YTAP6uvIFWb2R8rIJes9A2x/v
-         vzf1FfEzqQQmDqkgSZ9fYX+KLRPNjKylMZnyPTVrdcJk27PKZ7nKsbWrjAdnSg0G6ZO3
-         IFvw==
-X-Forwarded-Encrypted: i=1; AFNElJ9tBrWarx0oYteiZyVZ2CU8zeArJyOaMVmrLz8QP5uoW9w7s4qlZKG4xb82DWfBPMugP5bs0aLNkhlc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYeGqT1sLdxFP2F6ijajYTfLKstxpd8H768qA7gJb9oPYEdeMD
-	mQQfRy9evypjXv3iGpzEagYrMFl7Ea1yFapH51ynveeMrMsetBkC+cHscoL9JMOwTBjF8w803Vp
-	sthxdbcuDE6HCSik3RPKHCHe9nw4PxX0=
-X-Gm-Gg: AeBDietF/0Uri2WVvVC/p+YC1tvkP2sFlk2scgqg2v4rIR39wS9/fHzi0pmdwdXW7NV
-	fuRWT7g/rL7EhBsNNteyBHzRtnrjwr3sZBqaNfM8eqvdVZWzroBw0DBM68tYmz7DSkVrt0WU/Qw
-	UrTx9OowHXEIoP6el4e73bSQ78FteNPN591ezRLNrsx9fc2zq1u51Wa+aZr31BqqhBRKxesrFDG
-	xyOBpgv7a3BgkydehR1MsHHUa0Z3Dy9KGeX9IF3Item+sszuVmKsu8HNz/eA/qvtrTY+1JfnS8T
-	9WbQLOpg2CKXAETF2dA=
-X-Received: by 2002:a05:7022:397:b0:12c:34b9:61bc with SMTP id
- a92af1059eb24-131852d97bbmr3640712c88.5.1778161947269; Thu, 07 May 2026
- 06:52:27 -0700 (PDT)
+        bh=6uKuIwz5ttJFhZbFp/Yx6dYZyHlJKa3vlWe5jeAlGXA=;
+        b=mirtsHe2ZJUOrc1pZQunyg67PP1zarVNPWO9n+p+fbBXbihtGclwa0OoA9aaYJCdNA
+         BF3GqGeddhlc1hFEfo3JwmDeq4SJ347rzyQYnl/25IDevEDpYNyb5GgYkUx3rqRoCIzQ
+         mfOx9fY+tNI+MpZUAh4qEjZjlRvcoe1y1NZ9RecFQMToJ1yE0dehcDR+WUs9mhUNOFfS
+         7/HINcW1DAdshXwjl/qAhIFbemJHhdFGMVLvgnITLzrvmKVqi8zGS5lSnJlEk3j99BNw
+         5umXrsdrxgwpf1UeVokgvkcrnqCwa3I/+Ipk2Q/gntyymfGa4bIBBV1g5ZFiMinHWlhx
+         l9Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778162125; x=1778766925;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6uKuIwz5ttJFhZbFp/Yx6dYZyHlJKa3vlWe5jeAlGXA=;
+        b=Rb936o7guATTLrr8UOb9m5amAF1cP4o0CvbKFZwpJfM812e7jWZ2TGISr/GIKYLgu5
+         wRngo4UWCw6af982H/hFBSG38QRTkd3+HHHsgfAfHVRdp3jTYK7BkbOuiZb52JuVZzJq
+         B3ywxfkmu7f0qmMeLOC6MTQC8K6JhbzDaouIJN8rswiPI8c71StoaSVZmDFRtk2ClfKM
+         LE02nPn5hnNOvWA8q8YvEGkVcLPBL7y09n8FhN9lKt62PbvTD4/IbNmtt3klDsKan/7/
+         VXCws4KOSeMWtuHbH56OzN4HomU7foMOe5w+55sbBTLy/ZCTTKxCYm2b/xXB7SSrpY/n
+         CFjQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+9+3g73rSoswIBYUOef9CerGHyNFcPbC5RBcQVYdyvQC5hd3kTJy6nPXEgGN/AvgoAZrFZGoDJiwu8@vger.kernel.org
+X-Gm-Message-State: AOJu0YycIveVHx5UyUDooors0z2O+msZZ753p3jfnIsV2KIJ2u5a+/u2
+	q665QWQGqCqJwbZ9DWtl823frHHa7o+l/7yndHpoDqTHxNh7VDwNCm8X
+X-Gm-Gg: AeBDies7k0M4w9cw6EGQjeMR+CiXnTPUnLYeqFU3k0HY2xbRlpbcJRlQ7DjeFlbKIM1
+	lTgBf/moOQsf2/Nn4HJ7PPKaQ2419BxupmQ9+QMUqTdBYsI9C5PrNe95GCMTpTDmbKEvEeyUc+f
+	tTBVBLkCAv8dOtpRTp4O58dtwYcDfD/u8yDcKBq66O0ba2cbu7erOHcZbx6o/Hqg8sqvVnGiuu3
+	0t/T9CerOfJcl5JeQRDX/QRtGs4EVYVRk4gbWer6Wxd9TC5feCykSd9mFyHoOiarfvrK+kkWeJ/
+	xtgj+KsufZ795SOEfdTtPw3Lb4vzVBRnHE2BcQJmxR7ZbBai0dLnEOYq/RtQVmGGPeta4CD91Et
+	zKRqBbTQbXTW+XwMw+TguGoWj7bNeNJ0gyCn0T7GyMfhsxkD9hPPN3Gd33i16/kBv9YzhYgJ2dL
+	3AsRSwdP/7v2y81nQ7t1b1xX/bkbJI
+X-Received: by 2002:a05:7022:459b:b0:128:d967:4673 with SMTP id a92af1059eb24-131854f9a7cmr3589620c88.16.1778162125063;
+        Thu, 07 May 2026 06:55:25 -0700 (PDT)
+Received: from arch.localdomain ([2409:8a28:a53:11::1002])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1321e00e146sm6388817c88.0.2026.05.07.06.55.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 May 2026 06:55:24 -0700 (PDT)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: robh@kernel.org
+Cc: conor+dt@kernel.org,
+	daniel@zonque.org,
+	devicetree@vger.kernel.org,
+	jerrysteve1101@gmail.com,
+	krzk+dt@kernel.org,
+	lee@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	luccafachinetti@gmail.com,
+	pzalewski@thegoodpenguin.co.uk
+Subject: Re: [PATCH v3 1/5] dt-bindings: leds: is31fl32xx: convert the binding to yaml
+Date: Thu,  7 May 2026 21:55:15 +0800
+Message-ID: <20260507135515.1449588-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260506194124.GA2989390-robh@kernel.org>
+References: <20260506194124.GA2989390-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306103614.3208182-1-eagle.alexander923@gmail.com>
- <20260306103614.3208182-3-eagle.alexander923@gmail.com> <a7daefb2-3ab4-43db-b7cc-c3b7d0c0fae4@q-lab.dev>
-In-Reply-To: <a7daefb2-3ab4-43db-b7cc-c3b7d0c0fae4@q-lab.dev>
-From: Alexander Shiyan <eagle.alexander923@gmail.com>
-Date: Thu, 7 May 2026 16:52:15 +0300
-X-Gm-Features: AVHnY4LdRP5lX1vkb9aowQufKGKoUyQ9w5QdIA-mvvR9K0p37g2wbCIy8KrK3cI
-Message-ID: <CAP1tNvRRk9Qx=PctW4ryBexfyFt6igFQxx9TN0aOHDPtpMSkvg@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 2/2] media: i2c: Add onsemi AR0234 image sensor driver
-To: Quentin Freimanis <quentin@q-lab.dev>
-Cc: linux-media@vger.kernel.org, Isaac Scott <isaac.scott@ideasonboard.com>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, Dongcheng Yan <dongcheng.yan@intel.com>, 
-	devicetree@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Hans Verkuil <hverkuil@kernel.org>, 
-	Hans de Goede <johannes.goede@oss.qualcomm.com>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Mehdi Djait <mehdi.djait@linux.intel.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Svyatoslav Ryhel <clamor95@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: B54B64E9AF4
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: BD25D4E9B82
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294060-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294061-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,zonque.org,vger.kernel.org,gmail.com,thegoodpenguin.co.uk];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[vger.kernel.org,ideasonboard.com,raspberrypi.com,intel.com,kernel.org,linux.intel.com,oss.qualcomm.com,linaro.org,foss.st.com,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eaglealexander923@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hello Quentin.
+> On Wed, Apr 29, 2026 at 11:44:45PM +0800, Jun Yan wrote:
+> > Convert leds-is31fl32xx to DT schema format.
+> > 
+> > Co-developed-by: Lucca Fachinetti <luccafachinetti@gmail.com>
+> > Signed-off-by: Lucca Fachinetti <luccafachinetti@gmail.com>
+> > Co-developed-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+> > Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+> > Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> > ---
+> >  .../bindings/leds/issl,is31fl32xx.yaml        | 163 ++++++++++++++++++
+> >  .../bindings/leds/leds-is31fl32xx.txt         |  53 ------
+> >  2 files changed, 163 insertions(+), 53 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/leds/issl,is31fl32xx.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/issl,is31fl32xx.yaml b/Documentation/devicetree/bindings/leds/issl,is31fl32xx.yaml
+> > new file mode 100644
+> > index 000000000000..cb4741dee12e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/issl,is31fl32xx.yaml
+> > @@ -0,0 +1,163 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/issl,is31fl32xx.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: IS31FL32xx and Si-En SN32xx LED controller
+> > +
+> > +maintainers:
+> > +  - Lucca Fachinetti <luccafachinetti@gmail.com>
+> > +  - Pavel Machek <pavel@ucw.cz>
+> > +  - Jun Yan <jerrysteve1101@gmail.com>
+> > +
+> > +description: |
+> > +  The IS31FL32xx/SN32xx family of LED drivers are I2C devices with multiple
+> > +  constant-current channels, each with independent 256-level PWM control.
+> > +  Each LED is represented as a sub-node of the device.
+> > +
+> > +  For more product information please see the links below:
+> > +    https://www.lumissil.com/assets/pdf/core/IS31FL3216_DS.pdf
+> > +    https://www.lumissil.com/assets/pdf/core/IS31FL3218_DS.pdf
+> > +    https://www.lumissil.com/assets/pdf/core/IS31FL3235_DS.pdf
+> > +    https://www.lumissil.com/assets/pdf/core/IS31FL3236_DS.pdf
+> > +    https://www.lumissil.com/assets/pdf/core/IS31FL3293_DS.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - issi,is31fl3216
+> > +      - issi,is31fl3218
+> > +      - issi,is31fl3235
+> > +      - issi,is31fl3236
+> > +      - issi,is31fl3293
+> > +      - si-en,sn3216
+> > +      - si-en,sn3218
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^led@([1-9])+$":
+> 
+> Unit-addresses are hex.
 
-> > +static int ar0234_set_ctrl(struct v4l2_ctrl *ctrl)
-...
-> > +     switch (ctrl->id) {
-> > +     case V4L2_CID_HBLANK:
-> > +             cci_write(ar0234->regmap, AR0234_REG_LINE_LENGTH_PCK,
-> > +                       (ar0234->crop.width / 4) + ctrl->val, &ret);
->
-> should be (crop->width + ctrl->val) / 4, &ret) to keep the control in
-> units of pixels
+Got it.
 
-This also results in changes for AR0234_HBLANK_MIN and the step
-to control V4L2_CID_HBLANK, right?
+> > +    type: object
+> > +    $ref: common.yaml#
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          LED channel number (1..N)
+> > +        minimum: 1
+> > +        maximum: 36
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - issi,is31fl3293
+> > +    then:
+> > +      patternProperties:
+> > +        "^led@([1-9])+$":
+> 
+> No need to repeat the unit-address pattern here. Just "^led@".
 
-> > +             break;
-> > +     case V4L2_CID_VBLANK:
-> > +             cci_write(ar0234->regmap, AR0234_REG_FRAME_LENGTH_LINES,
-> > +                       ar0234->crop.height + ctrl->val, &ret);
-> REG_FRAME_LENGTH_LINES seems to actually be total lines - 5
->
-> I had to make these 2 changes to be able to get the expected framerate
-> when not using the default 120fps.
+Got it.
 
-Yes, I found it in the datasheet, thanks.
+> > +          properties:
+> > +            reg:
+> > +              maximum: 3
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - issi,is31fl3216
+> > +              - si-en,sn3216
+> > +    then:
+> > +      patternProperties:
+> > +        "^led@([1-9])+$":
+> > +          properties:
+> > +            reg:
+> > +              maximum: 16
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - issi,is31fl3218
+> > +              - si-en,sn3218
+> > +    then:
+> > +      patternProperties:
+> > +        "^led@([1-9])+$":
+> > +          properties:
+> > +            reg:
+> > +              maximum: 18
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - issi,is31fl3235
+> > +    then:
+> > +      patternProperties:
+> > +        "^led@([1-9])+$":
+> > +          properties:
+> > +            reg:
+> > +              maximum: 28
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - issi,is31fl3236
+> > +    then:
+> > +      patternProperties:
+> > +        "^led@([1-9])+$":
+> > +          properties:
+> > +            reg:
+> > +              maximum: 36
+> 
+> That's the default max, so you can drop this if/then.
+
+Agreed.
+
+
+These changes will be implemented in v5.
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/leds/common.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        led-controller@3c {
+> > +            compatible = "issi,is31fl3236";
+> > +            reg = <0x3c>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            led@1 {
+> > +                reg = <1>;
+> > +                color = <LED_COLOR_ID_RED>;
+> > +                function = LED_FUNCTION_STATUS;
+> > +            };
+> > +
+> > +            led@5 {
+> > +                reg = <5>;
+> > +                color = <LED_COLOR_ID_GREEN>;
+> > +                function = LED_FUNCTION_POWER;
+> > +                linux,default-trigger = "default-on";
+> > +            };
+> > +        };
+> > +    };
+> > +...
+> > +
+> > diff --git a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt b/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
+> > deleted file mode 100644
+> > index 7082ed186dd9..000000000000
+> > --- a/Documentation/devicetree/bindings/leds/leds-is31fl32xx.txt
+> > +++ /dev/null
+> > @@ -1,53 +0,0 @@
+> > -Binding for ISSI IS31FL32xx and Si-En SN32xx LED Drivers
+> > -
+> > -The IS31FL32xx/SN32xx family of LED drivers are I2C devices with multiple
+> > -constant-current channels, each with independent 256-level PWM control.
+> > -Each LED is represented as a sub-node of the device.
+> > -
+> > -Required properties:
+> > -- compatible: one of
+> > -	issi,is31fl3236
+> > -	issi,is31fl3235
+> > -	issi,is31fl3218
+> > -	issi,is31fl3216
+> > -	issi,is31fl3293
+> > -	si-en,sn3218
+> > -	si-en,sn3216
+> > -- reg: I2C slave address
+> > -- address-cells : must be 1
+> > -- size-cells : must be 0
+> > -
+> > -LED sub-node properties:
+> > -- reg : LED channel number (1..N)
+> > -- label :  (optional)
+> > -  see Documentation/devicetree/bindings/leds/common.txt
+> > -- linux,default-trigger :  (optional)
+> > -  see Documentation/devicetree/bindings/leds/common.txt
+> > -
+> > -
+> > -Example:
+> > -
+> > -is31fl3236: led-controller@3c {
+> > -	compatible = "issi,is31fl3236";
+> > -	reg = <0x3c>;
+> > -	#address-cells = <1>;
+> > -	#size-cells = <0>;
+> > -
+> > -	led@1 {
+> > -		reg = <1>;
+> > -		label = "EB:blue:usr0";
+> > -	};
+> > -	led@2 {
+> > -		reg = <2>;
+> > -		label = "EB:blue:usr1";
+> > -	};
+> > -	...
+> > -	led@36 {
+> > -		reg = <36>;
+> > -		label = "EB:blue:usr35";
+> > -	};
+> > -};
+> > -
+> > -For more product information please see the links below:
+> > -http://www.issi.com/US/product-analog-fxled-driver.shtml
+> > -http://www.si-en.com/product.asp?parentid=890
+> > -- 
+> > 2.53.0
+> > 
+
 
