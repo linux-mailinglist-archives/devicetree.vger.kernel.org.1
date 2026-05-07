@@ -1,355 +1,251 @@
-Return-Path: <devicetree+bounces-294088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294084-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIDwB/qh/Gn2SAAAu9opvQ
-	(envelope-from <devicetree+bounces-294088-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:30:18 +0200
+	id qM/PEo+h/Gn2SAAAu9opvQ
+	(envelope-from <devicetree+bounces-294084-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:28:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E094EA36F
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:30:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5814EA299
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:28:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6B04D3028B0E
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 14:26:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF6AD30827B4
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 14:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D02401A11;
-	Thu,  7 May 2026 14:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A4A53FB7FB;
+	Thu,  7 May 2026 14:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kqvm6WrF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8969340FD80;
-	Thu,  7 May 2026 14:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988A831714A;
+	Thu,  7 May 2026 14:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778163981; cv=none; b=nw2MAXeX0OKtNNq2+QfdNuJllfCTBvrZC6SGLUz61pFfQRBKihU9J3HR/bZmPlPMMmRdejQcTk12s2LNePvyS2xgscrxHH9cbNxPwzaCzxLofvZrdeM7Hx7FB2aRV8UaigAfD2vBbcmwE4gwMihrjWZfnvWP+8mmOrla15dWBX0=
+	t=1778163946; cv=none; b=cX0gcNLNH/5IrPauV3YRNpkIC4Cj7SuuoIPf73aq4kJjQTwDyQu+aY5EhfQnlNBxIeaGXIyOBwFH+G8uDMONl6X+pRBBJHX6heCpCqP+z0VsySqMGxbfCnyLQ5lGPGdh3/sgN2TwViwFOyMmjZmRW19aTTZqo6R3fIfliF0Kguw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778163981; c=relaxed/simple;
-	bh=s1q8Z2zLk379tlyeuEzoNaf2j3FUEhXmKv5Jezkio8k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qUitmJd3onPm8gzwGLgyCfuoxbiwJOYXc4Ojd/rjPfmqiKL3mehWb6FiJ1N1XE1Atll9BiuMs7Jr6IO+V3fhWjpPp7rajYTAiRZQEw3A0HrhluLm8TwJAQ9D/LcAJKgJwKn16PS7KWUj4dcIjPLSCXBbtbGYLzvCaw8GNOammrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: esmtpgz12t1778163927tf302c174
-X-QQ-Originating-IP: 6pNkx+/7pJSdKrmK5R1qZXvcMjj4jKpdhHhLnPpID5o=
-Received: from [192.168.30.32] ( [116.234.74.217])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 07 May 2026 22:25:26 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7635637047860514937
-EX-QQ-RecipientCnt: 11
-From: Xilin Wu <sophon@radxa.com>
-Date: Thu, 07 May 2026 22:25:14 +0800
-Subject: [PATCH 3/3] arm64: dts: qcom: sc8280xp: Add reg and clocks for QoS
- configuration
+	s=arc-20240116; t=1778163946; c=relaxed/simple;
+	bh=vlPB5SDuOt75n5oB0tM9u/D39/Xgib3IJQ8fXj5/sdg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Tw6nBNgaV1aru/0uy/aPTnzOEdGmkWVxm4+LWrpbS5wiuLr0G+2L4SsMtgDaj0m9fhxgHlmODm/7c/otl/t0xd949PvXyzE1fz7hHGLXlA9Y23/WHyOhdzO9a+IKZPvjXN2M4vxJYk3+IgZw+CKkKLWB2OfjSZv5eLt8m4JGEgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kqvm6WrF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC92FC2BCC9;
+	Thu,  7 May 2026 14:25:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778163946;
+	bh=vlPB5SDuOt75n5oB0tM9u/D39/Xgib3IJQ8fXj5/sdg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Kqvm6WrFdsSdlOu0qxKmLBuGM3nxTavGCrP+bpd9SNsH/MKkT+TZHdBUPnl2kAqkF
+	 v51j7R3UFIHs+c3I+sXkYCJCY1FldZquy4PhrOiqXsg2ce81bbG9HtXAYTi8MThkSF
+	 wqXHOkRa1SbnPp+Mz8ZFNmJfqeA0UGopZMnqSMOx8WVsX5le0XF1K6+FytOc1jzlnp
+	 7tZmPKxePPzKCKtKXWfGtGpERz76+TJazibrUPLLnQ/PKvCG2GdO9t6nHyiLlYx2dp
+	 VMzkKhZOXH2DHQ6B807kULwijk+ROT2WQCmx8BCuBO5f5Cuu3uPOZpijH9ZKlOYkZ4
+	 dyl+aDOe2wM0w==
+Date: Thu, 7 May 2026 15:25:32 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael"
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, "Sa,
+ Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, Bartosz
+ Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v9 3/6] iio: adc: ad4691: add triggered buffer support
+Message-ID: <20260507152532.09b385eb@jic23-huawei>
+In-Reply-To: <LV9PR03MB8414E0FFAD9C9423189117B2F73C2@LV9PR03MB8414.namprd03.prod.outlook.com>
+References: <20260430-ad4692-multichannel-sar-adc-driver-v9-0-33e439e4fb87@analog.com>
+	<20260430-ad4692-multichannel-sar-adc-driver-v9-3-33e439e4fb87@analog.com>
+	<LV9PR03MB8414E0FFAD9C9423189117B2F73C2@LV9PR03MB8414.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260507-sc8280xp-qos-v1-3-15135858cd98@radxa.com>
-References: <20260507-sc8280xp-qos-v1-0-15135858cd98@radxa.com>
-In-Reply-To: <20260507-sc8280xp-qos-v1-0-15135858cd98@radxa.com>
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xilin Wu <sophon@radxa.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6485; i=sophon@radxa.com;
- h=from:subject:message-id; bh=s1q8Z2zLk379tlyeuEzoNaf2j3FUEhXmKv5Jezkio8k=;
- b=owGbwMvMwCVmdFg0fe08Iz/G02pJDJl/Fpw9mCc9Oyk0sXTFFobP0hNKWSPaTMI38X80V77xP
- zJu1WfHjlIWBjEuBlkxRRaFeIa57JW5156KlerBzGFlAhnCwMUpABNpXM3w35Gh4foRLqV7L3x3
- 9emV99+1F9Hbnpqj5fv/Zx7johnvuBgZJmdxG20u03Litv0mFed6dcrVMIecoM2/FR/2CP6Yqyr
- LDwA=
-X-Developer-Key: i=sophon@radxa.com; a=openpgp;
- fpr=205F009D07796DD6E516752E32C31567AD9E324E
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
-X-QQ-XMAILINFO: MLY6kX+APjAQ3XvEyTG3A63TZMprpixo0rLkwGVpgV89wUgZlq80gsoY
-	trJji5sKrFe9T+X1v4Td+aWT40V/Jo7SplzX0Rg78P4eQICRlMEH6pc44zqqzah7lV9bS6P
-	M38gjS2l0s9iKQSiW4wQNoFfF/RB9F0UlrrFvCszLpYUQqZjZ2tS6k/MnVokeSbp0b6BYVc
-	dz6l2kSWUBfSV44CmWOdlsHenM67fTHjpCm8JCPJU5beswC0CcOOg3ZsLhmRos2r4CpCKlH
-	XZHs9iOET5lcogIZ4JjwIqKDooUudiSWUdPv39+u8LjJm6OTKSN+v4N80c0SkfxkRKo1GPs
-	5l3vqNxPpQE5Ako6nZqn8cuGAc7w49E9duNcSlM3rmMT9HxcikO1+IPZDcVk4H1XkINFuCU
-	H3q4PyNTAKqqCyJCrDH7StZMjK6uaSriL9Ml0DSUvnGQqELAgYBsKEC68UtyTuKzqB75ZHC
-	C7BCmT2uLHrrT1/Jrdy5QSgrOP9+EQytpryW2Y7RjnoJA4f9Ulae5PcOLd70s6C9+owd2AA
-	NHU8W/48LBrlDI5BjIgt6FVrXo4rYW8xhC+5RfksE+P2+rkEgvgXfX/BdgXwhoTNn5Qma+3
-	QTfYVZqMRJTwP5/t8fVJnXLCV7EgF/MlePmoSJxWyfE47/FOrREzKFzf1VdCSRFWOlRj/ZC
-	eHkX+xrOImIAseSz1v5zigad43JfgMBkjgO8Tgk6w0xeOaH8zHO4KCCrKo0S3AruM2p8d0F
-	/xsS7BYkcP1Zmx8oOkdrlVVn5Sv+R5opWDy5U1HxutGlPrY/FvF3TFa0fDh55yVrK3fQwpI
-	em0YS7PJZMV1ymTTRlz13b7FpfA+tDd4zc96EuU2U4lV2Egw+Ntln3f+00tBB6uPOSeaOoP
-	MTjmi11hxg78jfkrgSaNsHx1WDSz1tDZUFfFHYPV5VJALy+nfpkhzADd9LzOR0pz5zBoR1g
-	LrXKDVzpTdjZsiwqWQpW3gMghQnGnwv4aTzF1JzYlTc5NRam7blmabRAMLjxlC0OE5TlC9t
-	/MC+OH6qwlJ8qES3YfpJD2E/PW845zg3BsWjDKflwKZlHZPyelgVmrwAusmTYwRZrXj1Xk3
-	qTF0c0WOmFh
-X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 13E094EA36F
+X-Rspamd-Queue-Id: AC5814EA299
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.36 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[radxa.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_THREE(0.00)[4];
-	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sophon@radxa.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294088-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+	TAGGED_FROM(0.00)[bounces-294084-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,baylibre.com,kernel.org,gmail.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add register ranges for the SC8280XP interconnect providers so the driver
-can program the NoC QoS registers.
+On Thu, 7 May 2026 11:37:25 +0000
+"Sabau, Radu bogdan" <Radu.Sabau@analog.com> wrote:
 
-Move the real NoC providers under soc@0, keep clk_virt and mc_virt as
-virtual top-level providers, and add the clocks required for QoS
-programming on aggre1_noc and aggre2_noc.
+> Addressing Sashiko's review for triggered buffer patch.
+> 
+> > -----Original Message-----
+> > From: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+> > Sent: Thursday, April 30, 2026 1:17 PM  
+> 
+> ...
+> 
+> > +static int ad4691_manual_buffer_preenable(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ad4691_state *st = iio_priv(indio_dev);
+> > +	unsigned int prev_i, k, i;
+> > +	bool first;
+> > +	int ret;
+> > +
+> > +	memset(st->scan_xfers, 0, sizeof(st->scan_xfers));
+> > +	memset(st->scan_tx, 0, sizeof(st->scan_tx));
+> > +
+> > +	spi_message_init(&st->scan_msg);
+> > +
+> > +	first = true;
+> > +	prev_i = 0;
+> > +	k = 0;
+> > +	iio_for_each_active_channel(indio_dev, i) {
+> > +		st->scan_tx[k] = cpu_to_be16(AD4691_ADC_CHAN(i));
+> > +		st->scan_xfers[k].tx_buf = &st->scan_tx[k];
+> > +		/*
+> > +		 * The pipeline means xfer[0] receives the residual from the
+> > +		 * previous sequence, not a valid sample for channel i. Point
+> > +		 * it at vals[i] anyway; xfer[1] (or the NOOP when only one
+> > +		 * channel is active) will overwrite that slot with the real
+> > +		 * result, so no separate dummy buffer is needed.
+> > +		 */
+> > +		if (first) {
+> > +			st->scan_xfers[k].rx_buf = &st->vals[i];
+> > +			first = false;
+> > +		} else {
+> > +			st->scan_xfers[k].rx_buf = &st->vals[prev_i];
+> > +		}  
+> 
+> 
+> "The IIO subsystem expects data pushed to the buffer to be densely packed
+> according to the active channels in the scan mask.
+> If only a subset of channels are enabled, does assigning the rx_buf pointer
+> directly to absolute array indices at &st->vals[i] leave holes in the buffer?
+> When iio_push_to_buffers_with_ts() is called, this might cause it to read
+> uninitialized memory instead of the expected samples."
+> 
+> I would say there is no change needed. Writing to &st->vals[scan_index] and
+> passing the full array to iio_push_to_buffers_with_ts() is the standard IIO kfifo
+> pattern: the core demultiplexes by reading data[scan_index * storagebits/8]
+> for each active channel; holes at inactive indices are silently ignored.
+> The same pattern is used in ad4695, ad_sigma_delta, and others. The
+> pipeline residual in the first manual-mode transfer is overwritten by the
+> subsequent transfer before the scan is pushed, as the comment explains.
 
-Signed-off-by: Xilin Wu <sophon@radxa.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 157 ++++++++++++++++++++-------------
- 1 file changed, 97 insertions(+), 60 deletions(-)
+This looks wrong to me.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 761f229e8f47..8e64db07a9e9 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -314,78 +314,18 @@ scm: scm {
- 		};
- 	};
- 
--	aggre1_noc: interconnect-aggre1-noc {
--		compatible = "qcom,sc8280xp-aggre1-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	aggre2_noc: interconnect-aggre2-noc {
--		compatible = "qcom,sc8280xp-aggre2-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
- 	clk_virt: interconnect-clk-virt {
- 		compatible = "qcom,sc8280xp-clk-virt";
- 		#interconnect-cells = <2>;
- 		qcom,bcm-voters = <&apps_bcm_voter>;
- 	};
- 
--	config_noc: interconnect-config-noc {
--		compatible = "qcom,sc8280xp-config-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	dc_noc: interconnect-dc-noc {
--		compatible = "qcom,sc8280xp-dc-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	gem_noc: interconnect-gem-noc {
--		compatible = "qcom,sc8280xp-gem-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	lpass_noc: interconnect-lpass-ag-noc {
--		compatible = "qcom,sc8280xp-lpass-ag-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
- 	mc_virt: interconnect-mc-virt {
- 		compatible = "qcom,sc8280xp-mc-virt";
- 		#interconnect-cells = <2>;
- 		qcom,bcm-voters = <&apps_bcm_voter>;
- 	};
- 
--	mmss_noc: interconnect-mmss-noc {
--		compatible = "qcom,sc8280xp-mmss-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	nspa_noc: interconnect-nspa-noc {
--		compatible = "qcom,sc8280xp-nspa-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	nspb_noc: interconnect-nspb-noc {
--		compatible = "qcom,sc8280xp-nspb-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
--	system_noc: interconnect-system-noc {
--		compatible = "qcom,sc8280xp-system-noc";
--		#interconnect-cells = <2>;
--		qcom,bcm-voters = <&apps_bcm_voter>;
--	};
--
- 	memory@80000000 {
- 		device_type = "memory";
- 		/* We expect the bootloader to fill in the size */
-@@ -2152,6 +2092,63 @@ rng: rng@10d3000 {
- 			clock-names = "core";
- 		};
- 
-+		config_noc: interconnect@1500000 {
-+			compatible = "qcom,sc8280xp-config-noc";
-+			reg = <0 0x01500000 0 0x2c000>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		system_noc: interconnect@1680000 {
-+			compatible = "qcom,sc8280xp-system-noc";
-+			reg = <0 0x01680000 0 0x1a400>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre1_noc: interconnect@16c0000 {
-+			compatible = "qcom,sc8280xp-aggre1-noc";
-+			reg = <0 0x016c0000 0 0x3af80>;
-+
-+			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB4_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB4_1_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_USB_NOC_SOUTH_AXI_CLK>,
-+				 <&rpmhcc RPMH_IPA_CLK>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1700000 {
-+			compatible = "qcom,sc8280xp-aggre2-noc";
-+			reg = <0 0x01700000 0 0x3af80>;
-+
-+			clocks = <&gcc GCC_AGGRE_NOC_PCIE0_TUNNEL_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE1_TUNNEL_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_4_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_SOUTH_SF_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_UFS_CARD_AXI_CLK>,
-+				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-+				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mmss_noc: interconnect@1740000 {
-+			compatible = "qcom,sc8280xp-mmss-noc";
-+			reg = <0 0x01740000 0 0x1fa80>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		pcie4: pcie@1c00000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-sc8280xp";
-@@ -3352,6 +3349,14 @@ lpasscc: clock-controller@33e0000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		lpass_noc: interconnect@3c40000 {
-+			compatible = "qcom,sc8280xp-lpass-ag-noc";
-+			reg = <0 0x03c40000 0 0xf080>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-690.0", "qcom,adreno";
- 
-@@ -3927,6 +3932,22 @@ opp-6 {
- 			};
- 		};
- 
-+		dc_noc: interconnect@90e0000 {
-+			compatible = "qcom,sc8280xp-dc-noc";
-+			reg = <0 0x090e0000 0 0x5080>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		gem_noc: interconnect@9100000 {
-+			compatible = "qcom,sc8280xp-gem-noc";
-+			reg = <0 0x09100000 0 0xb8400>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		system-cache-controller@9200000 {
- 			compatible = "qcom,sc8280xp-llcc";
- 			reg = <0 0x09200000 0 0x58000>, <0 0x09280000 0 0x58000>,
-@@ -5977,6 +5998,14 @@ cpufreq_hw: cpufreq@18591000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		nspa_noc: interconnect@1b0c0000 {
-+			compatible = "qcom,sc8280xp-nspa-noc";
-+			reg = <0 0x1b0c0000 0 0x10000>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		remoteproc_nsp0: remoteproc@1b300000 {
- 			compatible = "qcom,sc8280xp-nsp0-pas";
- 			reg = <0 0x1b300000 0 0x10000>;
-@@ -6112,6 +6141,14 @@ compute-cb@14 {
- 			};
- 		};
- 
-+		nspb_noc: interconnect@210c0000 {
-+			compatible = "qcom,sc8280xp-nspb-noc";
-+			reg = <0 0x210c0000 0 0x10000>;
-+
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		remoteproc_nsp1: remoteproc@21300000 {
- 			compatible = "qcom,sc8280xp-nsp1-pas";
- 			reg = <0 0x21300000 0 0x10000>;
+What holes?  If available_scan_masks is set we will do a bunch of
+demux work - but then this code would see the mask picked from that
+list. If it's not then typically we won't (subject to multiple consumers
+forcing it - but that still won't close up holes here).
 
--- 
-2.54.0
+If the active_scan_mask == the one requested, there is no demux at all
+and I think that's the case here - the code pushes the data passed in
+directly to the kfifo.
+
+Perhaps given an illustration of what the layout of resulting data
+is if only even numbered channels are enabled.
+
+
+
+> 
+> > +		st->scan_xfers[k].len = sizeof(__be16);
+> > +		st->scan_xfers[k].cs_change = 1;
+> > +		spi_message_add_tail(&st->scan_xfers[k], &st->scan_msg);
+> > +		prev_i = i;
+> > +		k++;
+> > +	}
+> > +  
+> 
+>
+> > +	st->scan_xfers[2 * k + 1].len = sizeof(__be16);
+> > +	st->scan_xfers[2 * k + 1].cs_change = 1;
+> > +	spi_message_add_tail(&st->scan_xfers[2 * k + 1], &st->scan_msg);
+> > +
+> > +	ret = spi_optimize_message(st->spi, &st->scan_msg);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_write(st->regmap, AD4691_STD_SEQ_CONFIG,
+> > +			   bitmap_read(indio_dev->active_scan_mask, 0,
+> > +				       iio_get_masklength(indio_dev)));
+> > +	if (ret)
+> > +		goto err_unoptimize;
+> > +
+> > +	ret = regmap_write(st->regmap, AD4691_ACC_MASK_REG,
+> > +			   ~bitmap_read(indio_dev->active_scan_mask, 0,
+> > +				iio_get_masklength(indio_dev)) &
+> > GENMASK(15, 0));
+> > +	if (ret)
+> > +		goto err_unoptimize;
+> > +
+> > +	ret = ad4691_enter_conversion_mode(st);
+> > +	if (ret)
+> > +		goto err_unoptimize;
+> > +
+> > +	ret = ad4691_sampling_enable(st, true);
+> > +	if (ret)
+> > +		goto err_exit_conv;
+> > +
+> > +	enable_irq(st->irq);
+> > +	return 0;  
+> 
+> "Is there a race condition introduced by enabling the PWM and unmasking the
+> IRQ here?
+> If a hardware interrupt fires before the IIO core attaches the trigger's poll
+> function, iio_trigger_poll() drops the event. Will the IRQ handler then call
+> disable_irq_nosync() without ever running the consumer thread to re-enable it?"
+> 
+> Valid. preenable is called before the IIO core attaches the trigger
+> poll function; if a DATA_READY IRQ fires in that window, iio_trigger_poll()
+> is dropped, disable_irq_nosync() disables the IRQ, and enable_irq() is
+> never called, leaving the IRQ stuck. Although the delay would need to be 
+> very great for this to happen, I moved sampling_enable(true) and
+> enable_irq() to a new postenable callback which the IIO core calls only
+> after the trigger poll function is attached.
+
+Make sure to add a comment on why that is there.
+Otherwise makes sense.
+
+> 
+
+Rest look fine to me.
 
 
