@@ -1,173 +1,147 @@
-Return-Path: <devicetree+bounces-293901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKddMLha/GndOQAAu9opvQ
-	(envelope-from <devicetree+bounces-293901-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:26:16 +0200
+	id 4AqCFZ9c/GlPOwAAu9opvQ
+	(envelope-from <devicetree+bounces-293903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:34:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F02C4E5D72
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:26:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2524E604B
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:34:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3C8C33006123
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 09:26:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C0552306E652
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 09:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F553BE15E;
-	Thu,  7 May 2026 09:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2CB43C2794;
+	Thu,  7 May 2026 09:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C8Gt2DPR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z1IOlUIw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B619D3624A9;
-	Thu,  7 May 2026 09:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1823C0626;
+	Thu,  7 May 2026 09:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778145971; cv=none; b=EcZrNBUpiHzJzdQFoMM1QJTPlfRECUgARyT91A3CLVEoUPMCoAb71t61in1TpLAa8yHZJSYFqPsW4pMDVB3ndGZeALBDIDHHNW+tQeylmjVW2vwZhbz5aHl6SAAc0IruA3N0ar3qZAOsg6vT9RlKtsAiZfhHRtAlb7fpy6KAKpE=
+	t=1778146007; cv=none; b=kWHLvC6jWCXThm/ulQg9Fk2R6J1qTan7UEJvUjJUeR1hBoXhvM18Wir5UiwA8gfR/I9BHwjz1l0P9Gx0h7Xj+udO6q52ipasTvD+zAhrR9EkpoYwGvitrgqcLTkr/EYUJGPN8Ti7e3DHOnhsESwWnjxOYDAvmzC8GkWde5j7LKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778145971; c=relaxed/simple;
-	bh=M8446rQYXm25f4tOwkQac0ktifqMOUyoEgxlb33J5xI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FHL2gXQVxni4zVOwJ3o/8fksBxeB/kYQVN9+BFDcEqXSriorY/gSMun0tPNYz/igbiuVuGQ7FHvhdIuFzVdFFuUE6SYA0MpROkPtNH03q58mEZwlDsRCAl+x055sge8ZM18HWXUUpNK0+naRvvv/GkBeIVFYIdHxNPM4rjNAueE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C8Gt2DPR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F418C2BCB2;
-	Thu,  7 May 2026 09:26:08 +0000 (UTC)
+	s=arc-20240116; t=1778146007; c=relaxed/simple;
+	bh=n2k9d6Qmr2Qrr9CybM4JgqIb4aCIGw14I7nV7zxpHvc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RwtDgpgvLZ6RwYDDLdP9nTr2dgyldiDNpZLjeLGt2VYDP4Y8GBRABoV7NzWTHOkX2YxUnW6WYtIpMmdLWO5dLb8oJRjSs+tp8Igjk9LEVUHLFGNcrkRcgTZAndefj7AbmzkcjF9XyN8zPLUJJ6ypDDLr1CxTPv0jauKyRvg7N0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z1IOlUIw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCDAEC2BCB8;
+	Thu,  7 May 2026 09:26:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778145971;
-	bh=M8446rQYXm25f4tOwkQac0ktifqMOUyoEgxlb33J5xI=;
-	h=From:Date:Subject:To:Cc:From;
-	b=C8Gt2DPR3kPu9HbsqIvVlCRlfeKMKCmKVuEuwoi/496fGmluE36Kc9OSr3bWL636V
-	 JdM9bIMMDkrIJ/aQUaw5t5ahLTRYMDzEYqv4v1+oyP/TvKb3zYZO3Mf7Cs6QDHqVbZ
-	 rNvxvHOhMiCV9S5D6/08zUbK9OGar6p3EFxeOQHsfacD46D/yEt3IwNWtDBDGXJ88d
-	 BRvKU3jRLf7WuFtMvmfpZ3NDPxlmMa+dK8FmfsNmd29irIHoCtIOr5mY57he2L0txs
-	 4IiLEakiKMg2SJ0T8T1jn5b60sQxiXE6Lqm4y+uwyOsMjAG4YJPtMcsw0oserHqk0c
-	 VKhsS2A+ld/ng==
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 07 May 2026 11:26:01 +0200
-Subject: [PATCH] dt-bindings: net: lan966x: Accept standard ethernet
- prefixes
+	s=k20201202; t=1778146007;
+	bh=n2k9d6Qmr2Qrr9CybM4JgqIb4aCIGw14I7nV7zxpHvc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z1IOlUIwK1CmoO17EvYml7T1LaDq46EFi5OMVpJf4C/bc53XtrzOOcHRD+NQTWbo+
+	 RfjTNfhJjZNtzM0N4QKlvJLKG82anBx/BMCpqkCAvrTwuhb+ALT/sQsGZBWPJLqraT
+	 eMX/xyo7Jg35qFwl4ywPgR10OMxObdf+uE1n+8I9PHc2WHKNO4F9ksahYDN5PzBSLs
+	 HMZMxtkcxQJGaPJwBvd6KvWF8vZ+GPyEyOOqc4uIxArAezJt29xPGDcMsOOWa/LXHd
+	 JNRiQnsIoPaLVAkagpELHwsch3vjIlSnnlzYs2wLbff8RV6s3Q2zaPsk+1M2LLKd1v
+	 NyCwTwJh/qpgw==
+Date: Thu, 7 May 2026 17:26:41 +0800
+From: Nathan Chancellor <nathan@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nicolas Schier <nsc@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Tamir Duberstein <tamird@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Aleksander Jan Bajkowski <olek2@wp.pl>,
+	Test User <test@example.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: wire style checker into
+ dt_binding_check
+Message-ID: <20260507092641.GA1785345@ax162>
+References: <cover.1777471439.git.daniel@makrotopia.org>
+ <ed254ed45f19f37a7e7933a33f2f00195d8e5f20.1777471439.git.daniel@makrotopia.org>
+ <20260506184447.GA2816439-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260507-lan966-binding-v1-1-e99293d2a4ec@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQqDMBBA0avIrBsYA4m1V5Euohl1Shklo1II3
- r2xXb7F/xmUEpPCo8qQ6GDlRQrqWwXDHGQiw7EYLFqPDhvzDtJ6b3qWyDIZjKO3Aeu7wxZKtCY
- a+fMbds+/de9fNGzXBc7zC/aDzgNyAAAA
-X-Change-ID: 20260507-lan966-binding-0df62a018509
-To: Herve Codina <herve.codina@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.15.2
-X-Rspamd-Queue-Id: 8F02C4E5D72
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260506184447.GA2816439-robh@kernel.org>
+X-Rspamd-Queue-Id: EC2524E604B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293901-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293903-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	MIME_TRACE(0.00)[0:+];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_SPAM(0.00)[0.286];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[makrotopia.org,kernel.org,weissschuh.net,goodmis.org,roeck-us.net,wp.pl,example.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip4:172.232.135.74:c];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	TO_DN_SOME(0.00)[]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-The dsa.yaml and ethernet-switch.yaml bindings recommend
-prefixing ethernet switches and ports with "ethernet-" so
-make the LAN966x do the same.
+On Wed, May 06, 2026 at 01:44:47PM -0500, Rob Herring wrote:
+> On Wed, Apr 29, 2026 at 03:21:33PM +0100, Daniel Golle wrote:
+> > diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> > index 7b668f7fd400..35ddd0b7a349 100644
+> > --- a/Documentation/devicetree/bindings/Makefile
+> > +++ b/Documentation/devicetree/bindings/Makefile
+> > @@ -46,6 +46,19 @@ quiet_cmd_chk_bindings = CHKDT   $(src)
+> >  			  xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(src)) \
+> >  			  && touch $@ || true
+> >  
+> > +DT_CHK_STYLE = $(srctree)/scripts/dtc/dt-check-style
+> > +
+> > +# Feed the file list to the checker via @argfile in a single Python
+> > +# process so the ruamel.yaml import is paid once. scripts/jobserver-exec
+> > +# claims slots from the GNU make jobserver and exposes the count via
+> > +# $PARALLELISM, which dt-check-style picks up to size its worker pool.
+> > +quiet_cmd_chk_style = STYLE   $(src)
+> > +      cmd_chk_style = f=$$(mktemp) && $(find_cmd) > $$f && \
+> > +		      $(PYTHON3) $(srctree)/scripts/jobserver-exec \
+> > +		      $(PYTHON3) $(DT_CHK_STYLE) @$$f; \
+> 
+> What's the reason to run via PYTHON3 vs. running dt-check-style 
+> directly? It's just different from the rest of this makefile.
 
-Reported-by: Herve Codina <herve.codina@bootlin.com>
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
- .../devicetree/bindings/net/microchip,lan966x-switch.yaml      | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+In general, scripts should be called with an explicit interpreter to
 
-diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-index 306ef9ecf2b9..0f0f35865ef4 100644
---- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-@@ -17,7 +17,7 @@ description: |
- 
- properties:
-   $nodename:
--    pattern: "^switch@[0-9a-f]+$"
-+    pattern: "^(ethernet-)?switch@[0-9a-f]+$"
- 
-   compatible:
-     const: microchip,lan966x-switch
-@@ -70,7 +70,7 @@ properties:
-     additionalProperties: false
- 
-     patternProperties:
--      "^port@[0-9a-f]+$":
-+      "^(ethernet-)?port@[0-9a-f]+$":
-         type: object
- 
-         $ref: /schemas/net/ethernet-controller.yaml#
-@@ -138,7 +138,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
--    switch: switch@e0000000 {
-+    switch: ethernet-switch@e0000000 {
-       compatible = "microchip,lan966x-switch";
-       reg =  <0xe0000000 0x0100000>,
-              <0xe2000000 0x0800000>;
-@@ -151,14 +151,14 @@ examples:
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--        port0: port@0 {
-+        port0: ethernet-port@0 {
-           reg = <0>;
-           phy-handle = <&phy0>;
-           phys = <&serdes 0 0>;
-           phy-mode = "gmii";
-         };
- 
--        port1: port@1 {
-+        port1: ethernet-port@1 {
-           reg = <1>;
-           sfp = <&sfp_eth1>;
-           managed = "in-band-status";
+1. not rely on the file being executable (I think quilt has issues with
+this at times?)
 
----
-base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
-change-id: 20260507-lan966-binding-0df62a018509
+2. respect the user's choice of interpreter (if they have specified one)
 
-Best regards,
---  
-Linus Walleij <linusw@kernel.org>
+See "Script invocation" in Documentation/kbuild/makefiles.rst.
 
+-- 
+Cheers,
+Nathan
 
