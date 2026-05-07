@@ -1,741 +1,217 @@
-Return-Path: <devicetree+bounces-294051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DLbDEKW/Gn3RQAAu9opvQ
-	(envelope-from <devicetree+bounces-294051-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:40:18 +0200
+	id CKaRJJCW/GneRgAAu9opvQ
+	(envelope-from <devicetree+bounces-294049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:41:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FB24E964D
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:40:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F13294E96CD
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 15:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BB7D43003372
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 13:40:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B96AE30480D4
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 13:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FFD83F7AA4;
-	Thu,  7 May 2026 13:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D193FB05F;
+	Thu,  7 May 2026 13:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f6zCeX5w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Hc3iP69D";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="B9j85HDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74A03F7A86
-	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 13:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159673FA5C9
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 13:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778161208; cv=none; b=pZtUMbq+s4FKnFanBJ7jLu40DEx/ynWSnfks6kVE4AExSPpkT/ZPJ0kFW8Vj0ayJe8rPl86a71ZGMHDjGn0PP4NHLSxb4gTkShWIAqm9E3MOyFSDSRZ34pyro91ypjA5uNtvDL+6fOmBq6NbV5rwVIrp1Xb5ymOB/hBzK93wL2U=
+	t=1778161203; cv=none; b=GMwFT6naeW97coA0xH9/Qx9oNWvV3/m7d8erLffkVT4VQ1zJoCdmISjpdfeb5dcJDw7YR41gD2p3kyY4hR0yn9UK+BVsHnuZhOWFOyHA7CynTpevnkJMOC8VOOSW0V6DvQVs2Ar22d1uuZyxSP5LQdP417MoJ/yb0h4EA6taMZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778161208; c=relaxed/simple;
-	bh=aeLRpem4qDfGua/iGaF/v96I0sKnTfaWAd1bnXS2GwE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J1Hz0I+H+FMyyU8NqSHqhzA7KIpbm52g9DOpgZ6jn4rI4wRPbxH7sMIeoi+LFk26/04fYP2UOk54jk677+T5gZRqFYIpsQvQC54iAiLVTLTQ+Nexz5ed2fySVkIqOyxrYGO2UHxMED/n1fotzOGgN9GHQZXzuCbQfNpyu3aQJyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f6zCeX5w; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-488ad135063so8123245e9.0
-        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 06:40:02 -0700 (PDT)
+	s=arc-20240116; t=1778161203; c=relaxed/simple;
+	bh=CPV5umvGU4gVipwcB9GO2qUnVfCFQxcnQokc3/cJiCU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gtkc3nMZG/E6JFu1bAZzlSru9GsW8/igGLKByFR1TZeLk/758y8xoBpYHHcdqq6oyLMRCiguCBNo/f1yQ7SRAkbn1Dwezv3e0KxEZWv7oo+2WwNXWc4wkmIvtO0GpcG6FN1USvwZfnEbGWrPqzVfJhKaEYSpnFZPZM/6EGBjH/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Hc3iP69D; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=B9j85HDY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6479xmTO026493
+	for <devicetree@vger.kernel.org>; Thu, 7 May 2026 13:40:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=k7zi0BI+dxwYHFk9GidFN8y/
+	SPVtm/1LAmw8uTSSU+A=; b=Hc3iP69D26tiMxATAi9HPUMFDD6Z7HqOiYf2zEHW
+	2tr7Yiq7MYD4voD9spB7aB0vVX08NQVwzJ/idjYp/Lg/9WN5i95D1fpzDXLTdhUZ
+	BLwNM/iyG5mbel1K2V1z6spMhoOXlFfjClK3HYZEcCK5WheX6kMfyfXt5OUadNnB
+	c2WIr5qi9UeviQwbBPRPH23uIbLNyxFNO3uQjOz7QMwTf4WOW7El+LNYbBpLP74d
+	fjR3zqiuozqqLgKImrNyGSluCuMyh50xWPe99EBxyYI6ih69eqL0rn9ONtOqIzAP
+	4TEt79feozB6Pgjxv4Zl+yrlRku5TS0DDknaVUpYWcVoeQ==
+Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e0k1t24v1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 07 May 2026 13:39:59 +0000 (GMT)
+Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-948b41f95deso1113025241.0
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 06:39:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778161201; x=1778766001; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kEnHRbnTRkn5+He1ebKtE/yG9G4a18a+YaOc8lKyuik=;
-        b=f6zCeX5wxmTj25S98t8Qcz7gwYWk0uN/iAAsVEyZEpplrb9LXCLjkzOFNzsYoPc8K7
-         psIchZYtX3Gbf3FdWo5UfYTlJKP88Iyyt/jxZS5jH1rYnU0e9HGWvTTl2zICPJuad4XT
-         4Z0C2YOvd8CA6vE+qVTqldAIdCrNQCOu1KXTSwvbu/YfULF0COJ6LL820pRqMAQ61Zte
-         j1pdbpn7rmQSdLiRkRwCLwDq3gTNvPuzHQX4AOeA51D9tj7Vsh+TM4DxE+lVp0bbyWTK
-         bjFo0DSzpfwxdVy1UMNg+mjrZYU6BGmV92hVe/8pJ1BcxOpwmFLL4TZqt6XRWkM2lLVy
-         UkEQ==
+        d=oss.qualcomm.com; s=google; t=1778161199; x=1778765999; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=k7zi0BI+dxwYHFk9GidFN8y/SPVtm/1LAmw8uTSSU+A=;
+        b=B9j85HDYPxTXiHsR2PybIhtrdJijLTvtVC9F8N3v0A4SVvwL3uTK1ie0LHjmKS8HVm
+         2e2EidPYD18XL6L2zJeAxG1CG2AhzlkHDdJQ0tBXshaphk6IrMsiCtQ009EzKcpqVCEt
+         V22evvvMSl7mCaiKuzZQvdwCwx7eljFhb0wvhd00ajstyarP7YJxNdXp8Nkl7/aJuLdJ
+         QPawko1b8gCQDCT7K7IaV6XmfFQujVW7pBoeWm8n+H1+CV2vaYdod4zUs1uggqKyZ3qu
+         GeotkdHk2OD+lpvXj8f8LcPKl07xo/5UkU2tminIkpb1qvWT3T0ZxZ/sxpphKHXmazwv
+         DDRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778161201; x=1778766001;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=kEnHRbnTRkn5+He1ebKtE/yG9G4a18a+YaOc8lKyuik=;
-        b=NvHlIqtsg+xjOA0lWfxQAthFjVA9u+O0NUsjemDzPDOpyN9wCofYRhz+TiscxFx1g4
-         DruSeZycwoV9Mh9oELxwfFCQc5qT5KqSPF01mjkURNVBBQvJIj2nHTnYLudiCNvmxzVh
-         OHs+WmtXIQPaCQ8LPNOp4hJBx9gF+cRvKYMbfWj14HcNFLhoF0WsL0c72qQpq2HScH7f
-         YVlWkCD1sXrEH25AHjC2b4I1N5NkPuauIzG6nYyfWuhskysPiRLOi4Dv8UFaCz4BKUny
-         8xeG4NmDCOR/9rfzCOB053P6zf4PQgFrRu7EZw1sFlWGsn1/H2Ks9c5+E9Ys0kwLMmBu
-         cs0w==
-X-Forwarded-Encrypted: i=1; AFNElJ+BPd7zbqufCaBC6xi3gfWnsQlbVyavl9ninztxTxcZ6sdxV0Khx2aFZhF0NANvJ3AjdM+0Dp236GJX@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywa/t7NtPzzGKLgMTv4uQuOiMF4U0FpNJN/1jTEauBoHOR4uz87
-	+CHM2FMjgr/oElLpuQEzTPOl3kjYpoSgJeBysfM+zI9Mclq4VEIMN9Ac
-X-Gm-Gg: AeBDieuFG5qwSDcJa0VGdTtcbu7lPXyKAszSbYKx6ntULOF4682+jES8LJPE2VQBpoM
-	09H2zaf70xNLK8/0Sou1tCj+ymIH1gXXmXOqoVih1dpz4fLTY0ilk0Xmyd4kGLEQkWUrvUhnTYj
-	M1Mg9aIVdrbb7xQIWHfrE1/BA3cfI73Rgt4n6B6hoFt/AWiupi82bpCwWs2GCiLGEHrLyvGNa/q
-	90oXTs06FS3uETY97LbO1T2iap7BXilEAFkyBRBMLsOCNEbbtayHw8/ObY+aoP1c+oCHTMYT3ft
-	2cozYehkazgSJRRAsTRmt0h4eMwwJnSoE2za0qHl1UegdMWhUPGCfZyc4viM3V1iAvWdZBlY11F
-	XyDl+bvcM0NYmr2K56MblUs1LDaWAXGchLHP3t40yey21QCVqjqe1gwcR3KSwIhK9VMCSUZFoAB
-	v0Etz0QDnS5lYJkeRbwAUqmrA=
-X-Received: by 2002:a05:600c:5291:b0:489:a4:e58a with SMTP id 5b1f17b1804b1-48e51f3818fmr134373335e9.19.1778161200582;
-        Thu, 07 May 2026 06:40:00 -0700 (PDT)
-Received: from xeon ([188.163.112.56])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e530b05d9sm58003145e9.3.2026.05.07.06.39.59
+        d=1e100.net; s=20251104; t=1778161199; x=1778765999;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k7zi0BI+dxwYHFk9GidFN8y/SPVtm/1LAmw8uTSSU+A=;
+        b=D6Mwl320BkDvnjsJwWnAYfSG/UuHYXCmyaEwW8Doh1ajSV6SBpl4leBDPzySvrHEu2
+         EE9UhVhexkqob3+B2YyiwzuWYX4I7hFrwBA2NVmyFE7yLhCPiqK3mrM00hWIt2l3bhtF
+         vhlQ3wdQwQD2SxwOCkW+4Hf/XjfgUi5eDV5EkKomvoC8ThrtDcxj/wzjvI/36nnq4fq0
+         /DneNVUA0ZRlrPm7chm7UJ95nnVD/n9kOjIBCdScnsE2aeF4+zJI+DdtEGtvmmboSc1E
+         3kz7mo4xR7QZjKSx3LXWSst/3C7Sr4kapOVKgKuBx/7kFWTSBzJqh9I267D2dVihJw0H
+         b8MQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+DeNWvwLI/wnx2BM34uEDFwHWSreppDxWr/fz8Le7oimnSrtCqk7z2zegPTXkSRmnUtocM4HiS4mC8@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv98Gm5sp+LZdo6v8ljGKw37aM3j5ohqCU8/GIHj/OeAVfrFzc
+	DYrG3hygeHBVipiHhrESc7Z12c1cPMdnVDQ39BY+YZEZthFXlIzrcRZbyj0yifhE0yjZWKitRY8
+	rvwnrt4omhrlBgAebujtYCLYX92t8vRCRjtVqoMhF3QvRf+/7koRY8Ffw2xZGfFaq
+X-Gm-Gg: AeBDievVUVEzA4n6DHRI4x1F6ryaa4Rp60NGax8/Ag+Qd1xlo5PqqtrTZWUDOck9sOw
+	9eIbkcP64h1TWlh0U5lOql682KtrL3G1hQCZiqn83evwSM3B+Ol8KCCDPUooHtjU27OCwP/uKMn
+	rXBOumL1Kglt+8rCC9dB/K8m4fEk8zqeLWMFKK91nU4xfgqXcZsZLUk3px1lAPqn7gjSRtwVhl7
+	ES9zfyA9TVy1gjFOOAsKvJitxPDj3sigHRxbWue636u5wsK58IsxsNdLxauV9dk0V5fig5pisw3
+	V0CaJ9O4qSfF1mW8Ma5olzYMIyA3wA2FkiwaA6jxzgRhuSYO1bm6sEi2tu+CG93bhpa5RdLKa3N
+	aluyoMaHuFTSbdkluZEFo/9rU5Zd9L10Opj4hJWLHNK83MeW6wfJnTaA9M7gOO5N6kvuFWkxWZP
+	Ujpvo8a6/naZpuOe6zkDUNZYw8lTVFK+uaPmqGw/WSRJGl3A==
+X-Received: by 2002:a05:6102:cce:b0:62f:3abe:907b with SMTP id ada2fe7eead31-630f8e78839mr4106424137.4.1778161199267;
+        Thu, 07 May 2026 06:39:59 -0700 (PDT)
+X-Received: by 2002:a05:6102:cce:b0:62f:3abe:907b with SMTP id ada2fe7eead31-630f8e78839mr4106396137.4.1778161198771;
+        Thu, 07 May 2026 06:39:58 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a85c341848sm5626034e87.65.2026.05.07.06.39.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 May 2026 06:40:00 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] Input: isa1200 - new driver for Imagis ISA1200
-Date: Thu,  7 May 2026 16:39:48 +0300
-Message-ID: <20260507133948.75704-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260507133948.75704-1-clamor95@gmail.com>
-References: <20260507133948.75704-1-clamor95@gmail.com>
+        Thu, 07 May 2026 06:39:57 -0700 (PDT)
+Date: Thu, 7 May 2026 16:39:55 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Jassi Brar <jassisinghbrar@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>
+Subject: Re: [PATCH 4/4] mailbox: qcom-apcs-ipc: Add Shikra APCS IPC support
+Message-ID: <ybuup437mpu346fqhnmyuqkj6satxte47sxg25mipy6mn2yvdr@xcjlcbwf5gum>
+References: <20260430-shikra_mailbox_and_rpm_changes-v1-0-61ad7c57ef27@oss.qualcomm.com>
+ <20260430-shikra_mailbox_and_rpm_changes-v1-4-61ad7c57ef27@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: C3FB24E964D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260430-shikra_mailbox_and_rpm_changes-v1-4-61ad7c57ef27@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=EoPiaycA c=1 sm=1 tr=0 ts=69fc962f cx=c_pps
+ a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8
+ a=GA4JE4aC73f7OREyLVIA:9 a=CjuIK1q_8ugA:10 a=TOPH6uDL9cOC6tEoww4z:22
+X-Proofpoint-ORIG-GUID: V58iOkG2n7G8deDB7HtBb5RrusPML_PJ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA3MDEzNiBTYWx0ZWRfX0OAPbydBO6Ll
+ GTIYAQ8SMdRaTDb7+KNbcElZMVGS+a04zQub7hwvKjMkX3eCUxSN0oA400yMnP0wC8XGifGiTeM
+ Oa+drcvXwTH+BZZpqzYLeOau+LmQbR8uzhV3PQwALLdXS6y5Mu55ftmeb4SCAMEbR2ggVrto2fX
+ 7nTXOdAnNntac2DPnBTWzYFsS5GAEs9XXPHPXfoMmOhOSlTl7G7jBcOeJEykpRGCAu1XO1fVIe1
+ ImV3tKKKm5PGderYYCHtXwgxnjWa5QD2+oDiyzFBjPug5EtYDlzszPHFymOb3NAvT0GHAgQCgaD
+ azEFFtlRp0n69o18dtUSnhPw/W32jjmppR0dAoLWg85MSm5clVqtve6Paj62QKb96rBFR5Zhwzw
+ bgApbaiiC50gAwIY1/1Q7WPKg79ftGQ8JQvpBZq2KcsaKPc/uDOQKGGup8d5DTFDgs2SkiAp24K
+ Q0itS4Wk+ZpqXZY2FIA==
+X-Proofpoint-GUID: V58iOkG2n7G8deDB7HtBb5RrusPML_PJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-07_01,2026-05-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0
+ phishscore=0 malwarescore=0 priorityscore=1501 clxscore=1015 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605070136
+X-Rspamd-Queue-Id: F13294E96CD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_FROM(0.00)[bounces-294051-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294049-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gerhold.net,gmail.com,vger.kernel.org,oss.qualcomm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Linus Walleij <linusw@kernel.org>
+On Thu, Apr 30, 2026 at 03:14:59PM +0530, Sneh Mankad wrote:
+> From: Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>
+> 
+> Enable Shikra APCS IPC support by adding the compatible.
+> It reuses apps_shared_apcs_data.
 
-The ISA1200 is a haptic feedback unit from Imagis Technology using two
-motors for haptic feedback in mobile phones. Used in many mobile devices
-c. 2012 including Samsung Galxy S Advance GT-I9070 (Janice), Samsung Beam
-GT-I8350 (Gavini), LG Optimus 4X P880 and LG Optimus Vu P895.
+This is obvious from the patch itself. Tell us something, which is not
+written in the patch. For example, why it uses the same data structure.
+Or why we need separate compat string and entry in the driver.
 
-The exact datasheet for the ISA1200 is not available; all data was modeled
-based on available downstream kernel sources for various devices and
-fragments of information scattered across the internet.
+> 
+> Signed-off-by: Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>
+> Signed-off-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+> ---
+>  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> index d3a8f6b4a03b368821ef9a5b24fee78037104610..25f76965921ba695e3a1bf4df47ce643916a28cb 100644
+> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> @@ -168,6 +168,7 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+>  	{ .compatible = "qcom,ipq8074-apcs-apps-global", .data = &ipq6018_apcs_data },
+>  	{ .compatible = "qcom,sc7180-apss-shared", .data = &apps_shared_apcs_data },
+>  	{ .compatible = "qcom,sc8180x-apss-shared", .data = &apps_shared_apcs_data },
+> +	{ .compatible = "qcom,shikra-apss-shared", .data = &apps_shared_apcs_data },
+>  	{ .compatible = "qcom,sm8150-apss-shared", .data = &apps_shared_apcs_data },
+>  	{}
+>  };
+> 
+> -- 
+> 2.34.1
+> 
 
-Tested-by: Linus Walleij <linusw@kernel.org> # GT-I9070 Janice
-Signed-off-by: Linus Walleij <linusw@kernel.org>
-Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/input/misc/Kconfig   |  12 +
- drivers/input/misc/Makefile  |   1 +
- drivers/input/misc/isa1200.c | 540 +++++++++++++++++++++++++++++++++++
- 3 files changed, 553 insertions(+)
- create mode 100644 drivers/input/misc/isa1200.c
-
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index 94a753fcb64f..52f192104ee2 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -852,6 +852,18 @@ config INPUT_IQS7222
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called iqs7222.
- 
-+config INPUT_ISA1200_HAPTIC
-+	tristate "Imagis ISA1200 haptic feedback unit"
-+	depends on I2C
-+	select INPUT_FF_MEMLESS
-+	select REGMAP_I2C
-+	help
-+	  Say Y to enable support for the Imagis ISA1200 haptic
-+	  feedback unit.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called isa1200.
-+
- config INPUT_CMA3000
- 	tristate "VTI CMA3000 Tri-axis accelerometer"
- 	help
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index 415fc4e2918b..d62bf2e9d85f 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_INPUT_IMS_PCU)		+= ims-pcu.o
- obj-$(CONFIG_INPUT_IQS269A)		+= iqs269a.o
- obj-$(CONFIG_INPUT_IQS626A)		+= iqs626a.o
- obj-$(CONFIG_INPUT_IQS7222)		+= iqs7222.o
-+obj-$(CONFIG_INPUT_ISA1200_HAPTIC)	+= isa1200.o
- obj-$(CONFIG_INPUT_KEYSPAN_REMOTE)	+= keyspan_remote.o
- obj-$(CONFIG_INPUT_KXTJ9)		+= kxtj9.o
- obj-$(CONFIG_INPUT_M68K_BEEP)		+= m68kspkr.o
-diff --git a/drivers/input/misc/isa1200.c b/drivers/input/misc/isa1200.c
-new file mode 100644
-index 000000000000..f8dba8a95c7d
---- /dev/null
-+++ b/drivers/input/misc/isa1200.c
-@@ -0,0 +1,540 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <linux/array_size.h>
-+#include <linux/bitmap.h>
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/devm-helpers.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/units.h>
-+
-+/*
-+ * System control (LDO regulator)
-+ *
-+ * LDO voltage to register mapping is linear, but it is split in two parts:
-+ * 2.3V - 3.0V map to 0x08 - 0x0f; 3.1V - 3.8V map to 0x00 - 0x7
-+ */
-+
-+#define ISA1200_SCTRL			0x00
-+#define ISA1200_LDO_VOLTAGE_BASE	0x08
-+#define ISA1200_LDO_VOLTAGE_STEP	100000
-+#define ISA1200_LDO_VOLTAGE_2V3		23
-+#define ISA1200_LDO_VOLTAGE_3V1		31
-+#define ISA1200_LDO_VOLTAGE_MIN		2300000
-+#define ISA1200_LDO_VOLTAGE_MAX		3800000
-+
-+/*
-+ * The output frequency is calculated with this formula:
-+ *
-+ *                 base clock frequency
-+ * fout = -----------------------------------------
-+ *        (128 - PWM_FREQ) * 2 * PLLDIV * PWM_PERIOD
-+ *
-+ * The base clock frequency is the clock frequency provided on the
-+ * clock input to the chip, divided by the value in HCTRL0
-+ *
-+ * PWM_FREQ is configured in register HCTRL4, it is common to set this
-+ * to 0 to get only two variables to calculate.
-+ *
-+ * PLLDIV is configured in register HCTRL3 (bits 7..4, so 0..15)
-+ * PWM_PERIOD is configured in register HCTRL6
-+ * Further the duty cycle can be configured in HCTRL5
-+ */
-+
-+/*
-+ * HCTRL0 configures clock or PWM input and selects the divider for
-+ * the clock input.
-+ */
-+#define ISA1200_HCTRL0			0x30
-+#define ISA1200_HCTRL0_HAP_ENABLE	BIT(7)
-+#define ISA1200_HCTRL0_PWM_GEN_MODE	BIT(4)
-+#define ISA1200_HCTRL0_PWM_INPUT_MODE	BIT(3)
-+#define ISA1200_HCTRL0_CLKDIV_128	128
-+
-+/*
-+ * HCTRL1 configures the motor type and clock sourse
-+ */
-+#define ISA1200_HCTRL1			0x31
-+#define ISA1200_HCTRL1_EXT_CLOCK	BIT(7)
-+#define ISA1200_HCTRL1_DAC_INVERT	BIT(6)
-+#define ISA1200_HCTRL1_MODE(n)		(((n) & 1) << 5)
-+
-+/* HCTRL2 controls software reset of the chip */
-+#define ISA1200_HCTRL2			0x32
-+#define ISA1200_HCTRL2_SW_RESET		BIT(0)
-+
-+/*
-+ * HCTRL3 controls the PLL divisor
-+ *
-+ * Bits [0,1] are always set to 1 (we don't know what they are
-+ * used for) and bit 4 and upward control the PLL divisor.
-+ */
-+#define ISA1200_HCTRL3			0x33
-+#define ISA1200_HCTRL3_DEFAULT		0x03
-+#define ISA1200_HCTRL3_PLLDIV(n)	(((n) & 0xf) << 4)
-+
-+/* HCTRL4 controls the PWM frequency of external channel */
-+#define ISA1200_HCTRL4			0x34
-+
-+/* HCTRL5 controls the PWM high duty cycle of internal channel */
-+#define ISA1200_HCTRL5			0x35
-+
-+/* HCTRL6 controls the PWM period of internal channel */
-+#define ISA1200_HCTRL6			0x36
-+#define ISA1200_HCTRL6_PERIOD_SCALE	100
-+
-+/* The use for these registers is unknown but they exist */
-+#define ISA1200_HCTRL7			0x37
-+#define ISA1200_HCTRL8			0x38
-+#define ISA1200_HCTRL9			0x39
-+#define ISA1200_HCTRLA			0x3a
-+#define ISA1200_HCTRLB			0x3b
-+#define ISA1200_HCTRLC			0x3c
-+#define ISA1200_HCTRLD			0x3d
-+
-+#define ISA1200_EN_PINS_MAX		2
-+
-+struct isa1200_config {
-+	u32 ldo_voltage;
-+	u32 mode;
-+	u32 clkdiv;
-+	u32 plldiv;
-+	u32 freq;
-+	u32 period;
-+	u32 duty;
-+};
-+
-+struct isa1200 {
-+	struct input_dev *input;
-+	struct regmap *map;
-+
-+	struct clk *clk;
-+	struct pwm_device *pwm;
-+	struct gpio_descs *enable_gpios;
-+
-+	struct work_struct play_work;
-+	struct isa1200_config config;
-+
-+	int level;
-+	bool clk_on;
-+};
-+
-+static const struct regmap_config isa1200_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = ISA1200_HCTRLD,
-+};
-+
-+static void isa1200_start(struct isa1200 *isa)
-+{
-+	struct isa1200_config *config = &isa->config;
-+	struct pwm_state state;
-+	u8 hctrl0 = 0, hctrl1 = 0;
-+	DECLARE_BITMAP(values, ISA1200_EN_PINS_MAX);
-+	int ret;
-+
-+	if (!isa->clk_on) {
-+		ret = clk_prepare_enable(isa->clk);
-+		if (ret < 0)
-+			return;
-+
-+		isa->clk_on = true;
-+	}
-+
-+	bitmap_fill(values, ISA1200_EN_PINS_MAX);
-+	gpiod_multi_set_value_cansleep(isa->enable_gpios, values);
-+
-+	usleep_range(200, 300);
-+
-+	regmap_write(isa->map, ISA1200_SCTRL, config->ldo_voltage);
-+
-+	if (isa->clk) {
-+		hctrl0 = ISA1200_HCTRL0_PWM_GEN_MODE;
-+		hctrl1 = ISA1200_HCTRL1_EXT_CLOCK;
-+	}
-+
-+	if (isa->pwm) {
-+		hctrl0 = ISA1200_HCTRL0_PWM_INPUT_MODE;
-+		hctrl1 = 0;
-+	}
-+
-+	hctrl0 |= __ffs(config->clkdiv / ISA1200_HCTRL0_CLKDIV_128);
-+	hctrl1 |= ISA1200_HCTRL1_DAC_INVERT;
-+	hctrl1 |= ISA1200_HCTRL1_MODE(config->mode);
-+
-+	regmap_write(isa->map, ISA1200_HCTRL0, hctrl0);
-+	regmap_write(isa->map, ISA1200_HCTRL1, hctrl1);
-+
-+	/* Make sure to de-assert software reset */
-+	regmap_write(isa->map, ISA1200_HCTRL2, 0x00);
-+
-+	/* PLL divisor */
-+	regmap_write(isa->map, ISA1200_HCTRL3,
-+		     ISA1200_HCTRL3_PLLDIV(config->plldiv) |
-+		     ISA1200_HCTRL3_DEFAULT);
-+
-+	/* Frequency */
-+	regmap_write(isa->map, ISA1200_HCTRL4, config->freq);
-+	/* Duty cycle */
-+	regmap_write(isa->map, ISA1200_HCTRL5, config->period >> 1);
-+	/* Period */
-+	regmap_write(isa->map, ISA1200_HCTRL6, config->period);
-+
-+	hctrl0 |= ISA1200_HCTRL0_HAP_ENABLE;
-+	regmap_write(isa->map, ISA1200_HCTRL0, hctrl0);
-+
-+	if (isa->clk)
-+		regmap_write(isa->map, ISA1200_HCTRL5, config->duty);
-+
-+	if (isa->pwm) {
-+		pwm_get_state(isa->pwm, &state);
-+		state.duty_cycle = config->duty;
-+		state.enabled = true;
-+		pwm_apply_might_sleep(isa->pwm, &state);
-+	}
-+}
-+
-+static void isa1200_power_off(void *data)
-+{
-+	struct isa1200 *isa = data;
-+
-+	DECLARE_BITMAP(values, ISA1200_EN_PINS_MAX);
-+
-+	bitmap_zero(values, ISA1200_EN_PINS_MAX);
-+	gpiod_multi_set_value_cansleep(isa->enable_gpios, values);
-+
-+	if (isa->clk_on) {
-+		clk_disable_unprepare(isa->clk);
-+		isa->clk_on = false;
-+	}
-+}
-+
-+static void isa1200_stop(struct isa1200 *isa)
-+{
-+	struct pwm_state state;
-+
-+	if (isa->pwm) {
-+		pwm_get_state(isa->pwm, &state);
-+		state.duty_cycle = 0;
-+		state.enabled = false;
-+		pwm_apply_might_sleep(isa->pwm, &state);
-+	}
-+
-+	regmap_write(isa->map, ISA1200_HCTRL0, 0x00);
-+	isa1200_power_off(isa);
-+}
-+
-+static void isa1200_play_work(struct work_struct *work)
-+{
-+	struct isa1200 *isa =
-+		container_of(work, struct isa1200, play_work);
-+
-+	guard(mutex)(&isa->input->mutex);
-+
-+	if (isa->level)
-+		isa1200_start(isa);
-+	else
-+		isa1200_stop(isa);
-+}
-+
-+static int isa1200_vibrator_play_effect(struct input_dev *input, void *data,
-+					struct ff_effect *effect)
-+{
-+	struct isa1200 *isa = input_get_drvdata(input);
-+	int level;
-+
-+	/*
-+	 * TODO: we currently only support rumble.
-+	 * The ISA1200 can control two motors and some devices
-+	 * also have two motors mounted.
-+	 */
-+	level = effect->u.rumble.strong_magnitude;
-+	if (!level)
-+		level = effect->u.rumble.weak_magnitude;
-+
-+	dev_dbg(&input->dev, "FF effect type %d level %d\n",
-+		effect->type, level);
-+
-+	if (isa->level != level) {
-+		isa->level = level;
-+		schedule_work(&isa->play_work);
-+	}
-+
-+	return 0;
-+}
-+
-+static void isa1200_vibrator_close(struct input_dev *input)
-+{
-+	struct isa1200 *isa = input_get_drvdata(input);
-+
-+	cancel_work_sync(&isa->play_work);
-+
-+	if (isa->level)
-+		isa1200_stop(isa);
-+
-+	isa->level = 0;
-+}
-+
-+static int isa1200_of_probe(struct i2c_client *client)
-+{
-+	static const char * const isa1200_supplies[] = { "vdd", "vddp" };
-+	struct isa1200 *isa = i2c_get_clientdata(client);
-+	struct isa1200_config *config = &isa->config;
-+	struct device *dev = &client->dev;
-+	struct fwnode_handle *ldo_node;
-+	int ret;
-+
-+	isa->clk = devm_clk_get_optional(dev, NULL);
-+	if (IS_ERR(isa->clk))
-+		return dev_err_probe(dev, PTR_ERR(isa->clk),
-+				     "failed to get clock\n");
-+
-+	isa->pwm = devm_pwm_get(dev, NULL);
-+	if (IS_ERR(isa->pwm)) {
-+		ret = PTR_ERR(isa->pwm);
-+		if (ret == -ENODEV || ret == -EINVAL)
-+			isa->pwm = NULL;
-+		else
-+			return dev_err_probe(dev, ret, "getting PWM\n");
-+	}
-+
-+	if (!isa->clk && !isa->pwm)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "clock or PWM are required, none were provided\n");
-+
-+	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(isa1200_supplies),
-+					     isa1200_supplies);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set up supplies\n");
-+
-+	isa->enable_gpios = devm_gpiod_get_array_optional(dev, "control",
-+							  GPIOD_OUT_LOW);
-+	if (IS_ERR(isa->enable_gpios))
-+		return dev_err_probe(dev, PTR_ERR(isa->enable_gpios),
-+				     "failed to get enable gpios\n");
-+
-+	ldo_node = device_get_named_child_node(dev, "ldo");
-+	if (!ldo_node)
-+		return dev_err_probe(dev, -ENODEV,
-+				     "failed to get embedded LDO node\n");
-+
-+	ret = fwnode_property_read_u32(ldo_node, "regulator-min-microvolt",
-+				       &config->ldo_voltage);
-+	fwnode_handle_put(ldo_node);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to get ldo voltage\n");
-+
-+	config->ldo_voltage = clamp(config->ldo_voltage,
-+				    ISA1200_LDO_VOLTAGE_MIN,
-+				    ISA1200_LDO_VOLTAGE_MAX);
-+
-+	config->ldo_voltage /= ISA1200_LDO_VOLTAGE_STEP;
-+	if (config->ldo_voltage < ISA1200_LDO_VOLTAGE_3V1)
-+		config->ldo_voltage = config->ldo_voltage -
-+				      ISA1200_LDO_VOLTAGE_2V3 +
-+				      ISA1200_LDO_VOLTAGE_BASE;
-+	else
-+		config->ldo_voltage -= ISA1200_LDO_VOLTAGE_3V1;
-+
-+	config->mode = 0; /* LRA_MODE */
-+	device_property_read_u32(dev, "imagis,mode", &config->mode);
-+
-+	config->clkdiv = ISA1200_HCTRL0_CLKDIV_128;
-+	device_property_read_u32(dev, "imagis,clk-div", &config->clkdiv);
-+	if (!config->clkdiv)
-+		return dev_err_probe(dev, -EINVAL, "clk-div cannot be zero\n");
-+
-+	config->clkdiv = clamp(config->clkdiv, ISA1200_HCTRL0_CLKDIV_128,
-+			       ISA1200_HCTRL0_CLKDIV_128 << 3);
-+
-+	ret = device_property_read_u32(dev, "imagis,pll-div", &config->plldiv);
-+	if (ret < 0 || !config->plldiv)
-+		config->plldiv = 1;
-+
-+	config->period = 0;
-+	config->freq = 0;
-+	config->duty = 0;
-+
-+	if (isa->clk) {
-+		ret = device_property_read_u32(dev, "imagis,period-ns",
-+					       &config->period);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "failed to get period\n");
-+
-+		/*
-+		 * TODO: The scale value is arbitrary, but it fits observations
-+		 * quite well, and the exact conversion method is unknown.
-+		 * The period property value returned above is the HCTRL6
-+		 * register value set by the vendor code, multiplied by 100.
-+		 */
-+		config->period /= ISA1200_HCTRL6_PERIOD_SCALE;
-+		config->duty = config->period >> 1;
-+	}
-+
-+	if (isa->pwm) {
-+		struct pwm_state state;
-+
-+		pwm_init_state(isa->pwm, &state);
-+
-+		if (!state.period)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "PWM period cannot be zero\n");
-+
-+		config->freq = div64_u64(NANO, state.period * config->clkdiv);
-+		config->duty = state.period >> 1;
-+
-+		ret = pwm_apply_might_sleep(isa->pwm, &state);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "failed to apply initial PWM state\n");
-+	}
-+
-+	/*
-+	 * TODO: If device is using a clock, this property should return the
-+	 * value written to the HCTRL5 register by downstrem code. It likely
-+	 * needs to be converted into a meaningful duty cycle value, though
-+	 * unfortunately the exact conversion mechanism is unknown. If the
-+	 * device uses PWM, this property will return the correct duty cycle
-+	 * in nanoseconds.
-+	 */
-+	device_property_read_u32(dev, "imagis,duty-cycle-ns", &config->duty);
-+
-+	return 0;
-+}
-+
-+static int isa1200_probe(struct i2c_client *client)
-+{
-+	struct isa1200 *isa;
-+	struct device *dev = &client->dev;
-+	DECLARE_BITMAP(values, ISA1200_EN_PINS_MAX);
-+	u32 val;
-+	int ret;
-+
-+	isa = devm_kzalloc(dev, sizeof(*isa), GFP_KERNEL);
-+	if (!isa)
-+		return -ENOMEM;
-+
-+	isa->input = devm_input_allocate_device(dev);
-+	if (!isa->input)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, isa);
-+
-+	ret = isa1200_of_probe(client);
-+	if (ret)
-+		return ret;
-+
-+	isa->map = devm_regmap_init_i2c(client, &isa1200_regmap_config);
-+	if (IS_ERR(isa->map))
-+		return dev_err_probe(dev, PTR_ERR(isa->map),
-+				     "failed to initialize register map\n");
-+
-+	ret = clk_prepare_enable(isa->clk);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to enable clock\n");
-+
-+	isa->clk_on = true;
-+
-+	bitmap_fill(values, ISA1200_EN_PINS_MAX);
-+	gpiod_multi_set_value_cansleep(isa->enable_gpios, values);
-+
-+	ret = devm_add_action_or_reset(dev, isa1200_power_off, isa);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(200, 300);
-+
-+	/* Read a register so we know that regmap and I2C transport works */
-+	ret = regmap_read(isa->map, ISA1200_SCTRL, &val);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to read SCTRL\n");
-+
-+	ret = devm_work_autocancel(dev, &isa->play_work, isa1200_play_work);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to init work\n");
-+
-+	isa->input->name = "isa1200-haptic";
-+	isa->input->id.bustype = BUS_HOST;
-+	isa->input->dev.parent = dev;
-+	isa->input->close = isa1200_vibrator_close;
-+
-+	input_set_drvdata(isa->input, isa);
-+
-+	/* TODO: this hardware can likely support more than rumble */
-+	input_set_capability(isa->input, EV_FF, FF_RUMBLE);
-+
-+	ret = input_ff_create_memless(isa->input, NULL,
-+				      isa1200_vibrator_play_effect);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "couldn't create FF dev\n");
-+
-+	ret = input_register_device(isa->input);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "couldn't register input dev\n");
-+
-+	return ret;
-+}
-+
-+static int isa1200_suspend(struct device *dev)
-+{
-+	struct isa1200 *isa = dev_get_drvdata(dev);
-+
-+	cancel_work_sync(&isa->play_work);
-+
-+	guard(mutex)(&isa->input->mutex);
-+
-+	if (input_device_enabled(isa->input))
-+		if (isa->level)
-+			isa1200_stop(isa);
-+
-+	return 0;
-+}
-+
-+static int isa1200_resume(struct device *dev)
-+{
-+	struct isa1200 *isa = dev_get_drvdata(dev);
-+
-+	guard(mutex)(&isa->input->mutex);
-+
-+	if (input_device_enabled(isa->input))
-+		if (isa->level)
-+			isa1200_start(isa);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(isa1200_pm_ops, isa1200_suspend, isa1200_resume);
-+
-+static const struct of_device_id isa1200_of_match[] = {
-+	{ .compatible = "imagis,isa1200" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, isa1200_of_match);
-+
-+static struct i2c_driver isa1200_i2c_driver = {
-+	.driver = {
-+		.name = "isa1200",
-+		.of_match_table = isa1200_of_match,
-+		.pm = pm_sleep_ptr(&isa1200_pm_ops),
-+	},
-+	.probe = isa1200_probe,
-+};
-+module_i2c_driver(isa1200_i2c_driver);
-+
-+MODULE_AUTHOR("Linus Walleij <linusw@kernel.org>");
-+MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-+MODULE_DESCRIPTION("Imagis ISA1200 haptic feedback unit");
-+MODULE_LICENSE("GPL");
 -- 
-2.51.0
-
+With best wishes
+Dmitry
 
