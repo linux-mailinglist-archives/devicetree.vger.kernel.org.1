@@ -1,181 +1,173 @@
-Return-Path: <devicetree+bounces-293940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293942-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IMjkI6pr/Gn0PgAAu9opvQ
-	(envelope-from <devicetree+bounces-293940-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:38:34 +0200
+	id cIU6Fjxs/GmMPwAAu9opvQ
+	(envelope-from <devicetree+bounces-293942-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:41:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1EE34E6E2F
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:38:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02CA14E6ED6
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:40:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C42BB3017383
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 10:37:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E35723021D14
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 10:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A483EBF36;
-	Thu,  7 May 2026 10:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB813E928F;
+	Thu,  7 May 2026 10:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="e7qjP51o"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SSLrc/lN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB3B3EB7FA;
-	Thu,  7 May 2026 10:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15A93D525B;
+	Thu,  7 May 2026 10:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778150254; cv=none; b=Nalxsdc/oemVDtvxl5Zcnod2L84kSUZPZm61G2qy4r/xvAo1C+3WCA+ipapF07aoc8DZux4gzZBePq5yuOFBfGM0IRGgiZJuOsFH1pvBWi++CauJj/CeADUGpsJsGS24G0xDUcOVtojdfF7O56BgeTp3MvpXhwpnJ8pqr6/O/oI=
+	t=1778150314; cv=none; b=RtcpG0V+SfDQOUghjp22HSRKiOqsN/QI+YVJzIYd+LlGmYKR/IKtBrJx2igliR56KsDCc6ke8fr4N6p9eRDj94kThM9Rflu8+X1eNANwI5AolaZKx2bW6TPqpGxfuiQhgZZ8uUn5RVuKBYbVs0KcQ7KnoXS7x5stWHdmm2lniiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778150254; c=relaxed/simple;
-	bh=UcgnyaWra/zqeOQob/WjOC8W7jbkn7uDsfsNgx6yk+o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a2woVOWPHMraeWMPyTNdIQ8VdjWbk5esn7WSOSIKKAqkQZ+eKj7nXjfUaJTUzMhDq3uDkDxzwJhtipdFF7tkNGVaxhCH75nxVeruMaW98ehIhBW+s4UmfaRuJGLokXXc+qz51p1c+z8whgntkN0+a8L28P01bkrhayegqjIMW7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=e7qjP51o; arc=none smtp.client-ip=18.169.211.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1778150208;
-	bh=q9cTs1Fc6HOosuoCIVUk0fjsfQdYZlWk0msB6oMaeBI=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=e7qjP51oHFqRhM0QkFGh+yVFuQXuHYS/MZTI7rNgDX7WzyXFfBXvP1FVjaOJGfS0b
-	 8ZuHQGOub1EuFeNeSKPFcM95juzlpm//abi2r9IVvkFwVv552HhBgIG07S1yS6r8cv
-	 /K4pFKcnr2LRqFQizTAQ3INypZ2Wdjlq1xOv26Vs=
-X-QQ-mid: esmtpgz11t1778150206t5ab20be1
-X-QQ-Originating-IP: psN/mL0pLniw6V4U8YI/jaEoUJmf9vKAuNcqWpa3BiI=
-Received: from = ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 07 May 2026 18:36:43 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11507075083800382789
-EX-QQ-RecipientCnt: 20
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Thu, 07 May 2026 18:36:23 +0800
-Subject: [PATCH v5 4/4] riscv: dts: spacemit: Add PDMA controller node for
- K3 SoC
+	s=arc-20240116; t=1778150314; c=relaxed/simple;
+	bh=ydmTmsjfRJ0hth7ILhAiLaP0jMYvJoZgq1tSBlpEHq8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZyB/y3eF5z7KVUBxof27isj8XfLO6UhfJT4bliA7joPFrbOSNt1p+D4UkMjPl8UmLEcTfomylN1nLTH5R/mVa04UaVeEfja+MATwnu88fy32sK/U6vp6xHFdC64KR/PoBnSS1F2dQTKV92xSKnOdlRTw1q05mWth4/jrWFOVdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SSLrc/lN; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B7DFB664;
+	Thu,  7 May 2026 12:38:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1778150307;
+	bh=ydmTmsjfRJ0hth7ILhAiLaP0jMYvJoZgq1tSBlpEHq8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SSLrc/lNt577vc7KdRU5Lp7rvS19wjBj/Atp47wfhnbIQE29QoLJ9Z/c0K9jzOxMV
+	 P+0fOPK2eBeuitkxn2PxO76f2/ceMBkRx+EiwzLx0uHlfYzXQHv2INJ3XT+eJWAvEl
+	 2ToegnWLEYNhE3g++h6115a5yHLIzBGuC3nZoonk=
+Date: Thu, 7 May 2026 13:38:30 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/4] dt-bindings: display: renesas,rzg2l-du: Add RZ/T2H
+ and RZ/N2H support
+Message-ID: <20260507103830.GM1778786@killaraus.ideasonboard.com>
+References: <20260429170012.366537-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260429170012.366537-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260506195002.GA1778786@killaraus.ideasonboard.com>
+ <CA+V-a8u8=mfR0zDJRNMEjnjrzFVAkOrqtro05Zgd1JFqGRByKw@mail.gmail.com>
+ <TY3PR01MB1134676FA7479724BDCE40649863C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260507-k3-pdma-v5-4-6b9743038026@linux.spacemit.com>
-References: <20260507-k3-pdma-v5-0-6b9743038026@linux.spacemit.com>
-In-Reply-To: <20260507-k3-pdma-v5-0-6b9743038026@linux.spacemit.com>
-To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
- Guodong Xu <guodong@riscstar.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778150183; l=1492;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=UcgnyaWra/zqeOQob/WjOC8W7jbkn7uDsfsNgx6yk+o=;
- b=XOc0zZRuiXiBiZoN2eVYgNvG3zHP41yewOpJ76kQpJJtDH8H28Wf+lkzyIPnXBRVNdV2Q9uMT
- epKrIm+hSloDkYlvvqetMTtp6dk8M/N/b+DYHGRXVv0cxMCmuaovu3m
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MIebQsVGgJ8BS+4hYmiMYCQMGhxTjaYjN9XeuWqmA9lLr8hvfycLy2zG
-	zSYsrg6Yu2lejAIOD0BGXcsBDZ1zKwmNVqw1KodWzUEudn6J2tZhylzFy3JZrnP+8w2haTm
-	Nan/P7xKVSI6OnSWQUthlsinQzYzWKlINUGqFkBFvQYD1Bm/7+OFWJffblUuOdk61ZcJcA0
-	T1JzApaicm/DM0Wf+pol+BxCr8iQOj1aCBuQmDXHJnrS7VNU4vHx9C/Nwr/7QyFOydAxMQB
-	q644KaG37WsqWK39aSzhsEj9BwUQlp77V8kPJebGfAAWY4OW1mwjCeCYOo1f5R1tfRz0IgV
-	cPrtqMCchLMzAHSDrfzKYgpns8/aZAdRlCaA68NiE98s3Pz0ZO7YF0myzJ2tqNCHF0Rg66Z
-	s+cb7vKNkm2Xqe/ZmSHj5IiINyK8QzO4UeW0u/7CLFcK6opUPSlClMFaWtb+X4KrL7zQZaN
-	qtoVXAPGeCHF48ikq/PPT/vWA6VJ/1dXPM+9WSfRaMRWEKuw8gyfWhv1hErhkRcao1UUUcr
-	UcaR7I+ZpTX9fluZ8pKarkDpq4mVwB51Ajj9cWfeyRk6X8N/4PQjN08T1LJXkAHXW3NwGbl
-	9fXwn6a4/94xPWAFQzsgvv9MmuQXGxRgO9AsJPdILltZ+qU3v9yYWyQ7tBa15t+Bu1vzBua
-	bIC7+4YwIWG2kzXLsJSH6j2tY+V4pu8O2Pcay8kL7rXMyGO3U6IqUiudWmjbPcSX03DXlMu
-	JTj//pKuJOVU/uG9TVlMBEsxxEsygjgX+zQ/DD2Uxz1K/seCunmjh0JJ3+GwpcjAJErz5dn
-	vXNN6LuFWvnhsf4420U8SFoVQpbAGdqNR0ihPaZ67cZymGNNYgPy/KEry+GChjCKy+xLQsg
-	HASrImQX7iUH1J0gDS4dR9O9FcCVPLC5dimHC0aQbHuWSj8qh1ogB1OwDl/LKVSPI9zyJ6K
-	GwyzZof/AYs1Jq6y3RhiLMZx2qbS6k5tyYeJPXJ9h10CMEIXbaCwxyCHJzkyc3uts3+XDMo
-	izcvPDZuRzgDUbcMUA215mKoIE5ONFBdWKaatz6F+bQJCacYIX/QAdNq1CmBXSXIfam/lKl
-	ND3Pm7Wu4/FCsoDP9JpaFPxGTIMzW+ZRppe4MMB82VS2Kb1p/hz0okKmAwn7RPkpnt5KhD9
-	kBiF7bSygrlazL3roVKXLSOrKjfp1yCff76d
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: A1EE34E6E2F
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TY3PR01MB1134676FA7479724BDCE40649863C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+X-Rspamd-Queue-Id: 02CA14E6ED6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [4.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,glider.be,lists.freedesktop.org,vger.kernel.org,renesas.com,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-293942-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	R_DKIM_ALLOW(0.00)[ideasonboard.com:s=mail];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[spacemit.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293940-lists,devicetree=lfdr.de];
+	GREYLIST(0.00)[pass,meta];
 	RCPT_COUNT_TWELVE(0.00)[20];
+	DMARC_POLICY_ALLOW(0.00)[ideasonboard.com,none];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.030];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spacemit.com:email,linux.spacemit.com:mid,linux.spacemit.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,d4000000:email]
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:dkim,renesas.com:email,killaraus.ideasonboard.com:mid,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add the Peripheral DMA (PDMA) controller node for the SpacemiT K3 SoC.
-The PDMA controller provides general-purpose DMA capabilities for various
-peripheral devices across the system to offload CPU data transfers.
+On Thu, May 07, 2026 at 09:24:48AM +0000, Biju Das wrote:
+> On 06 May 2026 20:58, Lad, Prabhakar wrote:
+> > On Wed, May 6, 2026 at 8:50 PM Laurent Pinchart wrote:
+> > > On Wed, Apr 29, 2026 at 06:00:09PM +0100, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Document the Display Unit (DU) support for the RZ/T2H and RZ/N2H SoCs.
+> > > >
+> > > > The DU block on RZ/T2H is functionally equivalent to the RZ/G2UL DU
+> > > > and supports the DPI interface, but includes SoC-specific register differences.
+> > > > Add a dedicated compatible string to represent this variant.
+> > > >
+> > > > As the DU implementation on RZ/N2H matches RZ/T2H, describe it using
+> > > > an RZ/N2H specific compatible string with the RZ/T2H compatible as fallback.
+> > > >
+> > > > Unlike other DU variants which use a multi-port model, the RZ/T2H
+> > > > and RZ/N2H DU has a single output and is modelled using a single
+> > > > port node with one endpoint. Add a port property to support this and
+> > > > update the allOf constraints accordingly.
+> > >
+> > > Wouldn't it be simpler to always have a "ports" node, even for
+> > > variants with a single port ?
+> > >
+> > I agree that, from a binding perspective, always having a "ports" node keeps things simpler and
+> > consistent. Biju suggested this change based on earlier feedback for the RZ/G3E series.
+> 
+> From G3E feedback, I got the impression that going forward all future SoCs needs to have
+> single port and multiple endpoints. That is the reason for suggesting port for new SoCs.
 
-Unlike the previous K1 SoC, where some DMA masters had memory addressing
-limitations (e.g. restricted to the 0-4GB space) requiring a dedicated dma-bus
-with dma-ranges to restrict memory allocations, the K3 DMA masters have
-full memory addressing capabilities. Therefore, the PDMA node is now
-instantiated directly under the main soc bus.
+Right, let's clarify that.
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- arch/riscv/boot/dts/spacemit/k3.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+TL;DR: it depends on the hardware architecture (what a surprise :-))
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index a3a8ceddabec..cd321975fc18 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -438,6 +438,17 @@ soc: soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		pdma: dma-controller@d4000000 {
-+			compatible = "spacemit,k3-pdma";
-+			reg = <0x0 0xd4000000 0x0 0x4000>;
-+			clocks = <&syscon_apmu CLK_APMU_DMA>;
-+			resets = <&syscon_apmu RESET_APMU_DMA>;
-+			interrupts = <72 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-channels = <16>;
-+			#dma-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k3-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
+When reviewing the G3E, I noticed that the LCDC has a single output that
+is connected to one or multiple encoders, depending on the SoC. I think
+this should be modeled in DT with a single port.
+
+Note that this does not preclude using a "ports" node, containing a
+single "port@0". If you're confident enough that no future generation
+will require multiple ports, then it makes sense to standardize on a
+single "port" node and no "ports". If, on the other hand, you think that
+some SoCs would have multiple ports, then using a top-level "ports" node
+unconditionally would lead to simpler bindings.
+
+I'll let you all decide what you think is the most suitable approach.
 
 -- 
-2.54.0
+Regards,
 
+Laurent Pinchart
 
