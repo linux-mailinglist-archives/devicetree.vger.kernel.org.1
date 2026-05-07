@@ -1,181 +1,167 @@
-Return-Path: <devicetree+bounces-293974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKTeJeh7/GkwQgAAu9opvQ
-	(envelope-from <devicetree+bounces-293974-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:47:52 +0200
+	id 4FkLOK94/Gm3QQAAu9opvQ
+	(envelope-from <devicetree+bounces-293963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:34:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F764E7B3C
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 407914E787F
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CCE08305B280
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 11:45:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 517AF30075FC
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 11:34:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A689D3CFF67;
-	Thu,  7 May 2026 11:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B8793DA5D7;
+	Thu,  7 May 2026 11:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="OA82KaYH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RMxFMFEw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15591.qiye.163.com (mail-m15591.qiye.163.com [101.71.155.91])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42DB537CD40;
-	Thu,  7 May 2026 11:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778154345; cv=none; b=SPzxE0/ajKrsP8z90kyP+UShNrWU1FVV0k+QLHDRdxrxY36+OQpuDkCqfkYzHF94Sn9yYK/63zaYR11DcnC1bg/VtFPEIG91NKeRtXJi+DDvtr4EYh/QnlU8RvjdZv5NG7DnKnrkvZGts30H3LBd+9TgkbG2ITgB26qOcl27GSU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778154345; c=relaxed/simple;
-	bh=qJRDNxqulOOjTfZwNDc0lpYpJmcZay6BFTBw39rzY8Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AKqQ3dQoubF0oREmONixkhQD6BsktCKUH506zYvhKwZeDuybIvaDaqDDER3B40BvqHfBZjP5jjfRsGK80VW7THB4cO4WKEgATCKlzamunOKbDdB141XB/qn1Wjio9U5aygqGuCg7PoQr+GjlMrzYcFWq5gU1MXa5w5rt4X4fsZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=OA82KaYH; arc=none smtp.client-ip=101.71.155.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3d7b63a84;
-	Thu, 7 May 2026 19:30:12 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: hjc@rock-chips.com,
-	heiko@sntech.de,
-	andy.yan@rock-chips.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	nicolas.frattaroli@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	sebastian.reichel@collabora.com,
-	dmitry.baryshkov@oss.qualcomm.com,
-	luca.ceresoli@bootlin.com,
-	dianders@chromium.org,
-	m.szyprowski@samsung.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v3 10/10] drm/rockchip: analogix_dp: Add support for RK3576
-Date: Thu,  7 May 2026 19:29:48 +0800
-Message-Id: <20260507112948.1115003-11-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260507112948.1115003-1-damon.ding@rock-chips.com>
-References: <20260507112948.1115003-1-damon.ding@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F5C3D34A9
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 11:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778153642; cv=pass; b=FDV5W0lmm9onwXouwhqGpKo2D3cu3uxs+5UwE1NWOBj+9M5aJAHYVdxoD6WS88EXOLEP14UyrX/7qzoWefsAlPDhocWDFUNup3UVycbY6BHMim9FxP3W+PdgfI46JIcOxsuL94twDnQXwoxsKQ6PdfehuwH5V2UzCh2dsTTJc7I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778153642; c=relaxed/simple;
+	bh=Q20QDhJ+CkHOOmRsGydUBGFCEJTPn38DBqlv7TfBNIw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tr/97Lzagw5BhpQMlvLvKZKnKjoU/R7O48o9rteN2UsuIfdS7xQkUjFf1+ll7+1Gpyr+Hsv0/jPLeE3oT4jskCH06BKBruPvhmRYJmxWIzcUD3vk86LYJ7lFt4CKb/1sfg1ovfouKdXOPMygAnnuQsqbzid1eKmED/AqKtRuzek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RMxFMFEw; arc=pass smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5a865004748so2089659e87.0
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 04:34:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778153639; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HWEGwXhJwmWPDBowt0MBDtcfUGGHun291izsMZkNwWjLTPQ0/mC2F+C9eXvO227r1j
+         hvGRGTwTX99n3peNLgCn3MhuYau0Tep6fFa8PxUPuVIZAUA6Ny1GuhhqO3zm2RSxyhSN
+         /IEb8qMWYX3EDY0YhDuY9xoVgwndpsgN11HG7Rlpg9R4T3MxZhpJqf4Ms/+Jz2fT5uOp
+         U3/gCfOuEykFky4ToBGjFO6398R+xyVjNMgGSFNcHy7Ys6aEdgweodB9Ot454UjDL+iH
+         4jj49DvA7dG7iz9/Ed3gbTj/xngMV5FeVhBg/eremzOBYfQNgTibRLy68BpzQL/4QJqy
+         5PIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Kp9wAzzJsJF4EUW0K6lSQvm+ZX1IeOPyDmz+JSnwJb8=;
+        fh=jhWy4FnL3WMBs6Cs0WX9+AO/LUJgYsioV9aOVN2RoFk=;
+        b=OLOhXWDmEgt0S3gB2JSXxBvcMxtt7JCzY7b1NlI5cl4O74/2e61VNTD+/Ox1Z9Rfnc
+         ixTPWOs06Ys/Tf2OE7jJcoEsTuw1tUQ1B5gs+/GOKA/r5mcXXHCnfkYyVYhIRO5/BqYm
+         aZcjg+p3Ewp1/MpJxTeWHVYHk15Tby0u6zkyj5uM66iaPcee5OqkQXdrAvBaeBAeAFo3
+         3l5dQzRLPqk9okpmfjd00WQR1hvl0dMaC/h9rxsgRQdcg1nwLs3sZFCR7fty856Syiez
+         YN1wClR64rmBJpQCIdPnidOCuN4+AigO90obSBz/Scn7jVh3A7Ekr5cURgLgbPXLZgMd
+         GOZw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778153639; x=1778758439; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kp9wAzzJsJF4EUW0K6lSQvm+ZX1IeOPyDmz+JSnwJb8=;
+        b=RMxFMFEw+fBfSK2LX/lGJYUYSq+p+xhFLxp9tzwnHgnwORRh6BDdhNRtX8S84/KrYu
+         YNNJDpaRXum/UmdOmZH4UwG+mvB19sgHknjTjKu1NTE5BP1LwQiHMdceLDPM9OF9aDPc
+         hBKK5z+xMpn7PV4lutackvCZ2e7z9BLtr+lleE3CWOz0/22Jz8nZG5DqeoTR6UlpxOxp
+         fhiZPE8TbspiBc7gl/kDVloBzhpsrI7t43iIOoNgbswrZEBIsYBh7NUmGvLRcCO+17fw
+         oJW8BKIoKsSfQfd0yt+vzHVXZtk2Hbhns6xYAsloccMFWUt2bKvCC4WzDce559JPVLv0
+         NQQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778153639; x=1778758439;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Kp9wAzzJsJF4EUW0K6lSQvm+ZX1IeOPyDmz+JSnwJb8=;
+        b=WXOk0eV2TSJ5q8nXitAqjY6vxtjexeiIsSlJFSzVWhktqCCzMDlzqMu9pu7wYP23Ki
+         M3XNsKBQ6IU3z/L2e0R7cp36YyS4J9inV8fMfrjV0GFUVY/NDZEoJLMAjGGsu+PyPTs+
+         tiKPKWaYWGu3gcf/BjNlxMbRCEW3HUf1DmNfsPCKYLi7A7g9yF3RHsYrAKkYZ9+s1HDL
+         j46OuFUDSUJZg4PnmIcBDyOJarku2Sl870KArhn05+9RC9xVc2uGWE2kLrYJBNlpWdtK
+         j36ARUdQDJtwGnECVMlSRz/WoIc23ezxNE3cQxE5zOEQqnYewfbJMJb+wDuAUmUB4/3g
+         tcaA==
+X-Forwarded-Encrypted: i=1; AFNElJ/jgydrm9API4SsKxrJa/WyAE3m1Jo42CUT00J1MvtUTQxVkOG8suCBe6+SYqyymQvBbgrZeOeONCPR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8DSd/7qPG7y4zCLF2KrqRVdUsZXZGuXsxSJoJgyBcXwspLYnX
+	i/O0tPh1f0PJgya000xSQlqeV7l0ERVUcPsOcLklsPOUvB5p9yOEhQQE8VTkYRoFaom05I0XxeP
+	/wQAz0r06E3p7cGTSI6WAsjO9eCenoWE=
+X-Gm-Gg: AeBDievCWylM322zzgDE71EkmJtrNfs0JxM1519Cfh4DBRVUP61tm3pG+lPIhfVmnJA
+	9UvuRsv8cO75g6BnnPM6ZvpBmxEgBW/hPyMRZ3FwTtUQzOwFtZk2Cr3iZxFpFlZ4HZlBcRZL4ky
+	lOYunt/nO9+xj7jXoR9pchtUdxPAEcqHAaXxtZ1dEpnTZXh290iEhzdsySnw1lS4F1vIEqXweqc
+	3mMBg7KjNt0CKZ3PfkXfJhIR+wWzmQ9m0VcBFDSDDUAnWFcMul6KF7Yp6JqNOsogoiICNI3bvc6
+	PaUyuPv1+f12eiNwti0yixI/uvEQ2+EZklDxsBTjcAw5iRXmS3UxRgfk3yny9TToK6a1brf3JPY
+	cQRNOalehTEXkPuKs+DSW4mgxqH2u
+X-Received: by 2002:a05:6512:114f:b0:5a8:6cd7:3203 with SMTP id
+ 2adb3069b0e04-5a899b90511mr884078e87.3.1778153638701; Thu, 07 May 2026
+ 04:33:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e0233d67a03a3kunm4d1cbcd72742
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDHxhPVh5IS0xCGB1CTR9KTVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=OA82KaYHjMb7gMfrthk4mC9R/T7KFhGa5jRiZA7GYE5vmt/OsgzTLRm6b9iSpTxF9mSog+aR+SjBEanTq7X+B06xHTnAth8M6lPvXsDNbJ3sDKzSWMt/8n3Fc6M+4bARh+mMCHcxsLraH1yoTFSjdBskCiU9QBSZaxmj+H/HH94=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=sO+oTKqw2ne9EcS/rAtbJzqhHraiHwvETBiNmNIcMKw=;
-	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: F1F764E7B3C
+References: <20260310002040.417424-1-festevam@gmail.com> <CAOMZO5DFWYUPN9sPzBr-W7fy8ZbrXP7u1sx=HrmUAQVCLrsdjQ@mail.gmail.com>
+ <066e3058-5ba8-4695-9f45-523c7d43ab76@roeck-us.net> <5466403.V25eIC5XRa@phil>
+In-Reply-To: <5466403.V25eIC5XRa@phil>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 7 May 2026 08:33:47 -0300
+X-Gm-Features: AVHnY4KXTC7TNhYmV-3I_G0S9oGAnT32r1vGc65wUrsc3DDxUO6SVYL40eT0UMM
+Message-ID: <CAOMZO5AqJJVPKPRXGXEZC_b-rbmuV-futX9efKw+wSUGN=R3Dg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: watchdog: rockchip: Add RV1103B compatible
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Guenter Roeck <linux@roeck-us.net>, wim@linux-watchdog.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabio Estevam <festevam@nabladev.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 407914E787F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293974-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-293963-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,bootlin.com:email,60hz:email]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sntech.de:email]
 X-Rspamd-Action: no action
 
-RK3576 integrates the Analogix eDP 1.3 TX controller IP and the HDMI/eDP
-TX Combo PHY based on a Samsung IP block - both of which are the same as
-those on RK3588.
+Hi Heiko,
 
-The patch currently adds only the basic support, specifically RGB output
-up to 4K@60Hz, without the tests for audio, PSR and other eDP 1.3 specific
-features.
+On Thu, May 7, 2026 at 8:22=E2=80=AFAM Heiko Stuebner <heiko@sntech.de> wro=
+te:
 
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> seems to have changed, as it was applied as
+>   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.gi=
+t/commit/?h=3Dwatchdog-next&id=3D882fc25d868fbd0d71751df4df49c4b55e3fa230
+>
+> @Fabio, I guess you can send that rv1103b watchdog devicetree
+> node now.
 
----
+Thanks for the heads up.
 
-Changes in v2:
-- Split out a separate patch to enable the "hclk" clock.
-- Add Reviewed-by tag.
+I'll submit it soon.
 
-Changes in v3:
-- Add Reviewed-by tag.
----
- drivers/gpu/drm/rockchip/analogix_dp-rockchip.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-index a864bcf8200e..75706a2fdba8 100644
---- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-@@ -522,6 +522,14 @@ static const struct rockchip_dp_chip_data rk3288_dp[] = {
- 	{ /* sentinel */ }
- };
- 
-+static const struct rockchip_dp_chip_data rk3576_edp[] = {
-+	{
-+		.chip_type = RK3576_EDP,
-+		.reg = 0x27dc0000,
-+	},
-+	{ /* sentinel */ }
-+};
-+
- static const struct rockchip_dp_chip_data rk3588_edp[] = {
- 	{
- 		.edp_mode = GRF_REG_FIELD(0x0000, 0, 0),
-@@ -539,6 +547,7 @@ static const struct rockchip_dp_chip_data rk3588_edp[] = {
- static const struct of_device_id rockchip_dp_dt_ids[] = {
- 	{.compatible = "rockchip,rk3288-dp", .data = &rk3288_dp },
- 	{.compatible = "rockchip,rk3399-edp", .data = &rk3399_edp },
-+	{.compatible = "rockchip,rk3576-edp", .data = &rk3576_edp },
- 	{.compatible = "rockchip,rk3588-edp", .data = &rk3588_edp },
- 	{}
- };
--- 
-2.34.1
-
+Thanks
 
