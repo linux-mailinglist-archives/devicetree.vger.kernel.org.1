@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-294017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8L30DOSL/GleRAAAu9opvQ
-	(envelope-from <devicetree+bounces-294017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:56:04 +0200
+	id WOp6GmqM/GkjRQAAu9opvQ
+	(envelope-from <devicetree+bounces-294020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:58:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320234E8938
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:56:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B002E4E89C9
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B6433005300
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:56:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A73B5305247C
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:56:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC5E3F23A4;
-	Thu,  7 May 2026 12:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7C33F65FF;
+	Thu,  7 May 2026 12:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZprJQtb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcP4b0Ze"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 344093F20F4;
-	Thu,  7 May 2026 12:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3223F54DA;
+	Thu,  7 May 2026 12:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778158559; cv=none; b=Peu5ODVGm1nesY6NImwaoz+DYxNDH/pCUfU1MoKRPHXtIiXNXfvo/PiwfehwrgxMTphZlvGf/hb5puDidSne9PmOlDRWJn/9GMWkSnqsI6MZTs+0E66iYnF/x8DP5J71e6Fo0+/8x5H7PrHzvOrvasmKGAI2G/PDJSOXesb8vt4=
+	t=1778158562; cv=none; b=cD25xFEZMhMkGKAsJ+OBHCBTopytaQwT43aHfDwb5CjTXXYX3UaOHQYfnOG6j7oSQstcCMegSKV2z58J39TT1cy2P29uBJsOVbZSbFaVveg00GQzKuVzRG78DQGwfCOENIBwC7YynIV7G1MnH2nk01y9xmpVoawc6jEfIUR3/Rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778158559; c=relaxed/simple;
-	bh=6c96IjMHaMre41xBr3FzTv5pSHvU6UTiqN3k4zC2F0A=;
+	s=arc-20240116; t=1778158562; c=relaxed/simple;
+	bh=AUUR2mNpd4MZjYN5NiaEO2JmuYp8gYDD2xKReT+S1UA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g2l2w4/H2LYknu+tXLa+f6W2EC3LLm5UnoFIlJCoxqOQ774U2UlbWl4cl5KsPaMDiJ4sPuulk77B294D5jdIH1FK14Sa0nmWK3iWy6XyBn8TIVbX7I4Q24t+zWLj4GG980QhHBYDH0i8q2pQ3yZcMC/3oslSEjXx5QrTMvGDdqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZprJQtb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1CBDC4AF52;
-	Thu,  7 May 2026 12:55:58 +0000 (UTC)
+	 MIME-Version; b=MmywWEIc04exhDHVE7iW33yxMU5uczxoSWlqkowQ6RzU6enGZDSJYamWs65hE9mtQTEdYUss9qkwAZVmzW3Dl5n9AgGtdN8tLZEwsw0g7Xd8/nCdNjDzkYrG9BOf+BPbBjZ70Y3Mkg5ad+Da2v6Fc7/yXYWrJVdZ2UttbEtq9uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcP4b0Ze; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC137C4E677;
+	Thu,  7 May 2026 12:56:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778158559;
-	bh=6c96IjMHaMre41xBr3FzTv5pSHvU6UTiqN3k4zC2F0A=;
+	s=k20201202; t=1778158561;
+	bh=AUUR2mNpd4MZjYN5NiaEO2JmuYp8gYDD2xKReT+S1UA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MZprJQtbEL/qKSJ+blHqLXn59EDJTINi2PRv8HZAJjZMGROUPoGzPTJmGlmAGFX3e
-	 PTDLW7Q3wARN/9UIHA87bU4LvS35WvweNlTSOV2N4QyUwpyKMoCcmXWDLViTxOkrz9
-	 1ErRvSfAbQb8+DlgtOg1hu8FQgUlVMfBT9OgirBt9ZE9U+bZHUQg7yH4iU/6xQ6Mrk
-	 M8yP6TCze5NN4CY5los0Up5KFHtKKV/CFilK3ntIJP+T2EcaOFKulLZIKLQ7BlB+Zv
-	 x8koVqu2iX8ZGsOLRudsFodKQ8ae5cJKJZNwLrVwLhfC8/6GQXaWAp7ZmBAuwZVU2v
-	 vRExc3FIx62kQ==
+	b=pcP4b0Zejwv6+2w4K8LhMWHs1WayrOKmpUcXWogyuQ37pqbQjEvTOJv8x6G1mjg9b
+	 WmhztKpBLykQBURvS4YOZ9EOt5mL3KN23FT5nHXrVEksxtDJreYYNfZy76aac6rT93
+	 BYSfVnTTr0t6qRXsvGt51MH9a/0D+71csej3pxH5Mq81FoytStn3kguepZDW93+Qf4
+	 A3aRJ8BnmiDFoPnmsF6kFfi5FussTwOPbMyc8+pEkHonevtKcx9guWboukBggiBSY1
+	 5+corEULaX2Ncun+bh9bZvVM8jQYJscFPUFeN6vf6GtrLHa1cYH0IVR6hUxEqVvYRl
+	 mWORoIq/EqJZA==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wKyGi-00000000d7d-23jP;
-	Thu, 07 May 2026 12:55:56 +0000
+	id 1wKyGj-00000000d7d-0Tmb;
+	Thu, 07 May 2026 12:55:57 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-acpi@vger.kernel.org,
@@ -97,9 +97,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH 03/16] dt-bindings: timer: arm,arch_timer: Fix requirements for interrupt description
-Date: Thu,  7 May 2026 13:55:31 +0100
-Message-ID: <20260507125544.2903406-4-maz@kernel.org>
+Subject: [PATCH 04/16] arm64: dts: allwinner: Add EL2 virtual timer interrupt
+Date: Thu,  7 May 2026 13:55:32 +0100
+Message-ID: <20260507125544.2903406-5-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260507125544.2903406-1-maz@kernel.org>
 References: <20260507125544.2903406-1-maz@kernel.org>
@@ -115,7 +115,7 @@ X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.
  heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: 320234E8938
+X-Rspamd-Queue-Id: B002E4E89C9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -133,7 +133,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[46];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-294017-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294020-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -143,74 +143,32 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-The arm,arch_timer DT binding is extremely imprecise in describing
-the requirements for interrupts.
-
-Follow the architecture by making it explicit that:
-- the EL1 secure timer irq is required if EL3 is implemented
-- the EL1 physical timer irq is always required
-- the EL1 virtual timer irq is always required
-- the EL2 physical timer irq is required if EL2 is implemented
-- the EL2 virtual timer irq is required if FEAT_VHE is implemented
-
-The consequence of the above is that the minimum number of interrupts
-to be described is 2, and not 1.
-
-Finally, clean up the description which made the assumption that
-the timers are plugged into a GIC (unfortunately, that's not always
-true), drop the MMIO nonsense that has long be moved to a separate
-binding, and use the architectural terminology to describe the various
-interrupts.
+The ARMv8.2 based CPUs used in the A523 SoC (and derivatives)
+are missing the EL2 virtual timer interrupt. Add it.
 
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- .../bindings/timer/arm,arch_timer.yaml        | 21 +++++++------------
- 1 file changed, 8 insertions(+), 13 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-index c5fc3b6c8bd0b..c65e48a155ab6 100644
---- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-+++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-@@ -10,13 +10,8 @@ maintainers:
-   - Marc Zyngier <marc.zyngier@arm.com>
-   - Mark Rutland <mark.rutland@arm.com>
- description: |+
--  ARM cores may have a per-core architected timer, which provides per-cpu timers,
--  or a memory mapped architected timer, which provides up to 8 frames with a
--  physical and optional virtual timer per frame.
--
--  The per-core architected timer is attached to a GIC to deliver its
--  per-processor interrupts via PPIs. The memory mapped timer is attached to a GIC
--  to deliver its interrupts via SPIs.
-+  The per-core architected timer is expected to deliver per-CPU interrupts
-+  (commonly to a GIC to deliver its per-processor interrupts as PPIs).
+diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+index 5afa8d92acbfb..d3c47966e8fc8 100644
+--- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+@@ -101,7 +101,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
  
- properties:
-   compatible:
-@@ -33,13 +28,13 @@ properties:
-           - const: arm,armv7-timer
- 
-   interrupts:
--    minItems: 1
-+    minItems: 2
-     items:
--      - description: secure timer irq
--      - description: non-secure timer irq
--      - description: virtual timer irq
--      - description: hypervisor timer irq
--      - description: hypervisor virtual timer irq
-+      - description: EL1 secure physical timer irq, if EL3 is implemented
-+      - description: EL1 non-secure physical timer irq
-+      - description: EL1 virtual timer irq
-+      - description: EL2 physical timer irq, if EL2 is implemented
-+      - description: EL2 virtual timer irq, if FEAT_VHE is implemented
- 
-   interrupt-names:
-     oneOf:
+ 	soc {
 -- 
 2.47.3
 
