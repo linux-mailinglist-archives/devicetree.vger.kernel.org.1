@@ -1,67 +1,75 @@
-Return-Path: <devicetree+bounces-294168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294169-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFfdE9/K/GmPTwAAu9opvQ
-	(envelope-from <devicetree+bounces-294168-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 19:24:47 +0200
+	id AMn9LgXL/GmPTwAAu9opvQ
+	(envelope-from <devicetree+bounces-294169-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 19:25:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD234ECD59
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 19:24:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF3C4ECD8D
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 19:25:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 02AC3300D4F4
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 17:24:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3B7F301FA5B
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 17:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE04426690;
-	Thu,  7 May 2026 17:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2018421F06;
+	Thu,  7 May 2026 17:25:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CpwAj9kc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VICY621r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08BF02E1F02;
-	Thu,  7 May 2026 17:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DC3D3F0755;
+	Thu,  7 May 2026 17:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778174684; cv=none; b=PcNXXUMtHR09qFQOh1F6gdc3YsszPVT64kMb1ND8RxXWtP2kn02mFrPGptyxVRZCC4vvBWFaAMx7ASpKDMo1mQ4XVodUa/ySnsncM4I4ahaTkRB7Ck1h53SGdVAl2Mpv2POSpYWE3IIwevzlUcd/KFdNl1VA7sEsS4BRnZ6/7Dw=
+	t=1778174717; cv=none; b=QF3yYtR3yMabVn2maHIyHMSttLnXdm5nazcd2kQVFjTvgdX64qUdCN6XBz6syYc6at3OMCXDtiETCK8kIeuVmelk2IDByulZE9Klfs9g9MBuPsP5hHfYJzI2snBKfHOc6a/ILqAxcAXQaEQG+L0ybmQoQ24ec2zqzUwr2dULFms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778174684; c=relaxed/simple;
-	bh=P2uFCtkUNsia+m6fpAEh1XqkuX3NtaugGNibOKloo4o=;
+	s=arc-20240116; t=1778174717; c=relaxed/simple;
+	bh=K8jMkHMZxPz+n1rEKyGtdtouBs+Nm+NdaoS8omC6jIQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i3NtgOkJk35BmiVe49hb0YTWIX3T0v0BhrlV++hv6GQUM+HKed945BosMu3d249NKQl0SI2Mz8gNjtDUcZLKaP5lZ2Mf/JseNuEqUnvRDxF1pGYrkMPWbvNwWz9MqMLlbFHLN7s2/MCGCLC2ao7iGiYr5EWJ6QVQgnCthBCGHFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CpwAj9kc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F400C2BCB2;
-	Thu,  7 May 2026 17:24:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jJAQSk3v+Za6y1CuzBTwvn6BzkE2ufzcWV1g19lVWFWo43m550xz1XX50n76rEzPBh7ByjZeISP3aKTJ8wFF7tLGmA0tuWyngmKKePcHoh5tuaOPPwl5vUko6Js2+bDgF0YQxPbxQB9zkvUjAW6IItnbBoBexjXe8AIBSLdeCbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VICY621r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C12C2BCB2;
+	Thu,  7 May 2026 17:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778174683;
-	bh=P2uFCtkUNsia+m6fpAEh1XqkuX3NtaugGNibOKloo4o=;
+	s=k20201202; t=1778174716;
+	bh=K8jMkHMZxPz+n1rEKyGtdtouBs+Nm+NdaoS8omC6jIQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CpwAj9kc8UHoERSQHR0XSVqory3ohRb6FqTA8C81qrIvv/U+4tAaRBmUd5plpauW6
-	 O2+JfcJ/rrfXrnYcdDnCt4nXNbQ7v8EyO5n7h3FzT2LaOIxaF7axtWgiCEMU+q6X3A
-	 S+SXGhN92RGwwBvB1L4ZrstRVtXNn95gG9/V78z9EnqRy/Bkbjcn9Fbb7RhN/K1eUs
-	 LPu0e+wfwM7aZMG9k9BAxL/mgkZkFnHfloGEYsd48Oj1b3Pct2pPAN9xwN8aMIBJbH
-	 ZAIPpiwJixuexPRRoCx0FKTdHCo8iikc2sMAFS8fY6VLthtXyBd5rRsqg/1CTTB/sd
-	 TsYOru+1Mv6yw==
-Date: Thu, 7 May 2026 18:24:39 +0100
+	b=VICY621rCMrKv4q8tZ4Dp7bUJmDfVpmYwpJRM0JZDqxdTrDmJ2w7+i2esPqt3jj62
+	 X0jsR/OvG2a7hnqfuz1hLShZZGtRlPSzl+9IsCw9LQDdgsroApmKczyneeopzhxsPk
+	 FP2qbA+lFSAfhlOOHkihNle4ZMqFsyjuqlgBe1CyBXhl41/AxUOIGsaGXPuLkg7Q/3
+	 dh8RI6LUP8wnYPU0B1ucMSImCParqYxH0mjZTPGGaQU7HNetCTlZhcQmMlWVVXkVNd
+	 GzoyB0zZwmIlva79rldI4ZxPTvY/m3csktHtWe8cGIgpJ5HiN4QV+GrbZGoF0YBQ9y
+	 lcxSQTRfg1FzA==
+Date: Thu, 7 May 2026 18:25:09 +0100
 From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- compatible string for A9
-Message-ID: <20260507-juice-helpless-b04e31e10778@spud>
-References: <20260507-a9-pinctrl-v2-0-49774feff2ef@amlogic.com>
- <20260507-a9-pinctrl-v2-1-49774feff2ef@amlogic.com>
+	linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
+	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+	Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [PATCH 08/12] dt-bindings: usb: vialab,vl817: allow ports
+ property
+Message-ID: <20260507-escalator-important-0105ccd73bd6@spud>
+References: <20260507081710.4090814-1-zhengxingda@iscas.ac.cn>
+ <20260507081710.4090814-9-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,10 +77,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hcasBY/b5pRydqvZ"
+	protocol="application/pgp-signature"; boundary="nZtZj26UQ1XQEAQt"
 Content-Disposition: inline
-In-Reply-To: <20260507-a9-pinctrl-v2-1-49774feff2ef@amlogic.com>
-X-Rspamd-Queue-Id: 0CD234ECD59
+In-Reply-To: <20260507081710.4090814-9-zhengxingda@iscas.ac.cn>
+X-Rspamd-Queue-Id: 0CF3C4ECD8D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -82,17 +90,17 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294168-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294169-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com,lists.infradead.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[kernel.org,redhat.com,baylibre.com,linaro.org,linuxfoundation.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,lists.infradead.org,vger.kernel.org,icenowy.me,gmail.com,disroot.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -100,30 +108,30 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
---hcasBY/b5pRydqvZ
+--nZtZj26UQ1XQEAQt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---hcasBY/b5pRydqvZ
+--nZtZj26UQ1XQEAQt
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafzK1wAKCRB4tDGHoIJi
-0lmTAPj2IuWZOzkdHyd1WG3b7KQWEm0yZDOhSvUgbOssnp7HAQCGYO2izgbTLuuW
-g6S0C7Z2i/91Jf5RCru9LETDYWvfCw==
-=CbFS
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafzK9AAKCRB4tDGHoIJi
+0rndAQDJ23LQ9WQwWM/XfJKivc5KbhVY0JCID0/Kp8ObE+DdlAEApUj38tg4kRpa
+DHm/ajsN2EwgPzKWoFFe1mv24DwCsgw=
+=dqpO
 -----END PGP SIGNATURE-----
 
---hcasBY/b5pRydqvZ--
+--nZtZj26UQ1XQEAQt--
 
