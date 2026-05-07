@@ -1,370 +1,208 @@
-Return-Path: <devicetree+bounces-293780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293746-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIItBzY2/Gl2MwAAu9opvQ
-	(envelope-from <devicetree+bounces-293780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:50:30 +0200
+	id GPDzK3ov/GmNMgAAu9opvQ
+	(envelope-from <devicetree+bounces-293746-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:21:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1614E4E3B63
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:50:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11E664E361C
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CE4003007AE7
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:49:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B9BBF30293CA
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E825433F8C5;
-	Thu,  7 May 2026 06:49:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="OmfHirpD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D90233A6F1;
+	Thu,  7 May 2026 06:21:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2102.outbound.protection.partner.outlook.cn [139.219.146.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27707340A59;
-	Thu,  7 May 2026 06:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778136555; cv=none; b=Fe2SLU76LhZ4piZJddrBz41OJOjCo69rbhro0itMqKTnEQIzZlMw4SiAMLM08c2uRtI8xbgY3XE6qEoU+W9MYrqv68iIztzDs/nn4DfcFWAWPcYuF8MaTF1cc9JrK+ONfMnL40N1doAGHaQn62gRNWWFmFAPtvMbELRqq6qseBk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778136555; c=relaxed/simple;
-	bh=3nTgqGDxNcTjXFm+5UlyF/IHfwVM+eclkZyqReDJG+0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hbF6mRQikbY6bAhZuwOhItNQfWSKyl9vcvNzvoEJ6friULdTPm6Tu93+foF7LB1+agJj/5FHOf9/x2nKghdsTZYD3h+ztvBmifQykhL2j33gMhGJdAYoaOtnTZHVO0fprOYlaHWBD4f9cSCWNmiyFtz/hD2o9egxUufEflOZ3cY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=OmfHirpD; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Tm52jc2RxHGND87DERITHVmtx/vlXa+LykfPcBly4ak=; b=OmfHirpDm7jL0+ITFDLPNzb69t
-	tB1rf99X3ftZuBZBPKolIGgqMP0b6Bo+FLppvav1OrRwYKFl6sAPUScNc5GcTsXeS7+GQ8iC33Kwe
-	Nge/E8MLQy41YOB0RaC4AajkPNN8ZepmKObd9AMnuTZ9mJiY6V0BF29VzKUVw/HQQzgSue0IoVCsp
-	S8US5sbDZt7KFlq8ZPijBMy1J8601+DiOHP2AXkGe24YxxprCr9bye8Z5QKAJRZeHg6APwQ5PeXZC
-	XMMjJ8HCrir30ApufUIu1Pa9NKRQ+KQEPqiCpBVoWtWm+ZV/qgK4CmrsvXdWzHVNc4xOGEdMV5zDG
-	5S+6qgOg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:40514 helo=localhost.localdomain)
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1wKs6Y-0000000AGWs-3xYq;
-	Thu, 07 May 2026 08:21:02 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH 3/3] arm64: dts: freescale: imx{91,93}-phycore-som: Improve USDHC signals
-Date: Thu,  7 May 2026 08:20:58 +0200
-Message-Id: <20260507062058.1711292-3-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260507062058.1711292-1-primoz.fiser@norik.com>
-References: <20260507062058.1711292-1-primoz.fiser@norik.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F613290A5;
+	Thu,  7 May 2026 06:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.102
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778134875; cv=fail; b=f9YNSBbFlw6I4yRAerW5QVtdoCgm5yoTAuJAYTuxJnaILYdQaZoLrU4OUF4fI8aS2fuZLHOy7qua0pcOEZChphrm6ICMjRwQ8pot8WSk5fiGkpaZWTufyRYWhHMceY8hqyt5kOkpGEww+DZdBCWJzCbk4AqhJ1OocaSeT1ld9PQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778134875; c=relaxed/simple;
+	bh=WZwXK/2s+Z7LlX94hlXeMYL3Ykx69T69b/SbB5uK/RA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=jJH+SB5Jz57JFDPsMl0dAAGhej/3fHS6UnhffcHBiiZeZsP2TKt0OTfRFKGWVsDVAtGObcPcfdoxOXkzkMgCmXxVJu3GNiiLTMI3mcr/R9BikR49OpEPanYlyMNOrycXUqSA8Mo6tJahEqHEQuWaRW2o4iQ92y2+3ECGXO/4XRI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eyEiBECynlyO2v11qdLD489oa4xWWsPxTFw8wycSHCabtdktSreAC+W/7xgoe5SIoogMZjbuYAuFT9oW/AW4/HFmjJ/twgUte9RHvfZB/nNdUbdQwM+EJnNduymVGG6iuINpRTj87927xMVBifNSxTgtlCUjCkeEdGGOPnWdrlIKkoaKu7HTPZd5+GLqaPFOv+k49M3OLIIj8IT7Hx8XcMG5Bjl6TLVJKgiKGoGf1vDX3z4GeSbQYlB5/22epmDapdDU/t3FhF7gnMLS3yBLEyZZd+cGIOCsvcL4sJ0ax+AMVWuDx+M4BOc9AriopF+T3CMSOrliheNFXXSkuISiaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sZ/532IYXlc85i4dZtMhqmnZg7K0maUBx8jLRCOdVns=;
+ b=Sl8uA/3E1v4h2GXd2qCjqxnC91g+SkSJ3rmDA+b2e6m4ZX1tIIrRsm5wfM8VBCPHOkTaSmiBF34QvD29InUERwEDcnoxpXHC/e5i3PKLjTMl0OAq1hgsJNbz6xTPxQjJziXHSqOaToBvkGzSDO9n0rZvN1Vu7TBMtI4QMSdU4oR5S4NWbwclcSHcfy+1jf/PcUERI7Y1PPVKvTTonXqLTCdWQV2MnbcXxa1SaJiEdGZO74lu8saCCu8bpVNKGVVwMlh5CQA77AP35bUJcYyRiKHbZJXAE2Qh/DJQuFMamYLzgICwqPvSu866v9ULqPHWe+onNmwxq9OqaBDraNtjkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1273.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:10::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.17; Thu, 7 May
+ 2026 06:21:06 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::4386:5cc4:3bc4:4795]) by
+ ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn ([fe80::4386:5cc4:3bc4:4795%4])
+ with mapi id 15.20.9891.016; Thu, 7 May 2026 06:21:06 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>, Thomas Gleixner
+	<tglx@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+	<pjw@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt
+	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
+	<alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@kernel.org>, Emil Renner
+ Berthing <kernel@esmil.dk>
+CC: Yixun Lan <dlan@kernel.org>, Joel Stanley <jms@oss.tenstorrent.com>, Drew
+ Fustini <dfustini@oss.tenstorrent.com>, Darshan Prajapati
+	<darshan.prajapati@einfochips.com>, Guodong Xu <guodong@riscstar.com>, Michal
+ Simek <michal.simek@amd.com>, Junhui Liu <junhui.liu@pigmoral.tech>, Heinrich
+ Schuchardt <heinrich.schuchardt@canonical.com>, E Shattow <e@freeshell.de>,
+	Icenowy Zheng <uwu@icenowy.me>, Anup Patel <anup@brainfault.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: riscv: Add StarFive JHB100 SoC
+Thread-Topic: [PATCH v2 3/4] dt-bindings: riscv: Add StarFive JHB100 SoC
+Thread-Index: AQHc3Ta0o4EXmzMgyky8fIcOfSrv+LYCGPEw
+Date: Thu, 7 May 2026 06:21:06 +0000
+Message-ID:
+ <ZQ2PR01MB1307650729917943CE4B8465E63C2@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+References: <20260506085937.754808-1-changhuang.liang@starfivetech.com>
+ <20260506085937.754808-4-changhuang.liang@starfivetech.com>
+In-Reply-To: <20260506085937.754808-4-changhuang.liang@starfivetech.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1273:EE_
+x-ms-office365-filtering-correlation-id: a771026d-7aa3-43b2-40c8-08deac00d279
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|18002099003|22082099003|921020|38070700021|56012099003;
+x-microsoft-antispam-message-info:
+ CcpysAfoeyOVpnswaCxD8dufJ9cndKS4AuLVfSlaYC940n+lvJpOJ5jvUWGrTQpLn5f0S5LpeBlSrKLVxUHLjF08xmynCNEOO1NtR7hBptkqkn74AEGkKgJVf5BtK+JmxQFH3dOKGmqQ3tlIQ1yal9pstLxugZcqjwBPpEt2hV/QXJPRNZYIBpoxjUXXSprT/7UyTwjTwzSy4NYhnwCWDkeOmAz/2Ig9p8hageB2Zn5pkWMoW4jGoe7OkNuBkZ8scGZ2pHtGPIBrW5E864dpaoecnwZu6OZJiXJOfddQf+JiWCp2eDohf0laz4M8udsccAR1A25gshnnOF2qJASsmJV/LsK5MCE7EJmel+6klMvpaApZeiURwGs7fkJlZiMnkwfGvVHjj8VTWw9wneuSfOikgFsWyNx3v7nEF2tyjnRvyB4v2r0isl7jAEVOofSY8FBObhQGnLkzpSj6WKdtbN/hYgNaDUYdb8HV2zxEq6r/KfyFC/G/8bOoG4wZHPcO+KeBSejsyuzdCwvov1c3vT8xcZcHbma74KFdJaWb5Qx2q584RphOJnV/k6uC2rn1rAteH48P/4wzECk0p5iOrw==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(18002099003)(22082099003)(921020)(38070700021)(56012099003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?Lk5G2sZE428Q6CHmycPI8f9NpJVudUngbhBRBHGBlxNDo3WH0IxYy5DOeSDK?=
+ =?us-ascii?Q?CPG2wAxhMmRXqfH4LO7G6b5yl3isrbd/jvQXT5XFb2SOxIPRCvi2AfMCXvIU?=
+ =?us-ascii?Q?jAZ8qodyffuHEtxBaoAsxKZ+lotwiJtRZLmmNaZ7maKqZRoT88S00NkAType?=
+ =?us-ascii?Q?azVzBFnZStcPtfBjt9IPo+jelJbpzOsUzpHaZW67I5gB1qgjbMiqZYqtcqq/?=
+ =?us-ascii?Q?9V8YLiqt/Lz7QMs6JEHaOLqW7UrF/nMSe3r/9+RZwDGK68LXcS21s9c0oWGN?=
+ =?us-ascii?Q?F+8boMogKBUncZIa6V9Is9a3hFdCa2IAyFIeHn3zP2SEa9VUpdthwkJVfKnV?=
+ =?us-ascii?Q?wYjoe6DpqiKqTaRWuYy/HtAlm6hl4NNNthLisqGNr+kjBkPtIBU4ONtyJGm0?=
+ =?us-ascii?Q?gCt6szV7XHyn0XfPYAWg3Xl3AQJLYYz+8vx7AIB6sCOR0EWQzRsN5+LgX1a9?=
+ =?us-ascii?Q?ww4MmisjagMU/9nDDET7bbPv0KRQ/m/tWiYrWmaRLf2b+LWtLZotINHAHse1?=
+ =?us-ascii?Q?0OZjhkBXpZkZCGHIyHc2Az9r89wSfLqHC3nLqcJaHxNvna4KyLQTx8XNxdhZ?=
+ =?us-ascii?Q?5aVdJJms9qumCDaMklJC+ZiadZMQucWf4XSrz0rq38y8LW4+AR6IkXnGKBrq?=
+ =?us-ascii?Q?3cClSvPJQ04vKRZ1iJ2Zc7KK+2b7r3vahlhc7Hfn6cEBAnFSeYEW5o9vw/0I?=
+ =?us-ascii?Q?bcpvjDbR90K5qcSNa4LM/6vJgVZRARS8ByNYLYikavdUDmRd8cO92T9AiYCs?=
+ =?us-ascii?Q?V2+/FpUHJy9WfCoygibgvmU55rWJeEwk9ABLbkHORO8HBpNID7ErziERR78+?=
+ =?us-ascii?Q?LwxB4RCTq8twIez35hNeRer1nuWAXjF1y5PAV8ncgaJWoUmPSHZ2yIuSOCp4?=
+ =?us-ascii?Q?TqKFGgLjqGAZQqNaxzdYKjbyuoF4lTY1BtRPvrqh0EGVvHZs4iK3f5SGEtTl?=
+ =?us-ascii?Q?TstnKARAjhUzoQzZ6S0vMU0ZULs2Tk+R1M8FdUrf4DCiQEjGjqcMs2sNjdT/?=
+ =?us-ascii?Q?gTs8ODuMhXpk7QShsqWqm3nDUIUHQI1fOJNfPLI3QveWfBnGTW2tl0dnyKuR?=
+ =?us-ascii?Q?XYF2ek/KVn8IewAFc00yFtSYCZhNTVPYwb3p2lscviszwo3Oyydyu23IXoxO?=
+ =?us-ascii?Q?S6KmG6lOTjsT2k36Jd/S2Cv3wVNYdfPmYjtxSKlZPKhSrsEHp+Wd4n/earfg?=
+ =?us-ascii?Q?5OtLRFr++bCpFZ31IITgKwNwyc7m9PTH6xpUv0B6SwMYdN8/jsHeg2K3BGhO?=
+ =?us-ascii?Q?gF0XTO1jO9oM9zYDMFEwP+N/WTG/vX0JxeohBX0B3a2IR5/Gqldk0Kpo2U5J?=
+ =?us-ascii?Q?2rNyQQJcEIXivDEuNmhCEwZNvx/N86j1Kh2yMHBYziGCRJGFugP20GrwcOn0?=
+ =?us-ascii?Q?j2qvHUASjALF9cFkjvfvW7V0F4G5NNYu6ErPnEwxeqy2bOrfXCwXhX9q4niH?=
+ =?us-ascii?Q?4x0ATV5lHHQeQhkqIkn5oPFQqNcMf3991caLSj+Ef5k48EHt/A0ni8/VEzcR?=
+ =?us-ascii?Q?RUj4st8LKLze2kydWKU7DT8mHSfBWf4T4dQ0c9SiFlPXPoUDVzwM7bzAt1EP?=
+ =?us-ascii?Q?+DB4xNLkf38Vxnwt4AkLtX+3vIf/9yhefgQaey0G8bl4MZOKyeVFhOak9S70?=
+ =?us-ascii?Q?peC8VWp8lgZN4rWiy4M6dSL96sA58jYEVJ6FX/vnAwvPuYoTJ08Fv8Ogd9uY?=
+ =?us-ascii?Q?up+Em5Aodpx6YKroCAz+BI48+FskRTYZDyg4cNrorbGk8PBvkUymgj6upQSV?=
+ =?us-ascii?Q?avG+eeygsg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Rspamd-Queue-Id: 1614E4E3B63
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: a771026d-7aa3-43b2-40c8-08deac00d279
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2026 06:21:06.3942
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aiYLKvYQjwjAgiDBXrbaMGpij1jL1jViiWe1LR1txsWJbbh7RlMvQmHKeSSg7MD0F8eZi1ojSJhc0SWgCXhpXcWIdcOmKVgCwLll507WUSw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1273
+X-Rspamd-Queue-Id: 11E664E361C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.54 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[norik.com:s=default];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[norik.com];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_X_AS(0.00)[primoz.fiser@norik.com];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_X_GMSV(0.00)[primoz.fiser@norik.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-293780-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_X_SOURCE(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.537];
-	FROM_NEQ_ENVFROM(0.00)[primoz.fiser@norik.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	HAS_X_ANTIABUSE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293746-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[norik.com:-];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,phytec.de:email,phycore-i.mx:url,norik.com:email,norik.com:mid]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hal.feng@starfivetech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn:mid]
 X-Rspamd-Action: no action
 
-From: Christoph Stoidner <c.stoidner@phytec.de>
+> On 25.05.06 17:00, Changhuang Liang wrote:
+> From: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+>=20
+> Add device tree bindings for the StarFive JHB100 RISC-V SoC.
+>=20
+> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/starfive.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> index 8ba0e10b529a..277618efff6e 100644
+> --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> @@ -43,6 +43,11 @@ properties:
+>            - const: starfive,jh7110s
+>            - const: starfive,jh7110
+>=20
+> +      - items:
+> +          - enum:
+> +              - starfive,jhb100-evb1
+> +          - const: starfive,jhb100
+> +
+>  additionalProperties: true
 
-Apply improved drive-strength values and pull-up/down configurations as
-devised from hardware measurements to improve signal quality on PHYTEC
-phyCORE-i.MX 91/93 SoM based boards. Also improve eMMC HS400 mode by
-setting property "fsl,strobe-dll-delay-target" which shifts the strobe
-DLL sampling window to the optimal position.
+Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 
-Signed-off-by: Christoph Stoidner <c.stoidner@phytec.de>
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
----
- .../boot/dts/freescale/imx91-phyboard-segin.dts     |  6 +++---
- .../arm64/boot/dts/freescale/imx91-phycore-som.dtsi | 13 +++++++------
- .../boot/dts/freescale/imx93-phyboard-nash.dts      |  8 ++++----
- .../boot/dts/freescale/imx93-phyboard-segin.dts     |  6 +++---
- .../arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 13 +++++++------
- 5 files changed, 24 insertions(+), 22 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-index 7b18a58024f5..aec83da87c4e 100644
---- a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-+++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
-@@ -309,7 +309,7 @@ MX91_PAD_SD2_CD_B__GPIO3_IO0		0x31e
- 
- 	pinctrl_usdhc2_default: usdhc2grp {
- 		fsl,pins = <
--			MX91_PAD_SD2_CLK__USDHC2_CLK		0x158e
-+			MX91_PAD_SD2_CLK__USDHC2_CLK		0x118e
- 			MX91_PAD_SD2_CMD__USDHC2_CMD		0x1382
- 			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x1386
- 			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
-@@ -321,7 +321,7 @@ MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
- 
- 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
- 		fsl,pins = <
--			MX91_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX91_PAD_SD2_CLK__USDHC2_CLK		0x119e
- 			MX91_PAD_SD2_CMD__USDHC2_CMD		0x139e
- 			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x138e
- 			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
-@@ -333,7 +333,7 @@ MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
- 
- 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
- 		fsl,pins = <
--			MX91_PAD_SD2_CLK__USDHC2_CLK		0x158e
-+			MX91_PAD_SD2_CLK__USDHC2_CLK		0x118e
- 			MX91_PAD_SD2_CMD__USDHC2_CMD		0x138e
- 			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x139e
- 			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x139e
-diff --git a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-index 8038d92da2aa..d9397080fe48 100644
---- a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-@@ -194,6 +194,7 @@ &usdhc1 {
- 	bus-width = <8>;
- 	non-removable;
- 	no-1-8-v;
-+	fsl,strobe-dll-delay-target = <1>;
- 	status = "okay";
- };
- 
-@@ -252,7 +253,7 @@ MX91_PAD_ENET2_RD3__GPIO4_IO27		0x31e
- 
- 	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
--			MX91_PAD_SD1_CLK__USDHC1_CLK		0x179e
-+			MX91_PAD_SD1_CLK__USDHC1_CLK		0x119e
- 			MX91_PAD_SD1_CMD__USDHC1_CMD		0x1386
- 			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
- 			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x1386
-@@ -262,13 +263,13 @@ MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x1386
- 			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x1386
- 			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x1386
- 			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x1386
--			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
- 		>;
- 	};
- 
- 	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
- 		fsl,pins = <
--			MX91_PAD_SD1_CLK__USDHC1_CLK		0x17be
-+			MX91_PAD_SD1_CLK__USDHC1_CLK		0x11be
- 			MX91_PAD_SD1_CMD__USDHC1_CMD		0x139e
- 			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
- 			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x139e
-@@ -278,13 +279,13 @@ MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x139e
- 			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x139e
- 			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x139e
- 			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x139e
--			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
- 		>;
- 	};
- 
- 	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
- 		fsl,pins = <
--			MX91_PAD_SD1_CLK__USDHC1_CLK		0x17be
-+			MX91_PAD_SD1_CLK__USDHC1_CLK		0x11be
- 			MX91_PAD_SD1_CMD__USDHC1_CMD		0x139e
- 			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x139e
- 			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x13be
-@@ -294,7 +295,7 @@ MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x13be
- 			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x13be
- 			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x13be
- 			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x13be
--			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
- 		>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-index eac389ed30f3..a7bd490b042b 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-@@ -339,8 +339,8 @@ MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc2_default: usdhc2grp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
--			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000178e
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000138e
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001386
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001386
- 			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001386
-@@ -352,7 +352,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
- 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-@@ -365,7 +365,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
- 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-index a982606de1ee..291b409b159f 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-@@ -310,7 +310,7 @@ MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc2_default: usdhc2grp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
- 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e
-@@ -323,7 +323,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
- 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e
-@@ -336,7 +336,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x158e
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x118e
- 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-index a624aed48efe..4276140afb5c 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-@@ -196,6 +196,7 @@ &usdhc1 {
- 	bus-width = <8>;
- 	non-removable;
- 	no-1-8-v;
-+	fsl,strobe-dll-delay-target = <1>;
- 	status = "okay";
- };
- 
-@@ -255,7 +256,7 @@ MX93_PAD_ENET2_RD3__GPIO4_IO27		0x31e
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
--			MX93_PAD_SD1_CLK__USDHC1_CLK		0x179e
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x119e
- 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x40001386
- 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
- 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x40001386
-@@ -265,14 +266,14 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x40001386
- 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x40001386
- 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x40001386
- 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x40001386
--			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
- 		>;
- 	};
- 
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
- 		fsl,pins = <
--			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17be
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x11be
- 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000139e
- 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
- 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x4000139e
-@@ -282,14 +283,14 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x4000139e
- 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x4000139e
- 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x4000139e
- 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x4000139e
--			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
- 		>;
- 	};
- 
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
- 	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
- 		fsl,pins = <
--			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17be
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x11be
- 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000139e
- 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000139e
- 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x400013be
-@@ -299,7 +300,7 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x400013be
- 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x400013be
- 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x400013be
- 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013be
--			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
- 		>;
- 	};
- 
--- 
-2.34.1
-
+Best regards,
+Hal
 
