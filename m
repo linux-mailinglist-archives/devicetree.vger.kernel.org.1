@@ -1,135 +1,151 @@
-Return-Path: <devicetree+bounces-294070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294075-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WEtRBlif/GkMSAAAu9opvQ
-	(envelope-from <devicetree+bounces-294070-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:19:04 +0200
+	id cNtDIGie/Gn3RwAAu9opvQ
+	(envelope-from <devicetree+bounces-294075-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:15:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F5D4EA003
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:19:03 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E0944E9EDF
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9ABDC3093032
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 14:12:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D6C7B3021B92
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 14:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFBC03FE36D;
-	Thu,  7 May 2026 14:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pci39C5h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6CC410D0F;
+	Thu,  7 May 2026 14:13:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89BB73FCB1C;
-	Thu,  7 May 2026 14:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D8940F8DE;
+	Thu,  7 May 2026 14:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778163162; cv=none; b=u09N4nL2LIaF2GFF/kauL43UZp4cb9nQQzMjjYMtvOPivgeaNNSZ55FCjqr/345e7mGeM0vcnV+n/1qUeqjK0BIvc8MS+wZd+fusUUrkbCQ7y7xezT3wDM2AB2jGyy29Vea3ntg2ry71hBnIfhtbOTTkspfP7A7VyQr1Q91Fjd0=
+	t=1778163182; cv=none; b=Z2v1DWu/l3j8AcIOWxuYIql5M4QcPEsZ7mf+3FV/3LeVeKZTpaup1+RH+u09CP533A+voWSh/NiRrVVlvRDijRULcSyiiAuSMXsCTz2OGQgIeqUBh82TIR/DBgtZVVKc36VKr1BIvmsxK604SPbQgEifrpZiDylVOiaKR6OG3EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778163162; c=relaxed/simple;
-	bh=huVUPART2jTXeXW7K4I2VW/dRB4xvecgCc0kX0CTQBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fkQ0XrdqQ4ndLTcWXslhnmkB1va8KJaommv/VcPCVhLWWASxCOorVJ2xW4qvZTYRtQaPWM62bhKyvhzSPjfhtfAq0VK95cqHOO7dVEUF3sBxDDrTRbOar/aA+W8JxypFxflFQ3J/Nw6wOvLo6Uy6I0VpXqL+Lbjf80yJJCkQFrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pci39C5h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C85F3C2BCF6;
-	Thu,  7 May 2026 14:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778163162;
-	bh=huVUPART2jTXeXW7K4I2VW/dRB4xvecgCc0kX0CTQBc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pci39C5h/cOMDDSO2oyymDLmiaq4ZXMfTibB/Yg4C+bcbVk+Q7SOTDWci19669I7T
-	 9DRuDg+kLVm26zNKDuYWGMP56moGFlMngR20Oc2KrpjuGsyRYA39Ya97CyZ0dOD6Yr
-	 kKs5XXs7HqJ7YCnnDiONnBAWOLXw83TvgY3+OgRwNdz54SXaZvtieYsBZ/EsRBvx8X
-	 TkEtq++dws3GH2BDJewPUQajhV+rRb1OtYZCisTi27/2lezWaedJa3IfS2WWcwju3t
-	 1MvkDZX8t/0H9nMbeMR/1+xrr8P31LyvlRcDl+Q8C/vPoKzp2V2543XWpdh1c46d3P
-	 B9j8Hy77aZRfA==
-Date: Thu, 7 May 2026 09:12:33 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com, 
-	rmk+kernel@armlinux.org.uk, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org, arnd@arndb.de, 
-	gregkh@linuxfoundation.org, Daniel Thompson <daniel@riscstar.com>, 
-	mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com, alexandre.torgue@foss.st.com, 
-	ast@kernel.org, boon.khai.ng@altera.com, chenchuangyu@xiaomi.com, 
-	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org, hkallweit1@gmail.com, 
-	inochiama@gmail.com, john.fastabend@gmail.com, julianbraha@gmail.com, 
-	livelycarpet87@gmail.com, matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, 
-	me@ziyao.cc, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	richardcochran@gmail.com, rohan.g.thomas@altera.com, sdf@fomichev.me, 
-	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com, wens@kernel.org, 
-	netdev@vger.kernel.org, bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 08/12] dt-bindings: net: toshiba,tc965x-dwmac:
- add TC956x Ethernet bridge
-Message-ID: <afycOwz5TpkegkZd@baldur>
-References: <20260501155421.3329862-1-elder@riscstar.com>
- <20260501155421.3329862-9-elder@riscstar.com>
+	s=arc-20240116; t=1778163182; c=relaxed/simple;
+	bh=qO+TPGjPyIU90fyNONfH8qQZWNpD/rEJEKB057F0kQo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=KSFXyEPFOsyy0wRx/C0HW6dM7O8RoCrB6dIQ9Uekf13wuEM2F54EJ3DS0CG0F46y51PgDWphQxp8YRHcRTwssc687224sZDyI1Rb8mTabG5hkXdcfpiAFhzrKvnuR3kx+zL9J81GeDHHtQXilqD4UtH//tBdtYR8Imhs4a/UY/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2085CC2BCB2;
+	Thu,  7 May 2026 14:12:58 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: john.madieu.xa@bp.renesas.com
+Cc: biju.das.jz@bp.renesas.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	geert+renesas@glider.be,
+	john.madieu@gmail.com,
+	krzk+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	robh@kernel.org,
+	sboyd@kernel.org
+Subject: Re: [PATCh v3 1/8] dt-bindings: clock: renesas: Add audio clock inputs for RZ/V2H family
+Date: Thu,  7 May 2026 16:12:57 +0200
+Message-ID: <20260507141257.436456-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260402163126.12135-2-john.madieu.xa@bp.renesas.com>
+References: <20260402163126.12135-2-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260501155421.3329862-9-elder@riscstar.com>
-X-Rspamd-Queue-Id: B4F5D4EA003
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 1E0944E9EDF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294070-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-294075-lists,devicetree=lfdr.de,renesas];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,vger.kernel.org,glider.be,gmail.com,baylibre.com];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[glider.be];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.987];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux-m68k.org:email]
 X-Rspamd-Action: no action
 
-On Fri, May 01, 2026 at 10:54:16AM -0500, Alex Elder wrote:
-> diff --git a/Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml b/Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml
-[..]
-> +
-> +  gpio-controller: true
+	Hi John,
 
-I don't have any concern with the use of a proper gpio driver to model
-the implementation, but if I understand correctly this relationship
-between gpio controller and gpio consumer is strictly internal to "the
-PCI device".
+On Thu,  2 Apr 2026 18:31:19, John Madieu wrote:
+> RZ/V2H, RZ/V2N, and RZ/G3E support external audio clock inputs
+> (AUDIO_CLKA, AUDIO_CLKB, AUDIO_CLKC) that can be used by the Audio Clock
+> Generator (ADG) to derive internal audio clocks. These clocks are optional
+> and their frequencies are set by the board.
+> 
+> Update the bindings to allow these optional clocks for all RZ/V2H family
+> SoCs.
+> 
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-Is this connection variable or is the link merely expressed in
-DeviceTree to mitigate the fact that you choose to implement the
-responsibilities of the two parts split into two device drivers?
+Thanks for your patch!
 
-Are there other consumers of these TC956x gpios which would result in a
-board designer (and hence dts author) to ever reference this
-gpio-controller in a different way?
+> --- a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> @@ -26,16 +26,24 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> +    minItems: 3
+>      items:
+>        - description: AUDIO_EXTAL clock input
+>        - description: RTXIN clock input
+>        - description: QEXTAL clock input
+> +      - description: AUDIO_CLKA clock input
 
-Regards,
-Bjorn
+There AUDIO_CLKA clock is provided through the existing AUDIO_EXTAL
+input.
+
+> +      - description: AUDIO_CLKB clock input
+> +      - description: AUDIO_CLKC clock input
+>  
+>    clock-names:
+> +    minItems: 3
+>      items:
+>        - const: audio_extal
+>        - const: rtxin
+>        - const: qextal
+> +      - const: audio_clka
+> +      - const: audio_clkb
+> +      - const: audio_clkc
+>  
+>    '#clock-cells':
+>      description: |
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
