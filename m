@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-294193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cGRZMe7b/GnqUgAAu9opvQ
-	(envelope-from <devicetree+bounces-294193-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:37:34 +0200
+	id IKvDEV3c/GnqUgAAu9opvQ
+	(envelope-from <devicetree+bounces-294194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:39:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197324ED859
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:37:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D7AC4ED897
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:39:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1AFA73037444
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 18:37:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43CD03029E7B
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 18:39:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2084746AEF2;
-	Thu,  7 May 2026 18:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4905846AEC6;
+	Thu,  7 May 2026 18:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="TDHvjKWF"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="sETjafTP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E1F344024
-	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 18:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC7F4611C4
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 18:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778179037; cv=none; b=Scc5mY9eteBjtkHSpwU4RVcUSADNYtvuZ6rRr//Wa1gKjCApiNX31oD7unos480M5hh6KZDh9uGz26N2Q+yBShJ93bookYcftz0b77wdnVU37Xih2jGwpHpPvTTbuBy6dfq55fL7p0W/G30N3zgCCBmWCP9NWRahxmNbaks8ZaI=
+	t=1778179160; cv=none; b=csjqoBmNlJbJMmyFTwjmpewlURk6xbkDLF1t0HhU+Ng2mJBZ4ZnwefvzBM6EqbAaiUFcLmSGWw07M8sT4azqCkKzGGhdzALM30aOZxtsKYuVX15FxX7sB32AizRKlB9z4sOldUvs1bckBYSrh9Uk/Mk/cT0A5hTjfYObINYz9Mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778179037; c=relaxed/simple;
-	bh=0mU+Gr18j8ctUXlUwK5bdZXpnTobEBXi2+Wby91srKU=;
+	s=arc-20240116; t=1778179160; c=relaxed/simple;
+	bh=f/VYt86QfsV33lO5nWhjommtwvlcryeqI+nt7Vqb76c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kQQc+/5bEa3M6T2aSr3sWvPXYIrXmTJX7IgOxbojw5WmCZZsqqbIM/wd0dcdSw+2MOGkHhy1QCU/nLV7EIt7d+1mpsbdH9ReH20EaAu04sajMNo6RquDDKD94s6q4748BhLbDLRo9i3TV+K616M1gVQZ3K+jxKvwz/XZDbBSQcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=TDHvjKWF; arc=none smtp.client-ip=209.85.128.176
+	 In-Reply-To:Content-Type; b=ts/rMptovNoPkppczk2MbekEVbEiMyrgJF7FWa01fDAMJaN6BA9JEv3RiXM5x3bTh8HuG8Wu4TXJ0EG7PnsXKrRhRgevixLg77UIM57spHwMZ3Ftg6uPZnApET1iwq0Ovn+0ol90zho0qi1cnyXws98SWUd9aX6whIHDXpYDpDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=sETjafTP; arc=none smtp.client-ip=209.85.222.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-7bd810cdc5dso12883297b3.1
-        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 11:37:14 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-8ec9f099fc6so134949585a.0
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 11:39:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1778179033; x=1778783833; darn=vger.kernel.org;
+        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1778179158; x=1778783958; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=x8i4c2z2WoES1t5qSKN6GUknygX5CCKfGDT1oqYJPeA=;
-        b=TDHvjKWFJoWHC9uFBuMgwiI+qpUqrLa97iwkqGHkK6YH+7KGHpXRfS+PJZl9GG8e6h
-         sw5zkqR2EGuac1g/0qK5Li6+rKi4imr+/0YiOML/PIIdvnT9MirAdTzpx+X6Gel1t1Qh
-         ugXbJ58Q6MDG3W+6jAPopELHVxtJZk4uQu+ynhYF/ovQOygTd/XRfwp+0WSAZaS5+qKf
-         AR2/9OX6zzDyEAa9Jp+65SrygIbNlQICtrz2IQr/QsyIOhII5ilo5DZIcmW+716/+Xfa
-         pFSMvn/IW08crA2OuhcF2t4tbpxvGrbk0O4Jm1PcRrBJVpq24/+tOwi/fuT07WuXa43n
-         qKtw==
+        bh=xAxf1DNF2nC8sz42taPRq/pgsGcKQpqrWaLh7UNAXF0=;
+        b=sETjafTPdUg2ii93kH2SRdQpxIDwlHw++/Udnl0YvFhjKxo3mfpZymbm3zCbgKWwy1
+         ZZTG/CwjDVG41bxom74SCHnJU+/7a9q6J2hC8o83bgco6Dr+7ETgR8oAhevz4ocMQDFX
+         Ljcf7sSF83yMY1IdGcMdSDhhLa5F4ccPXRZr9o4kt7J8RlHc4eMCYebqQvQRTxtJPweY
+         CbSHWFRgCs3jlhl7Ba3jBV+nkiOcv778l8CV5M7TCIdT8z5yhZMO1VXKgy2ghAU+ztSA
+         rPjKoKJOaL9XsTVzUnI29jx+V0ofMTZcgeaBGW+QSjNrvNhH5sSNkCxFd4FPz2sDDIiR
+         oyMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778179033; x=1778783833;
+        d=1e100.net; s=20251104; t=1778179158; x=1778783958;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=x8i4c2z2WoES1t5qSKN6GUknygX5CCKfGDT1oqYJPeA=;
-        b=REvr6YkGHiG4tOZqZej8Z/2+ODGBu8lY9h7Bubpn7RJ/B6tnLLBm75AP1Tma5Ajrxh
-         HEl4eRmp2nT7wpUIayXVS8u6NE8QZTgJg7KjTFpk94PgxbjOEkqBhLmOmKL8ZJbFZ39F
-         BMxLImhPnLXH7bxihAMDkIEARikdL0zYfDBNj0mDjbXt8HhIuBiYED+1r5otoKWzsWna
-         JnmKwopSEz1q+VvRJFN3I/1E66aqdJUVLcl4su+6DND43zUtuzS7yuf2uMzX+x+9wTpX
-         YP/XmXTzgvx4oZPYyKV48qh0J0544vkSj4B1eiTPmy7iU8mtMcjwDTM2O1fMLuGeBTEq
-         7Lfw==
-X-Forwarded-Encrypted: i=1; AFNElJ8GBFxKS3qqJfY6bzGml+r4pSO22rGSmpTkn7wP6elz6oQa1WoMTHrUh95f2DgC3/pgQR5DY8oFYcyt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6gG+QzJ2ffscNNYkC/VoHqQmQ52THarRr8mCRHh6s6y+1TrGn
-	W09/+NEkTQvXVdoVPOfxg51vKgA290xmEZLrMT1Uld3sqac0Zu7T2lvxkzSmPiGnDXs=
-X-Gm-Gg: Acq92OF4elHjs0haV77Zn84dcCUyLUcA0AIhh52jIazMmuCZHhrsMtHp/2FLbkcNCcM
-	vRDMwFKDEBbvKpYHcTfYMBEybasq6DcWxnY9AhDzM+2bL/g7s7gdx8JwPjkkLj6sCCXVb0o1t5K
-	EXKhRcdjkLfXqE6E78cHY22DcUEUO0/b2IMmGehkM2ZlbScoxBR5vlNqAvl2h3Fq98zCwN1uXtY
-	kYD3OSqDIn04LhwDQY8SkpbQo4ylxHBgKVOwGEK9mk2H6SDas+YDgTXWth6i9I8lwt1jk4tYlcI
-	jKVbCDdiGnVtl7LuqBJrmg0apkAJ9PiKcazhkVO88j50jHb1nPqOQDotZF1bxilgz9RE5vn6M2u
-	Rjwg4ZUFQX4ZwzRg8abIYLMtfa57UgKyeFvm1cCCKwSwJbxyEf3Q8ILR7bc0gcQGU5ibVOpng+t
-	Gocgb2Q4vhFwx+sjW6lkbcHcIUNs0jqcbBRhUY0TlHtd8TL5QgwoO9J4UJqrCHDEeJ
-X-Received: by 2002:a05:690c:6101:b0:7a3:7ad3:3e9e with SMTP id 00721157ae682-7bdf5e7cda0mr98323737b3.32.1778179033551;
-        Thu, 07 May 2026 11:37:13 -0700 (PDT)
+        bh=xAxf1DNF2nC8sz42taPRq/pgsGcKQpqrWaLh7UNAXF0=;
+        b=RTFN2VavqblA/nChEZYpySROcUVE2fIQI2lDYm5tTPEOPGEP8XwwFXbl2YQZ4NlOOI
+         kM4l4pdCdSNYUjFiaBixOGYphQom5UApUdZnIkAje9Ct37i/ONIrPpkuuf0nEX1/Dkkf
+         RTr4nevK8vqgMhqGAw9xAyA4c+sgrLzdlyDkHeUJp0K05Rf1odv5GqZcABzYP2sev1ob
+         /Sq8CVFTeTdU7GOPyrDGk2FitKoHeyYEhC9MlBvP/rHH1CrPrV4mFv8bY6l79M+wxO1n
+         potZ8q3i/ZVQ7LG9aIufeobcx6IBBo/PG469L2MhnBymZM8Pbfpirv/mpHxs3fhEiGYu
+         0wsQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/iUrypSc7mkZBQ5OPutgz8Q3JT6kStu0KVYbC0b81h9ZDLdKa1E57VrrAYjGsw6Z77PtZrFkutaqih@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+kckWIL3gH4A+VsWGSb89khkldinf783mKGvddSB6cAE6V2zF
+	FRrolxt+wTsHfholOzHZqXrboSf8YqdFVwfDrW9j1m0yNYRseql6tCU9jNzmbwqL90U=
+X-Gm-Gg: AeBDietWLZuchkckLt9IkYo8cGbFiWfY4bdfkW8kL7br/FmC/egj7GJDzRW5QCMY2PL
+	q8Xrdd6pH2PZOnOouvD5ClAFbmES2wkXQIpNaS76ucu15Ar6jNDZNINJyBKQEDk3PyrZSmGx8kF
+	pPOAgCT98IkQW8MjhCi6vbUt1wbujA8Nd4dXlAQBGTmFjfglah2oF2XMsmP46fNehF0SPEN6p9V
+	VMWa1vMD9TqeHotUjX9jDTBepMaO5S0ZOQL0x+NP0TprQq2WLMBa9J+EtJWER1gjAqCMcGZruxe
+	Rx1/6KqoS+qPaXt2t2pjGYP6pWmcOHeHsr0b6q6LGok0Jrb/DDMv2b8MFUQJXqYf0hu1NAtYyAm
+	a0j8muqfetIuFiR8IbHGYRxcFwEmTKeyxtEDQ9ttfuY79JSYleLHr5WEG++Imp6FpRFsqsGnNEp
+	ufJLCjbh7x3cRkxAFnoOXDJMFzhxYnbSwTjVFZMbxMvbIUL3ZTj5nO/H9yzqtJB+sR
+X-Received: by 2002:a05:620a:40c9:b0:8e9:13ea:a0e1 with SMTP id af79cd13be357-904d496d4abmr1387402085a.18.1778179157638;
+        Thu, 07 May 2026 11:39:17 -0700 (PDT)
 Received: from [172.22.22.234] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-7bd976fd09asm57064577b3.41.2026.05.07.11.37.10
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8fc2c25324esm2298627185a.23.2026.05.07.11.39.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 May 2026 11:37:12 -0700 (PDT)
-Message-ID: <3c78f48c-6478-46d0-87c2-581bb58637dd@riscstar.com>
-Date: Thu, 7 May 2026 13:37:09 -0500
+        Thu, 07 May 2026 11:39:17 -0700 (PDT)
+Message-ID: <20903580-85af-4e7b-b3dc-b8de49bd32c1@riscstar.com>
+Date: Thu, 7 May 2026 13:39:13 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,21 +86,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 08/12] dt-bindings: net: toshiba,tc965x-dwmac:
- add TC956x Ethernet bridge
-To: Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH net-next 09/12] gpio: tc956x: add TC956x/QPS615 support
+To: Andrew Lunn <andrew@lunn.ch>
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
  kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
- rmk+kernel@armlinux.org.uk, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
- arnd@arndb.de, gregkh@linuxfoundation.org,
- Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
- a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- boon.khai.ng@altera.com, chenchuangyu@xiaomi.com, chenhuacai@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, hkallweit1@gmail.com,
- inochiama@gmail.com, john.fastabend@gmail.com, julianbraha@gmail.com,
- livelycarpet87@gmail.com, matthew.gerlach@altera.com,
- mcoquelin.stm32@gmail.com, me@ziyao.cc,
+ rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org,
+ brgl@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
+ daniel@riscstar.com, mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
+ alexandre.torgue@foss.st.com, ast@kernel.org, boon.khai.ng@altera.com,
+ chenchuangyu@xiaomi.com, chenhuacai@kernel.org, daniel@iogearbox.net,
+ hawk@kernel.org, hkallweit1@gmail.com, inochiama@gmail.com,
+ john.fastabend@gmail.com, julianbraha@gmail.com, livelycarpet87@gmail.com,
+ matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
  prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
  rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
  weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
@@ -109,88 +107,76 @@ Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
  linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20260501155421.3329862-1-elder@riscstar.com>
- <20260501155421.3329862-9-elder@riscstar.com> <afycOwz5TpkegkZd@baldur>
+ <20260501155421.3329862-10-elder@riscstar.com>
+ <736fb3b7-c88a-4ec4-96ad-d1b79cc48d30@lunn.ch>
+ <30cec7dd-ac3c-47ab-896a-c29992bd5ba5@riscstar.com>
+ <3e5a42cc-53b8-4065-a32a-d754be40b4c7@lunn.ch>
 Content-Language: en-US
 From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <afycOwz5TpkegkZd@baldur>
+In-Reply-To: <3e5a42cc-53b8-4065-a32a-d754be40b4c7@lunn.ch>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 197324ED859
+X-Rspamd-Queue-Id: 9D7AC4ED897
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294193-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[49];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294194-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[50];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar.com:mid,riscstar-com.20251104.gappssmtp.com:dkim]
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[riscstar.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar-com.20251104.gappssmtp.com:dkim]
 X-Rspamd-Action: no action
 
-On 5/7/26 9:12 AM, Bjorn Andersson wrote:
-> On Fri, May 01, 2026 at 10:54:16AM -0500, Alex Elder wrote:
->> diff --git a/Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml b/Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml
-> [..]
->> +
->> +  gpio-controller: true
+On 5/2/26 9:48 PM, Andrew Lunn wrote:
+>> It's possible gpio-regmap.c *could* be used.  We started with
+>> vendor code and this code got separated at some point along
+>> the way.  It was working, and I don't think I pursued other
+>> options at that point.  I'll look at this possibility before we
+>> send out the next version.
 > 
-> I don't have any concern with the use of a proper gpio driver to model
-> the implementation, but if I understand correctly this relationship
-> between gpio controller and gpio consumer is strictly internal to "the
-> PCI device".
+> The GPIO subsystem has made a big effort to provide generic code,
+> since GPIOs are pretty simple things with a lot in common. So if the
+> generic code works, or can be made to work with minor changes, you
+> should use it.
 
-(I think you're already cool with this but I still wanted to respond.)
+Yes, I can confirm this is what I will use.  As mentioned
+elsewhere, LinusW provided a patch that support the one
+unusual thing this does (input-only GPIO lines).
 
-That is not correct.  These GPIO lines are used two ways for the
-RB3gen2:
-- drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c uses GPIOs 2 and 3 to
-   assert/deassert the reset lines associated with the two exposed
-   downstream PCIe ports on the PCIe switch within the TC956x.
+>> What do you mean instantiate it twice?
+> 
+> I _think_ you need one instance for the first 32 GPIOs, and a second
+> one for the remaining GPIOs. But maybe config->reg_stride might allow
+> it to work with a single instance?
 
-- Each of the Ethernet PHYs has a reset GPIO.  On the RB3gen2, the
-   GPIOs used for the purpose come from the GPIO controller embedded
-   in the TC9564 (00 and 01).
+Oh I see.  Looking at it now, I presume the reg_stride will work here.
 
-These are therefore "exposed" (they are *not* strictly internal).
-
-> Is this connection variable or is the link merely expressed in
-> DeviceTree to mitigate the fact that you choose to implement the
-> responsibilities of the two parts split into two device drivers?
-
-It is variable.  These resets might be implemented by other GPIO
-controllers on other platforms.
-
-> Are there other consumers of these TC956x gpios which would result in a
-> board designer (and hence dts author) to ever reference this
-> gpio-controller in a different way?
-
-They could.  Nine of these GPIOs are exposed by the TC956x pins
-(GPIO00-06, GPIO12, GPIO35 and GPIO36).  The RB3gen2 uses 00-03
-(and possibly 04 but that's for a PHY we haven't tested yet).
+Thanks.
 
 					-Alex
 
-> Regards,
-> Bjorn
+
+>     Andrew
 
 
