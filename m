@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-294027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294029-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCi2HLyM/GleRAAAu9opvQ
-	(envelope-from <devicetree+bounces-294027-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:59:40 +0200
+	id oAhLDMKM/GleRAAAu9opvQ
+	(envelope-from <devicetree+bounces-294029-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:59:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137D44E8AA7
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:59:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C84B4E8AB0
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:59:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5DF46307E336
+	by sea.lore.kernel.org (Postfix) with ESMTP id 06DC53080447
 	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F133FAE1C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CC93FB7CA;
 	Thu,  7 May 2026 12:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dOsaaReL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G12jMoK1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B614D3F9F48;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F219F3FA5C9;
 	Thu,  7 May 2026 12:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778158564; cv=none; b=XQUR12XNusTUZhaOf+EuufEMOvRQdrXH2TB/ShkRDPkh5GzG1MtKEDBNprsaK16smXc7gzgVJ+SNJ/jtdiCOWIG23Ni8eCRGe/2l9nQ3NwGWGDj48w12juYoAhIxQeum2mpkFhGFUExtwlFVukuhrk1UfxxEMiQ2mr0X9b1eCx0=
+	t=1778158565; cv=none; b=MBglVSH3H+jb8K+FJrZv9kB/a2P6Xf1tIJssnAEOHCJH1Fz+XsKjB2bTAlfBp192lJoETGz1f3ls5woC36dgLHsPdDM+DqsRWCksYBeCNBXTJHJEaLCuat43JstWfKkcefIOGQwmbcdPgMHa7ZD1SEjhGa2gkdQOWsFvfWA05y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778158564; c=relaxed/simple;
-	bh=e3b8zS4UD3XlGc9Yo4V+dB0th3koUfZN0pRhHe1x6dE=;
+	s=arc-20240116; t=1778158565; c=relaxed/simple;
+	bh=fkZMrW6p1fEj7FMV4QtZc65vSfeoK86dRg/bwwIVPxA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rkqWStIAJwVwbzDD5sO94AefdkgGAollSfqt7thOSheE83fuW3we2jc2CWzzc9SQNN955RNBrFd7jMVAv++l/vjsG0Bhlj6xFgXN+NCU0KthdUFYtLE3KY0HYNQAKLXBvKWrpRRbaTBE5KjhqQ2Fw6ccAc0NF0dh6hRgSDWRvHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dOsaaReL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D54E6C2BCB2;
-	Thu,  7 May 2026 12:56:03 +0000 (UTC)
+	 MIME-Version; b=aNP/hFe6UUHgYo6XYEKHwptkfKbcR8oPPkCWaD7k2If/d/8mLVRgfa0MTz5gDfeoVandafQ9MO7qc5sj+Bs6bGF2/oQhE3V9iLXfvqnBMBamVEYbxu0aWtoObn+7sEboZJg5xsAIqzAVcup097/egccoyFLId36BmdbYtDk9GbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G12jMoK1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A411C2BCC4;
+	Thu,  7 May 2026 12:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778158563;
-	bh=e3b8zS4UD3XlGc9Yo4V+dB0th3koUfZN0pRhHe1x6dE=;
+	s=k20201202; t=1778158564;
+	bh=fkZMrW6p1fEj7FMV4QtZc65vSfeoK86dRg/bwwIVPxA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dOsaaReLP7Ocyzt/J98J89csoYzSCiB37ZfutqNGEqTe1RwMSLgwnNxWZcrcsO9Bs
-	 T9b/mpz9D33r6ZtaKL9VHsWdLBUxfOzDzzHPz6W0DXBpIZ2FxpHNk8iZ7/nOja1Zpq
-	 THFq5UwVDkvnkdo0Z4FWzLNs+NNKdbAxbBlscJjQdk1Cc9DMNdDYrZ99LPTYrHyeP9
-	 KpnYwR57Jib46y0qj2xMTnuwovuLS6GDCsU2HuTRksDFw9BpsQ0uWojUl0IvEcaSoG
-	 ZtG0xYhg2bs2u263tDD6LvJ48sAhA8C7flpVYRUEj+9wF9JEm/K0ZS9uBBUCfjnpuh
-	 UrCfMQot3A9UA==
+	b=G12jMoK18dep+y7vRZxfUxMqrbEbQHbwgjM7fbtSooaJbrMVGFjUwMF1pVr46s9ts
+	 d6xsoVaf6yB936RzYNZ5hkcmsvVKbZNcF9ReoliQAiorsLSvbLE/jdVZ3UtzCedyqJ
+	 UxNUhHgoNLwDdu1XrO6K9gnqOuZunTmzGGD091/kjzQi+aPx3HWMeWgAUTvcNIge+V
+	 cARY1vSydyckBOc7beHXsTJiiLSIlZb/4sMo9T+CCbD8ja7ByAiG/9j66a9NoiCbv+
+	 ExOU1PuDw7ccMn0tFiyOLwoFf6hsDEBwJ35GgMlAIrHMouYxwk5VaJFEkLRbiZnbh6
+	 IoB7tuzcjAY0g==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wKyGn-00000000d7d-45I9;
+	id 1wKyGo-00000000d7d-2D0G;
 	Thu, 07 May 2026 12:56:02 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
@@ -97,9 +97,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH 13/16] arm64: dts: realtek: Add EL2 virtual timer interrupt
-Date: Thu,  7 May 2026 13:55:41 +0100
-Message-ID: <20260507125544.2903406-14-maz@kernel.org>
+Subject: [PATCH 14/16] arm64: dts: rockchip: Add EL2 virtual timer interrupt
+Date: Thu,  7 May 2026 13:55:42 +0100
+Message-ID: <20260507125544.2903406-15-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260507125544.2903406-1-maz@kernel.org>
 References: <20260507125544.2903406-1-maz@kernel.org>
@@ -115,7 +115,7 @@ X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.
  heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: 137D44E8AA7
+X-Rspamd-Queue-Id: 8C84B4E8AB0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -133,7 +133,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[46];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-294027-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294029-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -143,32 +143,32 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-The ARMv8.2 based CPUs used in a number of Realtek SoCs are missing
+The ARMv8.2 based CPUs used in a number of Rockchip SoCs are missing
 the EL2 virtual timer interrupt. Add it.
 
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- arch/arm64/boot/dts/realtek/rtd16xx.dtsi | 3 ++-
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-index 3a7f6e35b7f74..43b13d133c324 100644
---- a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-@@ -105,7 +105,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index 64bdd8b7754b5..a5832895bd392 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -195,7 +195,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 		arm,no-tick-in-suspend;
  	};
  
- 	arm_pmu: pmu {
 -- 
 2.47.3
 
