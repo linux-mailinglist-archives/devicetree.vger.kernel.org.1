@@ -1,60 +1,90 @@
-Return-Path: <devicetree+bounces-294189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oH+GLMnY/GkgUgAAu9opvQ
-	(envelope-from <devicetree+bounces-294189-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:24:09 +0200
+	id 8IXeLZjh/Gn7UwAAu9opvQ
+	(envelope-from <devicetree+bounces-294201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 21:01:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4446F4ED602
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 089184EDB2C
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 21:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD94930277FE
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 18:23:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 353A83046E8F
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 19:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDDD4657DA;
-	Thu,  7 May 2026 18:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83FF4534A7;
+	Thu,  7 May 2026 19:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BpUo08Y4"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="tl3qD4DI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDD83F54D9;
-	Thu,  7 May 2026 18:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B22D313E29;
+	Thu,  7 May 2026 19:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778178226; cv=none; b=eXwX8XwaFsuWEuuqKrj7zlEojhpe+p0eEYBFhMpdpnKEcpxBl5IgX+qPjWDhRCrlxmF6HuQuLpKCMsqE4+O+VnX2eoqcRhF5ZjADRHRQwxQLnVzJ/vH2hkJZYcrHjm1KY5Xs+wyT552Av95bv8XpYKV/p66A/jAN1kBUwKmUx4M=
+	t=1778180484; cv=none; b=rVAk1sMbT+/4UMK0pMDVGXbW3o+xhnKCJWh5gtvHj/y6UzpqVf66VErd7QIkSLzQGxn2LXx2ToAVc9yaoN7FRxstm6AWU4ZREqHb5v+XSHHZgFxKew9HPe/cRR+pyNzGUd7FjrUUqu5V5KwamN5UOUykaZpNU+ml59YKo3GoSc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778178226; c=relaxed/simple;
-	bh=SNvRg5gDTkhbZ4MVjEvDT8o9L2gLvEkyba8SgNkqMSI=;
+	s=arc-20240116; t=1778180484; c=relaxed/simple;
+	bh=F4f295Djvpi+RQS8z+Fs3xpcXcpwkoyA+LBpQ1fvBaE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f8gDTP0S14t0PaxY87xeI8OP+nHMU2qLm2iWwxWi1JbEJF9PUMtpbEzIaFjZmfBaWyXXwHtTG1cyZetD0i+YGHuDUwOkpEFj2LlmntRItaPHI/uuCRIgT2iHFvkGi1wHvrcXZNXvkeaq/QQBmyDkDgjVcQy1iIE/CpUYk1cmNWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BpUo08Y4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD19CC2BCB2;
-	Thu,  7 May 2026 18:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778178225;
-	bh=SNvRg5gDTkhbZ4MVjEvDT8o9L2gLvEkyba8SgNkqMSI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BpUo08Y4PqA/WT5Q2wn2T/MJz2GNQWzhCiOQ9eoOGD5iWVgnC13v05fgh2JzD9w0x
-	 Djq3YHXNw2BZ8oaI9uhNUcwX60bQ51r4f2vZ1tnfW+5iUnna/B3urtCEl3yXJAohXD
-	 WvnTp8WLOK0ArE+euMcMG5jGlSiOODUaL2v+Ilp6AN6Mu3GgitV7CpJnru5qFfwbUi
-	 K5pqyjK9Xv+wzZvAzB8Y/61pJ3VyW3A0SZWW7lJ8SFE+mS6q6UmlhN5yg3lE6cEy5y
-	 HrWgrGSCrtiT5IVnLWFwGjdsHOB8BO0rqYHROvLwY/Lb3hTUm0c3lHnlwN/y0Bdkyi
-	 7I5nIR4L5LKBA==
-Date: Thu, 7 May 2026 13:23:43 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-kernel@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-	tglx@kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: econet: Add
- CPU interrupt mapping
-Message-ID: <177817822302.2211615.7080073941717543508.robh@kernel.org>
-References: <20260430164157.6026-1-cjd@cjdns.fr>
- <20260430164157.6026-2-cjd@cjdns.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=noxHi2i2mSHcVXG+1802TPHmUprvxsJNTzCn+GqfCCZg+gYgVJBPEcbldjqPnYRdcKCBRtGqY2MjUUHuNiBIDOlOvd04PyGo0IMSSOcT32TQHIcgLZ7ViseSROEHCqCV3L/gPgSmJtLQaoRryl91WJBGh49Ml3uDUULEI547Ovw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=tl3qD4DI; arc=none smtp.client-ip=195.154.119.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=UhWt9GIcE0Eg5lAt4TvJi+a4FqjU40A5a8Y0h0GVjdA=; b=tl3qD4DIve1t57w4IepB4O3aUX
+	WI8RndCoJA7rzWgQ0X0aRlRrnmjDdv4ATUqAf8tdKai6hFozEwMeIHWQB7yknemaMd/G9I0YMlMIV
+	PKDS3Eo5XNB3wCxwCvEUlYzgncviRheivcEPNjvoCT9pPPhDuHIu/+pmo/cyYQSWsYFG1Eldv8Efc
+	+3OLAzshMQz6FmwYKRrqWkAa9YqOiEPSX0g8hUN9IR0NCUlNdZmVXT1m8MlYjT/Khjyg1R1VTculK
+	mGABxiKaeblL2uQ/s7op42k4DWcjCmI48dQUOUsLTmXxszUrFR0fWTdaj5eRtWSrmu2tnjT5Sqj5i
+	a0slrciA==;
+Received: from authenticated user
+	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1wL3Sz-000000090rv-1Xu2;
+	Thu, 07 May 2026 20:28:57 +0200
+Date: Thu, 7 May 2026 20:28:56 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.dev>,
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [PATCH v8 8/9] riscv: dts: spacemit: k1-bananapi-f3: add SD card
+ support with UHS modes
+Message-ID: <afzZ6Fjdt4puGjZ6@aurel32.net>
+Mail-Followup-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.dev>,
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
+References: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
+ <20260413-orangepi-sd-card-uhs-v8-8-c21c40ec16d0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,66 +93,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260430164157.6026-2-cjd@cjdns.fr>
-X-Rspamd-Queue-Id: 4446F4ED602
+In-Reply-To: <20260413-orangepi-sd-card-uhs-v8-8-c21c40ec16d0@gmail.com>
+User-Agent: Mutt/2.2.13 (2024-03-09)
+X-Rspamd-Queue-Id: 089184EDB2C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
+	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294189-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-294201-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[aurel32.net:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,linux.dev,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aurel32.net:email,aurel32.net:mid,aurel32.net:url,aurel32.net:dkim,0.0.0.2:email]
 X-Rspamd-Action: no action
 
+Hi,
 
-On Thu, 30 Apr 2026 16:41:56 +0000, Caleb James DeLisle wrote:
-> In MIPS VEIC mode (Vectored External Interrupt Controller), the
-> hardware stops directly dispatching CPU interrupts such as IPIs or CPU
-> performance counters, and instead it communicates them to the external
-> interrupt controller (the hardware described here) which prioritizes,
-> renumbers, and integrates them with its own hardware interrupt pins.
-> Interrupts from the external controller are then dispatched through a
-> different method via a dispatch table. In effect, the external
-> controller subsumes the CPU controller and becomes the root.
+On 2026-04-13 10:02, Iker Pedrosa wrote:
+> Add complete SD card controller support with UHS high-speed modes.
 > 
-> 34K Manual (MD00534) Section 6.3.1.3 rev 1.13 page 136
+> - Enable sdhci0 controller with 4-bit bus width
+> - Configure card detect GPIO with inversion
+> - Connect vmmc-supply to buck4 for 3.3V card power
+> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
+> - Add dual pinctrl states for voltage-dependent pin configuration
+> - Support UHS-I SDR25, SDR50, and SDR104 modes
 > 
-> Since there are interrupts which ought to be controlled by the CPU
-> controller driver - particularly the IPI interrupts - we create a
-> reverse mapping where those interrupts may be sent back to the CPU
-> intc when they are received. This maintains the fiction that there is
-> still a hierarchy, and keeps the DT the same no matter whether the
-> processor is in VEIC mode or not. The econet,cpu-interrupt-map is
-> optional and if omitted, it's assumed that no interrupts need to be
-> mapped.
+> This enables full SD card functionality including high-speed UHS modes
+> for improved performance.
 > 
-> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> Suggested-by: Anand Moon <linux.amoon@gmail.com>
+> Tested-by: Anand Moon <linux.amoon@gmail.com>
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
 > ---
->  .../econet,en751221-intc.yaml                 | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
+>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 24 ++++++++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
 > 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> index 5790d927b93d..a7d88564630f 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> @@ -220,7 +220,7 @@ buck3_1v8: buck3 {
+>  				regulator-always-on;
+>  			};
+>  
+> -			buck4 {
+> +			buck4: buck4 {
+>  				regulator-min-microvolt = <500000>;
+>  				regulator-max-microvolt = <3300000>;
+>  				regulator-ramp-delay = <5000>;
+> @@ -241,7 +241,7 @@ buck6 {
+>  				regulator-always-on;
+>  			};
+>  
+> -			aldo1 {
+> +			aldo1: aldo1 {
+>  				regulator-min-microvolt = <500000>;
+>  				regulator-max-microvolt = <3400000>;
+>  				regulator-boot-on;
+> @@ -367,3 +367,23 @@ hub_3_0: hub@2 {
+>  		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+>  	};
+>  };
+> +
+> +&sdhci0 {
+> +	pinctrl-names = "default", "uhs";
+> +	pinctrl-0 = <&mmc1_cfg>;
+> +	pinctrl-1 = <&mmc1_uhs_cfg>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> +	cd-inverted;
+> +	broken-cd;
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Card detect is marked as broken as a proper definition requires pull-up 
+support in pinctrl. Support for that went into 7.1, so I guess it's not 
+safe to use the proper definition. That means using the following 
+changes on to of this patch:
 
+--- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+@@ -406,9 +406,7 @@ &sdhci0 {
+ 	pinctrl-0 = <&mmc1_cfg>;
+ 	pinctrl-1 = <&mmc1_uhs_cfg>;
+ 	bus-width = <4>;
+-	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
+-	broken-cd;
++	cd-gpios = <&gpio K1_GPIO(80) (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+ 	no-mmc;
+ 	no-sdio;
+ 	disable-wp;
+
+Regards
+Aurelien
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
