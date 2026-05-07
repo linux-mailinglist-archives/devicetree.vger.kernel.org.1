@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-293980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293981-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YN+HEH1+/GnXQgAAu9opvQ
-	(envelope-from <devicetree+bounces-293980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:58:53 +0200
+	id gGm6BrV+/GnXQgAAu9opvQ
+	(envelope-from <devicetree+bounces-293981-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:59:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A32B4E7DD7
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:58:48 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1894E7E3A
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 13:59:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 631E630022FD
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 11:58:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0B7F13004C83
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 11:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FFE3BAD89;
-	Thu,  7 May 2026 11:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107963EDAD1;
+	Thu,  7 May 2026 11:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aK84PsMD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bq45yKfc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E1535F8C5;
-	Thu,  7 May 2026 11:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BFDE3EDACE;
+	Thu,  7 May 2026 11:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778155125; cv=none; b=tVMm8VFximKe73yPQBOHUq+9e+IUmDQYJYGkorl4IlkOi1cvipEOcKDaTUBvw6wx6DD6JPYtr/e3wEA3NV6pvsG6MV3ojdXlb+uUpPM1uiVUY4ZlYRloaLq4/pM/fWhjCCb+MKWg0HvM9iy/touMTTRlhWHJn78XAs2lYoSUlAE=
+	t=1778155178; cv=none; b=WFSqdwbTOfUpEVu6T6h30yPfYPehkMOMP+O/FprfyLdePDUkkcmnP/dNYT9N932kDTt0E23FoEO0cGI4sr1fFbiYFtDBygB1XR2ACP9rCNdhEdeFfsOt1wOBu0Abz61rctKJaeFQwBihOIJyEAHi+anSa2UXLy2Kx86xN89enNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778155125; c=relaxed/simple;
-	bh=vUIsPIYMAJAOvlRzXuXapUvmiBeujdGmTnJXfJmTsq8=;
+	s=arc-20240116; t=1778155178; c=relaxed/simple;
+	bh=9Qi7Bqf5701zJ+UIELOq4/coD675DIWia6FjFcBsdSc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jw8WPT/dvCYYp8kJGrk3fkKg79aiAUZawbmfAz0mn56bj2EOsRlpBr7xSJcX3zcpjtLlfm2mkZ90TMTMqZFYcvSTJcvezka0NvirxNfV9zBUKx0uNKbOFkvkZ/x8eDC75SSy1Yo52qiUCXkLJMHQhBqKy0a3YBUC6JuUWiikNLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aK84PsMD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4030CC2BCB2;
-	Thu,  7 May 2026 11:58:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZU6h0E3MrdlTXn21XzUWRSOiNT0OFvVrQd4jRN5ChG9eBqKH4NpQVq5lsLXFKi5vtOW5zyVWFch/n/uYEPJYJ7ZTwbMkd+DoFoYF1TO2NCK5cLMbKrbeYSDiKsZTb3mRSKJH9uhyUWBTb/Oasn1Xq5HsNX0/Iu0UvNXbycS/r8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bq45yKfc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EEE1C2BCB2;
+	Thu,  7 May 2026 11:59:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778155125;
-	bh=vUIsPIYMAJAOvlRzXuXapUvmiBeujdGmTnJXfJmTsq8=;
+	s=k20201202; t=1778155177;
+	bh=9Qi7Bqf5701zJ+UIELOq4/coD675DIWia6FjFcBsdSc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aK84PsMD1OrE/h4S28KeZWVduIJoJq3YHDnh30OO+WoguHh2GGwRTrtwFij048hSX
-	 BNkGkIIQUp4Kto5o1+/uRtgjS7tpOxm0NdXhShGEzvsEHH+G1h/38SnKWt02447Vov
-	 qbRb2IVKIxHtICvnSLy9LfnBo6WLAsShGQBXYidbD+5vo2nD+i4rHG9zZ8m+6x2ILL
-	 ze2Tt9OGyR6X5TwDe/psLcYvE8lLY8imOc+q6pvjgaXqe9dGhY/jQzPTHS6qdvWjnw
-	 rjEpVyqhMOXiaC8CDgIH4r4b77dJV50o+WIKhMOiwsIyahGrPi22DlQc4mVwsxYUaU
-	 4Lx3X5wCUxOOQ==
-Date: Thu, 7 May 2026 06:58:43 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chaitanya Sabnis <chaitanya.msabnis@gmail.com>
-Cc: conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	thor.thayer@linux.intel.com, wsa@kernel.org,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: convert altera i2c to dt-schema
-Message-ID: <177815512250.1119572.9279436421990255678.robh@kernel.org>
-References: <20260505053201.5795-1-chaitanya.msabnis@gmail.com>
+	b=bq45yKfcYsPFrE1PHqbs6G+XyY2DJcGK41Vz3PwpzJB3t096MthbcPGb1ILjQ7XDw
+	 Xo4pa/qX0L07J7j1Vai5aowj9taZgDkcjA6pfu90MU76J+Go2uXC16ufpjnl6JRRH5
+	 0IOxz0YxsDe+gYfRyLpGBn7jFWPM9HFpB2Mb+dWjBW0vNoBYQSfyzlksJmIJyUHUt2
+	 4mJ5e19UP6lfuYRPo2SczVOchJAhey9XFUM4dwCDZ0eodWRAA18AEzuybR53bWjCIW
+	 wnUHLJ/ZnmnV7uKC5nvk0ZeYd3y8B17TCKy7hmwg+Z0MOHARiFcMGfElUpmWDJ+muH
+	 ToaMw08cwweOQ==
+Date: Thu, 7 May 2026 06:59:35 -0500
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Linus Walleij <linusw@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: lan966x: Accept standard ethernet
+ prefixes
+Message-ID: <20260507115935.GA1119810-robh@kernel.org>
+References: <20260507-lan966-binding-v1-1-e99293d2a4ec@kernel.org>
+ <20260507134043.35fdb1b9@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,56 +68,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260505053201.5795-1-chaitanya.msabnis@gmail.com>
-X-Rspamd-Queue-Id: 0A32B4E7DD7
+In-Reply-To: <20260507134043.35fdb1b9@bootlin.com>
+X-Rspamd-Queue-Id: 3E1894E7E3A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [5.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-293980-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293981-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	R_SPF_ALLOW(0.00)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	NEURAL_SPAM(0.00)[0.097];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-
-On Tue, 05 May 2026 11:02:01 +0530, Chaitanya Sabnis wrote:
-> Convert the Altera SoftIP I2C Controller bindings from legacy text
-> format to modern dt-schema (YAML).
+On Thu, May 07, 2026 at 01:40:43PM +0200, Herve Codina wrote:
+> Hi Linus,
 > 
-> The hardware constraints and properties remain identical. The example
-> node was updated to use a standard 32-bit address space to clear
-> compilation warnings.
+> On Thu, 07 May 2026 11:26:01 +0200
+> Linus Walleij <linusw@kernel.org> wrote:
 > 
-> Signed-off-by: Chaitanya Sabnis <chaitanya.msabnis@gmail.com>
-> ---
->  .../bindings/i2c/altr,softip-i2c-v1.0.yaml    | 62 +++++++++++++++++++
->  .../devicetree/bindings/i2c/i2c-altera.txt    | 39 ------------
->  2 files changed, 62 insertions(+), 39 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/i2c/altr,softip-i2c-v1.0.yaml
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-altera.txt
+> > The dsa.yaml and ethernet-switch.yaml bindings recommend
+> > prefixing ethernet switches and ports with "ethernet-" so
+> > make the LAN966x do the same.
+> > 
+> > Reported-by: Herve Codina <herve.codina@bootlin.com>
+> > Signed-off-by: Linus Walleij <linusw@kernel.org>
+> > ---
+> >  .../devicetree/bindings/net/microchip,lan966x-switch.yaml      | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > index 306ef9ecf2b9..0f0f35865ef4 100644
+> > --- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > +++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > @@ -17,7 +17,7 @@ description: |
+> >  
+> >  properties:
+> >    $nodename:
+> > -    pattern: "^switch@[0-9a-f]+$"
+> > +    pattern: "^(ethernet-)?switch@[0-9a-f]+$"
+> >  
+> >    compatible:
+> >      const: microchip,lan966x-switch
+> > @@ -70,7 +70,7 @@ properties:
+> >      additionalProperties: false
+> >  
+> >      patternProperties:
+> > -      "^port@[0-9a-f]+$":
+> > +      "^(ethernet-)?port@[0-9a-f]+$":
+> >          type: object
+> >  
+> >          $ref: /schemas/net/ethernet-controller.yaml#
+> > @@ -138,7 +138,7 @@ additionalProperties: false
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > -    switch: switch@e0000000 {
+> > +    switch: ethernet-switch@e0000000 {
+> >        compatible = "microchip,lan966x-switch";
+> >        reg =  <0xe0000000 0x0100000>,
+> >               <0xe2000000 0x0800000>;
+> > @@ -151,14 +151,14 @@ examples:
+> >          #address-cells = <1>;
+> >          #size-cells = <0>;
+> >  
+> > -        port0: port@0 {
+> > +        port0: ethernet-port@0 {
+> >            reg = <0>;
+> >            phy-handle = <&phy0>;
+> >            phys = <&serdes 0 0>;
+> >            phy-mode = "gmii";
+> >          };
+> >  
+> > -        port1: port@1 {
+> > +        port1: ethernet-port@1 {
+> >            reg = <1>;
+> >            sfp = <&sfp_eth1>;
+> >            managed = "in-band-status";
+> > 
+> > ---
+> > base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+> > change-id: 20260507-lan966-binding-0df62a018509
+> > 
+> > Best regards,
+> > --  
+> > Linus Walleij <linusw@kernel.org>
+> > 
 > 
+> With those changes, dtb_check will not be happy when following dtsi/dts are
+> involved:
+>   - arch/arm/boot/dts/microchip/lan966x.dtsi
+>   - arch/arm/boot/dts/microchip/lan966x-kontron-kswitch-d10-mmt.dtsi
+>   - arch/arm/boot/dts/microchip/lan966x-pcb8290.dts
+>   - arch/arm/boot/dts/microchip/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts
+>   - arch/arm/boot/dts/microchip/lan966x-kontron-kswitch-d10-mmt-8g.dts
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+How so? the added prefix is optional.
 
+Rob
 
