@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-294020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294022-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOp6GmqM/GkjRQAAu9opvQ
-	(envelope-from <devicetree+bounces-294020-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:58:18 +0200
+	id oNHjNoCM/GkjRQAAu9opvQ
+	(envelope-from <devicetree+bounces-294022-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:58:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B002E4E89C9
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:58:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BF6A4E8A16
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A73B5305247C
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:56:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 75C29305C8D9
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7C33F65FF;
-	Thu,  7 May 2026 12:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2863F7A81;
+	Thu,  7 May 2026 12:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcP4b0Ze"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tM4IgBbv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3223F54DA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73DD3F7860;
 	Thu,  7 May 2026 12:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778158562; cv=none; b=cD25xFEZMhMkGKAsJ+OBHCBTopytaQwT43aHfDwb5CjTXXYX3UaOHQYfnOG6j7oSQstcCMegSKV2z58J39TT1cy2P29uBJsOVbZSbFaVveg00GQzKuVzRG78DQGwfCOENIBwC7YynIV7G1MnH2nk01y9xmpVoawc6jEfIUR3/Rw=
+	t=1778158563; cv=none; b=DpHyOmhZtKpA9mHOoB5T1KXgKvGdwvK4QTDEdNDqjN0AIfOmT2sBBgZCja2XGchkO69sLxX80PdjhXV6xUWVfafABD1FSSY3sbxbKcBYljfiCkGz4cjc06K2EJbLB3UCkZmyRn0qlv6iaW78XJENAc5mt6wLdA2tT324Onp7XFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778158562; c=relaxed/simple;
-	bh=AUUR2mNpd4MZjYN5NiaEO2JmuYp8gYDD2xKReT+S1UA=;
+	s=arc-20240116; t=1778158563; c=relaxed/simple;
+	bh=Ndk1gHcTE4MDCW8saID4GCZT+tRNO56H9hFusMG+7wk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MmywWEIc04exhDHVE7iW33yxMU5uczxoSWlqkowQ6RzU6enGZDSJYamWs65hE9mtQTEdYUss9qkwAZVmzW3Dl5n9AgGtdN8tLZEwsw0g7Xd8/nCdNjDzkYrG9BOf+BPbBjZ70Y3Mkg5ad+Da2v6Fc7/yXYWrJVdZ2UttbEtq9uM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcP4b0Ze; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC137C4E677;
+	 MIME-Version; b=Se3Im8oogiM2ygvWpIoD8lvdeNiMPiw0up5AvwMVFJDwECWRNlgsE/JOx0YNiveLjC6ZLHk4OM+I/hmpd4TB9QmbF9maZWUbZRoUBijL2pkUa8S4o0VVXplAuojtv4az3BGlPm0ep3FJWhODE/J6URgRIzLarP27ASfG6K/m4T0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tM4IgBbv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8B0AC4AF0C;
 	Thu,  7 May 2026 12:56:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778158561;
-	bh=AUUR2mNpd4MZjYN5NiaEO2JmuYp8gYDD2xKReT+S1UA=;
+	s=k20201202; t=1778158562;
+	bh=Ndk1gHcTE4MDCW8saID4GCZT+tRNO56H9hFusMG+7wk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pcP4b0Zejwv6+2w4K8LhMWHs1WayrOKmpUcXWogyuQ37pqbQjEvTOJv8x6G1mjg9b
-	 WmhztKpBLykQBURvS4YOZ9EOt5mL3KN23FT5nHXrVEksxtDJreYYNfZy76aac6rT93
-	 BYSfVnTTr0t6qRXsvGt51MH9a/0D+71csej3pxH5Mq81FoytStn3kguepZDW93+Qf4
-	 A3aRJ8BnmiDFoPnmsF6kFfi5FussTwOPbMyc8+pEkHonevtKcx9guWboukBggiBSY1
-	 5+corEULaX2Ncun+bh9bZvVM8jQYJscFPUFeN6vf6GtrLHa1cYH0IVR6hUxEqVvYRl
-	 mWORoIq/EqJZA==
+	b=tM4IgBbvBrhbJ0yMHD3phsMTB6n5sJC+PO7413tKNIoTYJoD0sDMHE37iGqx4bBF5
+	 eOtSuUT1jnnW80OVAkCkqc4VMs+6OGWxaKlE+raku1u7DosJi6sk77DFBm/9568nvD
+	 XJfFG1wCB9YoHr7T4009c8oHlMjffeROvTY1UWzvU5M0ksfFn3Nvo6wm7eArAiiHTa
+	 QAh6THZfEbQA+KWXImObaa2/XXWI7naguXG+4RMw7uMKhSDaO/IhbaG77pmlzNJ7YW
+	 ciKS7T/giwzVCebr/06fbMaAckZ2WkXph9HuRSyIiBwZvwHseQBBgrC75Lsw/KFO0/
+	 UHbNtRsO8uRgg==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wKyGj-00000000d7d-0Tmb;
+	id 1wKyGj-00000000d7d-2p8l;
 	Thu, 07 May 2026 12:55:57 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
@@ -97,9 +97,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH 04/16] arm64: dts: allwinner: Add EL2 virtual timer interrupt
-Date: Thu,  7 May 2026 13:55:32 +0100
-Message-ID: <20260507125544.2903406-5-maz@kernel.org>
+Subject: [PATCH 05/16] arm64: dts: amlogic: Add EL2 virtual timer interrupt
+Date: Thu,  7 May 2026 13:55:33 +0100
+Message-ID: <20260507125544.2903406-6-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260507125544.2903406-1-maz@kernel.org>
 References: <20260507125544.2903406-1-maz@kernel.org>
@@ -115,7 +115,7 @@ X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.
  heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: B002E4E89C9
+X-Rspamd-Queue-Id: 7BF6A4E8A16
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -133,7 +133,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[46];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-294020-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294022-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -143,32 +143,195 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-The ARMv8.2 based CPUs used in the A523 SoC (and derivatives)
-are missing the EL2 virtual timer interrupt. Add it.
+The ARMv8.2 based CPUs used in a number of Amlogic SoCs are missing
+the EL2 virtual timer interrupt. Add it.
+
+This requires some surgery in the "common" files to move the timer
+node to locations that makes it possible to add the interrupt only
+where it is actually implemented.
 
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi |  8 --------
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  8 ++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  9 +++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |  3 ++-
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |  3 ++-
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |  3 ++-
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  | 13 -------------
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi         |  9 +++++++++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi         | 10 ++++++++++
+ 9 files changed, 42 insertions(+), 24 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index 5afa8d92acbfb..d3c47966e8fc8 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -101,7 +101,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+index 54d7a2d56ef64..6f559e4dd9ee9 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+@@ -7,14 +7,6 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
+ / {
+-	timer {
+-		compatible = "arm,armv8-timer";
+-		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+-	};
+-
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+index fce45933fa28b..c28fc7fcbae7f 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+@@ -86,6 +86,14 @@ pwrc: power-controller {
+ 			#power-domain-cells = <1>;
+ 		};
+ 	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
+ };
+ 
+ &apb {
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+index 2b12d8284594f..c22c0acb4807e 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+@@ -49,6 +49,15 @@ pwrc: power-controller {
+ 			#power-domain-cells = <1>;
+ 		};
+ 	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
+ };
+ 
+ &apb {
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+index ab3acef2b147e..853d32929ff46 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi
+@@ -56,7 +56,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
  	};
  
- 	soc {
+ 	psci {
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+index a3faf4d188e11..bfaac5f3e22da 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+@@ -94,7 +94,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 	};
+ 
+ 	psci {
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
+index 0c4417bcd6827..32d8683059964 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
+@@ -58,7 +58,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 	};
+ 
+ 	psci {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 00609d2da6743..a911a5181a88d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2579,19 +2579,6 @@ map {
+ 		};
+ 	};
+ 
+-	timer {
+-		compatible = "arm,armv8-timer";
+-		interrupts = <GIC_PPI 13
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 14
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 11
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 10
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
+-		arm,no-tick-in-suspend;
+-	};
+-
+ 	xtal: xtal-clk {
+ 		compatible = "fixed-clock";
+ 		clock-frequency = <24000000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+index 664912d1beaab..866fc07d1b0ae 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+@@ -43,6 +43,15 @@ tdmif_c: audio-controller-2 {
+ 		clock-names = "sclk", "lrclk", "mclk";
+ 		status = "disabled";
+ 	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
++		arm,no-tick-in-suspend;
++	};
+ };
+ 
+ &apb {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+index 8f5b850b1774f..77c72936ffdd3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+@@ -128,6 +128,16 @@ l2: l2-cache0 {
+ 		};
+ 	};
+ 
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 12 (GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
++		arm,no-tick-in-suspend;
++	};
++
+ 	cpu_opp_table: opp-table {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
 -- 
 2.47.3
 
