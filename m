@@ -1,146 +1,242 @@
-Return-Path: <devicetree+bounces-293868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293862-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ePpnEaFT/GlOOAAAu9opvQ
-	(envelope-from <devicetree+bounces-293868-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 10:56:01 +0200
+	id KA4SCHxU/GmKOQAAu9opvQ
+	(envelope-from <devicetree+bounces-293862-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 10:59:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43674E54BE
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 10:56:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B91554E5638
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 10:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5AAEA30A0BAB
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 08:50:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F9753043FEE
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 08:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5DD639A051;
-	Thu,  7 May 2026 08:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E30399350;
+	Thu,  7 May 2026 08:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XniS21eZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AtmwBZYp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA8437B3E1;
-	Thu,  7 May 2026 08:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE79377EAF
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 08:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778143754; cv=none; b=I2/0xWmuJ2XOV+CVIPtnGpFF8amT8B+bRHqaDr/yHf5zRnVJ8+8+jgQEIezH9xkex6+Qn/fj6iJco2TReTlI11C/lSjlHScYuLDV2yd93uBAHf3l7snR3Aeg3mx36xAmz3vhhVYwrxlKGl/HUr19ewU5BRhwgsRqz+c63REQXv8=
+	t=1778143708; cv=none; b=MODHDQKbNJDrIKSsjMEAKdMSImzMoqCMuvpX24gwr5sQZFOsqjzmRvOmBPt06cVNISrLqvLnC1OWElN6ogmsyMYceFuOgYG6hM5vyUbjNXNkoYaAA7fAulS7RbQ72V/cHNyTPYXgFrudp8I2E4PH5wRnxweaIOW+oQnxTBZ31yY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778143754; c=relaxed/simple;
-	bh=IjmyKrRs5bSU2CVMI2YglfCQfHmycQAZGSeoqpQ2FxM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EsfRK6oCIUM/OMCQGEJw+0x7ayaFZFGyWY8Pd8xzCFLfZrGddwWRLmzt7/qDuYTy50IbvAJN1F9x131ybmI81gtkiXGMVzY8O8d7Jop2JUkiP6s7bObL52OoIo3pAYV6HbSGPAmFSRnj2FmqHFcbHy2sfVujiPoCz73zDIzoDjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XniS21eZ; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1778143749; x=1809679749;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IjmyKrRs5bSU2CVMI2YglfCQfHmycQAZGSeoqpQ2FxM=;
-  b=XniS21eZg1J6Aydjrs421BPjkWh2UcdkuxnMrKRpVrWKXntzTLgaT9Gq
-   n/lPupHRSObyWPrk8BozHB251NPM+FAXAjRHWrFQjJS7bmdfaQnz1BP1n
-   HDCz/asokJ4xFzCP26vw0Z32Ng2sCJZVRDMkyxIT2il5JAuqVeSR1004K
-   DNhoVD6Anok/5ehAQArAoKls1LxTkJms/I8PbuEK3hwd8E8v/GAnotb/h
-   XQvGlGmwU43O/Q7Co5dnXyVSStXvyr0xvuU09x/XJT+L0hqX0bvfDosUK
-   UUcMpeGWOnRfKzUoA4AEqGKOTBrIsTBwKZKUE6vHl8SE2R5QDq4kVHb3X
-   w==;
-X-CSE-ConnectionGUID: 5g54zo4oSXqjCAVENxCvvA==
-X-CSE-MsgGUID: MISv4/VQQWmMAERkCqQgxg==
-X-IronPort-AV: E=Sophos;i="6.23,221,1770620400"; 
-   d="scan'208";a="65430976"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 May 2026 01:49:04 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 7 May 2026 01:49:05 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 7 May 2026 01:48:57 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <alexandre.belloni@bootlin.com>, <Frank.Li@nxp.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<claudiu.beznea@tuxon.dev>, <linux@armlinux.org.uk>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <tytso@mit.edu>,
-	<aubin.constans@microchip.com>, <Ryan.Wanner@microchip.com>,
-	<romain.sioen@microchip.com>, <durai.manickamkr@microchip.com>,
-	<cristian.birsan@microchip.com>, <adrian.hunter@intel.com>,
-	<jarkko.nikula@linux.intel.com>, <npitre@baylibre.com>,
-	<linux-i3c@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>
-CC: <manikandan.m@microchip.com>
-Subject: [PATCH v6 5/5] ARM: configs: at91: sama7: add sama7d65 i3c-hci
-Date: Thu, 7 May 2026 14:18:05 +0530
-Message-ID: <20260507084805.481737-6-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260507084805.481737-1-manikandan.m@microchip.com>
-References: <20260507084805.481737-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1778143708; c=relaxed/simple;
+	bh=JIGuETpivY+tMqhUXN4t4Bny+zQtYhvsCkl/N+OUQDc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VJLRV5oIxWQZJxUaezFI+AlPeIGWf1t00fpCgd9isGeChRa55/alZxJ/JLUgaNU+6bqXeLTEUqqV3W36hnUER3/lEdAqB94VVDArPfeGzKrSyQ9pJbBbLj8JqIgznVUbta9XFkmHS6XnGUo2Yfeo0c9kdeeb+9pkLkUvySFH0RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AtmwBZYp; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-2b4583f0a1aso3355615ad.3
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 01:48:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778143700; x=1778748500; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2g4HOatV1Ssugu2qkDT6I/dNGmnk+MzQNypIG54pufk=;
+        b=AtmwBZYpnqNaJHDqgnVaNyl/TVpJQ7/PhlUG+5f1LRMAjHRjb5hKjvweqnGGhj+ZA/
+         9YC5nym6VkSVsrlmcjjEQAtEwwS7w3+/onAJW6l0hs8uBkpNLfLEHLkfjaseRHdnz8mf
+         NQuPGW/Own1NpoUiPgYCWPuxywXYW/WNQ8dcA1mzkcHN/hgrQyB44J8RsUoOT4gy+f+M
+         vpdPSDXAcl/1secrSK5Ydx/MMBqm0Q3uoQjYcivKuN7jnst3qCrtiHwPSKpcNBUtZTT4
+         mG+I/6uoEEed1PTZrUvLhenGSD/pNBRwDE+32y8gK9gK5fd+43EKR367imVKiGNxx9o2
+         5bOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778143700; x=1778748500;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2g4HOatV1Ssugu2qkDT6I/dNGmnk+MzQNypIG54pufk=;
+        b=SnoJYlHu/zwVkha77dJ3pZDcBA2w1wqRx0QE/+jT34x8tcAbgWQPEsdTBpCz15pikS
+         svEUz/ef8fL9HSar7xgMmXBzxIQjuk4YgojIr7ZBPYHblPO4j9fjjVAwlCSqFKtcghXS
+         ya/ICoBSalRwdjPfNBZyOVm2o9feuYsjZnmwZAg0sgMxsuRQ/RjVRi83FsmRHZ5i0qbe
+         Fi99RhTRtpqyKL6RUlyNHKzF6lcqBh1OujufdkLjtSr8waIWkM6kuTeZQdPQKyPSAKtG
+         MgwGjclEs/uIRgsrLkoqILJt9cbgr+yzHVv6Th39/FdBo4mk8S7ID3/TTEVXaHi5L3kS
+         CBwQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/3uJGUImJ5nDNBZmBrQEBLY3mURrcutKC3MxjmElSaBSDFX6vJ+ifw7D1JXm/hlKQRoRBFZT1oRcNZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0czQyA/Wv2KIjJifgUrzrWRbZ7IgPl+Jr/O7dXFRQTIDNaR0V
+	GcN/9V8pibhIA5IsQWfGAFV4gy7tAlo4TM1lL6oHSxV+VzWMwj+v1eSK
+X-Gm-Gg: AeBDietrfQ689owj/IMGgrhZILrgOomgWk+voitIJy+rq/voqwD8ZJCsJRY4g6WcNmP
+	Rt87jMtyA0J+9cGsPydCB4RT0r4H/0hJI0iA7wD9oMwZHvFUNWLk4HynUVLjzf4eURXn0bRwn5O
+	aNl9KRk4mWOV4rgOktIdV5YHVCsnqBBws5oeASrZohvtwCjiXu8muxaHgxVIcAYUU1B1VR6aGqB
+	ttbmWL4xx0X8VCplz0SjFPcPKgCoRM0lW6Jo03pd9QZgiThjrhs7GrO74sCVko4Wbhswub8Dpdy
+	lM/oE2fjTu8DNLZcQjmlbEg42Aa+MNVc+aGCCghTYiiN2G5z8mVWo/4Qt2Luha+E002s46Qegh9
+	kU6cxN5QzdhhT05PvSF3AxlnreTUm/5APXih45MxYQr+yRls3+W1NzotgZBueAsjvdRZiNF3Zck
+	VsqzyH0hAZXQk/IT3gVYEX/RZpliheZmLR8u9MLnvceQ==
+X-Received: by 2002:a17:903:903:b0:2b0:5d60:7f3f with SMTP id d9443c01a7336-2ba78f7320amr72637805ad.16.1778143700446;
+        Thu, 07 May 2026 01:48:20 -0700 (PDT)
+Received: from [10.125.112.20] ([210.184.73.204])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2babab0152csm19143165ad.35.2026.05.07.01.48.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 May 2026 01:48:19 -0700 (PDT)
+Message-ID: <6056bd1f-3998-44ff-8c4f-972704e0b896@gmail.com>
+Date: Thu, 7 May 2026 16:48:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Rspamd-Queue-Id: B43674E54BE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/11] of: reserved_mem: add no-dump crash_mem exclusion
+ helpers
+To: Rob Herring <robh@kernel.org>
+Cc: kexec@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ loongarch@lists.linux.dev, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, akpm@linux-foundation.org, bhe@redhat.com,
+ rppt@kernel.org, pasha.tatashin@soleen.com, pratyush@kernel.org,
+ ruirui.yang@linux.dev, corbet@lwn.net, skhan@linuxfoundation.org,
+ catalin.marinas@arm.com, will@kernel.org, chenhuacai@kernel.org,
+ kernel@xen0n.name, pjw@kernel.org, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, saravanak@kernel.org, chenwandun@lixiang.com,
+ zhaomeijing@lixiang.com, everyzhao@126.com
+References: <20260429065831.1510858-1-chenwandun@lixiang.com>
+ <20260429065831.1510858-8-chenwandun@lixiang.com>
+ <20260506145022.GA2084721-robh@kernel.org>
+Content-Language: en-US
+From: Wandun <chenwandun1@gmail.com>
+In-Reply-To: <20260506145022.GA2084721-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: B91554E5638
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,lists.linux.dev,linux-foundation.org,redhat.com,kernel.org,soleen.com,linux.dev,lwn.net,linuxfoundation.org,arm.com,xen0n.name,dabbelt.com,eecs.berkeley.edu,lixiang.com,126.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-293868-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293862-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[manikandan.m@microchip.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[]
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chenwandun1@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Enable the configs needed for I3C framework and microchip
-sama7d65 i3c-hci driver.
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
----
- arch/arm/configs/sama7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index e52f671ccec4..6470c7d3fe8a 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -117,6 +117,8 @@ CONFIG_HW_RANDOM=y
- CONFIG_I2C=y
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_AT91=y
-+CONFIG_I3C=y
-+CONFIG_MIPI_I3C_HCI=y
- CONFIG_SPI=y
- CONFIG_SPI_ATMEL=y
- CONFIG_SPI_ATMEL_QUADSPI=y
--- 
-2.25.1
-
+On 5/6/26 22:50, Rob Herring wrote:
+> On Wed, Apr 29, 2026 at 02:58:27PM +0800, Chen Wandun wrote:
+>> Provide two kdump-oriented helpers so that arch kexec_file code does
+>> not have to open-code the no-dump filtering loop:
+>>
+>>   - of_reserved_mem_no_dump_nr_ranges() returns the number of reserved
+>>     regions flagged with linux,no-dump. Each exclusion may split one
+>>     existing crash_mem range into two, so callers use this count to
+>>     pre-size their crash_mem allocation.
+>>
+>>   - of_reserved_mem_exclude_no_dump() walks the reserved_mem[] array
+>>     and calls crash_exclude_mem_range() for each no-dump region.
+>>
+>> Both helpers are guarded by CONFIG_KEXEC_FILE; empty inline stubs are
+>> provided for the !KEXEC_FILE case so architecture code can call them
+>> unconditionally.
+>>
+>> The consumers are added in the following arm64, riscv and loongarch
+>> patches in this series.
+>>
+>> Signed-off-by: Chen Wandun <chenwandun@lixiang.com>
+>> Tested-by: Zhao Meijing <zhaomeijing@lixiang.com>
+>> ---
+>>   drivers/of/of_reserved_mem.c    | 54 +++++++++++++++++++++++++++++++++
+>>   include/linux/of_reserved_mem.h | 15 +++++++++
+>>   2 files changed, 69 insertions(+)
+>>
+>> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+>> index 4b80420da2d2..038056a6408a 100644
+>> --- a/drivers/of/of_reserved_mem.c
+>> +++ b/drivers/of/of_reserved_mem.c
+>> @@ -27,6 +27,10 @@
+>>   
+>>   #include "of_private.h"
+>>   
+>> +#ifdef CONFIG_KEXEC_FILE
+>> +#include <linux/crash_core.h>
+>> +#endif
+> You shouldn't need ifdef around includes.
+>
+>> +
+>>   static struct reserved_mem reserved_mem_array[MAX_RESERVED_REGIONS] __initdata;
+>>   static struct reserved_mem *reserved_mem __refdata = reserved_mem_array;
+>>   static int total_reserved_mem_cnt = MAX_RESERVED_REGIONS;
+>> @@ -916,6 +920,56 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
+>>   
+>> +#ifdef CONFIG_KEXEC_FILE
+> Use 'if (IS_ENABLED())' within the function.
+Get it, thanks.
+>
+>> +/**
+>> + * of_reserved_mem_no_dump_nr_ranges() - count reserved regions flagged
+>> + * with the linux,no-dump property.
+>> + *
+>> + * Each such region may split an existing crash_mem range into two when
+>> + * it is excluded, so callers can use this count to pre-size their
+>> + * crash_mem allocation.
+>> + */
+>> +unsigned int of_reserved_mem_no_dump_nr_ranges(void)
+>> +{
+>> +	unsigned int i, n = 0;
+>> +
+>> +	for (i = 0; i < reserved_mem_count; i++)
+>> +		if (reserved_mem[i].no_dump)
+>> +			n++;
+>> +	return n;
+>> +}
+>> +
+>> +/**
+>> + * of_reserved_mem_exclude_no_dump() - exclude no-dump reserved regions
+>> + * from a crash_mem list.
+>> + * @cmem: crash memory list to modify
+>> + *
+>> + * Walks the reserved_mem[] array and calls crash_exclude_mem_range() for
+>> + * every region with no_dump set. Intended to be called from arch kdump
+>> + * code when constructing the elfcorehdr.
+>> + *
+>> + * Returns 0 on success, or a negative error returned by
+>> + * crash_exclude_mem_range() on the first failure.
+>> + */
+>> +int of_reserved_mem_exclude_no_dump(struct crash_mem *cmem)
+>> +{
+>> +	unsigned int i;
+>> +	int ret;
+>> +
+>> +	for (i = 0; i < reserved_mem_count; i++) {
+>> +		struct reserved_mem *r = &reserved_mem[i];
+>> +
+>> +		if (!r->no_dump || !r->size)
+>> +			continue;
+>> +		ret = crash_exclude_mem_range(cmem, r->base,
+>> +					      r->base + r->size - 1);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +	return 0;
+>> +}
+>> +#endif /* CONFIG_KEXEC_FILE */
 
