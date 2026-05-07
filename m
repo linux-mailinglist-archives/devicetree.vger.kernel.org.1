@@ -1,151 +1,154 @@
-Return-Path: <devicetree+bounces-294075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294078-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNtDIGie/Gn3RwAAu9opvQ
-	(envelope-from <devicetree+bounces-294075-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:15:04 +0200
+	id wPBOI/uf/Gm1SAAAu9opvQ
+	(envelope-from <devicetree+bounces-294078-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:21:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0944E9EDF
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:15:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9469E4EA0CF
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 16:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D6C7B3021B92
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 14:13:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1F351300ADBA
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 14:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6CC410D0F;
-	Thu,  7 May 2026 14:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79C93F9F39;
+	Thu,  7 May 2026 14:15:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="oUE8EmsR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D8940F8DE;
-	Thu,  7 May 2026 14:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F79E3F1655;
+	Thu,  7 May 2026 14:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778163182; cv=none; b=Z2v1DWu/l3j8AcIOWxuYIql5M4QcPEsZ7mf+3FV/3LeVeKZTpaup1+RH+u09CP533A+voWSh/NiRrVVlvRDijRULcSyiiAuSMXsCTz2OGQgIeqUBh82TIR/DBgtZVVKc36VKr1BIvmsxK604SPbQgEifrpZiDylVOiaKR6OG3EQ=
+	t=1778163334; cv=none; b=ZPRIXC3v+dORADT6m6+KmmSciUeEGzsowWH4W43sq3EH6VPWpmdab5k+dsaqBayQLDSIsOH/IHNm48qENrfVLN8HhBCrIyciAuKWPJnWl/Z90yr1WYoEFq+5ZIOgYA4hCQcDW3gcaNIEWRuresOFYPWSuLxlcZhs/3Y9Zk3LID4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778163182; c=relaxed/simple;
-	bh=qO+TPGjPyIU90fyNONfH8qQZWNpD/rEJEKB057F0kQo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KSFXyEPFOsyy0wRx/C0HW6dM7O8RoCrB6dIQ9Uekf13wuEM2F54EJ3DS0CG0F46y51PgDWphQxp8YRHcRTwssc687224sZDyI1Rb8mTabG5hkXdcfpiAFhzrKvnuR3kx+zL9J81GeDHHtQXilqD4UtH//tBdtYR8Imhs4a/UY/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2085CC2BCB2;
-	Thu,  7 May 2026 14:12:58 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: john.madieu.xa@bp.renesas.com
-Cc: biju.das.jz@bp.renesas.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	geert+renesas@glider.be,
-	john.madieu@gmail.com,
-	krzk+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	magnus.damm@gmail.com,
-	mturquette@baylibre.com,
-	robh@kernel.org,
-	sboyd@kernel.org
-Subject: Re: [PATCh v3 1/8] dt-bindings: clock: renesas: Add audio clock inputs for RZ/V2H family
-Date: Thu,  7 May 2026 16:12:57 +0200
-Message-ID: <20260507141257.436456-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260402163126.12135-2-john.madieu.xa@bp.renesas.com>
-References: <20260402163126.12135-2-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1778163334; c=relaxed/simple;
+	bh=70KuMfzku9PDiHjjD3qQPJ/Ug0jo/by7mUF2gnZbFd4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rjTrlhpP3TDesRbHqyRsRgSODvB6Xdr5DSg/kPeZBWoGb434raHAadAt8Nttg7CQqhDvEodOmCJFSGmWm3g6WDi4YQlkwsriwKyhDVVMebUKuDMakxSYgfE7lXjV7GvFCQSYCzXU71NMC9WvdJuunvhS+ZlHas0f1CNaucSi+yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=oUE8EmsR; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Jd92XsB5WE/g/etZHxA6nzPWEIbD+MK9uEeWSt6AGi4=; b=oUE8EmsRYnljUPNuD/yv/W2iSf
+	ILVAFslXORF0Xh0CDF17xDATwzEFAIR5bBKd5RsG3TIfePMBbH3P5BwJP1jwprPfhpstyU8Byr5e/
+	fw8Xeh94ss0mEpQtJUlhJmGqmRYdPO3xQTBFk0ctWwU6uCuKIXfm6us/azi5sDIAGxh8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wKzUx-001p6o-HA; Thu, 07 May 2026 16:14:43 +0200
+Date: Thu, 7 May 2026 16:14:43 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Xilin Wu <sophon@radxa.com>
+Cc: Alex Elder <elder@riscstar.com>, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, maxime.chevallier@bootlin.com,
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
+	arnd@arndb.de, gregkh@linuxfoundation.org,
+	Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
+	a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
+	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
+	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
+	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
+	julianbraha@gmail.com, livelycarpet87@gmail.com,
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+	rohan.g.thomas@altera.com, sdf@fomichev.me,
+	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
+	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 10/12] net: stmmac: tc956x: add TC956x/QPS615
+ support
+Message-ID: <fd839de4-0312-45aa-8e6a-4c7c199d9264@lunn.ch>
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-11-elder@riscstar.com>
+ <DD71CDEABC7C16D5+02d052ff-13bb-4712-a847-91416f76c578@radxa.com>
+ <7f3a0f16-5159-4bbc-8b15-9b5841603bf6@riscstar.com>
+ <3A5C0389E7C0D241+21a4f16b-1af8-46ac-8831-0c1b49694df0@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 1E0944E9EDF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3A5C0389E7C0D241+21a4f16b-1af8-46ac-8831-0c1b49694df0@radxa.com>
+X-Rspamd-Queue-Id: 9469E4EA0CF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.96 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294075-lists,devicetree=lfdr.de,renesas];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,vger.kernel.org,glider.be,gmail.com,baylibre.com];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[glider.be];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_CC(0.00)[riscstar.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-294078-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[51];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux-m68k.org:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-	Hi John,
-
-On Thu,  2 Apr 2026 18:31:19, John Madieu wrote:
-> RZ/V2H, RZ/V2N, and RZ/G3E support external audio clock inputs
-> (AUDIO_CLKA, AUDIO_CLKB, AUDIO_CLKC) that can be used by the Audio Clock
-> Generator (ADG) to derive internal audio clocks. These clocks are optional
-> and their frequencies are set by the board.
+> Hi Alex,
 > 
-> Update the bindings to allow these optional clocks for all RZ/V2H family
-> SoCs.
+> Do you think if a shutdown callback like this is required? It looks like the
+> driver sometimes does a MDIO MMIO read when the PCIe link is down, causing
+> the board to reset due to SoC side PCIe NoC timeout.
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> After this change, the board can always shutdown gracefully.
+> 
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
+> b/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
+> index 4e8b4a185583..34b8e3fe1b51 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
+> @@ -767,6 +767,17 @@ static void tc956x_dwmac_remove(struct auxiliary_device
+> *adev)
+>         tc956x_mac_disable(td);
+>  }
+> 
+> +static void tc956x_dwmac_shutdown(struct auxiliary_device *adev)
+> +{
+> +       struct device *dev = &adev->dev;
+> +       int ret;
+> +
+> +       ret = stmmac_suspend(dev);
 
-Thanks for your patch!
+It seems odd to do a suspend in shutdown.
 
-> --- a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-> @@ -26,16 +26,24 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> +    minItems: 3
->      items:
->        - description: AUDIO_EXTAL clock input
->        - description: RTXIN clock input
->        - description: QEXTAL clock input
-> +      - description: AUDIO_CLKA clock input
+But lets backtrack. Why is the PCIe link down?
 
-There AUDIO_CLKA clock is provided through the existing AUDIO_EXTAL
-input.
+	Andrew
 
-> +      - description: AUDIO_CLKB clock input
-> +      - description: AUDIO_CLKC clock input
->  
->    clock-names:
-> +    minItems: 3
->      items:
->        - const: audio_extal
->        - const: rtxin
->        - const: qextal
-> +      - const: audio_clka
-> +      - const: audio_clkb
-> +      - const: audio_clkc
->  
->    '#clock-cells':
->      description: |
-
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
 
