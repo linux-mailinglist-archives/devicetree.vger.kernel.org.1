@@ -1,253 +1,323 @@
-Return-Path: <devicetree+bounces-293786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293789-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JIkOGE3/GmUMwAAu9opvQ
-	(envelope-from <devicetree+bounces-293786-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:55:29 +0200
+	id MEenHYY4/GmUMwAAu9opvQ
+	(envelope-from <devicetree+bounces-293789-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:00:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436514E3C42
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF38C4E3D02
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D116B303E2FE
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:51:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A433930107F1
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 07:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7803334405C;
-	Thu,  7 May 2026 06:51:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="idbRNM9z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2610346E7D;
+	Thu,  7 May 2026 07:00:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012006.outbound.protection.outlook.com [52.101.66.6])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023131.outbound.protection.outlook.com [40.107.44.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D63342517;
-	Thu,  7 May 2026 06:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA4D134A77D;
+	Thu,  7 May 2026 07:00:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.131
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778136704; cv=fail; b=maD6Je0AK6JmT3OreUpVhFgasEDxSJsKHiBeQQoESurtnXrE6QkLOODB/pYWItm/F8/9KO9Se7H1tebcD2l4ekdwZ0hkzVegGS4wED4q5tsh67WG8WdfBgza1cqNKCs29sAYR0OAkVis0hlsZSO0zgYZ2hGAHgJLyHHZbSSxcPY=
+	t=1778137218; cv=fail; b=PFCdbFVtrj+Qw9gqu3zU3t+l2FfvkQaOadQZONyoNlpM4Iuv4zJOVqBhHU57B6K53AjbgpGlXPIEscWWKzzp0lrMCezACUMSKMXAFdFkbW5Pp7EpRifMZfk7LqR3eK5Qc0f3tQCAtn48fcECAkKvjl9qEeI5ysLN+/CGYWi2m4Y=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778136704; c=relaxed/simple;
-	bh=lKtj+zNKUru8GFjeZeDuzgVPxYyZEAHz2FbD4XvoLzQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HXC1/Djy5dCOP/SrYk9qiIWgto1dj/joKv7P/X7ABzyG/bQnfumAtaZc3Jr8FU9dpjhUJJ3RIt2uv3EEsTf6kSvqTqewElVmd7S39+gOKvX14V/SFfgOfpaJBKPTGA+kDtDaNg73leJaY6yHtY9why/xRvqPkOPXhcMoHWXrNTM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=idbRNM9z; arc=fail smtp.client-ip=52.101.66.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1778137218; c=relaxed/simple;
+	bh=ybHFGb5nK3WafdV+i1ZC9kbgU3ENXB6u2mkTfJCVMo8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JT9K1rjqDWVBWtNmMEfj/dbYcp/6iJnZL5VteMYqmU4/B5U6tLQFbIBvROTSQuUx/7tfb7cAZImdMrxumEyUg+ct1uRLuMDmCYIxEouEEv0BizHixBLEYWmglo2AtpsGg+WKe+m9ROT/VNXbQVJpt6+5g9YwM87jaLBm4I+938g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c7uERH4Pt/Me1eivj8g+9mts0QD5AVJj+8+Z/6e0beym0fML0fOL6Ve4jC8WUaQNlUqWU/6vk9RQtCuaPAxptWsyPDQUzM82kD8wnIf/9pRlu2dVshh8uVCYkjSjXBttxqe/m5/d3uRpbdauW6X5EXlo2vLTDQ5ktenOn27Ch9RuMLYrfqU7HBoSMQ1W6ipdRheCsma4MfczwCg1v2wENXnESHQuQiWrIhubYss+ITSiJSfmMIuUh8EvMvl4yXyC8iVLcmiIv/wZX7Kh2bPRgnBxLAzhXVhTj22+0BBRsize5dm/RphEhZaFCWlslZdQsxe5B0b677AQKjwWn/f3cQ==
+ b=aX9MiMD7I7iWzLVH1cApjZFHHsq6BoV459AVQeZBGGXpEtHqjSfNmP+iOBiB6d1lbSFy/2UGuQHK0w0ZyCFPTXB7JxPiKwlVDIDXbSjT7HMw7X97U74kVEY8qveyj4xaym9lEVvzHa1LUu4f8j9sZ2GsKj1hUExs6c9wr2UT8I6/OtJA4rSG/DIDFfHcLNNeDVjlXqBs+LlTaXbBGpNsiNiLtsKNdWJo12WfXZ/VUvzlcjV08a0wCq8KV7mJszI5cSzIavayyIoBD3ysaYZjIG3rSALbSYWCTqPRL5FCIaYdBo1sDYJDf251x4EvHCZ49Uef2qEEkGFoYuyb+qWlVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AxxvHwONd9P+EaQUZPZ71WJ3EiYSNPVYWMxFUC/phOw=;
- b=tR4/ftf8R0JndQx5vJzGakp00RlvWNj7GJZ5qN2vjIUJokYheq17U8bW3gAGepbqO0WKOTYd6BpEmtLTuowuPcVzG/4iH63BcV2NC5p6+IpztmODAZ6idOXz/7Dqz6bWrcIYRlZzHYSfqW4D9gWT7ruQt2MljgPrCwoANgRI2kd0kHp9xQrlIXpk7kbwliQv3ELbz1yO6wx2zdeaOPAdTtr8O7dYSYKsjhkCB9+TAWWfQ1kSxH8lXszu97dEvn3Rvpdi/EHYAEo9H2l8j67Fc5Nv/WvUevT+dsTPij2d3evXuSl5ovN3oqCsLE0I/r7G5T2GiTfjhQpwhyAPkWQ7kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AxxvHwONd9P+EaQUZPZ71WJ3EiYSNPVYWMxFUC/phOw=;
- b=idbRNM9z6KauyW+bJoHIToxzRd6hrjWIsQMjFLsZ2iZPCxGfFTNOoc4pUSf0EdIQYEZEKv9hMU/rdXlansK6td1MWSZmwI2DHISaf25UxSHwzboWOEahW0lYzZt6Ug0EcM3yPpt7ZMlEJz7Sy8/PvSLehMtVThDimWXhrb+/rH9h2AsukUsw34oShq8bhIbEhJlDgsc2LWdrWhLSBwx/YY7SSezoPIU7Olp68A6dW2lIwd4qbFfuglfV8vPdhMf+7PuUk6o2JPYz8qi+aDJ4fJl4oi/AtB0thuzG/MukbBSazZ6VWkit2ugDrcoI4DUtYn3ECc5d41aqc7CNH9MFHw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by GVXPR04MB9759.eurprd04.prod.outlook.com
- (2603:10a6:150:111::11) with Microsoft SMTP Server (version=TLS1_2,
+ bh=y1I6MJJ7eXUYP5Wbgmv+5afjvyAwBbM8Yx7jw2H5YAw=;
+ b=BoXwhItgHA1+cf51l7ysaSxoAvWzsG1nvf7gK5q1jOInSxNyIPqz2I4AjhbZwP40Vv9BqyWEjfxw5DuQ/Y8oGFIxj0P+r9wzbqisbzXzvCGOfHfbzsG2QV6ridfUUzyNGf3iGwonpd61jpkOpcW4jkew0RIP8tHlUiZFQeH9M+cATfJmQgga05puK45fwOJARwuPn1Mh8nPPazcqlokjq2PQNALMUqEerRWB3inzz35knD4Ll/Vg3tcGh8xqke/jQ5/Rw44Dy+UJzJP8BW4TpKLQeL9Xy6kW8IZzE9qOZhI37LgZcyZz9JHB/ytSV8xP0qfF1eKEIcdl9ll4Fz0F3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR02CA0036.apcprd02.prod.outlook.com (2603:1096:4:195::15)
+ by SI6PR06MB7218.apcprd06.prod.outlook.com (2603:1096:4:24b::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Thu, 7 May
- 2026 06:51:39 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.20.9891.008; Thu, 7 May 2026
- 06:51:39 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
+ 2026 07:00:01 +0000
+Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
+ (2603:1096:4:195:cafe::d3) by SI2PR02CA0036.outlook.office365.com
+ (2603:1096:4:195::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.17 via Frontend Transport; Thu,
+ 7 May 2026 07:00:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.9 via Frontend Transport; Thu, 7 May 2026 07:00:00 +0000
+Received: from local (unknown [172.16.64.130])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 0281040A5A01;
+	Thu,  7 May 2026 15:00:00 +0800 (CST)
+From: Devin Li <Devin.Li@cixtech.com>
+To: peter.chen@cixtech.com,
+	fugang.duan@cixtech.com,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	hongxing.zhu@nxp.com
-Cc: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com
+Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V4 3/3] arm64: dts: imx: Add common imx-m2-pcie.dtso to enable PCIe on M.2 connector
-Date: Thu,  7 May 2026 14:53:30 +0800
-Message-Id: <20260507065330.516142-4-sherry.sun@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260507065330.516142-1-sherry.sun@nxp.com>
-References: <20260507065330.516142-1-sherry.sun@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0054.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::22) To VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13)
+	linux-kernel@vger.kernel.org,
+	guoyin.chen@cixtech.com,
+	robin.wang@cixtech.com,
+	hong.guo@cixtech.com,
+	Devin.Li@cixtech.com
+Subject: [PATCH v2] arm64: dts: cix: Add CPU idle states for Sky1
+Date: Thu,  7 May 2026 14:59:56 +0800
+Message-ID: <20260507065956.3900087-1-Devin.Li@cixtech.com>
+X-Mailer: git-send-email @GIT_VERSION@
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|GVXPR04MB9759:EE_
-X-MS-Office365-Filtering-Correlation-Id: d66775ec-5272-478a-8b68-08deac051715
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|SI6PR06MB7218:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: e1c666c8-acc5-47d4-22e8-08deac06420b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|1800799024|19092799006|366016|376014|38350700014|56012099003|18002099003|22082099003;
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700016|18002099003|56012099003;
 X-Microsoft-Antispam-Message-Info:
-	Kct6JDl4NuYDpm02G6JVVythqMXoD7Ou0rZ3GlGM5bFUuRAttTnEwfXs4+GzEavbWsEepbH0EbeBv0cZKHi5SanntWjBK1ZPAkhyTY93NM/h1Hc8sa9YiNReqVDgxOa3nQHlfWfE51ng7q4IeR2ZcQRXrWQbBEB0uZRbeY/2BOTJjqqzTbGWPt8eb2cH7ph7zcQAxqGqFA8sUjhoCprBWaYxp1YcsX/i2aZf28BBwm96/rvdBykIK7aN9Q2Kec2Pt/ESBzsnBftqVJo8H31ChX+ijjWOOlHW0IRb3pgCnzpXLUu5VYcc5/poXWEugjxwqbRpID3sYA8Xd1VVKWMBF+5bWbtsa4O1DsPrV7s5SBRlFGHL8T1w5PmvNOU4mHEbUYgBtWK2LfsFuvQKoPcl1F5PqT0wtLb9bzyWft1HhFzPCfvWP70ueygsRhE7/eplt5ddqcK+/hu8b/pCMi5JJuiLYToHZjBkwgTbLVdh/HrUKLlZkmFUxPOH2+ZEE2DyJlNew9ccvdgkr6Q/FT4tQDwu+/KnuhgFtUMRS0OMZkJe2CAFtS+/q2xZ8eBifAYVGkLy1HfpiMM89p6y921nymeO85ubBXYP08oj9BkF7CcXFwqRehcVuCp0+LJt+0uLq2BT71b4upWdKIIf+WBjI2atZ44NB0dKm39Ri0nVuRbfs/LMgWbBdN5B3CiBNYl+dTjjSAI62c9PN3wgsBkhcfBpSXA8PvKUgsVap+8SMHtFBLYtY+2OuSVBuFrZHaHB
+	GyMfe8pIU8ArdTfPh04X3AwoxqNUd+fAnlRLjMen0rgUCU90s9SOQW5rnN4iS7FicMQjZJWzcIKk3HmjVvP6Feb7nXaTA9NRHqsMI/bTSvrKmMrRQ8pLt8LWCIU3ePGKlAZvRhEoLU0w1MLUyhLg1xpJ2lpMshhTKO7/jPOmNIL7bBaGBL4Zlz5/Wrpse4h3LCzY2306ocXFgo+tkDkT/MCxq5JvdFOvIhzHIsjmBDQdyfmjqgRqm3cPaT468eLJKYWynIZNW0EI7BPSbeE6OtryIXcBbFi4msK6gkmP8nZo1uTydAzSvvLd14UgxPPJwexbXP7t8BS8D7hXEiLNLIFPP7rrF7eXBi2JLn5kKPZPx0vKKBnqmQr7h/1e5J8IdwPc78SCP3NGc1yLlzIi1R4giEYSAAkS+rqNNvngeoGcpHBUyWeCjghsZ5545T8H7kewgxS276P3q+kzEQ7vmhLZsbpn+/kybHIWslRfHAkG/yAC2zUv4hjeF24eaPrywx9NWMZgFa7IfXOQViwXTvu2QGrvtOQB0vyj2/rk6Je+u2dSSvoAQ735FLoRfs1XDIeJYFiLs/MWB7jfWt7RG+x5kbhu+CE33+RbBLYBH6TFcniV0jqbfnQgoM3xQOjX4Z7nwRMZUcduYqGQGxuWiyt/gAPXd1kvCFjgQZRxjQCPeUlXDeBs0DuU2Lip8/lM15DLLc9smGvmh4rPxMIuvVPsRnM+0P5wvjWIOB4h96I=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(1800799024)(19092799006)(366016)(376014)(38350700014)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(18002099003)(56012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?wT/uVoQOuwCbsah4KAy8oE7xMVxA1NsngSMjzTmEIlyxo0ZYEOCYLR9fxuSG?=
- =?us-ascii?Q?Ou19tpyI31oxMYMwmMfhtkEqV67+1FrpNjM/YR37ApSCoszxFjO4EHf8GRCT?=
- =?us-ascii?Q?MlUGkqiZrHbXhRZc+mUm6e9dhOPjGQsEe9TZ7lDMb9wajmMB5DlSbIBivUzS?=
- =?us-ascii?Q?XLS8aIRaOj/m6W50SlJhRnGUJNO8+emo/rZtTt0548OBDn3bWQUmdliXYGsQ?=
- =?us-ascii?Q?ygyqTlSanfORQW71t1R9QFxkyykn60LfOtavIe5Z0MAVcHhT8+cBZWBEJ3w9?=
- =?us-ascii?Q?/FDQTbTl4DcKBPUMj/8wFOCnn4GB5EFHQi/pXtJFm76LEhP81QlRuoYtmR54?=
- =?us-ascii?Q?2K+Mw2XjXmvec/gYVDY5FlqO8I24nj0zYlWzYPq2D5T99RPXhVu/8umCiF1v?=
- =?us-ascii?Q?tEjf28rROt83y/AKJS/qUyPDqkePcW2YRje2W57p6le/FX1Uj34mjjQY/sWf?=
- =?us-ascii?Q?qEz4eIlqHumihsdHPsPDHLJEi3oF/TcAGkYLN1wll1IjxcRgLHpfbDKl3MvM?=
- =?us-ascii?Q?1Vh4suR53DGQ5BMvLvuyt1syBDrq89r170v1ab1PZuZaWfAZiYRnA+rrS6f6?=
- =?us-ascii?Q?jO6SQrSi/g6d+Qwr4JG2ZdBwHQK3uSI6wMm4pNuSHsRdnztPjq1d4lri4toN?=
- =?us-ascii?Q?nlNd+3qd+x6RkOq/X9gpymjtUwI/V2mZCLf96jfzhKxPsCDCarpn+02fLxnL?=
- =?us-ascii?Q?0e4RyxhSpY0nKiku8E2CY68G5FGPJQt+BBddo7B2sJqu9mglRwPIYdE/3ARE?=
- =?us-ascii?Q?UhxX9Eso2RxednPe1AuF7QCv+GzEDisvmHCvSHJksAfV0iJcdfVTqFf4WI/A?=
- =?us-ascii?Q?p0DXsYvB9dMRh8ufGMVd0hyF7DvgXZ0I0x3ZPICqt4RezIyUg0MJCqLk7b8f?=
- =?us-ascii?Q?T02WF2NX42HkoLxltmaU8uJGBwaIlTUfMZn7QSR2nGlcoUgs1J3u0/Cfaaf7?=
- =?us-ascii?Q?S0+VoU8rspFJFGr6XWH4mbJkylrNyipB5TsJk2cRnusY3EMG+BpQ6zqkCC+N?=
- =?us-ascii?Q?twk4/oM0yOwDMg+kOVtbPLjhOvvWcIwLsuDChVXbw0ginJll8MmJi4fr1rbU?=
- =?us-ascii?Q?LmVCXoNAgZJqmKZIz+ux23tTyRq6PpOHBZJI8VJuD91aLTdWw6wR+4Q9zCqI?=
- =?us-ascii?Q?WNxLxCSv8agQ8xVtkCNlxhtVB1O0SsmUZHQGeBcBjKXOXTQatK5wYaOwh3si?=
- =?us-ascii?Q?wt116ZCpfFTQ/c+PbwXD5QI1rwzFsWxctbu7e8Gio3q9fyeXbIXXnvFZ1Vg2?=
- =?us-ascii?Q?PRhh+2C8s2wcehB4vzVwlei8N9tnbpfxqibk11u+iozJ2qeFWictaud31MBq?=
- =?us-ascii?Q?1EwBTuGFf2itSqsWCxOFqyTYfzgiQ99yny+BoXWn3LH+3K8yN4erfe+VNePg?=
- =?us-ascii?Q?+o00KBVKkALYV5TAraBhLjn9I8XlU60/l6zoXzgQgMheGFzMa9FZFW2OeKON?=
- =?us-ascii?Q?6uHpc+RO26XLvxDA6ftY61qbdjHAuxHDsOnMdxPM6KJoRj99GVG5XWUSjamH?=
- =?us-ascii?Q?0Dcj0IhqM5BzOH5G+DjG1DlDZ4l282XjaDtYl22IVPgz54gFZ9pSuVe6wWxV?=
- =?us-ascii?Q?7741ltrgioZkxp60VXTctDMTz/ic+ZHOej8smNyYEweV1pfd/bFqzZZ4766W?=
- =?us-ascii?Q?k2B9+0ChDkunoUyfpthA2zE2LRLFFgsh+3OOex5DrWiB40ltsQzo4+iXs9SL?=
- =?us-ascii?Q?Jni9/VmC9QvHqQMpZGvnh3kQ5O37TnrGkYVRfzQVGzzB/FOH8KvV6YqXU7Km?=
- =?us-ascii?Q?dGPUKqyY5A=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d66775ec-5272-478a-8b68-08deac051715
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 06:51:39.6836
+	JD4/PP9PzvNIjt5++fgr7lCDV/FLZlaQefcd6zI4g/qsfdJvuL7MSYnq5KcnTCqZTVd1VxVvRKemER+QTajFMb2r5FsuPzUgC36jcxK+oyCb71x3GCX6u7u3HjlYaxPs58qn8Tt7A+YWyvKBDXSnF7jG/3SVhoVhrGVHn8BiUX0umOLeaqjZVYTVG60ighnbZ73KIlyKCImnT1kIEaWsJ750B2TWLMhWYHwW0QUo3dg4hSGU9qGJhax6QYaWXBvE3VfzhhNzDw24KgqS357NdroAlQAkIIr5JRp50uaLk+JUykHOtey5EfXN/32H/0P01HAw4k8u/6Z/u7yTAmjtCjMqqohHvqQpWDOOMw+dMRS/d2RNMGs4s0H7Kpy2ELq7qdHNgk5InlyhAnARTiYzOnTtK3Fdc6DMRvo+5gG7hrLwmI2FXOxAihtPHMuNcZq0
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 07:00:00.9130
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 77G0x/f18z9jRI4WcMp532WDjabnC8N2wcVkFaHKgBxnwfMTf8ABlx9xh++vuN0H+kf4irW0DWjqPS6pIP3dSQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9759
-X-Rspamd-Queue-Id: 436514E3C42
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1c666c8-acc5-47d4-22e8-08deac06420b
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66D0.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI6PR06MB7218
+X-Rspamd-Queue-Id: EF38C4E3D02
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [2.05 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293789-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293786-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.998];
 	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[Devin.Li@cixtech.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:mid,nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,i.mx:url]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Some i.MX boards (i.MX8MP EVK and i.MX95-15x15 EVK) have M.2 connectors
-that are physically wired to both USDHC and PCIe controllers. The
-default device tree enables USDHC for SDIO WiFi modules and disables
-PCIe to avoid regulator conflicts.
+Add PSCI-based CPU idle state definitions for the Sky1 SoC,
+enabling core and cluster level power management through
+ARM PSCI firmware.
 
-Add a common imx-m2-pcie.dtso that can be applied to enable PCIe and
-disable USDHC when a PCIe module is installed in the M.2 connector.
+Three idle states are defined:
 
-This creates the following DTB files:
-- imx8mp-evk-pcie.dtb: i.MX8MP EVK with PCIe enabled
-- imx95-15x15-evk-pcie.dtb: i.MX95-15x15 EVK with PCIe enabled
+- CPU_SLEEP_0: Core idle state for A520 cores
+  (psci-suspend-param 0x0010000), entry-latency 34us,
+  exit-latency 100us
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+- CPU_SLEEP_1: Core idle state for A720 cores
+  (psci-suspend-param 0x10000), entry-latency 31us,
+  exit-latency 79us
+
+- CLUSTER_SLEEP_0: Cluster idle state shared by all cores
+  (psci-suspend-param 0x1010000), entry-latency 41us,
+  exit-latency 104us
+
+A520 cores (cpu0-3) reference CPU_SLEEP_0 and CLUSTER_SLEEP_0,
+while A720 cores (cpu4-11) reference CPU_SLEEP_1 and
+CLUSTER_SLEEP_0.
+
+Signed-off-by: Devin Li <Devin.Li@cixtech.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile         |  9 +++++++--
- arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso | 15 +++++++++++++++
- 2 files changed, 22 insertions(+), 2 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index d8378ae07093..56110c1e695b 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -360,12 +360,14 @@ imx8mp-evk-lvds0-imx-lvds-hdmi-dtbs += imx8mp-evk.dtb imx8mp-evk-lvds0-imx-lvds-
- imx8mp-evk-lvds1-imx-dlvds-hdmi-channel0-dtbs += imx8mp-evk.dtb imx8mp-evk-lvds1-imx-dlvds-hdmi-channel0.dtbo
- imx8mp-evk-lvds1-imx-lvds-hdmi-dtbs += imx8mp-evk.dtb imx8mp-evk-lvds1-imx-lvds-hdmi.dtbo
- imx8mp-evk-mx8-dlvds-lcd1-dtbs += imx8mp-evk.dtb imx8mp-evk-mx8-dlvds-lcd1.dtbo
--imx8mp-evk-pcie-ep-dtbs += imx8mp-evk.dtb imx-pcie0-ep.dtbo
-+imx8mp-evk-pcie-dtbs += imx8mp-evk.dtb imx-m2-pcie.dtbo
-+imx8mp-evk-pcie-ep-dtbs += imx8mp-evk-pcie.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-lvds0-imx-dlvds-hdmi-channel0.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-lvds0-imx-lvds-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-lvds1-imx-dlvds-hdmi-channel0.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-lvds1-imx-lvds-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-mx8-dlvds-lcd1.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-pcie.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-pcie-ep.dtb
+Notes:
+    Change for v2:
+    - Use real name format "Devin Li"
+    - link to v1: https://lore.kernel.org/all/20260424043436.162009-1-Devin.Li@cixtech.com/
+
+ arch/arm64/boot/dts/cix/sky1.dtsi | 41 +++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
+index bb5cfb1f2113..0611098b5f05 100644
+--- a/arch/arm64/boot/dts/cix/sky1.dtsi
++++ b/arch/arm64/boot/dts/cix/sky1.dtsi
+@@ -23,6 +23,7 @@ cpu0: cpu@0 {
+ 			reg = <0x0 0x0>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <403>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
  
- imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtbo
-@@ -530,7 +532,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-mallow.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-yavia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-zinnia.dtb
+ 		cpu1: cpu@100 {
+@@ -31,6 +32,7 @@ cpu1: cpu@100 {
+ 			reg = <0x0 0x100>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <403>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
  
--imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk.dtb imx-pcie0-ep.dtbo
-+imx95-15x15-evk-pcie-dtbs += imx95-15x15-evk.dtb imx-m2-pcie.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie.dtb
+ 		cpu2: cpu@200 {
+@@ -39,6 +41,7 @@ cpu2: cpu@200 {
+ 			reg = <0x0 0x200>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <403>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu3: cpu@300 {
+@@ -47,6 +50,7 @@ cpu3: cpu@300 {
+ 			reg = <0x0 0x300>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <403>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu4: cpu@400 {
+@@ -55,6 +59,7 @@ cpu4: cpu@400 {
+ 			reg = <0x0 0x400>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu5: cpu@500 {
+@@ -63,6 +68,7 @@ cpu5: cpu@500 {
+ 			reg = <0x0 0x500>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu6: cpu@600 {
+@@ -71,6 +77,7 @@ cpu6: cpu@600 {
+ 			reg = <0x0 0x600>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu7: cpu@700 {
+@@ -79,6 +86,7 @@ cpu7: cpu@700 {
+ 			reg = <0x0 0x700>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu8: cpu@800 {
+@@ -87,6 +95,7 @@ cpu8: cpu@800 {
+ 			reg = <0x0 0x800>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu9: cpu@900 {
+@@ -95,6 +104,7 @@ cpu9: cpu@900 {
+ 			reg = <0x0 0x900>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu10: cpu@a00 {
+@@ -103,6 +113,7 @@ cpu10: cpu@a00 {
+ 			reg = <0x0 0xa00>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu11: cpu@b00 {
+@@ -111,6 +122,7 @@ cpu11: cpu@b00 {
+ 			reg = <0x0 0xb00>;
+ 			device_type = "cpu";
+ 			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&CPU_SLEEP_1 &CLUSTER_SLEEP_0>;
+ 		};
+ 
+ 		cpu-map {
+@@ -153,6 +165,35 @@ core11 {
+ 				};
+ 			};
+ 		};
 +
-+imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk-pcie.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
- imx95-19x19-evk-pcie0-ep-dtbs += imx95-19x19-evk.dtb imx-pcie0-ep.dtbo
- imx95-19x19-evk-pcie1-ep-dtbs += imx95-19x19-evk.dtb imx-pcie1-ep.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso b/arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
-new file mode 100644
-index 000000000000..1930de058a08
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 NXP
-+ */
++		idle-states {
++			CPU_SLEEP_0: cpu-sleep-0 {
++				compatible = "arm,idle-state";
++				arm,psci-suspend-param = <0x0010000>;
++				local-timer-stop;
++				entry-latency-us = <34>;
++				exit-latency-us = <100>;
++				min-residency-us = <3000>;
++			};
 +
-+/dts-v1/;
-+/plugin/;
++			CPU_SLEEP_1: cpu-sleep-1 {
++				compatible = "arm,idle-state";
++				arm,psci-suspend-param = <0x0010000>;
++				local-timer-stop;
++				entry-latency-us = <31>;
++				exit-latency-us = <79>;
++				min-residency-us = <3000>;
++			};
 +
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&m2_usdhc {
-+	status = "disabled";
-+};
++			CLUSTER_SLEEP_0: cluster-sleep-0 {
++				compatible = "arm,idle-state";
++				arm,psci-suspend-param = <0x1010000>;
++				local-timer-stop;
++				entry-latency-us = <41>;
++				exit-latency-us = <104>;
++				min-residency-us = <4000>;
++			};
++		};
+ 	};
+ 
+ 	firmware {
 -- 
-2.37.1
+2.49.0
 
 
