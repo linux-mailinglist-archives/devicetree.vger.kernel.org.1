@@ -1,199 +1,141 @@
-Return-Path: <devicetree+bounces-293883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293899-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id fdngBL1Z/GndOQAAu9opvQ
-	(envelope-from <devicetree+bounces-293883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:22:05 +0200
+	id f1XPLWRc/GlPOwAAu9opvQ
+	(envelope-from <devicetree+bounces-293899-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:33:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8B94E5B71
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:22:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59EC84E5FD2
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 11:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8D72E300603D
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 09:22:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4E68A30BD22B
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 09:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388D83C2770;
-	Thu,  7 May 2026 09:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OdQ1tfLs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC463C1412;
+	Thu,  7 May 2026 09:24:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B7F3B8939;
-	Thu,  7 May 2026 09:21:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DD03822AC
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 09:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778145714; cv=none; b=kMeB3TvJ40nC4FbGcVN2Xby5Ojw2mlwKZudRCv2V+zNEfEOfiFeCDX9D13jQ3t5Nl1+DopcqVt3pWUsE83mpJWfFEO1vMs2sYb6L0s0il5Gl5SvzevacQNuX6AUw2rtM1SxSwLLG3EEUVVY8BD6eL0jQYZmqyYeKC5bvz6YrWys=
+	t=1778145850; cv=none; b=d4xVY0qYATaKnbD92ocvVcK8rRHNktpRhDXAMaZGo71Xu6YXqMT6HRzfnBysT84ax+y2Cmbp2XjECNySElEX3d8mRWsvOqYKbciiSK06dycKXpKdHvekmmD9WjtwDxf4fS2JdmM5/y9ireC+qVdREP+vHV06UXOqUGwhnU9wk70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778145714; c=relaxed/simple;
-	bh=WIv4qrJIYeBj2gwII3FA4uTYKA0g/+q+WhKHGSNvcB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L6WRDD41ICfYGjEGH0so8981/F8ghYrV/VHjVDkqj7LlXija+MGhGZ8PPQJK7hkMk1RmNIm8ywZmQ5Kh2n6FF0FrraCvUlOqLd6vd8NU0Vnq7tOwN7YSQ0dPgKNFdkPVeu8l0eTs8PwxcglUwd7V9zGSLiOkM3DCdd/cGNnAQWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OdQ1tfLs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EB6CC2BCB2;
-	Thu,  7 May 2026 09:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778145713;
-	bh=WIv4qrJIYeBj2gwII3FA4uTYKA0g/+q+WhKHGSNvcB4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OdQ1tfLsxasSAMlCYWQ/wV/xoPWIQ2iuAwtAY2GomijEzDKjNLOqja5/XlAdgs+T9
-	 1KxImNlfGwtjE1HS4O3YXGUYD3GdwwwCpgpMzBV1eTqKN/WPrAWtTuY6JZO/SQPRQs
-	 Nlwp4rDfCBkfJ5qg5uqwxoQRzTO1hgKC3wB3B3uNWjFb6xsHF1Mbz7O45VwpzoNkZM
-	 gA3+3iYxLDgieIOZIi4TcSurdaIAiSlaezHNDNX3pK0RrUik7foDYsMaxzZY/jQ/J4
-	 JS+jasV/iBRv8uA3kvri/8BaoKiwSO7rH3q+LPBOGEpdxyBc0eTcfE9xJr20maqMt9
-	 pWw65dZGW983A==
-Message-ID: <9d80272f-34af-4423-9e86-a153cb219388@kernel.org>
-Date: Thu, 7 May 2026 10:21:47 +0100
+	s=arc-20240116; t=1778145850; c=relaxed/simple;
+	bh=AMIb6q4EpAMzt52D+h3AqrP0Q2rrED/ImJNl3FKPJkA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eqogyw7SKxY5g4sWt7C3eqa4kNWok4OM8yrWZsKAXq4DfrKZiOi1ZHGx0D+UOF5jxiOBBA9dBGKFiPZt99djLi5lhexV9kmulLm03IkHjIMkw36jaaapKU0EJ47aGLB+Y3WutQuPQ/VHwreenEcD/XMcQANX3d0kBbBoYxv53eE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-95cda04cfd0so181489241.0
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 02:24:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778145848; x=1778750648;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TCndMd4yxjbHbIEJCX2AjFS4eFdSECDFSht1Q6asNeY=;
+        b=aRjxL7cGiSLHKmf//6e0fNpXv2VVbxnixH43siQvJKE92cAMfJna7xRbANu8dpRqos
+         8U0BDFCj3VYjKaDfxpbs63uHH9oDK/r1wSUpKzyaVhvpVnf1HZj+6PTmfiJoP6njv4VN
+         NcIEyWi75ich7WvHO9Lb+F1954sFBWvuTFHK2AxKxeGFjejJ745AFnMFX6b1Zt+7F5YL
+         WoxM0/QozcAUdDt2RNSKU3c2fpCIXdB5Hep4SDLGTU3E53Ly/+WMziPucYYufDUoz/ej
+         ssH0GOSQpXW9fW36oi+pZE1yyt8WYSD59U8A7D/nq/ZtONz/nqnF1d0ey6/xIHssrf2M
+         zuCA==
+X-Forwarded-Encrypted: i=1; AFNElJ/3gnThxjyqEMWsdHNi8iH5kOrP6ZKqlz6V0CoawRBdV/FOGRldspCFt37VUqh6bnZ+f5InorZzzkgw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCCsmHowy1tsfBJUdq8wXHLFRdjR7w3bPe3LrMktc6BjbqEYGh
+	2qXeZHiUkY10geVVjL3As5I/YuP3G0rvTqphimZSYUUZdZ7UWzqYvoX8TiBCPPOU6vQ=
+X-Gm-Gg: AeBDiesJGlV0bfYoLrwA62BTzqSZpYov+O+r8ZAYyEWUfUHeyV75C+O5sZzH0Ftn7bZ
+	6sXcNUQlJN7kfZtFgktIMCuKwcQapqlphUrDMWShdqh83IFHO0Sfd+/AAzXmJ/lXi9NNWtDavEr
+	gvyyo0Bo7suF48kct8edf+Ur2P7tdrxNRS+3RSwPaUlFsYDXZ5O6Q5Ta9/zOKHuwvx9FjuIBrma
+	vGwj/aR0Ltn10pD/LYPUFJzFkle2dhdym1r85l+Y1dnEc3aL75Gd9WSW/XyrNWwPkGI2V776Fu4
+	Ka7S4237ZjQTf19t8qKNKzt/3MU/V+nxRD4f125O/xPaBdX9qmBWJThg7whkbqlNxwzpB3Qvrtx
+	zBfvPKFjILGf5gww6LlD26soUELmzVOS4nUsH3+JRfPG9lXlrptrnZ/TZItydmp09LkYsJzaND7
+	epuLAnE9fv7F1HtFTF+syObKAHVJe46St/J2wB/+IKpRGe7tjqkUmGikF9UX2GHKH+CbvANI0=
+X-Received: by 2002:a05:6102:2b9a:b0:62f:406b:1baf with SMTP id ada2fe7eead31-630f9022a67mr2863766137.20.1778145847825;
+        Thu, 07 May 2026 02:24:07 -0700 (PDT)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-95ce0af5801sm10415030241.10.2026.05.07.02.24.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 May 2026 02:24:06 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-62ddb07fbd2so223313137.2
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 02:24:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/yAkxDSW6xBfXoBy8N540tR+dCYLBjgw/398kr/0ZqkYFe6n6KC75XPd0m8DItLEmRJqeOAP6dlUNt@vger.kernel.org
+X-Received: by 2002:a67:e703:0:b0:609:af4a:371 with SMTP id
+ ada2fe7eead31-630f90266e4mr3464284137.23.1778145846187; Thu, 07 May 2026
+ 02:24:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 8/8] media: qcom: venus: Enable HEVC decoding for
- MSM8939
-To: Erikas Bitovtas <xerikasxx@gmail.com>,
- Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260507-msm8939-venus-rfc-v5-0-d7b5ea2ce591@gmail.com>
- <fZnRy9sgUV1-FCQCS3YiWC9r2U6dDgZvq6Cs3zMNFDdL4gFLl1JQqbxp3KYtWRvlZcr7F9wvteURLBFZOMGAVQ==@protonmail.internalid>
- <20260507-msm8939-venus-rfc-v5-8-d7b5ea2ce591@gmail.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=bod@kernel.org; keydata=
- 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
-In-Reply-To: <20260507-msm8939-venus-rfc-v5-8-d7b5ea2ce591@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 5C8B94E5B71
+References: <20260504225428.114959-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260504225428.114959-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 7 May 2026 11:23:54 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWWUwpeZocbQimvLwDTGXPyPJCePfLLXxXFF7LhJATbNQ@mail.gmail.com>
+X-Gm-Features: AVHnY4Li4IX9mDo-taz0IkcBUseN0_iOnoFKhnadIj5uAaSwC2Mm4fb9GuMco_0
+Message-ID: <CAMuHMdWWUwpeZocbQimvLwDTGXPyPJCePfLLXxXFF7LhJATbNQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: gray-hawk: Fix AVB0 PHY node alignment
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 59EC84E5FD2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293883-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com,kernel.org,apitzsch.eu,baylibre.com,redhat.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,glider.be,gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-293899-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,mailbox.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email]
 X-Rspamd-Action: no action
 
-On 07/05/2026 09:32, Erikas Bitovtas wrote:
-> MSM8939 supports HEVC decoding. Do not disable the HEVC codec HFI bit
-> and add it to codec type converter method so it can be recognized.
-> 
-> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-> ---
->   drivers/media/platform/qcom/venus/core.c       | 2 ++
->   drivers/media/platform/qcom/venus/hfi_parser.c | 3 ++-
->   2 files changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 6ad20d58dda2..89798ad1087b 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -178,6 +178,8 @@ static void venus_sys_error_handler(struct work_struct *work)
->   static u32 to_v4l2_codec_type(u32 codec)
->   {
->   	switch (codec) {
-> +	case HFI_VIDEO_CODEC_HEVC:
-> +		return V4L2_PIX_FMT_HEVC;
->   	case HFI_VIDEO_CODEC_H264:
->   		return V4L2_PIX_FMT_H264;
->   	case HFI_VIDEO_CODEC_H263:
-> diff --git a/drivers/media/platform/qcom/venus/hfi_parser.c b/drivers/media/platform/qcom/venus/hfi_parser.c
-> index 92765f9c8873..178274d10c02 100644
-> --- a/drivers/media/platform/qcom/venus/hfi_parser.c
-> +++ b/drivers/media/platform/qcom/venus/hfi_parser.c
-> @@ -207,7 +207,8 @@ static int parse_codecs(struct venus_core *core, void *data)
->   	core->enc_codecs = codecs->enc_codecs;
-> 
->   	if (IS_V1(core)) {
-> -		core->dec_codecs &= ~HFI_VIDEO_CODEC_HEVC;
-> +		if (!device_is_compatible(core->dev, "qcom,msm8939-venus"))
-> +			core->dec_codecs &= ~HFI_VIDEO_CODEC_HEVC;
-Stylistically I think this should be a flag in a struct.
+On Tue, 5 May 2026 at 00:54, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Trivially fix PHY node alignment. No functional change.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-I'm not a big fan of doing a bunch of strstr()/strcmp() generally. If 
-you extend the struct venus_resource in some way - I think this will 
-work better and be more runtime friendly.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.2.
 
-u32 dec_codecs_blacklist; perhaps
+Gr{oetje,eeting}s,
 
----
-bod
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
