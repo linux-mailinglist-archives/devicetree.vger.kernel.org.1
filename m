@@ -1,58 +1,101 @@
-Return-Path: <devicetree+bounces-293799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJeYLcpA/GlMNgAAu9opvQ
-	(envelope-from <devicetree+bounces-293799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:35:38 +0200
+	id AHOKDNNA/GnfNQAAu9opvQ
+	(envelope-from <devicetree+bounces-293800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:35:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282974E4218
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF814E422F
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:35:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6CB330417A6
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 07:33:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 549263043FF5
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 07:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08033563F6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF22B35E95F;
 	Thu,  7 May 2026 07:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="kCuHmDj2"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="U5YaNNGd";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="BWYPxutg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67EC232D43C;
-	Thu,  7 May 2026 07:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3C5135B654;
+	Thu,  7 May 2026 07:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778139211; cv=none; b=sXSk3Qkq/TDNRy1xVRtbnuczLuiP2MJurNBn7anVoqvrE1MroS5BOa/qCTrrMwNRRiSU16QNjS69u99SsSIlHH7sYBzY+IVuVugX8/aTVQfOhN9bBEmvHMw3rCTwX2Lpsr4SUHwYtCEIgo2oOAJ2KBuOCBwunLVB89c0EHqoQlk=
+	t=1778139211; cv=none; b=mtZO20aUZ4/ji9MB28O0+Nd/BbC2P+Rh7McmMPsxRcXTJvHoUls1OMSONNOwqWuvEJPqg7Sg96XMrdZEM4bnVpB8v56Cyo8E+VNrYzuUiMwhinRVfqrsStfomqyjtUi13IXFQLGo6OyVkVZKifv/6QuNtOXgFw//pr8IPsh1yPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1778139211; c=relaxed/simple;
-	bh=WCbZ8iopcLSLXkEHIgHHSSkd2u1qQfx30P4JpAz6ZKw=;
+	bh=gUN8s2Ri7zG9BdlChN+PUyMx26oLN03c/SpGRdRYMTI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TPIP8gQ05136d4NCp7vXwLwPawI9aWZBMu8ASTZGPhbm5V9tZHf5ZNVxvzy51BrhjL3ntCQQqLVfFryoCyDt1YozEGUdHz744F+7W6CcKFnSp8xzUFVUeJiBtd7G3wnK+JNn3tbdHzt67hYHMfyG6gcClpM6v3keeKcsFkul1O8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=kCuHmDj2; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1778139204;
-	bh=TmI0UH8/e3iTldNLhwHi7B9I6Rl5C/JYONWEHU21eJ8=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=kCuHmDj2Se3ExRlUhZp9eIlFE7ja9VfLVWxosjTc/0lwkCAofCfC8KTSxySd0J4z0
-	 ivkBpaznEBJCwzqG1jwQsxi3VFODV7WwFj+x+g7FSCatykv49RnNwBIdsfIq/VeSj4
-	 QdkbTW4bZvP33ZSyAFsUmSTS8E1wkFljD3RjSiOw=
-X-QQ-mid: esmtpsz10t1778139199t214e8fcb
-X-QQ-Originating-IP: uRFn5Pt4sifnfhp5pLw+QVV3Q0soJuo0yK/D2S4v8Pg=
-Received: from = ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 07 May 2026 15:33:16 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2117957216347348895
-EX-QQ-RecipientCnt: 15
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Thu, 07 May 2026 15:33:09 +0800
-Subject: [PATCH v2 1/2] ASoC: dt-bindings: add SpacemiT K3 SoC compatible
+	 In-Reply-To:To:Cc; b=irzuKLCe3+ER7OfHbkhhMFvMm/qp4h7is9V1aymmRH8zvMHUqf5YsXUCwbt0TU4VUbQqAEVhR7sGs5BwtjTiAC/V5oze67dmgvxdgeYDycy6Eik1hf9sAKdJs3E7xfQWHXv9YsZBKoGSSIQYmXNCq6avvxNKOwyKR9uiDlv3t5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=U5YaNNGd; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=BWYPxutg; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 1CDB014000BF;
+	Thu,  7 May 2026 03:33:28 -0400 (EDT)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-05.internal (MEProxy); Thu, 07 May 2026 03:33:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1778139208;
+	 x=1778225608; bh=U0DLBQ104H4pRJmAnhQAaxKxLWgSeWObdD3M2XI1ycA=; b=
+	U5YaNNGddboE6bAKZ376AARROX4Y3BxGHD1pPJ6l0mOFrcH/8Fskvv9LXWF9WMj6
+	KfzJlSIkpOc411Fy070L4yw6dRA4gY4PrYKi4xL6B2fuFv74HU34197CLzWxWOqk
+	xl3J+IzoiGmXZAzjKgYmdmclL+gIU4YtXWuL3EoTczm7EFoZoEJamSUIbyjrTlPn
+	gD8n3dybwmofsZBqj4rXCoyVOS9qufR8c3/Qbm4RLz8nHKw+UNoikvsK0dOkGAE4
+	IoySreYNncDO/+9Bv6p1JgsyzYzRPh+vgi8aNcFFc+zA5T7yhaMPi3nD2onPUAI0
+	oplTuMw/VuTE36sQWJd/7g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1778139208; x=
+	1778225608; bh=U0DLBQ104H4pRJmAnhQAaxKxLWgSeWObdD3M2XI1ycA=; b=B
+	WYPxutghXFvpUGV6Udapz9Pqk5gIRztxFWgpcNQ985LuIIg/ZkbU6320vIh9J305
+	5AnU1OUXR60Bjn6Qekxve0yUKDuEyUHPjspMbO0YBHA1nTOcMx2xyIo8xBcDbfGa
+	hP/pPsfD3AbB9p2X1rDttdG9ietnKQURW0KcU6AHsptgM8WK4GbwI3ccYT/grBNF
+	29NB3KNTFr5UOeT8Iqw9j0IhpiaqOGaQENt/NhoOyK5mp/2h4WUgdrfQM+Jvr54U
+	1VD4HM4QvStlUzNBUb2cU+B3OM2gmxTOgluIIA8+94pJqrC2FUQl4Vl5U/cgOP6q
+	hjrkvpGRqOwAOwqLVYirw==
+X-ME-Sender: <xms:R0D8aZJcr9dek-cMkGyKpR_vxiTyA9UTpBWOYwLiVo1GzQphQVIvMw>
+    <xme:R0D8aaBtP9KguDfYptjpduN3y21MkhtUD13p_EN3eLpOdCGSr3LYwVS4ALYiAa2M7
+    3RvhT1yxh3d6qsS9m8EIiFpJ54gnaPL9GsyZAjWo0_Tj_gD3fKoA3dl>
+X-ME-Received: <xmr:R0D8aaS1S4Sbw_sVT2uDkhlsKJx8aoJ-uR7cFPgIrekLTvdY_He2yS-klo7e0ypqryVJzLSL7VRLWjPNh1pFHvotUBBgzsEGAOho4g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgddutdeikeekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephfffufggtgfgkfhfjgfvvefosehtkeertdertdejnecuhfhrohhmpeflrghnnhgv
+    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgf
+    ekieetieeltdetieetfeevieejtdeileelieetleegjefghfejvefhgefhvdeknecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
+    hurdhnvghtpdhnsggprhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtghp
+    thhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugi
+    dqfigrthgthhguohhgsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhv
+    vghnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvg
+    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhg
+    vghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtohepuhhklhgv
+    ihhnvghksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsthhsrd
+    hlihhnuhigrdguvghv
+X-ME-Proxy: <xmx:R0D8abr9oOBYNk6bMqiPlTk7yBD3zNgv0q4DRYKTC3TWt79lPX4brA>
+    <xmx:R0D8aTULDYVZ71zrz1LEP3cwYRW7VIAqtKYX6xEWwNoyOD2SBVnFQg>
+    <xmx:R0D8aZ9N7vx4vdaWGPYARKVc-ItYHNLDxG1ku89K6AZYni6iI5HBjA>
+    <xmx:R0D8abafM7fJ73pf3DdrQa7aAqXguADL4DZME12wB4rPmj3ejBzeJw>
+    <xmx:SED8aQIs9mJTv8IKh-rZFUgKyCxb2bJexhdTd-RnHzC3ZeZD7K1BG-Im>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 May 2026 03:33:27 -0400 (EDT)
+From: Janne Grunau <j@jannau.net>
+Date: Thu, 07 May 2026 09:33:09 +0200
+Subject: [PATCH v3 3/5] dt-bindings: pwm: apple,s5l-fpwm: Add t8122
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,159 +103,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260507-k3-i2s-v2-1-9cdbf95b7533@linux.spacemit.com>
-References: <20260507-k3-i2s-v2-0-9cdbf95b7533@linux.spacemit.com>
-In-Reply-To: <20260507-k3-i2s-v2-0-9cdbf95b7533@linux.spacemit.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Yixun Lan <dlan@kernel.org>, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778139191; l=2349;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=WCbZ8iopcLSLXkEHIgHHSSkd2u1qQfx30P4JpAz6ZKw=;
- b=PHU5vuDOslLdTy4s2nXnGFwbJj3d2hTEOIUWwPjfywaGpkYeNcfRDPkElTDuR50U4TaqEXiEn
- Lb5w9D9jKw+DmrDfijJOyiuBYffqMlUaMQGZzuGyePdc2PPZB9BTG0a
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MoLdYB8q3DRXzO23bdnFfKwJmUEaJlwc2naxHVP78Sqsa3lsSxC2+vVg
-	txLC7sm85hDqtC4pZNsVwBz5B9liKcYgEMv56I4Bs7NW3ns+xis15hmpE9fCK/Bl3lESwH6
-	EA6MPgWk0rMUoFID3svCL6hER5RZdodcNqRivl/RMHw/iRwIAUupzlnBooHBA1yPPD06T4K
-	lktDU36VGD5+ul76w+vz5Wb+bc+sxnlXd6HrIJ+N0NTIJiODsjezXDeIFv4o1OlHy608zTy
-	3EcLMWe7QxA6K5wLSRMrlY+1lphjvdEJhFIGdG/l9ZiwoWKT/Pjwuj2Z2Ig1NAeiGNjNaIu
-	d9KLoljiAnq5PyyoC3Gprds9oTiR77bQY4btwGMlMAv2IGOD4nqCKcmj6EU6CHQ80AQHG7e
-	/1i451v2JESDZKq+zDaN98u1QG1cM1QeGWX7d6EavhbaA3R2KKN7wEWtljWEd2XT+8kuPxi
-	dq0ee5I9Hy7CFHTyJHChuK7sJmqVRk1NaSGCMaDMQHzLRKpPl4lk+7xxoPAaBChkWscsFWS
-	ECZOFsWl6XR91e5FM8EkBihhfPnIe/rR9w9Y3PfgRoWyl/tIaxztl6Rd15QFHJX1qJF/cny
-	5fJROMpv92pczk6SVeIsamOO+bQnf0uz8l4qO8gCZNTYjyZIGoA3HadliuAFLmX6z/OK72O
-	DAk+TLvW2JA1UykLZq/IPoVJEK5B0vduCks+lnzCA02HMWLGlSj4lqd0fzfiYD2uhh5wSiJ
-	TYHNjnhp2HrlZMwpVWNxmM4M7obKnHnStFMG5vUTYUVeT2fpgbHPkuzniezjzRzwnSAJp8r
-	w9hUeso3CNFo4NJZ0sPpcshJUPd6RsZvKBeJvDBpJCyB22bi3uozUrTmH9N1hsjmC9NKRLC
-	6uKGkXAfgRIo1lRULE1pngOtre7/SiqJ5367ItL2OLmI9GmAxo/1cvsVZnAtl4PeraI0vuM
-	h2HzGs6ANHqnoxJsjTpc6OtWlGjY/RGiB05Tcpxk3FK+9NIGwCw+BfTTwChGvctTaCgDW38
-	FvbptixVo6M/Ykf+Ggw1OAC1yy0CEpbzsIpd67h9+LHg6VocYsSJjpReeC77BOPjd5ZON6a
-	vzLa4qwL6ULjRPCz6B5urPYupWwCeskZCglC9NadngGupHuFHLN9xvkfd4JAtwex4+wcv1q
-	MtdY/eJ/oOIv8o3e2O0SlT79Q9N8zCkZf6Y16MkR0OYc8q8=
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 282974E4218
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260507-apple-m3-initial-devicetrees-v3-3-ca07c81b5dc7@jannau.net>
+References: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
+In-Reply-To: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Sven Peter <sven@kernel.org>, 
+ Neal Gompa <neal@gompa.dev>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Mark Kettenis <kettenis@openbsd.org>, 
+ Sasha Finkelstein <k@chaosmail.tech>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-watchdog@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>, Joshua Peisach <jpeisach@ubuntu.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1086; i=j@jannau.net;
+ s=yk2025; h=from:subject:message-id;
+ bh=gUN8s2Ri7zG9BdlChN+PUyMx26oLN03c/SpGRdRYMTI=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhsw/Dna7Hq8Wnz1FwKF59hOrbW90XTir8vazJM7iaBN78
+ OrKwnmJHaUsDGJcDLJiiixJ2i87GFbXKMbUPgiDmcPKBDKEgYtTACayvZqRoWHKrtJdfo1Jahyu
+ CWl35jZ8a2jLPPgrndM9p5N9momICsNf0YqDy4r8GKyFOYNVI/6Khulf0dnBmuV3do3P3VIvzxZ
+ 2AA==
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Rspamd-Queue-Id: CFF814E422F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[jannau.net:s=fm1,messagingengine.com:s=fm3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[spacemit.com];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linux.spacemit.com];
-	TAGGED_FROM(0.00)[bounces-293799-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293800-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[jannau.net];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[jannau.net:+,messagingengine.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[j@jannau.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Add the spacemit,k3-i2s compatible string for the K3 SoC I2S
-controller. The K3 I2S IP is the same as K1 but requires additional
-clocks: a dedicated sysclk_div clock, along with common_sysclk and
-common_bclk which are shared across multiple I2S controllers on K3.
+The PWM controller on the Apple silicon t8122 (M3) SoC is compatible
+with the existing driver. Add "apple,t8122-fpwm" as SoC specific
+compatible under "apple,s5l-fpwm" used by the driver.
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Acked-by: Uwe Kleine-König <ukleinek@kernel.org>
+Reviewed-by: Joshua Peisach <jpeisach@ubuntu.com>
+Reviewed-by: Neal Gompa <neal@gompa.dev>
+Signed-off-by: Janne Grunau <j@jannau.net>
 ---
- .../devicetree/bindings/sound/spacemit,k1-i2s.yaml | 31 ++++++++++++++++++++--
- 1 file changed, 29 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
-index 55bd0b307d22..240d90402e4f 100644
---- a/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/spacemit,k1-i2s.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/sound/spacemit,k1-i2s.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: K1 I2S controller
-+title: SpacemiT K1/K3 I2S controller
- 
- description:
-   The I2S bus (Inter-IC sound bus) is a serial link for digital
-@@ -15,27 +15,54 @@ maintainers:
- 
- allOf:
-   - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: spacemit,k3-i2s
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 7
-+        clock-names:
-+          minItems: 7
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 4
-+        clock-names:
-+          maxItems: 4
- 
- properties:
-   compatible:
--    const: spacemit,k1-i2s
-+    enum:
-+      - spacemit,k1-i2s
-+      - spacemit,k3-i2s
- 
-   reg:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 4
-     items:
-       - description: clock for I2S sysclk
-       - description: clock for I2S bclk
-       - description: clock for I2S bus
-       - description: clock for I2S controller
-+      - description: clock for I2S sysclk divider
-+      - description: clock for I2S common sysclk
-+      - description: clock for I2S common bclk
- 
-   clock-names:
-+    minItems: 4
-     items:
-       - const: sysclk
-       - const: bclk
-       - const: bus
-       - const: func
-+      - const: sysclk_div
-+      - const: c_sysclk
-+      - const: c_bclk
- 
-   dmas:
-     minItems: 1
+diff --git a/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml b/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
+index d8f4f9ffe884..25ef04b60ca1 100644
+--- a/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
+@@ -18,6 +18,7 @@ properties:
+       - enum:
+           - apple,t8103-fpwm
+           - apple,t8112-fpwm
++          - apple,t8122-fpwm
+           - apple,t6000-fpwm
+           - apple,t6020-fpwm
+       - const: apple,s5l-fpwm
 
 -- 
 2.54.0
