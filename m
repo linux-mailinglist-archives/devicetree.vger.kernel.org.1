@@ -1,289 +1,181 @@
-Return-Path: <devicetree+bounces-293745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293782-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4ORjIu0u/GlVMgAAu9opvQ
-	(envelope-from <devicetree+bounces-293745-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:19:25 +0200
+	id CFO1CE82/GmNMgAAu9opvQ
+	(envelope-from <devicetree+bounces-293782-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:50:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CB04E35D5
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:19:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8354E3B72
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A996630069AD
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:19:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1F8DA3007502
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9DF3264DE;
-	Thu,  7 May 2026 06:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CBC34252B;
+	Thu,  7 May 2026 06:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WTPiphay"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="Pfy55lYk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012047.outbound.protection.outlook.com [52.101.66.47])
+Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91BA01C84BC;
-	Thu,  7 May 2026 06:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778134758; cv=fail; b=NTOeh+ekSWv8RENQhM78Jzi6ObBYo1ODvvFRI8PkBjp5F+KZNl83eNikvmKyJ6EFfr2eiiXhFgBu5GHtzEt8k1CwjT9Ks+d6Y0wWQ1v+fGzC0Sp51nmIAFwQxr4zRx3gv8maP+W86OrbxP3x0BdyaMmH0G1NfGjpi3BKqoY9e24=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778134758; c=relaxed/simple;
-	bh=z3OGWgELPszyNzQS/PNUIW1761a3bWfjwHzu/h+dRe0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=UM0s6dcI7BogOybiWHjcZz7/yt8dIq1dGXOkI9/fir+x5SoTHFpG8nVGCsc7DZ65Zfhha1awvPJCe1zO7PWxNgjTrlvEvC9C9TPFSRvAzvpkGWLnjl506KfTfOLMyzJwjQgv1Hth+48TyHUrcJefiAQ82TAWjzg0mTp0rVBYT+M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WTPiphay; arc=fail smtp.client-ip=52.101.66.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ywMDwjpXTDABQmH5NY3inur2GepZee5070qvktvNUy0gZep48BatQxiP6XkhNKdVfzBarA61ztqsiBgXNi8+l2Hj2pU3yL8A/jDqNFhIwsbM731NVAMRexJ1slMrCVBYAyVUYAa0XPAeVdXyQqjiuWb9jsLBLIxqFllPLwWVniLe/YQH9D88gY4URVEJZi36Jz6Z4DW7xWJmL6H31CMAccllPGnlDIZkCvZUevKZVJYHPkIR82xN8cZUAAlLbACzT7DaOZWg2CAqxLbsJZjzWoM+6dOKOdKGYBPb/DiyMtFKZmERKO4wKp9LWGqST9idKGG/rjYYxM2LcFqy+NlW3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nsFZx3bfxXg8ShXMYtcbUQOwqOnAxp0AdK8J6gLLROA=;
- b=hyrdof6GFf8vQ13WOO4WF+C5LfAXTPAvNPOaOfTcycpoqZ8lAM3nFsH0Ewmr78GJ0OQD/1UNqWQuWuYXIBJdlFkqXPtc74GwfWQwgZuNhJzkfekwfRftA4xlSbYcgLYS9Iitki6N1laTNXUBkJYDseJ/dwMZmOBQtIVBm+oyYXMBn3F1lJf8rIxUZ80ceDumJ/Ygdjbu0HOD+8lMPCIpJtQfIpmn53oA9ijfCt5FFVu2JhY1JzddOFXxCVCXv76p+LIAYAbL1ngb1WHnUJps8PP+y9Gtb3acFtaq6SgyLfYLYMTm6Tywl6RZuDW+JM4HxuhDl0RgpLMR2hWNzjtNoQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nsFZx3bfxXg8ShXMYtcbUQOwqOnAxp0AdK8J6gLLROA=;
- b=WTPiphayoaDCSaKFsBhWEqyIIe1yg63Ax3H5zoPw9aBwXuXI4zVjQX/4szF7d5fD6Mv6jzmuysZLK1/6LDUFMLx+A3aIEPq+q3iDEKE1IDO5vJcaKq0zhqruoj4TtxY4a2wpVAbyb+cloAlDsrLnOjIOvaydtLAtCkoRC4PLaInBRad/as1O0YQgu8biomGojpOBk586YhpEDwWz8q464vbEBvCov7nLVxos7Whz3DTyw85eFSqe0mI2qJy7dOS443btAHtyvM7XfNiVpMBCldd6uiibLH1lZku/i4kw2YMd4YOAMocL6/m3Qdre2vahpHBPoSq80eqp4NI8rNp22A==
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by AS1PR04MB9408.eurprd04.prod.outlook.com
- (2603:10a6:20b:4d8::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.17; Thu, 7 May
- 2026 06:19:13 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.20.9891.008; Thu, 7 May 2026
- 06:19:13 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Hongxing
- Zhu <hongxing.zhu@nxp.com>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V3 3/3] arm64: dts: imx: Add common imx-m2-pcie.dtso to
- enable PCIe on M.2 connector
-Thread-Topic: [PATCH V3 3/3] arm64: dts: imx: Add common imx-m2-pcie.dtso to
- enable PCIe on M.2 connector
-Thread-Index: AQHcvDGyzMMz/N9whkmi6YJpOEE5P7X/5hGAgAJ0NhA=
-Date: Thu, 7 May 2026 06:19:13 +0000
-Message-ID:
- <VI0PR04MB12114E0CEBECC811C11C3E5C2923C2@VI0PR04MB12114.eurprd04.prod.outlook.com>
-References: <20260325083201.2637520-1-sherry.sun@nxp.com>
- <20260325083201.2637520-4-sherry.sun@nxp.com>
- <afofv3GjEpS67ayb@lizhi-Precision-Tower-5810>
-In-Reply-To: <afofv3GjEpS67ayb@lizhi-Precision-Tower-5810>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|AS1PR04MB9408:EE_
-x-ms-office365-filtering-correlation-id: 4229fee3-aa84-4771-60cd-08deac008ee1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|19092799006|1800799024|7416014|366016|38070700021|56012099003|18002099003|22082099003;
-x-microsoft-antispam-message-info:
- BJg/nk4U/h+RMZKr5sOg0ecwzXr8mocmxgKToiXo5yLwaVSVJrWoL0RzHB5i+SVWT8b7sQUo23zHi5RmmomOiofqX1OrhmYTRwDUYz3KvG/7sJnzS6bMotf0pCOvuDLR3LIfrCKjOGn6dHNpXYJEFW97vKK3PlAZ6gkLXTcj9yH7liy8CZaoLArOl50AmTPQUlTlaalPGT3HvsSinXb0FJ7VghpLI8P+RY3LJZwDnKPFdPeCq5aHC6J1MOqvCBbCa0yzuJCiAhmOPOAoA+SGEIWKed35He34f3cnMNgC+inFct0wHoRAvy2Nf3/rZyYx/5j1DOiFjiNTuHDmJ5PI7jM3wPUL+zokxTOv4VtwpgCu6F23lTCDP93MHh4Jaz190Q0B62ywHjziWo0lz2dovBJheaw5UfSPcCYA6lI78X4SPr0uUIj7Ix5hYIGC2F9l+MC/RPEYrvn2FFhW3M7DN+EQKay2bmDqZZYr5OXhgCUHuam4LcGAGsRAq09oS/NKjjKgzTZa3FYweeU888wC/CmahiFPJ7zCYNnia1bhHITVJvdgelFlsUQRgDrB0KFStrcpbpaNOKuwwXBPCsp1lf1RbmtjoWRIJZVt6MwXo/M5X/hnDRfZc+1q7GeiCT91A7f69ePYqRf7GbOFXqV9fQGfHFSOs/eQ9Q7I2juyGlZYe3jNU2n5Bqbe27VWmPknBEzrlvb4sxQuB6r1M+eRTbPqdbpk/VVRehEEnsV6y+2dJtlx+iyXglnwHvWYambe
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(1800799024)(7416014)(366016)(38070700021)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?OY9Rrc1nErVte9pI5wvXFv9wx+dfsiFtkh7uoQY8gmSSgssH86Z85ZYexhsg?=
- =?us-ascii?Q?HUFu/ud+8NGFeSh0Jl0a/6J3V/apicnKS+TG/1ntap4yPKvwZutje6NpOZj8?=
- =?us-ascii?Q?0MCO37TKxG3TWyJ94YiHFasjLD0GiO+/UW0bo8B7p4iaqDBnJPxDRryYZSyL?=
- =?us-ascii?Q?k3RgCCY9YqfwGjWVBX5Paf7N7BFaMsBnrWPCWy4liKHmSK/TpWYLlKtVmZ1p?=
- =?us-ascii?Q?VsgTU6fiHUQ1BgWBwslhvEKjDQSsAiNFqDIRzJxeyXsMOIE+zNG5qzrBfii+?=
- =?us-ascii?Q?EVaTBjKgOsSe9uon4LGNdkkGS/QeAoG1qOCp19t9//6gUxXUtPs2Z5/gxGqA?=
- =?us-ascii?Q?lu/K8dP4NyK53d906/2llM/Ox05/A31mpwH5bV6xdMwBI2w17uSD7DdwC9Nh?=
- =?us-ascii?Q?YYU8p0g9YjyEBDUaiDwqoj58HkdyMFUNJCVIXwguukVwDA7onQ0PqPPu6+19?=
- =?us-ascii?Q?LYE3GrqgaVVUsydCYDDJ5GRDOcrDn4OFPjmD7Rvx7Igcfw/zKkWUaGQrJlmq?=
- =?us-ascii?Q?rgDTjfqigvmfXU/DPpLI7LSle1Vd6WffUd2BfwfZ5S9pDav2M9DpMB1tI7uB?=
- =?us-ascii?Q?ORsQnrd702pgHEi2Z8c2T/2tDwgtBjzKdeki3N9ufCF/l4iaKlVX/ze/Yvjy?=
- =?us-ascii?Q?gBL8m+RzI3Kjm7hp9zueWCrCmn/CrKGLCRI2M9vBf9T2mO/ZkFULB8WvPcU0?=
- =?us-ascii?Q?p5LaLRd3LC/buhLQmuJRBYmDml/vFhUah9Xq69P7T9Pf1INcPIkbflEk0oal?=
- =?us-ascii?Q?OK9vsm1dqmqa5rMQ87s+FALqmHAWik3ydNSq/GkuSG50TXR2vkQap5cMpUA3?=
- =?us-ascii?Q?5Jq+4Fi4f8p4RKJFoe718+R4BDEHJbe1bdH6QQVo1iB6bguLefIIBo0yC/lx?=
- =?us-ascii?Q?g7RdHwYna3NOwqDTdkhwRC39UbiEIUJqH/Gqs8d+cu3jM7qPVF3oCVnEcFjZ?=
- =?us-ascii?Q?tauOoO02BzHmiCkNJ3lnJzPXlH3BlVcf+BU64nzQPgCZRF0JZgL+1+/PxyuW?=
- =?us-ascii?Q?XA+uFFjs+OyYJnQWjp3qOSFhd7tshnJt3PqIYPCladAQNh9PfpDD/c1LlWne?=
- =?us-ascii?Q?gajlls9YptujJwvgkFHdgEiIUf64Jkljp936XScbT4vT8RJTogKcxkNca5T/?=
- =?us-ascii?Q?0KlNJZ4m63WYDDtAyiYfh1mM9xsXB+IxbpBa35FgrTuHo53XKSEj0t9sTpTW?=
- =?us-ascii?Q?tYrjk8Kwdu4NC8NhsjSPlS8ApUIU3a4eZIosyk7OZaKOfyC5bBYCztCXVaPo?=
- =?us-ascii?Q?9jz3vU1t9SGtMP4debSBZiRTukAnMT3ZdMaq0ZMYdTAGn26sM1JbZMC5dQwt?=
- =?us-ascii?Q?kxmCjlN27zBfESOz2fj9IPYvsAVcqC+7INWm4+tg5DNzodnFA+D3ZfcLcFc8?=
- =?us-ascii?Q?BejVuLwzH79Ft1/+SjwYBCk35c5ytQD8ydckSKxz4KvlKjjTBWxZE1q6qWyh?=
- =?us-ascii?Q?E2sBXfuZ1kpEe+SHqGS5MFgol6bXwrTRDmQFl1kioKPHjr/X/cPq8eqX+jhV?=
- =?us-ascii?Q?uozVdeNC2SfCPgIC7H84maZdAivbgcbcYnE7iexjvibC1elx6vnSibpg9v5W?=
- =?us-ascii?Q?qX43knlzqq23cwfym3aMQuP6u1s4YaGdWjNmdNI3aWAxbKvdXINpsG8mXA7e?=
- =?us-ascii?Q?TiZ9Lg/XKF9JRZMn+V7JFxdalbHKVhx4B4u0Gxvp81pPc4036TsJ+mDWQsWC?=
- =?us-ascii?Q?EyuLhJudkt5yQvu8+M5EN7aCmM2sK3RJ0RW2W82CD3vfXnoy?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9E3340A6A;
+	Thu,  7 May 2026 06:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778136651; cv=none; b=GKJIuvlCFeQw5Kt/ahp792HMmeVISCGRXXL08iS4x6wMjeCOp0FtcrUgXiBHLyL07n4BTLjN78iMz5iTWQxzfP4ik2bg5hYVrOtapCoHUcOheoKy1Vv8AK0Za4uAbSLxlfWJ10/Cl5o8irpLsvnFZ6+GLXKUD/vBMs/55m+Tq6E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778136651; c=relaxed/simple;
+	bh=Qv7L3rJIaKLP5t4DFVT9dkQwJJGii6Qf2Hf4zonB9Ck=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aJHrtFVHQ8FdYFIagzuJxNhSs5L+mVAR4zuCerzgGFdJLeTIpv29XAu/5Vazr0yB39vLqYHns0PPD0skRqf1xD3fRsVnqCt0ulfCMD+eAk9duEtJYZwd5r3PU3OVeH7WlSgpJbhvA/sdb1Oq8FyIP8qZMXF9oVZTkX9TQBzPDao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=Pfy55lYk; arc=none smtp.client-ip=46.19.12.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=8iw7EC9Hql0J/OWsMobIQ+qswHWUeAMDhLnl/FCsQmc=; b=Pfy55lYkmeSHAl/heQ0UJKv6Do
+	mwdokG6ZL+glEA5IzVFsL+kyAEe+YvI7p9k7/AOxJWR3lypzNctCMUPHm4xqhOjNk0LpMYbu075H9
+	LBsBr5d1p5OHO1ui32pxOOdK4NaJucAksI+ImvG01LveCX1I38YW3Mk7KkEMqjs1EHRoEFKJrE0RD
+	IARNyvI8LvQN/gC7AbMyy2LuJHE+JX4HTM3IRgoUr9KPu2JTFhNmWlVRpx0Zxr09PEUKwk1TWHgTO
+	ppuft+IQ58/B2Q8EzqDblvdYCJqckvzFxlUUcHyydMOqbptvxZD8dgs6afTqhb22Agj7isc3whEew
+	uHY+5gFA==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:40514 helo=localhost.localdomain)
+	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1wKs6Y-0000000AGWs-37Mo;
+	Thu, 07 May 2026 08:21:02 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH 1/3] arm64: dts: freescale: imx{91,93}-phycore-som: Set BUCK5 in FPWM mode
+Date: Thu,  7 May 2026 08:20:56 +0200
+Message-Id: <20260507062058.1711292-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4229fee3-aa84-4771-60cd-08deac008ee1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2026 06:19:13.0254
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cxanitoTuAEr4nLVuLacCtf4C3yeeuVgj9frdGiAHOLwDblEMUeaj8BmUrKYm13kSkc+Jsf6vXKM5l+fPAtQHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9408
-X-Rspamd-Queue-Id: 90CB04E35D5
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cp2.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Rspamd-Queue-Id: BD8354E3B72
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_REJECT(1.00)[norik.com:s=default];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293745-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,kernel.org,nxp.com,lists.linux.dev,lists.infradead.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[norik.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_X_AS(0.00)[primoz.fiser@norik.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_X_GMSV(0.00)[primoz.fiser@norik.com];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-293782-lists,devicetree=lfdr.de];
+	HAS_X_SOURCE(0.00)[];
+	DKIM_TRACE(0.00)[norik.com:-];
+	FROM_NEQ_ENVFROM(0.00)[primoz.fiser@norik.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.536];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid]
+	HAS_X_ANTIABUSE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[norik.com:email,norik.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-> Subject: Re: [PATCH V3 3/3] arm64: dts: imx: Add common imx-m2-pcie.dtso
-> to enable PCIe on M.2 connector
->=20
-> On Wed, Mar 25, 2026 at 04:32:01PM +0800, Sherry Sun wrote:
-> > Some i.MX boards (i.MX8MP EVK and i.MX95-15x15 EVK) have M.2
-> > connectors that are physically wired to both USDHC and PCIe
-> > controllers. The default device tree enables USDHC for SDIO WiFi
-> > modules and disables PCIe to avoid regulator conflicts.
-> >
-> > Add a common imx-m2-pcie.dtso that can be applied to enable PCIe and
-> > disable USDHC when a PCIe module is installed in the M.2 connector.
-> >
-> > This creates the following DTB files:
-> > - imx8mp-evk-pcie.dtb: i.MX8MP EVK with PCIe enabled
-> > - imx95-15x15-evk-pcie.dtb: i.MX95-15x15 EVK with PCIe enabled
-> >
-> > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> > ---
->=20
-> Please rebase it to imx/dt64, and prefer use b4 or provide base-commit
-> information. ref https://people.kernel.org/monsieuricon/all-patches-must-
-> include-base-commit-info
+Set PMIC BUCK5 mode to forced PWM (Pulse Width Modulation) mode instead
+of the default automatic PFM and PWM transition mode. FPWM mode produces
+less ripple on the output voltage rail under light load conditions. And
+since BUCK5 supplies SoC internal ADC reference voltage we need to keep
+voltage ripple to a minimum. This solves issues with the occasional ADC
+calibration procedure failures on phyCORE-i.MX91/93 SoM based boards.
 
-Will do in next version, thanks!
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+---
+ arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi | 2 ++
+ arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 2 ++
+ 2 files changed, 4 insertions(+)
 
-Best Regards
-Sherry
+diff --git a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
+index 29a428a052b0..19e7e84ad6f7 100644
+--- a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
+@@ -8,6 +8,7 @@
+  */
+ 
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/regulator/nxp,pca9450-regulator.h>
+ 
+ #include "imx91.dtsi"
+ 
+@@ -138,6 +139,7 @@ buck5: BUCK5 {
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				regulator-initial-mode = <PCA9450_BUCK_MODE_FORCE_PWM>;
+ 			};
+ 
+ 			buck6: BUCK6 {
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+index ebc57841f27f..626160132e3c 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+@@ -9,6 +9,7 @@
+  */
+ 
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/regulator/nxp,pca9450-regulator.h>
+ 
+ #include "imx93.dtsi"
+ 
+@@ -140,6 +141,7 @@ buck5: BUCK5 {
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
++				regulator-initial-mode = <PCA9450_BUCK_MODE_FORCE_PWM>;
+ 			};
+ 
+ 			buck6: BUCK6 {
+-- 
+2.34.1
 
->=20
-> Frank
->=20
-> >  arch/arm64/boot/dts/freescale/Makefile         |  9 +++++++--
-> >  arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso | 15 +++++++++++++++
-> >  2 files changed, 22 insertions(+), 2 deletions(-)  create mode 100644
-> > arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > b/arch/arm64/boot/dts/freescale/Makefile
-> > index 155213c45319..1f542324b4fc 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -333,12 +333,14 @@ imx8mp-evk-lvds0-imx-lvds-hdmi-dtbs +=3D
-> > imx8mp-evk.dtb imx8mp-evk-lvds0-imx-lvds-
-> > imx8mp-evk-lvds1-imx-dlvds-hdmi-channel0-dtbs +=3D imx8mp-evk.dtb
-> > imx8mp-evk-lvds1-imx-dlvds-hdmi-channel0.dtbo
-> >  imx8mp-evk-lvds1-imx-lvds-hdmi-dtbs +=3D imx8mp-evk.dtb
-> > imx8mp-evk-lvds1-imx-lvds-hdmi.dtbo
-> >  imx8mp-evk-mx8-dlvds-lcd1-dtbs +=3D imx8mp-evk.dtb
-> > imx8mp-evk-mx8-dlvds-lcd1.dtbo -imx8mp-evk-pcie-ep-dtbs +=3D
-> > imx8mp-evk.dtb imx-pcie0-ep.dtbo
-> > +imx8mp-evk-pcie-dtbs +=3D imx8mp-evk.dtb imx-m2-pcie.dtbo
-> > +imx8mp-evk-pcie-ep-dtbs +=3D imx8mp-evk-pcie.dtb imx-pcie0-ep.dtbo
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D
-> > imx8mp-evk-lvds0-imx-dlvds-hdmi-channel0.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk-lvds0-imx-lvds-hdmi.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D
-> > imx8mp-evk-lvds1-imx-dlvds-hdmi-channel0.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk-lvds1-imx-lvds-hdmi.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk-mx8-dlvds-lcd1.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk-pcie.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-evk-pcie-ep.dtb
-> >
-> >  imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33-dtbs +=3D
-> > imx8mp-tqma8mpql-mba8mpxl.dtb
-> > imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtbo
-> > @@ -481,7 +483,10 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx95-19x19-evk-
-> sof.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx95-toradex-smarc-dev.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx95-tqma9596sa-mb-smarc-2.dtb
-> >
-> > -imx95-15x15-evk-pcie0-ep-dtbs =3D imx95-15x15-evk.dtb imx-pcie0-ep.dtb=
-o
-> > +imx95-15x15-evk-pcie-dtbs +=3D imx95-15x15-evk.dtb imx-m2-pcie.dtbo
-> > +dtb-$(CONFIG_ARCH_MXC) +=3D imx95-15x15-evk-pcie.dtb
-> > +
-> > +imx95-15x15-evk-pcie0-ep-dtbs =3D imx95-15x15-evk-pcie.dtb
-> > +imx-pcie0-ep.dtbo
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx95-15x15-evk-pcie0-ep.dtb
-> > imx95-19x19-evk-pcie0-ep-dtbs +=3D imx95-19x19-evk.dtb imx-pcie0-ep.dtb=
-o
-> > imx95-19x19-evk-pcie1-ep-dtbs +=3D imx95-19x19-evk.dtb imx-pcie1-ep.dtb=
-o
-> > diff --git a/arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
-> > b/arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
-> > new file mode 100644
-> > index 000000000000..1930de058a08
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso
-> > @@ -0,0 +1,15 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2026 NXP
-> > + */
-> > +
-> > +/dts-v1/;
-> > +/plugin/;
-> > +
-> > +&pcie0 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&m2_usdhc {
-> > +	status =3D "disabled";
-> > +};
-> > --
-> > 2.37.1
-> >
 
