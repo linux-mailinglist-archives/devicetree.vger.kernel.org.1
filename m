@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-294015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294018-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMSLFCGM/GleRAAAu9opvQ
-	(envelope-from <devicetree+bounces-294015-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:57:05 +0200
+	id SHW8JjGM/GleRAAAu9opvQ
+	(envelope-from <devicetree+bounces-294018-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:57:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E764E896C
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:57:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395DA4E8992
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 14:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B3AF33019913
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:55:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EDC7302C905
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 12:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473893F166F;
-	Thu,  7 May 2026 12:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE153F23AF;
+	Thu,  7 May 2026 12:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZODJHxeP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4wqzSuw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232C83F1655;
-	Thu,  7 May 2026 12:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343383F20F3;
+	Thu,  7 May 2026 12:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778158558; cv=none; b=V0wUb6QS93LNxNo+qYYxm7VPB5e+kdtD6CtU69dyB6EQ8F7RGeHLpTuSBwZ/IW0fADC0xjRHAp3/nSgU19ntXRO2qiO4QNAuf0DY8rAxU7VVB3Q3kQJe/Vhodz0iOu/k5NMGJ++o60uioqe/28RNwOUEvH+QnIPCYOSLkUS8EFw=
+	t=1778158559; cv=none; b=tXlOxQvLmFbSLrBawFfEdQd21jAtVVtAS1SRChRNCEf/l//m6KflLu93z+fRfn21XLcsX1mGUnJXKOAeUhcHeOV8yrty+VsFXwz1KxgwHeoreXfQEb/U/zQorHzkhnvtNgNvm2X79X3WIjEVrMeuIlZzDqAvbm2S+7eAouoRCmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778158558; c=relaxed/simple;
-	bh=QU+EV71M3RfDkpd2j74yk/F9jJAx6XKKcfHyhMO6vL0=;
+	s=arc-20240116; t=1778158559; c=relaxed/simple;
+	bh=jmztYL+cRetID0Id+T0uR/HfaxaSY7cdDgh3n5/jrck=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YxJefz7Tk0vnb01KaUvShNVm9Y6QqoIOVe6UhJQjogq0njaDKM62YWzhcU3x0tum9ECHqCLYqrBz6HWFasUc2rZrXT3ZfsB19n9jne4gJRN2f3qzq+QIq24HYV2ht4Lw72CUqLdzV0XWcNT5HjoB5urcuVpTYz0bjM522fowNzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZODJHxeP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E22C2BCC4;
-	Thu,  7 May 2026 12:55:57 +0000 (UTC)
+	 MIME-Version; b=fHNut28csG+evuBFrTDzuzKDjdxeQPHALcuBOB7pBJai3Eo4lfxjKXxJ7IvVk+XedFUYmdydH+ob6Rf6vDtCcU3CcnanWNL7wPR/p+qktoT697rtvvUsVkOVGRQgr6gAJAXDAJAh1k81PzsPapxCMY3BKmq5oJDAFL0GSqSAZYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4wqzSuw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FD24C4AF51;
+	Thu,  7 May 2026 12:55:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778158558;
-	bh=QU+EV71M3RfDkpd2j74yk/F9jJAx6XKKcfHyhMO6vL0=;
+	bh=jmztYL+cRetID0Id+T0uR/HfaxaSY7cdDgh3n5/jrck=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZODJHxeP8OtPRJz+rU1Fk8V0mWl85x/N5CZIgJJcHKnCOPwPWNdQPLcOCw3CCB7Ag
-	 9PEiBca50PwkbMGS6FWHN+04iWY67+lP/1VsZwdp6gCw53hlkzt/TN7BUFXanxkiR3
-	 Wd1dhZe4FvvVu8UOkzfkhHk0+L+qJS8GG9mqo/GGxw9/Xjh93MCPSRtJsS93HTEaR8
-	 l1muivG7li21sxb12peSOYVrePhJJKmizEniiSy80LFa6apjkzc5WD+7BseYl3Pnsv
-	 o+oWwJL0As9ziwfWuBKksF1aeWvsxkplEjO3gYPJ3uvp60YYos9YjFyX2CBIJOOsnI
-	 y25edkYZiYulw==
+	b=V4wqzSuwuZmFBP1AYiBi9xtz60JFhzvxqIwimyJTstBjGNuyWtoXnSRRoKFcgz6Y/
+	 IuAphYyswgyREfOthSY9wHlNF8qj5EorQwCJK1w2Uk6D9N7FanYAcPHIHcxOo1rcuf
+	 44fM07Hm4pygxoKeX4cIYXN+DfWE9S2Nmz+3v4pfMhLNygveV3ZqxiPHnYpOeOQc+L
+	 ippHJ0cYkCj99A1K72R87ktEC+Xw7PAMysDGnXSysziLUQtSoAXlUCEWmgUVzmVHXM
+	 WdXuDGYFw0WNBCxkhEIpoGcnWjCbEAxCpRJZ0P2IDclexs0jxwsPr6+TYJBBYMqX3D
+	 qG+148ZT8lNqQ==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wKyGh-00000000d7d-1jcY;
-	Thu, 07 May 2026 12:55:55 +0000
+	id 1wKyGh-00000000d7d-3zVR;
+	Thu, 07 May 2026 12:55:56 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-acpi@vger.kernel.org,
@@ -97,9 +97,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH 01/16] ACPI: GTDT: Parse information related to the EL2 virtual timer
-Date: Thu,  7 May 2026 13:55:29 +0100
-Message-ID: <20260507125544.2903406-2-maz@kernel.org>
+Subject: [PATCH 02/16] clocksource/drivers/arm_arch_timer: Default to EL2 virtual timer when running VHE
+Date: Thu,  7 May 2026 13:55:30 +0100
+Message-ID: <20260507125544.2903406-3-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260507125544.2903406-1-maz@kernel.org>
 References: <20260507125544.2903406-1-maz@kernel.org>
@@ -115,7 +115,7 @@ X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.
  heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: 93E764E896C
+X-Rspamd-Queue-Id: 395DA4E8992
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -133,7 +133,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[46];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-294015-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294018-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -143,90 +143,132 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-Since ARMv8.1, the architecture has grown an EL2-private virtual
-timer. This has been described in ACPI since ACPI v6.3 and revision
-3 of the GTDT table.
+When running with at EL2 with VHE enabled, the architecture provides
+two EL2 timer/counters, dubbed physical and virtual. Apart from their
+names, they are strictly identical.
 
-An aditional structure was added in ACPICA, though in a rather
-bizarre way, and merged in v5.1 as 8f5a14d053100 ("ACPICA: ACPI 6.3:
-add GTDT Revision 3 support").
+However, they don't get virtualised the same way, specially when
+it comes to adding arbitrary offsets to the timers. When running as
+a guest, the host CNTVOFF_EL2 does apply to the guest's view of
+CNTHV*_El2. This is not true for CNTPOFF_EL2 and CNTHP*_EL2, as
+the architecture is broken past the first level of virtualisation
+(it lacks some essential mechanisms to be usable, despite what
+the ARM ARM pretends).
 
-Finally plug the table parsing in GTDT, and allow it to be eventually
-presented to the architected timer driver.
+This means that when running as a L2 guest hypervisor, using the
+physical timer results in traps to L0, which are then forwarded to
+L1 in order to emulate the offset, leading to even worse performance
+due to massive trap amplification (the combination of register and
+ERET trapping is absolutely lethal).
+
+Switch the arch timer code to using the virtual timer when running
+in VHE by default, only using the physical timer if the interrupt
+is not correctly described in the firmware tables (which seems
+to be an unfortunately common case). This comes as no impact on
+bare-metal, and slightly improves the situation in the virtualised
+case.
 
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- drivers/acpi/arm64/gtdt.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/clocksource/arm_arch_timer.c | 44 ++++++++++++++++------------
+ 1 file changed, 25 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/acpi/arm64/gtdt.c b/drivers/acpi/arm64/gtdt.c
-index ffc867bac2d60..1a58007fccf0a 100644
---- a/drivers/acpi/arm64/gtdt.c
-+++ b/drivers/acpi/arm64/gtdt.c
-@@ -88,6 +88,19 @@ static int __init map_gt_gsi(u32 interrupt, u32 flags)
- 	return acpi_register_gsi(NULL, interrupt, trigger, polarity);
+diff --git a/drivers/clocksource/arm_arch_timer.c b/drivers/clocksource/arm_arch_timer.c
+index 90aeff44a2764..eaf276a9b9d28 100644
+--- a/drivers/clocksource/arm_arch_timer.c
++++ b/drivers/clocksource/arm_arch_timer.c
+@@ -688,6 +688,7 @@ static void __arch_timer_setup(struct clock_event_device *clk)
+ 	clk->irq = arch_timer_ppi[arch_timer_uses_ppi];
+ 	switch (arch_timer_uses_ppi) {
+ 	case ARCH_TIMER_VIRT_PPI:
++	case ARCH_TIMER_HYP_VIRT_PPI:
+ 		clk->set_state_shutdown = arch_timer_shutdown_virt;
+ 		clk->set_state_oneshot_stopped = arch_timer_shutdown_virt;
+ 		sne = erratum_handler(set_next_event_virt);
+@@ -879,7 +880,7 @@ static void __init arch_timer_banner(void)
+ 	pr_info("cp15 timer running at %lu.%02luMHz (%s).\n",
+ 		(unsigned long)arch_timer_rate / 1000000,
+ 		(unsigned long)(arch_timer_rate / 10000) % 100,
+-		(arch_timer_uses_ppi == ARCH_TIMER_VIRT_PPI) ? "virt" : "phys");
++		arch_timer_ppi_names[arch_timer_uses_ppi]);
  }
  
-+struct gtdt_v3 {
-+	struct acpi_table_gtdt	gtdt_v2;
-+	struct acpi_gtdt_el2	el2_vtimer;
-+};
-+
-+static struct acpi_gtdt_el2 *gtdt_to_el2_vtimer(struct acpi_table_gtdt *gtdt)
-+{
-+	if (gtdt->header.revision < 3)
-+		return NULL;
-+
-+	return &container_of(gtdt, struct gtdt_v3, gtdt_v2)->el2_vtimer;
-+}
-+
+ u32 arch_timer_get_rate(void)
+@@ -1023,6 +1024,7 @@ static int __init arch_timer_register(void)
+ 	ppi = arch_timer_ppi[arch_timer_uses_ppi];
+ 	switch (arch_timer_uses_ppi) {
+ 	case ARCH_TIMER_VIRT_PPI:
++	case ARCH_TIMER_HYP_VIRT_PPI:
+ 		err = request_percpu_irq(ppi, arch_timer_handler_virt,
+ 					 "arch_timer", arch_timer_evt);
+ 		break;
+@@ -1090,25 +1092,34 @@ static int __init arch_timer_common_init(void)
  /**
-  * acpi_gtdt_map_ppi() - Map the PPIs of per-cpu arch_timer.
-  * @type:	the type of PPI.
-@@ -101,6 +114,7 @@ static int __init map_gt_gsi(u32 interrupt, u32 flags)
- int __init acpi_gtdt_map_ppi(int type)
+  * arch_timer_select_ppi() - Select suitable PPI for the current system.
+  *
+- * If HYP mode is available, we know that the physical timer
+- * has been configured to be accessible from PL1. Use it, so
+- * that a guest can use the virtual timer instead.
++ * On AArch32, if HYP mode is available, we know that the physical
++ * timer has been configured to be accessible from PL1. Use it, so
++ * that a guest can use the virtual timer instead (though KVM host
++ * support has long been removed).
+  *
+- * On ARMv8.1 with VH extensions, the kernel runs in HYP. VHE
+- * accesses to CNTP_*_EL1 registers are silently redirected to
+- * their CNTHP_*_EL2 counterparts, and use a different PPI
+- * number.
++ * On ARMv8.1 with FEAT_VHE, the kernel runs in EL2. Accesses to
++ * CNTV_*_EL1 registers are silently redirected to their CNTHV_*_EL2
++ * counterparts, and the timer uses a different PPI number. Similar
++ * thing happen when using the EL2 physical timer. Note that a bunch
++ * of DTs out there omit the virtual EL2 timer, so fallback gracefully
++ * on the physical timer.
++ *
++ * Without VHE, if no interrupt provided for virtual timer, we'll have
++ * to stick to the physical timer. It'd better be accessible...
+  *
+- * If no interrupt provided for virtual timer, we'll have to
+- * stick to the physical timer. It'd better be accessible...
+  * For arm64 we never use the secure interrupt.
+  *
+  * Return: a suitable PPI type for the current system.
+  */
+ static enum arch_timer_ppi_nr __init arch_timer_select_ppi(void)
  {
- 	struct acpi_table_gtdt *gtdt = acpi_gtdt_desc.gtdt;
-+	struct acpi_gtdt_el2 *el2_vtimer = gtdt_to_el2_vtimer(gtdt);
- 
- 	switch (type) {
- 	case ARCH_TIMER_PHYS_NONSECURE_PPI:
-@@ -113,6 +127,12 @@ int __init acpi_gtdt_map_ppi(int type)
- 	case ARCH_TIMER_HYP_PPI:
- 		return map_gt_gsi(gtdt->non_secure_el2_interrupt,
- 				  gtdt->non_secure_el2_flags);
-+	case ARCH_TIMER_HYP_VIRT_PPI:
-+		if (el2_vtimer && el2_vtimer->virtual_el2_timer_gsiv)
-+			return map_gt_gsi(el2_vtimer->virtual_el2_timer_gsiv,
-+					  el2_vtimer->virtual_el2_timer_flags);
+-	if (is_kernel_in_hyp_mode())
++	if (is_kernel_in_hyp_mode()) {
++		if (arch_timer_ppi[ARCH_TIMER_HYP_VIRT_PPI])
++			return ARCH_TIMER_HYP_VIRT_PPI;
 +
-+		return 0;
- 	default:
- 		pr_err("Failed to map timer interrupt: invalid type.\n");
- 	}
-@@ -130,6 +150,7 @@ int __init acpi_gtdt_map_ppi(int type)
- bool __init acpi_gtdt_c3stop(int type)
- {
- 	struct acpi_table_gtdt *gtdt = acpi_gtdt_desc.gtdt;
-+	struct acpi_gtdt_el2 *el2_vtimer = gtdt_to_el2_vtimer(gtdt);
++		pr_warn_once("VHE without EL2 virtual timer interrupt, broken firmware\n");
+ 		return ARCH_TIMER_HYP_PPI;
++	}
  
- 	switch (type) {
- 	case ARCH_TIMER_PHYS_NONSECURE_PPI:
-@@ -141,6 +162,10 @@ bool __init acpi_gtdt_c3stop(int type)
- 	case ARCH_TIMER_HYP_PPI:
- 		return !(gtdt->non_secure_el2_flags & ACPI_GTDT_ALWAYS_ON);
+ 	if (!is_hyp_mode_available() && arch_timer_ppi[ARCH_TIMER_VIRT_PPI])
+ 		return ARCH_TIMER_VIRT_PPI;
+@@ -1200,14 +1211,9 @@ static int __init arch_timer_acpi_init(struct acpi_table_header *table)
+ 	if (ret)
+ 		return ret;
  
-+	case ARCH_TIMER_HYP_VIRT_PPI:
-+		return el2_vtimer && el2_vtimer->virtual_el2_timer_gsiv &&
-+		       !(el2_vtimer->virtual_el2_timer_flags & ACPI_GTDT_ALWAYS_ON);
-+
- 	default:
- 		pr_err("Failed to get c3stop info: invalid type.\n");
- 	}
+-	arch_timer_ppi[ARCH_TIMER_PHYS_NONSECURE_PPI] =
+-		acpi_gtdt_map_ppi(ARCH_TIMER_PHYS_NONSECURE_PPI);
+-
+-	arch_timer_ppi[ARCH_TIMER_VIRT_PPI] =
+-		acpi_gtdt_map_ppi(ARCH_TIMER_VIRT_PPI);
+-
+-	arch_timer_ppi[ARCH_TIMER_HYP_PPI] =
+-		acpi_gtdt_map_ppi(ARCH_TIMER_HYP_PPI);
++	/* The GTDT parser can't be bothered with the secure timer */
++	for (int i = ARCH_TIMER_PHYS_NONSECURE_PPI; i < ARCH_TIMER_MAX_TIMER_PPI; i++)
++		arch_timer_ppi[i] = acpi_gtdt_map_ppi(i);
+ 
+ 	arch_timer_populate_kvm_info();
+ 
 -- 
 2.47.3
 
