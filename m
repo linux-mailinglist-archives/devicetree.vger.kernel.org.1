@@ -1,58 +1,101 @@
-Return-Path: <devicetree+bounces-293803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6AjcMlBB/GlMNgAAu9opvQ
-	(envelope-from <devicetree+bounces-293803-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:37:52 +0200
+	id GB9KC5tA/GlMNgAAu9opvQ
+	(envelope-from <devicetree+bounces-293798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:34:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FCEE4E428B
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC234E41AD
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 09:34:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13B6930799FE
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 07:33:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BBFA1302E339
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 07:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A940635F5E5;
-	Thu,  7 May 2026 07:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6312735C19F;
+	Thu,  7 May 2026 07:33:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Yep99Z8A"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="mQYNSi8F";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="YfjXnRhT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
+Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE3135B644;
-	Thu,  7 May 2026 07:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB02933F8C5;
+	Thu,  7 May 2026 07:33:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778139221; cv=none; b=TWSfGfGU2GcJku0FBXmj1GBWilzWSIh2TlpuioVfM8+oTAQNdL3yKQxfc7zSqxEs8EZph0W/7BCPE+fUmpvDQEA9mrFm7ShDfiXixQubtWx3jWjQD5gyfwgDYSREJHZ78iFiYNpu6SMlDoTh3hNgXgq8sBdzIQfR0bF49yushr4=
+	t=1778139208; cv=none; b=AyMmIyd2024RP271Z++Y4jdsjhW9/axD5KC0AOI0XaQbOXZSwPsG639VMMXlvUEbhqtvb1YVhTdh8a3ixiNveOZkuQbDvbYr+B1v4Khsl4J+C88zyWKk7tNBUUPWgiinmumXZbZMzLip3sxom4YzzK/nBTdsQ5pUwyqt5mNGVzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778139221; c=relaxed/simple;
-	bh=gaZkV3ycFARSrKwMTq79k40MPy9fuqRXNEp63djnpig=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Nj6s0jhM+gK60751JpbEXSBtmi1o5F+g276OzC+QqsaN4BAWdIMWVbwxrI/RcKCdFivhteGzGoiij4FSWwzvkMfFYxsLiZjMgmOw1/XMmyLBVzKVnkNqSCrMHK7VmOPUiL0TbUDoTc996MNyjDMmVi2ZzyB7iz551d9sCfTDFR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Yep99Z8A; arc=none smtp.client-ip=54.204.34.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1778139199;
-	bh=/z8CCUOGvHpoH70t6B2KPfC0Ot+ROjJINhi1y6OoEtU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:To;
-	b=Yep99Z8A3palxggJQSkxgQ9gavQtJE9wCCba/Y4lvYsWLTjGagvv09ApbIjaR6ohu
-	 eFg4kaRAmyq/5imB9+MEEdyIohA7PE34AvFcjeyC0dqCMREufjcRpP7sbqdCyfVX6Y
-	 xe47jFdDtMEzwUwyNgGbn5jPMCAxxvyW0Uu6cNsE=
-X-QQ-mid: zesmtpsz8t1778139194t8a4b4886
-X-QQ-Originating-IP: fwNzxLjSkQR/NKe20e7jVejxzRqkcOcXghif0Al22BQ=
-Received: from = ( [120.237.158.181])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 07 May 2026 15:33:11 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 18142673450067718002
-EX-QQ-RecipientCnt: 15
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Subject: [PATCH v2 0/2] ASoC: spacemit: add K3 SoC support
-Date: Thu, 07 May 2026 15:33:08 +0800
-Message-Id: <20260507-k3-i2s-v2-0-9cdbf95b7533@linux.spacemit.com>
+	s=arc-20240116; t=1778139208; c=relaxed/simple;
+	bh=tqRDD38M1lfDTOrUhWfFbq/m1TiGBjjHF1HjCcLG/DA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=AL78mfahLxJCa72FVrR28DTk0J3ui2Ee1bLKWOGo63K94s2i+tNMXM/zazdL9Ok5SIwqjAjuW8RmnkRbOELGjoJoZQkox1cLonv6iCc1PkoHST8JVUDTzDVV3xZ19UIpySCOscLLzBEuZKcjh1HSXr/EWkgsn4oYiO/4vMB0DQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=mQYNSi8F; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=YfjXnRhT; arc=none smtp.client-ip=103.168.172.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
+	by mailfout.phl.internal (Postfix) with ESMTP id 435B9EC00CE;
+	Thu,  7 May 2026 03:33:26 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-12.internal (MEProxy); Thu, 07 May 2026 03:33:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1778139206;
+	 x=1778225606; bh=DhzpA8NsTz/+V0K0dsPsaOESAJ4FZBxYUWkuaahgCkI=; b=
+	mQYNSi8FbVElXwCtBag/AxoCT5bz9DO00U0OfJ5CZsvI64kYjDMs75DD5PsEb8zS
+	7CKzwpvsFM3nWTHHVsh+QzcoVo9IVEw7O6osZJVpK5s3mp+edWa6Q9cbweylJGs/
+	RFQ5VVf8fVDjtbWyN58vC4l880AZXyq/J7t4+ZyMq3ImaxH1gXGrKQLXA64rZLgo
+	zOenhd8UqfTA553IDUqHmQLQCD3FtpcI5bd0ZGck60HIc7Gcw/pbfA3u8NFDGX9w
+	GQOF483E2mJV0PhlZXdC1//G7YqMvsVxX1WfxAGaCM51RRbvGAqTbHFQOTtBc1vr
+	/mC8XZEB1veV0wQF8pAvWw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1778139206; x=
+	1778225606; bh=DhzpA8NsTz/+V0K0dsPsaOESAJ4FZBxYUWkuaahgCkI=; b=Y
+	fjXnRhTXsWGJtFtou/Q7mIxrIzgjPu/MK6mZGX5gP5Uw8Y8Ln1F6y0f75q1YuMJ4
+	clybjoG4lvvgTul/P28wxDfAoLmE07oO5CioFGL4Yatcy/tEIL3DrBb7Ii9vo34D
+	OdgA9ggcLLGNzfTd+l6U2W6VjlCRQ7eEKy+Lqp5/c0dadAi0G9bx7n0o/hkZwJ2X
+	0eIfpLLj7Hf48l/KX7zZsdq88tSLMFJf1mg9KsFTx/gHgBl+7rWGzhL+/5XnncFR
+	X7oK/lQACXteKpUPvT5DzChfGEWjHoY1F3m5uQRDIOSN1wb1jAEBb8K1IQEOYcLG
+	+fjnLYlmLn+OJYkPvT/Xw==
+X-ME-Sender: <xms:RUD8aVN1hVM2vFgKP5I6-GNSokrmaZED2pTRNft8h_IFEoqD_FKJNA>
+    <xme:RUD8ac1dkRZt9nTekcSyOgMhAdXuXFajFAvH_2cCuyaVUfLMwMipWebPZ88p45Ba7
+    MDDaXRm9Xd0Zgtc5Pf6XIvTbCPlsbGqghQFWkrq5ZFgTno1J5D8ZORH>
+X-ME-Received: <xmr:RUD8ac1mc6hUu88LsP3NnQVKnq9k2_8v1iz6QzMtuzz9KfqO6L7FO2CdzeFNAB1Dt8IQ4Xdjkxoa7eHltERGTGCtOQi-V0FpdrU0ew>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgddutdeikeekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgv
+    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepfe
+    ehheeileduffehteeihfdvtdelffdutdeludduiedutedvfeffheekhefgtedtnecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
+    hurdhnvghtpdhnsggprhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtghp
+    thhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugi
+    dqfigrthgthhguohhgsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhv
+    vghnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvg
+    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhg
+    vghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtohepuhhklhgv
+    ihhnvghksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsthhsrd
+    hlihhnuhigrdguvghv
+X-ME-Proxy: <xmx:RUD8aS9Cfs6o150MLaPjLgtpgHJLpIKjdf8pQGMkShi0WMNLF4ahCg>
+    <xmx:RUD8aQZPoCkzurQbeR5G2Mue2NfWFkKl_vc_2nqAA_DTqqJsXTNRyg>
+    <xmx:RUD8aZzzOyFdMCPVKckx6rx3knJ8flClSoIm7b0po-Gkynl6QAmr2A>
+    <xmx:RUD8aW-aoFokf9gloLNDr7BmKDwVf6fT0Lbo-pk94ZoIWSfat3hviA>
+    <xmx:RkD8aZ9-qzFasEid6Fs2X3V87C1Z7Uaa04ZCSJ3wmMn0Nw_S5jqopvCm>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 May 2026 03:33:25 -0400 (EDT)
+From: Janne Grunau <j@jannau.net>
+Date: Thu, 07 May 2026 09:33:08 +0200
+Subject: [PATCH v3 2/5] dt-bindings: watchdog: apple,wdt: Add t8122
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,130 +103,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/zWNQQ6CMBBFr0JmbUk7Iogr72FYQBlkVArpAMEQ7
- i5gWL7k/fdnEPJMArdgBk8jC7duBTwFYOvcPUlxuTKgxlhHmKj3WTGKumBOaK46ieIYVrnzVPG
- 0hx7Zn2UoXmT7bb0ZNUvf+u/+NJrNO6LpER2N0gorStOyMIZscf+wG6ZQutxSw31o2wayZVl+b
- Veg6rcAAAA=
-X-Change-ID: 20260427-k3-i2s-52ae21807466
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Yixun Lan <dlan@kernel.org>, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778139191; l=1882;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=gaZkV3ycFARSrKwMTq79k40MPy9fuqRXNEp63djnpig=;
- b=RMN4TqCjAj/qHKBOyiM3CT2YI3t71uSVDl2c8KSTGZIcgTj7zJUVROQagnDLypbe485vsjhAQ
- u6pHPyo3UVdArpF+udPa+i/CTg7VDU53shKWgnjR3FVGa3JJ+xsX6eO
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: OaEjz/uFifOelsMweOseJ6e2f0/fMaYsNqivnHlJzCTjXrjWZXbT16uy
-	f1fRnSk7nUA8ZLLTWhTQI+oxMT01d1Xp2C++nk6vaaIyZNSB3Vb4zDNbmk+ek3JEsGcz9zV
-	alLsC0qZbBt9dPoAcFBuXJeIoNLkrNSE1s2KlOfQM8CMLM44vpPTC+GQ1wTFoPl/N2PAjiN
-	/h7i/1ompwFlFjXd2rL9AgU67G1BenVkWk9SikwO5WJu+fG7zFnurwRcSvIIqTHwzHZKZ/R
-	mLH/2ibCwQ3xTI2dL1R6N3nvoYDaxzlRJPNeXpp87g3UiuiDqavk5BDV5IZxDrv5y2fr1Uu
-	mwnkofMPRyX9wRPpv/MV4m1qSz4TO75xqBqkA9Ef3wS3I38euoyfi2EPLntFG3yVYK3ehP8
-	8/lxHvS+m9NSqW5H1N2NSnk9XIfwoqhtExIJwHbvh7DFMTf3sMaKGm2DJKGcZoV+xClnXQB
-	UH+AHdXF3SDOTVWh2S9WmkXR28RmEUemQqOJfF/6d/FUAQI+Ebv2iEfKDrwcQ4Muam6ceTM
-	kUjrbME7tOf8wb33cEIudYtn8xeyP9d7r5waXm8PD5eNSRhD0S/jYpy0zipETw4xFzV/Ery
-	xSTIYV8lgcVPB6I9Zk54tQCiqNhn0GNlLTnsS7P5qA2/uIzjz4U2+p+fPff9KHUmGLDjmWW
-	FvA1ir7U+5Dcd9xCuy4U6kt/W0Ew5Dz1xJ69vXftOjKqSH4QgBX+Cw47cjfuLhEanwJqrEv
-	nnnMNKHrcjaER6Emtiu0gPLDkdE91eR6h0y4sSHro0PtgukjiL9S2+J6nqH9SfTcRgyG4hy
-	ePTFpmcdvXtYW0QTyCUVOO4oWgpxxYPRYTEwgY83wqsdnXrPcpsyL8U92careIoUGTK5Gx9
-	ipZ7I8v3jCG1O2aKbIre2s/6Aq79tcjskMhZlMlqvJgtLq2ojEnJV/gEaMElVu5xpw3UsoU
-	uQ74GkAwGcIJ3kCik+njDygUlwwyFmLS2bhlV8gPQXhHzfQ5myWbgEa9pTalatfVrxlQYpb
-	W7LiBHPuGv8dcM+JMkLjoM1XiedMujAAvKw/Jek/CvhT/SSkHAfQ8gd7Ez/5dFmZZbwIda2
-	DlbAroBNK6dl843qDC62V9ec9M0dsTdi8LsiSKN2dZw6y0eNtrVdTpGb3nOra/gbqlea5lt
-	WT8C5mOm+olCR9OVwd6cyH9RrbKYWDi+Dy7g
-X-QQ-XMRINFO: OD9hHCdaPRBwH5bRRRw8tsiH4UAatJqXfg==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 2FCEE4E428B
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260507-apple-m3-initial-devicetrees-v3-2-ca07c81b5dc7@jannau.net>
+References: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
+In-Reply-To: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Sven Peter <sven@kernel.org>, 
+ Neal Gompa <neal@gompa.dev>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Mark Kettenis <kettenis@openbsd.org>, 
+ Sasha Finkelstein <k@chaosmail.tech>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-watchdog@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>, Joshua Peisach <jpeisach@ubuntu.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1090; i=j@jannau.net;
+ s=yk2025; h=from:subject:message-id;
+ bh=tqRDD38M1lfDTOrUhWfFbq/m1TiGBjjHF1HjCcLG/DA=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhsw/DnZvPv7+uCZm4bUNF5PPFwstErzlxLaW9emmwD+XN
+ wZ/0Am71lHKwiDGxSArpsiSpP2yg2F1jWJM7YMwmDmsTCBDGLg4BWAiG38xMlxkOl/Yw9zRWla6
+ 2apgWY/Vh9Nqx9ZK/vq7ytF7+87jQssYGXZu2OcZEz9B6NmCCT5vNtw5udjN9d/UxEOCRzXKmMK
+ 02HgA
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Rspamd-Queue-Id: CBC234E41AD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[jannau.net:s=fm1,messagingengine.com:s=fm3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[spacemit.com];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linux.spacemit.com];
-	TAGGED_FROM(0.00)[bounces-293803-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-293798-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[jannau.net];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[jannau.net:+,messagingengine.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[j@jannau.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-This series adds K3 SoC support for the SpacemiT I2S controller driver.
+The watchdog on the Apple silicon t8122 (M3) SoC is compatible with the
+existing driver. Add "apple,t8122-wdt" as SoC specific compatible under
+"apple,t8103-wdt" used by the driver.
 
-Patch 1 adds the dt-bindings for the spacemit,k3-i2s compatible. The K3
-SoC uses the same I2S IP as K1 but requires additional clocks
-(sysclk_div, c_sysclk, c_bclk) that are shared across multiple I2S
-controllers.
-
-Patch 2 adds driver support for K3 SoC with additional clocks.
-
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Joshua Peisach <jpeisach@ubuntu.com>
+Reviewed-by: Neal Gompa <neal@gompa.dev>
+Signed-off-by: Janne Grunau <j@jannau.net>
 ---
-Changes in v2:
-- Drop bug fix patches (1-3/7) — patches 2-3 already merged, patch 1
-  split into a standalone series
-- Drop fixed-sample-rate patches (5-6/7) — will address shared BCLK
-  constraint at the ASoC core level in a separate series
-- update commit msg (1/7)
-- Add rob's tag
-- Link to v1: https://patch.msgid.link/20260429-k3-i2s-v1-0-2fe99db11ecb@linux.spacemit.com
+ Documentation/devicetree/bindings/watchdog/apple,wdt.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-To: Liam Girdwood <lgirdwood@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Yixun Lan <dlan@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Jaroslav Kysela <perex@perex.cz>
-To: Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-riscv@lists.infradead.org
-Cc: spacemit@lists.linux.dev
-Cc: linux-kernel@vger.kernel.org
+diff --git a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+index 05602678c070..845b5e8b5abc 100644
+--- a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+@@ -16,7 +16,9 @@ properties:
+   compatible:
+     oneOf:
+       - items:
+-          - const: apple,t6020-wdt
++          - enum:
++              - apple,t6020-wdt
++              - apple,t8122-wdt
+           - const: apple,t8103-wdt
+       - items:
+           - enum:
 
----
-Troy Mitchell (2):
-      ASoC: dt-bindings: add SpacemiT K3 SoC compatible
-      ASoC: spacemit: add K3 SoC support with additional clocks
-
- .../devicetree/bindings/sound/spacemit,k1-i2s.yaml | 31 +++++++++++++++++--
- sound/soc/spacemit/k1_i2s.c                        | 36 +++++++++++++++++++++-
- 2 files changed, 64 insertions(+), 3 deletions(-)
----
-base-commit: f58f2e0137c2132a08a1ab42720a9540cf0093a8
-change-id: 20260427-k3-i2s-52ae21807466
-
-Best regards,
---  
-Troy Mitchell <troy.mitchell@linux.spacemit.com>
+-- 
+2.54.0
 
 
