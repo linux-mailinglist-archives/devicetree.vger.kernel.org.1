@@ -1,160 +1,166 @@
-Return-Path: <devicetree+bounces-293943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293945-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ZOT8IV9t/GkQQAAAu9opvQ
-	(envelope-from <devicetree+bounces-293943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:45:51 +0200
+	id AUUmMc5t/GknQAAAu9opvQ
+	(envelope-from <devicetree+bounces-293945-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:47:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F684E6F89
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:45:50 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 441754E6FDC
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 12:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 115C1300383F
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 10:45:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C8B20301C935
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 10:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5694330305;
-	Thu,  7 May 2026 10:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323643E9280;
+	Thu,  7 May 2026 10:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="qPQvdZZ9"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="xRFvAfp+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [95.215.58.189])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com [74.125.82.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C91D2E22B5
-	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 10:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.189
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40853E8C62
+	for <devicetree@vger.kernel.org>; Thu,  7 May 2026 10:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778150745; cv=none; b=pPhMXcSNNHya5a8iYtCvUXo9Sxf7Em7qdWBKcYFn0vNuxfLjbKkEnXNebNZhSl5W4H0tq8e3FA/ip9c+kADFghT3sz7BnHjKtpYFqcimTSAgmXf6S6kjpvWTafpX4Ub7XpcfaS2co2nomvZSUk+buRIrLEh8737fxdkC07f5cgo=
+	t=1778150858; cv=none; b=KTeZ7rThoYwPAqp2kQg2uKhhC0fs4uq3DLb+dQqBk0sYGPqW+jXBdzaWxd2KENdg3r3W9u+cEkMSLArn4YQvJqPAZeXOx0lLwpts7NfJThRwjfjcDvmYjEls2pDzwSjxZbVKbwgxnXQ7Dyy7CK9IKuoV+h/E9UJYylc4yoiaiaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778150745; c=relaxed/simple;
-	bh=312zN6LsAnZx88D9I1aFkKivaozIPa5muYYM2DQoykI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=cn8WLtgzpj65zONuQxYAD4ip+FuAEZfsIUGBUp9ywP5KgjMZbJP3d19CKIIGgmRbFMMmXIlMs09zLOWOL7yDmoq5XjZdBXriM0bg/KA8DAnYDqvTdKC+g7phKEmpo5XwlLDuXwVouJWeCEItPjsGqafze+yzzYjvvc/3z5j3plM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=qPQvdZZ9; arc=none smtp.client-ip=95.215.58.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+	s=arc-20240116; t=1778150858; c=relaxed/simple;
+	bh=vsyg7SzQr/MhpQWX2R69i+dy06+2L6zetPs00hCeGyg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oYdfboqVsh3cFP6XGtb+LXtIo4eWysOkF9cdxgEiKD1Pu2elmdKmXfePkV735WHQ88ievNtyZJOyS8N8q1Nn3NOYDlCP37vAKBUtd2LWCio1cX6X+h3sV4HCZAElnxLnivChfOXK991/uhBGBa71rOI3zyYyHVzjhhTFj0Avcpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=xRFvAfp+; arc=none smtp.client-ip=74.125.82.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-dy1-f170.google.com with SMTP id 5a478bee46e88-2c156c4a9efso903662eec.1
+        for <devicetree@vger.kernel.org>; Thu, 07 May 2026 03:47:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1778150856; x=1778755656; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zaZMoEIQ1Jf5sIP1IUKKwF+M8lMdZJxB7U7Jjxi7VqM=;
+        b=xRFvAfp+4vO4qu5nkwmyIIkNhlvaYg1Y+YVrFm0ulpLChQEA573HV3wLSKxiY2paJF
+         kLqeiM57SzjmYf60voDecms3noZPOUnG72/wn/1fthGpLigv9nebrryuCbhrDAV2vnWK
+         eZnlCfMPExFyA3vFnfwRm1cffXR4beniHi0PkRZzvwCFeQOTaw7KNucUHwc/RIs2Kpyb
+         nGM3/8Lgai7Anrk1t8e8o3T9iTVv3jnhdP9FXEQCdaNibbx5fHC5ut+zUJmHnahTArKw
+         wyK2R/rG7/LUzjj06t5uzOFZYHd8LvKU+X0uELsj+oGAFBMaGx9PYVgWRZTWOoXhSWkG
+         ihLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778150856; x=1778755656;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zaZMoEIQ1Jf5sIP1IUKKwF+M8lMdZJxB7U7Jjxi7VqM=;
+        b=eaaszZQ6O884Ptjl4nHMl2xbC4s556ERsFztJ+1GepyBQqMTcbEWen3uVaqpAV7XFt
+         zuD7MtlNv92NUBZ3jF+h10KzIK9wzKc5Bf7EL7DZXo9R0WGXi4JvG1wgtIBHLURO8aQN
+         X8QZzrHGV0Wvt4Za9x7a+G9gAVa3d66vLQnBaGKLL4faaEJgec2Rt8m4m4kgmEm0A8SU
+         vt1IYxeu7J/03gnPJ2cI7dyrWTF9kHa/SM2pHvwak+kaH5/uSam17zNjISL7mxZtTXOx
+         jYKpXo4JhtNEr4/ejsZrfXAE+UTPWamCjgf8G1KuyBvwwr0vKeQDv4oUrbQkP3xF0ARs
+         MCGA==
+X-Forwarded-Encrypted: i=1; AFNElJ+ogvARhd9G8IJMSxpDl6WFpyt4cRjwYaKOPllOJuAkE8qCeDXFq5Tfe6pGyl2joy/DFBMrwbvLzeii@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUKsSQMH9mnHkOVoucvKvFheZdqK6Zm0vD5ipHfpod5UewLKDl
+	RzAAXL29Izq7En8EQ8+aBwD3RFrqJf7SW51vFlPSyOGrKhm0P6riGBkp5HzwWxSfr9gtoIdtqa8
+	JD2Ktpxc=
+X-Gm-Gg: AeBDiesWAOPfva5Ea/KjvoqcS9oL3uImchf4Q+Fx0338zy/TPsEyNEdmrBt7Ml+thnz
+	WiibRshOoPCRYag9jG5MZ1EYpbGoWlgkBoC0p7y+8tdJtUAzvfJeFWwykaXOb1swstHz7GRyHaK
+	UGGDFa3QHqZgzXRlynrlCyzyXRDomV4v1Kc4xz8qrDWjSFhmqnlqZ0WQwClCvCJ6oroPEZHJo0c
+	N8PBTkvFLQBx+sLHQQLSQ/BaXwBBsO/L9NsGylL7qfNVhirQzXozS1Kstx48vVU6c+6zhmLx90f
+	3zwkVqKVmFJ7GEKd36WMJV55SLoUoCvuQ9PkWnC/S0lJo7w82QfExLsUsFiSozh9xfN+7e4ke9X
+	BV/4pVdkEsJu/1HTOTEmrq5buiLhUd+boE7K+/4BepkV3W/0OQDvCTzxppbNvWtmMjMRheGpRrd
+	iey8G0xfMcKjtLcNzIFMvChplbuQ8988ZELPLkx0+aNncoE+NFmFjSurOAew/5tgbWl+/lU/rk3
+	3sySTQd2R9GaTy/bgYNZbikbHojaDth3ntNH9ruOj242uipvT8=
+X-Received: by 2002:a05:7300:f191:b0:2c4:61be:1d33 with SMTP id 5a478bee46e88-2f54d69b008mr3592034eec.6.1778150855826;
+        Thu, 07 May 2026 03:47:35 -0700 (PDT)
+Received: from fedora (cpe-109-60-83-79.zg3.cable.xnet.hr. [109.60.83.79])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2f56cec5d8asm7040271eec.3.2026.05.07.03.47.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 May 2026 03:47:35 -0700 (PDT)
+From: Robert Marko <robert.marko@sartura.hr>
+To: o.rempel@pengutronix.de,
+	kory.maincent@bootlin.com,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: luka.perkov@sartura.hr,
+	Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH net-next 1/2] dt-bindings: net: pse-pd: microchip,pd692x0: add port disable GPIO
+Date: Thu,  7 May 2026 12:46:54 +0200
+Message-ID: <20260507104720.262641-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1778150742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wfLuyOPRCmmDdUHD7nj8FmD30fIBLkwBsUJFvuCmkBQ=;
-	b=qPQvdZZ9NGUW5GSrDqiO42DiH/zl3tkl6A1e9fYYs1UYUXWFnjsHBfbC/scvJ2rOxMtX6M
-	OU0bhSlvZDm6kNsbvILN5h9ybLDylI6fzaRmXJZBq2/GhPeAxFGOv+TbyRXdS5hXW6KeXn
-	4b3UWDEyiFf1sYzQuWFt5cXI513OGmw=
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 07 May 2026 18:45:07 +0800
-Message-Id: <DICDTHYTPDSP.210EBVHTQ6966@linux.dev>
-Subject: Re: [PATCH v8 8/9] riscv: dts: spacemit: k1-bananapi-f3: add SD
- card support with UHS modes
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Troy Mitchell" <troy.mitchell@linux.dev>
-To: "Iker Pedrosa" <ikerpedrosam@gmail.com>, "Margherita Milani"
- <margherita.milani@amarulasolutions.com>
-Cc: "Ulf Hansson" <ulf.hansson@linaro.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Adrian Hunter" <adrian.hunter@intel.com>, "Paul
- Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Yixun Lan"
- <dlan@kernel.org>, "Troy Mitchell" <troy.mitchell@linux.dev>, "Michael
- Opdenacker" <michael.opdenacker@rootcommit.com>, "Javier Martinez Canillas"
- <javierm@redhat.com>, <linux-mmc@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
- <spacemit@lists.linux.dev>, <linux-kernel@vger.kernel.org>, "Anand Moon"
- <linux.amoon@gmail.com>
-References: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
- <20260413-orangepi-sd-card-uhs-v8-8-c21c40ec16d0@gmail.com>
- <CA+Xcp4nY9GVMOmtMG-PNhY2vqP4Cc_amAMSa+M3vuDjWUkuCHw@mail.gmail.com>
- <CABdCQ=OsPva9=YPdBd=3HW1OO7=_zJtpXjvaiA0WLEDT5Scs_Q@mail.gmail.com>
-In-Reply-To: <CABdCQ=OsPva9=YPdBd=3HW1OO7=_zJtpXjvaiA0WLEDT5Scs_Q@mail.gmail.com>
-X-Migadu-Flow: FLOW_OUT
-X-Rspamd-Queue-Id: 82F684E6F89
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 441754E6FDC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sartura.hr,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[sartura.hr:s=sartura];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-293943-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,amarulasolutions.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,linux.dev,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-293945-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[sartura.hr:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.dev,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
+	FROM_NEQ_ENVFROM(0.00)[robert.marko@sartura.hr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linux.dev:mid,linux.dev:dkim,amarulasolutions.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Thu May 7, 2026 at 5:53 PM CST, Iker Pedrosa wrote:
-> Hi,
->
-> El jue, 7 may 2026 a las 10:20, Margherita Milani
-> (<margherita.milani@amarulasolutions.com>) escribi=C3=B3:
->>
->> Good morning Iker,
->>
->> > Add complete SD card controller support with UHS high-speed modes.
->> >
->> > - Enable sdhci0 controller with 4-bit bus width
->> > - Configure card detect GPIO with inversion
->> > - Connect vmmc-supply to buck4 for 3.3V card power
->> > - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
->> > - Add dual pinctrl states for voltage-dependent pin configuration
->> > - Support UHS-I SDR25, SDR50, and SDR104 modes
->>
->>
->> Tested-by: Margherita Milani <margherita.milani@amarulasolutions.com>
->>
->> However I noticed it only works when CONFIG_I2C_K1 is enabled.
->> Michael Opdenacker told me it's necessary to enable the regulators
->> used by the mmc controller.
->> Should we add the dependency between CONFIG_MMC_SDHCI_OF_K1 and
->> CONFIG_I2C_K1? (Unless some boards don't have these dependency?)
->> Thank you for your patchset which was really nice!
->
-> Thank you for catching this! You're absolutely right about the dependency=
-.
->
-> From what I can see, all current SpacemiT K1 boards follow this design
-> pattern where the SD card power is provided by an I2C-controlled PMIC.
-> However, before adding a hard dependency, I'd like to get input from
-> the community, does anyone know of K1-based boards that provide SD
-> card power through fixed regulators or other means that don't require
-> I2C?
-if K1 needs to switch between standard and high-speed (UHS) modes,
-I believe the I2C-controlled PMIC is mandatory to handle the voltage
-switching (typically 3.3V to 1.8V).
+Microchip PSE controllers have a dedicated port disable input that like it
+name suggest, will disable PoE on all ports.
 
-I don't think any board would want to be stuck in standard mode permanently=
-.
-If high-speed mode is an option, why not use it? I think adding this
-dependency is a good idea, but keep in mind it also needs to depend on P1.
+So, lets document that GPIO.
 
-                            - Troy
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+ .../devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml     | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
+index 03d9ca1cbcc0..f883dca87bf9 100644
+--- a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
++++ b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
+@@ -23,6 +23,10 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  disable-ports-gpios:
++    description: GPIO pin to disable PoE on all ports
++    maxItems: 1
++
+   vdd-supply:
+     description: Regulator that provides 3.3V VDD power supply.
+ 
+-- 
+2.54.0
+
 
