@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-294181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294183-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LRdKTfX/GlvUQAAu9opvQ
-	(envelope-from <devicetree+bounces-294181-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:17:27 +0200
+	id yL42AUDX/GlvUQAAu9opvQ
+	(envelope-from <devicetree+bounces-294183-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:17:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F2334ED4DE
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:17:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725D14ED4F7
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 20:17:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 20A70300A10D
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 18:17:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 57DB7300788E
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 18:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406413358B8;
-	Thu,  7 May 2026 18:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E6235B633;
+	Thu,  7 May 2026 18:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="PJxNh/bP"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="aHELZxBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531D2326942;
-	Thu,  7 May 2026 18:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B71731E824;
+	Thu,  7 May 2026 18:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778177845; cv=none; b=ALTQy1iQf0LtDwvoKhrRbM+tRPnePFsEP2vfWhJyM7anBzAf8HtlsM6holCYZKun36ttDIQScef7Y8bNYEZYEHvT54NV7b1+ueAaL1d3uFdlGaeqyBU+ODBCXLGdgV8O4rjKleTVVHftibSt1ImVh5x81Yh/TO4tbEjUeDuUGNE=
+	t=1778177853; cv=none; b=IYOyk2tskusC8xY5GOd6O2f4Rr18E0IRdeOOVLqxR9M+tEQF66GxUkWyjJQTNhQ4JQ0G6TBgv9sEMcA3qMaMeYfmSuIQtRbYzpMmXqxnT0Q3SpB87QSK2L10wk84lvnzI8Qr1CYQ1q0E6ZVxY4FbEmdq9ddv1RVEzUn9aMhjpKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778177845; c=relaxed/simple;
-	bh=W0N01yi8be5fwAeE5sd5zA7qxNMhj2cF/hjGAlnlSFw=;
+	s=arc-20240116; t=1778177853; c=relaxed/simple;
+	bh=PCdWB/j4d3tvqz2ICXj4w19V632VAX0CnlG+fbpCiVM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qrZI3vvGq2DUtQNkwJ+nHLt9yHHnhqRYbYVlziVu5tTyUkT5Au8L9rdFPX4yzM0douoYJV6UDOQsQ5GSnObLcxEGm56iIxwZHwuywlgh75UFFder98ua/f7SwiEOapWMM0Tk2p0CduYM9e4IM0kW/hmIyUdRn5QfgJK7pw5Z558=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=PJxNh/bP; arc=none smtp.client-ip=212.227.15.19
+	 MIME-Version; b=AzNeKkZylcjfLA8H/6BThPuBZN202X0UISvcVQdZmG707EiDwow9cOHN06SHo0y6Va3meliV4b+robNlWbI3hvJwSrTaVbURToW/BB7sL7AWO6kte4Lii2oPMwhiDkuHbHQaJT6GIYzSuCJ6IzHy17V4WdDqU8jspGKwIZycNwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=aHELZxBr; arc=none smtp.client-ip=212.227.15.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
 	s=s31663417; t=1778177841; x=1778782641;
 	i=markus.stockhausen@gmx.de;
-	bh=a9XZMS6GvP7V/Kz5PgYwmDlJpUNwJ6QkRHrHueiddRo=;
+	bh=0YiKpRwYb2fXnbr0PtzZxuAo31T9Z1ow01hPDyeFMO4=;
 	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
 	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=PJxNh/bP5UqKEVvGMWMqXP2oK1Z5NhxNbO61mnF+3XVhQswx0pfFwo2o5eAc9Zkl
-	 q+ZduQym64O2yxlmKoduP1+i5VQqnErcQ0bfotL3S/Hnsh7/7wQj8gv8WwlEEyewk
-	 bS7N6DQsaMFJtQc8J6Lipp1kZ+R+xqOfx01hw43v+KIPYkEWXnLVydms+mA+g7MLR
-	 O5kgWccx4QDZT3jLc5vxnNH3xqRfJr/jZubuCRS7Rpwg3r7sasmDwJf7jLfSYYL20
-	 KDWeHO62S57ErEfrIpju/Vi9r4DwYHIm1bl/6FATl9emIzrceZqgjPicPY4JSJ/Ln
-	 I3HlebTEUgJmmLDxww==
+	b=aHELZxBrEm39edXMOOyjLNl+59LTfuJhf/fxOM3l9X9qpxAmnpUyK6cUEjor8y5f
+	 o4DVHD3BXMTjHApAOA4xn/GTgkp1e66WjvcV3CGXMIMSVvQaNocptRw5ywSn26NdT
+	 8gqMvbPLwt+4MND4ZQJWL/4i/aOao5ZPPlgMsU1gjP5DgHvA/pCKaOLaHdnj6PVb+
+	 5naCTK1bAMOwS9mXlzeYQ2ajr0Qs/egcZph9ylek4e8k61G3p+fFWhq30/gPY/pWQ
+	 II+l//Gpd/fHaQai4OLcKD2jPL2CNEwCZFwXcpIHB8opQsciixFYwzeXrKWw5tBdx
+	 /9IM26jS8Rra+GD7OQ==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MAfUo-1wA5zF2IjA-002NTB; Thu, 07
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWAOW-1voYix31ZK-00P0ed; Thu, 07
  May 2026 20:17:21 +0200
 From: Markus Stockhausen <markus.stockhausen@gmx.de>
 To: andi.shyti@kernel.org,
@@ -60,9 +60,9 @@ To: andi.shyti@kernel.org,
 	linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org
 Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH 1/2] dt-bindings: i2c: Add i2c-shared-gpio
-Date: Thu,  7 May 2026 20:17:10 +0200
-Message-ID: <20260507181711.2696783-2-markus.stockhausen@gmx.de>
+Subject: [PATCH 2/2] i2c: shared-gpio: Add driver for gpio based busses with shared SCL
+Date: Thu,  7 May 2026 20:17:11 +0200
+Message-ID: <20260507181711.2696783-3-markus.stockhausen@gmx.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260507181711.2696783-1-markus.stockhausen@gmx.de>
 References: <20260507181711.2696783-1-markus.stockhausen@gmx.de>
@@ -73,260 +73,365 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:qpsFQ9vJhnnaW5xvEHiYW92BHD4vD9xW2z8jZV/zxCBR4V1fMGH
- /ufE7vYrBRt+hN3RFVpocN+dD+Fb/I6iLpAA56fxEFiDEzEEK3ld2KXM1e5T22WjpjAFcFS
- 7AlxqmNczajSyAv1lxAFnCjlQvYR5UmasDJyRxGgV53Uw1IHbP5Ex4D7n6NtLyv0LXpV0qP
- s4ai9gjH68iGJ5G5VmY3g==
+X-Provags-ID: V03:K1:A0zUqg1Ysot0BC+ZoxQ069v2+QtiviSq4ODNCrl8cvoq/YE6D10
+ 0/E7G8kMxsa+9LwfFBHuVqehHmzv+2Pqjx3kckLHm5HZoIyiRFzqn32b3SNFUYFgb2qmQPi
+ aKJMD7gWeTUB0tqUFiDwW7tJeE4x14hcipYqppOaAzvTJ8fjbtKxHUOtXyiqsIhDDZZgOSk
+ IxLcU3rKf6HDjy52ILu8g==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:E9zDVTVNgzE=;eGnOTgvfxIo4ck2DtYoc/ZlbLj7
- z+m867fTuW6ICByXyn6gzE4zRQjPp61JYNw/3p7M09q/kMlXIVp2ldDu1QbcuR2KgooqQm/0B
- PQWWdeF7NbXB1zauIfLM7CJLDtuBkFBIidCwEfZqHGmaXJ1pswANP5xWLI305sJ8uEiNkcVKI
- XhLFSs28bqdFlydJW3GTbzsVMCftDGiCLq/CvBcKj05VsUq3QH19WlKInG//PWpDCh72Ka+mC
- /H4xYwKJ0QXd1xnS30oWspha/uafNEp4lqQxa7CrQ7NiwoT8i2wudMP5CmYYHYnU0t8gHUUzc
- d+hSHft6b+1j8RZe+7XKPTJwxSnmifW6bZZC5NnYHl1G10N7z4xgsScnxra9Mpj78avx6uHFX
- kYid0vW7HxTuebTxgZFDzMbuS6xgcvpCjZcmBCtQz3bmFVI3zsKuLP2jHfFLEr2yDGPDealr1
- I4iFvOw/n0TnELbjpgbNEvJ+HTCfj5jMraS3vzR3WsnC93Z4fHQTjKZnqYEUrWIoch5se9PMj
- WAT8557A+432/Z9vVxCuAmEywnwxrQHfqmEg81CLQzPt4nlP9AKkv5s+Gcw9nw+QZ445kSSRy
- R8Yvgin16O7hISp8DAlzf4DvfBEhxnry2NWE9EpD/uVbSuPe0doiQwY0YecDCJ5jj9UsbfClX
- qiJYi1n1WedlccC1/a9VhSNOk8hzsajUJnKaA2eWSRXT12E4rFf5vgQIkGYd2LHPVkmnhWbB0
- snrJYTIxQWwcgrR8VXoA6Kk6lAaOPsx21+or4LYyiabaevIZyO3ZYDZnbrmspUeS865aGQpwg
- 7n/OrjtWgpMFfyFUTBxhFmLIi8tUhXYcrFMg70S9wKI/8q4qVf2Gass7iVDaQrZkZ0lEOtSLf
- /nFEpEuzOnKPoucCGlvN44h/qbd6uw6Xg7IoAmAyhp8xBh8dHIT3Vd5GTGVnxAk5hSiXwUqB9
- O2t95b0HilIzymAc+5r5DwD8Sa57LIa5DAtqAJsS7HlcX/SpNObLgzeLUjXXgCHUNe4qXRAUD
- FhV71rOwilr//wpNNAWKQspNSmx0cbhBWbBhx5Jlm4M1+FdM5KwGGKH6T93zrQxILFNn5oquW
- 1FX7F0SfwKyNpK9zFL6fa/mCuq193uwmB3E8+4kwVmk2RWzT1duLCpZAXtrbBVd0az8qOBY3R
- JbQN3kg+d8vKWdQEUVN1UxuWbPNzSxpGmLVgdklNTtngTpB22wZ/eggxGcazuuBa/FZO1selc
- L7xDbr6uH5hCaaTzD1BIRMQGlgqLlxLkq0xvKU7v54sAKE6t7wUs0fIEKR844O8lDpDpvph4w
- RxGquiVBvCM8WqgI11V2ZM25t8fwKBi4qqnDWNaKJwaBz+qLGOofQIaVulHgeUZNDyDYlBjle
- uPE0OB+koyoWJx1uZn3npb6O7D2I6x3eEPuErv3xU9HEdv6rEsC5nFQLvGo6Ea6yvmANJRQ+F
- DI8+RIoQQLCJIJ77RhP6/+uRO8nKCFBaCg3NvnKT7N4JeMURlOUDZABO27G3X3z8eEuo+Rsbn
- 5dMaVg6xsgmwGmO7f/IjNd0tmXFiRuJVQuuS1BTVL+5LoxSZ7vDA9fV6cCA3gSi3HUofPehJd
- yXb/BXnfsBi5lSpAyNpQZd7HTp4uZFABKtK8G84KX81GUAvajs3vJrOGgF5mY97IQYmfFJcTB
- mQjuDNZv3OL12cmy3ZP8F/R6sPv/DSEuXgkh4nVM4ClaqZZD/mlz7b6QkUVWRPyzjIAGuKSO2
- /11+4Es/1KEJsE/PAxRk5lShpIyxDdOj24jY/xj47pGiX+tqy1AY++mKyAGSSmfnmmxSAX4aX
- qAHCUaTM0h1ImBNczqmBrhCcmMJI+YTd9/AtWXyw8eqJDO6Lsk3A454WCE28WnA/tjlu3PTqT
- ejHsEC+2A1irN/tYXtxdZO88GQe8ekw3614BQ8531/TaUATu6ll7h0elSneorKMKu8iPHxncy
- eeXuQUiUEgGJwkWSjSwSQqW5wUnTOEaol3UVWcY3dhg4hRw93z5+AjVZkrO+uK9Cf5XyzOknb
- Zionjt6214drPGjJ/wSTGCdijf0DeC29AjmfrpbFONZOw+ezmfRUg564zBBUbI7+h03wm6tJA
- KowhgUO8AB5EEI5mbhLrlFEen/mpv4qFH9vanW1ctoAIUoqlHY7OqDHThsajPlndPKfA2A9p9
- w8b1Sp+e1ChgBne8X5ziBQOpl1uLlvskL1y68CqkapXBm3/933nlCdDKd47n88P4vA61LwJKP
- 1rrs+TZzZ80izHATvmcz8BIO53QiDCwESJSuRxOtCd9xaub3NlqZpMLL95JQ7ZGJVItuXHahh
- fdIHPvR128BIvtUxYaiVhfq/iey8CP/iMxBLqURu1plxBpCj6aqbbQOSgdzM0oUm40jIPar9V
- bLyOlJp03isc0SUniUTDh8fAODcueqrqOPSnGXI52/CblGBDzdFAktFlyBvYDUrh3zY8rWeyb
- ExFGpQ01W/jTHNSTXmB6X5ApiO2BIZxlQs0rnSZg+/B59ApjIQurml2OsJLBLVzg9sz4/VNpl
- 86OuhtIgSFM5SO2qJXP0yhVCFPXJMpZ/KivT+1W1QTiv3wOke36FF3MabWm8PA+4/kbxbv75k
- 0JQ91+avuoZY1oQx0xCPRa/HCGq6/rJmXt+5wME5v53Lvrua514etbDdzNHYmunsY5YgazJw7
- 7BxePGV0cSyMmnFC4IkqsJPuXnBHlMPS32d7v8GbMFC2auHw2KY8utrBn/C539g5+l9z+NGFC
- 1nJkJx9dqJWIU+CquNbZcZb9WIftZh2csTDwddda5neonqWP5AYbTI6psJU7e7YovM2Wq9Cvs
- Ggnx4XsDysrBGOdpXovI/5LNigjeksATqJZRbMBHotY96dGiNtUXKg6mTysgBzn5KBVakwvK2
- krZk/yTSqFgYF1DESYp0fs/q6iY3P7F5D97WFF7vhvW2dVTUDU/mefnLUtwWbFdnLMYnywifY
- KdwdtPhG8tJB4GcdPJd9rs12JcGNhK2vGZIqG7jKAxGNwW+nP2fPqQDh27ebRD2bhWoNOrpMT
- XdXydhkF3PIqLyzE1q/UTkPhAoln9P0MKdEEu798u1HnztkM8VkcMqLKF5zDiblYmpUv2WFsy
- tA7kihkSiTtUjt/1xgK7aLf/5OA4q6Gqhp0FhcIDtWJ718EsvCkGsa5gxQf7ABARK75DqK3ET
- Bvbwxz8UByKRt3LH1W/AqlsidN5xMCxlU9dI2vE3XgXQ10MhWQ3CIzzVOaR5mK02m7Rma1KoJ
- W0f5hsYtTijcMF5QJFfeiWt/eQdzLA/UkIXAVEEPReOEGmrej4ZODZW45NC5Gx0IUgyA5+Jtp
- Mq8zsODROCZxh32ix/Kw1Me6IR+99Franh/HuLhrwGkDMEKIRXaa3mT3VvazfWdrrvG5XZlex
- FH9D9sbEhQEHDn9Z3ysApxxT+4h0xy0wt9KhSB79soedWRPdYIXXqFLOlP1uVS0o6v8VQJj/B
- vsA2CfaVwPQh0aJhi6oNoCSSBsGQJGBE6WTBodCyrazOwy1g1cPRwWCGUtKsmc83vkABKFuBz
- 59Pouur0Boexn+vI3nhVKNf52+Z5EifnpKRweJ4RLKQ6g71ra+Lxqto3lG9RmbkC+PGQc7eEY
- CeqVIK+gSc8hEJP0/EMsDM1knK1oY9e/Q/Gc/II4xpx7U3a4JUIOtpULuDISPW6sq4HkyGZda
- 7NEKaApKjXayfrT9BCzjVQDRUkUSAAryArkIaxfoAMrDpcFVs1Kot3+qNyJC0gqAw/VFbEI/Q
- csi1DkpRAiRmO/5/RI900I1BI538zulbKgTb86QfnShZy3FnFx8T9WNlVkGL0lOL3iGBEHQ+6
- LwouX8B6r0nNBtOGz3e/T8twYUbgyMcJsWded51zjQ1xuOY6aW9IUEBzH4qMS+RbxK1yeNlkb
- GkUzjpMwwse92jES6d1T1ypRXOTOHHZhJ60cMpE8S6w5ljeY4BxN3chVthOn8JMi+Nx9I+OH3
- /47MVjSYgvD+9F8a1k5E48YxsrgJzb/SBwp/yG70cWul/C1ECKMZnJ1Ud8bDmY0K9y4W3VSQK
- vvUYSteXMc8XNNi9IOVn2ZBkc/prigLKEpy4TiihlxJ7dmIVHKqJTHNeWUziomTT2v+jnGvjw
- HBIWMPwbcs6QEPLe0rtf3Rs+m7MTS3SqJGieN1O6/koUtAFpU/FVT0I8t4WTSKqCtuEeRWtwj
- 6RIAMjYF/9YeCj7yd0nxqIakRi92NGU2LNdZr6RkgJ6QSanW+97oaK6N75VfI7czdkeT1DKmN
- Z32KEX0VcA6QnK9ti7IFqoFfjlWWG5AJQKOREvGeuLWH/xWiggOVXDrn9RfwNXL1PF+6KQp02
- WIeJvMEfrPAoER3ZYM23S0qZ9hFD2jpsfwH28ZJVLxhqLSBKCQ7cgJpbXRH7v2RsMEntRMUfR
- ghsmGHYsXJSIQtehRyWRg5HwiHS6eC3a68LoPf/X7KfDaQPbRO7UTImaSHpHk58z3BL95k2qt
- v3bb/rGdtxTyJCClf+EoB0kmjz560VYyR6NZQQq0+SuMOIyHj+PaD20NeswglNQoG/FBSogRV
- JE1mE5LZ8vyNoooUIOoGQpk8U6EL8EaeqjGGwJDaXz2nrjXb1nVY/al0vt9ip2R/JivZojQdX
- eyYYgSjPpvIqkbApbLmVAruAyoUxDKHeD6FjBSBLVABJEwjrjDyeDOIjkDMIGkUWf1FFkEfPu
- rXRNKbaTLvjL3qFk9+shrx7oAePxFv/vk4/lD+fwrUUCmS6Frqytb1vEDjy/8zc7OtrRmOgbE
- wgMYDlLa8GTbLRXZe1Sa+yyiocKBls2Lz8sasCC8CrVMFQ25/ibGZWU9NC/rdlDEIOMvfbmqY
- Ga+C03MHlSNqkQ7j62KRFwN3sboll+SqObXlNpbrtp6qMIEIiv6hag7Rq6Tv7xquW4yQ8hM1/
- W7xhts94f6g09Ocgl4pkAhI4qnflZe30lSAIiQCn+w/Rx7JVwMgWD6qRhBpA1sUC+FIfWSOgl
- /AXqUPdCEKljK8hR+H4vMogIA5hmns6bwD36vWqEElwIQLvcByDppXZX8Yhr4BtIkM6Do8ZVt
- 4J5ss9jUs3I66VABTKnuVbDcCAvjSN3KD9EpwZ2WlxJfmjqDzN7OvqSFn7eVFDWVhenrWwPLF
- KkeheTorbQdzLxNpQT9m0YQkOZmzMaAa/sLmOkeMBPpWz5DJfcWUd8OmICc1IKdio24QjGlRQ
- CzEnA17yBpWWwpbhqtTrJayuEtlsvaA9o1knF90WrwRGZYoRAPgSywyEWfiiooMPDEAvMOExO
- SxkAgUSv+1dxJo86I9YcUELuVM8QhaaVlQQdey1lGC3V6n9B9cRXu1fEGEIN7ee6IL4bMGABT
- gHLdT8bSDoCw6T4Dp84fKI674KqeKbp0RAh4OCk0ZZwsiTA1aZ/uDE5WLAca8amIBi7pUoCyA
- B4Kv1Qc1gdoYbd/dCgEPBXXJXqWR1gRPCK35eofT47wQ4B3CqUGjL0sCoBqV+DgRD4v7QBQOm
- a53U0i1bUdwd2dO9CFa56JLOvMFREvY3py6FfFyuoKUO9uW/Uj3YSb7/ovcwgFuKgLMgHIw09
- AQauJA==
-X-Rspamd-Queue-Id: 1F2334ED4DE
+UI-OutboundReport: notjunk:1;M01:P0:PNYMtdRjryI=;OCB1EywrRFiWe5KtedIw9YR7oUT
+ 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
+X-Rspamd-Queue-Id: 725D14ED4F7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294181-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmx.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,meta];
 	TO_DN_SOME(0.00)[];
-	R_DKIM_ALLOW(0.00)[gmx.de:s=s31663417];
+	FREEMAIL_CC(0.00)[gmx.de];
+	TAGGED_FROM(0.00)[bounces-294183-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[gmx.de,quarantine];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmx.de];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.132];
 	FROM_NEQ_ENVFROM(0.00)[markus.stockhausen@gmx.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmx.de:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FREEMAIL_FROM(0.00)[gmx.de];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,gmx.de:email,gmx.de:mid,gmx.de:dkim,0.0.0.1:email,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,gmx.de:mid,gmx.de:url,gmx.de:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Document the driver for bitbanged gpio I2C busses
-with shared SCL lines.
+Some lower end hardware (especially Realtek based switches) are
+designed with multiple I2C busses that share a single clock
+(SCL) line. E.g. devices like the D-Link DGS-1250-28X can realize
+4 I2C SFP busses with 5 gpios this way.
+
+Provide a i2c-gpio-shared driver (derived from i2c-gpio) that
+handles such hardware designs.
 
 Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
 =2D--
- .../bindings/i2c/i2c-gpio-shared.yaml         | 115 ++++++++++++++++++
- 1 file changed, 115 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-gpio-shared.=
-yaml
+ drivers/i2c/busses/Kconfig           |  10 ++
+ drivers/i2c/busses/Makefile          |   1 +
+ drivers/i2c/busses/i2c-gpio-shared.c | 177 +++++++++++++++++++++++++++
+ 3 files changed, 188 insertions(+)
+ create mode 100644 drivers/i2c/busses/i2c-gpio-shared.c
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-gpio-shared.yaml b/=
-Documentation/devicetree/bindings/i2c/i2c-gpio-shared.yaml
+diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+index 8c935f867a37..f3ab68beeb7f 100644
+=2D-- a/drivers/i2c/busses/Kconfig
++++ b/drivers/i2c/busses/Kconfig
+@@ -691,6 +691,16 @@ config I2C_GPIO
+ 	  This is a very simple bitbanging I2C driver utilizing the
+ 	  arch-neutral GPIO API to control the SCL and SDA lines.
+=20
++config I2C_GPIO_SHARED
++	tristate "multiple GPIO-based bitbanging I2C with shared SCL"
++	depends on GPIOLIB || COMPILE_TEST
++	select I2C_ALGOBIT
++	help
++	  This is an alternative of the I2C GPIO driver for devices with only
++	  few GPIO pins where multiple busses with dedicated SDA lines share
++	  a single SCL line. It can handle an arbitrary number of N shared
++	  busses implemented with N+1 gpios.
++
+ config I2C_GPIO_FAULT_INJECTOR
+ 	bool "GPIO-based fault injector"
+ 	depends on I2C_GPIO
+diff --git a/drivers/i2c/busses/Makefile b/drivers/i2c/busses/Makefile
+index 547123ab351f..724b09e613cb 100644
+=2D-- a/drivers/i2c/busses/Makefile
++++ b/drivers/i2c/busses/Makefile
+@@ -66,6 +66,7 @@ obj-$(CONFIG_I2C_EG20T)		+=3D i2c-eg20t.o
+ obj-$(CONFIG_I2C_EMEV2)		+=3D i2c-emev2.o
+ obj-$(CONFIG_I2C_EXYNOS5)	+=3D i2c-exynos5.o
+ obj-$(CONFIG_I2C_GPIO)		+=3D i2c-gpio.o
++obj-$(CONFIG_I2C_GPIO_SHARED)	+=3D i2c-gpio-shared.o
+ obj-$(CONFIG_I2C_HIGHLANDER)	+=3D i2c-highlander.o
+ obj-$(CONFIG_I2C_HISI)		+=3D i2c-hisi.o
+ obj-$(CONFIG_I2C_HIX5HD2)	+=3D i2c-hix5hd2.o
+diff --git a/drivers/i2c/busses/i2c-gpio-shared.c b/drivers/i2c/busses/i2c=
+-gpio-shared.c
 new file mode 100644
-index 000000000000..7db344821e2f
+index 000000000000..de082888860c
 =2D-- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/i2c-gpio-shared.yaml
-@@ -0,0 +1,115 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-gpio-shared.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/i2c/busses/i2c-gpio-shared.c
+@@ -0,0 +1,177 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Bitbanging driver for multiple I2C busses with shared SCL pin using th=
+e GPIO API
++ * Copyright (c) 2025 Markus Stockhausen <markus.stockhausen at gmx.de>
++ */
 +
-+title: Multiple GPIO bitbanged I2C buses with shared SCL
++#include <linux/gpio/consumer.h>
++#include <linux/i2c-algo-bit.h>
++#include <linux/mod_devicetable.h>
++#include <linux/mutex.h>
++#include <linux/platform_device.h>
 +
-+maintainers:
-+  - Markus Stockhausen <markus.stockhausen@gmx.de>
++struct gpio_shared_ctx;
 +
-+description:
-+  Bitbanging I2C bus driver that supports multiple independent I2C buses
-+  sharing a single SCL line. Each child node represents one I2C bus with
-+  its own SDA line. The shared SCL line is driven by the parent node.
-+  A mutex serializes access so that only one bus transfers at a time.
++struct gpio_shared_bus {
++	struct gpio_desc *sda;
++	struct i2c_adapter adap;
++	struct i2c_algo_bit_data bit_data;
++	struct gpio_shared_ctx *ctx;
++};
 +
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        const: i2c-gpio-shared
-+  required:
-+    - compatible
++struct gpio_shared_ctx {
++	struct device *dev;
++	struct gpio_desc *scl;
++	struct mutex lock;
++	struct gpio_shared_bus bus[];
++};
 +
-+properties:
-+  compatible:
-+    const: i2c-gpio-shared
++static void gpio_shared_setsda(void *data, int state)
++{
++	struct gpio_shared_bus *bus =3D data;
 +
-+  scl-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO used for the shared SCL signal. Must be configured as
-+      open-drain. All child buses share this single clock line.
++	gpiod_set_value_cansleep(bus->sda, state);
++}
 +
-+  i2c-gpio-shared,scl-output-only:
-+    type: boolean
-+    description:
-+      If present, SCL is treated as output only and clock stretching
-+      by devices is not supported.
++static void gpio_shared_setscl(void *data, int state)
++{
++	struct gpio_shared_bus *bus =3D data;
++	struct gpio_shared_ctx *ctx =3D bus->ctx;
 +
-+  i2c-gpio-shared,timeout-ms:
-+    description:
-+      Bus timeout in milliseconds. If not specified, defaults to 100 ms.
++	gpiod_set_value_cansleep(ctx->scl, state);
++}
 +
-+  "#address-cells":
-+    const: 1
++static int gpio_shared_getsda(void *data)
++{
++	struct gpio_shared_bus *bus =3D data;
 +
-+  "#size-cells":
-+    const: 0
++	return gpiod_get_value_cansleep(bus->sda);
++}
 +
-+patternProperties:
-+  "^i2c@[0-9a-f]+$":
-+    $ref: /schemas/i2c/i2c-controller.yaml#
-+    unevaluatedProperties: false
++static int gpio_shared_getscl(void *data)
++{
++	struct gpio_shared_bus *bus =3D data;
++	struct gpio_shared_ctx *ctx =3D bus->ctx;
 +
-+    properties:
-+      reg:
-+        maxItems: 1
-+        description:
-+          Bus index used to identify this child bus. Must be unique among
-+          siblings and match the node unit address.
++	return gpiod_get_value_cansleep(ctx->scl);
++}
 +
-+      sda-gpios:
-+        maxItems: 1
-+        description:
-+          GPIO used for the SDA signal of this I2C bus. Must be
-+          configured as open-drain.
++static int gpio_shared_pre_xfer(struct i2c_adapter *adap)
++{
++	struct gpio_shared_bus *bus =3D container_of(adap, struct gpio_shared_bu=
+s, adap);
++	struct gpio_shared_ctx *ctx =3D bus->ctx;
 +
-+      i2c-gpio-shared,delay-us:
-+        default: 5
-+        description:
-+          Delay in microseconds between signal transitions for this bus.
-+          Controls the I2C clock frequency. Defaults to 5 us (~100 kHz).
++	return mutex_lock_interruptible(&ctx->lock);
++}
 +
-+      i2c-gpio-shared,sda-output-only:
-+        type: boolean
-+        description:
-+          If present, SDA is treated as output only. No acknowledgment
-+          or read data from devices can be received on this bus.
++static void gpio_shared_post_xfer(struct i2c_adapter *adap)
++{
++	struct gpio_shared_bus *bus =3D container_of(adap, typeof(*bus), adap);
++	struct gpio_shared_ctx *ctx =3D bus->ctx;
 +
-+    required:
-+      - reg
-+      - sda-gpios
++	mutex_unlock(&ctx->lock);
++}
 +
-+required:
-+  - compatible
-+  - scl-gpios
-+  - "#address-cells"
-+  - "#size-cells"
++static void gpio_shared_del_adapter(void *data)
++{
++	i2c_del_adapter(data);
++}
 +
-+additionalProperties: false
++static int gpio_shared_probe(struct platform_device *pdev)
++{
++	int bus_count, msecs, ret, bus_num =3D 0;
++	struct device *dev =3D &pdev->dev;
++	struct gpio_shared_ctx *ctx;
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++	bus_count =3D device_get_child_node_count(dev);
++	if (!bus_count)
++		return dev_err_probe(dev, -EINVAL, "no busses defined\n");
 +
-+    i2c-gpio-shared {
-+        compatible =3D "i2c-gpio-shared";
-+        scl-gpios =3D <&gpio1 31 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
++	ctx =3D devm_kzalloc(dev, struct_size(ctx, bus, bus_count), GFP_KERNEL);
++	if (!ctx)
++		return dev_err_probe(dev, -ENOMEM, "memory allocation failed\n");
 +
-+        i2c@0 {
-+            reg =3D <0>;
-+            sda-gpios =3D <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>=
++	ctx->dev =3D dev;
++	mutex_init(&ctx->lock);
++
++	ctx->scl =3D devm_gpiod_get(dev, "scl", GPIOD_OUT_HIGH_OPEN_DRAIN);
++	if (IS_ERR(ctx->scl))
++		return dev_err_probe(dev, PTR_ERR(ctx->scl), "shared SCL node not found=
+\n");
++
++	device_for_each_child_node_scoped(dev, child) {
++		struct gpio_shared_bus *bus =3D &ctx->bus[bus_num];
++		struct i2c_adapter *adap =3D &bus->adap;
++		struct i2c_algo_bit_data *bit_data =3D &bus->bit_data;
++
++		bus->sda =3D devm_fwnode_gpiod_get(dev, child, "sda", GPIOD_OUT_HIGH_OP=
+EN_DRAIN,
++						 fwnode_get_name(child));
++		if (IS_ERR(bus->sda))
++			return dev_err_probe(dev, PTR_ERR(bus->sda),
++					     "SDA node for bus %d not found\n", bus_num);
++		bus->ctx =3D ctx;
++		bit_data->data =3D bus;
++		bit_data->setsda =3D gpio_shared_setsda;
++		bit_data->setscl =3D gpio_shared_setscl;
++		bit_data->pre_xfer =3D gpio_shared_pre_xfer;
++		bit_data->post_xfer =3D gpio_shared_post_xfer;
++
++		if (fwnode_property_read_u32(child, "i2c-gpio-shared,delay-us", &bit_da=
+ta->udelay))
++			bit_data->udelay =3D 5;
++		if (!fwnode_property_read_bool(child, "i2c-gpio-shared,sda-output-only"=
+))
++			bit_data->getsda =3D gpio_shared_getsda;
++
++		if (!device_property_read_bool(dev, "i2c-gpio-shared,scl-output-only"))
++			bit_data->getscl =3D gpio_shared_getscl;
++		if (!device_property_read_u32(dev, "i2c-gpio-shared,timeout-ms", &msecs=
+))
++			bit_data->timeout =3D msecs_to_jiffies(msecs);
++		else
++			bit_data->timeout =3D HZ / 10; /* 100ms */
++
++		if (gpiod_cansleep(bus->sda) || gpiod_cansleep(ctx->scl))
++			dev_warn(dev, "Slow GPIO pins might wreak havoc into I2C/SMBus bus tim=
+ing\n");
++
++		adap->dev.parent =3D dev;
++		adap->owner =3D THIS_MODULE;
++		adap->algo_data =3D &bus->bit_data;
++		device_set_node(&adap->dev, child);
++		snprintf(adap->name, sizeof(adap->name),
++			 "i2c-gpio-shared:%s", fwnode_get_name(child));
++
++		ret =3D i2c_bit_add_bus(adap);
++		if (ret)
++			return dev_err_probe(dev, ret, "failed to register bus %d\n", bus_num)=
 ;
-+            i2c-gpio-shared,delay-us =3D <2>;
-+        };
 +
-+        i2c@1 {
-+            reg =3D <1>;
-+            sda-gpios =3D <&gpio1 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>=
-;
-+            i2c-gpio-shared,delay-us =3D <2>;
-+        };
-+    };
++		ret =3D devm_add_action_or_reset(dev, gpio_shared_del_adapter, adap);
++		if (ret)
++			return dev_err_probe(dev, ret,
++					     "bus %d cleanup registration failed\n", bus_num);
++
++		dev_info(dev, "shared I2C bus %u using lines %u (SDA) and %u (SCL) dela=
+y=3D%d\n",
++			 bus_num, desc_to_gpio(bus->sda), desc_to_gpio(ctx->scl),
++			 bit_data->udelay);
++
++		bus_num++;
++	}
++
++	return 0;
++}
++
++static const struct of_device_id gpio_shared_of_match[] =3D {
++	{ .compatible =3D "i2c-gpio-shared" },
++	{}
++};
++MODULE_DEVICE_TABLE(of, gpio_shared_of_match);
++
++static struct platform_driver gpio_shared_driver =3D {
++	.probe =3D gpio_shared_probe,
++	.driver =3D {
++		.name =3D "i2c-gpio-shared",
++		.of_match_table =3D gpio_shared_of_match,
++	},
++};
++
++module_platform_driver(gpio_shared_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Markus Stockhausen <markus.stockhausen at gmx.de>");
++MODULE_DESCRIPTION("bitbanging multi I2C driver for shared SCL");
 =2D-=20
 2.54.0
 
