@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-293781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-293780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCNEJ9s2/GmUMwAAu9opvQ
-	(envelope-from <devicetree+bounces-293781-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:53:15 +0200
+	id WIItBzY2/Gl2MwAAu9opvQ
+	(envelope-from <devicetree+bounces-293780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:50:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 647984E3BE1
-	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:53:11 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1614E4E3B63
+	for <lists+devicetree@lfdr.de>; Thu, 07 May 2026 08:50:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2EB5300D87E
-	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:50:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CE4003007AE7
+	for <lists+devicetree@lfdr.de>; Thu,  7 May 2026 06:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96AD33FE15;
-	Thu,  7 May 2026 06:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E825433F8C5;
+	Thu,  7 May 2026 06:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="WbLCmWzz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="OmfHirpD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EFC030648C;
-	Thu,  7 May 2026 06:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27707340A59;
+	Thu,  7 May 2026 06:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778136645; cv=none; b=mLGOt01ZGI3dD8NaO5aToLBCGAtRQ+zxf3LohH97+jfIZBLm+rqAclGZrJbfL5x9aRCk5nuHaaJu8ccp0RdKm43NMRuxvD0vq4heab8rXgdPTCKVHz57etAo2Ieli55hv+8Kb14AnUOiy5aruYmfpHiJ6HkH//xt54vPCOr696M=
+	t=1778136555; cv=none; b=Fe2SLU76LhZ4piZJddrBz41OJOjCo69rbhro0itMqKTnEQIzZlMw4SiAMLM08c2uRtI8xbgY3XE6qEoU+W9MYrqv68iIztzDs/nn4DfcFWAWPcYuF8MaTF1cc9JrK+ONfMnL40N1doAGHaQn62gRNWWFmFAPtvMbELRqq6qseBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778136645; c=relaxed/simple;
-	bh=zV3h3YZUqwMAzlsfJlUFtxTEwGS817hDx6OayXGeU/8=;
+	s=arc-20240116; t=1778136555; c=relaxed/simple;
+	bh=3nTgqGDxNcTjXFm+5UlyF/IHfwVM+eclkZyqReDJG+0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TUu2BZ6/exwH8EwROmzxIELWpz08SjAdoaG4VSgw2WHOmVOfP21TJjBwin+kef8rjPute0ayPkEMilmRtgDSppHl77gLxwhxnvvxMdg/S4Ib8DO/PgsDZ4Er4dbj7QmRMuJDOYZxiMoSpuLPqXS32tfI/lL2E6fJDG0zc11tcAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=WbLCmWzz; arc=none smtp.client-ip=46.19.12.180
+	 MIME-Version; b=hbF6mRQikbY6bAhZuwOhItNQfWSKyl9vcvNzvoEJ6friULdTPm6Tu93+foF7LB1+agJj/5FHOf9/x2nKghdsTZYD3h+ztvBmifQykhL2j33gMhGJdAYoaOtnTZHVO0fprOYlaHWBD4f9cSCWNmiyFtz/hD2o9egxUufEflOZ3cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=OmfHirpD; arc=none smtp.client-ip=46.19.12.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
@@ -40,17 +40,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
 	List-Post:List-Owner:List-Archive;
-	bh=XndlQw1vEUKvftg+tDwjaYGyrUBmct9QSEEl9yDREPU=; b=WbLCmWzzRRAB0itnHzJJsvQ8ys
-	wW9q2qm+pHJcq58Zz7oQa5Lt1xfPDgHeE4gHW2Idd8uji5zwE31GtFLPAv2CJZoEI5de7iJqVGFEF
-	fZ+ns0VC3MOUrZVALHSCP7yMfW4O2ycOipxDLDRZiVBJsmHcrrhw5ddx5JJMB1LzGun8es/uGsA++
-	YBuQgkz993L+3Wj8WcCkXfcnhh5sNawQYl2EpxGxZzYgk5Gr7sBxalGcyKwqc20vyOOmuzvhPsbYw
-	WxHDWsegVEN7j/oloXfY7urn9olB1TGkkE/FqjvV9k5uBZm1VIcM6dC4VMQ2gHXloqEUdmeC9CWc3
-	VRj+mW3g==;
+	bh=Tm52jc2RxHGND87DERITHVmtx/vlXa+LykfPcBly4ak=; b=OmfHirpDm7jL0+ITFDLPNzb69t
+	tB1rf99X3ftZuBZBPKolIGgqMP0b6Bo+FLppvav1OrRwYKFl6sAPUScNc5GcTsXeS7+GQ8iC33Kwe
+	Nge/E8MLQy41YOB0RaC4AajkPNN8ZepmKObd9AMnuTZ9mJiY6V0BF29VzKUVw/HQQzgSue0IoVCsp
+	S8US5sbDZt7KFlq8ZPijBMy1J8601+DiOHP2AXkGe24YxxprCr9bye8Z5QKAJRZeHg6APwQ5PeXZC
+	XMMjJ8HCrir30ApufUIu1Pa9NKRQ+KQEPqiCpBVoWtWm+ZV/qgK4CmrsvXdWzHVNc4xOGEdMV5zDG
+	5S+6qgOg==;
 Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:40514 helo=localhost.localdomain)
 	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.2)
 	(envelope-from <primoz.fiser@norik.com>)
-	id 1wKs6Y-0000000AGWs-3Wgs;
+	id 1wKs6Y-0000000AGWs-3xYq;
 	Thu, 07 May 2026 08:21:02 +0200
 From: Primoz Fiser <primoz.fiser@norik.com>
 To: Rob Herring <robh@kernel.org>,
@@ -65,9 +65,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	upstream@lists.phytec.de
-Subject: [PATCH 2/3] arm64: dts: freescale: imx{91,93}-phycore-som: Adjust PHY RST drive-strength
-Date: Thu,  7 May 2026 08:20:57 +0200
-Message-Id: <20260507062058.1711292-2-primoz.fiser@norik.com>
+Subject: [PATCH 3/3] arm64: dts: freescale: imx{91,93}-phycore-som: Improve USDHC signals
+Date: Thu,  7 May 2026 08:20:58 +0200
+Message-Id: <20260507062058.1711292-3-primoz.fiser@norik.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260507062058.1711292-1-primoz.fiser@norik.com>
 References: <20260507062058.1711292-1-primoz.fiser@norik.com>
@@ -88,7 +88,7 @@ X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-X-Rspamd-Queue-Id: 647984E3BE1
+X-Rspamd-Queue-Id: 1614E4E3B63
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -96,7 +96,7 @@ X-Spamd-Result: default: False [2.54 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -110,55 +110,257 @@ X-Spamd-Result: default: False [2.54 / 15.00];
 	HAS_X_GMSV(0.00)[primoz.fiser@norik.com];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-293781-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-293780-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	HAS_X_SOURCE(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.603];
+	NEURAL_HAM(-0.00)[-0.537];
 	FROM_NEQ_ENVFROM(0.00)[primoz.fiser@norik.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
 	HAS_X_ANTIABUSE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	DKIM_TRACE(0.00)[norik.com:-];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[norik.com:email,norik.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,phytec.de:email,phycore-i.mx:url,norik.com:email,norik.com:mid]
 X-Rspamd-Action: no action
 
-According to measurements, the PHY reset signal shows an overshoot on
-the rising edge that exceeds the specified limits (max 2.1V) when using
-X4 strength on ENET2_RXC. Reduce drive-strength to X1 to decrease the
-overshoot and bring signal within specification limits.
+From: Christoph Stoidner <c.stoidner@phytec.de>
 
+Apply improved drive-strength values and pull-up/down configurations as
+devised from hardware measurements to improve signal quality on PHYTEC
+phyCORE-i.MX 91/93 SoM based boards. Also improve eMMC HS400 mode by
+setting property "fsl,strobe-dll-delay-target" which shifts the strobe
+DLL sampling window to the optimal position.
+
+Signed-off-by: Christoph Stoidner <c.stoidner@phytec.de>
 Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
 ---
- arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../boot/dts/freescale/imx91-phyboard-segin.dts     |  6 +++---
+ .../arm64/boot/dts/freescale/imx91-phycore-som.dtsi | 13 +++++++------
+ .../boot/dts/freescale/imx93-phyboard-nash.dts      |  8 ++++----
+ .../boot/dts/freescale/imx93-phyboard-segin.dts     |  6 +++---
+ .../arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 13 +++++++------
+ 5 files changed, 24 insertions(+), 22 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
+index 7b18a58024f5..aec83da87c4e 100644
+--- a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
++++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
+@@ -309,7 +309,7 @@ MX91_PAD_SD2_CD_B__GPIO3_IO0		0x31e
+ 
+ 	pinctrl_usdhc2_default: usdhc2grp {
+ 		fsl,pins = <
+-			MX91_PAD_SD2_CLK__USDHC2_CLK		0x158e
++			MX91_PAD_SD2_CLK__USDHC2_CLK		0x118e
+ 			MX91_PAD_SD2_CMD__USDHC2_CMD		0x1382
+ 			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x1386
+ 			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
+@@ -321,7 +321,7 @@ MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+ 
+ 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+ 		fsl,pins = <
+-			MX91_PAD_SD2_CLK__USDHC2_CLK		0x159e
++			MX91_PAD_SD2_CLK__USDHC2_CLK		0x119e
+ 			MX91_PAD_SD2_CMD__USDHC2_CMD		0x139e
+ 			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x138e
+ 			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
+@@ -333,7 +333,7 @@ MX91_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+ 
+ 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+ 		fsl,pins = <
+-			MX91_PAD_SD2_CLK__USDHC2_CLK		0x158e
++			MX91_PAD_SD2_CLK__USDHC2_CLK		0x118e
+ 			MX91_PAD_SD2_CMD__USDHC2_CMD		0x138e
+ 			MX91_PAD_SD2_DATA0__USDHC2_DATA0	0x139e
+ 			MX91_PAD_SD2_DATA1__USDHC2_DATA1	0x139e
 diff --git a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-index 19e7e84ad6f7..8038d92da2aa 100644
+index 8038d92da2aa..d9397080fe48 100644
 --- a/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
-@@ -220,7 +220,7 @@ MX91_PAD_ENET2_TD0__ENET2_RGMII_TD0		0x50e
- 			MX91_PAD_ENET2_TD1__ENET2_RGMII_TD1		0x50e
- 			MX91_PAD_ENET2_TX_CTL__ENET2_RGMII_TX_CTL	0x50e
- 			MX91_PAD_ENET2_TD2__ENET2_TX_CLK2		0x4000050e
--			MX91_PAD_ENET2_RXC__GPIO4_IO23			0x51e
-+			MX91_PAD_ENET2_RXC__GPIO4_IO23			0x502
+@@ -194,6 +194,7 @@ &usdhc1 {
+ 	bus-width = <8>;
+ 	non-removable;
+ 	no-1-8-v;
++	fsl,strobe-dll-delay-target = <1>;
+ 	status = "okay";
+ };
+ 
+@@ -252,7 +253,7 @@ MX91_PAD_ENET2_RD3__GPIO4_IO27		0x31e
+ 
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+-			MX91_PAD_SD1_CLK__USDHC1_CLK		0x179e
++			MX91_PAD_SD1_CLK__USDHC1_CLK		0x119e
+ 			MX91_PAD_SD1_CMD__USDHC1_CMD		0x1386
+ 			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
+ 			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x1386
+@@ -262,13 +263,13 @@ MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x1386
+ 			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x1386
+ 			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x1386
+ 			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x1386
+-			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
++			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
  		>;
  	};
  
+ 	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+ 		fsl,pins = <
+-			MX91_PAD_SD1_CLK__USDHC1_CLK		0x17be
++			MX91_PAD_SD1_CLK__USDHC1_CLK		0x11be
+ 			MX91_PAD_SD1_CMD__USDHC1_CMD		0x139e
+ 			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
+ 			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x139e
+@@ -278,13 +279,13 @@ MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x139e
+ 			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x139e
+ 			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x139e
+ 			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x139e
+-			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
++			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+ 		fsl,pins = <
+-			MX91_PAD_SD1_CLK__USDHC1_CLK		0x17be
++			MX91_PAD_SD1_CLK__USDHC1_CLK		0x11be
+ 			MX91_PAD_SD1_CMD__USDHC1_CMD		0x139e
+ 			MX91_PAD_SD1_DATA0__USDHC1_DATA0	0x139e
+ 			MX91_PAD_SD1_DATA1__USDHC1_DATA1	0x13be
+@@ -294,7 +295,7 @@ MX91_PAD_SD1_DATA4__USDHC1_DATA4	0x13be
+ 			MX91_PAD_SD1_DATA5__USDHC1_DATA5	0x13be
+ 			MX91_PAD_SD1_DATA6__USDHC1_DATA6	0x13be
+ 			MX91_PAD_SD1_DATA7__USDHC1_DATA7	0x13be
+-			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
++			MX91_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
+ 		>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
+index eac389ed30f3..a7bd490b042b 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
+@@ -339,8 +339,8 @@ MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc2_default: usdhc2grp {
+ 		fsl,pins = <
+-			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
+-			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000178e
++			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
++			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000138e
+ 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001386
+ 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001386
+ 			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001386
+@@ -352,7 +352,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+ 		fsl,pins = <
+-			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
++			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
+ 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
+ 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
+ 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
+@@ -365,7 +365,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+ 		fsl,pins = <
+-			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
++			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
+ 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
+ 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
+ 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+index a982606de1ee..291b409b159f 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+@@ -310,7 +310,7 @@ MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc2_default: usdhc2grp {
+ 		fsl,pins = <
+-			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
++			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
+ 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
+ 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e
+ 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e
+@@ -323,7 +323,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+ 		fsl,pins = <
+-			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
++			MX93_PAD_SD2_CLK__USDHC2_CLK		0x119e
+ 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
+ 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e
+ 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e
+@@ -336,7 +336,7 @@ MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+ 		fsl,pins = <
+-			MX93_PAD_SD2_CLK__USDHC2_CLK		0x158e
++			MX93_PAD_SD2_CLK__USDHC2_CLK		0x118e
+ 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
+ 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
+ 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
 diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-index 626160132e3c..a624aed48efe 100644
+index a624aed48efe..4276140afb5c 100644
 --- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-@@ -222,7 +222,7 @@ MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x50e
- 			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x50e
- 			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x50e
- 			MX93_PAD_ENET2_TD2__ENET1_TX_CLK		0x4000050e
--			MX93_PAD_ENET2_RXC__GPIO4_IO23			0x51e
-+			MX93_PAD_ENET2_RXC__GPIO4_IO23			0x502
+@@ -196,6 +196,7 @@ &usdhc1 {
+ 	bus-width = <8>;
+ 	non-removable;
+ 	no-1-8-v;
++	fsl,strobe-dll-delay-target = <1>;
+ 	status = "okay";
+ };
+ 
+@@ -255,7 +256,7 @@ MX93_PAD_ENET2_RD3__GPIO4_IO27		0x31e
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+-			MX93_PAD_SD1_CLK__USDHC1_CLK		0x179e
++			MX93_PAD_SD1_CLK__USDHC1_CLK		0x119e
+ 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x40001386
+ 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
+ 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x40001386
+@@ -265,14 +266,14 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x40001386
+ 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x40001386
+ 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x40001386
+ 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x40001386
+-			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
++			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
+ 		>;
+ 	};
+ 
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+ 		fsl,pins = <
+-			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17be
++			MX93_PAD_SD1_CLK__USDHC1_CLK		0x11be
+ 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000139e
+ 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
+ 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x4000139e
+@@ -282,14 +283,14 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x4000139e
+ 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x4000139e
+ 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x4000139e
+ 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x4000139e
+-			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
++			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
+ 		>;
+ 	};
+ 
+ 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
+ 	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+ 		fsl,pins = <
+-			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17be
++			MX93_PAD_SD1_CLK__USDHC1_CLK		0x11be
+ 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000139e
+ 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000139e
+ 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x400013be
+@@ -299,7 +300,7 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x400013be
+ 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x400013be
+ 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x400013be
+ 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013be
+-			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
++			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x159e
  		>;
  	};
  
