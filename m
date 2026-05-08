@@ -1,212 +1,174 @@
-Return-Path: <devicetree+bounces-294700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294706-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Pl5Co1W/mmupQAAu9opvQ
-	(envelope-from <devicetree+bounces-294700-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:33:01 +0200
+	id QPHQFh1X/mmupQAAu9opvQ
+	(envelope-from <devicetree+bounces-294706-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:35:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725A84FBEF7
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:32:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607F24FBF8F
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 74ECF3014545
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 21:32:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 823163008FE3
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 21:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84BD224234;
-	Fri,  8 May 2026 21:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2A324E4C6;
+	Fri,  8 May 2026 21:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDA4XIjM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3XrAwV3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E514502F
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 21:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F77221540
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 21:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778275976; cv=none; b=Ce102YeRDKBgMb8qMpYTjmGnZXGu50CRnss75KrSbsnAgIvlbRo6WN5LWe6isD22AkWfF4C+x17j6X3PE56hoSwxBfWZSF2xvas2jppV7LShac/E+eWLXCcDGqY0chxw83xihL61yLlSTXwzTqcV4zlPguzZzZcpPl5Ilo1gPXs=
+	t=1778276120; cv=none; b=bYgBVhKSTZPLxkF5RPPs97Z5hJ9ndV9ctewMoHIWHQLnqM5iqmitVqRVv7Lhm5umjh3eYKnYLaCelJGujid0Gr97/H214OZINNJOUJHRiq5WJrQGAghmiILDmAMngDtmMzHFlFO4LFgfS3AuAvaOawQW8J2VCNBC3R6kRJTRRDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778275976; c=relaxed/simple;
-	bh=Tt7qF8ZR6WcVX8mr/wQWTmXakFzw4eFinUocZMS2wZI=;
+	s=arc-20240116; t=1778276120; c=relaxed/simple;
+	bh=B3+/6biVk3M6CvjVVPSDM9L16DohU8S2Ar7G492rdPw=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=PlAAF0xZHpsmbi0fdJB1sYbtV2QqfAxSWhFQSIQAhCWtqfSmJrinNLH+ndBw/vdovMB+LRS9wrdfx0e3PRmA5gPI2d2XKCmE7XAiZY5MxMiVnhuJ2v75xpnjz57cxbK5dgK8o/xun0uKSartruKjBz8a+ZhbyV1CCFhBb3rGKKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nDA4XIjM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45BE6C2BCB0;
-	Fri,  8 May 2026 21:32:56 +0000 (UTC)
+	 Message-Id; b=EXMwYCiIey/j9ISnhqsDgcR+JnYNduIyDjuYPGe5d6z4jTvfwXCEJureeGYLzAnfIbkGIswq0dDXTyNXVtSx+GXa9QtCMJ2Bkdx2/cRp3Be7ygSyV8Qabpn1Yszyp3tIXqCPeXcGOLIDjf+th20k8vOix6oy0FTeOAGKcjfA0m8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3XrAwV3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780E5C2BCB0;
+	Fri,  8 May 2026 21:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778275976;
-	bh=Tt7qF8ZR6WcVX8mr/wQWTmXakFzw4eFinUocZMS2wZI=;
+	s=k20201202; t=1778276119;
+	bh=B3+/6biVk3M6CvjVVPSDM9L16DohU8S2Ar7G492rdPw=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=nDA4XIjMJ0m+myz/QmsncMtPFNLZFyzSKCxuR4mHFIrJuelbomYAGSLkXygjwsTfO
-	 ygNrl2g5ccz/OGofr0blCeb3DrPGYRq5bopOAhUBAmFcBsBv2fYDhOs/y/HKIMF7KG
-	 1sEa5tQolPywcrznH4JvKw/CVT4YIleB9m3Qqg/p6D6HlmPitULGpbzyw0xA+W7N7+
-	 +KIAE6/EYa7Ftvykw37uVzysau+OHHSWinccVepNfCY2b4/baGna4AtsPISn/RZSP4
-	 z6f3YoWQ7tyjTQL0QJ1a3Vw7RkF92NGyqnr/KApZEQiW9I2Fj0GcyEkyMtjCTq78BN
-	 QEyjbfbh72Xzw==
+	b=Z3XrAwV3OU562nSDkaobZJqDuY6eesjdSKxsmkm5b9T/GlLVfA5Akl4A+ZNdX9OdN
+	 I+GxLeFpsFzYeFtEVfM5Y8AsJ4OHhvy4Fo9ayhxlkKwl7K7JNlVmKrTybAIxzSgjbz
+	 3EBBYzoSUrwNUg4r1xyIgNmHEllYen9FyTRMsEE+B5WRJltppE2JizkF3DMJehmjBb
+	 ga+OgJhF6odTTbOqfQSGQ6LfzWtmYwCd+OgaT8QZzSaLSb6jSlH8ZeIRjARINu3s3Z
+	 IcnYY38GOE2D05A/JMyFcXdfh3THcVhHC5hpWfws9366iIr1vyIzn39dzAmxHhWqOm
+	 vqPL1O+NLOGhQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/3] [v5 net-next] p54spi: convert to devicetree
+Subject: Re: [PATCH v7 09/15] can: grcan: Add saving and restoring of CAN FD
+ baud-rate registers
 Reply-To: sashiko@lists.linux.dev
-To: "Arnd Bergmann" <arnd@kernel.org>
-Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260507212451.3333185-3-arnd@kernel.org>
-References: <20260507212451.3333185-3-arnd@kernel.org>
+To: "Arun Muthusamy" <arun.muthusamy@gaisler.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260508070121.6918-10-arun.muthusamy@gaisler.com>
+References: <20260508070121.6918-10-arun.muthusamy@gaisler.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 08 May 2026 21:32:55 +0000
-Message-Id: <20260508213256.45BE6C2BCB0@smtp.kernel.org>
+Date: Fri, 08 May 2026 21:35:18 +0000
+Message-Id: <20260508213519.780E5C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 725A84FBEF7
+X-Rspamd-Queue-Id: 607F24FBF8F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294700-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294706-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] The `p54spi_spi_read` function performs an SPI transfer using a st=
-ack-allocated buffer, which violates DMA mapping rules.
-- [High] Missing validation for `spi->irq` before calling `request_irq()`.
+- [High] The patch claims to save and restore CAN FD baud-rate registers up=
+on reset but fails to restore the data bit-timing register (`regs->fdbtr`),=
+ causing it to be permanently wiped.
+- [Medium] The `GENMASK` definitions for the GRCANFD `NBTR` register fields=
+ overlap, creating a latent bug in the hardware interface definition.
 --
 
-commit fa2ad50656ff32f99005056eb774d07bdf3f221c
-Author: Arnd Bergmann <arnd@arndb.de>
+commit c685fd29f8a299a3b71b10448a638f1df08b5e0d
+Author: Daniel Hellstrom <daniel@gaisler.com>
 
-p54spi: convert to devicetree
+can: grcan: Add saving and restoring of CAN FD baud-rate registers
 
-This commit converts the Prism54 SPI driver from using hardcoded GPIO
-module parameters to using the GPIO descriptor interface and device tree
-probing.
+While reset the GRCAN baud-rates are preserved, since GRCANFD has the
+baud-rate in different registers we need to add saving of those
+registers too.
 
-> diff --git a/drivers/net/wireless/intersil/p54/p54spi.c b/drivers/net/wir=
-eless/intersil/p54/p54spi.c
-> index 9d66dcae54e02..d18be25450285 100644
-> --- a/drivers/net/wireless/intersil/p54/p54spi.c
-> +++ b/drivers/net/wireless/intersil/p54/p54spi.c
-
-[ ... ]
-
-> @@ -30,19 +31,6 @@
->  MODULE_FIRMWARE("3826.arm");
->  MODULE_FIRMWARE("3826.eeprom");
+> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
+> index 6e0a393785e86..ccf4032ed642e 100644
+> --- a/drivers/net/can/grcan.c
+> +++ b/drivers/net/can/grcan.c
+> @@ -528,6 +528,8 @@ static void grcan_reset(struct net_device *dev)
 > =20
-> -/* gpios should be handled in board files and provided via platform data,
-> - * but because it's currently impossible for p54spi to have a header file
-> - * in include/linux, let's use module parameters for now
-> - */
-> -
-> -static int p54spi_gpio_power =3D 97;
-> -module_param(p54spi_gpio_power, int, 0444);
-> -MODULE_PARM_DESC(p54spi_gpio_power, "gpio number for power line");
-> -
-> -static int p54spi_gpio_irq =3D 87;
-> -module_param(p54spi_gpio_irq, int, 0444);
-> -MODULE_PARM_DESC(p54spi_gpio_irq, "gpio number for irq line");
-> -
->  static void p54spi_spi_read(struct p54s_priv *priv, u8 address,
->  			      void *buf, size_t len)
->  {
+>  	/* Turn off hardware filtering - regs->rxcode set to 0 by reset */
+>  	grcan_write_reg(&regs->rxmask, 0);
+> +
+> +	priv->hwcap->set_bittiming(dev);
 
-This problem wasn't introduced by this patch, but I noticed a pre-existing
-issue in the context here. Does the p54spi_spi_read() function perform an S=
-PI
-transfer using a stack-allocated buffer?
+Does this fully restore the CAN FD baud-rate registers?
 
-Looking at p54spi_spi_read(), the addr variable is allocated on the stack a=
-nd
-passed as a transfer buffer to spi_sync(). The SPI framework maps transfer
-buffers for DMA. Passing a stack-allocated buffer is illegal, particularly =
-with
-CONFIG_VMAP_STACK enabled, because stack memory resides in vmalloc space and
-cannot be safely DMA-mapped.
+The commit message indicates that the GRCANFD baud-rate registers need
+to be saved and restored, but it looks like set_bittiming() only sets the
+nominal bit-timing register (regs->nbtr):
 
-Could this cause memory corruption or a kernel panic during the transfer?
+drivers/net/can/grcan.c:grcanfd_set_bittiming() {
+    ...
+	timing |=3D FIELD_PREP(GRCANFD_NBTR_SJW, sjw);
+	timing |=3D FIELD_PREP(GRCANFD_NBTR_PS1, ps1);
+	timing |=3D FIELD_PREP(GRCANFD_NBTR_PS2, ps2);
+	timing |=3D FIELD_PREP(GRCANFD_NBTR_SCALER, scaler);
+	netdev_dbg(dev, "setting timing=3D0x%x\n", timing);
+	grcan_write_bits(&regs->nbtr, timing, GRCANFD_NBTR_TIMING);
 
-[ ... ]
+	return 0;
+}
 
-> @@ -608,31 +596,20 @@ static int p54spi_probe(struct spi_device *spi)
->  		goto err_free;
->  	}
-> =20
-> -	ret =3D gpio_request(p54spi_gpio_power, "p54spi power");
-> -	if (ret < 0) {
-> -		dev_err(&priv->spi->dev, "power GPIO request failed: %d", ret);
-> +	priv->gpio_powerdown =3D gpiod_get_optional(&spi->dev, "powerdown", GPI=
-OD_OUT_HIGH);
-> +	if (IS_ERR(priv->gpio_powerdown)) {
-> +		ret =3D dev_err_probe(&priv->spi->dev, PTR_ERR(priv->gpio_powerdown),
-> +				    "powerdown GPIO request failed\n");
->  		goto err_free;
->  	}
-> =20
-> -	ret =3D gpio_request(p54spi_gpio_irq, "p54spi irq");
-> -	if (ret < 0) {
-> -		dev_err(&priv->spi->dev, "irq GPIO request failed: %d", ret);
-> -		goto err_free_gpio_power;
-> -	}
-> -
-> -	gpio_direction_output(p54spi_gpio_power, 0);
-> -	gpio_direction_input(p54spi_gpio_irq);
-> -
-> -	ret =3D request_irq(gpio_to_irq(p54spi_gpio_irq),
-> -			  p54spi_interrupt, IRQF_NO_AUTOEN, "p54spi",
-> -			  priv->spi);
-> +	ret =3D request_irq(spi->irq, p54spi_interrupt, IRQF_NO_AUTOEN, "p54spi=
-", priv->spi);
+Since the hardware reset clears the registers, and the fast data bit-timing
+register (regs->fdbtr) is not saved before the reset or recalculated here,
+will regs->fdbtr be permanently wiped?
 
-Is there missing validation for spi->irq before calling request_irq()?
+This could cause the data baud-rate scaler to become zero and break CAN FD
+data phase communication if Bit Rate Switch (BRS) is enabled.
 
-If the device tree node lacks an interrupts property, the SPI core may set
-spi->irq to 0 or a negative error code.
+Additionally, while looking at the register field definitions used by
+set_bittiming(), do the GENMASK definitions for the GRCANFD NBTR overlap?
 
-Passing this directly to request_irq() without validation can successfully
-hijack a core system interrupt like the system timer on some architectures,
-leading to system instability or deadlocks.
+drivers/net/can/grcan.c:
+#define GRCANFD_NBTR_SCALER     GENMASK(23, 16)
+#define GRCANFD_NBTR_PS1        GENMASK(17, 10)
 
-Should there be a check like if (spi->irq <=3D 0) to fail the probe gracefu=
-lly?
+Bits 16 and 17 are included in both GRCANFD_NBTR_SCALER and GRCANFD_NBTR_PS=
+1.
 
->  	if (ret < 0) {
->  		dev_err(&priv->spi->dev, "request_irq() failed");
-> -		goto err_free_gpio_irq;
-> +		goto err_free_gpio_power;
->  	}
+While it seems the current maximum phase segment limit prevents active
+collisions at runtime, any future increase or use of FIELD_GET could lead
+to silent data corruption because the scaler and ps1 bits bleed into
+each other.
+
+>  }
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260507212451.3333=
-185-1-arnd@kernel.org?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508070121.6918=
+-1-arun.muthusamy@gaisler.com?part=3D9
 
