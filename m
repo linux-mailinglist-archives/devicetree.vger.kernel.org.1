@@ -1,160 +1,128 @@
-Return-Path: <devicetree+bounces-294718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294720-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCKgOnVg/mnCpwAAu9opvQ
-	(envelope-from <devicetree+bounces-294718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:15:17 +0200
+	id IIwHCyti/mnCpwAAu9opvQ
+	(envelope-from <devicetree+bounces-294720-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:22:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 452114FC3EA
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:15:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0104FC505
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:22:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3B2BB3003426
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 22:15:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65B623036D5E
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 22:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D1A3939BC;
-	Fri,  8 May 2026 22:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B8A391E50;
+	Fri,  8 May 2026 22:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfFpZcEb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nhmc5L3e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21BAC39B960
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 22:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA232DB79F;
+	Fri,  8 May 2026 22:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778278511; cv=none; b=fmZ1+nHvTa1a5xCp4jIGH0wj+JecCKh8Q2gfFJbwe7tGK3ahpnRW41u9mVIF2TewQUyYMphLf8AP+HoH43I4LL+4SEqLvWahthAwRa2OhwlyCdURj1wCDIY/XTMtwuopVeIoEfs4/YUl70e2TMtC3+tkEASSW90MadLuJ5r2R60=
+	t=1778278857; cv=none; b=ugSuKhAJZ8m88SVHsTjG3bhqhvR0pvEr3e1PFSfUGT5VT/WGeGnyLd3CBNAJ5G7tQtKudXmXfOLq5GC6id5ucy4lmnekcgFLj9YcjoIGQXWDXVI2Llo6zHCbFze7bbL2bPHERutxidY8p6zxTXYlB4zAsA1SoygmdD7WSwYrB0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778278511; c=relaxed/simple;
-	bh=P9AK1TZvRaiAZB9DLjLLn8vkkVNiqkwbXu6jS6ek0Rk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IhUlNuvgM1OhBGte+4h5Jyddo2RvHdlKeuVp0QTAzljDv9zd1Zi7RyG/u3+pMK/VhBGW38Asc29zxIJ/1MWYv9ZLgvJO0UuSj4mafnq0koaSmXP2GBDvHYZ8gWFipgRoVd4DzpaOfIp4PF2I7KLBwraL6S9R8r+DD/NSe7WW+r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfFpZcEb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE480C2BCB0;
-	Fri,  8 May 2026 22:15:08 +0000 (UTC)
+	s=arc-20240116; t=1778278857; c=relaxed/simple;
+	bh=3c6mBX0SMHIoXIg5ZScaD2+vigKCzxlLsrjdG4XgaNs=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=YYZ30T/Irz5GVr8smtv/cslA3iNBuTM77+Y8XSL9E2YY6xECUTdN2AYPF4kUbGDJQQRVduDY/NBF7mzjN1GUYY9koWhL4JaNukUkg6KXAJQ0sYI1edta/uv9umVxBSXU3+Hcj466UFXn5chJ2AT9FdRhNtXB8U4S6j0lZXjpVQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nhmc5L3e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 546CEC2BCB0;
+	Fri,  8 May 2026 22:20:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778278508;
-	bh=P9AK1TZvRaiAZB9DLjLLn8vkkVNiqkwbXu6jS6ek0Rk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=cfFpZcEbjU3nOEaJDvAfKCr7E56DFW5V7wUgn9MpMsFLBMr3BDlMTZm9pQiFwgoMO
-	 xAEGdI2cNDAVGXixmH70ZxolFKU3LyHJu5A0jHLBrgajyNWlEbb43NKLsZPPErJqW0
-	 h45nReEm5RLx/k5TS1q51AdzmuXvcjlyRgutxQasSKYPK80URfPtT8PAj0K/6hx18L
-	 Rqw8DwdRwe2HR/FTDYdpOn8l/ghl1rA1Fjfe2bryviAXo2a/gDEJ58lQKqz7FWGgLr
-	 rInmytoDw4+PbA2tCG+FQ2C8f61Mbw4zMbZprJzkvuNH8mq9VbKFcpVmU6ilqBPLXl
-	 2UoVl1gnpNy7w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/2] arm: dts: st: align node patterns with
- established convention
-Reply-To: sashiko@lists.linux.dev
-To: "Charan Pedumuru" <charan.pedumuru@gmail.com>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260508-st-mmc-v3-1-81c329ed28e8@gmail.com>
-References: <20260508-st-mmc-v3-1-81c329ed28e8@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 08 May 2026 22:15:08 +0000
-Message-Id: <20260508221508.AE480C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778278857;
+	bh=3c6mBX0SMHIoXIg5ZScaD2+vigKCzxlLsrjdG4XgaNs=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=nhmc5L3eH/rwvdAWmTPXAE6658pB1a81AYWK9Nl/YnO0dsrjjqi2LNNWQcYtSpbv0
+	 xLfa4uf6owExL564oD9K5erqVZJYBEw2tDoY0IGi395tpgSHu9C85uiFTNV2uZDdKX
+	 gEzB+Sr9SC7ddjGWFX3D1UaUsjmQsU3LEiFgFzZQi+cH99E6VytLl9mAqoZrhmv2GJ
+	 TjJ9BlGMu8N2cb+eCY1PygyiN76k6Z4JrilUe/9Wz1pqgguumYbitCon8OPXbFo/3a
+	 gaLeXcsWEZ2PqVr/YehRy1bRwR3u4HaJICCWqkM6FgbvuDFuF39Mp+nz9OqKTocPy6
+	 PYTWcJlrZnjZw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 02CED38119D1;
+	Fri,  8 May 2026 22:20:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 452114FC3EA
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: lan966x: Accept standard ethernet
+ prefixes
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <177827880555.872167.9312279380032564115.git-patchwork-notify@kernel.org>
+Date: Fri, 08 May 2026 22:20:05 +0000
+References: <20260507-lan966-binding-v1-1-e99293d2a4ec@kernel.org>
+In-Reply-To: <20260507-lan966-binding-v1-1-e99293d2a4ec@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: herve.codina@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, horatiu.vultur@microchip.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: 7E0104FC505
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-294720-lists,devicetree=lfdr.de,netdevbpf];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294718-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,0.145.153.112:email];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.138.140.192:email,0.138.62.160:email];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Renaming `sdhci` nodes to `mmc` in `stih407-family.dtsi` breaks no=
-de overrides in dependent device trees, causing MMC controllers to become n=
-on-functional.
---
+Hello:
 
-commit 874b7326db9041ff83194d41b493b257577ea261
-Author: Charan Pedumuru <charan.pedumuru@gmail.com>
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-arm: dts: st: align node patterns with established convention
+On Thu, 07 May 2026 11:26:01 +0200 you wrote:
+> The dsa.yaml and ethernet-switch.yaml bindings recommend
+> prefixing ethernet switches and ports with "ethernet-" so
+> make the LAN966x do the same.
+> 
+> Reported-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Linus Walleij <linusw@kernel.org>
+> 
+> [...]
 
-This commit updates the device tree node patterns for ST MMC controllers to
-match established conventions by renaming the sdhci nodes to mmc.
+Here is the summary with links:
+  - dt-bindings: net: lan966x: Accept standard ethernet prefixes
+    https://git.kernel.org/netdev/net-next/c/4374fc0b89ff
 
-> diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts=
-/st/stih407-family.dtsi
-> index 3e6a0542e3aea..08acba209c564 100644
-> --- a/arch/arm/boot/dts/st/stih407-family.dtsi
-> +++ b/arch/arm/boot/dts/st/stih407-family.dtsi
-> @@ -596,7 +596,7 @@ spi@9542000 {
->  			status =3D "disabled";
->  		};
-> =20
-> -		mmc0: sdhci@9060000 {
-> +		mmc0: mmc@9060000 {
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Does this rename break device tree overrides in dependent files like
-stih418-b2199.dts and stih410-b2260.dts?
 
-If dependent board files override properties by reopening the nodes using
-their exact path and old names (e.g., soc { mmc0: sdhci@9060000 { ... }; }),
-changing the base node name here to mmc@9060000 will cause the device tree
-compiler to create a new parallel node instead of merging the properties.
-
-The original mmc@9060000 node would remain disabled, and the newly created
-sdhci@9060000 node would lack the required compatible, reg, and interrupts
-properties, which could prevent the MMC driver from probing correctly.
-
->  			compatible =3D "st,sdhci-stih407", "st,sdhci";
->  			status =3D "disabled";
->  			reg =3D <0x09060000 0x7ff>, <0x9061008 0x20>;
-
-[ ... ]
-
-> -		mmc1: sdhci@9080000 {
-> +		mmc1: mmc@9080000 {
-
-Could this node rename also cause similar override failures for dependent
-files that override mmc1?
-
->  			compatible =3D "st,sdhci-stih407", "st,sdhci";
->  			status =3D "disabled";
->  			reg =3D <0x09080000 0x7ff>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508-st-mmc-v3-=
-0-81c329ed28e8@gmail.com?part=3D1
 
