@@ -1,226 +1,141 @@
-Return-Path: <devicetree+bounces-294426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294428-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ALrbAKSw/Wn4hgAAu9opvQ
-	(envelope-from <devicetree+bounces-294426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 11:45:08 +0200
+	id iIymHBKx/WmlhgAAu9opvQ
+	(envelope-from <devicetree+bounces-294428-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 11:46:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9BD74F4639
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 11:45:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D153E4F46BE
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 11:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2799C30028EE
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 09:44:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 070EF300C92D
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 09:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF863C4573;
-	Fri,  8 May 2026 09:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AqFwtnur"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAAF34887B;
+	Fri,  8 May 2026 09:45:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC6B3C3C06;
-	Fri,  8 May 2026 09:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0AC335E95F;
+	Fri,  8 May 2026 09:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778233496; cv=none; b=XADadm1NIX8IRYaUs5yeMCtXHEOGBsVe9xC4gkT25Uhj1UnYd7grSnREnOl2XzXOUF7qeKh+7ei8EO1ERQ0qgLuCDtgc86CVNNDHg24XXIQFwXT/9/R78Qa6tcDGkIm4YmNAJshp3MjlRYGQYGdmxLIlDD0eNgdoTCbqC4UUBHw=
+	t=1778233550; cv=none; b=r9KqFn1sJ0Vcuz3vJk6HkYFjV7tWjfaK8nh0ZAys8hUa1T3j4aewjILlAM7jpf1oIfBoCVe4sMB5wG06UzG3gh6xI8XKQAljTQXPih8tHUxixoyyijda57b3B/C/Mf6fEw4VAdEaZVlvVirKde0RK5/c70dM6sME0cECTGHZPrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778233496; c=relaxed/simple;
-	bh=xr3nP/6V7+777LfTLLcyKXsjbdL+xpZf3cjxFBvkFAI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DoyvmaIFPG2wT3490pBHB1rbA/XtY3YoenLT/KtrvNeS4wnLyJUjPZ0BLAC6HwksLeTK9rFXxc5Kqe6aICGV7FHe46GkEEK+/FPxmHSHTt/+81oMqG+Y9eRq6+42wtgGtzjasicBcvQHC6X10MLQTZd5DaukxFb7WkSP2xqv0qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AqFwtnur; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 875D7C2BCF6;
-	Fri,  8 May 2026 09:44:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778233495;
-	bh=xr3nP/6V7+777LfTLLcyKXsjbdL+xpZf3cjxFBvkFAI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=AqFwtnur2OU/c4AMRJFNQldTcsFsrndvsi25FKeXv31sfWj/quAUSaD2D3bEuXMQu
-	 JEVGNgdSTT/mA57coCaxORlRTtkoCnA2tWzeC5ALtnIHtTfkwALBL0LuCpF9VXGSG2
-	 GEapXj5E1uun0/VRxZ5GqramAoRni58Uk8MvQO+KImzu0upZYLt8ORFyaRWIT1VMXp
-	 wAgVwtb5Qyf7lnh5pgDHliZq0+9Vn3IM4RmFh+Tgu0LmHkGgwyh69JRSJy0T/xiSJZ
-	 sk+4GfGJUfsPFHtKUy3Djq2PpQIQXH7cjvH3LxWbJUrytKvhR5po5z+/EIqZtn+ClY
-	 Lpv/mS+fh06Gw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EBC0CD37AC;
-	Fri,  8 May 2026 09:44:55 +0000 (UTC)
-From: Colin Huang via B4 Relay <devnull+u8813345.gmail.com@kernel.org>
-Date: Fri, 08 May 2026 17:44:30 +0800
-Subject: [PATCH v5 3/3] hwmon: (pmbus) add support for Delta E50SN12051
+	s=arc-20240116; t=1778233550; c=relaxed/simple;
+	bh=yD5mv6i4XMyQskiJ3T7ao4rCkZieXYZR+zBpBWzxKkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kv0He/SNhkf2Fb0Q+FDTKWH8aSoK8gcWRBsc31XwUTXIGRTg1yV0xQAeC+SNlGig7MlLa7aN4yhZEWFpw3Tbeo9xmjPO7KHzO8kFBZm77UaE9WZpg4b067RVmvd791GpREzriBcbsm2qcLI7p80M/iAliVVlkL4qWshnhBBbNYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: esmtpgz11t1778233516t88494dd4
+X-QQ-Originating-IP: FYDRL9+aHSkAoSrjKpeQafotodHwpkqzbik6NOTWWAo=
+Received: from [127.0.0.1] ( [116.234.74.217])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 08 May 2026 17:45:13 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 6858079310630328061
+Message-ID: <63E2E0FAF03FD04D+90daade8-e129-42a7-9ad9-ef9394a8b00e@radxa.com>
+Date: Fri, 8 May 2026 17:45:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add missing
+ qcom,non-secure-domain property
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260507-sc8280xp-non-secure-domain-v1-1-b6f75783c831@radxa.com>
+ <37b80f4b-4824-4e03-b129-b0687a6b9023@oss.qualcomm.com>
+Content-Language: en-US
+From: Xilin Wu <sophon@radxa.com>
+In-Reply-To: <37b80f4b-4824-4e03-b129-b0687a6b9023@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260508-add-e50sn12051-v5-3-abebdcc29665@gmail.com>
-References: <20260508-add-e50sn12051-v5-0-abebdcc29665@gmail.com>
-In-Reply-To: <20260508-add-e50sn12051-v5-0-abebdcc29665@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Chang <kevin.chang2@amd.com>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
- Colin Huang <colin.huang2@amd.com>, Colin Huang <u8813345@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778233493; l=3403;
- i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
- bh=kdG0eiaCamlrenMRC/OYLox58O/g4hUW+Ptrly3KsCw=;
- b=82HA/zNfxyV0RoF2vNxqQskZeKFU/11QCdH8RtQyWTOHogWDyhjmzHHFLgfDhBC0vTvj9BDec
- RhObeoWcDUZBHaelfp7sUz8svfLUVwsDEp2dzscJ7NYG91UvLdHN5J3
-X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
- pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
-X-Endpoint-Received: by B4 Relay for u8813345@gmail.com/20260202 with
- auth_id=761
-X-Original-From: Colin Huang <u8813345@gmail.com>
-Reply-To: u8813345@gmail.com
-X-Rspamd-Queue-Id: B9BD74F4639
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
+X-QQ-XMAILINFO: MRlJlBnjh5AJnR186AzCI4uWfKj6dTbj96QEngsoA6H2rMDQ1pbw+uOz
+	1DzTX9+irq2fbR17JzE/IJLGwHrWy67reLfPO9bnetGpftmIcSeNb9wltH56+Le/Fh1JlZa
+	VIQrWV3/fxGeRJD0lWfY7W+fAzd0KOSUlHkApkq+Qq+DyDVnzxQij1+U7Nm26zUoT+U6fvn
+	96ZgOvqUh/9a/effrhzHsM9ORQhSQh/5T/ZpSzcj/yzpvGxw95mvb1Vz+wiTHe32jUMc/VF
+	zzsM8lSO/aHmWJaxgvsl0w2AKG/BgcSzrCsCzukYRaxPXpTdDdv77p0lHFz4jRZCh7eUBX3
+	rqZ7SC+mENh4FR20806t4iQ7cqg+BqPkwxBLEtPxcW8mDXq38jhiAKf7BN5mhVqs0Neg602
+	spXk/8Ax0a1ZUPg+oeH+eJ9WqHGkqnmnXKnVbLqhde/7v24uZ7mTKQcthTB25xq76Han94X
+	V+2bwj3dSMRG+23Hqce4NDg/SpCgIrqAfJb1nJeOcuxYVrnuSMlmj84PK1en3g/NG+XbvuG
+	MelkxDhYg4yq1eKVB5TmSV19fKbOWoQANhle0IYjFPndfnhM6aKEgdh4y6/4z49sYOq2CJ/
+	ON2MjWzdxvJYZnW10GpfNdxE4one3CUdsyTl7SXDqm8ki+LPmrUQTlOX/C9Nud2MvmZ45cz
+	UWmmcZ99DPfQ6ksmlIGL8DRcmCb6DcFic5/rLxAybon58XB7NtbGe0owfyhgkEpH+OzolWU
+	PzFTngx28LOLbTAk29ZEOjE3LhwJp4iVB0hOc84F7QBmYO8+xVnmMQive14e1B1ZExMyHAi
+	753+TpXWc0EEaCk7lDm3TRCMNdyumnhukoOxzfRGomPCgcfwqOAKWF6Zjc/+SlFFqZy6yJt
+	g8L670sC1xvEWsbhFPBUjJ9ZdlkFj1rSiKbJ8Nh9+Hj2axianPzXOGw7MJtUFTNUzDFhLYU
+	hxxaqZU1zEKgqkr77gkrE5jj8HBUuQrSgKPvgfMbu7O7i77ZfeaUfHQVJagpiHNbdmUKNIJ
+	4MdtcPPw==
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+X-QQ-RECHKSPAM: 0
+X-Rspamd-Queue-Id: D153E4F46BE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.36 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[radxa.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294426-lists,devicetree=lfdr.de,u8813345.gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294428-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,amd.com,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_MUA_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	HAS_REPLYTO(0.00)[u8813345@gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sophon@radxa.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[radxa.com:email,radxa.com:mid]
 X-Rspamd-Action: no action
 
-From: Colin Huang <u8813345@gmail.com>
+On 5/8/2026 5:40 PM, Konrad Dybcio wrote:
+> On 5/7/26 4:54 PM, Xilin Wu wrote:
+>> By default the DSP domains are secure, add the missing
+>> qcom,non-secure-domain property to mark them as non-secure.
+>>
+>> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>> ---
+> 
+> The CDSP accepts both secure and non-secure code and the driver creates
+> both "endpoints" regardless of this property
 
-Add the pmbus driver for Delta E50SN12051 600W Non-isolated
-1/8th Brick DCDC Power Modules.
+Yes you are right. I guess we can drop this patch.
 
-Signed-off-by: Colin Huang <u8813345@gmail.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
- drivers/hwmon/pmbus/Kconfig      |  9 +++++++
- drivers/hwmon/pmbus/Makefile     |  1 +
- drivers/hwmon/pmbus/e50sn12051.c | 52 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 62 insertions(+)
+> 
+> Konrad
+> 
 
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index 8f4bff375ecb..4fbfcbc4a9c5 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -161,6 +161,15 @@ config SENSORS_DPS920AB
- 	  This driver can also be built as a module. If so, the module will
- 	  be called dps920ab.
- 
-+config SENSORS_E50SN12051
-+	tristate "Delta E50SN12051 Power Modules"
-+	help
-+	  If you say yes here you get hardware monitoring support for Delta
-+	  E50SN12051 Power Modules.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called e50sn12051.
-+
- config SENSORS_INA233
- 	tristate "Texas Instruments INA233 and compatibles"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index 7129b62bc00f..fc910bf34fe3 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_SENSORS_FSP_3Y)	+= fsp-3y.o
- obj-$(CONFIG_SENSORS_HAC300S)	+= hac300s.o
- obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
- obj-$(CONFIG_SENSORS_DPS920AB)	+= dps920ab.o
-+obj-$(CONFIG_SENSORS_E50SN12051) += e50sn12051.o
- obj-$(CONFIG_SENSORS_INA233)	+= ina233.o
- obj-$(CONFIG_SENSORS_INSPUR_IPSPS) += inspur-ipsps.o
- obj-$(CONFIG_SENSORS_IR35221)	+= ir35221.o
-diff --git a/drivers/hwmon/pmbus/e50sn12051.c b/drivers/hwmon/pmbus/e50sn12051.c
-new file mode 100644
-index 000000000000..efb4d62b2603
---- /dev/null
-+++ b/drivers/hwmon/pmbus/e50sn12051.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Hardware monitoring driver for E50SN12051
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include "pmbus.h"
-+
-+static struct pmbus_driver_info e50sn12051_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = linear,
-+	.format[PSC_VOLTAGE_OUT] = linear,
-+	.format[PSC_CURRENT_OUT] = linear,
-+	.format[PSC_TEMPERATURE] = linear,
-+	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT |
-+		   PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-+		   PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-+		   PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP,
-+};
-+
-+static const struct i2c_device_id e50sn12051_id[] = { { "e50sn12051", 0 }, {} };
-+MODULE_DEVICE_TABLE(i2c, e50sn12051_id);
-+
-+static const struct of_device_id e50sn12051_of_match[] = {
-+	{ .compatible = "delta,e50sn12051" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, e50sn12051_of_match);
-+
-+static int e50sn12051_probe(struct i2c_client *client)
-+{
-+	return pmbus_do_probe(client, &e50sn12051_info);
-+}
-+
-+static struct i2c_driver e50sn12051_driver = {
-+	.driver = {
-+		.name = "e50sn12051",
-+		.of_match_table = e50sn12051_of_match,
-+	},
-+	.probe = e50sn12051_probe,
-+
-+	.id_table = e50sn12051_id,
-+};
-+
-+module_i2c_driver(e50sn12051_driver);
-+
-+MODULE_AUTHOR("Kevin Chang <kevin.chang2@amd.com>");
-+MODULE_DESCRIPTION("PMBus driver for E50SN12051");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
 
 -- 
-2.34.1
-
+Best regards,
+Xilin Wu <sophon@radxa.com>
 
 
