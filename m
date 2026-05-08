@@ -1,161 +1,157 @@
-Return-Path: <devicetree+bounces-294561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294563-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wEgMCeLx/WlxlAAAu9opvQ
-	(envelope-from <devicetree+bounces-294561-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:23:30 +0200
+	id WHILG0T2/Wn5lAAAu9opvQ
+	(envelope-from <devicetree+bounces-294563-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:42:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F22D4F7AB5
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:23:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F5E14F7EEE
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:42:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 147D2301C6E5
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 14:23:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0436A3008C23
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 14:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5BD23EF647;
-	Fri,  8 May 2026 14:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B387370D55;
+	Fri,  8 May 2026 14:42:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tgUsYatJ"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="Gnze0pEN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out28-112.mail.aliyun.com (out28-112.mail.aliyun.com [115.124.28.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295D33E63BA
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 14:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 499A138DF9;
+	Fri,  8 May 2026 14:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.112
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778250196; cv=none; b=L2HUEQda9iqiDrmOra7u+Brswt3jvL3uleVk1FSALRPcMwZ33vZzX//M4DoJ5oJPMPyQqqTvzni/x87Ma+FrEngkptNaqrsGf2PD70WjJ8KLMn4YVRLd0khgpTn359FWYjk9fOIrQhweaZkMORbEmTGmPGpE8jIypUNoycLuMLk=
+	t=1778251327; cv=none; b=dpgjNQgfp4wHgJZe43tr/p/SoWQ5XEs6ardpx3uB4bRM2vX3W9Uo23f9YU1qbISjqBUjOwmPg5QnLMMkScWxStVMQ24h6FDeqdStMLRg1wzTVfP8IAxBlgMYJUULAE2dy41XPN7+fFB0C+seh3jLSFjjnxIK9h2t21kYQeNB37U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778250196; c=relaxed/simple;
-	bh=ManJat2Px3QZ0GJzd8wVC++psBG14jWrGPkE5Xc+QjI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W0y3/wJB+j3Oxg5zBdYCUws4grg4n26t6pcemOmszQN/Bl1ejQc1GP7cxc6F7gglScQ+oH0nT6JPhmYb8mOyovNE2Q5+XwBof29xneajomJ2FerVsw0FDtwbl/jCaTioSbIYn+w/DKRyc8l8GkJYPCiX85/SPoL+MDvOgSIuA9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tgUsYatJ; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-67bce1840f1so3273830a12.3
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 07:23:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1778250193; x=1778854993; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+iFvo8qHSuKHpqwOV+1SAexauNVOA61i8ZsTqWG1p1E=;
-        b=tgUsYatJ8EjQF0k8zVoW4rLCBwuNKZOB8n1hN12Z5/0C35Scdaidd1ybzI7eYe+HSk
-         Kq1ZSSzn7ppxc/+cYO1vlWfx/f5K2sIAKSm4Sht2g5erB+vJkJAyDHNjXti73+v61to8
-         0CeaZfBUGVgyc4SYNma9WtwHYaiSasg1CXzVHBtIbDW5lLBq7selTJ7flEwxifm47emr
-         /qiYFy24M1VSz0W3rmj9W8FW5S8aPzsFgTJWEC1+HTEAMlx1kbwl8QHnslZFveUeEEdI
-         1bxTznL8O1GYym7QwtTHnPi3zGetrJRe29UBGT9RdWWVpUNKIBd0Fn2k5MHeQeXB6WRu
-         QapA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778250193; x=1778854993;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+iFvo8qHSuKHpqwOV+1SAexauNVOA61i8ZsTqWG1p1E=;
-        b=BZZo8PlY6PVwWZpFzO91N3t+EhqfLuBVOzUOEG2JiI2E0Amq4Iqm3ULPDMZBHnUHvc
-         eF8EfVkGvTzQCuda5x0VbXd43NaR7yAf9GqSErIqmyO0kgNUBGbEEEwf78mgcFfaxjlC
-         2QIE4eXAlSwTv4/P5mAn6gl/P8tNlWQ7hVu5NDOX7pjSzh++yNGdW0j5FzreXXKU4+qC
-         uxcvyLKxUSRKJIBZmaQySxmrcAXppS9NE3gdpGeA/vn9WDPXOERmCOXlNZdj3Pfg+oFJ
-         1y8hL71iMJXI5S5XItpmiYkwDSF5Qz6AJZLDtWhmdqhUt3jefU4N6JvaqwPKKWhwnqS1
-         Xjsg==
-X-Forwarded-Encrypted: i=1; AFNElJ88mVXhIqE/XPq4aFlAWDBHcJeQBULq2VEYdKe0q6/MZZnwsZHqdMdiuIsthq/LLQx2kJvAFHoyi+qX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR4xpow23ZcOAAPxh3OW6FWnfhWzTDW/Dg22fRxo1VGrwll4fR
-	BGsk2i1i5Q66svuagklcbkEQtokGcPVBA1Xwf399QMRgXuRkwgsRz3CvAUJMCPNe3cQ=
-X-Gm-Gg: AeBDiesNoAbtWFlTP/NailRZ936oWWGppXQSe6YYOCNORHkBv74rajy7qtgbkBsB2pw
-	ElB/OgtxDL8MpFaiDeQCGaZ+1oH71npfvQhD6KtUkzLUbGQsUgMaag+H1+LD4t+rL0v2aYp9bKR
-	MvDAL9haTJLtwX+aAq5ZBLWHoVGO8QiQNRUjgzXBh5WqzfIW155nFrRNYwaBjpq9/Yjdk3k8x0Y
-	YrFZq/eunF9VDge7wzXWXyNoGncbK4wW4iF/og3zmkVB01BgLs1tjpVZDLEcEhb1LB3q1tOLZXX
-	jV4c20GkS9yfeGnQSF76xvnYCnQOQiIeo7EjKuUbEvZ9HQ1strlmF0fl4UIJkt3yeQkmk+7OnNT
-	fBsf9Jp9RaB8+HSKp8rsw16SE5Y9wOWWMacJh7TNH2ez/IpG8WPY8V0AWACBJjp30WnLpCISKbL
-	a7Q+xn8i/0ZWQpU9D/XZs4ysmHfa/T66FyUGY=
-X-Received: by 2002:a17:907:807:b0:ba5:2f0a:2f40 with SMTP id a640c23a62f3a-bc56aa45eafmr738018166b.4.1778250193349;
-        Fri, 08 May 2026 07:23:13 -0700 (PDT)
-Received: from [192.168.0.167] ([109.76.20.123])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67ef0b6a648sm703741a12.7.2026.05.08.07.23.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 May 2026 07:23:12 -0700 (PDT)
-Message-ID: <328860b4-1d4b-4a90-9d10-cb70207aaa5c@linaro.org>
-Date: Fri, 8 May 2026 15:23:11 +0100
+	s=arc-20240116; t=1778251327; c=relaxed/simple;
+	bh=BKPx+DwWlEDJ4IBSzpF+6CuZw3pIgevIIIrRUziMCEg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=O9JOtNhA17L5x28U54TVX9Rsh6N9VR96rDEir/5OR3Sv5yYZplV87bMX9Z1vCo1mei+EXe0flGOElHPyDSnn8J7nd5CnJEj7Ut/fGnUCNEs8e7fREg2t2gejaNkgYnOuUbzdDdASv+Toem0OwZb0P0J9Lkdr8b0RrP1zvdAhahw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=Gnze0pEN; arc=none smtp.client-ip=115.124.28.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1778251317; h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type;
+	bh=FkIOV7enKNbkeRupd/YkRnYNKVKO217Lx4gtauvA93M=;
+	b=Gnze0pENmawn7rJRl1+lo2eYJOTF1MsKG8Tgu50uo/spFfoqsBCFUVuRZSBhQgc0bOGtYAlRwm++GSKreGN8ukHhSc3PcMglScvq05+GjgLVf31HZrcMKadxeSp0LoEum/fdqWeYeTkh1aSOqGWaCzh3RrYwLoifVUr609cY0rYamTPLmS01xr0fRPDv9wpOYUHW07fjvG35Ft+SE/Il6im3lO2PNYpDQA2+SsDphdMPw11PhsFp5zU5fTo85D3peIZ27tHTKIpZVdYi3Ob/Iox9RUihoiHErtIboxkFAQcNocKFr6IkYvzP1kuXptQr+EHzJ9rTF/NoZtkcoVVagw==
+X-Alimail-AntiSpam:AC=SUSPECT;BC=0.6169025|-1;BR=01201311R151b1;CH=blue;DM=|SUSPECT|false|;DS=CONTINUE|ham_system_inform|0.183518-0.00602126-0.810461;FP=9943956383314203584|14|2|17|0|-1|-1|-1;HT=maildocker-contentspam033045018182;MF=syyang@lontium.com;NM=1;PH=DS;RN=22;RT=22;SR=0;TI=SMTPD_---.hShj9lU_1778250303;
+Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hShj9lU_1778250303 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Fri, 08 May 2026 22:25:04 +0800
+From: syyang@lontium.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	maarten.lankhorst@linux.intel.com,
+	rfoss@kernel.org,
+	mripard@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	tzimmermann@suse.de,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	yangsunyun1993@gmail.com,
+	xmzhu@lontium.corp-partner.google.com,
+	xmzhu@lontium.com,
+	rlyu@lontium.com,
+	xbpeng@lontium.com,
+	Sunyun Yang <syyang@lontium.com>
+Subject: [PATCH v6 1/2] dt-bindings: bridge: Add Lontium LT9611C(EX/UXD) MIPI DSI to HDMI driver
+Date: Fri,  8 May 2026 22:25:00 +0800
+Message-Id: <20260508142500.4922-1-syyang@lontium.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] Add dtsi to describe the xe180100 CAMSS block
-To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260508-hamoa_evk-v2-0-3ebdca3e4ae2@oss.qualcomm.com>
- <20260508-hamoa_evk-v2-4-3ebdca3e4ae2@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20260508-hamoa_evk-v2-4-3ebdca3e4ae2@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8F22D4F7AB5
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 0F5E14F7EEE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294561-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,nxp.com,pengutronix.de,gmail.com,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-294563-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[lontium.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lontium.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,linaro.org:email,linaro.org:mid,linaro.org:dkim]
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lontium.com:email,lontium.com:mid,lontium.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
 X-Rspamd-Action: no action
 
-On 08/05/2026 12:40, Wenmeng Liu wrote:
-> From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> 4 x CSIPHY
-> 2 x CSID
-> 2 x CSID Lite
-> 2 x IFE
-> 2 x IFE Lite
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-I'll repost my working version with the PHY stuff so I'd kind of 
-appreciate you not posting an old version here, just wait for it to land.
+From: Sunyun Yang <syyang@lontium.com>
 
+LT9611C(EX/UXD) is an I2C-controlled chip that Receiver signal/dual port
+mipi dsi and output hdmi, differences in hardware features:
+- LT9611C: supports 1-port mipi dsi to hdmi 1.4
+- LT9611EX: supports 2-port mipi dsi to hdmi 1.4
+- LT9611UXD: supports 2-port mipi dsi to hdmi 1.4/2.0
+
+Signed-off-by: Sunyun Yang <syyang@lontium.com>
 ---
-bod
+ .../bindings/display/bridge/lontium,lt9611.yaml           | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+index 429a06057ae8..e0821a63d9d7 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611.yaml
+@@ -4,19 +4,23 @@
+ $id: http://devicetree.org/schemas/display/bridge/lontium,lt9611.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Lontium LT9611(UXC) 2 Port MIPI to HDMI Bridge
++title: Lontium LT9611(UXC/C/EX/UXD) 2 Port MIPI DSI to HDMI Bridge
+ 
+ maintainers:
+   - Vinod Koul <vkoul@kernel.org>
+ 
+ description: |
+-  The LT9611 and LT9611UXC are bridge devices which convert DSI to HDMI
++  The LT9611、LT9611UXC、LT9611C、LT9611EX and LT9611UXD
++  are bridge devices which convert DSI to HDMI
+ 
+ properties:
+   compatible:
+     enum:
+       - lontium,lt9611
++      - lontium,lt9611c
++      - lontium,lt9611ex
+       - lontium,lt9611uxc
++      - lontium,lt9611uxd
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
+
 
