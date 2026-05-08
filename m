@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-294719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yD6AFLph/mnCpwAAu9opvQ
-	(envelope-from <devicetree+bounces-294719-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:20:42 +0200
+	id QH1OIUdi/mnCpwAAu9opvQ
+	(envelope-from <devicetree+bounces-294721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:23:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C564FC4BD
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:20:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC69A4FC527
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 00:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 39C9C30144CC
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 22:20:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED37F30440A0
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 22:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD98439EF1C;
-	Fri,  8 May 2026 22:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20AE8399341;
+	Fri,  8 May 2026 22:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="piAWkGrW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W0Tkde8I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998CD39BFF9
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 22:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F25D1387348
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 22:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778278831; cv=none; b=Jeorp1NcnEUpGde3/OZ6on6Gmhy7RHq3Ss5Ppqi3K7kgl1V2+nhrHCBNbVWQI/BzCweyYeyktCA8bZ27RJIMzg4vXyWR81XMaB75S0bPLzWPKsQrVi23kQn9B6T5tfPHrKuscjeja4db95oMLNASmuaQx7aG6zw4zYQDtb40+cg=
+	t=1778278873; cv=none; b=dL9EJjbshsXSqjBuLFpc04o9kmarJa9jDTQ3g0c7uC8ucgTMToMm/Jd+6IlKT14N+cb3OoN3nfJLNds0m32/QsXKA3k61PmzRFKmPxxBkorobcHs4TuoIpk8KtoVkaPh0zMD0c/gGFHlXg4Jk3wdQUORFcSH/avH007Yz/C11nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778278831; c=relaxed/simple;
-	bh=JD+FF0A6lenLFJqf4AYKkTzmhHUJE9bUHB/SlVdzFWw=;
+	s=arc-20240116; t=1778278873; c=relaxed/simple;
+	bh=+wBpdsqElJ4qZtzsZCtM2GEJ3qTayzgaafIlGZWKSLc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=bVp7WQq/tM37U35+C09P4Ks6Gmm3Aqelz9Q5Y04bNsOAeDKAOMQIHx3RRip6bZaouriZ/bSxYUeuuVF4Jgbxg2xCRUNxPvuBvH8h+Ud84udsp18ZE27EwwQ1RXd/2k8JShoogwSR9MjPFLeeco3u0rflMgEfJPn+2RmVFguS67I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=piAWkGrW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19E23C2BCB0;
-	Fri,  8 May 2026 22:20:31 +0000 (UTC)
+	 Message-Id; b=W9+OsG8mu/aPn7ZQMZgZPJXqIXbfdWmk23UbBOYOP1gwENduwV7kW2xAOQdvVndf1peJZ/anKqUVeDn3Z20xHbN5uTsKtVC+KGPuKGsKcMBs4/H1hj6W4oa0BfHtWL4gfnnCP62zvZTAbVmDADQ6c8crOVdlrLd1bqiZA1ZbXoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W0Tkde8I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6108EC2BCB0;
+	Fri,  8 May 2026 22:21:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778278831;
-	bh=JD+FF0A6lenLFJqf4AYKkTzmhHUJE9bUHB/SlVdzFWw=;
+	s=k20201202; t=1778278872;
+	bh=+wBpdsqElJ4qZtzsZCtM2GEJ3qTayzgaafIlGZWKSLc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=piAWkGrWfVj26Xjsbs/g3qH7KwpC5W/0RpjjM1e0+gk8RcFONKmNDa7NZ+ApABue/
-	 eAoH9dtdRxnbhCyqcRsRUIxAq5cIzNlRu5/5pkS1ZMQlep+tXtBP3l/2oZEGhGTXYj
-	 p+q2dofNhXzF6Es4xffeUNhyRs79VVi1DQKeQUf4T5eigcWf4oX4SOKgl4q/NvHQHb
-	 jHh+hm9DuJ54lphxJwH6obcaQmLzfvGsXYsBHvQ/hqRJ6uHv+dRja0jEYwfSO0I1Oq
-	 tnkBmqotU4uGrxL3cSpduEcoG4+xDAE8PPIgpnqMxAY0Mb5J+/QcUv7ReCovc99/Sg
-	 ie3abMOCdqv2A==
+	b=W0Tkde8IIaGNdo202ruaOdIHIpI1/zazDal8dOrCJ1W2xyAc1o+REwfILweBSPRIR
+	 zCIkFwWfq/g3Yjj5H1N5AfRlHr7iTW9b93VDri6KVt3teJto/TFpUCJw6VqAB3FfxE
+	 H1v7lZYp3FqXBFZ4S9rYXJzCHke9g9LbfTzaexwgCZLASlHQDzmEB0tRE8DHLM8AzU
+	 ipHG/x4yF+j/bk3Y58Bc5p2BGZjx24jzmhmLAuuLXMpF1B4zv1F2PF+kibdCHp4KG5
+	 tS+vy9oSqXANewcT6uKwjjmYb9SaWl+7Dkv6scfLF2rNa94C3z2AOiHXtvYAHm3JzH
+	 MoBPeD2EI8msg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v4 02/10] iio: core: support 64-bit register through
- debugfs
+Subject: Re: [PATCH v7 06/10] clk: realtek: Add support for mux clock
 Reply-To: sashiko@lists.linux.dev
-To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260508-ad9910-iio-driver-v4-2-d26bfd20ee3d@analog.com>
-References: <20260508-ad9910-iio-driver-v4-2-d26bfd20ee3d@analog.com>
+To: "Yu-Chun Lin" <eleanor.lin@realtek.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260508111641.3192177-7-eleanor.lin@realtek.com>
+References: <20260508111641.3192177-7-eleanor.lin@realtek.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 08 May 2026 22:20:30 +0000
-Message-Id: <20260508222031.19E23C2BCB0@smtp.kernel.org>
+Date: Fri, 08 May 2026 22:21:11 +0000
+Message-Id: <20260508222112.6108EC2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: F2C564FC4BD
+X-Rspamd-Queue-Id: EC69A4FC527
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,analog.com:email];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294719-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294721-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -89,100 +89,90 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Uninitialized stack memory read when file offset is non-zero
-- [Medium] Missing newline character in debugfs read output
-- [Medium] Silent truncation of 64-bit values for 32-bit registers
-- [Low] Format specifier type mismatch in sscanf
+- [High] `clk_regmap_mux_get_parent()` masks hardware read errors and inval=
+id states by defaulting to parent index 0.
+- [Medium] Potential signed integer overflow in `clk_regmap_mux_set_parent(=
+)` when shifting the `u8 index` parameter.
 --
 
-commit 2208ef2b9ad567bd166f4ac44a53f42c899c021b
-Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+commit 462409aad9f9756e1384cae76faf89758f477e12
+Author: Cheng-Yu Lee <cylee12@realtek.com>
 
-iio: core: support 64-bit register through debugfs
+clk: realtek: Add support for mux clock
 
-This patch adds a debugfs_reg64_access function pointer to iio_info to
-support 64-bit registers. It also updates the read and write debugfs file
-operations to use the 64-bit variant when available, falling back to 32-bit.
+This commit adds a regmap-based clk_ops implementation for Realtek mux
+clocks, supporting parent selection and rate determination.
 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-c=
-ore.c
-> index bd6f4f9f45330..cb4e2ade25c0e 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
+> diff --git a/drivers/clk/realtek/clk-regmap-mux.c b/drivers/clk/realtek/c=
+lk-regmap-mux.c
+> new file mode 100644
+> index 0000000000000..1b0b8419d651f
+> --- /dev/null
+> +++ b/drivers/clk/realtek/clk-regmap-mux.c
 [ ... ]
-> @@ -403,7 +412,7 @@ static ssize_t iio_debugfs_read_reg(struct file *file=
-, char __user *userbuf,
-> =20
->  	iio_dev_opaque->read_buf_len =3D snprintf(iio_dev_opaque->read_buf,
->  						sizeof(iio_dev_opaque->read_buf),
-> -						"0x%X\n", val);
-> +						"0x%llX", val64);
+> +static u8 clk_regmap_mux_get_parent(struct clk_hw *hw)
+> +{
+> +	struct clk_regmap_mux *clkm =3D to_clk_regmap_mux(hw);
+> +	int num_parents =3D clk_hw_get_num_parents(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(clkm->clkr.regmap, clkm->mux_ofs, &val);
+> +	if (ret)
+> +		return 0;
+> +
+> +	val =3D (val >> clkm->shift) & clkm->mask;
+> +
+> +	return val >=3D num_parents ? 0 : val;
 
-Does this inadvertently drop the newline character?
+Does returning 0 on hardware read errors or invalid states mask the error
+from the clock framework?
 
-[ ... ]
-> @@ -429,7 +439,7 @@ static ssize_t iio_debugfs_write_reg(struct file *fil=
-e,
-> =20
->  	buf[ret] =3D '\0';
+If 0 is returned here, the framework might cache 0 as the active parent. If
+a consumer later requests to set the parent to 0, the framework could
+incorrectly assume the hardware is already in the correct state and skip the
+set_parent call entirely.
 
-Could buf be read uninitialized here if *ppos > 0?
+Could this return an out-of-bounds index (like -EINVAL cast to u8) instead,
+so the framework recognizes the parent as unknown and forces a hardware
+update when a valid parent is requested?
 
-fs/libfs.c:simple_write_to_buffer() writes user data to buf + *ppos and
-returns the number of bytes written:
+> +}
+> +
+> +static int clk_regmap_mux_set_parent(struct clk_hw *hw, u8 index)
+> +{
+> +	struct clk_regmap_mux *clkm =3D to_clk_regmap_mux(hw);
+> +
+> +	return regmap_update_bits(clkm->clkr.regmap, clkm->mux_ofs,
+> +				  clkm->mask << clkm->shift, index << clkm->shift);
 
-	res =3D copy_from_user(to + pos, from, count);
-	if (res =3D=3D count)
-		return -EFAULT;
-	count -=3D res;
-	*ppos =3D pos + count;
-	return count;
+Could the shift operation index << clkm->shift cause a signed integer
+overflow?
 
-If *ppos > 0, the first *ppos bytes of buf remain uninitialized. The
-subsequent sscanf() reads starting from buf[0], parsing up to count bytes
-of uninitialized kernel stack memory.
+Since index is a u8, it is implicitly promoted to a signed 32-bit int. If
+the clock mux is configured at the most significant bit of a 32-bit
+register (where clkm->shift is 31), shifting a non-zero index into the sign
+bit triggers undefined behavior.
 
-> =20
-> -	ret =3D sscanf(buf, "%i %i", &reg, &val);
-> +	ret =3D sscanf(buf, "%i %lli", &reg, &val64);
+This might trigger a shift-out-of-bounds splat, which could lead to a panic
+on systems with panic_on_warn enabled.
 
-Can this trigger compiler warnings? val64 is of type u64, but %lli is the
-specifier for a signed long long pointer.
+Would it be safer to explicitly cast index to an unsigned type, such as
+(u32)index << clkm->shift?
 
-> =20
->  	switch (ret) {
->  	case 1:
-> @@ -437,8 +447,12 @@ static ssize_t iio_debugfs_write_reg(struct file *fi=
-le,
->  		break;
->  	case 2:
->  		iio_dev_opaque->cached_reg_addr =3D reg;
-> -		ret =3D indio_dev->info->debugfs_reg_access(indio_dev, reg,
-> -							  val, NULL);
-> +		if (indio_dev->info->debugfs_reg64_access)
-> +			ret =3D indio_dev->info->debugfs_reg64_access(indio_dev, reg,
-> +								    val64, NULL);
-> +		else
-> +			ret =3D indio_dev->info->debugfs_reg_access(indio_dev, reg,
-> +								  val64, NULL);
-
-Does this silently truncate 64-bit values for 32-bit registers?
-
-If a user provides a 64-bit value but the driver only implements the 32-bit
-debugfs_reg_access callback, val64 is passed directly as the unsigned int
-argument. This discards the upper 32 bits without returning an error.
+> +}
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508-ad9910-iio=
--driver-v4-0-d26bfd20ee3d@analog.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508111641.3192=
+177-1-eleanor.lin@realtek.com?part=3D6
 
