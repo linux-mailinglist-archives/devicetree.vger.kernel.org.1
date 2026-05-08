@@ -1,143 +1,149 @@
-Return-Path: <devicetree+bounces-294736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294738-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id Y3INAIlt/mmlqgAAu9opvQ
-	(envelope-from <devicetree+bounces-294736-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:11:05 +0200
+	id 2CEOG9pt/mmhqgAAu9opvQ
+	(envelope-from <devicetree+bounces-294738-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:12:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A77F4FCA0E
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:11:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD0BA4FCA50
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:12:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F2A52301E9B5
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 23:10:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 85F0C30463BB
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 23:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C9B3ACEFB;
-	Fri,  8 May 2026 23:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7AB83AD509;
+	Fri,  8 May 2026 23:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bkp2tTvz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FGtYiXjo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f68.google.com (mail-dl1-f68.google.com [74.125.82.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C99339BFE7;
-	Fri,  8 May 2026 23:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B86E39BFE7
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 23:12:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778281854; cv=none; b=ZlvccArm7KOrI1h0P1IIW7De2+mDbJVc8kDJk491OzzbSDHAfXPoFnpu9FAPfTNZ2F0SH4l8QAbBPQrsJtaFZuf0lPHwhec8GhkD4fqxCdQV1xYxvZXeiGtW0tXanohRoS0u/dXGSjZZFQTjTflHKtcj+IVOun8YCtI1DtlI/zM=
+	t=1778281927; cv=none; b=n0bVfm0dUOzjZsIgkhDdfhlegjLZsOb2FcAbw+T0MTY0quGAt9wv9NLiqJ76xlQjIaGyHDQBEFJSX7YGPSrfd7OFmzDhfLDFmwfljubBOYoe1XQgVJgjlgkS/hQWRzbxENnJFRYp8gdTKkHYAaoZquVUJlGPrn8ntIwx1trSvBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778281854; c=relaxed/simple;
-	bh=ORUCAFTKRGtPG3yUupNBAwqRD7T186ukSAgBZG1/VzU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r9y/s6I4hLGEEb9qzQ5SFXNAXY8LzvORWiIwQ4kkhNsYtXb9yMjzuedVs4fG7tMN+/zdHvQrtyki601iJb0stkImXyI7FCnwC1MWO+Noy5xVdbErQQZKAcsdaZr+qjcGvlAWNj40515vnqxHYgoGNmcPX1HgXifCoT/w9eJtNCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bkp2tTvz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92092C2BCB0;
-	Fri,  8 May 2026 23:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778281854;
-	bh=ORUCAFTKRGtPG3yUupNBAwqRD7T186ukSAgBZG1/VzU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bkp2tTvzxBQ1lw4TojOwbCxXjFn3apkpbGAlAAl5jjvRm5xLfk8ckS7o6lDCOr39s
-	 e5KMX0cyLx1MfBiyzPyqTOYi1r+GROZMtblQykNNnLG8Sc7Rke17bGGU0WSCMOOgkh
-	 vvKSYbgB6rBj2dIxILCpx7T865GFhyyO8Ry+4h0bP4QLSRliClw3wSMTcYiEOBpZTy
-	 QU/NcDi+61hZwBCBbqYjZ/+0VouP5O7jGAxRW8AyPkL4KH/pG90FxoRht62WhY13N1
-	 c95TPlVgYcd5XOOrLa8Di/sQ3bXfAqYENtWDfxaJftaR0PkggdRkpgSl5ICD2sZFab
-	 Shn1Z4ZNkMdxA==
-Date: Fri, 8 May 2026 23:10:51 +0000
-From: Yixun Lan <dlan@kernel.org>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	Troy Mitchell <troy.mitchell@linux.dev>
-Cc: Margherita Milani <margherita.milani@amarulasolutions.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
-Subject: Re: [PATCH v8 8/9] riscv: dts: spacemit: k1-bananapi-f3: add SD card
- support with UHS modes
-Message-ID: <20260508231051-GKC3590877@kernel.org>
-References: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
- <20260413-orangepi-sd-card-uhs-v8-8-c21c40ec16d0@gmail.com>
- <CA+Xcp4nY9GVMOmtMG-PNhY2vqP4Cc_amAMSa+M3vuDjWUkuCHw@mail.gmail.com>
- <CABdCQ=OsPva9=YPdBd=3HW1OO7=_zJtpXjvaiA0WLEDT5Scs_Q@mail.gmail.com>
- <DICDTHYTPDSP.210EBVHTQ6966@linux.dev>
- <20260508225341-GKB3590877@kernel.org>
+	s=arc-20240116; t=1778281927; c=relaxed/simple;
+	bh=Rqcuv+zsPQMoE6/4nu2MYqPrBaf48QbiYiBe+vMu0/E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gepiCyqvKvjAuBujBdZ+mvgVYCST5NgY3t6Ac2Y62rM6VxfPeBBmdjlQDiul8wcvyTP3NBpigqg0Y6nYMtX1wnq+CbMk4AIsLhx0kuY+lQgnMCaE7o2oK8dGXlGsCBEF1mffFpkmG9IQrsB6/UUy87Lvubu5ptfjX6Yc7+k+LpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FGtYiXjo; arc=none smtp.client-ip=74.125.82.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f68.google.com with SMTP id a92af1059eb24-1329fc4bf77so712501c88.1
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 16:12:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778281926; x=1778886726; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nnbu4qTvY6NB+P0/6X2z8nimAgju94X8lj1wzzY6I5U=;
+        b=FGtYiXjo3Hb8gPz8hni/wimP5PpEEm3o4NYvZAoB5ylLntOXVcLruZi2aKr4gU+SEC
+         Wrrc2jPZgSKxy0ju+cOYi2TuwaRr2RqadfLEEW/c6KGSm4yFMvwHvbUgFnCve8O4Z2Bq
+         kIZNEj8LSDg4p4nipXhvi8HZQpRO0e2wf3WXXBjrIHZtzwg45pd5GL359QTIpf51sMYZ
+         lExvlZ5tZm75fYA4RzMcEvoB0sPbe0hpRRviXzXguGWe1UilA7FzfJ54v6jpKrLidQo/
+         Q+MDgFZSkYx2LhdEDIjmj1SvyY9pPb36XqP6Ge/AVOoEdX3sNng/JGubmqjQboUgRnQ2
+         /JVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778281926; x=1778886726;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nnbu4qTvY6NB+P0/6X2z8nimAgju94X8lj1wzzY6I5U=;
+        b=eF2bmJHZ5yQ317Vs8GVwdabgZzN//bjuZc9lHRgw+2c7FHHoofTIMv6XLfFu53bgKy
+         M5pzv5PG1Ui1DF200MC/c2yC/4hMrSZjHpzWBxrN20RZ6P3/1TfXLxiWtZJQp2TQXqgl
+         DDk8Rmtx+hl6eFYrrKzzEktmEeCcVky0ymgCKL6rTUTWSuCuHqZQxt8+m7reBz7Vfryt
+         sLWA46J0zzwxrf3ntn5C9gm6FH31sMQL1LFjMjTw5sUtXAXqZIVTEpGUmjmajlyfpaBz
+         XBlI8aIGm+SGchFrgiCeLmgPLLHUAUc3fBIHcO6RLhzIh0itzEuvsZkSYnP8J2wv+yg/
+         adtQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+0xp4GkV7Xx7g0BMKIXrsVQbs4zMtdBzZF2yxUWe3auzpKD1oMQtcR91IEY7SJh0YnBXJvgyOYVkng@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnItmSXYG/faB1YzsdOnHtTzpkYn5CKi80vUQRVP4tL5W7TU3F
+	nEbXEBzCis9T2uQLPaKq7uZIrikMKnFv7DLpUnpbToXoI7XSkzBkrt0F
+X-Gm-Gg: AeBDieujZoacFsBbxzR3NOs+Qo3oPS3DoHs6dsDX1kkT9weQNRtZ2g7ve9gXbtQyZ0J
+	9T1PLzQno9liR2U3PmdOAn9f2Vkyjy9TZXcoILSLgGXr24LZmM1OOLuOstyJzJJPsy3aJ2FP7pV
+	MECFXuSYhxiPvxX3U67jF3hSgaCDcNTDQ7zQ6LybOCUK4Osksd2LkYoN7wXBNSbo38RWvq4f4PR
+	GL32bFVHrUZ+WA5iTQ0nTW0PJDl4leHOWQaGNplWhHcDwYA9fWuAul1I+U9kTyWDPYGkJgDwlTG
+	mhKFbiTfJqKLzyFFUIoau7S6R/s6r+Gs72ZMN3qvsLXItW3xwDB5xIezMmSY4PXxEhtIMK66C9t
+	/573/FJFDeciItOpk8UdqwCvOxQu7xrtnbkbknHD0rI0/3lJTjLpo2xcf4vx4z9WlhzDkodwSkU
+	JJJ4aHxyNAbufl3mb6To9wAeQ3gT7SbuWE7sC1mYrPWqBJOQEzfNAzRj4cKwo7UL3Z4g==
+X-Received: by 2002:a05:701b:2204:b0:132:7ab5:6cb6 with SMTP id a92af1059eb24-1327ab56dd4mr1421565c88.2.1778281925572;
+        Fri, 08 May 2026 16:12:05 -0700 (PDT)
+Received: from localhost.localdomain ([76.32.119.210])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1329fc4bf3fsm972554c88.5.2026.05.08.16.12.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 May 2026 16:12:04 -0700 (PDT)
+From: Hungyu Lin <dennylin0707@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: jic23@kernel.org,
+	lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hungyu Lin <dennylin0707@gmail.com>
+Subject: [PATCH v2 0/1] dt-bindings: iio: adc: add AD7816/AD7817/AD7818 binding
+Date: Fri,  8 May 2026 23:11:46 +0000
+Message-Id: <20260508231147.77044-1-dennylin0707@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260508225341-GKB3590877@kernel.org>
-X-Rspamd-Queue-Id: 5A77F4FCA0E
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: DD0BA4FCA50
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294736-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[amarulasolutions.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,analog.com,baylibre.com,vger.kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-294738-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dennylin0707@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
+v2:
+- Fix commit message to match binding requirements
 
-On 22:53 Fri 08 May     , Yixun Lan wrote:
-> Hi Iker, Troy,
-> 
-..
-> I would object to add CONFIG_I2C_K1 as hard dependency, the reason is
-> that the spacemit sdhci driver (sdhci-of-k1.c) has no used i2c
-> api/function, it's just need I2C function via an indirect requirement,
-> which sdhci -> regulator(p1) -> i2c, besides, from the hardware design
-> perspective, it just happens that K1 use P1(via I2C) as PMIC, it's
-> totally possible(even in theory) to use other PMIC as power supply
-> control which may not be I2C interface (maybe use SPI, for example)
-> 
-> If we want to solve this more gracefully, I'm in favor to add explict
-> option enabled in defconfig..
-> 
-or I think it's better we do this way..
+Hungyu Lin (1):
+  dt-bindings: iio: adc: add AD7816/AD7817/AD7818 binding
 
-+++ b/drivers/i2c/busses/Kconfig
-@@ -794,6 +794,7 @@ config I2C_K1
-        tristate "SpacemiT K1 I2C adapter"
-        depends on ARCH_SPACEMIT || COMPILE_TEST
-        depends on OF
-+       default ARCH_SPACEMIT
-
+ .../bindings/iio/adc/adi,ad7816.yaml          | 94 +++++++++++++++++++
+ 1 file changed, 94 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
 
 -- 
-Yixun Lan (dlan)
+2.34.1
+
 
