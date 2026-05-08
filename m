@@ -1,183 +1,147 @@
-Return-Path: <devicetree+bounces-294710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SMXmAXpZ/mkWpgAAu9opvQ
-	(envelope-from <devicetree+bounces-294710-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:45:30 +0200
+	id CMoyHgmb/mkMtwAAu9opvQ
+	(envelope-from <devicetree+bounces-294800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:25:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8794FC068
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:45:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2100B4FD9E8
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:25:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7A59301E6D9
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 21:45:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9381030078B5
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 02:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04642E762C;
-	Fri,  8 May 2026 21:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7208E2C028F;
+	Sat,  9 May 2026 02:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DbYy/YPt"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="XA0zSWNG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA5C2E2EEE
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 21:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB8D282F0C;
+	Sat,  9 May 2026 02:25:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778276723; cv=none; b=sjWsMOGqS6NuUlc8TKqvKlQjEy8zgu5V1lXdLxvZl05/4+fwKayegTbzza2Pj+6D5LDargYiTkMpI7/kQk28K4nRSX6k2izGBu5B3MAPVuYYcgOp/cpk9OF6xevq5I+XMXaC9CU7QihoD9hKg4tKKY/z1bvJlpMK4hX5RuuJF4A=
+	t=1778293511; cv=none; b=LdsZM8wU9HtNpppprc4/4CCgwwvTjSqqXpWnzgUOp9C6GllVSI3keJqKIIZYBH7P61l0Hm/Z6O76e+fBEMWXI4xuFo4+5ZczFJGNDKTG9VM3fzMuWITyz+FPbJcc3q5t7x+XSvXJD94mDHcL1skvX/V9TWm+jHv8YTvjHum3YPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778276723; c=relaxed/simple;
-	bh=Kc4TU27a69tKrnIe5Dwv1k3/6NOOdNrHRXtt86kBTDA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=AiucvEb0grsPuIbAOd10Xo5/26LAAmf/foUtEVOd9hWhha714WEHmTeLY1cp0kHABuiTGQxAz1s73QHzm9i0L32nfFSvQIyBYtlmfUw/NmnxsDLQXhOUj+SB3QqfRDYv921aj8ZBbYabgPtdGdEF4T0zwyXfXp7cHfjQKDRe/eQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DbYy/YPt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E09BCC2BCB4;
-	Fri,  8 May 2026 21:45:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778276723;
-	bh=Kc4TU27a69tKrnIe5Dwv1k3/6NOOdNrHRXtt86kBTDA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=DbYy/YPtS7JPNThsGGaaQ+zl1dXe6MhzSAqU+t6QmlgLBmSxwcnPQFPVAxbq4U/sd
-	 V+OZ3Ha4jane1/LaaEsyXYRPUBB2kaXTvhXekJ6WBZavdj/FmDG4rDKYm264GdmEHd
-	 umxuQ5BnE1nH8XeccCmdJNxf964nY7urxEzQ5GVxYjS43wiXDJ1aL3jRkqJhlrWM6T
-	 X02INZE+0LT8LX8+5P/W9wldNtCSmqmswuSybpnWU6aP178xzKCL02QzkG385+fnD/
-	 MCmIfI+sKo1HSM8QFRgXazbkMkFP06wimrLUfT4PgZ6j2MPlH09Wv7veSSsOD95dKX
-	 n08Yo1Fm4imkg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/5] nvmem: Add the Raspberry Pi OTP driver
-Reply-To: sashiko@lists.linux.dev
-To: "Gregor Herburger" <gregor.herburger@linutronix.de>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260508-rpi-otp-driver-v4-2-cf8d725d8821@linutronix.de>
-References: <20260508-rpi-otp-driver-v4-2-cf8d725d8821@linutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 08 May 2026 21:45:22 +0000
-Message-Id: <20260508214522.E09BCC2BCB4@smtp.kernel.org>
+	s=arc-20240116; t=1778293511; c=relaxed/simple;
+	bh=1gLrHmaH7ze3TUA14OWHdsqLiAi6ZCfvrAyNi0rJuRM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B4wkHzGvQGZDnpquujiPrZqkTsvfAqcJOgRl9koo+yPGjpwuiGyWguv6Th8jUHcgxyxJ2Ms//e1QZxGFrNOlGQc/A3Xp4mwSevT3q5kHUYkHTBIvMIofYveQPfVoDJGObAIS6oOPcfwWDr5HbgwSk2f7JQIK4CKAOTRA/nSqwqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=XA0zSWNG; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 943A3113FEF;
+	Sat,  9 May 2026 04:24:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1778293502;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=Es6Vws/eOKlp6GKSxTpWgYQiUx72bXIcoH8A5zQmI8s=;
+	b=XA0zSWNGfIxfsU8SO9vPVaT8aQl+J5o0UthVWlclapZjE/zgJ7/eZJCXPN2uwMa9juvK8B
+	m9Mi86M8qs7rcfw1wDbLqqGfDiHOuCPjFch5xeWBroP0yeZzFOnt7y0AjBTF2uuAZeNtSM
+	VNhQs1KBv7APWyl4yYTRwFZjiLkjG7BRM+5WHqKJQef/KPWLOxReqyjcQ/3ELrvR9hFSSF
+	7Y6URWipGU+NTPHQ7xA7VyH4/Bta28WropyrSB0am8ENasGLcJk8KN9G1fSlyA0QB1mJHz
+	3r70vA694+HII200i+TmUiEApOfhWDXcQ5fxPtrlUhRJv/kjWxoLxTAlR1xXkw==
+Message-ID: <decbcc28-831b-4220-90ee-fa32d9ce2e2f@nabladev.com>
+Date: Fri, 8 May 2026 23:47:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 4E8794FC068
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] arm64: dts: imx8mm: imx8mp: Add LVDS DTOs for Data
+ Modul i.MX8M Mini and Plus eDM SBC
+To: Frank Li <Frank.li@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20260407211850.79881-1-marex@nabladev.com>
+ <65342735-44b3-4a2b-90ab-6093e0fd91c9@nabladev.com>
+ <af4FO5vOx3ruwWBE@lizhi-Precision-Tower-5810>
+ <dec2a7f6-80fd-4692-8936-969f8837a555@nabladev.com>
+ <af5EWnJyP6leh5ao@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <af5EWnJyP6leh5ao@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 2100B4FD9E8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294710-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.linux.dev];
+	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-294800-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Critical] The driver exposes sensitive OTP memory (including device-spec=
-ific private keys) with world-readable sysfs permissions.
-- [High] Unchecked firmware response size modifying `fwbuf->count` under `_=
-_counted_by_le()` annotation triggers a fortified memcpy panic.
---
+On 5/8/26 10:15 PM, Frank Li wrote:
+> On Fri, May 08, 2026 at 06:20:10PM +0200, Marek Vasut wrote:
+>> On 5/8/26 5:46 PM, Frank Li wrote:
+>>
+>> Hello Frank,
+>>
+>>>> this patchset is now split. How can we proceed ?
+>>>
+>>> I am thinking about it. I found an old thread
+>>> https://lore.kernel.org/linux-devicetree/20250902105710.00512c6d@booty/
+>>>
+>>> The current code base already supportted partitial of it, such as gpio and
+>>> irq map for connector.
+>>>
+>>> Internal chancel liu have prepared version by use nexus mapping for audio
+>>> boards, which almost done to send out to review.
+>>>
+>>> I want to wait for a little bit well to resolve or partitial resolve N x M
+>>> problem.
+>> DT connectors have been discussed for the last 10 or so years and three is
+>> still no real progress.
+>>
+>> I would be happy to send a follow up patchset which would convert the DTOs
+>> to whatever connector implementation format lands in the future, but I am
+>> concerned that waiting for DT connectors will block this patchset from
+>> landing for a long time.
+>>
+>> So how about finalizing this patchset, landing it, and once connectors
+>> become available, I will send a follow up conversion patchset ? Would that
+>> be workable for you ?
+> 
+> We still have times, can you wait for chancel liu's patch for a while to
+> check if his method can help this situation.
+Do you know when chancel liu's patch is going to be submitted ?
 
-commit a8dbaf078fc585c391a3307f1adbf25d7433260e
-Author: Gregor Herburger <gregor.herburger@linutronix.de>
+Is there maybe some preliminary version I can try ?
 
-nvmem: Add the Raspberry Pi OTP driver
-
-Raspberry Pis have OTP registers which can be accessed through the videocore
-firmware. Add a nvmem driver to support these OTP registers.
-
-> diff --git a/drivers/nvmem/raspberrypi-otp.c b/drivers/nvmem/raspberrypi-=
-otp.c
-> new file mode 100644
-> index 0000000000000..393640cb9e32b
-> --- /dev/null
-> +++ b/drivers/nvmem/raspberrypi-otp.c
-> @@ -0,0 +1,130 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-[ ... ]
-> +struct rpi_otp_header {
-> +	__le32 start;
-> +	__le32 count;
-> +	__le32 data[] __counted_by_le(count);
-> +};
-> +
-> +static int rpi_otp_read(void *context, unsigned int offset, void *buf, s=
-ize_t bytes)
-> +{
-[ ... ]
-> +	fwbuf->start =3D cpu_to_le32(offset / 4);
-> +	fwbuf->count =3D cpu_to_le32(count);
-> +
-> +	ret =3D rpi_firmware_property(priv->fw, priv->read_tag, fwbuf,
-> +				    sizeof(struct rpi_otp_header) + bytes);
-> +	if (ret)
-> +		goto out;
-> +
-> +	memcpy(buf, fwbuf->data, bytes);
-
-If the firmware performs a short read or encounters a partial error, does it
-update fwbuf->count to the actual number of words read?
-
-If fwbuf->count is updated to a smaller value, the __counted_by_le() attrib=
-ute
-will dynamically shrink the bounded size of fwbuf->data. Could this cause t=
-he
-memcpy() to trigger a fortified memcpy panic, since it uses the original
-requested bytes size?
-
-[ ... ]
-> +static int rpi_otp_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct nvmem_device *nvmem;
-> +	struct rpi_otp_priv *priv;
-> +	const struct rpi_otp_driver_data *data;
-> +	struct nvmem_config config =3D {
-> +		.read_only =3D false,
-> +		.word_size =3D 4,
-> +		.stride =3D 4,
-> +		.reg_read =3D rpi_otp_read,
-> +		.reg_write =3D rpi_otp_write,
-> +		.id =3D NVMEM_DEVID_NONE,
-> +	};
-
-The commit message notes this driver supports the "device specific private =
-key
-OTP (BCM2712 only)".
-
-Does the nvmem subsystem default to creating world-readable sysfs attributes
-unless explicitly restricted? Could this expose hardware private keys to
-unprivileged users via sysfs?
-
-Should the config set .root_only =3D true to prevent this?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508-rpi-otp-dr=
-iver-v4-0-cf8d725d8821@linutronix.de?part=3D2
+Thank you for your help !
 
