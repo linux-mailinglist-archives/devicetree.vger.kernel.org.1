@@ -1,147 +1,176 @@
-Return-Path: <devicetree+bounces-294800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294711-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMoyHgmb/mkMtwAAu9opvQ
-	(envelope-from <devicetree+bounces-294800-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:25:13 +0200
+	id 8LvJLy1c/mkWpgAAu9opvQ
+	(envelope-from <devicetree+bounces-294711-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:57:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2100B4FD9E8
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:25:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A2354FC178
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 23:57:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9381030078B5
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 02:25:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7CB39301AA68
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 21:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7208E2C028F;
-	Sat,  9 May 2026 02:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39813330324;
+	Fri,  8 May 2026 21:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="XA0zSWNG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbfFULzW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB8D282F0C;
-	Sat,  9 May 2026 02:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B9032BF5D;
+	Fri,  8 May 2026 21:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778293511; cv=none; b=LdsZM8wU9HtNpppprc4/4CCgwwvTjSqqXpWnzgUOp9C6GllVSI3keJqKIIZYBH7P61l0Hm/Z6O76e+fBEMWXI4xuFo4+5ZczFJGNDKTG9VM3fzMuWITyz+FPbJcc3q5t7x+XSvXJD94mDHcL1skvX/V9TWm+jHv8YTvjHum3YPY=
+	t=1778277400; cv=none; b=sNp7haAXLrUR+o14Dt5crXvkeOEnXaR2RhzSJQJ8B85MTCmB4mifGJMYkSCzG9Lvr6rjNqoLmR5m1fefd1KAI+LgFqnFRuZ/ge0mBKo/4460LLBzBuvcxrqYGKTOuF3c6GyRE/aDL9cd0i7Qe8qEIBxcTBIe+/b3MN/GVeJ70W0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778293511; c=relaxed/simple;
-	bh=1gLrHmaH7ze3TUA14OWHdsqLiAi6ZCfvrAyNi0rJuRM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B4wkHzGvQGZDnpquujiPrZqkTsvfAqcJOgRl9koo+yPGjpwuiGyWguv6Th8jUHcgxyxJ2Ms//e1QZxGFrNOlGQc/A3Xp4mwSevT3q5kHUYkHTBIvMIofYveQPfVoDJGObAIS6oOPcfwWDr5HbgwSk2f7JQIK4CKAOTRA/nSqwqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=XA0zSWNG; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 943A3113FEF;
-	Sat,  9 May 2026 04:24:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1778293502;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=Es6Vws/eOKlp6GKSxTpWgYQiUx72bXIcoH8A5zQmI8s=;
-	b=XA0zSWNGfIxfsU8SO9vPVaT8aQl+J5o0UthVWlclapZjE/zgJ7/eZJCXPN2uwMa9juvK8B
-	m9Mi86M8qs7rcfw1wDbLqqGfDiHOuCPjFch5xeWBroP0yeZzFOnt7y0AjBTF2uuAZeNtSM
-	VNhQs1KBv7APWyl4yYTRwFZjiLkjG7BRM+5WHqKJQef/KPWLOxReqyjcQ/3ELrvR9hFSSF
-	7Y6URWipGU+NTPHQ7xA7VyH4/Bta28WropyrSB0am8ENasGLcJk8KN9G1fSlyA0QB1mJHz
-	3r70vA694+HII200i+TmUiEApOfhWDXcQ5fxPtrlUhRJv/kjWxoLxTAlR1xXkw==
-Message-ID: <decbcc28-831b-4220-90ee-fa32d9ce2e2f@nabladev.com>
-Date: Fri, 8 May 2026 23:47:48 +0200
+	s=arc-20240116; t=1778277400; c=relaxed/simple;
+	bh=q0+SHY0qC73hOivLZwbohhJ7pN7Lc5aNx5dZo3S2pxc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=hkpCuL0WmpLo6YWwwGkj/kiOLgHKgP3gI8eLU4zNfZxaSvf4E0d0n2eZCCdOU6kwk7lnfqbmVAtMUCx48FkL2WGCGNBaVBS7ivjVz3uTo07nHvQ4b+W/7ZPMc514GlrwmCg4pUThBWTv5+eFrwwmQC4PEEMNqJNKCHCh90wLwdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbfFULzW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6746FC2BCB4;
+	Fri,  8 May 2026 21:56:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778277399;
+	bh=q0+SHY0qC73hOivLZwbohhJ7pN7Lc5aNx5dZo3S2pxc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=SbfFULzWH0kXgp60gI9S45O/epTnQ939THlybn3iDROKZ7+e0cZnw9MeOs/wPyJhQ
+	 5c6Wp6+dFUWfaCfUvJZfk+l1c1lq9G3FQcN09agTHY+nHw0m/6c5Yy20yFUR2OVWuM
+	 KTFHoFZak9B5+eYl+w4ckxkk4o/RFGJSp+/6RxAI490XSBpLtO1pCmuzLTb6gLunDq
+	 iPB2eMR+QlBXYRmck1+o2ikt27TmZkWtcZdUzH7vfwRglrevyrgc6ZYNsP/OGwDnuw
+	 RElzgK+RLsre99isML9t/qu2o+zca5auv81eSGO/3xwwuHUT8XlmRe0fUHYchujy5H
+	 5RP30DhPbXJpQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RFC 4/4] arm64: dts: qcom: milos-fairphone-fp6: add
+ supply for Hall Effect sensor
+Reply-To: sashiko@lists.linux.dev
+To: "Griffin Kroah-Hartman" <griffin.kroah@fairphone.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, linux-input@vger.kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, dmitry.torokhov@gmail.com
+In-Reply-To: <20260508-gpiokeys-vdd-supply-v1-4-0bb32e8e6428@fairphone.com>
+References: <20260508-gpiokeys-vdd-supply-v1-4-0bb32e8e6428@fairphone.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 08 May 2026 21:56:38 +0000
+Message-Id: <20260508215639.6746FC2BCB4@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] arm64: dts: imx8mm: imx8mp: Add LVDS DTOs for Data
- Modul i.MX8M Mini and Plus eDM SBC
-To: Frank Li <Frank.li@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20260407211850.79881-1-marex@nabladev.com>
- <65342735-44b3-4a2b-90ab-6093e0fd91c9@nabladev.com>
- <af4FO5vOx3ruwWBE@lizhi-Precision-Tower-5810>
- <dec2a7f6-80fd-4692-8936-969f8837a555@nabladev.com>
- <af5EWnJyP6leh5ao@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <af5EWnJyP6leh5ao@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 2100B4FD9E8
+X-Rspamd-Queue-Id: 2A2354FC178
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294711-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294800-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TO_DN_SOME(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-On 5/8/26 10:15 PM, Frank Li wrote:
-> On Fri, May 08, 2026 at 06:20:10PM +0200, Marek Vasut wrote:
->> On 5/8/26 5:46 PM, Frank Li wrote:
->>
->> Hello Frank,
->>
->>>> this patchset is now split. How can we proceed ?
->>>
->>> I am thinking about it. I found an old thread
->>> https://lore.kernel.org/linux-devicetree/20250902105710.00512c6d@booty/
->>>
->>> The current code base already supportted partitial of it, such as gpio and
->>> irq map for connector.
->>>
->>> Internal chancel liu have prepared version by use nexus mapping for audio
->>> boards, which almost done to send out to review.
->>>
->>> I want to wait for a little bit well to resolve or partitial resolve N x M
->>> problem.
->> DT connectors have been discussed for the last 10 or so years and three is
->> still no real progress.
->>
->> I would be happy to send a follow up patchset which would convert the DTOs
->> to whatever connector implementation format lands in the future, but I am
->> concerned that waiting for DT connectors will block this patchset from
->> landing for a long time.
->>
->> So how about finalizing this patchset, landing it, and once connectors
->> become available, I will send a follow up conversion patchset ? Would that
->> be workable for you ?
-> 
-> We still have times, can you wait for chancel liu's patch for a while to
-> check if his method can help this situation.
-Do you know when chancel liu's patch is going to be submitted ?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Removing `regulator-always-on` from the Hall sensor's supply cause=
+s interrupt storms, spurious events, and broken system wakeup when the inpu=
+t device is closed.
+--
 
-Is there maybe some preliminary version I can try ?
+commit 35bf0d08eef4da2139153f5425e351a93d9d591d
+Author: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 
-Thank you for your help !
+arm64: dts: qcom: milos-fairphone-fp6: add supply for Hall Effect sensor
+
+This commit adds a vdd-supply property to the Hall Effect sensor and removes
+the regulator-always-on property from vreg_l10b, relying on the gpio-keys
+driver to manage power.
+
+> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm6=
+4/boot/dts/qcom/milos-fairphone-fp6.dts
+> index c1899db46e714..ae6900c3f75c6 100644
+> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+> @@ -32,13 +32,13 @@ gpio-keys {
+>  		pinctrl-0 =3D <&volume_up_default>, <&hall_sensor_default>;
+>  		pinctrl-names =3D "default";
+> =20
+> -		/* Powered by the always-on vreg_l10b */
+>  		event-hall-sensor {
+>  			label =3D "Hall Effect Sensor";
+>  			gpios =3D <&tlmm 70 GPIO_ACTIVE_LOW>;
+>  			linux,input-type =3D <EV_SW>;
+>  			linux,code =3D <SW_LID>;
+>  			linux,can-disable;
+> +			vdd-supply =3D <&vreg_l10b>;
+
+When the device is opened, the driver reads the GPIO state immediately after
+enabling the regulator. Without a startup-delay-us property on the regulator
+to allow the voltage to stabilize, could this read an uninitialized state a=
+nd
+generate spurious lid events?
+
+>  			wakeup-source;
+>  		};
+> =20
+[ ... ]
+> @@ -326,8 +326,6 @@ vreg_l10b: ldo10 {
+>  			regulator-min-microvolt =3D <1800000>;
+>  			regulator-max-microvolt =3D <1800000>;
+>  			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
+> -			/* Hall sensor VDD */
+> -			regulator-always-on;
+>  		};
+
+Could removing this property cause an interrupt storm?
+
+The gpio-keys driver requests and unmasks the GPIO interrupt during probe, =
+but
+only enables the vdd-supply regulator when the input device is explicitly
+opened by userspace.
+
+If the device is closed, the regulator is disabled. Cutting power to the Ha=
+ll
+sensor while its edge-triggered interrupt remains active might cause the GP=
+IO
+line to float. A floating line can pick up electrical noise and trigger a
+continuous interrupt storm.
+
+Additionally, does this break the system's ability to wake up?
+
+If the system suspends while the device is closed, the sensor remains
+unpowered. Even though the wake IRQ is armed due to the wakeup-source
+property, an unpowered sensor wouldn't be able to detect lid events to wake
+the system.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508-gpiokeys-v=
+dd-supply-v1-0-0bb32e8e6428@fairphone.com?part=3D4
 
