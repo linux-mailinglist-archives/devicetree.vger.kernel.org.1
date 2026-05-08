@@ -1,228 +1,374 @@
-Return-Path: <devicetree+bounces-294402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294404-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOw/A1Od/WmwgQAAu9opvQ
-	(envelope-from <devicetree+bounces-294402-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 10:22:43 +0200
+	id KMMaEwWg/WmwgQAAu9opvQ
+	(envelope-from <devicetree+bounces-294404-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 10:34:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4FC64F3A5A
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 10:22:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E37AD4F3C0D
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 10:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 134A6306D942
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 08:21:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D92BC30078B2
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 08:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8696B383C76;
-	Fri,  8 May 2026 08:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ovy7WJKb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705DC377558;
+	Fri,  8 May 2026 08:34:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9C603845A4
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 08:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.217.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778228451; cv=pass; b=l9b8Kwa2Q4uxJrBAgNdA7EJGhFd9S+ZPmVRPCEKYyhdS/IjGTn6ufKRFv+U3i3f57ExXlNU82tE8Lm7rx4Vuhjf7+FJLOvuM/xGPdi4ldSnj1dbajpXJxCZCnGauXACZeEtHrX1R61RsmVnyQ03SWMmow+JV3LKjiQ3mx5m2DT8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778228451; c=relaxed/simple;
-	bh=lTkF7Xj1pPLGJApccu/V8Mry4PVrzP0dv5SU+hphSqo=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76C333AD9C
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 08:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778229249; cv=none; b=dKDo9EbGO4GM9xW04WZxyVhsynSvtWmtLJ9SLDOz0PnZKOaQmztl5488JxRklUAKPRwW+gS8hNNctQ206uFNX51dPtUfgQfc+M1xlMPiLmZlj06jPS62nNH2Ue+AefAamwalUDb0suOJ9M4GQGVr7QEQzwLNTDEKkPneXnVpkuU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778229249; c=relaxed/simple;
+	bh=OF+KbbPBry4fiTqCO/A0vEBAM9IFzJmbWYXTqxwsniM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jOwSPNCPBDmi156y1526+jwPtco6uzFMx8CCu15TLvcQZnZMxZaZdPC+BiBHZ3hZCEIcex5aySQLBPz35RZKAx7xV1ilOQcNRkNCtWzukrUCf2zhSpBqfOPc2wh7hXRFt0N4d7Tn42hUUkLxKt2tX15nwQZHBBmcWWaP3k+NEZ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ovy7WJKb; arc=pass smtp.client-ip=209.85.217.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=qzwEqCp84U7S1GgL+qXPZc9ymPXR30qTe2B15Jv62pL0PrDXj2e5oUiM5jxmRJ1vo+BPe6Fc6LdR4YlDMVmY4YrmSujma5U+qc+FsGj0mD+UuMJqMqJww+EvnLk3lIpp7eet70VqLcr23XPeFYRy+jigoosOsyC5Ng1cPFnY1OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-62dff2771abso604523137.2
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 01:20:49 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778228448; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Lg5PRYqLgxehGm0vTS/s4YqxbM7zVX3+S83F44sbhmCcwREHRzOqgbKsMAyRyIhBxz
-         O4Ghg5QFxqdHXiqBTP2Fv8Ay09dCcCluofm2P2cSUN2Ds8NDBg76VWh5EK/+b48pSvzR
-         qPFIyi8gqskdyYqisSwhS+BixmPV/Y/40bQLOWy/FBzD3QA8iE3mnV/cCL/h5dj3Kr6H
-         v3n+YlJKu3+Y4TmCq8JFcr3NivOgYLLR6lpEHDiFJLYVgNtQliTddoJtlxUmoIoce2dB
-         TUPmA6wn5xkOn/Yu4mG//detMhbXUPokiH2ZnxhGQAdzp2EmZv+4L4172bpp+NUZG4DC
-         4izw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=HHvqc5QQlNg6QfQkGnDzkz4AP6jx9Mcp6qm5SqdJ5gs=;
-        fh=KnER7XqoK1Q68rKuLlX8/xRcgQZkvE003N2w582m/Y4=;
-        b=NKcFhd8Wwvd+4gVg2LkYN3xTGeESlLm7prg36yOh9ZnTumsPYjIrMfHrwq5zy4Rzgu
-         bAkDnNYD5pSOwDPlWufFvH5JaIjtqqEk3SNMtXk+oq+XMji0iSjHZfp48jWSNvKgSZPB
-         7zUg7Nb/eNu73OvyZPilmjz4Qyk4ekh26kSsIY664OZfOGwZtOce4T11gYfLyMb6HC5b
-         6wrDFVV1sGREdGlIxNh8du6C1egTB9aCWhcLERZQ8wWR04kHjmbTcWSs7rMup1+tj51b
-         +Hl4Nw9GjaRMQaROudx9soafWlYTTf2DUPl1T970xmLxUwpg8gRfAPfuzcuVP8nEBDXO
-         rW3w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778228448; x=1778833248; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HHvqc5QQlNg6QfQkGnDzkz4AP6jx9Mcp6qm5SqdJ5gs=;
-        b=ovy7WJKbLUXUpfS9AK2nUoxnoJ9aJC6emEzi+YmThLXN3+ZEuEXrvBzJQGuVY42x+C
-         LrikbL6KCjLDmFV54CKsT+eLXen8f96b8TRh0qwRS6iuazJxpaZNiPO1+t8ZqeSG01/3
-         iKVptjKvNT8Ac62at3juk15Mcc/wEYp4PFs2E/Tg6YnohqQT5LrWCYWyLOir8aqkAtBu
-         1xHn1s36xFW+mmiaqKn7KH6MsGDm1rWMU2X+H9DUfZfP/4G+KgHqTsUiVi0q2TexHLqD
-         rvEigLzLkD5gXEU2j9fTz4cY8ohLJvXfyb/Z2FMKo1iZKvkd1sDYlOkbVki1Umxcskep
-         60+w==
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-4233e152457so1246249fac.1
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 01:34:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778228448; x=1778833248;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HHvqc5QQlNg6QfQkGnDzkz4AP6jx9Mcp6qm5SqdJ5gs=;
-        b=Mo4JGyPZn8vAiGFlOqKstsZmEJIIk5PsDfNUpaVuwsnJ3sYaC2Np7sMxqMPwyiYtYD
-         2wl10O7NTW+u1LUj65OSVTqCrA0K+1GAXQPPGRiqTCbFq90ynoJLB0p6hDqtCXPONCTt
-         QPaWNqB5iSeFHd5pbxGZpF2434W48/rW1Auop3TrXiaQn1kb9VTaW/RX4asttelXp6Cj
-         IsRSGucJY0eWdKaYZnFkgx583cCelP4ebwm/6USh4NK0MDIsYh1guazUNMpSIDGBrYgY
-         9ekXIIVlho4yxHSTx01nIiWlJuVphQXfMTM9ynCepE8rQqvGAJlelMzODBHEIiGrNs3b
-         vUgg==
-X-Forwarded-Encrypted: i=1; AFNElJ+CtQs8LuA/DmCq8JCwc6nfUIkm+gNbW6eO50kg4kCo602eTjAz5ETC8QBg03/ZTLkWAhIO3ozNPBtF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEm8S40H7oUOsFPtgMKLdgbRsJBd7rQRWKbT3eEVUSc8f2VT5v
-	m0P6fp/3jQ8zLUxBH9VN19N8uyBLjI2yBjvumADnFx1L5MSfkRtjUcFz6FhL8bYxPWaY6yAdvfy
-	z2QrXxbFi9zhu9FG9fZVvmnL7SnHRmL4=
-X-Gm-Gg: Acq92OF2TBfpOj3AP3Rgvcu8JGKb05iVUhyjkn55w8axzcvu+oQbGovF9nPEX22J6v4
-	dH6G0obDDwxP4bU1JRAQ3qXcHKKuhOyf0I5oL1yffgr2x9t4ivrTTO8VL2S/jCH2axEKqZlFXQy
-	GkWzlu7ZN9jIJ1gDt2EPDmoPODkUJYcNKYf5amTVnTPaBdG80DC8oeWbKc1sQosdA4htMJabMuV
-	Iuefqd2IB0gKI77jQVQQURr+68oCPFHesar4vhhxEcTYlHrrvIHsfNkGOsPR5xcZTzi/c3B75RA
-	w+naFZzNDXQm0+Ql
-X-Received: by 2002:a05:6102:26d1:b0:608:6b33:5bc2 with SMTP id
- ada2fe7eead31-630f8fc123emr6203272137.18.1778228448423; Fri, 08 May 2026
- 01:20:48 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1778229247; x=1778834047;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vUNwtFp7LXv7nOLjMf/BlzJYT09wzG6WamyTo0Ov/no=;
+        b=kfvAQdVc1m5lNQATPYH8aDJy9cDdK4E6XwkIAsAoPYknTO4xHuQpSzq53aIDtctXOk
+         ROgjQNNKOhIlSoMSg8NKqwuSXgcpTYx+hgqmn9X6MAX5bSMvdEYtx8FIU6+4ysvR7j3X
+         n0do5VKZzsRqPPuFD5lyqpXUE+XKZs8Lsyyd3vxzn6lrqjyrlvbtrBusZZXfWGSJMGcR
+         8E2YjOYPzTV1JDe8eywTaUaRaNyrmwZDmrl3OVsUqKo4qWy9uFJM9YRKtdk6eIVqRwuV
+         mJ5p5PuZBfhaz8p0XTazW8RgrrO3v5Oba5hOrjsvabLcdt/XwKbc3O87mia8W1UtlfD+
+         0onw==
+X-Forwarded-Encrypted: i=1; AFNElJ+cIYmQT4QP5rVKM+njq4hP0NLvV1DNySTZzeYLVsSqLRQkuqkSYDPeYrI2MPhShkpch2hH+XQq9YrE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4h7EqDwLRkfOYj+7jgCQHBgDJF3AWpttKIRIL3cEnIjobgHw6
+	15WjZBZmSdgrfcAq8rKNAyxFGABBhdfp94+ThfJmvBNCyw0uTQP1oZDnGw+mBM78JP8=
+X-Gm-Gg: Acq92OHTvd07My5Int9jsYlmsVMUVrgKpvYDAWYhqjNhUjx9ildv4SwVyMbexZDDQSE
+	W/DUh7BjqQnOAtBu7doclVaSr8KsupkjEZwsakEyc/7HWZakhPrc5JPBGuoVtFYcv2hx5V08Grp
+	RamBDPIG9aLs1FkdhfCIO6tj9krdz5TQ24jHM0Uvmg8kPBg8DxFQOUDlOUGA9lbeOsVuyQ97eJZ
+	Si7i65LFgsikz/0YaIFIo9rYJ4csTIF6QjIVkmqYsJgq6YAlNkAinjH3dit/gLCmew+bwyin166
+	/4eikAWRQ4yhoiku7ahWQnREfHXDNQL8w4XSrxVN82xsR7CI+FIuvyjqKTm5Y0Mdub9zXAvanwb
+	nw7rbSI4Gx7e+NrSPCk7MNUMiLfVTCQoYU2t9E3OZzWA60O/RfcMCt6HNDXR21NcY5YLV0oWLXB
+	gxo5yhnx8bAQ0rig5yYYFv2+qGzaMRU4tctrnZD2ADbsOnl282bRwewuRQFy8x
+X-Received: by 2002:a05:6870:830c:b0:42f:b21f:22fa with SMTP id 586e51a60fabf-434f64f8223mr7562159fac.30.1778229246815;
+        Fri, 08 May 2026 01:34:06 -0700 (PDT)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com. [209.85.161.49])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-435573e7254sm1207631fac.14.2026.05.08.01.34.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 May 2026 01:34:05 -0700 (PDT)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-696ad0c2c2fso1008751eaf.0
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 01:34:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8hvc0V9LD6FEsbGuoDC0QZvTYoQB+rNfOTTxz7IioXPhnnwnYm6Nzr53jShV33ovlcqShaCUNUV6gr@vger.kernel.org
+X-Received: by 2002:a67:e709:0:b0:604:ec90:ba14 with SMTP id
+ ada2fe7eead31-630f8ee2fa0mr5929351137.11.1778228781677; Fri, 08 May 2026
+ 01:26:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260507-add-e50sn12051-v4-0-ff2b3768ac7e@gmail.com>
- <20260507-add-e50sn12051-v4-1-ff2b3768ac7e@gmail.com> <20260507-squealing-vanish-16fea3c114f5@spud>
-In-Reply-To: <20260507-squealing-vanish-16fea3c114f5@spud>
-From: Colin Huang <u8813345@gmail.com>
-Date: Fri, 8 May 2026 16:20:37 +0800
-X-Gm-Features: AVHnY4LY8-27TKesI70xHAUIFe9rb9_MdP2mFDNPu7z3TNgg0dnTs4zeU01pEIQ
-Message-ID: <CAPBH0A_D3siq+_CMM5Ouqemn56eJhU8U7KuL5gTC8h_tvL7kXQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: pmbus: add Delta E50SN12051 binding
-To: Conor Dooley <conor@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Chang <kevin.chang2@amd.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Shuah Khan <skhan@linuxfoundation.org>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, Colin Huang <colin.huang2@amd.com>
+References: <cover.1776793163.git.geert+renesas@glider.be> <053c312d07445517d8f9c84bfe3cc8fb72d4cd9a.1776793163.git.geert+renesas@glider.be>
+ <bf83a028-3ef3-482a-9ce3-8aec16f6ebed@mailbox.org> <CAMuHMdWN2zaZrY2jKKXpNqrP8xSqc-uJTr-siTBgaA=-EY_4BQ@mail.gmail.com>
+ <fa28c6fe-484c-4133-824e-649c52ef2200@mailbox.org>
+In-Reply-To: <fa28c6fe-484c-4133-824e-649c52ef2200@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 8 May 2026 10:26:09 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUU=RohST4LDDD27W5dj=HwJFApMcDpsXATQ1MaMH-tUA@mail.gmail.com>
+X-Gm-Features: AVHnY4JJUxMOqvyoeb-hr7ynluUAgTja2N2yaP-Ep1K9EfNyRckxSh-cxJzmeNw
+Message-ID: <CAMuHMdUU=RohST4LDDD27W5dj=HwJFApMcDpsXATQ1MaMH-tUA@mail.gmail.com>
+Subject: Re: [PATCH/RFC 10/14] dt-bindings: power: Document Renesas R-Car X5H
+ Module Controller
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Ulf Hansson <ulfh@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, arm-scmi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: B4FC64F3A5A
+X-Rspamd-Queue-Id: E37AD4F3C0D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [4.84 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,arm.com,gmail.com,baylibre.com,pengutronix.de,broadcom.com,sang-engineering.com,mailbox.org,renesas.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-294404-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294402-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
+	GREYLIST(0.00)[pass,body];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[u8813345@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	DMARC_NA(0.00)[linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amd.com:email,0.0.0.40:email,devicetree.org:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.957];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_DKIM_NA(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c09:e001:a7::/64:c];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,c0710000:email,0.0.0.0:email,linux-m68k.org:email,mailbox.org:email]
 X-Rspamd-Action: no action
 
-Conor Dooley <conor@kernel.org> =E6=96=BC 2026=E5=B9=B45=E6=9C=888=E6=97=A5=
-=E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=881:07=E5=AF=AB=E9=81=93=EF=BC=9A
+Hi Marek,
+
+On Thu, 7 May 2026 at 23:36, Marek Vasut <marek.vasut@mailbox.org> wrote:
+> On 5/7/26 9:37 AM, Geert Uytterhoeven wrote:
+> > On Thu, 7 May 2026 at 00:58, Marek Vasut <marek.vasut@mailbox.org> wrote:
+> >> On 4/21/26 8:11 PM, Geert Uytterhoeven wrote:
+> >>> +  '#power-domain-cells':
+> >>> +    description: |
+> >>> +      - The first power domain specifier cell must be either the Module
+> >>> +        Power Domain Gating (MPDG) register index (0x00-0x3f) from the
+> >>> +        datasheet,
+> >>
+> >> I agree with this part.
+> >>
+> >>> or a Power Domain number, as defined in
+> >>> +        <dt-bindings/power/renesas,r8a78000-mdlc.h>,
+> >>
+> >> I do not understand this part, please see end of this email ...
+> >>
+> >>> +      - The second power domain specifier cell must be the module number
+> >>> +        (0x00-0xff), composed of the Module System Reset (MSRES) register index
+> >>> +        in the high nibble, and the Module Reset Destination bitfield index in
+> >>> +        the low nibble.
+> >>> +    const: 2
+> >>
+> >> I am unsure about this part.
+> >>
+> >> There are multiple MDLC blocks, AON, SCP, HSCN, and so on. Each MDLC
+> >> block contains multiple Module Power Domain Gating registers (MPDGn) and
+> >> multiple Module System RESet register (MSRES) .
+> >>
+> >> I do understand and agree that the first power-domains-cells cell must
+> >> be the identifier of power domain within the MDLC block.
+> >>
+> >> However, I do not understand the second cell. The MDLC bindings already
+> >> contain reset-cells, which should be used to refer to a reset within the
+> >> MDLC block. Resets within the MDLC block are operated using the MSRES
+> >> registers. Why are resets conflated into power-domain-cells ?
+> >
+> > The Module Reset Destination bitfields in the MSRES registers are
+> > 2-bit wide, and control both Reset and Module Standby.  Hence the
+> > same register bitfields are referred to in the power-domains and
+> > resets properties, through the module number.
+> >
+> > Module Standby controls the clock(s) going into the module,
+> > and is modelled as an SCMI clock (SCP_CLOCK_ID_MDLC_*) by the SCP
+> > firmware. This is very similar to how MSTP (Module Stop) clocks are
+> > handled on earlier R-Car SoCs (except that the SCP_CLOCK_ID_MDLC_*
+> > clocks have a zero rate :-(.
+> >
+> > Summarized, the first cell is the power domain part, and the second
+> > cell is the clock domain part.
 >
-> On Thu, May 07, 2026 at 01:12:26PM +0800, Colin Huang via B4 Relay wrote:
-> > From: Colin Huang <u8813345@gmail.com>
-> >
-> > Add devicetree binding documentation for the Delta E50SN12051
-> > PMBus-compliant device.
-> >
-> > Signed-off-by: Colin Huang <u8813345@gmail.com>
-> > ---
-> >  .../bindings/hwmon/pmbus/delta,e50sn12051.yaml     | 42 ++++++++++++++=
-++++++++
-> >  1 file changed, 42 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/delta,e50sn1=
-2051.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/delta,e50sn12051.=
-yaml
-> > new file mode 100644
-> > index 000000000000..72aefe212d17
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/delta,e50sn12051.ya=
-ml
-> > @@ -0,0 +1,42 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/hwmon/pmbus/delta,e50sn12051.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Delta E50SN12051 PMBus Sensor
-> > +
-> > +maintainers:
-> > +  - Kevin Chang <kevin.chang2@amd.com>
-> > +
-> > +description: |
-> > +  Delta E50SN12051 is a non-isolated 1/8th brick DC-DC power module.
-> > +  It is a PMBus-compliant device accessible via an I2C/SMBus interface
-> > +  and provides standard telemetry such as voltage, current, and
-> > +  temperature measurements.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: delta,e50sn12051
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: I2C bus address of the PMBus device
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
+> Thank you for the clarification.
 >
-> With only these two properties, shouldn't this be in trivial-devices?
-Thanks for your comment.
-I will remove this file, delta,e50sn12051.yaml,
-and add device into trivial-devices.yaml.
+> Since there are up to 32 MPDG registers, and 256 resets, can we encode
+> both into a single cell ?
 >
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        power-module@40 {
-> > +            compatible =3D "delta,e50sn12051";
-> > +            reg =3D <0x40>;
-> > +        };
-> > +    };
+> (mpdg_register_offset << 16) | (reset_bit_offset << 0)
+
+We could.  I did consider it (with a shift of 8 cfr. 256 modules),
+but see below...
+
+> I cannot tell whether this is much better, but it at least ties the PD
+> components (power domain and clock domain) into a single value, which
+> matches reality a bit better. The current split power domain and clock
+> domain description in two cells gives me the illusion that it is
+> possible to mix and match power domains and clock domains in DT
+> description, but in fact the two cells are strongly tied together.
+
+They are only tied together in the sense that a module (hardware block)
+is part of a power domain, and has module standby (clock) control.
+Some power domains are backed by MDLC hardware registers,
+others are not, hence the need for the additional definitions in
+<dt-bindings/power/renesas,r8a78000-mdlc.h>.
+I am not aware (yet) of modules that are part of a power domain,
+but do not have module standby control. If these exist, we
+need an additional definition (R8A78000_MDLC_MODULE_NONE?) in
+<dt-bindings/power/renesas,r8a78000-mdlc.h>.
+
+Due to this separation, and due to a possible future need for expansion
+(R8A78000_MDLC_MODULE_NONE, MDLCs with more than 256 modules, ...),
+I went for two cells.
+
+> If we cannot encode the two into a single cell, maybe we can at least
+> have some sort of macro for this, e.g. this (0xff as no MPDG register
+> bits for this block):
+> #define R8A78000_MDLC_PD_HSCIF0 (0xff << 16) ((0x5 << 4) | (0x3 << 0))
+>
+> What do you think ?
+
+I (and I believe the DT maintainers) are not so fond of defines for
+numbers that can be (more or less) just read from the documentation.
+(and 0xff should be R8A78000_MDLC_PD_APL?)
+
+> > So perhaps I will clarify like this:
 > >
-> > --
-> > 2.34.1
+> >        - The first power domain specifier cell is the power domain part, and
+> >          must be either the Module Power Domain Gating (MPDG) register index
+>
+> ... for power domains which are backed by MDPG bits, and which can be
+> controlled in that manner ...
+
+OK.
+
+> >          (0x00-0x3f) from the datasheet, or a Power Domain number, as defined in
+> >          <dt-bindings/power/renesas,r8a78000-mdlc.h>,
+>
+> ... for power domains which are always on, and for which there are no
+> MPDG bits which can be used to control them ...
+
+OK,
+
+>
+> >        - The second power domain specifier cell is the clock domain part, and
+
+Upon second thought: s/clock domain/module standby/
+
+> >          must be the module number (0x00-0xff), composed of the Module System
+> >          Reset (MSRES) register index in the high nibble, and the Module Reset
+> >          Destination bitfield index in the low nibble.
+>
+> I can understand this.
+>
+> >>> +  '#reset-cells':
+> >>> +    description:
+> >>> +      The single reset specifier cell must be the module number (0x00-0xff).
+> >>> +    const: 1
+> >>
+> >> [...]
+> >>
+> >>> +#ifndef __DT_BINDINGS_POWER_RENESAS_R8A78000_MDLC_H__
+> >>> +#define __DT_BINDINGS_POWER_RENESAS_R8A78000_MDLC_H__
+> >>> +
+> >>> +/* R-Car X5H MDLC Power Domains */
+> >>> +
+> >>> +#define R8A78000_MDLC_PD_AON                 0x40
+> >>> +#define R8A78000_MDLC_PD_SCP                 0x41
+> >>> +#define R8A78000_MDLC_PD_APL                 0x42
+> >>> +#define R8A78000_MDLC_PD_CMN                 0x43
+> >>> +#define R8A78000_MDLC_PD_ACL                 0x44
+> >> ... what do these numbers represent ? Shouldn't those be register
+> >> offsets from MDLC MPDG00 according to power-domain-cells ?
 > >
-> >
+> > These are Power Domains that are not backed by any of the 64 Module
+> > Power Domain Gating (MPDG) registers in MDLC blocks.
+>
+> I suspect that might not be entirely correct for all of them, please
+> read on and see CMN below.
+
+Thanks, looks like R8A78000_MDLC_PD_CMN should be dropped.
+
+> Let's take PD_AC00 , AP core 0 , as a domain of interest. My
+> understanding is, that the domain structure for PD_AC00 looks as follows:
+>
+> PD_AON {
+>    PD_SCP { };
+>    PD_APL {
+>      hierarchy is SYSSS
+>      always-power-on
+>      PD_CMN {
+>        hierarchy is CMNN
+>        power-gating-bit is MDLC_CMNN 20
+>        PD_APU0 {
+>          hierarchy is SYSSS
+>          power-gating is done by APMU
+>          PD_ACL0 {
+>            hierarchy is CMNN
+>            power-gating-bit is MDLC_CMNN 16
+>            PD_AC00 {
+>              hierarchy is CMNN
+>              power-gating-bit is MDLC_CMNN 0
+>            };
+>            ...
+>          };
+>          ...
+>        };
+>        ...
+>      };
+>      ...
+>      PD_HSCIF0 {
+>        hierarchy is PERW
+>        power-gating-bit is MDLC_PERW 23
+>      };
+>    };
+>    ...
+> };
+>
+> With this in mind, I think CPU 0 DT node should refer to the PD_AC00
+> power domain this way:
+>
+> cpu@0 {
+>    ...
+>    power-domains = <&mdlc_cmnn R8A78000_MDLC_PD_AC00>;
+>    ...
+> };
+
+So we do have a few modules (I found a few more) that are part of
+power domains, but do no support module standby.  One more reason to
+decouple them in power-domains.
+
+However, CPU cores are controlled through PSCI (the slightly less evil
+brother of SCMI? ;-), so
+Documentation/devicetree/bindings/arm/psci.yaml applies, too?
+
+>
+> The MDLC driver would pass the PD_AC00 domain ID to matching SCMI power
+> domain management protocol call, or, for bare-metal MDLC driver, would
+> have to internally encode PD hierarchy, walk it, and apply PD operations
+> in each step.
+>
+> I think even for SCIF/HSCIF, the power domain reference should be
+> something along the lines of the following description. The MDLC driver
+> should internally encode that R8A78000_MLDC_PD_HSCIF0 is a sub-domain of
+> R8A78000_MDLC_PD_APL .
+>
+> serial@c0710000 {
+>    ...
+>    power-domains = <&mdlc_perw R8A78000_MDLC_PD_HSCIF0>;
+>    ...
+> };
+
+R8A78000_MLDC_PD_HSCIF0 is a not a full sub-domain, but merely standby
+(clock) control inside the PD_APL clock domain?
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
