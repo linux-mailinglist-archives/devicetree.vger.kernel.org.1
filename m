@@ -1,592 +1,242 @@
-Return-Path: <devicetree+bounces-294596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPb1OqsW/mkTmwAAu9opvQ
-	(envelope-from <devicetree+bounces-294596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 19:00:27 +0200
+	id kMQzIrcW/mkTmwAAu9opvQ
+	(envelope-from <devicetree+bounces-294599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 19:00:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AEC4F9A93
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 19:00:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8444F9AAC
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 19:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 495493028B17
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 16:59:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CEAB33013A50
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 17:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82ABA3E4C80;
-	Fri,  8 May 2026 16:59:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0060D40DFDC;
+	Fri,  8 May 2026 17:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="A4ygcGqU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kDHZiJLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010066.outbound.protection.outlook.com [52.101.61.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E867CA45;
-	Fri,  8 May 2026 16:59:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778259575; cv=fail; b=K2aun7vGuTOvGgTgFJvxgxRCJ1CGm3BMTuJPFpSwWOcOwkggOz/qmyrmFs1GIuCaChX+RafK/VpGO3xOsUC1O1lx+CpV576ALnISOpdhm9eD0Ebjk4nMQ55OagFAGmELWViavweI6EAZZGeH7kqR+NoXiIczIk0wZ3lYmWT7TZk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778259575; c=relaxed/simple;
-	bh=ZSj4bQAPat0E3nDxxLfFmF+6t8MmJvOjeGfRAMr5raw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=dv0gYg7r3Cmq6TLaPjOH6uErIoQ06ERNeBo3jVyUy5PXtNKslibSpvJq798p7zssXuaYeXKy07C1GRgAZ/dRKI7PKiuUEQx5hMpHZRPzi2Rz9aKWKNvpbaSHGdv4RoQvYni+KWbrszKv37LA5EJPpx3BTlAhp/SbafrBQGSQbjw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=A4ygcGqU; arc=fail smtp.client-ip=52.101.61.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A1qjQdzoXRKciTeKPfgfz5FMWWz4c0FcLKfcG8Dk8IaYcU1Pa9O+nCQ96wAWrEPZooPC+QrcogYPxiSyi70Y27/o/xNnaWY5Sxc7GqBBkze5UphsQyHCLHCYgUR4wwSkD4Q7oqvcNo4DCThZ1rFbodPDArrFSZexvQfsqGX3ncUIwdY29K0z892DlMzlIkOa/qvSVA5LnFOnawxjjBWoa5hMT2B5VOnJDxxmnc8rMiRX4MaAA47UzAREjHok+iK+r9m3x4jASsmujKvADrSIEiEzqBPUQUe3IwB5XDmBwa2xyMiwdxS06qq/B0NIZTgOkdACnoasezN1aerlLJ7uLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uascw88TMcXPH7usMit9sUJWoktW3Rm7v7nfuD9NU5M=;
- b=UDEhwUTL/rUSjIKAUczulAb5krMXvBru4QGI0xRt83q5eC8JHU5j1VxBQn/8N5d6tHRGhFyHeRwYwoxTHuOvqnd1XWf5pwYLfPPxBxTdBjwkgQV83bkp1eLVzXqdS6ar5IILlvsZNS5rQqqdP270dNPYMCYcBl9bdwYnpBrV3VhE0So7eXaiqembXfmgPfbBHEh7grPd+XEP/IU/iTaIJzmxy2ry8J1X5veqgd4iWqYXqsRYiYVJx799EiSduRcU1E/59bGbxbze5Y8pKR7CDnB8o9wUfzvt62aSjSOi8ins42EZxCvqMIOx9PEP1Vd86J6IEQrCI1uGEnIcMO9oOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uascw88TMcXPH7usMit9sUJWoktW3Rm7v7nfuD9NU5M=;
- b=A4ygcGqUdDQ1fXTAnn+v4vsfpQLVgnl5SsV5Cf5GlD0jaaYvsRgETJQ6PnD1vRajenev5F91BQAry/G3q5kTYuybaCMX9CPhIdQyuAYIQyFGEe6+x34dGsiYVLZDyElSKoxyv76zMlzTWar6QLu2HyCtUjp7V0NM6qV3aE+7gnc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6448.namprd12.prod.outlook.com (2603:10b6:8:8a::7) by
- DS3PR12MB999217.namprd12.prod.outlook.com (2603:10b6:8:390::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Fri, 8 May
- 2026 16:59:31 +0000
-Received: from DM4PR12MB6448.namprd12.prod.outlook.com
- ([fe80::62c2:71cd:7fdc:987a]) by DM4PR12MB6448.namprd12.prod.outlook.com
- ([fe80::62c2:71cd:7fdc:987a%6]) with mapi id 15.20.9891.016; Fri, 8 May 2026
- 16:59:30 +0000
-Message-ID: <d904a2da-9ef8-4a1a-aa4b-782bc75d21ae@amd.com>
-Date: Fri, 8 May 2026 09:59:28 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] remoteproc: add AMD BRAM-based remote processor
- driver
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
- Ben Levinsky <ben.levinsky@amd.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, linux-kernel@vger.kernel.org, michal.simek@amd.com,
- tanmay.shah@amd.com
-References: <20260428142633.1854251-1-ben.levinsky@amd.com>
- <20260428142633.1854251-3-ben.levinsky@amd.com> <af4FoowZg6myMzMI@p14s>
-Content-Language: en-US
-From: Ben Levinsky <blevinsk@amd.com>
-In-Reply-To: <af4FoowZg6myMzMI@p14s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0070.namprd03.prod.outlook.com
- (2603:10b6:a03:331::15) To DM4PR12MB6448.namprd12.prod.outlook.com
- (2603:10b6:8:8a::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B413101A7;
+	Fri,  8 May 2026 17:00:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778259634; cv=none; b=cLD/L5rQrWps2suq+c/c7Vmd5p0oQs9On/jtSJrD6Ckp2wGTgYLn1EjFnPyqcnq7wK7pWGjqyGtLrvJeXBDu4gVB0/lNPCPkfhSYLeqDnW2WEzoHaul1zhNAOu+Rhx+z0KJsa4LSVUUWPC1YezCtOMD4AqRH2q7GV9AjxZ0E54s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778259634; c=relaxed/simple;
+	bh=fufvz3D3Ed+0Vx3B7r+7ZrpCMU/irXf5wqRVZ6Rm4uk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=icMLIT+Ox+bFbiyPk1Tftab1UWJRA6q/F9Njoqc6OQ45YYL4ji6nuXah3bXaqGfhDofxY67tW70K3mYILCj/L7orKsycp0x5K805Z1e0ySSjf7hi7XeaV2kQ/BUbvZq84MRCSPUWPhjb3Km1VJo6jtqvT8DneH5jWgNWuWoOLWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kDHZiJLy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 62ECDC2BCB0;
+	Fri,  8 May 2026 17:00:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778259634;
+	bh=fufvz3D3Ed+0Vx3B7r+7ZrpCMU/irXf5wqRVZ6Rm4uk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=kDHZiJLyjuzNsKRpE2m4nGNcFcnVhPj8rNegYNbjcviGKTHnnks93NMrpTE7ns2Lk
+	 pZsudzjSnpXn3qktbs6O3ydR8RHIwZvyzcG6w/f3fvxKTRVRw4ZCOopDVmtJGnA1Ys
+	 bs3WwGfuyKxVOK9XFMmEKhP/YNw/pLjjs3MmRdSkrJC6tbPHeKrQjkyU2nj8AiDuyz
+	 yGygllBJ2tEvstRZ7ti5sHPm4gDekFhhtxPG7xhrmMYBSKyvG+4KHhishvvNxUtzKQ
+	 Ukg54dp83fVjKQIUXHIGpjjO+SOXT96Ly+1QvLMB4wwdAaXyutXSZc1Cz80+B/T1s7
+	 vL3ujsgNMP7rQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CEA4CD3445;
+	Fri,  8 May 2026 17:00:34 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH RFC v4 00/10] AD9910 Direct Digital Synthesizer
+Date: Fri, 08 May 2026 18:00:16 +0100
+Message-Id: <20260508-ad9910-iio-driver-v4-0-d26bfd20ee3d@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6448:EE_|DS3PR12MB999217:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07b8e43d-0af9-4dd4-bd44-08dead232bf3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	tsln7yaHHL3iu2w83bG1QT9XkW+lrxG9h1mlDc97mbEPjmKH8GSCsS7zHcRXiF3Y4NEiXIjSGHTdtYS0WwCDRof+/FmNq0WY28OHOcFxkziujP5MTNgXRGzWSW31qD4/2Ev6yb/z4DdDukiKWYjbzm4tun++pONnDXRTUA1ZujqWZrNfiB0NiM8yNvKvwcjrqcuckr83Fzpv3EHFq7qG6gQi3oJSlczJoElR7pWSu8sik8YUtQpYS9yD2RuuLkT55xqez9aWK+7aEXrDm4tz7qFtXb2OXsoF0LYdQMVN2MJgsAZTSMoMd813xc1gJ3EBFTg2xPJbsDLoG29bm3frjP2PsZNrBqjKiN+qraWYlrIcpVVOYLEpvMgbAH+7uEcxMqPTuna1iDlatMKyI8eIpoCxkgAmT5ll9SEuX3GFLEqLXyhzdFimRzhHASx0Hp3vgK0/uRbDTNKHXGX6EIvnf+bAia6x8L3u2WH5BaEIxcEYOXy23I/iMau8Qm07B8TBOcZj68DQ750jQFo5fSpHqHKpzRCs1zmomMjmQ1s5O8M3b4ozkU/PM8tIq6tidA3amIFEHb2xk9UakoOqE8TWpUwuMbdfp9SD/eFfnPMylFsFikfckNgH7/19GeLsrCo10RIxlSlaBMCC8GlO30uX9fxwAx6dNyjlQTk3Y1JPuO/F5SGYwTJQs2Z0z3UXx4Op
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6448.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WWhxVGEwZ3d2SUZVakRxNHVyRXVrbCthYVhUWE03azJYQ01RbmVqVUZiQWlU?=
- =?utf-8?B?NHlOUmFhRmdoTUtuTHFsRm9jMGgzdjJjMTRRb2llVkhzWGI0YVNLZXhlWUpZ?=
- =?utf-8?B?SzdKZjFxNk9ML2tqNFhCSkZaR25DYXN4UmJzT0paK2ovZEVGT2o2QTFJajcx?=
- =?utf-8?B?TnUxMVFsTktKT0VRV3dlaklLWldVNHd0MDlSM3d3STdhRitSZEp0NUFhenJy?=
- =?utf-8?B?OVRUdlAzNG8ybjltb3hoWE5nS0poRy93SkJPZndBeXRFQVVkcTZEdzlDNFBh?=
- =?utf-8?B?UWtPYmo0SEZkUVUrRnpXUFdUeXl1NjRDa1ZNdFJxc003V1FwOGl5VXd4NjBv?=
- =?utf-8?B?bHFYZ0N6bkdqeFRqc0V1ZXNCR0pSa0NUUC9oV0VWdWFadkRPS2laUFpRNXJv?=
- =?utf-8?B?bGJpRE15VmFwWmJhMExJcVZNQnNXMllESUhLUTNmS3dEa2RwdFlGazd4QjZq?=
- =?utf-8?B?RDBPYW9xZWpmMUxwSnVDTloxTWlTOWlyMzBCcGw0eS83TlZmTzMwbnBzd3VB?=
- =?utf-8?B?R0oxcit1ZEdmZkZlc0U3Z1lQNWE2MG5QZG8xNU5memk2UWIrc2hQUXJQMnZE?=
- =?utf-8?B?aHJ2eXNVNDRsa0s2SFB0OW1kckNQL0ZRVWxNTjcrVlBzWk02Z0NrSXdVaVE5?=
- =?utf-8?B?NTBROS9STDVVMWJtZFdjU0MxcnZMQzkzSkErUzVlWlpKUW9lSFg2QUJCR2R5?=
- =?utf-8?B?WVhVM2x3VUJYY3J2OTFXVSt0YlIwV0ltOGpOcmsrRFV0bEJMUktaTnVXTm8r?=
- =?utf-8?B?Q2VaRy8vL2E2VHdzU01DOWNHRy9nZ2g0SzRlRWpMSHRrMEh5RzNHT3hkUE9W?=
- =?utf-8?B?Y0V3Z1NaUnNDSVZubG5jUURiOExEYVk4L0I3N0xtaGVVSEhaUXVBNHkvcnM4?=
- =?utf-8?B?b2Q1Y3MxVEtyWVg2bnhTbHREQ2FNcEl4dVp4TlVPdy9CcmZZTEhISWYzTmY2?=
- =?utf-8?B?M2FKdVRZcS9RSWh2SWkxT3MzK0RKWVlHVS9aUDYwaFhKbEZWdnUrQ2s4dlVl?=
- =?utf-8?B?TXFxRDNtRllNdGFEbnRka2VFOWN5T2hCQUVWdEFoTG9ZejYzakpnVW1ZU2l6?=
- =?utf-8?B?d096QkpqNmhzZFdkZDdFa1VsU0lzRUdkSUlqTnFoMGVnVDhIUlRUUFlaeGFL?=
- =?utf-8?B?OEsycWNwWTRnQzRueThuekNwS0hXN2VuaFhaZFYwUkZBNEM2cFhYZWxrcWtP?=
- =?utf-8?B?S2JqelEyTFlLOERmYjBySmpaTUp0NHRITGcrbDBNMlFmWktXWWtKSy80T2d3?=
- =?utf-8?B?TVZQU05lV1hVQVZ2V0UvcFFEa2h2b2lQMFFJaU5mbHVMemZBbjhOZldHakpI?=
- =?utf-8?B?NkpVVDNEb0Y2eUU2WFhwVDBXV05JMyt1MjVMdi96YTE5ZGo2MXBTK2Y4M1Av?=
- =?utf-8?B?T0ozNzJQbENVQ2l3OHJ5TUJ3RHgrNFlVZEtGUjBMZ1cweERrUGx4WXhCTXhP?=
- =?utf-8?B?K014ZkFJQ1JVREdqajhqbnZublJRYm43ekM0TTRVa1pVWWxSM3lrZWNsU0dO?=
- =?utf-8?B?QUNwMGppa0JOZDlmb0VVeFhpdDJiakJodm9YTlJGV3YrcFV4a01sa3FnMzRX?=
- =?utf-8?B?RVlhN2VqWWFZY0FNQys0YnBhWVVzeC93NmZIc1hDOWdpbGs3NkdJR1M1SzBV?=
- =?utf-8?B?VTRNZjNqV0laMktVVW13NFlUYW5nenZ1bTBrdTBMb1Zlc2VmbmlBWjdYaC9m?=
- =?utf-8?B?RXJGQnJNWmJ1NWVuclphS25leFVCbnFVMXJHWnhiZE45UDhMcnk2MG1PcWVu?=
- =?utf-8?B?dEY5Qy9SMzdwQzVpa2M4VEJ1eittRVc3ZmFleUdMdlF4ZXJycFNGanpHdm5U?=
- =?utf-8?B?aEljMGNYRmxTQlRCTXN5dlBNV2Q0UjdEbWNNTnVkK210T3VVSmFvUVE5dzZL?=
- =?utf-8?B?UEF5T0l2ZkRZejNrRjd0elp4K0pHY1VENXdpRW9BTW1wMW1VZnpXVDFTb2JT?=
- =?utf-8?B?aGZVaGRCdDJKOE5ZaWIvSEJWaVllc3dGVWQ4KzJwOTVuWS9CWHdWOWVLWTJz?=
- =?utf-8?B?b1lLTExSd2NJSVhUTFYwUHNFckozRHNOZEtQeXROeUpPWVI2N0JYaXN3ZmpZ?=
- =?utf-8?B?VFAyZnVsK0N1YU1vMzliWk5PNlVybHVSMUZIdTI0RTk1ZzJjdE1EbnpWNjE1?=
- =?utf-8?B?L202cVdWa20rMzd1YytaQm9ScXhwTGo3dnRPTDk4RXVYL1RlWVJzWUFXZGFC?=
- =?utf-8?B?Y05wTTlONnE3RVRzajduWUFJUHVTUGVEY05iK2VRaWZ0SlpmeXNldmhSMDZE?=
- =?utf-8?B?OGRtV2luVkxDMGJXbnZzQnJOUmw0N3JKMjQ1UFlJb1VZOUhXRFlSUzhhQzc1?=
- =?utf-8?B?VUJCS3NRVnFLaW5LOG1hNUthZmFjSHNDOHZEVy9nWmI4SkFvOVhEQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07b8e43d-0af9-4dd4-bd44-08dead232bf3
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6448.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 16:59:30.7617
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RXH1xJrAShPi/NrwuPfvyVksfhOQn4UKEITsyJEQpAnLGjuSegXpK/I91FQqn14IeUriu4bljZakyQrgWQrIRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR12MB999217
-X-Rspamd-Queue-Id: 99AEC4F9A93
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKAW/mkC/23OwQrCMAwG4FcZPVtp0rqtngTBB/AqHrqt2wK6S
+ itFGXt3yzwMccc/4f+SkQXryQa2z0bmbaRAbkhBbTJW92boLKcmZYYCc4FQctNoDYITOd54itZ
+ zXckGQdW4g5al3sPbll6zeWHn05Fd07Cn8HT+Pd+JMK++JIoVMgIXXFaYK2NUaUAczGBurtvW7
+ j5zERdCrn4VMRG20K2Wla1bgD9CLoSCYo2QiUBdaVkAGsTyh5im6QMKQJetPgEAAA==
+X-Change-ID: 20260218-ad9910-iio-driver-9b3d214c251f
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-hardening@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778259632; l=6178;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=fufvz3D3Ed+0Vx3B7r+7ZrpCMU/irXf5wqRVZ6Rm4uk=;
+ b=wIkMQtQcYZN0KDHnFvW3yjOLjt5CiSp9nvYy0Zw5lJrN0JaQPtSqeE2l+m9AyqHun3ynRWsoV
+ CL3HlcpOP07Ckn2TrGazpsBlHnqxX5gQlimyzCxfi+h6f94OlE+H+Em
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
+X-Rspamd-Queue-Id: 3A8444F9AAC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-294596-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[amd.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294599-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[blevinsk@amd.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,checkpatch.pl:url]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:mid,analog.com:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi Mathieu,
+This patch series adds support for the Analog Devices AD9910 DDS.
+This is a RFC so that we can agree/discuss on the design that follows:
 
+This is a follow-up of the V3 discussion. For V1, we reached into
+this channel composition agreement where physical channels may have
+sub-channels. That adds the flexibility necessary for this design.
+During V2, some feedback indicated that the ABI is too device-specific,
+so DRG/RAM destination and operating modes are configured through
+alternate paths and profile channels are created. In V3, there was
+further discussion on the ABI and on mode priority debug.
 
-On 5/8/26 8:47 AM, Mathieu Poirier wrote:
-> Good morning,
-> 
-> On Tue, Apr 28, 2026 at 07:26:33AM -0700, Ben Levinsky wrote:
->> Add a remoteproc driver for AMD soft-core processor subsystems
->> instantiated in programmable logic and using dual-port BRAM for
->> firmware storage and execution.
->>
->> The driver parses the firmware memory window from the remoteproc device
->> node's reg property, interprets that address and size in the
->> processor-local address space, and then uses standard devicetree
->> address translation through the parent bus ranges property to obtain
->> the corresponding Linux-visible system physical address.
->>
->> The resulting translated region is registered as the executable
->> remoteproc carveout and coredump segment.
->>
->> The processor is controlled through an active-low reset GPIO and a
->> subsystem clock. The clock is enabled before reset is released, and the
->> processor is kept in reset until firmware loading completes.
->>
->> The firmware-name property is optional, allowing firmware to be
->> assigned later through the remoteproc framework. Firmware images
->> without a resource table are also accepted.
->>
->> Signed-off-by: Ben Levinsky <ben.levinsky@amd.com>
->> ---
->>  MAINTAINERS                         |   7 +
->>  drivers/remoteproc/Kconfig          |  14 ++
->>  drivers/remoteproc/Makefile         |   1 +
->>  drivers/remoteproc/amd_bram_rproc.c | 243 ++++++++++++++++++++++++++++
->>  4 files changed, 265 insertions(+)
->>  create mode 100644 drivers/remoteproc/amd_bram_rproc.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index c871acf2179c..172539971950 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1037,6 +1037,13 @@ S:	Maintained
->>  F:	Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
->>  F:	drivers/w1/masters/amd_axi_w1.c
->>  
->> +AMD BRAM REMOTEPROC DRIVER
->> +M:	Ben Levinsky <ben.levinsky@amd.com>
->> +L:	linux-remoteproc@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/remoteproc/amd,bram-rproc.yaml
->> +F:	drivers/remoteproc/amd_bram_rproc.c
->> +
-> 
-> There is no real advantage in adding this entry, checkpatch.pl should be
-> sufficient.
-> 
->>  AMD CDX BUS DRIVER
->>  M:	Nipun Gupta <nipun.gupta@amd.com>
->>  M:	Nikhil Agarwal <nikhil.agarwal@amd.com>
->> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
->> index ee54436fea5a..9a2a887ede8a 100644
->> --- a/drivers/remoteproc/Kconfig
->> +++ b/drivers/remoteproc/Kconfig
->> @@ -23,6 +23,20 @@ config REMOTEPROC_CDEV
->>  
->>  	  It's safe to say N if you don't want to use this interface.
->>  
->> +config AMD_BRAM_REMOTEPROC
->> +	tristate "AMD BRAM-based remoteproc support"
->> +	depends on OF && COMMON_CLK && (GPIOLIB || COMPILE_TEST)
->> +	help
->> +	  Say y or m here to support a BRAM-based remote processor managed
->> +	  through the remoteproc framework.
->> +
->> +	  This driver matches designs where executable firmware memory is
->> +	  described in the BRAM-local address space and translated to
->> +	  the system physical address space with standard devicetree address
->> +	  translation.
-> 
-> Not sure how this paragraph helps decide whether the driver should be enabled or
-> not.  Please remove.
-> 
->> +
->> +	  If unsure, say N.
->> +
->>  config IMX_REMOTEPROC
->>  	tristate "i.MX remoteproc support"
->>  	depends on ARCH_MXC
->> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
->> index 1c7598b8475d..5c39664b50c3 100644
->> --- a/drivers/remoteproc/Makefile
->> +++ b/drivers/remoteproc/Makefile
->> @@ -11,6 +11,7 @@ remoteproc-y				+= remoteproc_sysfs.o
->>  remoteproc-y				+= remoteproc_virtio.o
->>  remoteproc-y				+= remoteproc_elf_loader.o
->>  obj-$(CONFIG_REMOTEPROC_CDEV)		+= remoteproc_cdev.o
->> +obj-$(CONFIG_AMD_BRAM_REMOTEPROC)	+= amd_bram_rproc.o
->>  obj-$(CONFIG_IMX_REMOTEPROC)		+= imx_rproc.o
->>  obj-$(CONFIG_IMX_DSP_REMOTEPROC)	+= imx_dsp_rproc.o
->>  obj-$(CONFIG_INGENIC_VPU_RPROC)		+= ingenic_rproc.o
->> diff --git a/drivers/remoteproc/amd_bram_rproc.c b/drivers/remoteproc/amd_bram_rproc.c
->> new file mode 100644
->> index 000000000000..9383964b6046
->> --- /dev/null
->> +++ b/drivers/remoteproc/amd_bram_rproc.c
->> @@ -0,0 +1,243 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * AMD BRAM-based Remote Processor driver
->> + *
->> + * Copyright (C) 2026 Advanced Micro Devices, Inc.
->> + *
->> + * This driver supports soft-core processors (MicroBlaze, MicroBlaze-V, or
->> + * similar) instantiated in AMD programmable logic, using dual-port BRAM
->> + * for firmware storage and execution.
->> + *
->> + * The firmware memory (BRAM) is described in the processor-local address
->> + * space and translated to the Linux-visible system physical address with
->> + * standard devicetree address translation.
->> + *
->> + * Reset is controlled via GPIO connected to Processor System Reset IP.
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/io.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_address.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/remoteproc.h>
->> +
->> +#include "remoteproc_internal.h"
->> +
->> +/**
->> + * struct amd_bram_rproc - AMD BRAM-based remoteproc private data
->> + * @dev: device pointer
->> + * @reset: GPIO descriptor for reset control (active-low)
->> + * @clk: processor clock
->> + */
->> +struct amd_bram_rproc {
->> +	struct device *dev;
->> +	struct gpio_desc *reset;
->> +	struct clk *clk;
->> +};
->> +
->> +static int amd_bram_rproc_mem_map(struct rproc *rproc,
->> +				  struct rproc_mem_entry *mem)
->> +{
->> +	void __iomem *va;
->> +
->> +	va = ioremap_wc(mem->dma, mem->len);
->> +	if (!va)
->> +		return -ENOMEM;
->> +
->> +	mem->va = (__force void *)va;
->> +	mem->is_iomem = true;
->> +
->> +	return 0;
->> +}
->> +
->> +static int amd_bram_rproc_mem_unmap(struct rproc *rproc,
->> +				    struct rproc_mem_entry *mem)
->> +{
->> +	iounmap((void __iomem *)mem->va);
->> +
->> +	return 0;
->> +}
-> 
-> The above 2 are identical to what is found in xlnx_r5_remoteproc.c.  Please
-> coordinate with Tanmay to split that into common code that can be reused by both
-> drivers.
-> 
->> +
->> +static int amd_bram_rproc_prepare(struct rproc *rproc)
->> +{
->> +	struct amd_bram_rproc *priv = rproc->priv;
->> +	struct rproc_mem_entry *mem;
->> +	struct resource res;
->> +	u64 da, size;
->> +	int ret;
->> +
->> +	ret = of_property_read_reg(priv->dev->of_node, 0, &da, &size);
->> +	if (ret) {
->> +		dev_err(priv->dev, "failed to parse executable memory reg\n");
->> +		return ret;
->> +	}
->> +
->> +	if (!size || size > U32_MAX) {
->> +		dev_err(priv->dev, "invalid executable memory size\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (da > U32_MAX) {
->> +		dev_err(priv->dev, "invalid executable memory address\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret = of_address_to_resource(priv->dev->of_node, 0, &res);
->> +	if (ret) {
->> +		dev_err(priv->dev, "failed to translate executable memory reg\n");
->> +		return ret;
->> +	}
->> +
->> +	mem = rproc_mem_entry_init(priv->dev, NULL, (dma_addr_t)res.start,
->> +				   (size_t)size, da,
->> +				   amd_bram_rproc_mem_map,
->> +				   amd_bram_rproc_mem_unmap,
->> +				   dev_name(priv->dev));
->> +	if (!mem)
->> +		return -ENOMEM;
->> +
->> +	rproc_add_carveout(rproc, mem);
->> +	rproc_coredump_add_segment(rproc, da, (size_t)size);
-> 
-> I'm pretty sure you want @res.start instead of @da, and resource_size(&res)
-> instead of @size.
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static int amd_bram_rproc_start(struct rproc *rproc)
->> +{
->> +	struct amd_bram_rproc *priv = rproc->priv;
->> +	int ret;
->> +
->> +	/* Enable clock before releasing reset */
->> +	ret = clk_prepare_enable(priv->clk);
->> +	if (ret) {
->> +		dev_err(priv->dev, "failed to enable clock: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	/* Deassert reset and let the processor run. */
->> +	ret = gpiod_set_value_cansleep(priv->reset, 0);
->> +	if (ret) {
->> +		dev_err(priv->dev, "failed to deassert reset: %d\n", ret);
->> +		clk_disable_unprepare(priv->clk);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int amd_bram_rproc_stop(struct rproc *rproc)
->> +{
->> +	struct amd_bram_rproc *priv = rproc->priv;
->> +	int ret;
->> +
->> +	/* Assert reset before disabling the processor clock. */
->> +	ret = gpiod_set_value_cansleep(priv->reset, 1);
->> +	if (ret) {
->> +		dev_err(priv->dev, "failed to assert reset: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	/* Disable clock after asserting reset */
->> +	clk_disable_unprepare(priv->clk);
->> +
->> +	return 0;
->> +}
->> +
->> +static int amd_bram_rproc_parse_fw(struct rproc *rproc,
->> +				   const struct firmware *fw)
->> +{
->> +	int ret;
->> +
->> +	ret = rproc_elf_load_rsc_table(rproc, fw);
->> +	if (ret == -EINVAL) {
->> +		dev_dbg(&rproc->dev, "no resource table found\n");
->> +		return 0;
->> +	}
->> +
->> +	return ret;
->> +}
-> 
-> This too should go in common code or simply replaced by
-> rproc_elf_load_rsc_table() in @amd_bram_rproc_ops - the choice is yours.
-> 
-> Thanks,
-> Mathieu
+The AD9910 DDS core can be driven through several independent mechanisms:
+single tone profiles, a digital ramp generator, an internal RAM playback
+engine, a parallel data port, and output shift keying. Each of these
+represents a distinct signal path into the DDS accumulator, so the driver
+models them as separate IIO output channels (all IIO_ALTVOLTAGE type).
+This per-channel separation allows userspace to configure each mode
+independently through its own set of sysfs attributes, and to
+enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relying on
+the hardware's own mode selection architecture.
 
-  Thanks for the review.
+The AD9910 register map is not suited for the regmap framework: register
+widths vary across the map (16, 32, and 64 bits). The driver instead
+implements direct SPI access helpers with a software register cache, using
+type-specific read/write/update functions (ad9910_reg{16,32,64}_{read,
+write,update}) that handle endianness conversion and cache coherency.
 
-  I went through the remoteproc drivers to scope the cleanup points you
-  called out.
+Registers are cached for several reasons. The control/function registers
+(CFR1, CFR2) are frequently queried to determine the current operating
+mode (e.g., checking RAM_ENABLE before every profile register access),
+and caching avoids repeated SPI read transactions for what are
+essentially state checks. The cache also enables efficient
+read-modify-write updates on multi-byte registers: the update functions
+merge new field values with the cached register content without issuing
+a SPI read, and skip the write entirely when the value is unchanged.
+Finally, the profile registers serve dual purposes depending on whether
+RAM mode is active -- they hold single tone parameters (FTW, POW, ASF)
+in normal operation but are repurposed for RAM playback configuration
+(start/end address, step rate, operating mode) when RAM is enabled. A
+shadow register array (reg_profile[]) preserves the inactive mode's
+settings across transitions, so no state is lost when switching between
+single tone and RAM operation.
 
-  For the plain carveout map/unmap callbacks, the same ioremap_wc()/iounmap()
-  pattern exists not only in amd_bram_rproc and xlnx_r5_remoteproc, but also
-  in rcar_rproc, st_remoteproc, stm32_rproc, imx_rproc, and imx_dsp_rproc.
+RAM data is loaded through firmware upload infrastructure. Userspace
+writes the waveform data as a raw binary buffer (up to 4096 bytes for
+the full 1024x32-bit RAM), and the driver reverses the byte array and
+transfers it to the device in a single SPI transaction. Per-profile
+start/end addresses and playback parameters (operating mode, step rate,
+no-dwell control) are also configured through firmware update, using
+metadata in the header.
 
-  The xlnx_r5 TCM path is close as well, but that one still needs a wrapper
-  since it clears the memory after ioremap_wc().
+Streaming data to the DDS core through the parallel data port at the
+PD_CLK rate is not covered by this series. That functionality would
+be added in a separate patch series, building on top of the IIO backend
+infrastructure to provide a proper buffered data path.
 
-  For the optional resource-table parsing, amd_bram_rproc and xlnx_r5_remoteproc
-  share the same pattern of treating only -EINVAL from rproc_elf_load_rsc_table()
-  as non-fatal. PRU is similar, but has additional firmware parsing after that.
-  Other drivers such as rcar/imx/imx_dsp/stm32 also tolerate missing resource
-  tables, but their current behavior is not identical since they flatten all
-  errors to success and only log.
+As I am pushing implementation, as lot has been done already without much
+supervision or agreement, still I would be interested on hearing about
+the design choices discussed above.
 
-  For the next revision, would you prefer the following approach?
+Kind regards,
 
-  1. Add a small common helper for the plain carveout ioremap_wc()/iounmap()
-     case and use it in amd_bram_rproc and xlnx_r5_remoteproc.
+Rodrigo Alencar
 
-  2. For the optional resource-table handling, either:
-     - add a small common helper for the "missing table is OK" case
-       (i.e. return 0 on -EINVAL and propagate other errors), and use that
-       in amd_bram_rproc and xlnx_r5_remoteproc, or
-     - drop the custom AMD parse_fw() path and use rproc_elf_load_rsc_table()
-       directly, which would make the resource table mandatory there.
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v4:
+- Digital Ramp step exposed as a rate of change.
+- Dwell modes of Digital Ramp are controlled with dwell_en attribute. 
+- Disable of active profile behaves as a software powerdown.
+- Expose debugfs attributes to show mode priority.
+- Add 64-bit debugfs reg access support into iio core.
+- Link to v3: https://lore.kernel.org/r/20260417-ad9910-iio-driver-v3-0-29b93712a228@analog.com
 
-  Also, for the plain map/unmap helper, should I keep the cleanup scoped to
-  the drivers directly involved here, or would you prefer that I fold the
-  other exact-match users (rcar, st, stm32, imx, imx_dsp) into the same
-  cleanup patch as well?
+Changes in v3:
+- RAM custom configs (address range, destination, modes) loaded during firmware write.
+- DRG destination defined when attrs are written.
+- DRG modes broken down into enable attrs for ramp up/down channels.
+- Add separate profile channels, switching done through enable attr
+- Link to v2: https://lore.kernel.org/r/20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com
 
-  I want to make sure I take the direction you prefer before respinning.
+Changes in v2:
+- Device-tree bindings changes.
+- RAM loading to use firmware update interface.
+- Rearrange of channels into a hierarchy.
+- Link to v1: https://lore.kernel.org/r/20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com
 
-  Thanks,
-  Ben
-> 
->> +
->> +static const struct rproc_ops amd_bram_rproc_ops = {
->> +	.prepare	= amd_bram_rproc_prepare,
->> +	.start		= amd_bram_rproc_start,
->> +	.stop		= amd_bram_rproc_stop,
->> +	.load		= rproc_elf_load_segments,
->> +	.sanity_check	= rproc_elf_sanity_check,
->> +	.get_boot_addr	= rproc_elf_get_boot_addr,
->> +	.parse_fw	= amd_bram_rproc_parse_fw,
->> +};
->> +
->> +static int amd_bram_rproc_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct amd_bram_rproc *priv;
->> +	const char *fw_name = NULL;
->> +	struct rproc *rproc;
->> +	int ret;
->> +
->> +	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
->> +	if (ret < 0 && ret != -EINVAL)
->> +		return dev_err_probe(dev, ret,
->> +				     "failed to parse firmware-name property\n");
->> +
->> +	rproc = devm_rproc_alloc(dev, dev_name(dev), &amd_bram_rproc_ops,
->> +				 fw_name, sizeof(*priv));
->> +	if (!rproc)
->> +		return -ENOMEM;
->> +
->> +	priv = rproc->priv;
->> +	priv->dev = dev;
->> +
->> +	/* Get the processor clock */
->> +	priv->clk = devm_clk_get(dev, NULL);
->> +	if (IS_ERR(priv->clk))
->> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
->> +				     "failed to get clock\n");
->> +
->> +	/*
->> +	 * Keep the processor in reset until remoteproc has finished loading
->> +	 * firmware into the executable memory window described by reg and
->> +	 * translated through the parent bus ranges property.
->> +	 */
->> +	priv->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(priv->reset))
->> +		return dev_err_probe(dev, PTR_ERR(priv->reset),
->> +				     "failed to get reset gpio\n");
->> +
->> +	rproc->auto_boot = false;
->> +
->> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "failed to set DMA mask\n");
->> +
->> +	platform_set_drvdata(pdev, rproc);
->> +
->> +	ret = devm_rproc_add(dev, rproc);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "failed to register rproc\n");
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct of_device_id amd_bram_rproc_of_match[] = {
->> +	{ .compatible = "xlnx,zynqmp-bram-rproc" },
->> +	{ /* sentinel */ },
->> +};
->> +MODULE_DEVICE_TABLE(of, amd_bram_rproc_of_match);
->> +
->> +static struct platform_driver amd_bram_rproc_driver = {
->> +	.probe = amd_bram_rproc_probe,
->> +	.driver = {
->> +		.name = "amd-bram-rproc",
->> +		.of_match_table = amd_bram_rproc_of_match,
->> +	},
->> +};
->> +module_platform_driver(amd_bram_rproc_driver);
->> +
->> +MODULE_DESCRIPTION("AMD BRAM-based Remote Processor driver");
->> +MODULE_AUTHOR("Ben Levinsky <ben.levinsky@amd.com>");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.34.1
->>
-> 
+---
+Rodrigo Alencar (10):
+      dt-bindings: iio: frequency: add ad9910
+      iio: core: support 64-bit register through debugfs
+      iio: frequency: ad9910: initial driver implementation
+      iio: frequency: ad9910: add basic parallel port support
+      iio: frequency: ad9910: add digital ramp generator support
+      iio: frequency: ad9910: add RAM mode support
+      iio: frequency: ad9910: add output shift keying support
+      iio: frequency: ad9910: show channel priority in debugfs
+      Documentation: ABI: testing: add docs for ad9910 sysfs entries
+      docs: iio: add documentation for ad9910 driver
+
+ .../ABI/testing/sysfs-bus-iio-frequency-ad9910     |   73 +
+ .../bindings/iio/frequency/adi,ad9910.yaml         |  198 ++
+ Documentation/iio/ad9910.rst                       |  607 +++++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   10 +
+ drivers/iio/frequency/Kconfig                      |   20 +
+ drivers/iio/frequency/Makefile                     |    1 +
+ drivers/iio/frequency/ad9910.c                     | 2398 ++++++++++++++++++++
+ drivers/iio/industrialio-core.c                    |   33 +-
+ include/linux/iio/iio.h                            |    4 +
+ 10 files changed, 3336 insertions(+), 9 deletions(-)
+---
+base-commit: 9e62a5d329f8f0f07c4d5f80a691e3f16dcb957c
+change-id: 20260218-ad9910-iio-driver-9b3d214c251f
+
+Best regards,
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
 
 
