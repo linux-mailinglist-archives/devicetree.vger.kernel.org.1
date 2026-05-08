@@ -1,263 +1,341 @@
-Return-Path: <devicetree+bounces-294739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294737-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMyZEelt/mmlqgAAu9opvQ
-	(envelope-from <devicetree+bounces-294739-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:12:41 +0200
+	id cLAlAMVt/mmlqgAAu9opvQ
+	(envelope-from <devicetree+bounces-294737-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:12:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66B44FCA66
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:12:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 913DE4FCA34
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 01:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 781FF305616C
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 23:12:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 04180300D37B
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 23:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C683B19B0;
-	Fri,  8 May 2026 23:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422713AEF20;
+	Fri,  8 May 2026 23:12:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T3cTgpSR"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20251104.gappssmtp.com header.i=@ndufresne-ca.20251104.gappssmtp.com header.b="jpLexh6W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f68.google.com (mail-dl1-f68.google.com [74.125.82.68])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2394C3AEF43
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 23:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1330539BFE7
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 23:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778281929; cv=none; b=nhOFJ7fgb6zrFm4+kVlTxc0Sv3RatCVjP6jVVCOhL+oGhBSemOWvhG35wYCNPGxlHlJf+2NCWX5eY4vD8jmtm4lXJg171zdGNAektgzZkUKMZO179B81ukqYrYM9YRgNfj6vgCh962f61klAhGEXsRc/5KZIFvchzJMM8zky2l0=
+	t=1778281920; cv=none; b=FNpu+X8HwGxRoGbfwEg6EU07EmSmeDfhXmYd4x1jP5MMCGyKLjgm8DARpWKTWiUGCp2MoQgfxCCz87hGQBYH9zS6pZcyfVStC0FvUeKhH58j6k4gUzwiuPTMixnXArc4O4f0Mie66kWCPk9jx/+7VkFlKW2h7VK7hOZG+Wrs1LA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778281929; c=relaxed/simple;
-	bh=ma/NAkZ+rfwLaK2OHenM/L32fM1WQAJpctov+P127o8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aA6bhSf5lANgc/oJnyQJMA0fcifBKWjpmyh4ohKw2B84KOOoJojDwfejC1tupTKqnknTs/okWp7W1mKmPrl5Wmh0wftlGjJ52cU++dF/wwu57FZmxdvKXTxZ5Lc9oL0rFQl0HtYl3MSelR5vJ7mD6krb5hAxB1PdEn3yKlJcE0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T3cTgpSR; arc=none smtp.client-ip=74.125.82.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f68.google.com with SMTP id a92af1059eb24-12c19d23b19so4573965c88.0
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 16:12:07 -0700 (PDT)
+	s=arc-20240116; t=1778281920; c=relaxed/simple;
+	bh=NQljLf3eomaZ/2T5R92LipgbO5FdwqAfK9cyU8nO+0k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RoNnnHaO37aZymBqOYjWG/ymtup2o/zChUvD/tK84/uCvLzoKyGgP2QR9t9YcpolTg9CoZCH3wRactz93t82lzFH51XTSQIbIOYNUjj9owGAlqhilLrNwQOYRBSgi3vv3OFxUnVCqbjIgfi77coa0bFd7uiuLKf+YW8qciunTlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20251104.gappssmtp.com header.i=@ndufresne-ca.20251104.gappssmtp.com header.b=jpLexh6W; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-50d7c12e48eso22377031cf.1
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 16:11:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778281927; x=1778886727; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uX9GSyaDMUxgGyMHB/8S0Aw9E0nie662logf6WxGw94=;
-        b=T3cTgpSR8awb7Jt8bxz/un7+JjnAK4TMxBT5uSt/ONuR/sWvunp6T+XOlSiM0dMGFC
-         zFS1EjJ89nu+EVPnmYz4HCgZlHc5EjUtFcP/7ETwXDYBGXsL2Gs2AyXivBffDls2wvYj
-         9atY/4IeB+Ijxq3OA4TMYO0bP5Ayu+e5fdXho/23dr0fqk2m/jqh9teIDQtKe/oPmgt6
-         bgaAB5MVgxAet9ZMrgv21Xl3iWgImmRyWgE6U5EkuZFqTB0S56/TTmBk+MxKEvdM4PE1
-         eRd8A+qatyPiyAryTNWCSFmR2jOy4rmwFDE788fQyd2rOwnSehlM1gmYQ4FWv8kmGg29
-         XkxQ==
+        d=ndufresne-ca.20251104.gappssmtp.com; s=20251104; t=1778281917; x=1778886717; darn=vger.kernel.org;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
+         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=a61U6DoScQKwSeDx7PQ4jXrr3w68CY6nBE7kzjfUuOs=;
+        b=jpLexh6W9PzSqXKtJj+jqwSH1p1VgGFUPAR3XG7QNAytn4q1mVdksFQRcuG+mPVkm2
+         T2RRb7rw4Pyk7xLjd1+0PtE+T7A4lamXxJ5ya5nE9qRAGxP4bwgiP70Zp7HIYaxhGNJP
+         EzbeZZOHZppSOjojwPMafgyDu6rM1yLgurrtPN9w9V85jDOIOeGF6imEkrpCHJB6bQ2k
+         CAcZAjY9H9Y67fpemd7yGhWlnkUDy9+E5iUkPDunfU7ruc5HaRN6FgBBuQQB1FcjeXM5
+         R9Kwm6DGtg8/57P+KPPZQEYOR0WmKcGxPfih08F7FDgV9E2C2qYAt2xncuz8uHZMcWgU
+         ST5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778281927; x=1778886727;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=uX9GSyaDMUxgGyMHB/8S0Aw9E0nie662logf6WxGw94=;
-        b=TybOfbcVzNLqI57ZZo2Hu6ii0qfjqypeTpy08KtFl9IbGei0ejL+n39z1Tt5+evifs
-         h5WyjBvD7MPhGEKu4iv/1sewPQFdkwHrdMSCaCoxJmKgycDtNpa23cPsPxIny0L/l+yU
-         lCFbtGS0MsgdS8eugFpOHgvoOHmzORhLKS134OeFJJuWnyA5SW8cLT1GkO6ZgZFOXkO/
-         oWWnHQl0BE5q11kKZuB2s1obkFZhfh7LoYEqlbz945WeDmRCvWvpwCw4YECyVOeixxtr
-         Z83aTid3ORITyR8iVkVXEXbETznTQl+5AJACnuFAbXMM0fAAE2n4Ps8haTxL/tEgP0Xh
-         QnoQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8UW2W4qsd7k8tq4mpZdcB2rcr4f3ILwo0ceZxzN9048COsDlrAOpCa9THsPhz7Iuhk6ZlezKY0VaaU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9PcmhQ8Jqw0hDa7u2c8VGNXHLj7Y2jX/jvEBheLBKxoli3CHF
-	Gkuv9v5ty/KEdtJTigDfaKMCqiKWs4rA7WOgot/qxC4pthRK+LCc9jlc
-X-Gm-Gg: AeBDiev41fJsefqylZl4abLMLgQFqiVqgEKyYjej7bzo4VDSkwVy9ykIVK+yVP4gVWn
-	+Uq3zADp1gpAJ5ghzy2gL4HKDb/CaSvnppxk2d7sAbuM4mYSqGUyv8872Jo0wWJF+yVvFfCnR4K
-	d1HrDT5JxJ/t/ShiQAkKQqEafdprztdfhovOKcWgIC2sg5JYYfWVvf3R6HSE75HxMra3ixWJlhG
-	+qDzO0gaYsQN5JEMH7HPIE95bi0yN8F7YhZwhNc+/PfPa1DQLjbb0RemFRguJNlxf7Es7V6fKaY
-	4oibh12VOj8Uh9KURWx5MHr9+FzjZOkO7p0zbY9wBoO//jF7270qIBhTc91e3Wx5cVA5pAbF9/s
-	aXCob+oSQbA8T2mlJo+u5YwUolRZA5HGOkA/P8ui5iS4Nm63I3nhyYJ3NEQXrEeBv79bkkMOnaL
-	Hn4FNWU4KzWfAN7o3bnWhlkrCyT2WAJfJ7GG/MZM356g5pW9iaJyx/xgQ=
-X-Received: by 2002:a05:7022:2399:b0:128:d577:dc21 with SMTP id a92af1059eb24-1319cc16e0dmr6472194c88.13.1778281926987;
-        Fri, 08 May 2026 16:12:06 -0700 (PDT)
-Received: from localhost.localdomain ([76.32.119.210])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1329fc4bf3fsm972554c88.5.2026.05.08.16.12.05
+        d=1e100.net; s=20251104; t=1778281917; x=1778886717;
+        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
+         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=a61U6DoScQKwSeDx7PQ4jXrr3w68CY6nBE7kzjfUuOs=;
+        b=mtQTbSaLW7KcTTU/b8kIl4G/mWmutJf8MM8EyjLjCgeHw4VmiJcRVMRelF/f5gmt3I
+         F0tGrzzCEGC7E7nXLNkrxBOOyPuV5ssaeFmYRlplgJFwJIKT6831X7IEQRkocxR6OXOs
+         9rP/te3rKyeynNaXmF7CCpWwrDnfeqVWvKbrqCJSj2dszwROa2vWT4WCSR3asgs0p7Tc
+         j7WTXDxYy/9E/AlGGsPlK2T74E0eZr9ptMQsqWzbslG0XH/I7XI84pa5ql31PFURMsH/
+         jxNgq7KRjNTOwR6C2CYMtk0yDh8RvFl1fUgV6hbx3dJBNgdty8w/OSfOuOMowYEf+Fq/
+         iHAw==
+X-Forwarded-Encrypted: i=1; AFNElJ+GZbPDVulOqU3Jwh04GZi/TnkldRzbZeq003Pkuc3vF80RCETE6CN/cy7VwcYyYa8G7xAgRYKtaaga@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyKsMcbnvjxUv6rXycQ1eEeZ/135Hw4U0c9gvbBOr6feg3zOqL
+	3gsy1BTucz5dvy+nooRWoTZwzygnS5URrKD9TqaxB6oPaS10dn/SZCxARmxg26V8XwU=
+X-Gm-Gg: AeBDievLvDosvRTdT9kUvzErHJtXZ/jiB9kq9jBEsordZc0L7TEu3DU2bMlJGWRw3ZO
+	ygKBp+AU/T+8fgY1q3G3pSeusxTRm6w6PedzOCAL7PPHKz/izEIZUUjRMEOsftlbNDCZIlAwPcI
+	G7PdKGFvfeVOu34Vk+UYT1rXmAtcJtlHncenBUgQZTcC4op2ntAxX3cWoiXwwa2JBpzX48TjgFx
+	WxRNblxIe6tQ9cWVMFb8E4OhEqjTz0yFqSqlsO/2pfw9qJsWz8rKrUWfsjK/Tvh+0EcW6pVdIZa
+	vSk+pmD3ebFjtHbaBpviqzRCs6JefYmu7IJJxblP6Vd93q81kwBLFlpihF5a12/Yi0MtgaWOEFs
+	242k+wj1dBHqqnI982OYoKvntpEh+PjuqzrjzBFWmdsPUwtWJ9GJ32PNUISo7vtggNYEP0CmWZz
+	cKL48lBdic2OUO5BLt4Lfcy5ntbOpH
+X-Received: by 2002:a05:622a:2c8:b0:50e:5755:913d with SMTP id d75a77b69052e-514755feb11mr119461611cf.0.1778281916899;
+        Fri, 08 May 2026 16:11:56 -0700 (PDT)
+Received: from ?IPv6:2606:6d00:15:e06b::5ac? ([2606:6d00:15:e06b::5ac])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5148fa78723sm24900771cf.3.2026.05.08.16.11.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 May 2026 16:12:06 -0700 (PDT)
-From: Hungyu Lin <dennylin0707@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: jic23@kernel.org,
-	lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hungyu Lin <dennylin0707@gmail.com>
-Subject: [PATCH v2 1/1] dt-bindings: iio: adc: add AD7816/AD7817/AD7818 binding
-Date: Fri,  8 May 2026 23:11:47 +0000
-Message-Id: <20260508231147.77044-2-dennylin0707@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260508231147.77044-1-dennylin0707@gmail.com>
-References: <20260508231147.77044-1-dennylin0707@gmail.com>
+        Fri, 08 May 2026 16:11:55 -0700 (PDT)
+Message-ID: <67c2e5b74340a3a33a5e1e377e88298250a6d3c5.camel@ndufresne.ca>
+Subject: Re: [PATCH v5 18/29] media: rockchip: rga: check scaling factor
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
+	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, kernel@pengutronix.de, 
+	sebastian.reichel@collabora.com
+Date: Fri, 08 May 2026 19:11:53 -0400
+In-Reply-To: <20260428-spu-rga3-v5-18-eb7f5d019d86@pengutronix.de>
+References: <20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de>
+	 <20260428-spu-rga3-v5-18-eb7f5d019d86@pengutronix.de>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-6phmHvyO9kAPRIT/1Osz"
+User-Agent: Evolution 3.60.1 (3.60.1-1.fc44) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: B66B44FCA66
+X-Rspamd-Queue-Id: 913DE4FCA34
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [6.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20251104.gappssmtp.com:s=20251104];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
+	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,analog.com,baylibre.com,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-294739-lists,devicetree=lfdr.de];
-	GREYLIST(0.00)[pass,meta];
+	TAGGED_FROM(0.00)[bounces-294737-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[ndufresne-ca.20251104.gappssmtp.com:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[dennylin0707@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.891];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,devicetree.org:url]
-X-Rspamd-Action: add header
-X-Spam: Yes
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ndufresne-ca.20251104.gappssmtp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ndufresne.ca:mid,pengutronix.de:email]
+X-Rspamd-Action: no action
 
-Add Device Tree binding documentation for the Analog Devices
-AD7816, AD7817 and AD7818 SPI ADC devices.
 
-The AD7816 provides temperature monitoring only, while the
-AD7817 and AD7818 provide analog input channels with an
-on-chip temperature sensor.
+--=-6phmHvyO9kAPRIT/1Osz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The devices use control GPIOs for RD/WR and CONVST. BUSY is required for
-AD7816 and AD7817 variants.
+Le mardi 28 avril 2026 =C3=A0 11:00 +0200, Sven P=C3=BCschel a =C3=A9crit=
+=C2=A0:
+> Check the scaling factor to avoid potential problems. This is relevant
+> for the upcoming RGA3 support, as it can hang when the scaling factor
+> is exceeded.
+>=20
+> There are two relevant scenarios that have to be considered to protect
+> against invalid scaling values:
+>=20
+> When the output or capture is already streaming, setting the format on
+> the other side should consider the max scaling factor and clamp it
+> accordingly. This is only done in the streaming case, as it otherwise
+> may unintentionally clamp the value when the application sets the first
+> format (due to a default format on the other side).
+>=20
+> When the format is set on both sides first, then the format won't be
+> corrected by above means. Therefore the second streamon call has to
+> check the scaling factor and fail otherwise.
+>=20
+> As try functions should only be state aware if specified, the scaling
+> limitation is only done in s_fmt.
+>=20
+> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
+> ---
+> =C2=A0drivers/media/platform/rockchip/rga/rga-hw.c |=C2=A0 1 +
+> =C2=A0drivers/media/platform/rockchip/rga/rga-hw.h |=C2=A0 1 +
+> =C2=A0drivers/media/platform/rockchip/rga/rga.c=C2=A0=C2=A0=C2=A0 | 47 ++=
+++++++++++++++++++++++++++
+> =C2=A0drivers/media/platform/rockchip/rga/rga.h=C2=A0=C2=A0=C2=A0 |=C2=A0=
+ 1 +
+> =C2=A04 files changed, 50 insertions(+)
+>=20
+> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media=
+/platform/rockchip/rga/rga-hw.c
+> index 11079477a3008..11a1a914668f6 100644
+> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
+> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
+> @@ -595,6 +595,7 @@ const struct rga_hw rga2_hw =3D {
+> =C2=A0	.max_width =3D MAX_WIDTH,
+> =C2=A0	.min_height =3D MIN_HEIGHT,
+> =C2=A0	.max_height =3D MAX_HEIGHT,
+> +	.max_scaling_factor =3D MAX_SCALING_FACTOR,
+> =C2=A0	.stride_alignment =3D 4,
+> =C2=A0
+> =C2=A0	.setup_cmdbuf =3D rga_hw_setup_cmdbuf,
+> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.h b/drivers/media=
+/platform/rockchip/rga/rga-hw.h
+> index c2e34be751939..805ec23e5e3f4 100644
+> --- a/drivers/media/platform/rockchip/rga/rga-hw.h
+> +++ b/drivers/media/platform/rockchip/rga/rga-hw.h
+> @@ -14,6 +14,7 @@
+> =C2=A0
+> =C2=A0#define MIN_WIDTH 34
+> =C2=A0#define MIN_HEIGHT 34
+> +#define MAX_SCALING_FACTOR 16
+> =C2=A0
+> =C2=A0#define RGA_TIMEOUT 500
+> =C2=A0
+> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
+atform/rockchip/rga/rga.c
+> index d111b348255e2..75d05c86b1c00 100644
+> --- a/drivers/media/platform/rockchip/rga/rga.c
+> +++ b/drivers/media/platform/rockchip/rga/rga.c
+> @@ -405,10 +405,36 @@ static int vidioc_s_fmt(struct file *file, void *pr=
+iv, struct v4l2_format *f)
+> =C2=A0	struct v4l2_pix_format_mplane *pix_fmt =3D &f->fmt.pix_mp;
+> =C2=A0	struct rga_ctx *ctx =3D file_to_rga_ctx(file);
+> =C2=A0	struct rockchip_rga *rga =3D ctx->rga;
+> +	const struct rga_hw *hw =3D rga->hw;
+> =C2=A0	struct vb2_queue *vq;
+> =C2=A0	struct rga_frame *frm;
+> =C2=A0	int ret =3D 0;
+> =C2=A0	int i;
+> +	struct rga_frame *limit_frm =3D NULL;
+> +
+> +	/* Limit before try_fmt to avoid recalculating the stride */
+> +	if (V4L2_TYPE_IS_OUTPUT(f->type) &&
+> +	=C2=A0=C2=A0=C2=A0 v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx)->streaming)
+> +		limit_frm =3D &ctx->out;
 
-Signed-off-by: Hungyu Lin <dennylin0707@gmail.com>
----
- .../bindings/iio/adc/adi,ad7816.yaml          | 94 +++++++++++++++++++
- 1 file changed, 94 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+If you need to, use helpers such as vb2_is_streaming(), though in this case=
+, I
+think you want to use vb2_is_busy(), which protects against changing the fo=
+rmat
+of a queue that is already allocated. This is needed because drivers, excep=
+t vp9
+and av1 stateless decoders, don't track the format per buffer.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
-new file mode 100644
-index 000000000000..490e5338d7b2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad7816.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD7816/AD7817/AD7818 ADC
-+
-+maintainers:
-+  - Hungyu Lin <dennylin0707@gmail.com>
-+
-+description: |
-+  Binding for Analog Devices AD7816, AD7817 and AD7818 SPI ADCs
-+  with on-chip temperature sensor.
-+
-+  The AD7816 provides temperature monitoring only.
-+  The AD7817 provides up to 4 analog input channels.
-+  The AD7818 provides a single analog input channel.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7816
-+      - adi,ad7817
-+      - adi,ad7818
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Optional interrupt line used by the device.
-+
-+  rdwr-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the RD/WR pin used to control read/write cycles.
-+
-+  convert-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the CONVST pin used to trigger conversions.
-+
-+  busy-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the BUSY pin indicating conversion status.
-+
-+required:
-+  - compatible
-+  - reg
-+  - rdwr-gpios
-+  - convert-gpios
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,ad7816
-+              - adi,ad7817
-+    then:
-+      required:
-+        - busy-gpios
-+    else:
-+      properties:
-+        busy-gpios: false
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    gpio0: gpio {
-+      gpio-controller;
-+      #gpio-cells = <2>;
-+    };
-+
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      adc@0 {
-+        compatible = "adi,ad7816";
-+        reg = <0>;
-+        spi-max-frequency = <5000000>;
-+        rdwr-gpios = <&gpio0 1 0>;
-+        convert-gpios = <&gpio0 2 0>;
-+        busy-gpios = <&gpio0 3 0>;
-+      };
-+    };
--- 
-2.34.1
+> +	if (V4L2_TYPE_IS_CAPTURE(f->type) &&
+> +	=C2=A0=C2=A0=C2=A0 v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx)->streaming)
 
+Same.
+
+> +		limit_frm =3D &ctx->in;
+> +	if (limit_frm) {
+> +		const struct v4l2_frmsize_stepwise frmsize =3D {
+> +			.min_width =3D DIV_ROUND_UP(limit_frm->pix.width,
+> +						=C2=A0 hw->max_scaling_factor),
+> +			.max_width =3D
+> +				limit_frm->pix.width * hw->max_scaling_factor,
+
+Shouldn't you control the absolute min/max for this IP ?
+
+> +			.min_height =3D DIV_ROUND_UP(limit_frm->pix.height,
+> +						=C2=A0=C2=A0 hw->max_scaling_factor),
+> +			.max_height =3D
+> +				limit_frm->pix.height * hw->max_scaling_factor,
+> +			.step_width =3D 1,
+> +			.step_height =3D 1,
+
+Shouldn't that step match the subsampling like you did earlier ?
+
+Nicolas
+
+> +		};
+> +		v4l2_apply_frmsize_constraints(&pix_fmt->width,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &pix_fmt->height, &frmsize);
+> +	}
+> =C2=A0
+> =C2=A0	/* Adjust all values accordingly to the hardware capabilities
+> =C2=A0	 * and chosen format.
+> @@ -568,12 +594,33 @@ static int vidioc_s_selection(struct file *file, vo=
+id *priv,
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> +static bool check_scaling(const struct rga_hw *hw, u32 src_size, u32 dst=
+_size)
+> +{
+> +	if (src_size < dst_size)
+> +		return src_size * hw->max_scaling_factor >=3D dst_size;
+> +	else
+> +		return dst_size * hw->max_scaling_factor >=3D src_size;
+> +}
+> +
+> =C2=A0static int vidioc_streamon(struct file *file, void *priv,
+> =C2=A0			=C2=A0=C2=A0 enum v4l2_buf_type type)
+> =C2=A0{
+> =C2=A0	struct rga_ctx *ctx =3D file_to_rga_ctx(file);
+> =C2=A0	const struct rga_hw *hw =3D ctx->rga->hw;
+> =C2=A0
+> +	if ((V4L2_TYPE_IS_OUTPUT(type) &&
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx)->streamin=
+g) ||
+> +	=C2=A0=C2=A0=C2=A0 (V4L2_TYPE_IS_CAPTURE(type) &&
+> +	=C2=A0=C2=A0=C2=A0=C2=A0 v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx)->streamin=
+g)) {
+> +		/*
+> +		 * As the other side is already streaming,
+> +		 * check that the max scaling factor isn't exceeded.
+> +		 */
+> +		if (!check_scaling(hw, ctx->in.pix.width, ctx->out.pix.width) ||
+> +		=C2=A0=C2=A0=C2=A0 !check_scaling(hw, ctx->in.pix.height, ctx->out.pix=
+.height))
+> +			return -EINVAL;
+> +	}
+> +
+> =C2=A0	hw->setup_cmdbuf(ctx);
+> =C2=A0
+> =C2=A0	return v4l2_m2m_streamon(file, ctx->fh.m2m_ctx, type);
+> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/pl=
+atform/rockchip/rga/rga.h
+> index c741213710b32..454af283b1694 100644
+> --- a/drivers/media/platform/rockchip/rga/rga.h
+> +++ b/drivers/media/platform/rockchip/rga/rga.h
+> @@ -150,6 +150,7 @@ struct rga_hw {
+> =C2=A0	size_t cmdbuf_size;
+> =C2=A0	u32 min_width, min_height;
+> =C2=A0	u32 max_width, max_height;
+> +	u8 max_scaling_factor;
+> =C2=A0	u8 stride_alignment;
+> =C2=A0
+> =C2=A0	void (*setup_cmdbuf)(struct rga_ctx *ctx);
+
+--=-6phmHvyO9kAPRIT/1Osz
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaf5tuQAKCRDZQZRRKWBy
+9MrfAQDVqv8LNnmDgVligHcx7MKd8IXEllWPqnCGg6qVCKnTEAEA/sEZbAClzfwv
+w2zcIFiT48t98hMAoqNwJkqNZHa0Kgk=
+=zf12
+-----END PGP SIGNATURE-----
+
+--=-6phmHvyO9kAPRIT/1Osz--
 
