@@ -1,268 +1,161 @@
-Return-Path: <devicetree+bounces-294382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294386-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GPe/MJuU/WnWfgAAu9opvQ
-	(envelope-from <devicetree+bounces-294382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:45:31 +0200
+	id GDUEHbaU/WmXgAAAu9opvQ
+	(envelope-from <devicetree+bounces-294386-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:45:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB034F339C
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:45:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E49344F33AB
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 48AAF300CC0E
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 07:37:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EFDB30A873A
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 07:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37232377006;
-	Fri,  8 May 2026 07:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23CB364E9A;
+	Fri,  8 May 2026 07:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VulP8Exm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Af6tTmYX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13EB92F8E81;
-	Fri,  8 May 2026 07:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CBD26F2A0;
+	Fri,  8 May 2026 07:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778225818; cv=none; b=ugn4QRfL3jwnBHnyLh5fx0YhX2NGkRLls6GavoEJ0tJyYE4CQXwFYGlO0GqhPQ09FVkbUFrjC20VE1dSbxi02Mvgwn5k/J9u/FR8VVtiplFqTuHqNAbKT9MohtJzioM6aKfFWvJpsY4vnSWMjLZLig5NT6vsB+lD/r1KMHy8/eg=
+	t=1778225881; cv=none; b=swzZhGj55SEzkuaLyx+NyLaxjQ+TqTMCfIbQg3ipcGEePHMz6QmJXz3LjoWz0JWyBeH2OIwQrhrlMwdeoX4lsTdnmFcko0ApK+cJsdHUUJ81nXQPJxtdDmhQeEVqFb9mTJUtpM0+lPf0IRhOPBIvYpMtcsSKz5bbKgEEorW/BYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778225818; c=relaxed/simple;
-	bh=6orjSlY4lQ5CFkC+hhWVFf1lnIC3pYaTmYzO8tYxwmY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IYyFQfx+5yVOgUDZIeQ7Iw9iEZBdN5XME2VNIWqUTVZVQHq1imk2qRhZ4nCqHZn+h8fISmiXKwp1c6N98KUYWt6eyRJnX4CJ/oH4FypamIVki8gywgYwdxxHqpYmIUeZVbU/6pYclivqqMyPWepFmspxKqVkiJOKCEyQzKBrT80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VulP8Exm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E3513C2BCF4;
-	Fri,  8 May 2026 07:36:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778225817;
-	bh=6orjSlY4lQ5CFkC+hhWVFf1lnIC3pYaTmYzO8tYxwmY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VulP8Exm/qXA4VrKShU5O687SxxYmxF41/41De5w10oEgby2sQ3x1nrVkCQV7jWWo
-	 d8HAlsTnpZLjmb3oeXSwL0JuA7Ym/O9f0rpTzIAzbzfLgo0C+LDDcyg9uXphRdGjd0
-	 vvPlAsQb7I0++yieL7afAS0WRz/igNcSnlP83NBxG357u3XfqqwbmhNLeIwlbjHkEA
-	 PHb7+2DDLp28QV+NpgQjJxodT1q2m5EmuW9ZL1I9gDasIbxhNwz8evkERSr9jehYzD
-	 RhIKbVxlmTzRCOhRFgCLVQxdONf5JPRlu0JWYCY0GwzxUa19uFyJUdxF7ltcFp5gUf
-	 R2L0ujltuqcrg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6DC5CD342F;
-	Fri,  8 May 2026 07:36:57 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 08 May 2026 07:36:56 +0000
-Subject: [PATCH 3/3] irqchip/meson-gpio: Add support for Amlogic A9 SoCs
+	s=arc-20240116; t=1778225881; c=relaxed/simple;
+	bh=NRhqpO0rWWTJQZAs7QEzV5sSKAJNdZGNTpfZ2fgN4xw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bzkeWjIMfQc9nmkxqIXCryVZY9P16WkGR6aV+gfc7s7AXCsyqkBJCfCHzIws90Dx5IRyoTGZjIYyeYXkK5zEW87r3kgjF8NvPjgMTMWgpvA6V2GUvc78Nna3BspkPOCjzvCNIqVQtwJkAmbKwJ34AFCvdRDAJvJvo+O3kg/URZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Af6tTmYX; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778225880; x=1809761880;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NRhqpO0rWWTJQZAs7QEzV5sSKAJNdZGNTpfZ2fgN4xw=;
+  b=Af6tTmYXXlMbtgTjef+DUdN23Z5tlojj4AzFLqoownDTBEb83MJAjDS/
+   M8UVXTXuiArIlJNzyglRZaK+D76N/KtdvnsmgPvYA9zzurosxjcm/sIJZ
+   nB6hstynqZxOx/vYvkcBS6oju+iD4U3pvGHoqM0nDHnxzK03VQhmryhIt
+   XQux/5pzuEghwF2fyk6mIqMkeLMd4AQo7V6DM/SNoJPir9Tu1C3586tiH
+   nrWiKKPS0e08oNi0V1YeiMkkQ0/m6xgkf8BOcqVSFgTkmL6JIq6a2ZYnx
+   hOo1jMggpMB14tIPCj70NoXTPW62ar6VQgbAyInMdudOp7wvjqcKzJl2y
+   Q==;
+X-CSE-ConnectionGUID: QQ/hh3sDTreiHv9ZCtjzKw==
+X-CSE-MsgGUID: hGE1wk46Sx2ntQjJRTaXLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="66716276"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; 
+   d="scan'208";a="66716276"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2026 00:37:59 -0700
+X-CSE-ConnectionGUID: D+9fE+sqSgO0SUvGSNuNCw==
+X-CSE-MsgGUID: W/HElhn4SGqBre2ryzpISw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; 
+   d="scan'208";a="238483501"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.237])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2026 00:37:55 -0700
+Date: Fri, 8 May 2026 10:37:53 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Janani Sunil <janani.sunil@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Janani Sunil <jan.sun97@gmail.com>
+Subject: Re: [PATCH 0/3] iio: dac: Add support for AD5529R DAC
+Message-ID: <af2S0eIia76c4m2K@ashevche-desk.local>
+References: <20260507-ad5529r-driver-v1-0-b4460f3cb44f@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260508-a9-gpio-irqchip-v1-3-9dc5f3e022e0@amlogic.com>
-References: <20260508-a9-gpio-irqchip-v1-0-9dc5f3e022e0@amlogic.com>
-In-Reply-To: <20260508-a9-gpio-irqchip-v1-0-9dc5f3e022e0@amlogic.com>
-To: Thomas Gleixner <tglx@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778225816; l=5139;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=nAfHIz6N7m4oMjB9PiZJjp678ZGWzDBR5xK3MB5dJRI=;
- b=LQqjSXVX5QTASAePP+dTc5VePmsxGw865S8yEFVsPZYttboDVp/QTlPgVoCGnoRWa2qnYkkxQ
- DSMvkv5e2qJAdEt0U+nTcK7fleZv3bDwgY8ic4O05kPcarkQYcRghC/
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
-X-Rspamd-Queue-Id: 2EB034F339C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260507-ad5529r-driver-v1-0-b4460f3cb44f@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: E49344F33AB
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294382-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-294386-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com,gmail.com];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email,amlogic.com:mid,amlogic.com:replyto]
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
 X-Rspamd-Action: no action
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Thu, May 07, 2026 at 06:28:08PM +0200, Janani Sunil wrote:
+> This patch series adds support for Analog Devices AD5529R, a 16 channel
+> 16 and 12 bit voltage Digital-to-Analog Converter (DAC) with integrated
+> precision reference. The AD5529R operates from both unipolar and
+> bipolar supplies. The device communicates via SPI interface.
+> 
+> **Device Overview:**
+> The AD5529R features 16 independent DAC channels, with 16 or 12 bit
+> resolution, allowing independently programmable output ranges. The
+> internal 4.096V precision reference sets the accuracy of the output
+> voltage.
+> 
+> **Features Implemented:**
+> - Automatic detection of 12/16 bit generic with product ID read.
+> - Reset support via GPIO.
+> - Dual regmap configuration to handle 8 and 16 bit registers.
+> 
+> **Patch Summary:**
+> 1. **dt-bindings**: Binding documentation with channel configuration.
+> 2. **driver**: Implement IIO DAC Driver with regmap support.
+> 3. **documentation**: Add driver documentation with usage examples.
+> 
+> **Testing:**
+> The driver was compiled and tested on the EVAL-AD5529R-ARDZ using a
+> coraZ7 with a mainline v7.0 kernel.
 
-The Amlogic A9 SoCs support GPIO interrupt lines:
-	A9 IRQ Number:
-        - 95:86   10 pins on bank Y
-        - 85:84    2 pins on bank CC
-        - 83:64   20 pins on bank A
-        - 63:48   16 pins on bank Z
-        - 47:30   18 pins on bank X
-        - 29:22    8 pins on bank H
-        - 21:14    8 pins on bank M
-        - 13:0    14 pins on bank B
-
-	A9 AO IRQ Number:
-        - 38       1 pins on bank TESTN
-        - 37:31    7 pins on bank C
-        - 30:13   18 pins on bank D
-        - 12:0    13 pins on bank AO
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- drivers/irqchip/irq-meson-gpio.c | 75 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
-
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 74a376ef452e..f68476b2c538 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -27,6 +27,10 @@
- /* use for A1 like chips */
- #define REG_PIN_A1_SEL	0x04
- 
-+/* use for A9 like chips */
-+#define REG_A9_AO_POL	0x00
-+#define REG_A9_AO_EDGE	0x30
-+
- /*
-  * Note: The S905X3 datasheet reports that BOTH_EDGE is controlled by
-  * bits 24 to 31. Tests on the actual HW show that these bits are
-@@ -53,6 +57,8 @@ static void meson_a1_gpio_irq_sel_pin(struct meson_gpio_irq_controller *ctl,
- static void meson_a1_gpio_irq_init(struct meson_gpio_irq_controller *ctl);
- static int meson8_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
- 				    unsigned int type, u32 *channel_hwirq);
-+static int meson_a9_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-+					 unsigned int type, u32 *channel_hwirq);
- static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
- 				      unsigned int type, u32 *channel_hwirq);
- 
-@@ -116,6 +122,18 @@ struct meson_gpio_irq_params {
- 	.pin_sel_mask = 0xff,					\
- 	.nr_channels = 2,					\
- 
-+#define INIT_MESON_A9_AO_COMMON_DATA(irqs)			\
-+	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
-+			  meson_a1_gpio_irq_sel_pin,		\
-+			  meson_a9_ao_gpio_irq_set_type)	\
-+	.support_edge_both = true,				\
-+	.edge_both_offset = 0,					\
-+	.edge_single_offset = 0,				\
-+	.edge_pol_reg = 0x2c,					\
-+	.pol_low_offset = 0,					\
-+	.pin_sel_mask = 0xff,					\
-+	.nr_channels = 20,					\
-+
- #define INIT_MESON_S4_COMMON_DATA(irqs)				\
- 	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,		\
- 			  meson_a1_gpio_irq_sel_pin,		\
-@@ -170,6 +188,14 @@ static const struct meson_gpio_irq_params a5_params = {
- 	INIT_MESON_S4_COMMON_DATA(99)
- };
- 
-+static const struct meson_gpio_irq_params a9_params = {
-+	INIT_MESON_S4_COMMON_DATA(96)
-+};
-+
-+static const struct meson_gpio_irq_params a9_ao_params = {
-+	INIT_MESON_A9_AO_COMMON_DATA(39)
-+};
-+
- static const struct meson_gpio_irq_params s4_params = {
- 	INIT_MESON_S4_COMMON_DATA(82)
- };
-@@ -203,6 +229,8 @@ static const struct of_device_id meson_irq_gpio_matches[] __maybe_unused = {
- 	{ .compatible = "amlogic,a4-gpio-ao-intc", .data = &a4_ao_params },
- 	{ .compatible = "amlogic,a4-gpio-intc", .data = &a4_params },
- 	{ .compatible = "amlogic,a5-gpio-intc", .data = &a5_params },
-+	{ .compatible = "amlogic,a9-gpio-ao-intc", .data = &a9_ao_params },
-+	{ .compatible = "amlogic,a9-gpio-intc", .data = &a9_params },
- 	{ .compatible = "amlogic,s6-gpio-intc", .data = &s6_params },
- 	{ .compatible = "amlogic,s7-gpio-intc", .data = &s7_params },
- 	{ .compatible = "amlogic,s7d-gpio-intc", .data = &s7_params },
-@@ -375,6 +403,53 @@ static int meson8_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
- 	return 0;
- }
- 
-+/*
-+ * gpio irq relative registers for a9_ao
-+ * -PADCTRL_GPIO_IRQ_CTRL0
-+ * bit[31]:    enable/disable all the irq lines
-+ * bit[0-19]:  polarity trigger
-+ *
-+ * -PADCTRL_GPIO_IRQ_CTRL[X]
-+ * bit[0-5]: 6 bits to choose gpio source for irq line 2*[X] - 2
-+ * bit[16-21]:6 bits to choose gpio source for irq line 2*[X] - 1
-+ * where X = 1-10
-+ *
-+ * -PADCTRL_GPIO_IRQ_CTRL[11]
-+ * bit[0-19]: both edge trigger
-+ *
-+ * -PADCTRL_GPIO_IRQ_CTRL[12]
-+ * bit[0-19]: single edge trigger
-+ */
-+static int meson_a9_ao_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
-+					 unsigned int type, u32 *channel_hwirq)
-+{
-+	const struct meson_gpio_irq_params *params = ctl->params;
-+	unsigned int idx;
-+	u32 val = 0;
-+
-+	idx = meson_gpio_irq_get_channel_idx(ctl, channel_hwirq);
-+
-+	type &= IRQ_TYPE_SENSE_MASK;
-+
-+	meson_gpio_irq_update_bits(ctl, params->edge_pol_reg, BIT(idx), 0);
-+
-+	if (type == IRQ_TYPE_EDGE_BOTH) {
-+		val = BIT(ctl->params->edge_both_offset + idx);
-+		meson_gpio_irq_update_bits(ctl, params->edge_pol_reg, val, val);
-+		return 0;
-+	}
-+
-+	if (type & (IRQ_TYPE_LEVEL_LOW | IRQ_TYPE_EDGE_FALLING))
-+		val = BIT(idx);
-+	meson_gpio_irq_update_bits(ctl, REG_A9_AO_POL, BIT(idx), val);
-+
-+	val = 0;
-+	if (type & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
-+		val = BIT(idx);
-+	meson_gpio_irq_update_bits(ctl, REG_A9_AO_EDGE, BIT(idx), val);
-+
-+	return 0;
-+};
- /*
-  * gpio irq relative registers for s4
-  * -PADCTRL_GPIO_IRQ_CTRL0
+Missed section for a new driver. Id est answer the question "Why a new brand
+driver? Do we have something similar in IIO  already to be expanded to cover
+this HW part?"
 
 -- 
-2.52.0
+With Best Regards,
+Andy Shevchenko
 
 
 
