@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-294574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YE6hKKT7/WnYlQAAu9opvQ
-	(envelope-from <devicetree+bounces-294574-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 17:05:08 +0200
+	id 6APWBlT7/WnYlQAAu9opvQ
+	(envelope-from <devicetree+bounces-294575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 17:03:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10FAA4F8486
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 17:05:07 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3AD4F8434
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 17:03:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA12430AC219
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 15:01:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0D3013027C44
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 15:01:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD693B47FA;
-	Fri,  8 May 2026 15:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811783FB7DB;
+	Fri,  8 May 2026 15:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SD8whVZS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QqhRMr1b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A0C2459E5;
-	Fri,  8 May 2026 15:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448BF3FB7C0;
+	Fri,  8 May 2026 15:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778252474; cv=none; b=b9u9paXaOGaGmo6A1jIpO7+VDdXoptsy2yGfUt8dPBDVlWr5WR6DL2oTZPQ72YMYnPez+ofk4ZNrgfhkuWOIOUw9AQm7AD4sWrl8ZuvZDlqY7gBiLWnEy3AmFJH9+bbZsM9yVaWz+tP23uXH+1wksBMcf55Mkp82gHttJyUPxhM=
+	t=1778252501; cv=none; b=iAdejnzkx5gM8aKm/s95dLotIr55Rp5IyZecQhJSyaVYqU872dVmmvoJ4q5VNGxe0jElrWVoePmuX7Npes46Es4KfLfFTQde9AuYIhLAmzfgL3WMfvyvXfOYiWoSwAUEt14ic50QSeaCYy7R6ak9HwjUXY4zB/4T7NO/pRmKLl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778252474; c=relaxed/simple;
-	bh=4pvPIysS9xFH+7471NAoRot/8UcaVFM2RP/Hp3uP2xI=;
+	s=arc-20240116; t=1778252501; c=relaxed/simple;
+	bh=x952hfscGsSmbni9hM0bsGIMPmFiigAJ0E6obA852NA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aiVH3J++MOV4LWQnjL5QbcofIYv5bR0/ktVg1CIH/tHOttoEi1CQSAf3FgrOPSYVkfK7NGRU8FwpFIybITaT4gO1VEIFvYOf8D4KOb7R/+tljEAQxuxBN3c0Nvt9ZRfe1qtDqJONorJgdPlqioANGTGQkT+ARyRdDgtwsV3WFeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SD8whVZS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68DB1C2BCF7;
-	Fri,  8 May 2026 15:01:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JdVmhHC+xs8Gexy3wzZPedqwV2dyXetdEKxebnyPGpLllVAats8nPLejXhbrTaRcU8BVPXhYCS4tfD31Gyuy/mSS7ipnkf8LNx7QgjbnJfY+dKk+ChAq4es8xy+SVwqRZ/mqqv+W5XQzZ/xulNt2zkPgTZQfvo8jNqz3sywAIp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QqhRMr1b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61FF0C2BCB0;
+	Fri,  8 May 2026 15:01:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778252473;
-	bh=4pvPIysS9xFH+7471NAoRot/8UcaVFM2RP/Hp3uP2xI=;
+	s=k20201202; t=1778252500;
+	bh=x952hfscGsSmbni9hM0bsGIMPmFiigAJ0E6obA852NA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SD8whVZSJQao+hLGhIx0hZDHJxy08wES5ZWqNimqAq4+XJQoqFn9hRAo/xuUjTOTO
-	 Ro24N6xfFdGJcI6LTLe/ZgAYLZB+hU3wRbWJXRSbvo/d//2pfu/oDngWtUyyfyRdfR
-	 QQIwNBrpVoAQ8tzpsUozE9E6ybv4ruJ8Q78NA1/eOT8uPFHnkyOjq8LM9Djbimwza6
-	 EeEATel4TxydtXSkWE+eDU7N9tpZsdwFEYnGL7XD5nHuluaBHh5/jO4h2KmK9xjacq
-	 VpGHnOerAwLqSfpRUSb9MPbyeiLe20+rXRl3tA70UHUqqxTbi8crdS83NTqjlyzWn6
-	 CNGMM4GU3e2Bg==
-Date: Fri, 8 May 2026 16:01:10 +0100
+	b=QqhRMr1br6ft0fjHI8t2T4VPWmfWBetFP5P/I6p1jjzMhdoQ90adJhwic6DXcsfaL
+	 DnRUsS6OIdxk81WzCxU8z6X3o1hf72sWFvW7aTwzEnVNEfloi2wX4NZ3uExJ6xRN/+
+	 5yHj+8QeYmITfGQ4AP1zqe0C28bdf1BZQAaCGi7nsnRUoZ3FCGLMAsWNAi2txqdvGG
+	 VDRLgl/oxNbgq+ChofLVdxHekR0uVTsTk4XK/b1P+kBnJxuiJPCWGgCTze5nHQZ+rX
+	 r5WMe+CaIQaBkF5e/HsYoDTUry7SwzSxGyLBjIpnPnbgcjeZgpUgT7nyEfK9D0wrCD
+	 X6P8MZowlgDwA==
+Date: Fri, 8 May 2026 16:01:36 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+To: u8813345@gmail.com
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: altera: add compatible for agilex5
- socdk debug daughter card
-Message-ID: <20260508-unpainted-stoic-bef0945598cb@spud>
-References: <cover.1778237639.git.adrian.ho.yin.ng@altera.com>
- <ee029101fc623a716bcc31e040fd1271d8fc3f70.1778237639.git.adrian.ho.yin.ng@altera.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Chang <kevin.chang2@amd.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Colin Huang <colin.huang2@amd.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: trivial-devices: Add Delta E50SN12051
+Message-ID: <20260508-moustache-casually-c33a677ea535@spud>
+References: <20260508-add-e50sn12051-v5-0-abebdcc29665@gmail.com>
+ <20260508-add-e50sn12051-v5-1-abebdcc29665@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,59 +66,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CpKEQW07NauFiFSt"
+	protocol="application/pgp-signature"; boundary="FSGHFD/a/WG6Tis7"
 Content-Disposition: inline
-In-Reply-To: <ee029101fc623a716bcc31e040fd1271d8fc3f70.1778237639.git.adrian.ho.yin.ng@altera.com>
-X-Rspamd-Queue-Id: 10FAA4F8486
+In-Reply-To: <20260508-add-e50sn12051-v5-1-abebdcc29665@gmail.com>
+X-Rspamd-Queue-Id: 1F3AD4F8434
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294574-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294575-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
---CpKEQW07NauFiFSt
+--FSGHFD/a/WG6Tis7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---CpKEQW07NauFiFSt
+--FSGHFD/a/WG6Tis7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaf36tQAKCRB4tDGHoIJi
-0rnwAQCq4xog55MvkvDXzVUGrUCnF6PTXJ9VoNyD3Awkd0JJ0wEA7Y1jThSrrzfo
-gf34TXBvKQcLlVo6Iy0EJpVT8F8zqgw=
-=lpbY
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaf360AAKCRB4tDGHoIJi
+0jaYAP9L+e6NVAKuIcIxYP2lhSB0WRnVh6YsPvKhvs39Pd0RswEAhxoQ4Kf/ZCSD
+8aFnuyjAgtWLq6dJxkVc5lWAOeJnSgw=
+=Bdrb
 -----END PGP SIGNATURE-----
 
---CpKEQW07NauFiFSt--
+--FSGHFD/a/WG6Tis7--
 
