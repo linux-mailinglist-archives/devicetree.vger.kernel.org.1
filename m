@@ -1,176 +1,183 @@
-Return-Path: <devicetree+bounces-294544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cCfqHqjq/WkPkgAAu9opvQ
-	(envelope-from <devicetree+bounces-294544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:52:40 +0200
+	id 2Oa6Jlzt/WlJkwAAu9opvQ
+	(envelope-from <devicetree+bounces-294555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:04:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C9C4F7651
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:52:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD6E4F78B2
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:04:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 784CC304462C
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 13:43:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 092C13016D2F
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 14:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260793E4C62;
-	Fri,  8 May 2026 13:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2F63EC2CD;
+	Fri,  8 May 2026 14:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JkhaPYRK"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="N5Hvyy2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out28-148.mail.aliyun.com (out28-148.mail.aliyun.com [115.124.28.148])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA013DDDA7
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 13:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D08F3E869A;
+	Fri,  8 May 2026 14:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778247813; cv=none; b=WYk3oJFG4jrlPihHeGpPi/VejZ16xLQTxy7LHpySd4VxTbSsfBqftylmRK/vt6Uuk6O+OE9ewXm1t2IrW7a9WOJH0OKVD/isOkOM5CPmX4PKk+4r2l6q2wiLOmV3K0zcQb6cP0iR5gJSeGGsH8rocZIdFuIRRv2gIrP7u0OLU8Y=
+	t=1778248980; cv=none; b=JSRT0GYnI7KFGY5iN8qkLQk8z7SsEEsgxoUsA0Y7jlt5l93XQpSi+l2nKsnLVaEZBLkv6u+HozuBa+WCxWIZ30/TDCvzUyRMHBO2Sv/J/8XTdLjm5Al3fsvPlbEwGsECCfgwuOly9GRYfCvBtAyNDN62ogE9ro1NbXSfh00k8rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778247813; c=relaxed/simple;
-	bh=vwmK+t5/0R/qMQfaEFIfrqiBe1JOEHiToQQCNOnzq4Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H2nLaSEbPyVf5QiaGRl8aOMKC1vEbXDIB39TucqcbWGEf2jJnkKb7b67cwUumywi26siTUHh6FI6eR2fChXMF3lqn/gtuuMdlXPvg0VFHss2cQyNZDa0QfJw2sA69iAOBwzSnzlMhQCBo0vu/VMX/d9XNejvnCzGeaIWqUMi+4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JkhaPYRK; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-488b150559bso15680105e9.1
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 06:43:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778247809; x=1778852609; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=vj7GjlyaIP+G5nMU9wmaTTa+4+maED9Ta/6ulqHERU8=;
-        b=JkhaPYRKNfJv/qbPo7q2t9Lheiwd1/53yIbolYpZAbhGdmAq/JSJw/EUELfKSNBp9p
-         33C16l2oYOjLM5b5BkRu6VWfwFtDnRUawkt/u7/4ZK98Nx82TRTvDS/H2cB+IFQcc83n
-         PDlXKEsi0/V9hiTEYI7g9eptswhhRxRB0eMUgf7hNOJn+aYkbogvdrKbqsN0YctDuvHj
-         sHCv82Qj+jlcJsYP2/QQ7yoiA3+pn3eBsdDOoiWSjqARSQMRVR/2UW+xcbp10Jp9M2e6
-         nczPPTD5PbAELi+SKy1K0SJS7eTmUzdb/NP4t/j5u+cbb0PoXsAzVDDjo2eyHNIjrOlR
-         qixQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778247809; x=1778852609;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vj7GjlyaIP+G5nMU9wmaTTa+4+maED9Ta/6ulqHERU8=;
-        b=TABAXMwmyQ8rcLDoIdXN45/3xCDEWYs/zT/9BLg6IIWfMxviePcWgX930C+H+WLpEr
-         9PiVp63GBhCc3b2DSQUi6MTGzb3kj3JKyTlFbC6cruqAyN5gBoig0ADWHYONkPxBTcTs
-         1SR1fHvpcZGmQHrS7NXVDZGIpa5ZQd0k/4zTSab3KvZ3XhQCPTrDwP9SPC2JF181NYM3
-         8El15Kx7v4fxgecM1QfzNjwYKSg16fWICGrGrVZ78LjHTfZQ6XmeQZDWBFEaoe4U5aVh
-         e/ylYU2fefZIzJjHpVpGJgdYwk50PpUIRZJ8/byt4QghLiSItGrIzr3C/FQK0MmcUL5N
-         Ucwg==
-X-Forwarded-Encrypted: i=1; AFNElJ8S118Gq8HJnWAkFeuBgptLrzkJqCSJyAoTq3VKCh4bpfHwD7KRqlMyn+yPQv7+BDKoD24pLbbU4GSY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl2bur95wemP1HAO7ELvQIkwr2igBINLUoeEvyPU+vDnkL1giE
-	hYvSix4RhYAkMOLTTvijjGXCbs1Tg/irX7qcSMGtg1+VR338lbsVZPyb
-X-Gm-Gg: AeBDieuJWEKgbNU03B3N2EZ1RVJf3AGKlec+DB8P/tAcGq92akRVICn5JuA3xTWu6Ww
-	woZHp1SXcdLos4mHU3458emypxcS42vxn71X/5NxTJmH7PuVz83ntumTwnD5M9vOkX+rbV4MAbL
-	8cOC0hyQalPjqhDXZqFMLLAS6MW2+NoljyMcM+MA/ZrBkWoCPwGeQ1arxJTZkmNxV3G7U0FzITq
-	0cUHoHaNrovDMSy1LgGa5aXrHYjWdB706jH27RwDHS37Ei/aGot7Z5ifacr6DLub2kSQKFygyHZ
-	g6zhl3IzcUZ4zXkMsyC0DCC2caa1BOG8NL2P/6bBrjdfpHc8IvyvsfhDZ4uu+wcSSxFqtgQtZwl
-	ZSiANGKyKQCXzFop67gwtt1zua7syzLWr9U7bXHf5xMtlr2L3p0ckYVXPAOakhwJCt6cH+bqJaF
-	kaCLuUnjkVdh42MBM=
-X-Received: by 2002:a05:600c:a118:b0:486:d76c:fa57 with SMTP id 5b1f17b1804b1-48e51f37363mr157605975e9.17.1778247809122;
-        Fri, 08 May 2026 06:43:29 -0700 (PDT)
-Received: from nsa ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e6db171c9sm144165e9.30.2026.05.08.06.43.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 May 2026 06:43:28 -0700 (PDT)
-Date: Fri, 8 May 2026 14:44:22 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: "Stan, Liviu" <Liviu.Stan@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>, 
-	"Sa, Nuno" <Nuno.Sa@analog.com>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: temperature: ltc2983: Add support for ADT7604
-Message-ID: <af3oezNmmBhI4Yu4@nsa>
-References: <20260427132526.272716-1-liviu.stan@analog.com>
- <20260427132526.272716-3-liviu.stan@analog.com>
- <afCVtXBHIIoLlsRo@nsa>
- <SA5PR03MB83772D8F6A3CC39094DE5241F63C2@SA5PR03MB8377.namprd03.prod.outlook.com>
- <af2no3bJA9MSjXvV@nsa>
- <20260508121441.39ad9f65@jic23-huawei>
- <SA5PR03MB83778AB3C41E0AF56EC754F8F63D2@SA5PR03MB8377.namprd03.prod.outlook.com>
+	s=arc-20240116; t=1778248980; c=relaxed/simple;
+	bh=EHdVThZtYwy9FVFWmzPWcgDaSWT0AOQS247lpc2KIFs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GlH4wv1ThteRWOSTO44xbaXd+LvtkEH/53+sS/uoJpnB1lFPqneVF7DK1OmdLKqN76tsEzM8dYiuaxzxOFzPsEFDWqr0kE0bsMLnLfuw6BY1IqKQFClguTpF+NsBZaRoyAxA7yG4TU+oc34/EwhWrLoUymI+URIDd8Hzna6jfbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=N5Hvyy2t; arc=none smtp.client-ip=115.124.28.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1778248970; h=From:To:Subject:Date:Message-Id:MIME-Version;
+	bh=plRzfbW8Qws5ho7KRsBfti1sG4WFDyy3YZ+bQe0Yb2U=;
+	b=N5Hvyy2tjEVOKl0apPJmM4A8dQvI8NQlBN39fTYp0tDdKeNlhVpTCvFRwbeNKG+I2/lhh9fmyXsfamUCiX3c1wjgt8SnmzHEhTJ5l5YAe2gbDEsTnirA102pkfqxg9/3jm/hYxJ1gA7Vqd+oHiz0scI2wmzUI0BGT0b11CbG76YAZsDXbSbJunFgjqdZgw3k32ajHSGMVqJOYtl6TuKh08HvTB2qaPtVUeBGIkkJzPD8xsoPL8KOiGOgBULHjREQhbqKtK8vRy1luF03S8UISn0jba8DxprK2icJRveRX0qd8whZxf/+cRYLjO4v/bEwJxBqp4blTlMPEs5erDPYBg==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.100362|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00363759-8.50324e-05-0.996277;FP=7802761490420370552|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037006180;MF=syyang@lontium.com;NM=1;PH=DS;RN=22;RT=22;SR=0;TI=SMTPD_---.hSic0zK_1778248029;
+Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hSic0zK_1778248029 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Fri, 08 May 2026 21:47:10 +0800
+From: syyang@lontium.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	maarten.lankhorst@linux.intel.com,
+	rfoss@kernel.org,
+	mripard@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	tzimmermann@suse.de,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	yangsunyun1993@gmail.com,
+	xmzhu@lontium.corp-partner.google.com,
+	xmzhu@lontium.com,
+	rlyu@lontium.com,
+	xbpeng@lontium.com,
+	Sunyun Yang <syyang@lontium.com>
+Subject: [PATCH v6 0/2] Add Lontium LT7911EXC eDP to MIPI DSI bridge
+Date: Fri,  8 May 2026 21:47:00 +0800
+Message-Id: <20260508134702.4713-1-syyang@lontium.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <SA5PR03MB83778AB3C41E0AF56EC754F8F63D2@SA5PR03MB8377.namprd03.prod.outlook.com>
-X-Rspamd-Queue-Id: D0C9C4F7651
+X-Rspamd-Queue-Id: 0DD6E4F78B2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [6.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294544-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294555-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	R_DKIM_ALLOW(0.00)[lontium.com:s=default];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,meta];
+	DMARC_NA(0.00)[lontium.com];
+	DKIM_TRACE(0.00)[lontium.com:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Action: no action
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_SPAM(0.00)[0.980];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lontium.com:email,lontium.com:mid,lontium.com:dkim,0.0.0.0:email,0.0.0.1:email]
+X-Rspamd-Action: add header
+X-Spam: Yes
 
-On Fri, May 08, 2026 at 12:46:50PM +0000, Stan, Liviu wrote:
-> On Fri, 8 May 2026 Jonathan Cameron wrote:
-> > > > As for the IIO_TEMP question, the chip's custom sensor table stores
-> > > > temperature in Kelvin (same as the LTC2984 custom RTD table). For the
-> > > > leak detector, coverage data is encoded as (P + 273.15) K, so when the
-> > > > chip converts Kelvin to Celsius on output, after the driver applies the
-> > > > 1000/1024 scale, the IIO output is P * 1000 millidegrees C - 0% reads
-> > > > as ~0 millidegrees, 100% reads as ~100000 millidegrees. But yes, the
-> > > > actual useable quantity is coverage percentage, not temperature. Is there
-> > > > a more suitable existing IIO channel type for coverage percentage?
-> > > >
-> > >
-> > > Will defer this to Jonathan but if we can have a real of the coverage
-> > > given the temperature, I guess this is ok. Given that I think we don't have
-> > > a better channel (unless we add one?) for this. Or just extended_info...
-> > >
-> > 
-> > I have no idea what coverage percentage means in this case.
-> > Can you provide some more details or a reference?  Google isn't giving me
-> > anything useful.
-> 
-> A leak detector is a sensor like the raindrop detection modules, whose 
-> resistance decreases as more of its surface is contacted by liquid. In this case, 
-> for example, if half of the sensor's surface is in contact with a liquid, the 
-> ADT7604 should, with an appropiate user-provided resistance-vs-coverage 
-> table, report 50% coverage in the IIO channel.
+From: Sunyun Yang <syyang@lontium.com>
 
-And, AFAIU, depending on the coverage the resistance changes and that's
-how we get into the indirect temperature variations?
+The LT7911EXC is an I2C-controlled bridge that Receiver eDP1.4
+and output signal/dual port mipi dsi. This series introduces:
 
-- Nuno Sá
+- A device tree binding YAML file describing the hardware
+- A new DRM bridge driver implementing the basic functionality
 
-> 
-> Thanks,
-> Liviu
+Signed-off-by: Sunyun Yang<syyang@lontium.com>
+---
+Change in v6:
+- dt-binding:
+- drm/bridge:
+ 1. use #define FW_FILE  "Lontium/lt7911exc_fw.bin" to match linux-firmware
+- Link to v5: https://lore.kernel.org/lkml/20260506013153.2240-1-syyang@lontium.com/
+
+Change in v5:
+- dt-binding:
+- drm/bridge:
+ 1. Change "mipi" to "mipi dsi" in the commit message.     [Dmitry]
+ 2. Change "eDP/MIPI" to "eDP/MIPI DSI" in Kconfig.
+- Link to v4: https://lore.kernel.org/lkml/20260430094612.3408174-1-syyang@lontium.com/
+
+Change in v4:
+- dt-binding:
+ 1. Fix the missing spaces on the "subject".             [Krzysztof]
+ 2. Fix the error descriptions for port@0 and port@1.
+- drm/bridge:
+- Link to v3: https://lore.kernel.org/lkml/20260429040541.3404116-1-syyang@lontium.com/
+
+Change in v3:
+- dt-binding:
+- drm/bridge:
+ 1. already submit lt7911exc_fw.bin to linux-firmware.  [Dmitry]
+ 2. remove lt7911exc_remove function.
+ 3. drop  the "lontium, "  in lt7911exc_i2c_table.
+- Link to v2: https://lore.kernel.org/lkml/20260428063224.3316655-1-syyang@lontium.com/
+
+Change in v2:
+- dt-binding:
+ 1. reset pins use active low.                        [Dmitry]
+- drm/bridge:
+ 1. use atomic_* callbacks.                           [Quentin]
+ 2. fix the incorrect formatting and spaces.
+ 3. add the required header files.                    [Dmitry]
+ 4. remove "enabled" flag.
+ 5. remove *fw from the lt7911exc struct.
+ 6. .max_register and .range_max use actual range.
+ 7. regulator use bulk interface.
+ 8. use dev_err_probe, devm_mutex_init and devm_drm_bridge_add.
+ 9. Replace GPL v2 with GPL.
+- Link to v1: https://lore.kernel.org/lkml/20260420023354.1192642-1-syyang@lontium.com/
+---
+Sunyun Yang (2):
+  dt-bindings: bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+  drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+
+ .../display/bridge/lontium,lt7911exc.yaml     |  89 ++++
+ drivers/gpu/drm/bridge/Kconfig                |  13 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/lontium-lt7911exc.c    | 493 ++++++++++++++++++
+ 4 files changed, 596 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt7911exc.c
+
+-- 
+2.34.1
+
 
