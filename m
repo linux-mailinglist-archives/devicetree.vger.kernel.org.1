@@ -1,161 +1,145 @@
-Return-Path: <devicetree+bounces-294543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UBAIFTvo/WkPkgAAu9opvQ
-	(envelope-from <devicetree+bounces-294543-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:42:19 +0200
+	id kIfON4bq/WkPkgAAu9opvQ
+	(envelope-from <devicetree+bounces-294545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:52:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 531894F73B5
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:42:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5714F762D
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2AE50301B1C9
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 13:42:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B99630D159F
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 13:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B873E559C;
-	Fri,  8 May 2026 13:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89BF3E5576;
+	Fri,  8 May 2026 13:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WHm4ZnG6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E60B37BE70;
-	Fri,  8 May 2026 13:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939563E3177;
+	Fri,  8 May 2026 13:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778247715; cv=none; b=NqPCch++bToJYbEhD1hKz6rvLV4vVfYIIrgIsR0621xFWV6z/sRBSnNwcawSgEw6nEV0jNRV9hcfTrND6bmSaOaP55IKDRz67Bv6CnwkXa0VATqa+0oMhBDDnrdXqu+fhW3OGlXejCfuTpvqoNFQ9NfKg10x4zb7Ka7jts2hHcc=
+	t=1778247853; cv=none; b=JyoPS9ujEOyQ+rNWj3UQo5PisaWNa9P4adcV6mjxAq0a/ogbVSvxhP4Fto6t/cvRsSSda8cl8TOtwP1tJIC+ZO8PtCmSq81A+zgzFhc3zcylYreQA3QvJQROriGkk2Iso5HhC2SbJqjntEg6BsZuBsQXsFfIipmIJt++o/xgpnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778247715; c=relaxed/simple;
-	bh=M01axkFi60PgsS5+yPl+h/GD+JWVJPr57X7IRcb625U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AP1MeOdIHRA2qmwql5WZjzPMQcEZCixtPn6sF1r/+gR5f/4yHrrbwUVCLr5DgPsyDQHXO8A1q7ylvsno2XJYc2srPNJjHF8ge3ynd1mv8J7gPYH0CLf3FbcmzEtLgYp38naP4sA58AXweXwZLoBChF2hLY68j+LQdjxzLSo5lnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpsz9t1778247685t1369d6ed
-X-QQ-Originating-IP: Rwa7KskeJ2ohyMfXaBDQ3/23jeqhEAjyHFd1W0vcT44=
-Received: from [127.0.0.1] ( [116.234.74.217])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 08 May 2026 21:41:19 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14886756243137966030
-Message-ID: <ED7EE77387FC4C2F+9b254eea-8598-4b34-876e-670fcef2d185@radxa.com>
-Date: Fri, 8 May 2026 21:41:17 +0800
+	s=arc-20240116; t=1778247853; c=relaxed/simple;
+	bh=rC7HQLfgWuhJ3tSLf2UG4GIGH2fMZZU1dF+YCsP/4sA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lhiwRObwaV6l5UCpOTrQxsE4eMjMssqw0NlF1z7fiQrdv2M6J5+G5hEea8FNqppzesCFq9wx+uM/IuB5wpQ+4Jy3SEKZFjFiRI7gXbyyibWScfUis9zaRaOj+y44wHbicjQOZkU4vM1Vd3pj4V/ZikSmhmu3mlsMyu5M2GSIMls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WHm4ZnG6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA88C2BCB0;
+	Fri,  8 May 2026 13:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778247853;
+	bh=rC7HQLfgWuhJ3tSLf2UG4GIGH2fMZZU1dF+YCsP/4sA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WHm4ZnG6iJz/kDhKJl5Rmp/R1fLy1hCSquKtYdyiAmXF2pdqAjGisgPUd2/jaGeNd
+	 sfh9+XmtGOKaw8fjax1gO+Xq6vPtZfp/EVzJChaOoOd4MflD0lGXFJnUouaqV7gA3e
+	 WgDgeYq7N7bCelXESN36q4ovNXeR3N476ScS7YF+2Xr7ExuqIfJhwrPsoAQlxgRTMv
+	 ewT3MvGg1jpBjem67Gp4XPIqpC4Kfp4FumVl/lTy0EqGChJaOi9Hhp+Oz2R4OMXIUL
+	 SeINhR5LGB3geJviScn5JWmrrsZo/M6UB4NghYd+8pKu1+bn+RfnZlcm4VWA8kV2DO
+	 wGpyXqu6bXRXA==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 588CD1AC5896; Fri, 08 May 2026 14:44:09 +0100 (BST)
+Date: Fri, 8 May 2026 22:44:09 +0900
+From: Mark Brown <broonie@kernel.org>
+To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 3/4] Input: gpio-keys - add regulator to gpio_keys
+Message-ID: <af3oqSshbXrUYMnz@sirena.co.uk>
+References: <20260508-gpiokeys-vdd-supply-v1-0-0bb32e8e6428@fairphone.com>
+ <20260508-gpiokeys-vdd-supply-v1-3-0bb32e8e6428@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 10/12] net: stmmac: tc956x: add TC956x/QPS615
- support
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Alex Elder <elder@riscstar.com>, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, maxime.chevallier@bootlin.com,
- rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org,
- brgl@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
- Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
- a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- boon.khai.ng@altera.com, chenchuangyu@xiaomi.com, chenhuacai@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, hkallweit1@gmail.com,
- inochiama@gmail.com, john.fastabend@gmail.com, julianbraha@gmail.com,
- livelycarpet87@gmail.com, matthew.gerlach@altera.com,
- mcoquelin.stm32@gmail.com, me@ziyao.cc,
- prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
- rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
- weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
- bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260501155421.3329862-1-elder@riscstar.com>
- <20260501155421.3329862-11-elder@riscstar.com>
- <224E233C593EF171+8c8a43dd-5061-40f8-9eb7-f360eabf2ecc@radxa.com>
- <ae90a4c9-f027-4373-a378-d0d4b7796ff3@riscstar.com>
- <6744F8FEFD290FFD+4973b8ba-7d3b-45e4-8478-0b3334b81960@radxa.com>
- <fc5d14d5-c65d-445f-90c6-9659e284c0ca@lunn.ch>
-Content-Language: en-US
-From: Xilin Wu <sophon@radxa.com>
-In-Reply-To: <fc5d14d5-c65d-445f-90c6-9659e284c0ca@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
-X-QQ-XMAILINFO: Mom5ezI3X1cDdstxr0dvEIZV443NBEYAfToYd8iPkwSlMrpUFKrexK8P
-	dTvWTgpqC6Skcw0ZRPuUSf3Wz7VpYWQwC9iH6yHq0bFCcJYPFPdk4miUDUngLuiFEe/oLMO
-	XvESpVBjhvLLQjFeGc4/SEgKqu9OYOrHE1gMC0mjnqRSeqgJmnLUvcBcCm+smi5QKexLhr5
-	CxwYvkoAzOjw4aMgudRQ8yGCJ/Gxsil4YNYEgNXjwqchA6H5ywfDG0StQmJvHaH0ac/3eO3
-	Y4gAPULSyC4lTo7wNhiLmOPwJfvREVDd9gH5eapN703xRJQEPIMsXvAN4ADGNqho0RV+Ojx
-	jGGwagzF4qK7kU5mZBOptSdYd8kFvS49tt1slIYJSbaPRJZuLhQrQgWk6nl0CGonh0vrQnQ
-	BWjX/CQPP2P7pIHcLnUFCCP44rKBHEtW8k7aQ2OK3Sv4Vg1yvwjelZkn3w/Ty/870rJttFS
-	OqBkH8/xYcYEqDnuHIJyt3mi3tc1wrHIvYehd5puuj0ieRZ2Cu2Y3BGxF6Hpqb3OmVQC5o7
-	eKBrQ2rv3Zkx+I9oQYXH7xa53o5dt3iwq0spnNOtnD5LTHhDbuuLV8os0emQ1BbLfkQs8Eg
-	P6/jWIVAL5jB7uiTF1o4qc72Q1N2noULu6hVAQ+rKU9cYYSdzflLHWFLiUFqExsOXFNtrT+
-	9sogoxbxW6xeVhVUTYjOCubqmG6q85LsyZQzi7O8W1dn0RQHJz8kEEWuDHNYtc/qSECDti2
-	wdKllmnodr3ZJ+AIu//SuRnitrcqNeE8ahOASgdSlX93R85FrVSvI6LHtnO5Ebcxwm7bIp2
-	akzyqKkz4b4fEzjRZRuRnZAaIS0jXTdMck9sUMOxo3lFqzdJXZIhB7Ql4HAwL0SlU84tJ1K
-	/XT6Z+n/gVx31J5bSD3iZELcqoseoLF8Z8HMPGgRhwanVvAnesUm76VLWLNDlWMfDutM2jD
-	qcFITzeAXCPUCfujhBbwj8/EMAbdu9Ry22tR2BGIzwb9lDfzbi+l87t5LWvVAxA2LibQXdy
-	I/YPPaVs/0XRwAimtGrqSt/RPEoWIgPWl/9cxxgXehFZCUdqqsnb3gKJWv6ySlAqnB7Mj0Z
-	g==
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 531894F73B5
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9vVJySQTZKLGPR9V"
+Content-Disposition: inline
+In-Reply-To: <20260508-gpiokeys-vdd-supply-v1-3-0bb32e8e6428@fairphone.com>
+X-Cookie: Truckers welcome.
+X-Rspamd-Queue-Id: 5B5714F762D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[radxa.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_MUA_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294543-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_CC(0.00)[riscstar.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,fairphone.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294545-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_GT_50(0.00)[51];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sophon@radxa.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.968];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On 5/8/2026 9:36 PM, Andrew Lunn wrote:
->> Hi Alex,
->>
->> Maybe I missed something, but I already have WoL working *without* changes
->> in the tc956x driver.
->>
->> https://lore.kernel.org/all/859776B5671B36B9+577c19e4-3e66-4036-b26f-fe20287a1d43@radxa.com/
-> 
-> Sorry, did i miss the patches for the PHY driver? Or was the code
-> already there?
-> 
-> 	Andrew
-> 
 
-No, I'm using an out-of-tree patch currently.
+--9vVJySQTZKLGPR9V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-https://github.com/strongtz/linux-radxa-qcom/commit/4a085eb54115844be62bfaa9d0b3e905c22ee479
+On Fri, May 08, 2026 at 02:53:15PM +0200, Griffin Kroah-Hartman wrote:
 
+> +		if (fwnode_property_present(child, "vdd-supply")) {
+> +			button->regulator = devm_fwnode_regulator_get_optional(dev, child, "vdd");
+> +			if (IS_ERR(button->regulator)) {
 
--- 
-Best regards,
-Xilin Wu <sophon@radxa.com>
+As well as the issue I mentioned on a prior thread with this assigning a
+non-physical "vdd" name to the single supply that these components can
+have (which has had issues in the past, AHCI being one of the more
+painful) the fact that this is fwnode means that this opens up support
+for using this with ACPI which is very problematic given that ACPI has a
+strong model of how regulators should work which is that they should not
+be OS visible at all.  That probably needs more addressing in the prior
+regulator patch, that needs a bit more motivation and discussion about
+the issues with trying to do a regulator interface firmware neutrally.
 
+--9vVJySQTZKLGPR9V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmn96KgACgkQJNaLcl1U
+h9D9Iwf9FYBAm+xTXPtwQMfedE9HZNagJvNMdbBVmPXEACKwo35zvtwY+6mG4Qfj
+I6JJYF/WgCUr25YpU+Mj4LtsfBxCMlgUTPmqvLpgdjNAmhcyz4PZthH63L1cKP19
+C+SYU5LM0P90mf6TFR32epKJ7uZCdVc+2mP6zI4jy6m7Sd1HbEm54R2ienGmqEgX
+45xZB7fkbNzTqKZyZU8FqP3B1ikaNKUWhBcE1wXJVxgmgXvhADZ7ZlzmdQe5tgO0
+BqNaZ92RrePHg7jY4NWn4MS2ct/j7l6p4hPc4cdraRZTpWqVImo4Er4VaDv0NcRS
+rz5LM8nHTb7mOaAoYm+B2P7dA9P5bw==
+=Ogmp
+-----END PGP SIGNATURE-----
+
+--9vVJySQTZKLGPR9V--
 
