@@ -1,80 +1,106 @@
-Return-Path: <devicetree+bounces-294486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294475-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFTwMqXG/Wn2iwAAu9opvQ
-	(envelope-from <devicetree+bounces-294486-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:19:01 +0200
+	id SLSwB2bG/WkpigAAu9opvQ
+	(envelope-from <devicetree+bounces-294475-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:17:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E5BC4F59F3
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:19:01 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C03C4F5951
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6BD86306A186
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 11:18:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 42FFF3036E62
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 11:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A6E3A5428;
-	Fri,  8 May 2026 11:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273EC396561;
+	Fri,  8 May 2026 11:17:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="MbyCnffM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qoQW5PU/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3FEF39446D;
-	Fri,  8 May 2026 11:18:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C4B1393DFB
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 11:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778239097; cv=none; b=c1qFW8wiqHnbVAUWePL/22TjuIuXgpAwTJ0DiezVoH6H+qQho8zOBP6pceHXZ7wgWyIgpI7ulkr9zchKqTAbx0KvmDrAYUi8zhmsiGXdKA8Du9tlYPkRI+dU7BZ7byYbi0EGn04x224p0dQzerD/oer7AvbQYZvEr0heKIKVrtY=
+	t=1778239073; cv=none; b=PEQk8LxkBU+P8caJ1EAtUbBYlVyFPKEjODFkQfWimyzZghUJrNoCaUmcSvET6/TbWVDwtNdLqazUh/8IWeACZfu25IeRKXOgKUrwsTah5KZioEOz6Z64G+M/FviIjuxeQUAiBOsHp1wdGuYzgF1LlwT+Y/1V/A8p4ZgMka46oK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778239097; c=relaxed/simple;
-	bh=b+f8WVgxcfFVdLR15zIdkcFeIiFKCfqXS0EqIibTu/s=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tdO9U3i0Us1Q1TMTZpV76Hn0Bpcr/ETaEy+m5g9ybofvXotHVDS1ibtkHxrHJp9ujCrKqKAFHunaizNBzu8exF/zZ4uroPMpV0F+YTlr4VoVpedYCyXStQLL5l6q2oIVA82S13K5PGx8gBkQcp4EyCL9tc2t9GbkUvFElcqbCvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=MbyCnffM; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 648BGhE523763959, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1778239003; bh=BJ0U5leuNpT+x7t9YPGO2C7AKeGOlIRyILg9lIOmw6A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=MbyCnffMMcUxDBQOnzRRVYvJ+NCWOpu2weKru55kuQABlsh4CtaUCIaRZl0+eWHFa
-	 n4BgVD4q/vehIkbp8ZMThLm7MyDZO3Oa16wvo3cngYrBV7PgoZZ1fabD8Iy31o5YqM
-	 4cizXzRYmeI30sO48hYaXs7pa3GWwHYlvNTj/6ySWXAmjrde4qMJP/PiRnX/JJBMT+
-	 Qe0Fuyto/R5ETAGhg/c9EgBIggM8jxXZ1B/gv9RVpmMa2gt1arTw2Iq8+7HaeC/OT1
-	 3dTl0Z6iY8LoaNHYk2baWLs+1lIi4PLVcTnLeccFSsO/q1L2ahzxRqXs77dldIb64n
-	 OP6E5/xhRLB6g==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.27/5.94) with ESMTPS id 648BGhE523763959
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 8 May 2026 19:16:43 +0800
-Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 8 May 2026 19:16:43 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 8 May 2026 19:16:43 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
- (10.21.1.56) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Fri, 8 May 2026 19:16:43 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>
-CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
-        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-        <eleanor.lin@realtek.com>, <bmasney@redhat.com>
-Subject: [PATCH v7 10/10] arm64: dts: realtek: Add clock support for RTD1625
-Date: Fri, 8 May 2026 19:16:41 +0800
-Message-ID: <20260508111641.3192177-11-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260508111641.3192177-1-eleanor.lin@realtek.com>
-References: <20260508111641.3192177-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1778239073; c=relaxed/simple;
+	bh=cih7KlGPpFgUEiNss2zxTKa0s7P9pJ/t9FSqGyajF5Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OSKA8CV+QPmTNw3RQjjFpJ2UkrWnpLB3gXScdIvMDLXzsSSpbJMTAqlPjQ9+i2uCP+Zhl4Ri90N/X60d0IZE37dKbPu3Ig9pjMCKpbiMdu3Vr2sMxXsxJ8LiZHtVKC1uwph3GFq26lYjg2dWPkiNmTFEygrq9s195mOCeCwImoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qoQW5PU/; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-44a044cb827so1481676f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 04:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778239069; x=1778843869; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a++Qkbe0N+QcN8OOW7PnS6Fd5+vAfw/HCIN0DGOehPI=;
+        b=qoQW5PU/ocOIDWH4Y4s1oi2scwRHbI8lKD7J12PTQ0ZI/1EbMKUbd0vmPDxKRnzcGH
+         CptoQxgBX8jNYjliO8zdQqt9xei8gixbQsEICZjIwOTFnqSXZ5vcMaVmzDWQ1vWmI7m+
+         p4EGjSVPGkK5p71KlZpfTwaOEZOrNI44RyNtdSdcdwshkg+Yu5VYejBRtnfLexKYTHgm
+         J3Zm4vywuGXGxVg7Hia8pYvG/4XL7l3WsXDMFH2KpUMVHq+Q1nsik/1sLr4EPxBblpWW
+         1weuKoY4+8YhSWwkiisXfPP+892r+Mq5ihScQKOTpexCFizXhu4xSqHeKtMH88Z7lfZb
+         40fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778239069; x=1778843869;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a++Qkbe0N+QcN8OOW7PnS6Fd5+vAfw/HCIN0DGOehPI=;
+        b=FOzj4bDc/3/r7rv2WiM2cSmIEZtUKM4Dl8CAu2trmO6PDTR0S7wICEX7ONI5aL6OvS
+         HQT+uyk8NMhvnxaEfkzmqYbI86KPzq1eR7/uTKvxf2wqS7BNbHweve3d6DuZ0GHasVWO
+         feTxQrbSTloE83Je7VJCOUPZZ2wboQ/tbMJaBdWS2co2WLRFD8V32IJQXEkfVP8GfZaw
+         4uXn4YPOucXhe+KuaEZZ6NY9TBc5aoluZRYXpQzf8K2n+h0Hv0QVP46bE19Il1xm3o3G
+         wQ/t5jggJdmwqdyQLkWBCjkc07sAur06or1pykL77HXp8CK3op2+lsDYcMzTZTI8aSj1
+         7owQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+eNOc9H57kVHamkRyLGtE7DskI8mEL2H9iYm8INWszdcmuS9SGdfCg6wfrK6vdwALGNGVs4c5Hoa47@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSeit7RUcyfy69cDERaT3F1y9coYmtCdPTPG0HF7WxqyjDygu3
+	T7RIgLp14tBjlf56ddKY/BrchZIAVHyyT7xy3cLoxrnvTl8N8L9ReAw0
+X-Gm-Gg: Acq92OEy3oPGCYBw8T7z7iTT3RkyGIwf+FV7dTljSCNdPjrT23bavnedfcwvzKiFywh
+	HuYuIoehEsMF2ei6d8nui82x55Yi+OZUAMHfrXYcdmtoKt1nuOp4Q7dxOnF1RNgryw6hcmae54g
+	zf4GMZr2/MyH9hx7yCa8tHGoUGevqtDvVRddsce/8UL0UIjIWLdTw2vdiQEPQOSlkU76eYbn46c
+	r+7tqpS0+wnVfReQhxWpSKL15JmfyAtNNqfQ46YurHPGHa/fHAa7bxOYtrcc6Im5hUBDHiqTpxb
+	ZsughbMDokoyd9H6egQFyFK1441DMH/y5e2E041iGgqNWCn/dXO4HTSyVvsk6u4kK0C8NmBCa02
+	giNEcmzj9mGgIZGQWFLoMKhWj6I1oQjUcug/U+liN0qSMHG4dQQKPDexRbNedcVfLfOg9Fw1k/3
+	KcwMND7FDU/Z9hjyQzuiS4kUdpsksTwZL6Sde9tEeWrRzHmFaWWU/EKFqsbUYzXMroeapFraTQL
+	p+PRou8WsimfYJX/TXlYkHXmLuSPdnZ6oerA3+F5DM8H779
+X-Received: by 2002:a05:6000:288f:b0:43e:a8ad:975e with SMTP id ffacd0b85a97d-4515ce1c8damr20978761f8f.27.1778239068762;
+        Fri, 08 May 2026 04:17:48 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:74ae:919a:e57c:bd9c])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454916df968sm3535563f8f.25.2026.05.08.04.17.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 May 2026 04:17:48 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/4] Add DU support for RZ/T2H and RZ/N2H SoCs
+Date: Fri,  8 May 2026 12:17:40 +0100
+Message-ID: <20260508111744.771659-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,110 +108,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 4E5BC4F59F3
+X-Rspamd-Queue-Id: 7C03C4F5951
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [6.34 / 15.00];
 	SEM_URIBL(3.50)[0.0.0.0:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+	MID_RHS_MATCH_TO(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294486-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294475-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
+	FREEMAIL_TO(0.00)[bp.renesas.com,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,glider.be];
 	GREYLIST(0.00)[pass,meta];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	R_DKIM_ALLOW(0.00)[realtek.com:s=dkim];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com,renesas.com,bp.renesas.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[realtek.com,none];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,realtek.com:mid,realtek.com:dkim,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ff100000:email,0.2.59.134:email,0.0.30.120:email];
-	DBL_PROHIBIT(0.00)[5.215.92.128:email,0.0.27.176:email];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_SPAM(0.00)[0.595];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	NEURAL_SPAM(0.00)[0.968];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bp.renesas.com:mid,0.0.0.0:email]
 X-Rspamd-Action: add header
 X-Spam: Yes
 
-Add the clock controller nodes and osc27m fixed clock for the
-Realtek RTD1625 SoC.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
- arch/arm64/boot/dts/realtek/kent.dtsi | 33 +++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Hi All,
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index ae006ce24420..4722337a143d 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -26,6 +26,15 @@ timer {
- 			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
-+	clocks {
-+		osc27m: osc {
-+			compatible = "fixed-clock";
-+			clock-frequency = <27000000>;
-+			clock-output-names = "osc27m";
-+			#clock-cells = <0>;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -141,6 +150,14 @@ rbus: bus@98000000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
-+			cc: clock-controller@0 {
-+				compatible = "realtek,rtd1625-crt-clk";
-+				reg = <0x0 0x900>;
-+				clocks = <&osc27m>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
-+
- 			uart0: serial@7800 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x7800 0x100>;
-@@ -150,6 +167,22 @@ uart0: serial@7800 {
- 				reg-shift = <2>;
- 				status = "disabled";
- 			};
-+
-+			ic: clock-controller@7088 {
-+				compatible = "realtek,rtd1625-iso-clk";
-+				reg = <0x7088 0x8>;
-+				clocks = <&osc27m>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
-+
-+			iso_s_cc: clock-controller@146310 {
-+				compatible = "realtek,rtd1625-iso-s-clk";
-+				reg = <0x146310 0x8>;
-+				clocks = <&osc27m>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff100000 {
+This series adds support for the Display Unit (DU) on the RZ/T2H
+and RZ/N2H (R9A09G087) SoCs. The DU on these platforms is
+functionally similar to the RZ/G2UL DU but includes some SoC
+specific differences such as a single output port and explicit
+DPI output enable control. The series includes the following
+changes:
+1. Add device tree bindings for the RZ/T2H and RZ/N2H DU variants,
+   including a new compatible string.
+2. Make the DU reset control optional to allow probing on RZ/T2H
+   where the DU does not have a reset line.
+3. Move pixel clock validation logic to per-SoC constraints in
+   rzg2l_du_device_info to accommodate different clock limits
+   across SoCs.
+4. Implement support for the RZ/T2H DU variant in the driver,
+   including handling of the DPI output enable signal.
+
+Patches are rebased on next-20260507 and apply on drm-next.
+
+v1->v2:
+- Dropped the "port" property in favor of "ports" with a single port@0
+  child, to align with the existing RZ/G2L bindings and simplify the
+  device tree structure.
+- Updated the commit message to reflect the change from "port" to "ports".
+- Dropped storing info pointer in struct rzg2l_du_encoder as it's not
+  needed.
+- Add Reviewed-by tags from Laurent for patches 2-4.
+- Rebase on latest next-20260507.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  dt-bindings: display: renesas,rzg2l-du: Add RZ/T2H and RZ/N2H support
+  drm: renesas: rz-du: Make DU reset control optional for RZ/T2H support
+  drm: renesas: rz-du: Move mode_valid logic to per-SoC clock limits
+  drm: renesas: rz-du: Add support for RZ/T2H SoC
+
+ .../bindings/display/renesas,rzg2l-du.yaml    | 20 +++++++++++++++++--
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |  9 +++++++--
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  | 16 +++++++++++++++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h  | 14 +++++++++++++
+ .../gpu/drm/renesas/rz-du/rzg2l_du_encoder.c  |  6 +++++-
+ 5 files changed, 60 insertions(+), 5 deletions(-)
+
 -- 
-2.34.1
+2.54.0
 
 
