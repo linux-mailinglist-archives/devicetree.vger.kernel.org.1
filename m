@@ -1,190 +1,142 @@
-Return-Path: <devicetree+bounces-294381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294384-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WL2FD6CT/WnWfgAAu9opvQ
-	(envelope-from <devicetree+bounces-294381-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:41:20 +0200
+	id 2L8QObCT/WnWfgAAu9opvQ
+	(envelope-from <devicetree+bounces-294384-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:41:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D132D4F3279
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:41:19 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC7C4F328B
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 09:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 978FC302949C
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 07:37:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DA784305AC64
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 07:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F141A3815D4;
-	Fri,  8 May 2026 07:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C08537BE70;
+	Fri,  8 May 2026 07:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pcnGlpeB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLFgS0Hp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66AD3815E1
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 07:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778225804; cv=pass; b=JbTER6fxjPtNTMAZkN1QXUsbriJl1RT8+VoQ5Oub9vCl/EbEhLKT4slkLmg0JapDe46v07Sn9EYDn3Rh1l3SwuczDGfVgU31Exi5aqkMwM3S9NPR3q7VqVrfRqd8ZXyUYrLeY/BuMuSXd3gF70j/4weX732QZzlgK9LGszhK0nk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778225804; c=relaxed/simple;
-	bh=B/MI03HFz5SSbkX8vKW3+B8Ef0T3tywZD9naDKW3hp0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IK99Eb4f3VagUJPNWpJy5KRUMoO93frVs+YERPWdZxvH5pG1xTmJzAov17N7HjBCcqUUwChIScXSoif6vCD1SyvO2PSUoE7XcwCET5Hq2yvnzgskEnB5cYt3TXaV/nQUx/oE8LNYmNe9ZwPa5pAnpayZMwshGgduHMtDJuFeH2Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pcnGlpeB; arc=pass smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-67be871ed3fso3176244a12.1
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 00:36:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778225801; cv=none;
-        d=google.com; s=arc-20240605;
-        b=DxZahz9kirczLunTS+lIFTZvXAuXRxTT3ZeHI8yaiqpxsHTXa6XMkPpZcOQ9LWl3Ck
-         ZO2UvoQGBwlWkWr84moeFNTPX/SsiY5px/Ysqz74A0ZNwnl2JJekexfRXROi58T9hBhf
-         FK4GslSua5Awqo/MGfiVb52homQw17DQfbNIWoH3jOmczK5SI4QtQNmFv6vM+P72YRoW
-         KRaE/tVgIK5LS+qxkY3Sl48ct4ki9AqBglV/ynote4FfQzZS5FAh8tRwOG/MIKWvQlqR
-         H/VXEO++e4ePb4IMrF15MqdX6dJ7Hv2UU/ygs0oJsaSI/b3Br/MLe7bQpipuknKLYx/N
-         5Ltg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=DT1bLE07vl0NRGAnaDV0P6+c6Y2ET3SDmigAcN1kcik=;
-        fh=CPSS/t4pUG1Z9B8tgEiAGJ/79dEZMQ/m7C6Dt4WAR/c=;
-        b=J91awaP5au7mSXBDTnNeFNnFyLFhtCdgblbPwsiPhJB1JGOjZiMdbsEhkHXWOfWSmP
-         J9IBLKzOp4wdSLzIjWSlRGZw5eIWklc7LC+tXPWCOD2V8nVRP546MPDqz2whAR/VxrYd
-         qgzB5VzggCZ9P4i6YrC057X4ApP39s+vk0hmmM2wHYzFhOm2Ja4ttNoN9E9EzAvfXWdq
-         rbZNe64AYFIONG/j8pMBN1F6M30iO9a/7DaDH4VehM/V+J7uLi5WD3ux+JJfs77ET10s
-         8kdmbb2cBgVECNXcUXLj5/lJCh8xGTd9MUEZy1TXzTu3s9YMPX4o1cy6DPySV3uFAMbW
-         20Kg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778225801; x=1778830601; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DT1bLE07vl0NRGAnaDV0P6+c6Y2ET3SDmigAcN1kcik=;
-        b=pcnGlpeBqMcVrF7Tc6NWnrnX83E/a3JdNIvPSWbV5y99rpJfhOWMaKDnZ5+lkyUR23
-         +fVZoF+cnxUhxMbyWa4d1jzXFPSyTsPpzvmNhPQ7iAWiz77isx0t8CAsot/O3kh3MTt0
-         bTEAZyhE/qxnNIDOxK5e18eNlw4Oe/n3/bobhBtzWxm7RPESBPX7T/Gti2d+9Wbz6vFy
-         72yXfvA+4QATtqhR6v90bqcmVeO4lGxTGCgm7HXdpBoayyE2P7iCGwE/mFyA869bt4Rl
-         tapl8A1E7wZx9ownxG43WXTR2IiYMSiOoTovCfOaILWoRiEUdqYSZqP15XJtNg0Y/8Jw
-         f5xQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778225801; x=1778830601;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DT1bLE07vl0NRGAnaDV0P6+c6Y2ET3SDmigAcN1kcik=;
-        b=sSn+hMz4hn9cMG9ul8uCKLwNIZCs+iwwqhiSiYJz+zEDITCqg/2PYEh779U7l1vk4+
-         cAQCrce7Bn3uxWjVRENy7dv52tkuz1d0a57JZ6WOhQQ/1R7c9zlihSoAd+LmjJ3rB6pF
-         88HxHcAqirRcE+jwCrKmoQ4zBPFKku7CIjJ597Bb5J2SIcZg6SkPEGXCwZiRPcEcQTOL
-         VSggKrfHJdtaDkFP2S7CoQsmE8t3VCKbWflm3OFFzQBP3N9BD5ITHgoGhZszE+NJPaq0
-         SloEbLkWWz090VmDmH2g6n6iGK1rVmOjLgxKBEMN1VuEe2pdYXjLL4ds7krZ7RJdHXup
-         KpGA==
-X-Forwarded-Encrypted: i=1; AFNElJ/7kMU1h4RUclAuilS4dwGq9RqH1ctGizcby+60yHhtVoG8+mJfNqJ+HiNRUxy7gXiemsTQrErkwenw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1LG7oW/OXD4ETtMG+6Zur/wEuYT4SUTnz4OfQo+oR5y73pvgJ
-	KVi1x4/GMuK1g8LHhBfUyHJX/cpDUPY+gGlrnJJYulAxPlhFgTBhEtgAG1pHLnMlGprCD/7U2vA
-	PyxBa1DI12hdpHxGQIKUHyyF/hlAfpZo=
-X-Gm-Gg: Acq92OEBE9Gif7gQ9TOSj2z0DatOswE6U6eP0bcpU0ge5g/FqCBbQ55P/Zjg9Y137Ti
-	FmMN+m8d5aSxfQmJblhYrJ7qp7r4XsO5NTr5YXqVkgtJb68Ph3sSPL9yG2qZVUAgBUgUoP8Tqdy
-	cIKHsG+a6eR0S7xuI0Z+DUSuAU9drndY3Mn2c0GY5EQvPx6exZNAAsT9nTichmDVehSTlPFf+Eq
-	BOab8a+Hl1YNVkJcsEgi0FBzASx+Fc4dyGhYG+h+j0fU/Cp5qGC5Zc1M9BfdVtjsrmsxZC5w9t7
-	wTcd
-X-Received: by 2002:a05:6402:321e:b0:67e:43a8:7b82 with SMTP id
- 4fb4d7f45d1cf-67e43a87cb9mr2854983a12.26.1778225800798; Fri, 08 May 2026
- 00:36:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17962372EE9;
+	Fri,  8 May 2026 07:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778225818; cv=none; b=WtHMQ014RXcI6Yg63nEMTalLsYqvKOOUAkcnCfhWeLioQIZfOz6nnnnmPnzCHJ4V7lmraSRMkfOcOSqYK30FDp/bdJAexE/MR3BKoqkmnYqW6VnbYirJbnN3NgaeYW8HEGzg+6cQSEO/Mm4xcGNYC5Juhs/H72XSdrPwo/Q08I8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778225818; c=relaxed/simple;
+	bh=A1soFdD0r4US6yDMTZRbjriVCP7JZmrk16cvvRa11AQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=vGCPDLsxjNrB5XKhWSp6IsehIEsQ9qifpww2Hg2N/MJuaf4RGO3dTK3bm456Kth+OfvnTESl4I0eYRxzX7aG0/PaVjf60x3sRzsooiysDtBsM3Jph9XLPZhgyDqWw7oluWIV9sDJvTdDYpyZ3GSAHsNSl5sUUoXph4XRJSnYXIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLFgS0Hp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B6436C2BCB0;
+	Fri,  8 May 2026 07:36:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778225817;
+	bh=A1soFdD0r4US6yDMTZRbjriVCP7JZmrk16cvvRa11AQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PLFgS0HpeE73xaapfPE9ZIZstV7g1gJbLXd/5wWn037YpvP7EbvHJZfNbhrUodb92
+	 SVCtEXcg0qEASex8bNDV7ztUhwyF/Xp1MLGpA5NmTB4CmBhbcs9AokSo7ESHn/xeix
+	 fgM+QdkMWl6F/Ehr65c4dPXqhhKA28ayabPG2HrSoRmuRkt6V5CMnupER/aq+8W18t
+	 yjBGYkb/o4/Ejp/CAkJHsCZ63+MvTaNRbuCthyh7ZuoeFT3PoQtHgO6HN2VrupLHO8
+	 0J6BdxEKNDgEQTHc9GQZUaOPX5Hl7m8OXmAzuCrbp+eldo/cm+r52s0UNZ+lxJKLJA
+	 3fwd/1LNb9+bw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1E74CD3447;
+	Fri,  8 May 2026 07:36:57 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] irqchip: Add GPIO interrupt support for Amlogic A9
+Date: Fri, 08 May 2026 07:36:53 +0000
+Message-Id: <20260508-a9-gpio-irqchip-v1-0-9dc5f3e022e0@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260502051906.8160-3-linux.amoon@gmail.com> <20260507064050.1881348-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20260507064050.1881348-1-amadeus@jmu.edu.cn>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 8 May 2026 13:06:22 +0530
-X-Gm-Features: AVHnY4K-9ASo3Mc0vrsENtDNPwVrAYJ43tcUlhhO5e_b02Orqs4pqqj-5Q78Vqk
-Message-ID: <CANAwSgSP8W8QH26-X-mdNBtncDAbHR9CtYRO0F+rjmxKfhDt9w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] riscv: dts: spacemit: k1-bananapi-f3: Update USB
- regulator on onboard usb and label
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: alex@ghiti.fr, aou@eecs.berkeley.edu, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, dlan@kernel.org, gaohan@iscas.ac.cn, 
-	huang.ze@linux.dev, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, palmer@dabbelt.com, pjw@kernel.org, 
-	robh@kernel.org, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: D132D4F3279
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJWS/WkC/x3MQQqAIBBA0avIrBswKcuuEi1Ep5pNmkIE4t2Tl
+ m/xf4FMiSnDIgokejhzuBr6ToA77XUQsm8GJZWWo5zRGjwiB+R0u5Mj+kmrfiBnnPbQqpho5/c
+ /rlutHzYDPXxhAAAA
+X-Change-ID: 20260508-a9-gpio-irqchip-d76214ec9c6d
+To: Thomas Gleixner <tglx@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778225816; l=772;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=A1soFdD0r4US6yDMTZRbjriVCP7JZmrk16cvvRa11AQ=;
+ b=PUTdu/0oehvaqyiIMJg5q4YOtOBv59FaV+RpC//iZQ+5aZeSr4vf6dcdVuwfqIsiVqReLzPDw
+ OKi3Ww8/M0fBXQg4RCaMvXhk4co7hps3vShnklLRi4S2usQtF9OByqP
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
+X-Rspamd-Queue-Id: 8FC7C4F328B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[jmu.edu.cn:email];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294381-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
-	GREYLIST(0.00)[pass,meta];
+	TAGGED_FROM(0.00)[bounces-294384-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com,gmail.com];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linuxamoon@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	R_SPF_ALLOW(0.00)[+ip4:172.232.135.74:c];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	NEURAL_SPAM(0.00)[0.678];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,jmu.edu.cn:email,0.0.0.2:email,0.0.0.1:email]
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amlogic.com:email,amlogic.com:mid,amlogic.com:replyto]
 X-Rspamd-Action: no action
 
-Hi Chukun,
+Fix one error about reg address when set irq type for S4.
 
-Thanks for your review comments.
+Add string of bindings and driver to support A9 GPIO interrupt.
 
-On Thu, 7 May 2026 at 12:10, Chukun Pan <amadeus@jmu.edu.cn> wrote:
->
-> Hi,
->
-> > @@ -366,7 +366,7 @@ &usb_dwc3 {
-> >       hub_2_0: hub@1 {
-> >               compatible = "usb2109,2817";
-> >               reg = <0x1>;
-> > -             vdd-supply = <&usb3_hub_5v>;
-> > +             vdd-supply = <&reg_5v_vbus>;
-> >               peer-hub = <&hub_3_0>;
-> >               reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-> >       };
-> > @@ -374,7 +374,7 @@ hub_2_0: hub@1 {
-> >       hub_3_0: hub@2 {
-> >               compatible = "usb2109,817";
-> >               reg = <0x2>;
-> > -             vdd-supply = <&usb3_hub_5v>;
-> > +             vdd-supply = <&reg_5v_vbus>;
-> >               peer-hub = <&hub_2_0>;
-> >               reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-> >       };
->
-> This is incorrect. The hub is powered by vcc5v0_hub. According
-> to the schematic, 5v_vbus provides the VBUS for the USB3 ports.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (3):
+      irqchip/meson-gpio: fix incorrect register address
+      dt-bindings: interrupt-controller: Add support for Amlogic A9 SoCs
+      irqchip/meson-gpio: Add support for Amlogic A9 SoCs
 
-As per the schematics USB3_PWREN (GPIO97) pin is used to power the
-USB hub ports 5V_VBUS, please check this again.
+ .../amlogic,meson-gpio-intc.yaml                   | 21 ++++--
+ drivers/irqchip/irq-meson-gpio.c                   | 78 +++++++++++++++++++++-
+ 2 files changed, 93 insertions(+), 6 deletions(-)
+---
+base-commit: 8b379d5e9eb7933c73e77e768d95f11ef2833c26
+change-id: 20260508-a9-gpio-irqchip-d76214ec9c6d
 
-VCC5V0_SYS -> USB3_PWREN -> 5V_VBUS
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-5V_VBUS is used to power all the USB3_TypeA_Dual ports.
 
-Thanks
--Anand
 
