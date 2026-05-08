@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-294477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294476-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2OtuNvLJ/Wm2jAAAu9opvQ
-	(envelope-from <devicetree+bounces-294477-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:33:06 +0200
+	id uHSoKozG/Wn2iwAAu9opvQ
+	(envelope-from <devicetree+bounces-294476-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:18:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5004F5CDB
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:33:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 254A14F59BE
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E075F3014107
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 11:17:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73F1830103AC
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 11:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18ED93976A9;
-	Fri,  8 May 2026 11:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72E2396D15;
+	Fri,  8 May 2026 11:17:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DrvFTadJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ITVf5MUF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24460394781
-	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 11:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61C43947A4
+	for <devicetree@vger.kernel.org>; Fri,  8 May 2026 11:17:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778239075; cv=none; b=PSmog36hj/pdfudwfTmyII0vcSdAEawgGe7mPWAc6RUMI+TYGdaZETNNggPRfS7fwpwsUSN1cVtJ/Zbvpe2UtrHwlkuVWXDL2gAaAV+FsYYZ8EedgPzdKcCQ4qY2FEsK8dMNC4ZgC8CIaOENus7gHSJ4xGJcvEO4/PR7NFEqEhQ=
+	t=1778239075; cv=none; b=VVMk323F+p1Bmv7VZ4GvbpR07SgzFojyJ+vxItlzrQeHN7IobYaKk4nPBVKKpAD49jIZ63d9zwR4vzpRqSusHZE3V3pUVI8uUAqqiwZmDNJ5j62h8L/kqp0psavWyvNsq73jlC5L2RlLwX3MEWjTmtzuKE8SEFiaaJk+eEym1/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1778239075; c=relaxed/simple;
-	bh=MlbtACyaTMMI5yMaKErn0MSWJwT8IfR5hys4lJuVZmY=;
+	bh=C7OdMfskX1yrAh3+I7YrVhMxB61DSFtW1LvR/WZMIrs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JHRvcJBUqgtO5kgQN60Y/+9lIZ0+17e22/QsZQ6J/R/1nS0Hi2BALM1OVaarlLQz9CINmqt5et9k/NQMqPg542VgfauIIyESWP9Om59wFH5VLAieyUYP7sagwIK3UG8x8O5X1qh5Xi1iaG22piGM+dMib5CwjfgfYI6vQcwCM7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DrvFTadJ; arc=none smtp.client-ip=209.85.221.44
+	 MIME-Version; b=Seu6xen2mNb2s9mdrBP2PVbzucycRmsY6ht0Gom30hfOkrbMLOjpdE9YCSEuJrGQHHIxON9DXJqeC/6uWNfuHttqgqDgD9eMgwdYjrybo7j8qwHblahUcHmm2u3bMx8Qujvx+5Bf9iDHlGgA7l3zC9qN7o0RXO+czvcs8k11gxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ITVf5MUF; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-441209fb77eso1159360f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 04:17:51 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43d7645adbdso1110226f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 04:17:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778239070; x=1778843870; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778239071; x=1778843871; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=umnPqhqqv013uzG5MHEH2JE+ZpMvEjDm4eYLN1odRbQ=;
-        b=DrvFTadJNF86zB8O3xJHVsQUrF68KfYD1t3H00Pz6UmI/AVSxOVxi9mke4V0iOh8Uk
-         wjR7c9RImGdq5nb775tyv0ev2ozXrdzX63luMZAT5zs5u8itazo5hc+P5aP0O2yaNfA8
-         n1gCyYctyttkwG2c9TVozaz6rkWclvp6nckmYWn4aoAEEs5Z9BduS6LPa9n2ePQ9t48n
-         Ru3omzihedsHP6f1gFlMQq2ET0k423jnAAsmHy5R+tvaQCnXoy2wTC0Zj6XuWWJfa9VP
-         y+5sGGIpKmh98QZtXXexf5zX+4Fhcn5+ZsEU9pc1Xdau1lh2FpigR6xz7riJr9VUa3xU
-         SZEQ==
+        bh=39w49gZKpFRzhgKjJD0rTXzt/7rwWxh4HEQyrYnkNBo=;
+        b=ITVf5MUFk40pa11mzI8mybuavlrncSTBVb+JMrRh9ybkpSXDKzIJhJpZ4pkP0b8vqy
+         rbt+duMoCMr4Z1xrYmcCKcLMV18jsJa2C/cRHFsIDfIN+lwtOoyZfRYuRqqHpOtGBBQm
+         nlSFJlYK5T50Z0HMY9ldQglgLLH/fd+td6DnWtmJduqOazNHl5nFk5jo2+K3XYTJQfKp
+         EqcrGo75KO264I9OQWwchX0pFrIi5sd7p3na8T3mm9pK7PG7X7P5M8Bhg1R6+BvAfPj9
+         V+PV3JqwtE6dSEv1Ahf+R6npYO3n+T20dekyW/MmX28/NVgh29mL6WdMxmCzJ42EhqEb
+         4vWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778239070; x=1778843870;
+        d=1e100.net; s=20251104; t=1778239071; x=1778843871;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=umnPqhqqv013uzG5MHEH2JE+ZpMvEjDm4eYLN1odRbQ=;
-        b=oTOsMDf7cJ6D0D3F8DWvBLTizJrvkdgQdrgPTxRHUWXng8YX8fUpMviotxLfVToFor
-         7y9l3gWWogBdTA4MTx0LJlnS6zEnBQKh4iltS68H7QAWgaBcJTg1yqEcedeyj808SgMr
-         C+1nr8ud6FWpKHeVW0zw8CFyxRMOgJCJnK/C3UrI7ReGwfve1HftElPEa1WrCLmOHnGt
-         FI3Rrqo0QTTkv9KvNDS9bRD7CPUl0w8lBVZZEY7zIfX67wfJSv7Uqaq+cpF7QDR9QKuU
-         I++gPmOLKPS/6k0ufjProeWn3hBHErnQI5KkrnbvN1KvlD1XVvFelWIB9avahNPygsOG
-         yeUA==
-X-Forwarded-Encrypted: i=1; AFNElJ9XCr7xp174IGq5wdzGhl+bJi5zs1d6g92tJ6bcv6mhJuiZQswipwACcdGM9y+saLtT3ZMsZUkjxDcv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF5XZl5kfzZeFa5G8q2cL1Xk7wRu0zgeh0LDUQpIlvFBlziIQK
-	uEcIke9m+Qq5F8Wl3AI/kYxsEqP5Z4/eIioa9TKNxzcHRGL8t0ac1DcH
-X-Gm-Gg: Acq92OFHdoZto1mcnxAKTjQkuHmODmWi+QC9gIb0HebfAxYABpnz1+NWucqr/yPsb5u
-	0tL2dsEsuME6A9LLycDitbK+FB0VyJ78fHmya0cVtwJC71L2ZCpPIs8iZszjFt626OOrW7hoN1+
-	Gb7lJJ22BmJbfsyTznrXkoWIRGZiPfppbVBAv+/RQXZNuvy35XT5sBkYB9aitzKaX8ywTAL/z5f
-	pD8q82GNGZCCx9CT/RZWPcQ4GeqN8QbawbbsEFwKKQLqAREiweq1FPoxqUzxxCeEP+M0I91Vx7g
-	/pIf/6d4tdMysy3EzPBIhs/Fi1vNM5yiNPLzM8oNLKVtuRNxCnKk/hTlyWS3rU6aq4PkKk1r4Ui
-	Dw4HaPXZ8XPVlY6LwkX96Jq4FMfLRVrJguxHC4N+dMyunwGtWQDaaFhNpd39HVUPWz+htQO1p25
-	hzwf8ND8l0ylCf6PFZlGDQkVgqk1f6m1QuvwDmyqb56uYKxYoiA8T1tTeY8dCPgoSExHTZFEHAL
-	fQH2PUd9o17ooQ29oy5eH/noQ2YWIWpTx9cp94+zyqGth8f
-X-Received: by 2002:a05:6000:20c6:b0:449:8650:954d with SMTP id ffacd0b85a97d-452e84663e6mr7389736f8f.12.1778239069759;
-        Fri, 08 May 2026 04:17:49 -0700 (PDT)
+        bh=39w49gZKpFRzhgKjJD0rTXzt/7rwWxh4HEQyrYnkNBo=;
+        b=CMD5oqXSWv1eMMo/TQF1/Hsm3AHdQra/WCtMfv3WIRjWqyFFRCtyHfJ43CHIqTm6OT
+         k6eDwOVZQgfWeVu78E5LwTwV3+YhgrxSx+wSQVT189ulLDQqjUrlahBMEly8/gX885SV
+         XuZ3CYErUDXUsctX999sQ07vn7x13yD80GhPTtTYiCY0TftzwWob8EOsqVMhpKQr8sLr
+         Mo4C0INBzeWXX59UFxK+xm7swr+9OtvpCJYNai4nOFyCxQ67QEQc7KkvPhrutoKDanrb
+         qAVn95y5ViIUWdCnCpQhp4S2favf18EdsW2eip5o7aJoGQxRym9duhCApixejwRNdv3T
+         KRZA==
+X-Forwarded-Encrypted: i=1; AFNElJ9BurMMDoAeNsoF1/qkQOZJ3ZfN2Vc4QWCPBwfqVTwdeQJ1rYFBsNbDi1C2pv7ksJsdDltPbfaMfaq5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZGDcjIYD/fvqmIT+MQw+V/d5MHNMHXy+BcUhe2SrvrDmoUhxI
+	IBzdinRBdoHYnjonnv5ftkbCaNKeOOhz1R/PQCnGqQ8kQIkzr4bZ+FN8
+X-Gm-Gg: Acq92OG3UEDzRnKetOBbiB7W+wO777e3qEQqdAu0+ecnmnp6v2E+m4OQ/nXUqPblXiT
+	uLONFQ6z7iKGhrXTLblEJrKollTbkc0YZi0aJ80Txd2CbKYVQ6eXSZjLAag5KqHKJAyVXmqsPLj
+	H/joBjFtEo8iKge9QBUhMFsbrhq471ve93lEEq8ZPezmGtrmdik4GglmhLhSAgTmjWKprpBRqHk
+	LCeCYrAgR02m9kF6P6hM/QskvqFKp4U8BM+A7IvjVLU9IOCPaFSPl+j+jfauKfC+n6T8itoQbqd
+	U7l8KwDi/1XjLb5bpCtsVeoUyreqrQCmIqutJPruUyh8QWhRYZsi3qa4LTK2XaqKQTR5lApK7SZ
+	d/gF7EjXtMPFm+1547s6Z4xwkpNI7kbqSA+Y2dD0H5/R0orz4Q2K2uoJ8DSmYOyEkY3JepUOjWY
+	Lo+rqCx4+VuhsTjmx7UhG2r4SyImBBX6StazUB9Mki2HC7cWAJvB4Qd15TBBSngDq4FQL/wDz9e
+	JDfb/cSo+GCXYgEGpKoDU/pf/0sjn7B9Ci//WHc5xmcTsTV
+X-Received: by 2002:a05:6000:40c7:b0:448:7420:9ada with SMTP id ffacd0b85a97d-4515b0570fcmr17977390f8f.9.1778239070587;
+        Fri, 08 May 2026 04:17:50 -0700 (PDT)
 Received: from iku.Home ([2a06:5906:61b:2d00:74ae:919a:e57c:bd9c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454916df968sm3535563f8f.25.2026.05.08.04.17.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454916df968sm3535563f8f.25.2026.05.08.04.17.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 May 2026 04:17:49 -0700 (PDT)
+        Fri, 08 May 2026 04:17:50 -0700 (PDT)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Biju Das <biju.das.jz@bp.renesas.com>,
@@ -99,9 +99,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	Prabhakar <prabhakar.csengg@gmail.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 1/4] dt-bindings: display: renesas,rzg2l-du: Add RZ/T2H and RZ/N2H support
-Date: Fri,  8 May 2026 12:17:41 +0100
-Message-ID: <20260508111744.771659-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 2/4] drm: renesas: rz-du: Make DU reset control optional for RZ/T2H support
+Date: Fri,  8 May 2026 12:17:42 +0100
+Message-ID: <20260508111744.771659-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260508111744.771659-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20260508111744.771659-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -112,128 +112,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 7E5004F5CDB
+X-Rspamd-Queue-Id: 254A14F59BE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [6.34 / 15.00];
-	SEM_URIBL(3.50)[0.0.0.0:email];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_RHS_MATCH_TO(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-294476-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294477-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
 	FREEMAIL_TO(0.00)[bp.renesas.com,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,glider.be];
-	GREYLIST(0.00)[pass,body];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com,renesas.com,bp.renesas.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com,renesas.com,bp.renesas.com];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.729];
-	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid,0.0.0.0:email]
-X-Rspamd-Action: add header
-X-Spam: Yes
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ideasonboard.com:email]
+X-Rspamd-Action: no action
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Document the Display Unit (DU) support for the RZ/T2H and RZ/N2H SoCs.
-
-The DU block on RZ/T2H is functionally equivalent to the RZ/G2UL DU and
-supports the DPI interface, but includes SoC-specific register differences
-and has no reset control. Add a dedicated compatible string to represent
-this variant and update the allOf constraints accordingly.
-
-As the DU implementation on RZ/N2H matches RZ/T2H, describe it using an
-RZ/N2H specific compatible string with the RZ/T2H compatible as fallback.
+Update the DU CRTC initialisation to request the reset control using
+devm_reset_control_get_optional_shared(). On RZ/T2H SoCs the DU block does
+not expose a reset line, and treating the reset as mandatory prevents the
+driver from probing on those platforms.
 
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 ---
 v1->v2:
-- Dropped the "port" property in favor of "ports" with a single port@0
-  child, to align with the existing RZ/G2L bindings and simplify the
-  device tree structure.
-- Updated the commit message to reflect the change from "port" to "ports".
-- Dropped RB tag from Rob due to above changes.
+- Added Reviewed-by tag from Laurent Pinchart.
 ---
- .../bindings/display/renesas,rzg2l-du.yaml    | 20 +++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-index 2cc66dcef870..18776ac9e7c7 100644
---- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-@@ -21,6 +21,7 @@ properties:
-           - renesas,r9a07g043u-du # RZ/G2UL
-           - renesas,r9a07g044-du # RZ/G2{L,LC}
-           - renesas,r9a09g057-du # RZ/V2H(P)
-+          - renesas,r9a09g077-du # RZ/T2H
-       - items:
-           - enum:
-               - renesas,r9a07g054-du    # RZ/V2L
-@@ -28,6 +29,9 @@ properties:
-       - items:
-           - const: renesas,r9a09g056-du # RZ/V2N
-           - const: renesas,r9a09g057-du # RZ/V2H(P) fallback
-+      - items:
-+          - const: renesas,r9a09g087-du # RZ/N2H
-+          - const: renesas,r9a09g077-du # RZ/T2H fallback
+diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
+index 26b95153ce88..48065f4952a3 100644
+--- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
++++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
+@@ -380,7 +380,7 @@ int rzg2l_du_crtc_create(struct rzg2l_du_device *rcdu)
+ 	struct drm_plane *primary;
+ 	int ret;
  
-   reg:
-     maxItems: 1
-@@ -83,7 +87,6 @@ required:
-   - interrupts
-   - clocks
-   - clock-names
--  - resets
-   - power-domains
-   - ports
-   - renesas,vsps
-@@ -95,7 +98,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: renesas,r9a07g043u-du
-+            enum:
-+              - renesas,r9a07g043u-du
-+              - renesas,r9a09g077-du
-     then:
-       properties:
-         ports:
-@@ -137,6 +142,17 @@ allOf:
- 
-           required:
-             - port@0
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g077-du
-+    then:
-+      properties:
-+        resets: false
-+    else:
-+      required:
-+        - resets
- 
- examples:
-   # RZ/G2L DU
+-	rcrtc->rstc = devm_reset_control_get_shared(rcdu->dev, NULL);
++	rcrtc->rstc = devm_reset_control_get_optional_shared(rcdu->dev, NULL);
+ 	if (IS_ERR(rcrtc->rstc)) {
+ 		dev_err(rcdu->dev, "can't get cpg reset\n");
+ 		return PTR_ERR(rcrtc->rstc);
 -- 
 2.54.0
 
