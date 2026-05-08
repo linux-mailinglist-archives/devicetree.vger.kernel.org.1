@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-294555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294548-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Oa6Jlzt/WlJkwAAu9opvQ
-	(envelope-from <devicetree+bounces-294555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:04:12 +0200
+	id 4LDQNI7r/WkPkwAAu9opvQ
+	(envelope-from <devicetree+bounces-294548-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:56:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD6E4F78B2
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 16:04:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9474F7738
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 15:56:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 092C13016D2F
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 14:03:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 651A6310A6DA
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 13:47:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2F63EC2CD;
-	Fri,  8 May 2026 14:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B9133064A;
+	Fri,  8 May 2026 13:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="N5Hvyy2t"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="LM5/cmNz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-148.mail.aliyun.com (out28-148.mail.aliyun.com [115.124.28.148])
+Received: from out28-170.mail.aliyun.com (out28-170.mail.aliyun.com [115.124.28.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D08F3E869A;
-	Fri,  8 May 2026 14:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752A027FB37;
+	Fri,  8 May 2026 13:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778248980; cv=none; b=JSRT0GYnI7KFGY5iN8qkLQk8z7SsEEsgxoUsA0Y7jlt5l93XQpSi+l2nKsnLVaEZBLkv6u+HozuBa+WCxWIZ30/TDCvzUyRMHBO2Sv/J/8XTdLjm5Al3fsvPlbEwGsECCfgwuOly9GRYfCvBtAyNDN62ogE9ro1NbXSfh00k8rw=
+	t=1778248043; cv=none; b=LvC/ceQtDgrFRe0ZmlOxCusHLHwijq1/oOVYAvigzW2JC5zggjC1MRqDPVRB34zYeuWapEC4GGLbR41lkoHwpiwsmugJxKkGQiPFP+zmD2JjYZzhIWJIy7msWfwHk5oEBJIRCyCQf/35HWyFt7g5kJn9foNdTcG7lqwzLxAFiUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778248980; c=relaxed/simple;
-	bh=EHdVThZtYwy9FVFWmzPWcgDaSWT0AOQS247lpc2KIFs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GlH4wv1ThteRWOSTO44xbaXd+LvtkEH/53+sS/uoJpnB1lFPqneVF7DK1OmdLKqN76tsEzM8dYiuaxzxOFzPsEFDWqr0kE0bsMLnLfuw6BY1IqKQFClguTpF+NsBZaRoyAxA7yG4TU+oc34/EwhWrLoUymI+URIDd8Hzna6jfbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=N5Hvyy2t; arc=none smtp.client-ip=115.124.28.148
+	s=arc-20240116; t=1778248043; c=relaxed/simple;
+	bh=p0urNjm41sZeAN6q7Acv0PPrW6hXjInS+UEK+XxkjEc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=rpsqV0TsfWwM7jiHs+mmNOrza7yc2mIr2qDJZnlBsruA+YTOfGhZMX+2CYGpyvV50iXL6J+HTQOz4ZQlH7gJWKQwEfkctDwte/ugxwg5w039TdmLY50OCuGi1Ap2zteO5v7MeXXEZ3sgBWQUj1fYbBfGx3UhJdw2VwfOaHsI/dA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=LM5/cmNz; arc=none smtp.client-ip=115.124.28.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
 DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=lontium.com; s=default;
-	t=1778248970; h=From:To:Subject:Date:Message-Id:MIME-Version;
-	bh=plRzfbW8Qws5ho7KRsBfti1sG4WFDyy3YZ+bQe0Yb2U=;
-	b=N5Hvyy2tjEVOKl0apPJmM4A8dQvI8NQlBN39fTYp0tDdKeNlhVpTCvFRwbeNKG+I2/lhh9fmyXsfamUCiX3c1wjgt8SnmzHEhTJ5l5YAe2gbDEsTnirA102pkfqxg9/3jm/hYxJ1gA7Vqd+oHiz0scI2wmzUI0BGT0b11CbG76YAZsDXbSbJunFgjqdZgw3k32ajHSGMVqJOYtl6TuKh08HvTB2qaPtVUeBGIkkJzPD8xsoPL8KOiGOgBULHjREQhbqKtK8vRy1luF03S8UISn0jba8DxprK2icJRveRX0qd8whZxf/+cRYLjO4v/bEwJxBqp4blTlMPEs5erDPYBg==
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.100362|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00363759-8.50324e-05-0.996277;FP=7802761490420370552|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037006180;MF=syyang@lontium.com;NM=1;PH=DS;RN=22;RT=22;SR=0;TI=SMTPD_---.hSic0zK_1778248029;
-Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hSic0zK_1778248029 cluster:ay29)
+	t=1778248033; h=From:To:Subject:Date:Message-Id:MIME-Version;
+	bh=po4JbBzlVnZWMf/PF4TZcy9SSjh11o50cvR1wsP/N14=;
+	b=LM5/cmNzKETnG2f9WBzI4i+f98sdAdvdVHUk5uZJbbYbD7+25cv22t9CNsuhsEhePSKW4KYk+XeCcWJZuJMXnah/W8G2dhtfeidCbRSxtqhoqvrJsC5j5KkHvYGAhSJZfHjScIOomWJJSOq4+k9tOBfzI6jzw+6XJlpjox/vQK81BdAaI26xwx+/hDsxLRGCtq7GqSekqq6+/jTlz8BiCevtDR/jrhfgeTkZPuCl27cqECzp+EP3xE1Tex+i7rAT46yMcROIyBXArXnCtSbEu9Zna5jg1nVLh4899xo0dceVeguNjAmlFHevIwKthalrfwBZfarAjZDGwbzvbAG+xw==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.0955468|-1;BR=01201311R191ec;CH=green;DM=|CONTINUE|false|;DS=SPAM|spam_ad|0.867174-0.00121929-0.131607;FP=12538499638350542130|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037031241;MF=syyang@lontium.com;NM=1;PH=DS;RN=23;RT=23;SR=0;TI=SMTPD_---.hSic1-g_1778248030;
+Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hSic1-g_1778248030 cluster:ay29)
           by smtp.aliyun-inc.com;
-          Fri, 08 May 2026 21:47:10 +0800
+          Fri, 08 May 2026 21:47:11 +0800
 From: syyang@lontium.com
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -64,11 +65,14 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	xmzhu@lontium.com,
 	rlyu@lontium.com,
 	xbpeng@lontium.com,
-	Sunyun Yang <syyang@lontium.com>
-Subject: [PATCH v6 0/2] Add Lontium LT7911EXC eDP to MIPI DSI bridge
-Date: Fri,  8 May 2026 21:47:00 +0800
-Message-Id: <20260508134702.4713-1-syyang@lontium.com>
+	Sunyun Yang <syyang@lontium.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v6 1/2] dt-bindings: bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+Date: Fri,  8 May 2026 21:47:01 +0800
+Message-Id: <20260508134702.4713-2-syyang@lontium.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260508134702.4713-1-syyang@lontium.com>
+References: <20260508134702.4713-1-syyang@lontium.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +80,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 0DD6E4F78B2
+X-Rspamd-Queue-Id: 2B9474F7738
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [6.34 / 15.00];
 	SEM_URIBL(3.50)[0.0.0.0:email];
@@ -84,99 +88,142 @@ X-Spamd-Result: default: False [6.34 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	BAD_REP_POLICIES(0.10)[];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-294555-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294548-lists,devicetree=lfdr.de];
 	R_DKIM_ALLOW(0.00)[lontium.com:s=default];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
 	DMARC_NA(0.00)[lontium.com];
+	GREYLIST(0.00)[pass,meta];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com,oss.qualcomm.com];
 	DKIM_TRACE(0.00)[lontium.com:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.41:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	TO_DN_SOME(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:172.234.253.10:c];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	NEURAL_SPAM(0.00)[0.990];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_SPAM(0.00)[0.980];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lontium.com:email,lontium.com:mid,lontium.com:dkim,0.0.0.0:email,0.0.0.1:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lontium.com:email,lontium.com:mid,lontium.com:dkim,0.0.0.1:email,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,qualcomm.com:email]
 X-Rspamd-Action: add header
 X-Spam: Yes
 
 From: Sunyun Yang <syyang@lontium.com>
 
 The LT7911EXC is an I2C-controlled bridge that Receiver eDP1.4
-and output signal/dual port mipi dsi. This series introduces:
+and output signal/dual port mipi dsi.
 
-- A device tree binding YAML file describing the hardware
-- A new DRM bridge driver implementing the basic functionality
-
-Signed-off-by: Sunyun Yang<syyang@lontium.com>
+Signed-off-by: Sunyun Yang <syyang@lontium.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
-Change in v6:
-- dt-binding:
-- drm/bridge:
- 1. use #define FW_FILE  "Lontium/lt7911exc_fw.bin" to match linux-firmware
-- Link to v5: https://lore.kernel.org/lkml/20260506013153.2240-1-syyang@lontium.com/
-
-Change in v5:
-- dt-binding:
-- drm/bridge:
- 1. Change "mipi" to "mipi dsi" in the commit message.     [Dmitry]
- 2. Change "eDP/MIPI" to "eDP/MIPI DSI" in Kconfig.
-- Link to v4: https://lore.kernel.org/lkml/20260430094612.3408174-1-syyang@lontium.com/
-
-Change in v4:
-- dt-binding:
- 1. Fix the missing spaces on the "subject".             [Krzysztof]
- 2. Fix the error descriptions for port@0 and port@1.
-- drm/bridge:
-- Link to v3: https://lore.kernel.org/lkml/20260429040541.3404116-1-syyang@lontium.com/
-
-Change in v3:
-- dt-binding:
-- drm/bridge:
- 1. already submit lt7911exc_fw.bin to linux-firmware.  [Dmitry]
- 2. remove lt7911exc_remove function.
- 3. drop  the "lontium, "  in lt7911exc_i2c_table.
-- Link to v2: https://lore.kernel.org/lkml/20260428063224.3316655-1-syyang@lontium.com/
-
-Change in v2:
-- dt-binding:
- 1. reset pins use active low.                        [Dmitry]
-- drm/bridge:
- 1. use atomic_* callbacks.                           [Quentin]
- 2. fix the incorrect formatting and spaces.
- 3. add the required header files.                    [Dmitry]
- 4. remove "enabled" flag.
- 5. remove *fw from the lt7911exc struct.
- 6. .max_register and .range_max use actual range.
- 7. regulator use bulk interface.
- 8. use dev_err_probe, devm_mutex_init and devm_drm_bridge_add.
- 9. Replace GPL v2 with GPL.
-- Link to v1: https://lore.kernel.org/lkml/20260420023354.1192642-1-syyang@lontium.com/
----
-Sunyun Yang (2):
-  dt-bindings: bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
-  drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
-
- .../display/bridge/lontium,lt7911exc.yaml     |  89 ++++
- drivers/gpu/drm/bridge/Kconfig                |  13 +
- drivers/gpu/drm/bridge/Makefile               |   1 +
- drivers/gpu/drm/bridge/lontium-lt7911exc.c    | 493 ++++++++++++++++++
- 4 files changed, 596 insertions(+)
+ .../display/bridge/lontium,lt7911exc.yaml     | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml
- create mode 100644 drivers/gpu/drm/bridge/lontium-lt7911exc.c
 
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml
+new file mode 100644
+index 000000000000..3290b10ce883
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/lontium,lt7911exc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lontium LT7911EXC eDP to MIPI DSI Bridge
++
++maintainers:
++  - Sunyun Yang <syyang@lontium.com>
++
++properties:
++  compatible:
++    enum:
++      - lontium,lt7911exc
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to RST_ pin.
++
++  vdd-supply:
++    description: Regulator for 1.2V MIPI phy power.
++
++  vcc-supply:
++    description: Regulator for 3.3V IO power.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for eDP input.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for MIPI DSI output.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - vdd-supply
++  - vcc-supply
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        mipi-bridge@41 {
++            compatible = "lontium,lt7911exc";
++            reg = <0x41>;
++            reset-gpios = <&gpy8 8 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&lt7911exc_1v2>;
++            vcc-supply = <&lt7911exc_3v3>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    bridge_in: endpoint {
++                        remote-endpoint = <&edp_out>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++                    bridge_out: endpoint {
++                        remote-endpoint = <&panel_in>;
++                    };
++                };
++            };
++        };
++    };
 -- 
 2.34.1
 
