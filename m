@@ -1,169 +1,242 @@
-Return-Path: <devicetree+bounces-294474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294482-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDs7GOLF/WkpigAAu9opvQ
-	(envelope-from <devicetree+bounces-294474-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:15:46 +0200
+	id aKGGKRXH/WkpigAAu9opvQ
+	(envelope-from <devicetree+bounces-294482-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:20:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF5C84F58F7
-	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B04C4F5A9B
+	for <lists+devicetree@lfdr.de>; Fri, 08 May 2026 13:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2FA04303C62E
-	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 11:14:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 981763084AFC
+	for <lists+devicetree@lfdr.de>; Fri,  8 May 2026 11:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67715366563;
-	Fri,  8 May 2026 11:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C1939937C;
+	Fri,  8 May 2026 11:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOrU2gjT"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="M/o+JZiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFC5366548;
-	Fri,  8 May 2026 11:14:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343A63909BC;
+	Fri,  8 May 2026 11:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778238892; cv=none; b=V1PQWeltmnuaStkB0E2XDJdciL4X2MfDq+e25hyKNzDj8/F/PjFXCvCVetjNHE75VgW+EpparjycMRXLi48MzQOT2SLQ3NkK87CV/f3+hcgpfGSR2nbOLdnwjXF6dMH2h173lGfiChmu6zaUVUWT6trXv0qwqmXprGaHCVAFCV0=
+	t=1778239094; cv=none; b=gGug0tH/xof1+UpFfWuz1IH7s9TxpA6fOsi9oDZLyruPqHCMJXSJBQrTPQl6hT13+6+5Det3hEX3N9z2/HMCepTw9pvucXoRmQhRq0NUDibgnHFAjXjdR4j0Kf9E/Q5awIrZUfVwMtVzgMf6nPkw8Fw6GhKCOItlsjqqQXq5lw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778238892; c=relaxed/simple;
-	bh=N8/TlknTCIAmm7VK5XnWcLlnoXQaSSgG0+J5zy49JWI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gDX5CoHDsT2AwDcf5EEw6KRfelxJ5lx/+F2z7lS8GZG72ydczaAD3B31HvlRtmi6GLHBQl7yOXmp71SG/aY4wb9Nn7VW65ZAj1e+xDcpcTFCFAcHLE+t2XJAOEo8gKWJXDFLS9eFNsHtOMwYXVwUCMk1IVbVlL4N7ry8NlnrQUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOrU2gjT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9707BC2BCB0;
-	Fri,  8 May 2026 11:14:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778238891;
-	bh=N8/TlknTCIAmm7VK5XnWcLlnoXQaSSgG0+J5zy49JWI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=kOrU2gjTEW5egjRZVCOcLfeDnnDB+KpdFQtgFMqBuUqVYaanWXsFvARvYBzrYLloh
-	 mZUUO50hZ6MGQH1u1jlzw8Z2j6I65tX3B2q6zAaxV4AeqCV3WE/pDOw4fwbH97BBer
-	 GEqBKvxN2t8l5Sb6qrlkCULxQCEgyDAEtrGNjmq1KRGGyQ2m0RyKFd1NUWNX6E/ky7
-	 4KAwWo+Zg3an/ANgO2Mivtw73pqy5hdItasST57vNfFj7fCGn5NUuaAZk0YZXS5TSs
-	 nxzXg3LsB5GRB7ScPSnDqy0/7VfLjOHHjlLREZU5B9x7vWT+cAJ8H6AUEdUPOgn77w
-	 DxS/d8q3a75IA==
-Date: Fri, 8 May 2026 12:14:41 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: "Stan, Liviu" <Liviu.Stan@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>,
- "Sa, Nuno" <Nuno.Sa@analog.com>, David Lechner <dlechner@baylibre.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: temperature: ltc2983: Add support for ADT7604
-Message-ID: <20260508121441.39ad9f65@jic23-huawei>
-In-Reply-To: <af2no3bJA9MSjXvV@nsa>
-References: <20260427132526.272716-1-liviu.stan@analog.com>
-	<20260427132526.272716-3-liviu.stan@analog.com>
-	<afCVtXBHIIoLlsRo@nsa>
-	<SA5PR03MB83772D8F6A3CC39094DE5241F63C2@SA5PR03MB8377.namprd03.prod.outlook.com>
-	<af2no3bJA9MSjXvV@nsa>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1778239094; c=relaxed/simple;
+	bh=EejRRADk3D+ix3Ue8ePeChH6lCnFWVUPMSQk0kTJEF0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XUTaqgYH3ysDMKDPo5UVFOCEOV8wGyOUL/XkiyKT8UpUwnn6IA7qljw2t48tt5KXSwkVdNToG/Cx8XO272Ku9sdJ43RWmBCisulkI376iWzvGfA4zMwqvqZQExiODR5KAEN8NBjxhqDIe/fJKlbsSJHRUaLzxtokjdm3TkeYItQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=M/o+JZiN; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 648BGgV423763937, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1778239002; bh=YbnRwB2CcsgCrELUiDRilOMpVZJDmLp88GIu61sBrVg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=M/o+JZiN6xVWjQvd/+SGLgoBAEXS9udcBLo5PHr87jTxzpkcbWIvQZuJmvJv6vIba
+	 mydpiqwGwelgxoZdAKbNEoKnCSVpwR03EeFPDUbVju+u9hBAcOh3Qy1bjf+ux11ZP8
+	 V9vZNgZ2NNmEsajaK4VIL++ThVtvlYqGZnFVES2Yj+2l+S+75MRYIMAPWGkEHZbmKa
+	 VaW3ZVFlw5pd62VJmcOgSvTZQQ3be4kuu5hbNBimDwXTJ40+tLs5NvsOUX9VMlga0r
+	 qCs4YXeNUfiidBh/JgP8FL+Kv6WtDQWgQLFgPvdyktTXPeWKGEKJbKadTUCHvoGOYE
+	 6DkFDH4MQwWiQ==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.27/5.94) with ESMTPS id 648BGgV423763937
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 8 May 2026 19:16:42 +0800
+Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 8 May 2026 19:16:42 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 8 May 2026 19:16:42 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
+ (10.21.1.56) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Fri, 8 May 2026 19:16:41 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
+        <cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>
+CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
+        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
+        <eleanor.lin@realtek.com>, <bmasney@redhat.com>
+Subject: [PATCH v7 00/10] clk: realtek: Add RTD1625 clock support
+Date: Fri, 8 May 2026 19:16:31 +0800
+Message-ID: <20260508111641.3192177-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: BF5C84F58F7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 0B04C4F5A9B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294474-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294482-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:mid,realtek.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Fri, 8 May 2026 10:19:15 +0100
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+Hello,
 
-> On Thu, May 07, 2026 at 05:25:58PM +0000, Stan, Liviu wrote:
-> > Thank you for the comments, and I apologize for the late reply.
-> >=20
-> > On Mon, Apr 28, 2026,  Nuno S=C3=A1 wrote:
-> > ... =20
-> > > > Both sensor types expose an IIO_RESISTANCE channel reading from
-> > > > the resistance result register bank (0x060-0x00AF), added to
-> > > > the regmap readable ranges. Scales are 1/1,024,000 for copper
-> > > > trace (result in mOhm) and 1/1024 for leak detector (result
-> > > > in Ohm). =20
-> > >=20
-> > > But for userspace we report both in Ohm? That's the ABI AFAICT. In DT,
-> > > you also mention IIO_TEMP is used:
-> > > "IIO_TEMP reports coverage percentage"
-> > >=20
-> > > Can you expand more on what the above means? Are we reporting milli
-> > > degrees celcius to userspace? =20
-> >=20
-> > Yes, both IIO_RESISTANCE channels report in =CE=A9. The commit message =
-was=20
-> > misleading, it described the register's native units (m=CE=A9 for coppe=
-r trace,
-> > =CE=A9 for leak detector), not the userspace output. The scales are cho=
-sen to=20
-> > cancel those units and give =CE=A9 in both cases.
-> >  =20
->=20
-> ack
->=20
-> > As for the IIO_TEMP question, the chip's custom sensor table stores=20
-> > temperature in Kelvin (same as the LTC2984 custom RTD table). For the=20
-> > leak detector, coverage data is encoded as (P + 273.15) K, so when the=
-=20
-> > chip converts Kelvin to Celsius on output, after the driver applies the=
-=20
-> > 1000/1024 scale, the IIO output is P * 1000 millidegrees C - 0% reads
-> > as ~0 millidegrees, 100% reads as ~100000 millidegrees. But yes, the=20
-> > actual useable quantity is coverage percentage, not temperature. Is the=
-re
-> > a more suitable existing IIO channel type for coverage percentage?
-> >  =20
->=20
-> Will defer this to Jonathan but if we can have a real of the coverage
-> given the temperature, I guess this is ok. Given that I think we don't ha=
-ve
-> a better channel (unless we add one?) for this. Or just extended_info...
->=20
+This patch series adds clock support for Realtek's RTD1625 platform.
+The series includes:
+1. Device Tree: Add clock controller nodes.
+2. Infrastructure: reset controller, basic clocks, PLLs, gate clocks, mux
+clocks, and MMC-tuned PLLs.
+3. Platform drivers: two clock controller drivers for RTD1625-CRT and
+RTD1625-ISO.
 
-I have no idea what coverage percentage means in this case.
-Can you provide some more details or a reference?  Google isn't giving me
-anything useful.
+Best regards,
+Yu-Chun Lin
+---
+Changes in v7:
 
->=20
-> > > I could not find the datasheet so I guess it's not yet public? =20
-> >=20
-> > Correct, it is not public yet. Will upload the URL once it is.
-> >=20
+General:
+- Update copyright year to include 2026.
+- Use EXPORT_SYMBOL_NS_GPL() instead of EXPORT_SYMBOL_GPL().
+- Add missing header inclusions to follow the "Include What You Use" principle.
+- Sort header inclusions in alphabetical order.
+- Sort local variables in reverse Christmas tree order.
+- Add const qualifiers where appropriate.
+- Fix coding style issues.
+
+Patch 2:
+- Move data->rcdev.owner = THIS_MODULE to the caller.
+- Make config build-testable with COMPILE_TEST.
+- Retrieve regmap via platform data.
+- Append the U suffix to constants to prevent integer overflow.
+
+Patch 3:
+- Pass regmap as platform data.
+- Replace dev_warn() with dev_err_probe() for clock hardware registration
+failures.
+
+Patch 4:
+- Add a spinlock to synchronize PLL operations (clk_pll_disable,
+clk_pll_is_enabled, clk_pll_enable, clk_pll_recalc_rate, clk_pll_set_rate).
+- Remove unused macros and move IS_FREQ_TABLE_END to the specific file
+where it is used.
+
+Patch 6:
+- Remove unused rtk_clk_regmap_mux_ro_ops.
+
+Patch 7:
+- Fix incorrect usage of the BIT() macro.
+- Return immediately upon encountering the first error instead of accumulating
+return values using bitwise OR.
+
+Patch 8 & 9:
+- Add locking to synchronize PLL changes.
+- Set module owner in the specific driver.
+
+v6: https://lore.kernel.org/lkml/20260402073957.2742459-1-eleanor.lin@realtek.com/
+
+Cheng-Yu Lee (8):
+  reset: Add Realtek basic reset support
+  clk: realtek: Introduce a common probe()
+  clk: realtek: Add support for phase locked loops (PLLs)
+  clk: realtek: Add support for gate clock
+  clk: realtek: Add support for mux clock
+  clk: realtek: Add support for MMC-tuned PLL clocks
+  clk: realtek: Add RTD1625-CRT clock controller driver
+  clk: realtek: Add RTD1625-ISO clock controller driver
+
+Yu-Chun Lin (2):
+  dt-bindings: clock: Add Realtek RTD1625 Clock & Reset Controller
+  arm64: dts: realtek: Add clock support for RTD1625
+
+ .../bindings/clock/realtek,rtd1625-clk.yaml   |  58 ++
+ MAINTAINERS                                   |  20 +
+ arch/arm64/boot/dts/realtek/kent.dtsi         |  33 +
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/realtek/Kconfig                   |  46 +
+ drivers/clk/realtek/Makefile                  |  13 +
+ drivers/clk/realtek/clk-pll-mmc.c             | 453 ++++++++++
+ drivers/clk/realtek/clk-pll.c                 | 201 +++++
+ drivers/clk/realtek/clk-pll.h                 |  61 ++
+ drivers/clk/realtek/clk-regmap-gate.c         |  70 ++
+ drivers/clk/realtek/clk-regmap-gate.h         |  65 ++
+ drivers/clk/realtek/clk-regmap-mux.c          |  41 +
+ drivers/clk/realtek/clk-regmap-mux.h          |  43 +
+ drivers/clk/realtek/clk-rtd1625-crt.c         | 791 ++++++++++++++++++
+ drivers/clk/realtek/clk-rtd1625-iso.c         | 151 ++++
+ drivers/clk/realtek/common.c                  |  66 ++
+ drivers/clk/realtek/common.h                  |  37 +
+ drivers/clk/realtek/freq_table.c              |  38 +
+ drivers/clk/realtek/freq_table.h              |  16 +
+ drivers/reset/Kconfig                         |   1 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/realtek/Kconfig                 |  19 +
+ drivers/reset/realtek/Makefile                |   3 +
+ drivers/reset/realtek/common.c                |  90 ++
+ drivers/reset/realtek/common.h                |  29 +
+ drivers/reset/realtek/reset-rtd1625-crt.c     | 187 +++++
+ drivers/reset/realtek/reset-rtd1625-iso.c     |  99 +++
+ .../dt-bindings/clock/realtek,rtd1625-clk.h   | 164 ++++
+ include/dt-bindings/reset/realtek,rtd1625.h   | 171 ++++
+ 30 files changed, 2969 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/realtek,rtd1625-clk.yaml
+ create mode 100644 drivers/clk/realtek/Kconfig
+ create mode 100644 drivers/clk/realtek/Makefile
+ create mode 100644 drivers/clk/realtek/clk-pll-mmc.c
+ create mode 100644 drivers/clk/realtek/clk-pll.c
+ create mode 100644 drivers/clk/realtek/clk-pll.h
+ create mode 100644 drivers/clk/realtek/clk-regmap-gate.c
+ create mode 100644 drivers/clk/realtek/clk-regmap-gate.h
+ create mode 100644 drivers/clk/realtek/clk-regmap-mux.c
+ create mode 100644 drivers/clk/realtek/clk-regmap-mux.h
+ create mode 100644 drivers/clk/realtek/clk-rtd1625-crt.c
+ create mode 100644 drivers/clk/realtek/clk-rtd1625-iso.c
+ create mode 100644 drivers/clk/realtek/common.c
+ create mode 100644 drivers/clk/realtek/common.h
+ create mode 100644 drivers/clk/realtek/freq_table.c
+ create mode 100644 drivers/clk/realtek/freq_table.h
+ create mode 100644 drivers/reset/realtek/Kconfig
+ create mode 100644 drivers/reset/realtek/Makefile
+ create mode 100644 drivers/reset/realtek/common.c
+ create mode 100644 drivers/reset/realtek/common.h
+ create mode 100644 drivers/reset/realtek/reset-rtd1625-crt.c
+ create mode 100644 drivers/reset/realtek/reset-rtd1625-iso.c
+ create mode 100644 include/dt-bindings/clock/realtek,rtd1625-clk.h
+ create mode 100644 include/dt-bindings/reset/realtek,rtd1625.h
+
+-- 
+2.34.1
 
 
