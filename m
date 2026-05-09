@@ -1,148 +1,162 @@
-Return-Path: <devicetree+bounces-294779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBC3H8aM/mlasgAAu9opvQ
-	(envelope-from <devicetree+bounces-294779-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 03:24:22 +0200
+	id 8OyzGf+P/mlyswAAu9opvQ
+	(envelope-from <devicetree+bounces-294781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 03:38:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E62714FD438
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 03:24:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B152A4FD539
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 03:38:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6324C3013A5D
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 01:24:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 72C50301544A
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 01:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB4C25FA29;
-	Sat,  9 May 2026 01:24:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6102127AC31;
+	Sat,  9 May 2026 01:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nNSZPrPm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aSQOygyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f193.google.com (mail-dy1-f193.google.com [74.125.82.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9841918A93F
-	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 01:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A0D264FBD
+	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 01:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778289859; cv=none; b=X0VZUqyGCwte53K3qD7xTCGDrzEeEUY3K5K33x6kbvOWDQeHJpFqCo+qNaCQngbG08Y732oPHX7wU7J/5iAdkrRSzpLMzhBoa6MsQL5QbteNrSuWEeDm2RmmKO2YXXkRqEsgAFE9vcSykCX2lRI/JFAlpdQ/H620FO+Pj/FulGQ=
+	t=1778290682; cv=none; b=YxAnHyhqLx6rjRNfdR7X17ASMfXvmRZ1ilolOOM3O0kl8m9BLxdTY/iOCGg33xzhZFjKJuZuxVa70Lq2CejxeeAOUdaYJGS/6ONVTf7TmxXRejrVWVMSk2IV0AkUaU4GtlRywrRr18HCvTI7l9cugkqpvoIWQ9tNF6gd2qCt+os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778289859; c=relaxed/simple;
-	bh=hqxVYh0cpp6UeLUg/C0hsorr0WIhhLJ2YbpaRBdGmqI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=EDsv/2X1v+wCNvO5VoJb/wkVxTEOjpIZvLV9PIh40qfS3CXgabWQ85qLz1QPjErBjhvGHsgJLBbbZLkhxNlBTN47XsBxIpFMmZzckG1Bqg10kGr0Lo6lSoBDPhSRI28yrED8s2fOdq6x2rk+o8ZWsbIM93G/WEPA+8nUPhxD3Qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nNSZPrPm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C61CC2BCB0;
-	Sat,  9 May 2026 01:24:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778289859;
-	bh=hqxVYh0cpp6UeLUg/C0hsorr0WIhhLJ2YbpaRBdGmqI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=nNSZPrPmgMdt1oKeZbbfFSHhOZQUNYCMK0dErgmNqg9llU9pGXSepgl6TU8z7wRQJ
-	 uipzVrH0oxclgfFsetr+Ccv9SAuYjqN/StMBsLBzqHjWG9xYwOZDgXJU4QAQFRSI0V
-	 7J8y5jESXvu8P5MBlCnWU8J20dMZpYDOW4EUARUPY0xizPP7/gN2GJy7dAMbnPN8Aj
-	 cchaA8gaTYREEUSQtXE1qHpHU4MxpZ1WkSIehF8+qbUPjg4ugEZzLp2zKNCYB44wkN
-	 1yyCJY9Boos8hQRhV7Rw20puLxEbRf2SVd/hsEkCErkVjG943yIV6K/95yyzGGnozs
-	 tmHkVWgoXQv2w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v4 09/10] Documentation: ABI: testing: add docs for
- ad9910 sysfs entries
-Reply-To: sashiko@lists.linux.dev
-To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260508-ad9910-iio-driver-v4-9-d26bfd20ee3d@analog.com>
-References: <20260508-ad9910-iio-driver-v4-9-d26bfd20ee3d@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 09 May 2026 01:24:18 +0000
-Message-Id: <20260509012419.4C61CC2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778290682; c=relaxed/simple;
+	bh=ZafSK/ffN4O0S95cmgYFO4DqFob5YI2zLrZF+3z1VYI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=f6rf2ahPtY3egfplPKSbqjDOb2bzUsnhOjNtnwLPmzNfR05tLDlMyBiDbGDR8HsAvWwxQ/4thlqfnnYTAIqwpauoAbDv/Pcw5Z2tvHQzuMOgQjoEZNM68GNOn5VJoNHPFKAnk4CQ5bCfmW5J87j5L0VIEB+wNlIL7x4YTYW6WTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aSQOygyO; arc=none smtp.client-ip=74.125.82.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f193.google.com with SMTP id 5a478bee46e88-2bdcf5970cdso1960361eec.0
+        for <devicetree@vger.kernel.org>; Fri, 08 May 2026 18:38:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778290680; x=1778895480; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z0amy2Ap/oF/82M4xJn8jCwNeFxH+1UppM6CazgFzx0=;
+        b=aSQOygyOt/HIE2DKVbwnreNiRxB3AYNQUDL7s1TuzIucK1r+Mv7Yqoih9K52Hlpyfp
+         6VTRueINgtAgOvXhSKKpWG1rh6dR08BkbvAFskiA3kvZGMV+ACtHj7oDnFKgfbSBYwkj
+         +v4Qn2AGY5sPO3Lpar2cRLonGzlzQBiPtjmXPIMJrtw2FTBUWogm0vG4ujiZbr+Kdgwu
+         DCWmnE5DOrLTCoGM1KXq18KGF+FEliVUvCJ4hhnE0qI+sz4yqPqQeMnZgVw/kB9zpVbD
+         KX0XEluAtzc3K+45K9bsiMPqOz+Z0QdpX29inQk1vwtRXjK6oxLNTmIYXDVa4QnAXu0K
+         AdEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778290680; x=1778895480;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z0amy2Ap/oF/82M4xJn8jCwNeFxH+1UppM6CazgFzx0=;
+        b=jvnpMoydWWdek59Vin4N8cXyWHs2lhjq7Ml6VOc26uFMvnwe2zp7D3sL5K+VngmDXc
+         uHq/q+S3fTHouunWEaVR4MSBunbK+81R6yzam11PQSV714ccxjboq97a9G+EEK+wMpET
+         lqX+xveq7nBlirN42aD+HoZzybHekrIcbHMqnNkiUzWAPqoFlU3xApJNrDxjinaz4aHw
+         1KdUpHuPt2MSzifjos1VzWQBpa4J1HGMJ6UpK3xO6X9mdIhFOh0qw6yjQlszUG5hf5Ia
+         G7s0Km3ep3cLD4EZ8SBppQ2sJuNPizIeZsUaehHLrfFtMy3fHwM+KeOkVloe9eIrGEMk
+         Q/HQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+kn3yBTrZAEHYxEGU9O0FDAWroSYPKJYYJc5IocGsUrztUcnjd3h0O1P7zX+9vKaE5O/OMPc8fIvgB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwR9f2E+bt625zMMrlXvabpOGq4vHJNNyX02oDziIsUUP2oQTqD
+	DqOAVO54fQ8VmnxOByX8hYiTBWT5Xbc2wF9Ioa8wHySgsLDwhSWgJlvs
+X-Gm-Gg: Acq92OGnf9NKqJ3T3tI9BWiuQD/kJfMTk2b+XlfRIewcGHjjo5W/jS9bNyrHZJllI//
+	NMtVBY0pIYNY8MBD4NbBbw1T7q8GN4oi/j2B3bguPoq9BGSV0/ICX2Se78xYi/t4DDAaUiilp4E
+	EuQlvcNTalzMoeejYobyqLEL48bE0eMKbbQjP7MgQZcUmQFew/rcpHMMehSXgK7vCD80NVE58Og
+	52Q6ieoPrhxWXhFu5lWilTqZ6/r969VKOt4W1hqvrxKwWpsHLT4nKE41dRHPKBW1pojxCKO0EQQ
+	4ZusKL0eBesc5CvPkI/klOUWHQwiua7nDmgyD88zqrWM9C6TK+3OPnEV7iJd4GWtDchP1i2mwOv
+	GW9TMGcvHxF0aF+fs4YIo+xukw6FnJ853I6haEEpMI87MUzg7eLPWwCMn/iKohojlsOacR3Fetq
+	G1+KR8k0PXRJUsGLiL4BrW4ZVOW8+1THEhDmQMB1Jm3XgOLk2xqM75rb4UfaPEepWISg==
+X-Received: by 2002:a05:7300:148c:b0:2c1:67e1:61a9 with SMTP id 5a478bee46e88-2f6e4374892mr3977101eec.13.1778290679860;
+        Fri, 08 May 2026 18:37:59 -0700 (PDT)
+Received: from localhost.localdomain ([76.32.119.210])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2f8862d43b4sm4503230eec.11.2026.05.08.18.37.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 May 2026 18:37:59 -0700 (PDT)
+From: Hungyu Lin <dennylin0707@gmail.com>
+To: lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hungyu Lin <dennylin0707@gmail.com>
+Subject: [PATCH v3 0/1] dt-bindings: iio: dds: Add AD9832/AD9835 binding
+Date: Sat,  9 May 2026 01:37:44 +0000
+Message-Id: <20260509013745.80478-1-dennylin0707@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: E62714FD438
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: B152A4FD539
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [6.34 / 15.00];
+	SEM_URIBL(3.50)[0.0.0.0:email];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294779-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-294781-lists,devicetree=lfdr.de];
+	GREYLIST(0.00)[pass,meta];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	R_DKIM_ALLOW(0.00)[gmail.com:s=20251104];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[dennylin0707@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
-X-Rspamd-Action: no action
+	NEURAL_SPAM(0.00)[0.712];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Action: add header
+X-Spam: Yes
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Low] The newly added ABI documentation file omits the `Date:` field and =
-leaves the `KernelVersion:` field empty for all entries.
-- [Low] Awkward and confusing phrasing in the descriptions of multiple ABI =
-attributes: 'is a result with the sum of this value'.
---
+This series adds devicetree binding documentation for the
+Analog Devices AD9832 and AD9835 DDS devices.
 
-commit a42d44a5e6db95765e7fc42b4509b02bd033fda8
-Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+v3:
+  - Require spi-cpol in binding and example
+  - Use generic node name (dds@0) in example
 
-Documentation: ABI: testing: add docs for ad9910 sysfs entries
+v2:
+  - Add SPI peripheral schema reference
+  - Fix example by adding clock and regulator providers
+  - Fix SPDX license format
 
-This commit adds a custom ABI documentation file for the DDS AD9910 with
-sysfs entries to control Parallel Port, Digital Ramp Generator and OSK
-parameters.
+Hungyu Lin (1):
+  dt-bindings: iio: dds: Add AD9832/AD9835 binding
 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-ad9910 b/D=
-ocumentation/ABI/testing/sysfs-bus-iio-frequency-ad9910
-> new file mode 100644
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-ad9910
-> @@ -0,0 +1,73 @@
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_offset
-> +KernelVersion:
+ .../bindings/iio/dds/adi,ad9832.yaml          | 91 +++++++++++++++++++
+ 1 file changed, 91 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dds/adi,ad9832.yaml
 
-This isn't a bug, but the Date field is missing and the KernelVersion field
-is empty for this and all subsequent entries in the file. Should these be
-populated with the creation date and the expected kernel release?
+-- 
+2.34.1
 
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		For a channel that allows frequency control through buffers, this
-> +		represents the base frequency value in Hz. The actual output frequency
-> +		is a result with the sum of this value.
-
-This isn't a bug, but the phrasing "is a result with the sum of this value"
-is slightly confusing. Would it be clearer to phrase this as "is the sum of
-this value and the input value"?
-
-This same phrasing is also used below in the descriptions for
-out_altvoltageY_phase_offset and out_altvoltageY_scale_offset.
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260508-ad9910-iio=
--driver-v4-0-d26bfd20ee3d@analog.com?part=3D9
 
