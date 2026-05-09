@@ -1,49 +1,50 @@
-Return-Path: <devicetree+bounces-294831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UPCIMYHg/mntyAAAu9opvQ
-	(envelope-from <devicetree+bounces-294831-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 09:21:37 +0200
+	id WOxuFZvg/mntyAAAu9opvQ
+	(envelope-from <devicetree+bounces-294832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 09:22:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2785C4FE6FA
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 09:21:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A73BD4FE715
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 09:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 71EAB30177A4
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 07:21:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4FFC3026A8A
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 07:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40952C11FE;
-	Sat,  9 May 2026 07:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B322D9EED;
+	Sat,  9 May 2026 07:21:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA0A1F03DE;
-	Sat,  9 May 2026 07:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D469A38239B;
+	Sat,  9 May 2026 07:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778311292; cv=none; b=BKSiZJMxQ5y2wq7VJSJGF0nKiH+5m0wStmUwVoItMLVJufYMRl5fuzKlgzNYHmmzNEp6ggyIWeDntV6b6ohl5wGaHfUW2tUX16SW2X6cRlHtTFEHfhos0cp8AgVNYASuTtHLmys/GDNf8jl08hsUU//OBLCMKdUNLpyQwg+OWSE=
+	t=1778311295; cv=none; b=NVXjueoUim8GYMS3hSEFsoTKVhMloZ16/rivR4NLQ5KzJXDNIm8ZhC6GWS/kiKmIN9A0pzD8c6QynARxB1/IysP/a7FTER7nfOaY7rK/5HT6Nx71TstO2OWVclB7WUtHnbLggF/pC2qinsGkEYH3Ewglip8kIOTWSkySmgU74ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778311292; c=relaxed/simple;
-	bh=e7feVXRt8YF18HtNxdbrCQf9zi+oyqiTuXLIliRn4/4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aWeUk6q3rdf5nUAOJVtnF0oaxPvA84sDdvzIfJJjwiTqzz55bkglnHgnlwXsJL4qPF1icbWYh+9z3wZBjXlg5HxIBjKzLTG5aC/nPZuh4ZAeepTC68SB0CRi0Lwf6ZhuKFE0jIXKu7UP2WGIP6ncKklMk6PddRoM4RL90Xtd3zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+	s=arc-20240116; t=1778311295; c=relaxed/simple;
+	bh=9GQNv2wGSWkbfAUHwoF9Hs8KSZtunAO9+Pncvtb1r5A=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=YH7zxbQMVB6gNXMGKfKCE88swKF3lj/gCqkJ6C4qGkbCB0pHqsb/daQ6SpGCICUfXWGY8msjau3I56ukPTs0FYaWeM4aKbP3tKOtxFvdaRQcuNZ4pDT2ikT+BimN3qu/MsGwssNGtDyBwVUmlRwm7CeAgcRaS9IIsCOqI75FB0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D1E711A39D7;
-	Sat,  9 May 2026 09:21:23 +0200 (CEST)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9E6612039C1;
+	Sat,  9 May 2026 09:21:25 +0200 (CEST)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9A0CE1A2413;
-	Sat,  9 May 2026 09:21:23 +0200 (CEST)
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 673972039B5;
+	Sat,  9 May 2026 09:21:25 +0200 (CEST)
 Received: from lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com [10.52.9.99])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 62E2A18002C9;
-	Sat,  9 May 2026 15:21:21 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 305F218002C2;
+	Sat,  9 May 2026 15:21:23 +0800 (+08)
 From: Joseph Guo <qijian.guo@nxp.com>
-Subject: [PATCH v3 0/2] Add NXP FRDM-IMX95-PRO board support
-Date: Sat, 09 May 2026 16:21:13 +0900
-Message-Id: <20260509-imx95_frdm_pro-v3-0-96290b471396@nxp.com>
+Date: Sat, 09 May 2026 16:21:14 +0900
+Subject: [PATCH v3 1/2] dt-bindings: arm: fsl: Add i.MX95 19x19 FRDM PRO
+ board
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,11 +53,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGng/mkC/2XM0QqDIBiG4VsJj+f4/dVmO9p9jBFZujwoQ4c0o
- nufBSPYDr8P3mch0QRnIrkWCwkmuej8mAc/FaTtm/FpqOvyJghYAmeMumGuZG1DN9RT8PTSqA6
- 4llApJDmagrFu3sH7I+/exZcP791PbHu/lPqlEqNAVQtgZGVBM30b5+nc+oFsUMIjFvgfY44FF
- yhAlxKtOOJ1XT8yYJbj5wAAAA==
-X-Change-ID: 20260311-imx95_frdm_pro-7a8d03b50982
+Message-Id: <20260509-imx95_frdm_pro-v3-1-96290b471396@nxp.com>
+References: <20260509-imx95_frdm_pro-v3-0-96290b471396@nxp.com>
+In-Reply-To: <20260509-imx95_frdm_pro-v3-0-96290b471396@nxp.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
  Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
@@ -68,20 +67,20 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  Joseph Guo <qijian.guo@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778311281; l=1190;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778311281; l=1080;
  i=qijian.guo@nxp.com; s=20250519; h=from:subject:message-id;
- bh=e7feVXRt8YF18HtNxdbrCQf9zi+oyqiTuXLIliRn4/4=;
- b=6zDrA03bjP7dgJmPInl1iH+jtlFPbTDJzNYdrk3jrs7dr35LrdsOeveyJqVWOojfCKG1R7wfd
- Pq87IkKG5NMDVHeHEMM3ZMAB05m0RYbrvYYJKj7lNH8mPKG8OZ1zWQJ
+ bh=9GQNv2wGSWkbfAUHwoF9Hs8KSZtunAO9+Pncvtb1r5A=;
+ b=U9j2dgObsYdZu6uI2c1ybMXQPvd3bTNsEMyOi4q2MWnWX8ZAd7ibMD2usoIrxXqEKyU8BGmFM
+ F1WarRH+GkPAhH/4ryidtLEBSPYUNtZ2meKT9jxsUpYd/+vxMccRUgH
 X-Developer-Key: i=qijian.guo@nxp.com; a=ed25519;
  pk=VRjOOFhVecTRwBzK4mt/k3JBnHoYfuXKCm9FM+hHQhs=
 X-Virus-Scanned: ClamAV using ClamSMTP
-X-Rspamd-Queue-Id: 2785C4FE6FA
+X-Rspamd-Queue-Id: A73BD4FE715
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
@@ -89,7 +88,7 @@ X-Spamd-Result: default: False [0.14 / 15.00];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-294831-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294832-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -98,46 +97,37 @@ X-Spamd-Result: default: False [0.14 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[qijian.guo@nxp.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.826];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.892];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email,nxp.com:email,nxp.com:mid]
 X-Rspamd-Action: no action
 
-This patchset add Devicetree support for NXP FRDM-IMX95-PRO
-development board based on i.MX95 19x19 SoC.
+Add the i.MX95 19x19 FRDM PRO board in the binding document.
 
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
 ---
-Changes in v3:
-- Change status of CAN1 to reserved
-- Remove unused pinctrl
-- Explain difference with i.MX95 15x15 FRDM in message
-- Link to v2: https://lore.kernel.org/r/20260428-imx95_frdm_pro-v2-0-434240b652f4@nxp.com
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-- Run dt-format to reformat the node order
-- Change compatible of mqs to audio-graph-card2
-- Add imx95-19x19-frdm-pro in Makefile
-- Link to v1: https://lore.kernel.org/r/20260318-imx95_frdm_pro-v1-0-8c00e59f0b1b@nxp.com
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index f5d3c08369b92987b2cb01e36c26f9f72937f557..9f50b4bf67bc2c0b0e11b1ae615151aa4d5f0d09 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1485,6 +1485,7 @@ properties:
+               - fsl,imx95-15x15-evk       # i.MX95 15x15 EVK Board
+               - fsl,imx95-15x15-frdm      # i.MX95 15x15 FRDM Board
+               - fsl,imx95-19x19-evk       # i.MX95 19x19 EVK Board
++              - fsl,imx95-19x19-frdm-pro  # i.MX95 19x19 FRDM PRO Board
+               - toradex,verdin-imx95-19x19-evk  # i.MX95 Verdin Evaluation Kit (EVK)
+           - const: fsl,imx95
+ 
 
----
-Joseph Guo (2):
-      dt-bindings: arm: fsl: Add i.MX95 19x19 FRDM PRO board
-      arm64: dts: freescale: add i.MX95 19x19 FRDM PRO board dts
-
- Documentation/devicetree/bindings/arm/fsl.yaml     |    1 +
- arch/arm64/boot/dts/freescale/Makefile             |    1 +
- .../boot/dts/freescale/imx95-19x19-frdm-pro.dts    | 1021 ++++++++++++++++++++
- 3 files changed, 1023 insertions(+)
----
-base-commit: 7109a2155340cc7b21f27e832ece6df03592f2e8
-change-id: 20260311-imx95_frdm_pro-7a8d03b50982
-
-Best regards,
 -- 
-Joseph Guo <qijian.guo@nxp.com>
+2.34.1
 
 
