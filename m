@@ -1,108 +1,98 @@
-Return-Path: <devicetree+bounces-294962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294964-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DmTMH+E/2lz7QAAu9opvQ
-	(envelope-from <devicetree+bounces-294962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:01:19 +0200
+	id JWZjJkeJ/2k57gAAu9opvQ
+	(envelope-from <devicetree+bounces-294964-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:21:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38A95011CC
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:01:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E34EE5012C4
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:21:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3E83D3008D33
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 19:00:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD1E130103BA
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 19:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754923CB2CF;
-	Sat,  9 May 2026 19:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E69381B15;
+	Sat,  9 May 2026 19:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G4A1djO9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPiAZo1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E1D73CF022
-	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 19:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD92E2F1FD0
+	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 19:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778353235; cv=none; b=s8ySAzA+qwUUdbFE4QxL+ouAU5KciSgc7j256XfL2qvhpoh8US+EvlG3LOVSdqMGXSXSCT+c3Odwl/GEKXCGLE8I//mGCCfdDud+W+wqxIf6QGosDvZ2pxMKyuo/gGD6WLvGHVl3Sw1O7twl5RSrF4BMJrGmbMx/1oZ8T37FZdw=
+	t=1778354500; cv=none; b=iJ/HWT1rxRBfYrb/QWeiX+OwgsMi8zIIvtLpjAp8BFYgfp5Iqz4vCL562fJSzpGHOB0wjKvxkJI87jNncbB9u17nRcCExifpoz3uuUd+6ElEiZ3DZrnMAIh4SLm7Y0GEkv30yoSDa/N6W33+DVPZV2N9hLWS7K7Yrhs9lzLdbA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778353235; c=relaxed/simple;
-	bh=u3VpWNk/RWixyJZ3CJNCNMCUuCxshozWAkhJ1uzm9aI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rx0rnDKWhVqiU2fDwm8WDHDm0ycGrwpMIgV6owpj4UAkpS/+F6Rrr+vPHtDh5I11KuNUJVZwuxZGa3N8SYBy3somrJs2vs6zVcf5XJV5KrREnDbil8FH4TQmVS81wSf2QvMuyo9Eu2FxF1Lngc1ArHS3kU9mAEGrbYL0FSLzYj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G4A1djO9; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1778354500; c=relaxed/simple;
+	bh=QioP3Qka/JFdqQFwCHDza/17w8AkssaId/xwPSd/cgI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uq6mumtlBFhF1Rx9juH4BxJp9unLzByQa6A6CnA7ogJoVXMeYPRLHCRaq75JyMqEDve5guyXh9ky4Io9zRrJawYvNoQzwoL+63hyOKqq6+oj759bRZFM+mwR1AqWWgTrWxVEm5kmHPIuFXa4FPeYDX/L0d1nzIY9F27gpTzORM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IPiAZo1C; arc=none smtp.client-ip=209.85.160.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-4526a8170ceso1644064f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 09 May 2026 12:00:33 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-40ede943bf0so2335468fac.2
+        for <devicetree@vger.kernel.org>; Sat, 09 May 2026 12:21:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778353232; x=1778958032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dRiBGQ2QPdeyt3UQcFiASOhwWyz97F1JtdNHI4C4Guw=;
-        b=G4A1djO9kr/rAUKiQrDtuyePTJXN2HamNNfDjbhNbGb9nSpxsWmZ4+i5lOyWbVtvux
-         NQZTIhuszxy199AXPsQMJ09F4Dc1m331kt6HAPqusaXzDd3/Khl9S2/YFkI2cfp0TBga
-         PelDdUgwnYmS1TL2qGu1uovSlTv6peWOs39Lv71eiXj3itvfiPPcGGRncXgccT07vbTR
-         iDsMLLa8u2IRakkQJl6UbBIo34l3l6rOAAf/EdM/J/DmooEVWkSFXpwCMvcKNmHPn7Hz
-         1B49Dwt01XzlLHWf6KtlVWqDdNdte9h8CdgGH2neDmR0wz/jPmqDK+NxZ0tR+xK1FIp/
-         5dPw==
+        d=gmail.com; s=20251104; t=1778354497; x=1778959297; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bWX8jEbkkLX6d2SDTNLRmYT9TMQ3k8bI+ub8fyb0z+g=;
+        b=IPiAZo1CAC+Q9SPrI2G2nSg0hXKXLyKfZ3yt8lo1XLglea9O7jjSZXEhhZ/sOLdPUW
+         K9XJwcPoJ13Xn14OPBAlCLX2dMHN55/i+cKAIMU+t9u6dKRRR4DWRPecBTkncHLAtsaV
+         wGvqBFQRRIVae35oKILQhyKz26RlvevU4voaHQnm4yUBTTl0HBDmAGukxa1DpJwWzTxz
+         mL9sQzSuy51Ck0jKv3dRv9pG9xyDvnqEeMxkvgeVL+nzInj+ZAM841SU7MK6iAKcVFqD
+         YnhVkCHT/6FwmcJ2zc3ayDoCdPVc7LLLOKWDe/UECAstLEKmhOgSYPJ1lJA0ndmxqaNB
+         0VLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778353232; x=1778958032;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dRiBGQ2QPdeyt3UQcFiASOhwWyz97F1JtdNHI4C4Guw=;
-        b=ZMednyL5CbkUcYwe8VZH/KfFmf4G98Knb0qWJjrYeqvjDkUxVl9I4I4JiYFxz0C0Pm
-         c6YwPtfYoxqHgnJssvx6yI0QziOiwZxb4IIxx016p1iy1yrFOoZdmwUi327PC+z5Y7FQ
-         hIYjNAXrbJnHN2K/309AW0OT/zS1mEkCZ0SXoDSW6WPKJ0z13w+fGtXITpmrCC52vNg4
-         VaWhwKt1M1mBJto/oIVD1VF7Faxsj3wcD7ICyQzPK7gAwe3tlaRJmety2KG8k7gwf8yN
-         ruatMEfeFpn+bPkC+ARcVKHhXZ0vCZBDjjN2zCFRMkHvmKf+TY5mO7JX2F8WDHGlICE0
-         7kcw==
-X-Forwarded-Encrypted: i=1; AFNElJ8EorOPZ4jfrY9NOX2oEFDLweOcXxQnKPY83dw7BDXPDRjbOGyX4OzvCWT7q78r3mPb4QUKHDoqEowS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9DbLUkDY28kGpTegMZBeeCIDNNfyFeiY3MhBO70B+7m/TWHoS
-	FJNhRkYVy1zlozJ3qmTt6neAo+0nH2rde4f3aZM11Vqwat/NTKOf7x5o
-X-Gm-Gg: Acq92OGmgN4ImocW52SjRq0DIk8vOZBOEaS9lxWLqIlxx8FAZ/NgQlkK5sLT/sSi76s
-	d/acIzcueBLsw2MPt3Wm6SpmN55ZNBNbvhGEN8KfN2NYyu+rzVJ4otvQJWayd/k3mZqTvmqjtm/
-	6K8SCHYiK1aWcFJJ8LheZSxPho9QeTG85uTkZoswXD9u4iFNw3FtsYTU3McMRYSgBxhAA43niPD
-	zmrFrVOB1B8SGZjyFMaZ7sx8lZwa7oWrMyXibybDj1Kj0oY2dFecbncHv8l7NSIsWyxKckZK0O9
-	BH0r5gyLHAmvqaRlRhwOBaCvdEPfFGDzT/ov/iy+K3RZ21ar15BG2/uoy91/JBKz9eNfU7gWghV
-	qV7AjT5niqC8zA52phXUd6wSPqQ/R6xSvOCNE8JCBezeDWxVBSIchc2Gvm/uvEdYNzLLa0JULQp
-	Xp/2MUmS8/Hi6JxwPsUdFHoS6owuwhtiR9PBOqXuRubJbCRREfvvC1max5mQEaiHOkCTw=
-X-Received: by 2002:a5d:5d85:0:b0:454:86d:b4d2 with SMTP id ffacd0b85a97d-45689baa9b3mr4635330f8f.8.1778353231444;
-        Sat, 09 May 2026 12:00:31 -0700 (PDT)
-Received: from jernej-laptop (46-150-62-216.dynamic.telemach.net. [46.150.62.216])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454913049ecsm13254407f8f.19.2026.05.09.12.00.30
+        d=1e100.net; s=20251104; t=1778354497; x=1778959297;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bWX8jEbkkLX6d2SDTNLRmYT9TMQ3k8bI+ub8fyb0z+g=;
+        b=eUXya7m1DyobKSnl++5WlOS4ISSf4Dy/CFLT+YQv5p1/kNGRkBoU1uVMSHDB6k2PoI
+         uQ8b1ynZjIopKu+bhgiqazwToL282A+yBDwRFEyao1uSEXi8vltzkz8wCgXcILutSQGD
+         Ih1M5tnqTDMQ17iLKvSg+UX5jxpRooZqAWLZiO4pDOc70P9vVNv8zz5qCx4+faV9dOFS
+         59OgaiK3eHPv/V19F1Dey5FgmPt4PZYyCi/ndX71JkQTQVxOkpbA2N2mWU5gKT7qomlK
+         V7a9IQo/8SgYFHUAQha01oSIUyBE9BLqfTzS5sfvplV48WIj/ycD6KQRy8MboyelUH7c
+         VLbg==
+X-Forwarded-Encrypted: i=1; AFNElJ/rBCvBs5RxkX6uPgSEsfiIi1BDGz8FROIeObhQhv14KM5NAsueYu34nb16YWIcwLwjvvOOjlG1sg3s@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxstjbc3EtD+ULd1dUTY0ijeI3TWaVYetlvbQfbCNraHzljAwQ6
+	+5l+ILn5WhUIrjH9N6aJRYUhNr26hm5updeta/1aT1gD5Fjz7iDyOThW
+X-Gm-Gg: Acq92OEGmuJ5K4RyO2onFaP+ZN0Jt60ne2NxgwSsKjJjQYBzTR0dT/udtXZGLaildHd
+	wj63xByaQoCHtBdABo7Gni/y1nP95nNiZ8BtVBCkA1RPqMRkxzSBS29prEGRQa3hz7WyJ57TjWs
+	GO7dwAGEifodeB8Z3oyOgng3AVIE/Xkgn1kRj7kJ78DeEJrM6bvCIevpNCZtZq/H9xxl15D9CPm
+	oXUvbTIGNaL3YByahoz3sp+3iWekDLnikp7N6FXqrRKIe6rpUI5Y4P9DrkKzn3AFgr2/+F6XQKr
+	gO61PloC94uTYBqJFNnQJ2T0sU6rSHNg3TNJrjVA1Pf1xR/8sbmKTQshoOkIS/AeJNvr3AGDW6c
+	/ldyZSnBH/PVdQL1saw+9E3W2ZAUolM+zwEGJjQ5wYmlyN83cLyoOsDiBG1WHXYGosaafgTf0Cj
+	IBJO+J2S0BDmLjH0yRxznY
+X-Received: by 2002:a05:6870:249b:b0:42c:111b:73fe with SMTP id 586e51a60fabf-434f64e9244mr11273892fac.18.1778354497428;
+        Sat, 09 May 2026 12:21:37 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4355736f517sm5243896fac.12.2026.05.09.12.21.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 May 2026 12:00:31 -0700 (PDT)
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
-X-Google-Original-From: Jernej Skrabec <jernej.skrabec@siol.net>
-To: wens@csie.org,
-	samuel@sholland.org
-Cc: mripard@kernel.org,
-	maarten.lankhorst@linux.intel.com,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	dri-devel@lists.freedesktop.org,
+        Sat, 09 May 2026 12:21:36 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: andy@kernel.org,
+	nuno.sa@analog.com,
+	dlechner@baylibre.com,
+	jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com,
+	linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	jernej.skrabec@gmail.com
-Subject: [PATCH v2 8/8] drm/sun4i: switch DE33 to new bindings
-Date: Sat,  9 May 2026 21:00:15 +0200
-Message-ID: <20260509190015.79086-9-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260509190015.79086-1-jernej.skrabec@siol.net>
-References: <20260509190015.79086-1-jernej.skrabec@siol.net>
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	andriy.shevchenko@intel.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V5 00/11] Add Invensense ICM42607
+Date: Sat,  9 May 2026 14:18:54 -0500
+Message-ID: <20260509191907.24734-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,408 +100,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: F38A95011CC
+X-Rspamd-Queue-Id: E34EE5012C4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294962-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	TO_DN_NONE(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-294964-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.994];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,siol.net:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Now that everything is in place, switch DE33 to new bindings.
+Add support for the ICM42607 IMU. This sensor shares the same
+functionality but a different register layout with the existing
+ICM42600.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
-Changes from v1:
-- remove CONFIG_DRM_SUN50I_PLANES guard
-- fix error path
+This driver should work with the ICM42607 and ICM42607P over both I2C
+and SPI, however only the ICM42607P over I2C could be tested.
 
- drivers/gpu/drm/sun4i/sun8i_mixer.c | 131 +++++++++++++++-------------
- drivers/gpu/drm/sun4i/sun8i_mixer.h |  10 +--
- 2 files changed, 72 insertions(+), 69 deletions(-)
+Changes Since V1:
+ - Instead of creating a new driver, merged with the existing inv_icm42600
+   driver. This necessitated adding some code to the existing driver to
+   permit using a different register layout for the same functionality.
+ - Split changes up a bit more to decrease the size of the individual
+   patches. Note that patch 0004 is still pretty hefty; if I need to split
+   further I may need to create some temporary stub functions.
+ - Used guard() and PM_RUNTIME_ACQUIRE_AUTOSUSPEND() on the new functions
+   per Jonathan's recommendations.
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-index 4071ab38b4ae..957db0938455 100644
---- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-@@ -13,6 +13,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/of_graph.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/reset.h>
- 
-@@ -25,6 +26,7 @@
- #include <drm/drm_probe_helper.h>
- 
- #include "sun4i_drv.h"
-+#include "sun50i_planes.h"
- #include "sun8i_mixer.h"
- #include "sun8i_ui_layer.h"
- #include "sun8i_vi_layer.h"
-@@ -257,7 +259,6 @@ static void sun8i_mixer_commit(struct sunxi_engine *engine,
- {
- 	struct sun8i_mixer *mixer = engine_to_sun8i_mixer(engine);
- 	u32 bld_base = sun8i_blender_base(mixer);
--	struct regmap *bld_regs = sun8i_blender_regmap(mixer);
- 	struct drm_plane_state *plane_state;
- 	struct drm_plane *plane;
- 	u32 route = 0, pipe_en = 0;
-@@ -294,16 +295,16 @@ static void sun8i_mixer_commit(struct sunxi_engine *engine,
- 		route |= layer->index << SUN8I_MIXER_BLEND_ROUTE_PIPE_SHIFT(zpos);
- 		pipe_en |= SUN8I_MIXER_BLEND_PIPE_CTL_EN(zpos);
- 
--		regmap_write(bld_regs,
-+		regmap_write(engine->regs,
- 			     SUN8I_MIXER_BLEND_ATTR_COORD(bld_base, zpos),
- 			     SUN8I_MIXER_COORD(x, y));
--		regmap_write(bld_regs,
-+		regmap_write(engine->regs,
- 			     SUN8I_MIXER_BLEND_ATTR_INSIZE(bld_base, zpos),
- 			     SUN8I_MIXER_SIZE(w, h));
- 	}
- 
--	regmap_write(bld_regs, SUN8I_MIXER_BLEND_ROUTE(bld_base), route);
--	regmap_write(bld_regs, SUN8I_MIXER_BLEND_PIPE_CTL(bld_base),
-+	regmap_write(engine->regs, SUN8I_MIXER_BLEND_ROUTE(bld_base), route);
-+	regmap_write(engine->regs, SUN8I_MIXER_BLEND_PIPE_CTL(bld_base),
- 		     pipe_en | SUN8I_MIXER_BLEND_PIPE_CTL_FC_EN(0));
- 
- 	if (mixer->cfg->de_type != SUN8I_MIXER_DE33)
-@@ -318,7 +319,6 @@ static struct drm_plane **sun8i_layers_init(struct drm_device *drm,
- 	struct sun8i_mixer *mixer = engine_to_sun8i_mixer(engine);
- 	int plane_cnt = mixer->cfg->ui_num + mixer->cfg->vi_num;
- 	enum drm_plane_type type;
--	unsigned int phy_index;
- 	int i;
- 
- 	planes = devm_kcalloc(drm->dev, plane_cnt + 1, sizeof(*planes), GFP_KERNEL);
-@@ -333,12 +333,8 @@ static struct drm_plane **sun8i_layers_init(struct drm_device *drm,
- 		else
- 			type = DRM_PLANE_TYPE_OVERLAY;
- 
--		phy_index = i;
--		if (mixer->cfg->de_type == SUN8I_MIXER_DE33)
--			phy_index = mixer->cfg->map[i];
--
- 		layer = sun8i_vi_layer_init_one(drm, type, mixer->engine.regs,
--						i, phy_index, plane_cnt,
-+						i, i, plane_cnt,
- 						&mixer->cfg->lay_cfg);
- 		if (IS_ERR(layer)) {
- 			dev_err(drm->dev,
-@@ -358,12 +354,8 @@ static struct drm_plane **sun8i_layers_init(struct drm_device *drm,
- 		else
- 			type = DRM_PLANE_TYPE_OVERLAY;
- 
--		phy_index = index;
--		if (mixer->cfg->de_type == SUN8I_MIXER_DE33)
--			phy_index = mixer->cfg->map[index];
--
- 		layer = sun8i_ui_layer_init_one(drm, type, mixer->engine.regs,
--						index, phy_index, plane_cnt,
-+						index, index, plane_cnt,
- 						&mixer->cfg->lay_cfg);
- 		if (IS_ERR(layer)) {
- 			dev_err(drm->dev, "Couldn't initialize %s plane\n",
-@@ -377,16 +369,22 @@ static struct drm_plane **sun8i_layers_init(struct drm_device *drm,
- 	return planes;
- }
- 
-+static struct drm_plane **sun50i_layers_init(struct drm_device *drm,
-+					     struct sunxi_engine *engine)
-+{
-+	struct sun8i_mixer *mixer = engine_to_sun8i_mixer(engine);
-+
-+	return sun50i_planes_setup(mixer->planes_dev, drm, engine->id);
-+}
-+
- static void sun8i_mixer_mode_set(struct sunxi_engine *engine,
- 				 const struct drm_display_mode *mode)
- {
- 	struct sun8i_mixer *mixer = engine_to_sun8i_mixer(engine);
--	struct regmap *bld_regs;
- 	u32 bld_base, size, val;
- 	bool interlaced;
- 
- 	bld_base = sun8i_blender_base(mixer);
--	bld_regs = sun8i_blender_regmap(mixer);
- 	interlaced = !!(mode->flags & DRM_MODE_FLAG_INTERLACE);
- 	size = SUN8I_MIXER_SIZE(mode->hdisplay, mode->vdisplay);
- 
-@@ -398,14 +396,14 @@ static void sun8i_mixer_mode_set(struct sunxi_engine *engine,
- 	else
- 		regmap_write(mixer->engine.regs, SUN8I_MIXER_GLOBAL_SIZE, size);
- 
--	regmap_write(bld_regs, SUN8I_MIXER_BLEND_OUTSIZE(bld_base), size);
-+	regmap_write(engine->regs, SUN8I_MIXER_BLEND_OUTSIZE(bld_base), size);
- 
- 	if (interlaced)
- 		val = SUN8I_MIXER_BLEND_OUTCTL_INTERLACED;
- 	else
- 		val = 0;
- 
--	regmap_update_bits(bld_regs, SUN8I_MIXER_BLEND_OUTCTL(bld_base),
-+	regmap_update_bits(engine->regs, SUN8I_MIXER_BLEND_OUTCTL(bld_base),
- 			   SUN8I_MIXER_BLEND_OUTCTL_INTERLACED, val);
- 
- 	DRM_DEBUG_DRIVER("Switching display mixer interlaced mode %s\n",
-@@ -418,8 +416,14 @@ static const struct sunxi_engine_ops sun8i_engine_ops = {
- 	.mode_set	= sun8i_mixer_mode_set,
- };
- 
-+static const struct sunxi_engine_ops sun50i_engine_ops = {
-+	.commit		= sun8i_mixer_commit,
-+	.layers_init	= sun50i_layers_init,
-+	.mode_set	= sun8i_mixer_mode_set,
-+};
-+
- static const struct regmap_config sun8i_mixer_regmap_config = {
--	.name		= "layers",
-+	.name		= "display",
- 	.reg_bits	= 32,
- 	.val_bits	= 32,
- 	.reg_stride	= 4,
-@@ -434,14 +438,6 @@ static const struct regmap_config sun8i_top_regmap_config = {
- 	.max_register	= 0x3c,
- };
- 
--static const struct regmap_config sun8i_disp_regmap_config = {
--	.name		= "display",
--	.reg_bits	= 32,
--	.val_bits	= 32,
--	.reg_stride	= 4,
--	.max_register	= 0x20000,
--};
--
- static int sun8i_mixer_of_get_id(struct device_node *node)
- {
- 	struct device_node *ep, *remote;
-@@ -464,17 +460,14 @@ static int sun8i_mixer_of_get_id(struct device_node *node)
- 
- static void sun8i_mixer_init(struct sun8i_mixer *mixer)
- {
--	struct regmap *top_regs, *disp_regs;
- 	unsigned int base = sun8i_blender_base(mixer);
-+	struct regmap *top_regs;
- 	int plane_cnt, i;
- 
--	if (mixer->cfg->de_type == SUN8I_MIXER_DE33) {
-+	if (mixer->cfg->de_type == SUN8I_MIXER_DE33)
- 		top_regs = mixer->top_regs;
--		disp_regs = mixer->disp_regs;
--	} else {
-+	else
- 		top_regs = mixer->engine.regs;
--		disp_regs = mixer->engine.regs;
--	}
- 
- 	/* Enable the mixer */
- 	regmap_write(top_regs, SUN8I_MIXER_GLOBAL_CTL,
-@@ -484,25 +477,25 @@ static void sun8i_mixer_init(struct sun8i_mixer *mixer)
- 		regmap_write(top_regs, SUN50I_MIXER_GLOBAL_CLK, 1);
- 
- 	/* Set background color to black */
--	regmap_write(disp_regs, SUN8I_MIXER_BLEND_BKCOLOR(base),
-+	regmap_write(mixer->engine.regs, SUN8I_MIXER_BLEND_BKCOLOR(base),
- 		     SUN8I_MIXER_BLEND_COLOR_BLACK);
- 
- 	/*
- 	 * Set fill color of bottom plane to black. Generally not needed
- 	 * except when VI plane is at bottom (zpos = 0) and enabled.
- 	 */
--	regmap_write(disp_regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
-+	regmap_write(mixer->engine.regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
- 		     SUN8I_MIXER_BLEND_PIPE_CTL_FC_EN(0));
--	regmap_write(disp_regs, SUN8I_MIXER_BLEND_ATTR_FCOLOR(base, 0),
-+	regmap_write(mixer->engine.regs, SUN8I_MIXER_BLEND_ATTR_FCOLOR(base, 0),
- 		     SUN8I_MIXER_BLEND_COLOR_BLACK);
- 
- 	plane_cnt = mixer->cfg->vi_num + mixer->cfg->ui_num;
- 	for (i = 0; i < plane_cnt; i++)
--		regmap_write(disp_regs,
-+		regmap_write(mixer->engine.regs,
- 			     SUN8I_MIXER_BLEND_MODE(base, i),
- 			     SUN8I_MIXER_BLEND_MODE_DEF);
- 
--	regmap_update_bits(disp_regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
-+	regmap_update_bits(mixer->engine.regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
- 			   SUN8I_MIXER_BLEND_PIPE_CTL_EN_MSK, 0);
- }
- 
-@@ -533,7 +526,6 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
- 	if (!mixer)
- 		return -ENOMEM;
- 	dev_set_drvdata(dev, mixer);
--	mixer->engine.ops = &sun8i_engine_ops;
- 	mixer->engine.node = dev->of_node;
- 
- 	/*
-@@ -566,6 +558,11 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
- 	if (!mixer->cfg)
- 		return -EINVAL;
- 
-+	if (mixer->cfg->de_type == SUN8I_MIXER_DE33)
-+		mixer->engine.ops = &sun50i_engine_ops;
-+	else
-+		mixer->engine.ops = &sun8i_engine_ops;
-+
- 	regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(regs))
- 		return PTR_ERR(regs);
-@@ -588,17 +585,6 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
- 			dev_err(dev, "Couldn't create the top regmap\n");
- 			return PTR_ERR(mixer->top_regs);
- 		}
--
--		regs = devm_platform_ioremap_resource_byname(pdev, "display");
--		if (IS_ERR(regs))
--			return PTR_ERR(regs);
--
--		mixer->disp_regs = devm_regmap_init_mmio(dev, regs,
--							 &sun8i_disp_regmap_config);
--		if (IS_ERR(mixer->disp_regs)) {
--			dev_err(dev, "Couldn't create the disp regmap\n");
--			return PTR_ERR(mixer->disp_regs);
--		}
- 	}
- 
- 	mixer->reset = devm_reset_control_get(dev, NULL);
-@@ -638,6 +624,34 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
- 
- 	clk_prepare_enable(mixer->mod_clk);
- 
-+	if (mixer->cfg->de_type == SUN8I_MIXER_DE33) {
-+		struct platform_device *pdev;
-+		struct device_node *np;
-+		void *data;
-+
-+		np = of_parse_phandle(dev->of_node, "allwinner,planes", 0);
-+		if (!np) {
-+			ret = -ENODEV;
-+			goto err_disable_mod_clk;
-+		}
-+
-+		pdev = of_find_device_by_node(np);
-+		of_node_put(np);
-+		if (!pdev) {
-+			ret = -EPROBE_DEFER;
-+			goto err_disable_mod_clk;
-+		}
-+
-+		data = platform_get_drvdata(pdev);
-+		if (!data) {
-+			put_device(&pdev->dev);
-+			ret = -EPROBE_DEFER;
-+			goto err_disable_mod_clk;
-+		}
-+
-+		mixer->planes_dev = &pdev->dev;
-+	}
-+
- 	list_add_tail(&mixer->engine.list, &drv->engine_list);
- 
- 	/* Reset registers and disable unused sub-engines */
-@@ -672,6 +686,8 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
- 
- 	return 0;
- 
-+err_disable_mod_clk:
-+	clk_disable_unprepare(mixer->mod_clk);
- err_disable_bus_clk:
- 	clk_disable_unprepare(mixer->bus_clk);
- err_assert_reset:
-@@ -686,6 +702,9 @@ static void sun8i_mixer_unbind(struct device *dev, struct device *master,
- 
- 	list_del(&mixer->engine.list);
- 
-+	if (mixer->cfg->de_type == SUN8I_MIXER_DE33)
-+		put_device(mixer->planes_dev);
-+
- 	clk_disable_unprepare(mixer->mod_clk);
- 	clk_disable_unprepare(mixer->bus_clk);
- 	reset_control_assert(mixer->reset);
-@@ -867,16 +886,8 @@ static const struct sun8i_mixer_cfg sun50i_h6_mixer0_cfg = {
- };
- 
- static const struct sun8i_mixer_cfg sun50i_h616_mixer0_cfg = {
--	.lay_cfg = {
--		.de_type	= SUN8I_MIXER_DE33,
--		.scaler_mask	= 0xf,
--		.scanline_yuv	= 4096,
--	},
- 	.de_type	= SUN8I_MIXER_DE33,
- 	.mod_rate	= 600000000,
--	.ui_num		= 3,
--	.vi_num		= 1,
--	.map		= {0, 6, 7, 8},
- };
- 
- static const struct of_device_id sun8i_mixer_of_table[] = {
-diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.h b/drivers/gpu/drm/sun4i/sun8i_mixer.h
-index e2f83301aae8..7abc88c898d9 100644
---- a/drivers/gpu/drm/sun4i/sun8i_mixer.h
-+++ b/drivers/gpu/drm/sun4i/sun8i_mixer.h
-@@ -202,7 +202,6 @@ struct sun8i_mixer_cfg {
- 	int			ui_num;
- 	unsigned int		de_type;
- 	unsigned long		mod_rate;
--	unsigned int		map[6];
- };
- 
- struct sun8i_mixer {
-@@ -216,7 +215,7 @@ struct sun8i_mixer {
- 	struct clk			*mod_clk;
- 
- 	struct regmap			*top_regs;
--	struct regmap			*disp_regs;
-+	struct device			*planes_dev;
- };
- 
- enum {
-@@ -252,13 +251,6 @@ sun8i_blender_base(struct sun8i_mixer *mixer)
- 	return mixer->cfg->de_type == SUN8I_MIXER_DE3 ? DE3_BLD_BASE : DE2_BLD_BASE;
- }
- 
--static inline struct regmap *
--sun8i_blender_regmap(struct sun8i_mixer *mixer)
--{
--	return mixer->cfg->de_type == SUN8I_MIXER_DE33 ?
--		mixer->disp_regs : mixer->engine.regs;
--}
--
- static inline u32
- sun8i_channel_base(struct sun8i_layer *layer)
- {
+Changes Since V2:
+ - Went back to using a new driver on advice from Invensense engineer.
+ - Further split changes up into smaller chunks of functionality. Note
+   still that the largest patch is approximately 900 lines, and that while
+   the driver compiles cleanly at each commit it is not able to drive the
+   hardware until the commit that adds the Interrupt (as it also adds the
+   Makefile).
+ - Change the error to a warning when the devicetree binding does not match
+   the hardware ID.
+ - Dropped the ack on the devicetree bindings, as I am creating a new file
+   (for a new driver) instead of modifying the existing one.
+
+Changes Since V3:
+ - Numerous small fixes (too many to list here). Thank you to everyone who
+   provided feedback.
+ - Split power management additions into an additional commit to break
+   things up further.
+ - Consolidated devicetree documentation in existing
+   invensense,icm42600.yaml file.
+ - Removed most of the FIELD_PREP from header file to c files to make code
+   easier to read.
+ - Changed scale values to 2D arrays for Gyro and Accelerometer.
+ - Removed IIO_CHAN_INFO_CALIBBIAS attribute.
+
+Changes Since V4:
+ - Additional numerous small fixes, thank you again for all the feedback.
+ - Dropped power control API and instead run device in low noise mode.
+ - Split devicetree bindings into two distinct changes.
+ - Reordered adding of enums and structs to main header file so that they
+   are only brought in when needed.
+ - Stopped using enum for driver data and instead am using pointer to
+   device specific driver data.
+
+Chris Morgan (11):
+  dt-bindings: iio: imu: icm42600: Add mount-matrix to icm42600
+  dt-bindings: iio: imu: icm42600: Add icm42607 binding
+  iio: imu: inv_icm42607: Add inv_icm42607 Core Driver
+  iio: imu: inv_icm42607: Add I2C and SPI For icm42607
+  iio: imu: inv_icm42607: Add PM support for icm42607
+  iio: imu: inv_icm42607: Add Buffer support for icm42607
+  iio: imu: inv_icm42607: Add Temp Support in icm42607
+  iio: imu: inv_icm42607: Add Accelerometer for icm42607
+  iio: imu: inv_icm42607: Add Wake on Movement to icm42607
+  iio: imu: inv_icm42607: Add Gyroscope to icm42607
+  arm64: dts: rockchip: Add icm42607p IMU for RG-DS
+
+ .../bindings/iio/imu/invensense,icm42600.yaml |   4 +
+ .../dts/rockchip/rk3568-anbernic-rg-ds.dts    |  20 +-
+ drivers/iio/imu/Kconfig                       |   1 +
+ drivers/iio/imu/Makefile                      |   1 +
+ drivers/iio/imu/inv_icm42607/Kconfig          |  30 +
+ drivers/iio/imu/inv_icm42607/Makefile         |  14 +
+ drivers/iio/imu/inv_icm42607/inv_icm42607.h   | 437 +++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_accel.c | 875 ++++++++++++++++++
+ .../imu/inv_icm42607/inv_icm42607_buffer.c    | 552 +++++++++++
+ .../imu/inv_icm42607/inv_icm42607_buffer.h    |  95 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 795 ++++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_gyro.c  | 509 ++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_i2c.c   |  85 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_spi.c   |  92 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.c  |  80 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.h  |  33 +
+ 16 files changed, 3622 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/iio/imu/inv_icm42607/Kconfig
+ create mode 100644 drivers/iio/imu/inv_icm42607/Makefile
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_i2c.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
+
 -- 
-2.54.0
+2.43.0
 
 
