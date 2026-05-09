@@ -1,213 +1,252 @@
-Return-Path: <devicetree+bounces-294794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294796-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDDSHCyW/ml5tAAAu9opvQ
-	(envelope-from <devicetree+bounces-294794-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:04:28 +0200
+	id 4HDDMZmW/ml5tAAAu9opvQ
+	(envelope-from <devicetree+bounces-294796-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:06:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF0E84FD811
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:04:27 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258534FD854
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 04:06:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C67A73018D51
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 02:04:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E41BE3016516
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 02:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D012882CD;
-	Sat,  9 May 2026 02:04:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CAE282F3F;
+	Sat,  9 May 2026 02:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MluJBkvT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BY7eehM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013015.outbound.protection.outlook.com [40.107.159.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F8229D27D;
-	Sat,  9 May 2026 02:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778292264; cv=fail; b=CBp12PfhAGq085ArNpfZdzr5o/SD6p4zJBsfbRZyP2MqV1iVpkck0Ew/UJp4pV+S8lD5MQFv/emPlR4DAALA2pHngdjF1j6nU5gS9YTaMsMgxK5DVtPqrHp/HUyEy/rZ6E400eGoOXCOYYODAGREHk+ypGxEDJf4xDOu3xUj6dw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778292264; c=relaxed/simple;
-	bh=qA1BjyQdooX+Fm1vIpGP+nAoCMVQC00TQqqvxDJ+/W8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=rcCpnPjTbglfGLMpUQ2dDrv6cMZwCNW9OoS1xY7qewtm+BNYRqcexFvB/aI+pkrjCRI8Y9eMR1LrDTHFS18mlFHnH6QjgVivXTm7hQ1TjHWb41lc45MDGSA8nEjiJfTR7zJLd7gjviAbHAP64F8Qk6Bc+DuwP4aExKLcFcoR4C0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MluJBkvT; arc=fail smtp.client-ip=40.107.159.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PSvzV35C/zljS+BObCtJmfsBCT9h6e6gPsQgIGy1qNucamrja1jolWSUBv6+wVEW5TgckJz7avZ1TQsfuYwBiCPN+XT657Uz9nyufWviZHV9/KeIwKMQWMHMRFo8+Xn2E7RooZLsMkiPISk4G0fWcLkVV4E8pxgNSwknItfQr85pGu2KEZbaUf0KiDr+wKZQGcVDKMgm4Y7A3WmPtTSPn/OZPVDVjmF+DtpWR5TGjLsODx5JWKn8Cuiam6vjyowPEJlxs/YGT2hUBUz7RtMsuq4rzHclZyiHDMBtLDVD3cfwEzNeXJG9rbWtd+A2wEcUDjC7gCBrSAUOMJtnebEjCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bg3Juttgv6Vmksd9wBTl6o0hxDyl2kPjG+2Rh6L3h80=;
- b=bPG99jcVgBxv0Hi7bckBKVo5AkTAzwIiE7UZm4IBcjtzH3T2SB2xEv3hTr90nl1VtUpUr0udQK8wC5U3IfeJvmxmzzCeDooRgr9ZHvu5Xie8EwdIWSJCQnJ5zH8gAZhgjyYRXVtFbHgxJaVa6RKMn4wM9kwtfii+ad4vvOv7J4cZmbZZfzRVZDhzWPnwqJDZxAJl8G1Df9/iFh68aT51naYe+URg0GvTFRnWaj351YV5iU3S8oLCK5YXl+q5d26J5t4OLRbrKcxTz+9qxinIq5EWBjLWhtNwjhf/oHQnui8VjUS40diHB5KHZMM89OXakPtIfPlwcuQGPyGeOnNTuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bg3Juttgv6Vmksd9wBTl6o0hxDyl2kPjG+2Rh6L3h80=;
- b=MluJBkvTrazo7Ypn+/J3qITfTJGwjZTcfWq49mzp+9auUa8LBDVI96XiPfdl7bca5ncjBijleZAYBM4xBfvEx+ONLir/yjt+IEG5DWjmilUH+vuy4W6el55GlF4rhP8s8/GJsEjORZBhSZIWJPEoDvHHDfqlfca9P3EPkBzlVtwqZyR5W2rbd0XBPKD5OsllqVmpyYDTEbbTSPcQphUpZADWr5igsuXceAljadEH6sRds3V/7WqGvqoqCVoucVheHNn2EOQ0TQdv7aWmi7DbhP83xvSkx9K0CwOaSiP+G1iChZ5byRbNAO0glJl/cU3o8sGc/JBrmb6gZyE5ZNqhfw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GV2PR04MB12019.eurprd04.prod.outlook.com
- (2603:10a6:150:30c::14) by VI0PR04MB11071.eurprd04.prod.outlook.com
- (2603:10a6:800:262::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.19; Sat, 9 May
- 2026 02:04:17 +0000
-Received: from GV2PR04MB12019.eurprd04.prod.outlook.com
- ([fe80::ed75:bac1:2554:5cbe]) by GV2PR04MB12019.eurprd04.prod.outlook.com
- ([fe80::ed75:bac1:2554:5cbe%4]) with mapi id 15.20.9891.008; Sat, 9 May 2026
- 02:04:16 +0000
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	frank.li@nxp.com,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com
-Cc: kernel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v2] arm64: dts: imx95: Increase PCIe outbound address space to 2GB
-Date: Sat,  9 May 2026 10:04:40 +0800
-Message-Id: <20260509020440.3219767-1-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0001.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::7)
- To GV2PR04MB12019.eurprd04.prod.outlook.com (2603:10a6:150:30c::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867901F37D3
+	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 02:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778292356; cv=none; b=G4y/BucbhxOL7kZk2wyXeIOVEOCXtwFABc1Fi3ZkdmGuRZD7wJhaPBPdT9FfDl4h3xXH1DB2btLrkP4Xv/JlqbqgMSLX43oYGBBzDKHA7GzHDytyqKAN7lKQgsJTbzu6HQ1cpLCEUvME7twORlH/bleSk2qfXFpNRdPynxgq8po=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778292356; c=relaxed/simple;
+	bh=dis+AFywl6J6StzpuUKyVLmblXHO+8Whz6OQjPEA7Kg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=JKohp0KvRy+3xElYwF3ZrwMmkRoD2x/5kmn4g5jea0Af6bd5/qP8V9pWOSaZ0F8cANfWh29IdlBHLNzKSFHccpa9nWocFfdnJN4kLm3QgQZlQ4lfDmRtVE0Q6wa82FYeaoFotgrGIXFbmuB7ZfISvfifYApgTOSibD1Btl3Q6G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BY7eehM/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9238C2BCB0;
+	Sat,  9 May 2026 02:05:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778292356;
+	bh=dis+AFywl6J6StzpuUKyVLmblXHO+8Whz6OQjPEA7Kg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=BY7eehM/vcKYQZGdpTsmNIr/mcslmjjAO9UfFlt+PvuzV+DbyiY3f3G1AF4VZTVnM
+	 2mrhxmc0+jBgmufnMJ2qEsrSIOLk3dQnB7kGddqLK5jJm8IZfDPx1O4O+6PaAFV6r4
+	 fyCigdbaLhgp/up9CS/dgawTqSPlYs9xYT7wAxfTo1n6X3evE8+ZBMqV4ccN/n/hTF
+	 cw0V6dZmzRG3YxVKuj1GMeDJ4ZTcgIynJyA7NInmWLN6+Uv576ITSsYTSzk47bFu/9
+	 hBVQJ7SGOe0zEH0XaLTvVoec5kWqJJu7zVX3mrT/nCOXxpkDNSCHzSiSw0J3MLPP1m
+	 /adLzARX0g7TQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 07/14] media: iris: Enable Secure PAS support with
+ IOMMU managed by Linux
+Reply-To: sashiko@lists.linux.dev
+To: "Vishnu Reddy" <busanna.reddy@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260509-glymur-v5-7-7fbb340c5dbd@oss.qualcomm.com>
+References: <20260509-glymur-v5-7-7fbb340c5dbd@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 09 May 2026 02:05:55 +0000
+Message-Id: <20260509020555.D9238C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB12019:EE_|VI0PR04MB11071:EE_
-X-MS-Office365-Filtering-Correlation-Id: e35df66f-f09a-47b6-98ed-08dead6f463e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|19092799006|366016|38350700014|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	C63WsgBVqulVmjAF3KCbxuLc9MrY74kes/FCgj+/wB8DaqbYPi8f23Ym2RtIlYfKNQQhHzhZx3u4XNjmu2QoEPvECrIG8yI47ek18fWc+4iMLS71GTwhqv9P67AdqnuS/wY0NM6BRw3R2wq3S1VO1EvTb7qvzBSyTd/HXNINCjMyiJmmNVqXHi7YfenXf7LpavUQX8CxHKDPyBqmMtU7FLaNUddD9thsULHP54HyUi1N/rHN5fRhn/q8FX0vo1N2RrSWFC+9206l3cMhAz6W//pfpKB1QOUh8BmNaMrjDFKXmXcq5ar2kfFWDewwY2p63w3NLLa3IMVPsvl2Crp7fO41a8x5apC9omyp2U8k1M7+oK2gVR3G52Pwsy18lPtp6lnOuWVQxoxRH5c/Tla2q+x7eekQ2ODGEy8DMzoUIcJGFnQr1Z0CYOmaXmndnF6KcRvLm4Kmc0dIhTznaFjIgOqZAmHnb5TgoCJgehw+TZlLIfflr0vtJPdMUaNlxwrlHelIHhv6mzcBd1dK+PG1XGmt/vLx0ztkGF/Ju9RJpYxkQlpaHVOgMoqTio8TjJ9CoRerY9nYpsYibv5Bu43V/e/YdZVT49NGmAkc1BBd3q8Wp8oBaUfqpx7qM4+T6JzS+AXxG3KVom0oGNsrqIkztmuy1wDhgqYkzlNQwJskgwRzNhH8sSNUMjcsCGliFa9pNya/Ua6IKD+F53VkODU0MC3ohkIHSk3inYwa8tvkdpWuH3IAI9BOB0ecknq/QA0e
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12019.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(19092799006)(366016)(38350700014)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?5rfRy+hr24D0P3RYClm54QLAemFSE/a6hUS2TwDIJ/oZu1qrIBFa5vEe5gaI?=
- =?us-ascii?Q?ID/2VrTc+YNKWd3OiI+Du7qxNn4yLja6RZF/0VscW6FnRAQsNbR4O9SbsXEe?=
- =?us-ascii?Q?oh6k8HgwqEXTYkgqLXd1Yf9BA7nDAZ236fIltRM0XeplAoG91KEpEKIJKSe9?=
- =?us-ascii?Q?cBi8qvikmAs0HVZC8k8HF3ftILfHASaiM4fN2hbVZdbNM3Py5PseD+DG6FmK?=
- =?us-ascii?Q?9xrnxKI7Ag2pgqEhycKTunzda9Cqe5OHx067dQbhmVsWqCIJQ2CFqkD/48ad?=
- =?us-ascii?Q?03UknTFGJjf4tTGytAptpMkE0UjkHA+hGEsJfxDlGXLz9WxQkUibY4Iamhe7?=
- =?us-ascii?Q?1kcs7JfHw4JiDyu7qYU1e++lriv8sfwqweJeZjjIzfkyv2AZ8GntQJvmvtAL?=
- =?us-ascii?Q?9HZpZLlaT4N8K3D30FkkqObvpBo3b9ZxrOXNCLLo8ilAMTWvklFPctrTI+/J?=
- =?us-ascii?Q?/sa7RCy2LtUZN/xr5rG/mxhZU5Rfoa6ju+Z+v1Z2z2Z1RcHmOSElCUGkRaOZ?=
- =?us-ascii?Q?02DBks9EEHZBQx4njNRcay40QbJHacTjwNCz4DZl7IEdZ/hglie+RD1sQxe3?=
- =?us-ascii?Q?pXnYSQ7fjFmWKeyRq5G/np1Bb4CGdgWLbsqOyzGmw13O+sqZGLiTzYHZzZkp?=
- =?us-ascii?Q?06rXQRPk1e4vABvDjWHVDgAl0UUV/gwo1wQhMVLtDg0a9o7XUIfrMIhKgcaB?=
- =?us-ascii?Q?H0N+CC9iaYeG8vL5fySHhqsCHKQOO2QPezpjF1T313sjdAVMUoeyEHD+UZn+?=
- =?us-ascii?Q?1BrtFnchuHLH6HthS/yJNCq2pSoAjYhIf2VhmH37TXiaV0LKXUxPgrVckhyz?=
- =?us-ascii?Q?WjxYlqoEyap1CvKaK++avnjyxsRVWAZbNy7hVZNsmp3JEV4E3eN/leu+duX/?=
- =?us-ascii?Q?0+qOIcsSTWzu6QoPHaFG8RgAOHSjjJemkNPjwE4emDunygm4ilAwah0ZrqT2?=
- =?us-ascii?Q?lY0edydkKiuyxvlI/IWv72f9UFtMVlwPcR49rjP3tIMDzOreSj4izu18arQn?=
- =?us-ascii?Q?h/JJ7VwRXzQWi9Mvf1iy89D+b2ksdr3v+be9HRHweOCkdFAFZy9lgwSNu2xO?=
- =?us-ascii?Q?YA0ES3Q0oukSCoskl5VK//g32entN75RUjV1pKKoS5P/xAceWpDW0Gkf3QFF?=
- =?us-ascii?Q?97RUJYHCuLtEFvrfAbN4bzVw4h9btp0SNBACD4oLZLKYPPO2F3aMnQ5x8/uL?=
- =?us-ascii?Q?PdIJV4Cr5fqo1tf18GxMTaKXqhYPjqHgT9hmzs9imbcAHpDS5Z00T44B/hYx?=
- =?us-ascii?Q?y0Nsc9PY2MZ4IQuWWkTUTR8rCrLojzsxeTerpbKA9iCv+pJx3O85NuSWEPv3?=
- =?us-ascii?Q?8FUKjMBeFqqOrDV+uIUXz18XUpFz+Ko2kQVDNBTViccgN85Kb6adcmkrT14S?=
- =?us-ascii?Q?f8nApYCSizD3ka4BeA0VKU8p+XxPY9OHNxhG2ccS59sdJXYz4sgxpkdVwkCD?=
- =?us-ascii?Q?m8gaFpfW4WeD1sJ4fyBDm0GsaMgtKM6Uffgh2yMES9ymBIEMC9MVkG9IyW9a?=
- =?us-ascii?Q?geVjMa9gKpc+WXmPMpSasApRDbR0scAiM9+V4CzGxw4UVcVGt7mVU3pu8wJj?=
- =?us-ascii?Q?t4/uYbEeUPQCxfIG7DoUdeL6DQ2d9rPOoqDL7SA7kdxCiMBPnMOE5wUlRs5U?=
- =?us-ascii?Q?G/xXPqjhMjHV5x4CPoLwCet/YKaJ/9p/d00W8iEFMx5FslLxvheBYuk01F95?=
- =?us-ascii?Q?uXlUtHO1igSTN7xvRw4H1aY7F8pGV5nhs5p8S6XrsBp7KNszdrEbdyN+mx0k?=
- =?us-ascii?Q?a8COax1ZzA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e35df66f-f09a-47b6-98ed-08dead6f463e
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12019.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2026 02:04:16.6131
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bdN8A8QJGF/GKok2d8lb0+1+Of2stiPWU9G/YR3H3UrzvuwiUbnzwgqQVA/avALhZGZYvEQPzKCDwdBpqF/Bog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11071
-X-Rspamd-Queue-Id: BF0E84FD811
+X-Rspamd-Queue-Id: 258534FD854
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294796-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,qualcomm.com:email];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294794-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongxing.zhu@nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:mid,nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,4c300000:email,4c380000:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Expand the PCIe outbound memory region from the current size to 2GB
-to support devices requiring larger address spaces.
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] Missing `qcom_scm_pas_metadata_release()` causes PAS metadata buff=
+er memory leak.
+- [High] Unbounded memory leak due to dynamic `devm_qcom_scm_pas_context_al=
+loc()` inside `iris_load_fw_to_memory()`.
+- [High] Skipped `iris_fw_iommu_unmap()` if `qcom_scm_pas_shutdown()` fails=
+ causes permanent device failure.
+- [High] Directly calling `iommu_map()` on a default DMA domain bypasses th=
+e DMA API.
+- [Medium] Original error codes from `iris_load_fw_to_memory()` are uncondi=
+tionally masked with `-ENOMEM`.
+--
 
-Fixes: 3b1d5deb29ff ("arm64: dts: imx95: add pcie[0,1] and pcie-ep[0,1] support")
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
----
-Changes in v2:
-Add the Fixes tag, and rebase to latest imx/dt64 branch.
+commit f84ed6beb9478a59d8db52c92115b570f4c199ba
+Author: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index adcc0e1d3696b..201c0eae13948 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -1940,7 +1940,7 @@ pcie0: pcie@4c300000 {
- 			      <0 0x4c340000 0 0x4000>;
- 			reg-names = "dbi", "config", "atu", "app";
- 			ranges = <0x81000000 0x0 0x00000000 0x0 0x6ff00000 0 0x00100000>,
--				 <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x10000000>;
-+				 <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x80000000>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			device_type = "pci";
-@@ -2015,7 +2015,7 @@ pcie1: pcie@4c380000 {
- 			      <0 0x4c3c0000 0 0x4000>;
- 			reg-names = "dbi", "config", "atu", "app";
- 			ranges = <0x81000000 0 0x00000000 0x8 0x8ff00000 0 0x00100000>,
--				 <0x82000000 0 0x10000000 0xa 0x10000000 0 0x10000000>;
-+				 <0x82000000 0 0x10000000 0xa 0x10000000 0 0x80000000>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			device_type = "pci";
+media: iris: Enable Secure PAS support with IOMMU managed by Linux
 
-base-commit: 5f9e9f83aee0fa8f2124c6f192505de2cdf7c5dc
--- 
-2.37.1
+This commit extends the Iris driver to handle IOMMU and SHM bridge
+configurations for firmware load and resources mapping in the absence
+of a proprietary hypervisor.
 
+[ ... ]
+> --- a/drivers/media/platform/qcom/iris/iris_firmware.c
+> +++ b/drivers/media/platform/qcom/iris/iris_firmware.c
+[ ... ]
+> @@ -29,14 +33,18 @@ static int iris_load_fw_to_memory(struct iris_core *c=
+ore, const char *fw_name)
+>  	if (strlen(fw_name) >=3D MAX_FIRMWARE_NAME_SIZE - 4)
+>  		return -EINVAL;
+> =20
+> -	ret =3D of_reserved_mem_region_to_resource(dev->of_node, 0, &res);
+> +	ret =3D of_reserved_mem_region_to_resource(core->dev->of_node, 0, &res);
+>  	if (ret)
+>  		return ret;
+> =20
+>  	mem_phys =3D res.start;
+>  	res_size =3D resource_size(&res);
+> =20
+> -	ret =3D request_firmware(&firmware, fw_name, dev);
+> +	pas_ctx =3D devm_qcom_scm_pas_context_alloc(fw_dev, pas_id, mem_phys, r=
+es_size);
+> +	if (IS_ERR(pas_ctx))
+> +		return PTR_ERR(pas_ctx);
+
+devm_qcom_scm_pas_context_alloc() ties the memory to the fw_dev unbind even=
+t.
+If iris_load_fw_to_memory() is called dynamically (e.g., when userspace ope=
+ns
+the device) and fails later in the function, this devres allocation isn't
+freed. Could repeated failures here lead to an unbounded memory leak?
+
+> +
+> +	ret =3D request_firmware(&firmware, fw_name, fw_dev);
+>  	if (ret)
+>  		return ret;
+> =20
+[ ... ]
+> @@ -52,9 +60,27 @@ static int iris_load_fw_to_memory(struct iris_core *co=
+re, const char *fw_name)
+>  		goto err_release_fw;
+>  	}
+> =20
+> -	ret =3D qcom_mdt_load(dev, firmware, fw_name,
+> -			    pas_id, mem_virt, mem_phys, res_size, NULL);
+> +	pas_ctx->use_tzmem =3D !!core->fw_dev;
+> +	ret =3D qcom_mdt_pas_load(pas_ctx, firmware, fw_name, mem_virt, NULL);
+> +	if (ret)
+> +		goto err_mem_unmap;
+> +
+> +	if (pas_ctx->use_tzmem) {
+> +		domain =3D iommu_get_domain_for_dev(fw_dev);
+> +		if (!domain) {
+> +			ret =3D -ENODEV;
+> +			goto err_mem_unmap;
+> +		}
+> +
+> +		ret =3D iommu_map(domain, IRIS_FW_START_ADDR, mem_phys, res_size,
+> +				IOMMU_READ | IOMMU_WRITE | IOMMU_PRIV, GFP_KERNEL);
+
+iommu_get_domain_for_dev() will return the default DMA domain attached to
+fw_dev. Is it safe to call iommu_map() directly on a DMA domain?=20
+
+This bypasses the DMA API's IOVA allocator and might trigger a kernel warni=
+ng.
+Should the driver allocate and attach an unmanaged domain instead?
+
+> +		if (ret)
+> +			goto err_mem_unmap;
+> +	}
+> =20
+> +	core->pas_ctx =3D pas_ctx;
+> +
+> +err_mem_unmap:
+>  	memunmap(mem_virt);
+>  err_release_fw:
+>  	release_firmware(firmware);
+[ ... ]
+> @@ -79,10 +117,10 @@ int iris_fw_load(struct iris_core *core)
+>  		return -ENOMEM;
+>  	}
+
+Now that iris_load_fw_to_memory() has been updated to return specific error
+codes like -EINVAL, -ENODEV, or PTR_ERR(), is there a reason to continue
+masking all of them with -ENOMEM here?
+
+> =20
+> -	ret =3D qcom_scm_pas_auth_and_reset(core->iris_platform_data->pas_id);
+> +	ret =3D qcom_scm_pas_prepare_and_auth_reset(core->pas_ctx);
+
+qcom_mdt_pas_load() allocates a secure DMA buffer for firmware metadata via
+qcom_scm_pas_init_image(). Does this driver need to call
+qcom_scm_pas_metadata_release() after authentication here to avoid leaking =
+the
+metadata buffer?
+
+>  	if (ret)  {
+>  		dev_err(core->dev, "auth and reset failed: %d\n", ret);
+> -		return ret;
+> +		goto err_unmap;
+>  	}
+> =20
+[ ... ]
+> @@ -93,17 +131,31 @@ int iris_fw_load(struct iris_core *core)
+[ ... ]
+>  int iris_fw_unload(struct iris_core *core)
+>  {
+> -	return qcom_scm_pas_shutdown(core->iris_platform_data->pas_id);
+> +	int ret;
+> +
+> +	ret =3D qcom_scm_pas_shutdown(core->pas_ctx->pas_id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	iris_fw_iommu_unmap(core);
+> +
+> +	return ret;
+
+If qcom_scm_pas_shutdown() fails and returns early, iris_fw_iommu_unmap() is
+skipped. Will this leave the IOMMU mapping active at IRIS_FW_START_ADDR,
+causing the next iommu_map() attempt during initialization to fail with
+-EEXIST?
+
+>  }
+> =20
+>  int iris_set_hw_state(struct iris_core *core, bool resume)
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260509-glymur-v5-=
+0-7fbb340c5dbd@oss.qualcomm.com?part=3D7
 
