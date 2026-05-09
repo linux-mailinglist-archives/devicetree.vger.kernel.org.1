@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-294960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGXlC+SE/2l47QAAu9opvQ
-	(envelope-from <devicetree+bounces-294960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:03:00 +0200
+	id 0N3aMEKF/2l47QAAu9opvQ
+	(envelope-from <devicetree+bounces-294963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:04:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B8A501202
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:02:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A20F501236
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:04:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97A28303D2DF
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 19:00:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A72E53058E12
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 19:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DA23CE4A5;
-	Sat,  9 May 2026 19:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109453CBE69;
+	Sat,  9 May 2026 19:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WjZryJO7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UPG5F7LE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E113C7DF0
-	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 19:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31B93CAE9E
+	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 19:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778353232; cv=none; b=X/XV4IBnN50a12oQcfrvw/sQLaRMsDDTOSkpV9vsuac7pHWid9cVHeufD3gXNnmtA+jrjnhWKtBFJLdvFyTCsdjzF7TmLMGK6FSH7hp52epuWeywuI+EbDdrXGHY3T+Ab1glna6mni/1EWqqMBhCyx2YR6FyaguMk8nQoCRxGMY=
+	t=1778353240; cv=none; b=F/CgQbIt3fOB8OjHUAmDBYDpsQfetTpGZWgvnU+6IxAD1v9XcEB80To2DUbOvfJ09k5rkcWqL2ZayPkTNrB9iI3twZ/6RnHfYXrH7ZN3T3avuVg3UIh6W1t8FLQRv8FvEnT3+gfT1o+pT9KhAH1n+9ca5mHgLg9tOw2Szk+Dg9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778353232; c=relaxed/simple;
-	bh=NcqhNte9ebwQoJIOazZXnhJIHkQIBt16I7n818TPDVM=;
+	s=arc-20240116; t=1778353240; c=relaxed/simple;
+	bh=IOxmh5MhxMGcoJj1bYSLoRwfOsdl2l4K10+pW425y+I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YLyid/AB0feRAXatPeekzEUT95T8AgPMbB918iUSYDs+hVR3kEoQSv12b/c2BzIXxPFvUgxwqZbv9ZgTZ1Kgkd57j/OjcdICApk6OnPf2IAxz1C7dAcQUF3CLlswBVQ6EKnm0Tg9kTlyCgsY33QluVdegAtzr4dSlH4JmB4V0ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WjZryJO7; arc=none smtp.client-ip=209.85.128.52
+	 MIME-Version; b=iTnrE9ZGe6OeYGLSOuJvFmG/OY9khzwSl3TxVTiFts8gew6co9nW+sZ42Zp3Za7mFYix+lErt9ebNU8b4w5LpYRlzFEd9qfx9r+rADrIKu2wa623vZ46t6NHGFHZ2jFx1L9FzY/TN32OHYcedkbs7SBej8+Dt7sk9eTTaiexp4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UPG5F7LE; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-488b0046078so24539295e9.1
-        for <devicetree@vger.kernel.org>; Sat, 09 May 2026 12:00:30 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4891c0620bcso21166265e9.1
+        for <devicetree@vger.kernel.org>; Sat, 09 May 2026 12:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778353229; x=1778958029; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778353230; x=1778958030; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZNthY/vc+xApAiW+Ngr8WtzfKJImSMBfZhPBgaVC8u0=;
-        b=WjZryJO76H271WxmuLCE6FWCeKEBmJ3Z0ONyxsTi/vc2wusLaktW/6fNx0NIbdNqno
-         UCcOV6XgCPqLpUfgJARyl96kOzif9Tp4XMqrI3vy3Fjxpnrgox8cyQimAO1NAQc45eTM
-         fJTLxGcSiaX8EDQ/1YutpCqbTTCb658GN9JXB+D56WM5r77uutFQeAjbhWn+BHhBAnoR
-         E03pd8+VOS96kvTaAF5I0bTic1KrjYyqXN23s48AV51VVSLUkJCmxTOfOjKj/MuKi1kZ
-         VkB5JVJ0sfB1f0SL3G0fBSPOdWblOGadzaFA5A7uFydaRoTgvviPKnD7hA0HEigFG1E3
-         0BMQ==
+        bh=VPkvMBVXyvicDPmrKpPPSuducOnxVL8vyxeJt4rQ8ag=;
+        b=UPG5F7LEbJ8V3oJp0yCFtKSDYymeHs2TzGhx596rLKEdKNFdOOOyI5km6OrZk5sRPh
+         A7ZKyjU3Z9+63/AqI9Kfnl8mVbVwpN/oC1KGOII3Kl95cgkKZNeBa19CiDMpHp2jEVMB
+         YIFKjlOT84VpVwhmiqOTlIXAa8dQbVSgyTjd1JGYMdNYTO2Gb6R50FKOBtB7JnP8+Atu
+         5tA3glJyFiLQr5gUisT1eYFKjguQM+TQ72coMJiR6MvTndHHxjYBqwdSqyfYMcyF1f3o
+         T4+6MvTWLCcjhtOe1CaijpWdurvudA1OKr6YnU21dcEOTpCfp2Q0Qz628aPwMaSVq8sl
+         OFzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778353229; x=1778958029;
+        d=1e100.net; s=20251104; t=1778353230; x=1778958030;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=ZNthY/vc+xApAiW+Ngr8WtzfKJImSMBfZhPBgaVC8u0=;
-        b=fp2loMCByJm/kffo2hjxshMWsXwdFznR4JwIGFgVdnquJk4hDcUDI3EAE+JJ3u6kFS
-         l80xeqCmKSYquBlVMj+J8du6YXkkiriwDGhuskeFSF45Lg3BiFgniztkuffhk1cmITMw
-         efK3+iL2RcyKE3/zkqLD8Df9lFPbW+FF7zbBpk0DBzbX0eMMca3YHY6z3i7/p1KoQVwZ
-         J/aTdTWDwgIbierVwZcJr2a6z8Tk6OM/yXo3WQ2MBreIeQmGCDLoaNrkYJjAkmIgHJ34
-         nRBVllVQDFXonIzIs5pe+/aQk7qobN11/jXcXflJaXTEPPGoF8S0Tz9sWuBNxrgqu/07
-         svNw==
-X-Forwarded-Encrypted: i=1; AFNElJ9MjDvII1nb7x00gVcBcdQBapdDvE8ZK3v0uIaBziofh5fwAqQeuAIXa+o+fmTiYnM8MRB8GT0S2uZu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjP7Lit4VB8bzqzhl+ts+LkR0AC+7GuPqyk1eXk5zB5myCnPbn
-	kfCeeGeX0cg/trBFge/rvZoIKSKJ94S2xc7O/8qyvH4cSCI78sq726Mu
-X-Gm-Gg: Acq92OElkzY1tp+PXOwBYKhvEiSk1NL5F1Qc0pao0ArJVPXsltIZ5sRVv+gNNB+LEfA
-	ScPitxqbEYWFmXWKU7mzWloQ6WQauCSVb2aFATb8ArN0DtJYGUYurKGH/mvt1nH38V0gcfYeTIP
-	Ih2MKeqUYwL1xK18ZbZJFROQHttfhLkd5uasyQYepBaX4LFnZbNOUCQBa3zVDLOteDg2Wz4Qw9v
-	7MAO70NQXGbo36mmCnRqDIszMS/mvWV91QnFetCIF+JD7RwUOQQU+RPAk6DAm5lzbrbRXIEXie/
-	46baxKnPHOj0Crrq2hCWD/e6N/OWErDOhxLglI3NUSs2Q3ogWqsUV7J5UiqPOcVH7vhYSLkG2ZC
-	KbR/K7tTJOeUMeQFNQIfhg8qmiK/z0KAI+7z5SUnpg9wlqF9h8PDqTB9bbH2BYheb8cMEhiqM7S
-	+THJ3cDUMqd0QEnJsuro5M7nzNM0msCJtDXif/8t/ExttFIIO1NtdHXKZz4hDGGSKYNcw=
-X-Received: by 2002:a05:600c:b8d:b0:489:1fa5:997f with SMTP id 5b1f17b1804b1-48e70691673mr52380085e9.9.1778353228681;
-        Sat, 09 May 2026 12:00:28 -0700 (PDT)
+        bh=VPkvMBVXyvicDPmrKpPPSuducOnxVL8vyxeJt4rQ8ag=;
+        b=KH0DIqX2lpWLssvUipvP3Q0sNtsl0MQzGRY7n/2CiUIVOT6vU7lCG+UaYzuFDsk9LL
+         9FKD0SLi0c6FHKUXJ+qOPNkVsCsMIpGh6Zy9/H1tpkbxI4XFQodurTK+BvwHUXFB5nF/
+         Yy9r4cZ7O2KmvfeRAIe8dEQieGLx9p1VLXYWkoKDs8E/c9ultN9J2kyfaXM057G0WuDd
+         D5ySyMGIOPBWGFeGlTCEoHHz3vwo9XfTnh1vLmzJOXKLqxPWyoHdoQDCpMHkKrUviFEm
+         uYEghTPpOBfKjN1NLCu0UsZalVaI0IZmU1ewaRegobtdQ8cGEl0ei7AzMUirfM03/luz
+         ymcQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/utXrHdNtUE3KFs0SeouiyqK+/VpmPhCW+7N5z5ed6YvIHx/PnxzHxvtRljnJe7822wp8tKYUpTO3V@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPjbxCI/hilt75YTq2HpzrrdaEOoq2AnPlsVJNwRaT0ZZ+RpC+
+	MYkkvCVJMlekoaws42viH3j9I3NMKJbnRcDswYnnLIo2Fq+ic0ww2vuA
+X-Gm-Gg: Acq92OFuCS1hsUea99gsZ+p2HFUkV6UlCJZmKBTx4S46/p8eHD6JGcoIUICOlCplTWn
+	ZCiDEmDlYYnDtpk0e8e3TDvhhYMm+td40omOwikTqXqd7q9eajNrQD+R7Py3Jk7xYpjVlUZIY5T
+	KgKVEfxiL1YOSYgQFUypbcOzSpVvTXqH1qlnu2HCn9z5Qjiw/Ha1VMBiQ2pyoWB4sr/Xp3OPgy3
+	sIig1F4/k/uyLDx2gPSfxBWirbj5gUdJ4GMUoN6kFpIxFK5vm9blTp9EGF75agPHv9a6S82jVid
+	tUqBoNwkhrc0wKNY/x2HeshO86u42iECcqVZ0QF079VGEiHYXAtANU6BQwQmFIx2FCbKicEST44
+	MZWqVnu8v9VaFuS7NNLrCGKsVdDXTp3v31BDeU7IAFPsWIld8wHHVnj7qIuZq1UZW4MCxxM2bWm
+	ApTuHFe1+X+ntwDseK3oyToKMIhv7tQAw9Vqdfv0Asi5LuVrmIDBuBp/b84BdsvxXbhyI=
+X-Received: by 2002:a05:600d:8:b0:48a:58ae:993b with SMTP id 5b1f17b1804b1-48e676a4e03mr117153245e9.16.1778353230046;
+        Sat, 09 May 2026 12:00:30 -0700 (PDT)
 Received: from jernej-laptop (46-150-62-216.dynamic.telemach.net. [46.150.62.216])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454913049ecsm13254407f8f.19.2026.05.09.12.00.27
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454913049ecsm13254407f8f.19.2026.05.09.12.00.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 May 2026 12:00:28 -0700 (PDT)
+        Sat, 09 May 2026 12:00:29 -0700 (PDT)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 X-Google-Original-From: Jernej Skrabec <jernej.skrabec@siol.net>
 To: wens@csie.org,
@@ -97,9 +97,9 @@ Cc: mripard@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	jernej.skrabec@gmail.com
-Subject: [PATCH v2 6/8] drm/sun4i: Add planes driver
-Date: Sat,  9 May 2026 21:00:13 +0200
-Message-ID: <20260509190015.79086-7-jernej.skrabec@siol.net>
+Subject: [PATCH v2 7/8] dt-bindings: display: allwinner: Split H616 DE33 layer reg space
+Date: Sat,  9 May 2026 21:00:14 +0200
+Message-ID: <20260509190015.79086-8-jernej.skrabec@siol.net>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260509190015.79086-1-jernej.skrabec@siol.net>
 References: <20260509190015.79086-1-jernej.skrabec@siol.net>
@@ -110,7 +110,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 90B8A501202
+X-Rspamd-Queue-Id: 2A20F501236
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -118,12 +118,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294960-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294963-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -133,306 +133,87 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.995];
 	TO_DN_NONE(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[siol.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-This driver serves just as planes sharing manager, needed for Display
-Engine 3.3 and newer.
+As it turns out, current H616 DE33 binding was written based on
+incomplete understanding of DE33 design. Namely, planes are shared
+resource and not tied to specific mixer, which was the case for previous
+generations of Display Engine (DE3 and earlier).
+
+This means that current DE33 binding doesn't properly reflect HW and
+using it would mean that second mixer (used for second display output)
+can't be supported.
+
+Remove layer register space, which will be represented with additional
+node, and replace it with phandle, which will point to that new, shared
+node. That way, all mixers can share same layers.
+
+There is no user of this binding yet, so changes can be made safely,
+without breaking any backward compatibility.
 
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
-Changes from v1:
-- removed CONFIG_DRM_SUN50I_PLANES Kconfig entirely
-- make sun50i_planes_of_table[] static
-- folded sun50i_planes_node_is_planes() into sun50i_planes_setup()
-- sun50i_planes_setup() error returns now ERR_PTR(-EINVAL) instead of NULL
-  at first three checks
-- quirks and of_device_id table moved on top to avoid forward declaration
+Changes in v1:
+- update commit subject
+- reword commit message
 
- drivers/gpu/drm/sun4i/Makefile        |   3 +-
- drivers/gpu/drm/sun4i/sun50i_planes.c | 201 ++++++++++++++++++++++++++
- drivers/gpu/drm/sun4i/sun50i_planes.h |  41 ++++++
- 3 files changed, 244 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.c
- create mode 100644 drivers/gpu/drm/sun4i/sun50i_planes.h
+ .../display/allwinner,sun8i-a83t-de2-mixer.yaml  | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/sun4i/Makefile b/drivers/gpu/drm/sun4i/Makefile
-index bad7497a0d11..501e3d867918 100644
---- a/drivers/gpu/drm/sun4i/Makefile
-+++ b/drivers/gpu/drm/sun4i/Makefile
-@@ -16,7 +16,8 @@ sun8i-drm-hdmi-y		+= sun8i_hdmi_phy_clk.o
+diff --git a/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml b/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+index cbd18fd83e52..064e4ca7e419 100644
+--- a/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
++++ b/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-de2-mixer.yaml
+@@ -46,6 +46,10 @@ properties:
+   resets:
+     maxItems: 1
  
- sun8i-mixer-y			+= sun8i_mixer.o sun8i_ui_layer.o \
- 				   sun8i_vi_layer.o sun8i_ui_scaler.o \
--				   sun8i_vi_scaler.o sun8i_csc.o
-+				   sun8i_vi_scaler.o sun8i_csc.o \
-+				   sun50i_planes.o
++  allwinner,planes:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle of Display Engine 3.3 planes node
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
  
- sun4i-tcon-y			+= sun4i_crtc.o
- sun4i-tcon-y			+= sun4i_tcon_dclk.o
-diff --git a/drivers/gpu/drm/sun4i/sun50i_planes.c b/drivers/gpu/drm/sun4i/sun50i_planes.c
-new file mode 100644
-index 000000000000..6469de1baf03
---- /dev/null
-+++ b/drivers/gpu/drm/sun4i/sun50i_planes.c
-@@ -0,0 +1,201 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/* Copyright (c) 2025 Jernej Skrabec <jernej.skrabec@gmail.com> */
-+
-+#include <drm/drm_device.h>
-+
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include "sun50i_planes.h"
-+#include "sun8i_ui_layer.h"
-+#include "sun8i_vi_layer.h"
-+
-+static const struct sun50i_planes_quirks sun50i_h616_planes_quirks = {
-+	.def_map = {
-+		{
-+			.map = {0, 6, 7},
-+			.num_ch = 3,
-+		},
-+		{
-+			.map = {1, 2, 8},
-+			.num_ch = 3,
-+		},
-+	},
-+	.cfg = {
-+		.de_type	= SUN8I_MIXER_DE33,
-+		/*
-+		 * TODO: All planes support scaling, but driver needs
-+		 * improvements to properly support it.
-+		 */
-+		.scaler_mask    = 0,
-+		.scanline_yuv	= 4096,
-+	},
-+};
-+
-+static const struct of_device_id sun50i_planes_of_table[] = {
-+	{
-+		.compatible = "allwinner,sun50i-h616-de33-planes",
-+		.data = &sun50i_h616_planes_quirks
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sun50i_planes_of_table);
-+
-+struct drm_plane **
-+sun50i_planes_setup(struct device *dev, struct drm_device *drm,
-+		    unsigned int mixer)
-+{
-+	struct sun50i_planes *planes = dev_get_drvdata(dev);
-+	const struct sun50i_planes_quirks *quirks;
-+	struct drm_plane **drm_planes;
-+	const struct default_map *map;
-+	unsigned int i;
-+
-+	if (!of_match_node(sun50i_planes_of_table, dev->of_node)) {
-+		dev_err(dev, "Device is not planes driver!\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (!planes) {
-+		dev_err(dev, "Planes driver is not loaded yet!\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (mixer > 1) {
-+		dev_err(dev, "Mixer index is too high!\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	quirks = planes->quirks;
-+	map = &quirks->def_map[mixer];
-+
-+	drm_planes = devm_kcalloc(drm->dev, map->num_ch + 1,
-+				  sizeof(*drm_planes), GFP_KERNEL);
-+	if (!drm_planes)
-+		return ERR_PTR(-ENOMEM);
-+
-+	for (i = 0; i < map->num_ch; i++) {
-+		unsigned int phy_ch = map->map[i];
-+		struct sun8i_layer *layer;
-+		enum drm_plane_type type;
-+
-+		if ((i == 0 && map->num_ch == 1) || i == 1)
-+			type = DRM_PLANE_TYPE_PRIMARY;
-+		else
-+			type = DRM_PLANE_TYPE_OVERLAY;
-+
-+		if (phy_ch < UI_PLANE_OFFSET)
-+			layer = sun8i_vi_layer_init_one(drm, type, planes->regs,
-+							i, phy_ch, map->num_ch,
-+							&quirks->cfg);
-+		else
-+			layer = sun8i_ui_layer_init_one(drm, type, planes->regs,
-+							i, phy_ch, map->num_ch,
-+							&quirks->cfg);
-+
-+		if (IS_ERR(layer)) {
-+			dev_err(drm->dev,
-+				"Couldn't initialize DRM plane\n");
-+			return ERR_CAST(layer);
-+		}
-+
-+		drm_planes[i] = &layer->plane;
-+	}
-+
-+	return drm_planes;
-+}
-+EXPORT_SYMBOL(sun50i_planes_setup);
-+
-+static void sun50i_planes_init_mapping(struct sun50i_planes *planes)
-+{
-+	const struct sun50i_planes_quirks *quirks = planes->quirks;
-+	unsigned int i, j;
-+	u32 mapping;
-+
-+	mapping = 0;
-+	for (j = 0; j < MAX_DISP; j++)
-+		for (i = 0; i < quirks->def_map[j].num_ch; i++) {
-+			unsigned int ch = quirks->def_map[j].map[i];
-+
-+			if (ch < UI_PLANE_OFFSET)
-+				mapping |= j << (ch * 2);
-+			else
-+				mapping |= j << ((ch - UI_PLANE_OFFSET) * 2 + 16);
-+		}
-+	regmap_write(planes->mapping, SUNXI_DE33_DE_CHN2CORE_MUX_REG, mapping);
-+
-+	for (j = 0; j < MAX_DISP; j++) {
-+		mapping = 0;
-+		for (i = 0; i < quirks->def_map[j].num_ch; i++) {
-+			unsigned int ch = quirks->def_map[j].map[i];
-+
-+			if (ch >= UI_PLANE_OFFSET)
-+				ch += 2;
-+
-+			mapping |= ch << (i * 4);
-+		}
-+		regmap_write(planes->mapping, SUNXI_DE33_DE_PORT02CHN_MUX_REG + j * 4, mapping);
-+	}
-+}
-+
-+static const struct regmap_config sun50i_planes_regmap_config = {
-+	.name		= "planes",
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+	.max_register	= 0x17fffc,
-+};
-+
-+static int sun50i_planes_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct sun50i_planes *planes;
-+	void __iomem *regs;
-+
-+	planes = devm_kzalloc(dev, sizeof(*planes), GFP_KERNEL);
-+	if (!planes)
-+		return -ENOMEM;
-+
-+	planes->quirks = of_device_get_match_data(&pdev->dev);
-+	if (!planes->quirks)
-+		return dev_err_probe(dev, -EINVAL, "Unable to get quirks\n");
-+
-+	planes->mapping = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							  "allwinner,plane-mapping");
-+	if (IS_ERR(planes->mapping))
-+		return dev_err_probe(dev, PTR_ERR(planes->mapping),
-+				     "Unable to get mapping\n");
-+
-+	regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	planes->regs = devm_regmap_init_mmio(dev, regs, &sun50i_planes_regmap_config);
-+	if (IS_ERR(planes->regs))
-+		return PTR_ERR(planes->regs);
-+
-+	dev_set_drvdata(dev, planes);
-+
-+	sun50i_planes_init_mapping(planes);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver sun50i_planes_platform_driver = {
-+	.probe		= sun50i_planes_probe,
-+	.driver		= {
-+		.name		= "sun50i-planes",
-+		.of_match_table	= sun50i_planes_of_table,
-+	},
-+};
-+module_platform_driver(sun50i_planes_platform_driver);
-+
-+MODULE_AUTHOR("Jernej Skrabec <jernej.skrabec@gmail.com>");
-+MODULE_DESCRIPTION("Allwinner DE33 planes driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/gpu/drm/sun4i/sun50i_planes.h b/drivers/gpu/drm/sun4i/sun50i_planes.h
-new file mode 100644
-index 000000000000..e5b54ed16178
---- /dev/null
-+++ b/drivers/gpu/drm/sun4i/sun50i_planes.h
-@@ -0,0 +1,41 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/* Copyright (c) 2025 Jernej Skrabec <jernej.skrabec@gmail.com> */
-+
-+#ifndef _SUN50I_PLANES_H_
-+#define _SUN50I_PLANES_H_
-+
-+#include "sun8i_mixer.h"
-+
-+/* mapping registers, located in clock register space */
-+#define SUNXI_DE33_DE_CHN2CORE_MUX_REG	0x24
-+#define SUNXI_DE33_DE_PORT02CHN_MUX_REG	0x28
-+#define SUNXI_DE33_DE_PORT12CHN_MUX_REG	0x2c
-+
-+#define MAX_DISP	2
-+#define MAX_CHANNELS	8
-+#define UI_PLANE_OFFSET	6
-+
-+struct regmap;
-+struct drm_device;
-+
-+struct default_map {
-+	unsigned int map[MAX_CHANNELS];
-+	unsigned int num_ch;
-+};
-+
-+struct sun50i_planes_quirks {
-+	struct default_map	def_map[MAX_DISP];
-+	struct sun8i_layer_cfg	cfg;
-+};
-+
-+struct sun50i_planes {
-+	struct regmap				*regs;
-+	struct regmap				*mapping;
-+	const struct sun50i_planes_quirks	*quirks;
-+};
-+
-+struct drm_plane **
-+sun50i_planes_setup(struct device *dev, struct drm_device *drm,
-+		    unsigned int mixer);
-+
-+#endif /* _SUN50I_PLANES_H_ */
+@@ -74,22 +78,22 @@ allOf:
+       properties:
+         reg:
+           description: |
+-            Registers for controlling individual layers of the display
+-            engine (layers), global control (top), and display blending
+-            control (display). Names are from Allwinner BSP kernel.
+-          maxItems: 3
++            Registers for display blending control (display) and global
++            control (top). Names are from Allwinner BSP kernel.
++          maxItems: 2
+         reg-names:
+           items:
+-            - const: layers
+-            - const: top
+             - const: display
++            - const: top
+       required:
+         - reg-names
++        - allwinner,planes
+ 
+     else:
+       properties:
+         reg:
+           maxItems: 1
++        allwinner,planes: false
+ 
+ required:
+   - compatible
 -- 
 2.54.0
 
