@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-294959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MO5qJqyE/2lz7QAAu9opvQ
-	(envelope-from <devicetree+bounces-294959-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:02:04 +0200
+	id 4ArWB+WE/2l47QAAu9opvQ
+	(envelope-from <devicetree+bounces-294961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:03:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DAB5011EB
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A97A501209
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 21:03:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6BAA8302FA9E
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 19:00:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AA015303D700
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 19:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0934C3CC9E9;
-	Sat,  9 May 2026 19:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10293CEB9B;
+	Sat,  9 May 2026 19:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mAfn7DsJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="p62lJF0l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DC53446C7
-	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 19:00:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36DA03C73C1
+	for <devicetree@vger.kernel.org>; Sat,  9 May 2026 19:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778353229; cv=none; b=IuCDjtUMldE650xoYinQ7B1NllDT5D+1XvTY7TP3DpctqoY62SEyaZnyRv8Wf6qWMq8yiR/iNfVClIfCeh7paf6jGs93DSKzfDbWroO3bxgUtYMcZH/TCEkvcq42E3NTGk0lr0W+wUq4sIQBnzoymjRbbaXnjE0n/edPI30DPXE=
+	t=1778353232; cv=none; b=NuZphXbCxa5AsMaGyeVuiqAff8Sz98joKCMLbePUcUElpvWrpdm1Go8sTp8k3E+1rMRI8TT10yUeZSZPuLGcpXn4g22SH28/s2cqPuhwG0dZh0CF0raR1hlibtAU6RQI7T8SEYesb5W+zLr9XmS62j9Z/y0N3RkqjxbXmSR7ChI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778353229; c=relaxed/simple;
-	bh=dJZiUI/nXwbVKeTyU5YlTJh5eS1vXANNoICbkU5BWMk=;
+	s=arc-20240116; t=1778353232; c=relaxed/simple;
+	bh=qJI1RKZ4tm1AtCPX5qv4vqS8PMeax9pf5Xalvtfc+kY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=isCwv8hwBjjqvdL1+pX27trP7VPnANBpbl+qviBMSKJmEzVsBtXtmsOlAhSg2sCMaqtLHAbdmAPPuffTxJMF02/R73rnyWGwJr9i9QlOlxdO9Y07ka9WqzkwAkQkCD8HntiQoer2+cDccE/LRpz/pI3PxDU6//FMF2ckM8mq1Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mAfn7DsJ; arc=none smtp.client-ip=209.85.221.50
+	 MIME-Version; b=KVKp94LZWV51MiKrlQN5xGqy8DEMwATlZesTAX3Ct1uB/RYE2gSPucIdTWKuUVqGREIhXUhdxvx8Sfxid1f6xHd+nisu03Q91+fn5kjtkwfrT1L7LvX1c0wNG82uZV9W+Jrn8gvDn9cvOW8Ljd3rm3+S6tf7SPD3neFptUR+vhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=p62lJF0l; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-449de065cb3so2793966f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 09 May 2026 12:00:27 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-43d77f6092eso1860808f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 09 May 2026 12:00:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778353226; x=1778958026; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778353227; x=1778958027; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OFHSVkKikAqL7V5/tk/bF1gVjwq2bK7i4HjBHfLDqaU=;
-        b=mAfn7DsJuE1lS8lGbqvF+gtkWlU/TsGy/CqufQjfeEA9W/jXxKCaHkQwFdKa67ESso
-         yj1jhLqg2Xgx3+90wT8ohnK5GLjEheXlbHh1btbLJqgIM+sVSQINZLkiayiB6Z+YPUT9
-         lnW1xrkJKFvRuS3YZRPpY5BdvNrDWvrw/SZDfWbu2AEY0y1hXaqCvUm9DiGK4XbdxE5g
-         XKGK2jVbvY4rh7T2v/M017k2ae+6fwB8LrcY8nIgMGzaObAGeojriFlR1+DfOhb2VdTa
-         /6v5VDBfaGk0ydDFHLkaT+rRaH9JinlZfZYgwdw02ITpNbZsn2J8QwZwTQpj7V+UG5xj
-         onnA==
+        bh=zfXcef4xsSF9aS7bEgNrFEzEGtCwPTxISiBE2oLRk0A=;
+        b=p62lJF0lL7y+rQErKPx7zvIF6c3yF+rcmWQUK1thqj+q2NH74QCHJHDEm5AMCEQnEx
+         j785sxjQWaxBhWENcASScHuY+PqfDgvcldoLa6wMyGsOuRWlh8kxI5PCM6AUiNUdzlSZ
+         mFsr94jBLOFhmMJEaFIA+7lRsm3k19RgANMh7burq6psnS0hiV3robl284S6Af8Vi44K
+         GC13HkmZlJSTV2UdIpzW4Om6DJbCm0sd58CoOi+K4Wn1OQJJEb0YkKx1hnPptdm3aGAs
+         Y38Xx43+bPdYbeKxSMW5mUkzVcXQSTVC6dkhS7fxVUCNvhXHnRRKRf1j9V8CqI8UAtHj
+         1PNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778353226; x=1778958026;
+        d=1e100.net; s=20251104; t=1778353227; x=1778958027;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=OFHSVkKikAqL7V5/tk/bF1gVjwq2bK7i4HjBHfLDqaU=;
-        b=hileweXTP0dQ1hZ7Fiy3f0mJI399+fF4zLaXyWeg6nXxkb7EwF4oB9w6MRgHxd35UM
-         ll7//gtcp70m+i/TIFlpKEoxl63bh9R/gQWAMPaEYIHdQ92DfsR5X88wuhgRZl296551
-         BTa9z621e4pR91AEMOJG84mXRy4h8iglYaprPsM5goXnTtc4+SgT1KCX9nyzi0/ijBWv
-         C/ajbfIjahu8JhPTeIq0pr0YC44jRcwShrpvwYNDOY5nXn/FOJr1uUQ1TM4H4oXLYoBp
-         pjJcXkTXDTUSCSD/MGyfJguaFvBpLWjbUYd9t0u4Q+ahyk9YwC9NETmG6X6sj8OOG6LT
-         WPRg==
-X-Forwarded-Encrypted: i=1; AFNElJ/xxsJ5vBMmyiJ02ibBF3ACjayBj7cedavDeFjgvMQ8YHIP0+60PwIaRPElOZaGwst7zCz3utvvSPXU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwC5AHyr3H5RInh5XXtcjgKw6YMZNvzHQqDl+O6BLfBjnOXPN4
-	V0+QXL3pYE6Dc70zuoEJS5IXyU/JgFEclKo5pT65XcvCbZKRSywuYPFq
-X-Gm-Gg: Acq92OFyB0PDHVoWZaF2y7xDu+FrSlWPoGFBr57mpuvxm5evfVtaonrEZ2nNXub2Yt9
-	9T2A8NhBFx7NuHPl/IkRwgTyxj6wutIRblwTOGU32VNddFF1gYdAnE4lMIAV6ezzGwRJYokKloe
-	LhgV3ImZg6BDzZ6MTjnTd+88YFH/ImXDUOxGRdma1//J8eWX5aAlBT44LWp6TfPUUSkYupM+mtN
-	CNYlv390qFa9UeHYO9WG8ndcwD0RYG2E4j6/obI36eKb+pssTq5y7hN7r3UU1Cbh1Avz9BpmJR4
-	tUoIeF+zSd3lL6SUO7wbdN+pbQgNAc4lOgtWbH8NWm8DLcxKauWX+2lJcvyb5GIUo4uyFLNVjMk
-	Ucy+6gIU1KYZ0DFHtmMDq1gEPzWrXWSao7uzmdWJE1bpndYy9cKIF4HqG8LX0ymnSrVLqr5ReOm
-	wzFxSGBbmcLUrppGoHl+UY+8iPQx/dpmApc4rN7q+j4bG5aK1MkcMHPzVEF1BGZxaaFAU=
-X-Received: by 2002:a05:6000:40dc:b0:43d:309b:9c4f with SMTP id ffacd0b85a97d-4515b056c90mr27920879f8f.6.1778353225999;
-        Sat, 09 May 2026 12:00:25 -0700 (PDT)
+        bh=zfXcef4xsSF9aS7bEgNrFEzEGtCwPTxISiBE2oLRk0A=;
+        b=XzNvm1mpY2dmsQA8yPqEWPpH1EVNMoePcHnGoX0meE+ismJAUNvEsfkgrkaYFilNZG
+         hxgpYyNynr12P8q71gC+CzQ+U+1xODTM+5RqzP/jOpSO86S7LqP/eM0grsELZvFd00za
+         Dy/wUmrGCSfYCmDzB68rBCPDGMADtrl9z3blxBsuH/jT7362+7yibB5+odz7OW8Eu3OI
+         vGuXriD40wcdgL7SRK1MgDbtMwx/hSoGwYGrWMI4jHmwYdApoayurLY2/9V/OtsgNnV0
+         RYek3dm0Y56vVo0lCca9Rv3Vl5IZvaRxLnIZwXM92GfP3wFXpVOUBIHPOKD4osGIndiE
+         YoLQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+dexRdM0x2AN1RKmuWLe1FKlKhBRX8009tJIr0tf89TIEMuLrf1tsB3l67S/lTqhbpbl+8cvarChVx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLWDCgEnFmM+6yYFsmRenrq5GFCWgXNoPImNcgQyuCstQfjVF0
+	Vzx6gvTIRsxZHQ3yZ+8qMU/eD8RdUal4jTfb4A+oEeZHmsmnaHk7Oz68tdV6oQ==
+X-Gm-Gg: Acq92OH6Du+kl1ARpu8xz5ZwMNknYZzbFVC9C9JCbngXPWmBIGwfw5jrCPk/DROnMGm
+	6KcwD9Te8I67Pzv2wUwVxIVuHNscuIHbm84Tc+akC7PaNtE4ixE9V5riMHXQf9ISb/mDX9vA1KY
+	GM4A+CKZ0U1wx3CFiyKM1bxdmffpwMsrQA0JWnnlCofuQ9+J8vKh/1WytEapZm0wujj8Tqc0Gw8
+	IEW5uWmIkZRGPbP3dojjQMWxQOFU65QoOmW5MIYWx947WAd2ZtMdBjLZ7MSumtz+ARGv7euHCNs
+	fqXPtZIBLUZggpwtfXvDzGFHtHlE9o0vNQTww2LgTe0k0sU3jUFYAJVBdRYMekbgIRTSHT5ICfD
+	qm6bUs+oQVfz7bw9Urj+OP5bmmIBkpLd7DPtveTTQaJXKQhUaqPmvlQczNhpSc5DRvR3bulcZ7P
+	wNOBhUTtAAjGn9pXsfkX1ElVz7YCB8svyZESb8o0s8XyfB/uGE/eQZRLC0g4yVhveg7oGdpwJal
+	Cn/8g==
+X-Received: by 2002:a05:6000:2dc6:b0:439:c661:3245 with SMTP id ffacd0b85a97d-4515cc31e43mr28677269f8f.34.1778353227339;
+        Sat, 09 May 2026 12:00:27 -0700 (PDT)
 Received: from jernej-laptop (46-150-62-216.dynamic.telemach.net. [46.150.62.216])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454913049ecsm13254407f8f.19.2026.05.09.12.00.24
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-454913049ecsm13254407f8f.19.2026.05.09.12.00.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 May 2026 12:00:25 -0700 (PDT)
+        Sat, 09 May 2026 12:00:27 -0700 (PDT)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 X-Google-Original-From: Jernej Skrabec <jernej.skrabec@siol.net>
 To: wens@csie.org,
@@ -96,11 +97,10 @@ Cc: mripard@kernel.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org,
-	jernej.skrabec@gmail.com,
-	Chen-Yu Tsai <wens@kernel.org>
-Subject: [PATCH v2 4/8] drm/sun4i: vi_layer: Limit formats for DE33
-Date: Sat,  9 May 2026 21:00:11 +0200
-Message-ID: <20260509190015.79086-5-jernej.skrabec@siol.net>
+	jernej.skrabec@gmail.com
+Subject: [PATCH v2 5/8] dt-bindings: display: allwinner: Add DE33 planes
+Date: Sat,  9 May 2026 21:00:12 +0200
+Message-ID: <20260509190015.79086-6-jernej.skrabec@siol.net>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260509190015.79086-1-jernej.skrabec@siol.net>
 References: <20260509190015.79086-1-jernej.skrabec@siol.net>
@@ -111,113 +111,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 39DAB5011EB
+X-Rspamd-Queue-Id: 8A97A501209
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-294959-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-294961-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	DBL_PROHIBIT(0.00)[0.1.134.160:email];
+	TO_DN_NONE(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[siol.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,siol.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-YUV formats need scaler support due to chroma upscaling, but that's not
-yet supported in the driver. Remove them from supported list until
-DE33 scaler is properly supported.
+Allwinner Display Engine 3.3 contains planes, which are shared resources
+between all mixers present in SoC. They can be assigned to specific
+mixer by using registers which reside in display clocks MMIO.
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+Add a binding for them.
+
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
 Changes from v1:
-- collected tag
-- generalize check to be dependant on scaler feature
+- dropped | for description
+- better description for allwinner,plane-mapping
 
- drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 40 ++++++++++++++++++++++++--
- 1 file changed, 38 insertions(+), 2 deletions(-)
+ .../allwinner,sun50i-h616-de33-planes.yaml    | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-index cd8d6c2da0c7..afbd41a18a0e 100644
---- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
-@@ -380,6 +380,33 @@ static const u32 sun8i_vi_layer_de3_formats[] = {
- 	DRM_FORMAT_YVU422,
- };
- 
-+static const u32 sun8i_vi_layer_de3_no_yuv_formats[] = {
-+	DRM_FORMAT_ABGR1555,
-+	DRM_FORMAT_ABGR2101010,
-+	DRM_FORMAT_ABGR4444,
-+	DRM_FORMAT_ABGR8888,
-+	DRM_FORMAT_ARGB1555,
-+	DRM_FORMAT_ARGB2101010,
-+	DRM_FORMAT_ARGB4444,
-+	DRM_FORMAT_ARGB8888,
-+	DRM_FORMAT_BGR565,
-+	DRM_FORMAT_BGR888,
-+	DRM_FORMAT_BGRA1010102,
-+	DRM_FORMAT_BGRA5551,
-+	DRM_FORMAT_BGRA4444,
-+	DRM_FORMAT_BGRA8888,
-+	DRM_FORMAT_BGRX8888,
-+	DRM_FORMAT_RGB565,
-+	DRM_FORMAT_RGB888,
-+	DRM_FORMAT_RGBA1010102,
-+	DRM_FORMAT_RGBA4444,
-+	DRM_FORMAT_RGBA5551,
-+	DRM_FORMAT_RGBA8888,
-+	DRM_FORMAT_RGBX8888,
-+	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_XRGB8888,
-+};
+diff --git a/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml b/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+new file mode 100644
+index 000000000000..0a07cb8a5f79
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/allwinner,sun50i-h616-de33-planes.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/allwinner,sun50i-h616-de33-planes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- static const uint64_t sun8i_layer_modifiers[] = {
- 	DRM_FORMAT_MOD_LINEAR,
- 	DRM_FORMAT_MOD_INVALID
-@@ -410,8 +437,17 @@ struct sun8i_layer *sun8i_vi_layer_init_one(struct drm_device *drm,
- 	layer->cfg = cfg;
- 
- 	if (layer->cfg->de_type >= SUN8I_MIXER_DE3) {
--		formats = sun8i_vi_layer_de3_formats;
--		format_count = ARRAY_SIZE(sun8i_vi_layer_de3_formats);
-+		/*
-+		 * TODO: DE33 drivers doesn't support scaling yet, which is a
-+		 * requirement for YUV support.
-+		 */
-+		if (layer->cfg->scaler_mask & BIT(phy_index)) {
-+			formats = sun8i_vi_layer_de3_formats;
-+			format_count = ARRAY_SIZE(sun8i_vi_layer_de3_formats);
-+		} else {
-+			formats = sun8i_vi_layer_de3_no_yuv_formats;
-+			format_count = ARRAY_SIZE(sun8i_vi_layer_de3_no_yuv_formats);
-+		}
- 	} else {
- 		formats = sun8i_vi_layer_formats;
- 		format_count = ARRAY_SIZE(sun8i_vi_layer_formats);
++title: Allwinner H616 Display Engine 3.3 planes
++
++maintainers:
++  - Jernej Skrabec <jernej.skrabec@gmail.com>
++
++description:
++  Display Engine 3.3 planes are independent of mixers, contrary to
++  previous generations of Display Engine. Planes can be assigned to
++  mixers independently and even dynamically during runtime.
++
++properties:
++  compatible:
++    enum:
++      - allwinner,sun50i-h616-de33-planes
++
++  reg:
++    maxItems: 1
++
++  allwinner,plane-mapping:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle of the device responsible for assigning (mapping) planes
++      between mixers.
++
++required:
++  - compatible
++  - reg
++  - allwinner,plane-mapping
++
++additionalProperties: false
++
++examples:
++  - |
++    planes: planes@100000 {
++        compatible = "allwinner,sun50i-h616-de33-planes";
++        reg = <0x100000 0x180000>;
++        allwinner,plane-mapping = <&display_clocks>;
++    };
++
++...
 -- 
 2.54.0
 
