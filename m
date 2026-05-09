@@ -1,516 +1,385 @@
-Return-Path: <devicetree+bounces-294846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294848-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Ec2KGL5/mng0gAAu9opvQ
-	(envelope-from <devicetree+bounces-294846-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 11:07:46 +0200
+	id aLeVGHEB/2mW1AAAu9opvQ
+	(envelope-from <devicetree+bounces-294848-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 11:42:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B0A4FEE81
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 11:07:45 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1F94FF063
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 11:42:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5CF82301AD16
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 09:06:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D5FE730069B3
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 09:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19818392823;
-	Sat,  9 May 2026 09:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C08839A071;
+	Sat,  9 May 2026 09:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lk+pKtRg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5BB39281E;
-	Sat,  9 May 2026 09:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587CD3845A9;
+	Sat,  9 May 2026 09:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778317612; cv=none; b=ifWv9qa1ONF7ubgoz0mOw8UcVrm6rc7V1lZRs5+O6wHFyNGi3oQ4sowSBfhm7SLopbXAdZGhvcsH7IkJHjJSMciAwqL1Zdpm3iwIWtjzRLAAmzFbJC1Z9P9VQwn9wAP+/aLQ9U+4sEdm/j8P9aE0UkluaOYzJU+xEwwJL0vLZ0c=
+	t=1778319723; cv=none; b=U34VKonyK6xyiFKSOqVEYCnGMkLHj3qtpqfrEbPOsnTzxExTc5cHO01iTVPwDxtTuPKyuAwXCE7UqrQ5XW6cW7e/1EbuxkDPXhMUPib9bKUEKRfp4H+Lh+L3WgazE5T3UMiJLniUQkHhhhh+F3aogczoUHfORtFTVAVt9cZKKGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778317612; c=relaxed/simple;
-	bh=Fz4ADg+K4qmCWYFW7qc3UchBZSZ2z45B62tKJrsbPBE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cdiYeFxLSSN5/Rk8fHNU1M1CUBzBmbiRyYLV2e643ZnQTNbaD5lahV3M1FFWm/avlH2/xhKJUC7sMNH/sxd2ppwrd8M7M5o6Cu7z4BZc3KMOcE8gT1tcCnqdOLaEtt30pE0iicI5DujEOm9gagXK1ci6cVwMKu7DYbd9BhjQ+cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 67752203A25;
-	Sat,  9 May 2026 11:06:49 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 07FCE203A24;
-	Sat,  9 May 2026 11:06:49 +0200 (CEST)
-Received: from lsvm11u0000621.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000621.swis.ap-northeast-2.aws.nxp.com [10.52.8.159])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 22BE818002DC;
-	Sat,  9 May 2026 17:06:47 +0800 (+08)
-From: Minghuan Lian <minghuan.lian@nxp.com>
-To: netdev@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch,
-	olteanv@gmail.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Minghuan Lian <minghuan.lian@nxp.com>
-Subject: [PATCH net-next 4/4] net: dsa: hms: Add ethtool statistics support
-Date: Sat,  9 May 2026 18:06:32 +0900
-Message-ID: <20260509090632.2959553-5-minghuan.lian@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260509090632.2959553-1-minghuan.lian@nxp.com>
-References: <20260509090632.2959553-1-minghuan.lian@nxp.com>
+	s=arc-20240116; t=1778319723; c=relaxed/simple;
+	bh=K7XW3fDrAi/SJUEYupM1iZBtmsSrwJ2WcBoDs0GiXxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t++gXGExnCew1/yZhGjd6Nyi+qpoJAbN0l174mSm+i3q2G/tf8hEgI4SOU1D+3Pz8xryJhe6j8TXTxYNWiH4TonkXFYbDIGggkAamFA72BALKXDE/NBY31k46e+CpOxJMk8RDfs5t8EqF/TIQDCAChxHcArcGMKzGVK9v/WR1Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lk+pKtRg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9F23C2BCB2;
+	Sat,  9 May 2026 09:42:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778319723;
+	bh=K7XW3fDrAi/SJUEYupM1iZBtmsSrwJ2WcBoDs0GiXxg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Lk+pKtRgFMongdzhfKR4yRp3XwmtqK900PBJqUpGpyvNcTkt8ZYsevmTxvRsL3O2z
+	 o7lW7WOaYHmWG1Ya+c/32+njK33gfkUEpVz5aRhqZ9DldJwXvKXzes+L6vSOLitcnh
+	 JvDMNOenzFLp6IhorBIwVUlEzOheS4ILqATLz2B/WEqmThCKq7aTskkgoV/Y4Hjejl
+	 wBtjkZdAWTT+jFwGvt9d86cfq39OINSSfEejj/uO9y9Ahrf6gVZr1X0rEncKSA1CkH
+	 yMTDRkk13xaMIgZvflOLW01hRock4FvFRM3wbN1NyNBl/ZUy3IzrEkyno5l3zGgaY3
+	 2dB7F7C5Vq1Yg==
+Date: Sat, 9 May 2026 11:42:00 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ansuelsmth@gmail.com,
+	benjamin.larsson@genexis.eu, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, madhur.agrawal@airoha.com
+Subject: Re: [PATCH net-next v4 09/10] net: airoha: Introduce WAN device flag
+Message-ID: <af8BaMnL9oXttB1t@lore-desk>
+References: <20260507-airoha-eth-multi-serdes-v4-9-af613b61ae02@kernel.org>
+ <20260509014615.3558164-1-kuba@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Rspamd-Queue-Id: 09B0A4FEE81
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cVtlXQ1B6cbL+hCZ"
+Content-Disposition: inline
+In-Reply-To: <20260509014615.3558164-1-kuba@kernel.org>
+X-Rspamd-Queue-Id: 5B1F94FF063
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294846-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-294848-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,nxp.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,kernel.org,gmail.com,genexis.eu,lists.infradead.org,vger.kernel.org,airoha.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.605];
-	FROM_NEQ_ENVFROM(0.00)[minghuan.lian@nxp.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add ethtool statistics support for the HMS switch. This provides
-per-port statistics including:
-  - RX/TX byte and frame counters
-  - Frame size distribution counters
-  - Error and discard counters
-  - Per-queue statistics for all 8 traffic classes
 
-Statistics are retrieved from the RT1180 MCU via the SPI command
-interface using HMS_CMD_PORT_ETHTOOL_STATS_GET.
+--cVtlXQ1B6cbL+hCZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Minghuan Lian <minghuan.lian@nxp.com>
----
- drivers/net/dsa/hms/Makefile      |   1 +
- drivers/net/dsa/hms/hms_ethtool.c | 346 ++++++++++++++++++++++++++++++
- drivers/net/dsa/hms/hms_main.c    |   4 +
- drivers/net/dsa/hms/hms_switch.h  |   6 +
- 4 files changed, 357 insertions(+)
- create mode 100644 drivers/net/dsa/hms/hms_ethtool.c
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
+> ---
+> net: airoha: Introduce WAN device flag
+>=20
+> This commit replaces the port->id =3D=3D 1 LAN/WAN test with a per-dev
+> PRIV_FLAG_WAN bit that is set during airoha_dev_init() based on the
+> port id and the presence of other WAN devices. It also extracts the
+> QDMA selection/PPE cpu port programming into a new helper and reworks
+> the GDM2 loopback path to key off the new flag.
+>=20
+> A few questions about the new policy and error paths.
+>=20
+> [Medium]
+> The commit message says:
+>=20
+>     Introduce WAN flag to specify if a given device is used to
+>     transmit/receive WAN or LAN traffic. [...] Please note it is possible
+>     to specify multiple LAN devices but just a single WAN one.
+>=20
+> Under the old helper (port->id =3D=3D 1), GDM2/GDM3/GDM4 were all treated=
+ as
+> WAN. Under the new logic, when GDM2 (eth->ports[1]) is present, the
+> GDM3/GDM4 case breaks out of the switch without setting PRIV_FLAG_WAN, so
+> GDM3 and GDM4 are now classified as LAN. That flips the MAC register
+> (REG_FE_WAN_MAC_H -> REG_FE_LAN_MAC_H in airoha_set_macaddr()), the QDMA
+> binding (qdma[1] -> qdma[0] in airoha_dev_set_qdma()), and the PPE cpu
+> port (CDM2 -> CDM1). Is that role change intentional, and could the
+> commit message call it out so bisecting a board that relied on the old
+> GDM3/GDM4=3DWAN semantics is easier?
 
-diff --git a/drivers/net/dsa/hms/Makefile b/drivers/net/dsa/hms/Makefile
-index acf6a8f2d953b..11bb215b270c6 100644
---- a/drivers/net/dsa/hms/Makefile
-+++ b/drivers/net/dsa/hms/Makefile
-@@ -5,4 +5,5 @@ obj-$(CONFIG_NET_DSA_HMS_SWITCH) += hms.o
- hms-objs := \
- 	hms_spi.o \
- 	hms_config.o \
-+	hms_ethtool.o \
- 	hms_main.o
-diff --git a/drivers/net/dsa/hms/hms_ethtool.c b/drivers/net/dsa/hms/hms_ethtool.c
-new file mode 100644
-index 0000000000000..00c8406b12862
---- /dev/null
-+++ b/drivers/net/dsa/hms/hms_ethtool.c
-@@ -0,0 +1,346 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * NXP HMS (Heterogeneous Multi-SoC) DSA Switch ethtool Statistics
-+ *
-+ * Copyright 2025-2026 NXP
-+ */
-+
-+#include "hms_switch.h"
-+
-+enum hms_stat_index {
-+	/* RX stats */
-+	HMS_STAT_RX_BYTES,
-+	HMS_STAT_RX_VALID_BYTES,
-+	HMS_STAT_RX_PAUSE_FRAMES,
-+	HMS_STAT_RX_VALID_FRAMES,
-+	HMS_STAT_RX_VLAN_FRAMES,
-+	HMS_STAT_RX_UC_FRAMES,
-+	HMS_STAT_RX_MC_FRAMES,
-+	HMS_STAT_RX_BC_FRAMES,
-+	HMS_STAT_RX_FRAMES,
-+	HMS_STAT_RX_MIN_FRAMES,
-+	HMS_STAT_RX_64_FRAMES,
-+	HMS_STAT_RX_65_127_FRAMES,
-+	HMS_STAT_RX_128_255_FRAMES,
-+	HMS_STAT_RX_256_511_FRAMES,
-+	HMS_STAT_RX_512_1023_FRAMES,
-+	HMS_STAT_RX_1024_1522_FRAMES,
-+	HMS_STAT_RX_1523_MAX_FRAMES,
-+	HMS_STAT_RX_CONTROL_FRAMES,
-+
-+	/* TX stats */
-+	HMS_STAT_TX_BYTES,
-+	HMS_STAT_TX_VALID_BYTES,
-+	HMS_STAT_TX_PAUSE_FRAMES,
-+	HMS_STAT_TX_VALID_FRAMES,
-+	HMS_STAT_TX_VLAN_FRAMES,
-+	HMS_STAT_TX_UC_FRAMES,
-+	HMS_STAT_TX_MC_FRAMES,
-+	HMS_STAT_TX_BC_FRAMES,
-+	HMS_STAT_TX_FRAMES,
-+	HMS_STAT_TX_MIN_FRAMES,
-+	HMS_STAT_TX_64_FRAMES,
-+	HMS_STAT_TX_65_127_FRAMES,
-+	HMS_STAT_TX_128_255_FRAMES,
-+	HMS_STAT_TX_256_511_FRAMES,
-+	HMS_STAT_TX_512_1023_FRAMES,
-+	HMS_STAT_TX_1024_1522_FRAMES,
-+	HMS_STAT_TX_1523_MAX_FRAMES,
-+	HMS_STAT_TX_CONTROL_FRAMES,
-+
-+	HMS_STAT_RX_VALID_REASSEMBLED_FRAMES,
-+	HMS_STAT_RX_ADDITIONAL_MPACKETS,
-+	HMS_STAT_RX_ERROR_FRAME_REASSEMBLY,
-+	HMS_STAT_RX_ERROR_FRAME_SMD,
-+	HMS_STAT_TX_ADDITIONAL_MPACKETS,
-+	HMS_STAT_TX_HOLD_TRANSITIONS,
-+
-+	/* Error stats */
-+	HMS_STAT_RX_ERROR,
-+	HMS_STAT_RX_ERROR_UNDERSIZE,
-+	HMS_STAT_RX_ERROR_OVERSIZE,
-+	HMS_STAT_RX_ERROR_FCS,
-+	HMS_STAT_RX_ERROR_FRAGMENT,
-+	HMS_STAT_RX_ERROR_JABBER,
-+	HMS_STAT_RX_ERROR_DISCARD,
-+	HMS_STAT_RX_ERROR_NO_TRUNCATED,
-+	HMS_STAT_TX_ERROR_FCS,
-+	HMS_STAT_TX_ERROR_UNDERSIZE,
-+
-+	/* Discard stats */
-+	HMS_STAT_RX_DISCARD_COUNT,
-+	HMS_STAT_RX_DISCARD_REASON0,
-+	HMS_STAT_RX_DISCARD_TABLE_ID,
-+	HMS_STAT_RX_DISCARD_ENTRY_ID,
-+	HMS_STAT_TX_DISCARD_COUNT,
-+	HMS_STAT_TX_DISCARD_REASON0,
-+	HMS_STAT_TX_DISCARD_TABLE_ID,
-+	HMS_STAT_TX_DISCARD_ENTRY_ID,
-+	HMS_STAT_BRIDGE_DISCARD_COUNT,
-+	HMS_STAT_BRIDGE_DISCARD_REASON0,
-+	HMS_STAT_BRIDGE_DISCARD_TABLE_ID,
-+	HMS_STAT_BRIDGE_DISCARD_ENTRY_ID,
-+
-+	/* Q0 stats */
-+	HMS_STAT_Q0_REJECTED_BYTES,
-+	HMS_STAT_Q0_REJECTED_FRAMES,
-+	HMS_STAT_Q0_DEQUEUE_BYTES,
-+	HMS_STAT_Q0_DEQUEUE_FRAMES,
-+	HMS_STAT_Q0_DROPPED_BYTES,
-+	HMS_STAT_Q0_DROPPED_FRAMES,
-+	HMS_STAT_Q0_FRAMES,
-+
-+	/* Q1 stats */
-+	HMS_STAT_Q1_REJECTED_BYTES,
-+	HMS_STAT_Q1_REJECTED_FRAMES,
-+	HMS_STAT_Q1_DEQUEUE_BYTES,
-+	HMS_STAT_Q1_DEQUEUE_FRAMES,
-+	HMS_STAT_Q1_DROPPED_BYTES,
-+	HMS_STAT_Q1_DROPPED_FRAMES,
-+	HMS_STAT_Q1_FRAMES,
-+
-+	/* Q2 stats */
-+	HMS_STAT_Q2_REJECTED_BYTES,
-+	HMS_STAT_Q2_REJECTED_FRAMES,
-+	HMS_STAT_Q2_DEQUEUE_BYTES,
-+	HMS_STAT_Q2_DEQUEUE_FRAMES,
-+	HMS_STAT_Q2_DROPPED_BYTES,
-+	HMS_STAT_Q2_DROPPED_FRAMES,
-+	HMS_STAT_Q2_FRAMES,
-+
-+	/* Q3 stats */
-+	HMS_STAT_Q3_REJECTED_BYTES,
-+	HMS_STAT_Q3_REJECTED_FRAMES,
-+	HMS_STAT_Q3_DEQUEUE_BYTES,
-+	HMS_STAT_Q3_DEQUEUE_FRAMES,
-+	HMS_STAT_Q3_DROPPED_BYTES,
-+	HMS_STAT_Q3_DROPPED_FRAMES,
-+	HMS_STAT_Q3_FRAMES,
-+
-+	/* Q4 stats */
-+	HMS_STAT_Q4_REJECTED_BYTES,
-+	HMS_STAT_Q4_REJECTED_FRAMES,
-+	HMS_STAT_Q4_DEQUEUE_BYTES,
-+	HMS_STAT_Q4_DEQUEUE_FRAMES,
-+	HMS_STAT_Q4_DROPPED_BYTES,
-+	HMS_STAT_Q4_DROPPED_FRAMES,
-+	HMS_STAT_Q4_FRAMES,
-+
-+	/* Q5 stats */
-+	HMS_STAT_Q5_REJECTED_BYTES,
-+	HMS_STAT_Q5_REJECTED_FRAMES,
-+	HMS_STAT_Q5_DEQUEUE_BYTES,
-+	HMS_STAT_Q5_DEQUEUE_FRAMES,
-+	HMS_STAT_Q5_DROPPED_BYTES,
-+	HMS_STAT_Q5_DROPPED_FRAMES,
-+	HMS_STAT_Q5_FRAMES,
-+
-+	/* Q6 stats */
-+	HMS_STAT_Q6_REJECTED_BYTES,
-+	HMS_STAT_Q6_REJECTED_FRAMES,
-+	HMS_STAT_Q6_DEQUEUE_BYTES,
-+	HMS_STAT_Q6_DEQUEUE_FRAMES,
-+	HMS_STAT_Q6_DROPPED_BYTES,
-+	HMS_STAT_Q6_DROPPED_FRAMES,
-+	HMS_STAT_Q6_FRAMES,
-+
-+	/* Q7 stats */
-+	HMS_STAT_Q7_REJECTED_BYTES,
-+	HMS_STAT_Q7_REJECTED_FRAMES,
-+	HMS_STAT_Q7_DEQUEUE_BYTES,
-+	HMS_STAT_Q7_DEQUEUE_FRAMES,
-+	HMS_STAT_Q7_DROPPED_BYTES,
-+	HMS_STAT_Q7_DROPPED_FRAMES,
-+	HMS_STAT_Q7_FRAMES,
-+	HMS_STAT_NUM,
-+};
-+
-+static const char hms_stat_name[][ETH_GSTRING_LEN] = {
-+	/* RX stats */
-+	[HMS_STAT_RX_BYTES] = "in-bytes",
-+	[HMS_STAT_RX_VALID_BYTES] = "in-valid-bytes",
-+	[HMS_STAT_RX_PAUSE_FRAMES] = "in-pause-frames",
-+	[HMS_STAT_RX_VALID_FRAMES] = "in-valid-frames",
-+	[HMS_STAT_RX_VLAN_FRAMES] = "in-vlan-frames",
-+	[HMS_STAT_RX_UC_FRAMES] = "in-uc-frames",
-+	[HMS_STAT_RX_MC_FRAMES] = "in-mc-frames",
-+	[HMS_STAT_RX_BC_FRAMES] = "in-bc-frames",
-+	[HMS_STAT_RX_FRAMES] = "in-frames",
-+	[HMS_STAT_RX_MIN_FRAMES] = "in-min-frames",
-+	[HMS_STAT_RX_64_FRAMES] = "in-64-frames",
-+	[HMS_STAT_RX_65_127_FRAMES] = "in-65-127-frames",
-+	[HMS_STAT_RX_128_255_FRAMES] = "in-128-255-frames",
-+	[HMS_STAT_RX_256_511_FRAMES] = "in-256-511-frames",
-+	[HMS_STAT_RX_512_1023_FRAMES] = "in-512-1023-frames",
-+	[HMS_STAT_RX_1024_1522_FRAMES] = "in-1024-1522-frames",
-+	[HMS_STAT_RX_1523_MAX_FRAMES] = "in-1523-max-frames",
-+	[HMS_STAT_RX_CONTROL_FRAMES] = "in-control-frames",
-+
-+	/* TX stats */
-+	[HMS_STAT_TX_BYTES] = "out-bytes",
-+	[HMS_STAT_TX_VALID_BYTES] = "out-valid-bytes",
-+	[HMS_STAT_TX_PAUSE_FRAMES] = "out-pause-frames",
-+	[HMS_STAT_TX_VALID_FRAMES] = "out-valid-frames",
-+	[HMS_STAT_TX_VLAN_FRAMES] = "out-vlan-frames",
-+	[HMS_STAT_TX_UC_FRAMES] = "out-uc-frames",
-+	[HMS_STAT_TX_MC_FRAMES] = "out-mc-frames",
-+	[HMS_STAT_TX_BC_FRAMES] = "out-bc-frames",
-+	[HMS_STAT_TX_FRAMES] = "out-frames",
-+	[HMS_STAT_TX_MIN_FRAMES] = "out-min-frames",
-+	[HMS_STAT_TX_64_FRAMES] = "out-64-frames",
-+	[HMS_STAT_TX_65_127_FRAMES] = "out-65-127-frames",
-+	[HMS_STAT_TX_128_255_FRAMES] = "out-128-255-frames",
-+	[HMS_STAT_TX_256_511_FRAMES] = "out-256-511-frames",
-+	[HMS_STAT_TX_512_1023_FRAMES] = "out-512-1023-frames",
-+	[HMS_STAT_TX_1024_1522_FRAMES] = "out-1024-1522-frames",
-+	[HMS_STAT_TX_1523_MAX_FRAMES] = "out-1523-max-frames",
-+	[HMS_STAT_TX_CONTROL_FRAMES] = "out-control-frames",
-+
-+	[HMS_STAT_RX_VALID_REASSEMBLED_FRAMES] = "in-valid-reassembled-frames",
-+	[HMS_STAT_RX_ADDITIONAL_MPACKETS] = "in-additional-mPackets",
-+	[HMS_STAT_RX_ERROR_FRAME_REASSEMBLY] = "in-error-frame-reassembly",
-+	[HMS_STAT_RX_ERROR_FRAME_SMD] = "in-error-frame-smd",
-+	[HMS_STAT_TX_ADDITIONAL_MPACKETS] = "out-additional-mPackets",
-+	[HMS_STAT_TX_HOLD_TRANSITIONS] = "out-hold-transitions",
-+
-+	/* Error stats */
-+	[HMS_STAT_RX_ERROR] = "in-error",
-+	[HMS_STAT_RX_ERROR_UNDERSIZE] = "in-error-undersize",
-+	[HMS_STAT_RX_ERROR_OVERSIZE] = "in-error-oversize",
-+	[HMS_STAT_RX_ERROR_FCS] = "in-error-fcs",
-+	[HMS_STAT_RX_ERROR_FRAGMENT] = "in-error-fragment",
-+	[HMS_STAT_RX_ERROR_JABBER] = "in-error-jabber",
-+	[HMS_STAT_RX_ERROR_DISCARD] = "in-error-discard",
-+	[HMS_STAT_RX_ERROR_NO_TRUNCATED] = "in-error-dicard-no-truncated",
-+	[HMS_STAT_TX_ERROR_FCS] = "out-error-fcs",
-+	[HMS_STAT_TX_ERROR_UNDERSIZE] = "out-error-undersize",
-+
-+	/* Discard stats */
-+	[HMS_STAT_RX_DISCARD_COUNT] = "in-discard-count",
-+	[HMS_STAT_RX_DISCARD_REASON0] = "in-discard-reason0",
-+	[HMS_STAT_RX_DISCARD_TABLE_ID] = "in-discard-table-id",
-+	[HMS_STAT_RX_DISCARD_ENTRY_ID] = "in-discard-entry-id",
-+	[HMS_STAT_TX_DISCARD_COUNT] = "out-discard-count",
-+	[HMS_STAT_TX_DISCARD_REASON0] = "out-discard-reason0",
-+	[HMS_STAT_TX_DISCARD_TABLE_ID] = "out-discard-table-id",
-+	[HMS_STAT_TX_DISCARD_ENTRY_ID] = "out-discard-entry-id",
-+	[HMS_STAT_BRIDGE_DISCARD_COUNT] = "bridge-discard-count",
-+	[HMS_STAT_BRIDGE_DISCARD_REASON0] = "bridge-discard-reason0",
-+	[HMS_STAT_BRIDGE_DISCARD_TABLE_ID] = "bridge-discard-table-id",
-+	[HMS_STAT_BRIDGE_DISCARD_ENTRY_ID] = "bridge-discard-entry-id",
-+
-+	/* Q0 stats */
-+	[HMS_STAT_Q0_REJECTED_BYTES] = "q0-rejected-bytes",
-+	[HMS_STAT_Q0_REJECTED_FRAMES] = "q0-rejected-frames",
-+	[HMS_STAT_Q0_DEQUEUE_BYTES] = "q0-dequeue-bytes",
-+	[HMS_STAT_Q0_DEQUEUE_FRAMES] = "q0-dequeue-frames",
-+	[HMS_STAT_Q0_DROPPED_BYTES] = "q0-dropped-bytes",
-+	[HMS_STAT_Q0_DROPPED_FRAMES] = "q0-dropped-frames",
-+	[HMS_STAT_Q0_FRAMES] = "q0-frames",
-+
-+	/* Q1 stats */
-+	[HMS_STAT_Q1_REJECTED_BYTES] = "q1-rejected-bytes",
-+	[HMS_STAT_Q1_REJECTED_FRAMES] = "q1-rejected-frames",
-+	[HMS_STAT_Q1_DEQUEUE_BYTES] = "q1-dequeue-bytes",
-+	[HMS_STAT_Q1_DEQUEUE_FRAMES] = "q1-dequeue-frames",
-+	[HMS_STAT_Q1_DROPPED_BYTES] = "q1-dropped-bytes",
-+	[HMS_STAT_Q1_DROPPED_FRAMES] = "q1-dropped-frames",
-+	[HMS_STAT_Q1_FRAMES] = "q1-frames",
-+
-+	/* Q2 stats */
-+	[HMS_STAT_Q2_REJECTED_BYTES] = "q2-rejected-bytes",
-+	[HMS_STAT_Q2_REJECTED_FRAMES] = "q2-rejected-frames",
-+	[HMS_STAT_Q2_DEQUEUE_BYTES] = "q2-dequeue-bytes",
-+	[HMS_STAT_Q2_DEQUEUE_FRAMES] = "q2-dequeue-frames",
-+	[HMS_STAT_Q2_DROPPED_BYTES] = "q2-dropped-bytes",
-+	[HMS_STAT_Q2_DROPPED_FRAMES] = "q2-dropped-frames",
-+	[HMS_STAT_Q2_FRAMES] = "q2-frames",
-+
-+	/* Q3 stats */
-+	[HMS_STAT_Q3_REJECTED_BYTES] = "q3-rejected-bytes",
-+	[HMS_STAT_Q3_REJECTED_FRAMES] = "q3-rejected-frames",
-+	[HMS_STAT_Q3_DEQUEUE_BYTES] = "q3-dequeue-bytes",
-+	[HMS_STAT_Q3_DEQUEUE_FRAMES] = "q3-dequeue-frames",
-+	[HMS_STAT_Q3_DROPPED_BYTES] = "q3-dropped-bytes",
-+	[HMS_STAT_Q3_DROPPED_FRAMES] = "q3-dropped-frames",
-+	[HMS_STAT_Q3_FRAMES] = "q3-frames",
-+
-+	/* Q4 stats */
-+	[HMS_STAT_Q4_REJECTED_BYTES] = "q4-rejected-bytes",
-+	[HMS_STAT_Q4_REJECTED_FRAMES] = "q4-rejected-frames",
-+	[HMS_STAT_Q4_DEQUEUE_BYTES] = "q4-dequeue-bytes",
-+	[HMS_STAT_Q4_DEQUEUE_FRAMES] = "q4-dequeue-frames",
-+	[HMS_STAT_Q4_DROPPED_BYTES] = "q4-dropped-bytes",
-+	[HMS_STAT_Q4_DROPPED_FRAMES] = "q4-dropped-frames",
-+	[HMS_STAT_Q4_FRAMES] = "q4-frames",
-+
-+	/* Q5 stats */
-+	[HMS_STAT_Q5_REJECTED_BYTES] = "q5-rejected-bytes",
-+	[HMS_STAT_Q5_REJECTED_FRAMES] = "q5-rejected-frames",
-+	[HMS_STAT_Q5_DEQUEUE_BYTES] = "q5-dequeue-bytes",
-+	[HMS_STAT_Q5_DEQUEUE_FRAMES] = "q5-dequeue-frames",
-+	[HMS_STAT_Q5_DROPPED_BYTES] = "q5-dropped-bytes",
-+	[HMS_STAT_Q5_DROPPED_FRAMES] = "q5-dropped-frames",
-+	[HMS_STAT_Q5_FRAMES] = "q5-frames",
-+
-+	/* Q6 stats */
-+	[HMS_STAT_Q6_REJECTED_BYTES] = "q6-rejected-bytes",
-+	[HMS_STAT_Q6_REJECTED_FRAMES] = "q6-rejected-frames",
-+	[HMS_STAT_Q6_DEQUEUE_BYTES] = "q6-dequeue-bytes",
-+	[HMS_STAT_Q6_DEQUEUE_FRAMES] = "q6-dequeue-frames",
-+	[HMS_STAT_Q6_DROPPED_BYTES] = "q6-dropped-bytes",
-+	[HMS_STAT_Q6_DROPPED_FRAMES] = "q6-dropped-frames",
-+	[HMS_STAT_Q6_FRAMES] = "q6-frames",
-+
-+	/* Q7 stats */
-+	[HMS_STAT_Q7_REJECTED_BYTES] = "q7-rejected-bytes",
-+	[HMS_STAT_Q7_REJECTED_FRAMES] = "q7-rejected-frames",
-+	[HMS_STAT_Q7_DEQUEUE_BYTES] = "q7-dequeue-bytes",
-+	[HMS_STAT_Q7_DEQUEUE_FRAMES] = "q7-dequeue-frames",
-+	[HMS_STAT_Q7_DROPPED_BYTES] = "q7-dropped-bytes",
-+	[HMS_STAT_Q7_DROPPED_FRAMES] = "q7-dropped-frames",
-+	[HMS_STAT_Q7_FRAMES] = "q7-frames",
-+};
-+
-+void hms_get_ethtool_stats(struct dsa_switch *ds, int port, u64 *data)
-+{
-+	struct hms_private *priv = ds->priv;
-+	struct hms_cmd_port_ethtool_stats stats;
-+	int rc;
-+	enum hms_stat_index i;
-+
-+	rc = hms_xfer_get_cmd(priv, HMS_CMD_PORT_ETHTOOL_STATS_GET,
-+			      port, &stats, sizeof(stats));
-+
-+	if (rc) {
-+		memset(data, 0, sizeof(u64) * HMS_STAT_NUM);
-+		dev_err(ds->dev, "Failed to get port %d stats\n", port);
-+		return;
-+	}
-+
-+	for (i = 0; i < HMS_STAT_NUM; i++)
-+		data[i] = stats.values[i];
-+}
-+
-+void hms_get_strings(struct dsa_switch *ds, int port,
-+		     u32 stringset, u8 *data)
-+{
-+	enum hms_stat_index i;
-+	char *p = (char *)data;
-+
-+	if (stringset != ETH_SS_STATS)
-+		return;
-+
-+	for (i = 0; i < HMS_STAT_NUM; i++) {
-+		strscpy(p, hms_stat_name[i], ETH_GSTRING_LEN);
-+		p += ETH_GSTRING_LEN;
-+	}
-+}
-+
-+int hms_get_sset_count(struct dsa_switch *ds, int port, int sset)
-+{
-+	if (sset != ETH_SS_STATS)
-+		return -EOPNOTSUPP;
-+
-+	return HMS_STAT_NUM;
-+}
-diff --git a/drivers/net/dsa/hms/hms_main.c b/drivers/net/dsa/hms/hms_main.c
-index b7f7c3a7d3667..cfe0095fcdb32 100644
---- a/drivers/net/dsa/hms/hms_main.c
-+++ b/drivers/net/dsa/hms/hms_main.c
-@@ -761,6 +761,10 @@ static const struct dsa_switch_ops hms_switch_ops = {
- 	.port_vlan_add		= hms_bridge_vlan_add,
- 	.port_vlan_del		= hms_bridge_vlan_del,
- 
-+	.get_strings		= hms_get_strings,
-+	.get_ethtool_stats	= hms_get_ethtool_stats,
-+	.get_sset_count		= hms_get_sset_count,
-+
- 	.tag_8021q_vlan_add	= hms_8021q_vlan_add,
- 	.tag_8021q_vlan_del	= hms_8021q_vlan_del,
- 	.port_prechangeupper	= hms_prechangeupper,
-diff --git a/drivers/net/dsa/hms/hms_switch.h b/drivers/net/dsa/hms/hms_switch.h
-index 8f9e3035374b1..eee0b822f769d 100644
---- a/drivers/net/dsa/hms/hms_switch.h
-+++ b/drivers/net/dsa/hms/hms_switch.h
-@@ -64,4 +64,10 @@ int hms_xfer_get_cmd(struct hms_private *priv,
- 		     enum hms_cmd cmd, u32 id,
- 		     void *resp, size_t resp_len);
- 
-+/* From hms_ethtool.c */
-+void hms_get_ethtool_stats(struct dsa_switch *ds, int port, u64 *data);
-+void hms_get_strings(struct dsa_switch *ds, int port,
-+		     u32 stringset, u8 *data);
-+int hms_get_sset_count(struct dsa_switch *ds, int port, int sset);
-+
- #endif /* _HMS_SWITCH_H */
--- 
-2.43.0
+This change is intentional and this is currently not visible to the user
+since airoha_eth driver currently supports just the internal phy available
+via the MT7530 DSA switch and there are no WAN interfaces officially
+supported since PCS/external phy is not merged mainline yet (it is posted j=
+ust
+as RFC in [0]). I will add this info in the commimit log in v5.
 
+[0] https://lore.kernel.org/netdev/20260505182713.27644-1-ansuelsmth@gmail.=
+com/
+
+>=20
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
+ernet/airoha/airoha_eth.c
+> > index 1c4927c1aeb0..8617dd4f7932 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+> > @@ -1863,36 +1863,77 @@ static int airoha_set_gdm2_loopback(struct airo=
+ha_gdm_dev *dev)
+> >  	return 0;
+> >  }
+> > =20
+> > -static int airoha_dev_init(struct net_device *netdev)
+> > +static struct airoha_gdm_dev *
+> > +airoha_get_wan_gdm_dev(struct airoha_eth *eth)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i =3D 0; i < ARRAY_SIZE(eth->ports); i++) {
+> > +		struct airoha_gdm_port *port =3D eth->ports[i];
+> > +		int j;
+> > +
+> > +		if (!port)
+> > +			continue;
+> > +
+> > +		for (j =3D 0; j < ARRAY_SIZE(port->devs); j++) {
+> > +			struct airoha_gdm_dev *dev =3D port->devs[j];
+> > +
+> > +			if (dev && !airoha_is_lan_gdm_dev(dev))
+> > +				return dev;
+> > +		}
+> > +	}
+> > +
+> > +	return NULL;
+> > +}
+>=20
+> [High]
+> airoha_register_gdm_devices() invokes airoha_dev_init() for each dev in
+> port->devs[] sequentially. On EN7581 GDM3 supports two devs (nbq 4/5 for
+> PCIE0/PCIE1 in airoha_alloc_gdm_device()). When both devs are registered,
+> devs[0] sets PRIV_FLAG_WAN and then devs[1] sees the first via
+> airoha_get_wan_gdm_dev() and falls through to LAN. Is that the intended
+> result for two devs on the same physical GDM3/GDM4 port?
+>=20
+> The two devs then diverge:
+>=20
+>   airoha_dev_set_qdma()
+>     dev->qdma =3D &eth->qdma[!airoha_is_lan_gdm_dev(dev)];
+>=20
+> so devs[1] binds to qdma[0] while devs[0] is on qdma[1];
+>=20
+>   airoha_set_macaddr()
+>     reg =3D airoha_is_lan_gdm_dev(dev) ? REG_FE_LAN_MAC_H
+>                                      : REG_FE_WAN_MAC_H;
+>=20
+> so devs[1] writes into the LAN MAC range that belongs to GDM1; and in
+> airoha_ppe_foe_entry_prepare() pse_port becomes port->id instead of 2
+> (GDM2 loopback) only for devs[1]. Is there an assumption that sibling
+> devs on the same port must share the WAN/LAN classification?
+
+A subsequent patch in the series adds suppport for multiple net_device that
+share the same LAN/WAN mac address register space.
+Moreover, I will post subsequent patches (not in the series) to dynamically
+set/get net_device LAN/WAN configuration.
+
+>=20
+> > +
+> > +static void airoha_dev_set_qdma(struct airoha_gdm_dev *dev)
+> >  {
+> > -	struct airoha_gdm_dev *dev =3D netdev_priv(netdev);
+> > -	struct airoha_gdm_port *port =3D dev->port;
+> >  	struct airoha_eth *eth =3D dev->eth;
+> >  	int i;
+> > =20
+> >  	/* QDMA0 is used for lan ports while QDMA1 is used for WAN ports */
+> >  	dev->qdma =3D &eth->qdma[!airoha_is_lan_gdm_dev(dev)];
+> >  	dev->dev->irq =3D dev->qdma->irq_banks[0].irq;
+> > -	airoha_set_macaddr(dev, netdev->dev_addr);
+> > +
+> > +	for (i =3D 0; i < eth->soc->num_ppe; i++)
+> > +		airoha_ppe_set_cpu_port(dev, i, airoha_get_fe_port(dev));
+> > +}
+> > +
+> > +static int airoha_dev_init(struct net_device *netdev)
+> > +{
+> > +	struct airoha_gdm_dev *dev =3D netdev_priv(netdev);
+> > +	struct airoha_gdm_port *port =3D dev->port;
+> > =20
+> >  	switch (port->id) {
+> >  	case AIROHA_GDM3_IDX:
+> > -	case AIROHA_GDM4_IDX:
+> > -		/* If GDM2 is active we can't enable loopback */
+> > -		if (!eth->ports[1]) {
+> > -			int err;
+> > +	case AIROHA_GDM4_IDX: {
+> > +		struct airoha_eth *eth =3D dev->eth;
+> > =20
+> > -			err =3D airoha_set_gdm2_loopback(dev);
+> > -			if (err)
+> > -				return err;
+> > -		}
+> > +		if (eth->ports[1] || airoha_get_wan_gdm_dev(eth))
+> > +			break;
+>=20
+> [Medium]
+> Is the eth->ports[1] check equivalent to asking whether a GDM2 dev
+> actually exists? airoha_alloc_gdm_port() assigns eth->ports[p] before
+> iterating the "airoha,eth-port" child nodes, so with all GDM2 child nodes
+> marked status=3D"disabled" and GDM3 or GDM4 enabled, eth->ports[1] is
+> non-NULL but port->devs[] is empty. In that case this branch still breaks
+> out of the switch and the uplink GDM3/GDM4 dev ends up LAN. Would checking
+> for an actual dev under eth->ports[1] be safer than checking the port
+> pointer alone?
+
+ack, I will fix it in v5.
+
+>=20
+> [Medium, Low]
+> The policy that "just a single WAN one" is allowed is enforced by silently
+> breaking here when airoha_get_wan_gdm_dev() returns non-NULL. Would a
+> netdev_warn() or -EINVAL help an administrator notice that a second WAN
+> candidate was demoted to LAN? Also, with both GDM3 and GDM4 enabled and
+> GDM2 absent, the winner of PRIV_FLAG_WAN depends on eth->ports[] iteration
+> order and the port/dev allocation order; is there a deterministic,
+> documented way to choose which dev becomes WAN (DT property, for example)?
+
+We can't return -EINVAL here since we still need to run airoha_dev_set_qdma=
+()
+and airoha_set_macaddr(). Moreover, I will post subsequent patches (not in =
+the
+series) to dynamically set/get net_device LAN/WAN configuration.
+
+>=20
+> > +		fallthrough;
+> > +	}
+> > +	case AIROHA_GDM2_IDX:
+> > +		/* GDM2 is always used as wan */
+> > +		dev->flags |=3D PRIV_FLAG_WAN;
+> >  		break;
+> >  	default:
+> >  		break;
+> >  	}
+> > =20
+> > -	for (i =3D 0; i < eth->soc->num_ppe; i++)
+> > -		airoha_ppe_set_cpu_port(dev, i, airoha_get_fe_port(dev));
+> > +	airoha_dev_set_qdma(dev);
+> > +	airoha_set_macaddr(dev, netdev->dev_addr);
+> > +
+> > +	if (!airoha_is_lan_gdm_dev(dev) &&
+> > +	    (port->id =3D=3D AIROHA_GDM3_IDX || port->id =3D=3D AIROHA_GDM4_I=
+DX)) {
+> > +		int err;
+> > +
+> > +		err =3D airoha_set_gdm2_loopback(dev);
+> > +		if (err) {
+> > +			dev->flags &=3D ~PRIV_FLAG_WAN;
+> > +			return err;
+> > +		}
+> > +	}
+>=20
+> [Medium]
+> On the error path, is clearing PRIV_FLAG_WAN sufficient? By the time
+> airoha_set_gdm2_loopback() returns a failure, airoha_dev_set_qdma() has
+> already pointed dev->qdma at &eth->qdma[1] and set dev->dev->irq to the
+> WAN IRQ, airoha_set_macaddr() has written into REG_FE_WAN_MAC_H,
+> airoha_ppe_set_cpu_port() has programmed CDM2 as the PPE cpu port, and
+> airoha_set_gdm2_loopback() itself may have already programmed
+> REG_GDM_FWD_CFG(GDM2), REG_GDM_TXCHN_EN/RXCHN_EN, REG_GDM_LPBK_CFG,
+> REG_GDM_LEN_CFG, REG_FE_VIP_PORT_EN and REG_FE_IFC_PORT_EN before the
+> get_sport() branch failed.
+>=20
+> After clearing the flag airoha_is_lan_gdm_dev(dev) reports LAN but
+> dev->qdma and the hardware registers above still describe the WAN setup.
+> Would it be cleaner to either unwind those steps or drop the flag clear?
+
+In this case net_device registration will fail and the pending hw configura=
+tion
+will not affect other running devices. I guess we can avoid to add unnecess=
+ary
+code complexity.
+
+>=20
+> > =20
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/eth=
+ernet/airoha/airoha_eth.h
+> > index 3a313ac439e7..5715b03e630b 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.h
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.h
+> > @@ -540,12 +540,17 @@ struct airoha_qdma {
+> >  	u64 fwd_tx_packets;
+> >  };
+> > =20
+> > +enum airoha_priv_flags {
+> > +	PRIV_FLAG_WAN =3D BIT(0),
+> > +};
+>=20
+> [Low]
+> This isn't a bug, but PRIV_FLAG_WAN and the u32 flags field below overlap
+> conceptually with struct net_device::priv_flags and the IFF_* namespace.
+> Would a driver-prefixed name such as AIROHA_DEV_F_WAN make the
+> driver-local scope obvious to future readers?
+
+ack, I will fix it in v5.
+
+Regards,
+Lorenzo
+
+>=20
+> > +
+> >  struct airoha_gdm_dev {
+> >  	struct airoha_gdm_port *port;
+> >  	struct airoha_qdma *qdma;
+> >  	struct airoha_eth *eth;
+> >  	struct net_device *dev;
+> > =20
+> > +	u32 flags;
+> >  	int nbq;
+> >  };
+>=20
+> [ ... ]
+
+--cVtlXQ1B6cbL+hCZ
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaf8BaAAKCRA6cBh0uS2t
+rJSeAP0QBnXEgLvI07F2C7GkDzkU+BlJ80LyIyCiwOmzBYCIZAEAtQDBtjNFBFVg
+QO9/RuVlx3Ku7yx9L95neIwOm3mJDws=
+=k9t2
+-----END PGP SIGNATURE-----
+
+--cVtlXQ1B6cbL+hCZ--
 
