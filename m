@@ -1,68 +1,59 @@
-Return-Path: <devicetree+bounces-294915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-294916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yITxG05Z/2m55AAAu9opvQ
-	(envelope-from <devicetree+bounces-294915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 17:57:02 +0200
+	id 0Ch0C8dZ/2k35QAAu9opvQ
+	(envelope-from <devicetree+bounces-294916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 17:59:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B43500632
-	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 17:57:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65171500642
+	for <lists+devicetree@lfdr.de>; Sat, 09 May 2026 17:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 71FF6300FB54
-	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 15:57:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B1B16300FED9
+	for <lists+devicetree@lfdr.de>; Sat,  9 May 2026 15:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBF32D3733;
-	Sat,  9 May 2026 15:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64EFE2D7D3A;
+	Sat,  9 May 2026 15:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmO/0+iL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyoDUkqY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B11016132A;
-	Sat,  9 May 2026 15:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4098F2F8E95;
+	Sat,  9 May 2026 15:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778342218; cv=none; b=tPV+Ty7xj9Es9ADX7c+HEV7qE6MtUUcSlHenpNZsOLpHnKteKtcvE8AyzwaTL+s8Yv0l8Di9mYoO83FwlSogHGae3x+DT5ZCX8nDTNG8y1o9Wm8D8tou34z9m8ccfXjSSAVRQcvi6HXld/RWPN86/tx/oR/ioMz37C9FyDQwc4Y=
+	t=1778342339; cv=none; b=Pr9Hg6ciotpRUeZrDXnRRHVg3g/us+rk7d3242KJdspQfbLFuEhbuhP8qsZArb9ryHLWIq8TuV+rsaj+NWLuYX4515TKb8iLBQkGDS8FR2Js2PwbEYhNd9Jw3T4rC7Qv50eF3E0RTNghVJM7r1zekorhYaTbJPHASNVHrrWJ0jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778342218; c=relaxed/simple;
-	bh=Zr4m8EO3YhFxN6CoauY25unQTyVYNNdKNzU/2dfC/f8=;
+	s=arc-20240116; t=1778342339; c=relaxed/simple;
+	bh=kFUUN9FC7XeEEU4/zcQMjMmtuvDVEy700Fl+b885Qsc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p34nYHtmWv9c/1WVTEi2lr8SvUbMTuTSm6hDhL+ZiclDUBFnQ/0rcOBHEhqUR5WV0kwQyRrVg4F3MGWxsYehj9oyyIEOWXSpwRUiUDqvA/TbDQfyIGRUyloqRIfPd7Ap3OpU8t7dvEJKFZghwXBpz8ttricHKpQN3CfPo+2wKRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmO/0+iL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8372C2BCB2;
-	Sat,  9 May 2026 15:56:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VZd/hObeXgk1XlN42p3aE+3jfymE8W4O8eWhwivGXFIPZpFRU7bYCyNeFAiX0vKtySE766Mi4GLA7uQlIsIthXv56tCbm1Q3pk4rShbeb1ggn1UA5uCqBnw0eVMxR6TfVXWjERRc0eDm3NZyThOwhGtdABGz+SZSgpsZVW/X04Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyoDUkqY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26F35C2BCB2;
+	Sat,  9 May 2026 15:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778342218;
-	bh=Zr4m8EO3YhFxN6CoauY25unQTyVYNNdKNzU/2dfC/f8=;
+	s=k20201202; t=1778342339;
+	bh=kFUUN9FC7XeEEU4/zcQMjMmtuvDVEy700Fl+b885Qsc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HmO/0+iLYfR73DzP+ymTgRYt6HckcF7rGoQCiVrmhwQiB7Q/CSEV6AQkBymmR6tOh
-	 /+obMeqDlir2WdtBtazs3Aa202G61ojjW8Jc1vP/G0pjvL8yC3QlyANWnvZIiRgMeK
-	 gmsRnv9xkVqh9mK1iOl9ff1pNMsTSTlb8SlYGnqMRBx5gw63l3QODppExMutvykqTL
-	 VibxNq4BLvWWYtVOhtBgTwvv3RYZG/uC+Bqi0maZS1FbZydBAdfq2ixAY+QuDUbmJX
-	 x0DBvzSUXuX11IcRgoKvizVaL0X7QN3bYhWhZrXXoYb8RhTOQvYsL/8nOm1ob8DJNr
-	 hDduTp1VNd85w==
-Date: Sat, 9 May 2026 16:56:52 +0100
+	b=uyoDUkqYXtBWh+4mi9hb53Au4eWi0S1/7gIlhihpDv5l1CAre19a/iyBGzTIy0RhF
+	 mGKy/H5ymdiFi/E1f2cjwDWWazBsSZJz53IDmHGHWu7cgfxMkCmgvf548IM9xkP6ii
+	 dhQthNNmiIuADRK4zFJyWJePFSDWFwPFs9xAJe1G5sIZ0YhHOnDO/EjIkC5Bz5X13p
+	 15v/UU8picTFSecmEg4zdSBYF6rGZoOVR8ynz0uVL3letsH6GGYduCNRuq9PImZFBj
+	 rG3CRI+NuweI9Oicw3/YX7s5V1XtPCvYjQkaHqJEcelJwPbRSLVDnG/7YpXKTbtJ6F
+	 zh6RfzK5/L/6Q==
+Date: Sat, 9 May 2026 16:58:54 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Gregor Herburger <gregor.herburger@linutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>,
-	Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] dt-bindings: raspberrypi,bcm2835-firmware: Drop
- unnecessary select
-Message-ID: <20260509-polio-barrette-07f4368a0cc6@spud>
-References: <20260508-rpi-otp-driver-v4-0-cf8d725d8821@linutronix.de>
- <20260508-rpi-otp-driver-v4-5-cf8d725d8821@linutronix.de>
+To: Udaya Kiran Challa <challauday369@gmail.com>
+Cc: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, skhan@linuxfoundation.org,
+	me@brighamcampbell.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: rtc: epson,rx6110: Convert to DT Schema
+Message-ID: <20260509-smudgy-hatching-235fde5ec761@spud>
+References: <20260509090051.77603-1-challauday369@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,70 +61,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cT+9g1ZKW4ABma7Y"
+	protocol="application/pgp-signature"; boundary="Bit2L5F3cAMNhMbP"
 Content-Disposition: inline
-In-Reply-To: <20260508-rpi-otp-driver-v4-5-cf8d725d8821@linutronix.de>
-X-Rspamd-Queue-Id: E6B43500632
+In-Reply-To: <20260509090051.77603-1-challauday369@gmail.com>
+X-Rspamd-Queue-Id: 65171500642
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-294915-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-294916-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,anholt.net,gmx.net,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
---cT+9g1ZKW4ABma7Y
+--Bit2L5F3cAMNhMbP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 08, 2026 at 04:42:48PM +0200, Gregor Herburger wrote:
-> The select schema is not necessary because the
-> raspberrypi,bcm2835-firmware compatible is already matched by the
-> compatible string values. The documentation says "Most bindings should
-> not need select", so remove it.
+On Sat, May 09, 2026 at 02:30:51PM +0530, Udaya Kiran Challa wrote:
+> Convert the Epson RX6110 Real Time Clock devicetree binding
+> from the legacy text format to DT schema.
 >=20
-> Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
+> Signed-off-by: Udaya Kiran Challa <challauday369@gmail.com>
+> ---
+> Changelog:
+> Changes since v1:
+> - Reuse common SPI peripheral properties
+> - Drop redundant SPI-specific comment
+> - Remove unused labels from examples
+>=20
+> Link to v1:https://lore.kernel.org/all/20260504183728.27412-1-challauday3=
+69@gmail.com/
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Seemingly there are 2 v2s of this.
 pw-bot: not-applicable
 
---cT+9g1ZKW4ABma7Y
+--Bit2L5F3cAMNhMbP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaf9ZRAAKCRB4tDGHoIJi
-0iz8AP4wQV7fiXVYvXG5n3LuNtCriQQf9xbaAci0C0/7BYAu+gD/euZqqTLSAhLr
-dHptMO1Ira9axxHjVUdsdRL1HNUEcgY=
-=8zrw
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaf9ZvgAKCRB4tDGHoIJi
+0m7UAP9lJBGF6xaMioNp/l8Fxpvsun0kR2xnHq5idUVek1IFFgEAnWFamqQeBlIP
+pkbbFAoz4cJ88dZjTyDkk8UcLuCgZQU=
+=whZz
 -----END PGP SIGNATURE-----
 
---cT+9g1ZKW4ABma7Y--
+--Bit2L5F3cAMNhMbP--
 
