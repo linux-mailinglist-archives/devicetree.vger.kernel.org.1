@@ -1,219 +1,165 @@
-Return-Path: <devicetree+bounces-295019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DBOEacvAGqrEAEAu9opvQ
-	(envelope-from <devicetree+bounces-295019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 09:11:35 +0200
+	id Lld9GpcxAGoXEQEAu9opvQ
+	(envelope-from <devicetree+bounces-295021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 09:19:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2F2F502E80
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 09:11:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B077F502EDE
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 09:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3FBE630073FB
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 07:11:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFBB8300D6A5
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 07:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5929635E95F;
-	Sun, 10 May 2026 07:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A773612ED;
+	Sun, 10 May 2026 07:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SW96mx06"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h1AiuAu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10BA4359A6F
-	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 07:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8802F8EB7;
+	Sun, 10 May 2026 07:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778397091; cv=none; b=fHT+nMPT2qRFIs+ofJo6ecib1FgHJN3b2SUbZDRtRLF5V08yqiA/9dOOGfyyWhKbBag+2BC1GUp1nYj37L7Iwvgy66KWki4MLKuiNmkj6uCrzB+wKeGX7g5Ejr7l/uTFl9JnFVjLFXRyBAuMpuzuDwEPZbNXyIlxF6sbk42PDiI=
+	t=1778397586; cv=none; b=Bfl2uk+2+7HTDP6dGd8MpStTOHq9+YWQm08nzd9wQOzKyxDGXmiTKiXW3z5TuhmyTYHiAJrD3GSHFfIFwu24oRNQBEE0tbP/nqK+msVi9pg1v8ziz/fVfZypikFtDD0stvDmOFSrmJcNLC4ISMdiSOYSmL9JnaazUehUpCrFwtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778397091; c=relaxed/simple;
-	bh=EleGY3vgTfeFTin94EwbWKxMKGx9dC00TvNm+PCjBFg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f/h/GN6weEqx9cE4C4TDy9ItT7o9NWb0EV1yBgyu9zaqO2CATxci+ffJNAKY+DFnD9xvXKrShPBzjOGAm0niPUonffcoUGkHu52bn9WXQfY9rrUS7/U+RBgG/nmgD9o3k6x9omjaWKmQl4DuNc2DlGNv3JeSszn7S3uNWpwimCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SW96mx06; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-3664df32e91so1813862a91.3
-        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 00:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778397089; x=1779001889; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NBksUd3TRhC53VHUdaPee5fHFL6bRQ8cdTbc+yWXtmA=;
-        b=SW96mx06o0pNpOnHmcKaLPN0tLpCmk5Dsv2cx0/v/Q5MB+a/c1SqztMuVyGnd1Q+Wi
-         DzqQZCIa9TNu33j+kvEWYp5+Orb0vX5UTofuIGI8ijv/p22dL6flnZkcGRF8QQJVv7cL
-         qTmloesHRofRp7pPRlC87LZ02OVT3rrEwjK+y8BSCXrJuoPkSrv/O8qWLKYFpgMI75iJ
-         xObpJyFLHFwNEyQwYGYgsvq0ZTbQ9Xj5ULOpuckKAY/7HCn9z9qSZ9hSQ3tQa1kUwCba
-         vvIok0dcUpN0gLAXJtYudB4HxuwBTjBcJooJIhXU0/9Bx17/tHGdcOT6oR1/HLQsMEks
-         GfPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778397089; x=1779001889;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NBksUd3TRhC53VHUdaPee5fHFL6bRQ8cdTbc+yWXtmA=;
-        b=jXOcFX98TR7bzuvDAjHySAqQRSYFt7CuXKgEv6JlQ4g/I8El93Gm2chb5pUD9cg6Zo
-         8LlLvf6zLZJTAVwJJq/QbIVXU2PmdZRBTdddzAqgM1Gc/w0BeriKS97Op49po8LJ3gvr
-         /RAe2qAe7z/YgON1h4g5oKoAFNxnJX8iNVzJgxmv1JTF8wnbMeuJiTXSOd+rMViro72q
-         7ZEOfRpbJ/2I4yWMHIXYw8xYfylZyG3yDszppS+C+5D+01Sx0jhcVjhADlJBDvjnsfTS
-         tdw4S3lxWuqzBajfEO4143WJsL+5PKL7t6mN0L2BbFeEOXuC2Clt60Ca/+Z1ODP0IkZc
-         1ScA==
-X-Forwarded-Encrypted: i=1; AFNElJ9XT4U/hgy0sKsR0tQws24RVOkGPf7TGbnjWMKwG3eFlsK4vFK03DAPW43AmG+NzDVTR77oJs0mH7om@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0PNySKVJ/pPvbd3njOrYdJecUetMJ0iMtbovzgKviPr7lfEuM
-	HMtLQUVKKEGYtB9YO4ZsoSzStEoozrkTBM6m0/mK/DQn0ItwkcEblR/G
-X-Gm-Gg: Acq92OHqEyFH3KVTNV/EzE7f/pwIecDLkzxQGC1Q4N9lYb4Un5WStNNOO90ShuZTlIz
-	r+ETGuu8C5Grx9NlDu7Z4vhzWIRWhmpfBATGnq4Ie97HasGXgIA3PAcDneRAZoMXaZoFuMPMuCT
-	zkZvbg5aYn1hyJAAdbm5FEkIOmi+7OEQQnVMsd+t3scFnVOnV2O2VdiiZioDtjN8wZz+y3d7Bo/
-	qK6P2FA7hFmVQ68bbYDIK1iGO3i1CVUDWxElW3sVbAv/L4m0YKVf/TkOWalVK3i2KsZ4kdajQ0Z
-	6USGQQbMwBPCavIzyYEDZ6o5WMiaviIIhzj30ELoKraLR9ruW8VCIOwMN/IwYMVu8fn5aMiDebM
-	oZUZ+AFGJ8EyVan7jpW51PmdlZFf9woOk+RxLufV+dT7Kf8FKzowRbxdBID/xKKRKx6J4sh44Xk
-	3Mps4bai8ixYuhCI762pQeQemv75CUGvjHC94ZUsRzeiqheA==
-X-Received: by 2002:a17:90b:1651:b0:366:3d97:74a9 with SMTP id 98e67ed59e1d1-367d3c7153amr5332804a91.0.1778397089420;
-        Sun, 10 May 2026 00:11:29 -0700 (PDT)
-Received: from [192.168.1.5] ([60.243.224.75])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-367d629c17esm3678111a91.6.2026.05.10.00.11.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 May 2026 00:11:28 -0700 (PDT)
-Message-ID: <6235faf8-fbdd-468a-ae2d-a4a3f7ee50fa@gmail.com>
-Date: Sun, 10 May 2026 12:41:25 +0530
+	s=arc-20240116; t=1778397586; c=relaxed/simple;
+	bh=eohYJHwoejrU/BXmKoOTeozRPO2vN5Bzmy9y7RhES0M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LDhHNiUO7ynGb+Vu1WS9FwF0xaJ4lJ1xPgQGJ9cLWO06drphRM+lZVAdjhsLZzE5felc44nqVcD6/UFRn1747wF5fRvODiK2FIBWYclR5EFc+6p0qWJAxRysLVkXOMVJwHf2D7OAt/SVL7RDtY0VnWz3lRA1vfPvfeHN3G8AJSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h1AiuAu5; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778397585; x=1809933585;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eohYJHwoejrU/BXmKoOTeozRPO2vN5Bzmy9y7RhES0M=;
+  b=h1AiuAu55/KNr3uVvxL+/yGJmKo7IwfJ6FnB4t2T3CK3BwT2CwSn5cVg
+   OECEnB/cp41cheu7DPfYCISj+g3fhcRa8Fti81iMN68lx8cgutGgf15IK
+   j79XC9DafqNBLWzwzRZOP0nFMvWXWBbgDhbi3o0j1qvLGkwrq7pNEtWqA
+   DaL/uRk/jkTOU58ACgzKjB+NhUjnbhS/M5dZoFx7LRLlzJF2qQXAUixIs
+   POJ9Mzar18Jw+L9nRrxg49hZ1aFmr1CUR7Fyzzp7NRvN0XKCipT2Y1Cdk
+   8OzPvEs0GdfepiooE7pOgpB9fq0LUfd5zoPPFTkbUjb5QATbfRf39eC0l
+   g==;
+X-CSE-ConnectionGUID: o4n/zY+KTruEZDRf9MMFIQ==
+X-CSE-MsgGUID: QKQeaYEQQe622zZvJR88IA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11781"; a="81883150"
+X-IronPort-AV: E=Sophos;i="6.23,227,1770624000"; 
+   d="scan'208";a="81883150"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2026 00:19:40 -0700
+X-CSE-ConnectionGUID: Q6NL2Ul6RrWvEv4v96Pz4Q==
+X-CSE-MsgGUID: 9B1zZ9kDQaawGMPUIXQGdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,227,1770624000"; 
+   d="scan'208";a="237390094"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.171])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2026 00:19:36 -0700
+Date: Sun, 10 May 2026 10:19:33 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Antony Kurniawan Soemardi <linux@smankusors.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, phone-devel@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v6 4/4] iio: adc: qcom-pm8xxx-xoadc: add support for
+ reading channel labels
+Message-ID: <agAxhcwXH4jCnJLO@ashevche-desk.local>
+References: <20260510-pm8xxx-xoadc-label-v6-0-49700fd03005@smankusors.com>
+ <20260510-pm8xxx-xoadc-label-v6-4-49700fd03005@smankusors.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: st,sdhci: convert to DT schema
-To: sashiko@lists.linux.dev
-Cc: robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-References: <20260508-st-mmc-v3-2-81c329ed28e8@gmail.com>
- <20260508222225.1E854C2BCB4@smtp.kernel.org>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20260508222225.1E854C2BCB4@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: B2F2F502E80
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260510-pm8xxx-xoadc-label-v6-4-49700fd03005@smankusors.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: B077F502EDE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-295021-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295019-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
+On Sun, May 10, 2026 at 07:01:45AM +0000, Antony Kurniawan Soemardi wrote:
+> Implement the .read_label callback to allow userspace to identify ADC
 
+I would write in a usual pattern here, id est .read_label().
+But no need to resend just for that.
 
-On 09-05-2026 03:52, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] Missing `minItems: 1` for `clock-names` and `reg-names` restricts them to exactly two items, breaking schema validation for existing device trees.
-> --
+> channels via the "label" property in the device tree. The name field in
+> pm8xxx_chan_info is renamed to label to better reflect its purpose. If
+> no label is provided in the device tree, it defaults to the hardware
+> datasheet name.
 > 
-> commit 66ec88f9e00b102af921864d0e0bf8b1b9e7f38d
-> Author: Charan Pedumuru <charan.pedumuru@gmail.com>
-> dt-bindings: mmc: st,sdhci: convert to DT schema
-> 
-> This commit converts the STMicroelectronics sdhci-st MMC/SD controller
-> binding to DT schema. It updates the clock and register properties to
-> support backward compatibility for single-item entries.
-> 
->>     - In the legacy text binding, 'icn' was optional. Keep the clock list
->>       flexible to preserve compatibility, although all existing in-tree DTS
->>       files already provide both clocks.
->>     - Document the optional "top-mmc-delay" register region and corresponding
->>       reg-name in the YAML binding, as existing in-tree DTS files already use
->>       both "mmc" and "top-mmc-delay" entries.
-> 
-> Are these descriptions accurate regarding all existing in-tree DTS files?
+> The change has been tested on Sony Xperia SP (PM8921).
 
-Yes
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-> 
-> In arch/arm/boot/dts/st/stih407-family.dtsi, the mmc1 node defines only a
-> single register name (reg-names = "mmc"). Other device trees such as
-> arch/powerpc/boot/dts/fsp2.dts also define a single clock and register.
-> 
->> diff --git a/Documentation/devicetree/bindings/mmc/st,sdhci.yaml b/Documentation/devicetree/bindings/mmc/st,sdhci.yaml
->> new file mode 100644
->> index 0000000000000..10e0e1ee6d5cd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mmc/st,sdhci.yaml
-> 
-> [ ... ]
-> 
->> +  reg:
->> +    minItems: 1
->> +    items:
->> +      - description: MMC controller registers
->> +      - description: MMC delay/auxiliary registers
->> +
->> +  reg-names:
->> +    items:
->> +      - const: mmc
->> +      - const: top-mmc-delay
-> 
-> Because items lists without an explicit minItems default to the length of
-> the list, does this strictly require two items for reg-names?
+...
 
-Yes, but I can add minItems as 1 to accept the nodes that define only 1 reg-names. but the existing DTS uses both.
+> +{
+> +	struct pm8xxx_xoadc *adc = iio_priv(indio_dev);
+> +	const struct pm8xxx_chan_info *ch;
+> +
+> +	ch = pm8xxx_get_channel(adc, chan->address);
+> +	if (!ch)
+> +		return -EINVAL;
 
-> 
-> Will this cause make dtbs_check to fail for existing nodes like mmc1 that
-> only provide "mmc"? Should minItems: 1 be added here to allow single entries?
+Usually we add blank line here (and in similar cases).
 
-Yes, I will add minItmes to allow singe entries.
+> +	return sysfs_emit(label, "%s\n", ch->label);
+> +}
 
-> 
-> [ ... ]
-> 
->> +  clocks:
->> +    minItems: 1
->> +    items:
->> +      - description: Clock for the MMC controller
->> +      - description: Interconnect (ICN) clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: mmc
->> +      - const: icn
-> 
-> Similarly, does clock-names require minItems: 1 to match the flexibility
-> added to the clocks property and prevent schema validation errors on
-> single-clock configurations?
-
-I can add minItmes as 1 if the node only requires 1 clock, but the current DTS uses both of them.
-
-> 
+Again, no need to resend, I hope these can be fixed by Jonathan whilst
+applying.
 
 -- 
-Best Regards,
-Charan.
+With Best Regards,
+Andy Shevchenko
+
 
 
