@@ -1,160 +1,169 @@
-Return-Path: <devicetree+bounces-295168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295171-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDALJKHPAGr3MwEAu9opvQ
-	(envelope-from <devicetree+bounces-295168-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:34:09 +0200
+	id MDF6M73PAGrZMwEAu9opvQ
+	(envelope-from <devicetree+bounces-295171-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:34:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D34D505ACB
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:34:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCAC0505AE8
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:34:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 82F463034BE1
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:32:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C445B300A4E2
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAEF314B63;
-	Sun, 10 May 2026 18:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CC13128DF;
+	Sun, 10 May 2026 18:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dLpWIDNP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s4lpHipV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A7331326B;
-	Sun, 10 May 2026 18:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5D23112C1
+	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 18:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778437937; cv=none; b=HhnBA3VmPNGI0oi6xPYNNkmunFBBdHESjxFd6LeTG4MwVGCIR75J4sNVBats3UQkdH/Wp98ESdp7sAF9a7ZJtbNZA3uG/ojMu6EEFUaX8BKGyCXEVctt/qBhmwWLmOgleT0HcvKSCHXdqxGitwGaBuRUdQfCXqFQyaypgclb0do=
+	t=1778438074; cv=none; b=jIpXayT5S8bymASI8SIfjlsQgJeYkh5ulTT9MPC+Cmvpc3uAxwC2nyTwRYq5/tTKOOFNcd2BVA86xbHuZAaJerj1pdF5f7Yz2xkBvCMvChZvSM8udZhFNJ8BETkIhl1QIRjH4KGTOcc2rxM+GxothZyhr7haItQwVa7ZhRegcuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778437937; c=relaxed/simple;
-	bh=J5DVFZpbI/iCCQJkG0D1pYqDIIeZqc8UastCfYmVqGs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=k6dlaRAlndYo3Rkj4aNuSP6rJ3XpMafaroUzMcm0A4cmZkS0A9Yyc9Aky/oBxeOgWPLw25ZISNP/NTdo6AclPRHdTBKsyL0QMo9lY+ynSCtAslnDFnUvthqOIB+XhuB7d4kNBRykacJysobEQjwEoSBQXb+JJEnuF1tzY+BIpz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dLpWIDNP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 773F1C2BCC7;
-	Sun, 10 May 2026 18:32:17 +0000 (UTC)
+	s=arc-20240116; t=1778438074; c=relaxed/simple;
+	bh=rCvvuIRJS+zFWu0wK8pstHfaQ1AMphYIDSQl2Y+byqE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ajUWEU2d1yyIYcRk7vhx75ctUVAlf6Ad63GAyGOSsARhMAWE5Uj6Wo3OJy6deRAcJzdcAAA/d5H7QhcAwMT5mo8DMtpG4ZxLWyuQuBSNy06mHfDJBiFJAT+hq0KJKJY5D+vr1k4ewtzt9RKsH3qsxgGSYLYRgX6YBB8GBqxG2i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s4lpHipV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48268C2BCF7
+	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 18:34:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778437937;
-	bh=J5DVFZpbI/iCCQJkG0D1pYqDIIeZqc8UastCfYmVqGs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dLpWIDNPoBLL0tNblVQHj/ETvs5w6OPVYT1/EMQlYtGTs5igAgzk6LFaI9h48h/44
-	 p3MuL8cP3mTWV54hlqj0AO3kZxc1Hbg4KYOqSc3MazGmIACeA8LvdSAMmNJ819f3VT
-	 li1QutH3cTZBOnlTpSv1urLoHK/1XCMw6GeSW3DtdZ2G14VNeWXQ7fNwZM93c2CDjo
-	 yupjRHRsxqmxPNBQhXe5actqkZNc4DP1HWUovgpVWS8iCs5tEr24zydWM/qNRkShr8
-	 3avg1u89m3W4JqpBRhZfFLQ6zfaJbwASODWn4TvEr3Sf7N6bnriH2GxH6CVgk9jUCz
-	 Mq8VJscgxTLJQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A037CD37B5;
-	Sun, 10 May 2026 18:32:17 +0000 (UTC)
-From: Alexandre Hamamdjian via B4 Relay <devnull+azkali.limited.gmail.com@kernel.org>
-Date: Mon, 11 May 2026 01:32:11 +0700
-Subject: [PATCH v2 3/3] dt-bindings: usb: fix properties type
+	s=k20201202; t=1778438074;
+	bh=rCvvuIRJS+zFWu0wK8pstHfaQ1AMphYIDSQl2Y+byqE=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=s4lpHipVlmcEzZSCYYGHdus6oKBjZlz13HekGY9aVDqJ7LAMeEDcfAuwwPHdAWGFq
+	 jNFHg/OwBZNrITo8ruAaz7f4Kwd33A19ifMDJytC11YRCZGzgueM31RwWoW01VRMJ7
+	 LnxHPM0A+InaVfuPTmhUe19cjZYxszuxMXbNbyq3CppwEmrePzL789ll2kSZ1jcR/d
+	 67rxMQxKTOS1QVfE/jcYzQtRyhp3Aqgvzoa/CaiAGJXkN0chM3yWJMX0p9CmnMEESd
+	 ybqA3zFYUSQc524Us2prndplbV/4FqMI0QH19DSBwlToKtEqAtrkCHN9kftuJ4LGWh
+	 dqM73k2p9nn5Q==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-38e7b0903cdso34243261fa.3
+        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 11:34:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9MDSZTa3KjqKpkzwFMXmkoGN1WCUyuP+wn/ilI7dN8oJswuLSdodDjy5D0Vvd8Hqk9l+YbimSkN7A8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWH/pk2nG131RF5spmMRGmFz4gEHwjxLDP14+gZAaIr0CsyIAG
+	o/tMK3LKAEvDJJDW0EugGKo7YpIXhUmG+cSYGxqwZ+64vjrVzrn+OKJJhp5c99T0fWoNQlzZbWS
+	c8SlVrBFbBnH399su8PKdYHkXgdSPJ2w=
+X-Received: by 2002:a2e:a273:0:b0:38c:de21:3e14 with SMTP id
+ 38308e7fff4ca-393c41c97demr52554991fa.19.1778438072557; Sun, 10 May 2026
+ 11:34:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260511-bm92t-v2-3-2145e4f4386b@gmail.com>
-References: <20260511-bm92t-v2-0-2145e4f4386b@gmail.com>
-In-Reply-To: <20260511-bm92t-v2-0-2145e4f4386b@gmail.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, CTCaer <ctcaer@gmail.com>, 
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- Alexandre Hamamdjian <azkali.limited@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778437929; l=1431;
- i=azkali.limited@gmail.com; s=20260510; h=from:subject:message-id;
- bh=f6S7QyZFwXdvy107/0JuOsiYe2d8g5NArKl85IO4QKI=;
- b=O/UffyUVHLFM26VSXF5Zp+aE56RyfVdIa/jgYJcrbUqlGu++fkJ0xLl/UxnwKzK1bQIGhIPYe
- V129Ye44sBvCh/ygmhB+DZ6bA7tclX+LNEgVwRuT/wef1GVqPXdlR3V
-X-Developer-Key: i=azkali.limited@gmail.com; a=ed25519;
- pk=I0Z0IdCdQJqNGX+FQUnXhrHg950u3cM6Xzz3YT6JOyQ=
-X-Endpoint-Received: by B4 Relay for azkali.limited@gmail.com/20260510 with
- auth_id=774
-X-Original-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
-Reply-To: azkali.limited@gmail.com
-X-Rspamd-Queue-Id: 2D34D505ACB
+References: <20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl> <20260510-sunxi-a523-gpadc-v1-3-4f6b0f4000fb@mmpsystems.pl>
+In-Reply-To: <20260510-sunxi-a523-gpadc-v1-3-4f6b0f4000fb@mmpsystems.pl>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Mon, 11 May 2026 02:34:19 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64k2SvoGjNGsB=mQdc5U75mPJUJMZASqiF=DDN5QCNt8A@mail.gmail.com>
+X-Gm-Features: AVHnY4KOBMpyIY8koIw1JHFB7GLvF9QtogbHPVXZ-IY03YwC_1iRGcw45u_wThM
+Message-ID: <CAGb2v64k2SvoGjNGsB=mQdc5U75mPJUJMZASqiF=DDN5QCNt8A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: a523: add gpadc node
+To: Michal Piekos <michal.piekos@mmpsystems.pl>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maksim Kiselev <bigunclemax@gmail.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: CCAC0505AE8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-295171-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295168-lists,devicetree=lfdr.de,azkali.limited.gmail.com];
-	FREEMAIL_TO(0.00)[linux.intel.com,linuxfoundation.org,gmail.com,kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[azkali.limited@gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[wens@kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.31.71.208:email,0.30.167.168:email];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mmpsystems.pl:email,0.30.163.192:email]
 X-Rspamd-Action: no action
 
-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
+On Sun, May 10, 2026 at 9:02=E2=80=AFPM Michal Piekos
+<michal.piekos@mmpsystems.pl> wrote:
+>
+> Describe high speed timer block on Allwinner D1S-T113.
+>
+> Tested on Radxa Cubie A5E:
+> - 2 connected channels are showing voltages in agreement with
+>   schematics.
+>         BOOT-SEL-ADC ~500mV
+>         BOM-ADC ~1800mV
+> - 3rd channel exposed on 40pin header is showing correct voltages when
+>   connected to known voltage source.
+>
+> Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/=
+boot/dts/allwinner/sun55i-a523.dtsi
+> index 5afa8d92acbf..f6c5cae5b23a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> @@ -340,6 +340,18 @@ ledc: led-controller@2008000 {
+>                         status =3D "disabled";
+>                 };
+>
+> +               gpadc: adc@2009000 {
+> +                       compatible =3D "allwinner,sun55i-a523-gpadc",
+> +                                    "allwinner,sun20i-d1-gpadc";
+> +                       reg =3D <0x2009000 0x400>;
+> +                       clocks =3D <&ccu CLK_BUS_GPADC0>, <&ccu CLK_GPADC=
+0>;
+> +                       clock-names =3D "bus", "mod";
+> +                       resets =3D <&ccu RST_BUS_GPADC0>;
+> +                       interrupts =3D <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+> +                       status =3D "disabled";
+> +                       #io-channel-cells =3D <1>;
 
-rohm,pd-5v-current-limit-ma, rohm,pd-9v-current-limit-ma,
-rohm,pd-12v-current-limit-ma, rohm,pd-15v-current-limit-ma
-where missing type, add appropriate uint32 type
+status should always be the last property.
 
-Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
----
- Documentation/devicetree/bindings/usb/rohm,bm92t.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml b/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml
-index 007f70a8f5bb..6ee6ddcdca7a 100644
---- a/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml
-+++ b/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml
-@@ -71,15 +71,19 @@ properties:
-       Disable the lower power limit applied when a dock is detected.
- 
-   rohm,pd-5v-current-limit-ma:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-     description: Charging current limit in mA when 5V PD contract is active.
- 
-   rohm,pd-9v-current-limit-ma:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-     description: Charging current limit in mA when 9V PD contract is active.
- 
-   rohm,pd-12v-current-limit-ma:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-     description: Charging current limit in mA when 12V PD contract is active.
- 
-   rohm,pd-15v-current-limit-ma:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-     description: Charging current limit in mA when 15V PD contract is active.
- 
-   port:
-
--- 
-2.54.0
-
-
+> +               };
+> +
+>                 wdt: watchdog@2050000 {
+>                         compatible =3D "allwinner,sun55i-a523-wdt";
+>                         reg =3D <0x2050000 0x20>;
+>
+> --
+> 2.43.0
+>
+>
 
