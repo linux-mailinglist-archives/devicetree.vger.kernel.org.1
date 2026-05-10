@@ -1,154 +1,201 @@
-Return-Path: <devicetree+bounces-295184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295185-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YJO8LIDgAGrSNwEAu9opvQ
-	(envelope-from <devicetree+bounces-295184-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 21:46:08 +0200
+	id CNh4C4LhAGoQOAEAu9opvQ
+	(envelope-from <devicetree+bounces-295185-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 21:50:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57637506072
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 21:46:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B83795060E4
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 21:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B754E3002327
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:46:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 17B64300E728
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C372DC357;
-	Sun, 10 May 2026 19:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B1132E128;
+	Sun, 10 May 2026 19:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mnm8JwRm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pOR8ckvV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761583EA66;
-	Sun, 10 May 2026 19:46:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DCD31F9BB
+	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 19:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778442364; cv=none; b=N4Ws0hRbUHb/JBw+i1Ee/m8lwTIjMsYolrUB4hePbgH0MQK+CuNjgRaqo0rWrcaV4fZs9hXzy2BU0gKi3eNyUrcdfPJZZv2ZMFJM27gJPthggJJSSG3lAsLvO/jZ2Vm7zjBaOQnO7DZuIAkW1taciY6hH5sHp6wdU67HO3xa08c=
+	t=1778442603; cv=none; b=clyvaVXWHWqudjPiyyrsqNvzXGS1AU2N7XHhQ3Q3USv89gbfcdOFleYOua8IWA+hl173u4yecLzZyGCXXy3Plg4biqU7P1z0LX44Jowq6wODg/gDg1AT0U5bT7GyIwhNOZFg7CpYzYnzZBUqQ88pv+Jdqd9nKvqpnhKb087+Rgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778442364; c=relaxed/simple;
-	bh=++55q2EV37VjjCBJkxUrN4jayg1vRCIIl4/FmHGSMNo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=s0PgB6dm+7sj6J5uuV7f4247XmNtFwX9yunR+2TAsBzoygVKlC+6H7cm5ZBoR7VDWdhJOvRuze316f4jPX7WvzctsPt+yM8L3O5rNmLJqC+G9gDK1gB3pDjiSafTf2JW6zvTxQJ79UhWos1biQ0KeiMscYVhdq7ewcw9Ulgp7a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mnm8JwRm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5679C2BCB8;
-	Sun, 10 May 2026 19:46:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778442364;
-	bh=++55q2EV37VjjCBJkxUrN4jayg1vRCIIl4/FmHGSMNo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mnm8JwRmNV+6NSXr0r7v7exzxbXi5j80Vf5Sfa5Sug7hDl+6jj3JBsrFxw1+0JqGK
-	 6EkGmYqJkHtbFr3VD/gdSu8uNGx/3vMhys3Zg/ZxUnfc6DSQk7qEuuBgON4oBnUTLE
-	 hVTd7vz4rBQg6nHBwoMt9H9Sh0KCfO9VAzFooNsioKx9l/saHsZK4YiKMThg8aBYSo
-	 Ft5IEL9N7ZupmntPQz+fi/GyK++l3cqIJj8S8Vi/9vH3CD/9g7WLJNabEDtHocaPN4
-	 RaQIHzxMClfVmQJkpH65Mcb/5pHkbyN2IM4mkRTR2rhhSPdBQfeEu9UEH6zRuV4TF8
-	 3c3hcoYcbd2qg==
-Date: Sun, 10 May 2026 14:46:01 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1778442603; c=relaxed/simple;
+	bh=V/b4mSM6zH+p8TXIS1po/E/hYlP6zgqrks6hq9bn5Oo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TiiF5DdOSViBbkGqsbc4sPkEmf1IV5v51Qa8yUpwvenMGZ0ANDzgxDzVjo6ekgFmrz+l2TQIxZdn2PXyKJWPiyqoU682XoNUkGK3TSIBupaxKf6+7oPn+6RT8FWodCladjH0xHE1l2YYHJmpLcv/XURPfmd0A/y2zwZ0wL7Huv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pOR8ckvV; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2b9705613ddso21874745ad.1
+        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 12:50:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778442601; x=1779047401; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dP3fG7GEDYkhdiRzY6vd4dPBz6B4/zruI0cK+ySaCJg=;
+        b=pOR8ckvV80VgzFPlHJQ9rIhoGe+viGq5nj/rviRtpJK8nA5BJiScmtEwzkRaDrX6hN
+         tGmn4szqhAAIeFWNF6h3uAmnHQ3qvYW6i5Gn3qf5m3WR4M3Rt5XBMeUA/Dz6WPIamd9V
+         UxX+z53K3hndk90eVyBJoaEU8UhdHoRWGpVtmhdjY6WldJjd4WhX2hlrwCArMf6BoS5a
+         GdEhfY0mR/S0jxTh82QKl7HrvVsSLwwisn9mgCp2j9xuaVuey+Phy7H1QlKTenOyaF12
+         WIE7ooYj+EFkJxPBDu1OpspuBu3EzBUbthLQ460abCRYnjn89arK9lgdpRHuzEMhlPoC
+         Boqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778442601; x=1779047401;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dP3fG7GEDYkhdiRzY6vd4dPBz6B4/zruI0cK+ySaCJg=;
+        b=dTDf5X50Xp6TRuhr3BjxhoFrV377Pf9Kuz8rzjhTtqbfSBJU5zp40FwSkK8Txdulo2
+         5z9qbFKiXqELjHmsl2I8Emq1DKhPwNxHdWMd8uO08ao8YrEc0LajPOtN1bmQyO82hRiM
+         6IljlatpvcHaSWIQIDWE5AXiIqtvP3lD3TqDAdIMGxyMniBqV3tVu0zjYgTPk2ryY/1a
+         OY5KHuJ8StfoTTzYLfQzKE5AB2e3gxiavPE9RGdWenGEvRexA49/GZ8U6arn9lbnRGlb
+         J5yLX+AP9Yr1oHiLIecTxVSbayZJQJjozBzpiK+vpjmFvSdd4K1qaQHtHw5DWDomNXqI
+         8/MQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+k+yzWaSV3QNKQkK4Q5JLJSjpZvP30uyhCT27G6mG8BFJtAmQ+PUQ+vPloGHYUiD2I/kfjxFcB27H0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWPhHQboaRovw39ReNLphDdbQ+CgO0O9CryPvzeKOExb5Lw709
+	kaZVMKoTmxE3DKLc9cWjZDIgoclhDPmLgC0KdQPNBFQ/N/HoVwwJeLUA
+X-Gm-Gg: Acq92OGOsLvVRX16PaRinp+PKKfH+AQ3hbg8Bw4KmgjjiK2BNcn+dv4Kbiu2YsLZ8Uz
+	8xWsvrfO/6iLudjZbwhAaNXXmXYsGF5A0A04SIHzmmXPiBkKfx1nq37aY48kJu8KzXn8XGPlu/j
+	e0qgnmySV/pSmn52uc9XnriYBWs9SwaQRBpKepwToi2AzRmdSaQSxi2nqp+huAmvgPISpRzxZU5
+	zxulEsAvV8wziJ72LlQ7nWDlD5WHylzIeX3vaiJH/k8n2ez9j7Sg/k5QrhxkhUZi7N+iQ6IQ28H
+	ihZR1CsvTUawTzKv/7VB1EFzIeHgMJcUE0npdRTY2XYrvB/H1f0531YloQ7pbhOKbIPdRetCPk5
+	1pZ4oO7T9c+DB3Gy8GyJUfPBIS+cc6gDcvifr63x8aisVOP/FvhFOvjMjkGq1bN3AOaqW7FPuRH
+	HbV07FkBHIbEDAK5PLy5aPUuOfLwEvKHwPS7SpYVSYMjwhNzzrm8FK6xeYRoL2Ca4avBaSNPnXz
+	coC1kqANF7ggaUEgut5nVTubtnij8JgdAjK9h/alG9OAXi9HMdjIMZVT3UQ
+X-Received: by 2002:a17:903:1b10:b0:2b9:f55e:1c1b with SMTP id d9443c01a7336-2ba78f50707mr209647015ad.5.1778442600658;
+        Sun, 10 May 2026 12:50:00 -0700 (PDT)
+Received: from lord-daniel-VivoBook-ASUSLaptop-K3502ZA-S3502ZA.www.tendawifi.com ([14.139.108.62])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2baf1e358b2sm77065095ad.54.2026.05.10.12.49.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 May 2026 12:49:59 -0700 (PDT)
+From: Piyush Patle <piyushpatle228@gmail.com>
+To: ak@it-klinger.de,
+	jic23@kernel.org
+Cc: andriy.shevchenko@intel.com,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 00/11] iio: adc: hx711: add HX710B support
+Date: Mon, 11 May 2026 01:19:22 +0530
+Message-ID: <20260510194947.31997-1-piyushpatle228@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Linus Walleij <linusw@kernel.org>, linux-usb@vger.kernel.org, 
- Bartosz Golaszewski <brgl@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- CTCaer <ctcaer@gmail.com>, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Alexandre Hamamdjian <azkali.limited@gmail.com>
-In-Reply-To: <20260511-bm92t-v2-2-2145e4f4386b@gmail.com>
-References: <20260511-bm92t-v2-0-2145e4f4386b@gmail.com>
- <20260511-bm92t-v2-2-2145e4f4386b@gmail.com>
-Message-Id: <177844236182.3519904.11223844313176518441.robh@kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: usb: add Rohm BM92TXX Type-C
- controller
-X-Rspamd-Queue-Id: 57637506072
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: B83795060E4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295184-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-295185-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linux.intel.com,linuxfoundation.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[piyushpatle228@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.995];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
+Add support for the AVIA HX710B ADC, a HX711-compatible converter with
+the same GPIO interface but a different channel-selection model and a
+fixed gain of 128.
 
-On Mon, 11 May 2026 01:32:10 +0700, Alexandre Hamamdjian wrote:
-> Add the device-tree binding documentation for the Rohm BM92TXX family
-> of USB Type-C and Power Delivery controllers. The device is controlled
-> over I2C and signals state changes through a dedicated interrupt line.
-> 
-> Document the rohm,* properties consumed by the driver: the optional
-> VCONN-enable GPIO, the DisplayPort alternate-mode toggles
-> (rohm,dp-disable, rohm,dp-alerts-enable, rohm,dp-signal-toggle-on-resume,
-> rohm,dp-lanes), the suspend/dock tunables (rohm,led-static-on-suspend,
-> rohm,dock-power-limit-disable) and the four
-> rohm,pd-{5,9,12,15}v-current-limit-ma per-PDO charging current limits.
-> A graph port is required to link the controller to a USB role switch
-> consumer.
-> 
-> Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
-> ---
->  .../devicetree/bindings/usb/rohm,bm92t.yaml        | 128 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 129 insertions(+)
-> 
+Compared to v6, this series folds in the remaining review feedback:
 
-My bot found errors running 'make dt_binding_check' on your patch:
+- patch 02: drop the incorrect "No functional change" and the forward
+  reference to HX710B from the VSUP commit message (Krzysztof Kozlowski)
+- patch 03: drop the incorrect "No functional change" from the RATE GPIO
+  commit message (Krzysztof Kozlowski)
+- patch 05: remove trailing inner commas from the struct initializers
+  (Andy Shevchenko); do not carry the stray trailing-newline removal
+- patch 06: add Reviewed-by from Andy Shevchenko
+- patch 08: remove the extra blank lines added between the split
+  declarations and their first use in hx711_read() and hx711_reset()
+  (Andy Shevchenko, Jonathan Cameron)
+- patch 09: move HX711_DATA_BITS above the "gain to pulse and scale
+  conversion" comment so the constant is not semantically grouped with
+  the gain-to-pulse machinery (Andy Shevchenko)
+- patch 10: add a blank line before the bare return 0 at the end of
+  hx711_set_hx711_channel() (Jonathan Cameron)
+- patch 11: remove the explicit u32 pad member from the triggered-buffer
+  struct; aligned_s64 provides the necessary alignment on its own
+  (Jonathan Cameron); add a comment explaining why the layout change does
+  not break the existing HX711 ABI (Andy Shevchenko)
 
-yamllint warnings/errors:
+The DT binding and driver structure are unchanged from v6.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml: rohm,pd-5v-current-limit-ma: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml: rohm,pd-9v-current-limit-ma: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml: rohm,pd-12v-current-limit-ma: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml: rohm,pd-15v-current-limit-ma: missing type definition
+Tested on PocketBeagle2 with an HX710B breakout module. The device
+probed successfully, all three channels returned stable raw readings,
+and alternating reads confirmed channel switching between the
+differential input and the DVDD-AVDD supply monitor path.
 
-doc reference errors (make refcheckdocs):
+Build-tested with:
+- make -s W=1 drivers/iio/adc/hx711.o
+- make -s dt_binding_check \
+  DT_SCHEMA_FILES=Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+- pahole -C hx711_chip_info drivers/iio/adc/hx711.o
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260511-bm92t-v2-2-2145e4f4386b@gmail.com
+Note: patch 08 produces a checkpatch warning ("Missing a blank line after
+declarations") for the hx711_reset() change. This is intentional as both
+Andy Shevchenko and Jonathan Cameron explicitly requested the blank line
+be removed so the split declaration and its initializing assignment are
+treated as a unit.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Piyush Patle (11):
+  dt-bindings: iio: adc: hx711: clean up existing binding text
+  dt-bindings: iio: adc: hx711: add VSUP supply property
+  dt-bindings: iio: adc: hx711: add RATE GPIO property
+  dt-bindings: iio: adc: hx711: add HX710B support
+  iio: adc: hx711: move scale computation to per-device storage
+  iio: adc: hx711: introduce hx711_chip_info structure
+  iio: adc: hx711: pass trailing pulse count into hx711_read
+  iio: adc: hx711: split variable assignments in hx711_read and
+    hx711_reset
+  iio: adc: hx711: localize loop iterators in hx711_read
+  iio: adc: hx711: pass iio_chan_spec to hx711_reset_read
+  iio: adc: hx711: add support for HX710B
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+ .../bindings/iio/adc/avia-hx711.yaml          |  77 ++++-
+ drivers/iio/adc/Kconfig                       |   8 +-
+ drivers/iio/adc/hx711.c                       | 304 ++++++++++++++----
+ 3 files changed, 314 insertions(+), 75 deletions(-)
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.43.0
 
 
