@@ -1,226 +1,273 @@
-Return-Path: <devicetree+bounces-295082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6FPlJM9nAGq1IgEAu9opvQ
-	(envelope-from <devicetree+bounces-295082-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 13:11:11 +0200
+	id mPdODRVpAGrhIgEAu9opvQ
+	(envelope-from <devicetree+bounces-295083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 13:16:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5E9503C0D
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 13:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 944D5503C54
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 13:16:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A864C3031AE3
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 11:08:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C380C300A3A4
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 11:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A3C37FF72;
-	Sun, 10 May 2026 11:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEBF3806C9;
+	Sun, 10 May 2026 11:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nQGubsfo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDoZE4Di"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4A937F013
-	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 11:08:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586E535F603;
+	Sun, 10 May 2026 11:16:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778411323; cv=none; b=H4VDQn5ymzRjnuX+Wg3FOry5SuKej2HgWxPMTiiVXPpr7ObDI7s5NQghVdEOrFOGCUPO0ZOwNigECAKBEJbaGvTVvv1ZTFww/AghDRntD3xpcXCPRqZtktmmgM67SljXjY2MaJtHEbML87qq9t4po7xZP/4yVdto09dAjlRDI5g=
+	t=1778411788; cv=none; b=CQV56Qle3t6p8uPNahVp6QmrqP0mCkoPFn1ZRcwcyWSY7z7UoAOlf0lP/Cb7M/JjuS0Tcb2rYb6b0LQnfp3EKb+RRmdMM5Qr6Kw5FwR8kvgbAxsvRbPlBwmyfQ22SVuFbv7OCST+p/+Qvt6XIRhvvpAW0AC2pzNl/N/TQfY7y+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778411323; c=relaxed/simple;
-	bh=VWNSeXLpRAe/celgCxjIoqvqXwbqAv0wT7y/dppOsEI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Fg4fJwjZ04o7Th9Vcug3tZxqaIOcIegO48204MPW51upUEF0GBM0njkFBzBjXmy+Yds0dtl/Nus8Mpa9fvfC6KM9JM5M3V+5CTIpouGgxdhd89TVYBGGIu1O/YXu7sYxWr42OO6zifmOZLaUL+DNI+vT05oid9rslTQoLLp6OrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nQGubsfo; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-67c566cb519so6341784a12.3
-        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 04:08:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778411319; x=1779016119; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t1KCdtbuRFFxdaXY/A3Jna+lCae9dBlkmFTwEdkEb4o=;
-        b=nQGubsfou3ClYBu3/P4QGarS7yV8KMiiaMc8doQVWYXnu6BKfXgv+VYb3IEgUMXxTQ
-         20JcD18wb1Ay2TUg/L3glAKx1wBH+reWA6tFgRELgYKP+FSZTUWrVdMJ+mp1xotEF+EC
-         zF/E8/xZJidEv1azSL+rp9GZijFV3rc9CH3kQg2Z63Qyfmo8xDchakDgL1qONWe1RoQQ
-         tAPfKqxOdp+dLFSSR8KKZ7x5GNu1ulTHp3qN4R6exZTtgVElhWbNqVHNFFCRG7OBx+jM
-         O953MUg9iWU8NRsJ6aEm219F3o05vW3E1/IQlR+WfWymIlCrFaWplSvBxwEODi8RtQkj
-         mlmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778411319; x=1779016119;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=t1KCdtbuRFFxdaXY/A3Jna+lCae9dBlkmFTwEdkEb4o=;
-        b=LGkT+ECSJyzPZ5n3Aus6rnyBLGrCYbkCgabaJpZjbWA1CdbLRciucSvA4r1i3lxPbX
-         rpwSRreHVr88tSUY6xQYH/zFz6UIjxeXW+Nh2+v7gFqyRuCWk/142rgJ9nVY6yrrzXby
-         VCnlzAHNG4MzsFAc0gOt7rVsucKylVD9PqeJNjZu6svi3TMooY+q3lqd9ArsWq8rdzIL
-         4r6w/PBKsoGgALAM69wn7ujItm8O7B62CSPOhF6tdijCoVlIsZWgPgOxNbMv3DLd/0zL
-         XYGA34LWS5qRNPz2NVc1zkH5Bok42jZI1e0vWGTr2MQOtbkI9gM7eoN51TfeaO5PiSL0
-         Qkiw==
-X-Forwarded-Encrypted: i=1; AFNElJ/6DPFjpTLYK/5tPKETmq35SqMzpafnVUrz+k/fcfAV64tjkMdA8HwHFjSJeS4K5zGx+fcxv/LZhvhj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPym3anS9jiCD8/vzderdAOy54fQMoRl1zIvpZPamIycdxifbq
-	7WnV6HoQzhmvr64wtpfjH6t8f4oQJsg4Oc3209FPU69Yjv4XIwgUaNmM
-X-Gm-Gg: Acq92OEN4YZSJIz2gqy8S1bdKoK/V/s6cIeQZaWrBo2tK6hFFcYZ820YBH3JMQ1/les
-	I1zM/ey1zapR7YVrO3lYM3Cn1jvFUfEPyFMNg9FMgdO0CvclfJEs7haYuBgWykW54nnTU3TAkZA
-	qYgzyKaSj9gPu42ZjWEtNZkYxwyv8dREKiB3i/P+28n0IuyuB+WrsJqNndc9bgrDSK4rjgZSuW4
-	Wg6S1xyWljSqzoU7KsRgMQJ0Dj2N6mzr++pBIxpDM5x/p5qCWMOYgeisnuCReYkrlmgihgtThdZ
-	uc0TtkOmEFsoz669wvJGtu/3m3zFFkhl940BuYLtXeZRABdViUZA9Zx9rKZ4ntRyIuO9sVbUPpo
-	9sDJiZjo0FKVNn2Z9EACH9Wfrj/lxHFA/Glp3hzJgfHbg6CSLt9TKokSBkD8fdPLUOpA6gSCI5L
-	4RKKnoeXYe6MRT
-X-Received: by 2002:a17:907:868a:b0:bcb:ea69:39c8 with SMTP id a640c23a62f3a-bcbea694c4fmr319764566b.38.1778411319038;
-        Sun, 10 May 2026 04:08:39 -0700 (PDT)
-Received: from xeon ([188.163.112.56])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bce7a3fcb57sm68146866b.60.2026.05.10.04.08.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 May 2026 04:08:37 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: [PATCH v5 6/6] mfd: motorola-cpcap: add support for Mot CPCAP composition
-Date: Sun, 10 May 2026 14:08:04 +0300
-Message-ID: <20260510110804.33045-7-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260510110804.33045-1-clamor95@gmail.com>
-References: <20260510110804.33045-1-clamor95@gmail.com>
+	s=arc-20240116; t=1778411788; c=relaxed/simple;
+	bh=9vz4zc7pY6UY1MsTOwhSxueX2US2lDqZldy5EGxrbH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gZvElsdGTLvV+iSLAu47SeryARTAq02St4kKyZ24OqlDajs8zTUGDKW80A5pVsIgo7VPHWwqCHXhtmCHjW1tUVL++T4eFumYLRvlWGagDKYWIxu4AmGcNFlPOFipFXVMQGv/PncpcwAhjwSKO9V6TtJ3kZ8mmA6RF8mK67Kzhik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDoZE4Di; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18A35C2BCB8;
+	Sun, 10 May 2026 11:16:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778411787;
+	bh=9vz4zc7pY6UY1MsTOwhSxueX2US2lDqZldy5EGxrbH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VDoZE4DiD44EAw/ihWix6qu3McB0RO9xjzXUaWBgaWDKqKtVBTE/N5hCkBuDlaxkr
+	 aU+rlHznWcjdIcRG1C+9ekFLUq1pa+Ld2kyA2KqGh3h4pjHdFnscqrZm6cN7W7AM4q
+	 NTbJ0hZoGdAOsUzcGQjOMoKSGuPUDdSgjinPEiymKQKCsOyUlL41plDVjIh9O8bUzu
+	 bpYrftwkoHldL/48K3p/2ZfG4cSncgf1lnKK6S2HilUBBwTgkubzvGiE1WTpuVM3aZ
+	 7lyh0MTCYB+uETvO7XKkm6WZVlz4k7oZZOi/UbGxt9Vsw2g4hWOROu7AxuMXeA7CD5
+	 tjgyyHzu3LFDA==
+Date: Sun, 10 May 2026 16:46:23 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-phy@lists.infradead.org, naseefkm@gmail.com,
+	neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] phy: econet: Add PCIe PHY driver for EcoNet
+ EN751221 and EN7528 SoCs.
+Message-ID: <agBpBxofP00bAt7V@vaman>
+References: <20260404184918.2184070-1-cjd@cjdns.fr>
+ <20260404184918.2184070-3-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 3F5E9503C0D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260404184918.2184070-3-cjd@cjdns.fr>
+X-Rspamd-Queue-Id: 944D5503C54
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-295082-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295083-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,baylibre.com,atomide.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,gmail.com,linaro.org,kernel.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.985];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,cjdns.fr:email,tyhicks.com:email,sashiko.dev:url]
 X-Rspamd-Action: no action
 
-Add a MFD subdevice composition used in Tegra20 based Mot board
-(Motorola Atrix 4G and Droid X2).
+On 04-04-26, 18:49, Caleb James DeLisle wrote:
+> Introduce support for EcoNet PCIe PHY controllers found in EN751221
+> and EN7528 SoCs, these SoCs are not identical but are similar, each
+> having one Gen1 port, and one Gen1/Gen2 port.
+> 
+> Co-developed-by: Ahmed Naseef <naseefkm@gmail.com>
+> Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
+> [cjd@cjdns.fr: add EN751221 support and refactor for clarity]
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> ---
+>  MAINTAINERS                   |   1 +
+>  drivers/phy/Kconfig           |  12 +++
+>  drivers/phy/Makefile          |   1 +
+>  drivers/phy/phy-econet-pcie.c | 180 ++++++++++++++++++++++++++++++++++
+>  4 files changed, 194 insertions(+)
+>  create mode 100644 drivers/phy/phy-econet-pcie.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1b016212e4cb..b2d37c7c80af 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9177,6 +9177,7 @@ M:	Caleb James DeLisle <cjd@cjdns.fr>
+>  L:	linux-mips@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/phy/econet,en751221-pcie-phy.yaml
+> +F:	drivers/phy/phy-econet-pcie.c
+>  
+>  ECRYPT FILE SYSTEM
+>  M:	Tyler Hicks <code@tyhicks.com>
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index 227b9a4c612e..9aad68829d72 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -66,6 +66,18 @@ config PHY_CAN_TRANSCEIVER
+>  	  functional modes using gpios and sets the attribute max link
+>  	  rate, for CAN drivers.
+>  
+> +config PHY_ECONET_PCIE
+> +	tristate "EcoNet PCIe-PHY Driver"
+> +	depends on ECONET || COMPILE_TEST
+> +	depends on OF
+> +	select GENERIC_PHY
+> +	select REGMAP_MMIO
+> +	help
+> +	  Say Y here to add support for EcoNet PCIe PHY driver.
+> +	  This driver create the basic PHY instance and provides initialize
+> +	  callback for PCIe GEN1 and GEN2 ports. This PHY is found on
+> +	  EcoNet SoCs including EN751221 and EN7528.
+> +
+>  config PHY_GOOGLE_USB
+>  	tristate "Google Tensor SoC USB PHY driver"
+>  	select GENERIC_PHY
+> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
+> index f49d83f00a3d..42959ed383fd 100644
+> --- a/drivers/phy/Makefile
+> +++ b/drivers/phy/Makefile
+> @@ -9,6 +9,7 @@ obj-$(CONFIG_GENERIC_PHY)		+= phy-core.o
+>  obj-$(CONFIG_GENERIC_PHY_MIPI_DPHY)	+= phy-core-mipi-dphy.o
+>  obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
+>  obj-$(CONFIG_PHY_CAN_TRANSCEIVER)	+= phy-can-transceiver.o
+> +obj-$(CONFIG_PHY_ECONET_PCIE)		+= phy-econet-pcie.o
+>  obj-$(CONFIG_PHY_GOOGLE_USB)		+= phy-google-usb.o
+>  obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
+>  obj-$(CONFIG_PHY_LPC18XX_USB_OTG)	+= phy-lpc18xx-usb-otg.o
+> diff --git a/drivers/phy/phy-econet-pcie.c b/drivers/phy/phy-econet-pcie.c
+> new file mode 100644
+> index 000000000000..d2c6e0c1f331
+> --- /dev/null
+> +++ b/drivers/phy/phy-econet-pcie.c
+> @@ -0,0 +1,180 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: Caleb James DeLisle <cjd@cjdns.fr>
+> + *	   Ahmed Naseef <naseefkm@gmail.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +/* Rx detection timing for EN751221: 16*8 clock cycles  */
+> +#define EN751221_RXDET_VAL		16
+> +
+> +/* Rx detection timing when in power mode 3 */
+> +#define EN75_RXDET_P3_REG		0xa28
+> +#define EN75_RXDET_P3_MASK		GENMASK(17, 9)
+> +
+> +/* Rx detection timing when in power mode 2 */
+> +#define EN75_RXDET_P2_REG		0xa2c
+> +#define EN75_RXDET_P2_MASK		GENMASK(8, 0)
+> +
+> +/* Rx impedance */
+> +#define EN75_RX_IMPEDANCE_REG		0xb2c
+> +#define EN75_RX_IMPEDANCE_MASK		GENMASK(13, 12)
+> +enum en75_rx_impedance {
+> +	EN75_RX_IMPEDANCE_100_OHM	= 0,
+> +	EN75_RX_IMPEDANCE_95_OHM	= 1,
+> +	EN75_RX_IMPEDANCE_90_OHM	= 2,
+> +};
+> +
+> +/* PLL Invert clock */
+> +#define EN75_PLL_PH_INV_REG		0x4a0
+> +#define EN75_PLL_PH_INV_MASK		BIT(5)
+> +
+> +struct en75_phy_op {
+> +	u32 reg;
+> +	u32 mask;
+> +	u32 val;
+> +};
+> +
+> +struct en7528_pcie_phy {
+> +	struct regmap *regmap;
+> +	const struct en75_phy_op *data;
+> +};
+> +
+> +/* Port 0 PHY: set LCDDS_CLK_PH_INV for PLL operation */
+> +static const struct en75_phy_op en7528_phy_gen1[] = {
+> +	{
+> +		.reg = EN75_PLL_PH_INV_REG,
+> +		.mask = EN75_PLL_PH_INV_MASK,
+> +		.val = 1,
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +
+> +/* EN7528 Port 1 PHY: Rx impedance tuning, target R -5 Ohm */
+> +static const struct en75_phy_op en7528_phy_gen2[] = {
+> +	{
+> +		.reg = EN75_RX_IMPEDANCE_REG,
+> +		.mask = EN75_RX_IMPEDANCE_MASK,
+> +		.val = EN75_RX_IMPEDANCE_95_OHM,
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +
+> +/* EN751221 Port 1 PHY, set RX detect to 16*8 clock cycles */
+> +static const struct en75_phy_op en751221_phy_gen2[] = {
+> +	{
+> +		.reg = EN75_RXDET_P3_REG,
+> +		.mask = EN75_RXDET_P3_MASK,
+> +		.val = EN751221_RXDET_VAL,
+> +	},
+> +	{
+> +		.reg = EN75_RXDET_P2_REG,
+> +		.mask = EN75_RXDET_P2_MASK,
+> +		.val = EN751221_RXDET_VAL,
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static int en75_pcie_phy_init(struct phy *phy)
+> +{
+> +	struct en7528_pcie_phy *ephy = phy_get_drvdata(phy);
+> +	const struct en75_phy_op *data = ephy->data;
+> +	int i, ret;
+> +	u32 val;
+> +
+> +	for (i = 0; data[i].mask || data[i].val; i++) {
+> +		if (i)
+> +			usleep_range(1000, 2000);
+> +
+> +		val = field_prep(data[i].mask, data[i].val);
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/mfd/motorola-cpcap.c       | 30 ++++++++++++++++++++++++++++++
- include/linux/mfd/motorola-cpcap.h |  1 +
- 2 files changed, 31 insertions(+)
+Please see:
 
-diff --git a/drivers/mfd/motorola-cpcap.c b/drivers/mfd/motorola-cpcap.c
-index f5a7fdd89dd5..bd9fb0d61ba6 100644
---- a/drivers/mfd/motorola-cpcap.c
-+++ b/drivers/mfd/motorola-cpcap.c
-@@ -270,6 +270,28 @@ static const struct mfd_cell cpcap_mapphone_mfd_devices[] = {
- 	MFD_CELL_NAME("cpcap-codec"),
- };
- 
-+/*
-+ * The Mot board features a USB-PHY and charger similar to the ones in
-+ * Mapphone; however, because Mot is based on Tegra20, it is incompatible
-+ * with the existing implementation, which is tightly interconnected with
-+ * the OMAP USB PHY.
-+ */
-+static const struct mfd_cell cpcap_mot_mfd_devices[] = {
-+	MFD_CELL_OF("cpcap_adc", NULL, NULL, 0, 0, "motorola,mot-cpcap-adc"),
-+	MFD_CELL_OF("cpcap_battery", NULL, NULL, 0, 0,
-+		    "motorola,cpcap-battery"),
-+	MFD_CELL_OF("cpcap-regulator", NULL, NULL, 0, 0,
-+		    "motorola,mot-cpcap-regulator"),
-+	MFD_CELL_OF("cpcap-rtc", NULL, NULL, 0, 0, "motorola,cpcap-rtc"),
-+	MFD_CELL_OF("cpcap-pwrbutton", NULL, NULL, 0, 0,
-+		    "motorola,cpcap-pwrbutton"),
-+	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 0, "motorola,cpcap-led-red"),
-+	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 1, "motorola,cpcap-led-green"),
-+	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 2, "motorola,cpcap-led-blue"),
-+	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 3, "motorola,cpcap-led-adl"),
-+	MFD_CELL_NAME("cpcap-codec"),
-+};
-+
- static int cpcap_probe(struct spi_device *spi)
- {
- 	struct cpcap_ddata *cpcap;
-@@ -294,6 +316,10 @@ static int cpcap_probe(struct spi_device *spi)
- 		cells = cpcap_mapphone_mfd_devices;
- 		num_cells = ARRAY_SIZE(cpcap_mapphone_mfd_devices);
- 		break;
-+	case CPCAP_MOT:
-+		cells = cpcap_mot_mfd_devices;
-+		num_cells = ARRAY_SIZE(cpcap_mot_mfd_devices);
-+		break;
- 	default:
- 		return dev_err_probe(&spi->dev, -EINVAL,
- 				     "Unknown device %d\n", cpcap->variant);
-@@ -343,6 +369,9 @@ static const struct of_device_id cpcap_of_match[] = {
- 	}, {
- 		.compatible = "motorola,mapphone-cpcap",
- 		.data = (void *)CPCAP_MAPPHONE
-+	}, {
-+		.compatible = "motorola,mot-cpcap",
-+		.data = (void *)CPCAP_MOT
- 	},
- 	{ /* sentinel */ }
- };
-@@ -351,6 +380,7 @@ MODULE_DEVICE_TABLE(of, cpcap_of_match);
- static const struct spi_device_id cpcap_spi_ids[] = {
- 	{ "cpcap", CPCAP_DEFAULT },
- 	{ "mapphone-cpcap", CPCAP_MAPPHONE },
-+	{ "mot-cpcap", CPCAP_MOT },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(spi, cpcap_spi_ids);
-diff --git a/include/linux/mfd/motorola-cpcap.h b/include/linux/mfd/motorola-cpcap.h
-index 1a85b06272c8..bb23363eeccd 100644
---- a/include/linux/mfd/motorola-cpcap.h
-+++ b/include/linux/mfd/motorola-cpcap.h
-@@ -28,6 +28,7 @@
- enum cpcap_variant {
- 	CPCAP_DEFAULT = 1,
- 	CPCAP_MAPPHONE,
-+	CPCAP_MOT,
- 	CPCAP_MAX
- };
- 
+https://sashiko.dev/#/patchset/20260425173642.406089-1-cjd%40cjdns.fr
+
 -- 
-2.51.0
-
+~Vinod
 
