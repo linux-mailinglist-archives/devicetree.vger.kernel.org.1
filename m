@@ -1,181 +1,151 @@
-Return-Path: <devicetree+bounces-295138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295141-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFK6GG2kAGqTLAEAu9opvQ
-	(envelope-from <devicetree+bounces-295138-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 17:29:49 +0200
+	id cTiEIPCsAGpJLgEAu9opvQ
+	(envelope-from <devicetree+bounces-295141-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:06:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0B6504D73
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 17:29:48 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A564504F9F
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:06:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 805803009CEE
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 15:29:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E9E903001FB0
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 16:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7816F39FCC8;
-	Sun, 10 May 2026 15:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772E43ACEE2;
+	Sun, 10 May 2026 16:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pepBsWGr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DG8I9DV2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B50239EF22
-	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 15:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7BD3ACA6A;
+	Sun, 10 May 2026 16:06:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778426983; cv=none; b=SuoR9aaGTzQcAisimNMu1/F0Q2/9wj3GujRI2hFOeBTKP7TK/kx2rb6d1ge9Fr2yb+EJpjbXreuxjwjkMGkBcK6YO2HIOzJCL269JYkSw8ozgF596NiRhs3rnPp2l1cvxohiL4HrHLD93vxX/dLUXDrU3UykFbavXZ0YZZQRNMw=
+	t=1778429161; cv=none; b=pTGYq/F2fVTfet3oISDS1sNDl8aWUcJQb2mnqu7wjV1lIu90GSDGTfRdRIc4//wGSRLyq9QFTB4BnpxggNcorx7IwTZ50i80njxYTnvJQlPn7qd/zSxydHJvJF/CHH0qLhtEzzji/9iC7KOVWGaAq94WSMAQjIMYmYyig2FiC04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778426983; c=relaxed/simple;
-	bh=VGhBlR4i0yiBkTCF4XD51IEzNUwKDosxwd/fQ1UG4tU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F6pRjmxQV8z0r0vQki57GCt+2LomJUNR4DhH3wtbcGClAXBAtAUizaT43SCK4CfoFQNIzNd1y0wPq0nmm1H5YgZzhnX4QxBLhhahhGbkkGntxbsQe3yph8RejmJskcfVaapyXsYhXS4KparEmMmPBgvFXWs12s5OcGMEgCn/P70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pepBsWGr; arc=none smtp.client-ip=74.125.82.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-2c15849aa2cso4271949eec.0
-        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 08:29:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778426981; x=1779031781; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qigH8lxO+eZS/TR71vYkcB8nPKNDMGG4EcHQASbQAqg=;
-        b=pepBsWGrmAbVKZYsiVfg7DKy0Urzj0tyNGEP339/vLv/GqYzRTbZjOxlilxdsAvVbt
-         yIulLNIPlBjBia5gPiUCu9Z+afINU4irsdhjZ2LeBlF3lP02+v74iMg0Rk7DFWd4Om17
-         e+/Fzw6mNP0KBmeF1B4Hl2HsIXBieVbnEAEEj3cCUsAueWdhEQR6NtnjVW27O53Nu7ha
-         nRRFmiH0+l3X3Ay5yaeH+7DMG6bLMgoXDIgaauUkCgJAXr/ZD/dPDsBT3SixngvgiqfW
-         sATdsJQPTf5LcRL4oU5LPihftzRv/AjqvScXfjH0KjD91G5ftojUa2P3mibWMVA7B7IL
-         98kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778426981; x=1779031781;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qigH8lxO+eZS/TR71vYkcB8nPKNDMGG4EcHQASbQAqg=;
-        b=YWP6EE48SpNHOd1tdhmn4/w74Ldn8ZXNzvPYWX7dsDsyRpKDlUUYatQSjcMjlAb8Yd
-         ttk+qQRiRgsdqdAtiCi75+Nt5OtLRTDRG92j/aHALMvRA32854KZ/gkU3px+WF6SjwJY
-         UPgsNcq6p9tZVjxEBrmweUkdnY1lx1jNWIN9jbYNx/XQex3JsBu+91q25qjnrqaF+5Pt
-         GfvoglIp/oDcV0kK5cRwDofshHZod2tzQ1eYtWPut3VDLCvs4wBgJbd+Gfr+mvzCc7bB
-         q8N2qLsen2yHHSVwON0gPGuZ05+BqwQpG2L2DucVSqNUiBj/tDJ0MRQXVsQQOrXahXpw
-         PPwA==
-X-Forwarded-Encrypted: i=1; AFNElJ8+GroH3nOYfgwGAsexgfPFRkY8WorULIXHX2Ws6I59l/RpMETP5PTTOSRMi3sB39q9vncO5ouTnQvH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+fWn5nYN4+dKMm0dcnIpiNbhlpb2lKLThD/oFj8k3AnBjwH+G
-	YhV57OCYJi16ntst4eYhmuowaNFo29+laiWOA7pyPokceUXlhpPXn2Ro
-X-Gm-Gg: Acq92OFJcfQZ7UJ24PhsSArBWibE37NSk+4F4HvgmVquMPVAFLX1JanOvBP1UHDKsEK
-	3aoQUNuHNbsrPZpIVAMCum0tchVyX/KEtelpuBeM4oPVmwD2CBVJ227cKQOTcW1lpU3hPKfhmxl
-	qSzgPTIiZ7mekxHcXwphgWI2hLjS/fCoh7eyCP6q+VNv4hIlCo9FOn9p1jVhOiXvLgi933SoAdI
-	Wd62PjPhMKNou5YAS2E64wPxXm6Xty8S9/huuXnNs28XE9Sn1peZDfdjHhLzK9oQrhcG15ddCl4
-	Sp4dzpYs8VDXB2WBRS8j9AxyvIayw3NtHXp7/1aieO5uhH487Or8Pp/HWQD6tbEFPp8B/VC6WqK
-	XJOY9Y4tBv64ynC9bdoFojeNGWexobidw9DguaB4G+1L02k36TwTLIdzgNYH+kuCdu92fjucGjz
-	+4oKEC09/GVvHTzinzSaU1Xkv/VP/tkc6zGF9cUHzW3NaVQ/Y=
-X-Received: by 2002:a05:693c:300b:b0:2ea:5057:a2f9 with SMTP id 5a478bee46e88-2f549f7c2aamr9650588eec.16.1778426981133;
-        Sun, 10 May 2026 08:29:41 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2f91004b6a2sm8525864eec.0.2026.05.10.08.29.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 May 2026 08:29:40 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sun, 10 May 2026 08:29:39 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Janne Grunau <j@jannau.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Sasha Finkelstein <k@chaosmail.tech>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-watchdog@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Joshua Peisach <jpeisach@ubuntu.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: watchdog: apple,wdt: Add t8122
- compatible
-Message-ID: <85ea46a7-1136-4ea0-9eec-7dfa465df20b@roeck-us.net>
-References: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
- <20260507-apple-m3-initial-devicetrees-v3-2-ca07c81b5dc7@jannau.net>
+	s=arc-20240116; t=1778429161; c=relaxed/simple;
+	bh=zWM0yjWhrBGeyNEsiYlhIjWmf8MR0q9DFMYfprO6DpQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lt6ewYcVSuWDL816Akf2WJ0LgERZfbmVYWFLPGW3AmOSDGCrb4sjbk94hzibjezztKS0xnJN65yQhpqNswz9RyiEvsGxaNTyFhP9ZLxQoIsIen5bvjk0BQL6G0YCgkmT7QDQXiSifRlTjL0ywLaIpV2B9Yk5L6wZFNFB//najHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DG8I9DV2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DE9F0C2BCFA;
+	Sun, 10 May 2026 16:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778429160;
+	bh=zWM0yjWhrBGeyNEsiYlhIjWmf8MR0q9DFMYfprO6DpQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DG8I9DV2QdCtrpKsYOtl51qqd+m5rjCh12nh6LXvS5HRu/KCqWIJJPUSK1F6e+yMJ
+	 0F1JYD1beooKWmOr+eqGNZqVJXmka536TCtVtkvCNaIUg7IsOVtAtrviMb/35J6Tff
+	 ay/MjV2l2et62wFm5xuUyPVV5/ebeAF5azBJorIpf2SH2F765lmTYrS2AKtnK8GsvL
+	 1J2ci1pO3ju1OUEEj24CpASjumYMuO7T1H1hcUwqlN4M5hYgZzFoeI1jYONWNw5KCM
+	 VlhycbYqfQywi/TZsCGqZQM76p+yjeb/haywdN4zcpq1PxHJF2kgys6e5dc9oiqQj5
+	 9DcJB4Kv+2uVw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6300CD37B2;
+	Sun, 10 May 2026 16:06:00 +0000 (UTC)
+From: Alexandre Hamamdjian via B4 Relay <devnull+azkali.limited.gmail.com@kernel.org>
+Subject: [PATCH 0/2] arm64: qcom: add Ayaneo Pocket DS gaming console
+Date: Sun, 10 May 2026 23:05:55 +0700
+Message-Id: <20260510-pocketds-v1-0-cf05acec06af@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260507-apple-m3-initial-devicetrees-v3-2-ca07c81b5dc7@jannau.net>
-X-Rspamd-Queue-Id: BD0B6504D73
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QpAQBSE4VfRuba1CK1XkQvW4FBoD1Ly7haXX
+ /0zFwkcQ6gILnI4WHiZPaIwIDvUcw/FrTfFOs50Gmm1LnbC1oqCRt4YY7skM+Tz1aHj87sqq9+
+ yNyPs9u7pvh9tj0WwbAAAAA==
+X-Change-ID: 20260510-pocketds-e0e7b99cf369
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexandre Hamamdjian <azkali.limited@gmail.com>, 
+ Teguh Sobirin <teguh@sobir.in>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778429157; l=1248;
+ i=azkali.limited@gmail.com; s=20260510; h=from:subject:message-id;
+ bh=zWM0yjWhrBGeyNEsiYlhIjWmf8MR0q9DFMYfprO6DpQ=;
+ b=pAr7WUGqunWuaodzubJ4K97YlUN6/wr7s/x78Tdh18R7mtAjc6EJbe0vIoF7nnuqe6MooiF2E
+ JqqvhAk/kNeCDO+uA+uhpbJLwpl1cPbuiMJhevB43lJ2z35qlK4gVui
+X-Developer-Key: i=azkali.limited@gmail.com; a=ed25519;
+ pk=I0Z0IdCdQJqNGX+FQUnXhrHg950u3cM6Xzz3YT6JOyQ=
+X-Endpoint-Received: by B4 Relay for azkali.limited@gmail.com/20260510 with
+ auth_id=774
+X-Original-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
+Reply-To: azkali.limited@gmail.com
+X-Rspamd-Queue-Id: 7A564504F9F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295138-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
+	TAGGED_FROM(0.00)[bounces-295141-lists,devicetree=lfdr.de,azkali.limited.gmail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,sobir.in];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[azkali.limited@gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ubuntu.com:email,roeck-us.net:mid]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Thu, May 07, 2026 at 09:33:08AM +0200, Janne Grunau wrote:
-> The watchdog on the Apple silicon t8122 (M3) SoC is compatible with the
-> existing driver. Add "apple,t8122-wdt" as SoC specific compatible under
-> "apple,t8103-wdt" used by the driver.
+This series adds initial support for the Ayaneo Pocket DS, a handheld
+gaming console built around the Qualcomm QCS8550 SoC.
 
-'"apple,t8103-wdt" used by the driver' is not true. The watchdog driver
-only supports "apple,wdt".
+This introduces the device tree itself, split into:
+- qcs8550-ayaneo-pocket-common.dtsi: shared QCS8550 board base
+  intended to be reused by future siblings in the same family.
+- qcs8550-ayaneo-pocketds.dts: This device's DTS
 
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Joshua Peisach <jpeisach@ubuntu.com>
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
->  Documentation/devicetree/bindings/watchdog/apple,wdt.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
-> index 05602678c070..845b5e8b5abc 100644
-> --- a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
-> @@ -16,7 +16,9 @@ properties:
->    compatible:
->      oneOf:
->        - items:
-> -          - const: apple,t6020-wdt
-> +          - enum:
-> +              - apple,t6020-wdt
-> +              - apple,t8122-wdt
->            - const: apple,t8103-wdt
->        - items:
->            - enum:
+Only the basics are wired up at this stage (boot to console, core
+peripherals enabled in the common dtsi); additional functionality
+will follow in later submissions.
 
-I second Sashiko's findings that the driver will fail to bind because it
-only supports "apple,wdt". I would not mind and apply the patch anyway,
-but the statement in the description is just plain wrong and thus
-misleading. Please fix.
+Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
+---
+Teguh Sobirin (2):
+      dt-bindings: arm: qcom: document the Ayaneo Pocket DS
+      arm64: dts: qcom: add basic devicetree for Ayaneo Pocket DS gaming console
 
-Thanks,
-Guenter
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    6 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../dts/qcom/qcs8550-ayaneo-pocket-common.dtsi     | 1596 ++++++++++++++++++++
+ .../boot/dts/qcom/qcs8550-ayaneo-pocketds.dts      |  170 +++
+ 4 files changed, 1773 insertions(+)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260510-pocketds-e0e7b99cf369
+
+Best regards,
+--  
+Alexandre Hamamdjian <azkali.limited@gmail.com>
+
+
 
