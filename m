@@ -1,154 +1,133 @@
-Return-Path: <devicetree+bounces-295088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iSEAH3x6AGqbJQEAu9opvQ
-	(envelope-from <devicetree+bounces-295088-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 14:30:52 +0200
+	id uOTXJp96AGqbJQEAu9opvQ
+	(envelope-from <devicetree+bounces-295089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 14:31:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD9E503E55
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 14:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 146A0503E6B
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 14:31:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 89D3830088B6
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:30:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 951053008516
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B103806C7;
-	Sun, 10 May 2026 12:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B423815E3;
+	Sun, 10 May 2026 12:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A+mug5RP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MnZsboA0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49776DDCD;
-	Sun, 10 May 2026 12:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36DB9DDCD;
+	Sun, 10 May 2026 12:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778416249; cv=none; b=c/rOk7JTf8ZmKEX/WRvGdPnBI3AJ5c8yp7cRBumyZgXctfmFC7bddrtTZlDuUzI96haacAT08QksCCYIcI6qca7nDpm2RQV8iSgg6pUbodmgQ+C/IQKKBbAj91hk9150LbdFcRleVVugoqHp4X7lKUH+aBKEP1BQ4/xqKR0Oj9g=
+	t=1778416283; cv=none; b=UfLzCqjLLwfHXsciP0yTGxpniurOkyoK/UZ2Gf+vyhCd0YeLtm+4tR1+rv1Yh1f3QrDk8wqzDu4kul+SnBJ1aZ0jijYW/kEbX2AtrVsvrV2fOQ0hJAr8/qye13DZu6NPTSbczwOcaspBXKMRiDY3aYcv2LZxgx7V548DpEFZlJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778416249; c=relaxed/simple;
-	bh=bS8CsNCfeO9lmLqY8ZDyezLOZxaysM6e72tDqpzG8+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XBxEVv2UkhG1JvX7TrwaLvF+lelP6+VQMNBY3EWJaOmCc+IIU9FrIYLeApJCwX8t0b5rwz46y/epYyke9tFwMDX4voeYdL9SmZfOXAgGVNEjpofkwP1FFOE9LNKhotcgZCfpkym/pZ37ZrQ05l/a7advl/3B5LiHvUoJ6FhHIAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A+mug5RP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40F24C2BCB8;
-	Sun, 10 May 2026 12:30:48 +0000 (UTC)
+	s=arc-20240116; t=1778416283; c=relaxed/simple;
+	bh=3JqIN/a5xnDrsf7uQ/t04AQRZOGabyoAFAk9x9agD58=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TEfAsLuJcETScE+cHsE2ROt0F42hXh506YYz6fhCvJLid56l9ysyF3Mnew1x8wwCMzJ5VFpOnBuOqBFBhxuufDUD/VVNDDdVhLUDG7fZLYSKtwaR8m+GuyjHr3sXkxIz9LJPq/sCMxZ8lfGCsuNtXuYHCu4Lc3vHJM3RBkZC16s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MnZsboA0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51955C2BCB8;
+	Sun, 10 May 2026 12:31:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778416248;
-	bh=bS8CsNCfeO9lmLqY8ZDyezLOZxaysM6e72tDqpzG8+k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A+mug5RPrwHvFuPbGkPZ9c3goZKJ/GFedUTjYpAfzhxNs5LwDmdLRDvMHhBuwCc94
-	 OOUWmZvxDk8fQpDT+0iPUSyC6g2yz0VbOYPGoiauHfUDdUMIZg297NOx3MXV3dZI1c
-	 Z5uJeccVDqHeaH8Xbv0RYxm6C9Qvz1989Em/fT22zLLf9TEdcSLKxbuPJlyYhr+dgk
-	 dEHSFtoa0/If4rCjO/7li1fp75a6usnbVGsqdSFX01Miv2u66RpsdKSdzRANUrHlX8
-	 BeOXIsRlfhEH6is7zO/awDr7vn2r3n4D4gCcZ72uISRTeFCwscoxGa0+HxRK4uqXJF
-	 sCoeT/aCRJ/tA==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id A1D681AC5898; Sun, 10 May 2026 13:30:43 +0100 (BST)
-Date: Sun, 10 May 2026 21:30:43 +0900
-From: Mark Brown <broonie@kernel.org>
-To: phucduc.bui@gmail.com
-Cc: kuninori.morimoto.gx@renesas.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, geert+renesas@glider.be,
-	krzk+dt@kernel.org, lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-sound@vger.kernel.org, magnus.damm@gmail.com, perex@perex.cz,
-	robh@kernel.org, tiwai@suse.com
-Subject: Re: [PATCH v3 07/10] ASoC: renesas: fsi: refactor clock
- initialization
-Message-ID: <agB6cystBNT4-V3L@sirena.co.uk>
-References: <20260510084303.122426-1-phucduc.bui@gmail.com>
- <20260510084303.122426-8-phucduc.bui@gmail.com>
+	s=k20201202; t=1778416282;
+	bh=3JqIN/a5xnDrsf7uQ/t04AQRZOGabyoAFAk9x9agD58=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=MnZsboA0jQmaijqnX2BD+hvMlrJcDvxnQQDS/r9gbtq9L0V6otNe32bZ6WXiAjBl3
+	 aKhZSAZglSQAFSPZRmNTI/7CsKpNa/vW0GUwQZSSxgX5zNqKwthOcghfNnZGDyvFfs
+	 pcqtjUOYAD3a3JBSRBc0WzaejDDpIBU2DgafD/VPQsPUgKnuaFhpyjnSV88PTNZVy1
+	 BqVaYN47khWtmCpyaH43ZRIK/rfWHRQCScbn0wHvzO4YXLpYwz5mjuenpxA7ukRS/I
+	 aRTznzwF4TgpHbyDD/T4T9c/LeNSzAQGWUJDOgbfOJFRwbfcVRV097cqwM05W0vHAr
+	 R7W6HiWOe6XCw==
+From: Vinod Koul <vkoul@kernel.org>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Siddharth Vadapalli <s-vadapalli@ti.com>, Roger Quadros <rogerq@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux@ew.tq-group.com
+In-Reply-To: <cover.1775559102.git.nora.schiffer@ew.tq-group.com>
+References: <cover.1775559102.git.nora.schiffer@ew.tq-group.com>
+Subject: Re: (subset) [PATCH v4 0/5] J722S SGMII support
+Message-Id: <177841627590.434434.3111204439748668574.b4-ty@kernel.org>
+Date: Sun, 10 May 2026 18:01:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bHrwpyzAOaCuqHrH"
-Content-Disposition: inline
-In-Reply-To: <20260510084303.122426-8-phucduc.bui@gmail.com>
-X-Cookie: Truckers welcome.
-X-Rspamd-Queue-Id: 1DD9E503E55
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
+X-Rspamd-Queue-Id: 146A0503E6B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[renesas.com,kernel.org,vger.kernel.org,glider.be,gmail.com,perex.cz,suse.com];
-	TAGGED_FROM(0.00)[bounces-295088-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-295089-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
---bHrwpyzAOaCuqHrH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Tue, 07 Apr 2026 13:42:32 +0200, Nora Schiffer wrote:
+> The J722S CPSW and SERDES are very similar to the variants found on the
+> AM64, but they additionally support SGMII. Introduce new compatible
+> strings for the J722S to add this support to the drivers.
+> 
+> This is a prerequisite for the Single-Pair Ethernet interface of the
+> TQ-Systems MBa67xx baseboard for the TQMa67xx SoM, which will be
+> submitted separately.
+> 
+> [...]
 
-On Sun, May 10, 2026 at 03:43:00PM +0700, phucduc.bui@gmail.com wrote:
+Applied, thanks!
 
-> Move fsi_clk_init() to probe and use devm_clk_get_optional() for optional
-> clocks. This allows probe to succeed even when some optional clocks are
-> missing, while set_rate() performs strict validation to ensure all required
-> clocks are available for hardware configuration during audio setup.
+[1/5] dt-bindings: phy: ti: phy-j721e-wiz: Add ti,j722s-wiz-10g compatible
+      commit: 059f1a4c9e3aa44d888c0e7cf4559403eece0438
+[2/5] dt-bindings: phy: ti: phy-gmii-sel: Add ti,j722s-phy-gmii-sel compatible
+      commit: 567b3c62a7eb51db4cb562b416ec220132d524c9
+[3/5] phy: ti: phy-j721e-wiz: add support for J722S SoC family
+      commit: 61849b7afb579630fc45dbeaf5449b42b33cc70e
+[4/5] phy: ti: gmii-sel: add support for J722S SoC family
+      commit: d39cf00e7daea64889dda9abb0b7e6da04a69d04
 
-> +static int fsi_clk_init(struct device *dev, struct fsi_priv *fsi)
+Best regards,
+-- 
+~Vinod
 
-> +	if (!master->clk_spu) {
-> +		master->clk_spu = devm_clk_get_optional(dev, "spu");
-> +		if (IS_ERR(master->clk_spu))
-> +			return PTR_ERR(master->clk_spu);
-> +	}
-> +
 
-> @@ -1997,6 +2001,7 @@ static int fsi_probe(struct platform_device *pdev)
->  	fsi->running_streams = 0;
->  	fsi_port_info_init(fsi, &info.port_a);
->  	fsi_handler_init(fsi, &info.port_a);
-> +	fsi_clk_init(&pdev->dev, fsi);
-
-We ignore the return value from fsi_clk_init() which means deferred
-probe won't work (as well as fatal errors).
-
---bHrwpyzAOaCuqHrH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoAenIACgkQJNaLcl1U
-h9ByYAf/fHWslAnAD6OjJOrt0pI7DgsCAvesTy6vKZiNBw08XoHo0u3Y7Rik3HbP
-NiDKgGP//kkSuDDSjd4hVhHdzdaWtPrHCgkqoNpLO294mVhHLKrsZxIZDSWshK+z
-GTYmHHLdz/iIZObg0ZT95jTzjSHvneVqR9zU9MxOgNRtV3Mn7EXL66XY3hAmMxYF
-QPqQP++mOFdqt26Pj5lW4Y5n56j7LzywiyKPYcmZhTVg12A1p5VJpPrFmUgLmyfp
-yQbzi13VBFh4pNshpe5HDFLsY1F6S0wOpn6BhFxILRmOay45vynh7CvUjBMKOu/e
-J2nUpRYIheDSwgjEr0ijYZo8p20b+g==
-=Yt/V
------END PGP SIGNATURE-----
-
---bHrwpyzAOaCuqHrH--
 
