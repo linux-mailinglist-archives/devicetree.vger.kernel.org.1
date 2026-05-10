@@ -1,100 +1,96 @@
-Return-Path: <devicetree+bounces-295195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295198-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WBW9NOniAGpvOAEAu9opvQ
-	(envelope-from <devicetree+bounces-295195-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 21:56:25 +0200
+	id 4HN+MsrnAGpaOQEAu9opvQ
+	(envelope-from <devicetree+bounces-295198-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 22:17:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4920F5061DB
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 21:56:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4999E5062B7
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 22:17:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D048C301BF6E
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:53:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 055503011A78
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493C6330662;
-	Sun, 10 May 2026 19:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FDE337BA6;
+	Sun, 10 May 2026 20:16:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HWqoo2SX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cLM8ka6D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF54196C7C
-	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 19:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF6A25A2A4
+	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 20:16:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778442811; cv=none; b=fMp8W+vEiBqKEIEkskpCl4wFffUaZSPe82Yssu2QSng4JlpV+HUB5gXWftqPKrj9oZLal1VhvSua9JtRs4EBLYxS5GfZfLebS8vupgRThxWOQkxR04s2x7HKp+uGTJyJbbREyvxJ2AgpZlDSN0mU7FYYGFH3Zb3mdC76quWcdPo=
+	t=1778444213; cv=none; b=i7cUborHFbvIDNS3A8lRziiOwRux/kSW7dRnJti3tgLdS5zmxT62ucl+YwHRtA5pQTlswJf15PZqUqJ1MowNhOmIKoe5CrXeaElWBt6xsp++ojJuvFygYrke79KQFqakUgeZFHImYHIHXDifA5lbdCDC2/5H3MiJfTu4GFZYY4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778442811; c=relaxed/simple;
-	bh=CcWVM+e3vOzvxPMHiHam/ZARcRos3URB+mD1NEni2ck=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aa6uXVbfkCQzH98yrxw3tTpdmC/GMDFaaqfoynlYim6D3Sa+4fHdcUa70ue2hn6lhnn9sMivquqGq4DU0BC8wIROqf15SBDDHOBeY9vvk31+PX8FKXa3sj4iMo38/8j2tnevIO07yEiSc4Ns8rg7Hn6aijoPWyqE0jgsge4rKqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HWqoo2SX; arc=none smtp.client-ip=209.85.214.169
+	s=arc-20240116; t=1778444213; c=relaxed/simple;
+	bh=OlrvUpfZIqKGu1fy1Yd1seg+mcVBashr1N60V4HpbQo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DycZMbSOkB3hSwkzh2CJkmpa5L0YrSbUYHRSLLneQnX2O1u5UEalvTB3LBPC5v94/Jv/VKoJ6usyGwL4S4GS7QZqhWoT/sxq9+r/fXSQRF20NJ3NkjADCMprjFJFEu53nIKxGkxcYid5oUQdKh5PgTnMytEsEBH9KbaJOshjYrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cLM8ka6D; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2ba0714574fso19791555ad.2
-        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 12:53:29 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-488b0046078so29721965e9.1
+        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 13:16:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778442809; x=1779047609; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zq8vqJkGxKnQ4HZxEPkyCpyl+unJgqOC2VHF9A/dltQ=;
-        b=HWqoo2SXrcAwcLVoxkIgD+j0x4+3ROIqH7KRFVsslQx8rO4CmowrJYmRpaV2ODWmLw
-         SJyIw13RhPVLhLrOSvbVsMHxgGzu9ilpHjYJV4yo9penjVe0FLqWUbUaIalhf5oLb4j2
-         MdBxcrO/J6ia1yW1jzsQW253bCEEAAsQLnHtLNSOtkhY+fuDD1sJtWAyqhZD2dQ7apFx
-         UbCs8gHCSHYr6cRALxpu0wqS/Lj5tV6m+14GTWKTp5a+083oM1bHV8LcnUCCoYqZZaER
-         4yAwjskLVGzrMfM3csY5YhAyiI14MEPGwqlXliXObC9sunOOAcqoJVel7uwh2WALGCwC
-         j4XQ==
+        d=gmail.com; s=20251104; t=1778444209; x=1779049009; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8NI3fN7QsJncCNnXfLt8QQqn69GGnzb/da19UX/jwp8=;
+        b=cLM8ka6DbhYxzzUW6/H7sNpTu76WHQbVlZMfQFg2gLnNCYZzPJUbXVFMclpmScK8f3
+         Yfamffr0YNr5IIdg6Bs/UAOA2j3/ZdT/4ZUm5oFl8qhZZ7LI52vYsoP5g6tOy7rqPG2m
+         XCunp8xqhOZOT0rTWLeeSUplWowRQpHjmGOXH4kg3Wodt4xjcSo3cV8jmxoeaxnIYbCZ
+         eZ2SLstIOMMrdA/PpemTVm5xSd98BoMbgvo8lRm8wxbHm8oyRH1YGxI26KNIArtbaHn/
+         Y+qjm7ywqAEV7QQAQYUhMq0VtWLWr1/J7aH5UVmP/ufd/3IijE1gL8D2sFBEyk6Z5iad
+         hI7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778442809; x=1779047609;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Zq8vqJkGxKnQ4HZxEPkyCpyl+unJgqOC2VHF9A/dltQ=;
-        b=JUWCNJRMIhUkHiQigdh7qjS1snP687EtDiID16oyYKERkvciS+S8lkkukzzpG6PBTI
-         YhMdGYgozXgOyADOGvACfcKpyLWoUPVwgcLy0rvQb75zQ+LskFiPDIVN0UbQLooCQ4qM
-         ox9l142m+I4X5BN5nB119Iv4LijCo2Dd5a0Bk6uIUVRuz1CvpX5kzqFJ4aMB079Bw1YJ
-         nxsH1wh78hZXj58XCCAxh/KT+mLmy8qZcqSUUhH0jrXb82//OvWGMU/rqK3kEd1J8yQs
-         Q38rQUu+xtcz4RQlDM5Al4bx7BvFkhoQANC9wY5HzQ3BHDB6ajjwyHspiG1vNy+O/f6Z
-         tx/A==
-X-Forwarded-Encrypted: i=1; AFNElJ/pfR9LmMuJBxwLCaaltMdY+21bd9zhxPq6XXAvb/+wmVffglPEaPUZNEwfPhM1T4lbgyY0kC7+qn8k@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvShNWEbQXhHYCYBWECJZb2bC08i/+r9S2i/FTKW5750Ff/Ytg
-	RprOMsNvdO7v6i/bbH4UFHynaAaJVnjvOGGRELcREAfNUgtXfe8QQKVp
-X-Gm-Gg: Acq92OHzsof0/UTwR1kZlmhpRTLwXvGqJvpsNI65VQfQNYnhX/Jo4JoBLPFI9lq1/Pa
-	b/CuizxkEU8gE1mlvL0tke5kPiCOXRqi4g63/rsQ9anw3ELGAhaQYHZxuZSp0ttTY7Aybzdm6TF
-	MhbHvlCivfIwwVe512jTWlAeuRWjuVT3j7AMtvSy5ldDh/TjUeDZ+RuY7qUE99Jd1XrkR5aROFs
-	q5/qhJYy7JY9Wsu0MNkccKIcWetH6XgyKZKoz/Yj3Xq/pRGlLnGmfpfRFpDhiAFvZYHwj7ajjQ6
-	obMWvJxJnrCeVQM2GZSVmDnllAMJ6CxDbG5+nJdLgccrballLUQAWMNHA8/sYyxrNNw2fnhL0/+
-	+Ci9+SO7L9Lsk2St8O7l0aTCfQGdTPhH6thjX1OxgVbNIqy7sqxouhyhR2G6AUnbN3vALJa3t/D
-	LoQGuiT79yTRfV7xhEyiF/Nnr0GP6d9qpabPywCuzX/XufZWmWm3Z7IsMiFqBfYuEF3FCj1GCOs
-	p2wAdkphVa7UGgaoX97trlHQHCy0ly+84Tk5FUkUTUCVbVSsB3KFOpFpjx+dm9liFogPiQ=
-X-Received: by 2002:a17:903:3bd0:b0:2b7:beb5:3002 with SMTP id d9443c01a7336-2ba7908142dmr230533385ad.12.1778442809329;
-        Sun, 10 May 2026 12:53:29 -0700 (PDT)
-Received: from lord-daniel-VivoBook-ASUSLaptop-K3502ZA-S3502ZA.www.tendawifi.com ([14.139.108.62])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2baf1e358b2sm77065095ad.54.2026.05.10.12.53.24
+        d=1e100.net; s=20251104; t=1778444209; x=1779049009;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8NI3fN7QsJncCNnXfLt8QQqn69GGnzb/da19UX/jwp8=;
+        b=jI4kjy+wqixDTq60cqsv+Lx2kLlxY+/9O/nqLYgFq5Y/mq8aTs16yx7numZuR0ReYL
+         cQolYfN8huTnA8dJOxTlKw9V9l5QWpKmaynN8tCvM87UV6yYRwlz3ibV6QQHlE6g1g9Y
+         pXLYv2DXJ9PmezWR+GM6GFSc1R4h8hocicqizQ6fNudE0xKsH3Xlwt1ZEn3QOCxwpj/K
+         ttNHQxAQ5qAWlCTUTzCaC69d54r0w3KNErXjQMzryLS2nctLf9iiMbUY9EiskBm2SYfd
+         nQkqsHAol5lSED+h2pmm5rEbgxn1+FawP6h6DvRw4dgXPkY7mgdefnd+/a0n/UWbLyBL
+         dH9g==
+X-Forwarded-Encrypted: i=1; AFNElJ9dZYYMZYgdRrqMtDiLUbdJ8D5sf0Yz0yUBU+DBOfDi9bXRHJSNeWrOrEokKGnFutfKOvKdaylRq9Nk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2tvd3uMhj7Wx++UzNs//xohiEwNSpY/oGBWmpHqOytiOjMzQY
+	zC7rVXcq23XBq9bErcdACpFWYeEmDS8cUpwUy2l0SXEtH/dcT9SK3sUH
+X-Gm-Gg: Acq92OFKaNpBrSeVCa7JcyWURlNXqlsz00Z9UxeH3zRLcVoz2G+x5Y9bIp4xEAGnimn
+	W6iecRtk/CliCXa8qytp+gL/ep6wDg1acnPBQiLxVFUnG3HhQ7y2fTPvx47e5Q24cN/4qLZL1Xd
+	dsXrBI6l82pHwvAylP0EW8gg5Aqsl/5GwbeCiUbgFSWWBrvkuvxaA4jmpHjhC7YEryYXOHTQ7nq
+	nbX9NXCV/AODTageOUQMNDbnRpGsvqaBxrJkVk5Sqh+Fq8zymWCtgM27byoNDa6sbz80M5OZsw5
+	YJlvN5zINXClqiIr7n6K9xjKcYaeGFD/ea0zeT/DP39xWUaOINCMn6pqdJL/RfU+ojP6hw4wMes
+	dpysGTr3pP4RejPCl+qKMQUyzrNbqrCLe9+9Tp+ZUzYByTkjiqEhef4FnFZkPP8js1Lt4LNR3CH
+	6ObtoclvZdmNpF5aFaT3/2AguFqBQrv5/fF7vmGXlX+D0ogsePaWbQ
+X-Received: by 2002:a05:600c:3507:b0:48e:635a:18d9 with SMTP id 5b1f17b1804b1-48e706b2726mr104321595e9.15.1778444209019;
+        Sun, 10 May 2026 13:16:49 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e7040a8f1sm127667145e9.11.2026.05.10.13.16.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 May 2026 12:53:28 -0700 (PDT)
-From: Piyush Patle <piyushpatle228@gmail.com>
-To: ak@it-klinger.de,
-	jic23@kernel.org
-Cc: andriy.shevchenko@intel.com,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
+        Sun, 10 May 2026 13:16:48 -0700 (PDT)
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: linux-sunxi@lists.linux.dev
+Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v7 10/11] iio: adc: hx711: pass iio_chan_spec to hx711_reset_read
-Date: Mon, 11 May 2026 01:19:32 +0530
-Message-ID: <20260510194947.31997-11-piyushpatle228@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260510194947.31997-1-piyushpatle228@gmail.com>
-References: <20260510194947.31997-1-piyushpatle228@gmail.com>
+Subject: [PATCH v2 0/3] Add support for Baijie Helper A133 board
+Date: Sun, 10 May 2026 22:16:37 +0200
+Message-ID: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,117 +98,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4920F5061DB
+X-Rspamd-Queue-Id: 4999E5062B7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-295195-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sholland.org,arm.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295198-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[piyushpatle228@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.995];
-	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,szbaijie.com:url]
 X-Rspamd-Action: no action
 
-Change hx711_reset_read() to accept the channel descriptor directly and
-update its callers accordingly.
+Baijie Helper A133 board is a development board around Baijie A133 Core
+SBC. Features:
 
-Split the existing HX711 channel-selection work into a small helper so a
-later variant-specific change can add a matching helper without growing
-hx711_reset_read() further.
+- 1/2/4GiB LPDDR4 DRAM
+- 8/16/32GiB eMMC
+- AXP707 PMIC
+- 2 USB 2.0 ports
+- MicroSD slot and on-board eMMC module
+- Gigabit Ethernet
+- Bluetooth
+- WiFi
 
-No functional change.
+Add initial support for both the Helper and Core boards, including UART,
+PMU, eMMC, USB, Ethernet.
 
-Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
----
- drivers/iio/adc/hx711.c | 27 +++++++++++++++++++++------
- 1 file changed, 21 insertions(+), 6 deletions(-)
+Link: https://szbaijie.com/index/product/product_detail.html?product_id=23&language=en
 
-diff --git a/drivers/iio/adc/hx711.c b/drivers/iio/adc/hx711.c
-index 9f17cbc6c2e5..860f8ef5a7cf 100644
---- a/drivers/iio/adc/hx711.c
-+++ b/drivers/iio/adc/hx711.c
-@@ -268,7 +268,23 @@ static int hx711_set_gain_for_channel(struct hx711_data *hx711_data, int chan)
- 	return 0;
- }
- 
--static int hx711_reset_read(struct hx711_data *hx711_data, int chan)
-+static int hx711_set_hx711_channel(struct hx711_data *hx711_data,
-+				   const struct iio_chan_spec *chan,
-+				   int *trailing_pulses)
-+{
-+	int ret;
-+
-+	ret = hx711_set_gain_for_channel(hx711_data, chan->channel);
-+	if (ret < 0)
-+		return ret;
-+
-+	*trailing_pulses = hx711_get_gain_to_pulse(hx711_data->gain_set);
-+
-+	return 0;
-+}
-+
-+static int hx711_reset_read(struct hx711_data *hx711_data,
-+			    const struct iio_chan_spec *chan)
- {
- 	int trailing_pulses;
- 	int ret;
-@@ -282,11 +298,10 @@ static int hx711_reset_read(struct hx711_data *hx711_data, int chan)
- 		return -EIO;
- 	}
- 
--	ret = hx711_set_gain_for_channel(hx711_data, chan);
-+	ret = hx711_set_hx711_channel(hx711_data, chan, &trailing_pulses);
- 	if (ret < 0)
- 		return ret;
- 
--	trailing_pulses = hx711_get_gain_to_pulse(hx711_data->gain_set);
- 	return hx711_read(hx711_data, trailing_pulses);
- }
- 
-@@ -300,7 +315,7 @@ static int hx711_read_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_RAW:
- 		mutex_lock(&hx711_data->lock);
- 
--		*val = hx711_reset_read(hx711_data, chan->channel);
-+		*val = hx711_reset_read(hx711_data, chan);
- 
- 		mutex_unlock(&hx711_data->lock);
- 
-@@ -390,8 +405,8 @@ static irqreturn_t hx711_trigger(int irq, void *p)
- 	memset(&hx711_data->buffer, 0, sizeof(hx711_data->buffer));
- 
- 	iio_for_each_active_channel(indio_dev, i) {
--		hx711_data->buffer.channel[j] = hx711_reset_read(hx711_data,
--					indio_dev->channels[i].channel);
-+		hx711_data->buffer.channel[j] =
-+			hx711_reset_read(hx711_data, &indio_dev->channels[i]);
- 		j++;
- 	}
- 
+Changelog:
+v2:
+- introduced baijie,helper-a133-core compatible for the Core (SoM) board
+v1:
+- https://lore.kernel.org/all/20260503191842.2736130-1-alexander.sverdlin@gmail.com/
+
+Alexander Sverdlin (3):
+  dt-bindings: vendor-prefixes: Add Shenzhen Baijie Technology Co., Ltd.
+  dt-bindings: arm: sunxi: Add Baijie HelperBoard A133 compatible
+  arm64: dts: allwinner: A133: add support for Baijie Helper A133 board
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  11 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../dts/allwinner/sun50i-a133-baije-core.dtsi | 162 ++++++++++++++++++
+ .../allwinner/sun50i-a133-baijie-helper.dts   |  94 ++++++++++
+ 5 files changed, 270 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dts
+
 -- 
-2.43.0
+2.54.0
 
 
