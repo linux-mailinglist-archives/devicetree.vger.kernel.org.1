@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-295111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295114-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mNS1I7aBAGo2JgEAu9opvQ
-	(envelope-from <devicetree+bounces-295111-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 15:01:42 +0200
+	id oIFXGP+BAGo2JgEAu9opvQ
+	(envelope-from <devicetree+bounces-295114-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 15:02:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CFA5043C9
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 15:01:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 027135043FE
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 15:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0CB6C3006F05
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 13:01:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 619FB300230E
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 13:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3205368293;
-	Sun, 10 May 2026 13:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6067F382294;
+	Sun, 10 May 2026 13:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="KSJHJyIh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="JXtnoFOT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2F1DDCD;
-	Sun, 10 May 2026 13:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83687DDCD;
+	Sun, 10 May 2026 13:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778418091; cv=none; b=baPWZje371RjlfzE/gZkyukXb4G6oaXpca/xYqGRuJUeO9AGvNtQIUxpnN79dmO8EJXL3s257mppkR+xY6aBuwGXdjwneEVohGLGO9NXksS7JS0xHUg4o6inr5oN5VFYMD54HwUR2UF/Io0PFGLOoqQJyCZzRdAgAzVvb+Dn7Ng=
+	t=1778418171; cv=none; b=p9XnIB+lj27gcbw027ZHJQHWg4FztVnKFy1G3QMAEjgE1ESpzwyeH2cEbwXftjHGqD05i1BtI+NjXJGDn7LaTitYNBTPJgu9G300UGxh1J7AiW4ttHaN10y5nrOLV0ayuAxTl0WGQrRJUvxIYKYlCS2f8ERwV1uPaT7MKz+ZRlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778418091; c=relaxed/simple;
-	bh=P8xM934ybSF+ohjTs7dFZU1OSOviwUGH/0T5IT1lDBI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XHTQNyrHvClXAZZthqJE2QVaT1f/G1vo0t4uIgZTaNGP1CKjBPMZ7UTP74Z7MMKI5yMKklbUa14jqGEvYtYh2YH8shErYyTpza3bC7J37COw51NvVEOg+aGV5jehL4TTHFrwuhHFyrXTJ0E/XsXiA22GOm/iWpvGPj7PsO7X2cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=KSJHJyIh; arc=none smtp.client-ip=195.78.66.88
+	s=arc-20240116; t=1778418171; c=relaxed/simple;
+	bh=xdbmT5ZW7GBoQzuCduM7GoLy1ivg6Gv7iVshcr4SKOE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=BqxqDkpThDW/EaIUyrRtGD0ug1Q5ylI2h3l+a0QckhPzuKC8X9gf8a8G5nPaSdFFTb1LrDTAQQ7Ywj/8I+koJojc65dnBS0OkGIuUIHqM7IB30oCiYiN0UBalBd2xfi0WP7SYjXHkO8LqbfJKeSYdx5k/REIPQFrPKZDGgiWhWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=JXtnoFOT; arc=none smtp.client-ip=195.78.66.88
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=dvPq9iN8WATQt+rdmec5wkojG/hdk2qbLAicxWxCraE=; b=KSJHJyIhqtwZK183YrflR2asdT
-	k2LXD7nUtrNDhaNUyE0Fvruuxs32UT6+NlPSWReI4RD9uQXQzsUfy0TBOJ2FADcwmJtgiG+gCj1fR
-	ro8hXdhmUbvlok6Asy+tHN8sy6NdV3x0mH9XPEBZdHbM6w3VicFjoVqbXroEEGHvkaQsBjzuwQbU0
-	QINXHjMXwPwixEnkn+yTjNE9KeD1L8N2z+zE22N3jRZsTI34Gothiub9zAkUdXtq6bbHw8bqKWVMk
-	tlilg251WkUI8MMttCirxhmLGDySw1mc7FoNp/Kl1B7VHcKiTTQG2uw3qsQi60i7LNHtMJ88mG2K6
-	WjEt2XTQ==;
+	bh=sQf9HV1kJe9QuSV63atEChSm9EINfgHOzkniR1z+XIk=; b=JXtnoFOTyvcCFbcT5mx3MDXD1j
+	fi/m5EU3GBPzTFUFimzzNUeohg8xvNmoXOASWvb2MKR7KHo1XdiuEwYrnY+enjjKKX/juVRBxQMTh
+	8Mnf86+/og/CSuMp/8vKqCee39VBfK6BHuyeEyoG5b2qfHGlG0qyUffRWmlq6qinguG0Qusdcdywv
+	DrDaPp1W1p3j+0iMFUfn1V+wp/Ni8+BH5MuIAdrJHUP2OJT5skvMS2stgJ8pyaXyV8SYsPfEAwiLN
+	5R9gR2+waAyuvpjfNgh20AyYZQbR6mD3l2KasZTt1Kgx2YaH5hfKPqOLxTl97cabM4A0ujsQZncMp
+	Dw8nZCAA==;
 Received: from user-188-33-36-99.play-internet.pl ([188.33.36.99] helo=localhost)
 	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wM3mL-0000000DItk-1dvg;
-	Sun, 10 May 2026 15:01:05 +0200
+	id 1wM3nS-0000000DQb8-2khN;
+	Sun, 10 May 2026 15:02:14 +0200
 From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Subject: [PATCH 0/3] Add GPADC support for A523
-Date: Sun, 10 May 2026 14:57:21 +0200
-Message-Id: <20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl>
+Date: Sun, 10 May 2026 14:57:22 +0200
+Subject: [PATCH 1/3] dt-bindings: iio: adc: Add GPADC for Allwinner A523
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,10 +63,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALGAAGoC/yXMQQ6CMBBA0auQWTtJKZaqVyEsxnaAcVFJBwgJ4
- e5WXb7F/wcoZ2GFR3VA5k1U3qmgvlQQJkojo8RisMa2xhmPuqZdkJxtcJwpBqxv/k7k4uDdFUo
- 2Zx5k/y27/m9dny8Oy/cD5/kB3EBfXXQAAAA=
-X-Change-ID: 20260507-sunxi-a523-gpadc-1879aa5df754
+Message-Id: <20260510-sunxi-a523-gpadc-v1-1-4f6b0f4000fb@mmpsystems.pl>
+References: <20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl>
+In-Reply-To: <20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl>
 To: Jonathan Cameron <jic23@kernel.org>, 
  David Lechner <dlechner@baylibre.com>, 
  =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
@@ -80,26 +79,26 @@ Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
  linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778417853; l=1053;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778417853; l=1939;
  i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=P8xM934ybSF+ohjTs7dFZU1OSOviwUGH/0T5IT1lDBI=;
- b=OETFZqziFi/khRjPAfcStRkuugnTEDXQMcPrtnQGDrWSAub17ffGZ1Uj/F6EkA9sY8ZRDlXfk
- SbJoPEbAApJCoQYjifz/aMbH9l79sSYwYiA4i5GpL7wAPWmf+dIxxFD
+ bh=xdbmT5ZW7GBoQzuCduM7GoLy1ivg6Gv7iVshcr4SKOE=;
+ b=+fLEdNfcGSL6q7kzk+Ig5Sr2kuXJVWe3+SHYOmbUDS87rrnQ6fhMO9DC/AKCCxgCFF3Q10qPu
+ X+6KaQkpiD+AIwZYYzl51hk38WXOrIVbGw13bG+w05h71LjATWN5uwv
 X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
  pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
 X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: 36CFA5043C9
+X-Rspamd-Queue-Id: 027135043FE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-295111-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295114-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -109,43 +108,89 @@ X-Spamd-Result: default: False [1.14 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.847];
-	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.732];
 	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[mmpsystems.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add support for Allwinner A523 GPADC in sun20i gpadc driver and describe
-corresponding node in dts for A523 SoC.
-
-A523 uses same model as existing driver except it has two clocks.
-
-Added support to enable more than one clock in the driver, extended the
-binding with new compatible and wired up dts node for A523 which uses D1
-as fallback compatible.
+Add support for the GPADC for the Allwinner A523. It differs from the
+D1/T113s/R329/T507 by having two clocks.
 
 Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
 ---
-Michal Piekos (3):
-      dt-bindings: iio: adc: Add GPADC for Allwinner A523
-      iio: adc: sun20i-gpadc: add A523 gpadc support
-      arm64: dts: allwinner: a523: add gpadc node
-
  .../iio/adc/allwinner,sun20i-d1-gpadc.yaml         | 37 +++++++++++++++++++++-
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi     | 12 +++++++
- drivers/iio/adc/sun20i-gpadc-iio.c                 |  8 ++---
- 3 files changed, 52 insertions(+), 5 deletions(-)
----
-base-commit: 8ab992f815d6736b5c7a6f5fd7bfe7bc106bb3dc
-change-id: 20260507-sunxi-a523-gpadc-1879aa5df754
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
-Best regards,
---  
-Michal Piekos <michal.piekos@mmpsystems.pl>
+diff --git a/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+index da605a051b94..89da96cd705f 100644
+--- a/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+@@ -17,6 +17,7 @@ properties:
+       - items:
+           - enum:
+               - allwinner,sun50i-h616-gpadc
++              - allwinner,sun55i-a523-gpadc
+           - const: allwinner,sun20i-d1-gpadc
+ 
+   "#io-channel-cells":
+@@ -29,7 +30,12 @@ properties:
+     const: 0
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
+ 
+   interrupts:
+     maxItems: 1
+@@ -40,6 +46,35 @@ properties:
+   resets:
+     maxItems: 1
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          items:
++            - const: allwinner,sun55i-a523-gpadc
++            - const: allwinner,sun20i-d1-gpadc
++    then:
++      properties:
++        clocks:
++          minItems: 2
++          maxItems: 2
++          items:
++            - description: Bus clock
++            - description: Module clock
++        clock-names:
++          minItems: 2
++          maxItems: 2
++          items:
++            - const: bus
++            - const: mod
++      required:
++        - clock-names
++    else:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names: false
++
+ patternProperties:
+   "^channel@[0-9a-f]+$":
+     $ref: adc.yaml
+
+-- 
+2.43.0
 
 
