@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-295042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295044-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMybGqRLAGp8GAEAu9opvQ
-	(envelope-from <devicetree+bounces-295042-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id YFPfIaRLAGp8GAEAu9opvQ
+	(envelope-from <devicetree+bounces-295044-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 11:11:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB50450344E
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 11:10:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14417503450
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 11:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 439EF30073CD
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 09:10:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 06335300B745
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 09:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF2D355F3A;
-	Sun, 10 May 2026 09:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5E736B042;
+	Sun, 10 May 2026 09:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1+IgzeW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezW3gcY+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D459175A95
-	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 09:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99443175A95
+	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 09:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778404257; cv=none; b=lS6yM10Y/uKwtp6zOSCV7ezKQT0JnZFcIDGYNwoPy57aV+kjEZBhmLp2j96cb7qEB+IsL7Zh6Jrwm/GZuPxNs5a3ilY9a5bhiifApdPd5EeoIZQiwnTENBrDLaddalT43cMGyezLqAL6lb/CfUusMKkpaW7ndg7BhHGmzkj4HWQ=
+	t=1778404258; cv=none; b=Np0xKeBElTo6k9PJlhZj872IyzfFIlRCkjZ3MqQANEGEOar3agIHcHQ/Clpd8qlCJQA3XaG6S4cbViWnXUr74WWqIK3ZzDV6rAbkf8QBBDaKCGMIf9mj/lAjZIiQwZnP2j1YRQ0LZZfnzmu908k+OUaNJLku2OBg7Q1vQpThb/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778404257; c=relaxed/simple;
-	bh=rCLPeM1/5j4uZo/qrstOpeNAh7eQXvv1GSLyg3WMrUE=;
+	s=arc-20240116; t=1778404258; c=relaxed/simple;
+	bh=z3Oi3IQsvBWthRbv2Hmln74to7IRd5XStLa/H0pFmBU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lETC7/YzazNwNTlhhWPgp4XUp+ah1RvXU66IesBAsDgd3nto9cNpgkZQerIFf6BFD1rbsj44rDuNesIg8EtOzMKA9umeSxJ8guDsFnOozYKFmvU49qljooSHy2TJZL3ipmWbl+M/xO3ULRFzSjpTw4FcTetKN+su0eUZdiSVsGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1+IgzeW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91967C2BCB8;
-	Sun, 10 May 2026 09:10:56 +0000 (UTC)
+	 Message-Id; b=nXmcPoq1Uj/6VmefrASNCIB5YKloIEunBfjkvBqF/FEhLufOsuDHtPv1c1GjxVeJkbde2cMHAAkEaW6XPz7thhkD+0gPLRSsQVVl8Fjo5eO+F1LvhIjP7ppjvd3kZQCoALSw6zvteR/+QKuzTxl6f8bhDAm2Nr31WxYLKR32+fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezW3gcY+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35C9DC2BCB8;
+	Sun, 10 May 2026 09:10:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778404256;
-	bh=rCLPeM1/5j4uZo/qrstOpeNAh7eQXvv1GSLyg3WMrUE=;
+	s=k20201202; t=1778404258;
+	bh=z3Oi3IQsvBWthRbv2Hmln74to7IRd5XStLa/H0pFmBU=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=q1+IgzeWMA6XuDlYaZJO3rvn+LEIS1pLcXc4VUEibV/o+fF6NGOAs79fdCB3lsl/G
-	 C1FaEpS58Nyc/d/jltRdOPZEo8ZrHaceTPCfCdz7Xh4+B3LnX5JoE/ejpX7+37032d
-	 wcBnyZFzkL3Gs1H/yID/qcqtDOGlXDi88OTU+YrgCitLTaWgotYNpvSf5BlyLy+OK7
-	 FEEaDohjyQIF0weYKmBrA8jzzRNDTxk3s+uqAZtUaYpxJCq4WuKUxxHq7Qdccybm86
-	 1zU9VUPSAO9Y8NrvL+hfZ6l+iQsTbwjTX9WVc1ojC5+EmP+aFiqc8GQuSkpZUumjRN
-	 mG+G2TxLD2uow==
+	b=ezW3gcY+eooOf/uyMNoYQDVNLRBCX/A37X1Us4gPeYeVTA5f/XFqtndFkFRS7rdhD
+	 gCejJy2BNoxgbHLrMggtewm/RfwdUtSxMUnvJh/tTGQ/2iKOzADF7Eei5IjNiEriYU
+	 GNrH2KPR+a8B3IpV7+IZsR0xR9K2UKDbvp6vvgVzYmg/oRzcKO1Ub9LcDBNclT7Tvz
+	 c+oiXVmeIl5TasKnI1ZliAOd2M6AVinzpD++VNW23+eYNnO08lh164gzcJMOfUT13l
+	 SGjYodX2M79HsAnMbUsxPfBtOluVHK2BHkUhB+zNPV3LWsQsLAbEdhlUG17O5hPWtB
+	 3Py/MYoBLEyIA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next 2/4] net: dsa: tag_hms: Add HMS tag protocol
+Subject: Re: [PATCH net-next 4/4] net: dsa: hms: Add ethtool statistics
+ support
 Reply-To: sashiko@lists.linux.dev
 To: "Minghuan Lian" <minghuan.lian@nxp.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260509090632.2959553-3-minghuan.lian@nxp.com>
-References: <20260509090632.2959553-3-minghuan.lian@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260509090632.2959553-5-minghuan.lian@nxp.com>
+References: <20260509090632.2959553-5-minghuan.lian@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sun, 10 May 2026 09:10:56 +0000
-Message-Id: <20260510091056.91967C2BCB8@smtp.kernel.org>
+Date: Sun, 10 May 2026 09:10:57 +0000
+Message-Id: <20260510091058.35C9DC2BCB8@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: CB50450344E
+X-Rspamd-Queue-Id: 14417503450
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -68,12 +69,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295042-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295044-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -84,155 +85,114 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.998];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] The `buf` pointer in `hms_rcv_meta_cmd()` becomes a dangling point=
-er if `skb_linearize()` reallocates the SKB.
-- [High] Incorrect length calculation in `hms_rcv_meta_cmd()` leads to an i=
-nteger underflow when invoking the switch driver's meta command handler.
-- [High] Returning `NULL` after `__vlan_hwaccel_push_inside()` fails in `hm=
-s_imprecise_xmit()` causes a double free in the caller.
-- [Medium] The Kconfig symbol NET_DSA_TAG_HMS selects a non-existent symbol=
- NET_DSA_TAG_8021Q.
+- [High] Stack-allocated buffers are passed directly to SPI transfer functi=
+ons, violating DMA memory safety rules.
+- [High] 64-bit statistic values and 32-bit SPI command headers are exchang=
+ed with the hardware without byte-order conversion.
+- [Medium] The driver adds driver-private ethtool -S strings for standard d=
+evice statistics, violating networking subsystem guidelines.
 --
 
-commit 5802d819bc05556c0d9f828794cc67145ff4496a
+commit 61954301ddb9081ce56697d8d4fd8e465791f9ac
 Author: Minghuan Lian <minghuan.lian@nxp.com>
+
+net: dsa: hms: Add ethtool statistics support
    =20
-net: dsa: tag_hms: Add HMS tag protocol
-   =20
-This commit adds a DSA tagger for NXP Heterogeneous Multi-SoC (HMS) switche=
-s.
-It supports both tag_8021q based transmit and receive handling for regular
-data traffic, and an HMS meta frame format for link-local and control traff=
-ic.
+Add ethtool statistics support for the HMS switch. This provides
+per-port statistics including RX/TX counters, error counters, and
+per-queue statistics retrieved from the RT1180 MCU via SPI.
 
-> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-> --- a/net/dsa/Kconfig
-> +++ b/net/dsa/Kconfig
-> @@ -211,4 +211,13 @@ config NET_DSA_TAG_YT921X
->  	  Say Y or M if you want to enable support for tagging frames for
->  	  Motorcomm YT921x switches.
-> =20
-> +config NET_DSA_TAG_HMS
-> +	tristate "Tag driver for NXP Heterogeneous Multi-SoC switches"
-> +	select NET_DSA_TAG_8021Q
-
-Does the NET_DSA_TAG_8021Q config symbol exist? Looking through the tree, it
-appears tag_8021q.c is compiled unconditionally as part of dsa_core-y rather
-than having its own Kconfig symbol. Selecting a non-existent symbol can lead
-to unmet dependency warnings or silent build failures.
-
-> +	help
-> +	  Say Y or M if you want to enable support for tagging frames for
-> +	  NXP Heterogeneous Multi-SoC switch family. This driver uses a
-
-[ ... ]
-
-> diff --git a/net/dsa/tag_hms.c b/net/dsa/tag_hms.c
+> diff --git a/drivers/net/dsa/hms/hms_ethtool.c b/drivers/net/dsa/hms/hms_=
+ethtool.c
 > new file mode 100644
+> index 0000000000000..00c8406b12862
 > --- /dev/null
-> +++ b/net/dsa/tag_hms.c
+> +++ b/drivers/net/dsa/hms/hms_ethtool.c
 
 [ ... ]
 
-> +static struct sk_buff *hms_imprecise_xmit(struct sk_buff *skb,
-> +					  struct net_device *netdev)
+> +static const char hms_stat_name[][ETH_GSTRING_LEN] =3D {
+> +	/* RX stats */
+> +	[HMS_STAT_RX_BYTES] =3D "in-bytes",
+> +	[HMS_STAT_RX_VALID_BYTES] =3D "in-valid-bytes",
+> +	[HMS_STAT_RX_PAUSE_FRAMES] =3D "in-pause-frames",
+> +	[HMS_STAT_RX_VALID_FRAMES] =3D "in-valid-frames",
+
+[ ... ]
+
+Does this add driver-private ethtool strings for standard device statistics=
+?=20
+
+The networking subsystem guidelines specify that driver patches must not add
+new counters to ethtool -S for values that have a standard uapi. Standard
+statistics like in-bytes, in-pause-frames, and per-queue frames should be
+exposed using standardized interfaces such as ndo_get_stats64, the ethtool
+pause api, or standard netlink per-queue statistics. Duplicating these in
+private string lists bypasses standard tooling.
+
+Could these standard metrics be migrated to the appropriate uapi?
+
+[ ... ]
+
+> +void hms_get_ethtool_stats(struct dsa_switch *ds, int port, u64 *data)
 > +{
-> +	struct dsa_port *dp =3D dsa_user_to_port(netdev);
-> +	unsigned int bridge_num =3D dsa_port_bridge_num_get(dp);
-> +	struct net_device *br =3D dsa_port_bridge_dev_get(dp);
-> +	u16 tx_vid;
+> +	struct hms_private *priv =3D ds->priv;
+> +	struct hms_cmd_port_ethtool_stats stats;
+> +	int rc;
+> +	enum hms_stat_index i;
+> +
+> +	rc =3D hms_xfer_get_cmd(priv, HMS_CMD_PORT_ETHTOOL_STATS_GET,
+> +			      port, &stats, sizeof(stats));
 
-[ ... ]
+Is it safe to pass a stack-allocated buffer (stats) to the spi transfer
+functions?=20
 
-> +	if (unlikely(skb_vlan_tag_present(skb))) {
-> +		skb =3D __vlan_hwaccel_push_inside(skb);
-> +		if (!skb) {
-> +			WARN_ONCE(1, "Failed to push VLAN tag to payload!\n");
-> +			return NULL;
+If the underlying spi layer maps this buffer for dma and vmap stacks
+are enabled, stack addresses are not physically contiguous and will cause
+the underlying dma_map_single() to fail or panic. Even without vmap stacks,
+unaligned stack buffers risk memory corruption of adjacent variables due to
+dma cache invalidation.
 
-Could returning NULL here lead to a double free?=20
+Should this buffer be dynamically allocated using kzalloc() instead?
 
-If __vlan_hwaccel_push_inside() fails, it consumes and frees the original s=
-kb.
-However, returning NULL back up to the DSA core (dsa_user_xmit) usually
-signals that the tagger did not consume the skb, which leads the DSA core to
-call kfree_skb() on the original pointer again.
-
-> +		}
+> +
+> +	if (rc) {
+> +		memset(data, 0, sizeof(u64) * HMS_STAT_NUM);
+> +		dev_err(ds->dev, "Failed to get port %d stats\n", port);
+> +		return;
 > +	}
 > +
-> +	return dsa_8021q_xmit(skb, netdev, hms_xmit_tpid(dp), tx_vid);
+> +	for (i =3D 0; i < HMS_STAT_NUM; i++)
+> +		data[i] =3D stats.values[i];
 > +}
 
-[ ... ]
+Does this code need byte-order conversion?
 
-> +static struct sk_buff *hms_rcv_meta_cmd(struct sk_buff *skb, u16 rx_head=
-er)
-> +{
-> +	u8 *buf =3D dsa_etype_header_pos_rx(skb) + HMS_HEADER_LEN;
-> +	int switch_id =3D HMS_RX_HEADER_SWITCH_ID(rx_header);
-> +	int source_port =3D HMS_RX_HEADER_PORT_ID(rx_header);
-> +	struct hms_tagger_data *tagger_data;
-> +	struct net_device *master =3D skb->dev;
-> +	struct dsa_port *cpu_dp;
-> +	struct dsa_switch *ds;
-> +
-> +	cpu_dp =3D master->dsa_ptr;
-> +	ds =3D dsa_switch_find(cpu_dp->dst->index, switch_id);
-> +	if (!ds) {
-> +		net_err_ratelimited("%s: cannot find switch id %d\n",
-> +				    master->name, switch_id);
-> +		return NULL;
-> +	}
-> +
-> +	tagger_data =3D ds->tagger_data;
-> +	if (!tagger_data->meta_cmd_handler)
-> +		return NULL;
-> +
-> +	if (skb_is_nonlinear(skb))
-> +		if (skb_linearize(skb))
-> +			return NULL;
+Since the statistics are retrieved from the hardware over a spi byte stream,
+reading directly into host-order u64 values means the transmission byte
+order depends on the cpu architecture's endianness. If the host cpu has a
+different endianness than the switch mcu, the multi-byte values will be
+mangled.
 
-If skb_linearize() reallocates the data buffer to make it contiguous, does =
-the
-buf pointer become dangling? It was initialized before the linearization and
-might now point to freed memory.
-
-> +
-> +	tagger_data->meta_cmd_handler(ds, source_port, buf,
-> +				skb->len - HMS_HEADER_LEN - 2 * ETH_ALEN);
-
-Is this length calculation correct for the receive path?=20
-
-Since the MAC header has usually already been pulled from the skb by the ti=
-me
-we reach the tagger, skb->len should simply be the payload size. Subtracting
-an additional 2 * ETH_ALEN might cause an integer underflow if the metadata
-payload is small, resulting in a huge size_t value being passed to the driv=
-er
-callback.
-
-> +
-> +	/* Discard the meta frame */
-> +	return NULL;
-> +}
+Could this struct use explicit __le64 or __be64 types and apply the
+corresponding conversions like le64_to_cpu()?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260509090632.2959=
-553-1-minghuan.lian@nxp.com?part=3D2
+553-1-minghuan.lian@nxp.com?part=3D4
 
