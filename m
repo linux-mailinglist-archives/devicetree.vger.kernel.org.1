@@ -1,361 +1,165 @@
-Return-Path: <devicetree+bounces-295149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295152-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CWqGIu7AGpGMAEAu9opvQ
-	(envelope-from <devicetree+bounces-295149-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:08:27 +0200
+	id CD7YIu+8AGpGMAEAu9opvQ
+	(envelope-from <devicetree+bounces-295152-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:14:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B895054B1
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:08:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF56F5055A9
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 04555300AB0E
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 17:08:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5D7BD30031D3
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 17:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6482D3B2FCE;
-	Sun, 10 May 2026 17:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEB23B2FC2;
+	Sun, 10 May 2026 17:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vItAYTbN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fzEBCKs+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC51253B42;
-	Sun, 10 May 2026 17:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC1627732
+	for <devicetree@vger.kernel.org>; Sun, 10 May 2026 17:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778432886; cv=none; b=IJ6n0Kr8psBVt9MprO1XEnRYAlfy5kKGJ2CaR/tDXQGPfr6XnsF8tterEKJWZZFv5a6nRjnN41odk4CtPQuRQCkMaLSW2k3jz3PV2izmYv0h5TE/B7m7FBg+Mvz1sI4zlFgwT2suPZuuXlvkSMjmf/3NCk0XOREXw5fDQZ5erNs=
+	t=1778433259; cv=none; b=fKEnGa2kQ+U33s6Twz+wvpIk1RtEvHPWXHQkF1WJn7HWfoqR/q9b9rqDt7y78mJy7CT1cQ4PVepH1mgmYW4ufoVfPiQ/DnPx6RbnwS871oOZMtzKu08but6RqJxAHvvC3Y2dPMy/SOB3LwCqZSt6WsEEQVE1RvY8MDPAhDrSC6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778432886; c=relaxed/simple;
-	bh=DmaaqQ+1IvWQqu/QWIYcpgG+vPszNRveAj7JBVSE7Jc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DcMT2ogx4YuvXkEylEOy1JgUZvifSvQYmZba0BVax98OCQ9g/7VLO5zvquMRt8IK6/H2VWLIgOHOjU88rP5JEY2oZqMPGtEQ+sNp3vLMkkiVZkE4+KeXUxZdZ8krDE1X3i1Mn7N9wtkBzaTZwXsWyua5QAMAO+eSdtJhflxvS4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vItAYTbN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E7400C2BCFD;
-	Sun, 10 May 2026 17:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778432886;
-	bh=DmaaqQ+1IvWQqu/QWIYcpgG+vPszNRveAj7JBVSE7Jc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=vItAYTbNtUJb1wu0vLc92nOO+85liWr+hYHETrAoA52Wzop7+b+8F/zNCZu1xaP0m
-	 tGR1qeiUyuNJP7Qek48MrpdNxezbiywVVw64yEbstiABMYllTf02pLOPN8ZJT1A1K+
-	 SREH2gIszn6B9Xxenc79xtUCXitIIKvzfHM0K8CeQZFUgW9kqFn22H4p8TRMo/R1/4
-	 O/szN2FhobHNoqncXUshGmqUaNR6c/Cyh6bJbJZaok5+cmhsTW6f65i4EyhQ56Ag08
-	 ik3lQlT0MJT8gHMvd0gIVT1wQEa3JjDfvTXnS5ouFMgX5bzKm/ph5c7uYMapZ2l+Jx
-	 QdbWKCOoJ3NwQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D9724CD37BE;
-	Sun, 10 May 2026 17:08:05 +0000 (UTC)
-From: Alexandre Hamamdjian via B4 Relay <devnull+azkali.limited.gmail.com@kernel.org>
-Date: Mon, 11 May 2026 00:08:03 +0700
-Subject: [PATCH 2/2] backlight: sy7758: add Silergy SY7758 backlight driver
+	s=arc-20240116; t=1778433259; c=relaxed/simple;
+	bh=3NDxPAfITfspj0phS5kHFW0hpKZ+gV9rPXD8TSvzIis=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bQm71OGdOrStpZKYlgHg6etpUxckIBNrXDXCv1duqSiCr+IS4aR+ZYhQyClyvAsqvPAHfMaRUsZ0D9gOzgwgHm/9u0ZtEIj2p/eLV2Psg/18XOKEsxaOPNY+Z5c/iKLQ+XRaqcwqUv+2utr/+3chxSYvjRVq4IkyT0MUFBBbrNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fzEBCKs+; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-835b78c3797so1422034b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 10:14:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778433257; x=1779038057; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ljxyGF0XpRcmphShZNeAA60z8jVSJUpH0HQBwb34PqY=;
+        b=fzEBCKs+MvT/UwGL6sFrRbOnPhukES6fcdXxCAyFs7AmUGkfBnbLmQE8NlflT+bcyR
+         LujvgPPXyoI2gIGzK2AyGKvAir4LSkCs8fAXsy8OrvTjtQtbafxHVd+mDxWT951+vzHO
+         rckAfjnsAn2y5tom1CtmJpgVcKyvv/Bz2aiVQW3V38ldmzipszFhM3y66pWHUzDtbfgi
+         li1mWb8O/yp2F/jeQSMeK0lm7ZRtQ43qJTfX7NNVqMAJAlOeChWNdKMBZakBpnq0PneG
+         8w8x6ZAcg9SW8DVC9Ygz9kyZigxO1I1Uuh4g8v+4+GsFZJkAaPFhHyrlHkqK01exZZWi
+         A1YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778433257; x=1779038057;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ljxyGF0XpRcmphShZNeAA60z8jVSJUpH0HQBwb34PqY=;
+        b=JUfrOT+FFStG8G7+HJRjNs5lFA2TLkUWgrJuKybJS43qRWcnF8pML+qOl5hXiKTVC7
+         CarjO6AEh5MYPNXJVYjeVjbpwq1qy1KDqfCJnsTsYJHDFzeiDEjJeOMBHy5Bwr/X4pMB
+         kcQnJPFhpkosZcKJcgzh7CyU37AsmgPwnvVFg6vvuo7ylgXl3OvU2hH5PbJw3Kz3WH27
+         vlhRVYG9ys68E2Des0YzmHyGGvF56OQEGAWyLTObMU6q6V4WAYJAzoooYWvcwXWcIaDu
+         uxZH81Dhpbuv6aVG/YL+qGEzknzeO4FYzmne3r8Y4I8RXzaczO1Nh7O3M7ihuuCvvHCQ
+         a4Rw==
+X-Forwarded-Encrypted: i=1; AFNElJ/1EsUExx41fjYCComNGKc34H8GJh5EBX2Qqe/FvhPVojpHIPp6Y182qm0JuKu6SjVlgyD9+nvNPLtZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUFzJ1yd4x+G1RVtMJVLRaM/AIW1rH/xefLKqVjlBI04B/ZELc
+	sNPctRTs7H9CDBnLgbTNEeLNK7neYV7uC2Yr40Arj6dLB9X9fmQi+RwP
+X-Gm-Gg: Acq92OFHhtFk2SGG4wSZDwsF1VHAsBm6Ayub5utWq2iFYCKMi/Nt5m/D2Nqio4Zs93Y
+	lc4YwRMMXyIv0grKlpmXqlBhh8VfqMKnzNAFIGSQ+nrA9cZYzTKb+1gwLPtAuAkWVVzi7fzlYzi
+	JFTeSfxxUpuO4KSvjpxagV9hsfb5HRvVx53NwjiEGSpelGCIzojNiGcQt20JfjeN60xr+HiJsWi
+	lpHpR5v6Wo+wE88uNgBMJCuhhped7sUN/0apyeCT/H2F+QAZ8UmIhxFwK68AZFAH/h+m+YbUoK7
+	nWi749zIDPtC5xOq4z+LyPGbUEXbXIAjWBhc/EqS0wYGP1a6E109RAcsMT5FX2rGms5eW+1SYcB
+	YN44kQ1mXyBMxKFYwpLDJ18c2o1R6UJibhliPImlNG2ufwrEQvuksWnHkCb7pVMAqe7g0BSF1Ys
+	GMePWERUrzm65gYzQArZPHfMa0gqrU
+X-Received: by 2002:a05:6a00:4098:b0:82c:e09b:3f76 with SMTP id d2e1a72fcca58-83cf6e732c9mr11292717b3a.41.1778433256778;
+        Sun, 10 May 2026 10:14:16 -0700 (PDT)
+Received: from ubuntu.. ([110.9.142.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8396563f381sm21799778b3a.6.2026.05.10.10.14.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 May 2026 10:14:16 -0700 (PDT)
+From: Sang-Heon Jeon <ekffu200098@gmail.com>
+To: maddy@linux.ibm.com,
+	mpe@ellerman.id.au,
+	npiggin@gmail.com,
+	chleroy@kernel.org,
+	robh@kernel.org,
+	saravanak@kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	Sang-Heon Jeon <ekffu200098@gmail.com>
+Subject: [PATCH 0/2] powerpc/prom, of/fdt: fix chosen node handling and cleanup
+Date: Mon, 11 May 2026 02:13:51 +0900
+Message-ID: <20260510171353.1406018-1-ekffu200098@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260511-sy7758-v1-2-999a33081304@gmail.com>
-References: <20260511-sy7758-v1-0-999a33081304@gmail.com>
-In-Reply-To: <20260511-sy7758-v1-0-999a33081304@gmail.com>
-To: Philippe Simons <simons.philippe@gmail.com>, Lee Jones <lee@kernel.org>, 
- Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
-Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, 
- Alexandre Hamamdjian <azkali.limited@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778432883; l=7264;
- i=azkali.limited@gmail.com; s=20260510; h=from:subject:message-id;
- bh=9XCTIbMoV49y1xex8SxBrgLyf7GaS0QW2nGCwz+d0Fo=;
- b=w4H2miBquw/vmK2oBk/P8SIhaq7vtIOc/wuxLqy86jD5m7ltkZiQxcjgmCFBNgBFKnldsN/BO
- fcTis5LJoKpBXYppCZ6M53MTP2DNEAyOuwxpjFdBL2UR9TNFq50R97r
-X-Developer-Key: i=azkali.limited@gmail.com; a=ed25519;
- pk=I0Z0IdCdQJqNGX+FQUnXhrHg950u3cM6Xzz3YT6JOyQ=
-X-Endpoint-Received: by B4 Relay for azkali.limited@gmail.com/20260510 with
- auth_id=774
-X-Original-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
-Reply-To: azkali.limited@gmail.com
-X-Rspamd-Queue-Id: C0B895054B1
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: EF56F5055A9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-295149-lists,devicetree=lfdr.de,azkali.limited.gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,gmx.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,outlook.com:email];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295152-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[linux.ibm.com,ellerman.id.au,gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[azkali.limited@gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[]
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-0.993];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
+Hello,
 
-Add a driver for the Silergy SY7758 I2C-controlled multi-channel LED
-backlight controller. The chip drives the edge-lit LED strings of LCD
-panels in handheld and embedded devices, and is for example present on
-the Ayaneo Pocket DS handheld where it drives the panel backlight.
+While looking into boot information, I found one bug fix and one
+minor cleanup around /chosen node handling.
 
-The driver registers a backlight class device with a 12-bit linear
-brightness range. On the first non-zero update, the chip's mode and
-current configuration registers are programmed; subsequent brightness
-updates only rewrite the two brightness registers. A mutex serialises
-concurrent updates against the deferred init path.
+Patch 1 fixes a bug in powerpc where /chosen properties are read
+from the wrong node.
 
-Co-developed-by: Philippe Simons <simons.philippe@gmail.com>
-Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
-Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
----
- drivers/video/backlight/Kconfig  |  14 ++++
- drivers/video/backlight/Makefile |   1 +
- drivers/video/backlight/sy7758.c | 169 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 184 insertions(+)
+This bug has existed for a while without any report, so I don't
+think backporting is necessary and I did not add Cc: stable.
+Please let me know if you think otherwise.
 
-diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-index a7a3fbaf7c29..c529d2861525 100644
---- a/drivers/video/backlight/Kconfig
-+++ b/drivers/video/backlight/Kconfig
-@@ -461,6 +461,20 @@ config BACKLIGHT_SKY81452
- 	  To compile this driver as a module, choose M here: the module will
- 	  be called sky81452-backlight
- 
-+config BACKLIGHT_SY7758
-+	tristate "Backlight Driver for Silergy SY7758"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This enables support for the Silergy SY7758 I2C-controlled
-+	  multi-channel LED backlight driver, commonly used to drive the
-+	  edge-lit LED strings of LCD panels in handheld and embedded
-+	  devices. The driver exposes a 12-bit linear brightness control
-+	  through the standard backlight class.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called sy7758.
-+
- config BACKLIGHT_TPS65217
- 	tristate "TPS65217 Backlight"
- 	depends on MFD_TPS65217
-diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-index 794820a98ed4..00d3e379b297 100644
---- a/drivers/video/backlight/Makefile
-+++ b/drivers/video/backlight/Makefile
-@@ -57,6 +57,7 @@ obj-$(CONFIG_BACKLIGHT_QCOM_WLED)	+= qcom-wled.o
- obj-$(CONFIG_BACKLIGHT_RT4831)		+= rt4831-backlight.o
- obj-$(CONFIG_BACKLIGHT_SAHARA)		+= kb3886_bl.o
- obj-$(CONFIG_BACKLIGHT_SKY81452)	+= sky81452-backlight.o
-+obj-$(CONFIG_BACKLIGHT_SY7758)		+= sy7758.o
- obj-$(CONFIG_BACKLIGHT_TPS65217)	+= tps65217_bl.o
- obj-$(CONFIG_BACKLIGHT_WM831X)		+= wm831x_bl.o
- obj-$(CONFIG_BACKLIGHT_ARCXCNN) 	+= arcxcnn_bl.o
-diff --git a/drivers/video/backlight/sy7758.c b/drivers/video/backlight/sy7758.c
-new file mode 100644
-index 000000000000..6a318bd62030
---- /dev/null
-+++ b/drivers/video/backlight/sy7758.c
-@@ -0,0 +1,169 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Backlight driver for the Silergy sy7758
-+ *
-+ * Copyright (C) 2025 Kancy Joe <kancy2333@outlook.com>
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+#define DEFAULT_BRIGHTNESS 1500
-+#define MAX_BRIGHTNESS 4080
-+#define REG_MAX 0xa9
-+
-+#define BL_BRT_L 0x10
-+#define BL_BRT_H 0x11
-+
-+static DEFINE_MUTEX(sy7758_update_backlight_mutex);
-+
-+struct sy7758 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	bool led_on;
-+};
-+
-+static void sy7758_init(struct sy7758 *sydev);
-+
-+static const struct regmap_config sy7758_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = REG_MAX,
-+};
-+
-+static int sy7758_write(struct sy7758 *sydev, unsigned int reg,
-+			 unsigned int val)
-+{
-+	return regmap_write(sydev->regmap, reg, val);
-+}
-+
-+static int sy7758_backlight_update_status(struct backlight_device *backlight_dev)
-+{
-+	struct sy7758 *sydev = bl_get_data(backlight_dev);
-+	unsigned int brightness = backlight_get_brightness(backlight_dev);
-+
-+	mutex_lock(&sy7758_update_backlight_mutex);
-+
-+	if (!sydev->led_on && brightness > 0) {
-+		sy7758_init(sydev);
-+		sydev->led_on = true;
-+	} else if (brightness == 0) {
-+		sydev->led_on = false;
-+	}
-+
-+	sy7758_write(sydev, BL_BRT_L, brightness & 0xf0);
-+
-+	sy7758_write(sydev, BL_BRT_H, (brightness >> 8) & 0xf);
-+
-+	mutex_unlock(&sy7758_update_backlight_mutex);
-+	return 0;
-+}
-+
-+static const struct backlight_ops sy7758_backlight_ops = {
-+	.options = BL_CORE_SUSPENDRESUME,
-+	.update_status = sy7758_backlight_update_status,
-+};
-+
-+static void sy7758_init(struct sy7758 *sydev)
-+{
-+	sy7758_write(sydev, 0x01, 0x85);
-+	sy7758_write(sydev, 0x10, 0x00);
-+	sy7758_write(sydev, 0x11, 0x00);
-+	sy7758_write(sydev, 0xa5, 0x64);
-+	sy7758_write(sydev, 0xa0, 0x55);
-+	sy7758_write(sydev, 0xa1, 0x9a);
-+	sy7758_write(sydev, 0xa9, 0x80);
-+	sy7758_write(sydev, 0xa2, 0x28);
-+
-+	usleep_range(10000, 11000);
-+
-+	sy7758_write(sydev, 0x10, 0x40);
-+	sy7758_write(sydev, 0x11, 0x01);
-+	// Max brightness
-+	// 0x10: 0xf0 Low
-+	// 0x11: 0x0f High
-+
-+	// Min brightness
-+	// 0x10: 0x10  Low
-+	// 0x11: 0x00  High
-+	sydev->led_on = true;
-+}
-+
-+static int sy7758_probe(struct i2c_client *client)
-+{
-+	struct backlight_device *backlight_dev;
-+	struct backlight_properties props;
-+	struct sy7758 *sydev;
-+
-+	sydev = devm_kzalloc(&client->dev, sizeof(*sydev), GFP_KERNEL);
-+	if (!sydev)
-+		return -ENOMEM;
-+
-+	sydev->client = client;
-+	sydev->regmap = devm_regmap_init_i2c(client, &sy7758_regmap_config);
-+	if (IS_ERR(sydev->regmap))
-+		return dev_err_probe(&client->dev, PTR_ERR(sydev->regmap),
-+			"failed to init regmap\n");
-+
-+	memset(&props, 0, sizeof(props));
-+	props.type = BACKLIGHT_RAW;
-+	props.max_brightness = MAX_BRIGHTNESS;
-+	props.brightness = DEFAULT_BRIGHTNESS;
-+	props.scale = BACKLIGHT_SCALE_LINEAR;
-+
-+	backlight_dev = devm_backlight_device_register(&client->dev, "sy7758-backlight",
-+					&client->dev, sydev, &sy7758_backlight_ops, &props);
-+	if (IS_ERR(backlight_dev))
-+		return dev_err_probe(&client->dev, PTR_ERR(backlight_dev),
-+				"failed to register backlight device\n");
-+
-+	sy7758_init(sydev);
-+
-+	i2c_set_clientdata(client, backlight_dev);
-+	backlight_update_status(backlight_dev);
-+
-+	return 0;
-+}
-+
-+static void sy7758_remove(struct i2c_client *client)
-+{
-+	struct backlight_device *backlight_dev = i2c_get_clientdata(client);
-+
-+	backlight_dev->props.brightness = 0;
-+	backlight_update_status(backlight_dev);
-+}
-+
-+static const struct i2c_device_id sy7758_ids[] = {
-+	{ "sy7758" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, sy7758_ids);
-+
-+static const struct of_device_id sy7758_match_table[] = {
-+	{
-+		.compatible = "silergy,sy7758",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, sy7758_match_table);
-+
-+static struct i2c_driver sy7758_driver = {
-+	.driver = {
-+		.name = "sy7758",
-+		.of_match_table = sy7758_match_table,
-+	},
-+	.probe = sy7758_probe,
-+	.remove = sy7758_remove,
-+	.id_table = sy7758_ids,
-+};
-+
-+module_i2c_driver(sy7758_driver);
-+
-+MODULE_DESCRIPTION("Silergy sy7758 Backlight Driver");
-+MODULE_AUTHOR("Kancy Joe <kancy2333@outlook.com>");
-+MODULE_LICENSE("GPL");
+Patch 2 is a follow-up cleanup that drops the now-unused return
+value of early_init_dt_scan_chosen() and the dead checks at its
+callers.
+
+If I missunderstood anything, please feel free to let me know.
+
+Best Regards,
+Sang-Heon Jeon
+
+Sang-Heon Jeon (2):
+  powerpc/prom: fix /chosen properties read from wrong node
+  of/fdt: make early_init_dt_scan_chosen() return void
+
+ arch/powerpc/kernel/prom.c | 20 ++++++++++----------
+ drivers/of/fdt.c           | 10 ++--------
+ include/linux/of_fdt.h     |  2 +-
+ 3 files changed, 13 insertions(+), 19 deletions(-)
 
 -- 
-2.54.0
-
+2.43.0
 
 
