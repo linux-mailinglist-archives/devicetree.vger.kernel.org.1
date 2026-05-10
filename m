@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-295073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295072-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UFOTN4piAGq4IAEAu9opvQ
-	(envelope-from <devicetree+bounces-295073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id ANgjCYpiAGq4IAEAu9opvQ
+	(envelope-from <devicetree+bounces-295072-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB40C503A99
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03644503A92
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 28BD83002338
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 10:48:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1CA123003831
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 10:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7FA372B5E;
-	Sun, 10 May 2026 10:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3B537475D;
+	Sun, 10 May 2026 10:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u+SyqJyL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ErbFYcp4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295A6371CE6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF1A373BEB;
 	Sun, 10 May 2026 10:48:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778410120; cv=none; b=SaQLfu+M9YlzgT+vczCenMykL6A+dIT/fxARMb38XO8uFK9D4/1RrmG6es24Os8R3W9Vlf1tQ4d5xOZz86AGGSHZ4T/DhC5SSlekitzQFuivDrJrACitiC14huWBErsWwZ59NBIiR7yyueM4f6AGyhNvA+2LzCj6TDmPsB8KX6M=
+	t=1778410119; cv=none; b=szrzrM5pBNxNr6DPIrnAQGwfV/FTryk8f9i+7io2ckoI9nN52/eUhPHTt99jhQyJ7nrfPliKj99ScYhqpwZVgc8yVVBo7eVVUnKOXnhG2jeR5M4njSzXSsaI03UV2dhQoITRM18ZFggviRuRGDqyPXT+5FEdntjpK/mtftPc4EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778410120; c=relaxed/simple;
-	bh=aIbJ65ouYnpLea6lch/3Ldro0q+OwvMunQ4WQNfth+4=;
+	s=arc-20240116; t=1778410119; c=relaxed/simple;
+	bh=uNF61VfB1rCmTP4U3gxo5/xc7VrXiL/31ORL+ldm5uw=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Ct6bUlvS3OWJFjDUUvoYOYUSwcbc1TrVrJyUCbyLXKJvKZbQsmPMs4OFdVu/EqqMa9jOeOcoRq18fkQPBuXeovWlQd1ZU5xOydH4w/9rEewTso4k7ftdnwLMKoAbAWhNpFR8EdEuofft0PSvUGgELFAn5LZsurWNmjbGi4URDTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u+SyqJyL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 696E9C2BCB8;
-	Sun, 10 May 2026 10:48:39 +0000 (UTC)
+	 Message-Id; b=ggz0bAT3fEE+XP3wSTCvtKzsgM0j69C25vNFv3e57HXPGD3Kb4/U4jdhN287el9WH5yGXmhTQyJSqUjpQ6hC4wtyVyI4S5Hd72osXy2LSt0z6aAr6q9Y9+k5pSyqBpZhqhhT/VE3JNmia3r4lLEpOcHdRexHgBlKp+L7iiyJeA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ErbFYcp4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8514DC2BCB8;
+	Sun, 10 May 2026 10:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778410119;
-	bh=aIbJ65ouYnpLea6lch/3Ldro0q+OwvMunQ4WQNfth+4=;
+	s=k20201202; t=1778410118;
+	bh=uNF61VfB1rCmTP4U3gxo5/xc7VrXiL/31ORL+ldm5uw=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=u+SyqJyLjKJdi8i66PyuRmY7rYgbYBshZQsyUm+ZRZJyI046WGyl7pB2Ucfd/xSLb
-	 x2ZKi9EML/DR9jGA6JYJUCou0litjUnVZI/NkD2zWp/OOl7QR1YLzYhrSbn1VgWpsa
-	 ikMm//XCoD7Oh8ByXq1F4wE/ZiUmAr3KwRSkmK6WMffhc5MDrcbrCxNfE92i4Bm7Ss
-	 B8oEmoZtv8hnEGx6o377vt2I84sO7TBTSzPFb7D/qfMm+s3EvrHM9mexLmZvy90m6r
-	 Ul+Yijecnb1BCspKIq3VRHZRhGTYws+7he8dNRgsy+WOWBBhSXzljRFJU/jGOnEJEO
-	 1YC5Mmf+df4ug==
+	b=ErbFYcp4i5spSGjF+Bdi/qOqiv9Qm2gXAFkaSle5mtiCiYrOHjp1By3SiTrxVOTKt
+	 cd1dSbBPkTfeN9ts9CMS2Q6r8InwBP7AxMTBUvOyzkkb/ajDaenPcYEw6gwmO5QIJS
+	 P5tSCUGmYeVJHqVssqFINEmYL1OmyOkwWFXl6tqug/dGpmUWbjv5Baibut+dvaQ2tB
+	 CJgBqUGALoiSZxwg0QXUDuU49xtD9fXgAvYX2z+/2LTNSi0l8HlWwHoyVrdCZNPtNv
+	 CXGC6juwtNhSkKr+MqxTjNG+0X3FvGpnGmFyzGJZPonlnIS7lRIj8lNfOkNrIaVgUI
+	 ysOmefOrkOG4w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 net-next 13/15] net: dsa: netc: initialize buffer
- pool table and implement flow-control
+Subject: Re: [PATCH v6 net-next 12/15] net: dsa: netc: add FDB, STP, MTU,
+ port setup and host flooding support
 Reply-To: sashiko@lists.linux.dev
 To: "Wei Fang" <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev
-In-Reply-To: <20260509102954.4116624-14-wei.fang@nxp.com>
-References: <20260509102954.4116624-14-wei.fang@nxp.com>
+Cc: imx@lists.linux.dev, devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org
+In-Reply-To: <20260509102954.4116624-13-wei.fang@nxp.com>
+References: <20260509102954.4116624-13-wei.fang@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 Date: Sun, 10 May 2026 10:48:38 +0000
-Message-Id: <20260510104839.696E9C2BCB8@smtp.kernel.org>
+Message-Id: <20260510104838.8514DC2BCB8@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: CB40C503A99
+X-Rspamd-Queue-Id: 03644503A92
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -74,7 +74,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295073-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295072-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -98,84 +98,156 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [Medium] The IPV-to-buffer-pool mapping algorithm fails when a port is al=
-located more than 8 buffer pools, silently routing all traffic to a single =
-pool.
+- [High] Incorrect FDB port bitmap update causes roaming unicast entries to=
+ be flooded to multiple ports.
+- [High] Local `u8` arrays `bcast` and `dmac_mask` are passed to `ether_add=
+r_copy` without ensuring 16-bit alignment.
+- [Medium] The driver silently fails to delete dynamically learned FDB entr=
+ies.
 --
 
-commit 0b5e4aba36a49ce1de9eb84ec706f482331550cf
+commit 5ef406cd4ab0e5005f26e470e33265be68b4fe54
 Author: Wei Fang <wei.fang@nxp.com>
 
-net: dsa: netc: initialize buffer pool table and implement flow-control
+net: dsa: netc: add FDB, STP, MTU, port setup and host flooding support
+   =20
+Expand the NETC switch driver with foundational features including FDB
+management, STP, MTU configuration, and host flooding support. The driver
+operates in standalone port mode.
 
-This commit initializes the buffer pool table and implements flow control
-for the NXP netc DSA driver. It adds logic to dynamically map the 8 internal
-priority values (IPVs) to the available buffer pools per port based on
-hardware capabilities.
-
-> diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc=
-_main.c
-> --- a/drivers/net/dsa/netc/netc_main.c
-> +++ b/drivers/net/dsa/netc/netc_main.c
-
+diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc_m=
+ain.c
+--- a/drivers/net/dsa/netc/netc_main.c
++++ b/drivers/net/dsa/netc/netc_main.c
 [ ... ]
-
-> +static void netc_ipv_to_buffer_pool_mapping(struct netc_switch *priv)
+> @@ -363,6 +418,206 @@ static void netc_port_default_config(struct netc_po=
+rt *np)
+[ ... ]
+> +static int netc_port_set_fdb_entry(struct netc_port *np,
+> +				   const unsigned char *addr, u16 vid)
 > +{
-> +	int bp_per_port =3D priv->num_bp / priv->info->num_ports;
-> +	int q =3D NETC_IPV_NUM / bp_per_port;
-> +	int r =3D NETC_IPV_NUM % bp_per_port;
-> +	int num =3D q + r;
+[ ... ]
+> +	cfge =3D &entry->cfge;
+> +	/* If the entry already exists on the port, return 0 directly */
+> +	if (unlikely(cfge->port_bitmap & cpu_to_le32(BIT(port))))
+> +		goto unlock_fdbt;
 > +
-> +	/* IPV-to=E2=80=93buffer-pool mapping per port:
-> +	 * Each port is allocated 'bp_per_port' buffer pools and supports 8
-> +	 * IPVs, where a higher IPV indicates a higher frame priority. Each
-> +	 * IPV can be mapped to only one buffer pool.
-> +	 *
-> +	 * The mapping rule is as follows:
-> +	 * - The first 'num' IPVs share the port's first buffer pool (index
-> +	 * 'base_id').
-> +	 * - After that, every 'q' IPVs share one buffer pool, with pool
-> +	 * indices increasing sequentially.
+> +	/* If the entry already exists, but not on this port, we need to
+> +	 * update the port bitmap. In general, it should only be valid
+> +	 * for multicast or broadcast address.
 > +	 */
-> +	for (int i =3D 0; i < priv->info->num_ports; i++) {
-> +		u32 base_id =3D i * bp_per_port;
-> +		u32 bp_id =3D base_id;
-> +		u64 mapping =3D 0;
+> +	cfge->port_bitmap |=3D cpu_to_le32(BIT(port));
+
+Does this correctly handle roaming unicast MAC addresses?
+
+When a unicast MAC address roams from one port to another, or when a user
+replaces a static unicast FDB entry using bridge fdb replace, the bridge co=
+re
+requests adding the entry on the new port.
+
+Because this unconditionally ORs the port into the bitmap, the unicast addr=
+ess
+becomes associated with both the old and new ports simultaneously. This will
+cause the switch hardware to duplicate and flood unicast frames to multiple
+ports.=20
+
+Should this check is_multicast_ether_addr() and replace the port_bitmap
+instead of ORing it for unicast addresses?
+
+> +	err =3D ntmp_fdbt_update_entry(&priv->ntmp, entry->entry_id, cfge);
+[ ... ]
+> +static int netc_port_del_fdb_entry(struct netc_port *np,
+> +				   const unsigned char *addr, u16 vid)
+> +{
+> +	struct netc_switch *priv =3D np->switch_priv;
+> +	struct ntmp_user *ntmp =3D &priv->ntmp;
+> +	struct netc_fdb_entry *entry;
+> +	struct fdbt_cfge_data *cfge;
+> +	int port =3D np->dp->index;
+> +	int err =3D 0;
 > +
-> +		for (int ipv =3D 0; ipv < NETC_IPV_NUM; ipv++) {
-> +			/* Update the buffer pool index */
-> +			if (ipv >=3D num)
-> +				bp_id =3D base_id + ((ipv - num) / q) + 1;
+> +	mutex_lock(&priv->fdbt_lock);
+> +
+> +	entry =3D netc_lookup_fdb_entry(priv, addr, vid);
+> +	if (unlikely(!entry))
+> +		goto unlock_fdbt;
 
-What happens if a future hardware revision allocates more than 8 buffer poo=
-ls
-per port?
+Can this silently fail to delete dynamically learned FDB entries?
 
-If bp_per_port is greater than NETC_IPV_NUM (8), q evaluates to 0 and num
-evaluates to 8.
+The netc_lookup_fdb_entry() function searches priv->fdb_list, which only
+tracks static entries explicitly added by software.=20
 
-Because ipv loops from 0 to 7, the condition ipv >=3D num will never be tru=
-e.
-As a result, all 8 traffic priorities would be mapped to a single buffer po=
-ol
-(base_id), leaving the remaining pools unused instead of maximizing
-utilization.
-
-Should bp_per_port be clamped to NETC_IPV_NUM before calculating q to
-prevent this?
+If the bridge core or user attempts to delete a hardware-learned dynamic MAC
+address, the lookup will return NULL. The function will then jump to
+unlock_fdbt and silently return 0 (success) without actually issuing a dele=
+te
+command to the hardware FDB.
 
 > +
-> +			mapping |=3D (u64)bp_id << (ipv * 8);
-> +		}
+> +	cfge =3D &entry->cfge;
+[ ... ]
+> +static int netc_add_standalone_fdb_bcast_entry(struct netc_switch *priv)
+> +{
+> +	const u8 bcast[ETH_ALEN] =3D {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+
+Are local byte arrays guaranteed to be 16-bit aligned?
+
+The ether_addr_equal() macro (used inside netc_lookup_fdb_entry which is
+subsequently called by netc_port_set_fdb_entry) expects its pointer argumen=
+ts
+to be 16-bit aligned.=20
+
+Because bcast is declared as a simple u8 array on the stack, the compiler
+only guarantees a 1-byte alignment by default. On architectures with strict
+alignment requirements, this could trigger an unaligned access exception.
+
+> +	struct dsa_port *dp, *cpu_dp =3D NULL;
 > +
-> +		netc_port_set_pbpmcr(priv->ports[i], mapping);
+> +	dsa_switch_for_each_cpu_port(dp, priv->ds) {
+> +		cpu_dp =3D dp;
+> +		break;
 > +	}
+> +
+> +	if (!cpu_dp)
+> +		return -ENODEV;
+> +
+> +	/* If the user port acts as a standalone port, then its PVID is 0,
+> +	 * MLO is set to "disable MAC learning" and MFO is set to "discard
+> +	 * frames if no matching entry found in FDB table". Therefore, we
+> +	 * need to add a broadcast FDB entry on the CPU port so that the
+> +	 * broadcast frames received on the user port can be forwarded to
+> +	 * the CPU port.
+> +	 */
+> +	return netc_port_set_fdb_entry(NETC_PORT(priv->ds, cpu_dp->index),
+> +				       bcast, NETC_STANDALONE_PVID);
 > +}
+[ ... ]
+> +static int netc_port_add_host_flood_rule(struct netc_port *np,
+> +					 bool uc, bool mc)
+> +{
+> +	const u8 dmac_mask[ETH_ALEN] =3D {0x1, 0, 0, 0, 0, 0};
+
+This has the same alignment concern as the bcast array above.
+
+The ether_addr_copy() macro expects its pointer arguments to be 16-bit
+aligned. Passing a stack-allocated u8 array without explicit alignment could
+cause unaligned access faults on certain architectures.
+
+> +	struct netc_switch *priv =3D np->switch_priv;
+> +	struct ipft_entry_data *host_flood;
+> +	struct ipft_keye_data *keye;
+[ ... ]
+> +	if (uc && !mc)
+> +		ether_addr_copy(keye->dmac_mask, dmac_mask);
+> +
+> +	if (!uc && mc) {
+> +		ether_addr_copy(keye->dmac, dmac_mask);
+> +		ether_addr_copy(keye->dmac_mask, dmac_mask);
+> +	}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260509102954.4116=
-624-1-wei.fang@nxp.com?part=3D13
+624-1-wei.fang@nxp.com?part=3D12
 
