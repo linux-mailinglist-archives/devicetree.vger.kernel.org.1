@@ -1,146 +1,158 @@
-Return-Path: <devicetree+bounces-295156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KIkKOlvEAGrlMQEAu9opvQ
-	(envelope-from <devicetree+bounces-295156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:46:03 +0200
+	id kG4jLjbJAGrGMgEAu9opvQ
+	(envelope-from <devicetree+bounces-295157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:06:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5869E5057D3
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 19:46:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A48150588F
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 20:06:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D3D6301E6C2
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 17:45:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF796300CE68
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361422BDC0F;
-	Sun, 10 May 2026 17:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06272F1FC9;
+	Sun, 10 May 2026 18:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nqSHgJQm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dKVh2lrP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11EE2296BC1;
-	Sun, 10 May 2026 17:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF2517B50A;
+	Sun, 10 May 2026 18:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778435129; cv=none; b=mQcc0HEFmrKI8q7dhkn+m0Jt4wHiOLbreiEmho0eLT5eZ3FPNGm84/LejVt+MY6V0jdIvW7BNMdkbnTb+xk1OFAls7ZAkh2NZHK9lzVzdaB+OQNAh68zA/yfxFWziHWfPSmij6ciRHYUMdL8EYhaRuBhs2WDXk8hI7zNIcB14fk=
+	t=1778436399; cv=none; b=G+g3qD7XkVe60KhDDINgvQ5qaXzdYcJ0BRJvX3pFJPiL5imwcxRC69ByH3xvLJUS6pHZsAKevoPSFadsv0ZSOFldNFUrkqQcTtwvFdg4qBnzfcIWJA5qhNWq/TkLzxOuWgiMTkjAp9LBgjH4BrzWHxj34kJMLIcaCWJTl0xdoEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778435129; c=relaxed/simple;
-	bh=v8tjPqJayiaNCgrRc6AGcAmRFyUS5dSgQnulgFX4+Y8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bOcVeDWVo8wb5Q02Jw4bY7fbtv+agZsRzzodDRrlMmxD7wee98umGTi+zGNuC2OKbep6yVF0bfbRmLj5Yq5tTqFIKppEiLQbP1tWi3OpXwdpSqMtyrPebpAcQ+b37frocNthDnaiVRcz72pQQNWjJRv5fct8CpvBNBNoHDflzoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nqSHgJQm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD821C2BCB8;
-	Sun, 10 May 2026 17:45:28 +0000 (UTC)
+	s=arc-20240116; t=1778436399; c=relaxed/simple;
+	bh=Q/WCDKfdbN0bfbKBiTsXu/nT2ph+oMQHG9vFZrTe+28=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Fc6xOgytN4ikoK2B/eT0DmKOEcVLAI33871unB8WFg2QQM8F8WC2KlsiyWWvVeAjd7dG/4aD9ZABYpk6ZF+RKfPo0BHzh4kvRWXqa7CLanrIWoFI2RqWcXgeNz2CBtcSgbeC9evvVplOWYUK34qcKIYmyPOtFl/Nfh/3KcdYxxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dKVh2lrP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 42D30C2BCB8;
+	Sun, 10 May 2026 18:06:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778435129;
-	bh=v8tjPqJayiaNCgrRc6AGcAmRFyUS5dSgQnulgFX4+Y8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=nqSHgJQmVur+TYghaQt0RaDSfZPJNsX0/krSTlPzrMrD7tSd79o4brCsLkF3X6CRW
-	 4O0H4t5pJdxNIAUNOZiBDMViqK/3FZiHEBSZYs1OaHbOcSYQk5tiF9AxHMxmWN/cTz
-	 llzgi1d35Q1Y9mnPzEE1NfgGXCqW2CeUjW7q/XItZ/d7yFQHAmEl19lq2GfrByTy6q
-	 POsC4/8/OYYakZlw4KaciXnuwxGgFz+CC14xjEfJafV0hrYQXDTXZvTn0/aRF8k8LM
-	 AYDItioNK2EQYYy+cE3ryhJ5SfS/15VxX/2aYMm1+WzuBoWJuRz/GGRnuWyYGyQwBn
-	 2Mu9swwpuzO4A==
-Date: Sun, 10 May 2026 12:45:27 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1778436399;
+	bh=Q/WCDKfdbN0bfbKBiTsXu/nT2ph+oMQHG9vFZrTe+28=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=dKVh2lrPxIwrpB2Ig4pLxiU7+8zeNNKmq35pgdPY4+bsvpBtG1bTY+a3r0DfqSABB
+	 IhLL7nswDkHYLKt6wIRI/Wj+381+bhy38uSpZC2qnqAkzrlInGHXzLkys4OO98KY4b
+	 NWeRBTRHKPOqeSDMZ56MCTMzPPMW6fTsvjrXiULAGeE9qT3hgxYibHLzFHvd6Yph0Z
+	 9uWyeEvtMva0VVK9qEWpGGoWVKKNhLVjmaTQbjDyDq1x4PmpfjUhwxUY8YIvKPA4g8
+	 5iN96Q3udwnIzi09DJUypEAbsZEO/ARqowPDkJ6tEhnh72UOxFp6J5JF/RL2m+AxOD
+	 brQDvn+u5LYAA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D83BCD3427;
+	Sun, 10 May 2026 18:06:39 +0000 (UTC)
+From: Vyacheslav Yurkov via B4 Relay <devnull+V.Yurkov.EXT.bruker.com@kernel.org>
+Subject: [PATCH v2 0/2] A proposal to add a gpio-locked fixed clock driver.
+Date: Sun, 10 May 2026 18:06:21 +0000
+Message-Id: <20260510-feature-clock-guard-v2-0-6c25458d5340@bruker.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Philippe Simons <simons.philippe@gmail.com>, 
- Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: Alexandre Hamamdjian <azkali.limited@gmail.com>
-In-Reply-To: <20260510-sgm3804-v1-1-e5e8799e0aa0@gmail.com>
-References: <20260510-sgm3804-v1-0-e5e8799e0aa0@gmail.com>
- <20260510-sgm3804-v1-1-e5e8799e0aa0@gmail.com>
-Message-Id: <177843512496.3129220.15229933494716911310.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: add SGMicro SGM3804
-X-Rspamd-Queue-Id: 5869E5057D3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB3JAGoC/32NTQ6CMBBGr0Jm7Zi2/OrKexgWbRmgQamZQqMh3
+ N3KAVy+l3zv2yAQOwpwzTZgii44PydQpwzsqOeB0HWJQQlViVw22JNeVia0D28nHFbNHfZKaGX
+ z0lyqEtLyxdS791G9t4lHFxbPn+Mkyp/934sSBVYyr60pRFOY+mZ4nYjP1j+h3ff9C7X2O5S3A
+ AAA
+X-Change-ID: 20260318-feature-clock-guard-f20a2c35b965
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, Vyacheslav Yurkov <uvv.mail@gmail.com>, 
+ Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778436398; l=1674;
+ i=V.Yurkov.EXT@bruker.com; s=20260318; h=from:subject:message-id;
+ bh=Q/WCDKfdbN0bfbKBiTsXu/nT2ph+oMQHG9vFZrTe+28=;
+ b=9sI8m7AMOU1hB1Gsotg8yQlFziYmA2hoYnJRQ2muNBU8CFQ3oNbFgQxoa0RNRbyPqVMj0tsZ0
+ C3AkhgZf0F/A4HqFiCvJMOsLwFYrzSyz2AeMa8d6z9OCDGdM/o8jQqg
+X-Developer-Key: i=V.Yurkov.EXT@bruker.com; a=ed25519;
+ pk=snJmgYVOKlp7aQtK9tWnEI7QTYxpPpJJvxdVsnxA7Fk=
+X-Endpoint-Received: by B4 Relay for V.Yurkov.EXT@bruker.com/20260318 with
+ auth_id=686
+X-Original-From: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
+Reply-To: V.Yurkov.EXT@bruker.com
+X-Rspamd-Queue-Id: 5A48150588F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-295156-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-295157-lists,devicetree=lfdr.de,V.Yurkov.EXT.bruker.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bruker.com];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,3e:email]
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	HAS_REPLYTO(0.00)[V.Yurkov.EXT@bruker.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bruker.com:email,bruker.com:mid,bruker.com:replyto]
 X-Rspamd-Action: no action
 
+A gpio-locked fixed clock aggregates one or more input clocks and/or one
+or more GPIOs. It's similar to a gated-fixed-clock, but GPIO direction is
+inverted. Consumers can use the output clock to wait until all input
+clocks are locked and only then initialize / access dependent peripherals.
 
-On Sun, 10 May 2026 23:45:26 +0700, Alexandre Hamamdjian wrote:
-> The SGMicro SGM3804 is an I2C-controlled positive and negative output
-> charge-pump regulator. It is commonly used to provide the AVDD and AVEE
-> supplies for display panels, and exposes two reset GPIOs to sequence the
-> positive and negative output rails independently.
-> 
-> Document the binding for the new compatible "sgmicro,sgm3804" so it can
-> be referenced by board device trees and the matching driver, and add a
-> MAINTAINERS entry covering both the binding and the upcoming driver.
-> 
-> Co-developed-by: Philippe Simons <simons.philippe@gmail.com>
-> Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
-> Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
-> ---
->  .../bindings/regulator/sgmicro,sgm3804.yaml        | 60 ++++++++++++++++++++++
->  MAINTAINERS                                        |  7 +++
->  2 files changed, 67 insertions(+)
-> 
+The usage example for such a driver is when peripherals depend on PLLs in
+a FPGA, which can't be directly accessed by the CPU, but need a GPIO pin
+to check whether clock is actually usable. E.g. some of the IPs might not
+have a proper split between registers and IP core, which means that if an
+external clock and/or PLL lock is missing and one tries to access the 
+registers, the response never comes, thus the CPU stalls.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Vyacheslav Yurkov <uvv.mail@gmail.com>
+Signed-off-by: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
+---
+Changes in v2:
+- Renamed to clk-gpio-locked to express intent.
+- Provide enable() / is_enabled() operations so the clock behaves as
+  expected
+- Fixed DTS errors / warnings
+- Link to v1: https://lore.kernel.org/r/20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com
 
-yamllint warnings/errors:
+---
+Vyacheslav Yurkov (2):
+      clk: Add gpio-locked clock driver
+      dt-bindings: Add GPIO locked fixed clock
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.example.dtb: regulator@3e (sgmicro,sgm3804): reset-gpios: [[4294967295, 10, 0], [4294967295, 11, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer-common.yaml
+ .../bindings/clock/gpio-locked-fixed-clock.yaml    |  77 ++++++
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/clk-gpio-locked.c                      | 306 +++++++++++++++++++++
+ 3 files changed, 384 insertions(+)
+---
+base-commit: 917719c412c48687d4a176965d1fa35320ec457c
+change-id: 20260318-feature-clock-guard-f20a2c35b965
 
-doc reference errors (make refcheckdocs):
+Best regards,
+-- 
+Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260510-sgm3804-v1-1-e5e8799e0aa0@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
