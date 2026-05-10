@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-295148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295146-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GLtSLzK2AGplLwEAu9opvQ
-	(envelope-from <devicetree+bounces-295148-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:45:38 +0200
+	id 0BWjHCK3AGplLwEAu9opvQ
+	(envelope-from <devicetree+bounces-295146-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:49:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9CB85052B9
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:45:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7250505324
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 18:49:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C773C3001CCD
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04290301BCDE
 	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 16:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD9E3ACA42;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B70939E6F0;
 	Sun, 10 May 2026 16:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zv5qOPHV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V/TqtAfw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7796F39183B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778BD388E72;
 	Sun, 10 May 2026 16:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778431532; cv=none; b=HhPEtvEC76fpt9oseuCr6GpICnC/VZ5PVv/GX+his5OecO4+DP8kd7KlMCQoma9xpjyqHyIEwjQJcj4JvSDxAtboU8j24h+nn89LwWQIQ/M4fhiHBTTu08gZpIJA76tEEznkOtPkjvQtN57MFmPyMwUwRpTB3W6iFdTq9ZSv0tw=
+	t=1778431532; cv=none; b=ask/m3y5UBQ4W59J5myg3C1hW8xlNYs5oCfVpAickYM+WWuWhAfTan2UIOM8hufpZkkQOkR+RbFjSitXSWw53t6evdw+pRasRNPjvzUWC5CpxdmEugCF6ABW8zVCvijssSSAkjMdat7Os/R2BGjuYXlvazyviVBlyqM4elufyHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1778431532; c=relaxed/simple;
-	bh=/WuZUeZCMZrnceyX7+bS1/qqA7M8L6zQXpaUctGOv1U=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=l12udJqQ3eDJdksjjGA90Sctuq3AadLrorwRwga8slGAv1sO9rpNVAkd50d+JYh7UotxLW4/1LupIjMnSnq9ZZIEjGHZov3ZcMORlvIL4TS9L89Mxd2fY1Fvgn1s/vRfzE1rUr6NqMhRgzfhe0t+1gs49o5BbFDumbozQOCRcKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zv5qOPHV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 16E9EC2BCB8;
+	bh=nr2PNmnoE55WAs+wO5a7ozSbaw9DnvmevSQ4RFVMUvc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=cMa7TLJqMBxIKgZctwaBZw5D7xdKYG7kxZ996WnLv564C4zoPNf2dwfwd5gdRAiYwIZPOHiRXYIdXi+/6XbsItvG560A/iip8HN1/C6NNfX+L2H0yv7Pk72AjYoIhMPAL7Gu3wGhFCQl9lOTHd7rBYNsdrUfEZgBNXqwGGf0ARg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/TqtAfw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2FD39C2BCF7;
 	Sun, 10 May 2026 16:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778431532;
-	bh=/WuZUeZCMZrnceyX7+bS1/qqA7M8L6zQXpaUctGOv1U=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=Zv5qOPHVsAdULu/LE2wQOaUK4NGNMvtO3ywB7+ofMolpLCRZkbqiSzHWt3duXJ0kS
-	 Rg9h/rupEMK+we0w7VZqLdXmriVwi7jEtz2jDNAqyBqhHrTJoHLFO+Dm4HOpWvIN1p
-	 tFkMqZDLHGMxcuMAy9bwFLMwvxnJdVz+Isw6av/WC9Qb3/rXILpQyZ5tw3yY180ied
-	 78O6j9dKd1N7OmEG1kedDLnW/Mjke8aqU48avdm6ntikQAq50bMccTUB7x3JubtWXr
-	 CUvRuoUN0EChTML+zlUaD4+tz6MqkkkM6qrmrZ9+RBK+knia4pfNKqbY4JXKsLjzWE
-	 VeyETgnNduaeg==
+	bh=nr2PNmnoE55WAs+wO5a7ozSbaw9DnvmevSQ4RFVMUvc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=V/TqtAfwYPtp6hyYBBznqHlWUTL0ZMLwuAh0GVRdD9GhS46Y9Hoy7beFN16JMN8Rr
+	 rpQ7h558YRQmVJ91KQRi+wL9MbATmPmDuohhKB9Yv4M3I0UeRFGAdWLdZMn3aiMDDb
+	 UcX/ftW9YjysQ4Opsw03keHZ1atRS4m47vOB0uHSNezd/Kj+LedNergrzsswaN13RT
+	 tRpGhtpWHEiGLJEc7TpGiPT1sqcKKdSVHSRkpmCRHusFsx3VgoudpCNir+4Ck6abA2
+	 0p35lA9YDsyx0x8+bJQWhzHZMnv3lUibYeKxHu1zHL+VaLD9na+789QFmmg8waJx57
+	 rVFYqGP8313Ag==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03E51CD37B9;
-	Sun, 10 May 2026 16:45:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D53BCD3427;
+	Sun, 10 May 2026 16:45:32 +0000 (UTC)
 From: Alexandre Hamamdjian via B4 Relay <devnull+azkali.limited.gmail.com@kernel.org>
-Subject: [PATCH 0/2] regulator: add support for SGMicro SGM3804
-Date: Sun, 10 May 2026 23:45:25 +0700
-Message-Id: <20260510-sgm3804-v1-0-e5e8799e0aa0@gmail.com>
+Date: Sun, 10 May 2026 23:45:26 +0700
+Subject: [PATCH 1/2] dt-bindings: regulator: add SGMicro SGM3804
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,10 +58,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDU0MD3eL0XGMLAxPdZGPzRIPEVLMU8zRjJaDqgqLUtMwKsEnRsRB+cWl
- SVmpyCUi7Um0tAJ9MDt9rAAAA
-X-Change-ID: 20260510-sgm3804-c37a0ae6d7f3
+Message-Id: <20260510-sgm3804-v1-1-e5e8799e0aa0@gmail.com>
+References: <20260510-sgm3804-v1-0-e5e8799e0aa0@gmail.com>
+In-Reply-To: <20260510-sgm3804-v1-0-e5e8799e0aa0@gmail.com>
 To: Philippe Simons <simons.philippe@gmail.com>, 
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -69,25 +68,25 @@ To: Philippe Simons <simons.philippe@gmail.com>,
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Alexandre Hamamdjian <azkali.limited@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778431530; l=1363;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778431530; l=3403;
  i=azkali.limited@gmail.com; s=20260510; h=from:subject:message-id;
- bh=/WuZUeZCMZrnceyX7+bS1/qqA7M8L6zQXpaUctGOv1U=;
- b=GHTf8dI7l6dDpUncMLK2xLs1wfa08vt/n8RslM9p+yYSOk2hB/5tFRvrxlu9Q8Eer0wm1HF3W
- af0qFx78JSrBpVK/3QrNebK13uYSZctpCgyPJZGb8bfM77Qthz1YDnE
+ bh=XWCit0ZA8mWCGZuR1y+fa+IVWSjOU74cPNIGW9a/Ktg=;
+ b=q+S2dD3+5X5wiS4eT8yx5WrFzrWAMjwfyP7tLlbhkN/NMfC15a/0lX3B7erDP9wzJsLsBfzJG
+ Ozp7cAjPws9A7AaLohjX6+5Wqx02KVdZCtwcR2VTSzhH2YuQfljTisV
 X-Developer-Key: i=azkali.limited@gmail.com; a=ed25519;
  pk=I0Z0IdCdQJqNGX+FQUnXhrHg950u3cM6Xzz3YT6JOyQ=
 X-Endpoint-Received: by B4 Relay for azkali.limited@gmail.com/20260510 with
  auth_id=774
 X-Original-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
 Reply-To: azkali.limited@gmail.com
-X-Rspamd-Queue-Id: B9CB85052B9
+X-Rspamd-Queue-Id: C7250505324
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	MID_RHS_MATCH_TO(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -97,7 +96,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-295148-lists,devicetree=lfdr.de,azkali.limited.gmail.com];
+	TAGGED_FROM(0.00)[bounces-295146-lists,devicetree=lfdr.de,azkali.limited.gmail.com];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -108,44 +107,120 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alibaba.com:email,devicetree.org:url]
 X-Rspamd-Action: no action
 
-This series adds support for the SGMicro SGM3804, an I2C-controlled
-positive/negative output charge-pump regulator. The chip is used to
-generate the AVDD/AVEE rails for display panels and is present on the
-Ayaneo Pocket DS handheld, where it powers the panel and is required
-before any panel driver can light up the display.
+From: Alexandre Hamamdjian <azkali.limited@gmail.com>
 
-The Ayaneo Pocket DS device tree, posted as a separate series, depends
-on the binding introduced here to describe its panel power supply, so
-this series is a prerequisite for that work and for any subsequent
-panel-related patches targeting the same board.
+The SGMicro SGM3804 is an I2C-controlled positive and negative output
+charge-pump regulator. It is commonly used to provide the AVDD and AVEE
+supplies for display panels, and exposes two reset GPIOs to sequence the
+positive and negative output rails independently.
 
+Document the binding for the new compatible "sgmicro,sgm3804" so it can
+be referenced by board device trees and the matching driver, and add a
+MAINTAINERS entry covering both the binding and the upcoming driver.
+
+Co-developed-by: Philippe Simons <simons.philippe@gmail.com>
+Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
 Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
 ---
-Alexandre Hamamdjian (2):
-      dt-bindings: regulator: add SGMicro SGM3804
-      regulator: sgm3804: add SGMicro SGM3804 charge-pump regulator driver
+ .../bindings/regulator/sgmicro,sgm3804.yaml        | 60 ++++++++++++++++++++++
+ MAINTAINERS                                        |  7 +++
+ 2 files changed, 67 insertions(+)
 
- .../bindings/regulator/sgmicro,sgm3804.yaml        |  60 ++++++++
- MAINTAINERS                                        |   7 +
- drivers/regulator/Kconfig                          |  11 ++
- drivers/regulator/Makefile                         |   1 +
- drivers/regulator/sgm3804-regulator.c              | 164 +++++++++++++++++++++
- 5 files changed, 243 insertions(+)
----
-base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
-change-id: 20260510-sgm3804-c37a0ae6d7f3
+diff --git a/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml b/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml
+new file mode 100644
+index 000000000000..f1de17bd5395
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/sgmicro,sgm3804.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SGMicro SGM3804 I2C charge-pump regulator
++
++maintainers:
++  - Alexandre Hamamdjian <azkali.limited@gmail.com>
++  - Philippe Simons <simons.philippe@gmail.com>
++
++description:
++  The SGM3804 is an I2C-controlled positive and negative output charge-pump
++  regulator typically used to provide the AVDD and AVEE supplies for display
++  panels. Two reset GPIOs are used to sequence the positive and negative
++  outputs independently.
++
++allOf:
++  - $ref: regulator.yaml#
++
++properties:
++  compatible:
++    const: sgmicro,sgm3804
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    minItems: 1
++    maxItems: 2
++    description:
++      Reset/enable GPIOs for the positive (index 0) and, optionally, the
++      negative (index 1) output rails.
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@3e {
++            compatible = "sgmicro,sgm3804";
++            reg = <0x3e>;
++            reset-gpios = <&tlmm 10 GPIO_ACTIVE_HIGH>,
++                          <&tlmm 11 GPIO_ACTIVE_HIGH>;
++            regulator-name = "panel-avdd";
++            regulator-min-microvolt = <5000000>;
++            regulator-max-microvolt = <5000000>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f877e5aaf2c7..394216175d2e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -24391,6 +24391,13 @@ M:	Steve Wahl <steve.wahl@hpe.com>
+ S:	Maintained
+ F:	drivers/misc/sgi-xp/
+ 
++SGMICRO SGM3804 REGULATOR DRIVER
++M:	Alexandre Hamamdjian <azkali.limited@gmail.com>
++M:	Philippe Simons <simons.philippe@gmail.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/regulator/sgmicro,sgm3804.yaml
++F:	drivers/regulator/sgm3804-regulator.c
++
+ SHARED MEMORY COMMUNICATIONS (SMC) SOCKETS
+ M:	D. Wythe <alibuda@linux.alibaba.com>
+ M:	Dust Li <dust.li@linux.alibaba.com>
 
-Best regards,
---  
-Alexandre Hamamdjian <azkali.limited@gmail.com>
+-- 
+2.54.0
 
 
 
