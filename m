@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-295072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295074-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ANgjCYpiAGq4IAEAu9opvQ
-	(envelope-from <devicetree+bounces-295072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:42 +0200
+	id wDktOJRiAGq4IAEAu9opvQ
+	(envelope-from <devicetree+bounces-295074-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03644503A92
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:41 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E381503AB8
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 12:48:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1CA123003831
-	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 10:48:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 41A10300B3ED
+	for <lists+devicetree@lfdr.de>; Sun, 10 May 2026 10:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3B537475D;
-	Sun, 10 May 2026 10:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3650A374178;
+	Sun, 10 May 2026 10:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ErbFYcp4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+wrBbE2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF1A373BEB;
-	Sun, 10 May 2026 10:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80B436F417;
+	Sun, 10 May 2026 10:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778410119; cv=none; b=szrzrM5pBNxNr6DPIrnAQGwfV/FTryk8f9i+7io2ckoI9nN52/eUhPHTt99jhQyJ7nrfPliKj99ScYhqpwZVgc8yVVBo7eVVUnKOXnhG2jeR5M4njSzXSsaI03UV2dhQoITRM18ZFggviRuRGDqyPXT+5FEdntjpK/mtftPc4EQ=
+	t=1778410120; cv=none; b=qq8R1cYTc5RlELN/LcChisiRDFiYrEETEDSPdmjv0ur/Mhn+LmvRQmtZpMEqqX/vlEiMWRJQtH+CyW4Z6Jz+Dyp5pmQV/Ju530kxHHNPTea8VolVGgTvdee35sNSE423711UxZ0smr0bFeT4BN8oEpvG/gwES+RoU8UeTTK4bnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778410119; c=relaxed/simple;
-	bh=uNF61VfB1rCmTP4U3gxo5/xc7VrXiL/31ORL+ldm5uw=;
+	s=arc-20240116; t=1778410120; c=relaxed/simple;
+	bh=31TQoaGVbmdQ/QCLkA2O96b7rJCZciY3L5IIb+sHI6c=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ggz0bAT3fEE+XP3wSTCvtKzsgM0j69C25vNFv3e57HXPGD3Kb4/U4jdhN287el9WH5yGXmhTQyJSqUjpQ6hC4wtyVyI4S5Hd72osXy2LSt0z6aAr6q9Y9+k5pSyqBpZhqhhT/VE3JNmia3r4lLEpOcHdRexHgBlKp+L7iiyJeA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ErbFYcp4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8514DC2BCB8;
-	Sun, 10 May 2026 10:48:38 +0000 (UTC)
+	 Message-Id; b=hKkgkZQnm96mdS4F5OQ5dL0L1SH4JhQQeajk5WVb0xUiPuUGhXYIclFLkeks56sjBQISHOVIEB+qSoRqG4NoktR8Ea1cKgHKOrN7uo9OMID+9jYxzrxWiIOhd9usCR6CR7aZCly1wmvZ+GeZU8aYBmc4VIPjp5JG8DyZwI08Z9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+wrBbE2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 437A8C2BCC9;
+	Sun, 10 May 2026 10:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778410118;
-	bh=uNF61VfB1rCmTP4U3gxo5/xc7VrXiL/31ORL+ldm5uw=;
+	s=k20201202; t=1778410120;
+	bh=31TQoaGVbmdQ/QCLkA2O96b7rJCZciY3L5IIb+sHI6c=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=ErbFYcp4i5spSGjF+Bdi/qOqiv9Qm2gXAFkaSle5mtiCiYrOHjp1By3SiTrxVOTKt
-	 cd1dSbBPkTfeN9ts9CMS2Q6r8InwBP7AxMTBUvOyzkkb/ajDaenPcYEw6gwmO5QIJS
-	 P5tSCUGmYeVJHqVssqFINEmYL1OmyOkwWFXl6tqug/dGpmUWbjv5Baibut+dvaQ2tB
-	 CJgBqUGALoiSZxwg0QXUDuU49xtD9fXgAvYX2z+/2LTNSi0l8HlWwHoyVrdCZNPtNv
-	 CXGC6juwtNhSkKr+MqxTjNG+0X3FvGpnGmFyzGJZPonlnIS7lRIj8lNfOkNrIaVgUI
-	 ysOmefOrkOG4w==
+	b=W+wrBbE24P2D0CYM4woWqoOJw3COVDTzWP3vVcDDK9iN38gqP4kSoMmLz480Ypl9H
+	 CgE9BtKZN3QHDPuaf/tpRyd/URd86wffBgWmvgpsFhCkBGXUfjxjZg4hzu0Mm1nlC9
+	 beUXUQGn+6aB4YQ/Fz60hZqjmYaHd1SkgWDKE4P57Ug9OI5ugHOSq5quHpFLIvOlWs
+	 bQzXs2/AXVVh4tqhQgNGtmNmGCOW70bfhLqgnaTRZCwX6jndz2/NnJZH2cuNbA3use
+	 VWn3g+FygJtc97m3RQh9G0tR3m0wr1xixwH72CbygByrXC1roI6snFHhx+j7okBmdP
+	 vzzwr+mU7fGzQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 net-next 12/15] net: dsa: netc: add FDB, STP, MTU,
- port setup and host flooding support
+Subject: Re: [PATCH v6 net-next 14/15] net: dsa: netc: add support for the
+ standardized counters
 Reply-To: sashiko@lists.linux.dev
 To: "Wei Fang" <wei.fang@nxp.com>
-Cc: imx@lists.linux.dev, devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org
-In-Reply-To: <20260509102954.4116624-13-wei.fang@nxp.com>
-References: <20260509102954.4116624-13-wei.fang@nxp.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, krzk+dt@kernel.org, imx@lists.linux.dev
+In-Reply-To: <20260509102954.4116624-15-wei.fang@nxp.com>
+References: <20260509102954.4116624-15-wei.fang@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sun, 10 May 2026 10:48:38 +0000
-Message-Id: <20260510104838.8514DC2BCB8@smtp.kernel.org>
+Date: Sun, 10 May 2026 10:48:39 +0000
+Message-Id: <20260510104840.437A8C2BCC9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 03644503A92
+X-Rspamd-Queue-Id: 5E381503AB8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -69,12 +69,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295072-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295074-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -91,163 +91,59 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,lists.linux.dev:replyto,sashiko.dev:url]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Incorrect FDB port bitmap update causes roaming unicast entries to=
- be flooded to multiple ports.
-- [High] Local `u8` arrays `bcast` and `dmac_mask` are passed to `ether_add=
-r_copy` without ensuring 16-bit alignment.
-- [Medium] The driver silently fails to delete dynamically learned FDB entr=
-ies.
+- [Medium] Reading 64-bit hardware statistics registers via `ioread64()` ca=
+n result in torn reads on 32-bit platforms.
 --
 
-commit 5ef406cd4ab0e5005f26e470e33265be68b4fe54
+commit cc14b24b819aeb13f3bfcafbea26c9b2150e232c
 Author: Wei Fang <wei.fang@nxp.com>
 
-net: dsa: netc: add FDB, STP, MTU, port setup and host flooding support
-   =20
-Expand the NETC switch driver with foundational features including FDB
-management, STP, MTU configuration, and host flooding support. The driver
-operates in standalone port mode.
+net: dsa: netc: add support for the standardized counters
 
-diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc_m=
-ain.c
---- a/drivers/net/dsa/netc/netc_main.c
-+++ b/drivers/net/dsa/netc/netc_main.c
+This commit adds support for 802.3 basic and mandatory managed objects
+statistic counters, along with MIB and RMON counters for the NETC switch.
+These are 64-bit registers read via a newly added ethtool implementation.
+
+> diff --git a/include/linux/fsl/netc_global.h b/include/linux/fsl/netc_glo=
+bal.h
+> index fdecca8c90f0c..5b8ff528d3699 100644
+> --- a/include/linux/fsl/netc_global.h
+> +++ b/include/linux/fsl/netc_global.h
+> @@ -5,6 +5,7 @@
+>  #define __NETC_GLOBAL_H
+> =20
+>  #include <linux/io.h>
+> +#include <linux/io-64-nonatomic-lo-hi.h>
+
 [ ... ]
-> @@ -363,6 +418,206 @@ static void netc_port_default_config(struct netc_po=
-rt *np)
-[ ... ]
-> +static int netc_port_set_fdb_entry(struct netc_port *np,
-> +				   const unsigned char *addr, u16 vid)
+
+> +static inline u64 netc_read64(void __iomem *reg)
 > +{
-[ ... ]
-> +	cfge =3D &entry->cfge;
-> +	/* If the entry already exists on the port, return 0 directly */
-> +	if (unlikely(cfge->port_bitmap & cpu_to_le32(BIT(port))))
-> +		goto unlock_fdbt;
-> +
-> +	/* If the entry already exists, but not on this port, we need to
-> +	 * update the port bitmap. In general, it should only be valid
-> +	 * for multicast or broadcast address.
-> +	 */
-> +	cfge->port_bitmap |=3D cpu_to_le32(BIT(port));
-
-Does this correctly handle roaming unicast MAC addresses?
-
-When a unicast MAC address roams from one port to another, or when a user
-replaces a static unicast FDB entry using bridge fdb replace, the bridge co=
-re
-requests adding the entry on the new port.
-
-Because this unconditionally ORs the port into the bitmap, the unicast addr=
-ess
-becomes associated with both the old and new ports simultaneously. This will
-cause the switch hardware to duplicate and flood unicast frames to multiple
-ports.=20
-
-Should this check is_multicast_ether_addr() and replace the port_bitmap
-instead of ORing it for unicast addresses?
-
-> +	err =3D ntmp_fdbt_update_entry(&priv->ntmp, entry->entry_id, cfge);
-[ ... ]
-> +static int netc_port_del_fdb_entry(struct netc_port *np,
-> +				   const unsigned char *addr, u16 vid)
-> +{
-> +	struct netc_switch *priv =3D np->switch_priv;
-> +	struct ntmp_user *ntmp =3D &priv->ntmp;
-> +	struct netc_fdb_entry *entry;
-> +	struct fdbt_cfge_data *cfge;
-> +	int port =3D np->dp->index;
-> +	int err =3D 0;
-> +
-> +	mutex_lock(&priv->fdbt_lock);
-> +
-> +	entry =3D netc_lookup_fdb_entry(priv, addr, vid);
-> +	if (unlikely(!entry))
-> +		goto unlock_fdbt;
-
-Can this silently fail to delete dynamically learned FDB entries?
-
-The netc_lookup_fdb_entry() function searches priv->fdb_list, which only
-tracks static entries explicitly added by software.=20
-
-If the bridge core or user attempts to delete a hardware-learned dynamic MAC
-address, the lookup will return NULL. The function will then jump to
-unlock_fdbt and silently return 0 (success) without actually issuing a dele=
-te
-command to the hardware FDB.
-
-> +
-> +	cfge =3D &entry->cfge;
-[ ... ]
-> +static int netc_add_standalone_fdb_bcast_entry(struct netc_switch *priv)
-> +{
-> +	const u8 bcast[ETH_ALEN] =3D {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-
-Are local byte arrays guaranteed to be 16-bit aligned?
-
-The ether_addr_equal() macro (used inside netc_lookup_fdb_entry which is
-subsequently called by netc_port_set_fdb_entry) expects its pointer argumen=
-ts
-to be 16-bit aligned.=20
-
-Because bcast is declared as a simple u8 array on the stack, the compiler
-only guarantees a 1-byte alignment by default. On architectures with strict
-alignment requirements, this could trigger an unaligned access exception.
-
-> +	struct dsa_port *dp, *cpu_dp =3D NULL;
-> +
-> +	dsa_switch_for_each_cpu_port(dp, priv->ds) {
-> +		cpu_dp =3D dp;
-> +		break;
-> +	}
-> +
-> +	if (!cpu_dp)
-> +		return -ENODEV;
-> +
-> +	/* If the user port acts as a standalone port, then its PVID is 0,
-> +	 * MLO is set to "disable MAC learning" and MFO is set to "discard
-> +	 * frames if no matching entry found in FDB table". Therefore, we
-> +	 * need to add a broadcast FDB entry on the CPU port so that the
-> +	 * broadcast frames received on the user port can be forwarded to
-> +	 * the CPU port.
-> +	 */
-> +	return netc_port_set_fdb_entry(NETC_PORT(priv->ds, cpu_dp->index),
-> +				       bcast, NETC_STANDALONE_PVID);
+> +	return ioread64(reg);
 > +}
-[ ... ]
-> +static int netc_port_add_host_flood_rule(struct netc_port *np,
-> +					 bool uc, bool mc)
-> +{
-> +	const u8 dmac_mask[ETH_ALEN] =3D {0x1, 0, 0, 0, 0, 0};
 
-This has the same alignment concern as the bcast array above.
+Since ioread64() is backed by ioread64_lo_hi() on 32-bit platforms via
+<linux/io-64-nonatomic-lo-hi.h>, can this sequence result in torn reads
+when accessing the live 64-bit hardware counters?
 
-The ether_addr_copy() macro expects its pointer arguments to be 16-bit
-aligned. Passing a stack-allocated u8 array without explicit alignment could
-cause unaligned access faults on certain architectures.
+If a hardware counter increments from 0x00000000_FFFFFFFF to
+0x00000001_00000000 between the lower and upper 32-bit reads, would the
+result be incorrectly returned as 0x00000001_FFFFFFFF?
 
-> +	struct netc_switch *priv =3D np->switch_priv;
-> +	struct ipft_entry_data *host_flood;
-> +	struct ipft_keye_data *keye;
-[ ... ]
-> +	if (uc && !mc)
-> +		ether_addr_copy(keye->dmac_mask, dmac_mask);
-> +
-> +	if (!uc && mc) {
-> +		ether_addr_copy(keye->dmac, dmac_mask);
-> +		ether_addr_copy(keye->dmac_mask, dmac_mask);
-> +	}
+Unless the NETC hardware provides an atomic shadow latch mechanism for these
+counters upon the first read, might this require a read-retry loop to ensure
+consistency on 32-bit architectures?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260509102954.4116=
-624-1-wei.fang@nxp.com?part=3D12
+624-1-wei.fang@nxp.com?part=3D14
 
