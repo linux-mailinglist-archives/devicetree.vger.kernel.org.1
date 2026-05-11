@@ -1,202 +1,125 @@
-Return-Path: <devicetree+bounces-295370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295369-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOopAKiOAWpyeAEAu9opvQ
-	(envelope-from <devicetree+bounces-295370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:09:12 +0200
+	id CI5NMJWOAWpyeAEAu9opvQ
+	(envelope-from <devicetree+bounces-295369-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:08:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F008509D72
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:09:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D6F509D64
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:08:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 80054301483D
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 08:04:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 593233026000
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 08:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448A93B7B9E;
-	Mon, 11 May 2026 08:02:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773723B7B7B;
+	Mon, 11 May 2026 08:02:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eUkO44xe"
+	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="lHkPDpLO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com [74.125.224.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E08C3B38B2;
+	Mon, 11 May 2026 08:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778486531; cv=none; b=LHo1WyOO6zX5AiZxqdDzCz/bghdllW3ebNeRHkzDEUfp/YIbXUH3HCZBr8WULZVrX0v6bkaqq655IX9mFopvdwBtEr4cvHxsJpPkQhCBYMvbDRh/nMU57NsCg4kCVpVovFdqbLHDTXZZ/I/ZLg0AjCJBK+KeSIussvqyF4LZvUA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778486531; c=relaxed/simple;
+	bh=C4+jOE7NnKqR3CmE/a0VMxJT4JgooAYRBeQzipN8SAk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V5RU81+N7upcgbWPOOollB1OwGI/UPzGfg2tD5azhUqJr5iQMfKAwiRtsVS9gLjWuUTFDWlfYAZVxivhkRhUmVi2h6t09SHIiZVOgp36Mf6nEMXoAqZPyu7XjY94Nor73bNWwWEZFPbDneItB1Gd+7VQ4tmcrJs4umz6PhVlZqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=lHkPDpLO; arc=none smtp.client-ip=85.214.250.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
+Received: from 8bytes.org (p200300f6af1d9600f5faa5cebd6c042e.dip0.t-ipconnect.de [IPv6:2003:f6:af1d:9600:f5fa:a5ce:bd6c:42e])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6440D3ACF0F
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 08:02:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778486541; cv=pass; b=TLTxAitlPezq+A6Dz+aVs6UMXWh0ivUARXLo3ulc9JAec/0nw0iWNp1n7PDIniOHGTRMirhdf7gmctFmc/uFcj8cWJNMwdpJA9U7fcxxAJjzOlba/JOFysyUn3OOa9ah+zpOc+++mlATZR5KLk/9RmILZ8e+zHNHINmqN/5Y8/4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778486541; c=relaxed/simple;
-	bh=hAvNwN3LdfvaDvVGl1LPpgogRMQ+ezfmubbeLc9ID7I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gulqj8/t/JjLi1JDLajsvDB1RnsHU4kAXLFMzjRBC0SsvkNX8M4TFGT2dQNwyM2P3GVySTUkgir5v9uY4aNyMTaxFGE9OOIklIYCdDF3OOiis4A5t2Uw6KQqQkvVYK/FdhOeznG65FE8LcA12xfYHcH9tMFVvKNJ13ksTaVCvHU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eUkO44xe; arc=pass smtp.client-ip=74.125.224.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-651d6347a69so4087664d50.0
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 01:02:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778486530; cv=none;
-        d=google.com; s=arc-20240605;
-        b=RHbTpl7DTco9Qsm8HI8AjiMlmc3k0h0/FABaRU2C06jn0IXecD8sSNY4UNQjQxfePy
-         iQSdlq/RCSs0mtUY48GY7OqnBX1T9U9j8Z8E7qDrBGLB3IewuIFldmyjxktsV6dRhlF8
-         5AnUabEdQaYw3cPzSpgib4Q6rBwHdm3hHeIKbnAvO23LnuPj3L5hB6BCQNM083K2jxce
-         382JGpoYfzPbvfNQ7oIGXoh4e6x+bikydJuGhL6Ob4uBGbBbIGwUfkPOEgTw1RGjzOkF
-         L0VqA68Iv96tyCgCD1eZ8tHJUeoWdImn69LNra2754AwV+F5G/fS3oXDOpOZI42O61L+
-         bnBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=sW6azkXa80yI0rJXwT2HYG22XiYQ/sn39R3AWBjjzho=;
-        fh=hSSuEe4jvXl5wRY6rqLl0Yv+hN1KO3waRZ6bU7ZOKZM=;
-        b=joZAd3wd1NWKXNWnj1w8GGC+qdCB2cHoW0ZRIfiGy0h5OMcQ6DqGVyI6h9enCovH18
-         9sbDyjo/cOF/1PiJosYfzveEg/blwcrpz1sZ13bliiHV+urHlBJm6C7yU2L6sfQx/lnd
-         h11iWjYl/qcikpfX+2srUzL7RSWGexEGEr1zG453LiC5CO3Yusjw2tq1hE6ut5uSQEsi
-         YNbi9WHee21CacadlvrNCso7TXLJIRy3xIaePPWhcz2HOVf2IBlXOXbdogAoS0fu+gxe
-         zN/V1efsCYtgzGMs1hhZKZEuv2iKLt+7aipMH1s4HYDxPWqdd4zHqY4ColnXl5h33VPZ
-         MyfQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778486530; x=1779091330; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sW6azkXa80yI0rJXwT2HYG22XiYQ/sn39R3AWBjjzho=;
-        b=eUkO44xefUFP8aEssUo9MXyWjgm1v1yHWVLPH/Zbdfqd2B/O6cCKT/4ABqCzT7xUUp
-         FO2H4Aj9CilhbibtcofkQakiQB2WgKqRXLfdeJg0JYsRaQOYHTYmvwzBjkgZC6cRNX9m
-         CAqAmzVufJkP8xBZjiRMNKsKytiCEnqOKoqzANaQo0erh1HqIj4d8hQ7HNtuEWJqQ7FU
-         rRZFBJT1dg1sLxdxRUHywmoSowkA6ibL3DH2wAjk39QEe7natmVTiMfO90Wx2OKvm1V+
-         ZEtO4T55bQ8yBw2hrM0uxHJql1DEjN/EUIsTQHTVi9avuPayKye8iES/h18ROY4CxAp/
-         oWSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778486530; x=1779091330;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=sW6azkXa80yI0rJXwT2HYG22XiYQ/sn39R3AWBjjzho=;
-        b=roTGnz7oCEESdb993lAEWjqoI/qa2+nSIusy3KLGzac7AnnCiN0Kw39dRXq1GukbXt
-         4BVpEIvLmkxTPHJ0yIgue4lEcnGAvxapzW+RHuddDwP5Cc2wzbskU6Dl7wV76/fvDdpN
-         /C60+hnWl9jidf9Gwo2ZQmqdMrtwxxNiR+ahsbKlWVHGGD4th7gcvMjKtaGQQSTzu/FW
-         um6V9Z8R8ukX/l6+RG7dQfeS28Y/cMhxG5T7If8X4rmAN3FmP0oCE8mvcR3ouGrKNTiE
-         MbHZqDuElSgMkEKeUhhZ5C+xfktkoyWeuHTfhUuQUKwAcvALDOT85OsqPPAD9/IQz3cn
-         7HHA==
-X-Forwarded-Encrypted: i=1; AFNElJ8FFF7eYe1D55QAQdTVztAv0ncFbLuqNm3XFFPCDtTmUyGQ9x7oO1BO+/iNo1oZzctScH7vUqNuBUli@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRM25bvyAjDHtidhQOhPhgIOU3jlU8P8zbPywtOBAUT5Q4ctWc
-	XLgu5rKxmCyfXvgcwjz8iadZrGOa3dvGPZ1Z0ThrM34RnSCcP5bQ2iTQItqJSDmP5Agl05ZCda9
-	Cs93zUylNghi3nYKTAfQ7sLaeyL4wKaY=
-X-Gm-Gg: Acq92OHpQXD/8q793bdnu0CgxRyh1SRBnmwLaH1kG423QTHgCMVuJqMD5PHNUp8RFVk
-	2M03w2gMwRNOmU7TWqrQt5AGeq9QzyN0F61Hc1GQoCBMyyj7mFNIXfUQCBjxXiYe3v5JvU/zWVq
-	T5zjPDQaJSJtk01pXPYDFLx8xADTbOPUsv5a9yap0xoLX3Kj6d/hDCcyq8G89kjQsw3pOQXvzxw
-	mpxAFSoi2Xbl5rtz8uDpAIkU/0lZnxvVVLyLnDPmnuWpCWdmv2/zMfH1ckOqtIlovzksqBlvIOf
-	ui6UBsDm
-X-Received: by 2002:a05:690e:1905:b0:65c:6ffb:3038 with SMTP id
- 956f58d0204a3-65d7e822e64mr13587707d50.17.1778486529994; Mon, 11 May 2026
- 01:02:09 -0700 (PDT)
+	by mail.8bytes.org (Postfix) with ESMTPSA id 723AC1C41F2;
+	Mon, 11 May 2026 10:02:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1778486521;
+	bh=C4+jOE7NnKqR3CmE/a0VMxJT4JgooAYRBeQzipN8SAk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lHkPDpLOV9pYetKrrbAwRHCkzRl6i8mpLC6SS8PPg0h7g0QdV1s/ZQie2S+0lr1yz
+	 Cc4DXNqfNTWcrDPeR0uwQHZIoJ9wLPiLX5knWOOdAbrUSWERFQW/VtVdFU4Wg+WKUG
+	 sCwYDeh3if9B28GGoTCzG8QFUL8bThS1lWi7WviANes8QwJjxBgoQCRPKh2Z3HInWS
+	 f6B6aX1MnPCniGWkMaPdJR7bMpj7OeECgY4gVTA2O0toQlILbjpE+Qe8pYkjFyo00V
+	 vU1r3i6U3U+aFFjIOsIlCgKFL8a75vbjbD8eC5+3NLvH5B/WwlwI4m7T3fIeDg/pR9
+	 EgAPWkXCqYuCA==
+Date: Mon, 11 May 2026 10:01:59 +0200
+From: =?utf-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc: will@kernel.org, robin.murphy@arm.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, heiko@sntech.de, iommu@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v14 0/5] Add support for Verisilicon IOMMU used by media
+ codec blocks
+Message-ID: <33nsz23rcstwznq6dnsuibndbwtoc767evshltj35kgysdg63r@fxhwobu53cww>
+References: <20260415072349.44237-1-benjamin.gaignard@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260413-orangepi-sd-card-uhs-v8-0-c21c40ec16d0@gmail.com>
- <20260413-orangepi-sd-card-uhs-v8-8-c21c40ec16d0@gmail.com>
- <CA+Xcp4nY9GVMOmtMG-PNhY2vqP4Cc_amAMSa+M3vuDjWUkuCHw@mail.gmail.com>
- <CABdCQ=OsPva9=YPdBd=3HW1OO7=_zJtpXjvaiA0WLEDT5Scs_Q@mail.gmail.com>
- <DICDTHYTPDSP.210EBVHTQ6966@linux.dev> <20260508225341-GKB3590877@kernel.org> <20260508231051-GKC3590877@kernel.org>
-In-Reply-To: <20260508231051-GKC3590877@kernel.org>
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Mon, 11 May 2026 10:01:58 +0200
-X-Gm-Features: AVHnY4Jd8hC8nSk1elUyO1V0E_fXdX8QCiSMcWMOA11otgjNrlNzYjy97ZtHNls
-Message-ID: <CABdCQ=NFuW-XBK2zrw2TUFrEg0Q1Wf3_qS28zT3v-Hfud8mkew@mail.gmail.com>
-Subject: Re: [PATCH v8 8/9] riscv: dts: spacemit: k1-bananapi-f3: add SD card
- support with UHS modes
-To: Yixun Lan <dlan@kernel.org>
-Cc: Troy Mitchell <troy.mitchell@linux.dev>, 
-	Margherita Milani <margherita.milani@amarulasolutions.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 8F008509D72
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260415072349.44237-1-benjamin.gaignard@collabora.com>
+X-Rspamd-Queue-Id: 71D6F509D64
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.90 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MIXED_CHARSET(0.56)[subject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[8bytes.org:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295370-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[8bytes.org: no valid DMARC record];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[linux.dev,amarulasolutions.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	TAGGED_FROM(0.00)[bounces-295369-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[joro@8bytes.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[8bytes.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[8bytes.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-El s=C3=A1b, 9 may 2026 a las 1:10, Yixun Lan (<dlan@kernel.org>) escribi=
-=C3=B3:
->
->
-> On 22:53 Fri 08 May     , Yixun Lan wrote:
-> > Hi Iker, Troy,
-> >
-> ..
-> > I would object to add CONFIG_I2C_K1 as hard dependency, the reason is
-> > that the spacemit sdhci driver (sdhci-of-k1.c) has no used i2c
-> > api/function, it's just need I2C function via an indirect requirement,
-> > which sdhci -> regulator(p1) -> i2c, besides, from the hardware design
-> > perspective, it just happens that K1 use P1(via I2C) as PMIC, it's
-> > totally possible(even in theory) to use other PMIC as power supply
-> > control which may not be I2C interface (maybe use SPI, for example)
-> >
-> > If we want to solve this more gracefully, I'm in favor to add explict
-> > option enabled in defconfig..
-> >
-> or I think it's better we do this way..
->
-> +++ b/drivers/i2c/busses/Kconfig
-> @@ -794,6 +794,7 @@ config I2C_K1
->         tristate "SpacemiT K1 I2C adapter"
->         depends on ARCH_SPACEMIT || COMPILE_TEST
->         depends on OF
-> +       default ARCH_SPACEMIT
+On Wed, Apr 15, 2026 at 09:23:36AM +0200, Benjamin Gaignard wrote:
+> Benjamin Gaignard (5):
+>   dt-bindings: vendor-prefixes: Add Verisilicon
+>   dt-bindings: iommu: verisilicon: Add binding for VSI IOMMU
+>   iommu: Add verisilicon IOMMU driver
+>   arm64: dts: rockchip: Add verisilicon IOMMU node on RK3588
+>   arm64: defconfig: enable Verisilicon IOMMU for Rockchip RK3588
+> 
+>  .../bindings/iommu/verisilicon,iommu.yaml     |  71 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |   8 +
+>  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  11 +
+>  arch/arm64/configs/defconfig                  |   1 +
+>  drivers/iommu/Kconfig                         |  11 +
+>  drivers/iommu/Makefile                        |   1 +
+>  drivers/iommu/vsi-iommu.c                     | 796 ++++++++++++++++++
+>  8 files changed, 901 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+>  create mode 100644 drivers/iommu/vsi-iommu.c
 
-Thank you all for the feedback! I agree that enabling I2C_K1 by
-default makes sense for the user experience.
-
-To keep this patchset focused and avoid cross-subsystem complexity,
-I'll send the I2C default configuration change as a separate patch to
-the I2C maintainers after this series lands.
-
-This way we can get the SD card support merged without delays while
-still solving the dependency issue properly.
-
->
->
-> --
-> Yixun Lan (dlan)
+Applied to the new verisilicon branch.
 
