@@ -1,170 +1,215 @@
-Return-Path: <devicetree+bounces-295338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AM1XEoaHAWpOcQEAu9opvQ
-	(envelope-from <devicetree+bounces-295338-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 09:38:46 +0200
+	id IBYZLrSJAWpJcwEAu9opvQ
+	(envelope-from <devicetree+bounces-295340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 09:48:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9DD50960A
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 09:38:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D5C509841
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 09:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8573830C3168
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 07:32:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 460883008C33
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 07:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCB7385516;
-	Mon, 11 May 2026 07:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B773A782C;
+	Mon, 11 May 2026 07:47:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YzwwT7J0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJi/rCct"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16735374E6D;
-	Mon, 11 May 2026 07:31:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B293A5430;
+	Mon, 11 May 2026 07:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778484702; cv=none; b=pPnDHykTuRQuV6ztV2RdTjYrsL5OLqsVUSDwkgikuDYsQTMoQ49G0QqUpYzIXR849HpNcYLPBwQZbDpCzqm0ENHq0HgcUo7aveSyi1BksYFwdJeFe6VWxfpk7lw14pPWpYRc2esYj/UQQJmOAZqh87xs86c5CZOsnjsPivT7hoM=
+	t=1778485629; cv=none; b=WkQr2kidUQcGr4Gym7wkil19N6vVIJABnabAFOWWbIHKxX3CTwjU7+FThX36dATznAgEYrDNqO6xhGHndTWp5n2PWDYpCHlPb9K8IUbsRbwET9gW0AjunnTVwKtpupQff/QAlcuoiuTxYJSyt0JxYmD5+TxwvGxtbQVK04GUwTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778484702; c=relaxed/simple;
-	bh=mctZhXIq11nSQBRLq9WyWvPVvAR2BW6Hm6aqq7YmF9Y=;
+	s=arc-20240116; t=1778485629; c=relaxed/simple;
+	bh=W6aPnQGxFvV5pxspo8KdT3OU3FU42+Tsl5qJ9Cz1T2s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FfvUn+ovdlt/LLH/LUipPXOzD5bsV8Zvd1A4YI5/iiUWAoxJckgPrVxvMRXooOzZpxQ7zyqhRjF8UQRcNcDGsuoTOe/XQA+YSMU06jd4p51cliq+XqrCTpogibetp1nKVOjVuoL1qHH9drPIrej8J8DQJ7wfrePmkQ1I2ww+Hqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YzwwT7J0; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1778484701; x=1810020701;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=mctZhXIq11nSQBRLq9WyWvPVvAR2BW6Hm6aqq7YmF9Y=;
-  b=YzwwT7J0/jIVM8+Ddv1ekvR4CVcR7T7Cpk9yB7/Wig9AQvhkVfWEyBZr
-   syMyWQtjTrGTeo/glWmBJ+7WXeyuieq/0/W3T2Moy9g2k6ZDVkJwC+8++
-   NboBSjJH8fyDIAUle6rizLd/R/LIQC7PM9Mx3xvWfhwBktONWvYI1ffJG
-   HT5Mdi/hzpqVtZ8UthfFXhSFzZCpoYpr2EZKmY5XPUR+LJguXYY3kBobK
-   wv4P2yhdgR9d6nE3wBHFNpp0nfWho/xhSwtUgreFa0Vh7JpLFYMcOx81Q
-   Zd5HODQcbdc5Kfm2uLE3P63nF7Dlfg74tIPg9xSEMI9Ks0+ql9q0yxub0
-   w==;
-X-CSE-ConnectionGUID: am5JJjaORdGaGoUksa1ebg==
-X-CSE-MsgGUID: r8S7nzKMTye1ZyrdCll35w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="104823884"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; 
-   d="scan'208";a="104823884"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2026 00:31:41 -0700
-X-CSE-ConnectionGUID: zwTGv2AdTGuWaKX95EPldA==
-X-CSE-MsgGUID: h3X7tQhAT22ZD/IPIoJs3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; 
-   d="scan'208";a="242344522"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.204])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2026 00:31:37 -0700
-Date: Mon, 11 May 2026 10:31:35 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Alexandre Hamamdjian <azkali.limited@gmail.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, CTCaer <ctcaer@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: light: bh1730: Add bh1730 light sensor driver
-Message-ID: <agGF18FCMGmsE14r@ashevche-desk.local>
-References: <20260511-bh1730-v1-0-e0df1f499135@gmail.com>
- <20260511-bh1730-v1-2-e0df1f499135@gmail.com>
- <agDMAiBUtXLamFHY@ashevche-desk.local>
- <agDMWcCYLCvX8vy_@ashevche-desk.local>
- <CAL5cOWuXAD7+rJEKB9FjnwdCjoUJK+WNKXZXt8tfnq1WLmv5eg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HMxOJ69tDXMgcGGN7ZNKo45Ac68k5Qjlzj9/HB6j3VNHlCq+uqie9WWeo9ZHgH11dXogN6Wsg0JlO8Zk/VNAGukp4sQj0xIGAZHB2SIXIldzmXFfJPErJYsKIZ55h0FtKjbNKq8n8wLvjsTdgmEWno2llvSgYmUBoeK2MuhksW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJi/rCct; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFB21C2BCF5;
+	Mon, 11 May 2026 07:47:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778485627;
+	bh=W6aPnQGxFvV5pxspo8KdT3OU3FU42+Tsl5qJ9Cz1T2s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qJi/rCctlOINEtcmwwKI0m1Qyw7ZipkxQA9/9UewVsJVEH6L32P1GLYxN+jYdeU4S
+	 E3dlLGK5mg8ccrMBBfFw/8QMyUoheooWdP3ZBZpRKkq8J5FoC0oUq4m59sQEirx09Q
+	 7azeMg4EYT+vhpOUQI4PFAToG37dC4kg1WukjV0LgwXtGiFMQYOe/33FmTELtc51jZ
+	 4CauPM4USfteYm9Dt1rrj2c0BLvC7TQ87Qx5GQfrMY4rKjUgiUkXXGjX2dqpUd+jYO
+	 y77V85MCeJCQ6NGVAMvm5EdmswCDkpmSkdKQzqTN1lcwcYTptoADYXU/Dc0an0Ev+B
+	 hqGndeYF7Vr1w==
+Date: Mon, 11 May 2026 09:47:04 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: sashiko@lists.linux.dev
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v5 09/12] net: airoha: Do not stop GDM port if
+ it is shared
+Message-ID: <agGJeIrmDdRmHoAA@lore-desk>
+References: <20260509-airoha-eth-multi-serdes-v5-9-805e38edc2aa@kernel.org>
+ <20260510140505.2C772C2BCF6@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="AoE5hKwc3VX7KL8z"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL5cOWuXAD7+rJEKB9FjnwdCjoUJK+WNKXZXt8tfnq1WLmv5eg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: BE9DD50960A
+In-Reply-To: <20260510140505.2C772C2BCF6@smtp.kernel.org>
+X-Rspamd-Queue-Id: 68D5C509841
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-295338-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-295340-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,ashevche-desk.local:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Mon, May 11, 2026 at 02:11:10AM +0700, Alexandre Hamamdjian wrote:
 
-Please, do not top-post!
+--AoE5hKwc3VX7KL8z
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Thank you Andy I will talk with Mr. CTCaer if he agrees to use his real
-> name for this driver, as well as the others he wrote that I already
-> submitted.
+> Thank you for your contribution! Sashiko AI review found 2 potential issu=
+e(s) to consider:
+> - [High] The `GDM_STAG_EN_MASK` configuration is port-global but is modif=
+ied unconditionally per net_device, leading to silent clobbering when multi=
+ple devices share a port.
+> - [Medium] The hardware MTU (`REG_GDM_LEN_CFG`) is not recalculated when =
+a device sharing the port is stopped, leaving the MAC configured to accept =
+inappropriately large frames.
+> --
+>=20
+> commit b896e320dcf0d56db7e0654191126c23e6f485fd
+> Author: Lorenzo Bianconi <lorenzo@kernel.org>
+> net: airoha: Do not stop GDM port if it is shared
+>=20
+> This commit introduces a users counter to the GDM port structure to allow
+> multiple independent net_device instances to share the same hardware port
+> without prematurely stopping it. It also conditionally updates the MTU so
+> that the largest MTU requested by any sharing device is used.
+>=20
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
+ernet/airoha/airoha_eth.c
+> > index be31f639f4be3..ebb24e60f1de3 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+> > @@ -1733,10 +1733,20 @@ static int airoha_dev_open(struct net_device *n=
+etdev)
+> >  		airoha_fe_clear(qdma->eth, REG_GDM_INGRESS_CFG(port->id),
+> >  				GDM_STAG_EN_MASK);
+>=20
+> Since GDM_STAG_EN_MASK is a port-global configuration, will this clear th=
+e=20
+> flag for the entire port if a secondary non-DSA net_device is brought up?
+>=20
+> If the primary master device relies on this hardware tag parsing, it appe=
+ars
+> a secondary device could silently break it by clearing the mask during
+> its open routine. Should this configuration be protected or refcounted wh=
+en
+> multiple devices share a port?
 
-If not, you can use Originally-by tag.
+This is not a real issue since the hw design supports DSA just on GDM1 wher=
+e we
+can't configure multiple net_devices.
 
-> I am also taking note of your review and will soon test if using the common
-> BH17 light sensor driver is better for our devices, I will follow up
-> whenever possible.
-> 
-> Also awaiting for Mr. Vaittinen's review.
+>=20
+> > -	airoha_fe_rmw(qdma->eth, REG_GDM_LEN_CFG(port->id),
+> > -		      GDM_SHORT_LEN_MASK | GDM_LONG_LEN_MASK,
+> > -		      FIELD_PREP(GDM_SHORT_LEN_MASK, 60) |
+> > -		      FIELD_PREP(GDM_LONG_LEN_MASK, len));
+> > +	cur_len =3D airoha_fe_get(qdma->eth, REG_GDM_LEN_CFG(port->id),
+> > +				GDM_LONG_LEN_MASK);
+> > +	if (!port->users || len > cur_len) {
+> > +		/* Opening a sibling net_device with a larger MTU updates the
+> > +		 * MTU of already running devices. This is required to allow
+> > +		 * multiple net_devices wht different MTUs to share the same
+> > +		 * QDMA block.
+> > +		 */
+> > +		airoha_fe_rmw(qdma->eth, REG_GDM_LEN_CFG(port->id),
+> > +			      GDM_SHORT_LEN_MASK | GDM_LONG_LEN_MASK,
+> > +			      FIELD_PREP(GDM_SHORT_LEN_MASK, 60) |
+> > +			      FIELD_PREP(GDM_LONG_LEN_MASK, len));
+> > +	}
+> > +	port->users++;
+>=20
+> [ ... ]
+>=20
+> > @@ -1766,8 +1776,10 @@ static int airoha_dev_stop(struct net_device *ne=
+tdev)
+> >  	for (i =3D 0; i < netdev->num_tx_queues; i++)
+> >  		netdev_tx_reset_subqueue(netdev, i);
+> > =20
+> > -	airoha_set_gdm_port_fwd_cfg(qdma->eth, REG_GDM_FWD_CFG(port->id),
+> > -				    FE_PSE_PORT_DROP);
+> > +	if (!--port->users)
+> > +		airoha_set_gdm_port_fwd_cfg(qdma->eth,
+> > +					    REG_GDM_FWD_CFG(port->id),
+> > +					    FE_PSE_PORT_DROP);
+>=20
+> If multiple devices are sharing the port and the device with the largest =
+MTU
+> is stopped, the hardware MTU in REG_GDM_LEN_CFG doesn't appear to be
+> recalculated or shrunk.
+>=20
+> Since the MTU is only expanded in airoha_dev_open() and airoha_dev_change=
+_mtu(),
+> does this leave the MAC configured to accept inappropriately large frames
+> for the remaining devices indefinitely?
 
-Yes, would be really nice to see Matti's review for this.
+ack, I will fix it in v6.
 
-> On Mon, May 11, 2026, 1:20 AM Andy Shevchenko <andriy.shevchenko@intel.com>
-> wrote:
-> > On Sun, May 10, 2026 at 09:18:48PM +0300, Andy Shevchenko wrote:
-> > > On Mon, May 11, 2026 at 01:09:50AM +0700, Alexandre Hamamdjian via B4
-> > Relay wrote:
+Regards,
+Lorenzo
 
-...
+>=20
+> --=20
+> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260509-airoha-eth-=
+multi-serdes-v5-0-805e38edc2aa@kernel.org?part=3D9
 
-> > > Here I stop my review and recommend you first to review others' patches
-> > and
-> > > learn from other reviews. This will help you a lot with avoiding typical
-> > > mistakes.
-> > >
-> > > Also Matti would be the best reviewer for this as he worked (still
-> > works?)
-> > > for ROHM and knows the HW a bit more than average kernel developer.
-> >
-> > Forgot to Cc Matti since I mentioned him. Now done.
+--AoE5hKwc3VX7KL8z
+Content-Type: application/pgp-signature; name=signature.asc
 
--- 
-With Best Regards,
-Andy Shevchenko
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCagGJeAAKCRA6cBh0uS2t
+rIC0AQCB4vNpyNwAWhilwrdVKDSwmfIC2mmckVm7kjpBYSFVZwD8Cx27ZuqAmZWr
+5tnKUNCiIHou0///+CnTMfZQZvocXwc=
+=XNlR
+-----END PGP SIGNATURE-----
 
+--AoE5hKwc3VX7KL8z--
 
