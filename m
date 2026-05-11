@@ -1,543 +1,153 @@
-Return-Path: <devicetree+bounces-295242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6N6nJy1FAWq4TQEAu9opvQ
-	(envelope-from <devicetree+bounces-295242-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 04:55:41 +0200
+	id MICyJBlGAWq4TQEAu9opvQ
+	(envelope-from <devicetree+bounces-295244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 04:59:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88D2507558
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 04:55:40 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A0B5075A3
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 04:59:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E85D4302C6D9
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 02:54:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 429AB3001F84
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 02:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177ED36D51B;
-	Mon, 11 May 2026 02:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB3B36BCDA;
+	Mon, 11 May 2026 02:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b="cY73DZ2N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a72yNHC0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f228.google.com (mail-vk1-f228.google.com [209.85.221.228])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2090036C5A1
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 02:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B07C368946;
+	Mon, 11 May 2026 02:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778468044; cv=none; b=VfoihDSBapyPhpKD9CqTpGcFcPEpnNPyQ8a/57d7MzkonSp0Qfhmx2FCxNOZtbmqMKqaDibezPqKxmNvIaqq/WfasDyDZT6XpRlY1IMBQYuqln/ILcqvPZ9CVgJcEkK1Pb11+XGwV2ERk9lnGF60hMrN2QwfLb2bWhIppEInml4=
+	t=1778468371; cv=none; b=keZ+E5cpQe6J7xDhHX3yPjiBObczOyVGbeFwRAiyx7D+mKDDeHOYentoqQxIt86lrDiVrdfceWJmyl8WCAd6QfKy4QA8PhcGeS5LiwnJHRuWV/UGeZOPwqB0UuFd4/wlNoOz0OeBFa9NSpNVVSdRZjN5cEXwtUmh75EF7eURHUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778468044; c=relaxed/simple;
-	bh=31RPqovnDfOvuT9X0Y2/KOLvcOqGnrxJA7HuD5PJtZY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qomVvqwhJ0UaObye5TvRCW2ahcQhwkA6zsqN1E/kH3I9tQbPFgHwDQDmgNh8U4V5hUZBRXvgoElY+MU19Tjme734mA5EhkLqp4SeySPvFcjdL7ICMXcj66q94n9AFwwTyWRwwSh2fWAF71BrlB+fcIgb1qAoWve9xFQa9dEdPZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us; spf=pass smtp.mailfrom=ausil.us; dkim=pass (2048-bit key) header.d=ausil.us header.i=@ausil.us header.b=cY73DZ2N; arc=none smtp.client-ip=209.85.221.228
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ausil.us
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ausil.us
-Received: by mail-vk1-f228.google.com with SMTP id 71dfb90a1353d-56f72d27e7eso4278995e0c.0
-        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 19:54:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ausil.us; s=google; t=1778468041; x=1779072841; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nzFU9yAuvJSyGTSQk9xOvOxylh2KpA1XBtf+9KPU5rM=;
-        b=cY73DZ2NDQU/OjLBBdiqHV+2MsI5tiL5JnWgAzZV7JtBbvFLFmjEzA4PiqeWYuTRMG
-         WU1W/KRVuw+REuMpqoc2ERGjEWpIP49Hc0rIazLBIXtgnRGOk+FWo1P6+fNDMReE/Wto
-         R0w6Oik081eWIa1UOBREdF7gecZDul1G7+dLmef3WBh+JWYFTw1zVUcnEogV39V36qkj
-         fGqj37VhMYGpmZlVDZpEtEssQHd4DThK3C+BWSgPpXoBi7YiJlFoaMIcPvT7S/JknmAe
-         sMEpmXA3olQImADnftdrh6DN9VW1z63Q2aWMHNCCJ8kKJps80Oe21aV5IZ3edJZ1qKtm
-         usXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778468041; x=1779072841;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nzFU9yAuvJSyGTSQk9xOvOxylh2KpA1XBtf+9KPU5rM=;
-        b=n2A8SPkzVu8LQ1c8s30QqWha+6C5AHMBYf1lX+ek19uRpAI2641/RvTe1d9WJtgO0j
-         4RJdxHfDHwfNXzBYc1ScpadeyW5FI84cawKIbtlmBh/PtkudzXMbIPs1HQl3+YXr1QhQ
-         zP6PIyiMJlJi+64JCNip4pgHRy81ffEit8/hN3n+DDHliDkZ9oQFxdcbVijON/F1B7M7
-         2szwN2eNhNixUQOoJ8EWU+BayQ7PXKIMVjpwBMyQI4slAZBRqLOUyXnpC0gKd+U61bjd
-         kV0DNq9JlJEKVvTheHbuJyEX2SRXKY8E4GcBsMNB+TzdNFWq2c/Vx3cUsdeOh9QpPaYP
-         1cjQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+Xe473H928oD/J7rlXtDoaRtMLyQ2MNYMn4jTvFhaUtTpYKpmuODHeiGaiGwY1nBu6QaaGbtMPcbzy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6jFcLNJ31QAkoCFkIztYvoj48M2rgZbukdfo0d1DxhIv90ztb
-	716B/gFeMHVbtBwF1991fFzdXHX5WbcC1X9f/mGLu5faLkoa0SfgZj0Ag8MP04Y1i5/o84SEIK/
-	DRMN3/jY9k4wPR2W8k9Y63m/SocYa/t5fFYv6
-X-Gm-Gg: Acq92OFaFEN5MBGEjE4XJfo8ONZ4ttUBvYqeghp6an8Aqhps2EaZnK/iMC1x6kiTpj/
-	kyGr3H8odRVEI7TQPD6BenuVsc/PJDvZL/nzORQN+ElaBiXBKpQhzNvkuwkatm0NPdaAVr9Zik/
-	WWHwutQ4fTlm5D81ankUVaxkDJtObhas4p9RGtb8AhBLUz0JJ7+TXIM19qhmlKTqP4YfvkCxvoz
-	HbQJPrt7mFHZK2T1K4d1jCLgW26p8Sb9XqOmxRaNHr+aFYziKG2h7Zyq+4L6ZFBW0uh0H/olDek
-	nbcvVAOb1BrL06U2oWC3xWeLgSFtFoEX2iYGWBp76H8bgYMh3n/pD/UBh4auDgWvo7mDu3OSTei
-	J3Z/icoH1wgFO1Nmd3yIYHb/jX4AEiGEvjJZSMR/QvDhWVNjHmzPeyVo=
-X-Received: by 2002:a67:f085:0:b0:631:31cc:e3ef with SMTP id ada2fe7eead31-63131cd069emr3056914137.17.1778468040988;
-        Sun, 10 May 2026 19:54:00 -0700 (PDT)
-Received: from ryac.ausil.us (207-179-239-100.mtco.net. [207.179.239.100])
-        by smtp-relay.gmail.com with ESMTPS id ada2fe7eead31-6313ff6c191sm698744137.1.2026.05.10.19.54.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 May 2026 19:54:00 -0700 (PDT)
-X-Relaying-Domain: ausil.us
-From: Dennis Gilmore <dennis@ausil.us>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Alexey Charkov <alchark@gmail.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Dennis Gilmore <dennis@ausil.us>
-Subject: [PATCH v10 4/4] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
-Date: Sun, 10 May 2026 21:53:50 -0500
-Message-ID: <20260511025352.106126-5-dennis@ausil.us>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260511025352.106126-1-dennis@ausil.us>
-References: <20260511025352.106126-1-dennis@ausil.us>
+	s=arc-20240116; t=1778468371; c=relaxed/simple;
+	bh=S1Ifud5t8JJxvGqDWbof938U6z4/llAjMGWNNOe7Mk0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=shsT82XXY55nFoRpyzlmwhKd5MkpTR+e60VJHyBWKGRlbLDhFdF7nFPlN74Ax/MqaoHfSEPR5tXnxtUBAraq4rTi7ScY0gCcU6zvRgqChAXDsOIE2+f4QjpGncad/1Ks9Ewk1KPZ6VOXs6xdkjxfheHwceUSG81SbNXyi63q8AI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a72yNHC0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26187C2BCF6;
+	Mon, 11 May 2026 02:59:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778468370;
+	bh=S1Ifud5t8JJxvGqDWbof938U6z4/llAjMGWNNOe7Mk0=;
+	h=From:Subject:Date:To:Cc:From;
+	b=a72yNHC0RMbMfa9tfdun9XhHo0CSf32T+ixVP1sUIsP8YsSJaKiP8JZvdOjwWJHXS
+	 wnVNhADF28Bt6j+k5MwUB/Jwx86SuklQ3WYqnEBAisM8SNhkQOu67EqMW3ZnZZO97y
+	 JUJJwaqvkjM2RFr6hixyyHKFXFBt5tEf86SE1tfJF5pZIjHKSDfmVmKUqTGJIwF9PB
+	 07axAdSA7q68362G4JR8UrvYtqSozSK05oQ6/1Cfv2fzWUuMPuMJjtPuaAXBOluHND
+	 CPSIJ6sde2/+aLCQ9INvSAhj5VpSY4DHvpbx054xKj1dydPwt98sEBbK651DmjmqBC
+	 w+1Oq6N9AgnMw==
+From: Yixun Lan <dlan@kernel.org>
+Subject: [PATCH v2 0/4] riscv: spacemit: k3: some clock fixes related to
+ PCIe
+Date: Mon, 11 May 2026 02:59:08 +0000
+Message-Id: <20260511-06-pci-clk-fix-v2-0-c9a5e563bab3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E88D2507558
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPxFAWoC/3WMQQqDMBAAvyJ77pY1lqT01H+IB42rLkoiSQktk
+ r839d7jDMwcEDkIR3hUBwROEsW7AupSgV16NzPKWBgUKU23hpA07lbQbitO8kYu9m4GMpoMlGg
+ PXPQ5bLvCi8SXD5/zn+qf/btKNRI2ahqtMZZUPzxXDo63qw8zdDnnLzntmfmtAAAA
+X-Change-ID: 20260430-06-pci-clk-fix-e60487b07607
+To: Stephen Boyd <sboyd@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Inochi Amaoto <inochiama@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1163; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=S1Ifud5t8JJxvGqDWbof938U6z4/llAjMGWNNOe7Mk0=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBqAUYAAYyLqXlMo9g1SdoSkiNQPGLsDFL0abRGK
+ 6EwI+oR/7SJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCagFGABsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMiwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+2uzA/9FKbGiPxW6pHlT5ew4GfYiukIp5mf3Rbn3m5HeJcknRhRYrIncs8Ur
+ bgtTM+d6RM/A7pBBrqxfhXkuNgHGoT9bq3vUvCBmUBK7d/6t1WUxcPncLMTff/2IkffThwsfK6J
+ l+Ckha8hitUJC0tThHTRWduH/d61wVn7xN9Qqq5NMqmWX+WF2+oNaA3BsyBvTCQ5DbSh6r/MjRC
+ yqI5CdLPuTaQSuf+Fas2bhdUOs4qf1s0bMkCQPQHAzV/XfIjpn3f2ZqRAYn7CXNuyAj9mE3zcgX
+ 9onAB82Rs3KyL8viDoc6u14ng1+uXH2b6tUnB+dHs/yf3wDbaL2auMdWaDtWeqNCYL7jH13E+DE
+ j11V6MBxtj/Oj9wDtWyALXkMPn7YMxqTtgpMT8idklLw74zyKcFo/OMyq/+dod1AwWF5/scGIzc
+ nxvMIkRGNjGxHn6c7MkCZwTbUJSqX9nlgvmDNrUKy5zw6qUFtx46myfRU/yQ6tPHAYfuqnYdyXP
+ cUsN+fzM2rwfDbj/L7wAyEJQDlGhR5uUizGpidwEoXGxS9Ufq1FJDbCofqq18UsiqhZ1/VorZV0
+ +g0BcIRdzC8SjgMfWAwG0Kt3YPDRt8N/oF6lb/qOkCddqIp0wpW9Cms6L+5fq64TuyC6zDQYX06
+ E7ofAxZER3pcd3c9S1uYfu+JUotDxk=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-Rspamd-Queue-Id: 99A0B5075A3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[ausil.us:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295242-lists,devicetree=lfdr.de];
-	DMARC_BAD_POLICY(0.00)[ausil.us : Multiple policies defined in DNS];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,oss.qualcomm.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,kwiboo.se,gmail.com,cherry.de,radxa.com,vger.kernel.org,lists.infradead.org,ausil.us];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-295244-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dennis@ausil.us,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ausil.us:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.992];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Add device tree for the Xunlong Orange Pi 5 Pro (RK3588S).
+Here are some fixes for previous patch set in order to make PCIe work,
+Add PCIe DBI clock which was missing, Fix the parent clock, And correct
+the PCIe Clock CTRL register offset.
 
-- eMMC module, you can optionally solder a SPI NOR in place and turn
- off the eMMC
-- PCIe-attached NIC (pcie2x1l2)
-- PCIe NVMe slot (pcie2x1l1)
-- AP6256 WiFi (BCM43456) via SDIO with mmc-pwrseq
-- BCM4345C5 Bluetooth
-- es8388 audio
-- USB 2.0 and USB 3.0
-- HDMI output is enabled
-- the second HDMI port connected to the DP bridge is left out for a
-  followup set
-
-Vendors schematics are available at:
-https://drive.google.com/file/d/1qs1DratHuh7C6J6MEtQIwUsiSrg8qgTi/view
-
-Signed-off-by: Dennis Gilmore <dennis@ausil.us>
-Reviewed-by: Alexey Charkov <alchark@gmail.com>
+Signed-off-by: Yixun Lan <dlan@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3588s-orangepi-5-pro.dts   | 358 ++++++++++++++++++
- 2 files changed, 359 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
+Changes in v2:
+- Drop Fixes tag in patch 1, 2, which is not necessary
+- Re-arrange the order of patches, move 1, 2 as last two which is not
+  strictly bug fix
+- Link to v1: https://lore.kernel.org/r/20260430-06-pci-clk-fix-v1-0-32fdc77c02ab@kernel.org
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index cb55c6b70d0e..7677a0c27b1e 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -221,6 +221,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-cm5-base.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-radxa-cm5-io.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-roc-pc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-new file mode 100644
-index 000000000000..895d954a9f23
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-@@ -0,0 +1,358 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588s-orangepi-5.dtsi"
-+
-+/ {
-+	model = "Xunlong Orange Pi 5 Pro";
-+	compatible = "xunlong,orangepi-5-pro", "rockchip,rk3588s";
-+
-+	aliases {
-+		mmc0 = &sdhci;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdio;
-+	};
-+
-+	analog-sound {
-+		compatible = "simple-audio-card";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,name = "rockchip,es8388";
-+		simple-audio-card,routing =
-+			"Headphones", "LOUT1",
-+			"Headphones", "ROUT1",
-+			"LINPUT1", "Microphone Jack",
-+			"RINPUT1", "Microphone Jack",
-+			"LINPUT2", "Onboard Microphone",
-+			"RINPUT2", "Onboard Microphone";
-+		simple-audio-card,widgets =
-+			"Microphone", "Microphone Jack",
-+			"Microphone", "Onboard Microphone",
-+			"Headphone", "Headphones";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s2_2ch>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&es8388>;
-+			system-clock-frequency = <12288000>;
-+		};
-+	};
-+
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			linux,default-trigger = "heartbeat";
-+			max-brightness = <255>;
-+			pwms = <&pwm15 0 1000000 0>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_ACTIVITY;
-+			linux,default-trigger = "heartbeat";
-+			max-brightness = <255>;
-+			pwms = <&pwm3 0 1000000 0>;
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		cooling-levels = <0 50 100 150 200 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm2 0 20000000 0>;
-+	};
-+
-+	vcc3v3_eth: regulator-vcc3v3-eth {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ethernet_en>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "vcc3v3_eth";
-+		startup-delay-us = <50000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vcc5v0_otg: regulator-vcc5v0-otg {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_otg_en>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "vcc5v0_otg";
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&hym8563>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		post-power-on-delay-ms = <200>;
-+		reset-gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	typea_con: usb-a-connector {
-+		compatible = "usb-a-connector";
-+		data-role = "host";
-+		label = "USB3 Type-A";
-+		power-role = "source";
-+		vbus-supply = <&vcc5v0_otg>;
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m4_xfer>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c3m0_xfer>;
-+	status = "okay";
-+
-+	es8388: audio-codec@11 {
-+		compatible = "everest,es8388", "everest,es8328";
-+		reg = <0x11>;
-+		#sound-dai-cells = <0>;
-+		AVDD-supply = <&vcca_3v3_s0>;
-+		DVDD-supply = <&vcca_1v8_s0>;
-+		HPVDD-supply = <&vcca_3v3_s0>;
-+		PVDD-supply = <&vcca_1v8_s0>;
-+		assigned-clock-rates = <12288000>;
-+		assigned-clocks = <&cru I2S2_2CH_MCLKOUT>;
-+		clocks = <&cru I2S2_2CH_MCLKOUT>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2s2m1_mclk>;
-+	};
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4m3_xfer>;
-+	status = "okay";
-+};
-+
-+&i2s2_2ch {
-+	pinctrl-0 = <&i2s2m1_lrck &i2s2m1_sclk
-+		     &i2s2m1_sdi &i2s2m1_sdo>;
-+	status = "okay";
-+};
-+
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&package_fan0>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+		};
-+
-+		map1 {
-+			trip = <&package_fan1>;
-+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-+		};
-+	};
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			hysteresis = <2000>;
-+			temperature = <55000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			hysteresis = <2000>;
-+			temperature = <65000>;
-+			type = "active";
-+		};
-+	};
-+};
-+
-+/* NVMe */
-+&pcie2x1l1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie30x1m1_1_perstn>, <&pcie30x1m1_1_clkreqn>,
-+		    <&pcie30x1m1_1_waken>;
-+	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	supports-clkreq;
-+	vpcie3v3-supply = <&vcc_3v3_s3>;
-+	status = "okay";
-+};
-+
-+/* NIC */
-+&pcie2x1l2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie20x1m0_perstn>, <&pcie20x1m0_clkreqn>,
-+		    <&pcie20x1m0_waken>;
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_eth>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	bluetooth {
-+		bt_wake_gpio: bt-wake-pin {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		bt_wake_host_irq: bt-wake-host-irq {
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	ethernet {
-+		ethernet_en: ethernet-en {
-+			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	usb {
-+		vcc5v0_otg_en: vcc5v0-otg-en {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	wlan {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <0 RK_PD0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		wifi_host_wake_irq: wifi-host-wake-irq {
-+			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
-+
-+&pwm15 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm15m2_pins>;
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm2m1_pins>;
-+	status = "okay";
-+};
-+
-+&pwm3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm3m2_pins>;
-+	status = "okay";
-+};
-+
-+&rk806 {
-+	regulators {
-+		vcca_1v8_s0: pldo-reg1 {
-+			regulator-name = "vcca_1v8_s0";
-+			regulator-always-on;
-+			regulator-boot-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+
-+			regulator-state-mem {
-+				regulator-off-in-suspend;
-+				regulator-suspend-microvolt = <1800000>;
-+			};
-+		};
-+
-+		vcc_1v8_s0: pldo-reg2 {
-+			regulator-name = "vcc_1v8_s0";
-+			regulator-always-on;
-+			regulator-boot-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+
-+			regulator-state-mem {
-+				regulator-off-in-suspend;
-+			};
-+		};
-+	};
-+};
-+
-+&sdhci {
-+	status = "okay";
-+};
-+
-+&sdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+	max-frequency = <150000000>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	no-mmc;
-+	no-sd;
-+	non-removable;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+
-+	ap6256: wifi@1 {
-+		compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-names = "host-wake";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake_irq>;
-+	};
-+};
-+
-+&uart9 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart9m2_xfer &uart9m2_ctsn &uart9m2_rtsn>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&hym8563>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wakeup";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_HIGH>;
-+		max-speed = <1500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_wake_host_irq &bt_wake_gpio>;
-+		shutdown-gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&vcc_3v3_s3>;
-+		vddio-supply = <&vcc_1v8_s3>;
-+	};
-+};
-+
-+&u2phy0_otg {
-+	phy-supply = <&vcc5v0_otg>;
-+};
-+
-+&usb_host0_xhci {
-+	dr_mode = "host";
-+};
-+
-+&usbdp_phy0 {
-+	/*
-+	 * The USB3 Type-A host connector is wired to PHY lanes 2/3. Lanes 0/1
-+	 * are connected to the LT8711UXD DP-to-HDMI bridge on the board.
-+	 * dp-lane-mux routes USB3 SuperSpeed to the correct lanes.
-+	 */
-+	rockchip,dp-lane-mux = <0 1>;
-+};
--- 
-2.54.0
+---
+Yixun Lan (4):
+      clk: spacemit: k3: Switch to pll2_d6 as parent for PCIe clock
+      clk: spacemit: k3: Fix PCIe clock register offset
+      dt-bindings: soc: spacemit: k3: Add PCIe DBI clock IDs
+      clk: spacemit: k3: Add PCIe DBI clock
+
+ drivers/clk/spacemit/ccu-k3.c                  | 30 +++++++++++++++++---------
+ include/dt-bindings/clock/spacemit,k3-clocks.h |  5 +++++
+ include/soc/spacemit/k3-syscon.h               |  4 ++--
+ 3 files changed, 27 insertions(+), 12 deletions(-)
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20260430-06-pci-clk-fix-e60487b07607
+
+Best regards,
+--  
+Yixun Lan <dlan@kernel.org>
 
 
