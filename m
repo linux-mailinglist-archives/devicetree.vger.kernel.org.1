@@ -1,189 +1,217 @@
-Return-Path: <devicetree+bounces-295837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGStHlFTAmpvrQEAu9opvQ
-	(envelope-from <devicetree+bounces-295837-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:08:17 +0200
+	id OJXGEbJTAmpvrQEAu9opvQ
+	(envelope-from <devicetree+bounces-295839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:09:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1B45169A6
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:08:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B87515169E7
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5769930471C2
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 22:08:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 84E1330078A8
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 22:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E5F47CC96;
-	Mon, 11 May 2026 22:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5144D90D7;
+	Mon, 11 May 2026 22:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vh+WWvNJ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eUk+ADWF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011012.outbound.protection.outlook.com [52.101.70.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4444537B007;
-	Mon, 11 May 2026 22:08:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778537282; cv=none; b=Y4Ws81q8ahwhJNUXonUdvwqhOAr/kyhAjF0G85u9JnR9MUiwnyn7XwpZ0sKJX7wClSnn/Ul3+/XIZ3XheOGKhs+FYEhF2QtCXWKkq4gYUSF0E5H31+mYB5j28mC9y3pIiu8QmB78oRZcbJRkdmy2fSYi1SUwfVnNkjmTe0tlT0Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778537282; c=relaxed/simple;
-	bh=qV+sEcyheN+xpq669VQMOYxgIVmRunOC0yhExfObnl8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=vBWzNtxzVSh0SSj5qZ+Ojg4QWdEVF6P+7UGjoHsPmrAF3Yjz3F0MNvhc0Q3KFAE6STaAlG4Mmvf44Z0TmafjJwXxoJvar9s9VR8k7GmRmriYchG4RqAaashw/mfKSYdoaKE4B5o87XpWYZAKTAznGM+ySko8AccKp/WjuTXatPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vh+WWvNJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 875A5C2BCB0;
-	Mon, 11 May 2026 22:08:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778537281;
-	bh=qV+sEcyheN+xpq669VQMOYxgIVmRunOC0yhExfObnl8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Vh+WWvNJMogwXJshzBy7sqOMRsr4IKVAPJ2TxvHV6FyEmufLE3l/L8veSnSsGIscT
-	 KYQ+gjKnsCw0fDPxTzfulPhVDSpJlWkXqZKyZxMqE8pHfzXJUcb1gVPHw+lvUyNIPD
-	 hyjp/1LO7pedh7/O/IY5FXzSMzMT+qn2bdjoJGM2RB5Px5AuU94SkJAfjOeOLwqqKz
-	 LjIFNFFX8G6q9XuJFONUV5l8HhBgCyECZd/U7dl0mAEXOmZ26zGva1E/pLhrIuGCt8
-	 JxAtMvobGsCJSb9kGKrXnt1WQQris57gbJjdje8Iflty3yLJNDuULwN31ZRg++qiUF
-	 QwMzqhd4FOkhQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 5/6] mfd: motorola-cpcap: diverge configuration
- per-board
-Reply-To: sashiko@lists.linux.dev
-To: "Svyatoslav Ryhel" <clamor95@gmail.com>
-Cc: dmitry.torokhov@gmail.com, linux-input@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260510110804.33045-6-clamor95@gmail.com>
-References: <20260510110804.33045-6-clamor95@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 11 May 2026 22:08:01 +0000
-Message-Id: <20260511220801.875A5C2BCB0@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D4C4D8D8E;
+	Mon, 11 May 2026 22:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778537390; cv=fail; b=HpZpZ8IpkKel5A1lRUzyD5SzDtYpuCd4it6FaNgistXl3OBG3h4vS0LM57zSseJoaRX71l5e2wJK/7shRG9FpTUjZgcZrlduOOnvNpMjYwUY/jGYCg4rRUkktxFLccCERPPsbvFB1iV+uM4yqtTGuLtGpwedIU4yvTKwJXZQDmk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778537390; c=relaxed/simple;
+	bh=H5GWf76ZjTRT+q+bupAUZJ2SEFtU4G/QMWb5N46F9UY=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=obcOWbT2x3jWXCMec4qHWUgpXL7RO9RhDHhYpI2RpJ8qKZLXdr1DW3RtI51ZbprHD1u6UrrZzgzgENAlHKBrmmx7ZmQP7EOz2xYM3GDn2e7H7oMa6TFpAKhItZ7n4pIjsFHzUr4P8wYEB10OrYjLA9B6KezagUo4/iTb1o4nlRA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eUk+ADWF; arc=fail smtp.client-ip=52.101.70.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YdLqdNv2hwZEuh3zbWD77Gz0S/Fymj+cjpUZEPBRV22nPGs2AuKIf+FtlSssHYdo2Cm8mFHEIE759C2cuG28Jm0UX9maDFJLeWsN26AsBujw2hjT8JdolS0YKdMj8bKvfWZOmojL8dYntkRz4x4x4Q8anBfOGxNHs411bk/bpmtk9bPYfosk/2jkbaZVTidFyZHkbltHDigDx4qR/htAG7QtgrB/MFCDRd2/uZLUg/jAfguZL8vE7TCkFcpqM0TZX9YODcmcB45ngtkYOEe6Oiar+0/zf0iBzVK3cigXFfuDDi9OYWlfkQBujYB13EdZosVcMW5sMSCx0nrdun1nNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ekoRYnK4z55lFVyhTkG15nV4sfaeKTQNLBqvN0G2Z7Q=;
+ b=StxamrdjCUmgnaxgBUbj6cfWoSzaU5yZEwe63CXrGJsqyNf2B6HpnOwkS4C6tVAfvVXMhWrsa/6mz22Ee1ZFwvRnH0OWJlyybsls2B+VlWXmoSRy+WQncTmk0pK7X5DSAsMiq22xq2GqPuaoaqBnnP+baEudrfeGeBuUZBTt4b95td9K28ujeSQ2ZinNKrV3gxFmzHUJyZ+cOEXHEEZRQiGmoE/zy1kYMWjFNB/Ff+mCE+zNPWMg93YVMsRC3lrly3zyPcxL3+05oRlPFfLQ27+CLAJRrNcfM+npRmY3Za59mD6f6pxUW8r5gx2jbwLu/0fgSZUIpqqR1pWwrP68Yg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ekoRYnK4z55lFVyhTkG15nV4sfaeKTQNLBqvN0G2Z7Q=;
+ b=eUk+ADWFiSA9ltxLI8umQBUFUhPi7wU4+U0KIkt0cs5MteKcMYhRCu7X05k85e0pt8JqK76DgMN2oLIUUIPqGGwf/+hbZpYCEj/MTAyJS+xKFOlc2+sJujbLlO1VntzsXm8h3T9rSc9lq6pOggf06Y6Q0hJRJO2/UR6sWLjTTNR81MfHTbkdmIN5yHb39e6Q0RX17b9lgmAfZQhZOadv0ibVzJ2NZTbPfXtfFs9kttRbXr4mS1mjyPsVZ2zrh53KvUl811zZnhkfB4KK1vnVHwv/qvWL22sHhuZqMuNVJdmx+pMYf3UDR57Zv8PK8pbxufVQ3v1g7EyfQ4dNqq5QKA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PAXPR04MB8895.eurprd04.prod.outlook.com (2603:10a6:102:20e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Mon, 11 May
+ 2026 22:09:45 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%3]) with mapi id 15.20.9891.021; Mon, 11 May 2026
+ 22:09:45 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR FREESCALE IMX 5/6),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: display: imx: add deprecated property 'port' and 'display-timings'
+Date: Mon, 11 May 2026 18:09:24 -0400
+Message-ID: <20260511220924.1905571-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SN6PR05CA0009.namprd05.prod.outlook.com
+ (2603:10b6:805:de::22) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: EB1B45169A6
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PAXPR04MB8895:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37bc014d-0e7e-4c34-9509-08deafaa026b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|366016|19092799006|376014|7416014|38350700014|921020|11063799003|18002099003|56012099003|3023799003;
+X-Microsoft-Antispam-Message-Info:
+	g5wtLrhNE9nJ4BmIMsG4fmvjME3wFcB0wTSGRV85R6XfgEoCsuw+L3dTwZpHmmwXAEqkXV3ZX2DiEgAYwmdll2s+wF/rq4LZ25XIJ05IKlrjgZJxufF50jn38KZbfaT0I9OvxLYawkQu1NtF5TLTN8UICXg4ToYRNArEkypFJ6lmjOXSBq4U5M3rJ84/ZwsO+CCCrOJTqyOV4Zte2w0MBNLPB2+Q6h5zWSbKcJUWh4Rsuk5K0A6K0OLXbiSZeA++IWgGT6Et7o3SVwrAQndSwARdu6kHC3OLBOuxBo4qGvh5ys6AO2YEE1kQsdbM7mQULz+FyxeT+wapUHze6h5HCq66wcd8bC+yw250cSoNkMQw3OO1ZNdxUk9+ZrLwqE2ekFDiErJaYynZaeCXGvrClWqEMIuOrZaLqRpbltITOVQ+mRFFFCRTmQSpXCtZQberMhII5pMuu30SvlFKnu06UYZaXHDUVvgi5pHXVxKKbZnG8d/iJDfIEhCqZyEyREJTbv8fbx9szgPIOC00mJYil0BucAWbuJcDoDrfV3C6QpiZt1XAk8mbq21wIQ8Jwly5WioK4PMLZXzc6AUEWHtd9CDCWusx6ukNjV/XrDeQDqC3yGkYP2NbCEnGZAy9ysYz6arGxZwh/qjJQ0Sv3SlRHw4yAqdm/UgHxEPDBS4IoqbQh+iIXPK3/rG8+tiW5HE71F4QG6AiZJrykzlpapeDYLkt42ii/wVDb9cMkLRQiu96Mqe2EXmMQJBMX8i4aYHnDA9R+tdGzDuZlUinFQMF0w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(366016)(19092799006)(376014)(7416014)(38350700014)(921020)(11063799003)(18002099003)(56012099003)(3023799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qoaanQrChxkfJ2rnOuTgxea2ADzsj1X8ebIaGjdQzu7CApIABErvIv0iD9JD?=
+ =?us-ascii?Q?soWx3Xjwjdg1kru/wILy8U3fc6VSStdID1pFCfFnuqLx9e29VLgw4TI6BFmK?=
+ =?us-ascii?Q?Z6jYRwumHysc97Ltc/c5t4X0QYjDyuveHOA8unRJCrEQcaRMWeV+uynPAs7D?=
+ =?us-ascii?Q?uXfrm1EhucvM+zYMEiSCF5GS3TQbjZ0dmncWVLWpIZzNRoukQRSWoosluyob?=
+ =?us-ascii?Q?q3ThHc6CA6H56lE78g3e0ajdr7gM8QQlPqUg1gMJm/MmMNKKDr4jbNkrqC0O?=
+ =?us-ascii?Q?7+vNAK53HJVN5h73ewNif3ipFUcgkcDt5GKwIwhQiCwSKGzVvpmAwBhjSrTQ?=
+ =?us-ascii?Q?ynn/WuyOEFrcL3yVg/p9HpmOUUvX7ej434YTeNZ9KelG+es40zWHaOKzjGlR?=
+ =?us-ascii?Q?uAqD8nDrBWKNGKiSEmDr3GnnfrYYX5Aqv/zJ2gdFxYrClYup9HnMRJ7h24wZ?=
+ =?us-ascii?Q?kbLBAjCnvY5nFZEOJZNoWa9rmZ1M4zMyMaVPwNd6BiBeODyu5BKw+6MXT8A2?=
+ =?us-ascii?Q?ihuGPmf1AzTz93PyPwnO1Em0lkpRJiAsFl+n2KND3YdQdpC+MGq7rmJKArWx?=
+ =?us-ascii?Q?gZ11ZCprvHZklHLAfa9d0sH5ITgE/KAH6OTLsSBxR153POVCmKP6m9g5ntdE?=
+ =?us-ascii?Q?OIL5SJFjc4hPqvovHxYuSwo/ojBg0/p1dZsqu+w3dQftj42WxPE5ymmc2AYs?=
+ =?us-ascii?Q?Zh6bN7rNq2Js0f6rg0uJEETTZRjRfpD5JyoVTyhQl7lESwRnX9ObWTAWhR8X?=
+ =?us-ascii?Q?MMPhVqqVzz1nfEJpPZjOyeqWy9c/5iYilhdgJt3gbKXE91WzS5nR4p6HMKMM?=
+ =?us-ascii?Q?nk2RoV3SgKGzwZy55PO2zLJHlnZVJTUEF4pUjHW4tq8RbmiALy9uj4P9DDs8?=
+ =?us-ascii?Q?366/+DnkfDHKuy+4JUw3usggH0xgo4IVFvt/jxbFz5kasMbUBTrEzuBwpkNZ?=
+ =?us-ascii?Q?uAXk4aZrMY9FZI8NeQPnEOv1F26/wE6N8HZ3r/XQQxjqCveM+6us7oN48ELw?=
+ =?us-ascii?Q?UFtDylEwb65eNvmVsr4+GY3kIcot5+C469EwY9o6oDySkTSKz01hCd+TJ0gV?=
+ =?us-ascii?Q?AXLJT7f/jK/8qPll/XKE++bmcjW81NnRWIz2RdosmCsNuRWibdlzxwJAPHE8?=
+ =?us-ascii?Q?MTzJejc/mFeKGC5QYBcE8cBWdTqa2v+M+PtcSIUTGAt0vyc+7x0jP6JZMiQV?=
+ =?us-ascii?Q?JBC2X3zgOaPZ/PfpkXG0orOeyI7jgCvVnKqC/eOoB+WRq6WIIKH4IXddVwPN?=
+ =?us-ascii?Q?yWJgk+mCcY4XmZqv0AZzzGe3s+aswTO/SN7M0Xs/NVLqfFOKlIBHHSiAd5/Y?=
+ =?us-ascii?Q?rBT5De6Zd6aJKw+eqwSRr6gGCTVGmLpBta4m9qtDVYQQVyNLz/3tPn5aUMdH?=
+ =?us-ascii?Q?2eRvbG4lBIJMaWB0247iMhzBmPTExC1WiRXbDoWMQXjyjQc4OImon0T5javi?=
+ =?us-ascii?Q?DPOAmGB86/1FmxoOY6QtPPLgFpkRjy+yCOytrxsuS/VyNEnCiRKxxvk1xuJo?=
+ =?us-ascii?Q?42353PXCjg78mwmpzR+i57OoxOg7tzl50sanBLvh/bciLEFHePjmHwg3+8v+?=
+ =?us-ascii?Q?tXkSO2Ls4w54kV4on6E7/pIXkDIxt9GebtJgro8VLwItIERgv52H4zvNds5/?=
+ =?us-ascii?Q?E1lzv6tQLIOJjQ0U4o5g/HFVMealXFSlJQF7KKNJpjjVavp3aFLxaQl6s5JN?=
+ =?us-ascii?Q?faW8Y7sAEZuKP4SUhtjPw8O9r268wdYfv7V7KWKArCSq3amGahlspI4KxfgZ?=
+ =?us-ascii?Q?evq3RI8ALA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37bc014d-0e7e-4c34-9509-08deafaa026b
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 22:09:45.5401
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2if90W5BeexmJ162QWgB2/QvyRHxqnKrwyqq8lTss07LGjMlqWJShvpLY5a06jAFXe2KcCqXl+GHJusVmzuO0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8895
+X-Rspamd-Queue-Id: B87515169E7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FREEMAIL_TO(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295837-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295839-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.944];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Device Tree ABI breakage for existing Mapphone boards and legacy c=
-ompatibles
-- [Low] Compiler warning (-Wpointer-to-int-cast) on 64-bit architectures du=
-e to direct pointer-to-enum cast
---
+Add deprecated property 'port' and 'display-timings' for i.MX5 SoCs (over
+15 years) to fix below CHECK_DTBS warnings:
+  arm/boot/dts/nxp/imx/imx51-apf51dev.dtb: disp1 (fsl,imx-parallel-display): 'display-timings', 'port' do not match any of the regexes: '^pinctrl-[0-9]+$'
+        from schema $id: http://devicetree.org/schemas/display/imx/fsl,imx-parallel-display.yaml
 
-commit 31f4e82a2615f7d51f1707bf1ca43b9d741b3c90
-Author: Svyatoslav Ryhel <clamor95@gmail.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../display/imx/fsl,imx-parallel-display.yaml         | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-mfd: motorola-cpcap: diverge configuration per-board
+diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-display.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-display.yaml
+index bbcfe7e2958b7..b0c5869771fae 100644
+--- a/Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-display.yaml
++++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-display.yaml
+@@ -42,6 +42,17 @@ properties:
+     unevaluatedProperties: false
+     description: output port connected to a panel
+ 
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    unevaluatedProperties: false
++    deprecated: true
++    description: input port connected to the IPU display interface, see port@0
++
++  display-timings:
++    $ref: /schemas/display/panel/display-timings.yaml#
++    unevaluatedProperties: false
++    deprecated: true
++
+ required:
+   - compatible
+ 
+-- 
+2.43.0
 
-This commit separates the CPCAP subdevice configuration to support
-different board-specific settings. It introduces a default composition
-and renames the existing one for Mapphone boards.
-
-> diff --git a/drivers/mfd/motorola-cpcap.c b/drivers/mfd/motorola-cpcap.c
-> index d8243b956f875..f5a7fdd89dd5e 100644
-> --- a/drivers/mfd/motorola-cpcap.c
-> +++ b/drivers/mfd/motorola-cpcap.c
-> @@ -195,20 +197,6 @@ static int cpcap_init_irq(struct cpcap_ddata *cpcap)
->  	return 0;
->  }
-> =20
-> -static const struct of_device_id cpcap_of_match[] =3D {
-> -	{ .compatible =3D "motorola,cpcap", },
-> -	{ .compatible =3D "st,6556002", },
-> -	{},
-> -};
-
-Will existing device trees relying on the st,6556002 compatible string
-fail to probe since it was removed from the match tables?
-
-[ ... ]
-
->  static int cpcap_probe(struct spi_device *spi)
->  {
->  	struct cpcap_ddata *cpcap;
-> +	const struct mfd_cell *cells;
-> +	unsigned int num_cells;
->  	int ret;
-> =20
->  	cpcap =3D devm_kzalloc(&spi->dev, sizeof(*cpcap), GFP_KERNEL);
->  	if (!cpcap)
->  		return -ENOMEM;
-> =20
-> +	cpcap->variant =3D (enum cpcap_variant)spi_get_device_match_data(spi);
-
-Could this direct cast from a pointer to an enum cause a compiler warning
-(-Wpointer-to-int-cast) on 64-bit architectures?
-
-spi_get_device_match_data() returns a const void *, which is 64 bits wide on
-architectures like arm64, while enum cpcap_variant is typically a 32-bit
-integer. Casting through a pointer-sized integer first might prevent this.
-
-[ ... ]
-
-> +static const struct of_device_id cpcap_of_match[] =3D {
-> +	{
-> +		.compatible =3D "motorola,cpcap",
-> +		.data =3D (void *)CPCAP_DEFAULT
-> +	}, {
-
-Will this mapping break backwards compatibility for existing Mapphone board=
-s?
-
-Existing device trees use compatible =3D "motorola,cpcap" for the parent MFD
-node, but define their child nodes with Mapphone-specific compatibles like
-motorola,mapphone-cpcap-adc.
-
-By mapping motorola,cpcap to CPCAP_DEFAULT, the driver now expects child
-cells to use motorola,cpcap-adc. This means mfd_add_devices() might fail
-to bind child platform devices to their DT nodes since
-of_device_is_compatible() won't match.
-
-If this happens, the child platform devices will be created with
-pdev->dev.of_node =3D=3D NULL, completely breaking driver probing for subde=
-vices
-on existing boards.
-
-Could motorola,cpcap continue to map to the historical CPCAP_MAPPHONE
-configuration to preserve the ABI?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510110804.3304=
-5-1-clamor95@gmail.com?part=3D5
 
