@@ -1,55 +1,69 @@
-Return-Path: <devicetree+bounces-295434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295437-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPwSKOilAWpKhAEAu9opvQ
-	(envelope-from <devicetree+bounces-295434-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 11:48:24 +0200
+	id AK74OsOoAWqFhgEAu9opvQ
+	(envelope-from <devicetree+bounces-295437-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 12:00:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 472D450B464
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 11:48:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C8150B796
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 12:00:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E3F4030117AB
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 09:48:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F2447302D191
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 09:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AFA3BED16;
-	Mon, 11 May 2026 09:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5606B3BFE44;
+	Mon, 11 May 2026 09:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LoldjdEo"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SKesj2Pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37603BE147;
-	Mon, 11 May 2026 09:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29B9339B3D;
+	Mon, 11 May 2026 09:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778492880; cv=none; b=u7xAH/c6e/ZRlMZS41roO/ypA4YPL9Ykaq0NiLpttup3BqlTdEIM6vdZkJugPkCjCB+rP7jeqfDVbsrrMx96wCHfCI+ZH+kY0w0S5MLFjzVSXq8HT405ranlleSWLUlIcjS/giMlg/ESH2uz/AlUm+ivoCFjnlpxX4gvGOzPA70=
+	t=1778492967; cv=none; b=ijav1w2N+3no57yygnEXNuvh9wZPfa4qqzrRRz4zoN5TQ7yxI5H4IrkRXUua0Cm1Hlk2RrpY8ce2bEt4AdPSCDwYuxSV1JHK/xP6QiI2MlJM9JD4peUHnVBUyejifXJ7V5/mJVdMgPos9iqy9qpMk4IzFGgGhlALYWlxRNgnnVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778492880; c=relaxed/simple;
-	bh=D4cEEwP+Pw2JC+uqCH7D0mOoSaD3yW1LgWxT8p0r9d4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=EpRBzNwM1iUXGgPh5ObsTfRD9FaWfqSPIbpTR+m/+Nykv43OXf9kTK9iBCAN13/h0Zq+ngSGVrHmDCI9jfpg3HMZqwSkrV246ObN9TTwI26kiknm6F034Vskic6gz+Ubrl7z7o9n+9/mtiPEb7YVT4losuQ2G126L7p2YUSMlVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LoldjdEo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 70B1AC2BCFA;
-	Mon, 11 May 2026 09:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778492880;
-	bh=D4cEEwP+Pw2JC+uqCH7D0mOoSaD3yW1LgWxT8p0r9d4=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=LoldjdEomdcXhZsTCmbS+yxoyWhyPMpSy4xF0MTG/tlAsQfy1nRzFTP8rSvUFLwuU
-	 OvMPu54qeLCV/1j1y//ApfxX2OCwmjBNNPnVjTdSNDF6rsg1lJtyVSSGer3/FxXPhn
-	 CzQCBLuNTD2oGyON4oY25lXUxRkxkx7acyzbHKAKR4uAFm9zavvE1yBSlxtTlnZi/p
-	 URsAs0TXuU0hn1//BfvC6QhkKlZsWZLfV9KHOb0Cuc3DYxLNB+SGOU3A4V8SkwFLH5
-	 GOfsoTDjcKp3e6uCdwRQHLiD2zSG0pCxYewiox1/z5c6HDNxclWFY3dpa6yjQlAWpI
-	 D9X0Z8V7b7jCA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F08CCD3427;
-	Mon, 11 May 2026 09:48:00 +0000 (UTC)
-From: Colin Huang via B4 Relay <devnull+u8813345.gmail.com@kernel.org>
-Date: Mon, 11 May 2026 17:47:56 +0800
-Subject: [PATCH] ARM: dts: aspeed: anacapa: add JTAG CPLD TRST pin to SGPIO
- map
+	s=arc-20240116; t=1778492967; c=relaxed/simple;
+	bh=BUrmAszX4f30Kd8CC1UJmd+M9ix2JkT81pIXUO3eEmU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ty6ra9KmrAOrlyiqIyR3dpQOLjxlR8PFniyVjUBTDFqJd43mogc2CO8PdAz1VeA+zUuB1nXj7LJsQU8oiq5UPiyE1ZosjlJ66gd3WLZnGUS36yzSRBCKXL0kSOf5rgWq44A3oCLPaI6EIsxiVF0Tl92JE5RZZv8WEngJNTTUsx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SKesj2Pu; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1778492964;
+	bh=BUrmAszX4f30Kd8CC1UJmd+M9ix2JkT81pIXUO3eEmU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=SKesj2PuPZIib4SrM8agWVh5hV5mkTxdS1CGEDvpYiN7pOpjc8WE9TeJdOa8OX/7v
+	 vhTpNDuEumpt03nxHTRi48elU67pKWLvlhuG+M1yY4onoQvKqSDne6EOU0siwh1Zsz
+	 hjIqNqoThP7xHwY1pQ5t7ywhUvKML+g5AOdSp8lcPt2FsVLhqXxJorjC8KNWyN41wE
+	 CdIvAD+O74fqL2e5WuuhYlzLTe15DGhKGomn0Eg3llxMHAx0CE9yWGh+mxgeXb1/3s
+	 LgbMAhQgXjcIpWDnOcRbgjtbbNBarE7S4TR18UoP56T1N3tfuIIQcuKAQlQz7mFygt
+	 AxtdYqlCdvjuA==
+Received: from IcarusMOD.eternityproject.eu (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E712A17E040C;
+	Mon, 11 May 2026 11:49:23 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Gary Bisson <bisson.gary@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20260310-mtkhdmi-v1-1-841e834c8abc@gmail.com>
+References: <20260310-mtkhdmi-v1-1-841e834c8abc@gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-tungsten-smarc: add HDMI
+ support
+Message-Id: <177849296389.118420.4761248447204610595.b4-ty@collabora.com>
+Date: Mon, 11 May 2026 11:49:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,104 +72,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260511-add-jtag-trst-pin-v1-1-b0be2f7b2da5@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAMulAWoC/x3MTQqAIBBA4avIrBtQsR+6SrQwnWpamKhEEN09a
- fkt3nsgU2LKMIoHEl2c+QwVqhHgdhs2QvbVoKXuZKsUWu/xKHbDknLByAFbI5feD8aSdlC7mGj
- l+39O8/t+z6YwNmMAAAA=
-X-Change-ID: 20260511-add-jtag-trst-pin-540b7d84ae2c
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- colin.huang2@amd.com, Colin Huang <u8813345@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778492878; l=1269;
- i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
- bh=bBz3YS2LvMQAba2/yKKCExHR35pJbolOWMc0cULsHQc=;
- b=7eqrmaxmn6l4gBcvbL2EZFv54EpM2ExzQR73yUeUFlCbjQgpzwSnkXTmVVMzLP6g6IACqMNDx
- USyAryJvHoVAj1X87q8+El6BZfM90iU21bwytKBspw7Ok3OtcRg0YIX
-X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
- pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
-X-Endpoint-Received: by B4 Relay for u8813345@gmail.com/20260202 with
- auth_id=761
-X-Original-From: Colin Huang <u8813345@gmail.com>
-Reply-To: u8813345@gmail.com
-X-Rspamd-Queue-Id: 472D450B464
+X-Rspamd-Queue-Id: F0C8150B796
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-295437-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295434-lists,devicetree=lfdr.de,u8813345.gmail.com];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,amd.com,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[u8813345@gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Action: no action
 
-From: Colin Huang <u8813345@gmail.com>
+On Tue, 10 Mar 2026 16:20:13 +0100, Gary Bisson wrote:
+> Add HDMI display out support to both Tungsten510 & Tungsten700
+> platforms. HDMI audio is not covered by this patch, audio (HDMI & I2S)
+> will be added as a follow-up patch.
+> 
+> 
 
-Add JTAG_CPLD_TRST_R_N to the sgpiom0 pin name table on
-Facebook Anacapa BMC.
+Applied to v7.1-next/dts64, thanks!
 
-This exposes the CPLD JTAG TRST signal through SGPIO,
-allowing proper JTAG reset control during debug.
+[1/1] arm64: dts: mediatek: mt8390-tungsten-smarc: add HDMI support
+      commit: a74ceec38c76901baa2fc09a1a744689b696a01a
 
-Signed-off-by: Colin Huang <u8813345@gmail.com>
----
-Add JTAG_CPLD_TRST_R_N to the SGPIO M0 pin name table on
-Facebook Anacapa BMC.
-
-This exposes the CPLD JTAG TRST signal through SGPIO,
-allowing proper JTAG reset control during debug.
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-index 2cb7bd128d24..9a43e0c87257 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-@@ -882,7 +882,7 @@ &sgpiom0 {
- 	/* C0-C7 line 32-47 */
- 	"RSVD_RMC_GPIO3", "", "", "",
- 	"", "", "", "",
--	"LEAK_DETECT_RMC_N", "", "", "",
-+	"LEAK_DETECT_RMC_N", "JTAG_CPLD_TRST_R_N", "", "",
- 	"", "", "", "",
- 
- 	/* D0-D7 line 48-63 */
-
----
-base-commit: b333a0f1c857411d83a02aa6f1d9ecc7666d6179
-change-id: 20260511-add-jtag-trst-pin-540b7d84ae2c
-
-Best regards,
--- 
-Colin Huang <u8813345@gmail.com>
+Cheers,
+Angelo
 
 
 
