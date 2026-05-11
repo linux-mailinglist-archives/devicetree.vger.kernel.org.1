@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-295838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qF0RIMdTAmpvrQEAu9opvQ
-	(envelope-from <devicetree+bounces-295838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:10:15 +0200
+	id wIYOAAZUAmpvrQEAu9opvQ
+	(envelope-from <devicetree+bounces-295840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:11:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2A285169FB
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:10:14 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FA6516A19
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2216130142AB
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 22:09:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F3A6D300D4F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 22:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3004D90D7;
-	Mon, 11 May 2026 22:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E00F4D2ED8;
+	Mon, 11 May 2026 22:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dgB5G7cx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZM9VJcyO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A3EA47CC96
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 22:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2AF2FE04E
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 22:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778537383; cv=none; b=RKQ8eVOvJAsKgz/dtjFrJhA1M8tF7eHGXMlFUPOGCZTbt3Vx5MhJzRxTS9rlxcsSV7um6bBuzvdIWDZ81qmXBYGP3e4YOUY0vZ8VvEEHwZ7sTdoLazUmtoFYS6FNh+KULZqEjRg7YJLTPJDq0UOywj8OWPQ8LvuCZ/26HfYmZmY=
+	t=1778537474; cv=none; b=GMg8akhRXj49wuwgAbIcfV29Xn7bV8wAsyI9MsuVsDGjLcKAYz9B3GK+EvK4LbQm3JjfHW2eYilNJSMJJHNRkKvSJiTyMdNTlnmHzbuAtPoaZaqdZPAIoXkJUr3ogXD283l7r2fXZpzgFhJROPBiTVlXb1F37bAtWOkuE+IuWfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778537383; c=relaxed/simple;
-	bh=F8868X5hQwCbocEZqVmc2emWPNTTIJuDB6eG0i46waQ=;
+	s=arc-20240116; t=1778537474; c=relaxed/simple;
+	bh=tb0gd4xppC6sVjyXQJTTIkOCidtU9XsrXTX34EGUcCg=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jlEu5Pg5cqiNSH1DVY2b5RaHxXabrYbsgMpp00s/UgigHtcwghd7Dg49q5SC0nHGWDwVm7n+7kA4nHfifprl8RESZtbQHT/Z979YgS7pGA8NGpsN0meHsOSd8bRWTUtfN8D+7rCKeWNYCxHUKu+fS6hwuJf+3qDjsyAnT4vtMo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dgB5G7cx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B824EC2BCF5;
-	Mon, 11 May 2026 22:09:42 +0000 (UTC)
+	 Message-Id; b=ZA+AirnO5UF6bHuoGblqvsNTM3YSBw12DUW+4tiuar7sMVh7d7b4qko//6FH+6Fd3u4MH38urMQ6F388zDiE2H4JKrTPtVH36HAcn6p7cJbXg7naug1s/wgMFosY7NeyAZJNPC9fUzc5hijGKeTa53O2zZ5eQvQTaZ2+re6VsXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZM9VJcyO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58F12C2BCB0;
+	Mon, 11 May 2026 22:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778537383;
-	bh=F8868X5hQwCbocEZqVmc2emWPNTTIJuDB6eG0i46waQ=;
+	s=k20201202; t=1778537474;
+	bh=tb0gd4xppC6sVjyXQJTTIkOCidtU9XsrXTX34EGUcCg=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=dgB5G7cxJY0o3JHvNkRVFsFCn0bcij8AzPYTq/Uye9mPYJf6B6mkh+M55YcMTo0Fc
-	 mo1XmBH6VzDDBKO24KbTNaGWGo9Uf6mCItObzNZf6JFSNU1vvA+bS9CJLr/NgGpJo9
-	 UyvR1MJl/GDHASEwkI+tnSmnylYBsd0j45xy5G8KWCfjwQBdkjbnrA/nWjBTp18QYK
-	 jpGvKlipIEgkUUdM6UbkrFQiXS9bhnhqhxoRuQ6IUoRfSNrJBugh8JuMEIp9bueZGK
-	 YFS9rGD2uPLi/2CwZpX7TMn3hgtq5KKc+CaDR6yE40ywjkVH6mu+tfaEAdL6YbmG3o
-	 RWZf9J+JHrYDg==
+	b=ZM9VJcyOIDe7vdFY5N8puLW0f/d9IDt3zAGGhadwDr7z4fY71yY6Xapf/F70Q545n
+	 9WO/kyks3a3wN/Oyydofz8EPUlqFgh4wYgogAa2hNVzF+PFU9r16hg22r0RhFQoEG/
+	 RZqpHwsUwBMI7oqDeAeyVBGMYrB9AQCNcmas0ldkuuYkj97PCFaVYT9rbqQL4OYLlk
+	 yJdc/XGAM0F2DXunMyOxolZEvC+ZOW8vB90RGfr1qAtSYDd4lS+RHPhyW5Hfehw6pq
+	 1q39MgtaYUE61F09w2ozo+qrGT4TwXWr1RXKAb8l6yONj9OzGZ+gxMZrup5XUqjmHf
+	 qYYBMu5sU9dEA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] iio: light: bh1730: Add bh1730 light sensor driver
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: add basic devicetree for Ayaneo
+ Pocket DS gaming console
 Reply-To: sashiko@lists.linux.dev
 To: "Alexandre Hamamdjian via B4 Relay" <devnull+azkali.limited.gmail.com@kernel.org>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260511-bh1730-v1-2-e0df1f499135@gmail.com>
-References: <20260511-bh1730-v1-2-e0df1f499135@gmail.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260510-pocketds-v1-2-cf05acec06af@gmail.com>
+References: <20260510-pocketds-v1-2-cf05acec06af@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 11 May 2026 22:09:42 +0000
-Message-Id: <20260511220942.B824EC2BCF5@smtp.kernel.org>
+Date: Mon, 11 May 2026 22:11:13 +0000
+Message-Id: <20260511221114.58F12C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: D2A285169FB
+X-Rspamd-Queue-Id: 83FA6516A19
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,0.0.0.0:email];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295838-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295840-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -89,286 +90,207 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,azkali.limited.gmail.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 9 potential issue(=
+Thank you for your contribution! Sashiko AI review found 8 potential issue(=
 s) to consider:
-- [High] Global shared state breaks power management for multiple devices.
-- [High] Regulator resource leak and probe deferral mishandling.
-- [High] Unsigned integer underflow in lux calculation causes erroneous max=
-imum brightness readings.
-- [High] Missing mutex protecting concurrent IIO sysfs reads causes race co=
-nditions.
-- [High] Probe error path leaves the device powered on.
-- [High] Unbalanced regulator enable counts in error handling paths.
-- [Medium] Incorrect I2C functionality check in probe.
-- [Medium] RAW IIO channel violates ABI by returning scaled fractional valu=
-es.
-- [Medium] Missing integration-time tracking logic as claimed in the commit=
- message.
+- [High] Missing `compatible` string on the primary display panel.
+- [High] Missing `cooling-maps` for fan thermal trip points.
+- [Medium] PCIe peripheral power and enable signals are hardcoded via pinct=
+rl.
+- [Medium] Conflicting `output-low` pinctrl state for a regulator-managed G=
+PIO.
+- [Medium] Missing `pinctrl-1` property in the `pwm_fan` node.
+- [Low] Inclusion of undocumented, downstream-specific devicetree property =
+`rocknix-u-boot-dt-id`.
+- [Low] Leading spaces in `vph_pwr` regulator name.
+- [Low] Orphaned pinctrl nodes for a missing secondary display.
 --
 
-commit 92646ec6b1c5614b002c3fd3629112d1e7719033
-Author: CTCaer <ctcaer@gmail.com>
+commit a48e1f08f4a1d52011fe6aeaf547a479fe5b3a94
+Author: Teguh Sobirin <teguh@sobir.in>
+arm64: dts: qcom: add basic devicetree for Ayaneo Pocket DS gaming console
 
-iio: light: bh1730: Add bh1730 light sensor driver
+This commit adds initial device tree support for the Ayaneo Pocket DS
+gaming console based on the Qualcomm QCS8550 platform.
 
-Add a driver for the ROHM BH1730FVC ambient light sensor with runtime gain
-tracking and configurable integration time.
-
->    The driver exposes illuminance via IIO, performs runtime gain and
->    integration-time tracking to keep the ADC in range, and supports
-
-This isn't a bug, but the commit message mentions runtime integration-time
-tracking. While runtime gain tracking is implemented in bh1730_adjust_gain(=
-),
-is there equivalent runtime logic to track or adjust the integration time,
-or is it only configured once during bh1730_init_config()?
-
-> diff --git a/drivers/iio/light/bh1730.c b/drivers/iio/light/bh1730.c
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocket-common.dtsi b=
+/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocket-common.dtsi
 > new file mode 100644
-> index 0000000000000..c93290ff5661f
+> index 0000000000000..8d215a9d31d54
 > --- /dev/null
-> +++ b/drivers/iio/light/bh1730.c
-> @@ -0,0 +1,686 @@
-[ ... ]
-> +static int bh1730_get_lux(struct bh1730_data *bh1730)
-> +{
-[ ... ]
-> +	/* Calibrate based on optical window */
-> +	for (i =3D 0; i < bh1730->cal.opt_win_coeff_count; i++) {
-> +		opt_win_coeff =3D &bh1730->cal.opt_win_coeff[i];
-> +		if (1000 * ir / visible < opt_win_coeff->rc) {
-> +			lux =3D ((u64)opt_win_coeff->cv * visible) -
-> +				   (opt_win_coeff->ci * ir);
-> +			break;
-> +		}
-> +	}
-> +
-> +	/* Calculate lux */
-> +	lux *=3D BH1730_DEFAULT_ITIME_MS;
-> +	lux /=3D bh1730_gain_multiplier(bh1730) * bh1730->itime_us;
-> +	lux =3D (lux * bh1730->cal.mul) / 1000;
-> +
-> +	if (lux > BH1730_MAX_MEASURED_LUX)
-> +		lux =3D BH1730_MAX_MEASURED_LUX;
-> +
-> +	return (int)lux;
-> +}
-
-Can the subtraction underflow if the infrared component (ci * ir) is greater
-than the visible component (cv * visible)? Since lux is an unsigned 64-bit
-integer, this could result in a massive positive number.
-
-The subsequent clamping logic would then set lux to
-BH1730_MAX_MEASURED_LUX (100,000). Would this cause the sensor to report
-maximum brightness instead of 0 lux in environments where IR light dominate=
-s?
+> +++ b/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocket-common.dtsi
 
 [ ... ]
-> +static int bh1730_power_ctrl(struct bh1730_data *bh1730, bool enable)
-> +{
-> +	struct device *dev =3D &bh1730->client->dev;
-> +	static bool enabled;
-> +	int ret =3D 0;
-> +
-> +	if (enabled =3D=3D enable)
-> +		return ret;
 
-Will this global static variable break power management for multiple device=
-s?
+> +	thermal-zones {
+> +		cpuss0-thermal {
+> +			polling-delay =3D <200>;
+> +			trips {
+> +				cpuss0_fan0: trip-point2 {
+> +					temperature =3D <40000>;
+> +					hysteresis =3D <3000>;
+> +					type =3D "passive";
+> +					};
 
-If a system contains multiple BH1730 sensors, powering on the first sensor =
-sets
-enabled =3D true. When the second sensor attempts to power on during probe,
-would the enabled =3D=3D enable check evaluate to true and return immediate=
-ly
-without enabling the regulators for the second device?
-
-> +	if (enable) {
-> +		if (!IS_ERR_OR_NULL(bh1730->reg_vdd)) {
-> +			ret =3D regulator_enable(bh1730->reg_vdd);
-> +			if (ret) {
-> +				dev_err(dev, "%s: Failed to enable vdd: %d\n",
-> +					__func__, ret);
-> +				return ret;
-> +			}
-> +		}
-> +
-> +		if (!IS_ERR_OR_NULL(bh1730->reg_vid)) {
-> +			ret =3D regulator_enable(bh1730->reg_vid);
-> +			if (ret) {
-> +				dev_err(dev, "%s: Failed to enable vid: %d\n",
-> +					__func__, ret);
-> +				return ret;
-> +			}
-> +		}
-
-If regulator_enable(bh1730->reg_vdd) succeeds but the subsequent
-regulator_enable(bh1730->reg_vid) fails, will this return without
-disabling the vdd regulator and leave an unbalanced enable count?
+Should these thermal zones include a cooling-maps block? Without it, the
+passive trip points don't seem to bind to the pwm_fan cooling device, meani=
+ng
+the thermal framework won't automatically scale the fan based on temperatur=
+e.
 
 [ ... ]
-> +static int bh1730_power_off(struct bh1730_data *bh1730)
-> +{
-> +	int ret =3D bh1730_write(bh1730, BH1730_REG_CONTROL, 0);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return bh1730_power_ctrl(bh1730, false);
-> +}
 
-If the initial I2C write fails here, the function returns early without cal=
-ling
-bh1730_power_ctrl(..., false). Will this permanently leak the regulator
-enable references upon an I2C error during device removal or suspend?
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "  vph_pwr";
+
+This isn't a bug, but there are leading spaces in the regulator name. Will
+this cause formatting issues in sysfs or break userspace tools that parse t=
+he
+regulator tree?
+
+> +		regulator-min-microvolt =3D <3700000>;
+> +		regulator-max-microvolt =3D <3700000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	pwm_fan: pwm-fan {
+> +		compatible =3D "pwm-fan";
+> +
+> +		pinctrl-names =3D "default", "sleep";
+> +		pinctrl-0 =3D <&fan_pwm_active>, <&fan_int>;
+
+Should this node include a pinctrl-1 property? The sleep state is declared =
+in
+pinctrl-names, but the corresponding configuration is missing, which might
+cause the pinctrl framework to fail during power management transitions.
+
+> +
+> +		fan-supply =3D <&vdd_fan_5v0>;
+> +		pwms =3D <&pm8550_pwm 3 40000>;
 
 [ ... ]
-> +static int bh1730_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long mask)
-> +{
-> +	struct bh1730_data *bh1730 =3D iio_priv(indio_dev);
-> +	int data_reg, ret;
-> +
-> +	ret =3D bh1730_adjust_gain(bh1730);
-> +	if (ret < 0)
-> +		return ret;
 
-Is a mutex needed here to protect concurrent IIO sysfs reads?
+> +	fan_pwr_active: fan-pwr-active-state {
+> +		pins =3D "gpio31";
+> +		function =3D "gpio";
+> +		drive-strength =3D <2>;
+> +		bias-disable;
+> +		output-low;
+> +	};
 
-Without a driver-level lock, if multiple userspace threads read from the IIO
-sysfs attributes concurrently, their executions will interleave.
-
-Could concurrent access allow threads to trample the hardware gain state
-in bh1730_adjust_gain(), corrupt I2C read sequences, and read invalid
-mid-integration data?
-
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_PROCESSED:
-> +		ret =3D bh1730_get_lux(bh1730);
-> +		if (ret < 0)
-> +			return ret;
-> +		*val =3D ret;
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_RAW:
-> +		switch (chan->channel2) {
-> +		case IIO_MOD_LIGHT_CLEAR:
-> +			data_reg =3D BH1730_REG_DATA0LOW;
-> +			break;
-> +		case IIO_MOD_LIGHT_IR:
-> +			data_reg =3D BH1730_REG_DATA1LOW;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +		ret =3D bh1730_read_word(bh1730, data_reg);
-> +		if (ret < 0)
-> +			return ret;
-> +		ret =3D ret * 1000 / bh1730_gain_multiplier(bh1730);
-> +		*val =3D ret / 1000;
-> +		*val2 =3D (ret % 1000) * 1000;
-> +		return IIO_VAL_INT_PLUS_MICRO;
-
-Is it permissible to return a scaled fractional value for IIO_CHAN_INFO_RAW=
-?=20
-
-The IIO ABI specifies that IIO_CHAN_INFO_RAW must return the exact, unscaled
-integer value from the hardware. Should the driver expose the raw ADC count
-using IIO_VAL_INT and provide a separate IIO_CHAN_INFO_SCALE attribute so t=
-hat
-userspace can properly interpret and scale the value?
+Does the output-low property here conflict with the regulator subsystem? Th=
+is
+state is used by the vdd_fan_5v0 fixed regulator, which already manages the
+GPIO's output direction and logic level natively.
 
 [ ... ]
-> +static int bh1730_parse_dt(struct bh1730_data *bh1730, struct device_nod=
-e *dn)
-> +{
-> +	struct device *dev =3D &bh1730->client->dev;
-> +	int ret;
-> +	u32 *opt_win_coeff =3D NULL;
-> +	u32 *gain_coeff =3D NULL;
-> +	int opt_win_coeff_count =3D 0, gain_coeff_count =3D 0, cycle =3D 0, mul=
- =3D 0;
+
+> +&mdss_dsi0 {
+> +	vdda-supply =3D <&vreg_l3e_1p2>;
+> +	status =3D "okay";
 > +
-> +	memcpy(&bh1730->cal, &def_lux_data, sizeof(struct lux_cal_data_t));
+> +	display_panel: panel@0 {
+> +		reg =3D <0>;
 > +
-> +	if (dn) {
-> +		/* Get regulators */
-> +		bh1730->reg_vdd =3D regulator_get(dev, "als-vdd");
-> +		if (IS_ERR_OR_NULL(bh1730->reg_vdd)) {
-> +			bh1730->reg_vdd =3D NULL;
-> +			dev_warn(dev, "failed to get als-vdd");
-> +		}
+> +		pinctrl-0 =3D <&sde_dsi_active>, <&sde_te_active>;
 
-Are the regulator resources leaked here? regulator_get() is used to acquire
-them, but there are no corresponding regulator_put() calls in bh1730_remove=
-()
-or any of the probe error paths.
+Is this panel missing a compatible string? Without it, the DRM panel driver
+will not be able to probe and bind to the hardware, rendering the primary
+display non-functional.
 
-Also, does checking the return value with IS_ERR_OR_NULL incorrectly swallow
-the -EPROBE_DEFER error code?=20
-
-If a regulator is not yet available, the pointer is set to NULL and the dri=
-ver
-proceeds instead of properly deferring the probe, which could break power
-management. Could devm_regulator_get_optional() be used here instead?
+> +		pinctrl-1 =3D <&sde_dsi_suspend>, <&sde_te_suspend>;
+> +		pinctrl-names =3D "default", "sleep";
+> +	};
+> +};
 
 [ ... ]
-> +static int bh1730_probe(struct i2c_client *client)
-> +{
-> +	struct bh1730_data *bh1730;
-> +	struct i2c_adapter *adapter =3D to_i2c_adapter(client->dev.parent);
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE))
-> +		return -EIO;
 
-Is I2C_FUNC_SMBUS_BYTE the correct functionality to check? The driver activ=
-ely
-uses i2c_smbus_read_word_data() and i2c_smbus_write_byte_data().
+> +&pcie1 {
+> +	wake-gpios =3D <&tlmm 99 GPIO_ACTIVE_HIGH>;
+> +	perst-gpios =3D <&tlmm 97 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-0 =3D <&pcie1_default_state>, <&upd720201_active>, <&gamepad_pw=
+r_en>;
 
-Should this verify I2C_FUNC_SMBUS_BYTE_DATA | I2C_FUNC_SMBUS_WORD_DATA
-instead? Relying on I2C_FUNC_SMBUS_BYTE might cause the driver to bind to an
-I2C adapter that does not support the required operations.
+Is it intended to manage the downstream USB controller and gamepad enable
+GPIOs directly at the PCIe host level?
 
-> +
-> +	indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*bh1730));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	bh1730 =3D iio_priv(indio_dev);
-> +	bh1730->client =3D client;
-> +	i2c_set_clientdata(client, indio_dev);
-> +
-> +	ret =3D bh1730_parse_dt(bh1730, client->dev.of_node);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret =3D bh1730_power_on(bh1730);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret =3D bh1730_init_config(bh1730);
-> +	if (ret < 0)
-> +		return ret;
+Hardcoding them here bypasses the proper device-specific power management a=
+nd
+might break suspend/resume sequencing since the peripherals will remain
+unconditionally powered while the PCIe controller is active.
 
-If bh1730_init_config() fails, does this return early and leave the
-device powered on?=20
+> +	pinctrl-names =3D "default";
+> +
+> +	status =3D "okay";
+> +};
 
-Returning directly here would leak the regulator enable count instead of
-jumping to the out_power_off label to properly clean up the state.
+[ ... ]
+
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocketds.dts b/arch/=
+arm64/boot/dts/qcom/qcs8550-ayaneo-pocketds.dts
+> new file mode 100644
+> index 0000000000000..723b027fa73bd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocketds.dts
+
+[ ... ]
+
+> +/ {
+> +	model =3D "AYANEO Pocket DS";
+> +	compatible =3D "ayaneo,pocketds", "qcom,sm8550";
+> +	rocknix-u-boot-dt-id =3D "u-boot-pocket-ds";
+
+Is this downstream-specific property intended to be upstreamed? Devicetrees
+usually describe hardware topology rather than downstream OS or bootloader
+identifiers.
 
 > +
-> +	indio_dev->dev.parent =3D &client->dev;
+> +	tca6424_vcc: regulator-tca6424-vcc {
+
+[ ... ]
+
+> +&tlmm {
+> +	gpio-reserved-ranges =3D <32 4>;
+> +	panel_pwr_active: panel-pwr-active-state {
+> +		pins =3D "gpio152", "gpio153";
+> +		function =3D "gpio";
+> +		drive-strength =3D <8>;
+> +		bias-disable;
+> +		output-high;
+> +	};
+> +
+> +	sde_dsi1_active: sde-dsi1-active-state {
+> +		pins =3D "gpio137";
+> +		function =3D "gpio";
+> +		drive-strength =3D <8>;
+> +		bias-disable;
+> +		output-high;
+> +	};
+> +
+> +	sde_dsi1_suspend: sde-dsi1-suspend-state {
+> +		pins =3D "gpio137";
+> +		function =3D "gpio";
+> +		drive-strength =3D <2>;
+> +		bias-pull-down;
+> +	};
+
+Are these pinctrl states needed? They appear to be orphaned since the
+secondary display node (&mdss_dsi1) is not defined in this devicetree.
+
+> +
+> +	ts_rst_default: ts-rst-default-state {
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-bh1730-v1-=
-0-e0df1f499135@gmail.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510-pocketds-v=
+1-0-cf05acec06af@gmail.com?part=3D2
 
