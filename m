@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-295346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295352-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +G+6KEuNAWqNdwEAu9opvQ
-	(envelope-from <devicetree+bounces-295346-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:03:23 +0200
+	id dMr5A4KNAWpyeAEAu9opvQ
+	(envelope-from <devicetree+bounces-295352-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:04:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 237D4509BE8
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70ACE509C52
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EE0183036495
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 07:50:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 009EE300182C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 07:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA80F3AA1B0;
-	Mon, 11 May 2026 07:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FA73AC0CE;
+	Mon, 11 May 2026 07:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e1muvo8S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NpLjmyiJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536043A9625
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 07:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D859B3A5E95
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 07:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778485769; cv=none; b=VTeeQRrCluGSy6PFDa9N2vZ8DkbyLixVGqRZdHoXlgEzEan+Segi80Wk7sYx8/tNQPoNAI0n5wyL0D/cxpqXZR9By6wwnHGQfrzl+ZH+LuOkApb9HG203wYO+3uGSY2Tk5F5wYe0w9LhybbOkTDdd9ap997c7lgDV7EME2Gt+Ik=
+	t=1778485789; cv=none; b=YNUHtO4gEjVqTBmG/aCjbIhOjXGBFtne5ccAslA1BnPmFmO+TNILG8+MRSJp+jCs3A0Rk64ozJyIhuRyyn3dkouPQDiskOL8IiIAgFEYmWjDf+bxPIZcnU/z7o5rEbkoze0KmjLn7CtlYaV9+L/iMWWLMTg/o/vdw+9BNPu/3iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778485769; c=relaxed/simple;
-	bh=PKFdbLOtezmddcHtLj3hd26ATJxGdOHkO0A6JXK5y1k=;
+	s=arc-20240116; t=1778485789; c=relaxed/simple;
+	bh=Mc8Dcste8PiXZn5dDJtZZd+nBmIxHxlDzT2m4LkONQs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Y6qzTVm+5O6i0G4kjLH/33itvjcCzUvd2NPz1N/BFCLLP8qErPeVg1IlIcxFS1WBJzs2qIm2WtCuSwD5SkzZ6aQgxeGgNug2m879pS2JSE4wfWVkFVUW5TsGGKbuH6Q1FrCHE+rYxKYkhffOmwbKCbEVfnxbTJbQ96KEH8u7miQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e1muvo8S; arc=none smtp.client-ip=209.85.167.53
+	 MIME-Version; b=oot4SPeOGXvOyeUbtyjGfD7u01BVYoDOCUOjgTm3uSh76RLMpo/3z3tKhmisXPVwQcPPgNJJpkfZJD7L9D0CgT3FPmOkUWrPyrsfFLHdnATisRZ5dlKEeQF9ulSrQuwiST+Yo+xwBbe0pbfZWhvuRYliUFBP9Wyq7PzSgzalgUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NpLjmyiJ; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5a748d5ece4so3799338e87.2
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 00:49:23 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-394095009beso10608151fa.3
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 00:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778485759; x=1779090559; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778485760; x=1779090560; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=B403X2O1b8FGNNeGhrK0Mv2epOELGQnn1++DaG9H56c=;
-        b=e1muvo8Slq/kR6z4gGStjHgCUHJX9kUIVl1C/UtK3/Yk+iWHXbKOmntyZfRjndxR8k
-         enn4L7lzqqxibN0jq/insFVuwTU8OkyenOMxLGzGScyRDA1aZnTvEu9FULfkgbIFoKg8
-         jy0ZTODEIkWMi9C8nRhl7SX9xZx0NJO1PNW8GeZSs/sqcvlELsFUGkxCdPx2O0xl3YKo
-         l6q8xH0Ah/zgsXMTMmKE2hj8vFOYAY+/He4+JcstkAKnvnz7OYotzD0cRFJm95WPIozF
-         4q1SIt0VSaaF3qR160Q0Wpa1LGbyRmq94DAiIyKDE0KFvgTaTxs9qX0JsHUAXaGSifAn
-         LBPw==
+        bh=5jzq0svM/CyVwYnCMdFf4d9/HiEVgTFbm0k3312KAqU=;
+        b=NpLjmyiJ/Tk8Q5+Xbtrt7Mg+NTTDZJrZXgDg7RNkXMx1HenVqQXF7YeSi7nRujvTKl
+         V7tZwSnfHq/XE+UUxJhyRaa56ovdT9NCm6GT1rMW9O1phez51hWUN9NkrBz9n2FuyXWn
+         1H30JyehgBRRPt6J6Vh1KsxKq4iWSGU3NLFtWoADQup7e7uDLfXod/7rFnRX+MF/sc9e
+         JwbXHgUsM9wzelpRYeRlwVPxEDwik4FaDMWJ57nJ0RtzQgh4lEtscwRcujg/4cKV4yz+
+         oBitmTTwum5fePHqemjjuAJj3qjowGZTj4qaox1716rGJcM9L1E1cGGMkEG44BfsWyse
+         ihPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778485759; x=1779090559;
+        d=1e100.net; s=20251104; t=1778485760; x=1779090560;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=B403X2O1b8FGNNeGhrK0Mv2epOELGQnn1++DaG9H56c=;
-        b=s5qeHUY4uImvTbENvC4ExKOpugMC9hdH4WWbcCOmazVHSwwIp/Jd8djeJalFIuKo3N
-         wddB+ZSf8d+LfFuuDa9cxcV9133x8f29JFaFkbsMr38xZCFA6bhlcI7ayaVqqH5U65As
-         3nWuOlzyRnqErBm4BBIj3hkOUkezpc3TlNFUQks6LtygoPMim6jWYWEZhCL7sCcK74Ni
-         tbGw5mEOjDF+LgURgul7+0KXO8QH3dTJ3DIG8Um02Aj75H3lzah4q8PAZOHxq4uwqv9y
-         0YJB5C8SVHL4UMwt0AZTlYlnc+3LEM+ZfDzUk/TkZTOhSG7lJExbbiYfAnKNl9syM78a
-         +jxQ==
-X-Gm-Message-State: AOJu0Yx31x0hdUMW6gBxgE35Sor+HNi1wyDa5l6mPs/6qbTicuLUZ1wF
-	9GfPRGOZgwe3zQn6n2UgNRGzaTAElPf09BQ0tcMJAZ9x5bBFFuDM8QNx
-X-Gm-Gg: Acq92OEu60ad0+3VKiEV2YysXkEarxKHFuGf5YZW9CUsdLKtPTNQb7q1dhQs21RxPXC
-	xdOej2QHXXlndDYqT6i5555EfTk3BQ3dhFUrV/Swgi9frcPRJEL6/QLMgOxsgTEXu3kM7SijVjv
-	xrHKpEriqXQEcusN8RP8JOIH11rgY/sjRmBAhREaRGr8ZKvpx83DUUZ43dUQ74leXvUghnw50ZO
-	YCfZovLrg7DKkQpx8XWbtw72oR84xnKZXxWkikm9QKYzgyuqjWPGP0IeEa5dVblHsWeXUsCYlmp
-	c83SDXl7RTp/zkFYdDv6QeUFtTv+/fNZUF0AhP0LTLaCA1/+8t/5ukJqUigzE9hKOTgbzMiuY7H
-	zeR5VYbE3ZmTyMeLaZYwcubLnDkIflWCRqCiyi9Z4koZ6iUFriaT5RfXugfZvViRR8ogj1a56WQ
-	is5u8MX2f5Vj24KuWNT3Gzigc=
-X-Received: by 2002:a05:6512:401f:b0:5a2:843f:5800 with SMTP id 2adb3069b0e04-5a887cde847mr7386529e87.23.1778485758654;
-        Mon, 11 May 2026 00:49:18 -0700 (PDT)
+        bh=5jzq0svM/CyVwYnCMdFf4d9/HiEVgTFbm0k3312KAqU=;
+        b=rcyPg4wIajr5Yq3pkLDccs85EYNAbpZkWNxnpIlaI5isuZFSAv1yv7P+1SC4bSIaz9
+         G3o6TzMRn8baGs6fFyE5ikSnNFAv/boxesgEZs+2LsqYU1qijqiQ4jMwoTx2LhHZigTB
+         +o3gfDzUB5ayGZTtRt8prLw+Kfwy1QJyfzz3MGMeiRFoJDmtn0uvyFCHpL8GfxNEHM2I
+         YlBlf3o2I4X/f8d9cUlZQrqXwAnMgCvecUsB7vWq8rQfPPjC+sLZzFpiykJy2vZwG/5y
+         V7ShA4ZQfFzqvKxTj/EfmXxykgxJhvIXWCo835r68GuzoLgdnmV1OuMi3k5IG+s8VHpP
+         AcCw==
+X-Gm-Message-State: AOJu0YyB4fiLmcZ0ziw9vyeEBi+PRKFIIt1gNalu9brbjB/s2Cuaf+Az
+	KuhD+Ae5xoCK2gQhjP/873/zGo0Xr9anADebNP6WsMAHf2aED/cbzVnvNVk9Og==
+X-Gm-Gg: Acq92OHJ8knnWsCiyRPoCPv81z2010LvKwEDPJpa1m6ug5nbO5xS5XznTT/9i1UAVpN
+	MmhdjFjH53O3wmxsIDOX+u4mp3Y1acLoCmgpZUIbJnRgI+dOEtUXdD6mIM3QVlnKkVIPkRcQXhq
+	Gy4KGQNQ5M4zWl2DetwmrQQF6GXNY1yyivr4UIrqiAhpy1iyssGDu5NkZ094aUP0Wars+I/SiR5
+	tiN4Yeuri+LoNiCK6FMVHPzPPRt0jaK5i1plPHUBdaDHVT1DNOAkt1HZ9/KsfHfmkESzFbxUm/2
+	rqgkZiGPPlzIyEfV3J3tDfGcOBbivP3zZO9l9DS3AZ97ZYtfW95BiRceENpnlL6Mid7+br25CqJ
+	Lpzd0zP+Lro4INJeY9kyXYLvjfh/vXsNsJJCEGVOHfNxvKfjwzAUxj/8sKgH7D265LUqICATOz9
+	NJtnEAXUwKbbDl
+X-Received: by 2002:a05:6512:3dab:b0:5a4:1198:5016 with SMTP id 2adb3069b0e04-5a887ae01b0mr7442575e87.11.1778485759791;
+        Mon, 11 May 2026 00:49:19 -0700 (PDT)
 Received: from xeon ([188.163.112.56])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8a94cac4esm2507271e87.0.2026.05.11.00.49.17
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8a94cac4esm2507271e87.0.2026.05.11.00.49.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2026 00:49:18 -0700 (PDT)
+        Mon, 11 May 2026 00:49:19 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -87,9 +87,9 @@ To: Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/9 RESEND] ARM: tegra: lg-x3: Set PMIC's RTC address
-Date: Mon, 11 May 2026 10:48:52 +0300
-Message-ID: <20260511074859.24930-3-clamor95@gmail.com>
+Subject: [PATCH v1 3/9 RESEND] ARM: tegra: p880: Lower CPU thermal limit
+Date: Mon, 11 May 2026 10:48:53 +0300
+Message-ID: <20260511074859.24930-4-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260511074859.24930-1-clamor95@gmail.com>
 References: <20260511074859.24930-1-clamor95@gmail.com>
@@ -100,7 +100,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 237D4509BE8
+X-Rspamd-Queue-Id: 70ACE509C52
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,gmail.com,agorria.com,yahoo.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295346-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295352-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -128,34 +128,45 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.986];
+	NEURAL_HAM(-0.00)[-0.987];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[agorria.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-LG X3 devices have the PMIC's RTC module located at a non-standard
-address. Set the correct address.
+From: Ion Agorria <ion@agorria.com>
 
+Lower the CPU thermal limit for the LG P880, since its chassis has less
+thermal dissipation capability than the P895.
+
+Signed-off-by: Ion Agorria <ion@agorria.com>
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi b/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi
-index d2a5904cebed..60e8a19aa70e 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi
-@@ -1297,7 +1297,8 @@ pwr_i2c: i2c@7000d000 {
+diff --git a/arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts b/arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts
+index 1b21d7628c8c..6b30e17459ac 100644
+--- a/arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts
++++ b/arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts
+@@ -537,4 +537,17 @@ sound {
  
- 		pmic: max77663@1c {
- 			compatible = "maxim,max77663";
--			reg = <0x1c>;
-+			reg = <0x1c>, <0x48>;
-+			reg-names = "pmic", "rtc";
- 
- 			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
- 			#interrupt-cells = <2>;
+ 		nvidia,int-mic-en-gpios = <&gpio TEGRA_GPIO(I, 6) GPIO_ACTIVE_HIGH>;
+ 	};
++
++	thermal-zones {
++		cpu-thermal {
++			trips {
++				cpu-alert {
++					/* throttle at 60C until temperature drops to 59.8C */
++					temperature = <60000>;
++					hysteresis = <200>;
++					type = "passive";
++				};
++			};
++		};
++	};
+ };
 -- 
 2.51.0
 
