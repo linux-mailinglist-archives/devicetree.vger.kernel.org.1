@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-295833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295834-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJwSOalSAmpvrQEAu9opvQ
-	(envelope-from <devicetree+bounces-295833-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:05:29 +0200
+	id oJ+8MOtSAmpvrQEAu9opvQ
+	(envelope-from <devicetree+bounces-295834-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:06:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AB1516966
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:05:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4024516975
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:06:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BC6A73019383
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 22:05:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 509BB300729C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 22:06:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848824DB54C;
-	Mon, 11 May 2026 22:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D114D8D87;
+	Mon, 11 May 2026 22:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S0WbDqL2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DuqS30Yf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6254E4D90D6
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 22:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6DA47CC96
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 22:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778537107; cv=none; b=XbWCaXPgtADf71UT0S0XP0TtKZV6DlIidfJszaLo90nFzT4WFHrf6gTaTWXKAjEYa9w/dzk+LEqpnvA+5xfewK66IZe8EB5eDVXtqbVhTzO9dtg3SAZMANbRpnZ1d+R7pKIrrjGx8O+069VPa0dmW+2cF4VFmPB2OFLRN8x12DQ=
+	t=1778537189; cv=none; b=IDhDv230OcLjWsstPjow2w1T0hwCc2xzme3DEiBHFvlPKYGomkPtOicGDerC2Gh3s6NkG2Kc1hXyEbxONUjYT8Ptk9HLM8NuHD75I+slivP5ARMc8oqoPQp+XGKFP6meQIF7eoohHYJit5yPKC/BTq1GE3EfkrBrWxl5i3cWvJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778537107; c=relaxed/simple;
-	bh=sBLrWRjLEnHMazQVQZf+AXsv0V3GIkijwZjwt1731BY=;
+	s=arc-20240116; t=1778537189; c=relaxed/simple;
+	bh=sVFgF6PdNGdOlftsOMf4tieRD9+3x4DiFZtJx/7HN8M=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZflSTCLe3ZM9rmcZ4aTaB6cyAPYH3oc5pr5bWHEWAYtJ/J3+egfslwEkzcc+5m03IWHN3siRvlB7XRyHu6uHahA5rTD3WQbCV8ygzw+HozGzTXHyOgw/35MjFMIod0tfy7o7grbKwksA159au8PuJ7yH9+d/dFNhWCSz5cF+Gsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S0WbDqL2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C54B0C2BCB0;
-	Mon, 11 May 2026 22:05:06 +0000 (UTC)
+	 Message-Id; b=pabj5vbn9oSuHshO1pb1uAGP1ZoIKFPr2m2BeYlJsbN8tbXRP3Y/q1+ml1yPUYLQ6jPBQ+uDMv6iTwMBNFvs0kC3XUFholkgaz6rvoYBQQvIrkhLbmeedMGmaF9aoMfTFhGHCU+aAjNHSDtxyt29dkW4AVL6qQ/LbFtOBMarn88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DuqS30Yf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BDBEC2BCB0;
+	Mon, 11 May 2026 22:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778537107;
-	bh=sBLrWRjLEnHMazQVQZf+AXsv0V3GIkijwZjwt1731BY=;
+	s=k20201202; t=1778537188;
+	bh=sVFgF6PdNGdOlftsOMf4tieRD9+3x4DiFZtJx/7HN8M=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=S0WbDqL2QQKreyPqgda8PpeHbXD81zvgvvnH8UZsKfimxvzUg9StdfConOK35KOYx
-	 Re+VtXxKEns7UFlAoSXvP/7nesQDPYdXGV3hCIScFpaRFzky3e/yr3HsR8nFNOrjaI
-	 d/Cbsi8ZgfCnRVfWO0WumbaiyHf3Yo2mGrRnDyvA1WCKu8h0mZDGwy13tm5TIoGMi7
-	 kW/SFf5A0UHxb4V8CN7vViGRz3Kg6jd32eBlp9wQdjPYRVp74v/a4WR7wzPoSGD8e/
-	 I4INGWfbWCHES0qygjOc2n5plyPmPmRdMnPBy1wSN4+uYOBtPU0MMHClBlwpjE2htz
-	 gjLs0BGMweD/Q==
+	b=DuqS30YfJTwpZ+3g8AmmZ6TraDJuUE5RMzmH+gZ4c3c8tBYxmRpbuqN3RTT4MgrF1
+	 EZC63AmeeOlkEBi3usWg8I5Mb7Gkk9ByamlEjLmsII1CssoNZ4pbyvPyFngqD37eWk
+	 pAYLSDDbH6segDFMqPmq6z+xCBYNduA8bPLqUjdwQx09mzy8p93gZeBcByjhZH3j7n
+	 wjQ/wdcodmQFMsknzli+XA230nxGCRFYWmAC6hjB4z6QMT/rcNmaHGHkzQKMCBeq+b
+	 iZjQ2KyY3qXAQqdxZIdWxtB2zOFDC8WxXzaL89A1LviTGfGiq8eujPzybwD6lluQqV
+	 Ze49T9V9GVcjQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: usb: add Rohm BM92TXX Type-C
- controller
+Subject: Re: [PATCH v2 2/2] dt-bindings: Add GPIO locked fixed clock
 Reply-To: sashiko@lists.linux.dev
-To: "Alexandre Hamamdjian via B4 Relay" <devnull+azkali.limited.gmail.com@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260511-bm92t-v2-2-2145e4f4386b@gmail.com>
-References: <20260511-bm92t-v2-2-2145e4f4386b@gmail.com>
+To: "Vyacheslav Yurkov via B4 Relay" <devnull+V.Yurkov.EXT.bruker.com@kernel.org>
+Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260510-feature-clock-guard-v2-2-6c25458d5340@bruker.com>
+References: <20260510-feature-clock-guard-v2-2-6c25458d5340@bruker.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 11 May 2026 22:05:06 +0000
-Message-Id: <20260511220506.C54B0C2BCB0@smtp.kernel.org>
+Date: Mon, 11 May 2026 22:06:27 +0000
+Message-Id: <20260511220628.4BDBEC2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 68AB1516966
+X-Rspamd-Queue-Id: C4024516975
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295833-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295834-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -89,81 +88,107 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,azkali.limited.gmail.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,V.Yurkov.EXT.bruker.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [Low] Missing type definitions and non-standard unit suffix for `rohm,pd-=
-*v-current-limit-ma`.
-- [Low] Invalid Devicetree property naming with underscores (`pd_bat_chg-su=
-pply`).
-- [Low] Use of deprecated singular GPIO property suffix (`rohm,vconn-en-gpi=
-o`).
+- [High] Unnecessary new binding for a trivial GPIO polarity inversion, fun=
+damentally misunderstanding Device Tree abstractions.
+- [High] Broken `anyOf` constraint allows incomplete and invalid clock conf=
+igurations.
+- [Medium] Ambiguous clock aggregation logic and missing size constraints o=
+n array properties.
+- [Low] Improper use of the generic `gpio-names` property for custom GPIO a=
+rrays.
+- [Low] Non-generic device tree node name used in the example.
 --
 
-commit 482fd67d1e5e9ceafc592495c4e2a23d21e35b0e
-Author: Alexandre Hamamdjian <azkali.limited@gmail.com>
+commit 616ccdf709928d91bd05dbe7b50cd0691ab27dd7
+Author: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
 
-dt-bindings: usb: add Rohm BM92TXX Type-C controller
+dt-bindings: Add GPIO locked fixed clock
 
-Add the device-tree binding documentation for the Rohm BM92TXX family
-of USB Type-C and Power Delivery controllers.
+This commit introduces a new device tree binding for a fixed clock whose
+state is controlled by an external GPIO.
 
-> diff --git a/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml b/Docu=
-mentation/devicetree/bindings/usb/rohm,bm92t.yaml
+>     Describe device tree binding for a fixed clock, which state can only =
+be
+>     determined by the external GPIO. It's similar to gated-fixed-clock, b=
+ut
+>     the GPIO direction is inverted.
+
+Device tree natively handles signal polarities via the GPIO specifier flags
+like GPIO_ACTIVE_LOW. If a gated clock has an active-low enable signal,
+could the existing gpio-gate-clock binding be used instead of creating a new
+binding just for an inverted GPIO direction?
+
+> diff --git a/Documentation/devicetree/bindings/clock/gpio-locked-fixed-cl=
+ock.yaml b/Documentation/devicetree/bindings/clock/gpio-locked-fixed-clock.=
+yaml
 > new file mode 100644
-> index 0000000000000..007f70a8f5bb1
+> index 0000000000000..e0256bbd441de
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml
+> +++ b/Documentation/devicetree/bindings/clock/gpio-locked-fixed-clock.yaml
+> @@ -0,0 +1,77 @@
 
 [ ... ]
 
-> +  vbus-source-supply:
-> +    description: VBUS source (provider) regulator.
-> +
-> +  pd_bat_chg-supply:
-> +    description: Battery charger regulator gated by Power Delivery state.
+> +  clocks:
+> +    description: Input clocks that externally locked.
 
-Does this property name violate Devicetree naming conventions? Devicetree
-properties typically use hyphens instead of underscores (e.g.,
-pd-bat-chg-supply).
-
-> +
-> +  rohm,vconn-en-gpio:
-> +    maxItems: 1
-> +    description: GPIO controlling the external VCONN switch.
-
-Should this property use the standard -gpios suffix? Even for a single GPIO
-line, the standard suffix is -gpios rather than the deprecated -gpio.
+Since #clock-cells is set to 0, meaning this controller provides exactly
+one output clock, how do multiple parent clocks logically map to the single
+output? Should this property have a maxItems: 1 constraint?
 
 [ ... ]
 
-> +  rohm,dock-power-limit-disable:
-> +    type: boolean
-> +    description:
-> +      Disable the lower power limit applied when a dock is detected.
+> +  gpio-names:
+> +    description: Names corresponding to each GPIO.
+> +    minItems: 1
+> +    maxItems: 32
+
+Is it appropriate to use the generic gpio-names property here? In device
+tree bindings, gpio-names is typically strictly intended to pair with the
+standard gpios property, rather than naming custom prefixed arrays like
+locked-gpios.
+
+[ ... ]
+
+> +anyOf:
+> +  - required:
+> +      - clocks
+> +  - required:
+> +      - locked-gpios
+
+Does this anyOf constraint allow for invalid clock configurations?
+
+If clocks is omitted, there is no parent clock and no clock-frequency prope=
+rty
+supported to define an intrinsic rate. If locked-gpios is omitted, the clock
+operates without a locking GPIO, defeating the purpose of the binding.
+
+Should both of these properties be explicitly required instead?
+
+[ ... ]
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
 > +
-> +  rohm,pd-5v-current-limit-ma:
-> +    description: Charging current limit in mA when 5V PD contract is act=
-ive.
+> +    clk_gpio_locked: gpio-locked-fixed-clock {
 
-Does this property lack an explicit type definition? Custom properties with=
-out
-standard unit suffixes require a type reference, otherwise schema validation
-will fail for integer array values. Also, the -ma suffix is not a standard
-unit suffix (such as -milliamp or -microamp).
-
-I see this schema validation failure is fixed later in the series by commit
-315ea48f16e75d9fc77bc6e2af87cacc47b7249f ("dt-bindings: usb: fix properties
-type").
+This isn't a bug, but device tree specifications generally require node nam=
+es
+to be generic and reflect the class of the device (like clock or
+clock-controller) rather than mirroring the compatible string.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-bm92t-v2-0=
--2145e4f4386b@gmail.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510-feature-cl=
+ock-guard-v2-0-6c25458d5340@bruker.com?part=3D2
 
