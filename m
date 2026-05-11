@@ -1,974 +1,204 @@
-Return-Path: <devicetree+bounces-295313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295315-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IAgEJB50AWr9ZwEAu9opvQ
-	(envelope-from <devicetree+bounces-295313-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 08:15:58 +0200
+	id UExqA4t0AWr9ZwEAu9opvQ
+	(envelope-from <devicetree+bounces-295315-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 08:17:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC54E5086DA
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 08:15:52 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB1AE508728
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 08:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7FDD13001877
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 06:15:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 56226300613E
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 06:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D88782C0299;
-	Mon, 11 May 2026 06:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361E32D0C64;
+	Mon, 11 May 2026 06:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fb7SVJ8v"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ldaiBxeN";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Ql/2eF9e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B120EF9E8;
-	Mon, 11 May 2026 06:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1672C027A
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 06:17:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778480145; cv=none; b=MHtJsINd4zaprQEaCOUfbYsIYsefcfDqSAeJb05bb4ta0oIZl7CJdPVQXxK6jCsn/U96aLWtR8oHJE0BAwJ0WQJZbUUDkuQE+aqtGdRBg14ekHCJMJn+armslE32CHtk3soWyKQdRs23pHNGGIWsb6qGcHgl6lzeqNBjok41N6g=
+	t=1778480261; cv=none; b=VaOIUWao+fzK0yxCZRiHTH8YpkOJV2RN9XP+A97aUvPfdk+3dJhhzgxei009nZIu15DoMtbxxisJ+idbnInI+5aZm3ZGcoOBU0BJFiFn4KLav+1ki1bJ7zidw94e+bcASg2tgKmLEA9TNZMdVooyzj5BgB5UJ5fp26mUdck3dco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778480145; c=relaxed/simple;
-	bh=ckpKuiJ8anViAYbq3xIpKuU5G4pEkhhZ5GsgmQIZTO4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=r7bVTCokeY9PRL/k34coLhTI1HxCGnh1SESOcL2MKUMUOIPOh//7eFU3tZdxIYKX8ddvn/QYz0fnoufYQSB/67U4OnWV160pU4ba1TqkxuKRfnxc9KxeRn5u6JjuuamDz4+CtIFFAZPna6dFktTiq+GPPjFD59uF7Y4EYSN+Xmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fb7SVJ8v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E35C2BCB0;
-	Mon, 11 May 2026 06:15:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778480145;
-	bh=ckpKuiJ8anViAYbq3xIpKuU5G4pEkhhZ5GsgmQIZTO4=;
-	h=From:Date:Subject:To:Cc:From;
-	b=fb7SVJ8vbHDtTmLij0e87kPxdKNhJ98O00cdZXvMAvvHkpMsJD026WuE7Y9HN0egv
-	 BHZse3d+d9ns8727Q+QHrl+bsGX9hQB32gqqNA/tTBStbyxZY99PXKmZMNPL4IB4eO
-	 Rrs3T3H1/tmbw4xMddpPGRhuqv0NRPSk5MtKLIAYeWfdOZaMBDwyqbP1so5cou/nyC
-	 CGX0s+v0nJmo8/ti1AKZtB650aAi2c+/40L7pCGRybQtc00EMAuv1gTGgQUv4d56Z8
-	 xGS4xmTXHq9Wonkfj6A9Ss73qtA/T2xrPjkE1AHBY1GlAPQ5jqONJi6t6tu4YcYx2l
-	 9AdHu6MOswHVw==
-From: Yixun Lan <dlan@kernel.org>
-Date: Mon, 11 May 2026 06:15:28 +0000
-Subject: [PATCH] riscv: dts: spacemit: k3: Add pwm support
+	s=arc-20240116; t=1778480261; c=relaxed/simple;
+	bh=F5pftz4nUbpl94JSxfXZG/o12H52F+RH7Ub3ebKkx38=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R//iXDEuz3ktjXFpXDQQX8PyEe0UaSKaeBbYJzT3yAr96ngDIMD3LSJhdQHu/7Ojw8ObZJq021nTK9HBJbOncTskEu68TRongTwhzxeh57GdRPZ6ovqv6bWbEGnUbn023MIwQFrCw9ynj9Unbegt0ZbbSPiajHeewW8r0ApzZYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ldaiBxeN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Ql/2eF9e; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64B4At0Q3279170
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 06:17:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ocyMAA78yJX1GegmkOPqF5/d+rxy+hfviNoyYEss8q8=; b=ldaiBxeN6B2UJi4v
+	RkfgGLFCe4/NHqdkLrHu8o6xrAUsPdiIAUlw1g58ru308yCieBs1Gmg68fUSvA6a
+	b4qeiWyb0sjXYDcQAswpscQYYGktp8izDswNk5VoRYFqpuFj0geJl/j5Jqc8MOJe
+	r055bZUMikdCQgA+ANtQSecvU5c2+ezPhaB4taoRMAQY9LOsFFPWfCupPAJApOdy
+	T7od/jY0GIslGNUzhgR+w9jSXpWQV90PliNerJrDpMzx1RoM5OGRs7FUdE0AjYe6
+	FShXD+B53pkTmi+kw4a4e7Wkn42ck/J8lQhdtTZaKK9BbMzoaqE4NbF7V1xoP8Vw
+	WXcFwQ==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e1wpecp7w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 06:17:38 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-8375e2df478so1959571b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 10 May 2026 23:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778480258; x=1779085058; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ocyMAA78yJX1GegmkOPqF5/d+rxy+hfviNoyYEss8q8=;
+        b=Ql/2eF9exI3n5kk+jMkjfuLpqKfnEXwy3a+Qw0t4J+i6Xq9WZqQAXfXzgAtLtZnJgj
+         LdmwT95uQjBTKUDLa5bmsXPpvZpihp1bpUfoxxj5p2HJ3mdOTrecrjQ6s2ntCpUuaImW
+         cciQnibrFF9cUnX5v53AownXUFW5AVaKpvRRvRQ6CNYhMSX7e4owXBN+6GtjaEVYMHSb
+         tSOPCj2gdWLzvPO/Kods61zIflEFtksqzRQW+wIoX1//AtD27Eyz6/MatXVVRhTz69Ms
+         uhMpb6MAXPBVY8qdPmtkpvM8EoIzw65yoNb25+bGvqM6y58H0jMjwt/BCYKJtZBRlzoI
+         BOzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778480258; x=1779085058;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ocyMAA78yJX1GegmkOPqF5/d+rxy+hfviNoyYEss8q8=;
+        b=k0QEqHGTx5LQROCR2rqRnvVLpq0D79ncopmCXU9mH+g9agqMZetlgDaLQ9Pvem2tlU
+         30a3T6+IFoIi+AR4Vblm2onAawWNRLbXshfGvVZJVPj67C/cRerDaFGs2aR+EoZc0knT
+         zGggTmfTiZu/P1QChYI799x8Em8vi0eZfz/GAE5tlQicLfyJcPGikH2F/Ri010DWgSQD
+         DgzY0/UgEkrHOGu8imDrRDcqecocOW4vcoWreX8vLywsFVQ7t0/H9ysYTZD6RZMxd1E0
+         zupRuwQGx0Fs0Y5qV2KdJHHc7yZ23SR2MTvwtQrzTX9b5PjQtnAJgsjxAdDTPeoJlRAK
+         a71Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/QpIGcfwZVjadW4IuqZNp7WVwo2j6r3BbD6Xct86iZTW5f4PxMkm0DuUBHM34AN+Zvv4QbQHe0Ephh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRUmwVpxb0rJjKZnBYj5vZLnN3XfvlnrWMHcZud5XEfr78wcm/
+	uQpZVZf+0iU+wl+cR58DwjUB1KCkNW6V2AR0OPP0dFmzZAtn6wAts1agmmY9oWxKG3IdEEYM573
+	IeMnvwSeZzVq0X5Te3J+vp/dIfq9M5kvQg+GOCtDP/M9Jr6aGnisSg3/7+HHU+RnP
+X-Gm-Gg: Acq92OGKviekjOqUAGbNXWhOULyEusCGons6HQjesUd69hemMMxOhkC7+Z4uT2pJPo7
+	EciqwiC3eAwmWEY/hIRk5ZKlEEzhZRpMXO9ALc2A1VBlbFZD1Jw6m9DrHdgVS3YS0iv23b77whQ
+	t/wSTvg0WFhwaEECs5bagHUYEd+E/LElfmhwHOa8qdNac5AB8WpqS1CQhKOSIuw/QhSkhZx5Ixz
+	+etOHpRI05pLWKUKo1gErE43cAVRPfvPvNiOM3TR5d9geSl+7bEfsPLEOf3uhvo4CpYWDDnBzbX
+	zl2l02W6MSl6wRTlFVw+UBKLXAW+tPwGOeGji4tPDjmNbp0hzsn0Q2WQED0+IuC7sdpDczwHWno
+	LVKi8bGC5/tlcwjYJnDpsr29TPAY8oBFsFTN7pll8mIpejtXAojylZQ==
+X-Received: by 2002:a05:6a00:a93:b0:838:127d:a16e with SMTP id d2e1a72fcca58-83a5bec5483mr20275825b3a.17.1778480258014;
+        Sun, 10 May 2026 23:17:38 -0700 (PDT)
+X-Received: by 2002:a05:6a00:a93:b0:838:127d:a16e with SMTP id d2e1a72fcca58-83a5bec5483mr20275785b3a.17.1778480257415;
+        Sun, 10 May 2026 23:17:37 -0700 (PDT)
+Received: from [10.206.105.200] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83965c30ddasm23840864b3a.21.2026.05.10.23.17.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 May 2026 23:17:37 -0700 (PDT)
+Message-ID: <a009cd46-0a89-75c4-8b10-35b653ac8fec@oss.qualcomm.com>
+Date: Mon, 11 May 2026 11:47:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 08/16] media: iris: skip PIPE if it is not supported by
+ the platform
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+References: <20260507-iris-ar50lt-v1-0-d22cccedc3e2@oss.qualcomm.com>
+ <20260507-iris-ar50lt-v1-8-d22cccedc3e2@oss.qualcomm.com>
+From: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+In-Reply-To: <20260507-iris-ar50lt-v1-8-d22cccedc3e2@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260511-04-k3-pwm-dts-v1-1-81fcde1871f8@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAP9zAWoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYyNDXQMT3Wxj3YLyXN2UkmJdwxRDMyNTizSDFCMDJaCegqLUtMwKsHn
- RsbW1AMsSuCFfAAAA
-X-Change-ID: 20260321-04-k3-pwm-dts-1d16258f0d20
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=19439; i=dlan@kernel.org;
- h=from:subject:message-id; bh=ckpKuiJ8anViAYbq3xIpKuU5G4pEkhhZ5GsgmQIZTO4=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBqAXQLMkc9RkxcAlYImqjDRRDfQd8zVYg9Q8zZ+
- du/kCw9m+yJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCagF0CxsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMiwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+0wpA//ZSrEIbZyaJoazIPaB3VkdHT4MKlADE9k36L7nlgBn0uF0PB+RDxaB
- RAsDYicYTR0LmjD/Y2zE45LxgHlsAUyWjqvFehst+8hFvUZfca8hK+WaGeMEVrl+fCNkalxO2Xg
- iEbwr/hDWarrF0Ztef1RDDxi8ZlEl1g+A6RpxhLqTCNt/vwWkXva4ZVUJOXQyAwPgbc94iB6jiq
- oDEdeckr+FKGX8IhgwcBHX4wSYG4B9scRYeusGY404tSPj+5YSz4ROqZlDigg2nRcrqPizNz6g1
- 5IySBg/h9CykNa63QuGkK0kmriINzW8K5d37EJV+r+62M2WNe+MOToDddKNQ8LFS5+XB1O/an0z
- cV1u/JJTbsIcov2D/FEQDfgH6y1tdvPVKpb1DXGaCu4KlyT6Z0KP/boqEu2d796gQcfEA88OKgn
- wWW0nNTlBcKLnSlabDAuFTQOTitZ7+2IISFsOJM7Z87ccklbbL9Lu2ToUtvbAVzqI597wY7KWq9
- bvx0Rd05GBlvsXNY2rqllcrNqnx3nl452OwpXDHbxnEqVqfrquZS4XM6R4Kjk6xnbj4Lcw4i/E2
- VrBEPB7jQmWSW1VObvDdFJ9mcm/dTUP/VAZqF6n2Yp90GURt2BWAR1l/ZajWPAUi8UyeItTZnjM
- /Rrny+cTdw8ab51aXnvfSBj/8OGOsI=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Rspamd-Queue-Id: DC54E5086DA
+X-Proofpoint-GUID: s-TF3O7EiKv4j4dQ62OWtSXC3mL8gXK0
+X-Proofpoint-ORIG-GUID: s-TF3O7EiKv4j4dQ62OWtSXC3mL8gXK0
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTExMDA2NyBTYWx0ZWRfX1MAfVNigUmS4
+ Vg/sEOeTkkAUEPLgsnAg0AIuRJdXj5yYvowpxFSHVLna1iiMl8LpYTi9RJ7jbmHYc3sHMVIlUpl
+ lGVnUV2gd14TDcyGvLsEcN8w5AJBf1qhw8ooH395q4Dw6+xTyfoLNgh13CYDsBbSfnXxbhxyDlR
+ Y64v+hM7TSGvr+etQ64pcooipDOGQ3Okq5B7JoCZ/NSaOJjfY+MOWG8FU/P3B1xlh/y6ETG0D6e
+ EHqNESNFzPSgKviKO4FWMM7XM+2WQlTQZLadb0hQN2x2YF0w90dyNBT8HvgPHNsdyyFM3ysgx4w
+ OLtQrX3oRxh9AolPOYA0vLb7Lj7tD9V9xtzmAssBZg17tx8VEbagOHVxjCI2kUzxPr5k6RvrBik
+ bgWu5f+bYt8YGvyM/FAt8V9yjIZ/ENzopxFzDhPLL0slrenlIaVoVP8pFps5rhQWgzInjYivjbU
+ 7O6txkzOeqxg477WKqA==
+X-Authority-Analysis: v=2.4 cv=EeD4hvmC c=1 sm=1 tr=0 ts=6a017482 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=9TuWGWrZIemhly9L:21 a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=zf_DQBccePucUUHqg_YA:9 a=QEXdDO2ut3YA:10
+ a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-11_02,2026-05-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605110067
+X-Rspamd-Queue-Id: EB1AE508728
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-295313-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-295315-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MSBL_EBL_FAIL(0.00)[pwm@d401bc00:query timed out];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Populate all pwm device tree nodes for SpacemiT K3 SoC, also documents
-the pinctrl info which would easily help to enable them in future.
 
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
-Although we have not enabled any specific pwm device in this patch..
-but should be easy to achieve that.
+On 5/7/2026 12:12 PM, Dmitry Baryshkov wrote:
+> diff --git a/drivers/media/platform/qcom/iris/iris_ctrls.c b/drivers/media/platform/qcom/iris/iris_ctrls.c
+> index ef7adac3764d..f438dddc19ba 100644
+> --- a/drivers/media/platform/qcom/iris/iris_ctrls.c
+> +++ b/drivers/media/platform/qcom/iris/iris_ctrls.c
+> @@ -450,6 +450,9 @@ int iris_set_pipe(struct iris_inst *inst, enum platform_inst_fw_cap_type cap_id)
+>  	u32 work_route = inst->fw_caps[PIPE].value;
+>  	u32 hfi_id = inst->fw_caps[cap_id].hfi_id;
+>  
+> +	if (!hfi_id)
+> +		return 0;
+> +
+>  	return hfi_ops->session_set_property(inst, hfi_id,
+>  					     HFI_HOST_FLAGS_NONE,
+>  					     iris_get_port_info(inst, cap_id),
 
-For test purpose, we've used pwm11 as the instance to test functions.
----
- arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi | 590 +++++++++++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k3.dtsi         | 220 ++++++++++
- 2 files changed, 810 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-index 23899d3f308a..1fd39502071b 100644
---- a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-@@ -56,6 +56,596 @@ i2c8-pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
-+	pwm0_0_cfg: pwm0-0-cfg {
-+		pwm0-0-pins {
-+			pinmux = <K3_PADCONF(0, 3)>;	/* pwm0 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm0_1_cfg: pwm0-1-cfg {
-+		pwm0-0-pins {
-+			pinmux = <K3_PADCONF(42, 6)>;	/* pwm0 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm1_0_cfg: pwm1-0-cfg {
-+		pwm1-0-pins {
-+			pinmux = <K3_PADCONF(1, 3)>;	/* pwm1 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm1_1_cfg: pwm0-0-cfg {
-+		pwm0-0-pins {
-+			pinmux = <K3_PADCONF(43, 6)>;	/* pwm1 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm1_2_cfg: pwm1-2-cfg {
-+		pwm1-0-pins {
-+			pinmux = <K3_PADCONF(95, 6)>;	/* pwm1 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm2_0_cfg: pwm2-0-cfg {
-+		pwm2-0-pins {
-+			pinmux = <K3_PADCONF(2, 3)>;	/* pwm2 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm2_1_cfg: pwm2-1-cfg {
-+		pwm2-0-pins {
-+			pinmux = <K3_PADCONF(44, 6)>;	/* pwm2 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm2_2_cfg: pwm2-2-cfg {
-+		pwm2-0-pins {
-+			pinmux = <K3_PADCONF(96, 6)>;	/* pwm2 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm2_3_cfg: pwm2-3-cfg {
-+		pwm2-0-pins {
-+			pinmux = <K3_PADCONF(134, 4)>;	/* pwm2 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm3_0_cfg: pwm3-0-cfg {
-+		pwm3-0-pins {
-+			pinmux = <K3_PADCONF(3, 3)>;	/* pwm3 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm3_1_cfg: pwm3-1-cfg {
-+		pwm3-0-pins {
-+			pinmux = <K3_PADCONF(45, 6)>;	/* pwm3 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm3_2_cfg: pwm3-2-cfg {
-+		pwm3-0-pins {
-+			pinmux = <K3_PADCONF(97, 6)>;	/* pwm3 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm3_3_cfg: pwm3-3-cfg {
-+		pwm3-0-pins {
-+			pinmux = <K3_PADCONF(135, 4)>;	/* pwm3 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm4_0_cfg: pwm4-0-cfg {
-+		pwm4-0-pins {
-+			pinmux = <K3_PADCONF(4, 3)>;	/* pwm4 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm4_1_cfg: pwm4-1-cfg {
-+		pwm4-0-pins {
-+			pinmux = <K3_PADCONF(46, 6)>;	/* pwm4 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm4_2_cfg: pwm4-2-cfg {
-+		pwm4-0-pins {
-+			pinmux = <K3_PADCONF(136, 4)>;	/* pwm4 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm5_0_cfg: pwm5-0-cfg {
-+		pwm5-0-pins {
-+			pinmux = <K3_PADCONF(5, 3)>;	/* pwm5 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm5_1_cfg: pwm5-1-cfg {
-+		pwm5-0-pins {
-+			pinmux = <K3_PADCONF(47, 6)>;	/* pwm5 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm5_2_cfg: pwm5-2-cfg {
-+		pwm5-0-pins {
-+			pinmux = <K3_PADCONF(137, 4)>;	/* pwm5 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm6_0_cfg: pwm6-0-cfg {
-+		pwm6-0-pins {
-+			pinmux = <K3_PADCONF(6, 3)>;	/* pwm6 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm6_1_cfg: pwm6-1-cfg {
-+		pwm6-0-pins {
-+			pinmux = <K3_PADCONF(145, 3)>;	/* pwm6 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm6_2_cfg: pwm6-2-cfg {
-+		pwm6-0-pins {
-+			pinmux = <K3_PADCONF(48, 6)>;	/* pwm6 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm7_0_cfg: pwm7-0-cfg {
-+		pwm7-0-pins {
-+			pinmux = <K3_PADCONF(7, 3)>;	/* pwm7 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm7_1_cfg: pwm7-1-cfg {
-+		pwm7-0-pins {
-+			pinmux = <K3_PADCONF(146, 3)>;	/* pwm7 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm7_2_cfg: pwm7-2-cfg {
-+		pwm7-0-pins {
-+			pinmux = <K3_PADCONF(49, 6)>;	/* pwm7 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm8_0_cfg: pwm8-0-cfg {
-+		pwm8-0-pins {
-+			pinmux = <K3_PADCONF(8, 3)>;	/* pwm8 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm8_1_cfg: pwm8-1-cfg {
-+		pwm8-0-pins {
-+			pinmux = <K3_PADCONF(147, 3)>;	/* pwm8 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm8_2_cfg: pwm8-2-cfg {
-+		pwm8-0-pins {
-+			pinmux = <K3_PADCONF(50, 6)>;	/* pwm8 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm9_0_cfg: pwm9-0-cfg {
-+		pwm9-0-pins {
-+			pinmux = <K3_PADCONF(9, 3)>;	/* pwm9 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm9_1_cfg: pwm9-1-cfg {
-+		pwm9-0-pins {
-+			pinmux = <K3_PADCONF(148, 3)>;	/* pwm9 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm9_2_cfg: pwm9-2-cfg {
-+		pwm9-0-pins {
-+			pinmux = <K3_PADCONF(51, 6)>;	/* pwm9 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm10_0_cfg: pwm10-0-cfg {
-+		pwm10-0-pins {
-+			pinmux = <K3_PADCONF(10, 3)>;	/* pwm10 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm10_1_cfg: pwm10-1-cfg {
-+		pwm10-0-pins {
-+			pinmux = <K3_PADCONF(52, 6)>;	/* pwm10 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm10_2_cfg: pwm10-2-cfg {
-+		pwm10-0-pins {
-+			pinmux = <K3_PADCONF(141, 4)>;	/* pwm10 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm11_0_cfg: pwm11-0-cfg {
-+		pwm11-0-pins {
-+			pinmux = <K3_PADCONF(53, 6)>;	/* pwm11 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm11_1_cfg: pwm11-1-cfg {
-+		pwm11-0-pins {
-+			pinmux = <K3_PADCONF(140, 4)>;	/* pwm11 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm12_0_cfg: pwm12-0-cfg {
-+		pwm12-0-pins {
-+			pinmux = <K3_PADCONF(54, 6)>;	/* pwm12 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm12_1_cfg: pwm12-1-cfg {
-+		pwm12-0-pins {
-+			pinmux = <K3_PADCONF(139, 4)>;	/* pwm12 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm13_0_cfg: pwm13-0-cfg {
-+		pwm13-0-pins {
-+			pinmux = <K3_PADCONF(55, 6)>;	/* pwm13 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm13_1_cfg: pwm13-1-cfg {
-+		pwm13-0-pins {
-+			pinmux = <K3_PADCONF(138, 4)>;	/* pwm13 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm13_2_cfg: pwm13-2-cfg {
-+		pwm13-0-pins {
-+			pinmux = <K3_PADCONF(13, 3)>;	/* pwm13 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm14_0_cfg: pwm14-0-cfg {
-+		pwm14-0-pins {
-+			pinmux = <K3_PADCONF(56, 6)>;	/* pwm14 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm14_1_cfg: pwm14-1-cfg {
-+		pwm14-0-pins {
-+			pinmux = <K3_PADCONF(144, 4)>;	/* pwm14 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm14_2_cfg: pwm14-2-cfg {
-+		pwm14-0-pins {
-+			pinmux = <K3_PADCONF(14, 3)>;	/* pwm14 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm15_0_cfg: pwm15-0-cfg {
-+		pwm15-0-pins {
-+			pinmux = <K3_PADCONF(57, 6)>;	/* pwm15 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm15_1_cfg: pwm15-1-cfg {
-+		pwm15-0-pins {
-+			pinmux = <K3_PADCONF(142, 4)>;	/* pwm15 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm15_2_cfg: pwm15-2-cfg {
-+		pwm15-0-pins {
-+			pinmux = <K3_PADCONF(21, 3)>;	/* pwm15 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm16_0_cfg: pwm16-0-cfg {
-+		pwm16-0-pins {
-+			pinmux = <K3_PADCONF(58, 6)>;	/* pwm16 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm16_1_cfg: pwm16-1-cfg {
-+		pwm16-0-pins {
-+			pinmux = <K3_PADCONF(143, 4)>;	/* pwm16 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm16_2_cfg: pwm16-2-cfg {
-+		pwm16-0-pins {
-+			pinmux = <K3_PADCONF(22, 3)>;	/* pwm16 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm17_0_cfg: pwm17-0-cfg {
-+		pwm17-0-pins {
-+			pinmux = <K3_PADCONF(23, 3)>;	/* pwm17 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm17_1_cfg: pwm17-1-cfg {
-+		pwm17-0-pins {
-+			pinmux = <K3_PADCONF(59, 6)>;	/* pwm17 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm17_2_cfg: pwm17-2-cfg {
-+		pwm17-0-pins {
-+			pinmux = <K3_PADCONF(105, 6)>;	/* pwm17 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm18_0_cfg: pwm18-0-cfg {
-+		pwm18-0-pins {
-+			pinmux = <K3_PADCONF(24, 3)>;	/* pwm18 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm18_1_cfg: pwm18-1-cfg {
-+		pwm18-0-pins {
-+			pinmux = <K3_PADCONF(60, 6)>;	/* pwm18 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm18_2_cfg: pwm18-2-cfg {
-+		pwm18-0-pins {
-+			pinmux = <K3_PADCONF(106, 6)>;	/* pwm18 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm19_0_cfg: pwm19-0-cfg {
-+		pwm19-0-pins {
-+			pinmux = <K3_PADCONF(25, 3)>;	/* pwm19 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm19_1_cfg: pwm19-1-cfg {
-+		pwm19-0-pins {
-+			pinmux = <K3_PADCONF(61, 6)>;	/* pwm19 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
-+	/omit-if-no-ref/
-+	pwm19_2_cfg: pwm19-2-cfg {
-+		pwm19-0-pins {
-+			pinmux = <K3_PADCONF(107, 6)>;	/* pwm19 */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+
- 	/omit-if-no-ref/
- 	uart0_0_cfg: uart0-0-cfg {
- 		uart0-0-pins {
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index e6faf8d8759e..e331adbcb11a 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -797,6 +797,226 @@ i2c8: i2c@d401d800 {
- 			status = "disabled";
- 		};
- 
-+		pwm0: pwm@d401a000 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401a000 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM0>,
-+				 <&syscon_apbc CLK_APBC_PWM0_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM0>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm1: pwm@d401a400 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401a400 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM1>,
-+				 <&syscon_apbc CLK_APBC_PWM1_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM1>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm2: pwm@d401a800 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401a800 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM2>,
-+				 <&syscon_apbc CLK_APBC_PWM2_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM2>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm3: pwm@d401ac00 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401ac00 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM3>,
-+				 <&syscon_apbc CLK_APBC_PWM3_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM3>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm4: pwm@d401b000 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401b000 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM4>,
-+				 <&syscon_apbc CLK_APBC_PWM4_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM4>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm5: pwm@d401b400 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401b400 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM5>,
-+				 <&syscon_apbc CLK_APBC_PWM5_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM5>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm6: pwm@d401b800 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401b800 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM6>,
-+				 <&syscon_apbc CLK_APBC_PWM6_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM6>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm7: pwm@d401bc00 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd401bc00 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM7>,
-+				 <&syscon_apbc CLK_APBC_PWM7_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM7>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm8: pwm@d4020000 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4020000 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM8>,
-+				 <&syscon_apbc CLK_APBC_PWM8_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM8>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm9: pwm@d4020400 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4020400 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM9>,
-+				 <&syscon_apbc CLK_APBC_PWM9_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM9>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm10: pwm@d4020800 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4020800 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM10>,
-+				 <&syscon_apbc CLK_APBC_PWM10_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM10>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm11: pwm@d4020c00 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4020c00 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM11>,
-+				 <&syscon_apbc CLK_APBC_PWM11_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM11>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm12: pwm@d4021000 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4021000 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM12>,
-+				 <&syscon_apbc CLK_APBC_PWM12_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM12>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm13: pwm@d4021400 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4021400 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM13>,
-+				 <&syscon_apbc CLK_APBC_PWM13_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM13>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm14: pwm@d4021800 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4021800 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM14>,
-+				 <&syscon_apbc CLK_APBC_PWM14_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM14>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm15: pwm@d4021c00 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4021c00 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM15>,
-+				 <&syscon_apbc CLK_APBC_PWM15_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM15>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm16: pwm@d4022000 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4022000 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM16>,
-+				 <&syscon_apbc CLK_APBC_PWM16_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM16>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm17: pwm@d4022400 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4022400 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM17>,
-+				 <&syscon_apbc CLK_APBC_PWM17_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM17>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm18: pwm@d4022800 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4022800 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM18>,
-+				 <&syscon_apbc CLK_APBC_PWM18_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM18>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm19: pwm@d4022c00 {
-+			compatible = "spacemit,k3-pwm", "marvell,pxa910-pwm";
-+			reg = <0x0 0xd4022c00 0x0 0x10>;
-+			clocks = <&syscon_apbc CLK_APBC_PWM19>,
-+				 <&syscon_apbc CLK_APBC_PWM19_BUS>;
-+			clock-names = "func", "bus";
-+			resets = <&syscon_apbc RESET_APBC_PWM19>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl: pinctrl@d401e000 {
- 			compatible = "spacemit,k3-pinctrl";
- 			reg = <0x0 0xd401e000 0x0 0x1000>;
-
----
-base-commit: f068b204555ad62d6a841a49feb4ea8c4f45b25c
-change-id: 20260321-04-k3-pwm-dts-1d16258f0d20
-
-Best regards,
---  
-Yixun Lan <dlan@kernel.org>
+Reviewed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
 
 
