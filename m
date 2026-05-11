@@ -1,217 +1,161 @@
-Return-Path: <devicetree+bounces-295624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMWlLtDnAWqemAEAu9opvQ
-	(envelope-from <devicetree+bounces-295624-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:29:36 +0200
+	id mNolJtPmAWq5mAEAu9opvQ
+	(envelope-from <devicetree+bounces-295622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:25:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A476510287
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B7E510150
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:25:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 140BC3059A52
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:18:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8BC6930BD70A
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968523FCB37;
-	Mon, 11 May 2026 14:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642113A1A50;
+	Mon, 11 May 2026 14:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=muenchen-mail.de header.i=@muenchen-mail.de header.b="U02IAbxW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Pq+lRQ6Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F2A3793A8;
-	Mon, 11 May 2026 14:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.18.0.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D3A3815DB;
+	Mon, 11 May 2026 14:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778509090; cv=none; b=G0gGg24PxPRenxfErervtnG6Nb60CeDvDjxCBZ+Y/SvHfctwm7+U+aibfVkaTeoLC1wzsKN8LBd06N3RSNyyaVPgeevGgUijsPaD+GXIpahbGvjvLKeqYGhZdcgxfBSExN8AEyzvUqEBk7Hzk/0/925+975w746Yb8u9gGVjKcA=
+	t=1778508879; cv=none; b=Xe6FB+2zzgtXyxSx36lW23Ae4oIuMOWdmfTudd6/AusdLA9snhZmW9UOcw75euqD8yMXa5mWrkB5ued5qFjBRdoSOG15QtkxoaiuhTw8L73wb49HvGw/WynExXkB5eFtgUTXVpnsiUKtTdOyO1Mbq/Amm/fHmXDtVdoJuRcZjFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778509090; c=relaxed/simple;
-	bh=4QyT0UWEVlQTF92NkKEQyWtE2QfME160oNWsoG1Ze1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aPzAdOnU0ML07zBwKF5mKesUv7TApyy9m4C+LGORVl3L/XE8Q/aJVwWy+VwsB2obGo38T1GB7K+UgywsbKhiUrNDvvJ89AZWo9OPorxgImlz/Ad0+aFrAOyzgrlcpO/wXGiaD7aDAgFFC2Obvhp7wGQ50bER+rbZCjKBvQencvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=muenchen-mail.de; spf=pass smtp.mailfrom=muenchen-mail.de; dkim=pass (2048-bit key) header.d=muenchen-mail.de header.i=@muenchen-mail.de header.b=U02IAbxW; arc=none smtp.client-ip=212.18.0.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=muenchen-mail.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=muenchen-mail.de
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4gDhVh2cNsz1sHQ3;
-	Mon, 11 May 2026 16:11:56 +0200 (CEST)
-DKIM-Signature: a=rsa-sha256; bh=+CbS3bNUQzu0MAu8sUeYRjSUd4GKuS+acJBUfMpwj0I=;
-        c=relaxed/relaxed; d=muenchen-mail.de;
-        h=Date:From:To:Message-ID:Subject;
-        s=r1; t=1778508716; v=1;
-        b=U02IAbxW20+mLDSXSBnL//yWnFw0cmpReQdinMv0+pecTG1oO5yrn79TV/rc8UAw
-         nZcBEpxu95fKg9txa+QlR1ATCfyvt+bVbVYvkOdXtobLmrb1nSKYeLN24wJMgIkO
-         TuEmi8PeSOFw3QwYmM4FPKk5QfLv6TaPQRVFHTJD2VPYrSV8M044bi/IwePXKvLY
-         i3sBF4V5xqk61kOO1VAR2omwG0hc5B2U4jxVwgP06WAKct2p5A5GcWKLmn1gPRh/
-         XtrnPgJrwIMY6SFFOe38kp1krlZ0fJUefyrZA5L+tpPe1Z+8rtzvBTQzAAxXAHv+
-         vgqHze0tc+OZ5yLA9h+38g==
-Received: from frontend03.mail.m-online.net (unknown [192.168.6.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4gDhVf063Sz1sHPP;
-	Mon, 11 May 2026 16:11:53 +0200 (CEST)
-Received: from localhost (dynscan3.mnet-online.de [192.168.6.87])
-	by mail.m-online.net (Postfix) with ESMTP id 4gDhVd5llqz1qqlS;
-	Mon, 11 May 2026 16:11:53 +0200 (CEST)
-X-Virus-Scanned: amavis at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.6.182])
- by localhost (dynscan3.mail.m-online.net [192.168.6.87]) (amavis, port 10024)
- with ESMTP id O6uJPu1FxYTY; Mon, 11 May 2026 16:11:53 +0200 (CEST)
-X-Auth-Info: I0mXDoX6Dm3detU0TSzjhH8bSxf2eJ7TztcK6TYWMP4+A64YrwUfpb9WocUPFC0f
-Received: from wiesel.intern (aftr-62-216-206-65.dynamic.mnet-online.de [62.216.206.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Mon, 11 May 2026 16:11:52 +0200 (CEST)
-Received: from murmel.intern (unknown [IPv6:fdea:9b79:8984:1:8514:c35a:5b34:1596])
-	by wiesel.intern (Postfix) with ESMTP id 7DFCD79A0378;
-	Mon, 11 May 2026 16:11:52 +0200 (CEST)
-From: Thomas Gerner <thomas.gerner@muenchen-mail.de>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Thomas Gerner <thomas.gerner@muenchen-mail.de>
-Subject: [PATCH] Enable wifi on the BeagleV-Ahead
-Date: Mon, 11 May 2026 16:11:00 +0200
-Message-ID: <20260511141119.155369-1-thomas.gerner@muenchen-mail.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1778508879; c=relaxed/simple;
+	bh=/xqH7NH5OnIsXIFChpqYZdEouHpjFOVq5k8bHoem5oY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ciwOfsgflSsS95NinRRytHds/36IsJA58whb1eIyyA3B53RZd+CzEqhmQk9oVer/dE6dUf2/xb+4p/b33B5cQLVz1qtf5qV5edjl/dD827190Fc50dBSGZ5Of3SoRU0sXfvVUfOHY8EJ77e1paXxoE9R91jDe4VrU1iTxCd+jSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Pq+lRQ6Y; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778508878; x=1810044878;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=/xqH7NH5OnIsXIFChpqYZdEouHpjFOVq5k8bHoem5oY=;
+  b=Pq+lRQ6Y9twxsYBGGNxM/8Lp3YMHRBU6HI5iFLBUFDaWkTydLrEqS/ak
+   S5I2vPa5gRL4ciszzBDMmY35wmSnKIiFS3utA0ZuweqfI9v7nxdg72CVj
+   lSq0ltCVgwdSBSz13pnUs5L0ncd99YluGwtgIyKQ8Z8tM6ILLpVfKCgev
+   RZJoJHRq4wPPxGtTaMjgm9Azo6V+TwirzWWWpTxMADSDfB5nV2oF6c/TS
+   CMCye9rWWnF9M8Tb0iYL07/HGWw8nFik15Mv7HaVJVxGZdXiWKQ7XWlxk
+   O8ti7QFWzSccqAdJWH6RwngbrCwhfmx3fNZ2U8DQs937Yj5y/sXGPDV1S
+   w==;
+X-CSE-ConnectionGUID: Xp/fQgx0Tg+KH6MOAdyamQ==
+X-CSE-MsgGUID: YYMjq0R5S6SwMLq8l/tWPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79577328"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; 
+   d="scan'208";a="79577328"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2026 07:14:37 -0700
+X-CSE-ConnectionGUID: IGMkto1nQuq+i2PCwp8hSg==
+X-CSE-MsgGUID: joc20km3Sn+zISkQ0Tcj4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; 
+   d="scan'208";a="232986212"
+Received: from dawidgla-mobl.ger.corp.intel.com (HELO [10.94.250.159]) ([10.94.250.159])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2026 07:14:34 -0700
+Message-ID: <15956b70-c6c2-4e3d-8f15-471a274d6e2d@linux.intel.com>
+Date: Mon, 11 May 2026 16:14:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 3A476510287
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/3] ARM: dts: aspeed-g6: add AST2600 I3C nodes and
+ bindings
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, maciej.lawniczak@intel.com
+References: <cover.1777058942.git.dawid.glazik@linux.intel.com>
+Content-Language: en-US
+From: Dawid Glazik <dawid.glazik@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <cover.1777058942.git.dawid.glazik@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 15B7E510150
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[muenchen-mail.de,none];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[muenchen-mail.de:s=r1];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-295624-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.gerner@muenchen-mail.de,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[muenchen-mail.de:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,muenchen-mail.de:email,muenchen-mail.de:mid,muenchen-mail.de:dkim];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295622-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dawid.glazik@linux.intel.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
 X-Rspamd-Action: no action
 
-The BeagleV-Ahead board uses an AP6203BM WiFi chip from AMPAK Technology
-Inc. connected to SDIO1. The chip is compatible to the broadcom wireless
-driver.
+On 4/24/2026 10:20 PM, Dawid Glazik wrote:
+> This series reworks and resubmits AST2600 I3C DTS updates that were
+> originally posted in 2024, but stalled without further upstream
+> progress.[1] The series was rebased onto the current tree and merge
+> conflicts were resolved.
+> 
+> The patches first move I2C controller nodes under the APB simple-bus
+> for layout consistency, then document aspeed,ast2600-i3c-global in
+> the syscon binding, and finally add AST2600 I3C controller nodes in
+> aspeed-g6.dtsi.
+> 
+> Jeremy agreed in a separate email thread that I can continue this
+> series under my authorship.
+> 
+> Link: https://lore.kernel.org/all/9d8c03d742fa9767f30e23d75ddf0baf4296c88e.1714647917.git.jk@codeconstruct.com.au/
+> 
+> Dawid Glazik (3):
+>    ARM: dts: aspeed-g6: move i2c controllers directly into apb node
+>    dt-bindings: mfd: syscon: add aspeed,ast2600-i3c-global compatible
+>    ARM: dts: aspeed-g6: Add nodes for i3c controllers
+> 
+>   .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+>   arch/arm/boot/dts/aspeed/aspeed-g6.dtsi       | 543 ++++++++++--------
+>   2 files changed, 318 insertions(+), 227 deletions(-)
+> 
+> 
+> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
 
-Enable wifi on the BeagleV-Ahead.
+Hi all,
 
-Signed-off-by: Thomas Gerner <thomas.gerner@muenchen-mail.de>
----
- .../boot/dts/thead/th1520-beaglev-ahead.dts   | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+Gentle ping for this series:
+https://lore.kernel.org/all/cover.1777058942.git.dawid.glazik@linux.intel.com/#t
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 91f3f9b987bc..5e0dc47d263c 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -86,6 +86,11 @@ hdmi_con_in: endpoint {
- 			};
- 		};
- 	};
-+
-+	brcmf_pwrseq: brcmf_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio2 31 GPIO_ACTIVE_LOW>;	/* WL-REG-ON */
-+	};
- };
- 
- &osc {
-@@ -239,6 +244,28 @@ rx-pins {
- 			slew-rate = <0>;
- 		};
- 	};
-+
-+	wifi_pins: wifi-pins {
-+	    host-wake-wl {
-+			pins = "GPIO2_25";
-+			function = "gpio";
-+			bias-pull-up;
-+			drive-strength = <1>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+	    reg-on-wl {
-+		    pins = "GPIO2_31";
-+		    function = "gpio";
-+			bias-pull-up;
-+			drive-strength = <3>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+	    };
-+	};
- };
- 
- &sdio0 {
-@@ -247,6 +274,29 @@ &sdio0 {
- 	status = "okay";
- };
- 
-+&sdio1 {
-+	bus-width = <4>;
-+	max-frequency = <198000000>;
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	non-removable;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wifi_pins>;
-+	mmc-pwrseq = <&brcmf_pwrseq>;
-+
-+	wifi@1 {
-+		compatible = "cypress,cyw43012-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		brcm,sd_head_align = <4>;
-+		brcm,sd_sgentry_align = <512>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
- &dpu {
- 	status = "okay";
- };
--- 
-2.43.0
+I received Reviewed-by from Krzysztof Kozlowski (thank you).
+Could I please get feedback/ack from maintainers on the remaining parts,
+especially ASPEED DTS?
 
+If preferred, I can respin/rebase the series.
+
+Thanks,
+Dawid Glazik
 
