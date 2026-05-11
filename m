@@ -1,1218 +1,299 @@
-Return-Path: <devicetree+bounces-295566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295570-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NpANiHNAWrajwEAu9opvQ
-	(envelope-from <devicetree+bounces-295566-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:35:45 +0200
+	id OOXJMeXNAWryjwEAu9opvQ
+	(envelope-from <devicetree+bounces-295570-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:39:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B05150DF29
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:35:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ACB850E031
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:39:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 377DF30C3A79
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 12:28:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6517E304004C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 12:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F87A3E4C6E;
-	Mon, 11 May 2026 12:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388CE3EB809;
+	Mon, 11 May 2026 12:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mINJScDV"
+	dkim=pass (2048-bit key) header.d=solid-run.com header.i=@solid-run.com header.b="X3djhNUZ";
+	dkim=pass (2048-bit key) header.d=solid-run.com header.i=@solid-run.com header.b="X3djhNUZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023142.outbound.protection.outlook.com [52.101.83.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28AF3DCD96;
-	Mon, 11 May 2026 12:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778502405; cv=none; b=oP/IUaayg1Ff2lE4DyZqzY1SjzckpXK65y29e79T+4V543/U7EGlW1WkVMRsVBwi9pzVdySYnwrcyn4dJFWij7ljE8p1TFYajOKEVatFS69DX3FgezrWg5p99UUbkUP0yr9L/atYO37QDIUq2alvyENkDEiAJBP6sgvXwS1Rymg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778502405; c=relaxed/simple;
-	bh=EbdWOD/9CNgsIGOXxQZIdUYoNrH5oAupvfnz1lGy/jk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cmEB/HIPWbajc9ruoDFxCv1JnFwMmBA7by2HNvMozuMvy7V9Td0A5PMZNUS5HS7KZWs6mB0dMRBjlF0h9Z5YU+TmczCzaZyk7Pubresx7+S9hCBvHFBu305sz9KYYG7ykAamSDy8N3l1/pxtH1oilP8MhJe4p7NZj4SQ2kAYN9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mINJScDV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A714BC2BCFA;
-	Mon, 11 May 2026 12:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778502405;
-	bh=EbdWOD/9CNgsIGOXxQZIdUYoNrH5oAupvfnz1lGy/jk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mINJScDVjVeHC6K27wW+6pDyJsSp0VhUxdV5dzBqvbVQDIwli9CuzAdI5EAwhoRSo
-	 k14poYFQNDvld75Oc17bm4JaFmOxp9Sx0UxJnthdpSh3M4nNAJ4zESSBaz+Ys4D/2j
-	 JMDN7gVeqPqGUVMx8PiZIO3GH50TcJ9RlnlXwBIC0Dzhk/r2ODLiHPPD6Ow20MHkzW
-	 bUYX8TIf7QP/FYYlXRvLggLUg5a5csZrWe911FuQyTqSF82kqpCQYx8Wu/j2pxGIQ5
-	 wddGCnZriv9yXYAZaR482O1lW/nAmMdmuI3btET1zCU5AEJSQZdhM17ulmgzQk7S0z
-	 YbnmGRSjZUFxA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9ECC0CD4846;
-	Mon, 11 May 2026 12:26:45 +0000 (UTC)
-From: Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
-Date: Mon, 11 May 2026 15:26:45 +0300
-Subject: [PATCH v11 22/22] media: i2c: remove MAX96714 driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0740C2727F3;
+	Mon, 11 May 2026 12:30:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.142
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778502657; cv=fail; b=NzJk7dp2QoqOCiQ32Vls6R25Mtu7F1I6jA8ePZXl7a2j1P8qJIxQY9vb7t/4ya2rwvkSBPkgHIf6/XzsZBcGB3WK0sB4jWGR11zRCa0IxFt9qT7y3sjlVKY/2z9J4Tkwrw8wlxBhtkWVZFTTY0YN+FOERuVBgrZJZKS+EFxNIn4=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778502657; c=relaxed/simple;
+	bh=4rRSlrZNPqDYtOYXD9YEQUs7w+F2ALr0SIXSPHKkZJM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Mug43XPAFtW1eTXw8xpoE7fepmN/flTPJOXb+yMABlD6N7zb4oJvFNAc7uD6L7wVi8vBElI4ldvdoXFqEoFOFWLXQkThjFV97UR5kuysL1LU8cehfvxkqm0tS74v0Dhc4M89vIJ2Bz8u64e4GV/VCULtCzsXxRtvL/RVGTmsYtI=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (2048-bit key) header.d=solid-run.com header.i=@solid-run.com header.b=X3djhNUZ; dkim=pass (2048-bit key) header.d=solid-run.com header.i=@solid-run.com header.b=X3djhNUZ; arc=fail smtp.client-ip=52.101.83.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=OIsS3RPIPcOokpaZxaZhjnO2Hf9qiCFZtHen0kfTDnJUV1o7LL/X+zAMmqO2FvCJ26ekYZENvMuaWnQ2KGf8E4h3BcB0kTXHd3FAY/pwN7oiFnXhct8zsuxRN8NB8bUQiLL8vGgoA5uaLdSn7gkOkvWFO3raNPErfQqngTN7Ij3w/Loq4gyGHZJelDPGnZqLrNWz79FmqAYX/ezM8wB7g56qEUnMrArkHiD4Y4FFAT3UqpAal7n3mBQXCyA24LsnMC8DE0BCLvfCeDITuheXyD/BzNivgCCptd8NFMiB4QmUl/QDOFMQyL1pGvTdmPXBJXV8Lt/13+xNcFyiHd3kWA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4rRSlrZNPqDYtOYXD9YEQUs7w+F2ALr0SIXSPHKkZJM=;
+ b=UNRcUteQ0B6n7unEtNZU/nTbrFiBLaxntVA0qS7JFjvYxXqiSk+vsh2Ge/t3RDwjixA3sRujMJcGNOAdd9dznDr5zpcAMnDgzd/UdsKfd7NXWNeYeR4ND5x0Zu8p4zEbFDAfksTSqJxOJYgklNSjlF1DhrX/lNoNvLdfraZ2EraXd5XfUos7rAr4v+/dCqcROkEftVCv6t9vA/8hRqdhraIjeRHOauwrmqyrXm2acGv18XlNz3BA171F0mUUclhtnOSvE+EzdJsWfHy3fNMbOvuOPDPYPnbIWvx8cBWrbyR5ln1qryf/qF1yIM55jIoVr86NtABuLcRcEDBK04YcaQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 52.17.62.50) smtp.rcpttodomain=davemloft.net smtp.mailfrom=solid-run.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=solid-run.com; dkim=pass (signature was verified)
+ header.d=solid-run.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=solid-run.com] dkim=[1,1,header.d=solid-run.com]
+ dmarc=[1,1,header.from=solid-run.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=solid-run.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4rRSlrZNPqDYtOYXD9YEQUs7w+F2ALr0SIXSPHKkZJM=;
+ b=X3djhNUZBZxYNsujd46kZD7u+aik2TQxoX0ar1iAr5rLuFoLxgO2dEyB2PVOp5QLlTZ5dGXV8qblNjfd7KSZiyzGsJ8BcYSpJ/oD5dzBNNBppZu3ogYxaTOp/dEWZN0+gt8oHlXXWA9QDL0MSYYJjslS/DztliDY10ilIzcqmvez2L/jor+o/3qeSW/2kalVYspsIF5XWix6888riwKioTbFHJ4G7PlSEU4P9Q2XN+3X3L84v8n0JvroZ0MmISpSwr/jSvbV9KbwHbNtu1xVb/Vv7cDHLaRcalnw7IG1ycQFlp1HxV65mjq2N6HNHqR0OCZ5DKV/b7y5b5En8ZPXtg==
+Received: from DUZPR01CA0323.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4ba::24) by GV2PR04MB11302.eurprd04.prod.outlook.com
+ (2603:10a6:150:2ae::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.22; Mon, 11 May
+ 2026 12:30:50 +0000
+Received: from DB1PEPF0003922F.eurprd03.prod.outlook.com
+ (2603:10a6:10:4ba:cafe::ab) by DUZPR01CA0323.outlook.office365.com
+ (2603:10a6:10:4ba::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.23 via Frontend Transport; Mon,
+ 11 May 2026 12:30:50 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 52.17.62.50)
+ smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
+ header.d=solid-run.com;dmarc=pass action=none header.from=solid-run.com;
+Received-SPF: Fail (protection.outlook.com: domain of solid-run.com does not
+ designate 52.17.62.50 as permitted sender) receiver=protection.outlook.com;
+ client-ip=52.17.62.50; helo=eu-dlp.cloud-sec-av.com;
+Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
+ DB1PEPF0003922F.mail.protection.outlook.com (10.167.8.102) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.13
+ via Frontend Transport; Mon, 11 May 2026 12:30:49 +0000
+Received: from emails-2708590-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-6-143.eu-west-1.compute.internal [10.20.6.143])
+	by mta-outgoing-dlp-588-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id 30EE680091;
+	Mon, 11 May 2026 12:30:49 +0000 (UTC)
+X-Mailbox-Line: From b'josua@solid-run.com' Mon May 11 12:30:39 2026
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jDOfUTSmtBiDUDDAY+EDOl+XvdjPOJ/gSnUTQvnD0UkC8S/uSgYZpAubKvvXLsuX4b3qpLFMSTGkXFU9pfMsmZ1myNkbBAwB4xXavCH98EUjBgRaEAquTFkbOByzgmLP1PPU62fDPomvrqf64Wwm0687Q1lzWr7aBneLPg4SZ3reeOu2y+Auptjm+znVyvI1KQ5zgkAn/FVcGlAEuvmj7+jdErTqFvxhBYG6unGDcu/tIrragZVjdupoNqRf3Lcj6RfLFWXaU30mwcaVK4K6hO0eIz0c/eyP5l7WCvoU0RYtPQn3iv0YPs0KWCUWJ64sjVc5Y5zS8TdrkOWLKpCUQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4rRSlrZNPqDYtOYXD9YEQUs7w+F2ALr0SIXSPHKkZJM=;
+ b=YxbyGhAsJtly1TNAtNC+DK4GqYMlPIKAoHRTTLz/CEhzE/saahRKC+1hz0drG/oEzH4f6qajJtLutEmu44OtTIOi/xV2VKUfd8jEN55LpOfUbrpdATJL7b+7C2n4Gm5Nk4LAdosmmqqLw0Enr+gRb4oTDbJmUEJCyxonM+n04s1ZDIuMFfmFMVrXCotZ41y0K5HeuGOb53sDW/qx7ZpDUepup+o4nGLVg/Yzp61If6FVv0JElPqw9+rKqF4/MFKlLo86mWMuEVEYraZf/Y6mBixGTTWQ8+uFQGkg3XQQ4hzT0dYnSRNJCM/fVxn2rL7yIeAam3ozMQYAdIx2Ai4dJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=solid-run.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4rRSlrZNPqDYtOYXD9YEQUs7w+F2ALr0SIXSPHKkZJM=;
+ b=X3djhNUZBZxYNsujd46kZD7u+aik2TQxoX0ar1iAr5rLuFoLxgO2dEyB2PVOp5QLlTZ5dGXV8qblNjfd7KSZiyzGsJ8BcYSpJ/oD5dzBNNBppZu3ogYxaTOp/dEWZN0+gt8oHlXXWA9QDL0MSYYJjslS/DztliDY10ilIzcqmvez2L/jor+o/3qeSW/2kalVYspsIF5XWix6888riwKioTbFHJ4G7PlSEU4P9Q2XN+3X3L84v8n0JvroZ0MmISpSwr/jSvbV9KbwHbNtu1xVb/Vv7cDHLaRcalnw7IG1ycQFlp1HxV65mjq2N6HNHqR0OCZ5DKV/b7y5b5En8ZPXtg==
+Received: from GVXPR04MB12057.eurprd04.prod.outlook.com
+ (2603:10a6:150:313::24) by VI0PR04MB11782.eurprd04.prod.outlook.com
+ (2603:10a6:800:2ed::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Mon, 11 May
+ 2026 12:30:35 +0000
+Received: from GVXPR04MB12057.eurprd04.prod.outlook.com
+ ([fe80::14f1:a127:2988:de5b]) by GVXPR04MB12057.eurprd04.prod.outlook.com
+ ([fe80::14f1:a127:2988:de5b%7]) with mapi id 15.20.9891.021; Mon, 11 May 2026
+ 12:30:35 +0000
+From: Josua Mayer <josua@solid-run.com>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Frank Li
+	<Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel
+ Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Andrew Lunn
+	<andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Yazan Shhady
+	<yazan.shhady@solid-run.com>, Mikhail Anikin <mikhail.anikin@solid-run.com>,
+	Alexander Dahl <ada@thorsis.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, Conor Dooley
+	<conor.dooley@microchip.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx8dxl: Add SolidRun SoM and
+ HummingBoard
+Thread-Topic: [PATCH v4 2/2] arm64: dts: imx8dxl: Add SolidRun SoM and
+ HummingBoard
+Thread-Index: AQHc4S6NPDp3cRKl10uFQFLEqUD7b7YIr0xYgAASRAA=
+Date: Mon, 11 May 2026 12:30:35 +0000
+Message-ID: <f0fdea25-6b2d-4b64-b925-a3f30c8e044c@solid-run.com>
+References: <20260511-imx8dxl-sr-som-v4-0-64381b3bf80d@solid-run.com>
+ <20260511-imx8dxl-sr-som-v4-0-64381b3bf80d@solid-run.com>
+ <20260511-imx8dxl-sr-som-v4-2-64381b3bf80d@solid-run.com>
+ <20260511-imx8dxl-sr-som-v4-2-64381b3bf80d@solid-run.com>
+ <20260511112438.4fxvhelf242emzft@skbuf>
+In-Reply-To: <20260511112438.4fxvhelf242emzft@skbuf>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+x-ms-traffictypediagnostic:
+	GVXPR04MB12057:EE_|VI0PR04MB11782:EE_|DB1PEPF0003922F:EE_|GV2PR04MB11302:EE_
+X-MS-Office365-Filtering-Correlation-Id: 488457c7-eb10-4508-f08a-08deaf592228
+x-cloud-sec-av-info: solidrun,office365_emails,sent,inline
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|7416014|376014|366016|1800799024|18002099003|22082099003|56012099003|3023799003|38070700021;
+X-Microsoft-Antispam-Message-Info-Original:
+ vlWsNs+2Q7U+VxCMcX/q135iCGJ0YY5cxknF/psipqZ9j6x1OWTdU1dIoy0kuqg02eGO0+v4wTQmp0KMt0uRIdspd2aO7huH5zUV3yQSDL16UDk9EVq0fFTJaXcgkjykX5kPkRPnxP1Fowb1j33tjSecZdQvX2ZGehyqe34O8zKxuCg0TN/RGi1IovOPEOvf6xnqMZ814NA6142izRWPSUIYvg2bQoNARvB7fjiSwWJTGSYf8kLSQP+2xtKjPv5puWIqrALPk6h1KNUtGIYemwr/luSKXAz27zuKeeY9avOq4bGKPskGHnIJ5kbuJnrLCdqSo+z0ELw4Mw4f8xzxZJkLid29qwZUKufisETWRsZvDN1/t/rObq8/PlOu4E94y80W4fQmTwA+s7aTVz2uCd/vFTtK29TBIMCvgrdk+SAbThy8wUpAC2H2R+2MCa1CHBeJvC1vIYFlyRLmizYYlu4B7HWi5gKoqHVtsXN0CD6ubKzNXuixWUsTaeUU56i7eF2zqViBCeRAwTdFFj5HD26b8s7NmJxOf91YyxJjqv69oJspQAmnlf3mMqNJ+8DBk0uV6rD8UIdIO39nTlpNnO0+/OAEvXOApUntbvGnNvRjaVmQtgeOArezdo/7xl+KmhyV1o44yEXN5qwdPxy3Vdk7ZiqtqCVghPDvXOmno6D6rS6RlbqBhIvCGDdNkz/YVDMFIhGsQet1GdbVtO3g0d/vC+3ZlAyddrsUpG/sLxQyeDxwXXNHmE2unu180mx3
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12057.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(18002099003)(22082099003)(56012099003)(3023799003)(38070700021);DIR:OUT;SFP:1102;
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7853B97F5FD89B4A91FE09233CF383B3@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260511-gmsl2-3_serdes-v11-22-fc163073c16b@analog.com>
-References: <20260511-gmsl2-3_serdes-v11-0-fc163073c16b@analog.com>
-In-Reply-To: <20260511-gmsl2-3_serdes-v11-0-fc163073c16b@analog.com>
-To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Julien Massot <julien.massot@collabora.com>, Rob Herring <robh@kernel.org>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Cosmin Tanislav <cosmin.tanislav@analog.com>
-Cc: mitrutzceclan@gmail.com, linux-media@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
- Martin Hecht <Martin.Hecht@avnet.eu>, 
- Cosmin Tanislav <demonsingur@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778502401; l=31161;
- i=dumitru.ceclan@analog.com; s=20240313; h=from:subject:message-id;
- bh=WFCwbPIedig66ihSX7AbatVRFVu3MymAXOelV/k1f5I=;
- b=3OWk8+aQjbw2d0L046ABJ26iGC9MS+1ig/2ORmGcth3jZz4bUgVWsGyQfLBWmSG2tYjgJphVm
- ToPfvO9yxoLAb69ZHupWC2+YVtrHsDm7ffeRK+126SPb9+g0GcjVjCp
-X-Developer-Key: i=dumitru.ceclan@analog.com; a=ed25519;
- pk=HdqMlVyrcazwoiai7oN6ghU+Bj1pusGUFRl30jhS7Bo=
-X-Endpoint-Received: by B4 Relay for dumitru.ceclan@analog.com/20240313
- with auth_id=140
-X-Original-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-Reply-To: dumitru.ceclan@analog.com
-X-Rspamd-Queue-Id: 9B05150DF29
+X-Exchange-RoutingPolicyChecked:
+ am6bLlCsd1RhtyHlAan7L42KiiXhxJ8QjN13fNpsDxNnnFlEM7Gh3EZ2bJyO7Yf0YnXwEnVFF4SvPQNz3sNBjY36i0sxTmjTGgm2p+HVbw0l4TnQnpiPUxUq8WKn8DdFBe98cKifowI5zQhlL86FD2rzz8ziJNx9wUiCnGTlOsbgyA5enKhonrYe3t6BBAbmPhZ86nOGRMkNP9rqDFOWU5CPfc0xDsD6DlpHrj7EKwHkQ0NnZv6bmBqzgwPDSs5YJIgB+MUo9jdFQQtXM5aRVTtI2u7W/osDCY2zdMpbxIgV3IB/qMrqLmqVQ4cN0ePB3cd/CPbplhgn+apxBlG1aQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11782
+X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2-7.checkpointcloudsec.com>
+X-CLOUD-SEC-AV-UUID: a159194249c04bf492efbacc1815cdc4:solidrun,office365_emails,sent,inline:4998141c306cb2f5ce0fc0908fdc295a
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ DB1PEPF0003922F.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	d9541ada-75ad-4ef9-0511-08deaf5919e2
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|14060799003|1800799024|36860700016|82310400026|35042699022|7416014|376014|3023799003|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	iUVn6VvUjeLaBTGjBH5MSPWgWLbE+ghjuSsH+KVg8BMk3sB7PjVvHN+UvjLvnle31IY8349nLbcTWGTvg5U/BfpVCt623//S75is9SE/Kongz+yT2tXDB5DqGTqAstK+Oc5qhsdg/31R9LtOLgwo7WQqOK7lEGJwLzctEFbKKfmyxiNzymGzmIanV7rDEwIy1RCLIkuP1CBTlTTg7gTRPz17zOPLkXs+dw8Hudm2TE+mllDWbyUoR+efLhLVorBgFslt5T4wNCn/VXbhhZb1ADK0iBB6XLbsS7LI1meKONJ+wz+WIXBrSN0fABdV5K9PIWir+tGkGiL1G01FzlEy6yo+Ccj/vyFbkRR99ne8hYrm8tIo8WZriy35+U2o2N4ZU61+Jve42oWnIPeCeUozn5B/8ePzxKEnFTyISdOLwtxBHTZI8wdKArTGOOA9VGeRadruKq5ESMrO6BWRKEtZTRqNe6v+EIASkbRoP6i4/8Mc3EDrp6WF45TiS6aTOwGqD7xdvSEuuzLE0JgcJ8bK8zuf9NTwRlmUHjKwkO6nSB/Fyuh0xnw+gTghmnkefo0HxF9UuSMEtxAMNeF6lO/ustuawWOKwRZWGHdBLdlkm8q6sScjjku4KAwn+kQMocmalo9Fz+73aFfAToCgi3/iO0CwD2GnzACM/dpjf2LsppUE0sOOLFprrwvP8nTZZIP73ymZwVBT/9r8zIGONi/N6/XJZy0GEqJJdGzG1jktlyE=
+X-Forefront-Antispam-Report:
+	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(14060799003)(1800799024)(36860700016)(82310400026)(35042699022)(7416014)(376014)(3023799003)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	NvlA5mxDIjqsS46wWxihdWskuzRAMpp14j//Cgf3WyATxn7yCwLud07u2OXzMR2n6JM2f7CdKtNpdoG9oJx9UU4JLsSTmzZi3sxZZtR4yAtnGwODKIX+k1aXSLo8VyxUbui+/nphDmQ1n9P3K7/3Q1mLNSg4adTbPuqaE5ASlPRpiREsedKIyOxD9KTa3PTAVa7D6UW9rAcZvc0fMwLDUQOTDBL0FxOOJFO/gaHYn+tHU4IB8dzUSzvHNJThqTHIrUsxMzxkyignrUOwz1piuUDhUmmWbYZiVAUGH0uT1tRIxB7D4c3N2DNamJtboRgYLzJO1R5gbVh7b70SSgPJt3YPIWcqMxBtGqUTV1mh6Hb/UYthLyZKMLZVEb+SgBWR7rSzSYES3J5/SYWcU0BRCoyNv7sYv7n5grmZ9GXQ+LRxfWrUXSd1PFORmqoEHT5o
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 12:30:49.2824
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 488457c7-eb10-4508-f08a-08deaf592228
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF0003922F.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11302
+X-Rspamd-Queue-Id: 6ACB850E031
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=3];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[solid-run.com,reject];
+	R_DKIM_ALLOW(-0.20)[solid-run.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295566-lists,devicetree=lfdr.de,dumitru.ceclan.analog.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,ragnatech.se,avnet.eu];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	HAS_REPLYTO(0.00)[dumitru.ceclan@analog.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,solid-run.com,thorsis.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com];
+	TAGGED_FROM(0.00)[bounces-295570-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,solid-run.com:mid,solid-run.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:mid,analog.com:replyto,collabora.com:email]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[josua@solid-run.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[solid-run.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
-From: Cosmin Tanislav <demonsingur@gmail.com>
-
-Remove the MAX96714 driver. Its functionality has been moved to the
-MAX9296A driver which makes use of the Maxim GMSL2/3 serializer
-framework.
-
-Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-Reviewed-by: Julien Massot <julien.massot@collabora.com>
----
- MAINTAINERS                  |    1 -
- drivers/media/i2c/Kconfig    |   17 -
- drivers/media/i2c/Makefile   |    1 -
- drivers/media/i2c/max96714.c | 1017 ------------------------------------------
- 4 files changed, 1036 deletions(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ad7e28897062..08ac1170baea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15228,7 +15228,6 @@ M:	Julien Massot <julien.massot@collabora.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/media/i2c/maxim,max96714.yaml
--F:	drivers/media/i2c/max96714.c
- 
- MAX96717 GMSL2 SERIALIZER DRIVER
- M:	Julien Massot <julien.massot@collabora.com>
-diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-index 20a2261b64f9..669da3c63ad8 100644
---- a/drivers/media/i2c/Kconfig
-+++ b/drivers/media/i2c/Kconfig
-@@ -1684,23 +1684,6 @@ config VIDEO_DS90UB960
- 	  Device driver for the Texas Instruments DS90UB960
- 	  FPD-Link III Deserializer and DS90UB9702 FPD-Link IV Deserializer.
- 
--config VIDEO_MAX96714
--	tristate "Maxim MAX96714 GMSL2 deserializer"
--	depends on OF && I2C && VIDEO_DEV
--	select I2C_MUX
--	select MEDIA_CONTROLLER
--	select GPIOLIB
--	select V4L2_CCI_I2C
--	select V4L2_FWNODE
--	select VIDEO_V4L2_SUBDEV_API
--	help
--	  Device driver for the Maxim MAX96714 GMSL2 Deserializer.
--	  MAX96714 deserializers convert a GMSL2 input to MIPI CSI-2
--	  output.
--
--	  To compile this driver as a module, choose M here: the
--	  module will be called max96714.
--
- source "drivers/media/i2c/maxim-serdes/Kconfig"
- 
- endmenu
-diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index 96bc49339341..333e4243ea2f 100644
---- a/drivers/media/i2c/Makefile
-+++ b/drivers/media/i2c/Makefile
-@@ -69,7 +69,6 @@ obj-$(CONFIG_VIDEO_LT6911UXE) += lt6911uxe.o
- obj-$(CONFIG_VIDEO_M52790) += m52790.o
- obj-$(CONFIG_VIDEO_MAX9271_LIB) += max9271.o
- obj-$(CONFIG_VIDEO_MAX9286) += max9286.o
--obj-$(CONFIG_VIDEO_MAX96714) += max96714.o
- obj-$(CONFIG_VIDEO_MAXIM_SERDES) += maxim-serdes/
- obj-$(CONFIG_VIDEO_ML86V7667) += ml86v7667.o
- obj-$(CONFIG_VIDEO_MSP3400) += msp3400.o
-diff --git a/drivers/media/i2c/max96714.c b/drivers/media/i2c/max96714.c
-deleted file mode 100644
-index e3e625e6f11a..000000000000
---- a/drivers/media/i2c/max96714.c
-+++ /dev/null
-@@ -1,1017 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0
--/*
-- * Maxim GMSL2 Deserializer Driver
-- *
-- * Copyright (C) 2024 Collabora Ltd.
-- */
--
--#include <linux/bitfield.h>
--#include <linux/bitops.h>
--#include <linux/gpio/consumer.h>
--#include <linux/i2c.h>
--#include <linux/i2c-mux.h>
--#include <linux/module.h>
--#include <linux/property.h>
--#include <linux/regmap.h>
--#include <linux/regulator/consumer.h>
--
--#include <media/v4l2-cci.h>
--#include <media/v4l2-ctrls.h>
--#include <media/v4l2-fwnode.h>
--#include <media/v4l2-subdev.h>
--
--#define MAX96714_DEVICE_ID  0xc9
--#define MAX96714F_DEVICE_ID 0xca
--#define MAX96714_NPORTS     2
--#define MAX96714_PAD_SINK   0
--#define MAX96714_PAD_SOURCE 1
--#define MAX96714_CSI_NLANES 4
--
--/* DEV */
--#define MAX96714_REG13                 CCI_REG8(0x0d)
--#define MAX96714_DEV_REV               CCI_REG8(0x0e)
--#define MAX96714_DEV_REV_MASK          GENMASK(3, 0)
--#define MAX96714_LINK_LOCK             CCI_REG8(0x13)
--#define MAX96714_LINK_LOCK_BIT         BIT(3)
--#define MAX96714_IO_CHK0               CCI_REG8(0x38)
--#define MAX96714_PATTERN_CLK_FREQ      GENMASK(1, 0)
--/* VID_RX */
--#define MAX96714_VIDEO_RX8             CCI_REG8(0x11a)
--#define MAX96714_VID_LOCK              BIT(6)
--
--/* VRX_PATGEN_0 */
--#define MAX96714_PATGEN_0              CCI_REG8(0x240)
--#define MAX96714_PATGEN_1              CCI_REG8(0x241)
--#define MAX96714_PATGEN_MODE           GENMASK(5, 4)
--#define MAX96714_PATGEN_VS_DLY         CCI_REG24(0x242)
--#define MAX96714_PATGEN_VS_HIGH        CCI_REG24(0x245)
--#define MAX96714_PATGEN_VS_LOW         CCI_REG24(0x248)
--#define MAX96714_PATGEN_V2H            CCI_REG24(0x24b)
--#define MAX96714_PATGEN_HS_HIGH        CCI_REG16(0x24e)
--#define MAX96714_PATGEN_HS_LOW         CCI_REG16(0x250)
--#define MAX96714_PATGEN_HS_CNT         CCI_REG16(0x252)
--#define MAX96714_PATGEN_V2D            CCI_REG24(0x254)
--#define MAX96714_PATGEN_DE_HIGH        CCI_REG16(0x257)
--#define MAX96714_PATGEN_DE_LOW         CCI_REG16(0x259)
--#define MAX96714_PATGEN_DE_CNT         CCI_REG16(0x25b)
--#define MAX96714_PATGEN_GRAD_INC       CCI_REG8(0x25d)
--#define MAX96714_PATGEN_CHKB_COLOR_A   CCI_REG24(0x25e)
--#define MAX96714_PATGEN_CHKB_COLOR_B   CCI_REG24(0x261)
--#define MAX96714_PATGEN_CHKB_RPT_CNT_A CCI_REG8(0x264)
--#define MAX96714_PATGEN_CHKB_RPT_CNT_B CCI_REG8(0x265)
--#define MAX96714_PATGEN_CHKB_ALT       CCI_REG8(0x266)
--/* BACKTOP */
--#define MAX96714_BACKTOP25             CCI_REG8(0x320)
--#define CSI_DPLL_FREQ_MASK             GENMASK(4, 0)
--
--/* MIPI_PHY */
--#define MAX96714_MIPI_PHY0             CCI_REG8(0x330)
--#define MAX96714_FORCE_CSI_OUT         BIT(7)
--#define MAX96714_MIPI_STDBY_N          CCI_REG8(0x332)
--#define MAX96714_MIPI_STDBY_MASK       GENMASK(5, 4)
--#define MAX96714_MIPI_LANE_MAP         CCI_REG8(0x333)
--#define MAX96714_MIPI_POLARITY         CCI_REG8(0x335)
--#define MAX96714_MIPI_POLARITY_MASK    GENMASK(5, 0)
--
--/* MIPI_TX */
--#define MAX96714_MIPI_LANE_CNT         CCI_REG8(0x44a)
--#define MAX96714_CSI2_LANE_CNT_MASK    GENMASK(7, 6)
--#define MAX96714_MIPI_TX52             CCI_REG8(0x474)
--#define MAX96714_TUN_EN                BIT(0)
--
--#define MHZ(v) ((u32)((v)  * 1000000U))
--
--enum max96714_vpg_mode {
--	MAX96714_VPG_DISABLED = 0,
--	MAX96714_VPG_CHECKERBOARD = 1,
--	MAX96714_VPG_GRADIENT = 2,
--};
--
--struct max96714_rxport {
--	struct {
--		struct v4l2_subdev   *sd;
--		u16                  pad;
--		struct fwnode_handle *ep_fwnode;
--	} source;
--	struct regulator	     *poc;
--};
--
--struct max96714_txport {
--	struct v4l2_fwnode_endpoint vep;
--};
--
--struct max96714_priv {
--	struct i2c_client                 *client;
--	struct regmap                     *regmap;
--	struct gpio_desc                  *pd_gpio;
--	struct max96714_rxport            rxport;
--	struct i2c_mux_core               *mux;
--	u64                               enabled_source_streams;
--	struct v4l2_subdev		  sd;
--	struct media_pad		  pads[MAX96714_NPORTS];
--	struct v4l2_mbus_config_mipi_csi2 mipi_csi2;
--	struct v4l2_ctrl_handler          ctrl_handler;
--	struct v4l2_async_notifier        notifier;
--	s64                               tx_link_freq;
--	enum max96714_vpg_mode            pattern;
--};
--
--static inline struct max96714_priv *sd_to_max96714(struct v4l2_subdev *sd)
--{
--	return container_of(sd, struct max96714_priv, sd);
--}
--
--static int max96714_enable_tx_port(struct max96714_priv *priv)
--{
--	return cci_update_bits(priv->regmap, MAX96714_MIPI_STDBY_N,
--			       MAX96714_MIPI_STDBY_MASK,
--			       MAX96714_MIPI_STDBY_MASK, NULL);
--}
--
--static int max96714_disable_tx_port(struct max96714_priv *priv)
--{
--	return cci_update_bits(priv->regmap, MAX96714_MIPI_STDBY_N,
--			       MAX96714_MIPI_STDBY_MASK, 0, NULL);
--}
--
--static bool max96714_tx_port_enabled(struct max96714_priv *priv)
--{
--	u64 val;
--
--	cci_read(priv->regmap, MAX96714_MIPI_STDBY_N, &val, NULL);
--
--	return val & MAX96714_MIPI_STDBY_MASK;
--}
--
--static int max96714_apply_patgen_timing(struct max96714_priv *priv,
--					struct v4l2_subdev_state *state)
--{
--	struct v4l2_mbus_framefmt *fmt =
--		v4l2_subdev_state_get_format(state, MAX96714_PAD_SOURCE);
--	const u32 h_active = fmt->width;
--	const u32 h_fp = 88;
--	const u32 h_sw = 44;
--	const u32 h_bp = 148;
--	u32 h_tot;
--	const u32 v_active = fmt->height;
--	const u32 v_fp = 4;
--	const u32 v_sw = 5;
--	const u32 v_bp = 36;
--	u32 v_tot;
--	int ret = 0;
--
--	h_tot = h_active + h_fp + h_sw + h_bp;
--	v_tot = v_active + v_fp + v_sw + v_bp;
--
--	/* 75 Mhz pixel clock */
--	cci_update_bits(priv->regmap, MAX96714_IO_CHK0,
--			MAX96714_PATTERN_CLK_FREQ, 1, &ret);
--
--	dev_info(&priv->client->dev, "height: %d width: %d\n", fmt->height,
--		 fmt->width);
--
--	cci_write(priv->regmap, MAX96714_PATGEN_VS_DLY, 0, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_VS_HIGH, v_sw * h_tot, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_VS_LOW,
--		  (v_active + v_fp + v_bp) * h_tot, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_HS_HIGH, h_sw, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_HS_LOW, h_active + h_fp + h_bp,
--		  &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_V2D,
--		  h_tot * (v_sw + v_bp) + (h_sw + h_bp), &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_HS_CNT, v_tot, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_DE_HIGH, h_active, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_DE_LOW, h_fp + h_sw + h_bp,
--		  &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_DE_CNT, v_active, &ret);
--	/* B G R */
--	cci_write(priv->regmap, MAX96714_PATGEN_CHKB_COLOR_A, 0xfecc00, &ret);
--	/* B G R */
--	cci_write(priv->regmap, MAX96714_PATGEN_CHKB_COLOR_B, 0x006aa7, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_CHKB_RPT_CNT_A, 0x3c, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_CHKB_RPT_CNT_B, 0x3c, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_CHKB_ALT, 0x3c, &ret);
--	cci_write(priv->regmap, MAX96714_PATGEN_GRAD_INC, 0x10, &ret);
--
--	return ret;
--}
--
--static int max96714_apply_patgen(struct max96714_priv *priv,
--				 struct v4l2_subdev_state *state)
--{
--	unsigned int val;
--	int ret = 0;
--
--	if (priv->pattern)
--		ret = max96714_apply_patgen_timing(priv, state);
--
--	cci_write(priv->regmap, MAX96714_PATGEN_0, priv->pattern ? 0xfb : 0,
--		  &ret);
--
--	val = FIELD_PREP(MAX96714_PATGEN_MODE, priv->pattern);
--	cci_update_bits(priv->regmap, MAX96714_PATGEN_1, MAX96714_PATGEN_MODE,
--			val, &ret);
--	return ret;
--}
--
--static int max96714_s_ctrl(struct v4l2_ctrl *ctrl)
--{
--	struct max96714_priv *priv =
--		container_of(ctrl->handler, struct max96714_priv, ctrl_handler);
--	int ret;
--
--	switch (ctrl->id) {
--	case V4L2_CID_TEST_PATTERN:
--		if (priv->enabled_source_streams)
--			return -EBUSY;
--		priv->pattern = ctrl->val;
--		break;
--	default:
--		return -EINVAL;
--	}
--
--	ret = cci_update_bits(priv->regmap, MAX96714_MIPI_PHY0,
--			      MAX96714_FORCE_CSI_OUT,
--			      priv->pattern ? MAX96714_FORCE_CSI_OUT : 0, NULL);
--
--	/* Pattern generator doesn't work with tunnel mode */
--	return cci_update_bits(priv->regmap, MAX96714_MIPI_TX52,
--			       MAX96714_TUN_EN,
--			       priv->pattern ? 0 : MAX96714_TUN_EN, &ret);
--}
--
--static const char * const max96714_test_pattern[] = {
--	"Disabled",
--	"Checkerboard",
--	"Gradient"
--};
--
--static const struct v4l2_ctrl_ops max96714_ctrl_ops = {
--	.s_ctrl = max96714_s_ctrl,
--};
--
--static int max96714_enable_streams(struct v4l2_subdev *sd,
--				   struct v4l2_subdev_state *state,
--				   u32 source_pad, u64 streams_mask)
--{
--	struct max96714_priv *priv = sd_to_max96714(sd);
--	u64 sink_streams;
--	int ret;
--
--	if (!priv->enabled_source_streams)
--		max96714_enable_tx_port(priv);
--
--	ret = max96714_apply_patgen(priv, state);
--	if (ret)
--		goto err;
--
--	if (!priv->pattern) {
--		if (!priv->rxport.source.sd) {
--			ret = -ENODEV;
--			goto err;
--		}
--
--		sink_streams =
--			v4l2_subdev_state_xlate_streams(state,
--							MAX96714_PAD_SOURCE,
--							MAX96714_PAD_SINK,
--							&streams_mask);
--
--		ret = v4l2_subdev_enable_streams(priv->rxport.source.sd,
--						 priv->rxport.source.pad,
--						 sink_streams);
--		if (ret)
--			goto err;
--	}
--
--	priv->enabled_source_streams |= streams_mask;
--
--	return 0;
--
--err:
--	if (!priv->enabled_source_streams)
--		max96714_disable_tx_port(priv);
--
--	return ret;
--}
--
--static int max96714_disable_streams(struct v4l2_subdev *sd,
--				    struct v4l2_subdev_state *state,
--				    u32 source_pad, u64 streams_mask)
--{
--	struct max96714_priv *priv = sd_to_max96714(sd);
--	u64 sink_streams;
--
--	if (!priv->pattern) {
--		int ret;
--
--		sink_streams =
--			v4l2_subdev_state_xlate_streams(state,
--							MAX96714_PAD_SOURCE,
--							MAX96714_PAD_SINK,
--							&streams_mask);
--
--		ret = v4l2_subdev_disable_streams(priv->rxport.source.sd,
--						  priv->rxport.source.pad,
--						  sink_streams);
--		if (ret)
--			return ret;
--	}
--
--	priv->enabled_source_streams &= ~streams_mask;
--
--	if (!priv->enabled_source_streams)
--		max96714_disable_tx_port(priv);
--
--	return 0;
--}
--
--static int max96714_set_fmt(struct v4l2_subdev *sd,
--			    struct v4l2_subdev_state *state,
--			    struct v4l2_subdev_format *format)
--{
--	struct max96714_priv *priv = sd_to_max96714(sd);
--	struct v4l2_mbus_framefmt *fmt;
--
--	if (format->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
--	    priv->enabled_source_streams)
--		return -EBUSY;
--
--	/* No transcoding, source and sink formats must match. */
--	if (format->pad == MAX96714_PAD_SOURCE)
--		return v4l2_subdev_get_fmt(sd, state, format);
--
--	fmt = v4l2_subdev_state_get_format(state, format->pad, format->stream);
--	if (!fmt)
--		return -EINVAL;
--
--	*fmt = format->format;
--
--	fmt = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
--							   format->stream);
--	if (!fmt)
--		return -EINVAL;
--
--	*fmt = format->format;
--
--	return 0;
--}
--
--static int _max96714_set_routing(struct v4l2_subdev *sd,
--				 struct v4l2_subdev_state *state,
--				 enum v4l2_subdev_format_whence which,
--				 struct v4l2_subdev_krouting *routing)
--{
--	static const struct v4l2_mbus_framefmt format = {
--		.width = 1280,
--		.height = 1080,
--		.code = MEDIA_BUS_FMT_Y8_1X8,
--		.field = V4L2_FIELD_NONE,
--	};
--	int ret;
--
--	ret = v4l2_subdev_routing_validate(sd, routing,
--					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1);
--	if (ret)
--		return ret;
--
--	return v4l2_subdev_set_routing_with_fmt(sd, state, routing, &format);
--}
--
--static int max96714_set_routing(struct v4l2_subdev *sd,
--				struct v4l2_subdev_state *state,
--				enum v4l2_subdev_format_whence which,
--				struct v4l2_subdev_krouting *routing)
--{
--	struct max96714_priv *priv = sd_to_max96714(sd);
--
--	if (which == V4L2_SUBDEV_FORMAT_ACTIVE && priv->enabled_source_streams)
--		return -EBUSY;
--
--	return _max96714_set_routing(sd, state, which, routing);
--}
--
--static int max96714_init_state(struct v4l2_subdev *sd,
--			       struct v4l2_subdev_state *state)
--{
--	struct v4l2_subdev_route routes[] = {
--		{
--			.sink_pad = MAX96714_PAD_SINK,
--			.sink_stream = 0,
--			.source_pad = MAX96714_PAD_SOURCE,
--			.source_stream = 0,
--			.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
--		}
--	};
--	struct v4l2_subdev_krouting routing = {
--		.num_routes = ARRAY_SIZE(routes),
--		.routes = routes,
--	};
--
--	return _max96714_set_routing(sd, state, V4L2_SUBDEV_FORMAT_ACTIVE,
--				     &routing);
--}
--
--static const struct v4l2_subdev_pad_ops max96714_pad_ops = {
--	.enable_streams = max96714_enable_streams,
--	.disable_streams = max96714_disable_streams,
--
--	.set_routing = max96714_set_routing,
--	.get_fmt = v4l2_subdev_get_fmt,
--	.set_fmt = max96714_set_fmt,
--};
--
--static bool max96714_link_locked(struct max96714_priv *priv)
--{
--	u64 val = 0;
--
--	cci_read(priv->regmap, MAX96714_LINK_LOCK, &val, NULL);
--
--	return val & MAX96714_LINK_LOCK_BIT;
--}
--
--static void max96714_link_status(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--
--	dev_info(dev, "Link locked:%d\n", max96714_link_locked(priv));
--}
--
--static bool max96714_pipe_locked(struct max96714_priv *priv)
--{
--	u64 val;
--
--	cci_read(priv->regmap, MAX96714_VIDEO_RX8, &val, NULL);
--
--	return val & MAX96714_VID_LOCK;
--}
--
--static void max96714_pipe_status(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--
--	dev_info(dev, "Pipe vidlock:%d\n", max96714_pipe_locked(priv));
--}
--
--static void max96714_csi_status(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--	u64 freq = 0;
--
--	cci_read(priv->regmap, MAX96714_BACKTOP25, &freq, NULL);
--	freq = FIELD_GET(CSI_DPLL_FREQ_MASK, freq);
--
--	dev_info(dev, "CSI controller DPLL freq:%u00MHz CSIPHY enabled:%d\n",
--		 (u8)freq, max96714_tx_port_enabled(priv));
--}
--
--static int max96714_log_status(struct v4l2_subdev *sd)
--{
--	struct max96714_priv *priv = sd_to_max96714(sd);
--	struct device *dev = &priv->client->dev;
--
--	dev_info(dev, "Deserializer: max96714\n");
--
--	max96714_link_status(priv);
--	max96714_pipe_status(priv);
--	max96714_csi_status(priv);
--
--	return 0;
--}
--
--static const struct v4l2_subdev_core_ops max96714_subdev_core_ops = {
--	.log_status = max96714_log_status,
--};
--
--static const struct v4l2_subdev_video_ops max96714_video_ops = {
--	.s_stream	= v4l2_subdev_s_stream_helper,
--};
--
--static const struct v4l2_subdev_internal_ops max96714_internal_ops = {
--	.init_state = max96714_init_state,
--};
--
--static const struct v4l2_subdev_ops max96714_subdev_ops = {
--	.video = &max96714_video_ops,
--	.core = &max96714_subdev_core_ops,
--	.pad = &max96714_pad_ops,
--};
--
--static const struct media_entity_operations max96714_entity_ops = {
--	.link_validate = v4l2_subdev_link_validate,
--};
--
--static int max96714_notify_bound(struct v4l2_async_notifier *notifier,
--				 struct v4l2_subdev *subdev,
--				 struct v4l2_async_connection *asd)
--{
--	struct max96714_priv *priv = sd_to_max96714(notifier->sd);
--	struct device *dev = &priv->client->dev;
--	int ret;
--
--	ret = media_entity_get_fwnode_pad(&subdev->entity,
--					  priv->rxport.source.ep_fwnode,
--					  MEDIA_PAD_FL_SOURCE);
--	if (ret < 0) {
--		dev_err(dev, "Failed to find pad for %s\n", subdev->name);
--		return ret;
--	}
--
--	priv->rxport.source.sd = subdev;
--	priv->rxport.source.pad = ret;
--
--	ret = media_create_pad_link(&priv->rxport.source.sd->entity,
--				    priv->rxport.source.pad, &priv->sd.entity,
--				    MAX96714_PAD_SINK,
--				    MEDIA_LNK_FL_ENABLED |
--				    MEDIA_LNK_FL_IMMUTABLE);
--	if (ret) {
--		dev_err(dev, "Unable to link %s:%u -> %s:%u\n",
--			priv->rxport.source.sd->name, priv->rxport.source.pad,
--			priv->sd.name, MAX96714_PAD_SINK);
--		return ret;
--	}
--
--	return 0;
--}
--
--static const struct v4l2_async_notifier_operations max96714_notify_ops = {
--	.bound = max96714_notify_bound,
--};
--
--static int max96714_v4l2_notifier_register(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--	struct max96714_rxport *rxport = &priv->rxport;
--	struct v4l2_async_connection *asd;
--	int ret;
--
--	if (!rxport->source.ep_fwnode)
--		return 0;
--
--	v4l2_async_subdev_nf_init(&priv->notifier, &priv->sd);
--
--	asd = v4l2_async_nf_add_fwnode(&priv->notifier,
--				       rxport->source.ep_fwnode,
--				       struct v4l2_async_connection);
--	if (IS_ERR(asd)) {
--		dev_err(dev, "Failed to add subdev: %pe", asd);
--		v4l2_async_nf_cleanup(&priv->notifier);
--		return PTR_ERR(asd);
--	}
--
--	priv->notifier.ops = &max96714_notify_ops;
--
--	ret = v4l2_async_nf_register(&priv->notifier);
--	if (ret) {
--		dev_err(dev, "Failed to register subdev_notifier");
--		v4l2_async_nf_cleanup(&priv->notifier);
--		return ret;
--	}
--
--	return 0;
--}
--
--static int max96714_create_subdev(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--	int ret;
--
--	v4l2_i2c_subdev_init(&priv->sd, priv->client, &max96714_subdev_ops);
--	priv->sd.internal_ops = &max96714_internal_ops;
--
--	v4l2_ctrl_handler_init(&priv->ctrl_handler, 1);
--	priv->sd.ctrl_handler = &priv->ctrl_handler;
--
--	v4l2_ctrl_new_int_menu(&priv->ctrl_handler, NULL, V4L2_CID_LINK_FREQ,
--			       0, 0, &priv->tx_link_freq);
--	v4l2_ctrl_new_std_menu_items(&priv->ctrl_handler,
--				     &max96714_ctrl_ops,
--				     V4L2_CID_TEST_PATTERN,
--				     ARRAY_SIZE(max96714_test_pattern) - 1,
--				     0, 0, max96714_test_pattern);
--	if (priv->ctrl_handler.error) {
--		ret = priv->ctrl_handler.error;
--		goto err_free_ctrl;
--	}
--
--	priv->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
--	priv->sd.entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
--	priv->sd.entity.ops = &max96714_entity_ops;
--
--	priv->pads[MAX96714_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
--	priv->pads[MAX96714_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
--
--	ret = media_entity_pads_init(&priv->sd.entity,
--				     MAX96714_NPORTS,
--				     priv->pads);
--	if (ret)
--		goto err_free_ctrl;
--
--	priv->sd.state_lock = priv->sd.ctrl_handler->lock;
--
--	ret = v4l2_subdev_init_finalize(&priv->sd);
--	if (ret)
--		goto err_entity_cleanup;
--
--	ret = max96714_v4l2_notifier_register(priv);
--	if (ret) {
--		dev_err(dev, "v4l2 subdev notifier register failed: %d\n", ret);
--		goto err_subdev_cleanup;
--	}
--
--	ret = v4l2_async_register_subdev(&priv->sd);
--	if (ret) {
--		dev_err(dev, "v4l2_async_register_subdev error: %d\n", ret);
--		goto err_unreg_notif;
--	}
--
--	return 0;
--
--err_unreg_notif:
--	v4l2_async_nf_unregister(&priv->notifier);
--	v4l2_async_nf_cleanup(&priv->notifier);
--err_subdev_cleanup:
--	v4l2_subdev_cleanup(&priv->sd);
--err_entity_cleanup:
--	media_entity_cleanup(&priv->sd.entity);
--err_free_ctrl:
--	v4l2_ctrl_handler_free(&priv->ctrl_handler);
--
--	return ret;
--};
--
--static void max96714_destroy_subdev(struct max96714_priv *priv)
--{
--	v4l2_async_nf_unregister(&priv->notifier);
--	v4l2_async_nf_cleanup(&priv->notifier);
--	v4l2_async_unregister_subdev(&priv->sd);
--
--	v4l2_subdev_cleanup(&priv->sd);
--
--	media_entity_cleanup(&priv->sd.entity);
--	v4l2_ctrl_handler_free(&priv->ctrl_handler);
--}
--
--static int max96714_i2c_mux_select(struct i2c_mux_core *mux, u32 chan)
--{
--	return 0;
--}
--
--static int max96714_i2c_mux_init(struct max96714_priv *priv)
--{
--	priv->mux = i2c_mux_alloc(priv->client->adapter, &priv->client->dev,
--				  1, 0, I2C_MUX_LOCKED | I2C_MUX_GATE,
--				  max96714_i2c_mux_select, NULL);
--	if (!priv->mux)
--		return -ENOMEM;
--
--	return i2c_mux_add_adapter(priv->mux, 0, 0);
--}
--
--static int max96714_init_tx_port(struct max96714_priv *priv)
--{
--	struct v4l2_mbus_config_mipi_csi2 *mipi;
--	unsigned long lanes_used = 0;
--	unsigned int val, lane;
--	int ret;
--
--	ret = max96714_disable_tx_port(priv);
--
--	mipi = &priv->mipi_csi2;
--	val = div_u64(priv->tx_link_freq * 2, MHZ(100));
--
--	cci_update_bits(priv->regmap, MAX96714_BACKTOP25,
--			CSI_DPLL_FREQ_MASK, val, &ret);
--
--	val = FIELD_PREP(MAX96714_CSI2_LANE_CNT_MASK, mipi->num_data_lanes - 1);
--	cci_update_bits(priv->regmap, MAX96714_MIPI_LANE_CNT,
--			MAX96714_CSI2_LANE_CNT_MASK, val, &ret);
--
--	/* lanes polarity */
--	val = 0;
--	for (lane = 0; lane < mipi->num_data_lanes + 1; lane++) {
--		if (!mipi->lane_polarities[lane])
--			continue;
--		if (lane == 0)
--			/* clock lane */
--			val |= BIT(5);
--		else if (lane < 3)
--			/* Lane D0 and D1 */
--			val |= BIT(lane - 1);
--		else
--			/* D2 and D3 */
--			val |= BIT(lane);
--	}
--
--	cci_update_bits(priv->regmap, MAX96714_MIPI_POLARITY,
--			MAX96714_MIPI_POLARITY_MASK, val, &ret);
--
--	/* lanes mapping */
--	val = 0;
--	for (lane = 0; lane < mipi->num_data_lanes; lane++) {
--		val |= (mipi->data_lanes[lane] - 1) << (lane * 2);
--		lanes_used |= BIT(mipi->data_lanes[lane] - 1);
--	}
--
--	/*
--	 * Unused lanes need to be mapped as well to not have
--	 * the same lanes mapped twice.
--	 */
--	for (; lane < MAX96714_CSI_NLANES; lane++) {
--		unsigned int idx = find_first_zero_bit(&lanes_used,
--						       MAX96714_CSI_NLANES);
--
--		val |= idx << (lane * 2);
--		lanes_used |= BIT(idx);
--	}
--
--	return cci_write(priv->regmap, MAX96714_MIPI_LANE_MAP, val, &ret);
--}
--
--static int max96714_rxport_enable_poc(struct max96714_priv *priv)
--{
--	struct max96714_rxport *rxport = &priv->rxport;
--
--	if (!rxport->poc)
--		return 0;
--
--	return regulator_enable(rxport->poc);
--}
--
--static int max96714_rxport_disable_poc(struct max96714_priv *priv)
--{
--	struct max96714_rxport *rxport = &priv->rxport;
--
--	if (!rxport->poc)
--		return 0;
--
--	return regulator_disable(rxport->poc);
--}
--
--static int max96714_parse_dt_txport(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--	struct v4l2_fwnode_endpoint vep = { .bus_type = V4L2_MBUS_CSI2_DPHY };
--	struct fwnode_handle *ep_fwnode;
--	u32 num_data_lanes;
--	int ret;
--
--	ep_fwnode = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev),
--						    MAX96714_PAD_SOURCE, 0, 0);
--	if (!ep_fwnode)
--		return -EINVAL;
--
--	ret = v4l2_fwnode_endpoint_alloc_parse(ep_fwnode, &vep);
--	fwnode_handle_put(ep_fwnode);
--	if (ret) {
--		dev_err(dev, "tx: failed to parse endpoint data\n");
--		return -EINVAL;
--	}
--
--	if (vep.nr_of_link_frequencies != 1) {
--		ret = -EINVAL;
--		goto err_free_vep;
--	}
--
--	priv->tx_link_freq = vep.link_frequencies[0];
--	/* Min 50MHz, Max 1250MHz, 50MHz step */
--	if (priv->tx_link_freq < MHZ(50) || priv->tx_link_freq > MHZ(1250) ||
--	    (u32)priv->tx_link_freq % MHZ(50)) {
--		dev_err(dev, "tx: invalid link frequency\n");
--		ret = -EINVAL;
--		goto err_free_vep;
--	}
--
--	num_data_lanes = vep.bus.mipi_csi2.num_data_lanes;
--	if (num_data_lanes < 1 || num_data_lanes > MAX96714_CSI_NLANES) {
--		dev_err(dev,
--			"tx: invalid number of data lanes must be 1 to 4\n");
--		ret = -EINVAL;
--		goto err_free_vep;
--	}
--
--	priv->mipi_csi2 = vep.bus.mipi_csi2;
--
--err_free_vep:
--	v4l2_fwnode_endpoint_free(&vep);
--
--	return ret;
--}
--
--static int max96714_parse_dt_rxport(struct max96714_priv *priv)
--{
--	static const char *poc_name = "port0-poc";
--	struct max96714_rxport *rxport = &priv->rxport;
--	struct device *dev = &priv->client->dev;
--	struct fwnode_handle *ep_fwnode;
--	int ret;
--
--	ep_fwnode = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev),
--						    MAX96714_PAD_SINK, 0, 0);
--	if (!ep_fwnode)
--		return -ENOENT;
--
--	rxport->source.ep_fwnode = fwnode_graph_get_remote_endpoint(ep_fwnode);
--	fwnode_handle_put(ep_fwnode);
--
--	if (!rxport->source.ep_fwnode) {
--		dev_err(dev, "rx: no remote endpoint\n");
--		return -EINVAL;
--	}
--
--	rxport->poc = devm_regulator_get_optional(dev, poc_name);
--	if (IS_ERR(rxport->poc)) {
--		ret = PTR_ERR(rxport->poc);
--		if (ret == -ENODEV) {
--			rxport->poc = NULL;
--		} else {
--			dev_err(dev, "rx: failed to get POC supply: %d\n", ret);
--			goto err_put_source_ep_fwnode;
--		}
--	}
--
--	return 0;
--
--err_put_source_ep_fwnode:
--	fwnode_handle_put(rxport->source.ep_fwnode);
--	return ret;
--}
--
--static int max96714_parse_dt(struct max96714_priv *priv)
--{
--	int ret;
--
--	ret = max96714_parse_dt_txport(priv);
--	if (ret)
--		return ret;
--
--	ret = max96714_parse_dt_rxport(priv);
--	/*
--	 * The deserializer can create a test pattern even if the
--	 * rx port is not connected to a serializer.
--	 */
--	if (ret && ret == -ENOENT)
--		ret = 0;
--
--	return ret;
--}
--
--static int max96714_enable_core_hw(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--	u64 val;
--	int ret;
--
--	if (priv->pd_gpio) {
--		/* wait min 2 ms for reset to complete */
--		gpiod_set_value_cansleep(priv->pd_gpio, 1);
--		fsleep(2000);
--		gpiod_set_value_cansleep(priv->pd_gpio, 0);
--		/* wait min 2 ms for power up to finish */
--		fsleep(2000);
--	}
--
--	ret = cci_read(priv->regmap, MAX96714_REG13, &val, NULL);
--	if (ret) {
--		dev_err_probe(dev, ret, "Cannot read first register, abort\n");
--		goto err_pd_gpio;
--	}
--
--	if (val != MAX96714_DEVICE_ID && val != MAX96714F_DEVICE_ID) {
--		dev_err(dev, "Unsupported device id expected %x got %x\n",
--			MAX96714F_DEVICE_ID, (u8)val);
--		ret = -EOPNOTSUPP;
--		goto err_pd_gpio;
--	}
--
--	ret = cci_read(priv->regmap, MAX96714_DEV_REV, &val, NULL);
--	if (ret)
--		goto err_pd_gpio;
--
--	dev_dbg(dev, "Found %x (rev %lx)\n", MAX96714F_DEVICE_ID,
--		(u8)val & MAX96714_DEV_REV_MASK);
--
--	ret = cci_read(priv->regmap, MAX96714_MIPI_TX52, &val, NULL);
--	if (ret)
--		goto err_pd_gpio;
--
--	if (!(val & MAX96714_TUN_EN)) {
--		dev_err(dev, "Only supporting tunnel mode");
--		ret = -EOPNOTSUPP;
--		goto err_pd_gpio;
--	}
--
--	return 0;
--
--err_pd_gpio:
--	gpiod_set_value_cansleep(priv->pd_gpio, 1);
--	return ret;
--}
--
--static void max96714_disable_core_hw(struct max96714_priv *priv)
--{
--	gpiod_set_value_cansleep(priv->pd_gpio, 1);
--}
--
--static int max96714_get_hw_resources(struct max96714_priv *priv)
--{
--	struct device *dev = &priv->client->dev;
--
--	priv->regmap = devm_cci_regmap_init_i2c(priv->client, 16);
--	if (IS_ERR(priv->regmap))
--		return PTR_ERR(priv->regmap);
--
--	priv->pd_gpio =
--		devm_gpiod_get_optional(dev, "powerdown", GPIOD_OUT_HIGH);
--	if (IS_ERR(priv->pd_gpio))
--		return dev_err_probe(dev, PTR_ERR(priv->pd_gpio),
--				     "Cannot get powerdown GPIO\n");
--	return 0;
--}
--
--static int max96714_probe(struct i2c_client *client)
--{
--	struct device *dev = &client->dev;
--	struct max96714_priv *priv;
--	int ret;
--
--	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return -ENOMEM;
--
--	priv->client = client;
--
--	ret = max96714_get_hw_resources(priv);
--	if (ret)
--		return ret;
--
--	ret = max96714_enable_core_hw(priv);
--	if (ret)
--		return ret;
--
--	ret = max96714_parse_dt(priv);
--	if (ret)
--		goto err_disable_core_hw;
--
--	max96714_init_tx_port(priv);
--
--	ret = max96714_rxport_enable_poc(priv);
--	if (ret)
--		goto err_free_ports;
--
--	ret = max96714_i2c_mux_init(priv);
--	if (ret)
--		goto err_disable_poc;
--
--	ret = max96714_create_subdev(priv);
--	if (ret)
--		goto err_del_mux;
--
--	return 0;
--
--err_del_mux:
--	i2c_mux_del_adapters(priv->mux);
--err_disable_poc:
--	max96714_rxport_disable_poc(priv);
--err_free_ports:
--	fwnode_handle_put(priv->rxport.source.ep_fwnode);
--err_disable_core_hw:
--	max96714_disable_core_hw(priv);
--
--	return ret;
--}
--
--static void max96714_remove(struct i2c_client *client)
--{
--	struct v4l2_subdev *sd = i2c_get_clientdata(client);
--	struct max96714_priv *priv = sd_to_max96714(sd);
--
--	max96714_destroy_subdev(priv);
--	i2c_mux_del_adapters(priv->mux);
--	max96714_rxport_disable_poc(priv);
--	fwnode_handle_put(priv->rxport.source.ep_fwnode);
--	max96714_disable_core_hw(priv);
--	gpiod_set_value_cansleep(priv->pd_gpio, 1);
--}
--
--static const struct of_device_id max96714_of_ids[] = {
--	{ .compatible = "maxim,max96714f" },
--	{ }
--};
--MODULE_DEVICE_TABLE(of, max96714_of_ids);
--
--static struct i2c_driver max96714_i2c_driver = {
--	.driver	= {
--		.name		= "max96714",
--		.of_match_table	= max96714_of_ids,
--	},
--	.probe		= max96714_probe,
--	.remove		= max96714_remove,
--};
--
--module_i2c_driver(max96714_i2c_driver);
--
--MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("Maxim Integrated GMSL2 Deserializers Driver");
--MODULE_AUTHOR("Julien Massot <julien.massot@collabora.com>");
-
--- 
-2.51.0
-
-
+SGkgVmxhZGltaXIsDQoNCkFtIDExLjA1LjI2IHVtIDEzOjI0IHNjaHJpZWIgVmxhZGltaXIgT2x0
+ZWFuOg0KPiBPbiBNb24sIE1heSAxMSwgMjAyNiBhdCAxMjoxMTozMVBNICswMjAwLCBKb3N1YSBN
+YXllciB3cm90ZToNCj4+ICsmZXFvcyB7DQo+PiArCS8qIGRlbGF5cyBhcmUgYWRkZWQgYnkgY29u
+bmVjdGVkIGV0aGVybmV0LXN3aXRjaCBjcHUgcG9ydCAqLw0KPj4gKwlwaHktbW9kZSA9ICJyZ21p
+aSI7DQo+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvZXRoZXJuZXQtY29u
+dHJvbGxlci55YW1sIHNheXM6DQo+DQo+ICMgSW5mb3JtYXRpdmUNCj4gIyA9PT09PT09PT09PQ0K
+PiAjDQo+ICMgJ3BoeS1tb2RlcycgJiAncGh5LWNvbm5lY3Rpb24tdHlwZScgcHJvcGVydGllcyAn
+cmdtaWknLCAncmdtaWktaWQnLA0KPiAjICdyZ21paS1yeGlkJywgYW5kICdyZ21paS10eGlkJyBh
+cmUgZnJlcXVlbnRseSB1c2VkIHdyb25nbHkgYnkNCj4gIyBkZXZlbG9wZXJzLiBUaGlzIGluZm9y
+bWF0aXZlIHNlY3Rpb24gY2xhcmlmaWVzIHRoZWlyIHVzYWdlLg0KPiAjDQo+ICMgVGhlIFJHTUlJ
+IHNwZWNpZmljYXRpb24gcmVxdWlyZXMgYSAybnMgZGVsYXkgYmV0d2VlbiB0aGUgZGF0YSBhbmQN
+Cj4gIyBjbG9jayBzaWduYWxzIG9uIHRoZSBSR01JSSBidXMuIEhvdyB0aGlzIGRlbGF5IGlzIGlt
+cGxlbWVudGVkIGlzIG5vdA0KPiAjIHNwZWNpZmllZC4NCj4gIw0KPiAjIE9uZSBvcHRpb24gaXMg
+dG8gbWFrZSB0aGUgY2xvY2sgdHJhY2VzIG9uIHRoZSBQQ0IgbG9uZ2VyIHRoYW4gdGhlDQo+ICMg
+ZGF0YSB0cmFjZXMuIEEgc3VmZmljaWVudCBkaWZmZXJlbmNlIGluIGxlbmd0aCBjYW4gcHJvdmlk
+ZSB0aGUgMm5zDQo+ICMgZGVsYXkuIElmIGJvdGggdGhlIFJYIGFuZCBUWCBkZWxheXMgYXJlIGlt
+cGxlbWVudGVkIGluIHRoaXMgbWFubmVyLA0KPiAjICdyZ21paScgc2hvdWxkIGJlIHVzZWQsIHNv
+IGluZGljYXRpbmcgdGhlIFBDQiBhZGRzIHRoZSBkZWxheXMuDQo+ICMNCj4gIyBJZiB0aGUgUENC
+IGRvZXMgbm90IGFkZCB0aGVzZSBkZWxheXMgdmlhIGV4dHJhIGxvbmcgdHJhY2VzLA0KPiAjICdy
+Z21paS1pZCcgc2hvdWxkIGJlIHVzZWQuIEhlcmUsICdpZCcgcmVmZXJzIHRvICdpbnRlcm5hbCBk
+ZWxheScsDQo+ICMgd2hlcmUgZWl0aGVyIHRoZSBNQUMgb3IgUEhZIGFkZHMgdGhlIGRlbGF5Lg0K
+PiAjDQo+ICMgSWYgb25seSBvbmUgb2YgdGhlIHR3byBkZWxheXMgYXJlIGltcGxlbWVudGVkIHZp
+YSBleHRyYSBsb25nIGNsb2NrDQo+ICMgbGluZXMsIGVpdGhlciAncmdtaWktcnhpZCcgb3IgJ3Jn
+bWlpLXR4aWQnIHNob3VsZCBiZSB1c2VkLA0KPiAjIGluZGljYXRpbmcgdGhlIE1BQyBvciBQSFkg
+c2hvdWxkIGltcGxlbWVudCBvbmUgb2YgdGhlIGRlbGF5cw0KPiAjIGludGVybmFsbHksIHdoaWxl
+IHRoZSBQQ0IgaW1wbGVtZW50cyB0aGUgb3RoZXIgZGVsYXkuDQo+ICMNCj4gIyBEZXZpY2UgVHJl
+ZSBkZXNjcmliZXMgaGFyZHdhcmUsIGFuZCBpbiB0aGlzIGNhc2UsIGl0IGRlc2NyaWJlcyB0aGUN
+Cj4gIyBQQ0IgYmV0d2VlbiB0aGUgTUFDIGFuZCB0aGUgUEhZLCBpZiB0aGUgUENCIGltcGxlbWVu
+dHMgZGVsYXlzIG9yDQo+ICMgbm90Lg0KPiAjDQo+ICMgSW4gcHJhY3RpY2UsIHZlcnkgZmV3IFBD
+QnMgbWFrZSB1c2Ugb2YgZXh0cmEgbG9uZyBjbG9jayBsaW5lcy4gSGVuY2UNCj4gIyBhbnkgUkdN
+SUkgcGh5IG1vZGUgb3RoZXIgdGhhbiAncmdtaWktaWQnIGlzIHByb2JhYmx5IHdyb25nLCBhbmQg
+aXMNCj4gIyB1bmxpa2VseSB0byBiZSBhY2NlcHRlZCBkdXJpbmcgcmV2aWV3IHdpdGhvdXQgZGV0
+YWlscyBwcm92aWRlZCBpbg0KPiAjIHRoZSBjb21taXQgZGVzY3JpcHRpb24gYW5kIGNvbW1lbnRz
+IGluIHRoZSAuZHRzIGZpbGUuDQo+DQo+IE15IHVuZGVyc3RhbmRpbmcgZnJvbSB0aGUgYWJvdmUg
+aXMgdGhhdCB3aGVuIHRoZSBSR01JSSBkZWxheXMgYXJlDQo+IHByb3ZpZGVkIGJ5IHRoZSBzd2l0
+Y2gsIHRoZSBlcW9zIHNob3VsZCBoYXZlIHBoeS1tb2RlID0gInJnbWlpLWlkIi4NCkkgaGFkIHRo
+ZSByZXZlcnNlIHVuZGVyc3RhbmRpbmcsIHRoZSBzd2l0Y2ggcG9ydCBzcGVjaWZpZXMgcmdtaWkt
+aWQsDQphbmQgdGhlIGNwdSBwb3J0IHNwZWNpZmllcyAicmdtaWkiLg0KDQpUaGUgc3dpdGNoIHBv
+cnQgaGFzIG1vZGUgcmdtaWktaWQsIGluZGljYXRpbmcgdGhhdCBzb21lb25lIHNob3VsZCBhZGQg
+ZGVsYXlzLg0KSXQgaXMgYSBmaXhlZCBsaW5rIHdpdGhvdXQgUEhZLCBzbyBzd2l0Y2ggbXVzdCBh
+ZGQgdGhlIGRlbGF5cy4NCg0KRnJvbSB0aGUgY3B1IChlcW9zKSBwZXJzcGNldGl2ZSBpdCBpcyBh
+bHNvIGEgZml4ZWQgbGluayB3aXRob3V0IHBoeSwNCnNvIEkgc3BlY2lmeSByZ21paSBpbmRpY2F0
+aW5nIG5vYm9keSBzaG91bGQgYWRkIGRlbGF5cy4NCg0KSXMgdGhpcyBjb3JyZWN0Pw0KDQo+DQo+
+PiArCXBpbmN0cmwtMCA9IDwmZXFvc19waW5zPjsNCj4+ICsJcGluY3RybC1uYW1lcyA9ICJkZWZh
+dWx0IjsNCj4+ICsJc3RhdHVzID0gIm9rYXkiOw0KPj4gKw0KPj4gKwlmaXhlZC1saW5rIHsNCj4+
+ICsJCWZ1bGwtZHVwbGV4Ow0KPj4gKwkJc3BlZWQgPSA8MTAwMD47DQo+PiArCX07DQo+PiArfTsN
+Cj4+ICsNCj4+ICsmbHBzcGkwIHsNCj4+ICsJY3MtZ3Bpb3MgPSA8JmxzaW9fZ3BpbzEgOCBHUElP
+X0FDVElWRV9MT1c+LCA8JmxzaW9fZ3BpbzEgNyBHUElPX0FDVElWRV9MT1c+Ow0KPj4gKwlwaW5j
+dHJsLTAgPSA8Jmxwc3BpMF9waW5zPiwgPCZzd2l0Y2hfcGlucz47DQo+PiArCXBpbmN0cmwtbmFt
+ZXMgPSAiZGVmYXVsdCI7DQo+PiArCXN0YXR1cyA9ICJva2F5IjsNCj4+ICsNCj4+ICsJZXRoZXJu
+ZXQtc3dpdGNoQDAgew0KPj4gKwkJY29tcGF0aWJsZSA9ICJueHAsc2phMTExMGEiOw0KPj4gKwkJ
+cmVnID0gPDA+Ow0KPj4gKwkJcmVzZXQtZ3Bpb3MgPSA8JmxzaW9fZ3BpbzQgMyBHUElPX0FDVElW
+RV9MT1c+Ow0KPj4gKwkJc3BpLW1heC1mcmVxdWVuY3kgPSA8NDAwMDAwMD47DQo+PiArDQo+PiAr
+CQlldGhlcm5ldC1wb3J0cyB7DQo+PiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+PiArCQkJ
+I3NpemUtY2VsbHMgPSA8MD47DQo+PiArDQo+PiArCQkJLyogMTAwQmFzZS1UWCBvbiBjb25uZWN0
+b3IgSjI2ICovDQo+PiArCQkJcG9ydEAxIHsNCj4gU29tZSBwZW9wbGUgbWlnaHQgcHJlZmVyIHNl
+ZWluZyBldGhlcm5ldC1wb3J0QE4gaW5zdGVhZCBvZiBwb3J0QE4sIHRvDQo+IGZ1bGx5IGF2b2lk
+IGNvbmZ1c2lvbiB3aXRoIGR0c2NoZW1hL3NjaGVtYXMvZ3JhcGgueWFtbCAoYWx0aG91Z2gsIHRo
+ZQ0KPiBjb250YWluZXIgbm9kZSBiZWluZyBldGhlcm5ldC1wb3J0cyBub3csIHRoZSBjb25mdXNp
+b24gc2hvdWxkIGJlDQo+IGF2b2lkYWJsZSkuDQo+DQo+IEFsc28sIGlmIHlvdSBldmVyIHBlcmZv
+cm0gZGV2aWNlIHRyZWUgZml4dXBzIGZyb20gdGhlIGJvb3Rsb2FkZXIgKGxpa2UNCj4gZm9yIHNl
+dHRpbmcgc3RhdHVzID0gImRpc2FibGVkIiB0byBzdGF0dXMgPSAib2theSIgZm9yIHRoZSBwb3J0
+cyB0aGF0IGdvDQo+IHRvIGFkZG9uIGJvYXJkcyksIHBsZWFzZSBuZXZlciBoYXJkY29kZSBmaXh1
+cCBwYXRocywNCkkgd2FzIGV4cGVjdGluZyBkZXZpY2UtdHJlZSBvdmVybGF5cyB0byBiZSB1c2Vk
+LCBpbiB3aGljaCBjYXNlIGFsaWFzZXMNCmFyZSBub3QgbmVlZGVkLg0KPiBidXQgYWx3YXlzIHVz
+ZSBldGgNCj4gYWxpYXNlcyB0byBnZXQgdG8gdGhlbS4NCkhvd2V2ZXIgaWYgaXQgaXMgb2theSB0
+byBhZGQgZXRoWzAtOV0rIGFsaWFzZXMgYWxzbyBmb3Igc3dpdGNoIHBvcnRzLCBJJ2xsIGFkZCB0
+aGVtLg0KPiBUaGlzIGlzIGluIGNhc2UgdGhlIHBvcnQgbm9kZSBuYW1lcyBldmVyIGNoYW5nZSwN
+Cj4gdG8gYXZvaWQgYm9vdGxvYWRlciByZWdyZXNzaW9ucy4NCkdvb2QgcG9pbnQhDQo+DQo+PiAr
+CQkJCXJlZyA9IDwweDE+Ow0KPj4gKwkJCQlwaHktaGFuZGxlID0gPCZzd2l0Y2hfcG9ydDFfYmFz
+ZV90eF9waHk+Ow0KPj4gKwkJCQlwaHktbW9kZSA9ICJpbnRlcm5hbCI7DQo+PiArCQkJfTs=
 
