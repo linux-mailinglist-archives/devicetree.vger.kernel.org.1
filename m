@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-295610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNjsDpvhAWq1lwEAu9opvQ
-	(envelope-from <devicetree+bounces-295610-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:03:07 +0200
+	id sBENLPjgAWptlgEAu9opvQ
+	(envelope-from <devicetree+bounces-295611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:00:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9973D50F92D
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:03:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232FB50F87E
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:00:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6042303FFFE
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 13:52:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C29CA3097012
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 13:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22523F164A;
-	Mon, 11 May 2026 13:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686163F54BB;
+	Mon, 11 May 2026 13:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6CILY03"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LauFhvNU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2D53E557E;
-	Mon, 11 May 2026 13:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449B23F0761;
+	Mon, 11 May 2026 13:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778507527; cv=none; b=Df9BHVeC+FRo/N8yCqWQJHsrZsCVcNHEkpE1y82pmACUaOn77Zpp3szRRZMML0Zl5XU8RtmWnPM5d8YwY7OpkhDxDsiOLeNfPXJyUMRuNrGL/xZK5u7dlL0iyfeP1U1xr/396Z4jTPcOSyadsidUmBe4VpzlGc68/w5JBqXaCyo=
+	t=1778507806; cv=none; b=ktb6btNqESoCbwjLiSZiNgVK2A89Nz6GOAsbB7vxc7Paq1nnAx5rOu/vHcSZGJhCPdP72x+GmXXjlfrsvnsqFmTKv6ouLEdCR9AGnDf5Lozq8foHW7NbPCinroONFwbfToZmX8R1vNdaYnKGAFPvhH008FWZEOu/mI3gBIpfOxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778507527; c=relaxed/simple;
-	bh=3MOLGGAjZMaGDJ4KO3ibP0i185lRfKS/csYyWZqaOgw=;
+	s=arc-20240116; t=1778507806; c=relaxed/simple;
+	bh=PW8pVcDf5k11hXFW5k0frWPb8Wcmrp6fjCFdwFXM5LM=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ATNk49Bhfpaz06HGlsrbQ7MaYZ/ZcK4b1iVkpdnJbF1rgEIe3wLAaQGd1wqezwGLetO8SZ2UK58x59ynPFa65aYiucD+MGQAJr/Zszie6kHMsKYWOCT4WLaRzY2kiFPtHOgzRYF5dh+MkFticf40YofAl2AOKE7V8U3UN6RSr7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6CILY03; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59CD6C2BCB0;
-	Mon, 11 May 2026 13:52:03 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ekXhsMadUu86qbgDwCLXdCZMk3YIcom+EqeBodaYJt8lhGVcVZw08Thl4+JA56cQ09HDhGEOH8lWbTLrB7bKiAK8s09rYDtxAtrYxawHpYh0ogZcVv5oSm0uQyPnOIDlVVEaE1/ishSdep1/aiFeqy0uy8IbamQ2VdCQ/E8XljI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LauFhvNU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66CDAC2BCB0;
+	Mon, 11 May 2026 13:56:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778507527;
-	bh=3MOLGGAjZMaGDJ4KO3ibP0i185lRfKS/csYyWZqaOgw=;
+	s=k20201202; t=1778507806;
+	bh=PW8pVcDf5k11hXFW5k0frWPb8Wcmrp6fjCFdwFXM5LM=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=I6CILY03WXAENXWM2QJ14ZqUGhZmpnAOOppPJtrBNFS+UUteycF8YGsMO0UpUo4po
-	 IFhP6tIcwLN+FXBV9N57JSJZw5d9MUT/fIXW9kB8eabyod785vMRTVa8sNKuQID7FA
-	 gudLKO/5lQZNXluTGDN6usphCpRbzFVbraRdlX3160BlC5FaWgQiob60TgAgiamm5i
-	 bUwkPsXmSbXdoHjDBGm/ea1x96dcKaMSQKKIueKbpaz3sJ1yk6jsnu4JgE+2xbbya4
-	 bxbh0q9HX//+LVGlQbS8NmqVvhaMrcVBHga509WIGMNiDvyY4Q4CGZDLusI2+cd6fI
-	 AolW5zVrgIkbw==
-Date: Mon, 11 May 2026 14:51:58 +0100
+	b=LauFhvNUGS+aUALp23WuMHd1NnuA/5KnmsyFOZgcvjbGHaZF/IIBINvswcvOjMnFk
+	 W2nPvBPI+ecaYhhhfnYEEQ/I4i3E4ZRlMObbntO4XQLycoImIzQvhbl2O5sq5GUAl9
+	 k6jFgu0uk0PB/bY9FWHWFKefASuVSHClDjKscHyRt7GYtT8t2R6i8L9/1UXMvoFgbp
+	 Tn1xc34xU0X/sRjaDT3NRFYdvFwGwBNgtgJfHTGbnVw/CaUEhnEcomZAiY+95Ec7Ux
+	 w3e483sPZrkgU7OQlFef7KbW/vtpdIlNawgwHXC5J/3c6+tHBhQCEyMstas3C7NBqp
+	 iHoupRCZba4sg==
+Date: Mon, 11 May 2026 14:56:37 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Nikhil Gautam <nikhilgtr@gmail.com>
 Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 0/2] iio: magnetometer: add support for Melexis
+Subject: Re: [RFC PATCH 1/2] dt-bindings: iio: magnetometer: add Melexis
  MLX90393
-Message-ID: <20260511145158.1252ef87@jic23-huawei>
-In-Reply-To: <20260510191010.155380-1-nikhilgtr@gmail.com>
+Message-ID: <20260511145637.0aa12c30@jic23-huawei>
+In-Reply-To: <20260510191010.155380-2-nikhilgtr@gmail.com>
 References: <20260510191010.155380-1-nikhilgtr@gmail.com>
+	<20260510191010.155380-2-nikhilgtr@gmail.com>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,7 +66,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 9973D50F92D
+X-Rspamd-Queue-Id: 232FB50F87E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -73,12 +74,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295610-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295611-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -93,90 +94,85 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[checkpatch.pl:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
 X-Rspamd-Action: no action
 
-On Mon, 11 May 2026 00:40:08 +0530
+On Mon, 11 May 2026 00:40:09 +0530
 Nikhil Gautam <nikhilgtr@gmail.com> wrote:
 
-> Hi,
+> Add devicetree bindings for the Melexis MLX90393
+> 3-axis magnetometer and temperature sensor.
+> 
+> The device supports magnetic field and temperature
+> measurements over I2C and SPI interfaces.
+> 
+> This initial binding documents the I2C interface.
+> 
+> Signed-off-by: Nikhil Gautam <nikhilgtr@gmail.com>
+Hi Nikhil,
 
-Hi Nikhil.
-Thanks for your driver
+Add a MAINTAINERS entry as part of this patch and expand it in patch 2 to cover
+the driver. That's much cleaner than doing it after the fact as a separate patch.
 
-Before I look at it, a quick comment on use of RFC.
-Generally we only use that for drivers that either have a series
-of specific open questions (driver structure doesn't count for IIO
-as we have a 'lot' of examples!) and those questions should be
-at the top of the RFC.
-
-The other exception is where you know something is not ready for merge
-due to some dependency or similar on other code.  Occasionally done
-as a quick hint on how we might solve a problem that is raised.
-
-Anyhow, just send this without RFC.   You'll get comments anyway!
-Probably more of them as many reviewers are short on time so will
-only briefly glance an an RFC if at all!
-
-Jonathan
-
-> 
-> This series adds initial Industrial I/O subsystem support for the
-> Melexis MLX90393 3-axis magnetometer and temperature sensor.
-> 
-> The MLX90393 supports both I2C and SPI interfaces. This RFC
-> implements support for the I2C interface while keeping the driver
-> structure transport-independent to simplify future SPI support.
-> 
-> Currently supported features:
-> 
-> raw magnetic field measurements for X/Y/Z axes
-> raw temperature measurements
-> configurable gain/scale selection
-> configurable oversampling ratio
-> direct mode operation through the IIO subsystem
-> initially I2C support for this driver
-> 
-> The driver has been tested on Raspberry Pi 5 hardware using an
-> actual MLX90393 sensor connected over I2C. Raw magnetic field and
-> temperature values were verified through the IIO sysfs interface.
-> 
-> A custom transport abstraction was used instead of regmap due to
-> the MLX90393 command/response protocol semantics and repeated-start
-> transfer behavior. This approach was discussed previously on the
-> mailing list and seemed preferable for this device.
-> Link: https://lore.kernel.org/linux-iio/20260424114818.1290b029@jic23-huawei/
-> 
-> The implementation intentionally focuses on a minimal and reviewable
-> feature set for the initial RFC submission. Support for SPI,
-> buffered capture, triggers, interrupts and runtime PM can be added
-> incrementally in follow-up work.
-> 
-> The DT binding schema has been validated using dt_binding_check and
-> the driver has been checked using checkpatch.pl --strict.
-> 
-> Feedback on the overall driver structure, transport abstraction,
-> IIO ABI usage and DT binding would be appreciated.
-> 
-> Thanks,
-> Nikhil Gautam
-> 
-> Nikhil Gautam (2):
->   dt-bindings: iio: magnetometer: add Melexis MLX90393
->   iio: magnetometer: add support for Melexis MLX90393
-> 
->  .../iio/magnetometer/melexis,mlx90393.yaml    |  39 +
->  drivers/iio/magnetometer/Kconfig              |  10 +
->  drivers/iio/magnetometer/Makefile             |   2 +
->  drivers/iio/magnetometer/mlx90393.h           |  76 ++
->  drivers/iio/magnetometer/mlx90393_core.c      | 724 ++++++++++++++++++
->  drivers/iio/magnetometer/mlx90393_i2c.c       |  71 ++
->  6 files changed, 922 insertions(+)
+> ---
+>  .../iio/magnetometer/melexis,mlx90393.yaml    | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml
->  create mode 100644 drivers/iio/magnetometer/mlx90393.h
->  create mode 100644 drivers/iio/magnetometer/mlx90393_core.c
->  create mode 100644 drivers/iio/magnetometer/mlx90393_i2c.c
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml b/Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml
+> new file mode 100644
+> index 000000000000..b99629ff2585
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/magnetometer/melexis,mlx90393.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Melexis MLX90393 magnetometer sensor
+> +
+> +maintainers:
+> +  - Nikhil Gautam <nikhilgtr@gmail.com>
+> +
+> +description:
+> +  Melexis MLX90393 3-axis magnetometer and temperature sensor.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - melexis,mlx90393
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+Definitely require some power... Looks like vdd-supply and vddio-supply
+
+Also binding in general should be as complete as possible, even if the
+driver you are sending it with only supports some stuff to start with.
+So looks like there is an interrupt and a trigger pin that can possibly
+be used with a GPIO.  Seems they may be the same pin from the pinout so
+maybe don't bother with trig.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        magnetometer@c {
+> +            compatible = "melexis,mlx90393";
+> +            reg = <0x0c>;
+> +        };
+> +    };
 
 
