@@ -1,125 +1,188 @@
-Return-Path: <devicetree+bounces-295693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295695-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKvJAhwDAmrknAEAu9opvQ
-	(envelope-from <devicetree+bounces-295693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 18:26:04 +0200
+	id EDN1AWgKAmrTnQEAu9opvQ
+	(envelope-from <devicetree+bounces-295695-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 18:57:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA4A512140
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 18:26:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DC28512C9C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 18:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6319A3108633
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:19:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38A253047E60
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03162426D32;
-	Mon, 11 May 2026 16:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA3A4266B1;
+	Mon, 11 May 2026 16:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XmZOypqq"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="aVA5ALES"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44772F8E81;
-	Mon, 11 May 2026 16:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778516382; cv=none; b=DhxpUKzL9h1Nr288LKDDjq37fwcBX1mhmfoTmQMD8AysH+qaTp6cjoXgKobTGdKFKOmxxQD2gZRBe28QExAMWCydxRQNtfmPibf+uJg3lzx3C/ey9oNGYhDWWfK4+gM3ZP5IrLEg8Yfai6y8ggpMdcLR6Ouvepta5rBkfY6FNgw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778516382; c=relaxed/simple;
-	bh=NskC6dmigOoRB1jTRDCnQm+BI1ydTrbvAWPVyxSNjRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GscDBknFsOeLwaoe8TN4eoJbXWdLA0fLp1XSsmExKIoWX+Db9Y3SEa52EhVnWA2vHLFstfZdj6a9avYrnsGMfLtz7xHOOD0BEJiDBT9OAQF/Ewu7zfUUwK7QLLjaQaA5q4bRZ5caCCzNtkfzI5ZWNhXm7lhWdkxQ/u6c7SlkvAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XmZOypqq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0D67C2BCB0;
-	Mon, 11 May 2026 16:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778516382;
-	bh=NskC6dmigOoRB1jTRDCnQm+BI1ydTrbvAWPVyxSNjRQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XmZOypqqo6QnvKsLUdTwqp6pILghve+sC7s8KM6pR81WAgISwe1xyUGKA8njgOMA9
-	 9IE3QLVW2K0lw0PDXZEmeVZfv4iZsWXQ3gGSYRJeX7zqceAY+00Zg8G8DVQlJPyCCP
-	 l5p1lpqKSYg2vFkUlqP+wS+m5NmjkAVTqJ1IEoBQUCLvwVQGeWIvhZfiXp8KkHJDHQ
-	 RYemROhI5U68K6udVikO7mfgoHZ7kJx2m9RDtviJZp+I1MqVdxsIXUMsM0hyrzjIsM
-	 6Ljfe42+IBIkEG6BaZUrZGQJiSpf3Iwqhim7jPyojQaD0g2SXtfNlgq8lZOcYzvVpr
-	 3oAtCdKXPtUqQ==
-Date: Mon, 11 May 2026 17:19:37 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Manish Baing <manishbaing2789@gmail.com>
-Cc: lee@kernel.org, ukleinek@kernel.org, linusw@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: mfd: st,stmpe: fix PWM schema and drop
- legacy binding
-Message-ID: <20260511-frisbee-boss-00653c53fd47@spud>
-References: <20260509193928.19030-1-manishbaing2789@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46923426688;
+	Mon, 11 May 2026 16:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778516553; cv=pass; b=VJ1aun763jkwRsJpV9Vl8HQ+DCR/XGVrpGS6HZQXB9GWPrHap2iare4LvsVH7FmswbrvlSHweCfZmHpdEoW9frE6WhqvH35jdMZfhbWqURGcDkqAeWSMr5R8D5cMdoqQOf7BDahAI1ay3/4ZFViF+AKINdZKJdtOTBt7hzJqN1I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778516553; c=relaxed/simple;
+	bh=1+xSj/0r2GUZxyrqXhfvgm9GiDZtkYQa8vYuw9N9wsY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eQU8WvsPCRD20BqBpRwRqfUlf/hJnHfkE3nNTOBU6cS9kjAy8KeQsqVGygieQOz3Ido+pjgUcB/img8YxOeq6YuT+1TPs9JkiIY06vDsYfdBTMv2zvs5+nDU0jf9hVoi17XA2W5UxO4o5lAuen9tbTH1oF4UOBHT5Gcz7lNNCd4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=aVA5ALES; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1778516507; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=nQA6Y6JO4vlyV7DDVuzOlG2yGYi5kGtKuIxJfJ9vZW3RaQZ5TZFs3DyVe5doq9QFkadyJ2ahPO27f7Koef+GBoQVlbAmeDB8QXSPFpqxgFpbRPVCC+xaaL+stI5G0Yu/LufPP307oFStV/kWRuSxycNftkCyTN2X5sDq0ItjVGY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1778516507; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=e19MX8CU+PB58q/Ph/E5Ue6KATJv/lo98521aDrCffw=; 
+	b=e62aMLyUokucuOkHduLUqEuFNl3s7rGu+zDhLmM1m/Dq0CPDgyDCzKT9VPciaL9Ug73wcSbzxnKzxe1K0zw+tixBfydWhHN3CWvq/dFxgyqUVol4q03G6RfqTE+jmVRSGLPgwIy+mp9FiTMfVacjZF4Dk1SeQ1/YTM/UZBNz0BU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1778516507;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=e19MX8CU+PB58q/Ph/E5Ue6KATJv/lo98521aDrCffw=;
+	b=aVA5ALESMkFpnXqD29o2M8OghNp+RcroIizOSQCjgentZBrUVJiZmL9Vn5lOeaxg
+	MlriF7P3GeiNYQRhUmrsAjwLNn8j+hJ6+QPvLWWEgPK/LHV3LRiG31DbX4mzeCg0J3X
+	RdMSvQM6vC6BeT8Z5tjqNuzKmPqy0zzm3tu+Quho=
+Received: by mx.zohomail.com with SMTPS id 17785165060441003.195712507633;
+	Mon, 11 May 2026 09:21:46 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: kernel@collabora.com, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: Re: [PATCH v3 0/4] ROCK 4D audio enablement
+Date: Mon, 11 May 2026 18:21:40 +0200
+Message-ID: <wE1x9P2vQlC8kihOSm9uOA@collabora.com>
+In-Reply-To: <20260408-rock4d-audio-v3-0-49e43c3c2a68@collabora.com>
+References: <20260408-rock4d-audio-v3-0-49e43c3c2a68@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KXR1VqJkuf+OgG2z"
-Content-Disposition: inline
-In-Reply-To: <20260509193928.19030-1-manishbaing2789@gmail.com>
-X-Rspamd-Queue-Id: 6FA4A512140
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-Rspamd-Queue-Id: 4DC28512C9C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	CTE_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-295693-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295695-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,bootlin.com,sntech.de];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,foss.st.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,collabora.com:mid,collabora.com:dkim]
 X-Rspamd-Action: no action
 
+Hi Alexandre, and other maintainers,
 
---KXR1VqJkuf+OgG2z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wednesday, 8 April 2026 19:49:38 Central European Summer Time Nicolas Frattaroli wrote:
+> The ROCK 4D uses an ADC input to distinguish between a headphone (i.e.,
+> no mic) and a headset (i.e., with mic). After some searching, it appears
+> that the closest we can get to modelling this is by sending a particular
+> switch input event.
+> 
+> So this series modifies the adc-keys bindings, extends the adc-keys
+> driver to allow sending other input types as well, and then adds the
+> analog audio nodes to ROCK 4D's device tree.
+> 
+> It should be noted that analog capture from the TRRS jack currently
+> results in completely digitally silent audio for me, i.e. no data other
+> than 0xFF. There's a few reasons why this could happen, chief among them
+> that my SAI driver is broken or that the ES8328 codec driver is once
+> again broken. The DAPM routes when graphed out look fine though. So the
+> DTS part is correct, and I can fix the broken capture in a separate
+> follow-up patch that doesn't have to include DT people.
+> 
+> Another possibility is that my phone headset, despite being 4 rings and
+> having a little pin hole at the back of the volume doodad, does not
+> actually have a microphone, but in that case I'd still expect some noise
+> in the PCM. Maybe it's just shy.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+> Changes in v3:
+> - bindings: use unevaluatedProperties instead of explicitly mentioning
+>   linux,input-type.
+> - Link to v2: https://lore.kernel.org/r/20251215-rock4d-audio-v2-0-82a61de39b4c@collabora.com
+> 
+> Changes in v2:
+> - Drop HDMI audio patch, as it was already merged.
+> - adc-keys: rename "keycode" to "code".
+> - adc-keys: make the keycode (now "code") local a u32 instead of an int
+> - adc-keys: only allow EV_KEY and EV_SW for now. Rename patch
+>   accordingly.
+> - adc-keys: Add another patch to rework probe function error logging.
+> - Link to v1: https://lore.kernel.org/r/20250630-rock4d-audio-v1-0-0b3c8e8fda9c@collabora.com
+> 
+> ---
+> Nicolas Frattaroli (4):
+>       dt-bindings: input: adc-keys: allow all input properties
+>       Input: adc-keys - support EV_SW as well, not just EV_KEY.
+>       Input: adc-keys - Use dev_err_probe in probe function
+>       arm64: dts: rockchip: add analog audio to ROCK 4D
+> 
+>  .../devicetree/bindings/input/adc-keys.yaml        | 17 ++--
+>  arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts    | 90 ++++++++++++++++++++++
+>  drivers/input/keyboard/adc-keys.c                  | 88 ++++++++++-----------
+>  3 files changed, 147 insertions(+), 48 deletions(-)
+> ---
+> base-commit: 8de395f35e79d9168a78504fed495578ec7bac52
+> change-id: 20250627-rock4d-audio-cfc07f168a08
+> 
+> Best regards,
+> --  
+> Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> 
+> 
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+What's the path forward here? All the patches are reviewed, but it
+has been almost a month without them being applied now.
 
---KXR1VqJkuf+OgG2z
-Content-Type: application/pgp-signature; name="signature.asc"
+Which tree(s) would this be applied to, and who should I poke?
 
------BEGIN PGP SIGNATURE-----
+Thanks :)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagIBmQAKCRB4tDGHoIJi
-0qCMAQDhDpruGAoFgO2RUtQlivn9XcuSUa9Y8R0GXhaqpERu3gEAvM7LyeQiv/2u
-fF9MGycLBRVQ89lLxkL9Ow/EIPU1Pgs=
-=vIpv
------END PGP SIGNATURE-----
+Kind regards,
+Nicolas Frattaroli
 
---KXR1VqJkuf+OgG2z--
+
+
 
