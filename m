@@ -1,143 +1,192 @@
-Return-Path: <devicetree+bounces-295703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295704-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WG7LCY4DAmrknAEAu9opvQ
-	(envelope-from <devicetree+bounces-295703-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 18:27:58 +0200
+	id KGOOLKEMAmoSngEAu9opvQ
+	(envelope-from <devicetree+bounces-295704-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 19:06:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18E05121EF
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 18:27:57 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB59F513087
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 19:06:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 886D5300749B
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:27:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BADE330A3CC7
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42883D667D;
-	Mon, 11 May 2026 16:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE314279E4;
+	Mon, 11 May 2026 16:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFPorXmO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gcmyAxHA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B3F3FFAB2;
-	Mon, 11 May 2026 16:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F1A1339B1;
+	Mon, 11 May 2026 16:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778516860; cv=none; b=t+GNN/xZyLkaPDBEugrw6zCWPIVkKSeIFLrU86jKwAJwf20NIA597w9ayhenImDKEbQnCU8+3zbqy8KmTWYQ9Z9X5EWch5A9UKpmmCcq0Hu86Pyob/DGBHEUuusdVFGkb2eIHy7/4HA2MqOQFqefk1pPV+NLiLs+8P6kAJvhEEU=
+	t=1778516874; cv=none; b=QgaiF3qyrbHpI4gtLCllU+yRU6njQokSzZv2t9AzFYILsqzQ7MFfxjSHIrIrNeFXZfc4hi0aTCI1FeiSSIh9qDd47OWXZRuygDNGpzdVpvK8QxcZ1HzM8+F0/Mcc3DPWR7kVqwHnF2k8NqjTAog1LI8H7dQOiG1XROMWVKusiaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778516860; c=relaxed/simple;
-	bh=BBVqtaERJSrNr2MANl4kxg7k3rO7Ou9Ei8riFRQh3vs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LhENF8wWRNpBlK995kc9vftTwkqfayPNrkOiI5V12wix+2+I0GNk42v9REiHNAeS+addrBU9aEvIJGVrzAKC4XjpNWBOyeHqIA7h+/W+CSLZALVfWZ6GJvb78FTO+QhMcNgt+afnHW5gIoHWbjNXcxvHk21xMO59rL/IH3zKXQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFPorXmO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41102C2BCC9;
-	Mon, 11 May 2026 16:27:33 +0000 (UTC)
+	s=arc-20240116; t=1778516874; c=relaxed/simple;
+	bh=V0wLh5KRspfOQ3ibRR/1QYF8R6kmly0cfDdqmRIJqvQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VuyUnFkyFi4MBrxHV8698TfgL7O7ba27y/MRpjQEWQ6D9YPX73dBHxF/yohGJpXbLYDaFtRR79KlMCZt59JHKXtljAHXNIEa4qnNXpdE9j9Ll9lpxjUZoJjmV0dq2MI58SM6funrhQeAGUIVWny1EjI8cC4HbSn6na41wy1Hkqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gcmyAxHA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BBCC2BCB0;
+	Mon, 11 May 2026 16:27:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778516860;
-	bh=BBVqtaERJSrNr2MANl4kxg7k3rO7Ou9Ei8riFRQh3vs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MFPorXmOLEjjxToQ0+xb6E7fMYWMiz65K1Wk6QuX5leUjLdaCn6CZkLGebPyTlUFt
-	 zR+tY22uUl3P2VYjkAKKTjyk2J9UCtTPSMNCVFwLcwYx2vRe47QyMAkKotNuIWFyT3
-	 Fxf6PK8W+SdRM7XLnucnvNxHUiWrIr0kuF0geibyB8xqQp8TkP5BaWEi3lhyqaU7Lm
-	 byAtYabatex0I6JRa+XWLWq7mwPccp3BjLLal6Br9PIK9pTOZbBVPM1ygNxrG7Y0F0
-	 TRXOAzisU91gYrG1pdYJwgttUbjR7+DHoUpco2x+CApcSx6gOX8VuxyO0PU3lCcF12
-	 7z3B07Fi82xTQ==
-Date: Mon, 11 May 2026 17:27:29 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antony Kurniawan Soemardi <linux@smankusors.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Linus Walleij
- <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, phone-devel@vger.kernel.org, Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>, Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>, Andy Shevchenko
- <andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v6 0/4] iio: adc: qcom-pm8xxx-xoadc: add support for
- reading channel labels from DT
-Message-ID: <20260511172729.42407b1d@jic23-huawei>
-In-Reply-To: <20260510-pm8xxx-xoadc-label-v6-0-49700fd03005@smankusors.com>
-References: <20260510-pm8xxx-xoadc-label-v6-0-49700fd03005@smankusors.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20201202; t=1778516873;
+	bh=V0wLh5KRspfOQ3ibRR/1QYF8R6kmly0cfDdqmRIJqvQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gcmyAxHAKFs6NB3meRHb14KoC6R9ksltSt15rHaXzZGZv3SOCwBupe3Q67oel5/qb
+	 hMr4Q0I75R456Sean1nvn2ql0Nv/q/NKL/jC1Hsco3Td8/+uB0HIRTYeq1wy0KrVHJ
+	 3/xT33SBXpz13eLPMF9CcEKP3UbhDX0t0qEsmzSwishRclNtw88eAZH0nIxnaQR+ZU
+	 zcWleaZH9FTxJde+jDXQPhnFBFqhtk2GlcNAMgH2dy86LrHK8hQoXO7MctjL4zMFAs
+	 nGFoSEGnTTLKfHtSopIXrClD54+3IG/wR+B8JApKw0cuRc2f1RMh0qrGp9PxIaBOal
+	 zRUinbWJtU2Qg==
+Date: Mon, 11 May 2026 17:27:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Arnab Layek <arnab.layek@mediatek.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2 1/1] dt-bindings: remoteproc: mtk,scp: Allow multiple
+ memory regions for MT8188
+Message-ID: <20260511-uncouth-pandemic-080dccd30f4b@spud>
+References: <20260506133157.3283204-1-arnab.layek@mediatek.com>
+ <20260511121004.2984149-1-arnab.layek@mediatek.com>
+ <20260511121004.2984149-2-arnab.layek@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: D18E05121EF
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Cth8D7RmP7y3OUje"
+Content-Disposition: inline
+In-Reply-To: <20260511121004.2984149-2-arnab.layek@mediatek.com>
+X-Rspamd-Queue-Id: AB59F513087
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-295703-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-295704-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,mediatek.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smankusors.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Sun, 10 May 2026 07:01:29 +0000 (UTC)
-Antony Kurniawan Soemardi <linux@smankusors.com> wrote:
 
-> This series adds support for reading channel labels from the device tree
-> in the Qualcomm PM8xxx XOADC driver, along with the corresponding DT
-> updates for the PM8921 PMIC. Also removes the redundant error logs when
-> reading values, as returning -EINVAL and -ETIMEDOUT are sufficient to
-> report failures.
+--Cth8D7RmP7y3OUje
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 11, 2026 at 08:10:04PM +0800, Arnab Layek wrote:
+> The MT8188 SCP requires two reserved memory regions:
+> 1. Main SCP SRAM memory region (required)
+> 2. SCP L1TCM memory region (optional, for additional memory)
 >=20
-> This series also includes minor refactoring, such as removing redundant
-> error loggings.
+> Some other MediaTek SoCs only use a single memory region. This patch adds
+> a conditional schema using if/then to allow 1-2 memory regions
+> specifically for mediatek,mt8188-scp and mediatek,mt8188-scp-dual
+> compatibles, while keeping the default maxItems: 1 for other
+> SoCs.
 >=20
-> Tested on Sony Xperia SP (PM8921):
-> > cat /sys/bus/iio/devices/iio\:device0/in_voltage7_label =20
-> usb_vbus
-> > cat /sys/bus/iio/devices/iio\:device0/in_temp12_label =20
-> ref_muxoff
-> > sensors =20
-> iio_hwmon-isa-0000
-> Adapter: ISA adapter
-> vbat:        267.86 V
-> dcin:          4.82 kV
-> ...
-> chg_temp:    +1071.4=C2=B0C
+> Each memory region is documented with descriptions to
+> clarify their purpose, following the pattern used in other bindings.
 >=20
-> Note: the sensor readings above are incorrect due to pending calibration
-> fixes are not included in this series. This patch only addresses label
-> visibility. The values are expected to be wrong until the calibration
-> fixes lands separately.
-Applied patches 3 and 4 to the testing branch of iio.git.
+> Signed-off-by: Arnab Layek <arnab.layek@mediatek.com>
+> ---
+>  .../bindings/remoteproc/mtk,scp.yaml          | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/=
+Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> index bdbb12118da4..df13be2026a6 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> @@ -205,6 +205,27 @@ allOf:
+>            items:
+>              - const: cfg
+>              - const: l1tcm
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - mediatek,mt8188-scp
+> +            - mediatek,mt8188-scp-dual
+> +    then:
+> +      properties:
+> +        memory-region:
+> +          minItems: 1
+> +          items:
+> +            - description: Main SCP SRAM memory region
+> +            - description: Optional SCP L1TCM memory region
+> +      patternProperties:
+> +        "^scp@[a-f0-9]+$":
+> +          properties:
+> +            memory-region:
+> +              minItems: 1
+> +              items:
+> +                - description: Main SCP SRAM memory region
+> +                - description: Optional SCP L1TCM memory region
 
-When I get caught up with the backlog and the tests finish I'll push that
-out as togreg for linux-next to pick up.
+Does this even work, given that memory-region has maxItems: 1 outside
+the conditional section?
 
-Thanks,
+Cheers,
+Conor.
 
-Jonathan
+> =20
+>  additionalProperties: false
+> =20
+> --=20
+> 2.45.2
+>=20
+
+--Cth8D7RmP7y3OUje
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagIDhAAKCRB4tDGHoIJi
+0l1KAP4ogMR4hY4vl2iFHrcWq1THHYzittMIqmeoOyXVWNsTAAEAuFti4lcrCBUc
++MZz9rCNT0pG273MQ05Xxrr/JE7IJgc=
+=tkTv
+-----END PGP SIGNATURE-----
+
+--Cth8D7RmP7y3OUje--
 
