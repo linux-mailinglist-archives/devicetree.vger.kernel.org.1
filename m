@@ -1,149 +1,167 @@
-Return-Path: <devicetree+bounces-295535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOjsBezGAWoRjwEAu9opvQ
-	(envelope-from <devicetree+bounces-295535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:09:16 +0200
+	id B2m2BRIoAWrXRQEAu9opvQ
+	(envelope-from <devicetree+bounces-295212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 02:51:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC74150D5BF
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 14:09:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BF7506EFA
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 02:51:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A023305D5D4
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 12:02:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0432300AB16
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 00:51:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08940377ECC;
-	Mon, 11 May 2026 12:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039CC1A6815;
+	Mon, 11 May 2026 00:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JEwReGmh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HlzLj52V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D945B30100D;
-	Mon, 11 May 2026 12:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D512B1624D5;
+	Mon, 11 May 2026 00:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778500954; cv=none; b=QAko4OF8fsXdbwZ3Rot+NewDNh3EtBI9uP4vq/ITjpYHm7CbUv7E9Xx1MTw0nNGd7Q8mdDZaotxHfHDDOm3QnMlkz198JO7J20Garr2QwA3+fwA2CLQsXskweBsbytNoE4jA8xp+w+La7wIMaibXU7T2cqK5v2QwIBiFwE7fjAM=
+	t=1778460685; cv=none; b=O5fui56SeQrBKEcLxtYmiedQeT1H3HF36i1gJahgOUR/pyPD81gS6Og1hZYcTqNR+0xQb+kSSiPzFrtsbq0U9xk0KTN10P3BQ2duelE5jxU+JU7dDKlqVSZzOOBtyg9dekT2WjBlpEKQbRkgmTQYQvAqv3stBz9tNaZab5f8w8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778500954; c=relaxed/simple;
-	bh=pZJkZbNMWuYB15AGPaBjM3k6a1sz9Bd5UejwtZhb6ew=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DgrNbkXn0hbxcuZ7TqLpYmTnE598s16g6ODVWygj+kqwIC5FZbvKpSRGXo+x0JU97UjIWi27NnT5xfUz3BNAe6GG092sL+l5GvgQUVYdbWPXuXaj9ImkxfDugcHy7IhSJSnHf3fc/sCbBWbNnOwam4FtGRPhVGV+b8BqyB3aiYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JEwReGmh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5470C2BCC9;
-	Mon, 11 May 2026 12:02:31 +0000 (UTC)
+	s=arc-20240116; t=1778460685; c=relaxed/simple;
+	bh=bW7iEDAxV2cuu1P3oTsB3AolrV0RqGPRVJAJ8g1Fewo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=na2KP+cvtV2hCQV2kuDklsuTMshhPjelJYFhQ7hBa3sUZrAjbobV2S2fIzpmInyafe8S/av0IAFK308AKOCdBRJcZ6XjUE84VOKojcm5ptSExIEh5x1xZAIxyWr5fOCmUUi7+/zvAV950ixievahGum/qbETA0RA+gJAcn92wLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HlzLj52V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 525A4C2BCB8;
+	Mon, 11 May 2026 00:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778500954;
-	bh=pZJkZbNMWuYB15AGPaBjM3k6a1sz9Bd5UejwtZhb6ew=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=JEwReGmhxpqf6HDQRgFFNB5nq9yOJCVYhGlkmSDcEYS+OMs+T/6815hNcFTruppbm
-	 Vg7zhaBqwNBIhIj+WmRy1AY/cucWaLpvSd5M/1G6y3gT3bKtLGZxpE14+PMvzH4Ex7
-	 sIruH+bHOmbhSAfHoPw2YOthRUTc7+tYLfii7FdHfR/3tH0t5Fn0/oeTbNq9uWouhi
-	 XhwrqPbu1nB5cGg2EhFY0V+KcBfyXVhQFhAh+IUkEFb3R6OmTGijw6o/51qJ6OsRE7
-	 1oh4eh+CUPdnYxFk+FErqpwMWHw2tNo8y11FSf15DYvdwRjEB4cvcrbLJIlTn8xvh3
-	 5yHVAv9vKuqDA==
+	s=k20201202; t=1778460685;
+	bh=bW7iEDAxV2cuu1P3oTsB3AolrV0RqGPRVJAJ8g1Fewo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HlzLj52VpPQ8s6bREmJsAGkGaPifpDpMhLtdxpPFIwajYWUpAMaAz4TNBvfoPHxMA
+	 +3DuDncB762vrzTI9y5b1uaqd7JGd/foVPouWcPXOYeb39Oy8XzjR/jYV5d2XhUl/B
+	 x1ejXy6vxyeO3tAF5kNYSpQ8Ox2NEnQ6oR8LLytAEjJj/bZkge0Wz9TTTwkoP1wqGA
+	 mJcJwOu/LjhEkCssi2UoAV+4jkSZvV7nLWa0/1LV7QqcgUMwARYd0CwJJq94HYp3qS
+	 9PHD99H5AD4mNzeJJRBcWXRyyuEAGMuRLPHa/u5jg0Qo28Iix66v9bDXbHq40MMMq6
+	 uQbKoV/qd/EXQ==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 2D7B61AC589A; Mon, 11 May 2026 01:51:23 +0100 (BST)
+Date: Mon, 11 May 2026 09:51:23 +0900
 From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Koro Chen <koro.chen@mediatek.com>, 
- Khushal Chitturi <khushalchitturi@gmail.com>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-In-Reply-To: <20260508182438.1757394-1-robh@kernel.org>
-References: <20260508182438.1757394-1-robh@kernel.org>
-Subject: Re: [PATCH] ASoC; dt-bindings: mediatek,mt8173-rt5650-rt5514: Fix
- mediatek,audio-codec constraints
-Message-Id: <177845931313.986162.9763116539859860272.b4-ty@b4>
-Date: Mon, 11 May 2026 09:28:33 +0900
+To: azkali.limited@gmail.com, Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Philippe Simons <simons.philippe@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] regulator: add support for SGMicro SGM3804
+Message-ID: <agEoC0kdKoOVrjne@sirena.co.uk>
+References: <20260510-sgm3804-v1-0-e5e8799e0aa0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1195; i=broonie@kernel.org;
- h=from:subject:message-id; bh=pZJkZbNMWuYB15AGPaBjM3k6a1sz9Bd5UejwtZhb6ew=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqAcVWJI8vRFzFPLcZrIWWYdMOiEminb0Csii3j
- XUrPgL/QpSJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCagHFVgAKCRAk1otyXVSH
- 0Id2B/9kPH6WFHX0ONVLwiRtWJrub0jsomL+jc1hu1AhMnPLLzpNzW7b3sujof0AACRgmYYnJxU
- Qpt+6KfOODojZgJzPZ3LAdYA9oVSmnyOFbrkgV55zhDDOzH/39//f8HJkGovJLA2WEP1AcCLQ72
- hN6puascRiRwbXkaps3Szpr1T/Rj0UBH6YI0gmPqBZCGjcnOz4P83Egm4g+vt2e0vdjMKWvzStv
- huP0JdoA30zP7GNqujWmDw0ubKCgRwPdQNzfx+obEKC7u0v5uCI99T/0m0s7cm6VmTxE/apCERp
- nBVspPnZxzvJdx8qIZqELYKTfG/+/Rqh++hADPECM7S4H1bQ
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Rspamd-Queue-Id: AC74150D5BF
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="0B/qjLgUOVPVJIqz"
+Content-Disposition: inline
+In-Reply-To: <20260510-sgm3804-v1-0-e5e8799e0aa0@gmail.com>
+X-Cookie: Truckers welcome.
+X-Rspamd-Queue-Id: 62BF7506EFA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com,mediatek.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295535-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295212-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Fri, 08 May 2026 13:24:37 -0500, Rob Herring (Arm) wrote:
-> ASoC; dt-bindings: mediatek,mt8173-rt5650-rt5514: Fix mediatek,audio-codec constraints
 
-Applied to
+--0B/qjLgUOVPVJIqz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.1
+On Sun, May 10, 2026 at 11:45:25PM +0700, Alexandre Hamamdjian via B4 Relay=
+ wrote:
+> This series adds support for the SGMicro SGM3804, an I2C-controlled
+> positive/negative output charge-pump regulator. The chip is used to
+> generate the AVDD/AVEE rails for display panels and is present on the
+> Ayaneo Pocket DS handheld, where it powers the panel and is required
+> before any panel driver can light up the display.
 
-Thanks!
+There is a separate series from Neil Armstrong (Cced) already in review
+for the same part.  Please sort out what to do about this between
+yourselves.
 
-[1/1] ASoC; dt-bindings: mediatek,mt8173-rt5650-rt5514: Fix mediatek,audio-codec constraints
-      https://git.kernel.org/broonie/sound/c/cb196d50a78d
+>=20
+> The Ayaneo Pocket DS device tree, posted as a separate series, depends
+> on the binding introduced here to describe its panel power supply, so
+> this series is a prerequisite for that work and for any subsequent
+> panel-related patches targeting the same board.
+>=20
+> Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
+> ---
+> Alexandre Hamamdjian (2):
+>       dt-bindings: regulator: add SGMicro SGM3804
+>       regulator: sgm3804: add SGMicro SGM3804 charge-pump regulator driver
+>=20
+>  .../bindings/regulator/sgmicro,sgm3804.yaml        |  60 ++++++++
+>  MAINTAINERS                                        |   7 +
+>  drivers/regulator/Kconfig                          |  11 ++
+>  drivers/regulator/Makefile                         |   1 +
+>  drivers/regulator/sgm3804-regulator.c              | 164 +++++++++++++++=
+++++++
+>  5 files changed, 243 insertions(+)
+> ---
+> base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+> change-id: 20260510-sgm3804-c37a0ae6d7f3
+>=20
+> Best regards,
+> -- =20
+> Alexandre Hamamdjian <azkali.limited@gmail.com>
+>=20
+>=20
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+--0B/qjLgUOVPVJIqz
+Content-Type: application/pgp-signature; name="signature.asc"
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+-----BEGIN PGP SIGNATURE-----
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoBKAoACgkQJNaLcl1U
+h9AKNgf/WAt9xfM3/FF3Ms0wVg3z1uo+B4pJdOQZdXcdoBzjgfGMIJfk/S6TEfwS
+OVHfCwhlNrxVZs+XAtt+lLJGGpMON2T6No7bQiY/evn6Cn+YHHzx4/xHdUP0tox3
+zRokmUu2TAfvgjNmuzPxCicfwW8EMGDRVkK306aD80N5EIAKTpRx7Ek4ihxR62PN
+08MqDbHKLtV1cAn8LZIfsFb/+e7bMfz9TTRCVhlecfIThEy3OW7pp9HPMW5OLEop
+Nn7tmx4tRqiyEmlWPWuGDLygjPdmJXTFvFPPt+J68xgd93sagnaPfsWF3id4ZZ6H
+pEc3ksK5k9wYp4Ud/MbB7vtdgciD7g==
+=HMKG
+-----END PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+--0B/qjLgUOVPVJIqz--
 
