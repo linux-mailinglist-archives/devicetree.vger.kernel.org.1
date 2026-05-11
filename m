@@ -1,112 +1,70 @@
-Return-Path: <devicetree+bounces-295869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295870-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eK6dGL1hAmq+sAEAu9opvQ
-	(envelope-from <devicetree+bounces-295869-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:09:49 +0200
+	id 4MO/HvlhAmposAEAu9opvQ
+	(envelope-from <devicetree+bounces-295870-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:10:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1AB35172A8
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CED4D5172E7
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:10:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECD86301AB9C
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 23:09:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D3A63019828
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 23:10:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E25D356742;
-	Mon, 11 May 2026 23:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9801933B6F8;
+	Mon, 11 May 2026 23:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tD+ZfEvW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BJlQGqAy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED065383326;
-	Mon, 11 May 2026 23:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751C828C869
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 23:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778540978; cv=none; b=pmXw3lk/HAYZ85lDKj6lcDH63BBD++Y4QhK6NTBo1JKhcKgxgzXMFsWEckVUpRP9QX516o3SDgnEAfv2Cr+M43nhDz3tQIqO9NrMl396CDsLMG3Win8zf0QPDyzPhC/TNIJ47CLgc6oSJf7eZYqzCCLmfipS4awZ12sutn38Axo=
+	t=1778541010; cv=none; b=WSCzzrkU9lIKjBAF88D3t+lrYpGEwbWqT+f8oaL3K+Ba3iqsMubiMZmW2vglP1GdwT1/khIBqOPvF62qPnkrKK7BAG4dOAPEKiPk/LGgMo9uh1WtAo7ai6BXhTb/fDb+FyT/XObG77s8Ddc6T2CyG4w0vvF45KTkCltCs+Ux1ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778540978; c=relaxed/simple;
-	bh=oNHvi4oxjrwBg8WrHDE3QBzWxrrrcye8fddyPM6VQbA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dQOaUuGeXqho+dz3KqLke3ln/mNV5X1o50kObxFzxbLjNwyNaguacJ3vpsIC1kysD1G407pu7EB1vBVoTJwR+cWG9+obvYWL3qbYP2KHXIWOh6XXxdjG6jRZdtUJ+MEfHDLJPd55jBNs6qEged4ylEWc5vifNKknfaUM2c7h+C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tD+ZfEvW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14A85C2BCB0;
-	Mon, 11 May 2026 23:09:34 +0000 (UTC)
+	s=arc-20240116; t=1778541010; c=relaxed/simple;
+	bh=zqZRFT8l8ZZ8lTHMOkurlQmWeEjBL4msIMCEGUHPL8Y=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=fK/iPCBQo0PkWDenqkxaks8Pn1AKYXVKzqhO9WuEafuuCcG5XM+thUQcLYxGRhqTgQT4BmnjDNyBYfnPR9T4aHbTFoK3UnXXL+ju6QyUW0qPeuT1vGgZqLCw7drE/UrFSuZF2CviB5O76QF2iOe5DTdxg9ZjJqXT43QNYjACVcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BJlQGqAy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4B25C2BCB0;
+	Mon, 11 May 2026 23:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778540977;
-	bh=oNHvi4oxjrwBg8WrHDE3QBzWxrrrcye8fddyPM6VQbA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tD+ZfEvWY6zNN4Rotzj2Kp774to8Jqfnshu16QaCSxae/YvNmIW1jJarDiSqRocLW
-	 tVWXp2unxM4GrbwI8ccU9NuxPbVmKtlXWfhqTwPqsWIzA3IXkI6Mw7gvJarAMhhnav
-	 4w7IG99LKdnePjTd7/1hspEy91ix6y9dJ2WXOuUaT/ZHKcvtonxXqc5IM/OfHzcsXg
-	 Y5XTqNcIhhX5X1Vkal6gpxp4Idmf/UG1Ay+iIvry5nvDAEfdcLGJOquwRABQvM0l/v
-	 2AVlu3J20fhPTcD5ytxrwUBJ+Z/V4weIlqOdaX/2/EjzqbldOYkjqBKe+jZgv//gqd
-	 70uwh/Pbbat8Q==
-Date: Mon, 11 May 2026 16:09:32 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li
- <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>, Akhil P Oommen
- <akhilpo@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Abhinav
- Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>, Vinod Koul
- <vkoul@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>, Jackson Lee
- <jackson.lee@chipsnmedia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Mirela Rabulea <mirela.rabulea@nxp.com>, Detlev Casanova
- <detlev.casanova@collabora.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Heiko Stuebner <heiko@sntech.de>, Hugues
- Fruchet <hugues.fruchet@foss.st.com>, Alain Volmat
- <alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, MD Danish
- Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, Parvathi
- Pudi <parvathi@couthit.com>, Mohan Reddy Putluru <pmohan@couthit.com>,
- Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
- <mathieu.poirier@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michal Simek
- <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Linus Walleij
- <linusw@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau
- <nbd@nbd.name>, "Andrew F. Davis" <afd@ti.com>, Hussain Khaja
- <basharath@couthit.com>, Suman Anna <s-anna@ti.com>, Ben Levinsky
- <ben.levinsky@amd.com>, Tanmay Shah <tanmay.shah@amd.com>, Erwan Leray
- <erwan.leray@foss.st.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
- Roger Quadros <rogerq@ti.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
-Message-ID: <20260511160932.0e2cf50a@kernel.org>
-In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
-References: <20260511165942.2774868-1-robh@kernel.org>
+	s=k20201202; t=1778541010;
+	bh=zqZRFT8l8ZZ8lTHMOkurlQmWeEjBL4msIMCEGUHPL8Y=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=BJlQGqAylShJ/lVdHRi88PvpBqLMIAcRbeagM4uLLHqmPlMJHL3JhErNZhGEIJxQz
+	 R9SNSoJsLr8OpdG4f82ilsE6Ar8PId2uKLeEl15NHm+f/XEqtKbY7x5FiAQ1TsPkuU
+	 Rj22jxG7Zsw71foJzi2Fs/y9/e+5X1ktJAppVtb5n7E3JaGqlB93bubh2vxFX7YWVu
+	 5943KMIrkaSFQnsrjRKthpIpq4CLf9nhQYqSTJy7jD/JCDPGQTqEq+BU/5g1ggfarv
+	 tabm/bbSY60eWeClfqtausFEs93rxFg/qit2lAcWgtqnCxps+0EkL+RxPuvDLlg50Q
+	 AJ+i8uNxqds/Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 10/11] iio: adc: hx711: pass iio_chan_spec to
+ hx711_reset_read
+Reply-To: sashiko@lists.linux.dev
+To: "Piyush Patle" <piyushpatle228@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260510194947.31997-11-piyushpatle228@gmail.com>
+References: <20260510194947.31997-11-piyushpatle228@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 11 May 2026 23:10:08 +0000
+Message-Id: <20260511231009.D4B25C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: C1AB35172A8
+X-Rspamd-Queue-Id: CED4D5172E7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
@@ -115,31 +73,95 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,oss.qualcomm.com,poorly.run,linux.dev,somainline.org,chipsnmedia.com,collabora.com,vanguardiasur.com.ar,sntech.de,foss.st.com,lunn.ch,davemloft.net,google.com,redhat.com,ti.com,couthit.com,linaro.org,baylibre.com,googlemail.com,amd.com,nbd.name,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-295869-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295870-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,buffer.channel:url];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[79];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-On Mon, 11 May 2026 11:59:36 -0500 Rob Herring (Arm) wrote:
->  .../bindings/net/ti,icssg-prueth.yaml         |  2 +-
->  .../bindings/net/ti,icssm-prueth.yaml         |  2 +-
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The triggered buffer interrupt handler (`hx711_trigger`) erroneous=
+ly processes the IIO soft timestamp channel as a physical data channel, cau=
+sing an out-of-bounds array write and unintended hardware state mutations.
+--
 
-Acked-by: Jakub Kicinski <kuba@kernel.org>
+commit 44e12b9836d72a45314f8d5048344b3fe6398fb7
+Author: Piyush Patle <piyushpatle228@gmail.com>
+
+iio: adc: hx711: pass iio_chan_spec to hx711_reset_read
+
+Change hx711_reset_read() to accept the channel descriptor directly and
+split out the channel-selection work into a small helper.
+
+> diff --git a/drivers/iio/adc/hx711.c b/drivers/iio/adc/hx711.c
+> index b4cdd1dc98518..a0e73aa475de0 100644
+> --- a/drivers/iio/adc/hx711.c
+> +++ b/drivers/iio/adc/hx711.c
+
+[ ... ]
+
+> @@ -390,8 +405,8 @@ static irqreturn_t hx711_trigger(int irq, void *p)
+>  	memset(&hx711_data->buffer, 0, sizeof(hx711_data->buffer));
+> =20
+>  	iio_for_each_active_channel(indio_dev, i) {
+> -		hx711_data->buffer.channel[j] =3D hx711_reset_read(hx711_data,
+> -					indio_dev->channels[i].channel);
+> +		hx711_data->buffer.channel[j] =3D
+> +			hx711_reset_read(hx711_data, &indio_dev->channels[i]);
+
+When the IIO soft timestamp channel is enabled, does this loop also process
+it as a physical data channel?
+
+Since iio_for_each_active_channel() iterates over all set bits in the
+active_scan_mask, it includes the timestamp channel. For the timestamp
+channel, the .channel value is typically -1.
+
+Does passing the timestamp channel to hx711_reset_read() cause it to fall
+back to the channel B configuration, resulting in an unintended hardware
+state change and a slow physical read?
+
+Additionally, if all physical channels and the timestamp are active, does
+writing to hx711_data->buffer.channel[j] cause an out-of-bounds array write?
+The buffer.channel array only has room for the physical channels:
+
+struct {
+        u32 channel[2];
+        aligned_s64 timestamp;
+} buffer;
+
+While the out-of-bounds write happens to land in the adjacent timestamp
+struct member, this will trigger undefined behavior and can cause kernel
+panics when compiled with CONFIG_UBSAN_BOUNDS or CONFIG_FORTIFY_SOURCE.
+
+Could this be fixed by explicitly skipping the timestamp channel in the
+loop, such as checking if indio_dev->channels[i].type =3D=3D IIO_TIMESTAMP?
+
+>  		j++;
+>  	}
+>
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510194947.3199=
+7-1-piyushpatle228@gmail.com?part=3D10
 
