@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-295613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AKNkEVPjAWoqmAEAu9opvQ
-	(envelope-from <devicetree+bounces-295613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:10:27 +0200
+	id wB9POpDgAWptlgEAu9opvQ
+	(envelope-from <devicetree+bounces-295614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 15:58:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6170350FC5D
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:10:26 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B57350F7C3
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 15:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 461A63055857
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 13:57:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7A3E2301B6F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 13:57:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D993F7898;
-	Mon, 11 May 2026 13:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312643FBEAA;
+	Mon, 11 May 2026 13:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oqztsxt0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EZxQ5kuP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6646E3F9F49
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 13:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C163FB06D
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 13:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778507851; cv=none; b=slk81vQY+pJ8HCJylTTmp/zz7f5nleCCcuHicjikBpEY/JrBXTBJewXSxSSq2jcXpMtfqGfEfd9M926FbybaVQ8LnAULJeEj8KBUwl2tkGoHAFKh6eFbowszTzTtq70RcXpbz7QGeiBpUGi+qVlMDiSD/f/Geww6XoZRxiE4PhI=
+	t=1778507854; cv=none; b=OGbopGYDd3YmjDDt5x8eovrf9HV70MzdiOczX8tcQdIBd71KLQE7Uydc6Pa729G2p3QULtoxQYPgP9OHiY8+Me6wy8BhNYi408mBmyGHbJk91nYXcO1FD+jZsGYcHkUs/ftshSvZPIkagvvqocsmo4QZsye7CiACgJFHWYFXZVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778507851; c=relaxed/simple;
-	bh=ibm/ZDHMWfIYB/a+JVogHL3zgQTqT1cxj2txge0qJK4=;
+	s=arc-20240116; t=1778507854; c=relaxed/simple;
+	bh=E1H1+nd/RwnK9LuWJGKbmqe8Wgfvhjt2SMIIonrseao=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rIbETNt9q/3gWZZ5o7v+lEU7FZPiGkvdtObbt0Sb30VT7fvr7EHLQbab5hAG6RmQ5ZXOnbUF8SteFtLt1qSFfGfqUGZ5RUGkM2No5VZufUcjn99p88IzTO1ADiMKYUuZ2ehU15pQrrP6dJu6VdjJyZry7Hg1MNk9eAqfrFHaAX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oqztsxt0; arc=none smtp.client-ip=209.85.208.43
+	 MIME-Version; b=mnKgwlqfK1rEsO6yjtTsvIQi1W/KnwQsAeg0jROQckk5rM7vGL39LP1m7Ba3FZagy9mllmYITOZ+fW20UFZYhTE3ejPFG25TPsT0CTlQz4ZerttBi5z/CSoDDsIeYeke/p/VORt7QQhSZa1BpAHbdS8pGO8jiPwIjoMJgd9hwC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EZxQ5kuP; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-67f7caa33easo2808972a12.1
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 06:57:27 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-67c2b4809baso8631210a12.3
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 06:57:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778507844; x=1779112644; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778507847; x=1779112647; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+yZ2RV9klSfc79KrOIT+9nKykbDSPRLRaZkXlnlwwJM=;
-        b=Oqztsxt08VSED0yBq9y7gCvbNeIQsWzh6qCP6bEWpOdaH42iP9LOw/D6fGAQi8O7pP
-         8+T/5rP9lXkGXz2utuy3yO0zDbfmXhzJypfb6BgwM6PSQX0GCpNEM14v5BFNjmOov3Gn
-         vxaPdFefs6gvL0p3aCWOocLQqQo5BTYQrDwktwEq8VWzDpzN8toh2+prb+Ng2NNrP0xz
-         XhX00H0+39dIbVI/dH+NyThiFKEqNozZZR3B+4A0iu+cG+u6cxhhiHfjz21bwZ3E+ghv
-         4ZmQ7dgxb+4CkXeqhSUYaY50vct0v3vg3gyhxjPtxPBDVISq/a2x1EKKCpekXefD/C50
-         KmJQ==
+        bh=BY8lqIlaX558zAJe1pNahwarYdn7KKAgYehteYdm61E=;
+        b=EZxQ5kuPJDd822ELEn5XyU1VzeTw1w+Mjno0plhe6QQMrVl4pJkiu9MJGF7kX8Xo4l
+         gvM7IsTcSy+siGPSHFUR3253RsEOXHUFH+obV8+28ygPaOsSLAnxoqts3fG168PMYZCS
+         ALmmejwb4IxfNAMVXGTTK0UHND39pxpuqwy67e6qFOMIwDEhmvVYmI3gzBOXbL+okxDE
+         SvHv1ML8ayH1IPCCpJZuTAzu2+FS2xu7RQ0KsGgAbHcX9vDjEesCGTtqIQRzhN5dXlEI
+         6apD2MAkvfWbtQlWVHMWPJ9SNcVinNv0amZ6p8f0RGdzZaLGPT1Jq+6mmhQ1S1ayOtVZ
+         2VjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778507844; x=1779112644;
+        d=1e100.net; s=20251104; t=1778507847; x=1779112647;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=+yZ2RV9klSfc79KrOIT+9nKykbDSPRLRaZkXlnlwwJM=;
-        b=IBOzeoCfF3YsOwl7habOE/CoHJhUn4V6q2aHZjqxIE0nb68+i5fVesajHMM6vdEXoq
-         7sd8F5/oQl1bawN4uilt3uMXuIIwrJilN4Sp/mvOCS8cJTz2uspy4GeFXhaZnp4do4zL
-         xtTi1lK6ccWZ6YbpGm/jUpNLANF9RN8QlRTQf0BVFORSuo9i8d2tItkV+IIp2jQ0FTIO
-         BPXLJLy2FvqsD7uJBdTs7zvj5JK1epjU1ZBPX5qNip4P5VANokVvZ5dQgWdymHuUY+TQ
-         ZTImUn0Axjo53zqcR7RokUoitZbTt80krcVg5PfEWAlmkAa0jymllJtofb74GzoEwTVA
-         ehIg==
-X-Forwarded-Encrypted: i=1; AFNElJ+VI2o6uY2QgT6ZZdGs+rarkXKqZSXTkDdCa3XNvkIjKjcd81r6bCMS8qA2fTM7soH42/vCZk7ctZe+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtrpXXCYQxv3DP+zBZjH4yAxoe1+7GFYAOt8UZ7lqV4DwAsHhJ
-	fG4EDI8hhXeEaOLn+PfNdpDgwapKYXNBj9OLtADzR8FdeEWdUhLQDj7c
-X-Gm-Gg: Acq92OHhijcUSMyBiRsOECNAgvzuPRZqeeukRTGG5ZZmG2Ws9g1UO07nS+90rcGd7kK
-	uS655hSENrzNcHG1jvK2bKJsTaT12WtYalOweqSYwDiQnrgc4hJad2/UKVo4DiqmvcOIhcBaNty
-	SiSwVIMnqAzuRdUpmij7gQa6cYCZGgBfUxcFJZI/CaKW60FQ35jdQdD7i7bwQBZ1xXX/ib/V3Qh
-	6XAl6fufZlDpX7AGzqVuiTjc9xBFMkQB/SbwD8fcz5AwFc1I9p8rgcgBpmWw05dHXB5kPOdn5u+
-	W6lQib1HfZAugknCnAemwAuvE05IN1R5WVJQCBJAsFRqW4Sp8MUKutPiD9oBQm08CAAxYOTtJEh
-	XxG0w5JnjbYIgW+bVXWKW4wrzbJ33kkfsQtOVQWWE2TUCAPI+rDeLubE4MfVar+frG4EW3EGlLT
-	bPTxoqyAse4Nr4
-X-Received: by 2002:a05:6402:5297:b0:67e:2498:dc7e with SMTP id 4fb4d7f45d1cf-67e2498ddc9mr9228829a12.11.1778507844261;
-        Mon, 11 May 2026 06:57:24 -0700 (PDT)
+        bh=BY8lqIlaX558zAJe1pNahwarYdn7KKAgYehteYdm61E=;
+        b=KFfvbILIxdWTLs7tTXtuQBVGybiF2F5z2rjcIv3sqJpw6mLaQbbtUhiPZqf95VGCgt
+         ASNpC1asZS54Pe9ZpJ+3HIbff2x9kr+skTF2+XoUPSGyaifghxVsfyboCf3qT+5G676a
+         LXeRWSjFQtniim5wl1h9mZ7dVYyHcb48MZOFk1tnzaUAdB2rczVg7BCkwgpT8uTcQs6R
+         ndJmeGWsAwCwBkmfpPvzyufw7+IMWYtNa54Zh6tXScMJGKuP2mfm/bGQ3YTaPnF+MdM6
+         vVmQ/nn7Eu/FbfG0x+QpaqV1liT0PmrWEeehYle99RS2efA5cGVCMBKoWznXdW6R6Ipu
+         rF/Q==
+X-Forwarded-Encrypted: i=1; AFNElJ8ALSUdSpd9tLMKTQec89CXREQU8IHKETc2fhJHZQHOlVeqL2r0aylwMc4N49aGuC5cqbnjJ0vzmSKG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQoFKxZMv4lqNOMc5vAoQnwMAkeJqTSB8qCCf9DtbobNK4HUWi
+	yl0yOXrW8fBA8KvZFgLXh6jfvFg6cv69DBGI2FRidkzy74OX9Pzv+JM3
+X-Gm-Gg: Acq92OFQ7UeIn/sENbPvd3An21RQF/xocutB0yFXInzZ0SwZl+OiZPXfgXcc+1wiA1M
+	0K4Z9gYW5dOhIVBkHyAyAHCXpwRBngMu6/ytOO2dhltMGaQ4y5QOH4oZzsgLY79XKtBhmBKxJum
+	6ZW0CIRdutIG16GixpubEKMGL74OkOhnHJCCxgTTQ7g4eAQMECbx0Q1n+GfZwayDYY9kGxxpPca
+	UaK59XWU9yLleWdig0lR0wo/cZRRulKxueLe1IfSZlkyFV1VWvfkrM+V7BBAaJHyFIqsb/KqMNR
+	SmGsZ4j7h2oIkeCiGqqlFVsh+OEwWFjpUy0HD2uLTlFqoc5LxUtVYyG8fVT3m4/+DfuoU57bqkN
+	Ygs1+dmNqApFFygiVd+iEUTIrjlTJOqKdznTsQpi2e2CytfMkCDONInG7XuXeC4gEg/eNhITAgS
+	nFcLk71jP6WnUQ
+X-Received: by 2002:a17:907:fdcb:b0:b9d:3e5e:fd32 with SMTP id a640c23a62f3a-bc56a6498c3mr1324021866b.8.1778507846254;
+        Mon, 11 May 2026 06:57:26 -0700 (PDT)
 Received: from xeon ([188.163.112.56])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67ef0b3b904sm3685357a12.1.2026.05.11.06.57.22
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67ef0b3b904sm3685357a12.1.2026.05.11.06.57.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2026 06:57:23 -0700 (PDT)
+        Mon, 11 May 2026 06:57:25 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
@@ -98,9 +98,9 @@ Cc: netdev@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	linux-tegra@vger.kernel.org,
 	linux-usb@vger.kernel.org
-Subject: [PATCH v1 1/6] dt-bindings: usb: ci-hdrc-usb2: Document nvidia,external-control property
-Date: Mon, 11 May 2026 16:56:56 +0300
-Message-ID: <20260511135703.62470-2-clamor95@gmail.com>
+Subject: [PATCH v1 2/6] usb: chipidea: tegra: Avoid controller/PHY init if bus is externally controlled
+Date: Mon, 11 May 2026 16:56:57 +0300
+Message-ID: <20260511135703.62470-3-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260511135703.62470-1-clamor95@gmail.com>
 References: <20260511135703.62470-1-clamor95@gmail.com>
@@ -111,7 +111,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6170350FC5D
+X-Rspamd-Queue-Id: 8B57350F7C3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -127,7 +127,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-295613-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295614-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
 	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,linaro.org,nvidia.com,linuxfoundation.org,gmail.com];
@@ -139,40 +139,89 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	NEURAL_HAM(-0.00)[-0.982];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.985];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Document the nvidia,external-control property required, for example, for
-USB lines in HSIC mode connected to a modem, where the modem requires
-precise control over the USB bus to properly enumerate all its stages and
-intermediate devices.
+If the USB controller and PHY are externally controlled, then the
+registration of the controller and the PHY initialization should be
+skipped, since these configurations must be done by the device that
+controls the bus to work correctly.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/usb/chipidea/ci_hdrc_tegra.c | 36 +++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 14 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-index 691d6cf02c27..a13c1ef49a57 100644
---- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-@@ -75,6 +75,13 @@ properties:
-     type: boolean
-     deprecated: true
+diff --git a/drivers/usb/chipidea/ci_hdrc_tegra.c b/drivers/usb/chipidea/ci_hdrc_tegra.c
+index 372788f0f970..593390a818d1 100644
+--- a/drivers/usb/chipidea/ci_hdrc_tegra.c
++++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
+@@ -32,6 +32,7 @@ struct tegra_usb {
+ 	struct clk *clk;
  
-+  nvidia,external-control:
-+    description:
-+      Indicates that the controller is configured externally and that the host
-+      should not attempt to touch it. Usually used by a modem which requires
-+      precise bus configuration.
-+    type: boolean
+ 	bool needs_double_reset;
++	bool externally_controlled;
+ };
+ 
+ struct tegra_usb_soc_info {
+@@ -312,20 +313,25 @@ static int tegra_usb_probe(struct platform_device *pdev)
+ 	if (device_property_present(&pdev->dev, "nvidia,needs-double-reset"))
+ 		usb->needs_double_reset = true;
+ 
++	if (device_property_present(&pdev->dev, "nvidia,external-control"))
++		usb->externally_controlled = true;
 +
-   ulpi:
-     type: object
-     additionalProperties: false
+ 	err = tegra_usb_reset_controller(&pdev->dev);
+ 	if (err) {
+ 		dev_err_probe(&pdev->dev, err, "failed to reset controller");
+ 		goto fail_power_off;
+ 	}
+ 
+-	/*
+-	 * USB controller registers shouldn't be touched before PHY is
+-	 * initialized, otherwise CPU will hang because clocks are gated.
+-	 * PHY driver controls gating of internal USB clocks on Tegra.
+-	 */
+-	err = usb_phy_init(usb->phy);
+-	if (err)
+-		goto fail_power_off;
++	if (!usb->externally_controlled) {
++		/*
++		 * USB controller registers shouldn't be touched before PHY is
++		 * initialized, otherwise CPU will hang because clocks are gated.
++		 * PHY driver controls gating of internal USB clocks on Tegra.
++		 */
++		err = usb_phy_init(usb->phy);
++		if (err)
++			goto fail_power_off;
++	}
+ 
+ 	/* setup and register ChipIdea HDRC device */
+ 	usb->soc = soc;
+@@ -342,12 +348,14 @@ static int tegra_usb_probe(struct platform_device *pdev)
+ 	if (of_usb_get_phy_mode(pdev->dev.of_node) == USBPHY_INTERFACE_MODE_ULPI)
+ 		usb->data.flags &= ~CI_HDRC_SUPPORTS_RUNTIME_PM;
+ 
+-	usb->dev = ci_hdrc_add_device(&pdev->dev, pdev->resource,
+-				      pdev->num_resources, &usb->data);
+-	if (IS_ERR(usb->dev)) {
+-		err = dev_err_probe(&pdev->dev, PTR_ERR(usb->dev),
+-				    "failed to add HDRC device");
+-		goto phy_shutdown;
++	if (!usb->externally_controlled) {
++		usb->dev = ci_hdrc_add_device(&pdev->dev, pdev->resource,
++					      pdev->num_resources, &usb->data);
++		if (IS_ERR(usb->dev)) {
++			err = dev_err_probe(&pdev->dev, PTR_ERR(usb->dev),
++					    "failed to add HDRC device");
++			goto phy_shutdown;
++		}
+ 	}
+ 
+ 	return 0;
 -- 
 2.51.0
 
