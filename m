@@ -1,178 +1,223 @@
-Return-Path: <devicetree+bounces-295611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sBENLPjgAWptlgEAu9opvQ
-	(envelope-from <devicetree+bounces-295611-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:00:24 +0200
+	id MMVLFCnhAWq1lwEAu9opvQ
+	(envelope-from <devicetree+bounces-295612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:01:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232FB50F87E
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E93150F8BB
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 16:01:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C29CA3097012
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 13:56:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 02EF2302731E
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 13:57:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686163F54BB;
-	Mon, 11 May 2026 13:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F453F9F39;
+	Mon, 11 May 2026 13:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LauFhvNU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O6s1o+Eo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449B23F0761;
-	Mon, 11 May 2026 13:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322533F65F9
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 13:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778507806; cv=none; b=ktb6btNqESoCbwjLiSZiNgVK2A89Nz6GOAsbB7vxc7Paq1nnAx5rOu/vHcSZGJhCPdP72x+GmXXjlfrsvnsqFmTKv6ouLEdCR9AGnDf5Lozq8foHW7NbPCinroONFwbfToZmX8R1vNdaYnKGAFPvhH008FWZEOu/mI3gBIpfOxw=
+	t=1778507849; cv=none; b=E26PSTB3EYZxXmCBFuDf4P591k5IP+oOJS8T1oa+1uCqEX98V4OUHcg0ZhI/EPUxcBsGduC2rzwhZiy/IJFe9/wqBnQw5yU7M7RGxCOYG1r2KWCqbfHe0B6H4nsut068ihcCCkteptnd6FI1lg/zmNk4lrbEG7Lbye0KSdtcGlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778507806; c=relaxed/simple;
-	bh=PW8pVcDf5k11hXFW5k0frWPb8Wcmrp6fjCFdwFXM5LM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ekXhsMadUu86qbgDwCLXdCZMk3YIcom+EqeBodaYJt8lhGVcVZw08Thl4+JA56cQ09HDhGEOH8lWbTLrB7bKiAK8s09rYDtxAtrYxawHpYh0ogZcVv5oSm0uQyPnOIDlVVEaE1/ishSdep1/aiFeqy0uy8IbamQ2VdCQ/E8XljI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LauFhvNU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66CDAC2BCB0;
-	Mon, 11 May 2026 13:56:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778507806;
-	bh=PW8pVcDf5k11hXFW5k0frWPb8Wcmrp6fjCFdwFXM5LM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LauFhvNUGS+aUALp23WuMHd1NnuA/5KnmsyFOZgcvjbGHaZF/IIBINvswcvOjMnFk
-	 W2nPvBPI+ecaYhhhfnYEEQ/I4i3E4ZRlMObbntO4XQLycoImIzQvhbl2O5sq5GUAl9
-	 k6jFgu0uk0PB/bY9FWHWFKefASuVSHClDjKscHyRt7GYtT8t2R6i8L9/1UXMvoFgbp
-	 Tn1xc34xU0X/sRjaDT3NRFYdvFwGwBNgtgJfHTGbnVw/CaUEhnEcomZAiY+95Ec7Ux
-	 w3e483sPZrkgU7OQlFef7KbW/vtpdIlNawgwHXC5J/3c6+tHBhQCEyMstas3C7NBqp
-	 iHoupRCZba4sg==
-Date: Mon, 11 May 2026 14:56:37 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nikhil Gautam <nikhilgtr@gmail.com>
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] dt-bindings: iio: magnetometer: add Melexis
- MLX90393
-Message-ID: <20260511145637.0aa12c30@jic23-huawei>
-In-Reply-To: <20260510191010.155380-2-nikhilgtr@gmail.com>
-References: <20260510191010.155380-1-nikhilgtr@gmail.com>
-	<20260510191010.155380-2-nikhilgtr@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1778507849; c=relaxed/simple;
+	bh=kC4DSO7lEOOKLgNDNQTeigNoYcFvo7FOe74XyG/nGrE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EpFaArbpa5KguKouZk6BXuj2Y5C1NzZeuaKxrYqJU5lSkMNElPjYatuEIxsK+7Q9zQ+s18o3fVWmGxofVc35CaoKt7VLvcjdvJvq9ps3ZWxm0W1y5GifUem0R1NnpDbcDswpT5goTqWjeYd3WwV8dIsaYVglmv5JRqu0PX/YLC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O6s1o+Eo; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-67929ff6dbfso6642986a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 06:57:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778507843; x=1779112643; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jKhdwsAy/86G+JOwXd2p+pdbXnbrja7bwh3PVXwh7m4=;
+        b=O6s1o+EokPZ/vWnPsmsKyx5Ei9uZcDJWti+ZFv8hC+jHsWr6oAPXk0pIAR0Cqv8fDu
+         Xy8CkOJJ30Mx1ekmPtxKUg28YkVeziO8oiMX1cH2iEsMAOdXbKVE1QC+ShJvh2MyHyoQ
+         uuPgIU8AVRu0cNLHP9g3Gi6bkV3ZVIIOWN5vcKzQvxDofG/oXfh0H0NAB6RnQz8H8pTa
+         +5ZGui77KCjsXMSqI4NYjoRgePzAwsJt6xWhVuiDAgm6R8XD5+YqdM3IIjbLF4OtbnnN
+         IC13ErPxw0Ai3qnXNMwbDQ6G67Mlnz4Es9JHQHTLjJl43kEzW7ZYAF7pu9r4Vmq1pRF6
+         I/Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778507843; x=1779112643;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jKhdwsAy/86G+JOwXd2p+pdbXnbrja7bwh3PVXwh7m4=;
+        b=nXFrp5Z/ZMPoedQf5HB0QO0p9kORbRqX+TyMsE6qnBXq/EVhcvgewPaUK8oFdkZ10k
+         NC94uNGJmQKqIhMYIGl/tK+L6GLF1dz/GA/6xwnRUz0Z80wduFip95z7eiLMLT27lbSD
+         +IAJwa6QKnLOpUgtPaar3CUl3qrrRyiqzNkxmMxDEKFjx8muUaGQ245kmhj3phDmlY72
+         zNsLuckoW48kONxlCwUK1ZvZ9HgLPufYjqXYh9R8y9/BE4LkMpkKK5OLlUGAQVyks8bu
+         IR/R9j3eBJYL0P1ubPFodKiu2d9CoNEKM89VQpMYP1H8tP2KbkgRbzEd0xfJbh0wO9Rl
+         UrKA==
+X-Forwarded-Encrypted: i=1; AFNElJ/DVFTHacNhRuHS31TAP/dV49Uebde57I36su1lfrEmuPz2kAfYjjiU1BbS+XcXokTAFjzjJPDDmSld@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdJDFF/vcgMmhQFk5QSQyI0OkmlHAD8f48lwe+fQHcWK89ou5e
+	DSaDGkN48kNdayIcYQpQ3e7Jpoo+8bINOAVN4F170PdPrxeShbA4I5rT
+X-Gm-Gg: Acq92OHem1vCqfFDoPeRUjn9iRxLPSEJXlkkZ1AsizofhWrrNdjB0gDh96GrOUo13hF
+	gmrE+3kXvjd5V1v/cpyNCPmuWZgUPdxHLSolniGm+zqyIE6y/hR7W+POnyctf2/hnc0m7n3RqNf
+	dyhiMHts9eR40srUBXwB+c+GmCOn7D81iTnoHsPWHp6EXkmFZSK87xvbruIm+ibyCSE1emHJJus
+	wwO1ZHqu8TgcGhp8TeUTp3g5hkFQzFmwKMnRxHmTO0qA7GDBThAGDGP32Jitz0DSilMmLqmNIAh
+	zQRK7l2pfs3qDuNVQXJl/MeMQy3+bE9soSyk1TL3aazFMxxiiiB/KvefXUPr+zTIoNZulor5gUP
+	z1Yb5bgLq75iFJ9URM3/tPgu2W315G0BZ8hD+oUEY+AtvipPMl8Vc0g6MwfDk4jTVzLV70JRZwg
+	UDgCU1Um1/r3ym
+X-Received: by 2002:a05:6402:278c:b0:67d:a63a:deb1 with SMTP id 4fb4d7f45d1cf-67da63adf40mr11744584a12.5.1778507842405;
+        Mon, 11 May 2026 06:57:22 -0700 (PDT)
+Received: from xeon ([188.163.112.56])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-67ef0b3b904sm3685357a12.1.2026.05.11.06.57.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 May 2026 06:57:20 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Peter Chen <peter.chen@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-tegra@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: [PATCH v1 0/6] Add support for Infineon/Intel XMM6260 modem
+Date: Mon, 11 May 2026 16:56:55 +0300
+Message-ID: <20260511135703.62470-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 232FB50F87E
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 0E93150F8BB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295611-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-295612-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,linaro.org,nvidia.com,linuxfoundation.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Mon, 11 May 2026 00:40:09 +0530
-Nikhil Gautam <nikhilgtr@gmail.com> wrote:
+The Infineon/Intel XMM6260 is a 3G-focused, slim modem platform designed
+for smartphones, data cards, and Machine-to-Machine (M2M) applications.
 
-> Add devicetree bindings for the Melexis MLX90393
-> 3-axis magnetometer and temperature sensor.
-> 
-> The device supports magnetic field and temperature
-> measurements over I2C and SPI interfaces.
-> 
-> This initial binding documents the I2C interface.
-> 
-> Signed-off-by: Nikhil Gautam <nikhilgtr@gmail.com>
-Hi Nikhil,
+The modem is typically connected via the application processor's USB line
+in HSIC mode. To function correctly, the modem must control this line, as
+it requires precise timing to initiate or de-initialize the USB connection.
+This control is necessary to successfully enumerate the next stage of the
+USB device loader (moving from firmware loading to the actual device
+interface for example).
 
-Add a MAINTAINERS entry as part of this patch and expand it in patch 2 to cover
-the driver. That's much cleaner than doing it after the fact as a separate patch.
+Patches 1 and 2 adjust the Tegra-specific portion of the Chipidea USB
+controller to allow for the disabling of automatic PHY and USB controller
+registration. This is achieved by adding the nvidia,external-control
+property/flag. It does not affect any existing configurations, but it
+allows the USB line to be registered or deregistered by an external
+device — in this case, the modem.
 
-> ---
->  .../iio/magnetometer/melexis,mlx90393.yaml    | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml b/Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml
-> new file mode 100644
-> index 000000000000..b99629ff2585
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/magnetometer/melexis,mlx90393.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/magnetometer/melexis,mlx90393.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Melexis MLX90393 magnetometer sensor
-> +
-> +maintainers:
-> +  - Nikhil Gautam <nikhilgtr@gmail.com>
-> +
-> +description:
-> +  Melexis MLX90393 3-axis magnetometer and temperature sensor.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - melexis,mlx90393
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
+Patches 3 and 4 add support for the generic portion of the
+Infineon XMM6260 baseband modem, which was used in many Tegra-, OMAP-,
+and Exynos-based devices circa 2012. This driver provides power sequences,
+manages initial communication with the application processor, handles the
+SoC-specific modem PHY, and verifies that the modem USB device appears
+correctly.
 
-Definitely require some power... Looks like vdd-supply and vddio-supply
+Patches 5 and 6 implement support for the Tegra-specific modem physical
+layer, which handles the registration and unregistration of the USB
+controller.
 
-Also binding in general should be as complete as possible, even if the
-driver you are sending it with only supports some stuff to start with.
-So looks like there is an interrupt and a trigger pin that can possibly
-be used with a GPIO.  Seems they may be the same pin from the pinout so
-maybe don't bother with trig.
+While current support is relatively basic, this configuration already
+allows the modem device to appear in the dmesg of my device
+(LG Optimus Vu (P895)):
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        magnetometer@c {
-> +            compatible = "melexis,mlx90393";
-> +            reg = <0x0c>;
-> +        };
-> +    };
+[    9.427014] ci_hdrc ci_hdrc.1: EHCI Host Controller
+[    9.431488] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 1
+[    9.457197] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00
+[    9.460370] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.16
+[    9.468470] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    9.475597] usb usb1: Product: EHCI Host Controller
+[    9.480508] usb usb1: Manufacturer: Linux 6.16.0+ ehci_hcd
+[    9.485913] usb usb1: SerialNumber: ci_hdrc.1
+[    9.490862] hub 1-0:1.0: USB hub found
+[    9.494005] hub 1-0:1.0: 1 port detected
+[    9.657191] usb 1-1: new high-speed USB device number 2 using ci_hdrc
+[    9.844726] usb 1-1: New USB device found, idVendor=1519, idProduct=0020, bcdDevice=12.74
+[    9.850530] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    9.857594] usb 1-1: Product: HSIC Device
+[    9.861606] usb 1-1: Manufacturer: Comneon
+[    9.865627] usb 1-1: SerialNumber: 0123456789
+[    9.908739] cdc_acm 1-1:1.0: ttyACM0: USB ACM device
+
+Svyatoslav Ryhel (6):
+  dt-bindings: usb: ci-hdrc-usb2: Document nvidia,external-control
+    property
+  usb: chipidea: tegra: Avoid controller/PHY init if bus is externally
+    controlled
+  dt-bindings: net: Document Infineon/Intel XMM6260 modem
+  net: usb: Add Infineon XMM6260 Baseband modem support
+  dt-bindings: phy: tegra: Document Nvidia Tegra XMM6260 PHY
+  phy: tegra: Add support for Nvidia Tegra XMM6260 PHY
+
+ .../bindings/net/infineon,xmm6260.yaml        |  72 ++++
+ .../bindings/phy/nvidia,tegra-xmm6260.yaml    |  58 +++
+ .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |   7 +
+ drivers/net/usb/Kconfig                       |  15 +
+ drivers/net/usb/Makefile                      |   1 +
+ drivers/net/usb/baseband-xmm6260.c            | 335 ++++++++++++++++++
+ drivers/phy/tegra/Kconfig                     |  12 +
+ drivers/phy/tegra/Makefile                    |   1 +
+ drivers/phy/tegra/phy-tegra-xmm6260.c         | 144 ++++++++
+ drivers/usb/chipidea/ci_hdrc_tegra.c          |  36 +-
+ 10 files changed, 667 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/infineon,xmm6260.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/nvidia,tegra-xmm6260.yaml
+ create mode 100644 drivers/net/usb/baseband-xmm6260.c
+ create mode 100644 drivers/phy/tegra/phy-tegra-xmm6260.c
+
+-- 
+2.51.0
 
 
