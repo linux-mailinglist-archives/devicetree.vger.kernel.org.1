@@ -1,235 +1,218 @@
-Return-Path: <devicetree+bounces-295264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295249-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLXmBiZIAWoQTwEAu9opvQ
-	(envelope-from <devicetree+bounces-295264-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 05:08:22 +0200
+	id WZGgCpBHAWr2TgEAu9opvQ
+	(envelope-from <devicetree+bounces-295249-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 05:05:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B77B507795
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 05:08:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68DCB50763C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 05:05:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 34B15302A192
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 03:06:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2154430086D1
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 03:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9DD37C939;
-	Mon, 11 May 2026 03:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E5136CDF8;
+	Mon, 11 May 2026 03:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="peLaBv9G"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="F7ymw4I1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout11.his.huawei.com (canpmsgout11.his.huawei.com [113.46.200.226])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013028.outbound.protection.outlook.com [52.101.83.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2573373BFB;
-	Mon, 11 May 2026 03:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.226
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778468794; cv=none; b=eDBDszQGiZZPqt3L0w3nqN/bujFrFj05doKBxO7sBHli15WwvqHwAPAc9ouawyYrsbGt07y99v22o5iMjRQkgyAv31QXZELcwxVRLXRpDb+HG+JaoXsZxnd/HsinF5ey9fti2R6Nd68i6TLMq7pwnu2DxgzUKjakI00jZVRCwDQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778468794; c=relaxed/simple;
-	bh=+gXZLpVp2vrXl9lg3cmUa3M70H3ghbrhj8OGPkDK+QI=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qSdKmxohsPwi/XHMTiqzAZlRA8uqYjzV451Z8diZMtg/gONxzUaoQmUvh5o7EisFgV+9Ab0mQzBDZY6U5b8J8asU0J2HTLbt+KvvNtgMAoNNs2xarW8TK0ljxctFp+6qR76pavgOgOQ4bLXwxbrzzoIv5CTV/rZybGTJ7mmFXVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=peLaBv9G; arc=none smtp.client-ip=113.46.200.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=pSS8z5ePfPujmR3EaZYR+81djN5DZlHfawlFjVUvFbE=;
-	b=peLaBv9Gj0Ycvya8xNQgJAkiN8nF7ptADM2WsH3T6DM/SjwEDq/nW3hgOG9Hu0NihAz+yPzqE
-	Qhbtq9qoOK+YPGSLWt9CqlfDLsfQ9BSxJ+KJf+jkhZun2RB2C6paikmAY0UhFpcAMcW8eZyhqwq
-	qSU7JbGB2kdn6kPia7XVYBA=
-Received: from mail.maildlp.com (unknown [172.19.163.214])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4gDPZ36JmKzKmZy;
-	Mon, 11 May 2026 10:58:51 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id F2FE04056C;
-	Mon, 11 May 2026 11:06:29 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
- (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 11 May
- 2026 11:06:26 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <rppt@kernel.org>,
-	<pasha.tatashin@soleen.com>, <pratyush@kernel.org>, <ruirui.yang@linux.dev>,
-	<rdunlap@infradead.org>, <pmladek@suse.com>, <dapeng1.mi@linux.intel.com>,
-	<kees@kernel.org>, <elver@google.com>, <kuba@kernel.org>,
-	<ebiggers@kernel.org>, <lirongqing@baidu.com>, <paulmck@kernel.org>,
-	<ruanjinjie@huawei.com>, <sourabhjain@linux.ibm.com>, <coxu@redhat.com>,
-	<leitao@debian.org>, <jbohac@suse.cz>, <ryan.roberts@arm.com>,
-	<osandov@fb.com>, <cfsworks@gmail.com>, <tangyouling@kylinos.cn>,
-	<ritesh.list@gmail.com>, <adityag@linux.ibm.com>, <guoren@kernel.org>,
-	<songshuaishuai@tinylab.org>, <kevin.brodsky@arm.com>,
-	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>,
-	<wangruikang@iscas.ac.cn>, <namcao@linutronix.de>, <chao.gao@intel.com>,
-	<seanjc@google.com>, <fuqiang.wang@easystack.cn>, <ardb@kernel.org>,
-	<chenjiahao16@huawei.com>, <hbathini@linux.ibm.com>,
-	<takahiro.akashi@linaro.org>, <james.morse@arm.com>, <lizhengyu3@huawei.com>,
-	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-Subject: [PATCH v13 15/15] riscv: kexec: Add support for crashkernel CMA reservation
-Date: Mon, 11 May 2026 11:04:54 +0800
-Message-ID: <20260511030454.1730881-16-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260511030454.1730881-1-ruanjinjie@huawei.com>
-References: <20260511030454.1730881-1-ruanjinjie@huawei.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5FC79CD;
+	Mon, 11 May 2026 03:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778468749; cv=fail; b=KTtAh9ak/+XmonD/P25ho69rwK0trGqcY/gcVz/K9DSXwLiYxcNK1YZ/UrNj4P4SNTYTjU/sTQxTX5KWJdXkbvFlLp1yYASDHcwb7LMJDcaQZmk8yzBYuDEmy9d78fecvMlmR8MZKrrMFU+rxPY96eUQ/U0PTEoqbN/c+AZCGII=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778468749; c=relaxed/simple;
+	bh=/GfT59CWTvtfKPlx2qGv4bIrZQQTwN0w32myeFaro4A=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Lusih39Cb8hPzpk3Kx0u4+1yEMIE/GrDIkD2mGkpJGMliOAwTn6pjvPZGBSE+cp0PL3uVqUKnbkOz7BUqZe+vI4KURTiVDKuDXSzjyShn79xugPqh3jUrpGEwfiN/oxUX3pVpD2781Y9NoBmhaw06tWnFE7dJjmr40/nEevIsow=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=F7ymw4I1; arc=fail smtp.client-ip=52.101.83.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kEWcIorsLH98OifYlGOdgh2f8rW/ALwx6uLlBziO0UOyj3UHomiUNvwbKVtxGfjTBCLikF2kSX0y2GrbXLnwtRRFlvxM3rxwgWN31Kb43iHevgOxpZPJsDrWHnELHywcJ31ZDwrJuBLyAISPY7GMYNIOSueQq6aJ7IyDZ2tTlXtAXJqxHbLFoqYq/j4g+kS3tSAIw+pCWVme3Lw4ei8fdFm3wFvFAUjFriMWFJ8jgPVnYhZk5QfCVILCKSUzSeXC2GYe4mitQvY56MGC4eCfGi0cg8CdXX7BbaWfOtm+cSpn+0Tqe4eXt4xkTGslwGMegCRT27vp3fxz4t3gN4Sg/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KJZ6bcJuCYnwzFburPRzS0zjaab02t8JOX9KxYGNQg0=;
+ b=wtpaFYk96QSaEtqeowr9jcmo2IJxP6zu4ik5ffyAYyfZ4c8B9swZJvITA+o/TfgtmgE5RM1zAetyYYG8gX39lg2ZgBm7dBh5JNbEchG1VBlINJrktAdX89VKV1uwfYUjIdNOlV7JB5oCPGgqtV/3CaLmogEr0DLNanFT+U4AKCXkEqC2ffDgbRR5LX7ItOCg/jKWStAQOAYHvxr6p+nrOwir+1TLU9hHqK1EENNs/VB0PJ7JYnjf7PHd9p6AYbeuHv2Emt3CTSQuD9eBsJe0L/xPz21W+9ZA871wOMBal/8zkM//DL7qbBX63/CbQj5fq1UMJWY3R3ogdRPqE/Fvyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KJZ6bcJuCYnwzFburPRzS0zjaab02t8JOX9KxYGNQg0=;
+ b=F7ymw4I17yrwkTkdugaasA+HDpxKIvldsUz+mLSP4B3xlYM5AvzCGco8XUmRcViZg7Y/jzqC+5ao+weEfgYLxv0Si3CmKhODwJa1jPbWlNkHvd+rZ0V6B3ouz/ASfYU98nhgbKHh65uDqBRuSgTutXElLGkTspck6DaMno8iuczEeH0C3iHb4LRwhgX6deqeFqdw63SueOZhAgK2LkoX8hF3aU9dpkeZ+ZE6TsNRE3Rjah0IpxY4ph/8MMVu3hS5sQPkdEA14cSdMEKJ/f4XPKlHMTwXwDR3/WoGttzX+ynfo1pwpKHH9MMfoku6s+AAEqZdVGRhI3VI2WmxwWWpJw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from GV2PR04MB12019.eurprd04.prod.outlook.com
+ (2603:10a6:150:30c::14) by PA1PR04MB10502.eurprd04.prod.outlook.com
+ (2603:10a6:102:44f::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.22; Mon, 11 May
+ 2026 03:05:44 +0000
+Received: from GV2PR04MB12019.eurprd04.prod.outlook.com
+ ([fe80::ed75:bac1:2554:5cbe]) by GV2PR04MB12019.eurprd04.prod.outlook.com
+ ([fe80::ed75:bac1:2554:5cbe%4]) with mapi id 15.20.9891.021; Mon, 11 May 2026
+ 03:05:44 +0000
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	frank.li@nxp.com,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Richard Zhu <hongxing.zhu@nxp.com>
+Subject: [PATCH v3] arm64: dts: imx95: Increase PCIe outbound address space to 4GB
+Date: Mon, 11 May 2026 11:07:51 +0800
+Message-Id: <20260511030751.3717935-1-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MA0PR01CA0024.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::10) To GV2PR04MB12019.eurprd04.prod.outlook.com
+ (2603:10a6:150:30c::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- dggpemf500011.china.huawei.com (7.185.36.131)
-X-Rspamd-Queue-Id: 8B77B507795
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB12019:EE_|PA1PR04MB10502:EE_
+X-MS-Office365-Filtering-Correlation-Id: 63cfa3d6-a15d-4a0a-cf83-08deaf0a30ef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|7416014|52116014|376014|1800799024|18002099003|38350700014|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	BSJvSo9Br+BWUBbnG94SH2ntLDWHVlfnpf6rKlFB6TpljAg0pv0wwkPmE4SODMiMT/x5Gq+plB1Y4VsBfWxaVl2ERA8GzHdMp1VHRxHEor1qpHIAljy4CTuIiycy7esgWeZMDYMIFOZSuiacbhnd427mMQ/Bx6sNHeuoQez94Rg5Kx1yYmwO9UZcARQF7211tL6vrkffxh8JBxrYByyE94K+A3/acxGTkhmpNhxe1s4JSTIK3MEGUy0oqIr5c8bwuHItmk8GRAsBC30DsgAGkYCxt1QJzp+LqAJQAcoW7qVrWNvMpaiZ2A33G7aoDGZBENjW1c+uVyUEgKrFt4Tbt8fUYCJrBr0EtT0IecSlpxFBQfqkvGKrFqo9Zzoy4ZUkyi11+owrHOYPK2hqPYlSBq1Cib76AvdWYuKDmoyA4rHn3/MYYCBHBV1rYE/OrK+P/rmzybtR5sqyU5LUjfRcW9geb9P7+x5bQgZM1AbpKDG0HklsbxCNxIPCxdcH3s5K5KHyvijUd9gOpogNQvaqJOrf+eh7tSIZW96LonxSItSyb/1a+Jx+osie8dvIh/U3Ham60cOxKqgPh/mLc3LIXZD5j+MjDYGTjI+RaNPYB0ECqcCto755GfAboHP6ejgP+Tvspp6BqzX+OZBPZF+82vYySTB26QNbpqa6A4K2o/1Z7gVgwfBrCdmxy+4c+DpyzehDSiS9Qu6Gfg2utlRHGeIPWUknwE+DRFs+22dL0nBWxb0LddX5/9SW5P5jaa12
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12019.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(52116014)(376014)(1800799024)(18002099003)(38350700014)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?r8KOJIGQsQaBbhaK3Vjg6WP1pnHmrSg2O4W9HV5AA/HULCsMoYa0PoJXEnmH?=
+ =?us-ascii?Q?TuXukvilIXIGWlon+yPcJt8EsryAOxpkTYEGtacyOUmIe/BAPhWGO+Za3czJ?=
+ =?us-ascii?Q?QEwB4xY9t3AL1dz8VIaE0+b8/r31KoG9BpleRvt8On4DlnESClFoIkbcyPG8?=
+ =?us-ascii?Q?W5kccs1AUJ7yGSD6ToE4Mq9Q7SZqg9GzAsJwhsRI1omQ9oU9mf8ka9wyak/m?=
+ =?us-ascii?Q?/tBF81H6nV0gKBGmJUBt1Jd/VeKkdYwvQV3rFAVMQ80Rtk1/uigK9UsBInBq?=
+ =?us-ascii?Q?nv6yQAfc6Fiy7E4hfnaM/8N9wEqwPVIz7dgY8H+JB9zttafE3iRaQ6lBL41s?=
+ =?us-ascii?Q?LVcUnBQn7qT39MHaC93ahL0BQmA+7LJIuYuTcQbKtRU8V5ZVFq5clwhwW+68?=
+ =?us-ascii?Q?UsRMjNuXRkSyMHa8h4vYojXrXdFOpntqMdEfu2QtKHxCD2AoBNbVVV9j7o03?=
+ =?us-ascii?Q?toV8towdNy1qguyl2GW8lFS7ycFVDDJaks+WTnPMMa8HgaPhN3ULk8U4OLC4?=
+ =?us-ascii?Q?ZR9iZB3j1J2a3uTcWghp+wYOQdbUZ2qy6IXcVw7/d6WyRdkXu6lFuXtNnIAR?=
+ =?us-ascii?Q?7SUGYLX3QgN23b3+hx1SASEkFuzpFe/YyZFChMAVIMEVYxmi4fV1cRNEeuI8?=
+ =?us-ascii?Q?/30jzdB50se2K3bEOuRRfR8ChJtw1VumwtB3+sNujwgon968iGfYDwYc73js?=
+ =?us-ascii?Q?y2+DYuwN5vsskAM8Dr6MU+4z7YJrqFpxGUzhZ7CR4LJC/moJK8l2uwZrb66d?=
+ =?us-ascii?Q?MaD2voTtnUPO2Mi0T1JEZNqB6GxgOJadbjPzlAQJtiTaF0VvPxpPsgbE8Tza?=
+ =?us-ascii?Q?0cBh+ABzIKbcDN8oBeah/vhgfyITOWASPK8C4WlqoAy1lvBb9Hgv0w8sbsb/?=
+ =?us-ascii?Q?NAUhtrmp+PioY5+5gYGtt3dKtufpLycO0Xqgu9NJ3olUqXPUhSWQ5buCSqeJ?=
+ =?us-ascii?Q?wpdlK33heOm9c9VdrDnTe1fvNCMBfT3zPyT5vh9xGst3mj9cEU1qtuiEyt2q?=
+ =?us-ascii?Q?rJGmjZsVV22iQcsCY88tsmRmWY0UgAYR3Yw2TX/+4zIxS60gaL4k30I0ZKn2?=
+ =?us-ascii?Q?4AO6nxHu3lQ9g3SCMK+7Efg1xlrk4k0qqTwYdpC8GjO3TKIJ7F4X+wUHq7k9?=
+ =?us-ascii?Q?DrHd8Vkdb126eOqn85r+omvDFXqdDmWiX4cukUTD2Mqaf3k3Ua9iAvwpg5N7?=
+ =?us-ascii?Q?kxe/XMxfLVuZbk9eDBahw6rfTqUN61qBkGPBqQBEjpMCD/v1zKuueScWmX0r?=
+ =?us-ascii?Q?aGlx8GEMlyL1m0QN0S9U1RJxZLTeoN7O6jSrnKmqE6/4xbb667M7Aex16Dmm?=
+ =?us-ascii?Q?An+zdsjvrWGHiwVnoz97zg+OwxHcKJPlRj9xJTYighj+pl7YdLZdhmttfnI9?=
+ =?us-ascii?Q?hQhSnKbECyemamtlpgS27aLNeWCDPwmefmA1ksOUtolFVoqd0KTUm/vagF3f?=
+ =?us-ascii?Q?fUtAI2X6ZgpkDDzBP2blNfxXpMqcRkC0/J7zdW7yy8HCQ2aockryq7XJsld+?=
+ =?us-ascii?Q?5QWgRB0XcRbAIRrSCLlsLazV7tjQ73/kKUVndeK8jRrJRj56borLPh8zXa4p?=
+ =?us-ascii?Q?GxDyQeg3QffdIZ33nJd5mXI3bImPyNbVTgpy2iN0s0k993NEfpjHsTvzyWf8?=
+ =?us-ascii?Q?Orj+5bqilRA4tfMrSe0F27Ih9zGry3MIijdZTRMmEbp1a6coGOeqiic/gSjs?=
+ =?us-ascii?Q?y0QNYNZOaIKFcLZi4CVUyy9la4wY0CR4vEZKNftSpwkvQgbv2q9BYBemffY3?=
+ =?us-ascii?Q?MqnxhVSuqw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63cfa3d6-a15d-4a0a-cf83-08deaf0a30ef
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12019.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 03:05:44.1449
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7eVUHbee5rAoygVrmDRDeO28f17O4ZanHL6/oQf4Dtei4Z0IRXtW7Ut4XTCmLLh6VEi2L10HG/Pv3EPs5gLZ+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10502
+X-Rspamd-Queue-Id: 68DCB50763C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-295264-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[72];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,soleen.com,linux.dev,infradead.org,suse.com,google.com,baidu.com,huawei.com,debian.org,suse.cz,fb.com,kylinos.cn,tinylab.org,pigmoral.tech,iscas.ac.cn,linutronix.de,intel.com,easystack.cn,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295249-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hongxing.zhu@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.983];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-Commit 35c18f2933c5 ("Add a new optional ",cma" suffix to the
-crashkernel= command line option") and commit ab475510e042 ("kdump:
-implement reserve_crashkernel_cma") added CMA support for kdump
-crashkernel reservation. This allows the kernel to dynamically allocate
-contiguous memory for crash dumping when needed, rather than permanently
-reserving a fixed region at boot time.
+Fix the PCIe outbound memory region size to 4GB, which is the actual
+hardware-supported memory space. The size was incorrectly set to 256MB
+during bring-up.
 
-So extend crashkernel CMA reservation support to riscv. The following
-changes are made to enable CMA reservation:
-
-- Parse and obtain the CMA reservation size along with other crashkernel
-  parameters.
-- Call reserve_crashkernel_cma() to allocate the CMA region for kdump.
-- Include the CMA-reserved ranges for kdump kernel to use, which was
-  already done in of_kexec_alloc_and_setup_fdt().
-- Exclude the CMA-reserved ranges from the crash kernel memory to
-  prevent them from being exported through /proc/vmcore, which was
-  already done in the crash core.
-
-Update kernel-parameters.txt to document CMA support for crashkernel on
-riscv architecture.
-
-Cc: Paul Walmsley <pjw@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>
-Cc: Alexandre Ghiti <alex@ghiti.fr>
-Acked-by: Baoquan He <bhe@redhat.com>
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Acked-by: Paul Walmsley <pjw@kernel.org> # arch/riscv
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Fixes: 3b1d5deb29ff ("arm64: dts: imx95: add pcie[0,1] and pcie-ep[0,1] support")
+Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 ---
- Documentation/admin-guide/kernel-parameters.txt | 16 ++++++++--------
- arch/riscv/kernel/machine_kexec_file.c          |  2 +-
- arch/riscv/mm/init.c                            |  5 +++--
- 3 files changed, 12 insertions(+), 11 deletions(-)
+ arch/arm64/boot/dts/freescale/imx95.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+---
+Changes in v3:
+Update the commit message, and set the region size to the max
+hardware-supported memory space.
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 52742fab49a9..3ff3ddd516cf 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -1119,14 +1119,14 @@ Kernel parameters
- 			It will be ignored when crashkernel=X,high is not used
- 			or memory reserved is below 4G.
- 	crashkernel=size[KMG],cma
--			[KNL, X86, ARM64, PPC] Reserve additional crash kernel memory from
--			CMA. This reservation is usable by the first system's
--			userspace memory and kernel movable allocations (memory
--			balloon, zswap). Pages allocated from this memory range
--			will not be included in the vmcore so this should not
--			be used if dumping of userspace memory is intended and
--			it has to be expected that some movable kernel pages
--			may be missing from the dump.
-+			[KNL, X86, ARM64, RISCV, PPC] Reserve additional crash
-+			kernel memory from CMA. This reservation is usable by
-+			the first system's userspace memory and kernel movable
-+			allocations (memory balloon, zswap). Pages allocated
-+			from this memory range will not be included in the vmcore
-+			so this should not be used if dumping of userspace memory
-+			is intended and it has to be expected that some movable
-+			kernel pages may be missing from the dump.
- 
- 			A standard crashkernel reservation, as described above,
- 			is still needed to hold the crash kernel and initrd.
-diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/machine_kexec_file.c
-index bea818f75dd6..c79cd86d5713 100644
---- a/arch/riscv/kernel/machine_kexec_file.c
-+++ b/arch/riscv/kernel/machine_kexec_file.c
-@@ -46,7 +46,7 @@ static int get_nr_ram_ranges_callback(struct resource *res, void *arg)
- 
- unsigned int arch_get_system_nr_ranges(void)
- {
--	unsigned int nr_ranges = 2; /* For exclusion of crashkernel region */
-+	unsigned int nr_ranges = 2 + crashk_cma_cnt; /* For exclusion of crashkernel region */
- 
- 	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
- 
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index decd7df40fa4..c848454b8349 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -1295,7 +1295,7 @@ static inline void setup_vm_final(void)
-  */
- static void __init arch_reserve_crashkernel(void)
- {
--	unsigned long long low_size = 0;
-+	unsigned long long low_size = 0, cma_size = 0;
- 	unsigned long long crash_base, crash_size;
- 	bool high = false;
- 	int ret;
-@@ -1305,11 +1305,12 @@ static void __init arch_reserve_crashkernel(void)
- 
- 	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
- 				&crash_size, &crash_base,
--				&low_size, NULL, &high);
-+				&low_size, &cma_size, &high);
- 	if (ret)
- 		return;
- 
- 	reserve_crashkernel_generic(crash_size, crash_base, low_size, high);
-+	reserve_crashkernel_cma(cma_size);
- }
- 
- void __init paging_init(void)
+Changes in v2:
+Add the Fixes tag, and rebase to latest imx/dt64 branch.
+
+diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+index adcc0e1d3696b..7af25e880aa34 100644
+--- a/arch/arm64/boot/dts/freescale/imx95.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+@@ -1940,7 +1940,7 @@ pcie0: pcie@4c300000 {
+ 			      <0 0x4c340000 0 0x4000>;
+ 			reg-names = "dbi", "config", "atu", "app";
+ 			ranges = <0x81000000 0x0 0x00000000 0x0 0x6ff00000 0 0x00100000>,
+-				 <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x10000000>;
++				 <0x82000000 0x0 0x10000000 0x9 0x00000000 1 0x00000000>;
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+ 			device_type = "pci";
+@@ -2015,7 +2015,7 @@ pcie1: pcie@4c380000 {
+ 			      <0 0x4c3c0000 0 0x4000>;
+ 			reg-names = "dbi", "config", "atu", "app";
+ 			ranges = <0x81000000 0 0x00000000 0x8 0x8ff00000 0 0x00100000>,
+-				 <0x82000000 0 0x10000000 0xa 0x10000000 0 0x10000000>;
++				 <0x82000000 0 0x10000000 0xa 0x00000000 1 0x00000000>;
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+ 			device_type = "pci";
+
+base-commit: 5f9e9f83aee0fa8f2124c6f192505de2cdf7c5dc
 -- 
-2.34.1
+2.37.1
 
 
