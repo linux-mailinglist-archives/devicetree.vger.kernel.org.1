@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-295349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295347-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YAdWM22NAWqNdwEAu9opvQ
-	(envelope-from <devicetree+bounces-295349-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:03:57 +0200
+	id sFHrIVKNAWqNdwEAu9opvQ
+	(envelope-from <devicetree+bounces-295347-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:03:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5565D509C3B
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF91B509BFE
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 10:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 39914307143D
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 07:51:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 432B730F33F1
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 07:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BBE3A5E99;
-	Mon, 11 May 2026 07:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF893A8734;
+	Mon, 11 May 2026 07:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OwZN5LEs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YdVEZZFA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CD23A6EE8
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 07:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58CE93A7F69
+	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 07:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778485780; cv=none; b=NqbCC0iFb/kvY+TJ22c41jUVxKcYOSiTVR6dvs2OAKc2ToGsbJ9FkjRBeSg2bNLO5prXVa+CSlKDnyHok+LRdqXBRm5KJQBxByTjFTMvzF1mRjzwXpd9jnrNoKUH3WruXUHJx4w9jN+TKeWbYu+h4jFQHdKRvHj1ZxpbCoRA1Yk=
+	t=1778485773; cv=none; b=PH5DW3YY7Q+LPSKEopzUMrnOKBjt8CZM3iiDwmMHCImd49U6P/oaVRfFaK5FBfBXs7xbLFvIx0xCsxuGrBgSppBlVbfnc5pWScju+uC0F0nx0vWYSK43IoDqzNoVdRjETCRiu19BPPkEyNGXqYyXkWgvHk3iuWe5IC2ecUj2c4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778485780; c=relaxed/simple;
-	bh=rZ4cYL3t40L5GT+3D0ZuPAH0zMuM4u4V7RvsxEXZiEI=;
+	s=arc-20240116; t=1778485773; c=relaxed/simple;
+	bh=HvRnVDts5ARzEgDQd1uxaF/Ni636zkJ9D8rxyroqkjc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Fl2m2txFo3K7iPqIKCcpGHcuC+3mHXW9TfpxD1epxE4u06Kr7y33ymqgztL7PJbz3AlsRqVgJ4ssCM5SEzh2xVMmYVlb586oipLBlBoVYG9kZ4n2kZFrlZl3lnFo7xPGWiKUHBWM4w/xrOMGPRUGW5MMfAuyGjOqfEQSdLtufO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OwZN5LEs; arc=none smtp.client-ip=209.85.208.172
+	 MIME-Version; b=DWleZ3zeFcKWuigtaPUyCaJW4FlMF/A46p2FPAjzwtPGGQJL+uFOTUSOLlkM8+YWpCdvpJcgk8W1LDbu6ybqV6ZC8BJxsvUopAb+lMF5Bm6GzNp3ZWtdaCV6HMKzrGpBarYlHv++8xxrNHLoBeYEOJ5Wr1HkN/stPo/05n73Sb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YdVEZZFA; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-394095009beso10608331fa.3
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 00:49:24 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5a74ac8b40aso3602835e87.1
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 00:49:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778485761; x=1779090561; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778485763; x=1779090563; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WCpb66fRDDpaHGoTh0CXxAdG/v4EU9iEv2l0kxMx/uI=;
-        b=OwZN5LEsg9zzfIpfiQtyf0x0DgQlztFTmlXr1udOhgq15O49PzOlXZHoIMu++L/xQi
-         jPmPlzH1X5vKCNH4C7mKjFUCkhXnvaXXRx3WrIUW2oeHV/toKXOHpOdYmotlcSgy6mSj
-         kAyWdb5j3dvEqw6hcZdnAGxbmKqqjQ79b60jXtu86FUgPnbErGKqINA4WorfCMKt7/Lh
-         WOAdJO0rvL8aOOKB091j3K9tjcynv/yJugByOHYX7mLbLB0eybFi7i9cvaaas+OvRLmt
-         pdwmtuRnbxeXUMNgldC9BKXtQdhHFJbZ8Aq29oBJfl7m/8cBdjnb9zo2zl++e6u9WGLo
-         2aRA==
+        bh=bd49eOxiPUr+nKhdQNMwO1I+nWDzaH1EHGVy7eWJkcs=;
+        b=YdVEZZFAE6cVPajPHpEjMvXPeXCk/cMH90hT1Vy4PuOFg3IQsdsFVm1pMvw1rKWEay
+         B22r8MRYi2d087w2nzbm0BJrlDe6zoDRnDZ9wT1dZZUshezjEpJkZlROs4CahFaetlsl
+         UBmdDojRAO0ZCluC/oCs4a5oZ94swucKJ/XQygsJbGI1SUMPc8Nnu15B8U/z9rYdUbDc
+         rhklGu666Z/vtvXEbkEndiAc8990hwzujQWFGWJyiUaFQjRSGaCx3UE11afKxEQIfcpP
+         H003mC0v1fyo6zJYTuodhmSYyOtUxfhGTbJ/g587qOOa0vlZ5EE9ITExWKGkH5KjX3zG
+         o2NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778485761; x=1779090561;
+        d=1e100.net; s=20251104; t=1778485763; x=1779090563;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=WCpb66fRDDpaHGoTh0CXxAdG/v4EU9iEv2l0kxMx/uI=;
-        b=BiiAAnshqX6wwhnHmbAjndKntzHfo51FA/C3rtX3YM49oJFw/N6NXRkDesKQyeryEm
-         W8RWTFNydmPioea40UykP2P3Et7mMA9XmfCL6ky/owWYfODAMchRzy5VfrgBTMKvK2Uo
-         QHHnXc0rQaeDFd2HvgWWS53QtU8vf4a5kySoSTZx+fcEA+SPVMrDuRpWz/ni/J37hJGQ
-         eDt5Dfw596OKEIOmXf+I33JjgqpTmUqxthfTL2wA4pSrrDvEA+mqsq/AR0Y6g0KM/bCo
-         2hXOQzx7RkXcneBvHpr2sz621TFk3+P9dvlnNJEgZGSwpg0QzR+5y+uaD4j70Z+/HCbv
-         5gFw==
-X-Gm-Message-State: AOJu0YzOOQhtAkxASPkpds4PGLTHZXz+1zNcZFy8rV93ELG+YuaWLXyC
-	shwAxvcslnPBmPB5BaVeX4Isq5tuxOD5YSQY03yrNIeP+6LiCaxw+kai
-X-Gm-Gg: Acq92OH2Q8YsbExQn068HQ984RFU5xqhxrpJ/PVZsdF3Bt9dfYE+t8nRZl2eomkuaIv
-	ROhIyxQrgir8ss3TPs0hh34ZW0C/vezmSGYY6iKMO8+9HTuRAxNix8Uk789HG+++A0o2jLnfuSm
-	Xl21HPvVImtOf/NIWuEFfQMLB+9CTsWbTqHiYbqJJRAsk22CjsIFR7vVyBRvmHPH4OnaJs4jRSo
-	CBQh+v0NbUtJgqEsOG1GEjd5AzLP0BhMS5Ppfzn85D0EYPquaCeGqZ8bmpUI2sNWYRLrV3noxj2
-	aOCidJhwfozs2Hdg30x0slpkyhzCgdt6Q0dttk+In94SmyhbfVoH15qJQX2Eu1EiUS+p1OOl3J+
-	zDEIThWbLndvt9zApso+fcvRLzZ06ut1f4IxKCOMAcQ+5LOB0Ru8lD/MUq07HIGxytv9PpGjGz0
-	/LhKXbTm1k4pTCALuvP905koSEV5UhxLQNIg==
-X-Received: by 2002:a05:6512:1044:b0:5a3:f25f:cc30 with SMTP id 2adb3069b0e04-5a887ce68e9mr7177557e87.32.1778485760988;
-        Mon, 11 May 2026 00:49:20 -0700 (PDT)
+        bh=bd49eOxiPUr+nKhdQNMwO1I+nWDzaH1EHGVy7eWJkcs=;
+        b=ZEnD3qHM1NON/UmrIaib++aWXIqLQUnJbgrXMJUxXIS7l4haKtFK+GesA6OsWF1KmU
+         n/uB5GTAcqD+SjX5SxbOA10BRN5vw+rKk4f4yZ32GYbPFHkgWBNWiyboAWJR+2pnz6da
+         hMPe/w6CHyTu+ewIosyOSFneONsv3XEOc66rpKWiFf0z/kl9pzSaQqxJ+fCBu8ObLZTK
+         VwIs3lfBOkNvJ3IiAuBzk4QG+43+5CStLs03d9jHku7S2BWeeuH9H4K61c+CznrVwTbl
+         CEPfmUL4MkmgyWpPr5yD4CUEBhA93t0l6EBYlGBbla/gI/E91YCvOXdjjVLekw1SEqww
+         vbxw==
+X-Gm-Message-State: AOJu0YyWJ2F++R/hKbvuxWrA1nUyxYVfvQVjxhEsw1IK/4enjwqom3PY
+	PWWMte3cn9dT+UUliQPAyGnl8L+g4RjPNpjGyL79z4W7Tf5idyOoC6nl
+X-Gm-Gg: Acq92OGAHqsOKf4JmSprPLvfjjZ1zq06UcFh5yYs11tM3/kxXNPiMrPV8J7piFXVecF
+	Dnawsc30gT0/apI8IBQ4BnujoAvH7EaIUXcfwi3LPQY4zcs1keNq+HrLj6ZR+y2hx/kXDPvDVNC
+	x/cF+o2bu4BFoQuAFutzQe3Efl5TcBwKoHfVhAPEbV2GCzdz49HYXkB+fY3V9L2sjDnkeNKIpgN
+	HL+HZG3x2dNXkMTMoimtKE6ORPw04T6H3e+bHfvBl/wTJ0HJmocre6qOHphWl4ORvHnZWzhtqIa
+	V49hmSJL8QwI0T9DhZFcv92RrK8ddEOlRmwCr43CZXIsqcNyfWCvuGbekgn1H/cWLaE0/jNeI5V
+	psRKHELdtDGnb4SzNEtAWj0iOUG4uT3p1xzkQT8xnhTuyjPPeMoW9D4ExH/SSYVxMZgLClIQ/xF
+	75BM8VThCyd2m1yo6GRSZlNK8=
+X-Received: by 2002:a05:6512:3d8a:b0:5a8:a558:63b3 with SMTP id 2adb3069b0e04-5a8b709b088mr2382639e87.30.1778485763421;
+        Mon, 11 May 2026 00:49:23 -0700 (PDT)
 Received: from xeon ([188.163.112.56])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8a94cac4esm2507271e87.0.2026.05.11.00.49.19
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8a94cac4esm2507271e87.0.2026.05.11.00.49.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2026 00:49:20 -0700 (PDT)
+        Mon, 11 May 2026 00:49:21 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -87,9 +87,9 @@ To: Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/9 RESEND] ARM: tegra: grouper: Add support for front camera
-Date: Mon, 11 May 2026 10:48:54 +0300
-Message-ID: <20260511074859.24930-5-clamor95@gmail.com>
+Subject: [PATCH v1 5/9 RESEND] ARM: tegra: transformer: Add support for front camera
+Date: Mon, 11 May 2026 10:48:55 +0300
+Message-ID: <20260511074859.24930-6-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260511074859.24930-1-clamor95@gmail.com>
 References: <20260511074859.24930-1-clamor95@gmail.com>
@@ -100,7 +100,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5565D509C3B
+X-Rspamd-Queue-Id: EF91B509BFE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -114,7 +114,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295349-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295347-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,gmail.com,agorria.com,yahoo.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -126,41 +126,40 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	NEURAL_HAM(-0.00)[-0.987];
-	DBL_PROHIBIT(0.00)[4.44.32.228:email];
+	DBL_PROHIBIT(0.00)[3.60.63.64:email];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.68:email,2.250.240.128:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,3.57.50.0:email,0.0.0.0:email,0.0.0.1:email,0.0.3.32:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,2.250.240.128:email,bfe00000:email,0.0.0.68:email]
 X-Rspamd-Action: no action
 
-Add front camera video path.
+Add front camera video path. Aptina MI1040 camera is used on all supported
+ASUS Transformers, but only TF201 and TF700T will work since on
+TF300T/TG/TL front camera is linked through an additional ISP.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- .../tegra30-asus-nexus7-grouper-common.dtsi   | 128 ++++++++++++++++++
- ...egra30-asus-nexus7-grouper-maxim-pmic.dtsi |   4 +-
- .../tegra30-asus-nexus7-grouper-ti-pmic.dtsi  |   4 +-
- 3 files changed, 132 insertions(+), 4 deletions(-)
+ .../tegra30-asus-transformer-common.dtsi      | 138 +++++++++++++++++-
+ 1 file changed, 137 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi
-index 15f53babdc21..892d718294dd 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi
+diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi b/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi
+index 0e06136042a9..d4a7bae51830 100644
+--- a/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi
++++ b/arch/arm/boot/dts/nvidia/tegra30-asus-transformer-common.dtsi
 @@ -2,6 +2,7 @@
  
  #include <dt-bindings/input/gpio-keys.h>
  #include <dt-bindings/input/input.h>
 +#include <dt-bindings/media/video-interfaces.h>
- #include <dt-bindings/power/summit,smb347-charger.h>
  #include <dt-bindings/thermal/thermal.h>
  
-@@ -84,6 +85,93 @@ init-mode-hog {
- 		};
+ #include "tegra30.dtsi"
+@@ -73,6 +74,91 @@ trustzone@bfe00000 {
  	};
  
-+	host1x@50000000 {
+ 	host1x@50000000 {
 +		vi@54080000 {
 +			status = "okay";
 +
@@ -183,7 +182,7 @@ index 15f53babdc21..892d718294dd 100644
 +
 +						csia_input: endpoint {
 +							data-lanes = <1 2>;
-+							/* No rear camera */
++							/* Add rear camera */
 +						};
 +					};
 +
@@ -245,12 +244,11 @@ index 15f53babdc21..892d718294dd 100644
 +				};
 +			};
 +		};
-+	};
 +
- 	pinmux@70000868 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&state_default>;
-@@ -890,6 +978,36 @@ light-sensor@1c {
+ 		hdmi: hdmi@54280000 {
+ 			status = "okay";
+ 
+@@ -1173,6 +1259,36 @@ light-sensor@1c {
  			vdd-supply = <&vdd_3v3_sys>;
  		};
  
@@ -263,9 +261,9 @@ index 15f53babdc21..892d718294dd 100644
 +
 +			reset-gpios = <&gpio TEGRA_GPIO(O, 0) GPIO_ACTIVE_LOW>;
 +
-+			vddio-supply = <&avdd_cam1>;
-+			vdd-supply = <&vddio_cam>;
-+			vaa-supply = <&avdd_cam1>;
++			vddio-supply = <&vdd_1v8_cam>;
++			vdd-supply = <&vdd_1v8_cam>;
++			vaa-supply = <&avdd_2v85_fcam>;
 +
 +			orientation = <0>; /* Front camera */
 +
@@ -284,68 +282,45 @@ index 15f53babdc21..892d718294dd 100644
 +			};
 +		};
 +
- 		accelerometer@68 {
- 			compatible = "invensense,mpu6050";
+ 		gyroscope@68 {
+ 			compatible = "invensense,mpu3050";
  			reg = <0x68>;
-@@ -1203,6 +1321,16 @@ vcc_3v3_ts: regulator-ts {
- 		vin-supply = <&vdd_5v0_sys>;
- 	};
+@@ -1310,7 +1426,7 @@ ldo4 {
  
-+	avdd_cam1: regulator-vcam1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "avdd_cam1";
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+		gpio = <&gpio TEGRA_GPIO(R, 6) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&vdd_5v0_sys>;
-+	};
-+
- 	sound {
- 		compatible = "nvidia,tegra-audio-rt5640-grouper",
- 			     "nvidia,tegra-audio-rt5640";
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-maxim-pmic.dtsi b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-maxim-pmic.dtsi
-index 694c7fe37eb8..4bd98935031b 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-maxim-pmic.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-maxim-pmic.dtsi
-@@ -135,7 +135,7 @@ ldo4 {
- 					regulator-boot-on;
- 				};
- 
--				ldo5 {
-+				vddio_cam: ldo5 {
- 					regulator-name = "vdd_camera";
- 					regulator-min-microvolt = <1800000>;
- 					regulator-max-microvolt = <1800000>;
-@@ -149,7 +149,7 @@ ldo6 {
- 					regulator-boot-on;
- 				};
- 
--				ldo7 {
-+				avdd_dsi_csi: ldo7 {
- 					regulator-name = "avdd_dsi_csi";
- 					regulator-min-microvolt = <1200000>;
- 					regulator-max-microvolt = <1200000>;
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-ti-pmic.dtsi b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-ti-pmic.dtsi
-index ee4a3f482769..8fe3c62c9052 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-ti-pmic.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-ti-pmic.dtsi
-@@ -92,13 +92,13 @@ ldo4 {
- 					regulator-always-on;
- 				};
- 
--				ldo5 {
-+				vddio_cam: ldo5 {
- 					regulator-name = "vddio_sdmmc,avdd_vdac";
- 					regulator-min-microvolt = <1800000>;
- 					regulator-max-microvolt = <1800000>;
- 				};
+ 				/* LDO5 is not used by Transformers */
  
 -				ldo6 {
 +				avdd_dsi_csi: ldo6 {
  					regulator-name = "avdd_dsi_csi,pwrdet_mipi";
  					regulator-min-microvolt = <1200000>;
  					regulator-max-microvolt = <1200000>;
+@@ -1685,6 +1801,26 @@ hdmi_5v0_sys: regulator-hdmi {
+ 		vin-supply = <&vdd_5v0_sys>;
+ 	};
+ 
++	vdd_1v8_cam: regulator-viocam {
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_1v8_cam";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		gpio = <&gpio TEGRA_GPIO(BB, 4) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		vin-supply = <&vdd_1v8_vio>;
++	};
++
++	avdd_2v85_fcam: regulator-avcam-front {
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_2v85_fcam";
++		regulator-min-microvolt = <2850000>;
++		regulator-max-microvolt = <2850000>;
++		gpio = <&gpio TEGRA_GPIO(S, 0) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		vin-supply = <&vdd_3v3_sys>;
++	};
++
+ 	sound {
+ 		nvidia,i2s-controller = <&tegra_i2s1>;
+ 
 -- 
 2.51.0
 
