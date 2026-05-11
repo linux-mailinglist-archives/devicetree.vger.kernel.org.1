@@ -1,180 +1,145 @@
-Return-Path: <devicetree+bounces-295868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295869-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAfBDBZhAmposAEAu9opvQ
-	(envelope-from <devicetree+bounces-295868-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:07:02 +0200
+	id eK6dGL1hAmq+sAEAu9opvQ
+	(envelope-from <devicetree+bounces-295869-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:09:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A990517243
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:07:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1AB35172A8
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 057CF301FAA3
-	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 23:07:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECD86301AB9C
+	for <lists+devicetree@lfdr.de>; Mon, 11 May 2026 23:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175B034DB46;
-	Mon, 11 May 2026 23:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E25D356742;
+	Mon, 11 May 2026 23:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+JBySvP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tD+ZfEvW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89BF1A9F90
-	for <devicetree@vger.kernel.org>; Mon, 11 May 2026 23:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED065383326;
+	Mon, 11 May 2026 23:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778540818; cv=none; b=K4B4D84114QWa2n96A90wB9cCESACR9Z9pWBD8c6MkBJbYz5TrEpIuh0WRBv5+HbnStj7bxofwW2T2y2xbqaNoEDWY9w8anAHFE7ssv3M3+Nzd7/Q8dCGsgDxRJ+1/CgBQqcLZJdXZZE+b3YvDQ+exgbbb2DQ2sUvCp4q/AndJw=
+	t=1778540978; cv=none; b=pmXw3lk/HAYZ85lDKj6lcDH63BBD++Y4QhK6NTBo1JKhcKgxgzXMFsWEckVUpRP9QX516o3SDgnEAfv2Cr+M43nhDz3tQIqO9NrMl396CDsLMG3Win8zf0QPDyzPhC/TNIJ47CLgc6oSJf7eZYqzCCLmfipS4awZ12sutn38Axo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778540818; c=relaxed/simple;
-	bh=6Nmc5HVch4Ff/uHTSqqH2tzd9mntGgoGUmlDyehHO+E=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=d5WSNWsr9gLes7k92TVFzk0hWPBnbJxBQlqGOFw0zm0dfBTjDt3W34B6OY8gfM6VApK/F4W7cEn0Vt+kJi7vZ6/k7vxw73kOZPuNYauuQxnNkPpRk58aydLvAml82eV0hkkqgFofngZ163JlR/e+xr2sPYJK1NkbaK1dZkDqO5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+JBySvP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 985C8C2BCB0;
-	Mon, 11 May 2026 23:06:57 +0000 (UTC)
+	s=arc-20240116; t=1778540978; c=relaxed/simple;
+	bh=oNHvi4oxjrwBg8WrHDE3QBzWxrrrcye8fddyPM6VQbA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dQOaUuGeXqho+dz3KqLke3ln/mNV5X1o50kObxFzxbLjNwyNaguacJ3vpsIC1kysD1G407pu7EB1vBVoTJwR+cWG9+obvYWL3qbYP2KHXIWOh6XXxdjG6jRZdtUJ+MEfHDLJPd55jBNs6qEged4ylEWc5vifNKknfaUM2c7h+C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tD+ZfEvW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14A85C2BCB0;
+	Mon, 11 May 2026 23:09:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778540817;
-	bh=6Nmc5HVch4Ff/uHTSqqH2tzd9mntGgoGUmlDyehHO+E=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Z+JBySvPz2Hq5zfpkqtRJAsxOCQJOsPoPn2Ywt/M6Fvjy/8A4IV9SsbzJb/rE3e15
-	 mgt9p9PJ6or8nO/3CucO8dJILRtyMA1YuUZkKFNR1mIZuiDsZQYkHdgw3RLNO/1qM0
-	 u2jU8LyT//QkIN1HwCiGZonUG4qyEIycmWhnujwxTBBXAqeCwzP5t+0LkFJNsxoTOu
-	 Z2yapCEYNiVcs1f+MV50c/MdYisVmEWcDEc7fUwLzVPqIghYB7u1VklhszhDuuYQlH
-	 vB5lVHCunEj8HoHTwfcIncv/76zPk75/txwvM57RG9+zm7SSm6HYq8rzXqPpcPINpa
-	 JCnhRVLRXzVJw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: wire style checker into
- dt_binding_check
-Reply-To: sashiko@lists.linux.dev
-To: "Daniel Golle" <daniel@makrotopia.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <15c7795ac1c2a6aa71fc6967223869b0b285f4c9.1778454442.git.daniel@makrotopia.org>
-References: <15c7795ac1c2a6aa71fc6967223869b0b285f4c9.1778454442.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 11 May 2026 23:06:56 +0000
-Message-Id: <20260511230657.985C8C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778540977;
+	bh=oNHvi4oxjrwBg8WrHDE3QBzWxrrrcye8fddyPM6VQbA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tD+ZfEvWY6zNN4Rotzj2Kp774to8Jqfnshu16QaCSxae/YvNmIW1jJarDiSqRocLW
+	 tVWXp2unxM4GrbwI8ccU9NuxPbVmKtlXWfhqTwPqsWIzA3IXkI6Mw7gvJarAMhhnav
+	 4w7IG99LKdnePjTd7/1hspEy91ix6y9dJ2WXOuUaT/ZHKcvtonxXqc5IM/OfHzcsXg
+	 Y5XTqNcIhhX5X1Vkal6gpxp4Idmf/UG1Ay+iIvry5nvDAEfdcLGJOquwRABQvM0l/v
+	 2AVlu3J20fhPTcD5ytxrwUBJ+Z/V4weIlqOdaX/2/EjzqbldOYkjqBKe+jZgv//gqd
+	 70uwh/Pbbat8Q==
+Date: Mon, 11 May 2026 16:09:32 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li
+ <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>, Akhil P Oommen
+ <akhilpo@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Abhinav
+ Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Vinod Koul
+ <vkoul@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>, Jackson Lee
+ <jackson.lee@chipsnmedia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Mirela Rabulea <mirela.rabulea@nxp.com>, Detlev Casanova
+ <detlev.casanova@collabora.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Heiko Stuebner <heiko@sntech.de>, Hugues
+ Fruchet <hugues.fruchet@foss.st.com>, Alain Volmat
+ <alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, MD Danish
+ Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, Parvathi
+ Pudi <parvathi@couthit.com>, Mohan Reddy Putluru <pmohan@couthit.com>,
+ Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+ <mathieu.poirier@linaro.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michal Simek
+ <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Linus Walleij
+ <linusw@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau
+ <nbd@nbd.name>, "Andrew F. Davis" <afd@ti.com>, Hussain Khaja
+ <basharath@couthit.com>, Suman Anna <s-anna@ti.com>, Ben Levinsky
+ <ben.levinsky@amd.com>, Tanmay Shah <tanmay.shah@amd.com>, Erwan Leray
+ <erwan.leray@foss.st.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+ Roger Quadros <rogerq@ti.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
+Message-ID: <20260511160932.0e2cf50a@kernel.org>
+In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
+References: <20260511165942.2774868-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 9A990517243
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C1AB35172A8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295868-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,oss.qualcomm.com,poorly.run,linux.dev,somainline.org,chipsnmedia.com,collabora.com,vanguardiasur.com.ar,sntech.de,foss.st.com,lunn.ch,davemloft.net,google.com,redhat.com,ti.com,couthit.com,linaro.org,baylibre.com,googlemail.com,amd.com,nbd.name,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,st-md-mailman.stormreply.com];
+	TAGGED_FROM(0.00)[bounces-295869-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[79];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] The wrapper script `scripts/jobserver-exec` drops the exit status =
-of the underlying `dt-check-style` command, causing `make dt_binding_check`=
- to falsely succeed and mark the style check as complete even when violatio=
-ns or fatal errors occur.
-- [High] The `chk_style` recipe fails to integrate with the GNU Make jobser=
-ver due to a missing `+` prefix, causing the checker to spawn `os.cpu_count=
-()` workers regardless of the `make -j` limit.
-- [Low] The command `cmd_chk_style` creates a temporary file via `$(tmp-tar=
-get)` but never removes it, leaving a stale `.tmp_.dt-style.checked` file i=
-n the build tree.
---
+On Mon, 11 May 2026 11:59:36 -0500 Rob Herring (Arm) wrote:
+>  .../bindings/net/ti,icssg-prueth.yaml         |  2 +-
+>  .../bindings/net/ti,icssm-prueth.yaml         |  2 +-
 
-commit b2a3666e05aa3ee60565bab78c721d9f2be7e0af
-Author: Daniel Golle <daniel@makrotopia.org>
-
-dt-bindings: wire style checker into dt_binding_check
-
-This commit integrates the new dt-check-style tool into the dt_binding_check
-Makefile target. It uses scripts/jobserver-exec to attempt to respect GNU
-Make's jobserver limits and passes the file list via an argfile.
-
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/d=
-evicetree/bindings/Makefile
-> index 7b668f7fd4007..df4c4e0da1dca 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-[ ... ]
-> +DT_CHK_STYLE =3D $(srctree)/scripts/dtc/dt-check-style
-> +
-> +# Feed the file list to the checker via @argfile in a single Python
-> +# process so the ruamel.yaml import is paid once. scripts/jobserver-exec
-> +# claims slots from the GNU make jobserver and exposes the count via
-> +# $PARALLELISM, which dt-check-style picks up to size its worker pool.
-> +quiet_cmd_chk_style =3D STYLE   $(src)
-> +      cmd_chk_style =3D $(find_cmd) > $(tmp-target) && \
-> +		      $(PYTHON3) $(srctree)/scripts/jobserver-exec \
-> +		      $(PYTHON3) $(DT_CHK_STYLE) @$(tmp-target) \
-> +		      && touch $@ || true
-
-Does scripts/jobserver-exec properly propagate the exit status from the
-underlying command?
-
-If the main() function in scripts/jobserver-exec calls jobserver.run() but
-ignores its return value, it would unconditionally exit with code 0. This
-would cause make dt_binding_check to falsely succeed and mark the style
-check as complete even when violations or fatal errors occur.
-
-Also, is it possible to clean up $(tmp-target) after execution?
-
-Unlike cmd_mk_schema which uses rm -f $$f, this command leaves a stale
-.tmp_.dt-style.checked file in the build tree since Kbuild does not
-automatically delete $(tmp-target) after an if_changed rule completes.
-
-[ ... ]
-> +$(obj)/.dt-style.checked: $(DT_DOCS) FORCE
-> +	$(call if_changed,chk_style)
-
-Does this recipe successfully integrate with the GNU Make jobserver?
-
-GNU Make only passes jobserver file descriptors and the --jobserver-auth fl=
-ag
-to recipes it recognizes as recursive makes, which typically require the
-string $(MAKE) or a + prefix on the unexpanded command line.
-
-Since Kbuild's if_changed macro does not include $(MAKE) and this recipe
-lacks a + prefix, GNU Make strips the jobserver arguments from MAKEFLAGS
-and closes the file descriptors before executing the command.
-
-Could this cause scripts/jobserver-exec to silently fail to connect to the
-jobserver, meaning the PARALLELISM environment variable is not set? This
-would force dt-check-style to fall back to spawning os.cpu_count() workers
-regardless of the make -j limit, contradicting the commit message claim
-that it constrains the checker to N workers.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1778454442.gi=
-t.daniel@makrotopia.org?part=3D2
+Acked-by: Jakub Kicinski <kuba@kernel.org>
 
