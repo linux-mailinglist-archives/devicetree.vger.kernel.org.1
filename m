@@ -1,172 +1,204 @@
-Return-Path: <devicetree+bounces-295907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295908-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IM/JD75+AmrCtgEAu9opvQ
-	(envelope-from <devicetree+bounces-295907-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:13:34 +0200
+	id OEnjMWN/AmoZtwEAu9opvQ
+	(envelope-from <devicetree+bounces-295908-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:16:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93137518120
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:13:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB19951814E
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:16:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5EEC03007356
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:13:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 147A13012598
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5BC246783;
-	Tue, 12 May 2026 01:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB15235BE2;
+	Tue, 12 May 2026 01:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kdpGGXiw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OUfhKIfw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7431FBEBC
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 01:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281CA19AD90;
+	Tue, 12 May 2026 01:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778548411; cv=none; b=HmO2p8djdz9zHBxGUGuwmvXg2RqeYnx33dPgqbi1RbBSHdomNc7E3o2ANoapxCScjZ6ay2+P2okmuDRr2BFMtgdDZjoOu236+t8dH8JXNWwg3/fD3rwstpg2awM7g2DbE8XbMFDKr6KbuWDeoQvKRFbZyeg3CBqFs1oJ1RL8X/M=
+	t=1778548566; cv=none; b=uljwkQ56Tzu7+keQhDRfw7xlogyVBFG1vQoTWnmrAtqVMFC4ip1JWDrJsJR/4qzratN4CsfOXmsh0uf2L/Li8T5IyEw0nnUb2IILiq5gdQX5X+wEl9fYZLW8/2x7RWhH2vWZxUGX4pHZ6EWjdcWXjAjoI1sxHHxecjNIpK+if20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778548411; c=relaxed/simple;
-	bh=gN4/sMoIRXaKmiGhPaRAvFKwvZTEbeGGQmu3IFlUBkg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=c1sNzb62axgFKjEkuxdmUMzD+GEHM96SXuBH25uMMlrIrDHmjze4DGucClWiO7Kh7j9Sz/w/ZEcrg5+1C10IupbnJdwRGekPOM+RHnHJBusaPI23nxM3mlXlX8Pt4SWqZu4hwCBD/1TvGg/aHCegwl+PhAQPX4zOJ0RxwJ01kvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kdpGGXiw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD609C2BCB0;
-	Tue, 12 May 2026 01:13:30 +0000 (UTC)
+	s=arc-20240116; t=1778548566; c=relaxed/simple;
+	bh=ACf9F8mIe11uR9zPEzpLlpeJBEkpXvF/E/hQaOiFhrU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qlkExy+gLpaqIcJm4OQqBOaEChTlhORMfMwQPEzpHtp69A9wVHv732tjBzi5YwBSdCIoD6P3vUt2TNztPsBW0NpeNgcfTOKP3RDjM5iHHlvPJaYYmP5LkhAmFGqqFXQVYUZGeNm+iZtmTmSQQw273+vzAN02NOJ/mOuun2hyaAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OUfhKIfw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA50C2BCB0;
+	Tue, 12 May 2026 01:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778548411;
-	bh=gN4/sMoIRXaKmiGhPaRAvFKwvZTEbeGGQmu3IFlUBkg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=kdpGGXiwWAkEPJyOoyv9mqjDMxw2X7MnIUApKjQ+3cjjdj/JvHk6kVAIp9tZO7vWs
-	 cu7BkPikprg96xT2TC7KZ5MWc43RrjYbvWyF7gymPW+RPdrgE43s/EHgM7iG2kk+i8
-	 HxKVKhDfKtsbAVSdkaCjBcoTupgpIljfOw43T2LCyU6dPWLirOrp1o/3XGwaAzZeWi
-	 OpLcSx3FQhpfmHhLhjs5xYhgS8Xtuh72X2CrqxF/axuAmNLPxtpUo+ZkN80cUKA/Zb
-	 3xG8qDWlYqUwERtEA1JRc9d3c1OuSVXil1sjJ7ecVvl5XRdBzng/MtceLD2NvFd+/i
-	 bb1UBWKwla6Gg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 2/8] mmc: sdhci-of-k1: enable essential clock
- infrastructure for SD operation
-Reply-To: sashiko@lists.linux.dev
-To: "Iker Pedrosa" <ikerpedrosam@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260511-orangepi-sd-card-uhs-v9-2-ae48c0b2b2cf@gmail.com>
-References: <20260511-orangepi-sd-card-uhs-v9-2-ae48c0b2b2cf@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 01:13:30 +0000
-Message-Id: <20260512011330.BD609C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778548565;
+	bh=ACf9F8mIe11uR9zPEzpLlpeJBEkpXvF/E/hQaOiFhrU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OUfhKIfwzuH226iZczHaYhoQACRSH2B1xVSUZfwTCDcXqu92SoJTYAQJG1dAkvSES
+	 ZAH9f7JH+WWSt/8oU9itsz8CkbQq3UvEf+kqcvyW618t3fSB2G8G4INL8vq43A9W25
+	 bozKFqvXU4Ex5W+9HEkFOfo7uCUFZ2gzoPUe6mYCzlei1Cx9u2uX7ltZZB3M9hrP4D
+	 m0/ISBGrpUlo7gTM4fE+cRTWgDzypCL6ZIyHLy0/KEwlJ2nS0t3sFReZ17FXkKFy8I
+	 2rBD1NceY8pJzxAnrE9gtu8N5wUV4VFgV4ACZCYZm3Sfhs8hxdB8WV+GxxnFTIoZu/
+	 lyuDz4wF/Fpig==
+Date: Tue, 12 May 2026 09:15:59 +0800
+From: "Peter Chen (CIX)" <peter.chen@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 2/6] usb: chipidea: tegra: Avoid controller/PHY init
+ if bus is externally controlled
+Message-ID: <agJ/T8nBGWEoblmd@nchen-desktop>
+References: <20260511135703.62470-1-clamor95@gmail.com>
+ <20260511135703.62470-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 93137518120
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260511135703.62470-3-clamor95@gmail.com>
+X-Rspamd-Queue-Id: CB19951814E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295907-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-295908-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[peter.chen@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Incorrect condition used for targeting removable card scenarios,=
- leading to power regressions for SDIO devices.
-- [Medium] Missing explicit clear of SD-specific vendor overrides for non-S=
-D controllers.
---
+On 26-05-11 16:56:57, Svyatoslav Ryhel wrote:
+> If the USB controller and PHY are externally controlled, then the
+> registration of the controller and the PHY initialization should be
+> skipped, since these configurations must be done by the device that
+> controls the bus to work correctly.
+> 
 
-commit acf2ed5de9b1d692d653b998c6c50d3cddd4cff5
-Author: Iker Pedrosa <ikerpedrosam@gmail.com>
+I find you only control USB controller device add at PHY driver, most of USB drivers
+has PHY control, for chipidea, it has PHY control at core.c, would please try to
+adapt for it?
 
-mmc: sdhci-of-k1: enable essential clock infrastructure for SD operation
+Peter
 
-This commit enables clock generation for SD operation on the spacemit
-sdhci-of-k1 controller. It sets SDHC_GEN_PAD_CLK_ON for all modes and
-conditionally overrides automatic clock gating for SD-only controllers
-to handle removable card scenarios.
-
-> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k=
-1.c
-> index 455656f9842df..0dd06fc19b857 100644
-> --- a/drivers/mmc/host/sdhci-of-k1.c
-> +++ b/drivers/mmc/host/sdhci-of-k1.c
-
-[ ... ]
-
-> @@ -101,6 +108,12 @@ static void spacemit_sdhci_reset(struct sdhci_host *=
-host, u8 mask)
-> =20
->  	if (!(host->mmc->caps2 & MMC_CAP2_NO_MMC))
->  		spacemit_sdhci_setbits(host, SDHC_MMC_CARD_MODE, SPACEMIT_SDHC_MMC_CTR=
-L_REG);
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/usb/chipidea/ci_hdrc_tegra.c | 36 +++++++++++++++++-----------
+>  1 file changed, 22 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/usb/chipidea/ci_hdrc_tegra.c b/drivers/usb/chipidea/ci_hdrc_tegra.c
+> index 372788f0f970..593390a818d1 100644
+> --- a/drivers/usb/chipidea/ci_hdrc_tegra.c
+> +++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
+> @@ -32,6 +32,7 @@ struct tegra_usb {
+>  	struct clk *clk;
+>  
+>  	bool needs_double_reset;
+> +	bool externally_controlled;
+>  };
+>  
+>  struct tegra_usb_soc_info {
+> @@ -312,20 +313,25 @@ static int tegra_usb_probe(struct platform_device *pdev)
+>  	if (device_property_present(&pdev->dev, "nvidia,needs-double-reset"))
+>  		usb->needs_double_reset = true;
+>  
+> +	if (device_property_present(&pdev->dev, "nvidia,external-control"))
+> +		usb->externally_controlled = true;
 > +
-> +	spacemit_sdhci_setbits(host, SDHC_GEN_PAD_CLK_ON, SPACEMIT_SDHC_LEGACY_=
-CTRL_REG);
-> +
-> +	if (host->mmc->caps2 & MMC_CAP2_NO_MMC)
-> +		spacemit_sdhci_setbits(host, SDHC_OVRRD_CLK_OEN | SDHC_FORCE_CLK_ON,
-> +				       SPACEMIT_SDHC_OP_EXT_REG);
->  }
+>  	err = tegra_usb_reset_controller(&pdev->dev);
+>  	if (err) {
+>  		dev_err_probe(&pdev->dev, err, "failed to reset controller");
+>  		goto fail_power_off;
+>  	}
+>  
+> -	/*
+> -	 * USB controller registers shouldn't be touched before PHY is
+> -	 * initialized, otherwise CPU will hang because clocks are gated.
+> -	 * PHY driver controls gating of internal USB clocks on Tegra.
+> -	 */
+> -	err = usb_phy_init(usb->phy);
+> -	if (err)
+> -		goto fail_power_off;
+> +	if (!usb->externally_controlled) {
+> +		/*
+> +		 * USB controller registers shouldn't be touched before PHY is
+> +		 * initialized, otherwise CPU will hang because clocks are gated.
+> +		 * PHY driver controls gating of internal USB clocks on Tegra.
+> +		 */
+> +		err = usb_phy_init(usb->phy);
+> +		if (err)
+> +			goto fail_power_off;
+> +	}
+>  
+>  	/* setup and register ChipIdea HDRC device */
+>  	usb->soc = soc;
+> @@ -342,12 +348,14 @@ static int tegra_usb_probe(struct platform_device *pdev)
+>  	if (of_usb_get_phy_mode(pdev->dev.of_node) == USBPHY_INTERFACE_MODE_ULPI)
+>  		usb->data.flags &= ~CI_HDRC_SUPPORTS_RUNTIME_PM;
+>  
+> -	usb->dev = ci_hdrc_add_device(&pdev->dev, pdev->resource,
+> -				      pdev->num_resources, &usb->data);
+> -	if (IS_ERR(usb->dev)) {
+> -		err = dev_err_probe(&pdev->dev, PTR_ERR(usb->dev),
+> -				    "failed to add HDRC device");
+> -		goto phy_shutdown;
+> +	if (!usb->externally_controlled) {
+> +		usb->dev = ci_hdrc_add_device(&pdev->dev, pdev->resource,
+> +					      pdev->num_resources, &usb->data);
+> +		if (IS_ERR(usb->dev)) {
+> +			err = dev_err_probe(&pdev->dev, PTR_ERR(usb->dev),
+> +					    "failed to add HDRC device");
+> +			goto phy_shutdown;
+> +		}
+>  	}
+>  
+>  	return 0;
+> -- 
+> 2.51.0
+> 
 
-The commit message states that the SD-specific clock overrides are intended
-to handle removable card scenarios. Does checking for MMC_CAP2_NO_MMC
-unintentionally apply these overrides to non-removable SDIO devices?
+-- 
 
-The MMC_CAP2_NO_MMC flag indicates the absence of eMMC support, which will
-evaluate to true for both removable SD cards and non-removable SDIO modules
-like Wi-Fi chips.
-
-If the clock is forced to remain continuously on for SDIO devices, could th=
-is
-override automatic clock gating and cause a power regression by preventing
-deep sleep states?
-
-Additionally, does this setup leave the vendor-specific clock overrides act=
-ive
-on eMMC interfaces if they were previously set by a bootloader?
-
-Since SPACEMIT_SDHC_OP_EXT_REG is a vendor-specific register located at off=
-set
-0x108, it is typically untouched by the standard SDHCI_RESET_ALL mechanism.
-
-If a prior execution stage leaves SDHC_OVRRD_CLK_OEN or SDHC_FORCE_CLK_ON s=
-et,
-the absence of an explicit clear in this path could prevent automatic clock
-gating on eMMC interfaces.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-orangepi-s=
-d-card-uhs-v9-0-ae48c0b2b2cf@gmail.com?part=3D2
+Best regards,
+Peter
 
