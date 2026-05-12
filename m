@@ -1,68 +1,74 @@
-Return-Path: <devicetree+bounces-296449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QElYBTmNA2pN7AEAu9opvQ
-	(envelope-from <devicetree+bounces-296449-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:27:37 +0200
+	id gCcWOGKNA2pN7AEAu9opvQ
+	(envelope-from <devicetree+bounces-296450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:28:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D0F452921C
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C0B52925E
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:28:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 678173101D63
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:23:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B374D3112846
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:23:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988113C6A38;
-	Tue, 12 May 2026 20:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7BF3C8C7D;
+	Tue, 12 May 2026 20:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBFcgKos"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZgCAiBRg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731A13C2787;
-	Tue, 12 May 2026 20:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD603C8C49;
+	Tue, 12 May 2026 20:23:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778617410; cv=none; b=dRlwWlzwW4gjshtdONjri1x40IjG3siIqa40GoKl+SZnoiamCpce0YV/aKvIPRCrCNy5WbBxaQ0Mj/ES7mBdtwIPhomydV7FD6V+rG+jcj7IDnLoM4EIyHCr1kLAfENaUr97azOaZF0OhnCYUydcOwO4lfiWRJtLTG23L3rpxks=
+	t=1778617412; cv=none; b=US84CvqZG29Vxrz2uoYKWtRRrqqEswhcOJ+aJ/N8j84ot4pjKx1jWINytdd/wBuRYv7MNKvLyWlQnf8nMoYrAzj8AtouJF4xfjPL88wjLrZLwobXNFM2MG50UNgw7JqEtOOXbVF+WKQU3RYpQ6ZY5hSl3j9EKEtfBXiTG6gZrw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778617410; c=relaxed/simple;
-	bh=QOCRf6dLqepCUa6YKt4nUPE6Zc3Xh+Mg+fkorBi7bIg=;
+	s=arc-20240116; t=1778617412; c=relaxed/simple;
+	bh=J1BiYjoLCuq5Sl+Tr6ytUdAEbeIfNy3/RWKvWcOp61Y=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iiTRY3AQ/zRhkgibwPWWfanMVkDDpDRZsT7d4yevNFeF577ejvr6sqUZO3Ynz7UbIdvFpzWmwpNYkIV8z4+hCNPHuEIMb1lQzQl1lB7/R+zTT4qvi6V/yh6PErlzVJ0XobaIrhpMZImhxmwt/jeKO2YyPO8QMiq1K8AVdlkTEEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBFcgKos; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F9A1C2BCF5;
-	Tue, 12 May 2026 20:23:29 +0000 (UTC)
+	 MIME-Version:Content-Type; b=jJ/irdBc2ySh2N7pA0agWvdfXbcqr6c3TwWEIF39y7HfAe41Sc/yMnXgDSS4+Kta20+zObVv91t1NZcFHpUvCZUZdJeJ9ZQl2Knfo3gQfVOWgiubocJ0XOnxMz9dtgiWkRLErYfZDs07EIQr8TWT9epknkCqnyqIboCVIUK/4tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZgCAiBRg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BC83C2BCC7;
+	Tue, 12 May 2026 20:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778617410;
-	bh=QOCRf6dLqepCUa6YKt4nUPE6Zc3Xh+Mg+fkorBi7bIg=;
+	s=k20201202; t=1778617411;
+	bh=J1BiYjoLCuq5Sl+Tr6ytUdAEbeIfNy3/RWKvWcOp61Y=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bBFcgKos6PPNAbO7HUcwr43D7t0unrrTpYQD4u1grZAUZXILX366D4OM4eQyjZRBo
-	 reujSoZiIRvAdtOFN6Zgok1Iq0VlgMcaf742A9dgOObMnWuxAlM52R/EwbvnpusxHt
-	 TQZjdenDzOAMnEs15paNHH+HkfiiSisjCpawPSZdRAFr097kfxDSEPDQjC1aO34Hyb
-	 FXr9XECkmsZ6WHT3jpZgAa9wGk0nd7AWHWL07Ru1vOYPLgnbCuO6kVBNzRKfuqJieb
-	 TGa8b8eT6mD7SGS5G2Hree2GJa/JHBQuXKwsKrqDCRD1k2k8Ua9y/f/B3VgMLdUTVl
-	 cLdxO2LNrpwKg==
+	b=ZgCAiBRgzkAokRXT7UzLtqU5ksvNHGcgsT0kWvMJXRai7jcncVxMo6aepS40hrOY6
+	 xEVTbochr+wSgNVfZ3k6wyEValUI7EQRUmgSNAPbSCD1Odq/5Fo1IQbL6We0SNTok1
+	 Rf42AXHflneS6wg/m9pP5cg15Vq4oWNnIWprkN6QJLyOxmHJ/IucUi8RPHvF1rAzC6
+	 Bg13ls87UMHHZHEOA4ImMS3iuogKY/8yYaOlNZV+FUhlvQvYEuyQJcLWVy8JdFbdRC
+	 eOPpsIk4ofCqE8OdyerR/w5N7GdRr1lyxXez0mwykbLfB4+F/0ok+GC7s6knekboN9
+	 O3PCGCgzF2TBQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Thara Gopinath <thara.gopinath@gmail.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
+To: Johannes Berg <johannes@sipsolutions.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
-	Alexander Koskovich <akoskovich@pm.me>
-Cc: linux-crypto@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
+	Paul Sajna <sajattack@postmarketos.org>,
+	David Heidelberg <david@ixit.cz>
+Cc: Baochen Qiang <baochen.qiang@oss.qualcomm.com>,
+	Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Amit Pundir <amit.pundir@linaro.org>,
+	linux-wireless@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/2] arm64: dts: qcom: milos: Add QCrypto support
-Date: Tue, 12 May 2026 15:22:42 -0500
-Message-ID: <177861739348.1242344.18372214369388033089.b4-ty@kernel.org>
+	ath10k@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	phone-devel@vger.kernel.org
+Subject: Re: (subset) [PATCH v5 0/3] ath10k: Introduce a devicetree quirk to skip host cap QMI requests
+Date: Tue, 12 May 2026 15:22:43 -0500
+Message-ID: <177861739361.1242344.5682040550852862805.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260405-milos-qce-v1-0-6996fb0b8a9c@pm.me>
-References: <20260405-milos-qce-v1-0-6996fb0b8a9c@pm.me>
+In-Reply-To: <20260407-skip-host-cam-qmi-req-v5-0-dfa8a05c6538@ixit.cz>
+References: <20260407-skip-host-cam-qmi-req-v5-0-dfa8a05c6538@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +77,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 8D0F452921C
+X-Rspamd-Queue-Id: 42C0B52925E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -83,15 +89,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296449-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,kernel.org,pm.me];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296450-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
@@ -99,22 +104,26 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
-On Mon, 06 Apr 2026 02:09:59 +0000, Alexander Koskovich wrote:
-> Add the dt-bindings and device tree nodes for the Qualcomm Crypto
-> Engine (QCE) and its associated BAM DMA controller on the Milos
-> platform.
+On Tue, 07 Apr 2026 08:43:53 +0200, David Heidelberg wrote:
+> This quirk is used so far used on:
+>  - LG G7 ThinQ
+>  - Xiaomi Poco F1
 > 
+> I'm resending it after ~ 4 years since initial send due to Snapdragon
+> 845 being one of best supported platform for mobile phones running
+> Linux, so it would be shame to not have shiny support.
 > 
+> [...]
 
 Applied, thanks!
 
-[2/2] arm64: dts: qcom: milos: Add QCrypto nodes
-      commit: 208af18362e01f59bfe4a71a8606b09acb673cd0
+[3/3] arm64: dts: qcom: sdm845-xiaomi-beryllium: Enable ath10k host-cap skip quirk
+      commit: 113343d57607937102d843775560fea0ce5cbe6f
 
 Best regards,
 -- 
