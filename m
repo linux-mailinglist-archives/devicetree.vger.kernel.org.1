@@ -1,87 +1,85 @@
-Return-Path: <devicetree+bounces-296034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296035-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cOkqCE3FAmp7wQEAu9opvQ
-	(envelope-from <devicetree+bounces-296034-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:14:37 +0200
+	id qCUfO0/GAmp7wQEAu9opvQ
+	(envelope-from <devicetree+bounces-296035-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:18:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CF551ACA0
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:14:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 406F451AD8A
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9141130D9FFE
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:49:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 681683038144
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB383FA5C4;
-	Tue, 12 May 2026 05:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810253FCB14;
+	Tue, 12 May 2026 05:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ku17xVTn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJ/FlQ8H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4C53D413C
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 05:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E75F3FD141
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 05:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778564892; cv=none; b=QuBNVSK809HuNyBpkUIVnzkbVMOg293lFXz2i6gGCqHto4VyvhfFb5NH+oJNJeqk+jLNDgIOcsKwuvkMB70kaLLu+13p/uGD6L+3LeUVjIlY3Me1Tf5WAjepOEebsqjLsgIDgdbTrtZw2OfEuxjg+9AphxjWF2vq/NuRU6PJ3cM=
+	t=1778565388; cv=none; b=dsPDZGRuAx3/sIUTWWc53bbym7ohquERgA4WG7cfd8xNPi4/fYTJlK3oP6cjxrAY7GW2c4YwTPntu83j8siJ3hyaYzWcUiSjpDp4LGWH77wPr7mzyCpy0Cyi+TWlGS6FrbGrdiZvrKAcYN5jbwKOalLPsY/wxOrcxFCkl1nE8vM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778564892; c=relaxed/simple;
-	bh=yzZ0ilCbU1G0/yVZuOMEJTyG1cn/76wQFxUCUi9dqYo=;
+	s=arc-20240116; t=1778565388; c=relaxed/simple;
+	bh=8XSvAjntl5wJYBeOU8/WWXxJ1LvuplOlWTRez0vYh5Q=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=XYhoAk/B1iY/Jjao4DeHBmVwUnUU8VV61Ld7qVSNuqSrWiHBOQYbS/zGkJU4v4s//OLdtF4Df5EA7bE53L4htCm89uGdN3yLX8Zw24uYxS2ux11IlBAAENvtQdTjW7lidatFsYYsgUGutlCA9MVwR2i2/4JGb4uXuplUL7pHZIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ku17xVTn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4FD8C2BCB0;
-	Tue, 12 May 2026 05:48:10 +0000 (UTC)
+	 Message-Id; b=XmnODGmqKcBgvQUlxTvrA5JNKx2Yx2UjR785DfDkYF7ggnAR3d5k2OoTzDhEHSMqbox2iA/XxDDO5rxHGUeWeoCJnbswmfki8WXx/wxF/wpvl0rsx/Xc1RMswz4q9BcuQ07QMhu4GKd9vjP1ZvbIpWaPUr2C/B7Fv/JhLavrwhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TJ/FlQ8H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82724C2BCB0;
+	Tue, 12 May 2026 05:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778564891;
-	bh=yzZ0ilCbU1G0/yVZuOMEJTyG1cn/76wQFxUCUi9dqYo=;
+	s=k20201202; t=1778565385;
+	bh=8XSvAjntl5wJYBeOU8/WWXxJ1LvuplOlWTRez0vYh5Q=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=ku17xVTnyYzUZTu1ElGymnYp54avN3WHKflq3b5vJXBxh73bcKrHaqv/ChNdkNc4e
-	 nKrODN/CBbmMzGcyneZ3yoH/rbRh6RwxZDTsYRuf/ZezkQY5dobXJBcjXooHCtBVMX
-	 WKTc5wan/g/1ibFT1Y70Y0P5fcv0AOdFYfKVFFf215uurUjf2hMvCHAiUgCCsZ39uD
-	 82KVfqkXl2xFq1j+cIzJFI3zYZ/3ug3BM96JJFhzQVLFTV1R558e3rVv8whLMzCoSz
-	 zecgBWZcPshSAmjERUGzYDnk9DTzfv6TdFb2NvnIFWft7tmkK4ikvir/J9+rlbzdKy
-	 gW8WjnxcjE0wQ==
+	b=TJ/FlQ8H8s5cZAp5JkqljM8XUIlB9feDO1FmrKjL6U0Jp4szce+7oOk59ATEladep
+	 keNODLo5BYJO8ljqjb+LIebc1bnvOqU1naGg6rMlWL/C8Njyu8EH0HCN32IlTd4DFe
+	 zv4wOLN8WW9ZNMtTl6+NJBrrT/pOmbJEk+TL3OEQPf171qGueGNjGxwa54LNdVvlSj
+	 vTUVzWJkHl/FVRn6Wafh4x/Ry23Kfeit9el9OII5tB4QO5FUzrf2C0YUNBO25rYOmP
+	 Hgb0o2lfvAM0eTao+k9GM+M68qOR3JWjxr3MsHzOxVMtB5lUBUfQlThmC0ePwNDxqU
+	 XUFUGby8LcvnA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 10/15] x86/kexec: Use crash_prepare_headers() helper
- to simplify code
+Subject: Re: [PATCH 08/10] clk: amlogic: Add A9 PLL clock controller driver
 Reply-To: sashiko@lists.linux.dev
-To: "Jinjie Ruan" <ruanjinjie@huawei.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260511030454.1730881-11-ruanjinjie@huawei.com>
-References: <20260511030454.1730881-11-ruanjinjie@huawei.com>
+To: "Jian Hu via B4 Relay" <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com>
+References: <20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 05:48:10 +0000
-Message-Id: <20260512054810.B4FD8C2BCB0@smtp.kernel.org>
+Date: Tue, 12 May 2026 05:56:24 +0000
+Message-Id: <20260512055625.82724C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 69CF551ACA0
+X-Rspamd-Queue-Id: 406F451AD8A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,amlogic.com:email];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296034-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296035-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,huawei.com:email];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -90,8 +88,8 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
@@ -100,74 +98,62 @@ X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Calling `crash_prepare_headers()` from the memory hotplug notifier=
- causes a self-deadlock on `mem_hotplug_lock`.
+- [Low] The new driver file `drivers/clk/meson/a9-pll.c` uses module-specif=
+ic macros but fails to include `<linux/module.h>`.
 --
 
-commit 3ffc33a6d9cd3e7840883325b10a8172439b4b8f
-Author: Jinjie Ruan <ruanjinjie@huawei.com>
+commit 497c46fd6ed69111b1539ecfa46cd63980fab5e1
+Author: Jian Hu <jian.hu@amlogic.com>
 
-x86/kexec: Use crash_prepare_headers() helper to simplify code
+clk: amlogic: Add A9 PLL clock controller driver
 
-This commit replaces x86's custom prepare_elf_headers() with the generic
-crash_prepare_headers() helper to handle cmem allocation, population, and
-exclusion of crash ranges. The change implements the required
-architecture-specific callbacks to support the generic core, reducing
-code duplication.
+This commit adds the PLL clock controller driver for the Amlogic A9 SoC
+family.
 
-> diff --git a/arch/x86/kernel/crash.c b/arch/x86/kernel/crash.c
-> index 7fa6d45ebe3f7..10ef24611f2af 100644
-> --- a/arch/x86/kernel/crash.c
-> +++ b/arch/x86/kernel/crash.c
+> diff --git a/drivers/clk/meson/a9-pll.c b/drivers/clk/meson/a9-pll.c
+> new file mode 100644
+> index 0000000000000..84b591c3afff5
+> --- /dev/null
+> +++ b/drivers/clk/meson/a9-pll.c
+> @@ -0,0 +1,831 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/*
+> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/clock/amlogic,a9-pll-clkc.h>
+> +#include "clk-regmap.h"
+> +#include "clk-pll.h"
+> +#include "meson-clkc-utils.h"
 
 [ ... ]
 
-> @@ -532,7 +465,7 @@ void arch_crash_handle_hotplug_event(struct kimage *i=
-mage, void *arg)
->  	 * Create the new elfcorehdr reflecting the changes to CPU and/or
->  	 * memory resources.
->  	 */
-> -	if (prepare_elf_headers(&elfbuf, &elfsz, &nr_mem_ranges)) {
-> +	if (crash_prepare_headers(IS_ENABLED(CONFIG_X86_64), &elfbuf, &elfsz, N=
-ULL)) {
+> +MODULE_DEVICE_TABLE(of, a9_pll_clkc_match_table);
+> +
+> +static struct platform_driver a9_pll_clkc_driver =3D {
+> +	.probe		=3D meson_clkc_mmio_probe,
+> +	.driver		=3D {
+> +		.name	=3D "a9-pll-clkc",
+> +		.of_match_table =3D a9_pll_clkc_match_table,
+> +	},
+> +};
+> +module_platform_driver(a9_pll_clkc_driver);
+> +
+> +MODULE_DESCRIPTION("Amlogic A9 PLL Clock Controller Driver");
+> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("CLK_MESON");
 
-Will this cause a self-deadlock when called from the memory hotplug notifie=
-r?
+Should linux/module.h be included in this file since it uses several
+module-specific macros?
 
-During memory hotplug operations, the memory hotplug lock is held for
-write before notifying the chain. For instance:
-
-online_pages()
-    mem_hotplug_begin() // takes mem_hotplug_lock for write
-    ...
-    memory_notify(MEM_ONLINE, ...)
-        crash_memhp_notifier()
-            arch_crash_handle_hotplug_event()
-                crash_prepare_headers()
-
-Then inside crash_prepare_headers() from kernel/crash_core.c:
-
-int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *=
-sz,
-			  unsigned long *nr_mem_ranges)
-{
-	unsigned int max_nr_ranges;
-	struct crash_mem *cmem;
-	int ret;
-
-	get_online_mems();
-
-get_online_mems() attempts to acquire the mem_hotplug_lock for read.=20
-
-Since the percpu_rw_semaphore does not support recursive read-after-write
-locking by the same thread, won't this block indefinitely and result in a
-deadlock?
-
->  		pr_err("unable to create new elfcorehdr");
->  		goto out;
->  	}
+Relying on implicit inclusion via other headers like linux/platform_device.h
+can sometimes lead to build failures on different architectures or in future
+kernel versions if header dependencies change.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511030454.1730=
-881-1-ruanjinjie@huawei.com?part=3D10
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-b4-a9_clk-=
+v1-0-41cb4071b7c9@amlogic.com?part=3D8
 
