@@ -1,171 +1,133 @@
-Return-Path: <devicetree+bounces-295909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295911-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPUeKvCBAmpDtwEAu9opvQ
-	(envelope-from <devicetree+bounces-295909-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:27:12 +0200
+	id WBtjLpeBAmpDtwEAu9opvQ
+	(envelope-from <devicetree+bounces-295911-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:25:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CCA5183D4
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:27:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DDE518372
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:25:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B3CF30166C8
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:24:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3F8F93009888
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 01:25:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2019A237A4F;
-	Tue, 12 May 2026 01:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A41325783A;
+	Tue, 12 May 2026 01:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kHRLLahh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LacaZ//c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1DB972618;
-	Tue, 12 May 2026 01:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB69841754;
+	Tue, 12 May 2026 01:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778549065; cv=none; b=B0xcR31kTSzlLCuEVa58T4rkdQGRV0Bqc64ylP1hf4ypme0kdxYkYgZofmo9VfswipyUz4y7LP/f0ZxSnIIayubpCbOvBjscXM2Kcw2+2LYQ8S/aaLPD+jIggPwnrUbL5GzBbQQm1dNaSd9iK5jYuqCH784qy/CASevsU4wzBPw=
+	t=1778549141; cv=none; b=R5sqZ2mNoEI9ESOg0e7cFUS6z8PBDbxKOUruBire5rBwhyni+mEY8jfhgzOjr/Z9yYoNihWpY8abjqRqwwEYYeCRBFzSvihWt0bIKaenvTxrmDK9LkYKkyM4K/TFllfXfP4Hj9j5TO3ch6KQtJpYLBfCvsQxVRHkj0K3KZf/bjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778549065; c=relaxed/simple;
-	bh=5I4fFH78/urbTSm/Yv4MPrAehmDRePGY8oEbOsn8sW0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=tbUCwiRPWgny3GBWA7qu92i2HIRRZWtyqzj7xt94n4YI6JsloDRpBXvWdctU9CHRa4rXx7AxF9uIXlHMtHlOZj2u0RRiTJwwDmrqChzz+okdXGQTXnBLrroxjxnAjB+EpoSIbsLq6cccEPSJg6fGCIBdJWGGetmd4ZCYFsNjiNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kHRLLahh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A699C2BCB0;
-	Tue, 12 May 2026 01:24:24 +0000 (UTC)
+	s=arc-20240116; t=1778549141; c=relaxed/simple;
+	bh=MDx6wyxJnrpM3xEGYmY3gDJSK85ARjHDfhMiTGvsheY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QlxKdQ2cN6XHYFI/XpoyV7Lhwbg8jEMgix57Z//3goQPOHVRVveZXSqQoyR+iysKSnKuBk5IJ5qjmTx1BnIEtMmJk+3zZl+wrCUk15E7QppaXaToxqN2oINsNyiaZSUIf6BpC7fE4JbANKzZ/N/PXfnhjSDrtEOIOcI7CnDwkP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LacaZ//c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63B90C2BCB0;
+	Tue, 12 May 2026 01:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778549064;
-	bh=5I4fFH78/urbTSm/Yv4MPrAehmDRePGY8oEbOsn8sW0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=kHRLLahhJacU00g94n+viL7SULG62LSmEaSCTGtRYzDBiajU1uOnWVXinK2wLBcdH
-	 mYx8WOaeQ6thJIAZx6k7EXcWfWm0jKbl10EP8aPkX5a3jWP/LY6RmVCBymEW1osxeZ
-	 rkDdeHD5qOxgUf6Ot+pZXc5lW6pwrbj0VDJ+HEinelqpJ2hZAF3rtq8i13AQTBJ7gk
-	 Vbpj9hACeWZ/r3HAuoxk26MMk9YVRN9vMz1XmRnIQa3IDBSZUuOxoqPxVeAQiq3JLr
-	 HfO7+TqZ+Njc+2ZRHT3qSOBMumQ/Zkbh1i+jHwDqdVbYmSV1HMZlHHb1asI3QCdTFv
-	 kIPIRnOzRCQ9A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/5] media: hi846: fix hi846_write_reg_16 handling
-Reply-To: sashiko@lists.linux.dev
-To: "Pengyu Luo" <mitltlatltl@gmail.com>
-Cc: imx@lists.linux.dev, robh@kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260511090924.269106-2-mitltlatltl@gmail.com>
-References: <20260511090924.269106-2-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 01:24:23 +0000
-Message-Id: <20260512012424.4A699C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778549140;
+	bh=MDx6wyxJnrpM3xEGYmY3gDJSK85ARjHDfhMiTGvsheY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LacaZ//coubQsRNc1+AzKM4LLAQnjbZPI3UjHyCQ44EwYCejFMzDNMIyW0OhqNvuL
+	 9y3ekVJ+rqxPYKmvBnxltPSQR36guKuhBxP5NnRcTxVBh6A23oIN55Qnbnhkm4uInv
+	 1c2W3MKUPsu4NTEbWDyeIu7c+7qeDDSUTgc8la4pXrjyoOKNP5HcbFJCMrIABuCOoo
+	 X0ZaPpQKe9KORWQjspPtC2QNrTlZnt2qN56NkqdiUyvNVlGgSpoqO03MEQwK5zBsmB
+	 SSAjQwb3D/SNB/kPVhoE3cdYelYQR1ZzNp/SdgbYAdpaNS0WiThQczlbHiK2VYaboP
+	 kkhDLQglFdJXA==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id F3EF01AC58C2; Tue, 12 May 2026 02:25:37 +0100 (BST)
+Date: Tue, 12 May 2026 10:25:37 +0900
+From: Mark Brown <broonie@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	lgirdwood@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org
+Subject: Re: [PATCH PARTIAL-RESEND v12 0/5] Add support MT6316/6363/MT6373
+ PMICs regulators and MFD
+Message-ID: <agKBkUBVM81Y6MUk@sirena.co.uk>
+References: <20260511101355.122478-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 16CCA5183D4
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ZO04f3tElFI8BsTK"
+Content-Disposition: inline
+In-Reply-To: <20260511101355.122478-1-angelogioacchino.delregno@collabora.com>
+X-Cookie: Truckers welcome.
+X-Rspamd-Queue-Id: 56DDE518372
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295909-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-295911-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,vger.kernel.org,collabora.com,chromium.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-0.996];
-	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Unhandled negative error code from pm_runtime_get_if_in_use() caus=
-es silent failure of exposure/vblank controls and PM usage count underflow.
---
 
-commit 4a36c43ca7959e04a86201166380c7cb4acf35d4
-Author: Pengyu Luo <mitltlatltl@gmail.com>
+--ZO04f3tElFI8BsTK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-media: hi846: fix hi846_write_reg_16 handling
+On Mon, May 11, 2026 at 12:13:50PM +0200, AngeloGioacchino Del Regno wrote:
+> Changes in v12:
+>  - This is a partial resend. MT6373 regulators and MFD patches were not picked.
+>  - Rebased over next-20260508
 
-This commit fixes an issue where a positive return value from
-pm_runtime_get_if_in_use() propagates back to callers as an error. It resets
-the error pointer to 0 inside hi846_write_reg_16() before performing I2C
-operations.
+Is there a reason why this is a single patch series, are there any
+interdependencies here?
 
-> diff --git a/drivers/media/i2c/hi846.c b/drivers/media/i2c/hi846.c
-> index a3f77b8434ca7..7f069aca0fce5 100644
-> --- a/drivers/media/i2c/hi846.c
-> +++ b/drivers/media/i2c/hi846.c
-> @@ -1271,6 +1271,8 @@ static void hi846_write_reg_16(struct hi846 *hi846,=
- u16 reg, u16 val, int *err)
->  	if (*err < 0)
->  		return;
+--ZO04f3tElFI8BsTK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-While this patch handles the positive return code, does it miss the case
-where pm_runtime_get_if_in_use() returns a negative error code like -EINVAL?
+-----BEGIN PGP SIGNATURE-----
 
-If runtime PM is disabled, pm_runtime_get_if_in_use() returns -EINVAL. In
-hi846_set_ctrl(), the error check misses this negative value:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoCgZEACgkQJNaLcl1U
+h9Cl7wf/eGQ+SEV4WqVTokc90PnMsjaK7jSAFGVrllzf7QEaXe5nO3B3fWEelwKE
+8t91+XH2mSW/YD/rSts6vFNTKBFZSKjCQ8SP2km1j5SxAxjN/SCIyXloy4MyPf4f
+SS0frCVFc9ZdmqYHVolKlRGvFObHCyZH8dXNmvs+WRgm4HlpJjWz2SycDxdZXtS9
+E/WEycZxxWMbuIJxesMr5hunbjozk1zbOKXDafHzjqzqEFiYXcvhvmTQV10CnJ3y
+iipRScZhn+35h1bkg/QTR/WE/Oui/uRumeFkKSMonav4lu1X2vac4CzTMhM6uchX
+oWUtt17l1wGDsLnlCCGF2cI5VwUP3w==
+=GoUg
+-----END PGP SIGNATURE-----
 
-drivers/media/i2c/hi846.c:hi846_set_ctrl() {
-    ...
-	ret =3D pm_runtime_get_if_in_use(&client->dev);
-	if (!ret || ret =3D=3D -EAGAIN)
-		return 0;
-    ...
-}
-
-This allows the negative ret to propagate to hi846_write_reg_16(). Since
-*err is less than zero, the function returns immediately, silently skipping
-all hardware writes for V4L2_CID_EXPOSURE and V4L2_CID_VBLANK.
-
-Additionally, does this cause a PM usage count underflow?
-
-At the end of hi846_set_ctrl(), pm_runtime_put() is called unconditionally:
-
-drivers/media/i2c/hi846.c:hi846_set_ctrl() {
-    ...
-	pm_runtime_put(&client->dev);
-
-	return ret;
-}
-
-Since the usage count was never incremented when pm_runtime_get_if_in_use()
-returned -EINVAL, this might trigger a usage count underflow warning.
-
-Could hi846_set_ctrl() explicitly isolate the PM status, set ret to 0 before
-making hardware writes, and only call pm_runtime_put() if the get function
-returned a value greater than 0?
-
-> +	*err =3D 0;
-> +
->  	put_unaligned_be16(reg, buf);
->  	put_unaligned_be16(val, buf + 2);
->  	ret =3D i2c_master_send(client, buf, sizeof(buf));
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511090924.2691=
-06-1-mitltlatltl@gmail.com?part=3D1
+--ZO04f3tElFI8BsTK--
 
