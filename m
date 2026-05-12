@@ -1,65 +1,68 @@
-Return-Path: <devicetree+bounces-296459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296461-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IGj1Dn6NA2pN7AEAu9opvQ
-	(envelope-from <devicetree+bounces-296459-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:28:46 +0200
+	id yMILD/mMA2pN7AEAu9opvQ
+	(envelope-from <devicetree+bounces-296461-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:26:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5F3529270
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:28:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E365291CC
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:26:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F0DC9306412C
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:24:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4FE4A3055276
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65613CD8DE;
-	Tue, 12 May 2026 20:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537FE3CF67C;
+	Tue, 12 May 2026 20:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mpqOWL/T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="USQT8/bI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C20BD3CD8CD;
-	Tue, 12 May 2026 20:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 527993CF022;
+	Tue, 12 May 2026 20:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778617422; cv=none; b=Up9CeVad9V73Ks9UWxRvj0cxEXRhdGbIjBgaZMhW3mnBuyWVPuVcrYW5CiLDr3gar0gT2ZgTQTYgoNCaDrYMeUDw0tE6Wq/7KIlEdDlFl4uWP7y/u3MZ9/LiQnl+dtP14bpSH9NahlthsQjtdcJ+oSkL1J304WN0WxuIpl9NN48=
+	t=1778617426; cv=none; b=KsulvuRf3tPfEY6VsDFbfHLMdYHGUEPcH+ixtkYFwutjLiGs6eyGPDpjusbXxvM2VTS7s/FksGB2Cg6Qp4ywSBQ/cm0qW1E45+PU8oBlvNA3RYWwVTL+AF8VU+nYcWigclIAfhFa1htrOtWitbZ74IYLDKveebmMIzuCX7OopDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778617422; c=relaxed/simple;
-	bh=YAW97yDeiSiK4SmGtar9h3Fk3YupPspJbvGu/ciZq08=;
+	s=arc-20240116; t=1778617426; c=relaxed/simple;
+	bh=nCChHin4VqmJtHVokhwlcgF6Gz2vLFpmezHr0pyIYQg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iyhUguJQzI+q3Ueh/OEycknRL/wayTmhJJ8lfixArXTbZJjaw7HGpVZKqk/qiMxwa/g5w5sSC6SwMjq1eOcaBexKqOX4gALX/qNjUljaQk9Vu5VZXuZ/sugAvpw0qYxEdFGu07rUR4MpztWU0JZ1ut/oIoEVHdmxtn61FJS/+6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mpqOWL/T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08A45C2BCFA;
-	Tue, 12 May 2026 20:23:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=FiduP4hdYgc6aAgXG8b2kskcTS1XxbTrAW12jEzOBlsTh6spXjehvxdWOMP01EEDggLJkRcK2he13/+zQIASt0uoE5Nu9WQGuJ0/EbuHdRSUlpR7M+uloS9nblPdDazTyN/9h4E6dwfEPBxKtRm4KnGxHzdxnmVjWduLPSanWnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=USQT8/bI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F5D6C2BCC7;
+	Tue, 12 May 2026 20:23:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778617422;
-	bh=YAW97yDeiSiK4SmGtar9h3Fk3YupPspJbvGu/ciZq08=;
+	s=k20201202; t=1778617424;
+	bh=nCChHin4VqmJtHVokhwlcgF6Gz2vLFpmezHr0pyIYQg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mpqOWL/Tqd70OXuqh/A38NLSUgfk9sysFmsnXRmLXHL75x2cz5TyGYdjN1rIT8+IH
-	 BVIf3a/2B2Ch+ARMs7Mvnro0RD5Mg4TCILDKk/s2bin5791V70iAytu3wWv316dzCM
-	 G4mnCFVvANcgVNOUvG+LEWMbq3V/MPnWeArIre05IVI5jQPU4jlLbyQ4BAJyBiXPKI
-	 FtyMLmDMwe60JU/rI9RSnwDAQFfFmDExfHgNUqOJkzmr5jo2gmxmsmCUaK5nqgXSuf
-	 TrYcaPvNxOym1AiFhZW6SAB4HdPDieUZzOkUEJCE4BFwCQCueai4oqZTDxZbE/43+v
-	 KQhaTeiq1HTow==
+	b=USQT8/bIDQROsGtmgALFwR/PnG/K913LqFAxCSaM9swxW0XZx4afqJnOSM6Srt8bb
+	 jcogiqMradGSHj0xuvHapvQr7aHqL1S/Q9BAQMwbq5lTkYXno9aUZr7b3I3/x4Vl+K
+	 eDYtmfin1/6L0ajbg9XOQVd+qHnobOC5Pa5igEAJZd5KkiobzTANXO/5+csE7PPv90
+	 EdEPTnVapnQc5JJ2BcVJu5xAlhb6FEzQ/wjKcDPWJZz+du9y40fP6+HBLUQLgumfsP
+	 NhNXrp1lhRKIolMRml2yQxqvZThHcdNtc7zxwb2E9pUMYzzf0RPm3JVxYPVbNMRUlO
+	 RrhPZ3bl+14oA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
+To: Thara Gopinath <thara.gopinath@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Cc: linux-arm-msm@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cache: qcom,llcc: Document Shikra LLCC
-Date: Tue, 12 May 2026 15:22:53 -0500
-Message-ID: <177861739374.1242344.16417283499381566774.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH 0/2] crypto: qcom: Add QCE for Eliza SoC
+Date: Tue, 12 May 2026 15:22:55 -0500
+Message-ID: <177861739373.1242344.14892470057244175639.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260502-shikra-llcc-binding-v1-1-1da4b1eff0a8@oss.qualcomm.com>
-References: <20260502-shikra-llcc-binding-v1-1-1da4b1eff0a8@oss.qualcomm.com>
+In-Reply-To: <20260407-crypto-qcom-eliza-v1-0-40f61a1454a2@oss.qualcomm.com>
+References: <20260407-crypto-qcom-eliza-v1-0-40f61a1454a2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,46 +71,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 8E5F3529270
+X-Rspamd-Queue-Id: D2E365291CC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296459-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-296461-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,kernel.org,oss.qualcomm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
-On Sat, 02 May 2026 21:35:06 +0530, Komal Bajaj wrote:
-> Document the Last Level Cache Controller on Shikra SoC.
+On Tue, 07 Apr 2026 15:51:41 +0200, Krzysztof Kozlowski wrote:
+> Bindings for Qualcomm Eliza SoC crypto engine and DTS patch.
 > 
+> Best regards,
+> Krzysztof
 > 
 
 Applied, thanks!
 
-[1/1] dt-bindings: cache: qcom,llcc: Document Shikra LLCC
-      commit: f2e4a121f432a1608472c4f69ac8045f33830fc4
+[2/2] arm64: dts: qcom: eliza: Add QCE crypto
+      commit: 5a95bd4771ffd591e810717e1c6dcc568ebf45d8
 
 Best regards,
 -- 
