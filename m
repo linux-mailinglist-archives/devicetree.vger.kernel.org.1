@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-296018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGxRG/a4Amo5wAEAu9opvQ
-	(envelope-from <devicetree+bounces-296018-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:21:58 +0200
+	id 0BskMXC5AmonwAEAu9opvQ
+	(envelope-from <devicetree+bounces-296021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:24:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22F1F519D77
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:21:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C599519EB2
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:24:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 42B9C3023A7F
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:21:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFB383057059
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87AC355803;
-	Tue, 12 May 2026 05:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5430C3644A3;
+	Tue, 12 May 2026 05:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tCz+zz1H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ngQRF1m3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BEC033D6C7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787A833DEF7;
 	Tue, 12 May 2026 05:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778563300; cv=none; b=fgXDWHQVCGWQ7k+RePPQNwWf8ST6cbPJJpKGXp05SeKZEamfhppWziIVhMSdrVawBNySLAIvt5GA9Om1wLtdXa3ZP/WNTX9pX7EncSPRUHd0+YhopHoAzRM7Vkai1OyXdFwm/LGYlTrZpkmLWVJ49F5jxlETSzjrdh9b1ufKDgw=
+	t=1778563300; cv=none; b=tHH+9WHy9GPJDAKryOvP0LF2+mwsKruiFl3A8XN6Hdlat9K2j9elvBdPV439RWtsWcoe/ZNcm1oRr5GCRHR818VJ92uf7PsN1JU2hrwzpfmC5bsi+ffZhlcT7rn8oy8lxLLabSFxjTG4LYUR7S98+2EzFTr/3LdsNHs2I8zYqZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1778563300; c=relaxed/simple;
-	bh=D3ikDb5iz89iLJ6uZVHjbY5rTXXDcPWKbnxCOlfwCxY=;
+	bh=6SFZF+NTen922PE1ArSi08AMU2PZI8nLuqrAISJituw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Qc9QKCWWq/flQOEmEvs1oIZi85dKhA59aJlsoGGBr15c+4O4Bzxlfn+RWKGe94OLR4jK49/ulvc6ittcFm1cmkUMDoVa6InqCpY61CoNm+2CbhVRiBU3twk/GCUnlcb/f2Gt5HaToZIQV7YzhdmFy44ugZKrIE9P8Znm9XdNi9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tCz+zz1H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 389F6C32786;
+	 In-Reply-To:To:Cc; b=DyROLFD28oBJAPDfhVGyVVOty8ETxHpezZzpBzATkxJFn72+7S9ZbOiebkgu5+EZxlz6eP2SvkHgTfyBmCqO6ytCykGpju4Y2mK+ss094dBs5qnc0p6anL9d5HlzQ8GXb568wGp8i3lsF2NfTMoWYqj2U4XyUZAsHTA2BJHEKzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ngQRF1m3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E956C2BD01;
 	Tue, 12 May 2026 05:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778563300;
-	bh=D3ikDb5iz89iLJ6uZVHjbY5rTXXDcPWKbnxCOlfwCxY=;
+	bh=6SFZF+NTen922PE1ArSi08AMU2PZI8nLuqrAISJituw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=tCz+zz1HjQsTJEFiYXRKogdCaF7JPWdg+UtxOHvL4T2D6RHR8vPymfzVn/5DpQ0XP
-	 HEqXz3BfagtNQyv0YOtvAvsii4DvEVyrl/G1gWRasjIh4ihbwyHRv3ygcqATQFl8/H
-	 QXqsooE/arZhsxEwMIstdTrkqxSEEcnm3pJN5ELwa/wWSIzCanIn0WXqPiGNnsuKFz
-	 E479nIF65kJY7ZD7KqPuBliT0H5cf7kg1m8F+psFBG6Wz3ZngjlK0v52P0ksR0WhUn
-	 JePZGE8xqRvxDTaW/nx4ybdlFxwsgYyMA7G3iOdLPiGgVU69AikT9lY2Bm9N4ej6dF
-	 YNBy89M8mLUjA==
+	b=ngQRF1m3bmKPnZEetHyr/RJFmkI4HWtEiADfmg4SspfXAiJ0vQ66BuS9gh0Y/FV8/
+	 te3tq5eJW1vj76NW4IS0rXOvTFBCas7qCMzurmVKPZ2ygVonbcITI1LMyWnsYflpk3
+	 mTo8XqiWu35y1H7Sw2WY1CCmdMTrRbCNVaC4WOIqJkpCr8vIculFkgDEAWa75g40c6
+	 YvFZSkuBeMeIG7o1SzNQLMGqqQGqJpJsj3sDMu/mi2Nd9gCS3mOLQDT5Git7nFmDlk
+	 kMRrs8+TJhp7qEq0wJGm5j4V7EJRE3ck6KzIJ0rNzrHqQIfv69fBntNg8aCNoQE6My
+	 vH/Mfi6+E7gMw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B9DBCD4F21;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CB78CD4F23;
 	Tue, 12 May 2026 05:21:40 +0000 (UTC)
 From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Tue, 12 May 2026 08:18:22 +0300
-Subject: [PATCH v2 08/16] mfd: mt6397-core: add mt6323 AUXADC support
+Date: Tue, 12 May 2026 08:18:23 +0300
+Subject: [PATCH v2 09/16] mfd: mt6397-core: add mt6323 EFUSE support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260512-mt6323-v2-8-3efcba579e88@protonmail.com>
+Message-Id: <20260512-mt6323-v2-9-3efcba579e88@protonmail.com>
 References: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com>
 In-Reply-To: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -81,18 +81,18 @@ Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ben Grisdale <bengris32@protonmail.ch>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778563297; l=903;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778563297; l=882;
  i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=AtpQuSBNMLgpeH1t4ADFZid08i2lKNvKchWt3/88KCc=;
- b=CuuD+NcafOOWOnzD4gAzv4G+oQMeaNEqepGujqJAyjg0Fp7F4zUaoi+IKcpL2KxTTSA2Sdbsj
- pHiclbcM/m9B6YhYoPuAL8FrVBvXxn4HLVAZ0IW2g6YWP2X/XvD3/rI
+ bh=GPch+58r1L1I1B+sfDoMb6oSqyH40wZP5mRd3W4Ge0A=;
+ b=tidA5C6NziO4sL+9a0SjQtog/7ftV7CvyorPKf+60ZERSXZz2+v5rX/xDIdLu57Z7UiXac42D
+ iV0kIewiS6lB0Hk3oYfitPbziysOltdHyhzIiYHcUz9FDMuHQWXA0A6
 X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
  pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
 X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
  auth_id=777
 X-Original-From: Roman Vivchar <rva333@protonmail.com>
 Reply-To: rva333@protonmail.com
-X-Rspamd-Queue-Id: 22F1F519D77
+X-Rspamd-Queue-Id: 3C599519EB2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
@@ -100,12 +100,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296018-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	TAGGED_FROM(0.00)[bounces-296021-lists,devicetree=lfdr.de,rva333.protonmail.com];
 	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,mediatek.com,protonmail.com,intel.com,arm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -120,16 +120,16 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,protonmail.com:email,protonmail.com:mid,protonmail.com:replyto,protonmail.ch:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.ch:email,protonmail.com:email,protonmail.com:mid,protonmail.com:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 From: Roman Vivchar <rva333@protonmail.com>
 
-The mt6323 PMIC includes an AUXADC. Register the AUXADC in the mt6323
+The mt6323 PMIC includes an EFUSE. Register the EFUSE in the mt6323
 devices array to allow the corresponding driver to probe using compatible
 string.
 
@@ -140,19 +140,19 @@ Signed-off-by: Roman Vivchar <rva333@protonmail.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-index 3e58d0764c7e..013b0857fb54 100644
+index 013b0857fb54..2d9419b80a5c 100644
 --- a/drivers/mfd/mt6397-core.c
 +++ b/drivers/mfd/mt6397-core.c
-@@ -125,6 +125,9 @@ static const struct resource mt6323_pwrc_resources[] = {
- 
- static const struct mfd_cell mt6323_devs[] = {
+@@ -127,6 +127,9 @@ static const struct mfd_cell mt6323_devs[] = {
  	{
-+		.name = "mt6323-auxadc",
-+		.of_compatible = "mediatek,mt6323-auxadc",
+ 		.name = "mt6323-auxadc",
+ 		.of_compatible = "mediatek,mt6323-auxadc",
 +	}, {
++		.name = "mt6323-efuse",
++		.of_compatible = "mediatek,mt6323-efuse",
+ 	}, {
  		.name = "mt6323-rtc",
  		.num_resources = ARRAY_SIZE(mt6323_rtc_resources),
- 		.resources = mt6323_rtc_resources,
 
 -- 
 2.54.0
