@@ -1,163 +1,166 @@
-Return-Path: <devicetree+bounces-295969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDwUOzqhAmp2vAEAu9opvQ
-	(envelope-from <devicetree+bounces-295969-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:40:42 +0200
+	id CIRiEROhAmpwvAEAu9opvQ
+	(envelope-from <devicetree+bounces-295972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:40:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B0F519648
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:40:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 269AC519615
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6CBC2304994E
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:38:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E618A3001A51
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC30F2DECA3;
-	Tue, 12 May 2026 03:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63D529AB07;
+	Tue, 12 May 2026 03:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HsF2u6au"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IU2DD32A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C775830148A;
-	Tue, 12 May 2026 03:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A314328505E
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 03:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778557081; cv=none; b=ebZYAzZ/jgVg95wvvPd4mrO3uXzsUVU5J4yFwPLaQb+J9AoXJ5wTK+UMWFrucX5vUxcNu6wokT497WF7vSgobPTbGSrTb2UYAGRtGPc11pyB0AfZKb0QUOrv5y3X6DMZeXx18UyRUl4DFNSBDZOWMoecZBU7hxS0zEpa3vSXxZQ=
+	t=1778557197; cv=none; b=ohjiFO4D9jyrGJEDHqG3oF1kpzYvzBwDTOh8cCsdoyDPnKgK1Z0kSFtuOEoVPFgofYMBXt2zx5J/MmVJ+Cn6HaPXahX2E+s0TQNdlGM9wHVDycuYe/azwX567nND7HIAeRp1YJ+caWqt3Fp149SpOWJ9Wr5cQwqe0O+nydZ3OQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778557081; c=relaxed/simple;
-	bh=C0uKvBcsJshR+sAskrJ9qYCeCJ0hYo132tV0VbiynjA=;
+	s=arc-20240116; t=1778557197; c=relaxed/simple;
+	bh=7tB5QmvWVxkEpWls5kq3zlS+mzxLIsK1FOMav6WhlZM=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IGvudX6Ruuk1uXwCFZZDaXMQuu3hB0R+qDQFeTN+NTkcOSw7XsiHOuPc7c/iZzTJn5I2rXLzcaAohCcBu+JJpa9UhqNxtydUGpis9o7HGPOMKPHrATRi9dmI+NAUEuki0g0ybzZNn/4XAsKlCoSrUX8KKwft1RcwzINj7CGJ/aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HsF2u6au; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 055CAC2BD05;
-	Tue, 12 May 2026 03:38:00 +0000 (UTC)
+	 Message-Id; b=MPNDDFkLBOFxm/PrVaa6FP8ReeRt+0qjjjwRnKgt2yD8D1WDREHrJqYiq4Fy93BWnlNUmWM+jWB+CtOViMpS8VGNbdc9traTCWiwaB/yz2/+a4CJFt6nbX0jzRNT4K2hH7qqC0ftsQBraUCah2pLePLqqiu3LghIKF4Cdswm+hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IU2DD32A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C988C2BCB0;
+	Tue, 12 May 2026 03:39:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778557081;
-	bh=C0uKvBcsJshR+sAskrJ9qYCeCJ0hYo132tV0VbiynjA=;
+	s=k20201202; t=1778557197;
+	bh=7tB5QmvWVxkEpWls5kq3zlS+mzxLIsK1FOMav6WhlZM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=HsF2u6auMwTDQESHqx4D9fVWAx9Jo4FvfHhrMJhw6+OfSXr0qgmrJLayjzCigmH95
-	 IxX+6YMM8uRUiBoAuK2HZESKSPFNksSoyfjNWwieJdRy3RN3JeSW2KwHguXt6bGOfc
-	 8EjzItLFBSZzQT9Fd8GHtgLydB0TFjBZEnewgHL8GMxvxSvUzmitnRCDDUrTC0ilH+
-	 utrhBfhEW5fm5f6aAngr/jy9Dy4vxN1p11448WvZc12HLtx8KF7+WEN5+PCajwyzSn
-	 yOaSslat1I+fKeASvH8vLr9pRNLzIfXwuK7BLEZwxpka2L/q0Q6XnXjisz79/ZwH9U
-	 KWIz0Vccy+9Wg==
+	b=IU2DD32AcjUCrNRtbHdiWsnAK9N8k0Y/uk5Du1Qi9bPh92Eo91tigY6kg/sYTF4GC
+	 Fg4TmEL119ZzxxuXv3T2yQVUP4WL4T8+WfQu/jvyTOyM+k/I2DyC1IkBKqmb57MYMj
+	 Ck72QjbrItUcoYgbI6GJZ9qpqkc2Pb3EXTu/Pcyp4IjEn7qF0dxZM5uDWjKAkZkfma
+	 oC3S3Bb5eVI+zfM7RlUAi1YxcO3WiXNICJIngnniTQXjZVio7HOupGhm8qo02BChY/
+	 WSw4jsFlgAAY9FpBX3wnPNWQYsdXZWG+Aj08Okp9gRehyvQUmjIOGrOfEVyA1UaZ9l
+	 WfuzL88pYcRvw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 1/5] media: hi846: fix hi846_write_reg_16 handling
+Subject: Re: [PATCH v1 9/9 RESEND] ARM: tegra: tf600t: Invert accelerometer
+ calibration matrix
 Reply-To: sashiko@lists.linux.dev
-To: "Pengyu Luo" <mitltlatltl@gmail.com>
-Cc: imx@lists.linux.dev, Frank.Li@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260511103927.279550-2-mitltlatltl@gmail.com>
-References: <20260511103927.279550-2-mitltlatltl@gmail.com>
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260511074859.24930-10-clamor95@gmail.com>
+References: <20260511074859.24930-10-clamor95@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 03:38:00 +0000
-Message-Id: <20260512033801.055CAC2BD05@smtp.kernel.org>
+Date: Tue, 12 May 2026 03:39:56 +0000
+Message-Id: <20260512033957.3C988C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 44B0F519648
+X-Rspamd-Queue-Id: 269AC519615
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295969-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295972-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.69:email];
+	NEURAL_HAM(-0.00)[-0.987];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Runtime PM usage count underflow and torn hardware state due to un=
-handled negative return values.
+- [High] The new `mount-matrix` for the IMU has a determinant of -1, repres=
+enting an impossible physical mounting (a reflection) that converts the rig=
+ht-handed IMU coordinate system into a left-handed one, breaking 3D sensor =
+fusion.
 --
 
-commit a7e288159f9d9020f112e24280a1cf27c80c8fca
-Author: Pengyu Luo <mitltlatltl@gmail.com>
+commit 932efe31306f429e067a9046fd4c2c18e88b38ee
+Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-media: hi846: fix hi846_write_reg_16 handling
+ARM: tegra: tf600t: Invert accelerometer calibration matrix
 
-This commit attempts to fix error propagation by resetting the error
-variable to 0 when it is positive. It clears the positive return value
-from pm_runtime_get_if_in_use() before performing I2C writes.
+IMU calibration matrix used in the device tree is inverted when testing on
+the device which results in wrong screen orientation. Invert it to match
+the matrix dumped from the device.
 
-> diff --git a/drivers/media/i2c/hi846.c b/drivers/media/i2c/hi846.c
-> index a3f77b8434ca7..7f069aca0fce5 100644
-> --- a/drivers/media/i2c/hi846.c
-> +++ b/drivers/media/i2c/hi846.c
-> @@ -1271,6 +1271,8 @@ static void hi846_write_reg_16(struct hi846 *hi846,=
- u16 reg, u16 val, int *err)
->  	if (*err < 0)
->  		return;
+> diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts b/arch/arm/=
+boot/dts/nvidia/tegra30-asus-tf600t.dts
+> index 0bebea0cb8c48..5c634b0f3f46a 100644
+> --- a/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts
+> +++ b/arch/arm/boot/dts/nvidia/tegra30-asus-tf600t.dts
+> @@ -1091,9 +1091,9 @@ imu@69 {
+>  			vdd-supply   =3D <&vdd_3v3_sys>;
+>  			vddio-supply =3D <&vdd_1v8_vio>;
 > =20
-> +	*err =3D 0;
-> +
+> -			mount-matrix =3D	 "0", "-1",  "0",
+> -					"-1",  "0",  "0",
+> -					 "0",  "0", "-1";
+> +			mount-matrix =3D	 "0",  "1",  "0",
+> +					 "1",  "0",  "0",
+> +					 "0",  "0",  "1";
 
-While this clears the positive return values from pm_runtime_get_if_in_use(=
-),
-does this leave negative return values unhandled in the caller?
+Does this new matrix create an impossible physical mounting by introducing a
+reflection?
 
-If pm_runtime_get_if_in_use() in hi846_set_ctrl() returns a negative error
-like -EINVAL when Runtime PM is disabled, the usage count is not incremente=
-d.
-The check for (!ret || ret =3D=3D -EAGAIN) fails, so execution falls throug=
-h with
-a negative value.
+A physical IMU mount-matrix must represent a pure 3D rotation, which
+mathematically requires an orthogonal matrix with a determinant of exactly =
++1
+to preserve the right-hand rule. The previous matrix had a determinant of +=
+1.
 
-Because this negative value is passed into hi846_write_reg_16(), the check
-just above this change will cause I2C writes to be silently skipped for
-controls like V4L2_CID_EXPOSURE. Other controls like V4L2_CID_ANALOGUE_GAIN
-might ignore the error and execute unconditionally, leaving the hardware in=
- a
-torn state.
+The new matrix negates all elements from the original, resulting in a matrix
+with a determinant of -1. This applies a spatial point reflection,
+transforming the IMU's right-handed coordinate system into a left-handed on=
+e.
 
-Finally, since execution continues, pm_runtime_put() is called unconditiona=
-lly
-at the end of hi846_set_ctrl().
+While this may superficially fix 2D screen auto-rotation (which only relies
+on the accelerometer's linear projection of gravity), will this break the
+mathematical parity between the accelerometer (a polar vector) and the
+gyroscope (a pseudovector)? 3D sensor fusion algorithms (e.g., Android's Ga=
+me
+Rotation Vector, VR/AR tracking, compasses) may receive contradictory data
+and fail or behave erratically.
 
-Because the usage count was never incremented for the negative error case,
-will this cause a PM usage count underflow?
-
-Would it be better to correctly validate the PM return value directly in
-hi846_set_ctrl() with a check like if (ret <=3D 0) return 0; instead of
-clearing the positive error here?
-
->  	put_unaligned_be16(reg, buf);
->  	put_unaligned_be16(val, buf + 2);
+To properly swap the X and Y axes to fix the screen orientation while
+maintaining a right-handed coordinate system, should the Z axis be inverted
+relative to the swap, resulting in a matrix of "0", "1", "0"; "1", "0", "0";
+"0", "0", "-1"?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511103927.2795=
-50-1-mitltlatltl@gmail.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511074859.2493=
+0-1-clamor95@gmail.com?part=3D9
 
