@@ -1,260 +1,249 @@
-Return-Path: <devicetree+bounces-295924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0A27NA6KAmrVtwEAu9opvQ
-	(envelope-from <devicetree+bounces-295924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 04:01:50 +0200
+	id 2CoPJdeKAmrVtwEAu9opvQ
+	(envelope-from <devicetree+bounces-295927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 04:05:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4808E5188F9
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 04:01:50 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32425518A07
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 04:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8685300DDD6
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 02:01:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2E5D53014375
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 02:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FF3215075;
-	Tue, 12 May 2026 02:01:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+DlcF+t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75CBB2BEFF6;
+	Tue, 12 May 2026 02:05:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9464513635E
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 02:01:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFEE38330E;
+	Tue, 12 May 2026 02:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778551307; cv=none; b=NJL0sYmuuKVBLp+bqJkVV5ExWOMLvg3d95Dl52G6+jhmlH0G7/2HqhYueeUOKlgNWK5L2S+DATwgP8tuPSd4/8d7/2Z+lkRjaDv8+m+AxTAvzOOxt4E3jVcUFn+YHVE/lRYuwQvlY16CD1K6CQBbqTt8ccSL60Th6HBtfpNSMsY=
+	t=1778551507; cv=none; b=eq+or2bKPqw8+9YkZxcXKg1eqoxicHh3VujEdEFhovHcmc/Gm68fTM1EUm1SOariMxXZNWsKgPwAy5UgTp0d8DQvCdzYEve9HDZEoTng2XRQoOuimDZZyXgfPi96xAk/34Qsw7dSCHX9eZiOGhf8B+xhqcZY6h8YZObfnh9dvDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778551307; c=relaxed/simple;
-	bh=DQx/0qkkYwoxlRzcowovwNez3yaiB1zj8atZuYAlvkE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Zye8PVp2QsuzQrf2Tn1JegF6X4O7Xm2rZMSxBJzzkbmXfvJ4J2W9F+8MX965QivAc3aPMdDjqVSFEyg1+bA4jgsDxFGZGJInC+hTyU5urqFzwlQ35MjKvmVwD2cePXHIv8wiN5J1YmFXojkcz/O9DnzeKvaoSMvUcZPsIfljGQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+DlcF+t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6D76C2BCB0;
-	Tue, 12 May 2026 02:01:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778551307;
-	bh=DQx/0qkkYwoxlRzcowovwNez3yaiB1zj8atZuYAlvkE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Z+DlcF+t2S4Kd/v0EIO9m2yPXSQIdvvdXw5O9zJ2YdPZB93R+w2dhiznFFfZedNnv
-	 TuAqzzRNw12tbcQoTltZsMSD2lPIZuP3Zr0R9UqUvLBiMPiO6XB1viLIZlBMho5KED
-	 gjdLTWc9fjt2HYp1HA78LEOWJMPEVOYSZxBAuMrAU73rJYhGbxQqoKvQ2r33D6J+HE
-	 fzCXtfEy31JGLcmFWU2XhDCRm9LWPw95RW4N5RblPFFKxjGXFLEQOaRMBN2UBSuSmk
-	 HJVKHTTjJqrJvCWdRoZN7UcoXomZ73eeVSGwvshHXQXxmc+a4mfO56dZKuvZRlGelA
-	 VPIEG1dJTbrzg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 3/8] mmc: sdhci-of-k1: add regulator and pinctrl
- voltage switching support
-Reply-To: sashiko@lists.linux.dev
-To: "Iker Pedrosa" <ikerpedrosam@gmail.com>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260511-orangepi-sd-card-uhs-v9-3-ae48c0b2b2cf@gmail.com>
-References: <20260511-orangepi-sd-card-uhs-v9-3-ae48c0b2b2cf@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 02:01:46 +0000
-Message-Id: <20260512020146.E6D76C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778551507; c=relaxed/simple;
+	bh=A4PN3TJSuUq0eRisdFtIsVhQxKlF6uA9l8w37HcLddk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=fKVoBrk1Hj99Vow1lTfkc4d4Nc5mbd7rBVOiFGgviMJ4xg+eetM8EDbuoE2zKCspm42uNuxhWf0bfAsV5enlV//EQHemWY2Or8E3nFzSRdpz1/NogyVCjVLbBAcU+MnVNPo5o9f1/YePUihXYWuWvxbCDmsdjfX10ZMrVjiDg7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app2 (Coremail) with SMTP id TQJkCgD3DaGyigJqJq4YAA--.43597S2;
+	Tue, 12 May 2026 10:04:36 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	p.zabel@pengutronix.de,
+	huangyifeng@eswincomputing.com,
+	dongxuyang@eswincomputing.com,
+	benoit.monin@bootlin.com,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com
+Subject: [PATCH v4 0/3] Add driver support for ESWIN EIC7700 HSP clock and reset generator
+Date: Tue, 12 May 2026 10:04:32 +0800
+Message-Id: <20260512020432.671-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 4808E5188F9
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgD3DaGyigJqJq4YAA--.43597S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxKw17Zr1UtF17AryruFWfXwb_yoWxXw18pF
+	WxGF95Kr1DArWI9rs7ta4I9FWfJa1xJFy5Cws7Ja47Zws0yryUJr40ka45AFZrZw1fXrWU
+	J3W7ta4F9FWUZFJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBm14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
+	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
+	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
+	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRMD73DUUUU
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Rspamd-Queue-Id: 32425518A07
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295924-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295927-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.967];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:email,pengutronix.de:email,eswincomputing.com:email,eswincomputing.com:mid]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
-- [High] Passing a NULL state pointer to pinctrl_select_state() causes a ke=
-rnel panic.
-- [High] Swallowing -EPROBE_DEFER from devm_pinctrl_get() permanently break=
-s UHS-I voltage switching.
-- [Medium] Masking failures from pinctrl_select_state() can lead to data co=
-rruption or hardware damage.
-- [Medium] Switching back to 3.3V executes the regulator switch before conf=
-iguring the IO pads, risking overvoltage.
-- [Low] The code uses "uhs" for the pinctrl state name instead of the stand=
-ard "state_uhs" specified in the commit message.
-- [Low] Unsupported signal voltages log a warning but falsely return succes=
-s.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
+
+Add support for the ESWIN EIC7700 HSP (high-speed peripherals). The drivers
+provide basic functionality to manage and control the clock and reset
+signals for EIC7700 HSP, including mmc, USB, ethernet, SATA and DMAC.
+
+The clock and reset registers are mapped to overlapping I/O address ranges.
+This causes a resource conflict when two drivers attempt to request the
+same region. Use the auxiliary device framework: the main driver
+allocates the shared register region and passes it to auxiliary
+devices, avoiding resource contention and duplicate remapping.
+
+Features:
+Implements support for the ESWIN EIC7700 HSP clock and reset controller.
+Provide API to manage clock and reset signals for the EIC7700 HSP.
+
+Supported chips:
+ESWIN EIC7700 series SoC.
+
+Test:
+Test this patch on the Sifive HiFive Premier P550 (which used the EIC7700
+SoC), include USB and other peripherals. All the drivers of these modules
+use the clock module and reset module.
+
+Updates:
+  Changes in v4:
+  - Clock driver:
+    - Remove "Reviewed-by: Benoît Monin <benoit.monin@bootlin.com>" and
+      "Reviewed-by: Brian Masney <bmasney@redhat.com>", because the clock
+      driver has been updated.
+    - Remove inclusion of io.h.
+    - Add struct regmap to eic7700_hsp_clk_gate.
+      Replace 'void __iomem *reg' with 'unsigned int reg'.
+      Replace 'void __iomem *ref_reg' with 'unsigned int ref_reg'.
+      Replace long with int for 'offset' and 'ref_offset'.
+      Remove 'spinlock_t *lock'.
+      Apply the same changes to hsp_clk_register_gate().
+    - Remove the structure eic7700_hsp_regmap_lock, and the functions
+      eic7700_hsp_regmap_lock() and eic7700_hsp_regmap_unlock().
+    - Remove the 'guard(spinlock_irqsave)(gate->lock)' in
+      hsp_clk_gate_endisable().
+    - Replace readl() and writel() with regmap_assign_bits() in
+      hsp_clk_gate_endisable().
+    - Change the parameter enable from int to bool.
+    - Replace readl() with regmap_read() in hsp_clk_gate_is_enabled().
+    - Remove the lock_ctx variable.
+    - Move eic7700_hsp_regmap_config from inside the probe function to global
+      scope.
+      Remove '.lock', '.unlock' and 'lock_arg'.
+      Add '.fast_io = true' and '.use_raw_spinlock = true'.
+  - Reset driver:
+    - Add "Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>" for reset.
+    - Drop the temporary variable, just return regmap_assign_bits(...) directly.
+    - Replace -EINVAL with -ENODEV for dev_get_regmap() check.
+    - Drop the '_dt'.
+
+  - Link to v3: https://lore.kernel.org/all/20260423090904.2108-1-dongxuyang@eswincomputing.com/
+
+  Changes in v3:
+  - Bindings:
+    - Added "Acked-by: Conor Dooley <conor.dooley@microchip.com>" for bindings.
+  - Clock driver:
+    - Remove 'gate_flags'.
+    - Add __acquires for eic7700_hsp_regmap_lock() and add __releases for
+      eic7700_hsp_regmap_unlock().
+    - Move writel(USB_REF_XTAL24M, gate->ref_reg) into enable. Because this
+      is only used for USB gate clock on the enable path. And modify the
+      comments.
+    - Simplify to: 'return !!(readl(gate->reg) & BIT(gate->bit_idx));'.
+    - Drop const from eic7700_hsp_regmap_config.
+    - Declare eic7700_hsp_regmap_config as a regular variable at the top.
+
+  - Link to v2: https://lore.kernel.org/all/20260420093929.1895-1-dongxuyang@eswincomputing.com/
+
+  Changes in v2:
+  - Bindings:
+    - Remove "hsp_" from clock-names.
+    - Replace "eswin,eic7700-clock.yaml" and "eswin,eic7700-hspcrg.yaml" with
+      "eswin,eic7700*".
+    - Replace "eswin,eic7700-clock.h" and "eswin,eic7700-hspcrg.h" with
+      "eswin,eic7700*".
+  - Clock driver:
+    - Use guard(spinlock_irqsave)(gate->lock) instead of spin_lock_irqsave()
+      and remove spin_unlock_irqrestore().
+    - Remove the newline in function hsp_clk_gate_is_enabled().
+    - Use struct clk_init_data init = {}.
+    - Replace 'static struct clk_parent_data' with
+      'static const struct clk_parent_data'.
+    - Change '.fw_name' to '.index', because the function
+      eswin_clk_register_fixed_factor() uses .index.
+    - The structures of clocks should use static struct. When registering a clock,
+      the 'hw' field in the structure will be assigned.
+    - Remove __force.
+    - Create the regmap in the clock driver and remove (__force void*)data->base.
+      The reset driver uses dev_get_regmap() to get the regmap from the clock.
+    - Move 'const struct regmap_config eic7700_hsp_regmap_config' from reset
+      driver to clock driver.
+    - The USB clock gate (hsp_clk_gate_endisable) and the reset driver both
+      perform read-modify-write cycles on registers 0x800 and 0x900. Use
+      custom regmap lock callbacks so that regmap operations hold data->lock
+      with IRQs disabled, the same lock the clock gate path uses, preventing
+      concurrent RMW races on those shared registers.
+    - Change to 'ret = eswin_clk_register_fixed_factor(dev, eic7700_hsp_factor_clks,'.
+      The next line will be over 80 characters and under 100 characters.
+  - Reset driver:
+    - Remove 'depends on COMMON_CLK_EIC7700_HSP' and 'default COMMON_CLK_EIC7700_HSP'.
+    - Use regmap_assign_bits() in assert and deassert functions.
+    - Remove eic7700_hsp_reset_reset().
+    - The clock driver creates the regmap, and the reset driver uses dev_get_regmap().
+    - Remove of_reset_n_cells.
+
+  - Link to v1: https://lore.kernel.org/all/20260403093459.612-1-dongxuyang@eswincomputing.com/
+
+Xuyang Dong (3):
+  dt-bindings: clock: Add ESWIN eic7700 HSP clock and reset generator
+  clk: eswin: Add eic7700 HSP clock driver
+  reset: eswin: Add eic7700 HSP reset driver
+
+ .../bindings/clock/eswin,eic7700-hspcrg.yaml  |  63 ++++
+ MAINTAINERS                                   |   5 +-
+ drivers/clk/eswin/Kconfig                     |  12 +
+ drivers/clk/eswin/Makefile                    |   1 +
+ drivers/clk/eswin/clk-eic7700-hsp.c           | 338 ++++++++++++++++++
+ drivers/reset/Kconfig                         |  11 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-eic7700-hsp.c             | 112 ++++++
+ .../dt-bindings/clock/eswin,eic7700-hspcrg.h  |  33 ++
+ .../dt-bindings/reset/eswin,eic7700-hspcrg.h  |  21 ++
+ 10 files changed, 595 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
+ create mode 100644 drivers/clk/eswin/clk-eic7700-hsp.c
+ create mode 100644 drivers/reset/reset-eic7700-hsp.c
+ create mode 100644 include/dt-bindings/clock/eswin,eic7700-hspcrg.h
+ create mode 100644 include/dt-bindings/reset/eswin,eic7700-hspcrg.h
+
 --
+2.34.1
 
-commit 54952d6d0a322262708a9ecada7a38d6245d7b6c
-Author: Iker Pedrosa <ikerpedrosam@gmail.com>
-
-mmc: sdhci-of-k1: add regulator and pinctrl voltage switching support
-
-This commit adds voltage switching infrastructure for UHS-I modes by integr=
-ating
-both the regulator framework for supply voltage control and pinctrl state
-switching for pin drive strength optimization.
-
-> - Add optional pinctrl state switching between "default" (3.3V) and
->   "state_uhs" (1.8V) configurations
-
-This isn't a bug, but the commit message mentions "state_uhs" while the
-code below looks for "uhs". Which one is expected by the device tree bindin=
-gs?
-
-> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k=
-1.c
-> --- a/drivers/mmc/host/sdhci-of-k1.c
-> +++ b/drivers/mmc/host/sdhci-of-k1.c
-
-[ ... ]
-
-> @@ -219,6 +223,46 @@ static void spacemit_sdhci_pre_hs400_to_hs200(struct=
- mmc_host *mmc)
->  static int spacemit_sdhci_start_signal_voltage_switch(struct mmc_host *m=
-mc,
->  						      struct mmc_ios *ios)
->  {
->  	struct sdhci_host *host =3D mmc_priv(mmc);
->  	struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
->  	struct spacemit_sdhci_host *sdhst =3D sdhci_pltfm_priv(pltfm_host);
->  	struct pinctrl_state *state;
->  	int ret;
-> =20
->  	ret =3D sdhci_start_signal_voltage_switch(mmc, ios);
->  	if (ret)
->  		return ret;
-
-For transitions to 3.3V, sdhci_start_signal_voltage_switch() will increase
-the vqmmc regulator voltage to 3.3V and wait 5ms for it to stabilize.
-
-Because the pinctrl state is updated later in this function, the pads
-will remain configured for 1.8V during this time.
-
-Could this overvoltage stress the pads? Should the pinctrl state be
-updated to "default" before raising the regulator voltage?
-
-> =20
->  	if (!sdhst->pinctrl)
->  		return 0;
-> =20
->  	/* Select appropriate pinctrl state based on signal voltage */
->  	switch (ios->signal_voltage) {
->  	case MMC_SIGNAL_VOLTAGE_330:
->  		state =3D sdhst->pinctrl_default;
->  		break;
->  	case MMC_SIGNAL_VOLTAGE_180:
->  		state =3D sdhst->pinctrl_uhs;
->  		break;
->  	default:
->  		dev_warn(mmc_dev(mmc), "unsupported voltage %d\n", ios->signal_voltage=
-);
->  		return 0;
-
-If the voltage is unsupported, should this return an error like -EINVAL
-instead of 0? Returning 0 tells the mmc core the transition was successful.
-
->  	}
-> =20
->  	ret =3D pinctrl_select_state(sdhst->pinctrl, state);
-
-spacemit_sdhci_get_pins() treats the pinctrl states as optional and leaves
-them as null if they aren't found in the device tree.
-
-Does pinctrl_select_state() handle a null state pointer safely?
-
-Looking at the pinctrl subsystem, it appears to unconditionally dereference
-the state pointer. Should there be a check like if (!state) before calling
-pinctrl_select_state() to avoid a panic?
-
->  	if (ret) {
->  		dev_warn(mmc_dev(mmc), "failed to select pinctrl state: %d\n", ret);
->  		return 0;
->  	}
-
-If selecting the pinctrl state fails, returning 0 masks the failure and
-tells the mmc core the pad configuration succeeded.
-
-If the controller switches to 1.8V but the pads remain at 3.3V, could
-this lead to data corruption or electrical damage? Should this return the
-negative error code instead?
-
->  	dev_dbg(mmc_dev(mmc), "switched to %s pinctrl state\n",
->  		ios->signal_voltage =3D=3D MMC_SIGNAL_VOLTAGE_180 ? "UHS" : "default");
-> =20
->  	return 0;
->  }
-
-[ ... ]
-
-> @@ -252,6 +296,30 @@ static inline int spacemit_sdhci_get_resets(struct d=
-evice *dev)
->  static inline void spacemit_sdhci_get_pins(struct device *dev,
->  					   struct sdhci_pltfm_host *pltfm_host)
->  {
->  	struct spacemit_sdhci_host *sdhst =3D sdhci_pltfm_priv(pltfm_host);
-> =20
->  	sdhst->pinctrl =3D devm_pinctrl_get(dev);
->  	if (IS_ERR(sdhst->pinctrl)) {
->  		sdhst->pinctrl =3D NULL;
->  		dev_dbg(dev, "pinctrl not available, voltage switching will work witho=
-ut it\n");
->  		return;
->  	}
-
-If the pin controller hasn't probed yet, devm_pinctrl_get() will return
--EPROBE_DEFER.
-
-By swallowing this error and setting pinctrl to null, the host will
-register without pinctrl support and UHS-I modes will permanently lack
-correct pad configuration.
-
-Should this propagate -EPROBE_DEFER back to spacemit_sdhci_probe() instead
-of returning void?
-
-> =20
->  	sdhst->pinctrl_default =3D pinctrl_lookup_state(sdhst->pinctrl, "defaul=
-t");
->  	if (IS_ERR(sdhst->pinctrl_default))
->  		sdhst->pinctrl_default =3D NULL;
-> =20
->  	sdhst->pinctrl_uhs =3D pinctrl_lookup_state(sdhst->pinctrl, "uhs");
-
-Does looking for "uhs" correctly match the expected device tree bindings?
-The commit message states "state_uhs", and standard mmc bindings typically
-use "state_uhs" as well.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-orangepi-s=
-d-card-uhs-v9-0-ae48c0b2b2cf@gmail.com?part=3D3
 
