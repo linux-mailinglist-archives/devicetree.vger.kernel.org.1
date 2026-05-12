@@ -1,65 +1,68 @@
-Return-Path: <devicetree+bounces-296372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MG5EIjZjA2oq5gEAu9opvQ
-	(envelope-from <devicetree+bounces-296372-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:28:22 +0200
+	id yDpvEE1iA2oq5gEAu9opvQ
+	(envelope-from <devicetree+bounces-296373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:24:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D672525D0F
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:28:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7ADC525C4D
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E9DB03093F62
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 17:15:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BA3E63006B29
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 17:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F633D5C3A;
-	Tue, 12 May 2026 17:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347A83D5C01;
+	Tue, 12 May 2026 17:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NR5LIg70"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="af5siimK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914173D5C29;
-	Tue, 12 May 2026 17:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F7B623EA89;
+	Tue, 12 May 2026 17:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778606112; cv=none; b=kCY99tjD7UZNUWDx8KYK7m25mzZAisqKwlWxTkXskbp97x7dud+03WG+5x0k8OvlILQDC8EIHWWXrj27+eLOohmhVC1XYkk9XfQTGLOYKJ/4S0zaVTQ7N/rmwz+5SVLkwbcK7bCEJoTl0R7poGwkMWA/P1dm3ztY4eDwoyqQcQ4=
+	t=1778606216; cv=none; b=I+tohQ6jghNigBO7Tv/LI57sDmcUZ7EB1Zg6xDcZpcVDMvOUZEaOWTKd6AwjooOJHaBN/rlz1/aXGbRFRZgtcPKEcQLhv+nCiPiwgXHuWZ3p4LLRRXikFChly2o1TlmYqt4jLlddY0LVwVAhRqUd9lzGYnzS0LoVBGzrdzE0YhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778606112; c=relaxed/simple;
-	bh=ep93CDl4nn734nWNxmF1I9r2iyKXnDKuCzqoraqtGrs=;
+	s=arc-20240116; t=1778606216; c=relaxed/simple;
+	bh=h3+saH40V9raQPbgS02i6cj9jJJtT0EIO7Z4vePam+M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NL81Hypqx1YbnZ/ohKgbv65MTGID+ftCIxnPnafJA4CMoYUjUHCBHRuyatbWKIBeNoZXvJ1tt8x3pLiwnf4xh4EbHqEg2C8nCVRrgYQHUt1Kx9AEJJggrMVFdXrxOnHZrvZUvu1bQR+6EWgKcimyBFnc0WkUdJVopkzxST9bqDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NR5LIg70; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33EE3C2BCB0;
-	Tue, 12 May 2026 17:15:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mDAaYq91ibZouKgJS7FmWXMICipUT6b2ZcMsPvYEp6vVKeD+f0jHCyulA3ou+jM9itl3eu03qFGGxHhD2ykJ+Gn+ddFfZQGhhSgnC8gix8rESKx40McAP/KZ69eVuBCxyKgJaa4r53fSYQ5iIojkXP2QJ3BOMsb4ufIFfH/LIoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=af5siimK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6224C2BCB0;
+	Tue, 12 May 2026 17:16:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778606112;
-	bh=ep93CDl4nn734nWNxmF1I9r2iyKXnDKuCzqoraqtGrs=;
+	s=k20201202; t=1778606215;
+	bh=h3+saH40V9raQPbgS02i6cj9jJJtT0EIO7Z4vePam+M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NR5LIg700su+JAsrKRexnZMTLxagb3ZhNcs1d0+zmNAMOkEUslcCPH8kBUy0ga2my
-	 HXoCfKPYzppxV+IPXNOJhpWsS3eCkRDnOUEonyak3NH9WkOmj5tcBQTgLnCGK8uXF1
-	 t801pWCqg546p/Hyzvg+Me8dvcU3JMECgzCuSaeNTiAU+ajpzq9nnQbm6yfNB24jhv
-	 EXBP6ShY3Ulwudb887tuEsEhOyflcqD2CBvml6FLtcEIdG5/krBHiiZ4IKdfkz2pvW
-	 5Z2mRIX43um7wqHYKH19mm74zlu07AKmtE9r+tYQq1Vu5nZjBdzdCLHbLXhgpFpI3O
-	 z6vtoDmysk7xw==
-Date: Tue, 12 May 2026 18:15:07 +0100
+	b=af5siimKkJ7xOf34VllZYZVmxcieNj4EdZZhOB3WmOMD2CrnCpkSBXmwvNzb3Khxf
+	 VG/I+t9VxWsoJlcMZEhY76sdDA1noxUulE8vHwtQ2hvZOgCW2SWXvXBNZ8qvbpB7c+
+	 zBihCg10d2vb4FLlok1Q4t4FJdlV/9lptOAWRtYiZFuQIbm3GFvz/eTEjD9MTapbi+
+	 VUlFqA8t9neM8sXDXgT1mPv1RCxQOZ504QJUJ1CuNM/wSILfqEMdpQbychm67bR9Qc
+	 581vrOS1keL1geuPTpEqUHQxSb8vnn7TGDVb2ANjads3S30DE6K5IF9n1a4ELHxk7P
+	 W3vk+q+Bq3fkQ==
+Date: Tue, 12 May 2026 18:16:50 +0100
 From: Conor Dooley <conor@kernel.org>
-To: "lianfeng.ouyang" <lianfeng.ouyang@starfivetech.com>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: Add bindings for StarFive JHB100 SoC
- trng controller.
-Message-ID: <20260512-seventeen-deduct-fa7eead281ef@spud>
-References: <20260512062404.4540-1-lianfeng.ouyang@starfivetech.com>
- <20260512062404.4540-2-lianfeng.ouyang@starfivetech.com>
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 3/4] dt-bindings: clock: renesas,r9a09g077/87: Add
+ LCDC_CLKD clock ID
+Message-ID: <20260512-unstopped-countdown-313d50b5d3b7@spud>
+References: <20260511191910.1945705-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260511191910.1945705-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,10 +70,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rOdvJ2xqvy0gb4XE"
+	protocol="application/pgp-signature"; boundary="oZWL2xFTBxMYOVW0"
 Content-Disposition: inline
-In-Reply-To: <20260512062404.4540-2-lianfeng.ouyang@starfivetech.com>
-X-Rspamd-Queue-Id: 8D672525D0F
+In-Reply-To: <20260511191910.1945705-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Rspamd-Queue-Id: A7ADC525C4D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -78,81 +81,51 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[starfivetech.com:server fail,sin.lore.kernel.org:server fail];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-296372-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296373-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_CC(0.00)[glider.be,baylibre.com,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,starfivetech.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
---rOdvJ2xqvy0gb4XE
+--oZWL2xFTBxMYOVW0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 12, 2026 at 02:24:03PM +0800, lianfeng.ouyang wrote:
-> From: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
->=20
-> Signed-off-by: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
-> ---
->  Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.y=
-aml b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> index 4639247e9e51..11346d77b2f6 100644
-> --- a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> @@ -13,8 +13,8 @@ properties:
->    compatible:
->      oneOf:
->        - items:
-> -          - const: starfive,jh8100-trng
->            - const: starfive,jh7110-trng
-> +          - const: starfive,jhb100-trng
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-You need to add a commit message here explaining why removing the jh8100
-is okay.
-pw-bot: changes-requested
-
->        - const: starfive,jh7110-trng
-> =20
->    reg:
-> --=20
-> 2.43.0
->=20
->=20
-
---rOdvJ2xqvy0gb4XE
+--oZWL2xFTBxMYOVW0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagNgGwAKCRB4tDGHoIJi
-0mqkAP4yj9VMhN6pcb7sydjcsP4jbFwPsGl1fQMJhMd2G5cvNwEA4ctH4F2i6lAN
-JyRWH7LxV8wcG89RrElP4a5GF9EW+w0=
-=kyDE
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagNgggAKCRB4tDGHoIJi
+0tOFAP9AzUh9sfcOd/Lnrb8OvCvUbHimfl3KM4W1Yia8iCCYywEAmBz2TZ9KqqsE
+y3q0+446hukaJ5bzdWrQMr6WnfgKyAM=
+=rwFc
 -----END PGP SIGNATURE-----
 
---rOdvJ2xqvy0gb4XE--
+--oZWL2xFTBxMYOVW0--
 
