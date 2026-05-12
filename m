@@ -1,179 +1,247 @@
-Return-Path: <devicetree+bounces-296500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296502-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFcYNtOlA2qf8gEAu9opvQ
-	(envelope-from <devicetree+bounces-296500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:12:35 +0200
+	id WHjAF1ynA2rR8gEAu9opvQ
+	(envelope-from <devicetree+bounces-296502-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:19:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C1252ABD2
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:12:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB09D52AC6C
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:19:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DD25D3058063
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:12:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 92C613076D5D
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBEE39A05E;
-	Tue, 12 May 2026 22:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E17439D6FF;
+	Tue, 12 May 2026 22:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RhETj8/Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pjXigAla"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF77130DEB8
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 22:12:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96FD342509
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 22:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778623951; cv=none; b=Ii3QEb2xCHLnrDFYaKZxoPt2a/7biBi3RD69AR6QLv+MK8xNLBU/5m27YUbAujoPltoqyb/+L6lJboLe33kJHQLPnpu9RHqdTB+BnQ/ZM3ch10NDl8PSNBBXQmLO4NlePWUjQh/ngfs8Xtq5+P88T/dv/I+F48K8BrOOKzUTcpE=
+	t=1778624344; cv=none; b=JywGjP9345K0lZTs1Pj+HBKly8Wmq1e1/CgcgX2KjmOABDn7Z7Pr01LkACKkbETZU9Z5RJdfQNYem46K5iPe4o6/+7jx/5aaMPv0sJVDe37QqwwxyNXT/tbjktF1UiUb3kTFEpZ70QOfF2YQc9MNxBcxEd8oxkZASuDWP9OyfL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778623951; c=relaxed/simple;
-	bh=iNMxP1s5c8IThpWR6iKe1vcSFSILY4KBvtW/467lg4M=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nzFAzBeZ/EmcasWXdI3S/6GtOO1gbUk/jBEuMAL+GVBa3+MYrmTp+JyUYUWmGEVCatj9DHCJ/uNCNt7hVsw0oVaaGW2qMTf2etdhc+z5qgy4VSjpnYxDqxEEsQLDdEQ8ZH8ppQUh26N4/oSy3kqPFb76iKi7+Acy3kEcs1zGtb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RhETj8/Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2876FC2BCB0;
-	Tue, 12 May 2026 22:12:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778623951;
-	bh=iNMxP1s5c8IThpWR6iKe1vcSFSILY4KBvtW/467lg4M=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=RhETj8/Z8A9J5Yig6YC6yY8v0UAEBtrqh5E6ER4O8aORhD3CEtaz+eCXeUbIuPGi3
-	 lopXfdVszU8OqemUPuttfXVkdCf5/8vtiXcWRvNAo/kNBlp4SdEgsJQzAVxI1GncOg
-	 /kPoA45IwvDzzRSOUnDxht4GOfYZyhSnyfsX99SRYOVwBpSz62BE0zEF1S/aetyr6W
-	 HGQj9N3AHdlyOIRvbIDeXzX2ILzxt3w8gwWKEf6jvwKVQrDXc2RPMQSzwqxRX/22Vc
-	 776b52IcCFifE+OWSsvwCf5XKRgsZ0lmF3PWT12abl5pCYwejPG51N4fbWlWx2/LB+
-	 fW3VbQmnf2vtQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 2/2] bus: simple-pm-bus: Populate child nodes at
- probe
-Reply-To: sashiko@lists.linux.dev
-To: "Herve Codina" <herve.codina@bootlin.com>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260511155902.34534-3-herve.codina@bootlin.com>
-References: <20260511155902.34534-3-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 22:12:30 +0000
-Message-Id: <20260512221231.2876FC2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778624344; c=relaxed/simple;
+	bh=rs16wt3AuyZwC2/wSTnW6JyrGVk0XNOqxAOEv9iUOkQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RCw7tKQtZeSSmniqjEXYg1wSAD50Rrb4ELKyo/mjdLfntr1Mjn+Qj6pLOYClt3SeEf1xWs8//ITymE3k+6OdrYHzkpHAPMYCMPM70fy2rJJeCrCj/knKWzF1ZvODBFOFSqvqBU/y4ePu7djYBilqJkJcUhOR3gKrCSkPD3uqjdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pjXigAla; arc=none smtp.client-ip=209.85.167.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-479f7e75a6bso2483102b6e.2
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 15:19:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778624342; x=1779229142; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wbOAkAosV36OhwkLLEx/+s1EaAlqex9RxH+DuxyH/Ng=;
+        b=pjXigAla+L31u9DWuYSWuT522BTb4qij5+J4HENyFHWTHNcMUu6o9BPFztqxi/R+AL
+         XBZheeozLEfKxc3ZtsqUjokJpGJWxUseVURMO0KC7Q6PPS9Jqcbk6hyh5uEqQLh+/9Gh
+         l4UAMUDv7dFdHg4qUxZidbte/f9VMDIeq1e4WGfvtSCIM43BUdwKGtd09v/uyx9Ho4/I
+         j0htZnqFM+ldEGwPxafV/Z4NgF48jZ0IiWRBg8tAxnwpmK/hmj9i4R+ziRqOStRRqiGQ
+         fosIFK1dxqKVfY+zM9ViJbdvsqvZJI0yI2QupivlksPm6bZbdy027ToiLWsdyleAkDCg
+         X3MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778624342; x=1779229142;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wbOAkAosV36OhwkLLEx/+s1EaAlqex9RxH+DuxyH/Ng=;
+        b=cJNgj33HW1JJOWn55q4ViPfJQTmRXMnrz0oKaPoCnncj61ifomAPF8saOpDqtY5Beg
+         vFmPZJjD9KXQxJ5boppP1CvdxvARPsit7cQFb03YGbhJqy5Z8cU2G28DS7OMjFJmDmAE
+         HJqtuLrIaaTrHzJ3iWcoouQ2NkdO56iWofxZO9MCuQhY9jMxqQkcd9tEwa1VaW+bhJpC
+         taEQVa9KlpBqNUKql8WX5zCnx9ffErHqPJScKeDKLVUkVbUmtoeZv4ZyI1219La4yCok
+         IEKbOgDxlJNBDSqNJPkKyk3diauQ2jTSx+Zsw22mkHdRFfhxe2JTJ3bqPfx9gfomI5gC
+         Kshw==
+X-Forwarded-Encrypted: i=1; AFNElJ/yFel7Nbk46/6ZcLjXqYhTMNIdyrX5oaXOvZXEwmkuAhq1LG1eMc7ezFyiMnQX8FVAeChJyKdefn37@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXbfQ+ILivrtz2bVPxsAmeBTkPtPblcO4cKOV8OWXRQbKaJloO
+	kDMbnphaKU6s3+lZN8+vuwrzZU++y3TQWu1sSN6BHisYtRbE0kstvlmSB5EG067e
+X-Gm-Gg: Acq92OGHlvTrsI2WE7Z0qgQXgqvYi4vygdJw6HtDeOGO5CzGmemqQUfi6mCyfPNbOWZ
+	JQblruayF2FuGS3Ny7/4gIyenmMUhBcSeP7eZ9GOfgY+V05SGFhX+jSCV3aswK6lDcoy25fZdjD
+	Sohm0E9kogMpn5IxuXp4WZRPoIGD4aK9Sqi4Q1y/061rkMQg76tZ2sac19jiSRHk0Xro0/Gsu84
+	W+G/6fqrcMhDG0BeuFHjqdcfApaCJyCC+mrTULYeqvvcnj+0Q87S8igYipnnxOJYINUOtJvwW4K
+	DJyqzMsnWfZjFcRXWVBX2vO0OjgIU9qPnwSXPGNKYPNakiNIl115hHQyaZkt+pSehO5s4jDeLHc
+	y0NAji/H2IjOsE8UwqFKs01lR8h74X0N0OFMWZZvNhCQMwEFU6LdOBRayVZTuZqGetUTj/oDeBx
+	cwAMpZqQB0Qco6oXkEpThE
+X-Received: by 2002:a05:6808:4f29:b0:466:fd51:6a65 with SMTP id 5614622812f47-482b2d05a43mr651761b6e.23.1778624341793;
+        Tue, 12 May 2026 15:19:01 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-47c76986f87sm23291473b6e.13.2026.05.12.15.19.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 May 2026 15:19:01 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: andy@kernel.org,
+	nuno.sa@analog.com,
+	dlechner@baylibre.com,
+	jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	andriy.shevchenko@intel.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V6 00/11] Add Invensense ICM42607
+Date: Tue, 12 May 2026 17:16:21 -0500
+Message-ID: <20260512221634.256747-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 56C1252ABD2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: CB09D52AC6C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296500-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email,sashiko.dev:url,lists.linux.dev:replyto];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-296502-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The patch resolves fw_devlink corruption for transparent buses mat=
-ched via `of_match_table`, but fails to apply this fix to transparent buses=
- bound via `driver_override`, leaving devlinks broken in that path.
---
+From: Chris Morgan <macromorgan@hotmail.com>
 
-commit 428668c33cfe17b55dfc398a9e43567a082e1c3e
-Author: Herve Codina <herve.codina@bootlin.com>
+Add support for the ICM42607 IMU. This sensor shares the same
+functionality but a different register layout with the existing
+ICM42600.
 
-bus: simple-pm-bus: Populate child nodes at probe
+This driver should work with the ICM42607 and ICM42607P over both I2C
+and SPI, however only the ICM42607P over I2C could be tested.
 
-This commit modifies the simple-pm-bus driver to populate child nodes
-during probe for transparent buses matched via of_match_table. This prevents
-wrong or missing devlinks when fw_devlink assumes a bound driver will
-populate its child firmware nodes.
+Changes Since V1:
+ - Instead of creating a new driver, merged with the existing inv_icm42600
+   driver. This necessitated adding some code to the existing driver to
+   permit using a different register layout for the same functionality.
+ - Split changes up a bit more to decrease the size of the individual
+   patches. Note that patch 0004 is still pretty hefty; if I need to split
+   further I may need to create some temporary stub functions.
+ - Used guard() and PM_RUNTIME_ACQUIRE_AUTOSUSPEND() on the new functions
+   per Jonathan's recommendations.
 
-> diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-> index 4b2a793dfbd90..d969bf19a4e95 100644
-> --- a/drivers/bus/simple-pm-bus.c
-> +++ b/drivers/bus/simple-pm-bus.c
-> @@ -42,14 +42,15 @@ static int simple_pm_bus_probe(struct platform_device=
- *pdev)
->  	match =3D of_match_device(dev->driver->of_match_table, dev);
->  	/*
->  	 * These are transparent bus devices (not simple-pm-bus matches) that
-[ ... ]
->  	if (match && match->data) {
->  		if (of_property_match_string(np, "compatible", match->compatible) =3D=
-=3D 0)
-> -			return 0;
-> +			goto populate;
->  		else
->  			return -ENODEV;
->  	}
+Changes Since V2:
+ - Went back to using a new driver on advice from Invensense engineer.
+ - Further split changes up into smaller chunks of functionality. Note
+   still that the largest patch is approximately 900 lines, and that while
+   the driver compiles cleanly at each commit it is not able to drive the
+   hardware until the commit that adds the Interrupt (as it also adds the
+   Makefile).
+ - Change the error to a warning when the devicetree binding does not match
+   the hardware ID.
+ - Dropped the ack on the devicetree bindings, as I am creating a new file
+   (for a new driver) instead of modifying the existing one.
 
-Does this leave fw_devlink corrupted when the driver is bound using
-driver_override?
+Changes Since V3:
+ - Numerous small fixes (too many to list here). Thank you to everyone who
+   provided feedback.
+ - Split power management additions into an additional commit to break
+   things up further.
+ - Consolidated devicetree documentation in existing
+   invensense,icm42600.yaml file.
+ - Removed most of the FIELD_PREP from header file to c files to make code
+   easier to read.
+ - Changed scale values to 2D arrays for Gyro and Accelerometer.
+ - Removed IIO_CHAN_INFO_CALIBBIAS attribute.
 
-Looking at simple_pm_bus_probe(), there is an early exit for driver_override
-just before this block:
+Changes Since V4:
+ - Additional numerous small fixes, thank you again for all the feedback.
+ - Dropped power control API and instead run device in low noise mode.
+ - Split devicetree bindings into two distinct changes.
+ - Reordered adding of enums and structs to main header file so that they
+   are only brought in when needed.
+ - Stopped using enum for driver data and instead am using pointer to
+   device specific driver data.
 
-	if (device_has_driver_override(&pdev->dev))
-		return 0;
+Changes Since V5:
+ - Corrected use of "dev_warn_probe" to just "dev_warn".
+ - Fixed some return scenarios which would unconditionally return 0
+   when an error was present.
+ - Corrected use of max() to min() for bounds checking. max() was
+   incorrect.
+ - Fixed using "st->conf.accel.odr" in the gyroscope function. It
+   should have been "st->conf.gyro.odr" which it now is.
+ - Additional small fixes suggested by "sashiko.dev".
+ - Added a regmap cache. I used the datasheet to try and determine
+   which registers might change without explicit writes.
 
-Since it still returns directly instead of jumping to the populate label,
-transparent buses bound via the driver_override sysfs attribute will skip
-populating their child nodes. This seems to trigger the same wrong
-supplier assignments from fw_devlink that this patch intended to fix.
+Chris Morgan (11):
+  dt-bindings: iio: imu: icm42600: Add mount-matrix to icm42600
+  dt-bindings: iio: imu: icm42600: Add icm42607 binding
+  iio: imu: inv_icm42607: Add inv_icm42607 Core Driver
+  iio: imu: inv_icm42607: Add I2C and SPI For icm42607
+  iio: imu: inv_icm42607: Add PM support for icm42607
+  iio: imu: inv_icm42607: Add Buffer support for icm42607
+  iio: imu: inv_icm42607: Add Temp Support in icm42607
+  iio: imu: inv_icm42607: Add Accelerometer for icm42607
+  iio: imu: inv_icm42607: Add Wake on Movement to  icm42607
+  iio: imu: inv_icm42607: Add Gyroscope to icm42607
+  arm64: dts: rockchip: Add icm42607p IMU for RG-DS
 
-> @@ -78,7 +80,7 @@ static void simple_pm_bus_remove(struct platform_device=
- *pdev)
->  {
->  	const void *data =3D of_device_get_match_data(&pdev->dev);
-> =20
-> -	if (device_has_driver_override(&pdev->dev) || data)
-> +	if (device_has_driver_override(&pdev->dev))
->  		return;
-> =20
->  	dev_dbg(&pdev->dev, "%s\n", __func__);
-> @@ -86,7 +88,8 @@ static void simple_pm_bus_remove(struct platform_device=
- *pdev)
->  	if (pdev->dev.of_node)
->  		of_platform_depopulate(&pdev->dev);
+ .../bindings/iio/imu/invensense,icm42600.yaml |   4 +
+ .../dts/rockchip/rk3568-anbernic-rg-ds.dts    |  20 +-
+ drivers/iio/imu/Kconfig                       |   1 +
+ drivers/iio/imu/Makefile                      |   1 +
+ drivers/iio/imu/inv_icm42607/Kconfig          |  30 +
+ drivers/iio/imu/inv_icm42607/Makefile         |  14 +
+ drivers/iio/imu/inv_icm42607/inv_icm42607.h   | 457 +++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_accel.c | 879 ++++++++++++++++++
+ .../imu/inv_icm42607/inv_icm42607_buffer.c    | 565 +++++++++++
+ .../imu/inv_icm42607/inv_icm42607_buffer.h    |  95 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 854 +++++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_gyro.c  | 510 ++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_i2c.c   |  90 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_spi.c   | 103 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.c  |  80 ++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.h  |  33 +
+ 16 files changed, 3735 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/iio/imu/inv_icm42607/Kconfig
+ create mode 100644 drivers/iio/imu/inv_icm42607/Makefile
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_i2c.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
 
-If the driver_override path in probe() is updated to populate children,
-should this remove() function also be updated to depopulate them?
+-- 
+2.43.0
 
-Additionally, does checking device_has_driver_override() here risk unbalanc=
-ed
-cleanup? If userspace modifies the driver_override sysfs attribute after
-probe() but before remove(), this check could evaluate differently during
-removal. Since of_platform_depopulate() safely ignores unpopulated buses,
-would it be better to call it unconditionally?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511155902.3453=
-4-1-herve.codina@bootlin.com?part=3D2
 
