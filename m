@@ -1,702 +1,258 @@
-Return-Path: <devicetree+bounces-296235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296239-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MFAHL4mA2qj1AEAu9opvQ
-	(envelope-from <devicetree+bounces-296235-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:10:22 +0200
+	id qKbxCmYoA2rP1AEAu9opvQ
+	(envelope-from <devicetree+bounces-296239-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:17:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA7D520D26
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:10:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FCF2520F55
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:17:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6C2CD3080EDD
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:02:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 69C11301D0FE
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237C63812FA;
-	Tue, 12 May 2026 13:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDEC93E172D;
+	Tue, 12 May 2026 13:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kojBv8oc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IAJ4+SWW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1539E3E1706
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 13:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.177
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778590838; cv=pass; b=KJII0aaFlhKJOfeYLgerbEweO0ltZ5ZjP2g9VftKxgD43FrvM/D9NrLjsjFPlpYFcnFxBFM+i1+7AwI2IiqB/tkjYkszujFZwTW7Ota0+8P4Lvbb0tK357YNDCEmJYGZnj1Nsc9OekWHYt6j80mSGySgx1AnDcJB5oCSqFBAU3w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778590838; c=relaxed/simple;
-	bh=YuM53joYsuqA/fqOKsW+xz9cxbWMg+9daWwdkzmHkN8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cKjoE2mi1egdl31ArAUo1vENyZ5suWAsCsY1DGBuoF1ymYAq8srNHu9Nw51nJD/GgPrRfSsNbbdngSuw7OCi5GSB9sZ0AxaukYb9juG7U6Y5Rc+F1zFhb/uEwcQmc6S7ZUPEghTReY9VIs7CfyG75f0gdWQZ8pcQubxUjXMU51Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kojBv8oc; arc=pass smtp.client-ip=74.125.82.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2c156c4a9efso7325119eec.1
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 06:00:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778590835; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TWw5XeZWNuXM+7c9qNp01T0w5vORqDHQPsJ5ezdWJcqt2CnK2viCUEIetpt7aHpIHq
-         sfrItBHGg35IVvDDtzO8v4oB8mJsi+6Eljd29jrNDQNJ7Esv/0Oyd8afz4Lb+crxAlLI
-         v7zRb/dclJF+u2nvJ4gl5k8NBteoPDrOhcPV87Q+nxb15HsF5Aij8YOXjdcSRTMXapOl
-         xlaKbH/1TM4F8miOSE7ErQqr8vbLw7EFuhgLhdLW3s9aoz2O4U56YMn3Rt8PwjVIUnVT
-         nupf55OOtvzrdqamGRtqtXUeNSgpdqAIKP02MOi4gnKGKoTwMragzUmJ28cPU7E0G5uh
-         DiXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=2IS5oluGQ9rzg5bXFenlg6gcPX4ICtDWNMpGHTlzVao=;
-        fh=B7FWCAg6eQpEJqkox9eOWIz7SDR+wsECvnbsH0CSjlE=;
-        b=iwJE4T2TKm8UwG5fwsxOCQTQiNFc3XCmQJSPpJebTzmAd8lP7afBH/nStTFHTWmyme
-         EwOhWLFy9svWgCIA55Z6b5dsDvotUL1MGYZkaWLwRnKnaGrK/oPFWJPYegQG3ywQ0iBW
-         Hyuw9TywXEuzHfXFusvfBsTbjzEnqngcf4JR8Sdejqn3qQtnWwQqcnA9f9E83hmlppqd
-         d50PySK3n9GcUqCt7eQJsO40ZFQyyqxxJO+orzFmuac+vfaEGH3KaP7j0bcFsFOTOdJ1
-         K0w9WejKhs5AZdWquAz3BCN0zps20Zpu6B81Mcgm4oqs5e7ACIMIfCJUEzAD8p0xI/pQ
-         KHpQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778590835; x=1779195635; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2IS5oluGQ9rzg5bXFenlg6gcPX4ICtDWNMpGHTlzVao=;
-        b=kojBv8ocv5FfzX8wx0SpcbJluVbvKsL7UUpwx5Z3LPvFc7lmqYncPJH7/YcKjDUHGe
-         gDfyIoX+BbEx5JoYwNth1+b5i5Fs0FrgDeXyZiwE1YuNc+zY6uABEk1W2GVOGPKWC+Yl
-         Y0mWvGYv8E9QOdt6Mn81YWAsZNniik2uxMDMkMPkz4ZPpkJUHI7eGdJPkTNYf2oly4pv
-         7xI3UGUmESwzjtxLTxgZ2GnD/Vodrr7uwzROpmY4cw0Q1N5jZzZqCnCNWEKtbJafmfKw
-         +nCpu4UB4JACewnyKQcZfE9r7OQX8Pump+6e+X8X3a/2INUn9eWwJYW7ls+cIccXMsGh
-         OQ+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778590835; x=1779195635;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2IS5oluGQ9rzg5bXFenlg6gcPX4ICtDWNMpGHTlzVao=;
-        b=dGdrQ5JIywtlCUh+Fvdb4WlSqyaQwH3tkH39qvXNTlRs2kyUoQXXii1ML58fPjtE17
-         /Z61ZYGkhDcISN2RLPkdXyI1dX7YRoXh3PhQLxvnHJ9gx7nfFyJUV5MwPulGa59pF/Is
-         kY0PA4KR7gskj59rXmSrt/ZZROHxhWxSDca7TLkufU+sVB84SVuYIJazcve36vDG7T9O
-         p6sZl5wFChXbGsvHl0u+/OBzbD2AQ51IZXtVqtu8iAGUy3D4dToLRNfwU7v+mVtXsmhl
-         Pb0UWj0cylKSfAcZjm6CkR7tK8y+MrSMnBrQQSFCH8C/V7OZ7zCdUoYm6HdexTg0vod4
-         5i/A==
-X-Forwarded-Encrypted: i=1; AFNElJ/41cSfflbnxrJmcJ665L5k9CqNV34dAx8xOQczVHO0CwHwVTt8e+MgSYc/STPur3X/eeIVv0V6KM4P@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSErb4PudAHA8HMquOfIVcnrtbf9q4cUzx9yDGQhC5R/Zwdc5d
-	w4Tgg5W8ClXfgz74LvYMS9n5EG+hstZaTNxRTqh3A2de6EzBkAZd3V0yqRIZcPGpIclVZeuJEvx
-	UYZwYYnu2DjK144jETufUHcrbcckF2S0=
-X-Gm-Gg: Acq92OFeQk2uBKgfSXR2uXo16QLxF2X1aAmZnBpSeyoNWEkeHNI3jhtaBl01ZTQzO6l
-	jOOtwXLWEFve+JYHnjpS7zZtqoWtUoP4OFA+WS3nB4j4mnQ8rdRC1GiuOKt4CTdVdfArNpNKsda
-	Zveb1c2pFMO1Nprlt3gcJjGREtjh3X2axCTKGmJX+O4E/Sbjn7zerotoRPlwPaAYAWJKyc3gLhY
-	t15I7BYFjz6xu3qboZ7Eaqukdiz+cNkOC1HeKOgqNzdmCYZe1mGXNUaaTJO9F+hKp8eNNntvjVB
-	8BvGCBUs
-X-Received: by 2002:a05:7300:ec01:b0:2e1:e3e6:2909 with SMTP id
- 5a478bee46e88-2f54dc8dfdcmr12882765eec.9.1778590834832; Tue, 12 May 2026
- 06:00:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA42A3E170C;
+	Tue, 12 May 2026 13:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778591119; cv=none; b=nrG9QSwS08DBzxK36pGDuhxejAZ/s+rF6ksxkqOiOKE8EjHW4NQDKKRKdJUTTdw5wk1/RmPrfpk6CvXhc9x8R2G0gGoM2RJo0AGo6hY0ssf0OHK6hWgcLOULr37deD3MtiVSFLf+aZHUjhYEIEt4gEcl2HUX/HTtRQmL4OzECYA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778591119; c=relaxed/simple;
+	bh=bg4o7RwuuxEDvH8OIFEtF3dwjttBqocBKfhQEXr8ROo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDKpqABcrzmwPQsI4f/FmfKV/T/YrqTNV4snvle7mohRa3fp6wgPR9pmrKS0LB7ENcAnUqZRzFHTUk6T0ljXlGTTFcGyaLZpKF/HxIkVShxqgKhJXjbBBODBbUr4RhzOb9s3fKxzT3exdwukK68bIkyto0GtDlVTYSa/lOzJVMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IAJ4+SWW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20081C2BCB0;
+	Tue, 12 May 2026 13:05:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778591119;
+	bh=bg4o7RwuuxEDvH8OIFEtF3dwjttBqocBKfhQEXr8ROo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IAJ4+SWW6dGKdQlvU4QHubSOcxUTtjskun01cJTOk3Rq+++/n/I9fNV1eawjLpMno
+	 2t+p9/OePnaKrEg6gZb+Dwq8dQpklF1ievE2b6SCHzbmjSTESi9AUzt4B5IOITc82D
+	 vjWplV2ktWv5fsndOHlm2sQV7UKAN2O9cmsZx9YM/G4dgZLdCa3WnARD7CEiz3MCOg
+	 FYTZIHEvZS2p8l/pvh83CLIZrX2/OoCpXlXqjxGZwPq4VerPZmZQvKCUHZWPz/aE9x
+	 k3uCwqq7ejXymYyBy1ongNdqkUVbYEpxsw1ajVMyTCwbyWilDhEwd5dFaSWVlquWdg
+	 lBPsLDyLnnZuQ==
+Date: Tue, 12 May 2026 18:35:11 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Mahesh Vaidya <mahesh.vaidya@altera.com>
+Cc: joyce.ooi@intel.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	subhransu.sekhar.prusty@altera.com, dinguyen@kernel.org
+Subject: Re: [PATCH 3/3] PCI: altera: add Agilex 5 support
+Message-ID: <46lb3ald2zwoum53oivvlgoy2uognjygkgtks5vcngqo4wxply@75a6zvxtfwes>
+References: <20260424094913.522123-1-mahesh.vaidya@altera.com>
+ <20260424094913.522123-4-mahesh.vaidya@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260510110804.33045-1-clamor95@gmail.com> <20260510110804.33045-4-clamor95@gmail.com>
- <20260512125309.GA1476682-robh@kernel.org>
-In-Reply-To: <20260512125309.GA1476682-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 12 May 2026 16:00:23 +0300
-X-Gm-Features: AVHnY4Lg9-rZZxak_7A8-rgTbdgv1Xf5Fk-dRQ_iaShma4n8Z6iLa9Gayv32ho8
-Message-ID: <CAPVz0n0QSvht+_ejbErDsf0o6Bt1STynVydJOemcSYXrr-TgHw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/6] dt-bindings: mfd: motorola-cpcap: convert to DT schema
-To: Rob Herring <robh@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Tony Lindgren <tony@atomide.com>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: EAA7D520D26
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260424094913.522123-4-mahesh.vaidya@altera.com>
+X-Rspamd-Queue-Id: 2FCF2520F55
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296235-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296239-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,atomide.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url,0.0.0.0:email,0.0.0.1:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,altera.com:email]
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 12 =D1=82=D1=80=D0=B0=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 15:5=
-3 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sun, May 10, 2026 at 02:08:01PM +0300, Svyatoslav Ryhel wrote:
-> > Convert devicetree bindings for the Motorola CPCAP MFD from TXT to YAML=
-.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  .../bindings/mfd/motorola,cpcap.yaml          | 414 ++++++++++++++++++
-> >  .../bindings/mfd/motorola-cpcap.txt           |  78 ----
-> >  2 files changed, 414 insertions(+), 78 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/motorola,cpca=
-p.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/motorola-cpca=
-p.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml =
-b/Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-> > new file mode 100644
-> > index 000000000000..7f257f3a1a5a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-> > @@ -0,0 +1,414 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/motorola,cpcap.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Motorola CPCAP PMIC MFD
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: motorola,cpcap
-> > +      - const: st,6556002
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  "#interrupt-cells":
-> > +    const: 2
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
->
-> There aren't any child nodes with an address. These 2 can be dropped.
->
+On Fri, Apr 24, 2026 at 02:49:13AM -0700, Mahesh Vaidya wrote:
+> Add PCIe root port controller support for the Agilex 5 (V4) family
 
-I will adjust in v6 if there will be need in one.
+There is no 'root port controller'. Root Port and Controller (Root Complex) are
+two different IPs.
 
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 9600000
-> > +
-> > +  spi-cs-high: true
-> > +  spi-cpol: true
-> > +  spi-cpha: true
-> > +
-> > +  adc:
-> > +    $ref: /schemas/iio/adc/motorola,cpcap-adc.yaml#
-> > +
-> > +  audio-codec:
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      interrupts:
-> > +        items:
-> > +          - description: headset detect interrupt
-> > +          - description: microphone bias 2 detect interrupt
-> > +
-> > +      interrupt-names:
-> > +        items:
-> > +          - const: hs
-> > +          - const: mb2
-> > +
-> > +      "#sound-dai-cells":
-> > +        const: 1
-> > +
-> > +      VAUDIO-supply:
-> > +        description:
-> > +          Codec power supply, usually VAUDIO regulator of CPCAP.
-> > +
-> > +      ports:
-> > +        $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +        properties:
-> > +          port@0:
-> > +            $ref: /schemas/graph.yaml#/properties/port
-> > +            description: port connected to the Stereo HiFi DAC
-> > +
-> > +          port@1:
-> > +            $ref: /schemas/graph.yaml#/properties/port
-> > +            description: port connected to the Voice DAC
-> > +
-> > +        required:
-> > +          - port@0
-> > +          - port@1
-> > +
-> > +    required:
-> > +      - interrupts
-> > +      - interrupt-names
-> > +      - "#sound-dai-cells"
-> > +
-> > +  battery:
-> > +    $ref: /schemas/power/supply/cpcap-battery.yaml#
-> > +
-> > +  charger:
-> > +    $ref: /schemas/power/supply/cpcap-charger.yaml#
-> > +
-> > +  key-power:
-> > +    $ref: /schemas/input/motorola,cpcap-pwrbutton.yaml#
-> > +
-> > +  phy:
-> > +    $ref: /schemas/phy/motorola,cpcap-usb-phy.yaml#
-> > +
-> > +  regulator:
-> > +    $ref: /schemas/regulator/motorola,cpcap-regulator.yaml#
-> > +
-> > +  rtc:
-> > +    $ref: /schemas/rtc/motorola,cpcap-rtc.yaml#
-> > +
-> > +patternProperties:
-> > +  "^led(-[a-z]+)?$":
-> > +    $ref: /schemas/leds/motorola,cpcap-leds.yaml#
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-controller
-> > +  - "#interrupt-cells"
-> > +  - spi-max-frequency
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/input/linux-event-codes.h>
-> > +
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        cpcap: pmic@0 {
-> > +            compatible =3D "motorola,cpcap", "st,6556002";
-> > +            reg =3D <0>; /* cs0 */
-> > +
-> > +            interrupt-parent =3D <&gpio1>;
-> > +            interrupts =3D <7 IRQ_TYPE_EDGE_RISING>;
-> > +
-> > +            interrupt-controller;
-> > +            #interrupt-cells =3D <2>;
-> > +
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            spi-max-frequency =3D <3000000>;
-> > +            spi-cs-high;
-> > +
-> > +            spi-cpol;
-> > +            spi-cpha;
-> > +
-> > +            cpcap_adc: adc {
-> > +                compatible =3D "motorola,cpcap-adc";
-> > +
-> > +                interrupt-parent =3D <&cpcap>;
-> > +                interrupts =3D <8 IRQ_TYPE_NONE>;
-> > +                interrupt-names =3D "adcdone";
-> > +
-> > +                #io-channel-cells =3D <1>;
-> > +            };
-> > +
-> > +            cpcap_audio: audio-codec {
-> > +                interrupt-parent =3D <&cpcap>;
-> > +                interrupts =3D <9 IRQ_TYPE_NONE>, <10 IRQ_TYPE_NONE>;
-> > +                interrupt-names =3D "hs", "mb2";
-> > +
-> > +                VAUDIO-supply =3D <&vdd_audio>;
-> > +
-> > +                #sound-dai-cells =3D <1>;
-> > +
-> > +                ports {
-> > +                    #address-cells =3D <1>;
-> > +                    #size-cells =3D <0>;
-> > +
-> > +                    /* HiFi */
-> > +                    port@0 {
-> > +                        reg =3D <0>;
-> > +
-> > +                        cpcap_audio_codec0: endpoint {
-> > +                        };
-> > +                    };
-> > +
-> > +                    /* Voice */
-> > +                    port@1 {
-> > +                        reg =3D <1>;
-> > +
-> > +                        cpcap_audio_codec1: endpoint {
-> > +                        };
-> > +                    };
-> > +                };
-> > +            };
-> > +
-> > +            cpcap_battery: battery {
-> > +                compatible =3D "motorola,cpcap-battery";
-> > +
-> > +                interrupt-parent =3D <&cpcap>;
-> > +                interrupts =3D <6 IRQ_TYPE_NONE>, <5 IRQ_TYPE_NONE>,
-> > +                             <3 IRQ_TYPE_NONE>, <20 IRQ_TYPE_NONE>,
-> > +                             <54 IRQ_TYPE_NONE>, <57 IRQ_TYPE_NONE>;
-> > +                interrupt-names =3D "eol", "lowbph", "lowbpl",
-> > +                                  "chrgcurr1", "battdetb", "cccal";
-> > +
-> > +                io-channels =3D <&cpcap_adc 0>, <&cpcap_adc 1>,
-> > +                              <&cpcap_adc 5>, <&cpcap_adc 6>;
-> > +                io-channel-names =3D "battdetb", "battp",
-> > +                                   "chg_isense", "batti";
-> > +                power-supplies =3D <&cpcap_charger>;
-> > +            };
-> > +
-> > +            cpcap_charger: charger {
-> > +                compatible =3D "motorola,mapphone-cpcap-charger";
-> > +
-> > +                interrupt-parent =3D <&cpcap>;
-> > +                interrupts =3D <13 IRQ_TYPE_NONE>, <12 IRQ_TYPE_NONE>,
-> > +                             <29 IRQ_TYPE_NONE>, <28 IRQ_TYPE_NONE>,
-> > +                             <22 IRQ_TYPE_NONE>, <21 IRQ_TYPE_NONE>,
-> > +                             <20 IRQ_TYPE_NONE>, <19 IRQ_TYPE_NONE>,
-> > +                             <54 IRQ_TYPE_NONE>;
-> > +                interrupt-names =3D "chrg_det", "rvrs_chrg", "chrg_se1=
-b",
-> > +                                  "se0conn", "rvrs_mode", "chrgcurr2",
-> > +                                  "chrgcurr1", "vbusvld", "battdetb";
-> > +
-> > +                mode-gpios =3D <&gpio3 29 GPIO_ACTIVE_LOW>,
-> > +                             <&gpio3 23 GPIO_ACTIVE_LOW>;
-> > +
-> > +                io-channels =3D <&cpcap_adc 0>, <&cpcap_adc 1>,
-> > +                              <&cpcap_adc 2>, <&cpcap_adc 5>,
-> > +                              <&cpcap_adc 6>;
-> > +                io-channel-names =3D "battdetb", "battp",
-> > +                                   "vbus", "chg_isense",
-> > +                                   "batti";
-> > +            };
-> > +
-> > +            key-power {
-> > +                compatible =3D "motorola,cpcap-pwrbutton";
-> > +
-> > +                interrupt-parent =3D <&cpcap>;
-> > +                interrupts =3D <23 IRQ_TYPE_NONE>;
-> > +            };
-> > +
-> > +            led-red {
-> > +                compatible =3D "motorola,cpcap-led-red";
-> > +                vdd-supply =3D <&vdd_led>;
-> > +                label =3D "status-led::red";
-> > +            };
-> > +
-> > +            led-green {
-> > +                compatible =3D "motorola,cpcap-led-green";
-> > +                vdd-supply =3D <&vdd_led>;
-> > +                label =3D "status-led::green";
-> > +            };
-> > +
-> > +            led-blue {
-> > +                compatible =3D "motorola,cpcap-led-blue";
-> > +                vdd-supply =3D <&vdd_led>;
-> > +                label =3D "status-led::blue";
-> > +            };
-> > +
-> > +            cpcap_usb2_phy: phy {
-> > +                compatible =3D "motorola,cpcap-usb-phy";
-> > +
-> > +                pinctrl-0 =3D <&usb_gpio_mux_sel1>, <&usb_gpio_mux_sel=
-2>;
-> > +                pinctrl-1 =3D <&usb_ulpi_pins>;
-> > +                pinctrl-2 =3D <&usb_utmi_pins>;
-> > +                pinctrl-3 =3D <&uart3_pins>;
-> > +                pinctrl-names =3D "default", "ulpi", "utmi", "uart";
-> > +                #phy-cells =3D <0>;
-> > +
-> > +                interrupts-extended =3D
-> > +                    <&cpcap 15 IRQ_TYPE_NONE>, <&cpcap 14 IRQ_TYPE_NON=
-E>,
-> > +                    <&cpcap 28 IRQ_TYPE_NONE>, <&cpcap 19 IRQ_TYPE_NON=
-E>,
-> > +                    <&cpcap 18 IRQ_TYPE_NONE>, <&cpcap 17 IRQ_TYPE_NON=
-E>,
-> > +                    <&cpcap 16 IRQ_TYPE_NONE>, <&cpcap 49 IRQ_TYPE_NON=
-E>,
-> > +                    <&cpcap 48 IRQ_TYPE_NONE>;
-> > +                interrupt-names =3D "id_ground", "id_float", "se0conn"=
-,
-> > +                                  "vbusvld", "sessvld", "sessend",
-> > +                                  "se1", "dm", "dp";
-> > +
-> > +                mode-gpios =3D <&gpio2 28 GPIO_ACTIVE_HIGH>,
-> > +                             <&gpio1 0 GPIO_ACTIVE_HIGH>;
-> > +
-> > +                io-channels =3D <&cpcap_adc 2>, <&cpcap_adc 7>;
-> > +                io-channel-names =3D "vbus", "id";
-> > +
-> > +                vusb-supply =3D <&avdd_usb>;
-> > +            };
-> > +
-> > +            regulator {
-> > +                compatible =3D "motorola,cpcap-regulator";
-> > +
-> > +                regulators {
-> > +                    vdd_cpu: SW1 {
-> > +                        regulator-name =3D "vdd_cpu";
-> > +                        regulator-min-microvolt =3D <750000>;
-> > +                        regulator-max-microvolt =3D <1125000>;
-> > +                        regulator-enable-ramp-delay =3D <1500>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_core: SW2 {
-> > +                        regulator-name =3D "vdd_core";
-> > +                        regulator-min-microvolt =3D <950000>;
-> > +                        regulator-max-microvolt =3D <1300000>;
-> > +                        regulator-enable-ramp-delay =3D <1500>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_1v8_vio: SW3 {
-> > +                        regulator-name =3D "vdd_1v8_vio";
-> > +                        regulator-min-microvolt =3D <1800000>;
-> > +                        regulator-max-microvolt =3D <1800000>;
-> > +                        regulator-enable-ramp-delay =3D <0>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_aon: SW4 {
-> > +                        regulator-name =3D "vdd_aon";
-> > +                        regulator-min-microvolt =3D <950000>;
-> > +                        regulator-max-microvolt =3D <1300000>;
-> > +                        regulator-enable-ramp-delay =3D <1500>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_led: SW5 {
-> > +                        regulator-name =3D "vdd_led";
-> > +                        regulator-min-microvolt =3D <5050000>;
-> > +                        regulator-max-microvolt =3D <5050000>;
-> > +                        regulator-enable-ramp-delay =3D <1500>;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_hvio: VHVIO {
-> > +                        regulator-name =3D "vdd_hvio";
-> > +                        regulator-min-microvolt =3D <2775000>;
-> > +                        regulator-max-microvolt =3D <2775000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                    };
-> > +
-> > +                    vcore_emmc: VSDIO {
-> > +                        regulator-name =3D "vcore_emmc";
-> > +                        regulator-min-microvolt =3D <1500000>;
-> > +                        regulator-max-microvolt =3D <3000000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    avdd_dsi_csi: VCSI {
-> > +                        regulator-name =3D "avdd_dsi_csi";
-> > +                        regulator-min-microvolt =3D <1200000>;
-> > +                        regulator-max-microvolt =3D <1200000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    avdd_3v3_periph: VWLAN2 {
-> > +                        regulator-name =3D "avdd_3v3_periph";
-> > +                        regulator-min-microvolt =3D <2775000>;
-> > +                        regulator-max-microvolt =3D <3300000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vddio_usd: VSIMCARD {
-> > +                        regulator-name =3D "vddio_usd";
-> > +                        regulator-min-microvolt =3D <1800000>;
-> > +                        regulator-max-microvolt =3D <2900000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_haptic: VVIB {
-> > +                        regulator-name =3D "vdd_haptic";
-> > +                        regulator-min-microvolt =3D <1300000>;
-> > +                        regulator-max-microvolt =3D <3000000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                    };
-> > +
-> > +                    avdd_usb: VUSB {
-> > +                        regulator-name =3D "avdd_usb";
-> > +                        regulator-min-microvolt =3D <3300000>;
-> > +                        regulator-max-microvolt =3D <3300000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +
-> > +                    vdd_audio: VAUDIO {
-> > +                        regulator-name =3D "vdd_audio";
-> > +                        regulator-min-microvolt =3D <2775000>;
-> > +                        regulator-max-microvolt =3D <2775000>;
-> > +                        regulator-enable-ramp-delay =3D <1000>;
-> > +                        regulator-always-on;
-> > +                        regulator-boot-on;
-> > +                    };
-> > +                };
-> > +            };
-> > +
-> > +            cpcap_rtc: rtc {
-> > +                compatible =3D "motorola,cpcap-rtc";
-> > +
-> > +                interrupt-parent =3D <&cpcap>;
-> > +                interrupts =3D <39 IRQ_TYPE_NONE>, <26 IRQ_TYPE_NONE>;
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/mfd/motorola-cpcap.txt b=
-/Documentation/devicetree/bindings/mfd/motorola-cpcap.txt
-> > deleted file mode 100644
-> > index 18c3fc26ca93..000000000000
-> > --- a/Documentation/devicetree/bindings/mfd/motorola-cpcap.txt
-> > +++ /dev/null
-> > @@ -1,78 +0,0 @@
-> > -Motorola CPCAP PMIC device tree binding
-> > -
-> > -Required properties:
-> > -- compatible         : One or both of "motorola,cpcap" or "ste,6556002=
-"
-> > -- reg                        : SPI chip select
-> > -- interrupts         : The interrupt line the device is connected to
-> > -- interrupt-controller       : Marks the device node as an interrupt c=
-ontroller
-> > -- #interrupt-cells   : The number of cells to describe an IRQ, should =
-be 2
-> > -- #address-cells     : Child device offset number of cells, should be =
-1
-> > -- #size-cells                : Child device size number of cells, shou=
-ld be 0
-> > -- spi-max-frequency  : Typically set to 3000000
-> > -- spi-cs-high                : SPI chip select direction
-> > -
-> > -Optional subnodes:
-> > -
-> > -The sub-functions of CPCAP get their own node with their own compatibl=
-e values,
-> > -which are described in the following files:
-> > -
-> > -- Documentation/devicetree/bindings/power/supply/cpcap-battery.yaml
-> > -- Documentation/devicetree/bindings/power/supply/cpcap-charger.yaml
-> > -- Documentation/devicetree/bindings/regulator/cpcap-regulator.txt
-> > -- Documentation/devicetree/bindings/phy/motorola,cpcap-usb-phy.yaml
-> > -- Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
-> > -- Documentation/devicetree/bindings/rtc/cpcap-rtc.txt
-> > -- Documentation/devicetree/bindings/leds/leds-cpcap.txt
-> > -- Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml
-> > -
-> > -The only exception is the audio codec. Instead of a compatible value i=
-ts
-> > -node must be named "audio-codec".
-> > -
-> > -Required properties for the audio-codec subnode:
-> > -
-> > -- #sound-dai-cells =3D <1>;
-> > -- interrupts         : should contain jack detection interrupts, with =
-headset
-> > -                       detect interrupt matching "hs" and microphone b=
-ias 2
-> > -                       detect interrupt matching "mb2" in interrupt-na=
-mes.
-> > -- interrupt-names    : Contains "hs", "mb2"
-> > -
-> > -The audio-codec provides two DAIs. The first one is connected to the
-> > -Stereo HiFi DAC and the second one is connected to the Voice DAC.
-> > -
-> > -Example:
-> > -
-> > -&mcspi1 {
-> > -     cpcap: pmic@0 {
-> > -             compatible =3D "motorola,cpcap", "ste,6556002";
-> > -             reg =3D <0>;      /* cs0 */
-> > -             interrupt-parent =3D <&gpio1>;
-> > -             interrupts =3D <7 IRQ_TYPE_EDGE_RISING>;
-> > -             interrupt-controller;
-> > -             #interrupt-cells =3D <2>;
-> > -             #address-cells =3D <1>;
-> > -             #size-cells =3D <0>;
-> > -             spi-max-frequency =3D <3000000>;
-> > -             spi-cs-high;
-> > -
-> > -             audio-codec {
-> > -                     #sound-dai-cells =3D <1>;
-> > -                     interrupts-extended =3D <&cpcap 9 0>, <&cpcap 10 =
-0>;
-> > -                     interrupt-names =3D "hs", "mb2";
-> > -
-> > -                     /* HiFi */
-> > -                     port@0 {
-> > -                             endpoint {
-> > -                                     remote-endpoint =3D <&cpu_dai1>;
-> > -                             };
-> > -                     };
-> > -
-> > -                     /* Voice */
-> > -                     port@1 {
-> > -                             endpoint {
-> > -                                     remote-endpoint =3D <&cpu_dai2>;
-> > -                             };
-> > -                     };
-> > -             };
-> > -     };
-> > -};
-> > -
-> > --
-> > 2.51.0
-> >
+> of SoC FPGAs.
+> 
+> The Agilex 5 PCIe Hard IP reuses the same config-space access path
+> as Agilex 7 (V3). Root port and endpoint configuration reads/writes
+> use direct MMIO to the HIP and CRA regions.
+> 
+> The difference is in the HIP port-level registers (IRQ status and IRQ
+> enable). On V3 these are directly mapped through the HIP MMIO window.
+> On V4 these registers are only reachable through an indirect access
+> mailbox (CFG REG IA CTRL) in the PCIe Subsystem AXI-Lite interface,
+> documented in the GTS AXI Streaming IP for PCIe User Guide.
+> 
+> This adds:
+> - ALTERA_PCIE_V4 version and platform data
+> - Indirect register read/write helpers using readl_poll_timeout_atomic
+> - Chained IRQ handler (aglx5_isr) for the V4 interrupt path
+> - OF match for "altr,pcie-root-port-4.0"
+> 
+> Co-developed-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> Co-developed-by: Peter Colberg <peter.colberg@intel.com>
+> Signed-off-by: Peter Colberg <peter.colberg@intel.com>
+> Signed-off-by: Mahesh Vaidya <mahesh.vaidya@altera.com>
+> ---
+>  drivers/pci/controller/pcie-altera.c | 156 ++++++++++++++++++++++++++-
+>  1 file changed, 155 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
+> index 025ba74d1ee2..db8149d84c96 100644
+> --- a/drivers/pci/controller/pcie-altera.c
+> +++ b/drivers/pci/controller/pcie-altera.c
+> @@ -12,6 +12,8 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/irqdomain.h>
+>  #include <linux/init.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_pci.h>
+> @@ -93,16 +95,36 @@
+>  #define AGLX_CFG_TARGET_LOCAL_2000	2
+>  #define AGLX_CFG_TARGET_LOCAL_3000	3
+>  
+> +/* PCIe subsystem indirect register access */
+> +#define PCIE_SS_IA_CTL			0xc8 /* control register */
+> +#define PCIE_SS_IA_FN_NUM		0xcc /* function number */
+> +#define PCIE_SS_IA_FN_WRDATA		0xd0 /* write data */
+> +#define PCIE_SS_IA_FN_RDDATA		0xd4 /* read data */
+> +
+> +/* PCIE_SS_IA_CTL bitfields */
+> +#define PCIE_SS_IA_CTL_INITIATE		BIT(0)
+> +#define PCIE_SS_IA_CTL_WRITE		BIT(1)
+> +#define PCIE_SS_IA_CTL_BYTE_EN		GENMASK(5, 2)
+> +#define PCIE_SS_IA_CTL_ADDR		GENMASK(31, 6)
+> +
+> +/* PCIE_SS_IA_FN_NUM function types */
+> +#define PCIE_SS_IA_FN_TYPE_HIP		2
+> +
+> +#define AGLX5_INDIRECT_SLEEP_US		1
+> +#define AGLX5_INDIRECT_TIMEOUT_US	1000
+> +
+>  enum altera_pcie_version {
+>  	ALTERA_PCIE_V1 = 0,
+>  	ALTERA_PCIE_V2,
+>  	ALTERA_PCIE_V3,
+> +	ALTERA_PCIE_V4,
+>  };
+>  
+>  struct altera_pcie {
+>  	struct platform_device	*pdev;
+>  	void __iomem		*cra_base;
+>  	void __iomem		*hip_base;
+> +	void __iomem		*controller_base;
+>  	int			irq;
+>  	u8			root_bus_nr;
+>  	struct irq_domain	*irq_domain;
+> @@ -849,6 +871,98 @@ static void aglx_isr(struct irq_desc *desc)
+>  	chained_irq_exit(chip, desc);
+>  }
+>  
+> +/*
+> + * Indirect register access to HIP registers via the PCIe Subsystem
+> + * AXI-Lite mailbox, documented in the GTS AXI Streaming IP for PCIe
+> + * User Guide. Called from chained IRQ handler (hardirq) and probe
+> + * (before handler is installed), so no locking is required.
+> + */
+> +static int aglx5_indirect_readl(const struct altera_pcie *pcie,
+> +				unsigned int addr, unsigned int *val)
+
+s/unsigned int/u32
+
+> +{
+> +	unsigned int ctl;
+
+s/unsigned int/u32
+
+> +	int ret;
+> +
+> +	writel(PCIE_SS_IA_FN_TYPE_HIP,
+> +	       pcie->controller_base + PCIE_SS_IA_FN_NUM);
+> +
+> +	ctl = FIELD_PREP(PCIE_SS_IA_CTL_ADDR, addr >> 2) |
+> +	      PCIE_SS_IA_CTL_BYTE_EN | PCIE_SS_IA_CTL_INITIATE;
+> +	writel(ctl, (pcie->controller_base + PCIE_SS_IA_CTL));
+> +
+> +	ret = readl_poll_timeout_atomic(pcie->controller_base + PCIE_SS_IA_CTL,
+> +					ctl, !(ctl & PCIE_SS_IA_CTL_INITIATE),
+> +					AGLX5_INDIRECT_SLEEP_US,
+> +					AGLX5_INDIRECT_TIMEOUT_US);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = readl(pcie->controller_base + PCIE_SS_IA_FN_RDDATA);
+> +
+> +	return 0;
+> +}
+> +
+> +static int aglx5_indirect_writel(const struct altera_pcie *pcie,
+> +				 unsigned int addr, unsigned int val)
+
+s/unsigned int/u32
+
+> +{
+> +	unsigned int ctl;
+
+s/unsigned int/u32
+
+> +	int ret;
+> +
+> +	writel(PCIE_SS_IA_FN_TYPE_HIP,
+> +	       pcie->controller_base + PCIE_SS_IA_FN_NUM);
+> +	writel(val, pcie->controller_base + PCIE_SS_IA_FN_WRDATA);
+> +
+> +	ctl = FIELD_PREP(PCIE_SS_IA_CTL_ADDR, addr >> 2) |
+> +	      PCIE_SS_IA_CTL_BYTE_EN | PCIE_SS_IA_CTL_WRITE |
+> +	      PCIE_SS_IA_CTL_INITIATE;
+> +	writel(ctl, pcie->controller_base + PCIE_SS_IA_CTL);
+> +
+> +	ret = readl_poll_timeout_atomic(pcie->controller_base + PCIE_SS_IA_CTL,
+> +					ctl, !(ctl & PCIE_SS_IA_CTL_INITIATE),
+> +					AGLX5_INDIRECT_SLEEP_US,
+> +					AGLX5_INDIRECT_TIMEOUT_US);
+> +
+> +	return ret;
+
+return readl_poll_timeout_atomic();
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
