@@ -1,380 +1,220 @@
-Return-Path: <devicetree+bounces-296054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296057-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIfbCcHMAmo+wwEAu9opvQ
-	(envelope-from <devicetree+bounces-296054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:46:25 +0200
+	id cOeDFUzPAmq7xAEAu9opvQ
+	(envelope-from <devicetree+bounces-296057-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:57:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E19151B399
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:46:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0FC751B5B8
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:57:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 70D963003D15
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 06:46:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E28530E8835
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 06:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8C9C368D56;
-	Tue, 12 May 2026 06:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549AF36F8EC;
+	Tue, 12 May 2026 06:48:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DIgkPZMQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d0Dz8fs4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iLjXtwIT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B19384CF3
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 06:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778568379; cv=none; b=lcJB51HUfSI6H13B5uwXqC1iN3GiRjFlV/cQ0QB/LBSytkT6wS+2Phvd98nkAhRPW/Q8A6kDj/oJaycF6eTmkP3UMCCISdKZXk/Fo5lcOUrLT3NKdlfslkToAKHQHM8tx1zL4O0pQwWbsgBlnHjiFZ1G9GFo3BX9lPKMM1psMuE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778568379; c=relaxed/simple;
-	bh=V/t792VyAJQ43idxgpGa60nXaS0FMldt5X8RwmJQK5M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Amk7hfwQvf6JrS+MCWjU/BMWPY6wVaKc1Fk5yge4tGmHhAyjPV0H0d17aBVunvJKKTJldDnpMxkr6W512j2XTI3KN77ZnJHUWVpM7mHI+X7Zk+ztPw6+BWa5Pc1ng5cUdyme9BsmKb6ht9KMVoopPPD0RV6inv2Fb9g8lHKz3fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DIgkPZMQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d0Dz8fs4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64C63sOb866134
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 06:46:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BinY4gnvTpca70aFjDGmAnSc0bvUH+YSKn9BhicIR3M=; b=DIgkPZMQDp2NGb+3
-	E/R68lh9ebJ/T6wgTQNfC443HbNKOPuGstILWpRswN90Fpe7Nf6j+hQq5zMdoa92
-	KfJGeXEehAUbViM3Em1QzXEaitc31c7IovJGsOYmKy/fctw3rGDWXFm3GLcx4XKH
-	4JZ3nsLecpunENYA1csH2FH2vyDzU7hy7ZITq/DLLqUivb04YtNHHi+Y8ak7uKBw
-	71gzY4wxXMBHb43HJ3k3jxh3rA2AccyO9mGR31fl9NAu4yD++bmGCONHH523DAI8
-	FAxzXwMpNY6aFSTBm/FUx6QTJ/msYOL75MU8S7JCsp7cFOEP/Jl3O18ylY4o87Z4
-	GsWYsw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e3nv29k29-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 06:46:07 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2bcc0a2ab8cso4489715ad.0
-        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 23:46:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055B41FE471
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 06:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778568516; cv=pass; b=a5b95kdmdRbo1TQsueR3jQKTugr8kNlXgXxE3WOLsbmiNUJfk64kPiZqvBkH6VuClSa8J7qUE1A+GDMOmSZZ0Fw8T3NXmV5xistoYgDw5re4C59A5WWUqB8fmFOM2sJHXuZWwl4BmdyyNleM2TMcq3/uLtij9fzAspxUaBGQbl0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778568516; c=relaxed/simple;
+	bh=LfcVaG8MSoLybwq7I+cGS/0geSQDT90LoxEK6iJoQms=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RLMEaM94oK0YYHuP9Q47B4ag4IWNO23HJh0X65f3GyGBo3n8m43xM13lotUOml8qENRMV99vKHmPNLjLmPx6GK1eMccgR18NCX4VHOXBGVyT8VAHPI305ZN0tQe7S79/fF+hcOc3s52/arGBmD5UVksik2jSAvTOjCk0XN05mwU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iLjXtwIT; arc=pass smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-6802f9c5debso2438067a12.3
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 23:48:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778568502; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lJKHyk9IM8ixooDlHAaxGYw0pjbLDbwheBoXHaTakstGZnezV8Z5TwcIPL0KdxxhIE
+         Bw/VGba08IDdQYXKtXVdYIyV1/zGMmKKGfvbxYQAjYwb/jUpZN44CVwZXV9MwZe43ztT
+         VLzaZtteP352TA+qJOhGaDPq+4RWKBuDmfbWzeKbMUaPetEfEIM98yrDtMdPv8IGtxep
+         h4p4ZwPwv6lijab1QD9ZhcS1zkpN51clTyHlHSOyFaPUwIs7f06hEC1/3spF6EJzyNwF
+         crJe3alAJj9qszgcpF5E4s/FQQxrth9P/CsKVeERGYsQTWSNurLxugYdNt5rDkQMqkJ7
+         io5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=wFTa1Qu4vivHMZ7h/kjmMuCcTIeg1RKlZ789oyl3YpU=;
+        fh=Y4/hS9Bc1O82+2AsHDxSKyboVrzLOPJxfQ+lyL2QGSY=;
+        b=UVsoOtSLPPLM5k4FVVb7blZkQRuJ+nH0pzn3nJhFET66kN7IhP/Gkc2wEvPTWIs8zr
+         eKHa6ruknRGPIUvqW9mj+6xgxVOdAaK2X2+fhwdxvki6mEXFofkdBwMyeg77tdL8S5+a
+         ObUo6OdeC98CmFKAtKXlmCzj7N/TAO1z53Vj4QNxcn7axDPyIiNLEHiub6wuUS0yWeKY
+         HHBVmN5FXUWaxpi2DbiMdRdIfp8k8uSvDDF6Uw3zZQtk/III2iQm7o7eWkPsCLiDLeAs
+         s7LENEESQ2NSALRiEdw4H2Ai14m9XbqzY/IFZGLN8MIL/qT1lnpKLUK5Q7Tv1AM3g63v
+         xcmg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778568366; x=1779173166; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BinY4gnvTpca70aFjDGmAnSc0bvUH+YSKn9BhicIR3M=;
-        b=d0Dz8fs47zZd3M+hV/rrYZn4fPTAZdbCHovxnvQlelQbzA+fH53kzqHXGVQ70cTfFW
-         j+A1f8UINtR272oFeH30mKYdMtw3Ypo+8lnE/iTptG2F9g9gs39iVOUwaHa/j99I9UDA
-         un1z/jH5U8kGNMmjbjgExkvSbCQFOx4SZMGVVU7QrA/5w7NHlvIfu5VtjcTU0H8Yh+em
-         YHOdAEPJDm/ktMzo31tYspcJ/vORWAHTAhCrfduCyv4iFYaagB6Y3QvrF2GA9/E5Bx5n
-         z7JKxKuY9MeZCEiqbXJLrBCwxmvGnZcgLxgwMVObegIyindDV86uz6Ziohzu2XAJONqm
-         R5Mg==
+        d=gmail.com; s=20251104; t=1778568502; x=1779173302; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wFTa1Qu4vivHMZ7h/kjmMuCcTIeg1RKlZ789oyl3YpU=;
+        b=iLjXtwIT6b7SSIH0nK2u0LKJaeuHqdrTkDrh+Eg1uqTroYRxJIqBDEY8nA3nHFnVfb
+         sjYcvc84dcUaMKVebF/nekYCZL4+yo+4wJD3I/ahGzaterqThvytQ3a1dbMuV8BwlFLz
+         NUMnfaZcJZuuqhNaWKaDgcmEd6aqgUlQYXIHOuYoZlHTi+B1HBE/5P4rUy3crQvRdidh
+         PFi6N0U7G5f/BxgGVajjSnU07dbmKFPIHInHEc/iJipbWV5iEp9F8g4cFqjRb11nkHoH
+         0id/m6rTcJTUXie2WkuDUd6Z0J0e8DP1ibNxfBS+RdT8YKiOGUrEGW9WGuLEqeMcwZ8F
+         Yt+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778568366; x=1779173166;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BinY4gnvTpca70aFjDGmAnSc0bvUH+YSKn9BhicIR3M=;
-        b=RpOqXLEx9ttl9+Vxi7bum5fS0yTnDDc8UoRVrIZbc+d5G43Dof1CQlU2t2Ax0lypG5
-         OkMTrXOfSZLwG5HA7zEa+rxRW7JUiCAJLGhAJUAwZJur5+CMXhEqQ+evx1X2jKjCHWW3
-         CTcEq2Lcl7xxlkJGI5woZLoZgQUgB3G9G7fzsGJ3NlSj+F3t6H/7CHVy8+M2beuAeIF8
-         8cIrOK4eNckExpN+43Z4o4QQBdtXjXsmed6MtLnVCYpvCULhQX+Z8sgR5NYx9TPhYh6O
-         l29ggowP6cVdN6RUDKTiQDht0cot3A77K3030NMnlS4GZOh5Vnw/gSubNs2omfUIJ0nS
-         bVyA==
-X-Forwarded-Encrypted: i=1; AFNElJ+Z0n1mW4xydTCQJmrUZkuDQsGYLnrCOfE3NdRcwjV6Ex4dYA8Ij+sDLJ3XBk0BmgSOXEwxvy1WVO+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDy8L9hxy9d06KVxWsx3IkFWGQ6nGDYoRXXegBCyBi/grBOV53
-	g2NCM5Dj/m+DYYxfWpckDewd39nQ1kbJvGpFwQeJhhV60i5wffCnoNjZfGfOKCS2rWGA+23Qxmz
-	ZvhjbrEo8JdqxzHlUmsvbJAwgKAamGT12j4NUIfoeovaPfesJh1teFidueareZeUs
-X-Gm-Gg: Acq92OFAYw0uIrRvcD+VCDl1yKq6MvfG3KGm00nUnnbHd/3WBzbnlnB4Kto7ytgCtNs
-	8aSfsNOoGswiFxNvRIGCswe9P63RMQpCxeIygbuGW6UnNFlVTV7iHLany2bYCvNTIi3s7/r0VWX
-	wgmpQlCLd//cPKwg98iGo7sQexdszs4LYDFhZ5qGj5Di3ClRKBWWldk0NmxlaxqBmElOB3f7PTw
-	POuqq6xHsSJ1wKJSrBzTXnXT3wM2apSdKu67PRAvR/xEZV5XsMkKHRK9a+ZBYwcXkpYp7LN6ndT
-	hrV8BAnzl+J/N4i1saaKvh1zDR/o3984UNLdgUB28JwOYRylX5nNuDc0cqIFWr3jGC4izU1SZ73
-	5xEw1+/MZUg0SVs4ixyKxwV9glSymHRBeBWHbRWXW1KY/J3CAANw=
-X-Received: by 2002:a17:903:90e:b0:2ae:6220:1539 with SMTP id d9443c01a7336-2ba7b35425dmr139626675ad.6.1778568366119;
-        Mon, 11 May 2026 23:46:06 -0700 (PDT)
-X-Received: by 2002:a17:903:90e:b0:2ae:6220:1539 with SMTP id d9443c01a7336-2ba7b35425dmr139626405ad.6.1778568365456;
-        Mon, 11 May 2026 23:46:05 -0700 (PDT)
-Received: from [10.92.198.185] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2baf1e847d0sm119936625ad.62.2026.05.11.23.45.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 May 2026 23:46:04 -0700 (PDT)
-Message-ID: <f95584f8-220f-4bd1-a189-dc05ffd2a9bc@oss.qualcomm.com>
-Date: Tue, 12 May 2026 12:15:47 +0530
+        d=1e100.net; s=20251104; t=1778568502; x=1779173302;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wFTa1Qu4vivHMZ7h/kjmMuCcTIeg1RKlZ789oyl3YpU=;
+        b=gaLN5FBWzAcjMEhkGuoyE+bNLchaRUpAr8bWiaeBfD9+bHTMEp6e9DbLml3WsEk2Wo
+         GH5hZLKMkUchKLJS+9VXS9pngPlotYEZ5FWa19WzCXfTOVWMhVrIXgApwBEgCSdaQ/PO
+         IQ40t7sli1wlS5bg0jQhWS1s1iYFqQ8ZY1Mb7Y6ifAJ+keMTUSUfqtph4C0k8tpaax/s
+         SoSurKFQgMuS/kwC7YTXRrMiwGLaDGiInxzXOreKaqYgGx0yeS16LoM6cKkuBWlB5yRe
+         ACWo30iNbn2718GNKNdqs9xLh7yBbDueljzud8vfM+9WTPYwo16xBObR8PSjW9ZvW3fR
+         WFHw==
+X-Forwarded-Encrypted: i=1; AFNElJ98iDkRcEhlD1984mTyRXHaecpoLV7mq7fPsN8NdsvFI//Zdp2LW/zaeh1IkO+t3vK6QA9qus7hf9+E@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcJQsj/ml8zmhnV8/5h2Qd0YFDdgPdPiD3MWlQW3DVf6lLg7Vv
+	zvO4UE780w7/Pakx38yVCpfVUr1DiCD+uqMPVmxrhpHyxBAc9omL6nMi5sFjjFPMICA638zXojD
+	7keY/HvNj8Gx8SK/yaX8oAAjP0y5Mx+A=
+X-Gm-Gg: Acq92OFAu5C89N50CPnmKO7RldnCjMYK+l1GSyfwSTYZdvL/olv+c9ZfvJXg5yyEXJv
+	v3IWMXgTFQM6pP52lwKiod2CK2k6DJZy44ujaE1kxUO0X56PAQDxFAqqN2CcPfyPDA3HhWTaulD
+	apsWBjzeFoIq8IZHCTedx4ujlwOPSagkUxEH5p3KPXPwbIE8klrpvGcR/e8oBiLdbRPF0CNHZZZ
+	x3JAIiEWwxF2H127sjxm6iO3LpQ2NJ4X5iwxxNTbMMJz6D7SHqb79YHGS+ZzHv6wonyOzqG2tdJ
+	0dk1jRRmPXPmQUdmzKqFPIELwl/NIHucnU2wYRJjBSe6IGXRJaORxpy60DKT/4YH6I6vdLxGQwQ
+	eDmPaR+M=
+X-Received: by 2002:a17:907:809:b0:bca:48de:5cce with SMTP id
+ a640c23a62f3a-bcc1499a53cmr609442966b.36.1778568501606; Mon, 11 May 2026
+ 23:48:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] ras: aest: extend AEST support to Device Tree
- frontend
-To: Ruidong Tian <tianruidong@linux.alibaba.com>,
-        Tony Luck <tony.luck@intel.com>, Borislav Petkov <bp@alien8.de>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, catalin.marinas@arm.com,
-        will@kernel.org, lpieralisi@kernel.org, rafael@kernel.org,
-        mark.rutland@arm.com, Sudeep Holla <sudeep.holla@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Faruque Ansari <faruque.ansari@oss.qualcomm.com>
-References: <20260505-aest-devicetree-support-v1-0-d5d6ffacf0a5@oss.qualcomm.com>
- <8f1529af-f6fe-44bc-a4b1-c47a19824d1e@linux.alibaba.com>
-Content-Language: en-US
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-In-Reply-To: <8f1529af-f6fe-44bc-a4b1-c47a19824d1e@linux.alibaba.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: VhV7folVmtvRucW-mXWAzUqZJPKSoM9-
-X-Authority-Analysis: v=2.4 cv=Mv9iLWae c=1 sm=1 tr=0 ts=6a02ccaf cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8 a=SRrdq9N9AAAA:8
- a=EUspDBNiAAAA:8 a=2yO6rERebkD6Ods6SnIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-ORIG-GUID: VhV7folVmtvRucW-mXWAzUqZJPKSoM9-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDA2NCBTYWx0ZWRfXzxvxe4IafoAu
- vSnxwE19Wd5QDNRusDYqGp8P938PerfcUKWU+mboyow1qh2bZOLDpOH9lWH/iNQmWv7ombj4VxM
- Bqw3VCwa5U++AfqkFymMIeRi/CWP0sgQXrPkc4LII5/x96PVFrE8LP6ESbnElQERdKMigA6SrC1
- ALvOTxz2OT7vJSg4kIBXsPZ47IlwY80WLtSiLTQ3rk+L0DOdT5E+nDwMcEMfkSqMzh+NZipnHim
- i9z0BoK8Ss1HY0C5JGrZpWlLEK2HqF0FHKyG1wUIcmY6yxjFoogxBM76/zTyXr8xIjemxNXd9+E
- pgv/chcYQGM6stvyR4Q/wjBRC5aE/WDYvMU47POmdwVfX8RtQK5buXLM3Bv4NMqXlqufDLQDjnD
- HzVp6Idl54TDd1ChP+wrdkiXJC4YaEXJ+kXEFpv08Bjr9Re99R16eXw8SnwpO+vETLdjwxf0N0u
- 05XToVtysQyL/1N5Ozg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 phishscore=0 spamscore=0 suspectscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605120064
-X-Rspamd-Queue-Id: 0E19151B399
+References: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com> <20260512-mt6323-v2-6-3efcba579e88@protonmail.com>
+In-Reply-To: <20260512-mt6323-v2-6-3efcba579e88@protonmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 12 May 2026 09:47:44 +0300
+X-Gm-Features: AVHnY4LmZe6op_7Q9Zb_x2R3mJ89A3uDVU-76OXP9otXVwwfDX_cH9Q0T5k4R6I
+Message-ID: <CAHp75VcR2pzdT-JbNXE_nOM-XC--4y8D81tk+7rvjA71ugTkzA@mail.gmail.com>
+Subject: Re: [PATCH v2 06/16] nvmem: add mt6323 PMIC EFUSE driver
+To: rva333@protonmail.com
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu <sen.chu@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
+	Lee Jones <lee@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-pm@vger.kernel.org, Ben Grisdale <bengris32@protonmail.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: B0FC751B5B8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296054-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-296057-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[90d0000:email,qualcomm.com:email,qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,arm.com:url,alibaba.com:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andyshevchenko@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,mediatek.com,intel.com,arm.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi Ruidong,
+On Tue, May 12, 2026 at 8:21=E2=80=AFAM Roman Vivchar via B4 Relay
+<devnull+rva333.protonmail.com@kernel.org> wrote:
+>
+> Add support for the EFUSE controller found in the Mediatek MT6323 PMIC.
+> The MT6323 EFUSE stores 24 bytes of hardware-related data, such as
+> thermal sensor calibration values.
 
+...
 
-On 5/6/2026 1:40 PM, Ruidong Tian wrote:
-> Hi Umang,
-> 
-> Thanks for your patch.
-> 
-> Would it be okay if I include this patch in the next version of the AEST
-> patch series? I will make sure to add your Signed-off-by line.
+> +#include <linux/err.h>
 
+> +#include <linux/errno.h>
 
-Yes, you can include this patch in the next version - we will represent
-it and respond to all of the queries received on DT specific patches.
+Doesn't seem to be used as err.h implies asm/errno.h that provides
+basic error codes.
 
-How should I be sharing the patch fixes based on comments received from
-maintainers to you ? so that you can include in your patch series ?
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-provider.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
 
-Also, when is your plan to post the next version fixing the comments
-received ?
+...
 
+> +static int mt6323_efuse_read(void *context, unsigned int offset, void *v=
+al,
+> +                            size_t bytes)
+> +{
+> +       struct regmap *map =3D context;
+> +       u32 tmp;
+> +       u16 *buf =3D val;
+> +       int ret;
+> +
+> +       /*
+> +        * Manual regmap_read with loop is needed, because PWRAP is not
+> +        * a continuous MMIO space, but rather FSM which doesn't implemen=
+t
+> +        * necessary read callback for the regmap_read_raw and regmap_rea=
+d_bulk
+> +        * functions.
+> +        */
+> +       for (size_t i =3D 0; i < bytes; i +=3D sizeof(*buf)) {
+> +               ret =3D regmap_read(map, MT6323_EFUSE_DOUT_BASE + offset =
++ i, &tmp);
+> +               if (ret)
+> +                       return ret;
 
-Thanks,
-Umang
+> +               *buf++ =3D (u16)tmp;
 
+Why explicit casting?
 
-> 
-> Best regards,
-> Ruidong
-> 
-> 在 2026/5/5 20:23, Umang Chheda 写道:
->> This series extends Tian Ruidong’s [1] ACPI-based AEST support series
->> to also cover Device Tree based platforms.
->>
->> While the existing AEST driver relies on the AEST ACPI table [3], many
->> embedded Arm platforms use Device Tree exclusively and cannot use the
->> driver today. This series adds a DT frontend that mirrors the ACPI
->> implementation and feeds the same core driver, keeping ACPI and DT
->> paths functionally equivalent.
->>
->> Along the way, several correctness issues were identified in the core
->> driver and are fixed in the first part of this series.
->>
->> The DT frontend is mutually exclusive with ACPI and does not introduce
->> any DT-specific logic into the core.
->>
->> How to test with QEMU
->> --------------------------
->> Tian Ruidong's QEMU fork [2] emulates AEST MMIO error records on the
->> virt machine.  To test the DT frontend:
->>
->> 1. Build QEMU:
->>
->>       git clone https://github.com/winterddd/qemu.git
->>       cd qemu
->>       git checkout c5e2d5dec9fd62ba622314c40bff0fbecb4dfb34
->>       ./configure --target-list=aarch64-softmmu
->>       make -j$(nproc)
->>
->> 2. Build the kernel with:
->>
->>       CONFIG_OF_AEST=y
->>       CONFIG_AEST=y
->>       CONFIG_ARM64_RAS_EXTN=y
->>       CONFIG_RAS=y
->>
->> 3. Add the following DT node to your virt machine DTB.  The QEMU
->>     fork maps DRAM error records at 0x090d0000 (SPI 44) and CMN
->>     vendor records at 0x090e0000 (SPI 45):
->>
->>       aest {
->>           compatible = "arm,aest";
->>           #address-cells = <2>;
->>           #size-cells = <2>;
->>           ranges;
->>           interrupt-parent = <&gic>;
->>
->>           /* DRAM memory node — MMIO at 0x090d0000, SPI 44 */
->>           aest-dram0@90d0000 {
->>               compatible               = "arm,aest-memory";
->>               arm,interface-type       = <1>;
->>               arm,group-format         = <0>;
->>               arm,interface-flags      = <0x22>;
->>               arm,num-records          = <4>;
->>               arm,record-impl          = /bits/ 64 <0x0>;
->>               arm,status-report        = /bits/ 64 <0x0>;
->>               arm,addr-mode            = /bits/ 64 <0x0>;
->>               arm,proximity-domain     = <0>;
->>               reg                      = <0x0 0x090d0000 0x0 0x1000>,
->>                                          <0x0 0x090d0800 0x0 0x200>,
->>                                          <0x0 0x090d0e00 0x0 0x100>;
->>               reg-names                = "errblock", "fault-inject",
->>                                          "err-group";
->>               interrupts               = <GIC_SPI 44
->> IRQ_TYPE_LEVEL_HIGH>;
->>               interrupt-names          = "fhi";
->>           };
->>     };
->>
->> 4. Boot QEMU with acpi=off:
->>
->>       ./qemu-system-aarch64 \
->>         -machine virt,accel=tcg,gic-version=3 \
->>         -cpu cortex-a57 -m 2G -smp 4 \
->>         -kernel Image -dtb virt-aest.dtb \
->>         -append "console=ttyAMA0 acpi=off earlycon" \
->>         -nographic
->>
->> 5. Verify probe:
->>
->>       dmesg | grep "DT AEST"
->>       # Expected: DT AEST: registered 1 AEST error source(s) from DT
->>       ls /sys/kernel/debug/aest/
->>
->> 6. Inject a CE error via the QEMU MMIO fault injection registers.
->>     The QEMU device accepts 64-bit accesses only (use devmem with
->>     the 64-bit width flag):
->>
->>       devmem 0x090d0808 64 0x80000040   # CDOFF | CE inject
->>
->>     This triggers QEMU's error_record_inj_write() which sets
->>     ERR<n>STATUS.V=1 and asserts the IRQ.  The kernel driver's
->>     aest_irq_func() fires, reads the status, and logs:
->>
->>       AEST: {1}[Hardware Error]: Hardware error from AEST memory.90d0000
->>       AEST: {1}[Hardware Error]: Error from memory at SRAT proximity
->> domain 0x0
->>
->> Testing
->> -------
->> - Validated on Qualcomm's lemans-evk and monaco-evk board with DT boot.
->> - Validated CE and UE injection via debugfs soft_inject.
->> - Tested ACPI path is unaffected: ACPI boot continues to use
->>    drivers/acpi/arm64/aest.c unchanged.
->>
->> [1] https://lore.kernel.org/lkml/20260122094656.73399-1-
->> tianruidong@linux.alibaba.com/
->> [2] https://github.com/winterddd/qemu/tree/error_record
->> [3] https://developer.arm.com/documentation/den0085/0200/
->>
->> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
->> ---
->> Umang Chheda (8):
->>        ras: aest: Fix shared processor node handling and error log
->> messages
->>        ras: aest: Fix CE/UE error counts not incrementing in debugfs
->>        ras: aest: Skip unimplemented records in debugfs
->>        ras: aest: Add panic_on_ue module parameter
->>        dt-bindings: arm: ras: Introduce bindings for ARM AEST
->>        ras: aest: Add DT frontend for ARM AEST RAS error sources
->>        arm64: dts: qcom: lemans: add AEST error nodes
->>        arm64: dts: qcom: monaco: add AEST error nodes
->>
->>   .../devicetree/bindings/arm/arm,aest.yaml          | 406 +++++++++++++
->>   arch/arm64/boot/dts/qcom/lemans.dtsi               |  41 ++
->>   arch/arm64/boot/dts/qcom/monaco.dtsi               |  41 ++
->>   drivers/ras/aest/Kconfig                           |  15 +-
->>   drivers/ras/aest/Makefile                          |   2 +
->>   drivers/ras/aest/aest-core.c                       |  63 +-
->>   drivers/ras/aest/aest-of.c                         | 673 +++++++++++
->> ++++++++++
->>   drivers/ras/aest/aest-sysfs.c                      |  27 +-
->>   drivers/ras/aest/aest.h                            |  15 +-
->>   include/dt-bindings/arm/aest.h                     |  43 ++
->>   10 files changed, 1310 insertions(+), 16 deletions(-)
->> ---
->> base-commit: a67b7fd0dd1f6ccf3d128dc2099cdb07af1f6a09
->> change-id: 20260505-aest-devicetree-support-a3722d90e1f5
->> prerequisite-message-id: <20260122094656.73399-1-
->> tianruidong@linux.alibaba.com>
->> prerequisite-patch-id: c5a7c6431c6c1e6351241e694ee053800039d41d
->> prerequisite-patch-id: 1f6e2c20829eee41a210dd8a538f1e8efcc65872
->> prerequisite-patch-id: 5556287e3f46c2ed2c0431c53c7782e87bcbd866
->> prerequisite-patch-id: 2edae0a136d7779b8f686181720e71d044a73311
->> prerequisite-patch-id: b5190b2844dcb01e72f87a59f3a29548795fdb82
->> prerequisite-patch-id: 7ba848583708b2ae776a7ce847bb056e3de7f77b
->> prerequisite-patch-id: 397e5b22802b67942435f4f2968f0b1e210ba0e8
->> prerequisite-patch-id: 2169f4b65537eecbd0ccbd2ad6b28c64ec44655d
->> prerequisite-patch-id: b626f85d98747595b3240bc49e6ad9c9dd5c0fa9
->> prerequisite-patch-id: 1323dfd2eebad2ef6514dbbce58ba08e8859f894
->> prerequisite-patch-id: 95b826e5e329408437a3ef336c4f45d4d74f82bb
->> prerequisite-patch-id: b60ff489a5a33c5d5220fa8144af7b7511769cba
->> prerequisite-patch-id: 43f35a52b8a3d13c938ff08083403c1d3bd0df8b
->> prerequisite-patch-id: c55d4e9117ca36d3c2cba82d550a618cb82bb745
->> prerequisite-patch-id: 3885e10f318ae8101d6909b35d92a976cc359e3c
->> prerequisite-patch-id: 92958cde05577f069c5659018a274bb39cfb6b24
->>
->> Best regards,
->> -- 
->> Umang Chheda <umang.chheda@oss.qualcomm.com>
->>
-> 
+> +       }
+> +
+> +       return 0;
+> +}
 
+--=20
+With Best Regards,
+Andy Shevchenko
 
