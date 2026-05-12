@@ -1,198 +1,138 @@
-Return-Path: <devicetree+bounces-296199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KAZ9J5gXA2p10QEAu9opvQ
-	(envelope-from <devicetree+bounces-296199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:05:44 +0200
+	id 6OU4Id0XA2p10QEAu9opvQ
+	(envelope-from <devicetree+bounces-296201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:06:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172E951FC2E
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:05:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2CDE51FC80
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 15396300FF87
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 12:05:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 489F5301BA48
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 12:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6079A4D2EC7;
-	Tue, 12 May 2026 12:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402984D2EF5;
+	Tue, 12 May 2026 12:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EG+HTSV4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DM8NY+B8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E807B3A4507
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 12:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18DC34C77D9;
+	Tue, 12 May 2026 12:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778587526; cv=none; b=cod8RDC43lwuYr8MLdNjVNrmFWOZ06VDSDS7hVVYM5l7ZS1FG9cRmVSYbWrpRpV+eHFUN7Z+altzmQN6rPvisxAnsr1zxSXXPfUeZwtMKaZSgswRrRQrPQiy6UgFidglHrDanZOqguMY0shr+0FNXpmHlex6/eZQeveItrCubHA=
+	t=1778587592; cv=none; b=aVosN/eiOdJP26jpNXiczpdhYUH9GENhAgRAXFAP7QSjboaQgJh7B4mMpNZEj+qYWMfN6Prkkr/VycjLf0eSRvxoWmwS3LikOWdLlSJmxvC7z3k8MPwEQDmScpU+ly/WWmnOJLriN44xwES2iNl8TR+amX5X/02P2RUh17vxxoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778587526; c=relaxed/simple;
-	bh=eiiQn3LPaQ1C0TSaD+je1ad7MkAQEuJiYrexYHR8JW4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iFx+QLmBxbU0PuWkEd2z3+VRR/BMfbUR02PlJDN7PZQkaRp2ZDmNj9yFDY6VbW0EODarBIz7AGtrjtagGIBBkkEXf1o7MWQ+FlzZNu7A8tp+oDymiOGyTqFoFPKhUa3HEw+7ovg4ZeXb2wLjV/e9oiZhfYhkz3HoZ4DsMhYHfdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EG+HTSV4; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-488af96f6b2so65243725e9.0
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 05:05:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778587521; x=1779192321; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MPixCwLYwSCQ7IjJ5OrD8u4Z57ctKq7410nlp6rxWgQ=;
-        b=EG+HTSV4JkPS3hTqHjB+yt+2e+0nzu+OuRQI95huriZbSXg2R2D6Tx5aZDlNrwPJvU
-         SKK9Yh2q15m2Nnvi0x6TgxU3vupDmFvZZOrBcjYoMnJTnUfohr5mhUiJ/qWziCI2i0uW
-         3olmrnHEDreSZzClwTG7ly3Q60/mh4sUGZXowJdDw3NP+A0EcKrmS6dbqCmXhDkBV9ZI
-         I2Tfcqv8rC4cy50GfBXnOY+ePaTMduZgGTIqN8XKKmqgwnt1sW+ZTySYNTox3aUIoDVq
-         2v/Xl7eXkcLxgdmDIqVlTV4pmoe4Q1Ixtn+fv9UTqOue/nYuDLcYu3psdITUkSgsdxl0
-         BP0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778587521; x=1779192321;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MPixCwLYwSCQ7IjJ5OrD8u4Z57ctKq7410nlp6rxWgQ=;
-        b=rnryf0J52EeMYj3a+cJVBC+xt+OYbsL6GeuUdoiql+r5bKPrzNuRrAGn2wmUik8Koo
-         dfHhrt5yi9MgY5dAV/WxaXozz8j7COxa02IKmqliuN4d1+tgdsvmAREGY5p6K+noJZ2Q
-         sWPn1XB6AnlGZWyjQuanmMPGzKmuUiXQMKWUAAT+2RNhwt2u+PxZTLq/BDmoWzWi9zum
-         i8cY1t6gWg7yEoVvTjk5SBeYLFH2Vdf1UEbPocuuRvCq0liGgEnZLuFQA5InoWnI05rF
-         zJX6agv5JS+smJuEEVK14oOPugQMgk4qwF7IvAsY57Ocsk/U56DYsibIElaKpdut4Gz2
-         orQw==
-X-Forwarded-Encrypted: i=1; AFNElJ+Cy9EDWXnp+RWoPdosQXecO7hcc1X0rpsCacZndb0LOjEATQSQer1VhiLmgCLmr6gbPFJyXkt9RGCv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzBVx/K5NSC2z31ePLWyY/wG95xFev9ZRRNl1LvLfBx4/IT1wx
-	DtXg4kFUghORAWuA7SgNaF59rPN8vGifgICRd8nzGftOPe6ejQimQFWh
-X-Gm-Gg: Acq92OGFZOgI1MPOH6suNsTCbzpfeQ9EFaHIHzX2Q5nnuxeWlgSOc4yURdS5bU5HYVe
-	B31yhHz5ZYN1xdO+PkzZXzD7ggagiUCc5mQlSP9qPrpie6MlManKp/JODjWIJEsolRF3TlYKmiQ
-	dqsG5cYdzruMOpS6v9sokw6ouokZh1C2bxkIFsHEyzH/O+dfzs75lAgHiR1NPGHzvMtaD+Aj/07
-	gX3E2ATGk3ilXDDQ6P3n+V2tbgYp6HCyVLLBD1a2Tfx+ebIVMYbB1KNq9pXgdOiqMfEFYc9H2op
-	w+Qv3U/62vHVEqmV4kQc3cuv0QBhBrw8RgL84c68K0UFCgwAjD8VXoOGyrHB/mBt5lTQm3V7Fyp
-	+7vLoIxxts/X0dbKHcYnGyakUMJq9F82KeOAC3gV5I8XNe7SjAbzdtIiSmaKd2KxaIO/ODAWHVF
-	rHgRjVfL1jit//EA==
-X-Received: by 2002:a05:600c:4f46:b0:489:e126:b757 with SMTP id 5b1f17b1804b1-48e707fbb13mr229757235e9.25.1778587520803;
-        Tue, 12 May 2026 05:05:20 -0700 (PDT)
-Received: from nsa ([185.128.9.145])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e8f42a845sm15997055e9.20.2026.05.12.05.05.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 May 2026 05:05:20 -0700 (PDT)
-Date: Tue, 12 May 2026 13:06:14 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: "Stan, Liviu" <Liviu.Stan@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>, 
-	"Sa, Nuno" <Nuno.Sa@analog.com>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: temperature: ltc2983: Add support for ADT7604
-Message-ID: <agMXiWA39tW9mZ2O@nsa>
-References: <SA5PR03MB83778AB3C41E0AF56EC754F8F63D2@SA5PR03MB8377.namprd03.prod.outlook.com>
- <af3oezNmmBhI4Yu4@nsa>
- <SA5PR03MB837710AE7FD8B8FFF138B7C5F63D2@SA5PR03MB8377.namprd03.prod.outlook.com>
- <af4LCQiqNaiMzFkX@nsa>
- <20260509154600.02e2d11a@jic23-huawei>
- <SA5PR03MB83770D945E92C40A74D9C0DAF6382@SA5PR03MB8377.namprd03.prod.outlook.com>
- <20260511121820.3be9e635@jic23-huawei>
- <SA5PR03MB83772A1A57DC052CB21B9187F6382@SA5PR03MB8377.namprd03.prod.outlook.com>
- <agLhb-S2ISSjaopc@nsa>
- <SA5PR03MB837758532C0007A97121F6CCF6392@SA5PR03MB8377.namprd03.prod.outlook.com>
+	s=arc-20240116; t=1778587592; c=relaxed/simple;
+	bh=drLM0BAX3WIAuXVnD/2fUpgJp4pFKEOucdQPoRM/WBw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M2eZ35OGLL/8fTX7vMSwFjkgO5P3ZeemYLzeDAtxk9k4gSu88Xi+NGnnAqxfa0kqPTotCZRoZ/azNbn5JRHNYG8vhoDRvl7XVbmWfv9WvskbNxlqGBbVnoIw4/hJW8swlOiPZrxB2tnBlsqa3mMXsPkQKwIBYIpqzbcowmfzm9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DM8NY+B8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58CB0C2BCB0;
+	Tue, 12 May 2026 12:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778587591;
+	bh=drLM0BAX3WIAuXVnD/2fUpgJp4pFKEOucdQPoRM/WBw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DM8NY+B8PoMUgExJSzDboO3N5/14EPr+5mRZW3VKxQlUmqBx8+hywKdk6GmYBAB5f
+	 8nulResCLYBto6VQs3hRYA4KETuKTELxNR8KTD0A8SHHaZq0+MZW5cuqzMxVvjF3Ar
+	 mm0WBZkP37qou44s62yfo1pjSUpXR7yARv+ZtF84vj7sPRtDvtjuKaq8UdZly7jo8N
+	 kydX+PiGds244j0Y6LXSItvI6x6ENINOrypn3TCV22aKWNiqshhxd7dIJ6fK3WSYgJ
+	 XqzugwqQSrg3k3Id1oXkJJlsfvp//uxyD5TkhF5mIYAxN7wX19pyFjWbMaVPRgWeun
+	 17bX/s/lKW9Jg==
+Date: Tue, 12 May 2026 13:06:22 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Piyush Patle <piyushpatle228@gmail.com>
+Cc: ak@it-klinger.de, andriy.shevchenko@linux.intel.com,
+ dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 v8 02/11] dt-bindings: iio: adc: hx711: add VSUP
+ supply property
+Message-ID: <20260512130622.1f3f4d08@jic23-huawei>
+In-Reply-To: <20260511174342.123820-3-piyushpatle228@gmail.com>
+References: <20260511174342.123820-1-piyushpatle228@gmail.com>
+	<20260511174342.123820-3-piyushpatle228@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SA5PR03MB837758532C0007A97121F6CCF6392@SA5PR03MB8377.namprd03.prod.outlook.com>
-X-Rspamd-Queue-Id: 172E951FC2E
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: F2CDE51FC80
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296199-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296201-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Tue, May 12, 2026 at 11:55:21AM +0000, Stan, Liviu wrote:
-> On Tue, May 12, 2026, Nuno Sá wrote:
-> > > > > The current approach presents it as IIO_TEMP since the chip outputs
-> > > > > coverage (using the custom table interpolation) via the temperature 
-> > > > > result bank, not the resistance bank, but I agree a new channel type
-> > > > > makes sense. Should I create a specific type like
-> > > > > IIO_COVERAGE_PERCENT or would a general IIO_PERCENTAGE 
-> > > > > be better?
-> > > >
-> > > > For ABI purposes we don't care where it comes from.
-> > > >
-> > > > We already have some 'ratio' type measurements like concentration which
-> > > > are percentages and similar to those I think we need some indication of 'what'
-> > > > is being measured given it's unit free.  Hence IIO_COVERAGE_PERCENT
-> > > > seems the better choice to me.
-> > >
-> > > Understood. Will do that in v2.
-> > 
-> > I do wonder if a complete type is what we want? How will we present it?
-> > 
-> > in_coverage_ratio?
-> > 
-> > What I'm not too convinced is that coverage is relative to what? Well
-> > it's a percentage so I guess we could not care and leave interpretation to
-> > userspace (to know which device is dealing with). Still I wonder if a
-> > new iio_chan_info wouldn't be more appropriate? In this case applied to
-> > iio_resistance. So something like:
-> > 
-> > in_resistance_coverage_ratio
-> > 
-> > So it's clear what physical quantity coverage ratio is affecting.
-> 
-> I still think a new channel type is the right approach. Consider copper 
-> trace sensors - they also support a custom table, and when one is 
-> provided the chip outputs both a resistance result and a temperature 
-> result (the interpolation output), each in their own register bank. The 
-> current approach handles that with separate IIO_RESISTANCE and 
-> IIO_TEMP channels. So, for consistency, if we use a chan_info 
-> attribute for the leak detector coverage output, we would need to do
-> the same for the copper trace temperature output. Since IIO_TEMP
-> makes sense for the interpolation result for copper traces and
-> because it is a distinct physical quantity output by the chip, I think it
-> would make the most sense that leak detectors follow the same
-> pattern and create a separate IIO channel.
-> 
-> What do you think?
-> 
+On Mon, 11 May 2026 23:13:27 +0530
+Piyush Patle <piyushpatle228@gmail.com> wrote:
 
-Yeah, makes sense. Jonathan already put it very nicely for the distinct
-channel case.
+> Document the optional VSUP supply used by the HX711 on-chip regulator.
+> 
+> Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
 
-- Nuno Sá
+I got curious given the driver doesn't yet turn this on and wanted
+to just sanity check it via a datasheet.
+
+Why are we including this one but not dvdd-supply?  The suggested
+wiring does connect them to the same supply but it's external to the
+chip so in theory they might not be.  Curiously dvdd supply is allowed
+to be 0.1 V lower than vsup-supply.
+
+>  Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+> index 1ea60dff98d5..a8eaa1f18de5 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+> @@ -33,6 +33,10 @@ properties:
+>      description:
+>        Analog supply voltage (AVDD).
+>  
+> +  vsup-supply:
+> +    description:
+> +      Supply voltage for the on-chip regulator (VSUP).
+> +
+>    clock-frequency:
+>      description:
+>        Controls the SCK bit-bang timing. The value is used to derive the
 
 
