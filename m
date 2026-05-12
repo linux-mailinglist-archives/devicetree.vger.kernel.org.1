@@ -1,120 +1,220 @@
-Return-Path: <devicetree+bounces-296206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296205-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 3kfiM34aA2pO0gEAu9opvQ
-	(envelope-from <devicetree+bounces-296206-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:18:06 +0200
+	id GNgcEXYaA2pD0gEAu9opvQ
+	(envelope-from <devicetree+bounces-296205-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:17:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6609851FF1F
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:18:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A785E51FF07
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7C08130ACA04
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 12:13:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AF2DF304C9C3
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 12:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E67C4EA385;
-	Tue, 12 May 2026 12:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D114D98FD;
+	Tue, 12 May 2026 12:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwgxJyRR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cm4RY9h7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB0A4DA527;
-	Tue, 12 May 2026 12:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2CF94CA264;
+	Tue, 12 May 2026 12:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778587993; cv=none; b=FUvvkxhqEj4OI5CXkph0WD88I+Sy2S3VEdvVyS1A1VDY5Bm49Yrl/4WUpu8wCZIT6VfgAlS3GhVmAw5VEuoYe0JarRE7WqdnFkbTG341AVBl9CShZa6gHa8xoWYzmPvL+EXo4lmSPjYme0Gj11SN7p6ztwg63m2e5Rk4OD0P6ns=
+	t=1778587992; cv=none; b=CcH0VeifxZIFa1xGPUROSyIXLnQgK2rdL6+hDMTxILnXkyb8veYk5LhekuE5E9wJfLbXYRSGXbhkIraJrASa8qMpkBXV2hCcfWAWanJtLLv+l5B7o2KA5W5agTkfwmTW3Zz2Fp91QeEVN5iTWiuCRls4/IOq9Z5WPhtsKmL1pMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778587993; c=relaxed/simple;
-	bh=U7PDfCE27rw3KiR7xbbhGbXblc8BOb+O8LbMMqGsb7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UsvZcRz3MgfOzZoxeP/GdTtYfCma276N5oM8kGtOxLrVSNdIei+dkSHeFCAHgC9ZaV77fJJ2be1gDej7NxRzg8+gCVY703UpSOc6xiURtRfHNNh7Q9tTLK1Hpekt+q/jdyMvUg7NtXjaK9ytrB23E5+BWZ4i0xzjnMHqZSmghdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwgxJyRR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A51B7C2BCF6;
-	Tue, 12 May 2026 12:13:12 +0000 (UTC)
+	s=arc-20240116; t=1778587992; c=relaxed/simple;
+	bh=90gPVaXUX043aZpt3IciW0YZ8X64lWOFu08om/VaSH4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=URCRy91ucqyZUYOiAtHvc9c+ncZpCMk9uJed1G/DkNPsEF2bDPSdsQAoCC4+GPdxwuwuH/fM7a872u2Xc5X4SP1juHPrUTzZfTBo4Fg130A7LlCo8714oZcAEMbSQRhgkgDrysRSQ0BJpN/zX5B521jD8omczBLBM1o744dG8fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cm4RY9h7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7F9DC2BCF5;
+	Tue, 12 May 2026 12:13:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778587992;
-	bh=U7PDfCE27rw3KiR7xbbhGbXblc8BOb+O8LbMMqGsb7w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AwgxJyRRwXIQJP50dSXsosDOkbV/+MnRrqyegEtLkbkLZFw+k+kL3FUwv6/z6SaPR
-	 BI95C+aM+JuLzk+darTvtOAtvER3qXkHXeEiVXin/vyQT5cpgMmz0NeuCPKm79uApx
-	 PZB49oI4tM132AJO57zw9+QfAbOwXhOa/z0thgF6R3Zx06260JTFh869P4YgLjMrcJ
-	 CrHEFQ30xwBMhNUuPn+1irlo2WGuVSjVPMQeMnjmMU/NZPiN4NwW2FkKx7sQzLSNfK
-	 GmRagjgBH0A4Du0Uc4rT0KYHca81fJ0cD2leSu4SoTAKCv9+/OaB/7D827kWk/Z6Tk
-	 yJ3kTh3SD1HrQ==
-Date: Tue, 12 May 2026 07:11:25 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: i2c: mux-gpio: remove Wolfram Sang as
- maintainer
-Message-ID: <20260512121125.GA1318921-robh@kernel.org>
-References: <20260509171354.12263-2-wsa+renesas@sang-engineering.com>
- <177835197844.785566.9553774802925952117.robh@kernel.org>
- <agDxmyIA4-tLDKgX@shikoro>
+	bh=90gPVaXUX043aZpt3IciW0YZ8X64lWOFu08om/VaSH4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Cm4RY9h7/bB7Tg3i50F60EaDjQJkRHaRxDXur7JWu/yt/GIK2EavC2/MSavqa98mr
+	 zpjR18Ie/Al8F4B2Nr7IhfGwbmWGbm0C50akOIS9s4nX4nEiUHI5vUXkY+0XULxRHh
+	 8UPMxxTIfeCQakzcxU9B2EFYnMrQYMKY7fvWBNvjPMeNMPhmrK4eDLKhmdYrt6mOCf
+	 8VdONDF2Ky/akBXW+aQVHs+Uet+me8tlYYH8RLVbOjCNLdxfqKyy7Fkb0mgMtKGT3A
+	 bd2IYSEVcpDQ60S9gyfza4nJA7R6wW6Wmjau7Y1MaJm4T5jVxieLtBpLbByjKLRUJm
+	 xK9/A/gr/dZoA==
+Date: Tue, 12 May 2026 13:13:02 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Piyush Patle <piyushpatle228@gmail.com>
+Cc: ak@it-klinger.de, andriy.shevchenko@linux.intel.com,
+ dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 v8 04/11] dt-bindings: iio: adc: hx711: add HX710B
+ support
+Message-ID: <20260512131302.48d71836@jic23-huawei>
+In-Reply-To: <20260511174342.123820-5-piyushpatle228@gmail.com>
+References: <20260511174342.123820-1-piyushpatle228@gmail.com>
+	<20260511174342.123820-5-piyushpatle228@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <agDxmyIA4-tLDKgX@shikoro>
-X-Rspamd-Queue-Id: 6609851FF1F
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: A785E51FF07
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296206-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-296205-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[barco.com:email]
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sashiko.dev:url,microchip.com:email,devicetree.org:url]
 X-Rspamd-Action: no action
 
-On Sun, May 10, 2026 at 10:59:07PM +0200, Wolfram Sang wrote:
+On Mon, 11 May 2026 23:13:29 +0530
+Piyush Patle <piyushpatle228@gmail.com> wrote:
+
+> Add the avia,hx710b compatible and document the HX710B-specific
+> DVDD and VREF supplies.
+Hi Piyush,
+
+Sashiko moaned about this on v7 (it's not caught up with v8 yet)
+and is correct in a sense as the hx711 seems to have a dvdd supply.
+Your are documenting extra stuff that is hx710b specific but
+the actual supply is there on both chips.
+
+https://sashiko.dev/#/patchset/20260510194947.31997-1-piyushpatle228%40gmail.com
+
 > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-mux-gpio.yaml: 'maintainers' is a required property
+> Add constraints that forbid HX711-only properties on HX710B nodes and
+> require vref-supply for HX710B, then add a separate HX710B example.
 > 
-> I know. But as I was added as maintainer without my consent, I think it
-> is okay to remove myself.
+> Keep the existing HX711-only binding extensions in earlier patches so
+> this change is limited to the new variant.
 
-I suppose it should be Peter:
+This bit isn't needed in the patch description and as per the dvdd-supply
+isn't quite true.  I might just edit this whilst applying if nothing
+comes up in rest of the series (I will be waiting for sashikio though
+given how successful it is proving an find stuff I missed!)
 
-GENERIC GPIO I2C MULTIPLEXER DRIVER
-M:      Peter Korsgaard <peter.korsgaard@barco.com>
-L:      linux-i2c@vger.kernel.org
-S:      Supported
-F:      Documentation/i2c/muxes/i2c-mux-gpio.rst
-F:      drivers/i2c/muxes/i2c-mux-gpio.c
-F:      include/linux/platform_data/i2c-mux-gpio.h
+> 
+> Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/iio/adc/avia-hx711.yaml          | 42 ++++++++++++++++++-
+>  1 file changed, 41 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+> index 9134bbe41379..b2b5c7bdf05e 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/avia-hx711.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/iio/adc/avia-hx711.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: AVIA HX711 ADC chip for weight cells
+> +title: AVIA HX711 and HX710B ADCs
+>  
+>  maintainers:
+>    - Andreas Klinger <ak@it-klinger.de>
+> @@ -14,9 +14,14 @@ description: |
+>    differential input channels. Channel A supports gain 64 and 128;
+>    channel B supports gain 32.
+>  
+> +  The HX710B is a 24-bit ADC with fixed gain of 128. One input measures
+> +  the differential voltage between the two input pins; a second measures
+> +  the DVDD-AVDD supply voltage difference for battery level detection.
+> +
+>  properties:
+>    compatible:
+>      enum:
+> +      - avia,hx710b
+>        - avia,hx711
+>  
+>    sck-gpios:
+> @@ -44,6 +49,17 @@ properties:
+>        RATE pin state is determined by the board wiring.
+>      maxItems: 1
+>  
+> +  dvdd-supply:
+Ah dvdd is here and whilst your text is talking about hx710b constraints
+you don't stop it being supplied for the hx711 so you can ignore earlier comment.
 
-
+> +    description:
+> +      Digital supply voltage (DVDD). For the HX710B, DVDD must be
+> +      greater than or equal to AVDD. When DVDD is a battery rail and
+> +      AVDD is a regulated supply, one channel monitors the DVDD-AVDD
+> +      difference for battery level detection.
+> +
+> +  vref-supply:
+> +    description:
+> +      Reference voltage input (VREF).
+> +
+>    clock-frequency:
+>      description:
+>        Controls the SCK bit-bang timing. The value is used to derive the
+> @@ -53,6 +69,21 @@ properties:
+>      maximum: 2500000
+>      default: 400000
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: avia,hx710b
+> +    then:
+> +      properties:
+> +        vsup-supply: false
+> +        rate-gpios: false
+> +      required:
+> +        - vref-supply
+> +    else:
+> +      properties:
+> +        vref-supply: false
+> +
+>  required:
+>    - compatible
+>    - sck-gpios
+> @@ -72,3 +103,12 @@ examples:
+>          avdd-supply = <&avdd>;
+>          clock-frequency = <100000>;
+>      };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    weight {
+> +        compatible = "avia,hx710b";
+> +        sck-gpios = <&gpio3 10 GPIO_ACTIVE_HIGH>;
+> +        dout-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+> +        avdd-supply = <&avdd>;
+> +        vref-supply = <&vref>;
+> +    };
 
 
