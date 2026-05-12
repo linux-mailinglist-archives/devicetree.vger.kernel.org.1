@@ -1,356 +1,230 @@
-Return-Path: <devicetree+bounces-296109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296111-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aK+bM3HpAmpKygEAu9opvQ
-	(envelope-from <devicetree+bounces-296109-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 10:48:49 +0200
+	id AJolO6XrAmpKygEAu9opvQ
+	(envelope-from <devicetree+bounces-296111-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 10:58:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A8251D011
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 10:48:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9733E51D24F
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 10:58:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CCD3D300F780
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:47:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1C63303CE93
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 08:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B73384248;
-	Tue, 12 May 2026 08:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D2139A04C;
+	Tue, 12 May 2026 08:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Cd3enZ95"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="f8+gyyVu";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c3Muf5U3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F7C62FE071;
-	Tue, 12 May 2026 08:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE98139A07B
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 08:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778575660; cv=none; b=oeCuVIeGAq+45CijIzwaYFH62us+34j1mqR3tWhb/ofgRupAEipP9rkKRlshOx/3fqipkJHI9Pripq6nG60MlvLbPBXasfCwukBx62u0wLfL096V+3VaLLKTtMteIphLY2c/PqVQnJsFF474ZTAuOiSE5zdJ2GKop/VSVOtzicc=
+	t=1778575956; cv=none; b=GsxL48ZCnwf1lRrAZCNkbp62e8OydjNlwXkMS8dCDTUSPIJMfcN5bdhT25roKVaQdx/m+gJh/FRTykMUKk6IRBiQoy6xqh9HIpqB7Idiluok3pqOQjYL9I5n5/Nxs2/9D3o38CZcBNycbiE9X1mCEIWlslhOQc46aLwfBf84CEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778575660; c=relaxed/simple;
-	bh=yVj6qcAQtPfLOWXdwnIyMj6OCRTMuEdBo5PeKxLotsI=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=GOpC0oEhPYAvg37HiWKpTqfmXsAPp5gDzvaVLyS+aOfubeLMwmNbP8+eQAmNAh8yR9cKi7tFTzdBI1ICGfGgRjZ16d8ZxLlLfM5LnjrVSB1SS1SZfeZwBBhTBH0eQsYb8wTxqSGplRcmWbZfbtr6RAbd/6Ks3XF8sR/Sw+ffSNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Cd3enZ95; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1778575654; x=1810111654;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=yVj6qcAQtPfLOWXdwnIyMj6OCRTMuEdBo5PeKxLotsI=;
-  b=Cd3enZ95gY0e28+zXImIy8764kmU7oOIYe2PXXlg7Pvmz9o665eY4qNZ
-   HVKZiJblKC546pVgmZGRBwHzm9+I/o3x4EomU3zZAfSBebwdyMLJYui57
-   EaMleeIEvV1Bg3kzOOk5jdomlv5nMGnM7fZNjEzSpGGMw7YIyRYLeD2Do
-   YbatP2OkLgRMkfXSJr+QWGzFYdK4PCdWGcL3EABS36EbS3n+d2K8Iv0t9
-   2iNt4MvrQzdGCctNQ6lNnZuPAUNg+59rf/kbX+NycIifSHGaPDp7mhnzK
-   52kPfg0Bj6ffS/EycXD9BpBFEZrdV7e/cackCFEH3KG/UoUNh7j2h2TGx
-   Q==;
-X-CSE-ConnectionGUID: UxxL9zsTRgKgmDgezwKYWQ==
-X-CSE-MsgGUID: sjI6UnJoSPW1aPIkF8pclw==
-X-IronPort-AV: E=Sophos;i="6.23,230,1770620400"; 
-   d="scan'208";a="224614866"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2026 01:47:27 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.37; Tue, 12 May 2026 01:47:26 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Tue, 12 May 2026 01:47:23 -0700
-Message-ID: <c48f64d22429c1d4e10015033da4fff16c2a6d7d.camel@microchip.com>
-Subject: Re: [PATCH net-next v4 9/9] net: dsa: lan9645x: add port statistics
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Jakub Kicinski <kuba@kernel.org>
-CC: <UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
-	<horms@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <woojung.huh@microchip.com>, <linux@armlinux.org.uk>,
-	<Steen.Hegelund@microchip.com>, <daniel.machon@microchip.com>,
-	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Date: Tue, 12 May 2026 10:47:22 +0200
-In-Reply-To: <20260506014618.1616861-1-kuba@kernel.org>
-References: <20260430-dsa_lan9645x_switch_driver_base-v4-9-f1b6005fa8b7@microchip.com>
-	 <20260506014618.1616861-1-kuba@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1778575956; c=relaxed/simple;
+	bh=aQmHLV3KCZ+nX07DoRiDb63BwVeOxt0UBUkcs+cdYXI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kEMrNsGra3qMe0q1UeJJFG/RLWjtO48X7znB9NqvLjNyDD8r3nX0WgeXAxaAvVWL9njH5MKgfyfVhxBbAlRSMtXinQOmiF4T2uK05ddfjFA0FBvWgRbKdw1LsocxHDjeHDW4CO0imcb318bWe6beMNID/XGFYKvr53JLZ2ZjPnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=f8+gyyVu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c3Muf5U3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64C5BdeO1183975
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 08:52:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	53+Ajxm9/zLBxHnAxbEtkpFewtO5WL8IWPxCOpSgNLs=; b=f8+gyyVut5AKopKd
+	mSeXPq9Nj3PlBCRZf7BuZy45g7tkwBcu/Rq6OQys8VzEF6OFTqbVtKIcVhLgxW9P
+	eukcMCqtmgcuwSEts7+PvyJ8uXDBzzPYvA663cDrguDJ4EJ+lJW3XHRoF3NuE6cq
+	fR8BiSXabb8G1rqPKdV7vYN9MsXzv3FdipovBoj2BBnrFYHrBDNUf05y8pBpQLmR
+	42DuQ1iwcSxDchhp7pDxWYqaNBb7t1UJTZ4f1oMmS/2BkbabNIkUhSaCDJBZSbb5
+	q3Fky4FA9DfuySLnEjo3qd6zxuCKjMXFTD6AmB509wRhvkr69uKLIbXovteDkg0T
+	y4opew==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e3nuyaatm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 08:52:25 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-c6e24ee93a6so3786140a12.0
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 01:52:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778575945; x=1779180745; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=53+Ajxm9/zLBxHnAxbEtkpFewtO5WL8IWPxCOpSgNLs=;
+        b=c3Muf5U3v40ymkBYg/rqO87R/MFL3ioA+mK0t8Up2RQyDE0TQRAaWnIJa2eX77zVcB
+         pI+tumLTCKzgXHGeSFP89umLJ5Y38GE96cwGfpNZnoHJ49q1jGh/R0Q9klQ6XpzXL89O
+         JG0UE2XXPRPGoz/7IzgwbG+vF591ldYVg2H3K22PFLIlcLqdTweYZeeogKdITtiBPH/c
+         saWOMa2whVjqaJ46OssluopOyd2ZhYfnjK1ftgDZC9Pqkts+wEaowFzaR6I4CAyuGbil
+         2f8f0eEyQ59bezS72aavw+Izo5w2bID0PAKtb6U1+V3ic9P/okVAnXxzVIqNt7RLC1Dv
+         XfvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778575945; x=1779180745;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=53+Ajxm9/zLBxHnAxbEtkpFewtO5WL8IWPxCOpSgNLs=;
+        b=YXxEjk9XSWUPKmQP1fvT97TnMRPR4Camh1d0esslwuvWnjqNCDAwsuywELqunss+q7
+         wWrFmET760c2SomvVg3IFL3AANOsqZNFHX2XjOcCIOtqhsHTCrgn2RY/xjsx8vSyjrLF
+         2kfL9grqQpOEf4LwM2kLM3PQg50QtkmbIVg6dy0LGLzO30nAivXYGpdy6RB2BRsOfnuL
+         bUH4czv+CzoFJoo37rj6gnRYmpftkRgf1daxiju9lt/DrUzi5tWfk7KKnJelW0EIt7Kx
+         +/3nf1AdaEsj/X7qyyLn2LGFsg5bbo18NF93irhO8PtY18qHLrSJmZI+XW+lVfQqX7Lh
+         0Izw==
+X-Forwarded-Encrypted: i=1; AFNElJ/ODLcm/i49hayPvxkgo+vWA4qP7dn3+KGxS3KeU2JAn0qpxV06ioSeru/35DztjvEWKYvdgq2GHipu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1tavmik22Mi75QGHDQUQbyPMTblamcZ5XlbZ7ASkjHizBMnRM
+	ygaPR9X+Yi/MHu+TndqUjqyDxMzAOl8tsieYIrnIUIg5gBAhmtCKvaiFQCSVOnDeBF2iBCQr8Xp
+	/N3SXmX0o9bqUju/rfe2gHzZHz00RQWShzEJOaQ5qOrK+Kr9A2+mwpN7Ikfj8wkLg
+X-Gm-Gg: Acq92OH9UpHlUzFN5GI4Zrzzqx3JtVuax+p0GKfdLWNpHl0DCRC33FROt+zfGv20eIJ
+	4vqj5iIyoaOfDTcmvbDroV0ltR6p+VKNeoTmSVyqrl1l8JEkPpZ8yK91Z8ekibJH8LNs+1eJqd1
+	2NAzaP4q4Q8FbLvMJVH1/R1et6ZKfTfVdV/VwP/WkMbWFhUBDSbZ7CuGwG+BsNn5X13+I3zxN5i
+	AElVjUTp7cGPE/rM7yDwBJtdICgZ4964FOdhLAeoEKqHsKMARHrsMV+HvxFzVUNwsklKwxFas25
+	N5omXDi0IHn9ZpT+zFGTHhpV3NOFRaomaX6XTRvK4qX7yljOBYs2A6ydqEQ/jZKFhxXIgtIhNEb
+	0jlq8iBu2v5usOhV9YeeTyBNbOU9fBis7xBCEsNbk3eb0C4do
+X-Received: by 2002:a05:6a20:258f:b0:3a3:21db:8ecb with SMTP id adf61e73a8af0-3acd4280430mr3012150637.14.1778575945191;
+        Tue, 12 May 2026 01:52:25 -0700 (PDT)
+X-Received: by 2002:a05:6a20:258f:b0:3a3:21db:8ecb with SMTP id adf61e73a8af0-3acd4280430mr3012121637.14.1778575944726;
+        Tue, 12 May 2026 01:52:24 -0700 (PDT)
+Received: from [10.217.217.99] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8267688e2esm11432629a12.8.2026.05.12.01.52.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 May 2026 01:52:24 -0700 (PDT)
+Message-ID: <f649f4a8-df16-4fed-b1ca-4362680252a4@oss.qualcomm.com>
+Date: Tue, 12 May 2026 14:22:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 65A8251D011
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: eliza: Add support for MM clock
+ controllers
+To: Bryan O'Donoghue <bod@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20260409-eliza_mm_cc_v2-v2-0-bc0c6dd77bc5@oss.qualcomm.com>
+ <20260409-eliza_mm_cc_v2-v2-8-bc0c6dd77bc5@oss.qualcomm.com>
+ <cb5a40e8-e2e3-4ed9-a9c6-0daa9f408710@nxsw.ie>
+ <Z8a4y73p6MgF8gQkVtottkgG2Ok8-Vhm8zzckWEbiU_DUO84x2VlwPt-VBL2g0utw3ZwZK0aUvI4ev-p_YRGoQ==@protonmail.internalid>
+ <328b388c-438e-4f91-9384-0dad903355a5@oss.qualcomm.com>
+ <b280ad04-d4ae-4904-9e99-3d057e3d221b@kernel.org>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <b280ad04-d4ae-4904-9e99-3d057e3d221b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: _pddFrcL5NVHkn5t3_lklH0mJcTxsQ1-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDA4OSBTYWx0ZWRfX5CS090OnmyPn
+ cswe7b8PClceADcB0MNWHhRk0vlTF8a2IFLcHKNUEX9mPTPbJ8vTLEZzbiDjJHMXn5jDuprdnbR
+ bDWuuZtLDIc8YsFhIgOJIPL1JfxaChgWO7w50Bw2rlvI0eTi1AtsTnFu6RX4Nd1gBOWSQH9zoJ8
+ bwr8CFN1zos2IbmXonlDI+Zbk2iCCGKzSdMa3U1GmhXb3zAz+70Dcq0Lfh+zlKWq/NA1vSpwuW1
+ Ysb8UEj9rgB2JqAn7AtXI6I4ExbazrjSfmUG/ER7QADCPTzHHMDiNWHhGVzMYEIKBnbQgK4BSEq
+ XSEOsQU0X67LETnjLx7oeeLKLuOVZZCl+sOyYYr5Gn2JyN+QtZFUaUICrIj85KwgjLENEZbWHBI
+ W/5R9x6OoXUy9QADN572ioXQOfQ8jCi4fk02soaJdGpG2GogZuJfA7dBdvx+VwVusvtFHzUHcEw
+ OLXH/KPyTabIlDAHl2A==
+X-Authority-Analysis: v=2.4 cv=UZ5hjqSN c=1 sm=1 tr=0 ts=6a02ea49 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=UOnGL9-HqUUrvkLjBzwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-GUID: _pddFrcL5NVHkn5t3_lklH0mJcTxsQ1-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 phishscore=0 adultscore=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605120089
+X-Rspamd-Queue-Id: 9733E51D24F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-296111-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,gmail.com,foss.st.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296109-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, 2026-05-05 at 18:46 -0700, Jakub Kicinski wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> This is an AI-generated review of your patch. The human sending this
-> email has considered the AI review valid, or at least plausible.
-> ---
-> net: dsa: lan9645x: add port statistics
->=20
-> This patch wires up ethtool -S, standard ethtool group stats,
-> and ndo_get_stats64 for the lan9645x DSA driver. A delayed work
-> polls the 32-bit hardware counters every 3 seconds and accumulates
-> them into a 64-bit software cache to handle hardware wraparound.
->=20
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drive=
-rs/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > index 15a493c1f215..cea46bfe729e 100644
-> > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
->=20
-> [ ... ]
->=20
-> > @@ -255,6 +257,12 @@ static int lan9645x_setup(struct dsa_switch *ds)
-> >       if (!lan9645x->owq)
-> >               return -ENOMEM;
-> >=20
-> > +     err =3D lan9645x_stats_init(lan9645x);
-> > +     if (err) {
-> > +             dev_err(dev, "Failed to init stats.\n");
-> > +             goto owq_destroy;
-> > +     }
-> > +
-> >       ds->mtu_enforcement_ingress =3D true;
-> >       ds->assisted_learning_on_cpu_port =3D true;
-> >       ds->fdb_isolation =3D true;
-> > @@ -265,6 +273,10 @@ static int lan9645x_setup(struct dsa_switch *ds)
-> >                lan9645x->num_phys_ports - lan9645x->num_port_dis);
-> >=20
-> >       return 0;
-> > +
-> > +owq_destroy:
-> > +     destroy_workqueue(lan9645x->owq);
-> > +     return err;
-> >  }
->=20
-> Is this owq_destroy error path reachable today?
->=20
-> Looking at lan9645x_stats_init():
->=20
->     int lan9645x_stats_init(struct lan9645x *lan9645x)
->     {
->         struct lan9645x_stats *stats =3D lan9645x->stats;
->=20
->         queue_delayed_work(stats->queue, &stats->work,
->                            LAN9645X_STATS_CHECK_DELAY);
->=20
->         return 0;
->     }
->=20
-> it unconditionally returns 0, so the goto owq_destroy branch is dead.
->=20
-> If a future change either makes lan9645x_stats_init() return an error, or
-> adds any fallible step after it in lan9645x_setup(), the cleanup would
-> fall through owq_destroy without calling lan9645x_stats_deinit(), leaving
-> the self-requeuing delayed work armed on stats->queue.
->=20
-> Also, dsa_switch_setup() in net/dsa/dsa.c does not invoke ds->ops->teardo=
-wn
-> when ops->setup() itself fails, so lan9645x_teardown (which is where
-> lan9645x_stats_deinit is called today) will not run in that scenario.
->=20
-> Then in lan9645x_remove() -> lan9645x_stats_free() -> destroy_workqueue()=
-,
-> the queue would be drained with a chained self-requeue still live. Would
-> adding a dedicated label that calls lan9645x_stats_deinit() before fallin=
-g
-> through to owq_destroy be safer for future edits?
->=20
 
 
-I will make lan9645x_stats_init return void. There is nothing after
-lan9645x_stats_init which can fail, so at this point a label for=C2=A0
-lan9645x_stats_deinit would be dead also?
+On 4/10/2026 1:56 PM, Bryan O'Donoghue wrote:
+> On 10/04/2026 04:55, Taniya Das wrote:
+>>> Why do these two controllers have no power-domains ?
+>> Bryan, on Eliza the videocc and camcc are connected on CX and MXA.
+> 
+> Shouldn't you at least have:
+> 
+> power-domains = <&rpmhpd RPMHPD_CX> ?
+> 
+> And even
+> 
+> power-domains = <&rpmhpd RPMHPD_MX>,
+>                 <&rpmhpd RPMHPD_CX>;
+> power-domain-names = "mx",
+>                      "cx";
+> 
+> Konrad's suggestion to me was that MXA should have a vote in my CSIPHY
+> series I think he and Jagadeesh discussed it but I'm not sure if they
+> _concluded_ what was the right thing to do.
+> 
+> Right now I'm representing the dependency. MXA is always on ... and
+> there's nothing to do voting for it @ MX ?
+> 
 
-> [ ... ]
->=20
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c b/driv=
-ers/net/dsa/microchip/lan9645x/lan9645x_stats.c
-> > new file mode 100644
-> > index 000000000000..46ac62b4016f
-> > --- /dev/null
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_stats.c
->=20
-> [ ... ]
->=20
-> > +static const struct lan9645x_ethtool_stat lan9645x_port_ethtool_stats[=
-] =3D {
-> > +     { "rx_cat_drop",        SCNT_RX_CAT_DROP },
-> > +     { "rx_red_prio_0",      SCNT_RX_RED_PRIO_0 },
->=20
-> Per Documentation/networking/statistics.rst and the netdev stats hierarch=
-y,
-> counters that have a standard uAPI must not be duplicated in ethtool -S.
->=20
-> The rx_cat_drop counter is summed into stats->rx_dropped in
-> lan9645x_stats_get_stats64():
->=20
->     stats->rx_dropped =3D c[SCNT_RX_LONG] +
->                         c[SCNT_DR_LOCAL] +
->                         c[SCNT_DR_TAIL] +
->                         c[SCNT_RX_CAT_DROP] +
->                         ...
->=20
-> Since rtnl_link_stats64.rx_dropped is reachable via "ip -s link show",
-> does exposing rx_cat_drop here duplicate a value already covered by the
-> standard uAPI?
->=20
-> [ ... ]
->=20
-> > +     { "tx_drop",            SCNT_TX_DROP },
->=20
-> Similarly, tx_drop feeds stats->tx_dropped:
->=20
->     stats->tx_dropped =3D c[SCNT_TX_DROP] + c[SCNT_TX_AGED];
->=20
-> Should tx_drop be dropped from the ethtool -S list for the same reason?
->=20
-> [ ... ]
->=20
-> > +     { "tx_aged",            SCNT_TX_AGED },
-> > +     { "tx_bufdrop",         SCNT_TX_BUFDROP },
->=20
-> tx_aged is also summed into stats->tx_dropped in
-> lan9645x_stats_get_stats64(), so does it fall under the same duplicate-uA=
-PI
-> concern as tx_drop?
->=20
-> A related question about tx_bufdrop: if SCNT_TX_BUFDROP represents transm=
-it
-> frames dropped due to buffer exhaustion, why is it not included in
-> stats->tx_dropped alongside SCNT_TX_DROP and SCNT_TX_AGED?
->=20
->     stats->tx_dropped =3D c[SCNT_TX_DROP] + c[SCNT_TX_AGED];
->=20
-> If tx_bufdrop is in fact a transmit-drop cause, would users of
-> ip -s link show see an under-reported tx_dropped relative to the private
-> ethtool counter?
+The clock controller drivers only request the minimum operating level
+for the power domains. Since the cx and mx rails are already at the
+minimum operating level when APPS is active, explicit voting for these
+power domains is not required from camcc.
 
-
-Yes, I think this is a bug, and bufdrop should be added here. I will make s=
-ure
-there no overlap, and otherwise add it.
-
->=20
-> > +     { "dr_local",           SCNT_DR_LOCAL },
-> > +     { "dr_tail",            SCNT_DR_TAIL },
->=20
-> dr_local and dr_tail are also fed into stats->rx_dropped:
->=20
->     stats->rx_dropped =3D c[SCNT_RX_LONG] +
->                         c[SCNT_DR_LOCAL] +
->                         c[SCNT_DR_TAIL] +
->                         ...
->=20
-> Would it be appropriate to drop these from the ethtool -S list as well,
-> given they are already aggregated into the standard rx_dropped counter?
->=20
-> [ ... ]
->=20
-> > +};
->=20
-> [ ... ]
->=20
-> > +static void lan9645x_check_stats_work(struct work_struct *work)
-> > +{
-> > +     struct delayed_work *del_work =3D to_delayed_work(work);
-> > +     struct lan9645x_stats *stats;
-> > +
-> > +     stats =3D container_of(del_work, struct lan9645x_stats, work);
-> > +
-> > +     lan9645x_stats_update(stats->lan9645x);
-> > +
-> > +     queue_delayed_work(stats->queue, &stats->work,
-> > +                        LAN9645X_STATS_CHECK_DELAY);
-> > +}
->=20
-> The commit message says this worker "update[s] it frequently to handle
-> overflows in hardware."
->=20
-> Looking at lan9645x_stats_add_cnt():
->=20
->     static inline void lan9645x_stats_add_cnt(u64 *cnt, u32 val)
->     {
->         if (val < (*cnt & U32_MAX))
->             *cnt +=3D (u64)1 << 32; /* value has wrapped */
->=20
->         *cnt =3D (*cnt & ~(u64)U32_MAX) + val;
->     }
->=20
-> this compensates for at most one 32-bit wrap per polling interval. If two
-> or more wraps happen between reads, the low-half comparison no longer
-> detects the missed wrap and the 64-bit counter silently loses 2^32 per
-> missed wrap.
->=20
-> At the chip's 2.5 Gbps line rate (LAN9645X_SPEED_2500 in lan9645x_main.h)=
-,
-> a 32-bit byte counter wraps roughly every 13.7 s, so two wraps happen in
-> about 27.5 s. The polling interval is LAN9645X_STATS_CHECK_DELAY =3D 3 * =
-HZ,
-> but there is no upper bound on the actual elapsed time between reads:
-> delayed work can be stretched by system suspend/resume, heavy CPU load, o=
-r
-> regmap/SPI contention.
->=20
-> Would it be worthwhile to either bound the worst-case polling gap
-> (e.g. a suspend/resume hook that forces a read, or a timestamp-based
-> sanity check that detects a stretched interval and logs a warning) so
-> that rx_bytes/tx_bytes reported to ndo_get_stats64 and ethtool cannot
-> silently undercount by multiples of 2^32?
->=20
-
-It is true, and the timing is chosen so at most 1 wrap is supposed to occur=
-.
-I believe this is the exact pattern already used by ocelot, lan966x, sparx5
-and lan969x.
-
-Maybe I misunderstand the suspend/resume comment. We do not implement
-support to suspend/resume, but if we did, then I assume you can suspend
-for an arbitrary amount of time, so doing an additional read on=C2=A0
-suspend/resume will not solve this problem?
-
-The hw counters are 32bit. To stay synced they must never wrap more than
-once. I think the only way avoid this problem is if we can make absolute
-guarantees about how often the polling code runs?
-
-> [ ... ]
+-- 
+Thanks,
+Taniya Das
 
 
