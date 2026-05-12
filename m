@@ -1,252 +1,184 @@
-Return-Path: <devicetree+bounces-296189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296180-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCwCBxMTA2r20AEAu9opvQ
-	(envelope-from <devicetree+bounces-296189-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:46:27 +0200
+	id iKZUIjYPA2pI0AEAu9opvQ
+	(envelope-from <devicetree+bounces-296180-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:29:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54ECC51F8C7
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:46:25 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DED751F588
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:29:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3C82303ADF4
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 11:44:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0E587301D213
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 11:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C53B360ED6;
-	Tue, 12 May 2026 11:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7137C4C77C4;
+	Tue, 12 May 2026 11:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="egVwBkRq";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RpO0XsTl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pAPfOp0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000ED360EDB
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 11:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9443CE48F;
+	Tue, 12 May 2026 11:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778586245; cv=none; b=h+qETDMkkKnJe8nm3HXqbSwY3wtgSB9FxWEIiWzdzHv7gKthHGzSHOs8pSoZHl0G3OY4+Ul/U4c8C1m+OLAHYJ++L7Sq7X+LNaglGvT5rmljgtvBDHsYR3WzYMnekX5bss1/C/DQRsFaAajIcobvZRqQIVEqMi9UJXPbwhqnsOU=
+	t=1778585395; cv=none; b=ieVmLS3iTTHgfKWbC9fY+l+RcKSfj87Nzlat+Ake5SMAlcDC/kojs9L300k0l2YwVkRqKEXTgAH9a0ULsTMlflIzRVXdTFXfBG7zK9HAKurynIegW/Wtl67iA0mEdqWmhcyRFbpsAeqLgOMnP8lDgD0bjyMUq7snCgvGT1EU9NA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778586245; c=relaxed/simple;
-	bh=3UD84u46ReNbEROsTVI8rp5vjKydSNtZDqLl5v5ZGTk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=paG9mhCMBejqQfDSZhUaloAKrgXtXO/DbyJhqpAb43owYv4ccCCIGuoZc0bNuRsXuPA7HKFZGYql0EhCvhE6mmJMukyTlmQgJNJPNE78qwkhlFCE9WphIj66sWIharynhlYhHo7Tvm1oNQ82T0faaiN3yD3tDxQr141rjShzyaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=egVwBkRq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RpO0XsTl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64CB59jL2187559
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 11:44:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KXqX0AgmphHDjjun0t9ZwnaKL20p51pBnMk5v/6dln8=; b=egVwBkRq+vGDJD+F
-	K8Ncxrr3jOAI1dv/DTahBBZeJrZs+m0wRBRZA0jNts5P5PeLx3xsHsetJdIaDdM5
-	eBoe/Vfg7Jr2S8J5gNXssoZTFmMcZNMFTv6RT205yPFjItiupNicTHpEw+SUtjJj
-	jE/GVktkoo/j4fqY5xOCuoknMnu2zwIRnXHZaSWlCTz+Y5xemgACYWb/4+sHg8bq
-	a9lwO32mz13IIdIdj4e7WF4/2zJrGQxasJkkFcVVVitJo8t8tglMrlGbhTXl7uOL
-	JAZdqtB6wogd1slBe3QDbJJyJtVwNY3MWRqaCpF/evZUDTItDOAIKLrEcb6cPZ2d
-	fvF5kQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e3nv0tyq2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 11:44:03 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-50fb3403e99so100394151cf.2
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 04:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778586242; x=1779191042; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KXqX0AgmphHDjjun0t9ZwnaKL20p51pBnMk5v/6dln8=;
-        b=RpO0XsTlRkkxCiW4dgjOV/mcIY9WajeroEwizOQNVuMwzQq2gicUDvcMhJWHFK9hBy
-         AtBCeD2M1WeDM4JpRgtZkYtwaGiPxkwqmpvizVa8hpZwYwbV+sF2YFO0FJ2rhHVFydom
-         GyKSKKpl9B5k09ujrlJpGNvrCWv73Bgxub4dMsKkeoCPfOZgxpejtYcje5+14HKB0Hsu
-         QjzMqKGqASdpAF5p4no76zbSuZMqk3k36yPmqyeJksiQjv3+RwbrcbXZQU293a2dsoWW
-         f0IeP80eCTlKMOHlXhs5JOQCoafrPfMR8msqLEewzUuQAVtVKN8BycP3JXiMN90hLomm
-         pieg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778586242; x=1779191042;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KXqX0AgmphHDjjun0t9ZwnaKL20p51pBnMk5v/6dln8=;
-        b=sbm4Yft3k9tMPbSsk1BegyDVIYcBAzNfOcYD1M9pRONEpQVqmg+wS2y6cYoxb+Uq6b
-         rQTI5KudrScLaDhLJqyXM8kTS0DlubAk46U+8F6C0wTMoox9h/uMQmJfV5emCNZID2Ue
-         1kwS3neNHJGh0TJ5itYlf9aGMgIwr9XXhposbTeh1T72fMPlJmqRA2Y89ymxwTQvd49U
-         SjdPvLUSxAYVJEe2kpfnWAWchHfIi64Y0d5SMEH8SpuDaeYEgonSDtOc4q/IbxQdkZEi
-         U2To8kFB+tT794+E1cPXsxtWhBDsOuYfd0x3WU4EakGjkENufsN9Uk9ZDNVTosEDed72
-         f1mw==
-X-Forwarded-Encrypted: i=1; AFNElJ81FXNw163nMipwMzw0D0SrYpBEMNLSl0TSSJNDYu+l7rDVws0b6Pz/DGrPl8FCDR/pjOGIfWi/D9Xh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHImsy5p2IYBd0SfNf8ZjSftT8ac+a4E4/k85CTEihqcX6Vg3o
-	SF9RiF3s/dq21wgu5KvwBi636zf6Yv1cSDXyM371Ir3RkwWWzTHMjR4oBaqbwacPVp4gFnn+iB0
-	EOSMAwDV70r2X8eEo06YE3G89eb2mHyQoz9bMF7rRfcyrqv6RCLBlVhXZ1uLXm93pziZ6KC54
-X-Gm-Gg: Acq92OElogIiZiCbJsn+u+LVHG7Th3rjdJ6eXLJtvWTvY5rfWGqz/Hwx+Da4xKi1C4v
-	KpSJg4bzjTtB6IX3tEN3oCI/WN1s28+GrQZ8bME9j7+nsjlJ0OjHWc4MnO8o+vfG8O+XJOZFH3r
-	X1XlxtEBAB9rVJNjHyYrDRvTDojtcZk+rJBtdz0YpLLaXsD2CbrlrdQ0CFtm5DC94w2BQDTJA9B
-	epVbqkZaL/hvnsUuqGEQ3OQ/WkaJsnwEhOpiQAAH7J9DORvbibNUVyG7/JBpPgX1dW5wbdcdJEm
-	uEiqhVd69VoETF9dRZ6m8lDZ7b7T+SOMhFq1pZbEn506vHkTyTIx7rwYLSKha8WEMquLj+/eR09
-	CbKXwpZisUW5CZRNuFtFFxmfpHXkBHod2acM98AXLpibc7+zD
-X-Received: by 2002:ac8:7c44:0:b0:50d:a26e:1e95 with SMTP id d75a77b69052e-514d2237efemr36800111cf.47.1778586242191;
-        Tue, 12 May 2026 04:44:02 -0700 (PDT)
-X-Received: by 2002:ac8:7c44:0:b0:50d:a26e:1e95 with SMTP id d75a77b69052e-514d2237efemr36799311cf.47.1778586241337;
-        Tue, 12 May 2026 04:44:01 -0700 (PDT)
-Received: from [192.168.68.112] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-48e9052c9fesm85887155e9.1.2026.05.12.04.44.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 May 2026 04:44:00 -0700 (PDT)
-Message-ID: <0c6c8db9-b54f-4df0-ae1f-306b7feb6d67@oss.qualcomm.com>
-Date: Tue, 12 May 2026 11:43:59 +0000
+	s=arc-20240116; t=1778585395; c=relaxed/simple;
+	bh=Ap2n3+be6TwO7fDuUNeJi0Sg+7nDWteXGcPxj6IU1bk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fsc35aBgrnQSRDEsYeZ9Y7BTymPcBEUwkneDlPfWNq7pZxzRfv36p9XI+ow7vNvvoAnwTh9jZdfuK2Oy/tn/UucMGAjgLqtUzirErMgM2DTVd8YoK5YdJFG18OXqSsHdLCIcNz55LCgdW6e6/gIKD8AJSikHyk52hfJuIbqnvAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pAPfOp0/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DF867C2BCB0;
+	Tue, 12 May 2026 11:29:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778585394;
+	bh=Ap2n3+be6TwO7fDuUNeJi0Sg+7nDWteXGcPxj6IU1bk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pAPfOp0/0CMw+6CTxAGEQMOMut6HpStYRwEPhD2EGmjyJ9Xw4F+ar72Adov+Avpsv
+	 GHicqUhB0YUWnvuQhe81jt8PjJ/niA2ZTDOyDOEfNEri7qYsIw8D92LT7KP9sz12au
+	 tyPdjIqGWZIqUdB2a+QGbcYRTNqDKAwa1JwZIH5IZ6sJRFsajNDLCVONggq/A5/xqi
+	 LUnufj5LsIRLFp3Ma7c+ibwWt4CcTHoF13HY9X9HiHeYbBuj4ywUak9cCP6hbCQP9a
+	 7TH27LTZ45wtXfByAFiCpx1o6443elFF6RyNxO9/bAsy/RowXOH3BDXKPqN9oU1yFL
+	 EXmfe2Q+W4P/w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD9CACD4F21;
+	Tue, 12 May 2026 11:29:54 +0000 (UTC)
+From: Pawel Laszczak via B4 Relay <devnull+pawell.cadence.com@kernel.org>
+Subject: [PATCH v4 0/2] usb: cdns3: support configurations without DRD
+ block
+Date: Tue, 12 May 2026 13:44:23 +0200
+Message-Id: <20260512-b4-no_drd_config-v4-0-7b4e5dc96f81@cadence.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 13/13] ASoC: qcom: q6apm: Add support for early buffer
- mapping on DSP
-To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>, broonie@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: mohammad.rafi.shaik@oss.qualcomm.com, linux-sound@vger.kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, johan@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, srini@kernel.org, val@packett.cool,
-        mailingradian@gmail.com
-References: <20260402081118.348071-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260402081118.348071-14-srinivas.kandagatla@oss.qualcomm.com>
- <7f10abbd-fb78-4c3a-ab90-7ca78239891a@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <7f10abbd-fb78-4c3a-ab90-7ca78239891a@oldschoolsolutions.biz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEyMDEyMSBTYWx0ZWRfX1fPSUTvuQ8t9
- gFSB0K3d+l4M6IqYXdJwlb1NhZyd/GZyCPpNICB0u81wjGx18bDrrUVrvNIHZGYEUirNSLx3OfT
- 9qBdprG0whteTgxpgu2qC8V18AprP1p+Q/qOypWlhSLpAleqQ9u6KsV9G3QxAPP8O8OAO32TDyL
- Z2hpDLzbA+dUHEWgWSgwZh5cpticg8L6dAMKyUb1Zx1QdDDT7QG4tIbReIgkn670kOdfKD0knIc
- 0Y7btU6o/iK2F7KkmzmI8hmmjO31Xzc+gSK60oSzMSa3syBUbvSEM00vPdK9+tLMfC5HCSQP56h
- PRyGowqLUq2x9UgNaZ3METAE4sOwvT1ptUFxQ+wmJM0WnzVKEzrJTnwUQGsqeqEVgMlJx8nBSLl
- kBevaGlCeRtpAeQ0p0EUk7w6NTGJRC/m7RdSTzqCFN3raenjKKQztj25JwPd3F8Q6pt7lbygoE5
- 0S6DjfxUL2ktXZZhDUA==
-X-Authority-Analysis: v=2.4 cv=bpB8wkai c=1 sm=1 tr=0 ts=6a031283 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=EUspDBNiAAAA:8 a=uTuHR2d3_KI6eGJ4HmgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: xq84f3ewwNGqrpkjq9SYMvy9UvNkxi-K
-X-Proofpoint-ORIG-GUID: xq84f3ewwNGqrpkjq9SYMvy9UvNkxi-K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 impostorscore=0 clxscore=1015 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605120121
-X-Rspamd-Queue-Id: 54ECC51F8C7
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJcSA2oC/yXMzQqFIBBA4VeJWV9B7Ye4rxKXKJ2puQsNrQikd
+ 89q+S3OSRAxMEb4FgkC7hzZu4zqU4CZBzehYJsNWupG1kqLsRLO9zbY3nhHPAmqS0mKVGPbAXK
+ 2BCQ+nmX3ex238Y9mvT9wnhcpbZYHdAAAAA==
+X-Change-ID: 20260512-b4-no_drd_config-f530f1f16d8a
+To: Peter Chen <peter.chen@kernel.org>, Roger Quadros <rogerq@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Pawel Laszczak <pawell@cadence.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778586339; l=2828;
+ i=pawell@cadence.com; h=from:subject:message-id;
+ bh=Ap2n3+be6TwO7fDuUNeJi0Sg+7nDWteXGcPxj6IU1bk=;
+ b=T4/RaDtfS5lY0xDKNmKMfmLQh0IHs7fuKR/oNyggrCGl1HyFrqnDv5Bv+qzz+J1XUjg8a2M3V
+ ybp0J2CuM5yDMrksT2ekwXaHbLd22jTZrh/t66Cdl7TSfVxasSuQ06z
+X-Developer-Key: i=pawell@cadence.com; a=ed25519;
+ pk=EUPBvLO9CDg7j6defeDl2iqi+z5Ivqu4Z46aiqe7dYc=
+X-Endpoint-Received: by B4 Relay for pawell@cadence.com/default with
+ auth_id=707
+X-Original-From: Pawel Laszczak <pawell@cadence.com>
+Reply-To: pawell@cadence.com
+X-Rspamd-Queue-Id: 2DED751F588
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com,kernel.org,packett.cool];
-	TAGGED_FROM(0.00)[bounces-296189-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.0.1:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-296180-lists,devicetree=lfdr.de,pawell.cadence.com];
 	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[pawell@cadence.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On 5/12/26 5:09 AM, Jens Glathe wrote:
-> On 02.04.26 10:11, Srinivas Kandagatla wrote:
->> Buffers are allocated on pcm_new and mapped in the dsp on every
->> prepare call, which is inefficient and unnecessary.
->>
->> Add new functions q6apm_[un]map_memory_fixed_region to map it on
->> to dsp only once after allocation.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
->> ---
->>   sound/soc/qcom/qdsp6/audioreach.c |  60 ------------
->>   sound/soc/qcom/qdsp6/audioreach.h |   5 +-
->>   sound/soc/qcom/qdsp6/q6apm-dai.c  | 107 ++++++++++++++++++---
->>   sound/soc/qcom/qdsp6/q6apm.c      | 151 +++++++++++++++++++-----------
->>   sound/soc/qcom/qdsp6/q6apm.h      |  14 +--
->>   5 files changed, 202 insertions(+), 135 deletions(-)
-> 
-> Hi there,
-> 
-> I had to revert this patch from the series to get back working sound on
-> sc8280xp (Blackrock) on 7.1. And hitting the right patch was pure luck,
-> tbh, since I integrated the series on 6.19 and couldn't apply the last 2
-> cleanly. But figured these are cleanup/refactoring and left them out.
-> 
-> The errors I'm getting on Blackrock are these:
-> 
-> Mai 11 21:26:32 volterra kernel: q6apm-dai 3000000.remoteproc:glink-
-> edge:gpr:service@1:dais: Audio Start: Buffer Allocation failed rc = -22
-> Mai 11 21:26:32 volterra kernel: q6apm-dai 3000000.remoteproc:glink-
-> edge:gpr:service@1:dais: ASoC error (-22): at
-> snd_soc_pcm_component_new() on 3000000.remoteproc:glink-
-> edge:gpr:service@1:dais
-Could you please test this change on your setup and let me know if it
-helps? If so, I’ll send out a proper fix.
-This is a workaround for a known issue, I will add more details in the
-patch that I will send once we know if it fixes the issue.
+usb: cdns3: support configurations without DRD block
 
------------------------->cut<----------------------------
+This series adds support for Cadence USBSSP controllers in hardware
+layouts where the Dual-Role Device (DRD) register block is either
+missing or inaccessible.
 
-diff --git a/sound/soc/qcom/qdsp6/q6apm-dai.c
-b/sound/soc/qcom/qdsp6/q6apm-dai.c
-index ede19fdea6e9..8a1a3d8a3398 100644
---- a/sound/soc/qcom/qdsp6/q6apm-dai.c
-+++ b/sound/soc/qcom/qdsp6/q6apm-dai.c
-@@ -497,7 +497,7 @@ static int q6apm_dai_pcm_new(struct
-snd_soc_component *component, struct snd_soc
- {
-        struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-        struct snd_pcm *pcm = rtd->pcm;
--       int size = BUFFER_BYTES_MAX;
-+       int size = BUFFER_BYTES_MAX + 4096;
-        int graph_id, ret;
-        struct snd_pcm_substream *substream;
------------------------->cut<----------------------------
+In such configurations, the controller is hardwired to a single role
+(either host or device) and the driver must skip all OTG/DRD register
+accesses to avoid bus errors or incorrect role detection.
 
+The solution introduces a new 'no_drd' property that can be passed
+via DT or software nodes. When set, the driver:
+1. Skips DRD register mapping and IRQ requests.
+2. Uses a different BAR indexing logic for PCI-based configurations
+   (32-bit addressing layout).
+3. Hardwires the role based on 'dr_mode'.
 
---srini
+Signed-off-by: Pawel Laszczak <pawell@cadence.com>
+---
+Note: This series is based on current linux-next. I am aware of Peter
+Chen's recent refactoring series ("usb: cdns3: plat: Expose platform
+core driver as library"). Although there is a minor conflict in
+cdns3-plat.c, Peter has already provided an Acked-by for this version.
+I am happy to provide a rebased v5 as soon as Peter's changes land in
+linux-next if required.
+---
+v4:
+  - Added DT binding documentation for the 'no_drd' property.
+  - Relaxed 'reg' and 'interrupts' requirements in the DT schema (minItems 2)
+    to allow configurations where the OTG/DRD register block is missing,
+  - Moved PCI_DEVICE_ID_CDNS_UDC_USBSSP from pci_ids.h to cdnsp-pci.c
+    to keep the global PCI ID list clean.
 
+v3:
+  - Improved descriptions and comments for better clarity.
+  - Introduced the 'no_drd' property to indicate missing DRD register block.
+  - Added support for fixed host-only and device-only configurations.
+  - Ensured cdns_otg_disable_irq is called only when no_drd is false.
+  - Updated cdns_drd_gadget_on/off to ensure PHY mode is correctly
+    handled even if DRD is disabled.
 
-> 
-> Since I'm way out of my depth here, I won't cite from the Great
-> Hallucinator's analysis. Only reporting that this refactoring breaks
-> sound on sc8280xp.
-> 
-> with best regards
-> 
-> Jens
-> 
+v2:
+  - Changed otg_irq to be optionali.
+  - Added cdns->no_drd check in cdns_power_is_lost.
+  - Added cdns->no_drd check in cdns_get_id.
+
+---
+Pawel Laszczak (2):
+      dt-bindings: usb: cdns3: Add no_drd property
+      usb: cdnsp: Add support for device-only configuration
+
+ .../devicetree/bindings/usb/cdns,usb3.yaml         | 13 +++++-
+ drivers/usb/cdns3/cdns3-plat.c                     | 26 +++++++-----
+ drivers/usb/cdns3/cdnsp-pci.c                      | 47 +++++++++++++++++-----
+ drivers/usb/cdns3/core.c                           |  3 +-
+ drivers/usb/cdns3/core.h                           |  4 ++
+ drivers/usb/cdns3/drd.c                            | 44 +++++++++++++++++++-
+ 6 files changed, 112 insertions(+), 25 deletions(-)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260512-b4-no_drd_config-f530f1f16d8a
+
+Best regards,
+--  
+Pawel Laszczak <pawell@cadence.com>
+
 
 
