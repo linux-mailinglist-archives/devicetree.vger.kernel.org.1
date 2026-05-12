@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-296348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296350-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MF3HHjxbA2pu5QEAu9opvQ
-	(envelope-from <devicetree+bounces-296348-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:54:20 +0200
+	id MKwKI3lcA2qE5QEAu9opvQ
+	(envelope-from <devicetree+bounces-296350-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:59:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DB8E5252F6
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:54:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA125254C4
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:59:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4EC79309D6B4
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:47:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 249343151487
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74073A48E6;
-	Tue, 12 May 2026 16:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26373D5C21;
+	Tue, 12 May 2026 16:47:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from de-smtp-delivery-119.mimecast.com (de-smtp-delivery-119.mimecast.com [194.104.111.119])
+Received: from de-smtp-delivery-119.mimecast.com (de-smtp-delivery-119.mimecast.com [194.104.109.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6983D5C29
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 16:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.104.111.119
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C736D3D5C38
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 16:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.104.109.119
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778604462; cv=none; b=jMSurnZcwbUSsLSynRNcK8qBeSBRElZGdHga9Jqvgfq7LBQRgdaP/ccDGWj/tIRHr01sCpjX/+M01HwIskuxhpCtCqngymQGmwhqTwZ6DFlTY8CjWhz2EOeRu6YJGbPYTIgmN2R5lTkFnxwFGbdlohkUZEE8QMS4Zdve5ud+NnI=
+	t=1778604464; cv=none; b=Js4AXDpQXLKTFGdR7xrVIsDyU69uBHqyCbbTcwNmCRiHhv1Pe61rDvhvxgHL2H+RqfM86eEYicHs9WYK5VRSKNnEU98/2ewctZGERiR6GghUg1Y63siaQdD+btzrmyTLERq0/VMU5qf9/lXZs8T+ZFt59DT9qQ7lDIcPQFNVM4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778604462; c=relaxed/simple;
-	bh=dr+q5tiwopwpbYxwHpOQDnpG1mzXIUQan63v38YsW5I=;
+	s=arc-20240116; t=1778604464; c=relaxed/simple;
+	bh=tatYLivVqS3jBoNdPZnEmGWqRFA2IrwsEOYWWh8vVx8=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=g2hG357uAKH93a/D9npaCd4/kOahdRMW6CIupglF8iR6k0Uaed3qxlaEetB5URmcEaJHSDIxvqFVdJusMe+p23BQvOgrrTZtNpyNZrg3KxY2UzMGr5VjBtsUOA2CEEXy3+/aWCjaN0BzphK7XYo9zFNHmhjKuLJqYyEjlcCtrL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com; spf=pass smtp.mailfrom=data-modul.com; arc=none smtp.client-ip=194.104.111.119
+	 MIME-Version:Content-Type; b=UP4bgZ3NNbBD7gu176YWHgtbesz4Vbl0i4/QLN3Ay3k9JVJqXSgpGO/tkw8ZxFMzJMctpUy5/IvtdzsB193xO+SScoZVFlObqTU9KcJOxBZl9GHEUFMePud/kIcA6INEPUTZ41difdexpQtCiFTXHhKAqiUxg+wBYznbHhvUytM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com; spf=pass smtp.mailfrom=data-modul.com; arc=none smtp.client-ip=194.104.109.119
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=data-modul.com
-Received: from GVXPR05CU001.outbound.protection.outlook.com
- (mail-swedencentralazon11023141.outbound.protection.outlook.com
- [52.101.83.141]) by relay.mimecast.com with ESMTP with STARTTLS
+Received: from DB3PR0202CU003.outbound.protection.outlook.com
+ (mail-northeuropeazon11020133.outbound.protection.outlook.com
+ [52.101.84.133]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- de-mta-110-oV3G1j-LMF-dHkCm5h90dw-2; Tue, 12 May 2026 18:46:27 +0200
-X-MC-Unique: oV3G1j-LMF-dHkCm5h90dw-2
-X-Mimecast-MFC-AGG-ID: oV3G1j-LMF-dHkCm5h90dw_1778604385
+ de-mta-132-IJLfOKF6MiGUF5uA612Yxw-1; Tue, 12 May 2026 18:46:29 +0200
+X-MC-Unique: IJLfOKF6MiGUF5uA612Yxw-1
+X-Mimecast-MFC-AGG-ID: IJLfOKF6MiGUF5uA612Yxw_1778604388
 Received: from PAXPR01MB8486.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:227::10) by DB9PR01MB7308.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:21b::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10a6:102:227::10) by VI0PR01MB11487.eurprd01.prod.exchangelabs.com
+ (2603:10a6:800:2a7::22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
- 2026 16:46:24 +0000
+ 2026 16:46:26 +0000
 Received: from PAXPR01MB8486.eurprd01.prod.exchangelabs.com
  ([fe80::5adb:b6ca:f689:1ac6]) by PAXPR01MB8486.eurprd01.prod.exchangelabs.com
  ([fe80::5adb:b6ca:f689:1ac6%3]) with mapi id 15.20.9913.009; Tue, 12 May 2026
- 16:46:23 +0000
+ 16:46:26 +0000
 From: Boerge Struempfel <bstruempfel@data-modul.com>
 To: Marek Vasut <marex@denx.de>,
 	Andrzej Hajda <andrzej.hajda@intel.com>,
@@ -68,14 +68,14 @@ CC: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Boerge Struempfel <bstruempfel@data-modul.com>
-Subject: [PATCH 1/2] dt-bindings: display/bridge: lt9211: Add drive-strength-microamp property
-Date: Tue, 12 May 2026 18:46:08 +0200
-Message-ID: <20260512164609.3390700-2-bstruempfel@data-modul.com>
+Subject: [PATCH 2/2] drm/bridge: lt9211: Add drive-strength-microamp DT property
+Date: Tue, 12 May 2026 18:46:09 +0200
+Message-ID: <20260512164609.3390700-3-bstruempfel@data-modul.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260512164609.3390700-1-bstruempfel@data-modul.com>
 References: <20260512164609.3390700-1-bstruempfel@data-modul.com>
-X-ClientProxiedBy: FR4P281CA0444.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c6::6) To PAXPR01MB8486.eurprd01.prod.exchangelabs.com
+X-ClientProxiedBy: FR4P281CA0437.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c6::7) To PAXPR01MB8486.eurprd01.prod.exchangelabs.com
  (2603:10a6:102:227::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -84,74 +84,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR01MB8486:EE_|DB9PR01MB7308:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f604391-3b64-4e27-f040-08deb046004f
+X-MS-TrafficTypeDiagnostic: PAXPR01MB8486:EE_|VI0PR01MB11487:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ed5856e-5140-4dcb-03fc-08deb04601dc
 X-LD-Processed: d72fb47f-f4be-4915-91c7-ebd53299157b,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016|921020|3023799003|22082099003|18002099003|56012099003
-X-Microsoft-Antispam-Message-Info: +TrCGMWmXGcegAD0nk/6nTmBCi04qhIaIIkoatXsvIwCYogaBoyu4amCEuaM3uObwzmvixJlfZ61UgjRDkLkmlIfBlopZyDW7Q7Mavzblhihm00U8fWK7ucetEHIFUvfNpXgEA6Rw5qb8pDKF1d78Cel4hJsaN4xl1tWQUTM5WDGtV1fDaKWVcRUpA92U7qd2X6/h9ITS9Xu3hxg1phn4ymEPSu0v9VTqTH0AaDpHfoh5mNRBmr0rOQnmk4+xjYnEAHvfjEaY+OFaYMD3PVGUXHMM9My153IWa/Jbtll9Tb7enL9Xi+KwQLiweJ52zRGK8E7lWlPAlToggDfm/QWOenFbO7UhPcwZqD8VuiFPIVG4CdnhaZoLZIYA6o6/LAgRNrKN/ZxNxwHYPFG17VYcBvw8pnLZuVH0V2YlVRxC+z4KktOp4Ni5XDWOWUvz6fctTgCNNfMbOHZMTBUUid6yQx6Qc8xuaLOXdnDDJU9U7oGzdY6eIdTDWhxulRPpKx1MzvMrOilED5ArN6ZC0VFKVTQgAsSPacO6rYfOPUKG0WqoCn6Z9uRZKs5DKaBZ+EKdMmi574HFhp+HwiNXDDZ2eRzGHiuwwVDWDC7mUc312gcr0F8w0SB61yTW+5Mpqi9TL7Sm3DpGG5mMnje9Rgq5AfhJM+rgIpp4IfRkYQXlKRUc0rQwY8252l5Pnf33Q+ujlPIe+2iEjJZD9BHfc07WUu++aFDfif4ZJw5KYJWKUI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR01MB8486.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016)(921020)(3023799003)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016|3023799003|18002099003|56012099003|22082099003|921020
+X-Microsoft-Antispam-Message-Info: HLngR8imnI631SndFncy9IU6CxjwKteqnKgOT+0Qoc085VvzntfioYcxGnPMCreZahMRgN8TQ49APqSup7cQPZkV/SCDuBo+Uu6dLL/lxvojgqQmYYqp3unvvTOZfQUIJHsdxVOHTTFXrE6HQ2bptZrGFT8mVAIgtHCyjBQTBzan5NmrqRGEW3x0dtjkTnvhexNzeuO/9KtqoiC72ZBCwyTXCXwvRexpTfGxwjlvaAtWEwYzmJ3y9dsw/HbNFvhkbWx7xc+Ul2Iz5Dns2LoUUzCt8wPGGr7TMJeQJM1PmU3BfdhOoW3LJ19X5/hlfj4n8HrC2MX7cwl8qvEiDFLSg8sEtXfxgQHk/r7I+kzFoOwMPfWOpOkDA4DVP6ZanoHWvBtd7Kj8Vl2PkZ9RfHxtU5LsBAgjL/p/Se2oieQgu5LJO7D3hY7bO9KJl9JkukEMVl8jTa6wMiSiMaC/FNCeS+sNTONNb00+UxL3UmObZHbxqqRqzK4mi3iPLCGvpAOZnnTMy9hKhMcbXqd1gBAbvBWdFEWtoU4ysnzwnbWawxZjwmZaY2JkW9k024ACvF1v5GMGqP8vv8n11GDh/fpOQDe9JwQQDTZ2kF3Vf0oLFaXD/qXH5oja1kQNxhiAuO9Q5Bhl2UZ9BnpkKk/HCg6Dq+5MWQxSGHuVjHAgR97SGqhC4zWm42RUpwwrfr99p5FAlAFCIQIZ8g+yyE9tJS3tGkMguN735j9uC9I/z8K72vk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR01MB8486.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016)(3023799003)(18002099003)(56012099003)(22082099003)(921020);DIR:OUT;SFP:1102
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DlAm42SuDS222A13HoId42uEXxVK4kzrq9kIt/8hK81vSL6dsFhtoTsxhpqj?=
- =?us-ascii?Q?pPrfxhITX4E91+HkUyqodZuwvNAfx3dqQt75BPJcKe0ZaeQLxEo8o1ZGM41y?=
- =?us-ascii?Q?hfS3Deb63gxohLqGoeZd6JnT2xytNKrIbacTeEsn6e2h84ohVaKPIITtQOW+?=
- =?us-ascii?Q?26909yFu+QeZ/8ReqdUy4au2eI4eSbgeUxYxrGfS2t+mIT/pk8sww8CMrstF?=
- =?us-ascii?Q?FAVz66fFJgVrtHNOKYnQPE5hCpOapRyYSrFV08YiICBDe9TA9T1r1ZxWk3lZ?=
- =?us-ascii?Q?HtMltJlLNmm6KwrEITvw6IPBf0OJJslibVfssrcpoyfWa8PZ2Xof5xFvceTH?=
- =?us-ascii?Q?kZA/pVWeDsoq0B1PsdB8YwzzZoSBYjatjdWbAken6kU7maZ4QSz5UzTupbI3?=
- =?us-ascii?Q?62QxYQtc3OlZm1KTyqYFiWuWFYuNbBfVnBfHKDpEN1kQIXBmMtUTaiJaQSQC?=
- =?us-ascii?Q?XELSuQiu4yKImFSCzjDeVocD1T1JnA7y1Q1JkdBU/dW48H7Rgw+Zqb6CPxRp?=
- =?us-ascii?Q?jZlQqv6jdEuOK8u3GNJe1UnhDS+djw7q+S79ZOaw0WhsZ736m/9wETUfFze+?=
- =?us-ascii?Q?YREAph0HSyDHnevnFpjC12/OIA9vd8imWOM4fGKn6w7iQFK/XM1asO3NtFd6?=
- =?us-ascii?Q?nCqZsM87XkCW5k5uxNI249b1yKGs6dqaUwiJUKjYv4Y8Ct55m92Iap0HUwCw?=
- =?us-ascii?Q?pjMbYOI/nI++rPiFfhU7sb5e/McmJhTIYeycQhMuOAm4PWxZdE3W+S4LB63/?=
- =?us-ascii?Q?WK0ARdi/qlwE27jnXdFVgptSLUg/YqzB+T3s9d8BtKMn9WeYj5aCPJquRHeH?=
- =?us-ascii?Q?aXkQN6yLzvojfwVED6+U5DexLmFh0Llvc8kuBtjq459eIqBlq/NLSnhLp3F+?=
- =?us-ascii?Q?8J57eOqCagWc6gNJ/c02vaZJP/YRj47mjAj/kXAqQAJJbq2aguX2Bn7IjTmq?=
- =?us-ascii?Q?0+brDIuEY4pcwwLAbbWyGGTHFhwwlcEIoioOctYRElDtCgohEQfIBKL7s9Iq?=
- =?us-ascii?Q?ZtoQaJUGlQAwniThTtSFeb/zZJ9YOpHYZfcSz14KomXsyaCqW3bP4cMpEVj7?=
- =?us-ascii?Q?M0Ixs8NMLgciOS5lLxUEeIHD5TmdZbiEuPHub4cVzU2A3ZsoEC2HuARABV8I?=
- =?us-ascii?Q?23QeIm1tzcBXNgOOsb2a7Nrjr9U+v7gjX4u94mZMu1X3fmtIAsmL67RsG8LC?=
- =?us-ascii?Q?82qamv0unPXUzPLp9kY0poEP5vPdiKQFayiBIb8f9mtO+FQG1A2aCbbLc6Sd?=
- =?us-ascii?Q?+yVaZRnokU29S69PCK9jdN48CxmHsSZwdmvK6xYEzeAp5A4w0yeQwIt/Zojx?=
- =?us-ascii?Q?K4bg8gs231OIws7Y1U+6OfvsAzZhMKBM6JD6LYmw5Wnxvi4heK7fLSyLPyLV?=
- =?us-ascii?Q?caGJ5a/XZI3sOez7DfvzR5385qUwgSs+/oZWWNPTPj8k3fD6KgOqv+5f0Pty?=
- =?us-ascii?Q?AgeLwOu78lz095qmDA0GMw4XgdjfhqcRwkkHwZmF1hP8WzwgzV9DwHS3J9W7?=
- =?us-ascii?Q?JTR4qJjuc5KRXWWOb5LeTOkLjxwvCe+ruv2NDfwGqFPPRz2A4r7G+8ohelPA?=
- =?us-ascii?Q?1Vrw+socBR9VAuLfTuuJrxMqRsYWVgbMNJwmXrJ+Hzu/rkhpYQ2xeNz6gopm?=
- =?us-ascii?Q?ewsjKKJfVS1HPHuLY9VdZ5eracCc4HN6GjQ4vVfHzULBtHXVtsxpWJP/tCN8?=
- =?us-ascii?Q?TOhzdcvR8Fa1rT36Jjs55/FKf7dD8Z4h5/6lom5AByRfutlLpOPbhHXlB6aG?=
- =?us-ascii?Q?yTCDuS0QIgB/DrDPjHyp6Par73IpFG2ebA5Em7jFt88YN0fr65dT4jFKtIsM?=
-X-MS-Exchange-AntiSpam-MessageData-1: 4r9HIS+jaSvk2ScuC+4eqg8RkamHRDwAsUQ=
-X-Exchange-RoutingPolicyChecked: giFB01hqNHVcMoztDp/Dbc9ha/h0krgVdt5hT89Fgdxbnyl6fDckcmXalJi0wazu6fMowZgAsBsPwYBS7ZjOJfJbc4sxvp+8v/z9QwwrMSffDKi3KvJBbOs3jF4Sy/CxOjV090VGWyXha7t9NPYjiAxozaaGC0HXxiT2l9CZ4kpEA/KIjCHWQJN5GhE3R0oKKiiLzT2NJpQ0VnZiZ/leKBR+mYZf7yvmf2M3y+l5jix8RV8mhmkTAwhvoBXBwvlTsDu7VUxq16WVc9db4qqytCI0naeKNxxuUzCXWemxqynrJgDJf5Yj8ZPwa7qHLZ1ddPGfuS93IEnrKmxYH8yH/Q==
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gdOqD2bHJ5ag7WJEAfNtDmU2IxGoJHlRczb6wsTk0vvVadXm/5DomWBZczvL?=
+ =?us-ascii?Q?Jqumwu5SZqmue92pZIOb+OIhdh9HYzq5YzLR4+MmSTypebywuZDw6Z5fPKIk?=
+ =?us-ascii?Q?XmNmIBo8oYHfgVDpyvfrcKqDxDi+Rc2X29QIYZaHIljtoFIawzAAP4JvCJuz?=
+ =?us-ascii?Q?stEtB/3jYeVwyHZ6HM7rBwpRs5jijuPl4MP05C8yjvG5T4c2Kpy/mgvuqa/V?=
+ =?us-ascii?Q?YQwAY291jjT1t6YplR0iOnq7bIJIS79Mh+7MY4rWYLxj8ywXrRhlWk6vrw0r?=
+ =?us-ascii?Q?2xfNPQRL3zLBcg4oMfufH+OUTG4mO35Nv7gL66OIeCuc6N4QdcrnjAydHFrs?=
+ =?us-ascii?Q?WpexRbJNMEs8clDL5sh8Bcr9X1Y1YeYtIrKKN0H7pkbmc5LozwBv1d9Mppc3?=
+ =?us-ascii?Q?zwSwIM1pYeALjnGqCwrgpaCm0pcdGpTmBhkAW9v4mpgdN+6nH5fZ05jWUg5U?=
+ =?us-ascii?Q?D424etTZILZJ6k6WPP5IspREFFXJakDf0vSUo6ZVHO3+R7erhup0YyEruGD3?=
+ =?us-ascii?Q?3gVFIXNFFtJuf8gzS6heCnT7j1T5gooApDf3ZtIfm9sEkB0gN6TjQqp7AoNp?=
+ =?us-ascii?Q?ge8uFNQ0zVGQlN2Ve3oojJ+HsmW0Vca5rIKV4XmVFNC7gkGooXk/FTRrGL1p?=
+ =?us-ascii?Q?uin86q8Zp2FNJ1Z7BRq8imZbgi3uq/yqx4GunrC0dU2LJTcG8L2S8d9bVpG1?=
+ =?us-ascii?Q?Dmk7cT9S/ECtXw08BtA+I8wg+YhyTuUi5sPtD2MVG/dDvjs2YMLn2j60c2qA?=
+ =?us-ascii?Q?BYzIiaacciyoq2mcVtcxE5lzAzM0amF09EIt/Ra/QNCx+i02Y0YPL5CNvybs?=
+ =?us-ascii?Q?ToU2TzP0Xko2Z/81UqLzuWsX6L/gtfO80L0lY2J33CLdNrhifej0Tn0UZCf1?=
+ =?us-ascii?Q?KPqWLmrL7TkcEB2HUDXnPG8x1fm8Lh9945PXjPRPfsDNotKBaUo0aWjl+6Pa?=
+ =?us-ascii?Q?5dVpWnYIniJQebdjgNRwUcDkcxuZzIADQauiUeDCL9HvLVjbzpiAzQGztTPI?=
+ =?us-ascii?Q?cGJ0tqQEJ+47BvSC4q7NDlTjVdbFW+nkGuZtCA62968rUn4PAvtjinyyaq30?=
+ =?us-ascii?Q?hGZEWHfyNgFACoap8G4mKvZjOPS2Q8L30PUGPcKQOkBFe+tbxk0KnRZnK2qy?=
+ =?us-ascii?Q?idlTK3hLYlq/ZrrQKRztfDAMhV+C47ow65xhIJRTvd174kx8ZHT1TfcgzP5N?=
+ =?us-ascii?Q?haHfn1IxvCFJfSF+VGPbOzIP9PnhiOlm1XOj6i1z0qF+kTNWwuMYwY0FYH9K?=
+ =?us-ascii?Q?CnaFEGRd2JgKX3Tn5UYV2DagMxyJqM8abe2deWcxRl1xHoGJgE+jIxKTSvRG?=
+ =?us-ascii?Q?sTSzSs7x0e9AdKCcmdbgLXz+I3QkBiltg1854TkpWGK4jXhP3y8YDEHxdpr8?=
+ =?us-ascii?Q?oDTUMP5JSP20g6TjfLS3EsHkZPYdcJnejgcdtPzv6sspwd7zf4bpAyEf5dkt?=
+ =?us-ascii?Q?nHUkQQR5SxFFsrySchGXAnZjSkXc+bmbI8ngckNVqqWX6W68KNvKiwMh7xFz?=
+ =?us-ascii?Q?7D/JWGb5TjtMFc0fhDTvMTomrLCHVmx0ZNtjANlYyo2QxjvGJpW2SI4WrOP1?=
+ =?us-ascii?Q?x4OFPV0HqXR9cfxcTqtHMDH94Hy5B1t7q1mKE/h2Fwi5Pe8Q1HZT0b/JU5sr?=
+ =?us-ascii?Q?rHk8PIJqjztty8+abA0y4ZVWPORmizR5AKf60Mp6/hMDFbfpDxgz57k3BQ+F?=
+ =?us-ascii?Q?hIkUOZhiCjM62cJT7J8udqocBvMeIF6gFFYJEJBxxlI7YRBGISlZj5rG5uKa?=
+ =?us-ascii?Q?HFYb9jKEKfWAwvsdsT5ng4i/V/8q4Ry6rq9YD2ElXW2E74231Vi8jOaDkDUC?=
+X-MS-Exchange-AntiSpam-MessageData-1: a0mIuK0NJ3Qg1MjNKmPyyL53APcgbVk4QmY=
+X-Exchange-RoutingPolicyChecked: oFjxVSst+UPu16oh059VrGSMICiIk5zK/ISZ7d8F2tI+wQ/kNxWxDjNFqwxcV135M1460w18UnSDfk+Aq4eAcfchlYWGo+UVEveoA5mZY4//0IXD0hLRH86SMjMZExcPY1Ne9PewM/56OgnnpLF90bs4IJyIykGUlauHXLTjm3NWjp/8F0SaG/FKJBIP5mPZtAWHNjRjXsVhLdT3+YkRm7Ex0CgDUm+dOMrD7orhEGushWbVdGolzmwAKl3kGWHmVmMtZlCQ1mCKlNA1eG893QHFM457pWadc/xt+YnRg9WpBv5IMEzE7i/upN+B1Fc9wdx+jtMEXoJN+jL19dwHFQ==
 X-OriginatorOrg: data-modul.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f604391-3b64-4e27-f040-08deb046004f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ed5856e-5140-4dcb-03fc-08deb04601dc
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR01MB8486.eurprd01.prod.exchangelabs.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 16:46:23.4430
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 16:46:25.9795
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: d72fb47f-f4be-4915-91c7-ebd53299157b
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uKNOiEw6UdE5l5GGyG5saqGrTzWjN6tX9yoFtE+eAQ+ZsHFF7/ExiSktsG99EAQrUkKFxy+XSOoQI/qHme6ifrWjo0EQGV+Sh+zgf+Hblak=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR01MB7308
+X-MS-Exchange-CrossTenant-UserPrincipalName: BNY7Wj8HmVWPEMMR9Lmp1WO6nPObr+z5dv8gLINmuE2LcBRo1qCz00BpR4Pv7uisDHMEIqZYD/JaptJCUG9N6jNFcVaK7KxiTR2h4xul2Y8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR01MB11487
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: y4B7AJqOcLRFSRpW8gpfgvEGabmf1YeAXHVg4bhyoIQ_1778604385
+X-Mimecast-MFC-PROC-ID: MW8umYY5HOH1t2CcQTlnoLouaBy_-qDX2m0y2Va8CS0_1778604388
 X-Mimecast-Originator: data-modul.com
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=WINDOWS-1252
-X-Rspamd-Queue-Id: 3DB8E5252F6
+X-Rspamd-Queue-Id: EEA125254C4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296348-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296350-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[denx.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -159,47 +159,106 @@ X-Spamd-Result: default: False [1.04 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[bstruempfel@data-modul.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.928];
+	NEURAL_HAM(-0.00)[-0.931];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,data-modul.com:email,data-modul.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[data-modul.com:email,data-modul.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add the 'drive-strength-microamp' property to allow board DTs to
-configure the LT9211 LVDS TX output driver current. Sixteen discrete
-levels are supported, ranging from 12 uA to 36 uA. Defaults to 25 uA.
+The LT9211 LVDS TX output driver current (RG_MLTX_HSDRV_ISEL) was
+previously hardcoded to 0x8 (~25 uA), which may not be optimal for all
+board layouts.
+
+The hardware supports 16 discrete current levels starting at 12.5 uA
+with a step of 1.5625 uA. These are exposed as rounded integer microamp
+values in the lookup table.
+
+Add support for the 'drive-strength-microamp' DT property. A lookup
+table maps the sixteen supported microamp values (12..36 uA) to the
+corresponding register field. Defaults to 25 uA when the property is
+absent, preserving the existing behaviour.
 
 Signed-off-by: Boerge Struempfel <bstruempfel@data-modul.com>
 ---
- .../devicetree/bindings/display/bridge/lontium,lt9211.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/bridge/lontium-lt9211.c | 28 ++++++++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt921=
-1.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.ya=
-ml
-index 9a6e9b25d14a..381b69c761b8 100644
---- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
-@@ -31,6 +31,13 @@ properties:
-   vccio-supply:
-     description: Regulator for 1.8V IO power.
+diff --git a/drivers/gpu/drm/bridge/lontium-lt9211.c b/drivers/gpu/drm/brid=
+ge/lontium-lt9211.c
+index 03fc8fd10f20..402c639ac515 100644
+--- a/drivers/gpu/drm/bridge/lontium-lt9211.c
++++ b/drivers/gpu/drm/bridge/lontium-lt9211.c
+@@ -40,6 +40,11 @@
+ /* DSI lane count - 0 means 4 lanes ; 1, 2, 3 means 1, 2, 3 lanes. */
+ #define REG_DSI_LANE_COUNT(n)=09=09=09((n) & 3)
 =20
-+  drive-strength-microamp:
-+    description:
-+      LVDS TX output driver current. Sixteen discrete levels are supported=
-,
-+      corresponding to the following nominal values in microamps.
-+    enum: [12, 14, 16, 17, 19, 20, 22, 23, 25, 27, 28, 30, 31, 33, 34, 36]
-+    default: 25
++/* Maps register value (index) to drive-strength-microamp DT property valu=
+e */
++static const u32 lt9211_hsdrv_microamp[] =3D {
++=0912, 14, 16, 17, 19, 20, 22, 23, 25, 27, 28, 30, 31, 33, 34, 36
++};
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
+ struct lt9211 {
+ =09struct drm_bridge=09=09bridge;
+ =09struct device=09=09=09*dev;
+@@ -50,6 +55,7 @@ struct lt9211 {
+ =09struct regulator=09=09*vccio;
+ =09bool=09=09=09=09lvds_dual_link;
+ =09bool=09=09=09=09lvds_dual_link_even_odd_swap;
++=09u8=09=09=09=09lvds_hsdrv_isel;
+ };
+=20
+ static const struct regmap_range lt9211_rw_ranges[] =3D {
+@@ -374,7 +380,8 @@ static int lt9211_configure_tx(struct lt9211 *ctx, bool=
+ jeida,
+ =09=09/* BIT(7) is LVDS dual-port */
+ =09=09{ 0x823b, 0x38 | (ctx->lvds_dual_link ? BIT(7) : 0) },
+ =09=09{ 0x823e, 0x92 },
+-=09=09{ 0x823f, 0x48 },
++=09=09/* bits 3:0: RG_MLTX_HSDRV_ISEL, LVDS TX driver current */
++=09=09{ 0x823f, 0x40 | ctx->lvds_hsdrv_isel },
+ =09=09{ 0x8240, 0x31 },
+ =09=09{ 0x8243, 0x80 },
+ =09=09{ 0x8244, 0x00 },
+@@ -629,7 +636,9 @@ static int lt9211_parse_dt(struct lt9211 *ctx)
+ =09struct device *dev =3D ctx->dev;
+ =09struct drm_panel *panel;
+ =09int dual_link;
++=09u32 microamp;
+ =09int ret;
++=09int i;
+=20
+ =09ctx->vccio =3D devm_regulator_get(dev, "vccio");
+ =09if (IS_ERR(ctx->vccio))
+@@ -666,6 +675,23 @@ static int lt9211_parse_dt(struct lt9211 *ctx)
+=20
+ =09ctx->panel_bridge =3D panel_bridge;
+=20
++=09ctx->lvds_hsdrv_isel =3D 8; /* default: 25 uA */
++=09ret =3D of_property_read_u32(dev->of_node, "drive-strength-microamp",
++=09=09=09=09   &microamp);
++=09if (!ret) {
++=09=09for (i =3D 0; i < ARRAY_SIZE(lt9211_hsdrv_microamp); i++) {
++=09=09=09if (lt9211_hsdrv_microamp[i] =3D=3D microamp) {
++=09=09=09=09ctx->lvds_hsdrv_isel =3D i;
++=09=09=09=09break;
++=09=09=09}
++=09=09}
++=09=09if (i =3D=3D ARRAY_SIZE(lt9211_hsdrv_microamp)) {
++=09=09=09dev_err(dev, "Invalid drive-strength-microamp value %u\n",
++=09=09=09=09microamp);
++=09=09=09return -EINVAL;
++=09=09}
++=09}
++
+ =09return 0;
+ }
 =20
 --=20
 2.54.0
