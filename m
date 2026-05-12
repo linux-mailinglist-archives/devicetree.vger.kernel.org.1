@@ -1,69 +1,65 @@
-Return-Path: <devicetree+bounces-296191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296192-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAtzC7cTA2r20AEAu9opvQ
-	(envelope-from <devicetree+bounces-296191-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:49:11 +0200
+	id UJdrIHIUA2oj0QEAu9opvQ
+	(envelope-from <devicetree+bounces-296192-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:52:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84BD751F911
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D218051F96E
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:52:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5BDEE30142BF
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 11:48:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E97703044727
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 11:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE2C349CCA;
-	Tue, 12 May 2026 11:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B582534DCC7;
+	Tue, 12 May 2026 11:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fn4h7qtM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mMQZJaJL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A9825B096;
-	Tue, 12 May 2026 11:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872FA213E89;
+	Tue, 12 May 2026 11:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778586530; cv=none; b=OupFfO6fRBvC2jRXYFEiYU5HW8ShSR7PCElPFjSerhWsfNfC35SRrCWAF+Mt4bg5BaNG2Vwsl0aIa5BvXq3yMf8Bw6gcAcdG8M6eWuXj8rMbdZeRzb/arzYYfuwzW2ZdwRFemoG96cuENNfrEv+MEw0woG12MYecY3A7v0C8HKE=
+	t=1778586678; cv=none; b=VL4zIJZMhuOng5cpGVsAMB/DANJ5/WdZu0W3hqA0m6HVuO/0yjGUV5/zDHIoRD3RncFtHF8MheWix1CUk67AJm+dIejr2ACUxcBIFT5TzKuFxd02+LsIaRAaEMYOkkixrKIfLG7eXRpM/5WW81nocQ2cNZOx2sLgUsnc6NktyjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778586530; c=relaxed/simple;
-	bh=k/otDlKzIfO5cxQKbfHbfRAHJJclqMf2XTJj3Znmh7k=;
+	s=arc-20240116; t=1778586678; c=relaxed/simple;
+	bh=WwtAEaqrbtuEVAX/vXP89IUrWEza728BCI7n+J1nGLE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dGilbaVdgA6wjsxo9UzDEM2At3JCguUpg9QUAQAd30/yafu5zyGJZELx8uYRr+45s+KtSSxyRuuvXn4X7t9uvarDISGFHhjQbMgd8rn3POxkWZsxxOVuK7JXiJpgpxIShBwKEdJJkwdZG4ZcEOrHuVPMpwSddLOz2JVS9Cazn5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fn4h7qtM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37E31C2BCB0;
-	Tue, 12 May 2026 11:48:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=EMHRLlEUiB6WGK6BDhXYkEnZNRN6KL669TnvVHF08ZNfzbAlkdXxZuxpNcHklJ5wJl0KIxE07OiAmpAqhFyPJhv3nG8Krtj+uHipeeMEncj5d0EbY4fUQZCffzDgc2PfdjbJA/B2oxKCbFE9/Sa03xohSLW76IqTyxl1PjoR5NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mMQZJaJL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31B77C2BCF5;
+	Tue, 12 May 2026 11:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778586530;
-	bh=k/otDlKzIfO5cxQKbfHbfRAHJJclqMf2XTJj3Znmh7k=;
+	s=k20201202; t=1778586678;
+	bh=WwtAEaqrbtuEVAX/vXP89IUrWEza728BCI7n+J1nGLE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=fn4h7qtMheJpCFj6wdrSe0n3Ys1uWT6bDfbtohYDlyhRV0vP3kCuXWu5ClrgOR+2t
-	 q0j+HVMXkGPWoz+PBU5ILTU58gDAsyyO5da80GUv31Gg0XnfvIub/Q+AmjcXMSW5J/
-	 2ZkiM3yf0y6ONbB/2I8l+vkJnO1VPxZugfG1NMsUC9/JQYfQ8E93w9dGjaAdgXaYZ+
-	 DN1ojf76OrN665i1pUXYxIMWy9gSTbNThPFBcy0bZi1nfAy6DgGBYGqbe5CjC+3pw9
-	 zO8/kpHWtLU9s+11k5Y8XIPk+fRfk4XHt3/cDZ9Y70cjoO6wO0Gy/hS4HVd7XsYSxm
-	 iXQ1mhOYVPS6A==
-Date: Tue, 12 May 2026 12:48:36 +0100
+	b=mMQZJaJLv45V6KsaO3pklTKlKQhPyIF11vtRvSavicYEwqAvBXa3tsFr7d1ioRk2H
+	 lAtjgai6EQQznJp4zj9Vqt6nI27MNmRyD+lwlA3wDus8TgdfGRWaRqdb0F9mWEjd6s
+	 KkPxGUcHTGwCsWtu78pc4XDIjmzuZ4svCZjpyuHyDtm2sYzuNYTrXWAlhJe+yiu7V5
+	 A9wY4seQs0kv3daJ7hzNOswDVlld81RowGlbTTfzeH9PUx45a5CZNkzyvwtJUgIhqU
+	 gJpHpOFm2o9JyfoLOjyvA5GGoiaL0syM9dvfU/RJooD+Pt1+fjS2J7iVtugQgItIEL
+	 8PcJtJG17a+Fg==
+Date: Tue, 12 May 2026 12:51:06 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andrew Morton
- <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
- <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v12 00/11] ADF41513/ADF41510 PLL frequency synthesizers
-Message-ID: <20260512124836.28047891@jic23-huawei>
-In-Reply-To: <20260510-adf41513-iio-driver-v12-0-34af2ed2779f@analog.com>
-References: <20260510-adf41513-iio-driver-v12-0-34af2ed2779f@analog.com>
+To: Michal Piekos <michal.piekos@mmpsystems.pl>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Maksim
+ Kiselev <bigunclemax@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: adc: sun20i-gpadc: add A523 gpadc support
+Message-ID: <20260512125106.718d48d9@jic23-huawei>
+In-Reply-To: <20260510-sunxi-a523-gpadc-v1-2-4f6b0f4000fb@mmpsystems.pl>
+References: <20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl>
+	<20260510-sunxi-a523-gpadc-v1-2-4f6b0f4000fb@mmpsystems.pl>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -73,7 +69,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 84BD751F911
+X-Rspamd-Queue-Id: D218051F96E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -85,52 +81,72 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296191-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296192-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mmpsystems.pl:email]
 X-Rspamd-Action: no action
 
-On Sun, 10 May 2026 13:42:18 +0100
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+On Sun, 10 May 2026 14:57:23 +0200
+Michal Piekos <michal.piekos@mmpsystems.pl> wrote:
 
-> This patch series adds support for the Analog Devices ADF41513 and ADF41510
-> ultralow noise PLL frequency synthesizers. These devices are designed for
-> implementing local oscillators (LOs) in high-frequency applications.
-> The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
-> operates from 1 GHz to 10 GHz.
+> A523 differs from existing sun20i-gpadc-iio by having two clocks; bus
+> clock and module clock.
 > 
-> Key features supported by this driver:
-> - Integer-N and fractional-N operation modes
-> - High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
-> - 25-bit fixed modulus or 49-bit variable modulus fractional modes
-> - Digital lock detect functionality
-> - Phase resync capability for consistent output phase
-> - Load Enable vs Reference signal syncronization
-FWIW I have taken another look through and didn't have anything to add.
-So I think it's now you vs Sashiko!
-
-With that in mind I'm fine with you not waiting as long as normal before
-sending a v13.  Whilst I still would like some level of tag or informal
-'it's fine' for the string parser from those who were feeding back on
-earlier versions that bit isn't going to change anyway for v13 and
-so probably not worth holding it back for that.
+> Change driver to enable all clocks.
+> 
+> Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+I'm expecting this to change given comment on not being quite compatible so
+I'll wait for v2 before reviewing.
 
 Thanks,
 
 Jonathan
+
+> ---
+>  drivers/iio/adc/sun20i-gpadc-iio.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/sun20i-gpadc-iio.c b/drivers/iio/adc/sun20i-gpadc-iio.c
+> index 861c14da75ad..dd4c7e6e3d76 100644
+> --- a/drivers/iio/adc/sun20i-gpadc-iio.c
+> +++ b/drivers/iio/adc/sun20i-gpadc-iio.c
+> @@ -180,7 +180,7 @@ static int sun20i_gpadc_probe(struct platform_device *pdev)
+>  	struct iio_dev *indio_dev;
+>  	struct sun20i_gpadc_iio *info;
+>  	struct reset_control *rst;
+> -	struct clk *clk;
+> +	struct clk_bulk_data *clks;
+>  	int irq;
+>  	int ret;
+>  
+> @@ -205,9 +205,9 @@ static int sun20i_gpadc_probe(struct platform_device *pdev)
+>  	if (IS_ERR(info->regs))
+>  		return PTR_ERR(info->regs);
+>  
+> -	clk = devm_clk_get_enabled(dev, NULL);
+> -	if (IS_ERR(clk))
+> -		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock\n");
+> +	ret = devm_clk_bulk_get_all_enabled(dev, &clks);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to enable clocks\n");
+>  
+>  	rst = devm_reset_control_get_exclusive(dev, NULL);
+>  	if (IS_ERR(rst))
+> 
 
 
