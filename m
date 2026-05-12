@@ -1,72 +1,60 @@
-Return-Path: <devicetree+bounces-296347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0F1QEzRbA2r75AEAu9opvQ
-	(envelope-from <devicetree+bounces-296347-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:54:12 +0200
+	id KNszI8BcA2qf5QEAu9opvQ
+	(envelope-from <devicetree+bounces-296351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:00:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A1B5252D6
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:54:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446F7525501
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8ED293091CEC
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:47:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87335308728D
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81ABC3D45F7;
-	Tue, 12 May 2026 16:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B213C7690;
+	Tue, 12 May 2026 16:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aOQtqwPG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJ4sF+jC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DD343D45DE;
-	Tue, 12 May 2026 16:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76DA383336
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 16:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778604437; cv=none; b=clI14yX03GwMtonJqXFl43w7OuowuQmMyfUohBfEm/4PMGcuONnEDPiaevigCtuCUSrpeK6oM3A9digVBcgn+6vdDL5pmOo7yVmCW1q2o4+BiVA4pArf3J4s6N0HEeXcFpLH1zYjScFzuaWZy/RUl6rPOEzd+fCLygh71UaRRzk=
+	t=1778604562; cv=none; b=BFTld0Cil3eQG3m0H0f3nABHTDercgUH/bO7BpRj+iKVzTFoUaPIrRsyoar46s2Hi8fDbWLHiOoscd4oCTyoGuG31SxRxW7xAaEAbjTFP2OTRj2I8cZQ6O69LR9kqOnhd4bCdQcJtYpi8ZayZhyJtrAzlr5rPveG+6kQjS7XARE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778604437; c=relaxed/simple;
-	bh=Eq4poRvdFdEybVe7JuMn6Yy3EvJUfYua/oj6n06tRKw=;
+	s=arc-20240116; t=1778604562; c=relaxed/simple;
+	bh=vvYMQHdBZEqGzBawmr9Gw02WHVWC9PayzIDZ5dyRHng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r+VYN2Fks200+oW7vftHYffH2G2shNP2uMixssufpNAPkOc6elSfUD/8bAnKTYmf3qsGMo0RLBzoNxyGxl7M0gXrJHS1rTXc3WrDvyvi/3rPrwkaW7Zp7NW+j/blu2SVZyGitRL+UoaX7OD6esYZtlCRDkgW0WsUkXuu2+SpNHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aOQtqwPG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0ED3C2BCB0;
-	Tue, 12 May 2026 16:47:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kxnm1kw4aB0AtuYyrxpS5xiw8B/AdxOUuYrDzabBxUYTtBvWNmCr/ByGeuZe2ISQBzLb3p2dDnPA9amlzIAub0JJT0WpJddRPybr44Ht0LooheAF1XeTLJc4JQlbYlVgvTtr/lijYhJ6hzJCuC0TGgTOxKvquw9ycP78lGUOVoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJ4sF+jC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48017C2BCB0;
+	Tue, 12 May 2026 16:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778604437;
-	bh=Eq4poRvdFdEybVe7JuMn6Yy3EvJUfYua/oj6n06tRKw=;
+	s=k20201202; t=1778604561;
+	bh=vvYMQHdBZEqGzBawmr9Gw02WHVWC9PayzIDZ5dyRHng=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aOQtqwPG6kVWNN0xpIAbJTbjUXalcupb8baWRJ8uvTvuB2o5ej/auln2EVGfN9tTJ
-	 7RSHSkHHLkh/yjBkUcBCnq31eCsFDX6jHuSdlFQbNCLOxbmUKSFQ4hyk2+XTELzCsX
-	 kPhl8Havr0wCLdJcK4FoSM69jzUf88IcJ0GyoUX1joTX5Rujs7JaEYMGKilV6g6Z7p
-	 lAUssIUii7TTJUwl03wcKlAr3MwUl3QTCarqeA6N6Xq4OM5qq1NQr8eCCCRanTrDnF
-	 bhyBRTfOsJVskIedhEfxDMuIQxIKQW6HSSD2KiVvJJFFX/+QpfDg/vNu2AiIrIb7iF
-	 fi7pc2M7mLQvg==
-Date: Tue, 12 May 2026 17:47:11 +0100
+	b=fJ4sF+jCApAHi+fcoc4m5jK1MV1/W4U7OWT7fjskKKlypFOZYh2TcvpdPuKvxed/b
+	 scsVFb+T3ZFZgkNoB7r3fPB3I1rMwv8EnTVVgCLmhXnLvzvmP3b/EgN++yib6tmAkZ
+	 7g7ZjjlfhXW7b9hed+zUmVcQ5XVfe93ylni8jx7ub1E9SQ0suT7xpw5/w7TaAH4Kv+
+	 DnqzWpY/h9Z6vHLT3kyG/Ma6ag4BgZ9VVRQjfSevL2ShY/ty6PAqZD3Co8BJ5VsyVa
+	 jpIV5XcetdR1gEiVesxRBI+txoGtsi3e7SjLBt3Qvh1WetvPbM2IYqdarWljFgzNLi
+	 4gtkvhf1I1qWA==
+Date: Tue, 12 May 2026 17:49:18 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:DRM DRIVERS FOR FREESCALE IMX 5/6" <dri-devel@lists.freedesktop.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: display: imx: add deprecated property
- 'port' and 'display-timings'
-Message-ID: <20260512-surgery-operative-046a90f84ef8@spud>
-References: <20260511220924.1905571-1-Frank.Li@nxp.com>
+To: sashiko-bot@kernel.org
+Cc: Alexandre Hamamdjian via B4 Relay <devnull+azkali.limited.gmail.com@kernel.org>,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: usb: add Rohm BM92TXX Type-C
+ controller
+Message-ID: <20260512-sighing-riverside-d9a1aa21a385@spud>
+References: <20260511-bm92t-v2-2-2145e4f4386b@gmail.com>
+ <20260511220506.C54B0C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,108 +62,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fxdYyzfmOZWli65x"
+	protocol="application/pgp-signature"; boundary="75cVY2nGM3WcKa9n"
 Content-Disposition: inline
-In-Reply-To: <20260511220924.1905571-1-Frank.Li@nxp.com>
-X-Rspamd-Queue-Id: E5A1B5252D6
+In-Reply-To: <20260511220506.C54B0C2BCB0@smtp.kernel.org>
+X-Rspamd-Queue-Id: 446F7525501
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
+X-Spamd-Result: default: False [-3.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296347-lists,devicetree=lfdr.de];
-	TO_DN_ALL(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296351-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[pengutronix.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,azkali.limited.gmail.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,devicetree.org:url,nxp.com:email]
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
---fxdYyzfmOZWli65x
+--75cVY2nGM3WcKa9n
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 11, 2026 at 06:09:24PM -0400, Frank Li wrote:
-> Add deprecated property 'port' and 'display-timings' for i.MX5 SoCs (over
-> 15 years) to fix below CHECK_DTBS warnings:
->   arm/boot/dts/nxp/imx/imx51-apf51dev.dtb: disp1 (fsl,imx-parallel-displa=
-y): 'display-timings', 'port' do not match any of the regexes: '^pinctrl-[0=
--9]+$'
->         from schema $id: http://devicetree.org/schemas/display/imx/fsl,im=
-x-parallel-display.yaml
-
-Instead of documenting the deprecated properties, could this
-device/devicetree be converted to non-deprecated properties?
-
+On Mon, May 11, 2026 at 10:05:06PM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issu=
+e(s) to consider:
+> - [Low] Missing type definitions and non-standard unit suffix for `rohm,p=
+d-*v-current-limit-ma`.
+> - [Low] Invalid Devicetree property naming with underscores (`pd_bat_chg-=
+supply`).
+> - [Low] Use of deprecated singular GPIO property suffix (`rohm,vconn-en-g=
+pio`).
+> --
 >=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../display/imx/fsl,imx-parallel-display.yaml         | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> commit 482fd67d1e5e9ceafc592495c4e2a23d21e35b0e
+> Author: Alexandre Hamamdjian <azkali.limited@gmail.com>
 >=20
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-parall=
-el-display.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-par=
-allel-display.yaml
-> index bbcfe7e2958b7..b0c5869771fae 100644
-> --- a/Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-disp=
-lay.yaml
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-parallel-disp=
-lay.yaml
-> @@ -42,6 +42,17 @@ properties:
->      unevaluatedProperties: false
->      description: output port connected to a panel
-> =20
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    unevaluatedProperties: false
-> +    deprecated: true
-> +    description: input port connected to the IPU display interface, see =
-port@0
-> +
-> +  display-timings:
-> +    $ref: /schemas/display/panel/display-timings.yaml#
-> +    unevaluatedProperties: false
-> +    deprecated: true
-> +
->  required:
->    - compatible
-> =20
-> --=20
-> 2.43.0
+> dt-bindings: usb: add Rohm BM92TXX Type-C controller
 >=20
+> Add the device-tree binding documentation for the Rohm BM92TXX family
+> of USB Type-C and Power Delivery controllers.
+>=20
+> > diff --git a/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml b/Do=
+cumentation/devicetree/bindings/usb/rohm,bm92t.yaml
+> > new file mode 100644
+> > index 0000000000000..007f70a8f5bb1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/rohm,bm92t.yaml
+>=20
+> [ ... ]
+>=20
+> > +  vbus-source-supply:
+> > +    description: VBUS source (provider) regulator.
+> > +
+> > +  pd_bat_chg-supply:
+> > +    description: Battery charger regulator gated by Power Delivery sta=
+te.
+>=20
+> Does this property name violate Devicetree naming conventions? Devicetree
+> properties typically use hyphens instead of underscores (e.g.,
+> pd-bat-chg-supply).
+>=20
+> > +
+> > +  rohm,vconn-en-gpio:
+> > +    maxItems: 1
+> > +    description: GPIO controlling the external VCONN switch.
+>=20
+> Should this property use the standard -gpios suffix? Even for a single GP=
+IO
+> line, the standard suffix is -gpios rather than the deprecated -gpio.
+>=20
+> [ ... ]
+>=20
+> > +  rohm,dock-power-limit-disable:
+> > +    type: boolean
+> > +    description:
+> > +      Disable the lower power limit applied when a dock is detected.
+> > +
+> > +  rohm,pd-5v-current-limit-ma:
+> > +    description: Charging current limit in mA when 5V PD contract is a=
+ctive.
+>=20
+> Does this property lack an explicit type definition? Custom properties wi=
+thout
+> standard unit suffixes require a type reference, otherwise schema validat=
+ion
+> will fail for integer array values. Also, the -ma suffix is not a standard
+> unit suffix (such as -milliamp or -microamp).
+>=20
+> I see this schema validation failure is fixed later in the series by comm=
+it
+> 315ea48f16e75d9fc77bc6e2af87cacc47b7249f ("dt-bindings: usb: fix properti=
+es
+> type").
 
---fxdYyzfmOZWli65x
+Properly suffixed properties should be used instead of making some up,
+but also patches in a series that fix issues introduced by a series
+should always be squashed..
+
+--75cVY2nGM3WcKa9n
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagNZjwAKCRB4tDGHoIJi
-0mDnAQCqbn9AXEEIvMW3IzfvtBt6idW4LfmgzHiK9gkyNMYDewEA/4JyVHaMHrOF
-fwpJW7x4JMMhR7zhSv2Omejm+dkYtAE=
-=RA7X
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagNaDQAKCRB4tDGHoIJi
+0h44AQD85f6o3zmGHW/2f46gxQ8O82uDCrcSP9XMDAMGAdSFBgD/dXLNMqL6eMB+
+WPoPX7eSAvh/78u7A0SwD4PSMPRvvwo=
+=9HAC
 -----END PGP SIGNATURE-----
 
---fxdYyzfmOZWli65x--
+--75cVY2nGM3WcKa9n--
 
