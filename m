@@ -1,232 +1,337 @@
-Return-Path: <devicetree+bounces-296214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLDxCMwcA2pD0gEAu9opvQ
-	(envelope-from <devicetree+bounces-296214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:27:56 +0200
+	id +DJMAe0cA2pD0gEAu9opvQ
+	(envelope-from <devicetree+bounces-296216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:28:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3175201CC
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:27:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E9375201F2
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 14:28:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44E1C30E0555
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 12:19:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB11230BF4C3
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 12:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5195C372053;
-	Tue, 12 May 2026 12:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649393655C4;
+	Tue, 12 May 2026 12:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tXD8BRHG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZ4FOuS6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDCD37204B;
-	Tue, 12 May 2026 12:19:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C329E3672B9
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 12:20:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778588355; cv=none; b=gp2YvVJU3OVPyL5w7v9LsjPkK6iDGvXF/Kd1m0U3zDBkLtCJLQeRiTULGAXTpd1zFsjVMENI96ZbojGbZAtYc+WVgXAn4JiJ+d0onBSP0ohW65SMuYGKJn7sFjm+74FLYbEcr6W/HIS1oStpHX4p2lpv5ZiHWHj1n9UUER+WtD0=
+	t=1778588455; cv=none; b=BsnsgBXuTcevjTOuyRsbVr7ro+VmWHNDtaePUdxvCIDNitbE++zDYNzbVn8ow+ZuP++oDw9Ixl9BFAgycG4K+obVRlbYN+XTuSMmQb1YZJiEfapqm85aIjIKkCBHuH/RpUuGvYDqe07hZreQ+hbNGiJQD3rUcFUDqICAsREGMHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778588355; c=relaxed/simple;
-	bh=Lj3+Nnn60F6KDZrpfio/n6EVGV07QDpbZc24HcoAacw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=coeaTjovah4evGgWZ7wwklm8dCye3d3HB6qgibOJSfJbYXejF7Dn3eIt1JCllCxj7ub+aEFDZpdUK8ZKkvrgqr8DKAmYn5QEqCBD67lKblwTcoYQBr1qR4KObsyrbynxERBViXkDMOEgivokzrNxTL3U0/Ns1nbbHmFSg2KZzoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tXD8BRHG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D47E7C2BCB0;
-	Tue, 12 May 2026 12:19:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778588355;
-	bh=Lj3+Nnn60F6KDZrpfio/n6EVGV07QDpbZc24HcoAacw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tXD8BRHGsAoR0V/+ezz6seXgh4B5sXCbVYglNIxg1LQvG6HDeNo88rZrUa9dPYq7P
-	 9agl1dns9BN2V/gsXIuqZDeOjbK36bvx90TEUHiByWDPVkWlUxoosDAnLUG312rh1S
-	 PHNtP+YJF2vuhwl06wHA7elZnMnz7GMLf8yCAbk+fWbIW/afQRU5weboxvzeX/MESq
-	 fFae0EmqLDSfl9aE1LQRkamOMXk2UOz+WqO7JEGFJpR7urqM+EZxL4w7a2S0xOElJA
-	 7AOh1+fmf4hRbAWfaWS+/ZTE0/EEtgPppGxGUzAV7S6qCqAp4SS5N5kLhKSSYxF8An
-	 qfjuEDO4APcqw==
-Date: Tue, 12 May 2026 13:19:05 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Piyush Patle <piyushpatle228@gmail.com>
-Cc: ak@it-klinger.de, andriy.shevchenko@linux.intel.com,
- dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 v8 06/11] iio: adc: hx711: introduce hx711_chip_info
- structure
-Message-ID: <20260512131905.42c35224@jic23-huawei>
-In-Reply-To: <20260511174342.123820-7-piyushpatle228@gmail.com>
-References: <20260511174342.123820-1-piyushpatle228@gmail.com>
-	<20260511174342.123820-7-piyushpatle228@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1778588455; c=relaxed/simple;
+	bh=7SP+tpQC7/RleL3IvjZFwBLSatpQVTWn6uCxFw5dSFw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NS/bE8w17QQtB6RsB3z6u3JPLlMpr1yZ9Tb4MrAVv4yCtQrdbjXFZzSVgyIojiMPFzQVtOWou8MNRwkl1Zb9e0ZaFZX4AI1doa9kpEjTGjY00k/Lf477bQAT68p3vn/sZhrjz2a8pB3WPniED+WwRN7dCJFdEDPPckqDRwi0qZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZ4FOuS6; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-44509921fbcso2772032f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 05:20:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778588452; x=1779193252; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rAedPaQpPe7CcNir+E8j0QYU1SXE2Pa0U/4eeZrHwts=;
+        b=TZ4FOuS6gWn5ku7dlJ/cfx7EUAoafUZmsQsQikx0O0oNbYL9JkOu9d5KWLnGpxmYCm
+         SObCqQD8tiQdHBfnpVUxdDfquEUxSU2B0x3rcJcGq4HooqtyC+V4vXX5ZEzcz0FFY9Oa
+         2Eg0PFHT33B4pfh/BXFSnAVuhLJ6/CskfGfsOhkQQcuc0755FOLUBokwMh53bY+R8vBp
+         DdxJYkldY75yc6JLNArndc4OOQTFMQj3rLaxZ4OrHIkvSG+GnYSb8o2NTy3xhqYeZ9C1
+         av/H6prInNQLH8jXs1QZ4oR68eeR3XZ90AmqH+3HGUh82CE8EHl9vaLotdiyLAKWc3ar
+         RIvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778588452; x=1779193252;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rAedPaQpPe7CcNir+E8j0QYU1SXE2Pa0U/4eeZrHwts=;
+        b=SaejZmmpMreTWn/eLE+lErhCktWvKo+Ws7fh3Efwzx7HLqL7QxE3m63iAKFFrmy1JX
+         803uYbndj0H4rRkLGVTllZC6fLVRzcHGWocrrEqTBB83qn/wslqPEIufx9HH/3nMz7j2
+         Yyga3Tv3+WUkt4du+dQBKqYzlgsN2gzkkldCk/0AOLIaROgGPBgmUePk6TzMLoUvtq62
+         dw0TIkhOdODfv0Trb7xnTyR4Au40oSLx9JaPnzTkvrFGMyPRMXk2FLQ3V2ahIDzq0WXJ
+         NuxW8fJUJiddbogoQQ6uQRkax8ceg4moUEbfKaxf5CatIenox+L5CoTRakDT2JCqTI7H
+         XAug==
+X-Forwarded-Encrypted: i=1; AFNElJ/d1He1OwR2LEw6L2Kc0jjguXXMv7IEV5bQ+8znkGaBTNrgTlw/UK5PWUgU/8QS6LjjoqkiEaUw6dii@vger.kernel.org
+X-Gm-Message-State: AOJu0YzejeYeaQ0jjYr1syaPOH/xxSJF48cIxq8DOyiCkXax9UAR0l/U
+	gdop4L0DKIZrnxpMeKDeOylg7V431JW61HB8PN6FEb5o35kFWFDFp0Yx
+X-Gm-Gg: Acq92OG6xYaaqw+ppZwhAxNirpQYRUnBu1V4RBCHRq7H1OjD7NOg4Ymw/brLPjbu8DU
+	I4RSM7XEkjwGewOt7tGGahtQeSUMTPA+eh+inj/aQRZJkdhIctyU/PJ6Pyv8QEWny9w8jsi2vqv
+	5nXDR7NIwav9pC/m9xWEqCzHDJJmnVRWLhRbtf6p9VEBnC4eFEq2ijmgfbQgZc5dXia/MSCkFGK
+	zjo9DfPzawR/Ol1wmrEIt2HAUVNNDhAmm1Z+bgao4Oah524/oacZOwx4pLpNkXD7Mqy4+979VRd
+	/rXR3tnqW+9FiZUu7U8T2EvvyW3AhH63ZRWioeTb7mC/Qajn+fbKFTsnqLhpcJe2fk3xHLlf3rQ
+	QfzTbgkDeYXcyzwUqFamJGoYfTBagevFjT8IGRPBeZwjc7SauSB0ccu3655mgUK8wOLVSUvCAHQ
+	osdjWJyJb3eY+tZHx6E6ntPqH3S2mFK5ZCTIcKpE+YA3xILg4DHWjtCcKZJMMsQrU=
+X-Received: by 2002:a5d:64e3:0:b0:441:1cf8:be9b with SMTP id ffacd0b85a97d-4515d9a06cemr43636765f8f.37.1778588450808;
+        Tue, 12 May 2026 05:20:50 -0700 (PDT)
+Received: from [192.168.0.40] (a89-182-129-90.net-htp.de. [89.182.129.90])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45491f8d4c3sm32022927f8f.34.2026.05.12.05.20.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 May 2026 05:20:50 -0700 (PDT)
+Message-ID: <a41f87cc-55e4-4a48-bbee-d863e5a4b00a@gmail.com>
+Date: Tue, 12 May 2026 14:20:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] riscv: dts: spacemit: k1-musepi-pro: add PMIC and
+ power infrastructure
+To: Yixun Lan <dlan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20260511111116.1109643-1-a.heider@gmail.com>
+ <20260511111116.1109643-2-a.heider@gmail.com>
+ <20260512113913-GKH3624147@kernel.org>
+From: Andre Heider <a.heider@gmail.com>
+Content-Language: de-DE
+In-Reply-To: <20260512113913-GKH3624147@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 7A3175201CC
+X-Rspamd-Queue-Id: 8E9375201F2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296214-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296216-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[aheider@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.41:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[it-klinger.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Mon, 11 May 2026 23:13:31 +0530
-Piyush Patle <piyushpatle228@gmail.com> wrote:
-
-> Add a per-variant static configuration structure and populate the IIO
-> device fields from it at probe time.
+On 12.05.26 1:39 PM, Yixun Lan wrote:
+> Hi Andre,
 > 
-> This is a preparatory change for adding support for more HX711-compatible
-> hardware variants without duplicating the probe-time setup.
+> On 13:11 Mon 11 May     , Andre Heider wrote:
+>> Enable i2c8 and add the connected SpacemiT P1 PMIC with its related regulators
+>> for the board's power infrastructure and voltage regulation support.
+>>
+>> Signed-off-by: Andre Heider <a.heider@gmail.com>
+>> ---
+>>   .../riscv/boot/dts/spacemit/k1-musepi-pro.dts | 144 ++++++++++++++++++
+>>   1 file changed, 144 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+>> index 29e333b670cf0..88c35ad1ef2ae 100644
+>> --- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+>> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+>> @@ -17,6 +17,7 @@ / {
+>>   	aliases {
+>>   		ethernet0 = &eth0;
+>>   		serial0 = &uart0;
+>> +		i2c8 = &i2c8;
+>>   	};
+>>   
+>>   	chosen {
+>> @@ -33,6 +34,25 @@ led1 {
+>>   			default-state = "on";
+>>   		};
+>>   	};
+>> +
+> ..
+>> +	reg_usb_vbus: regulator-usb-vbus {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "USBVBUS";
+>> +		regulator-min-microvolt = <12000000>;
+>> +		regulator-max-microvolt = <12000000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+>> +	};
+> I think you can further drop above regulator, which merely serve as vin-supply
+> and not used by devices, plus it's a non-controllable fixed regulator
+
+It is, but as mentioned on the cover letter I left this one as it's consistent with the other k1 boards.
+I don't care either way, so I'll just drop it.
+
+Thanks,
+Andre
+
 > 
-> No functional change for existing HX711 users.
+>> +
+>> +	reg_vcc_4v0: regulator-vcc-40v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VCC4V0";
+>> +		regulator-min-microvolt = <4000000>;
+>> +		regulator-max-microvolt = <4000000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+>> +		vin-supply = <&reg_usb_vbus>;
+>> +	};
+>>   };
+>>   
+>>   &emmc {
+>> @@ -72,6 +92,130 @@ &pdma {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&i2c8 {
+>> +	pinctrl-0 = <&i2c8_cfg>;
+>> +	pinctrl-names = "default";
+>> +	status = "okay";
+>> +
+>> +	pmic@41 {
+>> +		compatible = "spacemit,p1";
+>> +		reg = <0x41>;
+>> +		interrupts = <64>;
+>> +		vin1-supply = <&reg_vcc_4v0>;
+>> +		vin2-supply = <&reg_vcc_4v0>;
+>> +		vin3-supply = <&reg_vcc_4v0>;
+>> +		vin4-supply = <&reg_vcc_4v0>;
+>> +		vin5-supply = <&reg_vcc_4v0>;
+>> +		vin6-supply = <&reg_vcc_4v0>;
+>> +		aldoin-supply = <&reg_vcc_4v0>;
+>> +		dldoin1-supply = <&buck5>;
+>> +		dldoin2-supply = <&buck5>;
+>> +
+>> +		regulators {
+>> +			buck1 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3450000>;
+>> +				regulator-ramp-delay = <5000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck2 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3450000>;
+>> +				regulator-ramp-delay = <5000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck3 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <1800000>;
+>> +				regulator-ramp-delay = <5000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck4 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3300000>;
+>> +				regulator-ramp-delay = <5000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck5: buck5 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3450000>;
+>> +				regulator-ramp-delay = <5000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck6 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3450000>;
+>> +				regulator-ramp-delay = <5000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			aldo1 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +				regulator-boot-on;
+>> +			};
+>> +
+>> +			aldo2 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +
+>> +			aldo3 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +
+>> +			aldo4 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +
+>> +			dldo1 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +				regulator-boot-on;
+>> +			};
+>> +
+>> +			dldo2 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +
+>> +			dldo3 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +
+>> +			dldo4 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			dldo5 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +
+>> +			dldo6 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			dldo7 {
+>> +				regulator-min-microvolt = <500000>;
+>> +				regulator-max-microvolt = <3400000>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>>   &uart0 {
+>>   	pinctrl-0 = <&uart0_2_cfg>;
+>>   	pinctrl-names = "default";
+>> -- 
+>> 2.53.0
+>>
+>>
 > 
-> Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
-Mostly for my reference when v8 sashiko comes in - there was feedback on this
-in v7 but it was something we don't care about - in a driver that supports
-multiple parts - if someone is using the legacy path to force a driver match
-we can't do the right thing - guessing it is an hx711 is not appropriate.
-
-Given it is vanishingly unlikely (famous last words) anyone is using that
-path with a device like this one (who isn't a developer who can easily fix
-that) let us merge this and see if anyone screams before trying to
-deal with that case.
-
-I'm going to hold off for now though as waiting on v8 sashiko review of the
-rest of the series.
-
-Jonathan
-
-> ---
->  drivers/iio/adc/hx711.c | 41 ++++++++++++++++++++++++++++++++++++-----
->  1 file changed, 36 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/hx711.c b/drivers/iio/adc/hx711.c
-> index 86d2a70dd3de..10ccc69f209b 100644
-> --- a/drivers/iio/adc/hx711.c
-> +++ b/drivers/iio/adc/hx711.c
-> @@ -4,6 +4,8 @@
->   *
->   * Copyright (c) 2016 Andreas Klinger <ak@it-klinger.de>
->   */
-> +#include <linux/array_size.h>
-> +#include <linux/dev_printk.h>
->  #include <linux/err.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> @@ -74,6 +76,20 @@ static int hx711_get_scale_to_gain(const int *gain_scale, int scale)
->  	return -EINVAL;
->  }
->  
-> +/**
-> + * struct hx711_chip_info - per-variant static configuration
-> + * @name: IIO device name
-> + * @channels: channel specification array
-> + * @num_channels: number of entries in @channels
-> + * @iio_info: IIO info ops for this variant
-> + */
-> +struct hx711_chip_info {
-> +	const char			*name;
-> +	const struct iio_chan_spec	*channels __counted_by_ptr(num_channels);
-> +	unsigned int			num_channels;
-> +	const struct iio_info		*iio_info;
-> +};
-> +
->  struct hx711_data {
->  	struct device		*dev;
->  	struct gpio_desc	*gpiod_pd_sck;
-> @@ -81,6 +97,7 @@ struct hx711_data {
->  	int			gain_set;	/* gain set on device */
->  	int			gain_chan_a;	/* gain for channel A */
->  	int			gain_scale[HX711_GAIN_MAX];
-> +	const struct hx711_chip_info	*chip_info;
->  	struct mutex		lock;
->  	/*
->  	 * triggered buffer
-> @@ -456,8 +473,16 @@ static const struct iio_chan_spec hx711_chan_spec[] = {
->  	IIO_CHAN_SOFT_TIMESTAMP(2),
->  };
->  
-> +static const struct hx711_chip_info hx711_chip = {
-> +	.name		= "hx711",
-> +	.channels	= hx711_chan_spec,
-> +	.iio_info	= &hx711_iio_info,
-> +	.num_channels	= ARRAY_SIZE(hx711_chan_spec),
-> +};
-> +
->  static int hx711_probe(struct platform_device *pdev)
->  {
-> +	const struct hx711_chip_info *chip_info;
->  	struct device *dev = &pdev->dev;
->  	struct hx711_data *hx711_data;
->  	struct iio_dev *indio_dev;
-> @@ -473,6 +498,12 @@ static int hx711_probe(struct platform_device *pdev)
->  
->  	mutex_init(&hx711_data->lock);
->  
-> +	chip_info = device_get_match_data(dev);
-> +	if (!chip_info)
-> +		return dev_err_probe(dev, -ENODEV, "missing driver data\n");
-> +
-> +	hx711_data->chip_info = chip_info;
-> +
->  	/*
->  	 * PD_SCK stands for power down and serial clock input of HX711
->  	 * in the driver it is an output
-> @@ -534,11 +565,11 @@ static int hx711_probe(struct platform_device *pdev)
->  	hx711_data->data_ready_delay_ns =
->  				1000000000 / hx711_data->clock_frequency;
->  
-> -	indio_dev->name = "hx711";
-> -	indio_dev->info = &hx711_iio_info;
-> +	indio_dev->name = chip_info->name;
-> +	indio_dev->info = chip_info->iio_info;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
-> -	indio_dev->channels = hx711_chan_spec;
-> -	indio_dev->num_channels = ARRAY_SIZE(hx711_chan_spec);
-> +	indio_dev->channels = chip_info->channels;
-> +	indio_dev->num_channels = chip_info->num_channels;
->  
->  	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
->  					      iio_pollfunc_store_time,
-> @@ -555,7 +586,7 @@ static int hx711_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id of_hx711_match[] = {
-> -	{ .compatible = "avia,hx711", },
-> +	{ .compatible = "avia,hx711", .data = &hx711_chip },
->  	{ }
->  };
->  
 
 
