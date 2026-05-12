@@ -1,61 +1,94 @@
-Return-Path: <devicetree+bounces-296355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cP9OMpxbA2r75AEAu9opvQ
-	(envelope-from <devicetree+bounces-296355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:55:56 +0200
+	id WFQjA6VdA2qE5QEAu9opvQ
+	(envelope-from <devicetree+bounces-296356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:04:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7DD52538B
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:55:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CE55255FF
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:04:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9AC2A3037BFA
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:55:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73E083041A73
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91A73D7A16;
-	Tue, 12 May 2026 16:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1217B3D5C0B;
+	Tue, 12 May 2026 16:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gv4pzI/u"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QI48jTUd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27BA3D5C32;
-	Tue, 12 May 2026 16:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9493CB8F0;
+	Tue, 12 May 2026 16:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778604932; cv=none; b=dV1eaiVCXsR20PFgJpMYZe/XYdCANK4Prd9QqZzdB5T8f2DWNiFYmUiNXmX6jGW1Pmfcn5Uzsjew+F7p7pD09bZsc9X24G6MiOr26ipk0ZPhZ2RmtGKnKaWgJrYo5em96gVrEXxukBBaS34/I/jcfg6Yk/0c8ceTeFE3/yyKYLY=
+	t=1778604975; cv=none; b=aXo5UhuZKW1Ykdu+yT7y+2YjZJ8q1OZ4wdScIPWSN1pzOc1uOgTVKPrRsnPDdWghCTqy9j2rSNsh2aGGlb/PnNmkzfyHk1X4ZqUiXiJhfiLUYt9GKviR0o4ygpZgjLdaMk0DWW5NRophq2C1m/Ng/i/0EKoAf/W8hLEwL6XRTTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778604932; c=relaxed/simple;
-	bh=pguv4GSXU7BP/JNG5kiQEzdZlyeJ+Sv9kgdzi0t0K8c=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=RM9KTFK/nFYACVsY9NsD+0duk+Qzpa8ftBxYDcRkaKOudiYRbC2D7vd3rJeFvQKqKkJdh7pk/HfkvHpRqhF30j5el7moiLhzi3wZE+1aRgDdP1/EcEWpIuXX+6KrLc6/14UO9GQpmXeZBgeKwH2d/I8hd2Gc4M76Qf9f9xtKFsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gv4pzI/u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C933C2BCB0;
-	Tue, 12 May 2026 16:55:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778604932;
-	bh=pguv4GSXU7BP/JNG5kiQEzdZlyeJ+Sv9kgdzi0t0K8c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Gv4pzI/uNym+Mv45u+BRyY2N9xKTgbdjxcyZjvn8rG4ReH2QmMXQVZ6MI1RU676iI
-	 J+s+z/ek2a/IJjaf5BoQajRQOwcORVvDihPWbsuKv7303mNp71iDtshM3MUgFYtu7m
-	 HabnrAW2Oo7BaHUwYznx83HEVd1TToxW6zlTjFshhPqHxTngQJuNQ5mWR2e/6GzVjW
-	 CQZCq0UtMDJ0+vPX1cMQeGbujB9aK4xUhWPM7t1qciYK4BMhqJBqGw7liVa/vUYWpr
-	 q+vcOzPxZxWcIpIpWHg+jM2ckyFU7m/NZ51xg6QrwwBPhFcsyeI1C+XLG3JYHnJJ+l
-	 13jZHuoAKBI0w==
-Date: Tue, 12 May 2026 11:55:30 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
-	naseefkm@gmail.com, ryder.lee@mediatek.com, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
-Message-ID: <20260512165530.GA228087@bhelgaas>
+	s=arc-20240116; t=1778604975; c=relaxed/simple;
+	bh=9JqXkD4oo5STPUWAnq9HH/ZMSx9akBEyLL9pFMj5Eto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QFQujBCco3AmmuLv6oulk1u54f97mUINFRZHbtg2CVkwrLAqIESAiA73XDv+ateZLewHn7TJVYS3P56T9XarmNdzeaCLBgjr4YzaJRzQpJSFxT7dhzCpZjcdc9zH2lWRP21ihDLhAPeprgZ2HeAk5fLiLyLDPh77MGmmTPNyOD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QI48jTUd; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778604973; x=1810140973;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9JqXkD4oo5STPUWAnq9HH/ZMSx9akBEyLL9pFMj5Eto=;
+  b=QI48jTUdQ9Q1Um6zI5NuslioLuEvKsGvRe/SNiTQkQQe8NAAGci/rEX8
+   Nzhxy0ccR3E6amSSsnDdWhHlK/LpLriNTPWlClk4kisf8k1i5/hQAArUO
+   +tq05PIQRlbe4WLJ/ODvUiCoR72AbLpPViwFhZPwjGukoOfizD2UuJ+qD
+   82S1w0ordcqj92RCNgMFnL2jLl8q57YV5BRet6cUhVVMSxQv1VSRMEgTi
+   ZqVb69vha+YWmcWd80Q2zsQP91srEoOVbTRrIWoI0M381zWoOHlCliEbc
+   ZQSGpuznstiuG2RDNBj2eNGwc+ndvEh4Vgdk8TvFWKq6fiUSS9dl+Y3uj
+   A==;
+X-CSE-ConnectionGUID: y6uImMCiTGO4uqkp5116Zg==
+X-CSE-MsgGUID: Rjq8FOldRuGIHEagPUI8Qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="97090232"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; 
+   d="scan'208";a="97090232"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2026 09:56:11 -0700
+X-CSE-ConnectionGUID: eE/ZxnqvT+CkeJ6UrkNkkQ==
+X-CSE-MsgGUID: AtasLK9fTAie+dOmlPczyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; 
+   d="scan'208";a="242171405"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.244])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2026 09:56:05 -0700
+Date: Tue, 12 May 2026 19:56:03 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Roman Vivchar <rva333@protonmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+	Ben Grisdale <bengris32@protonmail.ch>
+Subject: Re: [PATCH v2 05/16] iio: adc: mediatek: add mt6323 PMIC AUXADC
+ driver
+Message-ID: <agNbo39p6uACvQHd@ashevche-desk.local>
+References: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com>
+ <20260512-mt6323-v2-5-3efcba579e88@protonmail.com>
+ <20260512142932.5c6801d1@jic23-huawei>
+ <gWxamwTKyUeOF4QCsiIsrnh7DSWzIKFaY0h83qKq_0vg786xv1uFYhypix7BVO_ruG_vw3DrIsRhIKv5NAzl8hK72rjzPAjwAGU-rhkMgeA=@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,135 +97,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260413140339.16238-3-cjd@cjdns.fr>
-X-Rspamd-Queue-Id: 0B7DD52538B
+In-Reply-To: <gWxamwTKyUeOF4QCsiIsrnh7DSWzIKFaY0h83qKq_0vg786xv1uFYhypix7BVO_ruG_vw3DrIsRhIKv5NAzl8hK72rjzPAjwAGU-rhkMgeA=@protonmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 64CE55255FF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296355-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	TAGGED_FROM(0.00)[bounces-296356-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,mediatek.com,intel.com,arm.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
 X-Rspamd-Action: no action
 
-On Mon, Apr 13, 2026 at 02:03:39PM +0000, Caleb James DeLisle wrote:
-> Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
+On Tue, May 12, 2026 at 02:34:55PM +0000, Roman Vivchar wrote:
+> On Tuesday, May 12th, 2026 at 4:29 PM, Jonathan Cameron <jic23@kernel.org> wrote:
+> > On Tue, 12 May 2026 08:18:19 +0300
+> > Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org> wrote:
+
+...
+
+> > > +#define VOLTAGE_FULL_RANGE	1800
+> > Probably better to have this inline - however if you do keep it
+> > prefix t he define  VOLTAGE_FULL_RANGE sounds too generic!
+> > 
+> > > +#define AUXADC_PRECISE		32768
+> > I'd put that inline.  Little benefit it in having it up here...
 > 
-> These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
-> require re-training after startup.
+> There was a mention about magic values in the v1 for the thermal patch [1].
+> Andy, would it be better to use an inline style or a #define here?
+> If the former, I'll rename the first constant to something like
+> AUXADC_VOLTAGE_FULL_RANGE.
 
-> +#include <asm-generic/errno-base.h>
+If you use it inline, add a comment to explain the magic.
+It will be a good compromise.
 
-Looks odd; why is this here?  There are basically no other drivers
-that do this.
+> [1]: https://lore.kernel.org/linux-mediatek/afmnUG8dG0N0HpV6@ashevche-desk.local/
 
-> @@ -1149,6 +1234,46 @@ static int mtk_pcie_probe(struct platform_device *pdev)
->  	if (err)
->  		goto put_resources;
->  
-> +	/* EN7528 PCIe initially comes up as Gen1 even if Gen2 is supported.
-> +	 * The cannonical way to achieve Gen2 is to re-train the link
-> +	 * immediately after setup. However, to save a lot of duplicated code
-> +	 * we use pcie_retrain_link() which is usable once we have the pci_dev
-> +	 * struct for the bridge, i.e. after pci_host_probe(). */
+-- 
+With Best Regards,
+Andy Shevchenko
 
-s/cannonical/canonical/
 
-> +	if (pcie->soc->quirks & MTK_PCIE_RETRAIN) {
-> +		int slot = of_get_pci_domain_nr(dev->of_node);
-
-I suppose of_get_pci_domain_nr() is sort of an implicit way to
-identify the Gen2 ports?  Worth at least a comment about this DT
-connection.  Maybe it could be replaced by using
-pcie_get_supported_speeds() or similar?
-
-> +		struct pci_dev *rc = NULL;
-
-s/rc/rp/ to avoid confusing "root port" for "return code" or "root
-complex".
-
-> +		int ret = -ENOENT;
-> +
-> +		if (slot >= 0)
-> +			rc = pci_get_slot(host->bus, PCI_DEVFN(slot, 0));
-
-Instead of fiddling with pci_get_slot(), which adds refcount issues
-and artificial device/function number dependencies, I think it would
-be better to iterate over the devices on host->bus, e.g., with
-"for_each_pci_bridge(dev, host->bus)" as in iproc_pcie_setup().
-
-> +		if (rc) {
-> +			ret = -EOPNOTSUPP;
-> +
-> +			/* pcie_retrain_link() is not an exported symbol but
-> +			 * this driver supports being built as a loadable
-> +			 * module. Someone using this on an EN7528 should make
-> +			 * it builtin, or accept Gen1 PCI. */
-> +#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
-> +			ret = pcie_retrain_link(rc, true);
-> +#endif
-
-This looks like a confusing user experience if built as a module, with
-no hint to the user about why the link is slower than it should be.
-I guess "failed to retrain" is a bit of a hint, but it's not really a
-clue about how to fix it.
-
-> +		}
-> +
-> +		if (ret) {
-> +			dev_info(dev, "port%d failed to retrain %pe\n", slot,
-> +				 ERR_PTR(ret));
-
-This is basically an error path and there's nothing else to do, so if
-you return directly here (especially if you factor this to a separate
-function), the "normal" path below can be unindented.
-
-> +		} else {
-> +			u16 lnksta;
-> +			u32 speed;
-> +
-> +			pcie_capability_read_word(rc, PCI_EXP_LNKSTA, &lnksta);
-> +			speed = lnksta & PCI_EXP_LNKSTA_CLS;
-> +
-> +			dev_info(dev, "port%d link retrained, speed %s\n", slot,
-> +				 pci_speed_string(pcie_link_speed[speed]));
-> +		}
-> +	}
-
-Maybe factor the retrain block into a helper function.
-
-I'm sort of squinting at this whole link retrain thing to begin with.
-After the controller is configured correctly, the hardware is supposed
-to train the link automatically by itself.
-
-Did something change between mtk_pcie_startup_port_en7528() and now
-that means the link will train at Gen2?  Whatever that change is,
-could it be done in mtk_pcie_startup_port_en7528()?
-
-What happens when the downstream device is put in D3cold and the link
-retrains after power is restored?  Does it train at Gen2 then, without
-assistance like this?
 
