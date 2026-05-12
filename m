@@ -1,161 +1,235 @@
-Return-Path: <devicetree+bounces-296026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDVZA5+5AmonwAEAu9opvQ
-	(envelope-from <devicetree+bounces-296026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:24:47 +0200
+	id aGIiMf24AmonwAEAu9opvQ
+	(envelope-from <devicetree+bounces-296009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:22:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE56519F56
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:24:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23588519D86
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84B073067032
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:21:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCC3D3044A6B
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75AC374722;
-	Tue, 12 May 2026 05:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4CA32BF51;
+	Tue, 12 May 2026 05:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffbE+zGJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ISF34sO4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CB6356778;
-	Tue, 12 May 2026 05:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771A631B823;
+	Tue, 12 May 2026 05:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778563301; cv=none; b=Mb0gpkm8scFif0Ki35w9opcUiC9dX2j3YWINPCiQWKQb/l6MTWKTdmh0MHgnvHmqrD6VUmTZ56hN+LH4FbXXDtDhmDW7iEI+ZBut9me8uc6aSJvxPmUTa+GqU5RqY2D0gBF5hQzQeBpDsUPu81VrngBM6v+2P7p28kkuIuozkhk=
+	t=1778563259; cv=none; b=UXPJRAvwyT+nR2ohfzqY2srhdhYRIqXzE7fahlywSh40Tn7HRuwBah3uf3HPprcro1WYcvs83h5DIdnUoPk+n1hqp+cbA02I35pMxEs6Qtab6OEfAo4y/ksizGYrCVkGmpuv3b+OMfnvDT/mi8U+qtidStYOSnCMQl61jAC+0Dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778563301; c=relaxed/simple;
-	bh=DE9DtCJhXP2BqElPVUX9ed0zgo/XCG9/i5jncW01HEU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LtkHpEo3XWyZ0vnwuBugwu3V3CcN8ZfEeN6rFVIcEsMGxTkVMrHG1egxYilHZJNtiXdgolI5Uywx0CRir76Sz5CkI4nzeDa9ieHMJZeSsbvzIn/B3Isthy4OBbaUXjAXhfjfke+D/rxlfaAULP6Jn30NDBgvcKB4J9mzsQSKkpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffbE+zGJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C2EDBC4AF1C;
-	Tue, 12 May 2026 05:21:40 +0000 (UTC)
+	s=arc-20240116; t=1778563259; c=relaxed/simple;
+	bh=DKykONumnN8vEAkNqUHocQNuYxuy08HseTU9qi3MfU4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YscpjAivI+UXfbRJqMDmCkNtyz5x0A8XZO4zpsqXeF4fkXsJn+s7SPKdVVYhwKriuwZMtN5OLbzLAok0AHVmd6oXdVEN6LlLyViAHti3/BDwGktTA1Ejod2U8fV7+xifxHLbfOZ4ZYngOmNRLmcgOc+1NgaKcnF2seGfEYJs0t8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ISF34sO4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B96C2BCB8;
+	Tue, 12 May 2026 05:20:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778563300;
-	bh=DE9DtCJhXP2BqElPVUX9ed0zgo/XCG9/i5jncW01HEU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ffbE+zGJGCHr1lAYaJIR/6oJ9iU8LBZco0x0Tficx6r89p3Ly9zrEUzOegHrxguyd
-	 qHOFT0POxaO7S03I4cgc5yZAMDRAxQMQUTC+PSZMlg7Sc9MqOP47JUX3lhYI8vlfz0
-	 1Z1N0vv49imKJnADYpeKZgJ64GuxN+VSrNbwbHBlIPhOt5Gje3Y6ndZwiOjtzacyzB
-	 u1OgH0DaQFIpcE3UDC2lkylIhQu73XPQ4DgTiGLjb+ZEPjN/X1oRY5FOEN3IA+X+uo
-	 xGyojJehRUPIHVHvqr2OciQ/LU5bh5uM5XXFGg9qkbjq16PyZ+02f0ZpaoCFb7WBCU
-	 WJLAoViSUYHIA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9373CD4F24;
-	Tue, 12 May 2026 05:21:40 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Tue, 12 May 2026 08:18:30 +0300
-Subject: [PATCH v2 16/16] MAINTAINERS: add MediaTek mt6323 PMIC thermal
- driver maintainer
+	s=k20201202; t=1778563258;
+	bh=DKykONumnN8vEAkNqUHocQNuYxuy08HseTU9qi3MfU4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ISF34sO4Kyt0LWF1g1Qy9SHd4SwpidsMOSdsluazACG6ullhYMhA/Hn3ZaPf0lCFu
+	 6nz3rADFvJKXfBlqps+EAlz9Fi1MVJi/aKXXgbk9JTP9UPU5yRrdChrqFr4FmvdHJ0
+	 h8+OmyE4aetyGCxlNmxVloa4LT15I9rxldJlqaTzk00OCC3fIeMgtz13wybdftlIHz
+	 T8B0QHJ/KytY5+t4sLH7UZzbytHf3iYXreOhjGgAoIwStGVM3VxvnrkKPzZ0J/6HaQ
+	 yorofaw4HfFiFhaUACELeqRqyZUUSIjV8yNlGfyANcZupMzvo3fSPEuAQfvdjLW8Td
+	 vTF78sUdtaYsA==
+Date: Tue, 12 May 2026 05:20:56 +0000
+From: Yixun Lan <dlan@kernel.org>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.dev>,
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Trevor Gamblin <tgamblin@baylibre.com>
+Subject: Re: [PATCH v9 8/8] riscv: dts: spacemit: k1-musepi-pro: add SD card
+ support with UHS modes
+Message-ID: <20260512052056-GKD3624147@kernel.org>
+References: <20260511-orangepi-sd-card-uhs-v9-0-ae48c0b2b2cf@gmail.com>
+ <20260511-orangepi-sd-card-uhs-v9-8-ae48c0b2b2cf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260512-mt6323-v2-16-3efcba579e88@protonmail.com>
-References: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com>
-In-Reply-To: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
- Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>, 
- Roman Vivchar <rva333@protonmail.com>, 
- Srinivas Kandagatla <srini@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
- Ben Grisdale <bengris32@protonmail.ch>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778563297; l=692;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=8NVcmhjcZUhwoicnOrm6owXnni+d+cpxkUFwQ33c1Hk=;
- b=WuN6e8eFt0NDrjantucW+k4aytcYOhKb5NQLI+Q1K4YIL4RECU79bvOV8PH7sNGpbJyeE4bU4
- iSn4SKfdH5aBINvQ7Sxh1OHbZdW6DFMOJXAR0+SgjlrMcnNwh/x96mn
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Reply-To: rva333@protonmail.com
-X-Rspamd-Queue-Id: ABE56519F56
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260511-orangepi-sd-card-uhs-v9-8-ae48c0b2b2cf@gmail.com>
+X-Rspamd-Queue-Id: 23588519D86
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296026-lists,devicetree=lfdr.de,rva333.protonmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,mediatek.com,protonmail.com,intel.com,arm.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	TAGGED_FROM(0.00)[bounces-296009-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[rva333@protonmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.41:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,protonmail.com:mid,protonmail.com:replyto,mediatek.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.996];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Roman Vivchar <rva333@protonmail.com>
+Hi Iker, Trevor,
 
-Add myself as MediaTek mt6323 thermal driver maintainer.
+On 10:54 Mon 11 May     , Iker Pedrosa wrote:
+> From: Trevor Gamblin <tgamblin@baylibre.com>
+> 
+> Update the Muse Pi Pro devicetree with SD card support to match what
+> was done for the OrangePi RV2 in [1]. More precisely:
+> 
+> - Enable sdhci0 controller with 4-bit bus width
+> - Configure card detect GPIO with inversion
+> - Connect vmmc-supply to buck4 for 3.3V card power
+> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
+> - Add dual pinctrl states for voltage-dependent pin configuration
+> - Support UHS-I SDR25, SDR50, and SDR104 modes
+> 
+> [1] https://lore.kernel.org/linux-riscv/20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com/T/#
+> 
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>  arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 66 ++++++++++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> index 29e333b670cf..774a4640f065 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> @@ -18,6 +18,24 @@ aliases {
+>  		ethernet0 = &eth0;
+>  		serial0 = &uart0;
+>  	};
+Add one blank line here, but see comment below..
+> +	reg_dc_in: dc-in-5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dc_in_5v";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+reg_dc_in is not used, drop it, for the reason, see recent discussion of
+this thread here[1][2], especially refer to Krzysztof's original comment
+https://lore.kernel.org/all/6530526f-59ca-4753-a068-46c62a1a1fed@kernel.org/ [1]
+https://lore.kernel.org/all/20260511065338-GKA3624147@kernel.org/  [2]
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+> +
+> +	reg_vcc_4v: vcc-4v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_4v";
+> +		regulator-min-microvolt = <4000000>;
+> +		regulator-max-microvolt = <4000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+>  
+>  	chosen {
+>  		stdout-path = "serial0";
+> @@ -77,3 +95,51 @@ &uart0 {
+>  	pinctrl-names = "default";
+>  	status = "okay";
+>  };
+> +
+> +&i2c8 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c8_cfg>;
+> +	status = "okay";
+> +
+> +	pmic@41 {
+> +		compatible = "spacemit,p1";
+> +		reg = <0x41>;
+> +		interrupts = <64>;
+..
+> +		vin-supply = <&reg_vcc_4v>;
+This should be adjusted, please check schematics as I haven't done it
+myself, for reason behind please refer to this patch (which was merged
+in v7.1)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bf2e066f377d..3001a713b083 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16355,6 +16355,11 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
- F:	drivers/leds/leds-mt6323.c
- 
-+MEDIATEK PMIC THERMAL DRIVER
-+M:	Roman Vivchar <rva333@protonmail.com>
-+S:	Odd Fixes
-+F:	drivers/thermal/mediatek/mtk_pmic_thermal.c
-+
- MEDIATEK RANDOM NUMBER GENERATOR SUPPORT
- M:	Sean Wang <sean.wang@mediatek.com>
- S:	Maintained
+http://lore.kernel.org/r/20260206-spacemit-p1-v4-1-8f695d93811e@riscstar.com
+
+> +
+> +		regulators {
+> +			buck4: buck4 {
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-ramp-delay = <5000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			aldo1: aldo1 {
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&sdhci0 {
+> +	pinctrl-names = "default", "uhs";
+> +	pinctrl-0 = <&mmc1_cfg>;
+> +	pinctrl-1 = <&mmc1_uhs_cfg>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> +	cd-inverted;
+> +	no-mmc;
+> +	no-sdio;
+> +	disable-wp;
+> +	cap-sd-highspeed;
+> +	vmmc-supply = <&buck4>;
+> +	vqmmc-supply = <&aldo1>;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	status = "okay";
+> +};
+> 
+> -- 
+> 2.54.0
+> 
 
 -- 
-2.54.0
-
-
+Yixun Lan (dlan)
 
