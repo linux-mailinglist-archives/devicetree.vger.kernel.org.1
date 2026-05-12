@@ -1,192 +1,167 @@
-Return-Path: <devicetree+bounces-296512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HfQDXKnA2rR8gEAu9opvQ
-	(envelope-from <devicetree+bounces-296512-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:19:30 +0200
+	id KF0NGDmnA2qw8gEAu9opvQ
+	(envelope-from <devicetree+bounces-296501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:18:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B50552AD00
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:19:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C657952AC5D
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:18:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9446430349B1
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:19:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CFBF0307753A
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8749E39EF24;
-	Tue, 12 May 2026 22:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F55839D6E9;
+	Tue, 12 May 2026 22:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fbfg3b4f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ms/7J8An"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69AA939E167
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 22:19:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD5239D6CE;
+	Tue, 12 May 2026 22:18:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778624356; cv=none; b=Z/FgKYGguIvKqafOui1Qa3AHqPGU+vpBVJWSyvjYi/bxgMoUB5qnTmog7DgzS++z1lxN7iwhBHnFAit3s0AtsYvwd190rHI6xMU27c1uPH7UbZBo4i0PvAsrsVs+sKPyvJ50dY5B2KH7/G0ETBDdmMK30Vn5Ex/FvyWW6KdhEPc=
+	t=1778624311; cv=none; b=b3sPE511bNGYk9gMaeBCKeaZUA9ipNrM4rvcbNLInmnwrlkLsA/WeC5yl1hPg0LppVSqNym3OmT8fhpP9KaWC0xPg0V9i01loYc9nDWq7QHEL0O4nw+5/zS0manXDcA5PXEPBxjdNHg7mb+RkVWlkWaNyWhuzIJDdu09AphLQmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778624356; c=relaxed/simple;
-	bh=7P166A8vdKpbCTvjwJ0c7DTCaR8r6ukvy1kUs71vwQ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=f8LP8X4VNqOlRk+L/OwTbXW1fH8pCeMtolFcvRRH+ftooJdKk1FDGmVUBQd8ne+TFNpdQL83NoVPlnYqGcF2tseakOWFRAyFPwT19iowwXJ7aDKvWMa3wi7G4HQkU18FNp+N8qFlQi3gACCph2CLI/K4ieRuOBWB3CE2NpMfpaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fbfg3b4f; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-479f7e75a6bso2483278b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 15:19:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778624353; x=1779229153; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=Fbfg3b4f7XmrwZB5r2LLGY1pyQAwbg/VDc2bdkYDTOrOzsW9jAreqX1nnVLXMZ/rFl
-         rfvuAx72VgjFOuR6pJGPhjmgrxCroX4Ph7FOVvDMhyHp2CwqJDQwI1RI54E/m1ouTy6n
-         NxuMmXHpg9uQQL3UGpfbFWU279W89pU1rdC4NbMTmwQVF8y3ZMbiSUqR0f71k1IXvW9e
-         gfFGIMe6G5km43f2d2Ruh44bibd0AsmlLASVT4copBCxFeplwhIMOgrzM8m3QaRXlVLi
-         wH9Qae/mxFcyJNDFRbexCE8A1oDzHcqnHTUSv7esHDBS+T70+1A5aWWAsE5uw7GUuBlz
-         Vjww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778624353; x=1779229153;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=moa6G/ItF6XMfU4RDsoHP6uN+MUZSUZPr89wX/LqyO1J/NYf+Xo6OZbJ7FdSjecQsz
-         Bxlg7a71JMzuDvhN1wn+hVH70dtThskwal/o0pUzdGfs1+m7uzpSahw105kS9ASFPexB
-         Kmq+Zi0HWFX350A9EUYc2B9hNQZy+xGxdfx9959k7nFwDKe8DSolOLa595iirwEcg0Eh
-         kJNlNDMIGbrOfQ4Z8+5ZDgCdV5x4o8w/umRfJZzG4JFVx9LtQwh+JPT0W8a4Cp/ODywG
-         3ZuKhKJo91hC+jqg8AkdVmcM1zl3Pnnz73dqo9D/P8SfxQNsGOplZqK+riWRaJhC1PGQ
-         Y6QA==
-X-Forwarded-Encrypted: i=1; AFNElJ+2J+wib7My9k9voTPkCjZhg0LhKVIUzPE+R4gyU2+H47DgG671fzGp+mFnUGsWoFwV0Y5H8Xtr4c8N@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6d4+/t9n0QzUY8hdxWuayJjPkVD86qFkb+7GX1Ds66U2etYdd
-	BrvAmWrT/nqBAZnp8BzsLMd8QSD1gTJKKGdTy4iROPhrZlFQ5jFMrPqQ
-X-Gm-Gg: Acq92OGfnwrMPSy2Ek0SFb6hsK8HzBupyKSBaCvkY9KSMjISbh+SXiZ+Yn7seLnFg8+
-	+3TQJs2KV7dz1nvG/IUKwhR7vka2jHU1+dydqtm79jF/pTuIUlmeCl7RqNuF+HW7yaB6ZUFI04w
-	ZRgws5GgnroFM8WLoShLp3W5pxfqvYZ5kLtVTgI3I4ylXxEM1390OTquQsMn0PWOFcx3CQ3Q9AH
-	VjCeABQgrK5wLGKcQ+3d5E/vlJda/6ENy3xn3lkfsUxLSzFK7GbN4mimreS8yS/3wowY24I24xy
-	9XBkS3E7gUStf49WzPJusy0iuu1sx5Nbvinf6aqYbQGfqpM9fMAxlpA35ccdg8Y370EgbIVdxJQ
-	k/B2PqPSTMrq2EmHfMdvzPnX4n6zMecqhS0zGIDxetMrEvo2G9An/HPYL/bfqb6+dTvcCA2l+xA
-	L0jBWcbXAaZwA8u/4Ghd2u
-X-Received: by 2002:a05:6808:1c0e:b0:47c:3f6f:db97 with SMTP id 5614622812f47-482b2b8a364mr584683b6e.21.1778624353379;
-        Tue, 12 May 2026 15:19:13 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-47c76986f87sm23291473b6e.13.2026.05.12.15.19.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 May 2026 15:19:12 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: andy@kernel.org,
-	nuno.sa@analog.com,
-	dlechner@baylibre.com,
-	jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	andriy.shevchenko@intel.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V6 11/11] arm64: dts: rockchip: Add icm42607p IMU for RG-DS
-Date: Tue, 12 May 2026 17:16:32 -0500
-Message-ID: <20260512221634.256747-12-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260512221634.256747-1-macroalpha82@gmail.com>
-References: <20260512221634.256747-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1778624311; c=relaxed/simple;
+	bh=TTrcV+tl8jNIouLBzWAhXn7QW9/sf2i2hkZiIGuXrfg=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GwvmYAoTitQx/2ekgOdUBmi/1cJCIsE5PG3VDVXQ6UMNkrujhkqInj12/kKrjVmUXsoYQ5EAnwELe5O2wOJvoUZkxne4xCsZormtcpO5awF1iWleCB3LfG1/A7JfdXyAUGajzKQr2wGVfbySXcn7+jtXrZbgCAvo+IyCLX9zZP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ms/7J8An; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35494C2BCB0;
+	Tue, 12 May 2026 22:18:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778624310;
+	bh=TTrcV+tl8jNIouLBzWAhXn7QW9/sf2i2hkZiIGuXrfg=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date:From;
+	b=Ms/7J8AnBN4fqwJNk1XUMcSy6ZLh0JrEf+S+4ZiQ2XPZi1PpTA36jvqJJiaODHgqm
+	 PRREzBuc6S+t1va/0+UjX9vFhS3AjfEdDtdjeTr3ATENYWvdXw7icMkqvI53KOAE8n
+	 7CIN8OpTJJo4aYG05EWtr0zmlHYa7E+5KsvxNCQVP6OTOp4zy9s25hzDu2V2YHLpIa
+	 3A46xRxQrspcLhDBP0m717xEa6XQczX2WEP2NsIkPIZEaMGyAjMPMP4rVsSIN+3hVr
+	 sQqhTdK1N/mkErOBLWSamgJrrcLXpmHuEGfZVKfuASA2rDSx8yD+xiuoq76uupzfmD
+	 if01bLSATrkow==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
+Reply-To: sashiko@lists.linux.dev
+Cc: conor+dt@kernel.org, Frank.Li@kernel.org, krzk+dt@kernel.org, dmaengine@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org, devicetree@vger.kernel.org, vkoul@kernel.org
+In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
+References: <20260511165942.2774868-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 12 May 2026 22:18:29 +0000
+Message-Id: <20260512221830.35494C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5B50552AD00
+X-Rspamd-Queue-Id: C657952AC5D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [1.84 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	MISSING_TO(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-296501-lists,devicetree=lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-296512-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NO_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,5b:email,0.0.0.68:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,devicetree.org:url,smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The global `sram-consumer.yaml` schema causes `dtbs_check` valid=
+ation failures due to a namespace collision with standard `sram` child node=
+s.
+--
 
-Add the Invensense ICM42607P IMU for the Anbernic RG-DS. Mount-matrix
-was tested with iio-sensor-proxy and reports correct orientation.
+commit b3fd675e204900532756fc42297dea0b1787d10f
+Author: Rob Herring (Arm) <robh@kernel.org>
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3568-anbernic-rg-ds.dts    | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+dt-bindings: Consolidate "sram" property definition
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-index 8d906ab02c5f..875ca884deca 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-@@ -871,7 +871,18 @@ aw87391_pa_r: audio-codec@5b {
- 		sound-name-prefix = "Right Amp";
- 	};
- 
--	/* invensense,icm42607p at 0x68 */
-+	icm42607p: imu@68 {
-+		compatible = "invensense,icm42607p";
-+		reg = <0x68>;
-+		interrupt-names = "INT1";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PD6 IRQ_TYPE_EDGE_FALLING>;
-+		mount-matrix = "-1", "0", "0",
-+			       "0", "1", "0",
-+			       "0", "0", "-1";
-+		pinctrl-0 = <&accel_irq>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &i2c3 {
-@@ -932,6 +943,13 @@ &i2s1_8ch {
- };
- 
- &pinctrl {
-+	accel {
-+		accel_irq: accel-irq {
-+			rockchip,pins =
-+				<0 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	gpio-keys {
- 		vol_keys_l: vol-keys_l {
- 			rockchip,pins =
--- 
-2.43.0
+The "sram" property has become a de facto standard property, so create a
+common schema for it and drop all the duplicated definitions.
 
+[ ... ]
+
+> diff --git a/Documentation/devicetree/bindings/sram/sram-consumer.yaml b/=
+Documentation/devicetree/bindings/sram/sram-consumer.yaml
+> new file mode 100644
+> index 0000000000000..f00087bd2879b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sram/sram-consumer.yaml
+> @@ -0,0 +1,26 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sram/sram-consumer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SRAM Consumers
+> +
+> +maintainers:
+> +  - Rob Herring <robh@kernel.org>
+> +
+> +select: true
+> +
+> +properties:
+> +  sram:
+> +    description:
+> +      Phandles to one or more reserved on-chip SRAM regions. The regions
+> +      should be defined as child nodes of the respective SRAM node, and
+> +      should be defined as per the generic bindings in,
+> +      Documentation/devicetree/bindings/sram/sram.yaml
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+
+Will this cause dtbs_check validation failures due to a namespace collision
+with standard sram child nodes?
+
+Because select: true makes this apply globally, it intercepts the "sram"
+key for all nodes. In dt-schema, properties and child nodes share the exact
+same namespace.
+
+A child node named sram without a unit-address (which is permitted by
+sram.yaml and exists in device trees like arch/powerpc/boot/dts/ebony.dts)
+is represented in the YAML output as a JSON object assigned to the "sram"
+key of its parent.
+
+When dt-validate evaluates the parent node, this global schema will attempt
+to validate the child node object against the phandle-array constraints,
+triggering a schema validation error because an object is not an array.
+
+Is there a way to limit the selection so it doesn't match these child
+nodes?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511165942.2774=
+868-1-robh@kernel.org?part=3D1
 
