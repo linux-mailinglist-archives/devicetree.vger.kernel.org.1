@@ -1,132 +1,108 @@
-Return-Path: <devicetree+bounces-296419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296420-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNNZGKZ3A2ri6AEAu9opvQ
-	(envelope-from <devicetree+bounces-296419-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:55:34 +0200
+	id YAp4DkF0A2rf5wEAu9opvQ
+	(envelope-from <devicetree+bounces-296420-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:41:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD4E3528405
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:55:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56208527F7F
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 20:41:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C85C83108A54
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:31:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9D93A3033231
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 18:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40A425B088;
-	Tue, 12 May 2026 18:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3042E2665;
+	Tue, 12 May 2026 18:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oaOIArJ7"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nV2d+QLp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC8A175A68;
-	Tue, 12 May 2026 18:31:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F0825B0BC
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 18:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778610701; cv=none; b=oodCen8ZZzFJlSA+qTW7s1tz+k87/WIYPGV1TgKwTxGOSBGHGcpNtJHr7lacgs26R83Aw7psAbXt9vQiY0WkMByQFzCEo7elN+D8QVZopd2gnFNIsf7BCi9448Un3+onvv8Pt8B6nZuWgNcEcdfylQzKGbtrqR1ld5zvI7gw+oY=
+	t=1778610953; cv=none; b=nEHZgvCSdD5nk7f0mv1N/IxgCtgiVNcObXKQ3AA9bQZCFcKAyiocBlhhAoWgaDIgOEj9kwneqt6D9lKIpjcapsUnlxP2N8Pw1Xx9lM8n2y/5/nuWidGrJV8KLqg3UJlVW7vkczw0KWi8Jb6XTCpWD2m3G/pLco5zBb/Zc6LAoxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778610701; c=relaxed/simple;
-	bh=9l9QZTn3VGCPwjw6uCXUYbXBEV1oYKl//ROhoakHyKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dLI5QAhLUTfZPep/XpJ69XS534K1BjCFnGY2f90aXwrATB+tIxFCiR51U+okJ92U/AMUpgmFwW+8oF3v2BdasIHlTYn5I5L0Mwy22hQpWq/yKXEwXcRwycWa6+K6NoyWxy49aejVxOSYU+nx1d4TligpZVKq43rHSrIIgKfkuoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oaOIArJ7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B236C2BCB0;
-	Tue, 12 May 2026 18:31:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778610701;
-	bh=9l9QZTn3VGCPwjw6uCXUYbXBEV1oYKl//ROhoakHyKw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=oaOIArJ7NjzNm1c4UpAV7daAETkQnGLe7Y9AuriJATPRHn1hjrUuA9+CH0WTqGbEL
-	 q80I1TkMlCiOetx+H7eQOY/wt3LWoqbjPx0Mg+Rwbmmky1lMu+TEuwkqAwCuCal/5+
-	 jkucbA0KQYWXDUkimt6kf4qfIRus9n3E+ZAC9HQ3aI43boEI14XiRBDf13FoR5WIXv
-	 pasFsE5bk75a0fU4HhLhu/ZANtgRDPQRZwkDMluZW0sLlqlj7FzQnZ/4RgaQBu8/1K
-	 g97zcC0KVUd/xXujkNbhxPbLEvyI0qP3Ew+Bvu3l5g/5iJVGH6ZRH7Tl29tSjvqQqf
-	 60i/nnf9zHzQw==
-Date: Tue, 12 May 2026 19:31:29 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
- Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah
- Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH RFC v4 01/10] dt-bindings: iio: frequency: add ad9910
-Message-ID: <20260512193129.777d62a8@jic23-huawei>
-In-Reply-To: <20260508-ad9910-iio-driver-v4-1-d26bfd20ee3d@analog.com>
-References: <20260508-ad9910-iio-driver-v4-0-d26bfd20ee3d@analog.com>
-	<20260508-ad9910-iio-driver-v4-1-d26bfd20ee3d@analog.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1778610953; c=relaxed/simple;
+	bh=xQqCOuU9DWlde/ylJHf4LafF/NPKYekbCZL1w4nuN8c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fEHq2RKUcE1okzcIUtO/Fak8y4npTgu5yJcguYMFpOJzvUpyXMTUQfkaTbq4HzEQk7l7Yug3/GvhO9v3Sza8vAn45Jiw7URD85KadotnwNVJwqRLsmlxiHprjwuhhoFe+0xYvPIldb1m1Xk9XODvYweCl0PZeGK8A1s3HjcukdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nV2d+QLp; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+WDbnRCHLFMZ6i6H4Zt/0Gy4jkd8hmSy2ikld2vqGyw=; b=nV2d+QLp3RrNtrhdA34wuJcAwM
+	gs/9x/bxhYD/Wg/yRraDtqj4Q+4emUAjwDF9PmAkBgW0dy9W90F5SfnyYxnp8fSnPZUmOSszRwCt9
+	LDbLbt8dm7uT/NAyVbD0hQ5zBA0aH/dWcwSyDM6kc8EMWb5JSx0ukeFDsQ/1YARecg64=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wMrxA-002bMi-Po; Tue, 12 May 2026 20:35:36 +0200
+Date: Tue, 12 May 2026 20:35:36 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+Cc: joel@jms.id.au, andrew@codeconstruct.com.au, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add ASRock Rack B650D4U BMC
+Message-ID: <5427ff70-4676-412d-8294-da5743c736a7@lunn.ch>
+References: <20260512175019.47548-1-prasanth.padarthi10@gmail.com>
+ <20260512175019.47548-3-prasanth.padarthi10@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CD4E3528405
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260512175019.47548-3-prasanth.padarthi10@gmail.com>
+X-Rspamd-Queue-Id: 56208527F7F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296419-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296420-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
 X-Rspamd-Action: no action
 
-On Fri, 08 May 2026 18:00:17 +0100
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+> +/* Dedicated Management LAN */
+> +&mac0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
 
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
-> DT-bindings for AD9910, a 1 GSPS DDS with 14-bit DAC. It includes
-> configurations for clocks, DAC current, reset and basic GPIO control.
+What does this connect to? A PHY? NCSI?
 
-I think this is getting close enough now that for next version you should
-drop the RFC (which is probably gating DT binding folk giving it
-a detailed review!)
-
-> 
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-
-> +
-> +  adi,dac-output-current-microamp:
-> +    minimum: 8640
-> +    maximum: 31590
-> +    default: 20070
-> +    description:
-> +      DAC full-scale output current in microamps.
-> +
-Can we use generic dac.yaml defined output-range-microamp? The base will be 0 always but
-that shouldn't matter.
-
+     Andrew
 
