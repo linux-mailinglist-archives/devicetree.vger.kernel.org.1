@@ -1,443 +1,207 @@
-Return-Path: <devicetree+bounces-296519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296516-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yK2VA5+uA2rT8wEAu9opvQ
-	(envelope-from <devicetree+bounces-296519-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:50:07 +0200
+	id sBjVB9etA2rj8wEAu9opvQ
+	(envelope-from <devicetree+bounces-296516-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:46:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DBD52B1BC
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:50:05 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA62F52B119
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 00:46:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A695031192BA
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:46:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B2BE0304BB1E
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 22:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA763A16BE;
-	Tue, 12 May 2026 22:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8BD3A3E99;
+	Tue, 12 May 2026 22:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GbA8Apc8"
+	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="LgAQAhqY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010031.outbound.protection.outlook.com [52.101.69.31])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF183A5E7F;
-	Tue, 12 May 2026 22:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778625968; cv=fail; b=eUwj3ZIY3g3/eRlqT6SBGUsrZcfz12L/5zmTZSP0Z3qlezUeCHMjA0dWxt5p7GlG3u3AVGbFdVyFw0rIAhVDy0O6Gf8iH4J2dsycx0oCkq/WsAYfcKQ43h+itJOu3m1XucK5ycmcdKrUIqrMYn4FkqxhS9LIQ23Vh3LR2xEwRZI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778625968; c=relaxed/simple;
-	bh=x0QEtWKCFUf9gCC1LNZh9rGP1ZgA8jvInjBlk95bpn0=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=mboRRxvmGzsbE0F0OMMMAYxcSd4+cy1eLhNGhD6PXb4JPVDA3HaYSw9+dkklu5++XXXBuvrkXCsjuJT3oAa65U5SnLpmzLho8fpja6CzigsJZxDfEmMERqJvODmcbipMzHkcvAPlHKyyUaIWtWEDLw89jqGGMCw1g57GMEd22Gc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GbA8Apc8; arc=fail smtp.client-ip=52.101.69.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EQGHE8z0a39zSYLObvoVs9LkMkpns+gLEYcVjFZW8XQfgL+d2VabWIh+A75/8siFtblOvqhQWL9giL8k3lJGt6W1r4yKkcBW0p2Fn/4hck10ifuV83VcmRbsOxjIbzVymJSEwTIobU6GEKQOgTkTKzzQWy/cE3hCemOYGwkmUMsuf8rjk/D9Dw6qqpecsZRJLHkH3IslcEGDFcn4AIUXss19I22XEVR2P71Y+spnP7LwbiAmfERbB5cXFF+Dg8ZEGQYyqXjuvsV97g3YeoFT+t6V/51U9E0mdGQkohSdac+nURzCHN1CtGITJDfIXK1zSYUQzD+vtydV8si72ONbMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mkFvnIKT1rtLPtUq/44zJwaHL81U/rHtNAg51nY2KiU=;
- b=iyToPNLYEwIQ59wMTyfvdQ6+wAIFmG+RU9cZhGjAa2eWPTnouUgWGD8CD3LebjzgWhvOPwzsLrR+htEIGMG96Hz5QPXUqN5d8uIx19R4X4+4jlgC69ex7+aN8I2+VZKu0p38khsCAE/6yJZkgssK4ZXmCXSdca5rZ+bSW3dkJ943na+vN6R2s7CyOb9AfzdJKRcqfY5NADInxjNiVoxv97adIwsIB3rTSRPS41MKRA/M5jfH3nULfRzjXQEYThSwCFCS/+G+uzSdEwx9An3IlbNXBWOj4SPTlOcgXdpzGDcNKJy/ehJNNkjwAxroZ3vJwa5FZdWJJ+qUzCF9PICgpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mkFvnIKT1rtLPtUq/44zJwaHL81U/rHtNAg51nY2KiU=;
- b=GbA8Apc8bjWmPI7cQgCxbw2D9R6tsw9ZDMGjLJ8SBW2pgDmKC5iud7x7E/unxXmt5hwMdV/+uiuEeHU2NlwZfBeBDikbhC4Br96+FNMBqwIP67LbDxbTWGq0PEQn48DSFgtjc8FpBHsGxVvkNXG7oIyXDNcDJB85kuYrbNaEqScmmyDy6O4UVXizsiv9g4DazdsBXa+49op0JQEu/UIhaKG26qLd8wOwKMrdf3d79/GIOezYpKJ46prcOf2dd/qPZV2298iPJv8TbmMZ9qSzgTOuYEHY3410UGxqwgRY8yx35E+Sy9UBPVXGnUyUIm0keMwFLgNt6bmGgc9lpw5+Bw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AS5PR04MB9922.eurprd04.prod.outlook.com (2603:10a6:20b:67c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
- 2026 22:46:03 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%3]) with mapi id 15.20.9913.009; Tue, 12 May 2026
- 22:46:03 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	linux-kernel@vger.kernel.org (open list:VOLTAGE AND CURRENT REGULATOR FRAMEWORK),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: regulator: convert ltc3589 to yaml format
-Date: Tue, 12 May 2026 18:45:42 -0400
-Message-ID: <20260512224544.1223283-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0252.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::17) To DU0PR04MB9372.eurprd04.prod.outlook.com
- (2603:10a6:10:35b::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3134A382288
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 22:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778625958; cv=none; b=aoMKH2HvLR5I09XgJQ6zgzAY39cnoCQ65OCFm/D5VpM8s2ju7I1mWb63CNq1SdhAmzhtYeymI2SIlzhBhW3lssuRn2MfJJoBAqO3DIZPlCFXOUseIAM2QPx9XEa9qzuP61XHquxdtFVD1dxNtjCdhPOc7ss1En8K2xL2c6mfHR0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778625958; c=relaxed/simple;
+	bh=07huJZfdVDsVDdyzp6gIWeNC9PLalNwQMidkkW1mhKg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=URwXhBnW0ZgR7PypjbafbLwE7fL9EA4DjpXVycwvQJ5iNUmJ9vVoWMlN5GwUbWD9KL256OnwTHN9Atki8cXqlWESt9tl7WD8n/7CwciW6LIkU+LrSeC2+E/84Ggg86SjiRUsgeGToeV7DMZtfMWcCwD/UrIAqbE4zYX0EytPSVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=LgAQAhqY; arc=none smtp.client-ip=74.125.82.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nexthop.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
+Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-133466cf955so537380c88.0
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 15:45:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexthop.ai; s=google; t=1778625956; x=1779230756; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0dud5LLCGSTK8F+2vzRewAKWi1MtN7/zLbCDo25xb8E=;
+        b=LgAQAhqYOo64joSIh0Uh6OwA8IVx+lopDrocPu4pJXlb/sbem8FLCOQCE9V/ciCgpJ
+         qGnya/KCQUeRDHmQSl9GiSWqZFwFes5HPnn3xfxiVjO+KoVhftCGl4+WYfTyRNtfkCM3
+         1no3h+SvfyeGK2tGbA0YpB3vRNGijIChHyOvc4+yv1TfgZzJhStk5exw0Pc8Zwj5nHJv
+         XubEz3AYb5tEtrUHXYh2xWMFMqL0JcCU2w0vGCaMKi5Df1CFCm9fztUgFE+gd8L6YAxQ
+         qSEFxhNl3Zvw7klrauqb3LyPnntDTIwLLiHaf1AKl8F5Uypp2quUZkbkix1ZmLcVgwVn
+         Cojg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778625956; x=1779230756;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0dud5LLCGSTK8F+2vzRewAKWi1MtN7/zLbCDo25xb8E=;
+        b=BqhKBkjbJHJx6FZF0bX2h4rIB4WdLL8TSgyznNznoz32CJ3pwUUXGiSRvvTvpE1L7N
+         zrTZsKagpMcFf7vVOh0juSCzjFn44oYCde60xlQ6F6Hpn9Ief5CKVDteae38h+bgIStA
+         e0ADk2N2uQlN8sn2YmkVlWJfbyEvXWimriWsDiQYGeebVnzQaj6AMd3dzkDA68DgRPrQ
+         OUz+qeTo057o48pmWQxD4LMlgXuMGlPhTUbKDW2IN5ySXbD9famXRbk2ZPz6/+iEahCP
+         kXop1uWk74P9CCsqrKBRQi5P2JrFmfsxfkitUaycpLLKx34xz+8wH07FO++KN4+GneHG
+         Z+AQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9Is2hCewpgJJRcFxKLONRcvKiyCke0Vrdv8IamqVu+raAvsuz29OCasG8Y7kyZKFdifrA08kWP87Qc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1iwUNQLEEFYyIQ+dHeHFfBNmTrZmY5GbuclgxpT/GjtMEtu/i
+	16qMosgU2oVsWn6None4WgWPxljvkiu3F7yCf5XNGvlR3ZkE8tpXN1H5uGPqqYjcuDQadrIpUh2
+	juTGlXbo=
+X-Gm-Gg: Acq92OHcaT02TtEH7pngPbNtsqiUbnUEVLm4CtRxZo/pRlB+Dz5hdwjwJAKybswkOOl
+	JE7ZGzDZGUWy79tmPzKdv94J+D2OYEZhBY8jLoDMQk6vhsJnFw/aO63+IMQfkZttRoPg/z2GYga
+	lVBNU9ba8/cniJ4G6Raa/j1YvgDHrGC+toaE6Drir/iL7IwlNawp9AS4UDp3OOegNMWPZ9lyFTV
+	oXH+usiwLk7gAsZ3z+xRk1G+ghFw0ES+vzM/XfJle7yFxk3ZZZ2Srilksozjm1pWN1V1x4Pn4nO
+	Uh8/MH96M7XQLzl22He0yXt/6/q1f7uU/Ji4OJhMT0EM9ncBkZS3RrDsOjsng+jS8lNaTYQIhBE
+	DEx2qzdcRC7l+wZR96197tIR+aQ0d89sfWzR5O8TnVZnfit2tkzevrctsL8OEykwgK+4UA4pdcV
+	AZTWn3Ev4IG6qeM4aX8mMrtdAtMQ==
+X-Received: by 2002:a05:7023:b0b:b0:12d:c039:6599 with SMTP id a92af1059eb24-1343699b63emr519999c88.22.1778625955810;
+        Tue, 12 May 2026 15:45:55 -0700 (PDT)
+Received: from [127.0.0.2] ([50.145.100.174])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1327821fd00sm25351543c88.8.2026.05.12.15.45.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 May 2026 15:45:55 -0700 (PDT)
+From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Subject: [PATCH v2 0/2] hwmon: Add Murata D1U74T-W PSU driver
+Date: Tue, 12 May 2026 15:45:51 -0700
+Message-Id: <20260512-d1u74t-v2-0-431d00fbb1c4@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AS5PR04MB9922:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1dd930ee-8223-4781-4d8e-08deb0783edb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|19092799006|366016|1800799024|38350700014|18002099003|56012099003|3023799003|11063799003;
-X-Microsoft-Antispam-Message-Info:
-	U9KihMVS0zgGHHR1jx1twgwxGNIx1XN2ABIDi4ElLeXws5oAmc7YJz//3DcswbkYGRXE4VR7QIqfcLXGd4FsJ8uDhY/hF9McGt3AtO+yGyXYLK+O8BWSMcvKGBSU9ri2GWvQXd3LkvOH/uvoqgj2G8RCpYMqR6KSRRbYxUf0PJygUzLt4CeyqwqA9fInYQ2kU90Iv/sN6/1CA+Woq0+BgPo63z4Ts+TcRRo3CijYcYy96U5Q/OJVCbtU4yyEp5d7by9/esJDlVv3w5g7mMN/kbpqOILXmLAE0aX3ZmpUZ9uwtEXSKyuo/iT0uc2qtBRTO1buz4jdGMIMm4EHSpJVT64Uy47AWIEu/tooa2sqLV0dZ4DnRBjPHl3iP/5aPv4/51nT6lfkorRoCMQoNa8DI8TCOgGWZ38emAqO9JmKjYPSlvUuALFfbrjFCFhdZGoUq2Dkjx+YZJ9ibyXjyUcppoeevGRZWuyMZna1wgzc9rEH43S2FhX3F6Wq4CeMEc7Fq9+yoPfQj2Y26/zXsq3moUkw3zliI4XliW22pfmMjB9VzM5Xh2hwpg+SuWiFkij/HFG1m8qdyUverdiFYp4q1tZu8npS53qyz2cn99f0HkTzBCtHd+5rLk39TU3+Lbm6L6QPX7t+WecRedNGAOusKDhJqO8s9Af0MntE8EJ4tDUWi1/hnnjpFTh/x/dRSp7tke1bLfDWviNq07FGFJCssA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(19092799006)(366016)(1800799024)(38350700014)(18002099003)(56012099003)(3023799003)(11063799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7gJBCJpx8kWyn1wt4es5GksA9XzM9hy5H6BjrQrgn1jAlmLO+d6Nbn1mEhQs?=
- =?us-ascii?Q?Nus38yOtxACHCls07c3eSvzftjaoPcaXHIylUMyqkgor49q7ABvrALnMrjoO?=
- =?us-ascii?Q?eylGMclP5/+2Ab8UJEQ++/IXWxdVRNkmjzf/2rjy061o6G20PGgtRkzNkpEs?=
- =?us-ascii?Q?N5OwSqLkH5nvPNLeWI7NlKxxpQBhhCaxL8EWwGj20b270NAPDbs+Wg5AX1td?=
- =?us-ascii?Q?YcIt1WQasrnzIQ20YL9z9V/DdK8C6Z+zyywrj372NtUdvkZLKUN/WfRCFLsI?=
- =?us-ascii?Q?iKG0uL+YxhIfaOGBlNYeLQATD7w1CMgdCWPOWXpd8n9VrZBCu7IltXD0fMWI?=
- =?us-ascii?Q?WQIaeU5n+I5V1cIifHZKc+oZuUa5u81yDAmmW8bgIV8ENni0zzJJacrZoW10?=
- =?us-ascii?Q?w2gIdebwPoOiCDwPbiDdwts/PY6ULd5KK1EjVVOmPPdqdM+9wewGivtihe1C?=
- =?us-ascii?Q?fgCpplZH4OZbehrqoDDg4w3Fqmh9HjBysZKUnqX3MH2y6IMc7KfynwgJ4vCJ?=
- =?us-ascii?Q?3VqXKsVRP9i5LwhfqxCMBJff3F1IMNwKUqRLTIHgfYOIxSYPjEZfIe0fo3qw?=
- =?us-ascii?Q?dSEm2czYJhyGk6yiC8DYSfE5RblrYwEdhnWJA88roPD0HVMPVF904eYotb4q?=
- =?us-ascii?Q?80yMyge2QFiVz0Hy12e3z5sHqmLs/hKpkpvPfBRREJJ/+8+N2lb0CqMv73qD?=
- =?us-ascii?Q?T58h7cO3CFs8amN5jwFitkvoHNE+532cAy2p0EgrVwVXHvfuATV+lyLgdhDm?=
- =?us-ascii?Q?8i2PJP5aYX3bUZwrwbJECvXQPEpMPKph7N8DhXdFip7uMLCBYBWV2yolSx/a?=
- =?us-ascii?Q?GoWYryvzOt2lZrvV/ojacC2YcJGePYptyRSx0euIiPeYYDhDSrDpeor6vBPG?=
- =?us-ascii?Q?gdLvlf1x8yhE0haPRIaeBv3LoEccj5Lf/dIQtSHwvK7+9DGlLiP7gKQBSUkl?=
- =?us-ascii?Q?zXzXDBt+8zOb+wsjsMlqXJG9+sBQkXGAM84ZmFyqu50T1MD1hSaJ0U1U0utI?=
- =?us-ascii?Q?M7fWBaXB6wKEbr+Koe8pFz7degtfbetj+9L7ln6i6adCMD/FyA6YkxFZNf+I?=
- =?us-ascii?Q?pFY7rxubWD1eSiFNPnd6Gi4j3zWrSFFGW3w/t8HNC94xF5kGuJ3Sl71KQMpT?=
- =?us-ascii?Q?AOCpoE9rzgCzBjSabopMF8dALvW+Tu2W7UrleptZ8hVV2fL8UdZUKPPMnWlb?=
- =?us-ascii?Q?49qL6nnfIilm1Ez2PEzkOp98qAdkoOJg95MUXtUOK24dX3FmBIrvjJmU58Hr?=
- =?us-ascii?Q?m46iYeeb5daMECwN3dk18hpIsRY1eZh7AqYS/Omw9Dn7Kte+mElYPPIDaWoh?=
- =?us-ascii?Q?w87fRabyZsyhYYU7D7G92sD7U8HoaQaPlwlYoSITAwDzz2BKdreCDw/yINkt?=
- =?us-ascii?Q?TcpVWwFudAzEklRwEW52GrStw4qRx15TcY5ASTGRRMAVwYesSfmj2WKeC8XZ?=
- =?us-ascii?Q?FIOt6HG+XWeJGHh2QTbvG8F4ViAVVrAOQKLgNe9XyVGMZnhMEGVAcoRgXUMh?=
- =?us-ascii?Q?rLC01sYC7HOLZ1oElgrkwWZfR85FbBGqOIYM1bHC5eoGtmTbFKN2uHtlbxMP?=
- =?us-ascii?Q?WmqR9Ioc9mpf9QawTlU66sa9eLYUvWQ0BBV+2ApthcCZLFwuUZu48Y7sNOPi?=
- =?us-ascii?Q?X8nVQG+7KzJG6JjuB54TqPtFM48/OoF2bfNtJWgHuYqU8ikU97HMlx/yfwUR?=
- =?us-ascii?Q?XzC/AvCU3MzheiVAqm4l9cBHfEuT4053zdZEqHU8fryiEMx6?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dd930ee-8223-4781-4d8e-08deb0783edb
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9372.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 22:46:03.5109
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ftd0FfJyFmSVmmpPQyIqa/e+ZT/A7WTXQDgcqA+ZuKyoNyL392TnxgG74DxPfgyy4S+WQUCjz4E5ah6Egbpl3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9922
-X-Rspamd-Queue-Id: 71DBD52B1BC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ+tA2oC/2WNQQ6CMBBFr0JmbU2nLWhccQ/DogyDjAsgbSEYw
+ t0FXLp8yfvvrxA5CEd4ZCsEniXK0O9gLhlQ5/sXK2l2BqNNoXNE1eB0c0mRptrfWyTrHOzyGLi
+ V5Qw9qx/HqX4zpWN9GJ3ENITP+TTj4f1FZ1RaFcaSqQlza3zZ85K6Ybx6gWrbti+Abc84rwAAA
+ A==
+X-Change-ID: 20260511-d1u74t-c0cba8f1c344
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>, 
+ kernel test robot <lkp@intel.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778625955; l=2625;
+ i=abdurrahman@nexthop.ai; s=20260510; h=from:subject:message-id;
+ bh=07huJZfdVDsVDdyzp6gIWeNC9PLalNwQMidkkW1mhKg=;
+ b=N1fpvSwaSXM2bYj2h/Cp7iEyB5yRVXj4TFN3Mk5qbmea2/1zdOfxg2ofP+VdhbU7FOELd6FQL
+ lIz2Gg9DmysB5Ukq/XreAGxunZhzuCyPdf+cAqvlA0hI0mQHaw0peoL
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=omTm9cCAbO0ZhS32aKfJDKue0W3sQGpG9ub5eYHif8I=
+X-Rspamd-Queue-Id: BA62F52B119
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nexthop.ai,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[nexthop.ai:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nxp.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-296519-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296516-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[nexthop.ai:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abdurrahman@nexthop.ai,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.34:email,nxp.com:email,nxp.com:mid,nxp.com:dkim]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nexthop.ai:email,nexthop.ai:mid,nexthop.ai:dkim,msgid.link:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,roeck-us.net:email]
 X-Rspamd-Action: no action
 
-Convert the Linear Technology LTC3589/LTC3589-1/LTC3589-2 regulator
-binding from text to yaml format.
+This series adds a PMBus driver for the Murata D1U74T-W AC/DC power
+supply unit, used in some Open Compute Project platforms.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+The PSU is PMBus-compliant and uses the linear data format. The driver
+exposes:
+
+  - input/output voltage, current and power telemetry,
+  - three temperature sensors,
+  - dual fan tachometer monitoring,
+
+through the standard hwmon/pmbus sysfs interface. Probe verifies the
+PMBUS_MFR_ID and PMBUS_MFR_MODEL fields before binding so the driver
+only attaches to actual D1U74T-W hardware.
+
+Patch 1 adds the compatible string to trivial-devices.yaml. The
+binding declares only compatible and reg (no regulators, no supplies),
+so a standalone binding file is not warranted.
+
+Patch 2 adds the driver, hwmon documentation, Kconfig/Makefile entries
+and MAINTAINERS section.
+
+Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
- .../bindings/regulator/lltc,ltc3589.yaml      | 147 ++++++++++++++++++
- .../devicetree/bindings/regulator/ltc3589.txt |  99 ------------
- 2 files changed, 147 insertions(+), 99 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml
- delete mode 100644 Documentation/devicetree/bindings/regulator/ltc3589.txt
+Changes in v2:
+- Patch 1: move the binding into trivial-devices.yaml rather than
+  carrying a standalone murata,d1u74t.yaml. The device only declares
+  compatible and reg, with no regulators or supplies, so the
+  standalone binding was not warranted (Conor Dooley review).
+- Patch 2: fix the d1u74t.rst title underline (was 18 '=' chars under
+  a 20-char title, docutils warning from the kernel test robot).
+- Link to v1: https://patch.msgid.link/20260511-d1u74t-v1-0-623c2bc1532a@nexthop.ai
 
-diff --git a/Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml b/Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml
-new file mode 100644
-index 0000000000000..f406c2bd252d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/lltc,ltc3589.yaml
-@@ -0,0 +1,147 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/lltc,ltc3589.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Linear Technology LTC3589, LTC3589-1, and LTC3589-2 8-output regulators
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description:
-+  Regulators sw1, sw2, sw3, and ldo2 can regulate the feedback reference from
-+  0.3625 V to 0.75 V in 12.5 mV steps. The output voltage thus ranges between
-+  0.3625 * (1 + R1/R2) V and 0.75 * (1 + R1/R2) V. Regulators bb-out and ldo1
-+  have a fixed 0.8 V reference and thus output 0.8 * (1 + R1/R2) V. The ldo3
-+  regulator is fixed to 1.8 V on LTC3589 and to 2.8 V on LTC3589-1,2. The ldo4
-+  regulator can output between 1.8 V and 3.3 V on LTC3589 and between 1.2 V
-+  and 3.2 V on LTC3589-1,2 in four steps. The ldo1 standby regulator can not
-+  be disabled and thus should have the regulator-always-on property set.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lltc,ltc3589
-+      - lltc,ltc3589-1
-+      - lltc,ltc3589-2
-+
-+  reg:
-+    maxItems: 1
-+
-+  regulators:
-+    type: object
-+    description:
-+      Contains eight regulator child nodes sw1, sw2, sw3, bb-out,
-+      ldo1, ldo2, ldo3, and ldo4.
-+
-+    patternProperties:
-+      "^(sw[1-3]|bb-out|ldo[1-2])$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          lltc,fb-voltage-divider:
-+            description:
-+              An array of two integers containing the resistor values R1 and R2
-+              of the feedback voltage divider in ohms.
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            items:
-+              - description: R1 resistor value in ohms
-+              - description: R2 resistor value in ohms
-+
-+        required:
-+          - lltc,fb-voltage-divider
-+
-+      "^ldo[3-4]$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@34 {
-+            compatible = "lltc,ltc3589-1";
-+            reg = <0x34>;
-+
-+            regulators {
-+                sw1 {
-+                    regulator-min-microvolt = <591930>;
-+                    regulator-max-microvolt = <1224671>;
-+                    lltc,fb-voltage-divider = <100000 158000>;
-+                    regulator-ramp-delay = <7000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                sw2 {
-+                    regulator-min-microvolt = <704123>;
-+                    regulator-max-microvolt = <1456803>;
-+                    lltc,fb-voltage-divider = <180000 191000>;
-+                    regulator-ramp-delay = <7000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                sw3 {
-+                    regulator-min-microvolt = <1341250>;
-+                    regulator-max-microvolt = <2775000>;
-+                    lltc,fb-voltage-divider = <270000 100000>;
-+                    regulator-ramp-delay = <7000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                bb-out {
-+                    regulator-min-microvolt = <3387341>;
-+                    regulator-max-microvolt = <3387341>;
-+                    lltc,fb-voltage-divider = <511000 158000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                ldo1 {
-+                    regulator-min-microvolt = <1306329>;
-+                    regulator-max-microvolt = <1306329>;
-+                    lltc,fb-voltage-divider = <100000 158000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                ldo2 {
-+                    regulator-min-microvolt = <704123>;
-+                    regulator-max-microvolt = <1456806>;
-+                    lltc,fb-voltage-divider = <180000 191000>;
-+                    regulator-ramp-delay = <7000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                };
-+
-+                ldo3 {
-+                    regulator-min-microvolt = <2800000>;
-+                    regulator-max-microvolt = <2800000>;
-+                    regulator-boot-on;
-+                };
-+
-+                ldo4 {
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <3200000>;
-+                };
-+            };
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/regulator/ltc3589.txt b/Documentation/devicetree/bindings/regulator/ltc3589.txt
-deleted file mode 100644
-index 8010530361465..0000000000000
---- a/Documentation/devicetree/bindings/regulator/ltc3589.txt
-+++ /dev/null
-@@ -1,99 +0,0 @@
--Linear Technology LTC3589, LTC3589-1, and LTC3589-2 8-output regulators
--
--Required properties:
--- compatible: "lltc,ltc3589", "lltc,ltc3589-1" or "lltc,ltc3589-2"
--- reg: I2C slave address
--
--Required child node:
--- regulators: Contains eight regulator child nodes sw1, sw2, sw3, bb-out,
--  ldo1, ldo2, ldo3, and ldo4, specifying the initialization data as
--  documented in Documentation/devicetree/bindings/regulator/regulator.txt.
--
--Each regulator is defined using the standard binding for regulators. The
--nodes for sw1, sw2, sw3, bb-out, ldo1, and ldo2 additionally need to specify
--the resistor values of their external feedback voltage dividers:
--
--Required properties (not on ldo3, ldo4):
--- lltc,fb-voltage-divider: An array of two integers containing the resistor
--  values R1 and R2 of the feedback voltage divider in ohms.
--
--Regulators sw1, sw2, sw3, and ldo2 can regulate the feedback reference from
--0.3625 V to 0.75 V in 12.5 mV steps. The output voltage thus ranges between
--0.3625 * (1 + R1/R2) V and 0.75 * (1 + R1/R2) V. Regulators bb-out and ldo1
--have a fixed 0.8 V reference and thus output 0.8 * (1 + R1/R2) V. The ldo3
--regulator is fixed to 1.8 V on LTC3589 and to 2.8 V on LTC3589-1,2. The ldo4
--regulator can output between 1.8 V and 3.3 V on LTC3589 and between 1.2 V
--and 3.2 V on LTC3589-1,2 in four steps. The ldo1 standby regulator can not
--be disabled and thus should have the regulator-always-on property set.
--
--Example:
--
--	ltc3589: pmic@34 {
--		compatible = "lltc,ltc3589-1";
--		reg = <0x34>;
--
--		regulators {
--			sw1_reg: sw1 {
--				regulator-min-microvolt = <591930>;
--				regulator-max-microvolt = <1224671>;
--				lltc,fb-voltage-divider = <100000 158000>;
--				regulator-ramp-delay = <7000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			sw2_reg: sw2 {
--				regulator-min-microvolt = <704123>;
--				regulator-max-microvolt = <1456803>;
--				lltc,fb-voltage-divider = <180000 191000>;
--				regulator-ramp-delay = <7000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			sw3_reg: sw3 {
--				regulator-min-microvolt = <1341250>;
--				regulator-max-microvolt = <2775000>;
--				lltc,fb-voltage-divider = <270000 100000>;
--				regulator-ramp-delay = <7000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			bb_out_reg: bb-out {
--				regulator-min-microvolt = <3387341>;
--				regulator-max-microvolt = <3387341>;
--				lltc,fb-voltage-divider = <511000 158000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			ldo1_reg: ldo1 {
--				regulator-min-microvolt = <1306329>;
--				regulator-max-microvolt = <1306329>;
--				lltc,fb-voltage-divider = <100000 158000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			ldo2_reg: ldo2 {
--				regulator-min-microvolt = <704123>;
--				regulator-max-microvolt = <1456806>;
--				lltc,fb-voltage-divider = <180000 191000>;
--				regulator-ramp-delay = <7000>;
--				regulator-boot-on;
--				regulator-always-on;
--			};
--
--			ldo3_reg: ldo3 {
--				regulator-min-microvolt = <2800000>;
--				regulator-max-microvolt = <2800000>;
--				regulator-boot-on;
--			};
--
--			ldo4_reg: ldo4 {
--				regulator-min-microvolt = <1200000>;
--				regulator-max-microvolt = <3200000>;
--			};
--		};
--	};
--- 
-2.43.0
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+To: Guenter Roeck <linux@roeck-us.net>
+To: Jonathan Corbet <corbet@lwn.net>
+To: Shuah Khan <skhan@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-hwmon@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+
+---
+Abdurrahman Hussain (2):
+      dt-bindings: trivial-devices: Add Murata D1U74T PSU
+      hwmon: (pmbus/d1u74t) Add Murata D1U74T PSU driver
+
+ .../devicetree/bindings/trivial-devices.yaml       |  2 +
+ Documentation/hwmon/d1u74t.rst                     | 97 ++++++++++++++++++++++
+ Documentation/hwmon/index.rst                      |  1 +
+ MAINTAINERS                                        |  7 ++
+ drivers/hwmon/pmbus/Kconfig                        |  9 ++
+ drivers/hwmon/pmbus/Makefile                       |  1 +
+ drivers/hwmon/pmbus/d1u74t.c                       | 85 +++++++++++++++++++
+ 7 files changed, 202 insertions(+)
+---
+base-commit: 5d6919055dec134de3c40167a490f33c74c12581
+change-id: 20260511-d1u74t-c0cba8f1c344
+
+Best regards,
+--  
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
 
 
