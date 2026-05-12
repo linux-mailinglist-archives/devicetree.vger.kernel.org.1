@@ -1,194 +1,246 @@
-Return-Path: <devicetree+bounces-296496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296497-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLTqMDSfA2pL8QEAu9opvQ
-	(envelope-from <devicetree+bounces-296496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 23:44:20 +0200
+	id UKyfNrifA2pp8QEAu9opvQ
+	(envelope-from <devicetree+bounces-296497-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 23:46:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C388952A83E
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 23:44:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B21552A8C4
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 23:46:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2077F30095E1
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 21:44:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E5726303FAFF
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 21:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8ED438A706;
-	Tue, 12 May 2026 21:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71A53624A3;
+	Tue, 12 May 2026 21:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1KOszch"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cO4VoEFw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A9D389DF0
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 21:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93FA32E62A9
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 21:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778622252; cv=none; b=he1z3pYsU971W5Z4tjLrCE4+MaljI+7tPfg6K9UEANC9cchJx/fsx8kV6qetiSa+4DLQGVKRJx9t6C8sM4wxw5XJo92QSA2WPpb3d1BvT0EsmHWoSN0wU/sXt+qerYcVfmLq2HPe5DfiH/7VrcQZn815ivA7P35msiKOVhxbAPY=
+	t=1778622389; cv=none; b=jYXvjD93ibyvgO0M3IOy7JbpGp4bvzuSZPuXtvEYZUStOkdomw8xKJOVVhKcpsN5muSGO2PnB/DUZ+OIg6gm1KNTXuO7onePmV9/9fhH9LRV81hmdyGSJ4zoiGuzlUiyCS0TSTlMFIoy6SLE7avSaIZNHI/BLJ0fdKEGmqZ9SkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778622252; c=relaxed/simple;
-	bh=xxSiW7xhY3ceNOyf1952en0PURdLur0lpQuEzVO9TEs=;
+	s=arc-20240116; t=1778622389; c=relaxed/simple;
+	bh=snTpyrNf4tFcXrbLHZCMPFZ+Yug/ERkjC1uvYdZWL+g=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=XsG6MHZHC+tSs0Fy8ScH5lA4Azgi8rv3RG6bwGdeyEgREN54rHRtQDP5Sg8Km/InDvxdgDKN3cN5pY8wtO5YqgPXuijgIkz9nYSRMwgDnBOx/Tm9mpyPz+j0AmJE76vo2Q+gBtcH6qT3XSgMMjWjmGhqUB+ejLSgL7wvrT+Wxr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1KOszch; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18368C2BCB0;
-	Tue, 12 May 2026 21:44:12 +0000 (UTC)
+	 Message-Id; b=YuWNb3sexFbi8y9YW+8FPRr9Blajf1+Dv64Tsv8FFhw6YcVhJqP0A3YUcp85ikRUi+8OAM0c96E1IABgRVLN/miiENJxoO3BB4lX1d2CC/LJTAMq20oFTZ4shnLJ7gKKbBYLT73dJDDCmy/e/3FYYxb4oboxWYV8MsJ6N/7GKvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cO4VoEFw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB578C2BCB0;
+	Tue, 12 May 2026 21:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778622252;
-	bh=xxSiW7xhY3ceNOyf1952en0PURdLur0lpQuEzVO9TEs=;
+	s=k20201202; t=1778622389;
+	bh=snTpyrNf4tFcXrbLHZCMPFZ+Yug/ERkjC1uvYdZWL+g=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=C1KOszchOp42mq1dmE0kPY+rDL3x0ukmXN33YbRRK73CMpHblLrmQS0wKlMr0ZIHB
-	 4sxxWoM6hpY04H7JiCIOQf9/KkBmNXAKAfvHSIh0L5tLRx+T1Rt5IyISmmbWdCJ7uI
-	 SiFdpAv6IGVcCpA0gyVvAWQfoXaZg6NYqqIE96VCJo9IyRbDUNQPRjO/FVZMMQi39A
-	 HyoBnq5ZnrKlw14N8cMbqbkUvo0fzeuU9weDppQBK9xY8uXRiyhVd1JTaM3vbJohqS
-	 XqMKPuHvpwTEy19U1oMOaVIzDbJk0VZaLJSXhAJRbQTwBauaHajkrO5AcSjeU2Sv3E
-	 YkmPZNLYMclyQ==
+	b=cO4VoEFwlcyp7TeZzsjGwS5U64FFYempXMnbMduNw9K68uMo7cu9Nnkd4mt/fQ+uh
+	 DOSHCG2S99oVKxln1DuV0aaa4PFIUqH2de5HNJjJwrLwGVgM1lsBufRQQaMZm82Zhm
+	 m3Wa90gA/H8g1n7VatMPl5oCNyWSM6v+WOBnRBJEDQZE930Pa1Fr4xVYTrt1ZOKQ8f
+	 ZFZBisbTeR9kjTKXcP550Q4FrqiJ8TsNlH34TR8MxWCLgujGEF0njNSyhEM8MFMWsd
+	 DGzcUi0jidwH+3tLtOVa385mDwZjYKqyyi/FcuZQFoES0uHTWrPwzvBUqlE7NO+hpX
+	 c/XPXOq2maTDg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] i2c: Add driver for gpio based busses with
- shared SCL
+Subject: Re: [PATCH RFC v4 16/18] ACPI: RISC-V: Parse RISC-V Quality of
+ Service Controller (RQSC) table
 Reply-To: sashiko@lists.linux.dev
-To: "Markus Stockhausen" <markus.stockhausen@gmx.de>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260511162528.84508-3-markus.stockhausen@gmx.de>
-References: <20260511162528.84508-3-markus.stockhausen@gmx.de>
+To: "Drew Fustini" <fustini@kernel.org>
+Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260510-ssqosid-cbqri-rqsc-v7-0-v4-16-eb53831ef683@kernel.org>
+References: <20260510-ssqosid-cbqri-rqsc-v7-0-v4-16-eb53831ef683@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 21:44:11 +0000
-Message-Id: <20260512214412.18368C2BCB0@smtp.kernel.org>
+Date: Tue, 12 May 2026 21:46:28 +0000
+Message-Id: <20260512214628.EB578C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: C388952A83E
+X-Rspamd-Queue-Id: 3B21552A8C4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296496-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296497-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmx.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [High] The child fwnode reference is dropped at the end of the scoped loo=
-p, leaving a dangling pointer in the adapter device.
-- [High] An integer overflow in the clock-frequency calculation can cause a=
- division by zero panic.
-- [Low] Usage of non-existent API `devm_mutex_init()` will cause a build fa=
-ilure.
+- [High] The parser ignores the `rqsc->num` field and may fail fatally on v=
+alid tables with trailing padding.
+- [High] Unvalidated resource descriptor types may lead to misinterpretatio=
+n of resource data.
+- [High] The parser ignores `node->flags`, risking access to disabled or po=
+wered-down hardware.
+- [High] Hardcoded resource subtable offsets create forward compatibility r=
+isks due to missing revision checks.
+- [Medium] Missing validation of node `length` against the table boundary a=
+llows silent acceptance of corrupted tables.
 --
 
-commit 26b139c7eeb6ff63f03c34df65162da9a405e505
-Author: Markus Stockhausen <markus.stockhausen@gmx.de>
+commit 163a54a89d0b05cc3754e1a635d0dc2d8cbb9e84
+Author: Drew Fustini <fustini@kernel.org>
 
-i2c: Add driver for gpio based busses with shared SCL
+ACPI: RISC-V: Parse RISC-V Quality of Service Controller (RQSC) table
 
-This commit introduces a new I2C driver for hardware designs that share a
-single SCL line across multiple busses. It synchronizes data transfers
-across up to 32 busses using a central mutex.
+Add a parser for the ACPI RQSC table, which describes the CBQRI
+controllers in a system. For each table entry, populate a
+cbqri_controller_info descriptor and hand it to the CBQRI driver via
+riscv_cbqri_register_controller().
 
-> diff --git a/drivers/i2c/busses/i2c-gpio-shared.c b/drivers/i2c/busses/i2=
-c-gpio-shared.c
+Link: https://github.com/riscv-non-isa/riscv-rqsc/blob/main/src/
+Link: https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
+
+> diff --git a/drivers/acpi/riscv/rqsc.c b/drivers/acpi/riscv/rqsc.c
 > new file mode 100644
-> index 0000000000000..4c2e4011fcbf1
 > --- /dev/null
-> +++ b/drivers/i2c/busses/i2c-gpio-shared.c
+> +++ b/drivers/acpi/riscv/rqsc.c
 [ ... ]
-> +static int gpio_shared_probe(struct platform_device *pdev)
-> +{
-[ ... ]
-> +	ctx =3D devm_kzalloc(dev, struct_size(ctx, bus, bus_count), GFP_KERNEL);
-> +	if (!ctx)
-> +		return dev_err_probe(dev, -ENOMEM, "memory allocation failed\n");
+> +	for (node =3D ACPI_ADD_PTR(struct acpi_rqsc_node, rqsc,
+> +				 sizeof(struct acpi_table_rqsc));
+> +	     node < end;
+> +	     node =3D ACPI_ADD_PTR(struct acpi_rqsc_node, node, node->length)
+> +	) {
+> +		const struct acpi_rqsc_resource *res0;
+> +		struct cbqri_controller_info info =3D {};
+> +		int ret;
 > +
-> +	ret =3D devm_mutex_init(dev, &ctx->lock);
+> +		if ((void *)node + sizeof(*node) > (void *)end) {
+> +			pr_err("truncated entry at end of table, aborting\n");
+> +			riscv_cbqri_unregister_last(num_controllers);
+> +			return -EINVAL;
+> +		}
 
-Is this devm_mutex_init() intended to be a different function? It does not
-appear to exist in the kernel and will likely cause a build failure.
+Does this code also need to verify that the entire declared length of the n=
+ode
+fits within the table boundary?
 
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "mutex initialization failed\n");
+If a malformed node declares a length extending beyond the end of the ACPI
+table, the node pointer could advance past end during the loop increment:
+
+    node =3D ACPI_ADD_PTR(struct acpi_rqsc_node, node, node->length)
+
+Could this cleanly fail the loop condition on the next iteration and silent=
+ly
+return success instead of rejecting the corrupted table?
+
 > +
-> +	platform_set_drvdata(pdev, ctx);
+> +		if (node->length < sizeof(*node)) {
+> +			pr_err("malformed RQSC entry: length %u < %zu, aborting\n",
+> +			       node->length, sizeof(*node));
+> +			riscv_cbqri_unregister_last(num_controllers);
+> +			return -EINVAL;
+> +		}
+
+Could this loop be bounded by rqsc->num instead of just node < end?
+
+If the firmware pads the table at the end for alignment, the parser might
+attempt to process the zeroed padding as a node.
+
+Would encountering this padding trigger this length check, unregister all
+successfully parsed controllers, and completely abort initialization for an
+otherwise valid table?
+
 > +
-> +	ctx->scl =3D devm_gpiod_get(dev, "scl", GPIOD_OUT_HIGH_OPEN_DRAIN);
-> +	if (IS_ERR(ctx->scl))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->scl), "shared SCL GPIO not foun=
-d\n");
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		struct i2c_algo_bit_data *bit_data;
-[ ... ]
-> +		u32 bus_num, clock_freq;
+> +		/* GAS must describe system memory. ioremap() consumes it later. */
+> +		if (node->reg.space_id !=3D ACPI_ADR_SPACE_SYSTEM_MEMORY) {
+> +			pr_warn("controller has unsupported address space_id=3D%u, skipping\n=
+",
+> +				node->reg.space_id);
+> +			continue;
+> +		}
+
+Should this code check node->flags before proceeding? Standard ACPI practice
+typically uses Bit 0 to indicate whether a hardware block is present and
+enabled.
+
+If flags are ignored, could the driver risk mapping and accessing
+memory-mapped registers of explicitly disabled hardware?
+
 [ ... ]
 > +		/*
-> +		 * clock-frequency specifies the I2C bus frequency. Convert to the hal=
-f-period
-> +		 * delay in microseconds that i2c-algo-bit expects. Default to 5 us (~=
-100 kHz)
-> +		 * if not specified. This is usually lower than the configured frequen=
-cy,
-> +		 * especially near the 400 kHz limit.
+> +		 * Resources follow the node header in-line. Only res[0] is
+> +		 * consumed. Bound it against end before reading its prefix so
+> +		 * a table that ends partway through a resource subtable is
+> +		 * rejected rather than read past the mapping.
 > +		 */
-> +		if (!fwnode_property_read_u32(child, "clock-frequency", &clock_freq) &&
-> +		    clock_freq > 0)
-> +			bit_data->udelay =3D max(1u, DIV_ROUND_UP(1000000, 2 * clock_freq));
+> +		res0 =3D (const struct acpi_rqsc_resource *)
+> +		       ((const u8 *)node + sizeof(*node));
 
-If clock-frequency is provided as 0x80000000 in the device tree, could the
-32-bit unsigned multiplication 2 * clock_freq wrap around to 0? That would
-cause DIV_ROUND_UP() to perform a division by zero panic.
+Is it safe to hardcode the start of the resource subtables using
+sizeof(*node)?
 
-> +		else
-> +			bit_data->udelay =3D 5;
+If a future revision of the RQSC table extends the acpi_rqsc_node structure
+with additional fields, sizeof(*node) would be smaller than the actual
+node header size.
+
+Could this missing rqsc->header.revision check cause the parser to point in=
+to
+the middle of the new header fields and incorrectly interpret them as the
+first resource descriptor?
+
 [ ... ]
-> +		adap->dev.parent =3D dev;
-> +		adap->owner =3D THIS_MODULE;
-> +		adap->algo_data =3D bit_data;
-> +		adap->bus_recovery_info =3D ri;
-> +		device_set_node(&adap->dev, child);
-
-Since device_for_each_child_node_scoped() automatically drops the fwnode
-reference at the end of each iteration, and device_set_node() assigns the
-pointer without incrementing the reference count, will this leave
-adap->dev.fwnode pointing to unreferenced memory when the loop advances?
-
-> +		snprintf(adap->name, sizeof(adap->name), "i2c-gpio-shared:%u", bus_num=
-);
+> +		/*
+> +		 * id1 is u64 on the wire but cache_id and prox_dom are u32
+> +		 * downstream (PPTT cache_id, ACPI proximity domain). Reject
+> +		 * rather than truncate, so a too-large id is not silently
+> +		 * mapped to the wrong PPTT entry or NUMA node.
+> +		 */
+> +		if (res0->id1 > U32_MAX) {
+> +			pr_warn("controller at %pa: id1 0x%llx exceeds u32, skipping\n",
+> +				&info.addr, res0->id1);
+> +			continue;
+> +		}
 > +
-> +		ret =3D devm_add_action_or_reset(dev, gpio_shared_del_adapter, adap);
+> +		switch (info.type) {
+> +		case CBQRI_CONTROLLER_TYPE_CAPACITY:
+> +			info.cache_id =3D (u32)res0->id1;
+> +			break;
+> +		case CBQRI_CONTROLLER_TYPE_BANDWIDTH:
+> +			info.prox_dom =3D (u32)res0->id1;
+> +			break;
+
+Does this code need to validate the type and id_type fields of the resource
+descriptor before extracting res0->id1?
+
+If a controller specifies multiple resources (node->nres > 1) and the first
+descriptor is not the expected cache ID or proximity domain, could the
+parser blindly misinterpret its contents?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511162528.8450=
-8-1-markus.stockhausen@gmx.de?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510-ssqosid-cb=
+qri-rqsc-v7-0-v4-0-eb53831ef683@kernel.org?part=3D16
 
