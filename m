@@ -1,167 +1,192 @@
-Return-Path: <devicetree+bounces-296346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296349-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CeONs9cA2qf5QEAu9opvQ
-	(envelope-from <devicetree+bounces-296346-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:01:03 +0200
+	id QBQ6CEBdA2qE5QEAu9opvQ
+	(envelope-from <devicetree+bounces-296349-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:02:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF83525517
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D3C525594
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 32D083050172
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:45:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3FF85306268C
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 16:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E1C3B5F5D;
-	Tue, 12 May 2026 16:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oeqpcs+R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735C53D7A16;
+	Tue, 12 May 2026 16:47:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from de-smtp-delivery-119.mimecast.com (de-smtp-delivery-119.mimecast.com [194.104.109.119])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943192C1788;
-	Tue, 12 May 2026 16:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BD23D79F5
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 16:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.104.109.119
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778604285; cv=none; b=JBr1lFAF/lGM63PR+GrUcJ6YHrRUMXvCuIXWLsSg2kGudnHYh2dCWoOFG7ISe7HmBT/9XJ+lHlXcsGg9uvLOVMBd10xVQMJQ83oyCkVg23Wa9Aju2HF57HawooPUqMtE8RnWuJ4D6aRB5/uDpO4p2S7Dahe4ggVrVdOtLimloIM=
+	t=1778604463; cv=none; b=SDVaePbVNgZjI3Z42NuMWvlwMUHi3vIYffVkMpPXk+t+fOc91z63t166FkyzmL+U8dUFlNG3ZEgMr4fGX65UshKM9O/FPzcWSPHJr/Hh34zg+rrLav+hZMMNqyADX3DuZL2qbik5LXZC+jEZ4r37SLP9HPV3EY4cJ36vl9NA29U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778604285; c=relaxed/simple;
-	bh=qBe780EEoSq3WZerOuuNcvFvJd92SdQMTIiqjoeOExI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lK0DUei5GPL7x3pRZN9WzrtajoNKZIjLhlS+0i0HBLdQm7GhzN+meKe+4rvN1Ynnm6HuH2pS8YsARJ7lRpXdZtELPNQ9fUZ29U5g9uREfwVO1RdSSNEvqnYzbtrW5JAB1HCjxq6jhkxMhe2UT5nt+0A3nJhePikOtvssqKINl7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oeqpcs+R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C487C2BCB0;
-	Tue, 12 May 2026 16:44:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778604285;
-	bh=qBe780EEoSq3WZerOuuNcvFvJd92SdQMTIiqjoeOExI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oeqpcs+R8iZWKIGzlAcstWBARRoWir7QtKFUuyKk+V2A0pGr8ZActyrvOgr9sU5cB
-	 C6OjnBdxr4nG9VSXnHX1G19T9sUXUPzzgp8d27QxxxiWFNW9SqeNXvecxnNkCBISRQ
-	 HiJ+cI6GPDQY/OeW/BCrb8BIg4SARBjSDZLp8gBRlHwmth2u+KYhHQQCI2UpX9gT73
-	 kTzY1i2jGrRMOp05AYDq9AfAlEApNha9ljolv7w8VpZXZ4kYdk8hfqZGrrHuGzBHcC
-	 oIXcg3t0fYnd4q0oI9LEswgCR7kk5K9NFWkcsuh7jk/2wruakbNpN69FGY+2mW2wMr
-	 XEiISkaML9N5w==
-Date: Tue, 12 May 2026 17:44:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: sashiko@lists.linux.dev
-Cc: Jisheng Zhang <jszhang@kernel.org>, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: i3c: dw: Add apb reset
-Message-ID: <20260512-curvy-ashes-bde0e8e8d473@spud>
-References: <20260511031945.3228-3-jszhang@kernel.org>
- <20260511230001.1B220C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778604463; c=relaxed/simple;
+	bh=MlUeVxR9YNJJIYBZZgovdtLKXS2tb68XtEpxAb1vCg4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Evbx6h5YRPneIjA2sjjoEj6+dJqYVH2kP28hFOzgcFM/ll0eQzY56zu31MUjL3ghavBGWxjiDhV2locJvo7lbRPiNbFJaBu5MgwgqmE8yy9za+ifObKQKbC/303YGkFWY88rsKa6Lj9tT4DsvhaRRh8a8UYG5WPxcmYaegviIP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com; spf=pass smtp.mailfrom=data-modul.com; arc=none smtp.client-ip=194.104.109.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=data-modul.com
+Received: from DU2PR03CU002.outbound.protection.outlook.com
+ (mail-northeuropeazon11021129.outbound.protection.outlook.com
+ [52.101.65.129]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ de-mta-65-ayHovwD9NVOTmRWXUqPuMA-2; Tue, 12 May 2026 18:46:26 +0200
+X-MC-Unique: ayHovwD9NVOTmRWXUqPuMA-2
+X-Mimecast-MFC-AGG-ID: ayHovwD9NVOTmRWXUqPuMA_1778604385
+Received: from PAXPR01MB8486.eurprd01.prod.exchangelabs.com
+ (2603:10a6:102:227::10) by GV2PR01MB12751.eurprd01.prod.exchangelabs.com
+ (2603:10a6:150:2d2::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
+ 2026 16:46:22 +0000
+Received: from PAXPR01MB8486.eurprd01.prod.exchangelabs.com
+ ([fe80::5adb:b6ca:f689:1ac6]) by PAXPR01MB8486.eurprd01.prod.exchangelabs.com
+ ([fe80::5adb:b6ca:f689:1ac6%3]) with mapi id 15.20.9913.009; Tue, 12 May 2026
+ 16:46:21 +0000
+From: Boerge Struempfel <bstruempfel@data-modul.com>
+To: Marek Vasut <marex@denx.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Boerge Struempfel <bstruempfel@data-modul.com>
+Subject: [PATCH 0/2] drm/bridge: lt9211: Add drive-strength-microamp DT property
+Date: Tue, 12 May 2026 18:46:07 +0200
+Message-ID: <20260512164609.3390700-1-bstruempfel@data-modul.com>
+X-Mailer: git-send-email 2.54.0
+X-ClientProxiedBy: FR3P281CA0177.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a0::14) To PAXPR01MB8486.eurprd01.prod.exchangelabs.com
+ (2603:10a6:102:227::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DryAQInIECRvEhk7"
-Content-Disposition: inline
-In-Reply-To: <20260511230001.1B220C2BCB0@smtp.kernel.org>
-X-Rspamd-Queue-Id: 8DF83525517
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR01MB8486:EE_|GV2PR01MB12751:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94eb352b-1a6a-4a5f-dc59-08deb045fee5
+X-LD-Processed: d72fb47f-f4be-4915-91c7-ebd53299157b,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|10070799003|7416014|376014|1800799024|921020|18002099003|56012099003|3023799003
+X-Microsoft-Antispam-Message-Info: /obf0V2hItb52+cwqmJ6AXzbWLgOG4SiduD+HTH/wXtZLfL1HBLKcXZp6grgHytuISX7OPL88mEsJrZREYggXqQx3BEepmxtnyMzKtmg6hO+q3OG1l18aLTk/eNxChn6OvdcBuZxRphl1Lr+3anmaMdzygCvJMEtzfIy91uXPw5kmV9H6mEE5UfumkLL73RVLAfKCqqWbsIRaiYJhjDvVUhtESF7t7fhskX7wYd2gt+kOq8+AfLMeUr0hFy0WTkxStNl3bEnaMumVPErTgBLf4z0RH2efiGq1dOgXnvb8ZBbMj1ylP/7Gp1J/8bSKOv015kJKM+JVwwfEJ6hDrKlf7YkSHcTV4LpFWzGGTDRY7plmav/RtknydOchkoiD6OL9q6WOGrrtdKaK2scnigTUCh/Y9ieHMphWghXXHmzB+YFXSHuXlzm5cZ4CltmxdjtKJEI2N/UJX8gja3twlQ9sE/HnbBNpVnUW+GQW0Z8U9bRmMtjHCirYwHxKWuJLUrQ8rE82ka5EmlpUppKJe/kr3zl4WF2Bwd+B4T03MkTsJQuyiQvwi/XPDgA66lNQmtwoPgU2lGK7O498/48K4jLyV/1+Z7l7ED2RhM4O5Oyztc3OxyU2G4zyY4NZIxd/RcO/UIM5kBz4JI4PuI5i0ttl1J6C0Ap0KE5tFTYDxYRubVBKjeenQmMEGu9jmuZkvh/od7x1z8Xxb44Hms3efXkQJLAED4NYcZ3wJCkKVboCYI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR01MB8486.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(7416014)(376014)(1800799024)(921020)(18002099003)(56012099003)(3023799003);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PxebhiE3Uz5LNTUEhclFcxcQeSlXDwatf3B43dnize5QJf0Bz3skLJQLGrOJ?=
+ =?us-ascii?Q?UFPJvTSxpwV2o40c/j5XXFqkU5xDUMlgGJFQoaYHWh2pSKCExG87mLoUamwF?=
+ =?us-ascii?Q?AmYPlks+AcOIkxIhNV90f/UAacpWlQxHRTE2ysLKihICN385TLtTFwdzJn3l?=
+ =?us-ascii?Q?vkExPg1US62H0MGyydUtNFajBcQFQaoWO8Pp4TEcx+uuTguVDdAKv27Q9F93?=
+ =?us-ascii?Q?hPL4lqPBMlEHDTSLS1w8e+5HgjOXZu3PpxGYNijDCtr+rfVV5AssVTxk7lZT?=
+ =?us-ascii?Q?S2i23xjgW7afD6AriHDzRile3F7WeeGgZhMCZ0NXOqsu3JQuHm9mNwQcG44U?=
+ =?us-ascii?Q?zDziequEGN/PyOEPMI2PUtnT4OjmBvqHHDrKaNnqmvJJELpJgGhACiHH3H7e?=
+ =?us-ascii?Q?Pf6kdLYwjg8n8yjuD/kvWvIm7pVis9+It9BHSusG3Ln9OgvNuGR7tD/zsARl?=
+ =?us-ascii?Q?ToaMp5pUCBU/ds0qEgxjUXohbYVPO3cw0jkkdXjvH2GalewrPfp7B4i3RWG5?=
+ =?us-ascii?Q?uLxjON7eydyGDnAMw+ycRZrqbm3nTmKoIFH6mYBn8Fr5cI5+bTBxJEpsSx89?=
+ =?us-ascii?Q?1cw8/zgDGHLtXZJ/YRo8ZVOLH+jBFcfWPcdoEojiFQh8Dj7S3Z1gs1iT8WW2?=
+ =?us-ascii?Q?y3dfahSGc22YpTxRpncUQjqItoqrF8ejKfULFh0m/kO5PbtzAu4WOOLg7Mid?=
+ =?us-ascii?Q?LL6JZRSvTFQ79nSZ/T5FgHNVGrkAP6nr/Azz+xw/Vy5f854w5QW4PMF7bX1G?=
+ =?us-ascii?Q?kL6tKRi1063JbvgyqYrDAYa0ANtzC3Z6LO08Ezk4y3YmMzNx5FSSqpO+luW8?=
+ =?us-ascii?Q?uBzE54s0COE9XeuW/CVGZnN90daRL+NM68UTuqm+LqQb2u/o6Go6qZco9Spo?=
+ =?us-ascii?Q?+7PcfXa3dQ8HAdtWDM2HRJilruakFrGdsByjHAiemV80QpP2c9lOwZrIh9o0?=
+ =?us-ascii?Q?OBYAFgilx9dUJY9ndHEi9DEMCflJxmScDtARmjdYf31J2uSssDSwCqdnf0Wt?=
+ =?us-ascii?Q?d23k94QKXD7vnJ4WJ8Jy9DogYYTzC3Mg9cB0WUVCnHq62EwDrzkKCQeRKU2Q?=
+ =?us-ascii?Q?omKWZIIbIbacHOdwbvWWn0ASVnr6OZeDzd6ZiyPqRAj8MjsamtCggblFrK31?=
+ =?us-ascii?Q?5PJifBkLj2+aeX5ThvQxV0tmEEXVlRydiKhzA5GFYEcuv9tw4NhcdZqKJM3q?=
+ =?us-ascii?Q?L9rC7hvfT4olEbisH0XkwG4ZGqkqv72uurQcM3Bbf+ldiCOizdmBGNwgluWJ?=
+ =?us-ascii?Q?cy/4izYE5566yijo3XfgirSXnTdaPAfen6cah1+wHAIGFgjnwag562NA0LpP?=
+ =?us-ascii?Q?yZz4Ust3ugaOoxawnA7dBuNfR/3CJb43gh83V6GQ/Awzo+zjc25vnmkIgghb?=
+ =?us-ascii?Q?sJMwgVT2aNbiQODdNIYZvx2b2X9EvFr21g1pifGzOtAFtC+RLU49W3Z8Cg+n?=
+ =?us-ascii?Q?4aDe1qQKnRtdNuGZq303+iLxUeEn9JV4YeHZ2mLESYoTc3SRwFExG3FOq/Kv?=
+ =?us-ascii?Q?LXivQTFCdLSLCvgMlQk9rdBu1UgVl9UetsCPbzysGYzHaGGScfpDvGdbsQlk?=
+ =?us-ascii?Q?iDKIprxDkjsdPbxzzTiCgkbmZWo2jSl1c5fbg2WnmKZSexRcD1iSg3wa6aKe?=
+ =?us-ascii?Q?FOhWZptUQtn/ojnqaS5+VBMOv353bLBwvkeWAGqflSFKd56pYN6qv439pPCf?=
+ =?us-ascii?Q?N8QB5f/Eb8ofR3Xt4EotBKuAnT+m+lwmgDhO0OH9Umqha360S6FYzEfHJEBl?=
+ =?us-ascii?Q?+x4cK2eeV8rrkHtrfF80zJIpNYPGEEWt4ZD3VqpSeI2ODD1U2qgGe2NOgdhN?=
+X-MS-Exchange-AntiSpam-MessageData-1: IdtNcgQjenCkOLYDxm5TZQ+seM0iy5UBCFU=
+X-Exchange-RoutingPolicyChecked: bMoYKqO5fGaUsm/3cWDwkB5r+dzZf50DizaEvXGTDJKj0fQXNKZ9gbjE3E52LYMHJ0nRmTQbKgFezqNR+lX2ufkr0Ongf3XhP2nNxROIg3Zd45rABNsDip5useCJrcqbIDx2kT9+Bq1ZMIk3TGrFOLO0w494f9n2Rx3a5v96XXi4JSdbvf8k1fnW8rqUSXxZzcRzg8Iw8BmXl/3UTIqZKUUwdYU1FZiaLrJ2Cyc9Cf5aa1yjbAoznc5AARUs8ZSm4xUmgJSe1MtDOVShyoiIA6hf63EDE7E98/ZJhy9z/6KzRoLqFvRMB6hGKum7chYUJ3Qaj6LuOU2fVfWg5jWOvA==
+X-OriginatorOrg: data-modul.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94eb352b-1a6a-4a5f-dc59-08deb045fee5
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR01MB8486.eurprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 16:46:21.1227
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d72fb47f-f4be-4915-91c7-ebd53299157b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yS6SjXOGqBbWjYGEOuarS+IM1aEJEKBOjPPlww/ct2e3FLPGgMmc31DcHTA5rZ6mO4dFA5z4q8SbU9jSipO+YvvB5yPgRB/FDGECeUx6JkY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR01MB12751
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: imJc-k7xorWbq01CognsUrNaw0WyPpwp4SouhJHP8ik_1778604385
+X-Mimecast-Originator: data-modul.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=WINDOWS-1252
+X-Rspamd-Queue-Id: 26D3C525594
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-296349-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296346-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[denx.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[data-modul.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bstruempfel@data-modul.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.923];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,data-modul.com:mid]
 X-Rspamd-Action: no action
 
+The LT9211 LVDS TX output driver current is currently hardcoded to
+0x8 (~25 uA). Some board layouts require a different drive strength
+to meet signal integrity requirements.
 
---DryAQInIECRvEhk7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds support for the standard 'drive-strength-microamp'
+DT property, allowing board DTs to select one of sixteen discrete
+current levels between 12 uA and 36 uA. The default preserves the
+existing behaviour.
 
-On Mon, May 11, 2026 at 11:00:00PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
-> - [Medium] Adding a second item to the `resets` and `reset-names` list wi=
-thout specifying `minItems: 1` makes both resets strictly required whenever=
- the property is present, breaking DT schema backward compatibility.
-> --
->=20
-> commit 0c4b11b6e45b719eb15a1a87171391a4bfb310b9
-> Author: Jisheng Zhang <jszhang@kernel.org>
->=20
-> dt-bindings: i3c: dw: Add apb reset
->=20
-> This commit updates the DesignWare I3C master binding to support an
-> optional APB interface reset signal.
->=20
-> > diff --git a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.y=
-aml b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> > index 613dce7757bc3..2575442b28ff4 100644
-> > --- a/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> > +++ b/Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
-> > @@ -38,10 +38,12 @@ properties:
-> >    resets:
-> >      items:
-> >        - description: Reset signal
-> > +      - description: APB interface reset signal
->=20
-> Does adding this second item inadvertently make the APB reset strictly
-> mandatory for validation? In dt-schema, when items are defined as a list,
-> minItems implicitly defaults to the length of that list. Without an
-> explicit minItems: 1 constraint, device trees defining only the single
-> core_rst reset might fail schema validation.
->=20
-> > =20
-> >    reset-names:
-> >      items:
-> >        - const: core_rst
-> > +      - const: apb_rst
->=20
-> Should minItems: 1 be added to both the resets and reset-names properties
-> to maintain backward compatibility?=20
->=20
-> Since the driver gracefully handles a missing apb_rst by using
-> devm_reset_control_get_optional_exclusive_deasserted(), adding the minIte=
-ms
-> constraint would keep single-reset configurations perfectly valid.
+Boerge Struempfel (2):
+  dt-bindings: display/bridge: lt9211: Add drive-strength-microamp
+    property
+  drm/bridge: lt9211: Add drive-strength-microamp DT property
 
-Obviously this is all crap and can be ignored, since the other reset is
-added in the series.
+ .../display/bridge/lontium,lt9211.yaml        |  7 +++++
+ drivers/gpu/drm/bridge/lontium-lt9211.c       | 28 ++++++++++++++++++-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
 
---DryAQInIECRvEhk7
-Content-Type: application/pgp-signature; name="signature.asc"
+--=20
+2.54.0
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagNY+QAKCRB4tDGHoIJi
-0ikJAQC7LIxijJWf+xlPboDCs5YDj39wv60+tEqfC2s3l3kC6wD/TXs6yuBmbGkH
-S+dgxRcbFt05dFBbleuaebnfXJckbA8=
-=vDjU
------END PGP SIGNATURE-----
-
---DryAQInIECRvEhk7--
 
