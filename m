@@ -1,200 +1,183 @@
-Return-Path: <devicetree+bounces-296386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6HCQIElqA2rf5gEAu9opvQ
-	(envelope-from <devicetree+bounces-296386-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:58:33 +0200
+	id EIjwOm1qA2rf5gEAu9opvQ
+	(envelope-from <devicetree+bounces-296388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:59:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7410C526638
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:58:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 948535266CF
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 19:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 63A7F3080211
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 17:50:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B0E683044829
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 17:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 189F33BB123;
-	Tue, 12 May 2026 17:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34443EDE6F;
+	Tue, 12 May 2026 17:49:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jvQNT6kO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QkLzH+wE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BAE3BB11B;
-	Tue, 12 May 2026 17:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48ABD3EDE66;
+	Tue, 12 May 2026 17:49:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778608101; cv=none; b=hIRA5yKn6vwaEoZE7t4ac6PNEkemg9hiZaq/0ktNlkCoIgT6vLdqLzgCZHJ7sUXY3F+JYpkMleMNbScuneEqTWbWqJGcLtUAs/6oeE3aTrU//TnZmBL8CJOa8vz5zBahaUAOWoy4o6Vjqa35SsRcoRyBg4MCobH/OD+8sdp+Jxc=
+	t=1778608178; cv=none; b=rGyfExC/05gkxkF0lHeh+qb7sSneCJD3Du2FVYz9By8GcEo3yM9k/aruitWbch/KtDee1v5AsENv1tggn3YRNXAQzne1rT3RVGHdDY2e8zoF7GuSfKmggOZd5TpjY9wyokZE04HK/W43Lni3NUAQucO6kGIF1JnDaAzpHI9jxCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778608101; c=relaxed/simple;
-	bh=fcW13kjSD93mQbIhQzCZ6BHO6+uiUNMkiFo3/S9zFOI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nJ9Zy5JATiRtBcgTfoKuvOwOn1/00HXbue2bOqbMToNrt7ZYo1hrgdzkRpgBfUEotlVbz62xu1a071Har1hO6p0MB6EYmKx2KHXVCb4Uy/oZlbv9LFNtMhsvQZi6tP9O8Vbg2fFhCE2ZEkGbJzlgZZH1Hi+yUXlT+lOQBr2K0og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jvQNT6kO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C83E3C2BCFA;
-	Tue, 12 May 2026 17:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778608100;
-	bh=fcW13kjSD93mQbIhQzCZ6BHO6+uiUNMkiFo3/S9zFOI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jvQNT6kOjZDRDJgCV6PO9c//cQO9AL1lHVvtGDkV813udL+7TtbTsoNnCTKXPuD64
-	 1/QeVBEMwll15/TS+agJkqctRn0+iWcBB873BfnLsObv6NoI++QZ4J5oyBD+g08tvM
-	 oDQUrOB39ZBO4d1SVA8lIDNO6Yd7BK8k5hJVOAVJ8i32b+7M5TLx37muNx8Rex1YG2
-	 KDF8vRaVP1OY8l1jnD4eNGl3UcKCGEz6lOvqE0U+p35VnQEqK3Hhay0V3DpNpsNrG9
-	 VMC9zVo8yLJYH3EoWNtF7qnV6fIV6Mq5FLgEu6I9coB4pXe3B5LrpEcJUJTB105VoI
-	 Oam6nTFxDaGMA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB9E1CD4F24;
-	Tue, 12 May 2026 17:48:20 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Tue, 12 May 2026 19:47:29 +0200
-Subject: [PATCH 2/2] arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven
- status LED
+	s=arc-20240116; t=1778608178; c=relaxed/simple;
+	bh=hGoLgFvqmnL2T34vovl9lReM81TwNgRLYfnvDPzQ79Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=daJ8HIsCmdw8UviTF6/3WjqfP2KLOViDh4+V1+HEZGmkC7kEBsQlKIIpUBOqvB1FTYbNW302YfmYc8zSz7HEDjCIR6DtzQvE2VVhOhIXEyl9JjOHIGy4ijlMTGe8bF+FwkIjqtZWT9WJSzHTPS68d1K7CgDe1SPcSKmoY9Yq1e8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QkLzH+wE; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778608178; x=1810144178;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hGoLgFvqmnL2T34vovl9lReM81TwNgRLYfnvDPzQ79Y=;
+  b=QkLzH+wE9c6lQtfHumg6f/aCO4oY7Ju4H4gpmlYkQZYC+0rALjG6pIXS
+   Cd4P0Zti8u3ZNVVCRamcMZ/xr34ARVphlKQl9tZGZF1GLbkj4VkCKr//3
+   1JhUTwB1d9li53ZLZbOK0kxXHI69NWQxwhaDY705sXy6IS/cFcOwlnCv4
+   NN8VZLWg6osOIg4meG5Dw/jd/5Qx2ZqStTJB6lc+F1W/fffcc7uFDTryk
+   s6WtXa1tPjrrkjj6D/xH6Nx8pksnt2D6AYM4zlm9ptuHCKP++nRlyZYjQ
+   6iExuosnLiQauE2C+I8VX2fbzeyIFYgNI8iPo8n7P5VNgmYOvXb/mZqdD
+   g==;
+X-CSE-ConnectionGUID: HgpRW/v3SLO0h8d++51/Ng==
+X-CSE-MsgGUID: 5eQoEL9zRb+vdnJbHR8KGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="89828685"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; 
+   d="scan'208";a="89828685"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2026 10:49:37 -0700
+X-CSE-ConnectionGUID: bD2MznS+Qjq6sKdEpImUKg==
+X-CSE-MsgGUID: QRO0mplfRH2QqADyc2KxGg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; 
+   d="scan'208";a="235165510"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.244])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2026 10:49:32 -0700
+Date: Tue, 12 May 2026 20:49:29 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Petr Mladek <pmladek@suse.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v12 05/11] iio: core: add decimal value formatting into
+ 64-bit value
+Message-ID: <agNoKbcwT6_spC93@ashevche-desk.local>
+References: <20260510-adf41513-iio-driver-v12-0-34af2ed2779f@analog.com>
+ <20260510-adf41513-iio-driver-v12-5-34af2ed2779f@analog.com>
+ <agM6uzhdn7o8g9v5@ashevche-desk.local>
+ <ql7smsqza7liupm7fhdts73cxsltrpxsqofu5ovzpxpwvcscuv@qigi3dwukk7k>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260512-add-kvim4-sysled-v1-2-7178719a43e7@aliel.fr>
-References: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
-In-Reply-To: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1966;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=ljQWRXfzQQh8+VfKgDXENiNlXKLzV1x0O1tJjws741c=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQxZz+iOTDNUAxlZuft2cj74q23NnBk7RKjZxtJpo1iuW5
- vWhqr+jlIVBjItBVkyRpX+u5Yl3l4+e+bpHPQVmDisTyBAGLk4BmIjOf4Z/RlOWnGoRnP0j7dAi
- 190me1fo61VWLg7R+zvjztvgysq8LkaGaXu+2JwO5FQ6nr7i+4N6I9G19zji5roJWQsZqE8KuXC
- SGQA=
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Reply-To: linux-kernel-dev@aliel.fr
-X-Rspamd-Queue-Id: 7410C526638
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ql7smsqza7liupm7fhdts73cxsltrpxsqofu5ovzpxpwvcscuv@qigi3dwukk7k>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 948535266CF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-296388-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296386-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,aliel.fr:mid,aliel.fr:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.80.223.32:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
 X-Rspamd-Action: no action
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+On Tue, May 12, 2026 at 05:09:32PM +0100, Rodrigo Alencar wrote:
+> On 26/05/12 05:35PM, Andy Shevchenko wrote:
+> > On Sun, May 10, 2026 at 01:42:23PM +0100, Rodrigo Alencar via B4 Relay wrote:
+> > 
+> > > Create new format types for iio values (IIO_VAL_DECIMAL64_*), which
+> > > defines the representation of fixed decimal point values into a single
+> > > 64-bit number. This new format increases the range of represented values,
+> > > allowing for integer parts greater than 2^32, as bits are not "wasted"
+> > > in the fractional part, which can be seen in IIO_VAL_INT_PLUS_MICRO and
+> > > IIO_VAL_INT_PLUS_NANO. Helpers are created to compose and decompose 64-bit
+> > > decimals into integer values used in IIO formatting interfaces, which
+> > > creates consistency and avoid error-prone manual assignments when using
+> > > wordpart macros. When doing the parsing, kstrtodec64() is used with the
+> > > scale defined by the specific decimal format type.
 
-The VIM4 board exposes a status LED wired to the PWM_AO_C_D output.
-Enable the pwm_ao_cd controller with its pinmux, and declare a
-pwm-leds node with a heartbeat trigger.
+...
 
-Also, move the xtal-clk node to restore alphabetical ordering.
+> > > +		tmp2 = div64_s64_rem(iio_val_s64_from_array(vals),
+> > > +				     int_pow(10, scale), &frac);
+> > > +		if (tmp2 == 0 && frac < 0)
+> > > +			return sysfs_emit_at(buf, offset, "-0.%0*lld", scale,
+> > > +					     abs(frac));
+> > > +		else
+> > > +			return sysfs_emit_at(buf, offset, "%lld.%0*lld", tmp2,
+> > > +					     scale, abs(frac));
+> > > +	}
+> > 
+> > What about
+> > 
+> > 		/* Print a leading '-' for negative fractions */
+> > 		if (tmp2 == 0 && frac < 0)
+> > 			offset += sysfs_emit_at(buf, offset, "-");
+> > 
+> > 		return sysfs_emit_at(buf, offset, "%lld.%0*lld", tmp2, scale, abs(frac));
+> > 
+> > Also note this won't work with the frac that are == S64_MIN. It's UB (undefined
+> > behaviour), see the comment at abs() implementation. Maybe a time to add abs()
+> > corner case tests...
+> 
+> frac cannot be S64_MIN, it is always and remainder of a power of 10 modulus.
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 30 +++++++++++++++++-----
- 1 file changed, 23 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 69d6118ba57e7..c41525a34b721 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -45,13 +45,6 @@ secmon_reserved_bl32: secmon@5300000 {
- 		};
- 	};
- 
--	xtal: xtal-clk {
--		compatible = "fixed-clock";
--		clock-frequency = <24000000>;
--		clock-output-names = "xtal";
--		#clock-cells = <0>;
--	};
--
- 	dc_in: regulator-dc-in {
- 		compatible = "regulator-fixed";
- 		regulator-name = "DC_IN";
-@@ -60,6 +53,16 @@ dc_in: regulator-dc-in {
- 		regulator-always-on;
- 	};
- 
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		status {
-+			linux,default-trigger="heartbeat";
-+			max-brightness = <255>;
-+			pwms = <&pwm_ao_cd 0 30040 0>;
-+		};
-+	};
-+
- 	sd_3v3: regulator-sdcard-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "SD_3V3";
-@@ -155,6 +158,13 @@ wifi32k: wifi32k {
- 		clock-frequency = <32768>;
- 			pwms = <&pwm_ab 0 30518 0>;
- 	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
- };
- 
- &pwm_ab {
-@@ -163,6 +173,12 @@ &pwm_ab {
- 	pinctrl-names = "default";
- };
- 
-+&pwm_ao_cd {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_ao_c_d_pins>;
-+	pinctrl-names = "default";
-+};
-+
- /* SDIO */
- &sd_emmc_a {
- 	status = "okay";
+Okay, but what about input of -0.9999999999999999999 ? Will it fit the signed
+frac type?
 
 -- 
-2.49.0
+With Best Regards,
+Andy Shevchenko
 
 
 
