@@ -1,179 +1,193 @@
-Return-Path: <devicetree+bounces-295958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHuSIWWfAmpJvAEAu9opvQ
-	(envelope-from <devicetree+bounces-295958-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:32:53 +0200
+	id mB0MJdyfAmpevAEAu9opvQ
+	(envelope-from <devicetree+bounces-295961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:34:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02D75194BE
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:32:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 326A45194ED
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:34:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EDF823026881
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:32:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B32C3025D10
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 03:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8189226D18;
-	Tue, 12 May 2026 03:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6C2296BBC;
+	Tue, 12 May 2026 03:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6Se00M6"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="laDma3c0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5713191F91
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 03:32:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DC622D785;
+	Tue, 12 May 2026 03:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778556769; cv=none; b=ar8uGMlH0ppa+GGaa7XusCq7MxYTzevqcw2WlzvYQwZ/TE7itRM1dk+gZvkfHkJgGRD6tFqD1Zf0equVL813EUlPoEG2cUbRQ64xA+JkjXymwvnLipxT4qErDKwFFWWUljBLO8XEkMhimIRaNZ+RzVJw8++xHAxzbFKpudq3lWw=
+	t=1778556881; cv=none; b=iHJyZSGJpnbjhCGr3R6jVPw5O/pz1lPM7T9Y46ZsKTgEmyXOZLbSFQbkNM/axy/ga/6IaCdNeNBhEWZAZRqpQFZ4VzhEEj88WT0qQa7LhRC6SwOUDGeWjJwSgRjTFWjE34bsRoMR0FA2fBQNrsHpTt5x5wmFi5d0R+vhnOjuMJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778556769; c=relaxed/simple;
-	bh=lVQUBJXklNK7ySzGSGghhJlvod5veWC689DVBnH7aMM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Xf70DLCJYf2YgKrQ9iNtDe+xHw495hP4gnZkFbEq0sNo9n3BPpv7Of6gxUPue9jSCJSxbU39cVZxebLKPI70UyhJCdVCbVteONKUrW6YQIy/6Ej06RMFjNHmZRn/BoyQPjyy8GJEPFHs7seGspeWQpKXgIbVmu/1rWxOxYyOs2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6Se00M6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 187C5C2BCB0;
-	Tue, 12 May 2026 03:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778556769;
-	bh=lVQUBJXklNK7ySzGSGghhJlvod5veWC689DVBnH7aMM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=r6Se00M6rPIP9Jpw6aQjG9lq5Pwkk1gk8/bU24fk7SzFCt7TGqstqc99n0g/ERnmM
-	 IEUONY4938k7DTch++7OqgUyBlBqbts5CBlKT1nNvN35dDzEGNZvbuVqp096SwvsKw
-	 27pQwcdrZf1y1chTxaaBfocdnHxjXKtL3MC9QlCL0EXbEuv9IrKiHsGj8YH5eCNcP8
-	 bHr2plYZpdiByQTtAsTCGyO5yEL79uhgy+We1Z/0SNiIBdmI9x+nIPoTrirP7KSfOg
-	 Tq0Q3PQ7KWNqr4wGyDrsPW8EMGOz+y2HR5dMLkeXb0fAfkqPjMG12T31RPhCGWf18B
-	 ancBKa1xVwTcQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 7/8] riscv: dts: spacemit: k1-bananapi-f3: add SD
- card support with UHS modes
-Reply-To: sashiko@lists.linux.dev
-To: "Iker Pedrosa" <ikerpedrosam@gmail.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260511-orangepi-sd-card-uhs-v9-7-ae48c0b2b2cf@gmail.com>
-References: <20260511-orangepi-sd-card-uhs-v9-7-ae48c0b2b2cf@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 03:32:48 +0000
-Message-Id: <20260512033249.187C5C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778556881; c=relaxed/simple;
+	bh=wEg5B5/WRkgsiOTa8QdRiGTjTWXQVf13qM3qcQBbfh4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pYKLalsr29V7lBXMZpw1XGHQcm9bFhSpt9VO7RuLU31YHE8zTavklAPG7QVfB2am4HWase1SS+xccjM7yepbcID9IaZrFnfKzVyxS3IY64YHHMa9sFvX3P4BG8rnKseoBaCmEGPHGIQTdgXKCI14qGqpvJnIgQ++QKI0iOiQtHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=laDma3c0; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 64C3XHVE03571926, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1778556797; bh=JpnVsZFsIPTPuJBPO8NxiEJrLCSiAZmgNj9J0Bjw4kc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=laDma3c0Ay2CyWvf8BKDTXdlC9DBgQwfnqs4SHQIioUfoxPovpOhgeTORHquWP0oU
+	 JYCDOyPo0PVtkDKqGM7UP+wxpyEk2oowB+tx7H/HtqaUACwdHD27Z5++UvEYs8ZfkG
+	 bvzFymh06eq5V7Ix8tc2Sr6zmc/YycrjEItFq7X9sgRwSVI+h3cZyMM8FLUEuPpk9/
+	 G91e0Nj4C5Vc9D4jvWME3QGyT40H/NcvGzLG9ZXZO2IBxq4840HNVsI5oEGhrMaXLf
+	 86PRuBjEYuNG8viHysxKdkV1zebMC9yFX7boPuEkV8r6TBx/cDNCNEtJe6MtgutPpy
+	 HLSXFOP8CJWGg==
+Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
+	by rtits2.realtek.com.tw (8.15.2/3.27/5.94) with ESMTPS id 64C3XHVE03571926
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 12 May 2026 11:33:17 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 12 May 2026 11:33:17 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
+ (10.21.1.55) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Tue, 12 May 2026 11:33:17 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <linusw@kernel.org>, <brgl@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afaerber@suse.com>,
+        <wbg@kernel.org>, <mathieu.dubois-briand@bootlin.com>,
+        <mwalle@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <jic23@kernel.org>, <nuno.sa@analog.com>, <andy@kernel.org>,
+        <dlechner@baylibre.com>, <tychang@realtek.com>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>, <linux-iio@vger.kernel.org>,
+        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
+        <eleanor.lin@realtek.com>, <james.tai@realtek.com>
+Subject: [PATCH v3 0/7] gpio: realtek: Add support for Realtek DHC RTD1625
+Date: Tue, 12 May 2026 11:33:10 +0800
+Message-ID: <20260512033317.1602537-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: F02D75194BE
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 326A45194ED
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295958-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-295961-lists,devicetree=lfdr.de];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	NEURAL_HAM(-0.00)[-0.996];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:mid,realtek.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Enabling UHS-I modes with an `always-on` VMMC regulator prevents p=
-roper SD card resets, breaking soft reboots and driver rebinds.
---
+Hi all,
 
-commit da601a14dc433b25fd35c0c4098f9e5dcb5faea3
-Author: Iker Pedrosa <ikerpedrosam@gmail.com>
+This series adds GPIO support for the Realtek DHC RTD1625 SoC.
 
-riscv: dts: spacemit: k1-bananapi-f3: add SD card support with UHS modes
+Unlike the existing driver (gpio-rtd.c) which uses shared bank registers,
+the RTD1625 features a per-pin register architecture where each GPIO line
+is managed by its own dedicated 32-bit control register. This distinct
+hardware design requires a new, separate driver.
 
-This commit enables the sdhci0 controller on the Banana Pi BPI-F3 with
-high-speed UHS modes, wiring up the vmmc and vqmmc supplies.
+To accommodate this, we extend the gpio-regmap core framework to handle
+per-pin register operations, write-enable mechanisms, and add custom
+set_config callback.
 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv=
-/boot/dts/spacemit/k1-bananapi-f3.dts
-> index e20daa50a152f..8fea6e87acec8 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -221,7 +221,7 @@ buck3_1v8: buck3 {
->  				regulator-always-on;
->  			};
-> =20
-> -			buck4 {
-> +			buck4: buck4 {
->  				regulator-min-microvolt =3D <500000>;
->  				regulator-max-microvolt =3D <3300000>;
->  				regulator-ramp-delay =3D <5000>;
+Best Regards,
+Yu-Chun Lin
+---
+Changes in v3:
 
-[ ... ]
+patch 1 (gpio: Replace "default y" with "default ARCH_REATLEK" in Kconfig):
+- Chang "remove default y" to "replace it with default ARCH_REALTEK".
 
-> @@ -374,3 +374,21 @@ hub_3_0: hub@2 {
->  		reset-gpios =3D <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
->  	};
->  };
-> +
-> +&sdhci0 {
-> +	pinctrl-names =3D "default", "uhs";
-> +	pinctrl-0 =3D <&mmc1_cfg>;
-> +	pinctrl-1 =3D <&mmc1_uhs_cfg>;
-> +	bus-width =3D <4>;
-> +	cd-gpios =3D <&gpio K1_GPIO(80) (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +	vmmc-supply =3D <&buck4>;
-> +	vqmmc-supply =3D <&aldo1>;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
+patch 2 (gpio: regmap: add gpio_regmap_get_gpiochip() accessor):
+- New patch
 
-Could enabling UHS-I modes here introduce a regression during soft reboots
-or driver unbind and rebind cycles if buck4 is an always-on regulator?
+patch 3 (gpio: regmap: Add gpio_regmap_operation and write-enable support):
+- New patch
+- Update all drivers utilizing the gpio-regmap framework to accommodate
+the new reg_mask_xlate function signature.
 
-When UHS-I is negotiated, the SD card switches to 1.8V signaling. The SD
-physical layer specification dictates that resetting an SD card from 1.8V
-mode back to the default 3.3V mode requires dropping the main VDD supply
-(vmmc) to 0V.
+patch 4 (gpio: regmap: Add set_config callback):
+- New patch
 
-Since buck4 is configured with regulator-always-on, the regulator framework
-will not physically disable the supply when mmc_power_off() requests it.
-This could leave the SD card stuck in 1.8V mode during a soft reboot,
-preventing the host from communicating during the initial 3.3V sequence
-and causing initialization to fail.
+patch 5 (dt-bindings: gpio: realtek: Add realtek,rtd1625-gpio):
+- Remove description for reg.
+- Add Reviewed-by tag from Krzysztof.
 
-Should regulator-always-on be removed from buck4 if it isn't shared with
-other always-on components, or should UHS modes be omitted if the regulator
-must remain on?
+patch 6 (gpio: realtek: Add driver for Realtek DHC RTD1625 SoC):
+- Refactor to utilize the gpio-regmap framework.
+- Create a custom irqdomain.
 
-> +	status =3D "okay";
-> +};
+patch 7(arm64: dts: realtek: Add GPIO support for RTD1625):
+- Add Reviewed-by tag from Bartosz.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-orangepi-s=
-d-card-uhs-v9-0-ae48c0b2b2cf@gmail.com?part=3D7
+v2: https://lore.kernel.org/lkml/20260408025243.1155482-1-eleanor.lin@realtek.com/
+v1: https://lore.kernel.org/lkml/20260331113835.3510341-1-eleanor.lin@realtek.com/
+
+Tzuyi Chang (2):
+  dt-bindings: gpio: realtek: Add realtek,rtd1625-gpio
+  gpio: realtek: Add driver for Realtek DHC RTD1625 SoC
+
+Yu-Chun Lin (5):
+  gpio: Replace "default y" with "default ARCH_REALTEK" in Kconfig
+  gpio: regmap: add gpio_regmap_get_gpiochip() accessor
+  gpio: regmap: Add gpio_regmap_operation and write-enable support
+  gpio: regmap: Add set_config callback
+  arm64: dts: realtek: Add GPIO support for RTD1625
+
+ .../bindings/gpio/realtek,rtd1625-gpio.yaml   |  71 ++
+ arch/arm64/boot/dts/realtek/kent.dtsi         |  39 ++
+ drivers/gpio/Kconfig                          |  15 +-
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-104-idi-48.c                |  18 +-
+ drivers/gpio/gpio-i8255.c                     |  13 +-
+ drivers/gpio/gpio-idio-16.c                   |  16 +-
+ drivers/gpio/gpio-max7360.c                   |  10 +
+ drivers/gpio/gpio-pcie-idio-24.c              |  15 +-
+ drivers/gpio/gpio-regmap.c                    |  80 ++-
+ drivers/gpio/gpio-rtd1625.c                   | 608 ++++++++++++++++++
+ drivers/iio/adc/ad7173.c                      |  32 +-
+ drivers/iio/addac/stx104.c                    |  17 +-
+ drivers/pinctrl/bcm/pinctrl-bcm63xx.c         |  12 +-
+ drivers/pinctrl/pinctrl-tps6594.c             |  10 +
+ include/linux/gpio/regmap.h                   |  51 +-
+ 16 files changed, 963 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/realtek,rtd1625-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-rtd1625.c
+
+-- 
+2.34.1
+
 
