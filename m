@@ -1,220 +1,178 @@
-Return-Path: <devicetree+bounces-296524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296526-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gB8xEUCyA2qy9AEAu9opvQ
-	(envelope-from <devicetree+bounces-296524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 01:05:36 +0200
+	id ELrMDvmzA2oT9QEAu9opvQ
+	(envelope-from <devicetree+bounces-296526-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 01:12:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18BA52B2CB
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 01:05:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B62C952B368
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 01:12:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4C67D302D090
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 23:05:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59DF93083A32
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 23:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA1938398E;
-	Tue, 12 May 2026 23:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278863A75A2;
+	Tue, 12 May 2026 23:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uS/BZoI9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yicc5trm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8865F356777;
-	Tue, 12 May 2026 23:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E3439BFF5
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 23:12:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778627121; cv=none; b=mAaxk9IaJy9VzX0lD/erSE6MImLKQN+k0tKBbqRZqSFsmlpdfwRDCJRaaeWVv7oTrKiKwBbxuhOZiLnZX2NUdLKvxe/3Y900xSkK8ldK3/WsLN3SkFsLxQKLwlad1Q9I3fBvyEac86wye+bfdkILo+MfaqT83ZW6wAqyE0pjpCM=
+	t=1778627542; cv=none; b=iOon6eo0akLxxtl3j/nZKqIWhMN73suwqPLNTcf6440403B+Lm/WME66t1Q8+kJZKzgordhV9nvqv97jHuXjSg+yjGireF48NlsfH/Th8+D+i7k7YCM4FFCVBr+cECx5whpbV35OJTAhrv+WCJ3bPUuEklDVVK90nnT0AKe7y9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778627121; c=relaxed/simple;
-	bh=DK+7J33A7910JwFbWH+4GGnFPn1eunMdNSYAga957Wc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=qR6AOJnqT8ZzBIbV+h6eN1gwzf/FmOfOH11eKzGJF9egDCEqywjBcSxb4a6xz0nb1j1ByA+z7kTBcZg5MTMxgnfJcnyilsXS/QhekUkHBp0buLFJTfACoxCtKKVZSs1zGe3A7+e40Unfy8Br+qhgIwZ6YS/8tmx8WKCplRvuf+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uS/BZoI9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC642C2BCB0;
-	Tue, 12 May 2026 23:05:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778627121;
-	bh=DK+7J33A7910JwFbWH+4GGnFPn1eunMdNSYAga957Wc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=uS/BZoI95weEa3jFke426A2uK1R5djKpOfX8wMEuherRV/dHrfraU+ecpYeCtBPq4
-	 ze3SArqdAwAWHpE9VCL1CHHfgJSjXR98spoJY1YTTgsb3kjtnKisqI6DSNmzrkN6iN
-	 N82Wtqzbli52S3rH1GqjXbU+t4Ztt1cOGTJyeV7GvkylGlLEjajKM1XGqj32Ft2Sm5
-	 NVuR2toZfXEO4wP+tMhtz/Osr2EwQmH4bflyXuYXO5lQ09AUargBQUqpJx1MxUFKJ+
-	 oTYPEJnozoauTTV5FF7m+g/PvUu/yHSnrD2ihCbUPUqvczvJQys98/z9X9Giw+aCmc
-	 H1aF/MuFYyPpQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8dxl: Add SolidRun SoM and
- HummingBoard
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Josua Mayer" <josua@solid-run.com>
-Cc: Frank.Li@kernel.org, imx@lists.linux.dev, krzk+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260511-imx8dxl-sr-som-v4-2-64381b3bf80d@solid-run.com>
-References: <20260511-imx8dxl-sr-som-v4-2-64381b3bf80d@solid-run.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 23:05:19 +0000
-Message-Id: <20260512230520.CC642C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778627542; c=relaxed/simple;
+	bh=QMCGvOgTe1IRUx/r/waxC3kN2j/mbhgWj+jEk5Ocqb0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZCbguCNC/MyYrDGE4SspD18GGOiKvsOaJxmTiP3nJtdGtrnTyzIzPZa3MN5gO6aoRoK1hZuLENfkWPbPcKNmbx6G5GZTBrLzyU96GsvizendZHS2y67LxOqh928RWjHT76kLONGGVRT715ZggoDbm0wDXD8SSzS7tZ4Nq+GUC+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yicc5trm; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4891c0620bcso42900555e9.1
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 16:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1778627537; x=1779232337; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SQyBE0OznAhCrRGD3AceNMtDM18TfwDnmYG/NfXXQJI=;
+        b=Yicc5trmAnu1E5+8sRNZ/cxtSyWuIIMGj2Ajk+BY/K+Odxw5MQNZgcwpjde36+AO7O
+         l2rLlQLFK4YZp5pcZsSQvvB7H0+IYSmH1GcrEjO/18ykr3vHAd05/HP4yL5mqdnwepXs
+         ltT/+qgbqaMPPo151MoNFdcc8bvWjwh+Hq9u/Y4iBDaBQViWG/mqZ6+KgKaikhe7VxVM
+         hIsaPyjbC815H6dMxM5OuCClMAzwFsm4Aer7mTW3qqUNliwfbcvenYk7eLzVghbotQdy
+         YIIWTaXzFtFSYjI7nyc5X5EuS/uhiOVDHrj7+RHjumPUkn3AjlhbYxhq66UtdSOYuzco
+         l6vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778627537; x=1779232337;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SQyBE0OznAhCrRGD3AceNMtDM18TfwDnmYG/NfXXQJI=;
+        b=qSbz2E+GTe747jRNty/o+6K1WAFcGN++UhivU4TaXYjqdr/yYqgHz3wGxlNpT1aLSG
+         n0nsi7et86nb+KGFr5RP7vrFNz2sfpXZ7FHVVuhSTdKsq0T/QZuZ2/DC/2V0SqwWv5+U
+         ozFGtp/jp623lQop56/kmRGkn/Cfhnm8A3rwIjErwrhew0jsomI6ahvHk0f/rPD0TE6r
+         v3UHf4DZw3dBLEAGMs4NunZ9yAuhdcINKzsQa8LaEDVmK2uIBkaL5zHuZKF4OS+pJVwJ
+         ywRgzTkTvsu5voypFPt2SxHUg7UDx/jaMJDfRqQzhVRnOiZ6bdPFkz6+Kb4cmyWFVADh
+         5p0Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9MV/zf7hRTObJxxTb1cFIYjgh6GqQYU3AzZloK9t+v/jYMSULKtok3ihgmsSATHOBea/Jl9vubl7QG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNKaYXCzOOo+YKJ1O7TKbpmjRu/r1daL39p7HVQzhhmkI6Nulv
+	MSN70eRvXgGJec8DnibyFxE7DVQkmpZEOEpKkG0VMc0snp4j1NnXvuEqGO+qD06RWog=
+X-Gm-Gg: Acq92OEJ9yzusTQKQCdrbx+p/h+Q+THiV3CtXS42phpcqqHy5OkSQVUVgXt45lCL+T7
+	vkbyQqG7ZJzEzafUI2MKFI9S4Y0IhCiQQCCMKTk2tvsCvpqvhHpAkY03ikj5YhskNZEgGwkKA9I
+	cakR14F4c3tkZSYg02+ffT2FALLs/u5SOuNNE24tPZ7kyK+yzHesD4mglVC+mUJFG1FnI2fOqJF
+	L2L8qcmNqtGb1Qe8dGvyllZX7Lv2e8BJeZVRqd1fbH0ekeEndb2Y4RSAznbe3IwBbJQGkAJhDFx
+	758oD4cHESw/lYjfE+IAeFvVw+Aa/8rypaWrhx46G32ZakZ5u3e7QQvBg2EVx7VM/1ka8JQI2Rd
+	oF62KZH/fCKBIMyk4ILvWucn4q0eNalb3yFOYfZ0B2wkG24/nYhyjw+57Zo8fSrMy6opd3mSEDR
+	EwZ810DCvHdRKj3pHLVHewTRjn1vFctVoL56cXGvQFlyCAc1wW+q/CLJW8pVoWLsyWdMaN01wtM
+	ZJADMJY/AEdsnKI
+X-Received: by 2002:a05:600c:8b55:b0:48e:51f8:eb39 with SMTP id 5b1f17b1804b1-48fc9a4b074mr10062455e9.28.1778627537139;
+        Tue, 12 May 2026 16:12:17 -0700 (PDT)
+Received: from [127.0.1.1] ([94.4.195.193])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e913469besm20712305e9.14.2026.05.12.16.12.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 May 2026 16:12:16 -0700 (PDT)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+Subject: [PATCH 0/2] Initial Exynos850 ACPM support for exynos-acpm
+Date: Wed, 13 May 2026 00:12:10 +0100
+Message-Id: <20260513-exynos850-acpm-firmware-support-v1-0-3858d097e433@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: A18BA52B2CB
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMqzA2oC/3WOwQ7CIBAFf4Xs2TWALZr+iukB6KJEaRHaWtP03
+ yV68eJx5vDmrZApecrQsBUSzT77oS8gdgzsVfcXQt8VBsml4rWQSMurH/Kp5qhtDOh8Ck+dCPM
+ U45BG5JqcdpXglVFQVmIi55dP4dx+OdFjKqHxK8HoTGiHEPzYsPm4F5ishN8DDfuXt/cbGuqEl
+ QejFJlmFtBu2xvqNeR31wAAAA==
+X-Change-ID: 20260512-exynos850-acpm-firmware-support-0aefaf4104b6
+To: Sam Protsenko <semen.protsenko@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Rspamd-Queue-Id: B62C952B368
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296524-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296526-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,solid-run.com:email,0.0.0.5:email,lists.linux.dev:replyto,0.0.0.9:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:mid,linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] USB OTG1 port is configured as peripheral but breaks out to a Type=
--A host connector.
-- [High] Inconsistent and incorrect pad configurations for I2C2 and I2C3 GP=
-IO recovery pins.
-- [Medium] The 'reset-duration-us' property in the 'usb-device@1' node is u=
-ndocumented, unparsed by any kernel driver, and will fail schema validation.
-- [Low] Mismatch in the number of 100Base-T1 add-on ports between commit me=
-ssage and device tree.
---
+This series adds support for the Exynos850 SoC to the Samsung ACPM
+firmware IPC driver.
 
-commit f382c89d7dfc4938b73c73c681a3544f6363435e
-Author: Josua Mayer <josua@solid-run.com>
+The Exynos850 contains an APM co-processor that handles IPC messages for
+clocks, power, thermal management, and PMIC control. While it uses the
+same underlying ACPM communication machinery and protocols set as
+the GS101, the exact implementation details vary between the two SoCs.
 
-arm64: dts: imx8dxl: Add SolidRun SoM and HummingBoard
+Those protocol-specific differences will be managed individually by the
+corresponding protocol drivers. However, a dedicated compatible string
+is still required for the core IPC driver because the Exynos850 firmware
+utilizes a different initialisation data base offset.
 
-This commit adds support for the SolidRun i.MX8DXL System-on-Module and its
-HummingBoard Telematics carrier board. It configures various hardware
-interfaces including ethernet, CAN, USB, a cellular modem, and I2C sensors.
+First patch updates the google,gs101-acpm-ipc dt-bindings to include the
+new "samsung,exynos850-acpm-ipc" compatible string.
 
-> The multi-interface add-on board connector provides additional
-> interfaces (4x 100Base-T1, 2x SGMII, USB 2.0 shared with the cellular
-> modem, CAN, MDIO, SPI, UART, PCIe, I2C, and GPIO).
+Second patch adds the corresponding match data, base offset, and clock
+device name to the exynos-acpm firmware driver.
 
-This isn't a bug, but there is a mismatch between the commit message and the
-device tree. The message mentions 4x 100Base-T1 interfaces, but the code
-defines 5 disabled ports (port@5 through port@9) and 5 corresponding PHYs
-for the add-on connector. Could the commit message be updated to match the
-implemented ports?
+There is a dependency for driver changes (not for device tree bindings
+update) on clk-acpm exynos850 series posted here:
+https://lore.kernel.org/linux-samsung-soc/20260512-exynos850-acpm-clk-v1-0-837532ddbf38@linaro.org/
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-hummingboard-telematic=
-s.dts b/arch/arm64/boot/dts/freescale/imx8dxl-hummingboard-telematics.dts
-> new file mode 100644
-> index 0000000000000..7e822cbd7a528
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-hummingboard-telematics.dts
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+---
+Alexey Klimov (2):
+      dt-bindings: firmware: google,gs101-acpm-ipc: document Exynos850 compatible
+      firmware: samsung: acpm: add Exynos850 support
 
-[ ... ]
+ .../devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml    |  4 +++-
+ drivers/firmware/samsung/exynos-acpm.c                         | 10 ++++++++++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+---
+base-commit: 9e0898f1c0f134c6bad146ca8578f73c3e40ac0a
+change-id: 20260512-exynos850-acpm-firmware-support-0aefaf4104b6
+prerequisite-change-id: 20260512-exynos850-acpm-clk-bed1c23b66eb:v1
+prerequisite-patch-id: 223c977406801dde31779f956e33e65e51a0323c
+prerequisite-patch-id: 9b11f60e3c53e94e28b5e54fb7bb87e5415d8a05
 
-> +&usbotg1 {
-> +	vbus-supply =3D <&vbus1>;
-> +};
+Best regards,
+-- 
+Alexey Klimov <alexey.klimov@linaro.org>
 
-Since the base SoM device tree sets dr_mode to peripheral, and the carrier
-board does not override it to host or otg, will this controller remain in
-peripheral mode?
-
-Because this port breaks out to a USB Type-A connector on the evaluation ki=
-t,
-leaving it as a peripheral means it will not drive the VBUS regulator to
-power attached devices. Should this be explicitly set to host mode here on
-the carrier board?
-
-[ ... ]
-
-> +/* cellular modem */
-> +&usbotg2 {
-
-[ ... ]
-
-> +	usb-device@1 {
-> +		compatible =3D "usb2c7c,125";
-> +		reg =3D <1>;
-> +		reset-duration-us =3D <150000>;
-
-Is this reset-duration-us property supported by any upstream driver or
-documented in the device tree bindings?
-
-Because it appears to be unparsed by any kernel driver, will its inclusion
-cause schema validation warnings during the binding check?
-
-[ ... ]
-
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-sr-som.dtsi b/arch/arm=
-64/boot/dts/freescale/imx8dxl-sr-som.dtsi
-> new file mode 100644
-> index 0000000000000..93a0eb4d7f770
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-sr-som.dtsi
-
-[ ... ]
-
-> +	i2c2_gpio_pins: pinctrl-i2c2-gpio-grp {
-> +		fsl,pins =3D <
-> +			/* io with pull-up and weak drive */
-> +			IMX8DXL_SPI1_SCK_LSIO_GPIO3_IO00		0x00000021
-> +			/* io with pull-up, weak drive, open-drain */
-> +			IMX8DXL_SPI1_SDO_LSIO_GPIO3_IO01		0x02000021
-> +		>;
-> +	};
-
-Do these GPIO values configure the pads correctly for I2C bus recovery?
-
-The comments mention io with pull-up, but 0x00000021 and 0x02000021 both
-lack the pull-up enable bits present in the active I2C configuration.
-
-Additionally, does using 0x00000021 for SDA leave the open-drain bit unset?
-Both lines generally must be open-drain during I2C bus recovery. If SDA is
-actively driven high via push-pull while a stuck slave device pulls the line
-low, can this cause an electrical short circuit on the bus?
-
-[ ... ]
-
-> +	i2c3_gpio_pins: pinctrl-i2c3-gpio-grp {
-> +		fsl,pins =3D <
-> +			/* io with pull-up and weak drive */
-> +			IMX8DXL_SPI1_CS0_LSIO_GPIO3_IO03		0x00000021
-> +			/* io with pull-up, weak drive, open-drain */
-> +			IMX8DXL_SPI1_SDI_LSIO_GPIO3_IO02		0x02000021
-> +		>;
-> +	};
-
-Does the same configuration issue apply to these I2C3 recovery pins as well?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511-imx8dxl-sr=
--som-v4-0-64381b3bf80d@solid-run.com?part=3D2
 
