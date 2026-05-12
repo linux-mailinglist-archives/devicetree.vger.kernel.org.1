@@ -1,187 +1,236 @@
-Return-Path: <devicetree+bounces-296263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296265-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFetLoEuA2qd1QEAu9opvQ
-	(envelope-from <devicetree+bounces-296263-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:43:29 +0200
+	id 2GyMOBAuA2qN1QEAu9opvQ
+	(envelope-from <devicetree+bounces-296265-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:41:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2DF5217D6
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:43:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6FE52171F
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 15:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4D391318CFAA
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:27:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2207130BF968
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8442E306745;
-	Tue, 12 May 2026 13:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81DBE38D414;
+	Tue, 12 May 2026 13:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKYk/TZy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cXPzCeDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 604281D63E4;
-	Tue, 12 May 2026 13:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E3E2E8DFC;
+	Tue, 12 May 2026 13:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778592421; cv=none; b=j/3hI3NeMQ0fclXcRx0JbcKBETN4VCWxRpgLfn5S1yD90pkQXVLiyqSoGJrC4PScNgvBIUv1TOlVCm9gEqLKm5saGkZGQ3JVNVpRLPn6p81VCACKearMDDREPRonfVByD2GCivvWJMoXMDYQoHxX6SEoz/urpgTKlsE1IRwPoN8=
+	t=1778592461; cv=none; b=Mk07iaZEjB7judJFrbEtgEk6gRsWdJYLHaAZDEV5aWHH9PqnSgnNq8DeDDiEMr2DeL3RqZZ4w0XWVOA+vaebMdMGtav1nP/I3IcvM+J1HxcKO9PtfltpdayUUd86rOI0nn0u4Ph3MP04f0idV3pbETvg45FFJA/rvS5GtV7kX4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778592421; c=relaxed/simple;
-	bh=N1R7TqmycjTX2xwMWBpyDMY64Xdu0Sxh/2pss/RBKaE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i/PMsuXMKxn91Uh57dyUjznBdZVLPWqAIWA58x6ihhyTsO3Z/9PvlisF7/s3BkFhBSqhpUFy3XnrUNP+/dNV5nW+C2ua+Aq6qFy2K0HdrJX85wl/gurTrWYeGTcV+VvwE8CcBrTaTPJTYssysgo/gf6lC+mbMEJsIEtlTle0uMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKYk/TZy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 484FBC2BCB0;
-	Tue, 12 May 2026 13:26:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778592421;
-	bh=N1R7TqmycjTX2xwMWBpyDMY64Xdu0Sxh/2pss/RBKaE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cKYk/TZy3Ie0pFOp7a9/YmoLU7+Wmas6Ib9z0fwDYQcgzHEqK7gvOBcL3Zqq1B8yc
-	 ahYsJFyBNCY3nbSltUHnMiLSNcuwC/WeuTvQTUH+xwrd7cDJoV9p7Ej6BnRlO6UxLi
-	 QL4yU1XXw/1ycML975bp0e+jYaXs90knhVNeWyTw1352l8LuuMfOi2A8eCv0mPFzrr
-	 tiOACA5MdfvtInsdlpyshTsDFR2oAmL9LzPnQZFFRb2AeANRdq4yp7jwp9FW36r9cV
-	 jIi+ZDT0OnAbk9b5IxjVqfCdDKNvh+tUsbnikNisjdGKVCi5/qb+9hB+2Tlx75uv8V
-	 KrX19J514c9FA==
-Date: Tue, 12 May 2026 18:56:51 +0530
-From: "mani@kernel.org" <mani@kernel.org>
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	Frank Li <frank.li@nxp.com>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>, 
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	"festevam@gmail.com" <festevam@gmail.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: imx6q-pcie: Add intr, aer and
- pme interrupts
-Message-ID: <t3d2s6rl25ywobis4xiwwdvjrccua2qrpwfsxqpvp6qw5pzofa@kjm4wzcpjcli>
-References: <20260430050954.3467984-1-hongxing.zhu@nxp.com>
- <20260430050954.3467984-2-hongxing.zhu@nxp.com>
- <20260430-proud-ammonite-of-gaiety-abaafc@quoll>
- <AM0PR04MB52202A13D528B3AE16C3616A8C352@AM0PR04MB5220.eurprd04.prod.outlook.com>
- <55258a51-9cdb-451c-be06-74b9b3020cbc@kernel.org>
- <GV2PR04MB12019F5425D6EB9AE52FC32CE8C3C2@GV2PR04MB12019.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1778592461; c=relaxed/simple;
+	bh=GOucduZf8AmFUdwTFZY5EAcAJajv7H8fkDYDb+9hqbY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O96r5Uc7sjRy5JjGsdtRUteUEusdXmjdUA4rj3Azv6c5vQunSOA7W16bFcI/Ith9vbW3c4NDIrUMKLEG0M66ombR1k6EknFBshKYdGeuglYOA8yPvY4Q61lnkQsSl/LZqFd644O3fXR4yuMbRBRdrHS5dMZOkXvsLrO4iav0sVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cXPzCeDY; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A52681A3586;
+	Tue, 12 May 2026 13:27:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7310860646;
+	Tue, 12 May 2026 13:27:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B57EE11AF8CDC;
+	Tue, 12 May 2026 15:27:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1778592454; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=SVf9x1fU9es/DZnj3Ad/SGfYJ7Y6+3Fw0H1+dTnnGt8=;
+	b=cXPzCeDYR6Cr8oPnBasKrkABbUTHDVMPh75B0txHEZ5Sf1jES/3NTN/+gfbhvkocPdak8d
+	IETPrT8ht/eFeuMCIoY81Ld3AG9ggX7W0kcdTdjd/0umymF1/eeTy/MrPVvn5W14IbUsl8
+	aUqIVpj5mpIJ92p+3H4z2v6NUM5HyQWiaA9JG94TLA4HG4NZcaukNBeu6oxC/j3sFZDALq
+	zUfC8tVzOjmkKxXZ/PY1/AeBxrE5YELT/91+PnK/yAUOSNnjZ0YIlEDCGy0g4caNIDMq55
+	v+vJY0qvmGb3G5/5zDS1IyAdt4QNnBqDMMGv66QC4DGxhL4jgb/AjjLr4HYg9w==
+From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Subject: [PATCH v6 0/9] Add clock and reset support for Mobileye EyeQ7H
+Date: Tue, 12 May 2026 15:26:59 +0200
+Message-Id: <20260512-clk-eyeq7-v6-0-0540cce18fb2@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <GV2PR04MB12019F5425D6EB9AE52FC32CE8C3C2@GV2PR04MB12019.eurprd04.prod.outlook.com>
-X-Rspamd-Queue-Id: 1D2DF5217D6
+X-B4-Tracking: v=1; b=H4sIAKMqA2oC/2XRzW7DIAwH8FeJOI8KA4Gkp73HtAMfzorWJi3J0
+ Kqq7z6n1bZEORr79xeyb2zEnHBk++rGMpY0pqGnwrxULBxc/4E8RaqZFLIWjbA8HD85XvFiedc
+ Gg06rCKphNH/O2KXvR9bbO9WHNE5Dvj6iC8yvz5RWqEVKAS646mohta+jQfnqh2E6pn4XhhObc
+ 4r8syClXlpJtgGrdQTqxnZr1a81AmBl1WzRR++sF6DU1up/q8TKarJtND62kb6NYWvrhYXl1kp
+ N1nQmOieDVMau7f25yIyXL7rF9Nwm825ETv1TmvZVsTvgOSgavv8APYbh4MABAAA=
+X-Change-ID: 20250807-clk-eyeq7-f9c6ea43d138
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-mips@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Sari Khoury <sari.khoury@mobileye.com>
+X-Mailer: b4 0.15.2
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: AB6FE52171F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	FROM_DN_EQ_ADDR(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296263-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296265-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:email,nxp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:email]
 X-Rspamd-Action: no action
 
-On Thu, May 07, 2026 at 08:04:22AM +0000, Hongxing Zhu wrote:
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: Thursday, April 30, 2026 6:49 PM
-> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> > Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > bhelgaas@google.com; Frank Li <frank.li@nxp.com>; l.stach@pengutronix.de;
-> > lpieralisi@kernel.org; kwilczynski@kernel.org; mani@kernel.org;
-> > s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com; linux-
-> > pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > devicetree@vger.kernel.org; imx@lists.linux.dev; linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: imx6q-pcie: Add intr, aer and pme
-> > interrupts
-> > 
-> > On 30/04/2026 10:37, Hongxing Zhu wrote:
-> > >> -----Original Message-----
-> > >> From: Krzysztof Kozlowski <krzk@kernel.org>
-> > >> Sent: Thursday, April 30, 2026 4:04 PM
-> > >> To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> > >> Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > >> bhelgaas@google.com; Frank Li <frank.li@nxp.com>;
-> > >> l.stach@pengutronix.de; lpieralisi@kernel.org;
-> > >> kwilczynski@kernel.org; mani@kernel.org; s.hauer@pengutronix.de;
-> > >> kernel@pengutronix.de; festevam@gmail.com; linux-
-> > >> pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > >> devicetree@vger.kernel.org; imx@lists.linux.dev;
-> > >> linux-kernel@vger.kernel.org
-> > >> Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: imx6q-pcie: Add intr,
-> > >> aer and pme interrupts
-> > >>
-> > >> On Thu, Apr 30, 2026 at 01:09:52PM +0800, Richard Zhu wrote:
-> > >>> Add 'intr', 'aer', and 'pme' interrupt entries to the i.MX6Q PCIe
-> > >>> binding to support PCIe event-based interrupts for general
-> > >>> controller events, Advanced Error Reporting, and Power Management Events
-> > respectively.
-> > >>>
-> > >>> These interrupts are optional for existing variants (imx6q, imx6sx,
-> > >>> imx6qp, imx7d, imx8mq, imx8mm, imx8mp) to maintain backward
-> > >>> compatibility with existing device trees.
-> > >>>
-> > >>> For fsl,imx95-pcie, all 5 interrupts (msi, dma, intr, aer, pme) are
-> > >>> mandatory due to hardware requirements.
-> > >>>
-> > >>> This introduces an ABI requirement for fsl,imx95-pcie. The i.MX95
-> > >>> hardware requires dedicated interrupt lines for AER, PME, and
-> > >>> general controller events due to its redesigned interrupt
-> > >>> architecture. i.MX95 cannot function correctly without explicit
-> > >>> interrupt routing for error handling, power management and link event
-> > detection.
-> > >>
-> > >> fsl,imx95-pcie was added more than two years ago, so how it cannot
-> > >> function correctly? Are you saying that for two years you had here
-> > >> completely broken code?
-> > >>
-> > >> If this wasn't tested for two years, how can we believe anything is tested now?
-> > > The basic PCIe functionality has been working since the initial
-> > > fsl,imx95-pcie support. However, AER (Advanced Error Reporting) and
-> > > link up/down detection were not previously enabled. This patch-set
-> > > adds and verifies support for these advanced features.
-> > >
-> > 
-> > That is not what you said in the commit msg.
-> Hi Krzysztof:
-> Sorry for the delayed response due to a holiday.
-> After reviewing this patch-set again, I'd like to suggest an alternative
-> approach: would it be possible to mark these newly added interrupts as
-> optional?
+This patchset brings the support of the Other Logic Blocks (OLB)
+found in the first Mobileye SoC based on the RISC-V architecture, the
+EyeQ7H. Despite the change from MIPS to RISC-V, the Other Logic Blocks
+provide similar clock and reset functions to the controllers of the
+chip. This series introduces the device tree bindings of the SoC and
+the necessary changes to the clock and reset eyeq drivers.
 
-Yes, since even without these interrupts, PCIe functionality still works. Only
-issue is that it cannot report error and recover from LDn.
+Since this series affects drivers used on Mobileye MIPS SoCs, mainly
+clk-eyeq, I tested that it does not introduce regressions on EyeQ5,
+EyeQ6H, and EyeQ6Lplus evaluation boards.
+    
+In detail, the first patch adds the dt-bindings yaml and headers for
+the EyeQ7H OLB.
 
-- Mani
+Patch 2 adds the compatible entries to the reset-eyeq driver, and the
+necessary changes for the reset domains found in the EyeQ7H OLB.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Patches 3 and 4 rework the handling of parent clocks in
+__clk_hw_register_fixed_factor() to make it identical to other clock types
+like divider or gate. This allows simplifying the registration functions
+built on top of the now exported __clk_hw_register_fixed_factor(). A
+new clk_hw_register_fixed_factor_pdata() is added that will be used in
+clk-eyeq later in the series.
+
+Patch 5 renames the defines and functions related to the PLL with the
+PLL type fracg, to make room for the other types of PLL found the in
+EyeQ7H OLB.
+
+Patch 6 introduces a new generic type of clock structure that can
+represents all clocks found in OLB. Then patch 7 and 8 converts all
+clocks defined in the driver to the new struct eqc_clock and remove all
+the previous separate clocks structures.
+
+Patch 9 adds the list of clocks as match data for the 14 OLB present
+in the EyeQ7H SoC, and the functions needed to probe the two PLL types
+found in the chip.
+
+This series is based on v7.1-rc3 as all the prerequisites have been
+merged. It also applies cleanly on the clk-next branch.
+
+Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+---
+Changes in v6:
+- Rebased on v7.1-rc3.
+- Dropped the MAINTAINER update for now, this will go with the SoC series.
+- Link to v5: https://lore.kernel.org/r/20260317-clk-eyeq7-v5-0-6f6daa2c2367@bootlin.com
+
+Changes in v5:
+- Rebased in v7.0-rc1 + version 4 of eyeq6plus series.
+- Remove an superfluous whitespace and tidy up macros in clk-provider.h.
+- Link to v4: https://lore.kernel.org/r/20260304-clk-eyeq7-v4-0-9d6bd9d24bec@bootlin.com
+
+Changes in v4:
+- Rebased on v7.0-rc1 + version 3 of eyeq6plus series.
+- Link to v3: https://lore.kernel.org/r/20260114-clk-eyeq7-v3-0-8ebdba7b0133@bootlin.com
+
+Changes in v3:
+- Fix eyeq7h-olb DT bindings following Krzysztof review.
+- Link to v2: https://lore.kernel.org/r/20251224-clk-eyeq7-v2-0-81744d1025d9@bootlin.com
+
+Changes in v2:
+- Move the dt-bindings to their own files and sort the compatibles.
+- Reorder the changes in reset-eyeq and make the register access more
+  readable.
+- Drop the validity check on even divider. Unnecessary since it is
+  always called from a clock .set_rate().
+- Drop the parameters check on divider registration. Will be posted
+  separately.
+- Switch to a new generic struct for describing the clocks.
+- Add an entry to MAINTAINERS.
+- Link to v1: https://lore.kernel.org/r/20250903-clk-eyeq7-v1-0-3f5024b5d6e2@bootlin.com
+
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+To: Benoît Monin <benoit.monin@bootlin.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Théo Lebrun <theo.lebrun@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Brian Masney <bmasney@redhat.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Cc: linux-mips@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+
+---
+Benoît Monin (9):
+      dt-bindings: soc: mobileye: Add EyeQ7H OLB
+      reset: eyeq: Add EyeQ7H compatibles
+      clk: fixed-factor: Rework initialization with parent clocks
+      clk: fixed-factor: Export __clk_hw_register_fixed_factor()
+      clk: eyeq: Prefix the PLL registers with the PLL type
+      clk: eyeq: Introduce a generic clock type
+      clk: eyeq: Convert clocks declaration to eqc_clock
+      clk: eyeq: Drop PLL, dividers, and fixed factors structs
+      clk: eyeq: Add EyeQ7H compatibles
+
+ .../bindings/soc/mobileye/mobileye,eyeq7h-olb.yaml |  192 +++
+ drivers/clk/clk-eyeq.c                             | 1245 +++++++++++++-------
+ drivers/clk/clk-fixed-factor.c                     |   72 +-
+ drivers/reset/reset-eyeq.c                         |  268 ++++-
+ include/dt-bindings/clock/mobileye,eyeq7h-clk.h    |  119 ++
+ include/linux/clk-provider.h                       |   56 +-
+ 6 files changed, 1456 insertions(+), 496 deletions(-)
+---
+base-commit: bb1459368dd795c43380057523f571d5eb0ddded
+change-id: 20250807-clk-eyeq7-f9c6ea43d138
+
+Best regards,
+--  
+Benoît Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
