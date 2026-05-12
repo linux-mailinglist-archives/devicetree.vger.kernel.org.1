@@ -1,136 +1,162 @@
-Return-Path: <devicetree+bounces-296184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFI5EKMQA2qX0AEAu9opvQ
-	(envelope-from <devicetree+bounces-296184-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:36:03 +0200
+	id YBUZIboQA2qX0AEAu9opvQ
+	(envelope-from <devicetree+bounces-296186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:36:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67E151F6D2
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:36:02 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A20F51F6F1
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 13:36:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 381EC301EC70
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 11:35:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4F93430182C1
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 11:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FD74CA29C;
-	Tue, 12 May 2026 11:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259584CA297;
+	Tue, 12 May 2026 11:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ix+qxIhJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2Rnbnhj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600873839AE;
-	Tue, 12 May 2026 11:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1BF2395AC3;
+	Tue, 12 May 2026 11:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778585727; cv=none; b=jEo65CX2fIzzCT4SuAbbC5fIEIxyO9ypGxznyeg3IfvhfUSKHflBlzQ5SNJYvpaL7N0fcH7agObLxi6bDtRD1PLYU/HCH4mN5Tp4AliesNzafnu2CJG0UE/UA8c4zlWG7uqYRkK5A+yLjpB9nP1E8lbfgHE8gvhZImEg7gd6L6Q=
+	t=1778585784; cv=none; b=QB1aYpyEj4FKbjjI0Cds53rb9knMFfs2/nO0iHQkIQk4wLE3SNf3o6k3rtLoz31VKJOow8pp+tlv+Jo+9VPLT+ye0AIzg1ye3h6vugRVnUIeGwgvKJ/dHoODFe1WJ6FumJ8gSAjZt35sP9TmK1LEM6+rHY8eqJz2SvBoiqVz3nY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778585727; c=relaxed/simple;
-	bh=O+s/qJ2aS0wV7WhC+jnpUOVvpf2JriqhRZ0N9HYUX5w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VSvC3W2vmqWFEX1ULy8COEHWZRqONnZMaPAeu9wBA8qnA6YLS8EX8V7EnsOQ2J5Jm2fqh81+VXpXJFofTPnnK2HlCqDYiD9Nt6+fojhNyenskh7FMLAcrBGqxjW4lgV4gi4XiiibKK7Ka4WPtNmlGMNFsjtzs8SK1J+MP3lJ/NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ix+qxIhJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D54AC2BCB0;
-	Tue, 12 May 2026 11:35:24 +0000 (UTC)
+	s=arc-20240116; t=1778585784; c=relaxed/simple;
+	bh=Gpg3egQ6vVUcNICfzOq/Sa6D9k/UQM2BtrpCKf33v2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rVIo/eGfsY5pTEXvrpxEY2HrxOlpYbF8wyE8hzpSWGisl0YYS5u9xF+s9WCLGqLyNxRCtvFQx3/3zuEJxyiuVXgM2cpkFHNkctvsXMmCN2i9LvhwkYpU5h08XS5dw4bzaIWxVE2hUZcuZEhRN3Qsm5tZVSWu49rNVAJ+ebvDBso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2Rnbnhj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99D04C2BCB0;
+	Tue, 12 May 2026 11:36:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778585727;
-	bh=O+s/qJ2aS0wV7WhC+jnpUOVvpf2JriqhRZ0N9HYUX5w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ix+qxIhJdVyCjq8HoFIelgKUJ4U8HtdeEDYQCIxJAEUdWDp7yMTtcVHwJj0AtAG7k
-	 k+X+0G5Aus19rHsGv/ZQpSlQ3iU+X7NIZxsoMVhxgAEgSTwYRk0OLU+Qa1gEdEQNIB
-	 3QqZMzgZJQHewQ9TfBNuljK2yff9Xg7+51wTl5i4YXlJSMkpLinSr9QeLK10ayZdYs
-	 Vzwyyo/FKn7GFO4F4wueiw1hbe/qMAkvEnmYMTlJTuquTa8lQlJQbdhGrdoytQ6fCe
-	 gJkZAOsB51OcouNOzu8gDSRsPcxCsAJweyfP0PIewlsikQe3BXj1/yLlcQgPshPaJo
-	 0VcLyYvPrp8dA==
-Date: Tue, 12 May 2026 11:35:22 +0000
-From: Yixun Lan <dlan@kernel.org>
-To: Andre Heider <a.heider@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] riscv: dts: spacemit: k1-musepi-pro: set default
- console baud rate
-Message-ID: <20260512113522-GKG3624147@kernel.org>
-References: <20260511111116.1109643-1-a.heider@gmail.com>
- <20260511111116.1109643-7-a.heider@gmail.com>
+	s=k20201202; t=1778585783;
+	bh=Gpg3egQ6vVUcNICfzOq/Sa6D9k/UQM2BtrpCKf33v2g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=e2RnbnhjTAo3qtGayxzsmWU1sRgq+V0oZYN23S+Mt/m89xN3VBTL2Ks4pUXdk20WA
+	 B/eUGtbj25ODFGRpha1DJ8uzlZlNEXNJKdZ6/VdRd9KLM4eCxCoqIx3mh0bNHurSYr
+	 JWzX2y80GzPQHZd3ll9FJ6o3Q8jiTjuAkHls62Au/9bIoJWEboG9K+ti3Wev0bJTvD
+	 LBYVypJ9fkLl/9XSUwIDR3A479GhTMKz7IG/zk5J/MenXQCfIoNQEiSBL8+YSZh0ZT
+	 pO0KL4C6przBKkXp6EUCPqhL59ubYsF5JaPjYQbIOujYmxIPSXgrLrnsMAU8Hs+VQv
+	 CdzxHEydPRT4Q==
+Date: Tue, 12 May 2026 12:36:11 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andrew Morton
+ <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
+ <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
+ <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v12 11/11] Documentation: ABI: testing: add common ABI
+ file for iio/frequency
+Message-ID: <20260512123611.2f7369f8@jic23-huawei>
+In-Reply-To: <20260510-adf41513-iio-driver-v12-11-34af2ed2779f@analog.com>
+References: <20260510-adf41513-iio-driver-v12-0-34af2ed2779f@analog.com>
+	<20260510-adf41513-iio-driver-v12-11-34af2ed2779f@analog.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260511111116.1109643-7-a.heider@gmail.com>
-X-Rspamd-Queue-Id: A67E151F6D2
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 0A20F51F6F1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-296186-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296184-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email]
 X-Rspamd-Action: no action
 
+On Sun, 10 May 2026 13:42:29 +0100
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-On 13:11 Mon 11 May     , Andre Heider wrote:
-> Allow serial output with the same uboot/opensbi settings so the
-> console works without providing a cmdline.
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Signed-off-by: Andre Heider <a.heider@gmail.com>
-
-Reviewed-by: Yixun Lan <dlan@kernel.org>
-
+> Add ABI documentation file for PLL/DDS devices with frequency_resolution
+> sysfs entry attribute used by both ADF4350 and ADF41513.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > ---
->  arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/ABI/testing/sysfs-bus-iio-frequency         | 11 +++++++++++
+>  Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350 | 10 ----------
+>  2 files changed, 11 insertions(+), 10 deletions(-)
 > 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> index 2d3e30f0bd806..c8bf776511c94 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> @@ -22,7 +22,7 @@ aliases {
->  	};
->  
->  	chosen {
-> -		stdout-path = "serial0";
-> +		stdout-path = "serial0:115200n8";
->  	};
->  
->  	leds {
-> -- 
-> 2.53.0
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency b/Documentation/ABI/testing/sysfs-bus-iio-frequency
+> new file mode 100644
+> index 000000000000..1ce8ae578fd6
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency
+> @@ -0,0 +1,11 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
+> +KernelVersion:	6.20
+FWIW Sashiko correctly points out that moving documentation doesn't change the kernel version
+in which it wsa introduced.  So this should be 3.4.0
+
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Stores channel Y frequency resolution/channel spacing in Hz for PLL
+> +		devices. The given value directly influences the operating mode when
+> +		fractional-N synthesis is required, as it derives values for
+> +		configurable modulus parameters used in the calculation of the output
+> +		frequency. It is assumed that the algorithm that is used to compute
+> +		the various dividers, is able to generate proper values for multiples
+> +		of channel spacing.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
+> index 1254457a726e..76987a119feb 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
+> @@ -1,13 +1,3 @@
+> -What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
+> -KernelVersion:	3.4.0
+> -Contact:	linux-iio@vger.kernel.org
+> -Description:
+> -		Stores channel Y frequency resolution/channel spacing in Hz.
+> -		The value given directly influences the MODULUS used by
+> -		the fractional-N PLL. It is assumed that the algorithm
+> -		that is used to compute the various dividers, is able to
+> -		generate proper values for multiples of channel spacing.
+> -
+>  What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_refin_frequency
+>  KernelVersion:	3.4.0
+>  Contact:	linux-iio@vger.kernel.org
 > 
 
--- 
-Yixun Lan (dlan)
 
