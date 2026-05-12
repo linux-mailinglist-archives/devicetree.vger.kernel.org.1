@@ -1,235 +1,252 @@
-Return-Path: <devicetree+bounces-296009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGIiMf24AmonwAEAu9opvQ
-	(envelope-from <devicetree+bounces-296009-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:22:05 +0200
+	id yJ5HBrC+Amr3wAEAu9opvQ
+	(envelope-from <devicetree+bounces-296027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:46:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23588519D86
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:22:05 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E93C51A637
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 07:46:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CCC3D3044A6B
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:20:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C5E6B301731F
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 05:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4CA32BF51;
-	Tue, 12 May 2026 05:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713B92BE7D1;
+	Tue, 12 May 2026 05:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ISF34sO4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SpVOOFLI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771A631B823;
-	Tue, 12 May 2026 05:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F39D41754
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 05:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778563259; cv=none; b=UXPJRAvwyT+nR2ohfzqY2srhdhYRIqXzE7fahlywSh40Tn7HRuwBah3uf3HPprcro1WYcvs83h5DIdnUoPk+n1hqp+cbA02I35pMxEs6Qtab6OEfAo4y/ksizGYrCVkGmpuv3b+OMfnvDT/mi8U+qtidStYOSnCMQl61jAC+0Dc=
+	t=1778563707; cv=none; b=Gr/2lswMu6vMAzAAOIFWmTuNWy5xRoyE+Hp+b5JzxB/xFCLe6wjrS6QTsv9JPyvL9XqWrLFYZj2Se+GdIA2wU+jc3/Bjq+EJkLYj6V3xFAe9VQpLCIrOkvtJXdJzoyDOAOMN3ueut5z5QZzVRA4AacAe3J85AQ+XNm+NEYJazFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778563259; c=relaxed/simple;
-	bh=DKykONumnN8vEAkNqUHocQNuYxuy08HseTU9qi3MfU4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YscpjAivI+UXfbRJqMDmCkNtyz5x0A8XZO4zpsqXeF4fkXsJn+s7SPKdVVYhwKriuwZMtN5OLbzLAok0AHVmd6oXdVEN6LlLyViAHti3/BDwGktTA1Ejod2U8fV7+xifxHLbfOZ4ZYngOmNRLmcgOc+1NgaKcnF2seGfEYJs0t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ISF34sO4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B96C2BCB8;
-	Tue, 12 May 2026 05:20:58 +0000 (UTC)
+	s=arc-20240116; t=1778563707; c=relaxed/simple;
+	bh=eLHYURQNBw/J5YdxpDvHywMM6ThKXwOgJdIpFRWeyHY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=DM5l8L5ojbgXhDbPovyEg1pLEr2h3e+84YuPmIp4JZo9Zqv7gCNUb65xf1R76+cnZAm6YaQiBQLXzb12AgQYNxkSpC8US3lneBUhYweiz5z6bJKfqiatCpwAgLhVrfhVgGBys8d7qSQC69E3w3IwMWPRZf4/Gl4+RF6i7mjK1Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SpVOOFLI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A0AC2BCB0;
+	Tue, 12 May 2026 05:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778563258;
-	bh=DKykONumnN8vEAkNqUHocQNuYxuy08HseTU9qi3MfU4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ISF34sO4Kyt0LWF1g1Qy9SHd4SwpidsMOSdsluazACG6ullhYMhA/Hn3ZaPf0lCFu
-	 6nz3rADFvJKXfBlqps+EAlz9Fi1MVJi/aKXXgbk9JTP9UPU5yRrdChrqFr4FmvdHJ0
-	 h8+OmyE4aetyGCxlNmxVloa4LT15I9rxldJlqaTzk00OCC3fIeMgtz13wybdftlIHz
-	 T8B0QHJ/KytY5+t4sLH7UZzbytHf3iYXreOhjGgAoIwStGVM3VxvnrkKPzZ0J/6HaQ
-	 yorofaw4HfFiFhaUACELeqRqyZUUSIjV8yNlGfyANcZupMzvo3fSPEuAQfvdjLW8Td
-	 vTF78sUdtaYsA==
-Date: Tue, 12 May 2026 05:20:56 +0000
-From: Yixun Lan <dlan@kernel.org>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Troy Mitchell <troy.mitchell@linux.dev>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Trevor Gamblin <tgamblin@baylibre.com>
-Subject: Re: [PATCH v9 8/8] riscv: dts: spacemit: k1-musepi-pro: add SD card
- support with UHS modes
-Message-ID: <20260512052056-GKD3624147@kernel.org>
-References: <20260511-orangepi-sd-card-uhs-v9-0-ae48c0b2b2cf@gmail.com>
- <20260511-orangepi-sd-card-uhs-v9-8-ae48c0b2b2cf@gmail.com>
+	s=k20201202; t=1778563706;
+	bh=eLHYURQNBw/J5YdxpDvHywMM6ThKXwOgJdIpFRWeyHY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=SpVOOFLI5d19jpoQ5ASS7B4BNCgBHBT9dDVDXL1cVRZVEGfawqU+cd9Qh/T6cOymh
+	 HUJWq+dUHZH+ZaH4gQhFLkPD3Lqk3l194NJp3BdOhdjK0b2MpJ5k4SV8sKplnJ44PW
+	 Oqf5cKxKyUlGwUZMXQwGKpy0fmOJvNxI3hjKSzh2NEKxp76j0fj3Jesitygw5sFhri
+	 vKlxVaJvcWu2rbm/EXYoBs/oFhIGmb923JWfEJadaAwLYrBLbX4MXbc8rchNesq4LD
+	 pZOnlBpfttmGyknKfwK/Mfq0yvYJWedYH4OUTJxXKR8xz5q+svqZ1TCIMt4KBNO7Ak
+	 9EwyKATDWzs2A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] Enable wifi on the BeagleV-Ahead
+Reply-To: sashiko@lists.linux.dev
+To: "Thomas Gerner" <thomas.gerner@muenchen-mail.de>
+Cc: krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260511141119.155369-1-thomas.gerner@muenchen-mail.de>
+References: <20260511141119.155369-1-thomas.gerner@muenchen-mail.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 12 May 2026 05:28:25 +0000
+Message-Id: <20260512052826.71A0AC2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260511-orangepi-sd-card-uhs-v9-8-ae48c0b2b2cf@gmail.com>
-X-Rspamd-Queue-Id: 23588519D86
+X-Rspamd-Queue-Id: 0E93C51A637
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296027-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296009-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,0.0.0.1:email];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.41:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.999];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Hi Iker, Trevor,
+Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+s) to consider:
+- [High] Missing `keep-power-in-suspend` property breaks WoWLAN functionali=
+ty.
+- [Medium] Contradictory pull-up configuration on WiFi GPIOs causes power l=
+eakage.
+- [Medium] Incorrect hardware-specific compatible string misrepresents the =
+device.
+- [Low] The `brcm,sd_head_align` and `brcm,sd_sgentry_align` properties are=
+ undocumented and ignored.
+- [Low] The devicetree node name `brcmf_pwrseq` uses an underscore instead =
+of a hyphen.
+- [Low] Mixed space and tab indentation within the `wifi_pins` node.
+--
 
-On 10:54 Mon 11 May     , Iker Pedrosa wrote:
-> From: Trevor Gamblin <tgamblin@baylibre.com>
-> 
-> Update the Muse Pi Pro devicetree with SD card support to match what
-> was done for the OrangePi RV2 in [1]. More precisely:
-> 
-> - Enable sdhci0 controller with 4-bit bus width
-> - Configure card detect GPIO with inversion
-> - Connect vmmc-supply to buck4 for 3.3V card power
-> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-> - Add dual pinctrl states for voltage-dependent pin configuration
-> - Support UHS-I SDR25, SDR50, and SDR104 modes
-> 
-> [1] https://lore.kernel.org/linux-riscv/20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com/T/#
-> 
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> ---
->  arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 66 ++++++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> index 29e333b670cf..774a4640f065 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> @@ -18,6 +18,24 @@ aliases {
->  		ethernet0 = &eth0;
->  		serial0 = &uart0;
+commit 927889c06368228ec05bf0df849cea905cfb5d42
+Author: Thomas Gerner <thomas.gerner@muenchen-mail.de>
+
+Enable wifi on the BeagleV-Ahead
+
+The BeagleV-Ahead board uses an AP6203BM WiFi chip from AMPAK Technology
+Inc. connected to SDIO1. The chip is compatible to the broadcom wireless
+driver.
+
+> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/ri=
+scv/boot/dts/thead/th1520-beaglev-ahead.dts
+> index 91f3f9b987bc3..5e0dc47d263c9 100644
+> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+[ ... ]
+> @@ -86,6 +86,11 @@ hdmi_con_in: endpoint {
+>  			};
+>  		};
 >  	};
-Add one blank line here, but see comment below..
-> +	reg_dc_in: dc-in-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dc_in_5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-reg_dc_in is not used, drop it, for the reason, see recent discussion of
-this thread here[1][2], especially refer to Krzysztof's original comment
-https://lore.kernel.org/all/6530526f-59ca-4753-a068-46c62a1a1fed@kernel.org/ [1]
-https://lore.kernel.org/all/20260511065338-GKA3624147@kernel.org/  [2]
+> +
+> +	brcmf_pwrseq: brcmf_pwrseq {
 
-> +
-> +	reg_vcc_4v: vcc-4v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_4v";
-> +		regulator-min-microvolt = <4000000>;
-> +		regulator-max-microvolt = <4000000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
+This isn't a bug, but does the node name violate the devicetree specificati=
+on?
+Section 2.2.1 and kernel conventions dictate using hyphens to separate word=
+s.
+Using an underscore here will trigger a node_name_chars_strict warning from
+the dtc compiler. Should it be renamed to brcmf-pwrseq or wifi-pwrseq?
+
+> +		compatible =3D "mmc-pwrseq-simple";
+> +		reset-gpios =3D <&gpio2 31 GPIO_ACTIVE_LOW>;	/* WL-REG-ON */
 > +	};
-> +
->  
->  	chosen {
->  		stdout-path = "serial0";
-> @@ -77,3 +95,51 @@ &uart0 {
->  	pinctrl-names = "default";
->  	status = "okay";
 >  };
+[ ... ]
+> @@ -239,6 +244,28 @@ rx-pins {
+>  			slew-rate =3D <0>;
+>  		};
+>  	};
 > +
-> +&i2c8 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c8_cfg>;
-> +	status = "okay";
-> +
-> +	pmic@41 {
-> +		compatible = "spacemit,p1";
-> +		reg = <0x41>;
-> +		interrupts = <64>;
-..
-> +		vin-supply = <&reg_vcc_4v>;
-This should be adjusted, please check schematics as I haven't done it
-myself, for reason behind please refer to this patch (which was merged
-in v7.1)
+> +	wifi_pins: wifi-pins {
+> +	    host-wake-wl {
 
-http://lore.kernel.org/r/20260206-spacemit-p1-v4-1-8f695d93811e@riscstar.com
+This isn't a bug, but are these lines indented with 4 spaces? The Linux
+kernel coding style requires the exclusive use of tabs for indentation in
+device tree sources.
 
-> +
-> +		regulators {
-> +			buck4: buck4 {
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-ramp-delay = <5000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			aldo1: aldo1 {
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
+> +			pins =3D "GPIO2_25";
+> +			function =3D "gpio";
+> +			bias-pull-up;
+
+Since the host-wake interrupt is configured below as IRQ_TYPE_EDGE_RISING,
+it implies the signal idles low. Does pulling up a signal that idles low
+cause continuous power leakage? Should this be configured with bias-disable
+or bias-pull-down instead?
+
+> +			drive-strength =3D <1>;
+> +			input-enable;
+> +			input-schmitt-disable;
+> +			slew-rate =3D <0>;
 > +		};
+> +
+> +	    reg-on-wl {
+> +		    pins =3D "GPIO2_31";
+> +		    function =3D "gpio";
+> +			bias-pull-up;
+
+The mmc-pwrseq-simple configuration uses this pin as an active-low reset
+and actively drives it low to power off the WiFi chip during sleep or
+suspend. Could pulling up this pin while it is driven low cause continuous
+current leakage to ground?
+
+> +			drive-strength =3D <3>;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +			slew-rate =3D <0>;
+> +	    };
+> +	};
+>  };
+[ ... ]
+> +&sdio1 {
+> +	bus-width =3D <4>;
+> +	max-frequency =3D <198000000>;
+> +	status =3D "okay";
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <0>;
+> +	non-removable;
+
+Will Wake-on-WLAN (WoWLAN) fail to function without the
+keep-power-in-suspend property here?
+
+The wifi@1 node below configures an Out-Of-Band host-wake interrupt to
+support WoWLAN. However, without keep-power-in-suspend on the sdio1 node,
+the MMC core will not set the MMC_PM_KEEP_POWER flag and will assert the
+reset GPIO to cut power to the WiFi chip during system suspend.
+
+This would cause the WiFi module to lose its firmware state, rendering the
+configured OOB interrupt useless.
+
+> +
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&wifi_pins>;
+> +	mmc-pwrseq =3D <&brcmf_pwrseq>;
+> +
+> +	wifi@1 {
+> +		compatible =3D "cypress,cyw43012-fmac", "brcm,bcm4329-fmac";
+
+Does this compatible string misrepresent the underlying hardware?=20
+
+The commit message states the board uses an AMPAK AP6203BM WiFi chip,
+which is based on Broadcom BCM43436 silicon. However, this compatible
+string corresponds to a dual-band Cypress chip architecture. Should it use
+an appropriate BCM4343x compatible string (e.g., brcm,bcm43430-fmac)
+instead?
+
+> +		reg =3D <1>;
+> +		brcm,sd_head_align =3D <4>;
+> +		brcm,sd_sgentry_align =3D <512>;
+
+Are these properties used by the kernel?
+
+They do not appear to be defined in the brcm,bcm4329-fmac.yaml binding
+schema, which strictly enforces unevaluatedProperties: false, and their
+presence will cause make dtbs_check validation to fail.
+
+A review of the brcmfmac driver also shows these properties are only used
+for legacy C platform data structs and are never parsed from the device
+tree.
+
+> +		interrupt-parent =3D <&gpio2>;
+> +		interrupts =3D <25 IRQ_TYPE_EDGE_RISING>;
+> +		interrupt-names =3D "host-wake";
 > +	};
 > +};
-> +
-> +&sdhci0 {
-> +	pinctrl-names = "default", "uhs";
-> +	pinctrl-0 = <&mmc1_cfg>;
-> +	pinctrl-1 = <&mmc1_uhs_cfg>;
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> +	cd-inverted;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +	vmmc-supply = <&buck4>;
-> +	vqmmc-supply = <&aldo1>;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	status = "okay";
-> +};
-> 
-> -- 
-> 2.54.0
-> 
 
--- 
-Yixun Lan (dlan)
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511141119.1553=
+69-1-thomas.gerner@muenchen-mail.de?part=3D1
 
