@@ -1,204 +1,158 @@
-Return-Path: <devicetree+bounces-295893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295894-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KBASAcdvAmqZswEAu9opvQ
-	(envelope-from <devicetree+bounces-295893-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 02:09:43 +0200
+	id UKQlE/BxAmowtAEAu9opvQ
+	(envelope-from <devicetree+bounces-295894-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 02:18:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B9F517BC4
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 02:09:42 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E97517D0A
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 02:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CDC003015893
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:09:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E21C3022F70
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 00:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CBE3B1B4;
-	Tue, 12 May 2026 00:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915221EE7B7;
+	Tue, 12 May 2026 00:18:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDchgRya"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pu3kdOjB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BC411CBA
-	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 00:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF2F4D8CE
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 00:18:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778544580; cv=none; b=dohIs93f8WPYcKTv0JWzBZOq3HxMqzfuBnvbq/jngopgKgFrmnyxQav/M8ZfPp90rzRS0TQHrAJ07yAcxXznjYGT7w61hwYrsGLuO7xyliYDMkPEj6M94NUjOOaOD54iO7y3ZrUkMyiHvXgKA0RDhcymz/1HerDuMLfyDFNo3vM=
+	t=1778545133; cv=none; b=PV7XDNlT9Ps7eBLbX0omcqNFnNbwTYPmIw4tVd+6fA5JpdXA9HYoCfLwnfajPo33zYKEyg8AYZDZVR88hh3Xd++S8o18s7ITJ14V0wKpx+wqqjafeVRd3prynyEXjN/6wVRXMrV499d0+mQh1GCkGzAtr65tsCHHE5dqI34OsY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778544580; c=relaxed/simple;
-	bh=L8foGPJpuqj0jkgt81XA+D+5gEB4DJE/BsLxvyjWVhU=;
+	s=arc-20240116; t=1778545133; c=relaxed/simple;
+	bh=FoMcEzx/Cizldt1PCiDjvVqWAZukYjqqK6aqhDI8n6Q=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DOKUvFNg5lRpoaE1xQbKRqcTNptSlSDO7rIsjYd795cvAF2WA8IQOmgv0I4xPGBHbXVPtMGSOBywR49C1Jgs3bxcT++0CHyBN+kJh/O75Htyq223ii1475YMFYo+fnSeus6GwRKTL4cTBXRJ/tnqBBKhcXb+U2RENckYQlWrlZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDchgRya; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3316C2BCB0;
-	Tue, 12 May 2026 00:09:39 +0000 (UTC)
+	 Message-Id; b=EkWTsSvRtcbY89t3kITDRAZCs3CX6D6MVCzDEfC+vZLJT/7Y7YXnEjTmRbCJsAdldN+h/cQle6206dMkBpEW28V/W3xmnWVthY54NGdx56W2Li7upbmoO5EOQY7eO6EBxO2cXLJbZwP60sgz6MqBXQ67qpOm1JaU+UmTVoeC9BY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pu3kdOjB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10D95C2BCB0;
+	Tue, 12 May 2026 00:18:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778544580;
-	bh=L8foGPJpuqj0jkgt81XA+D+5gEB4DJE/BsLxvyjWVhU=;
+	s=k20201202; t=1778545133;
+	bh=FoMcEzx/Cizldt1PCiDjvVqWAZukYjqqK6aqhDI8n6Q=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=aDchgRyahYao9VJzbJLVrS9t0tGvS0Z4l8xxIVvkW1UQcI7d/zMtS3+JQsIOYESWR
-	 p8I8fRIaPQla2+0itCG7rAuSVTaOs7XF3pDambKuZTKhE6+0NywUMqtXfF1MxNLBN4
-	 isGd2i5E/LciIOxNH26je5uTJjTjMyYvEN70sgx3hJwaY3rjI4lGdOtx39bgvmuVVq
-	 +ND1Oi1TNoWFPW9qHGBn8nkN3OM3jAor+Fd/YQ1/5hmfgQHlllNnPs9g+cSVDPgzVw
-	 t4AfPiw0AubtgihBpFvmqpmJSroB1v5ZnV7uC6Z3ZuGCaejrNrrCC1xMJOAMSTF78b
-	 ChGMaF7SBaVJA==
+	b=Pu3kdOjB3a65tI1Q7x8BwNqP1s5of7jSXyP5xYyuYZ98cwIQFBZUDoxNop0l9Xcjr
+	 9UQjlCDnNWUd9ZtrIdT0RSz3AC99cunVqhb6unFQ8FAfqWsLcQ5Tt9KOi/gX+wmWX2
+	 TD0ufYiE3tWa3WH9cCkntiJl/AYAY2qKQ+pSGJvpXxlmfv3Zk9B4/pPtn9s6HQ3753
+	 TARguTiDXTWNMkDNKN7KjCjiSQPiwe4cheb0hoTdJGmTbxgFYZM+WSgiTNvY82W55O
+	 WJ00eaYes3AB0xMi14bKcSnOeEzotrJaZNyYr7zB7sPA4JJUeoHmdSYkf6iZMw3jd/
+	 WI24zgq4Af5WQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 09/10] ASoC: renesas: fsi: Use clock prepare handling
- in startup/shutdown
+Subject: Re: [PATCH v13 03/15] x86/kexec: Fix potential buffer overflow in
+ prepare_elf_headers()
 Reply-To: sashiko@lists.linux.dev
-To: phucduc.bui@gmail.com
-Cc: robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20260510084303.122426-10-phucduc.bui@gmail.com>
-References: <20260510084303.122426-10-phucduc.bui@gmail.com>
+To: "Jinjie Ruan" <ruanjinjie@huawei.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260511030454.1730881-4-ruanjinjie@huawei.com>
+References: <20260511030454.1730881-4-ruanjinjie@huawei.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 12 May 2026 00:09:39 +0000
-Message-Id: <20260512000939.F3316C2BCB0@smtp.kernel.org>
+Date: Tue, 12 May 2026 00:18:52 +0000
+Message-Id: <20260512001853.10D95C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 97B9F517BC4
+X-Rspamd-Queue-Id: D6E97517D0A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295893-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-295894-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] State mismatch between stream open/close (startup/shutdown) and st=
-ream start/stop (trigger) causes unbalanced clk_prepare() and clk_unprepare=
-() calls.
-- [High] Unbalanced `clk_unprepare()` in the error cleanup path of `fsi_clk=
-_prepare()`.
+- [High] Spurious -ENOMEM failure to userspace and false architectural assu=
+mption regarding hotplug correction (fixed later in series).
 --
 
-commit d8393e5f5d5c8b0313ed0200fa4a0d38663711d4
-Author: bui duc phuc <phucduc.bui@gmail.com>
+commit a014be7b4b0eecc06de944b08ad83662babd2b5d
+Author: Jinjie Ruan <ruanjinjie@huawei.com>
 
-ASoC: renesas: fsi: Use clock prepare handling in startup/shutdown
+x86/kexec: Fix potential buffer overflow in prepare_elf_headers()
 
-This commit updates the FSI driver to use fsi_clk_prepare() and
-fsi_clk_unprepare() during the DAI startup and shutdown phases to
-reduce power usage and ensure clock operations run in non-atomic contexts.
+This commit adds a boundary check in prepare_elf64_ram_headers_callback()
+to prevent a buffer overflow if memory hotplug increases the number of
+memory regions between the counting and population passes.
 
-> diff --git a/sound/soc/renesas/fsi.c b/sound/soc/renesas/fsi.c
-> index b93809b5da15e..c3ac8b30f342b 100644
-> --- a/sound/soc/renesas/fsi.c
-> +++ b/sound/soc/renesas/fsi.c
-> @@ -1644,9 +1644,16 @@ static int fsi_dai_startup(struct snd_pcm_substrea=
-m *substream,
->  			   struct snd_soc_dai *dai)
+> Since x86 supports crash hotplug, any data inconsistency caused by
+> a race during the initial load will be corrected by the subsequent
+> hotplug update. However, we must prevent a buffer overflow if the
+> number of memory regions increases between the two passes.
+
+Is this description of the hotplug update accurate?
+
+The initial load syscall actively holds the atomic kexec_trylock() for its
+entire duration. If a hotplug event occurs concurrently, wouldn't the
+hotplug notifier (crash_handle_hotplug_event()) fail to acquire the lock,
+log a lock failure, and permanently drop the update?
+
+> diff --git a/arch/x86/kernel/crash.c b/arch/x86/kernel/crash.c
+> --- a/arch/x86/kernel/crash.c
+> +++ b/arch/x86/kernel/crash.c
+> @@ -225,6 +225,9 @@ static int prepare_elf64_ram_headers_callback(struct =
+resource *res, void *arg)
 >  {
->  	struct fsi_priv *fsi =3D fsi_get_priv(substream);
-> +	int ret;
+>  	struct crash_mem *cmem =3D arg;
 > =20
->  	fsi_clk_invalid(fsi);
-> =20
-> +	if (fsi->clock.count =3D=3D 0) {
-> +		ret =3D fsi_clk_prepare(fsi);
-
-Is it safe to use clock.count to guard the prepare and unprepare operations
-in startup and shutdown?
-
-Since clock.count is incremented and decremented during trigger (stream
-start/stop) rather than startup/shutdown (stream open/close), this can lead
-to state mismatches in multi-stream or full-duplex operations.
-
-For instance, if Playback is opened and started (count=3D1), and then Captu=
-re
-is opened, Capture will see count=3D1 and skip preparing the clock. If Play=
-back
-is then stopped and closed, it will unprepare the clock.
-
-If Capture later starts, it will attempt to enable an unprepared clock,
-violating the Common Clock Framework and potentially causing hardware failu=
-res.
-
-Similarly, this can cause resource leaks if multiple streams are opened bef=
-ore
-starting, or if trigger fails and underflows clock.count to UINT_MAX.
-
-Also, looking at the error path for fsi_clk_prepare() which is called here:
-
-sound/soc/renesas/fsi.c:fsi_clk_prepare() {
-	...
-	if (!IS_ERR_OR_NULL(spu) && fsi->master->spu_count =3D=3D 0) {
-		ret =3D clk_prepare(spu);
-		if (ret)
-			return ret;
-	}
-	...
-err_spu:
-	clk_unprepare(spu);
-
-	return ret;
-}
-
-If fsi->master->spu_count is non-zero when entering the function,
-clk_prepare(spu) is correctly skipped.
-
-However, if a subsequent clock preparation fails, the error path unconditio=
-nally
-calls clk_unprepare(spu). Does this prematurely decrement the shared SPU
-clock's reference count, potentially disabling it while other instances are
-still actively using it?
-
-> +		if (ret)
-> +			return ret;
-> +	}
+> +	if (cmem->nr_ranges >=3D cmem->max_nr_ranges)
+> +		return -ENOMEM;
 > +
->  	return 0;
->  }
 
-[ ... ]
+Does returning -ENOMEM here abort the sys_kexec_file_load() syscall,
+propagating a spurious error to userspace and leaving the system without a
+loaded crash kernel?
 
-> @@ -1655,6 +1662,8 @@ static void fsi_dai_shutdown(struct snd_pcm_substre=
-am *substream,
->  {
->  	struct fsi_priv *fsi =3D fsi_get_priv(substream);
-> =20
-> +	if (fsi->clock.count =3D=3D 0)
-> +		fsi_clk_unprepare(fsi);
->  	fsi_clk_invalid(fsi);
->  }
+Commit a0b7fe2dc98fe ("crash: Add crash_prepare_headers() to exclude crash
+kernel memory") later in the series resolves this spurious error by adding
+get_online_mems() to serialize the memory passes.
+
+However, if the hotplug update is dropped due to the kexec_trylock()
+contention mentioned above, and the race occurs in a way that does not
+trigger this bounds check (such as memory regions decreasing), does the
+kdump image still remain permanently out of sync with the actual memory
+layout?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510084303.1224=
-26-1-phucduc.bui@gmail.com?part=3D9
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260511030454.1730=
+881-1-ruanjinjie@huawei.com?part=3D3
 
