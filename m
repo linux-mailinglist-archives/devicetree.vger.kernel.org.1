@@ -1,192 +1,271 @@
-Return-Path: <devicetree+bounces-295993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-295995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDW3FI2uAmpTvgEAu9opvQ
-	(envelope-from <devicetree+bounces-295993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 06:37:33 +0200
+	id 5GfLK9GvAmr+vgEAu9opvQ
+	(envelope-from <devicetree+bounces-295995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 06:42:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67DF5199D1
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 06:37:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44262519A09
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 06:42:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7659302FB50
-	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 04:34:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E2E39301588D
+	for <lists+devicetree@lfdr.de>; Tue, 12 May 2026 04:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD3232BF41;
-	Tue, 12 May 2026 04:34:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0BA0316190;
+	Tue, 12 May 2026 04:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="j8SrvDb5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R+jP9rap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA9C331A66;
-	Tue, 12 May 2026 04:33:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186013019DC
+	for <devicetree@vger.kernel.org>; Tue, 12 May 2026 04:42:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778560441; cv=none; b=BWV8rslLc/cg2Y5n3gr3GwA78FYOzHHuxUZg+uPQhuvVNXwTwbPaVURowwBNP7fLQoJv7Ls53I/Pce5JzHAdO2XeQFWPt4go4csjLRKhwMmelFpXz9UmM8DU1HPCKRVMNa1kgsXOmkxkAoKf8JvaHnzuaJK971Yjud+jeZKTxbo=
+	t=1778560974; cv=none; b=crZOmHYtcndgKkZeEWpEaASd8Oe4XCcPEJjGv5vOu537ZpZ3bkw7SBbs7QdHmNV6x3vKrfga+/uOTTvO3fs5eTRh0Ob289HYsTnKzKJUX8V3t2OqvFhBSAfftbp4WVLEwxM+MOPhUt1271BDz1YWT69ojMhhiaoKh42VD7BCB9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778560441; c=relaxed/simple;
-	bh=zhnYMihbLOfkVEZ4q/kjQvAho+Gw9BO7XUM9RnKRnI8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DwTNsyxHl8CLYQoUS3sHOqB4EcOYGqLe1D3mbuqMiyYh9Eu02hmr2OO8gQGXa9RdtCUOHxFMAeH9R36vxx68c7yx4mh6f84xDONQPq+tc6mrlF85hAzZorBUMymhUcmYncYEVRNMP+4ZKPTc1lEG3hstdsPbDYbLx2pMQ7IQNwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=j8SrvDb5; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1778560434;
-	bh=zhnYMihbLOfkVEZ4q/kjQvAho+Gw9BO7XUM9RnKRnI8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=j8SrvDb5jKutc+aAOgfmB6DpL7/FAgUUqb2Ym+CI4pqEY+6fPvqju3LEDcROXR6c8
-	 GhbwdMidkyNuvLF0kx7oo7Oe7E1y/NMQEpr7Sc16o1lyMtBzHxM/CcdqWfmzx9E6wN
-	 X8/l9A8ACpqJZZar097p9p7zPiCPuOEv4Q9wYgh/YKgfURQvCNz6s9JhVMoAZKzzti
-	 OAZ4Er/PMLtDh1S44tjRe7TG4wpmkzwEq3hkzYan/iTftYUoiBsBwGYjnq6zAkWLsn
-	 Sk9k0jTeK8U6pulzV68NXw595XlzaSNEszybKKbzjCZCeuHfquF1uO/n8Ana5Ya4mH
-	 2+StPZCfHecUQ==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1275917E38D0;
-	Tue, 12 May 2026 06:33:53 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 12 May 2026 06:33:23 +0200
-Subject: [PATCH net-next v3 6/6] net: phy: air_an8801: ensure maximum
- available speed link use
+	s=arc-20240116; t=1778560974; c=relaxed/simple;
+	bh=85ENHegQMyU0oBr+Mh/9sBGntPYtRFq66m7uI/8ElgY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pybRs5MDt4Np/0eDd/v0lTUaiypffmvtBqScjgn2WcROmBV+Fdg8J/Ex70z7Yb2tTTyA3tin5iVMh57Nte9qRF4VSvH+MPwo73/LfG8SGW+7pqYKdtWE4PqsvVTqojFnpqs/EC7Vhs97Dak3O/iYl4w5hGuwMZOvwVMwfqvO0oA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R+jP9rap; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5a4113ab355so4775267e87.1
+        for <devicetree@vger.kernel.org>; Mon, 11 May 2026 21:42:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778560971; x=1779165771; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9+uh20BD/IzP+h/IzZKctyoQqKGuFbHGFEDS1sAuZ/g=;
+        b=R+jP9rapR1HgZC1WkixXLoN1ZsABtjhDKZB1D9APNhVIMzBcMTYrwfYs0a0jrGn6MK
+         ToOLc4+atNgrsQaX5HkndRoJh3mDxqSMh+ZkT9fLJaYb0ZOu9dJV3xxoVL/eoNwinHb5
+         Efq7p4zmTzjsg6IE7eGI2HixZV/zeXUppDHdmarb71xCXs85soM78gtVLqhzfMSYeEcl
+         uyRCZKcG5RPf8ZtttAS2lg+4yrAOc4Tmt28ijLJdK+8imxV1cD42wSsTTNlJPU5rPTwH
+         Euyr4TOaRQnDKxHFrl4TRouHdvJzdDT/2q3G/+vBQSzrZhAhLtzVGAsNpK05k8NMfgtT
+         q+iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778560971; x=1779165771;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9+uh20BD/IzP+h/IzZKctyoQqKGuFbHGFEDS1sAuZ/g=;
+        b=o3TXzmgUBzVKijcb2xjqrVHUCNk7WcgBdX8hAR172eQFuL6jZiT7Iakols9drucCBu
+         8oy1CTfaYQ8tjk2NSPSwumJXjhQLWdnM8H8FMUwD2uJgkNkukMl8ROX6BC30a++VzKeu
+         GxmFVMpYNB4z8TT1czAklbkNuHKQQPTtZU60D1+nN7oMvdxrNVWyVsS/uoiyMhXWgiRI
+         g1/Bm8E/T5WjiO6qGfNwgTfpXyo2z0Xsw1u5tL6SNZX6LtOJExb+jgQMUzb2koPHCzr3
+         Mda26waalKRikXG330m5xbMbNaS7c+JvHYv4ytgH9mrRLHlXxZnyAQPnw4AcOEoqPmIp
+         bF2g==
+X-Forwarded-Encrypted: i=1; AFNElJ8nb9RuMEzK7Jcl0AguSf7ZvXulfF+qkQEywzjLRx9A5faJ0jOdbhOJgqmBAYGehhG9OOutYYMtwJLU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyB3eNCykgjk3+Vlurz+EtC0eH1WPFMBEeeZ9kTFi+N5Atj54Q
+	NWmgWXUvetQy9w6IAK9WVA1pqNzSq8o2aKzoRcDwGIWSL8ChpC+lhKaX
+X-Gm-Gg: Acq92OH9ast2ul1T0dNoMybNdzAlvzvvmRBtE26fb16a+3iTOu6y0YmKlBKrAZjgJiy
+	Ei61Uiy10DScYu3j/l6pAZ0/DE1XrTnoS16jFgzVyjf9rKQOfKsmHPbQgeKZ7SsOfSULvsJ8Kvy
+	4iLiRjYQzjXZETFml43z8RBc2zWHCOHw2n2XggHqEPH9kB3OqGyewd1weiVRECETuKl9YHjoHh9
+	Lrci9lONmGKDp8Lywx4+COC5mfT55XGas5zwMTKpCNOFTJwVqBSUqicBLTyxhGI37D2DwvPfs33
+	6aBelCL1XGszHAIcnwkc4m/jggkwbp5fKXgiQ43PV2YLyf6LmU5poFSMH/c5nK3NtGH2Jhh7r0U
+	VCK8rRSYrQPOY8tT/8k6xjLWlUn4ZXZj9vCL0uSAaxYzWUr4vK7NraLcSskFBBv5DkM+QkUAFeO
+	ycQdxKVTAKJKr58CqDemlkbCQDRjQKQBR3SHcFStO+LvKs/PAdX2thGacFFgOhpDlhtjUxEqtlE
+	4AdWKTn
+X-Received: by 2002:a05:6512:3e21:b0:5a4:ab6:81b8 with SMTP id 2adb3069b0e04-5a8a94caf78mr4382507e87.40.1778560970858;
+        Mon, 11 May 2026 21:42:50 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8a955df99sm3134316e87.45.2026.05.11.21.42.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 May 2026 21:42:49 -0700 (PDT)
+Message-ID: <f05093df-663e-417b-a671-d627811e82de@gmail.com>
+Date: Tue, 12 May 2026 07:42:46 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260512-add-airoha-an8801-support-v3-6-1edb34e363ae@collabora.com>
-References: <20260512-add-airoha-an8801-support-v3-0-1edb34e363ae@collabora.com>
-In-Reply-To: <20260512-add-airoha-an8801-support-v3-0-1edb34e363ae@collabora.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>
-Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com, 
- matthias.bgg@gmail.com, kernel@collabora.com, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778560425; l=2139;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=zhnYMihbLOfkVEZ4q/kjQvAho+Gw9BO7XUM9RnKRnI8=;
- b=d9T+rQISrxFOFaBe5BEpNIhybPQ7T/mE0r+jxzAnoMd/s5SMIVX9pDgBRUQduTC/sMI1uMTx0
- z1/pbJUG4CxAmJ3BnRae6UjsTcN/Lwq48VnZL74ZQIstjStA7rbhbbM
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
-X-Rspamd-Queue-Id: A67DF5199D1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Add ROHM BH1730FVC binding
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Alexandre Hamamdjian <azkali.limited@gmail.com>,
+ David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, CTCaer <ctcaer@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, heikki.haikola@fi.rohmeurope.com
+References: <20260511-bh1730-v1-0-e0df1f499135@gmail.com>
+ <20260511-bh1730-v1-1-e0df1f499135@gmail.com>
+ <92e2d1ab-c973-45a2-b0c4-d7c672c610e0@gmail.com>
+ <00855a46-20f9-4b4c-8bec-bb64d9d8efe6@gmail.com>
+ <20260511161429.6cae5b7b@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20260511161429.6cae5b7b@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 44262519A09
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-295995-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-295993-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,armlinux.org.uk];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2600:3c0a:e001:db::12fc:5321:from];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,baylibre.com,analog.com,kernel.org,vger.kernel.org,fi.rohmeurope.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[mazziesaccount@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.64.0.131:received,100.90.174.1:received,148.251.105.195:received];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-To ensure that the Airoha AN8801R PHY uses the maximum available link
-speed, an additional register write is needed to configure the function
-mode for either 1G or 100M/10M operation after link detection.
+On 11/05/2026 18:14, Jonathan Cameron wrote:
+> On Mon, 11 May 2026 13:43:56 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> On 11/05/2026 11:22, Matti Vaittinen wrote:
+>>> Thanks for patches Alexandre!
+>>>
+>>> It's nice to see these upstreamed :)
+>>>
+>>> On 10/05/2026 21:09, Alexandre Hamamdjian wrote:
+>>>> From: CTCaer <ctcaer@gmail.com>
+>>>>
+>>>> Add a YAML binding for the ROHM BH1730FVC ambient light sensor.
+>>>> Documents the required compatible string, the als-vdd/als-vid
+>>>> regulators, and the rohm,integration-cycle, rohm,lux-multiplier,
+>>>> rohm,opt-win-coeff and rohm,gain-coeff calibration properties
+>>>> consumed by the driver.
+>>
+>> // snip
+>>
+>>>> +  rohm,opt-win-coeff:
+>>>> +    description:
+>>>> +      Optical-window calibration coefficients. Specified as a flat
+>>>> list of
+>>>> +      triplets <rc cv ci>, one triplet per window region, where rc is
+>>>> the
+>>>> +      visible/IR ratio cutoff and cv/ci are the visible and IR weighting
+>>>> +      factors used in that region.
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>>> +    items:
+>>>> +      minItems: 3
+>>>> +      maxItems: 3
+>>>
+>>> I am not sure if I read the driver patch (2/2) correctly, but if I did,
+>>> then these coefficients are used to compute Luxes out of the raw sensor
+>>> data. I believe it would help anyone integrating (or investigating) this
+>>> sensor, if you added the actual formula here as a comment. If I read
+>>> this right, the formula is _somehting_ like:
+>>>
+>>>
+>>> Lx = (cv[win] * ch0_data - ci[win] * ch1_data) / gain / int_time
+>>>
+>>> Here the cv[win] and ci[win] are selected from the opt-win-coeff -table,
+>>> depending on the measured ch1_data/ch0_data ratio, right?
+>>
+>> One thing came to my mind. This 'window' -approach for lux calculation
+>> is not too unique. For example the rohm-bu27034.c uses similar approach.
+>>
+>> The thing is that some of the sensors have more than 2 channels. (For
+>> example, the first version of BU27034 did. [That was BU27034NUC, which
+>> got cancelled when BU27034_A_NUC emerged]). These ICs may still may use
+>> similar approach of having light regions, determined by ratio of (2)
+>> channels. BUT, they may then have more than 2 coefficients / window.
+>>
+>> So, maybe this could be made generic enough so it could be re-used for
+>> such devices if needed? I am not sure if other manufacturers but ROHM
+>> does this in Lux computations - if yes, then it might be worth making
+>> this more generic and not just a ROHM property? Maybe Jonathan has some
+>> insight on other Lux computations.
+> 
+> It used to be very common to have multiple sensor / window setups for
+> ambient light sensors - though perhaps less so on more modern devices
+> (we have one on list today where they just say use the green channel
+>   of an RGB sensor - so there are more windows but not relevant to
+>   illuminance measurement).
+> 
+> Sometimes the window bit isn't well enough described in the datasheet
+> so we only dealt with the parts on the actual sensor package and those
+> were handled in driver rather than being in dt.
+> 
+> What I'm not sure on here is how much of what is being described
+> is part of the 'chip' packaging - i.e. the bit that is constant for
+> all instances of this device and how much is part of the wider
+> device - i.e. the laptop / phone etc window infront of the sensor.
+> 
+> The chip bit we shouldn't have dt, the other part we should and it
+> would indeed be interesting to work on a generalizing that description.
 
-So, in air_an8801 driver, implement a custom read_status callback, that
-after genphy_read_status determines the link speed, sets the bit 0 of
-the link mode register (REG_LINK_MODE) if the detected speed is 1Gbps,
-or unsets it otherwise.
+Hm. I kind of agree. The constant, 'common for all sensors' 
+-coefficients should probably be hard-coded as sensor defaults. The 
+BH1730 data-sheet seems to be describing a set of coefficients. I 
+suppose that's what comes from the packaging(?)
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- drivers/net/phy/air_an8801.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+And just to contradict myself...
 
-diff --git a/drivers/net/phy/air_an8801.c b/drivers/net/phy/air_an8801.c
-index a0f164cbf92b..af46951b1a33 100644
---- a/drivers/net/phy/air_an8801.c
-+++ b/drivers/net/phy/air_an8801.c
-@@ -964,6 +964,36 @@ static int an8801r_config_init(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int an8801r_read_status(struct phy_device *phydev)
-+{
-+	int prev_speed, ret;
-+	u32 val;
-+
-+	prev_speed = phydev->speed;
-+
-+	ret = genphy_read_status(phydev);
-+	if (ret)
-+		return ret;
-+
-+	if (phydev->link && prev_speed != phydev->speed) {
-+		/* Ensure that PHY switches to 1G speed when available,
-+		 * by configuring the function mode for either 1G or 100M/10M
-+		 * operation.
-+		 * Therefore, set the link mode register, after read_status
-+		 * determines the link speed.
-+		 */
-+		val = phydev->speed == SPEED_1000 ?
-+		      AN8801_BPBUS_LINK_MODE_1000 : 0;
-+
-+		return an8801_buckpbus_reg_rmw(phydev,
-+					       AN8801_BPBUS_REG_LINK_MODE,
-+					       AN8801_BPBUS_LINK_MODE_1000,
-+					       val);
-+	}
-+
-+	return 0;
-+}
-+
- static int an8801r_probe(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
-@@ -1061,6 +1091,7 @@ static struct phy_driver airoha_driver[] = {
- 	.suspend		= an8801r_suspend,
- 	.resume			= an8801r_resume,
- 	.config_aneg		= genphy_config_aneg,
-+	.read_status		= an8801r_read_status,
- 	.config_intr		= an8801r_config_intr,
- 	.handle_interrupt	= an8801r_handle_interrupt,
- 	.set_wol		= an8801r_set_wol,
+I can imagine two reasons to alter these coefficients:
+
+1.(st) being what Jonathan described. Eg. having something like a lens 
+or a glass or whatever, on top of the sensor. That can alter the light 
+entering the sensor, and require change to the coefficients. And indeed, 
+it would make sense to only describe this in the DT, because the sensor 
+is already described. That'd mean the DT should only contain the 
+'coefficient delta' caused by <add the cause here>.
+
+2. In theory, there could also be another reason. I bet the sensors are 
+all 'individuals' to some extent. So, for something requiring very high 
+accuracy, there could be some kind of calibration process at device 
+manufacturing. This might produce more accurate, device specific 
+coefficients. Considering this use-case, I am not 100% convinced it's 
+"wrong" to be able to give the device-specific coefficients from the DT. 
+(Because, here the coefficients really are a property of the device 
+itself and aren't added by some external part).
+
+And, if we consider allowing describing (the more accurate) device 
+coefficients from the DT (for case 2), then it would just be simpler to 
+always provide the "full coefficients" from the DT, no matter if they 
+are caused by the device packaging or added lens/glass/XXX. And, as the 
+infamous, and not even existing rohm,dh2228fv device shows, people do 
+use the simplest solutions even when it isn't really right ;)
+
+So, I am tempted to suggest we just go with the flow, and allow 
+describing the coefficients from the DT, without separating the source, 
+(lens/glass/device-packaging) which is what this patch does. (If I read 
+it right.) However, I would like to see a property which can be re-used 
+by other devices as this seems to be pretty common. Yeah, it's probably 
+not _right_, but it feels practical.
+
+Well, this is just my 0.5 cents, and even I may change my opinion on 
+this though :)
+
+Yours,
+	-- Matti
 
 -- 
-2.54.0
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
+~~ When things go utterly wrong vim users can always type :help! ~~
 
