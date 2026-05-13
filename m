@@ -1,209 +1,165 @@
-Return-Path: <devicetree+bounces-296767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296770-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLCmNxBUBGp/HAIAu9opvQ
-	(envelope-from <devicetree+bounces-296767-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:36:00 +0200
+	id AJncIENWBGqjHAIAu9opvQ
+	(envelope-from <devicetree+bounces-296770-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:45:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80BAE53162A
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:36:00 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653C85318B5
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:45:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6F95730626CB
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:35:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B0F4930691B8
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4823F7AA0;
-	Wed, 13 May 2026 10:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E3E53F7A86;
+	Wed, 13 May 2026 10:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jjtiSQSE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BF+vaZGY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E173E9C30;
-	Wed, 13 May 2026 10:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794603E95A8;
+	Wed, 13 May 2026 10:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778668521; cv=none; b=LAMjsDfq7yulamku6EHpO0rX7DTE1yY6Vqv+h0v8B5y1WT5Hnq5D4L+3us/3jFjM+kbxpj9KQ8PUzlDmv07fckj0q5NUWMWRGuKzDTgZftMeCbBbvis01JIEijch04iqPK7g7MtaTr8jhrfbqVGndKikm3xF53K1R6D1lqwHWiU=
+	t=1778669066; cv=none; b=l+yYwzS6JPuscto+G4WQ/CU58B/FmrofbBQ2Z6Muputj7bthjrD1goBlRnM8KHUnjcWXrMVlSMw6o5Z7bWqLBwBgwkS+iGQMpCTdPqAIA8lv03g59vOIXSA6XOznJ7XJMKMhTUqNs4jWcGjlQHHFAZWjMti2go2WLzMQIgOmU0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778668521; c=relaxed/simple;
-	bh=LJEnQGCxmpT8H5OOyRq2BjQAVPyNqXeudAIu9GFxSBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bJFd0ZSP/KIx3y98hBPRWC3ccE7rGOR0h/W8XzetpTC0RNVGtbDQ0nEYdlsL48eOlTBhzai6+++rXH/W5fwvTUUANWIAKZGPhtdOauMuAD+lN2PjmUyH9LiphDyAf3ACIsyl+seUlwojDLm8HpuVLhXgd7tcEBqnAyh8cKRQKcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jjtiSQSE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3876C2BCC7;
-	Wed, 13 May 2026 10:35:20 +0000 (UTC)
+	s=arc-20240116; t=1778669066; c=relaxed/simple;
+	bh=EftnxsZQyEGBjcaWoej2Qgq8pVFT9h/4EhbAduCDQPA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Vx8eu/C9RRJSsAKRkDchLS88+DX1d0bZ7vx7KUIESO4ey8EQhY+tpNVibGu8WEigvzwhvXpuC+hcVwJFrrtI2ChSvH7ecU2w0OMviwOGfmvsFQMNtEE8C6K6KqrNaCwzIk2JxYqfshysbXobjznNcZkyUTU5yJugbWc2+fytxjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BF+vaZGY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0A701C2BCB7;
+	Wed, 13 May 2026 10:44:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778668521;
-	bh=LJEnQGCxmpT8H5OOyRq2BjQAVPyNqXeudAIu9GFxSBM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jjtiSQSEtVPbIQJULENgyqQ5HO7XywtjOTdlcLlC74wDqaqhWZPu0sQj85LErqBCF
-	 8yGKDWkzxs1/9st2SY33taBno/GNZezEVQ7WRORKiHKejxz8XhV17jsakPBjsqha9k
-	 M2HDS3URszd6y33KiecijcY/nxGyHQfevQjKWlHw9TkJUmW4EVkFiMfRR+gS22+bbJ
-	 +LvDphHRmJ0CxgR6ZDRxbpzc/ODKf98Upw2byXQ0ROtyWmmYjcEX0+ywXyDVKU7zVp
-	 idljGyhQlVdxWm5q6VV9bi50f2SbwxVr4UrhOmN1VdgyR2ZSLbHHYBzoOddEc84WwQ
-	 +rVJVuOEz5ixw==
-Date: Wed, 13 May 2026 12:35:18 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v6 11/12] net: airoha: Support multiple LAN/WAN
- interfaces for hw MAC address configuration
-Message-ID: <agRT5gMzYuk2qqsX@lore-desk>
-References: <20260511-airoha-eth-multi-serdes-v6-11-c899462c4f75@kernel.org>
- <20260512234745.34227C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778669066;
+	bh=EftnxsZQyEGBjcaWoej2Qgq8pVFT9h/4EhbAduCDQPA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=BF+vaZGYadI2fPGJPtYMlf209EsaXq6w5mcIw1WGQU/BvyoaDtOiee7IPm8VvaqU1
+	 VvlBHOQIrZj/mXcsRASxPtl1CWncE19kzdr0Y34BlJdX90WcAePp8TUVxrv9hLPcAA
+	 rtbnMudpsbLzLFuMGBofMF6x4B7cK8uaHJbFYMueYP590CX51HZlUVy0t81OWsuVxT
+	 g2Ew+HIZrhxriKrzfmoucSkLxfqdELkSgADy0pqMnwGHfEReVYBmC1qX5m0BPOPU1a
+	 viuM/OeqNC3cwPworG0/niTY/GxoghI2RRuzANQ20tp6UbAcVis+gXyB2lrPI4O6S+
+	 beNiO5mbJKU7Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECC87CD4851;
+	Wed, 13 May 2026 10:44:25 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Subject: [PATCH v2 0/3] Khadas VIM4 PWM status LED support
+Date: Wed, 13 May 2026 12:43:52 +0200
+Message-Id: <20260513-add-kvim4-sysled-v2-0-3ec9779e8875@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HK6WfaX2FoNzYPzr"
-Content-Disposition: inline
-In-Reply-To: <20260512234745.34227C2BCB0@smtp.kernel.org>
-X-Rspamd-Queue-Id: 80BAE53162A
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WOyw6CMBBFf4XM2jG0lufK/zAsahlkIg9tawMh/
+ LsIa5dnknPuLODIMjkoowUsBXY8DhvIUwSm1cODkOuNQcYyjRMhUdc1PgP3Ct3sOqoxN0YkRSJ
+ VkgrYtJelhqc9easOtvT+bGV/HOGuHaEZ+559GQ00edzrSir4CS07P9p5fymI3fi/HgTGmIksz
+ 0Sh1YWyq+6YunNjoVrX9QvcaMf24AAAAA==
+X-Change-ID: 20260512-add-kvim4-sysled-8cc159524561
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1706;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=EftnxsZQyEGBjcaWoej2Qgq8pVFT9h/4EhbAduCDQPA=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQxZL6E+Dmm8zlZKebY8/e8GTM21JA3vlTlZPRlXWWr5v5
+ +tCFLM7SlkYxLgYZMUUWfrnWp54d/noma971FNg5rAygQxh4OIUgIm8MmJkOMXlvmlW2mKd7Z0v
+ f8wz3P5e/LXY3C+rtn60nrN99pLjD9YzMvQuX+H+e2K514Oo+ley2y7ysJjHqkrFHdIt3ztJ4MO
+ FA4wA
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reply-To: linux-kernel-dev@aliel.fr
+X-Rspamd-Queue-Id: 653C85318B5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296767-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296770-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url]
+	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aliel.fr:email,aliel.fr:mid,aliel.fr:replyto]
 X-Rspamd-Action: no action
 
+This series adds support for the PWM-driven status LED on the Khadas
+VIM4 board (Amlogic T7).
 
---HK6WfaX2FoNzYPzr
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The VIM4 exposes a heartbeat LED wired to the PWM_AO_C output, routed
+through pin group pwm_ao_c_d. Before wiring it up in the board DTS,
+the SoC pinmux definitions had to be corrected: the original
+pwm_ao_c node was conflating two distinct pin groups (pwm_ao_c_d and
+pwm_ao_c_e) into a single ambiguous entry.
 
-> Thank you for your contribution! Sashiko AI review found 2 potential issu=
-e(s) to consider:
-> - [High] Strict OUI matching logic breaks random MAC initialization and c=
-reates a MAC configuration deadlock.
-> - [Medium] Unaligned stack array passed to Ethernet helper functions.
-> --
->=20
-> commit c741e4a94d25c6203f98c2a4392d2ea65e6c3156
-> Author: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> net: airoha: Support multiple LAN/WAN interfaces for hw MAC address confi=
-guration
->=20
-> This commit extends the hardware LAN/WAN MAC address configuration logic =
-to
-> derive the correct minimum and maximum values when multiple interfaces are
-> configured as LAN or WAN. It assumes all interfaces configured in the same
-> group share a common upper MAC address.
->=20
-> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
-ernet/airoha/airoha_eth.c
-> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-> > @@ -71,20 +71,67 @@ static void airoha_qdma_irq_disable(struct airoha_i=
-rq_bank *irq_bank,
-> >  	airoha_qdma_set_irqmask(irq_bank, index, mask, 0);
-> >  }
-> > =20
-> > -static void airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *a=
-ddr)
-> > +static int airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *ad=
-dr)
-> >  {
-> >  	struct airoha_eth *eth =3D dev->eth;
-> > -	u32 val, reg;
-> > +	u8 ref_addr[ETH_ALEN] =3D {};
->=20
-> Is this stack array missing a 16-bit alignment attribute?
->=20
-> ether_addr_copy() and is_zero_ether_addr() require their arguments to be
-> 16-bit aligned. On systems lacking CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS,
-> passing an unaligned stack array cast to a u16 pointer will cause alignme=
-nt
-> traps.
->=20
-> Could this be declared with __aligned(2) or as a u16 array?
+Patch 1 fixes the pwm_ao_c pinmux entries in the T7 DTSI by splitting
+them into two properly named nodes. Neither alternate is in use yet,
+so there is no functional impact on existing boards.
 
-ack, I will fix it in v7.
+Patch 2 moves the xtal-clk node to restore alphabetical ordering among
+root node children.
 
->=20
-> [ ... ]
-> > +			if (netdev->reg_state !=3D NETREG_REGISTERED)
-> > +				continue;
-> > +
-> > +			ether_addr_copy(ref_addr, netdev->dev_addr);
-> [ ... ]
-> > +	if (!is_zero_ether_addr(ref_addr) && memcmp(ref_addr, addr, 3)) {
-> > +		/* According to the HW design, hw mac address MS bits
-> > +		 * must be the same for each net_device with the same
-> > +		 * LAN/WAN configuration.
-> > +		 */
-> > +		return -EINVAL;
-> > +	}
->=20
-> Can this strict OUI matching break device probe or create a configuration
-> deadlock?
->=20
-> If the device tree does not provide MAC addresses, the driver generates r=
-andom
-> MACs via eth_hw_addr_random(), which produces differing OUIs. When the se=
-cond
-> interface attempts to register during probe, this check will fail,
-> register_netdev() will return -EINVAL, and the entire driver probe will a=
-bort.
->=20
-> Additionally, can this prevent userspace from migrating the MAC addresses=
- to a
-> new OUI using "ip link set"?
->=20
-> The first interface update attempt would be rejected because its new OUI
-> would not match the OUI of the remaining unmodified interfaces.
+Patch 3 enables the pwm_ao_cd controller on the VIM4 and adds a
+pwm-leds node with a heartbeat trigger.
 
-As already pointed out, this is a requirement imposed by the hw design.
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v2:
+- PATCH 2-3: Create a new patch specific to the reordering action.
+             According to Neil's review.
+- Link to v1: https://lore.kernel.org/r/20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr
 
-Regards,
-Lorenzo
+---
+Ronald Claveau (3):
+      arm64: dts: amlogic: t7: Fix pwm_ao_c pinmux definitions
+      arm64: dts: amlogic: t7: khadas-vim4: reorder root node
+      arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven status LED
 
->=20
-> --=20
-> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260511-airoha-eth-=
-multi-serdes-v6-0-c899462c4f75@kernel.org?part=3D11
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 30 +++++++++++++++++-----
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 12 +++++++--
+ 2 files changed, 33 insertions(+), 9 deletions(-)
+---
+base-commit: 31f32e8cdf59291e467250dfc57d1a8c718f63d2
+change-id: 20260512-add-kvim4-sysled-8cc159524561
 
---HK6WfaX2FoNzYPzr
-Content-Type: application/pgp-signature; name=signature.asc
+Best regards,
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCagRT5gAKCRA6cBh0uS2t
-rLW/AQD4m7PAEXyvb3gFS9eyNox/xtKbmG3rc517uPAgmLhtygD/Y938DMlZwZa2
-cp/j+aZgwDWrz2s2RIsT2h0HXkQJ1Ak=
-=grwD
------END PGP SIGNATURE-----
-
---HK6WfaX2FoNzYPzr--
 
