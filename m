@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-297026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDZWKhLABGoeNgIAu9opvQ
-	(envelope-from <devicetree+bounces-297026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 20:16:50 +0200
+	id IPKiGCPABGoeNgIAu9opvQ
+	(envelope-from <devicetree+bounces-297027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 20:17:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D757538BCE
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 20:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8A3E538BEB
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 20:17:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C89C631262EB
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 18:09:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4AF43301CF8E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 18:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC99348C8A5;
-	Wed, 13 May 2026 18:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F803A7194;
+	Wed, 13 May 2026 18:09:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UtXTwliI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="du/argYL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8903840FDBE;
-	Wed, 13 May 2026 18:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970BF2FE04E;
+	Wed, 13 May 2026 18:09:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778695777; cv=none; b=mPJBsrRgKxcYKqA92Dp2lC8tm2pghoxBxYZEHymbFbKSjhK62cXoO1rsMn79BnxX/QkHEJHGXaa9JUD76YxAi0yb6fLG8L7RR8lEvSFsScyyDrGEk8y/MXb3nU5ggY2wSUrfsxybg1V7W7sa3jhgJlIneZk3sSLU0uXvEwadWkM=
+	t=1778695798; cv=none; b=GGvNAejDoUYuGS95wuCv8mcjpZSugK1vIX4rqcp978YuN6RsoqAKSWpZh8G0gwfLX1PZbYaaqsgKjnJZAkHL/14ufBk2iqBcDW73RPI/VP6FvHxC0vfH4IH3It55O5I0l1fAbI3yzNQEHsyMGIV5vXNR8bL0LFYyeUW9re2GTLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778695777; c=relaxed/simple;
-	bh=4M2z6d1Qwnk/RXJ2LWyVlbpEVUPyxmYAsrgclO5xbCI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=VEIuBiIQRN5DB8qM9Cn/Vnymcwt8wo7B1ok2Aws6J0/T63W3WQyVc3viA177ZY3fuybaY8KW9jmKEUA1Tc5ISl+rTK/utD79UEDyfXkP0/TjP235q0eg8M8GGXLk5d3GYFi2mow8XeTf5pRM5OW2Xj1PYqc8r3tlhLmQBR3KLd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UtXTwliI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F138C19425;
-	Wed, 13 May 2026 18:09:34 +0000 (UTC)
+	s=arc-20240116; t=1778695798; c=relaxed/simple;
+	bh=0Wy1DOrnjlNt73Ah07uGmpZAFJfl0exx2xgzosEcj6Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BCGiqjwArn3S2sZduFpObGkwnC362mVK97E1Jyzu9OIDz/dz8sNJUPjfVd3ceAfvt/5kb6TT/QuewsfhmCagVzl/Ay5kWHVTVJiC0ValMYTw1YQSm2Vkf6WVWMScZ6MragcXcb6V+iGrCIHMjP0UwXJz0tZWK+uMHLdo5BLU+rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=du/argYL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05E20C19425;
+	Wed, 13 May 2026 18:09:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778695777;
-	bh=4M2z6d1Qwnk/RXJ2LWyVlbpEVUPyxmYAsrgclO5xbCI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=UtXTwliIJWNF/pZ1DraEEoBzwhE2EEP7gv0GpLRbej8oyQ7nrE+owoOyoW9AYZQnd
-	 E1LqjozNnBZzkp+aTKN17ZN8AM0kYZQDS7fXTxFF0lHhYylZC6+geBNFQrVBasznBL
-	 nlkAprcgHTGGEMuNhTshqZctizfMDU583QBHB1xPr0dKYER0xYNl+5P39duhALIo+o
-	 5Grw9FdsGilBNHiHLdw8pQFXmEYjGRB+NC+plFuv+RmdBWN8pDJBO38enUB6o1BXML
-	 18jKxTmYSKrmlDKtGW3rd8CHWXa5BRXOuz3JPemJfQ8f/fbOQUfFkuGrPUEdMkLPTT
-	 uuwn7at3uPjgw==
-Message-ID: <d9a1e0ec-fa4a-478a-957e-47a1559380db@kernel.org>
-Date: Wed, 13 May 2026 20:09:32 +0200
+	s=k20201202; t=1778695798;
+	bh=0Wy1DOrnjlNt73Ah07uGmpZAFJfl0exx2xgzosEcj6Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=du/argYLsn5KOaratQHAXRK7ZWdXjIKD1wm9CPrQAd/kTYUAr6rNB2wsn1cCvClRf
+	 6lWybcq/VGujU+GurWuQtG//gAAVx7EX7EVoaQzJVWK1LfjiZcrPGpaIr3I5udcR4Z
+	 unvvLmVpxehWgpdE4Wpk2V32Q8FbqUpC6IAneLriRC0GkiMW4RawEiTiylg0511pKU
+	 MhNksGnwKVEi1ZSR387T7ZjQZLz/cs4UBc0TYDPCVcY737i9gysSc1mxGMi81Mr/sA
+	 OX/t8ipRpWUA+xxjsIynN4bJncXCvAiNj5991ZswElvyAK6bGZqo+ioAnnUwK189HA
+	 WiCsNM61PNS1Q==
+Message-ID: <bcdfd465-b830-4ca1-9e4a-4776ae11fd28@kernel.org>
+Date: Wed, 13 May 2026 20:09:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,15 +53,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] arm64: dts: agilex5: add support for debug daughter
+Subject: Re: [PATCH 2/2] arm64: dts: agilex5: add support for debug daughter
  card
-To: Dinh Nguyen <dinguyen@kernel.org>,
- Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1778237639.git.adrian.ho.yin.ng@altera.com>
- <ec0633a6-30f6-4db6-875d-69a4f0f140ca@kernel.org>
+To: sashiko@lists.linux.dev, Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org
+References: <a42751b4c7eb9b4d58f2ef1db3591ff68385a562.1778237639.git.adrian.ho.yin.ng@altera.com>
+ <20260508204237.ADF26C2BCB0@smtp.kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,66 +105,90 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ec0633a6-30f6-4db6-875d-69a4f0f140ca@kernel.org>
+In-Reply-To: <20260508204237.ADF26C2BCB0@smtp.kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4D757538BCE
+X-Rspamd-Queue-Id: B8A3E538BEB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297026-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297027-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,altera.com:email]
 X-Rspamd-Action: no action
 
-On 09/05/2026 14:05, Dinh Nguyen wrote:
+On 08/05/2026 22:42, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+> - [Low] Abuse of the 'rohm,dh2228fv' compatible string to force the 'spidev' driver to bind.
+> - [Low] Including a '.dts' file directly instead of using a '.dtsi' include file.
+> --
 > 
+> commit 3916af69e58bdb9bf4d736172238dd0b03e9465b
+> Author: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
 > 
-> On 5/8/26 05:57, Adrian Ng Ho Yin wrote:
->> The Agilex5 SoCDK supports an optional debug daughter card that requires
->> a dedicated device tree variant due to differences in peripheral
->> connectivity compared to the standard SoCDK configuration.
->>
->> When the debug daughter card is fitted:
->>    - gpio0 and gmac2 are disabled
->>    - gmac0 is enabled with RGMII PHY connectivity
->>    - spi0 is enabled with a <device> peripheral at chip select 0
->>    - The HPS LED is rewired from gpio0/porta to gpio1/portb
->>
->> The new DTS inherits from socfpga_agilex5_socdk.dts and overrides only
->> the nodes that differ, keeping the delta minimal.
->>
->> Adrian Ng Ho Yin (2):
->>    dt-bindings: altera: add compatible for agilex5 socdk debug daughter
->>      card
->>    arm64: dts: agilex5: add support for debug daughter card
->>
+> arm64: dts: agilex5: add support for debug daughter card
 > 
-> Applied!
+> This commit adds a new device tree for the Agilex 5 SoCDK when fitted with
+> the debug daughter card. It disables several peripherals such as gpio0 and
+> gmac2 while enabling gmac0 and spi0 for debugging purposes.
+> 
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts
+>> new file mode 100644
+>> index 0000000000000..3981a9e876b0a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts
+>> @@ -0,0 +1,50 @@
+>> +// SPDX-License-Identifier:     GPL-2.0
+>> +/*
+>> + * Copyright (C) 2026, Altera Corporation
+>> + */
+>> +#include "socfpga_agilex5_socdk.dts"
+> 
+> This isn't a bug, but does this include a final board .dts file instead of a
+> shared .dtsi include?
+> 
+> Standard Device Tree conventions typically involve refactoring shared
+> configurations into a common .dtsi file, as .dts files are meant to be the
+> final top-level compilation unit for a board.
+> 
+> [ ... ]
+> 
+>> +&spi0 {
+>> +	status = "okay";
+>> +	spidev@0 {
+>> +		compatible = "rohm,dh2228fv";
+> 
+> Is there actually a Rohm DH2228FV hardware device present on this debug
+> daughter card?
+> 
+> The commit message indicates this exposes the SPI interface for debugging.
+> Does this code use the 'rohm,dh2228fv' compatible string solely to force the
+> Linux spidev driver to bind?
 
-No, really. This is really unreviewed poor DTS containing fake nodes.
-Please drop the patch.
+Why did you completely ignore the review?
 
 Best regards,
 Krzysztof
