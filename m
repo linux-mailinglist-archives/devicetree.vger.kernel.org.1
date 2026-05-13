@@ -1,317 +1,284 @@
-Return-Path: <devicetree+bounces-296630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296632-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKqGHkUOBGqLCwIAu9opvQ
-	(envelope-from <devicetree+bounces-296630-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:38:13 +0200
+	id QEIrJboOBGqLCwIAu9opvQ
+	(envelope-from <devicetree+bounces-296632-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:40:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF88E52D9EA
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:38:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE9052DA27
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:40:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51E63305EAAE
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:35:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2627F30368DD
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BF93A5E81;
-	Wed, 13 May 2026 05:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD4713A6B78;
+	Wed, 13 May 2026 05:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bOiEuSWI"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Q95rC5rF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012046.outbound.protection.outlook.com [52.101.66.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75182390616
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778650508; cv=none; b=h5o2KRUmjiJ234+J3pnupiWz3M9mQExlIDFQT0CLOKdXEcQKoxODcvMDIy6RA41B6cBb4BbOlCs4WaZifekgiyTbxUrQ+sUnhSg6M4xnMgP62X9zZ7/VGoUACIxQgMwiCuG0j45kWCIZTeqripK0ipehltPveGQ/UiGKumZgsYw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778650508; c=relaxed/simple;
-	bh=m5Nx4HpcEeh1slTnHhYaP0H8wCSUulfRhhMs42YVixQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Cl77BrbJjUx4X1us6DV9/0vrCmurpGA9t7Jga+8kaCzYqTAvzw/cJjSkOgyAGurwyJ9v1TWSCcZlLKes5PDnnwza/CwTVBy/9lNCnJ5xp7hRMrrjvLU0OiDteaWSdctxzCxcp0dmVELd9WdIU0+jLqxnb48jUFpQwMZI7mUpujE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bOiEuSWI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81EE1C2BCB7;
-	Wed, 13 May 2026 05:35:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778650508;
-	bh=m5Nx4HpcEeh1slTnHhYaP0H8wCSUulfRhhMs42YVixQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=bOiEuSWIAEMkgU5/s8mHAMDtQ/nBlho/ilJtiVJC7TcwC2NmMyZlIO3PS3A8deFqI
-	 pWlwT6Sk3KsMzecNmXk1OMYMwTSSFxIVdg0GMSOzabC5C5h2xxPifdzKWiN+q3gE1b
-	 P8Ngj6osfgckW2NTPC7wxZxJj7ShGNFxg2Z+Tpf5Y4DhJORiVo9HFWRZ/8kWVirlnA
-	 MQAHbv84tZN9xAXnLL9l3n86Trvfllpx+i871X/4RfPlF/TXMKQBY04nYlwMqtFMeI
-	 XoW/saTuHWowVvrOJf0gsjnRQU+iDHTzakLCT8INcI6jarWC1CJ1bdS4/HY2vrZoXE
-	 OVymI/pcU+ajQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v3 5/6] net: phy: Introduce Airoha AN8801/R
- Gigabit Ethernet PHY driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Louis-Alexis Eyraud" <louisalexis.eyraud@collabora.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260512-add-airoha-an8801-support-v3-5-1edb34e363ae@collabora.com>
-References: <20260512-add-airoha-an8801-support-v3-5-1edb34e363ae@collabora.com>
-Content-Type: text/plain; charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B213A63F8
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778650808; cv=fail; b=mdnxB+BMNB9Za/dqFzKGUpqIbolCZUsqs/zMWn4aL0mQ8rIOV4w2ouo93xTNhD9qVCRBpmdi4/ijeLLR/nZ6oha3U8xS3Mr78OCCT9EmMsdiivPstpGEHdu+BgpgFvel6qkfgsncozGBIjoeX55rq6/fHhEmPlbY/3sEhTf2Q6Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778650808; c=relaxed/simple;
+	bh=qSZCDzX9M5DE+nsliI7p4t6n9hhgZoIBUgN6CjOdpMg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=R7hU/L7VaYhRbkGYYp+VrIokEKdjzx5L4wwDaAElCMrU86T808D1mfxKePBssKcIwFqtGmIjq6M6HBsW7ml71cSS7uVmnB16CPmkO3HxNLFnrcOq7+6Wgd32oxFZGRMvlZhUiK4Q7U8gyo+/M8BKGSmP5AnJ6HLN9SX098oYhbM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Q95rC5rF; arc=fail smtp.client-ip=52.101.66.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IwdT8YDHRPG43XziNd5eUvCWyWsm1a3tfvTvTSXIS/umyciVBStUZj04rEwf37hNCwq5652zcwFRk72JORw7p1jtJz8NGD+6OxpjAjOF5x86RslCiWzhel3c2Zr1XJrJcOBEp+DYtSvjEsMxLWv0kI6sQifHDAKmCwJ8gaRInJZsIH6zxhzM+hoPq16i5c7L2FZHK5vSLKAldu7vcoi+EZN3kx+MNHdYrab26TQCqJ6NRYIIzOs7rgbCaKOaE5P5wjRgEDQRejHMGJDCmvAz8eOw0sBnO7jcBnY5+FNZKJAV110TrHJg/N5iT7js2zzgdXlXJIozgO98p9YjAHKa0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g/pUm9Is7WhE9sRHj2xf3GWqWj2wOggO6mbOBo1C5fg=;
+ b=RibuAtqh1Y7v84mZztLnbMbO8ZrZCIZOi5CTxBD/xC09kY5007EWQTwCpporQpe8xdiI7SXwFOwIWXWJup39aKVPAUf2/6sctyusWXSThPLA8b4zQEjDOoTFc2beGOVjvTaE93gv1LT6Kj7m/zXnIL/DWoV9+Q7W2EVshFTtfAhOChuYx7hzHZMGI61mHCO77f8XqGY/uKw4k9BMECdVNzJjSGkoXOpk/EnUwh9EDHl0B2mRLEvgl+t/t2vwqS4cRJYbwjxhk/sQtBvXxga3NFOUdMYMddCSIL9MLBCu+PPICt3M5ddZDsfXIxfxuDfVxmxOk7Ktbhw2aqGoetl5vQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g/pUm9Is7WhE9sRHj2xf3GWqWj2wOggO6mbOBo1C5fg=;
+ b=Q95rC5rF/pjUK7LwQ9or2+1fe0LGVjgQ771KubckOcVDCM93OA6LN9dMQRq4gdejkLMqvJrcF7LSO26EKBqhc3HKtCnqkDxyePTQVJQl0gmAY/jtgWRG5z4x0pgwuowFJxOsJ5/SelI57iLPplqbDWACxDMCNsS/RZQcJpJ9W6H81SKfu6fa7vTiaZ1UZKxsqUP/+47gIoT+kmrkgrzy81CqSP0E7D+rhG1UelPlGoTxby2c7b7TN4G3QpXoG++GRYU9KhzTamgjysuogUumPV5xdio2TkfLsvz75SEKEs3nnFaqtNx3GTUKOJ0TSq4EocCNnJI1bOlg+yFmKzfwyg==
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com (2603:10a6:20b:3ef::22)
+ by PAXPR04MB8815.eurprd04.prod.outlook.com (2603:10a6:102:20e::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.21; Wed, 13 May
+ 2026 05:40:02 +0000
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc]) by AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc%5]) with mapi id 15.20.9870.023; Wed, 13 May 2026
+ 05:40:02 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: "sashiko@lists.linux.dev" <sashiko@lists.linux.dev>
+CC: "conor+dt@kernel.org" <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "Frank.Li@kernel.org"
+	<Frank.Li@kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>
+Subject: RE: Re: [PATCH 2/5] dt-bindings: connector: Add fsl,io-connector
+ binding
+Thread-Topic: Re: [PATCH 2/5] dt-bindings: connector: Add fsl,io-connector
+ binding
+Thread-Index: AQHc4prx7F7mxT83Wkq0mLT7Ufb4hg==
+Date: Wed, 13 May 2026 05:40:02 +0000
+Message-ID:
+ <AM9PR04MB8353B5A99F294D4F59797437E3062@AM9PR04MB8353.eurprd04.prod.outlook.com>
+References: <20260509024846.2094049-3-chancel.liu@nxp.com>
+ <20260509031855.1973DC2BCB0@smtp.kernel.org>
+In-Reply-To: <20260509031855.1973DC2BCB0@smtp.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8353:EE_|PAXPR04MB8815:EE_
+x-ms-office365-filtering-correlation-id: d09eb735-af41-4f18-c78c-08deb0b21425
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|19092799006|1800799024|38070700021|3023799003|56012099003|22082099003|18002099003|11063799003;
+x-microsoft-antispam-message-info:
+ mo9X51HTcU2iLvglopX+jdNMz/dGKn1tHjqVtlG1L5GvELDNiq92xuWG48aR4LFewRYk34fT7CfmfRmDXPwiSqDwP3zafkfCL8mOhZrq39EapJZ/xvXYKraBW/kza3aO2H80P4jC/bs8YBzrBOHe8tIrR9enhU7MKyqCY/Dj5az1sBACJBe0DncqG3sGZajcly/T3zcwxPUS4/LSvzq/60xLiu0JbdP5BlSCVQmtcVFKOVle+IRo1Qj28WJjVqyyX9XBPkEUTNZmlAIP3LLBR/E5k2tP59nJ6aFDtsEpYannaQjNk67sj6lsZUDC6MWy1njEARerkMC3/T02R90oUaiV1tnjkLfv8vCEPJihVh30pnWnSPRk04IBzJ+NX8mCFFBbxhUXH/f0rH9QMKIQUJPpcoM7J5A1orNY6MRf/6iB8J+qJEq7qrbZ7Tv6LAPGYoH3W7qCjCqSDvP/V2+1bw5trVGOeyKmdsi/1CAGu4DV3Tw8SCreHdk1TBnoYEU+CaHkO7CZJFQpDYjTS1sbro0B8+Seha1Ycw8QNKz3NW09zoGMK/pThwk9Bjb4PGJQL19Y1kf7LpCYBPA6K3Dx8VQp/z6HDO1TZPvHB/zSvA8ozOq7jgYsKPwEfJVgUairhMVlBT6KNiq0uufdJEJ1YMbP4Q1c25m19peLVq1cR91TcyNiTlk4LflitgdYiATu0B5XWFS1oRxjEqihqknE4oQeYq7tKHRpOI3O/NJhGMpMtkpd+kSrgaJ7SLy8oLcE
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8353.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(19092799006)(1800799024)(38070700021)(3023799003)(56012099003)(22082099003)(18002099003)(11063799003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?ulo/5UDyC6HQoKdihV60E4mlJI3UjUt2QR3Bf7PzPC5fhaWWqZKLO1ZYla82?=
+ =?us-ascii?Q?pUzrmjyoCBVpWn8pLUQrG6n73NOC3Wi/bQMosLn8S4Kweg3CjVAeIZ96QiMc?=
+ =?us-ascii?Q?B/A4nY2jW6CN1i+CDBddtWmlQqrZgHjOU5WdpcebdAWRJzam+txUxflaOE3N?=
+ =?us-ascii?Q?etBbDGmrKMxtDwCVL6PbaO+qyO3GWr4a4zfSiq2+ORgYB0KDiT5G4hxzW6Xj?=
+ =?us-ascii?Q?mdpYN1LajHuztHI3ZkJXKZFqPG09JRszpCI6umtzX390HFyW9g8aC+2MFJu0?=
+ =?us-ascii?Q?NeNqzJsOXAEmOLTORw22XBh6iSRjQBOYuWocQMMm4fDDPFGupSUhCQswgpEq?=
+ =?us-ascii?Q?BbI8VWbJ3t93NxvKfYvk/0/lZSCpRmRVEidipQdlRLmBGoos9x2CTEuoehFu?=
+ =?us-ascii?Q?9FTrMiiFn/oI0XodlP0Km+eWKKG4P6GRCcYaGJBIjbA8aRnwVqvP54t9mjla?=
+ =?us-ascii?Q?+0Jozp0b+y2BKbn3dusDe2XzqvkpTiYiQ7/L/0edNBhj1DKLItSqRtdHIsKZ?=
+ =?us-ascii?Q?7i3Fo8/41T2WGeMh6BQqVgoi9sfo+7TZl9c6YG46DrhgrV6N85y7TFMwkpy7?=
+ =?us-ascii?Q?u3kPtoS2OOFfnt3A6Qs8/LXrb0kM6jioeGWf8c/c3v59YuGwlyVnK4lAGu8z?=
+ =?us-ascii?Q?U9w/WsEwKdpVCFH5TL0CBdralyS2eFT8CKbY0kt8eVKkF9M25lrNY3ms9oLm?=
+ =?us-ascii?Q?nC+BQ+8xUyB77E5LGNHcUOjNiGkEZLscALUpYAyKiAGCYSc1KUL94tEm2XG+?=
+ =?us-ascii?Q?F5BmcYjuc83PGI4U4PZ40eE8Cxso4s7jMyh14mS9k7njJaY7lXrbwqhNGzDa?=
+ =?us-ascii?Q?389QGv/sJGVabXTCEmTbpzMo68YNe3/VoFDD+fnLguSBlQl/4f2nYBZDXTV4?=
+ =?us-ascii?Q?+HXygKjYzVF1Lwmzvt/K19iycoM1o7+wqJO2yv7qDjYLulb6AJX2tUc4VVKE?=
+ =?us-ascii?Q?9rBAKY/CVpu1VEWz9seziNUxSbZqjIbPzs/6SwuHCsRkIMARxwpzA84VrV5S?=
+ =?us-ascii?Q?SBnZOILQTPJJmivE2ZQKBNMavVT7RWbI3Ii91pR+oFA8F9QzqiM6EWwyqg8P?=
+ =?us-ascii?Q?oJKtNWihYJmM1PMVru4dQ216M5cVN8NLNzo9LTboKNnyQHJRmwrB4v6lcl2F?=
+ =?us-ascii?Q?013ByTdlMVPZgZ/kGZMShV5BoWJPzCWFDbzuHiUMirOuAgNSRBAyUID2TTQy?=
+ =?us-ascii?Q?zZ6CNEVpAKi+JYR8JejCBCzdd1cQr9d4NIGCajJdw1Xz7GY7cCw0gIG2jUUb?=
+ =?us-ascii?Q?PMlvVoRzg+mvwZj20DS7BV1+9k+P36qi1YZ5pNE9OJD/fLymL/tnnt0F8GDx?=
+ =?us-ascii?Q?jt6NbI9dfnIJPt6ACu+sZNNmPwgBlu8Vw1CpzcHUAkfYYgHrAH8kCYh/MRFm?=
+ =?us-ascii?Q?5pGnPT9t9Q2iJF8Yc6oBZus6XP5un7wtSmAlYMgwECbxaJIC1RGTUKvjWlMi?=
+ =?us-ascii?Q?1NxcACJatJfkw4ai9pn6XSYsygW98C52EgDv9xvYUjNPRZfL01NsskqtS3Lu?=
+ =?us-ascii?Q?XGEoOnDCZDyGFlbsJr+fPqbdCPFyvvBwpmb4x4h1xVQel3u4qEfMFu8HeKvd?=
+ =?us-ascii?Q?gm17U+qxoQg+duwoxpqCBEeNu0cddBRjxAC7of8W9XJwqvE/C8gzWG1U4ddP?=
+ =?us-ascii?Q?G/XQT3KRkaTE4hkuXW87lnbnjx5Kubv0LTogIf4AaiFzrY1nqIzXU1w6Yj0p?=
+ =?us-ascii?Q?cCl1ApmNPNh13PdkrsPMQ7t3RR4C1RTTWMM2BNrzVOaCrif+?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 13 May 2026 05:35:07 +0000
-Message-Id: <20260513053507.81EE1C2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: CF88E52D9EA
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8353.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d09eb735-af41-4f18-c78c-08deb0b21425
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2026 05:40:02.1399
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QV3h1o7K9plIsKMBRIfUB3+b5mwDtKjSEPYulWTjrdwXsjNOC4VSMc7eZO/sziTwfszVsDFvbRBWgrrzsMsCLg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8815
+X-Rspamd-Queue-Id: 3CE9052DA27
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296630-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296632-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chancel.liu@nxp.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,nxp.com:dkim]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [High] Race condition and early return in PHY interrupt handler causes pe=
-rmanently lost interrupts and stalled link state.
-- [High] Uninitialized variable `ret` returned from `an8801r_of_init_leds()=
-` can cause random probe failures.
-- [Medium] LED blink duration calculation overflows `phy_write_mmd` 16-bit =
-value, breaking hardware blink cycle.
-- [Medium] Silent acceptance of unsupported LED triggers violates PHY LED o=
-ffload API contract.
-- [Medium] Link change interrupts are incorrectly left enabled during suspe=
-nd if system wakeup is disabled.
---
+> Thank you for your contribution! Sashiko AI review found 2 potential issu=
+e(s)
+> to consider:
+> - [Medium] Missing `#pwm-cells` property definition causes valid PWM nexu=
+s
+> configurations to fail schema validation.
+> - [Medium] Subsystem guide violation: Provider capabilities are missing f=
+rom
+> the `required` list.
+> --
+>=20
+> commit b88adcce540a59e2da49df7e20b99d2c52021962
+> Author: Chancel Liu <chancel.liu@nxp.com>
+>=20
+> dt-bindings: connector: Add fsl,io-connector binding
+>=20
+> The commit adds a device tree binding for the NXP I/O connector. It acts
+> as a nexus node for routing GPIOs, clocks, PWMs, and interrupts through
+> index-based mappings.
+>=20
+> > diff --git a/Documentation/devicetree/bindings/connector/fsl,io-
+> connector.yaml b/Documentation/devicetree/bindings/connector/fsl,io-
+> connector.yaml
+> > new file mode 100644
+> > index 0000000000000..8b5038a2332e3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/connector/fsl,io-connector.yaml
+>=20
+> [ ... ]
+>=20
+> >   pwm-map:
+> >     $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> >
+> >   pwm-map-mask:
+> >     $ref: /schemas/types.yaml#/definitions/uint32-array
+> >
+> >   pwm-map-pass-thru:
+> >     $ref: /schemas/types.yaml#/definitions/uint32-array
+> >
+> >   '#address-cells':
+> >     const: 0
+>=20
+> Will this fail schema validation for valid PWM nexus nodes? Since
+> additionalProperties is false, omitting #pwm-cells from the properties li=
+st
+> means device trees including #pwm-cells will fail validation. The #pwm-ce=
+lls
+> property is required by the nexus mapping logic to parse PWM specifiers.
+> Should #pwm-cells be added to the properties block?
+>=20
 
-commit 95666fa3cde2e5306e8a143ecfdca2c9d58dbf2d
-Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Yes. The PWM nexus mapping relies on #pwm-cells. Will add in next revision.
 
-net: phy: Introduce Airoha AN8801/R Gigabit Ethernet PHY driver
+> [ ... ]
+>=20
+> >   interrupt-map: true
+> >
+> >   interrupt-map-mask: true
+> >
+> > required:
+> >   - compatible
+>=20
+> Are there missing required provider capabilities here? According to the
+> dt-bindings subsystem guidelines, when hardware gains provider capabiliti=
+es
+> like a GPIO controller, interrupt controller, or clock provider, the
+> corresponding standard properties like gpio-controller, #gpio-cells,
+> #clock-cells, interrupt-controller, #interrupt-cells, and #pwm-cells must=
+ be
+> included in the required list. Could these be added to ensure incomplete
+> nodes do not accidentally pass validation?
+>=20
 
-Introduce a driver for the Airoha AN8801R Series Gigabit Ethernet PHY.
-This supports setting up PHY LEDs, 10/100M, 1000M speeds, Wake on LAN
-and PHY interrupts.
+The connector can expose different sets of the provider domains
+(GPIO/clock/PWM/interrupt) depending on the connector usage. So I think
+it's not necessary to make all provider capability properties required.
 
-> diff --git a/drivers/net/phy/air_an8801.c b/drivers/net/phy/air_an8801.c
-> new file mode 100644
-> index 0000000000000..a0f164cbf92bc
-> --- /dev/null
-> +++ b/drivers/net/phy/air_an8801.c
-[ ... ]
-> +static int an8801r_led_blink_set(struct phy_device *phydev, u8 index,
-> +				 unsigned long *delay_on,
-> +				 unsigned long *delay_off)
-> +{
-> +	u32 hw_delay_on, hw_delay_off;
-> +	bool blink;
-> +	int ret;
-[ ... ]
-> +	if (blink) {
-> +		ret =3D phy_write_mmd(phydev, MDIO_MMD_VEND2, LED_BLINK_DUR,
-> +				    hw_delay_on + hw_delay_off);
+> >
+> > additionalProperties: false
+> >
+> > examples:
+> >   - |
+> >     #include <dt-bindings/interrupt-controller/irq.h>
+> >
+> >     connector {
+> >         compatible =3D "fsl,io-connector";
+> >         gpio-controller;
+> >         #gpio-cells =3D <2>;
+> >         gpio-map =3D <0 0 &gpio1 8 1>;
+> >         gpio-map-mask =3D <0xff 0x0>;
+> >         gpio-map-pass-thru =3D <0x0 0x1>;
+> >         #clock-cells =3D <1>;
+> >         clock-map =3D <0 &clk 1>;
+> >         #address-cells =3D <0>;
+> >         interrupt-controller;
+> >         #interrupt-cells =3D <2>;
+> >         interrupt-map-mask =3D <0xff 0x0>;
+> >         interrupt-map =3D <0 0 &gpio2 27 IRQ_TYPE_LEVEL_LOW>;
+> >     };
+>=20
+> Should this example section include the PWM properties as well? The
+> subsystem guidelines require the example to include all required properti=
+es
+> to pass dt_binding_check.
+>=20
 
-Is it possible for the sum of hw_delay_on and hw_delay_off to overflow here?
+Will extend examples to cover PWM as well.
 
-Looking at an8801r_led_blink_ms_to_hw(), the delays can be up to 65521.
-If their sum is greater than 65535, it will be silently truncated since
-phy_write_mmd() takes a u16 for the value argument.=20
-
-Because LED_ON_DUR is then written as the non-truncated hw_delay_on, could
-this result in the ON duration exceeding the total blink period and breaking
-the hardware blink cycle?
-
-> +		if (ret)
-> +			goto error;
-> +
-> +		ret =3D phy_write_mmd(phydev, MDIO_MMD_VEND2, LED_ON_DUR,
-> +				    hw_delay_on);
-> +		if (ret)
-> +			goto error;
-> +	}
-[ ... ]
-> +static int an8801r_led_trig_to_hw(unsigned long rules, u16 *on, u16 *bli=
-nk)
-> +{
-[ ... ]
-> +	if (test_bit(TRIGGER_NETDEV_TX, &rules)) {
-> +		*blink |=3D LED_BLINK_EVT_10M_TX;
-> +		*blink |=3D LED_BLINK_EVT_100M_TX;
-> +		*blink |=3D LED_BLINK_EVT_1000M_TX;
-> +	}
-> +
-> +	if (test_bit(TRIGGER_NETDEV_RX_ERR, &rules))
-> +		*blink |=3D LED_BLINK_EVT_RX_CRC_ERR;
-> +
-> +	if (rules && !*on && !*blink)
-> +		return -EOPNOTSUPP;
-
-Does this correctly reject unsupported LED triggers when mixed with support=
-ed
-ones?
-
-If the requested rules contain a combination of supported triggers and
-unsupported triggers, *on or *blink will be non-zero. The condition will
-evaluate to false and the function will return 0.=20
-
-Does this silently drop the unsupported portion of the rules while falsely
-reporting to the LED subsystem that the entire offload combination is
-supported?
-
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static int an8801r_of_init_leds(struct phy_device *phydev, u8 *led_cfg)
-> +{
-> +	struct device *dev =3D &phydev->mdio.dev;
-> +	struct device_node *np =3D dev->of_node;
-> +	struct device_node *leds;
-> +	u32 function_enum_idx;
-> +	int ret;
-> +
-> +	if (!np)
-> +		return 0;
-> +
-> +	/* If devicetree is present, leds configuration is required */
-> +	leds =3D of_get_child_by_name(np, "leds");
-> +	if (!leds)
-> +		return 0;
-> +
-> +	for_each_available_child_of_node_scoped(leds, led) {
-> +		u32 led_idx;
-> +
-> +		ret =3D of_property_read_u32(led, "reg", &led_idx);
-[ ... ]
-> +		led_cfg[led_idx] =3D function_enum_idx;
-> +	}
-> +out:
-> +	of_node_put(leds);
-> +	return ret;
-
-Can ret be returned uninitialized here?
-
-If a leds node exists in the device tree but has no available children, the
-for_each_available_child_of_node_scoped loop body will never be executed.
-
-The function would then jump to the out label and return the uninitialized
-stack value of ret, which could cause random probe failures.
-
-> +}
-[ ... ]
-> +static irqreturn_t an8801r_handle_interrupt(struct phy_device *phydev)
-> +{
-> +	u32 irq_status =3D 0;
-> +	int ret;
-> +
-> +	ret =3D an8801_buckpbus_reg_read(phydev, AN8801_BPBUS_REG_WAKE_IRQ_STS,
-> +				       &irq_status);
-> +	if (ret)
-> +		return IRQ_NONE;
-> +
-> +	ret =3D an8801r_ack_interrupt(phydev);
-> +	if (ret)
-> +		return IRQ_NONE;
-> +
-> +	if (irq_status & AN8801_IRQ_WAKE_MAGICPKT) {
-> +		pm_wakeup_event(&phydev->mdio.dev, 0);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	if (irq_status & AN8801_IRQ_WAKE_LNKCHG) {
-> +		phy_trigger_machine(phydev);
-> +		return IRQ_HANDLED;
-> +	}
-
-Can this lead to permanently lost link change interrupts?
-
-The an8801r_ack_interrupt() function unconditionally writes
-AN8801_IRQ_WAKE_ALL to clear all pending PHY interrupts in hardware.
-
-If irq_status has both AN8801_IRQ_WAKE_MAGICPKT and AN8801_IRQ_WAKE_LNKCHG
-set, the function returns IRQ_HANDLED early for the magic packet.
-
-Since the link change event would be skipped here but was already globally
-cleared in hardware, it seems phy_trigger_machine() will never run,
-potentially stalling the PHY link state.
-
-> +
-> +	return IRQ_NONE;
-> +}
-[ ... ]
-> +static int an8801r_suspend(struct phy_device *phydev)
-> +{
-> +	struct an8801r_priv *priv =3D phydev->priv;
-> +	int ret;
-> +
-> +	/* If the PHY may wake up by a wake-on-line event, disable the link
-> +	 * interrupt to only keep the  WOL magic interrupt enabled
-> +	 */
-> +	if (device_may_wakeup(&phydev->mdio.dev)) {
-> +		priv->wake_lnkchg_enabled =3D false;
-> +
-> +		if (phydev->interrupts =3D=3D PHY_INTERRUPT_ENABLED) {
-> +			ret =3D an8801_buckpbus_reg_clear_bits(phydev,
-> +							     AN8801_BPBUS_REG_WAKE_IRQ_EN,
-> +							     AN8801_IRQ_WAKE_LNKCHG);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +
-> +		/* Reset Wol status */
-> +		ret =3D an8801r_reset_wake(phydev);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (!phydev->wol_enabled)
-> +		return genphy_suspend(phydev);
-
-Are link change interrupts incorrectly left enabled during suspend if system
-wakeup is disabled?
-
-If wake-on-LAN is enabled via ethtool (wol_enabled is true) but system
-wakeup is disabled via sysfs (device_may_wakeup is false), the block
-disabling the LNKCHG interrupt is skipped. Since wol_enabled is true,
-genphy_suspend is also skipped.
-
-Will this leave the PHY awake with the link change interrupt remaining
-active, potentially causing spurious IRQs or interrupt storms if the link
-changes while the system is suspending?
-
-> +
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-add-airoha=
--an8801-support-v3-0-1edb34e363ae@collabora.com?part=3D5
+Regards,=20
+Chancel Liu
 
