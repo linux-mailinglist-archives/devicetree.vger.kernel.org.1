@@ -1,164 +1,164 @@
-Return-Path: <devicetree+bounces-296613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296609-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yG3ZMb0FBGoHCQIAu9opvQ
-	(envelope-from <devicetree+bounces-296613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:01:49 +0200
+	id YDw+OVsFBGoHCQIAu9opvQ
+	(envelope-from <devicetree+bounces-296609-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:00:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA8452D663
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:01:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259F652D602
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2363B3081CDE
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:00:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E5BC130156D1
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F7339B95D;
-	Wed, 13 May 2026 05:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B2B397AED;
+	Wed, 13 May 2026 05:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="VnALRn2F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eyw3PPHb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAFD3655F1;
-	Wed, 13 May 2026 05:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375433911C0
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778648452; cv=none; b=UxTRq12T9yTYyd2pnJoGLbuA3JJCiRhscDM3GwDOnAxBwZRVf3NzI9t7E+wmH+0werxuNpMbPx1WPo/XsMr4XwxMU8GjXBDiKZgfOkpuMJ5c0YALU58vAvdiHAQG7qGf5CIArWZGHobYb7jPsSPSQ33JQdMTJx/O0wj1gPCKlcY=
+	t=1778648409; cv=none; b=N+wdPSjSDOYVjj3mPTM77MqNArk7kg9LHUAODfRdIdhjx67Gk9HaVC1q4EgPB1283QIRaB5XRWUWpkfBG9we08Zeb+chuxW9SzqxAgxK0yEHW8Z8TGF8HV5ARvlQ7kr/MGX2GCZx/GhcA7edocRCgegzUM2etFSbhRB6WggejFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778648452; c=relaxed/simple;
-	bh=/N5/DsYuZyXhP6df/g8ro7dcmFJQ8yyC3EItsyGlO0Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bIV4ppquSKUTTfnsZQM+TSwQ138GrW9lxVgauv2AqL6Y0uxUQ+h50Sq7V5Rns425R+ll9k7wOOCyqVw0eZTDp58RybJDST6ZtP52/t/D0LbqU5UeJeKY5FLkhE+HZkhzRWk6USraMnpiLk6jXE6f86AlaDO2GDIOdnlIFUgNaxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=VnALRn2F; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=2aQBbG5BBr12ydhLfhSkL/E4J0Fku1F2nvWGO6lgZKA=; b=VnALRn2FAIPrnPvRuXE/00SOEU
-	ellbJLES0qQ78J/B7thoDIkE0j0MlLAuYWZJZKgWmhikw8W4/wAwLZDcd4xDjWtJG/xJ3tugTfZZ0
-	N6p5MhhkvEr66ewBSn4a9oSUihsTYk0YoOS0VyNACKD5UYNgubC7DCJylhaKqcFqAM+iMZyJZ+UVJ
-	tV5sYEs4TvekiRv6A1f4oTZ/iYUu8W0uB9aqMglwpkuVyZtVY7yNULXCUow6y76WAAWEX8uMeqyye
-	mTi/FID9oI6phlazitvLWmueyNVthwq3lXu9TIrummLy6DHYhFJ7kP55cM4AfWrpkMezUzNu3pfUw
-	3W/NmIOQ==;
-Received: from [91.102.182.218] (helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wN1iB-0000000EbcL-1ih0;
-	Wed, 13 May 2026 07:00:47 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Wed, 13 May 2026 06:59:44 +0200
-Subject: [PATCH v2 3/3] arm64: dts: allwinner: a523: add gpadc node
+	s=arc-20240116; t=1778648409; c=relaxed/simple;
+	bh=TqLCITmBHROlI/6bD94uBpynN298xODzRDKewaoiTeU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GiEwjtT06TbdN3zXkt1EmBdyq1EcB1VqS96A8MiNfGL8q2e9xF9MbHWxUbJp6TiZXQS7vGWvRKTuHBVWcDA6htevnFKVkeDeiDxAcXiZxaYHAJMAW6a/rlKO0iDu3hy/sCmjCSqYQlT1AR5PWgUP4abVY8Av0yY6VfXSy8O2yq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eyw3PPHb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C829C2BCB7;
+	Wed, 13 May 2026 05:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778648408;
+	bh=TqLCITmBHROlI/6bD94uBpynN298xODzRDKewaoiTeU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=eyw3PPHbv83ZBB3TjahSG70+ICxPBtffCGUkPYvYsZ7kv6xqOag3QhQlpOrlj9/ya
+	 yv6LVAsD/F2xUWUlB5fc9sDpcUVhIwA4n1Ij3ZFtaVP8ivT/nQjB8FQ1g1Dxh4ODLi
+	 ZGkDCEEX+8K+h9p4HNbu/VsLIMOevdb/uCdqIB+u7vvBGBnsw3uacR/21+zD4lyU2j
+	 5asF7yuXTsLDz77uoQ4adSkMvyo03Hzu6D5J4VrKXEd6njTpoHxqaf9prh0tmMbHLy
+	 EMK3KkpWngweKz4hYo6q1fu/5OU6i7dEpmEuiGif0KaG+UCDddANRVvbgp/bDg4hl7
+	 GgjYBFGJNWSKg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 04/16] dt-bindings: mfd: mediatek: mt6397: add mt6323
+ PMIC thermal
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Roman Vivchar via B4 Relay" <devnull+rva333.protonmail.com@kernel.org>
+Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260512-mt6323-v2-4-3efcba579e88@protonmail.com>
+References: <20260512-mt6323-v2-4-3efcba579e88@protonmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 13 May 2026 05:00:07 +0000
+Message-Id: <20260513050008.8C829C2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-sunxi-a523-gpadc-v2-3-d5efde151dac@mmpsystems.pl>
-References: <20260513-sunxi-a523-gpadc-v2-0-d5efde151dac@mmpsystems.pl>
-In-Reply-To: <20260513-sunxi-a523-gpadc-v2-0-d5efde151dac@mmpsystems.pl>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Maksim Kiselev <bigunclemax@gmail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778648397; l=1298;
- i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=/N5/DsYuZyXhP6df/g8ro7dcmFJQ8yyC3EItsyGlO0Y=;
- b=7IFLix/s5zhm6Z2vJ2rXvkQgwcq7m4r9e0QlY9IbP0q9Ao1SHxmHErk7DFQE4WXUIiCZzeoui
- XFAguZ705gpB2TreIeIY0QKwh5XXKhMh1gY77uJsYHBqyTPO6QiAESE
-X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
- pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: 1AA8452D663
+X-Rspamd-Queue-Id: 259F652D602
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296613-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296609-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.30.163.192:email];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
-	NEURAL_HAM(-0.00)[-0.502];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,rva333.protonmail.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:email,mmpsystems.pl:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.31.71.208:email,0.30.167.168:email]
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Describe GPADC block on Allwinner A523.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The `#thermal-sensor-cells` property is constrained to 1, but th=
+e MT6323 hardware only possesses a single thermal sensor, violating DT ABI =
+design principles.
+- [Low] The device tree example is missing the `adc` node and its correspon=
+ding `mt6323_adc` label, which is referenced by the new `thermal` node.
+--
 
-Tested on Radxa Cubie A5E:
-- 2 connected channels are showing voltages in agreement with
-  schematics.
-        BOOT-SEL-ADC ~500mV
-        BOM-ADC ~1800mV
-- 3rd channel exposed on 40pin header is showing correct voltages when
-  connected to known voltage source.
+commit 5d14cb32b8298f2c8dd1f6c1a6921b9e3942bf24
+Author: Roman Vivchar <rva333@protonmail.com>
 
-Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
----
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+dt-bindings: mfd: mediatek: mt6397: add mt6323 PMIC thermal
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index 5afa8d92acbf..4e793aeccf89 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -340,6 +340,17 @@ ledc: led-controller@2008000 {
- 			status = "disabled";
- 		};
- 
-+		gpadc: adc@2009000 {
-+			compatible = "allwinner,sun55i-a523-gpadc";
-+			reg = <0x2009000 0x400>;
-+			clocks = <&ccu CLK_BUS_GPADC0>, <&ccu CLK_GPADC0>;
-+			clock-names = "bus", "mod";
-+			resets = <&ccu RST_BUS_GPADC0>;
-+			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-+			#io-channel-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		wdt: watchdog@2050000 {
- 			compatible = "allwinner,sun55i-a523-wdt";
- 			reg = <0x2050000 0x20>;
+This commit adds devicetree binding documentation for the MediaTek mt6323
+thermal monitoring hardware, which reads temperature via an AUXADC channel.
+It configures #thermal-sensor-cells to 1 and includes a thermal node in
+the example block.
 
--- 
-2.43.0
+> While mt6323 exposes only a single thermal sensor, newer PMICs like
+> mt6358 provide more than one sensor. Therefore define #thermal-sensor-cel=
+ls
+> as 1 to avoid breaking devicetree ABI in the future.
 
+Since the mt6323 hardware only possesses a single thermal sensor, shouldn't
+#thermal-sensor-cells be constrained to 0?
+
+Future hardware variants like the mt6358 will use different compatible
+strings, which can then define their own #thermal-sensor-cells: const: 1
+constraint without affecting the mt6323 ABI.
+
+Setting it to 1 here forces a dummy cell argument on single-sensor mt6323
+devices, misrepresenting the actual hardware.
+
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b=
+/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> index beaa67bf0df2c..2c826737189e7 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+[ ... ]
+> @@ -511,6 +547,14 @@ examples:
+>          rtc {
+>              compatible =3D "mediatek,mt6323-rtc";
+>          };
+> +
+> +        thermal {
+> +          compatible =3D "mediatek,mt6323-thermal";
+> +          nvmem-cells =3D <&mt6323_thermal_calibration_data>;
+> +
+> +          io-channels =3D <&mt6323_adc MT6323_AUXADC_CHIP_TEMP>;
+
+Does the mt6323_adc label exist in this example?
+
+Looking through the example block, the adc sub-node and its corresponding
+mt6323_adc label do not seem to be defined. Will this cause dtc to fail with
+a reference to non-existent node or label error during dt_binding_check?
+
+> +          #thermal-sensor-cells =3D <1>;
+> +        };
+>      };
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-mt6323-v2-=
+0-3efcba579e88@protonmail.com?part=3D4
 
