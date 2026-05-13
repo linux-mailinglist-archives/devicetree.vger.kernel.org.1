@@ -1,208 +1,149 @@
-Return-Path: <devicetree+bounces-296680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JbBIGQvBGo/FAIAu9opvQ
-	(envelope-from <devicetree+bounces-296680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:59:32 +0200
+	id AKn3IiUwBGo/FAIAu9opvQ
+	(envelope-from <devicetree+bounces-296683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:02:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC20B52F394
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:59:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39FF552F42E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:02:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 441C5305749C
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:56:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5318B30068CA
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE33D3D45EC;
-	Wed, 13 May 2026 07:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168A6379C21;
+	Wed, 13 May 2026 08:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DVRLNIvx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qj7+jGEp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A073264E9;
-	Wed, 13 May 2026 07:56:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD80B36F904;
+	Wed, 13 May 2026 08:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778658962; cv=none; b=QdOOx+Cau+gMGlMxbs/NV3cHZw6WJUzNHf4wpRkcUX+cV1DYBDLchrwiTg4vQUf423PvIgGdJSufT9y2Re1RDa2nF3/WWnOuyo6lJ1OPJ8DldmTS2AdnXjSPKWby5qEdbgI9tW/pOyhBVfWmz/8T7zRgGCRTbiDsZXpG9hWThKY=
+	t=1778659354; cv=none; b=N8yRDh7Smrz/IdS1Wsazca+3Rgd/Sp4LbHP/M9062B5o4ql2GG0xNx2L4JzneegVF7Y1ZWnnTXqV6H1OXu37+TZPR1vLC/9veMyAQzAElp2KqwLTcJORqLnfqQQ5UN2WiyDxfzIxK2KLcja0Lb8rpFY6beHCRsbN1QXbkW2W5uI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778658962; c=relaxed/simple;
-	bh=yjpuKSIX9YhnkTy1kB78nxXlSk9S5Nh1vV9uFqCDb9c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IzZJuFIDLt2fWJfqrgTYvGnkl614tgxOTuEt9JY01PTH1TkZYg65zXQcpv3u0b6SSLrzTtk++cqBZpYj/pR6zGJsC8Lq/BPwQKDFqVbRZSq6pTtqFMvXOXj7ee+QfPulWvuiryKuf8LZLZUDQQVkT5/s9sU/FIXSFzY8woSdDdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=DVRLNIvx; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 32B4B229;
-	Wed, 13 May 2026 09:55:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1778658951;
-	bh=yjpuKSIX9YhnkTy1kB78nxXlSk9S5Nh1vV9uFqCDb9c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DVRLNIvxPqnTZ7FvjL5QwvJKO3lBxL/u+sqBneD59K22/nO1+vb+X6JyR6IocHVmr
-	 J/KmCvkfVtRrcF9GEt3ICI12sCWQ6op0O80tt4wFPnO5S0RqjBGdDklCkijl2TGEHh
-	 aVIzBBfuBlBXBNQXUhJHBcByTM6FKS+8/gmdxNhg=
-Message-ID: <af7006a6-6048-42c9-8771-4687a51cc245@ideasonboard.com>
-Date: Wed, 13 May 2026 10:55:55 +0300
+	s=arc-20240116; t=1778659354; c=relaxed/simple;
+	bh=LJ+OZyd1KVqzqQx0da6hI3yv+DimVEexTWPbxsJi33Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IOHRuHU1bK5C2K3fDHKcISafYT95cGHViYj2FPC9PgpuYVkT0aCTMezkBJ/ny392llUMygldwwewa+uZAJoClQTHPEYj+ZT2YOW+t50Lw8A0YSaMcUvKIk8gsAYpiqg1mh3oQEAmPdHXKakAGRtt1qJ7pOeQk6M8kdpTSoihPtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qj7+jGEp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25BEFC2BCB7;
+	Wed, 13 May 2026 08:02:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778659354;
+	bh=LJ+OZyd1KVqzqQx0da6hI3yv+DimVEexTWPbxsJi33Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qj7+jGEpuj4CoThb4qZRIfcDLV0hkXt0EX9NQUpYWjAzsxvDvOSmgB6MD14YNlSsG
+	 oEO1l34Bq4X9nW6U1dmdkrTMl/R2Gy4Eom0NAlpEGy+wCA/p7LtEwkzzM1vNPnL8WN
+	 TCtcwr5b2vMXrerRXp/b44N/icVNVZpqRv4Wysmc6ZmO7RSJIn8F6vy7C0QsKbTqVr
+	 w2uDGfzBtQZKmAfBMYFtmTJrek4Q3wQYIvTPaLknQeTrZMXBoAPpHLHp9oFP8tCrbk
+	 cHaMPKXB/JXOv2U+luKbEu02L/xZEHt4Gt6Zfi0AD9SgGR7r34aizYSKTQJ0RLTYS/
+	 2cHm0Jz7A+UzQ==
+Date: Wed, 13 May 2026 08:02:32 +0000
+From: Yixun Lan <dlan@kernel.org>
+To: Andre Heider <a.heider@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] riscv: dts: spacemit: k1-musepi-pro: add PMIC and
+ power infrastructure
+Message-ID: <20260513080232-GKA3644607@kernel.org>
+References: <20260513071958.29574-1-a.heider@gmail.com>
+ <20260513071958.29574-2-a.heider@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/15] dt-bindings: mfd: syscon: Add
- ti,am625-dss-dpi0-clk-ctrl compatible
-To: Rob Herring <robh@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Aradhya Bhatia <aradhya.bhatia@linux.dev>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Swamil Jain <s-jain1@ti.com>,
- Devarsh Thakkar <devarsht@ti.com>, Louis Chauvet
- <louis.chauvet@bootlin.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260420-beagley-ai-display-v1-0-f628543dfd14@ideasonboard.com>
- <20260420-beagley-ai-display-v1-3-f628543dfd14@ideasonboard.com>
- <20260505193538.GA3785056-robh@kernel.org>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-In-Reply-To: <20260505193538.GA3785056-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CC20B52F394
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260513071958.29574-2-a.heider@gmail.com>
+X-Rspamd-Queue-Id: 39FF552F42E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296680-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296683-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linux.dev,ti.com,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.15.204:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RBL_SEM_IPV6_FAIL(0.00)[2600:3c04:e001:36c::12fc:5321:query timed out];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:mid,ideasonboard.com:dkim,82e0:email,0.0.33.152:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.1.134.160:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi,
+Hi Andre,
 
-On 05/05/2026 22:35, Rob Herring wrote:
-> On Mon, Apr 20, 2026 at 03:54:10PM +0300, Tomi Valkeinen wrote:
->> The DPI output pipeline in K3 SoCs contains the display subsystem (DSS)
->> which produces the in-SoC parallel video signal, and a DPI block which
->> adjusts the signal to the external MIPI DPI output.
->>
->> The DSS IP has registers to configure whether the data and sync signals
->> are driven on rising or falling clock edge, and on some SoCs these are
->> automatically conveyed to the DPI block which needs that configuration
->> to properly output the MIPI DPI signal.
->>
->> However, on some SoCs the DPI block configuration has to be done
->> manually, using an extra register outside the DSS, DPI0_CLK_CTRL in
->> MAIN_CTRL_MMR_CFG0 block, which controls the DPI block's behavior. Note
->> that while the register is named "CLK_CTRL", it's not really related to
->> clocks, but the sync and data signals.
->>
->> Currently the DPI0_CLK_CTRL is never written, so it's always 0, meaning
->> the data and sync are always driven on a rising clock edge regardless of
->> the DSS configuration.
->>
->> DPI0_CLK_CTRL register seems to be an independent "quirk" register,
->> inside MAIN_CTRL_MMR_CFG0 block, which contains general purpose system
->> registers. The registers surrounding DPI0_CLK_CTRL seem to be controlled
->> by the system firmware or linux clock drivers. So, it is just this
->> single register we can map, and we can't create a syscon node for the
->> whole (or big parts of) MAIN_CTRL_MMR_CFG0.
->>
->> I see two options to handle the register:
->>
->> 1) We could add that single register to the DSS binding as a new reg
->>     block. That feels wrong, as it's not a DSS register.
->> 2) Add it as a syscon node, which can then be used by tidss driver.
->>     It is a bit silly to create a syscon node for a single 32-bit
->>     register, though.
+On 09:19 Wed 13 May     , Andre Heider wrote:
+> Enable i2c8 and add the connected SpacemiT P1 PMIC with its related regulators
+> for the board's power infrastructure and voltage regulation support.
 > 
-> Is it really 1 register and nothing else in that h/w block? That's quite
-> unusual.
-It is just this one register that the DSS driver is interested in, and 
-that register is surrounded by registers used by other, unrelated, 
-drivers or the system firmware.
+> Signed-off-by: Andre Heider <a.heider@gmail.com>
+> ---
+>  .../riscv/boot/dts/spacemit/k1-musepi-pro.dts | 134 ++++++++++++++++++
+>  1 file changed, 134 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> index 29e333b670cf0..e0b585c50014b 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> @@ -17,6 +17,7 @@ / {
+>  	aliases {
+>  		ethernet0 = &eth0;
+>  		serial0 = &uart0;
+> +		i2c8 = &i2c8;
+>  	};
+>  
+>  	chosen {
+> @@ -33,6 +34,15 @@ led1 {
+>  			default-state = "on";
+>  		};
+>  	};
+> +
+..
+> +	reg_vcc_4v0: regulator-vcc-4v0 {
+I prefer to keep this name same as other boards, so let's change it
+to reg_vcc_4v ..
 
-This has been discussed in some older threads, and to summarize:
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC4V0";
+> +		regulator-min-microvolt = <4000000>;
+> +		regulator-max-microvolt = <4000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+>  };
 
-The Soc has a so called CTRL_MMR (control memory-mapped-registers) area 
-at 0x100000, size 0x20000. It's a dumping ground for all kinds of system 
-integration registers. In the current binding, this has been just a 
-simple-bus, containing some sub-nodes (shortened version):
-
-main_conf: bus@100000 {
-	compatible = "simple-bus";
-	reg = <0x00 0x00100000 0x00 0x20000>;
-
-	phy_gmii_sel: phy@4044 {
-		compatible = "ti,am654-phy-gmii-sel";
-	};
-
-	audio_refclk0: clock-controller@82e0 {
-		compatible = "ti,am62-audio-refclk";
-	};
-
-	dss_oldi_io_ctrl: dss-oldi-io-ctrl@8600 {
-		compatible = "ti,am625-dss-oldi-io-ctrl", "syscon";
-	};
-};
-
-There already was the dss-oldi-io-ctrl, so this new 
-am625-dss-dpi0-clk-ctrl was added the same way as we needed a syscon.
-
-After some testing, changing the whole main_conf to a syscon seems to 
-work ok, even if inside it there are devices mapping parts of the same 
-memory area (although I'm not sure how to test all those devices). I 
-originally thought mapping the same memory area from two different 
-driers would immediately fail.
-
-So, instead of adding a new special syscon node for this single 
-register, as done in this patch, I think we can just make the whole 
-main_conf a syscon, and point to it from the display subsystem node:
-
-	ti,dpi-io-ctrl = <&main_conf>;
-
-Then the driver would need to access the register with offset 0x8300. 
-But I'm a bit reluctant to add such a SoC-integration related offset to 
-the driver. Even if the register would stay the same from SoC model to 
-another, the offset could change. So, we could, in the display subsystem 
-node, do:
-
-	ti,dpi-io-ctrl = <&main_conf 0x8300>;
-
-The driver can use syscon_regmap_lookup_by_phandle_args() and thus get 
-the offset from the dts. I think this works ok, so I'll make that change 
-for v2 unless someone has better ideas.
-
-  Tomi
-
+-- 
+Yixun Lan (dlan)
 
