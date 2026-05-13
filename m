@@ -1,361 +1,152 @@
-Return-Path: <devicetree+bounces-296852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296854-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOpHEhB8BGpoKgIAu9opvQ
-	(envelope-from <devicetree+bounces-296852-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:26:40 +0200
+	id kOozGsiABGrmKwIAu9opvQ
+	(envelope-from <devicetree+bounces-296854-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:46:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB855534099
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:26:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F485344EA
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:46:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 396DA3068237
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:16:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 50FF5325BFA4
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3DC41B340;
-	Wed, 13 May 2026 13:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMm5kWhC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2B84C8FE3;
+	Wed, 13 May 2026 13:12:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1B9402456;
-	Wed, 13 May 2026 13:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775184C77B7
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 13:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778677928; cv=none; b=NJT3t0UBX1R6jtmpZY8CC94Rj91fNIsGCnJicuBz1kiIlp+QvYzVQ0QnVOzohMd9QQo16yL9o2qnu/FRoOQ8HmfwZBAzpVIr2UYQKp2fmvHellI/ePLjJtFx0nTh/FioS8UddTv2hHMb/14SsGNYNXpjDCIJwU6g+4rnfcKUWnU=
+	t=1778677950; cv=none; b=JQGIijRYBlyW+fM2DuYbbmGsEwT+Nk2KTMC0S2DASq8sl/po/gKVrkOTextLuoPrLSjUj3ymH2BwzkOjtWxc4Q2TiaYFuDgQ57IuVON2/ql4VVwkzfNoyqhUfZwl8owzwcn7ErJHn2UqFXrE07mgwDbTxPFwSuliAAxSFcB7zhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778677928; c=relaxed/simple;
-	bh=vfgwnBG+lxpWKDMp5Hl71qaLhmM4qDpidcG1oLR1LMU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gGRK33PpLOcfhg3AeglGK6qi3NtajUn+zTxaF2Jc5Df6m8n4VE7+q3F6bsZldpSw9FqUVdCxEm6WAtSUxuezcYAXrSWMtfVdFul9UgRZEBzw7U2I+X/fGuwzJJ9S9OVkzztKOb75xWfNHMzru8X0+cmN2H+QiB6LolU621RcBhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMm5kWhC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id ADE45C2BCF5;
-	Wed, 13 May 2026 13:12:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778677927;
-	bh=vfgwnBG+lxpWKDMp5Hl71qaLhmM4qDpidcG1oLR1LMU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=WMm5kWhCL4ZPTc7PBU45zcdWcgvv5uHLKypYlPvHn5WaZUvkOavqu+uGgVxsKR/qI
-	 kV5tee4DfBz1TQgIbmQDUB1Lk4nu6Yo32ZXrQ+6/YjAuOs/dA3JinjYgiKR8szA5BM
-	 L6M4xjjTq8yw0LMra++S/IBgYLbFuyx4XmTuBxsyqxqBUgQmV0g/AQUvnk0iUzrfC/
-	 K4eGRPAOv/TrAszK8DE0/ILyeMx8dh8jaKO519Q1U1F4F+rRnCRpI9wee52n/iAoHD
-	 oH7DvepibcyMDStSpYG4z27I3Y0bFWB1dicIJKr6nNh7H+Wl7lFrpDN/k+52IvuejE
-	 /2MSqUSehZ3ng==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FB3BCD4F24;
-	Wed, 13 May 2026 13:12:07 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Wed, 13 May 2026 15:12:03 +0200
-Subject: [PATCH v5 2/2] phy: add basic support for NXPs TJA1145 CAN
- transceiver
+	s=arc-20240116; t=1778677950; c=relaxed/simple;
+	bh=OUQHmjb7UkllJEpUp8KQM62kjPUwPzi6de+ciaj5zDQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CGB6fVcqAoM3UqIBeg5QCxR/39F9fGad9YhRXXiHUA8HPFy+ucXQKas7Dlqd99yAkEsRC+zGNvgB3Bqc4tBX8kelSZDQzpv6g69rGgkk1Tl4glHu7ojIRIt1VeKyOlLK7EHKEFFvQZ9F7VtEm9y7vQdTTy4T9yg1vDWL+KuIjwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-956948531a1so1802521241.2
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:12:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778677947; x=1779282747;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GE5Sc3I5fhZDV/Yx4xguTp5z/tXd0Rx77uBwtmUCg9g=;
+        b=hCLP/NqMRYiE8Pnibtt9sHbesM6OpkCyxCJ3Q8WOV5tzJWXmGXGsJmwHePAgcfVk84
+         Zw1/hdXvA+azLbWObJlSXEh66L6NCSwMRYXv8pRSqwTLJvoGu8F9SN2gb2J+hAETGNES
+         2UoRKNj+XbyIF5lfQ0c24DcyC4mKNQT0UUj5bntOwJrz5T1kZdoHswnU/2ziv/B/bfGg
+         avYIphQwWYAEVaGPnfmlT1uUm4VD5z6q5c9jTZDMFvwvv0Q9aKk0Mn+K8OLCGorn1Xfn
+         EgTyGL1KJDuFnmnpjMxv4eT3DKmydOw+hP44S4CBm8xvqsCI5Rt0D1A+7+oB+yCYW/At
+         7qUg==
+X-Forwarded-Encrypted: i=1; AFNElJ+j5yPhceMrj6IrEsc5L4xZcnPKW1r6Ez5NJwB/U/bPk/PIJsnU6Z3jLJB+3frVjEA3HiwmBZetaWlW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyePNty2GWvp7Qpz0PIMifmUTt1SyMNENVOkMCNIaH3zGqPZKoi
+	1mS/6Yll8kjpH7PskHSjoByN5a/wsmXjAT0QhSFoN5qR3RZmdKWrFu9LTylcD5M/
+X-Gm-Gg: Acq92OF9QU0BGW0Eysd2LiSdNznHLzDKbrMiFjK9f+kGJJmKPmMmpQvqbqYBcrxrCo8
+	jHi7AILQTGZtsEwvY/9XSrg1AuRw6lyoM1ql2afAU9svlPbUL1UqogB3QQZ9+QZvauDXZFLUlgX
+	IkOoCgNUKWN7b/LISjjAdYkqFD8f1PIHYkRFZBus5GRs11IoN3ptOnAD9syf8ldodTaETFij+ig
+	9jW3+v2JbNYECU6F30wRTJ9DgbZTaRZHM4hllXk9Qs3C1mkV7qkt4GtetW9mm0TTJ7tyRdUDZEb
+	UQMXf6o9tsYu1GKhfKMKSM9tYUQDsBuP+G94+xCh73bkoOBvUuDPbMAtNV1vv+yTJk/HywqM0Xt
+	pNxmgrKImQlMGF+DSNtX0hfQ3zuuZZqclJnkv7ea+SfHLyrvYiTjImhH3cCgCmf7vZXphe5i+ge
+	0tsEZ+b+DMVOjWt4qyWt/pNxyah652I3oxQt2YILO86xNC0czHodY4PdmlR+3PsBhp
+X-Received: by 2002:a05:6102:3907:b0:631:ab8b:c34e with SMTP id ada2fe7eead31-63771e9aa85mr1333913137.11.1778677947400;
+        Wed, 13 May 2026 06:12:27 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-63140250725sm9968315137.12.2026.05.13.06.12.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 May 2026 06:12:27 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5751e12c524so2317030e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:12:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/PcBm5mZaFZt4wJplVPUxPa3pR/mXN31nCUY+zk1O6y3YUFp/eB25oM/MlvGGMYJUvxIlnQIg4hXA4@vger.kernel.org
+X-Received: by 2002:a05:6122:6992:b0:575:352f:eac0 with SMTP id
+ 71dfb90a1353d-575e6fb88e4mr1415729e0c.7.1778677946052; Wed, 13 May 2026
+ 06:12:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-tja1145-support-v5-2-38720a7ee63e@liebherr.com>
-References: <20260513-tja1145-support-v5-0-38720a7ee63e@liebherr.com>
-In-Reply-To: <20260513-tja1145-support-v5-0-38720a7ee63e@liebherr.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>, lee.lockhey@gmail.com, 
- Marc Kleine-Budde <mkl@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778677926; l=7419;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=cTwa7LJ4WYrfE9uhGBTMXWFXb7E3Zcyu/daqVib881Q=;
- b=KIIvZ/zU3Gq4STWp5pzqja9TX6gficBqv9/1O0vo4Djp98oBOvfFXFfZEOJn+lm/406L2f0qA
- rclv3xoCLDtAF8iDdUFQjW7wpfcUtlJnm/pxd2ArTDsSRX8cHN/CFnY
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
-X-Rspamd-Queue-Id: DB855534099
+References: <20260502185557.93061-1-marek.vasut+renesas@mailbox.org> <20260502185557.93061-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260502185557.93061-2-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 13 May 2026 15:12:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUGGEXa+S7DZABv6_VjzgKaFR_dgEt6HMsoLWE3vtpduw@mail.gmail.com>
+X-Gm-Features: AVHnY4I1ueP8c0lbfl8GeS1mAQp1h1WSM6acug8SaPsOhckX1RLhaKldCR-pmEE
+Message-ID: <CAMuHMdUGGEXa+S7DZABv6_VjzgKaFR_dgEt6HMsoLWE3vtpduw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: clock: renesas,cpg-clocks: Document
+ ZT/ZTR trace clock on R-Mobile APE6
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: E3F485344EA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,baylibre.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-296854-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296852-lists,devicetree=lfdr.de,dimitri.fedrau.liebherr.com];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,liebherr.com,gmail.com,pengutronix.de];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[dimitri.fedrau@liebherr.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,liebherr.com:email,liebherr.com:mid,liebherr.com:replyto]
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,mail.gmail.com:mid,linux-m68k.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mailbox.org:email]
 X-Rspamd-Action: no action
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Sat, 2 May 2026 at 20:56, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Document ZT trace bus and ZTR trace clock on the R-Mobile APE6.
+> These clock supply the coresight tracing modules, PTM, TPIU,
+> ETB and replicator. Without these clock, the coresight tracing
+> can not be operated. While this does change the ABI, it does so
+> by extending the existing clock-output-names, therefore if an
+> old software is used with new DT, the coresight tracing parts
+> will likely fail to probe, otherwise if new software is used
+> with an old DT, there is no impact.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Add basic driver support for NXPs TJA1145 CAN transceiver which brings the
-PHY up/down by switching to normal/standby mode using SPI commands.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue for v7.2 in a branch shared by clock and DTS.
 
-Tested-by: <lee.lockhey@gmail.com>
-Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/phy/Kconfig           |  10 +++
- drivers/phy/Makefile          |   1 +
- drivers/phy/phy-nxp-tja1145.c | 184 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 195 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index ab96ee5858c1a9dee2aea3a896c09b397cc30c7f..a3f9a05e222002e23d5080aa22b56f2a822a4b97 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -124,6 +124,16 @@ config PHY_NXP_PTN3222
- 	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
- 	  Speed and High Speed.
- 
-+config PHY_NXP_TJA1145
-+	tristate "NXP TJA1145 CAN transceiver PHY"
-+	select GENERIC_PHY
-+	select REGMAP_SPI
-+	depends on SPI
-+	help
-+	  This option enables support for NXPs TJA1145 CAN transceiver as a PHY.
-+	  This driver provides function for putting the transceiver in various
-+	  functional modes using SPI commands.
-+
- config PHY_PISTACHIO_USB
- 	tristate "IMG Pistachio USB2.0 PHY driver"
- 	depends on MIPS || COMPILE_TEST
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index f31767745123773757e84b0b5fb85ec286c1d977..65ea9f0bc7f151378caa6e161f8b8a5c6884d7e5 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_PHY_GOOGLE_USB)		+= phy-google-usb.o
- obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-$(CONFIG_PHY_LPC18XX_USB_OTG)	+= phy-lpc18xx-usb-otg.o
- obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
-+obj-$(CONFIG_PHY_NXP_TJA1145)		+= phy-nxp-tja1145.o
- obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
- obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
- obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
-diff --git a/drivers/phy/phy-nxp-tja1145.c b/drivers/phy/phy-nxp-tja1145.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..1e8bd169743abfaeee6948d200e6ac320cd616ff
---- /dev/null
-+++ b/drivers/phy/phy-nxp-tja1145.c
-@@ -0,0 +1,184 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 Liebherr-Electronics and Drives GmbH
-+ */
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/phy/phy.h>
-+#include <linux/spi/spi.h>
-+
-+#define TJA1145_MODE_CTRL		0x01
-+#define TJA1145_MODE_CTRL_MC		GENMASK(2, 0)
-+#define TJA1145_MODE_CTRL_STBY		BIT(2)
-+#define TJA1145_MODE_CTRL_NORMAL	TJA1145_MODE_CTRL_MC
-+
-+#define TJA1145_CAN_CTRL		0x20
-+#define TJA1145_CAN_CTRL_CMC		GENMASK(1, 0)
-+#define TJA1145_CAN_CTRL_ACTIVE		BIT(1)
-+
-+#define TJA1145_IDENT			0x7e
-+#define TJA1145_IDENT_TJA1145T		0x70
-+
-+#define TJA1145_SPI_READ_BIT		BIT(0)
-+#define TJA1145T_MAX_BITRATE		1000000
-+
-+static int tja1145_phy_power_on(struct phy *phy)
-+{
-+	struct regmap *map = phy_get_drvdata(phy);
-+	int ret;
-+
-+	/*
-+	 * Switch operating mode to normal which is the active operating mode.
-+	 * In this mode, the device is fully operational.
-+	 */
-+	ret = regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CTRL_MC,
-+				 TJA1145_MODE_CTRL_NORMAL);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Switch to CAN operating mode active where the PHY can transmit and
-+	 * receive data.
-+	 */
-+	return regmap_update_bits(map, TJA1145_CAN_CTRL, TJA1145_CAN_CTRL_CMC,
-+				  TJA1145_CAN_CTRL_ACTIVE);
-+}
-+
-+static int tja1145_phy_power_off(struct phy *phy)
-+{
-+	struct regmap *map = phy_get_drvdata(phy);
-+
-+	/*
-+	 * Switch to operating mode standby, the PHY is unable to transmit or
-+	 * receive data in standby mode.
-+	 */
-+	return regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CTRL_MC,
-+				  TJA1145_MODE_CTRL_STBY);
-+}
-+
-+static const struct phy_ops tja1145_phy_ops = {
-+	.power_on = tja1145_phy_power_on,
-+	.power_off = tja1145_phy_power_off,
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct regmap_range tja1145_wr_holes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x03),
-+	regmap_reg_range(0x05, 0x05),
-+	regmap_reg_range(0x0b, 0x1f),
-+	regmap_reg_range(0x21, 0x22),
-+	regmap_reg_range(0x24, 0x25),
-+	regmap_reg_range(0x30, 0x4b),
-+	regmap_reg_range(0x4d, 0x60),
-+	regmap_reg_range(0x62, 0x62),
-+	regmap_reg_range(0x65, 0x67),
-+	regmap_reg_range(0x70, 0xff),
-+};
-+
-+static const struct regmap_access_table tja1145_wr_table = {
-+	.no_ranges = tja1145_wr_holes_ranges,
-+	.n_no_ranges = ARRAY_SIZE(tja1145_wr_holes_ranges),
-+};
-+
-+static const struct regmap_range tja1145_rd_holes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x02),
-+	regmap_reg_range(0x05, 0x05),
-+	regmap_reg_range(0x0b, 0x1f),
-+	regmap_reg_range(0x21, 0x21),
-+	regmap_reg_range(0x24, 0x25),
-+	regmap_reg_range(0x30, 0x4a),
-+	regmap_reg_range(0x4d, 0x5f),
-+	regmap_reg_range(0x62, 0x62),
-+	regmap_reg_range(0x65, 0x67),
-+	regmap_reg_range(0x70, 0x7d),
-+	regmap_reg_range(0x7f, 0xff),
-+};
-+
-+static const struct regmap_access_table tja1145_rd_table = {
-+	.no_ranges = tja1145_rd_holes_ranges,
-+	.n_no_ranges = ARRAY_SIZE(tja1145_rd_holes_ranges),
-+};
-+
-+static const struct regmap_config tja1145_regmap_config = {
-+	.reg_bits = 8,
-+	.reg_shift = -1,
-+	.val_bits = 8,
-+	.wr_table = &tja1145_wr_table,
-+	.rd_table = &tja1145_rd_table,
-+	.read_flag_mask = TJA1145_SPI_READ_BIT,
-+	.max_register = TJA1145_IDENT,
-+};
-+
-+static int tja1145_check_ident(struct device *dev, struct regmap *map)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(map, TJA1145_IDENT, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val != TJA1145_IDENT_TJA1145T) {
-+		dev_err(dev, "Expected device id: 0x%02x, got: 0x%02x\n",
-+			TJA1145_IDENT_TJA1145T, val);
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int tja1145_probe(struct spi_device *spi)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &spi->dev;
-+	struct regmap *map;
-+	struct phy *phy;
-+	int ret;
-+
-+	map = devm_regmap_init_spi(spi, &tja1145_regmap_config);
-+	if (IS_ERR(map))
-+		return dev_err_probe(dev, PTR_ERR(map), "failed to init regmap\n");
-+
-+	ret = tja1145_check_ident(dev, map);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to identify device\n");
-+
-+	phy = devm_phy_create(dev, dev->of_node, &tja1145_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy), "failed to create PHY\n");
-+
-+	phy->attrs.max_link_rate = TJA1145T_MAX_BITRATE;
-+	phy_set_drvdata(phy, map);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct spi_device_id tja1145_spi_id[] = {
-+	{ "tja1145" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, tja1145_spi_id);
-+
-+static const struct of_device_id tja1145_of_match[] = {
-+	{ .compatible = "nxp,tja1145" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tja1145_of_match);
-+
-+static struct spi_driver tja1145_driver = {
-+	.driver = {
-+		.name = "tja1145",
-+		.of_match_table = tja1145_of_match,
-+	},
-+	.probe = tja1145_probe,
-+	.id_table = tja1145_spi_id,
-+};
-+module_spi_driver(tja1145_driver);
-+
-+MODULE_DESCRIPTION("NXP TJA1145 CAN transceiver PHY driver");
-+MODULE_AUTHOR("Dimitri Fedrau <dimitri.fedrau@liebherr.com>");
-+MODULE_LICENSE("GPL");
-
--- 
-2.39.5
+                        Geert
 
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
