@@ -1,203 +1,336 @@
-Return-Path: <devicetree+bounces-296753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OsADEJPBGrNGgIAu9opvQ
-	(envelope-from <devicetree+bounces-296753-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:15:30 +0200
+	id aK8xG0hUBGp/HAIAu9opvQ
+	(envelope-from <devicetree+bounces-296766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:36:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC1D5313E9
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:15:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0476253167A
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:36:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79BEF311D9A0
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:10:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 64C60309E02A
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55CC1427A;
-	Wed, 13 May 2026 10:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EB63F65F9;
+	Wed, 13 May 2026 10:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rlFLZ/ly"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="KwNSc5i8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5293A640A
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 10:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7873EDAA3;
+	Wed, 13 May 2026 10:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778666996; cv=none; b=A/FCpIz9eUtXC05O+vyeBIpKVQpSSZqr8y055DYlqAfRXBubyQdoDDxsNoXD7Qb1XmxDu2On9xciEvmaJ/CZ6ABUCRJRNQ5f17pYuAq16yfLEJ2CfGMjK1OR+RG/Zx4Uc0e3PmyHlZ1oawfPqmeEwXgQVvmLrqkS6EHet01C1EI=
+	t=1778668521; cv=none; b=neUQQ1iUY+zvr1k6lN4MF0pZBzqqYuQ7bLvmeRtbwL739dtiQ/c3ItC4Udv3P2Bocvyf2I6EZs+bV+tim6WYxx/HtXqFUF1Xx1ruqpw23rcTiAdwuZ9Toe5NWssU6QBgKJnwLt3GheyLzdX39sYI9exR02cfayeIB5lWjqAvDoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778666996; c=relaxed/simple;
-	bh=dI7Vy4tSt+ipoY1cvrv4SzZXvFAstFFCphZE2K3dz3Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YZ1qFnVbdE1RkBYymPG8UXB1TxcyMGQqtFWW/PyaFuWM6N7EnOQt+iYUClfn2pIR9AdB3f5j2KTh7msGajYF/rsF85e91hCmgwaiwQI11riW38IfMzEnVeC12/LF1wxzCOpR9Vj2jaIli6Udbl+HL1FbIuv62W62DrsarsE/SGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rlFLZ/ly; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6763cc8775cso13354916a12.0
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 03:09:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778666991; x=1779271791; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uPWJdSc2I6JXF+VrIjabBYnBXUVNyLPtG2ThRSxbw6I=;
-        b=rlFLZ/lymCTUE59oMDF22xJoc/GrGrm86Zlf6fzn5pfdHOBtZYv5C5S7va59i5HCYU
-         eDre+qhAloU5M3bjSi7iIn40fIgYw2PkYdDDQiOZtYtBeGSSVxlzfxO8NfpiFa9m55sj
-         NcMoNt1vHhqltVi+sE0euhgDxgGSQadA5hB2YKgrV0XB0FsrJcDFjIPAsIwaeWxR4X7+
-         /LTGVKsdHFKpTlXwGPyV972awoouVeOoxVhD5tEypphE8hQs4XPftOHVBYoRFmSHAkNO
-         VwkPzoaUnnKBZGQv5qH/t1W+JvdxOBZ0VPh4cRq/rfIXP25Nvemg2wzoXjkG0kjAYnvZ
-         f+fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778666991; x=1779271791;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=uPWJdSc2I6JXF+VrIjabBYnBXUVNyLPtG2ThRSxbw6I=;
-        b=ccWdgUsq3b0GSgAFcGqi+txf2+2u4OTGtZuV1Y4Jxsf0Cz+7BF2NESQqJMqhG0Gu8Z
-         JxCzGoWBDd81R7Wqd2ovOJj61r3t9j3H0pDwpZjCfnNc2/Rdzxwttt6eXMdgyDZ3bYRE
-         EXMa3TV8gPKMrlb3pBhWb2l2atY2guBFXBulZYwKz/XaLj50w0beo5meHuzIj1Qas4zq
-         YLWJTp52OrNkXNkXr0e16y03jGWMhvYQgfOX/U3zUGN53ggPOBb1fM66GzPoUM2Yr1j2
-         FZKVucOzvxzs4CNNG9a1IpME29fKVzbNrNs2A3XfJfw+NkchCXb2r6JiSZEZPQOoODZA
-         c/LA==
-X-Forwarded-Encrypted: i=1; AFNElJ/p4GgT2EXKgQe8sbpFfNMVvOQHmwUmBJFBMJO4APGPK0uQlbBfU9+hrHzq0ivoWbZN9it5w/WbuRLy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwS1wbxuyBhxF/F1RRwyIHpqNew7Hm0GzxK256esw6GI2lS2X9E
-	scJHGKRicpzxRlBnAII8f/G59jDMQw+fe91vE0PlGSkrYaWuuc1XwMmz
-X-Gm-Gg: Acq92OGmh1UBV/9T1n3ZyG/Q836fGAyaxLD4b1v60Enr5ljnwawlzEEZtIvRv11EL+7
-	t0Z/8aE+yPn1830JAO5sztpZfkrmAJxvxHeTJdB3okZHF+SiZKka8378HHTi00h+8iJwNl7ePy2
-	Nl2+jRe4xM6LIVIaGorySpGcxNcUspqDn8A3dyHnmMC1NUpesk2FniEOQ110ioOBya614YFeE59
-	fTt4q3moOELdsD5V1dqeX7Nb1w3ju2vwyB4Dl6ZCJDQSpIIQWOrnmbn1dd3/xEE0WmDJtj5tyID
-	M5XlbuOuNlEVkI+NLWb1GetDDC9mTwRWPpDbyWtMWRPvQ0iYw7pW4FRXTAeTskntlRZ8s9Louj3
-	tsT1GQED1qiEFjM8GOSc4nWlrAPI6p1wab1eKfHF0Sl7JsutKniENBD8NmOxFJ9p4KC0Q1/fNtD
-	GWUFBEQ1iBHyeofPiWAkmnp/feYUUn0Jtr7BCM2bsehBmt+Vt5+AgJXdJzuS7irC8PzbLxzik=
-X-Received: by 2002:a17:906:730e:b0:bc3:99d5:a29f with SMTP id a640c23a62f3a-bd23aa18252mr420029866b.5.1778666989980;
-        Wed, 13 May 2026 03:09:49 -0700 (PDT)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bcb78493d1asm727760666b.39.2026.05.13.03.09.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 May 2026 03:09:49 -0700 (PDT)
-Date: Wed, 13 May 2026 11:09:48 +0100
-From: David Laight <david.laight.linux@gmail.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Jonathan Cameron <jic23@kernel.org>, Rodrigo
- Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
- rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andrew Morton
- <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
- <rostedt@goodmis.org>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey
- Senozhatsky <senozhatsky@chromium.org>, Shuah Khan
- <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v12 02/11] lib: kstrtox: add kstrtoudec64() and
- kstrtodec64()
-Message-ID: <20260513110948.16db5243@pumpkin>
-In-Reply-To: <sqt72hd4xdu6rj3zecvcpo3bbfsxlh7u4bi76enbq64hpgjm3t@vksuk4cuo76x>
-References: <ur6brs3yjzyb4mtelabmcglxjltddqvjxtgl3lkdkmbjlkmnsq@bwd6rz7gided>
-	<CAHp75VeoH3yVfp8NWjKfc_df0VRLkyf_SK4e==-wJOEodVjW_A@mail.gmail.com>
-	<q4rmlkgecvztnvjg7b7wtqyvhdy7uxgaouvhae2mlsxaasasbf@dfakp4m5l5sl>
-	<agNfqiZpGZAM-x_H@ashevche-desk.local>
-	<ru2h3ip7qf6j54dlrij54nwp45uyq6m2e6zspt6v6eynpsagqq@eo5v3yparuhh>
-	<agNnfWZa9_NyLoWq@ashevche-desk.local>
-	<bc7mqfgll34vyaxdtvfssgypkhyx233wd4hxfzu32rddxnolaq@rd6c3z6yu6aq>
-	<agN6onIAwG1yn5p6@ashevche-desk.local>
-	<hvwyrb7g3ar7hzesj32zoxzqvjmdtwybamy4zxepqdbu37qvog@xnmgqhfya34f>
-	<agOKq0iH2CHQ3TIg@ashevche-desk.local>
-	<sqt72hd4xdu6rj3zecvcpo3bbfsxlh7u4bi76enbq64hpgjm3t@vksuk4cuo76x>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	s=arc-20240116; t=1778668521; c=relaxed/simple;
+	bh=vFc/0varpnBF15KLeuIScQbsvyHGDQlnFW3oq0QgzkU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EqqlcaH8T7A9QQU51GwUpB22q3g9AK5DaQXgQkMICAa28WFaa+c54EXDEyLeVttU0iO0M3OAAvp2Ge9GWI3eMs8ydDDBcjZ/wDEhrrnmrEre736HpdQpllFKFamRY9nBPm0+DL5H/cAsolH4bIL+sZFOxMQEvlhKTWdvSiyS7/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=KwNSc5i8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA88C2BCB8;
+	Wed, 13 May 2026 10:35:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1778668520;
+	bh=vFc/0varpnBF15KLeuIScQbsvyHGDQlnFW3oq0QgzkU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KwNSc5i8H0zhtr7etEdEyXLasBoIx+Uq4MNV+e75qi4pg9mZH1PsqkiQjXslXjV7d
+	 Z6e2GQr/PDwrqybuwKn1IyJ1pNw+I1ERLODwBsqtDqgl3UX3HlsNeif4csjI9T3t0w
+	 E9YsJIr1Vit1OYXgxXZpiJn0ls7N86tWA1Iie1Yc=
+Date: Wed, 13 May 2026 12:11:46 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: liu.qingtao2@zte.com.cn
+Cc: krzk@kernel.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, marex@nabladev.com,
+	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, rdunlap@infradead.org, geert+renesas@glider.be,
+	quic_zongjian@quicinc.com, arturs.artamonovs@analog.com,
+	robert.marko@sartura.hr, hvilleneuve@dimonoff.com,
+	thierry.bultel.yh@bp.renesas.com, julianbraha@gmail.com,
+	flavra@baylibre.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	liu.wenhong35@zte.com.cn, liu.fei16@zte.com.cn,
+	dai.hualiang@zte.com.cn, deng.weixian@zte.com.cn,
+	jia.yunxiang@zte.com.cn, he.yilin@zte.com.cn, bai.lu5@zte.com.cn,
+	yang.susheng@zte.com.cn, shen.lin1@zte.com.cn, zuo.jiang@zte.com.cn,
+	hu.shengming@zte.com.cn, gao.rui@zte.com.cn, tan.hu@zte.com.cn
+Subject: Re: [PATCH v2 2/2] tty: serial: Add LRX UART driver
+Message-ID: <2026051316-stellar-enunciate-e2f8@gregkh>
+References: <202605130852.64D8qEux084060@mse-fl1.zte.com.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8DC1D5313E9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202605130852.64D8qEux084060@mse-fl1.zte.com.cn>
+X-Rspamd-Queue-Id: 0476253167A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296753-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-296766-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nabladev.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,infradead.org,glider.be,quicinc.com,analog.com,sartura.hr,dimonoff.com,bp.renesas.com,gmail.com,baylibre.com,vger.kernel.org,lists.infradead.org,zte.com.cn];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,gmail.com,kernel.org,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,linux-foundation.org,suse.com,goodmis.org,rasmusvillemoes.dk,chromium.org,linuxfoundation.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	NEURAL_HAM(-0.00)[-0.993];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[zte.com.cn:email,intel.com:email,linuxfoundation.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Wed, 13 May 2026 08:14:28 +0100
-Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
-
-> On 26/05/12 11:16PM, Andy Shevchenko wrote:
-> > On Tue, May 12, 2026 at 08:39:21PM +0100, Rodrigo Alencar wrote:  
-...
-> > Oh, I only now realised that this is sliding window for a single 64-bit signed value!
-> > I was under impression that you wanted implementation that covers 128-bit signed value
-> > (with 64 + 64)...  
+On Wed, May 13, 2026 at 04:46:57PM +0800, liu.qingtao2@zte.com.cn wrote:
+> >From 9eba3be2e9b4d5c77956258e3c5db95049c3a895 Mon Sep 17 00:00:00 2001
+> From: Wenhong Liu <liu.wenhong35@zte.com.cn>
+> Date: Tue, 28 Apr 2026 22:30:40 +0800
+> Subject: [PATCH v2 2/2] tty: serial: Add LRX UART driver
 > 
-> So that was the initial approach with strntoull() with integer and fractional parts
-> combined in iio core. At that time I realized that we ended up combining them anyways
-> with:
+> Add support for the ZTE LRX UART controller with the following features:
+> - Support for FIFO mode (16-byte depth)
+> - Baud rate configuration
+> - Standard asynchronous communication formats:
+> * Data bits: 5, 6, 7, 8, 9 bits
+> * Parity: odd, even, fixed, none
+> * Stop bits: 1 or 2 bits
+> - Hardware flow control (RTS/CTS)
+> - Multiple interrupt reporting mechanisms
+> - DMA support for improved performance
 > 
-> 	val64 = (u64)val * MICRO + val2
-> 
-> so why not have val64 already! And all this made me realise that once leading 0s are ok,
-> scale can be even bigger, e.g.
-> 
-> scale = 20
-> 	max = 0.09223372036854775807, min = -0.09223372036854775808
-> scale = 21
-> 	max = 0.009223372036854775807, min = -0.009223372036854775808
-> 
-> It might be a sliding window of 19 digits, but here we trade range for scale, precision
-> is still fixed at 64-bit.
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202602140029.NXkDToZ7-lkp@intel.com/
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202602140108.kLMOYbwS-lkp@intel.com/
 
-I wouldn't worry about that case unless it 'falls out in the wash'.
+Why are these 4 lines here?  The kernel test robot found bugs in your
+previous versions, so fix that, but no need to list that here, right?
 
-> I have a new idea to make thing simpler, actually
-> it would go back to what David pointed out in the past.
+> --- /dev/null
+> +++ b/drivers/tty/serial/lrx_uart.c
+> @@ -0,0 +1,2822 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + *  Serial Port driver for ZTE LRX
+> + *
+> + *  Copyright (c) 2025, ZTE Corporation. All rights reserved.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/ioport.h>
+> +#include <linux/init.h>
+> +#include <linux/console.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/sysrq.h>
+> +#include <linux/device.h>
+> +#include <linux/tty.h>
+> +#include <linux/tty_flip.h>
+> +#include <linux/serial_core.h>
+> +#include <linux/serial.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/slab.h>
+> +#include <linux/dmaengine.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/scatterlist.h>
+> +#include <linux/delay.h>
+> +#include <linux/types.h>
+> +#include <linux/of.h>
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/sizes.h>
+> +#include <linux/io.h>
+> +#include <linux/acpi.h>
+> +
+> +#define UART_NR			14
 
-:-)
+Why 14?  Why limit yourself at all?
 
--- David
+> +
+> +#define ISR_PASS_LIMIT		256
+> +
+> +#define LRX_UART_NAME		"lrx-uart"
 
-> Let me put this together...
-> 
-> > > I am not representing -0.9999999999999999999 as is. The desired scale will have this
-> > > truncated. It may be -0.9999 or -0.999999 or -0.9. And this is practical for a
-> > > reasonable scale value... for pico and femto precision you still get a decent range.  
-> > 
-> > -- 
-> > With Best Regards,
-> > Andy Shevchenko
-> > 
-> >   
-> 
+KBUILD_MODNAME?
 
+> +#define LRX_UART_TTY_PREFIX	"ttyLRX"
+
+Why are you using a new name and not the existing ones?  Why is this not
+just a variant of the existing 8250 serial driver?  Surely this is not a
+totally new UART that looks nothing like that one, right?
+
+> +/* There is by now at least one vendor with differing details, so handle it */
+
+So a new UART already has conflicting implementations?  How can that
+happen?
+
+> +/* Deals with DMA transactions */
+> +
+> +struct lrx_uart_dmabuf {
+> +	dma_addr_t		dma;
+> +	size_t			len;
+> +	char			*buf;
+
+u8?
+
+> +/*
+> + * We wrap our port structure around the generic uart_port.
+> + */
+> +struct lrx_uart_port {
+> +	struct uart_port	port;
+> +	const u16		*reg_offset;
+> +	struct clk		*clk;
+> +	const struct vendor_data *vendor;
+> +	unsigned int		im;		/* interrupt mask */
+> +	unsigned int		old_status;
+> +	unsigned int		fifosize;	/* vendor-specific */
+> +	unsigned int		fixed_baud;	/* vendor-set fixed baud rate */
+> +	char			type[16];
+> +	bool			rs485_tx_started;
+> +	unsigned int		rs485_tx_drain_interval; /* usecs */
+> +#ifdef CONFIG_DMA_ENGINE
+
+Why would this UART not use the DMA engine?  When would that ever be
+disabled?
+
+> +/*
+> + * Reads up to 256 characters from the FIFO or until it&apos;s empty and
+
+This implies that some tool wrote this code.  Please always properly
+document that and where it copied the information from in order to write
+this code.
+
+> +/*
+> + * All the DMA operation mode stuff goes inside this ifdef.
+> + * This assumes that you have a generic DMA device interface,
+> + * no custom DMA interfaces are supported.
+> + */
+> +#ifdef CONFIG_DMA_ENGINE
+> +
+> +#define LRX_UART_DMA_BUFFER_SIZE PAGE_SIZE
+
+Why not just use PAGE_SIZE?  And how do you know the dma buffer is the
+same size always?  When using 16k pages, the hardware knows this?
+
+> +/*
+> + * Try to refill the TX DMA buffer.
+> + * Locking: called with port lock held and IRQs disabled.
+> + * Returns:
+> + *   1 if we queued up a TX DMA buffer.
+> + *   0 if we didn&apos;t want to handle this by DMA
+
+Again, fix your tooling :(
+
+> +/*
+> + * Flush the transmit buffer.
+> + * Locking: called with port lock held and IRQs disabled.
+> + */
+> +static void lrx_uart_dma_flush_buffer(struct uart_port *port)
+> +__releases(&sup->port.lock)
+> +__acquires(&sup->port.lock)
+
+Ok, but:
+
+> +{
+> +	struct lrx_uart_port *sup =
+> +	    container_of(port, struct lrx_uart_port, port);
+> +
+> +	if (!sup->using_tx_dma)
+> +		return;
+> +
+> +	dmaengine_terminate_async(sup->dmatx.chan);
+> +
+> +	if (sup->dmatx.queued) {
+> +		dma_unmap_single(sup->dmatx.chan->device->dev, sup->dmatx.dma,
+> +				 sup->dmatx.len, DMA_TO_DEVICE);
+> +		sup->dmatx.queued = false;
+> +		sup->dmacr &= ~UARTFCCR_TXDMAE;
+> +		lrx_uart_write(sup->dmacr, sup, REG_FCCR);
+> +	}
+> +}
+
+I don't see those locks being touched, where did that happen?
+
+> +static irqreturn_t lrx_uart_int(int irq, void *dev_id)
+> +{
+> +	struct lrx_uart_port *sup = dev_id;
+> +	unsigned int status, pass_counter = ISR_PASS_LIMIT;
+> +	int handled = 0;
+
+bool?
+
+> +static int lrx_uart_hwinit(struct uart_port *port)
+> +{
+> +	struct lrx_uart_port *sup =
+> +	    container_of(port, struct lrx_uart_port, port);
+
+You do this "container_of()" everywhere, why not write a simple macro
+for it to make it more obvious like to_lxr_uart_port()?
+
+And why not use container_of_const()?
+
+> +static int lrx_uart_allocate_irq(struct lrx_uart_port *sup)
+> +{
+> +	lrx_uart_write(sup->im, sup, REG_IMSC);
+> +
+> +	return request_irq(sup->port.irq, lrx_uart_int, IRQF_SHARED, "lrx-uart", sup);
+
+You had a driver name way above, why not use that instead of this string
+here?
+
+> +	/* Set baud rate */
+> +	lrx_uart_write(quot & 0x3f, sup, REG_FD);
+> +	lrx_uart_write(quot >> 6, sup, REG_IND);
+> +
+> +	/*
+> +	 * ----------v----------v----------v----------v-----
+> +	 * NOTE: REG_FRCR MUST BE WRITTEN AFTER REG_FD & REG_IND.
+> +	 * ----------^----------^----------^----------^-----
+> +	 */
+
+Why the odd comment style?
+
+> +	lrx_uart_write(frcr, sup, REG_FRCR);
+> +
+> +	lrx_uart_write(fccr, sup, REG_FCCR);
+
+Why the blank line between these?
+
+> +static struct lrx_uart_port *lrx_uart_console_ports[UART_NR];
+
+Why isn't this a dynamic list?
+
+> +/*
+> + * While this can be a module, if builtin it&apos;s most likely the console
+> + * So let&apos;s leave module_exit but move module_init to an earlier place
+
+Again, your tooling is broken :(
+
+thanks,
+
+greg k-h
 
