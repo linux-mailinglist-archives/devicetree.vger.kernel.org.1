@@ -1,153 +1,314 @@
-Return-Path: <devicetree+bounces-297131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4FPjKXHpBGrOQQIAu9opvQ
-	(envelope-from <devicetree+bounces-297131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:13:21 +0200
+	id yIR5L5/pBGrOQQIAu9opvQ
+	(envelope-from <devicetree+bounces-297132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:14:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9E553AE79
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:13:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 212A553AE88
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:14:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ABF67301E3FF
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 21:08:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C399C303D31F
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 21:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340AF37754C;
-	Wed, 13 May 2026 21:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249CE3955F2;
+	Wed, 13 May 2026 21:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxtWIFQn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="visjTPHy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013010.outbound.protection.outlook.com [40.93.201.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA921E8332
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 21:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778706512; cv=none; b=Sou/WmJn4hCqC4gng3CNq+FIGhuHJX+2rDplyLcmOE40mxVxlHUQBQUINBMJcZEMdRw68YzLr0axYh8dPYkDO7TUroq0GbUOBnp9yJomm3If4XVMfQditWWFCv2dCnJW/yAhu17vS78JyzGjsGP3mZ3tMN2cUNzs03PPyoCgT8g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778706512; c=relaxed/simple;
-	bh=axsdM5jHVa+eaMxiTl7KMfeq2G0PSZwYX/Cx3NZ1kCo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=PCvDFBNfNMvPubB61gTyooxQY2z0qOoR8cHFrDxMqi43OJZgA4/+LPi2alx42GaeAzNTYzdm6sT7Ah9wzWYHdP0JqIM+ZdM0XFSZ8I22b+AH1Pkzx22AlnnQkBuKVujrYbMICeqlyEfq2uytwCnTbtnXUffI8nPVjq2ScwQ117s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxtWIFQn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46283C19425;
-	Wed, 13 May 2026 21:08:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778706511;
-	bh=axsdM5jHVa+eaMxiTl7KMfeq2G0PSZwYX/Cx3NZ1kCo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=mxtWIFQnKmj4di21XK8n8HRX/72gTZYVZRsJxC0Z69RLRBqd/hyDR5Ov1zbL+i+lC
-	 J8rsbV741UMOo6gbR/FFsP90kWZcsyu3c2YaD5eclEIPKV0QcYOBLgA/1I8RasDUBY
-	 DVjEFp9XL2nzIwMaYOgve6HRnTfHkpbFbM3ybmBqIXSdzNiVVg/eG+2jwSEuEWiUua
-	 tN6yTajcn5TIESgCig4pGMA1n6N/GfW9zEP1IQ0ZxSoVuPQZAzV1JvL7/6JSM2rmrj
-	 UqWdiDOs0drMEF//22dWj9u7JnRx6U6yOa3iyhy24COtFt+pbf19/0RfTu+aLbc/Zq
-	 /bsPphrvAE8Lw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 05/10] drm/rockchip: analogix_dp: Enable hclk for
- RK3588
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Damon Ding" <damon.ding@rock-chips.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260512095644.1946084-6-damon.ding@rock-chips.com>
-References: <20260512095644.1946084-6-damon.ding@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 13 May 2026 21:08:30 +0000
-Message-Id: <20260513210831.46283C19425@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B979E37754C;
+	Wed, 13 May 2026 21:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.10
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778706595; cv=fail; b=juZXYLRFrd+BPLdrbb9KNyScb7DAyCkl3qusEW1gDASyerqhJ9H5IwnRTsGeej2epWkkdPg90Qwa220w93FnAztdGcn4LdZiHvyXLBY2H9qg/zhzFvfKOP+wJxWfqRLqwtb3VsP/uyWWD5K8X7+NLeR/FfTesb8NtCBvdwOfCO4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778706595; c=relaxed/simple;
+	bh=M3P/WCS8weqOmuV0TzpJkF/S5w6P79wvVbeZi0DjsDE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NvQO88Md2knCr3By3iaNLH9RpsO9Cjl5Ufvc3f9fgtXRQjXSkkIn8YDQdECJIH/t27IegFx98JCnNwbArWs4yVFeli5iScqcO8zxajMx9y1zZPTLTxBNKp5g+ppdDLpu1vAfJNIApqkf1wnfYbLK8HVNyXPG7e1gCt61FlMQ8o8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=visjTPHy; arc=fail smtp.client-ip=40.93.201.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S/rRTu3CWLeMvQkpz1eWcg+Vso2BTcRqH/JkHUNxA0w8Sh2XZcbvWDX65FSOIWHQVD/aKtXPoS6JYmN1XmwfUYI60GaxnuRyMa+AGfHVb+Kib0QD0W0BL/cTHlcZPxVnFEgRX1xP+ZdvwkyyrHnz36L5kWl3ik/HLbmvFesQvOg/dsJiYiFIvX9Q2Gf34AFlXp5xU63UTiaJ0+DCRtEgmijqHvieZGTlzHevYN91G9YHWK6u5Azev20F3pMRpnYj6dzy7FprIXvXDSMPJ8mWDBwqhINAsiNryc9NbJO/mDgs87JuxeNHfglQ83Nav8zV3+T3BKLK9jJcdBDpuUH+PA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fz7FP/fHEhjZu36JAQxnsNcotFoCNQ3h15Ut5zIc5W8=;
+ b=Vz9DMmZlvPI0i1aQXytVrGlGQ6fImiHbeTHePG9ZzjI0kv8pEJHZosMI+9s3VA1wi54b1JF/b5MvXKv2QzdxEDqyia0fMEs7AyqmxiYmfxZPtwAGvCU/2HgS6TTSEswa+QkbRY5YPv4IrYqo5jqyJDgbNL31ylg6vO0ArlbrMYGRRnFpM7uHlm7pPAj1ZZZ9UQ3OO+aydHY2H/kLJ8rwPpuzYLgNRtaCrAksPg/WGzmptEL+dqek6lJvv5r4VDAdnvvZjvjYIxMtmI7b90VqeQnxzkHu0OPIhKbcFf02E6eHvbRInrZuNncIJriHZw6p2y/QnyHcZN9w9OGjrop50Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fz7FP/fHEhjZu36JAQxnsNcotFoCNQ3h15Ut5zIc5W8=;
+ b=visjTPHyefjjtLdosU7IFmUVmUiMSY7GMYGZjgAYB4apb6p5QJi09w88EWJZ8QTjkgpL6xZ++fdu56FaJ+w0V2u6SuV66QJ/iE605FdDij+hG4M7JukGrfPfJkdR17ZrIMJ3VO8NVcxc+m4deKqXQDM8Pnc2GZLcazeIZ/FCPz4=
+Received: from IA4P220CA0010.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:558::15)
+ by MW5PR10MB5852.namprd10.prod.outlook.com (2603:10b6:303:19c::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Wed, 13 May
+ 2026 21:09:50 +0000
+Received: from MN1PEPF0000ECD6.namprd02.prod.outlook.com
+ (2603:10b6:208:558:cafe::27) by IA4P220CA0010.outlook.office365.com
+ (2603:10b6:208:558::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Wed,
+ 13 May 2026 21:09:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ MN1PEPF0000ECD6.mail.protection.outlook.com (10.167.242.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 21:09:49 +0000
+Received: from DFLE213.ent.ti.com (10.64.6.71) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 13 May
+ 2026 16:09:48 -0500
+Received: from DFLE212.ent.ti.com (10.64.6.70) by DFLE213.ent.ti.com
+ (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 13 May
+ 2026 16:09:48 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Wed, 13 May 2026 16:09:48 -0500
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64DL9hTA639443;
+	Wed, 13 May 2026 16:09:44 -0500
+From: Swamil Jain <s-jain1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<tomi.valkeinen@ideasonboard.com>
+CC: <r-sharma3@ti.com>, <devarsht@ti.com>, <praneeth@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <s-jain1@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62l: Enable HDMI & DSI display
+Date: Thu, 14 May 2026 02:39:42 +0530
+Message-ID: <20260513210942.692269-1-s-jain1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 0C9E553AE79
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD6:EE_|MW5PR10MB5852:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9fd6a305-aa31-44b2-66a9-08deb133f7d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|56012099003|18002099003|3023799003;
+X-Microsoft-Antispam-Message-Info:
+	GAxC5tQqd6jj1u9J+RC7keZZs/weTzvFvpF064RGTsdTmA3rL71yMvRPbnk6uW6V+eMP5eiQ9MCgg5msEAIcsjeitukoNpQ2DIEhCo6RVhDydhaa4cw4Btf+Q6IgEUtgmKmuKC4m9m0M+wIaT+MiD1joA5LrCSsE7FSGsOA2bCrPuJHO3+OyJsKp6fZ24Umh8O6+XvbL7hdH18fyjwPbCtmnh2bWOCZpiQpzUv3RtTI+SDqqOMYw4wd2RtSMuFfmtlL/UFLolh6sy+wGP1gfqyceQ1JDS8ApeMbyFGc+QooqXGpP463fU/sl8lUSSyv4O+SaAHRQYNZihfa9Cntzu/TYjFBOrmZwGJVYpqeRrAynF2qjgSLU/LUhJ/t+E/9UBiHqyd59LiyM47wkmP7Xzce6+CvgpmAbPge5k7LMzNGiFtDKuk558xMBc+awTwIBd4a15BSSCHCqRsrQTrOR/kUXLQ/SfyVf2bA7tm2ABayrqF1pLfrQcmRdh6BpjuYfMBoyWu3oU6IuXoxTCNeIrcIZG5CX/zn4NxAX87r+OTIqfo0oPfbjdH6mUhYkkzLJa+Zt78N6pSQ6fPK8WBr+cLqUn1eV0aFLEFyvLbqyvaEIihkeY/aloI+ueQi120IZm2bqQq29OLrUejzqnfuFOMvOKu2/XcX/Zv/0vUXViIkzKMHrh9KnNdNQ+rlMVQBR3HQGbQpRuipYyDus92E6Qz1JmaFs4cIGcd5UCh7wBts=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(56012099003)(18002099003)(3023799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	EXp8WumT/5q1RsPSce+VM635xErNs9iigJRohazjhTTzmAGVTjyvRSjVUa8z/zpx44dFnkubk1z4m6ZLxtOYBEtvoGvQmKQ+OCpG0fUBX1qPhXhxniEQagXICVNXoEYT/Nn5bWE1/HdYU33LlV5rru1gP+rm7t8BSgLoz0d+zM+IbuXOIon3OhzRVfK2w3wiJA16m7FC6vO60f4v894ZWHbVcFCD82/gKCHYOzCs43pPQnlhvFXXaLUcQb0LgrDmEIHueREvc/juQDgSPDti+vb9wQqW1KY7pmF700x9lsEnNfdIzpbTLX0hL3jyaQOAp8OwHxJRCp1jKKG8IR2iPIdMo060OoV4/yAFiS0DfvanN5JKdW/vNlry/Ela3l7P3hsblQveRV1MtW++KR3h5d/eKGBboPdEn1BGRuLpFrAVs7sVmRlRUGypkJ1cMIDm
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 21:09:49.1680
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9fd6a305-aa31-44b2-66a9-08deb133f7d9
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000ECD6.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5852
+X-Rspamd-Queue-Id: 212A553AE88
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297131-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,rock-chips.com:email];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297132-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[s-jain1@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,ti.com:email,ti.com:mid,ti.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,301c0000:email];
+	DBL_PROHIBIT(0.00)[1.204.208.192:email,1.209.100.160:email,0.0.0.23:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The newly added `hclk` clock is explicitly kept permanently enab=
-led, bypassing the driver's dynamic power management.
---
+From: Devarsh Thakkar <devarsht@ti.com>
 
-commit 55f729190dc3e9f8e6e9a2cd8960832ed10a25ba
-Author: Damon Ding <damon.ding@rock-chips.com>
+Enable DSS, DSI and HDMI related nodes and pinmuxes.
 
-drm/rockchip: analogix_dp: Enable hclk for RK3588
+Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+Signed-off-by: Swamil Jain <s-jain1@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62l-main.dtsi | 47 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62l3-evm.dts  | 58 +++++++++++++++++++++++
+ 2 files changed, 105 insertions(+)
 
-This commit explicitly acquires and enables the HCLK_VO1 bus clock for the
-RK3588 eDP controller. It replaces an implicit enablement via the
-rockchip,vo-grf phandle reference to align with updated device tree binding=
-s.
-
-> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gp=
-u/drm/rockchip/analogix_dp-rockchip.c
-> index 06072efd7fca3..d2af5eb29dbb5 100644
-> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-
-[ ... ]
-
-> @@ -327,6 +328,11 @@ static int rockchip_dp_of_probe(struct rockchip_dp_d=
-evice *dp)
->  		return dev_err_probe(dev, PTR_ERR(dp->pclk),
->  				     "failed to get pclk property\n");
-> =20
-> +	clk =3D devm_clk_get_optional_enabled(dev, "hclk");
-> +	if (IS_ERR(clk))
-> +		return dev_err_probe(dev, PTR_ERR(clk),
-> +				     "failed to get hclk property\n");
-> +
-
-Does keeping this clock permanently enabled bypass the driver's dynamic pow=
-er
-management?
-
-Since the local variable clk is discarded after probe, the clock will
-remain enabled as long as the driver is bound. The driver currently toggles
-the APB clock (dp->pclk) in rockchip_dp_poweron() and rockchip_dp_powerdown=
-()
-to save power when the display is inactive.
-
-Should hclk be saved in the rockchip_dp_device struct and managed
-symmetrically with pclk to ensure associated power domains can fully enter
-low-power states during display blanking?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512095644.1946=
-084-1-damon.ding@rock-chips.com?part=3D5
+diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+index 80615ca1e01a..1d255c9138db 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+@@ -584,4 +584,51 @@ scmi_shmem: sram@0 {
+ 			bootph-all;
+ 		};
+ 	};
++
++	dss: dss@30200000 {
++		compatible = "ti,am62l-dss";
++		reg = <0x00 0x30200000 0x00 0x1000>, /* common */
++		      <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
++		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
++		      <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
++		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
++		reg-names = "common", "vidl1", "ovr1", "vp1", "common1";
++		power-domains = <&scmi_pds 39>;
++		clocks = <&scmi_clk 162>,
++			 <&scmi_clk 161>;
++		clock-names = "fck", "vp1";
++		interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
++		status = "disabled";
++
++		dss_ports: ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++
++	dphy_tx0: phy@301c0000 {
++		compatible = "ti,j721e-dphy";
++		reg = <0x0 0x301c0000 0x0 0x1000>;
++		clocks = <&scmi_clk 348>, <&scmi_clk 343>;
++		clock-names = "psm", "pll_ref";
++		#phy-cells = <0>;
++		power-domains = <&scmi_pds 86>;
++		assigned-clocks = <&scmi_clk 343>;
++		assigned-clock-parents = <&scmi_clk 341>;
++		assigned-clock-rates = <25000000>;
++		status = "disabled";
++	};
++
++	dsi0: dsi@30500000 {
++		compatible = "ti,j721e-dsi";
++		reg = <0x0 0x30500000 0x0 0x100000>, <0x0 0x30270000 0x0 0x100>;
++		clocks = <&scmi_clk 155>, <&scmi_clk 158>;
++		clock-names = "dsi_p_clk", "dsi_sys_clk";
++		power-domains = <&scmi_pds 38>;
++		interrupt-parent = <&gic500>;
++		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
++		phys = <&dphy_tx0>;
++		phy-names = "dphy";
++		status = "disabled";
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+index a1af4571a815..7462921e2180 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+@@ -119,6 +119,18 @@ vcc_1v8: regulator-3 {
+ 		regulator-always-on;
+ 		regulator-boot-on;
+ 	};
++
++	hdmi0: connector-hdmi {
++		compatible = "hdmi-connector";
++		label = "hdmi";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&sii9022_out>;
++			};
++		};
++	};
+ };
+ 
+ &gpio0 {
+@@ -192,6 +204,36 @@ exp2: gpio@23 {
+ 		bootph-all;
+ 	};
+ 
++	sii9022: bridge-hdmi@3b {
++		compatible = "sil,sii9022";
++		reg = <0x3b>;
++		interrupt-parent = <&exp1>;
++		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
++		#sound-dai-cells = <0>;
++		sil,i2s-data-lanes = < 0 >;
++		bootph-all;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				sii9022_in: endpoint {
++					remote-endpoint = <&dpi_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				sii9022_out: endpoint {
++					remote-endpoint = <&hdmi_connector_in>;
++				};
++			};
++		};
++	};
+ };
+ 
+ &i2c2 {
+@@ -375,6 +417,22 @@ &usb1 {
+ 	pinctrl-0 = <&usb1_default_pins>;
+ };
+ 
++&dss {
++	status = "okay";
++	bootph-all;
++};
++
++&dss_ports {
++	/* VP1: DPI Output */
++	port@0 {
++		reg = <0>;
++
++		dpi_out: endpoint {
++			remote-endpoint = <&sii9022_in>;
++		};
++	};
++};
++
+ &wkup_uart0 {
+ 	pinctrl-0 = <&wkup_uart0_pins_default>;
+ 	pinctrl-names = "default";
 
