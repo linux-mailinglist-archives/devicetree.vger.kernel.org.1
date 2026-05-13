@@ -1,91 +1,93 @@
-Return-Path: <devicetree+bounces-296716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296724-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBiNOLQ7BGqbGAIAu9opvQ
-	(envelope-from <devicetree+bounces-296716-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:52:04 +0200
+	id 2ExeCdo+BGoqFgIAu9opvQ
+	(envelope-from <devicetree+bounces-296724-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 11:05:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7818F52FF62
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:52:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9B4530331
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 11:05:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45ED1301829C
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:51:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B91103025CF1
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052483E0240;
-	Wed, 13 May 2026 08:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689013E95AB;
+	Wed, 13 May 2026 08:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="neV+CQx2"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="n4+pZSz6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023119.outbound.protection.outlook.com [52.101.127.119])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11021077.outbound.protection.outlook.com [52.101.62.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2063E3DD864;
-	Wed, 13 May 2026 08:51:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.119
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E023E5A2E;
+	Wed, 13 May 2026 08:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.77
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778662268; cv=fail; b=fdEndTS8i6i7iEgMid7iA3BBCigDYeDNfdT98bzMKFuKHYm5kG4mJ2NuV2ngornhs8h5uaUSUxzD9aoWFCY6txmuE8HgX4t0P3t5snJXCFiDe9xKoUeQFvBHVRwrLUWj8l0JSQFd64U7fTUEdd8iX/ShAUQY1eAFNjBoXQOoknk=
+	t=1778662755; cv=fail; b=LME4Auc2HFW0hqFWYWmDRMIERT6mFCbl1wEuzc9DDRMjxRvcLCutvvMAs+kUlrwtVu0XkuZqQALoOAc/nKgWmgNYIYw0hzajFbxGpKnwoqk4Ka2+TXbPYkNiR3nh+/Fp1ulOe88zG1J9YvLFP+UiQZFCvhBBSECxiHymsMia5+M=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778662268; c=relaxed/simple;
-	bh=J3xgd1WeVZ7216kjt2heDyXtQuVAZWChXPG6++gKDdg=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=RUGVGUrUTrvWodFZVNtxxbcDyhu/ry1Mq+mqEByMkhk0odw+I9rFbXehsCHam8AT19/zHHbLvAP3qXNZwSMj5rjrcvt857/W5iQbyhqoq3UJAj/yYKt51QBIYZxqEbOAlFGz7LBEECOJHTknrdpnUeh9h2KhqIJRZlAyxhaJEOs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=neV+CQx2; arc=fail smtp.client-ip=52.101.127.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	s=arc-20240116; t=1778662755; c=relaxed/simple;
+	bh=R8aDJKQ6cvZE16He4chc4jDbUQp4o58Up/zmvkoLjo4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=CO+38iB+++AflFhSecTdTza9QWMrTzSzWhVh3PhVOT865EzPtuY6BS1sYHR9vzX9J2+JEyFykyqsmVWnZdCbn3eV5Axbl6chVYFa6k3NKBk6AttzNylS8wa4GEXo0AdfEpcN8L18Dbikv9eZmgpXKiWEmVqec3zxethE80VrEXw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=n4+pZSz6; arc=fail smtp.client-ip=52.101.62.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n5CZPwOZNOluNrmOftsfr27BfloJaXQo0Cn9+j29QvmjS43wg/oo1Gtop0eccFZ8Bqy99JOlb42jLbmEiWaPYmPsM8d4tWXDm3MiztcnuZSxG9+5ArgTBr4wUXkTeNhEW+ArSX3QQKY4Ac5FB4YsOlMaPrqwEVAk2IJUWTQoleFOHYDuldEtV0KjDVDkK6divNlVCurWukdF9h67APwaGiVk0wHggZfhA0v/ip0tIzO45GOUnOx7JHN2HbmopVkzGi73Oj43Ye0WcPme4sid/smO7BNoyctaHJ72SV9s4T/b1/fV3gnxLEIA2sRfYDMo9WipMTcskVc81Gq02m7bng==
+ b=zFF2ADsBxq/w4POQujRutt4ER5gad4WhytOgSnO2HAoFS9f5VgZ8JOswdWJbqIadZWWCruZFYGj3Xn/USEPHQkzX/yVNfqjNpWpcVbetITlDYgNqh5OcGb+JgKBnTt2yHiRKZBZI/pSg54wNl/2dk3H0y4Bec4d/QSC/da7Gmpa4O9OTnrKs3HWZw3whKTD1wV9y4cxa0J0yzOILnvstFJGlXqaXuJleskNpBY7x+IqIHjBVIDVnZxWTbQj0570DGrCpuqdu5G8XxaEGGaVEjCDWnUvkbcfj5B0M1bsR4dOGFTD/NwhA943kdZTuLYjiYpiEokFNt6ag5iVx3zqBaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZHz2ZP/Yj/LVP4hC0jUYTBaLqWIPQwgf4nCmR7VfxG0=;
- b=jkX2v94LJFt9o8frhvB0XzvZgulstSlepXDB7JDVcVgcxWEntUAC1pdImH7smCt34+q2AkblF2OlF1DM51WA21+eoFTdZ3mk7SI/z+UISMM8AgpEHUs9Pe0B8rJJMiu97Y7KFsHmqShVEl2i2sPAwTB3lRRW1htN3lmeG+x8xILvb/ilEBDA8gck120MKRJnLWEGMRA2Eu4tcDgwZJxIxE6k6kPIJfSXZsTqD11bufS0zVXHN2Fz6/V0Qw2E+sApumEI4duHmnPuAPhRv3a3SLYaQO+AALxJ0wC8qa0y22NV7RRuUj4CQVnYT1zCnnyIazvBT3vJGno0vJXTJvEmkA==
+ bh=R8aDJKQ6cvZE16He4chc4jDbUQp4o58Up/zmvkoLjo4=;
+ b=TRlaSUCx/wfwkB9g2l9IFbGZT1AuzoRrvf8Rfwqk9whE4mo9+XWYhqDglWHAoFdaLKbQ3hvbL0G5qAc+Sq+il8fyxSWGrjMyUdrCbRpX/fnOUNuBDhZfrYAWbhfvGzdBdfW32E8tipqkkRaVDoAFPNDGdfzhjKuqNztWM36EZIuEx3/MF1SzjN2r5cSkxf12r93sohSmWS+7G9VfrwHbV/wl6/X0Nnj0YElY2otYi+kfvHqhPN4vGg5syYcN9jJ4FDafmtspYKWUlxH74KxIAAxYhPHXpj4m3F0aypHJ2B5voqMHwfzB3I/ZeSSQcpKezLfOP2Sm/kNd/oGtcTpuiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
+ dkim=pass header.d=axiado.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZHz2ZP/Yj/LVP4hC0jUYTBaLqWIPQwgf4nCmR7VfxG0=;
- b=neV+CQx2oxY1jYIkiUnpaicSxSrVuHsOg+aReKuy5YCINx34w4GYfFaLluBXfcJLUp+QVpwWJD32GRDlPn5Pb3BChJjn/exCyYYB2YNnHQ6p0OYsIEUN8h1Rrl+GFxjbpmGzINUqf4UMFDlJRPPzR2aD8qxz4mEHXo4emb6ZHlXkN29ty1SI/QMJqXJQMWksbRyf4UbAqlKJs0sC8p6YO48QcB6HdQ8gLzvlGB4dJclLlgcPVWQ4K8bcqeNGhMNcr/MXxT2Aknn26fV7AUIu2YkqmM2HQWcxn/6ILOOrulgXOTPZR09HSl4LJglY+ZTTqKm5tqxCKFOKzOVJ0wGhbA==
+ bh=R8aDJKQ6cvZE16He4chc4jDbUQp4o58Up/zmvkoLjo4=;
+ b=n4+pZSz6T4NqGXqtth7KtNbaT2t7CSWwA/zsNjB6BWkOebrQKier7prycn4pjMDWl1ayPd/LfMOXgUSC9+qKSOMh5ZXxHKwQBzG7dJPpZ7NSdlWazqZ7/LHJA4W4+rL7tY0RsAKW00NEb4oIYzLR7z3dDfjtJ/6TAOhAUm6wWWrT6HaPdIYJfThJRCGcyovKWUYKmIeQoZ11OFmS9cMq7FEr3Dl+oDxVYfjygSN4xJT5RoE3sCV1kh7nCJgqsgbWCyiEa/ptZnqnvfh2a0qb+hwD0kOkoxlBYDmUZ6IespzuNeRMfyCKZIahTZaudHLZzy4ZCjUOJXKIvslibkadNQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by SEZPR03MB7702.apcprd03.prod.outlook.com (2603:1096:101:10d::14) with
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received: from DM4PR18MB4144.namprd18.prod.outlook.com (2603:10b6:5:38b::8) by
+ PH7PR18MB5666.namprd18.prod.outlook.com (2603:10b6:510:2e7::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.17; Wed, 13 May
- 2026 08:51:02 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.21.0025.012; Wed, 13 May 2026
- 08:51:02 +0000
-Message-ID: <00d8ed18-f753-405a-9ba4-e044129bf33a@amlogic.com>
-Date: Wed, 13 May 2026 16:50:57 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
+ 2026 08:59:10 +0000
+Received: from DM4PR18MB4144.namprd18.prod.outlook.com
+ ([fe80::cb97:ca8a:e55a:b11]) by DM4PR18MB4144.namprd18.prod.outlook.com
+ ([fe80::cb97:ca8a:e55a:b11%6]) with mapi id 15.20.9913.009; Wed, 13 May 2026
+ 08:59:10 +0000
+Message-ID: <c20dc0cb-252b-4637-bb22-6078be62b21d@axiado.com>
+Date: Wed, 13 May 2026 10:59:04 +0200
 User-Agent: Mozilla Thunderbird
-From: Jian Hu <jian.hu@amlogic.com>
-Subject: Re: [PATCH 09/10] clk: amlogic: Add A9 peripherals clock controller
- driver
-To: Brian Masney <bmasney@redhat.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: gpio: add Axiado SGPIO controller
+Content-Language: en-GB
+To: Linus Walleij <linusw@kernel.org>
+Cc: Tzu-Hao Wei <twei@axiado.com>, Swark Yang <syang@axiado.com>,
+ Prasad Bolisetty <pbolisetty@axiado.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao
- <xianwei.zhao@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
- <20260511-b4-a9_clk-v1-9-41cb4071b7c9@amlogic.com>
- <agH4_gClJW8CVV75@redhat.com>
-In-Reply-To: <agH4_gClJW8CVV75@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SL2P216CA0182.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:1a::12) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+ <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
+ SriNavmani A <srinavmani@axiado.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260414-axiado-ax3000-sgpio-controller-v1-0-b5c7e4c2e69b@axiado.com>
+ <20260414-axiado-ax3000-sgpio-controller-v1-1-b5c7e4c2e69b@axiado.com>
+ <CAD++jL=yc4rmNELLKUpreUqRbQ1Krg95C-o1xSrnD9Aicm4wgw@mail.gmail.com>
+ <106b7b64-ed6e-499f-b5ac-60c1277f2f03@axiado.com>
+ <CAD++jLn4R9ubqHsek-56s1sF9YhxYt4-C2TPdYGcYjy2MC6q_Q@mail.gmail.com>
+ <fd2ee102-db52-4a37-b96e-c16211e3d8e3@axiado.com>
+ <CAD++jL=51iWK2SyxoWOTxSQHAq-Frd0mm6cPxqYu81qifFfHGg@mail.gmail.com>
+From: Petar Stepanovic <pstepanovic@axiado.com>
+In-Reply-To: <CAD++jL=51iWK2SyxoWOTxSQHAq-Frd0mm6cPxqYu81qifFfHGg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM9P193CA0027.EURP193.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21e::32) To DM4PR18MB4144.namprd18.prod.outlook.com
+ (2603:10b6:5:38b::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,237 +95,153 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|SEZPR03MB7702:EE_
-X-MS-Office365-Filtering-Correlation-Id: 76c2b986-5668-46ef-e45a-08deb0ccc2c1
+X-MS-TrafficTypeDiagnostic: DM4PR18MB4144:EE_|PH7PR18MB5666:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ff9e5df-509e-4781-31da-08deb0cde569
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|11063799003|56012099003|22082099003|18002099003;
+	BCL:0;ARA:13230040|376014|1800799024|366016|56012099003|22082099003|3023799003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	hVPB+NcR/8jv68X8xZa+dwAPyqqCCGTLODwCR67vyXm8o5lKVK2bgF7t0oeOy9vpjRUPKKixsKzlQ38Wb9NnW2JRGNm39U5746GcHfRWF75DMfxJjR2ctHJVcHmJ2gKyLpGMOdHrkOJTp2QYtb2JTIjmE/d1bcIJrVb8iZ7en/uqk3vpNleic3OFYQNumXhrueP+VeEJ6bNa4DUL/05C3NOSGirq8MerwRhg1M2wwob5GsHrgnOaSbtuIulp3prBYZOO2stWEofoq045SG4ae6MlMB3npKKHXwVEpMcDkH7aVg6G7emwswwOYNm9h2kekiDntPmmVFIm+PhYjcJbi+wlRRTJEFJbYWbPNJsz8m1QY3qLLhW2BjJAww0wkyfuREPzOXdHKJbhPy9gRJ8hVOCIRnx3lbRL9b4nKPBRoPdSPR1drnKfj9DV5E/5KT7Nb37g4Kh1+CAV/j44fA7kMTB8UgxFvzJci+ORDj3JsEMU7+9yVLEo7ZGBVkGPR0Q0GHa0CPe5pWwR5uryAX2aBqpsFRfVWrn1u/HqL5vsZqRGHIAqLaSsl4B+pnKd6A4NLL2IcPlZwdODbU7eL7RkTD5B2DT5I6t+NTiXGDRzfjx+VKwoeGLsAmrZIJfJmg9gKL0GwelNaVvUdKRlLdNtt/ubRZZuLWxmU/zx9JJXTRw8ZuD3Z3yN7khSfIHcRfVM
+	lUyjsjBrFmxbPp3K+fP5OuUEwUtouhxy4j+hzNAtoIVQ+9xGstwkJ4KKg17uz94iq2PCeyDmhiv8i0Z7VeAErZSblN1Vrze792q+k1mrmZgTBRhRj/7/llZOpcqXcrWLCybUcsy1CLsCVyOUAy7c/mNKlnf4hwPO1BD7BGYWDOCGMXM964cFDUEiUPyJHCxzN+urUXsgsGcKvuhPWxMMPM/w+LBjrKDpVWpG3+TzAe+MEZudHPhT7axpDfV3JotYIxjzbxdXuPe0IHf76fwGDr6zWrzNx3AqyFa2pf1VTGp9wlv4rWaycf776OVKQVGQNY02gU8vvWThm4NmfxfOU47G9WCXvq7IWi8sGdT+43EIkvl6c4sNHPtQT/3iAyqcJqFqGeWfQ/wwnoEqn2YUSHyXHvQu+69Bi292q5/pkpGv/PVqvtybfsrJtWh4KcKYk0roEpbnltbSrdV25ZHYGzMXekAtlqighRp/7TX+xnOylrS/yhqG8jFRGRSv/r7vcEiXwLVFYTmoEyA2opOAuyrqzTBMgMLNGALuWRubOSN9bUtIzXb356HqsvAASwdDNgJzqcn0t+8aIwXUoH6i5+oh2l1HzWwzSFMk+gT6revt13oqkUUkvUAzYjJgWJytk5rKaMz6tMxAE2bhsO4wDH6x/HaJoUWu3IlZtqqcfJ/rPRfU5mOHYLZ5pBfFUure
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(11063799003)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR18MB4144.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(22082099003)(3023799003)(18002099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TnpCcC8veUY3QThJMG01bEFIQ2s2azNlNk9pbEVldURndmZwZkpvNGRqa2lX?=
- =?utf-8?B?T213WGpJY213aFl6M1NWcjBaRExMVldFY3kyWW5wM3h5YkZ6OHdSWVAybi85?=
- =?utf-8?B?TGh5WWljRTdqQ0htaE4zdXFNdU50b1VPeUZGL0FrUjVqeFpjM2hRMzdtZVBu?=
- =?utf-8?B?OU9MVFpIeGswdXdlT1d2K3JpN1NmTWtOamRHSktSbkxnWllhU2ljVndsenRX?=
- =?utf-8?B?QzB1WDg0N0hMdVg2OHNTRVR4TnI3MlpUdWNVSlZkbFIwMmo5WEtUdjhQWm4y?=
- =?utf-8?B?VGZlSjNNRkJ3VFZXMmwxZERXME56RlZQZDZVWFc4TDlDaW1YTTVnNmdFQWd5?=
- =?utf-8?B?SXIxaktDdVc4bGdqR3NCRmdvcFdMNnJOUjduT2REelNyYk1vYmovTjhpZzNS?=
- =?utf-8?B?dk1GeUVHK08rbTBvemhQZ09MeGF0R2FJYjBhZ0dWRFc0STV6R0xtTWVLSTNv?=
- =?utf-8?B?d29VVGNEQVdqbEhKVGo2bUVMMVBVbVNKblpHM0FpbXVLRFBXalRjWGJQc1lG?=
- =?utf-8?B?VTB6NkhTemJBU2dNVWhmeitXV0RyZGEvUjIzT1FYTTEvY2FQOW1BcjJUZ3Jy?=
- =?utf-8?B?eWh6T21uWjJQUC9SZE4wZWhlNThEcmFOcWg3L2tTS1ZWRXRRWDRXY3BkZHpB?=
- =?utf-8?B?VEdRQkxIdlRlY2pycjJnRlk2TFVFMkZzSmRJVnpLcGpIK2VuOE4rVDBwVmRW?=
- =?utf-8?B?WXlVanZUV3ZHbmtRZjUyZHJWckZMMzR1amtvYmNJVEZud1pXeVE0TENWRXlp?=
- =?utf-8?B?V2tVeTgrenRnVGhEMDEzRlJFRTJncFJmaGQ5YWRMSFM2aTl2LzNZbFgvY0pN?=
- =?utf-8?B?TGREV1dYZjgrMFkwdUFGcGVxL0R5VEJsdXF1Z05UUXl2UVdUZkxJZ2MvbTk3?=
- =?utf-8?B?bHRzWG5scUZyVGVwYjB0WCtUazFERVJyanNCUDU3MU00NkwveGhDMXgyRHFp?=
- =?utf-8?B?M054VjdGb0lTU2VzbWg1ZUtocXZKRnpUbmtmVzAyOUF1V05WcGxxTmdGeUFX?=
- =?utf-8?B?Q1ltVW04bm5nRy9LMldtNVBkVmF4dDBhc0c1UWdNS0w0MDRIWms1YlVwLzdR?=
- =?utf-8?B?VWpSZ3gwTEhDNFMrMmtXbms1SG84SkFvR2c5MXBuYWplU1Voa1d3TGpjZCtF?=
- =?utf-8?B?UFpHK0hIRWwyME1KRTVkQ0E0amhIN1FkTlY1ZXJCYWxxZStsYW1WRGZ1SWhR?=
- =?utf-8?B?emk0MGlnaFBxaS83dE0rV2ZpQTJubXBJdzBsZUY0bU9FQm8ybmwrK0VjSExI?=
- =?utf-8?B?dTFGWUt0RVV3UzhKL1dHb1NzNVF0TjYzSHN4QkxQcS9qeGJmZ2dKZ2Z3M2RC?=
- =?utf-8?B?YWhFS2JsWEtuQVovTEZuYkkrWnhGaWJVRUp1WjJXa0xOaFNBZUhiYS9KZG5r?=
- =?utf-8?B?LzIrUWRZYU1oMk5yVGV5blFqTi9nL2NWaGc2SVNUL3hBNFNLbmZJazVBNmZx?=
- =?utf-8?B?a2k0MHZLK2RmREZvVm1CY1FoS3JNMzJ0SkdHdTBZTDZPRXJtMWUvVUQzcE1B?=
- =?utf-8?B?Mk9mcE4xSmMzcVQ0bis2TEpydWZ0ekZhTjdlV2ZHSUdQNnpIcFZzN3MwenNo?=
- =?utf-8?B?eGxHVEZsK01sbkZhTEFsVEhlT2hjdU5GcEMybXcrUWFrYnZ3TTMxc1JVUUdZ?=
- =?utf-8?B?U3hwOCsycnlQZVlLcllmOGQ3b1RhZXl2QnBSWU1hbXM3L1VSV05yRjBIUWsy?=
- =?utf-8?B?V2hpR1ZZRUFRNnJsSm1kYS9tZmpzSEhBQkFlT0NhNDlDVlREVkF3WmxHRVZI?=
- =?utf-8?B?MDl6enlqcEZWWXRwS3JQeFdUdzVGQ0xXUTZQdEI4Mm9PU3hHLzM5TkFvelFK?=
- =?utf-8?B?QXYzWkdGRzlqdTBQYUgra1kzOUJWUU5YV2tGRmMxa3ZHSkkxeXc4S0hCdEgr?=
- =?utf-8?B?K2xjdmhJYlZQOFRFcERKclF2VTZMLzVhckdzRUg3czkwNWJ0OFdmOVAyZExT?=
- =?utf-8?B?ZjJ1RDV5dEZsdkd5NUp2RDdrUTlueU53dmZCRzJJK05ka2grVGFaVU1Tamcw?=
- =?utf-8?B?cXNCUU50SDlLMm8yWHNuZ3BzUXUwWkdDVisva0hlZFdnSFlWN2NyS1ZONzBu?=
- =?utf-8?B?MEw0K05hR2lGTlAzRXE4NU9KZzJzT1RLVFRwU0srbDNjczgzcFlNbVZOeVJI?=
- =?utf-8?B?M0ZLR3puTFR6eXJRV3huMnJsajZkbFF1SkYyMWZYUnlEYjdtaFJtck5Wb2Vl?=
- =?utf-8?B?b3FPSUx4M3dZVEJiMFZkLzNRSjNQK29BTTB4dTJaZmo2MjdQWGdmV0FKMUNZ?=
- =?utf-8?B?MWUrNTVzSGdvY3NTWENzTTN5b3BZODJkaDBMRFN3V3g4TG5ZY2k4OVl3UFNt?=
- =?utf-8?B?YjBBWjBQbjd3bWRrTGFmUFN1aE1mWGM3Tk5YYThyMXFZZWJyZzA2UT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76c2b986-5668-46ef-e45a-08deb0ccc2c1
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
+	=?utf-8?B?V2UxRnN6MnN3ZWp2cWdZdnQyYU9BQlZsUHRzelBLTzhJT1V5WmVoRlRWYTBR?=
+ =?utf-8?B?Wm45VVdjK1pmMzVKMWgxZitMNEJXWFhxU0xCNm42NVgvK2x5R3ljQVJzK0J2?=
+ =?utf-8?B?bXRwbENRSUVEeDFrSDc5bUUyRDRSR0FReXA5TFpWNUoreDBVRzdiWHV1K3o5?=
+ =?utf-8?B?dGd2WS9tdGVuR0h6NWdrR1JqczFnenQwSVZlT0d0a094c2FYYithbEFZOUV5?=
+ =?utf-8?B?bm55N01xUUFaUUkyb3JGblJQbGFnQk9UdjFBaUVsR0Nxb3BtYmZaSGFsbjlD?=
+ =?utf-8?B?MWMrSmZIVmRqNkIrU3dyYUdNVDVtaThSSUVrdUh0UEozNjVNeXJvWDdWb05i?=
+ =?utf-8?B?WUxtRVNRaHozRHZoNjNNRW5iNlozVkVhS3JmMmN1cFNsdnZyY2hQSWoyK0sw?=
+ =?utf-8?B?TWFzeW9nOFk3QW5uUW9FN2ZqSG5JZXNsS3Z3UmpnNFQ1QXBEaENydmk5R0g2?=
+ =?utf-8?B?TDhiRDRVZGp3eXY4b2g4UzY1OWdoTWJ5QnUybzJmOVBzVXdHUnhvMzhhRU1Y?=
+ =?utf-8?B?WUxuc3ZvVWFMNWxMeGlIZzdYK3R2ZW5tM2pGSkFjSmh3Mk1UTlhRWGxBbXVx?=
+ =?utf-8?B?RU9GZzVZd2RUK3FwalYxK2Z5Ri9SSEdDbHJMV2lyc3lzVDhhVnJtRUdDWUV6?=
+ =?utf-8?B?VDVrSGhYUEo5WnZOL0kxZDZMU0tZNUN1VDhXNjcyZ2tETnVRWHBUMmJBYnBI?=
+ =?utf-8?B?Z2dBZDdCL3hZb0hnOGhLczJZMzFZOXdEK2pCenhWLzBQK3NpbHlVZitYcXBX?=
+ =?utf-8?B?R2xDU0xsZ1EvbG1yYlJuUmdWd1ozTVEvc1N0djVHQzhseEQyMytNMUZYMm1S?=
+ =?utf-8?B?Nm5mS2FDWVBEYitXc3ZXOHh4d2x2VWZ5YjdJM1Y5R3ZrWVRON0haRGo4TzB5?=
+ =?utf-8?B?S0c3RUxIOHZRSjM4UEhtMCtkVkxjb21sdE9GWWxnamZjTldMUkZ3d3lGWEZi?=
+ =?utf-8?B?ejFSTjh3bWdSWXlpQ0tkK24yZyt1OVd4VXJYRnNPOUx4SEVCUE5CajBYbUg3?=
+ =?utf-8?B?SFJ4bUgyT0d5anpNWGZ5RFBJWTQ1SnNnTi9xZXJwcXNHM2habURsZWVaTDZR?=
+ =?utf-8?B?cGpmaTkrQnJuS09aZHlBRVJkUHowWGpvWDdVdzdQdXJ0R0Q5bkpZVUhvUkkz?=
+ =?utf-8?B?VXc0UjQ5aXZ1RjUrcFNUdFN4Qk0xRkh0ZFd6WktHK25abE04RWhLdU05RTlP?=
+ =?utf-8?B?WCtUKzZUbmxITGlUcC9DN21weGJoTUZrQy8xbWZYZzdFQVMxZkFyeGo4dGF6?=
+ =?utf-8?B?aFhZK0t2UlM5L05XbCtCTmlFMUxvYnZXQ0NtVU5UVmpkdWprOXREOXpVVXE2?=
+ =?utf-8?B?cmxPSGtCeFhhMDJWZDhSVEdDVTEzclVEVzhDTlU4bEFwZXlUZ0ZpTjVkRy96?=
+ =?utf-8?B?U3Jxa3NKYXhidVphbmZ1OEpaZnM2UDF6alhtOGZKQzZhWXNubGZiZlp6M2Ur?=
+ =?utf-8?B?SjNRRGNucWNuaklkSHNPODd3MjFWSzlSNTJKV0lxcTFUWmwvVGtQbDBkUmJN?=
+ =?utf-8?B?cFVWTFRoOTdjUkJnbWVabVR1MnpDdGdIdkJCbnlkdlFNekplc3lseWppWDNw?=
+ =?utf-8?B?ditmbHBjYmxjbHY3NDRWSXZJVGZ6MUlZQ081K2JyQ3ZWNWt2SWtCQmRxTVpC?=
+ =?utf-8?B?Wlo1R1RxN2MwWFlYVHc3ZCtBTHRrSGpNVDU1WW5lTDl4MDNYblBoNFdkSC84?=
+ =?utf-8?B?OU5MUUtJc3hJUWRJRDRURUYrQVBRTE9jNGJ4WEdhVCtiU2t5bUk5cXJtY0JX?=
+ =?utf-8?B?MVppdUc0Z2h5WnlXSnkrNzgrbG1DZXRxdlV0dVpOa1JKWTFmMG1RY0tRZC9x?=
+ =?utf-8?B?a0dORG02UGhxU3dtVjE3MHV1UXNVMzJxZE4xaDQ1Zjg2MmNFMXFUSjdvRlor?=
+ =?utf-8?B?SFNvYTVaTFZnTDR0ckRUV2hQZmthM2hWdi9ESEtzeTdNZFhZTXRWUGRXbHMx?=
+ =?utf-8?B?SUdaUXFUb2h1WnduTEZMM1BoenJKWXlITS9VcDVhQUFBb2JMTEg1dkRyUEE0?=
+ =?utf-8?B?ZWtwLzFldkZ5QnYvanJWbFVvcVNQMW5sRVBhbm4yUTZXMHppU1d1SGxXa3Bv?=
+ =?utf-8?B?TmErMWIzL3BDblVJQlZ2cUZTUFN6dkRlbmVYczduVnVWbHUxc00xbFk3aVhR?=
+ =?utf-8?B?ZkZKU2VqNWNFUHpadWpSM1JrQ0hFaC9FczJBNkh3TnJXQyt3Tlducit5dGZZ?=
+ =?utf-8?B?MlBoQkVWcW9ZTm5pZlRkdFFuS0I2N2d0QW5YaWVuL1FIRDcwSFV1djYycUs5?=
+ =?utf-8?B?ZTlJZzRqS1kvc0RmVnlkOXNSUVNPT1Y5WEE1WWJCRWpnOEwxRFJybWs3NVF6?=
+ =?utf-8?B?dzlxWDBYelpsVytycEN1OFR1Uk9iVGtIb0szOVBnN3RuRFplM1B5UT09?=
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ff9e5df-509e-4781-31da-08deb0cde569
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR18MB4144.namprd18.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 08:51:02.2616
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 08:59:10.0422
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4ci+4SUTKvG+XLdz5P5bk+hmrRI2mnPRnv6NXDRA3Y7ZPEZa8KKzuwHkF6LS6PqbSR8KCFuOJhaRCRJd80nBZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7702
-X-Rspamd-Queue-Id: 7818F52FF62
+X-MS-Exchange-CrossTenant-UserPrincipalName: DfLV2ryQvWHccvNzOW4z8iZsfhP7qHYhsh1KzVt1Jxq2M7NZp1IPe1ya4o5hQ6UGPQUpBsbBreeyk5VF0tBroQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR18MB5666
+X-Rspamd-Queue-Id: BC9B4530331
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296716-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-296724-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[axiado.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[axiado.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[amlogic.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[pstepanovic@axiado.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email,amlogic.com:mid,amlogic.com:dkim]
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,axiado.com:mid,axiado.com:dkim]
 X-Rspamd-Action: no action
 
-On 5/11/2026 11:42 PM, Brian Masney wrote:
-> [ EXTERNAL EMAIL ]
+
+On 5/11/2026 10:36 AM, Linus Walleij wrote:
+> Are they connected to the same physical output line/pin or
+> not? That is the only thing that matters. If they in the end control
+> the same physical entitiy, it *is* the same GPIO line from Linux'
+> point of view.
+No, they are not connected to the same physical line/pin.
+
+DIN and DOUT are separate physical SGPIO signals in this hardware. DIN
+signals are input-only and DOUT signals are output-only; they are not
+bidirectional or interchangeable paths for the same physical pin.
+
+So I agree that Linux should model physical GPIO entities rather than
+internal register bits. My previous wording was not clear enough: the
+intention was to describe separate physical SGPIO signals, not just separate
+register fields.
+>> Because the direction is fixed by hardware, the standard
+>> lines-initial-states property, which encodes both direction and initial state,
+>> does not map cleanly to this design.
+> GPIOs with fixed direction is nothing new for Linux, we've had
+> that for ages.
 >
-> Hi Jian,
+> I would just have the driver reject configurations that does
+> not apply and bail out.
 >
-> On Mon, May 11, 2026 at 08:47:31PM +0800, Jian Hu via B4 Relay wrote:
->> From: Jian Hu <jian.hu@amlogic.com>
->>
->> Add the peripherals clock controller driver for the Amlogic A9 SoC family.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   drivers/clk/meson/Kconfig          |   15 +
->>   drivers/clk/meson/Makefile         |    1 +
->>   drivers/clk/meson/a9-peripherals.c | 2317 ++++++++++++++++++++++++++++++++++++
->>   3 files changed, 2333 insertions(+)
->>
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index 3549e67d6988..48a15a5e1323 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -145,6 +145,21 @@ config COMMON_CLK_A9_PLL
->>          device, AKA A9. PLLs are required by most peripheral to operate.
->>          Say Y if you want A9 PLL clock controller to work.
->>
->> +config COMMON_CLK_A9_PERIPHERALS
->> +     tristate "Amlogic A9 SoC peripherals clock controller support"
->> +     depends on ARM64
-> depends on ARM64 || COMPILE_TEST
-
-
-Ok, I will add COMPILE_TEST in the next version.
-
->> +     default ARCH_MESON
->> +     select COMMON_CLK_MESON_REGMAP
->> +     select COMMON_CLK_MESON_CLKC_UTILS
->> +     select COMMON_CLK_MESON_DUALDIV
->> +     select COMMON_CLK_MESON_VID_PLL_DIV
->> +     imply COMMON_CLK_SCMI
->> +     imply COMMON_CLK_A9_PLL
->> +     help
->> +       Support for the peripherals clock controller on Amlogic A311Y3 based
->> +       device, AKA A9. Peripherals are required by most peripheral to operate.
->> +       Say Y if you want A9 peripherals clock controller to work.
->> +
->>   config COMMON_CLK_C3_PLL
->>        tristate "Amlogic C3 PLL clock controller"
->>        depends on ARM64
->> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->> index 77636033061f..2b5b67b14efc 100644
->> --- a/drivers/clk/meson/Makefile
->> +++ b/drivers/clk/meson/Makefile
->> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
->>   obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
->>   obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
->>   obj-$(CONFIG_COMMON_CLK_A9_PLL) += a9-pll.o
->> +obj-$(CONFIG_COMMON_CLK_A9_PERIPHERALS) += a9-peripherals.o
->>   obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
->>   obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
->>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->> diff --git a/drivers/clk/meson/a9-peripherals.c b/drivers/clk/meson/a9-peripherals.c
->> new file mode 100644
->> index 000000000000..338a91c473ea
->> --- /dev/null
->> +++ b/drivers/clk/meson/a9-peripherals.c
->> @@ -0,0 +1,2317 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->> +/*
->> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
->> + */
->> +
->> +#include <linux/clk-provider.h>
->> +#include <linux/platform_device.h>
->> +#include <dt-bindings/clock/amlogic,a9-peripherals-clkc.h>
->> +#include "clk-regmap.h"
->> +#include "clk-dualdiv.h"
->> +#include "vid-pll-div.h"
->> +#include "meson-clkc-utils.h"
-> Sort the headers.
-
-
-Ok, I will place them in order.
-
-After updated:
-
-#include <dt-bindings/clock/amlogic,a9-peripherals-clkc.h>
-#include <linux/clk-provider.h>
-#include <linux/platform_device.h>
-#include "clk-regmap.h"
-#include "clk-dualdiv.h"
-#include "meson-clkc-utils.h"
-#include "vid-pll-div.h"
-
-[......]
->> +static const struct clk_parent_data a9_nna_parents[] = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "fdiv2p5", },
->> +     { .fw_name = "fdiv4", },
->> +     { .fw_name = "fdiv3", },
->> +     { .fw_name = "fdiv5", },
->> +     { .fw_name = "fdiv2", },
->> +     { .fw_name = "gp2", },
->> +     { .fw_name = "hifi", }
-> hifi isn't in the dt bindings. Should this be hifi0 and/or hifi1?
-
-
-It should be hifi0，I will fix it in the next version.
-
-Thank you for pointing it out.
-
-[......]
->> +
->> +static struct clk_regmap a9_sc = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = SC_CLK_CTRL,
->> +             .shift = 16,
->> +             .width = 4,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sc",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &a9_sc_pre.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
-> You can use CLK_HW_INIT_HWS() here.
+> If you absolutely want to enforce the lines-initial-states to match what the
+> hardware can do, then use YAML schema restriuctions on what
+> values can be encoded into that array.
 >
-> Brian
+>> For the output lines (DOUT), should their initial values be described in the
+>> device tree, or should they be configured by userspace, with the driver only
+>> providing default initialization?
+> I don't see why userspace should deal with that. The Linux userspace
+> ABI is for hacking and odd usecases (like industrial). The nominal
+> use is kernel-internal consumers and those must be able to
+> request their GPIOs as well without any userspace shenanigans.
+>
+> But avoiding to deal with initial line states at all is a solution
+> of course.
+>
+> What I don't understand is what purpose this dout-init actually
+> does and why it cannot be set dynamically by the driver at runtime.
 
+Some SGPIO outputs may control host-critical signals. For example, if the
+BMC reboots while the host/server remains powered on, changing SGPIO output
+values during driver initialization could potentially reset or shut down the
+running host.
 
-Ok, I will use CLK_HW_INIT_HWS instead, and the same below.
+The purpose of `dout-init` is to provide a deterministic safe output state
+during SGPIO initialization, before any GPIO consumer has requested the line.
 
+That said, if the preferred approach is to preserve the existing hardware
+DOUT state during probe and only change the value when a GPIO consumer
+requests the line, I can rework the driver in that direction.
 
-Best regards,
-
-Jian
-
+Thnaks,
+Petar
 
 
