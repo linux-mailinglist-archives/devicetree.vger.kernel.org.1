@@ -1,269 +1,178 @@
-Return-Path: <devicetree+bounces-296608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKH6CIUEBGoHCQIAu9opvQ
-	(envelope-from <devicetree+bounces-296608-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:56:37 +0200
+	id APdiD6QFBGoHCQIAu9opvQ
+	(envelope-from <devicetree+bounces-296611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:01:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78D2652D5CF
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:56:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B80752D635
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:01:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D368F303C406
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 04:56:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B6B1307377A
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3637A392C5B;
-	Wed, 13 May 2026 04:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21AE4399895;
+	Wed, 13 May 2026 05:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yexmv0Rh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="EWzUj4tu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97D838E8DA
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 04:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5810135E921;
+	Wed, 13 May 2026 05:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778648186; cv=none; b=jU/KtU0GxlANfwY6ACOZ5B4/VMZbiriUuDyyJhSh8byFlxufir0ouJPo6Q2R4f7HwHlHo7ZwepA9gQUfT2ImPtYyWxrtjBseRxvVysCl/QL9mYryJTtUyPeR6HZCgti2xSunHlCcLOyP9rrx5wHPZSFL4c95phq4fLcywv/U+O8=
+	t=1778648452; cv=none; b=I6W3iKvViR/KL+SPPq1t/AB6TebLnQCrDawlM4PRn0sNLFSV/5QNt7LP+YeLHISf1tccSBmuud1e068kzqRXLf5S0P7gxNDtrtXtkWCjFNmA71svwDMYAKsfK4u3b99XlQcMKOEvBTDDGbunLDZz6Tb3LNw6qd1LkNkCZzw4kdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778648186; c=relaxed/simple;
-	bh=oEFqrGJElVWsJCJsodudX+JDfgrg6P0Nyniu6jzWYn8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IyhcZERd9uNJqDF0gPhHhLslyCpODlu2BpmKBFu1CTJlfFjyjr9hOprU32Hi8HC2zRZM6yK6IOnjvwSPh5OQH2EnNJakIj/MFtb+Wpgo4nWb2rSJgWy1XJ09iF5wPwNgOQ77w6ai+tGxZsgTg/fNp8T+r4doqm/UCYoSl2siuxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yexmv0Rh; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-837b39eb078so4300873b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 21:56:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778648184; x=1779252984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=BY2NFR2OVpU0WhoUPQAwuaAExP4/KT35v4Z4OHaj9Es=;
-        b=Yexmv0RhAnB3YFu28XfmvRuyVSDTYwFcYgKPsP9bNBpkkXLPtbtdVu7ze//E2Swl/w
-         VpBXpwbXZUjRCEgSLnevYoa3yfRT2KUyb5NwpS0iuIlxSstVJtaiqsvTyi187kueLRO3
-         gF8hhlY0D0B/1tLlLOwU5nH69sCyQn3QGxutMQv/YQls5/G4s415cJ9GVQfWkysFT8jA
-         LHApzBPY4xcn8Ws5C4nmUiBok9us38iQwi/11GgBXzZUwvHsxUoDr8Bw5ZX5dRabEEWR
-         TMAE14oyWf4MkeRP9kcUiPzb4IKYKaXubNJyKX06lhL5mrOSR0cyCYXVv58yhC451EZB
-         jWOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778648184; x=1779252984;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BY2NFR2OVpU0WhoUPQAwuaAExP4/KT35v4Z4OHaj9Es=;
-        b=iyVpL/I8hkte0f0flsh2wb3ql9qMbK6BqR3CEpmlTc/uVO/q303WlzNOwYWPLj+DMH
-         VZJrhL7cwqMt6WUaHX5DE3mRkYjj1RkWTWvdFQfoYB6abQ22YO5Zc+tM26DZKcnGyu0e
-         waIynXC8DflvQUFpQfrDOuQSHAZraOAngFbeGasFsh0cZgX3B5lb7y0DZwTxbiEzwdAd
-         TguwnPa37sJscoa0VbHRUtWHegfrYK7pXWC8Hh9s9bZfoVLC1ow2tIy6ya84p5BlIR2C
-         X656fI0KUd5nN8Lntur3N9M43wLEcNhmicjfXuSn+6vJssT8RawHxzhEbajXodogZb44
-         Eb+Q==
-X-Forwarded-Encrypted: i=1; AFNElJ8AxHPlMej6NVsxLkR6kJQjgU9JniveAsvZVrc/MLCsymoRWI4hEOFVQWOMPgHb/EorvOhTElQX+6QB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKFce5Jh4wJWs/AYk75Xln6i8yWgx+dfEu8Z8rMX9z6ia/wfBF
-	Ay1fwaTgFMPF7+ySi6MyiuQOSTN9X8Eom88AELJ46k5vWlHCOXXsVo3O+rAD8Q==
-X-Gm-Gg: Acq92OFSpC1PZ3heWxtlo5/34DrOH04fPmev1eZ+29pMU0L8sMwC1K5clg/bxelkfvE
-	FukmzcJLV8iWOs2cLRUlnn5ohu+rRMjPfTqy9IPM17tpbqBAfNPjAiDtedknL/nH9VDZlSKreYT
-	MrJLpJPWmqLeuTztObmCq6Y0CyZ58bkY0kEYEMC5DnSvPL35olrDJGGo9PDjrYnJYcN+BzNmxBC
-	W2bsfjLs1zRfKCJANP6hG4hkcSCMtRQcVQOViQufRuapCAufLx4WKON9bRwQkdlXDPX9zpHP1YX
-	kR3YYHW/59zDgmAUfP6oQl3yNo0B0nNb477XkeBI8gPYqhvF/NxU37cT9m58onXXDFjtNUydUeS
-	WKHNsCLFcXetTk/O+9COmHkHkEbWR8tCYu+FM2AlKvzGBuUueWmdOwT6rStBA5APNFF5aE2a26r
-	9P1J1DKN8j4CR3mmqSZWo2LIy8mBAp6/hfixHktHDIcUI4Y0lqmzGsgAvdekkr28QekddWx88Z
-X-Received: by 2002:a05:6a00:2291:b0:835:4776:7d7b with SMTP id d2e1a72fcca58-83f042b9b10mr1696659b3a.42.1778648183897;
-        Tue, 12 May 2026 21:56:23 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83967dbf0cesm30881108b3a.46.2026.05.12.21.56.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 May 2026 21:56:23 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <9fa93f79-526f-427b-bc43-1216fb5ce94e@roeck-us.net>
-Date: Tue, 12 May 2026 21:56:22 -0700
+	s=arc-20240116; t=1778648452; c=relaxed/simple;
+	bh=XH+azKLywEpqSB0i4Y2/0GdjxWHJ3jmNGYIdBfCkokk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f0mlpR9aZQaIdkKumaKw4z+Ewzddx0c6SSd2W9LgF7W3JOb5FrfFEFj+0J2gICuL81mEor5y49vfCS5R3KQslvtkcmy+HVCkFmvi6tMXpMXXl7NLe3scoEXw4TAbqYvYEExrLn+m8JdBbyTC+Wa0jQKQErVrYqEH2uiZbDnZCzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=EWzUj4tu; arc=none smtp.client-ip=195.78.66.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=wmRv0NXfvAce8J6idgvVoBoDVEkEvCPS+byXzjlhfXY=; b=EWzUj4tu2qzfPmKhV0LSyUP0e/
+	A3Cz/uHu48L9IkjANb/a1YpjHBFiqAv3m96wTSFuqYWuSYhq66rTktXoZNmFXhYgN+SZ4xLsE9A4C
+	FjHk6I/Of960hPJwD4wgsKFjbs6KWEqYQ27n2nLNvt82CpPG3Zr2fSCWOIHPd3IFKaO/f0TOsHCTA
+	wHenwyyZu3VIEVyvd4fTF0N/XL2DjWhT07Tem9YpjMwbSj9QswWL7yNHGUYgDPV0Ekmdr0Nq/dJvz
+	tXMo6Qyxm0FeqhwFcpFiVFhp6DPag+9/FW6S6wF+n0enRdIuxJQM3ZnwtG5vQLHaz1NdAMukZmbCI
+	FV+w8Hkw==;
+Received: from [91.102.182.218] (helo=localhost)
+	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <michal.piekos@mmpsystems.pl>)
+	id 1wN1i8-0000000EWci-1TeL;
+	Wed, 13 May 2026 07:00:44 +0200
+From: Michal Piekos <michal.piekos@mmpsystems.pl>
+Subject: [PATCH v2 0/3] Add GPADC support for A523
+Date: Wed, 13 May 2026 06:59:41 +0200
+Message-Id: <20260513-sunxi-a523-gpadc-v2-0-d5efde151dac@mmpsystems.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: (pmbus/d1u74t) Add Murata D1U74T PSU driver
-To: sashiko-reviews@lists.linux.dev,
- Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org, linux-hwmon@vger.kernel.org
-References: <20260511-d1u74t-v1-2-623c2bc1532a@nexthop.ai>
- <20260513031519.A55BCC2BCB0@smtp.kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260513031519.A55BCC2BCB0@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 78D2652D5CF
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAD0FBGoC/2WNQQ6CMBBFr0Jmbc20UlBX3sOwKNDCGIGmAwRCu
+ LuA7ly+5P33F2AbyDLcowWCHYmpazdQpwiK2rSVFVRuDApVghpTwUM7kTBaXUTlTVkIeU1vxuj
+ SpTqGbeaDdTQdyWf2ZR7yly36vbMbNXHfhfn4HOXu/fIS//OjFChil+ToYkR0+aNpPM/c24bP/
+ g3Zuq4feLPNdMYAAAA=
+X-Change-ID: 20260507-sunxi-a523-gpadc-1879aa5df754
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Maksim Kiselev <bigunclemax@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778648397; l=2048;
+ i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
+ bh=XH+azKLywEpqSB0i4Y2/0GdjxWHJ3jmNGYIdBfCkokk=;
+ b=5J2hVbVK/PUi9ynrfmAOgLftmF+fQ6SsWektq2wfCiUiElGmoG5SEivGpI8stoM35+fRw6Csl
+ 1XMEhEroFq2BRVkNZsXI0sEmqTDmEPTSV9GjBfystqCGyBjfXXJn8NT
+X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
+ pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
+X-Authenticated-Id: michal.piekos@mmpsystems.pl
+X-Rspamd-Queue-Id: 9B80752D635
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-296608-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
+	TAGGED_FROM(0.00)[bounces-296611-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.722];
+	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[mmpsystems.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nexthop.ai:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi,
+Add support for Allwinner A523 GPADC in sun20i gpadc driver and describe
+corresponding node in dts for A523 SoC.
 
-On 5/12/26 20:15, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
-> - [Medium] The driver fails to verify the number of bytes read (`rc`) from `PMBUS_MFR_MODEL` before calling `strncmp(buf, "D1U74T-W", 8)`.
-> - [Low] Copy-paste errors in `Documentation/hwmon/d1u74t.rst` for `in2_*` attributes.
-> - [Low] Inconsistent error handling styles for failure modes returning `-ENODEV` in the probe function.
-> --
-> 
-> commit a76e770177dc6ee5472b638d5e12f032fd0a5cd5
-> Author: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-> 
-> hwmon: (pmbus/d1u74t) Add Murata D1U74T PSU driver
-> 
-> This commit introduces a new PMBus driver for Murata D1U74T power supplies.
-> It relies on the core PMBus framework and checks the manufacturer ID and
-> model string during probe.
-> 
->> diff --git a/Documentation/hwmon/d1u74t.rst b/Documentation/hwmon/d1u74t.rst
->> new file mode 100644
->> index 0000000000000..f7786ebba0b47
->> --- /dev/null
->> +++ b/Documentation/hwmon/d1u74t.rst
->> @@ -0,0 +1,97 @@
-> [ ... ]
->> +in2_label		"vout1"
->> +in2_input		Measured input voltage
->> +in2_crit		Critical input over voltage
->> +in2_crit_alarm		Critical input over voltage alarm
->> +in2_lcrit		Critical input under voltage fault
->> +in2_lcrit_alarm		Critical input under voltage fault alarm
->> +in2_max			Maximum input over voltage
->> +in2_max_alarm		Maximum input over voltage alarm
->> +in2_min			Minimum input under voltage warning
->> +in2_min_alarm		Minimum input under voltage warning alarm
->> +in2_rated_min		Minimum rated input voltage
->> +in2_rated_max		Maximum rated input voltage
-> 
-> This isn't a bug, but should these descriptions refer to output voltage
-> instead of input voltage, since the label is vout1?
-> 
-> [ ... ]
->> diff --git a/drivers/hwmon/pmbus/d1u74t.c b/drivers/hwmon/pmbus/d1u74t.c
->> new file mode 100644
->> index 0000000000000..3127e0e5a23de
->> --- /dev/null
->> +++ b/drivers/hwmon/pmbus/d1u74t.c
->> @@ -0,0 +1,85 @@
-> [ ... ]
->> +static int d1u74t_probe(struct i2c_client *client)
->> +{
->> +	char buf[I2C_SMBUS_BLOCK_MAX + 2] = { 0 };
->> +	struct device *dev = &client->dev;
->> +	int rc;
->> +
->> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, buf);
->> +	if (rc < 0)
->> +		return dev_err_probe(dev, rc, "Failed to read PMBUS_MFR_ID\n");
->> +
->> +	if (rc != 9 || strncmp(buf, "Murata-PS", 9)) {
->> +		buf[rc] = '\0';
->> +		dev_err(dev, "Unsupported Manufacturer ID '%s'\n", buf);
->> +		return -ENODEV;
->> +	}
-> 
-> This isn't a bug, but could dev_err_probe() be used here for consistency
-> with the other error paths in this function?
-> 
->> +
->> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
->> +	if (rc < 0)
->> +		return dev_err_probe(dev, rc,
->> +				     "Failed to read PMBUS_MFR_MODEL\n");
->> +
->> +	if (strncmp(buf, "D1U74T-W", 8)) {
->> +		buf[rc] = '\0';
->> +		return dev_err_probe(dev, -ENODEV, "Model '%s' not supported\n",
->> +				     buf);
->> +	}
-> 
-> Does this code evaluate stale data in the buffer if the model read returns
-> fewer than 8 bytes?
-> 
-> The buf array isn't cleared between the manufacturer and model reads. If
-> i2c_smbus_read_block_data() successfully returns a length smaller than 8,
-> strncmp() could end up comparing against leftover characters from the
-> previous Murata-PS string since rc isn't verified before the comparison.
-> 
-I think those are all valid issues. Please fix.
+A523 uses same model as existing driver except it has two clocks.
 
-Thanks,
-Guenter
+Added support to enable more than one clock in the driver, extended the
+binding with new compatible and wired up dts node for A523 as its own
+fallback compatible.
+
+Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+---
+Changes in v2:
+- Handle scenario when 0 clocks has been defined
+- Fix copy&paste sentence in 3rd patch commit message
+- Moved status as last property in dts node
+- Make A523 its own fallback compatible
+- Removed redundant maxItems/minItems properties from binding
+- Link to v1: https://patch.msgid.link/20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl
+
+To: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+To: Nuno Sá <nuno.sa@analog.com>
+To: Andy Shevchenko <andy@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Maksim Kiselev <bigunclemax@gmail.com>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org
+
+---
+Michal Piekos (3):
+      dt-bindings: iio: adc: Add GPADC for Allwinner A523
+      iio: adc: sun20i-gpadc: add A523 gpadc support
+      arm64: dts: allwinner: a523: add gpadc node
+
+ .../iio/adc/allwinner,sun20i-d1-gpadc.yaml         | 32 +++++++++++++++++++++-
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi     | 11 ++++++++
+ drivers/iio/adc/sun20i-gpadc-iio.c                 | 11 +++++---
+ 3 files changed, 49 insertions(+), 5 deletions(-)
+---
+base-commit: 8ab992f815d6736b5c7a6f5fd7bfe7bc106bb3dc
+change-id: 20260507-sunxi-a523-gpadc-1879aa5df754
+
+Best regards,
+--  
+Michal Piekos <michal.piekos@mmpsystems.pl>
 
 
