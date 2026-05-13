@@ -1,362 +1,282 @@
-Return-Path: <devicetree+bounces-296653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296660-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGFmMOAkBGoZEwIAu9opvQ
-	(envelope-from <devicetree+bounces-296653-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:14:40 +0200
+	id UELtJX8nBGqDEwIAu9opvQ
+	(envelope-from <devicetree+bounces-296660-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:25:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A9A52E75E
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:14:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 382F852E9A6
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:25:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 153E5306C4DF
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:14:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E4FF3306B1BF
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7BEA3D566E;
-	Wed, 13 May 2026 07:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2393BB110;
+	Wed, 13 May 2026 07:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GqqcKymA"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="WvF04Chl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out198-23.us.a.mail.aliyun.com (out198-23.us.a.mail.aliyun.com [47.90.198.23])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC3F18E025
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 07:14:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F42526FD93
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 07:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778656475; cv=none; b=iwwpj1b1Evi49uy9ShVkAQejVtnS4g+y77q+Vpvr100S3/OkhQrj60IyTbBp/yI7gvRtJsqj6YHbzQ0s+BOf4ZxkUVEBGc02G/IwLFm78tnLJhkFHEMXPVZLKLB3xXnO8wDGFjh1iT/IC7N8d3PG0A0sX2gFDhxRWYWxDVpjffY=
+	t=1778657061; cv=none; b=fEIor1CIdrOmwhR/FdGoT9TIW68ZECtzv683fzD3fi58RMc8QczGeWRy1GUZ9e2EcD9TeOA0a+Z/rviFBnOWBxM7nu/7CUSGKIAuGXP8SEax9WIz3E5GoGdSOdD6TlxSYfOBrLkfEPdvkcDGMnR6znvek13EcjV/+vEiG612ugM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778656475; c=relaxed/simple;
-	bh=+KAyrj5pZaRQoU8tMWX0lEiQZTTWM6S0ZOvKPD9rVHU=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iSx+m31HFTjERQg00TgqSXlXZHWbwQ2wrQ+ZYDJnzhybKqKx87rJtxByfLq8BUfKiY9kxakbQqzElQ4AGgOLHkO678gHmNwCfDu4sDd3f8jIO6i26QbV013jMW2xcyTE9DPFUlb8+aG2g9Xk+LMvZbW0rAv7JOeMCTch6Rx/PPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GqqcKymA; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-488d2079582so66902605e9.2
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 00:14:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778656473; x=1779261273; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=72Am0oAZ5sGrMf2UhBZL+Kd1HleH7FvAarcQKJcP09s=;
-        b=GqqcKymAAiURZRJduqIaxIlwU4/MDJtDhhB9cy8st7EhRMrbOsFOpkDF2xyKFACsCS
-         utzcN3eKfesB0Uv77e/+VUk3It9NcIIxqYPdimoCg9eRW+4fwVgadAKBpade6KNhkZ6P
-         t4H7ONHRDPWnOlU4Ul6smVVZlaJ06wXyvhGBq6ZOvE/wZfp/ZlrAKwRcEEAH07F3zYUC
-         kJbobM6m7v+bLkXUaJoDbqcSQjKcLSpvVjgzwDIWRiHOCpxNGQWytzfRZmHU0WnS3DDv
-         x/us05SM9UNwO+x77YythGxSK8OPrgpGlVgub+Q0p64uVvBZnaOEL6QDlNKjAaZ+hQWI
-         LrJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778656473; x=1779261273;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=72Am0oAZ5sGrMf2UhBZL+Kd1HleH7FvAarcQKJcP09s=;
-        b=ItPC5YlyQOvFR65TIHksgU3Pv1cT+JlzGSaWi++BaNJqn6XWUlrD3+2xj3shxM97Kv
-         3scwUWDa2f85OuaTPkbF66ArwfQFWiMw7LDuQVbsL4ARp3Q8yQhphKuN5j0PGzEEqcST
-         KfYn8YrSJpbFSaVNF0LKM/JxVmYP6MJi8ByuO65lt9J5OW19CH8M0a29npSywZf7xSDG
-         PazrQRObdDUTC3EFw2eSFgEq/q1UpcwXAiBqpAbqxQG1Hie7dUhUf8051hA3v0aQamCW
-         fo6BGWFql0VoCvWHnL08gMTCuNqhfb1W2XXGDF1B1uiccwnJCvjeozIXgeF8Fh+411At
-         P60A==
-X-Forwarded-Encrypted: i=1; AFNElJ8gHqGfljQZ0ZQlbU5mvvc4wu4WCzLSBbIJa8kM1HvRMw9pxgIJUrWYZVzK3xoV/F93nns5dkwcLQQD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+Lv/zs0sVaTZs97bAbLBHl8RcWsdDEp/yODpmKSxnhjGGJJqc
-	FARkC1XDIBLWY5bZQnt4cyml63Apq1lV1Xa0kD0aiGEjffQTg8TuDFYM
-X-Gm-Gg: Acq92OEq0mRgNVTfiQHalEUooeG+Kc0RIrqrYbl92wtEoz+b+Jlh4DSMeZyQ8LDmPfY
-	or/ZuJmrRADlSPdcnayIQGa5j6elaZlTMpQiX1IwCthGnpWhyY7uM5w7/5BANgjA1fAkC+HVitE
-	2iDQeKX5MhfCdWshT1Rz3j4bMiwdJpl83XXM0uBmsg79BHeF7Uggps7VFyorH3c1wen+3Um7aq8
-	ejAn4S5teMwpat/GkLzKQgayUzElkxNnyPY/ZvJbCSDNtinVejGhJaOeEZk1Qmni1/3E0m60g3x
-	EfvuTflHr6U6xG+pj48dyrRxqGZxsToyUNIS98fNjdujaSXFGbl4s2sAUaGjNx82nvr5NTtBWu2
-	MtrUsfX90iqmSOYr+7+33HGBt4lxFQdb5BbyZWJRQ8ynSD/uMnQgADFtO9nE+o9oQwDsSkKtH2j
-	sLfC9HfTlh1RUmG9WvPKqiV7VOyG/wwx0Cau+YySr6TPdZ0YEvnEUVOVLzZdP1R4RI5WtJccMCV
-	Sj+qoRdU6Y5lvLHJCgvxWn+8093IGFTEf8Iu4cfDR6TEx9B8g==
-X-Received: by 2002:a05:600c:19cd:b0:48f:be94:d82c with SMTP id 5b1f17b1804b1-48fce9e1a34mr20092615e9.19.1778656472387;
-        Wed, 13 May 2026 00:14:32 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e8e566bc8sm55188335e9.0.2026.05.13.00.14.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 May 2026 00:14:30 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Wed, 13 May 2026 08:14:28 +0100
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Jonathan Cameron <jic23@kernel.org>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>, rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
-	Steven Rostedt <rostedt@goodmis.org>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
-	Sergey Senozhatsky <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>, 
-	David Laight <david.laight.linux@gmail.com>
-Subject: Re: [PATCH v12 02/11] lib: kstrtox: add kstrtoudec64() and
- kstrtodec64()
-Message-ID: <sqt72hd4xdu6rj3zecvcpo3bbfsxlh7u4bi76enbq64hpgjm3t@vksuk4cuo76x>
-References: <ur6brs3yjzyb4mtelabmcglxjltddqvjxtgl3lkdkmbjlkmnsq@bwd6rz7gided>
- <CAHp75VeoH3yVfp8NWjKfc_df0VRLkyf_SK4e==-wJOEodVjW_A@mail.gmail.com>
- <q4rmlkgecvztnvjg7b7wtqyvhdy7uxgaouvhae2mlsxaasasbf@dfakp4m5l5sl>
- <agNfqiZpGZAM-x_H@ashevche-desk.local>
- <ru2h3ip7qf6j54dlrij54nwp45uyq6m2e6zspt6v6eynpsagqq@eo5v3yparuhh>
- <agNnfWZa9_NyLoWq@ashevche-desk.local>
- <bc7mqfgll34vyaxdtvfssgypkhyx233wd4hxfzu32rddxnolaq@rd6c3z6yu6aq>
- <agN6onIAwG1yn5p6@ashevche-desk.local>
- <hvwyrb7g3ar7hzesj32zoxzqvjmdtwybamy4zxepqdbu37qvog@xnmgqhfya34f>
- <agOKq0iH2CHQ3TIg@ashevche-desk.local>
+	s=arc-20240116; t=1778657061; c=relaxed/simple;
+	bh=QsHEW1JdmqmkfyZTfonQtwjYZe6c5LBxUYVFUTAcOPM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tMVISFmwO/AfeNAcfIKP75TIke965LaI1H+O8e5Bf+0AGj+XTWDAfIfRQ1vAj8S57FO2RVUS6EYLqvCU7MvOBU0DFnARsISa76/gQbq7LBGHdogn1gL/lWg/AjPVHRK76cctLs7KmPvnL+8yvCmGNOv3XVUoTYwRhyvjyk+cN7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=WvF04Chl; arc=none smtp.client-ip=47.90.198.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1778657040; h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
+	bh=DUWgtEeLjpo1vNh2+QkOBk1kPDLJmhxUmkhc8h/nZJM=;
+	b=WvF04ChlCSOuFzNMtJVSrJmtVXmJRttk+UvmJwy+huL5RQaUZhY2/2FUgTar1kN5mcuU8TCplmV8ewuvNxHlZRT/j0d+fALH5oqhquqfOnEnqchs+PAIoEYcK5S1EyqDscYhnFl/j9UqcXg0wwI2sS4DNZlbvoHoBXJBQRuWS/tkST/hG2R8XOJfTse1ZHUILXqVPFgazTfzESPLkkWsitrtq1diWPATCYk1fu9Qh0U3laczb+IzN9KjF3/08qlZIIf1lzcUnzr8BatAzSnXspO20pkhsRa3WNIpB/yI4V5J9YJ10UhwmadOEJBRA9LuYOyGTHG2w7qOeocaXas4ow==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436764|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.320713-0.0274654-0.651822;FP=4490223146391758010|2|1|2|0|-1|-1|-1;HT=maildocker-contentspam033037071049;MF=syyang@lontium.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.hW9AS4O_1778656720;
+Received: from mail-oa1-f43.google.com(mailfrom:syyang@lontium.com fp:SMTPD_---.hW9AS4O_1778656720 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Wed, 13 May 2026 15:18:41 +0800
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-415b23dd6e5so2454171fac.3
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 00:18:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8dl9mTqMC8ujh0QB0Jgx+TI+pJl6l56L2BNlRNu6bCB+Vq67ukAqgLQIJVVE8un4LLKIz54p2idOq2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+twLq8EC7V8JKSpLILGez1x+LhEJ2xZkQVBzs0tUTMXA2wGeM
+	8EakFid8JdCm8njIsZREMy749CwwFuLuAt0Ll9/H81ivVFLJt8nI/DFZx4TCZaaHP0Qn4ltPh0b
+	pwIX6q1b/w3Vh2n+8iW+LHMaeIR72tLI=
+X-Received: by 2002:a05:6820:1b0c:b0:696:1bde:cd8f with SMTP id
+ 006d021491bc7-69b78e45ce0mr1226841eaf.53.1778656719922; Wed, 13 May 2026
+ 00:18:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <agOKq0iH2CHQ3TIg@ashevche-desk.local>
-X-Rspamd-Queue-Id: 35A9A52E75E
+References: <20260512064013.40066-3-syyang@lontium.com> <20260513060452.F227DC2BCB7@smtp.kernel.org>
+In-Reply-To: <20260513060452.F227DC2BCB7@smtp.kernel.org>
+From: Sunyun Yang <syyang@lontium.com>
+Date: Wed, 13 May 2026 15:18:27 +0800
+X-Gmail-Original-Message-ID: <CAFQXuNbsGTkx9a6mw9bVYwn9WnZi3N=zT7tUDZ+NF5RYk_KEbw@mail.gmail.com>
+X-Gm-Features: AVHnY4JoYhVY-9EthCMWPYiHC0PojkQOT1cXob0mNhrxpZakFrJ4sxsbubOWX2A
+Message-ID: <CAFQXuNbsGTkx9a6mw9bVYwn9WnZi3N=zT7tUDZ+NF5RYk_KEbw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+To: sashiko-reviews@lists.linux.dev
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 382F852E9A6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-296660-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296653-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,gmail.com];
+	DMARC_NA(0.00)[lontium.com];
+	DKIM_TRACE(0.00)[lontium.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,linux-foundation.org,suse.com,goodmis.org,rasmusvillemoes.dk,chromium.org,linuxfoundation.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid,lontium.com:email,lontium.com:dkim]
 X-Rspamd-Action: no action
 
-On 26/05/12 11:16PM, Andy Shevchenko wrote:
-> On Tue, May 12, 2026 at 08:39:21PM +0100, Rodrigo Alencar wrote:
-> > On 26/05/12 10:08PM, Andy Shevchenko wrote:
-> > > On Tue, May 12, 2026 at 07:15:17PM +0100, Rodrigo Alencar wrote:
-> > > > On 26/05/12 08:46PM, Andy Shevchenko wrote:
-> > > > > On Tue, May 12, 2026 at 06:26:12PM +0100, Rodrigo Alencar wrote:
-> > > > > > On 26/05/12 08:13PM, Andy Shevchenko wrote:
-> > > > > > > On Tue, May 12, 2026 at 05:35:59PM +0100, Rodrigo Alencar wrote:
-> > > > > > > > On 26/05/12 06:21PM, Andy Shevchenko wrote:
-> > > > > > > > > On Tue, May 12, 2026 at 6:11 PM Rodrigo Alencar
-> > > > > > > > > <455.rodrigo.alencar@gmail.com> wrote:
-> > > > > > > > > > On 26/05/12 05:43PM, Andy Shevchenko wrote:
-> > > > > > > > > > > On Tue, May 12, 2026 at 03:12:24PM +0100, Rodrigo Alencar wrote:
-> > > > > > > > > > > > On 26/05/12 04:48PM, Andy Shevchenko wrote:
-> > > > > > > > > > > > > On Tue, May 12, 2026 at 02:21:14PM +0100, Rodrigo Alencar wrote:
-> > > > > > > > > > > > > > On 26/05/12 04:12PM, Andy Shevchenko wrote:
-> > > > > > > > > > > > > > > On Tue, May 12, 2026 at 12:39:53PM +0100, Jonathan Cameron wrote:
-> > > > > > > > > > > > > > > > On Sun, 10 May 2026 13:42:20 +0100
-> > > > > > > > > > > > > > > > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > Add helpers that parses decimal numbers into 64-bit number, i.e., decimal
-> > > > > > > > > > > > > > > > > point numbers with pre-defined scale are parsed into a 64-bit value (fixed
-> > > > > > > > > > > > > > > > > precision). After the decimal point, digits beyond the specified scale
-> > > > > > > > > > > > > > > > > are ignored.
-> 
-> ...
-> 
-> > > > > > > > > > I think we are going in circles here and we could look at the code instead:
-> > > > > > > > > > - integer parsing with _parse_integer()
-> > > > > > > > > >         - overflow check and validation of the return value
-> > > > > > > > > > - fractional parsing with _parse_integer_limit()
-> > > > > > > > > >         - overflow check and validation of the return value
-> > > > > > > > > 
-> > > > > > > > > No, this is not fully true. That's what my whole point is about. The
-> > > > > > > > > max_chars parameter limits the input check, then it skips an arbitrary
-> > > > > > > > > number of digits and only *then* it checks for \n and \0. What will be
-> > > > > > > > > the result of the
-> > > > > > > > > 0.00000000000000000000000000000000423 in your case? Whatever scale you
-> > > > > > > > > gave it will return 0 without checking on how many digits were
-> > > > > > > > > supplied.
-> > > > > > > > 
-> > > > > > > > I suppose that is a valid input and 0 is the expected result there.
-> > > > > > > > 
-> > > > > > > > > All the same for 0.9999999999999999999999999999999000423. My
-> > > > > > > > > point is that we should limit this by 19 digits.
-> > > > > > > > 
-> > > > > > > > why we need to limit by 19? Digits beyond the scale carry no value...
-> > > > > > > 
-> > > > > > > ...only if they are all 0:s.
-> > > > > > 
-> > > > > > I thought your concern was on input length.
-> > > > > 
-> > > > > One of, since I think you rose the topic of leading 0:s for integers and
-> > > > > I agreed with that which makes sense to have mirrored in fractional part.
-> > > > > 
-> > > > > > > > just like leading zeros to the integer part (which is also accepted by
-> > > > > > > > kstrtoull() when parsing with base 10). Not sure why this is invalid input.
-> > > > > > > 
-> > > > > > > See above. I agree on truncating trailing 0:s as it's done for leading ones
-> > > > > > > in integer part, but if any of the digit behind 19th is not 0, it's an overflow
-> > > > > > > condition (or bad input, depending how strict the rules are).
-> > > > > > 
-> > > > > > stating in the documentation that digits beyond the scale are ignored is not
-> > > > > > enough?
-> > > > > 
-> > > > > It's in case we are not for kstrto*() family. My understanding that kstrto*()
-> > > > > use strict rules on the input in overflow check.
-> > > > > 
-> > > > > > > > > On top of that, what about -0.9(19 times) ? the fraction should be u64
-> > > > > > > > > in this case and it's fine. The sign applies to the combined value.
-> > > > > > > > 
-> > > > > > > > yes, range for signed values are verified later.
-> > > > > > > 
-> > > > > > > > > >         - extra scaling and truncation happening outside if needed.
-> > > > > > > > > 
-> > > > > > > > > Right, but the given input may be way too long and still needs more validation.
-> > > > > > > > 
-> > > > > > > > What is the problem with a long input of digits?
-> > > > > > > > C compiler does not complain about this when parsing a float value,
-> > > > > > > > python does not
-> > > > > > > > complain about this when parsing floats or decimals either.
-> > > > > > > 
-> > > > > > > Because there is an exponent limit and for double it's something like 1e307
-> > > > > > > IIRC, meaning, try 1024 digits to be sure.
-> > > > > > > 
-> > > > > > > Python most likely uses the library for big numbers, you can't compare it at all with this.
-> > > > > > 
-> > > > > > You would be fine if the truncation loop:
-> > > > > > 
-> > > > > > while (isdigit(*s)) /* truncate */
-> > > > > > 	s++;
-> > > > > > 
-> > > > > > is bounded by (19-scale) iteration count? or it should keep iterating if those are zero?
-> > > > > 
-> > > > > Ideally both.
-> > > > > 
-> > > > > We don't care about the digits in the range of 19-scale and skip all 0:s after
-> > > > > that.
-> > > > > 
-> > > > > 	/* truncate unrequired digits within type limit, i.e. 19 decimal digits */
-> > > > > 	while (isdigit(*s) && "(s - pos_of_dot) is less than 19")
-> > > > > 		s++;
-> > > > > 	while (s == '0') /* truncate trailing 0:s, it's not a bad input nor overflow */
-> > > > > 		s++;
-> > > > 
-> > > > We could have agreed on something like that since the beginning!
-> > > 
-> > > Yes, but who knew that we go to have this agreement?
-> > > 
-> > > > And I think that changing the logic to something like this would not change a
-> > > > thing on the kind of inputs we expect, it will just complicate the code.
-> > > > I suppose that kind of kstrto*() rules were never stated anywhere.
-> > > > 
-> > > >                            |> 20th digit 
-> > > > Also, 0.00000000000000000001 still sounds like a valid decimal number to me, even
-> > > > though it is going to be parsed as 0!
-> > > 
-> > > Hmm... It would mean that testing for 19th/20th digits is not enough... :-(
-> > > 
-> > > > > 
-> > > > > 	// Now if it's not \0 nor \n and
-> > > > > 	//	a) still a digit consider either overflow or bad input,
-> > > > > 	//	b) if not a digit, consider as bad input.
-> > > > > 
-> > > > > In a) I tend to be on par with the other k*() and consider that as overflow.
-> > > > > 
-> > > > > > is that the only concern? Again, the usage of _parse_integer_limit(s, 10, &_frac, scale)
-> > > > > > avoids a 64-bit division when checking the rv.
-> > > > > 
-> > > > > I'm not against usage of _parse_integer_limit(), I'm for stricter rules on the input.
-> > > > > With the above addressed, I have no more concerns.
-> > > > 
-> > > > Thanks! I will proceed with the requested adjustments.
-> > > 
-> > > But it seems it's not enough as you pointed out!
-> > > 
-> > > So the biggest fraction we may consume in 64-bit (unsigned) value is
-> > > 0.18446744073709551615. If we go with one digit less, the whole value
-> > > can be
-> > > 
-> > > In [3]: hex(9999999999999999999)
-> > > Out[3]: '0x8ac7230489e7ffff'
-> > > 
-> > > So, I don't know how we are supposed to represent values between
-> > > -0.9223372036854775808
-> > > -0.9999999999999999999
-> > > in a signed type as they have bit 63 set.
-> > > 
-> > > The easiest way out is to limit scale to 18 (but still accept 19th digit, and
-> > > with check for overflow even 20th up to 0.18446744073709551615). This will need
-> > > to run _parse_integer_limit() twice (with given scale and with 20).
-> > > 
-> > > Can you add the respective test cases and see what is currently going on with
-> > > them?
-> > 
-> > I can add test cases, but for the signed case the situation is:
-> > 
-> > scale = 0
-> > 	max = 9223372036854775807, min = -9223372036854775808
-> > scale = 1
-> > 	max = 922337203685477580.7, min = -922337203685477580.8
-> > scale = 2
-> > 	max = 92233720368547758.07, min = -92233720368547758.08
-> > ...
-> > scale = 18
-> > 	max = 9.223372036854775807, min = -9.223372036854775808
-> > scake = 19
-> > 	max = 0.9223372036854775807, min = -0.9223372036854775808
-> > 
-> > anything outside those ranges will give you -ERANGE. Then it depends on the scale used.
-> 
-> Oh, I only now realised that this is sliding window for a single 64-bit signed value!
-> I was under impression that you wanted implementation that covers 128-bit signed value
-> (with 64 + 64)...
+<sashiko-bot@kernel.org> =E4=BA=8E2026=E5=B9=B45=E6=9C=8813=E6=97=A5=E5=91=
+=A8=E4=B8=89 14:04=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Thank you for your contribution! Sashiko AI review found 7 potential issu=
+e(s) to consider:
+> - [Critical] Firmware upgrade via sysfs races with DRM atomic modeset cal=
+lbacks, risking hardware bricking.
+      it will be fixed in next version.
 
-So that was the initial approach with strntoull() with integer and fractional parts
-combined in iio core. At that time I realized that we ended up combining them anyways
-with:
+> - [High] Hardware reset in `remove` callback races with DRM bridge teardo=
+wn.
+       we will remove set reset gpio in `remove`.  the chip has
+hardware protection, no need to consider backpowering.
 
-	val64 = (u64)val * MICRO + val2
+> - [Medium] Undefined behavior in CRC validation due to integer promotion.
+      it will be fixed in next version.
 
-so why not have val64 already! And all this made me realise that once leading 0s are ok,
-scale can be even bigger, e.g.
+> - [Medium] Incomplete display configuration and missing MIPI DSI host reg=
+istration.
+        it will be fixed in next version.
 
-scale = 20
-	max = 0.09223372036854775807, min = -0.09223372036854775808
-scale = 21
-	max = 0.009223372036854775807, min = -0.009223372036854775808
+> - [Medium] Unbalanced reset pin state on probe failure creates backpoweri=
+ng risk.
+      the chip has hardware protection, no need to consider backpowering.
 
-It might be a sliding window of 19 digits, but here we trade range for scale, precision
-is still fixed at 64-bit. I have a new idea to make thing simpler, actually
-it would go back to what David pointed out in the past. Let me put this together...
+> - [Medium] Ignored return values for critical I2C writes during firmware =
+upgrades.
+       it will be fixed in next version.
 
-> > I am not representing -0.9999999999999999999 as is. The desired scale will have this
-> > truncated. It may be -0.9999 or -0.999999 or -0.9. And this is practical for a
-> > reasonable scale value... for pico and femto precision you still get a decent range.
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-
--- 
-Kind regards,
-
-Rodrigo Alencar
+> - [Low] `dev_err_probe()` used outside of `probe` context.
+      it will be fixed in next version.
+> --
+>
+> commit 0bae053b4ef87003ffe3f7c844f0ddb1092f16bf
+> Author: Sunyun Yang <syyang@lontium.com>
+> Date:   Tue May 12 06:40:13 2026 +0000
+>
+>     drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+>
+>     This commit adds support for the Lontium LT7911EXC eDP to MIPI DSI
+>     bridge. It implements I2C-based setup, display configuration, and
+>     provides a firmware update mechanism.
+>
+> The commit message states:
+> > It implements I2C-based setup, display configuration, and
+> > provides a firmware update mechanism.
+>
+> Is this description completely accurate? Looking at the drm_bridge_funcs
+> implementation, there are no atomic_enable/disable functions configuring
+> the display. Additionally, as an eDP to MIPI DSI bridge, should it also
+> register a mipi_dsi_host so downstream panels can attach?
+>
+> > diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/d=
+rm/bridge/lontium-lt7911exc.c
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
+> [ ... ]
+> > +static void lt7911exc_block_erase(struct lt7911exc *lt7911exc)
+> > +{
+> [ ... ]
+> > +     regmap_multi_reg_write(lt7911exc->regmap, seq_write, ARRAY_SIZE(s=
+eq_write));
+> > +
+> > +     msleep(200);
+> > +     dev_dbg(dev, "erase flash done.\n");
+> > +}
+>
+> Could this silently fail to erase the flash? If regmap_multi_reg_write()
+> fails due to hardware communication errors, the driver will continue and
+> attempt to write new firmware data to an unerased flash segment. Should
+> the return value be checked here and in lt7911exc_prog_init()?
+>
+> [ ... ]
+> > +static int lt7911exc_upgrade_result(struct lt7911exc *lt7911exc, u32 c=
+rc32)
+> > +{
+> [ ... ]
+> > +     read_hw_crc =3D crc_tmp[0] << 24 | crc_tmp[1] << 16 |
+> > +                             crc_tmp[2] << 8 | crc_tmp[3];
+>
+> Can this cause a signed integer overflow? In C, u8 values are implicitly
+> promoted to signed 32-bit integers before shifting. If crc_tmp[0] is 128
+> or greater, shifting left by 24 bits will shift into the sign bit. Would
+> explicitly casting to u32 prevent this?
+>
+> [ ... ]
+> > +static int lt7911exc_firmware_upgrade(struct lt7911exc *lt7911exc)
+> > +{
+> [ ... ]
+> > +     /*1. load firmware*/
+> > +     ret =3D request_firmware(&fw, FW_FILE, dev);
+> > +     if (ret)
+> > +             return dev_err_probe(dev, ret, "failed to load '%s'\n", F=
+W_FILE);
+>
+> Is it safe to use dev_err_probe() outside of a probe context? This functi=
+on
+> is called exclusively from the sysfs store callback. Calling dev_err_prob=
+e()
+> here might interfere with deferred probe tracking.
+>
+> [ ... ]
+> > +static void lt7911exc_atomic_pre_enable(struct drm_bridge *bridge, str=
+uct drm_atomic_state *state)
+> > +{
+> > +     struct lt7911exc *lt7911exc =3D bridge_to_lt7911exc(bridge);
+> > +
+> > +     lt7911exc_reset(lt7911exc);
+> > +}
+>
+> [ ... ]
+>
+> > +static ssize_t lt7911exc_firmware_store(struct device *dev, struct dev=
+ice_attribute *attr,
+> > +                                     const char *buf, size_t len)
+> > +{
+> [ ... ]
+> > +     lt7911exc_lock(lt7911exc);
+> > +
+> > +     ret =3D lt7911exc_firmware_upgrade(lt7911exc);
+>
+> Can a DRM atomic modeset race with a firmware upgrade here?
+>
+> The sysfs attribute protects internal I2C sequences with ocm_lock, but th=
+e
+> DRM bridge callbacks toggle the reset_gpio without acquiring this lock.
+>
+> If a display modeset occurs concurrently with a firmware flash, could the
+> hardware reset pin be toggled mid-flash and corrupt the firmware?
+>
+> [ ... ]
+> > +static int lt7911exc_probe(struct i2c_client *client)
+> > +{
+> [ ... ]
+> > +     lt7911exc_reset(lt7911exc);
+> > +
+> > +     lt7911exc_lock(lt7911exc);
+> > +
+> > +     lt7911exc->fw_version =3D lt7911exc_read_version(lt7911exc);
+> > +
+> > +     lt7911exc_unlock(lt7911exc);
+> > +     if (lt7911exc->fw_version < 0)
+> > +             return dev_err_probe(dev, lt7911exc->fw_version, "failed =
+read version of chip\n");
+>
+> If lt7911exc_read_version() fails, does this leave the reset pin in an
+> unbalanced state?
+>
+> The lt7911exc_reset() call leaves the reset_gpio low, and as noted in the
+> remove function, it should be pulled high to prevent backpowering. Should
+> the error path assert the reset pin high?
+>
+> [ ... ]
+> > +     return devm_drm_bridge_add(dev, &lt7911exc->bridge);
+> > +}
+> > +
+> > +static void lt7911exc_remove(struct i2c_client *client)
+> > +{
+> > +     struct lt7911exc *lt7911exc =3D i2c_get_clientdata(client);
+> > +
+> > +     /* pull reset low to prevent backpowering*/
+> > +     gpiod_set_value_cansleep(lt7911exc->reset_gpio, 1);
+> > +}
+>
+> Does this teardown sequence race with DRM operations?
+>
+> Because the bridge is registered with devm_drm_bridge_add(), it will be
+> unregistered during the devres cleanup phase, which happens after the
+> driver's remove callback has finished.
+>
+> Since lt7911exc_remove() asserts the reset pin to shut down the hardware,
+> could concurrent DRM operations attempt to access the disabled hardware
+> while it is still registered?
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512064013.40=
+066-1-syyang@lontium.com?part=3D2
 
