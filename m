@@ -1,222 +1,178 @@
-Return-Path: <devicetree+bounces-296850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2NWvEIJ/BGpoKgIAu9opvQ
-	(envelope-from <devicetree+bounces-296850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:41:22 +0200
+	id QLVvE/h8BGpoKgIAu9opvQ
+	(envelope-from <devicetree+bounces-296851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:30:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FF7534398
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:41:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA87534173
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:30:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E74D631237F5
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:10:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B84C330DDD34
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEDC3E5EF8;
-	Wed, 13 May 2026 13:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D859429809;
+	Wed, 13 May 2026 13:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lIHXbmdr";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YZWUE6rO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XqULGoIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C196426D0D
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 13:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FFD292B54;
+	Wed, 13 May 2026 13:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778677795; cv=none; b=GZpyiuOFyOw8Lv6ldqbmDL7/8POqC3IP/bD41ERKf8gOVi58cUV1EQ7RLuUW8e4JXVNVBaf1A61d978kSrT5ID0/6/ioQvrQ1zuJtmceS9apm3Ylpi6H25v3h6PanQqP7/tlYnDjnbyMNChLwUF6qUZE1Ytq9POVitkZzIb5s2M=
+	t=1778677928; cv=none; b=YGq/7ybx1jTX5LOjFSESWxcugPgquHS7l29siqnC5P7+4/lvuOOkNuCrtjiFwEIB8NFq/StO2e6L9icZKVAmsR4dvoOYjUNgnbiXaHJvnK3DjWsEUTdutBVipLZlYzx5kmzRHlE74hujBrVilAYEzpZDDgDbjApqibTaHkbUrkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778677795; c=relaxed/simple;
-	bh=pPhZN7nfhtHHRw6dhJOnhfHiyh5eQfG5r3IROqjHaUw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UJj9MyJPTptiXameGjBh6v6//GLDO+pQPVGfNFqrm7Qw4an98qyw8x+gYHZfstbg33CsRbiBGvWzzJF7ylyY+aDOi4gyc//4mVmHnC2XLazF1EjrSeQu0BvtiVIWKlvTKNyWLfmmCrxXJjs2nF/xO3u3fXTqNdQCbzw+csntffY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lIHXbmdr; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YZWUE6rO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64D8xZCh4161609
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 13:09:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B5SnseXY8gWAqnQpvJungSJKJ2vcNA0bRZgJ6p/nT8Q=; b=lIHXbmdryhAAdCL/
-	HfbH5KgK0BohO3ARBAdjZHiUBA0hBdx/x3+IXo7NGxGPRtUrdxEWhE8jX7tSqslj
-	FKkwMUezvxpmTSKUuUldw9iF4Vg4hk98A0M5RwAowegqejjQGylUj1sv1xbNHCn+
-	2uWWbvJiJBYX8XiPRCtVQ6O9jnCCErdIseRLb5xrhO74OpCHxlNqpQy83AlUhbDI
-	J4mueiqhd9sqtDcsAkezYjTVX4n84BkTvvJYwzkQp6mmqjldFo2/lDJ7uKLiK7kp
-	94eQXYVtJaV3aOuvrj0uVvRvzjbVQ6/oJGwuTedS/LrfUGedIomGFaP5jIVO7DVC
-	akOk5A==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e4p91rw18-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 13:09:53 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2b9fe2d6793so122224265ad.0
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:09:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778677793; x=1779282593; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B5SnseXY8gWAqnQpvJungSJKJ2vcNA0bRZgJ6p/nT8Q=;
-        b=YZWUE6rOAwmrjSAkZz317QFUMWuWF3IfV1VCxRWwW60WI+Et49M+pbEpewpksR++7k
-         moqABE6edxK4cKHl+N0H6yrZWIUZoiHSbaBP+ntuAEasHOQ1KJZr3xS7fRgj3eA7sOrY
-         qpOrq68sBctZhrl0KML1OpocP+96SpW0hSWkxkd23SkyHq/Jm0BjW31dPoIk8XI6vuQl
-         qYOreBVn6WoTJqHm3ZZ4109xmmxVl6X8g71FnktWmbZA7DW0THZfrlSa6X+5haIHITxS
-         0Z65uL7Osu8aiNASY20m5myeBqHXwyYnV1dbX54JrvOhPVcRaTBYXiMxjbzTJ4ZIurVa
-         KfQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778677793; x=1779282593;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B5SnseXY8gWAqnQpvJungSJKJ2vcNA0bRZgJ6p/nT8Q=;
-        b=Pf3idIoSk8v4qQwiTTwZnooiL+V2RbzA8V+C1ol/YjgOPyliAUQuUpIQsgRPIsXx/t
-         0KaCvtDfX8OuEiFwVdgp0zQvMWr9u3k5QirYfmulxp7+UqTGVY5pE9u9gk5HX5VIc9wc
-         V6Pe9RmJQnmN5aktPqN6eocL4fHhUG08IrKHdIp1WjmtoK71mHQx0Bchj64KWkPayJJH
-         1QJxCcPEx6C9n5yoar9PNpky5z0mmAsfBOTY5OtpG+Z9VVyq66O4n982QwiT+i06oJ2q
-         imJYQTAszAek7+J+XkeTwaDlXht4vStrCXHZsBvPGUcplqVCzk+W7N0QNokyladwdIJq
-         jCZA==
-X-Forwarded-Encrypted: i=1; AFNElJ9n3nDPVrWktme3U29g+jcXiSMTLcHCl/dPbAk3Ln2zptNif7lE299KVCZ0/HSupZaxmi2Ifh37q8hn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkIGBlaY7LAEN2nd0qtejDO7r7OgRCx8Jv0mis8vXJXa9tqxGI
-	YhkC+vgxdeBWQP8o4sO3yd8y6vEKL0czMiZkRy4LSABAdwUS4fMmFrpwCUX6WzYNl8YQ2sRJQiR
-	YPhx5pGTaszEtl9WnFhZ4qsQmdObM1vo1Wnm0nz6WB3ELJVcqcKEwABKZWLZ0wdxu
-X-Gm-Gg: Acq92OGYSl/lA+KC8BXdWX55LKuQrKuomNxy2/pBoRjxGSwyklS44MJO58AL4kwvw+U
-	NnOBgBi8vIFgGFFLOeVDtYTiF4lRnGLFx8EQus9rCCX+9ZfYDIwejTtBomjXtV8ovxY3XCmXnJU
-	Mdy3toWYJ0KyczGN1mCwBnSGEEf5bBdEc755XCwgX2GxqsbLECbqoyMrCBjkxSpGOtWg3qDM1wh
-	q2jr7DEJjtXDs9gV5A1lF9Xp4iSiWVg+gLZQhYKP3g2PCpAJD5RUk+6f4FfjAp7gvFzgNsGKgCO
-	32+JRGicAEgBkY5eS+3hoACWODjjme8AKkS9sOaaYIwxu6MaSZzok/RGSyA18r8w7Mv7t+ueefe
-	KoYXqzDgFkjvoCwRlgUw3Oboo1IkZuTZrkjX4KBCI2KD2yRI0DVWhz9M=
-X-Received: by 2002:a17:903:f8e:b0:2b9:ff02:a14d with SMTP id d9443c01a7336-2bd275b9de9mr38165135ad.18.1778677792717;
-        Wed, 13 May 2026 06:09:52 -0700 (PDT)
-X-Received: by 2002:a17:903:f8e:b0:2b9:ff02:a14d with SMTP id d9443c01a7336-2bd275b9de9mr38164675ad.18.1778677792287;
-        Wed, 13 May 2026 06:09:52 -0700 (PDT)
-Received: from [10.204.101.125] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2baf1d52f27sm207675385ad.36.2026.05.13.06.09.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 May 2026 06:09:51 -0700 (PDT)
-Message-ID: <a1a38bf2-84b6-4e51-817b-b85ab6c65f08@oss.qualcomm.com>
-Date: Wed, 13 May 2026 18:39:43 +0530
+	s=arc-20240116; t=1778677928; c=relaxed/simple;
+	bh=9JxEm/HHNJQiQUpuQ7/jDsnz645CHsgcyhfIXRpZ8oU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jShNndTrVGYQTWja7ZdwAiousJ9We8mV2fcuowox3EyTKj9XdRlIJMb2nnp6ssb1L6ua075GbzdoxeCwMSri9PdPjczKLCwwSI7IP8twFyKHTS9KpFfrx/qpLnan9tfmcSTRU3W9N8qXcuZ4zBI2vqw3ac1V3RnIDAxZoeIrV5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XqULGoIc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8039EC2BCB7;
+	Wed, 13 May 2026 13:12:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778677927;
+	bh=9JxEm/HHNJQiQUpuQ7/jDsnz645CHsgcyhfIXRpZ8oU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=XqULGoIcCJ+z23cZbsdcxEnq9egoFu4yRFEvoIL7+pAV7diA/dNf/kg3JI1aXeWjd
+	 +stdbn/z2V8IKa9KXbpxWLHrkOjS2uzUv67FCbx4+Bz8LRa7qrlhTJItNBU/ti7MEC
+	 vTssS4MeS3Cfn2L8FfRFA5z3hzZgu+BpHlwQGyzsQo58LKd0iv9bDD87zRVJ8nszQ1
+	 1dOVLaBLzvOF5g0MKdtl0WLVoz0/1oVliPmrO4h3frAOysr57G2KhUWcscnhiR+xfO
+	 K4HYebUhU0pRpyPzFZQy3Cp0Xc6374bzdFSpu5edfolweX/qavC6avjrlOQXjTgyod
+	 Z9wqbWdUCVSlw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72CA2CD4F39;
+	Wed, 13 May 2026 13:12:07 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH v5 0/2] phy: add basic support for NXPs TJA1145 CAN
+ transceiver
+Date: Wed, 13 May 2026 15:12:01 +0200
+Message-Id: <20260513-tja1145-support-v5-0-38720a7ee63e@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/14] iommu: Add iris-vpu-bus to iommu_buses
-To: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-        Del Regno <angelogioacchino.delregno@collabora.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org
-References: <20260509-glymur-v5-0-7fbb340c5dbd@oss.qualcomm.com>
- <20260509-glymur-v5-2-7fbb340c5dbd@oss.qualcomm.com>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <20260509-glymur-v5-2-7fbb340c5dbd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: KNjPAElxayTitU4aPPTplzXlQ06G7Qyk
-X-Proofpoint-GUID: KNjPAElxayTitU4aPPTplzXlQ06G7Qyk
-X-Authority-Analysis: v=2.4 cv=G9Ys1dk5 c=1 sm=1 tr=0 ts=6a047821 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=j9WNCELPX4ZUnkJ91WYA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDEzNSBTYWx0ZWRfX/P4lnLvR8LSV
- 2LBO+5MR2l9FQ2RHwlzYO6RXb2LelFDWsn8K7iVFK6Y57b2d59M/ru+9hIZ4LjHSXmPSe9iuB5k
- HEg6ozIig3F2v7B7OCGcz4QAPreKzNeNlT3XpG8KrZyLKpZmbzSTATcCL02g8AlrVSX/aaMAicR
- kmLaaUD2/0Sigif0LMiTyHB4nNUiCxCk+d4ksPQMBOIh/XptA4nHgh4Dx7rAneXC3bBqNCUVVd/
- RgLAXd6BqST56DMVBl2m2sUOLgIlgbYXVg3bs86E3xCAUJG3mZShJACMJMs95qBB/0Rynzo6YmT
- cVQim+y9vb7i+nDiufrA7dlf9xn/BxxbNT5Re4g7JxlCHFwxLLD/NcLCgbDeLWCsotf/7/OKXs9
- rEvqmLviH5vXtAzbZp5r3Dk3JAsHYKxQXySKCYOBt0O4RHspjwnKrEONXHSIc2JUqwjvZbwYgqQ
- czxAtefdM3D53t9e6AA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-13_01,2026-05-08_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 malwarescore=0 adultscore=0 spamscore=0 phishscore=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
- definitions=main-2605130135
-X-Rspamd-Queue-Id: A9FF7534398
+X-B4-Tracking: v=1; b=H4sIAKF4BGoC/23NQU7DMBCF4atUXmNkj8eJ3VXvUbFwPRNiBE1kh
+ whU5e44lVoQ6fJ/0nxzEYVz4iL2u4vIPKeShnMN+7QTsQ/nV5aJagtQYFULjZzegtZoZfkcxyF
+ PkpoYKSIBBSPq1Zi5S19X8fhSu09lGvL39cGs1/VmuY01a6kkn8ihR7Jo4+E98annnJ/j8CFWb
+ oZfwoHfElCJRnnfdgacb/0DwtwJrbTZEqYSGDwB2o5V0z4g8C9htwSuBJkYtInOOf2PWJblBwQ
+ 8Amp6AQAA
+X-Change-ID: 20250726-tja1145-support-d6ccdc4d2da3
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, lee.lockhey@gmail.com, 
+ Marc Kleine-Budde <mkl@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778677926; l=2287;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=9JxEm/HHNJQiQUpuQ7/jDsnz645CHsgcyhfIXRpZ8oU=;
+ b=78Sz5dpvZTkvTtPlG/TiaXEnhtb9HDN27jhzJanz9IGXWc6jIbnKIhSA+SxXPZM/hjsf8Vgz8
+ XSbGIQM7QILDarvKE3ObyKEqUG0Fkm9F1+i0G7EzTVDkfEB3YJCsTSb
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
+X-Rspamd-Queue-Id: BAA87534173
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296850-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-296851-lists,devicetree=lfdr.de,dimitri.fedrau.liebherr.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,liebherr.com,gmail.com,microchip.com,pengutronix.de];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	HAS_REPLYTO(0.00)[dimitri.fedrau@liebherr.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[liebherr.com:email,liebherr.com:mid,liebherr.com:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi Rob, Robin,
+Add basic driver support for NXPs TJA1145 CAN transceiver which brings the
+PHY up/down by switching to normal/standby mode using SPI commands.
 
-On 5/9/2026 12:29 AM, Vishnu Reddy wrote:
-> From: Vikash Garodia<vikash.garodia@oss.qualcomm.com>
-> 
-> Add iris-vpu-bus to iommu_buses[] to register the bus notifier callbacks
-> for device add and removal events. This ensures that when a device is
-> registered on iris-vpu-bus, the notifier triggers dma_configure(),
-> which sets up the IOMMU context for that device.
-> 
-> Reviewed-by: Vishnu Reddy<busanna.reddy@oss.qualcomm.com>
-> Signed-off-by: Vikash Garodia<vikash.garodia@oss.qualcomm.com>
-> Signed-off-by: Vishnu Reddy<busanna.reddy@oss.qualcomm.com>
-> ---
->   drivers/iommu/iommu.c | 4 ++++
->   1 file changed, 4 insertions(+)
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v5:
+- No functional change, basically a resend with added tags
+- fixed typo in define TJA1145_MODE_CRTL_STBY to TJA1145_MODE_CTRL_STBY
+  and TJA1145_MODE_CRTL_NORMAL to TJA1145_MODE_CTRL_NORMAL
+- remove unneeded include -#include <linux/bitfield.h>
+- added owner to tja1145_phy_ops
+- Link to v4: https://lore.kernel.org/r/20251015-tja1145-support-v4-0-4d3ca13c8881@liebherr.com
 
-We have added vpu platform bus as suggested by you earlier. Patches #1 
-and #2 in this series adds the same. Please review and suggest if you 
-have any comments.
+Changes in v4:
+- Change compatible to: nxp,tja1145 (Connor)
+- Mark spi-cpha as required (Connor)
+- Switch from unevaluatedProperties: false to
+  additionalProperties: false (Connor)
+- Remove double newline after tja1145_rd_table (Marc)
+- Link to v3: https://lore.kernel.org/r/20251013-tja1145-support-v3-0-4a9d245fe067@liebherr.com
 
-Please provide an immutable tag by applying patch #1 and #2, we can then 
-have that in media tree and apply remaining patches in this series.
+Changes in v3:
+- bindings: fix SPI bus unit address format error
+- bindings: added resolution of discussion into commit msg
+- Checked binding with:
+  make dt_binding_check DT_SCHEMA_FILES=nxp,tja1145-can.yaml
+  Missed it for V2, didn't do it intentionally. Sorry.
+- Link to v2: https://lore.kernel.org/r/20250829-tja1145-support-v2-0-60997f328979@liebherr.com
 
-If you have any other suggestion to land these patches, please suggest.
+Changes in v2:
+- bindings: Change node name in example to can-phy
+- bindings: Fix order of properties, reg property is second
+- bindings: Change compatible to match filename
+- change compatible to nxp,tja1145-can
+- Link to v1: https://lore.kernel.org/r/20250728-tja1145-support-v1-0-ebd8494d545c@liebherr.com
 
-Regards,
-Vikash
+---
+Dimitri Fedrau (2):
+      dt-bindings: phy: add support for NXPs TJA1145 CAN transceiver
+      phy: add basic support for NXPs TJA1145 CAN transceiver
+
+ .../devicetree/bindings/phy/nxp,tja1145.yaml       |  80 +++++++++
+ drivers/phy/Kconfig                                |  10 ++
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-nxp-tja1145.c                      | 184 +++++++++++++++++++++
+ 4 files changed, 275 insertions(+)
+---
+base-commit: 29b4d8a7637f027b538787896bee520f2dacc904
+change-id: 20250726-tja1145-support-d6ccdc4d2da3
+
+Best regards,
+-- 
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+
+
 
