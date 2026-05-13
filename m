@@ -1,68 +1,74 @@
-Return-Path: <devicetree+bounces-296999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297000-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLuBMruwBGriNAIAu9opvQ
-	(envelope-from <devicetree+bounces-296999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:11:23 +0200
+	id iIyOIDy0BGowNQIAu9opvQ
+	(envelope-from <devicetree+bounces-297000-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:26:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48441537C7F
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:11:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67808538020
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A7FB8307521C
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 17:05:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 748C63024291
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 17:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F9E3A0B24;
-	Wed, 13 May 2026 17:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282404DBD7D;
+	Wed, 13 May 2026 17:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j86+vXxl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F3ThsJ6u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A7A389DF0;
-	Wed, 13 May 2026 17:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3333A3E8E;
+	Wed, 13 May 2026 17:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778691924; cv=none; b=uGSZ17w1Wqs5by7oEFvLjnVWYpyZZqYnOV42K3v5EtD9qBM72qUsrqD8c4qwM4i6t/VdzuVMXs/qh60F5FxG92nGD6Ju7S+3JOQKk/ZyUsoGvNhVpGG1GNe0GhbrX/KiKOsFHlrGv8hDa/1ohmeQG2mG1/nwnayrUaHceRASHt8=
+	t=1778692631; cv=none; b=ebGMpAgMJwlse4Mo5crsYeDIlsoR5piYnAemrX96CAXZu3UQyJuIUgruvWsjSfiCY9ArmVgHtJLUMs9tRXEd+oSkcdQvS0ypOjZHAaWZI1TxTnh9sXsvKPb1IktfBQ4bT+KNqOKWlsw0tGIGT0Ha9LKuu0umnYmF+8VfZJoYxtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778691924; c=relaxed/simple;
-	bh=B+Lh2COB90j5rStyv1o/M72otL7lieSerd5T2ErAozg=;
+	s=arc-20240116; t=1778692631; c=relaxed/simple;
+	bh=gQool408l4gMm/6emufuT088Y5cuxk1gS7/KqLZUW24=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VNC8civX2TbViOaXuBSLRTaxPKa4HovZOC474NRr1bX+a89lhubz90sA6XAVNILS2Xm5nuD2vVm6OmscEFxcWrl4xHn99HyNqZ/YZM43nzVJOKlkoACoplA/zvySEhhv4GX+rBPQShIYzsraqRwtLKoYIQFrElREgy32dJnESKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j86+vXxl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DB7BC19425;
-	Wed, 13 May 2026 17:05:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=D9y7QNDdih4qttaagNdoLjXo+SCErjvH6v9Uai1NrNxAwn5XzLrRlMZjwVVqJF6WQasaZXJFQPfu6cXVAJxj0s9SVbvqIkYgwk0bkQ9+aUlnuU8TG2RPVzMCEbtj59KiNk/VuLHJPZcMpyMpXABSGpK9W2FVA38oRCgJFsfGBUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F3ThsJ6u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A418C2BCFA;
+	Wed, 13 May 2026 17:17:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778691924;
-	bh=B+Lh2COB90j5rStyv1o/M72otL7lieSerd5T2ErAozg=;
+	s=k20201202; t=1778692630;
+	bh=gQool408l4gMm/6emufuT088Y5cuxk1gS7/KqLZUW24=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j86+vXxlfjczGFOX+pw2QWVO1pf7gG8Ju7jVRxZImVlHVOOmieIPBv8VtlTlUwy5n
-	 gDZpvo7NyLdRH4IErvy6qc+UU5lujjiqdj/vGO0eFEkM63ttPt3OG94BV806Y8/VOu
-	 jVNFhKC5UCoNC44JizcJAPLx0nLutrMdbwaRBbIx6zUf8H6J1fcYajOd9DCA5fXXof
-	 76ZRDXkzXOJhed34Y6tGycA8tcZCQ4q+76SYASz5PP0MbYM/U5uW76Ta5e3ZU4XKNb
-	 A3j11fRn+cVfE12gfrklOiJNfb2lRbNV15GCWecFNWTNcHKXUijb9k58ZkoTRGQ64w
-	 F//GpFcw4fqvw==
-Date: Wed, 13 May 2026 12:05:22 -0500
+	b=F3ThsJ6uakmRAlORwNtN6mSAMxhV73vUJkp6B5Qil6QDn3YQ7x34MH22Dlqe4Mdin
+	 1rgI5npXFzL1kUITxOb/QUXd55yfmuVJCOPvRhVaUbJDRDsB9MjUdIiC4DoPkSPtff
+	 TyPJ+fE17FGQh+wAi6qT5UKhti4Q1A/JDeYbIvpNns9WVQECBuztgxPWtgwzSj0Yzg
+	 +EoIqq6NTlwWHnJwiK7HdUE+5hYEb7lfg0J7fZgLx/swTbW3b78FRIGR4uNs0cQlTl
+	 nj+SZ2euZvMfr0qJuteGgd2okGaT2BdyeMXz7aSsxq0e/RZqEIWnoEtRXhtw3E2RLm
+	 OuL5ZeoWUFoTg==
+Date: Wed, 13 May 2026 12:17:07 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org,
+To: Anup Patel <anup.patel@oss.qualcomm.com>
+Cc: Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Anup Patel <anup@brainfault.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	jk@codeconstruct.com.au, Andi Shyti <andi.shyti@kernel.org>,
-	linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Rayn Chen <rayn_chen@aspeedtech.com>, openbmc@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-aspeed@lists.ozlabs.org, andriy.shevchenko@linux.intel.com
-Subject: Re: [PATCH RESEND v29 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
- global-regs properties
-Message-ID: <177869192135.1318285.16876434297246564335.robh@kernel.org>
-References: <20260513-upstream_i2c-v29-0-fe9926964d55@aspeedtech.com>
- <20260513-upstream_i2c-v29-2-fe9926964d55@aspeedtech.com>
+	Peter Zijlstra <peterz@infradead.org>,
+	Paul Walmsley <pjw@kernel.org>, Ian Rogers <irogers@google.com>,
+	Jiri Olsa <jolsa@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+	Andrew Jones <andrew.jones@oss.qualcomm.com>,
+	linux-kernel@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg KH <gregkh@linuxfoundation.org>,
+	Mayuresh Chitale <mchitale@gmail.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	linux-riscv@lists.infradead.org,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Sunil V L <sunilvl@oss.qualcomm.com>
+Subject: Re: [PATCH v4 01/12] dt-bindings: Add RISC-V trace component bindings
+Message-ID: <177869262677.1393813.17216118016558034806.robh@kernel.org>
+References: <20260429125135.1983498-1-anup.patel@oss.qualcomm.com>
+ <20260429125135.1983498-2-anup.patel@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,25 +77,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260513-upstream_i2c-v29-2-fe9926964d55@aspeedtech.com>
-X-Rspamd-Queue-Id: 48441537C7F
+In-Reply-To: <20260429125135.1983498-2-anup.patel@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 67808538020
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,brainfault.org,kernel.org,infradead.org,google.com,ghiti.fr,arm.com,vger.kernel.org,oss.qualcomm.com,redhat.com,linuxfoundation.org,gmail.com,linux.dev,lists.infradead.org,dabbelt.com];
+	TAGGED_FROM(0.00)[bounces-297000-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296999-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -98,37 +105,26 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aspeedtech.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
 
-On Wed, 13 May 2026 13:32:01 +0800, Ryan Chen wrote:
-> Add the aspeed,global-regs phandle to reference the AST2600 global
-> registers syscon node, containing the SoC-common I2C register set.
+On Wed, 29 Apr 2026 18:21:24 +0530, Anup Patel wrote:
+> Add device tree bindings for the memory mapped RISC-V trace components
+> which support both the RISC-V efficient trace (E-trace) protocol and
+> the RISC-V Nexus-based trace (N-trace) protocol.
 > 
-> These properties apply only to the AST2600 binding. Legacy DTs remain
-> unchanged.
+> The RISC-V trace components are defined by the RISC-V trace control
+> interface specification.
 > 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
 > ---
-> Changes in v29:
-> - remove aspeed,enable-dma properties.
-> 
-> Changes in v28:
-> - update commit message correspond with aspeed,enable-dma.
-> - remove aspeed,transfer-mode and add aspeed,enable-dma property and
->   description.
-> - Fix aspeed,enable-dma description to reflect hardware capability rather
->   than software behavior
-> 
-> Changes in v27:
-> - change aspeed,transfer-mode to aspeed,enable-dma.
-> ---
->  Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/riscv/riscv,trace-component.yaml | 120 ++++++++++++++++++
+>  1 file changed, 120 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/riscv,trace-component.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
