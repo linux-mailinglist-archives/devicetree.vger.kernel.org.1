@@ -1,204 +1,202 @@
-Return-Path: <devicetree+bounces-296793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296789-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EIuNBBkBGq6HgIAu9opvQ
-	(envelope-from <devicetree+bounces-296793-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:44:16 +0200
+	id uFJmL3JgBGq6HgIAu9opvQ
+	(envelope-from <devicetree+bounces-296789-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:28:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F45653276A
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:44:16 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BD453241B
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 13:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4CAB73013B54
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 11:44:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A4376300462E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 11:28:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196993FE64D;
-	Wed, 13 May 2026 11:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F083F7AA5;
+	Wed, 13 May 2026 11:28:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gEq1hdHh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhYECYfy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8250A39B491
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 11:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071473D3319;
+	Wed, 13 May 2026 11:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778672655; cv=none; b=bnEOPT4LIoVBRJasjZcZneq5oguIF5AdIMsB4ftxhjpyZEJ24OV+0dWUZDvLqW7I4i0XFxHXCQSf8X00D1eXSPilvBgnjmoR04X+CBlQ4s88S3KEWKZtg747HDigxbg3mHbCOgasEuNCmPh4BL+46rxP35tWfvYFCt6os69AdUQ=
+	t=1778671725; cv=none; b=KJwizingSQ6Lsyw9TW2yzXcfUmhZuvWSkq/G23PpjOLxSolHM85237eJ1TrhtmemJmvuc23jOVPHHXb66QW685CEd80XyXf+R95LzQuzrubHOK+8EtS8DIayU5g0A3s79WCX9ZIFnpeNSnDxYA6ZkPoHW0vjYD3l2r0Heo6oX78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778672655; c=relaxed/simple;
-	bh=1a+V7SN5Ad1tvDfgTgTwhX+lul4htUJKibU3Otb53LQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=BWOgkp+OlB6JVsAN2fAepjSUKx2/V5cg8d/OIPCtpmx0BgQd3/OJD6g71fkqbJ9RV0QzhIFhpHvc/7esxXKixJPan855K8YRsmhMW5DcxLvbwt31ou9yO2NyFhtlxWC/qesyau0jLCUqqTDfsSPZLvNjq6xvsxRNyIAF26ZthJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gEq1hdHh; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2ba4efedbeaso46928055ad.1
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 04:44:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778672652; x=1779277452; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qYAcfX5TZQ1aO/tUlnMIN+1pF6qLETPLwxG8ZHIUVfI=;
-        b=gEq1hdHhXaN9hfUHDRC7spe2P68YK/n731u3tq7uWrGdzINNnmUDOW8Oh9KoWScOJQ
-         DN+ORe3jW3HsyQaZlizJ061yElkn9LWzIsSBZXdnsVWC//Z4qEac0uH3WC7WtQt/r6Lp
-         LpJbgi/L7q30rhoCdMLKlMEArpOvB3gabBHhgdz7oLPiDlUXRwVYuIgNL96jLwq6F+s7
-         V0LzfBYxepKqOYbH7jtH0yybby9sEZnliRKesNpyzUdmDLqSxybjHEGu5z6TA4izw8ag
-         KJjuiM5FQBkGf9fvN5lPrNRGAsfzfPNAVXIOiZxizw0YMfntq/c89OBKQfIN7XwvTy4U
-         FTcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778672652; x=1779277452;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qYAcfX5TZQ1aO/tUlnMIN+1pF6qLETPLwxG8ZHIUVfI=;
-        b=i+pS3h3OVO3bYodkRJgm1Dc3xNmA1fNKXw6tqq2bacTUV+JHVQ1mnh9JiWDsHRpO1S
-         T9Qi8WbKSZFbzVAaEIiFEU2OzG2oaP4tBYD8COUHAO3OCWRDWdAT1ZnEkjsMHrUf5a7Q
-         tNQXZP511auPzxBL6DxiNopeoHXNGaR36DI4WbtrJOcUlxWwON1M8eyI6MB9QCClAbjW
-         rHqj9XMqa/JpgrSjrxRt1wwrOTb0Q88xszUB86I262q68y+BIsXsbcxJT0b2t9sk5xxW
-         efshmnouqIFuAGB8LKkWNsbXy0Cj1srDoTKVgPv1LLt0GWKPXTKrMc3G39wd97LKrIK/
-         noyA==
-X-Forwarded-Encrypted: i=1; AFNElJ8FXfyGpo+vQ6s74oXBpFlP2XiGspI3G+8E02yQVhBSCRr1MGTgQwOHrPtpXdLK4U7waRsXZTcshX8q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7IUItR0e/NEJcyURYnZrX+blawBeOYRW6+VtR1O3Y1t5iYR2i
-	nr/cBI45dy7xuMLBvf08XCwB+PdWlSv53mMIOluaug7ezrOhSSQypcBo
-X-Gm-Gg: Acq92OHYRLQo8lfku8104OEnDMloWsd1cob7Ro3oQY8T9vi5QCmEDkQ/HHn8jOR1WNY
-	mi0zIavLWf5LFiOHxBOKVa7TBMjAaRWcqJ8MKSBmhSRTAEqMxbzI8iVfObpY327ZySD9xS7zyW7
-	VigiKOG6bsoeUr5wmrfqc+cybcQA4BCK2Y9vvEBPUgx8E1td/wkrOriEhtixzwajExyGLty0pCO
-	XmOy54K+hMAdKMYIasUDkHwDThGNwePEh9Rp+BQI/LnFPK7Rhn0yJSKPvYKBp2M5+H27aPryA+a
-	jX7VCmJgAefnl9Mvbv2+OJFAoDuVLW4upuY7eXocVQZFoShe1HpCN6K1MJgmCz2QM6oBzvcvFHa
-	PJzB0OIXPqRLHa4uLPdOpZ/pGxAAWuO0sUpOj+ytt3mlEJCMBpDhk2q7859Bx+Xp2GCcG0MQkn8
-	s9UWFrgkhPtn6+rVK+U2eFQtopB3mNfSgNyg40cjqG74A3sT4=
-X-Received: by 2002:a17:903:9ce:b0:2bd:56c:97ad with SMTP id d9443c01a7336-2bd2ec5abd3mr25711825ad.0.1778672651705;
-        Wed, 13 May 2026 04:44:11 -0700 (PDT)
-Received: from ehlo.thunderbird.net ([2401:4900:ac0f:c362:ceaf:f4a4:19f1:7e92])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2baf1d52f27sm204870005ad.36.2026.05.13.04.44.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 May 2026 04:44:11 -0700 (PDT)
-Date: Wed, 13 May 2026 17:14:05 +0530
-From: Sanjay Chitroda <sanjayembeddedse@gmail.com>
-To: Michal Piekos <michal.piekos@mmpsystems.pl>,
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Maksim Kiselev <bigunclemax@gmail.com>
-CC: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: adc: sun20i-gpadc: add A523 gpadc support
-User-Agent: Thunderbird for Android
-In-Reply-To: <20260513-sunxi-a523-gpadc-v2-2-d5efde151dac@mmpsystems.pl>
-References: <20260513-sunxi-a523-gpadc-v2-0-d5efde151dac@mmpsystems.pl> <20260513-sunxi-a523-gpadc-v2-2-d5efde151dac@mmpsystems.pl>
-Message-ID: <A7772824-E704-4BFD-A796-BCD81197E5A2@gmail.com>
+	s=arc-20240116; t=1778671725; c=relaxed/simple;
+	bh=R4JDpEwqyp7vUWVCK1KADNQAmcCo5wwLCVQ4YmtJdts=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ChgYeUjhQUuuyoC4IyM2K3HgZsbOnKtGcGB7MlnflsL93CvhL8oTnbkCHYUsQu9yQr6zg7iApgkBOCq71jeBhRML4qY/B3zM5bErPAMEG+ESCtFtf+6xtDhREuTAvKCsmkYXJpHuMYH5pFI+Bu8hS24Fz2Y5tmj0BSRIgQI2wFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhYECYfy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B0F19C2BCB8;
+	Wed, 13 May 2026 11:28:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778671724;
+	bh=R4JDpEwqyp7vUWVCK1KADNQAmcCo5wwLCVQ4YmtJdts=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fhYECYfyHlZ7rk3tUHIlaX4QnN4UhxU/TPqR5F6OcmDLbY/CPkGSzVka1NAyuknpU
+	 vxsbB3YilwoJwZo+hcE8kDRNFQQUkFvwSqnEGjDVfIt4IyqG695lk1nLsGDNZ8jQGZ
+	 YsHIt++w8nXERjHZtwP1uYjOc/a/WsWFPJzpd7zpErQz42EU4WdkCNcjWFJgXwRbmE
+	 wL3DUPnC8xqJIN7zMZIo5t13aZHPWVVnyJHRFK1JE0prLIT7kgPI+aG9eP9DXM3U6C
+	 nLnEf5Y2HO1WwvofimitrnHOhQV+utlMtXrmePpxtEpw/rJMBvc7V5VknORoIj7WPk
+	 LiNXQpeRkulGQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A038FCD4851;
+	Wed, 13 May 2026 11:28:44 +0000 (UTC)
+From: Pawel Laszczak via B4 Relay <devnull+pawell.cadence.com@kernel.org>
+Subject: [PATCH v6 0/2] usb: cdns3: support configurations without DRD
+ block
+Date: Wed, 13 May 2026 13:44:18 +0200
+Message-Id: <20260513-b4-no_drd_config-v6-0-e7789cd0e581@cadence.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 4F45653276A
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABJkBGoC/33N0QrCIBgF4FcJrzOmU9u66j0ihv7+bgZp6BrF2
+ Lu3rZuC6PLAOd8ZScbkMZPDZiQJB599DHNQ2w2BTocWqbdzJrzgqpCMUyNoiI1NtoEYnG+pk2X
+ hmGPKVprMs1tC5x8reTq/c76bC0K/OEuj87mP6bl+DmLp/eEHQQu6NwKlhVq5ih1BWwyAO4hXs
+ hwM8pMofxByJhiostTC1JrX38Q0TS+W8S/IBwEAAA==
+X-Change-ID: 20260512-b4-no_drd_config-f530f1f16d8a
+To: Peter Chen <peter.chen@kernel.org>, Roger Quadros <rogerq@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Pawel Laszczak <pawell@cadence.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778672670; l=3527;
+ i=pawell@cadence.com; h=from:subject:message-id;
+ bh=R4JDpEwqyp7vUWVCK1KADNQAmcCo5wwLCVQ4YmtJdts=;
+ b=r/o2bDuIm3XmuKHFtqGGN403hJHsPUwU4uVVxTPvX7KkOqdsZgMO/YhYJ0tOktmo2pubeXwxy
+ cJpNlbDrgGtD3yTNXLwWlLlyG4+zNvbkzuljKsNjssapdV7pw6RTtJC
+X-Developer-Key: i=pawell@cadence.com; a=ed25519;
+ pk=EUPBvLO9CDg7j6defeDl2iqi+z5Ivqu4Z46aiqe7dYc=
+X-Endpoint-Received: by B4 Relay for pawell@cadence.com/default with
+ auth_id=707
+X-Original-From: Pawel Laszczak <pawell@cadence.com>
+Reply-To: pawell@cadence.com
+X-Rspamd-Queue-Id: B7BD453241B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.65 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
-	TAGGED_FROM(0.00)[bounces-296793-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296789-lists,devicetree=lfdr.de,pawell.cadence.com];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[mmpsystems.pl,kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	HAS_REPLYTO(0.00)[pawell@cadence.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sanjayembeddedse@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mmpsystems.pl:email]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
+usb: cdns3: support configurations without DRD block
+
+This series adds support for Cadence USBSSP controllers in hardware
+layouts where the Dual-Role Device (DRD) register block is either
+missing or inaccessible.
+
+In such configurations, the controller is hardwired to a single role
+(either host or device) and the driver must skip all OTG/DRD register
+accesses to avoid bus errors or incorrect role detection.
+
+The solution introduces a new 'no_drd' property that can be passed
+via DT or software nodes. When set, the driver:
+1. Skips DRD register mapping and IRQ requests.
+2. Uses a different BAR indexing logic for PCI-based configurations
+   (32-bit addressing layout).
+3. Hardwires the role based on 'dr_mode'.
+
+Signed-off-by: Pawel Laszczak <pawell@cadence.com>
+---
+Note: This series is based on current linux-next. I am aware of Peter
+Chen's recent refactoring series ("usb: cdns3: plat: Expose platform
+core driver as library"). Although there is a minor conflict in
+cdns3-plat.c, Peter has already provided an Acked-by for this version.
+I am happy to provide a rebased v7 as soon as Peter's changes land in
+linux-next if required.
+---
+v6:
+- Fixed validation error for 'interrupt-names' by correcting
+  the items definition.
+- Adjusted 'minItems'/'maxItems' to properly support the optional
+ 'wakeup' interrupt.
+- Fixed 'too long' schema error in examples.
+
+v5:
+- Implemented strict conditional validation using if-then-else logic.
+- Enforced 2 register/interrupt items and required 'dr_mode'
+  (host or peripheral) when 'no_drd' is present.
+- Enforced the standard 3 register/interrupt items (otg, host, dev)
+  when 'no_drd' is absent to ensure backward compatibility.
+- Updated 'reg-names' and 'interrupt-names' to use enums in the main
+  properties section to support flexible resource ordering during
+  validation.
+
+v4:
+  - Added DT binding documentation for the 'no_drd' property.
+  - Relaxed 'reg' and 'interrupts' requirements in the DT schema (minItems 2)
+    to allow configurations where the OTG/DRD register block is missing.
+  - Moved PCI_DEVICE_ID_CDNS_UDC_USBSSP from pci_ids.h to cdnsp-pci.c
+    to keep the global PCI ID list clean.
+
+v3:
+  - Improved descriptions and comments for better clarity.
+  - Introduced the 'no_drd' property to indicate missing DRD register block.
+  - Added support for fixed host-only and device-only configurations.
+  - Ensured cdns_otg_disable_irq is called only when no_drd is false.
+  - Updated cdns_drd_gadget_on/off to ensure PHY mode is correctly
+    handled even if DRD is disabled.
+
+v2:
+  - Changed otg_irq to be optional.
+  - Added cdns->no_drd check in cdns_power_is_lost.
+  - Added cdns->no_drd check in cdns_get_id.
+
+---
+Pawel Laszczak (2):
+      dt-bindings: usb: cdns3: Add no_drd property
+      usb: cdnsp: Add support for device-only configuration
+
+ .../devicetree/bindings/usb/cdns,usb3.yaml         | 70 +++++++++++++++++++---
+ drivers/usb/cdns3/cdns3-plat.c                     | 26 ++++----
+ drivers/usb/cdns3/cdnsp-pci.c                      | 47 ++++++++++++---
+ drivers/usb/cdns3/core.c                           |  3 +-
+ drivers/usb/cdns3/core.h                           |  4 ++
+ drivers/usb/cdns3/drd.c                            | 44 +++++++++++++-
+ 6 files changed, 162 insertions(+), 32 deletions(-)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260512-b4-no_drd_config-f530f1f16d8a
+
+Best regards,
+--  
+Pawel Laszczak <pawell@cadence.com>
 
 
-On 13 May 2026 10:29:43=E2=80=AFam IST, Michal Piekos <michal=2Epiekos@mmp=
-systems=2Epl> wrote:
->A523 differs from existing sun20i-gpadc-iio by having two clocks; bus
->clock and module clock=2E
->
->Change driver to enable all clocks=2E
->
->Signed-off-by: Michal Piekos <michal=2Epiekos@mmpsystems=2Epl>
->---
-> drivers/iio/adc/sun20i-gpadc-iio=2Ec | 11 +++++++----
-> 1 file changed, 7 insertions(+), 4 deletions(-)
->
->diff --git a/drivers/iio/adc/sun20i-gpadc-iio=2Ec b/drivers/iio/adc/sun20=
-i-gpadc-iio=2Ec
->index 861c14da75ad=2E=2E3f1f07b3a385 100644
->--- a/drivers/iio/adc/sun20i-gpadc-iio=2Ec
->+++ b/drivers/iio/adc/sun20i-gpadc-iio=2Ec
->@@ -180,7 +180,7 @@ static int sun20i_gpadc_probe(struct platform_device =
-*pdev)
-> 	struct iio_dev *indio_dev;
-> 	struct sun20i_gpadc_iio *info;
-> 	struct reset_control *rst;
->-	struct clk *clk;
->+	struct clk_bulk_data *clks;
-> 	int irq;
-> 	int ret;
->=20
->@@ -205,9 +205,11 @@ static int sun20i_gpadc_probe(struct platform_device=
- *pdev)
-> 	if (IS_ERR(info->regs))
-> 		return PTR_ERR(info->regs);
->=20
->-	clk =3D devm_clk_get_enabled(dev, NULL);
->-	if (IS_ERR(clk))
->-		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock\n"=
-);
->+	ret =3D devm_clk_bulk_get_all_enabled(dev, &clks);
->+	if (ret <=3D 0)
-
-Thank you Michal for the change=2E
-
-Have you validated the changes ?
-It looks while success ret would be 0 and it would give return error=2E
-
-Thanks, Sanjay
-
-
->+		return dev_err_probe(
->+			dev, ret,
->+			"failed to enable clocks or no clocks defined\n");
->=20
-> 	rst =3D devm_reset_control_get_exclusive(dev, NULL);
-> 	if (IS_ERR(rst))
->@@ -243,6 +245,7 @@ static int sun20i_gpadc_probe(struct platform_device =
-*pdev)
->=20
-> static const struct of_device_id sun20i_gpadc_of_id[] =3D {
-> 	{ =2Ecompatible =3D "allwinner,sun20i-d1-gpadc" },
->+	{ =2Ecompatible =3D "allwinner,sun55i-a523-gpadc" },
-> 	{ }
-> };
-> MODULE_DEVICE_TABLE(of, sun20i_gpadc_of_id);
->
 
