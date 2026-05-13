@@ -1,239 +1,201 @@
-Return-Path: <devicetree+bounces-296708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296712-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sFKVF2A2BGoqFgIAu9opvQ
-	(envelope-from <devicetree+bounces-296708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:29:20 +0200
+	id QLUsM7E2BGoqFgIAu9opvQ
+	(envelope-from <devicetree+bounces-296712-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:30:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A082A52FAA8
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3320352FAEC
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:30:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2DD2F3009B05
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:24:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5422C301991F
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8EE3DD507;
-	Wed, 13 May 2026 08:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73ABB3DE459;
+	Wed, 13 May 2026 08:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EK2gvQff"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ye+rxpR8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DBB3D7D79
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 08:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778660666; cv=pass; b=ci9SmipT51389iFFqGq2JeMbqozSqlwQWKJL6w4JhPnojS+4fyuPeNKSBXZc/ladZQgpn9kHNpD4/1QzO5GBXyRvx1gRfIQ7woys5lwyDtT8vCk6x0Wawa6X50DrNH74siVweCmNsbfcHjqBP6JoWTZ16MLbokbIcEXkM6Ay3oM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778660666; c=relaxed/simple;
-	bh=kw3dfO5olbdQ/dpmQt0wjjo7jSfh7MCCGfQwYXwybf0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qT5dM5Kgr8Maod+UZU/b8XHQa9flT/EtrsrkwSwvm9gyVWiahQdWwW7gqG4OwXBTCYhbK8jPGCOVWJj6D5uXB73EVi4juoeSWEMWJAMGa7/VOjoe6Gnk17Re9fGK9yQ37hPXd4E8bZktETcTIH3d8sRSB52l1qa5rnllwmSxVQw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EK2gvQff; arc=pass smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-67e24b8ef55so9186463a12.1
-        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 01:24:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778660661; cv=none;
-        d=google.com; s=arc-20240605;
-        b=k3s5o7jCAlT1drDjVtYIwt3RS9MTNnNSYvOiYi/Zd5vNC6TcH1dr24KjIetuOORKcd
-         v6ZF2t5FaxxvNxm2/zlT3LOjOvLLw1a1/h/BzTWp58RC5UnDSfyER07LLQlUU0+YwlSk
-         F5APfPWMk0fXYzO+8Hv+15EybbWzKNV6L10mFuDYxDTR6dKZWX+gTSWnQoxcHOYqV1nU
-         FNn/vWG/D28dx4Z7yagtcL9psTdn/96mJjJEAOBrTrQaz39wVCNSd0tVdurWwnzmIrbP
-         OZEueLVjjrAf/zujUjgClXRH1GYi0ugFIm3kAiPTQj/w1chNd5NJQAPsRhX3PkhBglp0
-         /Z1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=nYSyg8L9M5z+qBtwq1ZJJwTOzPdHBSzFb44dE30H8ek=;
-        fh=fS7OccFGA2OoRLH3uABvE2Gs3QFrR/7qPeLmp5K/L2g=;
-        b=fMInnILjyZwMFELTchu96SDTDEcrE1osC8nK9tePRC1IHYtf/hhFEF7PPT2aCmqd4x
-         Fszexc5AcBBVsRXbao4fkyqkNXiYwwJ+j45BOaiS9BUUQJKKMau5DpyuWRksKmunifWE
-         YnbzEVaQeylwN6K6T9HzDdyULkV3u8ZFjkoz6BQyM44iR33FOLK9TyNSPfr5YAVNucao
-         gmvyviiFkr7bPIPf4YaWdcTGub7NB+fQzEy5w4DVVSlC5q3SkhLhGodU3RyG0oEE2fp2
-         F7bCbKoYbxrEI7FUMLyWZNnXtmb0hw+uJTOepomTmKT4hwYEclIem9ncxRtDw8sDWzjR
-         xm4g==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5633DE42B
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 08:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778660998; cv=none; b=ZpoNXr5V1XjXQKAbRoF3t+PuBI9l05uk6SZDiPFnbYIMsVaenrIkMreCWJAh5FAx3QDYrUGxrBsrle+MwHGYoHEXO4SfdpWxoyE91T8txjoD+62p94DiyAJgls60mz5DHxUxh8evT95O2SiJ3enDheAzOTIkoBP/rJQafWsQX3w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778660998; c=relaxed/simple;
+	bh=NaTCLfR8sWe3pR+9s8OzVp+Mo05/w1eWEqxKYbzdY6c=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=X8Nkv6o8fji3afNv/WidM9ykEvT7e7TBQ8NgWQVa2M9FikVjqtxcOGwM9YPW3gvIHAATxJQ63w7BdpA/e211e6uJIbgFb7g7UiPgZaeTxIhWydDrWzeAOfQXwdKC//ygBrRuhP756lYznz1XilnGY2x8xzKtzigwjTsVYs7/NdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ye+rxpR8; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-43d75312379so4881126f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 01:29:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778660661; x=1779265461; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nYSyg8L9M5z+qBtwq1ZJJwTOzPdHBSzFb44dE30H8ek=;
-        b=EK2gvQff8z9Z6Nkp1w7VA0H3njHJGj7ZAugSQ1tGi0UmSWkQrq6cKB2pAIFFLvMto1
-         ccNo6a8A6WoC1rlAyrQrdEvrS9ZGfy+8MAKw23ntGlIddIXMTOMIdxWYLwl4CNs/jFgE
-         YzZ4hFeg6dSSMYFkxeqrX7CTrUYJTrrx6HxhNkLEsZPuaCpLudaRVldrOEHwWenikXRo
-         RJurfGWtJT1l63kco9yDXWj2IIrXwIdaeYYsNNKotvzmDvsH5hBvQEY1mBBk50ZFI6+G
-         SEn7W45IBHihJPMLm8iqs+m7La+rCl2y54YfIZmw3NbUlhddcseMOJKKPuVv3oYTHpom
-         EvRQ==
+        d=linaro.org; s=google; t=1778660992; x=1779265792; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H7BvI9blkmbUziA0Ny+qCXTqAehIoVPCQb4tVX7iVuo=;
+        b=Ye+rxpR8/OMCp+NGyG+rPCoIS9fG/QsFHJwVO8XRZy4OFQSUpbLubo1jykfMpAFYwr
+         GJ0Psz5k6vWNgUDJzJxoXoI/T8C7dFqBggbk9FEBikOwBwUQz/WWKjvLJR8m+ybsIXAN
+         RUN7SR+jRQE1p3ZX0WjVfB4+Wt+jZx4CiRtczSCv5Z4JnhBYeh6XAbhiiffHlcxbJMzu
+         bU4rJceSJkpzGuewSnLFi4tZgpjuZiCWenqZ88z/scKHmICskW4f849KBuf0OpW5cr+a
+         bdulxNltcWyz0tuEshjTR5chgpZxD6XsDfj4tKa1PJ3nuiEh4sucX0/aLXY49c1HJrUq
+         QDsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778660661; x=1779265461;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nYSyg8L9M5z+qBtwq1ZJJwTOzPdHBSzFb44dE30H8ek=;
-        b=lvbAEqh/tkR3iPwr5gpOsuHYsfrn3q4qtSwWbMxwKwza/yKe6upWa8wGYDF7C6VVxY
-         R8Ys/WjrDbmn0QlKQGKqygXaGnvubAl3uUt0YxWFIYz0k6IOToskXpJWh816k1wFfhA4
-         Gso9aevIIa6vyIYH9jRWknMeYWi9cvUNtwEJ+r+E6dT17DevXtm07QJSFgjbTkbEzTha
-         kgathb7QVGFe4+tOPYXkCZpYfTEEYKXZjic0cUV4nB2NyVRzTNRCux42zYBk7d1sEX97
-         UWR3iRql1xatEGaKH4FpcKHy+OdYvPTIKemYiIV9uQkhyxj12LiBifpfG0z/8+QbE819
-         AoPw==
-X-Forwarded-Encrypted: i=1; AFNElJ/6T8ZWcv6H7sm3aeOJs5DKJ11IFi58/4RYRTyo2ikw9R22s9IX1+cA/qy6Kt4DCJs7up8Gcrqqqpl2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyml8u57FtQdmaPhkSy1HEDQ2vyPCiYB4MSU5jfkVnCWCESwiam
-	XP9U4PfP4Nbs+Vi8exOvX9oZ9UzyxvlS5VVg+VCBFbNoiXQJUp9pYSgNHKBOZaZnJOIZpV77nxh
-	E4Bat9GxBeEFoWSx0oeBy7oYX70AsfZQ=
-X-Gm-Gg: Acq92OGzhUQwiBplVkDptZxbXLKJo253Bj6GLFLQCiov8tu3yGkScMIf0K/3LBnae0P
-	RulIJck1M65CfEry//DBd2OAV04vgWfIM0wAd2YMDt4bMjiXIFJsB67admmfl7dVmPgpiSWBBWg
-	Ff7l6+NPrKvn5QqFl+aI83mmT62jkPU2c+UvOqJGdw1pBdDwb+z2B1bVEPy5K6mzBidenNZZ7jp
-	WnDjwVZpgwZp4njgh5LBuRmsM9LJcazWhD1EJ5BjDP1dMPZ62FQYQjG47Jwsb0d/DkD3N/2+bG+
-	8GP8Dg==
-X-Received: by 2002:a05:6402:3112:b0:680:c7b7:25bf with SMTP id
- 4fb4d7f45d1cf-682558f0800mr886488a12.6.1778660661158; Wed, 13 May 2026
- 01:24:21 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1778660992; x=1779265792;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H7BvI9blkmbUziA0Ny+qCXTqAehIoVPCQb4tVX7iVuo=;
+        b=XeaV1C0fG6txAfnmWzapZcvX3WICg8q0O9ELp1j0fG08QzljuvUD32JDAsTtlJwpcu
+         g+R5RBCbiz6nFhptdmO5CTGjvKI1vuYqyhK7dKdQPQiJ2BT3IfybgZd0autCATw3xNs1
+         9myIK1cwYMQMo8sElRzZrIq2pXI/lw0dThRW2vlW3En9oYMuFydp9aK5JfyLkt7yMSLW
+         EFZMAp2+zJjH8bWMpWxznYUkqbY6Zh6MnzWIXrWmoae1M3bU6q3O4wURmoSGsRv7iNSh
+         FAS86Wy1/N2GuYHg9PgEkaBflehOAEZBMdLAi9Es8XjYxKrCBHm9qc6vpyLFRxc6QeRF
+         +smw==
+X-Forwarded-Encrypted: i=1; AFNElJ8eTUmyScVluB0/Vg8GOBk89faQd1qtNOfywg7JX3FkwBoxLbjGKCuIiIJU3D0wgaIEQE+n3Ke+3QsU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmhAmZ7uExWcmRwjzQJp+TqgiN7V3oGUdl118zBW1L+B5+5njU
+	Ocnhc+pu45D2LGFKZcOwK/L+vvGeL+pHT/Vh9YSy+4CdPDTjvcRfjmIp1A4z/4qVPlE=
+X-Gm-Gg: Acq92OEXPTEqzJOuEQsjnQu68e/3A3C0jFIUj0BnjyCXeidEQNmrmk50YPRT8igZsTB
+	cec8ZMJh+DjecWnlE4zWlStPS+pwsPZWiVdVPWwwg6yt18V80JNJ/JRup7SAqrhcaL7i/iSSh3J
+	VMMfd6L4wWACrNNYZ7LqQjno+ps+d/IrVGhddGEJfbgYD3uc78wlWxazZw/sd2aiHIko42Xg+cM
+	KPh4Xhx/Ujd8Z3mfphiYUoJ9Ba50kU6N1eM3eKe352baNdxM0BpjIomFQpdMwmo1EOypWbpacxP
+	zeJ7GpN6jjucKCWmvlcn1Xq/JDHAFeSXCABXF7nIrIz3h13x/qZtHnm+MrpwYj2rsWFPri/F4u7
+	1ywhFGh5z9MTrVWu/N85dyWsJjl3tNls4w0uJB+1B4iI4fxGsj9xgLVV+ugnZRYTd7bxA5BISpg
+	zhfcqidqZp4yWZLwac6Rvh/r9pzqfTjXKU8HTB8z5dbaxVMcefhW2i5j9o3O1HNYM+529AbHS6i
+	3Aa
+X-Received: by 2002:a05:6000:2b0b:b0:43f:e571:184d with SMTP id ffacd0b85a97d-45ac3c6071amr7111931f8f.28.1778660991662;
+        Wed, 13 May 2026 01:29:51 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:6ee4:8e37:145:d60b? ([2a01:e0a:106d:1080:6ee4:8e37:145:d60b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45c7f27762csm3558455f8f.31.2026.05.13.01.29.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 May 2026 01:29:51 -0700 (PDT)
+Message-ID: <890de4b9-5481-44ab-adfd-0c58d9ae8239@linaro.org>
+Date: Wed, 13 May 2026 10:29:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260513-k1-pcie-fix-supply-v1-1-4eecbdd44ebe@kernel.org>
-In-Reply-To: <20260513-k1-pcie-fix-supply-v1-1-4eecbdd44ebe@kernel.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 13 May 2026 13:54:05 +0530
-X-Gm-Features: AVHnY4LhB6N7LiGPVl7TNwMFIk5YuvTL8zITcPKn8T3qoq1cfBO8XJO_5-DoyFc
-Message-ID: <CANAwSgQvGy9LMmHczxUSYDAq+fCFHctR=wbNr1=f+sLTts-9uA@mail.gmail.com>
-Subject: Re: [PATCH] riscv: dts: spacemit: drop unnecessary power supply from PCIe
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Chukun Pan <amadeus@jmu.edu.cn>, Andre Heider <a.heider@gmail.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: A082A52FAA8
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 0/2] Khadas VIM4 PWM status LED support
+To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 3320352FAEC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296708-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,jmu.edu.cn,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296712-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[aliel.fr,baylibre.com,googlemail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linuxamoon@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:email,infradead.org:url,mail.gmail.com:mid]
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-Hi Yixun,
-
-On Wed, 13 May 2026 at 09:06, Yixun Lan <dlan@kernel.org> wrote:
->
-> The PCIe Root Complex found on the SpacemiT K1 SoC does not require
-> external power supply, this match with the dt-binding documentation[1],
-> Instead it's the sub node of PCIe ports which should add vpcie3v3 power
-> supply. So, explicitly remove "vpcie3v3-supply" property from the PCIe
-> controller.
->
-> Link: https://lore.kernel.org/all/20251113214540.2623070-4-elder@riscstar.com/ [1]
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
+On 5/12/26 19:47, Ronald Claveau via B4 Relay wrote:
+> This series adds support for the PWM-driven status LED on the Khadas
+> VIM4 board (Amlogic T7).
+> 
+> The VIM4 exposes a heartbeat LED wired to the PWM_AO_C output, routed
+> through pin group pwm_ao_c_d. Before wiring it up in the board DTS,
+> the SoC pinmux definitions had to be corrected: the original
+> pwm_ao_c node was conflating two distinct pin groups (pwm_ao_c_d and
+> pwm_ao_c_e) into a single ambiguous entry.
+> 
+> Patch 1 fixes the pwm_ao_c pinmux entries in the T7 DTSI by splitting
+> them into two properly named nodes. Neither alternate is in use yet,
+> so there is no functional impact on existing boards.
+> 
+> Patch 2 enables the pwm_ao_cd controller on the VIM4 and adds a
+> pwm-leds node with a heartbeat trigger. The xtal-clk node is also
+> moved to restore alphabetical ordering among root node children.
+> 
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
-> The problem was introduced at the time of PCIe DTS first committed to
-> kernel, the vpcie3v3-supply should be added to PCIe ports instead of PCIe
-> RC node.
->
-> Refer the example dts of Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml
->
-> I'm not adding the Fixes tag, as this doesn't cause any severe bug, thus
-> not necessary to do the back port..
-
-The vpcie3v3-supply is required for PCIe operation.
-
-However, according to the device tree binding, vpcie3v3-supply is defined
-as a required property of the PHY. To align with this binding, the supply should
-be moved to the PHY node, and the PHY driver should be updated to handle
-enabling and disabling of vpcie3v3-supply.
-
-Thanks
--Anand
+> Ronald Claveau (2):
+>        arm64: dts: amlogic: t7: Fix pwm_ao_c pinmux definitions
+>        arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven status LED
+> 
+>   .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 30 +++++++++++++++++-----
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 12 +++++++--
+>   2 files changed, 33 insertions(+), 9 deletions(-)
 > ---
->  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts   | 2 --
->  arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 2 --
->  2 files changed, 4 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index e20daa50a152..c70081856606 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -316,7 +316,6 @@ &pcie1_port {
->  };
->
->  &pcie1 {
-> -       vpcie3v3-supply = <&pcie_vcc_3v3>;
->         status = "okay";
->  };
->
-> @@ -332,7 +331,6 @@ &pcie2_port {
->  };
->
->  &pcie2 {
-> -       vpcie3v3-supply = <&pcie_vcc_3v3>;
->         status = "okay";
->  };
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-> index afaad59e6bce..7e5915023eaa 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-> @@ -313,7 +313,6 @@ &pcie1_port {
->  };
->
->  &pcie1 {
-> -       vpcie3v3-supply = <&pcie_vcc_3v3>;
->         status = "okay";
->  };
->
-> @@ -329,7 +328,6 @@ &pcie2_port {
->  };
->
->  &pcie2 {
-> -       vpcie3v3-supply = <&pcie_vcc_3v3>;
->         status = "okay";
->  };
->
->
-> ---
-> base-commit: f068b204555ad62d6a841a49feb4ea8c4f45b25c
-> change-id: 20260512-k1-pcie-fix-supply-d12f6d50d8d4
->
+> base-commit: 31f32e8cdf59291e467250dfc57d1a8c718f63d2
+> change-id: 20260512-add-kvim4-sysled-8cc159524561
+> 
 > Best regards,
-> --
-> Yixun Lan <dlan@kernel.org>
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+Squashed patch 1 on ee6e05a49b93 ("arm64: dts: amlogic: t7: Add PWM pinctrl nodes")
+
+Neil
 
