@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-297202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297204-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IA7DBOcHBWpRRgIAu9opvQ
-	(envelope-from <devicetree+bounces-297202-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:23:19 +0200
+	id puO9Ap8IBWoMRwIAu9opvQ
+	(envelope-from <devicetree+bounces-297204-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:26:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E1953BF50
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:23:18 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF30F53BF8F
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:26:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8482E3019CA4
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:22:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BCAB23006D45
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86B2E38E8B7;
-	Wed, 13 May 2026 23:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86FF392C3D;
+	Wed, 13 May 2026 23:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JA5zYvqT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0pRZOFI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642941B6D1A;
-	Wed, 13 May 2026 23:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55E536D51D
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 23:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778714567; cv=none; b=gdkxDb3uj5j7i0flVq6XOR6HhCLoCfbyeN54aZX9Yvd+/4BQVRkTWmfrZkwev+K/6tOjwBQ6HUYuAPLMtvS6q4XQiY0Ivk/pfgYnjcqLjM0Q3OTfkBuodahou6MdvNcxQHE9pamSiYNX3WpvmYpHLhZY03nf98bfiWQyG0gmG5w=
+	t=1778714775; cv=none; b=UgsoThzTxHrEmtkEgjirud6xIkjlMgmf0v6aQg5Pa4AxDGLCYqXsNJXOSGyivEJYj/Z+ki0XZv/msz7HHwFERDfeOZkQuQ2qZKq+SV8ZzEXknPnWOMIXrc3ezDkXPmg+c/NUKcuxW9Bez/tUpFpSO6mIu7iGYSsL94DCToLbp5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778714567; c=relaxed/simple;
-	bh=nbeqCQwL0XFlrsprc/J6YxTdFUsm4Dz6Da5SclSo9bM=;
+	s=arc-20240116; t=1778714775; c=relaxed/simple;
+	bh=ImzY33nyS55h/z4JuXquHYMH1FHZGEUdMk6S2oFy62c=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ri1L4tiKqzKCyJOGsI1aKbidOeUNT+B2scJ+nJiadnzvelwoww2yksbbMBt9vvEHV7GOGB287CNGwy4mwg20HOSzWx70dO2HVbNbN/yXtiZIKujDlb4yPluAPtP/1725bDSqLrMTNkuT+BqIb/IT+2f9D3KvAGGSeNdt9DWBEws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JA5zYvqT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B98BDC19425;
-	Wed, 13 May 2026 23:22:46 +0000 (UTC)
+	 Message-Id; b=R8de3p9sBdmYNw/zXiOXozAjwAXtWTYgSQcnxfLm7beMoDE3NHsg4Rexd0DCjOYUEGvjuuonSMxbLbniZ9dP2v7nFjZd/tDZLXsFJXb0ZsjavzkJf0uBBirGxORR8OmuMZpX2sHES5nO7AaID64fTvfI5F3rRBTaIDbwIveKDoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0pRZOFI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0182CC19425;
+	Wed, 13 May 2026 23:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778714567;
-	bh=nbeqCQwL0XFlrsprc/J6YxTdFUsm4Dz6Da5SclSo9bM=;
+	s=k20201202; t=1778714775;
+	bh=ImzY33nyS55h/z4JuXquHYMH1FHZGEUdMk6S2oFy62c=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=JA5zYvqToL1DBK1x1cTcPDqTONfq6rp+/jsh26Rab21AKX3HB1vG6Qa4I9GGIWYUG
-	 jHoAUxBkGujat5l6b1DwsS4k2/91x55o85O5k6wHpYkhxgebe9FEgTBVGAxJfGIuFC
-	 S0uN82/7zpaDI5jg3wIeMwqrZ9wr2y99UCo5BtuEhva+ZMfQ5H5yeiOgbxjSgoLEJc
-	 JrnwgWyaiok5ypgCQLDyxl2eLyLU4hmSX/Uo89VmonmD7Ck4g24pVMi36pNkoZkmZm
-	 5wXntZzJcb9yrxaA1K707OI1Vac8bOZ2bCC0u6d4YkrfDqpug6NGy6l6GpgH46YgMr
-	 yWatsuOeSubdg==
+	b=t0pRZOFIAHmGTmQlOyKltF1haV3F7KLxnCfP24J5vBG/t/9v0UKv5iZlvPNfGPiEU
+	 Ej9U21gioX17/8TAZaQFGeBXON9yXDEH09cHxD1MqfRXEflzd7uHSO5BCKRUXQhgSw
+	 rWycL/MSQ/R89UETxamv95BjNHlbei47XLflEUo8UpGmsu9JeccJgRDVPNrv/d2MRH
+	 axYBWSHJAFozmoXX+90nJEMccVnzpTMzV5uO0rONrtpVbyaV3koupemtErn5FvTBnf
+	 WNklN8pPK93lXSmfWb/ZaHsjEUG0L6Ea3mdLekG3VC2E4hriVTtS15AGQ5lTgDiIfh
+	 wS4Ort+xcSKvg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 10/10] arm64: dts: Add support for LX2160 Twins board
- in single configuration
+Subject: Re: [PATCH 1/2] dt-bindings: display/bridge: lt9211: Add
+ drive-strength-microamp property
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Josua Mayer" <josua@solid-run.com>
-Cc: Frank.Li@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260512-lx2160-pci-v6-10-d0ff72d3c983@solid-run.com>
-References: <20260512-lx2160-pci-v6-10-d0ff72d3c983@solid-run.com>
+To: "Boerge Struempfel" <bstruempfel@data-modul.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260512164609.3390700-2-bstruempfel@data-modul.com>
+References: <20260512164609.3390700-2-bstruempfel@data-modul.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 13 May 2026 23:22:46 +0000
-Message-Id: <20260513232246.B98BDC19425@smtp.kernel.org>
+Date: Wed, 13 May 2026 23:26:14 +0000
+Message-Id: <20260513232615.0182CC19425@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 77E1953BF50
+X-Rspamd-Queue-Id: EF30F53BF8F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -69,14 +69,14 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297202-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297204-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,data-modul.com:email];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -85,65 +85,80 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,solid-run.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] Unused USB port left enabled despite the board only having a single=
- port.
+- [High] The values proposed for `drive-strength-microamp` are incorrect by=
+ two orders of magnitude, exposing an internal reference current rather tha=
+n the actual pad output current and violating standard DT unit semantics.
 --
 
-commit f3287c94b8a1489521dd5dfc2f4009ec55b9a33c
-Author: Josua Mayer <josua@solid-run.com>
+commit 97454d8731d851d94cc1fb58faf0cb4d4b8ca94c
+Author: Boerge Struempfel <bstruempfel@data-modul.com>
 
-arm64: dts: Add support for LX2160 Twins board in single configuration
+dt-bindings: display/bridge: lt9211: Add drive-strength-microamp property
 
-This commit adds device tree support for the SolidRun LX2160A Twins board
-in a single CPU configuration. It defines the various hardware interfaces
-available on the board.
+This commit adds the drive-strength-microamp property to allow configuring
+the LT9211 LVDS TX output driver current. It supports 16 discrete levels
+ranging from 12 to 36 microamps, and sets a default of 25 microamps.
 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-half-twins.dts b/a=
-rch/arm64/boot/dts/freescale/fsl-lx2160a-half-twins.dts
-> new file mode 100644
-> index 0000000000000..ee1867f5b2b6b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-half-twins.dts
-> @@ -0,0 +1,826 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +//
-> +// Device Tree file for single LX2160A CEX-7 on Twins board.
-> +//
-> +// Copyright 2022 SolidRun Ltd.
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9=
+211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.=
+yaml
+> --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+[ ... ]
+> @@ -31,6 +31,13 @@ properties:
+>    vccio-supply:
+>      description: Regulator for 1.8V IO power.
+> =20
+> +  drive-strength-microamp:
+> +    description:
+> +      LVDS TX output driver current. Sixteen discrete levels are support=
+ed,
+> +      corresponding to the following nominal values in microamps.
+> +    enum: [12, 14, 16, 17, 19, 20, 22, 23, 25, 27, 28, 30, 31, 33, 34, 3=
+6]
+
+Are these values exposing an internal reference current rather than the act=
+ual
+pad output current?
+
+A subsequent commit in the series mentions that the hardware supports discr=
+ete
+current levels starting at 12.5 microamps with a step of 1.5625 microamps.
+
+However, standard LVDS signaling typically requires a drive current of arou=
+nd
+3.5 mA (3500 microamps) to produce the required 350 mV voltage swing across
+a standard 100-ohm termination. A 25 microamp drive current would only
+produce a 2.5 mV swing, which appears too small for an LVDS link.
+
+Since drive-strength-microamp is a standard property, using it to expose an
+internal reference scale might permanently hardcode incorrect physical units
+into the device tree ABI.
+
+Should the enum instead reflect the actual multiplied pad output current,
+which might be closer to the range of 1250 to 3600 microamps?
+
+> +    default: 25
 > +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/common.h>
-> +
-> +#include "fsl-lx2160a-rev2.dtsi"
-> +#include "fsl-lx2160a-cex7.dtsi"
-
-The commit message states the configuration features a "USB-3.0 front-panel
-header with single port", and no other USB ports are listed.
-
-Since the included fsl-lx2160a-cex7.dtsi unconditionally sets the status to
-"okay" for both usb0 and usb1, does this regression leave the non-existent
-second USB port enabled?
-
-Should this board-specific device tree explicitly disable the unused port,
-perhaps by adding &usb1 { status =3D "disabled"; }; ?
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-lx2160-pci=
--v6-0-d0ff72d3c983@solid-run.com?part=3D10
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512164609.3390=
+700-1-bstruempfel@data-modul.com?part=3D1
 
