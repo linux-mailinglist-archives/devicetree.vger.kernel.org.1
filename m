@@ -1,148 +1,154 @@
-Return-Path: <devicetree+bounces-296650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDcvNr8iBGoZEwIAu9opvQ
-	(envelope-from <devicetree+bounces-296650-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:05:35 +0200
+	id 6K/7ApYkBGpmEwIAu9opvQ
+	(envelope-from <devicetree+bounces-296652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:13:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47AA52E672
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AE1B52E74F
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 09:13:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4733B305D103
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:03:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 17423301A91A
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3823C8182;
-	Wed, 13 May 2026 07:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44EC3D47A8;
+	Wed, 13 May 2026 07:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="mNEDwqRV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.175.55.52])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F118B239E75;
-	Wed, 13 May 2026 07:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.175.55.52
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F253D413F
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 07:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778655836; cv=none; b=mjpAW0nekR8n6pTyC1JKLzulhg0iH7dGnGiuZC7R6Is190gdtSzFADQsHqYaLxA3ecos42Umxgz1jC0Mlq0/1izn+m88FNA1fEJ9NZb9H0UMm4cXxFynFz+P/Zf57FDLHR9XRjRRCxfyZeYDx+HjcUaNgjmflbx26GIxfjif75g=
+	t=1778656374; cv=none; b=PiY4mMmyLs69nA7V8q20qbEJD4bm9nbGGCcj7/NpGkPSKsftpDqz5o4mUCdOVgB9BCMQuBB/N+uAdLjg3lY1q5qjeRo0WVDZSC+h2JP5Z6J7R2PECkwtPxzsygPldC4f+/9rHk1Swb1Wg5vd0OiWP4sH3suI9CGnBpTlJuzJj50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778655836; c=relaxed/simple;
-	bh=0FY7JyXpC5qFAoRGp8Q6IRw5utBLdqLGmJnoGzyWg08=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=T/U9uujY53YTtBF+PtvEzd8tYT8mbzINroh9+uNJczzAq74zFZDYaweVhwRiRWjjsCBw30lzpx/RYItckkN+eZl4r3Bdl3Vu6t63Fk0KB8i5oFelGXCP3ttYsSOKnrFs/FQGaPZ5SLRtngxmPMT9CS0yUEyq6a2mbfa0YvimK3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.175.55.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
- ajax-webmail-app2 (Coremail) ; Wed, 13 May 2026 15:03:36 +0800 (GMT+08:00)
-Date: Wed, 13 May 2026 15:03:36 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Huan He" <hehuan1@eswincomputing.com>
-To: "Guenter Roeck" <linux@roeck-us.net>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	luyulin@eswincomputing.com
-Subject: Re: Re: [PATCH v4 1/2] dt-bindings: hwmon: Add Eswin EIC7700 PVT
- sensor
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <c4082788-9e2f-4108-9d2f-13648bf4e5bf@roeck-us.net>
-References: <20260430064107.1598-1-hehuan1@eswincomputing.com>
- <20260430064444.1615-1-hehuan1@eswincomputing.com>
- <20260503-brave-bullfinch-of-innovation-942914@quoll>
- <4339b90a.6169.19e1b798c90.Coremail.hehuan1@eswincomputing.com>
- <c4082788-9e2f-4108-9d2f-13648bf4e5bf@roeck-us.net>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1778656374; c=relaxed/simple;
+	bh=0H31XGK3CYCvcMF8pnQIjsZUwd4VAVONMjyThwF7u7Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MzaG55DeOM9ZFKsoufWTltVq+IXN9Z7UZ1pQfQtWabwkf1/KYMAEtliN4+R8IaoH8K1gCPjCteQePdv9jIPBghIsFS/iaJgu47Ks3+vfiaaYU16gWT3lCw1t6dqtMQ2XUEa53OsZiMEw7Te/btqoalH2TK7gQNW9FTjvLyX/xSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=mNEDwqRV; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=0H31
+	XGK3CYCvcMF8pnQIjsZUwd4VAVONMjyThwF7u7Q=; b=mNEDwqRV/E0LY3clUO79
+	Rln8EDGDv0QUwaCVnDpASmvH0GZ53yIDKNmHd74P40iGSogAT/HhX53HsEooGBD+
+	ra5SEbkk0WZYEvmm3oqLrm9u8X/cGKZzu6brMZ6Jaqh8NljK++kOFM1mE4hbT6GE
+	13qALU7LuDWjzl6LX/LAqKUCTTn2eyFLqAhmOgh/ENjVQ8wWTWaGBySKRx7U3002
+	kcultJ7NE1g4SyX+u59VN++NtY4xVS/C7iUJYkmVkW7/HLXsQ+ZDxHmCVmjpWwSs
+	/MDR1Bja9a7t8COr+VyugI8qykusDsvdXNsljdkZgAMF6nQ0rHyTkmTr2G4R9SgU
+	7g==
+Received: (qmail 3314701 invoked from network); 13 May 2026 09:12:47 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 May 2026 09:12:47 +0200
+X-UD-Smtp-Session: l3s3148p1@42D2tK1RUqMujnsX
+Date: Wed, 13 May 2026 09:12:46 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: markus.stockhausen@gmx.de
+Cc: 'Bartosz Golaszewski' <brgl@kernel.org>, andi.shyti@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	'Marek Vasut' <marek.vasut+renesas@gmail.com>
+Subject: Re: AW: [PATCH v2 0/2] i2c: Add i2c-shared-gpio driver
+Message-ID: <agQkbnSHblUNz-IZ@shikoro>
+References: <20260511162528.84508-1-markus.stockhausen@gmx.de>
+ <CAMRc=Mc-EbMu3eUrMA5UDCEp-xzbyndy8_U8OjfcTDJcATThQg@mail.gmail.com>
+ <004c01dce29a$0e44e7b0$2aceb710$@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <70426510.61e4.19e2025eac7.Coremail.hehuan1@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDH3aBIIgRqPv0YAA--.5758W
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAgEGCmoDVpFTxgAA
-	s0
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
-X-Rspamd-Queue-Id: B47AA52E672
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TOvYIP+oU2ewljgr"
+Content-Disposition: inline
+In-Reply-To: <004c01dce29a$0e44e7b0$2aceb710$@gmx.de>
+X-Rspamd-Queue-Id: 7AE1B52E74F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[eswincomputing.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-296650-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[sang-engineering.com];
+	TAGGED_FROM(0.00)[bounces-296652-lists,devicetree=lfdr.de,renesas];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmx.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.722];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email,eswincomputing.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sang-engineering.com:dkim]
 X-Rspamd-Action: no action
 
-SGkgR3VlbnRlciwKClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgZGV0YWlsZWQgcmV2aWV3
-LiBXZSBhcHByZWNpYXRlIHRoZSBmZWVkYmFjay4KCj4gCj4gT24gNS8xMi8yNiAwMjoxNiwgSHVh
-biBIZSB3cm90ZToKPiA+IEhpIEtyenlzenRvZiwKPiA+IAo+ID4gVGhhbmsgeW91IHZlcnkgbXVj
-aCBmb3IgeW91ciBkZXRhaWxlZCByZXZpZXcuIFdlIGFwcHJlY2lhdGUgdGhlIGZlZWRiYWNrLgo+
-ID4gCj4gPj4gT24gVGh1LCBBcHIgMzAsIDIwMjYgYXQgMDI6NDQ6NDRQTSArMDgwMCwgaGVodWFu
-MUBlc3dpbmNvbXB1dGluZy5jb20gd3JvdGU6Cj4gPj4+ICsKPiA+Pj4gKyAgbGFiZWw6Cj4gPj4+
-ICsgICAgZW51bToKPiA+Pj4gKyAgICAgIC0gcHZ0MAo+ID4+PiArICAgICAgLSBwdnQxCj4gPj4K
-PiA+PiBObywgbGFiZWwgaXMgdXNlci12aXNpYmxlIG5hbWUuIENhbiBiZSB3aGF0ZXZlciB1c2Vy
-IGRlY2lkZXMuCj4gPj4KPiA+PiBQbGVhc2UgcmVhZCB3cml0aW5nIGJpbmRpbmdzIC0gaW5zdGFu
-Y2UgSURzIGFyZSBub3QgYWxsb3dlZC4KPiA+IAo+ID4gVGhhbmtzIGZvciB0aGUgY2xhcmlmaWNh
-dGlvbi4KPiA+IEkgYW0gcGxhbm5pbmcgdG8gdXBkYXRlIHRoZSBuZXh0IHJldmlzaW9uIGFzIGZv
-bGxvd3MuIFdvdWxkIHRoaXMgYmUKPiA+IGFjY2VwdGFibGU/Cj4gPiAKPiA+IFlBTUw6Cj4gPiAt
-IMKgbGFiZWw6Cj4gPiAtIMKgIMKgZW51bToKPiA+IC0gwqAgwqAgwqAtIHB2dDAKPiA+IC0gwqAg
-wqAgwqAtIHB2dDEKPiA+ICsgwqBsYWJlbDogdHJ1ZQo+ID4gCj4gPiByZXF1aXJlZDoKPiA+ICDC
-oCAtIGNvbXBhdGlibGUKPiA+ICDCoCAtIHJlZwo+ID4gIMKgIC0gY2xvY2tzCj4gPiAgwqAgLSBp
-bnRlcnJ1cHRzCj4gPiAtIC0gbGFiZWwKPiA+IAo+ID4gRHJpdmVyOgo+ID4gIMKgc3RhdGljIGlu
-dCBlaWM3NzAwX3B2dF9jcmVhdGVfaHdtb24oc3RydWN0IHB2dF9od21vbiAqcHZ0KQo+ID4gIMKg
-ewo+ID4gLSDCoCBzdHJ1Y3QgZGV2aWNlICpkZXYgPSBwdnQtPmRldjsKPiA+IC0gwqAgc3RydWN0
-IGRldmljZV9ub2RlICpucCA9IGRldi0+b2Zfbm9kZTsKPiA+IC0gwqAgY29uc3QgY2hhciAqbm9k
-ZV9sYWJlbDsKPiA+IC0gwqAgaW50IHR5cGU7Cj4gPiAtIMKgIGNvbnN0IGNoYXIgKm5hbWVzWzJd
-ID0geyJzb2NfcHZ0IiwgImRkcl9wdnQifTsKPiA+IC0KPiA+IC0gwqAgaWYgKG9mX3Byb3BlcnR5
-X3JlYWRfc3RyaW5nKG5wLCAibGFiZWwiLCAmbm9kZV9sYWJlbCkpIHsKPiA+IC0gwqAgwqAgwqAg
-ZGV2X2VycihkZXYsICJNaXNzaW5nICdsYWJlbCcgcHJvcGVydHkgaW4gRFRTIG5vZGVcbiIpOwo+
-ID4gLSDCoCDCoCDCoCByZXR1cm4gLUVJTlZBTDsKPiA+IC0gwqAgfQo+ID4gLQo+ID4gLSDCoCBp
-ZiAoc3RyY21wKG5vZGVfbGFiZWwsICJwdnQwIikgPT0gMCkgewo+ID4gLSDCoCDCoCDCoCB0eXBl
-ID0gMDsKPiA+IC0gwqAgfSBlbHNlIGlmIChzdHJjbXAobm9kZV9sYWJlbCwgInB2dDEiKSA9PSAw
-KSB7Cj4gPiAtIMKgIMKgIMKgIHR5cGUgPSAxOwo+ID4gLSDCoCB9IGVsc2Ugewo+ID4gLSDCoCDC
-oCDCoCBkZXZfZXJyKHB2dC0+ZGV2LCAiVW5zdXBwb3J0ZWQgbGFiZWw6ICVzXG4iLCBub2RlX2xh
-YmVsKTsKPiA+IC0gwqAgwqAgwqAgcmV0dXJuIC1FSU5WQUw7Cj4gPiAtIMKgIH0KPiA+ICsgwqAg
-Y29uc3QgY2hhciAqbmFtZSA9ICJwdnQiOwo+ID4gKwo+ID4gKyDCoCBvZl9wcm9wZXJ0eV9yZWFk
-X3N0cmluZyhwdnQtPmRldi0+b2Zfbm9kZSwgImxhYmVsIiwgJm5hbWUpOwo+ID4gICAKPiA+IC0g
-wqAgcHZ0LT5od21vbiA9IGRldm1faHdtb25fZGV2aWNlX3JlZ2lzdGVyX3dpdGhfaW5mbyhwdnQt
-PmRldiwgbmFtZXNbdHlwZV0sCj4gPiArIMKgIHB2dC0+aHdtb24gPSBkZXZtX2h3bW9uX2Rldmlj
-ZV9yZWdpc3Rlcl93aXRoX2luZm8ocHZ0LT5kZXYsIG5hbWUsCj4gPiAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgcHZ0LCAmcHZ0X2h3bW9uX2luZm8sCj4gPiAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgTlVMTCk7Cj4gPiAK
-PiAKPiBUaGlzIHdvdWxkIHRyeSB0byByZWdpc3RlciBhIGZyZWUtdGV4dCBuYW1lIGZvciB0aGUg
-aHdtb24gZGV2aWNlLAo+IHdoaWNoIHdvdWxkIGJlIHVuYWNjZXB0YWJsZS4KPiAKPiBUaGVyZSBh
-cmUgbG90cyBvZiBtdWx0aS1jaGFubmVsIGRldmljZXMgb3V0IHRoZXJlLiBOb25lIG9mIHRoZW0K
-PiBoYXZlIHRob3NlIHByb2JsZW1zLiBXaHkgZG8geW91IGluc2lzdCBpbiBmcmVlLXRleHQgbmFt
-ZXMgaW5zdGVhZCBvZgo+IHVzaW5nLCBzYXksICJyZWciIHRvIGRpc3Rpbmd1aXNoIHRoZSBjaGFu
-bmVscyA/CgpUaGFua3MgZm9yIHRoZSBjbGFyaWZpY2F0aW9uLgoKSW4gdGhlIG5leHQgcmV2aXNp
-b24sIEkgd2lsbCByZWdpc3RlciB0aGUgaHdtb24gZGV2aWNlIHdpdGggdGhlIGZpeGVkIG5hbWUK
-InB2dCIuCgpCZXN0IHJlZ2FyZHMsCkh1YW4gSGUKCg==
+
+--TOvYIP+oU2ewljgr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+> > It just so happens that at the same time as you submitting this, Marek
+> > Vasut wants to enable shared write-protect GPIOs for EEPROMs. This
+> > seems to be a similar situation where the default is to keep the line
+> > high and drive it low if there's at least one consumer that wants it.
+> > I will rework the gpio-shared-proxy driver with that logic in mind.
+> > Would that be enough to address the issue here?
+>=20
+> I'm unsure if this helps. From my understanding SCL gets toggled=20
+> high/low for each transferred bit during an operation. This data block=20
+> may not be intercepted by other consumers
+
+I agree. SCL is shared between the busses but if one bus uses it, the
+bus needs exclusive access to generate the desired clock rate. The other
+busses have to wait until the on-going transfer is over. This is
+different from the shared-GPIO examples Bart gave which need all the
+input ANDed together which would result in a chaos clock rate here.
+
+But thanks for the explanations, Bart!
+
+
+--TOvYIP+oU2ewljgr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmoEJGoACgkQFA3kzBSg
+KbaJjw//U7zNVVcuo9qfnzCHu3M4qzh7VAT9m2ulJoChRuz4UO0b8sFp/NhA7+yS
+GUklRRRsGEnybfliKxgQHKrngBlTogyMBi07PvaZ/Dk6o4vSViNskwokdZtns5Y3
+OriT8yq58Oh1XWRQ7x+85KmV8w2ikyN/IrhyYcR3LRmSxSU/bTtPCkEsD0kXFxQr
+UI4GyiteFAVav4ExSk1M/Lw+VxLiGMVVL1lyw/pqedBKjHm7WcmF5VS160HgSyIJ
+6614/mGUvYW1c1OrHmc7kHOVRPMGeu0wb5yWJgLtH5sBvrWE10ME2byQ+GSHbPwI
+5YMlUamqEX+sbRX3OYI0dQlKHCqwaVy2qC/KLJcqhDJfKuwQshDy37HO4wMRYHi9
+kDmKjYPLeY1g34kk8aO5+DcAoS3y2A2CS4BqbBqDLZ32WXi/9X8FEgj2tGLv71Rr
+iR0SJQR21IhOzrZhIx4ZdPB6GCwCvF7YLl6pHUL27XvgAWUy5KZMI5v5ebcU1Jfw
+qW6lte3HiIxVfrpEewxLJ26bxg0ff3SX4oAHUDbNGN/HaxzQS6mIzbU9OBTmLuxu
+sPSld4LaOroyPb0zQmIogR/p/mPxx9jRLMCfk5r0CRU9UQUIAr00TNtyNBOZyCKL
+3raWJexoasoEkkA8iev6tda5jlIRHVo6/z05nJ5P9Y4H8VQgNcs=
+=O+S5
+-----END PGP SIGNATURE-----
+
+--TOvYIP+oU2ewljgr--
 
