@@ -1,119 +1,174 @@
-Return-Path: <devicetree+bounces-296648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2C9YMVUdBGpyEAIAu9opvQ
-	(envelope-from <devicetree+bounces-296648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:42:29 +0200
+	id MOwWO/ceBGpyEAIAu9opvQ
+	(envelope-from <devicetree+bounces-296649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:49:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641D552E316
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:42:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6654F52E3DD
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B07930B7C5D
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:40:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61D633096844
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D853D4116;
-	Wed, 13 May 2026 06:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDEF3D47CD;
+	Wed, 13 May 2026 06:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="fGu06w7L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mail-m1973179.qiye.163.com (mail-m1973179.qiye.163.com [220.197.31.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABC7374E5A;
-	Wed, 13 May 2026 06:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C921D3AA1A8;
+	Wed, 13 May 2026 06:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.79
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778654418; cv=none; b=T6w0izoqjJAEse4Vq3Of49pmBMvbByQtQEwO/hD230IQpVYf8RSI95BR6X1gjqNkjPKZsIzAvwBN976evgU2a/kmtuWfkg9+4tYrdsZHKaBRgf0YBHf8og5Qb7YBUvgQ4pV9J0AqaUdc1RoK0iF33IUHVAXBHTRJ291BRh+A6rY=
+	t=1778654907; cv=none; b=qJjnqSp+t+1W+hKZFxknObdGorDvfINDg9dgaueTOISkH+QooGIgv8OU+TI1BPVDtRSHMC9a8a7utgMTqpic6+IwWdqvDY8o5o+2oS0HsMLnrc3z2FB9aV9zXHPcnFxeTKWSjXiro6GXyViI9TGgQjKBEUQsYwN0Jhj69bVH2xU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778654418; c=relaxed/simple;
-	bh=5RtJsBCfEP9nTcSgqq35MYiy5uXqZAi4jEbQlmPUxEI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=sSNh3op109gyvcUrn0r6k8uEp3gh2K9bLZJt/aGK8+17oReLCYzUg4JuIP628/JvtXzGzd1N+Vfm9EiX3z4V4D9q9Ki3cvHNizucAdzjYv4ErICm5GicmIx9rg1lg10SbHDqiVMvOz8qQS7I519o5Bkb1DKLxyp40qV4vDZeSC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.. (unknown [119.122.215.211])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3e366dfe8;
-	Wed, 13 May 2026 14:40:08 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: linux.amoon@gmail.com
-Cc: alex@ghiti.fr,
-	amadeus@jmu.edu.cn,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlan@kernel.org,
-	gaohan@iscas.ac.cn,
-	huang.ze@linux.dev,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	robh@kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 2/4] riscv: dts: spacemit: k1-bananapi-f3: Update USB regulator on onboard usb and label
-Date: Wed, 13 May 2026 14:40:01 +0800
-Message-Id: <20260513064001.621329-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <CANAwSgSP8W8QH26-X-mdNBtncDAbHR9CtYRO0F+rjmxKfhDt9w@mail.gmail.com>
-References: <CANAwSgSP8W8QH26-X-mdNBtncDAbHR9CtYRO0F+rjmxKfhDt9w@mail.gmail.com>
+	s=arc-20240116; t=1778654907; c=relaxed/simple;
+	bh=fVuwrdv1lLwt4QQNbyCf+ySkRKnVEtyDYck1eDZjBFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jHdFn98I30QvMG6Pnf9JlOLiQH7T8djhQfMBBNiW1Cu0ZeOB7wFSIn3vCppko3fgzNGJI6bZM180I4QnLyJ2LReeeKgqdkyIWi1jzwySYOrd45ca1DGtxlOLJSeRDV0IdG33IPt9H0tRhbR/NrHz2NU3f8R+C7cnFfziDB5bIls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=fGu06w7L; arc=none smtp.client-ip=220.197.31.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3e37f556d;
+	Wed, 13 May 2026 14:48:09 +0800 (GMT+08:00)
+Message-ID: <47836044-68ba-4008-9804-4e44462346df@rock-chips.com>
+Date: Wed, 13 May 2026 14:48:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e20106ec603a2kunm8225ea4f2a54a
-X-HM-MType: 10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/10] dt-bindings: display: rockchip: analogix-dp:
+ Allow hclk as third clock
+To: Conor Dooley <conor@kernel.org>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260512095644.1946084-1-damon.ding@rock-chips.com>
+ <20260512095644.1946084-2-damon.ding@rock-chips.com>
+ <20260512-diabetic-ahead-dd36bc2d8be7@spud>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260512-diabetic-ahead-dd36bc2d8be7@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e2017c45803a3kunmda73fe6d4e5a4
+X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHkJOVhpJTUJIGhlLGh1JTFYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJSkpZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	lNT0JVSktLVUpCS0tZBg++
-X-Rspamd-Queue-Id: 641D552E316
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTRhMVh5PHxpPHkoYHU5KGVYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=fGu06w7LYarZjk4xDDCGnJsKDegwnB/bS1kyb6W7f2SAs4MmyJ9sQJcg1RRnVCcOGjwgxXdMZHsKVwJjodu5BpQ+9poNN5kMd5r0f5MKvwV6Fgi35mFC4F1n4mdTlNIVjK4h1itFGaBwSofoHzXSyu2qy15cPJPjxhPHu+GC54g=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=qXpUJv6v2ZCsI/xZ36aQXcs4nWlhdMEflc6JdPg9XIk=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: 6654F52E3DD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_NONE(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296648-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-296649-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
 X-Rspamd-Action: no action
 
-Hi,
+Hi Conor,
 
-> > -             vdd-supply = <&usb3_hub_5v>;
-> > +             vdd-supply = <&reg_5v_vbus>;
+On 5/13/2026 1:12 AM, Conor Dooley wrote:
+> On Tue, May 12, 2026 at 05:56:35PM +0800, Damon Ding wrote:
+>> RK3588 eDP controller requires HCLK_VO1 (video output bus clock)
+>> to access the VO1 GRF registers and enable the video datapath.
+>>
+>> Previously, the clock was enabled implicitly via the 'rockchip,vo-grf'
+>> phandle reference, which allowed the eDP to work without explicitly
+>> managing the hclk_vo1 clock. However, this is not safe or explicit.
+>>
+>> To align with other display controllers (HDMI) on RK3588 and make
+>> the clock requirement explicit, expand clock-names to support either
+>> "grf" (for older SoCs) or "hclk" (for RK3588) as the third clock.
+>>
+>> This makes the clock dependency clear and removes reliance on implicit
+>> clock enablement from GRF phandle.
+>>
+>> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v4:
+>> - Modify the commit msg.
+>> ---
+>>   .../bindings/display/rockchip/rockchip,analogix-dp.yaml       | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> index d99b23b88cc5..d2bc8636b626 100644
+>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> @@ -26,7 +26,9 @@ properties:
+>>       items:
+>>         - const: dp
+>>         - const: pclk
+>> -      - const: grf
+>> +      - enum:
+>> +          - grf
+>> +          - hclk
+> 
+> Could you also enforce the correct clock name on a per-compatible basis
+> please?
+> 
+> pw-bot: changes-requested
+> 
 
-> As per the schematics USB3_PWREN (GPIO97) pin is used to power the
-> USB hub ports 5V_VBUS, please check this again.
->
-> VCC5V0_SYS -> USB3_PWREN -> 5V_VBUS
->
-> 5V_VBUS is used to power all the USB3_TypeA_Dual ports.
+Yes, will do in v5.
 
-This is correct, so shouldn't 5V_VBUS be for vbus-supply?
-VCC5V0_HUB powers the VL817 chip.
+> 
+>>   
+>>     power-domains:
+>>       maxItems: 1
+>> -- 
+>> 2.34.1
+>>
+
+Best regards,
+Damon
+
 
