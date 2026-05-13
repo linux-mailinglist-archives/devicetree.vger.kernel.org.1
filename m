@@ -1,122 +1,215 @@
-Return-Path: <devicetree+bounces-297208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KEyWE2gKBWoeRwIAu9opvQ
-	(envelope-from <devicetree+bounces-297208-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:34:00 +0200
+	id iFphG7MKBWo1RwIAu9opvQ
+	(envelope-from <devicetree+bounces-297212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:35:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE8853C093
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:33:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C85253C0EE
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C6542301DEC6
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:33:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 643E73021585
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B4439B942;
-	Wed, 13 May 2026 23:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C991B3CDBBD;
+	Wed, 13 May 2026 23:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sK6GldL0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="m/M+bYsB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010029.outbound.protection.outlook.com [52.101.193.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811F33890E8;
-	Wed, 13 May 2026 23:33:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778715235; cv=none; b=CUtLCI5VbQP8zk8zwucQO3yl806juGXU+Ec3I6nSsAjtspaUtFBb+3HPSkP59KhyGzms0mRtPmadUIud244KHGSzBAihsbKe+Phv+z8NS92YW5mAo9a3HJSTO7lXVoGbm9VbL49TVAPphx7BKlyjo9e25z55/Uzhym39FujypGc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778715235; c=relaxed/simple;
-	bh=ABN00HzQ91S9l2mJfmg1rfw+l+o9zTlnJwwutFGLwM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AM51qa9f3Uw/lm7ZPOgK83hIpzewHXKFsWukUrQ4nr0e/mm6DnpxR/sD60aDJeTzH9QQylYjykq7f1T0VaWTnsNnaBRIep/RS5N6fM+GB65JU5E13/MDpUTp7IdOQ7sN9Gn70YxEvR05JzECpOxyOsi4QB6LyaDIgE8wxr7z1N0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sK6GldL0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1579C19425;
-	Wed, 13 May 2026 23:33:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778715235;
-	bh=ABN00HzQ91S9l2mJfmg1rfw+l+o9zTlnJwwutFGLwM0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sK6GldL0bTZVqO9OPG1ev4S3c6qMvI//wfjvKk1rZ0j69abHr9hqNO7J9Mmt6n1+o
-	 PdcPGN4X7wQ80RoyXo7u+OyrlnH+PCPkf9aXiN2kXqioWMnyINK3deRFbSUoo9/1X9
-	 QwOTMFJQmxv+qWAqU686nn9BgSd0m8dQCdoPNOG3TuLdb5wMD4oUjzlZhz/brJsFFb
-	 WaIopn7fsArYBuXAaxdgUaZptS4nQuvEJvxbMazt2Sr71IRgyhSQx7MlEQ9PMIbCHG
-	 SgUrYj5yJuLmVI7EzcBTPgoZTGFf0WDFPFBuLZP3+5/7RotCIq7KhKu76iOJbBZsPF
-	 b56EUDkUpi8Ww==
-Date: Wed, 13 May 2026 18:33:52 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Manish Baing <manishbaing2789@gmail.com>
-Cc: alexandre.torgue@foss.st.com, thierry.reding@gmail.com,
-	mcoquelin.stm32@gmail.com, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	ukleinek@kernel.org, devicetree@vger.kernel.org,
-	linux-pwm@vger.kernel.org, conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linusw@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pwm: stmpe: drop legacy binding
-Message-ID: <177871523137.2307220.3066863194193334549.robh@kernel.org>
-References: <20260508184626.15938-1-manishbaing2789@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21ABB3CCFDB;
+	Wed, 13 May 2026 23:34:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778715295; cv=fail; b=Dcf1wytQhwF3km6aZHaWFbla6Etj1ag63SmRngGHNrkB4o6zVm8ahcqg/PdjfbbURNg9j5MegpNKRfjR8tmGuSzqICuvf8uc/c2qeJLTS/qMLq7OiXgqv4Pdo6gwFbXQPQawgE28X8dibzt5P7Us7Fm0PEwByfna2T41Jg496dM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778715295; c=relaxed/simple;
+	bh=i8fiIH7kTLgfZNntxkahUl5LPsUq+uaEpDi/biLtD+w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mRpUgz+uezB/txFIsrMKvCPFXfoygp3eDiO+nqw4CzwIgkQzmtL+dns9gZaBLeoSfwXUq15gTssdt8kP9LAzXw9u62LHHfI7YcPWigCtnxzW9AJXCp77vGQ8djCG2BZNx2cU/2ELrL733nWEcyk8jhVYfHwzrDqAWqcdl1XekYs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=m/M+bYsB; arc=fail smtp.client-ip=52.101.193.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u4PYoS6ddJuZ5/gWcI5HOwS9juyJ1lTWt9ZLzFD+HHcBzurjhWcH7wjCVUUsX2iPIOspKvoX8gMPf789HoxBxd9oQhomVy7pf/1p+CwOSsr4UTSRBUXnfg8zpIHIPWFmDsYEzOItgWBAjDCJXyHiyga/gOC2Zp+ErvQP4IrxAK55oD0kBcT2udjg/a5djjUCmmoUi2S5jgaM6SHxidKTAhpXSLMuSp8vBHGZJlhnF5AehA79ePtQ1klbQo8vpua54Ht1fBd3ofiX/Fe65kUy1ZDYXXkjv9JbsfSj/Eq6SoemcK9CwRe80JjDL+AJwprlHadB0OxoENm1fA+CPUpBoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xs27BI2E0WDGFV9qen9baKiSJRiYqCmVH45VA5V+4dM=;
+ b=ODLaVMb0sVd+2UvxXKZRkrk/htjiORLeOws/VynAazaT2yxkM4e23xUKi0aNUIXfdC1XY6IQye5KH2ne4/+VFMNn7fuy0yZYyAtUR/BUbrOuvjhXSn/rDzbD8IZDQ6OhHcmGy6ICibiKYmXbjGLFxieYKJAEhHxTs/AmoQguYqIdOrUtdcXmq1bWWerMB5odd14OXvT6VYgZnOEQqJTS4s+d5oTlD+svIPZDypoWlbbiA722KArhh2n6iLEaJ3TwsDorPTboh2o86VmKjz6NQSOOfS/LLQYJegSI0qFZp3XuecZvTG+PxEmoiMaU8Qlpwgn7LYabc0dFq52lVvennQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xs27BI2E0WDGFV9qen9baKiSJRiYqCmVH45VA5V+4dM=;
+ b=m/M+bYsBFrrR3USZYjn0Qq6TV3MnLjXOkVodrRvd6hHaRvlBFdqTiVrPFeUPrjQKUIHYxx7hAk7E72A9ACiQsUmGRO2nnsClKL5hpnaMzxsLRgAihnaier/SoiZGZpzvuMiH/5/ESMZbpqpvvr2L7QFjVyKF+395Z1psX+FA1m0=
+Received: from CH0PR03CA0092.namprd03.prod.outlook.com (2603:10b6:610:cd::7)
+ by SN7PR10MB7032.namprd10.prod.outlook.com (2603:10b6:806:345::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
+ 2026 23:34:50 +0000
+Received: from CH3PEPF0000000E.namprd04.prod.outlook.com
+ (2603:10b6:610:cd:cafe::fe) by CH0PR03CA0092.outlook.office365.com
+ (2603:10b6:610:cd::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Wed,
+ 13 May 2026 23:34:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CH3PEPF0000000E.mail.protection.outlook.com (10.167.244.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 23:34:48 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 13 May
+ 2026 18:34:47 -0500
+Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 13 May
+ 2026 18:34:47 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Wed, 13 May 2026 18:34:47 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64DNYlSO499089;
+	Wed, 13 May 2026 18:34:47 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>, Bryan Brattlof
+	<bb@ti.com>
+Subject: [PATCH v3 0/3] arm64: dts/bindings: Add support for BeagleBadge
+Date: Wed, 13 May 2026 18:34:44 -0500
+Message-ID: <20260513233447.2713737-1-jm@ti.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260508184626.15938-1-manishbaing2789@gmail.com>
-X-Rspamd-Queue-Id: BFE8853C093
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000E:EE_|SN7PR10MB7032:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3a1bf70-328c-463d-ed28-08deb14838f5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|18002099003|56012099003|3023799003;
+X-Microsoft-Antispam-Message-Info:
+	NzAI7dwuCO80CwsFWRfuPMk3TEVuEjt9SxThwsHZiovave1xdkBfb23yTL5SE9mmV1Enx+aVAj7K4+1IJ3ogLaw+BccbGhpBCVFjjxOgH8uCdmEADqvyyvvBBWHzgdDj1+tjkihPRMsWMgcU3nfLWJ1IP2Yh++QMIK0Yddf5oGGzMwiFFFWjIyXjcvSX78VecclUVTKSWoAR117Nseeflqqu333nDjC4SsLxH1wcYsJ22zKC9SidWEtwAGAiI1P9a/f6qGT3ZCW1u6WtUyU36RDuyn673bg+bMoiImrX0sqVqsAZocuklnBIVybpizMZ6+YfRR6pkQmFWG0VRUso0kw1biUEO/G0FDrnMSo+UO2h7HLCG3WmTYiYmvWObs1XlmojlJNqE5O67dFUFx+02twUGdAHGX/1VKL9Up5sxrV/GiE/9aMxavOG8I8lOYiE/fF7obQ6FCxzRASUotlW3E/6cOsIEJMkMe2WLQQ8oSK9yDDPct4BkT9f0E55+p3LYeFCXgA/oycxU2zCQagABrNUZIlCDBLyH/dcvtwIyFQdfrzTO5LkKOxsnDoxEj2dE+rV5S9gRqWMRJUXb/R1t9P3JlVLSD4hWNSSeSrD46W6eCb/i1W9uztOdDPtwyHL7YtvtM40Xu53oZ+6HIDQSkCzKDClO1IzqADws6YM2rluKeTf/Un+VKSrkQ9MAvyE
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(18002099003)(56012099003)(3023799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	u4jstgbx29Nc4TGXIysZToNiLOfELDoLrfRvliYSKuZO0rEylJanp7iWlkn3S7/MlEfck3mw6vVRUXCxei1K4oPWkNjr8u/EYZTRyzl0w/9SiVzVWh/hhHSyluJWObXdKQc1TqjFm0zlMdtxBg+xh4zys/xfbMtLNolcB1mBx3Th27TnqD7sp0N2W8iOaC4fnmCzCHXHTHLdLaSscz276ucCA9sa2DjzP2LJsJfq550c9EUqSlO5fZeQsRuRGkeIVDwYNa/VRpMq530pqCjPH7XFZ3kaMBva+7N7STKqSxcpWrIGAoX5Kx63X3PDuCRqKJK/ca/zUMgrrIXAceISVOlxzQewh/DzjnOrdvsore1bB97XiAVeevNg6lMiG474S37/Mg0XdX/PLD8k5DL6yW0aTJgXFkqiXgPMQG1xS8iEgINCCQcxB9pBY/sK/Unu
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 23:34:48.3590
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3a1bf70-328c-463d-ed28-08deb14838f5
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH3PEPF0000000E.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB7032
+X-Rspamd-Queue-Id: 8C85253C0EE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297208-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[foss.st.com,gmail.com,vger.kernel.org,kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-297212-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:mid,ti.com:dkim,beagleboard.org:url];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
+Hi,
 
-On Fri, 08 May 2026 18:46:26 +0000, Manish Baing wrote:
-> The st,stmpe-pwm binding is already covered by the MFD schema
-> Documentation/devicetree/bindings/mfd/st,stmpe.yaml. Remove the
-> obsolete and redundant text binding file.
-> 
-> Signed-off-by: Manish Baing <manishbaing2789@gmail.com>
-> ---
-> Changes in v2:
-> - Drop the TXT file instead of converting to YAML, as the
->   functionality is already covered by st,stmpe.yaml.
-> - Update the commit subject and description to reflect the drop.
-> 
->  .../devicetree/bindings/pwm/st,stmpe-pwm.txt   | 18 ------------------
->  1 file changed, 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/st,stmpe-pwm.txt
-> 
+BeagleBoard.org BeagleBadge[1] is a compact, affordable open source
+hardware [2] single board computer based on the Texas Instruments AM62L3
+SoC designed for IoT and embedded applications. Add base support for
+the same.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+SD boot:
+Link: https://gist.github.com/jmenti/8818fa277597de927dd2b42ab1d2552f
+
+This patch series adds:
+- Device tree bindings update for am62l3-badge
+- Device tree source for BeagleBadge board
+- Defconfig: drivers for BeagleBadge
+
+Changelog since v2:
+DTS:
+- PWM period: 255ns -> 10000000ns
+- vdd_3v3 vin-supply: vsys_out -> vcc_3v3_main
+- MCP23S18 reset muxmode: 4 -> 7
+- Typo: FUEL_GUAGE_BATLOW -> FUEL_GAUGE_BATLOW
+- sdhci2: Remove  #address-cells & #size-cells
+Defconfig:
+- Move config options as per make savedefconfig
+
+V2
+Link: https://lore.kernel.org/all/20260508230341.1891450-1-jm@ti.com/
+V1
+Link: https://lore.kernel.org/all/20260501233148.4180391-1-jm@ti.com/
+
+Patch series depends on:
+Link: https://lore.kernel.org/all/20260513231154.2703292-1-jm@ti.com/
+
+[0] https://beagleboard.org/
+[1] https://www.beagleboard.org/boards/beaglebadge
+[2] https://github.com/beagleboard/BeagleBadge/blob/main/design/BeagleBadge_RevA_V0.7_SCH_251107.pdf
+
+Judith Mendez (3):
+  dt-bindings: arm: ti: Add am62l3-beaglebadge
+  arm64: dts: ti: Add k3-am62l3-beaglebadge
+  arm64: defconfig: Enable drivers for BeagleBadge
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ .../boot/dts/ti/k3-am62l3-beaglebadge.dts     | 700 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   5 +
+ 4 files changed, 707 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62l3-beaglebadge.dts
+
+-- 
+2.54.0
 
 
