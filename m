@@ -1,214 +1,216 @@
-Return-Path: <devicetree+bounces-296801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296803-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDl1DHNsBGprIQIAu9opvQ
-	(envelope-from <devicetree+bounces-296801-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 14:20:03 +0200
+	id sGWVEydtBGprIQIAu9opvQ
+	(envelope-from <devicetree+bounces-296803-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 14:23:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5CF532F5F
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 14:20:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE50532FD8
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 14:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0BDA13033F55
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:20:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F1D030036DA
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86883D5657;
-	Wed, 13 May 2026 12:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60203FB7F6;
+	Wed, 13 May 2026 12:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RbIBiMeD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PC6zsvwG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927E93909AC;
-	Wed, 13 May 2026 12:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF10345CD8
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 12:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778674800; cv=none; b=cHDp5h65hlETAnxMMhIXRGMC+EYG6Z2MrWJz2Faxb40zh09cy/3aRYaqFvwDE3z17QfW/iB832jejdhPD+ALg00YAGLaNzMwjNGCtxNZMKYvisDI23cczl0HsrH+V3wUmnsaVaEXhdWAOglNK5YhI39AbH7Qgh2OvQhCIlO1ivQ=
+	t=1778674889; cv=none; b=bWb9ux+O3RheTSYB4pIm6Or3p7hvHmtUnFU/B6LjLv0YrbyHvdf8ttMx7JK8Z0Fa8gX/KqZJapriGgFH6x5FeN0+j9WYuQHnRXG5Yqa6rBMd3GZQCuvRRWBnEXdH6mHW00HnTQCTmWWNhHQPg3qkMgQs/Dz6LfOqZ1AbBImls5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778674800; c=relaxed/simple;
-	bh=RwG6QV1m/Cl64DkSBJyEOa248vAgjawUEC0CfydbuI0=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VFpqn59A63UaGFME4YyfVQURyJQWtthaFYSHTaOz3TdzugA+zBfBjmGbnnmUbcwMPqJ4zN+qNfwGewD2NMgzTMC/nLUx7v/Fu70lJmhPfGLHhbhfnR/NJnwIwWuUXQtIsC3BtfvhRb84etqE86ABnVAK5ulsDuy1rglraIE2FkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RbIBiMeD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24EC3C2BCB7;
-	Wed, 13 May 2026 12:20:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778674800;
-	bh=RwG6QV1m/Cl64DkSBJyEOa248vAgjawUEC0CfydbuI0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RbIBiMeDhOnccxwTUphmUO35kX6bx6hVsB/D5hQK8aesbu38+fuMnEByBng/Hyxbo
-	 O3b8p5Z9rVFjJ4hvL17uP5wCBNxDHUDcpNGT6BVXfwQ0gQXh+GSETlOy3tJsBjiK3x
-	 e+mHiKWDlmUyzc050Z8A6sYCu9oV73L9eLZ8JLhj/1zvMBloVEKiUqEYlFzIe6u83v
-	 wpOVMnXk099JAcxBkZkjTK5so6CLwmkzKbOjb86U+TbaKTSkQk3P6j2ByniLE+Ji7s
-	 ZYNJX6wYCZ6qbQmDfwzaML1fxzCmiIlh5MoABEB9HOvIcWtX1IqUmSIa8QSzFKzpfO
-	 7VM5juEM6Qa9g==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wN8ZB-00000001y2O-1eZP;
-	Wed, 13 May 2026 12:19:57 +0000
-Date: Wed, 13 May 2026 13:19:56 +0100
-Message-ID: <86ecjfy00j.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Sudeep Holla <sudeep.holla@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,	devicetree@vger.kernel.org,	Lorenzo Pieralisi
- <lpieralisi@kernel.org>,	Hanjun Guo <guohanjun@huawei.com>,	Catalin
- Marinas <catalin.marinas@arm.com>,	Will Deacon <will@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,	Mark Rutland
- <mark.rutland@arm.com>,	Daniel Lezcano <daniel.lezcano@kernel.org>,	Thomas
- Gleixner <tglx@kernel.org>,	Rob Herring <robh@kernel.org>,	Krzysztof
- Kozlowski <krzk+dt@kernel.org>,	Conor Dooley <conor+dt@kernel.org>,	Chen-Yu
- Tsai <wens@kernel.org>,	Jernej Skrabec <jernej.skrabec@gmail.com>,	Samuel
- Holland <samuel@sholland.org>,	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,	Ge Gordon
- <gordon.ge@bst.ai>,	BST Linux Kernel Upstream Group
- <bst-upstream@bstai.top>,	Jesper Nilsson <jesper.nilsson@axis.com>,	Lars
- Persson <lars.persson@axis.com>,	Alim Akhtar <alim.akhtar@samsung.com>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,	Pengutronix Kernel Team
- <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,	Dinh Nguyen
- <dinguyen@kernel.org>,	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Thierry Reding <thierry.reding@kernel.org>,	Jonathan Hunter
- <jonathanh@nvidia.com>,	Bjorn Andersson <andersson@kernel.org>,	Konrad
- Dybcio <konradybcio@kernel.org>,	Andreas =?UTF-8?B?RsOkcmJlcg==?=
- <afaerber@suse.de>,	Heiko Stuebner <heiko@sntech.de>,	Shawn Lin
- <shawn.lin@rock-chips.com>,	Orson Zhai <orsonzhai@gmail.com>,	Baolin Wang
- <baolin.wang@linux.alibaba.com>,	Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH 01/16] ACPI: GTDT: Parse information related to the EL2 virtual timer
-In-Reply-To: <20260513-crouching-stirring-pigeon-6e46bf@sudeepholla>
-References: <20260507125544.2903406-1-maz@kernel.org>
-	<20260507125544.2903406-2-maz@kernel.org>
-	<20260513-crouching-stirring-pigeon-6e46bf@sudeepholla>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1778674889; c=relaxed/simple;
+	bh=Z82dLXYF2fYj2lFIS5lqI12k7RcfvF4UTANbl7NGiKY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JEAuL3+UR3+vpB8LjdWNuSKOf45VXxrxGkD7MruFHBBOdVlKut14lwOa+qTbMF8/LEe3cTKLnV/LDcaFh0oI68LubYPkgVSlQwgBXJNT1B3s0DCT7FIRWQ/izXq7VoIv4AjaKILAruEJ/XgTKSpvGjbvcCzEB2Ra69sph5UG2OA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PC6zsvwG; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-48e56c1bf5dso40569535e9.3
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:21:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1778674886; x=1779279686; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zyU4Sq6iUSpynWqIwbV4HNx55pG0GP3Xn1AeqfpoAcY=;
+        b=PC6zsvwGVq/SgFf/EBtBgKftZW7qiwKRJtuEw5GY2p1rnBXXbyNUpY8c0TY9YeBLHc
+         NVkTYGqG6olIG46m3UYH3jAw7Hc/r4WXSTGMAPYKkcA3NOVIPTBCzDgcq9vguVm2msdK
+         S9aEY2GhVwT7t/Fdb1y4O6+3VZRLX8qAi4wlFgNbD6RCh3mHCAd/ODw3uxGT4G7q4P3C
+         RdBXghAgsDJZHqUHxq7FKx7AvzS5FCgD//bYoPTDb603ieqQBeIJKAecdaXZCMkd8bSN
+         F5JKZ9K9BEfTDtCckb6AMQ8nrjbWgRJHK3CPSHzYcEZastFViRzFoNjinnFvwkM4o284
+         tGYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778674886; x=1779279686;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zyU4Sq6iUSpynWqIwbV4HNx55pG0GP3Xn1AeqfpoAcY=;
+        b=WSvvGbYdoI428Z9naU2/F2YAJEW9dMStahiccSil85UISlidRsvfkEkU56nkPBRXZd
+         PpxRhlfy4F7kTAJ54qM0QP3Qmhsr5/3Anzn3zsfpyvKcjz6Ysz9rTq3MhVlq1/j3Vua/
+         GBjrnfrDCU6WSLoiaJMYkhBwqneH0Aw9MVulBQHC4G6YQv0uzbDij24LZq5t7tAPkCuS
+         zbPzU2kFuCgZcHwjKpspj9HI57UDKekKJIvcqY8uQPaVqaYHpxDNbkBbtiNaPsnPf6Ot
+         r/RMtThlzWmziEHtbU6kuv6WpJlkEN4HfKjXxxUvk1/wC76szUUZT3OJ5mnv4GsKe+1v
+         bmIg==
+X-Forwarded-Encrypted: i=1; AFNElJ/GJ/NTrpwsHV4h56fSNsc8EhJdRkYKihg8RHPykLwkrC0d3bsrY+yFCbCEFfNgknxQORw4lR1gPxz3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfm8FEIwUAdTpqukxkRDmPrHyoeqGq+aWN1MsdF+HPs/zqFI9R
+	7ylbi1Hu18zrar2LvCma0Mqsy9tkeglOVzqn8NE/1rHAv2/PPtr7bKh/nZlmUd7CdyI=
+X-Gm-Gg: Acq92OHRf+pi0K2R8K61tZr92BJ26BIQ6nwPhn97zChK8axkkzCbjqtty7si3j1OhWT
+	UZ6FKCFpMmFj9MUG0mZErOhSQgLzd4Z/Esdd8f5gHlHHp+woiq5DyqSqpIINJxAzj8l6Ko/+0+c
+	LQCjpQ29hiTm6l46/LkqLWw8rSe6G2v4DDSJAYBI7sTDvZEOF4Fv3tV/gJhEeNJgV26M5GAXVx5
+	cA2mNM4hfO7zclzhzQeIRaF8As3+KWaJAOfu7ExxQ6txSx8kqz+Dbherr31RVAdip+K5viBzRGw
+	I8+CIu76ACSakahgcHrMkW0sL3Xyml9ZbNz84vA9urFt3v/JXjeqkL7zGS9B5CGl6Slifkxjn0i
+	VmhYsKg56BqpCeXUkflKr4O3Z49Mmv3RYi6uHJV92qt3lUCn1rd01RtcjbZFegn3zLdL1uh1n2O
+	NMie0makjAVDCXy/4bWRuz469KnudHFXePJX7vq+I7TgXeGhBTxM2h4iIKEo67946d1i/S4yZSh
+	UuOeqrRiJyPx5M=
+X-Received: by 2002:a05:600c:19ce:b0:489:a4:e578 with SMTP id 5b1f17b1804b1-48fc9a34777mr40690665e9.14.1778674886244;
+        Wed, 13 May 2026 05:21:26 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:6ee4:8e37:145:d60b? ([2a01:e0a:106d:1080:6ee4:8e37:145:d60b])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fc8d68b14sm71555635e9.12.2026.05.13.05.21.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 May 2026 05:21:25 -0700 (PDT)
+Message-ID: <f965ac54-f302-4e0a-b079-564abcaaa38f@linaro.org>
+Date: Wed, 13 May 2026 14:21:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sudeep.holla@kernel.org, linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, guohanjun@huawei.com, catalin.marinas@arm.com, will@kernel.org, rafael@kernel.org, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, gordon.ge@bst.ai, bst-upstream@bstai.top, jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, ivo.ivanov.ivanov1@gmail.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, dinguyen@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, thierry.reding@kernel.org, jonathanh@nvidia.com, andersson@kernel.org, konradybcio@kernel.org, afaerber@suse.de, 
- heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: CA5CF532F5F
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: amlogic: t7: khadas-vim4: reorder root
+ node
+To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260513-add-kvim4-sysled-v2-0-3ec9779e8875@aliel.fr>
+ <20260513-add-kvim4-sysled-v2-2-3ec9779e8875@aliel.fr>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260513-add-kvim4-sysled-v2-2-3ec9779e8875@aliel.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 6CE50532FD8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[46];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-296801-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296803-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:mid,linaro.org:replyto,linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[aliel.fr,baylibre.com,googlemail.com,kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_PROHIBIT(0.00)[0.80.223.32:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-Hi Sudeep,
-
-On Wed, 13 May 2026 10:41:51 +0100,
-Sudeep Holla <sudeep.holla@kernel.org> wrote:
+On 5/13/26 12:43, Ronald Claveau via B4 Relay wrote:
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> On Thu, May 07, 2026 at 01:55:29PM +0100, Marc Zyngier wrote:
-> > Since ARMv8.1, the architecture has grown an EL2-private virtual
-> > timer. This has been described in ACPI since ACPI v6.3 and revision
-> > 3 of the GTDT table.
-> > 
-> > An aditional structure was added in ACPICA, though in a rather
-> > bizarre way, and merged in v5.1 as 8f5a14d053100 ("ACPICA: ACPI 6.3:
-> > add GTDT Revision 3 support").
-> > 
-> > Finally plug the table parsing in GTDT, and allow it to be eventually
-> > presented to the architected timer driver.
-> > 
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  drivers/acpi/arm64/gtdt.c | 25 +++++++++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
-> > 
-> > diff --git a/drivers/acpi/arm64/gtdt.c b/drivers/acpi/arm64/gtdt.c
-> > index ffc867bac2d60..1a58007fccf0a 100644
-> > --- a/drivers/acpi/arm64/gtdt.c
-> > +++ b/drivers/acpi/arm64/gtdt.c
-> > @@ -88,6 +88,19 @@ static int __init map_gt_gsi(u32 interrupt, u32 flags)
-> >  	return acpi_register_gsi(NULL, interrupt, trigger, polarity);
-> >  }
-> >  
-> > +struct gtdt_v3 {
-> > +	struct acpi_table_gtdt	gtdt_v2;
-> > +	struct acpi_gtdt_el2	el2_vtimer;
-> > +};
-> > +
-> > +static struct acpi_gtdt_el2 *gtdt_to_el2_vtimer(struct acpi_table_gtdt *gtdt)
-> > +{
-> > +	if (gtdt->header.revision < 3)
-> > +		return NULL;
-> > +
+> Move the xtal-clk node to restore alphabetical ordering.
 > 
-> We should validate the length as well just in case some platform bumped version
-> but didn't add these fields. Again it is problem if the platform timers are
-> also missing. We can just add the check in acpi_gtdt_init() if the version >=3
-> perhaps? If (gtdt->header.length < sizeof(struct gtdt_v3) invalid table or
-> something.
-
-Yeah, that seems like a valuable thing to do.
->
-> Also we have in platform_timer_valid()
-> 	platform_timer >= (void *)(acpi_gtdt_desc.gtdt + 1)
-> which is still valid, but again if someone messes up in v3 keeping
-> offset where virtual EL2 timer GSI should be present as they just copied
-> it from v2, then we might allow it as valid.
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+>   .../boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts     | 14 +++++++-------
+>   1 file changed, 7 insertions(+), 7 deletions(-)
 > 
-> Do it make sense to add that check as well in acpi_gtdt_init()? I mean
-> the offset should be >= sizeof(struct gtdt_v3).
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+> index 69d6118ba57e7..fd1b983354a01 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+> @@ -45,13 +45,6 @@ secmon_reserved_bl32: secmon@5300000 {
+>   		};
+>   	};
+>   
+> -	xtal: xtal-clk {
+> -		compatible = "fixed-clock";
+> -		clock-frequency = <24000000>;
+> -		clock-output-names = "xtal";
+> -		#clock-cells = <0>;
+> -	};
+> -
+>   	dc_in: regulator-dc-in {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "DC_IN";
+> @@ -155,6 +148,13 @@ wifi32k: wifi32k {
+>   		clock-frequency = <32768>;
+>   			pwms = <&pwm_ab 0 30518 0>;
+>   	};
+> +
+> +	xtal: xtal-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xtal";
+> +		#clock-cells = <0>;
+> +	};
+>   };
+>   
+>   &pwm_ab {
 > 
-> Both checks can be added to acpi_gtdt_init() to avoid checking for each
-> platform timer instance may be ?
 
-That makes some sense to me.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-What I'll do is introduce gtdt_v3 in a first patch, making sure that
-the parser is correctly handling the difference (pointer arithmetic
-and such), and then add the virtual timer interrupt handling in a
-subsequent change.
-
-> 
-> Other than this couple of minor nit, this patch looks fine.
-> 
-> Reviewed-by: Sudeep Holla <sudeep.holla@kernel.org>
-
-Thanks for having had a look!
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Thanks,
+Neil
 
