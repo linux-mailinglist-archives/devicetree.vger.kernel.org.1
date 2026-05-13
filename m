@@ -1,193 +1,268 @@
-Return-Path: <devicetree+bounces-297213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297209-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEIxNtsKBWo1RwIAu9opvQ
-	(envelope-from <devicetree+bounces-297213-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:35:55 +0200
+	id wKytHJsKBWoeRwIAu9opvQ
+	(envelope-from <devicetree+bounces-297209-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:34:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D2D53C0FD
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:35:54 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD28953C0B9
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:34:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EE0C2303F445
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:35:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61629301A28E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF533CE0B1;
-	Wed, 13 May 2026 23:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E433CB8FC;
+	Wed, 13 May 2026 23:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UsXYg+om"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GoYwnePl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012003.outbound.protection.outlook.com [52.101.53.3])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EF13CDBAB;
-	Wed, 13 May 2026 23:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.3
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778715298; cv=fail; b=F+3QKyNMuJj0tDAAsICmwleQUeQ1yILsrDN/b49qJkiK2A0w1QpyUzwZDfP0QXU+WcuMOmDNTutG7mxvLZuhODdIJi9MwKcxlKRh7C8VMzsrNDh5yrhbLPs94NdFhPBT6ycN3Lrkw9bLr87qJ3zCR9lJrjE3dDVCYt1OKbDyC+c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778715298; c=relaxed/simple;
-	bh=RzFtMFfHHremmqgwvZJtLs9/wEDfALXM438/Epx62Oc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uxJc1pSHzLBN1uDjUOH1TIE5jXWQQPpm8a3nDZbsoZZyhQtSptRGKxbzp8y8TPnLorelF8FEY4EyEdqvg1ilhNxmnJoL6bJZsMpZMlmUxYbNsleJIMA9xD3f74p8wjHQAxFga1CYOiiIHr8ltxbcRobZJbREk7PP67DfoWaIcwk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UsXYg+om; arc=fail smtp.client-ip=52.101.53.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lAPsMVmBRaeoJx2xozZfo5hrZhbE450ROH3mhEXwPvWe9o23x7OLiVJ1SNcTdhCRG8fjnUhKIy/w2Epwd5shjEEZ1VFsx7zLXvM1BUV5PV+KFVUoDjVS6Wd9iRVFvoiqs64S7YpBztW8wTfS3hIAOaF/t8PmQuvmz94t6PaxIVBn7CVqgrOgPa/OByx+4w9/eCLMzlOBkELO1v1L53rscDOFLGk5JmQnzgo4f5Won+PRSQ37rri6yEUBu0igTfU00cgoIeNcVJyGfHuTExX6Rh8LT0zYkQU7IqRE73mUMStxjVIHezIgnyr45V3I8qhP/Wps75xlaWj1fObiQxcxww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iIYzMd3/FU+p9LsoI3YtvX7YYOGhd11Gjr4AwPp6ujE=;
- b=qo91m2ypdjv2V3Uyr+uWoOsWfmHHx8STSp1JbpgojrOSbosITjX8VYZk1Q8J2tA8IUfMDG/XuevJbFo4GOSD+tIxvJ3WdU7HTseOJEx7xyspjRtXkVW/x45Ln5SBs66SEifEItr1XAl+QAdaWBeCEQhS7789dY5NfLFilQ+roYl6kNBR2QMtiZpTgH/zQguEEevs01e+zy7aeHku71SGlsibbjoIaboqD1btpRfMnFLEk5ZbdqGJY7vgOUoKzv4pMutdBSdaxfq4PLAYk9acXz7GY3imIl5cWOeeIssHbeFMtg9d+JKm1ovR+AOpN30HfjET/u/tuBSkKxQoeqnSDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iIYzMd3/FU+p9LsoI3YtvX7YYOGhd11Gjr4AwPp6ujE=;
- b=UsXYg+omsVI8fM24b8ylpkrKz18TVykosmp8g6AhtOvaifbTnBTwhlpigBmFBopyZF09Vtxg91MQGSB0mIcCK7eFUoAab3qWETYziSwqhLde37uQD7LSqfk2kxqaq/8gMCU7fVks73Wv0Mr5aUQFNgZo17z8qv8ob+FA1MbKJ2c=
-Received: from CH0PR03CA0100.namprd03.prod.outlook.com (2603:10b6:610:cd::15)
- by DM3PPF2FC05F2F4.namprd10.prod.outlook.com (2603:10b6:f:fc00::c16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
- 2026 23:34:52 +0000
-Received: from CH3PEPF0000000E.namprd04.prod.outlook.com
- (2603:10b6:610:cd:cafe::54) by CH0PR03CA0100.outlook.office365.com
- (2603:10b6:610:cd::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Wed,
- 13 May 2026 23:34:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CH3PEPF0000000E.mail.protection.outlook.com (10.167.244.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 23:34:51 +0000
-Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 13 May
- 2026 18:34:48 -0500
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 13 May
- 2026 18:34:47 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Wed, 13 May 2026 18:34:47 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64DNYlSP499089;
-	Wed, 13 May 2026 18:34:47 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>, Bryan Brattlof
-	<bb@ti.com>
-Subject: [PATCH v3 1/3] dt-bindings: arm: ti: Add am62l3-beaglebadge
-Date: Wed, 13 May 2026 18:34:45 -0500
-Message-ID: <20260513233447.2713737-2-jm@ti.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260513233447.2713737-1-jm@ti.com>
-References: <20260513233447.2713737-1-jm@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30AD03655F5
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 23:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778715287; cv=none; b=f+ntBI3aIXpJdOEVMAWOXm9dOFuHtEZBd+MD1FBXnvdW7j18B/DSIwn69fueHubJaOzLrWGdCBtNC4LNsCprv2fxN+a1XB06oggVGu5kHXNP5QniqPWC+FoIp7+rPUaDZcrkyXfBcdeDofh6AJ/NV0/NKHzLd8iRcCXJhy/SnNU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778715287; c=relaxed/simple;
+	bh=B0/OAMz258wgbDw3koJ7Gzw8BSzya320uDMqXygw/Bg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=VrDYW8WL0c7io+Cd90A6sQptiep0Q2TXV16mWCQ4fPnB4gZpUNlVpasq/S01h5G+PJGoWuVX/pdWs1gDu1MoNSnTVME9JGDrsxJXEPmA5PqKrL23+mcrW4u6lW/WjByzuflnPKWov8KFYwJEMH7uFTbGsA75Jml8XdeH3YuFOz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GoYwnePl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89872C19425;
+	Wed, 13 May 2026 23:34:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778715286;
+	bh=B0/OAMz258wgbDw3koJ7Gzw8BSzya320uDMqXygw/Bg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=GoYwnePliYRDC+rkcpdIp8BIA1tHFDvNEYqIVTWZebQm4rtg00dSIH//33D7Y0zev
+	 Wonb6+4HNtQEdSYLb/6fm79pmFsQaaXr36fW2w1GUYIc7HLg9mX56AGGrlA94XYOWR
+	 Jo2kbeGYsawPorS8CwU0byPuq5tsEW62JiPWozXPBpyzaqXG9XELjJZD1yEqvm2gIp
+	 +4vNt0FcQRofROZUZ7UxmpV783663JBEMfzPNXEGb3xj8jJIe96FQsEt6t+B/5U+Uh
+	 kEq8sFLsYTRFEWoj8faj4KShg19H0D252I2u3uTyS0wT+qrn5wsvltY4Nodh79qBDd
+	 f9KDfHkeDPcNQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 6/9] clk: eyeq: Introduce a generic clock type
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?QmVub8OudCBNb25pbg==?= <benoit.monin@bootlin.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260512-clk-eyeq7-v6-6-0540cce18fb2@bootlin.com>
+References: <20260512-clk-eyeq7-v6-6-0540cce18fb2@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 13 May 2026 23:34:45 +0000
+Message-Id: <20260513233446.89872C19425@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000E:EE_|DM3PPF2FC05F2F4:EE_
-X-MS-Office365-Filtering-Correlation-Id: a95e6a3f-f98c-4865-ac8e-08deb1483aa2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700016|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	7AEJZFvMbjLkosXFw30AeUGrmh0LB8MnT0eF5U6+zR2RBRdTTDLxDqUta7k3FnbC0vDInz4QDL9GlxLdrHajW+Azu8pjsCqKxSdJkRMQbYuKHt4fbtpCBv+SzB1BXKgaTV2VUUrM4e6xcVat8f5vXabIe18MRAtLVWf3fOw8Wn5n3gQPdcqLRBmbE11Nxh4/0D92SloqPANIKH60HubDJDzFSy/QONYReBPaRT2SBigTAW4BCh+et20cBTZcXgPBs16gPkeAJQe1jEXdFDnrrLGVAEJYW9yStOfXNwslb6eYQLoNFKdzN4dpq2/ZNaPstr50/uh+umWzYYstkwauwN5cW62L5mDpxXBSK5iwJwi5ssnxnQ6FTC6UwZNYisI0xpcG7YC0NJ80ekMT5crPUdcsH9zpw3r2YMA5lltP0eGr/k6FFpyQJNLfo574Yc4AUuhG0O5Uh1zbEV0tI3Rb1xgd666BMjdgfKkCWo0mLnuxNCop27OVb0zywvLUwS2LRk7Pr4IlXUiRtcl2naXQNb/odVkl7yUGi3uoski+ufpV9ht1j9JX/0iQRTD9cKDmG3UYZ+YuZKX4Pn1DsWiWnTWU+KcWQ4HnN1mHYfnFG7F5cV4doIO1UZXNG8hkbr6k93coi2E8WIDnG+cDB09/1WhlM5LpQv9XNQnxkgfjwBA=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	nCSEIOHXFTiezjf07pX8vVxWyeaW0suj6JnEaRnvQerfLtyUg3fUUxih9y2kgucZkmI5bWFkPi6RgBedq4BI9Fiwq9Il0h5S2MZjz0b5VJcQ/7nbOCJ7jmxPxaCyYF0L3S7Iw4EY8QD3YYuWNUj17WIPdW6sKZDWCzXA0yIxNfSMH2rUNn40lQVYPGv5JlUM4T6Ak50KQ4xDzrc2tiWn6w+kO98Exh40VC1zoRb766DIboHDgVrhAYHmYsa5AedHL5x2ciGGUISMXNwC78jPc1ruw4IIu8eooSt5KiSwbPU4ksz7fhN5t98c5u/UZBULkL2Fpx8AWHKewh5Tn3dJs2XOh2wmfk/Vm9K0LdTBnV2+OL+CDAUVafNL2YfbPyzpAHgxYDH0Bxr98pEDyv2QitgavRqG1egwU+0I1+QKTfiCSewNHebjKzWZJBCf6JKT
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 23:34:51.1696
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a95e6a3f-f98c-4865-ac8e-08deb1483aa2
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF0000000E.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF2FC05F2F4
-X-Rspamd-Queue-Id: 52D2D53C0FD
+X-Rspamd-Queue-Id: DD28953C0B9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297209-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297213-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[beagleboard.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:email,ti.com:mid,ti.com:dkim];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-This board is based on ti,am62l3.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Medium] Clock probe functions incorrectly return a boolean value instead=
+ of a negative error code upon failure.
+- [Medium] eqc_probe_divider() drops the device_node parameter, breaking de=
+vice tree linkage for early dividers.
+- [Medium] eqc_fill_parent_data() fails to handle parent clocks that belong=
+ to the early clock provider.
+--
 
-https://beagleboard.org
-https://github.com/beagleboard/BeagleBadge
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changelog:
-- no change
----
- Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+commit 7d25c6d0cb4fb3419bcfe17efee3ab5acfc0310a
+Author: Beno=C3=AEt Monin <benoit.monin@bootlin.com>
 
-diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-index 2a6a9441c23de..d9cd3fb712fdd 100644
---- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-@@ -40,6 +40,7 @@ properties:
-       - description: K3 AM62L3 SoC and Boards
-         items:
-           - enum:
-+              - beagle,am62l3-beaglebadge
-               - ti,am62l3-evm
-           - const: ti,am62l3
- 
--- 
-2.54.0
+clk: eyeq: Introduce a generic clock type
 
+This commit introduces a new generic clock type to support complex
+clock interdependencies in the OLB, including probe and unregister
+function pointers. It updates the match data structures and adds
+probe callbacks for dividers, fixed factors, and PLLs.
+
+> diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
+> index e4e690a12a238..623b1d3f041df 100644
+> --- a/drivers/clk/clk-eyeq.c
+> +++ b/drivers/clk/clk-eyeq.c
+
+[ ... ]
+
+> @@ -336,6 +375,101 @@ static void eqc_auxdev_create_optional(struct devic=
+e *dev, void __iomem *base,
+>  	}
+>  }
+> =20
+> +static int eqc_fill_parent_data(const struct eqc_clock *clk,
+> +				struct clk_hw_onecell_data *cells,
+> +				struct clk_parent_data *parent_data)
+> +{
+> +	int pidx =3D clk->parent_idx;
+> +
+> +	memset(parent_data, 0, sizeof(struct clk_parent_data));
+> +
+> +	if (pidx =3D=3D PARENT_BY_FWNAME) {
+> +		/* lookup the parent clock by its fw_name */
+> +		parent_data->index =3D -1;
+> +		parent_data->fw_name =3D clk->parent_name;
+> +	} else if (pidx =3D=3D PARENT_BY_NAME) {
+> +		/* lookup the parent clock by its global name */
+> +		parent_data->index =3D -1;
+> +		parent_data->name =3D clk->parent_name;
+> +	} else if (pidx >=3D 0 && pidx < cells->num && !IS_ERR(cells->hws[pidx]=
+)) {
+> +		/* get the parent hw directly */
+> +		parent_data->hw =3D cells->hws[pidx];
+> +	} else {
+> +		return -EINVAL;
+> +	}
+
+During the late probe phase, early clocks are marked with ERR_PTR(-EINVAL)
+in the cells->hws array. If a late clock depends on an early clock,
+!IS_ERR(cells->hws[pidx]) will evaluate to false, and this will return -EIN=
+VAL.
+
+Does this prevent late clocks from using early clocks as parents?
+
+Should this assign parent_data->index =3D pidx when the hardware pointer is=
+ an
+error, allowing the clock framework to resolve the parent index via the
+device tree?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqc_probe_divider(struct device *dev, struct device_node *np,
+> +			     const struct eqc_clock *clk, void __iomem *base,
+> +			     struct clk_hw_onecell_data *cells)
+> +{
+> +	struct clk_parent_data parent_data;
+> +	struct clk_hw *hw;
+> +	int ret;
+> +
+> +	ret =3D eqc_fill_parent_data(clk, cells, &parent_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hw =3D clk_hw_register_divider_table_parent_data(dev, clk->name,
+> +			&parent_data, 0, base + clk->div.reg, clk->div.shift, clk->div.width,
+> +			clk->div.table ? 0 : CLK_DIVIDER_EVEN_INTEGERS, clk->div.table, NULL);
+
+The clk_hw_register_divider_table_parent_data() macro hardcodes the
+device_node (np) argument to NULL when calling __clk_hw_register_divider().
+
+If this is called during early initialization where dev is NULL, does this
+cause both dev and np to be NULL? Could this break device tree-based parent
+resolution and prevent of_clk_set_defaults() from working?
+
+> +	if (IS_ERR(hw))
+> +		return IS_ERR(hw);
+
+Since IS_ERR() evaluates to a boolean, does this return 1 on failure instead
+of the actual negative error code? Should this return PTR_ERR(hw) instead?
+
+> +
+> +	cells->hws[clk->index] =3D hw;
+> +	return 0;
+> +}
+> +
+> +static int eqc_probe_fixed_factor(struct device *dev, struct device_node=
+ *np,
+> +				  const struct eqc_clock *clk, void __iomem *base,
+> +				  struct clk_hw_onecell_data *cells)
+> +{
+> +	struct clk_parent_data parent_data;
+> +	struct clk_hw *hw;
+> +	int ret;
+> +
+> +	ret =3D eqc_fill_parent_data(clk, cells, &parent_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hw =3D clk_hw_register_fixed_factor_pdata(dev, np, clk->name, &parent_d=
+ata, 0,
+> +						clk->ff.mult, clk->ff.div, 0, 0);
+> +	if (IS_ERR(hw))
+> +		return IS_ERR(hw);
+
+Similar to the divider probe function above, does this return a boolean 1
+instead of the negative error code?
+
+> +
+> +	cells->hws[clk->index] =3D hw;
+> +	return 0;
+> +}
+> +
+> +static int eqc_probe_pll_fracg(struct device *dev, struct device_node *n=
+p,
+> +			       const struct eqc_clock *clk, void __iomem *base,
+> +			       struct clk_hw_onecell_data *cells)
+> +{
+> +	struct clk_parent_data parent_data;
+> +	unsigned long mult, div, acc;
+> +	struct clk_hw *hw;
+> +	int ret;
+> +
+> +	ret =3D eqc_pll_parse_fracg(base + clk->pll.reg, &mult, &div, &acc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D eqc_fill_parent_data(clk, cells, &parent_data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	hw =3D clk_hw_register_fixed_factor_pdata(dev, np, clk->name, &parent_d=
+ata, 0, mult,
+> +						div, acc, CLK_FIXED_FACTOR_FIXED_ACCURACY);
+> +	if (IS_ERR(hw))
+> +		return IS_ERR(hw);
+
+Does this also need to return PTR_ERR(hw) instead of IS_ERR(hw) to
+propagate the correct error code?
+
+> +
+> +	cells->hws[clk->index] =3D hw;
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-clk-eyeq7-=
+v6-0-0540cce18fb2@bootlin.com?part=3D6
 
