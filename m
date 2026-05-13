@@ -1,336 +1,205 @@
-Return-Path: <devicetree+bounces-296766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296754-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aK8xG0hUBGp/HAIAu9opvQ
-	(envelope-from <devicetree+bounces-296766-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:36:56 +0200
+	id SEx0BnNRBGo6HAIAu9opvQ
+	(envelope-from <devicetree+bounces-296754-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:24:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0476253167A
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:36:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB7545314A3
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 64C60309E02A
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:35:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 47966301D6A4
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EB63F65F9;
-	Wed, 13 May 2026 10:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C786E37F72F;
+	Wed, 13 May 2026 10:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="KwNSc5i8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n459xclz";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OF33iybl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7873EDAA3;
-	Wed, 13 May 2026 10:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F442D94BA
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 10:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778668521; cv=none; b=neUQQ1iUY+zvr1k6lN4MF0pZBzqqYuQ7bLvmeRtbwL739dtiQ/c3ItC4Udv3P2Bocvyf2I6EZs+bV+tim6WYxx/HtXqFUF1Xx1ruqpw23rcTiAdwuZ9Toe5NWssU6QBgKJnwLt3GheyLzdX39sYI9exR02cfayeIB5lWjqAvDoQ=
+	t=1778667880; cv=none; b=KejaFwgt3Kg/Wry8dZ8L4DSUEGRlykS371jE/4BYnBtuU1Yx54YY5iCQ5SZG625uNMvt9v2Hxa5FhnwY0zAj+qV1427KLQusdFNHBr1b0k261v/6Qbua3A7o/rPrzqssnE54IZCT2dKWPjxrRY9mTORDI1wNkDu00/UcS7dN5Gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778668521; c=relaxed/simple;
-	bh=vFc/0varpnBF15KLeuIScQbsvyHGDQlnFW3oq0QgzkU=;
+	s=arc-20240116; t=1778667880; c=relaxed/simple;
+	bh=Rap07eWKuYUwf3m7asV/sd7fN/4knB6aoCl/FA8WpjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EqqlcaH8T7A9QQU51GwUpB22q3g9AK5DaQXgQkMICAa28WFaa+c54EXDEyLeVttU0iO0M3OAAvp2Ge9GWI3eMs8ydDDBcjZ/wDEhrrnmrEre736HpdQpllFKFamRY9nBPm0+DL5H/cAsolH4bIL+sZFOxMQEvlhKTWdvSiyS7/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=KwNSc5i8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA88C2BCB8;
-	Wed, 13 May 2026 10:35:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1778668520;
-	bh=vFc/0varpnBF15KLeuIScQbsvyHGDQlnFW3oq0QgzkU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KwNSc5i8H0zhtr7etEdEyXLasBoIx+Uq4MNV+e75qi4pg9mZH1PsqkiQjXslXjV7d
-	 Z6e2GQr/PDwrqybuwKn1IyJ1pNw+I1ERLODwBsqtDqgl3UX3HlsNeif4csjI9T3t0w
-	 E9YsJIr1Vit1OYXgxXZpiJn0ls7N86tWA1Iie1Yc=
-Date: Wed, 13 May 2026 12:11:46 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: liu.qingtao2@zte.com.cn
-Cc: krzk@kernel.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, marex@nabladev.com,
-	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, rdunlap@infradead.org, geert+renesas@glider.be,
-	quic_zongjian@quicinc.com, arturs.artamonovs@analog.com,
-	robert.marko@sartura.hr, hvilleneuve@dimonoff.com,
-	thierry.bultel.yh@bp.renesas.com, julianbraha@gmail.com,
-	flavra@baylibre.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	liu.wenhong35@zte.com.cn, liu.fei16@zte.com.cn,
-	dai.hualiang@zte.com.cn, deng.weixian@zte.com.cn,
-	jia.yunxiang@zte.com.cn, he.yilin@zte.com.cn, bai.lu5@zte.com.cn,
-	yang.susheng@zte.com.cn, shen.lin1@zte.com.cn, zuo.jiang@zte.com.cn,
-	hu.shengming@zte.com.cn, gao.rui@zte.com.cn, tan.hu@zte.com.cn
-Subject: Re: [PATCH v2 2/2] tty: serial: Add LRX UART driver
-Message-ID: <2026051316-stellar-enunciate-e2f8@gregkh>
-References: <202605130852.64D8qEux084060@mse-fl1.zte.com.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QD4c+6A4Iwzs94OChB2T3RJuWL4OXpemFqhmf/qxVZEcSV8rmSsekhFqwR3LKfn2Gd08f/7zczn8Y+0feau7coWwgnFpYgB93OP6pExinr1Waq95fv00zKOWkR0K7xbhJzT7WyAsBNic7nOFEKhdqcQDT7GH7ngSw110EbPYhRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n459xclz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OF33iybl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64D4pGnv2338932
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 10:24:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ifxChmry+TttLoFTQQ/tL55R4hjUx2mBibZDRYzje7c=; b=n459xclzrhyZI8rh
+	ahLpy8jIzNeMLZuEued+3bxg6DPmCaFbTuDq8DU2owZzCvvrn2Mg+DQEPK0c50Sr
+	jV6tsw5VvTlwESMA9S09qs3+PVS6VJOsfaDcwntdwxN9WFvJtHPCd7C0HeEilI/t
+	sH1V3XnzzIgiYs/Gj8+TdiY1jdoZB67uIypgwYdU3o2cUXp5+tyjSTeIWdS3svfz
+	lNG/o4/uUkNmJuGXJH15ZjtvFLzpBu+xyUAOJXBAG2WWtsbenievG+RMNEJZduDy
+	5uNzH5D/C4NTJ3bFII9+xEhj2odA+sy5FgUAbF9BHpJpKjfnTpfNYJEqPHxh/yca
+	y6UJdw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e49vxayjw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 10:24:38 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50faf575af4so149925061cf.0
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 03:24:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778667878; x=1779272678; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ifxChmry+TttLoFTQQ/tL55R4hjUx2mBibZDRYzje7c=;
+        b=OF33iyblBKAUQF5QqV+NnhX2THe5vg+1PIPjXrNNz/yLhKnkjSYu/tWClEXvSCDbZG
+         HAHZYlWRlLHKnRLKqYQRGdQzr0cflM3ISARt8dg1edc8b0ULjCfEfN99axRSuXng04UR
+         XjGmnky9A+M4kkpQRVYkrXFMlmYJkPmEwg0F71PQbrgEjd1mXO76oRIGWgYdfcM9SLhK
+         IyB6IJ89Ilujt2PvfSG2Cmoa1EfsJnVRPA6ZHI85pg2bnpCTEce+u3dNHY/3cVa1sozo
+         19ps2IydEnyNiFNXU6FsvLl/pom+5w73rZmECY/Fwe1x3y07q676IQVVr+lLfzwyYJrG
+         2aWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778667878; x=1779272678;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ifxChmry+TttLoFTQQ/tL55R4hjUx2mBibZDRYzje7c=;
+        b=FJb4rZ3d3vnYnNgLh2OAHUizxFPKIaKNd6LW3BV9dRlD2YhXHaqMlkQfJ4Dsvxvrpb
+         ToYxSxd3xepoVvu3hFswqJDuTyBsZ+Wq0p5LcGzGo5VKdv/3HrMHwbo1+HllFYk27muc
+         pO52zbu8fkTGqFqIWjfb3VKy+xXY+tgKW45VpzeXEKfhQyrYBErvelu7WicTobQibuKE
+         36HySsWmbYxI1qEOWy/JIG8EeD8AhxHmhyPQOvG+lpfhkPNBn6f3vyujGxxm6ym0JuKl
+         SQGml/DEKnQ7HYWJkOHsje1STej7oi2lUFR15+uJEHPrY8/kDNEtfsboz0BLxcqtKe/D
+         YDWA==
+X-Forwarded-Encrypted: i=1; AFNElJ+NWkzS+MUbjiTvgYDEtTrbLGZIcjtg7rYyU23ZVwtzMq8pUWDXCce+XN+RkX2Oqq0Lbg9rxpRle10Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqALiI5+iQOI+RgPdpCzN57AYEGiXgROtZrnSqR0zpV/AvmiU6
+	5PKahPXCrchdd5MpF9Ud8fqXwQ81+FQAnpjmEpza4+0vgjXPk7OT7+4ReOyra9aJANGNG9VCW+j
+	XxlUj8Z3X/VOM/JYES8rVi3xJywOQ6fbZUBJ1wMnb0yhFskbWG8FEjNvIZfwlR1Qs
+X-Gm-Gg: Acq92OGyr4zk9sIKXpIWDOcMRNJPBMRRj4HQbgxJnWRs9Ggnm7J5gTJX3FUJkTsAFDc
+	DyWd6FGaG8g7y6nD053TVFO/i4ttaaVWmCBqRtZ3vlk/lkaGCM/KescRka7VRHkaAqEO8cToQiE
+	DEEhUv+4b5wotQ2GnHo3fGqmLCkEkfVm2FxkEbACK1zdpzHwbZDD4ArPvue6i+TEs4R5KPBMy/u
+	ZJAzUPU5kSmYEMM34skYEDxj2KHx4tOdnIMBRY2Kc4HX4mkdJuW/Sbenb1Ou7/zUtYOc6kl/EyK
+	qwuqJN5eIO/HI57TEg5qT5atTsy3e7xS9h6SBUUeSd0gB65Cv52PYRj4mnYFhMGgA5S3XIzNFHJ
+	B6dE1Hry0kKVWOLSkpTMX2CEuUHWtwAZKQHjJuniai77LjZhUUq5R5wn1fDS3akXIWVmL7eBCxy
+	n1PvaZ6mhI9cB/qT6Q6Rw4uh13o1t9WgPOqwc=
+X-Received: by 2002:a05:622a:5885:b0:512:e813:7ce8 with SMTP id d75a77b69052e-5162f67cf1dmr32339351cf.54.1778667877686;
+        Wed, 13 May 2026 03:24:37 -0700 (PDT)
+X-Received: by 2002:a05:622a:5885:b0:512:e813:7ce8 with SMTP id d75a77b69052e-5162f67cf1dmr32338891cf.54.1778667877183;
+        Wed, 13 May 2026 03:24:37 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a8a955e19dsm3963961e87.49.2026.05.13.03.24.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 May 2026 03:24:36 -0700 (PDT)
+Date: Wed, 13 May 2026 13:24:34 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Sunyun Yang <syyang@lontium.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        maarten.lankhorst@linux.intel.com, rfoss@kernel.org,
+        mripard@kernel.org, Laurent.pinchart@ideasonboard.com,
+        tzimmermann@suse.de, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, xmzhu@lontium.corp-partner.google.com,
+        xmzhu@lontium.com, rlyu@lontium.com, xbpeng@lontium.com
+Subject: Re: [PATCH v6 1/2] dt-bindings: bridge: Add Lontium LT9611C(EX/UXD)
+ MIPI DSI to HDMI driver
+Message-ID: <vly3gbft3k76mrcztcn6vxuqadz647hsaz2q7qpmpofowofodb@nnxrr2cdueru>
+References: <20260508142500.4922-1-syyang@lontium.com>
+ <CAFQXuNYq5QYAXRzcUBnyvVh5ofPBVYONCs1dM6qPgK0BDja5Ow@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <202605130852.64D8qEux084060@mse-fl1.zte.com.cn>
-X-Rspamd-Queue-Id: 0476253167A
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFQXuNYq5QYAXRzcUBnyvVh5ofPBVYONCs1dM6qPgK0BDja5Ow@mail.gmail.com>
+X-Proofpoint-ORIG-GUID: LIt0xBLMVTzTPU-mdlZHHE8OKyDj6KdX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDEwNyBTYWx0ZWRfXweAzEUp4Yjud
+ Bu7oRPwK/DKkzIyU0xzoLmVWl7b8yHY4ii9K62vjLfZjAcHW+R2YINHIh2dZJIhdT0fVkOaaISv
+ VC4+PQejSkzAdsfN5inQvWbCXoFC/kATqmfbTcx0kreEtrZLQG0v0LFjcAPXFU97qyf3eL9xEfX
+ br/HB2jaFw7+U6AKOqXMA0GShvYwvkapDYujgzRA2ZzCnp+9al53xJ2BHBAeBuOqfFoSpTxbYxI
+ 7Bko7zksnNBvGOzbk0oRSr1L9LP27niZlqodMtseKEYfpROnSmW2bqEd1RQSd29iJi/L/IaFzRK
+ HZFZNnA7rterAVFXYQWrdkM0ZIwYnaPgLDPLk3l4sJBGkX1s12Z/61Ynk7pHJDdue3ek0T5mcDK
+ fZDwoaDDxk2n/Fc3KmvGo8DG5MVIWGa92YhgQXtsjHhqh9QQjHDfmHnE3PxB11xWI81xDI5dq5Y
+ FH9ia2plbYM7zNBoXfQ==
+X-Proofpoint-GUID: LIt0xBLMVTzTPU-mdlZHHE8OKyDj6KdX
+X-Authority-Analysis: v=2.4 cv=A8Fc+aWG c=1 sm=1 tr=0 ts=6a045166 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=VwQbUJbxAAAA:8
+ a=Kz8-B0t5AAAA:8 a=IfaksdFsjFagpZptrvcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=RuZk68QooNbwfxovefhk:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0 phishscore=0
+ clxscore=1015 priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605130107
+X-Rspamd-Queue-Id: AB7545314A3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-296766-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296754-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nabladev.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,infradead.org,glider.be,quicinc.com,analog.com,sartura.hr,dimonoff.com,bp.renesas.com,gmail.com,baylibre.com,vger.kernel.org,lists.infradead.org,zte.com.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,linux.intel.com,ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	NEURAL_HAM(-0.00)[-0.993];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[zte.com.cn:email,intel.com:email,linuxfoundation.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Wed, May 13, 2026 at 04:46:57PM +0800, liu.qingtao2@zte.com.cn wrote:
-> >From 9eba3be2e9b4d5c77956258e3c5db95049c3a895 Mon Sep 17 00:00:00 2001
-> From: Wenhong Liu <liu.wenhong35@zte.com.cn>
-> Date: Tue, 28 Apr 2026 22:30:40 +0800
-> Subject: [PATCH v2 2/2] tty: serial: Add LRX UART driver
+On Mon, May 11, 2026 at 11:28:06AM +0800, Sunyun Yang wrote:
+> <syyang@lontium.com> 于2026年5月8日周五 22:25写道：
+> >
+> > From: Sunyun Yang <syyang@lontium.com>
 > 
-> Add support for the ZTE LRX UART controller with the following features:
-> - Support for FIFO mode (16-byte depth)
-> - Baud rate configuration
-> - Standard asynchronous communication formats:
-> * Data bits: 5, 6, 7, 8, 9 bits
-> * Parity: odd, even, fixed, none
-> * Stop bits: 1 or 2 bits
-> - Hardware flow control (RTS/CTS)
-> - Multiple interrupt reporting mechanisms
-> - DMA support for improved performance
+> Gentle ping.
+> Thanks.
+
+You've posted the bindings on May 8th. Please give maintainers some time
+to react. Not to mention that you posting the bindings 4 times in a row
+(once together with the driver and other 3 times separately) doesn't
+help maintainers.
+
+See https://lore.kernel.org/dri-devel/?q=bindings+Lt9611c+v6
+
 > 
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202602140029.NXkDToZ7-lkp@intel.com/
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202602140108.kLMOYbwS-lkp@intel.com/
+> > 2.34.1
+> >
 
-Why are these 4 lines here?  The kernel test robot found bugs in your
-previous versions, so fix that, but no need to list that here, right?
-
-> --- /dev/null
-> +++ b/drivers/tty/serial/lrx_uart.c
-> @@ -0,0 +1,2822 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + *  Serial Port driver for ZTE LRX
-> + *
-> + *  Copyright (c) 2025, ZTE Corporation. All rights reserved.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/ioport.h>
-> +#include <linux/init.h>
-> +#include <linux/console.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/sysrq.h>
-> +#include <linux/device.h>
-> +#include <linux/tty.h>
-> +#include <linux/tty_flip.h>
-> +#include <linux/serial_core.h>
-> +#include <linux/serial.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/slab.h>
-> +#include <linux/dmaengine.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/scatterlist.h>
-> +#include <linux/delay.h>
-> +#include <linux/types.h>
-> +#include <linux/of.h>
-> +#include <linux/pinctrl/consumer.h>
-> +#include <linux/sizes.h>
-> +#include <linux/io.h>
-> +#include <linux/acpi.h>
-> +
-> +#define UART_NR			14
-
-Why 14?  Why limit yourself at all?
-
-> +
-> +#define ISR_PASS_LIMIT		256
-> +
-> +#define LRX_UART_NAME		"lrx-uart"
-
-KBUILD_MODNAME?
-
-> +#define LRX_UART_TTY_PREFIX	"ttyLRX"
-
-Why are you using a new name and not the existing ones?  Why is this not
-just a variant of the existing 8250 serial driver?  Surely this is not a
-totally new UART that looks nothing like that one, right?
-
-> +/* There is by now at least one vendor with differing details, so handle it */
-
-So a new UART already has conflicting implementations?  How can that
-happen?
-
-> +/* Deals with DMA transactions */
-> +
-> +struct lrx_uart_dmabuf {
-> +	dma_addr_t		dma;
-> +	size_t			len;
-> +	char			*buf;
-
-u8?
-
-> +/*
-> + * We wrap our port structure around the generic uart_port.
-> + */
-> +struct lrx_uart_port {
-> +	struct uart_port	port;
-> +	const u16		*reg_offset;
-> +	struct clk		*clk;
-> +	const struct vendor_data *vendor;
-> +	unsigned int		im;		/* interrupt mask */
-> +	unsigned int		old_status;
-> +	unsigned int		fifosize;	/* vendor-specific */
-> +	unsigned int		fixed_baud;	/* vendor-set fixed baud rate */
-> +	char			type[16];
-> +	bool			rs485_tx_started;
-> +	unsigned int		rs485_tx_drain_interval; /* usecs */
-> +#ifdef CONFIG_DMA_ENGINE
-
-Why would this UART not use the DMA engine?  When would that ever be
-disabled?
-
-> +/*
-> + * Reads up to 256 characters from the FIFO or until it&apos;s empty and
-
-This implies that some tool wrote this code.  Please always properly
-document that and where it copied the information from in order to write
-this code.
-
-> +/*
-> + * All the DMA operation mode stuff goes inside this ifdef.
-> + * This assumes that you have a generic DMA device interface,
-> + * no custom DMA interfaces are supported.
-> + */
-> +#ifdef CONFIG_DMA_ENGINE
-> +
-> +#define LRX_UART_DMA_BUFFER_SIZE PAGE_SIZE
-
-Why not just use PAGE_SIZE?  And how do you know the dma buffer is the
-same size always?  When using 16k pages, the hardware knows this?
-
-> +/*
-> + * Try to refill the TX DMA buffer.
-> + * Locking: called with port lock held and IRQs disabled.
-> + * Returns:
-> + *   1 if we queued up a TX DMA buffer.
-> + *   0 if we didn&apos;t want to handle this by DMA
-
-Again, fix your tooling :(
-
-> +/*
-> + * Flush the transmit buffer.
-> + * Locking: called with port lock held and IRQs disabled.
-> + */
-> +static void lrx_uart_dma_flush_buffer(struct uart_port *port)
-> +__releases(&sup->port.lock)
-> +__acquires(&sup->port.lock)
-
-Ok, but:
-
-> +{
-> +	struct lrx_uart_port *sup =
-> +	    container_of(port, struct lrx_uart_port, port);
-> +
-> +	if (!sup->using_tx_dma)
-> +		return;
-> +
-> +	dmaengine_terminate_async(sup->dmatx.chan);
-> +
-> +	if (sup->dmatx.queued) {
-> +		dma_unmap_single(sup->dmatx.chan->device->dev, sup->dmatx.dma,
-> +				 sup->dmatx.len, DMA_TO_DEVICE);
-> +		sup->dmatx.queued = false;
-> +		sup->dmacr &= ~UARTFCCR_TXDMAE;
-> +		lrx_uart_write(sup->dmacr, sup, REG_FCCR);
-> +	}
-> +}
-
-I don't see those locks being touched, where did that happen?
-
-> +static irqreturn_t lrx_uart_int(int irq, void *dev_id)
-> +{
-> +	struct lrx_uart_port *sup = dev_id;
-> +	unsigned int status, pass_counter = ISR_PASS_LIMIT;
-> +	int handled = 0;
-
-bool?
-
-> +static int lrx_uart_hwinit(struct uart_port *port)
-> +{
-> +	struct lrx_uart_port *sup =
-> +	    container_of(port, struct lrx_uart_port, port);
-
-You do this "container_of()" everywhere, why not write a simple macro
-for it to make it more obvious like to_lxr_uart_port()?
-
-And why not use container_of_const()?
-
-> +static int lrx_uart_allocate_irq(struct lrx_uart_port *sup)
-> +{
-> +	lrx_uart_write(sup->im, sup, REG_IMSC);
-> +
-> +	return request_irq(sup->port.irq, lrx_uart_int, IRQF_SHARED, "lrx-uart", sup);
-
-You had a driver name way above, why not use that instead of this string
-here?
-
-> +	/* Set baud rate */
-> +	lrx_uart_write(quot & 0x3f, sup, REG_FD);
-> +	lrx_uart_write(quot >> 6, sup, REG_IND);
-> +
-> +	/*
-> +	 * ----------v----------v----------v----------v-----
-> +	 * NOTE: REG_FRCR MUST BE WRITTEN AFTER REG_FD & REG_IND.
-> +	 * ----------^----------^----------^----------^-----
-> +	 */
-
-Why the odd comment style?
-
-> +	lrx_uart_write(frcr, sup, REG_FRCR);
-> +
-> +	lrx_uart_write(fccr, sup, REG_FCCR);
-
-Why the blank line between these?
-
-> +static struct lrx_uart_port *lrx_uart_console_ports[UART_NR];
-
-Why isn't this a dynamic list?
-
-> +/*
-> + * While this can be a module, if builtin it&apos;s most likely the console
-> + * So let&apos;s leave module_exit but move module_init to an earlier place
-
-Again, your tooling is broken :(
-
-thanks,
-
-greg k-h
+-- 
+With best wishes
+Dmitry
 
