@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-296719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2G/YDNE7BGoqFgIAu9opvQ
-	(envelope-from <devicetree+bounces-296719-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:52:33 +0200
+	id AcAcCrQ7BGqbGAIAu9opvQ
+	(envelope-from <devicetree+bounces-296717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:52:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9F852FF79
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:52:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F26552FF54
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2CF49300F759
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:52:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CE82D3005ABC
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A453E51C8;
-	Wed, 13 May 2026 08:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F463E0240;
+	Wed, 13 May 2026 08:52:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxhk.zte.com.cn (mxhk.zte.com.cn [160.30.148.35])
+Received: from mxhk.zte.com.cn (mxhk.zte.com.cn [160.30.148.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E183E3DA7;
-	Wed, 13 May 2026 08:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.30.148.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 539A93DD864;
+	Wed, 13 May 2026 08:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.30.148.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778662348; cv=none; b=kG6KA1krMcfrAtZogLC5qYL6acbJOzYW1CWLoBTKfe0ardE5MxsgNkoXyTSKjd8uspgh4ZwHTpHOain/msKpI4tuzHyvsRMCFRMdyQ3yu9sE6xPUFuDWbOPm6iKhqboXG4rUaIydrrphShVdmhnme+vVIGxdwtxdPWGRH0dOEEI=
+	t=1778662321; cv=none; b=UdBpxOiZcFMfLAkl+L5Al8m4Op98aK5Kp8TQ9k08KO2NHbZ53lO36fhnPUPaagR6pqZPXKHrm2TK2BaCX4mK0E+QnRg1PkYWTl0HkGC6vFp07naQimHUTQBPQI/FScZ7CZOp1qs3mLIb7S3OOXmzcf1083cyrVJIG4Clog2UmmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778662348; c=relaxed/simple;
-	bh=2bHwL7HovP/wjjJek58/xWl2n1ulzzpwAj/alZW0RbA=;
+	s=arc-20240116; t=1778662321; c=relaxed/simple;
+	bh=Unxirq2/KQPybEPRUH+oaday2IrPrm36vKoKFhF5ko4=;
 	h=Message-Id:References:Date:Mime-Version:From:To:Subject:
-	 Content-Type; b=lwnGuYMWecqLAOrXLfRN8Rr5PyFRXIFOzGlKVsfJV5lFEaYW9i1ICiO6xkC3LXeSOvXUsL7Ybx9OhDhNLDTvMRnNdg0paVASn7ioRo8OqTr9VSpS4lS6AElsoqI+d1qjQXx5zdVYd94bjiWi8ZL3Jm45sbJLy3xEKHeShn64bbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn; spf=pass smtp.mailfrom=zte.com.cn; arc=none smtp.client-ip=160.30.148.35
+	 Content-Type; b=obyY0tA9VfRmneuX2tYw4SRFMYYYN+csXR73xNK7BNK8gcTwX0JRuLBLicqdRnIn7Emwut94jAUhEJsex0HyJmYzhmWJtYTPP6gG1Wo0uUBEmCdo9D14CXZG+w6T/UpDdzZ3IZqSIqlun1VBN0zQZ6ZoLaWouWh+nHZPFGpKbRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn; spf=pass smtp.mailfrom=zte.com.cn; arc=none smtp.client-ip=160.30.148.34
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=zte.com.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zte.com.cn
 Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mxhk.zte.com.cn (FangMail) with ESMTPS id 4gFnK54BJkz8Xs6q;
-	Wed, 13 May 2026 16:52:25 +0800 (CST)
+	by mxhk.zte.com.cn (FangMail) with ESMTPS id 4gFnJX44xfz4xPYg;
+	Wed, 13 May 2026 16:51:56 +0800 (CST)
 Received: (from root@localhost)
-	by mse-fl1.zte.com.cn id 64D8qMgL084414;
-	Wed, 13 May 2026 16:52:22 +0800 (+08)
+	by mse-fl1.zte.com.cn id 64D8prqc083672;
+	Wed, 13 May 2026 16:51:53 +0800 (+08)
 	(envelope-from liu.qingtao2@zte.com.cn)
-Message-Id: <202605130852.64D8qMgL084414@mse-fl1.zte.com.cn>
-Received: from njb2app05.zte.com.cn ([10.55.22.121])
-	by mse-fl1.zte.com.cn with SMTP id 64D8keOm073495;
-	Wed, 13 May 2026 16:46:40 +0800 (+08)
+Message-Id: <202605130851.64D8prqc083672@mse-fl1.zte.com.cn>
+Received: from njy2app03.zte.com.cn ([10.40.13.14])
+	by mse-fl1.zte.com.cn with SMTP id 64D8kmvG074085;
+	Wed, 13 May 2026 16:46:48 +0800 (+08)
 	(envelope-from liu.qingtao2@zte.com.cn)
-Received: from mapi (njy2app03[null])
+Received: from mapi (njb2app06[null])
 	by mapi (Zmail) with MAPI id mid204;
-	Wed, 13 May 2026 16:46:42 +0800 (CST)
-X-Zmail-TransId: 2afb6a043a72b45-f9ca4
+	Wed, 13 May 2026 16:46:51 +0800 (CST)
+X-Zmail-TransId: 2afe6a043a7be67-f3fcc
 X-Mailer: Zmail v1.0
-References: 20260512182743109yj_vhS7Rf-VNB9fdL1f8Z@zte.com.cn
-Date: Wed, 13 May 2026 16:46:42 +0800 (CST)
+References: 20260512183012245tRba33vG69iPkP37ZE21R@zte.com.cn
+Date: Wed, 13 May 2026 16:46:51 +0800 (CST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,26 +78,26 @@ To: <krzk@kernel.org>, <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
         <yang.susheng@zte.com.cn>, <shen.lin1@zte.com.cn>,
         <zuo.jiang@zte.com.cn>, <hu.shengming@zte.com.cn>,
         <gao.rui@zte.com.cn>, <tan.hu@zte.com.cn>, <liu.qingtao2@zte.com.cn>
-Subject: =?UTF-8?B?W1BBVENIIHYyIDAvMl0gQWRkIFpURSBMUlggVUFSVCBkcml2ZXI=?=
+Subject: =?UTF-8?B?W1BBVENIIHYyIDEvMl0gQWRkIFpURSBMUlggVUFSVCBkcml2ZXI=?=
 Content-Type: text/plain;
 	charset="UTF-8"
-X-MAIL:mse-fl1.zte.com.cn 64D8qMgL084414
+X-MAIL:mse-fl1.zte.com.cn 64D8prqc083672
 X-MSS: AUDITRELEASE@mse-fl1.zte.com.cn
 X-TLS: YES
 X-SPF-DOMAIN: zte.com.cn
 X-ENVELOPE-SENDER: liu.qingtao2@zte.com.cn
 X-SPF: None
-X-SOURCE-IP: 10.5.228.132 unknown Wed, 13 May 2026 16:52:25 +0800
+X-SOURCE-IP: 10.5.228.132 unknown Wed, 13 May 2026 16:51:56 +0800
 X-Fangmail-Anti-Spam-Filtered: true
-X-Fangmail-MID-QID: 6A043BC9.000/4gFnK54BJkz8Xs6q
-X-Rspamd-Queue-Id: CB9F852FF79
+X-Fangmail-MID-QID: 6A043BAC.000/4gFnJX44xfz4xPYg
+X-Rspamd-Queue-Id: 6F26552FF54
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	SUBJ_EXCESS_BASE64(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	DMARC_POLICY_SOFTFAIL(0.10)[zte.com.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
@@ -106,15 +106,15 @@ X-Spamd-Result: default: False [2.14 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,nabladev.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,infradead.org,glider.be,quicinc.com,analog.com,sartura.hr,dimonoff.com,bp.renesas.com,gmail.com,baylibre.com,vger.kernel.org,lists.infradead.org,zte.com.cn];
-	TAGGED_FROM(0.00)[bounces-296719-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296717-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mse-fl1.zte.com.cn:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[zte.com.cn:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mse-fl1.zte.com.cn:mid];
 	RCPT_COUNT_TWELVE(0.00)[39];
 	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[liu.qingtao2@zte.com.cn,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	R_DKIM_NA(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -122,40 +122,98 @@ X-Spamd-Result: default: False [2.14 / 15.00];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From 9eba3be2e9b4d5c77956258e3c5db95049c3a895 Mon Sep 17 00:00:00 2001
-From: Wenhong Liu
-Date: Mon, 12 May 2026 10:15:55 +0800
-Subject: [PATCH v2 0/2] Add ZTE LRX UART driver
+From 08610be731b6fc3919d5eebfd2ff9d67f38a094c Mon Sep 17 00:00:00 2001
+From: Wenhong Liu <liu.wenhong35@zte.com.cn>
+Date: Tue, 28 Apr 2026 22:30:31 +0800
+Subject: [PATCH v2 1/2] dt-bindings: serial: Add zte,lrx-uart
 
-This patch series adds support for the ZTE LRX UART controller.
+Add devicetree binding for ZTE LRX UART controller.
 
-Patch 1: Devicetree binding documentation
-Patch 2: UART driver implementation
-
-Key features:
-- FIFO mode (16-byte depth)
-- Baud rate configuration
-- Hardware flow control (RTS/CTS)
-- DMA support
-- Multiple interrupt mechanisms
-
-Wenhong Liu (2):
-dt-bindings: serial: Add zte,lrx-uart
-tty: serial: Add LRX UART driver
-
-Co-developed-by: Qingtao Liu
-Signed-off-by: Qingtao Liu
-Signed-off-by: Wenhong Liu
-
-../bindings/serial/zte,lrx-uart.yaml         |   51 +
-MAINTAINERS                                   |    8 +
-drivers/tty/serial/Kconfig                    |   33 +
-drivers/tty/serial/Makefile                   |    1 +
-drivers/tty/serial/lrx_uart.c                 | 2822 +++++++++++++++++
-5 files changed, 2915 insertions(+)
+Co-developed-by: Qingtao Liu <liu.qingtao2@zte.com.cn>
+Signed-off-by: Qingtao Liu <liu.qingtao2@zte.com.cn>
+Signed-off-by: Wenhong Liu <liu.wenhong35@zte.com.cn>
+---
+../bindings/serial/zte,lrx-uart.yaml         | 51 +++++++++++++++++++
+MAINTAINERS                                   |  8 +++
+2 files changed, 59 insertions(+)
 create mode 100644 Documentation/devicetree/bindings/serial/zte,lrx-uart.yaml
-create mode 100644 drivers/tty/serial/lrx_uart.c
 
+diff --git a/Documentation/devicetree/bindings/serial/zte,lrx-uart.yaml b/Documentation/devicetree/bindings/serial/zte,lrx-uart.yaml
+new file mode 100644
+index 000000000000..20f470f04257
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/zte,lrx-uart.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/zte,lrx-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ZTE LRX UART
++
++maintainers:
++  - Wenhong Liu <liu.wenhong35@zte.com.cn>
++  - Qingtao Liu <liu.qingtao2@zte.com.cn>
++
++allOf:
++  - $ref: serial.yaml#
++
++properties:
++  compatible:
++    const: zte,lrx-uart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  current-speed:
++    description:
++      Initial baud rate configuration for the UART. This is a required
++      property to configure the serial port baud rate at boot time.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - current-speed
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    serial@e0001800 {
++      compatible = "zte,lrx-uart";
++      reg = <0xe0001800 0x100>;
++      interrupts = <18>;
++      clocks = <&clk_uart0>;
++      current-speed = <115200>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 0dfad67f66c0..79be2dde3b71 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -29494,6 +29494,14 @@ F: include/linux/zswap.h
+F: mm/zswap.c
+F: tools/testing/selftests/cgroup/test_zswap.c
+
++ZTE LRX SERIAL DRIVER
++M: Wenhong Liu <liu.wenhong35@zte.com.cn>
++R: Qingtao Liu <liu.qingtao2@zte.com.cn>
++L: linux-serial@vger.kernel.org
++S: Maintained
++F: Documentation/devicetree/bindings/serial/zte,lrx-uart.yaml
++F: drivers/tty/serial/lrx_uart.c
++
+SENARYTECH AUDIO CODEC DRIVER
+M: bo liu <bo.liu@senarytech.com>
+S: Maintained
 --
 2.27.0
 
