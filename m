@@ -1,189 +1,249 @@
-Return-Path: <devicetree+bounces-296757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296755-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mhOeJgtTBGp3HAIAu9opvQ
-	(envelope-from <devicetree+bounces-296757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:31:39 +0200
+	id 0PIEHwJSBGo6HAIAu9opvQ
+	(envelope-from <devicetree+bounces-296755-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:27:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC1153152C
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:31:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 805465314E1
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:27:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4CF23024CAD
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:31:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5DCF03003816
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 10:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1181637F8CB;
-	Wed, 13 May 2026 10:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="ZDlNcLmE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8077E39BFE2;
+	Wed, 13 May 2026 10:27:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (courrier.aliel.fr [65.21.61.41])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7ECB36605A;
-	Wed, 13 May 2026 10:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051D11862
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 10:27:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778668296; cv=none; b=iUHUCGpyJpasm6T0DjdgKvh6ovUT4+6xEMv7TEds241mHDREnCLhuFvwnMEDuW/xfOIqQ1gLPFd0Un2kSC4SR4P5ArHHcE2R8xxNrsEj7pTe/DK83RT4vWs9Zjr7TMk+fwXOivcdTrqE+Kb2w3VNIi9hBHqz4BYlTZ2ySStDy6E=
+	t=1778668029; cv=none; b=sorcPQKWbocqvIgDohdeIP9tN7CGzwFUZ0dkmomGOrXWgGQlPqUbPdZUV0RJ5WJ5v0yUR7EADeh9/55qbIGWEpn6diYCSvb0Lkoq1tfx6FFksVmfx0lXb6wDSD3ceJS5yAKPIIwuJOHLUVdlAKQ4WvylXnc6d5GKSXsRFQPKfbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778668296; c=relaxed/simple;
-	bh=ddoblNZZsz5wNrt8mpoM1PIZNDv3RgKjfvpiPYWJsIE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=tSjq4VYY6sgUe84H+MKuVXiDgr0vRFA7CTBpPELGhiv4UYSrTjU16GTiXBe3zCTPGXzU08FxLVnxBdXbkw7U271jKP89bb6nBkk0IwE0SdR8fbAQ2Z67hcQQqNd7wzwiVaEhCCWNDI5xI4aOjkP4aYDoYmIQN1iihv7RG4RAsv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=ZDlNcLmE; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Message-ID: <2615455d-4b4b-43cb-a0eb-ee8ea3cd68fb@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1778667966;
-	bh=ddoblNZZsz5wNrt8mpoM1PIZNDv3RgKjfvpiPYWJsIE=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=ZDlNcLmEyrJkfsm2aHLedDxwtuIP7EhBNioKD/ISmamJpI9nQKIEDEn8F8AeWr9F/
-	 f6dy6/7uwEyQYJKbRolYQfamFmrh62d2PiO1M8/tJWfiY4A9e0f7mTMUX+H0X7gFRj
-	 urzcLDclRrXioe82NiKuzrOO4hSSAdTqr4kA2kVo=
-Date: Wed, 13 May 2026 12:26:05 +0200
+	s=arc-20240116; t=1778668029; c=relaxed/simple;
+	bh=IurS6UQnYtuJATB+KTQLJ9nDLjYVFY8p0XmU8JxVCUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RDhxvy+j3DRa/7fubFfD0MDA+qcAQYAc7UByXSwc3siDoRWo/cheVfgtcAbsYRZ7driIu2xB1JYgKreXYLqXwQtQ/sDVMbuerCF5MHrmNVcdDBYhR1Ia+G5hz6NG3ezwBtEEQ6ox3GBVdX5hJqHBkpG00vr/i0ulMqZxytlsW78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=fail smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1wN6na-0002e8-Ls; Wed, 13 May 2026 12:26:42 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1wN6nY-000aCU-35;
+	Wed, 13 May 2026 12:26:40 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1wN6nY-00000002o8f-3PSk;
+	Wed, 13 May 2026 12:26:40 +0200
+Date: Wed, 13 May 2026 12:26:40 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, laurentiu.palcu@oss.nxp.com, 
+	victor.liu@nxp.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/4] Revert "dt-bindings: display: bridge: ldb: Fill in
+ reg property"
+Message-ID: <uyh5s6g7bvuufnhfjrmungp5dbyllxfrgfzaxno22knpxxojmj@qqvh75ezblpp>
+References: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
+ <20260504-v7-1-topic-ldb-fixes-v1-2-0125d937ff7f@pengutronix.de>
+ <20260505141538.GA2547282-robh@kernel.org>
+ <2bl2mwpk57xgkuye2gydliymjkzikiovnb7ovnb73olwtfkjwn@byn3732grvnh>
+ <CAL_JsqLYS1sgU680KNR60+OvtNwEVKWovht7K2APO3sqeJe6Nw@mail.gmail.com>
+ <zbbez4lpme7szgnsd7fqufbuhmvcftw4sqrmwwwzyxu64i2ppb@fh2fgdkc6tat>
+ <CAL_JsqJWyRPh_hmJW8p7+VvtcqpS0a_azjMO-PyQgkqQUfLAGA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven
- status LED
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
- <20260512-add-kvim4-sysled-v1-2-7178719a43e7@aliel.fr>
- <7ad282ae-fffa-4d0a-9cec-65d8f6b40544@linaro.org>
-Content-Language: en-US
-In-Reply-To: <7ad282ae-fffa-4d0a-9cec-65d8f6b40544@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: DCC1153152C
+In-Reply-To: <CAL_JsqJWyRPh_hmJW8p7+VvtcqpS0a_azjMO-PyQgkqQUfLAGA@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: 805465314E1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[aliel.fr,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,baylibre.com,googlemail.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-296757-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[aliel.fr:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296755-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,denx.de,nxp.com,pengutronix.de,oss.nxp.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.80.223.32:email];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.0:email]
 X-Rspamd-Action: no action
 
-On 5/13/26 10:05 AM, Neil Armstrong wrote:
-> On 5/12/26 19:47, Ronald Claveau via B4 Relay wrote:
->> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
->>
->> The VIM4 board exposes a status LED wired to the PWM_AO_C_D output.
->> Enable the pwm_ao_cd controller with its pinmux, and declare a
->> pwm-leds node with a heartbeat trigger.
->>
->> Also, move the xtal-clk node to restore alphabetical ordering.
+On 26-05-07, Rob Herring wrote:
+> On Thu, May 7, 2026 at 6:55 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
+
+...
+
+> > > But nowhere have you said the LDB registers are mixed with other
+> > > functions. If they aren't, then there is absolutely nothing to change
+> > > in the binding. If they are, then yes, we shouldn't have 'reg'.
+> >
+> > No they aren't mixed with other functions (for now).
 > 
-> Please send a separate patch for that
+> For now? Is the h/w going to change or is the binding *still* incomplete.
+
+Sorry for the confusion. By for now I mean that NXP tend to reuse IPs
+but with minor changes. So no, the binding is not incomplete with our
+current HW knowledge.
+
+> > Can you please
+> > confirm that mixing 'reg' based sub-device nodes with non 'reg' based
+> > sub-device nodes  is allowed? E.g. if the below example is allowed?
+> >
+> >         system-controller@4ac10000 {
+> >                 compatible = "fsl,imx93-media-blk-ctrl", "syscon";
+> >                 reg = <0x4ac10000 0x10000>;
+> >                 #address-cells = <1>;
+> >                 #size-cells = <1>;
+> >
+> >                 ...
+> >
+> >                 bridge@5c {
+> >                         compatible = "fsl,imx8mp-ldb";
+> >                         reg = <0x5c 0x4>, <0x128 0x4>;
+> >                         reg-names = "ldb", "lvds";
+> >
+> >                         ...
+> >                 };
+> >
+> >                 dpi-bridge {
+> >                         compatible = "nxp,imx93-pdfc";
+> >
+> >                         ...
 > 
+> Depends what is in "...". If only a compatible, then no. If there are
+> actual resources defined, then yes.
 
-Thanks for your review, I will add a new patch.
+Please see the below full example, is this allowed?
 
->>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
->>   .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 30 ++++++++++++
->> +++++-----
->>   1 file changed, 23 insertions(+), 7 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-
->> vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> index 69d6118ba57e7..c41525a34b721 100644
->> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> @@ -45,13 +45,6 @@ secmon_reserved_bl32: secmon@5300000 {
->>           };
->>       };
->>   -    xtal: xtal-clk {
->> -        compatible = "fixed-clock";
->> -        clock-frequency = <24000000>;
->> -        clock-output-names = "xtal";
->> -        #clock-cells = <0>;
->> -    };
->> -
->>       dc_in: regulator-dc-in {
->>           compatible = "regulator-fixed";
->>           regulator-name = "DC_IN";
->> @@ -60,6 +53,16 @@ dc_in: regulator-dc-in {
->>           regulator-always-on;
->>       };
->>   +    pwm-leds {
->> +        compatible = "pwm-leds";
->> +
->> +        status {
->> +            linux,default-trigger="heartbeat";
->> +            max-brightness = <255>;
->> +            pwms = <&pwm_ao_cd 0 30040 0>;
->> +        };
->> +    };
->> +
->>       sd_3v3: regulator-sdcard-3v3 {
->>           compatible = "regulator-fixed";
->>           regulator-name = "SD_3V3";
->> @@ -155,6 +158,13 @@ wifi32k: wifi32k {
->>           clock-frequency = <32768>;
->>               pwms = <&pwm_ab 0 30518 0>;
->>       };
->> +
->> +    xtal: xtal-clk {
->> +        compatible = "fixed-clock";
->> +        clock-frequency = <24000000>;
->> +        clock-output-names = "xtal";
->> +        #clock-cells = <0>;
->> +    };
->>   };
->>     &pwm_ab {
->> @@ -163,6 +173,12 @@ &pwm_ab {
->>       pinctrl-names = "default";
->>   };
->>   +&pwm_ao_cd {
->> +    status = "okay";
->> +    pinctrl-0 = <&pwm_ao_c_d_pins>;
->> +    pinctrl-names = "default";
->> +};
->> +
->>   /* SDIO */
->>   &sd_emmc_a {
->>       status = "okay";
->>
+system-controller@4ac10000 {
+	compatible = "fsl,imx93-media-blk-ctrl", "syscon";
+	reg = <0x4ac10000 0x10000>;
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	...
+
+	bridge@5c {
+		compatible = "fsl,imx8mp-ldb";
+		reg = <0x5c 0x4>, <0x128 0x4>;
+		reg-names = "ldb", "lvds";
+		clocks = <&clk IMX8MP_CLK_MEDIA_LDB_ROOT>;
+		clock-names = "ldb";
+		assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
+		assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
+		status = "disabled";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				ldb_from_lcdif2: endpoint {
+					remote-endpoint = <&lcdif2_to_ldb>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				ldb_lvds_ch0: endpoint {
+				};
+			};
+
+			port@2 {
+				reg = <2>;
+
+				ldb_lvds_ch1: endpoint {
+				};
+			};
+		};
+	};
+
+	dpi-bridge {
+		compatible = "nxp,imx93-pdfc";
+		status = "disabled";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+
+				dpi_from_lcdif: endpoint {
+					remote-endpoint = <&lcdif_to_dpi>;
+				};
+			};
+
+			port@1 {
+				reg = <1>;
+
+				dpi_to_panel: endpoint {
+				};
+			};
+		};
+	};
+};
+
+> > Furthermore I thought that for the MMIO bridge@5c device, the 'reg'
+> > porperty would either require the full register address, e.g. 0x4ac1005c
+> > or there needs to be a ranges property.
 > 
+> There should be a ranges property no matter what.
 
+Good point, something to fix too :/
 
--- 
-Best regards,
-Ronald
+Regards,
+  Marco
 
