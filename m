@@ -1,147 +1,166 @@
-Return-Path: <devicetree+bounces-296994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296996-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FWUNgKxBGriNAIAu9opvQ
-	(envelope-from <devicetree+bounces-296994-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:12:34 +0200
+	id wJgbJ4u0BGowNQIAu9opvQ
+	(envelope-from <devicetree+bounces-296996-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:27:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD86537CA5
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:12:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE3153806B
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 19:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EB4603002B4B
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 17:00:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A09CE3306267
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 17:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4834B4963CA;
-	Wed, 13 May 2026 16:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCC9345734;
+	Wed, 13 May 2026 17:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PwWB22TR"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="J/La2af8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5BC349CDA;
-	Wed, 13 May 2026 16:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9E23563DD;
+	Wed, 13 May 2026 17:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778691589; cv=none; b=gGWuC/OrHKPglaR5oHVF6mSapzFX7oxuFLvfPITFaltZ9dd9iYlLEK7wyrg/ZGtIHc19c0K4CS2qjhDWyk5mwNqeFcUYlgcOMJv6L1+qFPHojvRTqybYmX+DuXpQlmoP8FIjy7IY3AHpVZ8EtU8pXd23cg6ur1olSv5gtzpBAMw=
+	t=1778691633; cv=none; b=LisKKkrkEbtFy7gIdQjrXgkYMA6GdywIkKC2rLJXzesgwtLuhj9M+a6sc1sYJTe1R9N+qkTY/RQ2g0l0tC/FSjSuPVR1QMisRF5h70HF0KkBJ+Ga6hXuy8qZpi9q7Ml9pN31K8bkvrwH+uOc6qMq1cj/KtyCzvDGchT4YYwrT74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778691589; c=relaxed/simple;
-	bh=WvoyIvOk2I6jTRMYgM+t6lyvZMyHYp3i/8rYeuXzJh4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o8tDhMaMT6QMqkdZdlCPyE3rWLmfNDlcQ4Bd42IN12CSodl9JJ6LxcQ3KGefw9MjvUvWwg10gwMS0dB7uaUOOjafKuvdT7Su4jbVnstMOwtNmeqQP2iClHlLL/vM53H0FDLChEDAnZGkWmQN8J1O1Caj+LrADXI4iG0WhoECkx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PwWB22TR; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1778691588; x=1810227588;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WvoyIvOk2I6jTRMYgM+t6lyvZMyHYp3i/8rYeuXzJh4=;
-  b=PwWB22TRSpkkc8+PSgdtEmY3I/u7NIAUb13AisVCDBrCq+P/+N1kaV4d
-   GI5UMBAdZUXbtgWW+PREbAt9TLSbWJEL0SGMIyjbMpoT3gJoc4alLPaXl
-   4HBv56KYqm25vSicTUhwkRA3w0CDgutVt0jtDE0K3cO3RdsZWcJL+sIL2
-   tIl7MKlKSL4O1qD9CZdvmMJ7OuVngwLi19w3/Kma+ez2QP4odDmysOcWU
-   7kpPGZLbJK8Bz7vVVPu7QwvwPO9XyeGZK5uOSMuzr/ysVUgtIVGnGt+AM
-   YDbEjgxY0OJSyYEKJtqUi6TkwnsozGwAIHtN+rGACcwO7zXxTodhb9nuX
-   w==;
-X-CSE-ConnectionGUID: rTp5ZaprRFe7rdDOx4ccXQ==
-X-CSE-MsgGUID: leaBmHARQuW7aqezcmVf8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="79741141"
-X-IronPort-AV: E=Sophos;i="6.23,233,1770624000"; 
-   d="scan'208";a="79741141"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 09:59:47 -0700
-X-CSE-ConnectionGUID: 92hetl0/TfWYZNoADDnoTQ==
-X-CSE-MsgGUID: 70UpMXGpSyart68UmyA8xg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,233,1770624000"; 
-   d="scan'208";a="231743389"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.106])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 09:59:43 -0700
-Date: Wed, 13 May 2026 19:59:41 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] iio: light: veml6030: remove unnecessary read of
- IT index
-Message-ID: <agSt_TGpyujxqrZc@ashevche-desk.local>
-References: <20260513-veml6031x00-v2-0-4703ca661a1d@gmail.com>
- <20260513-veml6031x00-v2-1-4703ca661a1d@gmail.com>
+	s=arc-20240116; t=1778691633; c=relaxed/simple;
+	bh=H+WlKgMjdyEQTBnDx0xCTFAelGgSo4QMvk58RSoQtmk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BCwDKx7LvxWcFIQWh0eD+oYNopte7zHBRtFbrnqh+pyLXRIWc01SaCsu1amPk+4LyGR7em77Unv9BwZkD1ck/dtKH46SjMUvT5ktUnAUq+9dE3xg9j67ols3JDfMu5+xA1YWEDAh8IfoFoRfA3uwQVGrZiVJiboa8AeaBuTl924=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=J/La2af8; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A9425165C;
+	Wed, 13 May 2026 10:00:23 -0700 (PDT)
+Received: from [10.57.24.48] (unknown [10.57.24.48])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1E2F33F7B4;
+	Wed, 13 May 2026 10:00:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1778691628; bh=H+WlKgMjdyEQTBnDx0xCTFAelGgSo4QMvk58RSoQtmk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=J/La2af8Sm6mvK0GrqnjYMUnHO48R9nZvOAcZsGEdcvXbedbZV/jqLa85gbx27Qz0
+	 rscpuBDu46A238ASzw5w4QATWUiRUy6JABB0VbM+apCuxtYdQniCoiN7A047WMxB4Q
+	 x/UI+hNZyOPfR2pvX/1f/ry6iR7Gz1hANRobhsCM=
+Message-ID: <436ce846-bd9e-45bb-bdc2-d2a0fd00dc25@arm.com>
+Date: Wed, 13 May 2026 18:00:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260513-veml6031x00-v2-1-4703ca661a1d@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: DAD86537CA5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC V6 0/8] arm_scmi: vendors: Qualcomm Generic Vendor
+ Extensions
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+ sudeep.holla@kernel.org, konradybcio@kernel.org, myungjoo.ham@samsung.com,
+ kyungmin.park@samsung.com, cw00.choi@samsung.com, cristian.marussi@arm.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arm-scmi@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, jonathanh@nvidia.com,
+ thierry.reding@kernel.org, digetx@gmail.com, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org
+References: <20260507062237.78051-1-sibi.sankar@oss.qualcomm.com>
+Content-Language: en-US
+From: Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <20260507062237.78051-1-sibi.sankar@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: EBE3153806B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-296994-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,gmail.com,baylibre.com,analog.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,samsung.com,arm.com,lists.freedesktop.org,oss.qualcomm.com,nvidia.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-296996-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[arm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lukasz.luba@arm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:mid,arm.com:dkim]
 X-Rspamd-Action: no action
 
-On Wed, May 13, 2026 at 05:49:41PM +1300, Javier Carrasco wrote:
-> This is dead code as the IT index is not used by gts to set the new scale.
-> In its current form, the value is read but not used afterward. Remove
-> the dead code.
-
-Does it have any side-effects on the HW side? Exempli gratia, flushing FIFO,
-R1C (read to clear 1) bits?
-
-> Fixes: 22eaca4283b2 ("iio: light: veml6030: fix scale to conform to ABI")
-
-Not sure it fixes anything. But it might regress, see above why.
-
-...
-
-If no side-effects, the code wise looks good.
-
--- 
-With Best Regards,
-Andy Shevchenko
 
 
+On 5/7/26 07:22, Sibi Sankar wrote:
+> The QCOM SCMI vendor protocol provides a generic way of exposing a number of
+> Qualcomm SoC specific features (like memory bus scaling) through a mixture of
+> pre-determined algorithm strings and param_id pairs hosted on the SCMI
+> controller. On Qualcomm Glymur and Hamoa SoCs, the memlat governor and the
+> mechanism to control the various caches and ram is hosted on the CPU Control
+> Processor (CPUCP) and the method to tweak and start the governor is exposed
+> through the QCOM SCMI Generic Extension Protocol.
+> 
+> This series introduces the devfreq scmi client driver that uses the memlat
+> algorithm string hosted on QCOM SCMI Generic Extension Protocol to detect
+> memory latency workloads and control frequency/level of the various memory
+> buses (DDR/LLCC/DDR_QOS). The DDR/LLCC/DDR_QOS are modelled as devfreq
+> devices, with the governor set to remote devfreq governor. This serves as
+> a way to get a basic insight into the device operation through trans_stat
+> and provides for ways to further tweak the parameters of the remote
+> governor.
+> 
+> Transtat data for DDR/LLCC/DDR_QOS is now available in this series:
+> 
+> #cat llcc/trans_stat
+>>From  :   To
+> 315000000 479000000 545000000 725000000 840000000 95900000010900000001211000000   time(ms)
+> 315000000:         0         3         6         6         6         7         0        30    143956
+> 479000000:         2         0         7         1         1         1         0         3       356
+> 545000000:         7         6         0         5         5         0         0        10      1200
+> 725000000:         3         0         5         0         6         1         0         6      2172
+> 840000000:         8         2         3         2         0         4         0        12      1188
+> 959000000:         3         0         1         2         2         0         0        13       272
+> 1090000000:         0         0         0         0         0         0         0         0         0
+> 1211000000:        35         4        11         5        11         8         0         0     21684
+> Total transition : 253
+> 
+> QCOM SCMI Generic Vendor protocol background:
+> It was found that a lot of the vendor protocol used internally was
+> for debug/internal development purposes that would either be super
+> SoC specific or had to be disabled because of some features being
+> fused out during production. This lead to a large number of vendor
+> protocol numbers being quickly consumed and were never released
+> either. Using a generic vendor protocol with functionality abstracted
+> behind algorithm strings gave us the flexibility of allowing such
+> functionality exist during initial development/debugging while
+> still being able to expose functionality like memlat once they have
+> matured enough. The param-ids are certainly expected to act as ABI
+> for algorithms strings like MEMLAT.
+> 
+> Thanks in advance for taking time to review the series.
+> 
+
+Based on this description I have a few questions:
+1. Why we don't use SCMI notifications for this purpose?
+2. Is it safe to assume that there was no extra frequency change
+    during that polling sampling period?
+3. Shouldn't we sample 2x faster than the changes that we try to
+    observe?
+4. IIRC there was some extension in the SCMI protocol for performance
+    domains which allows to expose the stats like the one above but in
+    the shared memory. Why we couldn't use this? It would be more robust.
 
