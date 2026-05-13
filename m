@@ -1,226 +1,199 @@
-Return-Path: <devicetree+bounces-296618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEbTG6QGBGoHCQIAu9opvQ
-	(envelope-from <devicetree+bounces-296618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:05:40 +0200
+	id gA5aHOQFBGoHCQIAu9opvQ
+	(envelope-from <devicetree+bounces-296614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:02:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DDB852D70C
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:05:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D885052D68F
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 07:02:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7419830BB13E
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:03:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9EDD83073489
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 05:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFFE36F8E7;
-	Wed, 13 May 2026 05:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7F938E8DA;
+	Wed, 13 May 2026 05:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Urh/rZ9v";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hnVvxsqK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZnalon0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8BF397352
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90AE383985
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778648618; cv=none; b=JejlfE9EzQKtVkQOTUzOCVxLPbfuDGIqDSo6MsAQoPsIWld5I8mMSmW5CaT4hMkf406tdzKndBNUKCWmJOKuNcESf9047QbVMZIPdmFNRFkbhtzS53POZoP5p43AQ2ogqdiYCjQnq3o+8s4APUOSFAGJLMtsLBTRwAV7EmIZH00=
+	t=1778648515; cv=none; b=WiVe80HRABdGL26Is1aaq2/TlCELxOJ7yYaEb2t2Pg++VQuj6r5d1/T5JBAOnVSjBGV2DajLp9npaA00HD/VZ81jdVtj3n5m6r61bP4Jn1ASnh9667XfPJDe46j4VEfaOUK5bT8Vyhhmu1K7f9DtQVUnz9k9Mqo7caMFjMtiGeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778648618; c=relaxed/simple;
-	bh=F+4zeyZQRUh8+1D4DZTjH//5aeCfZaop6NwbAXHXMls=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rH1ws61KtBeBB6mg6di6wNRKzeEVdtmm6H4jX9fNy9f7oAxVVeT/Ikfn5s6xfDpXHUAat4t1ZAP/FFStAMJX0NTGwY2zEx4i7pCZdfC7kID2HGjJnB69GyJV96wrI/Na9uK2yEDpnTqc6xLGp2gt4OJ+hqu46CHf9dEH07BBPWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Urh/rZ9v; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hnVvxsqK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64D4pA3P978165
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:03:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	912d/SKIOjFeJPU/yJE/6/YSu7q6BfQZzsgrT9goArQ=; b=Urh/rZ9v0TubZEQh
-	nKi1t3/mlna+KQdShqQqtB/f3fSB0kNxJJ5G31iqAaSqirPbiQOefQca1oqOIq5E
-	EMVpOg1U0NAwrfZ6f4LANDSJKr7V0CLhy3A4DCNzv5OskWdY/afJbie4cMJEkLTx
-	C5y3Ec/bl6gf69XH6U95f1u0AWR5oX9/hS3VNsNbdqJ4ui3ds1oXe2nCVCoZEmXm
-	V6YI5BpJrlsskRy8jfDXFayef8yVD3cspqaJR008eiNikNvQRZiyKOFe8AlKI+sT
-	XJZ/fr57KMmXxv9Jc1cPibNZU6+JunTzPSEJQMKfG0A/OvHabFwtqaGLRoY50ter
-	F37S5g==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e46s9tkbb-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:03:35 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c828acf7c1dso4197122a12.3
-        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 22:03:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778648615; x=1779253415; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=912d/SKIOjFeJPU/yJE/6/YSu7q6BfQZzsgrT9goArQ=;
-        b=hnVvxsqKKbNUZ4Ja4YECREZkcduZPjP8FXC/dJLdU3XwWnxOumGPMhpZCBGXvGuAhF
-         PSjjGBKoCeRhZENdcq+b8pv9aQTeSvxR60eab/VqjzMHa6RUe+tKpX+dBeFm2XqdrgTP
-         fgd2g9EjlYSmYCwM1W8jf/38d/s/XmBF/6bHcsVx4jMabMf9iQshi0IaBsTam99xQ5kw
-         NzfxSdf17lWxnBa6Fl2ZCeErV3enoEWeVlAUsUd5AW8ktMxCIl7++nK28GolhjowCwDw
-         6/tCLfKs+6yTL6eWH5DFm3yOXjp748dlLvIHTG+S8rrapOb2jTmq5LRZdrRZl6wt5tis
-         jUYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778648615; x=1779253415;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=912d/SKIOjFeJPU/yJE/6/YSu7q6BfQZzsgrT9goArQ=;
-        b=oSXjHK0s/o8bJyeryMyMfIWCDogETAy08DU6JiXylfwS6z/ivaifApd8U7GLnoT/ZC
-         xyZ33jkx540uQQEE4puC5Nu2PBHupUoXVKpbZgYZBw/afA82YOVEs2fbsnc9SJgJhgyT
-         cdIA8PnFWYwTEmlMzBY8BdCl/QLdQSRRDaIeZoLW4wzDvuKmNw3hTEUHHC3lczP7QGlQ
-         60sdV5vlfinRM2BQUTtIMifCFxV36whZHTZmrM8u1CnQqtDs2ODWJdrNoNVEc/nF/HXh
-         NMJNM81Fd0szE32QykotlNFVU3CiqG2emZmf6VOpwcUrOzQJf22Fd4+y0Kzj8B7f8MH4
-         8Vgw==
-X-Forwarded-Encrypted: i=1; AFNElJ8T3lYszILom1qLj1yOjTI50hPYNYjArbJFh373Kf9bXWuk/6zCCiNKmwIBCJ6dqhZnyker8K6Nogg8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyFZGR64By1CR3y/gD5czBmcTYsGY2aQK5zUoZrSNZYnWlVU83
-	D1o+POwNboL488KiLteLSjip4IxrpX+eDubDPUg5vHSPawXlxmiddhKp+8ID+e9yQGcccimWI+l
-	fMcgFrY8mj2a/GvfgwLFOO3zVzYEF4iqQRXoCNO2TNyKjOxZGC6plTsnvA75D3/YblIR/TjAP
-X-Gm-Gg: Acq92OGjsxDr5Mbgmi5kWvaqucBQjdMAQUrvJG/swBJafiJnl3JyWA+3VMn8F6WDNYx
-	SUtI+XVUeUUgBBgxYa8c5Xqj5cugI568n1vXLiISUs2OXCvB9CmH52xlP0KAH49x+BgjTnho6rH
-	+A0RONTGIuGL3qm0pkyOtTgcsWYovF+IL731zaHnj99CyUJugOct+yArIiTfTaR6DHnDsHiUrRL
-	NX32iuxnM1m+y5sY+mdM3yckOBjlCLCGKOa6aqO+M5x5xHypoSpDWGha63MYZAfh3QYxWQvxuH7
-	gdW9N7XEds3mgF5FIeVvbFGElFnU0NX/rrjWCFydfrGFDXV5pNLOqGuEv/Brmu/els9+BM8Ti07
-	ZzqjDUNdCEQUWk+kbeXAbWBaAPn783o4HhuMuOfYBo1qdM4A4YlRX5Pa0aT82oI3RT+GUAZ/GuG
-	PQEZoWMVpceloDan75jw7++qb5n9eEH32RG+6kScfrHxE8/xMUOAXJ6SLe
-X-Received: by 2002:a05:6a20:a10a:b0:3a2:d838:bfcb with SMTP id adf61e73a8af0-3af83288838mr1728857637.40.1778648614736;
-        Tue, 12 May 2026 22:03:34 -0700 (PDT)
-X-Received: by 2002:a05:6a20:a10a:b0:3a2:d838:bfcb with SMTP id adf61e73a8af0-3af83288838mr1728823637.40.1778648614274;
-        Tue, 12 May 2026 22:03:34 -0700 (PDT)
-Received: from hu-kathirav-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83965945c1bsm26328020b3a.15.2026.05.12.22.03.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 May 2026 22:03:33 -0700 (PDT)
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-Date: Wed, 13 May 2026 10:30:32 +0530
-Subject: [PATCH v10 3/3] arm64: dts: qcom: ipq5424: add support to get
- watchdog bootstatus from IMEM
+	s=arc-20240116; t=1778648515; c=relaxed/simple;
+	bh=oq7zEPv3ECSU2LrsXYviFakLLgDXG2cV9cKi4xUupkg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=SStq+jeeYbv8RNsvQLwGDZ0ch+HtCN3CkCwhByQq5fuwpw70qFm3ZB4t3ZUqSZ9GGm8qCCTVIjo9dqrCZtiIWdbygRuw4covVFv/u9FqOPqgs9iHFba4LBKQH84jpAZbAz9kftKpTMlsvzYDv6yGkfwi/TCDSH0RmZ/8uPyZvDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZnalon0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790F6C2BCB7;
+	Wed, 13 May 2026 05:01:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778648515;
+	bh=oq7zEPv3ECSU2LrsXYviFakLLgDXG2cV9cKi4xUupkg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=mZnalon0s5yNmPGnBEWYEO+03rcx6Vld6BTwnBDbj51Xf7fmfefZea6NRwtzmdPjI
+	 8qIqFGrObUnVJ5qAPF7ocbTFSrY1b4vMFZALwTc7ZvgqkCcsq6J8XzaxW9Igbz80WB
+	 Vxq9pf678ojoZzpNLTkiEroipmBf/mP5iDBWItrutrBz/mA+Ryj24S6mzQ2FYfcNVH
+	 wSvJXPr7czH+GnxBbuwY1O4xuC3kFKa1QGUx3jVSf9c8tqfmE+YSZzR1x25FyIOLne
+	 kWUiCzWcIbClvLTY1/fzh2Idf9NGdiUYAnSBgdlLvwJwtwwfn/ChuAMUhY7SyTOrgx
+	 FPLkeTyDFBYfw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 2/4] clk: qcom: add Global Clock controller (GCC)
+ driver for IPQ9650 SoC
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Kathiravan Thirumoorthy" <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260512-ipq9650_boot_to_shell-v4-2-1e87c8326e59@oss.qualcomm.com>
+References: <20260512-ipq9650_boot_to_shell-v4-2-1e87c8326e59@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 13 May 2026 05:01:54 +0000
+Message-Id: <20260513050155.790F6C2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260513-wdt_reset_reason-v10-3-cebda08ab1ef@oss.qualcomm.com>
-References: <20260513-wdt_reset_reason-v10-0-cebda08ab1ef@oss.qualcomm.com>
-In-Reply-To: <20260513-wdt_reset_reason-v10-0-cebda08ab1ef@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.15.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778648598; l=1239;
- i=kathiravan.thirumoorthy@oss.qualcomm.com; s=20230906;
- h=from:subject:message-id; bh=F+4zeyZQRUh8+1D4DZTjH//5aeCfZaop6NwbAXHXMls=;
- b=8qHnZGc7qKMdN6/XYfo0HLKki1/GMR9Vvr3KsZIDn59c8DlLYbU0MrGVq0PRZ3SxCCwvcoNxJ
- jgUCHqa52M2AP0DeFhqTTwaVTPDurL3fT6fkpNqMYpcl+bf++qGXbT3
-X-Developer-Key: i=kathiravan.thirumoorthy@oss.qualcomm.com; a=ed25519;
- pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDA0OCBTYWx0ZWRfX9QROGQblq+OA
- xtfVwQYvV5ImbEGEzW6t9O9frNbCIWi19AXOjBpMEuoQXSlk9xckbFVTKyG3foP+ymesawpN5ly
- wvdVLUGNJYZXgLwc27h6YmMYjKMq0hwgqWRJG6Ceo1P+AEQ1NFSSj9jIkbS6BqzcTB/AECQxzuD
- lXPcIMYEAnjegYHy/Z+wtOnLPs/FiDiaEgfyKXEvxEfAtvKJI7XAg8ZV1kOjbmhqEg3j+U6r6iQ
- ibIpON5q4m8aoBNne1YpD2HT/2GpFZLGGctdc+PIuRMOEl0anMe4pOtezJq0ctniDVBl743qI+q
- tTrTy9YzCbYOna/cV9xMo2deUFAdCfefLFOZGUlw5N38kEBjXd+Jqqdn4o3TTWigC7xWg/aQOVV
- 4G/m6qqxp4VjfE1D0oOW3tLlb5p5LvTM+vQzFcAi4oU0i/19EmyyPzrKudR1nbA0l5Pq9WibA6R
- xUKEZ9O+Aztk57jb3HQ==
-X-Proofpoint-GUID: ZV40tqdMjzmCdfKPNRHlInmhzatqhA0t
-X-Authority-Analysis: v=2.4 cv=L68theT8 c=1 sm=1 tr=0 ts=6a040628 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=EUspDBNiAAAA:8 a=WbeaI0-OC7IQdSlKmUMA:9 a=QEXdDO2ut3YA:10
- a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-ORIG-GUID: ZV40tqdMjzmCdfKPNRHlInmhzatqhA0t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 impostorscore=0 adultscore=0 priorityscore=1501
- suspectscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605130048
-X-Rspamd-Queue-Id: 0DDB852D70C
+X-Rspamd-Queue-Id: D885052D68F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296614-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-296618-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[f410000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.1.21.88:email,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,8af8800:email,7b0:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,smtp.kernel.org:mid,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_PROHIBIT(0.00)[0.131.57.192:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Add the "sram" property to the watchdog device node to enable
-retrieval of the system restart reason from IMEM, populated by XBL.
-Parse this information in the watchdog driver and update the bootstatus
-sysFS if the restart was triggered by a watchdog timeout.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] The `gcc_qpic_sleep_clk` branch clock is missing its parent clock =
+initialization in `clk_init_data`.
+- [Medium] The `gpll4` and `gcc_pcnoc_bfdcd_clk_src` clocks use the `CLK_IS=
+_CRITICAL` flag, which contradicts the explicit comments stating to use `CL=
+K_IGNORE_UNUSED`.
+--
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/ipq5424.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+commit 066e3207c3655c5fa209013fda4d22eaa8774c6c
+Author: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+clk: qcom: add Global Clock controller (GCC) driver for IPQ9650 SoC
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index 9b8410e32629..33ff00990513 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -624,6 +624,7 @@ watchdog@f410000 {
- 			reg = <0 0x0f410000 0 0x1000>;
- 			interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
- 			clocks = <&sleep_clk>;
-+			sram = <&restart_reason>;
- 		};
- 
- 		qusb_phy_1: phy@71000 {
-@@ -739,6 +740,10 @@ sram@8600000 {
- 
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			restart_reason: restartreason-sram@7b0 {
-+				reg = <0x7b0 0x4>;
-+			};
- 		};
- 
- 		usb3: usb3@8af8800 {
+This commit adds support for the global clock controller found on the=20
+IPQ9650 SoC devices.
 
--- 
-2.34.1
+> --- /dev/null
+> +++ b/drivers/clk/qcom/gcc-ipq9650.c
 
+[ ... ]
+
+> +static struct clk_alpha_pll gpll4 =3D {
+> +	.offset =3D 0x22000,
+> +	.regs =3D clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
+> +	.clkr =3D {
+> +		.enable_reg =3D 0xb000,
+> +		.enable_mask =3D BIT(2),
+> +		.hw.init =3D &(const struct clk_init_data) {
+> +			.name =3D "gpll4",
+> +			.parent_data =3D &gcc_parent_data_xo,
+> +			.num_parents =3D 1,
+> +			/*
+> +			 * There are no consumers for this GPLL in kernel yet,
+> +			 * (will be added soon), so the clock framework
+> +			 * disables this source. But some of the clocks
+> +			 * initialized by boot loaders uses this source. So we
+> +			 * need to keep this clock ON. Add the
+> +			 * CLK_IGNORE_UNUSED flag so the clock will not be
+> +			 * disabled. Once the consumer in kernel is added, we
+> +			 * can get rid of this flag.
+> +			 */
+> +			.flags =3D CLK_IS_CRITICAL,
+
+The comment explicitly mentions adding the CLK_IGNORE_UNUSED flag, but the
+code sets CLK_IS_CRITICAL instead. Should this be CLK_IGNORE_UNUSED to match
+the description and avoid unconditionally forcing the clock on?
+
+[ ... ]
+
+> +static struct clk_rcg2 gcc_pcnoc_bfdcd_clk_src =3D {
+> +	.cmd_rcgr =3D 0x31004,
+> +	.mnd_width =3D 0,
+> +	.hid_width =3D 5,
+> +	.parent_map =3D gcc_parent_map_0,
+> +	.freq_tbl =3D ftbl_gcc_pcnoc_bfdcd_clk_src,
+> +	.clkr.hw.init =3D &(const struct clk_init_data) {
+> +		.name =3D "gcc_pcnoc_bfdcd_clk_src",
+> +		.parent_data =3D gcc_parent_data_0,
+> +		.num_parents =3D ARRAY_SIZE(gcc_parent_data_0),
+> +		/*
+> +		 * There are no consumers for this source in kernel yet,
+> +		 * (will be added soon), so the clock framework
+> +		 * disables this source. But some of the clocks
+> +		 * initialized by boot loaders uses this source. So we
+> +		 * need to keep this clock ON. Add the
+> +		 * CLK_IGNORE_UNUSED flag so the clock will not be
+> +		 * disabled. Once the consumer in kernel is added, we
+> +		 * can get rid of this flag.
+> +		 */
+> +		.flags =3D CLK_IS_CRITICAL,
+
+There is a similar mismatch here where the comment indicates CLK_IGNORE_UNU=
+SED
+but the implementation sets CLK_IS_CRITICAL.
+
+[ ... ]
+
+> +static struct clk_branch gcc_qpic_sleep_clk =3D {
+> +	.halt_reg =3D 0x32018,
+> +	.halt_check =3D BRANCH_HALT,
+> +	.clkr =3D {
+> +		.enable_reg =3D 0x32018,
+> +		.enable_mask =3D BIT(0),
+> +		.hw.init =3D &(const struct clk_init_data) {
+> +			.name =3D "gcc_qpic_sleep_clk",
+> +			.ops =3D &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+
+Does this clock need parent initialization? Other sleep branch clocks in th=
+is
+driver specify their parent, but this one appears to omit parent_hws and
+num_parents. Could this leave the clock unparented in the clock framework?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-ipq9650_bo=
+ot_to_shell-v4-0-1e87c8326e59@oss.qualcomm.com?part=3D2
 
