@@ -1,150 +1,174 @@
-Return-Path: <devicetree+bounces-297151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297152-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YOdDKZvvBGr7QQIAu9opvQ
-	(envelope-from <devicetree+bounces-297151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:39:39 +0200
+	id IKspATHwBGr7QQIAu9opvQ
+	(envelope-from <devicetree+bounces-297152-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:42:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 395C253B1E4
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:39:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB9353B23A
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 23:42:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6C2E73013874
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 21:39:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EA1F7302428D
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 21:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF3B3BB699;
-	Wed, 13 May 2026 21:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534BF3BED7A;
+	Wed, 13 May 2026 21:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="Lc/WHbHo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kfn5gwqm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9023BE623;
-	Wed, 13 May 2026 21:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3109E3BC68D
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 21:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778708376; cv=none; b=LCIXCUdDUCfflZUcEL6RtSD71xe3x3oRZBdXa+OebhOwGTHK+lgP8Bl1B3saH3FpmS2yUqpQI2eGlN91pXLvzujC1rtkoxDAWsDGaQDxRW22vl0o2vX+dKFflizC6aZta6XlUQ90/6JHFDDiYLXchOBcqYDHuuQUSB6BY4EsVYY=
+	t=1778708525; cv=none; b=H8eYXTndm4JmQZ37Eohtip3bvOXC2XjPhlSZLcH3IQ1k28XcIfT66/lui60UvuPYzzxoHlEgpJpGk01tCL8BUZ1NVCAr4oZ8Y3f/A62IOdHfiugAAD+6i7ya4rwT3FfcpoZeeQc7JCOlps7Az5yx/1cI7eqjr2oLFTdKYMhjJog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778708376; c=relaxed/simple;
-	bh=6RVOmCpQqd6bhxaLMGhb4U6J1qkZVEls47foBVVVlWE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aemCg32OMzEeATg6CvXX+SD3e/WK6ibgYFFVGahtUII9kNX6hO48HS4QyjQy5xWx4XXjk41pZs5bnexbWCFQ1RsBzTzY6JInJkyFVJg6ixTja/MdUYI7i0SgxotPBx+HMj0AixAQSYvfDl+FPmoJz9nAErFfBqpVB6cuef+E7EY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=pass smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=Lc/WHbHo; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4F6DB3C8C8F;
-	Wed, 13 May 2026 23:39:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1778708371; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=1AX2j8H+A9JJ6yxGxOWqpensFj//EnHL/7eUxAjSl/I=;
-	b=Lc/WHbHo6a9u6xmgYh9JFLTTLxmnZik9YBZLUFRc57EWchl2Eg4uXIQCWY7k+OnBLTjdwu
-	qxjHsclPdRzQqAuCjpi7pk8KISVj2Zc5/siysgyuBSm6/urCAWjQQcQq+5l8bUAQrH+pgZ
-	C4irwC4MDy2qO2WlIHaMj7AcMOOO/EAty83qcFnMBSV1Mt0hBvRCM7rmgSoOhUkdBKzpvQ
-	1YRyUymTm5n2s38oZw/GL3J8YadgMbiIxQXB6OQfu2lQTRYMkfbRmCkyghGAbVP0FH10hd
-	JxruONLBXC9OKB+N2laE7YjZv4OuT5NsszQj3P2HBw8t5PUc/NoKNEVDFUfj1g==
-Message-ID: <65792ada-5e9d-4e3f-aa79-bb4a8ffd9161@cjdns.fr>
-Date: Wed, 13 May 2026 23:39:25 +0200
+	s=arc-20240116; t=1778708525; c=relaxed/simple;
+	bh=XawclTxOGS7jlTgXDoKV3KDC+UQnxgsILXZ1rYTqd3Y=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=b5zOxRU461UmT5FJoNLY/E5Cr9T1y0cY46RctWib8i4ZEvAGt/tdc5q/YCh13nv3mBwq2G9iqsje6AhrZwldhqIdAuGuWctvdi2EhYnp4p7FWZS7QYr4mnQ8CahgyoTAz5QPaInpTr2vLyoB1KXybb/vsZfYlm6irtU3HWzzbgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kfn5gwqm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD77C2BCB8;
+	Wed, 13 May 2026 21:42:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778708524;
+	bh=XawclTxOGS7jlTgXDoKV3KDC+UQnxgsILXZ1rYTqd3Y=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=kfn5gwqm+Bc/cJAWDmR9LYHFGUsxyWH8MixnfCCrUhYkns3PVT/cxhXLeQK6i8iMG
+	 Rq6w5tBGfVir8INzAIHpU+0o+frQsTLpQC9yBASLCkPjq4FuVVCC/Onw0aQ7UzNSty
+	 8qDrSA60u14xHLW3FNKpcB4EDaFN8GzZCqX2VKJ/TEr9PIsNGq4kHMKoUDiCXFXl3Y
+	 l2saxBrilAQWms2eXKxvZwCA/81RYe07v9BuFNEZ24kUrG8EriWgiXhqAAkLKDK6ip
+	 tiWiqR9VqTGolrwP9XphZBaElvvpMwDn+9kBR3/wFkfkmm/XU94at0Uv8/hvJWuWU0
+	 FLHpGAjaddbNg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: sm8250: sort out Iris power
+ domains
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260512-iris-venus-fix-sm8250-v6-1-51856dbef83c@oss.qualcomm.com>
+References: <20260512-iris-venus-fix-sm8250-v6-1-51856dbef83c@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 13 May 2026 21:42:03 +0000
+Message-Id: <20260513214204.7BD77C2BCB8@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v6 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
- naseefkm@gmail.com, ryder.lee@mediatek.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260513210759.GA331283@bhelgaas>
-Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <20260513210759.GA331283@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 395C253B1E4
+X-Rspamd-Queue-Id: 6DB9353B23A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297152-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297151-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,qualcomm.com:email,lists.linux.dev:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] The Venus driver ignores the newly added 'mmcx' power domain, prev=
+enting its voltage levels from being scaled or enabled.
+- [Low] The addition of a fourth power domain violates the existing device =
+tree binding schema for the Venus node.
+- [Low] Duplicate phandles to the same OPP table in `required-opps` violate=
+ the `opp-v2` device tree binding schema.
+--
 
-On 13/05/2026 23:07, Bjorn Helgaas wrote:
-> On Wed, May 13, 2026 at 07:16:52PM +0000, Caleb James DeLisle wrote:
->> Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
->>
->> These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
->> require re-training after startup.
-> s/re-training/retraining/
-OK
->
->> + * @MTK_PCIE_RETRAIN: Re-train link to bridge after startup because some
->> + *                    Gen2-capable devices start as Gen1.
-> s/Re-train/Retrain/ to make this consistent and more greppable.
-> Also more instances below.
-OK
->
->> + * as Gen1, and must be re-trained once after initial configuration in order to
->> + * only Gen1 capable. Therefore it is most convenient to re-train every port
->> +	return dev_err_probe(dev, ret, "root bridge not found\n");
-> "Root bridge" is not a term used by the specs, but in common usage it
-> refers to the host bridge, i.e., the RC.  In this case, you didn't
-> find a "Root Port".
-OK Thanks
->
->> +found_port:
->> +	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK)) {
->> +		/* Let it go because the device will work as Gen1 */
->> +		dev_warn(dev, "module must be built-in to retrain to Gen2\n");
-> I suppose this will cause a warning even in cases where Gen2 is
-> impossible, e.g., the endpoint only supports Gen1?
+commit b2dff816f619c94b6f1db957c2bb928b6d9248f2
+Author: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Correct indeed.
+arm64: dts: qcom: sm8250: sort out Iris power domains
 
-I imagine in most cases, if the port is Gen1 only then board integrator 
-uses a Gen1 card as well, so I could try being fancy and probe the card 
-to see if it supports Gen2. In OpenWrt the PCI driver is always built-in 
-so I didn't really consider this something to worry about.
+This commit adds the MMCX power domain to the Iris device node on SM8250
+to support MMCX voltage levels. It updates the power-domains,
+power-domain-names, and required-opps properties.
 
-What's your preference?
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/q=
+com/sm8250.dtsi
+> index 7076720413ab2..1fcbd400a3be3 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -4326,8 +4326,12 @@ venus: video-codec@aa00000 {
+>  			interrupts =3D <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+>  			power-domains =3D <&videocc MVS0C_GDSC>,
+>  					<&videocc MVS0_GDSC>,
+> -					<&rpmhpd RPMHPD_MX>;
+> -			power-domain-names =3D "venus", "vcodec0", "mx";
+> +					<&rpmhpd RPMHPD_MX>,
+> +					<&rpmhpd RPMHPD_MMCX>;
+> +			power-domain-names =3D "venus",
+> +					     "vcodec0",
+> +					     "mx",
+> +					     "mmcx";
 
-Thanks,
+Does this addition cause a device tree schema regression? The schema in
+Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml currently
+enforces maxItems: 3 for power-domains and restricts power-domain-names
+to exactly "venus", "vcodec0", and "mx".
 
-Caleb
+Will the qcom/venus driver actually attach to this new mmcx power domain?
+Looking at drivers/media/platform/qcom/venus/pm_helpers.c,
+vcodec_domains_get() initializes opp_pd_data with num_pd_names =3D 1, and t=
+he
+hardware resource struct sm8250_res.opp_pmdomain in core.c only lists
+{ "mx" }.
 
+Since "mmcx" is not in this array, devm_pm_domain_attach_list() will only
+attach "mx". This would cause opp_table->required_devs[1] to remain NULL,
+and the OPP core might silently skip setting the performance state for MMCX.
+Does the driver need an update to properly manage the MMCX rail?
+
+[ ... ]
+
+> @@ -4353,22 +4357,26 @@ venus_opp_table: opp-table {
+> =20
+>  				opp-720000000 {
+>  					opp-hz =3D /bits/ 64 <720000000>;
+> -					required-opps =3D <&rpmhpd_opp_low_svs>;
+> +					required-opps =3D <&rpmhpd_opp_low_svs>,
+> +							<&rpmhpd_opp_low_svs>;
+
+Could these duplicate phandles cause a schema validation regression?
+The opp-v2 bindings in Documentation/devicetree/bindings/opp/opp-v2-base.ya=
+ml
+explicitly state that required-opps should not contain multiple phandles to
+the OPP nodes in the same OPP table.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-iris-venus=
+-fix-sm8250-v6-0-51856dbef83c@oss.qualcomm.com?part=3D1
 
