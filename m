@@ -1,204 +1,223 @@
-Return-Path: <devicetree+bounces-296641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296643-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uK7DFg0VBGqDDQIAu9opvQ
-	(envelope-from <devicetree+bounces-296641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:07:09 +0200
+	id mG5COdQVBGqDDQIAu9opvQ
+	(envelope-from <devicetree+bounces-296643-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:10:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04DC752DEFE
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:07:08 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED88D52DF58
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:10:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC39B309AF85
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:05:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BFD7E300E486
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688443D3329;
-	Wed, 13 May 2026 06:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 332243D3334;
+	Wed, 13 May 2026 06:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n8+amBEn"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JAaKKz9s";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gcWMM5Qq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB0F3D3302;
-	Wed, 13 May 2026 06:05:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B149334A767
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778652350; cv=none; b=m3+HWKsC/Nkhy61O8YR0gjQ++h9rWdrJVWScPFggzAWbuQ6zZVZ5gt6c/dAfLc+9DRGwkLbxybNKac7lrDPBVYWQvNX6fPxGzDmtaDZoVxwbhaLCCnUhiev8FxaGrFEvgpgGdSrUP4N6ObpMjRUFuPuUwhIeHZ8rOzc3Kc2vdxk=
+	t=1778652620; cv=none; b=B6Zrw/mcFxO4V19O1hVCc8uS8G9dj1+l74jN2RNMBWvuUDSPu/GXLCKinGnDDYvUesHZhBJsOZ6ydCAH1zJCGK/A2qADggLTzyoF+WQsNHJtS67WCVsAeX9Uz9YwYRhBj2sMvTNHgIaYjAnH7K1vOvTDGAW2gcZZHWl0ZxKL2xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778652350; c=relaxed/simple;
-	bh=vNaQjYEzsW3hrnW4jAtb5W62bkbeqFDjM4KUyUPNwoo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eYO8Zow2FXLiOmOhKdZtSkD7b0OaNp8JqD9rH2t1BxtULczZIiZEksu5Wa9/RHDL1VjhItacD0fkz8MLjS2hWN5/Us4TL8UDS5MHHSPaSrxhNKruwwGq+ruTHQPZfwVeCvFhLY0hOaDc7Lpa2oGyt6etfblIrsnfe9DZe7R2AZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n8+amBEn; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1778652348; x=1810188348;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vNaQjYEzsW3hrnW4jAtb5W62bkbeqFDjM4KUyUPNwoo=;
-  b=n8+amBEnTQebUWB8mIDZ12VyTrgfnRl3r8Dm8A7FLgpk0spFN6bUVAQs
-   oDwJTGVbwAINHCIdx5G/fuqeJCBnmPgc9HwX9CUMi+CFMlj0/z1P/9IyQ
-   OtqzoErxVvJy+ftN6GaQ4r5bhiv6+YeAX2amOj00wxmx0ftJ//NVAZQcz
-   1/V9h/wtlYXuLJNhoYS4XnwjdsMJ0fYBtYGupRLVGW+c++eYMLF5LahqA
-   tgDOL/fnpNJl0fOeTI0Ifig3pnQSxgOembeFyrp41uKV9aBWOijP8Xeah
-   QHV+D/a/63uHgjmxV1nhl1bF9IEoCbcwYjO3GzskoUxSXCqxYAiGg1Mtj
-   A==;
-X-CSE-ConnectionGUID: 6qdSMZtgQpmKqvNyLJCk2g==
-X-CSE-MsgGUID: Z7Mi4YBGSeOFwZ85h5Ihtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="90954413"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; 
-   d="scan'208";a="90954413"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2026 23:05:45 -0700
-X-CSE-ConnectionGUID: 2STAC0B+THOQSMqEy6Hlog==
-X-CSE-MsgGUID: V160g7j/Sii/HC6LzW7XXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; 
-   d="scan'208";a="233712408"
-Received: from iapp347.iil.intel.com (HELO localhost) ([10.167.28.6])
-  by fmviesa010.fm.intel.com with ESMTP; 12 May 2026 23:05:43 -0700
-From: Avinash Bhatt <avinash.bhatt@intel.com>
-To: devicetree@vger.kernel.org,
-	linux-wireless@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	johannes@sipsolutions.net,
-	miriam.rachel.korenblit@intel.com,
-	linux-kernel@vger.kernel.org,
-	kobi.guetta@intel.com,
-	emmanuel.grumbach@intel.com
-Subject: [PATCH v3 3/3] wifi: iwlwifi: dt: use Device Tree as fallback BIOS configuration source
-Date: Wed, 13 May 2026 09:05:31 +0300
-Message-Id: <20260513060531.8130-4-avinash.bhatt@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260513060531.8130-1-avinash.bhatt@intel.com>
-References: <20260513060531.8130-1-avinash.bhatt@intel.com>
+	s=arc-20240116; t=1778652620; c=relaxed/simple;
+	bh=dggwVgQZYATZcpFGtaCTQytuYjp6og6z1rYuBox7Xcc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oCT+M6OB0/7yqLDom3D1ulalMhrIpYnxYPT3KKZb+5s/22bpeS1sYJVDEOZGXWveqoupIntE46VrkpbrpVvCbMN00S8Bja3RPnTP8BXcXc8NJCe6xkgR3l4aV+WsU6kwsUawSPWSzdHNJKxKGgbwLbKeEcsSHjGbRWOZcg9QThs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JAaKKz9s; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gcWMM5Qq; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64D4pIBo978386
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:10:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=YIyBRKcx8/a/vOQXAbbJJ2Im
+	8kJF/PgRbMikuhNIDuk=; b=JAaKKz9sd5/Au+Cyz4wwkJyzbsA6dKhrUxkFgoFo
+	zv/KH9OrzBHNX8I6Z0866cI3x2jg0SHIhubONfmYS2qMj7CMdN7rXwrEBab90vTe
+	zS4Y2l8JONNPkJKgJiqeKiWRLmitGmXLU3trNMg4YoTFwJE/YOvdbHqrpeWpk1a7
+	Iy8ZdfSq+Lc/gQ7ZsFfdT1/U0jf/2YJspYAfbxmQ/1MRY6aYauLbn60LoB7RX/Kx
+	1yKCgI4JabZMCGNv7JtBd2xWRSYIWyI6EJyG7o3zTHaOZzmTZJaH7YQEY5qyCaWG
+	mozHmoIY2n37IWCRrVUNrDsiHbuiX3wLI3riQhwBBRU88Q==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e46s9ttqu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:10:17 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-514a182b90dso47900851cf.1
+        for <devicetree@vger.kernel.org>; Tue, 12 May 2026 23:10:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778652617; x=1779257417; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YIyBRKcx8/a/vOQXAbbJJ2Im8kJF/PgRbMikuhNIDuk=;
+        b=gcWMM5QqcIgkInQJLBQ8klrfZEbD8sRbfG5uHmwPeyGi16hab3aBeJ/N63PGxmBx7v
+         jIyBV/BTJTHHLF5v92tGo8Bu8+OKqh3GAyoL+IaFnk3SGetROEimvaXbomMMWjl4DgOX
+         RtK3yHb9fa3Jx7seXopg93pFS5uTfEHM+s96CS+4LElE7NKWkEWKA+Von5HFPaUtReA5
+         004F3tiGRliWQX3gT4pBiWwNhdjAWsPeIuFnRuT1RrmHHDCgRKiiiPI/LmsfKZT3K+R/
+         P+ci9Y/J7RPCzKArhRgvaC9VH3UM02p/YJXIPbrFgNiFqH76bkZ8ZM1soOJoRfqvdxp7
+         d7LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778652617; x=1779257417;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YIyBRKcx8/a/vOQXAbbJJ2Im8kJF/PgRbMikuhNIDuk=;
+        b=UO0vg2JT/wR7jFPE5S78EXGpZ2xsrhxqOD/kjbm7zu251KvnzVRaSPJkAlJwkBlgVa
+         OlGgBHJ4Y+ZJAuMQz6jMxSKiCEMzy9RNSNoOzG8EEP97LLTKuDLcCPAsbwrRTh97eWJq
+         WGodHa+A/x3JdcNd/UcAFoOMKqQ8IDcDiyeRwae2d9dFruq5BwjEHY9Z68NqK+asr/9w
+         01GUMqDmhkG/v7wEo804L4UOOOoCl1pZZEbP2AY28hfT85RVSDIJUQdGWGu4H+H+Iakq
+         FY7I+SOuv6IRB2sDy5kqHhrMDAZ2Qdge4C6Q6NCVVrEW90XcbZ0B1UydVuhPymriR5Za
+         SRFg==
+X-Forwarded-Encrypted: i=1; AFNElJ8f50zoy5a3Ezw4ajCTCR1tl2PaUPKg4T0pqkITd8E8cc+slKw6At+rlpoQdt+NAEx23CZt5YSJc2uD@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzqOURTdX6ZseB/yxduoyQD80QPJ1gfg9nKDUypjReGC4YR41D
+	3Eyw26tlLNjRo+8udTM029ZfNajCcUYYdpYy5fT9wUOVlzAMQWFPmeH6sGJUsrlNvDYzpOwpK/B
+	i7qdVNgnaHrIdtj7yHZqJL8GIhxXmGkj42q20Pe/ogj+//79B648l4TJUhJFHvjJG
+X-Gm-Gg: Acq92OFlFRHcFCSh4g9Txa3LVhDAo/fTjsuNC2JoY4mcBOUl5HW4MwjK7y2lKMkTe8S
+	bVmXYeb0IVTFdO7Qu1LOP3FJubpnocyDuQD3yE0Nakv05i+wCNHXtpnRcGo8anMsoQyRJe1q9ey
+	UP1Zd95OlzB1pQGYIPc9gYdHLcITHHnbq/zwsJmZX1gPC7xcmEkF/QDhi+5CaJ+X6HbDjfA1h6I
+	31aAvgzKl1gNrhS6XJdFmajs1limR1+K+UMwBy+B1E3C0Zikm2X28XANiPbQfjjUzx7zGh+chtQ
+	mo00XRia8AIH2zn7CQhzYvp2xq+v9EXDurxE0rUNVa+76LzydnbFDG5YryALCYtG5HKYUsWtLRS
+	3hOQWH5BgGUOb2JQeVPqOH8VKH+xM8tqj2HfvaT9AXCRUwZA=
+X-Received: by 2002:a05:622a:1f0c:b0:50d:a8aa:8087 with SMTP id d75a77b69052e-5162ff467bbmr20543291cf.38.1778652616893;
+        Tue, 12 May 2026 23:10:16 -0700 (PDT)
+X-Received: by 2002:a05:622a:1f0c:b0:50d:a8aa:8087 with SMTP id d75a77b69052e-5162ff467bbmr20542941cf.38.1778652616255;
+        Tue, 12 May 2026 23:10:16 -0700 (PDT)
+Received: from oss.qualcomm.com ([86.121.170.241])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fce37b308sm46365135e9.10.2026.05.12.23.10.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 May 2026 23:10:15 -0700 (PDT)
+Date: Wed, 13 May 2026 09:10:13 +0300
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: eliza-mtp: Enable USB and ADSP
+ support
+Message-ID: <7a6tbenqnogpk3pbigds77ogo2zambykt7i7jshjhi36gam2oa@3hrp3icontya>
+References: <20260512-eliza-adsp-usb-v3-0-6420282841c2@oss.qualcomm.com>
+ <20260512-eliza-adsp-usb-v3-3-6420282841c2@oss.qualcomm.com>
+ <bi7m474cmmnbdfxd3kzdt4hywm7teu3jo2bzywk4x2tx24lh6b@xhdfnm4e3rfs>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 04DC752DEFE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bi7m474cmmnbdfxd3kzdt4hywm7teu3jo2bzywk4x2tx24lh6b@xhdfnm4e3rfs>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDA1OCBTYWx0ZWRfX29DrEKUqBlSb
+ FjWSXWvUHA977Elg5E1Sba+UqgcYHCGM1jIkYkZgVS6lpxnavOOJMNDdiMV1cpozBIRx4AHNyPY
+ JtgAYEhHEi3lfiFewOX+YyGJGLpVcFmP4HYimA1aazkF4y3mOueqnWu8EuZpvHhsU2wrsb0pH7Z
+ /IhEBwXAla/1u77vFXdsJHUVKwbMRSHOTCQIlgg9KjZYHZckyRY1PNH48tHr7X1LWlkJFGhnuHj
+ CIedwmAiR6wJExyqOYgX67tVIGCQZDXbnrxho7SVrmy/KiXyZvNNrRC6p6AxchJwQbDYcLy6o9w
+ QI4+kG0IcPfXvWp/4/RyBdOPXvHJP9UxvPgRvgmIWgSsQRISnjA+Eflol8B0yo37GTm2n1Ujs3q
+ LxUDrMDmSnQZTINSjfEXD/jTdioKyHD3Byoh9zlk3i97lyl7ZTOrgUk/TWmndaBYTQpnl30JF0s
+ ydWzed81R6JUNVJWr8g==
+X-Proofpoint-GUID: tYb1DPOqBTQn0awq4CoF8bjEpphygbkS
+X-Authority-Analysis: v=2.4 cv=L68theT8 c=1 sm=1 tr=0 ts=6a0415c9 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=NtgjAHhJo3Q0P2g9Zl9R/g==:17
+ a=kj9zAlcOel0A:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=EUspDBNiAAAA:8 a=i2al5Ykz3Aht5zOOcbIA:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-ORIG-GUID: tYb1DPOqBTQn0awq4CoF8bjEpphygbkS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-11_05,2026-05-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 impostorscore=0 adultscore=0 priorityscore=1501
+ suspectscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605130058
+X-Rspamd-Queue-Id: ED88D52DF58
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[avinash.bhatt@intel.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-296641-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_FIVE(0.00)[5];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296643-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.0:email,oss.qualcomm.com:dkim,0.0.0.1:email];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-When neither UEFI variables nor ACPI methods provide a BIOS
-configuration table, fall back to Device Tree. This preserves the
-existing UEFI -> ACPI priority order and extends it with DT as the
-lowest-priority source.
+On 26-05-13 01:04:12, Dmitry Baryshkov wrote:
+> On Tue, May 12, 2026 at 03:26:49PM +0300, Abel Vesa wrote:
+> > The Eliza MTP features a single USB Type-C port. Its USB 2.0 lines are
+> > routed through an eUSB2 repeater provided by the PM7750BA PMIC.
+> > 
+> > Describe the port and repeater, and enable the USB controller and PHYs.
+> > 
+> > Also specify the ADSP firmware and enable the remoteproc.
+> > 
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/eliza-mtp.dts | 81 ++++++++++++++++++++++++++++++++++
+> >  1 file changed, 81 insertions(+)
+> > 
+> > +
+> > +		connector@0 {
+> > +			compatible = "usb-c-connector";
+> > +			reg = <0>;
+> > +
+> > +			power-role = "dual";
+> > +			data-role = "dual";
+> > +
+> > +			ports {
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +
+> > +				port@0 {
+> > +					reg = <0>;
+> > +
+> > +					pmic_glink_hs_in: endpoint {
+> > +						remote-endpoint = <&usb_dwc3_hs>;
+> > +					};
+> > +				};
+> > +
+> > +				port@1 {
+> > +					reg = <1>;
+> > +
+> > +					pmic_glink_ss_in: endpoint {
+> > +						remote-endpoint = <&usb_dp_qmpphy_out>;
+> 
+> No redrivers?
 
-Signed-off-by: Avinash Bhatt <avinash.bhatt@intel.com>
----
- drivers/net/wireless/intel/iwlwifi/fw/regulatory.c  | 3 +++
- drivers/net/wireless/intel/iwlwifi/mld/mld.c        | 3 +++
- drivers/net/wireless/intel/iwlwifi/mld/regulatory.c | 5 ++++-
- 3 files changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/intel/iwlwifi/fw/regulatory.c b/drivers/net/wireless/intel/iwlwifi/fw/regulatory.c
-index 640e729091..d7ead787c2 100644
---- a/drivers/net/wireless/intel/iwlwifi/fw/regulatory.c
-+++ b/drivers/net/wireless/intel/iwlwifi/fw/regulatory.c
-@@ -8,6 +8,7 @@
- #include "regulatory.h"
- #include "fw/runtime.h"
- #include "fw/uefi.h"
-+#include "fw/dt.h"
- 
- #define GET_BIOS_TABLE(__name, ...)					\
- do {									\
-@@ -16,6 +17,8 @@ do {									\
- 		ret = iwl_uefi_get_ ## __name(__VA_ARGS__);		\
- 	if (ret < 0)							\
- 		ret = iwl_acpi_get_ ## __name(__VA_ARGS__);		\
-+	if (ret < 0 && iwl_dt_is_compatible(fwrt))			\
-+		ret = iwl_dt_get_ ## __name(__VA_ARGS__);		\
- 	return ret;							\
- } while (0)
- 
-diff --git a/drivers/net/wireless/intel/iwlwifi/mld/mld.c b/drivers/net/wireless/intel/iwlwifi/mld/mld.c
-index 130eba60b4..1a95b19d33 100644
---- a/drivers/net/wireless/intel/iwlwifi/mld/mld.c
-+++ b/drivers/net/wireless/intel/iwlwifi/mld/mld.c
-@@ -12,6 +12,7 @@
- #include "fw/api/coex.h"
- #include "fw/dbg.h"
- #include "fw/uefi.h"
-+#include "fw/dt.h"
- 
- #include "mld.h"
- #include "mlo.h"
-@@ -466,6 +467,8 @@ iwl_op_mode_mld_start(struct iwl_trans *trans, const struct iwl_rf_cfg *cfg,
- 	iwl_mld_get_bios_tables(mld);
- 	iwl_uefi_get_sgom_table(trans, &mld->fwrt);
- 	mld->bios_enable_puncturing = iwl_uefi_get_puncturing(&mld->fwrt);
-+	if (!mld->bios_enable_puncturing && iwl_dt_is_compatible(&mld->fwrt))
-+		mld->bios_enable_puncturing = iwl_dt_get_puncturing(&mld->fwrt);
- 	mld->rfi.bios_enabled = iwl_rfi_is_enabled_in_bios(&mld->fwrt);
- 
- 	iwl_mld_hw_set_regulatory(mld);
-diff --git a/drivers/net/wireless/intel/iwlwifi/mld/regulatory.c b/drivers/net/wireless/intel/iwlwifi/mld/regulatory.c
-index 97b2283f51..ce539a0be7 100644
---- a/drivers/net/wireless/intel/iwlwifi/mld/regulatory.c
-+++ b/drivers/net/wireless/intel/iwlwifi/mld/regulatory.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
- /*
-- * Copyright (C) 2024-2025 Intel Corporation
-+ * Copyright (C) 2024-2026 Intel Corporation
-  */
- 
- #include <linux/dmi.h>
-@@ -8,6 +8,7 @@
- #include "fw/regulatory.h"
- #include "fw/acpi.h"
- #include "fw/uefi.h"
-+#include "fw/dt.h"
- 
- #include "regulatory.h"
- #include "mld.h"
-@@ -64,6 +65,8 @@ void iwl_mld_get_bios_tables(struct iwl_mld *mld)
- 	}
- 
- 	iwl_uefi_get_uats_table(mld->trans, &mld->fwrt);
-+	if (!mld->fwrt.ap_type_cmd_valid && iwl_dt_is_compatible(&mld->fwrt))
-+		iwl_dt_get_uats_table(&mld->fwrt);
- 	iwl_uefi_get_uneb_table(mld->trans, &mld->fwrt);
- 
- 	iwl_bios_get_phy_filters(&mld->fwrt);
--- 
-2.34.1
-
+It will come with the DP support.
 
