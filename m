@@ -1,74 +1,113 @@
-Return-Path: <devicetree+bounces-296828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cE69Ggp1BGqdJwIAu9opvQ
-	(envelope-from <devicetree+bounces-296828-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 14:56:42 +0200
+	id qklkH6B2BGqpKAIAu9opvQ
+	(envelope-from <devicetree+bounces-296846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:03:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA0625336D7
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 14:56:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30799533899
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 15:03:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9DAA93185D9C
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:50:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F1676324820E
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 12:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E32429822;
-	Wed, 13 May 2026 12:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AAF4C77BF;
+	Wed, 13 May 2026 12:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kc6vRVH5"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="anv6YcyT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE3E426D0B;
-	Wed, 13 May 2026 12:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030374C6F15
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 12:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778676541; cv=none; b=Ehm07i+PEbtSeJeHSwTmibutSHRjHpMtStF7n1JICVZK9VCZcayTtQ2wZhQud2oqDX7VnKO3rtYe7XwFUp4b4LNGx2tEXHwJhCKyqG8ateVRWOhItdjWHAFLmRiUOt3vkMWge8ZbX6zsb5wKkouS7IMZdG0/a4B4wzYaCZqmtSs=
+	t=1778676593; cv=none; b=itSzGFqUHvOAhcD7e9nLx9cz2EwVvsvPoY2Zd59Qt4hB3cOlikwwOHwpsQpAWidIt1PvhU9fjfevwh4Oa6M6rGyLuwBTZXEoexypth5fXZsssf94IqzKy3y7jcg/BzrSFQIMPq7OjqbtFNSxgkpJxSk3+NAJMgTqslAgtZseNhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778676541; c=relaxed/simple;
-	bh=ZES+3v/n1Nkqlggfz/vnQ3phe7aIMIcVw0d8QGWt8OM=;
+	s=arc-20240116; t=1778676593; c=relaxed/simple;
+	bh=nI7YOzNufegrzrQMgLxNrwAqGVHXqCpVokhfGj2uJHs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aydO9XPyZh53MXkEId2t6kuYgv2Ovx+DN1D/5Sfn7B4eefGLbP3niD9qNCjW3QfJ+D4/znLf3ju0sHhUPGHxhRU/VhnVZ35yu2L0+8MX/GHTfaEF62SVlssmzk8lXjUDs8F55wwrX2crI+UtwFvPBIRWLlLtOF9aAkpH6cvMJt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kc6vRVH5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CD63C2BCB7;
-	Wed, 13 May 2026 12:49:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778676540;
-	bh=ZES+3v/n1Nkqlggfz/vnQ3phe7aIMIcVw0d8QGWt8OM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kc6vRVH5PTNBaRNaERh7Vz/ywZYymqZ+dSWs+mq6C/kx7Ek9LoRhk7Ag0kpM63FG/
-	 wg6JnHqWTHLAy5mOECKmWAE81lJ/7utzV/wYWaezNXHxbhhqB+MC34kQQrJVMeHHhh
-	 96vJoeVvCeU/FkrcXilIyAKd8UvxlZnr+vG2Nj6OvyjnPwzqOTHoBlCH8OC/Aluk23
-	 qCRKf4ozX/mYVcJn40iP8rd4JZK14w2xT7gZm2hjXyhjUxuVefl/d6sG9jZ/18A7JI
-	 NKh3sA4eh/iR+hL6MhmlDCNYGpfdTL2j0Open63lzcaYPHCY0H8uuUmzyXmNK1Siid
-	 7+VTyoX9zwnXQ==
-Date: Wed, 13 May 2026 07:48:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	=?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?= <mai.kuznetsov.misha@gmail.com>,
-	Charalampos Mitrodimas <charmitro@posteo.net>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 2/8] media: dt-bindings: add rockchip rk3588 vicap
-Message-ID: <20260513124858.GA585254-robh@kernel.org>
-References: <20260508-rk3588-vicap-v4-0-6a6cd6f7c90b@collabora.com>
- <20260508-rk3588-vicap-v4-2-6a6cd6f7c90b@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VhwQ7OE4DPmROOY8x60eLe2iK5FFyGlUZKnhPNfiPjXe2qQH3LVsb/PGOO5IlfPPcho59fFvivIOXgdl98WVtuka2szt3wZqSvTeP+rlgJBZJJ2iPGHsu8197jFJoEX2sYZsWQe9SL5PS8vMq2Do1u34WFcDSdf+LjPxefBvdDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=anv6YcyT; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-48a563e4ef7so61563115e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 May 2026 05:49:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1778676590; x=1779281390; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=u3zF8kES347TPoEbvDwkqQbzfa05yrB1P5lQaxsmy/k=;
+        b=anv6YcyT1kkN39tGg5nc5kZAg7zQpsefqN7H9k6nFlR+iDHfySQCgjAqbF1Vit5gd6
+         HGvL00FO0ndFtwsAGqbZi7Lq+ftGXgmMie1BQilW144IsLtBbTz8EenRf2GoJtXZXHct
+         8L45vMDjh070y3wWVV3Db08kBBIq0CLPhLkZKaHQuey9Hyn9kLtUPM6d/ueYS1lLmDYi
+         DWzO+AFK5ewpdDMcSm2BQfdphnr1Dy5xQINNfDbQhJegZhXsUoscwrcjBPJAQ5hersSM
+         Dk6KDwz/c9bXB9CgGMtY4vaFx65TH67HQJC9zt82spg6F/gWQGD3VkvQOfMJy9D4lOVf
+         BfGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778676590; x=1779281390;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=u3zF8kES347TPoEbvDwkqQbzfa05yrB1P5lQaxsmy/k=;
+        b=FzwZ6w6VszIEOML14XHQsvSMPSPpl4A6NYWKUAjnK93vx593ESRa2NfHLYHg3p7nAw
+         Y0jTmDPsUbcKAUNu+w3zElFyWSRJWgvrx4KpWTRge19u07QS7ij4Y4D6SMtzNhxubYEA
+         yAA/+XPWZTSBCefTNeqPM0mW/ESnvd3Y8HjwlFUZxMNMdIm/26CK+EZHs57gPW/dWjRY
+         UPr3RhxOCy2GnYzOH9hAzYwY5PmnWyEAIS24O+ASkuFr898FmaK8AtxeY6b3RIvBTAzs
+         13TOKOq6t90npOL1ksrKDs1GhpSvxMLnd+Hn0jB0X2v4Jw3upwfk8vnYYmYVorFTdZbq
+         w7tw==
+X-Forwarded-Encrypted: i=1; AFNElJ9/cDRSOilUie4cd2e3DEKOHEo+V4881on5t/kBK0h2qyV8vcTjNV6Esh9lHpQOsnCjJb2Pn/eQoxKL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLrYooFu5JSEtWIFcUR0dYp5E9KjZw96dzdhgXRdJwXUQO4WtT
+	GCwPdX3q+Pn1mVkWeqxTqunytWEBhyQaOFX9daXVZaFzvh4d1oBgz6OJi+i3/whfuyk=
+X-Gm-Gg: Acq92OEaR19JN8biAycc6zzJlQV7Uzu6drNYmCVVGR4g1YEeJWYuO95v1qbT+Jwn7j2
+	8OW7LWMF/ts2ROH1PyAjHGIhJjknzhB72IMD9041KOZtu+vfdwlyHhdaEhrqRpDcXGD/QkEisZz
+	9nVYE9w6JqLE225laxieqb/PpghyEClXXVtAhVOu5xSYCnpWhN4fzNrFKkKOco/nVnbLrwysrR0
+	BW5RqYQcgk8L3BjKZvHxe/cCtgiVrRHiudYPH/QvBEWsfwLAbYS8LcfzVDbf2ELk6KblX9pH6ij
+	8Th/lT9bvHUQen8p1pVCMzZeOOcfl6S4H2MGvxU4Jt0CtdLTaxnDqkWZZIQb5Lhopd+L2zaapl4
+	YfHLWxtb7pzjJUwwRRIatsWKUm3wU4IGrhbA8yX5KVloF+VyBsf/wxow5qonQVKn9RjZNUvpLhx
+	m3b9Rl/K+oic6OPJY/Cx55JiwHdiafrwscIiKfD5KJbtcL/uaDFGfy1+WHqUukOBzp5joZCYBjE
+	Xxp5atPtHYHmDMlopnG7eHZswBRbXCtuQX/+w3HYc5lehSD4EbNc/E0M39pm+qkhx0RC2I4lawe
+	8S0CQkWN
+X-Received: by 2002:a05:600c:6305:b0:48a:5301:bb5c with SMTP id 5b1f17b1804b1-48fc9a32aeamr49565525e9.16.1778676590239;
+        Wed, 13 May 2026 05:49:50 -0700 (PDT)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fc8cd49fesm78578015e9.0.2026.05.13.05.49.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 May 2026 05:49:49 -0700 (PDT)
+Date: Wed, 13 May 2026 13:49:46 +0100
+From: Daniel Thompson <daniel@riscstar.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Alex Elder <elder@riscstar.com>, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, maxime.chevallier@bootlin.com,
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
+	arnd@arndb.de, gregkh@linuxfoundation.org,
+	mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com,
+	alexandre.torgue@foss.st.com, ast@kernel.org,
+	boon.khai.ng@altera.com, chenchuangyu@xiaomi.com,
+	chenhuacai@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
+	hkallweit1@gmail.com, inochiama@gmail.com, john.fastabend@gmail.com,
+	julianbraha@gmail.com, livelycarpet87@gmail.com,
+	matthew.gerlach@altera.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
+	rohan.g.thomas@altera.com, sdf@fomichev.me,
+	siyanteng@cqsoftware.com.cn, weishangjuan@eswincomputing.com,
+	wens@kernel.org, netdev@vger.kernel.org, bpf@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 12/12] arm64: dts: qcom: qcs6490-rb3gen2: enable
+ TC9564 with a single QCS8081 phy
+Message-ID: <agRzai1UoHEIotZe@aspen.lan>
+References: <20260501155421.3329862-1-elder@riscstar.com>
+ <20260501155421.3329862-13-elder@riscstar.com>
+ <01d6ea18-e022-41c7-a642-ac0321957923@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,94 +116,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260508-rk3588-vicap-v4-2-6a6cd6f7c90b@collabora.com>
-X-Rspamd-Queue-Id: DA0625336D7
+In-Reply-To: <01d6ea18-e022-41c7-a642-ac0321957923@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 30799533899
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,posteo.net,collabora.com,vger.kernel.org,lists.infradead.org,microchip.com];
-	TAGGED_FROM(0.00)[bounces-296828-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-296846-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RSPAMD_URIBL_FAIL(0.00)[riscstar.com:query timed out,checkpatch.pl:query timed out];
+	FREEMAIL_CC(0.00)[riscstar.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@riscstar.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,riscstar.com:email,aspen.lan:mid]
 X-Rspamd-Action: no action
 
-On Fri, May 08, 2026 at 09:31:45PM +0200, Michael Riesch wrote:
-> Add documentation for the Rockchip RK3588 Video Capture (VICAP) unit. To
-> that end, make the existing rockchip,rk3568-vicap documentation more
-> general and introduce variant specific constraints.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  .../bindings/media/rockchip,rk3568-vicap.yaml      | 187 ++++++++++++++++++---
->  1 file changed, 163 insertions(+), 24 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> index 18cd0a5a5318174910e04f6ef7558c92cbfec899..897ed00c239bdfe33777a8f8474fb27fa6265e49 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> @@ -15,9 +15,15 @@ description:
->    the data from camera sensors, video decoders, or other companion ICs and
->    transfers it into system main memory by AXI bus.
->  
-> +  The Rockchip RK3588 Video Capture (VICAP) is similar to its RK3568
-> +  counterpart, but features six MIPI CSI-2 ports and additional connections
-> +  to the image signal processor (ISP) blocks.
-> +
->  properties:
->    compatible:
-> -    const: rockchip,rk3568-vicap
-> +    enum:
-> +      - rockchip,rk3568-vicap
-> +      - rockchip,rk3588-vicap
->  
->    reg:
->      maxItems: 1
-> @@ -26,37 +32,23 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    items:
-> -      - description: ACLK
-> -      - description: HCLK
-> -      - description: DCLK
-> -      - description: ICLK
-> +    minItems: 4
-> +    maxItems: 5
->  
->    clock-names:
-> -    items:
-> -      - const: aclk
-> -      - const: hclk
-> -      - const: dclk
-> -      - const: iclk
+On Fri, May 08, 2026 at 04:03:36PM +0200, Konrad Dybcio wrote:
+> On 5/1/26 5:54 PM, Alex Elder wrote:
+> > From: Daniel Thompson <daniel@riscstar.com>
+> >
+> > The QCS6490 RB3Gen2 includes a Toshiba TC9564 (a.k.a. Qualcomm QPS615).
+> > TC9564 is an twin Ethernet-AVB/TSN bridge with an integrated PCIe switch.
+> >
+> > There are multiple builds of RB3Gen2 with components included/excluded.
+> > That means whether or not there is a phy attached to eMAC0 depends on
+> > the exact board. However all versions include a TC9564 combined with a
+> > single QCS8081 attached to eMAC1.
+> >
+> > Add properties to the existing PCI nodes to describe how the TC9564 and
+> > QCS8081 are connected to each other (and to the host SoC).
+> >
+> > (Note: "pci1179,0220" is documented in the "net/toshiba,tc956x-dwmac.yaml"
+> > binding, but checkpatch.pl doesn't recognize that.)
+>
+> This should probably go under the --- line
 
-Just keep this here and add iclk1 on the end along with 'minItems: 4'.
+I'll leave that with Alex...
 
-> +    minItems: 4
-> +    maxItems: 5
 
+> > +	qep_1p8: regulator-qep-1p8 {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "qep_1p8";
+> > +		gpio = <&pm7325_gpios 8 GPIO_ACTIVE_HIGH>;
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +		enable-active-high;
+> > +		regulator-always-on;
+> > +	};
+>
+> If I'm reading the schematics right, this is only required for the PHY
+> - is it collapsible, or does it really need to be a-on?
+
+It could be turned off if the socket isn't in use but it would prevent
+hotplug detection from working. In practice that means it can only
+collapse during suspend/resume.
+
+However the real reason we jammed this on is because I couldn't find a
+way to get the phy/mdio code to turn one on. However it is possible to
+add regulator support to MDIO devices by extending their existing logic
+to manage resets so it can also manage a regulator. It comes out fairly
+clean so we can add that to the patch set and remove the
+regulator-always-on.
+
+
+> > +	qep_irq_pin: qep-irq-state {
+> > +		pins = "gpio101";
+> > +		function = "gpio";
+> > +		drive-strength = <2>;
+> > +		bias-disable;
+>
+> There's no pull-up onboard, should we use the on-chip one?
+
+It is configured the same as lt9611_irq_pin (which I couldn't see a
+pull-up for).
+
+I switched the interrupt trigger to active-low based on other feedback
+on the patchset and the counts in /proc/interrupts remain unchanged
+(with a single figure value). It certainly doesn't look like the irq
+line floats when the PHY interrupt is deasserted.
+
+
+Daniel.
 
