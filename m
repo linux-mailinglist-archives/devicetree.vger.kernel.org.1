@@ -1,183 +1,143 @@
-Return-Path: <devicetree+bounces-297164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JD5J973BGo8RAIAu9opvQ
-	(envelope-from <devicetree+bounces-297164-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 00:14:54 +0200
+	id kcslFKL4BGpyRAIAu9opvQ
+	(envelope-from <devicetree+bounces-297165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 00:18:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F60553B562
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 00:14:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1172053B5BA
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 00:18:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7EBB4300683B
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 22:14:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 82A08303C653
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 22:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741E03CB911;
-	Wed, 13 May 2026 22:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1077389453;
+	Wed, 13 May 2026 22:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I5cLBH59"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="fe/S48NX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674E1357D17
-	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 22:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA5E38A71F;
+	Wed, 13 May 2026 22:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778710486; cv=none; b=SZ6cxJxx/eYfBeJT5MUZR5B/TNSslWZjZz2hXmVjA8sqWF63HqHZte2gl3l1Bi0liV1Bd8BbjU1yFIUaAjzb055xk/gdYC2yyF98EJ/PcpJtiY7v57YsYz2MYb3soU8MCNL0jyEyrw5yN6e+FosJZFkd+yVub258dAfrXdt2r2s=
+	t=1778710662; cv=none; b=sZ14spCnvjQrh0LUTHBB+os7PJeCGlfqgPMVz45heN+nFFyeFUELMM+jkXajatUVrKEqyMjcdKpJQ6i+a7PWdrKnQS0Mo00tzt600ocduyjEt+OfWeI+re5gMfXcGbsvYvA9Iyai3DCqKpQIASuB9VPU0bW/9tJjVjhS2PBaL0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778710486; c=relaxed/simple;
-	bh=FkpU+izbfNFR6eB5lC5Xgyp2XPb2rH2q95rmVTdagBs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QRH60tPIJ0sPjw4zrf66K/pH64WMfBLI5xIg8M/WSb02pBSDDHhqNU+VA25o+Bwv4vSs78mwLfTZJ3yZ2/MqtpKobo9fSmv8az/oUPmf9kRjYrX4XhTbv6WRg7tkrJ1peJIjsZspSozx7pL7IRh0UwZ2PqGh5H1/ch8QxgH/9NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I5cLBH59; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B3BCC19425;
-	Wed, 13 May 2026 22:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778710485;
-	bh=FkpU+izbfNFR6eB5lC5Xgyp2XPb2rH2q95rmVTdagBs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=I5cLBH59Y/Or8wk0WIemEuq6BXgvHPyLVcLWAp8gwr3i/uc3yijuX+rHyOKVdbewE
-	 fibk+5o9cO3oUI2XxCgeF++CnXQz48Wu9K+TS5eWwtVKkp+ogqYumPmuC61nUuxXIx
-	 JgB5dWMEuKMkAfgGNihj6Ny/rFPptAnfcIi9UwkdoEp962NZf03UWHHzJGOJtNqcM7
-	 UHSpEqxvpWGJHEil+7trLGAbrjBMsXYpO2ifnsAvFQ1NYFcOrlebZdqFoHv0GWzkIT
-	 +U91MybyIWRNiuwYQF7jpQeeudgK9ea6eai75zG6a+nLu7RSsz9iKMHodqyIV9fA1W
-	 y3TVNCJ+R1sDw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: sm8350: add Iris device
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260512-iris-sc8280xp-v5-5-8cc251e83b58@oss.qualcomm.com>
-References: <20260512-iris-sc8280xp-v5-5-8cc251e83b58@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 13 May 2026 22:14:44 +0000
-Message-Id: <20260513221445.6B3BCC19425@smtp.kernel.org>
+	s=arc-20240116; t=1778710662; c=relaxed/simple;
+	bh=DM5wkCIvvuKASVggBvkbZnE+/JqP1QkZQRpsXhaqRqA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XAWuEIfsM2sz5kEBgJgeai1XhMy/y87KpBFJ7ZavxrOugXiqATsGE1oQDgleGQ7oknvB6y9iFTNHAdXNiDjvDh71n2L0vIOmh7NPO1bCHfraPi23/tRdhToiUoOjvyNyuG+jokeFY9snJkCERmI9LN71zUKSpiPPGfPwWnwSeoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=fe/S48NX; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 459783C8F22;
+	Thu, 14 May 2026 00:17:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1778710657; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=rDpeY0azgQhPIjMW6FFMgw4pOGnlBJkPZ7F8T8UR+wU=;
+	b=fe/S48NXC9NYKwChLEwX2ExRJRHkb/3N6Q7wdjxH/mS4vhdNVQUVRVTFFFR12Ii0UZSmQI
+	6zUZPj6aY4WwNVZczx0x0UvRJtvShWe5U6Gj3JVBKlVNdDsO1bkuf+uUAKNVGZkzr7NSSC
+	YOG+tGwsWAl0WRqx/idbRUUuWaAB9PZHLG0ItZJmfBM/He6KAQQySJ0NqAEc2g2JnAp8a1
+	jPeDtXchccYB1U5nSQPmmST0MvNy91a0iXH1IRr2mgvxJOgCi/xY7fdlTe8lHaOgutq7r9
+	W4tq0E9umhZmxyB5WTjiDe48fO14sRdHwWpHUzzsH23GkZTOkTiJ6y2i+SDqog==
+Message-ID: <64d29cc5-8021-402c-b6c4-47bcf4c4f814@cjdns.fr>
+Date: Thu, 14 May 2026 00:17:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 9F60553B562
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v6 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
+ naseefkm@gmail.com, ryder.lee@mediatek.com, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260513220610.GA341225@bhelgaas>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20260513220610.GA341225@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 1172053B5BA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297164-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,sashiko.dev:url];
+	TAGGED_FROM(0.00)[bounces-297165-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The `mmcx` power domain will not be dynamically scaled by the Venu=
-s driver, leading to hardware undervolting at high frequencies.
-- [Low] The 'power-domains' and 'power-domain-names' properties specify 4 i=
-tems, which violates the maximum limit of 3 in the dt-binding schema.
---
 
-commit 046ca095899786006b3cdd62f346ab47c7c8bd55
-Author: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+On 14/05/2026 00:06, Bjorn Helgaas wrote:
+> On Wed, May 13, 2026 at 11:39:25PM +0200, Caleb James DeLisle wrote:
+>> On 13/05/2026 23:07, Bjorn Helgaas wrote:
+>>> On Wed, May 13, 2026 at 07:16:52PM +0000, Caleb James DeLisle wrote:
+>>>> Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
+>>>>
+>>>> These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
+>>>> require re-training after startup.
+>>>> +found_port:
+>>>> +	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK)) {
+>>>> +		/* Let it go because the device will work as Gen1 */
+>>>> +		dev_warn(dev, "module must be built-in to retrain to Gen2\n");
+>>> I suppose this will cause a warning even in cases where Gen2 is
+>>> impossible, e.g., the endpoint only supports Gen1?
+>> Correct indeed.
+>>
+>> I imagine in most cases, if the port is Gen1 only then board integrator uses
+>> a Gen1 card as well, so I could try being fancy and probe the card to see if
+>> it supports Gen2. In OpenWrt the PCI driver is always built-in so I didn't
+>> really consider this something to worry about.
+> Probing the downstream device sounds like overkill because it hasn't
+> been enumerated yet and there's no good place to check after it is
+> enumerated.  I would consider just logging one message as "info"
+> instead of "warn", maybe in mtk_pcie_startup_port_en7528()?
 
-arm64: dts: qcom: sm8350: add Iris device
 
-This commit adds the Iris and video clock controller devices, describing the
-Iris2 core present on the sm8350 platform.
+Works for me, worth noting if anybody adds a startup for another device 
+which has this quirk, they'll also need to copy the log line - but it's 
+highly likely that no other such device exists, and duplicating 3 lines 
+of code is not the end of the world.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/q=
-com/sm8350.dtsi
-> index 5c8fe213f5e4e..eedf677a7070d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-[ ... ]
-> @@ -2745,6 +2747,85 @@ usb_2_dwc3: usb@a800000 {
->  			};
->  		};
-> =20
-> +		iris: video-codec@aa00000 {
-> +			compatible =3D "qcom,sm8350-iris", "qcom,sm8250-venus";
-> +			reg =3D <0x0 0x0aa00000 0x0 0x100000>;
-> +			interrupts =3D <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			clocks =3D <&gcc GCC_VIDEO_AXI0_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0_CLK>;
-> +			clock-names =3D "iface",
-> +				      "core",
-> +				      "vcodec0_core";
-> +			power-domains =3D <&videocc MVS0C_GDSC>,
-> +					<&videocc MVS0_GDSC>,
-> +					<&rpmhpd RPMHPD_MX>,
-> +					<&rpmhpd RPMHPD_MMCX>;
-> +			power-domain-names =3D "venus",
-> +					     "vcodec0",
-> +					     "mx",
-> +					     "mmcx";
 
-Does adding four items here violate the dt-binding schema?
+Thanks,
 
-The schema for the fallback compatible qcom,sm8250-venus enforces a maxItems
-of 3 for power-domains, and restricts power-domain-names to exactly "venus",
-"vcodec0", and "mx". This might cause dtbs_check validation failures.
+Caleb
 
-[ ... ]
-> +			iris_opp_table: opp-table {
-> +				compatible =3D "operating-points-v2";
-[ ... ]
-> +				opp-444000000 {
-> +					opp-hz =3D /bits/ 64 <444000000>;
-> +					required-opps =3D <&rpmhpd_opp_svs_l1>,
-> +							<&rpmhpd_opp_nom>;
-> +				};
-
-Will the mmcx power domain be dynamically scaled here?
-
-Because this node relies on the fallback compatible qcom,sm8250-venus, the
-Venus driver will probe it using the legacy sm8250_res struct, which hardco=
-des
-its OPP power domains list to just "mx" with num_pd_names =3D 1.
-
-Because the driver uses devm_pm_domain_attach_list() to attach domains by
-name, mmcx is ignored and never attached to the device's OPP structure.
-
-The generic OPP framework will therefore only apply the first required-opps
-entry to mx and skip the second. When the hardware is clocked up to 444MHz,
-mmcx will remain stuck at its lowest static voltage vote.
-
-Could this lead to hardware undervolting and system crashes? Does the Venus
-driver need a dedicated sm8350_res struct and updates to explicitly support
-and attach the mmcx OPP power domain before enabling this node?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512-iris-sc828=
-0xp-v5-0-8cc251e83b58@oss.qualcomm.com?part=3D5
 
