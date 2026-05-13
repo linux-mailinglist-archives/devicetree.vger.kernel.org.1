@@ -1,132 +1,257 @@
-Return-Path: <devicetree+bounces-296642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-296637-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDMBNH4VBGqDDQIAu9opvQ
-	(envelope-from <devicetree+bounces-296642-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:09:02 +0200
+	id iJ2nCokUBGqDDQIAu9opvQ
+	(envelope-from <devicetree+bounces-296637-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:04:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E9652DF31
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:09:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4CF52DE9D
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 08:04:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA72A3044127
-	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:06:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48E973044217
+	for <lists+devicetree@lfdr.de>; Wed, 13 May 2026 06:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47B23D332C;
-	Wed, 13 May 2026 06:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6743D301D;
+	Wed, 13 May 2026 06:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QavHyASi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486FB2C11E2;
-	Wed, 13 May 2026 06:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94B93D093A
+	for <devicetree@vger.kernel.org>; Wed, 13 May 2026 06:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778652384; cv=none; b=u/fR2A/tgWzdtvkqrEJZdD7gtvdt+z5CvYmVs6fwlmeP5hJGmJ1GQEGsdT3PifaxwPTOIFRjtfZYtypBl0TfYy/IOB38p1rQCMHfjhC7dbfyXPbGxcpjusbrcLccD334EA48bXUcPf0QRZrCyaZU4sxdG/gBl/ky+UHUfqWobVA=
+	t=1778652293; cv=none; b=L4H05wOeahimtpfrBBSeRl2xMgkZUxz5scLZofy6LPK0CcvV9vzhk+zMMc97/YWpPUL8AGv3LYAkJbkh0Ms+LyVSMuIONDhynBRDoOpcPF3s94HDt/7CIfWCF9K4kK0yQg0A2xL2LszUNPSvDLvT/0+mm+GlEvZiT/KAK8vK43U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778652384; c=relaxed/simple;
-	bh=QhNr8jmpw55RK1ebaXOMEGE/6b563n9NFnVQtQvOWZk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JVaxnZWqJRfdYIGkMkjx+Aq5HmKiYb7OQXQULuMQxVTN37iz75cmUXA5a+kjTrIkkILUfBtif8hQxamHByRWRrvMbXm6uW6CxCt7Knue5NIZsy2Cy9+8uPRCcA8yeQF/Vq/WPJBqNX87jJVVJ21nDUPaADgPcZaNiSZG8zrN/Vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.. (unknown [119.122.215.211])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3e3542995;
-	Wed, 13 May 2026 14:01:08 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: dlan@kernel.org
-Cc: alex@ghiti.fr,
-	amadeus@jmu.edu.cn,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	robh@kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v3 1/2] riscv: dts: spacemit: add fixed regulators for OrangePi R2S
-Date: Wed, 13 May 2026 14:00:30 +0800
-Message-Id: <20260513060030.616473-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260511070718-GKC3624147@kernel.org>
-References: <20260511070718-GKC3624147@kernel.org>
+	s=arc-20240116; t=1778652293; c=relaxed/simple;
+	bh=OrSNaI0h0shQ5d0JKloY8MhLcUc4Rqow+qinxhUmIyo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=TKHITUNLKg26sXgxnF0omV4+Gboz0VQ832WLZ0lBrUOnf9G/cVImGJNVib/HAC4Fcjm3wkysUVS1C/+t0nDX/IuJ0I7P9P0orLQ1stVXIJ7fr98xdEmEtvnMabtssd81D++mfO0qxewdYhKZoNsi7pWECQQfFKHiYgSwhrOcFhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QavHyASi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F227DC2BCB7;
+	Wed, 13 May 2026 06:04:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778652293;
+	bh=OrSNaI0h0shQ5d0JKloY8MhLcUc4Rqow+qinxhUmIyo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=QavHyASiNmsy/Qv0+mjb3E+l6i3s3DWh+vCMAXXWDGIoUw1nfs7S9S8hntHpMtK18
+	 VwjeZz3ECykObq0FxLsazYiTzAGNYBnwZAs0NfRCF5aYw3Nm8WD4ZcB4nxsLvwEjjq
+	 kH794APTmbeoF8Pa8dKJsACTJ/Ky/XeBkUjV8Adf4P6XWYqGt8KcPJJ24KHxrxvhKO
+	 aRXSv6C4LsgpYeISEL9IA/rK188/51oZQKAdrfxbuMhCtCM5+HGwqhQp4DL9hSciBY
+	 a+cbSaOEp5ypNBn+DvT+yZ3hluX2e1oGSXL7sFRpjA57ILHQVVbqVdw1SmhkzdadHL
+	 5+8Ifg9Y6D9yw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI
+ DSI bridge
+Reply-To: sashiko-reviews@lists.linux.dev
+To: syyang@lontium.com
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260512064013.40066-3-syyang@lontium.com>
+References: <20260512064013.40066-3-syyang@lontium.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 13 May 2026 06:04:52 +0000
+Message-Id: <20260513060452.F227DC2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e1fecbaa003a2kunm76fdac8128a16
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSRpKVk8ZHR1NTUJOTB0YTlYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJSkpZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pOTE5VSktLVUpCS0tZBg++
-X-Rspamd-Queue-Id: 36E9652DF31
+X-Rspamd-Queue-Id: 6A4CF52DE9D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,lontium.com:email];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-296642-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-296637-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NO_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.942];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jmu.edu.cn:mid]
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Hi,
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [Critical] Firmware upgrade via sysfs races with DRM atomic modeset callb=
+acks, risking hardware bricking.
+- [High] Hardware reset in `remove` callback races with DRM bridge teardown.
+- [Medium] Undefined behavior in CRC validation due to integer promotion.
+- [Medium] Incomplete display configuration and missing MIPI DSI host regis=
+tration.
+- [Medium] Unbalanced reset pin state on probe failure creates backpowering=
+ risk.
+- [Medium] Ignored return values for critical I2C writes during firmware up=
+grades.
+- [Low] `dev_err_probe()` used outside of `probe` context.
+--
 
-> please check my comment below, I think this patch has similar issue
->
-> https://lore.kernel.org/all/20260511065338-GKA3624147@kernel.org/
+commit 0bae053b4ef87003ffe3f7c844f0ddb1092f16bf
+Author: Sunyun Yang <syyang@lontium.com>
+Date:   Tue May 12 06:40:13 2026 +0000
 
-I don't think this is an issue. Otherwise, these commits need to be fixed:
-https://github.com/torvalds/linux/commit/1df07a40453fd652132051419140950d47941fe9
-https://github.com/torvalds/linux/commit/ae9d03f8aec76c1bff21083b67c211238d7c57b1
+    drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+   =20
+    This commit adds support for the Lontium LT7911EXC eDP to MIPI DSI
+    bridge. It implements I2C-based setup, display configuration, and
+    provides a firmware update mechanism.
 
-Let's confirm the current DT preferred:
+The commit message states:
+> It implements I2C-based setup, display configuration, and
+> provides a firmware update mechanism.
 
-- regulator-fixed
+Is this description completely accurate? Looking at the drm_bridge_funcs
+implementation, there are no atomic_enable/disable functions configuring
+the display. Additionally, as an eDP to MIPI DSI bridge, should it also
+register a mipi_dsi_host so downstream panels can attach?
 
-  nodename: Preferred name is 'regulator-[0-9]v[0-9]'
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/drm=
+/bridge/lontium-lt7911exc.c
+> new file mode 100644
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
+[ ... ]
+> +static void lt7911exc_block_erase(struct lt7911exc *lt7911exc)
+> +{
+[ ... ]
+> +	regmap_multi_reg_write(lt7911exc->regmap, seq_write, ARRAY_SIZE(seq_wri=
+te));
+> +
+> +	msleep(200);
+> +	dev_dbg(dev, "erase flash done.\n");
+> +}
 
-  gpio/gpios: Preferred 'gpios'
-  https://github.com/torvalds/linux/commit/12df2c182ccb850988d2680a422211a812fb5cb2
+Could this silently fail to erase the flash? If regmap_multi_reg_write()
+fails due to hardware communication errors, the driver will continue and
+attempt to write new firmware data to an unerased flash segment. Should
+the return value be checked here and in lt7911exc_prog_init()?
 
-There is no specification or preference stating that regulators without
-software or GPIO control should be removed.
+[ ... ]
+> +static int lt7911exc_upgrade_result(struct lt7911exc *lt7911exc, u32 crc=
+32)
+> +{
+[ ... ]
+> +	read_hw_crc =3D crc_tmp[0] << 24 | crc_tmp[1] << 16 |
+> +				crc_tmp[2] << 8 | crc_tmp[3];
 
-This has been discussed many times, and people are used to describing DT
-according to the schematic:
-https://lore.kernel.org/all/44ba02e34d7bf6a6657894802a87b690@manjaro.org/
+Can this cause a signed integer overflow? In C, u8 values are implicitly
+promoted to signed 32-bit integers before shifting. If crc_tmp[0] is 128
+or greater, shifting left by 24 bits will shift into the sign bit. Would
+explicitly casting to u32 prevent this?
 
-Therefore, if you consider these regulators unacceptable, we should remove
-them from other dts in spacemit, or allow such changes.
+[ ... ]
+> +static int lt7911exc_firmware_upgrade(struct lt7911exc *lt7911exc)
+> +{
+[ ... ]
+> +	/*1. load firmware*/
+> +	ret =3D request_firmware(&fw, FW_FILE, dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to load '%s'\n", FW_FILE);
 
-Thanks,
-Chukun
+Is it safe to use dev_err_probe() outside of a probe context? This function
+is called exclusively from the sysfs store callback. Calling dev_err_probe()
+here might interfere with deferred probe tracking.
+
+[ ... ]
+> +static void lt7911exc_atomic_pre_enable(struct drm_bridge *bridge, struc=
+t drm_atomic_state *state)
+> +{
+> +	struct lt7911exc *lt7911exc =3D bridge_to_lt7911exc(bridge);
+> +
+> +	lt7911exc_reset(lt7911exc);
+> +}
+
+[ ... ]
+
+> +static ssize_t lt7911exc_firmware_store(struct device *dev, struct devic=
+e_attribute *attr,
+> +					const char *buf, size_t len)
+> +{
+[ ... ]
+> +	lt7911exc_lock(lt7911exc);
+> +
+> +	ret =3D lt7911exc_firmware_upgrade(lt7911exc);
+
+Can a DRM atomic modeset race with a firmware upgrade here?=20
+
+The sysfs attribute protects internal I2C sequences with ocm_lock, but the
+DRM bridge callbacks toggle the reset_gpio without acquiring this lock.
+
+If a display modeset occurs concurrently with a firmware flash, could the
+hardware reset pin be toggled mid-flash and corrupt the firmware?
+
+[ ... ]
+> +static int lt7911exc_probe(struct i2c_client *client)
+> +{
+[ ... ]
+> +	lt7911exc_reset(lt7911exc);
+> +
+> +	lt7911exc_lock(lt7911exc);
+> +
+> +	lt7911exc->fw_version =3D lt7911exc_read_version(lt7911exc);
+> +
+> +	lt7911exc_unlock(lt7911exc);
+> +	if (lt7911exc->fw_version < 0)
+> +		return dev_err_probe(dev, lt7911exc->fw_version, "failed read version =
+of chip\n");
+
+If lt7911exc_read_version() fails, does this leave the reset pin in an
+unbalanced state?=20
+
+The lt7911exc_reset() call leaves the reset_gpio low, and as noted in the
+remove function, it should be pulled high to prevent backpowering. Should
+the error path assert the reset pin high?
+
+[ ... ]
+> +	return devm_drm_bridge_add(dev, &lt7911exc->bridge);
+> +}
+> +
+> +static void lt7911exc_remove(struct i2c_client *client)
+> +{
+> +	struct lt7911exc *lt7911exc =3D i2c_get_clientdata(client);
+> +
+> +	/* pull reset low to prevent backpowering*/
+> +	gpiod_set_value_cansleep(lt7911exc->reset_gpio, 1);
+> +}
+
+Does this teardown sequence race with DRM operations?=20
+
+Because the bridge is registered with devm_drm_bridge_add(), it will be
+unregistered during the devres cleanup phase, which happens after the
+driver's remove callback has finished.
+
+Since lt7911exc_remove() asserts the reset pin to shut down the hardware,
+could concurrent DRM operations attempt to access the disabled hardware
+while it is still registered?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512064013.4006=
+6-1-syyang@lontium.com?part=3D2
 
