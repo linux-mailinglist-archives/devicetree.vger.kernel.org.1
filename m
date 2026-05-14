@@ -1,452 +1,274 @@
-Return-Path: <devicetree+bounces-297622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEdtMOnfBWr4cwIAu9opvQ
-	(envelope-from <devicetree+bounces-297622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:44:57 +0200
+	id wOhbKFXfBWr4cwIAu9opvQ
+	(envelope-from <devicetree+bounces-297630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:42:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F24543620
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:44:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECBE4543549
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:42:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8B2D1309DF1C
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:28:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 506B8307CCE0
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA3A40627D;
-	Thu, 14 May 2026 14:27:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97B140628B;
+	Thu, 14 May 2026 14:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pi0aFjD5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkDt38PE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056A03FFADB;
-	Thu, 14 May 2026 14:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A993C4B89;
+	Thu, 14 May 2026 14:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778768878; cv=none; b=SOPFEbLrCDurBQ14k/6dhYzTF/NeV3vbk1mK+Px1qloHwiKfNN56OZvu6UU707ycTTBPQkeel8/So2CrOxtUEXQidNmrnC8pe+zc0nSFTlrt/roAI+t+fRyHNbIXUtCzX2H/MaKJjF22Vuuq9+254Ndo7a1AMFPfKxOfzstFM54=
+	t=1778769093; cv=none; b=Aikna0NqvV/qvYFwTQ3n/ymNRfW8yaK0ElYjpYfisuCYck/QpaLPHhTMMMTAOFBWuuh1R7CpLXQC6N4VGsRNrWfyEu6A+RPxZAXW0AiUO5GsIu4l18RWZN0ZpLsqrd8haFT4siTDM82GCkWDGlp6XJ1aBiR1SRQEnhBFv9VItho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778768878; c=relaxed/simple;
-	bh=gZmlUXeBXT0+9KGKMDHy1fMk3BD5MO9cdCMzoXzTNgU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gswS9j5fPwZtgMXKn9zXwVET9BK5Y9h4SaBRmwoZf/oaTTNOFvfDL+OmM5Y5wFRrWKe2AVA9a2zCIsObi+nsuoSPrCAFdlaeFv75nYDphgFlkW0rvi9epbFdAjc/KKx1NA2He6KWsqoK7QOeKKPD1Iu41/3Rm1wopNGIyQPLWOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pi0aFjD5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D0EFC2BCF5;
-	Thu, 14 May 2026 14:27:57 +0000 (UTC)
+	s=arc-20240116; t=1778769093; c=relaxed/simple;
+	bh=6iGfJZhncc8TZYCUGnqm+IpTKIkhFAcFKCIJIf6eUSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ach0kzZsaNSVWQ3FSZx0em+0CJHOaIJnO+jDKV3nzhniI8mau4ZAy5m1LpisJTFuMXXru5d4JboQ3n5iLNSCpAkXg6IwldqkqPeFIrvfaTUbO+6bcsW1EJYCGpY70867m6EaWGMFAO8+bu2Tq8vlGcfTPYI6oX81MDseAmpDkO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkDt38PE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C43CCC2BCB3;
+	Thu, 14 May 2026 14:31:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778768877;
-	bh=gZmlUXeBXT0+9KGKMDHy1fMk3BD5MO9cdCMzoXzTNgU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pi0aFjD5EQ4t2PFKvEZW3acODvJXjul/OzOMjj5pZOl5IHiX19F4jMP4LJyJ6Boxr
-	 m1zhVnu7VPrYOn0lIf5Y+9EyGqbIH+t0GVeU6z0d019nVhTOd2d6SGTtsjsTEn5h6O
-	 QzTwoSNve/o/fntYX0DBUFdOZkZnVrSkO8PbaAz0N5IuOoFIfV0GFm+1oSKO1h4ULw
-	 g/rsvazBffvPkrbyjQCnSvJ8Thanz1z4ud1gehAa4ThP8vCWKfMhpF+7V27r1UEhlU
-	 Euk2KktUk3NrovfI0aMfHUxDHb2dSG2Wjw20h9cMlRs2Pdzgy0zdPkELAQWev1ra4v
-	 pf0yeyCikw+XQ==
-Date: Thu, 14 May 2026 09:27:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>, john.madieu@gmail.com,
-	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 01/16] ASoC: dt-bindings: sound: Add DT binding for
- RZ/G3E sound
-Message-ID: <20260514142754.GA378860-robh@kernel.org>
-References: <20260512182631.3842065-1-john.madieu.xa@bp.renesas.com>
- <20260512182631.3842065-2-john.madieu.xa@bp.renesas.com>
+	s=k20201202; t=1778769093;
+	bh=6iGfJZhncc8TZYCUGnqm+IpTKIkhFAcFKCIJIf6eUSQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BkDt38PEb9XlTwH7zQZH6xmvM/K8ws918v/NQNjjIfW4RE4Z1lfJPmGTlY7lNb2Dw
+	 kjVJqtdvonYl5imzBcDzZAvVyr+/5/sp/gM/1SdF262ZtnWAYWf3YfqbgAoqEOHnnR
+	 ntXd5rGMT5K0GoF9whvlyKxGd+aNm4HGdMANdWj9G4m6z3KIsW7WjBVCjrKXqNctNg
+	 zv8WxNAtO+FtSz34keNchpmFILXSJLSf5qbQAxV3qjU8v//ESdHe68TiCOlNzhNtz+
+	 DwR799y4GN7g/Z3+NH4IN5cNb23ElQEdg9Krlq6sl0Bh5z4JpWclM/ORijPtRiQ/DK
+	 jnezgCT3g80Zw==
+Message-ID: <1d1a21a6-720d-4e8d-9798-27f8cc593403@kernel.org>
+Date: Thu, 14 May 2026 16:31:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260512182631.3842065-2-john.madieu.xa@bp.renesas.com>
-X-Rspamd-Queue-Id: C4F24543620
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: dwc: add optional reset
+To: Xuyang Dong <dongxuyang@eswincomputing.com>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
+ p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com
+References: <20260424094529.1691-1-dongxuyang@eswincomputing.com>
+ <20260424095435.1721-1-dongxuyang@eswincomputing.com>
+ <ee58a5d6-9268-445c-a270-1f4a49b49c6e@kernel.org>
+ <622e18f1.5bb3.19dd36d0c40.Coremail.dongxuyang@eswincomputing.com>
+ <7bd6129a-dd37-48e8-a54c-cc149a2b84a2@kernel.org>
+ <1ac7fae4.5c66.19dd892ec4d.Coremail.dongxuyang@eswincomputing.com>
+ <b3a1b5ba-c381-407f-9118-aac7217138af@kernel.org>
+ <f4f7edf.6067.19e15df803f.Coremail.dongxuyang@eswincomputing.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f4f7edf.6067.19e15df803f.Coremail.dongxuyang@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: ECBE4543549
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,perex.cz,suse.com,glider.be,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-297622-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297630-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[n:email,renesas.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,3.7.107.208:email]
 X-Rspamd-Action: no action
 
-On Tue, May 12, 2026 at 06:26:16PM +0000, John Madieu wrote:
-> Add a standalone device tree binding for the Renesas RZ/G3E (R9A09G047)
-> sound controller.
+On 11/05/2026 09:10, Xuyang Dong wrote:
+>>
+>> On 29/04/2026 11:30, Xuyang Dong wrote:
+>>>>>>>  
+>>>>>>> +allOf:
+>>>>>>> +  - $ref: pwm.yaml#
+>>>>>>> +
+>>>>>>> +  - if:
+>>>>>>> +      properties:
+>>>>>>> +        compatible:
+>>>>>>> +          contains:
+>>>>>>> +            const: eswin,eic7700-pwm
+>>>>>>
+>>>>>> Same problem as v3 which I commented. I do not understand why your new
+>>>>>> device has also 1 reset.
+>>>>>>
+>>>>>> Your commit msg MUST explain why 1 reset is valid.
+>>>>>>
+>>>>>
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> Although the PWM IP supports two clock domains, each requiring a reset, 
+>>>>> the EIC7700 implementation uses the same clock domain for both clock 
+>>>>> signals. Therefore, the eic7700-pwm only supports one reset.
+>>>>>
+>>>>
+>>>> If we speak about eic7700, explain why it has two resets now, according
+>>>> to schema, even though you say it has not.
+>>>>
+>>>> But I was speaking about dw-apb-timers-pwm, which has one reset as well!
+>>>> Why you are not having proper constraints? Please read writing bindings
+>>>> document.
+>>>>
+>>>
+>>> Hi Krzysztof,
+>>>
+>>> Let me clarify the reset signals.
+>>>   - snps,dw-apb-timers-pwm2: IP spec has 2 optional reset signals (one per
+>>> clock domain), SoC vendor decides whether to wire them — so maxItems: 2, 
+>>> optional in required.
+>>
+>> Two reset signals but what is exactly optional? Each of them? Only the
+>> first? Binding does not allow the first to be optional.
+>>
 > 
-> The RZ/G3E sound IP is based on R-Car Sound but differs in several ways:
-> - Uses unprefixed sub-node names (ssi, ssiu, src, dvc, mix, ctu) instead
->   of R-Car's rcar_sound,xxx prefixed names.
-> - Supports up to 5 DMA controllers per direction, allowing multiple DMA
->   entries with repeated channel names in SSIU, SRC and DVC sub-nodes.
-> - Has 47 clocks including per-SSI ADG clocks (adg-ssi-[0-9]), SCU clocks
->   (scu, scu_x2, scu_supply), SSIF supply clock, AUDMAC peri-peri clock,
->   and ADG clock.
-> - Has 14 reset lines including SCU, ADG and AUDMAC peri-peri resets.
-> - SSI operates exclusively in BUSIF mode.
+> Hi Krzysztof,
 > 
-> These differences make the RZ/G3E binding incompatible with the existing
-> renesas,rsnd.yaml, so it is added as a separate standalone binding with
-> its own $ref to dai-common.yaml.
+> Thank you for the review. 
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
+> For the generic snps,dw-apb-timers-pwm2 binding, both reset signals 
+> are now fully optional by not including resets in the required list.
 > 
-> Changes:
+> When a single optional reset signal is used, the interface bus reset 
+> (index 0) is used by default.
 > 
-> v6:
->  - Rename all indexed clock-names and reset-names from the dotted
->    form (ssi.0, src.0, adg.ssi.0, clk_a, clk_b, clk_c, clk_i) to
->    the hyphenated form (ssi-0, src-0, adg-ssi-0, audio-clka,
->    audio-clkb, audio-clkc, audio-clki) so the new binding follows
->    the standard DT naming convention.
->  - Tighten #sound-dai-cells to const: 1.
->  - Drop unused properties: clock-frequency, clkout-lr-asynchronous.
->  - Simplify the ports/endpoint schema (single ports object with
->    port@N children referencing audio-graph-port.yaml), drop the
->    separate top-level dai patternProperties block.
->  - Move additionalProperties: false to the top of each sub-object
->    (dvc, mix, ctu, src, ssiu, ssi).
->  - Reorder example clocks/resets to match the new ordinal-ascending
->    name order.
+> Keep the YAML as follows:
+> +  resets:
+> +    minItems: 1
+> +    items:
+> +      - description: Interface bus reset
+> +      - description: PWM timer logic reset
 > 
-> v5:
->  - Drop the two-patch rsnd.yaml split approach from v4. Replace
->    with a single self-contained standalone binding that does not
->    touch renesas,rsnd.yaml at all.
->  - Remove select: false, redundant blanket properties
->    (compatible: true, reg: true, etc.) and pointless
->    patternProperties per Krzysztof's review.
->  - Add missing #clock-cells and #sound-dai-cells constraints.
->  - Add hardware description text instead of "Binding for ..."
->    phrasing.
->  - Move G3E-specific DMA comment into the binding itself rather
->    than relying on a shared schema.
->  - Use unprefixed sub-node names (ssi, ssiu, src, dvc, mix, ctu)
->    to reflect the actual RZ/G3E DT binding.
+> Add the following description to the commit message:
+
+We speak about hardware, not binding. I asked, why your new device has
+only one reset.
+
 > 
-> v4: No changes
-> v3: No changes
-> v2:
->  - Introduce RZ/G3E sound binding as a standalone schema.
+> Whether each signal is wired on a given SoC is a board integration 
+> decision, so the resets property is optional for snps,dw-apb-timers-pwm2. 
+> When present, up to two handles may be supplied: the bus reset is always 
+> at index 0 and the timer reset at index 1.
 > 
->  .../sound/renesas,r9a09g047-sound.yaml        | 743 ++++++++++++++++++
->  1 file changed, 743 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+>>>   - eswin,eic7700-pwm: SoC physically ties both signals to one reset — so
+>>> exactly 1, required.
+>>
+>> Then two would not be right and you need to restrict that.
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
-> new file mode 100644
-> index 000000000000..0b651214bd61
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
-> @@ -0,0 +1,743 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/renesas,r9a09g047-sound.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G3E Sound Controller
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +  - John Madieu <john.madieu.xa@bp.renesas.com>
-> +
-> +description:
-> +  The RZ/G3E (R9A09G047) sound controller is based on R-Car Sound IP
-> +  with extended DMA channel support (up to 5 DMACs per direction),
-> +  additional clock domains (47 clocks including per-SSI ADG clocks),
-> +  and additional reset lines (14 including SCU, ADG and Audio DMAC
-> +  peri-peri resets). SSI operates exclusively in BUSIF mode with
-> +  2-4 BUSIF channels per SSI.
-> +
+> For the specific eswin,eic7700-pwm binding, the reset signal is required 
+> and fixed to one via conditional schema (if:then:), with maxItems: 1 
+> and resets added to required. And add an example for eswin,eic7700-pwm.
+> The changes are as follows:
+> 
 > +allOf:
-> +  - $ref: dai-common.yaml#
+> +  - $ref: pwm.yaml#
 > +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g047-sound
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: eswin,eic7700-pwm
+> +    then:
+> +      properties:
+> +        resets:
+> +          maxItems: 1
+> +      required:
+> +        - resets
 > +
-> +  reg:
-> +    maxItems: 5
-> +
-> +  reg-names:
-> +    items:
-> +      - const: scu
-> +      - const: adg
-> +      - const: ssiu
-> +      - const: ssi
-> +      - const: audmapp
-> +
-> +  "#sound-dai-cells":
-> +    const: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    maxItems: 47
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ssi-all
-> +      - const: ssi-0
-> +      - const: ssi-1
-> +      - const: ssi-2
-> +      - const: ssi-3
-> +      - const: ssi-4
-> +      - const: ssi-5
-> +      - const: ssi-6
-> +      - const: ssi-7
-> +      - const: ssi-8
-> +      - const: ssi-9
-> +      - const: src-0
-> +      - const: src-1
-> +      - const: src-2
-> +      - const: src-3
-> +      - const: src-4
-> +      - const: src-5
-> +      - const: src-6
-> +      - const: src-7
-> +      - const: src-8
-> +      - const: src-9
-> +      - const: mix-0
-> +      - const: mix-1
-> +      - const: ctu-0
-> +      - const: ctu-1
-> +      - const: dvc-0
-> +      - const: dvc-1
-> +      - const: audio-clka
-> +      - const: audio-clkb
-> +      - const: audio-clkc
-> +      - const: audio-clki
-> +      - const: ssif_supply
-> +      - const: scu
-> +      - const: scu_x2
-> +      - const: scu_supply
-> +      - const: adg-ssi-0
-> +      - const: adg-ssi-1
-> +      - const: adg-ssi-2
-> +      - const: adg-ssi-3
-> +      - const: adg-ssi-4
-> +      - const: adg-ssi-5
-> +      - const: adg-ssi-6
-> +      - const: adg-ssi-7
-> +      - const: adg-ssi-8
-> +      - const: adg-ssi-9
-> +      - const: audmapp
-> +      - const: adg
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 14
-> +
-> +  reset-names:
-> +    items:
-> +      - const: ssi-all
-> +      - const: ssi-0
-> +      - const: ssi-1
-> +      - const: ssi-2
-> +      - const: ssi-3
-> +      - const: ssi-4
-> +      - const: ssi-5
-> +      - const: ssi-6
-> +      - const: ssi-7
-> +      - const: ssi-8
-> +      - const: ssi-9
-> +      - const: scu
-> +      - const: adg
-> +      - const: audmapp
-> +
-> +  dvc:
-> +    type: object
-> +    additionalProperties: false
+> 
+> +  - |
+> +    pwm@50818000 {
+> +      compatible = "eswin,eic7700-pwm";
+> +      reg = <0x50818000 0x4000>;
+> +      #pwm-cells = <3>;
+> +      clocks = <&bus>, <&timer>;
+> +      clock-names = "bus", "timer";
+> +      resets = <&reset>;
+> +    };
+> 
+> Then change the binding's subject from "dt-bindings: pwm: dwc: add optional 
+> reset" to "dt-bindings: pwm: dwc: add eswin,eic7700-pwm compatible and resets".
+> 
+> Do these changes look acceptable to you?
 
-blank line
+So two resets or one reset? I am completely confused what you are
+replying to.
 
-> +    patternProperties:
-> +      "^dvc-[0-1]$":
-> +        type: object
-> +        additionalProperties: false
+Please read writing bindings document.
 
-blank line
-
-> +        properties:
-> +          dmas:
-> +            maxItems: 5
-
-blank line
-
-> +          dma-names:
-> +            maxItems: 5
-> +            allOf:
-
-Don't need allOf.
-
-> +              - items:
-> +                  enum:
-> +                    - tx
-
-Is 5 entries of 'tx' really what you want?
-
-blank line
-
-> +        required:
-> +          - dmas
-> +          - dma-names
-> +
-> +  mix:
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      "^mix-[0-1]$":
-> +        type: object
-> +        additionalProperties: false
-
-There is little point in empty nodes.
-
-> +
-> +  ctu:
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      "^ctu-[0-7]$":
-> +        type: object
-> +        additionalProperties: false
-> +
-> +  src:
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      "^src-[0-9]$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          interrupts:
-> +            maxItems: 1
-> +          dmas:
-> +            maxItems: 10
-> +          dma-names:
-> +            maxItems: 10
-> +            allOf:
-
-Don't need allOf.
-
-> +              - items:
-> +                  enum:
-> +                    - tx
-> +                    - rx
-
-10 entries of any combination of tx and rx?
-
-> +
-> +  ssiu:
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      "^ssiu-[0-9]+$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          dmas:
-> +            maxItems: 10
-> +          dma-names:
-> +            maxItems: 10
-> +            allOf:
-> +              - items:
-> +                  enum:
-> +                    - tx
-> +                    - rx
-> +        required:
-> +          - dmas
-> +          - dma-names
-> +
-> +  ssi:
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      "^ssi-[0-9]$":
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          interrupts:
-> +            maxItems: 1
-> +          dmas: true
-> +          dma-names: true
-> +          shared-pin:
-> +            description: Shared clock pin.
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +        required:
-> +          - interrupts
-> +
-> +  ports:
-> +    $ref: audio-graph-port.yaml#/definitions/port-base
-> +    unevaluatedProperties: false
-> +    patternProperties:
-> +      '^port@[0-9a-f]+$':
-> +        $ref: audio-graph-port.yaml#/definitions/port-base
-> +        unevaluatedProperties: false
-> +        properties:
-> +          reg:
-> +            maxItems: 1
-> +          endpoint:
-> +            $ref: audio-graph-port.yaml#/definitions/endpoint-base
-> +            unevaluatedProperties: false
-> +            properties:
-> +              playback:
-> +                $ref: /schemas/types.yaml#/definitions/phandle-array
-> +              capture:
-> +                $ref: /schemas/types.yaml#/definitions/phandle-array
-
-This is odd. The graph should really just point to another endpoint 
-along with any properties for the connection. These probably belong 
-elsewhere. What do these point to? Missing any sort of description or 
-constraints. 
-
-Rob
+Best regards,
+Krzysztof
 
