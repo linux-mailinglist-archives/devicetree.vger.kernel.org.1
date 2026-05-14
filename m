@@ -1,228 +1,322 @@
-Return-Path: <devicetree+bounces-297817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4MgbE1E4BmocggIAu9opvQ
-	(envelope-from <devicetree+bounces-297817-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 23:02:09 +0200
+	id SA5lJnQ4BmocggIAu9opvQ
+	(envelope-from <devicetree+bounces-297819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 23:02:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4708546DFF
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 23:02:08 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16613546E1D
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 23:02:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 588263022A8C
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:01:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D787F30285C6
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C113A75A7;
-	Thu, 14 May 2026 21:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ikJrmZ/y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 105543CCFB8;
+	Thu, 14 May 2026 21:02:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945BA27453;
-	Thu, 14 May 2026 21:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3077C17A2EA;
+	Thu, 14 May 2026 21:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778792501; cv=none; b=nE/zeSIEinYj90y84ImaMe/PZBm+7HDk89B4hEPOo+YrSu+ilTiKa7zqhE13IbmDcNmLNTqkDVWk3hCiYdtx7cx3/YaXfAmOhiHGbDw+bHRlCq3b2Ne7CptRTW+QzhDLEJAeJo9AtIUSKGo52+J3xzMbG7UBZ2YUACwbEvHKpsA=
+	t=1778792559; cv=none; b=rYjiu1vhjJIqhzJaDey1ZqFKDCCWsXYsCe/5lf0tw7TabYaiLQQBDgWmAwUmnXOMIeTnyihPobhQt4jG7yYUrqdAxRhxwAt+7WXjGWrPo8+Dv6L+E3qyAHcKgCXnpgFhgv2wSM9eIsL2v8kbmk7JBaSWK9RTaOlyO5PRx0NkJbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778792501; c=relaxed/simple;
-	bh=9gn8b0288uw4DowLPqaMIPhpuVchlU0c2NFVhZbWg2Y=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=kESRgieOs5NT5ko80/3OCi8h3qU2tYB1Rz/ZejM5rXQinCUwuVWRpWKxyWCN4TOxg8p+0CQWZa0+Uz/a3Of2/xnc83OMoI6ATI4a3+w1gQ6dAW6jZkJ6RYkc8yaIyOQG2HhyhhfzTfsKI0dYzR3XvvAfbg4UTmNRTES2ADEekLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ikJrmZ/y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DEF2C2BCB3;
-	Thu, 14 May 2026 21:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778792501;
-	bh=9gn8b0288uw4DowLPqaMIPhpuVchlU0c2NFVhZbWg2Y=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=ikJrmZ/yastcL9wWffu1mRXFaB9k4LScGTLtEJbgCUetrI7o57SXhTq9LfTuw7Tp/
-	 xs1htg4mLGS1EG2087RagiVlAKPhy6Q2Djx4ekgUS4WO4uyZxeQIw314A9Z75nmZGM
-	 HnsaozPeXDHFSriOLwGehOzm96OsCsPIOxarK3U3ev0VuTiFu4Ac0pha7IeSk0UIZB
-	 xKZouPOzSBEvXcMndwycRTP5e9arohkG7cvGLd05O8WGvIRpnYWKxJH4rcmks+4wJ1
-	 F7FOt2N5CwWG/g55gNngnBGdcicnq17IDytAQkw887XcPLmFv1jKho4buL1caNWJo2
-	 /mtw/HSorKLSg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Caleb James DeLisle" <cjd@cjdns.fr>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260514151318.3444959-3-cjd@cjdns.fr>
-References: <20260514151318.3444959-3-cjd@cjdns.fr>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 21:01:40 +0000
-Message-Id: <20260514210141.2DEF2C2BCB3@smtp.kernel.org>
+	s=arc-20240116; t=1778792559; c=relaxed/simple;
+	bh=L6tgnJ6HVRpvyne7GS8JPqXSX4XQFaYBy7CWbE1jSv0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I+1ooWSaJzshe2RmFElZ3YXQn4pX6htPLnc3vsxp4p/Aj4dPGvDZY9Sw2L2oBfcyH1+BAIMIjH8YJqDaB0DIpmP1xw+VSlNW0mFtWG1fNCfiIbEDZOVP4yUwpU/+JN97CM7EA7vQSormSRA/JRuSAyT/GDnizmVnxjj6oPvnjPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: fezz5zrPTDOd0v3OJeCDig==
+X-CSE-MsgGUID: WYp4g7/XRMW4GpD9CfKFOg==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 15 May 2026 06:02:27 +0900
+Received: from mind-2s.lan (unknown [10.24.0.33])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1E1AF40031EC;
+	Fri, 15 May 2026 06:02:23 +0900 (JST)
+From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: rzt2h-n2h-evk: Configure eMMC/SDHI pins
+Date: Thu, 14 May 2026 22:02:17 +0100
+Message-ID: <20260514210220.7616-1-fabrizio.castro.jz@renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: A4708546DFF
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 16613546E1D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid,cjdns.fr:email];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297817-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-297819-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[fabrizio.castro.jz@renesas.com,devicetree@vger.kernel.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,renesas.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [High] mtk_pcie_retrain() iterates the PCI bus without locks and holds an=
- unreferenced device pointer, leading to a Use-After-Free.
-- [High] mtk_pcie_retrain() only retrains the first root port, silently ign=
-oring any other ports on the same host.
-- [High] Link retraining occurs after downstream endpoint drivers are probe=
-d, causing a race condition that can lead to system crashes.
-- [High] Calling virt_to_phys() on an __iomem pointer causes undefined beha=
-vior and potential memory corruption.
-- [Medium] The IS_BUILTIN() workaround silently degrades hardware capabilit=
-ies when the driver is compiled as a module.
---
+The HW user manual for the Renesas RZ/T2H and the RZ/N2H states
+that for SDR104, SDR50, and HS200 to work properly the eMMC/SDHI
+interface pins have to be configured as specified below:
+* SDn_CLK pin - drive strength: Ultra High, slew rate: Fast
+* Other SDn_* pins: drive strength: High, slew rate: Fast,
+  Schmitt trigger: disabled (not applicable to SDn_RST pins).
 
-commit 08338fe344200ef55148194108ab3b65616af7c7
-Author: Caleb James DeLisle <cjd@cjdns.fr>
-Subject: PCI: mediatek: Add support for EcoNet EN7528 SoC
+HS DDR and DDR50 are currently not supported, and for every
+other bus mode the eMMC/SDHI interface pins should be configured
+as specified below:
+* SDn_CLK pin - drive strength: High, slew rate: Fast
+* Other SDn_* pins: drive strength: Middle, slew rate: Fast,
+  Schmitt trigger: disabled (not applicable to SDn_RST pins).
 
-This commit adds support for the PCIe controller found on EcoNet EN7528 SoC=
-s.
-It introduces a hardware quirk to retrain the link after startup, as some
-ports capable of Gen2 operation will initially start at Gen1 speeds.
+Adjust the pin definitions accordingly.
 
-> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/control=
-ler/pcie-mediatek.c
-> --- a/drivers/pci/controller/pcie-mediatek.c
-> +++ b/drivers/pci/controller/pcie-mediatek.c
-[ ... ]
-> @@ -753,6 +764,135 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie=
-_port *port)
-[ ... ]
-> +	/* Activate INTx interrupts */
-> +	val =3D readl(port->base + PCIE_INT_MASK);
-> +	val &=3D ~INTX_MASK;
-> +	writel(val, port->base + PCIE_INT_MASK);
-> +
-> +	if (IS_ENABLED(CONFIG_PCI_MSI))
-> +		mtk_pcie_enable_msi(port);
+Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+---
+v1->v2:
+* Take into account the settings for lower speed modes
 
-Is it safe to call mtk_pcie_enable_msi() here? Looking at
-mtk_pcie_enable_msi(), it calculates the message address using:
+ .../dts/renesas/rzt2h-n2h-evk-common.dtsi     | 147 ++++++++++++++++--
+ 1 file changed, 136 insertions(+), 11 deletions(-)
 
-    virt_to_phys(port->base + PCIE_MSI_VECTOR)
+diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+index f87c2492f414..46f4aaac0478 100644
+--- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+@@ -275,12 +275,63 @@ data-pins {
+ 				 <RZT2H_PORT_PINMUX(12, 7, 0x29)>, /* SD0_DATA5 */
+ 				 <RZT2H_PORT_PINMUX(13, 0, 0x29)>, /* SD0_DATA6 */
+ 				 <RZT2H_PORT_PINMUX(13, 1, 0x29)>; /* SD0_DATA7 */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
+ 		};
+ 
+-		ctrl-pins {
+-			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>, /* SD0_CLK */
+-				 <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* SD0_CMD */
+-				 <RZT2H_PORT_PINMUX(13, 2, 0x29)>; /* SD0_RST# */
++		clk-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>; /* SD0_CLK */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++		};
++
++		cmd-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 1, 0x29)>; /* SD0_CMD */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		rst-pins {
++			pinmux = <RZT2H_PORT_PINMUX(13, 2, 0x29)>; /* SD0_RST# */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++		};
++	};
++
++	sdhi0_emmc_pins_uhs: sd0-emmc-group-uhs {
++		data-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 2, 0x29)>, /* SD0_DATA0 */
++				 <RZT2H_PORT_PINMUX(12, 3, 0x29)>, /* SD0_DATA1 */
++				 <RZT2H_PORT_PINMUX(12, 4, 0x29)>, /* SD0_DATA2 */
++				 <RZT2H_PORT_PINMUX(12, 5, 0x29)>, /* SD0_DATA3 */
++				 <RZT2H_PORT_PINMUX(12, 6, 0x29)>, /* SD0_DATA4 */
++				 <RZT2H_PORT_PINMUX(12, 7, 0x29)>, /* SD0_DATA5 */
++				 <RZT2H_PORT_PINMUX(13, 0, 0x29)>, /* SD0_DATA6 */
++				 <RZT2H_PORT_PINMUX(13, 1, 0x29)>; /* SD0_DATA7 */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		clk-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>; /* SD0_CLK */
++			drive-strength-microamp = <11800>;
++			slew-rate = <1>;
++		};
++
++		cmd-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 1, 0x29)>; /* SD0_CMD */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		rst-pins {
++			pinmux = <RZT2H_PORT_PINMUX(13, 2, 0x29)>; /* SD0_RST# */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
+ 		};
+ 	};
+ 
+@@ -299,12 +350,49 @@ data-pins {
+ 				 <RZT2H_PORT_PINMUX(12, 3, 0x29)>, /* SD0_DATA1 */
+ 				 <RZT2H_PORT_PINMUX(12, 4, 0x29)>, /* SD0_DATA2 */
+ 				 <RZT2H_PORT_PINMUX(12, 5, 0x29)>; /* SD0_DATA3 */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		clk-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>; /* SD0_CLK */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
+ 		};
+ 
+ 		ctrl-pins {
+-			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>, /* SD0_CLK */
+-				 <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* SD0_CMD */
++			pinmux = <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* SD0_CMD */
+ 				 <RZT2H_PORT_PINMUX(22, 5, 0x29)>; /* SD0_CD */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++	};
++
++	sdhi0_sd_pins_uhs: sd0-sd-group-uhs {
++		data-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 2, 0x29)>, /* SD0_DATA0 */
++				 <RZT2H_PORT_PINMUX(12, 3, 0x29)>, /* SD0_DATA1 */
++				 <RZT2H_PORT_PINMUX(12, 4, 0x29)>, /* SD0_DATA2 */
++				 <RZT2H_PORT_PINMUX(12, 5, 0x29)>; /* SD0_DATA3 */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		clk-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 0, 0x29)>; /* SD0_CLK */
++			drive-strength-microamp = <11800>;
++			slew-rate = <1>;
++		};
++
++		ctrl-pins {
++			pinmux = <RZT2H_PORT_PINMUX(12, 1, 0x29)>, /* SD0_CMD */
++				 <RZT2H_PORT_PINMUX(22, 5, 0x29)>; /* SD0_CD */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
+ 		};
+ 	};
+ 
+@@ -323,12 +411,49 @@ data-pins {
+ 				 <RZT2H_PORT_PINMUX(17, 0, 0x29)>, /* SD1_DATA1 */
+ 				 <RZT2H_PORT_PINMUX(17, 1, 0x29)>, /* SD1_DATA2 */
+ 				 <RZT2H_PORT_PINMUX(17, 2, 0x29)>; /* SD1_DATA3 */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		clk-pins {
++			pinmux = <RZT2H_PORT_PINMUX(16, 5, 0x29)>; /* SD1_CLK */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++		};
++
++		ctrl-pins {
++			pinmux = <RZT2H_PORT_PINMUX(16, 6, 0x29)>, /* SD1_CMD */
++				 <RZT2H_PORT_PINMUX(17, 4, 0x29)>; /* SD1_CD */
++			drive-strength-microamp = <5000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++	};
++
++	sdhi1_pins_uhs: sd1-group-uhs {
++		data-pins {
++			pinmux = <RZT2H_PORT_PINMUX(16, 7, 0x29)>, /* SD1_DATA0 */
++				 <RZT2H_PORT_PINMUX(17, 0, 0x29)>, /* SD1_DATA1 */
++				 <RZT2H_PORT_PINMUX(17, 1, 0x29)>, /* SD1_DATA2 */
++				 <RZT2H_PORT_PINMUX(17, 2, 0x29)>; /* SD1_DATA3 */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
++		};
++
++		clk-pins {
++			pinmux = <RZT2H_PORT_PINMUX(16, 5, 0x29)>; /* SD1_CLK */
++			drive-strength-microamp = <11800>;
++			slew-rate = <1>;
+ 		};
+ 
+ 		ctrl-pins {
+-			pinmux = <RZT2H_PORT_PINMUX(16, 5, 0x29)>, /* SD1_CLK */
+-				 <RZT2H_PORT_PINMUX(16, 6, 0x29)>, /* SD1_CMD */
++			pinmux = <RZT2H_PORT_PINMUX(16, 6, 0x29)>, /* SD1_CMD */
+ 				 <RZT2H_PORT_PINMUX(17, 4, 0x29)>; /* SD1_CD */
++			drive-strength-microamp = <9000>;
++			slew-rate = <1>;
++			input-schmitt-disable;
+ 		};
+ 	};
+ };
+@@ -342,7 +467,7 @@ &sci0 {
+ #if SD0_EMMC
+ &sdhi0 {
+ 	pinctrl-0 = <&sdhi0_emmc_pins>;
+-	pinctrl-1 = <&sdhi0_emmc_pins>;
++	pinctrl-1 = <&sdhi0_emmc_pins_uhs>;
+ 	pinctrl-names = "default", "state_uhs";
+ 	vmmc-supply = <&reg_3p3v>;
+ 	vqmmc-supply = <&reg_1p8v>;
+@@ -357,7 +482,7 @@ &sdhi0 {
+ #if SD0_SD
+ &sdhi0 {
+ 	pinctrl-0 = <&sdhi0_sd_pins>;
+-	pinctrl-1 = <&sdhi0_sd_pins>;
++	pinctrl-1 = <&sdhi0_sd_pins_uhs>;
+ 	pinctrl-names = "default", "state_uhs";
+ 	vmmc-supply = <&reg_3p3v>;
+ 	vqmmc-supply = <&vqmmc_sdhi0>;
+@@ -372,7 +497,7 @@ &sdhi0 {
+ #if SD1_MICRO_SD
+ &sdhi1 {
+ 	pinctrl-0 = <&sdhi1_pins>;
+-	pinctrl-1 = <&sdhi1_pins>;
++	pinctrl-1 = <&sdhi1_pins_uhs>;
+ 	pinctrl-names = "default", "state_uhs";
+ 	vmmc-supply = <&reg_3p3v>;
+ 	vqmmc-supply = <&vccq_sdhi1>;
+-- 
+2.34.1
 
-Since port->base is an ioremapped __iomem pointer, passing it to
-virt_to_phys() produces undefined behavior and could return a garbage
-physical address. If this address overlaps with valid physical RAM mapped
-for DMA, could memory writes from the PCIe endpoint corrupt random system
-memory?
-
-> +
-> +	/* Set AHB to PCIe translation windows */
-[ ... ]
-> +static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *=
-host)
-> +{
-> +	struct pci_dev *rp;
-> +	int ret =3D -ENOENT;
-> +	u16 lnksta =3D 0;
-> +	u32 speed;
-> +
-> +	/* Should already have been warned about during startup_port */
-> +	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-> +		return 0;
-> +
-> +	for_each_pci_bridge(rp, host->bus) {
-> +		if (pci_pcie_type(rp) =3D=3D PCI_EXP_TYPE_ROOT_PORT)
-> +			goto found_port;
-> +	}
-> +
-> +	/* Should not happen */
-> +	return dev_err_probe(dev, ret, "root port not found\n");
-> +
-> +found_port:
-
-The commit message mentions that it is most convenient to retrain every port
-after startup. Does the goto found_port here unintentionally skip all
-subsequent root ports by breaking out of the loop after the first match?
-
-Also, is it safe to traverse host->bus->devices via for_each_pci_bridge()
-without holding the pci_bus_sem read lock? If a device is concurrently added
-or removed, this might lead to list corruption.
-
-Finally, pcie_retrain_link() is a sleepable function. Because the code does
-not acquire a reference to the root port via pci_dev_get() before sleeping,
-could a concurrent removal event free the pci_dev structure and result in a
-use-after-free?
-
-> +
-> +#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
-> +	ret =3D pcie_retrain_link(rp, true);
-> +#endif
-
-Does this silently degrade hardware capabilities when the driver is compiled
-as a loadable module? The Kconfig definition allows CONFIG_PCIE_MEDIATEK to
-be a tristate module, so users compiling it as a module might find their PC=
-Ie
-devices permanently stuck at Gen1 speeds.
-
-> +
-> +	if (ret)
-[ ... ]
-> @@ -1149,6 +1289,13 @@ static int mtk_pcie_probe(struct platform_device *=
-pdev)
->  	if (err)
->  		goto put_resources;
-> =20
-> +	/*
-> +	 * Ignore error because pci_host_probe() was already called, and in any
-> +	 * case it is possible that the port will still work as Gen1.
-> +	 */
-> +	if (pcie->soc->quirks & MTK_PCIE_RETRAIN)
-> +		mtk_pcie_retrain(dev, host);
-> +
->  	return 0;
-
-Does retraining the link at this stage introduce a race condition with
-downstream endpoints?
-
-By the time pci_host_probe() completes successfully, the PCIe bus is fully
-enumerated and downstream endpoint drivers (such as NVMe or WiFi) have been
-probed. If those drivers are actively issuing MMIO or DMA requests, forcing
-the physical link into the Recovery state could cause PCIe completion timeo=
-uts
-and potentially lead to fatal kernel crashes.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514151318.3444=
-959-1-cjd@cjdns.fr?part=3D2
 
