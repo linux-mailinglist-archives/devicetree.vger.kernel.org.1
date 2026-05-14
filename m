@@ -1,279 +1,164 @@
-Return-Path: <devicetree+bounces-297244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297242-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMVsIwkkBWq3SwIAu9opvQ
-	(envelope-from <devicetree+bounces-297244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:23:21 +0200
+	id yMr3Hy0hBWpySwIAu9opvQ
+	(envelope-from <devicetree+bounces-297242-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:11:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C90D953CAB7
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:23:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 216B053C923
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB2C9300FEDE
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:23:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DED4E30117E1
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4172C08D4;
-	Thu, 14 May 2026 01:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAF52FFFBE;
+	Thu, 14 May 2026 01:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSfJvdyl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2107.outbound.protection.partner.outlook.cn [139.219.17.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B00125392A;
-	Thu, 14 May 2026 01:23:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.107
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778721798; cv=fail; b=oLVe0vD2s+PVFpR091v6nzlE5ulpylzOJ8j48B/Ww1BtOk/It0R+xmBA87q7//F/JDmJEUezOk/rLhVQpny8VaExo4eYyaKF4JCbXhwNu0qskA3zZaXqM9vG2VnNRz577XmWBLTuzKXIaB418RvO8FkxseARQVYgkSRMkO/9Ivc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778721798; c=relaxed/simple;
-	bh=HNPi/xk/ZU5e03TpJ22vU5km7b139coO48V1bOgWNyA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=iGDZrxZz/0jCp4NAg0niLBkfY186WWG1gC77SF5/wYoShWAxOn4kaNVTpO9/dhRRNFTCZF5HWRtcjR+L4tPco1KHj2bLWDgESQp4ka1I4WwOawpUfX5Q9Z4k+DfGIvo8Dod6AkHDqUnGwaRm20iW1AExFEXqCfQJBKBMvj1lErI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KBaO1RKLip6GF2Njy7GgGZIymM8oA6UEdV9RVo3iJPjqe3bESNzTt+rgs6wFPnJOkKUCPsUFQbx9nn8n1/adVPclv6r+5xlorftDZCBR/2E1KODZa5Gbjfmecu4WOUoFmlrRap34f3S/KY/6VFea/fpQrhpk1/w4UXvweWeoc6HTSGvJhwOzR9cfNil5jUXj6g6jaMTP+I2WOFq4lYanfuLH3lGi0h4WJUgLBh9S+5d4DymUIce1mzRDZleWh0mLVRnySkapncBVnxrySd3mdBpiOMWtzVJhLCp4967LMMneueaRaq1kJolMLDY1FnxXdt9f7iqOwblGWQBYmSW/Hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f+h8rJObvQ0MqX2k5GhF/PyqPVQMp2H73l/ONl2hiUA=;
- b=SDe+z6mDIoqQRnqM+qqUAlJPB2FCCBYbGqnuvwdMLE+Yo96wQ/FqkgJwzho5k7N8sg6M/URz+EUZvdJetJAUWq5TRbAtaqCpxUzsnhguLj8rIFDoNyTH4CmSeXscdzeJ8yoplFb0slJbkOL6c9Apgxc7kZgFMb3sVd/9NeumzlvLj+ymhCGn+z+TS0cMYpZKTV4kI3Z7nhV95THBk2J1o6Esj9mloPAxH/zMMb4Wnt+tOZLzG5Rs1uSiAa5w6Xz5TBvNuSSlkTKH/wnqStD7cBpVIx78sWSyH7xALTDTGzaVRO6jloaUkPAUMo1IwzV6R4DrN0BmAtaBnG9WIDeo5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6) by ZQ4PR01MB1281.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:13::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.24; Thu, 14 May
- 2026 01:07:38 +0000
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- ([fe80::e7d4:256c:b066:850d]) by
- ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.20.9913.009; Thu, 14 May 2026 01:07:37 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Michael Turquette <mturquette@baylibre.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Brian Masney
-	<bmasney@redhat.com>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
-	<alex@ghiti.fr>, Philipp Zabel <p.zabel@pengutronix.de>, Emil Renner Berthing
-	<kernel@esmil.dk>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
-	<inochiama@gmail.com>, Alexey Charkov <alchark@gmail.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Keguang Zhang
-	<keguang.zhang@gmail.com>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v2 11/12] soc: starfive: Add socinfo driver for JHB100 SoC
-Thread-Topic: [PATCH v2 11/12] soc: starfive: Add socinfo driver for JHB100
- SoC
-Thread-Index: AQHc4epWeSXninZZ8UOuEt2E6vxAdbYKqmKAgAB57HCAATHvAIAAYbRw
-Date: Thu, 14 May 2026 01:07:37 +0000
-Message-ID:
- <ZQ4PR01MB1202150D76C700778EB29978F2072@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
-References: <20260512083521.3448-1-changhuang.liang@starfivetech.com>
- <20260512083521.3448-12-changhuang.liang@starfivetech.com>
- <20260512-mushroom-helpless-0815d0885abb@spud>
- <ZQ4PR01MB120205CCC0A3229824701640F2062@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
- <20260513-headstand-hertz-bf31fe6c1938@spud>
-In-Reply-To: <20260513-headstand-hertz-bf31fe6c1938@spud>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1281:EE_
-x-ms-office365-filtering-correlation-id: fd76e494-cd09-4f26-2a49-08deb1553076
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021|56012099003|18002099003|22082099003|4143699003;
-x-microsoft-antispam-message-info:
- Q4doAHX33k7OMLni/lhDQrPhbOXDqnhJBIxDBMNBy7EnRpufHQPBbfahqmuCThZT4CGZgexjga+6Dzzu75mL/ea1kagWtP+ZslaE0ttBrklqedj1n1HpRoqprMXYzSGAwwH3AeqNPdfzOQpkAZbl8DTKuSi7c/Zv4mHvO/pmJJDT3exkysZZZHIGgbb3GTwe3itC6Dsn5DK7cMmGx+i7+r1paP+Gr0URZlgQ3wISDt5tjcgg2pCjtDzBXbYTGf5hf9lJSPIu8HIUfUW1L6bmpx2jPYTPKbwyLDrJO7MHYfRZnu6vJmGgsS2NhCOeeXTp9pYcfVmH61CF6Q6iLNeueQu+kdHZvbA+fcnN/poEcDPESObDJYzilgIGXgvqP5yqgS/oQb18JFD2DFOUFPYXvWHq7SNXrS56J4USfECOs8UpPu2g2l1b7VRPcS+ta5dWZaQmaW+h+KWPrY7KFy5SRoI9Bv6J/s1OkvSz+CBUK7k5T6Oa1H1i+jo/Vp4wLbDJcjh7A0MayoIy22wPwvLLvOP9cJ/+F0wTJFILKdebxDQxhCmc/K/ylH0geC+EnNwn
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021)(56012099003)(18002099003)(22082099003)(4143699003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?icrd6dTJABLfEr+DoX95v4SDi2ciNE6ILFx+46jBVagsMd8fwe+U5fqmlqXQ?=
- =?us-ascii?Q?2SuX1yGPdjg1pr4MEJY2RN2GGWE+/u1baXy6H3Tm+9HTDlIuxEX27aC6BN/Q?=
- =?us-ascii?Q?fIzww8VSkbMMR3Vl1OJHKDOhG4Yu+FP+kV6BmWWumbazRwCGUsBS083rUE21?=
- =?us-ascii?Q?u0dGzjuP5Z49hEKGwOyOJS7IMI5TQ8xRy9f3TmZvLfHBmtipIFHKhk5lujdI?=
- =?us-ascii?Q?kVauVh6TlrQdTdDTJM8WxYGAT0v/E0DOky90dmkBY9s5NAJNEjBQCVpJYqlw?=
- =?us-ascii?Q?FJcBh+YA0mGyx6uq9Fk/iYuiPrZsCqRiy1X8fBgv8mq3szSaDQKX9ndPggZL?=
- =?us-ascii?Q?pvDSliRKs3e+UEDUzj0glPQ5vGhGQUnQKpNilBADaNDAOCwmEzyQEi3pVvgj?=
- =?us-ascii?Q?GpqcshV55xpEcKhWHKFrF6R6nMVNstp+sE2ZXVslfZEqtIj/JoQ82VPgGJup?=
- =?us-ascii?Q?3RVI6UCsyvFWEz3ZT9KF/lJnHTxgm21Q1XeRzyohLA/R0BBlDoVTI+yPZ2VZ?=
- =?us-ascii?Q?//uqMUuDKsC05yj+5/QUSIqHFHOgnNlA5sH1gpWFIfQYidVirJVNzpAt88m7?=
- =?us-ascii?Q?UjzenXZWCCaNUovC2pJoQGB2mY+5TlG+Wi7HA6mq+go/sEvSRViv2THFrYKK?=
- =?us-ascii?Q?+pWuJsSoNBDsgHQJ99zjrTZ8IzCY9MZj505zcYgBBP4SYrkng87WFbtKk8QM?=
- =?us-ascii?Q?5jINPtc5fO5YU8i9fffQF5/cSFJ2VQcDeb16GH7cGpfspvSKvfko6ga3w48T?=
- =?us-ascii?Q?81eqxpdiumHm2BrVMS4Wv7eatPocUbfl+RJW65+lbpI5IuhEk4eIqRr+rDFt?=
- =?us-ascii?Q?KrNVJX1XMSuzFwQj1Ve2XOIEGtiqARWfe6475pyxSfbHeBgMOeVG2/1fveU5?=
- =?us-ascii?Q?EIK8fI0/FBgI0jDgnOPozaP+RIsYL75IkT5qolBOt/92P+/z6VTUZ3gxqKo6?=
- =?us-ascii?Q?ZrpuXWIrrTd8oJSl4Olwr26U4MTyYX9z0JSIonEFbvJr0L4pn5am02UuXsue?=
- =?us-ascii?Q?MfLDV58zmfwJkio32PhbA34mSwrJgMwuoYzek1UFHAfyM/PROr0MoxQ1Yore?=
- =?us-ascii?Q?igkQkFi9TTWXh/swcUo3+Z19Z84IOFYPZgoeHnPzONAbwvJ85dSwnD4qJQEb?=
- =?us-ascii?Q?3AS8kqNMAqZBCuYdfmsQ6bZ4dG95sY/mnbvfAeczhpSyh8nCyHT5OiAigaEJ?=
- =?us-ascii?Q?xVgDMS+6HnhHX7L10QdLyIwuggumF2pawjIYMJAm8mBMuPgXzCvkuEz+8IMm?=
- =?us-ascii?Q?m8mwj2W2igVFElxtevA2ByOj02itYZTmKPQw6aG8C3St4gNsurdgTBRjJnDy?=
- =?us-ascii?Q?1YTUAJm8Y3ckQmLZDY1l/+ipuhbBdC4SPSDRlD2r1qSZhaf5q89i3FjhcQwU?=
- =?us-ascii?Q?XlJGhNRtwzK91MnYUqomPPE/lhGSGo6n2fKoXAZ40FWwuEY2ofE9yvKvT+GH?=
- =?us-ascii?Q?vODTHs5D1j2qFMaWSfsEwgw35aCk0UcVvfBly2o0EEVxrWVDFtD72Zy5ksMK?=
- =?us-ascii?Q?Iln1QZV3+B4s8ugCtr0tRBpYSHVi7T24GM83BUQJGXmNlvdOyCHM/zwSd2bV?=
- =?us-ascii?Q?6YdpthX/ip6y8O8+gUyKz8/9OWS/vurmYncQBu2SXYp8xBSH23j8AmQiaT1b?=
- =?us-ascii?Q?CMDC7/MHmmEwj4wJEZwQExXXgpAu3F85tZ6yzsoLITErdJlqxT8WLRiO+T9c?=
- =?us-ascii?Q?4Pc1yMRJznGe6sQ1PBb4OHpMwRO1UmP2fb+qS9XwPfe36GfMIvoh3V7jwQRV?=
- =?us-ascii?Q?ycBoBSI/PNvVfbP+Yt+/RC0sDepRLq0=3D?=
-Content-Type: text/plain; charset="us-ascii"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB3F78F4A
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 01:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778721066; cv=none; b=Sbht3+LFMUjNr1AvOKLypXHqEf4msKfIs5J/FXaEUnCQ+pOqmk+D7i4QhTjQAWNtiBhB7gnkbGzCC1F7pm79fcO5rmz3z9VC9kEYDjKz4tP4+Ju3Js4sLzJkZDpPnB9SKBQLkgiKTuh3t0s6s/ZrX/48Ftfg/ejCQtQsphAnXD4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778721066; c=relaxed/simple;
+	bh=vHjcmI3+a/qLvArU+eDic4CWccbE/wuLCUEAjeBvmcc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HEWrNVLH8WTe5gdNzhY+OeUXkqzkOPRo2BeOEGPE2W3uK+fK+Qrn6m6f90E7hPmIYyqU28+/jcpfNg84uLKqTpsvXGmBkNkW8e8p06xXRiHutRJNowNTkvwZF8TvfYk2qURmcMHIDBGY/xHEI1CDSSx2/23L7UL912WlXAyoKzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSfJvdyl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22465C19425;
+	Thu, 14 May 2026 01:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778721066;
+	bh=vHjcmI3+a/qLvArU+eDic4CWccbE/wuLCUEAjeBvmcc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=NSfJvdyl0JOJjchBs+JqpwJl59UnPALadl2wbo+aP2Hg3DmBWoJ9fGqaotlLCrUyu
+	 xFfNwXCfUUALLal0kKfxtvi0/Fd1gxgfTOJJqb10kwTbnnxXanx3N+mzbT+NHLoJAx
+	 aKwOkD7q7Cc1621H2Y+l3ICC+vprNMC8O/TJlr4KYXK+BkJyF+8w9qH/aN4doEInw0
+	 +YDE/bFOYAKFFZvhr2QbzcArVBwQLSvOUzHRDredd1CDxb6ApLRTilnps1KtxJd0OL
+	 7EjGahV4PQ4BbpBYIC2cYnFMX/KYn3WYm06iXO6LCASnUGoNwDWAaB0Puf78XPjEUk
+	 vkIdgRI0mSDgg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 06/16] ASoC: rsnd: Add audmacpp clock and reset
+ support for RZ/G3E
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "John Madieu" <john.madieu.xa@bp.renesas.com>
+Cc: wsa+renesas@sang-engineering.com, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260512182631.3842065-7-john.madieu.xa@bp.renesas.com>
+References: <20260512182631.3842065-7-john.madieu.xa@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Date: Thu, 14 May 2026 01:11:05 +0000
+Message-Id: <20260514011106.22465C19425@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd76e494-cd09-4f26-2a49-08deb1553076
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2026 01:07:37.5490
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ta4/59TWeTCVdpwO8K0VVULhuMNRsO15XgR+twmThNaw2SdyTJXKYAidqHhbPIik7g0uY697i2f3eIDzAvtjhvjhjaiXxkuR1RZqnwDHWp3bpN6XssltOeKXYsopbejn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1281
-X-Rspamd-Queue-Id: C90D953CAB7
+X-Rspamd-Queue-Id: 216B053C923
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,esmil.dk,outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297244-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297242-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,renesas.com:email];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,starfivetech.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Hi, Conor
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Resource leak (clock and reset) when falling back to PIO mode du=
+e to missing memory resource.
+--
 
-Thanks for the review.
+commit 9d3365c013fb5e0808a6b0ca2bbf14ed35e47250
+Author: John Madieu <john.madieu.xa@bp.renesas.com>
 
-> On Wed, May 13, 2026 at 01:01:46AM +0000, Changhuang Liang wrote:
-> > Hi, Conor
-> >
-> > Thanks for the review.
-> >
-> > > On Tue, May 12, 2026 at 01:35:20AM -0700, Changhuang Liang wrote:
-> > > > Add socinfo driver for JHB100 SoC. Currently available for
-> > > > distinguishing between the two reversions, A0 and A1.
-> > > >
-> > > > Signed-off-by: Changhuang Liang
-> > > > <changhuang.liang@starfivetech.com>
-> > > > ---
-> > > >  MAINTAINERS                                   |  5 ++
-> > > >  drivers/soc/Kconfig                           |  1 +
-> > > >  drivers/soc/Makefile                          |  1 +
-> > > >  drivers/soc/starfive/Kconfig                  |  6 ++
-> > > >  drivers/soc/starfive/Makefile                 |  2 +
-> > > >  drivers/soc/starfive/socinfo/Kconfig          | 11 +++
-> > > >  drivers/soc/starfive/socinfo/Makefile         |  2 +
-> > > >  drivers/soc/starfive/socinfo/jhb100-socinfo.c | 80
-> > > > +++++++++++++++++++
-> > > >  8 files changed, 108 insertions(+)  create mode 100644
-> > > > drivers/soc/starfive/Kconfig  create mode 100644
-> > > > drivers/soc/starfive/Makefile  create mode 100644
-> > > > drivers/soc/starfive/socinfo/Kconfig
-> > > >  create mode 100644 drivers/soc/starfive/socinfo/Makefile
-> > > >  create mode 100644 drivers/soc/starfive/socinfo/jhb100-socinfo.c
-> > > >
-> > > > diff --git a/MAINTAINERS b/MAINTAINERS index
-> > > > 6f6aac7cea95..66175f453d20 100644
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -25613,6 +25613,11 @@ S:	Maintained
-> > > >  F:	drivers/reset/starfive/reset-starfive-jhb1*
-> > > >  F:	include/dt-bindings/reset/starfive,jhb1*.h
-> > > >
-> > > > +STARFIVE JHB100 SOCINFO DRIVER
-> > > > +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-> > > > +S:	Maintained
-> > > > +F:	drivers/soc/starfive/
-> > >
-> > > FWIW, this is not what I asked for in v1, this should remain the
-> > > full path to the driver. I wanted you to add this directory back to
-> > > the "STARFIVE SOC DRIVERS" entry, since it's me that'll be applying
-> patches for this driver.
-> >
-> > Sorry, I misunderstood what you meant.
-> >
-> > >
-> > > > +
-> > > >  STARFIVE JHB100 SYSCON
-> > > >  M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-> > > >  S:	Maintained
-> > > > diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig index
-> > > > a2d65adffb80..b3b01fc38139 100644
-> > > > --- a/drivers/soc/Kconfig
-> > > > +++ b/drivers/soc/Kconfig
-> > > > @@ -24,6 +24,7 @@ source "drivers/soc/renesas/Kconfig"
-> > > >  source "drivers/soc/rockchip/Kconfig"
-> > > >  source "drivers/soc/samsung/Kconfig"
-> > > >  source "drivers/soc/sophgo/Kconfig"
-> > > > +source "drivers/soc/starfive/Kconfig"
-> > > >  source "drivers/soc/sunxi/Kconfig"
-> > > >  source "drivers/soc/tegra/Kconfig"
-> >
-> > [...]
-> >
-> > > > +	pr_info("StarFive %s SoC rev(%s)\n", attrs->soc_id,
-> > > > +attrs->revision);
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > > +early_initcall(starfive_socinfo_init);
-> > >
-> > > Does this really need to be an early initcall btw?
-> >
-> > Yes, there are some drivers that need to use soc_device_match() to
-> > match different revisions, in order to handle the processes caused by
-> differences between revisions.
-> > So there's no harm in initializing this driver earlier.
->=20
-> Other socinfo drivers use device_initcall, can you use that instead?
+ASoC: rsnd: Add audmacpp clock and reset support for RZ/G3E
 
-This is at the same priority level as most drivers. If some drivers use
- soc_device_match() and are registered earlier than this driver, issues
- may arise. It might be possible to lower the level by using subsys_initcal=
-l.
+This commit adds global audmacpp clock and reset management in
+rsnd_dma_probe() for RZ/G3E using optional APIs.
 
-What do you think?
+> diff --git a/sound/soc/renesas/rcar/dma.c b/sound/soc/renesas/rcar/dma.c
+> --- a/sound/soc/renesas/rcar/dma.c
+> +++ b/sound/soc/renesas/rcar/dma.c
+[ ... ]
+> @@ -864,6 +867,25 @@ int rsnd_dma_probe(struct rsnd_priv *priv)
+>  	if (rsnd_is_gen4(priv))
+>  		goto audmapp_end;
+> =20
+> +	/*
+> +	 * Audio DMAC peri-peri clock and reset for RZ/G3E.
+> +	 * These use optional APIs, so they gracefully return NULL
+> +	 * (no error) on platforms whose DT does not provide them.
+> +	 *
+> +	 * Enable the clock first so the block sees a stable clock on
+> +	 * the way out of reset, then deassert the reset line.
+> +	 */
+> +	dmac->audmapp_clk =3D devm_clk_get_optional_enabled(dev, "audmapp");
+> +	if (IS_ERR(dmac->audmapp_clk))
+> +		return dev_err_probe(dev, PTR_ERR(dmac->audmapp_clk),
+> +				     "failed to get audmapp clock\n");
+> +
+> +	dmac->audmapp_rstc =3D
+> +		devm_reset_control_get_optional_exclusive_deasserted(dev, "audmapp");
+> +	if (IS_ERR(dmac->audmapp_rstc))
+> +		return dev_err_probe(dev, PTR_ERR(dmac->audmapp_rstc),
+> +				     "failed to get audmapp reset\n");
+> +
+>  	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "audmapp");
+>  	if (!res) {
+>  		dev_err(dev, "lack of audmapp in DT\n");
+>  		return 0; /* it will be PIO mode */
 
-Best Regards,
-Changhuang
+Does this code leak the clock and reset if the device tree provides a clock
+but lacks the memory resource?
 
+Because rsnd_dma_probe() returns 0 on this fallback path, the overall
+probe succeeds and devm will not clean up the acquired resources. This leav=
+es
+the clock permanently enabled and the reset deasserted.
+
+Additionally, since priv->dma is not set before the early return, the clock
+cannot be disabled during system suspend.
+
+Could the memory resource check be performed before acquiring and enabling
+the clock and reset?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512182631.3842=
+065-1-john.madieu.xa@bp.renesas.com?part=3D6
 
