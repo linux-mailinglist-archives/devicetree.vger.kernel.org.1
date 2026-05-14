@@ -1,143 +1,130 @@
-Return-Path: <devicetree+bounces-297528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297529-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJclLFfABWrXawIAu9opvQ
-	(envelope-from <devicetree+bounces-297528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:30:15 +0200
+	id WEeGIOfABWrXawIAu9opvQ
+	(envelope-from <devicetree+bounces-297529-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:32:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B768A541A31
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:30:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31C93541AB6
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 20FDA3014D98
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:30:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A3CF730315D6
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67C93C0A0E;
-	Thu, 14 May 2026 12:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC783C343C;
+	Thu, 14 May 2026 12:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDpTez0Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5BUHYe3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912D83DD85B
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 12:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6C03DDDCA;
+	Thu, 14 May 2026 12:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778761806; cv=none; b=IBExuTeomLAV8pWCjAkFWgnpLmw9D22cT59F5fQeu1Qcjion7GN5i4sOy9J7/eBPsfyFOP6if6qyjQqbbDhmoQCkW+6R3abxapEHv/Unou8/o8W+mQlcrw+bG8mNhBf1GJ1hHRcAe7laqw5hA9zIPCniMJl9h7TIoab/A+lX22M=
+	t=1778761809; cv=none; b=jkE6OX0c+kYoH+or2wzG6hTFbwsE02TlfOdY965VXSGqo5OiEgKbRmTvc9Fh3CGFWvlzLS+YE3qtyKS7flb5GwuIYrXfsaScAzXvvjK5ogSBo/zCaqU+w263Npz1q9202UpRPZexPkxfIFOr0J0EtxPGSJYFUZZ55k4xSh5uiQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778761806; c=relaxed/simple;
-	bh=i9+uTqXoacl7v5Lz6pWBWTjoV9At10lDDPe86RfZ5yM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oiaGDzNyNjuPFScL1JR3ZSMMFD2kVngIbidvURgwYm6PnWMUCam3angmFJrypVFWI4/sITDlVvGYVtVS6GxTEUY9X66ryCJMhsJQW64eyN33vFaKAZ1ko+YcXV1XDLYXt1LeDQya4CZIvKoxRoPfzjN/cvsSiGSMDixzXuCZZ/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDpTez0Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E96CC2BCB3;
-	Thu, 14 May 2026 12:30:06 +0000 (UTC)
+	s=arc-20240116; t=1778761809; c=relaxed/simple;
+	bh=bUh+fpgrDiqNF35orWAhT8L0f4AXwoeZqv6kc4rEVU4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cu70IkMGHANB0Qbw0ZLJ5QbGn+ql9c2vvL+6WjUsxGO72pshFJWCjJKk4JJPbyt0/FRIfmPdGwj2zEhDHt2H2k5SnzCyvWu9O+lc9vLnz+uirqt/jjutyrzPvfG1W1tzFy9I9nJ0qYZmspBT6ITGXcDSYHaxFgRB6b64ceSudNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5BUHYe3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C3C8C2BCB3;
+	Thu, 14 May 2026 12:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778761806;
-	bh=i9+uTqXoacl7v5Lz6pWBWTjoV9At10lDDPe86RfZ5yM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=iDpTez0YfJ4ZIFQfh2TOCvUJaDbW3fb5moHgfkArcjUvHBQ7UE5N52cRH1CXui7ku
-	 atXKeOFXsaKYQM9o8Ny3TpOQOwYB4g0k3GLoKRbfC8VQWxg/nriYOKyc509jlQmM+B
-	 CEVux/liH9G0OQrz2Cn+Oe2E5mQMxqZDcS3PgsKc86OyAISzFzBebN0s6FPzeEejwl
-	 ETctIdF3qqrn3aXYOJ0J27h62tAe9sz8ahR0Z3tokvi+OaygMhuyKtdoMpwP5KPeY4
-	 O6R37yfM+4haroWZva8+xtk/XZg3Re2JdJOcU9gXzLdchkuMyQAZFDH9JlO6wmAU2e
-	 um+dj96cADSdA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 5/8] clk: qcom: gcc-msm8939: mark Venus core GDSCs as
- hardware controlled
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Erikas Bitovtas" <xerikasxx@gmail.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260514-msm8939-venus-rfc-v7-5-33c6c6fb9285@gmail.com>
-References: <20260514-msm8939-venus-rfc-v7-5-33c6c6fb9285@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 12:30:05 +0000
-Message-Id: <20260514123006.0E96CC2BCB3@smtp.kernel.org>
+	s=k20201202; t=1778761808;
+	bh=bUh+fpgrDiqNF35orWAhT8L0f4AXwoeZqv6kc4rEVU4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W5BUHYe3ZNzL2CGqEFckQzrOa1MKywKGhu62LRN9TnGvw6OuznC4nD2zXLAqRaxfR
+	 d8GdZoc+8s49uFy2BhmA41PE6d72IVcuMsroX2Y0KejLpc8HJZi0PCjv03UBoUn2qM
+	 6ZvPnlIikDs9REcOwCCqDaGZGQ9efShL3T5zm+D5OAfB8KeiKNM3jJjafyffHkMgil
+	 TXnDqextjkZ3JZXecYSahsKVnhlH/4H0apemKNb6WpBw6V1OUg/iOlUpTOeHguv062
+	 1Lfdxvb3GHojAsMaJ7Ui6qchEXPknHRcEhtRis04MS21EPvvp0OFRq8CQAGfUb82ON
+	 6ReMjwToEjdhw==
+Date: Thu, 14 May 2026 14:30:06 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Arnab Layek <arnab.layek@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, andersson@kernel.org, mathieu.poirier@linaro.org, 
+	linux-remoteproc@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v3 1/1] dt-bindings: remoteproc: mtk,scp: Allow multiple
+ memory regions for MT8188
+Message-ID: <20260514-poised-green-beagle-79cb9c@quoll>
+References: <20260506133157.3283204-1-arnab.layek@mediatek.com>
+ <20260514114533.174008-1-arnab.layek@mediatek.com>
+ <20260514114533.174008-2-arnab.layek@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: B768A541A31
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260514114533.174008-2-arnab.layek@mediatek.com>
+X-Rspamd-Queue-Id: 31C93541AB6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297528-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297529-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,kernel.org,gmail.com,collabora.com,linaro.org,mediatek.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The commit message fails to mention and explain the addition of =
-`.halt_check =3D BRANCH_HALT_SKIP` to `gcc_venus0_core0_vcodec0_clk` and `g=
-cc_venus0_core1_vcodec0_clk`.
---
+On Thu, May 14, 2026 at 07:45:33PM +0800, Arnab Layek wrote:
+> The MT8188 SCP requires support for 1-2 reserved memory regions, while
+> other MediaTek SoCs use only a single memory region.
+> 
+> The schema uses a permissive base with restrictive conditionals:
+> 1) Base schema allows all devices minItems: 1, maxItems: 2
+> 2) Non-MT8188 devices (mt8183, mt8186, mt8192, mt8195, mt8195-dual) are
+>    restricted to maxItems: 1, overriding the base
+> 3) MT8188 devices (mt8188, mt8188-dual) set minItems: 1 with item
+>    descriptions, inheriting maxItems: 2 from base, making the second
+>    L1TCM region optional
+> 
+> This follows the same pattern as other MediaTek dt-bindings such as
+> mediatek,jpeg-encoder.yaml which uses conditional schemas to support
+> different numbers of iommus per device variant.
+> 
 
-commit 4d497cce125abb4eb5e06f88b3056c8f33e326e0
-Author: Erikas Bitovtas <xerikasxx@gmail.com>
+So I just reviewed v2, because it appeared in patchwork thread...
+because you just threaded v3 there.
 
-clk: qcom: gcc-msm8939: mark Venus core GDSCs as hardware controlled
+No, really, this was repeated also to Mediatek so many times.
 
-This commit adds the HW_CTRL_TRIGGER flag to VENUS_CORE0_GDSC and
-VENUS_CORE1_GDSC to indicate their control can be passed to hardware,
-based on downstream device tree properties.
+Implement v2 review.
 
-> diff --git a/drivers/clk/qcom/gcc-msm8939.c b/drivers/clk/qcom/gcc-msm893=
-9.c
-> index 45193b3d714ba..243d31a32e924 100644
-> --- a/drivers/clk/qcom/gcc-msm8939.c
-> +++ b/drivers/clk/qcom/gcc-msm8939.c
-> @@ -3664,6 +3664,7 @@ static struct clk_branch gcc_venus0_vcodec0_clk =3D=
- {
-> =20
->  static struct clk_branch gcc_venus0_core0_vcodec0_clk =3D {
->  	.halt_reg =3D 0x4c02c,
-> +	.halt_check =3D BRANCH_HALT_SKIP,
+Best regards,
+Krzysztof
 
-This isn't a bug, but the commit message explains the addition of the
-HW_CTRL_TRIGGER flag to the GDSCs without mentioning the modifications to t=
-he
-associated clock branches.
-
-While skipping the halt check is the correct approach for branch clocks tied
-to hardware-triggered GDSCs (as software polling would time out while the
-hardware keeps the clock gated), could the commit message be updated to also
-document this change to .halt_check?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514-msm8939-ve=
-nus-rfc-v7-0-33c6c6fb9285@gmail.com?part=3D5
 
