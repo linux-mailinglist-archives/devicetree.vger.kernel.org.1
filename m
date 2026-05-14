@@ -1,365 +1,251 @@
-Return-Path: <devicetree+bounces-297685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCCPF/XoBWqPdQIAu9opvQ
-	(envelope-from <devicetree+bounces-297685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:23:33 +0200
+	id QHfAI6XpBWr5dQIAu9opvQ
+	(envelope-from <devicetree+bounces-297687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:26:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9932543F20
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:23:32 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08608543FFA
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:26:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 343FF311B173
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:16:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6560330ABD28
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C1C425CF7;
-	Thu, 14 May 2026 15:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C213D42B726;
+	Thu, 14 May 2026 15:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="d7HHbXcB"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="mNCTZR8C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD4B3112AD;
-	Thu, 14 May 2026 15:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A80C42B725
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 15:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778771639; cv=none; b=VHpPbut8SvJnEFcZp3Sq43pr5NiyZ0GRYI30Y+m9HQuYfh8S7EvJGNUin9xJk85Q51O7i+RxnRnlx8AMxnIE8gzsy/3wNyEN3JRTQJbQDAO341L2Dl3/5PWwKw+fhHOU2wzRIqlsWgGRHKFcyBfRGuexLheUiuYCmuts4yOxEp0=
+	t=1778771803; cv=none; b=OTGfHgUhJvCOfSDCrLTXbIW8O7UoCB4lZJ/EzKUCO2fNrL7gjj0SxF+1Ap5xZABRNzuD77p2IXHAVL/Ulgv7/kvJ43F/lm0fuRTtl9zJr63xv79MbUOcDcfXwXQbSk+RKHfsnwhC4Z1GcIXfmW7SvjDRedDBczq5Y4Q63EzFyEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778771639; c=relaxed/simple;
-	bh=2vxVWbCEFhroNy6FC1SCInMlHyLocFTO0lIu7nTbaV8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dvbOK2zG0E00T4h5FY6NvqQSbLV7UFlBt5apjOvu4Gqh5Ns3fjyX7vxCXugMvzzs54pegGngPQ2Km9GsMYNAzstBPsfgiiVVRQdUW5u6ygpMCm+YIi8UG03kY5SXqt/EcrfLqA++WslgyI6mFhLkKHoSbFltg7iqPX9D/9JGkMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=d7HHbXcB; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D85A43DF5A3;
-	Thu, 14 May 2026 17:13:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1778771623; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5YiLLvhj0LrC++mIg5Uun2rSHvq7Hc6ZeS3hm3nXW+Y=;
-	b=d7HHbXcB4McBS/Q5wYwNAAxQ1pUntqKIFzhq0itPi7avZcI6So+ZQlOSqGTSq1BlH1Oa7O
-	QLWklWR6hsV0Xlt0L9THKpDoY3BvodIrfbULiftm0UMewKdvs0UmF3Z0aViPOGTW0OAl5g
-	dDagLHpLVvExr4eKgUkFGspaP4rK482nwLF55CTsdF7HiyfGveOf98+S9ZtsYjWocZFrdd
-	Yqd2Y7tKbL7HWApIfA+uag36KLxJmKOO1q8U0SFG9x75sQN/4gpKYEYrndUcg6lHq3I5Mb
-	lgzSHtsROT8UO7VMfB/Bwc2TY/ydqsMuU8K2w5ul5Bp+rDP1mYkfxwtwB8VQkw==
-From: Caleb James DeLisle <cjd@cjdns.fr>
-To: linux-pci@vger.kernel.org
-Cc: linux-mips@vger.kernel.org,
-	naseefkm@gmail.com,
-	ryder.lee@mediatek.com,
-	helgaas@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ansuelsmth@gmail.com,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Caleb James DeLisle <cjd@cjdns.fr>
-Subject: [PATCH v7 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
-Date: Thu, 14 May 2026 15:13:18 +0000
-Message-Id: <20260514151318.3444959-3-cjd@cjdns.fr>
-In-Reply-To: <20260514151318.3444959-1-cjd@cjdns.fr>
-References: <20260514151318.3444959-1-cjd@cjdns.fr>
+	s=arc-20240116; t=1778771803; c=relaxed/simple;
+	bh=JlaLnqKqVzBlBbR/m2iNu+c+iF0VYSNWB0X6/Lp/f6Y=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=X6vxq8e28rcnRHRfBU1rdI6GsDBn2RblsJl56NP6kkGShl6oTYbV+U20nHo1yC0N0TtKW3GAShD4CtLrd2DI4eZH06CAkBDDW5lID78ERvaoEw++ZNr6+SE6kIO3lwd99NI/GWcSB/Zq/5Uazmt4YYFwDjXSxaLqT+ubXn+ztR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=mNCTZR8C; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-488ab2db91aso86829815e9.3
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 08:16:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778771799; x=1779376599; darn=vger.kernel.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wx8lC1fUKhwWFd1n2FvjAaQKoQIAt3R5OYaP0iJN8Cw=;
+        b=mNCTZR8CCH/KaavB2m26tr4APcOER8ign2lX4g94xRkckFX5UjzrbBzmTGtKcct2dF
+         LYVquwZChJ24bnHqJHimy+N4GX9A/HKJl6HyNz1Lxi9jdirPfNAHQgbCDROrGDGgXHFV
+         s3eC2Aj7NVhhu2+e6d0og6zbYCCQ3dgEn0Y1fH19nfztJv0zehENkVBXuDYKcG2PzlIu
+         lG06BMaZVpcF53CdYQKUmidTe7v2mopAWBuOkr5ddCq/A1lRSzZzwcpbSRMdy0JLSumZ
+         nfddTw+dckyZw5IkPMLcZ0SYJ/kkvXxuptr5hGJNvyJKKRXHltdDHYa6PL8lm1db1gR0
+         U6AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778771799; x=1779376599;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Wx8lC1fUKhwWFd1n2FvjAaQKoQIAt3R5OYaP0iJN8Cw=;
+        b=qGfz9Un3xjmDrkIFGsLNkELVDlgoc3Z+XNecMf2aHxPe4LSzPJX9/YI86mWVh2I3fN
+         WxKqFeFohYuy8jir9MJkpUIt31BgveTt17S9BdCUxgVdW/xwYMPbYqylN3Hmijdw1MrZ
+         NqPJ+yjFh9K8dByamMWZ5xp2GLf5LI4DZ9KcUL5QiNRZuCVhN8e/SZldNOnZaICqEL+V
+         fvmCBgFdQoROB1YwbugHlcVrprcYyUgWZpNGZp3ZMFcDojqM8pZ8p4Yf2ukpiiLyCvvk
+         VbXrEWiCmFAKG5TO06PJSsBvaB1PbdmaEQRYtp539T8kgDfyo6yPc68HyahkAOT0LNnm
+         ZJMw==
+X-Forwarded-Encrypted: i=1; AFNElJ88uMWqTHYGsG/Ti00wBOdZrygTEmCQ1oj6ar8LmPjDp5SmnC7XSwB+RWXRw/2exyXEscZbw5MSsGup@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLouOdOo3m6CeY01xw9Gw9LAYf9FU+dL45CKeOuOL36h/kfJ1C
+	jmM+LYYEi8M4PCjgUKtg8PrkeisciLtQK4BTaFS+ChWkF+TaHRaN6Qb0/RHcjlUB5VQ=
+X-Gm-Gg: Acq92OGHV9DOtqv+r2LOndz92hX/v+LLn1LrUB0A2H0Psqha0r2okAhGa+CDcqjoWbT
+	gwGhqsusgz11IGDNO4UeRNQI9kCPS7367Cn2heqBAAuE04PW8sYbpKfwrpTuMlVD8kQNcapwwZA
+	lSqJYPdrZsHRWf9LXASjeEHdpMZAf2LfhWQQdcbMnVUiKl2a324W919I7xDS/MRgrQBnnCheEV7
+	/hyjmDDEdz9mxKmzaxzPjNvTJ6xf+4TNfsL1xZdIK9e4ZQpui1S+mjt+GBMbEDvUtKFECCKMIW+
+	pIzbw7u0msJBXZmhcVpzweIjNWIxtMnO/2X8RWzQQeooaoAmEX1gvCkgZwdUMRuVTWXQ/60eHES
+	a9hzkAAqGJazIcntOWqLifyP4VoC60Obz/XtO1RhMSp4Y+8+b2+ztlUqypILc2oElKDeRdH5efe
+	z3fB+wciIKHplrjDajaJA=
+X-Received: by 2002:a05:600c:154a:b0:48d:1a94:56c with SMTP id 5b1f17b1804b1-48fce9da5e0mr109291805e9.18.1778771798692;
+        Thu, 14 May 2026 08:16:38 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8f63:bf1e:b5:28d8])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-48fd7290007sm31793235e9.5.2026.05.14.08.16.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2026 08:16:38 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  jian.hu@amlogic.com,
+  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 06/10] clk: amlogic: PLL reset signal supports
+ active-low configuration
+In-Reply-To: <20260511-b4-a9_clk-v1-6-41cb4071b7c9@amlogic.com> (Jian Hu via's
+	message of "Mon, 11 May 2026 20:47:28 +0800")
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+	<20260511-b4-a9_clk-v1-6-41cb4071b7c9@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 14 May 2026 17:16:36 +0200
+Message-ID: <1jmry26my3.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: C9932543F20
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 08608543FFA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org,cjdns.fr];
-	TAGGED_FROM(0.00)[bounces-297685-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-297687-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20251104.gappssmtp.com:dkim,starbuckisacylon.baylibre.com:mid,amlogic.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
+On lun. 11 mai 2026 at 20:47, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
 
-These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
-require re-training after startup.
+> From: Jian Hu <jian.hu@amlogic.com>
+>
+> In the A9 design, the PLL reset signal is configured as active-low.
+>
+> Add the flag 'CLK_MESON_PLL_RST_N' to indicate that the PLL reset signal
+> is active-low.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/meson/clk-pll.c | 42 +++++++++++++++++++++++++++++++-----------
+>  drivers/clk/meson/clk-pll.h |  2 ++
+>  2 files changed, 33 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index 5a0bd75f85a9..8568ad6ba7b6 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -295,10 +295,14 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
+>  {
+>  	struct clk_regmap *clk = to_clk_regmap(hw);
+>  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+> +	unsigned int rst;
+>  
+> -	if (MESON_PARM_APPLICABLE(&pll->rst) &&
+> -	    meson_parm_read(clk->map, &pll->rst))
+> -		return 0;
+> +	if (MESON_PARM_APPLICABLE(&pll->rst)) {
+> +		rst = meson_parm_read(clk->map, &pll->rst);
+> +		if ((rst && !(pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)) ||
+> +		    (!rst && (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)))
 
-Co-developed-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
----
- drivers/pci/controller/Kconfig         |   2 +-
- drivers/pci/controller/pcie-mediatek.c | 155 +++++++++++++++++++++++++
- 2 files changed, 156 insertions(+), 1 deletion(-)
+Again not a great usage of binary ops. What you've written above is the
+verbose version of a XOR.
 
-diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-index 2247709ef6d6..8a3a31b2bc12 100644
---- a/drivers/pci/controller/Kconfig
-+++ b/drivers/pci/controller/Kconfig
-@@ -209,7 +209,7 @@ config PCI_MVEBU
- 
- config PCIE_MEDIATEK
- 	tristate "MediaTek PCIe controller"
--	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
-+	depends on ARCH_AIROHA || ARCH_MEDIATEK || ECONET || COMPILE_TEST
- 	depends on OF
- 	depends on PCI_MSI
- 	select IRQ_MSI_LIB
-diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-index 75722524fe74..3d5e2279286a 100644
---- a/drivers/pci/controller/pcie-mediatek.c
-+++ b/drivers/pci/controller/pcie-mediatek.c
-@@ -9,11 +9,13 @@
- 
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/errno.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqchip/irq-msi-lib.h>
- #include <linux/irqdomain.h>
-+#include <linux/kconfig.h>
- #include <linux/kernel.h>
- #include <linux/mfd/syscon.h>
- #include <linux/msi.h>
-@@ -77,6 +79,7 @@
- 
- #define PCIE_CONF_VEND_ID	0x100
- #define PCIE_CONF_DEVICE_ID	0x102
-+#define PCIE_CONF_REV_CLASS	0x104
- #define PCIE_CONF_CLASS_ID	0x106
- 
- #define PCIE_INT_MASK		0x420
-@@ -89,6 +92,11 @@
- #define MSI_MASK		BIT(23)
- #define MTK_MSI_IRQS_NUM	32
- 
-+#define EN7528_HOST_MODE	0x00804201
-+#define EN7528_LINKUP_REG	0x50
-+#define EN7528_RC0_LINKUP	BIT(1)
-+#define EN7528_RC1_LINKUP	BIT(2)
-+
- #define PCIE_AHB_TRANS_BASE0_L	0x438
- #define PCIE_AHB_TRANS_BASE0_H	0x43c
- #define AHB2PCIE_SIZE(x)	((x) & GENMASK(4, 0))
-@@ -148,12 +156,15 @@ struct mtk_pcie_port;
-  * @MTK_PCIE_FIX_DEVICE_ID: host's device ID needed to be fixed
-  * @MTK_PCIE_NO_MSI: Bridge has no MSI support, and relies on an external block
-  * @MTK_PCIE_SKIP_RSTB: Skip calling RSTB bits on PCIe probe
-+ * @MTK_PCIE_RETRAIN: Retrain link to bridge after startup because some
-+ *                    Gen2-capable devices start as Gen1.
-  */
- enum mtk_pcie_quirks {
- 	MTK_PCIE_FIX_CLASS_ID = BIT(0),
- 	MTK_PCIE_FIX_DEVICE_ID = BIT(1),
- 	MTK_PCIE_NO_MSI = BIT(2),
- 	MTK_PCIE_SKIP_RSTB = BIT(3),
-+	MTK_PCIE_RETRAIN = BIT(4),
- };
- 
- /**
-@@ -753,6 +764,135 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 	return 0;
- }
- 
-+static int mtk_pcie_startup_port_en7528(struct mtk_pcie_port *port)
-+{
-+	struct mtk_pcie *pcie = port->pcie;
-+	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
-+	struct resource *mem = NULL;
-+	struct resource_entry *entry;
-+	u32 val, link_mask;
-+	int err;
-+
-+	entry = resource_list_first_type(&host->windows, IORESOURCE_MEM);
-+	if (entry)
-+		mem = entry->res;
-+	if (!mem)
-+		return -EINVAL;
-+
-+	if (!pcie->cfg) {
-+		dev_err(pcie->dev, "EN7528: pciecfg syscon not available\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Assert all reset signals */
-+	writel(0, port->base + PCIE_RST_CTRL);
-+
-+	/*
-+	 * Enable PCIe link down reset, if link status changed from link up to
-+	 * link down, this will reset MAC control registers and configuration
-+	 * space.
-+	 */
-+	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-+
-+	msleep(PCIE_T_PVPERL_MS);
-+
-+	/* De-assert PHY, PE, PIPE, MAC and configuration reset */
-+	val = readl(port->base + PCIE_RST_CTRL);
-+	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-+	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-+	writel(val, port->base + PCIE_RST_CTRL);
-+
-+	writel(PCIE_CLASS_CODE | PCIE_REVISION_ID,
-+	       port->base + PCIE_CONF_REV_CLASS);
-+	writel(EN7528_HOST_MODE, port->base);
-+
-+	link_mask = (port->slot == 0) ? EN7528_RC0_LINKUP : EN7528_RC1_LINKUP;
-+
-+	/* 100ms timeout value should be enough for Gen1/2 training */
-+	err = regmap_read_poll_timeout(pcie->cfg, EN7528_LINKUP_REG, val,
-+				       !!(val & link_mask), 20,
-+				       PCI_PM_D3COLD_WAIT * USEC_PER_MSEC);
-+	if (err) {
-+		dev_err(pcie->dev, "EN7528: port%d link timeout\n", port->slot);
-+		return -ETIMEDOUT;
-+	}
-+
-+	/* Activate INTx interrupts */
-+	val = readl(port->base + PCIE_INT_MASK);
-+	val &= ~INTX_MASK;
-+	writel(val, port->base + PCIE_INT_MASK);
-+
-+	if (IS_ENABLED(CONFIG_PCI_MSI))
-+		mtk_pcie_enable_msi(port);
-+
-+	/* Set AHB to PCIe translation windows */
-+	val = lower_32_bits(mem->start) |
-+	      AHB2PCIE_SIZE(fls(resource_size(mem)));
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_L);
-+
-+	val = upper_32_bits(mem->start);
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_H);
-+
-+	writel(WIN_ENABLE, port->base + PCIE_AXI_WINDOW0);
-+
-+	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-+		dev_info(pcie->dev,
-+			 "module not built-in, Gen2 unavailable even if supported\n");
-+
-+	return 0;
-+}
-+
-+/**
-+ * mtk_pcie_retrain - retrain the root bridge link if needed
-+ * @dev: The device, for use in logging
-+ * @host: The host bridge which contains the link
-+ *
-+ * Due to what is likely a hardware bug, some devices (notably EcoNet) start up
-+ * as Gen1, and must be retrained once after initial configuration in order to
-+ * reach Gen2.
-+ *
-+ * These devices always self-identify as Gen2 capable, but sometimes the PHY is
-+ * only capable of Gen1 operation, and sometimes the PCIe card (e.g. wifi) is
-+ * only Gen1 capable. Therefore it is most convenient to retrain every port
-+ * after startup.
-+ */
-+static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *host)
-+{
-+	struct pci_dev *rp;
-+	int ret = -ENOENT;
-+	u16 lnksta = 0;
-+	u32 speed;
-+
-+	/* Should already have been warned about during startup_port */
-+	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-+		return 0;
-+
-+	for_each_pci_bridge(rp, host->bus) {
-+		if (pci_pcie_type(rp) == PCI_EXP_TYPE_ROOT_PORT)
-+			goto found_port;
-+	}
-+
-+	/* Should not happen */
-+	return dev_err_probe(dev, ret, "root port not found\n");
-+
-+found_port:
-+
-+#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
-+	ret = pcie_retrain_link(rp, true);
-+#endif
-+
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to retrain port\n");
-+
-+	pcie_capability_read_word(rp, PCI_EXP_LNKSTA, &lnksta);
-+	speed = lnksta & PCI_EXP_LNKSTA_CLS;
-+
-+	dev_info(dev, "link retrained, speed %s\n",
-+		 pci_speed_string(pcie_link_speed[speed]));
-+
-+	return 0;
-+}
-+
- static void __iomem *mtk_pcie_map_bus(struct pci_bus *bus,
- 				      unsigned int devfn, int where)
- {
-@@ -1149,6 +1289,13 @@ static int mtk_pcie_probe(struct platform_device *pdev)
- 	if (err)
- 		goto put_resources;
- 
-+	/*
-+	 * Ignore error because pci_host_probe() was already called, and in any
-+	 * case it is possible that the port will still work as Gen1.
-+	 */
-+	if (pcie->soc->quirks & MTK_PCIE_RETRAIN)
-+		mtk_pcie_retrain(dev, host);
-+
- 	return 0;
- 
- put_resources:
-@@ -1264,8 +1411,16 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
- 	.quirks = MTK_PCIE_FIX_CLASS_ID | MTK_PCIE_FIX_DEVICE_ID,
- };
- 
-+static const struct mtk_pcie_soc mtk_pcie_soc_en7528 = {
-+	.ops = &mtk_pcie_ops_v2,
-+	.startup = mtk_pcie_startup_port_en7528,
-+	.setup_irq = mtk_pcie_setup_irq,
-+	.quirks = MTK_PCIE_RETRAIN,
-+};
-+
- static const struct of_device_id mtk_pcie_ids[] = {
- 	{ .compatible = "airoha,an7583-pcie", .data = &mtk_pcie_soc_an7583 },
-+	{ .compatible = "econet,en7528-pcie", .data = &mtk_pcie_soc_en7528 },
- 	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
+The code duplication remarks applies to the rest of the patch too
+
+> +			return 0;
+> +	}
+>  
+>  	if (!meson_parm_read(clk->map, &pll->en) ||
+>  	    !meson_parm_read(clk->map, &pll->l))
+> @@ -326,14 +330,22 @@ static int meson_clk_pll_init(struct clk_hw *hw)
+>  		return 0;
+>  
+>  	if (pll->init_count) {
+> -		if (MESON_PARM_APPLICABLE(&pll->rst))
+> -			meson_parm_write(clk->map, &pll->rst, 1);
+> +		if (MESON_PARM_APPLICABLE(&pll->rst)) {
+> +			if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
+> +				meson_parm_write(clk->map, &pll->rst, 0);
+> +			else
+> +				meson_parm_write(clk->map, &pll->rst, 1);
+> +		}
+>  
+>  		regmap_multi_reg_write(clk->map, pll->init_regs,
+>  				       pll->init_count);
+>  
+> -		if (MESON_PARM_APPLICABLE(&pll->rst))
+> -			meson_parm_write(clk->map, &pll->rst, 0);
+> +		if (MESON_PARM_APPLICABLE(&pll->rst)) {
+> +			if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
+> +				meson_parm_write(clk->map, &pll->rst, 1);
+> +			else
+> +				meson_parm_write(clk->map, &pll->rst, 0);
+> +		}
+>  	}
+>  
+>  	return 0;
+> @@ -363,15 +375,23 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+>  		return 0;
+>  
+>  	/* Make sure the pll is in reset */
+> -	if (MESON_PARM_APPLICABLE(&pll->rst))
+> -		meson_parm_write(clk->map, &pll->rst, 1);
+> +	if (MESON_PARM_APPLICABLE(&pll->rst)) {
+> +		if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
+> +			meson_parm_write(clk->map, &pll->rst, 0);
+> +		else
+> +			meson_parm_write(clk->map, &pll->rst, 1);
+> +	}
+>  
+>  	/* Enable the pll */
+>  	meson_parm_write(clk->map, &pll->en, 1);
+>  
+>  	/* Take the pll out reset */
+> -	if (MESON_PARM_APPLICABLE(&pll->rst))
+> -		meson_parm_write(clk->map, &pll->rst, 0);
+> +	if (MESON_PARM_APPLICABLE(&pll->rst)) {
+> +		if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
+> +			meson_parm_write(clk->map, &pll->rst, 1);
+> +		else
+> +			meson_parm_write(clk->map, &pll->rst, 0);
+> +	}
+>  
+>  	/*
+>  	 * Compared with the previous SoCs, self-adaption current module
+> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+> index 97b7c70376a3..1be7e6e77631 100644
+> --- a/drivers/clk/meson/clk-pll.h
+> +++ b/drivers/clk/meson/clk-pll.h
+> @@ -31,6 +31,8 @@ struct pll_mult_range {
+>  #define CLK_MESON_PLL_NOINIT_ENABLED	BIT(1)
+>  /* l_detect signal is active-high */
+>  #define CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH	BIT(2)
+> +/* rst signal is active-low (Power-on reset) */
+> +#define CLK_MESON_PLL_RST_ACTIVE_LOW	BIT(3)
+>  
+>  struct meson_clk_pll_data {
+>  	struct parm en;
+
 -- 
-2.39.5
-
+Jerome
 
