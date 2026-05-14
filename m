@@ -1,141 +1,189 @@
-Return-Path: <devicetree+bounces-297248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297249-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCpTH8soBWo4TAIAu9opvQ
-	(envelope-from <devicetree+bounces-297248-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:43:39 +0200
+	id sNYxJCUrBWo4TAIAu9opvQ
+	(envelope-from <devicetree+bounces-297249-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:53:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0408A53CD0A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:43:38 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 099E053CE06
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CBB5730300E7
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:43:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0E8DE30684E9
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 01:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1836031F998;
-	Thu, 14 May 2026 01:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A11931F998;
+	Thu, 14 May 2026 01:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORvpY4l/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDVmwC48"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72AD199FAB;
-	Thu, 14 May 2026 01:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470531459FA
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 01:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778722990; cv=none; b=XTJlzs5O7ZSAQogGqFqTFsZOs9ICDd8QD+s4YsTtlRv52d5M2VZQvgEzOk36Jc3ZsRb2tZI7hb0DeW+a7NB6DzqdVq7RY405Kq2D48xC5HfxtWC+r2chWRkZD/KoyAEOvPTYEKslZjzwJ3AGL+wIBaBZphxEULe1820cjwZikuo=
+	t=1778723553; cv=none; b=tZgjodcwlz5FGy4S8gQdR283384J29RmHLuHDeFKWv0KS1ktsysO24a2IZpOhRX15BFIVFNOUb6a+v/qtW5IB11kwNkdHYGPiyppMc32gYkgDssFSV9q33DcGOLUo8LNdN89uWh8FnDy7XqXNQXZ+HUdXg2idmShOeoEhvkdlzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778722990; c=relaxed/simple;
-	bh=tbkXta1J5LNJvxTrrlmNwwq7gpShrZauM2s4gHK3eLA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J/GmE9f4fbnrHcQ6WzF4H6DDSg8c0obB+6ZIRmKYE6mClOA7dgKrURqGU6WX6NV/pKU/mQbCQIPtJvxIg7vstXdxOImvPXL4YlFV42Y6Px8ENQexIsjI7xNX26K+u1JwPA3uuTMnorr6BFc2zayV08DHs7mICoJNfw3rcaSafiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORvpY4l/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D076C2BCB3;
-	Thu, 14 May 2026 01:43:09 +0000 (UTC)
+	s=arc-20240116; t=1778723553; c=relaxed/simple;
+	bh=UyHYLXLZMY9gRFX467l/354GOeiiHl+VehLvu4zJ5j4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=h72h0Ve5HzvPPE8B8lrnLqfaPGYios0G9nR78PB8yZOYJ7bPTCULOeNxP6rMWo1JMPTESW0LaWOjn/vfyZTQsf10W2Esz9xD2KxsMHHYujn0Xmq+jck9U6UlrT+7nuZuAAoTx+duR99m+K7C0DcG47LX+IPuCMeQjvJe3SCDZR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nDVmwC48; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FC29C19425;
+	Thu, 14 May 2026 01:52:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778722989;
-	bh=tbkXta1J5LNJvxTrrlmNwwq7gpShrZauM2s4gHK3eLA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ORvpY4l/C/qJPqdDWmMhmc8C/OWnNAP94onagxwPafYldCxx+iFTFTIholIoUG+lE
-	 luUEZZU2gVZ7cRBXzK4q1qiiUyly8m+3BX5u5nzxk7wDUAYcynb2Tq2HbP2PXujJ11
-	 nfMVuuoqDFgwAdJU+PEOv0bgEXaipvIPfTVXbTWva5CgeIV5jWU5NjQyH6xGj7+tyo
-	 C14lYxWuALKG6xBTAqNM6rK8AhDY14pUsBqBq48+SLMN2K/GpevkXCrbVJmf5iBf7p
-	 lkNrc7wiEKdpxOCpMdEkTtE7zYdLfx8hXf30kVXWIqc5oGe5Ol+e9eB/lNnr7Q1UXC
-	 QS9iLmdK96aqQ==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 71AE21AC58CE; Thu, 14 May 2026 02:43:07 +0100 (BST)
-Date: Thu, 14 May 2026 10:43:07 +0900
-From: Mark Brown <broonie@kernel.org>
-To: Alexey Charkov <alchark@flipper.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, David Lin <CTLIN0@nuvoton.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ASoC: codecs: nau8822: add support for supply
- regulators
-Message-ID: <agUoq2N_nE_Sz0Z_@sirena.co.uk>
-References: <20260513-nau8822-reg-v1-0-c532e18e92ad@flipper.net>
- <20260513-nau8822-reg-v1-2-c532e18e92ad@flipper.net>
+	s=k20201202; t=1778723552;
+	bh=UyHYLXLZMY9gRFX467l/354GOeiiHl+VehLvu4zJ5j4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=nDVmwC48RlCuT1OCtT48y9bo9bAunxPY2O/G2eGkXN9kxWtaZ91FZzDnuhRUhjJVi
+	 PlSYJsdwYvez5Jdz/16LxvCshJUhRJqwxPFWpAds51vQoDMitUtp12ujfEOhVpZsW2
+	 20VEhni8Wswcov2OYZynYWp7x61qSwISGvskQnJWnNPCdICyfVuzMOZtzPFGA0Hc5R
+	 G9sB7/SRLkWXQS1CE5BhoDPfsiPd1ok9rBbnV/Fbo5+ZdLRuMAsMImIYZx9XdiU+sx
+	 2FCZ44oSaz8Yx0rquAmSss/qrLQaQFXJJhm190dj9nbmwN5HmjCUrcvx719koBgtRd
+	 I7fdsrdDUn0NQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RESEND v29 1/4] dt-bindings: i2c: Split AST2600 binding
+ into a new YAML
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ryan Chen" <ryan_chen@aspeedtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260513-upstream_i2c-v29-1-fe9926964d55@aspeedtech.com>
+References: <20260513-upstream_i2c-v29-1-fe9926964d55@aspeedtech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 14 May 2026 01:52:32 +0000
+Message-Id: <20260514015232.8FC29C19425@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vrCjTCIVc9SgWozE"
-Content-Disposition: inline
-In-Reply-To: <20260513-nau8822-reg-v1-2-c532e18e92ad@flipper.net>
-X-Cookie: Truckers welcome.
-X-Rspamd-Queue-Id: 0408A53CD0A
+X-Rspamd-Queue-Id: 099E053CE06
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297249-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nuvoton.com,perex.cz,suse.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297248-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.co.uk:mid]
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] The new DT binding breaks validation for existing AST2600 device t=
+rees by enforcing a new `reg` layout and removing `bus-frequency`.
+- [High] Renaming `bus-frequency` to `clock-frequency` causes a silent perf=
+ormance regression with the legacy i2c-aspeed driver.
+--
 
---vrCjTCIVc9SgWozE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+commit 625f06e7b4752a6769de1b97b793eb2043bda8de
+Author: Ryan Chen <ryan_chen@aspeedtech.com>
 
-On Wed, May 13, 2026 at 05:39:11PM +0400, Alexey Charkov wrote:
+dt-bindings: i2c: Split AST2600 binding into a new YAML
 
-> +	for (i = 0; i < ARRAY_SIZE(regulators); i++) {
-> +		ret = devm_regulator_get_enable_optional(dev, regulators[i]);
-> +		if (ret && ret != -ENODEV)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to get regulator %s\n",
-> +					     regulators[i]);
-> +	}
+The AST2600 I2C controller introduces a new register layout with separate
+controller and target blocks. The binding for AST2600 is moved to a dedicat=
+ed
+aspeed,ast2600-i2c.yaml schema, updating requirements like enforcing two reg
+regions and using clock-frequency instead of bus-frequency.
 
-As ever unless the device can work with the supply being physically
-absent regulators should never be optional.
+> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yam=
+l b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
+> new file mode 100644
+> index 0000000000000..de2c359037da5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
+[ ... ]
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-i2c-bus
+> +
+> +  reg:
+> +    items:
+> +      - description: controller registers
+> +      - description: controller buffer space
 
---vrCjTCIVc9SgWozE
-Content-Type: application/pgp-signature; name="signature.asc"
+Will enforcing this new reg layout break validation for existing AST2600
+device trees?
 
------BEGIN PGP SIGNATURE-----
+Existing in-tree device trees define a single reg region. Because these dev=
+ice
+trees are not updated in this patch series, make dtbs_check will fail for a=
+ll
+AST2600 boards.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoFKKoACgkQJNaLcl1U
-h9C9xgf9H5yCbmydtPVGo0h9e89LMXgDhDt7W4T78pU//PRAJqKaipbMDVWjTGaF
-dOft2LaFkRbmI4+j7wNwF+AOHlaRd6qT8+sXheaWpNGBBU2G8ypW1h0nOi8AXL49
-3r0ggZvZCnR4aSnSodqv/JIm67FWuOdCajXg1lDb1uD2XJtM6Z8GljoF7R8FNyqf
-oEBsuX9ekGUH1uPwykD6mgASyncbkoRZVTg3a/+q5a1iPx9qMWoTA4WqsfpuXWrL
-F9eDMPC2oyLhrFwDE27Ss7VUfvX56qHZ6q2B4BUYHW6vfOTr0g3k9DKAJtQqyWsZ
-tj7IZxl7qM4PP9XOeLqn4+f1gC7lMA==
-=uaFC
------END PGP SIGNATURE-----
+Should the binding retain backward compatibility by allowing a single reg
+region for legacy nodes?
 
---vrCjTCIVc9SgWozE--
+[ ... ]
+> +  clock-frequency:
+> +    description: Desired operating frequency of the I2C bus in Hz.
+> +    minimum: 500
+> +    maximum: 4000000
+> +    default: 100000
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - clocks
+> +  - resets
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+
+Could renaming bus-frequency to clock-frequency cause a silent performance
+regression with the legacy i2c-aspeed driver?
+
+If a device tree is updated to conform to this new binding (by replacing
+bus-frequency with clock-frequency) but does not add the aspeed,global-regs
+property, the legacy i2c-aspeed.c driver will still probe.
+
+The legacy driver relies entirely on bus-frequency and does not use standard
+helpers like i2c_parse_fw_timings() to read clock-frequency.
+
+This will cause the driver to fail to find the bus frequency property, log
+an error, and silently fall back to the default 100kHz, which will degrade
+performance for fast-mode devices.
+
+Additionally, because the binding sets unevaluatedProperties to false and
+removes bus-frequency, existing device trees that still use bus-frequency
+will fail validation.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-upstream_i=
+2c-v29-0-fe9926964d55@aspeedtech.com?part=3D1
 
