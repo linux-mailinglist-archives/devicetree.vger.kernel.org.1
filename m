@@ -1,242 +1,312 @@
-Return-Path: <devicetree+bounces-297445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yGhoAmKqBWrtZQIAu9opvQ
-	(envelope-from <devicetree+bounces-297445-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:56:34 +0200
+	id +N6BJGmqBWrtZQIAu9opvQ
+	(envelope-from <devicetree+bounces-297447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:56:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A99D540AC0
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6E3540AC7
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5FD0F3051CB5
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 10:53:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78B583057743
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 10:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8DD3B47FA;
-	Thu, 14 May 2026 10:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229433B5837;
+	Thu, 14 May 2026 10:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nYMYg1OE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from de-smtp-delivery-119.mimecast.com (de-smtp-delivery-119.mimecast.com [194.104.109.119])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA40B3A1A2F
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 10:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.104.109.119
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CB038F248;
+	Thu, 14 May 2026 10:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778756026; cv=none; b=bQlf/NTfrdz/yJKzqEXXwuAzQ6iRnM4XVDVlOZjaqiONgo6NIP7DJhAOFyVQTPEFNPiZ8uHDX3D8OCtJjFlY8i3vAUQ5qsJA9MCuxSxNCNWQCXkL4uuCJguKlP8YkQ//OZh1VNSUljzU4ONCE4lNHegXR2gj3y7YuxCvwCl6BLQ=
+	t=1778756107; cv=none; b=L6NQ5zdNlZiNJJNjSnk6djvK/W/rtxDvjwMPgUyLkG1mnWUOwv0EGNvB47rwaiVvZdwC3g7NW2ZLIY+Y/XJ25el3qzlSZ8aoSUlOX9s8o6ZBC3TqHqMKpii4auoyZAlPN8mysu8agnJUohQPJsy0Q3GWaumC0kGofCrN2V+7KYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778756026; c=relaxed/simple;
-	bh=jxkYCwFS/j94NgmXD6wkRuEtJfn4ZkR0Qfwx6Gzq3zg=;
-	h=Date:From:To:CC:Subject:Message-ID:References:In-Reply-To:
-	 MIME-Version:Content-Type:Content-Disposition; b=kQVqJ1M4+QNdGqq6S5rea11Cdi5vRrsQ5zthUwqxRZTskBStZRTPBJd+fUXtPnaK+1BTLdF3Zh2zM1EbHp1JvasBFlm5kV3lOsOMxO9fXilFa03RkZmSKL41Ofh35WfckuWBTLfI51H4wHCnjhu1qmZasaNj/onSNjYND+ubDgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com; spf=pass smtp.mailfrom=data-modul.com; arc=none smtp.client-ip=194.104.109.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=data-modul.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=data-modul.com
-Received: from AM0PR83CU005.outbound.protection.outlook.com
- (mail-westeuropeazon11020073.outbound.protection.outlook.com
- [52.101.69.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- de-mta-45-U_XzCkZlPM2Oo8_NMflZDQ-1; Thu, 14 May 2026 12:53:35 +0200
-X-MC-Unique: U_XzCkZlPM2Oo8_NMflZDQ-1
-X-Mimecast-MFC-AGG-ID: U_XzCkZlPM2Oo8_NMflZDQ_1778756014
-Received: from PAXPR01MB8486.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:227::10) by DU4PR01MB12195.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:620::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.18; Thu, 14 May
- 2026 10:53:33 +0000
-Received: from PAXPR01MB8486.eurprd01.prod.exchangelabs.com
- ([fe80::5adb:b6ca:f689:1ac6]) by PAXPR01MB8486.eurprd01.prod.exchangelabs.com
- ([fe80::5adb:b6ca:f689:1ac6%3]) with mapi id 15.21.0025.012; Thu, 14 May 2026
- 10:53:33 +0000
-Date: Thu, 14 May 2026 12:53:30 +0200
-From: =?utf-8?B?QsO2cmdlIFN0csO8bXBmZWw=?= <bstruempfel@data-modul.com>
-To: sashiko-reviews@lists.linux.dev
-CC: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	robh@kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/bridge: lt9211: Add
- drive-strength-microamp property
-Message-ID: <agWizk0NTYLsds3z@DATAMODULBOERGELINUX>
-References: <20260513133127.376458-2-bstruempfel@data-modul.com>
- <20260514052603.BE46FC2BCC6@smtp.kernel.org>
-In-Reply-To: <20260514052603.BE46FC2BCC6@smtp.kernel.org>
-X-ClientProxiedBy: FR4P281CA0405.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:cf::11) To PAXPR01MB8486.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:227::10)
+	s=arc-20240116; t=1778756107; c=relaxed/simple;
+	bh=XkhZz83lofA4mVraY0m0AcH0UuZ/4Xb3/CeHB5IJ4/4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ajynQZzBapadboPUNdd71BuzdZByrA+blHJsSAQoDNr931+Fb2WyNr1AZhoLogK8ReTg1zOl5qjHmSUfrIk2F3gggvmUzANk2GGtpT935g85cR1pihSaeuX9cCipXx51RezwCOY3/iFa/tn+Xdo3Ky57IQehltfoDJUAfTmr1Ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nYMYg1OE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A484C2BCB3;
+	Thu, 14 May 2026 10:55:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778756106;
+	bh=XkhZz83lofA4mVraY0m0AcH0UuZ/4Xb3/CeHB5IJ4/4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nYMYg1OEtYIi4/xJe4YkZh3xhaqx+qcobMMsNok9nKritLvV7xMMsjyA2aP/vCIE1
+	 w738kCB5f3PWpnTTQtkGN7PnNZo27uGMDKFtkpizx9sSH951tH2896jBeTTtnuQtA9
+	 MoyqrxDGSVpx2YadIc1HvYsMt12vHkD5iQMQPkODuO0PnrdaoJPOAK1/oxkNjR8v+v
+	 83WwT5ikPIYt7VM2BLQINMX1KQIH4Z/0Xkbd7nBOxykZDJtEpCSyGLIsXAgSizbdX9
+	 qXcwLa5+1vajdXGsjQQxul06yl3+PMXCkCepl2zzOwpG6ef5Ih04DMQf6BfeYwNPbD
+	 4vw/3EbIj9Y0Q==
+Date: Thu, 14 May 2026 11:54:59 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Beniamino Galvani <b.galvani@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH v5 4/8] mfd: khadas-mcu: Add support for VIM4 MCU variant
+Message-ID: <20260514105459.GJ305027@google.com>
+References: <20260424-add-mcu-fan-khadas-vim4-v5-0-afcfa7157b23@aliel.fr>
+ <20260424-add-mcu-fan-khadas-vim4-v5-4-afcfa7157b23@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR01MB8486:EE_|DU4PR01MB12195:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f960f2a-1aa8-4392-e551-08deb1a70a84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|10070799003|1800799024|376014|366016|4143699003|18002099003|22082099003|56012099003|3023799003
-X-Microsoft-Antispam-Message-Info: VU5n3AIh8GHgVqqrW8HwIcV9qJ8XKmCnQblfO1ng6FMAMUKQrfLriURvjqwcl1R5we0bVHe9MokX6b1YJPl5SVc0WdS/VRQ12l9xstS2RXtJ1pYO4SgpPsN+OC3E3qQuokuk10lNlPKUF65xFOeUpb5BG33CmmOeBCXT9GVlMUmQiitUMPx+vRpaCT1MQB2mOF51VdVvWXWnbo3eoH/R5/dqoo0miqC2ac9GBeSJCQ9fS/hzrer+pCFbkaa+i0qS/fxmspBLQKU6QAXaMgvtSiXjFHt7feR+v1Rwy/qqhztmkaIag8GeO+tEpft8hUGcdQaadn9R+cbDZsRzT/EA4j+uHqnk9n9YmsoncsmD5feiPAgNU5Aho6a3PyvGl8TKxeK1oLu1dQL8Juf0Zj3YMNbX5iyeaimsltk5CHMHgI8WV22DPwTEk8aI5sAFoKefHOf82Op1C4ERlDay1GalKlOEpsR0XtDEhjVUFDU347BsXN0phVOCp21Uo9hbHp7RoNqWtAUiJnc06Te8l8hN6R1T8YALN5AxJYDlNvc18CYzGkLBSir4mU31Wtk3pnuiabb0nriEbMJCHS/tIZep9BmWqynK7hRAqs7H3+h1ZKzmN1Q6i9f1zmrgtKub/BXsw3fxl0R8+xwMcV+WMIRi2g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR01MB8486.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(376014)(366016)(4143699003)(18002099003)(22082099003)(56012099003)(3023799003);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NKCbCvN/jRBUN6ZL0QoQFwN7QOub14xUXvxO2oVn7SiUk/grb3FvwW3jeoqb?=
- =?us-ascii?Q?aL1YAtWz+gM6dcDZWtuprXgrJO9Lyn9d1ZvEyb32SSXO7C6aK8d+mpqBnQvk?=
- =?us-ascii?Q?ZtvqSETusEUEudYp4UuQesKjYNLP+dA9EUVWiznE9cKHXnDERl/NLRcglK8J?=
- =?us-ascii?Q?k7W0tpM+mGgJ21u2dvvWzfQSTyQHOF0+4mlGKQumv6Qnx/stMvKNdgZpQ/Mx?=
- =?us-ascii?Q?VzJig1ksRejJb1TVR7i27dBOM9PvP7NTdDf+SHTSrx2180+bVA2GOtunxsj6?=
- =?us-ascii?Q?30EBbXs8OpUfX5XuAdYsi5evLi1Eq1AV53tVODIXZlan+3vFg7mwLxPpnppg?=
- =?us-ascii?Q?P84Pm1JHRHmdbedNprhJeij50KIL4dwOFz2vJiy2JAgyDGZSUoAHbfMA3bUl?=
- =?us-ascii?Q?r6GlT4g7gZEtHCTX5Fd5dArStl/AXxSTGX4Pt7+rEWDVh4XM6u7Y2sACxe9J?=
- =?us-ascii?Q?WHiFRSLd7KpHoZGd552kFEP4hvsF1BCK5pG6OSbx/vyaxA6myT1WKfxrX497?=
- =?us-ascii?Q?Mp0pZavQR2T18ucjo5iF58Tms9hiRR9TFTLcoFqA/9FcKm0tICgbZS0DMXs6?=
- =?us-ascii?Q?ag2/eEin7e2DHwpj+WZvkO4dP2kp+HE1GHmGpakCLPZU4rBLdWoP9Vplp+Md?=
- =?us-ascii?Q?i1M5KuwoOg4f1x03OndIfipkesh8IrIkAPVWhikHW+9TzJDFGI0SuEQO8WdM?=
- =?us-ascii?Q?4qvGikyvtGPzTzIG+cd/IXfaUH4o35ieqPMXkkoT54clkqpvzjyhrpSfwuA8?=
- =?us-ascii?Q?aDLrlq5/RojnmX7elOpKBESbowK3ebre9c70MBYgpLpqdW1ONVR1fF8oQtDU?=
- =?us-ascii?Q?Q+P22x9FW0nSKXn/3tr/usrNZ+z3xmne6+FRr4/ES57u4yJRImXUSubghfnK?=
- =?us-ascii?Q?lBXAHaqmzQzLUdmKRjUnUS4x6GF/s0hfSZov547spUbhrgbIGw4xlfWPmzVB?=
- =?us-ascii?Q?ChrPpfx5uyYfp/gkLGVrdhnqHrlnmM6CFuzb+Q7WsY4ueCsdJIyUshhEIpl3?=
- =?us-ascii?Q?vPFhqdUd8Bs57UamWSimKe/neDPS6MyEbFztEFhAp0Vl+VmzPoHoPEKjy0Q3?=
- =?us-ascii?Q?HdCEwqPErEqMLDvpEskuCZMuPfMn9i0eRot9zVhUMkV3wd5caCp3XI2y4ow5?=
- =?us-ascii?Q?e/aI/BnYyt4Yh05+t2c6w1rWmmloIZzkgiCPlPiNgKW+aXUacT5sTikYguKY?=
- =?us-ascii?Q?39g/RoWLtU9uvc/qf/AW8HPvMqokYB+h3MUbClrge9oCPiuqWeBv0eWl8MDo?=
- =?us-ascii?Q?nmvi5t8BXPak7YiiWtBdlFQvu43gSaMl/hVbZM4o65VJ/TYwKezjmkOLoK0O?=
- =?us-ascii?Q?iUn3FJTlU+I+ILiNSxDQ1P5sBILtCd/Z1kWTsAOkA8TnyyZven+FNFDlWtLm?=
- =?us-ascii?Q?SFIXma8C3YK75WjCUV+W3CNdwsFTDx0RjN7bdmET40m430qrW2IG85lszjTD?=
- =?us-ascii?Q?4B5a6GY/7NSXeyMX45tyCd2RkWcSixQ54QyEWdyDMBYznGpFDwHOpZk6ChMQ?=
- =?us-ascii?Q?/Ieja7omOqjGsucGrchkPkq78S+xlYnFtkA4U5r6TkGrDO2N5gh0/+PJb5hG?=
- =?us-ascii?Q?NPGlh5WedIKjyUSFDelkTpXcE5ZtWee2aGbJXskIJV/LXobWAOZh26cOWIAc?=
- =?us-ascii?Q?8FvcSFDppgjwjtPeqy5Fh7CH3k7obfeFDnNPFwo8SeMW+HCd8vPNM2NwjIJA?=
- =?us-ascii?Q?usuX8caOVtB8+QNjmCFOZfO4xsUhZbJMyNti9tPtf2Qs14IpbT64ZqwS89UZ?=
- =?us-ascii?Q?DWMdShU/qi+tHeDREFmqFR2HXMmm7YUyshiH7rsaZbOdPrUTBK/fOxiEQ5gw?=
-X-MS-Exchange-AntiSpam-MessageData-1: 23qSx6l7zbldz+z9ipj7qkWTz8j/2s0Zb7s=
-X-Exchange-RoutingPolicyChecked: mlXtu0vj07xnCKRJ8S/OcaxJtgFecy2lVhpz3aa8dBzFdN5ql2EqrOD7LWT7Hvv7Hzh+MudvXVUwcKVOfKk5zXxwgK8mOe6Kdm7DkHAjlJRJhEeqgWFlNYmpXLumWK8NofZkHlIDLwYF633yr7QjcCxuZFulVHhwf/ShCwMag2jB0/Qb72sGvbiqp2L4MMF5GB1FjJV9T5HeUhMQHjMubNz4GWgXeEyJNbbRroZ9ye2NED/EI5S14rI8DOmfRwnZ0/r6Yd9N1QYYTLny+2nYVNlVSLOCcdxY26bHSVsiKmpUTBdz5hx0rP10dPc5UDcCyLejU3JMvaCKI+m2T9b+uA==
-X-OriginatorOrg: data-modul.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f960f2a-1aa8-4392-e551-08deb1a70a84
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR01MB8486.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2026 10:53:32.9451
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d72fb47f-f4be-4915-91c7-ebd53299157b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xJNWZ49jubJeHgSAmrGDSyly6J+Hcwc93x3TTwe49/F+7c4VtHx3eN1sAq8N2un1Eg/wzC0HiM5e1OdTXKokwwdjPvCHjNe/LAqmyh976Co=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR01MB12195
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: XzebBS5FHXKUAQNowSBBemGgtUMwvJirBKYhG-A1yNE_1778756014
-X-Mimecast-Originator: data-modul.com
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 4A99D540AC0
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260424-add-mcu-fan-khadas-vim4-v5-4-afcfa7157b23@aliel.fr>
+X-Rspamd-Queue-Id: DF6E3540AC7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.10 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MIXED_CHARSET(0.56)[subject];
-	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[data-modul.com];
-	TAGGED_FROM(0.00)[bounces-297445-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297447-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com,lists.infradead.org,vger.kernel.org,aliel.fr];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[bstruempfel@data-modul.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url]
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,linux-kernel-dev.aliel.fr,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aliel.fr:email,linaro.org:email]
 X-Rspamd-Action: no action
 
-On Thu, May 14, 2026 at 05:26:03AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
-> - [High] The values for `drive-strength-microamp` are scaled incorrectly =
-by a factor of 100, violating the standard device tree unit suffix.
-> --
->=20
+On Fri, 24 Apr 2026, Ronald Claveau via B4 Relay wrote:
 
-Thank you for your review
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> 
+> Refactor probe() to use per-variant khadas_mcu_data
+> instead of hardcoded globals.
+> 
+> Add dedicated regmap configuration and device data for the VIM4 MCU,
+> with its own volatile/writeable registers.
+> 
+> Add the fan control register
+> (0–100 levels vs 0–3 for previous supported boards).
+> 
+> Add a new compatible string "khadas,vim4-mcu".
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+>  drivers/mfd/khadas-mcu.c | 106 ++++++++++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 95 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
+> index ba981a7886921..b36b3b3ab73c0 100644
+> --- a/drivers/mfd/khadas-mcu.c
+> +++ b/drivers/mfd/khadas-mcu.c
+> @@ -75,15 +75,91 @@ static const struct regmap_config khadas_mcu_regmap_config = {
+>  	.cache_type	= REGCACHE_MAPLE,
+>  };
+>  
+> +static const struct khadas_mcu_fan_pdata khadas_mcu_fan_pdata = {
+> +	.fan_reg	= KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
+> +	.max_level	= 3,
+> +};
 
-> commit ab265d46e886455894986f313701d72a9407a58e
-> Author: Boerge Struempfel <bstruempfel@data-modul.com>
->=20
-> dt-bindings: display/bridge: lt9211: Add drive-strength-microamp property
->=20
-> This commit adds the drive-strength-microamp property to configure the
-> LT9211 LVDS TX output driver current. It specifies sixteen discrete level=
-s
-> ranging from 12 to 36.
->=20
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,l=
-t9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt921=
-1.yaml
-> > --- a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.y=
-aml
-> [ ... ]
-> > +  drive-strength-microamp:
-> > +    description:
-> > +      LVDS TX output driver current. Sixteen discrete levels are suppo=
-rted,
-> > +      corresponding to the following nominal values in microamps.
-> > +    enum: [12, 14, 16, 17, 19, 20, 22, 23, 25, 27, 28, 30, 31, 33, 34,=
- 36]
->=20
-> Are these values scaled incorrectly for a property ending in -microamp?
->=20
-> Properties with the -microamp suffix typically require values in true
-> microamperes. A standard LVDS driver requires differential currents in th=
-e
-> milliamp range, typically 1.25 mA to 3.59 mA, to generate a standard 350 =
-mV
-> swing over a 100-ohm termination.
->=20
-> Values from 12 to 36 microamps appear to be physically insufficient for L=
-VDS
-> signaling.
->=20
-> If the actual intended currents are 1.25 mA to 3.59 mA, shouldn't the enu=
-m
-> values be 1250, 1406, 1562, up to 3594 to accurately reflect true
-> microamperes?
->=20
+What is 3?
 
-I double-checked the partial datasheet I was provided by Lontium. It
-states for RG_MLTX_HSDRV_ISEL: "Port A/B mipi/lvds tx hstx current
-select, 4'b0000 =3D 12.5 =C2=B5A, 4'b1111 =3D 35.9735 =C2=B5A, step =3D 1.5=
-625 =C2=B5A".
-Those are the values I took as a reference for this commit. However, I
-did not measure them myself and this might be a mistake in the datasheet
-or there might be some amplification happening after, which is not
-described in the part of the datasheet I got.
+> +
+>  static struct mfd_cell khadas_mcu_fan_cells[] = {
+>  	/* VIM1/2 Rev13+ and VIM3 only */
+> -	{ .name = "khadas-mcu-fan-ctrl", },
+> +	{
+> +		.name = "khadas-mcu-fan-ctrl",
+> +		.platform_data = &khadas_mcu_fan_pdata,
+> +		.pdata_size    = sizeof(khadas_mcu_fan_pdata),
+> +	},
+>  };
 
-Maybe someone else has more insight into this?
+Worth making this const at one point.
 
-In the meantime, I will try to follow up with our hardware team and try
-to contact Lontium to clarify where this discrepancy between the
-datasheet values and the expected LVDS output current range comes from.
+>  
+>  static struct mfd_cell khadas_mcu_cells[] = {
+>  	{ .name = "khadas-mcu-user-mem", },
+>  };
+>  
+> +static const struct khadas_mcu_data khadas_mcu_data = {
+> +	.regmap_config	= &khadas_mcu_regmap_config,
+> +	.cells		= khadas_mcu_cells,
+> +	.ncells		= ARRAY_SIZE(khadas_mcu_cells),
+> +	.fan_cells	= khadas_mcu_fan_cells,
+> +	.nfan_cells	= ARRAY_SIZE(khadas_mcu_fan_cells),
+> +};
 
-> --=20
-> Sashiko AI review   https://sashiko.dev/#/patchset/20260513133127.376458-=
-1-bstruempfel@data-modul.com?part=3D1
+This is a red flag!
 
---=20
-Best regards,
-B=C3=B6rge Str=C3=BCmpfel
+> +static bool khadas_mcu_vim4_reg_volatile(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case KHADAS_MCU_PWR_OFF_CMD_REG:
+> +	case KHADAS_MCU_VIM4_REST_CONF_REG:
+> +	case KHADAS_MCU_WOL_INIT_START_REG:
+> +	case KHADAS_MCU_VIM4_LED_ON_RAM_REG:
+> +	case KHADAS_MCU_VIM4_FAN_CTRL_REG:
+> +	case KHADAS_MCU_VIM4_WDT_EN_REG:
+> +	case KHADAS_MCU_VIM4_SYS_RST_REG:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static bool khadas_mcu_vim4_reg_writeable(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case KHADAS_MCU_VERSION_0_REG:
+> +	case KHADAS_MCU_VERSION_1_REG:
+> +	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
+> +		return false;
+> +	default:
+> +		return true;
+> +	}
+> +}
+> +
+> +static const struct regmap_config khadas_mcu_vim4_regmap_config = {
+> +	.reg_bits	= 8,
+> +	.reg_stride	= 1,
+> +	.val_bits	= 8,
+> +	.max_register	= KHADAS_MCU_VIM4_SYS_RST_REG,
+> +	.volatile_reg	= khadas_mcu_vim4_reg_volatile,
+> +	.writeable_reg	= khadas_mcu_vim4_reg_writeable,
+> +	.cache_type	= REGCACHE_MAPLE,
+> +};
+> +
+> +static const struct khadas_mcu_fan_pdata khadas_vim4_fan_pdata = {
+> +	.fan_reg	= KHADAS_MCU_VIM4_FAN_CTRL_REG,
+> +	.max_level	= 0x64,
+> +};
+> +
+> +static const struct mfd_cell khadas_mcu_vim4_cells[] = {
+> +	{
+> +		.name		= "khadas-mcu-fan-ctrl",
+> +		.platform_data	= &khadas_vim4_fan_pdata,
+> +		.pdata_size	= sizeof(khadas_vim4_fan_pdata),
+> +	},
+> +};
+> +
+> +static const struct khadas_mcu_data khadas_vim4_mcu_data = {
+> +	.regmap_config	= &khadas_mcu_vim4_regmap_config,
+> +	.cells		= NULL,
+> +	.ncells		= 0,
+> +	.fan_cells	= khadas_mcu_vim4_cells,
+> +	.nfan_cells	= ARRAY_SIZE(khadas_mcu_vim4_cells),
+> +};
+> +
+>  static int khadas_mcu_probe(struct i2c_client *client)
+>  {
+>  	struct device *dev = &client->dev;
+> @@ -94,28 +170,35 @@ static int khadas_mcu_probe(struct i2c_client *client)
+>  	if (!ddata)
+>  		return -ENOMEM;
+>  
+> +	ddata->data = i2c_get_match_data(client);
+> +	if (!ddata->data)
+> +		return -EINVAL;
 
-DATA MODUL AG
-Landsberger Str. 322
-80687 M=C3=BCnchen
+Shouldn't this be -ENODEV?
 
+>  	i2c_set_clientdata(client, ddata);
+>  
+>  	ddata->dev = dev;
+>  
+> -	ddata->regmap = devm_regmap_init_i2c(client, &khadas_mcu_regmap_config);
+> +	ddata->regmap = devm_regmap_init_i2c(client,
+> +					     ddata->data->regmap_config);
+
+Use up to 100-chars to prevent this kind of wrapping.
+
+>  	if (IS_ERR(ddata->regmap)) {
+>  		ret = PTR_ERR(ddata->regmap);
+>  		dev_err(dev, "Failed to allocate register map: %d\n", ret);
+>  		return ret;
+>  	}
+
+Maybe convert this to dev_err_probe() at one point.
+
+> -	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> -				   khadas_mcu_cells,
+> -				   ARRAY_SIZE(khadas_mcu_cells),
+> -				   NULL, 0, NULL);
+> -	if (ret)
+> -		return ret;
+> +	if (ddata->data->cells && ddata->data->ncells) {
+> +		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> +					   ddata->data->cells,
+> +					   ddata->data->ncells,
+> +					   NULL, 0, NULL);
+> +		if (ret)
+> +			return ret;
+> +	}
+>  
+>  	if (of_property_present(dev->of_node, "#cooling-cells"))
+>  		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> -					    khadas_mcu_fan_cells,
+> -					    ARRAY_SIZE(khadas_mcu_fan_cells),
+> +					    ddata->data->fan_cells,
+> +					    ddata->data->nfan_cells,
+>  					    NULL, 0, NULL);
+>  
+>  	return 0;
+> @@ -123,7 +206,8 @@ static int khadas_mcu_probe(struct i2c_client *client)
+>  
+>  #ifdef CONFIG_OF
+>  static const struct of_device_id khadas_mcu_of_match[] = {
+> -	{ .compatible = "khadas,mcu", },
+> +	{ .compatible = "khadas,mcu", .data = &khadas_mcu_data },
+> +	{ .compatible = "khadas,vim4-mcu", .data = &khadas_vim4_mcu_data },
+
+We don't allow data from one registration API (MFD) to be shoved through
+another (DT).  Pass a value to match on instead, then use a switch()
+statement or similar to populate or register the devices.
+
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
+> 
+> -- 
+> 2.49.0
+> 
+>
 
