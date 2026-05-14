@@ -1,159 +1,140 @@
-Return-Path: <devicetree+bounces-297720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIFXFHb3BWpVdwIAu9opvQ
-	(envelope-from <devicetree+bounces-297720-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:25:26 +0200
+	id UG0eLmn3BWpVdwIAu9opvQ
+	(envelope-from <devicetree+bounces-297721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:25:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0C3544A3A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:25:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B02544A15
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:25:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E4E430378B7
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:20:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 41305309C356
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:22:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739FB33893D;
-	Thu, 14 May 2026 16:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4573290C8;
+	Thu, 14 May 2026 16:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fj70pcx0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFbaG9QV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFAD322C88
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 16:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5B02FE04E;
+	Thu, 14 May 2026 16:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778775610; cv=none; b=Tomk/vOmIJQgC6sEGg5hj972m1MCGpe0drtoufN850tWcEar++203kJkf6qCTd95kGCezW6XayLbQjMdVbbfx8We1pjUGw+eNyge4Yp3+vJ5JGng0jY/uNT2wy7ijNDmlz7sdUFdGyqzKZTUgw+7ASL2hMqIvHrxeLGBGq5Aeig=
+	t=1778775736; cv=none; b=kK9eBasee0IAoq38xaZWcnNZks0CFkCPZ0u5WGJI46sftmusImIPCjYQ+ig5ET/mcwh7Wt4M+BDv05uA65bsqhTy8ZDGLsnWl93SnfOZGEi/fhDTzd2Su09q0d1YbUMOBSdaC/aCX+DoKkYvDqncHdTLrsyCF5sUbzk8fKp+iNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778775610; c=relaxed/simple;
-	bh=0rQPA8qjE6ICixfxUUoagENaw8882jE82NAIz6pGqFQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DB6sHnRqC1r7UAVh3f7GdRXfonqP3TTtc5tmXehP3plGF+TFClw8KALia5T76F4xPSrMhd1J7bvN6NEqehP4p3YPjBK0ZKhxPElG93LEBrp3o4t/be9zhAI/YPHEivOTZTESMeQ+XEGrbagD8NHcbPK/WOutum4KkGI3PzfVH04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fj70pcx0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BBE6C2BCB3;
-	Thu, 14 May 2026 16:20:09 +0000 (UTC)
+	s=arc-20240116; t=1778775736; c=relaxed/simple;
+	bh=73fxWTuyiBOp6+GjEI2yaO9EgtXApTP1T+BOeTS3rAA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mpwvt2TX7WYiwIM1BWE7e0eYTisTR2/QhZey0Z4HaA+Z7MnHsJhkw1lAgftrE0+XxpjAf/iNL9Qaajqm1jzksNoweFWbY7QpqEGu8GY0WZC0XWb5iaQDbjlpXjw0JjP6lGA5ftAH6TPj+6d99bUan20UZ0sQE+zYGxseXzzLK0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFbaG9QV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 469AFC2BCB3;
+	Thu, 14 May 2026 16:22:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778775609;
-	bh=0rQPA8qjE6ICixfxUUoagENaw8882jE82NAIz6pGqFQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=fj70pcx03G+Nvg+uaJnkGTg4Q3Q5UxIq5ayHVpjlZSY6VCeqP7F/iKT/kLiiJ+K/8
-	 /vtmq0xlGlb/TWKwPkQ18lt4vkMa003cylVj2zpBJujFsScGN8d+Yc9km01U+DEqYe
-	 Ak8yw/7N91+ZoEoALXJD7WWZzNxDJOUZi+JfpGVoiUwplNf+u8Sv8uEJbay7DKXhCR
-	 5W95c4hY355Ec2n42eziWjuNfcTx/bNt7UfiTmyu3qepP0BcZk6SqJLea2hKxUcsD3
-	 JdXjADPaYpGQngESn307mH79JWn2wvGrHWOhgI4PY1YbVS4MtdGRpsg5rJFXyAFoKI
-	 SIrTYIFNyPQng==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: display: rockchip: analogix-dp:
- Expose inherited properties
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Damon Ding" <damon.ding@rock-chips.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260514070133.2275069-2-damon.ding@rock-chips.com>
-References: <20260514070133.2275069-2-damon.ding@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 16:20:08 +0000
-Message-Id: <20260514162009.3BBE6C2BCB3@smtp.kernel.org>
+	s=k20201202; t=1778775735;
+	bh=73fxWTuyiBOp6+GjEI2yaO9EgtXApTP1T+BOeTS3rAA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KFbaG9QVp1qytR13DVfdptqgNWmRSqoEcj1AZPIJ3K40WgWlY5MxwrT2YOPXDxBon
+	 S3FUrX48+glSKCgdEO7ME6HFjzO66pSNbCOYRindSFkZJSUzvJIN0AUdZzhNnIAvJt
+	 1dydMn6238ZkjndwD3hppo1s9jOrR3SO4GouDHflcUom5KAkrnO7tkdvNzlEENdfV0
+	 Dzuf96JYFEC5dZDTGIzoLX5eD316+k4Vbw8cjec2aZFFqh/amKdq9AWrxfIQEL3/0w
+	 ultgIlAnQ6TDt4E8dAZ1vCl395lo8pOU8y1UmFrrl1R9svh86jWTSibUQsbAjl8X4p
+	 mEqkPlBovnzSQ==
+Date: Thu, 14 May 2026 17:22:11 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: i3c: dw: Add apb reset
+Message-ID: <20260514-gestation-hatred-69029fd05f70@spud>
+References: <20260511031945.3228-1-jszhang@kernel.org>
+ <20260511031945.3228-3-jszhang@kernel.org>
+ <20260511-amnesty-afoot-84537aafc02c@spud>
+ <20260514-fat-unyielding-jaguarundi-a5ddc6@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: CE0C3544A3A
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BbfoBwP5jS6lf41o"
+Content-Disposition: inline
+In-Reply-To: <20260514-fat-unyielding-jaguarundi-a5ddc6@quoll>
+X-Rspamd-Queue-Id: 33B02544A15
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297720-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297721-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,rock-chips.com:email,sashiko.dev:url,lists.linux.dev:replyto];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Redefining inherited properties as `true` is a redundant schema =
-inheritance anti-pattern that weakens future validation.
---
 
-commit 6cdf876f78b231fc30c12abedc12fb6b25fa8e18
-Author: Damon Ding <damon.ding@rock-chips.com>
+--BbfoBwP5jS6lf41o
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-dt-bindings: display: rockchip: analogix-dp: Expose inherited properties
+On Thu, May 14, 2026 at 02:17:55PM +0200, Krzysztof Kozlowski wrote:
+> On Mon, May 11, 2026 at 05:02:18PM +0100, Conor Dooley wrote:
+> > On Mon, May 11, 2026 at 11:19:44AM +0800, Jisheng Zhang wrote:
+> > > Add dt-binding for support of apb reset which is to reset the APB
+> > > interface.
+> > >=20
+> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> >=20
+> > Please squash both dt-binding patches.
+>=20
+> I think this should stay separate, because first commit is trying to fix
+> undocumented existing ABI. It will have different rationale and could be
+> chosen for backports.
 
-The commit adds true values to several properties in the Rockchip Analogix
-DP binding schema. The commit message states this is necessary to expose
-inherited properties to satisfy unevaluatedProperties constraints.
+Ah, I guess I didn't read the commit message. Sorry about that Jisheng!
 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,=
-analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockc=
-hip,analogix-dp.yaml
-> index d99b23b88cc59..4118b87b8dc53 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogi=
-x-dp.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogi=
-x-dp.yaml
-> @@ -49,6 +49,13 @@ properties:
->    aux-bus:
->      $ref: /schemas/display/dp-aux-bus.yaml#
-> =20
-> +  reg: true
-> +  interrupts: true
-> +  phys: true
-> +  phy-names: true
-> +  force-hpd: true
-> +  ports: true
-> +
+--BbfoBwP5jS6lf41o
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Is it necessary to redefine these inherited properties to satisfy
-unevaluatedProperties constraints?
+-----BEGIN PGP SIGNATURE-----
 
-The base schema analogix,dp.yaml already defines these properties. Properti=
-es
-evaluated by a $ref within an allOf block are automatically annotated as
-evaluated, which should satisfy the unevaluatedProperties: false constraint=
- in
-the leaf schema.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagX2sgAKCRB4tDGHoIJi
+0m78APoC7BNZBKHuVWzSNwad6VS12v/38/OUqyzyeFhLxAyYrQD/UAu/Y28omxU8
+tywp9InGV8Iox+8BKGMTg4/oq6IjNAY=
+=efLo
+-----END PGP SIGNATURE-----
 
-Could redefining these properties locally as true introduce a validation
-regression if the base schema changes in the future?
-
-Setting them to true translates to allowing any value without constraints.
-While the allOf intersection currently enforces the base schema's constrain=
-ts,
-if the base schema is later refactored or removes one of these properties,
-this leaf schema might silently accept malformed device trees instead of
-failing validation.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514070133.2275=
-069-1-damon.ding@rock-chips.com?part=3D1
+--BbfoBwP5jS6lf41o--
 
