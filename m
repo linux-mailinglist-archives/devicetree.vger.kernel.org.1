@@ -1,279 +1,261 @@
-Return-Path: <devicetree+bounces-297661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CLL1Ey7lBWoAdQIAu9opvQ
-	(envelope-from <devicetree+bounces-297661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:07:26 +0200
+	id MO/1NfzmBWp0dQIAu9opvQ
+	(envelope-from <devicetree+bounces-297663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:15:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C355D543B9B
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:07:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A892543D4C
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:15:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0503F3021B39
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:05:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2376D3005162
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C1D40DFA0;
-	Thu, 14 May 2026 15:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85860427A18;
+	Thu, 14 May 2026 15:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lzUL+5ET"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCrq3oTq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6063DFC78;
-	Thu, 14 May 2026 15:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC916426EA0;
+	Thu, 14 May 2026 15:09:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778771111; cv=none; b=roQIxgywNRkbKl2AQbtLbCRzCeIvBl02CvziLHNhYLHk3UmnED8gzRjKgVbXSz1/93VC/bfnUdxsVg+SwazXlDOY9+MBVZy0jIjelkRVtm3m/HP7ASiddfBZrgkF0hMgHFrUujZ43BC0Vq0DYVWVPluzD8Oie42MbIdWeBCYX5s=
+	t=1778771399; cv=none; b=qNN1zE/HRlvV5P1A2rB8tiqgWA1++y+vW9YnIXfbgkfweEDKpDNol0XaOHF7vz7SaIZyzGlPf0VtsP7VVRB96K+tOV6D5KXoYIi7vkbjCX0pfppLCoRmTfB367+xDfO6QuU34zjOUnoadltwEkrKWV0A0EUzbIgryDhZMefcO8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778771111; c=relaxed/simple;
-	bh=y+qWkfH2NdW0SgzpFUw+pNdGVOYGMAeHSrTAVJ8Wd6c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LO0H1lNO5sUDl9FiILUvuWK5COq1ntCE67ski/JRHIzX5dazOISJZFXeaXniFTj3Boo3peNmehl+F5vV/pWje062G4Fb7aznXWDMByxVho/gPBBG89T/irb5/qq44X4sjU5wqj5SqRJXTvrgeXgG743C4egXrDXSJtNPxxIp4IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lzUL+5ET; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23CC3C2BCB3;
-	Thu, 14 May 2026 15:05:11 +0000 (UTC)
+	s=arc-20240116; t=1778771399; c=relaxed/simple;
+	bh=cy9qwD4R0RUofCFV/iACy338J2/CmEEb2vJEPd1fD54=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qndXkaLXuTNUSkN9SwR/JUcCiqoHh/0kRRKZf+sLP7pcF6spk3a/gWb6ifpA4Kvpjbsa2eyahER/JSeDYzOWv49UD1qYU4Y8x81o16A1Falkfq92r9b2BGuooShImNPxh+TV/K1Yy3zER9g61G19z8VioXoM8m4bqig2LtbTvBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCrq3oTq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46885C2BCB3;
+	Thu, 14 May 2026 15:09:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778771111;
-	bh=y+qWkfH2NdW0SgzpFUw+pNdGVOYGMAeHSrTAVJ8Wd6c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lzUL+5ETuBp68+uAJmjs1ENvWvR7Cv6qPq8mewr+POZ+cdbB7WCVi5LXJATo4rnFp
-	 5Pmdo+uJNjhemnabCCXcFkZ2Zu64tbubILBxwO4+CYT5uX8x3WhdYGmBfYc2bGkSsx
-	 EHiv/IrzUzYVg0ke8JgImhcSRBtDvnYcN5NjdiD53SKBp5BPzcKe0MIUr6ZB+FecmX
-	 8abyt6AbcR5p7yf9+zWlezkeFL7PVb2MPB3cASTV5HRhjzdKwZ5hth/4Al8rq3CDmR
-	 vFfNXGKa1D5S8oEWbghjovfCz7lsxa+ROuZWGDSuXzERpUfaDoRFK9a0mw8vqA7kJ3
-	 FGKyR5ad5F/jA==
-Date: Thu, 14 May 2026 10:05:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Udaya Kiran Challa <challauday369@gmail.com>
-Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	skhan@linuxfoundation.org, me@brighamcampbell.com,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: rtc: epson,rx6110: Convert to DT Schema
-Message-ID: <20260514150508.GA495076-robh@kernel.org>
-References: <20260509185735.21557-1-challauday369@gmail.com>
+	s=k20201202; t=1778771397;
+	bh=cy9qwD4R0RUofCFV/iACy338J2/CmEEb2vJEPd1fD54=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kCrq3oTqL8crbyUlECEvMEGfArIWmtwHkzheYDZzNFxtYb9E0k2RpmthCeusQt1HJ
+	 B+wkIkZWWJ08Ez+ThA1HzCA1lcUnyaRrnZ9Qc38GMS6/5Puepo5yT9UhxggkIynJMH
+	 JKfpr99A4HjoTL3lZ6ww6wI6Im6pbjTgjzoUvHiJW6ePen/ntfil3cMs5OIkUDKjnO
+	 XEfWWqFz2CBeKLsWDG33TGAfZLroYMuUmNGckx5oKO5AjloolNI/54//e1BeokaVaU
+	 tobqKctMelv6hLUMZSqJfV9g8mg4dZ2LdfkHaGHtAHt3nj0+bzxpk3JTwP/+ZrKJK1
+	 WG/BSVAAB3Ajw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1wNXhC-00000002Oqg-2BOH;
+	Thu, 14 May 2026 15:09:54 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Ge Gordon <gordon.ge@bst.ai>,
+	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+	Jesper Nilsson <jesper.nilsson@axis.com>,
+	Lars Persson <lars.persson@axis.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Michal Simek <michal.simek@amd.com>
+Subject: [PATCH v2 00/17] arm64: Use EL2 virtual timer when running VHE
+Date: Thu, 14 May 2026 16:09:28 +0100
+Message-ID: <20260514150945.3917510-1-maz@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260509185735.21557-1-challauday369@gmail.com>
-X-Rspamd-Queue-Id: C355D543B9B
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, guohanjun@huawei.com, sudeep.holla@kernel.org, catalin.marinas@arm.com, will@kernel.org, rafael@kernel.org, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, gordon.ge@bst.ai, bst-upstream@bstai.top, jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, ivo.ivanov.ivanov1@gmail.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, dinguyen@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, thierry.reding@kernel.org, jonathanh@nvidia.com, andersson@kernel.org, konradybcio@kernel.org, afaerber@suse.de, 
+ heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Rspamd-Queue-Id: 5A892543D4C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297661-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
+	RCPT_COUNT_TWELVE(0.00)[46];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297663-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.3:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.32:email,bootlin.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Sun, May 10, 2026 at 12:26:39AM +0530, Udaya Kiran Challa wrote:
-> Convert the Epson RX6110 Real Time Clock devicetree binding
-> from the legacy text format to DT schema.
-> 
-> Signed-off-by: Udaya Kiran Challa <challauday369@gmail.com>
-> ---
-> Changelog:
-> Changes since v3:
-> - Add conditional validation for SPI mode properties using anyOf
-> 
-> Link to v3:https://lore.kernel.org/all/20260509181909.21871-1-challauday369@gmail.com/
-> 
-> Changes since v2:
-> - Reference rtc.yaml for common RTC properties
-> - Add conditional validation for SPI mode properties
-> 
-> Link to v2:https://lore.kernel.org/all/20260509095713.5818-1-challauday369@gmail.com/
-> 
-> Changes since v1:
-> - Reuse common SPI peripheral properties
-> - Drop redundant SPI-specific comment
-> - Remove unused labels from examples
-> 
-> Link to v1:https://lore.kernel.org/all/20260504183728.27412-1-challauday369@gmail.com/
-> ---
->  .../devicetree/bindings/rtc/epson,rx6110.txt  | 39 ---------
->  .../devicetree/bindings/rtc/epson,rx6110.yaml | 79 +++++++++++++++++++
->  2 files changed, 79 insertions(+), 39 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/epson,rx6110.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/epson,rx6110.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rx6110.txt b/Documentation/devicetree/bindings/rtc/epson,rx6110.txt
-> deleted file mode 100644
-> index 3dc313e01f77..000000000000
-> --- a/Documentation/devicetree/bindings/rtc/epson,rx6110.txt
-> +++ /dev/null
-> @@ -1,39 +0,0 @@
-> -Epson RX6110 Real Time Clock
-> -============================
-> -
-> -The Epson RX6110 can be used with SPI or I2C busses. The kind of
-> -bus depends on the SPISEL pin and can not be configured via software.
-> -
-> -I2C mode
-> ---------
-> -
-> -Required properties:
-> -  - compatible: should be: "epson,rx6110"
-> -  - reg : the I2C address of the device for I2C
-> -
-> -Example:
-> -
-> -	rtc: rtc@32 {
-> -		compatible = "epson,rx6110"
-> -		reg = <0x32>;
-> -	};
-> -
-> -SPI mode
-> ---------
-> -
-> -Required properties:
-> -  - compatible: should be: "epson,rx6110"
-> -  - reg: chip select number
-> -  - spi-cs-high: RX6110 needs chipselect high
-> -  - spi-cpha: RX6110 works with SPI shifted clock phase
-> -  - spi-cpol: RX6110 works with SPI inverse clock polarity
-> -
-> -Example:
-> -
-> -	rtc: rtc@3 {
-> -		compatible = "epson,rx6110"
-> -		reg = <3>
-> -		spi-cs-high;
-> -		spi-cpha;
-> -		spi-cpol;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rx6110.yaml b/Documentation/devicetree/bindings/rtc/epson,rx6110.yaml
-> new file mode 100644
-> index 000000000000..3466f74736d2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/epson,rx6110.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/epson,rx6110.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Epson RX6110 Real Time Clock
-> +
-> +description: |
+This is the second version of the series initially posted at [1],
+which
 
-Don't need '|' if no formatting.
+- updates the ACPI GTDT parsing to deal the v3 layout and the EL2
+  virtual timer,
+- moves the architected timer driver to use it when running VHE,
+- fixes a number of DTs to reflect the reality of the HW.
 
-> +  The Epson RX6110 can be used with SPI or I2C busses.
-> +  The kind of bus depends on the SPISEL pin and can not be
-> +  configured via software.
+Patches based on -rc3, tested on Amlogic SM1, QC X1E, Ampere Altra,
+and Apple M2.
 
-Wrap lines at 80 chars.
+* From v1:
 
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: epson,rx6110
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-cs-high: true
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +if:
-> +  anyOf:
-> +    - required:
-> +        - spi-cs-high
-> +    - required:
-> +        - spi-cpha
-> +    - required:
-> +        - spi-cpol
-> +
-> +then:
-> +  required:
-> +    - spi-cs-high
-> +    - spi-cpha
-> +    - spi-cpol
+  - Now also using the EL2 virtual counter, which further improve
+    things when running at a deeper nesting level
 
-This 'if' can be better expressed as:
+  - Updated consistency checks for the platform timers when finding a
+    GTDTv3
 
-dependencies:
-  spi-cs-high: [ spi-cpha, spi-cpol ]
-  spi-cpha: [ spi-cs-high, spi-cpol ]
-  spi-cpol: [ spi-cs-high, spi-cpha ]
+  - Collected ABs and RBs, with thanks
 
+[1] https://lore.kernel.org/r/20260507125544.2903406-1-maz@kernel.org
 
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  # I2C mode
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      rtc@32 {
-> +        compatible = "epson,rx6110";
-> +        reg = <0x32>;
-> +      };
-> +    };
-> +
-> +  # SPI mode
-> +  - |
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      rtc@3 {
-> +        compatible = "epson,rx6110";
-> +        reg = <3>;
-> +        spi-cs-high;
-> +        spi-cpha;
-> +        spi-cpol;
-> +      };
-> +    };
-> -- 
-> 2.43.0
-> 
-> 
+Marc Zyngier (17):
+  ACPI: GTDT: Account for GTDTv3 size when walking the platform timer
+    descriptors
+  ACPI: GTDT: Parse information related to the EL2 virtual timer
+  clocksource/drivers/arm_arch_timer: Default to EL2 virtual timer when
+    running VHE
+  dt-bindings: timer: arm,arch_timer: Fix requirements for interrupt
+    description
+  arm64: dts: allwinner: Add EL2 virtual timer interrupt
+  arm64: dts: amlogic: Add EL2 virtual timer interrupt
+  arm64: dts: bst: Add EL2 virtual timer interrupt
+  arm64: dts: exynos: Add EL2 virtual timer interrupt
+  arm64: dts: freescale: Add EL2 virtual timer interrupt
+  arm64: dts: intel: Add EL2 virtual timer interrupt
+  arm64: dts: mediatek: Add EL2 virtual timer interrupt
+  arm64: dts: nvidia: Add EL2 virtual timer interrupt
+  arm64: dts: qcom: Add EL2 virtual timer interrupt
+  arm64: dts: realtek: Add EL2 virtual timer interrupt
+  arm64: dts: rockchip: Add EL2 virtual timer interrupt
+  arm64: dts: sprd: Add EL2 virtual timer interrupt
+  arm64: dts: xilinx: Add EL2 virtual timer interrupt
+
+ .../bindings/timer/arm,arch_timer.yaml        | 21 ++++-----
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi |  3 +-
+ .../boot/dts/amlogic/amlogic-a4-common.dtsi   |  8 ----
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi   |  8 ++++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi   |  9 ++++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi   |  3 +-
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi   |  3 +-
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi  |  3 +-
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 13 -----
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi    |  9 ++++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 10 ++++
+ arch/arm64/boot/dts/bst/bstc1200.dtsi         |  3 +-
+ arch/arm64/boot/dts/exynos/axis/artpec9.dtsi  |  3 +-
+ arch/arm64/boot/dts/exynos/exynos2200.dtsi    |  3 +-
+ arch/arm64/boot/dts/exynos/exynos990.dtsi     |  3 +-
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |  3 +-
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi  |  3 +-
+ .../boot/dts/freescale/imx91_93_common.dtsi   |  3 +-
+ arch/arm64/boot/dts/freescale/imx94.dtsi      |  3 +-
+ arch/arm64/boot/dts/freescale/imx95.dtsi      |  3 +-
+ arch/arm64/boot/dts/freescale/imx952.dtsi     |  3 +-
+ arch/arm64/boot/dts/freescale/s32n79.dtsi     |  3 +-
+ .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |  3 +-
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  3 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  2 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  3 +-
+ arch/arm64/boot/dts/qcom/eliza.dtsi           |  3 +-
+ arch/arm64/boot/dts/qcom/hamoa.dtsi           |  3 +-
+ arch/arm64/boot/dts/qcom/kaanapali.dtsi       |  3 +-
+ arch/arm64/boot/dts/qcom/kodiak.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/lemans.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/milos.dtsi           |  1 +
+ arch/arm64/boot/dts/qcom/monaco.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi        |  3 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi         |  3 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  3 +-
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sdx75.dtsi           |  1 +
+ arch/arm64/boot/dts/qcom/sm4450.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm6350.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm6375.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8750.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/talos.dtsi           |  3 +-
+ arch/arm64/boot/dts/realtek/rtd16xx.dtsi      |  3 +-
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi |  3 +-
+ arch/arm64/boot/dts/sprd/sc9863a.dtsi         |  3 +-
+ arch/arm64/boot/dts/sprd/ums512.dtsi          |  3 +-
+ arch/arm64/boot/dts/sprd/ums9620.dtsi         |  3 +-
+ arch/arm64/boot/dts/xilinx/versal-net.dtsi    |  3 +-
+ drivers/acpi/arm64/gtdt.c                     | 35 +++++++++++++-
+ drivers/clocksource/arm_arch_timer.c          | 47 +++++++++++--------
+ 63 files changed, 211 insertions(+), 106 deletions(-)
+
+-- 
+2.47.3
+
 
