@@ -1,228 +1,215 @@
-Return-Path: <devicetree+bounces-297389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297391-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NUeGLeUBWpLYwIAu9opvQ
-	(envelope-from <devicetree+bounces-297389-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:24:07 +0200
+	id WIjAGP2VBWpLYwIAu9opvQ
+	(envelope-from <devicetree+bounces-297391-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:29:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF1E53FBBC
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:24:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E48AE53FC89
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A95B301FD55
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 09:23:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B656300EFA3
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 09:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B66139C015;
-	Thu, 14 May 2026 09:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610F63A3E96;
+	Thu, 14 May 2026 09:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dIDd61Vs";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dz4MRTcm"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="PkZSnwI7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA9FA39A070
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 09:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778750626; cv=none; b=W/z0BuBNLyaTYDnamXSkJdGkHMPAE3QnxL8cko49OXiRZxKSZLaK0zol19+iFnOqWN2yX2BUw3+DCWF2SGWY8Vq1NNE3rekqL7q3Tb3cNN6oa8NPqax6TIP5FSlifV1gvj+20nv3NgaVkR30PQCwXWyTWf+WmxS7LXOIK5nGf/I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778750626; c=relaxed/simple;
-	bh=D+0UR+tuvuV+iGfThn6DdO0atxo4c51hBLb9B9cq4+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rY/lh69L5Ds4DNMFq7w5VOmcumFMe6nF7ZeuGMRqXncqzriXc1ygBOANDGLOSNhnt4IFc5cn+lLGmvISJCgrxj2o3dTqOK4do+IZ3atBPxfiNrzJfgsPoLmr+zuQrYIzD8EWU3GZginPEvIZS2tpFrla8EwJG2crSeNdfBo6pZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dIDd61Vs; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dz4MRTcm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64E93xbN1095250
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 09:23:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B7mfb7Vpn1k0Bgb4UZHW0W0XQiV5frm6lZKL/dZelLY=; b=dIDd61VsmW15KdXy
-	ruWqI5i4785aTYCsObwOPIZnr4VeMUPMgh2qD+fOvSuNKhW22+fyI93n1xS8oT3j
-	hljoajyDUhFIJ69GIjsBa7GvYGgiEgxTgZh5fJRZWDzEipLnkclLtR9iUimhIFlH
-	qn5HTK56s3S2jyWl4ystX8fYrSeUgeyJirpM1+iIHOhr+nstiFIx+vo4YJqDnrPS
-	/wVKDgz6Q06Mq6JSCyXmrW4TXErseNTpNbkMBivkh8rXXVj1XdhR28NyUN7gJEiy
-	sZPMP4HTlfd4ROl85FjJ4up8Egao757BPo0Gq4fYz1+ag+wMQsuWQ8+NDIA3dwkc
-	/kWPmw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e563hh7u2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 09:23:43 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-90e0eae822dso53570485a.2
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 02:23:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778750623; x=1779355423; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B7mfb7Vpn1k0Bgb4UZHW0W0XQiV5frm6lZKL/dZelLY=;
-        b=dz4MRTcmyWq6urB0W3bJ6TomXomCdp7EB7Gninsk48Q7ZuseTnlCqUt1NUuCWAIJSr
-         XmjSg3e/gbiAzIiABdOF9a/TQZpOcLPut+GTK9lqIZHk6E9f77JdozgBXUSxO9JFx2WI
-         wDHTdtxOuDGo3nzdIyJ6NCpNWMA2SLxJtkOrGNpuEKKvCvjZRHxE6fc8wmt0+mOmp2Kf
-         f9m7Yr7P3E1xihCVyEWDF2RPP1MEkjoF0LukjVuM3Lkf1aM4ZZAnu9LhCE/LDjDreQOM
-         aOTIpFY1DG2uGNsTzk1s2XfYpWBb02Apuh/X02OSjjK3oKiLw1OAwxGmbAM3bSU642dZ
-         twnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778750623; x=1779355423;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B7mfb7Vpn1k0Bgb4UZHW0W0XQiV5frm6lZKL/dZelLY=;
-        b=he3UYiXZprtaypWNKW6h51ZC+++QNPWm/SVhINJqhRh78s53ZnffQG7rtDqzD60d4g
-         ioDwNI32Fa52hRFJaWvZ5S8tOCpb6I4NUWO/lk7PZO3/bpHqOx+bTSPQUo+d4K8/CffJ
-         Bco+Txa5M3QRfj1dJmfbTgG2drMhtkpQ5peh0I0kg1yl0Y8Z+3v7Rpm6Ka5bNp0VSFss
-         uKWCiuTJ5LFQderpkmFb6JToL9sRFKJGGz21skaVwgDUijsqdj4xQL+7pSvnGJ93Xqns
-         jxw+uG46GEc0w5KmJOmXDXV8gmEJ5JXQ+PjLsFKQpDg5BynwVF9N/d+2sl83jE/gbefN
-         Q/6A==
-X-Forwarded-Encrypted: i=1; AFNElJ8QLKE5dEwxFcxUnHyIvwS8Ci/tqnJcFGjAAw6Ll08BiADCnSNNYlHAK4p7t/FHo/2jWxFX/OW6X5Ov@vger.kernel.org
-X-Gm-Message-State: AOJu0YyziV90QMiXDUSviZXl0seV57woik7OEoULpVJSwa/ivH0hffTS
-	hPZzSeDYq9dJayk9KSJDZKrWiWzSt0Qa3oj5lA8EovnMTAgaNPMbZnRmF15tFXj/y7X4xrp6txG
-	6dUs5KTp1aI/dF7Dgy6vihkx5eP8COY1vHif0sSbDqpFlU6oKVLSOkWsda1412Wfb
-X-Gm-Gg: Acq92OGOjVYDnQvuEf45L+uXF6ShcbhDtD3ZruyJIbUUAENIo9mr7ZKW4WRzR5FRltf
-	pzpNNusRNUBwTioROI60dQHkNgL+QFZ/yFQy3B4nxgHZGZo+rdSHnJsLRrCLjKOThZntPrZPyCm
-	IIt3PYaGToZQnSjlGQrcEfn5afZNL4XD9pES1pdRtksaEmMWLXxHbE/OnPUjXHLlFwP21pnIkXK
-	kxw3DQcmtsaAL5xC0xxTMh53hVz2olCT/eEZaJtuz/Q8IanQImcJaYyIvubhEcNQNfaFTEznpkh
-	QNIgnWglT10UNuPvi8ZIJ4X2QJ74CnQ6/r5RHjVd4OTNgdt1nKBW91H7aCiF2wOa57sWh5Gu5xw
-	6b3es/yIv6kXYMVq8GRuEeIildEAHPK1NAEg391TlwHsPL8Oa+CrhP9pByBOMoOL7XJJBjkMDrI
-	KrASM=
-X-Received: by 2002:a05:620a:4043:b0:8cf:d953:b4ec with SMTP id af79cd13be357-90f8a634f71mr758713685a.3.1778750623316;
-        Thu, 14 May 2026 02:23:43 -0700 (PDT)
-X-Received: by 2002:a05:620a:4043:b0:8cf:d953:b4ec with SMTP id af79cd13be357-90f8a634f71mr758710285a.3.1778750622815;
-        Thu, 14 May 2026 02:23:42 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68311660f76sm513638a12.19.2026.05.14.02.23.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 May 2026 02:23:41 -0700 (PDT)
-Message-ID: <d2025522-ac5c-4e45-8274-1cbb49b7b348@oss.qualcomm.com>
-Date: Thu, 14 May 2026 11:23:39 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61F9224AF7;
+	Thu, 14 May 2026 09:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778750915; cv=pass; b=bo2GsRUvBGqLwl2GF0+Qx1dhD8dYquQX8YD++oyQjVlmqD5WnNyFxyPTew9DD9cI3CbdrcoFCRL4WBTnf4XanvuTd6q/+cK6Cwu00kFcTIkn4POPqezCVddo8KOb1tHdqAW3eFiaqSiGQ03Is20ciF3a5lwSXYnr8SDWv9pPmXI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778750915; c=relaxed/simple;
+	bh=J2/S40TiCw6k69eaOKQI442EBK/SDfU7izqJXnyyuIg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sLm7jnS2VdfdY79Vob8j3e8TZGSo5hX2G4Mq/jbTDyZ/IrCg0n0T5nIKygCOomQF1rAtybJHTvo976y9TDENn73FLS0xj8gmE1Zc/g/cfKcFYiTvvuj+2qDnEBMJ+xDnxKtjLMSggu5cRvljTy3m6lj9L0C1PBjNyINDIBx1asE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=PkZSnwI7; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1778750872; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=RhHQfrrDQxOr/Pyjl84FNSqHp4hhEjak7rPRt5BzbYPLp/M4/QUWnN3a4kCjHnc1WXeUOiUdaBS5CLnZ55zabk5ILFQUou854P746petd1HA8WCKhYACULKG82mBDvV5kMGj7yDy9ZBj3rOKAdOx30e/z7w8C6gaistPMH6Oy7w=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1778750872; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=X59KxAk7T+LmST/s9ktNmLejHGQz11xABLTtF0WEZCM=; 
+	b=gzQX9yZeoKKrYU8D4xkqeFCBRxbNH57+uKr6Lf5idsr0XVLFo63s/F/4LQY/bPomRd9wWmjDHEDVLLf/KnIrGj5907AlERGrXCOVSiztX2Bl6N4GFD1b/Fhdtkm8bmR/3alsP9rCx+JJd2HFcJtp6UHNnZe0elGCb0RIy6fRylI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1778750872;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=X59KxAk7T+LmST/s9ktNmLejHGQz11xABLTtF0WEZCM=;
+	b=PkZSnwI76jhiMlb0EebhcgptBNrQ34C6EVEvjCu3eLGbjDPm4oewouO31OxPPE32
+	7VvdSlpGW3L5bxd5P9HtwOxeMRb5WE/DZ3/ryvvBT4+WUg9xW186X5//CWZHc6ktq0f
+	JtGu0ouykxPMYHUbUbavZ/4AC7Kp7wBvWr7sjp00=
+Received: by mx.zohomail.com with SMTPS id 1778750868733531.0360837030714;
+	Thu, 14 May 2026 02:27:48 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH v5 0/6] clk/reset: anlogic: add support for DR1V90 SoC
+Date: Thu, 14 May 2026 17:27:16 +0800
+Message-Id: <20260514-dr1v90-cru-v5-0-34f3021aab51@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] soc: qcom: rpmpd: Add Shikra RPM Power Domains
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        kamal.wadhwa@oss.qualcomm.com, jishnu.prakash@oss.qualcomm.com
-References: <20260429-add_rpmpd_shikra-v1-0-fdba28564380@oss.qualcomm.com>
- <20260429-add_rpmpd_shikra-v1-2-fdba28564380@oss.qualcomm.com>
- <e032c072-57b3-44b4-84a7-5aff062b9c00@oss.qualcomm.com>
- <20260514084512.q5pzh226zdkuw53f@hu-kotarake-hyd.qualcomm.com>
- <ezpigr442rjnodqcg5fqsyaik3tkp4yyw3cbu6j75ra2vidnnj@7svqkcz45sdi>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ezpigr442rjnodqcg5fqsyaik3tkp4yyw3cbu6j75ra2vidnnj@7svqkcz45sdi>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: QCQyFexg5GWkNMqjoKDLpqmJovlRT-hn
-X-Proofpoint-ORIG-GUID: QCQyFexg5GWkNMqjoKDLpqmJovlRT-hn
-X-Authority-Analysis: v=2.4 cv=DewnbPtW c=1 sm=1 tr=0 ts=6a05949f cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=tdAlGey_Py1J2zJlv2AA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE0MDA5MiBTYWx0ZWRfX7H9kl0gQVV7k
- KKgCvYyrkwiaYlKDwYgPCFsRP88cSF8X79zsZZDRodrkwF1Mt0uT1eAMBl2i2iibjucxosP/ONi
- Q7qD/kwNK8ouFcOuFzbUtTCnvO3oO8UnP3i3UFBpPmmn0uOuXEe1McYO2YPw8NwiMI6ngD7CL55
- 1NXKJsUbccWin1aRvrzsoTI7ArOhSfb5sxog3giIedfk6/UqOApI2ie3JDP/1iNeHGnyH7dnBHi
- 7AOFVUwR8Ebyj6qPgxBTCj/PJfYcH5759xusv+mtOTCo2dfLCc5QMhDY3QdL/+fSk0RQK5XP9ZA
- FY6KWL9aGMvcFr+Onw9eB2LdUwfs34EYwIYjanBfnPqTw5EWyRaUiKySk4CoxQLEmMGQnZ7cqqp
- DakC+IamOcBynZVKIxj+YsggTdpZ2UnatWUD9HYqwafaej+fVIGboao3Oj3Td470eze8uPKSnsN
- pZu/+iQv8XxNbyb9QBQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-14_02,2026-05-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 phishscore=0 spamscore=0 malwarescore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605050000
- definitions=main-2605140092
-X-Rspamd-Queue-Id: BCF1E53FBBC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23NQQ6CMBCF4auYrq1pp4VSV97DuIDOKE1UtGCjI
+ dzdoomKYfkm+f7pWUvBU8vWi54Fir71zTmNbLlgri7PB+Ie02YgIBMWgGOQ0Qruwo0bXVZaOLM
+ Ho1gCl0B7f3/Ftrv3DnS9pWb3Pda+7ZrweD2McrzOtqPkgpOyCk1WIGnaXPzh1ITyuOrI1WxMR
+ fhwKSCfcEhcqyo3pcMcEee4+nKQU64Sz8A5qwqUWIk5rn+4khOuE0+scIUxVFn5z4dheAIDbFi
+ 6egEAAA==
+X-Change-ID: 20250922-dr1v90-cru-74ab40c7f273
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Junhui Liu <junhui.liu@pigmoral.tech>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Brian Masney <bmasney@redhat.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778750853; l=4246;
+ i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
+ bh=J2/S40TiCw6k69eaOKQI442EBK/SDfU7izqJXnyyuIg=;
+ b=NNCEe7KtjpFVpBn6ik3E1byVkkVGWoX74sJ0/BJ3iEp5x0pvVcwqCs6GDRVYw6aZmK6xj4ZC1
+ G2JM3g+fyyJC7oSDPMZD0IQ4Z8lHfnHeo+ogInmUWo4zX5i1fOjYfxt
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: E48AE53FC89
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-297389-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[pigmoral.tech];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297391-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pigmoral.tech:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gitee.com:url,pigmoral.tech:email,pigmoral.tech:mid,pigmoral.tech:dkim]
 X-Rspamd-Action: no action
 
-On 5/14/26 11:16 AM, Dmitry Baryshkov wrote:
-> On Thu, May 14, 2026 at 02:15:12PM +0530, Rakesh Kota wrote:
->> On Tue, May 12, 2026 at 02:16:07PM +0200, Konrad Dybcio wrote:
->>> On 4/29/26 4:09 PM, Rakesh Kota wrote:
->>>> Add RPM Power Domains support for the Shikra platform.
->>>>
->>>> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
->>>> ---
->>>>  drivers/pmdomain/qcom/rpmpd.c | 16 ++++++++++++++++
->>>>  1 file changed, 16 insertions(+)
->>>>
->>>> diff --git a/drivers/pmdomain/qcom/rpmpd.c b/drivers/pmdomain/qcom/rpmpd.c
->>>> index 15a11ff282c3f86b1e86c6604d165e297620f6cf..6f751ee5a7833912d54d2bcfd5d85837ab7a97d3 100644
->>>> --- a/drivers/pmdomain/qcom/rpmpd.c
->>>> +++ b/drivers/pmdomain/qcom/rpmpd.c
->>>> @@ -863,6 +863,21 @@ static const struct rpmpd_desc sdm660_desc = {
->>>>  	.max_state = RPM_SMD_LEVEL_TURBO,
->>>>  };
->>>>  
->>>> +static struct rpmpd *shikra_rpmpds[] = {
->>>> +	[RPMPD_VDDCX] =		&cx_rwcx0_lvl,
->>>> +	[RPMPD_VDDCX_AO] =	&cx_rwcx0_lvl_ao,
->>>> +	[RPMPD_VDDCX_VFL] =	&cx_rwcx0_vfl,
->>>> +	[RPMPD_VDDMX] =		&mx_rwmx0_lvl,
->>>> +	[RPMPD_VDDMX_AO] =	&mx_rwmx0_lvl_ao,
->>>> +	[RPMPD_VDDMX_VFL] =	&mx_rwmx0_vfl,
->>>> +};
->>>
->>> This is identical to sm6125_rpmpds. If you're sure the list is correct
->>> and complete (no LPI domains etc.), you can drop this patch, and proceed
->>> with just this change:
->>>
->> There is one difference — the max_state for Shikra is
->> RPM_SMD_LEVEL_TURBO_NO_CPR, whereas sm6125 uses RPM_SMD_LEVEL_BINNING. 
-> 
-> It's handled in the DT. As such, programming model and the domain list
-> looks the same and compatible.
+Add Clock and Reset Unit (CRU) support for the Anlogic DR1V90 SoC, as
+well as corresponding dts bindings and dts integration.
 
-Yes/no, this is an upper bound
+The CRU driver framework is built around the clock controller as the
+primary device, with the reset controller implemented as an auxiliary
+device. The clock part refers to the vendor's code [1] to determine the
+structure of the clock tree.
 
-one improvement we could still make to this patch is not to define
-shikra_rpmpds[], but refer to the existing sm6125 one
+The Anlogic DR1 series includes not only the DR1V90 (based on the Nuclei
+UX900 RISC-V core), but also the DR1M90 (based on the Cortex-A35 ARM64
+core). Most of the clock tree and CRU design can be shared between them.
+This series only adds CRU support for DR1V90. Nevertheless, the driver
+is structured to make future extension to other DR1 variants like
+DR1M90.
 
-Konrad
+Link: https://gitee.com/anlogic/linux/blob/anlogic-6.1.54/drivers/clk/anlogic/anl_dr1x90_crp.c [1]
+
+---
+Changes in v5:
+- Use the standard GENMASK() macro for clk_div_mask() instead of a 1L
+  cast
+- Rename the main oscillator from "osc_33m" to "osc" across bindings
+  and driver
+- Move the main oscillator clock-frequency definition from the SoC dtsi
+  to the board dts
+- Add MAINTAINERS entry for only the DR1V90 CRU driver instead of using
+  broad wildcards to match all DR1V90 files
+- Link to v4: https://lore.kernel.org/r/20251231-dr1v90-cru-v4-0-1db8c877eb91@pigmoral.tech
+
+Changes in v4:
+- Change common cru_dr1 code into a standalone module for future reuse
+- Remove redundant .round_rate() in the clock driver
+- Use devm_auxiliary_device_create() to simplify auxiliary device
+  registration
+- Pass register base from clk to reset via platform_data instead of
+  performing a second ioremap
+- Update clock Kconfig and Makefile licenses to GPL-2.0-only from
+  deprecated GPL-2.0
+- Add Kconfig dependency for the reset driver on the clock driver
+- Link to v3: https://lore.kernel.org/r/20251216-dr1v90-cru-v3-0-52cc938d1db0@pigmoral.tech
+
+Changes in v3:
+- Remove incorrect __free(kfree) usage for auxiliary_device in clock
+  driver
+- Replace __clk_get_enable_count with __clk_is_enabled in clock driver
+- Add a lock to protect register read-modify-write in reset driver
+- Rebase to v6.19-rc1
+- Link to v2: https://lore.kernel.org/r/20251026-dr1v90-cru-v2-0-43b67acd6ddd@pigmoral.tech
+
+Changes in v2:
+- Update copyright infomation
+- Add the original vendor author's infomation to the clock driver
+- Rebase on the v3 basic DT patch, which is based on v6.18-rc1
+- Link to v1: https://lore.kernel.org/r/20250922-dr1v90-cru-v1-0-e393d758de4e@pigmoral.tech
+
+---
+Junhui Liu (6):
+      clk: correct clk_div_mask() return value for width == 32
+      dt-bindings: clock: add Anlogic DR1V90 CRU
+      clk: anlogic: add cru support for Anlogic DR1V90 SoC
+      reset: anlogic: add support for Anlogic DR1V90 resets
+      riscv: dts: anlogic: add clocks and CRU for DR1V90
+      MAINTAINERS: Add Anlogic DR1V90 CRU driver entry
+
+ .../bindings/clock/anlogic,dr1v90-cru.yaml         |  60 ++++++
+ MAINTAINERS                                        |   9 +
+ arch/riscv/boot/dts/anlogic/dr1v90-mlkpai-fs01.dts |   4 +
+ arch/riscv/boot/dts/anlogic/dr1v90.dtsi            |  40 +++-
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/anlogic/Kconfig                        |  21 ++
+ drivers/clk/anlogic/Makefile                       |   7 +
+ drivers/clk/anlogic/cru-dr1v90.c                   | 192 +++++++++++++++++
+ drivers/clk/anlogic/cru_dr1.c                      | 226 +++++++++++++++++++++
+ drivers/clk/anlogic/cru_dr1.h                      | 117 +++++++++++
+ drivers/reset/Kconfig                              |  10 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-dr1v90.c                       | 140 +++++++++++++
+ include/dt-bindings/clock/anlogic,dr1v90-cru.h     |  46 +++++
+ include/dt-bindings/reset/anlogic,dr1v90-cru.h     |  41 ++++
+ include/linux/clk-provider.h                       |   3 +-
+ 17 files changed, 916 insertions(+), 3 deletions(-)
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20250922-dr1v90-cru-74ab40c7f273
+
+Best regards,
+-- 
+Junhui Liu <junhui.liu@pigmoral.tech>
+
 
