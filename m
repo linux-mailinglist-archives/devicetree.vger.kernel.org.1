@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-297283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297284-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHDfKulJBWpEUQIAu9opvQ
-	(envelope-from <devicetree+bounces-297283-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:04:57 +0200
+	id +N5TAgRKBWpEUQIAu9opvQ
+	(envelope-from <devicetree+bounces-297284-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:05:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0598953D816
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:04:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C4253D81D
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:05:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E71D3013789
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 04:04:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CFB6730233DD
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 04:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816581EA7F4;
-	Thu, 14 May 2026 04:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379032DF13E;
+	Thu, 14 May 2026 04:05:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sDD2DEBP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UXSpg9bM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1193F4121
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 04:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C461EA7F4
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 04:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778731494; cv=none; b=g8cN/gFyXq2gps+4p7pgV1qsHY+Jhpw5PseHcLEKjsd6mvWxjHcCPTKiUBkm8fteOnDp30uqcw99bDmM74KjNgotQwSCK7ej2/ry6MeG9n3Xv2Y7Z67OmV/lfIrq3UEvvUe94e0EE9MkcbpmC7cAkn8BMPpn/lt2iiMU5HsSOXk=
+	t=1778731521; cv=none; b=kSxioeNIqXUSnch83a3H5xAVX8sLPsgkzyajG3f0FmxvGkaPyrB7lYpoqst2oMqVTcfDIJCG7HaLFiq1ez89KojHpvjT4yYH9h0skObmyDYWXVxPbd96/jwHVP3aIV57aidFt9UToQ7ZUhksvuuzVaYYyNh8wdtzUHvXlpULJtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778731494; c=relaxed/simple;
-	bh=eASmCAop9+qLy4S/WoDeT7tXY6MAK+khj+C67SI2/OE=;
+	s=arc-20240116; t=1778731521; c=relaxed/simple;
+	bh=Pq6GcboP2d7eR1Q9seH0i7Hx6J56CwxChCqzDR1v7vU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=kgTAPJoKHTkLBkHKnF2Bv8O74bC7PcZcu0Jq2Om0CNaN/dxQr9VkNUUvQsIong+YzPiTindZhPOdNGRa0lbP/qUTSrXbVnFReVOPiTGwPI/Qv4Osau/rhHQQfRQvpEd6lAJXo+er83LRf9p31uvqhbyeaVgqHE6ak01bfN3VbPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sDD2DEBP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6654C2BCB7;
-	Thu, 14 May 2026 04:04:53 +0000 (UTC)
+	 Message-Id; b=tpyMctIXmG6iqsy3dKFGLzzBAiUt0ekx/+A7ZEl/2Lve9q5dNsxNnzdx0rQDOntxgInxEHzvqOPb+N8mas0TDu45w/M5FRrP254PtbFV+klB/Evr9/pTvol99pC2xKwz5zBF6AY9ChGbAkfTUlk+7AVNpwH2lgk58YwVoKTRZ44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UXSpg9bM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FF16C2BCB7;
+	Thu, 14 May 2026 04:05:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778731494;
-	bh=eASmCAop9+qLy4S/WoDeT7tXY6MAK+khj+C67SI2/OE=;
+	s=k20201202; t=1778731520;
+	bh=Pq6GcboP2d7eR1Q9seH0i7Hx6J56CwxChCqzDR1v7vU=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=sDD2DEBPkeF2fQ9ZhIiuffrmnoPBorInFm/UP04Y2kXS1bDy3YQyPsoUzmMa5hmOH
-	 54JOO0UZS41FRFoFPpH4SMRVauud7UA62APpHTIm93ooQMnAiigyU2Xp/hjqkt975o
-	 1NLHAASaeGr0zFJvkhKNwvABRy11TOiyhHtHx8dOaKl7VyN2efMmyFhDI7ih+sdGqP
-	 Fy5Q39LxmMORdkiJ2Ju1UdgV4TEx7U6HMZPUgV/fbAHmsKCsV1H0Pa7bqH9Kg90blK
-	 UNtTbANaNJJZ37+Ixv/R4nW6A64yuqLrlZdEzkWgqBNrTYN3AnO+ME6wgViyKMbeBH
-	 IPhnzbgbSLkpw==
+	b=UXSpg9bMr9b+LxyiKmuGgbKrvcJHVbPAzSMznl37ggmjUvdq/zAnLPZM0mBk0T7kV
+	 OOQyOAFkcBJAW3AbC0sN70tThgprpCe6jeZ4ZtSbxgoZ4vSzWKtwemKztHakQml8zG
+	 WvBPYSko6CNec1WYKRu8q5yX2qFpjhU48sSgKXqpauiXOxgYXLdiv077poq9ymS0oG
+	 qTJNCmTsD9DTC3xJj498I9+xWtQd5EdLCTXyR8hzLOgLgpgvwrDMAM0/xpV4htCLnW
+	 nbok7PIzhgCNxLV53yMhtJImPCxGufDY3d96WKkoz7D4bl8N8dIWC0Hb9rmLxKoutp
+	 42kuAB/ey/2TA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: eliza-mtp: Enable USB and ADSP
- support
+Subject: Re: [PATCH v2 3/3] arm64: dts: amlogic: t7: khadas-vim4: add
+ PWM-driven status LED
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Abel Vesa" <abel.vesa@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260513-eliza-adsp-usb-v4-3-839936e89aca@oss.qualcomm.com>
-References: <20260513-eliza-adsp-usb-v4-3-839936e89aca@oss.qualcomm.com>
+To: "Ronald Claveau via B4 Relay" <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, neil.armstrong@linaro.org, krzk+dt@kernel.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260513-add-kvim4-sysled-v2-3-3ec9779e8875@aliel.fr>
+References: <20260513-add-kvim4-sysled-v2-3-3ec9779e8875@aliel.fr>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 04:04:53 +0000
-Message-Id: <20260514040453.D6654C2BCB7@smtp.kernel.org>
+Date: Thu, 14 May 2026 04:05:19 +0000
+Message-Id: <20260514040520.5FF16C2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 0598953D816
+X-Rspamd-Queue-Id: 72C4253D81D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -69,14 +69,14 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297283-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297284-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,lists.linux.dev:replyto];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -85,56 +85,66 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,linux-kernel-dev.aliel.fr,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] The compatible string `qcom,eliza-pmic-glink` is used without being=
- documented in the binding schema.
+- [Low] The subnode for the LED under `pwm-leds` is named `status`, which v=
+iolates the `leds-pwm` device tree binding schema.
 --
 
-commit 9f076cccb73f2dcb88a58f126b6e3528a73fc2ba
-Author: Abel Vesa <abel.vesa@oss.qualcomm.com>
+commit fa7913b140af3e7d64c22b109d1765f504180ad0
+Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-arm64: dts: qcom: eliza-mtp: Enable USB and ADSP support
+arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven status LED
 
-This commit enables USB and ADSP support for the Eliza MTP. It describes
-the USB port, the eUSB2 repeater provided by the PM7550BA PMIC, and the
-ADSP remoteproc firmware.
+This commit enables the pwm_ao_cd controller and adds a pwm-leds node with a
+heartbeat trigger to expose the status LED on the VIM4 board.
 
-> diff --git a/arch/arm64/boot/dts/qcom/eliza-mtp.dts b/arch/arm64/boot/dts=
-/qcom/eliza-mtp.dts
-> index 90f629800cb02..3e41c95edb28f 100644
-> --- a/arch/arm64/boot/dts/qcom/eliza-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/eliza-mtp.dts
-[ ... ]
-> @@ -54,6 +57,44 @@ bi_tcxo_ao_div2: bi-tcxo-ao-div2-clk {
->  		};
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dt=
+s b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+> @@ -53,6 +53,16 @@ dc_in: regulator-dc-in {
+>  		regulator-always-on;
 >  	};
 > =20
-> +	pmic-glink {
-> +		compatible =3D "qcom,eliza-pmic-glink",
-> +			     "qcom,sm8550-pmic-glink",
-> +			     "qcom,pmic-glink";
+> +	pwm-leds {
+> +		compatible =3D "pwm-leds";
+> +
+> +		status {
 
-Is the "qcom,eliza-pmic-glink" string documented in the binding schema?
+Does this subnode name trigger a device tree schema validation error?
 
-Using a new compatible string here without adding it to the corresponding
-binding document usually causes make dtbs_check to report schema
-validation warnings.
+The leds-pwm binding schema in
+Documentation/devicetree/bindings/leds/leds-pwm.yaml specifies
+additionalProperties: false and expects child node names to match the
+regular expression ^led(-[0-9a-f]+)?$.
+
+Using status as a node name is also confusing since it is commonly used as a
+standard device tree property.
+
+Should this be renamed to something like led-status or led-0 to comply with
+the schema?
+
+> +			linux,default-trigger=3D"heartbeat";
+> +			max-brightness =3D <255>;
+> +			pwms =3D <&pwm_ao_cd 0 30040 0>;
+> +		};
+> +	};
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-eliza-adsp=
--usb-v4-0-839936e89aca@oss.qualcomm.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-add-kvim4-=
+sysled-v2-0-3ec9779e8875@aliel.fr?part=3D3
 
