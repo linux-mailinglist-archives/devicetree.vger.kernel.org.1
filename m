@@ -1,190 +1,129 @@
-Return-Path: <devicetree+bounces-297577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPYGEWXMBWpGbgIAu9opvQ
-	(envelope-from <devicetree+bounces-297577-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:21:41 +0200
+	id gPFcBB3NBWpGbgIAu9opvQ
+	(envelope-from <devicetree+bounces-297578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:24:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98B9542431
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:21:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8390A5424A1
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F1C343095D59
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:18:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0738C308A34A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01AE3E1D0F;
-	Thu, 14 May 2026 13:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D5E3D9023;
+	Thu, 14 May 2026 13:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tm/V4dsu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LImBuYoP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3893E1200;
-	Thu, 14 May 2026 13:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F143D813D;
+	Thu, 14 May 2026 13:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778764661; cv=none; b=Hag84Zgy91Z9gQqC38EgxEQiD92dcGJovFihB5sqwgUv1M0i8c56LS86QXi5GKTW8IrPopVOer7kd18uWgLYZ0WgV2NWU0Tq6u4oEvDHzz8BRMPiCNLdQ66YcofS9dnW7jm9w7KM1tP79gN8VL6zLwpvpQpG5EuW6PT/qceEeLg=
+	t=1778764823; cv=none; b=RZqpAIseer454QPgMAxZqqUhGDGpSxmUWopnPAs8S0X7y4/XzqR5ZR12TxX667tCU9/6MlxSpgLuiBk8xW5xHhnGu/IkfCh4MPChdCBWOvXROIutu9XKr3kzbA7p5Poj+acCgTriqdzbCRWzF5ATfoFwvJnwQEGpB8xVWGSUrKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778764661; c=relaxed/simple;
-	bh=GObrIIIdUQnUTyY00TmCyUaSAxI2d6e1/JLrHcUU5oo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MqpkDty/SyXZylCS4KM01fVqZkgsXnNSA7FuNklt4+VvH1b6z4YM4ZhfLFMnUge9s/4VOKfkkrt8jMuW96FnPMezgL/oE/vzn3Juwbv2UDxwfN8JdCRnx7+N1TmmB4I3JLj2D6hGLlqs+QIeCTRnBgCtTsMUHDwYKnqYLTXaWmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tm/V4dsu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28E19C4AF09;
-	Thu, 14 May 2026 13:17:40 +0000 (UTC)
+	s=arc-20240116; t=1778764823; c=relaxed/simple;
+	bh=pR9BOXtYiFjzO6X76WSQtBq8aCv5MCF6r7vrgFaR8Qg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rJCjp6/hSg8f284oh8JsXQzc8sdlInFw33o1SAftVz9moI8tTiVNc13gkajDu31gvNOPa4uJTYRins0s5rEAnNEl9E8GIBSz9SNXkJ/i16EOXTgmWwxqnR0RCxs9GjMoBEmpyidfr4dqZ5d6QsAVpK02RrTMVf/ZMWoPPaxur04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LImBuYoP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 499E3C2BCB3;
+	Thu, 14 May 2026 13:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778764660;
-	bh=GObrIIIdUQnUTyY00TmCyUaSAxI2d6e1/JLrHcUU5oo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Tm/V4dsuECEiuPujwxpr0b4ong+u+xFx3mj/oEoRR43obSYPCj4wxI0WTwnk6Q4sd
-	 Q6Me/s3E7zxJfrBxeOV3bIZhbjtCzG6+5WAFB7quM/zFMGkVQMky6MN2Jt90vLRXhM
-	 utREwd6mBBu464GMWmw/czAIrjvXsKF8tVJ9g2qTRuOCkKdW4nSehoDQaORUZZRCL1
-	 OrAYCubrLSvCE8Ff3qeCFjGnLnl1zgpTk6z3nc7Kugml6Sk8THqTos/ejlLgjFff7v
-	 s3Llt+WBIwglN/I0FDZX/muo2iYI3ocM7qgVtNOValTl4bYjyd0qEw9J/yiw1mV5eM
-	 nEAW3qamuGPCg==
-Date: Thu, 14 May 2026 08:17:38 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1778764822;
+	bh=pR9BOXtYiFjzO6X76WSQtBq8aCv5MCF6r7vrgFaR8Qg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LImBuYoPWhHUqrmOqycIrL78+O4wPmLD2rcwyDU9o+hy2HWQnfdPSGmPuPXAMEulB
+	 kXtkb/AxfRRBEaEovssZXkA1hBrdf5v6jmK4RTOkbJaksIscBRLJr001+jt7HSs+MM
+	 1CNIJU7WeZcA3ll6PxYSi1Gg266l6cXZ0x1ci8ibEZaeFsXpGKK5JYS7+8nc7nzyRc
+	 8wFTbkz+twU85BkEhIJ/4keizknO2kqrDMQXcT9wrwW05Uvf/Nwk4EBSW7xeFKvBbn
+	 88jFT8I9DlM0ZNNELKmheSsjaLR9epdO4z9wh1LOp4jb4PImER6noSdjK2CUZGdB8X
+	 wrKiEa2RScpHA==
+Date: Thu, 14 May 2026 15:20:20 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Roman Vivchar <rva333@protonmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu <sen.chu@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
+	Lee Jones <lee@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
+	Ben Grisdale <bengris32@protonmail.ch>
+Subject: Re: [PATCH v2 02/16] dt-bindings: iio: adc: mt6359: add mt6323 PMIC
+ AUXADC
+Message-ID: <20260514-elite-shrew-of-prosperity-b6a25c@quoll>
+References: <20260512-mt6323-v2-0-3efcba579e88@protonmail.com>
+ <20260512-mt6323-v2-2-3efcba579e88@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
- Alexandre Ghiti <alex@ghiti.fr>, linux-gpio@vger.kernel.org, 
- Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org, 
- Emil Renner Berthing <kernel@esmil.dk>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>, 
- linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-In-Reply-To: <20260514111218.94519-21-changhuang.liang@starfivetech.com>
-References: <20260514111218.94519-1-changhuang.liang@starfivetech.com>
- <20260514111218.94519-21-changhuang.liang@starfivetech.com>
-Message-Id: <177876464652.126062.7793320832597254733.robh@kernel.org>
-Subject: Re: [PATCH v2 20/22] dt-bindings: pinctrl: Add
- starfive,jhb100-per3-pinctrl
-X-Rspamd-Queue-Id: D98B9542431
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260512-mt6323-v2-2-3efcba579e88@protonmail.com>
+X-Rspamd-Queue-Id: 8390A5424A1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297577-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297578-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,mediatek.com,intel.com,arm.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,protonmail.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-
-On Thu, 14 May 2026 04:12:16 -0700, Changhuang Liang wrote:
-> Add pinctrl bindings for StarFive JHB100 SoC Peripheral-3(per3) pinctrl
-> controller.
+On Tue, May 12, 2026 at 08:18:16AM +0300, Roman Vivchar wrote:
+> The MediaTek mt6323 PMIC includes an AUXADC used for battery voltage,
+> temperature, and other internal measurements.
 > 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> Add the devicetree binding documentation and the associated header file
+> defining the ADC channel constants.
+> 
+> Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 > ---
->  .../pinctrl/starfive,jhb100-per3-pinctrl.yaml | 173 ++++++++++++++++++
->  .../pinctrl/starfive,jhb100-pinctrl.h         |  14 ++
->  2 files changed, 187 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per3-pinctrl.yaml
-> 
+>  .../bindings/iio/adc/mediatek,mt6359-auxadc.yaml   |  1 +
+>  .../dt-bindings/iio/adc/mediatek,mt6323-auxadc.h   | 24 ++++++++++++++++++++++
+>  2 files changed, 25 insertions(+)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys2-pinctrl.yaml:135:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys1-pinctrl.yaml:136:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per2pok-pinctrl.yaml:134:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys0h-pinctrl.yaml:136:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per2-pinctrl.yaml:136:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per0-pinctrl.yaml:136:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per3-pinctrl.yaml:134:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per1-pinctrl.yaml:135:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-./Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys0-pinctrl.yaml:136:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/toshiba,tc9563.example.dtb: pcie@0,0 (pci1179,0623): i2c-parent: [[4294967295, 119]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/toshiba,tc9563.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/i2c-demux-pinctrl.example.dtb: i2c-mux3 (i2c-demux-pinctrl): i2c-parent:0: [2, 3, 4] is too long
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-demux-pinctrl.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,ether.example.dtb: ethernet-phy@1 (ethernet-phy-id0022.1537): compatible: ['ethernet-phy-id0022.1537', 'ethernet-phy-ieee802.3-c22'] is too long
-	from schema $id: http://devicetree.org/schemas/net/micrel.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys0-pinctrl.example.dtb: pinctrl@13080000 (starfive,jhb100-sys0-pinctrl): gpio-ranges:1: [4] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.example.dtb: dwc3@2680000 (ti,keystone-dwc3): usb@2690000:usb-phy:0: [4294967295, 4294967295] is too long
-	from schema $id: http://devicetree.org/schemas/usb/ti,keystone-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.example.dtb: dwc3@2680000 (ti,keystone-dwc3): usb@2690000: Unevaluated properties are not allowed ('usb-phy' was unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/ti,keystone-dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.example.dtb: usb@2690000 (snps,dwc3): usb-phy:0: [4294967295, 4294967295] is too long
-	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.example.dtb: usb@2690000 (snps,dwc3): Unevaluated properties are not allowed ('usb-phy' was unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a030000 (snps,dwc3): usb-phy:0: [4294967295, 4294967295] is too long
-	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a030000 (snps,dwc3): Unevaluated properties are not allowed ('snps,incr-burst-type-adjustment', 'usb-phy' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-drd.example.dtb: usb@4a030000 (snps,dwc3): usb-phy:0: [4294967295, 4294967295] is too long
-	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-drd.example.dtb: usb@4a030000 (snps,dwc3): Unevaluated properties are not allowed ('adp-disable', 'dr_mode', 'maximum-speed', 'otg-rev', 'phy_type', 'usb-phy' were unexpected)
-	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys2-pinctrl.example.dtb: pinctrl@13082000 (starfive,jhb100-sys2-pinctrl): gpio-ranges:2: [32, 5] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys1-pinctrl.example.dtb: pinctrl@13081000 (starfive,jhb100-sys1-pinctrl): gpio-ranges:1: [8] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per2pok-pinctrl.example.dtb: pinctrl@11bc2400 (starfive,jhb100-per2pok-pinctrl): gpio-ranges:1: [18] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-sys0h-pinctrl.example.dtb: pinctrl@13080800 (starfive,jhb100-sys0h-pinctrl): gpio-ranges:1: [12] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per2-pinctrl.example.dtb: pinctrl@11bc2000 (starfive,jhb100-per2-pinctrl): gpio-ranges:1: [31] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per3-pinctrl.example.dtb: pinctrl@11c42000 (starfive,jhb100-per3-pinctrl): gpio-ranges:1: [11] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per0-pinctrl.example.dtb: pinctrl@11a0a000 (starfive,jhb100-per0-pinctrl): gpio-ranges:2: [32, 28] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/starfive,jhb100-per1-pinctrl.example.dtb: pinctrl@11b42000 (starfive,jhb100-per1-pinctrl): gpio-ranges:2: [32, 4] is too short
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260514111218.94519-21-changhuang.liang@starfivetech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
