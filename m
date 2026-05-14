@@ -1,229 +1,180 @@
-Return-Path: <devicetree+bounces-297377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297361-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHkuBrWNBWpNYgIAu9opvQ
-	(envelope-from <devicetree+bounces-297377-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 10:54:13 +0200
+	id yKdBJi1+BWrjXgIAu9opvQ
+	(envelope-from <devicetree+bounces-297361-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 09:47:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F142353F80E
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 10:54:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41DDE53EF03
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 09:47:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73EA63013245
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:54:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2914830167BD
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 07:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0963DD513;
-	Thu, 14 May 2026 08:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225373A9851;
+	Thu, 14 May 2026 07:47:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WxGzprOz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SOoTdfCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32124.qiye.163.com (mail-m32124.qiye.163.com [220.197.32.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F413D7D9A
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 08:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39B83F4127
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 07:47:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778748849; cv=none; b=Iw6yyWeegrj7kjh0RvQBgkL8dUEDOrLLCxNyVVAyj7JXjjOyLAsHpsmOSpMMzl0GuW3/fqxsRfVLusAngrQWQfr770toeHeBcItvg5as0FH5Bxi1WJH2Cdf50FCqJC7EtnPCq3uzUXB0HvNItc4ZGkxnD1A4lwD3qZUueG+p5OE=
+	t=1778744875; cv=none; b=XrINM175HE7C2R2GXIJKq1t4svnXz6XJZ7MT8oiOxZpPyvcr2lpoV80f852CHWyXa0wD+BUFk2V9rI7j2ij4VNOBqmWHI7nAQT/Zwip9fzsNbWqibBTN+b7y6DvngvzLDEzLZVb4ynKnl0vQxuyI0+y1bDaQF274NaimlurXfYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778748849; c=relaxed/simple;
-	bh=IoKzoM6/Z57dXqLNaplXe0EQEP1kl1tN6XhAwdBSJ+k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V6HyVg9xSPtUDhrw40s8t5tKXvMtGnekjBT3CjOB04L2J6J8/DDaAPDy5qA11txmqC5ZiDUShL3ptXokr2TbDTXEEx8FeHV2B2zoPCdzGgU+nypJ5mukmjGSd/FtcbYoL+JIfpZyzLhVeAfEQhnxBFhLDN5UeX/q8RbybfwYBR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WxGzprOz; arc=none smtp.client-ip=220.197.32.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.43] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3e63187bb;
-	Thu, 14 May 2026 15:38:08 +0800 (GMT+08:00)
-Message-ID: <58e9a6d9-b77a-45aa-8d39-294399c85cc0@rock-chips.com>
-Date: Thu, 14 May 2026 15:38:08 +0800
+	s=arc-20240116; t=1778744875; c=relaxed/simple;
+	bh=4ygkUXydDvfdzGsONSuS9fwxQVTKND9fd/m4hei/qzg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=rtkNXaug6XsJyAS+RKo5zm9Km0YJPY9tiiW5tlnhhhp0j/BY9Y4KmniOpDuikee79i4joe14zG/FmzsZIgJvfx8OvNTmf+2Z7uXHGw47pjxLe4zQx3vks/mdktZICFnL1Dr4O1H+5GhrFdOQsveuKCfwLr/netfl3AximsK/Z2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SOoTdfCH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ED8CC2BCB7;
+	Thu, 14 May 2026 07:47:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778744874;
+	bh=4ygkUXydDvfdzGsONSuS9fwxQVTKND9fd/m4hei/qzg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=SOoTdfCHMzoHQ/AJK3jLp86kZNK9TXqfVwX+tw/0l4uA/a069GCucXxcbEyNrTqZy
+	 xWLP0KEBilaKXuk1cMO6epXvc9YRUHF7aOWE7Tk8hGHW0bFAZtctuRHf/SQJTOnELb
+	 wn5vw9mQJC1ldN/Xfzo969YVU+DthHeIQq0lpMTtMGVMYq168G9puKIdmG3ub2BzSD
+	 ClqESKlYTp5/auodUo6pP6Z0QTZZdTbcDLBU4mYdgeQm9Wk+kkvY4BoxP9uFgEKwR+
+	 qguOvStfkj6sZRxyrS6bcKKmm7fXO8ZMvUsJNRVP/M5CB9hR4Gwwegztgq+/s4cKcx
+	 6QM8C1YV1HrtA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 3/7] dt-bindings: clock: qcom: Add support for CAMCC
+ for Eliza
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Taniya Das" <taniya.das@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260513-eliza_mm_cc_v2-v4-3-e61b5434e8d9@oss.qualcomm.com>
+References: <20260513-eliza_mm_cc_v2-v4-3-e61b5434e8d9@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 14 May 2026 07:47:54 +0000
+Message-Id: <20260514074754.8ED8CC2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/10] dt-bindings: display: rockchip: analogix-dp: Fix
- hclk as third clock for RK3588
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- robh@kernel.org
-References: <20260513074414.2053435-2-damon.ding@rock-chips.com>
- <20260514025123.D758DC19425@smtp.kernel.org>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20260514025123.D758DC19425@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9e256be58903a3kunmb52ad2ddc771c
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDTB0YVhhKGkhCSkseTh5MTVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=WxGzprOznWAUfFWi3nrZyyRpBA3fSwzGiYboygkNyTi/qSLy4D5JQ2vx+AdIaIq/KWF26XDTQ5jg85WIXV14mz2xhk0PwNgCHdtJ3h2AFLZsKDJmCvuSkggvxKADL/iraVezQw/ffN4KsxRm31HK1lPlZ9zrZcZJgEpI9TN0WJ0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=sQ3BCKjfz52siRf7KbRAMx4SaiJ9IA0GFI5jrZL+0IY=;
-	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: F142353F80E
+X-Rspamd-Queue-Id: 41DDE53EF03
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297377-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297361-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,qualcomm.com:email];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-On 5/14/2026 10:51 AM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] The device tree schema fails to correctly enforce the required number of clocks in the conditional blocks by omitting `minItems` and `maxItems` constraints.
-> --
-> 
-> commit 1eeef10904ab6c1e09008c1f85fab2353dd23f79
-> Author: Damon Ding <damon.ding@rock-chips.com>
-> 
-> dt-bindings: display: rockchip: analogix-dp: Fix hclk as third clock for RK3588
-> 
-> This commit enforces a third clock name on a per-compatible basis for
-> the analogix-dp driver. It removes the implicit clock enablement from
-> the GRF phandle and explicitly defines the clocks required for each SoC.
-> 
->> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->> index d99b23b88cc59..8001c1facf986 100644
->> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> 
-> [ ... ]
-> 
->> @@ -60,6 +57,33 @@ required:
->>   allOf:
->>     - $ref: /schemas/display/bridge/analogix,dp.yaml#
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - rockchip,rk3288-dp
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          items:
->> +            - const: dp
->> +            - const: pclk
-> 
-> Should this block include maxItems: 2? The top-level schema defines
-> maxItems: 3, which might allow a device tree with an extra unvalidated
-> third clock string to silently pass validation here.
-> 
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - rockchip,rk3399-edp
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          items:
->> +            - const: dp
->> +            - const: pclk
->> +            - const: grf
-> 
-> Does this block need minItems: 3 to ensure the grf clock is actually
-> enforced? Because the top-level schema allows minItems: 2, a device tree
-> omitting the third clock might still pass validation.
-> 
->> +
->>     - if:
->>         properties:
->>           compatible:
->> @@ -68,6 +92,11 @@ allOf:
->>                 - rockchip,rk3588-edp
->>       then:
->>         properties:
->> +        clock-names:
->> +          items:
->> +            - const: dp
->> +            - const: pclk
->> +            - const: hclk
-> 
-> Similarly, does this block also require minItems: 3? Without it, the
-> hclk requirement might not be strictly enforced if the schema validation
-> falls back to the top-level minItems: 2 allowance.
-> 
->>           resets:
->>             minItems: 2
->>           reset-names:
-> 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The schema incorrectly enforces the `#reset-cells` requirement f=
+or the newly added `qcom,eliza-cambistmclkcc` variant, which is not a reset=
+ provider.
+--
 
-After adding the maxItems and minItems as AI suggested, there are some 
-warnings via:
+commit a9d0f97a6a58cdea9469da3167d31dd8b62fa02f
+Author: Taniya Das <taniya.das@oss.qualcomm.com>
 
-make dt_binding_check 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+dt-bindings: clock: qcom: Add support for CAMCC for Eliza
 
-/home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: 
-allOf:1:then:properties:clock-names: {'maxItems': 2, 'items': [{'const': 
-'dp'}, {'const': 'pclk'}]} should not be valid under {'required': 
-['maxItems']}
-         hint: "maxItems" is not needed with an "items" list
-         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: 
-allOf:2:then:properties:clock-names: 'oneOf' conditional failed, one 
-must be fixed:
-         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'grf'}] is too long
-         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'grf'}] is too short
-         False schema does not allow 3
-         1 was expected
-         3 is greater than the maximum of 2
-         hint: "minItems" is only needed if less than the "items" list 
-length
-         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: 
-allOf:3:then:properties:clock-names: 'oneOf' conditional failed, one 
-must be fixed:
-         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'hclk'}] is too long
-         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'hclk'}] is too 
-short
-         False schema does not allow 3
-         1 was expected
-         3 is greater than the maximum of 2
-         hint: "minItems" is only needed if less than the "items" list 
-length
-         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-   LINT    ./Documentation/devicetree/bindings
-   DTEX 
-Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.example.dts
-   DTC [C] 
-Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.example.dtb
+This commit adds compatible strings for the Eliza camera and camera BIST
+clock controllers to the existing Milos camcc binding. It also introduces
+the corresponding dt-binding headers.
 
-Best regards,
-Damon
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yam=
+l b/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml
+> index f63149ecf3e1b..fe94dbeb80c60 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml
+> @@ -8,16 +8,23 @@ title: Qualcomm Camera Clock & Reset Controller on Milos
+[ ... ]
+>  properties:
+>    compatible:
+> -    const: qcom,milos-camcc
+> +    enum:
+> +      - qcom,eliza-cambistmclkcc
+> +      - qcom,eliza-camcc
+> +      - qcom,milos-camcc
 
+Since qcom,milos-camcc.yaml already has an unconditional inheritance from
+qcom,gcc.yaml:
+
+Documentation/devicetree/bindings/clock/qcom,milos-camcc.yaml:
+    allOf:
+      - $ref: qcom,gcc.yaml#
+
+the base schema enforces #reset-cells in its required list.
+
+> diff --git a/include/dt-bindings/clock/qcom,eliza-cambistmclkcc.h b/inclu=
+de/dt-bindings/clock/qcom,eliza-cambistmclkcc.h
+> new file mode 100644
+> index 0000000000000..7b8b285f18d27
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,eliza-cambistmclkcc.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_QCOM_CAM_BIST_MCLK_CC_ELIZA_H
+> +#define _DT_BINDINGS_CLK_QCOM_CAM_BIST_MCLK_CC_ELIZA_H
+> +
+> +/* CAM_BIST_MCLK_CC clocks */
+> +#define CAM_BIST_MCLK_CC_MCLK0_CLK				0
+[ ... ]
+> +#define CAM_BIST_MCLK_CC_SLEEP_CLK				19
+> +#define CAM_BIST_MCLK_CC_SLEEP_CLK_SRC				20
+> +
+> +#endif
+
+Looking at this newly added header, the BIST MCLK controller only provides
+clocks and defines zero resets.
+
+Forcing a pure clock provider to declare #reset-cells to pass schema
+validation seems semantically incorrect. It might force developers to add
+bogus properties to their device trees to circumvent validation errors,
+which happened in the subsequent commit "arm64: dts: qcom: eliza: Add
+support for MM clock controllers".
+
+Would it make sense to use an if-then conditional block in the schema to
+restrict the #reset-cells requirement to actual reset providers, or move
+the BIST controller to a separate schema file?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-eliza_mm_c=
+c_v2-v4-0-e61b5434e8d9@oss.qualcomm.com?part=3D3
 
