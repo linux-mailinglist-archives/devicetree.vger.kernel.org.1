@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-297777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCxyLGkeBmpDewIAu9opvQ
-	(envelope-from <devicetree+bounces-297777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:11:37 +0200
+	id uBDcMgQfBmpDewIAu9opvQ
+	(envelope-from <devicetree+bounces-297778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:14:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1192354630E
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:11:37 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1B3546345
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:14:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D480F300B604
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:11:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8CB963013A93
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3A730E0C0;
-	Thu, 14 May 2026 19:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8420439DBF0;
+	Thu, 14 May 2026 19:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="udmQWk2R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCspF4hx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2B3F4F1
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610E633F5B2
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778785895; cv=none; b=Y7aTifpdA6QmeQ4oRt7BvZfSIChOVXPEJb/Yo7ia4s0dc05svn3OGQ0OKWTIkquk3GamYEE8Wrllog99Y7y92Ixda0HrK2Pe/b91I3sxWeajs0OZpKXhNphBDoX7IQ9O0EDTM8f1o0NIipCUra6Gg6q7iBLCVi3nF4DAxDOHB20=
+	t=1778786047; cv=none; b=CXSMZBx1MYsgsQxtq4BZUQMreI5gYLzU7/f9IpuXrzsqgo+kOJr0UyD866XsIXoPI6oNu7wEX8/4NIiybJ2vurQ8DPb66dZyM1Un4zYd5hAdujESSCK+wgl/wK8T5Wl7oy3hd3NjVzgzmKU+9JgUduJqBy1QnnVB77rJsrpK/UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778785895; c=relaxed/simple;
-	bh=H3Av9w7a9TlhNBItr+XC0xQ4nJ0HmpGC5W+TucOkofQ=;
+	s=arc-20240116; t=1778786047; c=relaxed/simple;
+	bh=ouDWU5g4x8ak+iqeGii82TZq4B1Y4VBBfmYAoQNEHxY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NApKbMFHwh5xR2oBK1LMPziPiHVtNiPwW9H/Tm0oPFBHEmNk5ysJsTUV4eGylW31Hdi4b6gw4G7AOSbnebpmxzrBUqbEin0Sr8E2PO7dKVCihcFfw88sOPFPRaK8JbfUtUEdBS1NzW5UKXqID/4GD+55SueIo/YS/R+z0GFUt6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=udmQWk2R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 736C7C2BCB3;
-	Thu, 14 May 2026 19:11:34 +0000 (UTC)
+	 Message-Id; b=A0FFumMMZ0Yo05nPcVODp/0KzOM4rTaLajU08+bwPYCz9rt1+scBmucE+Meoim88qbFvqN0s4B0jh3TGgz7NCnId/hhxi8pCI6znb2gKlLDuvSnjzGCYPTFoMvve/ZK7swEPYaU8gdSKzLH83q7pMm+K1FQHa25k2Kpynv7S/qU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OCspF4hx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18C78C2BCB3;
+	Thu, 14 May 2026 19:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778785894;
-	bh=H3Av9w7a9TlhNBItr+XC0xQ4nJ0HmpGC5W+TucOkofQ=;
+	s=k20201202; t=1778786047;
+	bh=ouDWU5g4x8ak+iqeGii82TZq4B1Y4VBBfmYAoQNEHxY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=udmQWk2RpWBl0mo70oOXmdaXEWS7mWJSeOUQBOkcVO0CbzANW6ZQvj2aM/9gipuoz
-	 anZM/c0JjUPsHqDwAgvJogIKTCcK5kkN2396a/9THMtDJrXLRVAOsFbMIYvLpd7hSo
-	 YlAP3Y418B7WoR0KL+AewWm3qEp02ftvCgK0hO5cRtfEOJmRtFPlmCosctodEkVubo
-	 GEhDTXORzRSF9lu4prH42Xv2lDsCxJOs9unQdZtwcv4taEvTvdrwUmvgaKUmekHLiq
-	 GcPATsQM22RJ74GDnKlgVe41CcONbyfrd8P1IIg1CPoRvm055HKch/vBqcoMOwUfne
-	 g2Oqs+bIFfGEw==
+	b=OCspF4hxN0OZZsa0OXDTJ4GiO6sJz4WswvSU4ne/kLA/o/EqwrX3fwp7xsRaeUhXP
+	 28AkACO8IzePiDAYfBWOpas4a6MJux3w1VDjz8FnWbOwS5UM0fX4v6wnlKoIP2Yp5O
+	 Vgu1td6GrEThNaT7k+m3GtqLdAZZBK8Y+6BFi3MSnmThJYkzQKpst+WlfLvkIe0i5g
+	 qOpJzdtPHyI0C2SSaHGxfLKKR4W6kfRWuhSISyi46zpOAoemHXcDFqQkASuagI0RZC
+	 OfuOVJvVYpcNgXSIHG8UFEdVP65YIAhBF2S5vHYYptUEl5KQAmiyJjIp/UMEqN2Vog
+	 FDuqIjxrWiakQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] soc/tegra: pmc: Add Tegra238 support
+Subject: Re: [PATCH v4 6/6] regulator: mt6359: Add proper ldo_vcn33_[12]
+ regulators
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Prathamesh Shete" <pshete@nvidia.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260514124856.108606-2-pshete@nvidia.com>
-References: <20260514124856.108606-2-pshete@nvidia.com>
+To: "Chen-Yu Tsai" <wenst@chromium.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260514091520.2718987-7-wenst@chromium.org>
+References: <20260514091520.2718987-7-wenst@chromium.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 19:11:33 +0000
-Message-Id: <20260514191134.736C7C2BCB3@smtp.kernel.org>
+Date: Thu, 14 May 2026 19:13:59 +0000
+Message-Id: <20260514191400.18C78C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 1192354630E
+X-Rspamd-Queue-Id: 9E1B3546345
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -68,14 +69,14 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297777-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297778-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -90,7 +91,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
@@ -99,65 +100,56 @@ X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The `tegra238_pmc_regs` struct omits the initialization of `aowake=
-_*` register offsets, causing them to default to 0. This will lead to regis=
-ter collisions and hardware state corruption during wakeup configuration.
+- [High] The `mt6359_noop_ops` struct is empty, which causes the dummy regu=
+lators to be treated as always-on and prevents them from being disabled, pe=
+rmanently locking the shared `ldo_vcn33_[12]` supply in the enabled state.
 --
 
-commit 07ddf2c146f9b5cbae8ba71ab87489c0358d7d6c
-Author: Prathamesh Shete <pshete@nvidia.com>
+commit fb19e47461ecd9ff9e40d149eebb44edec04294e
+Author: Chen-Yu Tsai <wenst@chromium.org>
 
-soc/tegra: pmc: Add Tegra238 support
+regulator: mt6359: Add proper ldo_vcn33_[12] regulators
 
-This commit adds support for the PMC on Tegra238. The Tegra238 PMC is
-largely similar to earlier chips but not completely compatible.
+This commit replaces the separate WiFi and BT regulators for ldo_vcn33_1 and
+ldo_vcn33_2 with single regulators. It retains backward compatibility by
+converting the existing regulators to no-op regulators that are fed from th=
+eir
+respective new parent regulators.
 
-> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-> index 2ee6539d796a5..4724b98fb1b16 100644
-> --- a/drivers/soc/tegra/pmc.c
-> +++ b/drivers/soc/tegra/pmc.c
+> diff --git a/drivers/regulator/mt6359-regulator.c b/drivers/regulator/mt6=
+359-regulator.c
+> index 46cafe93b24e4..af0e0339fbdd6 100644
+> --- a/drivers/regulator/mt6359-regulator.c
+> +++ b/drivers/regulator/mt6359-regulator.c
 [ ... ]
-> @@ -4595,6 +4595,156 @@ static const struct tegra_pmc_soc tegra234_pmc_so=
-c =3D {
-[ ... ]
-> +static const struct tegra_pmc_regs tegra238_pmc_regs =3D {
-> +	.scratch0 =3D 0x2000,
-> +	.rst_status =3D 0x70,
-> +	.rst_source_shift =3D 0x2,
-> +	.rst_source_mask =3D 0xfc,
-> +	.rst_level_shift =3D 0x0,
-> +	.rst_level_mask =3D 0x3,
-> +};
+> @@ -475,6 +489,9 @@ static const struct regulator_ops mt6359p_vemc_ops =
+=3D {
+>  	.get_status =3D mt6359_get_status,
+>  };
+> =20
+> +/* Used for backward-compatible placeholder regulators */
+> +static const struct regulator_ops mt6359_noop_ops =3D {};
 
-Does this omit the initialization of the aowake_* register offsets?
+Could this empty structure cause the parent supply to remain enabled
+permanently?
 
-Since fields like aowake_mask_w, aowake_status_w, aowake_status_r, and
-aowake_tier2_routing are missing from the structure definition, they
-will default to 0.
+Without an .is_enabled callback, _regulator_is_enabled() defaults to
+returning 1. During registration, set_supply() checks if the regulator is
+enabled. Since it appears to be enabled, it proactively calls
+regulator_enable() on the parent supply (ldo_vcn33_1 or ldo_vcn33_2),
+incrementing its use_count.
 
-Looking at tegra238_pmc_soc below, it uses tegra186_pmc_irq_set_wake()
-and tegra186_pmc_irq_set_type() for its wake operations. These functions
-calculate register addresses based on these offsets.
+Later, if a consumer calls regulator_disable() on the dummy regulator,
+_regulator_do_disable() returns -EINVAL because the .disable callback is
+NULL. Due to this error, _regulator_disable() aborts early without
+decrementing its own use_count or calling regulator_disable() on the parent
+supply.
 
-If the offsets default to 0, wouldn't the wake mask, status, and routing
-operations collide with offset 0x0 (which maps to the control register)
-and potentially corrupt the hardware PMC state during wakeup
-configuration?
-
-> +
-> +static const char * const tegra238_reset_sources[] =3D {
-[ ... ]
-> +static const struct tegra_pmc_soc tegra238_pmc_soc =3D {
-[ ... ]
-> +	.regs =3D &tegra238_pmc_regs,
-> +	.init =3D tegra186_pmc_init,
-> +	.setup_irq_polarity =3D tegra186_pmc_setup_irq_polarity,
-> +	.set_wake_filters =3D tegra186_pmc_set_wake_filters,
-> +	.irq_set_wake =3D tegra186_pmc_irq_set_wake,
-> +	.irq_set_type =3D tegra186_pmc_irq_set_type,
-[ ... ]
+Would it make sense to add dummy .enable, .disable, and .is_enabled callbac=
+ks
+that return 0 to mt6359_noop_ops?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514124856.1086=
-06-1-pshete@nvidia.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514091520.2718=
+987-1-wenst@chromium.org?part=3D6
 
