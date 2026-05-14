@@ -1,263 +1,452 @@
-Return-Path: <devicetree+bounces-297629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDIEM2PfBWqjcwIAu9opvQ
-	(envelope-from <devicetree+bounces-297629-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:42:43 +0200
+	id IEdtMOnfBWr4cwIAu9opvQ
+	(envelope-from <devicetree+bounces-297622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:44:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7707543566
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F24543620
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:44:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4A3A0305CADB
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:29:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8B2D1309DF1C
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365B9407566;
-	Thu, 14 May 2026 14:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA3A40627D;
+	Thu, 14 May 2026 14:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i/7XF9ck";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iEdYyYl4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pi0aFjD5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71A2406268
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 14:29:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056A03FFADB;
+	Thu, 14 May 2026 14:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778768953; cv=none; b=r2+wpWpLYEvTxekQ7wSwTW0OPbzoc1cCFtDlkZSEu+sb6SmKabXi/kBHejnK1el3RMX9ZyQq8Y2ykevCmeCbDayDi0qm0cyKsiPidyky/97Qt50VhKAGf2tU0N55AVylOcN7Fl2PsjveOeoRr7Xf3SlvSiMiU6+TRwDEKOxUVQk=
+	t=1778768878; cv=none; b=SOPFEbLrCDurBQ14k/6dhYzTF/NeV3vbk1mK+Px1qloHwiKfNN56OZvu6UU707ycTTBPQkeel8/So2CrOxtUEXQidNmrnC8pe+zc0nSFTlrt/roAI+t+fRyHNbIXUtCzX2H/MaKJjF22Vuuq9+254Ndo7a1AMFPfKxOfzstFM54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778768953; c=relaxed/simple;
-	bh=fv/5hA6B5h6bSFJ3jKPW5Yj8V7+yiEtiEsQ3Jf2Ak5E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qjSIKtTdODGyuZtYyH+fCBkaOZ6dowskuNg3kVdcIaW1bL0ucDQo2Cb7wWPXm+oW2l1Zruuz03AB6zf0JrXyf+EDaW3HsIVi1DvpHLUtMAU9wlyW2Z0NvNceCO6UEyk9DV4DUFIhjdqj6FvWpZmvdb+G2JaW07n7KWo06xwpxf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i/7XF9ck; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iEdYyYl4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64EBeSQi3891239
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 14:29:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o6KLS8vHiombqosDZEYpdFeq0nG5CyaHud+DvpMo+CE=; b=i/7XF9ckTQVND/dC
-	TYkq0l/GzJfcDmNbkYBgu/dmSahdZq+voxXEMKcAkQ9jb3/EwuGoHCDIB9g3hBoL
-	q9hjln/GwV1tjG2/W5JoAHU0+pq9IWdB/WR93kiDXc/zJZWyhGwH2aTxEy0ZaFvS
-	rPqIeaNy31v4dslLkEQWftw2+af/NBnBK70hNs7ebp06nZLJUVKF7AXg6Jdk/NN8
-	5cms4Qk5F2qvkU1BJ4CexyQUXHzxVce0pkvKcF3umunCg1TvR5t2qS1jiqGF8xps
-	BX2OmFHWyceJkJzvPJRDywNzES0NDADXC/Wo0ktlcdA7dcPe4HeFe67OTqd7xfSi
-	BDLE6A==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e4v4tvd4j-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 14:29:11 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2b7aba0af02so84354485ad.2
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 07:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778768951; x=1779373751; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o6KLS8vHiombqosDZEYpdFeq0nG5CyaHud+DvpMo+CE=;
-        b=iEdYyYl4lphwBFbtQ1IbURYtbPQF+A18cAGAxmobfi4MON7iuVyDf/sJS5bWGjaE8A
-         +JV45Bzl9MX0uKlu3XIPiVioGg5jYH8j++5pP8VZNjYG548kRbLBmITO+GKJfFndO3k/
-         NZnkrea54xyHWMspgO8fsVcneA+EI8wAoJAEkVsATu8oHH5mFMcMkRwuOeFHfEhjH106
-         LVp/GxmsgRPSaGciWHSJY4SLkfN/odIDqm1MOv7D5HRir/F1OaJIXrKo06usyV+p8qkB
-         BrahTJxg2ubHs7LVNSY9K+qpazL66qnRqkii6KpQ1BU2AlmZT97nBF3AGFsuut81hLwi
-         VRLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778768951; x=1779373751;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=o6KLS8vHiombqosDZEYpdFeq0nG5CyaHud+DvpMo+CE=;
-        b=nmqTX4p2YcE2U74sbN8vWyK+hkiSUFf9zsLwbaKDmOXtogJXcWJN+uztiqTj3+XkgP
-         t3UiOkrW0NuevqBaUTMLbtcL32lA9t5/RBdKFqPmKz4AygYedDd1qTOj93yzwx/Xd8FO
-         hIu60iJt+aT4KOHbDeOyMDGdKbkXUcmquigQjgEoFAYJR+1EWSYNvdXEjO4k8px7QpKB
-         j7G9tOO52Knb0OQoqp7tJxPNSPyEiDGz+yGfjODsrozDgaTuvJv7yEvGnOXLU1GMqFIx
-         tz1wgXwZaMYu2N30U4EK8LSlRpLh/wbcatccqoILBLRKkkwXg15S6W4ukxci86oZX+AN
-         Z8sw==
-X-Forwarded-Encrypted: i=1; AFNElJ8RMpu/99HmL2KGv345QVRWUSoK0ZCHWEkmPbraBgophVd6nidMjQ6yvdAYhwb/waSg8A8cUTTOPFWN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOqg5qecsyYYi87IY81koD1QffnC0gEGH76cz2Oh4R/TNFMZK1
-	yjR+Tgy4EjKdvY8WRCdrD80pjEcJck8lRgV+eGq6Z+n0BmyuOW84AS/UxK8treoSjKNP/JyXxhJ
-	rC5uYzLxdTP1rN+n16qQKb0ysL1Vp+aYY83kGfS9YKPD8Nycqq7t1/ogRZccq9vBX
-X-Gm-Gg: Acq92OF4bXL4DQNObf2PBtfueJQrk/IkztUMj92gDJBUHJtFP4yV8di6FeOWEjS57+h
-	3qkGgh+KCi3sXBjcS1pSTKAUbzmBwffwZQH4uWBxBGAEhwzLda2A3NKBN6JonouOPBJ6MZRU89H
-	I6rrjr+uasGBPRFER7H+3sqrvMaXqFPsdSN7/pUBZeCGviVh9Wa4cpqoopQemQ2eO2FmBFU5J9s
-	qh9sN5Dq229ckH+MClWPTL9dGlxPmfHoIXERGt1WRFaMELh08xjllpe6FikGNxGCLBCFuutQ46+
-	ucTOH31pCdxylJglKsJGuazDWfqHu9KGOn8ToYyM3yt3Om4ZxTop6A3VEN82EpzmCenHkfn6Izz
-	KHSesRrVk5s+EcHR0Y/E4FvB/hGvFt2nzwpN7doMfE6KmGW5MpLUQ2cQ2pA==
-X-Received: by 2002:a17:903:120a:b0:2bc:78ec:54c0 with SMTP id d9443c01a7336-2bd2ff2a51emr89626785ad.31.1778768950480;
-        Thu, 14 May 2026 07:29:10 -0700 (PDT)
-X-Received: by 2002:a17:903:120a:b0:2bc:78ec:54c0 with SMTP id d9443c01a7336-2bd2ff2a51emr89626035ad.31.1778768949767;
-        Thu, 14 May 2026 07:29:09 -0700 (PDT)
-Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bd5c05ffbesm28566485ad.27.2026.05.14.07.28.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2026 07:29:09 -0700 (PDT)
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Date: Thu, 14 May 2026 19:55:54 +0530
-Subject: [PATCH v22 13/13] arm64: dts: qcom: Add psci reboot-modes for
- talos boards
+	s=arc-20240116; t=1778768878; c=relaxed/simple;
+	bh=gZmlUXeBXT0+9KGKMDHy1fMk3BD5MO9cdCMzoXzTNgU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gswS9j5fPwZtgMXKn9zXwVET9BK5Y9h4SaBRmwoZf/oaTTNOFvfDL+OmM5Y5wFRrWKe2AVA9a2zCIsObi+nsuoSPrCAFdlaeFv75nYDphgFlkW0rvi9epbFdAjc/KKx1NA2He6KWsqoK7QOeKKPD1Iu41/3Rm1wopNGIyQPLWOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pi0aFjD5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D0EFC2BCF5;
+	Thu, 14 May 2026 14:27:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778768877;
+	bh=gZmlUXeBXT0+9KGKMDHy1fMk3BD5MO9cdCMzoXzTNgU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pi0aFjD5EQ4t2PFKvEZW3acODvJXjul/OzOMjj5pZOl5IHiX19F4jMP4LJyJ6Boxr
+	 m1zhVnu7VPrYOn0lIf5Y+9EyGqbIH+t0GVeU6z0d019nVhTOd2d6SGTtsjsTEn5h6O
+	 QzTwoSNve/o/fntYX0DBUFdOZkZnVrSkO8PbaAz0N5IuOoFIfV0GFm+1oSKO1h4ULw
+	 g/rsvazBffvPkrbyjQCnSvJ8Thanz1z4ud1gehAa4ThP8vCWKfMhpF+7V27r1UEhlU
+	 Euk2KktUk3NrovfI0aMfHUxDHb2dSG2Wjw20h9cMlRs2Pdzgy0zdPkELAQWev1ra4v
+	 pf0yeyCikw+XQ==
+Date: Thu, 14 May 2026 09:27:54 -0500
+From: Rob Herring <robh@kernel.org>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Biju Das <biju.das.jz@bp.renesas.com>, john.madieu@gmail.com,
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 01/16] ASoC: dt-bindings: sound: Add DT binding for
+ RZ/G3E sound
+Message-ID: <20260514142754.GA378860-robh@kernel.org>
+References: <20260512182631.3842065-1-john.madieu.xa@bp.renesas.com>
+ <20260512182631.3842065-2-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260514-arm-psci-system_reset2-vendor-reboots-v22-13-28a5bde07483@oss.qualcomm.com>
-References: <20260514-arm-psci-system_reset2-vendor-reboots-v22-0-28a5bde07483@oss.qualcomm.com>
-In-Reply-To: <20260514-arm-psci-system_reset2-vendor-reboots-v22-0-28a5bde07483@oss.qualcomm.com>
-To: Sebastian Reichel <sre@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        Christian Loehle <christian.loehle@arm.com>,
-        Ulf Hansson <ulfh@kernel.org>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Sudeep Holla <sudeep.holla@kernel.org>, Ulf Hansson <ulfh@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        Song Xue <quic_songxue@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778768806; l=1676;
- i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
- bh=fv/5hA6B5h6bSFJ3jKPW5Yj8V7+yiEtiEsQ3Jf2Ak5E=;
- b=DTfcdvmuHlaXJOFI959VmgqyKdy4KwC74h60uKvEJMgANVtVK6agBUfCB1qK6VdTsL7mvl14J
- T3zgl6il8yIDiXblCoQ5QJIMe1V8sJGmhryAweJi3aC5fMddvtrdDHs
-X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
- pk=CpsuL7yZ8NReDPhGgq6Xn/SRoa59mAvzWOW0QZoo4gw=
-X-Authority-Analysis: v=2.4 cv=XIIAjwhE c=1 sm=1 tr=0 ts=6a05dc37 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=NtfjKPfcWimlndMDSJoA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE0MDE0NiBTYWx0ZWRfX2vRnDqAzwWqq
- QYe7z69NjLcGNtLDoHCgNbV55BiAzQHCzRIRpW6UlcGKGhYjmlOHEfizAVpAFa0HTRDNeLLsFSE
- nCR5xNW5m10RWsBjoO5c1bTv6Qi1l3nxxptr6NVAHt7/6dT99qzNz29JWjs5fPc093Sx3hSmKio
- /5Sw61a/6E4WYr/CmrSxMzyOMHEDPgP8XAL2aCjstB/EPzNMdO8pUnASejfqm4ed6kFeu8GK4DA
- JGvbye3FkYAYj1088cx7mLVAyUx60vyoVTPnXHSa6ZiiSDTXCl1w4U5lo0+1MBqbFjFOTatEEcM
- +dc/WBdGRM5cxq1ADH52vpTl8/ui29mt5+aOHwgc0f165tBZrusIR+S3Dd1etb1r4uhhiXE+t/Q
- lK3ho79w1/jCcrDpuQabDYdle6VqSiiElJELGbYwRG5aRWEs3xLIub03MDWKyJo5z2xWH4NeUiV
- HJCMvH2VRo98UhOHsBQ==
-X-Proofpoint-ORIG-GUID: sVaswx_5GSdwhVmUu0Gabcq27aRzUr5A
-X-Proofpoint-GUID: sVaswx_5GSdwhVmUu0Gabcq27aRzUr5A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-14_03,2026-05-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- bulkscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605140146
-X-Rspamd-Queue-Id: E7707543566
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260512182631.3842065-2-john.madieu.xa@bp.renesas.com>
+X-Rspamd-Queue-Id: C4F24543620
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297629-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,quicinc.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	FREEMAIL_TO(0.00)[kernel.org,arm.com,arndb.de,rock-chips.com,gmail.com,linaro.org,ettus.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,perex.cz,suse.com,glider.be,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-297622-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shivendra.pratap@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[n:email,renesas.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url]
 X-Rspamd-Action: no action
 
-Add PSCI SYSTEM_RESET2 reboot-modes for qcs615-ride, for use by the
-psci-reboot-mode driver.
+On Tue, May 12, 2026 at 06:26:16PM +0000, John Madieu wrote:
+> Add a standalone device tree binding for the Renesas RZ/G3E (R9A09G047)
+> sound controller.
+> 
+> The RZ/G3E sound IP is based on R-Car Sound but differs in several ways:
+> - Uses unprefixed sub-node names (ssi, ssiu, src, dvc, mix, ctu) instead
+>   of R-Car's rcar_sound,xxx prefixed names.
+> - Supports up to 5 DMA controllers per direction, allowing multiple DMA
+>   entries with repeated channel names in SSIU, SRC and DVC sub-nodes.
+> - Has 47 clocks including per-SSI ADG clocks (adg-ssi-[0-9]), SCU clocks
+>   (scu, scu_x2, scu_supply), SSIF supply clock, AUDMAC peri-peri clock,
+>   and ADG clock.
+> - Has 14 reset lines including SCU, ADG and AUDMAC peri-peri resets.
+> - SSI operates exclusively in BUSIF mode.
+> 
+> These differences make the RZ/G3E binding incompatible with the existing
+> renesas,rsnd.yaml, so it is added as a separate standalone binding with
+> its own $ref to dai-common.yaml.
+> 
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+> 
+> Changes:
+> 
+> v6:
+>  - Rename all indexed clock-names and reset-names from the dotted
+>    form (ssi.0, src.0, adg.ssi.0, clk_a, clk_b, clk_c, clk_i) to
+>    the hyphenated form (ssi-0, src-0, adg-ssi-0, audio-clka,
+>    audio-clkb, audio-clkc, audio-clki) so the new binding follows
+>    the standard DT naming convention.
+>  - Tighten #sound-dai-cells to const: 1.
+>  - Drop unused properties: clock-frequency, clkout-lr-asynchronous.
+>  - Simplify the ports/endpoint schema (single ports object with
+>    port@N children referencing audio-graph-port.yaml), drop the
+>    separate top-level dai patternProperties block.
+>  - Move additionalProperties: false to the top of each sub-object
+>    (dvc, mix, ctu, src, ssiu, ssi).
+>  - Reorder example clocks/resets to match the new ordinal-ascending
+>    name order.
+> 
+> v5:
+>  - Drop the two-patch rsnd.yaml split approach from v4. Replace
+>    with a single self-contained standalone binding that does not
+>    touch renesas,rsnd.yaml at all.
+>  - Remove select: false, redundant blanket properties
+>    (compatible: true, reg: true, etc.) and pointless
+>    patternProperties per Krzysztof's review.
+>  - Add missing #clock-cells and #sound-dai-cells constraints.
+>  - Add hardware description text instead of "Binding for ..."
+>    phrasing.
+>  - Move G3E-specific DMA comment into the binding itself rather
+>    than relying on a shared schema.
+>  - Use unprefixed sub-node names (ssi, ssiu, src, dvc, mix, ctu)
+>    to reflect the actual RZ/G3E DT binding.
+> 
+> v4: No changes
+> v3: No changes
+> v2:
+>  - Introduce RZ/G3E sound binding as a standalone schema.
+> 
+>  .../sound/renesas,r9a09g047-sound.yaml        | 743 ++++++++++++++++++
+>  1 file changed, 743 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> new file mode 100644
+> index 000000000000..0b651214bd61
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> @@ -0,0 +1,743 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/renesas,r9a09g047-sound.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G3E Sound Controller
+> +
+> +maintainers:
+> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> +  - John Madieu <john.madieu.xa@bp.renesas.com>
+> +
+> +description:
+> +  The RZ/G3E (R9A09G047) sound controller is based on R-Car Sound IP
+> +  with extended DMA channel support (up to 5 DMACs per direction),
+> +  additional clock domains (47 clocks including per-SSI ADG clocks),
+> +  and additional reset lines (14 including SCU, ADG and Audio DMAC
+> +  peri-peri resets). SSI operates exclusively in BUSIF mode with
+> +  2-4 BUSIF channels per SSI.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a09g047-sound
+> +
+> +  reg:
+> +    maxItems: 5
+> +
+> +  reg-names:
+> +    items:
+> +      - const: scu
+> +      - const: adg
+> +      - const: ssiu
+> +      - const: ssi
+> +      - const: audmapp
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    maxItems: 47
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ssi-all
+> +      - const: ssi-0
+> +      - const: ssi-1
+> +      - const: ssi-2
+> +      - const: ssi-3
+> +      - const: ssi-4
+> +      - const: ssi-5
+> +      - const: ssi-6
+> +      - const: ssi-7
+> +      - const: ssi-8
+> +      - const: ssi-9
+> +      - const: src-0
+> +      - const: src-1
+> +      - const: src-2
+> +      - const: src-3
+> +      - const: src-4
+> +      - const: src-5
+> +      - const: src-6
+> +      - const: src-7
+> +      - const: src-8
+> +      - const: src-9
+> +      - const: mix-0
+> +      - const: mix-1
+> +      - const: ctu-0
+> +      - const: ctu-1
+> +      - const: dvc-0
+> +      - const: dvc-1
+> +      - const: audio-clka
+> +      - const: audio-clkb
+> +      - const: audio-clkc
+> +      - const: audio-clki
+> +      - const: ssif_supply
+> +      - const: scu
+> +      - const: scu_x2
+> +      - const: scu_supply
+> +      - const: adg-ssi-0
+> +      - const: adg-ssi-1
+> +      - const: adg-ssi-2
+> +      - const: adg-ssi-3
+> +      - const: adg-ssi-4
+> +      - const: adg-ssi-5
+> +      - const: adg-ssi-6
+> +      - const: adg-ssi-7
+> +      - const: adg-ssi-8
+> +      - const: adg-ssi-9
+> +      - const: audmapp
+> +      - const: adg
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 14
+> +
+> +  reset-names:
+> +    items:
+> +      - const: ssi-all
+> +      - const: ssi-0
+> +      - const: ssi-1
+> +      - const: ssi-2
+> +      - const: ssi-3
+> +      - const: ssi-4
+> +      - const: ssi-5
+> +      - const: ssi-6
+> +      - const: ssi-7
+> +      - const: ssi-8
+> +      - const: ssi-9
+> +      - const: scu
+> +      - const: adg
+> +      - const: audmapp
+> +
+> +  dvc:
+> +    type: object
+> +    additionalProperties: false
 
-The following modes are defined:
-- bootloader: reboot into fastboot mode for fastboot flashing.
-- edl: reboot into emergency download mode for image loading via the
-  Firehose protocol.
+blank line
 
-Support for these modes is firmware dependent.
+> +    patternProperties:
+> +      "^dvc-[0-1]$":
+> +        type: object
+> +        additionalProperties: false
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Signed-off-by: Song Xue <quic_songxue@quicinc.com>
-Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
- arch/arm64/boot/dts/qcom/talos.dtsi      | 2 +-
- 2 files changed, 8 insertions(+), 1 deletion(-)
+blank line
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 831002789838033ff6c4135f2d558a0af0d3ec83..ad488570135591eb7a9e5dec5fb1924163a159e9 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -498,6 +498,13 @@ &pon_resin {
- 	status = "okay";
- };
- 
-+&psci {
-+	reboot-mode {
-+		mode-bootloader = <0x80010001 0x2>;
-+		mode-edl = <0x80000000 0x1>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
-index ff5afbfce2a4744777829a1938754f02a5f6cb5c..83ba8d3bc40731f54d71b6892045bc1dd15d320d 100644
---- a/arch/arm64/boot/dts/qcom/talos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/talos.dtsi
-@@ -560,7 +560,7 @@ pmu-a76 {
- 		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH &ppi_cluster1>;
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 
+> +        properties:
+> +          dmas:
+> +            maxItems: 5
 
--- 
-2.34.1
+blank line
 
+> +          dma-names:
+> +            maxItems: 5
+> +            allOf:
+
+Don't need allOf.
+
+> +              - items:
+> +                  enum:
+> +                    - tx
+
+Is 5 entries of 'tx' really what you want?
+
+blank line
+
+> +        required:
+> +          - dmas
+> +          - dma-names
+> +
+> +  mix:
+> +    type: object
+> +    additionalProperties: false
+> +    patternProperties:
+> +      "^mix-[0-1]$":
+> +        type: object
+> +        additionalProperties: false
+
+There is little point in empty nodes.
+
+> +
+> +  ctu:
+> +    type: object
+> +    additionalProperties: false
+> +    patternProperties:
+> +      "^ctu-[0-7]$":
+> +        type: object
+> +        additionalProperties: false
+> +
+> +  src:
+> +    type: object
+> +    additionalProperties: false
+> +    patternProperties:
+> +      "^src-[0-9]$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          interrupts:
+> +            maxItems: 1
+> +          dmas:
+> +            maxItems: 10
+> +          dma-names:
+> +            maxItems: 10
+> +            allOf:
+
+Don't need allOf.
+
+> +              - items:
+> +                  enum:
+> +                    - tx
+> +                    - rx
+
+10 entries of any combination of tx and rx?
+
+> +
+> +  ssiu:
+> +    type: object
+> +    additionalProperties: false
+> +    patternProperties:
+> +      "^ssiu-[0-9]+$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          dmas:
+> +            maxItems: 10
+> +          dma-names:
+> +            maxItems: 10
+> +            allOf:
+> +              - items:
+> +                  enum:
+> +                    - tx
+> +                    - rx
+> +        required:
+> +          - dmas
+> +          - dma-names
+> +
+> +  ssi:
+> +    type: object
+> +    additionalProperties: false
+> +    patternProperties:
+> +      "^ssi-[0-9]$":
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          interrupts:
+> +            maxItems: 1
+> +          dmas: true
+> +          dma-names: true
+> +          shared-pin:
+> +            description: Shared clock pin.
+> +            $ref: /schemas/types.yaml#/definitions/flag
+> +        required:
+> +          - interrupts
+> +
+> +  ports:
+> +    $ref: audio-graph-port.yaml#/definitions/port-base
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      '^port@[0-9a-f]+$':
+> +        $ref: audio-graph-port.yaml#/definitions/port-base
+> +        unevaluatedProperties: false
+> +        properties:
+> +          reg:
+> +            maxItems: 1
+> +          endpoint:
+> +            $ref: audio-graph-port.yaml#/definitions/endpoint-base
+> +            unevaluatedProperties: false
+> +            properties:
+> +              playback:
+> +                $ref: /schemas/types.yaml#/definitions/phandle-array
+> +              capture:
+> +                $ref: /schemas/types.yaml#/definitions/phandle-array
+
+This is odd. The graph should really just point to another endpoint 
+along with any properties for the connection. These probably belong 
+elsewhere. What do these point to? Missing any sort of description or 
+constraints. 
+
+Rob
 
