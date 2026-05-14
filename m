@@ -1,150 +1,171 @@
-Return-Path: <devicetree+bounces-297731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0DgAEF0FBmrFdwIAu9opvQ
-	(envelope-from <devicetree+bounces-297731-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:24:45 +0200
+	id oBfwOWoFBmrVeAIAu9opvQ
+	(envelope-from <devicetree+bounces-297732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:24:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3035453C0
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:24:44 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D3A5453DD
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 195B0300878B
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:21:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 50E1A3016B76
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34ED138E5F9;
-	Thu, 14 May 2026 17:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B999738F23F;
+	Thu, 14 May 2026 17:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pnyMD/xl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="twYHJtLa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE3C38B7B0;
-	Thu, 14 May 2026 17:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E2933ADB1;
+	Thu, 14 May 2026 17:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778779313; cv=none; b=PrpDVs4ELWBAIxl3fT9Xs9iZ7aaXTNMQjB7q3+hw2ipE9U90Qc0M77mfTtNzXm/VebFWnjOoi2T2KMMm17xGFdqUqXcNgrKDnZh7KTHUdHepgMdxWUv1UxzHs8Bw8hPbVGaL0wtL5oCk48N4FYkVE66FTi4cHMoHuX4ibQ+EyhY=
+	t=1778779495; cv=none; b=mW0T3DGVyLLLt3HaPXNpwDVwltV9RK8Bu6WLJGpR2bgkj/iEWUHfjCFcg30i6JYk9+amqyHqKp5hrpBlt/UOj41dNuEvbDbk0bw29V4pDeiZUdHBAIXIhHKV7RlzMMSULnNJ4pztkxNebVpxEOp1piXZyZ3htsg355onAC/WBWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778779313; c=relaxed/simple;
-	bh=pZwg25nf4mUh7Qf+CSSYXgpx08fS04gW/9MlbOOqyBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=G1s5yHbiY9G/ygY6v/NkLMQTtvSsaw7e202AOYlhd2oUqIpQFqj5SvX1SQoop9noeScSvNRiPfQbKUBbU4qTk6CPb1q1wKdxjXe3sVYW80ZyK2F2MqhbOiLiepE8n161R/JFib/0f7V8iNHiS51VqqrhqUhH/NFFSFFqqZ/X13g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pnyMD/xl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A21F2C2BCB3;
-	Thu, 14 May 2026 17:21:52 +0000 (UTC)
+	s=arc-20240116; t=1778779495; c=relaxed/simple;
+	bh=3PC5Cuco5w85pnBqFY1Ju+w2SKqZmWd6DZncQX5MeUw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CegUneJM+t4arG0P8TQQMiGtzVmTEBO7Tel87krRhv6uxxaGSxiVkANzlfz9ZncDONcdzGvLEBtc4oF3lED/LA9+Egkgfm3RDS9yJhXFszFhR7BEsmEyX4V/26F3z3F0wNe/FTQmXpS9LC1FPmnSK/f4kJfdVW7/WSLqYYnaFuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twYHJtLa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 481E5C2BCB3;
+	Thu, 14 May 2026 17:24:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778779312;
-	bh=pZwg25nf4mUh7Qf+CSSYXgpx08fS04gW/9MlbOOqyBc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=pnyMD/xlWs8B2gzI1nXBEPPPnFwHFceNRoypISr4z8KM3WoOOJqqwzXrIHQm/XKTV
-	 1JQ77RZtxZaMK+jERzOCi5ETYQjG4jlaD+97V6qj/2LxgY+N4cFFynAW9dTsjObqxb
-	 9iEtiAvCwiT/eA/b2n4ihcXWKP/dHQtfCc+7IFtvzMFlNKz5A3iE+ACNCSBzG+fsRH
-	 vPiu6EM9Gip9XQMj1ya50aeuGzlg0A96N7MfSPRKT9Gi4G+OVHaNy77EwnWyw8vXu4
-	 mM9Fm373QxSFGman+sK9LVsrgaKnBLku34offJduPy2jxCjLPaRH7Q4RdQ6suhrMps
-	 N+r3Qm+rG1E7g==
-Date: Thu, 14 May 2026 12:21:51 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Matthew Leung <matthew.leung@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] PCI: qcom: Add PCIe support for upcoming Hawi SoC
-Message-ID: <20260514172151.GA410819@bhelgaas>
+	s=k20201202; t=1778779495;
+	bh=3PC5Cuco5w85pnBqFY1Ju+w2SKqZmWd6DZncQX5MeUw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=twYHJtLa4DjDkJfyZgd6J1tOScBxAuOWGMoU1lAd905StY/xqk+MdayGhs+iISNgX
+	 G1RCn30OjZwGEVJbkQjPTOOycO1HtO6xvsN31JzrigzvsllVJ0ZT1jvQhUMjB1Xmn2
+	 BMCEs8hqNUQdvnC03OzF38pSBhbs0A8B67kL7VkpRsCNEglZ8rl03nlop+nJHc2v8B
+	 PxAQuFnuVKWc+LYo6eED+Ekok/OyhqdUJsTawjtAxsCWdY40EdRSFwaVUN5v2pycrg
+	 OJ+F6gf75781fMFoLuQJkSPxA4zvL3olC2zCZggaZ7evurmagDZYEC8CnAD5cmmTpG
+	 tdz8U/uhIsTpg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34BC3CD4F39;
+	Thu, 14 May 2026 17:24:55 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v2 0/2] drm/panel: Add panel driver for Chipone ICNA35XX
+ based panels
+Date: Thu, 14 May 2026 12:24:48 -0500
+Message-Id: <20260514-icna35xx-v2-0-45acd1dfa566@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260508-hawi-pcie-v1-0-0c910906f7e5@oss.qualcomm.com>
-X-Rspamd-Queue-Id: DD3035453C0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02PwW7DIBBEf8XiXKpdiDH2qf9R5bDAkiDVdgOu5
+ Sjyv4c6h/Y4q52ZNw9ROCcuYmgeIvOaSpqnKtRbI/yVpgvLFKoWCpQBpUAmP5Fut02y7ykSakY
+ iUd+/M8e0HVGf55fOfPupicvrKBwVln4ex7QMDfc2KPTYgQMMgaM2JoLSzkUfjdPYQh/JavGfp
+ IIdHNhJuk/y5ottW5BoPHTO6MDKDKsVv/XXVJY5349hKx79h7fG/m1YUYI01gYdTowQ+4/LSOn
+ rvUKK877vT0WbP6kfAQAA
+X-Change-ID: 20260220-icna35xx-ec9afa13e1aa
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>, 
+ Teguh Sobirin <teguh@sobir.in>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778779494; l=1862;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=3PC5Cuco5w85pnBqFY1Ju+w2SKqZmWd6DZncQX5MeUw=;
+ b=Wh1N5cpYCZdga0nk4wOwnV9ABC9/lY5pPUnc2HrUszpEudGn4yPoOv3IIUW0tPlU6/ZaiVvfm
+ iVO9k/+gM0kBNR++MRDKXEvdjND/zRrMYVSYXGDKl1fFwsIXCb9YS7v
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
+X-Rspamd-Queue-Id: 88D3A5453DD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297731-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-297732-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com,sobir.in];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Fri, May 08, 2026 at 01:02:13AM +0000, Matthew Leung wrote:
-> This series adds PCIe support for the Qualcomm Hawi SoC. The Hawi
-> platform features two PCIe controllers: one capable of Gen3 x2 operation
-> and one capable of Gen4 x1 operation. The first patch adds the device
-> tree bindings documentation for the Hawi PCIe controller, and the second
-> patch adds driver support by enabling the Hawi compatible string in the
-> existing qcom PCIe driver.
-> 
-> This series depends on the following prerequisite series:
-> - [PATCH v3 0/7] clk: qcom: Add initial clock controllers for the
->   upcoming Hawi SoC (Change-ID: 20260316-clk-hawi-1ad4cad36d6a:v3)
-> - [PATCH v4 0/2] interconnect: qcom: Add support for upcoming Hawi SoC
->   (Change-ID: 20260311-icc-hawi-d6dc165f8935:v4)
-> 
-> These dependencies add necessary headers for running dt_binding_check
-> against the binding.
+This driver is based on the one by Teguh Sobirin [0].
+    
+Due to [1], the AYN vendor description patch has been folded into the
+AYN QCS8550 dt series. Which means this series depends on said series
+and it must be picked up before this.
 
-These apply cleanly to v7.1-rc1.  I suppose the dt_binding_check thing
-is the only real dependency?  Is there anything we need to do to
-enforce the dependency when these get merged upstream during the merge
-window?
+[0] https://github.com/AYNTechnologies/linux/commit/4c5e76e974db7cca853619ca138eecd8f004622f
+[1] https://lore.kernel.org/linux-arm-msm/c7fb3f89-6574-4761-9ef2-2fdf6d4801b5@kernel.org
 
-> Signed-off-by: Matthew Leung <matthew.leung@oss.qualcomm.com>
-> ---
-> Matthew Leung (2):
->       dt-bindings: PCI: qcom: Document the Hawi PCIe Controller
->       PCI: qcom: Add support for Hawi
-> 
->  .../devicetree/bindings/pci/qcom,hawi-pcie.yaml    | 188 +++++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-qcom.c             |   1 +
->  2 files changed, 189 insertions(+)
-> ---
-> base-commit: 4cd074ae20bbcc293bbbce9163abe99d68ae6ae0
-> change-id: 20260506-hawi-pcie-f61435ca420c
-> prerequisite-change-id: 20260316-clk-hawi-1ad4cad36d6a:v3
-> prerequisite-patch-id: c4fbb0620d748d7f1ee675ade5167775bd31c8ac
-> prerequisite-patch-id: ae5e212518cc333a1a93564cabfc6abd128df664
-> prerequisite-patch-id: 3c3816e0d595589fc02383f10e48c83a61fdc9d1
-> prerequisite-patch-id: cbc13fb819d1c1ee77957393f0958f05db8db864
-> prerequisite-patch-id: 17e2c0cfbbea826fefa1c67d0f5dc2094ab73d76
-> prerequisite-patch-id: 150dc74750377f4558deab6b179632872bcbb71c
-> prerequisite-patch-id: 38fe0da5b18610aeb32c7154f9e50187ccaec6a4
-> prerequisite-change-id: 20260311-icc-hawi-d6dc165f8935:v4
-> prerequisite-patch-id: a1ff655f0b21d6259b158ad9f99a95bde31257e6
-> prerequisite-patch-id: db21b6b20451be8475129faece7ef4191d41273c
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v2:
+- Fix lint warning in patch 1
+- Add ayaneo,pocketds-panel-top compatible to patches 1 and 2, it uses the
+  same init sequence as the odin 2 portal panel.
+- Link to v1: https://lore.kernel.org/r/20260509-icna35xx-v1-0-688d3d4e10f9@gmail.com
 
-I don't know where any of these change-ids or patch-ids come from.
+---
+Aaron Kling (1):
+      dt-bindings: display: panel: Add Chipone ICNA 35xx OLED driver bindings
+
+Teguh Sobirin (1):
+      drm/panel: Add panel driver for Chipone ICNA35XX based panels
+
+ .../bindings/display/panel/chipone,icna35xx.yaml   |  79 +++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-chipone-icna35xx.c     | 619 +++++++++++++++++++++
+ 4 files changed, 710 insertions(+)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260220-icna35xx-ec9afa13e1aa
+prerequisite-change-id: 20260217-ayn-qcs8550-16c07b63de26:v8
+prerequisite-patch-id: 2b010637c46f5ea0e19a2fa87cc5ccb19bfd9204
+prerequisite-patch-id: d0c633dc17f0aba726a8e8d21fee52b944bf67ff
+prerequisite-patch-id: 11f4208bd788df984cec7404088c7d071ec49dfc
+prerequisite-patch-id: 76b61799dba520fc7fa3ff39b044e24103337af3
+prerequisite-patch-id: 3844bef2eda3cf59031b1d131eb6ba9295629bb4
+prerequisite-patch-id: 3331648bc6f4ac3bb156f0525aa1ede92bfc57f1
+
+Best regards,
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
