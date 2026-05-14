@@ -1,198 +1,176 @@
-Return-Path: <devicetree+bounces-297683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qNOLOeroBWqPdQIAu9opvQ
-	(envelope-from <devicetree+bounces-297683-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:23:22 +0200
+	id qGlSAPnoBWqPdQIAu9opvQ
+	(envelope-from <devicetree+bounces-297686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:23:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F4A543F11
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:23:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A00E7543F30
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:23:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 40F80307F8D0
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:15:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 12043311D003
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B1742884B;
-	Thu, 14 May 2026 15:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC543425CCD;
+	Thu, 14 May 2026 15:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="BIRCIgPF"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="H1KKMG8M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BC130F958
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 15:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0DC4279E5;
+	Thu, 14 May 2026 15:13:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778771607; cv=none; b=Xfot98yvT5TXp0ThMasEiwfjZDHXZknPyhv/G4b5dQRDyWCosnJaxTkZ87JyAbO2O1l5aknhwVcIoUSt3iFy4WvOBJNZotB+ZuLBBPrsauoXkutrkVeru7lhcNkvN49hs5TVtgYBmcFUWxDyiDG86T6f5MYC/qzk3e0LL8V8YzM=
+	t=1778771641; cv=none; b=hj6qd464lbsxvr56PaTmyvCJFi1VrbgoPWmkXDkydt9v49grzLKoPT8jhJK55BNu/FPFE40Fodf1xM5ju9lyH1sL/1NutK+Wa4xVg5hcaM/+fmKK5wLuaOFZOKgEMUjIsPh9kF6BV9q9U/LMFeviAsTzQawN7bjELHVrXr7dsVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778771607; c=relaxed/simple;
-	bh=uMb4ZbSplRAY7kyHR/j0eXA2cPzF5uZsroIjreRVzS4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=oKCsfgCusfQYsx57wTo2FLFFCmUg/Z3/jeuL7d9A2hEZsRAKGeUFJC8AwGvA6ChoJe78Xfv9EOxr/5ImFFIIuz+6kSx/h1eo5QGo8xOaOXeLxEXddnVTrWsLf1ADIKpZRB04COHRY5WULKNsGHQ7Y1hsD7PsKdsX1rtSDaskLbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=BIRCIgPF; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48a3e9862f0so54536375e9.1
-        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 08:13:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778771596; x=1779376396; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GMG+MYf2mIEZOo4k7BKQu+vHso1LCBH/45mKDm5C2Qg=;
-        b=BIRCIgPFmkwlES/ERB5xv17HgmgDjY3cSxS8A29mi+lFPdb8hgElSRZRNYxVOkXM8U
-         ez5t38fzXnhI8ehcLycNaw2VqC89e4d3kemKxyX3jV+Nw0aMHo433zrCnuEjSB4BnEtU
-         VkEGTCmtC3O/RLk1AOjZEq0KbkDgECbmlr5u59jznSSu6OLbJwrGu6DxEovBuQX+Sz0n
-         A72vtWlX4PjSagtjHcNVCZ+veEA/FrYBBaAhcGzpPdspAvU1fznPgE8hQNF1b9wbp231
-         BDY8z6Us7KoiFunXgSo8kzF6ujwjE57bV1yvJt1etmrkmu7zRgNn3TN3utz8MfjgHpyP
-         KReA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778771596; x=1779376396;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GMG+MYf2mIEZOo4k7BKQu+vHso1LCBH/45mKDm5C2Qg=;
-        b=W1Xi5lpjhRA8k4z4g7TYF91pzGsiAzPlNcKR0dYsRrxDPV546WErMyo0WvUqj1ECf/
-         zLNLkiO+nYyciDoHzrpqVd9PT3f7GF0bkeqzRawbA99V3XFsQv4twiJda/7LbCN+DlZK
-         zuYf3fyCTMxi8oxWSHTLs9ymvcZxdKMKyaI47Lzf0Ngijdi9Bqofip2g+joW9S1E0n4W
-         hn44/k0WhPmVrW4ZE9So8DAND1QB7zGQm5hZSX6eMUdAb1OHJnmtb10b2Zmfoqyiv0j0
-         Zcv0UpwUtd5GiFygOyy2Gdxp+V1qQtMbbTNoot2pMLe1D9PzutbnxYSChd5d9Ok14E/P
-         33KQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8WmB2ZD0nD6Dx87XNBi+hCt9MnK1ikBPDbBqR49i75DFLe+v5otQl4uA0RLeRWl8/a/SiHU81J8aV1@vger.kernel.org
-X-Gm-Message-State: AOJu0YydbBHaGMwrjgvpLQrBs9Q+Ep9A5fzJmeSCS7hLQELHi06zWEdL
-	z3pLsvPa8cTwP8xoMGko9G4WREpREvb19IZdvK4Rm3VQdS/gXAup6SIqNo3Uq8xNWA/lcUcwH3y
-	0Lz7B
-X-Gm-Gg: Acq92OHF6Jes0qak4LupUmo9Qv7zY518rujQUUhJ/rpZagbPkfn9slUPVZwHuDDoBbN
-	kWG2ZG3VO/t4i/QAZp6TvQsoetvDTrYxA8s9RQo62VxDVJlgrlL73FcIhNFtJqhymJgGzs+4yHA
-	TIt2aohgAxEeUSP21KdOXtXDfPxnP/vDkRZCxNHZ/7uIpQqftYXNBuWcmy6V6kEKZpWMvJ0khRj
-	eJPl4I62wv9SEZizqc3Zk2Rvp6jPyHz/YMpRNEcV6NKVSEjddI+KL2eIdhlUcUBIJ0GhOAj0m00
-	U1rxLQc6MoF7uWOlMx5jRjpzicwMeymPdLTTPEVcP+ExA8vg9qP+3yXicxiQI2metssE8Qg/tlS
-	IeLlC5rENWvO0x3ZcSqfHSNGKGxfkOmWirQtf9EyqFCeUMRud9SmmCSs+5YOdj6nCp5vMK4Jloa
-	Cnp8WqC1deZIr4wgM+uEM=
-X-Received: by 2002:a05:600c:8906:b0:488:aa33:dc8f with SMTP id 5b1f17b1804b1-48fe486cca4mr514625e9.0.1778771595855;
-        Thu, 14 May 2026 08:13:15 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:8f63:bf1e:b5:28d8])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-48fe46f4647sm3184745e9.14.2026.05.14.08.13.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 May 2026 08:13:15 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
-  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  jian.hu@amlogic.com,
-  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 05/10] clk: amlogic: PLL l_detect signal supports
- active-high configuration
-In-Reply-To: <20260511-b4-a9_clk-v1-5-41cb4071b7c9@amlogic.com> (Jian Hu via's
-	message of "Mon, 11 May 2026 20:47:27 +0800")
-References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
-	<20260511-b4-a9_clk-v1-5-41cb4071b7c9@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 14 May 2026 17:13:13 +0200
-Message-ID: <1jse7u6n3q.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1778771641; c=relaxed/simple;
+	bh=1fLj/3UDcUb4DWtfM+X9V4E1moL+DU6awV2sMe6DZv8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=o0gwtAdM8On8WhlqaUuQ8kSlzwL51xkMvIiRoQWl81kmS2wGOvrn2OiirfMMynCoIxTthXCEQTR1se/RwmnWqDSjtxC8Dv7mfnVPrVQm3OcRRvsvVSAOA37/Q0JmdjFxUCWq8qBCxTo3vlz9qivsBk17agnY+G0k/iXCHCAvHeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=H1KKMG8M; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1D32C3DF7EE;
+	Thu, 14 May 2026 17:13:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1778771614; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=q+XOzO01lqse48UlRSnZqwHKzFzjG64h+3jGPYOVm1k=;
+	b=H1KKMG8Mc66rKsTOOXWAJbYTMHZSes8FuW9hFLOdOwoKTB+bCeObYamYRjLwEMCe6f0vpd
+	PzMZYeHTYlNptrWQDPBo0/wPF0MlD1fFlTO8JGQu8B8PXWQtbhIZjLv/XzLSJnPsQflJ+9
+	P90sQJDsclxOMyfRawemtGmjGrqkZFbUfOOciEgbDgRIfUpbwC5wmv3f0XJUSHlhd3EvcL
+	Eqk4MTxYt/i0BkLHEKV/NfHGKk0BrQiBxpODZqekRHe0bPGiE4DdYxN4hxF5WywGGAcY0j
+	KEDdqFLkJYOLmOG1sTdr+E85H96g4IfW8NeNVsqzyXStbaFa23/2X0qV8rM9PA==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-pci@vger.kernel.org
+Cc: linux-mips@vger.kernel.org,
+	naseefkm@gmail.com,
+	ryder.lee@mediatek.com,
+	helgaas@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	ansuelsmth@gmail.com,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH v7 0/2] Add EcoNet EN7528 (and EN751221) PCIe support.
+Date: Thu, 14 May 2026 15:13:16 +0000
+Message-Id: <20260514151318.3444959-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 60F4A543F11
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: A00E7543F30
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-297683-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org,cjdns.fr];
+	TAGGED_FROM(0.00)[bounces-297686-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[baylibre.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
-	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre-com.20251104.gappssmtp.com:dkim,amlogic.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On lun. 11 mai 2026 at 20:47, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
+Changes from v6:
+* s/reset/resets/ in .yaml
+* s/re-train/retrain/g
+* s/Root bridge/Root port/
+* If module not builtin, log at mtk_pcie_startup_port_en7528()
+* Do not fail if error in mtk_pcie_retrain()
+* v6: https://lore.kernel.org/linux-mips/20260513191652.3200607-1-cjd@cjdns.fr
 
-> From: Jian Hu <jian.hu@amlogic.com>
->
-> l_detect controls the enable/disable of the PLL lock-detect module.
->
-> For A9, the l_detect signal is active-high:
-> 0 -> Disable lock-detect module;
-> 1 -> Enable lock-detect module.
->
-> Here, a flag CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH is added to handle cases
-> like A9, where the signal is active-high.
->
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  drivers/clk/meson/clk-pll.c | 9 +++++++--
->  drivers/clk/meson/clk-pll.h | 2 ++
->  2 files changed, 9 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> index 1ea6579a760f..5a0bd75f85a9 100644
-> --- a/drivers/clk/meson/clk-pll.c
-> +++ b/drivers/clk/meson/clk-pll.c
-> @@ -388,8 +388,13 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
->  	}
->  
->  	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
-> -		meson_parm_write(clk->map, &pll->l_detect, 1);
-> -		meson_parm_write(clk->map, &pll->l_detect, 0);
-> +		if (pll->flags & CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH) {
-> +			meson_parm_write(clk->map, &pll->l_detect, 0);
-> +			meson_parm_write(clk->map, &pll->l_detect, 1);
-> +		} else {
-> +			meson_parm_write(clk->map, &pll->l_detect, 1);
-> +			meson_parm_write(clk->map, &pll->l_detect, 0);
-> +		}
+Changes from v5:
+* s/errno-base.h/errno.h/
+* Breakout mtk_pcie_retrain() into a function
+* Use for_each_pci_bridge() to find root bridge
+* v5: https://lore.kernel.org/linux-mips/20260413140339.16238-1-cjd@cjdns.fr/
 
-I'm not a fan of this code duplication.
-Use the introduced CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH to compute the
-first value, then flip the bit.
+Changes from v4:
+* Fixed missing Acked-by
+* Rebased to commit 66672af7a095 ("Add linux-next specific files for 20260410")
+* v4: https://lore.kernel.org/linux-mips/20260404182854.2183651-1-cjd@cjdns.fr/
 
->  	}
->  
->  	if (meson_clk_pll_wait_lock(hw))
-> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-> index 949157fb7bf5..97b7c70376a3 100644
-> --- a/drivers/clk/meson/clk-pll.h
-> +++ b/drivers/clk/meson/clk-pll.h
-> @@ -29,6 +29,8 @@ struct pll_mult_range {
->  
->  #define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
->  #define CLK_MESON_PLL_NOINIT_ENABLED	BIT(1)
-> +/* l_detect signal is active-high */
-> +#define CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH	BIT(2)
->  
->  struct meson_clk_pll_data {
->  	struct parm en;
+Changes from v3:
+* s/initiallized/initialized/
+* Use PCIE_T_PVPERL_MS for sleep time
+* Use PCI_PM_D3COLD_WAIT for startup wait time
+* Clarify comment "Activate INTx interrupts"
+* Add MTK_PCIE_RETRAIN quirk for devices which require link re-train
+* Do not retrain *all* bridges, only root bridge
+* Better comments and logging in retraining logic
+* v3: https://lore.kernel.org/linux-mips/20260320094212.696671-1-cjd@cjdns.fr/
 
+Changes from v2:
+* mediatek-pcie.yaml -> s/power-domain/power-domains/ and drop example
+* Patch 3 dropped as it has been applied (Thanks!)
+* v2: https://lore.kernel.org/linux-mips/20260316155157.679533-1-cjd@cjdns.fr/
+
+Changes from v1:
+* mediatek-pcie.yaml slot0 needs device-type = "pci", fix dt_binding_check
+Link: https://lore.kernel.org/linux-mips/177334026016.3889069.9474337544951486443.robh@kernel.org
+* v1: https://lore.kernel.org/linux-mips/20260312165332.569772-1-cjd@cjdns.fr/
+
+This was split from a larger PCIe patchset which crossed multiple
+subsystems. I'm not labeling this a v3 because it's a new patchset, but
+I'm keeping the historical record anyway.
+
+Changes from econet-pcie v2:
+* mediatek-pcie.yaml add missing constraints to PCI node properties
+* econet-pcie v2: https://lore.kernel.org/linux-mips/20260309131818.74467-1-cjd@cjdns.fr
+
+Changes from econet-pcie v1:
+* pcie-mediatek.c Exclude pcie_retrain_link() when building as a module
+* econet-pcie v1: https://lore.kernel.org/linux-mips/20260303190948.694783-1-cjd@cjdns.fr/
+
+Caleb James DeLisle (2):
+  dt-bindings: PCI: mediatek: Add support for EcoNet EN7528
+  PCI: mediatek: Add support for EcoNet EN7528 SoC
+
+ .../bindings/pci/mediatek-pcie.yaml           |  26 +++
+ drivers/pci/controller/Kconfig                |   2 +-
+ drivers/pci/controller/pcie-mediatek.c        | 155 ++++++++++++++++++
+ 3 files changed, 182 insertions(+), 1 deletion(-)
+
+
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
 -- 
-Jerome
+2.39.5
+
 
