@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-297776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297777-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHbsNK0cBmpDewIAu9opvQ
-	(envelope-from <devicetree+bounces-297776-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:04:13 +0200
+	id gCxyLGkeBmpDewIAu9opvQ
+	(envelope-from <devicetree+bounces-297777-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:11:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0BF546263
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:04:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1192354630E
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:11:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6CB15300917F
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:04:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D480F300B604
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E951639A075;
-	Thu, 14 May 2026 19:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3A730E0C0;
+	Thu, 14 May 2026 19:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HC+waF6y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="udmQWk2R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72A513AD26
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2B3F4F1
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778785449; cv=none; b=qrAuwgtkIkRTJLDQmAPtjZZRfOxPYcUPajudgOCZi+uH2sJfd9byGA5REYDeFcYb4AMpRDXwsbBL4QctECTpNVH0A8wgWBmBbfVBYs5oeoRY+coJR9CDulorly+PNKCLrfNUtxQi/53GfLuOTTdT2YlONzySDBCC8QG2oj7aFYw=
+	t=1778785895; cv=none; b=Y7aTifpdA6QmeQ4oRt7BvZfSIChOVXPEJb/Yo7ia4s0dc05svn3OGQ0OKWTIkquk3GamYEE8Wrllog99Y7y92Ixda0HrK2Pe/b91I3sxWeajs0OZpKXhNphBDoX7IQ9O0EDTM8f1o0NIipCUra6Gg6q7iBLCVi3nF4DAxDOHB20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778785449; c=relaxed/simple;
-	bh=H7CzD9khQ39TUAJEf8xoWKI1wpq8IEcH1KzoD67MfxQ=;
+	s=arc-20240116; t=1778785895; c=relaxed/simple;
+	bh=H3Av9w7a9TlhNBItr+XC0xQ4nJ0HmpGC5W+TucOkofQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hLH7VZ72l8+PYu0xmmf9klohX6XFYvMX42KzQtnjjPhDsTOl45XS0UqfcUDJZ3lK1/Xky/t7bYs5v7RSEkTXeXlxGYvyxEqWMF9UDFJ2cjhZuI1sjjGmqvinc3gkotkwWpX5TQsX4HwCvk5BqaQ04Y5lXy/hxNQX8FMABLNfylk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HC+waF6y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2447CC2BCB3;
-	Thu, 14 May 2026 19:04:09 +0000 (UTC)
+	 Message-Id; b=NApKbMFHwh5xR2oBK1LMPziPiHVtNiPwW9H/Tm0oPFBHEmNk5ysJsTUV4eGylW31Hdi4b6gw4G7AOSbnebpmxzrBUqbEin0Sr8E2PO7dKVCihcFfw88sOPFPRaK8JbfUtUEdBS1NzW5UKXqID/4GD+55SueIo/YS/R+z0GFUt6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=udmQWk2R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 736C7C2BCB3;
+	Thu, 14 May 2026 19:11:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778785449;
-	bh=H7CzD9khQ39TUAJEf8xoWKI1wpq8IEcH1KzoD67MfxQ=;
+	s=k20201202; t=1778785894;
+	bh=H3Av9w7a9TlhNBItr+XC0xQ4nJ0HmpGC5W+TucOkofQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=HC+waF6yfhm2YiOhZxeAbqfEjVs4ZIF/2n7r25h1L+XPnoqu+wpI35WJJK0aZEUUd
-	 0ThR46M5FWDnt9gNE0LKarrd6fwF5szknA7Q70nwmqo/AtbAlcrkOifWq3YCiyPTDg
-	 XDZCSIrsLsMeUGP0IQNF8KDV4PWiKvnhs5nIzhN/JMDzhbUknJmrCzuxn9EzNyDoze
-	 FA5I7f2r9CYZSFKaNIUUwuNuslqWNX7nco55AbbuLVNgdA9lV0rlWwLDbyLwxG3T3n
-	 VLN303Z+0eIC69AifOHme+XWBICKa8TbX3u6bErFNabZid2toi54ay5Xalm/aHReWa
-	 wwvn9QgLg6pkw==
+	b=udmQWk2RpWBl0mo70oOXmdaXEWS7mWJSeOUQBOkcVO0CbzANW6ZQvj2aM/9gipuoz
+	 anZM/c0JjUPsHqDwAgvJogIKTCcK5kkN2396a/9THMtDJrXLRVAOsFbMIYvLpd7hSo
+	 YlAP3Y418B7WoR0KL+AewWm3qEp02ftvCgK0hO5cRtfEOJmRtFPlmCosctodEkVubo
+	 GEhDTXORzRSF9lu4prH42Xv2lDsCxJOs9unQdZtwcv4taEvTvdrwUmvgaKUmekHLiq
+	 GcPATsQM22RJ74GDnKlgVe41CcONbyfrd8P1IIg1CPoRvm055HKch/vBqcoMOwUfne
+	 g2Oqs+bIFfGEw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: socfpga: Add dma-coherent to XGMAC
- nodes
+Subject: Re: [PATCH 2/2] soc/tegra: pmc: Add Tegra238 support
 Reply-To: sashiko-reviews@lists.linux.dev
-To: muhammad.nazim.amirul.nazle.asmade@altera.com
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260514114111.10574-3-muhammad.nazim.amirul.nazle.asmade@altera.com>
-References: <20260514114111.10574-3-muhammad.nazim.amirul.nazle.asmade@altera.com>
+To: "Prathamesh Shete" <pshete@nvidia.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260514124856.108606-2-pshete@nvidia.com>
+References: <20260514124856.108606-2-pshete@nvidia.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 19:04:08 +0000
-Message-Id: <20260514190409.2447CC2BCB3@smtp.kernel.org>
+Date: Thu, 14 May 2026 19:11:33 +0000
+Message-Id: <20260514191134.736C7C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 7B0BF546263
+X-Rspamd-Queue-Id: 1192354630E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -69,104 +68,96 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[altera.com:email,smtp.kernel.org:mid,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,10b00000:email];
+	TAGGED_FROM(0.00)[bounces-297777-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-297776-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] Other SMMU-attached DMA masters in the base SoC `.dtsi` lack t=
-he `dma-coherent` property, risking data corruption.
-- [High] The `dma-coherent` property is applied at the board `.dts` level i=
-nstead of the SoC `.dtsi` level, leaving `gmac1` unprotected.
+- [High] The `tegra238_pmc_regs` struct omits the initialization of `aowake=
+_*` register offsets, causing them to default to 0. This will lead to regis=
+ter collisions and hardware state corruption during wakeup configuration.
 --
 
-commit 3e00440f9beb8b27250cd5096c497340a958ee43
-Author: Nazim Amirul <muhammad.nazim.amirul.nazle.asmade@altera.com>
+commit 07ddf2c146f9b5cbae8ba71ab87489c0358d7d6c
+Author: Prathamesh Shete <pshete@nvidia.com>
 
-arm64: dts: socfpga: Add dma-coherent to XGMAC nodes
+soc/tegra: pmc: Add Tegra238 support
 
-This commit adds the dma-coherent property to XGMAC nodes in various
-Agilex3 and Agilex5 board files. The commit message notes that transactions
-going through the enabled SMMU are cache coherent, and this property preven=
-ts
-redundant cache operations.
+This commit adds support for the PMC on Tegra238. The Tegra238 PMC is
+largely similar to earlier chips but not completely compatible.
 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/a=
-rm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-> index bdb608bb30ea6..dd878547c3056 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-> @@ -45,6 +45,7 @@ &gmac2 {
->  	phy-mode =3D "rgmii-id";
->  	phy-handle =3D <&emac2_phy0>;
->  	max-frame-size =3D <9000>;
-> +	dma-coherent;
+> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+> index 2ee6539d796a5..4724b98fb1b16 100644
+> --- a/drivers/soc/tegra/pmc.c
+> +++ b/drivers/soc/tegra/pmc.c
+[ ... ]
+> @@ -4595,6 +4595,156 @@ static const struct tegra_pmc_soc tegra234_pmc_so=
+c =3D {
+[ ... ]
+> +static const struct tegra_pmc_regs tegra238_pmc_regs =3D {
+> +	.scratch0 =3D 0x2000,
+> +	.rst_status =3D 0x70,
+> +	.rst_source_shift =3D 0x2,
+> +	.rst_source_mask =3D 0xfc,
+> +	.rst_level_shift =3D 0x0,
+> +	.rst_level_mask =3D 0x3,
+> +};
 
-Should this hardware integration property be added directly to the base
-socfpga_agilex5.dtsi file instead of the individual board files?
+Does this omit the initialization of the aowake_* register offsets?
 
-By adding it at the board level, it appears gmac1 (which is defined in
-arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi) is missed. If a future board
-enables gmac1, it will silently lack this property, which could cause expli=
-cit
-arm64 cache invalidations to discard dma writes and result in stale data.
+Since fields like aowake_mask_w, aowake_status_w, aowake_status_r, and
+aowake_tier2_routing are missing from the structure definition, they
+will default to 0.
 
-Also, the commit message mentions that transactions going through the SMMU
-are cache coherent. Does this mean other SMMU-attached devices in the
-base socfpga_agilex5.dtsi also need this property?
+Looking at tegra238_pmc_soc below, it uses tegra186_pmc_irq_set_wake()
+and tegra186_pmc_irq_set_type() for its wake operations. These functions
+calculate register addresses based on these offsets.
 
-For example, looking at arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi,
-several other components are routed through the SMMU but lack dma-coherent:
+If the offsets default to 0, wouldn't the wake mask, status, and routing
+operations collide with offset 0x0 (which maps to the control register)
+and potentially corrupt the hardware PMC state during wakeup
+configuration?
 
-		usb0: usb@10b00000 {
-			...
-			iommus =3D <&smmu 6>;
-		};
-
-		dmac0: dma-controller@0 {
-			...
-			iommus =3D <&smmu 8>;
-		};
-
-If these physically coherent devices are mapped as non-coherent, the kernel
-will issue explicit cache invalidations (like dc ivac during dma_unmap_sing=
-le
-for device-to-memory transfers).
-
-Because a coherent device writes directly into the CPU cache, this post-dma
-kernel cache invalidation will discard the newly written data. Could this
-cause silent regressions with active data corruption for devices like usb
-storage or dma controllers?
-
+> +
+> +static const char * const tegra238_reset_sources[] =3D {
+[ ... ]
+> +static const struct tegra_pmc_soc tegra238_pmc_soc =3D {
+[ ... ]
+> +	.regs =3D &tegra238_pmc_regs,
+> +	.init =3D tegra186_pmc_init,
+> +	.setup_irq_polarity =3D tegra186_pmc_setup_irq_polarity,
+> +	.set_wake_filters =3D tegra186_pmc_set_wake_filters,
+> +	.irq_set_wake =3D tegra186_pmc_irq_set_wake,
+> +	.irq_set_type =3D tegra186_pmc_irq_set_type,
 [ ... ]
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514114111.1057=
-4-1-muhammad.nazim.amirul.nazle.asmade@altera.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514124856.1086=
+06-1-pshete@nvidia.com?part=3D2
 
