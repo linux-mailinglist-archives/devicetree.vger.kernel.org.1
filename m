@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-297468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297469-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QAZwMF2wBWppZwIAu9opvQ
-	(envelope-from <devicetree+bounces-297468-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:22:05 +0200
+	id iEWQM2CwBWppZwIAu9opvQ
+	(envelope-from <devicetree+bounces-297469-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:22:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C75B540EBD
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:22:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27079540EC4
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:22:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BC3D301BCF6
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:20:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59519303012F
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15613C063F;
-	Thu, 14 May 2026 11:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6B543C0A00;
+	Thu, 14 May 2026 11:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hWkcDoiF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BLiON2Yz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD733B7B71
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 11:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08E8388378
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 11:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778757600; cv=none; b=a/ZiiaPG+Gt2ltXPcTRVKla322BSOTNYRONegHs6iP7iiQU5cGJjIBKzE2OiDaKEjST/eRWUdwnFzRm0yLDgfkVE/QVeC0ifxSJYrlNL4ELFO+6AnDQBrrpf31Wsbc30ee1npeVKAguCTeBeqEgU8qEuLMwfzi9rM0Sj9nOD9Y4=
+	t=1778757612; cv=none; b=ZKimStDLTLmH9W906dfcbn+E1DLvSpB29Ok6oQmNxJPSvQ/qmtrJQZd4ZyJITTMsMBGjvWSnxr5ZHo491AOAPFU0JIp2RbdS8FOI87uQEblR0gWIuf/ULC0e9wRFW7qilLJppdpqzExic1+4JXk2yZ4vxOUM53IruuHEkE4q0oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778757600; c=relaxed/simple;
-	bh=yqmWAg0M0vVKH/mxrZ4wxRzgmMv9BXrFiD1arIhKIN8=;
+	s=arc-20240116; t=1778757612; c=relaxed/simple;
+	bh=kzyDvkFK6iGGFDC1FAl8RBsY+mQ/Oy+KX9lIz6WoJ6Q=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=SndwhoeDZd5Dc+YAdRJnP27xKlav8GIaSatFs5bgAHz31S325h9m6rcQkR8rudpy2kZfhXgItILG7jjd1/M7Xt2Ls6oAeYWAL23JE/f5dM70oDDXKW8PI2poKNfsDJrB8EomuvKkEOxvekIC1ECykBURT7sVvaIBEKTTsCpVW3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hWkcDoiF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9F2C2BCB3;
-	Thu, 14 May 2026 11:19:59 +0000 (UTC)
+	 Message-Id; b=aH/i+kJZKgmEM4qTQqGzL9Re533mmL4R2Ayx9/75o9h9HWwQIhNYnaCEYBP/sZvnDxrgezL0kcoed7Orfuc1BrAVkuAX/C6Rus7VOmHe2NRZ8LhUA1tMRDY32HNG1xwuAC5VFvdDPoAsVQzMq+SwpL2ZK6D2udl/pbLoaW1Iccw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BLiON2Yz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B0D0C2BCB3;
+	Thu, 14 May 2026 11:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778757600;
-	bh=yqmWAg0M0vVKH/mxrZ4wxRzgmMv9BXrFiD1arIhKIN8=;
+	s=k20201202; t=1778757612;
+	bh=kzyDvkFK6iGGFDC1FAl8RBsY+mQ/Oy+KX9lIz6WoJ6Q=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=hWkcDoiFsIddPSlEaSXnJHl9hevHsSYFzhXlBfjLyLQhE3T04vlNbdTGf25ekhZZk
-	 uYk/WhzHqGIwXFXhfxPjVjTLn9WXIg1zNcIKp5kxPqFOeqB0RdSnnr1OY3wjCXLcf/
-	 O7jt7+Yyw/Ln7D3JQMpyyvyjzBsUQD+q4Yk3Sog2MBtacvXqy7rpLa57fdYcplEPIq
-	 MqU7s1WX/ngezdZnnQ+VFquEhSfQl9aKlukjRztdT87rnx+KW9TYoEX5O1TsFF2f18
-	 s9AOtYTjhOTYuZkfa6MQGejOtCmVDgWUE0U+twD9nha0DtuWPv7HRq79b6mnMgKbhc
-	 BBFan4Vgrs1Zw==
+	b=BLiON2YzagGRV/Td8VDHDl4UrThXjyuxtZqV1nrzyACcJ0t4dOxs0MlzOz+ncm18Q
+	 LEnIjnqJoanGVt9Q/oVApyte9w19sp/bYl3lzg99JX3G3P5T0w6aaYX6QGfFFxdE26
+	 Q7tuqPakaPni7byBPfapv6J/o2r7mTTzcQUUmTkZHn7zjJ73HK9/87Ghtm94YLfGv3
+	 xxkRJcOsUI9qe+PioW9/o8EE9fw9vnDa9kqIzfem+tYTCuUGvuuappIMEGqqntRwPH
+	 KVePweMdFsq57y8UNnKvl3b5ozZND8Q4/xQJNe7pHb8LarTdhXBklmrwiLlHVwXJDP
+	 Uo0pwW2UsBuRA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 14/16] arm64: dts: ti: k3-am62p-j722s-common-main:
- Make main_conf a syscon
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62l: Enable HDMI & DSI display
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>
+To: "Swamil Jain" <s-jain1@ti.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260513-beagley-ai-display-v2-14-9e9bcefde6bc@ideasonboard.com>
-References: <20260513-beagley-ai-display-v2-14-9e9bcefde6bc@ideasonboard.com>
+In-Reply-To: <20260513210942.692269-1-s-jain1@ti.com>
+References: <20260513210942.692269-1-s-jain1@ti.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 11:19:59 +0000
-Message-Id: <20260514111959.DD9F2C2BCB3@smtp.kernel.org>
+Date: Thu, 14 May 2026 11:20:11 +0000
+Message-Id: <20260514112012.0B0D0C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 1C75B540EBD
+X-Rspamd-Queue-Id: 27079540EC4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -69,14 +68,14 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297468-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297469-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,ideasonboard.com:email,0.1.134.160:email,0.27.197.96:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid,0.0.0.23:email];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -91,58 +90,70 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [Medium] Adding the generic 'syscon' compatible without an SoC-specific i=
-dentifier violates the syscon devicetree bindings.
+- [High] Missing pinmux configurations for the DSS DPI interface.
+- [High] Hardware IRQ routing mismatch for the HDMI bridge.
+- [Medium] DSI display nodes are left disabled on the EVM.
 --
 
-commit d90ed1b8cacb6fc6ff7bf1ad93349b9fab13ace3
-Author: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+commit 83fc36958520450910c6fa0df0ef01548f3f6fd9
+Author: Devarsh Thakkar <devarsht@ti.com>
 
-arm64: dts: ti: k3-am62p-j722s-common-main: Make main_conf a syscon
+arm64: dts: ti: k3-am62l: Enable HDMI & DSI display
 
-This commit changes the main_conf block to include the "syscon" compatible=
-=20
-string. This allows drivers for various devices to access specific register=
-s=20
-they need within the CTRL_MMR block.
+This commit adds DSS, DPHY, and DSI nodes to the base SoC devicetree,
+along with enabling DSS and an HDMI bridge in the board devicetree.
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arc=
-h/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> index f130c7cb998d7..5e8eb9f2fe243 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> @@ -40,7 +40,7 @@ gic_its: msi-controller@1820000 {
+>     arm64: dts: ti: k3-am62l: Enable HDMI & DSI display
+>    =20
+>     Enable DSS, DSI and HDMI related nodes and pinmuxes.
+
+Are these descriptions accurate for the actual changes in the patch?
+
+The dsi0 and dphy_tx0 nodes are added with status =3D "disabled" in the base
+dtsi, but they are not overridden with status =3D "okay" in the board-level
+dts file, leaving the DSI subsystem physically disabled on the board.
+
+Also, it appears the patch does not add any pinctrl properties or pin
+configurations for the DSS node. The DSS DPI interface relies on a parallel
+bus that must be physically routed to the sii9022 external HDMI bridge to
+function.
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/d=
+ts/ti/k3-am62l3-evm.dts
+> index a1af4571a815d..7462921e21804 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+[ ... ]
+> @@ -192,6 +204,36 @@ exp2: gpio@23 {
+>  		bootph-all;
 >  	};
 > =20
->  	main_conf: bus@100000 {
-> -		compatible =3D "simple-bus";
-> +		compatible =3D "simple-bus", "syscon";
+> +	sii9022: bridge-hdmi@3b {
+> +		compatible =3D "sil,sii9022";
+> +		reg =3D <0x3b>;
+> +		interrupt-parent =3D <&exp1>;
+> +		interrupts =3D <16 IRQ_TYPE_EDGE_FALLING>;
 
-Does adding the generic "syscon" compatible without an SoC-specific identif=
-ier
-violate the syscon devicetree bindings?
+Does this interrupt routing match the hardware configuration?
 
-According to Documentation/devicetree/bindings/mfd/syscon.yaml, any node
-including the "syscon" compatible must also define a hardware-specific
-compatible string (e.g., "ti,am62p-system-controller" or "ti,am62p-main-con=
-f")
-before the generic "syscon" string.
+Checking the gpio-line-names array defined for exp1 in k3-am62l3-evm.dts
+reveals that index 16 is an unconnected pin (""), while the actual HDMI
+interrupt line ("HDMI_INTn") is explicitly mapped to index 20. This could
+prevent the HDMI bridge from receiving hotplug detect and EDID events.
 
-Modifying the property to exactly compatible =3D "simple-bus", "syscon"; mi=
-ght
-result in dtbs_check validation errors. Should a proper SoC-specific
-compatible be introduced to satisfy the binding?
+> +		#sound-dai-cells =3D <0>;
+> +		sil,i2s-data-lanes =3D < 0 >;
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-beagley-ai=
--display-v2-0-9e9bcefde6bc@ideasonboard.com?part=3D14
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513210942.6922=
+69-1-s-jain1@ti.com?part=3D1
 
