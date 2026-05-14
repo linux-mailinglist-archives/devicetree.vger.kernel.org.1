@@ -1,175 +1,155 @@
-Return-Path: <devicetree+bounces-297708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297702-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGLiLbvyBWobdwIAu9opvQ
-	(envelope-from <devicetree+bounces-297708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:05:15 +0200
+	id cN9tC5fxBWq3dgIAu9opvQ
+	(envelope-from <devicetree+bounces-297702-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:00:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56BC3544719
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:05:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80FD154464B
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:00:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BF7EB3016D25
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:04:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D791D3011F0A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F803314C4;
-	Thu, 14 May 2026 16:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC4A31B11E;
+	Thu, 14 May 2026 15:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="rBQRMD17"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="DOjPKktO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97178324B2C;
-	Thu, 14 May 2026 16:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2746313540
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 15:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778774677; cv=none; b=Hn5mKvVanZIAZXw1Hs17o91IVJm0sC7rCsyZ4hs+wEmE5qqTY3naYP6dpQChRPm6U5WPSFBbEPcgwCWsqV9ae5e6s5FtoexHDsHRsUjuoXU0kX2zGr7kOLsyDN3wsV+a/j0eslU52q+EzmernYzo5Mgn8D7QEy57qKjOJFJfZGk=
+	t=1778774276; cv=none; b=T/i+YTqI2RjCwb2uOWFQSXjFQmhCCpsm5IiJFEh2m0mwXzFQk0gXIGDC+MLAZ4ygjNOvqRsHWfmX5n/OkcgHE1JXsr9ObGxyCfBfFBs/XGtIalmxDSZUrM9uSzZ09GKlR7yGbMI+ZJKCBsy3Fao4LyhtaXdOi/6xLJ+gsaCLszE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778774677; c=relaxed/simple;
-	bh=OgPBsHavjym0+x+rjSIurOxX5deKRNYa9aAUPWIZttk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AVG4zifrd9MWhrJ1EQOIO/CG01ZCMZpCXbZNwWNPYwe0E36a5rtt6DVll0Gi7BujKUXq8LlsNXl8KsbYbr1o6rtrk9opDXTjXbt6CmG6Tn0BF2Z1iqNDBZE/3Ero45KZpVGP3S1y1K5ZGWUkQb0H2uhfxIHfFAmuRp31nISXhvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=rBQRMD17; arc=none smtp.client-ip=195.154.119.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=uCwQ6g58jzW8Lt/Ec4TlnL0981ISSt8S6/Z77+D9r7I=; b=rBQRMD17Kim5nM0CBalzqAXKvh
-	rhZlAc0VlEg446v7ASPmyzWa//1Ok4PIBhP+e+aA9jG0PAtlDQBB/Et1MG+G8RK3oOEZio/PQJOtY
-	lKwy83VvhjFTkftxxIEzP7szn2SIuivmkqrdzxJEBqRmM7PyNWQEWMFsUQeGWOvKOF3Vz8tf2XyEt
-	70/wg5qy7OAbwOZhDni/B42c+w3EWkwGoLlooFw/UymYAueNOoprDb4e+KW0QREI/eemVHuvHmg1I
-	ObqgnU8QWqVpiUV+pA/Criy1ZarVEXuHgLajW+mm/ZAAM05+4lqLEXagS8HpuTXSud9ZrVdHOKsm8
-	8KmC1FOA==;
-Received: from authenticated user
-	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1wNYY0-00000007W2z-2OsU;
-	Thu, 14 May 2026 18:04:28 +0200
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Aurelien Jarno <aurelien@aurel32.net>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-riscv@lists.infradead.org (open list:RISC-V ARCHITECTURE),
-	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
-Subject: [PATCH 4/4] riscv: dts: spacemit: enable SD card support on Milk-V Jupiter
-Date: Thu, 14 May 2026 17:56:24 +0200
-Message-ID: <20260514160356.1642075-5-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260514160356.1642075-1-aurelien@aurel32.net>
-References: <20260514160356.1642075-1-aurelien@aurel32.net>
+	s=arc-20240116; t=1778774276; c=relaxed/simple;
+	bh=sr5994fVj3LmcmuVa204F0DDxmYVzCdQUVfMWM/pfVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i/yarUwHUCqRHunW4wYvrH6fCgu1wOVp5fbP15CHP7S9wwlfwYyB3MZYko6rfKC9X3PFCA0sS/yi5CRYt+7fUR3aoyIHlwwB25G5sobkgwGGvCRNG/hy//61zZLkNIiK/O+jFJHsJ+etv1sbh817R1XgRV5DUQnXnuzpktuc6H0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=DOjPKktO; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D2F473C0058;
+	Thu, 14 May 2026 17:57:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1778774270; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=luTc1jPbKrLAttaHtHRCQz5wlDOcEctOC7CeEbdfUck=;
+	b=DOjPKktOef8EZm1ROTJ39+hX2NhGZmTW8/NP+V23utTOv0wi9kwICrwnbu8nQR4wdTJaYg
+	qFTeF+Lm9JuMhoaaw2k7KvwRuYQjEtAJHV98XAYXTvBbvAfEDr6b0OnIl9lhyVBElZtRG7
+	XSZXD7TOxgIqwlVDnS5JPDNI0Y8AqtOoRPSQFOI88TGbSW0Kb99z0TqmNbrtS39coOhZ1h
+	sUkPqKkl7m9X+ALmsTuRRh5EMdxRFiV/CgX7GA/G3WwvPxm0OEou0AwTxtomQbPPz0RNeB
+	8wNdcn1CTAhFcjSgokMiSP9ppMBlVNKMQSQb4oA0GrTvUTu8kbKiPHUBY0kF5g==
+Message-ID: <836dd44a-01c0-4baa-ba8c-68c87e48f6c0@cjdns.fr>
+Date: Thu, 14 May 2026 17:57:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 56BC3544719
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2 2/5] clocksource/timer-econet-en751221: Move generic
+ logic out of cevt_init
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org
+References: <20260514000601.3430262-3-cjd@cjdns.fr>
+ <20260514120600.0492CC2BCB3@smtp.kernel.org>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20260514120600.0492CC2BCB3@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 80FD154464B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-297708-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297702-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[aurel32.net:+];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aurel32.net:email,aurel32.net:mid,aurel32.net:dkim]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:email,cjdns.fr:mid,cjdns.fr:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add complete SD card controller support with UHS high-speed modes.
 
-- Enable sdhci0 controller with 4-bit bus width
-- Configure card detect GPIO with pull-up
-- Connect vmmc-supply to buck4 for 3.3V card power
-- Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-- Add dual pinctrl states for voltage-dependent pin configuration
-- Support UHS-I SDR25, SDR50, and SDR104 modes
-- Alias it as mmc1
+On 14/05/2026 14:05, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [High] The return value of `cpuhp_setup_state()` is ignored, masking critical initialization failures.
+> - [High] The hardware clock is retrieved but never enabled before accessing memory-mapped registers.
+> - [High] Missing teardown callback for CPU hotplug leaves per-CPU IRQs enabled and the timer running when CPUs go offline.
+> --
+>
+> commit c97af74688377fb3c996bd3eeeee07ce5a52eb15
+> Author: Caleb James DeLisle <cjd@cjdns.fr>
+>
+> clocksource/timer-econet-en751221: Move generic logic out of cevt_init
+>
+> This commit simplifies cevt_init by moving common generic logic out
+> into a new cevt_setup_clockevent function. This change prepares the driver
+> to support either a percpu IRQ or multiple IRQ numbers.
+>
+>> diff --git a/drivers/clocksource/timer-econet-en751221.c b/drivers/clocksource/timer-econet-en751221.c
+>> --- a/drivers/clocksource/timer-econet-en751221.c
+>> +++ b/drivers/clocksource/timer-econet-en751221.c
+> [ ... ]
+>
+>> @@ -203,6 +206,10 @@ static int __init timer_init(struct device_node *np)
+>>   	if (ret < 0)
+>>   		return ret;
+>>   
+> This isn't a regression introduced by this patch, but does the hardware clock
+> retrieved via of_clk_get() earlier in timer_init() need to be enabled with
+> clk_prepare_enable() before memory-mapped registers are accessed?
+This clocksource never requires any prep, we just need to know what 
+speed it's running at.
+>> +	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+>> +			  "clockevents/econet/timer:starting",
+>> +			  cevt_init_cpu, NULL);
+>> +
+> Since cpuhp_setup_state() can fail and return a negative error code, should
+> the return value be checked here?
+>
+> Also, because there is no teardown callback provided, does this leave per-CPU
+> IRQs enabled and the timer running when a CPU goes offline?
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
----
- .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index b9b8ddc8e7fb0..7cf77437e0c2d 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -18,6 +18,7 @@ aliases {
- 		i2c2 = &i2c2;
- 		i2c8 = &i2c8;
- 		mmc0 = &emmc;
-+		mmc1 = &sdhci0;
- 		serial0 = &uart0;
- 	};
- 
-@@ -282,7 +283,7 @@ buck6 {
- 				regulator-always-on;
- 			};
- 
--			aldo1 {
-+			aldo1: aldo1 {
- 				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <3400000>;
- 				regulator-boot-on;
-@@ -417,6 +418,24 @@ uboot@a00000 {
- 	};
- };
- 
-+&sdhci0 {
-+	pinctrl-names = "default", "uhs";
-+	pinctrl-0 = <&mmc1_cfg>;
-+	pinctrl-1 = <&mmc1_uhs_cfg>;
-+	bus-width = <4>;
-+	cd-gpios = <&gpio K1_GPIO(80) (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	vmmc-supply = <&buck4_3v3>;
-+	vqmmc-supply = <&aldo1>;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
--- 
-2.53.0
+On these SoCs, this is THE clocksource, so any failure is a no-boot. 
+That said, I don't like the idea of leaving bad code that's Technically 
+Isn't A Problem, so I'm gonna rework this a little and either gracefully 
+teardown, or if that proves too complex - intentionally not teardown and 
+leave a comment.
 
+
+>
+>>   	sched_clock_register(sched_clock_read, ECONET_BITS,
+>>   			     econet_timer.freq_hz);
+>>
 
