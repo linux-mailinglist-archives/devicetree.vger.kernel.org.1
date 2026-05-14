@@ -1,62 +1,81 @@
-Return-Path: <devicetree+bounces-297494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297504-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OJ0eEeO1BWqeZwIAu9opvQ
-	(envelope-from <devicetree+bounces-297494-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:45:39 +0200
+	id WLMmLXa5BWpZaAIAu9opvQ
+	(envelope-from <devicetree+bounces-297504-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:00:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D125412A5
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 13:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B4E54151C
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 38D7030162AD
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 11:45:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2E5403028672
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457D0393DDA;
-	Thu, 14 May 2026 11:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665A33A7D73;
+	Thu, 14 May 2026 12:00:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YwuNilMc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80221096F;
-	Thu, 14 May 2026 11:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E44311C2C;
+	Thu, 14 May 2026 12:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778759136; cv=none; b=iYuEge14rsMrJtFp8UqqmD8ndE3P9r/DWYgOqjt3Gl9p0kiy0IurXtuSE5AzRDoD7RmGRxLIz2jGzdR52Zfy+tAtjKp03MkBMb5l1QdPAQXQufzAkV+33A+X8L7XtIYNLPGVxWdcMR/KlOtp8pO3TuOi5nEZC0jty+cCs7Lu+Rk=
+	t=1778760051; cv=none; b=bkmvKdt03nY98ExUear+yjvkjVqx6wXCavZlWxKEcgG0VRra4unsO8oJr2JfvJZiITavbKA/ePWnTub3T8UQaiZNd/iNLUfTSv6YK4wuSZCX5nq8ik7kWMcvzDpo6ad266lj6f1ws7qAGI2B9cy/n647OJeX0/H110kfRDp45nQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778759136; c=relaxed/simple;
-	bh=ZntbPE9ULsi5T2sVrjBocsWAdl/4LmcxdkWpEUqKlys=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=emR/0dVtuNAkyzW+n/bCsCjC0PWox8VW+tEQDTU+FxPCcoF9KN25A7jkvHV+CiNCYzMSSqb8k7fDUOwwKWyZ35NoBAkJLR4sRM8ULDrMpH6LywG1MryonHNfxEON/FFH+h5HaimXmLNOYOWtAXS/37/x5JfrtABA3nowGOmgF/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgCHHHHKtQVqgm8ZAA--.32445S2;
-	Thu, 14 May 2026 19:45:15 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	huangyifeng@eswincomputing.com,
-	dongxuyang@eswincomputing.com,
-	benoit.monin@bootlin.com,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5 1/3] dt-bindings: clock: Add ESWIN eic7700 HSP clock and reset generator
-Date: Thu, 14 May 2026 19:45:10 +0800
-Message-Id: <20260514114510.1321-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260514114212.903-1-dongxuyang@eswincomputing.com>
-References: <20260514114212.903-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1778760051; c=relaxed/simple;
+	bh=OqYtpY19HUAOPOGT7U/3n9WrYpKgtCcRI//llJAH2M0=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mfWkCRrM1izAGY98VjbCvwqzeM7XfXmiq7x3yK0DcBuzJ6GZXMB4joPwRqQqeMZYGhhLWHFQTE9CO90eBbrHfVNg6GEJTXEhL+DLf5+mFHKpqzyRwZszl+YEawvsWvFBQAO8JS9GOqhea2VoV1+U7t4X3k5s1WUstRKZROc7Cso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=YwuNilMc; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 6cbd2e764f8a11f1b5a00d44d12bea5a-20260514
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=MuqNLnHQ7AjY34gb9tcmUNHMK6k8UlScLgrQcuj0G9I=;
+	b=YwuNilMcvqbwn3NM8KYsuArtMfCGidrF44Vz1rotVL+drQrTJ57Ppkx/+ke64IUkqshilkIN6G0IRsag5X/4/W0Jl5u+xnwEPeyLzkXRqYohB+4Tr9n2xOYaSgdQDY2r/2LvsM5Gluc5eaSle+Omf7tkRGNN31nfjnMNyPKRX1M=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.14,REQID:ab3428cb-2db9-4ac0-a59c-9b6a97b30ec6,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:9091e75,CLOUDID:9fbee840-4f1a-4cd1-8315-22e1f88ac479,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|865|888|898,TC:-5,Cont
+	ent:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0
+	,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 6cbd2e764f8a11f1b5a00d44d12bea5a-20260514
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+	(envelope-from <arnab.layek@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 844076344; Thu, 14 May 2026 19:45:37 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 14 May 2026 19:45:35 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Thu, 14 May 2026 19:45:36 +0800
+From: Arnab Layek <arnab.layek@mediatek.com>
+To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+CC: <arnab.layek@mediatek.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <andersson@kernel.org>,
+	<mathieu.poirier@linaro.org>, <linux-remoteproc@vger.kernel.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v3 0/1] dt-bindings: remoteproc: mtk,scp: Allow multiple memory regions for MT8188
+Date: Thu, 14 May 2026 19:45:32 +0800
+Message-ID: <20260514114533.174008-1-arnab.layek@mediatek.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260506133157.3283204-1-arnab.layek@mediatek.com>
+References: <20260506133157.3283204-1-arnab.layek@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,225 +83,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgCHHHHKtQVqgm8ZAA--.32445S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3JF17CF4UXFy7Cw1rKr4xCrg_yoW7trWfpF
-	4kCF97Gr1vyF93ua95ta40kryfJ3ZrCry5ArWkJFnrZa1DJw1qqF4IgFyrAF9rZr4fXryx
-	XF1xXw4av34xu3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBS14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
-	n2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42xK82
-	IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
-	0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMI
-	IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF
-	0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
-	Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRNSdgDUUUU
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Rspamd-Queue-Id: A3D125412A5
+Content-Type: text/plain
+X-MTK: N
+X-Rspamd-Queue-Id: A2B4E54151C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-297494-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-297504-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,linaro.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FROM_NO_DN(0.00)[];
-	DBL_PROHIBIT(0.00)[3.1.167.64:email];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[arnab.layek@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.899];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,eswincomputing.com:email,eswincomputing.com:mid,microchip.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:mid,mediatek.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+This series updates the mtk,scp dt-binding schema to support MT8188's
+requirement for two memory regions while maintaining backward
+compatibility for other MediaTek SoCs.
 
-Add bindings for the high-speed peripherals clock and reset generator
-on the ESWIN EIC7700 HSP.
+The schema uses a permissive base with restrictive conditionals:
+1) Base schema allows all devices minItems: 1, maxItems: 2
+2) Non-MT8188 devices (mt8183, mt8186, mt8192, mt8195, mt8195-dual) are
+   restricted to maxItems: 1, overriding the base
+3) MT8188 devices (mt8188, mt8188-dual) set minItems: 1 with item
+   descriptions, inheriting maxItems: 2 from base, making the second
+   L1TCM region optional
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- .../bindings/clock/eswin,eic7700-hspcrg.yaml  | 63 +++++++++++++++++++
- MAINTAINERS                                   |  5 +-
- .../dt-bindings/clock/eswin,eic7700-hspcrg.h  | 33 ++++++++++
- .../dt-bindings/reset/eswin,eic7700-hspcrg.h  | 21 +++++++
- 4 files changed, 120 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
- create mode 100644 include/dt-bindings/clock/eswin,eic7700-hspcrg.h
- create mode 100644 include/dt-bindings/reset/eswin,eic7700-hspcrg.h
+Changes in v3:
+- Removed "Tested on..." line per Krzysztof's feedback (bindings cannot be tested)
+- Added minItems: 1 to MT8188 conditional to make L1TCM region truly optional
+- Clarified commit message to specifically reference mediatek,jpeg-encoder.yaml pattern
+- Restructured schema per Conor's feedback: base allows maxItems: 2, conditionals restrict
+- Added explicit restrictions for non-MT8188 devices (maxItems: 1)
+- Added technical explanation of the permissive base + restrictive conditionals pattern
 
-diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
-new file mode 100644
-index 000000000000..43df689ae647
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-hspcrg.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/eswin,eic7700-hspcrg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ESWIN EIC7700 HSP Clock and Reset Generator
-+
-+maintainers:
-+  - Xuyang Dong <dongxuyang@eswincomputing.com>
-+
-+description:
-+  Clock and reset generator for the ESWIN EIC7700 HSP (high-speed peripherals).
-+
-+properties:
-+  compatible:
-+    const: eswin,eic7700-hspcrg
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: HSP configuration top clock
-+      - description: MMC top clock
-+      - description: SATA top clock
-+
-+  clock-names:
-+    items:
-+      - const: cfg
-+      - const: mmc
-+      - const: sata
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      See <dt-bindings/clock/eswin,eic7700-hspcrg.h> for valid indices.
-+
-+  '#reset-cells':
-+    const: 1
-+    description:
-+      See <dt-bindings/reset/eswin,eic7700-hspcrg.h> for valid indices.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@50440000 {
-+        compatible = "eswin,eic7700-hspcrg";
-+        reg = <0x50440000 0x2000>;
-+        clocks = <&clock 171>, <&clock 254>, <&clock 187>;
-+        clock-names = "cfg", "mmc", "sata";
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b2040011a386..b7180863310c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9548,9 +9548,10 @@ ESWIN EIC7700 CLOCK DRIVER
- M:	Yifeng Huang <huangyifeng@eswincomputing.com>
- M:	Xuyang Dong <dongxuyang@eswincomputing.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-+F:	Documentation/devicetree/bindings/clock/eswin,eic7700*
- F:	drivers/clk/eswin/
--F:	include/dt-bindings/clock/eswin,eic7700-clock.h
-+F:	include/dt-bindings/clock/eswin,eic7700*
-+F:	include/dt-bindings/reset/eswin,eic7700-hspcrg.h
- 
- ET131X NETWORK DRIVER
- M:	Mark Einon <mark.einon@gmail.com>
-diff --git a/include/dt-bindings/clock/eswin,eic7700-hspcrg.h b/include/dt-bindings/clock/eswin,eic7700-hspcrg.h
-new file mode 100644
-index 000000000000..1d1ff15c1154
---- /dev/null
-+++ b/include/dt-bindings/clock/eswin,eic7700-hspcrg.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Device Tree binding constants for EIC7700 HSP clock controller.
-+ *
-+ * Authors: Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_CLOCK_H_
-+#define _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_CLOCK_H_
-+
-+#define EIC7700_HSP_CLK_FAC_CFG_DIV2		0
-+#define EIC7700_HSP_CLK_FAC_CFG_DIV4		1
-+#define EIC7700_HSP_CLK_FAC_MMC_DIV10		2
-+#define EIC7700_HSP_CLK_MUX_EMMC_3MUX1		3
-+#define EIC7700_HSP_CLK_MUX_SD0_3MUX1		4
-+#define EIC7700_HSP_CLK_MUX_SD1_3MUX1		5
-+#define EIC7700_HSP_CLK_MUX_EMMC_CQE_2MUX1	6
-+#define EIC7700_HSP_CLK_MUX_SD0_CQE_2MUX1	7
-+#define EIC7700_HSP_CLK_MUX_SD1_CQE_2MUX1	8
-+#define EIC7700_HSP_CLK_GATE_MSHC0_TMR		9
-+#define EIC7700_HSP_CLK_GATE_EMMC		10
-+#define EIC7700_HSP_CLK_GATE_MSHC1_TMR		11
-+#define EIC7700_HSP_CLK_GATE_SD0		12
-+#define EIC7700_HSP_CLK_GATE_MSHC2_TMR		13
-+#define EIC7700_HSP_CLK_GATE_SD1		14
-+#define EIC7700_HSP_CLK_GATE_USB0		15
-+#define EIC7700_HSP_CLK_GATE_USB1		16
-+#define EIC7700_HSP_CLK_GATE_SATA		17
-+
-+#endif /* _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_CLOCK_H_ */
-diff --git a/include/dt-bindings/reset/eswin,eic7700-hspcrg.h b/include/dt-bindings/reset/eswin,eic7700-hspcrg.h
-new file mode 100644
-index 000000000000..413fcd08c701
---- /dev/null
-+++ b/include/dt-bindings/reset/eswin,eic7700-hspcrg.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Device Tree binding constants for EIC7700 HSP reset controller.
-+ *
-+ * Authors: Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_RESET_H_
-+#define _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_RESET_H_
-+
-+#define EIC7700_HSP_RST_SATA_P0		0
-+#define EIC7700_HSP_RST_SATA_PHY	1
-+#define EIC7700_HSP_RST_USB0		2
-+#define EIC7700_HSP_RST_USB1		3
-+#define EIC7700_HSP_RST_USB0_PHY	4
-+#define EIC7700_HSP_RST_USB1_PHY	5
-+
-+#endif /* _DT_BINDINGS_ESWIN_EIC7700_HSPCRG_RESET_H_ */
+Changes in v2:
+- Added conditional schema for MT8188 to allow 1-2 memory regions
+- Added descriptions for each memory region
+- Did not work: base maxItems: 1 conflicted with conditional trying to allow 2
+
+Arnab Layek (1):
+  dt-bindings: remoteproc: mtk,scp: Allow multiple memory regions for
+    MT8188
+
+ .../bindings/remoteproc/mtk,scp.yaml          | 45 ++++++++++++++++++-
+ 1 file changed, 43 insertions(+), 2 deletions(-)
+
 -- 
-2.34.1
+2.45.2
+
 
 
