@@ -1,227 +1,179 @@
-Return-Path: <devicetree+bounces-297638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AD5mEJbiBWqNdAIAu9opvQ
-	(envelope-from <devicetree+bounces-297638-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:56:22 +0200
+	id oBMdAo7lBWoAdQIAu9opvQ
+	(envelope-from <devicetree+bounces-297650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:09:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9190054392A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:56:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DB1543BDF
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:09:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97DC3311C404
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:49:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EF4C93036838
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609293093DD;
-	Thu, 14 May 2026 14:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B73D425CD7;
+	Thu, 14 May 2026 14:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=muenchen-mail.de header.i=@muenchen-mail.de header.b="XOIodXdK"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="D59NU0rv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791A8352C2B;
-	Thu, 14 May 2026 14:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.18.0.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5973141C2FF;
+	Thu, 14 May 2026 14:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778770148; cv=none; b=K6MwXBKHalvSPWW5ifoQtHnZQl/oD/2oxCuZPO8PP6VPGurK6iM88rr9MB4iaiuFndKJVs+5WNjfsLXZa4MlXQP+WasmXro5gr/OOjUQqmKKlc/CCHhZlA0RbRJ8TfyJNqm4UMik0ZKvV1cs4+b4aZiJuCJKMY8m1bUkedl4U8M=
+	t=1778770534; cv=none; b=t1tuL/bEKFjvg/HuNgBrOmnADyKvgl05al7ynjd3ooBzobnRFkSPV7162WybtvocN+1Lu/jCQs+AvYP0MagOWGoV+vCBbqbXu1Daeo5oFgDiD5/KzkuocRMD7THuReRlwVKe4rCYVWKMVxcXxb7NAqD5ek2uVIA8ksKVVnt3Wps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778770148; c=relaxed/simple;
-	bh=dUJOBrGNyaBaS+f+GwKjU0is0XDIeGuBT4NBGljSka4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WXSPutw4kbWMi+a2ha0KyhX1GafYFp6OGbh0COMXIGO6WgW6+blv9nsOFPxdSrysuvolmYxTW6zZW0CnFwIV7JKFt7qZHElHx6nuPYGsbwboGS51OcWbPe3iL0EvjCr51G5YXu22Cw3jJaliN8ybKb9AvD0JkWki0wnIvzD9INI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=muenchen-mail.de; spf=pass smtp.mailfrom=muenchen-mail.de; dkim=pass (2048-bit key) header.d=muenchen-mail.de header.i=@muenchen-mail.de header.b=XOIodXdK; arc=none smtp.client-ip=212.18.0.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=muenchen-mail.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=muenchen-mail.de
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4gGYB40F7dz1r9RZ;
-	Thu, 14 May 2026 16:49:00 +0200 (CEST)
-DKIM-Signature: a=rsa-sha256; bh=EJ6PtimWkN5xpJhACBp9c+AkdbNaDEVLQdiF6gajTdM=;
-        c=relaxed/relaxed; d=muenchen-mail.de;
-        h=Date:From:To:Message-ID:Subject;
-        s=r1; t=1778770140; v=1;
-        b=XOIodXdKHKLPLarYwfI5FnGCzTBfvE5/5doN6PFxUGyAVjgjHcLeLBxOzE3NMAxk
-         2J7MmQRRA5Qewxbzm8LVT8zjJq+TMKjTXdegzyLWJaDxq32dLx651DP7cnAtG6cl
-         1se2PBTBIfWCwYX0OuTAVq/GzqOuo66Pwn739p5wyiaaSbJvTq2sFVViK/XNIQBG
-         F6MKYOJ3ut3A1cF/2dWk4LFgdOgSbMQ/XVRyy5vR/RuSxp6/EWmeF64yoz4Xy6s4
-         bc3igVmIYIouBAql23nUgzr3qe+5KgBNSEgPU4Rzi196ZqduKbTsK4xgnh2bqIXq
-         sPhaaJVFse5Ev2K/ycDNbA==
-Received: from frontend03.mail.m-online.net (unknown [192.168.6.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4gGYB21c1Gz1r9RS;
-	Thu, 14 May 2026 16:48:58 +0200 (CEST)
-Received: from localhost (dynscan3.mnet-online.de [192.168.6.87])
-	by mail.m-online.net (Postfix) with ESMTP id 4gGYB201Ftz1qqlR;
-	Thu, 14 May 2026 16:48:57 +0200 (CEST)
-X-Virus-Scanned: amavis at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.6.182])
- by localhost (dynscan3.mail.m-online.net [192.168.6.87]) (amavis, port 10024)
- with ESMTP id RqQzR5Go5WUT; Thu, 14 May 2026 16:48:57 +0200 (CEST)
-X-Auth-Info: sv4+CwxImubGKkxTuhBFuWEWkQooRkWsMzw5r1jAoWdr/hG0Idz6DrWM965wp3Ac
-Received: from wiesel.intern (aftr-62-216-206-65.dynamic.mnet-online.de [62.216.206.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Thu, 14 May 2026 16:48:57 +0200 (CEST)
-Received: from murmel.intern (unknown [IPv6:fdea:9b79:8984:1:c250:c287:2f42:db51])
-	by wiesel.intern (Postfix) with ESMTP id A644879A038C;
-	Thu, 14 May 2026 16:48:56 +0200 (CEST)
-From: Thomas Gerner <thomas.gerner@muenchen-mail.de>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Thomas Gerner <thomas.gerner@muenchen-mail.de>
-Subject: [PATCH v3] Enable wifi on the BeagleV-Ahead
-Date: Thu, 14 May 2026 16:47:17 +0200
-Message-ID: <20260514144836.50101-1-thomas.gerner@muenchen-mail.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260512173440.163179-1-thomas.gerner@muenchen-mail.de>
-References: <20260512173440.163179-1-thomas.gerner@muenchen-mail.de>
+	s=arc-20240116; t=1778770534; c=relaxed/simple;
+	bh=ZpsaXMnT8mGaJqAf4d/VAYCqi6dkod4gfaRjgq9A7Bw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=J4U+qUmZGQkDLQqFJvYMQjMu0OIabUFTI5CcysU/p9985+qmxRrRJ3WMQpNlyBlXvvAydoGNIMssroJITXkHzQTSlI72k35y003FdTYCa9C11mVOJ0jTywUXT0uykEBZheKo6biIp9vHEeQaVsdUcuTTxn6zpoqLXQQX9ahgmB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=D59NU0rv; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 2A7F56000874;
+	Thu, 14 May 2026 15:47:30 +0100 (WEST)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id muTaDOIg6hAT; Thu, 14 May 2026 15:47:28 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 4DB63600086F;
+	Thu, 14 May 2026 15:47:27 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1778770047;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=eYXd8HA7NIedKDT16VEUKdG9K7xMUHUqGq+blCrAy2Q=;
+	b=D59NU0rvOt5xK4H8TdW4OWgxoGyZ/QHLPKe5y3ciaIviesFMLfoOFf6+JuFvit5g3LQH5T
+	I6T/P5Lu9wCF0XkYYLSs2ApDh/3lUc3y4oAp5ZPmb8LdC34upXp2TynafKjoChSAYWluxN
+	FnW0ZjiK5Vn/aT8qvxu0CHDGvpc5mFgvfSc68ZCzq9zrV9plNzzJetDCEkMGSKFM9MxGJL
+	mnWVn/lhrIz5m7VzpvBV1O5O2PiLTmPpNuy9Y7htfaJiX3/widNU1ytHmQhenhRqIbNeU0
+	xceE55r3AqAj+E+3CcAaf4ZOUFllXU6G1ifCm0bBwZgfRpp2sZxkkVKyNaQSUQ==
+Received: from [192.168.1.94] (2a02-842a-00d7-bd01-2527-ff0d-f555-b6e4.rev.sfr.net [IPv6:2a02:842a:d7:bd01:2527:ff0d:f555:b6e4])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 9D94D360249;
+	Thu, 14 May 2026 15:47:25 +0100 (WEST)
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Subject: [PATCH 0/4] power: sys-off: fix Pixel C shutdown via MAX77620
+Date: Thu, 14 May 2026 16:47:18 +0200
+Message-Id: <20260514-smaug-poweroff-v1-0-30f9a4688966@tecnico.ulisboa.pt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 9190054392A
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMzQqFIBBA4VeJWV9BJYV6lctdpI01QRnO7Qeid
+ 89q+S3OOYAxETLUxQEJV2KKU4b6FOD7ZupQUJsNWmorjSoFj83SiTlumGIIorLaemOkcs5Djua
+ EgfZn+P295sUN6P/3Bc7zAuqVfTtyAAAA
+X-Change-ID: 20260514-smaug-poweroff-9626c5501bbc
+To: Mark Rutland <mark.rutland@arm.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778770045; l=2142;
+ i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
+ bh=ZpsaXMnT8mGaJqAf4d/VAYCqi6dkod4gfaRjgq9A7Bw=;
+ b=/P4GnGyDmcmpOljiLDZFxUjiKx9mtbf0Jo+QarzqIuAHLNZ+yx8kBKj4Cu8dyidx9Qkn3qAES
+ vSqDg0koDmyAb37rWOnWoDs3v0hpZq1cm7MmrXt5dFMIx2s71uDXlzl
+X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+X-Rspamd-Queue-Id: 40DB1543BDF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[muenchen-mail.de,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[muenchen-mail.de:s=r1];
+	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
+	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-297650-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ulisboa.pt:email,tecnico.ulisboa.pt:mid,tecnico.ulisboa.pt:dkim];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297638-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[muenchen-mail.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.gerner@muenchen-mail.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,muenchen-mail.de:email,muenchen-mail.de:mid,muenchen-mail.de:dkim];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-The BeagleV-Ahead board uses an AP6203BM WiFi chip from AMPAK Technology
-Inc. connected to SDIO1. The chip is compatible to the broadcom wireless
-driver.
+This series migrates PSCI and MAX77620 poweroff handling to the
+sys-off framework and fixes shutdown on the Pixel C (Smaug).
 
-The AP6203BM is a dual-band 2.4GHz/5GHz Wi-Fi 4 (802.11a/b/g/n) and
-Bluetooth 5.4 module. Bluetooth is not enabled by this patch.
+The first two patches replace legacy pm_power_off usage in the PSCI
+and MAX77620 drivers with sys-off handlers. Besides aligning both
+drivers with the modern poweroff infrastructure, this removes the
+global callback dependency and allows multiple handlers to coexist
+with explicit priorities.
 
-Change in v3:
-- consider further issues found by sashiko AI review
+The remaining patches address shutdown on the Pixel C. Although the
+platform exposes PSCI firmware, its SYSTEM_OFF implementation is not
+functional:
 
-Change in v2:
-- consider issues found by sashiko AI review
+    __dead2 void tegra_system_off(void)
+    {
+            ERROR("Tegra System Off: operation not handled.\n");
+            panic();
+    }
 
-Signed-off-by: Thomas Gerner <thomas.gerner@muenchen-mail.de>
+Downstream kernels instead rely on the MAX77620 PMIC to perform the
+shutdown sequence. To mirror that behavior upstream, register the
+MAX77620 handler with higher priority than PSCI on Smaug systems and
+mark the PMIC as the system power controller in device tree.
+
+Patch overview:
+  1. firmware: psci: switch SYSTEM_OFF to sys-off handler API
+  2. mfd: max77620: convert poweroff support to sys-off API
+  3. mfd: max77620: override PSCI poweroff handler on Smaug
+  4. arm64: dts: tegra: smaug: mark MAX77620 as system power controller
+
+Tested on a Pixel C, where poweroff now completes successfully
+instead of hanging in PSCI firmware.
+
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 ---
- .../boot/dts/thead/th1520-beaglev-ahead.dts   | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
+Diogo Ivo (4):
+      firmware: psci: switch SYSTEM_OFF to sys-off handler API
+      mfd: max77620: convert poweroff support to sys-off API
+      mfd: max77620: override PSCI poweroff handler on Pixel C
+      arm64: tegra: smaug: mark MAX77620 as system power controller
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 91f3f9b987bc..f13a2d1deefa 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -86,6 +86,11 @@ hdmi_con_in: endpoint {
- 			};
- 		};
- 	};
-+
-+	brcmf_pwrseq: brcmf-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio2 31 GPIO_ACTIVE_LOW>;	/* WL-REG-ON */
-+	};
- };
- 
- &osc {
-@@ -239,6 +244,28 @@ rx-pins {
- 			slew-rate = <0>;
- 		};
- 	};
-+
-+	wifi_pins: wifi-0 {
-+		host-wake-pins {
-+			pins = "GPIO2_25";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <1>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		reg-on-pins {
-+			pins = "GPIO2_31";
-+			function = "gpio";
-+			bias-disable;
-+			drive-strength = <3>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
- };
- 
- &sdio0 {
-@@ -247,6 +274,28 @@ &sdio0 {
- 	status = "okay";
- };
- 
-+&sdio1 {
-+	bus-width = <4>;
-+	max-frequency = <198000000>;
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	non-removable;
-+	keep-power-in-suspend;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wifi_pins>;
-+	mmc-pwrseq = <&brcmf_pwrseq>;
-+
-+	wifi@1 {
-+		compatible = "cypress,cyw43012-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
- &dpu {
- 	status = "okay";
- };
--- 
-2.43.0
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts |  2 ++
+ drivers/firmware/psci/psci.c                  |  8 +++---
+ drivers/mfd/max77620.c                        | 36 ++++++++++++++++++++-------
+ 3 files changed, 34 insertions(+), 12 deletions(-)
+---
+base-commit: f327c8ef8a6905ee97b62e42d808603c5b759418
+change-id: 20260514-smaug-poweroff-9626c5501bbc
+
+Best regards,
+--  
+Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 
 
