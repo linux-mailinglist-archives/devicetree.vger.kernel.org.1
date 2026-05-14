@@ -1,156 +1,182 @@
-Return-Path: <devicetree+bounces-297765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297767-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yMxRCskVBmp3egIAu9opvQ
-	(envelope-from <devicetree+bounces-297765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 20:34:49 +0200
+	id 6GIcES8WBmp3egIAu9opvQ
+	(envelope-from <devicetree+bounces-297767-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 20:36:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 781AD545E86
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 20:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87497545EC9
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 20:36:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 43026306CC5A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:34:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E85D630578BC
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 18:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6D9394798;
-	Thu, 14 May 2026 18:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81EB039BFEF;
+	Thu, 14 May 2026 18:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kboVcVcq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rlj98AlD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1F13932CC
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 18:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E77439935E;
+	Thu, 14 May 2026 18:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778783670; cv=none; b=WFbd1y1Ra2LJu0CNqlPre+/Zhv20rpGzu4RQxDBCxkS3Ix3jXYmJe+ZzSmD79UEX7IceAWyfo4kPxi1CmpX/DTsWaZenX4mE7aM0KnD33Uzrh82APetilV71ly+UzY2dZKc2MvfJZG0JPuKv1Dex3ZQ21KXu2SPlENKpVladfXw=
+	t=1778783753; cv=none; b=jRnsGsHqwcUMSQPZloUE1TtH1BK1XOCWbAHefjZMiTf3ejHKrv6icO5o4sy9sUHKtDAzAcwIFI7M5z8N6mlE9bw91zSMNBp/OdsGzllRfjR+Hx978Nc1CWU32vuKVABy/JfTNPToJMyjjPrvQ/ZxVMkRjPMyqTy5KhcI79LBh/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778783670; c=relaxed/simple;
-	bh=gTPCwwjS8l6KekjY7pr/CkOGCTZYthkWXt/ENpIlrg0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Gzrg33tPwD9zhBmH+TybWTJLRlX0o/hgQyTF4EDgvhzpyXtai/bbULv0AfvovTxMhKWjOd+wluJHlKRrIT8sgwwHMQIG6AgyvgYakqy1dgfRReB+LjjpTphNlZ/Wuda2U/rIcBIFnpAKKP6v4eZAldPM4qC8weW9ChpwAF/FIEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kboVcVcq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F56DC2BCB3;
-	Thu, 14 May 2026 18:34:29 +0000 (UTC)
+	s=arc-20240116; t=1778783753; c=relaxed/simple;
+	bh=LpfA4YJLp82nKZ7j8ERgicnB0lfPbUUdobv0xO2bWZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y8ZkcRnMZEYIBm38th4bCDGalZDAv+FgDXuXxI2sgIpqxKOGEKwdf12mijx8HeKuAxlvYNJ7CcqrnPSsnbzJNgVwyxvj5k0KoKaT3NkuAHqGX1X8llCOXoOkzOF4J7Un3yBB3eEas074+L7YEOP1fKDmnF9waqO1Lx2bAdTLISo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rlj98AlD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5989C2BCB7;
+	Thu, 14 May 2026 18:35:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778783669;
-	bh=gTPCwwjS8l6KekjY7pr/CkOGCTZYthkWXt/ENpIlrg0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=kboVcVcq8+CVOs7wyzZNn2WSev8p/CSRWGW+FmG8GIWIc2p/ffxaK8cVQVQqnDSKr
-	 WT4dxtl8cwih1V4ASJkjDIEILHnvb8ccvZLw6QvzMSoy7hmNuruFUNF29gy09HZund
-	 VVYze7D8MH5r8PXNpfsJ8wkLnBJqOCaLxsRzCbSwloc86V3Zrdfsf/z8erDjG8sAVc
-	 mX4xjP+AFpjtzIK2V7+bb1r6zWzTj2Y0AFNaXks2j8I6+F4/24aW29aCrgBfqBI5b2
-	 UdXR6BZfKOgQT45nB3pNxcxLcwJ9LYsQZn5ML6f69dkIRxKgn4Ik91g6v0NxKyVDDR
-	 nMlYBoP6gIeSw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 5/6] regulator: mt6359: Add regulator supply names
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chen-Yu Tsai" <wenst@chromium.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260514091520.2718987-6-wenst@chromium.org>
-References: <20260514091520.2718987-6-wenst@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 18:34:28 +0000
-Message-Id: <20260514183429.5F56DC2BCB3@smtp.kernel.org>
+	s=k20201202; t=1778783753;
+	bh=LpfA4YJLp82nKZ7j8ERgicnB0lfPbUUdobv0xO2bWZc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rlj98AlDQyTeX12JFgkt/ly0N1n9zIuDvPKybIPVZV+gTnzr92YhV/WrC0y+W9XG0
+	 TxPVEtSqK55DC9fVH/X2H5It9iRxxz7g+6JVykf4k3iVBtY6F9OJ/jq2hw/uMnWTda
+	 EKQB6r8olDKz1si9FcAnQ9+8hOnZ38AYpp+Oh50hVMVbTDg6pj63qJVlSMU41Ld9zI
+	 4WDlfk1PxECkRORw7/Bah9ag/IamZ774oZkfPNVbJ+TssAlDoP46GOdsC2luZgqNXr
+	 RKzp1Um7JQPXc8gJV5qWIl0He2UMvbNe21rH2A27SrHYUXaoLj086hWkx/uYudyaj+
+	 jGi+GaYj0+phw==
+Date: Thu, 14 May 2026 19:35:47 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+Subject: Re: [PATCH v2 01/22] dt-bindings: pincfg-node: Add property
+ 'input-debounce-nanoseconds'
+Message-ID: <20260514-petted-onscreen-0e588a2d1023@spud>
+References: <20260514111218.94519-1-changhuang.liang@starfivetech.com>
+ <20260514111218.94519-2-changhuang.liang@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 781AD545E86
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pWLjzhTOBnTrZUGw"
+Content-Disposition: inline
+In-Reply-To: <20260514111218.94519-2-changhuang.liang@starfivetech.com>
+X-Rspamd-Queue-Id: 87497545EC9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297765-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:email];
+	TAGGED_FROM(0.00)[bounces-297767-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,starfivetech.com:email]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The supply name for 'vbbck' in 'mt6359p_regulators' was incorrectly=
- set to 'LDO_VIO18' instead of 'VIO18'.
---
 
-commit c863063b2f41de345a843312e3b866262b280224
-Author: Chen-Yu Tsai <wenst@chromium.org>
+--pWLjzhTOBnTrZUGw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-regulator: mt6359: Add regulator supply names
+On Thu, May 14, 2026 at 04:11:57AM -0700, Changhuang Liang wrote:
+> Add the property 'input-debounce-nanoseconds' to specify debounce time
+> in nanoseconds as an alternative to the existing 'input-debounce' which
+> uses microseconds. Make the new property unavailable when the existing
+> property 'input-debounce' is selected to prevent conflicting definitions.
+>=20
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  .../devicetree/bindings/pinctrl/pincfg-node.yaml     | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b=
+/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> index 97dbce8a261f..4db66cdf438c 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> @@ -104,6 +104,11 @@ properties:
+>      description: Takes the debounce time in usec as argument or 0 to dis=
+able
+>        debouncing
+> =20
+> +  input-debounce-nanoseconds:
 
-The MT6359 regulator DT binding defines the supply names for the PMIC.
-This commit adds support for them by introducing .supply_name field
-settings for each regulator. The LDOs share supplies, while buck
-regulators have their own supplies related to their names.
+-ns is the standard suffix here, and if you use it you can drop the ref
+below.
+pw-bot: changes-requested
 
-> diff --git a/drivers/regulator/mt6359-regulator.c b/drivers/regulator/mt6=
-359-regulator.c
-> index bcf9a476a34e1..46cafe93b24e4 100644
-> --- a/drivers/regulator/mt6359-regulator.c
-> +++ b/drivers/regulator/mt6359-regulator.c
-[ ... ]
-> @@ -871,11 +879,11 @@ static const struct mt6359_regulator_info mt6359p_r=
-egulators[] =3D {
->  		   MT6359P_RG_LDO_VM18_EN_ADDR, MT6359P_RG_LDO_VM18_EN_SHIFT,
->  		   MT6359P_DA_VM18_B_EN_ADDR, MT6359P_RG_VM18_VOSEL_ADDR,
->  		   MT6359_RG_VM18_VOSEL_MASK << MT6359_RG_VM18_VOSEL_SHIFT,
->  		   1920),
-> -	MT6359_LDO("ldo_vbbck", VBBCK, vbbck_voltages,
-> +	MT6359_LDO("ldo_vbbck", VBBCK, "LDO_VIO18", vbbck_voltages,
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: Takes the debounce time in nsec as argument or 0 to dis=
+able
+> +      debouncing
+> +
+>    power-source:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: select between different power supplies
+> @@ -214,6 +219,13 @@ allOf:
+>          input-schmitt-enable: false
+>          input-schmitt-microvolt: false
+> =20
+> +  - if:
+> +      required:
+> +        - input-debounce
+> +    then:
+> +      properties:
+> +        input-debounce-nanoseconds: false
+> +
+>    - if:
+>        required:
+>          - drive-strength
+> --=20
+> 2.25.1
+>=20
+>=20
 
-In mt6359p_regulators, the supply name for vbbck was introduced as "LDO_VIO=
-18",
-whereas in mt6359_regulators it is set to "VIO18".
+--pWLjzhTOBnTrZUGw
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Because the descriptor name for vio18 is "VIO18", the condition
-strcmp(desc->supply_name, vio18_name) !=3D 0 in mt6359_regulator_probe() wi=
-ll
-evaluate to true for the MT6359P variant on every boot.
+-----BEGIN PGP SIGNATURE-----
 
-This discrepancy triggers the fallback execution path inside the probe loop,
-performing an unnecessary devm_kzalloc() to allocate a new regulator_desc a=
-nd
-correct the supply name dynamically.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagYWAwAKCRB4tDGHoIJi
+0rIOAQCBZn1RMJo851Cn3cOWdtjpvbrU87prJ18Ys3d0fR3dMQD/UMn0zfMmTLW1
+R5NuaVy2a1l4qhNVvCtgC33sqC0w3ww=
+=GXnu
+-----END PGP SIGNATURE-----
 
-Should this also be "VIO18" to prevent the permanent, unintended memory
-allocation on MT6359P platforms?
-
->  		   MT6359P_RG_LDO_VBBCK_EN_ADDR, MT6359P_RG_LDO_VBBCK_EN_SHIFT,
->  		   MT6359P_DA_VBBCK_B_EN_ADDR, MT6359P_RG_VBBCK_VOSEL_ADDR,
->  		   MT6359P_RG_VBBCK_VOSEL_MASK << MT6359P_RG_VBBCK_VOSEL_SHIFT,
->  		   480),
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514091520.2718=
-987-1-wenst@chromium.org?part=3D5
+--pWLjzhTOBnTrZUGw--
 
