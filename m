@@ -1,123 +1,127 @@
-Return-Path: <devicetree+bounces-297343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297344-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KAjjD2JwBWoTXAIAu9opvQ
-	(envelope-from <devicetree+bounces-297343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:49:06 +0200
+	id QEMVOg1xBWoTXAIAu9opvQ
+	(envelope-from <devicetree+bounces-297344-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:51:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F3653E805
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:49:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFA553E89D
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:51:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8AAFF3023054
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:49:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6AD843013D44
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0F83AA500;
-	Thu, 14 May 2026 06:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E993AB298;
+	Thu, 14 May 2026 06:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Btuh47Gb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EPw7QxBg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC6038F929;
-	Thu, 14 May 2026 06:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C24353EF3
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 06:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778741341; cv=none; b=lZ8bcDIbXYK4KgE6zjb+t0qXPcAWynUTXT6P8jwe54/ueKS5cLioSNqZvNAHsr/JOBwMAG35O5wNwY2Bp4x7p88beYsWGMV+/qbAy2TKo5i0huINZJV2C+HyUTtnp8R1epAAykTUI9Z5NeSxXNs/Hb8hnN00M+KI3IDVyzHOluc=
+	t=1778741381; cv=none; b=t0K7Qb/yv5OiZHXO94l3NCdJ/Er6bQlDOZYWH06eRP48NqbHjfl7utGumTbi51WNfLeRWeBgjVqvp8eeizjQAUfmaYnuYs5OWfKQMnO60LoJZ+C6nWuhh48e/KfAfUll0ENz1zDq3arN0YUFEPtQgeZ9DOOLBHPlEU6far8APYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778741341; c=relaxed/simple;
-	bh=kV2o7etbiZ1xCvqmtMuywQhhRRr9HS66gjhYQJ3K4ZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MbP/FrTIHFwXO2dqo+25jvmLyhCFY8UtimZxZFBzuRhoR37qa9V+6/zD7aX+/D8+CpPF3cjbPqCCSXZT/OtsI5JOxG4CcU1tZpfpoBV7dq/k3mgHvSZ7GveDwhFKfMVVlN+iFINxWhAJq21r4c1ENO4RF/Q9scRyKtIvCPeBEy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Btuh47Gb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B6DC2BCC6;
-	Thu, 14 May 2026 06:49:00 +0000 (UTC)
+	s=arc-20240116; t=1778741381; c=relaxed/simple;
+	bh=rJrFiOv4HJ3RYG/VUBXQrto0C5r9yv3FzaP1/XXbz+E=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Jvy7rwW8SAQZlQu8q+CUgBGObwRPosnKSRr30cKxZOqJWyIjgD7CgeJUE/b9GrSxGS+o+saHuQMx8JOLLS7bkO8X0JSW2QUpPxmC87nn9ZdJzzx8O5AxBUwXj1zTgr087GTzDcgdTmiRxqWS5AGIrCRlKUt4YryVr4APWUuX9Co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EPw7QxBg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5060CC2BCB7;
+	Thu, 14 May 2026 06:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778741341;
-	bh=kV2o7etbiZ1xCvqmtMuywQhhRRr9HS66gjhYQJ3K4ZU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Btuh47GbvI3I1oCGW2UgyyI/bokQrBi1bCH27SWwJgV6o30DAmiXr666HA6hBjKpU
-	 osqSwAGpNim0btT5qrBPlOO9dzx6pygFnEDrxIWjaBKxJhwcPrG0+RLI0EcmBzHk7v
-	 JLl/rucGHc50nC7YZBH/WQLK73sA7Oo6xjUMREuEYLOxyV+KRSGSn8aMiO6BKjp/3w
-	 nhZl/D45kayoeUz4bG+taqd3Llf0OCoBkplKgK+Q4hTzDjiCcHRiJnanEjWsaWNBmT
-	 Bv3rzRnyVaS/qR3rW8eXZZrS+oa+fv7s0+WK9Uxb1WMpYZHBkf/OYvqKxdfunTpI7I
-	 EGc29mH0DQNRA==
-Date: Thu, 14 May 2026 08:48:59 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com, 
-	dlechner@baylibre.com, jic23@kernel.org, jean-baptiste.maneyrol@tdk.com, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, robh@kernel.org, andriy.shevchenko@intel.com, 
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V6 02/11] dt-bindings: iio: imu: icm42600: Add icm42607
- binding
-Message-ID: <20260514-optimal-warping-donkey-fbf24c@quoll>
-References: <20260512221634.256747-1-macroalpha82@gmail.com>
- <20260512221634.256747-3-macroalpha82@gmail.com>
+	s=k20201202; t=1778741381;
+	bh=rJrFiOv4HJ3RYG/VUBXQrto0C5r9yv3FzaP1/XXbz+E=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=EPw7QxBglUIXsFGyWEBw/H5UtA4xu+1NnTiVTGMm7tPwJsxhF/C4fLO/1sCsrhdTf
+	 9zszzR/WIypVhKss0oDAS8acAIKL15UpDkn3mW8aAIeG+ihKDUBrg07BmHPLI18Ygu
+	 WZKXT8S8grrKQGhoAXp7K0v71qzw2jkCstW8MrX/C/9olkLTEdoCe4E3JWESjtrz6x
+	 N0VCH2dLqQe0JWEoNiUCe/P9WhCd0tqcf/jS3JactFYeLZ1QE92M8jSKKxQ0xZpNoL
+	 RqWbMEnzk/m9X/BUskhAyT9YSfCTAdfs1ALBHNmkobs1jejAt4rKe+LI5R5kIDxcqi
+	 yFs08Tm1FaYDA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 16/17] ASoC: simple-amplifier: Update author and
+ copyright
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Herve Codina" <herve.codina@bootlin.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260513081702.317117-17-herve.codina@bootlin.com>
+References: <20260513081702.317117-17-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 14 May 2026 06:49:40 +0000
+Message-Id: <20260514064941.5060CC2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260512221634.256747-3-macroalpha82@gmail.com>
-X-Rspamd-Queue-Id: 82F3653E805
+X-Rspamd-Queue-Id: 4DFA553E89D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297344-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297343-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,bootlin.com:email,lists.linux.dev:replyto];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-On Tue, May 12, 2026 at 05:16:23PM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add devicetree binding for the Invensense ICM42607 and Invensense
-> ICM42607P inertial measurement unit. This unit is a combined
-> accelerometer, gyroscope, and thermometer available via I2C or SPI.
-> 
-> This device is functionally very similar to the icm42600 series with a
-> very different register layout.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../devicetree/bindings/iio/imu/invensense,icm42600.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Copyright and authorship changes should be squashed into the releva=
+nt code commits.
+--
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+commit 8c20a26d5c232c4d2ed2b81d9a71f2b38091a58b
+Author: Herve Codina <herve.codina@bootlin.com>
 
-Best regards,
-Krzysztof
+ASoC: simple-amplifier: Update author and copyright
 
+This commit updates the author and copyright information for the
+simple-amplifier driver to reflect the recent addition of gpio-audio-amp
+support.
+
+> After reworking the simple-amplifier driver and adding support for
+> gpio-audio-amp in the driver, add myself as the author of the
+> gpio-audio-amp part of the driver and add a related copyright.
+
+This isn't a bug, but should these copyright and authorship updates be
+squashed directly into the commit that introduces the gpio-audio-amp
+support?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513081702.3171=
+17-1-herve.codina@bootlin.com?part=3D16
 
