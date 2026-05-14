@@ -1,269 +1,114 @@
-Return-Path: <devicetree+bounces-297446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mDvGGgyqBWrtZQIAu9opvQ
-	(envelope-from <devicetree+bounces-297446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:55:08 +0200
+	id yF14EXKqBWrtZQIAu9opvQ
+	(envelope-from <devicetree+bounces-297448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:56:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 006AF540A84
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:55:07 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF44540AD6
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D21F030054DD
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 10:55:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 515323004604
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 10:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75533A8739;
-	Thu, 14 May 2026 10:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4BB3AFAE7;
+	Thu, 14 May 2026 10:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzViy80N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lkP7XDkB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D7F38F248
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 10:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73C735E93B;
+	Thu, 14 May 2026 10:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778756105; cv=none; b=U+53W3JxaRajS/SKd70Rl9K8Qqx5eQuZpyGbFZMxXtvfy/pIKNA/FRx9I6PmNMJbPBLdPZtebX+1t5QdRKWR7WCOdjd1O3ZXF+VNJ2cI0XmSfVp47Ab4M96oNHWqijGR+KpI0VvJ+DBfPYKbJV3PH9+kFbvmxUvnNIdzepR9i6c=
+	t=1778756204; cv=none; b=PHE+bUyM3CiFUjBKREpSusEfRwIFnCJcT0W1gEJ89zP5GAKMy2GtHJCRkdXytedO99z1O95HH4pCRRoPqF6mK8d0NcYx132T7BNy8L+h+Im6FLMgdBQz9cwSbJgrZmNuVvpQQMllCbMV+uY6gbfIBgs0ieCJIt/8aJq2GMYsb0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778756105; c=relaxed/simple;
-	bh=aRJbIDXi3nshwHa0dq6zvqz8+u75C4Vvh5cVqGz31mI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=dA9Fq1xyFTsfdZYSn26BecJe1JFu9KriXdv01Uu1JEZbi5ECAWtdLgJPEVdmS3i0Jg71AweADy1LRDWC8Wq8boT1908a3F+rOK12YDT/gvbIHMFiVjCHsq1XiUcemtZwdR36YtOBwWWUBkYaXCN0Gj4VFVsnuX5YtBN1QdIqIBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzViy80N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C05F1C2BCB8;
-	Thu, 14 May 2026 10:55:04 +0000 (UTC)
+	s=arc-20240116; t=1778756204; c=relaxed/simple;
+	bh=3sd58P8BjyDEsnYK0YwYR2aJcegO650XuBzHu4xS7aQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q/WBxfNzGEBr68CfiCzMpX3BaJtSLBoZsi/mKYeEUkEL7bU4nL4DU4pWYFe+RQyelF5dmiCDLAPNW3NuB8cJ6JudaiCr1MwAYn8d1KKDB64jl/dLpLhRdqpE96fFpjEaNFHMP9g1izX4ChTlgZU4IH7k5znot+vLqY1WCIGQ9IU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkP7XDkB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D487DC2BCB3;
+	Thu, 14 May 2026 10:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778756105;
-	bh=aRJbIDXi3nshwHa0dq6zvqz8+u75C4Vvh5cVqGz31mI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=EzViy80NuYBMUIDxC5VSfBBU6DUKlNmcaoFNaY+FiGwGPtWSJErFd625Sf7rjkOd/
-	 WbZ+sNwzxbFo52Et7in7xbSgx7hmxEHS445M/ZBqDZ9nV1ziq37P8VjFj9wDcCwAQy
-	 sPxAKA0em6EoAJNO61U4NMjx7S7qRwtLARnKxpQO+6exhcuPTrt6xf9JWqhWdH5R9b
-	 fhu9LH3Y6Ru6Jg8k8mD1YcYd2gQLUj9lpuulI6ldgnoSPIKLK5C8Q1Qtk0K0lLMK3D
-	 Z5Cffu+kNeHaH1O0gZ0cTpdOSDbNRXXaH+nQQVVfhdsW4qPiMz0vxMKFR70EPT5BxD
-	 M9HbyeWauxBlQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 12/16] drm/tidss: oldi: Convert OLDI to an aux driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260513-beagley-ai-display-v2-12-9e9bcefde6bc@ideasonboard.com>
-References: <20260513-beagley-ai-display-v2-12-9e9bcefde6bc@ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 10:55:04 +0000
-Message-Id: <20260514105504.C05F1C2BCB8@smtp.kernel.org>
+	s=k20201202; t=1778756204;
+	bh=3sd58P8BjyDEsnYK0YwYR2aJcegO650XuBzHu4xS7aQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lkP7XDkBxVVFfVM3Pw4zE8HOQinBXzLMRIRnrMLQwkCVAISnpmAmbXRLT8V22yaoS
+	 jniokEZTUXHGWLRdPLSs1B4i9k228IwRrC3K3VK1IgGlQL20HcOblao8SckL5prU39
+	 eQ+t3ReekannPRs4CFpjfmAW6Nk6+YOQYzzV4VgbWECq7UqKzkrF9EQQHO3k50eF70
+	 C8rJ1Rj1b7tNrw5FoIYoy6D4+Z7AravdHq+PIYNMVzGolwB5Ub7atLlGIPYNQ9vXBL
+	 CF/lv/cRssNvpJX9Vkm0IwA/eIvD2tGQq7yqx4h2fLb/C2uJmI0ntm1+0J0xd8M8tP
+	 QR2WdrQ7gbuRQ==
+Date: Thu, 14 May 2026 12:56:41 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shawn Guo <shengchao.guo@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: crypto: qcom,prng: Document TRNG on Nord
+ SoC
+Message-ID: <20260514-therapeutic-echidna-of-maturity-4730fd@quoll>
+References: <20260510021809.1130114-1-shengchao.guo@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 006AF540A84
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260510021809.1130114-1-shengchao.guo@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 1FF44540AD6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297446-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-297448-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
-- [High] Dangling device link pointer leads to Use-After-Free if auxiliary_=
-device_add() fails.
-- [High] Improper cleanup on `auxiliary_device_init()` failure causes OF no=
-de leaks and potential Double Free memory corruption.
-- [High] Unchecked array bounds on Device Tree inputs lead to buffer overfl=
-ows.
-- [High] Hardware access proceeds despite `pm_runtime_get_sync()` failure, =
-causing bus errors.
-- [High] Asynchronous runtime PM suspend is cancelled by `pm_runtime_disabl=
-e()`, permanently leaking power.
-- [Medium] Resource leaks in error paths and device removal (Device Tree no=
-des and Clocks).
---
+On Sun, May 10, 2026 at 10:18:09AM +0800, Shawn Guo wrote:
+> From: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> 
+> Document True Random Number Generator on Qualcomm Nord SoC.
+> 
+> Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
+> ---
 
-commit 9cc9bfd52317bd0c6d94b12a2ebe2e87339428e8
-Author: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: drm/tidss: oldi: Convert OLDI to an aux driver
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-This commit converts the OLDI to an auxiliary device/driver, created by
-tidss, to allow the driver framework to handle enabling and disabling the
-power domains.
+Best regards,
+Krzysztof
 
-> diff --git a/drivers/gpu/drm/tidss/tidss_oldi.c b/drivers/gpu/drm/tidss/t=
-idss_oldi.c
-> index e925ddaa4fd6a..5331732ac99ee 100644
-> --- a/drivers/gpu/drm/tidss/tidss_oldi.c
-> +++ b/drivers/gpu/drm/tidss/tidss_oldi.c
-[ ... ]
-> @@ -251,6 +259,8 @@ static void tidss_oldi_atomic_pre_enable(struct drm_b=
-ridge *bridge,
->  	if (oldi->link_type =3D=3D OLDI_MODE_SECONDARY_CLONE_SINGLE_LINK)
->  		return;
-> =20
-> +	WARN_ON(pm_runtime_get_sync(oldi->dev) < 0);
-> +
->  	connector =3D drm_atomic_get_new_connector_for_encoder(state,
->  							     bridge->encoder);
-
-If pm_runtime_get_sync() fails and returns an error like -ENODEV, should
-this function abort?
-
-Proceeding to access hardware registers after a failure could trigger
-asynchronous external aborts or kernel panics.
-
-Does this also need pm_runtime_put_noidle() to drop the usage counter on
-failure?
-
-[ ... ]
-> +static int tidss_oldi_probe(struct auxiliary_device *auxdev,
-> +			    const struct auxiliary_device_id *id)
-> +{
-[ ... ]
-> +	link_type =3D get_oldi_mode(node, &companion_instance);
-> +	if (link_type =3D=3D OLDI_MODE_UNSUPPORTED) {
-
-Looking at get_oldi_mode() which is called here, if the companion reg
-property read fails or is out of bounds, it returns early but fails to call
-of_node_put(companion).
-
-Does this cause a device node reference leak?
-
-[ ... ]
-> +		oldi->serial =3D of_clk_get_by_name(node, "serial");
-> +		if (IS_ERR(oldi->serial)) {
-> +			ret =3D dev_err_probe(oldi->dev, PTR_ERR(oldi->serial),
-
-The oldi->serial clock is acquired via of_clk_get_by_name() here.
-
-Should there be a matching clk_put() in the probe error paths and in
-tidss_oldi_remove() to prevent a clock resource leak?
-
-[ ... ]
-> +	if (link_type !=3D OLDI_MODE_SECONDARY_DUAL_LINK) {
-> +		/* Register the bridge. */
-> +		oldi->bridge.of_node =3D node;
-> +		oldi->bridge.driver_private =3D oldi;
-> +
-> +		tidss->is_ext_vp_clk[oldi->parent_vp] =3D true;
-
-The parent_vp value is parsed directly from the device tree's reg property
-and used as an array index here.
-
-Is a bounds check against TIDSS_MAX_PORTS (4) needed to prevent a potential
-out-of-bounds write?
-
-[ ... ]
-> +static void tidss_oldi_remove(struct auxiliary_device *auxdev)
-> +{
-> +	struct tidss_oldi *oldi =3D auxiliary_get_drvdata(auxdev);
-> +	struct tidss_device *tidss =3D oldi->tidss;
-> +	struct device *dev =3D &auxdev->dev;
-> +
-> +	pm_runtime_dont_use_autosuspend(dev);
-> +	pm_runtime_disable(dev);
-
-During driver unbinding, drm_atomic_helper_shutdown() calls
-tidss_oldi_atomic_post_disable() which queues an asynchronous suspend via
-pm_runtime_put_autosuspend(). Immediately afterward, this teardown logic
-calls pm_runtime_disable().
-
-Since pm_runtime_disable() cancels any pending asynchronous idle or suspend
-work, will the OLDI hardware be left permanently powered on?
-
-[ ... ]
-> +static struct auxiliary_device *
-> +tidss_oldi_create_device(struct tidss_device *tidss,
-> +			 struct device_node *oldi_tx)
-> +{
-[ ... ]
-> +	ret =3D auxiliary_device_add(auxdev);
-> +	if (ret) {
-> +		dev_err(tidss->dev, "OLDI auxiliary_device_add failed: %d\n",
-> +			ret);
-> +		goto err_uninit_auxdev;
-> +	}
-
-A managed device link is created between the consumer and supplier before
-the consumer (auxdev) is registered. If auxiliary_device_add() fails, the
-code jumps to err_uninit_auxdev which frees the auxdev.
-
-Since the consumer was never successfully added to the system, the automatic
-link cleanup via device_del() won't trigger.
-
-Will this leave a dangling device link in the supplier's consumer list
-pointing to the freed auxdev, resulting in a use-after-free when the
-supplier is later purged? Would explicitly calling device_link_del() be
-needed on this error path?
-
-> +
-> +	tidss->oldis[tidss->num_oldis++] =3D auxdev;
-
-When adding the parsed child nodes from the device tree, is there a risk
-that num_oldis could exceed the statically allocated TIDSS_MAX_OLDI_TXES (2)
-array bounds if the device tree is malformed?
-
-> +
-> +	return auxdev;
-> +
-> +err_uninit_auxdev:
-> +	auxiliary_device_uninit(auxdev);
-> +	/* return here, as the rest are done in auxdev's release */
-> +	return ERR_PTR(ret);
-> +
-> +err_free_auxdev:
-> +	kfree(auxdev);
-> +err_free_pdata:
-> +	kfree(oldi_pdata);
-> +err_free_ida:
-> +	ida_free(&tidss_oldi_ida, oldi_aux_id);
-> +
-> +	return ERR_PTR(ret);
-> +}
-
-If auxiliary_device_init() fails, jumping to err_free_auxdev calls kfree()
-directly on the device structure.
-
-Does bypassing put_device() skip the release callback
-(tidss_oldi_aux_device_release) and permanently leak the OF node reference
-acquired earlier?
-
-Also, if auxiliary_device_init() internally calls put_device() on failure,
-could these explicit kfree() and ida_free() calls in the error path trigger
-a double free?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-beagley-ai=
--display-v2-0-9e9bcefde6bc@ideasonboard.com?part=3D12
 
