@@ -1,177 +1,251 @@
-Return-Path: <devicetree+bounces-297679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ICf8IFbnBWqPdQIAu9opvQ
-	(envelope-from <devicetree+bounces-297679-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:16:38 +0200
+	id 6E8FBLvqBWr5dQIAu9opvQ
+	(envelope-from <devicetree+bounces-297680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:31:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24745543DEA
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:16:38 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C46544117
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 17:31:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 145CB309C35A
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:11:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 236B83013891
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 15:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E91C436343;
-	Thu, 14 May 2026 15:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1FC42E009;
+	Thu, 14 May 2026 15:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/mr/DHL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="f+Jhf3rI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79C13DFC78;
-	Thu, 14 May 2026 15:10:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F5E4279E1
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 15:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778771407; cv=none; b=ZMyeXGPi2Cla/w/xEFX6bX8t7GX8oh3YGHPOqQ7IhIWLggJu1QGscU6xSnpfr7WRyPnWmwBgnurjZWGg+b9O2prhvz9bv3H+EJr8w2E4b6oyDcxSQ2V6lMHfa7FZhDeW7xBGo7u1Ld6yAJre/yUHsIqlN1eQ0JlqbLr6cNz6/VE=
+	t=1778771469; cv=none; b=fLj2s+faAJ+Y+/X1pE6MyEiu7ViPymODn7NLszQJ4FQdc23hgLkPUc1bdfzGgpWVycjgKXkkdi6I43u7RDPUJY4T7X8wCOiudo6iRRvcgLykCe8J0f42KHVoqIurxeFJmuq+MD9vMHH8GiT7vfPEgOEbXI35e7UTuzmI2IMUwpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778771407; c=relaxed/simple;
-	bh=aUhTz9jm+Ra2Q6RC2n0qYxb1bA+A3HUaTCXCNCF7HOA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ffzk+iwEeeYYPpscD6SBjNk5Yw+7yUZjFAN9ngJB8UZF+my8GCfSf7SqZkpfFPID4VhH7vFN1/kGMkBZULvGBGl8/VvMh4CnlGlq7QAUkwWxrY80ksHyl/EMnjj8ovFy2xG7u2qlrRYyNnG/4PCBKQfp1aQ0878ioRReCxwVPxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/mr/DHL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ECF2C2BCC9;
-	Thu, 14 May 2026 15:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778771406;
-	bh=aUhTz9jm+Ra2Q6RC2n0qYxb1bA+A3HUaTCXCNCF7HOA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=p/mr/DHL62FqjAlt+scNdgghJYFGghyQpnZdxz19HujERiMA3DcovaJKai0z39pHP
-	 WjgfvM+FtUY6fJ5+Pb+nHms5M9xQTXp1txiplYm7/bA705yRybXiAcGvgNwV+Vwgnn
-	 EWVhAO1qtgtHbPix28nU0FJBDN6njTAKJk8fWBEbq07e1YNjCwN09fCdLIjOVLLw6V
-	 dWclJ74btBgQtpng2GaR4qfqaZCj5c0RxYkQa4azpRZK4TAUruVs7g6QJFbXrdUgY4
-	 szvvwIwNd55M3aM+/9E+5LuaxYSrINL8NLGGsPmkdVKyLtB4ZF4Ha/94FANvU8CWBo
-	 WwlK8rkZm9Srg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wNXhM-00000002Oqg-1mBD;
-	Thu, 14 May 2026 15:10:04 +0000
-From: Marc Zyngier <maz@kernel.org>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Ge Gordon <gordon.ge@bst.ai>,
-	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	Lars Persson <lars.persson@axis.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH v2 17/17] arm64: dts: xilinx: Add EL2 virtual timer interrupt
-Date: Thu, 14 May 2026 16:09:45 +0100
-Message-ID: <20260514150945.3917510-18-maz@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260514150945.3917510-1-maz@kernel.org>
-References: <20260514150945.3917510-1-maz@kernel.org>
+	s=arc-20240116; t=1778771469; c=relaxed/simple;
+	bh=X29Tb+mU4TU588xEduaIV39ZONcE1lEFKkviuT7INIE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=sDAqOlPxPuLnTSA2tJ82j1GpDTizOVE+O+yjjW4UvElHvrQ9BfP+g/dEFc4hi2B/k5ATykqDT+hm04H2NfYNfyelKyM8kuJQDqPuUtnCgjuyrPPb/CrasN6WX6kGWB+0yrzeVe+oejettYdvFNmduVlf5Odu87sHmGYsDAXfhU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=f+Jhf3rI; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-44a74032ff8so6042331f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 08:11:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778771464; x=1779376264; darn=vger.kernel.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=02NHwmt4Q/1Wwv24vtMYzG1XiCeSXVTnDMbrgdzumy0=;
+        b=f+Jhf3rInAWJISlES/J2HSya/j83Xk83OmQUGQ0ULbRay7TjVRKSXlzWlhLlkCP/Bm
+         bxo50zm4ECPlqq1H/0fUiOsf0JeWfxfkAWyzzYwTCHbJlGWEeAaRSVEDjdoPWIEGY91M
+         9ATApBtJOmVIfmfs7EciJ40Sj3a8ONF3XqVFHF4ugLxosnwPDQmg7xKL3dO6lnb9LwN4
+         8ZAGavnrjm31qOQYoM+N0Aw3bE1KaWtgogZZCFIgSN8zldjSZRGkjJAM2KRlKTp+6ziQ
+         +zKwkmn7/Gquk/0mMnRc4iVeZtlfVCyvCVUsVMI7boI4N9X9r1Ed70skucDH7fuGbMgY
+         9Ycw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778771464; x=1779376264;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=02NHwmt4Q/1Wwv24vtMYzG1XiCeSXVTnDMbrgdzumy0=;
+        b=PaD2/8CcrAUuUd8I+2MP0WJRvALXSMBf8e0wPQlxLpDiYt57NdTZ+G0KlUhyxNsTi0
+         eAGWPHx4lJfrZtqQa8JBAmglD/MpGDq7YhTA/N5i6Q5Vo1DgW1Q20yU3DNU//pCEs9VM
+         helxxw7dbwMk9k23qUBUT8qYlgj2PchWuEj22j6mGDDnDjmx9HxjKRBNrrEHdxsoxZ4g
+         L9I4OyPRNfM0j3aa/xE+QnRIcZcGan7rWQ7p4t2Wi3yGI+VL6GmX8TqsrXl6Nl4XmqQM
+         ZBvXOyebIturbtgDgXnDQcWJCFvRns4R9K/3w+lBocwGJxBk1Qn+gmBb4f1aSRFYpeIj
+         xfhQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9dqSMSj5U0QbV70QLXFbrkUoKfz/MbQK+RCpUebbbr88m+13EVD1A3urannXVkmRp/gugsSEQBv/0E@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNaCsDtYwjfYuNrY7aEmZ6NvFIdIBk96UidJ7BriE0H3dlo+xo
+	lEfDu8Uf6PoevMKCwkaOs0QI7bl0nZ9nWP4bdcD5yMMvBdO5ODd+puqZuSZjIbiMhLc=
+X-Gm-Gg: Acq92OGtE/LcLNPcHqN52qpBD/lHWcNSJioATi5RyG5giEdrzG48RULI4trS5mne4AP
+	eNWAeKfVn+g8jzuEApXVtSUO3EMjg5ezDaY0OsaSu7aZX0IkrdfeaMKs8dQ5cV6HeU5u6WRJ8aN
+	Dj5xdM9p4GX7kP78BTAJQkZ2xIVhgI/ylwmKbwHSjgF8WeqINC/G5FSj/h1XpUQIdugPS+LR8Dq
+	0xMCVqyiSG0Psj2PQbf10uhxuzVy9MXSKogSDXD26m/AbE2+2OSFSw7ewQm/vrpyfqq04NAl6MO
+	hFKJiu478mH0drNw/4uyLCg41QLNDum454XoR136dJYIcNlK3DAJYltV/OtPb1UU1APri44po5g
+	U3qgBqL9JAjSRQvNG2CdpANhLoejvtSO6jf8ltEOe37TH8UXBP9itV/2ESQNiabl4SUqquWUYxj
+	QXOZtFDgMZvW+NZIge3BOWeIkJ8WTY2w==
+X-Received: by 2002:a05:6000:26c1:b0:439:c62a:6dc2 with SMTP id ffacd0b85a97d-45c7bb4a90emr12856516f8f.41.1778771463953;
+        Thu, 14 May 2026 08:11:03 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8f63:bf1e:b5:28d8])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-45d9ed30110sm8047555f8f.13.2026.05.14.08.11.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2026 08:11:03 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  jian.hu@amlogic.com,
+  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 07/10] clk: amlogic: Support POWER_OF_TWO for PLL
+ pre-divider
+In-Reply-To: <20260511-b4-a9_clk-v1-7-41cb4071b7c9@amlogic.com> (Jian Hu via's
+	message of "Mon, 11 May 2026 20:47:29 +0800")
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+	<20260511-b4-a9_clk-v1-7-41cb4071b7c9@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 14 May 2026 17:11:01 +0200
+Message-ID: <1jy0hm6n7e.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, guohanjun@huawei.com, sudeep.holla@kernel.org, catalin.marinas@arm.com, will@kernel.org, rafael@kernel.org, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, gordon.ge@bst.ai, bst-upstream@bstai.top, jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, ivo.ivanov.ivanov1@gmail.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, dinguyen@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, thierry.reding@kernel.org, jonathanh@nvidia.com, andersson@kernel.org, konradybcio@kernel.org, afaerber@suse.de, 
- heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: 24745543DEA
+Content-Type: text/plain
+X-Rspamd-Queue-Id: C0C46544117
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
-	RCPT_COUNT_TWELVE(0.00)[46];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-297680-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-297679-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amd.com:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20251104.gappssmtp.com:dkim,amlogic.com:email,starbuckisacylon.baylibre.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-The ARMv8.2 based CPUs used in the versal SoC are missing the EL2 virtual
-timer interrupt. Add it.
+On lun. 11 mai 2026 at 20:47, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
 
-Acked-by: Michal Simek <michal.simek@amd.com>
-Signed-off-by: Marc Zyngier <maz@kernel.org>
----
- arch/arm64/boot/dts/xilinx/versal-net.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> From: Jian Hu <jian.hu@amlogic.com>
+>
+> The A9 PLL pre-divider uses a division factor of 2^n to ensure a clock
+> duty cycle of 50% after predivision.
+>
+> Add flag 'CLK_MESON_PLL_N_POWER_OF_TWO' to indicate that the PLL
+> pre-divider division factor is 2^n.
 
-diff --git a/arch/arm64/boot/dts/xilinx/versal-net.dtsi b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
-index 15f767608e67f..0aac93675ad77 100644
---- a/arch/arm64/boot/dts/xilinx/versal-net.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
-@@ -728,7 +728,8 @@ fpga: fpga-region {
- 
- 	timer: timer {
- 		compatible = "arm,armv8-timer";
--		interrupts = <1 13 4>, <1 14 4>, <1 11 4>, <1 10 4>;
-+		interrupts = <1 13 4>, <1 14 4>, <1 11 4>, <1 10 4>,
-+			     <1 12 4>;
- 	};
- 
- 	versal_fpga: versal-fpga {
+I understand what you are doing here but I have to ask why this can't be
+implemented with independent dividers that already supports power of 2 ?
+
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/meson/clk-pll.c | 28 +++++++++++++++++++++++-----
+>  drivers/clk/meson/clk-pll.h |  2 ++
+>  2 files changed, 25 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index 8568ad6ba7b6..49483e431d44 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -66,6 +66,9 @@ static unsigned long __pll_params_to_rate(unsigned long parent_rate,
+>  		rate += DIV_ROUND_UP_ULL(frac_rate, frac_max);
+>  	}
+>  
+> +	if (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)
+> +		n = 1 << n;
+> +
+>  	return DIV_ROUND_UP_ULL(rate, n);
+>  }
+>  
+> @@ -83,7 +86,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+>  	 * it would result in a division by zero. The rate can't be
+>  	 * calculated in this case
+>  	 */
+> -	if (n == 0)
+> +	if (n == 0 && !(pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))
+>  		return 0;
+>  
+>  	m = meson_parm_read(clk->map, &pll->m);
+> @@ -103,7 +106,12 @@ static unsigned int __pll_params_with_frac(unsigned long rate,
+>  {
+>  	unsigned int frac_max = pll->frac_max ? pll->frac_max :
+>  						(1 << pll->frac.width);
+> -	u64 val = (u64)rate * n;
+> +	u64 val;
+> +
+> +	if (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)
+> +		n = 1 << n;
+> +
+> +	val = (u64)rate * n;
+>  
+>  	/* Bail out if we are already over the requested rate */
+>  	if (rate < parent_rate * m / n)
+> @@ -142,7 +150,8 @@ static int meson_clk_get_pll_table_index(unsigned int index,
+>  					 unsigned int *n,
+>  					 struct meson_clk_pll_data *pll)
+>  {
+> -	if (!pll->table[index].n)
+> +	if (!pll->table[index].n &&
+> +	    !(pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))
+>  		return -EINVAL;
+>  
+>  	*m = pll->table[index].m;
+> @@ -156,7 +165,12 @@ static unsigned int meson_clk_get_pll_range_m(unsigned long rate,
+>  					      unsigned int n,
+>  					      struct meson_clk_pll_data *pll)
+>  {
+> -	u64 val = (u64)rate * n;
+> +	u64 val;
+> +
+> +	if (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)
+> +		n = 1 << n;
+> +
+> +	val = (u64)rate * n;
+>  
+>  	if (__pll_round_closest_mult(pll))
+>  		return DIV_ROUND_CLOSEST_ULL(val, parent_rate);
+> @@ -173,11 +187,15 @@ static int meson_clk_get_pll_range_index(unsigned long rate,
+>  {
+>  	*n = index + 1;
+>  
+> +	if ((pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))
+> +		*n = index;
+> +
+>  	/* Check the predivider range */
+>  	if (*n >= (1 << pll->n.width))
+>  		return -EINVAL;
+>  
+> -	if (*n == 1) {
+> +	if ((*n == 1 && !(pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)) ||
+> +	    (*n == 0 && (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))) {
+>  		/* Get the boundaries out the way */
+>  		if (rate <= pll->range->min * parent_rate) {
+>  			*m = pll->range->min;
+> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+> index 1be7e6e77631..60b2772a54c8 100644
+> --- a/drivers/clk/meson/clk-pll.h
+> +++ b/drivers/clk/meson/clk-pll.h
+> @@ -33,6 +33,8 @@ struct pll_mult_range {
+>  #define CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH	BIT(2)
+>  /* rst signal is active-low (Power-on reset) */
+>  #define CLK_MESON_PLL_RST_ACTIVE_LOW	BIT(3)
+> +/* The division factor of the PLL pre-divider is 2^n */
+> +#define CLK_MESON_PLL_N_POWER_OF_TWO	BIT(4)
+>  
+>  struct meson_clk_pll_data {
+>  	struct parm en;
+
 -- 
-2.47.3
-
+Jerome
 
