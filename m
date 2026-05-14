@@ -1,87 +1,86 @@
-Return-Path: <devicetree+bounces-297789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297790-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEqRNP4kBmqmfgIAu9opvQ
-	(envelope-from <devicetree+bounces-297789-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:39:42 +0200
+	id KFP9E0MlBmqmfgIAu9opvQ
+	(envelope-from <devicetree+bounces-297790-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:40:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366145466EE
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:39:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A93AA546705
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:40:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79B913016EC9
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:39:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01A1B30179F4
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21F63A9618;
-	Thu, 14 May 2026 19:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A0F3AE1B9;
+	Thu, 14 May 2026 19:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ChX3TwhD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M14VrKya"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FFD33A5E82
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B593ACEF6
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778787579; cv=none; b=kjy33sUGETg1Ml6YTNuV2oo5ik7wWPGRQwsrmOW2gdvTHga25wqynaJEAHmKEZ2VoyWUyDJjohaAORvPwqv6s8Ou3qiXqJJdwHJirKL4Y8OPzZi8t7fdggRckHkwPEwXp4ieW/dmYHg54kG8yymIqxW67R/PgPLm0NmBrhviuGQ=
+	t=1778787648; cv=none; b=PNJzju61ENBt/FfQ2YtAwh57sy7WON75o4PUnT2WMILE6yDrBLHxPdNq4Rxi49J8xHTCwK46Z5eOuoS08ib5hk0fOfmb/jAIkIQSNEKVxjL/casosYH83Iy885wt/Q5vvLpGmEaB4I7K2q5Qef0Ekn7lp3f7caPdgObr8RkfhkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778787579; c=relaxed/simple;
-	bh=msSf4L6GiQrO/DKqO+RtEyg9I1CF0NW45IDKWijPB0E=;
+	s=arc-20240116; t=1778787648; c=relaxed/simple;
+	bh=/okIdQYBQU+7KlKf+IdpIn6TRuSb/ndMj35DKgn3nbQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=C9tMzt3ed8TKUyLVVlzgZ29F+luqZn26Z+jiRoEZVxJEcmHhmvn+rw91WkAQEbRqxFdeJxU1vkXIkHMEr7XYdf+YF0MJqJ0BVXiNV7U8JwJWMoqlhmWXfTjamzUqoqwDGaO1svkKiz8o4X6XAk7oYBLU5Ng9k5vzr0rc79UDL5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ChX3TwhD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04706C2BCB3;
-	Thu, 14 May 2026 19:39:38 +0000 (UTC)
+	 Message-Id; b=QF6yRrRQX6W/8zlM5pGzDlhZgtvzyleUgmLfkrtrf6Q0A6Nnunpiul09/+oBNmv7TYvs3SzT3dGb/Wt4PeqgTGUPR1OX7Lc0u8v+v3ExR29jTeSoRNBht034IlIP2V58i9XrpZxewtPkMPsoL/hfhSJx39JZzz+GSuZ25Pt8Ohc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M14VrKya; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54697C2BCB3;
+	Thu, 14 May 2026 19:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778787579;
-	bh=msSf4L6GiQrO/DKqO+RtEyg9I1CF0NW45IDKWijPB0E=;
+	s=k20201202; t=1778787647;
+	bh=/okIdQYBQU+7KlKf+IdpIn6TRuSb/ndMj35DKgn3nbQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=ChX3TwhDfNIqMHwBtVQFZPOVq08iyinzpBOMtPIqVZycEkq9ppP8ADT3QqUr0Ti+t
-	 M+RhOtn888JvheSqrTfxUR+u4Hd2n2FhweKkB62jwrCas9yjXyAIOIHZZU/SpSuNwK
-	 uKYVWPPwG4OhfjxVWrjTnZk5CAVnKuAQJwiiumWHWm3dg4scRL8kTJGhfJXjk8V+wA
-	 QsdKFwkYUBO+kTTAAPWrGPrWUlJBH2uBHNpAG4qMPAzYQlDGd18/26uB6EAeSsL0iC
-	 OFkc6fbu6wnepiMuP830bYydD++nOkEDIEGSTFgmUq1TAfaHSYthN/y+iBCcoOb86o
-	 HVe4R8NZzpF9Q==
+	b=M14VrKyandzGeFjLpJzs2UOte6AGIb5i9hB+H5ThMafiJmUcXlDU52vAFbCIyJW8N
+	 N4pKrjU+6mQT7zCNv09crM1OcQUSbhmrBkk4m5Yi4xT+glc6ApLyUdRqDJts5/EtGG
+	 Z7MUYOKmvllojzC4V9OeOCepcTQP+UxQy16p3Jhli8WM2ToeTz772Bnh0IXaXUjxJ4
+	 nYGcGnyS2d5He+lNiyCmsfh2HkmoURGmfczIo+b59wARHDxkgiUuUApX0nLWu6gm2J
+	 fLg2zoPQDoV1h93y+xLHxuiPdX1Z3hSwClVrYszThu+O39atjUfAFaBeJhcOAaZlHz
+	 obu8J8i/nLh/A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/7] iio: temperature: ltc2983: Use local device
- pointer consistently
+Subject: Re: [PATCH v2 02/10] dt-bindings: mfd: syscon: add
+ qcom,msm8960-sps-sic
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Liviu Stan" <liviu.stan@analog.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260514144712.64374-3-liviu.stan@analog.com>
-References: <20260514144712.64374-3-liviu.stan@analog.com>
+To: "Antony Kurniawan Soemardi via B4 Relay" <devnull+linux.smankusors.com@kernel.org>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260514-msm8960-wifi-v2-2-7cbae45dab5e@smankusors.com>
+References: <20260514-msm8960-wifi-v2-2-7cbae45dab5e@smankusors.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 19:39:38 +0000
-Message-Id: <20260514193939.04706C2BCB3@smtp.kernel.org>
+Date: Thu, 14 May 2026 19:40:46 +0000
+Message-Id: <20260514194047.54697C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 366145466EE
+X-Rspamd-Queue-Id: A93AA546705
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297789-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297790-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -90,8 +89,8 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,linux.smankusors.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
@@ -100,45 +99,40 @@ X-Rspamd-Action: no action
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] The newly added 'dev' variable in `__ltc2983_chan_assign_common` is=
- declared but never used, leading to compiler warnings.
+- [Medium] The commit adds the compatible string `qcom,msm8960-sps-sic` for=
+ an Interrupt Controller but fails to define and require standard interrupt=
+ controller properties.
 --
 
-commit cab83c99167bc9d0ae1294b92a3bded27d02aabf
-Author: Liviu Stan <liviu.stan@analog.com>
+commit 4920dc5889f6c452e2f9cb09ecf073afa3b06d47
+Author: Antony Kurniawan Soemardi <linux@smankusors.com>
 
-iio: temperature: ltc2983: Use local device pointer consistently
+dt-bindings: mfd: syscon: add qcom,msm8960-sps-sic
 
-This patch adds local dev pointers across various functions in the driver
-to replace bare references to st->spi->dev.
+This commit adds the compatible string for the Smart Peripheral System
+Interrupt Controller present on the Qualcomm MSM8960 SoC to the syscon
+bindings.
 
-> diff --git a/drivers/iio/temperature/ltc2983.c b/drivers/iio/temperature/=
-ltc2983.c
-> --- a/drivers/iio/temperature/ltc2983.c
-> +++ b/drivers/iio/temperature/ltc2983.c
-> @@ -351,6 +351,7 @@ static int __ltc2983_chan_assign_common(struct ltc298=
-3_data *st,
->  					const struct ltc2983_sensor *sensor,
->  					u32 chan_val)
->  {
-> +	struct device *dev =3D &st->spi->dev;
->  	u32 reg =3D LTC2983_CHAN_ASSIGN_ADDR(sensor->chan);
-> =20
->  	chan_val |=3D LTC2983_CHAN_TYPE(sensor->type);
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Document=
+ation/devicetree/bindings/mfd/syscon.yaml
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+[ ... ]
+> @@ -219,6 +220,7 @@ properties:
+>                - nxp,s32g3-gpr
+>                - qcom,apq8064-mmss-sfpb
+>                - qcom,apq8064-sps-sic
+> +              - qcom,msm8960-sps-sic
+>                - rockchip,px30-qos
 
-Does this leave the newly added dev variable entirely unused?
+Could this cause a regression in schema validation completeness? The commit
+message notes this represents an interrupt controller, but the corresponding
+standard properties are missing.
 
-It looks like the dev_dbg() call immediately following this still uses
-&st->spi->dev instead of the local dev pointer.
-
-This will cause an unused-variable compiler warning, which breaks builds
-configured with W=3D1 or -Werror and can harm bisectability.
-
-While this oversight is fixed later in the patch series in commit
-7aff450fb9c7b5749766cff8040dd8d12bc74f0c, each patch must compile
-cleanly and independently.
+Should the binding also define and require interrupt-controller and
+#interrupt-cells with appropriate constraints?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514144712.6437=
-4-1-liviu.stan@analog.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514-msm8960-wi=
+fi-v2-0-7cbae45dab5e@smankusors.com?part=3D2
 
