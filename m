@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-297630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297632-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOhbKFXfBWr4cwIAu9opvQ
-	(envelope-from <devicetree+bounces-297630-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:42:29 +0200
+	id +G6+FkrhBWpsdAIAu9opvQ
+	(envelope-from <devicetree+bounces-297632-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:50:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBE4543549
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:42:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14E95437A7
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 16:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 506B8307CCE0
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:31:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B929230BC1E0
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97B140628B;
-	Thu, 14 May 2026 14:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844CE407583;
+	Thu, 14 May 2026 14:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkDt38PE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GEEEmAqS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A993C4B89;
-	Thu, 14 May 2026 14:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA7840DFA0;
+	Thu, 14 May 2026 14:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778769093; cv=none; b=Aikna0NqvV/qvYFwTQ3n/ymNRfW8yaK0ElYjpYfisuCYck/QpaLPHhTMMMTAOFBWuuh1R7CpLXQC6N4VGsRNrWfyEu6A+RPxZAXW0AiUO5GsIu4l18RWZN0ZpLsqrd8haFT4siTDM82GCkWDGlp6XJ1aBiR1SRQEnhBFv9VItho=
+	t=1778769279; cv=none; b=O+ywljqIBMmXGAeaehd24zYh0ovfLGtIct761BleoBIyz81ny2ummcSzdE8s5A80Oll92Mc+yBpfAw7VkPctS4UT3YkLDeSfvMBptbPCjLC15VkE5EOLRD2oP0WaRn/icN6pSC0/5AfBmrkAIjVO008PmAbbP72BHV0/YdQnzA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778769093; c=relaxed/simple;
-	bh=6iGfJZhncc8TZYCUGnqm+IpTKIkhFAcFKCIJIf6eUSQ=;
+	s=arc-20240116; t=1778769279; c=relaxed/simple;
+	bh=sIm7xyoGq/3jQyavKbDg6WxX1bxs1qeDt2+PDlTROoc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ach0kzZsaNSVWQ3FSZx0em+0CJHOaIJnO+jDKV3nzhniI8mau4ZAy5m1LpisJTFuMXXru5d4JboQ3n5iLNSCpAkXg6IwldqkqPeFIrvfaTUbO+6bcsW1EJYCGpY70867m6EaWGMFAO8+bu2Tq8vlGcfTPYI6oX81MDseAmpDkO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkDt38PE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C43CCC2BCB3;
-	Thu, 14 May 2026 14:31:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DanVAKkOF9S8RiLG3SY2NgqZQfNoj7jZuqreOgXc4nmRaF3nECdQnHczkDy2Z68e48HuWXgte920Wgx1oI2Ip0Rkb4QITekSG+H+Cei4fZlomD5qXenAWRQVmbywdEkHCFNwcGHU+g5BcRgdIrBQlZmwb3cWZcb5mCXIUDElnPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GEEEmAqS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1CBDC2BCB3;
+	Thu, 14 May 2026 14:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778769093;
-	bh=6iGfJZhncc8TZYCUGnqm+IpTKIkhFAcFKCIJIf6eUSQ=;
+	s=k20201202; t=1778769279;
+	bh=sIm7xyoGq/3jQyavKbDg6WxX1bxs1qeDt2+PDlTROoc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BkDt38PEb9XlTwH7zQZH6xmvM/K8ws918v/NQNjjIfW4RE4Z1lfJPmGTlY7lNb2Dw
-	 kjVJqtdvonYl5imzBcDzZAvVyr+/5/sp/gM/1SdF262ZtnWAYWf3YfqbgAoqEOHnnR
-	 ntXd5rGMT5K0GoF9whvlyKxGd+aNm4HGdMANdWj9G4m6z3KIsW7WjBVCjrKXqNctNg
-	 zv8WxNAtO+FtSz34keNchpmFILXSJLSf5qbQAxV3qjU8v//ESdHe68TiCOlNzhNtz+
-	 DwR799y4GN7g/Z3+NH4IN5cNb23ElQEdg9Krlq6sl0Bh5z4JpWclM/ORijPtRiQ/DK
-	 jnezgCT3g80Zw==
-Message-ID: <1d1a21a6-720d-4e8d-9798-27f8cc593403@kernel.org>
-Date: Thu, 14 May 2026 16:31:27 +0200
+	b=GEEEmAqSwkI9NSzSJvGgB6wN7trGDIJ+ORtGRNF2fxyRc+Iqz6iRg45Z8foHpqsla
+	 Ip1H9upOtoUUFWjwBhVYogWIiSIribnF68I+rEiDlCsgLoekpENS+MhU1+RpYDOorX
+	 b1gdudOe2+p7OA2kklmLpjmcI0whPWfDuWA3ocKVpfK+FnB78o2oJW0VEkqU5RAZ2v
+	 bK3QaaMap+T4YQh3so6G5UoTqOTUXslzw/1AEqOGjSsmg+GbG/wrbFnqnWNgHAbV4l
+	 Y1WnknSMqrw4Q4YVWPPEvNdVohIVkxRPtb9Jez1sfnNBx8qOPHmNhAwyOmfoWLctH0
+	 IYh2z2nTTvRZA==
+Message-ID: <a4b317cd-2ed1-46c1-b66e-675a56d3308c@kernel.org>
+Date: Thu, 14 May 2026 16:34:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,23 +53,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: dwc: add optional reset
-To: Xuyang Dong <dongxuyang@eswincomputing.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
- p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
- pinkesh.vaghela@einfochips.com
-References: <20260424094529.1691-1-dongxuyang@eswincomputing.com>
- <20260424095435.1721-1-dongxuyang@eswincomputing.com>
- <ee58a5d6-9268-445c-a270-1f4a49b49c6e@kernel.org>
- <622e18f1.5bb3.19dd36d0c40.Coremail.dongxuyang@eswincomputing.com>
- <7bd6129a-dd37-48e8-a54c-cc149a2b84a2@kernel.org>
- <1ac7fae4.5c66.19dd892ec4d.Coremail.dongxuyang@eswincomputing.com>
- <b3a1b5ba-c381-407f-9118-aac7217138af@kernel.org>
- <f4f7edf.6067.19e15df803f.Coremail.dongxuyang@eswincomputing.com>
+Subject: Re: [PATCH v5 04/14] dt-bindings: media: qcom,venus: Remove clock,
+ power-domain, and iommus from common schema
+To: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+ Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
+ Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org
+References: <20260509-glymur-v5-0-7fbb340c5dbd@oss.qualcomm.com>
+ <20260509-glymur-v5-4-7fbb340c5dbd@oss.qualcomm.com>
+ <35zfskmyogpazxy7wsw2jg36fvpnnc7hng23j4heq2jy5ookai@q7d2vl7nn7ck>
+ <fc188af5-ec7e-bebb-2654-62312d79e60f@oss.qualcomm.com>
+ <kdbo5d2wibjfnchfw7xn3wcgcp5r6ff7pw3ibkpbqzjgfhkovp@v4er4hdiytks>
+ <f1fe6e8c-9a16-3103-fbe8-de772bc4728a@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,30 +123,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f4f7edf.6067.19e15df803f.Coremail.dongxuyang@eswincomputing.com>
+In-Reply-To: <f1fe6e8c-9a16-3103-fbe8-de772bc4728a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: ECBE4543549
+X-Rspamd-Queue-Id: A14E95437A7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297630-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297632-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -146,128 +154,46 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,3.7.107.208:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On 11/05/2026 09:10, Xuyang Dong wrote:
->>
->> On 29/04/2026 11:30, Xuyang Dong wrote:
->>>>>>>  
->>>>>>> +allOf:
->>>>>>> +  - $ref: pwm.yaml#
->>>>>>> +
->>>>>>> +  - if:
->>>>>>> +      properties:
->>>>>>> +        compatible:
->>>>>>> +          contains:
->>>>>>> +            const: eswin,eic7700-pwm
->>>>>>
->>>>>> Same problem as v3 which I commented. I do not understand why your new
->>>>>> device has also 1 reset.
->>>>>>
->>>>>> Your commit msg MUST explain why 1 reset is valid.
->>>>>>
->>>>>
->>>>> Hi Krzysztof,
->>>>>
->>>>> Although the PWM IP supports two clock domains, each requiring a reset, 
->>>>> the EIC7700 implementation uses the same clock domain for both clock 
->>>>> signals. Therefore, the eic7700-pwm only supports one reset.
->>>>>
->>>>
->>>> If we speak about eic7700, explain why it has two resets now, according
->>>> to schema, even though you say it has not.
->>>>
->>>> But I was speaking about dw-apb-timers-pwm, which has one reset as well!
->>>> Why you are not having proper constraints? Please read writing bindings
->>>> document.
->>>>
+On 13/05/2026 20:54, Vishnu Reddy wrote:
+> 
+> On 5/13/2026 6:59 PM, Dmitry Baryshkov wrote:
+>> On Sat, May 09, 2026 at 10:34:15PM +0530, Vishnu Reddy wrote:
+>>> On 5/9/2026 12:52 AM, Dmitry Baryshkov wrote:
+>>>> On Sat, May 09, 2026 at 12:29:53AM +0530, Vishnu Reddy wrote:
+>>>>> The common schema defines minItems and maxItems for clocks, power-domains,
+>>>>> and iommus. This suggests that the number of these resources can vary,
+>>>>> while in reality they are fixed constraints per platform.
+>>>> It really doesn't. It provides common definitions, while individual
+>>>> platform schemas tighten those.
+>>> If a new platform requires more resources than the current maxItems listed in
+>>> the common-schema (e.g.,Glymur due to its dual vcodec core design), we need
+>>> to keep bumping maxItems in the common schema every time a new platform exceeds
+>>> the previous limit. That makes the common schema a moving target driven by
+>>> platform specific.
 >>>
->>> Hi Krzysztof,
+>>> I am fine with increasing maxItems in the common schema instead of removing.
+>>> I can set it to a reasonable value (for example, up to 20) so that it
+>>> accommodates future platforms without frequent changes. Anyway, each platform
+>>> schema must define fixed constraints, since clocks and power-domains are
+>>> mandatory per platform.
 >>>
->>> Let me clarify the reset signals.
->>>   - snps,dw-apb-timers-pwm2: IP spec has 2 optional reset signals (one per
->>> clock domain), SoC vendor decides whether to wire them — so maxItems: 2, 
->>> optional in required.
->>
->> Two reset signals but what is exactly optional? Each of them? Only the
->> first? Binding does not allow the first to be optional.
->>
+>>> Could you please let me know which one you would prefer going forward?
+>> Just touch venus-common when new platform requires bigger lists.
 > 
-> Hi Krzysztof,
+> In the v3 series, I followed same approach — bumping maxItems in venus-common
+> schema to accommodate the Glymur platform while keeping fixed constraints in
+> the Glymur-specific schema:
+> https://lore.kernel.org/all/20260428-glymur-v3-2-8f28930f47d3@oss.qualcomm.com/
 > 
-> Thank you for the review. 
-> 
-> For the generic snps,dw-apb-timers-pwm2 binding, both reset signals 
-> are now fully optional by not including resets in the required list.
-> 
-> When a single optional reset signal is used, the interface bus reset 
-> (index 0) is used by default.
-> 
-> Keep the YAML as follows:
-> +  resets:
-> +    minItems: 1
-> +    items:
-> +      - description: Interface bus reset
-> +      - description: PWM timer logic reset
-> 
-> Add the following description to the commit message:
 
-We speak about hardware, not binding. I asked, why your new device has
-only one reset.
-
-> 
-> Whether each signal is wired on a given SoC is a board integration 
-> decision, so the resets property is optional for snps,dw-apb-timers-pwm2. 
-> When present, up to two handles may be supplied: the bus reset is always 
-> at index 0 and the timer reset at index 1.
-> 
->>>   - eswin,eic7700-pwm: SoC physically ties both signals to one reset — so
->>> exactly 1, required.
->>
->> Then two would not be right and you need to restrict that.
->>
-> 
-> For the specific eswin,eic7700-pwm binding, the reset signal is required 
-> and fixed to one via conditional schema (if:then:), with maxItems: 1 
-> and resets added to required. And add an example for eswin,eic7700-pwm.
-> The changes are as follows:
-> 
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: eswin,eic7700-pwm
-> +    then:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +      required:
-> +        - resets
-> +
-> 
-> +  - |
-> +    pwm@50818000 {
-> +      compatible = "eswin,eic7700-pwm";
-> +      reg = <0x50818000 0x4000>;
-> +      #pwm-cells = <3>;
-> +      clocks = <&bus>, <&timer>;
-> +      clock-names = "bus", "timer";
-> +      resets = <&reset>;
-> +    };
-> 
-> Then change the binding's subject from "dt-bindings: pwm: dwc: add optional 
-> reset" to "dt-bindings: pwm: dwc: add eswin,eic7700-pwm compatible and resets".
-> 
-> Do these changes look acceptable to you?
-
-So two resets or one reset? I am completely confused what you are
-replying to.
-
-Please read writing bindings document.
+The approach taken at v3 was correct and I ONLY commented about very
+confusing commit msg which told that you relaxed constraints. You must
+not relax constraints, so commit msg claiming that you relax them is
+obviously incorrect. Each device must have a fixed, as in non-relaxed,
+constraints, thus making them relaxed (not fixed) is wrong.
 
 Best regards,
 Krzysztof
