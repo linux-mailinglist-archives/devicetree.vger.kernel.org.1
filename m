@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-297797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNSLOGkoBmqmfgIAu9opvQ
-	(envelope-from <devicetree+bounces-297797-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:54:17 +0200
+	id qNx8HCcpBmorfwIAu9opvQ
+	(envelope-from <devicetree+bounces-297798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:57:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 606C25468CF
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:54:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB634546978
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 21:57:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 638D5302A4F7
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:54:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D36843008D11
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 19:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE903AA9DA;
-	Thu, 14 May 2026 19:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0A63BF66E;
+	Thu, 14 May 2026 19:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rXFQSiuf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImwLdzqY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDEB3939C9
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F423B38BD
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 19:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778788454; cv=none; b=SukOogHt1++Q7raq7HCdSSax30vZ/46xLGw6rJpVjFkS4Lu+cvjFwQuO1dX0c/JSbcSO3ddSh/SFqfwg6VWjdRT7S+WylftnGGrtZSmB4wRnHsmxu/e6a3k73/Bui0EMPGiZaxcCA/6AM1FFl1PSUUV/Gqh2cu6KVd7KZc4UqJw=
+	t=1778788586; cv=none; b=Qela665jcvNF5Jlwon3HXN6v+7NiMtM5YgyTPrABZYEI6CqVWgr8h2SpUnZT0DOl6UU/7GhmJ9TJMnWGhiHjoxw0AccU4D18ceMocbysgp/HLqGL1AhCFrDV1zMXcKClWyQEEgnLM+WeOefwr6MGdj8Rqy7gkOoJI1rJGgJm1UY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778788454; c=relaxed/simple;
-	bh=eBzHZTi+V2Ynb+WQfMi+YwkVO8JBmh9nWgJQItW4/Tk=;
+	s=arc-20240116; t=1778788586; c=relaxed/simple;
+	bh=P+KxIrEJ6MQTG6cvpJhwy148LOivrbw+JNzKktvNsOE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lNA8qG1IvSjaFG/PP+xnV4wBJaFGLFol0pHZr6vP/0PFa8caAAEWPKIK0neIe0pckDMte9zwbAnxam2nXAW37PME2N/1rRB2iM9VjrO454h+aszjthb0KdCbxhsjNGd1OcDMUHPmfj1UpqZLpVH6QDnNSeA3UhpV3PaY0xyU0fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rXFQSiuf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6FB0C2BCB3;
-	Thu, 14 May 2026 19:54:13 +0000 (UTC)
+	 Message-Id; b=Xg7GOwCMTDosqrFX/hvMTHQzYsRXAk1MZymuEeqq4nWWuhcRdkTPnhagt20J5WCHcV6a9oygFEHg16ykg4qnl8ywSts1dXs49ZMEmITphGnPAim4tuVIPY/jyomOwTlYMGiePknZhLmC8LT0KjnUw3FU3w1FcK/rf9Ix0UijG3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ImwLdzqY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC5BC2BCB3;
+	Thu, 14 May 2026 19:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778788454;
-	bh=eBzHZTi+V2Ynb+WQfMi+YwkVO8JBmh9nWgJQItW4/Tk=;
+	s=k20201202; t=1778788586;
+	bh=P+KxIrEJ6MQTG6cvpJhwy148LOivrbw+JNzKktvNsOE=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=rXFQSiufcKKBrpEnWgko2iI8vBG6t7tRkalbBKDqLYjy0vQBkScjD/ppRW6ljGhRs
-	 KElHQqISOraDJS63UqsRlLqcyFQFqo0xbqwC0Ca2MMR+Bqdc4sLpw4hkBf3u13Zzon
-	 TU89/OXCy25TCCqprFYgti0sd5kwRuRP2n0GkxzmKqtMG+XR6fhdKoXVRCLr4pvTj8
-	 g2ohq/P6HGfJBSAQWuEZ9Uq6Ywiub72mmmdF91Fwiv3WmLkn+vojtIW7fszvQ7If8L
-	 ykyoYgSUGglF2OGb1AENW7jeCymmUSiEIMaE5lWHr4SuP7EjVeFkqKHvQLXmi90hZ/
-	 QDZLIhBrDIizg==
+	b=ImwLdzqYyDuF+F3INLIjLkZOY17QFuuHBh3llLrsn+JYkPenqO6nGAmiOU7cUSR9l
+	 4X9o6kqxthJttEyPTRmUOZMMOmmWk75QZTxNGCsPbPZqtJtw6tcpUFaO96kiU+iQlk
+	 X3GtzBDBkxVNUtYLrdtPagXS7DsRqiWAk8i44rN5k1RzLfzYQvvG96dFOt9k5CvraP
+	 3GfN9dPRIFpUCozguCZA5QWRRNGz8CnrYb88Bc4ZQCwuMWlp2fFFk02qS3R3PEBkS7
+	 YRJpdEkkeC8+mPRReUrXo93icq05Q7MHCtD5FSDyAuijRFee4wmKMkEutTITadV3hz
+	 NPmq6AlljFeHg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 01/17] ACPI: GTDT: Account for GTDTv3 size when
- walking the platform timer descriptors
+Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-am67a-beagley-ai: Add overlay
+ for IMX219 on CSI0
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Marc Zyngier" <maz@kernel.org>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260514150945.3917510-2-maz@kernel.org>
-References: <20260514150945.3917510-2-maz@kernel.org>
+To: "Jai Luthra" <jai.luthra@ideasonboard.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260514-beagley-cameras-v1-3-5c3500b5a436@ideasonboard.com>
+References: <20260514-beagley-cameras-v1-3-5c3500b5a436@ideasonboard.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 19:54:13 +0000
-Message-Id: <20260514195413.C6FB0C2BCB3@smtp.kernel.org>
+Date: Thu, 14 May 2026 19:56:25 +0000
+Message-Id: <20260514195625.BAC5BC2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 606C25468CF
+X-Rspamd-Queue-Id: CB634546978
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297797-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297798-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -90,99 +91,56 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Insufficient bounds checking in `platform_timer_valid()` allows re=
-ading past the end of the ACPI table.
-- [High] Missing base table length validation in `acpi_gtdt_init()` allows =
-an out-of-bounds read of the GTDT table.
+- [Low] The camera reset GPIO pin is incorrectly configured as PIN_INPUT in=
+stead of PIN_OUTPUT.
 --
 
-commit 4d6d9fd7f79fd90d8c3bbeefd718d1658523dfab
-Author: Marc Zyngier <maz@kernel.org>
+commit 993d862219c5039d0e1b221804ac5c16ba10eb4d
+Author: Jai Luthra <jai.luthra@ideasonboard.com>
 
-ACPI: GTDT: Account for GTDTv3 size when walking the platform timer descrip=
-tors
+arm64: dts: ti: k3-am67a-beagley-ai: Add overlay for IMX219 on CSI0
 
-This commit updates the GTDT table parsing to correctly account for the exp=
-anded
-size of the base table when dealing with GTDT revision 3. It adds support f=
-or
-the additional EL2 virtual timer structure when walking the platform timer
-descriptors.
+This commit adds a device tree overlay for the BeagleY AI board to enable
+the IMX219 camera sensor. It configures the clocks, regulators, pinmuxing,
+and CSI2 receiver endpoints for the camera connected to the CSI0 port.
 
-> diff --git a/drivers/acpi/arm64/gtdt.c b/drivers/acpi/arm64/gtdt.c
-> index ffc867bac2d60..b9d9b8edf2df7 100644
-> --- a/drivers/acpi/arm64/gtdt.c
-> +++ b/drivers/acpi/arm64/gtdt.c
-> @@ -39,8 +45,14 @@ static struct acpi_gtdt_descriptor acpi_gtdt_desc __in=
-itdata;
->  static __init bool platform_timer_valid(void *platform_timer)
->  {
->  	struct acpi_gtdt_header *gh =3D platform_timer;
-> +	void *platform_timer_begin;
-> +
-> +	if (acpi_gtdt_desc.v3)
-> +		platform_timer_begin =3D container_of(acpi_gtdt_desc.gtdt, struct gtdt=
-_v3, gtdt_v2) + 1;
-> +	else
-> +		platform_timer_begin =3D acpi_gtdt_desc.gtdt + 1;
-> =20
-> -	return (platform_timer >=3D (void *)(acpi_gtdt_desc.gtdt + 1) &&
-> +	return (platform_timer >=3D platform_timer_begin &&
->  		platform_timer < acpi_gtdt_desc.gtdt_end &&
->  		gh->length !=3D 0 &&
-
-Is there an out-of-bounds read regression here where the code allows reading
-past the end of the ACPI table?
-
-The condition platform_timer < acpi_gtdt_desc.gtdt_end only ensures that at
-least 1 byte remains within the mapped table limits. If a malformed table
-positions platform_timer exactly 1 or 2 bytes before gtdt_end, evaluating
-gh->length reads a 16-bit integer at offset 1 from platform_timer.
-
-This causes a read of 1 to 2 bytes past gtdt_end. Should this enforce
-platform_timer + sizeof(struct acpi_gtdt_header) <=3D acpi_gtdt_desc.gtdt_e=
-nd
-before dereferencing gh->length?
-
->  		platform_timer + gh->length <=3D acpi_gtdt_desc.gtdt_end);
->  }
+> diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-csi0-imx219.dtso =
+b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-csi0-imx219.dtso
+> new file mode 100644
+> index 0000000000000..52698d1a0f08f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-csi0-imx219.dtso
 
 [ ... ]
 
-> @@ -169,6 +181,7 @@ int __init acpi_gtdt_init(struct acpi_table_header *t=
-able,
->  	acpi_gtdt_desc.gtdt =3D gtdt;
->  	acpi_gtdt_desc.gtdt_end =3D (void *)table + table->length;
->  	acpi_gtdt_desc.platform_timer =3D NULL;
-> +	acpi_gtdt_desc.v3 =3D gtdt->header.revision >=3D 3 && gtdt->header.leng=
-th >=3D sizeof(struct gtdt_v3);
+> +&mcu_pmx0 {
+> +	cam0_reset_pins_default: cam0-default-reset-pins {
+> +		pinctrl-single,pins =3D <
+> +			J722S_MCU_IOPAD(0x003c, PIN_INPUT, 7) /* (C1) MCU_MCAN1_TX.MCU_GPIO0_=
+15 */
 
-Could the lack of base table length validation lead to an out-of-bounds read
-regression?
+Is PIN_INPUT the intended configuration for this camera reset pin?
 
-While this patch adds a size check for V3 tables, it doesn't appear to veri=
-fy
-that the base V2 table meets the minimum length requirement
-(table->length >=3D sizeof(struct acpi_table_gtdt)).
+Since this pin is used as an output signal to drive the reset line for the
+IMX219 sensor, should it be configured as PIN_OUTPUT? While the GPIO
+subsystem will set the direction correctly, configuring it as an input
+enables the input receiver which might be unnecessary for a unidirectional
+output.
 
-If firmware provides a truncated GTDT table containing only the standard
-36-byte ACPI header, accessing gtdt->platform_timer_count later in this
-function reads out-of-bounds memory.
-
->  	if (platform_timer_count)
->  		*platform_timer_count =3D 0;
->
+> +		>;
+> +	};
+> +};
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514150945.3917=
-510-1-maz@kernel.org?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514-beagley-ca=
+meras-v1-0-5c3500b5a436@ideasonboard.com?part=3D3
 
