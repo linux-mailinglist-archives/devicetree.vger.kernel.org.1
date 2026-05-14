@@ -1,191 +1,163 @@
-Return-Path: <devicetree+bounces-297345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIQeCZJxBWoTXAIAu9opvQ
-	(envelope-from <devicetree+bounces-297345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:54:10 +0200
+	id +BnDG5h0BWocXQIAu9opvQ
+	(envelope-from <devicetree+bounces-297356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 09:07:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8543253E916
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:54:09 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E0AF53EB5E
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 09:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1025302C5EC
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:52:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C0E8E301678A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 07:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C203ACF0A;
-	Thu, 14 May 2026 06:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08423C553A;
+	Thu, 14 May 2026 07:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rI6MBy/h"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="CYTuWHLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49247.qiye.163.com (mail-m49247.qiye.163.com [45.254.49.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740ED3AC0C3
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 06:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FBCF331A66;
+	Thu, 14 May 2026 07:06:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778741544; cv=none; b=d5WRrIpKTHcE0AciVkQ/Z07l3M/KmNJFSGTghaqoMnWv9ntkAqxdXTJ2chDDrX9Tg6Cxn3bKAzER2xACliFtWjcKsxFofnrUsuyObT6Q71wh/RWrzOK0fskStp30ELsFJk0eWwYYNLSC0DJCQB+5bwpsaOu/0iTCnHMZw46lpOM=
+	t=1778742421; cv=none; b=L+o+SSp15nEEv8dm6ietPJoYE1SHaY/ahah3NyQr1tdQPa2o7J+i+BSRfA+2xXzWwn9o8qefkhZBVU4O4ACxzZNZv1pxJISs+CHbwMo+Qjz0LacKw/tSDwGbjtjsO+8LpYFTC96CiaKaNpLwOtPw9bgPNca/0sV9zdfGllmpUpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778741544; c=relaxed/simple;
-	bh=mNfdQ6mH/Fl/WyJmH7mJnq7lSmD+jTl6vBrkxDEpw2A=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fIzsU81A3GK8TqIUqYygJC0bB8gs056ss6lDKzGHGsxrAl+L7gjCzrw4rk5ZyqOP/qPDLpHk9k31P8LrrutgE2JgHaCVhTNjm9W8FaiJbUI8ABHpLJVoWQOBfICuSSyPRC7YyrmJb8FCJxgHF0FfdeaY84cSi8rbKjxMXJv79VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rI6MBy/h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C746C2BCC9;
-	Thu, 14 May 2026 06:52:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778741544;
-	bh=mNfdQ6mH/Fl/WyJmH7mJnq7lSmD+jTl6vBrkxDEpw2A=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=rI6MBy/hudioh7IqLHdEdnncX5m8fEzy76eHJTOEayxYreh3WabTgcvwBMdqaCNoo
-	 gGetig868+hk2owcuYJQyEr0VGll4HHdlbGq6kiqb9Ew2icaKhiAzpPcxx8SMpAXDe
-	 H9U4NWCaTxJMEZm+GWiJUy51UfcVyVcSnkJ8K5yUcS/v6Jhq6gJnCoYY6kkQ4gnU7O
-	 KUGcOfmSvZiKqOVNjdJiSpiXX70mue6QhiJgaJ7M083I9QNHIiZMTvuBwXbFHMIhqh
-	 XouPWHNt5JXzVBW9qEiiXEQRpMUQAeDBMv2N6a6lUbxll/Rb+u7FACl/0xwPGSEZOg
-	 iL4P2Ywr/AQCg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RESEND v7 3/3] riscv: clocksource: Add p8700-gcru driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Aleksa Paunovic via B4 Relay" <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260513-riscv-time-mmio-v7-3-f8925ffc226b@htecgroup.com>
-References: <20260513-riscv-time-mmio-v7-3-f8925ffc226b@htecgroup.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 06:52:23 +0000
-Message-Id: <20260514065224.0C746C2BCC9@smtp.kernel.org>
+	s=arc-20240116; t=1778742421; c=relaxed/simple;
+	bh=9CjZxLLbK13JfTnC51jhNirJv5ZHFQcU6UtJA40SsFE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cMjH6May31g04h/rbhrcDOCgIvhs0TrXmVN5Fyxe5lQI/+eCBNi2k3En2BM9iZQ40CP8Ir6PQTTyBwLwKDXF3YfERQ/nhRhq/1Y8M8bEov8KrHoLK6VBeNZ8IZe1RhOZF2solnrNtMGkD/u+hWEqtXyDFRrI+cVyNJyaIUFRCLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=CYTuWHLM; arc=none smtp.client-ip=45.254.49.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3e617edc1;
+	Thu, 14 May 2026 15:01:37 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v1 0/3] Add eDP lane mapping support
+Date: Thu, 14 May 2026 15:01:30 +0800
+Message-Id: <20260514070133.2275069-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 8543253E916
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e254a750203a3kunm8191ae6fc25e5
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDHU9KVh8fTxhKGkpDSk4YQlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=CYTuWHLMpjwkGVPAKOdbtuZfTKnZHW0hVVSbEMbxFNHLlPoYi3JeAE/i3+Wn3C//ZyJxcVW+b5089AMYqPVFcXHCNS1mz6Gk+DwJn4qQtQaEliNcrvkDWR1rGhXXyz0mxp3k/1bFdGoiyBk5/GOAFerCcTkm758Jh5//w22uJWo=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=uNef38etfNJEmvmQwL1S16fQzDZRoboQW/hgxScsiQQ=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: 0E0AF53EB5E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297345-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297356-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,aleksa.paunovic.htecgroup.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,rock-chips.com:mid,rock-chips.com:dkim]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Resource leak in `p8700_timer_init()` on the error path if `cloc=
-ksource_mmio_init()` fails.
-- [Low] The Kconfig entry lacks `depends on 64BIT`, causing compilation fai=
-lures on 32-bit RISC-V architectures.
---
+This patch series is followed by:
+https://lore.kernel.org/all/20260513074414.2053435-1-damon.ding@rock-chips.com/
 
-commit 4f34b087c1b81aba548d943831bdb092b55bf784
-Author: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+This series adds configurable eDP/DP physical lane mapping support
+via device tree data-lanes property.
 
-riscv: clocksource: Add p8700-gcru driver
+Lane mapping is mainly used for below scenarios:
+1. Correct PCB lane swap and differential line routing crossover
+   without hardware changes;
+2. Adapt mismatched lane pin definitions between SoC and eDP panel;
+3. Support multiple panel hardware variants on the same board
+   by configuring data-lanes in device tree only.
 
-This commit adds a clocksource driver for the MIPS P8700 GCRU. It uses
-timer-of and clocksource_mmio helpers for initialization.
+The series includes driver implementation and device tree binding
+updates to support custom lane mapping configuration from endpoint
+node, and keeps default linear lane order if no configuration is given.
 
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index ffcd23668763f..861e7b8c93376 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
+Patch 1: Supplement inherited properties for rockchip,analogix-dp schema
+Patch 2: Add endpoint data-lanes property to analogix-dp binding
+Patch 3: Implement lane mapping in analogix_dp driver
 
-[ ... ]
+Damon Ding (3):
+  dt-bindings: display: rockchip: analogix-dp: Expose inherited
+    properties
+  dt-bindings: display: bridge: analogix-dp: Add data-lanes support for
+    endpoint
+  drm/bridge: analogix_dp: Add support for optional data-lanes mapping
 
-> @@ -672,6 +672,15 @@ config CLINT_TIMER
->  	  This option enables the CLINT timer for RISC-V systems.  The CLINT
->  	  driver is usually used for NoMMU RISC-V systems.
-> =20
-> +config P8700_TIMER
-> +	bool "MIPS P8700 timer driver"
-> +	depends on GENERIC_SCHED_CLOCK && RISCV && RISCV_SBI
+ .../bindings/display/bridge/analogix,dp.yaml  | 24 ++++++--
+ .../rockchip/rockchip,analogix-dp.yaml        |  7 +++
+ .../drm/bridge/analogix/analogix_dp_core.c    | 56 +++++++++++++++++++
+ .../drm/bridge/analogix/analogix_dp_core.h    |  4 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 15 +++--
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.h |  4 ++
+ 6 files changed, 97 insertions(+), 13 deletions(-)
 
-Does this driver also need to depend on 64BIT?
+-- 
+2.34.1
 
-The driver unconditionally uses readq_relaxed() and clocksource_mmio_readq_=
-up.
-On 32-bit RISC-V platforms, readq_relaxed() is not defined, which will cause
-undeclared identifier errors during compilation.
-
-If we try to fix the build by including linux/io-64-nonatomic-lo-hi.h, it
-could introduce torn reads when reading the 64-bit hardware counter with two
-non-atomic 32-bit reads, leading to massive sched_clock() time jumps.
-
-> +	select CLKSRC_MMIO
-> +	select TIMER_PROBE
-> +	select TIMER_OF
-> +	help
-> +	  Enables support for MIPS P8700 timer driver.
-
-[ ... ]
-
-> diff --git a/drivers/clocksource/timer-p8700.c b/drivers/clocksource/time=
-r-p8700.c
-> new file mode 100644
-> index 0000000000000..220ed8efdfe55
-> --- /dev/null
-> +++ b/drivers/clocksource/timer-p8700.c
-
-[ ... ]
-
-> +static int __init p8700_timer_init(struct device_node *node)
-> +{
-> +	int error =3D 0;
-> +
-> +	error =3D timer_of_init(node, &gcru_of);
-> +	if (error)
-> +		return error;
-> +
-> +	p8700_time_val =3D timer_of_base(&gcru_of);
-> +	/* Now init the mmio timer with the address we got from DT */
-> +	error =3D clocksource_mmio_init(p8700_time_val, "mips,p8700-gcru",
-> +				      riscv_timebase, 450, 64,
-> +				      clocksource_mmio_readq_up);
-> +	if (error)
-> +		return error;
-
-If clocksource_mmio_init() fails, does this code leak the I/O memory mapped
-by timer_of_init()?
-
-It looks like timer_of_init() maps the memory via of_iomap(), but this error
-path directly returns without calling timer_of_cleanup() to release those
-mappings and other associated timer_of resources.
-
-> +
-> +	/* Sched clock */
-> +	sched_clock_register(p8700_timer_sched_read, 64, riscv_timebase);
-> +
-> +	return error;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-riscv-time=
--mmio-v7-0-f8925ffc226b@htecgroup.com?part=3D3
 
