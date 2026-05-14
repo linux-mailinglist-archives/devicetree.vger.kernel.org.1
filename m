@@ -1,86 +1,87 @@
-Return-Path: <devicetree+bounces-297274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297275-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6Fk3LEdBBWpDTwIAu9opvQ
-	(envelope-from <devicetree+bounces-297274-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 05:28:07 +0200
+	id MZyJJ9FBBWptTwIAu9opvQ
+	(envelope-from <devicetree+bounces-297275-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 05:30:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F94A53D529
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 05:28:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA43C53D533
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 05:30:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0D9DA3043D7B
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:27:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 588613036EE6
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 03:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3FC368D5D;
-	Thu, 14 May 2026 03:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD97636F914;
+	Thu, 14 May 2026 03:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UWVqxyi3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZ1WZ4cY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F4036897B
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 03:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5262EC54C
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 03:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778729269; cv=none; b=FMzxO3tLm/zzX2GKDzNDecctJf3XbrcDv1lCpDeanWwQVWBNjtpPVbEZncFNW4OIJQaDxUNcDgxPb4sB38FhTlYS6JVB1HmQ7fg2nCZtTpwgmra0Km7MIB8XQIGRaBQ+wc2Sx7RzW0NvDC5wxzT4nG14kUHlxyB0cKxKxFuwwGs=
+	t=1778729422; cv=none; b=Fms5F+AtaNZv981J0uzMwpDWxs74UlWCAPNAY+kfbfJc5lwCkwm2w3VGJsvS4UXCMgx2NhNwiRsyuZK1Hclu8E4M/leUlf4aVc13Ru1r1t2FaHDiJvsvPJHH7q/Z6itNWQRnXEB3H4C2nRCjl+L/hxoq9qV2VM5/2u18HmB9Cf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778729269; c=relaxed/simple;
-	bh=yzHWvzNTeKBwJzAj6zQvG6rgFpzBYQ6JZTuXukCubhI=;
+	s=arc-20240116; t=1778729422; c=relaxed/simple;
+	bh=OxGnoagxW7dEhoqtpV8pwXIvZ7WOOPNW9+A+r7Z2aRY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=teg1xalQQ1DloCyHgyYQw7Ib6NgkZVETZAhj3GJ7NhzqaP6ytmFjHEbSoelHuTQFNj/v22D3HATKROfJfcwDtLNcequrIpWDzPMTcHR37TQkBelEAm+k8lCdraFLnvMPM35d5ypJF1lX00Rq8i6QiTrCBsyvsEI6pHBMUN9WM0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UWVqxyi3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9578AC19425;
-	Thu, 14 May 2026 03:27:48 +0000 (UTC)
+	 Message-Id; b=DgLYf26ogJdnimMrK8NeEjyJrKxR+8Wu+zbRoWzqaAqzK7wspDRTPxyUA/2joF0c0WRTmt/GuwDHbHyiq/B+1yVcmkfcI6NFZjxaUKXOBVdPaqpgJ0GqDLi0U65C7MGTW35G9tOk7qRDTGu+58nOlq05TQgr5C+hVCeg9jPsoP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZ1WZ4cY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8B53C19425;
+	Thu, 14 May 2026 03:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778729268;
-	bh=yzHWvzNTeKBwJzAj6zQvG6rgFpzBYQ6JZTuXukCubhI=;
+	s=k20201202; t=1778729422;
+	bh=OxGnoagxW7dEhoqtpV8pwXIvZ7WOOPNW9+A+r7Z2aRY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=UWVqxyi3h8Plq9CoiSavusKVbhT6hIrvDEUtgT0+3rFjpf4zNho6D/mxZo+tRbhJ4
-	 GCRZAp0V2qTNO/6AIoz93lYmnsMS8KooxxhFgIOp2/7ITf07us80i4CqyCGWwh2Lmx
-	 FQ+yRh+LOhOkuXIUF7wH9g/SOO+kgixzDqWr96A0fRBJnbll//H+eIkPomNuB9yqEL
-	 ISod3tev90P1w8JOT2WbH6I/2t6M/LQAd8MfHFG4tZxZonLp1slWkBP1C4UvQp2Psw
-	 2isAvo8/JJXKHkHmJ8mO/d+VoWQmyOpsV8xj7NBXDc0kTiEl5214A6muiy1Y8iLiY3
-	 3mygB8dwR1JOA==
+	b=tZ1WZ4cYQ/Cx1eJJjsqae/AkMEnS/ypq+t86DTzE2gjmE9LmrmG5e0UQZMy1LjLpz
+	 cdqYI5Y3n/4vIZgFh50SwgKxqrvf3SiDLoU26pycE02aji8YKoHAR44S3r9Xju9KF4
+	 12m0BfeP+9YIxosggqFrR06TEWX+YcXsHH/ncM8D+gw9INggYP0EMo99kDzVBwdgLW
+	 oqQvmZNV5VvTa1lX9IfMS37xkqrISyXS4oOzMkUI3oYLbfyqntwyVSD6MuI/j5ReRi
+	 +h7AXVmMHfiXzfrd/oiH5iLE2e6JhHMK7lgQfk70URj4EWaol+rSbgK/8IGanm8CU8
+	 msMaxeYPcRMjA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/2] usb: cdnsp: Add support for device-only
- configuration
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: eliza: Describe the ADSP and
+ USB related nodes
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pawel Laszczak via B4 Relay" <devnull+pawell.cadence.com@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260513-b4-no_drd_config-v5-2-1c633a4b9a29@cadence.com>
-References: <20260513-b4-no_drd_config-v5-2-1c633a4b9a29@cadence.com>
+To: "Abel Vesa" <abel.vesa@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260513-eliza-adsp-usb-v4-1-839936e89aca@oss.qualcomm.com>
+References: <20260513-eliza-adsp-usb-v4-1-839936e89aca@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 03:27:48 +0000
-Message-Id: <20260514032748.9578AC19425@smtp.kernel.org>
+Date: Thu, 14 May 2026 03:30:21 +0000
+Message-Id: <20260514033021.D8B53C19425@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 1F94A53D529
+X-Rspamd-Queue-Id: EA43C53D533
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smtp.kernel.org:mid,cadence.com:email,lists.linux.dev:replyto,plat_info.properties:url];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297274-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297275-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -89,93 +90,58 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,pawell.cadence.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Uninitialized variable `ret` is returned in `cdns_drd_host_on()` w=
-hen `cdns->no_drd` is true.
-- [High] In `cdnsp_pci_probe()`, a failed `platform_device_register_full()`=
- leads to a Use-After-Free and potential Double Free via a dangling pointer=
- in the sibling PCI device's `drvdata`.
+- [Low] Redundant `interrupt-parent` property alongside `interrupts-extende=
+d` in the `aoss_qmp` node.
 --
 
-commit 3bccaf516e61eb4462bbd76ec7e121917dbcc00b
-Author: Pawel Laszczak <pawell@cadence.com>
-usb: cdnsp: Add support for device-only configuration
+commit 83bbc0567b448712af4a939b7fec5336a2e27452
+Author: Abel Vesa <abel.vesa@oss.qualcomm.com>
 
-This patch introduces support for the Cadence USBSSP controller in hardware
-configurations where the Dual-Role Device (DRD) register block is not
-implemented. In these configurations, the driver operates exclusively in a
-fixed mode and uses 32-bit addressing instead of 64-bit addressing.
+arm64: dts: qcom: eliza: Describe the ADSP and USB related nodes
 
-> diff --git a/drivers/usb/cdns3/cdnsp-pci.c b/drivers/usb/cdns3/cdnsp-pci.c
-> --- a/drivers/usb/cdns3/cdnsp-pci.c
-> +++ b/drivers/usb/cdns3/cdnsp-pci.c
+This commit adds the ADSP remoteproc node, USB controller, and their
+dependencies such as the IPCC mailbox, QMP combo PHY, and SNPS eUSB2 PHY to
+the Eliza SoC device tree.
+
+> diff --git a/arch/arm64/boot/dts/qcom/eliza.dtsi b/arch/arm64/boot/dts/qc=
+om/eliza.dtsi
+> --- a/arch/arm64/boot/dts/qcom/eliza.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/eliza.dtsi
+
 [ ... ]
-> @@ -158,6 +182,7 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
->  		plat_info.dma_mask =3D pdev->dma_mask;
->  		plat_info.data =3D &pdata;
->  		plat_info.size_data =3D sizeof(pdata);
-> +		plat_info.properties =3D wrap->prop;
->  		wrap->devfn =3D pdev->devfn;
->  		/* register platform device */
->  		wrap->plat_dev =3D platform_device_register_full(&plat_info);
 
-This is an existing issue in the code modified here, but if
-platform_device_register_full() fails just below this hunk:
-
-        wrap->plat_dev =3D platform_device_register_full(&plat_info);
-        if (IS_ERR(wrap->plat_dev)) {
-                ret =3D PTR_ERR(wrap->plat_dev);
-                kfree(wrap);
-                goto put_pci;
-        }
-
-When the second PCI function is probed and pci_is_enabled(func) is true,
-wrap is retrieved from the first function's drvdata. Does calling kfree(wra=
-p)
-in this error path leave a dangling pointer in the first device's drvdata?
-If so, could this lead to a use-after-free and a double free later when
-cdnsp_pci_remove() is called?
-
-> diff --git a/drivers/usb/cdns3/drd.c b/drivers/usb/cdns3/drd.c
-> --- a/drivers/usb/cdns3/drd.c
-> +++ b/drivers/usb/cdns3/drd.c
-[ ... ]
-> @@ -181,6 +184,9 @@ int cdns_drd_host_on(struct cdns *cdns)
->  	u32 val, ready_bit;
->  	int ret;
-> =20
-> +	if (cdns->no_drd)
-> +		goto phy_set;
+> +		aoss_qmp: power-management@c300000 {
+> +			compatible =3D "qcom,eliza-aoss-qmp", "qcom,aoss-qmp";
+> +			reg =3D <0x0 0x0c300000 0x0 0x400>;
 > +
+> +			interrupt-parent =3D <&ipcc>;
+> +			interrupts-extended =3D <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLIN=
+K_QMP
+> +						     IRQ_TYPE_EDGE_RISING>;
 
-When cdns->no_drd is true, this jumps to phy_set, bypassing the assignment
-to ret. Since ret is declared without initialization, could returning it at
-the end of the function propagate a non-zero garbage value? This might cause
-spurious host mode initialization failures.
+Is the interrupt-parent property necessary here?
 
->  	/* Enable host mode. */
->  	writel(OTGCMD_HOST_BUS_REQ | OTGCMD_OTG_DIS,
->  	       &cdns->otg_regs->cmd);
-[ ... ]
-> @@ -197,6 +203,7 @@ int cdns_drd_host_on(struct cdns *cdns)
->  	if (ret)
->  		dev_err(cdns->dev, "timeout waiting for xhci_ready\n");
-> =20
-> +phy_set:
->  	phy_set_mode(cdns->usb2_phy, PHY_MODE_USB_HOST);
->  	phy_set_mode(cdns->usb3_phy, PHY_MODE_USB_HOST);
->  	return ret;
+Since interrupts-extended already explicitly provides the phandle to the
+interrupt parent for the interrupt specifier, the interrupt-parent property
+appears to be redundant and may trigger a dtc or schema validation warning.
+
+> +
+> +			mboxes =3D <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +			#clock-cells =3D <0>;
+> +		};
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-b4-no_drd_=
-config-v5-0-1c633a4b9a29@cadence.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-eliza-adsp=
+-usb-v4-0-839936e89aca@oss.qualcomm.com?part=3D1
 
