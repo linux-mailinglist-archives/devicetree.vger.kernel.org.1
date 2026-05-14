@@ -1,133 +1,161 @@
-Return-Path: <devicetree+bounces-297507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CASKAEa6BWpJaQIAu9opvQ
-	(envelope-from <devicetree+bounces-297507-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:04:22 +0200
+	id WD2bAfq6BWpZaAIAu9opvQ
+	(envelope-from <devicetree+bounces-297508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:07:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C05A5415FD
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:04:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F57654166A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 14:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A72C130125B9
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:04:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 745C33097D7A
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 12:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F51C3C769D;
-	Thu, 14 May 2026 12:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00BB3C76A3;
+	Thu, 14 May 2026 12:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rlEa66C4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PYFkKhdx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7C43AEF4F;
-	Thu, 14 May 2026 12:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF493C1976
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 12:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778760254; cv=none; b=S5JLLzH2C5z5W4YZjuAlzFbBohJzNTLzQZFzsv3OkmUcDoZFYJ1hFKf0RLqyX1Ui/zcE4NPx3gepSF9X2cqJukEeZfYkXqTN4A41C171GFrLC5Xl+UUZxP4ZW/rf0Qi9IDpUENgohkHkHq+8BePtZuiczL71n16B1k+jFgCbmBs=
+	t=1778760325; cv=none; b=SOpTVqMeIIugKAICTlOMbEeaHUx0t+WFXapSZDLja9OquwBLKH1VxsCfuQz+fTlH6JKw8s3QEtYHG+quHNLLrOBiSq7bbPesmKbOsEZINtTDlevgdxxFsWLMJCGkhVjiTquJl6tG0Q5Q37+HtjZN8+oaO8X+afGMzDflrsojE/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778760254; c=relaxed/simple;
-	bh=3Ophp1rxRSOQOJoDZj+hxZG0S99E1oAe3Jsf1A4VFLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U7CWVfmYG+1N8CfO4kW078VaRBRhdum2i8JQ4zTaIAyue/DwPlp8/Z+VAF8PCP3cmg7awxi1itaHbyxq9xbB6D4QlWsMW0HDe6RFDK9EPFDmvMFdarjD0R4+2wuVuWZ1x0gWvGHUk0wr5lUkxQQNMcCY9czFvK6dLWIxfMeWHTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rlEa66C4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 313F8C2BCB3;
-	Thu, 14 May 2026 12:04:13 +0000 (UTC)
+	s=arc-20240116; t=1778760325; c=relaxed/simple;
+	bh=zva+dUkpWGETYJ7mF6AsnBpM4TcXI9zS6K+u4RO42P8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ruclzxIm661wevzA4Eo1flZx+sGa+LuG26VVWRuU3yuFJMSpgHCBqie1++vxSW0z5fNdOcIzjSEszVmACUAZbyEjj8xSNYApy0HmmKNSXFfxjG2NId7nPNXtfGCK4n0vvY5XrdcrqQ9oIzkOMSoyxo6wZXfSrHWnURDHcigb+6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PYFkKhdx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75CC1C2BCB3;
+	Thu, 14 May 2026 12:05:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778760253;
-	bh=3Ophp1rxRSOQOJoDZj+hxZG0S99E1oAe3Jsf1A4VFLg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rlEa66C483gqkdV75Q58miOOP3AEeMxaN8khSI05Hi8O854PezJ3slt0Qx1lOql1s
-	 De/Fp3derf8ytHNA6LNqQ8K9NtSan9ij8uu1s+0k0Rc3wYzf5jVdVMS6JcreSTn/8O
-	 pLML4huCT3hNRtguQjx6HnGrnGbvWR8+QHAsGdJiQUDw1Dv8663DX40ML+rngtj2mx
-	 G9ciTPPXiKoz4nraWCTXQZqTZdap8IJb8WPYqRtu8unwi1IKoUbz0kHtsZABQjGXYQ
-	 MVvFm2enwuXzjE2+sxa+js5cjFFMPRixgColVzsmqjtMeYPwH2fSgTij0l2VGuxMK6
-	 X6PtaVNlqvjug==
-Date: Thu, 14 May 2026 14:04:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: wens@csie.org, samuel@sholland.org, mripard@kernel.org, 
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] dt-bindings: display: allwinner: Split H616 DE33
- layer reg space
-Message-ID: <20260514-valiant-ape-of-discourse-a4f5a9@quoll>
-References: <20260509190015.79086-1-jernej.skrabec@siol.net>
- <20260509190015.79086-8-jernej.skrabec@siol.net>
+	s=k20201202; t=1778760323;
+	bh=zva+dUkpWGETYJ7mF6AsnBpM4TcXI9zS6K+u4RO42P8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=PYFkKhdxpl1OL7MQ89PfDL6LmSVRAin7hcp9FXXAfukHpXreWr/1IlWJKn2Agid1P
+	 FcsaFQelwP01RXuz3v3WE+hY8sIPCH3HJhe7b4oD9mm9Gs9L7cB57X1BrWn0uNmatM
+	 0Jz7tVk1cRvHxHrBDDXgttimci3LqEC/VWA2lgUX0ge1xP4FKiL5Qdl3B8OiitOfHY
+	 +7ylBw+XVvYWARCzE9p3qydKYRfe9+l0MgajdrRATyGgAG+2Nqwk9qIq91lWTKA6V5
+	 jpz1xUB3ZWYJ7xQBxS9kgzsZxbVGXrDy7nKMyb18AyjmDsdUhxe3NGbZKWhjoQlCxj
+	 EWsldW1SjytOw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,ipq8074-qmp-pcie: Document
+ the ipq5210 QMP PCIe PHY
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Varadarajan Narayanan" <varadarajan.narayanan@oss.qualcomm.com>
+Cc: krzk+dt@kernel.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, devicetree@vger.kernel.org
+In-Reply-To: <20260514-pci-phy-v1-1-482429192746@oss.qualcomm.com>
+References: <20260514-pci-phy-v1-1-482429192746@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 14 May 2026 12:05:21 +0000
+Message-Id: <20260514120522.75CC1C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260509190015.79086-8-jernej.skrabec@siol.net>
-X-Rspamd-Queue-Id: 0C05A5415FD
+X-Rspamd-Queue-Id: 5F57654166A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297507-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,linaro.org,gmail.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[csie.org,sholland.org,kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url]
 X-Rspamd-Action: no action
 
-On Sat, May 09, 2026 at 09:00:14PM +0200, Jernej Skrabec wrote:
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
-> 
-> As it turns out, current H616 DE33 binding was written based on
-> incomplete understanding of DE33 design. Namely, planes are shared
-> resource and not tied to specific mixer, which was the case for previous
-> generations of Display Engine (DE3 and earlier).
-> 
-> This means that current DE33 binding doesn't properly reflect HW and
-> using it would mean that second mixer (used for second display output)
-> can't be supported.
-> 
-> Remove layer register space, which will be represented with additional
-> node, and replace it with phandle, which will point to that new, shared
-> node. That way, all mixers can share same layers.
-> 
-> There is no user of this binding yet, so changes can be made safely,
-> without breaking any backward compatibility.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The compatible string `qcom,ipq5210-qmp-gen3x1-pcie-phy` is adde=
+d to both the standalone enum and the fallback items list, allowing it to b=
+ypass the intended fallback requirement.
+--
 
-There is user. git grep gives me:
-drivers/gpu/drm/sun4i/sun8i_mixer.c
+commit 55b201f9c0cef59e94dd05d524ed71d29f4e86c9
+Author: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
 
-which means this is a released ABI. As I understood, the old code was
-working fine but just did not support all use cases. Why this cannot be
-kept backwards compatible?
+dt-bindings: phy: qcom,ipq8074-qmp-pcie: Document the ipq5210 QMP PCIe PHY
 
-Best regards,
-Krzysztof
+This commit documents the ipq5210 QMP PCIe PHY. It aims to use the ipq9574
+bindings as a fallback, as the hardware is similar.
 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-=
+phy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.=
+yaml
+> index f60804687412a..1ac31439c20a0 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
+> @@ -17,6 +17,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - qcom,ipq5210-qmp-gen3x1-pcie-phy
+
+The commit message states the intent to document the IPQ5210 PHY "using the
+ipq9574 bindings as a fallback". Does adding the compatible string to this
+standalone enum allow device trees to omit the fallback and still pass
+validation?
+
+Since this is inside a oneOf block, a device tree could specify just this
+string without the ipq9574 fallback, defeating the intended requirement.
+
+>            - qcom,ipq6018-qmp-pcie-phy
+>            - qcom,ipq8074-qmp-gen3-pcie-phy
+
+[ ... ]
+
+> @@ -24,10 +25,12 @@ properties:
+>            - qcom,ipq9574-qmp-gen3x2-pcie-phy
+>        - items:
+>            - enum:
+> +              - qcom,ipq5210-qmp-gen3x1-pcie-phy
+>                - qcom,ipq5424-qmp-gen3x1-pcie-phy
+>            - const: qcom,ipq9574-qmp-gen3x1-pcie-phy
+>        - items:
+>            - enum:
+> +              - qcom,ipq5210-qmp-gen3x2-pcie-phy
+>                - qcom,ipq5424-qmp-gen3x2-pcie-phy
+>            - const: qcom,ipq9574-qmp-gen3x2-pcie-phy
+
+The gen3x2 variant added here correctly enforces the fallback because it
+was not added to the standalone enum above.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260514-pci-phy-v1=
+-0-482429192746@oss.qualcomm.com?part=3D1
 
