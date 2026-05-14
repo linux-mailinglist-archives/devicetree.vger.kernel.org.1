@@ -1,268 +1,139 @@
-Return-Path: <devicetree+bounces-297327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297328-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kB8LDnhoBWpPWgIAu9opvQ
-	(envelope-from <devicetree+bounces-297327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:15:20 +0200
+	id 4FTKAM9oBWpPWgIAu9opvQ
+	(envelope-from <devicetree+bounces-297328-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:16:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29A353E3A7
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:15:19 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9378653E3BD
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 08:16:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A5B38301A530
-	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:15:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 568793014FF5
+	for <lists+devicetree@lfdr.de>; Thu, 14 May 2026 06:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE9E3C379F;
-	Thu, 14 May 2026 06:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4B52857EE;
+	Thu, 14 May 2026 06:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4OlIPG6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aoo90Bjy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC52B3C3448
-	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 06:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE141C5F39
+	for <devicetree@vger.kernel.org>; Thu, 14 May 2026 06:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778739314; cv=none; b=aaj+11VGQjJyQrM/smhg1yoJ+5TOBQGlM5PNbZV4pk76Zf8kjJ+wE0krrhr0xXKRpoIIpIe0ckHyFajvP5H1EUMG7ZNLZb9crVmkJKlcrlWhcea+zHD4GdxAsH/wAWvRBXgeNOjgIJ+63dL3tyqPqr6mknM6T8PV9/FU8kShOYA=
+	t=1778739403; cv=none; b=T6mXsCPveC8zLn+CEfypItzcHQG3KJIjs5Pwtqr1tLpAXl+9DLQRoKyzixBoYSrSN1cW3aZZ1SBtAijy5AfDF1RgvnxRvPmfFiZM1W2L4PN2pyJOGZ092s3AP9Gpf2OvtN3rFEi4v5AFO8u8aE0MffXa5pJ36C9dmqky8CqFyj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778739314; c=relaxed/simple;
-	bh=tLSBjYRPDcYoDmcsO79mTbXnbwMydT46Nx1xvUN8H54=;
+	s=arc-20240116; t=1778739403; c=relaxed/simple;
+	bh=hclDBaOFRCvoS1b6RlvzmQmXuDbqv9qB9ZrXd/wiXVY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Q93Um3qF6v/YRhzOGBVVxEgv2Xr0FYsbSrzlWU+1q7GPm/O3JTRFfzdBM6WWdhbTWFob4JclxDxBPqOWbWjLwaHgJ6TD9NkrRLjCOUaBxU1l7TM6007P+P8J6KqilmD2QsrJJWgGqMeceoe5ZzGJAUzlzDUYi73phlQYKdAw5rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4OlIPG6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37E30C2BCB7;
-	Thu, 14 May 2026 06:15:14 +0000 (UTC)
+	 Message-Id; b=B/5sAc4dcd6RWiVVjLIandkFVKAPH+QNDNPGPKzZy1BEe5y4pXkSnn1Fxcr57vW2ZVQ0dFod4YWMPQx8LOzIzXuE9ui2KLO6dwbOrjscv77SL6yQ7tcYbj+3TVGIGA6zGZbSr7HOVHRlc1WGvi8aqRtQvZrk+3nXVTnoKx4QSFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aoo90Bjy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B43C2BCB7;
+	Thu, 14 May 2026 06:16:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778739314;
-	bh=tLSBjYRPDcYoDmcsO79mTbXnbwMydT46Nx1xvUN8H54=;
+	s=k20201202; t=1778739403;
+	bh=hclDBaOFRCvoS1b6RlvzmQmXuDbqv9qB9ZrXd/wiXVY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=R4OlIPG6pBhY+Q4n4xseXJueprMSnhw+Z/Ax8Q2nwR0sMkY5E/iazOrBgCN/RgZd5
-	 0mwcovtuTvj2GNHheiRGL/Lk+o7SRnqQ+fb1OlaAu3SaVisywsZRG4VH2jkY5KcT/w
-	 fWc708RvK7q/JwRjSH/cVbvcjow1jCg1jzW7nZbKulxvRDC5HQTZRNQtCZuo+1Fa1b
-	 Zcb466EQNcHSHSaN3caUSW/AIORwGEuKeX9Ecx5vNkoaHcyao/RKIKyzGakSjifAkR
-	 8jEgBq2zwy6uEFuKpr/SfJyBPROeeBH2eZI1kcz5v8Gm/UaYTffcHcbaKl8sue26qM
-	 youu37/r9immA==
+	b=Aoo90BjyMT/kLGzAqqVDVgt5EPv6WIVBAhunpRHHhKJahQLnEcALPwSjiWQAg3vbE
+	 x5RXZk63+oZeOca234bMNwCoi6wYX8Ylm2wxw8sMLLF8QZhdn3S5wW4Mxs8PDHA9rI
+	 fyrAxxUeyJJd914CT92BV4NaNiSFYZRf9jICPfs5W2sGYmaWOFly7cjvKzcWM05cJ6
+	 eKkGgzsQwbGH2END0RMEpqM4SpArPqBYTu91ISwV84YylGmWooWb0qjDY9MyxPVcj1
+	 qdxS/ikQMDqulQwJe4dvCMbmbXP+mr57Tkdh9SvMqXIBXOM6qGYH0JgcHpK9lCPlwz
+	 ZNkra2AB1HUlQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V6 08/11] iio: imu: inv_icm42607: Add Accelerometer for
- icm42607
+Subject: Re: [PATCH 2/2] clk: qcom: nord: negcc: add missing definition for
+ the USB2 PHY reset
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chris Morgan" <macroalpha82@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260512221634.256747-9-macroalpha82@gmail.com>
-References: <20260512221634.256747-9-macroalpha82@gmail.com>
+To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+In-Reply-To: <20260513-nord-clk-usb2-phy-v1-2-8eafcb2d5129@oss.qualcomm.com>
+References: <20260513-nord-clk-usb2-phy-v1-2-8eafcb2d5129@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 14 May 2026 06:15:13 +0000
-Message-Id: <20260514061514.37E30C2BCB7@smtp.kernel.org>
+Date: Thu, 14 May 2026 06:16:42 +0000
+Message-Id: <20260514061642.D6B43C2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: A29A353E3A7
+X-Rspamd-Queue-Id: 9378653E3BD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297327-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297328-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lists.linux.dev:replyto];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,lists.linux.dev:replyto,qualcomm.com:email];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] Uninitialized variable `size` used in loop condition and incor=
-rect bounds checking leads to undefined behavior and out-of-bounds reads.
-- [High] Self-deadlock on `st->lock` during hardware FIFO flush.
-- [High] NULL pointer dereference of `st->indio_gyro` during hardware FIFO =
-flush.
-- [High] Missing PM runtime acquisition in sysfs callbacks.
-- [High] IIO device registration race condition leading to NULL pointer der=
-eference.
-- [High] 3-byte regmap read corrupts hardware FIFO stream.
+- [Medium] The newly introduced UAPI macro for the USB2 PHY reset is incorr=
+ectly named `NE_GCC_QUSB3PHY_PRIM_BCR` instead of `NE_GCC_QUSB2PHY_PRIM_BCR=
+`.
 --
 
-commit 965b05f7b7791892c50d261d2a071baceb950c47
-Author: Chris Morgan <macromorgan@hotmail.com>
+commit 6d297fb76d38d25ccff03c1716dff37d01275b24
+Author: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
-iio: imu: inv_icm42607: Add Accelerometer for icm42607
-   =20
-Add icm42607 accelerometer sensor for icm42607.
+clk: qcom: nord: negcc: add missing definition for the USB2 PHY reset
 
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c b/drivers/=
-iio/imu/inv_icm42607/inv_icm42607_accel.c
-> new file mode 100644
-> index 0000000000000..06f2126af22a8
-> --- /dev/null
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+This commit adds the missing USB2 PHY reset definition to the negcc clock
+driver and its bindings. This enables adding the USB nodes in the device
+tree.
 
-[ ... ]
+> diff --git a/drivers/clk/qcom/negcc-nord.c b/drivers/clk/qcom/negcc-nord.c
+> index 1aa24e2784e53..31442d39924a6 100644
+> --- a/drivers/clk/qcom/negcc-nord.c
+> +++ b/drivers/clk/qcom/negcc-nord.c
+> @@ -1918,6 +1918,7 @@ static const struct qcom_reset_map ne_gcc_nord_rese=
+ts[] =3D {
+>  	[NE_GCC_USB3_PHY_SEC_BCR] =3D { 0x2d000 },
+>  	[NE_GCC_USB3PHY_PHY_PRIM_BCR] =3D { 0x2b004 },
+>  	[NE_GCC_USB3PHY_PHY_SEC_BCR] =3D { 0x2d004 },
+> +	[NE_GCC_QUSB3PHY_PRIM_BCR] =3D { 0x2e000 },
 
-> +static int inv_icm42607_accel_hwfifo_set_watermark(struct iio_dev *indio=
-_dev,
-> +						   unsigned int val)
-> +{
-> +	struct inv_icm42607_state *st =3D iio_device_get_drvdata(indio_dev);
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	st->fifo.watermark.accel =3D val;
-> +	return inv_icm42607_buffer_update_watermark(st);
-> +}
+Should this be NE_GCC_QUSB2PHY_PRIM_BCR instead of NE_GCC_QUSB3PHY_PRIM_BCR?
 
-Does this callback need to acquire a power management reference (via
-PM_RUNTIME_ACQUIRE_AUTOSUSPEND) before updating hardware registers? Since t=
-he
-runtime suspend callback turns off the sensor, accessing registers here
-could result in bus lockups or dropped writes.
-
-[ ... ]
-
-> +static int inv_icm42607_accel_hwfifo_flush(struct iio_dev *indio_dev,
-> +					   unsigned int count)
-> +{
-> +	struct inv_icm42607_state *st =3D iio_device_get_drvdata(indio_dev);
-> +	int ret;
-> +
-> +	if (count =3D=3D 0)
-> +		return 0;
-> +
-> +	/* Make sure we don't try to count more than the buffer can hold. */
-> +	count =3D min(count, sizeof(st->fifo.data));
-> +
-> +	guard(mutex)(&st->lock);
-
-Similarly, should this callback acquire a power management reference
-before communicating with the hardware to avoid timeouts?
-
-> +	ret =3D inv_icm42607_buffer_hwfifo_flush(st, count);
-
-Will this result in a self-deadlock? The guard(mutex) above acquires
-st->lock, but inv_icm42607_buffer_hwfifo_flush() calls
-inv_icm42607_buffer_fifo_read(), which unconditionally attempts to
-acquire st->lock again.
-
-[ ... ]
-
-> +struct iio_dev *inv_icm42607_accel_init(struct inv_icm42607_state *st)
-> +{
-
-[ ... ]
-
-> +	ret =3D devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	return indio_dev;
-> +}
-
-Does calling devm_iio_device_register() here expose the IIO device to
-userspace before st->indio_accel is assigned in inv_icm42607_core_probe()?
-
-If userspace triggers a hardware FIFO flush in this window, it seems this
-would lead to a NULL pointer dereference when accessing st->indio_accel.
-
-[ ... ]
-
-> +int inv_icm42607_accel_parse_fifo(struct iio_dev *indio_dev)
-> +{
-
-[ ... ]
-
-> +	ssize_t i, size;
-> +	unsigned int no;
-> +	const void *accel, *gyro, *timestamp;
-> +	const int8_t *temp;
-> +	unsigned int odr;
-> +	int64_t ts_val;
-> +	struct inv_icm42607_accel_buffer buffer =3D { };
-> +
-> +	/* parse all fifo packets */
-> +	for (i =3D 0, no =3D 0; i < st->fifo.count && i + size > st->fifo.count;
-> +	     i +=3D size, ++no) {
-
-Is the size variable uninitialized on the first iteration of this loop?
-
-If the garbage value happens to be small, could the inverted loop condition
-(using > instead of <=3D) cause the loop to exit immediately or lead to
-out-of-bounds heap memory reads when parsing the data?
-
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c b/drivers=
-/iio/imu/inv_icm42607/inv_icm42607_buffer.c
-> index 0919b4241241a..42a3211a1dfb8 100644
-> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
-
-[ ... ]
-
-> @@ -440,7 +460,7 @@ int inv_icm42607_buffer_fifo_read(struct inv_icm42607=
-_state *st,
->  	/* compute number of samples for each sensor */
->  	for (i =3D 0; i < st->fifo.count && i + size > st->fifo.count; i +=3D s=
-ize) {
->  		size =3D inv_icm42607_fifo_decode_packet(&st->fifo.data[i],
-> -				&accel, &gyro, &temp, &timestamp);
-> +				&accel, &gyro, &temp, &timestamp, &odr);
-
-As mentioned above, could the uninitialized size variable and inverted
-loop condition cause out-of-bounds reads here as well?
-
-Also, does reading the FIFO count earlier in this function with a 3-byte
-regmap bulk read at INV_ICM42607_REG_FIFO_COUNTH inadvertently pop a byte
-from the FIFO_DATA register? It seems this might misalign the subsequent
-read and corrupt the stream. I realize this wasn't introduced in this patch,
-but wanted to point it out.
-
-[ ... ]
-
->  int inv_icm42607_buffer_hwfifo_flush(struct inv_icm42607_state *st,
->  				     unsigned int count)
->  {
-> +	struct inv_icm42607_sensor_state *accel_st =3D iio_priv(st->indio_accel=
-);
-> +	struct inv_sensors_timestamp *ts;
->  	s64 gyro_ts, accel_ts;
->  	int ret;
-> =20
->  	gyro_ts =3D iio_get_time_ns(st->indio_gyro);
-
-Will passing st->indio_gyro to iio_get_time_ns() cause a panic here?
-
-It appears st->indio_gyro is not initialized in this patch and remains NULL.
-I understand this is fixed later in the patch series, but could this break
-git bisect?
+The commit message explicitly states the intention to add the USB2 PHY rese=
+t,
+and Qualcomm conventions typically use QUSB2 for USB 2.0 PHYs. Since this
+macro is part of the device tree bindings, correcting this typo before it
+merges will prevent the QUSB3 name from becoming part of the permanent ABI.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260512221634.2567=
-47-1-macroalpha82@gmail.com?part=3D8
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260513-nord-clk-u=
+sb2-phy-v1-0-8eafcb2d5129@oss.qualcomm.com?part=3D2
 
