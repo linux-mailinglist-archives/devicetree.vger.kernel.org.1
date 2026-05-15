@@ -1,158 +1,131 @@
-Return-Path: <devicetree+bounces-297996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eApOBxvYBmqDoQIAu9opvQ
-	(envelope-from <devicetree+bounces-297996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:23:55 +0200
+	id yKuJDO3WBmqDoQIAu9opvQ
+	(envelope-from <devicetree+bounces-297998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:18:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE5554B38A
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:23:50 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C730C54B2D6
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:18:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B64F30B1E7F
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:17:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 31C14302CBFA
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:18:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2E23FF8B9;
-	Fri, 15 May 2026 08:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF363815EE;
+	Fri, 15 May 2026 08:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CADuVCI8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pUuAIplf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC50F3FE659
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 08:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A85F3FADF4;
+	Fri, 15 May 2026 08:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778833068; cv=none; b=PxA6kZ+ygZaG1bF3akm5EBFFzxcpipTh+nmTTAF+PWcwuQRhRaQQICFqlpJKDxd1nMhBCbLr3PEEj2efgsTAqOLNXPDe9b5O0wapJZyo7psiZmsOY+a4sq27XK72e7jpofQjB9dbmX7wYMmg0dk7wCrXlZNsmggio6H7owdk1ZI=
+	t=1778833130; cv=none; b=YFOXYfm06HEntaWH1F2TZQ2eL6RaD8o8jDw1LJ2XCK2JWc58BE6pQ6+rnOv0s/vVujMWC+B7eOzchIOpOoHWbyEZEj4mvXvIwX6fJEoF/fiBuYUNQj7TpI4o11Ge7bWPbux87gbDvuUR9fzo0HLnul/8OZUfWfdGUm49ExiHQxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778833068; c=relaxed/simple;
-	bh=2OnJdpSf1F9n1GTpP39AmS0IQ8BVMnlgW1SubimsfGM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=KDt37pOI7V9ijO6O1fb513v9ml7GEhdO1F+pwYldFq46W5t8QWYl/TrVIU7qmF1c2kRIO78ZH5iD1IAjazAgTFdZZTd5QtQMogIXfZwhQcueqG2W9fHN9QNdvNlI/d1g07Ecc8pjaVgU8YoAOvJT/96XKfaEpJQ47weJfvaMWvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CADuVCI8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E033C2BCB0;
-	Fri, 15 May 2026 08:17:47 +0000 (UTC)
+	s=arc-20240116; t=1778833130; c=relaxed/simple;
+	bh=2oizVG4O3uoNeGTVjU8VPZdS7sVqMY19d5r731hQAzU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BS+4NP6TfxPuw+DF47fF0Pl6aGGPFFhLOxjHHzGU+TOnfEQCu9vlTSPD3azQPF2ztznndHtnCaXs4eOzT3eXhLfK9LHiKWaBxW3JdveOpJ+UxJKc9ZI/Nk+Ok6MImVLwinDKXS0dLiUVQye3WEXGFUf1cEB4YnnVGHRS6muy60Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pUuAIplf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07B1DC2BCB0;
+	Fri, 15 May 2026 08:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778833067;
-	bh=2OnJdpSf1F9n1GTpP39AmS0IQ8BVMnlgW1SubimsfGM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=CADuVCI8GZiYORwPgfIWUMQuSESTP6HSqOLeYyjI2ZgNq5dsaeZZdnH+vNiTIlLzW
-	 1fE6jFIaUOBosr0gLWhapvH8+S1Zow1cj6UoZ7hpqkVdkHinqVOtP+uCEHH0mdlqUF
-	 EVtR2UW7qjto8gl+X8tuhd3jZOVtydjGihkzgwnf54vwlJEVafO2fanMZa6Q8Jaa1J
-	 leWLQK7bN5HhHWSLPZJOz0Qfppwr8BQ7we2KJbmGKrDdZQHdrd5oMSVZRa3afRj9Ep
-	 vt+vU35+ssBHedPr73cEp+twBjMJC5TZKX0ijh7GFxWSxnQEJfjrgCYb6Yz8YeehDm
-	 voFNTtuT+P66w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/3] staging: axis-fifo: Fix alignment of
- wait_event_interruptible arguments
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pramod Maurya" <pramod.nexgen@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260515075736.172172-3-pramod.nexgen@gmail.com>
-References: <20260515075736.172172-3-pramod.nexgen@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 08:17:46 +0000
-Message-Id: <20260515081747.4E033C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778833129;
+	bh=2oizVG4O3uoNeGTVjU8VPZdS7sVqMY19d5r731hQAzU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pUuAIplfHLWThVdLLDFjzdWYisgqOY7Irqx+VtYdA5NZ7cfUrufOHKfcWAbo99GhW
+	 Q8l4r/VQEFccdNdrslxyOpuGEI1yAfhmbfWDq/go8XgADNdNS9uSHhLplAoGcL0cbv
+	 UvUPPJY7R24gFA11uhhik/Zn0RnwOGPlO0Q6fiyM2yA1oGYymirbfUfWCD7v+AEpAl
+	 483JPCNE7GGVVHPYKekv9RhQEjjl5XfokVqcqqzLmK7RhnoHoVRTpRbV/CKTBmDrVs
+	 azZ9KQTwre0iUC5VoymRNQaVfgc/sraBdkCV/9cFt8J5GCZzxvlLmYDpD/ZkCGUcWG
+	 r+HvLzeVka4GQ==
+Date: Fri, 15 May 2026 10:18:47 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Thierry Reding <thierry.reding@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Peter Chen <peter.chen@kernel.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 3/6] dt-bindings: net: Document Infineon/Intel XMM6260
+ modem
+Message-ID: <20260515-precious-ginger-lori-d1fde7@quoll>
+References: <20260511135703.62470-1-clamor95@gmail.com>
+ <20260511135703.62470-4-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 8EE5554B38A
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260511135703.62470-4-clamor95@gmail.com>
+X-Rspamd-Queue-Id: C730C54B2D6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297996-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-297998-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The driver incorrectly uses register I/O accessors (iowrite32/iore=
-ad32) for FIFO stream data, corrupting the payload byte order on big-endian=
- architectures.
---
+On Mon, May 11, 2026 at 04:56:58PM +0300, Svyatoslav Ryhel wrote:
+> +  ap-wake-gpios:
+> +    description: GPIO connected to the EINT3 pin
+> +    maxItems: 1
+> +
+> +  cp-wake-gpios:
+> +    description: GPIO connected to the EINT2 pin
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  vbat-supply:
+> +    description: Supply connected to the VBAT lines.
 
-commit 2b61bbc0527fc4d755d68d7a70237195d89efad6
-Author: Pramod Maurya <pramod.nexgen@gmail.com>
+This should be rather name of the pin on this device, not the provider
+name. VBAT suggests the latter. Please double check.
 
-staging: axis-fifo: Fix alignment of wait_event_interruptible arguments
+Rest looks fine, with respect to Sashiko comment on description:
 
-This commit resolves a checkpatch warning about argument alignment in
-wait_event_interruptible(). It breaks the condition at the comparison
-operator to keep the line under 80 columns.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-> diff --git a/drivers/staging/axis-fifo/axis-fifo.c b/drivers/staging/axis=
--fifo/axis-fifo.c
-> index 3aa2aa870ea91..1c34de020cf85 100644
-> --- a/drivers/staging/axis-fifo/axis-fifo.c
-> +++ b/drivers/staging/axis-fifo/axis-fifo.c
-> @@ -246,7 +246,8 @@ static ssize_t axis_fifo_write(struct file *f, const =
-char __user *buf,
->  		mutex_lock(&fifo->write_lock);
-> =20
->  		ret =3D wait_event_interruptible(fifo->write_queue,
-> -			ioread32(fifo->base_addr + XLLF_TDFV_OFFSET) >=3D words_to_write);
-> +					       ioread32(fifo->base_addr + XLLF_TDFV_OFFSET) >=3D
-> +					       words_to_write);
->  		if (ret)
->  			goto end_unlock;
->  	}
+Best regards,
+Krzysztof
 
-This isn't a bug introduced by this commit, but while reviewing
-axis_fifo_write() I noticed a potential endianness issue later in the
-function:
-
-	for (int i =3D 0; i < words_to_write; ++i)
-		iowrite32(txbuf[i], fifo->base_addr + XLLF_TDFD_OFFSET);
-
-Could this loop corrupt the payload byte order on big-endian architectures?
-
-Stream data fifos must exclusively use stream accessors (such as writesl()
-and readsl()) to preserve memory byte order without applying unwanted
-byte-swapping.
-
-The driver currently uses register I/O accessors to transfer data to and
-from the fifos (XLLF_TDFD_OFFSET and XLLF_RDFD_OFFSET). On big-endian
-systems, iowrite32() maps to writel(), which performs CPU-to-device
-byteswapping.
-
-Are there similar issues in axis_fifo_read() where ioread32() is used to
-read from XLLF_RDFD_OFFSET?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515075736.1721=
-72-1-pramod.nexgen@gmail.com?part=3D2
 
