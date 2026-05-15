@@ -1,114 +1,183 @@
-Return-Path: <devicetree+bounces-297964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2N1DBkHRBmqKoAIAu9opvQ
-	(envelope-from <devicetree+bounces-297964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:54:41 +0200
+	id MLUeFfHRBmqKoAIAu9opvQ
+	(envelope-from <devicetree+bounces-297966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:57:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3637B54AD89
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:54:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C8654AE7A
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:57:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 628B6300BC6D
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:54:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 06A9D300F954
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6E43F789A;
-	Fri, 15 May 2026 07:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373923F9F2F;
+	Fri, 15 May 2026 07:56:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XnLa8UZU"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Z/nYeh4y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A50C3F7877;
-	Fri, 15 May 2026 07:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501CB3EFD27;
+	Fri, 15 May 2026 07:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778831672; cv=none; b=eLueVUz40R2VDX8Dy8u/mlfWkqayqDGwDXIO634npD6GiouPU9eY8dJmQAodfSgfTnnjB0VSCA8eJzoQqaHlN/EnEQOmzHsVKM4twixt+GRYFyz9ns4w3OwhiVf1gjNhtTfPipp73rpiFfZjYlREFFWTo5NOrQpg1s8bKprtpLI=
+	t=1778831807; cv=none; b=CPQOxrLViO4u21txkjFhO1KGP7usjVGqXhzp52ZcZoGCSo2mHg/GXD0fsu/ChgFMP8qBXBZia0rUQQ1PIIGNSOCK7N/ENd71FuEoEwYCitzvRfnoASjDET825LYmlQiUvweDua17YXjjaHuozEA97NzSuRFMi/tVAGGz9QcMzXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778831672; c=relaxed/simple;
-	bh=6C+cQGLy0rdE2XnSkobZ4ut7/daRJW7apsXEcNGcyK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROqqaMMzCqpkCxG9N513zvItDUSCsNJTQXZVK1AzY9h53mfIysstvE2M/yKtWdI3cEJiHW9L7PUTYegHbbHjWaCrLXpF8nRBC/srbjv1lrgwR4RY+68Ae+8/dqr6tpgXkAguFxbRg6RsphjZiYtVKMf3CbWTOvCF33BHoP1S3tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XnLa8UZU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D4BC2BCB8;
-	Fri, 15 May 2026 07:54:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778831672;
-	bh=6C+cQGLy0rdE2XnSkobZ4ut7/daRJW7apsXEcNGcyK4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XnLa8UZU+O3beqJ4GcvQoUyaGmaAA/+lNlNiQBj/NmRbHexRd0RT/bh7RGzH/Uc6w
-	 hX8k21ur+Y8Nj4wuo/SnLXa5+XAP0pL9TQmFYJidzIfAWaWHnYAx+xfCcwzkDj1W+l
-	 rxYEPYZOI+NXLzJE+Tiyy6QRaLlLXVN50f1uEjah6l8lMX4Nj5rodxiwkiDkqJIG5Z
-	 HDVIV+laOn2QlgEyYwFWaDbsKTEqlcOMlNSGMmYGB00ojXMGEO2XxNVWD4G2pc7hbN
-	 IndhGex7XIrqkQuO84zAG5CHUtbds3WDwjcVWb9fbmSB8dYIsVZqRBa46OmuxEUPKC
-	 9shF+rG0EDchg==
-Date: Fri, 15 May 2026 09:54:29 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, pawell@cadence.com, rogerq@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	cix-kernel-upstream@cixtech.com, linux-arm-kernel@lists.infradead.org, arnd@arndb.de
-Subject: Re: [PATCH 4/4] arm64: dts: cix: add Sky1 USB4 and USB5 controllers
-Message-ID: <20260515-stirring-venomous-alpaca-715ffd@quoll>
-References: <20260511024244.981941-1-peter.chen@cixtech.com>
- <20260511024244.981941-5-peter.chen@cixtech.com>
+	s=arc-20240116; t=1778831807; c=relaxed/simple;
+	bh=UV+kpOrZw60vdYwN8vaGUIsioZG6VeF10gIlh+vj06Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OBZWBFf8pRJ33Lh9el/+yWMzSOz1hVQTm+8ls7eVZAKObYTYyJbaPYM4roPKx0X6Flc2Y6SK/X0v9sSLN1gs213q5HCyPPQu6sFpr1KVcO1Kz60m41Nu6+Gv1GLnDwaXomJnDSw7o2IIKc/Nh//qkqttfKye/w9Dz1I3WwEZQ2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Z/nYeh4y; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [127.0.1.1] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9BDD2454;
+	Fri, 15 May 2026 09:56:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1778831792;
+	bh=UV+kpOrZw60vdYwN8vaGUIsioZG6VeF10gIlh+vj06Y=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Z/nYeh4yyjwTeBhLjmT2TfH/bVUsPqYnD3wi4k7YY97tcEJo9HEJm0P0u05nL4D4Z
+	 30FvCZVfB+Ti5p8KUTReaYpuGVjWK8wD/js8mPXvlmj8GeJ50tMzcxs8/PRFp79q9q
+	 ECwEoZ61QbRoRDkmDJZzjHl8MTvJikiTMMugdn18=
+From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: [PATCH v2 0/5] drm/rcar-du: Add support for DSI pipelines with DSC
+Date: Fri, 15 May 2026 10:56:13 +0300
+Message-Id: <20260515-rcar-du-dsc-v2-0-f6b9240a1240@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260511024244.981941-5-peter.chen@cixtech.com>
-X-Rspamd-Queue-Id: 3637B54AD89
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ3RBmoC/23MQQ6CMBCF4auQWTumbQDBlfcwLEo7lVnYmqk2G
+ sLdraxd/i953wqZhCnDuVlBqHDmFGuYQwNusfFGyL42GGV61ekWxVlB/0KfHbbd7IJyJtDQQ30
+ 8hAK/d+061V44P5N8drzo3/rfKRoV+r4LJzvSOLT6wp5sTnFOVvzRpTtM27Z9Acnqr7CtAAAA
+X-Change-ID: 20260514-rcar-du-dsc-45bcf0c2fe86
+To: Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+ Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, 
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2138;
+ i=tomi.valkeinen+renesas@ideasonboard.com; h=from:subject:message-id;
+ bh=UV+kpOrZw60vdYwN8vaGUIsioZG6VeF10gIlh+vj06Y=;
+ b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBqBtGy/c1DwjNnyZr6n/UoXZsDlv7XDuGJjAzTl
+ DJ+SP9wLP+JAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCagbRsgAKCRD6PaqMvJYe
+ 9UfuD/9qgJmcAb531oyY9IAYrrpHpO3tEdmRNYMqAfm4BPi3je6kDgP8JOTTqRs4p8oukg99OlM
+ cdFMdYRtB2Ke9djIoJOKOSCNaRZy3fnufLFXrWr2ms3mNmu8Js13eVjCW4OoDDtXs86bFTgRP45
+ qjsxyuZdkViOrPog6Sf7yCt6gN6dRv4UQQ2PV6l3Xz/rA21B1/EoPXnF2NIeocnwu8Jsa3VwFT2
+ 3RAQN/qNStYDHHd0dHArp8GTmwQQLo5kcU6DKdlOUphDO2gjaJk2+ItljkCAnE8Ym6wd2IPTQM/
+ dD/G5jvhyUGe+H2VW/wtdOHD2x5EqmquMy0r6TR95Uegxq7GcylG+6P5DG+pf7hT1tR63u3qdDR
+ KjiuWKJ/tFFMpXR9mLI6Z/Dp6X2rqGiMwnu9pUo0zIuUIPaBUvfDFeupbPDYM19Nhe9CJk/wmfQ
+ LO9ONh+88tYKohPBIKig5qi2tBj2gTEQzs8RgrEbl/6kNxwp5kEXS9Mu9tpcmU1amgT0nhgvMfK
+ O/wO9wOvrJL2oqlnq8TVef5TRHFGERUHpmAXrRqLKdNG516jFlVRGieRASuiIhndpV8KaTzR45N
+ qgS454w6X+jNdqYa1NT4LQ9latWE73JF+6cSxI7Fvby79heRGMg4WW4g3PUPsUEKVfeZ9QwGEsJ
+ eX1NNgvvEo/iMWQ==
+X-Developer-Key: i=tomi.valkeinen+renesas@ideasonboard.com; a=openpgp;
+ fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
+X-Rspamd-Queue-Id: 02C8654AE7A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297964-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-297966-lists,devicetree=lfdr.de,renesas];
+	FREEMAIL_TO(0.00)[glider.be,baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,ideasonboard.com:mid,ideasonboard.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Mon, May 11, 2026 at 10:42:44AM +0800, Peter Chen wrote:
-> Add the Sky1 USB4 and USB5 Cadence USB3 controller nodes with their
-> registers, interrupts, clocks, resets and S5 syscon control. Enable both
-> ports on the Orion O6 board in host mode with the required VBUS pinctrl.
-> 
-> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
-> ---
->  arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 30 ++++++++++
->  arch/arm64/boot/dts/cix/sky1.dtsi         | 68 +++++++++++++++++++++++
+Some DSI pipelines have DSC (Display Stream Compression) IP block
+between the DU and the DSI. Even if DSC is not needed, the IP must be
+enabled for the DSI output to work.
 
-DTS cannot be part of USB patchset.
+This series adds a basic DSC driver, so that the DSC IP gets enabled in
+bypass mode. This enables DisplayPort output on Sparrow Hawk board, as
+the DP output comes from DSI and sn65dsi86 bridge.
+
+Original series from Marek.
+
+Note: I see that not every run of kms++'s kmstest gives me a picture on
+my monitor. Sometimes the monitor seems to be trying to repeatedly sync,
+but fails, and the screen stays black. However, I see this same issue on
+WhiteHawk, which uses DSI0 pipeline, without DSC, so I think that is a
+separate issue.
+
+ Tomi
+
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+---
+Changes in v2:
+- Fixed the dts example in "dt-bindings: display: bridge: Document
+  Renesas R-Car V4H DSC bindings"
+- Link to v1: https://lore.kernel.org/r/20260514-rcar-du-dsc-v1-0-d65f7a9e9841@ideasonboard.com
+
+---
+Marek Vasut (4):
+      clk: renesas: r8a779g0: Add DSC clock
+      dt-bindings: display: bridge: Document Renesas R-Car V4H DSC bindings
+      drm/rcar-du: dsc: Add rudimentary Renesas R-Car V4H DSC driver
+      arm64: dts: renesas: Add Renesas R-Car V4H DSC
+
+Tomi Valkeinen (1):
+      drm/rcar-du: dsi: Support DSC in the pipeline
+
+ .../bindings/display/bridge/renesas,dsc.yaml       |  96 ++++++++++++
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi          |  31 +++-
+ .../boot/dts/renesas/r8a779g3-sparrow-hawk.dts     |   5 +
+ drivers/clk/renesas/r8a779g0-cpg-mssr.c            |   1 +
+ drivers/gpu/drm/renesas/rcar-du/Kconfig            |  13 ++
+ drivers/gpu/drm/renesas/rcar-du/Makefile           |   1 +
+ drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c         | 163 +++++++++++++++++++++
+ drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c    |  36 ++++-
+ 8 files changed, 343 insertions(+), 3 deletions(-)
+---
+base-commit: 028ef9c96e96197026887c0f092424679298aae8
+change-id: 20260514-rcar-du-dsc-45bcf0c2fe86
 
 Best regards,
-Krzysztof
+--  
+Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
 
