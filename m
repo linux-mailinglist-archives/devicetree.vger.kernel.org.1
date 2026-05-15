@@ -1,175 +1,158 @@
-Return-Path: <devicetree+bounces-297999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298004-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EfJBDzXBmqDoQIAu9opvQ
-	(envelope-from <devicetree+bounces-297999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:20:12 +0200
+	id 8CVIH9fZBmoGogIAu9opvQ
+	(envelope-from <devicetree+bounces-298004-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:31:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81DDC54B322
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:20:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F331D54B512
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:31:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 35D783002298
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:19:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4548430A1285
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AB6351C22;
-	Fri, 15 May 2026 08:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A383FAE07;
+	Fri, 15 May 2026 08:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UuuPRH7I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hzirt9sx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223923176E0;
-	Fri, 15 May 2026 08:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C6B346E46;
+	Fri, 15 May 2026 08:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778833196; cv=none; b=JDygXwe6wq6YsK+OSPKVZ2VmTbS+9IF1hB3DiyMZf013TlcPGg5FPLQ582rq3GQI1NYJImv9nqtSu9/MiGApc92g2vNxQOd8In4WFR8Db1zMXpkUVZH/83vfNDmbFtyNhJ+eg4byu6kQVdmY15dJa5X/IKoheKcXEg1Zrlln9EM=
+	t=1778833407; cv=none; b=YmbrQE9N2owoAPz33bQ9Ca4FY8lYl51xoG5cRkoQljGVEJAUjBeRCaFrcdxSgmNhB9QMRvtvCma9EoUIH5qwoP1+rs4sMQpOmx50PYC9FRxNOBu/viVi7PWtnu+tOhPmZ2KTk3KI4IP3WiJJp/fy1ZOYraaz9iIz295vwW7o+qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778833196; c=relaxed/simple;
-	bh=DVW3zGuRiAwtlxV6sDechZsTz70XEBaeqt1QBsRL1w0=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kHZQRcwj1PM8eeQaeisElMUCq+y/HCIkkl+dLThmVU4JXGPCDG+RWFtZxWP5VhsKr4+50tXqPd/VZT1kbXzVaJKXaM62Iiy5nU69mxhxuIJFzgPIWYNb/n21PraHgqj7MwMVP1ES4oKGp5IjElwtSzrQYiAKJsy4K9+wnQycNeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UuuPRH7I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A51C2BCB0;
-	Fri, 15 May 2026 08:19:55 +0000 (UTC)
+	s=arc-20240116; t=1778833407; c=relaxed/simple;
+	bh=SSlT9myUcJF6FeiwE9AnyDzQpQFt6t3Xl8RNqCsXNDY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m3F7588p+E2CZeq0AdNfpQKSrJMLuQU0F7zwvK1sFw2ha4ebLUDYGEY4iZY18IemcViZ8NpTozdJHMs64dZ4tHUYtVorCabvjX3xec7n+CGCz/GP61Uyi0wFhOuHz2U7Ro/NYYsdRdZYAmHGAtg5BUweKtV4nxjCciTAX4BHWoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hzirt9sx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17E20C2BCB0;
+	Fri, 15 May 2026 08:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778833195;
-	bh=DVW3zGuRiAwtlxV6sDechZsTz70XEBaeqt1QBsRL1w0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=UuuPRH7IPZPbcK0LZ3o14TgqdgwVbURcINWZ6iyumNFirfL1QM18nouUZ9UYh1MFj
-	 R/WS9LHpZXAOV9PMamTfjgytnro7vboE8yEdnLAOMLQiJ3c26y9c6dEWwQpFeoGNTT
-	 yEUQ0SIhNAJRRSXQSKwXopJzNGoKhNqMBL6jNU7PbksZC+kNxxRAh7CBulneD2zQrS
-	 27bmrLzX5/Rk7PsTU+VL4uVGgaashbQkBIIAxEMjqq1xFZeb69fj33xor4T4dNhs0T
-	 Vw1QK+2c6gs2wtQ0BPdvqBW2UzKI88bH08yqkPATGZePNsA1AEzOnshraBvzndVEHg
-	 7mEs1tQA1aHPA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wNnlx-00000002bwo-3229;
-	Fri, 15 May 2026 08:19:53 +0000
-Date: Fri, 15 May 2026 09:23:08 +0100
-Message-ID: <87tss99j4j.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org,	devicetree@vger.kernel.org,	krzk+dt@kernel.org,
-	conor+dt@kernel.org, =?UTF-8?B?IkFuZHJlYXMgRsOkcmJlciI=?=
- <afaerber@suse.de>, Yu-Chun Lin <eleanor.lin@realtek.com>
-Subject: Re: [PATCH v2 14/17] arm64: dts: realtek: Add EL2 virtual timer interrupt
-In-Reply-To: <20260514231804.000CCC2BCB3@smtp.kernel.org>
-References: <20260514150945.3917510-15-maz@kernel.org>
-	<20260514231804.000CCC2BCB3@smtp.kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1778833407;
+	bh=SSlT9myUcJF6FeiwE9AnyDzQpQFt6t3Xl8RNqCsXNDY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hzirt9sxCO6vcFSLPEGZpe063b4OoH63/V7vdwux8hZpDjsxyR67CRfZ+Ue9uD7K9
+	 vWWo9d69BEztqBegI9RjUV+Bdt4EYG4TjJx2lT7JmPBTQWQFsj15vN7lj4UTAh/gTS
+	 UzqQOduUqSIoa6XWCVrxL0nILJqSow9+EYCpQD8dNhXQ9lhKq5Wr8k8mnqEIO9/lSv
+	 tRMkhVI/BxrUcIcWNqvcU/tDUHK9LjFb00P07r68PTE56CLk+cfuMbLhhlxRIRiuBr
+	 nWmGnOz+sei7vGdVMoPn/L6wL8Gk55E2sRsLcZC7xAarQSxGDGJb9q9yAwUPQNPxR6
+	 ZD4O95KSOGnUw==
+Message-ID: <7a0d05fb-48fb-4183-9eb3-9dd316f4cc62@kernel.org>
+Date: Fri, 15 May 2026 10:23:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sashiko-reviews@lists.linux.dev, robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, afaerber@suse.de, eleanor.lin@realtek.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: 81DDC54B322
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: ipq5210: add the download mode support
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260511-ipq5210_dload_support-v1-1-5609c6b8330e@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260511-ipq5210_dload_support-v1-1-5609c6b8330e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: F331D54B512
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-298004-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-297999-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Fri, 15 May 2026 00:18:03 +0100,
-sashiko-bot@kernel.org wrote:
+On 11/05/2026 13:01, Kathiravan Thirumoorthy wrote:
+> Enable support for download mode to collect RAM dumps in case
+> of system crash, facilitating post mortem analysis.
 > 
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] Incomplete implementation: missing update for Realtek Kent SoC family which specifies an incorrect EL2 virtual timer interrupt.
-> --
+> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5210.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> commit 3b73638950a28ecc324e1c28fa4fb9fcb13d5567
-> Author: Marc Zyngier <maz@kernel.org>
-> 
-> arm64: dts: realtek: Add EL2 virtual timer interrupt
-> 
-> This commit adds the missing EL2 virtual timer interrupt to ARMv8.2-based
-> Realtek SoCs. It updates rtd16xx.dtsi by adding the fifth timer interrupt
-> with GIC_PPI 12.
-> 
-> > diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-> > index 3a7f6e35b7f74..43b13d133c324 100644
-> > --- a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-> > +++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-> > @@ -105,7 +105,8 @@ timer {
-> >  		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> >  			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> >  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> > -			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> > +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-> >  	};
-> 
-> Does this update miss another Realtek ARMv8.2+ SoC file?
-> 
-> Looking at arch/arm64/boot/dts/realtek/kent.dtsi (used by RTD1501, RTD1861,
-> and RTD1920), the fifth timer interrupt is currently defined as
-> <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>.
-> 
-> PPI 9 is the GIC vCPU maintenance interrupt, rather than the EL2 virtual
-> timer interrupt which should be PPI 12:
-> 
-> arch/arm64/boot/dts/realtek/kent.dtsi:
-> 	timer {
-> 		compatible = "arm,armv8-timer";
-> 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-> 			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
-> 	};
-> 
-> Another patch in this series (clocksource/drivers/arm_arch_timer: Default
-> to EL2 virtual timer when running VHE) changes the driver to use the EL2
-> virtual timer by default on VHE systems.
-> 
-> If the kernel uses the EL2 virtual timer on these Realtek SoCs, could it
-> request the wrong interrupt (PPI 9 instead of PPI 12), causing timer
-> interrupts to not be delivered and resulting in a boot hang regression?
 
-That's definitely odd, as PPI9 is present in two interrupt specifiers
-(timer and GIC). Obviously, that's not possible.
+So you sent ALL your patches separately. One by one.
 
-I'll add a tentative fix for that in the next round. Maybe Andreas or
-Yu-Chun can check in the meantime?
+This is non acceptable waste of maintainers time.
 
-	M.
-
--- 
-Jazz isn't dead. It just smells funny.
+Best regards,
+Krzysztof
 
