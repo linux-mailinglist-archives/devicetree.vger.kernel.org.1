@@ -1,168 +1,194 @@
-Return-Path: <devicetree+bounces-298097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298106-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EMnNA+byBmohpQIAu9opvQ
-	(envelope-from <devicetree+bounces-298097-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:18:14 +0200
+	id MJiiJpH1Bmo4pgIAu9opvQ
+	(envelope-from <devicetree+bounces-298106-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:29:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5EC54D2BB
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:18:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D80254D57C
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1480930F2977
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:53:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77D6B312C8CF
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB0343E9D6;
-	Fri, 15 May 2026 09:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oD51zqXL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E688743E9F6;
+	Fri, 15 May 2026 10:09:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2114.outbound.protection.partner.outlook.cn [139.219.17.114])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FEEE43E4A6;
-	Fri, 15 May 2026 09:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778838810; cv=none; b=IAo/IdT5kqiRkq32/51e5liEdQXU2pzMpIl1XRnHf/JIqAue5LP5gjxxWbGINlynsUExjFAPTKxF1RMXrO/8Qt1hwA8zV5I8e1UcBRaodaQPJIlwxwMHzX9olN4vW1SHNlkgrlRtIxN+ExTT10CqElxKbv9UVdk9PVTnnEcUl5A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778838810; c=relaxed/simple;
-	bh=A0YTQ7UkDojF2CD4/8jwh9dUZ30FIIWOA4StnexdvRs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gccNW2LiQXcSG0Rs0DhgGTLiqsxSMEHnuSjiMZYJEVzi86vjF3u8oKF55LxUhxmtnWrsMrSNtaYj/5R/WSTlWGilQ7T8Eoq+krdZMwDeUNi/BSxgGbwE/Q+N4QVlOrCZob+qoMiEzeQ1k2DFX8aCDMRL/D67LK+kEC+OwD6Zprk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oD51zqXL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADFCEC2BCB7;
-	Fri, 15 May 2026 09:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778838809;
-	bh=A0YTQ7UkDojF2CD4/8jwh9dUZ30FIIWOA4StnexdvRs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oD51zqXLZ42q3M97ibmBgqaqDPho0Om0C3rVe6FupKBULF7WZGrN9dW3GnvZ4IRrn
-	 7pJlK8psnpUusrYRgE3MCVwu/nbJdyv0YAP7qqVtrAXt9JFgd04SHNLH1WFxE5HEEZ
-	 2SbYvWDNZiyNAYRLKhJZfgzNVwFDIDot68cVZnrZAoe/NkX2OF/jXV9GxUeh746K+W
-	 ri1XqwWwZA8GJPYadspK0CoPSVeEkGPhNUacNuCtnrneZGz85BV7kTMLlqSOvS9ImJ
-	 1h/zlYptBexyCPXheQnNJn1+CZyNcGnSggzXmz4P+ngoOewG2cFBiM3wOrNnnVJDds
-	 LSo4Ph2bCBvng==
-Message-ID: <3a36e708-6cc2-4041-8750-12b25d050b43@kernel.org>
-Date: Fri, 15 May 2026 10:53:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 593D93CF664;
+	Fri, 15 May 2026 10:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.114
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778839744; cv=fail; b=gpRtHT9RCiB/+kqcPkTGeoXx5Tijr2sZgleg/35+97Ev65ildMhnYh6Y9+C3ONJejZaHQEbM2zTaTpyH3jLHHgC6DZ6troK5U5V914OPs+9q77c81hgIzNUowjQdXKh2QMa//9fBOJoIoMQK53QnfwZpgIlfmoDBYclMDcpyViY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778839744; c=relaxed/simple;
+	bh=swcrXP0uA2mlFetr2bBqWD0uP8peYDDNLmypBBTy48Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=phdkh16mOUl2oEX17R0Rg6g2e+NpiHlSDE49cnLb1RzPkb9z8Rn3qiDVjm85WrmYNHEAGAZUpVWqk2/D5MOvRhspsk0Q0LGhnWCtuV3Xdf87JScdY5iCI2W/mCjL/d6kSF7zoXvUzQ2bzirc+tg5e1AgAZExJlXNI8zne9dBKVU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gLSWJq+Uvy4Sa0wuxjNujYzEtGGV3fNqUcZAoedJpNoyUAOnP4RvQ5b43mQazl5OCHYOsj8o7Crn1F8I+dpShwLs1PzD2vtMx+gpsKp98qxxtYzwH4KegcSUZ2g7E0oTF7p0hEuMy7NDb7H6rIymYtcNT9BgC3ESldJZKVuJwXdg+uW5C1GgdYA0GqTMdahQLS+UeugueUt7pUOeNMQzuYCb4F+vJCmRSMcVxFknCEqTylSR5CSvgu+4O4s119WfxhNXABTmjRa5XLdAd6infZPnbB5JrSnBBmAEMjtpjQgAn7ZmEtWDjkx1P/yLchCYnG62X0kz4DVWoYTFw5bwJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RUz1MPGC80uWTN1sU+RurDVZHtuB7yrRo0y2R3VvQdE=;
+ b=eq3sKcvKNaG5NZQ+OQmsRCCqNwTqahoORaBkg3KWVtZbNNVygXpU+rhYdSIIdCE+T7n697X8k0T5U1lDsnLRRRGPrLpsgAbW5KC444iqcfAWL8/5amoZNoT0Nu7SQpOMOk1fjMvhZpyKgHxg4RzpsmKALSVT2JHmn9FakOKz8ckLLQQM+6r2pxKsOCPpnjSKf3kPoOmSQQMs9oyNC2STsTjt7MTOZHgdN8HqDuoLmlvwI3KI06VBqVs4mYW7hvcwRQvLZFW9RNDH7nkPdZA90T6Bb4xDvvmOwFU/AySHrWmOvJuMK3jWDA4Oh8h4EvxK214VGHlPpCUbHD2cWrp+kA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn (10.2.8.138) by
+ NTZPR01MB1002.CHNPR01.prod.partner.outlook.cn (10.2.8.237) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.21; Fri, 15 May 2026 09:54:06 +0000
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ ([fe80::d8e2:3f39:6ae7:bdf2]) by
+ NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::d8e2:3f39:6ae7:bdf2%6])
+ with mapi id 15.20.9913.012; Fri, 15 May 2026 09:54:06 +0000
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Xingyu Wu <xingyu.wu@starfivetech.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: [PATCH v2 0/2] Add hwspinlock driver for StarFive JHB100 SoC
+Date: Fri, 15 May 2026 17:53:55 +0800
+Message-Id: <20260515095357.75998-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: NT0PR01CA0012.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510::7) To NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/8] media: qcom: venus: add MSM8939 support
-To: Erikas Bitovtas <xerikasxx@gmail.com>,
- Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <DNbx21zMg31pkwSpiMB9_CkOmf_zlDEkQXoUA-a8l2NewLmiwCe1HyivIJV1oKaYtXo6gTR7qvePk9rqflNU7Q==@protonmail.internalid>
- <20260514-msm8939-venus-rfc-v7-0-33c6c6fb9285@gmail.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=bod@kernel.org; keydata=
- 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
-In-Reply-To: <20260514-msm8939-venus-rfc-v7-0-33c6c6fb9285@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 7B5EC54D2BB
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: NTZPR01MB0956:EE_|NTZPR01MB1002:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95431405-7cae-42af-3076-08deb267e6d3
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|376014|38350700014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	YeBltHCYrUBUe/QNXbuYIiIGpJ088j6FNQ3Gwbs+tp0eCeAEH08GIWCGMUoSOPG1q1YlFHR3B1ztQ9CJAdw3u0oB5ulKqlNv1wnD7dWlKgjyyGVjzU1N+GuI7wrKcy2aOKMWTraajLSwHbDoRPG0kEbMJXww1hpRh1PmAR3hUmQGnywNuN+SRrSRnE+gyMYEqgthOQy0x7lUd6vqTD9BytqkeeXfWQHbu/DLcWFi7UqKSvuQy6pIdlRsqhfxELn8ZOa2R5LjeH34h57tWbtcqi9lj0zDz3YYuHUiMa9S3UjUF24O/vwEW0i8GiVp1+zk/Zf/Y9SLszqbCh+HSui8zIZFmudqh5rdTNbhJo7saPRpQZJxKKBE3f71VSzx9MfhnMuTvcp7MUNOcUEXoURAiVwMdanLNbG2PWRgRT3yOLgrlV8uFhb8wg3zWeojl9Ett9NEh2tdokTpDIspOeByst4TqY9k2Nru7vYXsS+pY8OsrvHSGftdMyly0CsFeqmBi9qETI0+AvcJLzvBdYqFt82dI7T/5Tx8Xw1DdcPIEtGCiy2pzzegt72i25kxiwnk
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(38350700014)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?VCiY4bVCUwnXZVU5DyVS+ouGkCPyJUbCstbQSxvi6uzvW72q6pxsTRlmRBD7?=
+ =?us-ascii?Q?zqSaGaL2HTYDPBHgpzhgQyf8WP/2KBKYN35s0Z3iZPnRitnAxQQfmO6Q2+2r?=
+ =?us-ascii?Q?SZzPUIju7VWUCJQMbQQdgeEbs5DR5FJEUkOKdifgahR3zeNETMVxdAWm6Mui?=
+ =?us-ascii?Q?4ucf1G5V/Mz0M54Z+XZMQS2CQIbWVyBUeZLySaFTX/tHI9316hDuBA+57hvP?=
+ =?us-ascii?Q?zdtKAAFxi/CzWakfkUg5CZMM149Ytlq8O1Hm/B3lkWxgw12wzMvBlnAH71ma?=
+ =?us-ascii?Q?dAH3mpknJpCLw2DYHz4fFfF7LjqKsnTURcuVbktenJKtXtZBOQuZvd3IjPge?=
+ =?us-ascii?Q?YayfdzQEMrGWHuGL8i+CsOW9xc5tKWxdT3oeGtx4nX/QyAxah+zPPPoOAVrg?=
+ =?us-ascii?Q?Z+TX793iRvjYftUQUtmzvqfRwkZ8G1zCFq1rZI0/KrImDWTbs4gnKxZuJhUz?=
+ =?us-ascii?Q?G9DPTI2RFPpFcoMModaaF8WpRICKd2Abtk05StglUmZ2fr6hf6Fd8Q2Hj/Q8?=
+ =?us-ascii?Q?pL0YWY1zNj0j/1a3hqDW1K+UTk+S1jpWEax8K0J9gZTMSCc72mEW5cGmP9Fr?=
+ =?us-ascii?Q?4CjYI6WxPOvupWqS3ftGk/UAm26L2yNQXkpS0ZwNAZC2A9a/ng4Arfpc40hb?=
+ =?us-ascii?Q?SoChDSnihFiwG5/nfZBJ5PcOjDY4vyHYAHwo9d7nNRpX2af/RUqBbp2H2hJN?=
+ =?us-ascii?Q?/EJf2jAX2iBQYYkPRG+zwIpc8QfyAkGblIBAKrY65B6gu1lzkCL9uxZAC9VT?=
+ =?us-ascii?Q?k9aXL+Jktug97KIR3yteV40vBPzu4JcpZfKMcKPZfVqlUTdPcnpTBh3Vu3KD?=
+ =?us-ascii?Q?i5ss3Z2WXI6qTmqTcFn42zab/iryWc7ko9y17WzlB68mZIhwbldaBUFQtEVY?=
+ =?us-ascii?Q?3HYp6gP/6ofuoxpY5AbmGREk1VIcVTSEXVuWvhc0JAehIkrEcN20PmId8wBG?=
+ =?us-ascii?Q?vfcqNmkA/J/gdGxqrulLVz7br11C4ApO2YYbb9YLI7vRSF4drX5VXhhTMjcD?=
+ =?us-ascii?Q?4hbXCsda6Qy1roytxt7lI2EN9O6sopLo4vi7DA1iWL+zvrQf/R0o9ao5YOFP?=
+ =?us-ascii?Q?UUDcYEeSkxvS4XmTGeA9umb4f83C9ZyedCjiENsBFKz++0AerrhesfC5kRoU?=
+ =?us-ascii?Q?e+tkQUJZUaj/vcuanNma85UeTWf8pgJl9AaUCmk3r6N+dNpXGDSqNXVGS5z4?=
+ =?us-ascii?Q?b2ONDTAj/y5nyDdupWY5K02gp1a4T6ivNufTZhwoFL7McYxbLTXxrD3LvknS?=
+ =?us-ascii?Q?O9jEkFffMPCjFxBbZII1daB3cDnVkYMObsFIBK97PffNBolTWzscZ6T+ITR5?=
+ =?us-ascii?Q?jI525EIMHtoi4WjT4bJ5d7gD2URM1DqcRq/ckhvqUOBJMT+pA7w0qVULDH8J?=
+ =?us-ascii?Q?D/KmYCwkkgXx5ywADPaDHHESZJNV9dUV4IfPbmj9B4DUlbwF0FEchgoCszKH?=
+ =?us-ascii?Q?ho+pCA1uEoFxGFjGL0+4+hwOATe09pmU/oTM0mayqlDWgRnGvSxsF5Nm4rh6?=
+ =?us-ascii?Q?FlGB4YvGEv/6jeHokCSDDX/R7r1HejJzXLnK0sKZw37ct4xfaf7qrGTBPch+?=
+ =?us-ascii?Q?mW4sxvc9Y7zzmHKzAsmtkrRHek+6IWheoHHpAzTUxS1c/k+7D8PNs9kQzocy?=
+ =?us-ascii?Q?cGsczetdZxYeI1quQJBv4IWbYGkv4N8B7QI9G5FEnNu9i/UpU/KdA0lgo+23?=
+ =?us-ascii?Q?77QokDBFat6kZrXsGJoG9At/OJ4+jKrQnCRASB7JrWqjfIk0PDvK12pakfAv?=
+ =?us-ascii?Q?zInfxHlBr32xvOt2atvrs8aDdb5S5IQ=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95431405-7cae-42af-3076-08deb267e6d3
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2026 09:54:05.9256
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EA9q2AutJojNaX8LgCIt/pA66HUulbxEbWbHUn9XZpsEYbFMGz1JLYmlwp+3L9uA+EyyMCiK0zO2jUyTGIjZWCSwAbFHzuEZ7nJ/jcmFgRE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1002
+X-Rspamd-Queue-Id: 2D80254D57C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [5.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298097-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com,kernel.org,apitzsch.eu,baylibre.com,redhat.com];
+	GREYLIST(0.00)[pass,meta];
+	TAGGED_FROM(0.00)[bounces-298106-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TO_DN_SOME(0.00)[]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xingyu.wu@starfivetech.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.953];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-On 13/05/2026 22:24, Erikas Bitovtas wrote:
-> This patch series adds support for Venus on MSM8939. It is mostly
-> similar to MSM8916 Venus, except it needs two additional cores to be
-> powered on before it can start decoding.
-Stylistic feedback for future reference.
+This patch serises are to add hardware spinlock driver for the StarFive
+JHB100 SoC. The first patch adds documentation for StarFive Hardware
+Spinlock. The subsequent patch adds hwspinlock driver and support JHB100
+SoC.
 
-- Schema
-- Driver
-- DTS
+The StarFive hwspinlock supports 16 channels for using by secur core and 
+AP core to restrict access and protect the memory area.
 
-Is the correct stacking for patches. Makes it just a little bit easier 
-to pick and apply, no need to resend for this.
+Changes since v1:
+- Simplified the subject.
+- Added 'StarFive JHB100' in documentation title.
+- Modified the name of example.
+- Added the property of 'clocks'.
 
----
-bod
+v1: https://lore.kernel.org/all/20260424032026.62301-1-xingyu.wu@starfivetech.com/
+
+Xingyu Wu (2):
+  dt-bindings: hwlock: Add StarFive JHB100 HW lock
+  hwspinlock: Add StarFive hwspinlock device
+
+ .../hwlock/starfive,jhb100-hwspinlock.yaml    |  43 ++++++
+ MAINTAINERS                                   |   6 +
+ drivers/hwspinlock/Kconfig                    |   8 ++
+ drivers/hwspinlock/Makefile                   |   1 +
+ drivers/hwspinlock/starfive_hwspinlock.c      | 130 ++++++++++++++++++
+ 5 files changed, 188 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwlock/starfive,jhb100-hwspinlock.yaml
+ create mode 100644 drivers/hwspinlock/starfive_hwspinlock.c
+
+-- 
+2.34.1
+
 
