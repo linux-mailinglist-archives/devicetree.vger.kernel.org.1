@@ -1,261 +1,164 @@
-Return-Path: <devicetree+bounces-298047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHsyI7rkBmoHowIAu9opvQ
-	(envelope-from <devicetree+bounces-298047-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:17:46 +0200
+	id eOvGDOrrBmqCowIAu9opvQ
+	(envelope-from <devicetree+bounces-298049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:48:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0657354C3DA
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:17:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D18354CB71
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:48:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 60A123110F6A
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:05:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DA32031FF636
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C77142883B;
-	Fri, 15 May 2026 09:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3532C438FE1;
+	Fri, 15 May 2026 09:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZJLs4Kcr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kHyyCsJe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B073EB816;
-	Fri, 15 May 2026 09:05:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA917438FF9
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 09:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778835911; cv=none; b=O2XBGuls7OqMXSosnKKH6uMb425PMSs6neJweiPbe1aKS20NrakiP0ccn/qTLLNiGUo6MEb72H6eqLGhpiFBEOIlUxvRx5p/9hy7UVlZkHxxgEDcSq97+PKU/ISjjOluNeD9pMiaIk5VXX4KJemqJCaBXhZn1MmKsHbfQuCrvOs=
+	t=1778835926; cv=none; b=ZCL1FuIfm9dpHtuB5WyXm92COStxF0ONS+7NA/AskQG1ye2MwdumseuKHxuQjY8FA4A/5IroPXgzNKyQJsWOoNRNY9FxDd0LRaDvVdbYuTVuipseriH7aHrUAsEj9Ilnoia9yte7YRTsajXvuZjPLLd9+kvHOYFXfKXjsOgH/rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778835911; c=relaxed/simple;
-	bh=JF3uZsy6llHlDV7C7vLRRmWCmal9y3CobKnloKpst78=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jAOXaRKxFm5wiqHQo64mnqvaRlnz8yHhvfCGDEWm6AtBDF+PgVruYIiYcTIkWgs2w6a6wE94NqJlAQVzLUC2/6NNb9/dkiKyPzRaGe8R+Dv1dENHzMrbxKNLdi1nrAGujsgvGBMOIyHQKwRk+yBFiSY/RT0Dt2hZqRfmKhQMOYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZJLs4Kcr; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1778835910; x=1810371910;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JF3uZsy6llHlDV7C7vLRRmWCmal9y3CobKnloKpst78=;
-  b=ZJLs4KcruAf40DLEE7vJTivHTBR4tb4kI8omSBSouzZZ7Z2rlrR4PXim
-   Ona2PF9OpHVsWaM4U4wBHBNM89MdcQqy2KmihXIaNaqDNH1XyChd1YP1g
-   ZaFfopK9Ijy88vTB2vaK1dIp3iCPz3OVLlFdU+oyZkIxLntc+f+jY3/77
-   /sqqL4t74/YBwCvnnZCmk4WiC9wuFJZ8E3yKw7RjOedBBJpS2+jhQw8ht
-   9LwRsiINbM6q9LL9o6D5/gmBBw/AvILR9x2a9vvR3cbYP85ToGsKqBUFq
-   IOUbt1Mr5i1vsrUF3asxbox+ca2J5tBWMKyrw7rd6Ly2EpGSgzJrlN7xM
-   g==;
-X-CSE-ConnectionGUID: aBy8wa7JRn+FUchmSVlp4w==
-X-CSE-MsgGUID: fbVAwTCTQfC/IGhAcLgkpA==
-X-IronPort-AV: E=Sophos;i="6.23,236,1770620400"; 
-   d="asc'?scan'208";a="57964607"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2026 02:05:08 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.37; Fri, 15 May 2026 02:05:08 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Fri, 15 May 2026 02:05:03 -0700
-Date: Fri, 15 May 2026 10:04:25 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Damon Ding <damon.ding@rock-chips.com>
-CC: Conor Dooley <conor@kernel.org>, <hjc@rock-chips.com>, <heiko@sntech.de>,
-	<andy.yan@rock-chips.com>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-	<simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <andrzej.hajda@intel.com>,
-	<neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-	<Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-	<jernej.skrabec@gmail.com>, <nicolas.frattaroli@collabora.com>,
-	<cristian.ciocaltea@collabora.com>, <sebastian.reichel@collabora.com>,
-	<dmitry.baryshkov@oss.qualcomm.com>, <luca.ceresoli@bootlin.com>,
-	<dianders@chromium.org>, <m.szyprowski@samsung.com>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/3] dt-bindings: display: rockchip: analogix-dp:
- Expose inherited properties
-Message-ID: <20260515-confess-hungrily-4f64ce0d8de2@wendy>
-References: <20260514070133.2275069-1-damon.ding@rock-chips.com>
- <20260514070133.2275069-2-damon.ding@rock-chips.com>
- <20260514-upstate-sneer-0b6e78682798@spud>
- <2f653664-27e9-4632-97e9-8b59cf7e585e@rock-chips.com>
+	s=arc-20240116; t=1778835926; c=relaxed/simple;
+	bh=uSw4iLWni+08K3Y2XPPthhXGT8z8eNuujhWRQ0NoO/Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z8tkNWYJI4mFnE7GZT1VpMeAqCVAWPLlAWlPj3T9lZ4ynsnkMlAlz3g20ukH05PtNBPFDGzpxYIqrGv/hJGVxaSMOjPEdrV5nf/hmRaPL4svkf3M8I7Kk5yGPgt7l9z1y6R64XWD2TvoeuEFtiD3W00aG+ApfYzHsLccd95klYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kHyyCsJe; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5a8721851e2so9873023e87.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 02:05:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1778835920; x=1779440720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uSw4iLWni+08K3Y2XPPthhXGT8z8eNuujhWRQ0NoO/Y=;
+        b=kHyyCsJe2muVQQwvt5wzTDwFbOnpO8COGH0q1Pdfoium2jscGMdGqfANjXUVrUE3C9
+         VnMimtm9+Z4/jWxsOwkxKqH06B7crDANToskrImuzZZmyEDQI5LkBfXmHgCnCjeIMt/F
+         vglNcNGR0xahOFJallcd6yaIwYmzRlRgtyLXajTCN7l9vdELtSdSRAJ2M1UTqDHapTjH
+         +Yz4pvf0EtoJ7o8/ZfKeQJmhUTokJQ63FCH4yHaaMdA7oIeG4SlNGyE7tTwahzxeRMxW
+         6zcIjq4E3xbTjJ/O61qgrcXbwE2hBicr9E9UmN9PXmM0RVnfFy4BmejiKV8+3gRLe3n5
+         hg/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778835920; x=1779440720;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uSw4iLWni+08K3Y2XPPthhXGT8z8eNuujhWRQ0NoO/Y=;
+        b=QpuVqTvwFOB2ufCFrkyH9NkodE0XQvx1xvAPoIpNiuog0FPnFBfymPwV8KlsCxLyOK
+         T8nQ8o4KuMUt02yky5xo6vAGaCJGFIO888xLJLbXZroF1sfL9NMd+vx2saXToGVzZBqo
+         YAR20aLlO8zD2vfSu+TDe0fUJs5hPxRarazMkUErZBiQrcmBYcl562C2uOAtdXeUuzAN
+         9hP9Wj7S3RkEIC2TqjI92REA34D1LMMlFUWv9/0ss5u5t+EqG6JW69PIqkvFROR4tDBE
+         kv/5ojV96reGS1rPNBcJLS7JGa7uQR4OxUo1Ia9buI6IfmgtSS9EK6QBmDnfDwFdq2Pt
+         +mDw==
+X-Forwarded-Encrypted: i=1; AFNElJ8sDDNpJynuKLv7i42rnv4+6JRZDxKJl3shuhK2R9gKcDEBWkFcUQrpDUwrYtcAjOEQ+4Y3IGSB7Uo0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQ69A7XjjEyP5TzhwOtWdvE2Gjd/hYJOxcR5MAMcDaMUqx30lL
+	I1sb+L+pI+RZNXcxZjUpsOJ+AmCydhjZhuhxKjFrxSSOlIHo6ugDfG4x5FB0DuAdjqo=
+X-Gm-Gg: Acq92OFgmWs1SX6IYNse1uPwb0xWWnxUeokZOh5sps0PJe0FVfsCKwLQZy+/jrybNHF
+	5TOjjhkA3+4SgHY9MsTgGFGemcTKnizDYOo/HyQ81MEZJp4DDAC1lHONWTyiwVBDhOs4/W/Nc6I
+	/KYt6l5lpXE+amFjs/OAVfmQb43DwWjdkQ28pRwEdqUDuwLBxNFDIsFsXh8PyUjN4/cyhXshg9B
+	iXsnDHdU3YMYEwLryjaOXxBhS++MhFIrme+ZMPrCwEEPZ8Jm9lCJNluyQ7HL+WUGe1Vh4Jn/M5I
+	cGe3VcOxCnzEW3QFLuOusJDovzuY6Tiw1VAF4KOIruLT5cG/jM4RYPiwxgesBoASkRIaEclwOeq
+	28UXN1d3FFR2v9FuzEZ/nNqXP+ffnJevN6vati946FUhEKVY3BCqrXbt1GBWv05d3yTpu4rpB+x
+	n5duIdrjnurH9WNbfkjDaXF39023gEILJg
+X-Received: by 2002:a05:6512:3ba4:b0:5a8:6cbc:60f3 with SMTP id 2adb3069b0e04-5aa0e769d53mr851416e87.34.1778835919654;
+        Fri, 15 May 2026 02:05:19 -0700 (PDT)
+Received: from [10.11.12.109] ([79.115.63.228])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da15a562dsm13447979f8f.33.2026.05.15.02.05.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 02:05:19 -0700 (PDT)
+Message-ID: <e91af899-9ff2-456a-a54f-613b859260e7@linaro.org>
+Date: Fri, 15 May 2026 12:05:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JTEOF7u1knQLxomm"
-Content-Disposition: inline
-In-Reply-To: <2f653664-27e9-4632-97e9-8b59cf7e585e@rock-chips.com>
-X-Rspamd-Queue-Id: 0657354C3DA
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 03/10] firmware: samsung: acpm: Drop redundant _ops
+ suffix in acpm_ops members
+To: Lee Jones <lee@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, willmcvicker@google.com, jyescas@google.com,
+ shin.son@samsung.com, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-hardening@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20260420-acpm-tmu-v3-0-3dc8e93f0b26@linaro.org>
+ <20260420-acpm-tmu-v3-3-3dc8e93f0b26@linaro.org>
+ <20260507120003.GG305027@google.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20260507120003.GG305027@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 8D18354CB71
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298047-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	FREEMAIL_CC(0.00)[kernel.org,rock-chips.com,sntech.de,linux.intel.com,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,arm.com,samsung.com,gmail.com,linaro.org,baylibre.com,google.com,vger.kernel.org,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-298049-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[27dc0000:email,microchip.com:dkim,rock-chips.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,ff970000:email,0.0.0.1:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
---JTEOF7u1knQLxomm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 15, 2026 at 11:57:58AM +0800, Damon Ding wrote:
-> Hi Conor,
->=20
-> On 5/15/2026 2:16 AM, Conor Dooley wrote:
-> > On Thu, May 14, 2026 at 03:01:31PM +0800, Damon Ding wrote:
-> > > Expose the inherited properties from the base analogix-dp schema
-> > > to satisfy unevaluatedProperties constraints.
-> > >=20
-> > > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> >=20
-> > Given it's unevaluatedProperties, not addtionalProperties, this patch
-> > shouldn't be needed?
-> >=20
->=20
-> When I remove both the top-level data-lanes property and those explicit
-> "xxx: true" property entries and run the dtbs check with:
->=20
-> make CHECK_DTBS=3Dy CROSS_COMPILE=3Daarch64-linux-gnu- LT0=3Dnone LLVM=3D1
-> LLVM_IAS=3D1 ARCH=3Darm64 rockchip/rk3588-evb1-v10.dtb
-> rockchip/rk3588s-evb1-v10.dtb rockchip/rk3399-sapphire-excavator.dtb
-> rockchip/rk3576-evb1-v10.dtb -j4
->=20
-> It results in validation errors like these:
->=20
-> /home/ding/drm-misc/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb:
-> edp@27dc0000: ports:port@1:endpoint: Unevaluated properties are not allow=
-ed
-> ('data-lanes' was unexpected)
->         from schema $id:
-> http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
-> /home/ding/drm-misc/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb:
-> edp@27dc0000: Unevaluated properties are not allowed ('force-hpd',
-> 'interrupts', 'phy-names', 'phys', 'ports', 'reg' were unexpected)
->         from schema $id:
-> http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
->=20
-> I suspect that the properties defined in the child binding are
-> overriding/masking all the inherited properties from the parent Analogix =
-DP
-> schema.
->=20
-> Is there a better way to fix this issue without explicitly listing all
-> inherited properties as true?
 
-The example in this file uses most of the properties that you mention
-above:
-    dp@ff970000 {
-      compatible =3D "rockchip,rk3288-dp";
-      reg =3D <0xff970000 0x4000>;
-      interrupts =3D <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-      clocks =3D <&cru SCLK_EDP>, <&cru PCLK_EDP_CTRL>;
-      clock-names =3D "dp", "pclk";
-      phys =3D <&dp_phy>;
-      phy-names =3D "dp";
-      resets =3D <&cru 111>;
-      reset-names =3D "dp";
-      rockchip,grf =3D <&grf>;
-      pinctrl-0 =3D <&edp_hpd>;
-      pinctrl-names =3D "default";
+On 5/7/26 3:00 PM, Lee Jones wrote:
+> Acked-by: Lee Jones <lee@kernel.org>
+Thanks, Lee!
 
-dt_binding_check reports no problems with this node, so I think the
-problem might lie elsewhere?
-There's no edp node in the dts you mention above, so this looks like an
-interaction with something that's not yet upstream.
+The set evolved [1], but this particular patch was not changed.
+I'm going to carry your Acked-by in the resend I'm going to do.
 
-If this is required for the rk3576 edp, then you should include this
-patch in the rk3576 edp support series rather than this one anyway where
-it can actually be evaluated alongside the node it apparently causes
-problems with.
+Cheers,
+ta
 
-pw-bot: changes-requested
+Link: https://lore.kernel.org/linux-samsung-soc/CADrjBPqzKpcd9vuCmNUptCUPyPpPbHcc19-7kN-1c0RpW1e5DQ@mail.gmail.com/T/#mcce154a7e0c6cd1ca6cd5a1e37541ed7a85a84d4 [1]
 
-Thanks,
-Conor.
 
->=20
-> Best regards,
-> Damon
->=20
-> > > ---
-> > >   .../bindings/display/rockchip/rockchip,analogix-dp.yaml    | 7 ++++=
-+++
-> > >   1 file changed, 7 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/display/rockchip/rockc=
-hip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/r=
-ockchip,analogix-dp.yaml
-> > > index bb75d898a5c5..896ded87880f 100644
-> > > --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,ana=
-logix-dp.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,ana=
-logix-dp.yaml
-> > > @@ -50,6 +50,13 @@ properties:
-> > >     aux-bus:
-> > >       $ref: /schemas/display/dp-aux-bus.yaml#
-> > > +  reg: true
-> > > +  interrupts: true
-> > > +  phys: true
-> > > +  phy-names: true
-> > > +  force-hpd: true
-> > > +  ports: true
-> > > +
-> > >   required:
-> > >     - compatible
-> > >     - clocks
-> > > --=20
-> > > 2.34.1
-> > >=20
-> > >=20
->=20
-
---JTEOF7u1knQLxomm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagbhmQAKCRB4tDGHoIJi
-0hL9AQDMzOGCBAaj30x0MldbIEzDvxHY9JZ/Hr59JunC6U0AhQEAhrUYE74I+05k
-njcJ1OaOANoefame5d09LLbMsepD7Q4=
-=jYCg
------END PGP SIGNATURE-----
-
---JTEOF7u1knQLxomm--
 
