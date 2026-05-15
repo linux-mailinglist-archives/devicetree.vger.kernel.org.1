@@ -1,158 +1,225 @@
-Return-Path: <devicetree+bounces-298555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298559-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4M49IjWTB2pV9QIAu9opvQ
-	(envelope-from <devicetree+bounces-298555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 23:42:13 +0200
+	id 2F4CA4aVB2pU9AIAu9opvQ
+	(envelope-from <devicetree+bounces-298559-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 23:52:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2711955859C
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 23:42:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D32755874E
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 23:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 268AE300FA93
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 21:40:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C2BD300E26F
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 21:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24983EFFC7;
-	Fri, 15 May 2026 21:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832EA3ED5C9;
+	Fri, 15 May 2026 21:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VccQFmxy"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="nCPJZG/y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0783EF64D;
-	Fri, 15 May 2026 21:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D59637FF4C
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 21:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778881236; cv=none; b=Ywks+OHoBC5B4rfK+T0LKzGtUIQR4OLgEuW8dE32P/JAOUOQdhX0xxnbKW6x693aSykv+p+F3KoFdTQPjP0RV5uzoeAxvhaTqkSj7i/mrahlAmTBg7cwGLNDkwwfvWGVhvnpr2o+Y/f4Ke26bK243DKYG6kf2mePGfL/wv2kXZw=
+	t=1778881923; cv=none; b=j4XygbLVFLFrHlccVi5PUofj5n09KJvtt5wCKcGcyCpggyx5L2ioFsbh2mL0fxevgMjHOTU0oasVZyna3e7Eoe08/mRSiwqygQTPnODTqxbCov/LAuQBkEoOONJUwU5eCWnVtFN1ObCsqqiMKrtQjNGOHmEfKBd0G0mTo6ukJuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778881236; c=relaxed/simple;
-	bh=rX6r/+0B06uXvQR5Rend/nvCLxZh6GVTshJGCcYbsLM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aFOG/2GQ6EbSl6ahX6jiD/q2SeKTnzl3QMjPhlRUoTRaPGoLBzS5ihLw3e/WOack8ukLoTuAlBBPPmbJibygIhwvxHkeVhrzQk7q68lgYRbW943IiQsiM7GgYVWJe6IQREzY5RyBpi08PpyMeXUtFl06Yc8tUN7Ilm/QVCFSRnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VccQFmxy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 75D2BC2BCB0;
-	Fri, 15 May 2026 21:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778881236;
-	bh=rX6r/+0B06uXvQR5Rend/nvCLxZh6GVTshJGCcYbsLM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VccQFmxyQ0Y7N4jXYWXR9uq3K3pLblpJQiNEWWRyzI0cuiAZopwzXsmnd7h/Lp6yj
-	 wGYZu+y2C0I+lGDmqhGRx2IXSBVCb1JAWYNIvFhjRHNK/LBeR2KIw9+mBekA7VOXK2
-	 y5MRXW9MFwDWGaHDwIOj/xXwABpQCWBwwmSEiuazyhHpECDuj33tEE0msku6rbFxjP
-	 42gAUPeiN/Wmut6G7xNpq//oT8UVICUPosCwrLQbMdyLLLZby/0fLiQpgNfhAGk6Z8
-	 PNm3ZcsYQGNcZBbtXq6xn27ejrjmkLJjlMNyAkSgaWf76VoNC1ZmhmWzdAnsUYWjUb
-	 6EUoJAesXX6xA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FE27CD4F46;
-	Fri, 15 May 2026 21:40:36 +0000 (UTC)
-From: Frank Li via B4 Relay <devnull+Frank.Li.nxp.com@kernel.org>
-Date: Fri, 15 May 2026 17:40:37 -0400
-Subject: [PATCH 6/6] ARM: dts: imx6-display5: replace marvell,88E1510 with
- ethernet-phy-ieee802.3-c22
+	s=arc-20240116; t=1778881923; c=relaxed/simple;
+	bh=w/NSnWPxO2pPbEQZolqzwkIT6PojPrmpavCWj0wqYGU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q5xKBcnHKVsF0/AjK3pu5TCNFGlgObq+9yEgPzO5/F9RXisWGwFu4SCsH4ez7C2UvoRtZpRANpuuBvd3tNd4RB363KG4zbW6r70vV8BmjjFfseAVD3297sUKqpY27R/htOcxT3INYzSBKC9FYZ/1KuHVACMze7YhVHK+jRi9j2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=nCPJZG/y; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D48101BCB;
+	Fri, 15 May 2026 14:51:54 -0700 (PDT)
+Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 371183F85F;
+	Fri, 15 May 2026 14:51:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1778881920; bh=w/NSnWPxO2pPbEQZolqzwkIT6PojPrmpavCWj0wqYGU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=nCPJZG/ymBaYmcyERMbxLdIsHQoNGJJEJxaWy2/8f+2GnZIHlMZ+4GS5187VVvwoY
+	 IH2pP9VPYV9gZM+MXD1JIlOMUxGgO/ZclmXl4a955uYPg0wdQKJNQFcQLflkdYlRLM
+	 krq3CmKprRwSY7QjrDU8svR6X78wpShjn/zYDMXo=
+Date: Fri, 15 May 2026 23:51:12 +0200
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH] arm64: dts: allwinner: Cubie A5E: enable SPI flash
+Message-ID: <20260515235112.3d2a0c5e@ryzen.lan>
+In-Reply-To: <CAGb2v66drOyBgNU0hFo356MKTFnggNmyzrANok+-U31NzZCUEw@mail.gmail.com>
+References: <20260511221741.25888-1-andre.przywara@arm.com>
+	<CAGb2v64u4sqwiiQcEBg-XvmJ2DLEpSj-_AWNbp14RAp-GXP7OA@mail.gmail.com>
+	<ee9fca66-d079-4ad7-9cb3-5077e8a4f6d6@arm.com>
+	<CAGb2v66drOyBgNU0hFo356MKTFnggNmyzrANok+-U31NzZCUEw@mail.gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260515-imx25_dts_simple_warning_2-v1-6-b06bff192a05@nxp.com>
-References: <20260515-imx25_dts_simple_warning_2-v1-0-b06bff192a05@nxp.com>
-In-Reply-To: <20260515-imx25_dts_simple_warning_2-v1-0-b06bff192a05@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778881235; l=1530;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=pOOTdBIy4O5VkcyQTkfiAAoOW2MNieyUh8U6TN+0VYE=;
- b=A2KlQ7H7PfGwYPV+Uj5xHeMPOwdRYv6ImnK7llmb68mG9ga9y0abIlg3GhkfwjAVWWnVuaufZ
- 0IY7PFmRaaHCEtwGR86hp42oWznfdMNFRFjwbnv1Ilrts9EACVrZoEr
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-Endpoint-Received: by B4 Relay for Frank.Li@nxp.com/20240130 with
- auth_id=121
-X-Original-From: Frank Li <Frank.Li@nxp.com>
-Reply-To: Frank.Li@nxp.com
-X-Rspamd-Queue-Id: 2711955859C
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 5D32755874E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298555-lists,devicetree=lfdr.de,Frank.Li.nxp.com];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-298559-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[arm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	HAS_REPLYTO(0.00)[Frank.Li@nxp.com];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,nxp.com:mid,nxp.com:replyto,0.33.98.224:email,0.32.11.32:email]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email,arm.com:dkim,0.0.0.0:email,ryzen.lan:mid]
 X-Rspamd-Action: no action
 
-From: Frank Li <Frank.Li@nxp.com>
+On Sat, 16 May 2026 00:12:17 +0800
+Chen-Yu Tsai <wens@kernel.org> wrote:
 
-Replace the vendor-specific PHY compatible string with the generic
-ethernet-phy-ieee802.3-c22 compatible.
+> On Wed, May 13, 2026 at 5:19=E2=80=AFPM Andre Przywara <andre.przywara@ar=
+m.com> wrote:
+> >
+> > Hi Chen-Yu,
+> >
+> > thanks for chipping in!
+> >
+> > On 5/13/26 07:21, Chen-Yu Tsai wrote: =20
+> > > Hi,
+> > >
+> > > On Tue, May 12, 2026 at 6:18=E2=80=AFAM Andre Przywara <andre.przywar=
+a@arm.com> wrote: =20
+> > >>
+> > >> The Cubie A5E board comes with 16MiB of SPI NOR flash.
+> > >>
+> > >> Enable the SPI0 DT node and describe the configuration.
+> > >>
+> > >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > >> ---
+> > >>   .../boot/dts/allwinner/sun55i-a527-cubie-a5e.dts  | 15 +++++++++++=
+++++
+> > >>   1 file changed, 15 insertions(+)
+> > >>
+> > >> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts=
+ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > >> index bfdf1728cd14b..7ad22fc85d1fd 100644
+> > >> --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > >> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > >> @@ -344,6 +344,21 @@ &r_pio {
+> > >>          vcc-pm-supply =3D <&reg_aldo3>;
+> > >>   };
+> > >>
+> > >> +&spi0  {
+> > >> +       pinctrl-names =3D "default";
+> > >> +       pinctrl-0 =3D <&spi0_pc_pins>, <&spi0_cs0_pc_pin>,
+> > >> +                   <&spi0_hold_pc_pin>, <&spi0_wp_pc_pin>; =20
+> > >
+> > > This whole thing needs to be an overlay. The HOLD and WP pins
+> > > conflict with eMMC usage, so it seems that Radxa only populates
+> > > one or the other.
+> > >
+> > > If you look at the pictures on their official website, you'll see the
+> > > SPI NOR chip populated, but not the eMMC chip. On the linux-sunxi wiki
+> > > page, you'll see the opposite. =20
+> >
+> > Well, I have a hard time spotting any actual eMMC SKUs in the shops any=
+way.
+> > But you are right, the hold and WP pins conflict with eMMC, whereas the
+> > other pins are not.
+> > =20
+> > > And you probably want to enable QSPI, like Sashiko mentioned. =20
+> >
+> > Well, in the interest of keeping this simple and enabling the usage of
+> > SPI flash for all the users out there, I'd rather drop the extra pins.
+> > This is mostly really useful for booting the firmware, maybe loading a
+> > tiny kernel or other data once, so performance is not a big concern in
+> > this use case. The BootROM surely does not use QSPI. =20
+>=20
+> Given that the pins are tied on physically, if someone then enables mmc2
+> for a potentially present eMMC, the two pins could be toggled by the
+> MMC controller, causing the flash to misbehave. I'm slightly concerned
+> about this possibility.
 
-The marvell,88E1510 compatible is listed in whitelist_phys[] and is
-never matched against a PHY driver. PHY devices are expected to use
-the generic ethernet-phy-ieee802.3-c22 compatible unless a specific
-MDIO driver match is required.
+That's a good point, but that means it's really a hardware design
+issue: you cannot have SPI together with eMMC on this board.
 
-The 88E1510 is compatible with Clause 22 PHY devices, so use the
-generic compatible string instead.
+I don't know if Radxa ships the eMMC SKUs without SPI flash, I
+will try to query Tom Cubie about this.
 
-Fix below CHECK_DTBS warnings:
-arch/arm/boot/dts/nxp/imx/imx6q-display5-tianma-tm070-1280x768.dtb: /soc/bus@2100000/ethernet@2188000/mdio/ethernet-phy@0: failed to match any schema with compatible: ['marvell,88E1510']
+I would prefer to go with SPI flash, at least for now: I think that's
+what most users have, and the eMMC versions are rare so far? Since we
+don't have an eMMC node in the DT anyway, that should be fine for now.
+If someone adds eMMC support later, we would need to figure this out.
+We could mark one as disabled, and leave it up to users (or U-Boot)
+to decide which to enable.
+On the H6 there is a similar problem: PC5 is both SPI0_CS and MMC2_CMD,
+so on the PineH64 we disable the SPI flash, in favour of eMMC, which is
+more useful for users (but sunxi-fel SPI access and U-Boot SPI loading
+work nevertheless). But given the apparent prevalence of SPI boards vs.
+those with eMMC for the Cubie A5E, I would go with SPI on this one.
 
-Known other user (uboot) did not use marvell,88E1510.
+Does that make sense? Any thoughts?
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx6q-display5.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Cheers,
+Andre
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-display5.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-display5.dtsi
-index 4e448b4810f27ba67332811519a199a7ff0ee004..21e8bbdab4e695c0da169f1a8714398c6964ca35 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-display5.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-display5.dtsi
-@@ -208,7 +208,7 @@ mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		ethernet_phy0: ethernet-phy@0 {
--			compatible = "marvell,88E1510";
-+			compatible = "ethernet-phy-ieee802.3-c22";
- 			device_type = "ethernet-phy";
- 			/* Set LED0 control: */
- 			/* On - Link, Blink - Activity, Off - No Link */
-
--- 
-2.43.0
-
+> > And as you say, if people are really interested in the last bit of
+> > performance, they can use an overlay.
+> >
+> > Cheers,
+> > Andre
+> > =20
+> > >
+> > >
+> > > ChenYu
+> > >
+> > > =20
+> > >> +       status =3D "okay";
+> > >> +
+> > >> +       flash@0 {
+> > >> +               compatible =3D "winbond,w25q128", "jedec,spi-nor";
+> > >> +               reg =3D <0>;
+> > >> +               spi-max-frequency =3D <40000000>;
+> > >> +               #address-cells =3D <1>;
+> > >> +               #size-cells =3D <1>;
+> > >> +       };
+> > >> +};
+> > >> +
+> > >>   &uart0 {
+> > >>          pinctrl-names =3D "default";
+> > >>          pinctrl-0 =3D <&uart0_pb_pins>;
+> > >> --
+> > >> 2.46.4
+> > >> =20
+> > > =20
+> > =20
+>=20
 
 
