@@ -1,187 +1,234 @@
-Return-Path: <devicetree+bounces-298072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298074-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IGNwDALnBmoHowIAu9opvQ
-	(envelope-from <devicetree+bounces-298072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:27:30 +0200
+	id kMsLJdXmBmoHowIAu9opvQ
+	(envelope-from <devicetree+bounces-298074-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:26:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C47A154C66E
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:27:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18F4854C641
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:26:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0E14E303319C
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:18:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 296B830782B7
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DEA436365;
-	Fri, 15 May 2026 09:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OYrXmIZL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB85436372;
+	Fri, 15 May 2026 09:20:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6824843634E;
-	Fri, 15 May 2026 09:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from zg8tmtyylji0my4xnjeumjiw.icoremail.net (zg8tmtyylji0my4xnjeumjiw.icoremail.net [162.243.161.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50CF438FED;
+	Fri, 15 May 2026 09:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.161.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778836711; cv=none; b=CoOearM1gCXlYRHoEBcT8HTuaP9+LFJSW27FIDn/cKGc2SUTnKjZz8QBp0MXvMmMUeKxkWnecF2iFAR3Vd21OHEzdIug2tXZkkiHxKcLO6Yy/HdxY6iRf9ghUEP6uHKGrfBPYZ89264NLom2KlBrkIoN+GR3CMBqO1nDWLfZ5nE=
+	t=1778836807; cv=none; b=ERgGFJnuHv3ZarEsPVifimcz4PQuTbXPoiJdVrjzQin+tD2F/JtcKMWE9a9QTXZMkZLUTrXz14A4Zz2YZrVChHrhvBStmlDcmoKdHLL0G9I5zBEXrfUxlvKhtwB+h/zR5U8hzyxCZ3B/zURiaezvNhu03wj37FQTPWmYSBByLMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778836711; c=relaxed/simple;
-	bh=sYJkxXH6j8B1Q6LjHly6ZYrPdda51JI2AeI8/2x3VYM=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GnjvxdYHB04+tJrulGDIPoQZIQQ3oFnCwnktcyORs4coLHKpgc6iU87VI4x7RKq+5WluyCnDBAUZCWRFBAHRKBLPVyiTOowQQR9tgnF0jRV3GddK/MDyqc/ICKPMfyGbajcojYGiKobNyi38a0FQ5soO4W4t8/wX8OE21uaDRmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OYrXmIZL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3ED7C2BCB0;
-	Fri, 15 May 2026 09:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778836711;
-	bh=sYJkxXH6j8B1Q6LjHly6ZYrPdda51JI2AeI8/2x3VYM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OYrXmIZLtCErLj9FpTh1lflLun7XYQYh63YeyBlrt639I5hkV07S6BaVRdmdCz8Vy
-	 mplI28eWqxOu84QyykKFQhiMCZh8v+yl7uWZvF5k5CByXbv5mdQj+/eaeU5c6Vcmrh
-	 a9u8+0AEeWmbzhV1flOQUYEbxjWuL7iYsDP3QCAjNwj3An0XAIZmDyPazmOKYhE8PF
-	 Nzw8k570vgm8b95LQKWeDyD0T+Qm70AuUPjPF7EO3GW93IijPRBbXBz/uyS4zKfCwl
-	 AZMS/trYRtqztD+TRjvxnsCeMRVy3wfewf1zUkQQlOF3ETJF3DmGTdOI/wv1iGBVVc
-	 QNMqghOiWGJvQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wNoge-00000002dBv-3yZ6;
-	Fri, 15 May 2026 09:18:29 +0000
-Date: Fri, 15 May 2026 10:18:28 +0100
-Message-ID: <868q9lxc7v.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org,
+	s=arc-20240116; t=1778836807; c=relaxed/simple;
+	bh=fUUn0TdKfL0L65YktW9s4vS3M0ChxssfBo6NnIhL06A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ipekXGaLSF/1sTPyz/z9yyN7AAI8sj9OkSeVWCwKQFX10uXaGvmfx+tODvdUxHRD8bwpOIe5xRkXrbI0UMp1z5O3XVzZ8CyYh75culvNS+evV+yOhfxkLYTgRyx36R3A89eqQtA3i95rRzTft2w8K5g7XShHmECWAjC37VBThBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.161.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005156LT.eswin.cn (unknown [10.12.96.79])
+	by app1 (Coremail) with SMTP id TAJkCgDniXMy5QZqeqwZAA--.38055S2;
+	Fri, 15 May 2026 17:19:48 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: linux@roeck-us.net,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v2 04/17] dt-bindings: timer: arm,arch_timer: Fix requirements for interrupt description
-In-Reply-To: <20260514213713.5D47FC2BCB3@smtp.kernel.org>
-References: <20260514150945.3917510-5-maz@kernel.org>
-	<20260514213713.5D47FC2BCB3@smtp.kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	luyulin@eswincomputing.com,
+	Huan He <hehuan1@eswincomputing.com>
+Subject: [PATCH v5 0/2] Add driver support for ESWIN EIC7700 PVT controller
+Date: Fri, 15 May 2026 17:19:42 +0800
+Message-ID: <20260515091942.449-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.47.1.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sashiko-reviews@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Rspamd-Queue-Id: C47A154C66E
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgDniXMy5QZqeqwZAA--.38055S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Jw1kGrWfXr43uF15ZF4Utwb_yoW7CF4UpF
+	W8WryYkF4DXrWSqrWDt3W09rWftan3JF47Ar4fWw18Z3W5K34jvFy8K3WYvFyDZrn5X3Zx
+	ta4Yqw17CF1qyFJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUHCJQUUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
+X-Rspamd-Queue-Id: 18F4854C641
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-298074-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298072-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.911];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_NONE(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org]
 X-Rspamd-Action: no action
 
-On Thu, 14 May 2026 22:37:07 +0100,
-sashiko-bot@kernel.org wrote:
-> 
-> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
-> - [Critical] The schema permits omitting the EL3 secure timer but fails to make `interrupt-names` a required property, which allows configurations that fatally misroute interrupts and hang the system.
-> - [Medium] The static `items` array with `minItems: 2` structurally fails to enforce the stated architectural rules and causes positional misalignment for valid configurations.
-> - [Medium] The commit incorrectly asserts that the EL1 virtual timer IRQ is 'always required', which misrepresents ARMv7 hardware and contradicts existing device trees.
-> --
-> 
-> commit 01733bbba71a7bef01e5c0820740d8ab21f684f8
-> Author: Marc Zyngier <maz@kernel.org>
-> 
-> dt-bindings: timer: arm,arch_timer: Fix requirements for interrupt description
-> 
-> This commit updates the arm,arch_timer binding to clarify the requirements
-> for timer interrupts based on the implemented architecture. It raises the
-> minimum number of interrupts to two and uses architectural terminology.
-> 
-> > Follow the architecture by making it explicit that:
-> > - the EL1 secure timer irq is required if EL3 is implemented
-> > - the EL1 physical timer irq is always required
-> > - the EL1 virtual timer irq is always required
-> 
-> Is this description architecturally accurate for ARMv7?
-> 
-> In ARMv7, Virtualization Extensions are optional, so hardware lacking these
-> extensions does not implement a virtual timer. Existing device trees, such
-> as arch/arm/boot/dts/rockchip/rv1108.dtsi, accurately reflect this by
-> providing exactly two physical interrupts (secure and non-secure) and
-> completely omitting the virtual timer.
+From: Huan He <hehuan1@eswincomputing.com>
 
-This *is* valid for all known implementations of ARMv7, as the
-architected timer is present only on implementations that have the
-virtualisation extensions.
+Add support for the ESWIN EIC7700 PVT (Voltage, Temperature) sensor
 
-> Establishing the EL1 virtual timer as always required seems to contradict
-> these valid hardware configurations.
+Features:
+The driver supports monitoring of voltage and temperature parameters
+through the hardware monitoring subsystem. It provides an access to the
+sampled Temperature and Voltage.
 
-That's because that DT was broken the first place.
+Test:
+Tested this patch on the SiFive HiFive Premier P550 (which uses the ESWIN
+EIC7700 SoC).
 
-> 
-> > diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > --- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> 
-> [ ... ]
-> 
-> > @@ -33,13 +28,13 @@ properties:
-> >            - const: arm,armv7-timer
-> >  
-> >    interrupts:
-> > -    minItems: 1
-> > +    minItems: 2
-> >      items:
-> > -      - description: secure timer irq
-> > -      - description: non-secure timer irq
-> > -      - description: virtual timer irq
-> > -      - description: hypervisor timer irq
-> > -      - description: hypervisor virtual timer irq
-> > +      - description: EL1 secure physical timer irq, if EL3 is implemented
-> > +      - description: EL1 non-secure physical timer irq
-> > +      - description: EL1 virtual timer irq
-> 
-> Will this static array structure cause positional misalignment and fail to
-> enforce the stated requirements?
+Updates:
 
-It always has been a problem, and this is worked around on the sole
-platform affected by this (APM XGene) by having a dummy interrupt for
-the secure timer.
+  Changes in v5:
+  - Update eswin,eic7700-pvt.yaml
+    - Drop the label enum constraint and remove label from the required
+      list
+    - Add '#thermal-sensor-cells' to the required list
+    - Rename the example node to the generic sensor@... form
+    - Update the binding description to describe one temperature sensor
+      and one voltage sensor
+  - Update eic7700-pvt.c
+    - Register the hwmon device with the fixed name "pvt"
+    - Remove label-based instance identification from the driver
+    - Fix CONFIG_PM=n support by keeping the clock enabled when runtime PM
+      is unavailable
+    - Add pm_runtime_force_suspend() in the cleanup path to avoid leaving
+      the device active during unbind
+    - Switch system sleep callbacks to pm_runtime_force_suspend() and
+      pm_runtime_force_resume()
+    - Guard ISR register accesses with pm_runtime_get_if_active()
+    - Add synchronize_irq() on the timeout path to avoid stale completion
+      races
+    - Remove temp_offset support because the raw trim register does not
+      match the hwmon ABI
+    - Align the commit message with the implementation (one temperature
+      sensor, one voltage sensor)
 
-We could add a separate requirement that interrupt names must be
-provided if secure is not implemented, but I have no idea how to
-specify this.
+  Changes in v4:
+  - Update eswin,eic7700-pvt.yaml
+    - Delete reviewed-by tag of Conor Dooley, because the label enum
+      constraint is introduced
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Remove the unused LVT/ULVT/SVT process-monitoring channels
+    - Remove the probe-time power check since the PVT block is always
+      powered on EIC7700 and the extra verification is unnecessary
+    - Stop requesting the interrupt as shared and use the dedicated PVT IRQ
+      only
+    - Reorder probe initialization so the interface is initialized before
+      the clock is disabled, avoiding register accesses with the clock gated
+    - Fix runtime PM reference handling on error paths by balancing
+      pm_runtime_get_noresume() with pm_runtime_put_noidle()
+    - Add pm_runtime_put_noidle() handling for failed pm_runtime_get_sync()
+      calls in hwmon read/write paths
+    - Switch the PM callback registration from pm_sleep_ptr() to pm_ptr()
 
-	M.
+  Changes in v3:
+  - Update eswin,eic7700-pvt.yaml
+    - Remove redundant label property description and use 'label: true' to
+      reference the definition in hwmon-common.yaml
+    - Replace 'additionalProperties: false' with
+      'unevaluatedProperties: false'
+    - Remove the description for '#thermal-sensor-cells'
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Fix clock reference count imbalance with Runtime PM:
+      Replace devm_clk_get_enabled() with devm_clk_get() and manually
+      manage clock enable/disable to avoid double-disable in remove() when
+      Runtime PM is active. Clock is now enabled only during probe for
+      eic7700_pvt_check_pwr(), then disabled before enabling Runtime PM,
+      which takes full control of the clock thereafter
+    - Add detailed comment explaining the spurious interrupt risk in
+      eic7700_pvt_check_pwr()
+    - Replace wait_for_completion_interruptible() with
+      wait_for_completion_timeout() to prevent infinite wait
+
+  Changes in v2:
+  - Update eswin,eic7700-pvt.yaml
+    - Reference the hwmon-common.yaml file
+    - Remove the clock-names and reset-names properties
+    - Move additionalProperties: false after the required block
+    - Remove one example node to avoid redundancy
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Remove unused sensor macros (PVT_SENSOR_FIRST, PVT_SENSOR_LAST,
+      PVT_SENSORS_NUM)
+    - Drop the unnecessary hwmon-sysfs.h header
+    - Replace dynamic sensor info allocation with a static array and unify
+      sensor labels
+    - Remove unused hwmon_temp_type attribute
+    - Eliminate redundant validation checks
+    - Remove mutex and related locking, relying on hwmon core
+      serialization
+    - Replace per-sensor caches and completions with a single data cache
+      and completion object
+    - Remove pvt->sensor tracking. ISR no longer depends on the currently
+      selected sensor
+    - Move devm_add_action() registration after init_completion() for
+      safer cleanup, and update cleanup function (pvt_clear_data)
+    - Replace devm_reset_control_get_optional_exclusive() with
+      devm_reset_control_get_exclusive_deasserted()
+    - Replace eic7700_pvt_remove() with eic7700_pvt_disable_pm_runtime()
+      and move it after PM runtime enable to avoid resource leaks on probe
+      failure and remove clock disable and reset assert from
+      eic7700_pvt_disable_pm_runtime() as it is already handled by devm_*
+      framework
+    - Remove redundant clock presence check in runtime_resume
+
+  - Link to v1: https://lore.kernel.org/all/20260109090718.442-1-hehuan1@eswincomputing.com/
+
+Huan He (2):
+  dt-bindings: hwmon: Add Eswin EIC7700 PVT sensor
+  hwmon: Add Eswin EIC7700 PVT sensor driver
+
+ .../bindings/hwmon/eswin,eic7700-pvt.yaml     |  63 +++
+ drivers/hwmon/Kconfig                         |  12 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/eic7700-pvt.c                   | 506 ++++++++++++++++++
+ drivers/hwmon/eic7700-pvt.h                   |  99 ++++
+ 5 files changed, 681 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+ create mode 100644 drivers/hwmon/eic7700-pvt.c
+ create mode 100644 drivers/hwmon/eic7700-pvt.h
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.25.1
+
 
