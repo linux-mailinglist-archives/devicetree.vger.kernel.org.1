@@ -1,223 +1,177 @@
-Return-Path: <devicetree+bounces-298136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298143-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oBv8KUH+BmpjqgIAu9opvQ
-	(envelope-from <devicetree+bounces-298136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:06:41 +0200
+	id ADoZFgz5BmpUpwIAu9opvQ
+	(envelope-from <devicetree+bounces-298143-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:44:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F395E54E0D2
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:06:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8FCC54D983
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B1DFA312677B
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:40:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 25F92301D6A4
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5330D44D021;
-	Fri, 15 May 2026 10:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB55450917;
+	Fri, 15 May 2026 10:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2+nLt3S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YuurZDBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3FC4418DC
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 10:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778841605; cv=none; b=LbD6T7U3snwl4ChdUtBuyexWMPakmkB9asGrsnHLBE/FEd9AoWi3pEGd8gPe+HMYNkRBlJdgOjvAMWOlow1oRMuIGztQNuEALNmzV9lpjIDCL1JTV40mOJza7CjPMNf1bSZ1f3w+BRnZ4XoyhGfYBwR4XRGgeY9XklsmgUgZQ6U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778841605; c=relaxed/simple;
-	bh=eKi2qKHubFaDvuYqRnsNNKsUyuKz+oUbjhpEEMSKM3Q=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RH+sgpDqpAPEjngUCQCSXUL0s7fRlmi91annMaY7EFPey77+3Io6b00HNBGgIxe0aR5oiJwrUyJ/Bwlhif8XobVg899ZPEzVPc1a/DGxU5CgRcnuINsvfrD6nEw58Cl2Mo1zS4RCrlqA/WFt9+Kd5uc604TDyTsWZ6CJ+dtAsvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2+nLt3S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA92CC2BCB0;
-	Fri, 15 May 2026 10:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778841604;
-	bh=eKi2qKHubFaDvuYqRnsNNKsUyuKz+oUbjhpEEMSKM3Q=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=h2+nLt3SAYg4AHh9abgyRHqAHfO1fZ7AysELtAgwOA47cDHjGENaqWUbOl+xBZqXa
-	 10UdzkCOOxK2bJDxTu81j8cM4dpAT4OqnifzdKxZfGTKhmZKAanJs9USrwlkVPfPXj
-	 CCF0+DNBCVpPPE4+l1gAl5guj+yu3LP/c7NxUSCYb/6sn6tMwtM2t5Vn0iqDDhiwsX
-	 L4+jFwqZj4dgC6gbQnmRk3BQGIn7cYo73X4qvUbLpjmHLQXJmQrSu+9Y5a+OU42/97
-	 fw7q0+s8wgk6JGpT6McopfmPiw3khHx2GpC7yRGcQ6tFkV/YtZgZWsA3JODKhCYHHF
-	 BlO7mpNiK1MZA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/3] pinctrl: aspeed: Add AST2700 SoC1 support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Billy Tsai" <billy_tsai@aspeedtech.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260515-pinctrl-single-bit-v3-3-e97da4312104@aspeedtech.com>
-References: <20260515-pinctrl-single-bit-v3-3-e97da4312104@aspeedtech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 10:40:04 +0000
-Message-Id: <20260515104004.BA92CC2BCB0@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC83450902
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 10:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778841683; cv=pass; b=AuW7nNk5jqbjeMjhg2AAu7ffpMtfL8lReXPFCkftsgDkyxlQmc9uZmLGPqR42KtiLgpOu0W2YJw2TSCw7Itn4cqf9nJaQY1xaRmihRXFi6nUHVJIK7NhRTJK/3Y2ez4NE1Zdvl/iet5AnZYMkE6pvlhw9bDv1cYSfeYRdsvsZ3o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778841683; c=relaxed/simple;
+	bh=uWjZEP+DdLhFjkOHWhU9mixg+UBZSboIlbqAUS3d1aU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ExlKZ0LpxDogJ4mtMpFtKYhcVDaSUb6SKSatJDciBFpeZV7CVz3dUcPtuNGXgFbWejhtfw/C25mFYVmYsoNj59yF7v/E9E9yKvDi//wUxoLyYUsuBi9a3T3AQVGAFmBUDc1aBfEZMB4Axmvj/w1KMBil4eHjPRYUdanslXEyi/s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YuurZDBr; arc=pass smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2b941cd869cso57965275ad.1
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 03:41:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778841682; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dT/1Gnj9J2BLMw0aM2qgR1TahuNuMJlI5YEAj4yhNKgvE+qZKR6MBB6w9LaS9zewkZ
+         bj3UlrkuyWQvxr9PbTHaiYc9NoMfkYZTqJzFbrxIRlB4tAfre4DFacnSCr25kkMUkLec
+         2OM7BAKLOIGNoWVzMyATTU6k++qNwYd5DHEISjqoRGTZozEiTrEusTUraqsO/32esv2t
+         5q3DBJv57ZPUd438AYfoQ5air7bUuqBB92R5dYLoz+XkSsBzGyPgRzX90rhQt5zjP1FT
+         4UBkwzj3vxihl4JxI8thRMoQ2GJHldArfRHbqqmLH1u0pO0+Wb6wm2cq0UAcgtV7BCty
+         j2zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=K7Caqr7qda1JX5f2kJScSCqvc8buFLXMwvA7vb/W8s4=;
+        fh=CGr0Ds4vevrB8e3+N81CJeIaQLNYscEuED0DxCDsZN8=;
+        b=AfcvJD6LdOieosChrYJG9KRVB0su6otdKIRs/uzy7xgh4ztuBmas0Wun6D4uihajC/
+         fyOMJedzMiDF8YXP1f3VjXQQsIgTcnJbJOSyeMi37G5EGVbQZcJIOd0DWEmieAosTwka
+         jLhncjNuYlo49Pv+IIedtgJ3PxkHnjfSQQeYL5aRqvx5+CEOsU42eOmZOuPz4Z0uznOz
+         eapmdaOQ1tGuRRtAc33L1rRQBVF2rIaE5mbXdjbV7Igi+B6RTpKNqdNiGIBMENrDuHCA
+         vPU50icRaEdoJZsiO3uOlhrSr2OZbZ+Z+OGzmNL+kZaRnOhPcHWCJAmsQqtKJeAUDFBf
+         mlSA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778841682; x=1779446482; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K7Caqr7qda1JX5f2kJScSCqvc8buFLXMwvA7vb/W8s4=;
+        b=YuurZDBrTzdTOgVAWPv6LcSHe1/fYliwIUG05x+DUJwh1k/i+HjcDzDWGHTyr7UE+1
+         GOFiep89ImUWa30gDO0rI5U6NoR2RyzwUf1xcuxzHcQyqvtmXWG+Cq3pwLBL9gPONOw9
+         R3dqc+5e94T81NGYHze2Sla2Cvq8Fp9p13jRx1xt5x3G6af7q9e2vawJbaknpW+BGw7Y
+         Ku2evwzs9FKO3A3+V6UKgWs3nBwkIq7cOsyBaAHa13VAz82b7CKyBlX72mtxnZPSPiAn
+         Y1gm5h16kNT2UkN1ERKXi0UIj9O8hyGS1G2LE/2lPTG3La+wAJ9CjG9LWstFTRdqdJg0
+         Ifxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778841682; x=1779446482;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K7Caqr7qda1JX5f2kJScSCqvc8buFLXMwvA7vb/W8s4=;
+        b=MQC/vZ0keOVO2lBVhd3wmgC9iXCe0iL88S7Y0LR2a0HqmMGTIaQ/4aihdYyYqBgICr
+         KyLxf/wZxGIJfK4CpKMIlv3Z7PCr5ub19w98JZ4grMFUUp9VIYx4uDkEm3bUB/MNYGhm
+         FT1m1nymDZ0o4OiKOkDNtNwIRoBSBnnr8vZ3b1ixq9ifILwVGh3nq/puZk2tLAX6aJef
+         XT3R18ECHX7qTIvN3pqtk4epeLvqrR2AbmKcDhA/EsXmav4gAIrXLe2rJZ5vGZNIZwz5
+         DDUiMlpROaZiYPt7UlbllQ31XjRrXNipEnjh5ZhF5XJ3WckOBg6gLkb8NLgdCkLK3cMI
+         0msA==
+X-Forwarded-Encrypted: i=1; AFNElJ81H/ml5PNYzIg22uBZ2X1gjAfXd7r+oOEkdXIB+Nr5kmTjR49qysSCgsUImr+wAw5jh8LyejlhThp+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZk/J84wK4YJ5kA6YmU78H75NwbkJOtnZ+FdqQ/eK5wHg4DooH
+	vHjrj0bBe/QjsesepBsPwq5NEBPYGSFhVSAmJF0FxERUxuKHvl+1s7MC3doQZ5mMviME81REMXJ
+	lH8xyqDCpPqSbivoyYa/SAXCwWyRCOkA=
+X-Gm-Gg: Acq92OGzN+bvi++a4mRBg5FJ5nq4icTlB+xhzbQl8JN4VSpG79UE+RjHocZb6UiB0pR
+	jk0NHzfnEznWlDSOnKmY3bdVkxBeJt/u4T3pVuXZ23GXwf4W8wpfzKGeYota949vEqqGhXMTJpZ
+	5lug2lVGt7SRT61eDqDDdJa6/+23Cv7/9llDvIZ2VrExVzzWQ1l/lCjJGA6NxhR208PZz/kLLzk
+	wNFFkj4B1eOpw7KlrXmtAfvitbvbwE+4L6LzVHFeJjUiKWOyackXN0nzE1cJvr2pnG3gtgsjYFO
+	qjwSWwQebqmRmNGhWCQcMhEwqum7316nEc5eSnJ1FfHFhLtT
+X-Received: by 2002:a17:902:7c0e:b0:2ae:826f:2c50 with SMTP id
+ d9443c01a7336-2bd7e8acabcmr25677585ad.12.1778841681720; Fri, 15 May 2026
+ 03:41:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: F395E54E0D2
+MIME-Version: 1.0
+References: <20260510084303.122426-1-phucduc.bui@gmail.com>
+ <20260510084303.122426-2-phucduc.bui@gmail.com> <20260515-transparent-calculating-ocelot-bdec04@quoll>
+ <CAABR9nG2YFq2kNsXbCe-7XUNJT94rUMBz6hruC97aE6JFSP9CA@mail.gmail.com>
+In-Reply-To: <CAABR9nG2YFq2kNsXbCe-7XUNJT94rUMBz6hruC97aE6JFSP9CA@mail.gmail.com>
+From: Bui Duc Phuc <phucduc.bui@gmail.com>
+Date: Fri, 15 May 2026 17:41:07 +0700
+X-Gm-Features: AVHnY4Il_zg65aidyTXrQxejhYWBVSEG4jnBzF0_B6Spst1wAx7CbwetRxJz-nM
+Message-ID: <CAABR9nHE7+xJ_nPuaDtE8z5fzUfzSMTAJfDRLOEpudA6Rv_OUw@mail.gmail.com>
+Subject: Re: [PATCH v3 01/10] ASoC: dt-bindings: renesas,fsi: add support
+ multiple clocks
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: kuninori.morimoto.gx@renesas.com, broonie@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, 
+	lgirdwood@gmail.com, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org, 
+	magnus.damm@gmail.com, perex@perex.cz, robh@kernel.org, tiwai@suse.com, 
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: E8FCC54D983
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298136-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto];
+	TAGGED_FROM(0.00)[bounces-298143-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,vger.kernel.org,glider.be,gmail.com,perex.cz,suse.com,linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Calling `devm_pinctrl_register()` before adding groups and functio=
-ns breaks device tree pin hogs and exposes an initialization race.
-- [High] The SGMII0 pin register offset and shift calculations are corrupte=
-d by preceding virtual pins in the enum.
-- [High] `ASPEED_G7_SOC1_MUX_FUNC_MASK` is defined as 0x7 instead of 0xF, l=
-eaving the highest bit of the 4-bit mux field uncleared.
-- [Medium] `aspeed_g7_soc1_pin_config_get()` violates the generic pinconf A=
-PI by failing to return `-EINVAL` for inactive boolean parameters.
---
+My apologies for the inaccurate description earlier.
 
-commit d166d24632d04188131a95c43f87c2fa9c723d2e
-Author: Billy Tsai <billy_tsai@aspeedtech.com>
+> I see your point. What I intended to describe was the internal divider
+> configuration for Port A/B within the FSIDIV block, not separate clock
+> representations in CCF.
+> I will rephrase this as:
+> DIVA/DIVB divider settings used for audio clock generation.
 
-pinctrl: aspeed: Add AST2700 SoC1 support
+In terms of hardware, FSIDIV is an independent block from the FSI IP.
+It is declared in the DTS as a separate clock provider as follows:
 
-This patch implements pin multiplexing and configuration for the AST2700
-SoC1 SCU pinctrl block. It describes the packed-field register layout direc=
-tly
-in driver data and accesses the controller registers via regmap.
-
-> diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c b/drivers/pi=
-nctrl/aspeed/pinctrl-aspeed-g7-soc1.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c
-
-[ ... ]
-
-> +#define ASPEED_G7_SOC1_MUX_FUNC_MASK 0x7
-> +#define ASPEED_G7_SOC1_MUX_BITS_PER_PIN 4
-
-Should this mask be 0xF to cover all 4 bits?
-
-Since ASPEED_G7_SOC1_MUX_BITS_PER_PIN is 4, using 0x7 will only clear the
-lower 3 bits when regmap_update_bits() is called. If the bootloader leaves
-the 4th bit set, will it remain set and corrupt the pin multiplexing behavi=
-or?
-
-[ ... ]
-
-> +	AC25,
-> +	AB25,
-> +	AC24,
-> +	PCIERC2_PERST,
-> +	PORTC_MODE,
-> +	PORTD_MODE,
-> +	SGMII0,
-> +};
-
-Since SGMII0 is placed after the virtual pins in this enum, its index becom=
-es
-219 instead of 216.=20
-
-When aspeed_g7_soc1_pinmux_field_from_pin() calculates the shift using
-(pin % 8) * 4, will this inflated offset skip 3 pin slots (12 bits) and
-configure the wrong hardware bits for SGMII0? Would it be safer to move the
-virtual pins to the end of the enum?
-
-[ ... ]
-
-> +static int aspeed_g7_soc1_pin_config_get(struct pinctrl_dev *pctldev,
-> +					 unsigned int pin,
-> +					 unsigned long *config)
-> +{
-
-[ ... ]
-
-> +	val =3D (val_raw & (field.mask << field.shift)) >> field.shift;
-> +	if (param =3D=3D PIN_CONFIG_DRIVE_STRENGTH)
-> +		val =3D (val + ASPEED_G7_SOC1_DRV_STRENGTH_HW_BASE) *
-> +		      ASPEED_G7_SOC1_DRV_STRENGTH_STEP_MA;
-> +	else if (param !=3D PIN_CONFIG_BIAS_DISABLE)
-> +		val =3D !val;
-> +
-> +	*config =3D pinconf_to_config_packed(param, val);
-> +
-> +	return 0;
-> +}
-
-Does this unconditionally return 0 (success) even if the queried boolean
-parameter is not currently active?
-
-The generic pinconf subsystem expects -EINVAL if a parameter like
-PIN_CONFIG_BIAS_PULL_UP or PIN_CONFIG_BIAS_DISABLE is queried but not active
-on the pin. Will returning 0 cause tools like debugfs to report mutually
-exclusive states as active simultaneously?
-
-[ ... ]
-
-> +static int aspeed_g7_soc1_pinctrl_probe(struct platform_device *pdev)
-> +{
-
-[ ... ]
-
-> +	pctl->pctl =3D devm_pinctrl_register(dev, &aspeed_g7_soc1_desc, pctl);
-> +	if (IS_ERR(pctl->pctl)) {
-> +		dev_err(dev, "Failed to register pinctrl\n");
-> +		return PTR_ERR(pctl->pctl);
-> +	}
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(aspeed_g7_soc1_groups); i++) {
-> +		const struct pingroup *grp =3D &aspeed_g7_soc1_groups[i];
-> +
-> +		ret =3D pinctrl_generic_add_group(pctl->pctl, grp->name, (unsigned int=
- *)grp->pins,
-> +						grp->npins, pctl);
-
-Is it safe to call devm_pinctrl_register() before the groups and functions
-are added to the radix trees?
-
-devm_pinctrl_register() immediately exposes the device and parses device tr=
-ee
-pin hogs via pinctrl_enable(). Will any DT hogs defined for this controller
-fail to apply because the internal radix trees are still empty?=20
-
-Should this use devm_pinctrl_register_and_init() instead, followed by an
-explicit pinctrl_enable() after populating the groups and functions?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-pinctrl-si=
-ngle-bit-v3-0-e97da4312104@aspeedtech.com?part=3D3
++    fsidiva_clk: fsidiva_clk@fe1f8000 {
++        compatible = "renesas,r8a7740-fsidiv-clock";
++        reg = <0xfe1f8000 4>;
++        clocks = <&fsia_clk>;
++        #clock-cells = <0>;
++        clock-output-names = "diva";
++    };
++
++    fsidivb_clk: fsidivb_clk@fe1f8008 {
++        compatible = "renesas,r8a7740-fsidiv-clock";
++        reg = <0xfe1f8008 4>;
++        clocks = <&fsib_clk>;
++        #clock-cells = <0>;
++        clock-output-names = "divb";
++    };
 
