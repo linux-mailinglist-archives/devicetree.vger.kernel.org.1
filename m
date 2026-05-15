@@ -1,509 +1,243 @@
-Return-Path: <devicetree+bounces-298375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298377-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8H3lM3kyB2qQswIAu9opvQ
-	(envelope-from <devicetree+bounces-298375-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:49:29 +0200
+	id mP1RNhEwB2p3sgIAu9opvQ
+	(envelope-from <devicetree+bounces-298377-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:39:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A5B551AD0
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:49:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 521A45518CD
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:39:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 69D57300620A
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:37:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 55A9130185AE
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65863B4EAF;
-	Fri, 15 May 2026 14:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FAB3B4EB7;
+	Fri, 15 May 2026 14:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bvqLLSgg";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Iqf3a3Dj";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="PTd7Jw9Z";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="daKmt3Ck"
+	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="r5fzMnjx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05FD3AF66C
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 14:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B821A3B47F6
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 14:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778855818; cv=none; b=ZLBf/HEi0rey7zihbJB395nwRExC2PxSugrZEpwwBqKVkEvRQVxkTQU9Y4opgt/i4s9TB2r2GadIy4n8nyNqemU8PpGobsP2yx8zoEQfmKsa53EGe2by6i8BcwQiISBBV1jilXurHsEt80GggGuy9SNd+SLOqwTQamC/Kv2s31M=
+	t=1778855951; cv=none; b=FVAI9rChiSED2FMiyY09D+/zk6DEQZ3eofs+6H/a73MBfBpgUesS0qlKo7bVVydQkESx37KaG95cRzyJFuzD0JmGYt/PTOZCy7/nP4/Zh7YKthAsOoLpGeL8SSgkInxvELmXMhN2tzTeij0o78rx2uWQ92K2JSmYWesKXKlb25k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778855818; c=relaxed/simple;
-	bh=lztTQKgn05ATnyqsyrmbEaETQRQqnyHNtfamOQMus8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HRahmdUSd4CuNJ09hV4K4hk4uVxhRD6ovpP4g+CvuAciuL7VHbT1G+GnUbYr2YAy615lV9n2JEABGN8WU7w+3x70nHS5gOEktd3eBdbkuhCStgKCwAtJHlDruBBwBC8jCkhuRYeKH9JbMweJ/E1P5BoENs1ndEQwXJSb9u10bFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=bvqLLSgg; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=Iqf3a3Dj; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=PTd7Jw9Z; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=daKmt3Ck; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id E83B466F7C;
-	Fri, 15 May 2026 14:36:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1778855815; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=52kVi4ft6gEHq04LpCQ2bQJUfy4du7wTYBOy6YOZudI=;
-	b=bvqLLSggkd8YehZL4yctiPOIFT+JMgksZ4SunF0rxbSujfUSUguChTNt35TorPSxAo70rb
-	TZFO8ZSozugb8b0qt+SnBDDtQiGLIg8jffrEFQt+jq/U6ajUV5Z4KInO68ntW4V9qK1X07
-	lfiwSXtBVpjHtvopH6zQ8OHXpvkD/1A=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1778855815;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=52kVi4ft6gEHq04LpCQ2bQJUfy4du7wTYBOy6YOZudI=;
-	b=Iqf3a3DjA+PPpTghGUA0YWFCoyYoQ5ZNn1N1mLZOXQmmpqZTReEKM1z7WK/7Dh3WruZ4Sr
-	GEB98n668INEjHDg==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=PTd7Jw9Z;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=daKmt3Ck
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1778855814; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=52kVi4ft6gEHq04LpCQ2bQJUfy4du7wTYBOy6YOZudI=;
-	b=PTd7Jw9ZCUVnU19WpWsacDUe5kCbQUN2mJIFeMTkujhqH8XOe3KypW/3djbAOQAiFSWfLZ
-	JNQPPgujh2qZ4snc+IlvtHV7Bb31YHJshd1nZ0wJuOrAKB35mAFaV8sBVuoq4xkGf1AnNW
-	YB7gz22ATA3ecZzOKmaJrs5KYYoIZnw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1778855814;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=52kVi4ft6gEHq04LpCQ2bQJUfy4du7wTYBOy6YOZudI=;
-	b=daKmt3CkwQtpWyP1/NWtD4Kb+I/GqBMdxH1mSeNMK2gbtmPd9841j9stWJpqfRBbaU/jiE
-	/8hMbt+BnBnL9IDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 70633593A9;
-	Fri, 15 May 2026 14:36:54 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id wo0DGoYvB2pZLwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Fri, 15 May 2026 14:36:54 +0000
-Message-ID: <4d4e8090-3216-4a41-9a7d-3d2c0998121a@suse.de>
-Date: Fri, 15 May 2026 16:36:53 +0200
+	s=arc-20240116; t=1778855951; c=relaxed/simple;
+	bh=5ei7fh/Y69tCRQ3kK/dbGYFuojcIwy3an7mcbITipcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HZL1BFqRkidBh7Quue3McenI8PSZKPYOq1zV5io2+Z7zr5hvuobIDv30Drluo1kEJ+O0TPNpMtx54Xo/s+Z69Coor8VZ0h+HEW8VSjtjtQ2ClZ5p2n/Q+MKlFpq3lfErMGTuulDJOC1LcmiLN+BjXC3bAO0Sp8rrBF3jCGD91qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=r5fzMnjx; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-95cc3522c40so5871304241.2
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 07:39:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rowland.harvard.edu; s=google; t=1778855949; x=1779460749; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BQxJjtW9NoHteCK0AjadT0ZiWp4xMo5S2G7yHBWhKm0=;
+        b=r5fzMnjxo0qn47DQheu+8z2BqVawUayNL19uz+3HNCVkcfleHmePGSySdncjPWRlFL
+         pyzYzWAhxGtYttSooQV6s0iEnztVj8Znl0pLey9ORkA+ry7diHDpSXXziTw4HzbpN+mL
+         5igrMArIrATYGLp9FMEWMoWAwbQRiX7FBxA88r1H74RNRo0QkogWc0Pfy3h0uzfgy2Ow
+         UOJpkHXJo1G9zABJeA/iUcFWpnGwA+3ztUcjxcxYS2KuQDWaMpKQrKJt6fpQyNp5Y1lw
+         oMcuYZtMhxuN9N0/NLYbsqbptZruq8Iv+HICmnHUG1iWpANS/ZrpA6TwTCe6khEjfn+S
+         hMeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778855949; x=1779460749;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BQxJjtW9NoHteCK0AjadT0ZiWp4xMo5S2G7yHBWhKm0=;
+        b=UFG23D54xPeRP9jXmVeB1PCg7xLFwJknK6Mq/Rod8KCmY1xQHTyij8hqdSs9+IAX3E
+         nJcgFC8mh+rwBd0czu2a3kRhc0BX+ctJ0CiD30XN7WN2iq0DUmoGeenTCFfS9aQ/3W0q
+         VMrxPY0USs4qKmFYNJOLAh8xEgdrN7UEBPBHlh9+6c0Kmiy8M/ZxDoNB1wVcU2TQCvbA
+         mCeuS2wxoQhmk/oVVKpNYXJhSqiFbyx7lp8p9apsBVRsicIHslYzUE7oWMAEJynYqp0O
+         0tNhD7hW9bkJmJFMmeyVSoviTzCGXu157m/4aUSNNdmnCIFx4Rb2XYAHUIsamVLtEZS4
+         keIQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/0EH/6bJxJyefLMNuwSyUBSc8E2mjfwkvvxBX0FRMqZXPNdEPxKWtWGQn0SgjI3VBW1RvNrh3hJLZg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIu3wNLZ6x+FIjKCwlwE/pMfuVZbz0iKLLKIO9V7m7E/S+tNfb
+	5e+hEzS4kH5H9rx09JzzhgAg5sF/odIEKArcQN3MmNmEBEE8+1z5HCS5ztok7LdxzA==
+X-Gm-Gg: Acq92OG3Ix2O1yOW40oA6jzQdmZcs64ZdxG5tjGbVfgMm4fbK8agnr5GF0yX5f0PNmw
+	jMkIe5oOoeUynCo7q/F0MP2lAb1CRSHczPlvF5zn4Bi6xr/nVlHHLz5GgzhHEArN2V7c+zTzkUd
+	gk4oCd/qM2ijFR+vWdd3mKyNBoIJg69w/aVrzCwxUMG0PCEsoUC6AcHRFoXlxy11/kMLdievYu0
+	v/nesrGqyP2C3h6AZP7tYSlOtgFEyF0Z4/qGFIIEFcpKm7QwNrLptgXEXfhPiD7lzQxasqA8lu+
+	Fih2D5I6MOTQl5xxzV2QzkZqMdXOULF+nTzA+WsB344WTcxT8opAg6YgkvZGpPVF2PayaC5hVIz
+	EZUXDo970WuosH6T3u0LVCcAO1mUyXb0ch/FcPpURpb6o7GfV+ooqVDzi+EF3zlAEPx6y/3/Ap4
+	brqNKIg1riRsUTkTZx+3mhK0moVwEPt0Vw/tyHbNnD61Y=
+X-Received: by 2002:a05:6102:e14:b0:633:1fbe:79c8 with SMTP id ada2fe7eead31-63a3f597eb4mr2246407137.23.1778855948736;
+        Fri, 15 May 2026 07:39:08 -0700 (PDT)
+Received: from rowland.harvard.edu ([2601:19b:d01:d210:d62f:1911:f952:16ba])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8c90b3d0bdbsm51850896d6.24.2026.05.15.07.39.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 May 2026 07:39:08 -0700 (PDT)
+Date: Fri, 15 May 2026 10:39:04 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH RFC 05/12] usb: hub: Power on connected M.2 E-key
+ connectors
+Message-ID: <41260a6d-46fa-4a45-9906-e1bc5e5dd83a@rowland.harvard.edu>
+References: <20260515090149.3169406-1-wenst@chromium.org>
+ <20260515090149.3169406-6-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/panel: Add driver for Novatek NT37705 panel
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260501-fp6-panel-v1-0-e09cb05651cc@fairphone.com>
- <20260501-fp6-panel-v1-2-e09cb05651cc@fairphone.com>
- <c06623ba-b19c-471a-becb-2fafddb3583c@suse.de>
- <DIJBNGDNXE0L.2I0H4PBDDODOP@fairphone.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <DIJBNGDNXE0L.2I0H4PBDDODOP@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spam-Score: -3.01
-X-Rspamd-Queue-Id: C7A5B551AD0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260515090149.3169406-6-wenst@chromium.org>
+X-Rspamd-Queue-Id: 521A45518CD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[rowland.harvard.edu,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[rowland.harvard.edu:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298375-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-298377-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[fairphone.com,linaro.org,gmail.com,linux.intel.com,kernel.org,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DKIM_TRACE(0.00)[rowland.harvard.edu:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[stern@rowland.harvard.edu,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.de:mid,suse.de:dkim,fairphone.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rowland.harvard.edu:mid,rowland.harvard.edu:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi
+On Fri, May 15, 2026 at 05:01:41PM +0800, Chen-Yu Tsai wrote:
+> diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+> index 90ea597d42ae..4165f71e212b 100644
+> --- a/drivers/usb/core/hub.c
+> +++ b/drivers/usb/core/hub.c
+> @@ -31,7 +31,9 @@
+>  #include <linux/minmax.h>
+>  #include <linux/mutex.h>
+>  #include <linux/random.h>
+> +#include <linux/of_graph.h>
+>  #include <linux/pm_qos.h>
+> +#include <linux/pwrseq/consumer.h>
+>  #include <linux/kobject.h>
+>  
+>  #include <linux/bitfield.h>
+> @@ -888,13 +890,25 @@ int usb_hub_set_port_power(struct usb_device *hdev, struct usb_hub *hub,
+>  {
+>  	int ret;
+>  
+> +	if (set)
+> +		ret = pwrseq_power_on(hub->ports[port1 - 1]->pwrseq);
+> +	else
+> +		ret = pwrseq_power_off(hub->ports[port1 - 1]->pwrseq);
+> +	if (ret)
+> +		return ret;
+> +
+>  	if (set)
+>  		ret = set_port_feature(hdev, port1, USB_PORT_FEAT_POWER);
+>  	else
+>  		ret = usb_clear_port_feature(hdev, port1, USB_PORT_FEAT_POWER);
+>  
+> -	if (ret)
+> +	if (ret) {
+> +		if (set)
+> +			pwrseq_power_off(hub->ports[port1 - 1]->pwrseq);
+> +		else
+> +			pwrseq_power_on(hub->ports[port1 - 1]->pwrseq);
+>  		return ret;
+> +	}
+>  
+>  	if (set)
+>  		set_bit(port1, hub->power_bits);
+> @@ -1867,6 +1881,7 @@ static int hub_probe(struct usb_interface *intf, const struct usb_device_id *id)
+>  	struct usb_host_interface *desc;
+>  	struct usb_device *hdev;
+>  	struct usb_hub *hub;
+> +	int ret;
+>  
+>  	desc = intf->cur_altsetting;
+>  	hdev = interface_to_usbdev(intf);
 
-Am 15.05.26 um 16:31 schrieb Luca Weiss:
-> On Fri May 8, 2026 at 10:06 AM CEST, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 01.05.26 um 15:52 schrieb Luca Weiss:
->>> Add support for the 2484x1116 AMOLED panel from BOE (BJ631JHM-T71-D900)
->>> bundled with a NT37705 driver IC, as found on the Fairphone (Gen. 6)
->>> smartphone.
->>>
->>> The panel can also be configured in 10-bit (RGB101010) mode, however
->>> currently it's configured in 8-bit (RGB888) since there's some issues in
->>> the Qualcomm DPU driver when driving this panel in 10-bit.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>    drivers/gpu/drm/panel/Kconfig                 |  11 +
->>>    drivers/gpu/drm/panel/Makefile                |   1 +
->>>    drivers/gpu/drm/panel/panel-novatek-nt37705.c | 413 ++++++++++++++++++++++++++
->>>    3 files changed, 425 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
->>> index 979109c27b9b..59ab3f29d8ef 100644
->>> --- a/drivers/gpu/drm/panel/Kconfig
->>> +++ b/drivers/gpu/drm/panel/Kconfig
->>> @@ -624,6 +624,17 @@ config DRM_PANEL_NOVATEK_NT37700F
->>>    	  Say Y here if you want to enable support for Novatek NT37700F DSI
->>>    	  panel module. The panel has a resolution of 1080x2160.
->>>    
->>> +config DRM_PANEL_NOVATEK_NT37705
->>> +	tristate "Novatek NT37705-based DSI panel"
->>> +	depends on OF
->>> +	depends on DRM_MIPI_DSI
->>> +	depends on BACKLIGHT_CLASS_DEVICE
->>> +	select DRM_KMS_HELPER
->>> +	help
->>> +	  Say Y here if you want to enable support for Novatek NT37705-based
->>> +	  display panels, such as the one found in the The Fairphone (Gen. 6)
->> Duplicate 'the'
-> Marketing really wanted to have it be "The Fairphone". Will change and
-> make it saner.
+This change is totally useless.  Didn't you get a warning from the 
+compiler when you built it?
 
-How about "as the one found in Gen. 6 of The Fairphone." ?
+> diff --git a/drivers/usb/core/hub.h b/drivers/usb/core/hub.h
+> index 9ebc5ef54a32..6039e5f5dcd7 100644
+> --- a/drivers/usb/core/hub.h
+> +++ b/drivers/usb/core/hub.h
+> @@ -85,6 +85,7 @@ struct usb_hub {
+>   * @port_owner: port's owner
+>   * @peer: related usb2 and usb3 ports (share the same connector)
+>   * @connector: USB Type-C connector
+> + * @pwrseq: power sequencing descriptor for the port
+>   * @req: default pm qos request for hubs without port power control
+>   * @connect_type: port's connect type
+>   * @state: device state of the usb device attached to the port
+> @@ -104,6 +105,7 @@ struct usb_port {
+>  	struct usb_dev_state *port_owner;
+>  	struct usb_port *peer;
+>  	struct typec_connector *connector;
+> +	struct pwrseq_desc *pwrseq;
+>  	struct dev_pm_qos_request *req;
+>  	enum usb_port_connect_type connect_type;
+>  	enum usb_device_state state;
 
+The fact that hub.h uses struct pwrseq_desc indicates that it ought to 
+#include <linux/pwrseq/consumer.h>, instead of making the .c files do 
+so themselves.  Then you wouldn't have to add the #include lines to 
+hub.c and port.c.
 
+> diff --git a/drivers/usb/core/port.c b/drivers/usb/core/port.c
+> index b1364f0c384c..2d09037fee93 100644
+> --- a/drivers/usb/core/port.c
+> +++ b/drivers/usb/core/port.c
+> @@ -7,11 +7,14 @@
+>   * Author: Lan Tianyu <tianyu.lan@intel.com>
+>   */
+>  
+> +#include <linux/cleanup.h>
 
->
->>> +	  smartphone.
->>> +
->>>    config DRM_PANEL_NOVATEK_NT37801
->>>    	tristate "Novatek NT37801/NT37810 AMOLED DSI panel"
->>>    	depends on OF
->>> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
->>> index 0d694acbfbb6..94639bc58ca8 100644
->>> --- a/drivers/gpu/drm/panel/Makefile
->>> +++ b/drivers/gpu/drm/panel/Makefile
->>> @@ -61,6 +61,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) += panel-novatek-nt36523.o
->>>    obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) += panel-novatek-nt36672a.o
->>>    obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672E) += panel-novatek-nt36672e.o
->>>    obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37700F) += panel-novatek-nt37700f.o
->>> +obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37705) += panel-novatek-nt37705.o
->>>    obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37801) += panel-novatek-nt37801.o
->>>    obj-$(CONFIG_DRM_PANEL_NOVATEK_NT39016) += panel-novatek-nt39016.o
->>>    obj-$(CONFIG_DRM_PANEL_MANTIX_MLAF057WE51) += panel-mantix-mlaf057we51.o
->>> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37705.c b/drivers/gpu/drm/panel/panel-novatek-nt37705.c
->>> new file mode 100644
->>> index 000000000000..27bd8072ccd1
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/panel/panel-novatek-nt37705.c
->>> @@ -0,0 +1,413 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +/*
->>> + * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree.
->>> + * Copyright (c) 2026 Luca Weiss <luca.weiss@fairphone.com>
->>> + */
->>> +
->>> +#include <linux/backlight.h>
->>> +#include <linux/delay.h>
->>> +#include <linux/gpio/consumer.h>
->>> +#include <linux/mod_devicetable.h>
->>> +#include <linux/module.h>
->>> +#include <linux/regulator/consumer.h>
->>> +
->>> +#include <video/mipi_display.h>
->>> +
->>> +#include <drm/display/drm_dsc.h>
->>> +#include <drm/display/drm_dsc_helper.h>
->> IIRC this requires
->>
->>    select DRM_DISPLAY_DSC_HELPER
->>
->> in the Kconfig. Maybe double-check.
-> Will check. Always difficult to figure out the proper dependencies in a
-> fully-featured defconfig build.
->
->>> +#include <drm/drm_mipi_dsi.h>
->>> +#include <drm/drm_modes.h>
->>> +#include <drm/drm_panel.h>
->>> +#include <drm/drm_probe_helper.h>
->>> +
->>> +struct nt37705_panel {
->>> +	struct drm_panel panel;
->>> +	struct mipi_dsi_device *dsi;
->>> +	struct drm_dsc_config dsc;
->>> +	struct regulator_bulk_data *supplies;
->>> +	struct gpio_desc *reset_gpio;
->>> +};
->>> +
->>> +static const struct regulator_bulk_data nt37705_supplies[] = {
->>> +	{ .supply = "vddio" },
->>> +	{ .supply = "dvdd" },
->>> +	{ .supply = "vci" },
->>> +};
->>> +
->>> +static inline struct nt37705_panel *to_nt37705_panel(struct drm_panel *panel)
->>> +{
->>> +	return container_of_const(panel, struct nt37705_panel, panel);
->> Either just use container_of or build something that respects the
->> input's const-ness.
-> I really don't get what you mean here? Why is container_of_const() bad
-> here?
+Why is this needed?
 
-Because nothing is const here. It looks like an oversight or as if 
-something should be const.
+>  #include <linux/kstrtox.h>
+>  #include <linux/slab.h>
+>  #include <linux/string_choices.h>
+>  #include <linux/sysfs.h>
+> +#include <linux/of_graph.h>
+>  #include <linux/pm_qos.h>
+> +#include <linux/pwrseq/consumer.h>
+>  #include <linux/component.h>
+>  #include <linux/usb/of.h>
+>  
 
->
->>> +}
->>> +
->>> +static void nt37705_reset(struct nt37705_panel *ctx)
->>> +{
->>> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->>> +	usleep_range(10000, 11000);
->>> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
->>> +	usleep_range(5000, 6000);
->>> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->>> +	usleep_range(10000, 11000);
->>> +}
->>> +
->>> +static int nt37705_on(struct nt37705_panel *ctx)
->>> +{
->>> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
->>> +
->>> +	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
->>> +
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->>> +				     0x55, 0xaa, 0x52, 0x08, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1b);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba, 0x18);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00,
->>> +				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->>> +				     0x00, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x2c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x00, 0x01, 0x01, 0x01, 0x00, 0x05, 0x05,
->>> +				     0x05, 0x00, 0x05, 0x05, 0x05, 0x00, 0x00,
->>> +				     0x00, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x3c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x0b,
->>> +				     0x0b, 0x00, 0x00, 0x0b, 0x0b, 0x00, 0x00,
->>> +				     0x00, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x4c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
->>> +				     0x1d, 0x00, 0x00, 0x00, 0x1d, 0x00, 0x00,
->>> +				     0x00, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x5c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
->>> +				     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
->>> +				     0x01, 0x01);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x6c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x0b,
->>> +				     0x77, 0x77, 0x00, 0x00, 0x0b, 0x00, 0x1d,
->>> +				     0x00, 0x1d);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x7c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x0b,
->>> +				     0x77, 0x77, 0x00, 0x00, 0x0b, 0x00, 0x1d,
->>> +				     0x00, 0x1d);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x8c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->>> +				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->>> +				     0x00, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x9c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x11, 0x11, 0x20, 0x02, 0x00, 0x03, 0x00,
->>> +				     0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0xa4);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba, 0x00, 0xc0, 0x40, 0x08);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0xa8);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x22,
->>> +				     0x22);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0xb0);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->>> +				     0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x22,
->>> +				     0x22);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->>> +				     0x55, 0xaa, 0x52, 0x08, 0x01);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x05);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc5, 0x15, 0x15, 0x15, 0xdd);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->>> +				     0x55, 0xaa, 0x52, 0x08, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0e);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb5, 0x32);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->>> +				     0x55, 0xaa, 0x52, 0x00, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x80);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x19);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1a);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf4, 0x55);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x11);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf8, 0x01, 0x7f);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x2d);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf8, 0x01, 0x20);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x81);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x05);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x3c);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x02);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf9, 0x04);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1e);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfb, 0x0f);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0f);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf5, 0x20);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0d);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfb, 0x80);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x83);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x12);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x41);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x13);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x21);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x35);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
->>> +				     0x20);
->>> +	mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0x0000, 0x045b);
->>> +	mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0x0000, 0x09b3);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_SET_GAMMA_CURVE, 0x00);
->>> +	mipi_dsi_dcs_set_display_brightness_multi(&dsi_ctx, 0xbb0d);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x04);
->>> +	mipi_dsi_dcs_set_display_brightness_multi(&dsi_ctx, 0xfe0f);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x01, 0x19);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x03, 0x01);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x90, 0x03, 0x03);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x91,
->>> +				     0x89, 0x28, 0x00, 0x0c, 0xd2, 0x00, 0x02,
->>> +				     0x2f, 0x01, 0x18, 0x00, 0x07, 0x09, 0x75,
->>> +				     0x08, 0x34, 0x10, 0xf0);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2f, 0x02);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5a, 0x01);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2f, 0x30);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6d, 0x00);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x11, 0x00);
->>> +	mipi_dsi_msleep(&dsi_ctx, 120);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x29, 0x00);
->>> +	mipi_dsi_msleep(&dsi_ctx, 22);
->>> +
->>> +	return dsi_ctx.accum_err;
->>> +}
->>> +
->>> +static int nt37705_off(struct nt37705_panel *ctx)
->>> +{
->>> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
->>> +
->>> +	ctx->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
->>> +
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x28, 0x00);
->>> +	mipi_dsi_msleep(&dsi_ctx, 20);
->>> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x10, 0x00);
->>> +	mipi_dsi_msleep(&dsi_ctx, 120);
->>> +
->>> +	return dsi_ctx.accum_err;
->>> +}
->>> +
->>> +static int nt37705_prepare(struct drm_panel *panel)
->>> +{
->>> +	struct nt37705_panel *ctx = to_nt37705_panel(panel);
->>> +	struct device *dev = &ctx->dsi->dev;
->>> +	struct drm_dsc_picture_parameter_set pps;
->>> +	int ret;
->>> +
->>> +	ret = regulator_bulk_enable(ARRAY_SIZE(nt37705_supplies), ctx->supplies);
->>> +	if (ret < 0) {
->> Common style is to check for errors with
->>
->>     if (ret)
->>
->> Here and everywhere else.
-> At least for regulator_bulk_enable() "ret < 0" is actually more popular
-> than just "ret".
->
-> Kernel doc says "Return: 0 on success or a negative error number on
-> failure." so a positive integer should in theory never happen so they're
-> equivalent.
->
-> (git grep -h -A2 regulator_bulk_enable | grep if | sed 's|^[ \t]\+||' | sed 's| {$||' | sort | uniq -c)
-
-It's just nitpicking, not a blocker.
-
-Best regards
-Thomas
-
->
-> Thanks for the review!
->
-> Regards
-> Luca
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+Alan Stern
 
