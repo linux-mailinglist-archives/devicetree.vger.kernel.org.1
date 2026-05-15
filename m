@@ -1,459 +1,234 @@
-Return-Path: <devicetree+bounces-298374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298376-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0HNRLtsvB2p3sgIAu9opvQ
-	(envelope-from <devicetree+bounces-298374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:38:19 +0200
+	id OE4QGbkvB2p3sgIAu9opvQ
+	(envelope-from <devicetree+bounces-298376-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:37:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F625518A7
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:38:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1845551889
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7A1E306413B
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:31:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 60A453018746
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC013264CA;
-	Fri, 15 May 2026 14:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59AB83B27E8;
+	Fri, 15 May 2026 14:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Odb4Gkbb"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TIm8oSei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011008.outbound.protection.outlook.com [52.101.65.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B4D3B4EB2
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 14:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778855517; cv=none; b=iBdoNBblq+CoZn81UNV2nK2sl0NtUhUGuwKfLhtdsLjHwWUf/IWPplmvddfOZ2AlRm+j6ALY0JqtkrAQUFeLFBHv6TKpNl38oSvpAnvjjlsduATT89yTaE16COhB36SF5iduSCcbuEN4rkr6j0vEOaWrvpZpcpFQhLvRhFhzTso=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778855517; c=relaxed/simple;
-	bh=OWnWFxSdmpvYr6SK5ppnHAgSN/bQXmTVCLxMZEG18Io=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=u0LoQWOFgyZUot5fFmOqDm7chvs9gsS2MOxVLGcBohwzHPGm5fGAzGlpO3etO+QZD3u5X+eAzcktL8vMYC+9dr+/7fGW7gLj/LWD+l+iTVo5Y+TE3nYl0d9Jt3OzqNUcUGB2mml29PMNqsaU6k6C+228CLycgQgADnvadaoQUbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Odb4Gkbb; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b9382e59c0eso1560992666b.0
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 07:31:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1778855513; x=1779460313; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WiChq0bWxYu8cm+d+z1QVhaK5qjC2UQLCYZmN1T6Ywc=;
-        b=Odb4GkbbhdwNaYB0R7+n3fIXSGI/n0E8sm+7gwB2ebw9/pYiIpB/VgzUNukQatrc6S
-         MVN6U+4bvho1po6oE8G18Dnnhah7TJzj44y1lYNG47WY9pRz/j/UVNZBM/HWlfgFaUBL
-         x+ZTIcR9rQl9OrjsTsciP+grb16EeBCSGR1O6pYVu7CPnAt4trD4AxaQ5ixP/P2wEyPk
-         t1y/+8fiTl3JHAeANtK0Lj1sYrG4YSfyoJNY0yBM2NdJglfWQFNCH7wiynjf88b4uspQ
-         fah+vf99qJdjCWCbvMQ3MHkwCsUky8ln8DJY/7Ir7mElP/xKWsVsLAqT9D11EeMZflHL
-         Kocg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778855513; x=1779460313;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WiChq0bWxYu8cm+d+z1QVhaK5qjC2UQLCYZmN1T6Ywc=;
-        b=WaOXGNs/EnaPffTu7mvw9cF+uOLGluD4RL7hX+lBZy/r546xdn++pN8P1U5qJw7ipR
-         vg5K44++1cwBeCStlPIF25FLvnq+6ZO7EDYDEuzfNXaKq64Pj3wpfYo6aiM5ddkVH0q0
-         rdJ5FTBbrfi3ONwFqdulSbEG/p06J/rzebSejbUlaYbbpqETcdKZ+ZSK3R/pVezHyPA9
-         bLIHTPtuj/whAajfvjZ7plAPpL+3Mn1dgTyD+qMyEnCH3KKPnJu7pR84pJ5Fvqhzfltk
-         46NqrMqk3FlG++JSOXqL8G3oXHmdvlzIoo0rvdT5kK1+a4kYVHfhbZCkIn9KalvAemOl
-         6bPQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9+ViOVIrpTgN/cIICjfM6TO9fvX2G450sy5mqQXH73SwIdeJFzeGAspxHZpiTg4yoXpjWMqx/3M/N2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1vkHJDpm6bhkLE5ZbkyX2l4dtrrKUT1Avbyl6mA6iY/wlMjPq
-	+3GdZa3vrJ2UWgBiGRkAabtfKP/Uy9CzSkKM7qCWf8U5D6PQYYVPvaDLYbFcwXFzC2I=
-X-Gm-Gg: Acq92OGf6593NEdVDiVIPOAnRcmaqJQEv6Qj8PoD5RA+ZdrZk8Y1Nq807XM10fqBcAJ
-	syxgy8L2ICUsWbM9wHRVy/xci8wYzYLGBIjfuARw7zzVbCEAUTw/+TET22oGsuACOgrE44O7tQC
-	5zK73/3/HxR4ZSHzWLbGcB/wFLtBgpmR0lP8f6XKUTWizvQ7VXIK0+0gSMg9q79AzjYZeJeJntQ
-	SzO5kkEJ7ayn4EIcjsNtKXNbuaUJQKINJNGPw3y9IpnCJ5mTRB01/Hk6GmHMaX1XWNMbZIgedQ/
-	sS3niNPM1p/f8V+Rm4jMXo5LEgYaUWENwGBvpnbLLmjNPAxYPaJYvi083vANbwklMJeLlZIw1Zu
-	xOqamhuTiOeiM4rofbC61KbebPCG29uE4aKDTtmZQITpOK48PNKLXtN6W0rDoI5z/z1TVw+ajgU
-	2HdCbehTYcl7n11yMUxH01tRF536znVLhaAFeGStFJb0H+WC2It6Kx+HHpS6RNWNdNkoLk
-X-Received: by 2002:a17:907:9483:b0:bd2:bd43:b46c with SMTP id a640c23a62f3a-bd517979775mr246890366b.43.1778855512784;
-        Fri, 15 May 2026 07:31:52 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bd4f4de6f28sm240053066b.34.2026.05.15.07.31.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 May 2026 07:31:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD78D3AEF4F
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 14:37:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778855832; cv=fail; b=XgejbDSunGiOPd9SxpqUT5ebiLKNTJ1Ejd90rT74KuMRlRO/dBnGoQB5fHVdwvd9Hn7qI0ZWCoFmT7HuUuYWmpDQOt8ALexZTwBhKn/V/TO5/rOfZuBy5uJLkcgO2ONGXfgXkM7BcMegRTbXqz5+EmOtLoavXx02tY9nYBH8zGY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778855832; c=relaxed/simple;
+	bh=vx0kx2LtkK4R6Lv8X5Z4mIeo7zh9af56ilgLbXZGtgU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nSqXSh0RnR+aZWgmCx7VfrR2D7ACxkuq0eTF+YHkNoeiZE1zD0osUOyZpKlQzy2gCAG0uOYSEY6TsrDeHn24wqeftQ8mOJb5Oq6XmKB63HmSHE/Xq0rf0Wl3Rndaq3dW87m/gMUUwM+gte15DXOMPft4aDf+FFzILQir6/u26UY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TIm8oSei; arc=fail smtp.client-ip=52.101.65.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sZygBrXnO0FaYcoM1FmLURC6A1FnlFcVPO2bkg+FNkgWdV6el6o2zaBpZg7Gd7Znias6AMC1KzHIkGVhsw7FE+24TbM2CPGgPbRrW7R3e0vb5OW3m3+6PfETkxWePbNF2++DuqDxF7oNKEzxy+wORC1BPWPzqlqonQFTRHKE5q2Zg/22EunBaOWeBIB1dkTyiaSTOiCS/RyY+NXvpkvtf2WCLyeZI7BiG43cUmdPH5+zIc9uZgUACYzVL8jWxUaPyj/zoEmhixP0nAVc/S33/aH4TOXa9Sg44qMBx63Cen3UlwhmP7+9ymrswvjYNCaudr3jk/Wr25yJw5nSblRDOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mpeXrjhiARspJkoW5gl4dSRoCEr8eVLWzZeNBn99SUc=;
+ b=a9s5qVui7wE9SAQ+yd1v97ihPjw5ogLOOtLwR7uLc7npebi1IGx9J3V5/+WkeXJBdswpj95wm3GebNPoEXlPz5FEVh33Y7ijm7aXJwUDBlsvhmaluwhYKMkASsnRrdLjQnAYMzDjabcTRHp5ukzudTEtuD9L1PAI9g5VJBLZP1dyZUawfUYHh4hQejhDNuoaU05WiDu9K41RSyhLox7nYEj0cJqrTjVhmCNMOCwvQInMozkPvQaI16NDVn2rfAHDQBfTMqPzuCrj268aU36R3TtLaualp0Ql7Jny+IDe7Ot30CDsO8xqihK9dczWB9swd+QJnS3eoIyx9gEb78yRbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mpeXrjhiARspJkoW5gl4dSRoCEr8eVLWzZeNBn99SUc=;
+ b=TIm8oSei0wyH/Z3mQ2W4HjjPZhUvE2hkNRuoBGYrueFCQkFaRyO4n09kppZBIYZnwFYUq49AjR0dcJp6m/Al1ZgQmdu/n8sGrzrM73Q5F15rHYKrKf0ImnL03vAkdBJmYc+JMa49Yls2scQhRDvDNIN8me30DivHTaTFQpWMgYErtivyGegVet8sMEhwfU2lCMYNmY/1Z6DIzWuikAQTCSV/DGR19n/D2NGC/OZ++q0u0KOJ2OqgIKEB7Uu7c1HcsSeDH0aSZxXbnfcch9TrVWnAwcUWsvuqM5qBaO74K5+XQs/opSNtRwSCDi9hB8DjVd1iAUkVmjlpGQ0uoCptww==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PR3PR04MB7402.eurprd04.prod.outlook.com (2603:10a6:102:89::16)
+ by AS8PR04MB9079.eurprd04.prod.outlook.com (2603:10a6:20b:446::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Fri, 15 May
+ 2026 14:37:07 +0000
+Received: from PR3PR04MB7402.eurprd04.prod.outlook.com
+ ([fe80::4129:7aed:b5cb:b13d]) by PR3PR04MB7402.eurprd04.prod.outlook.com
+ ([fe80::4129:7aed:b5cb:b13d%5]) with mapi id 15.20.9913.009; Fri, 15 May 2026
+ 14:37:07 +0000
+Date: Fri, 15 May 2026 17:36:45 +0300
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-phy@lists.infradead.org, olteanv@gmail.com, neil.armstrong@linaro.org, vkoul@kernel.org, 
+	robh@kernel.org
+Subject: Re: [PATCH v2 phy-next 2/2] phy: ti: add PHY driver for TI
+ DS125DF111 Dual-Channel Retimer
+Message-ID: <7sm5mmceoen5wvi7c5josiqkan6yrza6kqxkfiggfawdysnacv@rai6pmfpskyi>
+References: <20260515110145.1925579-3-ioana.ciornei@nxp.com>
+ <20260515112252.E684CC2BCB0@smtp.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260515112252.E684CC2BCB0@smtp.kernel.org>
+X-ClientProxiedBy: AS4P189CA0026.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5db::13) To PR3PR04MB7402.eurprd04.prod.outlook.com
+ (2603:10a6:102:89::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 15 May 2026 16:31:51 +0200
-Message-Id: <DIJBNGDNXE0L.2I0H4PBDDODOP@fairphone.com>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Jessica Zhang" <jesszhan0024@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH 2/4] drm/panel: Add driver for Novatek NT37705 panel
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260501-fp6-panel-v1-0-e09cb05651cc@fairphone.com>
- <20260501-fp6-panel-v1-2-e09cb05651cc@fairphone.com>
- <c06623ba-b19c-471a-becb-2fafddb3583c@suse.de>
-In-Reply-To: <c06623ba-b19c-471a-becb-2fafddb3583c@suse.de>
-X-Rspamd-Queue-Id: 56F625518A7
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PR3PR04MB7402:EE_|AS8PR04MB9079:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04097eff-cbc7-4009-86b3-08deb28f70bf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|11063799003|56012099003|4143699003|3023799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	+uQYfWHFBHx17+WNYcxuccit7ZUvZQ/8NL3pjEYxdYma54mgwKqDKwkw8DTOv3X44jRMOwR1B92S+HYrJydN8lePdhNydy+5UTmVqx+sQxqpVN/FP3UrPA69bm/h4efs8+cKvFtUylZIRs64TxJmRqb+LIhXf7J6OzDsGypJR5mmYRRrKoh9vYNZ+kqTrRfOl6lyJG1+eFJAXPY+EHaKyqmBJL7XwQ15+Ic7GIj5SY1Z4uMyGxXvAQ9XJZsRQ0Zqb1+VRzB7lyNvOmd+Uu5CfqmhPK/qYeTl9NHRT1fWvRvSSRbulEclL3veRjzfAZLCkW2P96e/7DhVxIVglSLC8AUcOyIOIeSddCe+E3KZkdgFE3x8gdztiuXdBKHIpXklLAh2hZwmp4LU1lcxFqOV/3kzhJexrbP9sz0NL+i3223eTu/JbM5THuftN4/Q61ZRKGbnS1//NKtOYktoRaJxWxnVKF/e45FzWy8NCOectpHLklHWVeSoL7qz5stBa8QArePolzLV4xeMtC0ZfwP62pVs8POLev7tnxcDVdEHLll0w3nQEdjPZwefvP4zhnB3JTy4IqYBBTSvsFjY0dBETIhFUueIFGiP9fksF22blO4ttXAzEGodaathbykwrmqMtCyOWx3s5MaOmlP5XwVJfIpxKgihmE27s0M9IX5wZdXVY/FtI0f+giywG6nV/psx
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR3PR04MB7402.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(11063799003)(56012099003)(4143699003)(3023799003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mFz3rT3zffAAOeuRtXkEr5M9Q/hQOBWoe74Ug+9HWG8+VpqFvlGj6UqI8PqP?=
+ =?us-ascii?Q?Z4wep8ZdCjZK7LjMfNNGGoxrkDExg+GRKbtgju05WdoJqdZtR5wHpOfuLO8D?=
+ =?us-ascii?Q?lu+X8MAxQKwoRivNw4BJ9tnfsFdoHfpkqm//Ca4cHLulT3Mvu1FnGGD873Ar?=
+ =?us-ascii?Q?NQwh2Zqqo+Eng5n8wvOKxyJxSXK/WyufqogDd/OvMjo+FX9D96r8OTvRdwoB?=
+ =?us-ascii?Q?a3KBLOvEm06J/f6re4SIlYoWFPMGqK73r+VB+LPwUJQAMryJBdZSluZk9i7q?=
+ =?us-ascii?Q?5+AgSU3AUpwaKN2VndhqZz7uASvMRgytsani/rYfmMc2acWgNoHRf3lhtj1F?=
+ =?us-ascii?Q?S68UIb4mcjXVllfxtFU9SYlqBwuMCad+3h8bD2fWX77vIrzOtIhTrrPqb+7e?=
+ =?us-ascii?Q?8bL0Rh3v8D7nTRi1LCj0ulepSPOyU2SQj6+xFHsC0M16Yc+jbTHTSeA2EURQ?=
+ =?us-ascii?Q?eJ934mCZ06xZ69AM5cy4RWyrPd8NZoq/Ue+dHKz65+OnMPyFp5gzx36AD8Wq?=
+ =?us-ascii?Q?haJ5yxCs7DyajItvXf7vJrx2Zuv4gopnAUabSBDrHeJG7xEtibNAMDf7KlNK?=
+ =?us-ascii?Q?teOij67jFlS3QcNLynyGd2P1QAoJA+H3dF+iQ7WmSQncpVY83zXF3QUugiek?=
+ =?us-ascii?Q?2wTQxakMrRbGMG7zedznlkM6yo/YZDEmMRmogkj3glYyhDc4TQGZC/Lkw8lb?=
+ =?us-ascii?Q?hfvIKGlQE2t0ZLsGTZuDAF+KuLL6n8puxp6Yz86dnTLeVo98hEbamvfnBCOF?=
+ =?us-ascii?Q?vS+MTCR70QZfZsQCsrvj4GXPFjy2126h/k8mk/tXDY7autxM6y8q/Kk6qU4s?=
+ =?us-ascii?Q?pE8t1U4DOeszx/kvMhpdedMt/YTsOcweq0fo1grMvPZC7iQbPIA6KlA0RXaP?=
+ =?us-ascii?Q?tPXWZNGt3tIp2OKuwz4eftW41USsHMJost7CM/uWtAER4fUtPHCqm+W/ZnS3?=
+ =?us-ascii?Q?otojT0kthR7MfbGYqfAECleMifLxrLckWDcctBhWEE4b+vyOPVOuZu2LIcyK?=
+ =?us-ascii?Q?Z6BIgJHUnT3V48gjIT8alQsRS4RCzZpMd0Opeww2HQwg7pwOiEzcSQ7t9RFO?=
+ =?us-ascii?Q?1Zs34Ea7PZxQORGSr1AcMpVbzPw2l0GM2qtCwNOZET4NU6rO7Lj//nGD85hg?=
+ =?us-ascii?Q?Ej5GkhcHuO2EAgbn1GcNpCJOODFEgkDcWGKCJQOAVAyClrRfL1P1qhq0h5ix?=
+ =?us-ascii?Q?MjceaYhh1ODURjcedng7mbJqws4bSvm3wuo6QZcTi8ZvBgdn8/Jureq8G7sO?=
+ =?us-ascii?Q?FX0g59vaVUA0Dku2AJfJPJV9VE96mEkNH0WB5tbdzfVR4XEWUGnzJRuR5qMS?=
+ =?us-ascii?Q?PqaUejJdvG1QQE6GgIopdPuEEMkHCtZjT0KWRtHL+/+WNYQQ8DXaPFs5/zVb?=
+ =?us-ascii?Q?xwUqqyUWJERFqxSYjqY8u91jzxUROm7WBKNfSOwFmNheG0wVWc/iWPojGK2A?=
+ =?us-ascii?Q?eVYNwAN3ha/ciTrO0YbmB98wdx4L9g5TjHOQLhgldNnhrYXOWAjR6ogxTu7l?=
+ =?us-ascii?Q?VLrQAQcLisz29RMImI6x0pZIe+FZ4cffPwrBOGpGlFGhJDBeM4SGF8/0MEGG?=
+ =?us-ascii?Q?Nfk8MEgXGzIYD+Vgo1gH55l1ckHGkcFQagih54iLC1leHzevD1CaAIqzQzRL?=
+ =?us-ascii?Q?gFbuAhPyDkcXUbjke0nN9KEGr5XP7cv3FOdoyGHDhhsQohBJeRwK9LYyOhXo?=
+ =?us-ascii?Q?lPpwgpUXc4IuUJm65+D3nrIatCRMU3Eplh/jw91p3r8Ixq/opmBwZVbo5YUR?=
+ =?us-ascii?Q?RaRGoPPrXw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04097eff-cbc7-4009-86b3-08deb28f70bf
+X-MS-Exchange-CrossTenant-AuthSource: PR3PR04MB7402.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2026 14:37:07.6462
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dGC5uHEhfgF91HggeYk3fxd08F2fsdZX1VXKfSWHejCiJERBm5puylqVzEyqbHjFq7geZFcnACeABEtdu9QHMw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9079
+X-Rspamd-Queue-Id: F1845551889
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298374-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[suse.de,fairphone.com,linaro.org,gmail.com,linux.intel.com,kernel.org,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,gmail.com,linaro.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298376-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[ioana.ciornei@nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:email,fairphone.com:mid,fairphone.com:dkim]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Fri May 8, 2026 at 10:06 AM CEST, Thomas Zimmermann wrote:
-> Hi
->
-> Am 01.05.26 um 15:52 schrieb Luca Weiss:
->> Add support for the 2484x1116 AMOLED panel from BOE (BJ631JHM-T71-D900)
->> bundled with a NT37705 driver IC, as found on the Fairphone (Gen. 6)
->> smartphone.
->>
->> The panel can also be configured in 10-bit (RGB101010) mode, however
->> currently it's configured in 8-bit (RGB888) since there's some issues in
->> the Qualcomm DPU driver when driving this panel in 10-bit.
->>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->>   drivers/gpu/drm/panel/Kconfig                 |  11 +
->>   drivers/gpu/drm/panel/Makefile                |   1 +
->>   drivers/gpu/drm/panel/panel-novatek-nt37705.c | 413 ++++++++++++++++++=
-++++++++
->>   3 files changed, 425 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconf=
-ig
->> index 979109c27b9b..59ab3f29d8ef 100644
->> --- a/drivers/gpu/drm/panel/Kconfig
->> +++ b/drivers/gpu/drm/panel/Kconfig
->> @@ -624,6 +624,17 @@ config DRM_PANEL_NOVATEK_NT37700F
->>   	  Say Y here if you want to enable support for Novatek NT37700F DSI
->>   	  panel module. The panel has a resolution of 1080x2160.
->>  =20
->> +config DRM_PANEL_NOVATEK_NT37705
->> +	tristate "Novatek NT37705-based DSI panel"
->> +	depends on OF
->> +	depends on DRM_MIPI_DSI
->> +	depends on BACKLIGHT_CLASS_DEVICE
->> +	select DRM_KMS_HELPER
->> +	help
->> +	  Say Y here if you want to enable support for Novatek NT37705-based
->> +	  display panels, such as the one found in the The Fairphone (Gen. 6)
->
-> Duplicate 'the'
+On Fri, May 15, 2026 at 11:22:52AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] Missing delay or polling after setting a self-clearing hardware reset bit.
+> --
+> 
+> commit 59a5ca7411308a81c146d660b8c04e0be8fe8fbb
+> Author: Ioana Ciornei <ioana.ciornei@nxp.com>
+> 
+> phy: ti: add PHY driver for TI DS125DF111 Dual-Channel Retimer
+> 
+> This commit adds a generic PHY driver for the TI DS125DF111 Multi-Protocol
+> Dual-Channel Retimer. It supports 10G and 1G link speeds, modeling each of
+> the two channels as a separate PHY device.
+> 
+> > diff --git a/drivers/phy/ti/phy-ds125df111.c b/drivers/phy/ti/phy-ds125df111.c
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/drivers/phy/ti/phy-ds125df111.c
+> 
+> [ ... ]
+> 
+> > +static int ds125df111_configure(struct phy *phy,
+> > +				const struct ds125df111_config *cfg)
+> > +{
+> 
+> [ ... ]
+> 
+> > +	/* Reset Channel Registers */
+> > +	err = i2c_smbus_read_byte_data(i2c, DS125DF111_CH_CTRL);
+> > +	if (err < 0) {
+> > +		dev_err(dev, "Error resetting channel configuration\n");
+> > +		goto out;
+> > +	}
+> > +	val = (u8)err;
+> > +	val |= DS125DF111_CH_CTRL_RESET;
+> > +	err = i2c_smbus_write_byte_data(i2c, DS125DF111_CH_CTRL, val);
+> > +	if (err < 0) {
+> > +		dev_err(dev, "Error resetting channel configuration\n");
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* Program the VCO group frequencies */
+> > +	for (i = 0; i < DS125DF111_NUM_VCO_GROUP_REG; i++) {
+> > +		err = i2c_smbus_write_byte_data(i2c,
+> > +						DS125DF111_VCO_GROUP_BASE + i,
+> > +						cfg->vco_group[i]);
+> 
+> Is a delay or polling loop needed after triggering the channel reset?
+> 
+> The DS125DF111_CH_CTRL_RESET bit is defined as self-clearing, but the code 
+> immediately proceeds to program the VCO group frequencies without checking if
+> the reset has finished.
+> 
+> Since hardware resets usually take a non-zero amount of time, writing to the
+> registers right away could result in the device NACKing the transactions or
+> silently dropping the new configuration.
+> 
 
-Marketing really wanted to have it be "The Fairphone". Will change and
-make it saner.
+The datasheet does not specify a maximum timeout for channel reset. I
+will try to use read_poll_timeout() to wait for the DS125DF111_CH_CTRL
+bit to be cleared.
 
->
->> +	  smartphone.
->> +
->>   config DRM_PANEL_NOVATEK_NT37801
->>   	tristate "Novatek NT37801/NT37810 AMOLED DSI panel"
->>   	depends on OF
->> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Make=
-file
->> index 0d694acbfbb6..94639bc58ca8 100644
->> --- a/drivers/gpu/drm/panel/Makefile
->> +++ b/drivers/gpu/drm/panel/Makefile
->> @@ -61,6 +61,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) +=3D panel-nov=
-atek-nt36523.o
->>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) +=3D panel-novatek-nt36672a.o
->>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672E) +=3D panel-novatek-nt36672e.o
->>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37700F) +=3D panel-novatek-nt37700f.o
->> +obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37705) +=3D panel-novatek-nt37705.o
->>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37801) +=3D panel-novatek-nt37801.o
->>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT39016) +=3D panel-novatek-nt39016.o
->>   obj-$(CONFIG_DRM_PANEL_MANTIX_MLAF057WE51) +=3D panel-mantix-mlaf057we=
-51.o
->> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37705.c b/drivers/gpu=
-/drm/panel/panel-novatek-nt37705.c
->> new file mode 100644
->> index 000000000000..27bd8072ccd1
->> --- /dev/null
->> +++ b/drivers/gpu/drm/panel/panel-novatek-nt37705.c
->> @@ -0,0 +1,413 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Generated with linux-mdss-dsi-panel-driver-generator from vendor dev=
-ice tree.
->> + * Copyright (c) 2026 Luca Weiss <luca.weiss@fairphone.com>
->> + */
->> +
->> +#include <linux/backlight.h>
->> +#include <linux/delay.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/module.h>
->> +#include <linux/regulator/consumer.h>
->> +
->> +#include <video/mipi_display.h>
->> +
->> +#include <drm/display/drm_dsc.h>
->> +#include <drm/display/drm_dsc_helper.h>
->
-> IIRC this requires
->
->  =C2=A0select DRM_DISPLAY_DSC_HELPER
->
-> in the Kconfig. Maybe double-check.
 
-Will check. Always difficult to figure out the proper dependencies in a
-fully-featured defconfig build.
-
->
->> +#include <drm/drm_mipi_dsi.h>
->> +#include <drm/drm_modes.h>
->> +#include <drm/drm_panel.h>
->> +#include <drm/drm_probe_helper.h>
->> +
->> +struct nt37705_panel {
->> +	struct drm_panel panel;
->> +	struct mipi_dsi_device *dsi;
->> +	struct drm_dsc_config dsc;
->> +	struct regulator_bulk_data *supplies;
->> +	struct gpio_desc *reset_gpio;
->> +};
->> +
->> +static const struct regulator_bulk_data nt37705_supplies[] =3D {
->> +	{ .supply =3D "vddio" },
->> +	{ .supply =3D "dvdd" },
->> +	{ .supply =3D "vci" },
->> +};
->> +
->> +static inline struct nt37705_panel *to_nt37705_panel(struct drm_panel *=
-panel)
->> +{
->> +	return container_of_const(panel, struct nt37705_panel, panel);
->
-> Either just use container_of or build something that respects the=20
-> input's const-ness.
-
-I really don't get what you mean here? Why is container_of_const() bad
-here?
-
->
->> +}
->> +
->> +static void nt37705_reset(struct nt37705_panel *ctx)
->> +{
->> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->> +	usleep_range(10000, 11000);
->> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
->> +	usleep_range(5000, 6000);
->> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->> +	usleep_range(10000, 11000);
->> +}
->> +
->> +static int nt37705_on(struct nt37705_panel *ctx)
->> +{
->> +	struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
->> +
->> +	ctx->dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
->> +
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->> +				     0x55, 0xaa, 0x52, 0x08, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1b);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba, 0x18);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00,
->> +				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->> +				     0x00, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x2c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x00, 0x01, 0x01, 0x01, 0x00, 0x05, 0x05,
->> +				     0x05, 0x00, 0x05, 0x05, 0x05, 0x00, 0x00,
->> +				     0x00, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x3c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x0b,
->> +				     0x0b, 0x00, 0x00, 0x0b, 0x0b, 0x00, 0x00,
->> +				     0x00, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x4c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
->> +				     0x1d, 0x00, 0x00, 0x00, 0x1d, 0x00, 0x00,
->> +				     0x00, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x5c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
->> +				     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
->> +				     0x01, 0x01);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x6c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x0b,
->> +				     0x77, 0x77, 0x00, 0x00, 0x0b, 0x00, 0x1d,
->> +				     0x00, 0x1d);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x7c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x0b,
->> +				     0x77, 0x77, 0x00, 0x00, 0x0b, 0x00, 0x1d,
->> +				     0x00, 0x1d);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x8c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->> +				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
->> +				     0x00, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x9c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x11, 0x11, 0x20, 0x02, 0x00, 0x03, 0x00,
->> +				     0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0xa4);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba, 0x00, 0xc0, 0x40, 0x08);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0xa8);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x22,
->> +				     0x22);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0xb0);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xba,
->> +				     0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x22,
->> +				     0x22);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->> +				     0x55, 0xaa, 0x52, 0x08, 0x01);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x05);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc5, 0x15, 0x15, 0x15, 0xdd);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->> +				     0x55, 0xaa, 0x52, 0x08, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0e);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb5, 0x32);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
->> +				     0x55, 0xaa, 0x52, 0x00, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x80);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x19);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1a);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf4, 0x55);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x11);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf8, 0x01, 0x7f);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x2d);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf8, 0x01, 0x20);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x81);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x05);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x3c);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x02);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf9, 0x04);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1e);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfb, 0x0f);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0f);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf5, 0x20);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0d);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfb, 0x80);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x83);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x12);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfe, 0x41);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x13);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x21);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x35);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
->> +				     0x20);
->> +	mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0x0000, 0x045b);
->> +	mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0x0000, 0x09b3);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_SET_GAMMA_CURVE, 0x00)=
-;
->> +	mipi_dsi_dcs_set_display_brightness_multi(&dsi_ctx, 0xbb0d);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x04);
->> +	mipi_dsi_dcs_set_display_brightness_multi(&dsi_ctx, 0xfe0f);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x01, 0x19);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x03, 0x01);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x90, 0x03, 0x03);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x91,
->> +				     0x89, 0x28, 0x00, 0x0c, 0xd2, 0x00, 0x02,
->> +				     0x2f, 0x01, 0x18, 0x00, 0x07, 0x09, 0x75,
->> +				     0x08, 0x34, 0x10, 0xf0);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2f, 0x02);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5a, 0x01);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2f, 0x30);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6d, 0x00);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x11, 0x00);
->> +	mipi_dsi_msleep(&dsi_ctx, 120);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x29, 0x00);
->> +	mipi_dsi_msleep(&dsi_ctx, 22);
->> +
->> +	return dsi_ctx.accum_err;
->> +}
->> +
->> +static int nt37705_off(struct nt37705_panel *ctx)
->> +{
->> +	struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
->> +
->> +	ctx->dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
->> +
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x28, 0x00);
->> +	mipi_dsi_msleep(&dsi_ctx, 20);
->> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x10, 0x00);
->> +	mipi_dsi_msleep(&dsi_ctx, 120);
->> +
->> +	return dsi_ctx.accum_err;
->> +}
->> +
->> +static int nt37705_prepare(struct drm_panel *panel)
->> +{
->> +	struct nt37705_panel *ctx =3D to_nt37705_panel(panel);
->> +	struct device *dev =3D &ctx->dsi->dev;
->> +	struct drm_dsc_picture_parameter_set pps;
->> +	int ret;
->> +
->> +	ret =3D regulator_bulk_enable(ARRAY_SIZE(nt37705_supplies), ctx->suppl=
-ies);
->> +	if (ret < 0) {
->
-> Common style is to check for errors with
->
->  =C2=A0 if (ret)
->
-> Here and everywhere else.
-
-At least for regulator_bulk_enable() "ret < 0" is actually more popular
-than just "ret".
-
-Kernel doc says "Return: 0 on success or a negative error number on
-failure." so a positive integer should in theory never happen so they're
-equivalent.
-
-(git grep -h -A2 regulator_bulk_enable | grep if | sed 's|^[ \t]\+||' | sed=
- 's| {$||' | sort | uniq -c)
-
-Thanks for the review!
-
-Regards
-Luca
 
