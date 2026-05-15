@@ -1,308 +1,234 @@
-Return-Path: <devicetree+bounces-297899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297901-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJViD6yqBmq8mAIAu9opvQ
-	(envelope-from <devicetree+bounces-297899-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:10:04 +0200
+	id uMLYC0ayBmqKnAIAu9opvQ
+	(envelope-from <devicetree+bounces-297901-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:42:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C8954977D
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:10:03 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2584D549A1A
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1A618301626B
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 05:09:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 318C4301A082
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 05:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1043DCDA2;
-	Fri, 15 May 2026 05:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B732036403D;
+	Fri, 15 May 2026 05:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="YaurQTow"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F/uTGYHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D5937B00E
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 05:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582153630A3
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 05:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778821786; cv=none; b=fj7EMgd8SPKi4wDglBJy4mLx2GoYI7gbuYVdGzw8+hO2B9CDL8Hysite7lql0kHOtuJFSpn14f230Zgw5lEmKBefcI2+y5FhD9DYHmlZE07Rkda2LP/8EZeoW7MiN10UsJOq00pScij+BpjFWpm9JS9Vavt8kRHdXwBSEBU7qic=
+	t=1778823743; cv=none; b=AFHIt7byHalyg6F156Jd/skJomMB5P75M7TtEQttNn+TWB+gGh6LziF7XGGLT1g9B+WJrfFpIYYwRej8eSlFBqmxczENiVe7WsgzqCUEwxbcjPURus/wUt5TGZvDYfPyC7b/mP/wOx5d8ikksD5Ny4hGcK5IsT/JuIq4p3hFROw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778821786; c=relaxed/simple;
-	bh=Cfj6Kdku0tU800nUbQXw10WWZBj5xuPKkeF75TEEHbE=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vj5t1xfQMK5i57owJ1tSJizxAVFf9bS4Ti6QKikrHWoXxwc3cnp67pQfwcSUIpHBqfFvRvSaZ5SDaERHgV8bMJqmSJf3dFHRibgPBHx47ssVLq9cNvs5QHrDjYuJlgtgTzcHvoJIHTwyyOXouNkFNUSm/j6ccRoYKHCaOkOm56A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=YaurQTow; arc=none smtp.client-ip=185.70.43.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1778821776; x=1779080976;
-	bh=IxMsmPSaPOk0vBCYQ+CxfWsGFzgB1P7pojoC1AoVBt0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=YaurQTowSzgN81y6wm/EOwicJoIN6hYsFDPUs4y7oGqDjoK4egnhm79zw3AKKeLMm
-	 1EONSjDmepmKuxK+WbF/EnP2HK2ol6pZTaQW91Y8+RzjfqFQywX5KJEwqC7av0BKCV
-	 Xi14GJKm235EFJQAxc0jiN3DWcv67BSp+Ct/fdhGf63RYwdudqWIG/qBhcD5ZlNCI0
-	 FgU4BeawHSoWjiur1xUEdEocQVeJEvnuLra4FDXAOki3V/hGPNIPtcE23aX7ZYCvFX
-	 5jtuwu/oEFYwXbETN+0PtPqYbMNiP2B19mxKI9f70w+Q7zY1ZChalC05lwem6ELD/c
-	 QTxAmhrMB/Sgg==
-Date: Fri, 15 May 2026 05:09:31 +0000
-To: Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Akhil P Oommen <akhilpo@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>
-From: Alexander Koskovich <akoskovich@pm.me>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH RFC v6 7/7] arm64: dts: qcom: milos: Add Adreno 810 GPU and GMU nodes
-Message-ID: <20260515-adreno-810-v6-7-fbe04c7203e1@pm.me>
-In-Reply-To: <20260515-adreno-810-v6-0-fbe04c7203e1@pm.me>
-References: <20260515-adreno-810-v6-0-fbe04c7203e1@pm.me>
-Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 11c52e0db622ce0c31f0dd66b9456ab0f070a5f0
+	s=arc-20240116; t=1778823743; c=relaxed/simple;
+	bh=4ujO8YPn+C6kly/QIxgqk2+iFaoJUzR0JdPeVgifXGg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=nvqinM4H8mizcQ8KgnQHPZx2Bf3SyYzQgcZ/ykhUUS4OViL2BUIikPxsusSCryH9/W7FLTHxXrZaIq9xuWBn1AGN9dPNbBG22zc86iUg6ldSzOUSZnvjRK0RN29QR1HYnM9wd1Iwm7FBbBBEiryp71vrrG1rLLg4IB4nSwCPoPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F/uTGYHL; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-824c9da9928so4357361b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 22:42:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778823742; x=1779428542; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5BD6jb0vjKtzgJh8F8xKpey20kEfF+Odim4ezk9P1XI=;
+        b=F/uTGYHLT8VYmGW7uUL+D8T/AA74P6prWB53VB35e1Kcxs9A1li02lUUJfl59m2XPG
+         UY9OLwSN6S+/GyHL7u9w6UurHJG2uXT6EofbCa31igySqpYGx2ecTIpBe5XaqdKQrW0c
+         zMB0Q5Vt/vCsG/kUXnNwsxqCm2edDNVb6h7iwTs6LrrYPs0mGDZOywnYqXOq//V1Xq8N
+         Z3CgISE7MVDvS/pAtRj4lRWSEYv5Mbaxe+nEhv/DucluH8eIFkne84tkuLaoGmLlu12m
+         Y6Wr6qgXaZu8EKxu1EzW/9XGVTu+kYxXKeeW/icfozYKB0+QwoxhDMuq+FGy/7nj9Oxd
+         8Z4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778823742; x=1779428542;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5BD6jb0vjKtzgJh8F8xKpey20kEfF+Odim4ezk9P1XI=;
+        b=fhDnSWSsLZItS7amcvglzxV+gsx0NMDxpV7CxKthmhkNTxAUf45BTJfh5Wwd0GELsw
+         55LxsvEkJabYclIMUX/DB6stEnkPD10GN+uywQnCCWw1N558Hj8F3Yp0kCrdbkKNl0gc
+         4Kndg8dVOSiwqByY2Qr2YmLOwpNFIPEv/b79G7lPrCeMSiTvQhVABpA+o3gjkT4qBCgl
+         Nkk2PxdO6yEB25XxbrDFpH+SZkS6yI38O8QIqyCoRn+Re4tjGqCMqD8Kx50i4V+k9vrz
+         QcsWIsNJzbeO0zfM56/3vJN2UmBIyXmkVlTEGMl8Qro9S/soRzXD+xsgqWPoFn5IcGx1
+         6dpQ==
+X-Forwarded-Encrypted: i=1; AFNElJ//w+alfYsVmK9lKkzcuczHQL4K7+Rx+Hs2dIAZSkWozYb0i6QCTWjtsZkueTVOFLDplSW2Aw8DTFx/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGBS/mHOiC9vP/HR1qlxpmL59o2IM1LiGrhFtPUjB7CS2Ob3Dh
+	EwONR8eoZ7GyQHkA9GXyrMeP+WWTvQWg7Gf47qIqL9X12WftocDTdHVq
+X-Gm-Gg: Acq92OErCIwLpBvGGBhLT2+1cSAtgcClgDzuae+caXUH8jWGo/Dvdgn7INvhzn3w7Rl
+	2v2WSA3P0T64PWBTJZnkItmzALtyG76JaE3+gAlgUVxl/jA4x1+1dcunrqd9xM/4TfKXQA5TrvG
+	WfA2XDe4RPrpHpIvdrtS1uxmV1mo74fwCL5K81Mj8AlawWn4ox1ZrokD97BF2gK2pGIfFUk6Lu4
+	54VJJ3hOca2qnWHYgE12Fq1IEgIjdrWOYtFkNpXeRAnHwCfeGuCRVmo2qNMBmpob056hoF4svTH
+	0AmjXpTfpTxH5LCT7E8aKriwZqzz3ykOGHRSQQepQFIgchqr0EoCqRvXh7ZIH88forCNVcKk3NZ
+	wXp1Wi1SN3LJeOkpOBUsE4rrENXBpfu6Dd5jL+m4yn2m65EsGJigJJOpPrBUbbvgoURSnCac0Eo
+	T/hl3phyiGuuonlgyqRAd0gJhR0ct5SbPA4fCrh26zI1Hjr4rsiQ6phH1urUJiax93sMked1eC5
+	n2sHDu3LbAKLTcjhRaGPNo7ufQ=
+X-Received: by 2002:a05:6a00:1954:b0:835:366f:5da2 with SMTP id d2e1a72fcca58-83f33d80937mr2828691b3a.37.1778823741521;
+        Thu, 14 May 2026 22:42:21 -0700 (PDT)
+Received: from harrison-Surface-Pro-12in-1st-Ed-with-Snapdragon.wework.com ([203.117.161.34])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f2b9bec8fsm3106116b3a.33.2026.05.14.22.42.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2026 22:42:20 -0700 (PDT)
+From: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	davem@davemloft.net,
+	neil.armstrong@linaro.org,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	jikos@kernel.org,
+	bentiss@kernel.org,
+	luzmaximilian@gmail.com,
+	hansg@kernel.org,
+	ilpo.jarvinen@linux.intel.com
+Cc: Douglas Anderson <dianders@chromium.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-input@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org
+Subject: [PATCH v2 0/7] Add support for the Microsoft Surface Pro 12in 1st Edition (Snapdragon),
+Date: Fri, 15 May 2026 15:41:45 +1000
+Message-ID: <cover.1778822464.git.harrison.vanderbyl@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <177869930359.1496076.12020223802779537187.b4-ty@kernel.org>
+References: <177869930359.1496076.12020223802779537187.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: A3C8954977D
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 2584D549A1A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297899-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-297901-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[chromium.org,gmail.com,vger.kernel.org,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gondor.apana.org.au,davemloft.net,linaro.org,linux.intel.com,suse.de,gmail.com,ffwll.ch];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[pm.me:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[harrisonvanderbyl@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[3d6c000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,3d64000:email,pm.me:email,pm.me:mid,pm.me:dkim,fairphone.com:email,3c40000:email,3d90000:email,3d00000:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add GPU and GMU devicetree nodes for the Adreno 810 GPU found on
-Qualcomm SM7635 (Milos) based devices.
+Changes in v2:
+Ice device tree: 
+ - Updated to use 0x0 formatting
 
-The qcom,kaanapali-gxclkctl.h header can be reused here because
-Milos uses the same driver and the GX_CLKCTL_GX_GDSC definition
-is identical.
+Panel: 
+ - Add edid to commit message
 
-Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
----
- arch/arm64/boot/dts/qcom/milos.dtsi | 165 ++++++++++++++++++++++++++++++++=
-++++
- 1 file changed, 165 insertions(+)
+Device tree:
+ - Fixed formatting and ordering nits
+ - Removed extra dmic audio declarations
+ - Added suspected devices on i2c busses
+ - Fixed incorrect usb regulator
+ - Describe panel pin regulator
+ - Added defaults for volume button GPIOs
 
-diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom=
-/milos.dtsi
-index 0e7cfc12b0d2..71fff0f35093 100644
---- a/arch/arm64/boot/dts/qcom/milos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2025, Luca Weiss <luca.weiss@fairphone.com>
-  */
-=20
-+#include <dt-bindings/clock/qcom,kaanapali-gxclkctl.h>
- #include <dt-bindings/clock/qcom,milos-camcc.h>
- #include <dt-bindings/clock/qcom,milos-dispcc.h>
- #include <dt-bindings/clock/qcom,milos-gcc.h>
-@@ -1554,6 +1555,121 @@ lpass_ag_noc: interconnect@3c40000 {
- =09=09=09qcom,bcm-voters =3D <&apps_bcm_voter>;
- =09=09};
-=20
-+=09=09gpu: gpu@3d00000 {
-+=09=09=09compatible =3D "qcom,adreno-44010000", "qcom,adreno";
-+=09=09=09reg =3D <0x0 0x03d00000 0x0 0x6c000>,
-+=09=09=09      <0x0 0x03d9e000 0x0 0x2000>;
-+=09=09=09reg-names =3D "kgsl_3d0_reg_memory",
-+=09=09=09=09    "cx_mem";
-+
-+=09=09=09interrupts =3D <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+=09=09=09iommus =3D <&adreno_smmu 0 0x0>;
-+
-+=09=09=09operating-points-v2 =3D <&gpu_opp_table>;
-+
-+=09=09=09nvmem-cells =3D <&gpu_speed_bin>;
-+=09=09=09nvmem-cell-names =3D "speed_bin";
-+
-+=09=09=09qcom,gmu =3D <&gmu>;
-+=09=09=09#cooling-cells =3D <2>;
-+
-+=09=09=09interconnects =3D <&gem_noc MASTER_GFX3D QCOM_ICC_TAG_ALWAYS
-+=09=09=09=09=09 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+=09=09=09interconnect-names =3D "gfx-mem";
-+
-+=09=09=09status =3D "disabled";
-+
-+=09=09=09gpu_zap_shader: zap-shader {
-+=09=09=09=09memory-region =3D <&gpu_microcode_mem>;
-+=09=09=09};
-+
-+=09=09=09gpu_opp_table: opp-table {
-+=09=09=09=09compatible =3D "operating-points-v2-adreno",
-+=09=09=09=09=09     "operating-points-v2";
-+
-+=09=09=09=09opp-264000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <264000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
-+=09=09=09=09=09opp-peak-kBps =3D <2136718>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0xc8295ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-362000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <362000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+=09=09=09=09=09opp-peak-kBps =3D <2136718>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0xc02c5ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-510000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <510000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_SVS>;
-+=09=09=09=09=09opp-peak-kBps =3D <3972656>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0x882b5ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-644000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <644000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+=09=09=09=09=09opp-peak-kBps =3D <5285156>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0x882a5ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-688000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <688000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+=09=09=09=09=09opp-peak-kBps =3D <6074218>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0x882a5ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-763000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <763000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_NOM>;
-+=09=09=09=09=09opp-peak-kBps =3D <6671875>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0xa8295ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-895000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <895000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+=09=09=09=09=09opp-peak-kBps =3D <8171875>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0x88295ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-960000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <960000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO>;
-+=09=09=09=09=09opp-peak-kBps =3D <8171875>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0xa8285ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-1050000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <1050000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+=09=09=09=09=09opp-peak-kBps =3D <18597656>;
-+=09=09=09=09=09opp-supported-hw =3D <0x7>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0x88285ffd>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-1150000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <1150000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_TURBO_L2>;
-+=09=09=09=09=09opp-peak-kBps =3D <18597656>;
-+=09=09=09=09=09opp-supported-hw =3D <0x3>;
-+=09=09=09=09=09qcom,opp-acd-level =3D <0xa02f5ffd>;
-+=09=09=09=09};
-+=09=09=09};
-+=09=09};
-+
- =09=09gxclkctl: clock-controller@3d64000 {
- =09=09=09compatible =3D "qcom,milos-gxclkctl";
- =09=09=09reg =3D <0x0 0x03d64000 0x0 0x6000>;
-@@ -1564,6 +1680,55 @@ gxclkctl: clock-controller@3d64000 {
- =09=09=09#power-domain-cells =3D <1>;
- =09=09};
-=20
-+=09=09gmu: gmu@3d6c000 {
-+=09=09=09compatible =3D "qcom,adreno-gmu-810.0", "qcom,adreno-gmu";
-+=09=09=09reg =3D <0x0 0x03d6c000 0x0 0x32000>;
-+=09=09=09reg-names =3D "gmu";
-+
-+=09=09=09interrupts =3D <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH 0>,
-+=09=09=09=09     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH 0>;
-+=09=09=09interrupt-names =3D "hfi",
-+=09=09=09=09=09  "gmu";
-+
-+=09=09=09clocks =3D <&gpucc GPU_CC_AHB_CLK>,
-+=09=09=09=09 <&gpucc GPU_CC_CX_GMU_CLK>,
-+=09=09=09=09 <&gpucc GPU_CC_CXO_CLK>,
-+=09=09=09=09 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-+=09=09=09=09 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+=09=09=09=09 <&gpucc GPU_CC_HUB_CX_INT_CLK>;
-+=09=09=09clock-names =3D "ahb",
-+=09=09=09=09      "gmu",
-+=09=09=09=09      "cxo",
-+=09=09=09=09      "axi",
-+=09=09=09=09      "memnoc",
-+=09=09=09=09      "hub";
-+
-+=09=09=09power-domains =3D <&gpucc GPU_CC_CX_GDSC>,
-+=09=09=09=09=09<&gxclkctl GX_CLKCTL_GX_GDSC>;
-+=09=09=09power-domain-names =3D "cx",
-+=09=09=09=09=09     "gx";
-+
-+=09=09=09iommus =3D <&adreno_smmu 5 0x0>;
-+
-+=09=09=09qcom,qmp =3D <&aoss_qmp>;
-+
-+=09=09=09operating-points-v2 =3D <&gmu_opp_table>;
-+
-+=09=09=09gmu_opp_table: opp-table {
-+=09=09=09=09compatible =3D "operating-points-v2";
-+
-+=09=09=09=09opp-350000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <350000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+=09=09=09=09};
-+
-+=09=09=09=09opp-650000000 {
-+=09=09=09=09=09opp-hz =3D /bits/ 64 <650000000>;
-+=09=09=09=09=09opp-level =3D <RPMH_REGULATOR_LEVEL_SVS>;
-+=09=09=09=09};
-+=09=09=09};
-+=09=09};
-+
- =09=09gpucc: clock-controller@3d90000 {
- =09=09=09compatible =3D "qcom,milos-gpucc";
- =09=09=09reg =3D <0x0 0x03d90000 0x0 0x9800>;
+QSEECOM patch (4/8 in v1):
+  - Applied by Bjorn Andersson
+  
+Hid patch (5/8 in v1):
+  - Acked by Jiri Kosina, but not applied yet.
 
---=20
+Link to v1:
+https://lore.kernel.org/all/cover.1778498477.git.harrison.vanderbyl@gmail.com/
+
+
+Currently supported:
+  - UFS (with inline crypto)
+  - Touchscreen, pen, cover keyboard and touchpad (via SAM)
+  - USB 3.2 x2 with DP Alt Mode
+  - Audio, WiFi, Bluetooth
+  - CDSP, ADSP, GPU
+  - Display (BOE NE120DRM-N28 panel)
+
+Not yet supported:
+  - Accelerometer
+  - Front, back, and IR cameras
+  - IRIS video decoder
+
+Note on the compatible string: unlike other Microsoft Surface devices
+upstream (denali, arcata, romulus13, blackrock), this device does not
+appear to carry an internal codename in firmware. The DSDT, SMBIOS, and
+EFI variables only refer to it as "Surface Pro 12in 1st Ed with
+Snapdragon" (SKU 2110). I have used `microsoft,surface-pro-12in` as the
+compatible. Suggestions welcome.
+
+Although the device is marketed as just a smaller version of the denali,
+it has enough differences that it warranted a different compatible and
+device tree.
+
+Tested on Surface Pro 12in 1st Ed with Snapdragon (SKU 2110).
+
+Harrison Vanderbyl (7):
+  dt-bindings: arm: qcom: Add Microsoft Surface Pro 12in
+  dt-bindings: crypto: Add x1e80100 inline crypto
+  platform/surface: SAM: Add support for Surface Pro 12in
+  hid: Pen battery quirk for Surface Pro 12in
+  drm/panel-edp: Add panel for Surface Pro 12in
+  arm64: dts: qcom: hamoa: Add inline crypto for UFS
+  arm64: dts: qcom: Add Microsoft Surface Pro 12in
+
+ .../devicetree/bindings/arm/qcom.yaml         |    4 +
+ .../crypto/qcom,inline-crypto-engine.yaml     |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ arch/arm64/boot/dts/qcom/hamoa.dtsi           |   10 +
+ .../dts/qcom/x1p42100-microsoft-sp12in.dts    | 1201 +++++++++++++++++
+ drivers/gpu/drm/panel/panel-edp.c             |    1 +
+ drivers/hid/hid-ids.h                         |    1 +
+ drivers/hid/hid-input.c                       |    2 +
+ .../surface/surface_aggregator_registry.c     |   15 +
+ 9 files changed, 1237 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1p42100-microsoft-sp12in.dts
+
+
+base-commit: 5d6919055dec134de3c40167a490f33c74c12581
+prerequisite-patch-id: a34133ba03bd1d31c0ed08612c31131b62015654
+-- 
 2.53.0
-
 
 
