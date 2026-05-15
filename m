@@ -1,104 +1,96 @@
-Return-Path: <devicetree+bounces-298420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298422-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eH08LfpBB2oCvAIAu9opvQ
-	(envelope-from <devicetree+bounces-298420-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:55:38 +0200
+	id sDEZNwZBB2oCvAIAu9opvQ
+	(envelope-from <devicetree+bounces-298422-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:51:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240D25527BA
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:55:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB6355269F
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:51:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 584CA318407F
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:42:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C8CFC3076A9F
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E604DD6D4;
-	Fri, 15 May 2026 15:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339D04DD6FF;
+	Fri, 15 May 2026 15:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LxbEYGlD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="n/NofypE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012028.outbound.protection.outlook.com [52.101.48.28])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A5304C9568;
-	Fri, 15 May 2026 15:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778859362; cv=fail; b=IJNicbq2dUyxxB+q52Rg33SqEexNJX980tfSWXCwA6EAdiVZII3zN3Ez1533sDXZP/mCyYBQ/Fse2JU4M8WGE0Q5yvN6zSUZ3wuamR+933h/2+w3JkwRSixeA9N+NT0fQz2GEHQ+9DzpOvOuxepIR+QNfYY431B+B2vEhS6V8JM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778859362; c=relaxed/simple;
-	bh=HnBwcvS7MfICwnLf/ArfNXZZnLxBgV0Beg2hIm1FxxA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=piH4l7mXOfv9big7wGu2v+7tK5tYYyigEmLebTqPcbDQdZ4BEfHMDgVPYB5Du7kvwftDlUXzG9zco3V/A1sVmBxL9GIzOXDpYlQ4VSgbBojAv2M3t4d75N6U6cfPGSPj9TqWXaUzKk3YoxCdd4GblH6W9P1b/nIdTjjvep8hlQ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LxbEYGlD; arc=fail smtp.client-ip=52.101.48.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BfL1SZ1QbQah1bpawu0xLEqaecyzVzGiTkCobdoVI579hRH8Oa2ME2DLpYoUhfYfEEoU4AiGTzQxQyysCK/6NPFgj5Ie3TGrlVbeJGMBytuMrwezSZ0eDDYXQv+iWeFHsoQos97rnCHsoEIfwpSf8pZctTg9hI+aRlbY0vg/6t22D/AB0Lq+JfHmfxGgKQYpZ8ZxwhTr7P3gh3afkob8ovOSfoqNnGeh5svX5tnlhR9LqH3WbxqlVBusHNOBrhaqaxShP/7dgrRCXS2O/fAdqHgJdUJL3cSAhOTzUSJ2Pp+wbCbT5yT1B8H5pemfb9kj/WrqnXlXhpfro1tGyYdOpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U+1X+ehhvjQg2Pyo1Fxqp8HBvLO0wTBGfOFuBqohRao=;
- b=P9aUN+FnkWLjrQPILwxWweR5j60eJ5rGygoProGLAfH/U6Or+ptLyOCfPZRs4D/F30CKaMbvUKeVrpSll0PS0XbRuDMamCvXxBqkNyr3W6MCtvOs1kKbgmzE2B35wzaFfUqU920Zyy9HqgezJMxkL1vQvmCl8otteAGuKYT+E6ifKritxTElrIJipQdr02HdSVG7HQMQEsx16siMMg7yk8I6zWz5CcTARmEFM3CNL+pxLSZt2OFv2qYWt99uZ8wNU1H/LnCGw8Suzs3iPqXayHAZQI7JJfEqA7IA3NrGar87g3s7WniGjVhk5pEHfWnFoAlyH9BNrUYczHsrwkrhkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=gmail.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U+1X+ehhvjQg2Pyo1Fxqp8HBvLO0wTBGfOFuBqohRao=;
- b=LxbEYGlDogNJ+Y09s/kBns6yGoLdOL6uFoYHarZ1GcRMK0LSeDpdEA30vE5NoMpIq8ZLh0Dn7w+7mQ7Yqnw+s+eFNo1xjvcs7lO+5dwlT0ULVqbB3rYAPTDcdR/2hT+NtqkRDRpvha8B5j2mDmQMVYXusYudl+5MdQSGuPJOGbI=
-Received: from BN9PR03CA0343.namprd03.prod.outlook.com (2603:10b6:408:f6::18)
- by DS0PR10MB7248.namprd10.prod.outlook.com (2603:10b6:8:fc::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Fri, 15 May
- 2026 15:35:50 +0000
-Received: from BN2PEPF000055DC.namprd21.prod.outlook.com
- (2603:10b6:408:f6:cafe::49) by BN9PR03CA0343.outlook.office365.com
- (2603:10b6:408:f6::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.14 via Frontend Transport; Fri,
- 15 May 2026 15:35:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BN2PEPF000055DC.mail.protection.outlook.com (10.167.245.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.0 via Frontend Transport; Fri, 15 May 2026 15:35:47 +0000
-Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 15 May
- 2026 10:35:41 -0500
-Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 15 May
- 2026 10:35:41 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE201.ent.ti.com
- (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Fri, 15 May 2026 10:35:41 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64FFZfop4155355;
-	Fri, 15 May 2026 10:35:41 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>, Bryan Brattlof
-	<bb@ti.com>, Jason Kridner <jkridner@gmail.com>, Robert Nelson
-	<robertcnelson@gmail.com>
-Subject: [PATCH v4 3/3] arm64: defconfig: Enable drivers for BeagleBadge
-Date: Fri, 15 May 2026 10:35:41 -0500
-Message-ID: <20260515153541.294698-4-jm@ti.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260515153541.294698-1-jm@ti.com>
-References: <20260515153541.294698-1-jm@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205D33FBB79
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778859392; cv=none; b=KwFwmdDO4A5Zba2Ew9FhYdlHrUrYy2qZIiAa3L6U2r4fKjbdGwZTywHlKvcscQBQcJJQ26CMGDqK8BsOMwnG+NkDus85OsW/ilKYPBTVwTPXBw+werXs+IGg6tvQOi/pdpI82mmX+z9szGXPJeTDyXnYC/+EBuC9vna4hCZ5KzM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778859392; c=relaxed/simple;
+	bh=Ue7Tvvw7GFTqaBvUsscsm3qFYirOrsg+j8q4YjBo1CE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ksHUt14VmMKjbfYcA98Vq54MdUO4VX/XI3bbITrLWpURapbMg7FRa3qsGhaKPQ+vZmPurPVJ0QP7KfY6JQHC35qzLod/dyevDr/PCzj556wLbrJG7LG9HW+xfs2sefSTk0odF9ssC2N12k3CDKm5CuHMY+U6/P2h4QRHYeWuwOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=n/NofypE; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-67c3cb1433cso16471034a12.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 08:36:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778859385; x=1779464185; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ymIxrmc8NVaPgX08Zo9PR76YEwhybRQaJK3HcXypHmg=;
+        b=n/NofypEixIxI4Hbct0To7VQbRDFEBM3uZXNpwdcfzaEmGaVxzmgcONkwVLaa9ciHU
+         50EVeEFSjr32FNTaW2TAEUrPTfZ57NXeuEWT4rSO9Vi9pn8Z9kMg0adlqTlGDdtzkn+A
+         ZYTW8nkqbOrNoFgdM0HN/HZYZqao5a2fxFpsNVX2u86Rbg5h96kNkovRRjT9VUhl8AQz
+         f8vTWhtFSTOJ/zLa4Rq4Bqn5VJHHyHZEaEoZoAGgHDpgVQXPeagaex+U+Vl8+Z+ruAhK
+         cgJWAZvqNppsygY6/r/kzLo1OyeTO8/QlQ6glTArp+eiauxYYBQB1Ybm8UOQaqUdcinA
+         0myw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778859385; x=1779464185;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ymIxrmc8NVaPgX08Zo9PR76YEwhybRQaJK3HcXypHmg=;
+        b=rUHDt92Nab+Z5sDv/K8bJQ1EkfHhPtX2Ug8HgG1eXPdfRIXrDXs6IKuvvKt6tc2wB4
+         roxwa9qrxCP7MbLc7hgykixsPSAGi9BpfSmWv5dp+WbWW9Ou0D7b9YHQLdgm92DZBZa5
+         HLNuuLFzTbO/qsbZUAGQ00elevO1iuTdAitx5j5WrfEG2OiDNAHZ8Krf2YzbHH/APIDu
+         kQJfF0yvzTuDkuvgp5J6V4fdrbjsh52gAydN0pk7/FsPLr6PnElRnN2GQ7ZYIJXQBhhI
+         Az9fxYFuDH2ELGgHVwnEmiur58RrdA8+c/Gn/vWyavCXCBid0McKCI8vwjhfZob7NJM7
+         6+dg==
+X-Forwarded-Encrypted: i=1; AFNElJ+3wBBA+TOUh0NO5UUGBZMSt5DKspv2xGuRtLdLAwY5lkCkly3pehP1ah94IDiaRs7TbF0YyJyatUq6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx61RteubKFn9BZ+JjpXsuqmyfmgl48L3646NUPF5fYGCigztSM
+	njk6i5No8nLivgWwYrdc2DfQrJJk1MFpiQTQvs8FwyOYWjOf3kSuKW1p
+X-Gm-Gg: Acq92OEJpBpS3Y+A/ZtQGJIG8MJdwstEUdK74YeP00t+JfoDk+7tHpKeY/qFGcMoykP
+	L3EYPKlpoEHKckN/JLonoVhdO8Jm/FO5AM03p9VttEZRHuY96vQDrsoI+fFtddcbZZGFnVYvxlV
+	wubf1v+68bLFMDKAWLeQ/+5vY1mWHGt8CgZkitQNHKOzZkiuYbMCGxt7ridFrthKtXr4DmHpmln
+	/8P6S3NdjnDoUllhev4LnQ6GU7JGvtfYkYSCY87alWXtO/eb3EroIotzlHL3YHUX/JZ+680mwKX
+	xC/1gMXCukd/fmR4AaH36IO+Ymxh1LgKKZlRikFpVGbyN+YVaOHWnRAiOwSl4LzKP6qokLUxRcr
+	FEdMNaZTe5wcjLbGEYkJ3tAak+nfsZqCX24noK0Ytx2Qn9F/xsInKsw0T71ZKrXDJeb4gYzD2Wg
+	==
+X-Received: by 2002:a05:6402:148a:b0:67e:2624:b8ab with SMTP id 4fb4d7f45d1cf-683bd682186mr1528958a12.24.1778859385260;
+        Fri, 15 May 2026 08:36:25 -0700 (PDT)
+Received: from fedora ([2a02:8071:50c5:5c0::6182])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68310d510fasm2205089a12.11.2026.05.15.08.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 May 2026 08:36:24 -0700 (PDT)
+From: Wadim Mueller <wafgo01@gmail.com>
+To: William Breathitt Gray <wbg@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Wadim Mueller <wafgo01@gmail.com>
+Subject: [PATCH v4 0/3] counter: add GPIO-based quadrature encoder driver
+Date: Fri, 15 May 2026 17:36:13 +0200
+Message-ID: <20260515153616.157605-1-wafgo01@gmail.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260501200749.20029-1-wafgo01@gmail.com>
+References: <20260501200749.20029-1-wafgo01@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,120 +98,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055DC:EE_|DS0PR10MB7248:EE_
-X-MS-Office365-Filtering-Correlation-Id: abd19f26-ac77-4a5e-6e60-08deb297a2d3
-X-LD-Processed: e5b49634-450b-4709-8abb-1e2b19b982b7,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700016|1800799024|82310400026|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	s4Lmv/RTlOEZX2P2xWUs09ooMsRVOOQdkxHjp0L756+9eT6aVmicGBwkh7+mKzsiMVPvqZiwXZyLg02Fe3Mp8dBg20ztIJYMjc+CKHK5zEWAnqjs3py421GO+to63m8AtfAUJT8PFBzdODOGPAkTYhN+2PzDjm+h1eec0eAP6yYrKTkhLWF+ZdRXpdEuMsTUrbvQiZrOfW5rhL8aTduPGmbJNs/M6hT6vOpLxnhGt5X4HfNsE/4HjigOs9FOR0l8o53UVBEcuKGPRky/rAZTaZdxERRGg6iqWg5/gJRjjaiw8G3cbPDRsgNLa9X4N/PVZZwGaWkeWuBggTMUxdiZy6a/H2aJaizEGlcSz/DRtYLdt8rZ1qafJr9HBUHS+VHXXI4heus+EpIJpiod9KY8x0AoMdRatvhK4uz2pJd3io9vHCA7ilBuXvWe6aAcG7H9DGqlNGT5dYDeOZGvUdR4Hy03axZX+JDpPde5ky2gulsEJM9GSBSYOJirZU6xYRv0yK/lYQthd8v/2bOowOyHgVorvd5lF64OUsNXd3JorBvpYYtOoD9o60vGA6vyxn40kqqPwXX0A/jNqu94LT5ZRhcZADDKjcaiAZcWgRhb9B/jYtKnbm0sj34O8PiN70XDwcfQ0poCkJl+QNn7CXcXrVoZO2Doeva6LoD5NtpU9g91iB67sPEvbSuM7ikdad4JzmkPyWjozrxlh1/DD4hH6w==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(1800799024)(82310400026)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	X4LUXjduZdtZjkSaBhoeqUlc6C8nyAZ9gUn9rm/Qj3ViC1muRA42ehwI1XpDsF6Q89VgtOvfrwZjqj06RDEJdkSzH48L1ROpSenCC19LEVbDTzTMhxZu6+mhtuwG6rtgjtbtR3+p1D22ta3QlJGRaE4nW4CEOvrrZtl0HEyAsSCF0kAFZlxRccwtw3J9nPPmqFRExWEJd6TZO/loYJ7hoNRi+5yApOS+FzJwJCDnHRLlj0EK8lym6O9UKY3OEjiBlk94CfFkBknJT0YflgU13/9yCVKCKJFBm0HJ64wWkkEnMQOTQYtDWEaGp6AYAVBpmnj/zOb417ZARPFCI/tpuZhw50N6/iUWAm86W2ZReDktZgHZvtnLs+wVFmKXcaaGct29enJABXQNU7uxELmgImRPx7OA1TfHNaP5+xSpLbTJi9wcXXFOy5HeaB9MFWG0
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2026 15:35:47.3553
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: abd19f26-ac77-4a5e-6e60-08deb297a2d3
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF000055DC.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7248
-X-Rspamd-Queue-Id: 240D25527BA
+X-Rspamd-Queue-Id: BDB6355269F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,ti.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298420-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298422-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,ti.com:mid,ti.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[wafgo01@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-Enable drivers used on BeagleBadge[1]:
-- LED PWM Multicolor driver as a module
-- MCP SPI IO Expander driver as a module
-- Seven Segment display GPIO driver as module
-- Temperature Sensor driver as a module
+This series adds a new counter subsystem driver which implements
+quadrature encoder position tracking using plain GPIO pins with
+edge-triggered interrupts.
 
-[1] https://github.com/beagleboard/BeagleBadge
+The driver targets low- to medium-speed rotary encoders on SoCs where
+hardware quadrature counter peripherals (eQEP, FTM, ...) are either
+not available or already in use. It complements interrupt-cnt.c by
+providing full A/B/Index quadrature decoding instead of just pulse
+counting.
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changelog since v3:
-- Add missing newline in commit message
----
- arch/arm64/configs/defconfig | 5 +++++
- 1 file changed, 5 insertions(+)
+The strategic question from v3 -- "why kernel and not libgpiod in
+userspace?" -- was already discussed in the v3 cover thread. A
+reproducible benchmark on AM64x (kernel counter vs gpiomon/libgpiod
+2.1.2, 3-run sweeps from 1 kHz up to 200 kHz) was posted there and
+is also mirrored at https://github.com/wafgo/qenc-bench. William
+accepted the case for a kernel implementation based on this, so i
+will not repeat the numbers here, only the link.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d905a0777f939..5cfb7f6f2ae78 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -634,6 +634,7 @@ CONFIG_PINCTRL_BRCMSTB=y
- CONFIG_PINCTRL_BCM2712=y
- CONFIG_PINCTRL_DA9062=m
- CONFIG_PINCTRL_MAX77620=y
-+CONFIG_PINCTRL_MCP23S08=m
- CONFIG_PINCTRL_RK805=m
- CONFIG_PINCTRL_SINGLE=y
- CONFIG_PINCTRL_SX150X=m
-@@ -766,6 +767,7 @@ CONFIG_SENSORS_LM90=m
- CONFIG_SENSORS_PWM_FAN=m
- CONFIG_SENSORS_RASPBERRYPI_HWMON=m
- CONFIG_SENSORS_SL28CPLD=m
-+CONFIG_SENSORS_SHT4x=m
- CONFIG_SENSORS_AMC6821=m
- CONFIG_SENSORS_INA2XX=m
- CONFIG_SENSORS_INA3221=m
-@@ -955,6 +957,8 @@ CONFIG_VIDEO_IMX412=m
- CONFIG_VIDEO_OV5640=m
- CONFIG_VIDEO_OV5645=m
- CONFIG_VIDEO_S5KJN1=m
-+CONFIG_AUXDISPLAY=y
-+CONFIG_SEG_LED_GPIO=m
- CONFIG_DRM=m
- CONFIG_DRM_I2C_NXP_TDA998X=m
- CONFIG_DRM_HDLCD=m
-@@ -1332,6 +1336,7 @@ CONFIG_LEDS_GPIO=y
- CONFIG_LEDS_PWM=y
- CONFIG_LEDS_SYSCON=y
- CONFIG_LEDS_QCOM_FLASH=m
-+CONFIG_LEDS_PWM_MULTICOLOR=m
- CONFIG_LEDS_QCOM_LPG=m
- CONFIG_LEDS_TRIGGER_TIMER=y
- CONFIG_LEDS_TRIGGER_DISK=y
+Changes in v4 address the detailed review feedback from William on
+PATCH 3/3 of v3:
+
+Counter ABI / generic semantics:
+  - Drop the private gpio_qenc_function enum, store and exchange the
+    function as enum counter_function directly. function_read/write
+    become trivial accessors.
+  - Support the full set of generic Count functions:
+    INCREASE, DECREASE, PULSE_DIRECTION,
+    QUADRATURE_X1_{A,B}, QUADRATURE_X2_{A,B}, QUADRATURE_X4.
+  - Add COUNTER_SYNAPSE_ACTION_FALLING_EDGE to the synapse action
+    list and report it from action_read for the function modes
+    where it does apply.
+  - In QUADRATURE_X1_{A,B} the reported synapse action is now
+    direction-dependent (RISING_EDGE when going forward, FALLING_EDGE
+    when going backward) to match the Counter ABI semantics.
+  - Restructure action_read: default to NONE, handle the Index
+    synapse as a single early-return case, drop the per-function
+    if/else cascade.
+  - Use a dedicated action list for the Index synapse with only NONE
+    and RISING_EDGE, since the other synapse actions do not apply
+    there.
+  - Migrate the Index feature from a custom "index_enabled"
+    COUNTER_COMP_COUNT_BOOL to the generic COUNTER_COMP_PRESET +
+    COUNTER_COMP_PRESET_ENABLE pair. The Index ISR now loads the
+    preset value into count when preset_enable is set, like
+    intel-qep and other drivers do.
+
+Driver internals:
+  - Change priv->count from s64 to u64. ceiling now defaults to
+    U64_MAX instead of using ceiling == 0 as a sentinel for "no
+    ceiling", which i think is also more clean.
+  - Rewrite gpio_qenc_update_count direction-first, +/-1, with
+    proper saturation at 0 and at ceiling.
+  - Introduce CREATE_QE_STATE(prev_a, prev_b, curr_a, curr_b) and a
+    single 16-entry X4 transition table indexed by the macro. The
+    delta == 2 "invalid transition" path is gone, the table just
+    has 0 in that slot.
+  - Use default: in the ISR switches instead of listing every
+    ignored case.
+  - Drop the now-redundant enabled flag in the ISRs. Gating happens
+    via enable_irq/disable_irq anyway and enable_read derives the
+    state from irq_get_irq_data() so there is only one source of
+    truth.
+  - Simplify enable_write: no !!, assign directly, split the two
+    branches by return.
+  - Drop the no-op events_configure() hook from counter_ops, this
+    one was just left over.
+  - Do not register a synapse for the Index signal when no Index
+    GPIO is wired (no zombie entries) and drop the corresponding
+    !gpio guard in signal_read which was only there to catch the
+    zombie case.
+  - Declare priv->cnts as a single-element array and use
+    ARRAY_SIZE(priv->cnts) for counter->num_counts, for consistency
+    with the rest of the subsystem.
+  - Rename the Count from "Position" to the more generic "Count",
+    since positioning is only one of the use cases for a quadrature
+    encoder.
+
+Documentation / style:
+  - Add a short comment to the priv spinlock.
+
+Krzysztofs "drop const on scalar parameters" note from PATCH 2/3
+of v2 is also taken care of in this rewrite -- v3 was Acked-by
+Conor only and did not carry code changes yet, so the const scalar
+parameters survived there. In v4 there are no const-qualified scalar
+parameters left in the driver.
+
+The follow-up scope which was discussed with William -- COMPARE/FLOOR
+components plus OVERFLOW/UNDERFLOW/THRESHOLD/DIRECTION_CHANGE events
+-- is on purpose not included in v4. I will send those as a separate
+series on top of this one once it lands, so the diff size stays
+reviewable.
+
+Changes in v4:
+  - Major review-driven rewrite of the driver (see above).
+
+Changes in v3:
+  - Pick up Acked-by: Conor Dooley on the DT binding patch.
+  - No code changes.
+
+Changes in v2:
+  - DT binding: rephrase description to describe the hardware, not
+    the driver/sysfs behaviour (Conor Dooley)
+  - DT binding: drop redundant example without index GPIO (Conor Dooley)
+
+Wadim Mueller (3):
+  dt-bindings: counter: add gpio-quadrature-encoder binding
+  counter: add GPIO-based quadrature encoder driver
+  MAINTAINERS: add entry for GPIO quadrature encoder counter driver
+
+ .../counter/gpio-quadrature-encoder.yaml      |  60 ++
+ MAINTAINERS                                   |   7 +
+ drivers/counter/Kconfig                       |  15 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/gpio-quadrature-encoder.c     | 739 ++++++++++++++++++
+ 5 files changed, 822 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/counter/gpio-quadrature-encoder.yaml
+ create mode 100644 drivers/counter/gpio-quadrature-encoder.c
+
+
+base-commit: 3cd8b194bf3428dfa53120fee47e827a7c495815
 -- 
-2.54.0
+2.52.0
 
 
