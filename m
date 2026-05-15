@@ -1,280 +1,207 @@
-Return-Path: <devicetree+bounces-298427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298429-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2C9UCOtCB2oCvAIAu9opvQ
-	(envelope-from <devicetree+bounces-298427-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:59:39 +0200
+	id AE6XOG1BB2oCvAIAu9opvQ
+	(envelope-from <devicetree+bounces-298429-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:53:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FEA65528D1
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:59:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B385526FD
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:53:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 343073081B30
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:44:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 772513045914
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF123E008A;
-	Fri, 15 May 2026 15:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ti9afzSK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CD8305699;
+	Fri, 15 May 2026 15:45:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EF2305682;
-	Fri, 15 May 2026 15:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE95305687
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778859569; cv=none; b=cFAJrcEdfP1csyTV/i3zKrUXDDVH+e+o39biXWU6syNX9X30NR5rIY3yk/QvlVgeI/xec++79UnHsCIjcgsOYzoSIeL2HqTHDbxSI1QfAEd6gSAjOb89KbQ6j10mnJIDIwgY7pPdaOMBHZ6Cn80FribrxR0THXWJva+XD/vk3NE=
+	t=1778859925; cv=none; b=LYnfPG0HD5DgkBRAIMk1sxpSn2yHxU2qn858tkXFUaYa5V4oYcv5+ELeGSYoRe7V9yB6RC+F4OdSRpzHZPCM15W2tOkdsBZH3POVuqyRh83KLw7IYkCyIQs2wiUTGTgryUJeQSiBS9Z79ELgn/IFgFSWxKO2mdwN5vPcwK6UE1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778859569; c=relaxed/simple;
-	bh=T1eEHSyyLgSbr9sArcALV84p9lrY1225gvm0yy3XBic=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hXCsHy8TkxlY1sVPdiGPJpgLq6BsXjqbDS2EYCD0o13n2qAfUJF01V5E9v3VCD/qW24zKBv4DhDQEezbM4DmKksJ5xz9Y4ULzFU1Ikh2BsU6A/H7eVZW/QxsWA3EexYc1B6m4JOmQ1y1bk70R5lgJxZHzHVpBwPQxTUwl0pg0qQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ti9afzSK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 849EDC2BCC9;
-	Fri, 15 May 2026 15:39:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778859569;
-	bh=T1eEHSyyLgSbr9sArcALV84p9lrY1225gvm0yy3XBic=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ti9afzSKKaWFunffGxlAhThltdbqXXiVdXsgZwgG7nCUZ5FqbXHAF9ygSYSJRh5/B
-	 GP7bxBJyzclV3ZeyD+iuU3SAG4pS5n17opkGTBS7DhWAHjIqRl0HLbVGnXqfg1qAEd
-	 92L83B2bWUKbjnAapqw1LBwXU38A4C1f3By86jeiJ8kwB6HIlFDFx8wromI4jjM2o7
-	 vgNAYyRnf0j5MZ08V4QrvCCCTnSpNFN/wL2HHMT1uABOfdXKlgtsvWK5NSDwdwvmi9
-	 qoVcAVl7iK1iVykPoJk4Gdk0MN1vTN1JvkQTvON4CJr3g6rN1IOiLj/MfViwqi9RLJ
-	 c6RguukAQL0FA==
-Message-ID: <159d813e-1f2d-420a-bfa7-48ac8f533db5@kernel.org>
-Date: Fri, 15 May 2026 17:39:23 +0200
+	s=arc-20240116; t=1778859925; c=relaxed/simple;
+	bh=nSQhZQ6tGlBOmtUdwr13VWi2FIFZQeS4gjHokci/kyc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o6gql5GS5mzq3NRChQFCQz1QKBVnLfb2ottfCMlucFM+3Ko4Tm/s0OzFLODozfC6cs719Td4E/cEpnSjHKGZW6MlvCJinH36oR7OMax6DCtRYbFpJJWy7uJE81+Q2qFw8P6FODYyz0rEi3afgJMlMynQNpzuxudAhnfOq69RIDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5a40502e63bso8641946e87.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 08:45:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778859922; x=1779464722;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qkAu8P10dwihkNM39UctSZpVluViyWa9thhV649dqfg=;
+        b=e+L6hIv42ngyi3pbPNaXjOdMMzyqQ1qQS4fPFf539BaJh1OSrd0BbxxRsw747Jia0+
+         fyMZxydupo9jHT8O3+xjf7qGZvo9xsuucuLeeqqeDY+ydO1ImpuQxGdgyZ58oav0j0NM
+         twH4KX9BZxeGSWW4vwTyH9CpRFIuEnDIAQ+J9z7f1AZGhX9hDPAZNmxOYYNDsTEly3mo
+         BfEI+5vIj8bCo4ahct6oOI0l4SYCynKMDc0Uz26Po85whbXWtxZySGWPKdLXMkWHtxXT
+         I6TFb0Zfhun0cqkG8hslwkijWB5TT+bZhep1rp7z20ei11Irwuko+UTeJVUgPd70mGWm
+         1eMw==
+X-Forwarded-Encrypted: i=1; AFNElJ+NW5bLCWmjkMyXCBWeBRP+FIqQOVDyJqsfiiuajlBpwPTm6bS7rJZyTIV/SUXIYh2NFHwccKE+EvUK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkGr8V2JapVVZXdcZj8LJSRHKH4PrE9z8/apv7k5Ybj5AO5Ulp
+	Uy2mEHrrIA1ev4uHeZlHJXAR4+l5cDdS37A9tHHXbhrcY5ra1DQRs0oijN/q6DsUUjA=
+X-Gm-Gg: Acq92OHdXGuTFsEDMC/QCWTor7VuoQ8u4DpRoF43hO5zNnnOp1Dm8Pl9yzQMPDIs/Yy
+	awRrs4Q5YfhPzsnvgN5YeIGQNODhfRDVw5L21PZP+2mVBjhW9lNrzG3/TgsX2ImBeLc388RuUAn
+	UoBaIQ/Wj1uhiP8Ms7A+8OD/84Gbk4t1bIbKiKKR8jaigzIifXRFwJoeO6oPpGw1/hAedhJqUB1
+	iKfFqTwTgwkLs1b98iDfR297Cjh4jmuskFo179NXbPByaWDIwaOc/CxOe8j15EAA0gK5j+yRY0Z
+	1gwzbRWo2G1UQyvbEDkgLGDRKn7BIzx7XhhC29HCuECAhEIZ/046okcuH2CH1oVgGXVdnUdlqC9
+	VSzV4OWH4kep0RdDlEoEj6KyuCdrRWkfgcgkh53X10g0zGATa9uvLeHu1zsPKSOjGuFNq+p9M0Z
+	6hqSSQdf0k1gjUb3D4SCTQ9sleCiRd+D4h1/rklDH9qmjFZwzSr/QTf8fL1xHR4LtcBvOweyvfG
+	mM=
+X-Received: by 2002:ac2:4c47:0:b0:5aa:b6a:738f with SMTP id 2adb3069b0e04-5aa0e749c47mr1479386e87.45.1778859921909;
+        Fri, 15 May 2026 08:45:21 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a9164bc0ccsm1416978e87.41.2026.05.15.08.45.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 08:45:21 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-393925cb1baso13581fa.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 08:45:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8tKrz18Pxpo/n+RTmWZU70FE4VIC7gyrOAuMmSo6Zd7RySO/LYDdo136USa7oIOy8CGso8E+xKY/Gc@vger.kernel.org
+X-Received: by 2002:a05:6402:e0d:b0:684:44f:d859 with SMTP id
+ 4fb4d7f45d1cf-684044fdae7mr1374876a12.3.1778859601770; Fri, 15 May 2026
+ 08:40:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: Add
- support for Shikra
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Vinod Koul
- <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
- Johan Hovold <johan+linaro@kernel.org>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>,
- Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260504170659.282532-1-krishna.kurapati@oss.qualcomm.com>
- <20260504170659.282532-3-krishna.kurapati@oss.qualcomm.com>
- <20260505-gifted-salamander-of-prowess-5107a6@quoll>
- <8cd564af-9646-40c5-a8ef-c7197fb3cfe9@kernel.org>
- <95b567cc-b83c-4154-9520-e624555f1882@oss.qualcomm.com>
- <29571bdd-23bf-42a7-a9e3-918a28c79700@kernel.org>
- <62161822-2365-4ec7-80f7-8660bdadb177@oss.qualcomm.com>
- <40b5e0f6-bc61-4750-9560-bdcc268f0fe3@kernel.org>
- <d52c5039-9431-44ed-9f3b-bb00d03ae176@oss.qualcomm.com>
- <5baeeeed-7c18-46f7-82a3-5bb299ba05ef@kernel.org>
- <42ba6ac7-306a-419f-96b6-3427c51ef567@oss.qualcomm.com>
- <9ed7c714-07c1-48de-8d27-cbe24356c606@kernel.org>
- <34586ed6-4f78-490f-a916-baf7657cca7a@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <34586ed6-4f78-490f-a916-baf7657cca7a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8FEA65528D1
+References: <cover.1776793163.git.geert+renesas@glider.be> <72e2a0e7a5abda02fe36b3f5851842f7a77b2593.1776793163.git.geert+renesas@glider.be>
+ <aekXUvIPb8nkhdKu@pluto>
+In-Reply-To: <aekXUvIPb8nkhdKu@pluto>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 May 2026 17:39:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX8b9C3D8fV5th6GCgs6JAq7HZbF_SrOKz_gDy2H8ksow@mail.gmail.com>
+X-Gm-Features: AVHnY4L73EskDuVnlvp0bKAJEo06GxthEmZ8mwHk1YJIsXaKqejpar7GeFZqJcE
+Message-ID: <CAMuHMdX8b9C3D8fV5th6GCgs6JAq7HZbF_SrOKz_gDy2H8ksow@mail.gmail.com>
+Subject: Re: [PATCH/RFC 05/14] firmware: arm_scmi: Add scmi_get_base_info()
+To: Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Saravana Kannan <saravanak@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Ulf Hansson <ulfh@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, arm-scmi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: F1B385526FD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,pengutronix.de,broadcom.com,sang-engineering.com,mailbox.org,renesas.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-298429-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298427-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.994];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,arm.com:email]
 X-Rspamd-Action: no action
 
-On 15/05/2026 17:36, Krishna Kurapati wrote:
-> 
-> 
-> On 5/14/2026 8:07 PM, Krzysztof Kozlowski wrote:
->> On 14/05/2026 08:22, Krishna Kurapati wrote:
->>>
->>>
->>> On 5/14/2026 12:26 AM, Krzysztof Kozlowski wrote:
->>>> On 07/05/2026 13:37, Krishna Kurapati wrote:
->>>>>
->>>>>
->>>>> On 5/5/2026 7:30 PM, Krzysztof Kozlowski wrote:
->>>>>> On 05/05/2026 15:57, Krishna Kurapati wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 5/5/2026 6:59 PM, Krzysztof Kozlowski wrote:
->>>>>>>> On 05/05/2026 15:27, Krishna Kurapati wrote:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On 5/5/2026 4:22 PM, Krzysztof Kozlowski wrote:
->>>>>>>>>> On 05/05/2026 12:49, Krzysztof Kozlowski wrote:
->>>>>>>>>>> On Mon, May 04, 2026 at 10:36:57PM +0530, Krishna Kurapati wrote:
->>>>>>>>>>>> Declare the USB-C QMP PHY present on the Qualcomm Shikra platform.
->>>>>>>>>>>>
->>>>>>>>>>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->>>>>>>>>>>> ---
->>>>>>>>>>>>       .../devicetree/bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml      | 2 ++
->>>>>>>>>>>>       1 file changed, 2 insertions(+)
->>>>>>>>>>>
->>>>>>>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>>>>>>>>>
->>>>>>>>>> ... and then I looked at the driver. So un-reviewed. Devices are clearly
->>>>>>>>>> compatible. If not, explain what is not compatible.
->>>>>>>>>>
->>>>>>>>> Talos uses GCC_USB3_PRIM_PHY_AUX_CLK.
->>>>>>>>>
->>>>>>>>> In Shikra, we are using GCC_USB3_PRIM_PHY_COM_AUX_CLK. We don't have
->>>>>>>>> GCC_USB3_PRIM_PHY_AUX_CLK.
->>>>>>>>>
->>>>>>>>> Hence, I didn't use a fallback compatible.
->>>>>>>>
->>>>>>>> This still explains nothing. How different clock makes interface for SW
->>>>>>>> incompatible exactly?
->>>>>>>>
->>>>>>> So I went by the naming. AUX vs COM_AUX.
->>>>>>
->>>>>> The naming does not matter. If the clock is called
->>>>>> "no_one_expects_spanish_inquisition", does that make software
->>>>>> incompatible? Why would the name itself matter?
->>>>>>
->>>>>>>
->>>>>>> Can I use a fallback compatible and in DT vote for "COM_AUX" clock with
->>>>>>> clock-names mentioning "aux" ?
->>>>>>
->>>>>> I don't know, I asked what is different in software interface.
->>>>>>
->>>>>
->>>>> Hi Krzysztof,
->>>>>
->>>>>     I checked with the hw team here and found out two things.
->>>>>
->>>>>     1. Shikra is a spinoff of Agatti and its sw interface (clocks used and
->>>>> regulators used) is the same as agatti.
->>>>>
->>>>>     2. I thought we could use qcm2290 as a fallback since the phy register
->>>>> init sequence is the same for Talos/Shikra/Agatti. The difference
->>>>> between Talos and agatti when checked in the driver was the init load
->>>>> settings. I checked with the hw team and they suggested using the init
->>>>> load settings which talos was using.
->>>>>
->>>>>     Hence both these compatibles (qcm2290 and qcs615) cannot be used as
->>>>> fallback for Shikra.
->>>>
->>>> Then I do not understand why you are using qcs615_usb3phy_cfg for
->>>> Shikra. You say that the initialization is different, but you use
->>>> exactly the same initialization. So in a meaning of compatibility
->>>> between hardware for Devicetree they are compatible.
->>>>
->>> Hi Krzysztof,
->>>
->>>    There are 3 things:
->>>
->>> 1. Clocks used:
->>> -> Talos supports AUX Clock since it supports DP over USB.
->>> -> Agatti and Shikra use COM_AUX clock since they dont support DP over USB.
->>>
->>> 2. Phy register Init sequence - same for all 3 targets
->>>
->>> 3. Regulator init load:
->>> -> Different for both Talos and Agatti
->>> -> Recommendation is to use Talos regulator load values.
->>>
->>> SW interface wise, shikra is comaptible with agatti. If we use agatti as
->>> fallback, we would end up using the platform data of Agatti where the
->>> regulator init load is not suitable for Shikra. Hence not using Agatti
->>> as fallback.
->>>
->>> Coming to driver changes, I used qcs615_cfg because it has required phy
->>> register sequence and regulator init load as needed by shikra.
->>
->> So is it compatible with QCS615? If not, then something is incomplete or
->> confusing. The driver uses the same software interface.
->>
-> Sorry for the confusion. The Talos compatible represents the USB/DP PHY 
-> with aux clock input, while Shikra is a USB-only PHY with com_aux input 
-> clock, so the two PHYs are not compatible with each other.
-> 
-> In the Linux driver implementation the match data is currently used only 
-> to affect the init sequence and regulator init load and here Shikra can 
-> reuse the Talos match data structure.
-> 
+Hi Christian,
 
-I wrote three times already, not writing anymore. You still did not
-answer the problem here.
+On Wed, 22 Apr 2026 at 20:45, Cristian Marussi <cristian.marussi@arm.com> wrote:
+> On Tue, Apr 21, 2026 at 08:11:38PM +0200, Geert Uytterhoeven wrote:
+> > Currently non-SCMI drivers cannot find out what the specific versions of
+> > each SCMI provider implementation on the running system are.
+>
+> Thanks for your patches....this is not a proper full review of the series,
+> BUT this patch catched my eye..
+>
+> Indeed, yes, it is deliberate that the SCMI version information is NOT
+> exposed out of the SCMI world, since being the SCMI an attempt to
+> standardize a common FW interface (as in [1] of course), you should not
+> know what runs inside the black-box, it should be irrelevant...
+>
+> ...indeed the versioning is used inside the SCMI stack to deal properly
+> with different protocol versions implemented by the server OR to apply
+> proper quirks when needed, but all the rest should be standard....
 
-Best regards,
-Krzysztof
+[...]
+
+> I watched a bit of the LPC discussions around this (from Marek I think)
+> but sincerely most of those problems had one (not necessarily simple)
+> solution: fix your firmwares AND/OR apply quirks in the meantime...
+
+So let's forward to the future, where the firmware is fixed, is fully
+compliant with the SCMI spec, and all IDs are stable, so no quirks are
+needed.
+
+Where do we specify the SCMI IDs to use?  Unless when using the
+remapping driver proposed in this patch series, they must end up in the
+DTB.  Existing upstream users put them either in the SoC-specific .dtsi,
+or in board-specific .dts.
+
+The SCMI server is supposed to expose to an agent (e.g. Linux) a
+sequential and contiguous list of IDs that represent only resources that
+the agent is allowed to use.
+  - We cannot put the SCMI IDs in the SoC-specific .dtsi, as that
+    describes all hardware in the SoC, which is typically much more than
+    Linux can or even wants to use when running on a specific board.
+  - You would think we could put the SCMI IDs in the board-specific
+    .dts.  However, that would limit actual use cases later, which do
+    not necessarily depend on the board solely.
+      - E.g. when moving control of the CAN-FD controller from Linux to
+        the Realtime OS, the CAN-FD node must be disabled in the DTB (by
+        overriding status to "reserved", or by just deleting the CAN-FD
+        node, both of which can be done by the boot loader). However,
+        with SCMI, the IDs corresponding to CAN-FD resources must be
+        removed from the ID space, causing a full renumbering. Who is
+        supposed to update the IDs in the DTB?
+      - E.g. when partitioning a single Linux system in multiple VMs,
+        and distributing hardware across these VMs, all VMs need
+        different DTBs, each describing a subset of the hardware.  With
+        SCMI, each VM needs different SCMI ID spaces, causing not a
+        simple partitioning of the devices in the DTB, but also a
+        renumbering of all IDs.
+
+Hence there are no stable SCMI IDs in DT, by design!
+And what do we describe in the SoC-specific .dtsi?  E.g. U-Boot IPL
+still needs real hardware description.
+
+What is the stance on this from the DT maintainers?
+Thanks a lot for your answers!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
