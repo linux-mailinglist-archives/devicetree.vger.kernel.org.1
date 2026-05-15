@@ -1,160 +1,141 @@
-Return-Path: <devicetree+bounces-298528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298532-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LDmAp6DB2p06gIAu9opvQ
-	(envelope-from <devicetree+bounces-298528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:35:42 +0200
+	id 8mtAJECFB2rR6wIAu9opvQ
+	(envelope-from <devicetree+bounces-298532-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:42:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B23C55774F
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:35:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3BEC557814
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:42:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6FA84300851B
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 20:35:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2D3C4300A387
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 20:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F983E835F;
-	Fri, 15 May 2026 20:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608E13E6392;
+	Fri, 15 May 2026 20:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PndDtqoS"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="izDSPEyi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71F0C23A9BD;
-	Fri, 15 May 2026 20:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CA937B3F2
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 20:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778877339; cv=none; b=PHgBG+CHpr2CBxFuuzfDB/nI3DlfIAscT+qTXSB/mEgPSf7ZmttwrptDkU6sHyr50XaasiREHRQA7FMiwrtvGjD3DslGvlyI5Bhs/TjWPDxLcEHbZQhDlkqtCNWabBUyXPXZ+0FrOvsL6OiRIipGw+0HL7BYCzoeq/OfcNpxOmo=
+	t=1778877757; cv=none; b=CZ2bGS3xxVXFVMSMAqbtNj424MgwByFleQAJ9FXok2KexppljrOiWWb2enfl5m+SuOzEJeja8k5/RukjuKatc9igRNxYDTr+fMSUpm2YOFSo6Rlsn0cP8I4gR82vCwyl4sxbCiupUxXMiw+ySGKpyyWTTaRpjaQkJLOuJwRdF5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778877339; c=relaxed/simple;
-	bh=H2euLxjrfczkBblxLchszB8NvqvYOl3jHXk+BNY5O+0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ts1Vec0EOcVGq+pjXieaqA/T1Q3OUe3Q9QCXBCczsRNlO/9dFwmtULcqJgdY3XomKQr/0dn2q9wF5g30dCvRJsAsCsLo1SOAgr/6CY7mkiRcIl+khLj/j4ZoTpPVhvmNd7TtTETBud8fHpwQGPXv9IvJl+IYKpGZkhFrH7u6Y14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PndDtqoS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 43470C2BCF5;
-	Fri, 15 May 2026 20:35:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778877339;
-	bh=H2euLxjrfczkBblxLchszB8NvqvYOl3jHXk+BNY5O+0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PndDtqoSXfxQjdS1kcLeVBQ1in+2OnsTn7lvgDBA/O3/ZTo2dzixMeqNVMua1/yKq
-	 Hoarm7lzEzvl/7MX0W/mQCwmgBaT7qGm3rAh7zxd8RAbyPWj3HlNhdan3dUCGnTgh9
-	 tTsr91aAjhTZu+5dJlp9GBHBe5o4XhLLlb4+P+cGJfDkxHB7b5/x2gL6JX7NT8bB22
-	 uZ9G3ufegWPIPzups+7NfARuYthEukB4F8pNrPsdh+Ekj11TS+Gkqg/ZAWdUXhcWbg
-	 Xda8DRx2mlvXfvF0xyCRWKMvD7HzA+K36e27pZ5xrADinQt9RaSPJn6zNXobIe0F8v
-	 vbtbZoygEyKZg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3892FCD343F;
-	Fri, 15 May 2026 20:35:39 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Fri, 15 May 2026 15:35:29 -0500
-Subject: [PATCH 3/3] arm64: tegra: Add iommu and dma properties for
- Tegra194 QSPI
+	s=arc-20240116; t=1778877757; c=relaxed/simple;
+	bh=t0e2oz5XKBVDCNBbF6tuOEuISAOISJ0awDN5oiLl+V8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=GBBgurGtJHU9nLqIlIAy4GO12QCfBnN0Bfxh84eyvQCkjKzKW+mWoTm76CPaQFs1X2hfFhC0gTeVe97C/b7uaooHe6yK7IkLkOgZUfOJje05VQt4ha/YMsIhdSlSZyNV5az+g6c7RprpX+RA831Mm6whVuKtmKO5Ek71j+NhI0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=izDSPEyi; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from [IPv6:2a02:1812:162d:3d00:c381:7255:a866:916d] (2a02-1812-162d-3d00-c381-7255-a866-916d.ip6.access.telenet.be [IPv6:2a02:1812:162d:3d00:c381:7255:a866:916d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id B9993780757;
+	Fri, 15 May 2026 22:42:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1778877748;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=t0e2oz5XKBVDCNBbF6tuOEuISAOISJ0awDN5oiLl+V8=;
+	b=izDSPEyiqLU6dqS/KNNSMdoP9JhVXaJOCXJVf5ny4f7IqvUI1+unU8x9oB9EkxQJZSWqxQ
+	KPfK8L86wLjFRcC8wjsDQCaWpBiesg9J43yu6etO20IBSt+w1Up/avXZ2d4MyeqAXWHRmY
+	u+xVMxacBANzQ/vx/MLPCjlyCoNuWgulzrUErw4UqJIkDsTYxd45Mjj9PEjppL7yYb5kC+
+	K3sDhfL1TTXXjo5hgPPo7p2Jy8U0BfuthDCy61PBUNuO28aLtlCKBP6Uu6pcTXXMhkufvH
+	3RNpHV4/kuo8qKKWS5C+bjjvUAp+69EXr1kzQKl/KFqf95jPBy0jKUe1zaEyXQ==
+Message-ID: <e73cb768716085a8bc461262ad8108e33ac97981.camel@svanheule.net>
+Subject: Re: [PATCH v2 0/2] watchdog: realtek-otto: add fallback compatible
+From: Sander Vanheule <sander@svanheule.net>
+To: Rustam Adilov <adilov@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Wim Van Sebroeck
+ <wim@linux-watchdog.org>,  Guenter Roeck <linux@roeck-us.net>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Fri, 15 May 2026 22:42:26 +0200
+In-Reply-To: <d73e53888ab7d8541c5d84e733c04166@disroot.org>
+References: <20260512204854.8931-1-sander@svanheule.net>
+	 <20260514161008.GB841147-robh@kernel.org>
+	 <9f81a947b65cafd44b293e05080b1fd2820cea06.camel@svanheule.net>
+	 <CAL_JsqLM4JQmbYCEz3-vpS+qiz8nXSk758CP_nFwWR2ihG-AFw@mail.gmail.com>
+	 <55abfd54cc6f01cee65d54ec74754549e30e4a94.camel@svanheule.net>
+	 <d73e53888ab7d8541c5d84e733c04166@disroot.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260515-tegra194-qspi-iommu-v1-3-57dfb63cd3d6@gmail.com>
-References: <20260515-tegra194-qspi-iommu-v1-0-57dfb63cd3d6@gmail.com>
-In-Reply-To: <20260515-tegra194-qspi-iommu-v1-0-57dfb63cd3d6@gmail.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@kernel.org>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778877338; l=1187;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=Np/pDfMhrl4vh3eC9VslgUn4DVBcUQmUCasGPdu9S6s=;
- b=XNElFQVNTMTXCC1rsHQEhqgqighB+BXthtnfT1GQGvp9+UcgAvg2MufyoHJKVYT7dCA8LSXGx
- ImTaWbQKrbrBQPjCga4kRxY7DIcgD6WmFx8mv8dZq6NsB2fS3mxUkZ9
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
-X-Rspamd-Queue-Id: 6B23C55774F
+X-Rspamd-Queue-Id: B3BEC557814
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[svanheule.net,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[svanheule.net:s=mail1707];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298528-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298532-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[svanheule.net:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.49.229.112:email,0.50.90.160:email]
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sander@svanheule.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Aaron Kling <webgeek1234@gmail.com>
+On Fri, 2026-05-15 at 19:14 +0000, Rustam Adilov wrote:
+> Hello Sander,
+> On 2026-05-15 08:47, Sander Vanheule wrote:
+> > Rustam, will you take it from here to add the two-part compatible for t=
+he
+> > RTL9706C? Since you won't need update the driver, I guess a single patc=
+h
+> > would
+> > do.
+>=20
+> I can for sure, but would you mind clarifying what needs to be done?
+> From my understanding two-part compatible for RTL9607C would look like
+> compatible =3D "realtek,rtl9607-wdt", "realtek,rtl8380-wdt";
 
-Without iommu and dma enabled, flash storage such as the spi-nor on the
-p3668 module times out and cannot complete any transfers.
+As I understand from the maintainers, this is indeed the desired approach.
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> But it's only gonna be relevant to OpenWrt for now.
+> Do i need to patch the realtek,otto-wdt.yaml file in the same way as
+> your patch 1 here?
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 1d659454a6f9fe..0e0a20befe9e68 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -923,6 +923,10 @@ spi@3270000 {
- 				 <&bpmp TEGRA194_CLK_QSPI0_PM>;
- 			clock-names = "qspi", "qspi_out";
- 			resets = <&bpmp TEGRA194_RESET_QSPI0>;
-+			iommus = <&smmu TEGRA194_SID_GPCDMA_0>;
-+			dma-coherent;
-+			dmas = <&gpcdma 5>, <&gpcdma 5>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
-@@ -1013,6 +1017,10 @@ spi@3300000 {
- 				 <&bpmp TEGRA194_CLK_QSPI1_PM>;
- 			clock-names = "qspi", "qspi_out";
- 			resets = <&bpmp TEGRA194_RESET_QSPI1>;
-+			iommus = <&smmu TEGRA194_SID_GPCDMA_0>;
-+			dma-coherent;
-+			dmas = <&gpcdma 6>, <&gpcdma 6>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 		};
- 
+Yes, you'll need to make a distinction between the new two-part compatible,
+while still allowing the old one-part compatible (which then should not be
+deprecated). Another binding that implements this is fsl-imx7ulp-wdt.yaml, =
+so
+you can also use that style, if you prefer.
 
--- 
-2.53.0
-
-
+Best,
+Sander
 
