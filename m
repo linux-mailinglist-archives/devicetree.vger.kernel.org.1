@@ -1,193 +1,186 @@
-Return-Path: <devicetree+bounces-298334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBwrKMYbB2rnrgIAu9opvQ
-	(envelope-from <devicetree+bounces-298334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:12:38 +0200
+	id qGljElocB2rnrgIAu9opvQ
+	(envelope-from <devicetree+bounces-298337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:15:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0373E550442
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:12:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD535504FA
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5A3530ACE00
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:02:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AE2363052A0A
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49FF13093B5;
-	Fri, 15 May 2026 13:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA3730C630;
+	Fri, 15 May 2026 13:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W5jnNp0L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ki6lpypO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F092E2DFA4A
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 13:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F7F30BBB9;
+	Fri, 15 May 2026 13:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778850174; cv=none; b=sJ1pEB5gA8IH+gBXoFTXBWg+p9N77rAikMg3DnGFuxYK8S1anm5yS7dKiTDCX1cvfde0kYbW9+wIOrw7b64HaOgptCgpIr+AcNHsE13YaWXqFDqytOPLNxdhKxpD54zAMgyiI2Z6A0UJCrqot8T+zz5dyfv9N4axnvP3CG2vvPc=
+	t=1778850387; cv=none; b=kUx/uegm/TA/BTxcSKfQKQTydDn6AmjgNVbGnBb31vACmDJIVOwEsdnPDlJzybJUXRKCCEo+m2ljUo6VTBxwi8B6+Yf7YGKaxumbfn4Qk47U5eTtmbFK3KdXXHrv027fcytqsO5g/PB6lk9U7gaUvqBfrVu4ifn8l8BH+TEJs3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778850174; c=relaxed/simple;
-	bh=7P166A8vdKpbCTvjwJ0c7DTCaR8r6ukvy1kUs71vwQ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eRbryMQc5SZ2OTQ13pWv0cLNHifPxlTknozHbV3XwSCAetcyXE82R0asooVMdN17eMoLH7FAtLzQtQJ3I+79x4LQYCUBOW3WNvomGdJl1esT2eabnJTpCvnMw9s/kaMwYHTSeWidlguB9U7xF72YSgMeQsFCSQ6bIyr27D8xYMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W5jnNp0L; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-439a8366831so1999492fac.3
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 06:02:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778850172; x=1779454972; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=W5jnNp0LzrW/3wRpRGTW5rRHwveKMqoiXtLDxrZC6val6aCa3aaQQMnjPkpdKqICQ6
-         rijUq0zkELsdAv1ZTAwELW3OZj4hzEJb5Ruz1ynqz8+V3OQCp9kCDyHCWH7e4zfJtxDb
-         5ePpvbqOSzgUfEgjDquCS+Xj3KZJeGqrNqwnyHcXZIbo9szvq3tmj7aXMmgPrZ8YIrhd
-         kCNrBqz+AFh+qmsPnMe+KW4xxCDnxEZgHxVrEw4KhMvRExOy+EaP4EY1KbhHtY7aXTcG
-         kgl+koEvQ8PrW/4hp61fquQ/SUo36loHgjLAlaW29AftSjlI8YjjUWI6OFsQciMUWeNu
-         5PGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778850172; x=1779454972;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=hCqU5fKynT0S8oW+5iPvZcvGNhhD5EFUxDxJMbEjNv3OiTFdMWriP5e3Xvem34cTUm
-         wSw2qlAhR977yjNFx+2zwoscU6t/Mxr6Bpm4UUbxVTj9RCNYUAovnAZN6P0Y2hZvBmfU
-         HR0KCzw2sbN158Y/2PEYVxGLKnqBPiu9F0wUbwzvMM0bMNa7+xQj0Zbv4fA0CDmqMybo
-         Ag3CmqqNxfAI1+SmBDaHie1ofZI8XxzpSs4W/LmwdTVuyv+gOKbMAM6KefGwHLuZ5TjH
-         SE0mad/08OtwZxxB4gXpD2rvxTIzOQRYCy831BWJeJyiIqZtWjCoLKpDPhAeINyID/iO
-         xVFA==
-X-Forwarded-Encrypted: i=1; AFNElJ9HQsc/NN1njtCKjifX+IDOXxyqqFng1MuX4h6reFry1TGGN188CTPqj0R+XjGVSRYeht0dvSvrr0JG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyybdH6ysX/eCP+93Lunu5srhQ3sfcHCTsJ6/ZO/hZMFK+LnDBs
-	2DYe1EozRQKAmbGkDv1xbSj/2ktG/lj7Nwx4nsAx4BuHDPAf9hCHzTvv
-X-Gm-Gg: Acq92OGpr29kFNTn5Fsab6KAW81aNFpcD4ltDneMqzmmBrn0FavwOjooUF2UlixhCil
-	YaqSp2z37K6TuxS8TWmJMwsbOFD9z3y1g2N7MBd1dTS02NSwjPliGHF4eiQFLqMbqhvGwv01Xv4
-	vrlzg/Uj5Ra95hOGrRAzZEbh2aPPqPe6pnDkX1epj7FiJ6q1qB4gcwaVeVcXt5tKQcaBz58+X4Q
-	BjWA5aRyAh9aeq15OX49eY7lpWrtS1L5/SozMAmiFWKCbXN/8NSLaRcpWqeFgprbHop/sltsuO2
-	G7LHt6sMY4lT13psAqEebqu3Z7ZlhPx5efXZv3qhIn3B7UG4sI7YY81ZRQzTHASUwjzlMTvj1sR
-	JDJGn83MVziXtdu+xd57xsCqdDUw2QYq5J0PqeC6MLVPx7pHf/fk8+rOXyNtBPR4xW8vuAHaf2v
-	2Y+fTTs4Pfd0fQbepkUERSYeRCxXaME+7Sy4+GubQX2Q==
-X-Received: by 2002:a05:6870:21e4:b0:42c:d92:1c68 with SMTP id 586e51a60fabf-43a2dd74a39mr2539946fac.21.1778850171260;
-        Fri, 15 May 2026 06:02:51 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bc0:8c2e:6a8e:445a:9169])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-439fc53f2acsm4155822fac.14.2026.05.15.06.02.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 May 2026 06:02:50 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: andy@kernel.org,
-	nuno.sa@analog.com,
-	dlechner@baylibre.com,
-	jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	andriy.shevchenko@intel.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V7 11/11] arm64: dts: rockchip: Add icm42607p IMU for RG-DS
-Date: Fri, 15 May 2026 08:00:16 -0500
-Message-ID: <20260515130018.237378-12-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260515130018.237378-1-macroalpha82@gmail.com>
-References: <20260515130018.237378-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1778850387; c=relaxed/simple;
+	bh=uUeWRpb6xVmmL+Lm7CLlmRxmdTh61MhPLeJ6UxoXK48=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FW8JIKBNtWTFEi7sP7EKyj3axCTpL6LCR142oBKBeTniRT3pCXeHMl5l+2aQjj+k9qIm/DI3FMj9ZqFZhKRs3Lkq3oY+DUgOGbPdavxhI/qWQ9jtbmeju9wPMPJ79qHjuZphYldL4l1McdkE8/28Dpa7mgB1vElTKp8z67wcrks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ki6lpypO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31C42C2BCB0;
+	Fri, 15 May 2026 13:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778850386;
+	bh=uUeWRpb6xVmmL+Lm7CLlmRxmdTh61MhPLeJ6UxoXK48=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ki6lpypOzKMiHDITLyOYMf1T4BOaUqjbJKKxUd91YQRXBCpxXWYiJQzi7lEjX/VNk
+	 GdGuMXvO6plYdYaEpO8DthgdPZXsYlO3nkMNEgPnyjDHj0+myWDE1FMHPtj9rmaPN1
+	 Er++cWiIZIMdYHN/uFVIfdzylgJzHF3L22wa+B3NyiPJBxRJu/U4Pv1MCRkuKBNWjs
+	 FGlz6skdhT2o1jxQwKBHUCYdotqPfQeQvEu1WY9Kw2VBeTmJ/Pb+WtTLZKi3H8u04D
+	 c40CopEGAbuQtKljOUTRlz3genvU1aKhvRGujsSYZR8p4xEFzH/jLQ49uSYAwLeLTM
+	 ioi2NqvjCplZQ==
+Date: Fri, 15 May 2026 14:06:21 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v18 1/3] dt-bindings: pwm: opencores: Drop starfive
+ compatibles and update maintainers
+Message-ID: <20260515-blinked-gigabyte-d2882372b616@spud>
+References: <20260515054723.25024-1-hal.feng@starfivetech.com>
+ <20260515054723.25024-2-hal.feng@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 0373E550442
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bsBRJFDfWIlVk/Sa"
+Content-Disposition: inline
+In-Reply-To: <20260515054723.25024-2-hal.feng@starfivetech.com>
+X-Rspamd-Queue-Id: 8FD535504FA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	TAGGED_FROM(0.00)[bounces-298337-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-298334-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_PROHIBIT(0.00)[0.0.0.68:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.190.149.16:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,5b:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the Invensense ICM42607P IMU for the Anbernic RG-DS. Mount-matrix
-was tested with iio-sensor-proxy and reports correct orientation.
+--bsBRJFDfWIlVk/Sa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3568-anbernic-rg-ds.dts    | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+On Fri, May 15, 2026 at 01:47:20PM +0800, Hal Feng wrote:
+> Each of the StarFive JH7100/JH7110/JH8100 SoCs has 8 OpenCores PTC IP
+> cores. One OpenCores PTC IP core can output one PWM channel. The only
+> difference among them is the register base address. There is no need
+> to add starfive compatibles to distinguish them.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-index 8d906ab02c5f..875ca884deca 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-@@ -871,7 +871,18 @@ aw87391_pa_r: audio-codec@5b {
- 		sound-name-prefix = "Right Amp";
- 	};
- 
--	/* invensense,icm42607p at 0x68 */
-+	icm42607p: imu@68 {
-+		compatible = "invensense,icm42607p";
-+		reg = <0x68>;
-+		interrupt-names = "INT1";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PD6 IRQ_TYPE_EDGE_FALLING>;
-+		mount-matrix = "-1", "0", "0",
-+			       "0", "1", "0",
-+			       "0", "0", "-1";
-+		pinctrl-0 = <&accel_irq>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &i2c3 {
-@@ -932,6 +943,13 @@ &i2s1_8ch {
- };
- 
- &pinctrl {
-+	accel {
-+		accel_irq: accel-irq {
-+			rockchip,pins =
-+				<0 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	gpio-keys {
- 		vol_keys_l: vol-keys_l {
- 			rockchip,pins =
--- 
-2.43.0
+NAK, that's not an acceptable reason to remove soc-specific compatibles.
 
+pw-bot: changes-requested
+
+>=20
+> I will maintain the pwm module in place of William.
+>=20
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  .../devicetree/bindings/pwm/opencores,pwm.yaml         | 10 +++-------
+>  1 file changed, 3 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml b/D=
+ocumentation/devicetree/bindings/pwm/opencores,pwm.yaml
+> index 52a59d245cdb..834fb17ec595 100644
+> --- a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: OpenCores PWM controller
+> =20
+>  maintainers:
+> -  - William Qiu <william.qiu@starfivetech.com>
+> +  - Hal Feng <hal.feng@starfivetech.com>
+> =20
+>  description:
+>    The OpenCores PTC ip core contains a PWM controller. When operating in=
+ PWM
+> @@ -20,10 +20,6 @@ allOf:
+>  properties:
+>    compatible:
+>      items:
+> -      - enum:
+> -          - starfive,jh7100-pwm
+> -          - starfive,jh7110-pwm
+> -          - starfive,jh8100-pwm
+>        - const: opencores,pwm-v1
+> =20
+>    reg:
+> @@ -48,8 +44,8 @@ additionalProperties: false
+>  examples:
+>    - |
+>      pwm@12490000 {
+> -        compatible =3D "starfive,jh7110-pwm", "opencores,pwm-v1";
+> -        reg =3D <0x12490000 0x10000>;
+> +        compatible =3D "opencores,pwm-v1";
+> +        reg =3D <0x12490000 0x10>;
+>          clocks =3D <&clkgen 181>;
+>          resets =3D <&rstgen 109>;
+>          #pwm-cells =3D <3>;
+> --=20
+> 2.43.2
+>=20
+
+--bsBRJFDfWIlVk/Sa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagcaSgAKCRB4tDGHoIJi
+0vz7AQDnchzrkgpD5wwGGsBP0yvNyXSvs8NxJBiUXVHJNmwg0wEAgZFhi1GnKqLB
+ujHGBW3J5oDRwL4QP5p0t03/7ZjktQU=
+=shV9
+-----END PGP SIGNATURE-----
+
+--bsBRJFDfWIlVk/Sa--
 
