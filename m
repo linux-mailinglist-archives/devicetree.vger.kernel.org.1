@@ -1,310 +1,164 @@
-Return-Path: <devicetree+bounces-298456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298460-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8NxvCRBOB2rAxgIAu9opvQ
-	(envelope-from <devicetree+bounces-298456-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 18:47:12 +0200
+	id sKkdM+lOB2rBxgIAu9opvQ
+	(envelope-from <devicetree+bounces-298460-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 18:50:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 840BF553E93
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 18:47:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F0155405E
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 18:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97BF83287F44
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:17:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D312732E8A77
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00213E008B;
-	Fri, 15 May 2026 16:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0B94BCAB4;
+	Fri, 15 May 2026 16:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4kNWy7w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eM8l/ioT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2913C4B72
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 16:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6523FBB43;
+	Fri, 15 May 2026 16:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778861690; cv=none; b=LYeDW5Smr6WB4xC6rZeVihHrNdb/sW2VEaqvZOseNYxxmvNVGvEkkwwh4PDMbSYIY7MxCavYdgpOze1o32ALxkxIP4f+jwX1MnzLegtOXvYd2kCDhdcEi3y09Hk0T3G0J//FnxuiFW7p7NQxrl3YXGaEROadeHscavhc1PtK4hs=
+	t=1778861756; cv=none; b=dAlWQTJ2R2fsAHEOigzWgqrmSinY8t89vwRtAGYFz+YLYaukI1IpvyKoMh/PgNnk4FbCEgqxm8wTP/SARZPYbCDUvKa6KDWxDX7R/zzet5arIo8wQMhAKm+WxjOI2siQwz45mQsfW77d8Fy1MdfKlbYWL2kcg4IB3KpKi1v3LaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778861690; c=relaxed/simple;
-	bh=1cnlVgV8SfRWrGdm5CdZ9tbWjawRGfYn3YkkEO4E3X4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZqCE21b2yuCfV/6OwSkDop+9T8wTkhrwuVdJlYpno/A19Si4HTLg99IS6o+7O/24aZjbgHyJjdi/vy7G93jmiPbYv80HsBfKcOYAYwZVi3Mmd1PX6/YbaEff1136pIT5yzfq73UcG6uOGZM+VYkGVKQtYROBcwoZpHnf5J+jUos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4kNWy7w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1610BC2BCB0;
-	Fri, 15 May 2026 16:14:50 +0000 (UTC)
+	s=arc-20240116; t=1778861756; c=relaxed/simple;
+	bh=Ls0zieI6n1a+GjiUULtE7wmeeaHH+lHJ7sjhkoqpTI0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=EwZzu7iuFa4rPdyRx7tKB2yAcLFSzDU+oi9vMPzZhXLfAiYo4fuCKbrwRo+Q68yF0FB+lFze1KsmZP3CU7ZbPAh7iAfqP6ftYxHxp4co1NNP4FY3R0pqXdd4FYzGG76pRQrCnKUSA+7SptAgpGwm4XN5DdluxG8kKPXlAyL1zqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eM8l/ioT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48EE0C2BCC7;
+	Fri, 15 May 2026 16:15:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778861690;
-	bh=1cnlVgV8SfRWrGdm5CdZ9tbWjawRGfYn3YkkEO4E3X4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=C4kNWy7wKCUCtIQJXnKCgETzEI+Q9C0n0/EGcoWi9TOQJDm5THENMD+yqbuVaxxyq
-	 jgdvlXjBWvdlQlwFFMd2RJ4bTnHDrFdUnV1YYJUjJArfuiuZbRC52GjCliofdUH+Ak
-	 ZeQF2ZRpmcKEbHSX4O9ezCtPElZUexxc9Gbjxzi7cTo44z+WPLgj9WLSAQwYBOkHI5
-	 Ar8ZNvgL1bxztX714X1tugP0Gi8uyLkQcWudgZS5P76x0AfLhKvUzGDmaeQwwkj3l5
-	 AELKA2m2bFW5FY+D3s2rwTp92JoE1Dba9AQ/PMYAhkRS0HFKLlOZoozlkO//HX+bou
-	 2g+mVunPFawRw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 5/6] iio: adc: ad4691: add oversampling support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Radu Sabau via B4 Relay" <devnull+radu.sabau.analog.com@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260515-ad4692-multichannel-sar-adc-driver-v11-5-eab27d852ac2@analog.com>
-References: <20260515-ad4692-multichannel-sar-adc-driver-v11-5-eab27d852ac2@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 16:14:49 +0000
-Message-Id: <20260515161450.1610BC2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778861756;
+	bh=Ls0zieI6n1a+GjiUULtE7wmeeaHH+lHJ7sjhkoqpTI0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=eM8l/ioTjTBlLE2elUng/c7wE0Nc0RQeRkkvJo1Knm7wijcU8WAKliRKAsUQsMbrk
+	 Aj29LKlg7xoQuYGO1PxWHxMsuttdwICyuDvoh5odyTq/LhseB5EWQFNxRbKsbi5c/D
+	 k1v/fEkpw+tD28c0SJIESxkv/R+tgSbXZtdtMUOiXOQKPKxQU6YPSB4+dyupww9ALx
+	 SjGbKRQs88cSHCNaAhJ8NCWrYrW0xJcJ8HGV477dYC+Eby+ebY4UJWWadfcJiw9Bsg
+	 fOxrxpPBp4oThtZW8H+8MSNhyfBZN7J/iNWysQxOwrIqKBA2seVbnCzUa2hVy3H1ql
+	 P2fGKoY+lRZVw==
+Message-ID: <ab821805-49dd-4b55-a77d-0f25e0247bff@kernel.org>
+Date: Fri, 15 May 2026 18:15:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 840BF553E93
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net 2/2] dt-bindings: net: updated interrupt type to be
+ active low, level triggered
+To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>,
+ "parthiban.veerasooran@microchip.com" <parthiban.veerasooran@microchip.com>,
+ "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <CY8PR02MB924916514D414B698DEB9A1883042@CY8PR02MB9249.namprd02.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CY8PR02MB924916514D414B698DEB9A1883042@CY8PR02MB9249.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 70F0155405E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298456-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-298460-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] UAPI Violation: `sampling_frequency` is exposed as a separate attr=
-ibute but modifies shared hardware state.
-- [High] Logic Error: Eager snapping of `target_osc_freq_Hz` prevents setti=
-ng attributes in arbitrary order as claimed.
-- [Medium] Data Race: Lockless read of `samp_freq_avail` by the IIO core ca=
-n result in torn or out-of-bounds reads.
---
+On 15/05/2026 18:13, Selvamani Rajagopal wrote:
+> According to OPEN Alliance 10BASE-T1x MACPHY Serial Interface (TC6)
+> specification, interrupt type is active low, level triggered interrupt.
+> 
+> Fixes: ac49b950bea9 ("dt-bindings: net: add Microchip's LAN865X 10BASE-T1S MACPHY")
 
-commit 263cf27684f7e7bf6a4d514df77024b26ca11416
-Author: Radu Sabau <radu.sabau@analog.com>
-Subject: iio: adc: ad4691: add oversampling support
+Drop, there is no bug here. That is only an example. Otherwise explain
+how does this bug affect anything.
 
-This commit adds per-channel oversampling ratio (OSR) support for CNV
-burst mode in the ad4691 driver. It introduces manual and offload channel
-variations and dynamically computes available sampling frequencies based
-on the channel's current OSR.
+Also, did you consider the board layout?
 
-> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
-> index 25f7a6939b0fb..39244e0e4a2d8 100644
-> --- a/drivers/iio/adc/ad4691.c
-> +++ b/drivers/iio/adc/ad4691.c
-[ ... ]
-> @@ -127,12 +129,39 @@ struct ad4691_chip_info {
->  	const struct ad4691_channel_info *offload_info;
->  };
-> =20
-> +/* CNV burst mode channel =E2=80=94 exposes oversampling ratio. */
->  #define AD4691_CHANNEL(ch)						\
->  	{								\
->  		.type =3D IIO_VOLTAGE,					\
->  		.indexed =3D 1,						\
-> -		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW)		\
-> -				    | BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-> +		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |		\
-> +				      BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) | \
-> +				      BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-
-Could this be a UAPI violation? The sampling_frequency is exposed with
-info_mask_separate, giving each channel its own sampling frequency attribute
-(e.g., in_voltage0_sampling_frequency).
-
-However, writing to this attribute modifies st->target_osc_freq_Hz, which is
-the shared base clock for all channels. If channels have different
-oversampling ratios, writing to one channel's sampling frequency will
-silently alter the effective sampling rate of other channels.
-
-Should this be exposed with info_mask_shared_by_all (or shared_by_type)
-instead, so userspace knows the clock is shared?
-
-[ ... ]
-> @@ -588,41 +732,65 @@ static unsigned int ad4691_samp_freq_start(const st=
-ruct ad4691_chip_info *info)
->  	return (info->max_rate =3D=3D 1 * HZ_PER_MHZ) ? 0 : 1;
->  }
-> =20
-> -static int ad4691_get_sampling_freq(struct ad4691_state *st, int *val)
-> +/*
-> + * Find the largest oscillator table entry that is both <=3D needed_osc =
-and
-> + * evenly divisible by osr (guaranteeing an integer effective rate on
-> + * read-back). Returns 0 if no such entry exists in the chip's valid ran=
-ge.
-> + */
-> +static unsigned int ad4691_find_osc_freq(struct ad4691_state *st,
-> +					 unsigned int needed_osc,
-> +					 unsigned int osr)
->  {
-[ ... ]
-> -static int ad4691_set_sampling_freq(struct iio_dev *indio_dev, int freq)
-> +static int ad4691_set_sampling_freq(struct iio_dev *indio_dev,
-> +				    struct iio_chan_spec const *chan, int freq)
->  {
->  	struct ad4691_state *st =3D iio_priv(indio_dev);
-> -	unsigned int start =3D ad4691_samp_freq_start(st->info);
-> +	unsigned int osr, found;
-> =20
->  	IIO_DEV_ACQUIRE_DIRECT_MODE(indio_dev, claim);
->  	if (IIO_DEV_ACQUIRE_FAILED(claim))
->  		return -EBUSY;
-> =20
-> -	for (unsigned int i =3D start; i < ARRAY_SIZE(ad4691_osc_freqs_Hz); i++=
-) {
-> -		if (ad4691_osc_freqs_Hz[i] !=3D freq)
-> -			continue;
-> -		return regmap_update_bits(st->regmap, AD4691_OSC_FREQ_REG,
-> -					  AD4691_OSC_FREQ_MASK, i);
-> -	}
-> +	/*
-> +	 * Read osr under st->lock: osr[chan] and target_osc_freq_Hz are
-> +	 * modified together under the lock; reading after acquiring it ensures
-> +	 * we see a consistent snapshot with no concurrent write racing us.
-> +	 */
-> +	guard(mutex)(&st->lock);
-> +	osr =3D st->osr[chan->channel];
-> =20
-> -	return -EINVAL;
-> +	if (freq <=3D 0 || (unsigned int)freq > st->info->max_rate / osr)
-> +		return -EINVAL;
-
-Does this eager check break the ability to set attributes in any order?
-
-The commit message states that sampling_frequency and oversampling_ratio
-can be set in any order because they are deferred until buffer enable.
-However, if transitioning from a high OSR (e.g. 32) to a low OSR (e.g. 1)
-with a high sampling frequency, writing the frequency first will fail here
-because it is evaluated against the old OSR of 32.
-
-[ ... ]
-> @@ -634,10 +802,46 @@ static int ad4691_read_avail(struct iio_dev *indio_=
-dev,
->  	unsigned int start =3D ad4691_samp_freq_start(st->info);
-> =20
->  	switch (mask) {
-> -	case IIO_CHAN_INFO_SAMP_FREQ:
-> -		*vals =3D &ad4691_osc_freqs_Hz[start];
-> +	case IIO_CHAN_INFO_SAMP_FREQ: {
-> +		unsigned int osr;
-> +		int n =3D 0;
-> +
-> +		/*
-> +		 * Hold the lock while reading osr[chan] and populating the
-> +		 * scratch buffer: a concurrent oversampling_ratio write modifies
-> +		 * both target_osc_freq_Hz and osr[] under the lock, so we must
-> +		 * read osr atomically with respect to that write. The scratch
-> +		 * buffer is per-channel, so concurrent reads on different
-> +		 * channels do not race; concurrent reads on the same channel
-> +		 * would compute identical values, but holding the lock avoids
-> +		 * the formal data race.
-> +		 */
-> +		scoped_guard(mutex, &st->lock) {
-> +			osr =3D st->osr[chan->channel];
-> +
-> +			/*
-> +			 * Only oscillator frequencies evenly divisible by the
-> +			 * channel's OSR yield an integer effective rate; expose
-> +			 * those as effective rates (osc / osr) so the user works
-> +			 * entirely in output-sample space.
-> +			 */
-> +			for (unsigned int i =3D start;
-> +			     i < ARRAY_SIZE(ad4691_osc_freqs_Hz); i++) {
-> +				if (ad4691_osc_freqs_Hz[i] % osr)
-> +					continue;
-> +				st->samp_freq_avail[chan->channel][n++] =3D
-> +					ad4691_osc_freqs_Hz[i] / osr;
-> +			}
-> +		}
-> +		*vals =3D st->samp_freq_avail[chan->channel];
->  		*type =3D IIO_VAL_INT;
-> -		*length =3D ARRAY_SIZE(ad4691_osc_freqs_Hz) - start;
-> +		*length =3D n;
-> +		return IIO_AVAIL_LIST;
-
-Could this lead to a data race with the IIO core?
-
-The st->samp_freq_avail array is populated while holding st->lock, but the
-lock is released before returning. The IIO core will read the array lockles=
-sly
-when formatting the sysfs string. If another thread writes to
-oversampling_ratio concurrently, the array might be repopulated with a new
-shorter length. This could cause the IIO core to read stale or uninitialized
-values out of bounds of the new length.
-
-[ ... ]
-> @@ -728,9 +953,48 @@ static int ad4691_write_raw(struct iio_dev *indio_de=
-v,
->  			    struct iio_chan_spec const *chan,
->  			    int val, int val2, long mask)
->  {
-> +	struct ad4691_state *st =3D iio_priv(indio_dev);
-> +
->  	switch (mask) {
->  	case IIO_CHAN_INFO_SAMP_FREQ:
-> -		return ad4691_set_sampling_freq(indio_dev, val);
-> +		return ad4691_set_sampling_freq(indio_dev, chan, val);
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO: {
-[ ... ]
-> +		/*
-> +		 * Hold st->lock while computing the new oscillator frequency
-> +		 * and updating both target_osc_freq_Hz and osr[chan] atomically:
-> +		 * read_raw for SAMP_FREQ reads both fields under the lock and
-> +		 * must see a consistent pair (new osc =E2=86=94 new osr).
-> +		 *
-> +		 * Snap target_osc_freq_Hz to the largest table entry that is
-> +		 * both <=3D old_effective * new_osr and evenly divisible by
-> +		 * new_osr, preserving an integer read-back of
-> +		 * in_voltageN_sampling_frequency after the OSR change.
-> +		 */
-> +		guard(mutex)(&st->lock);
-> +		old_effective =3D st->target_osc_freq_Hz / st->osr[chan->channel];
-> +		found =3D ad4691_find_osc_freq(st, old_effective * (unsigned int)val, =
-val);
-> +		if (!found)
-> +			return -EINVAL;
-> +		st->target_osc_freq_Hz =3D found;
-> +		st->osr[chan->channel] =3D val;
-> +		return 0;
-
-Similarly, does this logic force a write-order trap for oversampling_ratio?
-
-If a user writes the OSR first when transitioning between setups, this code
-multiplies old_effective by the new OSR. If no valid oscillator frequency
-exists below that product, this returns -EINVAL. It might also snap the base
-oscillator frequency to an unpredictably low intermediate value, contradict=
-ing
-the commit message's claim that both attributes can be set in any order.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-ad4692-mul=
-tichannel-sar-adc-driver-v11-0-eab27d852ac2@analog.com?part=3D5
+Best regards,
+Krzysztof
 
