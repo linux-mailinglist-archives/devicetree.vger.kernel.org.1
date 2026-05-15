@@ -1,445 +1,196 @@
-Return-Path: <devicetree+bounces-298123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298125-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIX/GNP5BmpUpwIAu9opvQ
-	(envelope-from <devicetree+bounces-298123-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:47:47 +0200
+	id yNhBNpX1Bmo4pgIAu9opvQ
+	(envelope-from <devicetree+bounces-298125-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:29:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE0D54DA41
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:47:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 812F954D588
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:29:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2574031DFB28
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:27:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AC0CD3000FCD
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 10:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3EF3CF952;
-	Fri, 15 May 2026 10:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0045D3DF00A;
+	Fri, 15 May 2026 10:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tRSmKduP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="f4O24kUA";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BUQBS6St"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FEA3C3422;
-	Fri, 15 May 2026 10:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA333D3319
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 10:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778840836; cv=none; b=QFg7nkmsZn/ONtEu1RQzEy80PTmJVzWL8l1y5IVyixALMQ77M5oNJDSCDCbPNz8VPwgFJgomthr6+lCob59q8Z5fOELw8Obp94TMEKDAsDDhlcYkY7hQDux5TsrBXtkFYHZ+ZGgvNySiVKniwFWLCU2GbYgnx8md0+ai1FDrUCE=
+	t=1778840941; cv=none; b=a1tbQ2uu83xhu11BqHr5RVVq/dJP0zcOKc2e05oNXt2OWJQ3rHr2QWhxI/CCBZ8sR7vTv+DgQAyprQcHNTI7K9HxsiyrTykOy/Udz0XKz3wybzeslhlLYqX5vCh/5kc63I/HqLGaJRXfr9allPJhvgkWFqcMpU0dv+Jp9ZwYHSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778840836; c=relaxed/simple;
-	bh=Qk9NZ7WqcT4v7DKQJ7GeuukI5VSD3ZxkWEeReTD+ruU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HMvVhVtRTaaGnAnLTOJuUcwgWvThZRAtJXxIDXrTMYDpF7P+XRM/gbWMuRsLQO0iQeQIbF54YV5bYBOXfgqTfMJNFED/DBjcFNFl/Qc+Q+heLPbDVdGLcqVTmT2lO3Y47tyyZJYDekozNBDxThwSIEy0dctQt/blJLRk/K3JF9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tRSmKduP; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1778840834; x=1810376834;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Qk9NZ7WqcT4v7DKQJ7GeuukI5VSD3ZxkWEeReTD+ruU=;
-  b=tRSmKduPDmGdX85e0lCpXd3qjTCVpuqUpb8KBvm6KTIKbFd77vWehf45
-   GGXu7cU2xeBKg4cwRYQaQfQriSGbEumZ8Aww/VaS962c3yYoGGwlgCXPV
-   8POOjz+34BqRDeLkV1+pP+PF23kaLyqDr49S87I56imQSPBA+YWcRGTi3
-   BHPcIcG9Jm8+EAWWAJfL0dKXytDi0hWoLfCs7r+syfINT6qytvHWf4fGC
-   MqKmhy5yayDmFP2D0os7VVV4fnqhBzMpEeM959a3OYJhUiSDfgtatAHVJ
-   rFlrTfEfcGo470e0biEBB0+mZDQG05FUPN5ReieNk/5DVFCB4jPX6Bruw
-   w==;
-X-CSE-ConnectionGUID: Xy4zyqk9RhyxiOqI97z15Q==
-X-CSE-MsgGUID: e72aybRuTAKsM/JwMIIimQ==
-X-IronPort-AV: E=Sophos;i="6.23,236,1770620400"; 
-   d="asc'?scan'208";a="57968182"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2026 03:27:13 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Fri, 15 May 2026 03:27:12 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Fri, 15 May 2026 03:27:09 -0700
-Date: Fri, 15 May 2026 11:26:31 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Jia Wang <wangjia@ultrarisc.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski
-	<brgl@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@sifive.com>, Conor Dooley
-	<conor@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 5/9] riscv: dts: ultrarisc: Add initial device tree for
- UltraRISC DP1000
-Message-ID: <20260515-morbidity-rule-d8504467b252@wendy>
-References: <20260515-ultrarisc-pinctrl-v1-0-bf559589ea8a@ultrarisc.com>
- <20260515-ultrarisc-pinctrl-v1-5-bf559589ea8a@ultrarisc.com>
+	s=arc-20240116; t=1778840941; c=relaxed/simple;
+	bh=1Yz/EcUmW9zfWne8Xzd09ymy+W7uXt8JQ3e5p3N3gFg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t8Ushw94JcPYKXlT4+Eu2ofnQA71Qm0pBv7Gk0fEM5WzXispcu8dq4YQ19nlZQnddP+GtPe30jzm1BFXRHqN5/hz1DnFuhBNWv5DCDe1Zxg6xi1uoaaz5XjQtjQdG9G0YHod/lNMqN9PvHh4kZ7UX/e23hlUAmnvrwPHlTEYWs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=f4O24kUA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BUQBS6St; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64F4o7OI4008602
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 10:28:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	79VlzIrGeomGTJq0ibBMeq77VXZ65QnBt/A7OAjU0As=; b=f4O24kUA34Vv7HOK
+	RcRvTPqIziAR3TczZDBVZvIoVjJfDfjMQwX+3oc/9Q7mlNXg9frsIBZmcY/N+aZ9
+	pzLmEhbWjAo49/b4dODJtzDGdt5gcOmsWFC7HZ//1I2LIcg2EVJwN/d6t7oCVr08
+	0dIHF5m1Bb747di1bvKknY91SHo1gU4aFvYfHpDGMTqww8LGVqDhzYYmzzaOOTDH
+	L5HXB/839pOiZlLgRTCiDg5KvYRbNV4h1JvGzq16YFxc/GRhvRcMlF7n3sWH3Ofe
+	CIJcRmB9yMou5F4YzRv4dgmOuIkLv3mrD+UOSmDYPC5L2Q0+fy0i0Bt1BF7Ue7FE
+	s/gxZg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e5m1stuv5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 10:28:59 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2bc860066a6so49552225ad.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 03:28:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778840937; x=1779445737; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=79VlzIrGeomGTJq0ibBMeq77VXZ65QnBt/A7OAjU0As=;
+        b=BUQBS6St+38pOFAxSOGIPtd5V3d5lJzMiM7KIyVb4FzG2rBtt69Yl9yQegAo5UlV7r
+         b4jvPw+EFxt32gT9C23kXaVYo4zB8wx8RRcQxxrVcPvEKJaA4QFrosHHr6tYPZ7CfmcW
+         GM/8hFTnsUdAWG2MdPd4HidsNUyOafjNNvRpnKY7QT/9fXbq1k9u/L/ml534Dakt+8Jb
+         XPViAFBfoFB55vB9ghTtXtLZOvtlbNfc52o7rg+mSogNtoGs7cr40wdgJKZLM4QPc3RZ
+         MUfa1yEjmXqdpa0y4R0iaYck2ZmMUJyKeLwsiJ8Gnq5Z+nWvGTd2QAgxceuFNdMl9wpM
+         NOFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778840937; x=1779445737;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=79VlzIrGeomGTJq0ibBMeq77VXZ65QnBt/A7OAjU0As=;
+        b=Ges+owctS4L+Mv3KUZBOIw2VToVVTfkOpqVdY1atoWb93g161Y0i0CSfGrOmTBQZSz
+         AXlaHZh3up63sY2YlMoYxeXy1OD5L2oX/mjE4YYHazF9L8VxRLUBdEA14PSF7lgIdNvd
+         V9srtxfP9RqjxeEL89MjeAvdqERmLAx39R8sUOJWzFGTtsS/kbIJjMh146o66gZCmu0K
+         H/lQ9WVOyVKJdfeClaeDM93eE0/Fd2v9B3CwjuXs3ItOaIE6/UbXxyV42iEdix0EuKG4
+         O7tiY3ZAhQ0cB9wci+1pt3kdxjIXchnzy76XDSeRg1qXJqfnFbAL3vJnCjt3lctwdXmm
+         CDuw==
+X-Forwarded-Encrypted: i=1; AFNElJ+kdRcut4a6EwI8oLN2yiJZHLUN1REbCk1kCsI7ec2laDClg7OexFsYJICSLhgprBxQCNUHGRDjoGul@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhnUUHidnsCe6CiWyG8oix69SQGXPTaCs8HiR20PoEzSlTqRjZ
+	FSnHC1aExb9yOqBGmQmpsPl56UexlwXR0y/8ETwuxl9Uvggwoq1hZ93Bj71/nulBy3p9N7VaDtM
+	wL5Ft1ffhI4MaTIEKw+sltqim+35JsR2poEKbssLaDHxbwsfVeHbosaBDLsFNsKJHW3jFb0M+
+X-Gm-Gg: Acq92OGrrBOcI7tc1kWnziAv7pFAWrMEyReLj5unCjVjEPXxRiAWgov5nqda/EFUr9c
+	Y3PmSsPWouKlJNXXYDfIaA8ysmxghY3nHAc5nfVlj4S1RNfL+LrqfNWcXecE67fO2cASyC77Fkc
+	qCjeREvWRPFwsyQGL0/eegvzKgAdKkXt9LySNteLJmHF6Vt5Qt6593mkfPpijKCfXzJ1lHdHJew
+	EoivZQ4FO2ZjH16DvqxBK1cwRx38Harclo7/LDhVO/TcbqJAAAlNUFLCBu6OsS+WXpZ5sjEh/EF
+	HsLK5xqxXO66vC88/WG6oi+5wd/2m3ECCeFnanTceUw4NZXSZ4gigiKUtdkJoOur7+PYaSv+paV
+	z4oYFvRIKJpVlMXX85vFFTYEoDizQuPjq6RThsjaNF3i7KvADOFuBIfJFIr837Wc=
+X-Received: by 2002:a05:6a20:918a:b0:39b:e321:67ea with SMTP id adf61e73a8af0-3b22ecac1eemr3942674637.45.1778840937351;
+        Fri, 15 May 2026 03:28:57 -0700 (PDT)
+X-Received: by 2002:a05:6a20:918a:b0:39b:e321:67ea with SMTP id adf61e73a8af0-3b22ecac1eemr3942638637.45.1778840936857;
+        Fri, 15 May 2026 03:28:56 -0700 (PDT)
+Received: from [10.217.222.91] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c82bb062941sm6648770a12.2.2026.05.15.03.28.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 03:28:56 -0700 (PDT)
+Message-ID: <54fbc2bd-811b-4b35-987a-1dd5e6ea447c@oss.qualcomm.com>
+Date: Fri, 15 May 2026 15:58:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YkSoZU4ahkAk+Ef4"
-Content-Disposition: inline
-In-Reply-To: <20260515-ultrarisc-pinctrl-v1-5-bf559589ea8a@ultrarisc.com>
-X-Rspamd-Queue-Id: BDE0D54DA41
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: shikra: Enable ice support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260515-shikra_ice_ufs-v1-0-b1b6ced70559@oss.qualcomm.com>
+ <20260515-shikra_ice_ufs-v1-2-b1b6ced70559@oss.qualcomm.com>
+ <8ed6604f-f959-4b20-8b23-ded130426f36@oss.qualcomm.com>
+Content-Language: en-US
+From: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+In-Reply-To: <8ed6604f-f959-4b20-8b23-ded130426f36@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: FsrkhtwMCM8yaDaAKijnIoWcVzZtkU-Y
+X-Proofpoint-GUID: FsrkhtwMCM8yaDaAKijnIoWcVzZtkU-Y
+X-Authority-Analysis: v=2.4 cv=cZPiaHDM c=1 sm=1 tr=0 ts=6a06f56b cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=iVyd5dlQVcev7GM2eQkA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDEwNSBTYWx0ZWRfXwOOuu4WHogRW
+ gjW8ka12u9Y3s37flSKMObHfa8S12IlJaB2A6NllFc7PjicWzR6jCgiukJCuaxHNGRBxZprIrX+
+ MdzsKFeLnZowWKAjZz/dA6EJMqcW1QEIgMbM/JytilI2h4i/lhZpoCrx0I5iW2ELYirMsbopX76
+ rDzkyRlg7ZJfsc0/mb3p9bV6kZw4gfm0WLlsNXefyinNkq56MvrXqCSwvdsU6lCPabzEZqWXVE2
+ bJHc4lK+1HOt5Y3EheBBY9jbc+nRpv30jKJFLDZe0sd7NJ0Fg5uil5Ex0WGsYBNx6OCvPEtsDRE
+ BwUlhnVAt41lZzxPpH8/9xMVF0+YWS0gbQI/sIABlOCg6ZpLSsScUxwGmy+eSM+C3L4Coajilhh
+ sMH3vFsrgNgrr/fCyILtcM1XWMthD3ZFMZPfIYD6coc+0Wt4G43Mzgw1/CVrayUwvpeCkA9XfXQ
+ uzfb5tm0hqQ75dy3DYA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-15_02,2026-05-13_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0 priorityscore=1501
+ adultscore=0 suspectscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605150105
+X-Rspamd-Queue-Id: 812F954D588
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298123-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298125-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[kuldeep.singh@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
---YkSoZU4ahkAk+Ef4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 15-05-2026 15:54, Konrad Dybcio wrote:
+> On 5/14/26 10:30 PM, Kuldeep Singh wrote:
+>> Add UFS inline crypto engine(ICE) support for shikra.
+> 
+> s/ufs/SDCC
 
-On Fri, May 15, 2026 at 09:18:01AM +0800, Jia Wang wrote:
-> Add the base device tree for the UltraRISC DP1000 SoC. It describes the
-> 8=D7CP100 CPU cores and essential SoC peripherals including the interrupt
-> controller, pinctrl, GPIO, UART, SPI, I2C, PCIe, GMAC and the DMA
-> controller.
->=20
-> Link: https://lore.kernel.org/lkml/20260427-ultrarisc-pcie-v4-2-98935f6cd=
-fb5@ultrarisc.com/
-> Link: https://lore.kernel.org/lkml/20260429-ultrarisc-serial-v7-3-e475cce=
-9e274@ultrarisc.com/
->=20
+My bad! Thanks for pointing.
+I leveraged commit message and made this mistake.
 
-No blank line here FYI.
+Will send v2 with updated commit message.
 
-> Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> ---
->  MAINTAINERS                               |   1 +
->  arch/riscv/boot/dts/ultrarisc/dp1000.dtsi | 851 ++++++++++++++++++++++++=
-++++++
->  2 files changed, 852 insertions(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index baaaa46b1a56..832e01898ae5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23087,6 +23087,7 @@ M:	Jia Wang <wangjia@ultrarisc.com>
->  L:	linux-riscv@lists.infradead.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/riscv/ultrarisc.yaml
-> +F:	arch/riscv/boot/dts/ultrarisc/
-> =20
->  RNBD BLOCK DRIVERS
->  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
-> diff --git a/arch/riscv/boot/dts/ultrarisc/dp1000.dtsi b/arch/riscv/boot/=
-dts/ultrarisc/dp1000.dtsi
-> new file mode 100644
-> index 000000000000..1aae53fc1a2b
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/ultrarisc/dp1000.dtsi
-> @@ -0,0 +1,851 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright(C) 2026 UltraRISC Technology (Shanghai) Co., Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +	compatible =3D "ultrarisc,dp1000";
-> +	#address-cells =3D <2>;
-> +	#size-cells =3D <2>;
-> +
-> +	cpus {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		timebase-frequency =3D <10000000>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible =3D "ultrarisc,cp100", "riscv";
-> +			reg =3D <0x0>;
-> +			device_type =3D "cpu";
-> +			riscv,isa =3D "rv64imafdcbh";
+-- 
+Regards
+Kuldeep
 
-Drop this property, its replacements (below) should be supported by all
-users.
-
-> +			riscv,isa-base =3D "rv64i";
-> +			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "h",
-> +					       "zba", "zbb", "zbc", "zbs", "zicntr",
-> +					       "zicsr", "zifencei", "zihpm", "ziccif",
-> +					       "ziccrse", "ziccamoa", "za64rs", "zicbom",
-> +					       "zicbop", "zicboz", "zkt", "svade",
-> +					       "ssccptr", "sstvecd", "sscounterenw",
-> +					       "shcounterenw", "shtvala", "shvstvecd",
-> +					       "shvsatpa", "svvptc";
-> +			mmu-type =3D "riscv,sv48";
-> +			clock-frequency =3D <2000000000>;
-> +			/* L1 I-cache and D-cache:
-
-FYI, the comment format outside of drivers/net/ has a newline after /*.
-
-> +			 * block-size 64B
-> +			 * 4-way set associative, size 64KB
-> +			 * per-core.
-> +			 */
-> +			d-cache-block-size =3D <64>;
-> +			d-cache-sets =3D <256>;
-> +			d-cache-size =3D <0x10000>;
-> +			i-cache-block-size =3D <64>;
-> +			i-cache-sets =3D <256>;
-> +			i-cache-size =3D <0x10000>;
-> +			next-level-cache =3D <&l2_cache0>;
-> +			riscv,cbom-block-size =3D <64>;
-> +			riscv,cboz-block-size =3D <64>;
-> +
-> +			cpu0_intc: interrupt-controller {
-> +				compatible =3D "riscv,cpu-intc";
-> +				interrupt-controller;
-> +				#interrupt-cells =3D <0x01>;
-> +			};
-> +
-> +			l2_cache0: l2-cache {
-> +				/* L2 cache:
-> +				 * cache-unified, block-size 64B
-> +				 * 8-way set associative, size 512KB
-> +				 * per-core.
-> +				 */
-> +				compatible =3D "cache";
-> +				cache-block-size =3D <64>;
-> +				cache-level =3D <2>;
-> +				cache-size =3D <0x80000>;
-> +				cache-sets =3D <1024>;
-> +				cache-unified;
-> +				next-level-cache =3D <&cluster0_l3>;
-> +			};
-> +		};
-
-> +		cpu4: cpu@4 {
-> +			compatible =3D "ultrarisc,cp100", "riscv";
-> +			reg =3D <0x10>;
-
-Sashiko correctly pointed out that this is wrong.
-
-> +		cpu5: cpu@5 {
-> +			compatible =3D "ultrarisc,cp100", "riscv";
-> +			reg =3D <0x11>;
-
-And so is this.
-
-> +		cpu6: cpu@6 {
-> +			compatible =3D "ultrarisc,cp100", "riscv";
-> +			reg =3D <0x12>;
-
-And this.
-
-> +		cpu7: cpu@7 {
-> +			compatible =3D "ultrarisc,cp100", "riscv";
-> +			reg =3D <0x13>;
-
-And this.
-
-> +	clocks {
-
-I've commented on this in the cover letter.
-
-> +		device_clk: device_clk {
-> +			compatible =3D "fixed-clock";
-> +			clock-frequency =3D <62500000>;
-> +			#clock-cells =3D <0>;
-> +		};
-> +
-> +		timer_clk: timer_clk {
-> +			compatible =3D "fixed-clock";
-> +			clock-frequency =3D <50000000>;
-> +			#clock-cells =3D <0>;
-> +		};
-> +
-> +		csr_clk: csr_clk {
-> +			compatible =3D "fixed-clock";
-> +			clock-frequency =3D <250000000>;
-> +			#clock-cells =3D <0>;
-> +		};
-> +	};
-
-> +	memory@80000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x00 0x80000000 0x4 0x00000000>;
-> +	};
-
-This looks incorrectly placed, memory should be in the board dts unless
-it is actually a part of the chip.
-
-> +
-> +	soc {
-> +		compatible =3D "simple-bus";
-> +		ranges;
-> +		#address-cells =3D <0x02>;
-> +		#size-cells =3D <0x02>;
-> +
-> +		clint: clint@8000000 {
-> +			compatible =3D "sifive,clint0", "riscv,clint0";
-
-Missing a device-specific clint compatible.
-
-> +			reg =3D <0x00 0x8000000 0x00 0x100000>;
-> +			interrupts-extended =3D <&cpu0_intc 0x03>, <&cpu0_intc 0x07>,
-> +					      <&cpu1_intc 0x03>, <&cpu1_intc 0x07>,
-> +					      <&cpu2_intc 0x03>, <&cpu2_intc 0x07>,
-> +					      <&cpu3_intc 0x03>, <&cpu3_intc 0x07>,
-> +					      <&cpu4_intc 0x03>, <&cpu4_intc 0x07>,
-> +					      <&cpu5_intc 0x03>, <&cpu5_intc 0x07>,
-> +					      <&cpu6_intc 0x03>, <&cpu6_intc 0x07>,
-> +					      <&cpu7_intc 0x03>, <&cpu7_intc 0x07>;
-> +		};
-> +
-> +		plic: plic@9000000 {
-> +			compatible =3D "ultrarisc,dp1000-plic", "ultrarisc,cp100-plic";
-> +			reg =3D <0x00 0x9000000 0x00 0x4000000>;
-> +			#interrupt-cells =3D <1>;
-> +			#address-cells =3D <0>;
-> +			interrupt-controller;
-> +			interrupts-extended =3D <&cpu0_intc 0xb>, <&cpu0_intc 0x9>, <&cpu0_in=
-tc 0xa>,
-> +					      <&cpu1_intc 0xb>, <&cpu1_intc 0x9>, <&cpu1_intc 0xa>,
-> +					      <&cpu2_intc 0xb>, <&cpu2_intc 0x9>, <&cpu2_intc 0xa>,
-> +					      <&cpu3_intc 0xb>, <&cpu3_intc 0x9>, <&cpu3_intc 0xa>,
-> +					      <&cpu4_intc 0xb>, <&cpu4_intc 0x9>, <&cpu4_intc 0xa>,
-> +					      <&cpu5_intc 0xb>, <&cpu5_intc 0x9>, <&cpu5_intc 0xa>,
-> +					      <&cpu6_intc 0xb>, <&cpu6_intc 0x9>, <&cpu6_intc 0xa>,
-> +					      <&cpu7_intc 0xb>, <&cpu7_intc 0x9>, <&cpu7_intc 0xa>;
-> +			riscv,ndev =3D <160>;
-> +		};
-> +
-> +		pmx0: pinmux@11081000 {
-> +			compatible =3D "ultrarisc,dp1000-pinctrl";
-> +			reg =3D <0x0 0x11081000  0x0 0x1000>;
-                                             ^^ extra space here btw
-
-> +			#pinctrl-cells =3D <2>;
-> +		};
-> +
-> +		spi0: spi@20320000 {
-> +			compatible =3D "snps,dw-apb-ssi";
-
-Missing a device-specific compatible here, can just fall abck to the
-dw-apb-ssi one, so no need to make driver changes.
-
-> +			reg =3D <0x0 0x20320000 0x0 0x1000>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +			clocks =3D <&device_clk>;
-> +			interrupt-parent =3D <&plic>;
-> +			interrupts =3D <19>;
-> +			num-cs =3D <3>;
-> +		};
-
-> +
-> +		i2c0: i2c@20330000 {
-> +			compatible =3D "snps,designware-i2c";
-
-Same applies here.
-
-> +			reg =3D <0x0 0x20330000 0x0 0x100>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +			clock-frequency =3D <400000>;
-> +			clocks =3D <&device_clk>;
-> +			interrupt-parent =3D <&plic>;
-> +			interrupts =3D <20>;
-> +		};
-
-> +
-> +		ethernet: ethernet@38000000 {
-> +			compatible =3D "snps,dwmac", "snps,dwmac-5.10a";
-
-Surprised this passes dtbs_check. Same here, you need a specific
-compatible.
-
-> +			reg =3D <0x00 0x38000000 0x00 0x1000000>;
-> +			clocks =3D <&csr_clk>;
-> +			clock-names =3D "stmmaceth";
-> +			interrupt-parent =3D <&plic>;
-> +			interrupts =3D <84>;
-> +			interrupt-names =3D "macirq";
-> +			local-mac-address =3D [ff ff ff ff ff ff];
-> +			max-speed =3D <1000>;
-> +			phy-mode =3D "rgmii-id";
-> +			snps,txpbl =3D <8>;
-> +			snps,rxpbl =3D <8>;
-> +		};
-> +
-> +		dmac: dma-controller@39000000 {
-> +			compatible =3D "snps,axi-dma-1.01a";
-
-Same thing here, I'd like to see a device specific compatible too.
-
-> +			reg =3D <0x0 0x39000000 0x0 0x400>;
-> +			clocks =3D <&device_clk>, <&device_clk>;
-
-This kind of thing is what makes me think that you're over simplifying
-your clock tree. Sure, maybe you do use the same clock here for both
-ports, but it's suspect.
-
-Cheers,
-Conor.
-
-> +			clock-names =3D "core-clk", "cfgr-clk";
-> +			#dma-cells =3D <1>;
-> +			dma-channels =3D <8>;
-> +			interrupt-parent =3D <&plic>;
-> +			interrupts =3D <152>;
-> +			snps,dma-masters =3D <1>;
-> +			snps,data-width =3D <4>;
-> +			snps,block-size =3D <512 512 512 512 512 512 512 512>;
-> +			snps,priority =3D <0 1 2 3 4 5 6 7>;
-> +			snps,axi-max-burst-len =3D <256>;
-> +		};
-> +	};
-> +};
->=20
-> --=20
-> 2.34.1
->=20
-
---YkSoZU4ahkAk+Ef4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagb01wAKCRB4tDGHoIJi
-0vgLAP9uHie8ekeBr5yzJlkDGTFyTizgLiDpL9cTNsn7ocsDygD9HhxPN8tXjgAS
-sxt6qsr2Jb5SGx9eXn3M2MeK4NnzUw4=
-=p8DX
------END PGP SIGNATURE-----
-
---YkSoZU4ahkAk+Ef4--
 
