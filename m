@@ -1,200 +1,197 @@
-Return-Path: <devicetree+bounces-298073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298075-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCIXMrvmBmoHowIAu9opvQ
-	(envelope-from <devicetree+bounces-298073-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:26:19 +0200
+	id ONj/F0rpBmpwowIAu9opvQ
+	(envelope-from <devicetree+bounces-298075-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:37:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BCCE54C623
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:26:18 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE4454C896
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E2475307954E
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:20:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4A732309C366
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98E842EEDE;
-	Fri, 15 May 2026 09:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NZAND3AW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RbaMssZj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E43A3F54C8;
+	Fri, 15 May 2026 09:21:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA553D646D
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 09:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4953E63A1;
+	Fri, 15 May 2026 09:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778836802; cv=none; b=TvD2SSCAGh4K3DNu2s7Xu9p+CysRZAswPPG/y0/gLnaDIcnTJOre23sMtvUoo74LcYQy5GDTKeG3zdbNnplKC637PU7OwD2qCPwXgFHnMtEMb9jilf41y0+PuZEEF001k6Uv8kAsMVmtInPSyyGbpkOjJS88Zf2AyzfeZ16ChYY=
+	t=1778836879; cv=none; b=OKH+YzrDdza/TrXkz+3EJGqv0VWVxvEqFlo7iWC+XOSVXWEa1VXQrcUv7aa191UBYhaenAvrpttGkv7toyXOjmXpgoVXppJEdKbgG1j0kd3Nr5o36+76MXTCMLoV7Msqz8nIxTSpxhCvECCpUjBBLJfnniGCdl8XmjcEDlpdJY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778836802; c=relaxed/simple;
-	bh=RCnxFa+yI5Y9Xy4053kfK+km7U3a/gFtswsMRuExpyA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OrooFQLIfGRx7kVIbxh2bLHTTeSj8q1k9Lj7e1lFmhY4NnG/Mr4wTsq6OSRWjWujjl5jJ8vUskX+rSBVxXVKm65w/JHe8rOjM7ZqvGZiNmkCUju1VFZntOc45avh7sQzDgjBXqR1Rwz/gHrf+t5DgXkGyrhtBx+111/0NgBNqbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NZAND3AW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RbaMssZj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64F4o9Hw1847946
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 09:19:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GuWR6ejKO60MeLWfVVXF1au0lbdF5Zpf1WZXUVNB2FA=; b=NZAND3AWTQ096osm
-	qGmaAQmSJq/9kjCw3HDKjc5laOZsbeOdIbvrAo+YMxpO85bqSJ2/bzXHw0DpxtRa
-	ukXqut+TATrwgwKxMzjVE8Fx8MFI4NhBZVksV/iHPBYeGsl4FGn2MctWNWXGUv6/
-	5YrOKYy6B7jdXKw4C05Hw+zWQ+xwtRi+9sNQuFjF98pM/RCyGLfq03HGT2Q+kXPp
-	ro4HSFfWkHVW9o8sb471XMHrOpkOp8shez+QNInD1j4Jh2EnLxCoJB0MibODp3Rj
-	3Y0YqCjMXrXUSf8fcFt7+KoHV5qPV4EW1HU4hV8+A+RetMwsBbdD8BDRgaUMW6Wt
-	/3Ytyg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e5m1t2j2r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 09:19:59 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50fb0b93e90so18895691cf.3
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 02:19:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778836799; x=1779441599; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GuWR6ejKO60MeLWfVVXF1au0lbdF5Zpf1WZXUVNB2FA=;
-        b=RbaMssZjURwH1w45i4k5u0LrTVWXbpC7ZknW1vQXh+g+kfmW8l5Bb12DOHD/ANSf7b
-         m0DScaJmQg/1DwVIKUJT+9kS0IgblwyE7zAHoIQICOEnNuoxuXCNAwfqiz+dqTAKk2Am
-         tiQ9urboFU9Y7Y/0ULzDQPWgHLQVhmyQ3iZqxdZ8SI0SAFMAaxUmvKc7cBF5dbm3yq/k
-         6Yf8mE//FrfCNifSoX+Yz3PXb5o36PHnpShYD+2R+x2lBW30KIskEX3ucc0iGbaV+DhR
-         +gSFfPlljfRc3rcv4o1gEpTNR6htzQ01FnyWME47GetgK3afa4+xu2wQtwZfLA0ySjz+
-         Nv/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778836799; x=1779441599;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GuWR6ejKO60MeLWfVVXF1au0lbdF5Zpf1WZXUVNB2FA=;
-        b=Pl1THqSbiwquYI5D5KS832S+IEiHzp6ozV0mCYa6ajwMGhCYahKCig6JHvzcP7iQnE
-         kBvHud1+yBMGYZN9GcQ1T5MLIgnYVCARW3jSmujyVxn2xFdd2nfNBU/Gf0pHf3Ippk0u
-         ZsoH/xGyye4q4u5BpIbctcsxdyq+kGc1ukLPZJJNAnyZrUDJEsoDR46hnbokhHCer/ix
-         wp9nvp1I3KtGr2y24st+4aY8WYNFyVsNSia7WwODgcXcXGTQeggI3wANXTu8TIxDSkGr
-         O+FH+hSUcvhndnCfTwZpcolZHL3dxH4zcGhkzM0Ek+odFy+sXAr6PgxwYHJegZQyQapk
-         0TCg==
-X-Forwarded-Encrypted: i=1; AFNElJ/Wr0aI0zB4it0kZZyK/5L8RsUhMpv6/2vjxNtB2FrxqGBawuFQ8LG623pW9EGEOa5VlDwvdsTUcIfe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGncMOBBn8EuRzy7QaqoYyWKSqvcbSI4KnAozM4j2Ygun7jOuD
-	vl3w6P3jnQGmCktcmsAXNZOgq3Qi5kRLguUT8qj48uxXmIRG0unB0xoxHCWL2uNouSx4KKBSoBo
-	pmkEjcfCy409RjnaZbDuxrLAK75dBC6ADObna/ChvfWnPoXbwfnZPAnRarqXiEVBd
-X-Gm-Gg: Acq92OH/KwvPvvzNTJPxr1WbWof9MucurClKVTs8Zl+xD4WqrlHywug8biscnkcFqPP
-	TEnx/SEYKr5s/Pd9PMQM8HPxow9BhVOdTTp7megPRl6RyIvUAa8zBc4bgddKT4d/jsHnW++Jfly
-	1oZc0cwWPNK5SsnMgv8BgQI9sROi8nPIqHKjxYYNVGDCJwPRHM49rC7JgXL4RtatGciZas1d6tS
-	lEaAHA+NvISXPOR2twPNvKuYiqnnC9fVXbZO3aWzNTDCSv9NakD8URFxx6RhoucfV4knWAlHXbQ
-	NRysy3a9Sft+9vjx68yvl7oy+bF3pI5Xl2wMVnGPGFeafBhtDYCwFpSvw7YKwwfrg5rRK3tTVHr
-	ToXiKqZr9K2f4s8mCNfPRN5W1vAmAB9UHRMyf0gXLJ4cGNFIUpBNZDe30eEUWuXdWB35QrnyLvB
-	j09jE=
-X-Received: by 2002:a05:622a:594:b0:50e:6311:7380 with SMTP id d75a77b69052e-5165a229508mr30234461cf.6.1778836798664;
-        Fri, 15 May 2026 02:19:58 -0700 (PDT)
-X-Received: by 2002:a05:622a:594:b0:50e:6311:7380 with SMTP id d75a77b69052e-5165a229508mr30234191cf.6.1778836798206;
-        Fri, 15 May 2026 02:19:58 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68310b3e800sm1842166a12.6.2026.05.15.02.19.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 May 2026 02:19:56 -0700 (PDT)
-Message-ID: <c898b619-676e-4385-a69f-cd1e6dc2f9bf@oss.qualcomm.com>
-Date: Fri, 15 May 2026 11:19:53 +0200
+	s=arc-20240116; t=1778836879; c=relaxed/simple;
+	bh=kmijVfAP8JVQSkslyK4G5dd4U1mjnCjjArPeKwHzQys=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=fHcyyfXSRH4REVa0Zvilgw+RDChNpk1Ushq3/COtMiTxLJrdXKvMRG4g+zT7wKHvP1XhUQdOPzSL8qq+PAk+eFQepdYtntLklCSHVHxYd4SpWyTA9bloWqJXMOyceOASaB/04tOb7J8/LOr4e+eFLOGLiUAEUkuWRe06SraeBxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005156LT.eswin.cn (unknown [10.12.96.79])
+	by app1 (Coremail) with SMTP id TAJkCgCnSXN75QZqk6wZAA--.38634S2;
+	Fri, 15 May 2026 17:21:01 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	luyulin@eswincomputing.com,
+	Huan He <hehuan1@eswincomputing.com>
+Subject: [PATCH v5 1/2] dt-bindings: hwmon: Add Eswin EIC7700 PVT sensor
+Date: Fri, 15 May 2026 17:20:56 +0800
+Message-ID: <20260515092056.466-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.47.1.windows.2
+In-Reply-To: <20260515091942.449-1-hehuan1@eswincomputing.com>
+References: <20260515091942.449-1-hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] cpufreq: qcom: Add cpufreq scaling support for
- Qualcomm Shikra SoC
-To: Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260501-shikra-cpufreq-scaling-v1-0-c78b95f53b91@oss.qualcomm.com>
- <20260501-shikra-cpufreq-scaling-v1-2-c78b95f53b91@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260501-shikra-cpufreq-scaling-v1-2-c78b95f53b91@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=D7Z37PRj c=1 sm=1 tr=0 ts=6a06e53f cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=EUspDBNiAAAA:8 a=4ielwApaMtWjWprE9YYA:9 a=QEXdDO2ut3YA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDA5MyBTYWx0ZWRfX1Afxwd4B0jq+
- 1NRvONGF2S6otNGATsO+lPxWzxN2B2XvmLwJR+M8VUbm8yide+8L2Ohrpe45AzPXxYHP3OfFKuh
- VLwnk2vSXMxzhxnRIdVo7CxOW2ZvZDbYnC+JFiTtkymLvQR67bKUiJu6CdH8N9IBDabvx+H3FUB
- Oymmx1cSi9lKhMoC5q/Yo142QYHrauy51tM6+3A+TnFEWAXZY0j19R/IY4YPdr9KuJjuq+7j4Ot
- O+VpLEQAWIAhHFGT3XRfxcJJ/RBOeWIAQbqTx9oqPoxR0Ouz17TiUnnVVjMEgujgQWV8lKvCtR5
- JYWptR/CKR5rrYnYXmL0WCvzfSNCUoy1M2nre9MNY7KFblmrghlnaa1PPL1HUlKZI1rCdzCRaOF
- yvdIpvAy1x6XpKkkhyu5STzON8qxMf+R8gcWZFhpWVpYlQ2U+TeNQJOKBCB/BoYE4CduD55IUX3
- pwyft2whbUEBTqahRHA==
-X-Proofpoint-ORIG-GUID: 7z11Gho-kXRZ3nw3DP9Xxw4ZPORpKuA0
-X-Proofpoint-GUID: 7z11Gho-kXRZ3nw3DP9Xxw4ZPORpKuA0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-15_02,2026-05-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- adultscore=0 phishscore=0 clxscore=1015 bulkscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605150093
-X-Rspamd-Queue-Id: 4BCCE54C623
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgCnSXN75QZqk6wZAA--.38634S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kw43XrWrXF4DJr18Wr1DGFg_yoW8trW8pF
+	4kCryDKr40qryxX3y7tF109F1ftws5CFW7Arn2q3WrKF1DJas0yw47Kr15Was7Cr1fXFW3
+	uFyaq34Yy3WDArJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUQdb8UUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
+X-Rspamd-Queue-Id: CCE4454C896
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298073-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298075-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.887];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org]
 X-Rspamd-Action: no action
 
-On 5/1/26 9:15 AM, Imran Shaik wrote:
-> From: Taniya Das <taniya.das@oss.qualcomm.com>
-> 
-> The Qualcomm Shikra cpufreq hardware is functionally identical to EPSS,
-> but supports only up to 12 frequency lookup table (LUT) entries. Hence,
-> add epss_lite_soc_data that reuses EPSS configuration with the appropriate
-> LUT entries limit.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> Signed-off-by: Imran Shaik <imran.shaik@oss.qualcomm.com>
-> ---
+From: Huan He <hehuan1@eswincomputing.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Add device tree binding documentation for ESWIN EIC7700 Voltage and
+Temperature sensor.
 
-Konrad
+The EIC7700 SoC integrates two PVT instances for monitoring SoC and DDR
+power domains respectively.
+
+Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+---
+ .../bindings/hwmon/eswin,eic7700-pvt.yaml     | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml b/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+new file mode 100644
+index 000000000000..27cc90e52d4b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/eswin,eic7700-pvt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ESWIN EIC7700 PVT Sensor
++
++maintainers:
++  - Yulin Lu <luyulin@eswincomputing.com>
++  - Huan He <hehuan1@eswincomputing.com>
++
++description:
++  ESWIN EIC7700 SoC integrates embedded voltage and temperature sensors to
++  monitor the internal SoC environment. The system includes two PVT sensor
++  instances. The PVT0 monitors the main SoC power domain. The PVT1 sensor
++  monitors the DDR core power domain.
++
++allOf:
++  - $ref: /schemas/hwmon/hwmon-common.yaml#
++
++properties:
++  compatible:
++    const: eswin,eic7700-pvt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  '#thermal-sensor-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
++  - resets
++  - '#thermal-sensor-cells'
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    sensor@50b00000 {
++      compatible = "eswin,eic7700-pvt";
++      reg = <0x50b00000 0x10000>;
++      clocks = <&clocks 244>;
++      interrupts = <349>;
++      interrupt-parent = <&plic>;
++      label = "pvt0";
++      resets = <&reset 111>;
++      #thermal-sensor-cells = <0>;
++    };
++...
+-- 
+2.25.1
+
 
