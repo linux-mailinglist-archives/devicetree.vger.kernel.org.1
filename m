@@ -1,153 +1,154 @@
-Return-Path: <devicetree+bounces-298533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298534-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJOAKHuFB2rR6wIAu9opvQ
-	(envelope-from <devicetree+bounces-298533-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:43:39 +0200
+	id OMZnHMOGB2rw7AIAu9opvQ
+	(envelope-from <devicetree+bounces-298534-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:49:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92E8B55783A
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:43:38 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C8F5578C6
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:49:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4793030072A4
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 20:43:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 19D953004914
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 20:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02D73E2743;
-	Fri, 15 May 2026 20:43:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085C230C174;
+	Fri, 15 May 2026 20:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ab8qBBh3"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Qa39o7wA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E04E37B3F2
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 20:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84C47305665;
+	Fri, 15 May 2026 20:49:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778877812; cv=none; b=QjnKwLfr9dNIKZVr9ZgfNmPU+RioT4mpDbYYcNHfG1RMXqpKlKmyTtRvqiTxJR0CLCC/nV20VznSO2GWC/miYMhaSws5FP0viT7F/q50PRbFRFUe8bpaZ9ZTRBfbC4pUsOCjBAcfFx+0GHG0bMzHmXiaSijbGQLY9SQPrZ1jKQ8=
+	t=1778878143; cv=none; b=g8+datzlUCBjJsrFDHclRXG5jhLm1e4uAd1kQFzqSlKSf0BEPBl7kD2mMYkwO9Zu+rf3kz7DZiiCq5ICc9qdFlgNT2wnY/5Uj18gfIGNlSsolmRC1LJd/pqNDPbJ7jtSP0oWQXNAqqm5NKOw6vP0GjQmQ/gTLiE/YRwE0Jy7/9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778877812; c=relaxed/simple;
-	bh=fSbkO66drQxDXBEkBWJUSYj6dJyJWqK2hwHpjEhCbbI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Lz5lFj8f6lE03jCWoHqk2EUa5kiW/ISKiNOsYknaRQRfDpz4rIJsH8qLdI2G8uouTvBY+uqkzZQq8kGWs6kBPr7SdwFPcK4XZvn4pT7B4oIuF4IRTLrZIQLoi4GdUtmP8Kucpx8rwSwni5IUmgtpxL6ARqZdJDv5rUGWmXQaHec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ab8qBBh3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C20C2BCB0;
-	Fri, 15 May 2026 20:43:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778877812;
-	bh=fSbkO66drQxDXBEkBWJUSYj6dJyJWqK2hwHpjEhCbbI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Ab8qBBh35lbGb+hJEWLKDYLaQgHIFBB4em2lH7JQSfDDAm+cZfh61A9+/DHFzxWpE
-	 bBQWCUnKEhdBWK+EAi4YZ1WZaFkngTzvxf7YOBtnj/X/+gCMq8HaCHJ9X+LaRYwSUk
-	 /KcXgv+XDbRJDRmKqrYuujFFyBAWx+8jS2fhHwCJjlJyIA4QeUR6rMNLexRXRkR/u8
-	 jHTxqEYvm0rrsartaiWboV/fIvkhzJhiX2/CgatXPUorFLMZEfpjGGNhGoyVnb35n/
-	 DsE3ZdqhXZHvNDVTYC00wOT/MMAw2OhhtNYYtboFGjuf/LQOK0F2TxPPRHQGQ3Xk3m
-	 JvpKqkrBbwE6A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/3] spi: dt-bindings: tegra: Support IOMMU property for
- Tegra194 QSPI
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Aaron Kling via B4 Relay" <devnull+webgeek1234.gmail.com@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260515-tegra194-qspi-iommu-v1-1-57dfb63cd3d6@gmail.com>
-References: <20260515-tegra194-qspi-iommu-v1-1-57dfb63cd3d6@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 20:43:31 +0000
-Message-Id: <20260515204332.13C20C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778878143; c=relaxed/simple;
+	bh=setc2kaOn0Cc1QnUU45nw+/qSiTUFopM20iC/f5d25s=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ORmjYZ1A6zUsTOSv157rsgU7xneCyoZEPei9hy98b2StjPeHyjIHSUedH29WynYlKr+rlcPWQqErAxHieEHYc+xsRRD91+yh1XDjG6ujoOh+a6eytQN9z/ENkc2eVKBRaD75ueDAJpzDmCvIjEcabwdTdkYNTRwkb6sASVJHWMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Qa39o7wA; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id E9C0C2725F;
+	Fri, 15 May 2026 22:48:59 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id qoATOATVLJ5e; Fri, 15 May 2026 22:48:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1778878139; bh=setc2kaOn0Cc1QnUU45nw+/qSiTUFopM20iC/f5d25s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Qa39o7wABO9WKuDPvBLjttZ2d0GA4KfRRupoAycJovf4porJsEUSbFFr/7cnWBM9C
+	 dLHRJvEFvQ9paPDXJb4TC68FDL3lbEMePWvWb7OpTVPLL8EgI6hJ+w8VFVI6ghgzgc
+	 Ddzm1qWOtqGupJkHf2pYSHKJKrawdhfrwn15sU9lkFBB3bZv2iHwA69zs7VJ1qRVWl
+	 wMsBG3xC0C0P+zNawgo28GZQiBff2eFoE5zUja/jUgVrVkJqBgfOYmsYCmHrtgh4AH
+	 FESOhqV+8z7S0n5pryJI2bykdRvYJz68QHNdfPqZ0SArU/cPmNVyF7b14kttQGiNuf
+	 7FwghjL/9xU6g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 92E8B55783A
+MIME-Version: 1.0
+Date: Fri, 15 May 2026 20:48:59 +0000
+From: Rustam Adilov <adilov@disroot.org>
+To: sashiko@lists.linux.dev
+Cc: linux-watchdog@vger.kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, Sander
+ Vanheule <sander@svanheule.net>
+Subject: Re: [PATCH 1/3] watchdog: realtek-otto: Change to use regmap API
+In-Reply-To: <20260509171602.6B74FC2BCB2@smtp.kernel.org>
+References: <20260509163101.722793-2-adilov@disroot.org>
+ <20260509171602.6B74FC2BCB2@smtp.kernel.org>
+Message-ID: <1d8a4fa99fa1af9e41f255ec147a7571@disroot.org>
+X-Sender: adilov@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 15C8F5578C6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298533-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[disroot.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298534-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,webgeek1234.gmail.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,disroot.org:mid,disroot.org:dkim]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Incorrectly allowing the `iommus` property on a device node that=
- uses an external DMA controller.
---
+On 2026-05-09 17:16, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] Deadlock risk in the atomic restart handler due to regmap's internal spinlock.
+> --
+> 
+> commit a520c8e2203154ba331a6ae28f00daec074e62ee
+> Author: Rustam Adilov <adilov@disroot.org>
+> 
+> watchdog: realtek-otto: Change to use regmap API
+> 
+> This commit converts the realtek-otto watchdog driver to use the regmap API
+> instead of direct mmio accesses. It replaces direct read/modify/write
+> sequences with regmap functions and selects REGMAP_MMIO.
+> 
+>> diff --git a/drivers/watchdog/realtek_otto_wdt.c b/drivers/watchdog/realtek_otto_wdt.c
+>> index 2c30ddd574c59..e5e9cb480f4f9 100644
+>> --- a/drivers/watchdog/realtek_otto_wdt.c
+>> +++ b/drivers/watchdog/realtek_otto_wdt.c
+> [ ... ]
+>> @@ -199,7 +189,7 @@ static int otto_wdt_restart(struct watchdog_device *wdev, unsigned long reboot_m
+>>  
+>>  	/* Configure for shortest timeout and wait for reset to occur */
+>>  	v = FIELD_PREP(OTTO_WDT_CTRL_RST_MODE, reset_mode) | OTTO_WDT_CTRL_ENABLE;
+>> -	iowrite32(v, ctrl->base + OTTO_WDT_REG_CTRL);
+>> +	regmap_write(ctrl->regmap, OTTO_WDT_REG_CTRL, v);
+> 
+> Could this regmap_write() cause a deadlock during system restart?
+> 
+> The restart handler is often called during system shutdown or kernel panic
+> in an atomic context with local interrupts disabled. Since
+> devm_regmap_init_mmio() configures the regmap to use a spinlock by default,
+> if a panic occurs while another cpu holds the regmap lock (e.g., during
+> a ping or timeout update) and that cpu is halted by smp_send_stop(), this
+> regmap_write() could spin endlessly and prevent the system from rebooting.
+> 
+> Additionally, on preempt-rt kernels, the regmap spinlock becomes a sleepable
+> rt_mutex, which could cause a sleeping in atomic context bug when acquired
+> with interrupts disabled.
+> 
+>>  	mdelay(3 * otto_wdt_tick_ms(ctrl, 0));
+>>
 
-commit 7b9b9a70107dbc216f12066e863bde3029e71a0d
-Author: Aaron Kling <webgeek1234@gmail.com>
+Hi Sander,
 
-spi: dt-bindings: tegra: Support IOMMU property for Tegra194 QSPI
+I hope it is alright if i CCd you for this as i am not an expert on watchdog stuff.
+Wonna make sure this issue applies here before i proceed with the suggested solution
+to add .disable_locking to regmap_config without understanding the consequences of it.
 
-This commit updates the Tegra210 QSPI device tree binding to allow the
-iommus property for the Tegra194 QSPI compatible string. It states that
-this is supported via an external DMA controller.
-
-> spi: dt-bindings: tegra: Support IOMMU property for Tegra194 QSPI
->
-> This is supported via an external dma controller
-
-If the Tegra194 QSPI controller uses an external DMA controller, the extern=
-al
-DMA controller acts as the bus master while the QSPI controller is a periph=
-eral
-slave. Because the iommus property specifies the IOMMU master interfaces fo=
-r a
-device that performs direct memory access, does this property belong on the
-external DMA controller's node rather than the QSPI controller's node?
-
-> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.y=
-aml b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> --- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> @@ -78,7 +78,9 @@ allOf:
->          compatible:
->            not:
->              contains:
-> -              const: nvidia,tegra234-qspi
-> +              enum:
-> +                - nvidia,tegra194-qspi
-> +                - nvidia,tegra234-qspi
->      then:
->        properties:
->          iommus: false
-
-Allowing the iommus property on the QSPI node here appears to misrepresent
-the hardware architecture for an external DMA topology. If the operating
-system attempts to attach an IOMMU domain to the QSPI device based on
-this binding, could the actual DMA transfers fault due to the DMA controller
-itself not being mapped?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-tegra194-q=
-spi-iommu-v1-0-57dfb63cd3d6@gmail.com?part=3D1
+Best,
+Rustam
 
