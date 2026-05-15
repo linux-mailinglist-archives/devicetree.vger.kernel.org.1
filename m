@@ -1,215 +1,249 @@
-Return-Path: <devicetree+bounces-297949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297951-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AsOApbKBmrynwIAu9opvQ
-	(envelope-from <devicetree+bounces-297949-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:26:14 +0200
+	id oNkxDn7JBmrynwIAu9opvQ
+	(envelope-from <devicetree+bounces-297951-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:21:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8775F54A89F
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:26:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B32954A7B0
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:21:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81CBA3009517
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:19:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 36E6130013AA
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063933E51F2;
-	Fri, 15 May 2026 07:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iz8WGVuZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6351B37AA81;
+	Fri, 15 May 2026 07:21:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1CF37BE8F;
-	Fri, 15 May 2026 07:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03621311942
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 07:21:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778829587; cv=none; b=UtQK4hMVsd8VJP2DmUXKE3yX2L/W0BzKpJ21XwxczbCQN8xS5qOEeSlFnZyn8kr+Z8QuN/BnwylI1rJEf1YSMPV4weQz0DoMg7+Psn1io01zBoHo4DT2NkOLqRCnCRRJ6nOn8jEYrtMU8Syr6Ln61/qy2wbFACuB6OlYJAtOqaA=
+	t=1778829688; cv=none; b=J8DdBTcW2mW7rVxy/Zxx061snWTDEbpp0NWhlWhArQgQZYm91hC9QOIu+BnhKsrfvTxkmr4qe/LNWbSbfA0ZlUgkAfflnr6DaERwqOfjOe9TZvcaBsl0nI3T2h2HlR148v5cdm0DtY/TEbtKHvD6103Mhl4WMQHNL9PjEZb/3V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778829587; c=relaxed/simple;
-	bh=t5fRpD3EnkE+Nxq5LbviM57nXqk9kkAaeHVvlVAGcXQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mHkmPtnNm+ED5QLYhMVqu2s+ltV8pc9BM50QZKzR/vCCHGDr3Vz5Fz35jywn2/yU/7GdYSRM//87hLopNrMIDpTX+6RPftpbN4tWr8WCZogrbmf5OobKJYrZFytk8YafBZfrxyzA7G8XAZMuyQjojoR4XvTkWWrw8YdRi1efHAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iz8WGVuZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70600C2BCB0;
-	Fri, 15 May 2026 07:19:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778829587;
-	bh=t5fRpD3EnkE+Nxq5LbviM57nXqk9kkAaeHVvlVAGcXQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Iz8WGVuZoGyvtgFS0FCc/rRdTDLsTmyRn5uTK77uogNixh04xLVHMPw9WjkNoLMhy
-	 5IsqYVx9hu/W5XjRh2fNALK+14aZevRSM2EFobC4iOJ0qWAjfJOWHo4gOfj12dpUxZ
-	 e016cgHG6cufWojNA2wEidcSSnsEqD6htECQ5FOUuxzTrLLbnaCbZJhiAxlD6Xk1Mv
-	 YDm+rzgs1QfpZJFw2tOTFtFkH0ea6awXR9dF3T5rm6rC+ZTjJXM8VbVdWxtSJIaoz5
-	 99Rw0urcPLT6hI/D9yEu+aWP6IdEO4POUpshZvw1r3N/FU1zJVirQFUCLf+7Mbrm9E
-	 n0QLFPy0zoBpQ==
-Date: Fri, 15 May 2026 09:19:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	Frank.Li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com, 
-	mturquette@baylibre.com, sboyd@kernel.org, kernel@pengutronix.de, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: connector: Add fsl,io-connector binding
-Message-ID: <20260515-resourceful-singing-roadrunner-ce25ec@quoll>
-References: <20260509024846.2094049-1-chancel.liu@nxp.com>
- <20260509024846.2094049-3-chancel.liu@nxp.com>
+	s=arc-20240116; t=1778829688; c=relaxed/simple;
+	bh=1Z6uBZlhnZq7taSXC0j0P3oH5QjAyYZAvNpzObSnE74=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kaf2/NtoJ6kUOdu/a4BE4E8dRk3HZO+FwLhfIm1IQfsO0btvh17ZMwOdAXWGT9cBxjZVNel6XgcAUgOuol2C1eM0FJ8VPu6bcdIIRc2OD2pFNXhe0/D1Qk8oNkYvSwazkIr6u/luJMgQBzJ9mqSHQZ/oTYoJruWwpr7bMNgsy78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-575171b1ce7so2731684e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 00:21:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778829686; x=1779434486;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RsqCLGSjjl19J/y6UJmHSf9ZNpy83CGHFVvq1De6XEE=;
+        b=Dg82SvrTEaxaA+QQULjoFEM9JY1jiO9hshdCg3pZ7IoRUbcmSQRYMBXU77WDyWSDA5
+         +D9XQHlLVQUDWzEE1Yv6gh19OIjJfSzd6kY0ba+Y2nxUDqvKavuCyzbCAjZ6hXxMRzik
+         bMEfWdTf47yHjUYO5Mnu9kCfBgvRWVXzuZsPKrOxZ5qLc/E4dSkv5eJ7XjY7xx6DplxD
+         SSrB8JIQ/K8R3ZaWYgW2pk6liem60EdldSCTOmvc+S7UYURBX8vxu83rm+BnYF3KPce7
+         QH3SvQOTy/PbWSnO9AIUHs+diHWH09D+iaBRHelvByt6LhZWefWGr3ZnbCO+cCc08fhS
+         bY2g==
+X-Forwarded-Encrypted: i=1; AFNElJ8A3NYbdt6YOuJNdOboX7xf1CTSNxLxEiU1AUWaU7f0dbwDFIDs4IIDMMd5fZjNmAYyyMdHSGIecPNK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFZMnfRd/sUqjAQ61HQ0KDWofH3E0KAK1pDYyL8SpDm7/pDXOd
+	eMntYN4eYsy1cJDwpFGTACBGjzXToz8wuVckKEPdQMRiH8ZWTi9gWt7QoncucB72
+X-Gm-Gg: Acq92OGtPRvS0GUaN9889dC0nA24qxYz9/VBAZTp9cJNTHk3SMT85pl9BtQk8nEnHjC
+	lYdA8H48DHtPFwidFbqpzQPeBxMasn3fea2IccpcUb+l5V4Bsc3sh13JI0EBBMACuJYzrrjPxTW
+	UfyvNn7Cl8em8zylE4CnssFvO3mkQ0xPeLcb0Ry7sti25QpLil9/YxR+/HEGFTkEg7Y/GZu7lSR
+	GLQCKIpeS9K98rUST+EnNMf19FCkmCUAz/M4MHAU+gQVKZZo9OtE3QnTgL5olmwPrNlHHTSAKWr
+	6ANDrpVQ/S7aPQDYMEuerdMp0RMfiZu61DCQmSTX8nr8un2QID+b+oSM73CSa8vAqoQYGZDlbMo
+	qw0tiYpY1AEhidUv7aDFG1mi5qWuV/uFgFde2M5GK3oUtCCbNl5pw+4ultf2do35R4/txnUz9wj
+	PEtPqrGsLHTH7KwYYYe1PktdDwQtj99BS34DV7HE/dX5Ag6c8OS7KoPtCGGFFGHtz0Az0iypE=
+X-Received: by 2002:a05:6122:338f:b0:56e:e68e:9fc2 with SMTP id 71dfb90a1353d-5760c013b50mr1623563e0c.10.1778829685877;
+        Fri, 15 May 2026 00:21:25 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5760f588bb2sm870440e0c.4.2026.05.15.00.21.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 00:21:25 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-63130466364so2795276137.2
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 00:21:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9JfhlNkZNUZx6DiEOhwVT67Dc0Z8YoNxo5pP17VmQLf1tNsa1Y5LinJbMRAH5fXDw0PJnZ25jB8vNp@vger.kernel.org
+X-Received: by 2002:a05:6102:3f4b:b0:610:5b9:dde6 with SMTP id
+ ada2fe7eead31-63a3cc0dff9mr1395107137.6.1778829684971; Fri, 15 May 2026
+ 00:21:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260509024846.2094049-3-chancel.liu@nxp.com>
-X-Rspamd-Queue-Id: 8775F54A89F
+References: <20260510084303.122426-2-phucduc.bui@gmail.com>
+ <20260511204528.14632C2BCB0@smtp.kernel.org> <CAABR9nEhOTz1-0NmCMTbz=-+782Pto0yovSQhBXrXqhLwMg80Q@mail.gmail.com>
+ <20260514151718.GA505743-robh@kernel.org>
+In-Reply-To: <20260514151718.GA505743-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 May 2026 09:21:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXVp5qR39rxm1GnTx5voXfrRWy85E9ROqH6yFLXhBXDkA@mail.gmail.com>
+X-Gm-Features: AVHnY4IaZwUjjboAa9w44wegGYbg_GnY787WQJ9d-0SLnG7aDexsYLaX24GohaQ
+Message-ID: <CAMuHMdXVp5qR39rxm1GnTx5voXfrRWy85E9ROqH6yFLXhBXDkA@mail.gmail.com>
+Subject: Re: [PATCH v3 01/10] ASoC: dt-bindings: renesas,fsi: add support
+ multiple clocks
+To: Rob Herring <robh@kernel.org>
+Cc: Bui Duc Phuc <phucduc.bui@gmail.com>, sashiko@lists.linux.dev, 
+	devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 3B32954A7B0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297949-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,baylibre.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.linux.dev,vger.kernel.org,sang-engineering.com,kernel.org,renesas.com];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-297951-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,nxp.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.984];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email]
 X-Rspamd-Action: no action
 
-On Sat, May 09, 2026 at 11:48:43AM +0900, Chancel Liu wrote:
-> The NXP I/O connector represents a physically present I/O connector on
-> the base board. It acts as a nexus that exposes a constrained set of
-> I/O resources, such as GPIOs, clocks, PWMs and interrupts, through
-> fixed electrical wiring. All actual hardware providers reside on the
-> base board. The connector node only defines index-based mappings to
-> those providers.
-> 
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> ---
->  .../bindings/connector/fsl,io-connector.yaml  | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/connector/fsl,io-connector.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/fsl,io-connector.yaml b/Documentation/devicetree/bindings/connector/fsl,io-connector.yaml
-> new file mode 100644
-> index 000000000000..8b5038a2332e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/connector/fsl,io-connector.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/connector/fsl,io-connector.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP I/O Connector
-> +
-> +maintainers:
-> +  - Frank Li <Frank.li@nxp.com>
-> +  - Chancel Liu <chancel.liu@nxp.com>
-> +
-> +description:
-> +  The NXP I/O connector represents a physically present I/O connector on the
-> +  base board. It acts as a nexus that exposes a constrained set of I/O
-> +  resources, such as GPIOs, clocks, PWMs and interrupts, through fixed
-> +  electrical wiring. All actual hardware providers reside on the base board.
-> +  The connector node only defines index-based mappings to those providers.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,io-connector
+Hi Rob,
 
-Everything is IO. Everything is connector, so your compatible does not
-match requirements from writing bindings.
+On Thu, 14 May 2026 at 17:17, Rob Herring <robh@kernel.org> wrote:
+> On Tue, May 12, 2026 at 01:42:06PM +0700, Bui Duc Phuc wrote:
+> > Based on the Sashiko AI review, I am thinking of adding the following
+> > constraints specifically for renesas,fsi2-r8a7740 to address the
+> > reported issues.
+> >
+> > I think this may also help balance both Geert's and Krzysztof's
+> > comments from the previous v2 review.
+> >
+> > Does this approach look reasonable to you?
+> >
+> > ---------------------------------------------
+> >
+> > -allOf:
+> > -  - $ref: dai-common.yaml#
+> > -
+> >  properties:
+> >    $nodename:
+> >      pattern: "^sound@.*"
+> > @@ -94,6 +91,78 @@ required:
+> >
+> >  unevaluatedProperties: false
+> >
+> > +allOf:
+> > +  - $ref: dai-common.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: renesas,fsi2-r8a7740
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          oneOf:
+> > +            - items: # FSIA & FSIB is slave
+> > +                - const: fck
+> > +                - const: spu
+> > +            - items: # FSIA slave & FSIB master use internal clock
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: ickb
+> > +                - const: divb
+> > +            - items: # FSIA slave & FSIB master use external clock
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: ickb
+> > +                - const: xckb
+> > +            - items: # FSIB slave & FSIA master use internal clock
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: diva
+> > +            - items: # FSIB slave & FSIA master use external clock
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: xcka
+> > +            - items: # FSIA master ex-clk  & FSIB master ex-clk
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: xcka
+> > +                - const: ickb
+> > +                - const: xckb
+> > +            - items: # FSIA master in-xlk  & FSIB master in-clk
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: diva
+> > +                - const: ickb
+> > +                - const: divb
+> > +            - items: # FSIA master in-clk  & FSIB master ex-clk
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: diva
+> > +                - const: ickb
+> > +                - const: xckb
+> > +            - items: # FSIA master ex-clk  & FSIB master in-clk
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: xcka
+> > +                - const: ickb
+> > +                - const: divb
+> > +            - items: # FSIA & FSIB  full clock support
+> > +                - const: fck
+> > +                - const: spu
+> > +                - const: icka
+> > +                - const: xcka
+> > +                - const: diva
+> > +                - const: ickb
+> > +                - const: xckb
+> > +                - const: divb
+>
+> Between this and just giving up on enforcing an order, I pick the
+> latter.
 
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  gpio-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+The important part is that "fck" must be first, and that the others must
+be unique.  Isn't there a way to express that?
 
-You do not need to redefine the types. You need constraints, though.
+    minItems: 2
+    maxItems: 8
+    uniqueItems: true
+    items:
+      - const: fck
+      - enum: [ spu, icka, ickb, diva, divb, xcka, xckb ]
 
-> +
-> +  gpio-map-mask:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  gpio-map-pass-thru:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clock-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +
-> +  clock-map-mask:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  clock-map-pass-thru:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+or does the single enum line only work if it's the sole item, and
+do we need 7 copies here?
 
-I do not see these defined anywhere. I also checked cover letter for
-references for pulls to dtschema.
+Gr{oetje,eeting}s,
 
+                        Geert
 
-> +
-> +  pwm-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +
-> +  pwm-map-mask:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  pwm-map-pass-thru:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +  '#address-cells':
-> +    const: 0
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Use consistent quotes.
-
-> +    const: 2
-> +
-> +  interrupt-map: true
-> +
-> +  interrupt-map-mask: true
-> +
-> +required:
-> +  - compatible
-
-You need to require the properties. You have a FIXED connector, so it
-has fixed set of features.
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
