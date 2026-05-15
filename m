@@ -1,143 +1,175 @@
-Return-Path: <devicetree+bounces-297962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDWoIt3PBmqAoAIAu9opvQ
-	(envelope-from <devicetree+bounces-297962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:48:45 +0200
+	id ABb8BpfRBmqKoAIAu9opvQ
+	(envelope-from <devicetree+bounces-297965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:56:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7EE54ACF9
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:48:44 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 860CB54ADB8
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:56:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B135E3009025
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:48:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8A5F0300CFF0
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB5B3F20F5;
-	Fri, 15 May 2026 07:48:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="av5Irmdu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665923F788A;
+	Fri, 15 May 2026 07:56:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6CB3F20F6;
-	Fri, 15 May 2026 07:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2683EFD27
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 07:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778831322; cv=none; b=ZgBmm+2qsodaArkWsimrLB75cLrj4D6RjBYEVy10ITiMq/wzpjbA41vUllO5hHYy7OYKmjnnhZp4NJOIvajpAweA1DspjU+krUqjJ0omNkkLVUQlwNRRijrSQ9sCADgBJ8z0clTBoQuQnJTA+F52eWnYHMlORfAgqWT1p58V818=
+	t=1778831763; cv=none; b=d3wJoBHDVi3A/LkMq9tHKTnHRZOcJLwY9q1/u4/1a+LcfmppkxyD/FZdGq6ik0pwOcRgisD17dOEFFtMDMzD76Rt1c6e9suXD3PspztsLOv3te6VqKeqaVYK4u7TYMBLw1HfnEU3Vp9U79Ckhlvfj8HS7l7EhvGKfpc5sZHF82U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778831322; c=relaxed/simple;
-	bh=GnvF+3lr3/CxAtmxTGYUQTrSwCr7CpNrWr3OTp6aMPg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VToXCwyjurRBdhhREyrrzOIOF1g32DOHDAfZhE6QByc44KRfcSQXpPqVKZeMPvkRKLRAQ7lW3TEQtTEOvZF4I+Vob2ye2IxJ1yzW96OCSaEoN0nzDwa18bPB2zFnFM2uBF6IjNTo/NZXW3fRpD1DKpvOI09zaaiQSMU8adWG6qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=av5Irmdu; arc=none smtp.client-ip=195.154.119.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=a1AVvdVarc8InzAOGW6ry1UU/91SpnKo6fW3luX2//U=; b=av5IrmdufgZCyrkWhuzfjPjqid
-	qR2SeBhvG4bLfAHJc0UhihY+pCE+1pudh4/9DxKesByZDb7ddBmSJNuR3MZNMxvpV/sBGIVFh0afh
-	MOXd3D8Rc2vh020gjBvhKA+W3ecJgZpuQQFcm1oUPbhIW4i95n4W9yR210YYO9lWCBNeZSwOQ7D8w
-	A4ELDN0tLgPGCGDjYggh309d8EmUk3MCH5iDHbAXRWLftmENZh4bXqpdMsT5gU5kqLQ4rgMCVK8aN
-	PjSYO1ijgSw7X0354AQZnh+Vxqpkr3YA7JBcmbOg+RN9Cr0G/rapoWhLocjt+vdG/9abXSB99nMQY
-	BrM8Ju6Q==;
-Received: from authenticated user
-	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1wNnHf-00000008MGS-2RNt;
-	Fri, 15 May 2026 09:48:35 +0200
-Date: Fri, 15 May 2026 09:48:35 +0200
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: E Shattow <e@freeshell.de>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
-Subject: Re: [PATCH 3/4] riscv: dts: spacemit: enable eMMC on Milk-V Jupiter
-Message-ID: <agbP0-OsfQRFJcr0@aurel32.net>
-Mail-Followup-To: E Shattow <e@freeshell.de>, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
-References: <20260514160356.1642075-1-aurelien@aurel32.net>
- <20260514160356.1642075-4-aurelien@aurel32.net>
- <f52a821b-157a-467d-84ee-4d1d4a96f673@freeshell.de>
+	s=arc-20240116; t=1778831763; c=relaxed/simple;
+	bh=IF78aL4qhYcYFoQ/xoUYLUDn+1jiumlt7gMiBumVb88=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dnVjCw19mZGtP1OgmbZiqzXnns85jVPn45XQsE4D5DoIv8NK2ip8lQcc7bMZxe0LJt6yYlH/zqKDVc2rIMxQPTu//V3/joly4FGMAdqcDXChdQpu5402Nmg6KVE/MUnj5Vy6kAYuHTomx2ZiHSO/2Z7yDfdijvFnp1aINluC4PI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-c80167f5716so3990004a12.2
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 00:56:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778831761; x=1779436561;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eAZHu6XpvwN5l5f2FSQxtIsJfHFz80+bclBZd6bS4os=;
+        b=aH1hbJvUUmIaM1ftUazO3v0pztDzS4acBawkBWDXhCQIenMEhPiLPVlx8q5WFA4YDI
+         V4yWhv+zvBtmTCE46F15WAWBE8OnGzsLTFvmqD2gDhTv5YHp+0GskyQtYmDp9mQspswE
+         RpYKa3vrd3tLTYFPc7+qIkTtucLt81OTmKTjUKzqWsMO9fe+AQeOIL2FSUQxIVyDAa7p
+         /fJo7Z8X2v4SDeu5jfsZvVs0rp6xuK4ZOVR+3HiN/bQRRmXZSliYTz1kGgcprFmaxsw3
+         cgfZbPfPUBPLXRJwlJgi54v3TeZ+IP2vGjDe50kn674KQWqk2SmJz6ULIbJBkHwifr5j
+         0aRw==
+X-Forwarded-Encrypted: i=1; AFNElJ/A08j4xMCbrk4oo/MjnXMRYULC3g/LW3EnfL3ZxB1/GcF46e2icvAgHllA3IOah1fu+i7HkfFmkJin@vger.kernel.org
+X-Gm-Message-State: AOJu0YylLCCd1ERlz9fPV+SqM8gjObLwv1SzCDeV6v9RnXOPyZiFODAt
+	y+PSU5+XFty+m8oSYA23MOLhOyawG5/YxmgN+ofp3FDDS/fEY+QE/81t1ALPZqFM
+X-Gm-Gg: Acq92OElGMKZOkud9yTiSB4liJzYOYmW80ILJywCgqFh4H2eahA3gqUGxz7xE0IsPSR
+	/VxDuwyc9U45oyPN8Gb1g3IiNd1uBB99xV03N0k26eRfSaV82ZUvTjSGpx4Ps/BvVPtthRaSV/M
+	mAPe8Vo5KPhvkcmrRWKL6eZLJ2EXXOUXizcTDprUS1DhVdEilh8/XPNiiidnoOVTZWhIakQbAUp
+	qCJFZOhium0F9fE8uccpqSRhcywmgEr1vaSlEDv22LoEq9y88mnJD36AJoTOE/xUjq+7maao2fC
+	eteLX0zFBGKLs5gjiV2cdDI7qkU7s5b+mCtFZCUuVAL2kEKcEBzI/pm4jj1Cu2ZLbs9BvTh+3Z6
+	Vr7ch3U7Ay0Fuc1IZh0Z0tEA3UeaA16RjODhXkV0vC28CpZteGWlaV7IeyEqarjTXHTLBYUX3oo
+	ZRfzkHqTJxEePoLji40giTcPGGlEO0UtySk/DYmW1n4nzKVHVtYXJa1xGvqugWJQTl+aCLoA==
+X-Received: by 2002:a05:6a20:a12b:b0:3a2:d0ed:f1f8 with SMTP id adf61e73a8af0-3b22ecf94damr2810128637.30.1778831761351;
+        Fri, 15 May 2026 00:56:01 -0700 (PDT)
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com. [74.125.82.42])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c82bb06268asm4382066a12.1.2026.05.15.00.56.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 00:56:01 -0700 (PDT)
+Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-133466cf955so5100279c88.0
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 00:56:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8z+0i/97AFDAPZWMKfaOD8lRHKx0wc1GIlgggFeB4PWhSYIa+CpCLyDzx9ioN9NiaaFeBZQSGqa84G@vger.kernel.org
+X-Received: by 2002:a05:6102:3f05:b0:62e:63e8:427b with SMTP id
+ ada2fe7eead31-63a39a5f9e4mr1494077137.0.1778831365156; Fri, 15 May 2026
+ 00:49:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f52a821b-157a-467d-84ee-4d1d4a96f673@freeshell.de>
-User-Agent: Mutt/2.2.13 (2024-03-09)
-X-Rspamd-Queue-Id: ED7EE54ACF9
+References: <20260514-rcar-du-dsc-v1-0-d65f7a9e9841@ideasonboard.com> <20260514-rcar-du-dsc-v1-3-d65f7a9e9841@ideasonboard.com>
+In-Reply-To: <20260514-rcar-du-dsc-v1-3-d65f7a9e9841@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 May 2026 09:49:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVTgQp9WRiFpLX+pP7kOGF2v6oButALPu1B8QkYhVyvJA@mail.gmail.com>
+X-Gm-Features: AVHnY4KQ6u1JetcDt3qGv1sa7SAF13W-c5qtL3drtJoKYhKLpQQVXnl4eLgch0w
+Message-ID: <CAMuHMdVTgQp9WRiFpLX+pP7kOGF2v6oButALPu1B8QkYhVyvJA@mail.gmail.com>
+Subject: Re: [PATCH 3/5] drm/rcar-du: dsc: Add rudimentary Renesas R-Car V4H
+ DSC driver
+To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 860CB54ADB8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
-	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-297965-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-297962-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aurel32.net:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:email,ideasonboard.com:email,mailbox.org:email]
 X-Rspamd-Action: no action
 
-On 2026-05-14 23:49, E Shattow wrote:
-> On 5/14/26 08:56, Aurelien Jarno wrote:
-> > The Milk-V Jupiter board has a connector for an eMMC module. Add an
-> > entry for it in the device tree and alias it mmc0. As it is not
-> > populated by default, do no mark it as non-removable.
-> > 
-> 
-> The meaning of "non-removable" here is whether it is expected to be
-> added and removed during use, requiring to be probed again; not whether
-> it is a user configurable module or soldered down part.
+Hi Tomi,
 
-Not connecting the eMMC module and larking it as non-removable causes this info
-message to appears in the logs:
+On Thu, 14 May 2026 at 14:25, Tomi Valkeinen
+<tomi.valkeinen+renesas@ideasonboard.com> wrote:
+> From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>
+> The Renesas DSC Display Stream Compression is a bridge embedded in the
+> Renesas R-Car V4H SoC. The bridge performs VESA DSC encoding of up to
+> 8k or 400 Mpixel/s . Add rudimentary driver, which currently acts as a
+> pass-through bridge and allows DSI1 to be operational on R-Car V4H.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> [tomi.valkeinen: use bridge->next_bridge, minor changes]
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-mmc0: SDHCI controller on d4281000.mmc [d4281000.mmc] using ADMA
-mmc0: Failed to initialize a non-removable card
+Thanks for your patch!
 
-Regards
-Aurelien
+> --- /dev/null
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c
 
--- 
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                     http://aurel32.net
+> +
+> +static void rcar_dsc_atomic_enable(struct drm_bridge *bridge,
+> +                                  struct drm_atomic_state *state)
+> +{
+> +       struct rcar_dsc *dsc = bridge_to_rcar_dsc(bridge);
+> +
+> +       WARN_ON(clk_prepare_enable(dsc->clk));
+
+Who don't you use pm_runtime_resume_and_get() instead, like
+rcar_cmm.c? Then you don't need to get the clock at all, and the driver
+will keep on working if the DSC ever ends up in a power domain.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
