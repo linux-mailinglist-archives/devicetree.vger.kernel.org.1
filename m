@@ -1,106 +1,106 @@
-Return-Path: <devicetree+bounces-298269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMR3BEENB2p0rAIAu9opvQ
-	(envelope-from <devicetree+bounces-298269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:10:41 +0200
+	id OHJdIGMSB2rgrQIAu9opvQ
+	(envelope-from <devicetree+bounces-298270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:32:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B3E54F319
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:10:40 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F34454F9E0
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:32:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE69C3204210
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:51:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8FDEB309476F
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEFC48A2D5;
-	Fri, 15 May 2026 11:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74EA48BD20;
+	Fri, 15 May 2026 11:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EUug+3rA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iN9DlHMo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U0VSyB28";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="b8SSHsXe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB15247DFBE
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCA748A2DA
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778845712; cv=none; b=J3qLz6raRFSXx05KaRDfIgboxiSxl49tim/uM2V53/GfTYQaaKehS/g5OR0uSMmOXFhNNgJNlyP0Cch49UZ9Q6rAcvPvgxKqUz830DGtH9JSIJ3aUZfu2B0qfC8EomUb8NzKlCfyGqfI0ZFKKHi6/1syJWKPgj5s9HYpSiIbhg8=
+	t=1778845714; cv=none; b=rRBIlxiYlhy79BD/SU3Si5+wq7xyKvojEVE+RY8MAgFMHC3SCGvdTbZcptoSG2DJ8XFXCGPA//oNOltkt0AX+8MxelwsvMqYL4pucFhcMhCubtUuc6KrdPZ/reCCwn/LwgrMUC9lMsDl0+LursXSCXHDqnxELStQ9gcPysbkaQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778845712; c=relaxed/simple;
-	bh=1zDPOP1SavZgDiQyi4AT03ZJTGCF0M0Uv7ocps5TYYM=;
+	s=arc-20240116; t=1778845714; c=relaxed/simple;
+	bh=3LZBjFNjSvRhMK03ekSlXkVYlg7os/XFnLwP9MO6T5M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kSTmFsLqZ3zAQ/BoeNed2Uar17X1r/+6ua9vKbDoayvIvFdT1DhhnlfMbM65s9kwu3/CQFlxjCEo8kZEkHbe8fNkfwn5Z9Tq3x6sk4KRAGz47WXcsKf40jeuCPvpfX/i5Nlj2oyPIft04gPengov5LJ3QSoEMwduxza6irgbKNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EUug+3rA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iN9DlHMo; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=e+CqTN/Vgi3a9l8VmROACRbcfeZiC+OjSPvAtJAIPaKM4j7GQM7JdN0kOnG8p0R6h3+LNLEpxRSsNgwTLhPCmjaYL+n/3zsCvRUiR1DSvl9/Ae5i+SYtsdK0otZNqcJSwBXRzMNK1jOsoLomlFVv9gQ715vkFDFo7PUr1nGINqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U0VSyB28; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=b8SSHsXe; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64FBUDA33795545
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:48:25 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64FAbC1P3512973
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:48:27 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Dxp8B42jWwt+tWH1V+vTuYQ+R3Qg9AEvv+6K2fYAZ40=; b=EUug+3rAOONo7gEI
-	alh9KKX25mPJs7TBl3phJ0ZFuiQKCKRZvcSw6iJNBqLR+guJBX6GacCM7+Za2+2o
-	sx4B9KT2IzHL1Z2SoNVuEtHB3gQEjVZC6GRhx73ZAfNeTLkDej+R2wyle4FS4OV3
-	7bMEjMQkLYGntC/2JpTZjc+miHMuWC+gHfk63aFZlazlHv+AAIL4vDek4jYdc1cM
-	KDyzTYPtpjaog7+Khi+VXp2R8BKMnEtUlF0J6OPAq8PgeZJfN/ScAyC8J6vf1sCb
-	4biNjaQHDZmHx7lbHHdeH6yoYXGZpt2TqtbuOzovGTOyd/7SyyddY39CFB7T1wMO
-	PgPUMw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e5m1su1t7-1
+	kIs5lUio7E7YMx2NkuaANRPWVQRplvNz2SIkISpJQxI=; b=U0VSyB28K1gDS3aE
+	ph6pliUxQYD+nNQdolMJYknIXMj6N1LOkU6q3tRT7SFZmQ870IxHc4kbCEeEin/m
+	3s4VFLRrejvKUtEsfDLlh34SCVaBbOYcLCDN86PVo4INLoctumkjJyp1pUlt5qeb
+	6K4gkph0FNiY/SzwJbsMtrq0Lek866RumNZGfuw3Ns/bCsFPOoJDiY0bjpg6p13E
+	+v0FNOGF0qKupLZNol/RCO3qFLcvDEdhJ3aAbJ+y2E3vFXE/SCKZgEsgxrH3ojfO
+	d29OF9pgzQCFQiSnzTLiSuMympk3DZtDz/4SX/bD4NB+kkZ/NkRLhizdEl0QPKZr
+	dFLxDg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e5m1vb3pt-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:48:25 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50da529ff48so216132711cf.3
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 04:48:25 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:48:26 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50fbc70cfbdso219432271cf.2
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 04:48:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778845705; x=1779450505; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1778845706; x=1779450506; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Dxp8B42jWwt+tWH1V+vTuYQ+R3Qg9AEvv+6K2fYAZ40=;
-        b=iN9DlHMoXrhKqtycjOgH9piSR07YYJ1aH8J87Oh09bAY1VKtAiGypO0+wFPFo6XQN7
-         Ym2OF8htrWp+db+o+5hk7jwo+Xrk48Bi1oFMzfCNmiXPuUXNT9rCBCiqpBqSrtvqLg2Z
-         SHM6RpIPPYL0FW94fOw5YHEWmNIORVmTbgLgTQr1/3heaK8HKqEXxWVMar3CP+y0FJ6P
-         Dti5Y8kOxytntjADPU9gMrpvXwtYZkMVJCip2IdKS3B9r6VZG1b9I4LAfaik5voOVCqp
-         L2befAUH3qErxQUf59/N2rgWkYuhPGyN86n3fD4l8kQxxF10PrR3p4d7go34J0bfwL2U
-         mz/A==
+        bh=kIs5lUio7E7YMx2NkuaANRPWVQRplvNz2SIkISpJQxI=;
+        b=b8SSHsXe03XKIqHO2exbd/cTJEdzSIh0u0quoYeo/eJArKrUjTw3erJp/3aN6uYrqN
+         Kb0SnHv3VgsaJ037vN010k6wSyciFkmIPThauANrg7Y1PbIll6bC5UCJTRa1cMFFG3Sn
+         nAOxhKRe8/S6sU578f6/ek7h00vJNrgpmiTuQOlImbatXjZBlmkwPTQ9rNt5xf4/HMiR
+         tZxbVCuRFg1Ghzpmqrr6KeQVpQccYI7Qm/WF0Sp1VFCXdRjAfgO4k8tmhpOdgRSGB9Tj
+         9/2KAiSTS84ZGhqonX0yq9V4yQAQgkmlOs+66IQ+Y0ChyyTFa8EksEat5FLwZWMtBcAq
+         RZGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778845705; x=1779450505;
+        d=1e100.net; s=20251104; t=1778845706; x=1779450506;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Dxp8B42jWwt+tWH1V+vTuYQ+R3Qg9AEvv+6K2fYAZ40=;
-        b=EVIiZGR6TCqsWxRztSrHDYKq19C00X5GRI+FCnpXevlvn39EvoLztOwfjyeqRYrv5I
-         QYbCnc2r3dNJrLXaO4F4omtzshNBWYhQtcOyIwCMfd6q/MYVRTZSyMvyloWudLZh346I
-         UXJS841e/YVQIMUx5qsbntdg1eF4bc4Q0EmDZmFKMPnlkmPMb5YJwoD+Yiuk+yY81bBa
-         21kSmstX+4KFa+lWB5G6NxpxxmHfwrgRKChH9u2zYxTnOB9Ouiym2+2XOB9BoZX3VKqS
-         Hv0Rh9OJrKR5FffGdrC1CSD8q+wvP/pGmt78kNhPOZiQK3NQVsFiJmW1cE5yKtJxi06r
-         KzhA==
-X-Forwarded-Encrypted: i=1; AFNElJ8/0A5goy2bY7riSYDhnhLhdNwhwCwJE8gEBR/MedI3KyPfSSsc4KeuhIcWhHf1/SQrNM9fzT1SaJbZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz09ZVP5j9oVa5Mg8KQM/HL6NF4dn0iw5kmHyg42s1TXOM0KB5W
-	5PMW0rM69d/qelBr9BBrJYn1D8c9HRQTykVXNv1jR2lLp7leh4ANbeykmpbETgeelhl8OOQEy5D
-	Fe2QqIXx3KfWIBtbHYLFLzYbW+LUHWj4hVcjVEvYjVKMIyrJclIs1oRPdH+m1qiqo
-X-Gm-Gg: Acq92OFI9h3ijPzxyihGpygFgYq0jSrd9L46DORdl1gjw5N8H1n2ziaNwQO4OK+uwtJ
-	H5vvvDd+E5/rfOPN8IWPS7qAsvuYQ1zgU6A9tQB4emvyOVB2qWU2UvKCTBAiSm/wrKlKzJvsW1s
-	qIxCbgAVIA2BYhnURVD+Muw/hTXEKDfKs/LxE29eeBQuU6NcngI90tDxPVjRaPekeBbT/UA6VWi
-	r/n/XXBY3plEQV2Y9NsPri7MWpP2xQcEJY8X8P5b55qN/JpQJWe1H6eMYsdBzR5SOcNq84snGJW
-	fUbGMiBxtAkv4F1W/MK0ujWl/RSRUTtEfMTdjNREMTPasTANm6EFE67QSy0HS4G0hYL6X8kwXQO
-	WFshXKQc0yqTGswTCY81aAbv8tA3Vyu5noRT0gRx4vEXX45T3YPxfG38/y/VnzQEOOgY5ahTR9w
-	Rn6L/czgWtbc+FtqdhKcyo3/SyKx7D4ygekVg=
-X-Received: by 2002:a05:622a:4108:b0:50e:5cc3:6f42 with SMTP id d75a77b69052e-5165a27a8acmr45272231cf.59.1778845704517;
-        Fri, 15 May 2026 04:48:24 -0700 (PDT)
-X-Received: by 2002:a05:622a:4108:b0:50e:5cc3:6f42 with SMTP id d75a77b69052e-5165a27a8acmr45271651cf.59.1778845703960;
-        Fri, 15 May 2026 04:48:23 -0700 (PDT)
+        bh=kIs5lUio7E7YMx2NkuaANRPWVQRplvNz2SIkISpJQxI=;
+        b=H0LknktSRW61W4g3yBZHD5tz9qnCtD8LI1aAbRcQWMv5hlja46JtQLtmlkN7Dj4wKn
+         l8p9dXO/zp3sBhZbgZXuTlgiYEWtZrW9boshMpsY3B0dm0bHZmIhA8Xzk/jzpMQsHqkg
+         43aPkMGklrvhKfO0vWaRCJcx/n5/9dW3SL03lh5YT1A7LwzDP52FZ7XFjausbLqvHifr
+         eIYh6P5OVYxrkWrWKDOtlkXm+Z55lGQsj6QHB5MeHo/aaK4RQgxL4RMHK67FlUBh/44I
+         Deo3JaH/EDBjA5iNkUuwYfyo8nlZJgdgEnW6UVmu8topMKSeQyf7B+ji9AQMnocfoTpC
+         TbFA==
+X-Forwarded-Encrypted: i=1; AFNElJ/3/GQwaOB3J/1wQwpKE2odU7zQuAQeJtNeZh7QK2okxVb/bbblPETiaCBrIgVH00Hv0I9YV5CX9rdQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YysWsu7kxuoVGwH2ZOIA1xA+TfAVTwTrxeG5zJp4WQJjv+dL0V/
+	RNmU9k32dPVDMxdtmXC4D/PGmGyukF7ndVxMGpu8G/cs0CXLaO2wUdgp+BOBsKV0IWu5NrDltda
+	ZvBHlCEccuvfJ2mAXm8RV0c03KTIWIcuxYOPCNeFzEQJgzUvzNM8jHIFPXvLcpah/
+X-Gm-Gg: Acq92OGo1Dwwx32KOZSNnVp9BctA+XgDBAPl7fJ9exF8+BjGCkFUgt5cAZ538KjG1Ss
+	N+9iR2bQYieTxn/0/yvFV98mKw4TlXlARIVYr29a+ekAZtQxvL2uyfLbc+/3UMkJ+leVoKxOp5P
+	jYt6Le3uHnGzKZsMTOYVh9LYJSBV/5q60ibIV092I6nIxJ5kQ0ew1DG9ffGAJCGjvSHm6PFZgbc
+	563Gdw7MdqibcDgTEN5qOdouu0I432xpAZxCEML+UmU8/sT+sWnBEyR8k3YwIz9LtqAhgqmHYBx
+	2PFJDM14P/q4lXD+CqQCBiD6S5VQMSy8E913vfSoLUFK7DL+ibjiFNQVYIfqr8Clhj2Qjwtve0c
+	v1iS74oIgTJZeUSkYmu+ApdcwjtBraLlTAqb2CLHXI/QjRpy/bgLV1OOj4mXMX80Jiqzs7qt1y0
+	pdCoN9bfvVcL9w4/IfVpv9MB1mpK8Al7/TOnc=
+X-Received: by 2002:a05:622a:1f96:b0:50f:ccdd:13f1 with SMTP id d75a77b69052e-5165a03f078mr50218341cf.16.1778845706153;
+        Fri, 15 May 2026 04:48:26 -0700 (PDT)
+X-Received: by 2002:a05:622a:1f96:b0:50f:ccdd:13f1 with SMTP id d75a77b69052e-5165a03f078mr50217721cf.16.1778845705537;
+        Fri, 15 May 2026 04:48:25 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a90f11a682sm1265079e87.31.2026.05.15.04.48.22
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a90f11a682sm1265079e87.31.2026.05.15.04.48.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 May 2026 04:48:22 -0700 (PDT)
+        Fri, 15 May 2026 04:48:24 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 15 May 2026 14:48:08 +0300
-Subject: [PATCH v3 09/16] media: iris: Add framework support for AR50_LITE
- video core
+Date: Fri, 15 May 2026 14:48:09 +0300
+Subject: [PATCH v3 10/16] media: iris: add minimal GET_PROPERTY
+ implementation
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,7 +109,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260515-iris-ar50lt-v3-9-df3846e74347@oss.qualcomm.com>
+Message-Id: <20260515-iris-ar50lt-v3-10-df3846e74347@oss.qualcomm.com>
 References: <20260515-iris-ar50lt-v3-0-df3846e74347@oss.qualcomm.com>
 In-Reply-To: <20260515-iris-ar50lt-v3-0-df3846e74347@oss.qualcomm.com>
 To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
@@ -125,52 +125,52 @@ Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8118;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5660;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=bF8iILLVIppNchJxOge/8BaIad5y4umYpW2shyRCvbs=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqBwf1zSV2dFei+cI3PFx77aEvLoXlbiMiwuBgJ
- uwUeUT7Wg+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCagcH9QAKCRCLPIo+Aiko
- 1UYjB/9i4edjCWnCPSwKG5bbs6wnzY5ZrLjFiZkMVganeoPMWdKhaZKOiESvkPNNjQeINUY9CNd
- GCmDzLnZPuOdBl1lsK+vUtKdLLoilopHst/2wgxBHKd7Boc2uyQQRSYnKJ4rwtDrWqlp2psZecq
- /UuBhAsfIjt0pXhVhDp+4ZIueG/o7j/iCQgWFQU6bVJJVwdtL4BVY+HioLSIr9YM9+lGMjs6yYO
- S5Hy4V5BnE+NHiWSMX5f0pieP65S4jq30G/hXzTEIqwMKJTMiTmI/wr7GZKZbDijO2vGVZ3gHOs
- pLC2gnFc7H4wv/9qWa80oHwDXpFK09uzxVrIJ2Ls5ZAesgmB
+ bh=3LZBjFNjSvRhMK03ekSlXkVYlg7os/XFnLwP9MO6T5M=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqBwf1nUSEEicmWRVL0koIcPwHeliPRrGfuCQ5L
+ xuDoXKe1suJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCagcH9QAKCRCLPIo+Aiko
+ 1euvB/48aLOJly1Fx/5K7xUNvTikyq6bfMpYFur3cGp0Mg+itl9zVX7a6bvaSXI3uZUm3ZO6oYn
+ iWESlLBaBBn/0H1LEaNzDtKMl22QV/cKIBtylgxxdbyY61rLSjy5PxC0QXvLefVyyRApFhvQ2ob
+ pmZadP4SHDMGoTt1Jy/mWvBsVwlpC2AiKONwZLkCuifBzb3gGy/nVTtiEO2hWT83iK+HmEdqe3u
+ KDnQkRHjrJk8d8BFHgAnDpU4Pyysvyt6AsfIyvD+MVfYYORk5Sg03nToGwvcYkIAz3Pwl+LAYCX
+ sI162Eg7aa0lrKnkigD7FNsJ9PP1EHkmonv5GrbAwC9zsJXQ
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDExOSBTYWx0ZWRfX6dPwFr4IK9dY
- PAxff54c4FFmqusLzf7QQSEQD/0ZQvMgPz6YCyCyA/+4d7XVxwRmn5XxlBU5Fix00eZSiqDwNPf
- zJarRd7tp4RISHDgb0NPgIolkP3l6ULUnys0H3p7OT2mjA5T0f5nWKdcVbdVhVhqPA2YAtwnDaE
- I77AChIpftHwD+FU4m6Me9Mn3BIFsNIt/YFQUwMuEklnBMrNzwDlMDEk2Hcsdm8sQFDaCjXwUh6
- 4s/FPDl9SAu5XP1uYvUGN61iNCV6bG7GZ5uKfFC5xIOOeFvAJeALp1QPaUt+RB5d9nALOWhP8tk
- tsEocIdyGgRtmex+KmauBz7ah3BWYWY2kQ9eTXH4psbh5Z6SAlK0ZrjSgzA3v89FiXTsFkdvorT
- Iw3z4BUh/pwYnFP3dNi0W6L8JfdZeWy/N5nr+eTl68JRUOnn1BAOuwOT62TIdnwNdbMPsuGfygG
- oqGTVgwODtAuTZ6xuXA==
-X-Authority-Analysis: v=2.4 cv=cZXiaHDM c=1 sm=1 tr=0 ts=6a070809 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDExOSBTYWx0ZWRfX/9b6zoiIy0xF
+ JSk31B818ZjxJqwi4tBwWu/PMMCQcevpzMWhDOFnbnLBTob0imPBxCuUbEO1ekANoiikpnYjOkf
+ MSKbL5XfMe5r4K4PbslEFQMxST4Shdp4CqatcToDY5h0sQfEQMx4V4STmLvg1hZ1Xi54hdUbNpH
+ NfsiDdDwwwvDGQY3BcEjjtZHDvOyF1BgxqDILX7qbuV43nuG3PwwABC5dkNf5URs0UlsWhxs9Vo
+ GwIIfUiliS55z80cPrkwyTTMRF4lBGnhvWdXuDvE/0HY/qGU5FZTnybFwosffLqG6915FJKmHCV
+ dzCFV88mTA+YsyEerRRPQoHV2/0CzFkH5PnaoviekNLC4e6Hkyf+hvsLA7zKk+aEDuAw8/xdbD4
+ sFT15h2pYIOlSw3yjfYKB3QcHmV2cg0X1VW3y7Wh4mu2tD4iqgPGYPFP1axB113GL1HwHNIM82p
+ fHy5kyFpnhvDOZB+usQ==
+X-Proofpoint-GUID: FaDhAwQPo4QCeFL8AVLxXC4RdIy3x7UY
+X-Proofpoint-ORIG-GUID: FaDhAwQPo4QCeFL8AVLxXC4RdIy3x7UY
+X-Authority-Analysis: v=2.4 cv=BvqtB4X5 c=1 sm=1 tr=0 ts=6a07080a cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=EUspDBNiAAAA:8
- a=x0nZcyIE9sK-8O7Lov0A:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: D1RYzFdKZL35z7h9OXBhQHD59vz3KN2m
-X-Proofpoint-ORIG-GUID: D1RYzFdKZL35z7h9OXBhQHD59vz3KN2m
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=4y4YWC2vBVg0P_IM3hEA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-05-15_02,2026-05-13_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 phishscore=0 suspectscore=0 adultscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 suspectscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605150119
-X-Rspamd-Queue-Id: A3B3E54F319
+X-Rspamd-Queue-Id: 7F34454F9E0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298269-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298270-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -181,7 +181,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
@@ -189,243 +189,139 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+AR50Lt with the Gen1 firmware requires host to read
+HFI_PROPERTY_CONFIG_BUFFER_REQUIREMENTS property, otherwie it doesn't
+update internal data and fails the HFI_CMD_SESSION_LOAD_RESOURCES
+command. Implement minimal support for querying the properties from the
+firmware.
 
-Add power sequence for ar5lt core.
-Add register handling for ar50lt by hooking up vpu op with ar50lt
-specific implemtation or resue from earlier generation wherever
-feasible.
-
-Signed-off-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/media/platform/qcom/iris/Makefile          |   1 +
- .../platform/qcom/iris/iris_platform_common.h      |   2 +
- drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c | 156 +++++++++++++++++++++
- drivers/media/platform/qcom/iris/iris_vpu_common.c |   3 +-
- drivers/media/platform/qcom/iris/iris_vpu_common.h |   1 +
- 5 files changed, 162 insertions(+), 1 deletion(-)
+ drivers/media/platform/qcom/iris/iris_hfi_common.h  |  1 +
+ .../platform/qcom/iris/iris_hfi_gen1_command.c      | 21 +++++++++++++++++++++
+ .../platform/qcom/iris/iris_hfi_gen1_defines.h      | 15 +++++++++++++++
+ .../platform/qcom/iris/iris_hfi_gen1_response.c     |  6 ++++++
+ 4 files changed, 43 insertions(+)
 
-diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-index 48e415cbc439..f1b204b95694 100644
---- a/drivers/media/platform/qcom/iris/Makefile
-+++ b/drivers/media/platform/qcom/iris/Makefile
-@@ -26,6 +26,7 @@ qcom-iris-objs += iris_buffer.o \
-              iris_vpu2.o \
-              iris_vpu3x.o \
-              iris_vpu4x.o \
-+             iris_vpu_ar50lt.o \
-              iris_vpu_buffer.o \
-              iris_vpu_common.o \
- 
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-index e1dc226066c1..4a0895bf5720 100644
---- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-+++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-@@ -63,6 +63,7 @@ enum platform_clk_type {
- 	IRIS_VPP0_HW_CLK,
- 	IRIS_VPP1_HW_CLK,
- 	IRIS_APV_HW_CLK,
-+	IRIS_THROTTLE_CLK,
- };
- 
- struct platform_clk_data {
-@@ -283,6 +284,7 @@ struct iris_platform_data {
- 	u32 tz_cp_config_data_size;
- 	u32 num_vpp_pipe;
- 	bool no_aon;
-+	bool no_rpmh;
- 	u32 wd_intr_mask;
- 	u32 icc_ib_multiplier;
- 	u32 max_session_count;
-diff --git a/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c b/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c
-new file mode 100644
-index 000000000000..1af20b067c03
---- /dev/null
-+++ b/drivers/media/platform/qcom/iris/iris_vpu_ar50lt.c
-@@ -0,0 +1,156 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2026 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/iopoll.h>
-+#include <linux/reset.h>
-+
-+#include "iris_instance.h"
-+#include "iris_vpu_common.h"
-+
-+#include "iris_vpu_register_defines.h"
-+
-+#define WRAPPER_INTR_MASK_A2HVCODEC_BMSK_AR50LT BIT(3)
-+
-+#define WRAPPER_VCODEC0_CLOCK_CONFIG_AR50LT		0xb0080
-+
-+#define CPU_CS_VCICMD					0xa0020
-+#define CPU_CS_VCICMD_ARP_OFF			0x1
-+
-+static void iris_vpu_ar50lt_set_preset_registers(struct iris_core *core)
-+{
-+	writel(0x0, core->reg_base + WRAPPER_VCODEC0_CLOCK_CONFIG_AR50LT);
-+}
-+
-+static void iris_vpu_ar50lt_interrupt_init(struct iris_core *core)
-+{
-+	writel(WRAPPER_INTR_MASK_A2HVCODEC_BMSK_AR50LT, core->reg_base + WRAPPER_INTR_MASK);
-+}
-+
-+static void iris_vpu_ar50lt_disable_arp(struct iris_core *core)
-+{
-+	writel(CPU_CS_VCICMD_ARP_OFF, core->reg_base + CPU_CS_VCICMD);
-+}
-+
-+static int iris_vpu_ar50lt_power_off_controller(struct iris_core *core)
-+{
-+	iris_disable_unprepare_clock(core, IRIS_AHB_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-+
-+	return 0;
-+}
-+
-+static void iris_vpu_ar50lt_power_off_hw(struct iris_core *core)
-+{
-+	dev_pm_genpd_set_hwmode(core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN], false);
-+	iris_disable_unprepare_clock(core, IRIS_THROTTLE_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_HW_AHB_CLK);
-+	iris_disable_unprepare_clock(core, IRIS_HW_CLK);
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-+}
-+
-+static int iris_vpu_ar50lt_power_on_controller(struct iris_core *core)
-+{
-+	int ret;
-+
-+	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-+	if (ret)
-+		return ret;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_CTRL_CLK);
-+	if (ret)
-+		goto err_disable_power;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_AXI_CLK);
-+	if (ret && ret != -ENOENT)
-+		goto err_disable_ctrl_clock;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_AHB_CLK);
-+	if (ret)
-+		goto err_disable_axi_clock;
-+
-+	return 0;
-+
-+err_disable_axi_clock:
-+	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-+err_disable_ctrl_clock:
-+	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-+err_disable_power:
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-+
-+	return ret;
-+}
-+
-+static int iris_vpu_ar50lt_power_on_hw(struct iris_core *core)
-+{
-+	int ret;
-+
-+	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-+	if (ret)
-+		return ret;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_HW_CLK);
-+	if (ret)
-+		goto err_disable_power;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_HW_AHB_CLK);
-+	if (ret)
-+		goto err_disable_hw_clock;
-+
-+	ret = iris_prepare_enable_clock(core, IRIS_THROTTLE_CLK);
-+	if (ret)
-+		goto err_disable_hw_ahb_clock;
-+
-+	return 0;
-+
-+err_disable_hw_ahb_clock:
-+	iris_disable_unprepare_clock(core, IRIS_HW_AHB_CLK);
-+err_disable_hw_clock:
-+	iris_disable_unprepare_clock(core, IRIS_HW_CLK);
-+err_disable_power:
-+	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_HW_POWER_DOMAIN]);
-+
-+	return ret;
-+}
-+
-+static u64 iris_vpu_ar50lt_calc_freq(struct iris_inst *inst, size_t data_size)
-+{
-+	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
-+	struct v4l2_format *inp_f = inst->fmt_src;
-+	u32 mbs_per_second, mbpf, height, width;
-+	unsigned long vpp_freq, vsp_freq;
-+	u32 fps = DEFAULT_FPS;
-+
-+	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
-+	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
-+
-+	mbpf = NUM_MBS_PER_FRAME(height, width);
-+	mbs_per_second = mbpf * fps;
-+
-+	vpp_freq = mbs_per_second * caps->mb_cycles_vpp;
-+
-+	/* 21 / 20 is overhead factor */
-+	vpp_freq += vpp_freq / 20;
-+	vsp_freq = mbs_per_second * caps->mb_cycles_vsp;
-+
-+	/* 10 / 7 is overhead factor */
-+	vsp_freq += ((fps * data_size * 8) * 10) / 7;
-+
-+	return max(vpp_freq, vsp_freq);
-+}
-+
-+const struct vpu_ops iris_vpu_ar50lt_ops = {
-+	.power_off_hw = iris_vpu_ar50lt_power_off_hw,
-+	.power_on_hw = iris_vpu_ar50lt_power_on_hw,
-+	.power_off_controller = iris_vpu_ar50lt_power_off_controller,
-+	.power_on_controller = iris_vpu_ar50lt_power_on_controller,
-+	.calc_freq = iris_vpu_ar50lt_calc_freq,
-+	.set_hwmode = iris_vpu_set_hwmode,
-+	.set_preset_registers = iris_vpu_ar50lt_set_preset_registers,
-+	.interrupt_init = iris_vpu_ar50lt_interrupt_init,
-+	.disable_arp = iris_vpu_ar50lt_disable_arp,
-+};
-diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c b/drivers/media/platform/qcom/iris/iris_vpu_common.c
-index b8300195a43b..f3607c0ca847 100644
---- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
-+++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
-@@ -97,7 +97,8 @@ int iris_vpu_boot_firmware(struct iris_core *core)
- 	}
- 
- 	writel(HOST2XTENSA_INTR_ENABLE, core->reg_base + CPU_CS_H2XSOFTINTEN);
--	writel(0x0, core->reg_base + CPU_CS_X2RPMH);
-+	if (!core->iris_platform_data->no_rpmh)
-+		writel(0x0, core->reg_base + CPU_CS_X2RPMH);
- 
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_common.h b/drivers/media/platform/qcom/iris/iris_hfi_common.h
+index a27447eb2519..16099f9a25b6 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_common.h
++++ b/drivers/media/platform/qcom/iris/iris_hfi_common.h
+@@ -121,6 +121,7 @@ struct iris_hfi_session_ops {
+ 	int (*session_set_property)(struct iris_inst *inst,
+ 				    u32 packet_type, u32 flag, u32 plane, u32 payload_type,
+ 				    void *payload, u32 payload_size);
++	int (*session_get_property)(struct iris_inst *inst, u32 packet_type);
+ 	int (*session_open)(struct iris_inst *inst);
+ 	int (*session_start)(struct iris_inst *inst, u32 plane);
+ 	int (*session_queue_buf)(struct iris_inst *inst, struct iris_buffer *buffer);
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c b/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
+index 83373862655f..4e17fa3c602f 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
++++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_command.c
+@@ -1063,10 +1063,31 @@ static int iris_hfi_gen1_session_set_config_params(struct iris_inst *inst, u32 p
  	return 0;
  }
-diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-index 71d96921ed37..f00e2de5fa53 100644
---- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
-+++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-@@ -13,6 +13,7 @@ extern const struct vpu_ops iris_vpu3_ops;
- extern const struct vpu_ops iris_vpu33_ops;
- extern const struct vpu_ops iris_vpu35_ops;
- extern const struct vpu_ops iris_vpu4x_ops;
-+extern const struct vpu_ops iris_vpu_ar50lt_ops;
  
- struct vpu_ops {
- 	void (*power_off_hw)(struct iris_core *core);
++static int iris_hfi_gen1_session_get_property(struct iris_inst *inst, u32 packet_type)
++{
++	struct hfi_session_get_property_pkt pkt;
++	int ret;
++
++	pkt.shdr.hdr.size = sizeof(pkt);
++	pkt.shdr.hdr.pkt_type = HFI_CMD_SESSION_GET_PROPERTY;
++	pkt.shdr.session_id = inst->session_id;
++	pkt.num_properties = 1;
++	pkt.data = packet_type;
++
++	reinit_completion(&inst->completion);
++
++	ret = iris_hfi_queue_cmd_write(inst->core, &pkt, pkt.shdr.hdr.size);
++	if (ret)
++		return ret;
++
++	return iris_wait_for_session_response(inst, false);
++}
++
+ static const struct iris_hfi_session_ops iris_hfi_gen1_session_ops = {
+ 	.session_open = iris_hfi_gen1_session_open,
+ 	.session_set_config_params = iris_hfi_gen1_session_set_config_params,
+ 	.session_set_property = iris_hfi_gen1_session_set_property,
++	.session_get_property = iris_hfi_gen1_session_get_property,
+ 	.session_start = iris_hfi_gen1_session_start,
+ 	.session_queue_buf = iris_hfi_gen1_session_queue_buffer,
+ 	.session_release_buf = iris_hfi_gen1_session_unset_buffers,
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h b/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h
+index 42226ccee3d9..1b770e830c58 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h
++++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_defines.h
+@@ -35,6 +35,7 @@
+ #define HFI_CMD_SESSION_EMPTY_BUFFER			0x211004
+ #define HFI_CMD_SESSION_FILL_BUFFER			0x211005
+ #define HFI_CMD_SESSION_FLUSH				0x211008
++#define HFI_CMD_SESSION_GET_PROPERTY			0x211009
+ #define HFI_CMD_SESSION_RELEASE_BUFFERS			0x21100b
+ #define HFI_CMD_SESSION_RELEASE_RESOURCES		0x21100c
+ #define HFI_CMD_SESSION_CONTINUE			0x21100d
+@@ -113,6 +114,7 @@
+ #define HFI_MSG_SESSION_FLUSH				0x221006
+ #define HFI_MSG_SESSION_EMPTY_BUFFER			0x221007
+ #define HFI_MSG_SESSION_FILL_BUFFER			0x221008
++#define HFI_MSG_SESSION_PROPERTY_INFO			0x221009
+ #define HFI_MSG_SESSION_RELEASE_RESOURCES		0x22100a
+ #define HFI_MSG_SESSION_RELEASE_BUFFERS			0x22100c
+ 
+@@ -186,6 +188,12 @@ struct hfi_session_set_property_pkt {
+ 	u32 data[];
+ };
+ 
++struct hfi_session_get_property_pkt {
++	struct hfi_session_hdr_pkt shdr;
++	u32 num_properties;
++	u32 data;
++};
++
+ struct hfi_sys_pc_prep_pkt {
+ 	struct hfi_pkt_hdr hdr;
+ };
+@@ -525,6 +533,13 @@ struct hfi_msg_session_fbd_uncompressed_plane0_pkt {
+ 	u32 data[];
+ };
+ 
++struct hfi_msg_session_property_info_pkt {
++	struct hfi_session_hdr_pkt shdr;
++	u32 num_properties;
++	u32 property;
++	u8 data[];
++};
++
+ struct hfi_msg_session_release_buffers_done_pkt {
+ 	struct hfi_msg_session_hdr_pkt shdr;
+ 	u32 num_buffers;
+diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
+index bfd7495bf44f..23fc7194b1e3 100644
+--- a/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
++++ b/drivers/media/platform/qcom/iris/iris_hfi_gen1_response.c
+@@ -591,6 +591,10 @@ static const struct iris_hfi_gen1_response_pkt_info pkt_infos[] = {
+ 	 .pkt = HFI_MSG_SESSION_RELEASE_BUFFERS,
+ 	 .pkt_sz = sizeof(struct hfi_msg_session_release_buffers_done_pkt),
+ 	},
++	{
++	 .pkt = HFI_MSG_SESSION_PROPERTY_INFO,
++	 .pkt_sz = sizeof(struct hfi_msg_session_property_info_pkt),
++	},
+ };
+ 
+ static void iris_hfi_gen1_handle_response(struct iris_core *core, void *response)
+@@ -652,6 +656,8 @@ static void iris_hfi_gen1_handle_response(struct iris_core *core, void *response
+ 			iris_hfi_gen1_session_etb_done(inst, hdr);
+ 		} else if (hdr->pkt_type == HFI_MSG_SESSION_FILL_BUFFER) {
+ 			iris_hfi_gen1_session_ftb_done(inst, hdr);
++		} else if (hdr->pkt_type == HFI_MSG_SESSION_PROPERTY_INFO) {
++			complete(&inst->completion);
+ 		} else {
+ 			struct hfi_msg_session_hdr_pkt *shdr;
+ 
 
 -- 
 2.47.3
