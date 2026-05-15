@@ -1,175 +1,267 @@
-Return-Path: <devicetree+bounces-297965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABb8BpfRBmqKoAIAu9opvQ
-	(envelope-from <devicetree+bounces-297965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:56:07 +0200
+	id YCxJByrRBmqKoAIAu9opvQ
+	(envelope-from <devicetree+bounces-297963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:54:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860CB54ADB8
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:56:06 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A4554AD73
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 09:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8A5F0300CFF0
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:56:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2762E3006D5D
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 07:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665923F788A;
-	Fri, 15 May 2026 07:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC1B3F7877;
+	Fri, 15 May 2026 07:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OQCUnjVl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2683EFD27
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 07:56:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5C33AC0F1;
+	Fri, 15 May 2026 07:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778831763; cv=none; b=d3wJoBHDVi3A/LkMq9tHKTnHRZOcJLwY9q1/u4/1a+LcfmppkxyD/FZdGq6ik0pwOcRgisD17dOEFFtMDMzD76Rt1c6e9suXD3PspztsLOv3te6VqKeqaVYK4u7TYMBLw1HfnEU3Vp9U79Ckhlvfj8HS7l7EhvGKfpc5sZHF82U=
+	t=1778831653; cv=none; b=qQ3ACx19J51WqK8MHqPOgWoiAXw96DSJg7LEECAXI+gDF63xAFjf1G2rsAHQV5VhcR7K10uBLjQnFCO0mlpp8BAbReeNfTGH2pqgqika1C7MV3aNokJm83Q1eHuGCf5P0il2tOokU+ReQ5nLbQ3cTuMoGVIG4mutSSra619Zkss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778831763; c=relaxed/simple;
-	bh=IF78aL4qhYcYFoQ/xoUYLUDn+1jiumlt7gMiBumVb88=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dnVjCw19mZGtP1OgmbZiqzXnns85jVPn45XQsE4D5DoIv8NK2ip8lQcc7bMZxe0LJt6yYlH/zqKDVc2rIMxQPTu//V3/joly4FGMAdqcDXChdQpu5402Nmg6KVE/MUnj5Vy6kAYuHTomx2ZiHSO/2Z7yDfdijvFnp1aINluC4PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-c80167f5716so3990004a12.2
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 00:56:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778831761; x=1779436561;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eAZHu6XpvwN5l5f2FSQxtIsJfHFz80+bclBZd6bS4os=;
-        b=aH1hbJvUUmIaM1ftUazO3v0pztDzS4acBawkBWDXhCQIenMEhPiLPVlx8q5WFA4YDI
-         V4yWhv+zvBtmTCE46F15WAWBE8OnGzsLTFvmqD2gDhTv5YHp+0GskyQtYmDp9mQspswE
-         RpYKa3vrd3tLTYFPc7+qIkTtucLt81OTmKTjUKzqWsMO9fe+AQeOIL2FSUQxIVyDAa7p
-         /fJo7Z8X2v4SDeu5jfsZvVs0rp6xuK4ZOVR+3HiN/bQRRmXZSliYTz1kGgcprFmaxsw3
-         cgfZbPfPUBPLXRJwlJgi54v3TeZ+IP2vGjDe50kn674KQWqk2SmJz6ULIbJBkHwifr5j
-         0aRw==
-X-Forwarded-Encrypted: i=1; AFNElJ/A08j4xMCbrk4oo/MjnXMRYULC3g/LW3EnfL3ZxB1/GcF46e2icvAgHllA3IOah1fu+i7HkfFmkJin@vger.kernel.org
-X-Gm-Message-State: AOJu0YylLCCd1ERlz9fPV+SqM8gjObLwv1SzCDeV6v9RnXOPyZiFODAt
-	y+PSU5+XFty+m8oSYA23MOLhOyawG5/YxmgN+ofp3FDDS/fEY+QE/81t1ALPZqFM
-X-Gm-Gg: Acq92OElGMKZOkud9yTiSB4liJzYOYmW80ILJywCgqFh4H2eahA3gqUGxz7xE0IsPSR
-	/VxDuwyc9U45oyPN8Gb1g3IiNd1uBB99xV03N0k26eRfSaV82ZUvTjSGpx4Ps/BvVPtthRaSV/M
-	mAPe8Vo5KPhvkcmrRWKL6eZLJ2EXXOUXizcTDprUS1DhVdEilh8/XPNiiidnoOVTZWhIakQbAUp
-	qCJFZOhium0F9fE8uccpqSRhcywmgEr1vaSlEDv22LoEq9y88mnJD36AJoTOE/xUjq+7maao2fC
-	eteLX0zFBGKLs5gjiV2cdDI7qkU7s5b+mCtFZCUuVAL2kEKcEBzI/pm4jj1Cu2ZLbs9BvTh+3Z6
-	Vr7ch3U7Ay0Fuc1IZh0Z0tEA3UeaA16RjODhXkV0vC28CpZteGWlaV7IeyEqarjTXHTLBYUX3oo
-	ZRfzkHqTJxEePoLji40giTcPGGlEO0UtySk/DYmW1n4nzKVHVtYXJa1xGvqugWJQTl+aCLoA==
-X-Received: by 2002:a05:6a20:a12b:b0:3a2:d0ed:f1f8 with SMTP id adf61e73a8af0-3b22ecf94damr2810128637.30.1778831761351;
-        Fri, 15 May 2026 00:56:01 -0700 (PDT)
-Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com. [74.125.82.42])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c82bb06268asm4382066a12.1.2026.05.15.00.56.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 May 2026 00:56:01 -0700 (PDT)
-Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-133466cf955so5100279c88.0
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 00:56:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8z+0i/97AFDAPZWMKfaOD8lRHKx0wc1GIlgggFeB4PWhSYIa+CpCLyDzx9ioN9NiaaFeBZQSGqa84G@vger.kernel.org
-X-Received: by 2002:a05:6102:3f05:b0:62e:63e8:427b with SMTP id
- ada2fe7eead31-63a39a5f9e4mr1494077137.0.1778831365156; Fri, 15 May 2026
- 00:49:25 -0700 (PDT)
+	s=arc-20240116; t=1778831653; c=relaxed/simple;
+	bh=6ceNaQOsWeuicN4hn04erefEjHrpUzdn7iOlsxG3uV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jfDpW5MECfhCEczDGi8jEFMh6Avb7qLNHCyzzdglHvPkbvfCc8Ht7MvABtVwyUOoB3JMDMX6M6iOpCcuc5B3ImjsAg/kGdYuDhHz9EeVMrYv2Ryf47ueSvg5rk+M8ysxOjeEjsQ1d4fE8UJnJXwSotVjSiZIKdquylwbdhFzac0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQCUnjVl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33FA7C2BCC7;
+	Fri, 15 May 2026 07:54:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778831652;
+	bh=6ceNaQOsWeuicN4hn04erefEjHrpUzdn7iOlsxG3uV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OQCUnjVl95zerEu5idPYQgFx5D1M+KBHFdz6BwSmSbcvV3+ktlYEqSupy6T017Wof
+	 ES3463b/oqdcvR2oGHQqucZl0PtOw2ptAGwcNz63XcWeF1G4/Tm2k+bLVAC5Va18m/
+	 +LNI6hPLN693AfDNkwep6l/L9y8dElHu0paB/sczHAXca2lwT7fsefpvjJ0GMcOlDb
+	 N1TjpZypvaLrz3IsYBnEhQzm5zX3MgoqZUPecakF402Twai+x3ydBubgEgeQFZaWoZ
+	 Dboapk/t353YYcpHvDlXocRN2rx1fHhZ8txKf/FIISCcx9qMdf7HbXcimAZqRY63ze
+	 ewa2ALJACJ9lg==
+Date: Fri, 15 May 2026 09:54:10 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, pawell@cadence.com, rogerq@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	cix-kernel-upstream@cixtech.com, linux-arm-kernel@lists.infradead.org, arnd@arndb.de
+Subject: Re: [PATCH 3/4] dt-bindings: usb: add CIX Sky1 Cadence USB3
+ controller
+Message-ID: <20260515-dynamic-archetypal-reindeer-dc6dd5@quoll>
+References: <20260511024244.981941-1-peter.chen@cixtech.com>
+ <20260511024244.981941-4-peter.chen@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260514-rcar-du-dsc-v1-0-d65f7a9e9841@ideasonboard.com> <20260514-rcar-du-dsc-v1-3-d65f7a9e9841@ideasonboard.com>
-In-Reply-To: <20260514-rcar-du-dsc-v1-3-d65f7a9e9841@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 May 2026 09:49:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVTgQp9WRiFpLX+pP7kOGF2v6oButALPu1B8QkYhVyvJA@mail.gmail.com>
-X-Gm-Features: AVHnY4KQ6u1JetcDt3qGv1sa7SAF13W-c5qtL3drtJoKYhKLpQQVXnl4eLgch0w
-Message-ID: <CAMuHMdVTgQp9WRiFpLX+pP7kOGF2v6oButALPu1B8QkYhVyvJA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] drm/rcar-du: dsc: Add rudimentary Renesas R-Car V4H
- DSC driver
-To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 860CB54ADB8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260511024244.981941-4-peter.chen@cixtech.com>
+X-Rspamd-Queue-Id: 25A4554AD73
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-297965-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	TAGGED_FROM(0.00)[bounces-297963-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.992];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:email,ideasonboard.com:email,mailbox.org:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,cixtech.com:email]
 X-Rspamd-Action: no action
 
-Hi Tomi,
+On Mon, May 11, 2026 at 10:42:43AM +0800, Peter Chen wrote:
+> Add a binding for the CIX Sky1 integration of the Cadence USBSSP DRD
+> controller. The schema documents the glue register window, clocks,
+> resets, interrupts and S5 system controller phandle.
+> 
+> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> ---
+>  .../bindings/usb/cix,sky1-cdns3.yaml          | 151 ++++++++++++++++++
 
-On Thu, 14 May 2026 at 14:25, Tomi Valkeinen
-<tomi.valkeinen+renesas@ideasonboard.com> wrote:
-> From: Marek Vasut <marek.vasut+renesas@mailbox.org>
->
-> The Renesas DSC Display Stream Compression is a bridge embedded in the
-> Renesas R-Car V4H SoC. The bridge performs VESA DSC encoding of up to
-> 8k or 400 Mpixel/s . Add rudimentary driver, which currently acts as a
-> pass-through bridge and allows DSI1 to be operational on R-Car V4H.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> [tomi.valkeinen: use bridge->next_bridge, minor changes]
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Why are you mixing USB patches with DTS in one patchset? Don't.
 
-Thanks for your patch!
-
+>  1 file changed, 151 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/cix,sky1-cdns3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/cix,sky1-cdns3.yaml b/Documentation/devicetree/bindings/usb/cix,sky1-cdns3.yaml
+> new file mode 100644
+> index 000000000000..23d82d8cc9bc
 > --- /dev/null
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c
+> +++ b/Documentation/devicetree/bindings/usb/cix,sky1-cdns3.yaml
+
+Complete mess of filename. There is no such compatible.
+
+> @@ -0,0 +1,151 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/cix,sky1-cdns3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CIX Sky1 Cadence USB3 Controller
+> +
+> +maintainers:
+> +  - Peter Chen <peter.chen@cixtech.com>
+> +
+> +description:
+> +  The CIX Sky1 USB3 controller is based on the Cadence USBSSP DRD
+> +  controller. The integration adds glue registers and mode strap controls
+> +  in the Sky1 S5 system controller.
+> +
+> +allOf:
+> +  - $ref: usb-drd.yaml#
+> +  - $ref: usb-xhci.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: cix,sky1-usb3
+> +      - const: cix,cdns-usb3
+
+I don't understand the fallback compatible. You claim this device is
+called EXACTLY like vendor cdns? Nope, you SoC specific compatibles.
+
 
 > +
-> +static void rcar_dsc_atomic_enable(struct drm_bridge *bridge,
-> +                                  struct drm_atomic_state *state)
-> +{
-> +       struct rcar_dsc *dsc = bridge_to_rcar_dsc(bridge);
+> +  reg:
+> +    items:
+> +      - description: OTG controller registers
+> +      - description: Device controller registers
+> +      - description: XHCI host controller registers
+> +      - description: Sky1 USB glue registers
 > +
-> +       WARN_ON(clk_prepare_enable(dsc->clk));
+> +  reg-names:
+> +    items:
+> +      - const: otg
+> +      - const: dev
+> +      - const: xhci
 
-Who don't you use pm_runtime_resume_and_get() instead, like
-rcar_cmm.c? Then you don't need to get the clock at all, and the driver
-will keep on working if the DSC ever ends up in a power domain.
+Wrong order, look at cdns,usb3 schema.
 
-Gr{oetje,eeting}s,
+> +      - const: glue
+> +
+> +  interrupts:
+> +    items:
+> +      - description: XHCI host controller interrupt
+> +      - description: Device controller interrupt
+> +      - description: OTG/DRD controller interrupt
+> +      - description: Wakeup interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: host
+> +      - const: peripheral
+> +      - const: otg
+> +      - const: wakeup
+> +
+> +  clocks:
+> +    items:
+> +      - description: Start-of-frame clock
+> +      - description: AXI bus clock
+> +      - description: Low-power mode clock
+> +      - description: APB register interface clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sof
+> +      - const: aclk
+> +      - const: lpm
+> +      - const: pclk
+> +
+> +  resets:
+> +    items:
+> +      - description: APB register reset
+> +      - description: Controller reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: prst
 
-                        Geert
+apb
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +      - const: rst
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+controller or core
+
+> +
+> +  cix,syscon-usb:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the Sky1 S5 system controller used to program USB mode
+> +      strap controls.
+> +
+> +  dma-coherent: true
+> +
+> +  maximum-speed:
+> +    enum: [super-speed-plus, super-speed, high-speed, full-speed]
+
+Why isn't this deducible from the compatible?
+
+> +
+> +  phys:
+> +    minItems: 1
+> +    maxItems: 2
+
+No, this is not flexible.
+
+> +
+> +  phy-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      anyOf:
+> +        - const: cdns3,usb2-phy
+> +        - const: cdns3,usb3-phy
+
+Drop all this and define standard names.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - cix,syscon-usb
+
+phys should be required, no?
+
+> +
+> +unevaluatedProperties: false
+
+Best regards,
+Krzysztof
+
 
