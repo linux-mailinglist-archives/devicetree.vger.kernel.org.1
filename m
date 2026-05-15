@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-298213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8P0SIqwIB2qcqwIAu9opvQ
-	(envelope-from <devicetree+bounces-298213-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:51:08 +0200
+	id 2JHSEx4HB2qNqwIAu9opvQ
+	(envelope-from <devicetree+bounces-298215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:44:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CE0D54EC8D
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:51:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2DCB54EAD4
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:44:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1031B3003BCE
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:16:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 76EA93114FDE
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0545247A0A5;
-	Fri, 15 May 2026 11:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416F547A0C0;
+	Fri, 15 May 2026 11:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZum67e9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/k6wKqe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D462D43636A
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E48B47A0AB
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778843812; cv=none; b=lhWJ/UiWQB1ONRdM2S0u46+HmfzpgNzKIBeBYX1SVUfaXIbhwLFcvnlNGxIGkZbj8ROMm26upH2iNqgJ06wSc2uClXusMQYxMUZOAXxnEB+mkkUBS2O2vZL3b+KRlDf6N9NJEfmWwpP385CD0/e8rXFUQ0giZsRKFy9gWXKxa5M=
+	t=1778843833; cv=none; b=GGHwUoKf5Ljk6zYLoEgsdWP3KtujHv85sgTa9qTorz6QiK8kH3MsSthUDMbrzWW0qvy+HTjSPiZ70swGPST6EPLXcQKy6mtxZS82NBRYuypDZh2FNI2nWRnAPexxSpibzurtguVLWoKYojvGe7G+xDAuUFx+IIlF3N9m30SUdQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778843812; c=relaxed/simple;
-	bh=0GSl6TXiKeOZ+ISWobDlgILWREv8/jFaMnr9fGapMe4=;
+	s=arc-20240116; t=1778843833; c=relaxed/simple;
+	bh=/+/qOlqblTIjmXSucilj1HQdfibHrRL34i6XJWlRoB4=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MYOZHJIhIFagme+QHkl8hvANy41gGU6PkvUEae51IUGKjhr5aM7o4vmhDa+E2F9cFevY+wIrxpC2a+vDD7dWWTnKhQr+z5/VDw32jHrmIq2EOVVvmpvOjEdXROnv/G3bLqvW9aG1c3AUmVp0NeOAeAr0zt1816qDoGhjug+W0og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZum67e9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1B8C2BCB0;
-	Fri, 15 May 2026 11:16:52 +0000 (UTC)
+	 Message-Id; b=QyjZOnONrObUv0fMoh8ZH6bk7AzVbAFasB7BnAhbe3rVwkolk/Z1KYSqspIAuOUOj56orRPFoJzjen74LpZtBzMmVUPz4eETluC9T+YrM5yqAA1b7UAvTYzRN5w4ff0hYxQCQ5NjABz1bFXkXKt7VS0y2rw+eZSJoxshE+iYKb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/k6wKqe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EF89C2BCB0;
+	Fri, 15 May 2026 11:17:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778843812;
-	bh=0GSl6TXiKeOZ+ISWobDlgILWREv8/jFaMnr9fGapMe4=;
+	s=k20201202; t=1778843832;
+	bh=/+/qOlqblTIjmXSucilj1HQdfibHrRL34i6XJWlRoB4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=lZum67e9ekcWwi85mFRr1Z0fZ/XQ05LfDnVbA6FBZJHGik4X7Cstp4lCPiEFAqAA/
-	 i84PrdUnsksfzmJs2ekGXEIcjNSkbcd4P5bl/b6lcEdUwQjBuHxOAI22G7lpvluojP
-	 t18HFBUhqxzyyCFw1SwCCmfhczQ8wvpmzAfhja6E7+NnFqJmYC2MDGbfNubpNlCJuH
-	 K+cI2w9m6FUWkrcDm/sU1yW64IrK/Lk2HzUpHgpv+0BTALXyihC3aMdGJnkTmY+hHk
-	 WUmHOm4zoGkQ19ZxBhQPWB37puQ9KucR+EKFR7ZD73y7/nMhe+K9/p3VMjafKANrrw
-	 kaP0/SyRZt4+w==
+	b=R/k6wKqeR422O0f76jEwwssHuwpbmyfwxVDeIag/Re1Mi+pZEo5/2KnIKbgBhlzLO
+	 ZBSGeNr96p6FPErzr1R7vnSn6eFFz4Ltyv9e1U5Ng3CqT4tm9nF8sD4ro5wHrGAhUJ
+	 ryJtyCHd78yimWPNLFwii4zLmBVfqIIz5n2ZCiNS49hr0sL7p3CPY/DP88ip/p+wJL
+	 nhelbJw744P0bK7HhUx2UrhOxmPhyjBhfPj/guUgNZ7SmjDq3qhygcUaJieQdLCoEv
+	 KO1ngs52mO8ncvV3RBs/TzLQWr6JgeMes3YrvqgbMdTdQ6Mz7habvw8WQ1RmEpRlcl
+	 7/McnkEBbbGBw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 04/11] mfd: sec: add support for S2MU005 PMIC
+Subject: Re: [PATCH v6 10/11] extcon: add support for Samsung S2M series
+ PMIC extcon devices
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260515-s2mu005-pmic-v6-4-1979106992d4@disroot.org>
-References: <20260515-s2mu005-pmic-v6-4-1979106992d4@disroot.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260515-s2mu005-pmic-v6-10-1979106992d4@disroot.org>
+References: <20260515-s2mu005-pmic-v6-10-1979106992d4@disroot.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 11:16:51 +0000
-Message-Id: <20260515111652.4E1B8C2BCB0@smtp.kernel.org>
+Date: Fri, 15 May 2026 11:17:11 +0000
+Message-Id: <20260515111712.3EF89C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 8CE0D54EC8D
+X-Rspamd-Queue-Id: A2DCB54EAD4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -68,14 +69,14 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298213-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298215-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,disroot.org:email,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -90,121 +91,222 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
 s) to consider:
-- [High] Incorrect register access in sec_pmic_dump_rev() due to missing PM=
-IC ID handling.
-- [High] Missing interrupt acknowledgment for S2MU005 due to ack_base evalu=
-ating to 0.
-- [Medium] Mismatch between commit message description and actual implement=
-ation of IRQ chips.
+- [High] The driver attempts to set the extcon state using an unallocated `=
+priv->extcon` pointer during initialization, causing the initial connection=
+ state to be lost.
+- [High] The driver writes instance-specific IRQ numbers into a globally sh=
+ared static array, breaking driver re-entrancy and multi-instance support.
+- [High] The driver suppresses the `-EPROBE_DEFER` error code when requesti=
+ng IRQs, permanently failing the probe.
+- [High] The USB DM/DP pin configuration and extcon logic incorrectly handl=
+es Dedicated Charging Ports (DCP) and Charging Downstream Ports (CDP).
+- [High] Unconditional dereference of `platform_get_device_id(pdev)` will c=
+ause a kernel panic when probed via Device Tree.
+- [High] Missing synchronization locks allow concurrent threaded IRQ handle=
+rs and the `remove` callback to race and corrupt shared hardware state.
+- [Medium] A bitmask register value is evaluated using an exact-match `swit=
+ch` statement, leading to silent failures if multiple bits are set.
 --
 
-commit ffec6859a51e25188ffb07502f3e1c81cbef3517
+commit f656e24319a7eaa1f4ea39f962f29d98ebf1b285
 Author: Kaustabh Chakraborty <kauschluss@disroot.org>
 
-mfd: sec: add support for S2MU005 PMIC
+extcon: add support for Samsung S2M series PMIC extcon devices
 
-This commit adds initial driver support for the Samsung S2MU005 PMIC,
-mapping its charger, MUIC, and LED sub-devices and initializing its
-interrupts.
+Add a driver for MUIC devices found in certain Samsung S2M series PMICs.
+These are USB port accessory detectors. These devices report multiple
+cable states depending on the ID-GND resistance measured by an internal
+ADC.
 
-> S2MU005's interrupt registers can be properly divided into three regmap
-> IRQ chips, one each for the charger, flash LEDs, and the MUIC.
->=20
-> Add initial support for S2MU005 in the PMIC driver, along with it's three
-> interrupt chips.
+> diff --git a/drivers/extcon/extcon-s2m.c b/drivers/extcon/extcon-s2m.c
+> new file mode 100644
+> --- /dev/null
+> +++ b/drivers/extcon/extcon-s2m.c
+[ ... ]
+> +static int s2mu005_muic_attach(struct s2m_muic *priv)
+> +{
+> +	unsigned int type;
+> +	int ret;
+[ ... ]
+> +	/*
+> +	 * All USB connections which require communication via its D+
+> +	 * and D- wires need it.
+> +	 */
+> +	if (type & (S2MU005_MUIC_OTG | S2MU005_MUIC_DCP | S2MU005_MUIC_SDP)) {
+> +		ret =3D regmap_update_bits(priv->regmap, S2MU005_REG_MUIC_SWCTRL,
 
-Is this description accurate regarding the three IRQ chips?
-
-Looking at the implementation in sec-irq.c, there is only a single monolith=
-ic
-regmap_irq_chip defined for the S2MU005 (s2mu005_irq_chip), which uses the
-get_irq_reg callback to multiplex the disjoint register ranges.
-
-Also, this isn't a bug, but there is a typo in the second paragraph ("it's"
-instead of "its").
-
-> diff --git a/drivers/mfd/sec-common.c b/drivers/mfd/sec-common.c
-> index bd8b5f9686892..ad1c7de83a620 100644
-> --- a/drivers/mfd/sec-common.c
-> +++ b/drivers/mfd/sec-common.c
+Does this pin configuration logic erroneously include S2MU005_MUIC_DCP (whi=
+ch
+shorts D+/D- and performs no data communication) and omit S2MU005_MUIC_CDP
+(which does require data communication)?
 
 [ ... ]
-
-> @@ -250,6 +262,10 @@ int sec_pmic_probe(struct device *dev, int device_ty=
-pe, unsigned int irq,
->  		sec_devs =3D s2mpu05_devs;
->  		num_sec_devs =3D ARRAY_SIZE(s2mpu05_devs);
->  		break;
-> +	case S2MU005:
-> +		sec_devs =3D s2mu005_devs;
-> +		num_sec_devs =3D ARRAY_SIZE(s2mu005_devs);
+> +	switch (type) {
+> +	case S2MU005_MUIC_OTG:
+> +		dev_dbg(priv->dev, "USB OTG connection detected\n");
+> +		extcon_set_state_sync(priv->extcon, EXTCON_USB_HOST, true);
+> +		priv->attached =3D true;
 > +		break;
->  	default:
->  		return dev_err_probe(sec_pmic->dev, -EINVAL,
 
-Could this cause unexpected behavior when reading the chip revision?
+Since the type variable was previously checked using a bitwise AND, indicat=
+ing
+it acts as a bitmask, could this exact-match switch statement fail to proce=
+ss
+the attachment if any other bits or status flags are set in the register?
 
-Later in sec_pmic_probe(), sec_pmic_dump_rev() is called, which
-unconditionally reads S2MPS11_REG_ID (0x00) for unhandled device types.
-For S2MU005, the register at 0x00 is actually S2MU005_REG_CHGR_INT1.
+> +	case S2MU005_MUIC_CDP:
+> +		dev_dbg(priv->dev, "USB CDP connection detected\n");
+> +		extcon_set_state_sync(priv->extcon, EXTCON_USB, true);
+> +		extcon_set_state_sync(priv->extcon, EXTCON_CHG_USB_CDP, true);
+> +		priv->attached =3D true;
+> +		break;
+> +	case S2MU005_MUIC_SDP:
+> +		dev_dbg(priv->dev, "USB SDP connection detected\n");
+> +		extcon_set_state_sync(priv->extcon, EXTCON_USB, true);
+> +		extcon_set_state_sync(priv->extcon, EXTCON_CHG_USB_SDP, true);
+> +		priv->attached =3D true;
+> +		break;
+> +	case S2MU005_MUIC_DCP:
+> +		dev_dbg(priv->dev, "USB DCP connection detected\n");
+> +		extcon_set_state_sync(priv->extcon, EXTCON_USB, true);
 
-Does reading this interrupt register outside of an IRQ context clear pending
-hardware interrupts and cause the driver to lose initial state events?
-
-I note that this regression was fixed later in the patch series by commit
-f26ef88e98392 ("mfd: sec: resolve PMIC revision in S2MU005").
-
-> diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
-> index 133188391f7c2..91a2922463fb6 100644
-> --- a/drivers/mfd/sec-irq.c
-> +++ b/drivers/mfd/sec-irq.c
+Is it correct to assert the EXTCON_USB state for DCP connections? EXTCON_USB
+typically signals a standard data connection to the system. Setting it for a
+charger with shorted data pins could wake the USB PHY and cause enumeration
+timeouts.
 
 [ ... ]
+> +static int s2m_muic_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct sec_pmic_dev *pmic_drvdata =3D dev_get_drvdata(dev->parent);
+> +	struct s2m_muic *priv;
+> +	int ret;
+> +	int i;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +	priv->dev =3D dev;
+> +	priv->regmap =3D pmic_drvdata->regmap_pmic;
+> +
+> +	switch (platform_get_device_id(pdev)->driver_data) {
 
-> @@ -337,6 +397,17 @@ static const struct regmap_irq_chip s2mpu05_irq_chip=
- =3D {
->  	.ack_base =3D S2MPU05_REG_INT1,
->  };
-> =20
-> +static const struct regmap_irq_chip s2mu005_irq_chip =3D {
-> +	.name =3D "s2mu005",
-> +	.irqs =3D s2mu005_irqs,
-> +	.num_irqs =3D ARRAY_SIZE(s2mu005_irqs),
-> +	.num_regs =3D 4,
-> +	.status_base =3D S2MU005_REG_CHGR_INT1,
-> +	.mask_base =3D S2MU005_REG_CHGR_INT1M,
-> +	.ack_base =3D S2MU005_REG_CHGR_INT1,
-> +	.get_irq_reg =3D s2mu005_irq_get_reg,
-> +};
+Can platform_get_device_id(pdev) return NULL when the driver is matched via
+Device Tree, since the platform bus does not populate pdev->id_entry?
+Dereferencing it unconditionally could cause a NULL pointer dereference cra=
+sh.
+Would device_get_match_data() be more robust here?
 
-Could this configuration bypass the interrupt acknowledgment phase?
+> +	case S2MU005:
+> +		priv->extcon_cable =3D s2mu005_muic_extcon_cable;
+> +		priv->irq_data =3D s2mu005_muic_irq_data;
+> +		/* Initialize MUIC */
+> +		ret =3D s2mu005_muic_init(priv);
+> +		break;
+> +	default:
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "device type %d is not supported by driver\n",
+> +				     pmic_drvdata->device_type);
+> +	}
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to initialize MUIC\n");
+> +
+> +	priv->extcon =3D devm_extcon_dev_allocate(dev, priv->extcon_cable);
 
-Because S2MU005_REG_CHGR_INT1 is the first element in enum s2mu005_reg, it
-evaluates to 0.
+Since s2mu005_muic_init() configures the hardware and calls s2mu005_muic_at=
+tach(),
+it will attempt to set the extcon state before priv->extcon is allocated:
 
-Looking at the regmap_irq framework, it executes:
+    extcon_set_state_sync(priv->extcon, EXTCON_USB_HOST, true);
 
-    if (chip->ack_base || chip->use_ack)
+Because priv->extcon is NULL at that point, the extcon subsystem will return
+-EINVAL. Will this cause the driver to silently drop the initial cable stat=
+e if
+an accessory is already connected at boot?
 
-Since ack_base is 0 and use_ack is omitted (defaulting to false), will the
-framework fail to acknowledge level-triggered PMIC interrupts, leaving the
-hardware asserting the IRQ line constantly and potentially resulting in an
-unhandled interrupt storm?
+[ ... ]
+> +	for (i =3D 0; priv->irq_data[i].handler; i++) {
+> +		int irq =3D platform_get_irq_byname_optional(pdev,
+> +							   priv->irq_data[i].name);
+> +		if (irq =3D=3D -ENXIO)
+> +			continue;
+> +		if (irq <=3D 0)
+> +			return dev_err_probe(dev, -EINVAL, "failed to get IRQ %s\n",
+> +					     priv->irq_data[i].name);
 
-Would explicitly adding .use_ack =3D true to the irq_chip configuration saf=
-ely
-resolve this?
+If platform_get_irq_byname_optional() returns -EPROBE_DEFER, will returning=
+ a
+hardcoded -EINVAL here prevent the driver from properly participating in the
+kernel's deferred probing mechanism?
+
+> +
+> +		priv->irq_data[i].irq =3D irq;
+
+Because priv->irq_data points to s2mu005_muic_irq_data, which is a global s=
+tatic
+array, does modifying the array here break driver re-entrancy and multi-ins=
+tance
+support?
+
+If multiple devices are instantiated or a device is rebound, the global arr=
+ay
+is overwritten, which could cause earlier instances to fail to match their
+interrupts and silently drop them.
+
+> +		ret =3D devm_request_threaded_irq(dev, irq, NULL,
+> +						s2m_muic_irq_func, IRQF_ONESHOT,
+> +						priv->irq_data[i].name, priv);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "failed to request IRQ\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void s2m_muic_remove(struct platform_device *pdev)
+> +{
+> +	struct s2m_muic *priv =3D dev_get_drvdata(&pdev->dev);
+> +
+> +	/*
+> +	 * Disabling the MUIC device is important as it disables manual
+> +	 * switching mode, thereby enabling auto switching mode.
+> +	 *
+> +	 * This is to ensure that when the board is powered off, it
+> +	 * goes into LPM charging mode when a USB charger is connected.
+> +	 */
+> +	switch (platform_get_device_id(pdev)->driver_data) {
+> +	case S2MU005:
+> +		s2mu005_muic_detach(priv);
+> +		break;
+> +	}
+> +}
+
+Is there a race condition between the threaded IRQ handlers and the remove
+callback?
+
+The IRQ handlers perform read-modify-write operations on the shared
+priv->attached flag and issue regmap commands without holding any locks. Si=
+nce
+the IRQs are managed by devres, they remain active during the execution of
+s2m_muic_remove().
+
+If an interrupt fires during module unload, it could run concurrently with
+s2mu005_muic_detach(), potentially corrupting shared hardware state or
+re-enabling manual switching right as the driver is removed.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-s2mu005-pm=
-ic-v6-0-1979106992d4@disroot.org?part=3D4
+ic-v6-0-1979106992d4@disroot.org?part=3D10
 
