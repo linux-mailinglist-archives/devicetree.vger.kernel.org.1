@@ -1,540 +1,165 @@
-Return-Path: <devicetree+bounces-298200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298241-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6AKMAYgEB2pNqwIAu9opvQ
-	(envelope-from <devicetree+bounces-298200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:33:28 +0200
+	id WLH3JrkFB2pNqwIAu9opvQ
+	(envelope-from <devicetree+bounces-298241-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:38:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF8654E872
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:33:27 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB1454E986
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 085BE301953E
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:08:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 561D63085DB3
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB7B4779A8;
-	Fri, 15 May 2026 11:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3447477E53;
+	Fri, 15 May 2026 11:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyZ5/prP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AaQcfQsh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A72F3D1AA6;
-	Fri, 15 May 2026 11:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0BBB38F925
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778843336; cv=none; b=ojVwCarG84uFE1OXhXbtECs61gF4bxeGgOu0Cdx1RwlrIA1VYsABOQU9YqPvOMR6j7Wp3AoRFTcGVhD+3SL9PPy4yj0JQjzH1c3QLQio3fMqPS2rh9547AIssSo3IrUZS5edvGcyTp/tSbxNviB+p6yfDuXuFmkV0v4h8KX4tNg=
+	t=1778844461; cv=none; b=eZd0spaJf805oxLh7Pg7Nfmf3kvxrp2ujmfmA3UE2JdQPhy0JIQql4eewcEbkxNuWfek76lVvHbbqA+0OWdWT7HcM+Hq+trAg5GZtXQE6kUul76zz2DyDp8djvytCBCLYH/UTN2I7/88f+BbP2FPC4/US0HxwCjJbcVv60HKy0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778843336; c=relaxed/simple;
-	bh=/163JRlDUQNu7P550ZUpi8LItIk1xBh1t7R/7iFETok=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JPDpyYJNHCmnvQ2TOTR9tbfBwciC+DzPAegWAH/38ZvYbvTP0fDMejLGb5Rd1LKpMMagj0zDNPZ+an8k3sIvD3gr7vbtpGDb+IaRPnr+63NzjnFbKZO75Z9CDxD3QRdlQNs7cNHHyjCVq533oicPmwBk8mvPvw0HtoS6vbb5+bQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyZ5/prP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2998FC2BCB8;
-	Fri, 15 May 2026 11:08:56 +0000 (UTC)
+	s=arc-20240116; t=1778844461; c=relaxed/simple;
+	bh=Xm+fPA+JR5HPgNRV2zR4fli00g5rLCcDyV6MSNg0jKE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=SZZhoCWGOmv/BxhcD1mBSS01WzLMhsh+0/K9fupSE0D/+zLfi+EW3w/CYI/uHz4XS/E2rEKBJlKQ0j/Hoa2mFn/IFPTaKnsh1CAay3gRk68WaQMkJeQ0CIUr7LWKUi0BJoNPnxyBZwDmsrcPyRajkjl6FrzFB3XePdRKMQiCNk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AaQcfQsh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36FD0C2BCB0;
+	Fri, 15 May 2026 11:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778843336;
-	bh=/163JRlDUQNu7P550ZUpi8LItIk1xBh1t7R/7iFETok=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VyZ5/prP5w44SqK59ie9kC+Udxf4tZ03c3z8mvesqhLOr5DxbOwHX2qv8Yk+v6yre
-	 5/c5U2RoA/ZGtVw1tlzO/XnvXXUxJ4cteKEl1wUB+Vxma8UOdBvwaM/HF/ba1VgvbM
-	 mid+niQVg61KevvCCTzo8FgSpn+fLBYrtXhqnINwvAsceCl0vTCIY3D7LTNmUZRnsL
-	 wazc1TlUTIrMsf61qJoxSl5kfOXEpTydPi3UOFdDDtXZuy32T6nfWBS3YdNJ9S/KO0
-	 WdxvPBfVtytGLyUPbQsOf1xrgVF9XwIXyBAPimunzGSAohqULcqpwWXNwWZixnvilY
-	 v5G11f8EpEcNA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CE37CD4F3D;
-	Fri, 15 May 2026 11:08:56 +0000 (UTC)
-From: Pawel Laszczak via B4 Relay <devnull+pawell.cadence.com@kernel.org>
-Date: Fri, 15 May 2026 13:24:39 +0200
-Subject: [PATCH v8 2/2] usb: cdnsp: Add support for device-only
- configuration
+	s=k20201202; t=1778844461;
+	bh=Xm+fPA+JR5HPgNRV2zR4fli00g5rLCcDyV6MSNg0jKE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=AaQcfQsh9+irjxq4/90QaDbRHLEBDtun2iDa6j83Z0Sy+aCSPkbFHWsLZDtuOOjiA
+	 sKYUKreOfCL5Qe2uvbimFDVBzzRL3dFSScPYgwzT93xa0liX483Kg3+QHw79SJf0BS
+	 8YsUcVY407vGpHIGfUvBXtUASjSd0mu3NgPbqfo73qqdP+hSbyUNU6LBJnOmTlqd/e
+	 ZWVvm01btwxSyr0ACiHKTIx+6pYFesBPRtpb0IhP2sP/Y0j9jZpFhg72+QC1Q8dE/F
+	 XCn6ZiLLGFiGApxLZGn8idK05ydmHS3nP0en4sMkUh+ECNwZrTXxY/yCgd1oB3N2WA
+	 11egx4pHZkONw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 2/4] riscv: dts: spacemit: k1-orangepi-rv2: add SD
+ card support with UHS modes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Iker Pedrosa" <ikerpedrosam@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260515-orangepi-sd-card-uhs-v10-2-094af27e310d@gmail.com>
+References: <20260515-orangepi-sd-card-uhs-v10-2-094af27e310d@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 15 May 2026 11:27:40 +0000
+Message-Id: <20260515112741.36FD0C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260515-b4-no_drd_config-v8-2-75cb05317679@cadence.com>
-References: <20260515-b4-no_drd_config-v8-0-75cb05317679@cadence.com>
-In-Reply-To: <20260515-b4-no_drd_config-v8-0-75cb05317679@cadence.com>
-To: Peter Chen <peter.chen@kernel.org>, Roger Quadros <rogerq@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Pawel Laszczak <pawell@cadence.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, kernel test robot <lkp@intel.com>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778844286; l=13694;
- i=pawell@cadence.com; h=from:subject:message-id;
- bh=Gzu9SgEXlUMKHCY5Kq/x02JpU0OHGqAEWUR9QGLTu0k=;
- b=XJg2ntLTZ1Q78e6NAv7YNhp16tFa3wciFWDmfv4rTcn1oRAmP83B9MZV7TYjPDUI8aYWXrwdT
- Z9WQ+QK78neDQ6jc3XciIsCAPHJJPeWVFFhNGYjZk91yTHiQRheLxW5
-X-Developer-Key: i=pawell@cadence.com; a=ed25519;
- pk=EUPBvLO9CDg7j6defeDl2iqi+z5Ivqu4Z46aiqe7dYc=
-X-Endpoint-Received: by B4 Relay for pawell@cadence.com/default with
- auth_id=707
-X-Original-From: Pawel Laszczak <pawell@cadence.com>
-Reply-To: pawell@cadence.com
-X-Rspamd-Queue-Id: 5AF8654E872
+X-Rspamd-Queue-Id: 3EB1454E986
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298241-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298200-lists,devicetree=lfdr.de,pawell.cadence.com];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,0.0.0.2:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[pawell@cadence.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,plat_info.properties:url]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-From: Pawel Laszczak <pawell@cadence.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] The intended 'uhs' pinctrl state will never be applied because the=
+ underlying host driver (`sdhci-of-k1.c`) lacks dynamic pinctrl state switc=
+hing logic.
+- [Medium] The pinctrl state name 'uhs' deviates from the established MMC s=
+ubsystem standard 'state_uhs'.
+--
 
-This patch introduces support for the Cadence USBSSP (cdnsp)
-controller in hardware configurations where the Dual-Role Device (DRD)
-register block is not implemented or is inaccessible.
+commit d986961bd58045bfd797f79421e91fffcf930dbd
+Author: Iker Pedrosa <ikerpedrosam@gmail.com>
 
-In such cases, the driver cannot rely on the DRD logic to manage roles
-and must operate exclusively in a fixed peripheral/host mode.
+riscv: dts: spacemit: k1-orangepi-rv2: add SD card support with UHS modes
 
-The change in BAR indexing (from BAR 2 to BAR 1) is a direct
-consequence of the 32-bit addressing used in this specific
-DRD-disabled hardware layout, compared to the 64-bit addressing
-used in DRD-enabled configurations.
+This commit adds complete SD card controller support with UHS high-speed
+modes for the SpacemiT K1 Orange Pi RV2. It enables the sdhci0 controller
+with 4-bit bus width, configures power supplies, and sets up pinctrl states
+for voltage-dependent pin configuration.
 
-Tested on a PCI platform with a hardware configuration that lacks
-DRD support. Platform-side changes are included to support the PCI
-glue layer's property injection to handle this specific layout.
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/risc=
+v/boot/dts/spacemit/k1-orangepi-rv2.dts
+> index 3a829e3c9cbcd..74665795b9e88 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
 
-Acked-by: Peter Chen <peter.chen@kernel.org>
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-Signed-off-by: Pawel Laszczak <pawell@cadence.com>
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202605141023.18vWXyw3-lkp@intel.com/
----
-v8:
-- Use 'cdns,cdnsp-no-drd' compatible string to trigger no-DRD logic.
-- Update PCI glue layer to inject the new compatible string.
+[ ... ]
 
-v7:
-- Use 'cdns,no-drd' instead of 'no_drd' to match updated bindings.
-- Fix "uninitialized variable" warning in cdns_drd_host_on() by
-  initializing 'ret' to 0.
----
- drivers/usb/cdns3/cdns3-plat.c | 30 ++++++++++++++++----------
- drivers/usb/cdns3/cdnsp-pci.c  | 48 ++++++++++++++++++++++++++++++++++--------
- drivers/usb/cdns3/core.c       |  3 ++-
- drivers/usb/cdns3/core.h       |  4 ++++
- drivers/usb/cdns3/drd.c        | 45 ++++++++++++++++++++++++++++++++++++---
- 5 files changed, 106 insertions(+), 24 deletions(-)
+> @@ -309,3 +311,21 @@ hub_3_0: hub@2 {
+>  		vdd-supply =3D <&vcc_5v0>;
+>  	};
+>  };
+> +
+> +&sdhci0 {
+> +	pinctrl-names =3D "default", "uhs";
 
-diff --git a/drivers/usb/cdns3/cdns3-plat.c b/drivers/usb/cdns3/cdns3-plat.c
-index 3fe3109a3688..303f7c1431dc 100644
---- a/drivers/usb/cdns3/cdns3-plat.c
-+++ b/drivers/usb/cdns3/cdns3-plat.c
-@@ -81,6 +81,12 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 	if (cdns->pdata && cdns->pdata->override_apb_timeout)
- 		cdns->override_apb_timeout = cdns->pdata->override_apb_timeout;
- 
-+	if (device_is_compatible(dev, "cdns,cdnsp-no-drd")) {
-+		cdns->no_drd = true;
-+		cdns->version = CDNSP_CONTROLLER_V2;
-+		dev_dbg(dev, "No DRD support\n");
-+	}
-+
- 	platform_set_drvdata(pdev, cdns);
- 
- 	ret = platform_get_irq_byname(pdev, "host");
-@@ -113,21 +119,22 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 
- 	cdns->dev_regs	= regs;
- 
--	cdns->otg_irq = platform_get_irq_byname(pdev, "otg");
--	if (cdns->otg_irq < 0)
--		return dev_err_probe(dev, cdns->otg_irq,
--				     "Failed to get otg IRQ\n");
--
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "otg");
--	if (!res) {
--		dev_err(dev, "couldn't get otg resource\n");
--		return -ENXIO;
-+	if (!cdns->no_drd) {
-+		cdns->otg_irq = platform_get_irq_byname(pdev, "otg");
-+		if (cdns->otg_irq < 0)
-+			return dev_err_probe(dev, cdns->otg_irq,
-+					     "Failed to get otg IRQ\n");
-+
-+		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "otg");
-+		if (!res) {
-+			dev_err(dev, "couldn't get otg resource\n");
-+			return -ENXIO;
-+		}
-+		cdns->otg_res = *res;
- 	}
- 
- 	cdns->phyrst_a_enable = device_property_read_bool(dev, "cdns,phyrst-a-enable");
- 
--	cdns->otg_res = *res;
--
- 	cdns->wakeup_irq = platform_get_irq_byname_optional(pdev, "wakeup");
- 	if (cdns->wakeup_irq == -EPROBE_DEFER)
- 		return cdns->wakeup_irq;
-@@ -338,6 +345,7 @@ static const struct dev_pm_ops cdns3_pm_ops = {
- #ifdef CONFIG_OF
- static const struct of_device_id of_cdns3_match[] = {
- 	{ .compatible = "cdns,usb3" },
-+	{ .compatible = "cdns,cdnsp-no-drd" },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, of_cdns3_match);
-diff --git a/drivers/usb/cdns3/cdnsp-pci.c b/drivers/usb/cdns3/cdnsp-pci.c
-index 432007cfe695..1a71dee5044c 100644
---- a/drivers/usb/cdns3/cdnsp-pci.c
-+++ b/drivers/usb/cdns3/cdnsp-pci.c
-@@ -19,6 +19,7 @@
- 
- struct cdnsp_wrap {
- 	struct platform_device *plat_dev;
-+	struct property_entry prop[3];
- 	struct resource dev_res[6];
- 	int devfn;
- };
-@@ -29,10 +30,15 @@ struct cdnsp_wrap {
- #define RES_HOST_ID		3
- #define RES_DEV_ID		4
- #define RES_DRD_ID		5
--
-+/* DRD PCI configuration - 64-bit addressing */
-+/* First PCI function */
- #define PCI_BAR_HOST		0
--#define PCI_BAR_OTG		0
- #define PCI_BAR_DEV		2
-+/* Second PCI function */
-+#define PCI_BAR_OTG		0
-+/* Device only PCI configuration - 32-bit addressing */
-+/* First PCI function */
-+#define PCI_BAR_ONLY_DEV	1
- 
- #define PCI_DEV_FN_HOST_DEVICE	0
- #define PCI_DEV_FN_OTG		1
-@@ -40,6 +46,7 @@ struct cdnsp_wrap {
- #define PCI_DRIVER_NAME		"cdns-pci-usbssp"
- #define PLAT_DRIVER_NAME	"cdns-usb3"
- 
-+#define PCI_DEVICE_ID_CDNS_UDC_USBSSP   0x0400
- #define CHICKEN_APB_TIMEOUT_VALUE	0x1C20
- 
- static struct pci_dev *cdnsp_get_second_fun(struct pci_dev *pdev)
-@@ -65,6 +72,7 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 	struct cdnsp_wrap *wrap;
- 	struct resource *res;
- 	struct pci_dev *func;
-+	bool no_drd = false;
- 	int ret = 0;
- 
- 	/*
-@@ -75,11 +83,14 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 		    pdev->devfn != PCI_DEV_FN_OTG))
- 		return -EINVAL;
- 
-+	if (pdev->device == PCI_DEVICE_ID_CDNS_UDC_USBSSP)
-+		no_drd = true;
-+
- 	func = cdnsp_get_second_fun(pdev);
--	if (!func)
-+	if (!func && !no_drd)
- 		return -EINVAL;
- 
--	if (func->class == PCI_CLASS_SERIAL_USB_XHCI ||
-+	if ((func && func->class == PCI_CLASS_SERIAL_USB_XHCI) ||
- 	    pdev->class == PCI_CLASS_SERIAL_USB_XHCI) {
- 		ret = -EINVAL;
- 		goto put_pci;
-@@ -93,7 +104,7 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 
- 	pci_set_master(pdev);
- 
--	if (pci_is_enabled(func)) {
-+	if (func && pci_is_enabled(func)) {
- 		wrap = pci_get_drvdata(func);
- 	} else {
- 		wrap = kzalloc_obj(*wrap);
-@@ -106,10 +117,12 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 	res = wrap->dev_res;
- 
- 	if (pdev->devfn == PCI_DEV_FN_HOST_DEVICE) {
-+		int bar_dev = no_drd ? PCI_BAR_ONLY_DEV : PCI_BAR_DEV;
-+
- 		/* Function 0: host(BAR_0) + device(BAR_2). */
- 		dev_dbg(&pdev->dev, "Initialize Device resources\n");
--		res[RES_DEV_ID].start = pci_resource_start(pdev, PCI_BAR_DEV);
--		res[RES_DEV_ID].end = pci_resource_end(pdev, PCI_BAR_DEV);
-+		res[RES_DEV_ID].start = pci_resource_start(pdev, bar_dev);
-+		res[RES_DEV_ID].end = pci_resource_end(pdev, bar_dev);
- 		res[RES_DEV_ID].name = "dev";
- 		res[RES_DEV_ID].flags = IORESOURCE_MEM;
- 		dev_dbg(&pdev->dev, "USBSSP-DEV physical base addr: %pa\n",
-@@ -145,9 +158,21 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 		wrap->dev_res[RES_IRQ_OTG_ID].flags = IORESOURCE_IRQ;
- 	}
- 
--	if (pci_is_enabled(func)) {
-+	if (no_drd || pci_is_enabled(func)) {
-+		u8 idx = 0;
-+
- 		/* set up platform device info */
- 		pdata.override_apb_timeout = CHICKEN_APB_TIMEOUT_VALUE;
-+
-+		if (no_drd) {
-+			wrap->prop[idx++] = PROPERTY_ENTRY_STRING("compatible",
-+								  "cdns,cdnsp-no-drd");
-+			wrap->prop[idx++] = PROPERTY_ENTRY_STRING("dr_mode", "peripheral");
-+		} else {
-+			wrap->prop[idx++] = PROPERTY_ENTRY_STRING("dr_mode", "otg");
-+			wrap->prop[idx++] = PROPERTY_ENTRY_BOOL("usb-role-switch");
-+		}
-+
- 		memset(&plat_info, 0, sizeof(plat_info));
- 		plat_info.parent = &pdev->dev;
- 		plat_info.fwnode = pdev->dev.fwnode;
-@@ -158,6 +183,7 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 		plat_info.dma_mask = pdev->dma_mask;
- 		plat_info.data = &pdata;
- 		plat_info.size_data = sizeof(pdata);
-+		plat_info.properties = wrap->prop;
- 		wrap->devfn = pdev->devfn;
- 		/* register platform device */
- 		wrap->plat_dev = platform_device_register_full(&plat_info);
-@@ -185,13 +211,17 @@ static void cdnsp_pci_remove(struct pci_dev *pdev)
- 	if (wrap->devfn == pdev->devfn)
- 		platform_device_unregister(wrap->plat_dev);
- 
--	if (!pci_is_enabled(func))
-+	if (!func || !pci_is_enabled(func))
- 		kfree(wrap);
- 
- 	pci_dev_put(func);
- }
- 
- static const struct pci_device_id cdnsp_pci_ids[] = {
-+	{ PCI_DEVICE(PCI_VENDOR_ID_CDNS, PCI_DEVICE_ID_CDNS_UDC_USBSSP),
-+	  .class = PCI_CLASS_SERIAL_USB_DEVICE },
-+	{ PCI_DEVICE(PCI_VENDOR_ID_CDNS, PCI_DEVICE_ID_CDNS_UDC_USBSSP),
-+	  .class = PCI_CLASS_SERIAL_USB_CDNS },
- 	{ PCI_DEVICE(PCI_VENDOR_ID_CDNS, PCI_DEVICE_ID_CDNS_USBSSP),
- 	  .class = PCI_CLASS_SERIAL_USB_DEVICE },
- 	{ PCI_DEVICE(PCI_VENDOR_ID_CDNS, PCI_DEVICE_ID_CDNS_USBSSP),
-diff --git a/drivers/usb/cdns3/core.c b/drivers/usb/cdns3/core.c
-index 6a8d1fefbc0d..504bdf13ea80 100644
---- a/drivers/usb/cdns3/core.c
-+++ b/drivers/usb/cdns3/core.c
-@@ -70,7 +70,8 @@ static void cdns_role_stop(struct cdns *cdns)
- static void cdns_exit_roles(struct cdns *cdns)
- {
- 	cdns_role_stop(cdns);
--	cdns_drd_exit(cdns);
-+	if (!cdns->no_drd)
-+		cdns_drd_exit(cdns);
- }
- 
- /**
-diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-index bca973b999a4..8c492fda924c 100644
---- a/drivers/usb/cdns3/core.h
-+++ b/drivers/usb/cdns3/core.h
-@@ -84,6 +84,9 @@ struct cdns3_platform_data {
-  *                        value in CHICKEN_BITS_3 will be preserved.
-  * @gadget_init: pointer to gadget initialization function
-  * @host_init: pointer to host initialization function
-+ * @no_drd: DRD register block is inaccessible. The controller is hardwired to
-+ *          single role (host or device) or the logic for role switching is
-+ *          missing.
-  */
- struct cdns {
- 	struct device			*dev;
-@@ -124,6 +127,7 @@ struct cdns {
- 	u32                             override_apb_timeout;
- 	int (*gadget_init)(struct cdns *cdns);
- 	int (*host_init)(struct cdns *cdns);
-+	bool				no_drd;
- };
- 
- int cdns_hw_role_switch(struct cdns *cdns);
-diff --git a/drivers/usb/cdns3/drd.c b/drivers/usb/cdns3/drd.c
-index 84fb38a5723a..d2bb682e4552 100644
---- a/drivers/usb/cdns3/drd.c
-+++ b/drivers/usb/cdns3/drd.c
-@@ -87,6 +87,9 @@ int cdns_get_id(struct cdns *cdns)
- {
- 	int id;
- 
-+	if (cdns->no_drd)
-+		return 0;
-+
- 	id = readl(&cdns->otg_regs->sts) & OTGSTS_ID_VALUE;
- 	dev_dbg(cdns->dev, "OTG ID: %d", id);
- 
-@@ -107,7 +110,7 @@ void cdns_clear_vbus(struct cdns *cdns)
- {
- 	u32 reg;
- 
--	if (cdns->version != CDNSP_CONTROLLER_V2)
-+	if (cdns->version != CDNSP_CONTROLLER_V2 || cdns->no_drd)
- 		return;
- 
- 	reg = readl(&cdns->otg_cdnsp_regs->override);
-@@ -120,7 +123,7 @@ void cdns_set_vbus(struct cdns *cdns)
- {
- 	u32 reg;
- 
--	if (cdns->version != CDNSP_CONTROLLER_V2)
-+	if (cdns->version != CDNSP_CONTROLLER_V2 || cdns->no_drd)
- 		return;
- 
- 	reg = readl(&cdns->otg_cdnsp_regs->override);
-@@ -179,7 +182,10 @@ static void cdns_otg_enable_irq(struct cdns *cdns)
- int cdns_drd_host_on(struct cdns *cdns)
- {
- 	u32 val, ready_bit;
--	int ret;
-+	int ret = 0;
-+
-+	if (cdns->no_drd)
-+		goto phy_set;
- 
- 	/* Enable host mode. */
- 	writel(OTGCMD_HOST_BUS_REQ | OTGCMD_OTG_DIS,
-@@ -197,6 +203,7 @@ int cdns_drd_host_on(struct cdns *cdns)
- 	if (ret)
- 		dev_err(cdns->dev, "timeout waiting for xhci_ready\n");
- 
-+phy_set:
- 	phy_set_mode(cdns->usb2_phy, PHY_MODE_USB_HOST);
- 	phy_set_mode(cdns->usb3_phy, PHY_MODE_USB_HOST);
- 	return ret;
-@@ -210,6 +217,9 @@ void cdns_drd_host_off(struct cdns *cdns)
- {
- 	u32 val;
- 
-+	if (cdns->no_drd)
-+		goto phy_set;
-+
- 	writel(OTGCMD_HOST_BUS_DROP | OTGCMD_DEV_BUS_DROP |
- 	       OTGCMD_DEV_POWER_OFF | OTGCMD_HOST_POWER_OFF,
- 	       &cdns->otg_regs->cmd);
-@@ -218,6 +228,8 @@ void cdns_drd_host_off(struct cdns *cdns)
- 	readl_poll_timeout_atomic(&cdns->otg_regs->state, val,
- 				  !(val & OTGSTATE_HOST_STATE_MASK),
- 				  1, 2000000);
-+
-+phy_set:
- 	phy_set_mode(cdns->usb2_phy, PHY_MODE_INVALID);
- 	phy_set_mode(cdns->usb3_phy, PHY_MODE_INVALID);
- }
-@@ -234,6 +246,9 @@ int cdns_drd_gadget_on(struct cdns *cdns)
- 	u32 ready_bit;
- 	int ret, val;
- 
-+	if (cdns->no_drd)
-+		goto phy_set;
-+
- 	/* switch OTG core */
- 	writel(OTGCMD_DEV_BUS_REQ | reg, &cdns->otg_regs->cmd);
- 
-@@ -251,6 +266,7 @@ int cdns_drd_gadget_on(struct cdns *cdns)
- 		return ret;
- 	}
- 
-+phy_set:
- 	phy_set_mode(cdns->usb2_phy, PHY_MODE_USB_DEVICE);
- 	phy_set_mode(cdns->usb3_phy, PHY_MODE_USB_DEVICE);
- 	return 0;
-@@ -265,6 +281,9 @@ void cdns_drd_gadget_off(struct cdns *cdns)
- {
- 	u32 val;
- 
-+	if (cdns->no_drd)
-+		goto phy_set;
-+
- 	/*
- 	 * Driver should wait at least 10us after disabling Device
- 	 * before turning-off Device (DEV_BUS_DROP).
-@@ -277,6 +296,8 @@ void cdns_drd_gadget_off(struct cdns *cdns)
- 	readl_poll_timeout_atomic(&cdns->otg_regs->state, val,
- 				  !(val & OTGSTATE_DEV_STATE_MASK),
- 				  1, 2000000);
-+
-+phy_set:
- 	phy_set_mode(cdns->usb2_phy, PHY_MODE_INVALID);
- 	phy_set_mode(cdns->usb3_phy, PHY_MODE_INVALID);
- }
-@@ -392,6 +413,18 @@ int cdns_drd_init(struct cdns *cdns)
- 	u32 state, reg;
- 	int ret;
- 
-+	if (cdns->no_drd) {
-+		cdns->dr_mode = usb_get_dr_mode(cdns->dev);
-+
-+		if (cdns->dr_mode != USB_DR_MODE_HOST &&
-+		    cdns->dr_mode != USB_DR_MODE_PERIPHERAL) {
-+			dev_err(cdns->dev, "Incorrect dr_mode\n");
-+			return -EINVAL;
-+		}
-+
-+		return 0;
-+	}
-+
- 	regs = devm_ioremap_resource(cdns->dev, &cdns->otg_res);
- 	if (IS_ERR(regs))
- 		return PTR_ERR(regs);
-@@ -492,6 +525,9 @@ int cdns_drd_init(struct cdns *cdns)
- 
- int cdns_drd_exit(struct cdns *cdns)
- {
-+	if (cdns->no_drd)
-+		return 0;
-+
- 	cdns_otg_disable_irq(cdns);
- 
- 	return 0;
-@@ -500,6 +536,9 @@ int cdns_drd_exit(struct cdns *cdns)
- /* Indicate the cdns3 core was power lost before */
- bool cdns_power_is_lost(struct cdns *cdns)
- {
-+	if (cdns->no_drd)
-+		return false;
-+
- 	if (cdns->version == CDNS3_CONTROLLER_V0) {
- 		if (!(readl(&cdns->otg_v0_regs->simulate) & BIT(0)))
- 			return true;
+Is this pinctrl state name standard for the MMC subsystem? Other device
+tree bindings typically use state_uhs rather than uhs for the alternate
+UHS pin state. Using state_uhs would align with the established standard
+across the subsystem.
 
--- 
-2.43.0
+> +	pinctrl-0 =3D <&mmc1_cfg>;
+> +	pinctrl-1 =3D <&mmc1_uhs_cfg>;
 
+Does the underlying host driver (sdhci-of-k1.c) actually switch to this
+alternate pinctrl state during voltage changes?
 
+The generic MMC and SDHCI core frameworks do not automatically switch
+pinctrl states when entering 1.8V UHS modes. If the host driver lacks the
+explicit pinctrl_lookup_state() or pinctrl_select_state() logic, the
+physical IO pins will remain permanently stuck in the default 3.3V hardware
+state.
+
+Can operating in high-speed modes with mismatched physical signaling
+constraints lead to signal integrity failures or data corruption?
+
+> +	bus-width =3D <4>;
+> +	cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_LOW>;
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-orangepi-s=
+d-card-uhs-v10-0-094af27e310d@gmail.com?part=3D2
 
