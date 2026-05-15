@@ -1,118 +1,106 @@
-Return-Path: <devicetree+bounces-298428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FuuNOxAB2oCvAIAu9opvQ
-	(envelope-from <devicetree+bounces-298428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:51:08 +0200
+	id gB1nDzJCB2oCvAIAu9opvQ
+	(envelope-from <devicetree+bounces-298430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:56:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3043A552689
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4944D55280F
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 17:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AA892302B43E
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:45:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0DDED30583AC
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 15:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06A913F58D7;
-	Fri, 15 May 2026 15:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6DF1DC9B3;
+	Fri, 15 May 2026 15:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VIadg89s";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XI/ZNVF8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OdROLOAb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C884E3F58DE
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D3FE3FF1D8
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778859695; cv=none; b=BhwceE7pZDLL05HkiAm6XVffZ9JkO9aVs+3xZyZBbfXKeShwiFRmcnlcmqiUZP93PGKts2HF97r6zHojwsDjy8pAk9bhyUJZ/pb8j8lm/Wh+Cg/jRADhKjxjauaj/vbQKHbqR0iIiXKC1szOBAecjx91Qa/OnrjHDWgpfqXxISM=
+	t=1778860043; cv=none; b=DuXdYzD2ocu7BGKYXhLPPkPQd6669a5HwA2nvrGeRkjHWNAlTB3VAyaRW0Gu4N1liSPyWiAzQ5v+ATgQZEwt5f3ZK9QfZtCC1K8u6GzMLdyXesu5kECCEESGA1Y16CcTWtW/jaZ0sLjV3ZaK9kO/arkev5jx8wK2P5wJS33QaTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778859695; c=relaxed/simple;
-	bh=Pc3MpCtVK8p6OudMDqnhjwapWxM0T8CO+YFnhbV1T6I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DiTix10GRHGCMyJGZtrVNnG7dKvmnJHL2wGWokONqr6Q52e3H6BmfGNsHdThwhgEhy5xTHQrbSBadT4BaQ+F0rfLX8Ye79N9y3EjuMaoQJdg9Cw5uXaryAhdCe/zrXlD8jsWWl3D+69pCf4NAztyH7UerHsXBJxpnJS4oWlys7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VIadg89s; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XI/ZNVF8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64FB5cCx3219705
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:41:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=48QgJCSDGrxZEEMu60fAJNCo
-	YBZQJr3kDDsz/0EEYCc=; b=VIadg89sDaZvWClueo52v1sDS1B/qTeTPu3I8+xq
-	+s/bqhRXAb5w1C4wkhNEn34mfKed25guHcntxkeO0pduG/MoaWA9I9x/7l8jDC0k
-	vU5XBfJI9CZPjB1EuDsWhcNxP/XQI7IYGiKe/QaqhVmcFBJ7aqtWAhrfmoPV0Hl3
-	5HDE9Z8kdazyRMV11Ifumjyr9HYYY90gm9y/jdFI97gDG8QA8HW2x04tityde85h
-	CYqSpRrNz8qWSf4aV7MO2MXW+mQrKQwW/Pt9/0xU5DNzh3MZFKm25+2atgUNyev/
-	HnQB3ojb0tOelxpO5NgTLLoksTYR42yIGmqxkFK3CcZnyw==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e5m1s3uap-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:41:28 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-82f9429f49cso11929298b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 08:41:28 -0700 (PDT)
+	s=arc-20240116; t=1778860043; c=relaxed/simple;
+	bh=4x/tYI7wVE/dj5Xs9J1SD3ExCZzdqPFh+Ku4yirTTFs=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TBZAhUPWxYw+CqZ+olyVbwqBy8vrRwdvgp7l2N+NqiV6dYXYDz8SD0l4J3xXWpFgSvUApGbvXk0Wy1q8UJrbHsjgRO1fpXsk4wMDRmdHeoDtEB9QSL36+uhrWXMG35QEWW8wBK22nXrw3gT2W3yxk5eZ8m2FVZZTFXhFDfZt5NM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OdROLOAb; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48d102471a4so91666895e9.2
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 08:47:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778859688; x=1779464488; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1778860040; x=1779464840; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=48QgJCSDGrxZEEMu60fAJNCoYBZQJr3kDDsz/0EEYCc=;
-        b=XI/ZNVF84nrZAKcRgX8L0pw/ZhBrb9nZQW2EQJb9/YeXNbu1asTxQ+W0m/ZWOow+tX
-         hj1bCTApP7OWJ8iAEmUNs+4sPeFug9/98ORqW9d56sK8FM0Nmm8GeccSHhIW+LpzsCM5
-         EjTlLG/HwLGFUQCpQ/8/gcFGdYLzPNVQm3QkBzpWgtBI7C0QTah6DJoCFiQ6/+yRb/p6
-         OK2qfIMvYk414Gb6sUwVKOAsKrQ8d6GpjORw/qofvkL5m7k0c7WzFoc1IWbdYnlHxsTv
-         S5xpjtnW8Kzhe/DBTni+8MWwtkOQ/9F405Ob8jpniZIVs80ywcij9mKTkmzirDWWyjY9
-         jUyw==
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kCmxHgPSnL+/rrs2yz/09fkOkjHEfDbnI1nUCTxT6M4=;
+        b=OdROLOAbhQC1x2aKNagUXyKkcOUaeFt3dh6rfWFk+JhvEXNVfLuXYEB4LmvHKOtIl3
+         wHkiUugoUw6ZZUGVWFafFkgG41nxrXV00APqFBfGlHmfARrR4Ey9Cf0gWXEQ+xJfbAl/
+         PicH9caMxkqNTXpsX6gHnS0qgsp+ggrrgfGw3VZzoTaV3+OTpJOJbqXEDx5SNlQvb9Zl
+         EvNx0rNY3+PPGahRfqQKj3MiPOQFxlm302hupsC0Tn7iNhNtkxiY5TXjNT0CgCll4Czn
+         hpoipp/355oLTdLxUJyTwyniJ5EauGdxPvfga2wUNFGpWWFwZo1PMrCQvNUQaHeJ3UxZ
+         kfMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778859688; x=1779464488;
+        d=1e100.net; s=20251104; t=1778860040; x=1779464840;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=48QgJCSDGrxZEEMu60fAJNCoYBZQJr3kDDsz/0EEYCc=;
-        b=KLVZVOhThKu5qKuJA5qqBPTSpLdFXowq7enWmaKpdKgXnf22wByDQtZo+fJQORmG2y
-         pmSPUc8bo2yUILfZVAAMtYvZeymBybK2TgMN3cNCedLLCE6XdIcxbvwidJQlgY35xiJW
-         yUzfx1KO+lp6rhIPGKMVSdYRxGby2YH6H8HnPwXob+1C0ISJMc1EOeewjiR5KIKVKzEJ
-         CF7ZyZJU3DJx+AOhVgUSarDhYsKZh2tHApW4wfllDtup2XdQtPfqsTmZOa64qtab3s5v
-         Dda7YZShdNV3vh1YEVuzR64TZB1W7d0JCw/teDxzSPwDMT+IS5ksrN5jVeXgCfX02mvv
-         AN0w==
-X-Forwarded-Encrypted: i=1; AFNElJ/8TrGohHs4hRYlGmmqRjFIpSuGlXTKMhKfqUieP6lotyPFkm7whfHmOQ38UfD0xUmNE2UKeORRloWR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfL1eIITaF5/Jh50DY5uY/+UmQYhLEQugBI4p+WHHDHPfc7RVz
-	TJN5SWLqcfO20REumLPIyMRU7+0Qf6aapgotmt6GdlOlXkk4rX5xM/Eu1WiYahYE9QyjxlpT1n2
-	9dxVNCepf0d0YcHgYvxR0BE3tvSoaHDC2p7oNQMH6SOFcmvmiPxW+ZwSK0UX2HgHe
-X-Gm-Gg: Acq92OGRaLnvh1YE6KGSoNbaC8zDHSsZ1ldpVj44l4DTDtY9pznXf2Rk3WIFnpvMdgI
-	Rm31sW1IrBx+O+Tctf2H1bL9Y4UL463HXy+JqZ6AbKl5/DkJ8ONkKPlhNnjIOH2gQlwxWSI6UuU
-	syzeiEcOLba0yqJ8o6QdMPI1Iat1AUotJKvwgj60K2sA6oyEAo0ZH04iGfcnDj17mWYRB4M5+2t
-	nXfwppUkjDbq8LLW9J1cO+IV1OYENsE4MJ99PLSTsJySScy9MVJzbQXksZsTFEq12k6i0Jbmd1M
-	bF9epGv7ywcSKBlflz30yz6jSmlU+NUrlyngrCkpfJrrwH9EiXYve5vdxHxY+yaX9shiHXeajYD
-	9I/lzpToWLMpHHnOQNfGYYw5SHFZBQ/8r76MT2aNWwqZ/yUamyP41DnSdmATmEn0QYDtaSP+4B9
-	ILK/lrQ+iYZnt3efJGzFxHyuLFjkfEOA+vJtvjD1NEUbh5ebEJf14=
-X-Received: by 2002:a05:6a00:3e22:b0:839:dd77:3501 with SMTP id d2e1a72fcca58-83f33c33546mr4982591b3a.1.1778859687689;
-        Fri, 15 May 2026 08:41:27 -0700 (PDT)
-X-Received: by 2002:a05:6a00:3e22:b0:839:dd77:3501 with SMTP id d2e1a72fcca58-83f33c33546mr4982557b3a.1.1778859687257;
-        Fri, 15 May 2026 08:41:27 -0700 (PDT)
-Received: from hu-varada-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f19c5c39esm7532977b3a.36.2026.05.15.08.41.22
+        bh=kCmxHgPSnL+/rrs2yz/09fkOkjHEfDbnI1nUCTxT6M4=;
+        b=gfXPXdwPrpSP4qAM6WVb4zGe5inbZgUP39mSyo9XQPTrg28P55ziYwxB1TkimPa0Qu
+         5BgVICrqZBIGdeLp7jo9FkkYY28ybJMOle7mLy8D2HlZ7eDu0APy2qHTpkz3M67iIPjs
+         A/IRp/U8G8234RwCJd2bS7K+AFDn7MUFRIkcjOfcNOQDeH1YlFv+16vDKvpoMhcxJcCf
+         e1mq+4l8HFl7+KfXgcZfFjLgnzT13yhPuOxFig/PnyU9ueiYPVbqzelkMMa6GAxJ6/3o
+         /QCldMsGtvDC+k3hOBdxcEIA9Q3toxHf+jAOscvwOJnEdvb8wrGs2Lfi36vxn5/egA03
+         a4dA==
+X-Forwarded-Encrypted: i=1; AFNElJ8K25Wxt+PS/I4fZrkJ4vccV1rXJJM+zNAIDULWx01xxFtCqiMIHjIi9Vm9x4dMB43/XTi3tus6RQIy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCIAwW9l2FvR7m34A03HL6f2cr+0v65U7e8s+Cghr0bwHE+HH9
+	fowkksRsb5zNzWuNhAhybU+zpYsxz2bBZyu6UWH2gyGbnn0LpR5NcdZp62nYOXJJ
+X-Gm-Gg: Acq92OEon1Gl9nPueK94VU+C1Asyc/s64772JmtsyQa3eDRbPbxZomHlMyrU2iD4ADt
+	ZXbX97WYJf5o0gTVNXUQU9+q7qiW+WHisxukirGO8Ji61z+zN+dr22zEAVVHVt1wwMv5nGoh9tT
+	8fxySxlUJ360JbvkCv2Ks4Zb87gVUJvYKapTrS7yb+HKPeGyLt3zVwQfD69dOiEZBS+O1HHHMmC
+	voZIsCKEvbrnxyu5nsXjV3ss6Z3wSmcXozeLLU3bzcgcU7th7AaWYVN1HoUd75qJO5g9Xq5kqvA
+	TkQ6QJ4rmipxt8oPXerPOWBKK2F5PKVxyPQkCuUl9ZL9QoWxTyKMiFk/yza7f0cOXXgtx/VWGvl
+	dguuR8WEwKIeDCgMqa2XcqRF9VLp1VPXrqoUuV1xeiCgUguoaD9ILwvMfkAxtXTtYdZtIBpA2GS
+	MFaHjNX+dHom8bcNGQgjiUd/+XnA2tsNAL/YYVJ5tZ3KpHJGszcVp4Wr/AX+v1gGUUfsd1Bh0Ul
+	Bdlt2YvbrHOIbkS4mrmc7Y/7CH8rpu11FDarx3Jk/ESjegTZg==
+X-Received: by 2002:a05:600c:3b28:b0:48f:e230:80a0 with SMTP id 5b1f17b1804b1-48fe63267bdmr65802875e9.30.1778860039835;
+        Fri, 15 May 2026 08:47:19 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe57944c1sm80081305e9.7.2026.05.15.08.47.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 May 2026 08:41:26 -0700 (PDT)
-Date: Fri, 15 May 2026 21:11:19 +0530
-From: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/3] clk: qcom: ipq5210: Use icc-clk for enabling NoC
- related clocks
-Message-ID: <agc+n28PfkrxwpuJ@hu-varada-blr.qualcomm.com>
-References: <20260514-icc-ipq5210-v1-0-b5070dfbe460@oss.qualcomm.com>
- <20260514-icc-ipq5210-v1-2-b5070dfbe460@oss.qualcomm.com>
- <5zdmbj56ndi7nrvdqadinrf3sneywft3uaplnoxugp5zetsfbj@5hazmuzyfz7u>
+        Fri, 15 May 2026 08:47:18 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Fri, 15 May 2026 16:47:12 +0100
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, 
+	David Lechner <dlechner@baylibre.com>, rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH RFC v4 10/10] docs: iio: add documentation for ad9910
+ driver
+Message-ID: <csqudninfd5g3vkrzu45mfsbunxygwymlycwijgwvvpfbqhatr@fzib4gvhqc4o>
+References: <20260508-ad9910-iio-driver-v4-0-d26bfd20ee3d@analog.com>
+ <20260508-ad9910-iio-driver-v4-10-d26bfd20ee3d@analog.com>
+ <b8f9a174-f3d0-4cb8-a571-605be79165d6@baylibre.com>
+ <zvulxrrvg4sf7m5pjfpfucg7yssgallfu6zi6mcyblu2qy24hn@wdzs7h77vkoz>
+ <18c2eab9-c0c7-4e93-b4e8-73b18531e784@baylibre.com>
+ <uphcx5zr4lmukuom75g66hp4agurty7yq6mo6ri6otrsscqfek@tn3u5jjszaoy>
+ <5bce7868-feca-4c54-a14d-ad4bf4072c29@baylibre.com>
+ <wpoiyqezs6lus5o7smlibbxrxqudvijgqh3gwgft2xjpiirwa4@xtdwe3kzleku>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -121,94 +109,158 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5zdmbj56ndi7nrvdqadinrf3sneywft3uaplnoxugp5zetsfbj@5hazmuzyfz7u>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDE2MCBTYWx0ZWRfXzw+/01rMuu6m
- JiJ+OobmhdkDEODRo9Ka3aDQpfBObAOEGucAXOxjUOPlPbYkTlaFYi0wlKAEi0QGCLDxvh8bXE5
- IQaUfHloPdAL4SSKbiJSbNtvYKxvNfahYz1O0uGT/lcJ1Fijxht2t501JkqVot59t6ytemy/1YC
- +sPyM9AeJMo/GFGYZmBm2Gt3McajjFqpArn+PX5n6h6IwW2bi4YCYecZ9TzyHtSJtrKzwiHR+LS
- SMXpkkBuBkQV5LfpS3OlsPo0GE1NiuUyp+GuRvX4QBt7Qo7O0J9CrD0KM8HjseZj/pt/kJLcT3A
- oDTfGleeI9w7c918joWIevGAs9oEKO496WhlL1jwzTCtJh5pKlULw+x23afO20OTQ4A7fDlJ3ZW
- qnC4le5FQIt5IYvenJCNeM47hMCOwO4lrAXuFIYqW1bA49RJdBRDJ5EV1DaPkz8kNE2MA9VzC3p
- dbeij8qhroGSRxYlsow==
-X-Proofpoint-GUID: LRH52XkS-FDz3-UsGO67a2N93mRo6IWi
-X-Proofpoint-ORIG-GUID: LRH52XkS-FDz3-UsGO67a2N93mRo6IWi
-X-Authority-Analysis: v=2.4 cv=HJ7z0Itv c=1 sm=1 tr=0 ts=6a073ea8 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=kj9zAlcOel0A:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=jBAFZfc0v9Tf_D0DgaEA:9 a=CjuIK1q_8ugA:10
- a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-15_03,2026-05-15_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 suspectscore=0 phishscore=0 spamscore=0
- clxscore=1015 impostorscore=0 adultscore=0 bulkscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605150160
-X-Rspamd-Queue-Id: 3043A552689
+In-Reply-To: <wpoiyqezs6lus5o7smlibbxrxqudvijgqh3gwgft2xjpiirwa4@xtdwe3kzleku>
+X-Rspamd-Queue-Id: 4944D55280F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298428-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298430-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,baylibre.com,analog.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,analog.com:email]
 X-Rspamd-Action: no action
 
-On Fri, May 15, 2026 at 04:31:42PM +0300, Dmitry Baryshkov wrote:
-> On Thu, May 14, 2026 at 09:35:36AM +0530, Varadarajan Narayanan wrote:
-> > Use the icc-clk framework to enable few clocks to be able to
-> > create paths and use the peripherals connected on those NoCs.
-> >
-> > Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-> > ---
-> >  drivers/clk/qcom/gcc-ipq5210.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> >
-> > @@ -2642,6 +2657,7 @@ static struct platform_driver gcc_ipq5210_driver = {
-> >  	.driver = {
-> >  		.name   = "qcom,gcc-ipq5210",
-> >  		.of_match_table = gcc_ipq5210_match_table,
-> > +		.sync_state = icc_sync_state,
->
-> in Kconfig:
->
-> select INTERCONNECT
->
-> OR
->
-> depends on INTERCONNECT
+On 26/05/11 05:01PM, Rodrigo Alencar wrote:
+> On 26/05/11 10:23AM, David Lechner wrote:
+> > On 5/11/26 10:02 AM, Rodrigo Alencar wrote:
+> > > On 26/05/11 09:46AM, David Lechner wrote:
+> > >> On 5/10/26 4:30 AM, Rodrigo Alencar wrote:
+> > >>> On 26/05/09 06:42PM, David Lechner wrote:
+> > >>>> On 5/8/26 12:00 PM, Rodrigo Alencar via B4 Relay wrote:
+> > >>>>> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > >>>>>
+> > >>>>> Add documentation for the AD9910 DDS IIO driver, which describes channels,
+> > >>>>> DDS modes, attributes and ABI usage examples.
 
-In drivers/clk/qcom/Kconfig, IPQ_GCC_5210 can be selected only if
-COMMON_CLK_QCOM is enabled. COMMON_CLK_QCOM selects both
-INTERCONNECT and INTERCONNECT_CLK.
+...
 
-Is select (or) depends INTERCONNECT still needed for IPQ_GCC_5210.
-Please let me know.
+> > >>>>> +Digital ramp generator (DRG)
+> > >>>>> +----------------------------
+> > >>>>> +
+> > >>>>> +The DRG produces linear frequency, phase or amplitude sweeps using dedicated
+> > >>>>> +hardware. It is controlled through three channels: a parent control channel
+> > >>>>> +(``digital_ramp_generator``) and two child ramp channels
+> > >>>>> +(``digital_ramp_up``, ``digital_ramp_down``). DRG destination is set when
+> > >>>>> +ramp attributes are written, i.e. writing to ``frequency`` or ``frequency_roc``
+> > >>>>> +sets the destination to frequency.
+> > >>>>
+> > >>>> Would it be better to say that the destination is set when the the
+> > >>>> value is non-zero? Otherwise, how would one change the destination
+> > >>>> once set?
+> > >>>
+> > >>> Destination is only one, so you just need to write phase or phase_roc, if you want
+> > >>> to target phase then. Does that not sound intuitive?
+> > >>
+> > >> I was thinking about if you needed to change the configuration.
+> > >> If you set it to phase, then want to change it to frequency, how
+> > >> could you do that if 0 is a valid value for phase?
+> > >>
+> > >> Also how could you know which is selected by reading back the
+> > >> values if 0 is a valid value?
+> > > 
+> > > This is where Jonathan raised some concerns, so it is a good oportunity for you
+> > > to provide your inputs! Right now, I am returning -EBUSY on read of an attribute
+> > > where its destination is not selected. As pointed out, the destination selection
+> > > is happening when writting to the attribute. In the previous patch, Jonathan
+> > > suggested frequency_active, phase_active and scale_active to track mode priority,
+> > > and It could be leveraged here for DRG destination selection. I havent gone for
+> > > that because I was not willing to add that to all the channels given that it is
+> > > mostly used for debugging, so I added frequency_source, phase_source and
+> > > amplitude_source to debugfs instead.
+> > 
+> > The "last write wins" with the others changing to EBUSY makes more sense to
+> > me now. If the docs said that, I missed it. Otherwise, that would be a helpful
+> > thing to add to the docs here.
+> > 
+> > > 
+> > > Destination selection for RAM mode is firmware based at this point.
+> > 
+> > Seems reasonable.
+> > 
+> > > Destination selection for Parallel mode is still not clear... could use
+> > > those *_active attributes or separate channels.
+> > 
+> > Since there are _offset attributes proposed for parallel input already,
+> > could we just make it the same where you have to write one of those
+> > attributes?
+> 
+> Different from the DRG, both RAM and Parallel mode has this extra polar
+> destination, which targets both amplitude and phase at the same time.
+> 
+> For parallel mode I have the attributes:
+> - frequency_scale: applied when destination is frequency
+> - frequency_offset: applied when destination is frequency
+> - scale_offset: applied when destination is polar
+> - phase_offset: applied when destination is polar
+> 
+> In parallel mode, there aren't knobs like those for amplitude and phase
+> destinations. With the *_active thing or similar, polar can be both
+> phase_active and scale_active enabled at the same time. However, this
+> would not behave the same way Jonathan suggested, i.e. to be used for
+> mode priority indication... it would be used for destination configuration
+> instead.
 
-Thanks
-Varada
+I was thinking, and it might be good to define this now because of the
+fact I might need to create other 3 channels for the parallel mode (Maybe
+that is fine and we can create them later if needed).
+
+One thing to note is that in parallel mode, although the format pins (F0, F1)
+that defines the parallel destination are synchronized with PDCLK (parallel port
+clock), we cannot really send multiple formats in a single session, so we
+cannot interleave destinations. Then, if having separate channels we would need
+to contraint that (only one destination works at a time) with the available
+scan masks.
+
+Now, also related to the IIO backend support but for the DRG channel...
+Anticipating new ABI for the IIO backend, currently I have the following to
+expose ramp control from the FPGA IP:
+- toggle_en: To allow the backend to control DRCTL pin, toggling it in response
+	     to DROVER, according to the configured dwell modes.
+- ramp_delay: the delay between ramp sweeps in seconds
+- burst_count: amount of ramps in a burst of ramps
+- burst_delay: delay between bursts in seconds (valid when burst_count > 0)
+
+Would also be good if I can get a comment on those! Maybe toggle_en can be
+removed as the other ones only make sense when there is dwell and when this
+toggle is enabled. So toggle enabled can be set by default whenever we are
+not in bidirectional continuous, i.e., we are dwelling at either max or min
+limits (or both).
+
+Just to summarize the motivation for those attributes... the idea to create
+those ramp patterns is to allow a receiver that performs stretch processing
+to assemble a "radar data cube" of data, where FFT applied to each dimension
+gives different insights on the detected object: range, velocity and direction.
+Each ramp would give a row, a burst gives a matrix, and with multiple antennas
+one gets a 3D block of data.
+
+...
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
