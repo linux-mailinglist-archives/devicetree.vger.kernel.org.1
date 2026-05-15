@@ -1,188 +1,219 @@
-Return-Path: <devicetree+bounces-298294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oF9XElMTB2rgrQIAu9opvQ
-	(envelope-from <devicetree+bounces-298294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:36:35 +0200
+	id WOJ1Io8UB2rgrQIAu9opvQ
+	(envelope-from <devicetree+bounces-298298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:41:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A60954FABE
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:36:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA23554FC35
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 14:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C8DB1310F0CD
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:01:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D56B4305FC25
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 12:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4136A47D933;
-	Fri, 15 May 2026 12:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E178B47884D;
+	Fri, 15 May 2026 12:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pnMB2NHO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bd0UIjqg";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dwobPeEG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD0344CAEC
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6363FB046
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 12:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778846400; cv=none; b=frtUB/LiKxsWO4Z0K6K3Yg82F534nRH4Bv/J0ckhfYI9TOaPBqbKxWMUiUBhhoTSX4fzq+wmwLgmn91Gr9uPsP/7p6gEknXGcN4gQKOBj+lbKNG8EgTNdOEF0EdEEHWyB1QWdAIw1q3Z9+raRSkTqaMfrqyUEQg3mMA+oEXyMt8=
+	t=1778846909; cv=none; b=X/NySu1hfQEcfcIybArbczS9X5xJSQswvSGcaSCH9WGR3SPBICebMZddx5lBY9musz2r7zXqObs21YSDOwaNHFIPt6/nd55XPWsWJfWZjJnjBz7Ixasa62l0UprVxr7mmeaGB/mVPqlzx9i5abvcw0MAVjPcYCWMFTWdPPNdx+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778846400; c=relaxed/simple;
-	bh=+52I+J/OgT+Y8T5o0hZIVWeq0a2hUc2CW6uDVYq7H7I=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RNMGQHvCRD4QsIZ4QzR48u3B+1fGYBa4nj5g3xFQMUs5HpjE9qmZ6y5IMx3gyzYt2qmN6AKv/qJ5EIf92RnFMcKqc7W5+7xFQm60XDW7mr0GHNmCss1g8itoqDRczBWZlKpy9dAxLb+LsblzwoeT7wQouttnZ0O7fLvRoRTzLLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pnMB2NHO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D9D2C2BCB0;
-	Fri, 15 May 2026 11:59:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778846399;
-	bh=+52I+J/OgT+Y8T5o0hZIVWeq0a2hUc2CW6uDVYq7H7I=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=pnMB2NHOOhwzF4bwCNtPwfgkVoAaskYOEq9UOXHdQgNp450r3D8mXyl/X3WkyrrRW
-	 eemc0NFKGfG0lk2+/A+fqWD6FNuyhBiSqCrsDgykguxDR6eGJDyt4NOs0s8PKj6DGs
-	 XHy5wq8pHVHeXAtBy+S17GHRXBN7eXDSbYXZTmUuShIIF2x3J2Kt7YG1WrrWy0ZRvq
-	 L9WrS9+lEaukf3/AcRsBG8T9MxMak9sT2zmXQgQ8CmFJRuGFFed/l+GiyBeI+HzbK2
-	 1dudEQ3AJ1qsus3rKgAfwAcCwTK/pEFQBBqMZBw2K737fJ66TiTT6TfCBzRlSNCAj/
-	 Efz5yr6c73kNQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 4/4] riscv: dts: spacemit: k1-musepi-pro: add SD
- card support with UHS modes
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Iker Pedrosa" <ikerpedrosam@gmail.com>
-Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260515-orangepi-sd-card-uhs-v10-4-094af27e310d@gmail.com>
-References: <20260515-orangepi-sd-card-uhs-v10-4-094af27e310d@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 11:59:58 +0000
-Message-Id: <20260515115959.3D9D2C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778846909; c=relaxed/simple;
+	bh=dY5ohTYSSLIisrq33bzUQfunxnvHPZbbwmFUmnE3HHg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hPf4cIY1pViogD3SO8z5rD/6PMEtTcvtI2VXX3zlXe4tXLJTCQKsvf/fE3EJ9DRioFdtHL0I11uIrhqVtLVoVB9AJvTnQgLgDEaIZN8MiHf3lb1ZKEVQz+jCmfmoNUkeomlqlrPHQkFuaa9b4sAZW37t+QlpvmHCYgz1No4cv00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bd0UIjqg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dwobPeEG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64FBOEbF4020774
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 12:08:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KRk8b5cg5dV7V982apf7WGHOng/bJOMGq6jOWe7tSQs=; b=bd0UIjqg8MEXSfA0
+	YPALlbRmS2BpLag5rq3HzwAyBZLBpbqVfw1tJsmIhljvbw0PaGiPU4WWZvdVH1zn
+	hmSOjjmzW/UJcutDQgo9V7kFkcUtPlwdYqSYR/9GUZu5C7NlOWqIoswn8nrOnFmT
+	G6++RM+VRpVo2WvqSN7XbhJXzqxgA/tpK4ArJjWxt3lwtHP/3Q4sIvpf1Y8xt5U3
+	xukBPfSzI1le7wtok3npCTjO0jdU5sQz9MvTEq3Hn9jgZXJiMORFiY5KOkFekTJr
+	0P3DnSJe+1HEtf7gtERNwB91uZmi4lV63laBd4g7uFU0KvRlZgACCFPMvxbBoSuy
+	42OwnA==
+Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e5m1ru5ud-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 12:08:27 +0000 (GMT)
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-2f3ec2e8d07so9652472eec.1
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 05:08:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778846907; x=1779451707; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KRk8b5cg5dV7V982apf7WGHOng/bJOMGq6jOWe7tSQs=;
+        b=dwobPeEGt8981S9b5X+O7pheIH9qQoHQSY9WzVPXLsxZwNxPJYkYTdR+6rS/ZwGVZj
+         5GYeeTUXj2OHrpk0o15KFzNQTQpV7WJ6dpYyZPYZRGUHFbeiMjlPnZpt+uD3XZMjQd6Z
+         6hwOojFYSyFTp41+kYv6fOnL3fFMI8qqW1hQyQRDp8I1hhGTzII70o4ZEoLAAJNUlAqQ
+         cvuTzMLgeUHqXRXQKHn2OdsTe7oI/l4Jj+bSavtrRBYWKQSibIFnjRQqiBpQL1lr/Mrd
+         g6Wev+rvQxdO78bYoXU8UgGerCYvMXtY3ff4YHreBDKIWMx74EWldH9sypsjM4QZCQPo
+         dEZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778846907; x=1779451707;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KRk8b5cg5dV7V982apf7WGHOng/bJOMGq6jOWe7tSQs=;
+        b=DWY51Ifcn1SSiyEzxR2c4aVsNG+/UAn3//06bp59eDMkvK51H7H3BRJIiSBfh8vLO2
+         hCsiV+pWkMIyd6zZrPFMJ48zbqLed8aGB7/Yvb66UaEoWDktAVl1OJqm1cunu6njwN92
+         EgelL2TZZ3Rp4T8iLgdUekbFIvWC5fsONNRp44+sULZBYsNNfHu4o5WkfaxAYMgtFxc4
+         NdMHKSU/2coN3ym2OZNIzAmO9xuc3TJu2C5iHKAoYVElYfb+pW9Ikz5iAoLk1R1W5F3C
+         W4zOmLX+Lk43cLv8eW59jO1YCDgTmuKngEBOdgh4MuF/ZHQIfQPtwfNeBODpXP6lWRl+
+         rVsQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+hv98OB5DRUys3o5u69WGas6csnEQ24pa0CmqRjj085pFWQmfW0B64xpCKYR8jytkXvoce6ViU+HBJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX+nNH0p1HmmwSaCCjgulI+K0y9OYoX30byoQlP9cpT5qMU1HB
+	Yolmza+sUrdw6pQW53PB5Fbo+dHOw0gSLHolyniKS3zRtkmNXD0QDyuwmWJl3Gr2l5G0Ne07+Qp
+	GUpk8gfYHw2HYZiXskYmFS/ZRnmjWgLxaFasiPtoj5kQCVxPBVy0/wtKhyLCBfcCI
+X-Gm-Gg: Acq92OEi2gJyooYyoBJmnyZ3/0kakOf8YsUu2w5OyBv5Zq7iFQPk/DDTGDyTRQCBm0n
+	U2PBhNK1RYjy9cco9tvkKAWbmM/X/YMn3T1c9Y0UN3tum4HxaWf0DcpvvUhA9ZXZWYY2/wxfscM
+	5aftrSe2FS6DKeOA3hVUT54mKGsh8y0ZutOO+SwLy3qljX3lB7/AUoL1KcmKuxbBxsQYJ9swWu8
+	t3qRbRP55PqOTz6+Marv6FmV3aDYU4oVH/zvxmRyBGOJJyfLp7TF4T9csGgGRxdpLs3qSgN+6Jg
+	CBdSV6/59+/h+nJOdGDBzsnTgKgFEoNtm/8lAbW/2bacZBMXFsYpdj6oCNrR3/JvFWka1JKqiWP
+	VA580DD6pfMSh9TTcFduaOBavxtH9f4rotgHenxyzR5mO6Vn/wmiTnhBnxglIvMQZmvtJkk5Vap
+	LhUA==
+X-Received: by 2002:a05:7300:6c05:b0:2f2:32bc:788a with SMTP id 5a478bee46e88-30398652e89mr1866679eec.25.1778846907053;
+        Fri, 15 May 2026 05:08:27 -0700 (PDT)
+X-Received: by 2002:a05:7300:6c05:b0:2f2:32bc:788a with SMTP id 5a478bee46e88-30398652e89mr1866661eec.25.1778846906513;
+        Fri, 15 May 2026 05:08:26 -0700 (PDT)
+Received: from [10.110.108.139] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-302946f2149sm6464126eec.11.2026.05.15.05.08.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 05:08:26 -0700 (PDT)
+Message-ID: <a79100cd-0e33-4eb6-9452-c4458ea40bc0@oss.qualcomm.com>
+Date: Fri, 15 May 2026 20:08:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 9A60954FABE
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: qcom: arduino-monza: add WLAN enable and
+ rfkill GPIO
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260511-linux-next-v3-1-3e22737e71eb@oss.qualcomm.com>
+ <920223a6-4e4a-4ebc-8a1c-c37d0923a470@oss.qualcomm.com>
+Content-Language: en-US
+From: Qian Zhang <qian.zhang@oss.qualcomm.com>
+In-Reply-To: <920223a6-4e4a-4ebc-8a1c-c37d0923a470@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: 04fBn9u7TYaxSlY7DyIrMfn61r-5fplX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDEyMyBTYWx0ZWRfXz0eeD1tNNrIG
+ qkI/LDLAhljF/7oCIdM30wDvnCPxEUnssv8AuPGy7BOfSEhDm2cyvro3EAtx04p5SbkFBEr6dql
+ bfrDY2tsEFHHNilYwKFcbABCAl5GV3vgk2b5+mOyV2eohKb84B5JzG7dZ7f1DpFko81wmaxQZMW
+ V19+SOGP587iR5Rjk8j9BUAOoDOF7jy0MEoSRqf1bviaGIUjoDkKcqrLmGxYFzkIoYxtyjQ2jQ+
+ WW8d4fX08jJqTBOG1MW55X6PEORfJn74wmkoB7LF0yzqyOW//cdL7/Aq5BrPcL8vixtH8HzmTYw
+ we9K7gXYIE6ld+b/nashwMnfYAWxwnVdKr5GuycI0OCj3Ik5VJuFgINKiP3uQhrJoB4tt8+y0mr
+ QRNIarGSo+AKqqtrKN4DSG9+M9NEf6g7+AEe5ZX0YmXMOb0B7Y00wzMqeBWOhTlq7oSjovHljkl
+ tmPcBFQCJO1+/f1X3Pw==
+X-Proofpoint-ORIG-GUID: 04fBn9u7TYaxSlY7DyIrMfn61r-5fplX
+X-Authority-Analysis: v=2.4 cv=JPELdcKb c=1 sm=1 tr=0 ts=6a070cbb cx=c_pps
+ a=Uww141gWH0fZj/3QKPojxA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=pz6ac7PCcHMNlcGWspsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=PxkB5W3o20Ba91AHUih5:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-15_03,2026-05-13_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 priorityscore=1501 spamscore=0
+ malwarescore=0 suspectscore=0 impostorscore=0 adultscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605150123
+X-Rspamd-Queue-Id: DA23554FC35
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298294-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-298298-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[qian.zhang@oss.qualcomm.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The SD card detect GPIO (`cd-gpios`) is configured with incorrect =
-active polarity (`GPIO_ACTIVE_HIGH`), which will invert card detection.
-- [Medium] The UHS-I I/O voltage supply (`aldo1`) is incorrectly marked `re=
-gulator-always-on`, preventing the MMC core from physically power-cycling t=
-he SD card during error recovery.
---
 
-commit 6129b29ed8762cd8d45153d74898125f35ee85bc
-Author: Trevor Gamblin <tgamblin@baylibre.com>
 
-riscv: dts: spacemit: k1-musepi-pro: add SD card support with UHS modes
+On 5/15/2026 6:51 PM, Konrad Dybcio wrote:
+> On 5/11/26 10:48 AM, Qian Zhang via B4 Relay wrote:
+>> From: Qian Zhang <qian.zhang@oss.qualcomm.com>
+>>
+>> The QCNFA765 M.2 PCIe WLAN module requires GPIO56 (wlan_en) to be
+> 
+> But isn't that just the wlan-en pin that the power sequencing driver
+> takes?
+> 
+> ref: drivers/power/sequencing/pwrseq-qcom-wcn.c
+> 
+> Konrad
+Thanks for the review.
+It's not the same pin functionally, though they share the same name. 
+There are two key differences:
 
-This commit updates the Muse Pi Pro devicetree with SD card support to match
-the OrangePi RV2. It enables the sdhci0 controller, configures the pmic
-regulators for card power and I/O switching, and adds UHS-I mode support.
 
-Link: https://lore.kernel.org/linux-riscv/20260316-orangepi-sd-card-uhs-v3-=
-0-aefd3b7832df@gmail.com/T/#
+Different power topology: The pwrseq-qcom-wcn.c driver targets WLAN
+hips powered by an on-board PMU via the power sequencing framework. In 
+our case (VENTUNO Q), the WLAN module has its own internal PMU, and 
+wlan_en controls the power-on/off of that internal PMU — it is not part 
+of the board-level power sequencing.
 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/=
-boot/dts/spacemit/k1-musepi-pro.dts
-> --- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
 
-[ ... ]
+PCIe probe ordering: The WLAN module connects to the PCIe root complex 
+through a PCIe bridge that does not currently support hotplug. If we 
+were to use a similar node configuration as in pwrseq-qcom-wcn.c, there 
+is no guarantee that the WLAN module would be powered on before the PCIe 
+root complex probes, which would cause enumeration failure.
 
-> +	pmic@41 {
-> +		compatible =3D "spacemit,p1";
-> +		reg =3D <0x41>;
 
-[ ... ]
+So while the pin name is the same, the use case and the timing 
+constraints are fundamentally different.
 
-> +		regulators {
-> +			buck4: buck4 {
-> +				regulator-min-microvolt =3D <500000>;
-> +				regulator-max-microvolt =3D <3300000>;
-> +				regulator-ramp-delay =3D <5000>;
-> +				regulator-always-on;
-> +			};
-> +
-> +			aldo1: aldo1 {
-> +				regulator-min-microvolt =3D <500000>;
-> +				regulator-max-microvolt =3D <3400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-
-Will marking aldo1 as regulator-always-on prevent the MMC subsystem from
-power-cycling the SD card during error recovery?
-
-If a UHS-I voltage switch fails, the MMC core calls regulator_disable() on
-vqmmc to drop the voltage to 0V and reset the card's internal state
-machine.
-
-The commit message notes this matches the OrangePi RV2, but the OrangePi
-RV2 leaves aldo1 without the regulator-always-on constraint.
-
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&sdhci0 {
-> +	pinctrl-names =3D "default", "uhs";
-> +	pinctrl-0 =3D <&mmc1_cfg>;
-> +	pinctrl-1 =3D <&mmc1_uhs_cfg>;
-> +	bus-width =3D <4>;
-> +	cd-gpios =3D <&gpio K1_GPIO(80) (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-
-Does using GPIO_ACTIVE_HIGH invert the card detection logic?
-
-With the internal pull-up enabled, the physical pin inherently reads high
-when the slot is empty. To map the physical low state of a card insertion
-to a logical true, this usually requires GPIO_ACTIVE_LOW.
-
-The commit message mentions matching the OrangePi RV2, which uses
-GPIO_ACTIVE_LOW for this same pin.
-
-> +	no-mmc;
-> +	no-sdio;
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-orangepi-s=
-d-card-uhs-v10-0-094af27e310d@gmail.com?part=3D4
+Best regards,
+Qian
 
