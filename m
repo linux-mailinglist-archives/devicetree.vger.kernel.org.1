@@ -1,299 +1,256 @@
-Return-Path: <devicetree+bounces-298564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298566-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wKWlIdSaB2r/9wIAu9opvQ
-	(envelope-from <devicetree+bounces-298564-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:14:44 +0200
+	id +DUFLMqbB2r/9wIAu9opvQ
+	(envelope-from <devicetree+bounces-298566-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:18:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30288558A6A
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:14:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B688558B8B
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:18:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4A163044F25
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:10:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EAB743001CF6
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96D5D3F076E;
-	Fri, 15 May 2026 22:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3188D3F44FB;
+	Fri, 15 May 2026 22:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ohbko1oq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="enQl/oxk";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Yv2ieQZb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E5F368D53
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 22:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF333BF672
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 22:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778883037; cv=none; b=taC5M2jiwb2sRcO9wyrkAZ5ATpfrbV6trzf35/Hmm2NndelMk8bktwvvZplsW7Tozmm+awWVLVCmJ/M151bBh5hi5MozbKPo+86kdVhbs1eFOK7ogmKH7GpIdjAWPdGWe4zFeKGkT58c1zMDHlXRDwk4ZdTOlOtPgkR0V6eCkfI=
+	t=1778883369; cv=none; b=kZjkVwabQl6Vd1KPZBOV2QM00xbCFPq/ciCmM/fV2K6L3wsvu5vcbYCDhqc0NVexbp1xCWsCOulfeahk2pqRqJJppHLHe4EUwOikwiObzWsw2vSd/X9nNaudVWO0qw8JxFQMVywdJoKnLL9ElfIPK9uChIL8sHiB4W1RWPPqlVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778883037; c=relaxed/simple;
-	bh=OrNEz044O2bUUb4tZSehVWC7aL8/xnmz5C6jZSuKz6Y=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=SxD7tCfuzwdehP4/kI/bIFiuPV5T7JlzssTvHHOwKPiA55rIrqz+wYRuJ54mT7S3nwg3Cit479svBXEAWdfbqfKVpX0ldIXfuxB98wMaQK6Eaa7cHahzCmBLe7p4ijmH4+YI3dV3TAlBaeFu6kU7/+0ysckd0fJDin5vFbG9gFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ohbko1oq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D5CC2BCB7;
-	Fri, 15 May 2026 22:10:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778883037;
-	bh=OrNEz044O2bUUb4tZSehVWC7aL8/xnmz5C6jZSuKz6Y=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Ohbko1oqS015FDFoex+qopenXBI8DmQjaM0lB1vfGxba90r9Yqzowq8Sn93hY7WYJ
-	 DHJhsFClgeC8ld+6QWRJRK63U2l7YVraVsmQh56iobTxFPulm1ruYXAHuvuPOivdHg
-	 5lIEyMuW/NsErZqxYEzSkZKOQlenoEa6Op2vdzo0AHfv0FwVeFeihS9C38iBx4OCTX
-	 E3snG2iTE9/vEZAcrtm5W3nMZphAuJeMOfEISqtjDZrgAQzvZl7BkcdzVcKi3Bc4AZ
-	 LB6VmMVbBY0iL5EENAHRSIuW20M/Z6phcOMW3Qhc9g917qi3qjUFXrS+z1367904BR
-	 +h9PM8Hyk5ksg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 07/10] leds: rgb: add support for Samsung S2M series
- PMIC RGB LED device
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260516-s2mu005-pmic-v7-7-73f9702fb461@disroot.org>
-References: <20260516-s2mu005-pmic-v7-7-73f9702fb461@disroot.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 22:10:36 +0000
-Message-Id: <20260515221037.03D5CC2BCB7@smtp.kernel.org>
+	s=arc-20240116; t=1778883369; c=relaxed/simple;
+	bh=GGi5FP1TfaEYJKQ7ggUUrDXlF/3PIJtQncMwz7QMfto=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TitzxkDGjJJWJOmeuYYI6er7w+PC8f0FvFngjNUcWigua4ACJdDXoHm6gJoNkhqmhCj3xIo+0ZHrHmMoV6H0/9w1G4+iUOrT5E5DxFBmvrfvWSNompYNYcOMJ9D6lKK97ykXcL5BkreMsw1wkrTKQrCKFPgsepGli3OMrM5A5OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=enQl/oxk; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Yv2ieQZb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64FJeYHE2728539
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 22:16:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	g6gFmG52451iCRGkhhhcMmCq+yZXn0FSxt2aFKyqf4k=; b=enQl/oxkGo4EUY1C
+	0nmObNylCTCi+UVv7Git6oE8B7q8Bt1uKHiilYmDewZ8qqnxSX6AK/PKoKpOLIm1
+	0aWmlBr6qJ1zvln6zk64GhcuzLUmoTAHHN/xfsc+4BTUxqsBnaGC2gYKHVPlTKyZ
+	x5CG8V/PoH6TiqHonXu+3gMcp6HhDy4GETZblyihZn+z5k5pfcuot0+O9mFVesey
+	q4kxw/021aWB2iYk0ygL7qx0AWtv/qXYJbNO6tbzOooKCEfxaQUXryof/9EYjPgV
+	yNF7vOe0ErUh4Sdj4zyegucA3XumsC0oM6di4BXlncDVa4h9UK5uPFTNIulzHPOB
+	kKZNCQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e6901rhry-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 22:16:07 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3692f395339so219456a91.1
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:16:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1778883366; x=1779488166; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g6gFmG52451iCRGkhhhcMmCq+yZXn0FSxt2aFKyqf4k=;
+        b=Yv2ieQZbzqSZOCu/kZu8O3+8BxHj0cp5tYLmGOD7Z8s3HpWfUVfo3AhqH6IE1c7ElN
+         4X9SGpyRwUPfzGQcudOU/2qOoF6LjTzGxJ5Uv1P9+Qq2uSEK3zV4EvHbUMj0Jy/YxSFO
+         /0N3Co/xU3NoFeSOzx0SNV2LDF3bYQO9i9JaWtF599TLM/k8bkJkAr12eh5LGc9nGBPR
+         Ynvi1CwkkF3jph+ufl+/CixG+o/TQZUmGKQPLAwYSvJ/8kh83ZVJmxalZt4ZjliYfMV2
+         zI3tWFoGDo1KujZRAuF4BNF8dbtuY7vKHSVeE9GPpmMbRjy8Em4PrYJmDcdf7Jre2H9T
+         Ek6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778883366; x=1779488166;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g6gFmG52451iCRGkhhhcMmCq+yZXn0FSxt2aFKyqf4k=;
+        b=iO4PTmLfc0BDYQ4+zN3RsDtdfTW3E3gAbn3kBDCI6BrGb6hgtr6hy1QngKoa/UmVWd
+         m6ijw4wL/L6p6w2MgAJh/pa+kVwuVBvlVcER2Y9CR5THpbptDc/xemfKPU8zcJQBIyUo
+         YFiiaoZMLzVfOw0BCYD5UxD7v0N/AkRsvdOG3poZHsPaTYL31DHXs+tcOaM3FN9IjOpu
+         ff0UtZBL/w2yPpwuE9EO3iXTeyiW+1me7881CcQrKVbeHHKoyfU/7IFT5yUD0Qms9hxI
+         iqIlogjAGvGGXcaGVJF9dceYMFT6LtxecSK4HP6xQz/Dqin0o4v+laTX3mS9B/Rm5AuJ
+         /usA==
+X-Forwarded-Encrypted: i=1; AFNElJ/hWy8zslEveIzYjszao+shh8ndEq7XfEL0wJAQ7DUU/kwgdQlkopxKTMPyCkwT0JPpj60gXI7naXDr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxBdsDFI5AwdGoHzMRLgwq9BgKTXYC9lxh2vT5UTUpJ1PH5Wo+
+	C3jPCumWAM2SIWuux8iS9pTOpJTcF21qEvi0Yre97Bcpc3aKjZCdBEbyiKW9FotVZ6V5rntZ3ds
+	PIQI/UvTyg/3z+V09f+wFV1qdHk8Nqh3dXd2d+LOKuaXez/pkloMrbj/WQWs9XEzM
+X-Gm-Gg: Acq92OFgQqvrKDNKJjbKKU93+62dGaKPWLRhXLCcDZJ/CPrfUfMgMfRy1u4WJ4qF/m7
+	kFPxxf+fRjwNirtWkc2rWoDV90kiCequjOgfDmHWSyRSgEx2rajJP6wQ1FQpnMpaBmOg4z/1j74
+	u94VaGcBU+/qF0cMUOuoS5fTgHzugWnL+25WqlrX4/WfVltY5apWEqA880t62S4s642wpBsGegd
+	hnnaPgxfNy2IMPqHTPPTFAjiN2P+a1aaINloprPWBYoTYkO2Ul+kYrLvQI/q7qeOPmtdr1HwZ78
+	16bsQkwZ2bVw+8oY5ZAcqbOdgjGUYjmaqvWxm5fVd3I27Ea4AM8MMQ6fymjggZku+Nz8nxOZB2L
+	eZ71NZWbj6QjFxMvr8zgTC8gs+R3Rd8OX2cRoKt/KwvnP+V83+gv3cw==
+X-Received: by 2002:a17:90b:134e:b0:368:5367:d681 with SMTP id 98e67ed59e1d1-369519c348cmr5767566a91.10.1778883366306;
+        Fri, 15 May 2026 15:16:06 -0700 (PDT)
+X-Received: by 2002:a17:90b:134e:b0:368:5367:d681 with SMTP id 98e67ed59e1d1-369519c348cmr5767533a91.10.1778883365800;
+        Fri, 15 May 2026 15:16:05 -0700 (PDT)
+Received: from [192.168.1.3] ([182.60.13.113])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c82bb11683fsm6304190a12.26.2026.05.15.15.15.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 May 2026 15:16:05 -0700 (PDT)
+Message-ID: <f946b661-ee69-4502-9745-247940c54653@oss.qualcomm.com>
+Date: Sat, 16 May 2026 03:45:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 30288558A6A
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/6] dt-bindings: display/msm: gpu: Document Adreno
+ X2-185
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev
+References: <20260513-glymur-gpu-dt-v4-0-f83832c3bc9a@oss.qualcomm.com>
+ <20260513-glymur-gpu-dt-v4-2-f83832c3bc9a@oss.qualcomm.com>
+ <20260514-pearl-mamba-of-inquire-e4888f@quoll>
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260514-pearl-mamba-of-inquire-e4888f@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE1MDIyMyBTYWx0ZWRfXwClLTDh5wh0L
+ e1OeiHh9BID89yGbzDRik/NZkVzFDEJeXb+jrQ8xh1xnHWEzqz4owhakBv/IMIJKxb5bAr2cZvk
+ l6UujnR37npUhw+HQ/deh4FIPAwCvWzPGrrS0f2ay7DKNCA2m0w0exZEOMOdEjQxysvv7MbXwzj
+ dIGx39BPOKXnLXNMWsH6eMJfxU30oGwEB6bXgU6pR+JDPbhUhcPms2ug8H2MNC4BLWDyjDFD6qg
+ IvAH2CT0+Su6kyT0Ed3RziD04/Jvf8a4pv+YN+u4udSmDpMzUiElC0PVjzuXNVG6vc+DEf059hj
+ 6xxuTWqzjTFbOjgSojNWnzIIWOW+viw9W3MVkfSfX4XTn+8lABNhuKbNo06Pfq1aJn6LE5SgJox
+ Z6mcenVwcioCZRufz72GTwYzwm1QKLGd4yuNVrO5HNWrB1eAdjoY3N2loicCLZbhp43SJuprNHR
+ LYgxmfwQ8UZY8lU6qTw==
+X-Authority-Analysis: v=2.4 cv=A9Bc+aWG c=1 sm=1 tr=0 ts=6a079b27 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=ba8plz+5YpscmDk5DVa2Cg==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=CuuWk3emYSqqoFdssNoA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-GUID: bHvOygKxXOGMZhv0jQucGzpzMxLEy20J
+X-Proofpoint-ORIG-GUID: bHvOygKxXOGMZhv0jQucGzpzMxLEy20J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-15_05,2026-05-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
+ clxscore=1015 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605150223
+X-Rspamd-Queue-Id: 0B688558B8B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298564-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298566-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,disroot.org:email,sashiko.dev:url,smtp.kernel.org:mid];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,linux.intel.com,suse.de,arm.com,8bytes.org,vger.kernel.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[akhilpo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
-- [High] The driver uses the `abs()` macro on unsigned integer subtractions=
-, causing a build failure and integer underflow.
-- [High] Unconditional dereference of `dev->parent` without validation caus=
-es a kernel panic if instantiated via a standalone DT node.
-- [High] Setting a solid brightness does not clear previously configured ha=
-rdware pattern timings, causing the LED to continue blinking.
-- [High] Missing Kconfig dependency on `LEDS_CLASS_MULTICOLOR`.
-- [Medium] The driver silently aggregates complex multi-pulse patterns and =
-forcibly alters blink semantics instead of rejecting unsupported patterns.
-- [Medium] Software and hardware pattern states become desynchronized on er=
-ror paths.
-- [Medium] The driver incorrectly uses the array loop index instead of the =
-`channel` field for hardware register offsets.
-- [Low] The `of_match_table` is exported but not assigned to the platform d=
-river.
---
+On 5/14/2026 3:43 PM, Krzysztof Kozlowski wrote:
+> On Wed, May 13, 2026 at 12:51:19AM +0530, Akhil P Oommen wrote:
+>> Adreno X2-185 GPU found in Glymur chipsets belongs to the A8x family.
+>> It features a new slice architecture with 4 slices, significantly higher
+>> bandwidth throughput compared to mobile counterparts, raytracing support,
+>> and the highest GPU Fmax seen so far on an Adreno GPU (1850 Mhz), among
+>> other improvements. Update the dt bindings documentation to describe this
+>> GPU.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/display/msm/gpu.yaml | 17 +++++++++++++++++
+>>  1 file changed, 17 insertions(+)
+> 
+> Someone needs to start applying Adreno GPU patches...
+> https://lore.kernel.org/all/20260301142033.88851-2-krzysztof.kozlowski@oss.qualcomm.com/
+> 
+> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>> index 04b2328903ca..e67cd708dda2 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>> @@ -411,6 +411,22 @@ allOf:
+>>          - clocks
+>>          - clock-names
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: qcom,adreno-44070001
+>> +    then:
+>> +      properties:
+>> +        reg:
+>> +          minItems: 2
+>> +          maxItems: 2
+>> +
+>> +        reg-names:
+>> +          items:
+>> +            - const: kgsl_3d0_reg_memory
+>> +            - const: cx_mem
+> 
+> Are you sure there is no cx_dbgc? If not, then just minItems+maxItems
+> like for 'reg:'.
 
-commit d2d65a1923271678db5e8b3090e9b23768e600c4
-Author: Kaustabh Chakraborty <kauschluss@disroot.org>
-leds: rgb: add support for Samsung S2M series PMIC RGB LED device
+I merged cx_dbgc region into the kgsl_3d0_reg_memory region for A8xx
+series. It was getting in the way of covering the entire GPU MMIO in DT
+without overlaps.
 
-This commit adds support for the RGB LEDs found in Samsung S2M series PMICs,
-starting with the S2MU005. It controls three LED channels as a single
-device, providing 8-bit brightness control for each channel.
+We don't prefer overlapping regions even if it is within a single
+device, right?
 
-> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-> index 28ef4c487367c..b16144b48b8f8 100644
-> --- a/drivers/leds/rgb/Kconfig
-> +++ b/drivers/leds/rgb/Kconfig
-> @@ -75,6 +75,16 @@ config LEDS_QCOM_LPG
-> =20
->  	  If compiled as a module, the module will be named leds-qcom-lpg.
-> =20
-> +config LEDS_S2M_RGB
-> +	tristate "Samsung S2M series PMICs RGB LED support"
-> +	depends on LEDS_CLASS
-> +	depends on MFD_SEC_CORE
+-Akhil.
 
-Should this also depend on LEDS_CLASS_MULTICOLOR?
+> 
+> Best regards,
+> Krzysztof
+> 
 
-The driver uses multicolor LED APIs like led_mc_calc_color_components and
-devm_led_classdev_multicolor_register_ext. Without a Kconfig dependency on
-CONFIG_LEDS_CLASS_MULTICOLOR, building the kernel with the multicolor class
-disabled could result in silent functional failures or link errors.
-
-> diff --git a/drivers/leds/rgb/leds-s2m-rgb.c b/drivers/leds/rgb/leds-s2m-=
-rgb.c
-> new file mode 100644
-> index 0000000000000..d239f54eee901
-> --- /dev/null
-> +++ b/drivers/leds/rgb/leds-s2m-rgb.c
-[ ... ]
-> +static int s2mu005_rgb_apply_params(struct s2m_rgb *rgb)
-> +{
-[ ... ]
-> +	for (int i =3D 0; i < rgb->mc.num_colors; i++) {
-> +		ret =3D regmap_write(regmap, S2MU005_REG_RGB_CH_CTRL(i),
-> +				   rgb->mc.subled_info[i].brightness);
-
-Is it safe to use the loop index i to calculate the hardware channel?
-
-While i currently matches the channel sequentially, any reordering of the
-subled_info array might cause the index to map to the wrong physical channe=
-l.
-
-Would it be better to extract and use rgb->mc.subled_info[i].channel instea=
-d?
-
-[ ... ]
-> +static int s2m_rgb_lut_get_closest_duration(const u32 *lut, const size_t=
- len, const u32 duration)
-> +{
-> +	u32 closest_distance =3D abs(duration - lut[0]);
-
-Can this cause a compile-time error and integer underflow?
-
-Both duration and lut[0] are u32 variables, and subtracting a larger unsign=
-ed
-integer from a smaller one will wrap around. Additionally, the abs macro in
-linux/math.h is designed to reject unsigned types and evaluates to void.
-
-Could abs_diff be used here instead?
-
-[ ... ]
-> +static int s2m_rgb_pattern_set(struct led_classdev *cdev, struct led_pat=
-tern *pattern, u32 len,
-> +			       int repeat)
-> +{
-[ ... ]
-> +	for (int i =3D 0; i < len; i++) {
-> +		int brightness =3D pattern[i].brightness;
-> +		u32 delta_t =3D pattern[i].delta_t;
-> +
-> +		if (brightness) {
-> +			/*
-> +			 * The pattern should define only one non-zero
-> +			 * brightness in the HIGH state. The device doesn't
-> +			 * have any provisions to handle multiple peak
-> +			 * brightness levels.
-> +			 */
-> +			if (brightness_peak && brightness_peak !=3D brightness)
-> +				return -EINVAL;
-> +
-> +			brightness_peak =3D brightness;
-> +			time_hi +=3D delta_t;
-> +			ramp_dn_en =3D !!delta_t;
-> +		} else {
-> +			time_lo +=3D delta_t;
-> +			ramp_up_en =3D !!delta_t;
-> +		}
-> +	}
-
-Instead of accumulating durations to force a breathing effect, should the
-driver reject unsupported patterns by returning -EINVAL?
-
-If a sequence with more than two states or sharp step transitions is reques=
-ted,
-rejecting it would allow the LED core to correctly fall back to
-software-driven blinking instead of silently distorting the sequence.
-
-[ ... ]
-> +param_fail:
-> +	rgb->ramp_up =3D 0;
-> +	rgb->ramp_dn =3D 0;
-> +	rgb->stay_hi =3D 0;
-> +	rgb->stay_lo =3D 0;
-> +
-> +	mutex_unlock(&rgb->lock);
-> +
-> +	return ret;
-> +}
-
-Could this error path leave the software and hardware pattern states
-desynchronized?
-
-Zeroing out the timing state variables without clearing the hardware pattern
-means the hardware continues blinking. A subsequent brightness update might
-then unintentionally alter the running pattern by writing this zeroed state.
-
-[ ... ]
-> +static int s2m_rgb_brightness_set(struct led_classdev *cdev, enum led_br=
-ightness value)
-> +{
-> +	struct s2m_rgb *rgb =3D to_s2m_rgb(to_s2m_mc(cdev));
-> +	int ret =3D 0;
-> +
-> +	if (!value)
-> +		return s2m_rgb_pattern_clear(cdev);
-> +
-> +	mutex_lock(&rgb->lock);
-> +
-> +	led_mc_calc_color_components(&rgb->mc, value);
-> +	/* Apply params with variant-specific implementation. */
-> +	ret =3D s2mu005_rgb_apply_params(rgb);
-
-Does this need to clear previously configured hardware pattern timings when
-setting a solid brightness?
-
-If a hardware blink pattern was previously active, the old non-zero timings
-will be written back to the registers along with the new peak brightness,
-causing the LED to continue blinking instead of emitting a solid color.
-
-[ ... ]
-> +static int s2m_rgb_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct sec_pmic_dev *pmic_drvdata =3D dev_get_drvdata(dev->parent);
-
-What happens if this driver is instantiated via a standalone device tree
-node rather than as an MFD child?
-
-If dev->parent is NULL, this unconditional dereference will cause a kernel
-panic.
-
-Should dev->parent be validated before use?
-
-[ ... ]
-> +static struct platform_driver s2m_rgb_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "s2m-rgb",
-> +	},
-> +	.probe =3D s2m_rgb_probe,
-> +	.id_table =3D s2m_rgb_id_table,
-> +};
-
-Is the of_match_table assignment missing from the driver struct?
-
-s2m_rgb_of_match_table is declared earlier in the file to support explicit
-device tree matching but is not assigned here, preventing direct Open Firmw=
-are
-matching.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260516-s2mu005-pm=
-ic-v7-0-73f9702fb461@disroot.org?part=3D7
 
