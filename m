@@ -1,166 +1,246 @@
-Return-Path: <devicetree+bounces-298224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMAaMikKB2o6rAIAu9opvQ
-	(envelope-from <devicetree+bounces-298224-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:57:29 +0200
+	id YHDoN3AJB2oLrAIAu9opvQ
+	(envelope-from <devicetree+bounces-298229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:54:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD4354EEA4
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E691354ED7D
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 13:54:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 00BF8306BD34
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:22:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DEEF830FFC1D
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 11:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B367946AF11;
-	Fri, 15 May 2026 11:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C53F47ECD0;
+	Fri, 15 May 2026 11:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WBo0Ss/X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XfRO/6lp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9161E45BD57
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 11:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F7047DD54;
+	Fri, 15 May 2026 11:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778844173; cv=none; b=QlaWmPSZjk44KIWbVnUyNqv+Zn25xxIP5zXdikSh2HJ5c98JpJXicoFlDjVsWFhvUutlZBPObvhh2y7pgUWsoO2B2RnoMrf/YU79abvlVKt0UI07IyNOmQfAyF8/rxGI3MloviKL7FDxVIWpdxk+Ow1aXme1P3thAehhw1X2cKc=
+	t=1778844234; cv=none; b=YyP8kKmH0Bkk/mLbhIzzNgYok/jwnFB4fcEIBXVGXM22YqKLYnv+jsfZIienQci/r1/0tX5wWwtiJKujw9fmfYL9Pw8h0OS/Y22HdB0/LEYxh76JvrqKSmvh6q/CfSl+u7xMfLBZkULNROyNSU2zi3OUat4tHJlKi1wr6MH0R8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778844173; c=relaxed/simple;
-	bh=n6vPndmDX81xjEhOctO+/4d40aylt23r+5ajLWjHvjM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oFQpUSXiSIezOtq3lSalcLTeSZU2zk3wBfVpXTt688y13GloSeqAet2UzXeh0JHjZ/dJig70z9fnCmtpgOkXXfBsf+sjDzc0fHhCHm/EimoiEEkl3YUmH3FmDJoWl7i9EbihRu1ObW+Prgo6MlUu1RvjnyK23loPymZV6yaETFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBo0Ss/X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E684CC2BCB0;
-	Fri, 15 May 2026 11:22:52 +0000 (UTC)
+	s=arc-20240116; t=1778844234; c=relaxed/simple;
+	bh=RfvEIH27XbfkXelKur8wpmPTV9lL60amly3Ft8vOuPw=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tHj7fTaKsNNiRkUgoIbSliDrF6QrcPbUkdsl0do59BueMvdb+Wl7G7boINqvXqYVnuVOainU66aVOpHjaJQEQEHXOl3YqkBUqXGgyPmTWyKwxp6N7stvpDs7I4BMltIE6hln2A66LDydeCBe3JRIQxWB3qIw99QfbIGN+9ExU0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XfRO/6lp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B346C2BCFB;
+	Fri, 15 May 2026 11:23:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778844173;
-	bh=n6vPndmDX81xjEhOctO+/4d40aylt23r+5ajLWjHvjM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=WBo0Ss/XmvtavW47WP4VGnic8gNk8banDFM+JPa/ee5RZuveQjIgyrQd+VBZCuyrI
-	 lP0uSkJAPtRRStU6nxACAZcdi3394Cn1nXl9JlnYa/zHLgi8GWVI4OWF4I4U4zcfs8
-	 La756hyaj5XVNAPJHcd1cSzFs7fxrHG4vzXOzAPlfpUtOROgcV6EvfovVjZkD9eAdu
-	 AE+sOC5Ycz+hNAuQWF/MghtbLxsxEAuOwAdtk8XUoZ1l/TnmqDuzeFJ9bFVPE/uDKj
-	 lJhHBrh4VDSC6+CsR+9BUAsEuLV/kwC3zSwsISPWMblZJi7ftiL3Lp99H/2XUwhX/l
-	 C1eCVCUQfWYEw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 phy-next 2/2] phy: ti: add PHY driver for TI
- DS125DF111 Dual-Channel Retimer
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ioana Ciornei" <ioana.ciornei@nxp.com>
-Cc: conor+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, linux-phy@lists.infradead.org, olteanv@gmail.com, neil.armstrong@linaro.org, vkoul@kernel.org, robh@kernel.org
-In-Reply-To: <20260515110145.1925579-3-ioana.ciornei@nxp.com>
-References: <20260515110145.1925579-3-ioana.ciornei@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 11:22:52 +0000
-Message-Id: <20260515112252.E684CC2BCB0@smtp.kernel.org>
+	s=k20201202; t=1778844234;
+	bh=RfvEIH27XbfkXelKur8wpmPTV9lL60amly3Ft8vOuPw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XfRO/6lpxRvh1wj24HKBqCVJd20etFi1V7RGHbFcgIjUPDcvyiBkkSzRNDvfs6QCj
+	 KdcpRrVOCwRiAjGC3XZwPafav7UbgN9eh+cxVeDIlH89sLlhxbWoodnhh9fUGgjizI
+	 E2aWJObp/4Ch7nenpOLniSdcutNBkmZYdRD9tQwLiyyH3b2aCAg72L5/N26HiNdg/p
+	 atrBeb5BnOwl7k6HNQVKoYO/XGoZqvtrmuCUvrEFmfZGDz9JsUikEn+15lE+CencMS
+	 KT6KIsa2+OQaSTGbaZwN2qMxqnMEWy50JhhadD/x+lhTDoF9V7MGrDpekj+x276mPP
+	 9MT0pJYVmvpLQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1wNqdz-00000002fk3-0CJC;
+	Fri, 15 May 2026 11:23:51 +0000
+Date: Fri, 15 May 2026 12:23:50 +0100
+Message-ID: <864ik8ykzd.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Sudeep Holla <sudeep.holla@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,	devicetree@vger.kernel.org,	Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,	Hanjun Guo <guohanjun@huawei.com>,	Catalin
+ Marinas <catalin.marinas@arm.com>,	Will Deacon <will@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,	Mark Rutland
+ <mark.rutland@arm.com>,	Daniel Lezcano <daniel.lezcano@kernel.org>,	Thomas
+ Gleixner <tglx@kernel.org>,	Rob Herring <robh@kernel.org>,	Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,	Conor Dooley <conor+dt@kernel.org>,	Chen-Yu
+ Tsai <wens@kernel.org>,	Jernej Skrabec <jernej.skrabec@gmail.com>,	Samuel
+ Holland <samuel@sholland.org>,	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,	Ge Gordon
+ <gordon.ge@bst.ai>,	BST Linux Kernel Upstream Group
+ <bst-upstream@bstai.top>,	Jesper Nilsson <jesper.nilsson@axis.com>,	Lars
+ Persson <lars.persson@axis.com>,	Alim Akhtar <alim.akhtar@samsung.com>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,	Pengutronix Kernel Team
+ <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,	Dinh Nguyen
+ <dinguyen@kernel.org>,	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@kernel.org>,	Jonathan Hunter
+ <jonathanh@nvidia.com>,	Bjorn Andersson <andersson@kernel.org>,	Konrad
+ Dybcio <konradybcio@kernel.org>,	Andreas =?UTF-8?B?RsOkcmJlcg==?=
+ <afaerber@suse.de>,	Heiko Stuebner <heiko@sntech.de>,	Shawn Lin
+ <shawn.lin@rock-chips.com>,	Orson Zhai <orsonzhai@gmail.com>,	Baolin Wang
+ <baolin.wang@linux.alibaba.com>,	Michal Simek <michal.simek@amd.com>
+Subject: Re: [PATCH v2 01/17] ACPI: GTDT: Account for GTDTv3 size when walking the platform timer descriptors
+In-Reply-To: <20260515-prudent-vagabond-beetle-cad34b@sudeepholla>
+References: <20260514150945.3917510-1-maz@kernel.org>
+	<20260514150945.3917510-2-maz@kernel.org>
+	<20260515-prudent-vagabond-beetle-cad34b@sudeepholla>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: CFD4354EEA4
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: sudeep.holla@kernel.org, linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, guohanjun@huawei.com, catalin.marinas@arm.com, will@kernel.org, rafael@kernel.org, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, gordon.ge@bst.ai, bst-upstream@bstai.top, jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, ivo.ivanov.ivanov1@gmail.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, dinguyen@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, thierry.reding@kernel.org, jonathanh@nvidia.com, andersson@kernel.org, konradybcio@kernel.org, afaerber@suse.de, 
+ heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Rspamd-Queue-Id: E691354ED7D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298224-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,gmail.com,linaro.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-298229-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[46];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Missing delay or polling after setting a self-clearing hardware re=
-set bit.
---
+On Fri, 15 May 2026 10:51:52 +0100,
+Sudeep Holla <sudeep.holla@kernel.org> wrote:
+>=20
+> On Thu, May 14, 2026 at 04:09:29PM +0100, Marc Zyngier wrote:
+> > Since ARMv8.1, the architecture has grown an EL2-private virtual
+> > timer. This has been described in ACPI since ACPI v6.3 and revision
+> > 3 of the GTDT table.
+> >=20
+> > An aditional structure was added in ACPICA, though in a rather
+> > bizarre way, and merged in v5.1 as 8f5a14d053100 ("ACPICA: ACPI 6.3:
+> > add GTDT Revision 3 support").
+> >=20
+> > Finally plug the table parsing in GTDT, and correct the parsing of
+> > the platform timer subtables to account for the expanded size of
+> > the base table.
+> >=20
+> > Suggested-by: Sudeep Holla <sudeep.holla@kernel.org>
+> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > ---
+> >  drivers/acpi/arm64/gtdt.c | 15 ++++++++++++++-
+> >  1 file changed, 14 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/acpi/arm64/gtdt.c b/drivers/acpi/arm64/gtdt.c
+> > index ffc867bac2d60..b9d9b8edf2df7 100644
+> > --- a/drivers/acpi/arm64/gtdt.c
+> > +++ b/drivers/acpi/arm64/gtdt.c
+> > @@ -32,6 +32,12 @@ struct acpi_gtdt_descriptor {
+> >  	struct acpi_table_gtdt *gtdt;
+> >  	void *gtdt_end;
+> >  	void *platform_timer;
+> > +	bool v3;
+> > +};
+> > +
+> > +struct gtdt_v3 {
+> > +	struct acpi_table_gtdt	gtdt_v2;
+> > +	struct acpi_gtdt_el2	el2_vtimer;
+> >  };
+> > =20
+> >  static struct acpi_gtdt_descriptor acpi_gtdt_desc __initdata;
+> > @@ -39,8 +45,14 @@ static struct acpi_gtdt_descriptor acpi_gtdt_desc __=
+initdata;
+> >  static __init bool platform_timer_valid(void *platform_timer)
+> >  {
+> >  	struct acpi_gtdt_header *gh =3D platform_timer;
+> > +	void *platform_timer_begin;
+> > +
+> > +	if (acpi_gtdt_desc.v3)
+> > +		platform_timer_begin =3D container_of(acpi_gtdt_desc.gtdt, struct gt=
+dt_v3, gtdt_v2) + 1;
+> > +	else
+> > +		platform_timer_begin =3D acpi_gtdt_desc.gtdt + 1;
+> >
+> > -	return (platform_timer >=3D (void *)(acpi_gtdt_desc.gtdt + 1) &&
+> > +	return (platform_timer >=3D platform_timer_begin &&
+> >  		platform_timer < acpi_gtdt_desc.gtdt_end &&
+> >  		gh->length !=3D 0 &&
+> >  		platform_timer + gh->length <=3D acpi_gtdt_desc.gtdt_end);
+> > @@ -169,6 +181,7 @@ int __init acpi_gtdt_init(struct acpi_table_header =
+*table,
+> >  	acpi_gtdt_desc.gtdt =3D gtdt;
+> >  	acpi_gtdt_desc.gtdt_end =3D (void *)table + table->length;
+> >  	acpi_gtdt_desc.platform_timer =3D NULL;
+> > +	acpi_gtdt_desc.v3 =3D gtdt->header.revision >=3D 3 && gtdt->header.le=
+ngth >=3D sizeof(struct gtdt_v3);
+>=20
+> Regarding Sashiko=E2=80=99s comment about the missing length validation f=
+or GTDT v2, I
+> realised that the current check could cause a malformed v3 table to be
+> interpreted as v2 if its length does not match the expected v3
+> length.
 
-commit 59a5ca7411308a81c146d660b8c04e0be8fe8fbb
-Author: Ioana Ciornei <ioana.ciornei@nxp.com>
+Yeah, that's overall dodgy. As much as I hate having to write a
+validating parser for ACPI, we need to be prepared for the worst.
 
-phy: ti: add PHY driver for TI DS125DF111 Dual-Channel Retimer
+> It would be better to fail early and return an error rather than allow
+> processing to continue with the table incorrectly interpreted as v2.
 
-This commit adds a generic PHY driver for the TI DS125DF111 Multi-Protocol
-Dual-Channel Retimer. It supports 10G and 1G link speeds, modeling each of
-the two channels as a separate PHY device.
+How about something like the hack below?
 
-> diff --git a/drivers/phy/ti/phy-ds125df111.c b/drivers/phy/ti/phy-ds125df=
-111.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/phy/ti/phy-ds125df111.c
+Thanks,
 
-[ ... ]
+	M.
 
-> +static int ds125df111_configure(struct phy *phy,
-> +				const struct ds125df111_config *cfg)
-> +{
-
-[ ... ]
-
-> +	/* Reset Channel Registers */
-> +	err =3D i2c_smbus_read_byte_data(i2c, DS125DF111_CH_CTRL);
-> +	if (err < 0) {
-> +		dev_err(dev, "Error resetting channel configuration\n");
-> +		goto out;
-> +	}
-> +	val =3D (u8)err;
-> +	val |=3D DS125DF111_CH_CTRL_RESET;
-> +	err =3D i2c_smbus_write_byte_data(i2c, DS125DF111_CH_CTRL, val);
-> +	if (err < 0) {
-> +		dev_err(dev, "Error resetting channel configuration\n");
-> +		goto out;
-> +	}
-> +
-> +	/* Program the VCO group frequencies */
-> +	for (i =3D 0; i < DS125DF111_NUM_VCO_GROUP_REG; i++) {
-> +		err =3D i2c_smbus_write_byte_data(i2c,
-> +						DS125DF111_VCO_GROUP_BASE + i,
-> +						cfg->vco_group[i]);
-
-Is a delay or polling loop needed after triggering the channel reset?
-
-The DS125DF111_CH_CTRL_RESET bit is defined as self-clearing, but the code=
+diff --git a/drivers/acpi/arm64/gtdt.c b/drivers/acpi/arm64/gtdt.c
+index 12bc8875e95e2..ceec69609f038 100644
+--- a/drivers/acpi/arm64/gtdt.c
++++ b/drivers/acpi/arm64/gtdt.c
+@@ -202,7 +202,15 @@ int __init acpi_gtdt_init(struct acpi_table_header *ta=
+ble,
+ 	acpi_gtdt_desc.gtdt =3D gtdt;
+ 	acpi_gtdt_desc.gtdt_end =3D (void *)table + table->length;
+ 	acpi_gtdt_desc.platform_timer =3D NULL;
+-	acpi_gtdt_desc.v3 =3D gtdt->header.revision >=3D 3 && gtdt->header.length=
+ >=3D sizeof(struct gtdt_v3);
++
++	if ((gtdt->header.revision >=3D 3 && gtdt->header.length < sizeof(struct =
+gtdt_v3)) ||
++	    (gtdt->header.revision =3D=3D 2 && gtdt->header.length < sizeof(*gtdt=
+))) {
++		pr_err(FW_BUG "GTDT with invalid size %d\n", gtdt->header.length);
++		return -EINVAL;
++	}
++
++	acpi_gtdt_desc.v3 =3D gtdt->header.revision >=3D 3;
++
+ 	if (platform_timer_count)
+ 		*platform_timer_count =3D 0;
 =20
-immediately proceeds to program the VCO group frequencies without checking =
-if
-the reset has finished.
-
-Since hardware resets usually take a non-zero amount of time, writing to the
-registers right away could result in the device NACKing the transactions or
-silently dropping the new configuration.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515110145.1925=
-579-1-ioana.ciornei@nxp.com?part=3D2
+Without deviation from the norm, progress is not possible.
 
