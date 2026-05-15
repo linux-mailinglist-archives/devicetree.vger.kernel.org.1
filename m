@@ -1,213 +1,184 @@
-Return-Path: <devicetree+bounces-297890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297892-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MCEN8SUBmo7lAIAu9opvQ
-	(envelope-from <devicetree+bounces-297890-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 05:36:36 +0200
+	id oIVjCK2iBmoMlgIAu9opvQ
+	(envelope-from <devicetree+bounces-297892-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 06:35:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A93B548FE7
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 05:36:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 883C854945D
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 06:35:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1731E3021730
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 03:36:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1A79730461B3
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 04:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939AD3CF02C;
-	Fri, 15 May 2026 03:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88173D5658;
+	Fri, 15 May 2026 04:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PpY2y7Se"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="UZB7lH4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011004.outbound.protection.outlook.com [40.107.130.4])
+Received: from mail-m32113.qiye.163.com (mail-m32113.qiye.163.com [220.197.32.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E823CF027;
-	Fri, 15 May 2026 03:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778816189; cv=fail; b=e7OeTmf8L62oA9XQYsoTO3GgSI/oJgSimmN7vR3zm+UUI8x4znWRmDK43Keu80U95I5fub9UYILjcBcTy+JCWl7cSsOt36864K4CH5NbeK+7O/06V4LwrxFq0iXuGzLDBjGiPOBmoTA95gzlbKfsxyuEv6Jo+57fOWGk9oRHX8E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778816189; c=relaxed/simple;
-	bh=LCEdlr6CzxjvAu43KZUZSlxgTIhLcBaQXLWvpuoa40s=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=NjsH6UZ7psc4BpuBYMsZyP/c7a4HINQ9i/jLLSu8us930gVeeR2wDuGAZq+sPOD5DOEMmLQyDTfhb3HIeIhF0weTg20o1uhNVFilj/Y6no/pKcAzWwQOyffgLO8AidGQyId67ls2btVMdIqcpJszVHLBpdphlZq9tl+pwuP/JqI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PpY2y7Se; arc=fail smtp.client-ip=40.107.130.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O7pBd7QPBIBctHZ7GXh2CSy93QodWlbIdfJF46eONJnJa7Lcg8+d+3R/KUIRGV0FhtY0RUq9fg28tqD5dvRfvKAWnazb6D9QoSxQG6tmpXlK+EmJ9NrTNcSi9nnxbGx6+4vbRyhVcF+dR+QE2eRZO23TVOyUOr41Fj8pwhJ5qQoeHVv6sLvRjlamQZoB8DY5ByR5/hymSuLWo85/FKjxLmhFMpV7IFrT3FbkuBuuh7giqqs00CNGfleo5uyRiII8cRv2+6kmSPKEXLKDqVunYnS54XoMyIWpHN1i7uPTXiW+RP2bbRK8ddZLAJv5KuvSJ2lBevFvTyQT+d5+bDQUIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JmRz2FQR+E7INjCpVZO6lijeFe7y1PzPkR+xJ2ryLMk=;
- b=FiaXACpLUL9jaLUstymrxQMtbufdeWz6GB5aDTa4LShaYMkMH68ugh0S6QPFMR+OULhwJvNYh426CSJYQV+k//WGaiwSb5a9mGl5keaJKxBk85b35t1BHXTgZCWV2638f/dEUwVYl97KNOHIB8B7k3BuHm7JnMxbECxNDIArBg04BM2FJ10DCM2sxEw6nnWHIZhi7w7bJcGIyBaftiIYTF+hdCId0oVd3Bz6HzJGCJdiJs64bA/V3ZfOj1nw5k5mcDv/D3KeIG25CFWQ4RN+CUAN+ym5h19b2u/cltVfOrpIOyIxpLKQ6/Y5wzL27ribSJ5vI+xTfrcKHeej0MhOiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JmRz2FQR+E7INjCpVZO6lijeFe7y1PzPkR+xJ2ryLMk=;
- b=PpY2y7SeCB2v0GzWqc8zJup00xFCv2alAPMlkw0ekrk6VLkVwvobSbhZvD2LVDD+Gv0LBf9PjJlAqGybRP1mEQy+DfKCV7/mKiwUPfkcJhLT3NIa86EDWTm0fF5uWoYc/HHM1xCkIqT+uohB/61RAIA0G7YnXFduln07Q30TPN3sw/ygUzfWiL0kgHV59HO4lvQFIIQTqpTGLWWFMOXT63nYNkKMOi4lb+LbuUZ3dHgOQKHGzZ5BaLEVAY2aLBEzfKJ0TE5kiqOUtZCFRBxgo+/069uXf+8Ww20YLxR6EZkiRcujZp0t3dXrosDpFl7ZLSVrT+Hj2JtEjucLOcb0SA==
-Received: from DBBPR04MB7500.eurprd04.prod.outlook.com (2603:10a6:10:1f4::16)
- by DBBPR04MB7929.eurprd04.prod.outlook.com (2603:10a6:10:1ec::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Fri, 15 May
- 2026 03:36:22 +0000
-Received: from DBBPR04MB7500.eurprd04.prod.outlook.com
- ([fe80::c291:543b:4bde:cee7]) by DBBPR04MB7500.eurprd04.prod.outlook.com
- ([fe80::c291:543b:4bde:cee7%6]) with mapi id 15.20.9913.009; Fri, 15 May 2026
- 03:36:22 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Claudiu Manoil <claudiu.manoil@nxp.com>, Vladimir Oltean
-	<vladimir.oltean@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
-	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"f.fainelli@gmail.com" <f.fainelli@gmail.com>, Frank Li <frank.li@nxp.com>,
-	"chleroy@kernel.org" <chleroy@kernel.org>, "horms@kernel.org"
-	<horms@kernel.org>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"maxime.chevallier@bootlin.com" <maxime.chevallier@bootlin.com>,
-	"andrew@lunn.ch" <andrew@lunn.ch>, "olteanv@gmail.com" <olteanv@gmail.com>
-CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>
-Subject: RE: [PATCH v7 net-next 10/15] net: dsa: netc: introduce NXP NETC
- switch driver for i.MX94
-Thread-Topic: [PATCH v7 net-next 10/15] net: dsa: netc: introduce NXP NETC
- switch driver for i.MX94
-Thread-Index: AQHc4oUZiwWgjwtsAkaDFGy/HKvxcLYOcgMg
-Date: Fri, 15 May 2026 03:36:22 +0000
-Message-ID:
- <DBBPR04MB75008DCC18E2A10C9949294188042@DBBPR04MB7500.eurprd04.prod.outlook.com>
-References: <20260513030454.1666570-1-wei.fang@nxp.com>
- <20260513030454.1666570-11-wei.fang@nxp.com>
-In-Reply-To: <20260513030454.1666570-11-wei.fang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DBBPR04MB7500:EE_|DBBPR04MB7929:EE_
-x-ms-office365-filtering-correlation-id: 4edd179d-c703-4abf-8a7d-08deb2332258
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|19092799006|376014|7416014|366016|1800799024|921020|38070700021|56012099003|11063799003|4143699003|18002099003|22082099003;
-x-microsoft-antispam-message-info:
- 9V0EyLbB4GFAFuM+AALiHTMCMTtJi37tqtAOg+re9U/h07PHdl7mEjds8PwNA6cCA8kTChsE6zxFksx62Xgcub/Ey6OLYX7X34BWcTYPzfldlbiPEMuck+bi4qUQ/Z+L6cu0uQgbHpq6ZaZ4cHhRzUSUUr3ThFLzhwmybUiD5ik5rDKT0e8Z0UBJLgtz+WMVlYXyVhaTwWG2PsApJDHYjbij2AG3hQQ3J6QoxYccHxigI3ArdafbR1ENySh96zNXG/BhSp6L2fL7IIIqInAKdBV5diPZDjFSzOoameEPNdPDruQG6mTXV/eC9kn4nUhgrNdv9/vwalRhV3W/tMSNSOXL7O444zcTUEPG6e8ewjRzw0sIKyaScCLsIHF7NPl5SumjVioTEbL/c2PFSLiIBZlpuLnzAQNVq1VNMhgfx4LY25bx2nd0MC4L0r9rEu0VsI3eigUlWCZwv9m2S7WP2jseSVO27H7ubEzKAiUSisJPz0VWs5ltGVoAzzBGPibtNdOPQyySl+Ey3aeBrTtTeWjLLw3OHIh1/5gw/WKa+bwMT6D5PfjWYF8Rn8qFVcAIi/CvcoNJlCIAFj3IeClnhUoPD8H8Tad1mJ/dmaw9dByoNDpTrDZcXz32M89b80zrLhrWai8OpIE06OP79ahzq0JcBtKxhJA4ct+LoNYRE3vyr+UWc3U78qW9ECL/Y8ICrRxuPVi6PISP1DMeQEgF+0yy9VWoAXAsYRyWz1IUbAsMlabUZO3bgY1JCAJ49j6kPV2OcPcldtokYSMTW9i82g==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7500.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(366016)(1800799024)(921020)(38070700021)(56012099003)(11063799003)(4143699003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?5wl7EOxv/13qHmXGDKKxs0YzUTU8m6jSBrixdhur9uY25lue2t8JyrMCpAlr?=
- =?us-ascii?Q?WnePGRSV/UhFqbm8zd+aNToGOnrnuvhOtCa1J0+dizeJtl7B584IpViWMAv6?=
- =?us-ascii?Q?GPKQsV22/sNjmQ7FrFZ19wp0WZq5/G4/3/SpY025ZyPrtTSliSsyynmoj4Uf?=
- =?us-ascii?Q?fR1dQ1YmP0FjJAoqD8lVx/HUnqDRbQ5tYzbQ2Nv4KBlxJK2px/TDuN7nvKfr?=
- =?us-ascii?Q?cChRc2Eyq/UcisYOKkKRWhw3DPVVa3eAO11qvLJaldxEcTKc8XfdgwOSfNRk?=
- =?us-ascii?Q?BBxRz7UPOzFxx0pvGCGAg9jxYrJGNT2KpTS2Sm/zGTn8v2KYzeyQzUjDqlLu?=
- =?us-ascii?Q?Lq7LX6GMfOcz/YTo1E/PSxwDvrzhTOIA2F23chBshYOI9KcM/g9nXfMnljE3?=
- =?us-ascii?Q?tcz/oCWYisohj/c4yXkFx9w/MfjVe0EBEA08aVvw9GNZO2zhM2XjmuHcEVcr?=
- =?us-ascii?Q?SarEntOjSwglZyq+KpxmfJN8HQtFcaB2VK+sXHaJ7Q+f5jWoEkzGZ99MFlKF?=
- =?us-ascii?Q?J+q88CgdfOvSX6VcefXCh2oYSyDQ3iqjMSB6XwxiKVZlMiyo9BRais3cqV5c?=
- =?us-ascii?Q?k6ddJXqIq+vObZx1CuaLmHOM5PRket06k297sUV1Rl+LqcLhEAhOssm24/8h?=
- =?us-ascii?Q?TVWp/47qPYIpOJP3IXzbSWpUPwgTDcQUmLk/pQkdysGt67ovIiyRnWilxCWs?=
- =?us-ascii?Q?yWjJQa+WPX9b2+zXr7T73XIw1iAucOaIU+C+2K7kSSUu66uREnsNkQt+9jPM?=
- =?us-ascii?Q?jPAeh5/IlV9uyQpg9zdaiGg+1xynWv4WdqT1icVDXe1kmfTP5TqyJjf2I/XB?=
- =?us-ascii?Q?n7wzikD+b3UhQiwKBylZcuobi+vmdq5NJJNGYg3AhJlbAufZCimNAkcexdCQ?=
- =?us-ascii?Q?3z5Qu/zuWU5uYipfWXusAL7umZky2ohWL3punA+b9juUqOAsSTwQrcQI3hdZ?=
- =?us-ascii?Q?Je+o1dy1qt1pD8fmKhPLC6XD1MjNQoifeksoyjVzMyi48Iwoq2LL2ThVtE3S?=
- =?us-ascii?Q?Pes2MONYKG4QRq3kA7aB8snr3jp2ow4LeVhdNWC4yPuhft+jpCgRLy2SSMJJ?=
- =?us-ascii?Q?kEpZ31VzyhD6i5uv/vmwt6RfRel5KJ0xBk5ikwjy4ART0dbytHoeYey8f144?=
- =?us-ascii?Q?Dg8+/CxplxXWHS17izjm2G0KVleuufX4e4mjcAp8/p6+ylroXPXjwpc9KH/e?=
- =?us-ascii?Q?h6SSs8RSJt+/Y/tndRg1usFWpIFZHXJ0FwVFcQKWAjrrg8JxnWdDmdEE5eTL?=
- =?us-ascii?Q?Ej1OrP3gINvAIaSXBGeaQl/pO92JCS4P4LHhpNNo/9Iq1e7e3BUtaGWv75AA?=
- =?us-ascii?Q?pLa8RPlxeTTxCYCfSbJl/N/G6gC24JJ7cVbyrDDQ2V1iaiDXKTx+Sl+kDhKV?=
- =?us-ascii?Q?/Ed3+mHAPLDIR1YUt+jYLj+aBs8/HMGuC7c8Z9CfkWNMsLoAMIQ3NBk0x9H8?=
- =?us-ascii?Q?v0FXrenhMKraKATWTWDK76pls0dz0Ka6udAySSXAGsnTE+c/bERTF47rhoor?=
- =?us-ascii?Q?4Yqzivw4YFXiHbKjZz3OD0USo0Ji3FSHsh8IgxHy9gabSmEEt8tZk0VKaqnf?=
- =?us-ascii?Q?dlfBu0XXqtVzRj+DphfiD3vtCts8hPDVYsHvnuJUu363+pJTUuCz8cvY1sdD?=
- =?us-ascii?Q?PdhK0TCxu3oiCsKKi5Cijyc14Ev3VkEwEX5g9WjqIhFj2WiD+6vf2UFFIYkh?=
- =?us-ascii?Q?YOcQgsyiSOiAN54K1bdbDPbQD7JwE2PqgASi3kG3tw5W6cT8?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA303D5646;
+	Fri, 15 May 2026 04:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.113
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778819622; cv=none; b=lPA6V/vj8P6NBdkD++NP/6vU9apA43UkjB5OiANjsB+7iSo+c8dpFlH25huSRIZFsZIFouCHDaTIqse7UbfpjW5djhlFFg3Ay1aSEyxvFIhCbkq3lRa9BMUhTeopHbrOmGJWScG3qRCX5+Jzqz19XpFqdUM9KnYQQ25ScTZp6Uc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778819622; c=relaxed/simple;
+	bh=zg8dWcxfVEFqhgH2uc69LayhhgOBez8UBuZQBT7A5oo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=svD/4/M/ERY9Jem3p9WWE3erNPQqjgQeeK6V6jWIHWbiE2eoPL53eKCzLX1eGG3je8pDOT0R2wQy5PrFkB0F9CjuJXbpb0KHYm4xFjDX6V4klxQfR5FaceQBNf+vTY5pTBktKnxwAc25CIHDbfiACAn4bCdgU2KzEK2snFNMv3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=UZB7lH4h; arc=none smtp.client-ip=220.197.32.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3e82fac39;
+	Fri, 15 May 2026 11:57:58 +0800 (GMT+08:00)
+Message-ID: <2f653664-27e9-4632-97e9-8b59cf7e585e@rock-chips.com>
+Date: Fri, 15 May 2026 11:57:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7500.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4edd179d-c703-4abf-8a7d-08deb2332258
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2026 03:36:22.2209
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ocP2ad0V3xa5lj9vDgsWg01S3TsyV2qVNmNuomLYxQ4BGY67czClragDrRKirVIdmsd9rGYwEk0+HKyu5wel7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7929
-X-Rspamd-Queue-Id: 3A93B548FE7
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: display: rockchip: analogix-dp:
+ Expose inherited properties
+To: Conor Dooley <conor@kernel.org>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260514070133.2275069-1-damon.ding@rock-chips.com>
+ <20260514070133.2275069-2-damon.ding@rock-chips.com>
+ <20260514-upstate-sneer-0b6e78682798@spud>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260514-upstate-sneer-0b6e78682798@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e29c8ae0703a3kunmd1b8d9bd125afa
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSktLVkIYTR8aHkgdTE0YSVYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=UZB7lH4hvEXP3pLiPNBhvVIN/gQNsy9iafLoKvDKgsRRFlrJKAecHptJ7/J77wyBeceuZOOprBHD36ae6nHJk5rWBHxxSgKKrOX7JTLhssGbJxofO/ZsqaDhRPiJGMf+/tYd2AQbZfHuNBGK4/0Iow6PsrJyKqHXbi5WbuimHJU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=num2dBkmQCmOz3VFEseziFih+L9BmXJ8Dbo1P1UCNNw=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: 883C854945D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297890-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,bootlin.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wei.fang@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-297892-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[27dc0000:email,0.0.0.1:email,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-> diff --git a/drivers/net/dsa/netc/Kconfig b/drivers/net/dsa/netc/Kconfig =
-new file
-> mode 100644 index 000000000000..0f246ac9e018
-> --- /dev/null
-> +++ b/drivers/net/dsa/netc/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only config NET_DSA_NETC_SWITCH
-> +	tristate "NXP NETC Ethernet switch support"
-> +	depends on ARM64 || COMPILE_TEST
-> +	depends on NET_DSA && PCI
-> +	select NET_DSA_TAG_NETC
-> +	select FSL_ENETC_MDIO
-> +	select NXP_NTMP
-> +	select NXP_NETC_LIB
-> +	help
-> +	  This driver supports the NXP NETC Ethernet switch, which is embedded
-> +	  as a PCIe function of the NXP NETC IP. But note that this driver is
-> +	  is only available for NETC v4.3 and later versions.
+Hi Conor,
 
-Sashiko reported there is a duplicated "is" in the help text. I will fix in=
- v8.
+On 5/15/2026 2:16 AM, Conor Dooley wrote:
+> On Thu, May 14, 2026 at 03:01:31PM +0800, Damon Ding wrote:
+>> Expose the inherited properties from the base analogix-dp schema
+>> to satisfy unevaluatedProperties constraints.
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> 
+> Given it's unevaluatedProperties, not addtionalProperties, this patch
+> shouldn't be needed?
+> 
 
---
-pw-bot: cr
+When I remove both the top-level data-lanes property and those explicit 
+"xxx: true" property entries and run the dtbs check with:
+
+make CHECK_DTBS=y CROSS_COMPILE=aarch64-linux-gnu- LT0=none LLVM=1 
+LLVM_IAS=1 ARCH=arm64 rockchip/rk3588-evb1-v10.dtb 
+rockchip/rk3588s-evb1-v10.dtb rockchip/rk3399-sapphire-excavator.dtb 
+rockchip/rk3576-evb1-v10.dtb -j4
+
+It results in validation errors like these:
+
+/home/ding/drm-misc/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb: 
+edp@27dc0000: ports:port@1:endpoint: Unevaluated properties are not 
+allowed ('data-lanes' was unexpected)
+         from schema $id: 
+http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+/home/ding/drm-misc/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb: 
+edp@27dc0000: Unevaluated properties are not allowed ('force-hpd', 
+'interrupts', 'phy-names', 'phys', 'ports', 'reg' were unexpected)
+         from schema $id: 
+http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+
+I suspect that the properties defined in the child binding are 
+overriding/masking all the inherited properties from the parent Analogix 
+DP schema.
+
+Is there a better way to fix this issue without explicitly listing all 
+inherited properties as true?
+
+Best regards,
+Damon
+
+>> ---
+>>   .../bindings/display/rockchip/rockchip,analogix-dp.yaml    | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> index bb75d898a5c5..896ded87880f 100644
+>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> @@ -50,6 +50,13 @@ properties:
+>>     aux-bus:
+>>       $ref: /schemas/display/dp-aux-bus.yaml#
+>>   
+>> +  reg: true
+>> +  interrupts: true
+>> +  phys: true
+>> +  phy-names: true
+>> +  force-hpd: true
+>> +  ports: true
+>> +
+>>   required:
+>>     - compatible
+>>     - clocks
+>> -- 
+>> 2.34.1
+>>
+>>
+
 
