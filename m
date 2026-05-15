@@ -1,265 +1,177 @@
-Return-Path: <devicetree+bounces-298565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298567-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIFcNrGbB2oD+wIAu9opvQ
-	(envelope-from <devicetree+bounces-298565-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:18:25 +0200
+	id 8MDfBZucB2oD+wIAu9opvQ
+	(envelope-from <devicetree+bounces-298567-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:22:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB58558B7C
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:18:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BD9D558C7E
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 00:22:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 61FA73015467
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:15:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B94C3003EDA
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 22:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B9E3EDE4E;
-	Fri, 15 May 2026 22:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7F039E184;
+	Fri, 15 May 2026 22:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PDUMhmFe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZFsVQK3H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF4E3BF672
-	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 22:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1263812C2
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 22:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778883358; cv=none; b=CV2dl7O1UKybgBuPcdQNIPbgd2mlH3FAYW9gegoN0f3FE9aDJOgPEyJObF3qp7oj8u+a0G+lt5jnsQFYG+MvcfKLicodbYaUcLZ8+IkDFE2+zDTFqdHIrsvX9u9C0OEqF0dGe9Eb4flZkO6sFtXMCcnfDgm6O35hpK0FPr46Khc=
+	t=1778883736; cv=none; b=tTt2aQJCAnD5U0yA6HJyMYK7p7/ZI+hSEozAc2yxKgn86fFHgDBAGomrsFkkwWLi5LVXncqcHhKBEWJ3Wsq14aoWsYakDM+YIgSgPtc9U/NFeXHZS0qdAAXiaLmca4j8aKw8/1mxlborQywdZ3kOxedVhkh+pBWUi2czdQ76tDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778883358; c=relaxed/simple;
-	bh=ctnfzOZ3928DE/hHr3+If9qVDAiSUh9EQJLDbHR21ZA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nYL0TgvD90TBW41HO2qqiYS/g3j//zQnv99Och/YKotnsYPESyJB0Z3XrcKlZfECrhbzDWPouGIr9EwT+r6WJlwnnBJWz5MbJfENOxQZvfmn+77/ZNgV4TI6Y1oXXCc4v5mu/ZCvAyJHKgj1B/GIQJfoW2oBRfqkNYJgjkfsVaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PDUMhmFe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11108C2BCB0;
-	Fri, 15 May 2026 22:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778883358;
-	bh=ctnfzOZ3928DE/hHr3+If9qVDAiSUh9EQJLDbHR21ZA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=PDUMhmFej+LZmhQ4lIu/+AXNdnnVMvm0DAgE145hsqnv6XfeR2f20yAwV+IIgkIEO
-	 rHbJ1Q6WpUNIuz7ghpSRDoK9xJ8OAxv/KPihlK0bBBjwSn2kTxba5eI54rtKjMrGD3
-	 z6Y2NO0WMYtdYoT+EhDF/Dfv1Kj+eRF9ZrVoLs1OzRNnfTePD6bSEXKfcxti0lL+8b
-	 opLTme1S6jzR9MGwud7kWOXxLv4Qk+3KYLNPAHqzs4doHIQnB+305oIbdhm2sN8ozf
-	 JA8B97dweo2Sl/3l38BAcQo6BVYudSIG69Qbrc7XpVd9omIjLOC7Uc+lCE8Hsy+Fyg
-	 gFKEDSPA9rFyg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 06/10] leds: flash: add support for Samsung S2M
- series PMIC flash LED device
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org
-In-Reply-To: <20260516-s2mu005-pmic-v7-6-73f9702fb461@disroot.org>
-References: <20260516-s2mu005-pmic-v7-6-73f9702fb461@disroot.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 15 May 2026 22:15:57 +0000
-Message-Id: <20260515221558.11108C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778883736; c=relaxed/simple;
+	bh=9HoFIWvMx+t3kfwrcyvOsuK+wni8VWqYz//BsbgoorA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qtdJhNBrEl7a5Vsi3J7WFcnSfWoNtOoDshKbwIzF5COqdzknqrUYONoshY/ofuCyy4WHUaCxz+obxi/LFTRZGMDUNA4R0yYYXDttfgzDFyCrztoEUaBHDB916mVuAsT0eElOs78bITqajE2HbLn2ltEtwf5R0yOtqvLJn1/XyxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZFsVQK3H; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7dcdd1b492eso342587a34.1
+        for <devicetree@vger.kernel.org>; Fri, 15 May 2026 15:22:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778883734; x=1779488534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nzgPino86LaQeP8b63WXKQ8PXEYI7/0fnGLVDfvDc4M=;
+        b=ZFsVQK3HnHG/psndD8yOO6seArZBMt4CpR6eN3udHN4k/IoeOWRNLOL/8zABnl/eCo
+         uFDdppa7Nm2EKEYXlXroQ53YGjfF6N2S64a1n1Pvn4DoIQcj99SyNZlH8GA4Jf1ShWcr
+         ALBe9CeLj0nKcsLOtNSZvx/LX2htVnkHKcqGI575qVCOzy1wpRYRPDwhyWhY8LmCgp/m
+         geC0V9w0wtro4Q50dgEPvDpbnfkPXdO2x+HnD5h6QjQ+e9UHxq2/qt/j/Au06TROOI19
+         lxo+1wVKjvnkWH57o4g31NJ6KmRfaznr9dzYhudOTB15w3D6ja77k0oiXyegLAMvihUm
+         Ovxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778883734; x=1779488534;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nzgPino86LaQeP8b63WXKQ8PXEYI7/0fnGLVDfvDc4M=;
+        b=SoBA9EZ2nero6PLZa5vYhRg9fNR3iaUOuffJrJDhFs1qI3q3Li2Erf3XV/Mh3FloG6
+         NDjx5dJTqdvOofT+UPRv56uq467WVwa6emKqC406iGLLvfYtZUUe9r/dEMu44h5t1NV7
+         GYCBBm5s7IDHolTu4kz6SiR4q8ConJ96YZNCOZyr8blcLAxwA8au8Yvka9DVcUNoQFMX
+         DyWfBBcRKUgRamPiMd5N74N49mJX5+Qg762vx3yw8d58AjDI+TeYEhrQI5A+BSfuTsaj
+         9czxXo2ryHn2v2qgmt0sqQkhScioFgE8GXd5qCVlEUVowEHNkaowsCAw+ZJsE5mZM3CC
+         uB+Q==
+X-Gm-Message-State: AOJu0YzoI+qfvk2/TBC44G6oXURVBujnq87h9yQDOVIRcf7E5yUiwJ/6
+	3wAwQg0oR5FmJWd5qeBkn0aq83ihahZaW/QWZy99kWjm5CGXmzFIr0Vlv8NUrKZC
+X-Gm-Gg: Acq92OHdN6Aw9N+vgoTqBHsU79Na37yf0SVbztN/BZPNIggj5H5/0JcZOZ3oUl1zscV
+	kikqmUogc0a2XdkbqjEsZJ6VFdKNgQVsFl96VRWyoZig9yoGe/v6qJvsEUH4wM1ClDmZDzw1VMW
+	YQ+gVHw7W6CvF4a3pZOvFhldtvc8/pOzt1c8YpUB0RghCG7NAAfSDbU8xwbK+cgHNq77NMmk+Js
+	5VwKb3Rm8QKAy/pBe/txQWwWyGLCtyXcqheSFBfqd63EG0S0igYQ71RQF2WPHJQ53vHDUtuBVf6
+	hnExhN5+0bayxU9Uwqx6gr5Vquc126XEyIDpfvM078LdOCXKlFaAn0juGd8w35+cGjXC1jPvE0C
+	oNyEMEuRl/1fSN6ugKwNm0fO1gyUhHCPwiOw2P4emYLeoH/+DWOOK4jmHdQzBV7WuZdLrOTAyrJ
+	vQUujux7mJVO2JT6MeMzmCdn+ntKU+pezpjK2x1RqAnYG+6ykpQ1co
+X-Received: by 2002:a05:6830:2a08:b0:7d7:f70b:5b0e with SMTP id 46e09a7af769-7e4a400124dmr3371261a34.12.1778883734287;
+        Fri, 15 May 2026 15:22:14 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0:8c2e:6a8e:445a:9169])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e568c0d889sm980764a34.9.2026.05.15.15.22.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 May 2026 15:22:13 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	xsf@rock-chips.com,
+	sre@kernel.org,
+	simona@ffwll.ch,
+	airlied@gmail.com,
+	tzimmermann@suse.de,
+	mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	jesszhan0024@gmail.com,
+	neil.armstrong@linaro.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V2 0/6] Add Anbernic RG Vita-Pro
+Date: Fri, 15 May 2026 17:19:41 -0500
+Message-ID: <20260515221947.299229-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 3EB58558B7C
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 6BD9D558C7E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298565-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,rock-chips.com,kernel.org,ffwll.ch,gmail.com,suse.de,linux.intel.com,linaro.org,sntech.de,hotmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-298567-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,disroot.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [Medium] The V4L2 external_strobe_set callback triggers a software strobe=
- instead of configuring a hardware strobe.
-- [Medium] The OF match table is declared but never assigned to the platfor=
-m_driver struct.
-- [Medium] Inconsistent Torch maximum brightness constraints between Sysfs =
-and V4L2.
-- [Medium] Lack of mutual exclusion between Torch and Flash modes.
-- [Medium] Hardware state leak on probe failure or module unload.
---
+From: Chris Morgan <macromorgan@hotmail.com>
 
-commit b304c8fc634e3a0a1b0e1d670a3987ad37675a8c
-Author: Kaustabh Chakraborty <kauschluss@disroot.org>
+Add support for the Anbernic RG Vita-Pro, based on the Rockchip RK3576 SoC.
 
-leds: flash: add support for Samsung S2M series PMIC flash LED device
+Changes Since V1:
+ - Updated documentation filename to matche compatible string.
+ - Corrected order of allocating IRQ in charger driver and switched
+   to using devm managed function to allocate work queue.
 
-This commit adds support for flash LEDs found in Samsung S2M series PMICs,
-such as the S2MU005. The driver supports two independently controlled chann=
-els
-that can operate in both torch and flash modes.
+Chris Morgan (6):
+  dt-bindings: power: supply: sgm41542: document sgm41542
+  power: supply: sgm41542: Add SG Micro sgm41542 charger
+  dt-bindings: display: panel: document Anbernic TD4310 panel
+  drm/panel: anbernic-td4310: Add RG Vita Pro panel
+  dt-bindings: arm: rockchip: Add Anbernic RG Vita-Pro
+  arm64: dts: rockchip: Add Anbernic RG Vita-Pro
 
-> diff --git a/drivers/leds/flash/leds-s2m-flash.c b/drivers/leds/flash/led=
-s-s2m-flash.c
-> new file mode 100644
-> index 0000000000000..6ee8db094611a
-> --- /dev/null
-> +++ b/drivers/leds/flash/leds-s2m-flash.c
+ .../devicetree/bindings/arm/rockchip.yaml     |    6 +
+ .../display/panel/anbernic,td4310.yaml        |   64 +
+ .../power/supply/sgmicro,sgm41542.yaml        |   99 ++
+ arch/arm64/boot/dts/rockchip/Makefile         |    3 +
+ .../rockchip/rk3576-anbernic-rg-vita-pro.dts  | 1317 +++++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                 |   10 +
+ drivers/gpu/drm/panel/Makefile                |    1 +
+ drivers/gpu/drm/panel/panel-anbernic-td4310.c |  291 ++++
+ drivers/power/supply/Kconfig                  |    8 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/sgm41542_charger.c       | 1035 +++++++++++++
+ 11 files changed, 2835 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/anbernic,td4310.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/sgmicro,sgm41542.yaml
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-anbernic-rg-vita-pro.dts
+ create mode 100644 drivers/gpu/drm/panel/panel-anbernic-td4310.c
+ create mode 100644 drivers/power/supply/sgm41542_charger.c
 
-[ ... ]
+-- 
+2.43.0
 
-> +static int s2m_fled_flash_external_strobe_set(struct v4l2_flash *v4l2_fl=
-ash, bool enable)
-> +{
-> +	struct s2m_led *led =3D to_s2m_led(v4l2_flash->fled_cdev);
-> +
-> +	return led->fled.ops->strobe_set(&led->fled, enable);
-> +}
-
-Does this implementation fire the flash immediately instead of configuring
-it to wait for a hardware strobe signal?
-
-The V4L2 API contract expects external_strobe_set to merely arm the device
-for an external hardware pin assertion. If the PMIC lacks true
-hardware-based external strobe support, should has_external_strobe be
-omitted instead?
-
-[ ... ]
-
-> +static int s2mu005_fled_torch_brightness_set(struct led_classdev *cdev, =
-enum led_brightness value)
-> +{
-[ ... ]
-> +	ret =3D regmap_set_bits(led->regmap, led->reg_enable, S2MU005_FLED_TORC=
-H_EN(led->channel));
-> +	if (ret) {
-> +		dev_err(cdev->dev, "failed to enable torch LED\n");
-> +		goto unlock;
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&led->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int s2mu005_fled_flash_strobe_set(struct led_classdev_flash *fled=
-, bool state)
-> +{
-[ ... ]
-> +	ret =3D regmap_set_bits(led->regmap, led->reg_enable, S2MU005_FLED_FLAS=
-H_EN(led->channel));
-> +	if (ret) {
-> +		dev_err(fled->led_cdev.dev, "failed to enable flash LED\n");
-> +		goto unlock;
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&led->lock);
-> +
-> +	return ret;
-> +}
-
-Since the LED subsystem allows Sysfs to enable Torch and Flash
-independently, is there a risk that both modes could be active
-simultaneously in the PMIC registers?
-
-Neither s2mu005_fled_torch_brightness_set() nor
-s2mu005_fled_flash_strobe_set() appears to clear the enable bit for the
-opposite mode.
-
-[ ... ]
-
-> +static int s2mu005_fled_init(struct s2m_led *led, struct device *dev, st=
-ruct regmap *regmap,
-> +			     unsigned int nr_channels)
-> +{
-[ ... ]
-> +	/* Enable the LED channels. */
-> +	ret =3D regmap_set_bits(regmap, S2MU005_REG_FLED_CTRL1, S2MU005_FLED_CH=
-_EN);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to enable LED channels\n");
-> +
-> +	return 0;
-> +}
-
-If the probe fails during child node iteration, or if the module is
-unloaded, does this leave the PMIC LED block permanently powered on?=20
-
-It looks like S2MU005_FLED_CH_EN is set globally here but never cleared on
-failure or removal, which could cause a resource and power leak.
-
-[ ... ]
-
-> +static int s2mu005_fled_init_channel(struct s2m_led *led, struct device =
-*dev,
-> +				     struct fwnode_handle *fwnp)
-> +{
-[ ... ]
-> +	cdev->max_brightness =3D 16;
-> +	cdev->brightness_set_blocking =3D s2mu005_fled_torch_brightness_set;
-> +	cdev->flags |=3D LED_DEV_CAP_FLASH;
-[ ... ]
-> +	v4l2_cfg.intensity.min =3D led->fled.brightness.min;
-> +	v4l2_cfg.intensity.step =3D led->fled.brightness.step;
-> +	v4l2_cfg.intensity.max =3D led->fled.brightness.max;
-> +	v4l2_cfg.intensity.val =3D led->fled.brightness.val;
-
-Does this create an inconsistency between the Sysfs and V4L2 Torch maximum
-brightness constraints?
-
-The code sets cdev->max_brightness to 16, but v4l2_cfg.intensity is
-initialized using the Flash constraints. Since led->fled.brightness limits
-the brightness to 375,000 uA (effectively level 15), V4L2 users might be
-artificially restricted to level 15 while Sysfs users can reach 16.
-
-[ ... ]
-
-> +static const struct of_device_id s2m_fled_of_match_table[] =3D {
-> +	{ .compatible =3D "samsung,s2mu005-flash", .data =3D (void *)S2MU005 },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, s2m_fled_of_match_table);
-> +
-> +static struct platform_driver s2m_fled_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "s2m-flash",
-> +	},
-> +	.probe =3D s2m_fled_probe,
-> +	.id_table =3D s2m_fled_id_table,
-> +};
-> +module_platform_driver(s2m_fled_driver);
-
-Should s2m_fled_of_match_table be assigned to the .of_match_table field
-within the driver structure here?
-
-It appears to be declared and exported above, but never assigned to the
-driver. This might prevent Device Tree compatible string matching.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260516-s2mu005-pm=
-ic-v7-0-73f9702fb461@disroot.org?part=3D6
 
