@@ -1,274 +1,224 @@
-Return-Path: <devicetree+bounces-298458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMagGSVOB2rBxgIAu9opvQ
-	(envelope-from <devicetree+bounces-298458-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 18:47:33 +0200
+	id iPxpKqlWB2pVzQIAu9opvQ
+	(envelope-from <devicetree+bounces-298454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 19:23:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA26D553ECD
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 18:47:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A46F554F29
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 19:23:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 569FC32A2CC4
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:17:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DC1D031BA997
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 16:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7E63FBB7F;
-	Fri, 15 May 2026 16:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40B53FBB6A;
+	Fri, 15 May 2026 16:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KJjla8pX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PqrfzD3d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011012.outbound.protection.outlook.com [40.93.194.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF7E3EFFB5;
-	Fri, 15 May 2026 16:14:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778861699; cv=fail; b=asYD0oQaITeKd1asV/GyO0P4JjfX2jn4ISuaGzTSZYMCC3mhcpZKf+I6Qf2jt0DdakoNSS8Ql/cZTFgE9OJ8UReAsbS3UAkwTQ6IJfKBOxPm+o5kBb6v0z3zOIz7vGQPEh6mudzHBLFiovb3Q7cQ4PcjC2zzYkblVK+zepPMV2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778861699; c=relaxed/simple;
-	bh=kLtEqwqnROmmCpZXx3lk1PUgHW+5ErUswH1Hzi+ZKoo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DxrcwR9Xu/Sfp9YUHiNB5uWDm93nA0EEBZckptPhPLUzOotHXppJOzsZtISo1Ys8hqOmsZQq4nzzW2GgwvjtmHg6MuqSnhHTnMGXY4ps+HHgoJLqH4hWl8pEbyL9uxTyOdK6cNhbPfHkWMMK90mb7PcjaY/JSrCK0xtu5Ohm+CI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KJjla8pX; arc=fail smtp.client-ip=40.93.194.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SnvrmAA7Q1T827m8tUqAPHo999JdgvNn4FXSXpRyQ7jq8rl+Ak06GiQ2hnUhJojHiyhUPVEaozV26DigpbPlLoO36zFN8+pAQl9IRA1SHeE5g1bFFBekb7iRS9ioXnAR1h2DrV+6MB0Vv1Uxp0+F5jEJMXNAHLBPcbdUiEy/7gR+SklYFCX7u5NyN0oT1M2RrAvluNoG0b1TyUFZlaAXOqptZAEL7bMFPriUe4wlHXnJ1fz3vWmJbSIO72VHF5HXGHv7oUsOAn2TYH/rM7dK6CyNJa8m6GhXwhcoOQMD6wE5ALn7htEFYDk77sJA4Z5KMBpRRkvRvmnLr6uN3sf08A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UKNvEH+YXR4yACpuK/yUYRogPqLW0H+cnhNQAMaDBR8=;
- b=aTdrV3ZBApdo+ioTALwJZEoIe+t4S6TBHfW4UG7wkqaE2NavTj4vInvC/5SU3Y3LgKjgmyhfuk9wya5Ass8z5jakb1A6QGK1coPWra9IHUdu0EgmrH9zPYBy6PpK+3pRbhpTg1Snzheb/a1loFzS4buRqXw4ZLHaBWPXeZ6A0MniYfxyFAvP2aGcBVEhT33yADtr0MRZDd3oHaQeMe3eJJzyvIo99fUPdJL8O+tW+kZbx+d9ZF6gRfSC2NLuZnD6haLy3kzU1SqwKCDUQgKsT2qMvRq6Uxl21mx8Jyf87r7fRgDBrooKDb1reYWTvudbLS9daCqgax+s9kp6n7ROQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UKNvEH+YXR4yACpuK/yUYRogPqLW0H+cnhNQAMaDBR8=;
- b=KJjla8pXNpth3B4iKP40Tpl0pnYQFlkq/4m2CKqLre6Qloe18I7RDjSNWnvIR5jRjuprw4OA9CbDC2ZzkojeerM95AjGKYR2Xie5WvlGgdm0rGRSKgm5k1Z+j6eiFE+741gEppyfkDpNsbiFv6TB/IuiLWYgcTNazHTI44Q5ST8=
-Received: from PH7P223CA0026.NAMP223.PROD.OUTLOOK.COM (2603:10b6:510:338::31)
- by LVWPR10MB997839.namprd10.prod.outlook.com (2603:10b6:408:3c2::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Fri, 15 May
- 2026 16:14:56 +0000
-Received: from SN1PEPF000397B1.namprd05.prod.outlook.com
- (2603:10b6:510:338:cafe::23) by PH7P223CA0026.outlook.office365.com
- (2603:10b6:510:338::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.20 via Frontend Transport; Fri, 15
- May 2026 16:14:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SN1PEPF000397B1.mail.protection.outlook.com (10.167.248.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Fri, 15 May 2026 16:14:54 +0000
-Received: from DLEE202.ent.ti.com (157.170.170.77) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 15 May
- 2026 11:14:53 -0500
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 15 May
- 2026 11:14:53 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Fri, 15 May 2026 11:14:53 -0500
-Received: from localhost (mz02jj9v.dhcp.ti.com [128.247.81.246])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64FGErVF573993;
-	Fri, 15 May 2026 11:14:53 -0500
-From: Sen Wang <sen@ti.com>
-To: Mark Brown <broonie@kernel.org>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, Liam Girdwood <lgirdwood@gmail.com>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
-	<tiwai@suse.com>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Sen Wang <sen@ti.com>
-Subject: [PATCH v2 2/2] ASoC: simple-card-utils: support system-clock-id DT property
-Date: Fri, 15 May 2026 11:13:58 -0500
-Message-ID: <20260515161358.1462453-3-sen@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260515161358.1462453-1-sen@ti.com>
-References: <20260515161358.1462453-1-sen@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914323FBB5C
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 16:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1778861662; cv=none; b=P99yg9OYZF1TOuWX/vhF6giwU21debokL0gYo0f4Nc7PBFK1//gxX4iVACa/mmsf5XDVtCfoTpDoD6NqU0tKQvOAaIKLXZG2RGZkr4ANdh2khE2d1LRX8JXUF048C9FUJIs+giUTVPVTNeyWlaZaSouYIb7xfOacC8ZP8vMPTAU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1778861662; c=relaxed/simple;
+	bh=0iwJQgkxnZ3S3Z+eMaNDD3tgjmUX1buStqNK/85/jWw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=DjpkTgK+osnN9MVOF/7GBnwK84QpED+a2MyLXKHsesLj6CFjGoXUDU4oFgbz0BBJDsQxgZwf9Q95fYw05+/0ACT7CwB7kztRM7nX+jwc6uaFsocxAHAnASZMZFjFDpE7v698n1z/SQd1bbJkCNVnuE1xP+I0C2d0LcY9P6E3lpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PqrfzD3d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 561C0C2BCB0;
+	Fri, 15 May 2026 16:14:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778861662;
+	bh=0iwJQgkxnZ3S3Z+eMaNDD3tgjmUX1buStqNK/85/jWw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=PqrfzD3dpNUZGA8U7uxUyGmEd1+lR+yRu4mUBXXEKr85eQ9JQxfVC2KjhI2OPBD9a
+	 a2qmmoz85gHRpBUTqH2Ds95RexBNNPctm+VJ/CPMWEfhcrYL/erEL9ChepNYLHodzL
+	 ZG3q245Q5CwMFNoYxFe5siX5Fo4mXnkcWPlWyaMatpY2e4Tx2EZTBi3MNLG2uPUptl
+	 +woJMtuL0HyE4m7V/Ui1pxpUky918L87CWStp6HP4N9lgVaB9SQmySntWsK7epCQL2
+	 schggQcE+1vrbWAgvJr4y3d6nE2kqxs4s1dKo1Hy1Ij/dHtHMjhP2zPM05zESMvIzB
+	 k2Cyju+F5UlVg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 10/28] media: rockchip: rga: announce and sync
+ colorimetry
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?U3ZlbiBQw7xzY2hlbA==?= <s.pueschel@pengutronix.de>
+Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260515-spu-rga3-v6-10-e547152eb9c9@pengutronix.de>
+References: <20260515-spu-rga3-v6-10-e547152eb9c9@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 15 May 2026 16:14:13 +0000
+Message-Id: <20260515161416.561C0C2BCB0@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000397B1:EE_|LVWPR10MB997839:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9c95f3f5-2d71-4c57-9748-08deb29d19f8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|36860700016|1800799024|82310400026|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	S8CnKFUz0fOXYROzuHD+L5vpB0Yqn+XB9YxQp5QMi4To9pC56GOzRBp6/XjD2wLgMca/J3jweIIxEMwFSJQT4GEyPZusHbv/x2yJ0IKNaCLq5L4o7AYjEPZfrk3VcNRlyjPUVw4ieWCsteVBPzR5EJpWt1Q++NiUYCaWPErRCHw27156OeA7OEpA5qcjxiRVlkN6rqaimTDnMfbQqsnIXvHV5m1lB7VllGs7/eoEOmWi1rU5YDeUiP8esavbG6AoHAjisfDu3VJZzcHO1Jr4IyUxmmuWhJrfZ0+4w7GtbcChnudN+7XOFtzMZ90KY6zAZL1fEe0JVENtYJsQmg2rqjChwMon7l2Epeyj4xI2t3+Te7Z9rgdkam8c0i9rWfZ/BZT/37zWYZHOLi8NOf4nrqPCq3SNVr+fNRwR6hx9v37wHw0qUdQ6ZuARdiqUNNhpRbiZgqO4LgyH8SkvKW8HCeRjLTYyv6uIHHKcT/iIdcM83OPynT9JAIpQ0sUFpFNMHtwbcexfQD1hIkpWk/CT2s25x8jWv9n0uTabDn8nU4SXp3T34+Eya+bv4YakV1oEEDPKeNESA1YI8g4N4bnWXu7AlXRfJ2ZkMKv23/n0pY6L58ujqyZIMgvbIm6v3PjbvgOJdikJo1Y1YgLlK2M44ExhYmr3Q/JdhbRYaOr78OsWfN6ody2z/T/tGVCkwztcyfIdPzZQh740ozIADxkDOEQTub7xvZ7ZXOiwEGb6eLE=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(36860700016)(1800799024)(82310400026)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	8gxrNL1N34ShVxVadnTcDvz7E6fyjnUzajua/xlPHbCTIUJxmPX8V0iNxZtYDhaUywGxSIbeJxv84mogcEeQ9s/MNlN9qeh1MFV5Cuwfwh92uMy2ROSdQZ/rfmGicB4oFRVwzjyOPe6Vrgx5CTyNS6k299bymXRP7OoXrPxm9Tj7OjQNc39W/tL6NQUue0E9tD8xXSLZJ/MZvWdzuMXzezH2i0jksd6iPr32JvRGDLEEjBhm8BEnpQfWPM04kk8rtr1QBcbkqJsr5c0mMaO6IPyeZWxc8PxM1qSTJM3iZtYizV7qBMr79UZdwGNSbztne7L1RjaxQuy7CPLHT6mUc6oqNVGzaiaQWiprRY1vRniq6R8F8sJXE4x89uUEUlb1AIOQLjOEz1n43CYBK90DhmlGa/jPJNPgEqk7hL0Ldb75XXJ4tEcmy6t/elyFcY9V
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2026 16:14:54.8103
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c95f3f5-2d71-4c57-9748-08deb29d19f8
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF000397B1.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LVWPR10MB997839
-X-Rspamd-Queue-Id: CA26D553ECD
+X-Rspamd-Queue-Id: 3A46F554F29
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,renesas.com,gmail.com,perex.cz,suse.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298454-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298458-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sen@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email,ti.com:mid,ti.com:dkim];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-The generic machine driver never had a mechanism to adjust for various
-clk_ids that is tailored for individual codec & cpu peripheral driver.
-simple_util_dai_init() has hardcoded 0, thus making non-default clock IDs
-unreachable from DTS. Boards needing a specific clk_id have had no choice
-but to write dedicated machine drivers.
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] Falsely advertising hardware capabilities for CSC quantization and=
+ YCbCr encoding.
+- [High] Missing validation and clamping of colorimetry fields in `vidioc_t=
+ry_fmt`.
+- [Medium] `vidioc_try_fmt` uses the CAPTURE queue's state instead of the O=
+UTPUT queue's state as the default colorimetry.
+- [Medium] `vidioc_try_fmt` accepts user-provided colorimetry for non-YUV f=
+ormats, bypassing intended restrictions.
+- [Low] Comment in `vidioc_enum_fmt` contradicts the implemented code.
+--
 
-Add an optional "system-clock-id" u32 property to the cpu/codec
-sub-node and use it in all three set_sysclk() call sites. When absent
-clk_id stays 0, preserving identical behavior for all existing boards.
+commit 0b2b6b238c69f747c597a881c5d1349d57e712fe
+Author: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
 
-And since simple_util_parse_clk() is invoked once per sub-node, per-DAI
-independence can be preserved as cpu and codec sub-nodes carry independent
-clk_id values.
+media: rockchip: rga: announce and sync colorimetry
+   =20
+Announce the capability to adjust the quantization and ycbcr_enc on the
+capture side and check if the SET_CSC flag is set when the colorimetry
+is changed. Furthermore copy the colorimetry from the output to the
+capture side to fix the currently failing v4l2-compliance tests, which
+expect exactly this behavior.
 
-E.g., the following dts topology would be supported:
+> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
+atform/rockchip/rga/rga.c
+> index ca8d8a53dc251..8c34f73d69764 100644
+> --- a/drivers/media/platform/rockchip/rga/rga.c
+> +++ b/drivers/media/platform/rockchip/rga/rga.c
+> @@ -437,6 +437,15 @@ static int vidioc_enum_fmt(struct file *file, void *=
+priv, struct v4l2_fmtdesc *f
+>  	fmt =3D &formats[f->index];
+>  	f->pixelformat =3D fmt->fourcc;
+> =20
+> +	if (f->type !=3D V4L2_BUF_TYPE_VIDEO_CAPTURE &&
+> +	    f->type !=3D V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
+> +		return 0;
+> +
+> +	/* allow changing the quantization and xfer func for YUV formats */
 
-  cpu   { system-clock-id = <6>; }
-  codec { system-clock-id = <1>; }
+This isn't a bug, but the comment mentions "xfer func" instead of
+"ycbcr_enc", while the code sets V4L2_FMT_FLAG_CSC_YCBCR_ENC. Furthermore,
+vidioc_try_fmt explicitly disallows modifying xfer_func.
 
-Signed-off-by: Sen Wang <sen@ti.com>
----
+> +	if (v4l2_is_format_yuv(v4l2_format_info(f->pixelformat)))
+> +		f->flags |=3D V4L2_FMT_FLAG_CSC_QUANTIZATION |
+> +			    V4L2_FMT_FLAG_CSC_YCBCR_ENC;
 
-Apologies Morimoto-san, when finalizing the patch I realize a few more
-places need to be changed, can you kindly re-review and give your
-acked-by?
+Does the hardware actually support applying custom quantization and YCbCr
+encoding matrices?
 
-Changes in v2:
-- Adopted sysclk func changes for mclk cases
-- Links to v1 (RFC):
-https://lore.kernel.org/all/20260514212802.3569643-1-sen@ti.com/
+Looking at rga_cmd_set_trans_info() in rga-hw.c, the hardware configuration
+backend appears to ignore quantization and ycbcr_enc, hardcoding the CSC
+mode to either RGA_SRC_CSC_MODE_BT709_R0 or RGA_SRC_CSC_MODE_BT601_R0 based
+purely on colorspace.
 
-diff --git a/include/sound/simple_card_utils.h b/include/sound/simple_card_utils.h
-index 915e6ae5f68d..f221fba92e5e 100644
---- a/include/sound/simple_card_utils.h
-+++ b/include/sound/simple_card_utils.h
-@@ -26,6 +26,7 @@ struct simple_util_dai {
- 	const char *name;
- 	unsigned int sysclk;
- 	int clk_direction;
-+	int clk_id;
- 	int slots;
- 	int slot_width;
- 	unsigned int tx_slot_mask;
-diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
-index 4cf3a5395763..ce7e960db5e9 100644
---- a/sound/soc/generic/simple-card-utils.c
-+++ b/sound/soc/generic/simple-card-utils.c
-@@ -290,6 +290,9 @@ int simple_util_parse_clk(struct device *dev,
- 	if (of_property_read_bool(node, "system-clock-direction-out"))
- 		simple_dai->clk_direction = SND_SOC_CLOCK_OUT;
- 
-+	if (!of_property_read_u32(node, "system-clock-id", &val))
-+		simple_dai->clk_id = val;
-+
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(simple_util_parse_clk);
-@@ -506,14 +509,16 @@ int simple_util_hw_params(struct snd_pcm_substream *substream,
- 			/* CPU first */
- 			for_each_rtd_cpu_dais(rtd, i, sdai) {
- 				pdai = simple_props_to_dai_cpu(props, i);
--				ret = snd_soc_dai_set_sysclk(sdai, 0, mclk, pdai->clk_direction);
-+				ret = snd_soc_dai_set_sysclk(sdai, pdai->clk_id,
-+						mclk, pdai->clk_direction);
- 				if (ret && ret != -ENOTSUPP)
- 					goto end;
- 			}
- 
- 			for_each_rtd_codec_dais(rtd, i, sdai) {
- 				pdai = simple_props_to_dai_codec(props, i);
--				ret = snd_soc_dai_set_sysclk(sdai, 0, mclk, pdai->clk_direction);
-+				ret = snd_soc_dai_set_sysclk(sdai, pdai->clk_id,
-+						mclk, pdai->clk_direction);
- 				if (ret && ret != -ENOTSUPP)
- 					goto end;
- 			}
-@@ -521,14 +526,16 @@ int simple_util_hw_params(struct snd_pcm_substream *substream,
- 			/* default: codec first */
- 			for_each_rtd_codec_dais(rtd, i, sdai) {
- 				pdai = simple_props_to_dai_codec(props, i);
--				ret = snd_soc_dai_set_sysclk(sdai, 0, mclk, pdai->clk_direction);
-+				ret = snd_soc_dai_set_sysclk(sdai, pdai->clk_id,
-+						mclk, pdai->clk_direction);
- 				if (ret && ret != -ENOTSUPP)
- 					goto end;
- 			}
- 
- 			for_each_rtd_cpu_dais(rtd, i, sdai) {
- 				pdai = simple_props_to_dai_cpu(props, i);
--				ret = snd_soc_dai_set_sysclk(sdai, 0, mclk, pdai->clk_direction);
-+				ret = snd_soc_dai_set_sysclk(sdai, pdai->clk_id,
-+						mclk, pdai->clk_direction);
- 				if (ret && ret != -ENOTSUPP)
- 					goto end;
- 			}
-@@ -587,7 +594,8 @@ static int simple_init_dai(struct simple_util_priv *priv,
- 		return 0;
- 
- 	if (simple_dai->sysclk) {
--		ret = snd_soc_dai_set_sysclk(dai, 0, simple_dai->sysclk,
-+		ret = snd_soc_dai_set_sysclk(dai, simple_dai->clk_id,
-+					     simple_dai->sysclk,
- 					     simple_dai->clk_direction);
- 		if (ret && ret != -ENOTSUPP) {
- 			dev_err(dai->dev, "simple-card: set_sysclk error\n");
+If the capabilities are announced merely to pass v4l2-compliance without
+applying them in hardware, could this cause the driver to silently ignore
+user requests and produce visually incorrect output?
+
+[ ... ]
+
+> @@ -459,8 +468,25 @@ static int vidioc_g_fmt(struct file *file, void *pri=
+v, struct v4l2_format *f)
+>  static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_for=
+mat *f)
+>  {
+>  	struct v4l2_pix_format_mplane *pix_fmt =3D &f->fmt.pix_mp;
+> +	struct rga_ctx *ctx =3D file_to_rga_ctx(file);
+>  	struct rga_fmt *fmt;
+> =20
+> +	if (V4L2_TYPE_IS_CAPTURE(f->type)) {
+> +		const struct rga_frame *frm;
+> +
+> +		frm =3D rga_get_frame(ctx, f->type);
+
+Is it correct to use the CAPTURE queue's state here instead of the OUTPUT
+queue's state as the default colorimetry?
+
+For memory-to-memory devices, when V4L2_PIX_FMT_FLAG_SET_CSC is not set on
+the CAPTURE queue, it usually falls back to the colorimetry of the OUTPUT
+queue (ctx->in). Fetching the frame with f->type resolves to ctx->out for
+the CAPTURE queue.
+
+If a user previously used SET_CSC to override the CAPTURE queue's
+colorimetry, wouldn't a subsequent call without SET_CSC inherit this
+overridden state instead of resetting to the OUTPUT queue's defaults?
+
+> +		if (IS_ERR(frm))
+> +			return PTR_ERR(frm);
+> +
+> +		if (!(pix_fmt->flags & V4L2_PIX_FMT_FLAG_SET_CSC)) {
+> +			pix_fmt->quantization =3D frm->pix.quantization;
+> +			pix_fmt->ycbcr_enc =3D frm->pix.ycbcr_enc;
+> +		}
+
+When V4L2_PIX_FMT_FLAG_SET_CSC is set, does this blindly accept
+pix_fmt->quantization and pix_fmt->ycbcr_enc without validating if they are
+supported enum values?
+
+Additionally, does this enforce the restriction that colorimetry can only
+be changed for YUV formats? vidioc_enum_fmt restricts the CSC flags to YUV
+formats, but this code seems to honor SET_CSC on the CAPTURE queue
+regardless of the format type, allowing arbitrary colorimetry values even
+for RGB formats.
+
+Furthermore, for the OUTPUT queue, the colorimetry fields don't seem to be
+validated or resolved. Does the driver need to resolve
+V4L2_COLORSPACE_DEFAULT to concrete standards and clamp unsupported values
+during try_fmt as required by the V4L2 specification?
+
+> +		/* disallow values not announced in vidioc_enum_fmt */
+> +		pix_fmt->colorspace =3D frm->pix.colorspace;
+> +		pix_fmt->xfer_func =3D frm->pix.xfer_func;
+> +	}
+> +
+>  	fmt =3D rga_fmt_find(pix_fmt->pixelformat);
+>  	if (!fmt)
+>  		fmt =3D &formats[0];
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260515-spu-rga3-v=
+6-0-e547152eb9c9@pengutronix.de?part=3D10
 
