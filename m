@@ -1,294 +1,161 @@
-Return-Path: <devicetree+bounces-297859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297854-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MD6ZKo10BmrpjwIAu9opvQ
-	(envelope-from <devicetree+bounces-297859-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 03:19:09 +0200
+	id wK6DHAR0BmrpjwIAu9opvQ
+	(envelope-from <devicetree+bounces-297854-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 03:16:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27340548552
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 03:19:09 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0B454849D
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 03:16:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B114530778EB
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 01:17:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AAD82302D845
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 01:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A37734404A;
-	Fri, 15 May 2026 01:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DCB3603C9;
+	Fri, 15 May 2026 01:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UZD/ow7H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LVkteZQs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8A335C1AD;
-	Fri, 15 May 2026 01:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCBE22459CF
+	for <devicetree@vger.kernel.org>; Fri, 15 May 2026 01:16:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778807869; cv=none; b=NnQg05rWuWQw6dcoplkLnPaheiibWgGgDLr0BFRxdELgSM0C8dd0+XWyuSfzG2ILpryPksVLXgLNA/ydgGY7KKDFR90LUdsO16MtYHFQeywdqVoLe9X07hompd/K2iAXzVHBnvzWFh9dJ939189krX2++fqlD9rbdu5JwvgKiwg=
+	t=1778807804; cv=none; b=Ga5sURdTljH0FNkwWUeEYK8dNBVtmVNKO/8doSg+0gauVTqjhu9qKkuhWcZCCHjbgIInmLVrqjK1zT4XGBlm9aMp2u1zDW/UKfLali+UcjM+tBMJzUOPgpgt82fVyssWiVskIhRmIm4vm3EYoQs69IV8krofvnCEiqsy7ZAnBYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778807869; c=relaxed/simple;
-	bh=OIp5QhZYmoy06OSupWAuN0F9VpYPnxuiqhpGxD9A+sQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hugvXsf9j19dVK8zzS6GZlyftdJ86abTibo02YiE1zH/hBH+sdwCGOv4jQ+Y2VgfQoo/kdUy/lKNhNwQlvVMV6c87Qu3W7X0Avpketle1q8O67ym5+ETjc1L90puD1CqIBftFZMWbJuUbuH2HTPlyzWDvI3SYw/DGU1PQy89V4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UZD/ow7H; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c69:1da4:3c70:f102:9ea:5df7])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DF5B963C;
-	Fri, 15 May 2026 03:17:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1778807856;
-	bh=OIp5QhZYmoy06OSupWAuN0F9VpYPnxuiqhpGxD9A+sQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=UZD/ow7He7lx7OLGLuEgoIvPKWCpeCWrmWNeqMHQD0VVlVmuGalRKKtuxk+6ztYdv
-	 EImJvj1h9kNj0AnJM9t/V/2tFYjHYruGPTrXfVvA1NBs6pl+m3mQGGMrTPWobw4Ljf
-	 BDs18a7Kz4l78hpUjSLUVjBK+T/K6Y3w9ypYJhwU=
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Date: Fri, 15 May 2026 06:46:39 +0530
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-am67a-beagley-ai: Add overlay
- for IMX219 on CSI1
+	s=arc-20240116; t=1778807804; c=relaxed/simple;
+	bh=JC8T4gNfzFadEg85bIUUZFK4R4slQOBV7n/tMER/kEc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Qr1rnQAssIzRUStQL7Q5CCWGSCBAyHlaVvGBkJJLGae+tw2zw+ctQDqrahMSM1/s2zL+pCzy8MmzPkslMeNalPe4st8qYRBjwpMG+JD9U2yBvnBywKj5M3gyorxrXAH3abKp8vOkBTq+sAoCeyoHnsHNF1ijq3lib0z+5A8Kks4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LVkteZQs; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7de7c57b52cso6940040a34.3
+        for <devicetree@vger.kernel.org>; Thu, 14 May 2026 18:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1778807801; x=1779412601; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=etZdfywDlWxrGaBS3U+i8QZ6+5a6GwMR13z8kxUpdWc=;
+        b=LVkteZQsyqF80ODMYmOeLU1JeM+HAt2ouVTZcrkpUbcRikVls+Uqwj5YyhIBEnToqk
+         FRjZQQBlFrDXBu2hyFT4DUvg32nlDNdfu9Tudb1P6uat8jrwsS41vv6/iNb0Z43rO08P
+         QxmGOFAieK5YnIRuhT2QSySsgaUcayg9owYBfU4bdbx3/RzYMjZCpc//oaoAG60d0e0R
+         Bc5T2CsW5jAaiZeHlEHXfBawbm0fyzURulUrTOa/j5gMzYx9y7lgZw4bV0EZWrt9lhPC
+         surDjgMUknKNr2DdMfWlcyqe5gyXLJpkZr1UTJra/qq1n6zuPYfpQ4CHG4wLd7IiSJpJ
+         wMfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778807801; x=1779412601;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=etZdfywDlWxrGaBS3U+i8QZ6+5a6GwMR13z8kxUpdWc=;
+        b=VTzZBsh0HEk/pzdJhzyPexKBCGFs0KCvLWQwhn5V42hGgRPnixuVIgufUWF0OHB5Pw
+         iCl/RNmUeSy4CXrcPZcOhB5c+fhpGg/QqYek32jAVOzIMGBDMe0TGBDI+ErCXBDVo3n7
+         IjRzeZAoIcg14OjDObFnWPq5Ls2lL2XbH6AvwIUZBEnChHHo0SSCBy1me1zij8O/gr6V
+         wfNs08uDyY2dfE3ftjoXYnc2U1RJajIM8INv9TXR5SCn6ioWfdmbq8NOVz6+x49uQ7y/
+         AH0pQHxIo88et4rsQtzt0xi4C9tmKxdKcHQTOSmhRi7656UjQ3mhob5yIc+Zsf9ZxBrp
+         tK2A==
+X-Forwarded-Encrypted: i=1; AFNElJ+pA9eJRh/to1ksgL7Pl4mFp7rjzDNdwhSXEInElW4Oj9Z75k15SWEIkvL+ua+FT0DNs74JNbyxO1Ek@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCf6FlNdhfw0vpdBAp0jtB3aS35ZDQ3tWy2uzUkkvd1Ij+5ee2
+	k1E+Gg7XoO4WW+he4gSFFJJe7u/zguFeucewPN536yVgLrCHjumDtNCs
+X-Gm-Gg: Acq92OGsYjFxaDnYzdft87ZGRY4XzkJ37fnQ8Xw3l2q7a9iaPDfQvykK7RJWEf5A9xH
+	rlltCcy/AonNWIDAeohAGmdcIx8KnYjmkMtVBKMS4do12YHTNvsJf2bHCQaloyEGosJ5Gitd39q
+	o5/qDEDVg5nKVVjJCy8AFdbZA0FzFeXQlAm4c3Fnqt33spXoyJNbqQVfSLmiZadl6GodcQxgbWs
+	5pIv/PjKJQ3GiIqGm1lHeYR6rrk9+9fo201HJgJQxY1DvNA1YkEOT9GkmpU3ntbxuZYU3JVIqlS
+	5DPHF1Jj1r7lXSvLHfiUSubbH5CA4DRp9kp0er1zxBvqwhN3klxF4oHY6CdSZhbjyC0q6u0QrBb
+	6+v/7tmh6+blcQpF2tmibkSfygWu7Jz5F9PpePeoO5qYlvMuq+AqdLHrB04R9SXOzvPPNlgM5QT
+	QRPD6E0pEt0g4Yc9c8G9gLAwZog/0sqDZITV8eKTL5O0VdlW/JfetFVI+4Ng==
+X-Received: by 2002:a05:6830:d01:b0:7d7:ed69:81b2 with SMTP id 46e09a7af769-7e4ea071959mr1148758a34.5.1778807800752;
+        Thu, 14 May 2026 18:16:40 -0700 (PDT)
+Received: from linuxescape.lan (23-88-128-2.fttp.usinternet.com. [23.88.128.2])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e55bc4983asm110362a34.26.2026.05.14.18.16.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2026 18:16:40 -0700 (PDT)
+From: Maxwell Doose <m32285159@gmail.com>
+To: jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2] dt-bindings: iio: chemical: sensirion,scd30: Update maintainers field
+Date: Thu, 14 May 2026 20:16:39 -0500
+Message-ID: <20260515011639.28570-1-m32285159@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260515-beagley-cameras-v2-4-f6acb66c9995@ideasonboard.com>
-References: <20260515-beagley-cameras-v2-0-f6acb66c9995@ideasonboard.com>
-In-Reply-To: <20260515-beagley-cameras-v2-0-f6acb66c9995@ideasonboard.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Robert Nelson <robertcnelson@gmail.com>, Andrew Davis <afd@ti.com>, 
- Devarsh Thakkar <devarsht@ti.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jai Luthra <jai.luthra@ideasonboard.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5011;
- i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=OIp5QhZYmoy06OSupWAuN0F9VpYPnxuiqhpGxD9A+sQ=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBqBnQcZjXD+gmNkTCk0fOIjBSnwP+WJ0Kzg/YJ+
- UR/vFt7nayJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCagZ0HAAKCRBD3pH5JJpx
- RTb8D/0SMo1w2bH21j8uCRfIoCFucrR7Owxgx0KURU4OI7a75ejeRurATcjetizk6z0ry8fcUzI
- C19AUjLYSNI/LhHavuxLnkTyJ8ook37eS2GyG/gsqSoBuMTNDBIbn4pmdpgHVZJ40puQ9kpJljV
- VtQ+2rQsPtc+ZGvB6cnmn7cjbZ/FRjweEa0pyFZN16ICZku9FzM1FJ9ZxhPyYUjkfG/dNu4QAqz
- kbalz+HIV044xm4yblSDhFYspZ0JGFCfVOagD4atixA/3P87W/YNUsJZ4Ot1stOoMOap+EbS9k2
- Bv5zdJ939yuDsWmKT9hEfifT8ZRnr4uyqTJBHA8xvmhIHszOG07Z+37mKSClE9gfSlCalpsHyOy
- cxrJlFh9YMQAmTcjPN8yIHbqGLxf77e1G8dxTCiecVgsUSXxlN61pDAXtt0V/N3WaiEanEOy2eM
- XBIdurRlAKXliKlzgRn5JArj7fpJ9ahywCk77wMNGqb1gHPhZ6OBu4+Z1ikuH7wsBE4Lxc+ldqy
- W/GJLV6CtdLmzq/ji358dydEpHCmKiEm8gPfs+plheCkjMLnsQzG4WWIDORVag1kW0172ef1gZ6
- LRt68Xux2x3Eory95XfALyY9ggJUJbI9tnvamx3ql6A0E4IGpZ0H5mVN8oKaFLQHZ07kguQTnm2
- lpKAMeQZEepS3vw==
-X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-Rspamd-Queue-Id: 27340548552
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 5D0B454849D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297859-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ti.com,ideasonboard.com,lists.infradead.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-297854-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.10:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,ideasonboard.com:mid,ideasonboard.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-RPi v2 Camera (IMX219) is an 8MP camera that can be used with BeagleY AI
-through the 22-pin CSI-RX connectors. Add a DT overlay to enable use of
-this camera sensor through the CSI1 connector.
+Tomasz Duszynski is no longer the maintainer of the SCD30 driver.
+Replace his entry with mine.
 
-The CSI1 connector is muxed with DSI0, so ensure that we route it to
-CSI1 (DSI_CSI_OE=0 and DSI_CSI_SEL=1).
-
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+Link: https://lore.kernel.org/linux-iio/20260507172404.80435-1-m32285159@gmail.com/
+Signed-off-by: Maxwell Doose <m32285159@gmail.com>
 ---
- arch/arm64/boot/dts/ti/Makefile                    |   4 +
- .../dts/ti/k3-am67a-beagley-ai-csi1-imx219.dtso    | 121 +++++++++++++++++++++
- 2 files changed, 125 insertions(+)
+ v2:
+ - Replace link to git.kernel.org with link to patch at lore.kernel.org.
+ - Fix typo in subject.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 68a82e161c20..51e74f26c803 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -153,6 +153,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-usb0-type-a.dtbo
- # Boards with J722s SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai-csi0-imx219.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai-csi1-imx219.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
-@@ -248,6 +249,8 @@ k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
- 	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
- k3-am67a-beagley-ai-csi0-imx219-dtbs := k3-am67a-beagley-ai.dtb \
- 	k3-am67a-beagley-ai-csi0-imx219.dtbo
-+k3-am67a-beagley-ai-csi1-imx219-dtbs := k3-am67a-beagley-ai.dtb \
-+	k3-am67a-beagley-ai-csi1-imx219.dtbo
- k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-am68-sk-base-board-pcie1-ep-dtbs := k3-am68-sk-base-board.dtb \
-@@ -322,6 +325,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
- 	k3-am67a-beagley-ai-csi0-imx219.dtb \
-+	k3-am67a-beagley-ai-csi1-imx219.dtb \
- 	k3-am68-phyboard-izar-lvds-ph128800t006.dtb \
- 	k3-am68-phyboard-izar-peb-av-15.dtb \
- 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-csi1-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-csi1-imx219.dtso
-new file mode 100644
-index 000000000000..b3ae76e03fe3
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai-csi1-imx219.dtso
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * RPi Camera V2.1 on BeagleY AI CSI1 port
-+ *
-+ * Copyright (C) 2026 Ideas On Board Oy
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	clk_imx219_csi1: imx219-csi1-xclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+
-+	reg_2p8v_csi1: regulator-2p8v-csi1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "2P8V_CSI1";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vdd_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p8v_csi1: regulator-1p8v-csi1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V_CSI1";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vdd_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p2v_csi1: regulator-1p2v-csi1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P2V_CSI1";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vdd_3v3>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&main_pmx0 {
-+	cam1_reset_pins_default: cam1-default-reset-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01d8, PIN_OUTPUT, 7) /* (D22) MCAN0_TX.GPIO1_24 */
-+		>;
-+	};
-+};
-+
-+&dsi_csi_mux {
-+	idle-state = <1>;
-+};
-+
-+&main_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	imx219_1: sensor@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+
-+		clocks = <&clk_imx219_csi1>;
-+
-+		VANA-supply = <&reg_2p8v_csi1>;
-+		VDIG-supply = <&reg_1p8v_csi1>;
-+		VDDL-supply = <&reg_1p2v_csi1>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cam1_reset_pins_default>;
-+
-+		reset-gpios = <&main_gpio1 24 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			csi2_cam1: endpoint {
-+				remote-endpoint = <&csi2rx1_in_sensor>;
-+				link-frequencies = /bits/ 64 <456000000>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&cdns_csi2rx1 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi1_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx1_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam1>;
-+				bus-type = <4>; /* CSI2 DPHY. */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&ti_csi2rx1 {
-+	status = "okay";
-+};
-+
-+&dphy1 {
-+	status = "okay";
-+};
+ .../devicetree/bindings/iio/chemical/sensirion,scd30.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml b/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
+index 40d87346ff4c..a5b0debe85b1 100644
+--- a/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
++++ b/Documentation/devicetree/bindings/iio/chemical/sensirion,scd30.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Sensirion SCD30 carbon dioxide sensor
+ 
+ maintainers:
+-  - Tomasz Duszynski <tomasz.duszynski@octakon.com>
++  - Maxwell Doose <m32285159@gmail.com>
+ 
+ description: |
+   Air quality sensor capable of measuring co2 concentration, temperature
 -- 
 2.54.0
 
