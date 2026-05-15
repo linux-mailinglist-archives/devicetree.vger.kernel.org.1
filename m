@@ -1,140 +1,156 @@
-Return-Path: <devicetree+bounces-297933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-297935-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uKmSBmXEBmpBnwIAu9opvQ
-	(envelope-from <devicetree+bounces-297933-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:59:49 +0200
+	id GH5lMY7DBmpdngIAu9opvQ
+	(envelope-from <devicetree+bounces-297935-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:56:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868F154A3BE
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:59:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6E854A31C
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 08:56:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 57663304F009
-	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 06:56:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 54AD4302A7D6
+	for <lists+devicetree@lfdr.de>; Fri, 15 May 2026 06:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB8A3C8C77;
-	Fri, 15 May 2026 06:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE27D383C73;
+	Fri, 15 May 2026 06:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJJQV4Qr"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pBKDbeMF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8D839A068;
-	Fri, 15 May 2026 06:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199BE388361;
+	Fri, 15 May 2026 06:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778828165; cv=none; b=l99Tdj+bDrWDWAmBDTfClSUVXNah6GMd8XqliBf+DZH8NkoVw3sMzlNjmtabcn/MIH1vD1zUZG6OujrsZQ6xrZdhE6Hb7slZwW6fJX+NoIYCANzzqQO+0q0KkOnBnyadCBY5x5gSJQSG1r64wakK1DDn3TaOPNzivXHcT0Wskfw=
+	t=1778828172; cv=none; b=Ekk++8ax4tm64M9FiWQrnW02eLEZXYCG4+L2H3tOHog0xoFlk1Qua9/hWeIGjf3MI/ImzBtkzgKjGHNvToLyT4kACHYqUoffzAYSAc3xy6dK1i1oEuUTW5ictTt61QekwX6VT/G7nNiExonxrOGyx6FNlx1hKV4iVvAuEvuc7Xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778828165; c=relaxed/simple;
-	bh=E28SEwLIDb3+PpAiZhmbhvwtDQg3wtx7EViGkXr64Wc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qAkJ1NF074Ky0G3AZWW7FcHqvwIiZqt+dS6rvGhgUuFxnV0L1cT7/FQyiHddIkD6Bep9bD7iGZTYz0xipjeZeQNHgAKOf4ytcjgkDprFegbug7e46lOen34xJUqHJ0qhb6GPWgAB1HHp+ntwpoe/Si2t0lmZlNcC6yK2qhKEFC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJJQV4Qr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EEBBC2BCB0;
-	Fri, 15 May 2026 06:56:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778828164;
-	bh=E28SEwLIDb3+PpAiZhmbhvwtDQg3wtx7EViGkXr64Wc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MJJQV4QrvjrVeyk/zbPckCwRwn65BEuaG7LwZto5P/D3wmmjimQi/zUa4Sec7/0dh
-	 MHmCmfGvQZDRlt4su9VfN9/+g/bp9nKRyeyv96KrwoFJh8/RAbgfwkBdK9eVJM/NhE
-	 TCBWF+9EycGm6B4H3aeMS05eYseTFVcGA8pv0Iu0M0xq1MsX+I2AHJOqEAFeHfstO3
-	 ZWyV4BV/L3Qm+stJ7VBVBNJr8vdVtCM5B8nkg2cYqONLVOuhe+49rran6JIqATR2ZO
-	 QRelSO+94VeIB3cBoWFb9AqB2mQ6ebHT6VWurhUjqsr4v7AvIUzPT0Ky+b3SkzkQe9
-	 XQvW7mJQvbvzQ==
-Date: Fri, 15 May 2026 08:56:02 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Antony Kurniawan Soemardi <linux@smankusors.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
-	Rudraksha Gupta <guptarud@gmail.com>
-Subject: Re: [PATCH v2 01/10] dt-bindings: clock: qcom,rpmcc: add msm8960
- compatible
-Message-ID: <20260515-eminent-black-coucal-0acbfb@quoll>
-References: <20260514-msm8960-wifi-v2-0-7cbae45dab5e@smankusors.com>
- <20260514-msm8960-wifi-v2-1-7cbae45dab5e@smankusors.com>
+	s=arc-20240116; t=1778828172; c=relaxed/simple;
+	bh=ps3BKhTYDYIeixkp1GdVg1MTtawBVyK9KNx179yqeR4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R27UWSqJVAEZpFhtb/z4l8Elv6sjWqeKdxwPArCjgg9RODv7S+ZKf/0uP+TBhZSp8z+t3yeR3JCkbv2WszrBClremzkP/B+FzH/oNV6ECdMByPx+shPKWMNJEqAkNnNWzhgRrwnD0B/nAHhywmr+C+j6UF86hWW5KxtIct8EYaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pBKDbeMF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1ABC663C;
+	Fri, 15 May 2026 08:55:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1778828159;
+	bh=ps3BKhTYDYIeixkp1GdVg1MTtawBVyK9KNx179yqeR4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pBKDbeMF+GjZyp98W56ZvpE3GUil0ccBPRjHr5WJH0zvdBaXpZkbWaKL3BhtrTDKz
+	 DVK7fga7NlGaPMizWa9yP0YdETGbVy+WSbtvqEQToVoDQNzXXjZ8xWFTfcfwvyR4Sg
+	 bfp6MAyBqyQsxvXAMnZq45Rnp5n6sAH+zn1rllwU=
+Message-ID: <3e5ce95a-10dd-4520-8bd7-7d4cfaf612d2@ideasonboard.com>
+Date: Fri, 15 May 2026 09:56:04 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260514-msm8960-wifi-v2-1-7cbae45dab5e@smankusors.com>
-X-Rspamd-Queue-Id: 868F154A3BE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 05/16] dt-bindings: display: ti,am65x-dss: Add AM62P
+ DSS
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Aradhya Bhatia <aradhya.bhatia@linux.dev>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Swamil Jain <s-jain1@ti.com>,
+ Devarsh Thakkar <devarsht@ti.com>, Louis Chauvet
+ <louis.chauvet@bootlin.com>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260513-beagley-ai-display-v2-0-9e9bcefde6bc@ideasonboard.com>
+ <20260513-beagley-ai-display-v2-5-9e9bcefde6bc@ideasonboard.com>
+ <20260515-certain-honest-wren-f03dfa@quoll>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+In-Reply-To: <20260515-certain-honest-wren-f03dfa@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: AB6E854A31C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-297933-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-297935-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linux.dev,ti.com,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,vger.kernel.org,gmail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:mid,ideasonboard.com:dkim,ti.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Thu, May 14, 2026 at 09:08:30PM +0700, Antony Kurniawan Soemardi wrote:
-> +      - items:
-> +          - const: qcom,rpmcc-msm8960
-> +          - const: qcom,rpmcc-apq8064
-> +          - const: qcom,rpmcc
->  
->    '#clock-cells':
->      const: 1
-> @@ -90,7 +95,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: qcom,rpmcc-apq8064
-> +            enum:
-> +              - qcom,rpmcc-apq8064
-> +              - qcom,rpmcc-msm8960
+Hi,
 
-This change is not necessary, drop.
+On 15/05/2026 09:52, Krzysztof Kozlowski wrote:
+> On Wed, May 13, 2026 at 04:17:27PM +0300, Tomi Valkeinen wrote:
+>> TI's AM62P, J722S and AM67A SoCs contain same implementation of the
+>> display subsystem (DSS). There are two instances of the DSS (DSS0 and
+>> DSS1), each with two video ports (VP) and two video planes.
+>> Additionally the SoCs contain two OLDI TXes (OLDI0 and OLDI1), a MIPI
+>> DSI TX and a MIPI DPI output path.
+>>
+>> DSS0 supports:
+>> - VP0: OLDI0 in single-link mode, or OLDI0 and OLDI1 in dual-link or
+>>    clone mode.
+>> - VP1: DPI
+>>
+>> DSS1 supports:
+>> - VP0: OLDI1 in single-link mode, or DPI
+>> - VP1: DPI or DSI
+>>
+>> The DSI is only connected to VP1 of DSS1, but OLDI and DPI are shared
+>> between the DSS instances. Thus only a single VP can output to DPI, and
+>> a single VP can use an OLDI block. Note that in single-link
+>> configuration OLDI0 can be used by DSS0, and at the same time OLDI1 can
+>> be used by DSS1.
+>>
+>> The DSS IP itself is compatible with older SoCs. While we could use
+>> "ti,am625-dss" compatible string, we add a new one "ti,am62p-dss" to be
+>> on the safe side in case the driver needs to do something special for
+>> the dual-DSS case in the future.
+>>
+>> Original patch by Swamil Jain <s-jain1@ti.com>
+>>
+>> Reviewed-by: "Rob Herring (Arm)" <robh@kernel.org>
+>> Tested-by: Swamil Jain <s-jain1@ti.com>
+> 
+> Same comments.
+Interesting, looks like "b4 trailers" applies quotes here. I assume the 
+parenthesis makes it do that.
 
->      then:
->        properties:
->          clocks:
-> @@ -164,3 +171,13 @@ examples:
->              clock-names = "pxo";
->          };
->      };
-> +
-> +  - |
-> +    rpm {
-> +        clock-controller {
-> +            compatible = "qcom,rpmcc-msm8960", "qcom,rpmcc-apq8064", "qcom,rpmcc";
+As for the tested-by, yes, it doesn't make sense for bindings. As the 
+tested-by was for the series, "b4 trailers" applies it to all patches.
 
-No need for new example for difference in compatible. Drop.
+I will manually drop these in v3.
 
-Best regards,
-Krzysztof
+  Tomi
 
 
