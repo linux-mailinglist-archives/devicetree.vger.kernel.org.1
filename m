@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-298598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KKlCFCYCCGqCUwMAu9opvQ
-	(envelope-from <devicetree+bounces-298598-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:34 +0200
+	id qEz/Hy4CCGqCUwMAu9opvQ
+	(envelope-from <devicetree+bounces-298599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A9855A4D9
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D629255A4E7
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D8FE4301B70C
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:35:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 637B9301DB80
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2759F2D876F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D572D97AA;
 	Sat, 16 May 2026 05:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="vlv4aCyJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="jZ0mSXQG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B576E277C81;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEC7280CF6;
 	Sat, 16 May 2026 05:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778909714; cv=none; b=HnEcbDVVQv8Gj6Z6XACBlcjovO7kS4ywanBzrtwkUAnJnwt+DfcLdc+ndzls7wcEBD6PzRBcRUb/tU3J7X5AIX7NLBodx50h8dxgo5F57+mPgd9aGAgoYy+Oh1Z4ZSVsXb1czM1j6VPkYtFMPXWjI2VWUa1YZHM5u0/e34z2wJ4=
+	t=1778909714; cv=none; b=u//yyGRL6iF+fS/vmDYDl6r4AUKMreAKTpN5RpT8UzMdAtNEFjZPb8JIezb1l8PIO5E7YdksMgewc4QFrr0HxbFEA2MnHXYm35y/g0Q4rshfsMkVsu+yItqwZ3t0w8XvlTc5JejncUgMPyINMv4jwLzGim0vg0/Qcpw56XrUAkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1778909714; c=relaxed/simple;
-	bh=1Ywoj2EChrJkdIEVIClwgbqPkSpkodGiY8WCoxjST1Y=;
+	bh=xWAvvoMq5LCEzQv/vm2HNnTrN5pD+nZbb55gDWJixMI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QF/M7rLZ95rYhnusWHQBwLG8HqQg+pSt+BS50lj7s3pmIlyR0Qp2UpRVfQG+IPnEb63osn7QUb2nsDkTFd4NMUquB9CmT1g6dFXUI4UeAou82jXkPAzT7Tw/hfgwk6/CSGFJ/TAQNl8s6/Lu8zZllCtdpBKWn9IOa0C6ZbGYDLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=vlv4aCyJ; arc=none smtp.client-ip=195.78.66.88
+	 In-Reply-To:To:Cc; b=uGKue4FoTRbAgu37TTQPxeV0mnOFzVOTGxtpWVvWZR3oErwYSppgo+bM9G1j4oL4ywnC9YZjD2kaeudryn8doLI23pnRiTFI3GC4YGOmNelOVc6x+AzuXa+AHYl9p2gq6g6nkrE4t8qDIzJwa5Yw5NXggipVxTg4TNRjUGtvTm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=jZ0mSXQG; arc=none smtp.client-ip=195.78.66.88
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -40,21 +40,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=blOC+9GmrnWG7CFQB7EzYgUnvF3WIzCMlYztxn2jcGY=; b=vlv4aCyJ7sEQL7yIA+Gp8/H1HR
-	HL9cwXW0wkMkcS59YEgPipo52rxkEccXxBNGM2PLXu+mcWOVwGMtQHrQnMASJE44D4vPQ7pSzrW4R
-	W9f6HkPBe8txvX2ixjyKeapO77iF/YjKvDDp9daS05DOLDNbW3zSmDjV57r0c0tW1UqCr8PM509js
-	JXOR7559rxhrvSBB9s4Y5OdpyyCo7oPcoFLBTTzs+rE9RT4Zi/0Etgo+c2+zjHMA60yG8yaQt7c5+
-	LaLsSxEi23lymkWD2we5tMpzdwiN9C3lz3JBJmENnedSW1LOdnCzMVX8wZF+55QOL3OcIRNsCVLMc
-	LWyTPtLA==;
+	bh=y9IFjwpBXb5Eq6QrzwBTcKT5UjHu61JRQwaFlcKHFVs=; b=jZ0mSXQGpFt1zrFaY1HHHh/pwZ
+	w2NB6Wgf7Iqtcr4TMI+qLqsBnQ9srT/atrhUJH8frm4N+8xl0sxfamJ686tUuTOuhQLDXeINbazVT
+	LM2TjC8523SMmebjgQ8Q+rqrjUnWwXoWUYXdZusaDat+QfACfE22Q53WW470FbcAqigkg/rerYnQI
+	MD6vE5vBDVkROSW8RLmHXYCpvh6xNpb1NckSVFuMH+y1owsWUhgeAHEFe229xIF31ewausY9Rq+Wv
+	oEqmQQg4xdFPkJEzj3yDIsgAoncx4SOY3mvJcDaD2yX4f0LzxKTXWmS/uQK1xiaUN1uOK+25JxxbI
+	VmaWaJ3w==;
 Received: from [91.102.182.218] (helo=localhost)
 	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.3)
 	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wO7g4-0000000GeLc-3o1Z;
-	Sat, 16 May 2026 07:35:08 +0200
+	id 1wO7g6-0000000GeOG-2UNT;
+	Sat, 16 May 2026 07:35:10 +0200
 From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Sat, 16 May 2026 07:34:15 +0200
-Subject: [PATCH v3 2/3] iio: adc: sun20i-gpadc: add A523 gpadc support
+Date: Sat, 16 May 2026 07:34:16 +0200
+Subject: [PATCH v3 3/3] arm64: dts: allwinner: a523: add gpadc node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260516-sunxi-a523-gpadc-v3-2-a3a04cff2620@mmpsystems.pl>
+Message-Id: <20260516-sunxi-a523-gpadc-v3-3-a3a04cff2620@mmpsystems.pl>
 References: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
 In-Reply-To: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -79,26 +79,26 @@ Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
  linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778909655; l=1815;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778909655; l=1351;
  i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=1Ywoj2EChrJkdIEVIClwgbqPkSpkodGiY8WCoxjST1Y=;
- b=fHu1kIpSQz5NOHUcuTQyr3ZHoZwMqVqYAJV12YvtSVwZh3SbwGo3xim22zw1ZdFQ7OVN65+oZ
- w7vY3Ltv3aVD8j7hVj/S/TanLH2DcaAChPgAb9/tw9flsmeRxbux0y8
+ bh=xWAvvoMq5LCEzQv/vm2HNnTrN5pD+nZbb55gDWJixMI=;
+ b=2qjIp0RnVxwHNmNSMtJtEiN2QANkFEmCQkeYhsi7Mz70uOvrLUZAydlbFraE3WD6vXjLt2R+z
+ adkBULC9lWWCOjNv5jvr8IoAPytXTlgPLQelQQmd1Kuf31FX2PIurvV
 X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
  pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
 X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: A2A9855A4D9
+X-Rspamd-Queue-Id: D629255A4E7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298598-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298599-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -106,69 +106,59 @@ X-Spamd-Result: default: False [1.14 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.386];
+	DBL_PROHIBIT(0.00)[0.31.71.208:email,0.30.167.168:email];
 	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[mmpsystems.pl:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.470];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:email,mmpsystems.pl:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:email,mmpsystems.pl:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.30.163.192:email]
 X-Rspamd-Action: no action
 
-A523 differs from existing sun20i-gpadc-iio by having two clocks; bus
-clock and module clock.
+Describe GPADC block on Allwinner A523.
 
-Change driver to enable all clocks.
+Tested on Radxa Cubie A5E:
+- 2 connected channels are showing voltages in agreement with
+  schematics.
+        BOOT-SEL-ADC ~500mV
+        BOM-ADC ~1800mV
+- 3rd channel exposed on 40pin header is showing correct voltages when
+  connected to known voltage source.
 
 Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
 ---
- drivers/iio/adc/sun20i-gpadc-iio.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/iio/adc/sun20i-gpadc-iio.c b/drivers/iio/adc/sun20i-gpadc-iio.c
-index 861c14da75ad..f5fd2240b808 100644
---- a/drivers/iio/adc/sun20i-gpadc-iio.c
-+++ b/drivers/iio/adc/sun20i-gpadc-iio.c
-@@ -177,10 +177,10 @@ static int sun20i_gpadc_alloc_channels(struct iio_dev *indio_dev,
- static int sun20i_gpadc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
--	struct iio_dev *indio_dev;
- 	struct sun20i_gpadc_iio *info;
-+	struct clk_bulk_data *clks;
- 	struct reset_control *rst;
--	struct clk *clk;
-+	struct iio_dev *indio_dev;
- 	int irq;
- 	int ret;
+diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+index 5afa8d92acbf..fdb60539aa6a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+@@ -340,6 +340,19 @@ ledc: led-controller@2008000 {
+ 			status = "disabled";
+ 		};
  
-@@ -205,9 +205,11 @@ static int sun20i_gpadc_probe(struct platform_device *pdev)
- 	if (IS_ERR(info->regs))
- 		return PTR_ERR(info->regs);
- 
--	clk = devm_clk_get_enabled(dev, NULL);
--	if (IS_ERR(clk))
--		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock\n");
-+	ret = devm_clk_bulk_get_all_enabled(dev, &clks);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to enable clocks\n");
-+	if (ret == 0)
-+		return dev_err_probe(dev, -ENODEV, "needs at least one clocks\n");
- 
- 	rst = devm_reset_control_get_exclusive(dev, NULL);
- 	if (IS_ERR(rst))
-@@ -243,6 +245,7 @@ static int sun20i_gpadc_probe(struct platform_device *pdev)
- 
- static const struct of_device_id sun20i_gpadc_of_id[] = {
- 	{ .compatible = "allwinner,sun20i-d1-gpadc" },
-+	{ .compatible = "allwinner,sun55i-a523-gpadc" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, sun20i_gpadc_of_id);
++		gpadc: adc@2009000 {
++			compatible = "allwinner,sun55i-a523-gpadc";
++			reg = <0x2009000 0x400>;
++			clocks = <&ccu CLK_BUS_GPADC0>, <&ccu CLK_GPADC0>;
++			clock-names = "bus", "mod";
++			resets = <&ccu RST_BUS_GPADC0>;
++			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
++			#io-channel-cells = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
+ 		wdt: watchdog@2050000 {
+ 			compatible = "allwinner,sun55i-a523-wdt";
+ 			reg = <0x2050000 0x20>;
 
 -- 
 2.43.0
