@@ -1,166 +1,136 @@
-Return-Path: <devicetree+bounces-298599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEz/Hy4CCGqCUwMAu9opvQ
-	(envelope-from <devicetree+bounces-298599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:42 +0200
+	id OLzfK7sCCGqCUwMAu9opvQ
+	(envelope-from <devicetree+bounces-298601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:38:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D629255A4E7
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0871F55A51C
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:38:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 637B9301DB80
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:35:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 045C4301456C
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:37:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D572D97AA;
-	Sat, 16 May 2026 05:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAFE2C0F6D;
+	Sat, 16 May 2026 05:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="jZ0mSXQG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fK1aSbm8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEC7280CF6;
-	Sat, 16 May 2026 05:35:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6F71A683F;
+	Sat, 16 May 2026 05:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778909714; cv=none; b=u//yyGRL6iF+fS/vmDYDl6r4AUKMreAKTpN5RpT8UzMdAtNEFjZPb8JIezb1l8PIO5E7YdksMgewc4QFrr0HxbFEA2MnHXYm35y/g0Q4rshfsMkVsu+yItqwZ3t0w8XvlTc5JejncUgMPyINMv4jwLzGim0vg0/Qcpw56XrUAkg=
+	t=1778909854; cv=none; b=THI3M8sdKMbFuodo5i6QjUPtI003KXFkrvK8xjjL88K7Yt40u4KFDuFnFMinD4yi5ury/lEcShNcwzKfYLcdk+Z7M6LaA46Sa3f69875n3OxqcG+iva73bfhQxyIi3p5VoEkpALMqZdVtN8IJVzqeRn4yIWaAGg5T2yG6lGPk94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778909714; c=relaxed/simple;
-	bh=xWAvvoMq5LCEzQv/vm2HNnTrN5pD+nZbb55gDWJixMI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uGKue4FoTRbAgu37TTQPxeV0mnOFzVOTGxtpWVvWZR3oErwYSppgo+bM9G1j4oL4ywnC9YZjD2kaeudryn8doLI23pnRiTFI3GC4YGOmNelOVc6x+AzuXa+AHYl9p2gq6g6nkrE4t8qDIzJwa5Yw5NXggipVxTg4TNRjUGtvTm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=jZ0mSXQG; arc=none smtp.client-ip=195.78.66.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=mmpsystems.pl; s=x; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=y9IFjwpBXb5Eq6QrzwBTcKT5UjHu61JRQwaFlcKHFVs=; b=jZ0mSXQGpFt1zrFaY1HHHh/pwZ
-	w2NB6Wgf7Iqtcr4TMI+qLqsBnQ9srT/atrhUJH8frm4N+8xl0sxfamJ686tUuTOuhQLDXeINbazVT
-	LM2TjC8523SMmebjgQ8Q+rqrjUnWwXoWUYXdZusaDat+QfACfE22Q53WW470FbcAqigkg/rerYnQI
-	MD6vE5vBDVkROSW8RLmHXYCpvh6xNpb1NckSVFuMH+y1owsWUhgeAHEFe229xIF31ewausY9Rq+Wv
-	oEqmQQg4xdFPkJEzj3yDIsgAoncx4SOY3mvJcDaD2yX4f0LzxKTXWmS/uQK1xiaUN1uOK+25JxxbI
-	VmaWaJ3w==;
-Received: from [91.102.182.218] (helo=localhost)
-	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.3)
-	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wO7g6-0000000GeOG-2UNT;
-	Sat, 16 May 2026 07:35:10 +0200
-From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Sat, 16 May 2026 07:34:16 +0200
-Subject: [PATCH v3 3/3] arm64: dts: allwinner: a523: add gpadc node
+	s=arc-20240116; t=1778909854; c=relaxed/simple;
+	bh=8yBvfhLzYDJAvKIHnzpbKWBDmTKaskcNlT36hAQ0Img=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j49GsB6d5jG19q4MnI2AIow4reih3C48mYn6un9S04oIcE8KwnKC3ufwq9J3g6PM+0ad8gNTvnlUTnT61WB93MZNxjqm+etx6fQeQ3dFXbMC+eealaMlKKY9UBbBqQ6QCNjNlPlMHwWlB5+3sb9lX/drRcQ3/49cOaQMvI/z/u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fK1aSbm8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64DF4C19425;
+	Sat, 16 May 2026 05:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778909854;
+	bh=8yBvfhLzYDJAvKIHnzpbKWBDmTKaskcNlT36hAQ0Img=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=fK1aSbm8mudfk4ee6EzKpdHjeIFsFfF7nm+GOPlpahSUotCWY0ksHkUGF0m19EPrY
+	 g7GKFh7EWTb+zSaVr5DrMQOy8/YmU9Euao08L9AS3Ba4d3BU0ce17We++sgwaXZb3k
+	 DOpv0NSN11xQ9ubjC1lofG9vE+ItMhTPE/gwz5/JPDrGvwxuDNmJgF7SHeIxz+oLay
+	 0A2DxcvfWSluN1ERcvKOpZE4ITsDfuM85GDxsK3YAR/Z1/cfpszJTjxW7bj2JHODv+
+	 DpKSTCb+zmpj+AO9EyQbRjTYA/dfhXJ9v6RdZLSIX2HUUGLnzXlhft9Ym9XMKMnekg
+	 C149fh8jHax6Q==
+Date: Sat, 16 May 2026 05:37:30 +0000
+From: Yixun Lan <dlan@kernel.org>
+To: E Shattow <e@freeshell.de>, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
+Subject: Re: [PATCH 3/4] riscv: dts: spacemit: enable eMMC on Milk-V Jupiter
+Message-ID: <20260516053730-GKA3675990@kernel.org>
+References: <20260514160356.1642075-1-aurelien@aurel32.net>
+ <20260514160356.1642075-4-aurelien@aurel32.net>
+ <f52a821b-157a-467d-84ee-4d1d4a96f673@freeshell.de>
+ <agbP0-OsfQRFJcr0@aurel32.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260516-sunxi-a523-gpadc-v3-3-a3a04cff2620@mmpsystems.pl>
-References: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
-In-Reply-To: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Maksim Kiselev <bigunclemax@gmail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778909655; l=1351;
- i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=xWAvvoMq5LCEzQv/vm2HNnTrN5pD+nZbb55gDWJixMI=;
- b=2qjIp0RnVxwHNmNSMtJtEiN2QANkFEmCQkeYhsi7Mz70uOvrLUZAydlbFraE3WD6vXjLt2R+z
- adkBULC9lWWCOjNv5jvr8IoAPytXTlgPLQelQQmd1Kuf31FX2PIurvV
-X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
- pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
-X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: D629255A4E7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <agbP0-OsfQRFJcr0@aurel32.net>
+X-Rspamd-Queue-Id: 0871F55A51C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298599-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.31.71.208:email,0.30.167.168:email];
-	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mmpsystems.pl:-];
-	NEURAL_HAM(-0.00)[-0.470];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298601-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:email,mmpsystems.pl:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.30.163.192:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Describe GPADC block on Allwinner A523.
+Hi Aurelien,
 
-Tested on Radxa Cubie A5E:
-- 2 connected channels are showing voltages in agreement with
-  schematics.
-        BOOT-SEL-ADC ~500mV
-        BOM-ADC ~1800mV
-- 3rd channel exposed on 40pin header is showing correct voltages when
-  connected to known voltage source.
+On 09:48 Fri 15 May     , Aurelien Jarno wrote:
+> On 2026-05-14 23:49, E Shattow wrote:
+> > On 5/14/26 08:56, Aurelien Jarno wrote:
+> > > The Milk-V Jupiter board has a connector for an eMMC module. Add an
+> > > entry for it in the device tree and alias it mmc0. As it is not
+> > > populated by default, do no mark it as non-removable.
+> > > 
+> > 
+> > The meaning of "non-removable" here is whether it is expected to be
+> > added and removed during use, requiring to be probed again; not whether
+> > it is a user configurable module or soldered down part.
+> 
+> Not connecting the eMMC module and larking it as non-removable causes this info
+> message to appears in the logs:
+> 
+> mmc0: SDHCI controller on d4281000.mmc [d4281000.mmc] using ADMA
+> mmc0: Failed to initialize a non-removable card
+> 
 
-Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
----
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+I'm with E Shattow here, and would prefer to add "non-removable" property,
+Unlike SD card, the eMMC has no CD pin, some logic may be handled slightly
+differently.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index 5afa8d92acbf..fdb60539aa6a 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -340,6 +340,19 @@ ledc: led-controller@2008000 {
- 			status = "disabled";
- 		};
- 
-+		gpadc: adc@2009000 {
-+			compatible = "allwinner,sun55i-a523-gpadc";
-+			reg = <0x2009000 0x400>;
-+			clocks = <&ccu CLK_BUS_GPADC0>, <&ccu CLK_GPADC0>;
-+			clock-names = "bus", "mod";
-+			resets = <&ccu RST_BUS_GPADC0>;
-+			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-+			#io-channel-cells = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		wdt: watchdog@2050000 {
- 			compatible = "allwinner,sun55i-a523-wdt";
- 			reg = <0x2050000 0x20>;
+For that failure message, I have no idea how to deal with it but might
+just ignore it.. Guess it's the price that have to pay if enabling the
+eMMC in DT but has no module soldered or plugged in?
 
 -- 
-2.43.0
-
+Yixun Lan (dlan)
 
