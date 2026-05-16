@@ -1,336 +1,189 @@
-Return-Path: <devicetree+bounces-298671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298673-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJp7A2dkCGromgMAu9opvQ
-	(envelope-from <devicetree+bounces-298671-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 14:34:47 +0200
+	id kMPGDaRkCGromgMAu9opvQ
+	(envelope-from <devicetree+bounces-298673-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 14:35:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEAC155BC8C
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 14:34:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4768D55BCB7
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 14:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C314F300B9C5
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:34:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D883F30091C6
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90433D8120;
-	Sat, 16 May 2026 12:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61323E1D04;
+	Sat, 16 May 2026 12:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="THkNH11J";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XxhON8Do"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="tRzxLUfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7325F3D47B2
-	for <devicetree@vger.kernel.org>; Sat, 16 May 2026 12:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66883305683
+	for <devicetree@vger.kernel.org>; Sat, 16 May 2026 12:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778934869; cv=none; b=ITZQ9bGi0XKSlQ01A3iVRzErB+wzrQLzSqspVSNvYe+sAeorDBSWziYuIzBbEhbYgNQGyT1QcU1JNZ6WEzrwEswiyTDyE4lDGhAoF+t4dFDCZzkPnuNjsN8myZdF1bQ4D23YkhxPSCGIDA0FIy6s3aFMBhQDl7ocTXU2FK+uays=
+	t=1778934908; cv=none; b=KtE/NcBtG9Fkeu5DRpctI3PKRH97Wa8/JiQzXqPcsJl0i17YpVmSNcZ3ERiHEYDU/OUv5+ghAgCNB3D81B/Nb48+VHtiyDRyVSO78TH5tEKCysoU7HXSCSSv6XImAMXL/iXsaATggtsym54tZaaAm0snz9MqQ+GjM+2OnWrrLhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778934869; c=relaxed/simple;
-	bh=TpMlPRysp3w2m+ZFi+sTeXE10yR8wAdZPz/OYCwHJZo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YQ2nPzk2o+PcIZH03Mquy5kbJ4nR4RYlFShdpzQAoD9NFx9+6H0bJPeLRGM7JeN4p2A+lUEs/sgf/daRc09fXioivuqPenqDCDeao1rNYlzIBcNOQWBBG9gxcKWjhHfJMqHzCxny4M4RTliiCj0fQfOuje8ci5esRi8m3DShVyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=THkNH11J; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XxhON8Do; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64G4lpCq2863050
-	for <devicetree@vger.kernel.org>; Sat, 16 May 2026 12:34:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0tMlahfmEth5dlLQRNO21reZ980LZhICbYSjGZLVRpM=; b=THkNH11JahRpcOQh
-	cgkOrfRZ1nJ+n25nkWnaibToFf0oA+EAifIhnxO6Z3clJmVte+16rNYY6B71rEDk
-	rEalt+HaLjbzvJsdOVg+KWNxw4q2QPa/fd8SjbrTOaotR/9m5mb7IoQrKaPpUuao
-	otv0eTHg4hCexmnDuuQxTmOYPWaHEQ4Oj07yrRePtHwAe+4GMnQjzePEFnqB8IqB
-	jKoYGHAMs/RlOwawWTZg2gyAO2ftmRS+PB+VR+U6gXuAqV1+bey0xqgE3t/du8Zo
-	W3s2QNkmbZyXt3qiJ1T2vdqYJ+nd+FodzmhLo741Izch9T7opqkxdh8SJSHYuO4Y
-	FTSJQg==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e6hv7rqx8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 16 May 2026 12:34:27 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-82f7bec24fdso382932b3a.2
-        for <devicetree@vger.kernel.org>; Sat, 16 May 2026 05:34:27 -0700 (PDT)
+	s=arc-20240116; t=1778934908; c=relaxed/simple;
+	bh=/0+rB3LCDje5H1GWAPmFkRfOosbuwDC1QTWFKmh24Fo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P9mgPWgyfVHxB+h7ovjCOWBgS/A+f2XciUk7iiXpCP0OEldszSDtVQR641wagMrJg0PkWLtd9h3VRKfTecSUoBwJA0s8f6KPQRNtpIEIRappfE1WVobXtH8QQXUh+rAIFlt0JWul6xzEjwqk+mDXGYxnwl0bmruSdpjrdlTL9eY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b=tRzxLUfl; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-910f734b477so119198785a.0
+        for <devicetree@vger.kernel.org>; Sat, 16 May 2026 05:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778934867; x=1779539667; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0tMlahfmEth5dlLQRNO21reZ980LZhICbYSjGZLVRpM=;
-        b=XxhON8DoeYgL+dutXlJbNOmGG7/vnV/pi4ESVQBy+ol5OhocDY0Ke9aFBqEJ4JKZrE
-         bApRQzPlNvqGlxObCnDrvvRfSCKNdWSVjBzJDJM6raSkgvMxlJY/Xk3G4jZ+GykXoZn5
-         QIJlYhWRaKUt3nfiVXmg52kVLwpgNjcK1JhFfmaVHfY6yEHb8SVJyR17wqytATr1IhXf
-         33yromQWB3ubOMxH/clwXDvQRMddTqxxVUboZ9MZz5qIxkZpShYDjz+YZhQ3tkJPzVpp
-         z9L668AvjcheYD4mu1ZCJuCLYlCWhTT2+meo6kskVKlJIqhsVT3PxgLBG/lb1jQLv9qd
-         FjCQ==
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778934904; x=1779539704; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vlYX20Tz7KrUA9/+ib940qbKVKDUFNbiWx/P6UgmXqc=;
+        b=tRzxLUfl7WKi7iPmFaARqPkpgb9BshebIlYejfpOws/ALL5c6MblM/r7I2D/E3kIYR
+         mJyDXi6DlOORYPHugG2qBKloV48ks5PwzBSu5yPBrVokNy2UpRZzkUzn/KHbB7ShHa3K
+         tsAm81MH5oENssNUCdT5zUKwEXDa/eNLAP7gQB0oInMMRdcyZFJVqnGEs3X5jIlrn9UQ
+         dA//omAOVlR4cESoLwRsmedQLUgeEl3dOhwJx120JstiN5eizs0xIX0TPiCMqmGXnucx
+         mSYaxPayEVmKvNt3hHDeaRSGHqpxxoYyEmvMeUyaBTNv0psZ2uX/lP+dG/SJmkU8ANJ2
+         Dlyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778934867; x=1779539667;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0tMlahfmEth5dlLQRNO21reZ980LZhICbYSjGZLVRpM=;
-        b=NmedKOnO1jyRrTBHCnJxYBKJ2JV8vt/UpWxMt5eMCOjstWuk431rAmrgawGUhAUFoz
-         SnDCojm85ZcQ9gOSR8CYmUKrOYdemmKROCN0aoJV6+8Gv7ht2Ypn/uFOvPMMy+TT+UvK
-         IuMbuLDrRVztoACfcyVo4Sq1xMl0c3DnG3h4IK4aqj6kg9I5uFjIvjjTMsYM29K3DbAB
-         D9ZHhhirfEKHuzyX4bKdrUWADRd3XTaNWzDgDA6h6EXdvu9S6WDwxhEVspD41QJ6v5aB
-         nzQSimLhlLb0MfC6Rmynk9gr40P8qtetySOx/k1YSxAwIFJwHMEAjwb3PNB6Wxvuy8Hl
-         QlvQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/hxaib2tBRwNcXbcoPSyxfMKQvphJgsew6m8SyhL5IGTnP6RdBIBqbToEIg7W6jooITG2ts82W5EbU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6AvPHlxrgbuDjIwOvBj8dpahwUskd4OWr20PPt3D+gYZzHv3f
-	GTZIQRMCTPo+b4Mld1Oz1eOoC2TuvqluIcW6ornL4uySXNmRwMCEHdPbdXRH8a5HINtPqLZFfHX
-	FSSAuXLXrWfYv4cDtThqH+AaUa7eSauFhjy8niL/cTFHcM8dXwlKnsDtKClMzDiOIJj9BgOUD
-X-Gm-Gg: Acq92OF/vFBN3odhZ2JoWd3syzpUtNqNNMXnyIZ9QyzE6ffts8qrwSigIOhiDr6zC+b
-	lYeaQD8tgJOBRgmrnXL4Ii4tTfQu7IaJn/nV4huCM0Wqsd3U80b0Qy3JS3y4ExE98OmmtbyYjWb
-	Y8cyEpz/30rzj/3Q7Nw7uuWuBXMCI4W9pzbW8P/99e2lTolSzX1c9CU8DIUSZ3mnaA3A7y2BLyj
-	crKTAa2Qq0Wdnf1/mlf08zWQQoNoopeKER/bd+IVeiK+gzj5tBBTMLieUZ1JkvyIdCzkRvD2aTd
-	siCE8Z09LSj87ZcSQXLbdqgSQLf89kX9p/ox+6geWiassSqyq4FkCsifRoZAMlVExRfKu5UIgRG
-	Gxdx1vY138S23keSUtWopwyM/No4NOsFnL8mK5WWv0gP4AVopHjt7
-X-Received: by 2002:a05:6a00:950f:b0:83e:6fde:54d3 with SMTP id d2e1a72fcca58-83f33f3d3f0mr7854675b3a.50.1778934866923;
-        Sat, 16 May 2026 05:34:26 -0700 (PDT)
-X-Received: by 2002:a05:6a00:950f:b0:83e:6fde:54d3 with SMTP id d2e1a72fcca58-83f33f3d3f0mr7854653b3a.50.1778934866433;
-        Sat, 16 May 2026 05:34:26 -0700 (PDT)
-Received: from hu-bibekkum-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f19f7cc9asm11405217b3a.53.2026.05.16.05.34.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 May 2026 05:34:26 -0700 (PDT)
-From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-Date: Sat, 16 May 2026 18:04:04 +0530
-Subject: [PATCH 2/2] iommu/arm-smmu: Add interconnect bandwidth voting
- support
+        d=1e100.net; s=20251104; t=1778934904; x=1779539704;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vlYX20Tz7KrUA9/+ib940qbKVKDUFNbiWx/P6UgmXqc=;
+        b=NVZZbVWaa5/+BC2Ov5Iuvou4WjJVHi8hYS6HVizeFvFHeuHHmp4szrsnKwquY8TuiH
+         xbRxWasJ3zufHs5/oyIKIqz1qjk+RNO3z7cJWWAfySPrydUIxEWYoSKhpxFfjUcKMzCu
+         vUT4zhzmucEUjeNCw2OualaeYOaabUdGX3qPQgpXa1NPvG8z4uBKQ7Lju61RaRi41fyx
+         1KjH4qU3JGsZQEnvP4k0dwJSARrV5Wsd8zd3kr9yE7sOBh+PKMbS+VpBpdSDl0W9gjD3
+         MHzFPdBxs+NqsU/05HUD0p4tlHV37A9NEXfMyiz4d8JgbaFshg09KQozVBpOb2dpa0WH
+         WaUQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8c36umA07jA8ReSgNi5h/ZoKq5nmF2RnuOqUQlEtAwIRr//0E/oKbPmIv/OKd/pTobIHfz+tHqNteS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7WoUzDAVOTJam5jO0poFDm3NBsVtC7xKmwcnWId6nELSpwrBa
+	L8ljkHZVIOL6RbGa7N3K5v5sxO/GxYsMMdBv5OjpzaouPlINscTkVOYs7YcbdttxWNk=
+X-Gm-Gg: Acq92OF8vt6h2EbEwV+XO+ggzDL2ydJ0OqRqb+J7/2ngkcHVmf9tVgkeCWiLesziJfC
+	OOzNUreD46sP8N3jHXyFN7+LvbX/s6lVex7Bs/CJVElBFHHhr+Ajnk6EF7hZOCFbCVHL7Ld5uRF
+	R5UgqHO3OdFyU+4JTuL9fSpjvWYLXARDOjCYLrWAkv9VhD4iRM+w3dGt4MyDVjccxcQVw4f3H7K
+	ZzI6Cp3I1Hc4LyTJTl08sR+P8a/Vf3CuaW/91kT4fSGM3U+9VL5hDCWIQBqr7ouiju0MJ1tEOE0
+	nJr5+4wCiHX+2leHUBQPND343OZzxUmNU/y00ZFxa5GOPG2oJMMijVqdDcpmIlGwjTHVvToWj1S
+	/I0shYW0847hYaH528b14Si6KjvU7Rtty6/QuDRTEQso/Z6aAU4BYaFZzG6GdNzHF14xqw69oHx
+	kx24S8Qizy4jYeVzHOB7JRF6UEfCfDaa0l6CroCdaKh5lRBTutJ442Xij6jrvg7GdXniMF5ncCQ
+	NtQOWn9ABNbSDk=
+X-Received: by 2002:a05:620a:7087:b0:8ed:d906:a8ff with SMTP id af79cd13be357-911ce04464cmr1176183685a.14.1778934904152;
+        Sat, 16 May 2026 05:35:04 -0700 (PDT)
+Received: from ?IPV6:2001:1970:3847:e000:9cf2:2d6b:fbf2:991c? ([2001:1970:3847:e000:9cf2:2d6b:fbf2:991c])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-910bcf3776dsm895724585a.39.2026.05.16.05.35.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 16 May 2026 05:35:03 -0700 (PDT)
+Message-ID: <7e68e745-0d70-46db-9475-38d3dd5b9cf4@baylibre.com>
+Date: Sat, 16 May 2026 08:35:01 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v10 0/4] riscv: spacemit: enable SD card support
+ with UHS modes for OrangePi RV2
+To: Yixun Lan <dlan@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Ulf Hansson <ulfh@kernel.org>, Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Troy Mitchell <troy.mitchell@linux.dev>,
+ Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Anand Moon <linux.amoon@gmail.com>, Vincent Legoll <legoll@online.fr>,
+ Margherita Milani <margherita.milani@amarulasolutions.com>,
+ Aurelien Jarno <aurelien@aurel32.net>, Andre Heider <a.heider@gmail.com>
+References: <20260515-orangepi-sd-card-uhs-v10-0-094af27e310d@gmail.com>
+ <177889984452.2298656.1074391459031404894.b4-ty@b4>
+Content-Language: en-US
+From: Trevor Gamblin <tgamblin@baylibre.com>
+In-Reply-To: <177889984452.2298656.1074391459031404894.b4-ty@b4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260516-smmu_interconnect_addition-v1-2-f889d933f5c1@oss.qualcomm.com>
-References: <20260516-smmu_interconnect_addition-v1-0-f889d933f5c1@oss.qualcomm.com>
-In-Reply-To: <20260516-smmu_interconnect_addition-v1-0-f889d933f5c1@oss.qualcomm.com>
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778934854; l=5165;
- i=bibek.patro@oss.qualcomm.com; s=20260408; h=from:subject:message-id;
- bh=TpMlPRysp3w2m+ZFi+sTeXE10yR8wAdZPz/OYCwHJZo=;
- b=yVvi3RjY40p22B42QDBaFIBVse8JGLs/A7douwNNONNIVhxQTgPq6cRhjnRT3p7MvcZ1o11+A
- IheV8q200YLDw6+xJEkE07G/1km2pLjSR1EpkJSR7EqLt4cgHI3mTcP
-X-Developer-Key: i=bibek.patro@oss.qualcomm.com; a=ed25519;
- pk=V4oTa+TgRi7dib76fc92V+rslyRCAKbK8D4b2RVsMbc=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE2MDEyMyBTYWx0ZWRfX+9v1goxDiRs8
- epRTVSiv1U0EECVQ/Ifhh1Ycgx3n3O2NIGzJ3EyScxGUqRtkmBujoFlecGaTxYIK30xJtrCEa6I
- 5XSUEYaglTL+gevpSVnZyBXxjCj/H/yrS0oJJ2534TJMkbvxnohWC2bxGghk86A/gSM0VQWlcDf
- 2Z4LYggoCe7FFZaM+ZmIXSRx5BNHu7IdAQovcuNUfAtyyopWpGu3ljhb8FkoCdMXeqf/E44YRxo
- qzUcu9V+Ss0d6Bxzs6e8K+R3l5Fw5lb0K5x8O3AZMkJ3Pgs4OwEjmvwYxn/F04BjXVsXNrs5j/j
- RY/mBsQU7kziBu6QiPEIE7m/u35hWQ5BOrvs/JlfWqMB5Eig0NONPoHXQHOURzcP3NPSFDC7S2/
- yQf3jG3FMr0iybYxpHrRJfRNoA4ggBrMujXLhDbjOo83NcqVP9rsgWLOCp/iFV+9GNl8WTgDkE9
- Psi3QINWRZezCQ6X55A==
-X-Authority-Analysis: v=2.4 cv=a8oAM0SF c=1 sm=1 tr=0 ts=6a086453 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=EUspDBNiAAAA:8 a=taUV0mOn9u7JAoyayg0A:9 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-ORIG-GUID: WXe6nldC6Cz1Pe_q4jkwaxJgevpXttzo
-X-Proofpoint-GUID: WXe6nldC6Cz1Pe_q4jkwaxJgevpXttzo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-16_01,2026-05-15_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
- clxscore=1011 bulkscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605160123
-X-Rspamd-Queue-Id: DEAC155BC8C
+X-Rspamd-Queue-Id: 4768D55BCB7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	TAGGED_FROM(0.00)[bounces-298673-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298671-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bibek.patro@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_TO(0.00)[kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux.dev,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,online.fr,amarulasolutions.com,aurel32.net];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tgamblin@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre-com.20251104.gappssmtp.com:dkim]
 X-Rspamd-Action: no action
 
-On some SoCs the SMMU registers require an active interconnect
-bandwidth vote to be accessible. While other clients typically
-satisfy this requirement implicitly, certain corner cases (e.g.
-during sleep/wakeup transitions) can leave the SMMU without a
-vote, causing intermittent register access failures.
 
-Add support for an optional interconnect path to the arm-smmu
-driver and vote for bandwidth while the SMMU is active. The path
-is acquired from DT if present and ignored otherwise.
+On 2026-05-15 22:57, Yixun Lan wrote:
+> On Fri, 15 May 2026 12:48:58 +0200, Iker Pedrosa wrote:
+>> This series enables complete SD card support for the Spacemit K1-based
+>> OrangePi RV2 board, including UHS (Ultra High Speed) modes for
+>> high-performance SD card operation.
+>>
+>> Background
+>>
+>> The Spacemit K1 SoC includes an SDHCI controller capable of supporting
+>> SD cards up to UHS-I speeds (SDR104 at 208MHz). However, mainline
+>> currently lacks basic SD controller configuration, SDHCI driver
+>> enhancements for voltage switching and tuning, and power management
+>> infrastructure.
+>>
+>> [...]
+> Hi Iker,
+> I've picked patch 1-3, for [4/4] I think it should be merged after
+> https://lore.kernel.org/all/20260513071958.29574-1-a.heider@gmail.com/
 
-The bandwidth vote is enabled before accessing SMMU registers
-during probe and runtime resume, and released during runtime
-suspend and on error paths.
+Hi Yixun,
 
-Generally, from an architectural perspective, GEM_NOC and DDR are
-expected to have an active vote whenever the adreno_smmu block is
-powered on. In most common use cases, this requirement is implicitly
-satisfied because other GPU-related clients (for example, the GMU
-device) already hold a GEM_NOC vote when adreno_smmu is enabled.
+That makes sense. In response to your earlier feedback I had drafted a more
+complete dts after another schematic comparison, but Iker and I discussed it
+and opted to avoid changing scope too much. Andre's series includes the 
+bits I
+wanted to add and more, so that works out.
 
-However, there are certain corner cases, such as during sleep/wakeup
-transitions, where the GEM_NOC vote can be removed before adreno_smmu
-is powered down. If adreno_smmu is then accessed while the interconnect
-vote is missing, it can lead to the observed failures. Because of the
-precise ordering involved, this scenario is difficult to reproduce
-consistently.
-(also GDSC is involved in adreno usecases can have an independent vote)
+Thanks!
 
-Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
----
- drivers/iommu/arm/arm-smmu/arm-smmu.c | 53 ++++++++++++++++++++++++++++++++++-
- drivers/iommu/arm/arm-smmu/arm-smmu.h |  2 ++
- 2 files changed, 54 insertions(+), 1 deletion(-)
+Trevor
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-index 0bd21d206eb3e75c3b9fb1364cdc92e82c5aa499..aedf5edf8f9b2b75f80a61af66727b52a5b3ad49 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-@@ -53,6 +53,11 @@
- #define MSI_IOVA_BASE			0x8000000
- #define MSI_IOVA_LENGTH			0x100000
- 
-+/* Interconnect bandwidth vote values for the SMMU register access path */
-+#define ARM_SMMU_ICC_AVG_BW		0
-+#define ARM_SMMU_ICC_PEAK_BW_HIGH	1000
-+#define ARM_SMMU_ICC_PEAK_BW_LOW	0
-+
- static int force_stage;
- module_param(force_stage, int, S_IRUGO);
- MODULE_PARM_DESC(force_stage,
-@@ -86,6 +91,36 @@ static inline void arm_smmu_rpm_put(struct arm_smmu_device *smmu)
- 	}
- }
- 
-+static int arm_smmu_icc_get(struct arm_smmu_device *smmu)
-+{
-+	smmu->icc_path = devm_of_icc_get(smmu->dev, NULL);
-+	if (IS_ERR(smmu->icc_path)) {
-+		int err = PTR_ERR(smmu->icc_path);
-+
-+		if (err == -ENODATA) {
-+			smmu->icc_path = NULL;
-+			return 0;
-+		}
-+		return dev_err_probe(smmu->dev, err,
-+				     "failed to get interconnect path\n");
-+	}
-+	return 0;
-+}
-+
-+static void arm_smmu_icc_enable(struct arm_smmu_device *smmu)
-+{
-+	if (smmu->icc_path)
-+		WARN_ON(icc_set_bw(smmu->icc_path, ARM_SMMU_ICC_AVG_BW,
-+				   ARM_SMMU_ICC_PEAK_BW_HIGH));
-+}
-+
-+static void arm_smmu_icc_disable(struct arm_smmu_device *smmu)
-+{
-+	if (smmu->icc_path)
-+		WARN_ON(icc_set_bw(smmu->icc_path, ARM_SMMU_ICC_AVG_BW,
-+				   ARM_SMMU_ICC_PEAK_BW_LOW));
-+}
-+
- static void arm_smmu_rpm_use_autosuspend(struct arm_smmu_device *smmu)
- {
- 	/*
-@@ -2189,6 +2224,17 @@ static int arm_smmu_device_probe(struct platform_device *pdev)
- 	if (err)
- 		return err;
- 
-+	/*
-+	 * Acquire and vote the interconnect path before accessing any SMMU
-+	 * registers (including ARM_SMMU_GR0_ID0 in arm_smmu_device_cfg_probe).
-+	 */
-+	err = arm_smmu_icc_get(smmu);
-+	if (err) {
-+		clk_bulk_disable_unprepare(smmu->num_clks, smmu->clks);
-+		return err;
-+	}
-+	arm_smmu_icc_enable(smmu);
-+
- 	err = arm_smmu_device_cfg_probe(smmu);
- 	if (err)
- 		return err;
-@@ -2294,9 +2340,13 @@ static int __maybe_unused arm_smmu_runtime_resume(struct device *dev)
- 	struct arm_smmu_device *smmu = dev_get_drvdata(dev);
- 	int ret;
- 
-+	arm_smmu_icc_enable(smmu);
-+
- 	ret = clk_bulk_enable(smmu->num_clks, smmu->clks);
--	if (ret)
-+	if (ret) {
-+		arm_smmu_icc_disable(smmu);
- 		return ret;
-+	}
- 
- 	arm_smmu_device_reset(smmu);
- 
-@@ -2308,6 +2358,7 @@ static int __maybe_unused arm_smmu_runtime_suspend(struct device *dev)
- 	struct arm_smmu_device *smmu = dev_get_drvdata(dev);
- 
- 	clk_bulk_disable(smmu->num_clks, smmu->clks);
-+	arm_smmu_icc_disable(smmu);
- 
- 	return 0;
- }
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.h b/drivers/iommu/arm/arm-smmu/arm-smmu.h
-index 26d2e33cd328b8278888585fc07a31485d9397e2..c00606a416b2f4bb44a35e5d67f6ef801df68e1c 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
-@@ -15,6 +15,7 @@
- #include <linux/bits.h>
- #include <linux/clk.h>
- #include <linux/device.h>
-+#include <linux/interconnect.h>
- #include <linux/io-64-nonatomic-hi-lo.h>
- #include <linux/io-pgtable.h>
- #include <linux/iommu.h>
-@@ -335,6 +336,7 @@ struct arm_smmu_device {
- 	int				num_clks;
- 	unsigned int			*irqs;
- 	struct clk_bulk_data		*clks;
-+	struct icc_path			*icc_path;
- 
- 	spinlock_t			global_sync_lock;
- 
-
--- 
-2.34.1
-
+>
+> Applied, thanks!
+>
+> [1/4] riscv: dts: spacemit: k1: add SD card controller and pinctrl support
+>        https://github.com/spacemit-com/linux/commit/2d77e577109967ef65f269c1fc1d6a659d4260fb
+> [2/4] riscv: dts: spacemit: k1-orangepi-rv2: add SD card support with UHS modes
+>        https://github.com/spacemit-com/linux/commit/2585c60ce2f977b13f14a67d1e3ed9c73fd7f381
+> [3/4] riscv: dts: spacemit: k1-bananapi-f3: add SD card support with UHS modes
+>        https://github.com/spacemit-com/linux/commit/c76e2f058cbcab84e4a703f26857a58bdf6a0042
+>
+> Best regards,
 
