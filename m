@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-298597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id tzmmKRUCCGqCUwMAu9opvQ
-	(envelope-from <devicetree+bounces-298597-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:17 +0200
+	id KKlCFCYCCGqCUwMAu9opvQ
+	(envelope-from <devicetree+bounces-298598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED08A55A4C0
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A9855A4D9
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 735CA3014281
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:35:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D8FE4301B70C
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5C12C0F6D;
-	Sat, 16 May 2026 05:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2759F2D876F;
+	Sat, 16 May 2026 05:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="b6bn1rz3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="vlv4aCyJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AF5248F57;
-	Sat, 16 May 2026 05:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B576E277C81;
+	Sat, 16 May 2026 05:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778909713; cv=none; b=G6N3UwSCUtGsrON6aypYqwXSAKNHTDPguu/RM9t9E6lpLpjmoyP2n0dDSU8bGLMsDJlfIWxiAy26kbWmgJrJMvYL1D0PG85SDk917T/l5FkXZhMZ5AT62/CsFOEQK/8eqdBWGLI5Uw6ncuPW9BXYyCFGCMC32uixeQ2fnEyJXyc=
+	t=1778909714; cv=none; b=HnEcbDVVQv8Gj6Z6XACBlcjovO7kS4ywanBzrtwkUAnJnwt+DfcLdc+ndzls7wcEBD6PzRBcRUb/tU3J7X5AIX7NLBodx50h8dxgo5F57+mPgd9aGAgoYy+Oh1Z4ZSVsXb1czM1j6VPkYtFMPXWjI2VWUa1YZHM5u0/e34z2wJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778909713; c=relaxed/simple;
-	bh=iVKolaSgIipYjQbKkBTYus5BLxNsCP7aniEDBmtsS58=;
+	s=arc-20240116; t=1778909714; c=relaxed/simple;
+	bh=1Ywoj2EChrJkdIEVIClwgbqPkSpkodGiY8WCoxjST1Y=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ptiHHMgIknHxl/3r7oSFERf3snxJfaAzq8Nqd7+yr/4NcqNwHbZUp6gOW6gsadRhUS1VXYST6V0UVfKfIE0FH/IZeLcva758EjxKJ82mfRUcS1XReD1RVqdpmNP1rO+hWfn6UCUXJa0WdyJwCpPLdHMaspzWkmzhSNQfL3Wkcak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=b6bn1rz3; arc=none smtp.client-ip=195.78.66.88
+	 In-Reply-To:To:Cc; b=QF/M7rLZ95rYhnusWHQBwLG8HqQg+pSt+BS50lj7s3pmIlyR0Qp2UpRVfQG+IPnEb63osn7QUb2nsDkTFd4NMUquB9CmT1g6dFXUI4UeAou82jXkPAzT7Tw/hfgwk6/CSGFJ/TAQNl8s6/Lu8zZllCtdpBKWn9IOa0C6ZbGYDLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=vlv4aCyJ; arc=none smtp.client-ip=195.78.66.88
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -40,21 +40,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=+93HxxN7yIZfnUG0TZsyW59HsKIWE1ABkVgFQlDrzjw=; b=b6bn1rz3awLLRdlWMDVCgd4ubq
-	0Fhy2oT6Ng/PS8MtrWkt2ewNCbSlFU81lWAz4d/gupJFIOIddjczsTUbccqG/7WoM7PeGqsx01M6e
-	SEbkWA+wV90mlWWjUweyBt6wEJy+2hT1N84pd5JHsuRg+UQA+40gNKyQliEOzERLAAzJLKkoPb72l
-	RFAvpx/ZkJlr/eyY/McD0mWdaKtRWEShZhhGXcqqjYcDZjCwARtP5FCJ0GiI5t9Rmq416fktTUeaw
-	cD4ShUFlVB7VMwtywHoYOdLK4IunbS4URfk+DZwjfn0KYQoaFdElL1QRyVvY53vDdxoSEj9ut7/s8
-	gHubnyxw==;
+	bh=blOC+9GmrnWG7CFQB7EzYgUnvF3WIzCMlYztxn2jcGY=; b=vlv4aCyJ7sEQL7yIA+Gp8/H1HR
+	HL9cwXW0wkMkcS59YEgPipo52rxkEccXxBNGM2PLXu+mcWOVwGMtQHrQnMASJE44D4vPQ7pSzrW4R
+	W9f6HkPBe8txvX2ixjyKeapO77iF/YjKvDDp9daS05DOLDNbW3zSmDjV57r0c0tW1UqCr8PM509js
+	JXOR7559rxhrvSBB9s4Y5OdpyyCo7oPcoFLBTTzs+rE9RT4Zi/0Etgo+c2+zjHMA60yG8yaQt7c5+
+	LaLsSxEi23lymkWD2we5tMpzdwiN9C3lz3JBJmENnedSW1LOdnCzMVX8wZF+55QOL3OcIRNsCVLMc
+	LWyTPtLA==;
 Received: from [91.102.182.218] (helo=localhost)
 	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.99.3)
 	(envelope-from <michal.piekos@mmpsystems.pl>)
-	id 1wO7g4-0000000GeDC-10wA;
+	id 1wO7g4-0000000GeLc-3o1Z;
 	Sat, 16 May 2026 07:35:08 +0200
 From: Michal Piekos <michal.piekos@mmpsystems.pl>
-Date: Sat, 16 May 2026 07:34:14 +0200
-Subject: [PATCH v3 1/3] dt-bindings: iio: adc: Add GPADC for Allwinner A523
+Date: Sat, 16 May 2026 07:34:15 +0200
+Subject: [PATCH v3 2/3] iio: adc: sun20i-gpadc: add A523 gpadc support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260516-sunxi-a523-gpadc-v3-1-a3a04cff2620@mmpsystems.pl>
+Message-Id: <20260516-sunxi-a523-gpadc-v3-2-a3a04cff2620@mmpsystems.pl>
 References: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
 In-Reply-To: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -77,115 +77,98 @@ To: Jonathan Cameron <jic23@kernel.org>,
  Maksim Kiselev <bigunclemax@gmail.com>
 Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>, 
- Conor Dooley <conor.dooley@microchip.com>
+ linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778909655; l=1829;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778909655; l=1815;
  i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
- bh=iVKolaSgIipYjQbKkBTYus5BLxNsCP7aniEDBmtsS58=;
- b=dNa6nvUg/GEDjIL6hyUiuVL4nymIy38aSx4UJanAcfJXiJiRgIj9YzMM5w1YTWqpw+EonPSdz
- XBCZ7pufOLtDNkWNP6ubVt2aBmr4n5gzqbCDD5Nm/H+GNVvodpaj+Vj
+ bh=1Ywoj2EChrJkdIEVIClwgbqPkSpkodGiY8WCoxjST1Y=;
+ b=fHu1kIpSQz5NOHUcuTQyr3ZHoZwMqVqYAJV12YvtSVwZh3SbwGo3xim22zw1ZdFQ7OVN65+oZ
+ w7vY3Ltv3aVD8j7hVj/S/TanLH2DcaAChPgAb9/tw9flsmeRxbux0y8
 X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
  pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
 X-Authenticated-Id: michal.piekos@mmpsystems.pl
-X-Rspamd-Queue-Id: ED08A55A4C0
+X-Rspamd-Queue-Id: A2A9855A4D9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298597-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298598-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.254];
-	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.386];
 	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[mmpsystems.pl:-];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mmpsystems.pl:email,mmpsystems.pl:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mmpsystems.pl:email,mmpsystems.pl:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add support for the GPADC for the Allwinner A523. It differs from the
-D1/T113s/R329/T507 by having two clocks.
+A523 differs from existing sun20i-gpadc-iio by having two clocks; bus
+clock and module clock.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Change driver to enable all clocks.
+
 Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
 ---
- .../iio/adc/allwinner,sun20i-d1-gpadc.yaml         | 32 +++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+ drivers/iio/adc/sun20i-gpadc-iio.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
-index da605a051b94..6467800d30e2 100644
---- a/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
-@@ -14,6 +14,7 @@ properties:
-     oneOf:
-       - enum:
-           - allwinner,sun20i-d1-gpadc
-+          - allwinner,sun55i-a523-gpadc
-       - items:
-           - enum:
-               - allwinner,sun50i-h616-gpadc
-@@ -29,7 +30,12 @@ properties:
-     const: 0
+diff --git a/drivers/iio/adc/sun20i-gpadc-iio.c b/drivers/iio/adc/sun20i-gpadc-iio.c
+index 861c14da75ad..f5fd2240b808 100644
+--- a/drivers/iio/adc/sun20i-gpadc-iio.c
++++ b/drivers/iio/adc/sun20i-gpadc-iio.c
+@@ -177,10 +177,10 @@ static int sun20i_gpadc_alloc_channels(struct iio_dev *indio_dev,
+ static int sun20i_gpadc_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+-	struct iio_dev *indio_dev;
+ 	struct sun20i_gpadc_iio *info;
++	struct clk_bulk_data *clks;
+ 	struct reset_control *rst;
+-	struct clk *clk;
++	struct iio_dev *indio_dev;
+ 	int irq;
+ 	int ret;
  
-   clocks:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
+@@ -205,9 +205,11 @@ static int sun20i_gpadc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(info->regs))
+ 		return PTR_ERR(info->regs);
  
-   interrupts:
-     maxItems: 1
-@@ -40,6 +46,30 @@ properties:
-   resets:
-     maxItems: 1
+-	clk = devm_clk_get_enabled(dev, NULL);
+-	if (IS_ERR(clk))
+-		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock\n");
++	ret = devm_clk_bulk_get_all_enabled(dev, &clks);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "failed to enable clocks\n");
++	if (ret == 0)
++		return dev_err_probe(dev, -ENODEV, "needs at least one clocks\n");
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - allwinner,sun55i-a523-gpadc
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus clock
-+            - description: Module clock
-+        clock-names:
-+          items:
-+            - const: bus
-+            - const: mod
-+      required:
-+        - clock-names
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names: false
-+
- patternProperties:
-   "^channel@[0-9a-f]+$":
-     $ref: adc.yaml
+ 	rst = devm_reset_control_get_exclusive(dev, NULL);
+ 	if (IS_ERR(rst))
+@@ -243,6 +245,7 @@ static int sun20i_gpadc_probe(struct platform_device *pdev)
+ 
+ static const struct of_device_id sun20i_gpadc_of_id[] = {
+ 	{ .compatible = "allwinner,sun20i-d1-gpadc" },
++	{ .compatible = "allwinner,sun55i-a523-gpadc" },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, sun20i_gpadc_of_id);
 
 -- 
 2.43.0
