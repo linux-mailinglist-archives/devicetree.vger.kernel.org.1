@@ -1,153 +1,238 @@
-Return-Path: <devicetree+bounces-298732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298734-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IpBGlumCGphzgMAu9opvQ
-	(envelope-from <devicetree+bounces-298732-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 19:16:11 +0200
+	id sJhTJ+WmCGpizgMAu9opvQ
+	(envelope-from <devicetree+bounces-298734-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 19:18:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1033255CCE0
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 19:16:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183D555CD79
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 19:18:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7C7E03004F3F
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 17:16:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2C9C730131FE
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 17:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8685D2F7F1B;
-	Sat, 16 May 2026 17:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729773E8352;
+	Sat, 16 May 2026 17:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dOcGfhhE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mgc/lZBn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118912236EE
-	for <devicetree@vger.kernel.org>; Sat, 16 May 2026 17:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2EF26ED59;
+	Sat, 16 May 2026 17:18:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778951769; cv=none; b=MYJ3gVUNcok+mTGROF28GkBnB4NkcXD5TIpBlxyGKTzr4wQFLVAJmfMVTx2KNuZxPJGZy9RFknECTfMXRfJz6jBa6veP6uANaZD3At8QhSgUoM7rOihLisY0zftPQa7xLKT65YkIKJAUQ+XSp5Ffq8IMCRJOK8IZelIfg2x/WCo=
+	t=1778951902; cv=none; b=C0l/J6PsrOLOEucoW4kTXziL60fwTWGw757EwRv+5mH+auEfR6g++4watzgefvUk7C9NGnOIu7PLmMb/aWh6E6Gr1dVfGac+DeHEkqK5srfCOGwzsgq5MszW3p0AwfaFp9osQ50OVe9OidqOjVvczgPl0fGxtzI/+LWq5JZ6+2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778951769; c=relaxed/simple;
-	bh=+gIiLJUmDeM9RGg3uvxz7rYx/xjipqNwDfwEyOgS1LM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FIWEv84kcHFARWLT+rbx3rhlz3ApLAbiWkmyg/oGQhbjtHvDNgx97nIppZJ6i3DAZqukuHmPPObX5Yn9I1dl9yc5PMpqgzDF4A59SQrnAovXoqD/zGa2mQrXRThosCIZ3UA8SVysUbRFimTPcDEl/NHLnCX3h26ZcgCD17E5Yfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dOcGfhhE; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-48d10c981e4so1336635e9.0
-        for <devicetree@vger.kernel.org>; Sat, 16 May 2026 10:16:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778951766; x=1779556566; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bmJR0NbRzvNpkXAmanOQNTT1QafsZYlfpNq/mu5lwJk=;
-        b=dOcGfhhED41KGOz24qYItudo8vsUlHOy7/dKb0IYjCDgd2K94p/TY4n/6K76fn2Uf+
-         dRGLKB5Juu4NIpw17+7vdfIz3v1rNC1z/65FkwuCOGw1UcFMFpEnc8vTnWumq4zYvD5J
-         6IJYl2eKQFi+CX+4RFA/gkNHQjDoXf4+VaSz42Ye0TbDnUqA6A1MydSgxow6NysAE5JY
-         vjGk/RcRMfqvIziip+BT92EpikrcR5evdhXlqIXzfuTcfM2jCJgd0vnJDhR6vplpzkqQ
-         /T95fIGd/Q2z87D0WpmAHaj5ILX95bAijyBlgbxzWvDi3I4Q4hSC7KEYks5mjCRWqgux
-         b+hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778951766; x=1779556566;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bmJR0NbRzvNpkXAmanOQNTT1QafsZYlfpNq/mu5lwJk=;
-        b=jqLoV8vkb/wgICLLcvrK2cYNybUHTJTVYwkweLYUudK7UTcx9MrfVe3udLB4wfIfLI
-         fAXiT5XUvuBOUO5mW2QWB8CjLS7rzwYshiIEvmCiB4uPdFbnXmOIaILuZzfuJnUVWzlD
-         RJGUTx76uePJviq317ARuto94Hz2q7tgay5yHmiTHU66At4Of8ddD16tCGLTurhc57Jn
-         +xuu6DAR+vEP/1t0kQu2zhcjbIS0C8B0Nko4Msoh1rOzptTVO6eU1qSpgGP+caDIxml1
-         3G01a2fmVaHl/Cy8tCgEy3SuE59cY/C9WTaNDSPLCo1PtjEeEyQ26T8a1ICoLREW1bL0
-         5URg==
-X-Forwarded-Encrypted: i=1; AFNElJ/GltaibrSp9fwi8cYrVT8UOnT7B2TTa7zfCQcrF1PbKBhRyQs8bKLlUfmtZ1h/XrdVCAGZwiUPtMmG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz497bYpXQL/1/sySM7K7rV5hzulhKlSEpKpbwtZIg8Ei5Pn8oK
-	2/PBJ6tfagawv1Q8wox4944+rPp4wF3zl+B1GiM5hdYz2FsPtIOwBieP
-X-Gm-Gg: Acq92OGbqalFtRVor+CKqvw2c63xqVEnq3TqnkjQePKMD9E3v/8znEPV20AtNuvCani
-	qYD1kO0gpwpwt5E8cEPsV8FKC0+zI4lZd/YjrHMuRtasemMn5rr0Ow7TargQQBOf7YDPgXiFGdt
-	AelEry3XJp9hysuLyQk6sDAQMzAN52/9QIXt1bJ564NzsnzdOH75FXYq8x0pXxY2iwxCHyB6lUf
-	eCGnLaqPDQK5MJhrZSq26fBTEgbBFQwrucBJMOBSZcOr5e55kRYQ7iEEvMPzWudmvfmjBNh4Gs6
-	o3KbQku6xFnBnKI75haqlhHLRSxTYGxnkgL0qR/68brdJIc4NblfoU7q57rmeccdDDMl88tROZb
-	Nc6J+sf+VdRWVFhetDUDtCZqA2xqSnnFes10rBd7e6vH9fWcdAfcSJ122DpKpgs+5hsBEgi6I7o
-	n4gQA5jLFjX9rMApkrHm2um7s1Yw==
-X-Received: by 2002:a05:600c:4704:b0:489:1ca4:c999 with SMTP id 5b1f17b1804b1-48fe66550aamr54977995e9.8.1778951766176;
-        Sat, 16 May 2026 10:16:06 -0700 (PDT)
-Received: from skbuf ([2a02:2f04:d507:6e00:942e:56b7:8c24:d04b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe5ab527asm156348275e9.11.2026.05.16.10.16.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 May 2026 10:16:05 -0700 (PDT)
-Date: Sat, 16 May 2026 20:16:02 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, johan@kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 phy-next 2/2] phy: ti: add PHY driver for TI
- DS125DF111 Dual-Channel Retimer
-Message-ID: <20260516171602.iwm6vszhiyn7un5a@skbuf>
-References: <20260516060309.2282592-1-ioana.ciornei@nxp.com>
- <20260516060309.2282592-1-ioana.ciornei@nxp.com>
- <20260516060309.2282592-3-ioana.ciornei@nxp.com>
- <20260516060309.2282592-3-ioana.ciornei@nxp.com>
+	s=arc-20240116; t=1778951902; c=relaxed/simple;
+	bh=b14MshZ4cn6b/s8l7UQsBfswQZyULPwSuj5MH7P9aME=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CO+NdHup6e7ktvAlKRX/zfmFoszu6f2uOaqHi+uRe4W5lxC/R8MFFcb1/f9Knp6idZ6aW9gDdcQFGEtNHXh3X4mh4ckfj97f8rHsh09x7K5bRcsPO1eVlbVcMU9Df4CY5Wgqwdxg3hdQtClqu/3rVP3vjLAx1RMCpkUhQkyu0PY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mgc/lZBn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EBC66C19425;
+	Sat, 16 May 2026 17:18:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778951902;
+	bh=b14MshZ4cn6b/s8l7UQsBfswQZyULPwSuj5MH7P9aME=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Mgc/lZBnh1ZOvdoJ1DiGrc2w/NFx5WYF7pkPi5DSjSXjs7eqbYSs5joZnaLeOjr47
+	 ZgqPICe7fgR53yhrpJRb1A2neO5cGZBBDFfCjwUWhs4VWfZ7vaeQZi7wVRtWR3/Alp
+	 UnmaJv8q6SY0U64X1e7lAC8SP2XFYneFdNE08qF9WhvfD71wDlbKpeZheQtt3p53A1
+	 qTCDcJ+s0iIqxLnkuAh8GULiRWMYsS0Fb1R9X+Qx1IFtVvLTshhe3nBOIkxQfBujHI
+	 b520Ek0rEdV9MVi0EQ6w9BQZJgQkJol1t/NuSsfTQYtQMU0lcU91+d35Mq9tzZrbBg
+	 IrZrvcpFBwjIA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D957ECD4F25;
+	Sat, 16 May 2026 17:18:21 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Subject: [PATCH v6 0/8] Add VIM4 MCU/FAN support
+Date: Sat, 16 May 2026 19:17:00 +0200
+Message-Id: <20260516-add-mcu-fan-khadas-vim4-v6-0-cccc9b61f465@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260516060309.2282592-3-ioana.ciornei@nxp.com>
- <20260516060309.2282592-3-ioana.ciornei@nxp.com>
-X-Rspamd-Queue-Id: 1033255CCE0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WS3Y7aQAyFXwXluoPm3wmqqn2Pqhf22LNMSwJNA
+ trVinfvkOUCaFEvPaPzHfvYH80kY5Gp2aw+mlFOZSr7oRbxy6pJWxxeRRWudWO1jdprq5BZ9em
+ oMg7q1xYZJ3UqvVeYTCIJwaWOmqo+jJLL20L+/uOzHuX3sRrMn48N4SQq7fu+zJvVIG+zWkych
+ Yu+l2nCxX6z+nr9iLqz0Ye10aEWRhn1s+Cw3h5fsN/tX0taV9y3xR3ntF20MWBgiDkz1c4cIjn
+ XBqIYEmkLWvvktIDcq6wDG7tWm9ZGZocMmUwU8gwc2QtS0N5Ce68KIB3pFrvYonAO3rFjzSGmb
+ BJ6JqvJoonNbbrV7Drdki2l3jsI9pJMJRfaiZI6NfoMHTjcnOy9KYHTOYi3JIbbjk3nJDqszOC
+ 7kJiyTcBA/zR1WtUtqTKccFdYHcb9Qcb5XVFdpefOuQzm6vi31izaGr2aQQ3H3U6NMkldI0XdC
+ uWO0W9Oprmsf1umeT++L3dWny77/+9JnYzSFWZszR0TkH6pTcpunccFWdu6wbjnGFsxUE8mkrX
+ edfiAcTcYA88xrmIwIuQAmoyhB4y/wVjzHOMrxnswxqNts+UHTLjF+OeYcOkmp4xgApB1N5jz+
+ fwHghdgrtgDAAA=
+X-Change-ID: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5349;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=b14MshZ4cn6b/s8l7UQsBfswQZyULPwSuj5MH7P9aME=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQxbHssNhFxZOYfme+D3mSdeumzMnel1JOmqvKzbdJt1Sw
+ sd57UWzjlIWBjEuBlkxRZb+uZYn3l0+eubrHvUUmDmsTCBDGLg4BWAi8S6MDN92mzP2ywjVy1uW
+ yG12enVXSeHVu4/LOcpN7EvqGJwf5DMy7Hr1RubbO5m5jRPs7YynJPu4LHGpC/SSWa21+tGESI1
+ brAA=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reply-To: linux-kernel-dev@aliel.fr
+X-Rspamd-Queue-Id: 183D555CD79
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298732-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298734-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr]
 X-Rspamd-Action: no action
 
-On Sat, May 16, 2026 at 09:03:09AM +0300, Ioana Ciornei wrote:
-> Add a generic PHY driver for the TI DS125DF111 Multi-Protocol
-> Dual-Channel Retimer. The driver currently supports only 10G and 1G link
-> speeds but it can easily extended to also cover other usecases.
-> 
-> Since the available datasheet (https://www.ti.com/lit/gpn/DS125DF111)
-> does not name the registers, the name for the macros were determined by
-> their usage pattern.
-> 
-> A PHY device is created for each of the two channels present on the
-> retimer. This allows for independent configuration of the two channels.
-> This capability is especially important on retimers which have more than
-> 2 channels that can be, depending on the board design, connected in
-> multiple different ways to the SerDes lanes.
-> 
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> ---
+The Khadas VIM4 board features a different MCU variant compared to
+previous VIM boards.
+While it shares the same I2C-based communication model,
+it differs in some ways:
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+  - A distinct register map with its own volatile/writeable register set
+  - A fan control with 0–100 levels instead of the 0–3 levels previously
+  - A fan power supply gated through a regulator
+
+This series adds support for this new variant by:
+
+  1. Refactoring the khadas-mcu MFD driver to use per-variant data
+     structures (regmap config, cells, fan platform data),
+     and adding the khadas,vim4-mcu compatible string.
+
+  2. Extending the fan thermal driver to retrieve the fan register
+     and maximum level from platform_data,
+     and to optionally manage a power regulator for the fan supply.
+
+  3. Adding the corresponding DTS node for the VIM4, wiring the MCU to
+     the I2C AO_A bus and exposing it as a thermal cooling device.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v6:
+- PATCH 4: Address Lee's review comments:
+  - Use an enum to discriminate between MCU types instead of passing
+    MFD data through the DT match table
+  - Fix error code from -EINVAL to -ENODEV when no MCU type is matched
+  - Make khadas_mcu_fan_cells and khadas_mcu_cells const
+  - Use dev_err_probe() for regmap initialization error
+  - Document fan speed levels for max_level
+- Link to v5: https://lore.kernel.org/r/20260424-add-mcu-fan-khadas-vim4-v5-0-afcfa7157b23@aliel.fr
+
+Changes in v5:
+- PATCH 5: Replace devm_regulator_get_optional() with devm_regulator_get()
+           to simplify error handling and remove NULL checks, also
+           ordering as reverse christmas according to Neil's feedback.
+- Link to v4: https://lore.kernel.org/r/20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr
+
+Changes in v4:
+- PATCH 1: limit fan-supply property by compatible according to Conor's feedback.
+- Link to v3: https://lore.kernel.org/r/20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr
+
+Changes in v3:
+- PATCH 1: adding comment on vim4 compatible saying it is not discoverable,
+           thanks to Rob's and Neil's feedback.
+- Link to v2: https://lore.kernel.org/r/20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr
+
+Changes in v2:
+- PATCH 5: Add regulator_disable on suspend thanks to Neil's feedback.
+- Link to v1: https://lore.kernel.org/r/20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr
+
+---
+Ronald Claveau (8):
+      dt-bindings: mfd: khadas: Add new compatible for Khadas VIM4 MCU
+      dt-bindings: i2c: amlogic: Add compatible for T7 SOC
+      mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
+      mfd: khadas-mcu: Add support for VIM4 MCU variant
+      thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
+      arm64: dts: amlogic: t7: Add i2c pinctrl node
+      arm64: dts: amlogic: t7: Add i2c controller node
+      arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU fan node
+
+ .../bindings/i2c/amlogic,meson6-i2c.yaml           |  13 ++-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml        |  18 ++++
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  |  13 +++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |  20 ++++
+ drivers/mfd/khadas-mcu.c                           | 119 ++++++++++++++++++---
+ drivers/thermal/khadas_mcu_fan.c                   |  37 +++++--
+ include/linux/mfd/khadas-mcu.h                     |  44 +++++++-
+ 7 files changed, 236 insertions(+), 28 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
+
+Best regards,
+-- 
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
+
 
