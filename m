@@ -1,199 +1,185 @@
-Return-Path: <devicetree+bounces-298596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNulNRnfB2pSMgMAu9opvQ
-	(envelope-from <devicetree+bounces-298596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:06:01 +0200
+	id QBuxLzcCCGqCUwMAu9opvQ
+	(envelope-from <devicetree+bounces-298600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366A2559FD9
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:06:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C17C55A4EF
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 07:35:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E36C30125FB
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 03:05:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CB697301FF89
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 05:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD657248F73;
-	Sat, 16 May 2026 03:05:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723682DAFBD;
+	Sat, 16 May 2026 05:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kn8vmPmH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b="B1KrSNTf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from s106b.cyber-folks.pl (s106b.cyber-folks.pl [195.78.66.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95D927707;
-	Sat, 16 May 2026 03:05:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 762D112FF69;
+	Sat, 16 May 2026 05:35:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.78.66.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778900757; cv=none; b=Lm9f+ADA/qqMXffq7y0iy+HWPc83/xTWP1Klv4kF+FOSHA5D+EUm0zqLDVKL9E4U6qQKOKiV/mJsrtJEwP7gXJMtjeCYHnQDxxlQVWCJdJ5qP5SNvjdNwm8ii3rjJ8F1ZbbtWSqkin6tbAqDtvyaB+OGtKg3jt23eY+/n2L4a2s=
+	t=1778909714; cv=none; b=TAsXnkJIP4yx9p7gy5IucVWKgWB6CtapNQwFSe1cEQKp3wS1hpBfdLiwFtXipGK6Q9Iukw8RGMXENO0IItQUCdV566r5SrrXBp1Oj8VvN7h1lSU5z6V8Mhb4I3Cu5+WjJfTbYtdFVEnBwBNHCsw5C7xvPSq4aZwm5V6vE4zlofU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778900757; c=relaxed/simple;
-	bh=ZdO8LpvUMWMIZvaMnV6/IDHpYuzoWR3vkH4yZLYmhO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P0zUaAfKOvqx2MuWn7uZhdsZ5zYbC2tMacmgboiFbkP+nd+LSRDHHcbY8Be39HIO2NMftUcldU7x4jrtj6yNKX7Ojbw3Yrz3lkW4vsDi3nS6WaZe57kTI8C+lNdR4z+pFApaekTPkNH3yQUOqvh+aoB8j0G5N196DngS1NqTy/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kn8vmPmH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36141C2BCB0;
-	Sat, 16 May 2026 03:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778900757;
-	bh=ZdO8LpvUMWMIZvaMnV6/IDHpYuzoWR3vkH4yZLYmhO4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kn8vmPmHoHEvQ4Wq+VG405oaDp6Ef+xNEkLp8218o8jD+f6MbQ7uqf/AseZL1BSvT
-	 1mC9Xd8yzqfL9++F1ONwnTzlzRlHKqaPrivOuV5XvZoLDBgtXhK1+xa6ZutKx+qWsg
-	 23XPYeHoq/436o7+XmbyxMbW58XWPIHL3QPJWbuVYM2Sjs6lZvlHEE19jqMLVWsqGo
-	 RQo5quEG6MSMK0I7ZS+Vf8V/wmze0XjWV1txbLrZx4WKwPzDYal1h+duAcb7a3jzHN
-	 Tqn9quGXgWksKC4Dk3R5yoY87G28LTho0lAUjuun8ZF/CJzMMTjxby+bL4kq9cIjE3
-	 fEjXsAjw8bL3g==
-Date: Fri, 15 May 2026 20:05:54 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: sashiko@lists.linux.dev
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	robh@kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v4 08/18] riscv_cbqri: Add capacity controller
- monitoring device ops
-Message-ID: <agffEmioJUzX3OUo@x1>
-References: <20260510-ssqosid-cbqri-rqsc-v7-0-v4-8-eb53831ef683@kernel.org>
- <20260512015859.B33A7C2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778909714; c=relaxed/simple;
+	bh=8GoHeq9jR+/2KxfeL+lHcdywJFQkb502/IOBEjFLrJI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CgTVL4Pa0rORlxS8R64KmZnDyUN/l23d8ceF0mQ+zI81dNrQ/t77Bw9IruAek+fcjOafsQHDpUXQOTv7rbPSfKIjlS1xemT/EvRouMILHnHgBGRp3pRUGE/k6nei/gI2OOHUSyW+btPZRiZms6BXFBPSsl/HLebBjkmzUd4zeCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl; spf=pass smtp.mailfrom=mmpsystems.pl; dkim=pass (2048-bit key) header.d=mmpsystems.pl header.i=@mmpsystems.pl header.b=B1KrSNTf; arc=none smtp.client-ip=195.78.66.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mmpsystems.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mmpsystems.pl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=mmpsystems.pl; s=x; h=Cc:To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=IAiw1WCrW9eFilDGxnRI0+TcsuxqhR+PLAhpGbnPnBI=; b=B1KrSNTfg3tI+U7X15zpEzRQPk
+	zd2maOxtwHG8791lXzGr2gk5e0gO3jbZoicb2nkKiMWQ19yMlbCKbth71maitPhFaH7oVYubm0vqq
+	B1awmDli0kYzK0wPdJoBJK+0piBDI37LqdEgliDKGsK1DC1O7uziXxtBcVtwAjWBPfdL1iyKH+Aak
+	9tYY6XsgSls7Qp9Yx08g6WbQpejvMko7dpQefP5m5F/Q2ohFouO23U1mlir1dVo0MaMD3QlYWx6JN
+	AGUPr6bdvB/qoHaSJBCujDFxrIvPdnoVOW0WH1OKtclKK6k/DSPWmmBVNISC2TgMSm9ycd7Ii01Ir
+	QYt9wcug==;
+Received: from [91.102.182.218] (helo=localhost)
+	by s106.cyber-folks.pl with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.3)
+	(envelope-from <michal.piekos@mmpsystems.pl>)
+	id 1wO7g2-0000000GasF-0t1M;
+	Sat, 16 May 2026 07:35:06 +0200
+From: Michal Piekos <michal.piekos@mmpsystems.pl>
+Subject: [PATCH v3 0/3] Add GPADC support for A523
+Date: Sat, 16 May 2026 07:34:13 +0200
+Message-Id: <20260516-sunxi-a523-gpadc-v3-0-a3a04cff2620@mmpsystems.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260512015859.B33A7C2BCB0@smtp.kernel.org>
-X-Rspamd-Queue-Id: 366A2559FD9
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANUBCGoC/23NQQ6CMBQE0KuYrq35LRTUlfcwLgr9hRqBhg8EQ
+ ri7BV0YdTnJzJuZEbYOiZ13M2txcOSaOoRov2N5qesCuTMhMwkyAQUpp74eHddKRrzw2uRcHNO
+ T1srYVMUszHyL1o0beb29MvXZHfNuddZG6ahr2mn7HMTae/MCfvlBcOCxTTKwMQDY7FJVnibqs
+ KKDf7D1YpCfSPQHkQExCq1BoYTR+TeyLMsTPrgiBQsBAAA=
+X-Change-ID: 20260507-sunxi-a523-gpadc-1879aa5df754
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Maksim Kiselev <bigunclemax@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Michal Piekos <michal.piekos@mmpsystems.pl>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778909655; l=2320;
+ i=michal.piekos@mmpsystems.pl; s=20260301; h=from:subject:message-id;
+ bh=8GoHeq9jR+/2KxfeL+lHcdywJFQkb502/IOBEjFLrJI=;
+ b=gt2LAeGzMxoGrrckQQX49mfSrf88U060DBS/Zb3T9J7WJN8StEtOUlcjWP7+fGGa0e60Fx6wn
+ B7RnkDO0a/rAVi9jBXvTL5wnL/gGCVscyKy4/0dV+wjCUohLVMuKoig
+X-Developer-Key: i=michal.piekos@mmpsystems.pl; a=ed25519;
+ pk=Aixyx03If7ZDamiKKN0lsa+0mtA+WjIuIf2ZQVYNBqg=
+X-Authenticated-Id: michal.piekos@mmpsystems.pl
+X-Rspamd-Queue-Id: 3C17C55A4EF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[mmpsystems.pl:s=x];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[mmpsystems.pl : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298596-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-298600-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.585];
+	FROM_NEQ_ENVFROM(0.00)[michal.piekos@mmpsystems.pl,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[mmpsystems.pl:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Tue, May 12, 2026 at 01:58:59AM +0000, sashiko-bot@kernel.org wrote:
-[..] 
-> > @@ -361,6 +402,28 @@ static int cbqri_probe_cc(struct cbqri_controller *ctrl)
-> >  	}
-> >  	cpus_read_unlock();
-> >  
-> > +	/* Probe monitoring features */
-> > +	err = cbqri_probe_feature(ctrl, CBQRI_CC_MON_CTL_OFF,
-> > +				  CBQRI_CC_MON_CTL_OP_READ_COUNTER, &status,
-> > +				  &has_mon_at_code);
-> 
-> Does reusing cbqri_probe_feature() for the Monitoring Control Register
-> (MON_CTL) execute invalid hardware commands and write to reserved bits?
-> 
-> Looking at cbqri_probe_feature(), it issues the operation while clearing the
-> RCID but ignores the EVT_ID field. This means it issues a counter read using
-> whatever uninitialized value the bootloader left in EVT_ID. Hardware is
-> expected to reject a counter read for an unconfigured event, returning an
-> error status instead of success.
-> 
-> Won't this expected failure cause the probe to falsely conclude monitoring is
-> unsupported?
+Add support for Allwinner A523 GPADC in sun20i gpadc driver and describe
+corresponding node in dts for A523 SoC.
 
-I will change it so every write masks the controller's input fields
-clean before ORing the intended values.
+A523 uses same model as existing driver except it has two clocks.
 
-> Additionally, cbqri_probe_feature() unconditionally attempts to verify Access
-> Type (AT) support by modifying bits 7:5. Since the MON_CTL register layout
-> does not contain an AT field, does this modify implicitly reserved bits and
-> risk hardware faults?
+Added support to enable more than one clock in the driver, extended the
+binding with new compatible and wired up dts node for A523 as its own
+fallback compatible.
 
-Bits 7:5 in MON_CTL are reserved zero and should not be hazardous to write.
+Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
+---
+Changes in v3:
+- More granular handling of devm_clk_bulk_get_all_enabled() return value
+- Added #size-cells and #address-cells to node description
+- Fixed formatting
+- Link to v2: https://patch.msgid.link/20260513-sunxi-a523-gpadc-v2-0-d5efde151dac@mmpsystems.pl
 
-> Also, in the secondary AT=CODE probe within cbqri_probe_feature(), it appears
-> the RCID field is not re-cleared:
-> 
-> cbqri_probe_feature() {
->     ...
->     reg = saved_reg;
->     FIELD_MODIFY(CBQRI_CONTROL_REGISTERS_OP_MASK, &reg, operation);
->     FIELD_MODIFY(CBQRI_CONTROL_REGISTERS_AT_MASK, &reg,
->                  CBQRI_CONTROL_REGISTERS_AT_CODE);
->     iowrite64(reg, ctrl->base + reg_offset);
->     ...
-> }
-> 
-> If the bootloader left an out-of-bounds or invalid value in the RCID field,
-> will this secondary probe execute on that invalid ID and potentially cause a
-> hardware fault?
+Changes in v2:
+- Handle scenario when 0 clocks has been defined
+- Fix copy&paste sentence in 3rd patch commit message
+- Moved status as last property in dts node
+- Make A523 its own fallback compatible
+- Removed redundant maxItems/minItems properties from binding
+- Link to v1: https://patch.msgid.link/20260510-sunxi-a523-gpadc-v1-0-4f6b0f4000fb@mmpsystems.pl
 
-I will use (saved_reg & ~active_mask) so RCID/MCID will start from 0.
+To: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+To: Nuno Sá <nuno.sa@analog.com>
+To: Andy Shevchenko <andy@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Maksim Kiselev <bigunclemax@gmail.com>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org
 
-> 
-> > +	if (err)
-> > +		return err;
-> 
-> [ ... ]
-> 
-> > diff --git a/drivers/resctrl/cbqri_internal.h b/drivers/resctrl/cbqri_internal.h
-> > index 6a581a7e417be..b1169ffc599fb 100644
-> > --- a/drivers/resctrl/cbqri_internal.h
-> > +++ b/drivers/resctrl/cbqri_internal.h
-> 
-> [ ... ]
-> 
-> > @@ -39,6 +41,20 @@
-> >  #define CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT   2
-> >  #define CBQRI_CC_ALLOC_CTL_STATUS_SUCCESS  1
-> >  
-> > +#define CBQRI_CC_MON_CTL_OP_CONFIG_EVENT 1
-> > +#define CBQRI_CC_MON_CTL_OP_READ_COUNTER 2
-> > +
-> > +/* mon_ctl field masks (CC and BC share an identical OP/MCID/EVT_ID/STATUS layout) */
-> > +#define CBQRI_MON_CTL_OP_MASK        GENMASK(4, 0)
-> > +#define CBQRI_MON_CTL_MCID_MASK      GENMASK(19, 8)
-> > +#define CBQRI_MON_CTL_EVT_ID_MASK    GENMASK(27, 20)
-> 
-> Can FIELD_MODIFY() combined with GENMASK() zero-extend and silently clear the
-> upper 32 bits of 64-bit control registers on 32-bit architectures?
-> 
-> Since CBQRI_MON_CTL_OP_MASK and CBQRI_MON_CTL_MCID_MASK are defined using
-> GENMASK(), they yield an unsigned long (32-bit on RV32).
-> 
-> When FIELD_MODIFY() does *(_reg_p) &= ~(_mask) on the 64-bit u64 reg, the
-> bitwise negation of the 32-bit mask is bitwise ANDed with reg. C integer
-> promotion rules zero-extend the unsigned 32-bit value to something like
-> 0x00000000FFFFFFE0ULL.
-> 
-> Will this inadvertently clear bits 63:32 of the register to 0 before it is
-> written back via iowrite64(), potentially corrupting the STATUS field, the
-> BUSY bit, and any hardware Write-Preserve-Read-Ignore fields?
+---
+Michal Piekos (3):
+      dt-bindings: iio: adc: Add GPADC for Allwinner A523
+      iio: adc: sun20i-gpadc: add A523 gpadc support
+      arm64: dts: allwinner: a523: add gpadc node
 
-RV32 cannot reach this code today. RISCV_CBQRI_DRIVER selects
-RISCV_ISA_SSQOSID, which depends on 64BIT, so unsigned long is always
-64-bit where these masks are evaluated.
+ .../iio/adc/allwinner,sun20i-d1-gpadc.yaml         | 32 +++++++++++++++++++++-
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi     | 13 +++++++++
+ drivers/iio/adc/sun20i-gpadc-iio.c                 | 13 +++++----
+ 3 files changed, 52 insertions(+), 6 deletions(-)
+---
+base-commit: 8ab992f815d6736b5c7a6f5fd7bfe7bc106bb3dc
+change-id: 20260507-sunxi-a523-gpadc-1879aa5df754
 
-However, I will widen OP/MCID/EVT_ID to GENMASK_ULL too so the masks
-stay correct if the driver is ever ported.
+Best regards,
+--  
+Michal Piekos <michal.piekos@mmpsystems.pl>
 
--Drew
 
