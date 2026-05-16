@@ -1,301 +1,187 @@
-Return-Path: <devicetree+bounces-298750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298752-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GNWEH0S3CGp42QMAu9opvQ
-	(envelope-from <devicetree+bounces-298750-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 20:28:20 +0200
+	id SA8/FKm3CGqr2QMAu9opvQ
+	(envelope-from <devicetree+bounces-298752-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 20:30:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04F955D1FC
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 20:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA8555D21B
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 20:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4692C3026A8D
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 18:27:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D831300FEFF
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 18:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFC1532A3F3;
-	Sat, 16 May 2026 18:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8864332939C;
+	Sat, 16 May 2026 18:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="b3NruXM6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NeGMkcZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866823290A0;
-	Sat, 16 May 2026 18:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621A73246ED;
+	Sat, 16 May 2026 18:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778956025; cv=none; b=Ip5UE+ORppEgjWggPDNA9QKdQ4k7kbD0z3cvRknjWa8U0sxVozs2BzqY1C5GGI1PmDi+7uYmw1AOPp+jaY4RgWAY1s0ht/othDGDzSXnBEmmiZqAfGXKd8Jv3Gw/qrkRgmUqawPoSw4nZUSacP1En4P2YgzVZprZLQEOfKukP6U=
+	t=1778956131; cv=none; b=JufQX3kta47Z7WHI0sOjmvaVskobLV3mlzcAMPq00hwKdtlYw7XM3gdWi2KLVUR+cJ+9catqbAEjJalgXMGriGdhtkNY8VwrrZO57vbI3ZgcTL4PS18CQVpko7lijcYgbsFJpPcz+YmfFwhNE2z9Bgwk027IBGv3F2v/3Ob03f0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778956025; c=relaxed/simple;
-	bh=QlKwf7co3pF/SzQs2eUZtJORMGf+9JEiCL+zDt0Rei4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=t10Ms2H3Qd75nJGKyBfWH8vE8L5u+cO2xFHmDWjvouYz644nhW0a1jLmiwnfmPFfs1NzI+LwhZ5LeVoPOeiCGbMUiOxnd6Cs+tXV9lLLUyiAsoJPhrpmnAG2nhfKiUbzmrAolZI+Gz5469L7gutuB7Kbjy8P3ElbyJYAxR05SwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=b3NruXM6; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 575ED3F325B;
-	Sat, 16 May 2026 20:26:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1778956019; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=X2+ku8o85DCYq0AwL93spRLF6wi4RXNEmIO7+jziV3M=;
-	b=b3NruXM6S5QExnb0yuTtXlBDmIINKtoyWBHugfoIyWur5uAN2uEYv1YsQ/wxEfnmFxMfjv
-	Jr+e34pGfMj44GoMLxOJi8ZFibLadH3l5AeR3iqbGlfBgBV8Tpi/HaY0cxNnUjqY/2pz1M
-	prQEFZ4YbpAqwRK4nUDL5T0U9/OwLPU4PlxOj2oSaN00jh53w7xievjZVKk0L0py39AOnk
-	IU5HUClSdV9NWtuag8zRkX3iKBMRy3RAfSzx4fjkfOJyQYlwxLiAbrqc6VZsp3uufGJDxG
-	bV/OPilz54TZltP0OxVGhjPiUlFHwZkjm9wxT/JXygDG6B83y+OzM2Aro7eJDg==
-From: Caleb James DeLisle <cjd@cjdns.fr>
-To: linux-mips@vger.kernel.org
-Cc: conor+dt@kernel.org,
-	daniel.lezcano@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	naseefkm@gmail.com,
-	robh@kernel.org,
-	tglx@kernel.org,
-	Caleb James DeLisle <cjd@cjdns.fr>
-Subject: [PATCH v3 4/4] clocksource/timer-econet-en751221: Support EN751627 without percpu IRQ
-Date: Sat, 16 May 2026 18:26:48 +0000
-Message-Id: <20260516182648.3987792-5-cjd@cjdns.fr>
-In-Reply-To: <20260516182648.3987792-1-cjd@cjdns.fr>
-References: <20260516182648.3987792-1-cjd@cjdns.fr>
+	s=arc-20240116; t=1778956131; c=relaxed/simple;
+	bh=mXJY5235/mBb2b98kaVDFKXZ9bb0TIVibMCemRFnxRE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=It6VQFShoWaphnCqWMTax/EeysalYrbGT4g8EESzapFhcWV+UrHSzcc/ha9d0BnJGhG52sFzIF1beKLcCkKcB7H5/hOmfARmu1AdCyMwwSnD3rNAfFUev8PQL//Vymm+zRisZJ+eSjzJE+RttuKwiklIsnpdSRUJg3VyLzb/v0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NeGMkcZn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433E8C19425;
+	Sat, 16 May 2026 18:28:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778956130;
+	bh=mXJY5235/mBb2b98kaVDFKXZ9bb0TIVibMCemRFnxRE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NeGMkcZnMR6+qAtHZs0g6NSGYOLRtoQLnGOT9+I7YlaaLEKRp3O9AdDKEcqJ3pcjk
+	 OKZjCGhzDcELJy+9JkXVpXfJombLgQxpE68oBMg58U+JUhyD06Q4A3uTJa0+lwlXNa
+	 vS/himEEyPfPrqj9jEMMGQcXQTFn+/M6Pc9nzh3Jv/gmqNoPMcI1dzcya6ZKOf8bfT
+	 +V+40u8GHE6ytQaBA73JPTsDVjaDBSHb7/8q2LFMEB0Qzq1FaZg99RychxursAVeOx
+	 ZiYWYL29xbExQwepUWC+YshKi89feFFMjZFb8VjQN+0DYWAw5S5fIFDp65rk3MUcvT
+	 vb7DolI1RKUNg==
+Date: Sat, 16 May 2026 15:28:47 -0300
+From: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Roman Gushchin <roman.gushchin@linux.dev>
+Cc: Greg KH <gregkh@linuxfoundation.org>,
+	Konstantin Ryabitsev <mricon@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>, sashiko-bot@kernel.org,
+	sashiko-reviews@lists.linux.dev, sashiko@lists.linux.dev,
+	Linux Kernel Workflows <workflows@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	devicetree@vger.kernel.org, kfree@google.com
+Subject: Re: Stop false review statements
+Message-ID: <agi3X76XwcBJ-KmH@x1>
+References: <2026051631-trolling-juggling-da1c@gregkh>
+ <0902F8E6-C495-40A1-975D-92D3B72D44AE@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: D04F955D1FC
+In-Reply-To: <0902F8E6-C495-40A1-975D-92D3B72D44AE@linux.dev>
+X-Rspamd-Queue-Id: AAA8555D21B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,cjdns.fr];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298750-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298752-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[acme@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:email,cjdns.fr:mid,cjdns.fr:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-EN751627 is based on the 1004Kc which uses a different interrupt number
-for each CPU timer. Support both this and the EN751221 which uses a
-single percpu interrupt.
+On Sat, May 16, 2026 at 08:49:39AM -0700, Roman Gushchin wrote:
+> > On May 16, 2026, at 8:45 AM, Greg KH <gregkh@linuxfoundation.org> wrote:
+> > ﻿On Sat, May 16, 2026 at 08:41:43AM -0700, Roman Gushchin wrote:
+> >>>> On May 16, 2026, at 8:20 AM, Konstantin Ryabitsev <mricon@kernel.org> wrote:
 
-Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
----
- drivers/clocksource/timer-econet-en751221.c | 110 ++++++++++++++++----
- 1 file changed, 87 insertions(+), 23 deletions(-)
+> >>> ﻿On Sat, May 16, 2026 at 05:11:28AM -0700, Guenter Roeck wrote:
+> >>>>> On Sat, May 16, 2026 at 10:05:02AM +0200, Krzysztof Kozlowski wrote:
+> >>>>> What the hell is that:
+> 
+> >>>>> https://lore.kernel.org/all/20260515190707.033BDC2BCB0@smtp.kernel.org/
+ 
+> >>>>> As a bot you CANNOT MAKE a Reviewer's statement of oversight. You are
+> >>>>> not a damn human do be able to make such statement. You are a bot, a tool.
+ 
+> >>>> Where exactly do the rules say that ? I seem to miss that.
+ 
+> >>>> There is a policy document about _contributions_ made by AI, but I don't
+> >>>> see the one that says that AI agents must not provide Reviewed-by: tags.
+ 
+> >>> From my perspective, AI agents must NOT use the Reviewed-by tag for the
+> >>> following reasons:
 
-diff --git a/drivers/clocksource/timer-econet-en751221.c b/drivers/clocksource/timer-econet-en751221.c
-index ed750e39cc4f..dea6dbafa16e 100644
---- a/drivers/clocksource/timer-econet-en751221.c
-+++ b/drivers/clocksource/timer-econet-en751221.c
-@@ -21,10 +21,12 @@
- #define ECONET_MAX_DELTA		GENMASK(ECONET_BITS - 2, 0)
- /* 34Kc hardware has 1 block and 1004Kc has 2. */
- #define ECONET_NUM_BLOCKS		DIV_ROUND_UP(NR_CPUS, 2)
-+#define ECONET_NUM_IRQS			NR_CPUS
- 
- static struct {
- 	void __iomem	*membase[ECONET_NUM_BLOCKS];
--	int		irq;
-+	int		irqs[ECONET_NUM_IRQS];
-+	bool		is_percpu;
- 	u32		freq_hz;
- } econet_timer __ro_after_init;
- 
-@@ -99,6 +101,25 @@ static int cevt_init_cpu(uint cpu)
- 	struct clock_event_device *cd = &per_cpu(econet_timer_pcpu, cpu);
- 	u32 reg;
- 
-+	if (!reg_ctl(cpu)) {
-+		pr_err("%s: missing address resource for CPU %d\n", cd->name,
-+		       cpu);
-+		return -EINVAL;
-+	}
-+	if (cd->irq <= 0) {
-+		pr_err("%s: missing IRQ for CPU %d\n", cd->name, cpu);
-+		return -EINVAL;
-+	}
-+	if (!econet_timer.is_percpu) {
-+		int ret = irq_force_affinity(cd->irq, cpumask_of(cpu));
-+
-+		if (ret) {
-+			pr_err("%s: failed to set IRQ affinity to CPU %d: %pe\n",
-+			       cd->name, cpu, ERR_PTR(ret));
-+			return ret;
-+		}
-+	}
-+
- 	pr_debug("%s: Setting up clockevent for CPU %d\n", cd->name, cpu);
- 
- 	reg = ioread32(reg_ctl(cpu)) | ctl_bit_enabled(cpu);
-@@ -107,7 +128,10 @@ static int cevt_init_cpu(uint cpu)
- 	clockevents_config_and_register(cd, econet_timer.freq_hz,
- 					ECONET_MIN_DELTA, ECONET_MAX_DELTA);
- 
--	enable_percpu_irq(cd->irq, IRQ_TYPE_NONE);
-+	if (econet_timer.is_percpu)
-+		enable_percpu_irq(cd->irq, IRQ_TYPE_NONE);
-+	else
-+		enable_irq(cd->irq);
- 
- 	return 0;
- }
-@@ -138,7 +162,12 @@ static void __init cevt_init(struct device_node *np)
- 					  CLOCK_EVT_FEAT_C3STOP |
- 					  CLOCK_EVT_FEAT_PERCPU;
- 		cd->set_next_event	= cevt_set_next_event;
--		cd->irq			= econet_timer.irq;
-+
-+		if (econet_timer.is_percpu)
-+			cd->irq = econet_timer.irqs[0];
-+		else
-+			cd->irq = econet_timer.irqs[i];
-+
- 		cd->cpumask		= cpumask_of(i);
- 		cd->name		= np->name;
- 
-@@ -148,9 +177,23 @@ static void __init cevt_init(struct device_node *np)
- 
- static int __init timer_init(struct device_node *np)
- {
--	int num_blocks = DIV_ROUND_UP(num_possible_cpus(), 2);
-+	int num_blocks = of_address_count(np);
-+	int num_irqs = of_irq_count(np);
- 	struct clk *clk;
--	int ret;
-+	int ret, i;
-+
-+	econet_timer.is_percpu = of_device_is_compatible(np, "econet,en751221-timer");
-+
-+	if (econet_timer.is_percpu && num_irqs != 1) {
-+		pr_err("%pOFn: EN751221 clock must have 1 IRQ not %d\n", np,
-+		       num_irqs);
-+		return -EINVAL;
-+	}
-+	if (num_irqs > ARRAY_SIZE(econet_timer.irqs)) {
-+		pr_err("%pOFn: Too many IRQs max %d got %d\n", np,
-+		       ARRAY_SIZE(econet_timer.irqs), num_irqs);
-+		return -EINVAL;
-+	}
- 
- 	clk = of_clk_get(np, 0);
- 	if (IS_ERR(clk)) {
-@@ -160,7 +203,7 @@ static int __init timer_init(struct device_node *np)
- 
- 	econet_timer.freq_hz = clk_get_rate(clk);
- 
--	for (int i = 0; i < num_blocks; i++) {
-+	for (i = 0; i < num_blocks; i++) {
- 		econet_timer.membase[i] = of_iomap(np, i);
- 		if (!econet_timer.membase[i]) {
- 			pr_err("%pOFn: failed to map register [%d]\n", np, i);
-@@ -169,22 +212,33 @@ static int __init timer_init(struct device_node *np)
- 		}
- 	}
- 
--	econet_timer.irq = irq_of_parse_and_map(np, 0);
--	if (econet_timer.irq <= 0) {
--		pr_err("%pOFn: irq_of_parse_and_map failed\n", np);
--		ret = -EINVAL;
--		goto out_membase;
-+	for (i = 0; i < num_irqs; i++) {
-+		econet_timer.irqs[i] = irq_of_parse_and_map(np, i);
-+		if (econet_timer.irqs[i] <= 0) {
-+			pr_err("%pOFn: failed mapping irq %d\n", np, i);
-+			ret = -EINVAL;
-+			goto out_irq_mapping;
-+		}
- 	}
- 
--	irq_set_status_flags(econet_timer.irq, IRQ_NOAUTOEN);
--
--	ret = request_percpu_irq(econet_timer.irq, cevt_interrupt, np->name,
--				 &econet_timer_pcpu);
--
--	if (ret < 0) {
--		pr_err("%pOFn: IRQ %d setup failed (%d)\n", np,
--		       econet_timer.irq, ret);
--		goto out_irq_mapping;
-+	for (i = 0; i < num_irqs; i++) {
-+		irq_set_status_flags(econet_timer.irqs[i], IRQ_NOAUTOEN);
-+
-+		if (econet_timer.is_percpu)
-+			ret = request_percpu_irq(econet_timer.irqs[i],
-+						 cevt_interrupt, np->name,
-+						 &econet_timer_pcpu);
-+		else
-+			ret = request_irq(econet_timer.irqs[i], cevt_interrupt,
-+					  IRQF_TIMER | IRQF_NOBALANCING,
-+					  np->name, NULL);
-+
-+		if (ret < 0) {
-+			pr_err("%pOFn: IRQ %d setup failed: %pe\n", np,
-+			       i, ERR_PTR(ret));
-+			i--;
-+			goto out_irq_free;
-+		}
- 	}
- 
- 	cevt_init(np);
-@@ -216,11 +270,20 @@ static int __init timer_init(struct device_node *np)
- 	return 0;
- 
- out_irq_free:
--	free_percpu_irq(econet_timer.irq, &econet_timer_pcpu);
-+	for (; i >= 0; i--) {
-+		if (econet_timer.is_percpu) {
-+			free_percpu_irq(econet_timer.irqs[i], &econet_timer_pcpu);
-+		} else {
-+			free_irq(econet_timer.irqs[i], NULL);
-+		}
-+	}
- out_irq_mapping:
--	irq_dispose_mapping(econet_timer.irq);
-+	for (i = 0; i < num_irqs; i++) {
-+		if (econet_timer.irqs[i] > 0)
-+			irq_dispose_mapping(econet_timer.irqs[i]);
-+	}
- out_membase:
--	for (int i = 0; i < ARRAY_SIZE(econet_timer.membase); i++) {
-+	for (i = 0; i < num_blocks; i++) {
- 		if (econet_timer.membase[i])
- 			iounmap(econet_timer.membase[i]);
- 	}
-@@ -229,3 +292,4 @@ static int __init timer_init(struct device_node *np)
- }
- 
- TIMER_OF_DECLARE(econet_timer_hpt, "econet,en751221-timer", timer_init);
-+TIMER_OF_DECLARE(econet_timer_en751627, "econet,en751627-timer", timer_init);
--- 
-2.39.5
+> >>> - We consider this a "person-trailer" and it implies agency
+> >>> - Adding yourself to a commit via a trailer is a *binding responsibility* for
+> >>> the change. A lot of tooling will cc the Reviewed-by addresses on follow-up
+> >>> messages regarding code in this commit. If the address is bogus or doesn't
+> >>> go to a developer, this is both wasteful and potentially frustrating.
 
+> >> Hi Konstantin!
+
+> >> The goal here is to inform maintainers that sashiko has successfully reviewed the patch
+> >> and there were no findings, otherwise maintainers have to go to the web site and check the status.
+
+> > That's fine.
+
+> >> I’m not attached to any specific form of it, I thought Reviewed-by is the most obvious form.
+> >> And we use Reported-by: tags with various tooling for years.
+
+> > Reported-by: shows the existance of a problem that some tool found, a
+> > subtle difference here.
+
+> >> What do you think is the best form?
+
+> >> I’ll pause sending reviewed-by tags until we have a discussion and agreement here.
+ 
+> > Just say it in some other text form, that our tools will not pick up.
+> > Like:
+> >    Tool XXXX reports that all is good:
+> >        https://....
+ 
+> > or something like that?
+ 
+> Sure, works for me.
+
+Couldn't this be something like:
+
+AI-analysed-by: bot-X
+
+Sometimes we expect them to run and produce results, that we should
+check, and in my experience act upon and sometimes ignore, as usual with
+any type of comments, when I don't get those results I usually go and
+look at the web interface, be it the public one or the private one I use
+(while contributing to one of them, sashiko for full disclosure), to see
+if it is just that it is taking longer to process that specific patch or
+if it really finished.
+
+If I go in the morning to look at my inbox and see everything there it
+reduces some steps for me.
+
+So, yeah, Reviewed-by is definetly for definetly persons, but having
+some tag that states that it went thru automated reviewing^Wanalysis by
+a definetly bot/thing/whatever that some people think is useful seems
+useful.
+
+And of course I think this should be all opt-in by each and every
+maintainer, this definetly is not something to be uniformly agreed on,
+so if some mechanism is put in place for, say, sashiko, to reply that it
+didn't find any problem with a particular patch for the subsystem I'm
+involved with, then I'd like for that info to be provided as a reply to
+the message.
+
+Cheers,
+
+- Arnaldo
 
