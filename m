@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-298641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298642-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oLcZDD9CCGpNgwMAu9opvQ
-	(envelope-from <devicetree+bounces-298641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:09:03 +0200
+	id aEuuAn5CCGqugwMAu9opvQ
+	(envelope-from <devicetree+bounces-298642-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:10:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A7155B092
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:09:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5654A55B0C1
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 22D6030146B5
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 10:09:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B429300EAA3
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 10:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EC83C4177;
-	Sat, 16 May 2026 10:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641783B2FFD;
+	Sat, 16 May 2026 10:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F7QGVZNc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IWrH7Swb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6113A641D;
-	Sat, 16 May 2026 10:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403D92EB10;
+	Sat, 16 May 2026 10:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778926140; cv=none; b=QdNyhOh2ACpwp8+ltUWhCZZ8S/FaTJJeTu63R0ZL+Rq6/dJna58V2ywKNj/AHFECOZgGztCEsQXm4zlAh9NoUYJZBaIBnZ415MWUpKvJkuJSulZIc3U5f67/k0yxJDvaK46sw/0gSXqP7LM10qwQGZg1wIw/ug2OW/q6q8Jst9E=
+	t=1778926195; cv=none; b=KKbSLJfokWz7Y8ZErwGdSHDOXP6x5kr/SLgeuwTyVoAqs+2goZnxQ+JgfQQZoBqGaVRFmyEcOe7l3gX+FZGWVaNWqaPd3P+POlqzFUZ2clm4KsSukqi5a6L908ETcSxYu6IKPzNdLqbbXE61zjMksksEYx7qaNlkXkIggI5AtW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778926140; c=relaxed/simple;
-	bh=tK/PjsY+ca4bXcbuVRqx1ubV83FYss85Tnzac0XGR/A=;
+	s=arc-20240116; t=1778926195; c=relaxed/simple;
+	bh=jt+/+A1eUmlY9go1il/cICrFK2cN/3rDf7lknui0NyI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ni3xRYIpp93Z1bC0RSpTGkjBcVYdFrC+MxElnwIXODX4uJJ6SCuVRAqpja3r9JPFYzp5b6e31LzEtbQe9vd+v8SgxAvbmQOHNJwkiNgpcD6MJbI5iLcxCC5NwFdOnL/7H87lVQWIBINYD2wq6Cqs8WqUc47EcIwcxB1gpNAr+wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F7QGVZNc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28AFCC19425;
-	Sat, 16 May 2026 10:08:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yd7MSYsBHz43QfnUibg/kVpj6OxMq4+1xoVqNnC6gSDBUkFk6F2HU3tta/k1R7tYDV521AO0FHBs3Dt3H1q+6tljw0P+ImMzlwnRRMy0Cik2bOFFevbxkgvlF5MlxYNxD+ViOf/VnOaWnb+7UJXqTb0Fi2ezH2lCAfllT3SeUl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWrH7Swb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B2BFC19425;
+	Sat, 16 May 2026 10:09:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778926139;
-	bh=tK/PjsY+ca4bXcbuVRqx1ubV83FYss85Tnzac0XGR/A=;
+	s=k20201202; t=1778926194;
+	bh=jt+/+A1eUmlY9go1il/cICrFK2cN/3rDf7lknui0NyI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F7QGVZNcHqc2X+g0gMwUWsvvlmc4Xh4NQC0DHkaAohtVNDQOfESz3dwiiiU7w37yU
-	 akpANEgvEb477O7r85E7H/vYws9sSy1HBhyj2/LCLTM0tDXyf7s6epONf9wemVdJeX
-	 99CeLsN2mVQn8/3iddL84Uk5nTbNxAPgAff7R95Rn/30mZkIMGW8Fvw41nzzfvzJ2o
-	 fXxUAj7NZagsp98NH5q+e/RqC/TZSAsBuMz/4XnAmwngL1E/DWMM5elNA5C2asxF8w
-	 LaJETZgaB9EV04cQzGJrvnpKmQELbGQL42pqzkNL1J4s1+YI4CpvVnP6LeoselwaBV
-	 IeA3jTPnyT++w==
-Date: Sat, 16 May 2026 12:08:57 +0200
+	b=IWrH7SwbaB+LI0I6mOsbP2FSGr+CZW9dCQn58ip43QzXMsh2u/4AiB+AY/Dt0wngi
+	 1MWZpOPYlVWzDAS6LleGJB12NR+x43+241BauXEzq8MKBB9VSozIiXHdXEiEZkcADS
+	 j/zF3ef4nIZpr9BOzfTHcfUYpJ32Y03Dj0i+DJ+m4bSOs0sgV++1L2YYhifxVz2pnZ
+	 lqX168gjU7myrYDhzIDSmgdENfNLFMeTP4cj0HF1FWvKWUEiUV2pjWw6bxh3JZanSp
+	 0XzmSTDj5l7zFCLMnm5DXDju+HZBjNY84e6aX0dSswG2yLuOyg3FzNe4yEd5qCScm+
+	 Mm6vwUzACmTcQ==
+Date: Sat, 16 May 2026 12:09:52 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank.Li@oss.nxp.com
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	Frank Li <Frank.Li@nxp.com>, Wensheng Wang <wenswang@yeah.net>, 
-	Brian Chiang <chiang.brian@inventec.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Dixit Parmar <dixitparmar19@gmail.com>, Antoni Pokusinski <apokusinski01@gmail.com>, 
-	Eddie James <eajames@linux.ibm.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: trivial-devices: add fsl,mc1323
-Message-ID: <20260516-exotic-modest-gopher-8e8411@quoll>
-References: <20260515163959.1948799-1-Frank.Li@oss.nxp.com>
+To: Sumit Gupta <sumitg@nvidia.com>
+Cc: treding@nvidia.com, jonathanh@nvidia.com, robh@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	devicetree@vger.kernel.org, bbasu@nvidia.com
+Subject: Re: [PATCH] memory: tegra264: Add full set of MC clients
+Message-ID: <20260516-cautious-smart-ferret-230db8@quoll>
+References: <20260515171911.1929868-1-sumitg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,53 +61,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260515163959.1948799-1-Frank.Li@oss.nxp.com>
-X-Rspamd-Queue-Id: A6A7155B092
+In-Reply-To: <20260515171911.1929868-1-sumitg@nvidia.com>
+X-Rspamd-Queue-Id: 5654A55B0C1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298641-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298642-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,roeck-us.net,huawei.com,nxp.com,yeah.net,inventec.com,analog.com,gmail.com,linux.ibm.com,vger.kernel.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Fri, May 15, 2026 at 12:39:57PM -0400, Frank.Li@oss.nxp.com wrote:
-> From: Frank Li <Frank.Li@nxp.com>
->=20
-> Add freescale 2.4 GHz IEEE=C2=AE 802.15.4/ZigBee mc1323 support.
+On Fri, May 15, 2026 at 10:49:11PM +0530, Sumit Gupta wrote:
+> Extend the Tegra264 MC dt-bindings header and tegra264_mc_clients
+> table to cover the full set of memory clients exposed by the SoC.
+> Client name is used for MC fault reporting. Clients managed by the
+> bandwidth manager in BPMP additionally carry their bpmp_id and type.
+> 
+> Entries in tegra264_mc_clients[] are sorted in increasing order of
+> their client IDs, which matches the order of the override and
+> security register offsets used in previous SoCs.
+> 
+> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> ---
+>  drivers/memory/tegra/tegra264.c              | 564 +++++++++++++++++--
+>  include/dt-bindings/memory/nvidia,tegra264.h | 287 ++++++++++
+>  2 files changed, 819 insertions(+), 32 deletions(-)
+> 
 
-You did not add any support here. Also, I don't know what is that -
-ZigBee device? AP or gate (whatever is there in ZigBee)? router with AP?
-
-Plus more important - why? Where is any user of this? Why do we want
-this patch?
-
-Your commits MUST ALWAYS answer that. I already asked you that.
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
 Best regards,
 Krzysztof
