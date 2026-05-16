@@ -1,116 +1,209 @@
-Return-Path: <devicetree+bounces-298676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298677-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGmALBVqCGp4ngMAu9opvQ
-	(envelope-from <devicetree+bounces-298676-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 14:59:01 +0200
+	id EISfF/9qCGoanwMAu9opvQ
+	(envelope-from <devicetree+bounces-298677-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 15:02:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28CAC55BDD5
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 14:59:01 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE83755BDF9
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 15:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DD078300C928
-	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 12:58:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4C1B73011C6F
+	for <lists+devicetree@lfdr.de>; Sat, 16 May 2026 13:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B6703E1713;
-	Sat, 16 May 2026 12:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9792819539F;
+	Sat, 16 May 2026 13:02:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5p+HVJn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nD6vGFu3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B88245031;
-	Sat, 16 May 2026 12:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7568B405C57
+	for <devicetree@vger.kernel.org>; Sat, 16 May 2026 13:02:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778936339; cv=none; b=TkWelhbtx461ZIj/Z+BpIu9+wsW0FsvSZCNOB9iT4HJh9IFySVT0K6N7EF7yvDeXMtKpiwuDGzZu4QjFRf3AyZ0e5y/Ix3bfGnl6JbUYpYOlqcesNDpSZKzlixiLPhOrm+d6Ha7uJqJnbjKDnUf4olHDBB79bCzuBrVLZB6ETa0=
+	t=1778936572; cv=none; b=Hq/XjOWKOmz6+qWbUqidTOMyPOqiFBRGC7BmBEhbF0wjcd0JEeeJK9N9Tsu63Ae0qHecCm/yp8bQIPZdf7rPW0tZOS16t6kYQGsNEtoNKJ+GgO4vloVaUsm/vPlH2AQsgiR8wbBeRalT+CM57MfjTzT+qAcEGLrl0OW4vzacLGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778936339; c=relaxed/simple;
-	bh=auVXU6SCazJsqPBgoZ/g7XMs9Wwj4hhVn8V8pqTAqQg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYlCamMaME+StsL5AmsqbZdX0CcylSJUrrrPJUBglOwFlsPo42D5zkD4e+yyK84RdzdAj7AVZQAGCLY+eLnPY5nykCZpUOYszauP5Ipkom3peqpo0NZLU/rDv6KbW9jtzTv0v75ytSxaoQ2+x3932aailfSY3BEgpOFlfU/yZLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5p+HVJn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89E3DC19425;
-	Sat, 16 May 2026 12:58:58 +0000 (UTC)
+	s=arc-20240116; t=1778936572; c=relaxed/simple;
+	bh=oODo/EnbaVVIDQlTGUxH7PkXLWtZXAnUCsb+faLkpOE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=T+cI6TprdB+xeOa5VGhr8v3Go5bL+ov374Cl+lRflaTA6l1ANowx2SL7K+OEgdWSmLMgH0HwcTZEKqcD72WBvFr1KRJccyhvn1STIUv+YPfwL+XRlCpkVjyh5O0dzoiw9MsAipZw1TWtPJFz8TMGcRLv810+WOffKhQBWIq/JBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nD6vGFu3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED6AC2BCB3;
+	Sat, 16 May 2026 13:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778936338;
-	bh=auVXU6SCazJsqPBgoZ/g7XMs9Wwj4hhVn8V8pqTAqQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W5p+HVJn/aTu56kytW3VJ9sXmWzC1C8w1+ewInqyB19oUvc7Fb/TkgI0oH6WjcdZx
-	 DeGtrq4Lpo3wPnO3f8j+Chs1kHWxyARYy1o/nLHSAFpRQwJ+Hc3j7HSmvhUZj0wkj/
-	 wc6D3I+RTXYofcMiqnRNODLFBTCdYNljyUF972DfMjo0Hub1clpXBTAXC9uJqVH5xG
-	 EX8z8A7e+sw4l0q0u//JTHGd2K9Y1pw2M2Vex0sDaa/6o9xjOzdX49onaiWyxGdgGh
-	 CvzNBAEdSuCt6TM1Vr1tFw7GrwDhwa22hnA8DkyyvCd2Y3iAtw1VxNKIrTRNO17bYd
-	 ZQQiooy5V5vAA==
-Date: Sat, 16 May 2026 12:58:56 +0000
-From: Yixun Lan <dlan@kernel.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Rob Herring <robh@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>, Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 1/1] riscv: dts: spacemit: enable QSPI for OrangePi RV2
-Message-ID: <20260516125856-GKB3675990@kernel.org>
-References: <20260516080030.1736836-1-amadeus@jmu.edu.cn>
+	s=k20201202; t=1778936572;
+	bh=oODo/EnbaVVIDQlTGUxH7PkXLWtZXAnUCsb+faLkpOE=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=nD6vGFu3fqP/vYik8vOuQDF1zQIEY0kmHDOpcpIRc1A+myMALbA3RtuS2gFfYQcHW
+	 3uBvfFffRjozvqJHLpBFankyJoOiKpHIBd71P/F98fdrHmNpMD1Ij/X4qfADlx+HlX
+	 ZwTERr+KJ/JCIfAbQeIY47ZMtObXibYJQo48bX1KXWqTxUrihpCV0JQ0LBFt6oL4HH
+	 yU5ztIsqJQnz3SpKBxXYfChVAz85yg9bQJLTPMINXXJr+rRpyT6jn6hU0NbkIFuuN7
+	 fv0xq0vsibA/v9O1ZIvp7FnGAoDFYh6Dwcv7c+5/ELT46Qgw5Fylyw1t8CUF3sChbM
+	 Pw/0mUB+X84qg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] iommu/arm-smmu: Add interconnect bandwidth voting
+ support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Bibek Kumar Patro" <bibek.patro@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260516-smmu_interconnect_addition-v1-2-f889d933f5c1@oss.qualcomm.com>
+References: <20260516-smmu_interconnect_addition-v1-2-f889d933f5c1@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 16 May 2026 13:02:51 +0000
+Message-Id: <20260516130251.DED6AC2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260516080030.1736836-1-amadeus@jmu.edu.cn>
-X-Rspamd-Queue-Id: 28CAC55BDD5
+X-Rspamd-Queue-Id: CE83755BDF9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298677-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298676-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto];
 	RCVD_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Hi Chukun,
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Dead code `-ENODATA` check in `arm_smmu_icc_get()` causes probe fa=
+ilure on platforms without interconnects.
+- [High] Shared IRQ handlers access SMMU hardware registers while the devic=
+e might be runtime suspended.
+- [Medium] Interconnect bandwidth vote is not released during system shutdo=
+wn if Runtime PM is disabled.
+--
 
-On 16:00 Sat 16 May     , Chukun Pan wrote:
-> Enable the QSPI controller and the XM25QU128C SPI NOR flash on the
-> OrangePi RV2 board. Add a flash partition layout from vendor UBoot.
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-LGTM
+commit efe802bf0c93309aa584a5eb41c34c9788a6e837
+Author: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
 
-Reviewed-by: Yixun Lan <dlan@kernel.org>
+iommu/arm-smmu: Add interconnect bandwidth voting support
 
-> ---
->  .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
+This commit adds support for an optional interconnect path to the arm-smmu
+driver. It votes for bandwidth while the SMMU is active to prevent register
+access failures during transitions. The bandwidth vote is enabled during
+probe and runtime resume, and released during runtime suspend and errors.
 
--- 
-Yixun Lan (dlan)
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/ar=
+m-smmu/arm-smmu.c
+> index 0bd21d206eb3e..aedf5edf8f9b2 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+[ ... ]
+> @@ -86,6 +91,36 @@ static inline void arm_smmu_rpm_put(struct arm_smmu_de=
+vice *smmu)
+>  	}
+>  }
+> =20
+> +static int arm_smmu_icc_get(struct arm_smmu_device *smmu)
+> +{
+> +	smmu->icc_path =3D devm_of_icc_get(smmu->dev, NULL);
+> +	if (IS_ERR(smmu->icc_path)) {
+> +		int err =3D PTR_ERR(smmu->icc_path);
+> +
+> +		if (err =3D=3D -ENODATA) {
+
+Is this -ENODATA check correct for handling missing interconnects?
+
+Looking at devm_of_icc_get(), it relies on of_icc_get(), which returns
+-ENOENT when the interconnects DT property is missing, or -ENODEV on ACPI
+platforms where dev->of_node is NULL. It appears it never returns -ENODATA.
+
+Will this cause the driver to unconditionally call dev_err_probe() and fail
+to probe on all ACPI platforms and DT platforms that do not define
+interconnect properties?
+
+> +			smmu->icc_path =3D NULL;
+> +			return 0;
+> +		}
+> +		return dev_err_probe(smmu->dev, err,
+> +				     "failed to get interconnect path\n");
+> +	}
+> +	return 0;
+> +}
+> +
+> +static void arm_smmu_icc_enable(struct arm_smmu_device *smmu)
+> +{
+> +	if (smmu->icc_path)
+> +		WARN_ON(icc_set_bw(smmu->icc_path, ARM_SMMU_ICC_AVG_BW,
+> +				   ARM_SMMU_ICC_PEAK_BW_HIGH));
+> +}
+> +
+> +static void arm_smmu_icc_disable(struct arm_smmu_device *smmu)
+> +{
+> +	if (smmu->icc_path)
+> +		WARN_ON(icc_set_bw(smmu->icc_path, ARM_SMMU_ICC_AVG_BW,
+> +				   ARM_SMMU_ICC_PEAK_BW_LOW));
+> +}
+
+Should arm_smmu_icc_disable() also be called during system shutdown?
+
+In arm_smmu_device_shutdown(), if pm_runtime_enabled(smmu->dev) is false,
+the driver manually disables the SMMU clocks via clk_bulk_disable().
+However, a corresponding call to drop the interconnect vote doesn't appear
+to be added to that branch.
+
+Could this leave the bandwidth vote permanently held at
+ARM_SMMU_ICC_PEAK_BW_HIGH during system halt or kexec?
+
+[ ... ]
+> @@ -2308,6 +2358,7 @@ static int __maybe_unused arm_smmu_runtime_suspend(=
+struct device *dev)
+>  	struct arm_smmu_device *smmu =3D dev_get_drvdata(dev);
+> =20
+>  	clk_bulk_disable(smmu->num_clks, smmu->clks);
+> +	arm_smmu_icc_disable(smmu);
+> =20
+>  	return 0;
+>  }
+
+With the clocks disabled and the interconnect vote dropped here, is there a
+risk of a bus hang if a shared IRQ fires while the device is suspended?
+
+The driver registers its global_fault and context_fault handlers as
+IRQF_SHARED. If another device on the same IRQ line triggers an interrupt
+while the SMMU is in RPM_SUSPENDED, the handler might attempt to read
+hardware registers (such as calling arm_smmu_gr0_read()) while the SMMU is
+powered down without an active clock or interconnect vote.
+
+Should the interrupt handlers use pm_runtime_get_if_active() before
+accessing registers, and should this suspend callback use synchronize_irq()?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260516-smmu_inter=
+connect_addition-v1-0-f889d933f5c1@oss.qualcomm.com?part=3D2
 
