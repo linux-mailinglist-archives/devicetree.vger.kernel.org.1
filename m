@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-299063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299060-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPJwAEhSCmpazwQAu9opvQ
-	(envelope-from <devicetree+bounces-299063-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:42:00 +0200
+	id MCq0LXlSCmpazwQAu9opvQ
+	(envelope-from <devicetree+bounces-299060-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:42:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E6F7564640
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:41:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA3C564655
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A4AD2301DC10
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 23:41:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9BFC3302E922
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 23:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC043D75A9;
-	Sun, 17 May 2026 23:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246CD3D4114;
+	Sun, 17 May 2026 23:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D0QXhDy/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jQiqMZ3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02BAA3D6CDF
-	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 23:41:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945053D525B
+	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 23:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779061295; cv=none; b=IWnlE26n4xV5okwb0m6ALSbQ512yI601M2FwkQaMMVYzIN/uT+kLfGvmGsmMWdkK5owQYJ3DE/DFb3pwd6ltVl0fyTiobs90Na1+E6BKcMZZXnMRhcFSDkXpVG7rh5sYHUBK+SRTPfEIYzRbItynPIs8RVYO4DGV3WnhbED1Fj0=
+	t=1779061290; cv=none; b=ZixVw6y9r+7HPTMMNLMNY8DUMhN1/y5CZ0DcaojSzEmo5mf7bWp/+ell9sY2x9+m/6IpgUrsYEoffGGcu9TpM1W+RGD4pXacqU4mAx+g9xZTbMPmOB/A4lFmMvTxSw63dHWWrb79YEx6/apXafXpHQUMpNA/fyiQbXNA/pMFcPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779061295; c=relaxed/simple;
-	bh=Z7KAxCj3Lt9T/h+NNaZYTzw8OR6eKC18xCSnWTFm75c=;
+	s=arc-20240116; t=1779061290; c=relaxed/simple;
+	bh=e3BakOiIkbxUPegUUabz2iD6bSOHgMc97qZrJo9OOrM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=adJqaIFXa4cTsWoJUvlCzi30fMb+nQuBeTKDzDkKgedpUglpLYhjjJaYgWZ00DCWLC47Zf4p329GpMjMalcFcSQ1PD0RgCjIg84DUyyuQbwgT2rXAZlJALzY15JZZ/dkaj4mxulO9EAzuiG8zbm/o4EubVsPQDFVfvuQlKDKY+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D0QXhDy/; arc=none smtp.client-ip=209.85.221.52
+	 MIME-Version; b=RGLM6tp+f/ZBClCq+2QjLwW3+juQJdNwqCqHL4IaSXtKx4qXz6FOLzY0+X1VPYvve4zGecBzNMsvB8HpKS3oU7Nt53hK7ZPf3alOjgwWYQhpNw21ttGlg3drbhvPqEycmfGUZc9fh1jDP2eLMJqeF02DEfc6S3XkPcQw7tGQuhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jQiqMZ3j; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-43fe62837baso801048f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 16:41:25 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-45e7c636e74so184642f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 16:41:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779061284; x=1779666084; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779061287; x=1779666087; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gNnGNYWRDSiTCSAPERc5W07fZmdBUCZXZbGfR7wRvek=;
-        b=D0QXhDy/scjd1/Q8Qgb/Ey+CmQhGAMyeh44NDceh62onNmzWPNu/MplI/PMcmPJteL
-         Iaa/ZGqVMkx1qrxFldeI/Idmco13wUmv6o52f9Wpyt8I11Ua41cuhbXHAzR7Eko8YPhi
-         vyn8wQJWWRmNe649ww05JxaDKkTOcMxJ3XgC7ibi3y77Ve2+V6p5wisdWzY+1jKWfy4f
-         XSJPL6B7N4ZhfspZznu7mkciG5PjURG2loUDynAioSkyCohiKM/FDKH7D8S1wC1liK/d
-         A7OilDF8TLwhb21eGwMGm2ocYeYX1Y9v+MoTPZgopCgJ+0SwBwyh5/FTJSersBzj6ZLs
-         3I3w==
+        bh=fFby9i1jhlPu5HJbXvVneKL+o1hXPAgNpBdPwBqhzJU=;
+        b=jQiqMZ3jbGLA+G83urXn3wnbEjBEEBJrdnn72ivgEdYBSuFoYOiaxCf0vpgWtpGJ7b
+         XmuryYQrjmWIv4jg/ApswdhGYsTS6Mfrhcpv71lem4CEdKB1I7DzOLwvEIwBywdum+IU
+         M+gYfOIQUChHXiOORnsgFkf3WFMpewBb8lC4CfW2zizm6xasX8YYI2J9qhR481pCik7/
+         7een85C3QAJa4vHAx3Gwj3nA/JD//aDOwZuUFaa8RwCsNKAEWjFFoc5vu8DAYWx0GjIp
+         b+K+0fGRep2NZw+/8xHGTaaM26imjPxPc/mpuDiPR7R5Y4BcEq8LsAejR5a67nxRX3Ls
+         e03g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779061284; x=1779666084;
+        d=1e100.net; s=20251104; t=1779061287; x=1779666087;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=gNnGNYWRDSiTCSAPERc5W07fZmdBUCZXZbGfR7wRvek=;
-        b=RWtv8bHyIeuWtKe0Tpf+uohVuNprQQqx+MeR2+5gUQTreuxc0VEESl/LayfpGiqzfg
-         PTeG1OdsCK0AM3d+Uwb5EwOWNnzMg3NENCXaug8eaGhO8BHI7YP1R7Gpgc8pLxVS7wbu
-         jdcDUSlZx5G+CUuLwDGDGOHcgklx6ywzBpype9dIagicJjQq9GskzDO/5yuF5+r8WXWA
-         VbSklt7mgjLMXMBwglqLMFycoeZHoODcwWMbXmxs+HciE3EAKtzcRqPjpQSsmd601F2X
-         S/Ny/byE/5aYO8DZCYD1UDh++qAsnOZNUD4FLW7fyFQlXvwS+QF2wu/D4zMOFMGeeIvo
-         FRCg==
-X-Forwarded-Encrypted: i=1; AFNElJ/gCdYeAkY2vmY7ouyOtIH/0rV3DUxaYSGTpliW44nwA6RRxkX2cp4sSiRy4A+R5bb9PQWmuz5bNPR9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfFuG8UYyMqLrkYX1S+JlkPsuJucodIRUjcsjZZDwq0P/pRDa7
-	PwuzOODzZFVMqOzDy8Vh+7VGJhB6jAImB5jlAGxli+FPbrItDgN4ojF9
-X-Gm-Gg: Acq92OF0z2di+pjVEjd3oFM3mFKnzTwvoqi9qJ3UjuI2gNYV4tYKcY280BretftZqwf
-	RYO3e3dT3wIFGtYtcqrJx/m2uyD2SzjZbApiWOwn7I57f1vXOCsdBNQh+CbUWCyCE0hWRm2u77a
-	kvyzIS5woogqa+lHWgc1+O5VjyZ7EWVmv+z6mdyX56++/JfT98dxnJMl4xrhXFVmpcaxgpPZe01
-	cPCXuRwqVZDdnOQhZOPyuebRmQ/VB57a2n7Ynbb6cambO9z5SrAjJpiFutSojtUqizc2Pf8RrTY
-	8HnKo5pzPknVLGXig/r3JHfBvPbA+Aj2NahUjBQWSHHoVA0un0zWPEf6mwdrRrIcghyYU9WC0l2
-	oepW3X/g4WNM8MvpMUjgTWuIenIjMfNGdEl4mDhM2oJLnFaniQi9EyJis7yTtY1oP4rc+ZbrHkd
-	N0tVaHI88IbffcvGjJfORPZ3UWA8AxeD2xrfVVnMWAPTCuWvSHebX/RvG8iSxQyDeU+hWaHh7xz
-	iJvKi5Bbqs=
-X-Received: by 2002:a05:6000:230d:b0:446:96b1:f5f with SMTP id ffacd0b85a97d-45e5c35da70mr17323837f8f.8.1779061284317;
-        Sun, 17 May 2026 16:41:24 -0700 (PDT)
+        bh=fFby9i1jhlPu5HJbXvVneKL+o1hXPAgNpBdPwBqhzJU=;
+        b=dX9NtAzQowX6R3ERvCxdAR4B6HxaYwwhVvKdBOspNMKDfb1F0vBpGzfmSx8Ghx4/cP
+         U9zh7JieoRtV2M3T4nrECKIBVPEc6FKBUOwMnhlkcHx+hZvKQkpU48GXWFYzOzl9etV/
+         U+x1aLzQI9lvkLoVpd12r5NT6s4WwSZevCTRWZGvEv0DQoH9gkUA/fJQC/fkFWt3CUYk
+         6TTbM1SDqngFvwOFu3yZKFiClXKMdR716cvESmHM+QaeBr4vfBO8w6bOQ4ukSkCwfJBl
+         522OnHv92PBxbrDBAxLbVJN2DtFWJK/QT7nhvw4ecdJHpgGe3r0SZutmQ+fEnMD1ihAx
+         ovzg==
+X-Forwarded-Encrypted: i=1; AFNElJ9Z33WPB4A9QWm3c+fV+oM6gmJMpdvBAkkuIo4lUX3AQ1Gfzy6wiAI3k+astU1NWJw6PYc/MTnEVsq4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/vej9Dyih1h7rzwEKYXFfs/Phdjk5HqddYlF6RPIrE/Cvk45C
+	auCKhbJKtPRiuUELAvJ1dFTi/IlrSkGadqXMoaiqBtaY1P7F+B4SMXk3
+X-Gm-Gg: Acq92OElcJ6aVxjwjZw9PQGUPm6Z7Yj5a260Sj4pg4B29oXVdgP8+g/YFr3ovuYanQW
+	85wRaPCXp2bBm2m/0ysl2CfXaye2Tbe3lCcvuEq8DwwPymunu+QGEgflsc5MdCepwFAXsz9AEaQ
+	O9tBWyr4Zg1NM+jwk/7KudB832+2aOJLgr7qXp5GI6gJecXMQBeqqkNqTvuyXui0gbYHbcnLaqH
+	YMbQ/+RA9VSa2p3rK0IrsJ7jJgFLMLZ2DPGTGC3oDav3tjeHQTYomk/dyQDFxUeuOWiCJ2Km+/w
+	xm4q3Sb3qXV2n+9vI6IXLA9iUXbGKtXyKhGoNxvQ+hcDNVofQynPlQkgC5sZWGCH6BBFj+cA6k/
+	70Tv6LFx2VK1bbjAKEeQA9TBqMUgXD6m3JMedIJw8ubkJqykiPG9pwKEFNFYhWkw+Iz1WkX0/5T
+	+uxX3Eb74nKo4p64PIbkEXe+jzrB1Sww63trempGW4CXhQNtlxm5ijNpbOgJTdaW1K2RCxiCZn2
+	HWr8ywM0qo=
+X-Received: by 2002:a05:6000:1b85:b0:45e:739b:2748 with SMTP id ffacd0b85a97d-45e739b2792mr5067481f8f.25.1779061286975;
+        Sun, 17 May 2026 16:41:26 -0700 (PDT)
 Received: from localhost.localdomain (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da15a562dsm32845129f8f.33.2026.05.17.16.41.22
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da15a562dsm32845129f8f.33.2026.05.17.16.41.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 May 2026 16:41:23 -0700 (PDT)
+        Sun, 17 May 2026 16:41:25 -0700 (PDT)
 From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 To: linux-sunxi@lists.linux.dev
 Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
@@ -89,11 +89,10 @@ Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
 	Andre Przywara <andre.przywara@arm.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/5] dt-bindings: arm: sunxi: Add Baijie HelperBoard A133 compatible
-Date: Mon, 18 May 2026 01:41:28 +0200
-Message-ID: <20260517234134.2737320-3-alexander.sverdlin@gmail.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 3/5] arm64: dts: allwinner: a100: Add LRADC node
+Date: Mon, 18 May 2026 01:41:29 +0200
+Message-ID: <20260517234134.2737320-4-alexander.sverdlin@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260517234134.2737320-1-alexander.sverdlin@gmail.com>
 References: <20260517234134.2737320-1-alexander.sverdlin@gmail.com>
@@ -104,73 +103,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 8E6F7564640
+X-Rspamd-Queue-Id: 1AA3C564655
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sholland.org,arm.com,vger.kernel.org,lists.infradead.org,microchip.com];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299063-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-299060-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sholland.org,arm.com,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_PROHIBIT(0.00)[0.77.95.208:email,0.77.94.64:email];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.77.209.224:email]
 X-Rspamd-Action: no action
 
-Baijie HelperBoard A133 is a development board around their A133 Core
-board. Introduce a compatible for both the Core and the development
-boards.
+A100/A133 SoCs feature a Low Rate ADC (LRADC) for Key application.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Specs:
+- Power supply voltage: 1.8 V
+- Reference voltage: 1.35 V
+- Interrupt support
+- Support Hold Key and General Key
+- Support normal, continue and single work mode
+- 6-bits resolution, sample rate up to 2 kHz
+- Voltage input range between 0 and 1.35 V
+
 Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 ---
-Changelog:
-v3:
-- no separate section for "core" .dtsi
-v2:
-- introduced baijie,helper-a133-core compatible for the Core (SoM) board
+ arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
- Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index e6443c266fa1..f65bf1a549d4 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -96,6 +96,12 @@ properties:
-           - const: allwinner,ba10-tvbox
-           - const: allwinner,sun4i-a10
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+index b3fb1e0ee796..2bba13c5d25c 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+@@ -466,6 +466,15 @@ ths: thermal-sensor@5070400 {
+ 			#thermal-sensor-cells = <1>;
+ 		};
  
-+      - description: Baijie Helper A133
-+        items:
-+          - const: baijie,helper-a133
-+          - const: baijie,helper-a133-core
-+          - const: allwinner,sun50i-a100
++		lradc: lradc@5070800 {
++			compatible = "allwinner,sun50i-r329-lradc";
++			reg = <0x05070800 0x400>;
++			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_LRADC>;
++			resets = <&ccu RST_BUS_LRADC>;
++			status = "disabled";
++		};
 +
-       - description: BananaPi
-         items:
-           - const: lemaker,bananapi
+ 		usb_otg: usb@5100000 {
+ 			compatible = "allwinner,sun50i-a100-musb",
+ 				     "allwinner,sun8i-a33-musb";
 -- 
 2.54.0
 
