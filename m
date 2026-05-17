@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-299059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GPzsF0BSCmpazwQAu9opvQ
-	(envelope-from <devicetree+bounces-299059-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:41:52 +0200
+	id EPJwAEhSCmpazwQAu9opvQ
+	(envelope-from <devicetree+bounces-299063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:42:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB891564638
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:41:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E6F7564640
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 01:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 429BC301ECC7
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 23:41:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A4AD2301DC10
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 23:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEABA3D6CCF;
-	Sun, 17 May 2026 23:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC043D75A9;
+	Sun, 17 May 2026 23:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hI0WcMm3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D0QXhDy/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1ED3D525B
-	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 23:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02BAA3D6CDF
+	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 23:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779061285; cv=none; b=QTfFD62iIXCugxsQSXg7F3VS3SAh6pNVsqQjfclEqRD8k1Us0kMz5F3wCmlFM8pCVww3VGc8etRn3OI10WtmmB8Au3c46Axn/TtHN7LcW9+EgRck514GTzeDCrh5MlonG94vbF+oDx5uP/f0KA+SFBgpbam+i7jRmU6agtLeJ0w=
+	t=1779061295; cv=none; b=IWnlE26n4xV5okwb0m6ALSbQ512yI601M2FwkQaMMVYzIN/uT+kLfGvmGsmMWdkK5owQYJ3DE/DFb3pwd6ltVl0fyTiobs90Na1+E6BKcMZZXnMRhcFSDkXpVG7rh5sYHUBK+SRTPfEIYzRbItynPIs8RVYO4DGV3WnhbED1Fj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779061285; c=relaxed/simple;
-	bh=OWCEmsRz0qAl88C6oETHRWXimfKd+7tWIWARlti8lDM=;
+	s=arc-20240116; t=1779061295; c=relaxed/simple;
+	bh=Z7KAxCj3Lt9T/h+NNaZYTzw8OR6eKC18xCSnWTFm75c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LMfzRzZQoyFb6a+q20+acByYZWVs5mK8ejToX84P873LCH4gVaf+K261Q0++AdLLYT/OcabQ1MdWq5uroPGFLBybAYKspfmMu9t4xgKepSy1qs6LcZSrPs2bxiEPcq97eVbPyYxHj8ew7YfgQm629x/n5BndQmK2iI48Nb10ge4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hI0WcMm3; arc=none smtp.client-ip=209.85.221.44
+	 MIME-Version; b=adJqaIFXa4cTsWoJUvlCzi30fMb+nQuBeTKDzDkKgedpUglpLYhjjJaYgWZ00DCWLC47Zf4p329GpMjMalcFcSQ1PD0RgCjIg84DUyyuQbwgT2rXAZlJALzY15JZZ/dkaj4mxulO9EAzuiG8zbm/o4EubVsPQDFVfvuQlKDKY+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D0QXhDy/; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-43d75312379so1661038f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 16:41:24 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-43fe62837baso801048f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 16:41:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779061282; x=1779666082; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779061284; x=1779666084; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qekc3CBVxjBSgzBYIYcZVSh3VYMZermzOtzi6JTCBsU=;
-        b=hI0WcMm3VjW1jmg44uisaiibupLnVxEQxbgJ+uGzr1X003BDjhu0uJgdDYY7RqP5xe
-         UYlhDn0t82z1bbmjKdcM4vn+W5L7JtgglbFJEWwKCQ+5awavslceVDonXrihK1aIPknD
-         CbPot6nVtfz+vnP3o2Hbs1eaoV/7LGmJK/6hw2a1lyKz3m88xHEVdrZs+e9KBVyF1nr2
-         XPU4rmTedLRiT4SzavGrmiFl4JT5BiG3QZIttYccjt7iPFbyWCz/I3+srpnlxKtkMFuI
-         Wxr4ABMqn+PEET49JtYpwZyBYcubXHQKpbGBBz/1SGqmAQ3fdIhFbcJD83DZU4ZKZbi0
-         ZpRA==
+        bh=gNnGNYWRDSiTCSAPERc5W07fZmdBUCZXZbGfR7wRvek=;
+        b=D0QXhDy/scjd1/Q8Qgb/Ey+CmQhGAMyeh44NDceh62onNmzWPNu/MplI/PMcmPJteL
+         Iaa/ZGqVMkx1qrxFldeI/Idmco13wUmv6o52f9Wpyt8I11Ua41cuhbXHAzR7Eko8YPhi
+         vyn8wQJWWRmNe649ww05JxaDKkTOcMxJ3XgC7ibi3y77Ve2+V6p5wisdWzY+1jKWfy4f
+         XSJPL6B7N4ZhfspZznu7mkciG5PjURG2loUDynAioSkyCohiKM/FDKH7D8S1wC1liK/d
+         A7OilDF8TLwhb21eGwMGm2ocYeYX1Y9v+MoTPZgopCgJ+0SwBwyh5/FTJSersBzj6ZLs
+         3I3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779061282; x=1779666082;
+        d=1e100.net; s=20251104; t=1779061284; x=1779666084;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Qekc3CBVxjBSgzBYIYcZVSh3VYMZermzOtzi6JTCBsU=;
-        b=ShKr+NYmmkXAcW3FFX0HuOavdRVfKOrdnRQPu7dJBa1W5WoNC03PGzbU+z8pfX1AWZ
-         495pzPR+HRB7Xx8l0srtLCQG7rSW1uduDfhH/ApsKLH1N/+bf9myMVSYSQS98nH5UWOD
-         BqL5UHSn35UCjukxxLEA23KC5mX/+o0IQfuAatOAkajD5uKAjyBmfQ3Fk5uW1nEcCeha
-         Xa5dR0vn2JeWjX4v6PtzN/OqJUXGjXgjKW9gTQVqG6bPXiAfTLKKd39IZ+uqqHHFuYkk
-         Tm4pyH0UCz5SWIi9nkql9hkBkX8ilHV7o1eAO+V1QJo8lUov45bOIigJxvXB0t9xglW6
-         4dow==
-X-Forwarded-Encrypted: i=1; AFNElJ+mz92+ubnU/LnYakIqoDK8/GuYZ7at+5/iik+o4FniwQNEMn/bXskpeG911txAAkHdvkS1Ni+jhU99@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbNjoGuXqmCUQm6MX8U5cWI2TBL0uxrpPU2Q7xVboGY4FT7xFD
-	eUlPHuFFMb0/YQHh2Br3ue4Jb5gALLCvc4uUs2hdxI5HCJikpmO6GhFrT6dLYaAM
-X-Gm-Gg: Acq92OGT44tFcBPOX+5Xi85znTdynfbg9N5Tvq25ONz8Dzw4WYiAgFHnNZYPBEzGdbf
-	mhVTypm+/bX5JqTkSvDNn0Cg2if7svU5ZfkRKP2Nf1NTjx44Os4ac06XLkVsmcIbQVZG+bsi32Q
-	MeHy5CE5pj0OYk2lrO4tT3zNplLUv8OYeg6ZA+b+T/uOb1Z0XBZo2EhG8yw2HNJciiTcklZ3Kjk
-	N624qwWbfkwEMbVZG5ux4ceGFMdEgzUHDyF5+BK53s7F4dc+S8m/uSOnGwN7c3he9qXg2IgjtkU
-	whaJG5+WKn30oasa14+PF3koeS+KOVKRA+QXK+89OCIk1sguHE98r0X0NaDWcSDvGY1QwAUeQSq
-	yYFtbcYT9w2fX/J/VANvQE2XOaS7rByML8hFuDjeava0qnVwqmOa784ik5xnsX7DlS3v7wZR1hr
-	hmzavAqap/pQktRTfqN3FvuUd9i5XMBd+4xmfFvcsgiGOJ/HOBTX8MBDyiysRoCezuRX2LNaSjO
-	iy3lOKuZgFtfKHZeyq6aQ==
-X-Received: by 2002:a5d:5f90:0:b0:441:2397:f40f with SMTP id ffacd0b85a97d-45d900ec71fmr25972014f8f.4.1779061282572;
-        Sun, 17 May 2026 16:41:22 -0700 (PDT)
+        bh=gNnGNYWRDSiTCSAPERc5W07fZmdBUCZXZbGfR7wRvek=;
+        b=RWtv8bHyIeuWtKe0Tpf+uohVuNprQQqx+MeR2+5gUQTreuxc0VEESl/LayfpGiqzfg
+         PTeG1OdsCK0AM3d+Uwb5EwOWNnzMg3NENCXaug8eaGhO8BHI7YP1R7Gpgc8pLxVS7wbu
+         jdcDUSlZx5G+CUuLwDGDGOHcgklx6ywzBpype9dIagicJjQq9GskzDO/5yuF5+r8WXWA
+         VbSklt7mgjLMXMBwglqLMFycoeZHoODcwWMbXmxs+HciE3EAKtzcRqPjpQSsmd601F2X
+         S/Ny/byE/5aYO8DZCYD1UDh++qAsnOZNUD4FLW7fyFQlXvwS+QF2wu/D4zMOFMGeeIvo
+         FRCg==
+X-Forwarded-Encrypted: i=1; AFNElJ/gCdYeAkY2vmY7ouyOtIH/0rV3DUxaYSGTpliW44nwA6RRxkX2cp4sSiRy4A+R5bb9PQWmuz5bNPR9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfFuG8UYyMqLrkYX1S+JlkPsuJucodIRUjcsjZZDwq0P/pRDa7
+	PwuzOODzZFVMqOzDy8Vh+7VGJhB6jAImB5jlAGxli+FPbrItDgN4ojF9
+X-Gm-Gg: Acq92OF0z2di+pjVEjd3oFM3mFKnzTwvoqi9qJ3UjuI2gNYV4tYKcY280BretftZqwf
+	RYO3e3dT3wIFGtYtcqrJx/m2uyD2SzjZbApiWOwn7I57f1vXOCsdBNQh+CbUWCyCE0hWRm2u77a
+	kvyzIS5woogqa+lHWgc1+O5VjyZ7EWVmv+z6mdyX56++/JfT98dxnJMl4xrhXFVmpcaxgpPZe01
+	cPCXuRwqVZDdnOQhZOPyuebRmQ/VB57a2n7Ynbb6cambO9z5SrAjJpiFutSojtUqizc2Pf8RrTY
+	8HnKo5pzPknVLGXig/r3JHfBvPbA+Aj2NahUjBQWSHHoVA0un0zWPEf6mwdrRrIcghyYU9WC0l2
+	oepW3X/g4WNM8MvpMUjgTWuIenIjMfNGdEl4mDhM2oJLnFaniQi9EyJis7yTtY1oP4rc+ZbrHkd
+	N0tVaHI88IbffcvGjJfORPZ3UWA8AxeD2xrfVVnMWAPTCuWvSHebX/RvG8iSxQyDeU+hWaHh7xz
+	iJvKi5Bbqs=
+X-Received: by 2002:a05:6000:230d:b0:446:96b1:f5f with SMTP id ffacd0b85a97d-45e5c35da70mr17323837f8f.8.1779061284317;
+        Sun, 17 May 2026 16:41:24 -0700 (PDT)
 Received: from localhost.localdomain (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da15a562dsm32845129f8f.33.2026.05.17.16.41.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da15a562dsm32845129f8f.33.2026.05.17.16.41.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 May 2026 16:41:22 -0700 (PDT)
+        Sun, 17 May 2026 16:41:23 -0700 (PDT)
 From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 To: linux-sunxi@lists.linux.dev
 Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
@@ -91,9 +91,9 @@ Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 1/5] dt-bindings: vendor-prefixes: Add Shenzhen Baijie Technology Co., Ltd.
-Date: Mon, 18 May 2026 01:41:27 +0200
-Message-ID: <20260517234134.2737320-2-alexander.sverdlin@gmail.com>
+Subject: [PATCH v3 2/5] dt-bindings: arm: sunxi: Add Baijie HelperBoard A133 compatible
+Date: Mon, 18 May 2026 01:41:28 +0200
+Message-ID: <20260517234134.2737320-3-alexander.sverdlin@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260517234134.2737320-1-alexander.sverdlin@gmail.com>
 References: <20260517234134.2737320-1-alexander.sverdlin@gmail.com>
@@ -104,14 +104,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: DB891564638
+X-Rspamd-Queue-Id: 8E6F7564640
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -121,10 +121,10 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sholland.org,arm.com,vger.kernel.org,lists.infradead.org,microchip.com];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299059-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299063-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
@@ -132,35 +132,45 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Shenzhen Baijie Technology Co., Ltd. focuses on R&D and production of
-embedded products as well as customization of embedded solutions.
+Baijie HelperBoard A133 is a development board around their A133 Core
+board. Introduce a compatible for both the Core and the development
+boards.
 
-Link: https://szbaijie.com/
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Changelog:
+v3:
+- no separate section for "core" .dtsi
+v2:
+- introduced baijie,helper-a133-core compatible for the Core (SoM) board
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 28784d66ae7b..095cf654787f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -229,6 +229,8 @@ patternProperties:
-     description: Azoteq (Pty) Ltd
-   "^azw,.*":
-     description: Shenzhen AZW Technology Co., Ltd.
-+  "^baijie,.*":
-+    description: Shenzhen Baijie Technology Co., Ltd.
-   "^baikal,.*":
-     description: BAIKAL ELECTRONICS, JSC
-   "^bananapi,.*":
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index e6443c266fa1..f65bf1a549d4 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -96,6 +96,12 @@ properties:
+           - const: allwinner,ba10-tvbox
+           - const: allwinner,sun4i-a10
+ 
++      - description: Baijie Helper A133
++        items:
++          - const: baijie,helper-a133
++          - const: baijie,helper-a133-core
++          - const: allwinner,sun50i-a100
++
+       - description: BananaPi
+         items:
+           - const: lemaker,bananapi
 -- 
 2.54.0
 
