@@ -1,168 +1,198 @@
-Return-Path: <devicetree+bounces-299049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299050-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0BeOOKoqCmpAxQQAu9opvQ
-	(envelope-from <devicetree+bounces-299049-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:52:58 +0200
+	id 7+B3HvcrCmp3xQQAu9opvQ
+	(envelope-from <devicetree+bounces-299050-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:58:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5CD563D8A
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 906F1563DE4
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:58:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9C85301A1DF
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 20:52:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DF353301BCE0
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 20:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04C3303C9C;
-	Sun, 17 May 2026 20:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCA830C631;
+	Sun, 17 May 2026 20:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T1U9qA2w"
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="FeT4EohV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADF92E22B5;
-	Sun, 17 May 2026 20:52:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5385271A6D;
+	Sun, 17 May 2026 20:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779051175; cv=none; b=fe0iPtur6HPp14P4IKmtwcOTuFsCbFjtRVdmY1QD2Qet8kGSPz4rEK8MUUte1dUjDPOvIDAhmCFxQAxiYIJlKXwLCeo1oBgnFUIIoxrlJHv0CIzD8u30fJtqTjFCbVQj8DhgjB+gtAhNkli6J3cLFCb2PBAIFKh0UhVganHdwf0=
+	t=1779051503; cv=none; b=YCRG8yNXABoYYVHa7wNNUpcb6pgr8K1Qgq4PwHV5udiX3vUh+XYGLEEfVfCz1ekdd8dI1YL+ZqWGpH+4URphs9/fNsJXlNcYPRuznOjwi6bX/LdHcGf9udm355ku99lpUXbJCutlhQNA05iQvqDbl2NvOGIFOgZd+PcgbmlLDIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779051175; c=relaxed/simple;
-	bh=lBEeLCufjUUnTEWi6mtgR5ByJUe7zVY3tuV617Ah3d0=;
+	s=arc-20240116; t=1779051503; c=relaxed/simple;
+	bh=8YdDtosc2yuBrzAdShLNX5Aura5/QzNzsydkW/hbS2I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IFgb0L7y9sgdQnRcp37+dmMt4fF68ucKP9TDBB5EEaI2Qhsk/12qvzq+RgHLM/bhMonAT70L+K7VBGoNkse9NvrstXVIegufVE7N+HL6u8QVsiyEYvrrkrgtAZHauGBkLtA3wwVepMkmyTaHfzMrQavC8utHNHrdMn2jCXutXuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1U9qA2w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F526C2BCB0;
-	Sun, 17 May 2026 20:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779051175;
-	bh=lBEeLCufjUUnTEWi6mtgR5ByJUe7zVY3tuV617Ah3d0=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=To7zqGtw9qA2xaAEEt5zEVjFZGlH0qTV9SMs7gaDQfcwrPc69O5oTqs2TEeMifzq5U0yf8VUapTnWMAtNrLr87XzZn+dvPhPz7JPNCw0/xzItc0oSeqxkM/DpbLHF2ima065E4ENYfmsLEifL454omrQlDhaMFiO+aIzNraSG6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=FeT4EohV; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 96A1F19F0;
+	Sun, 17 May 2026 13:58:14 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BA24E3F632;
+	Sun, 17 May 2026 13:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1779051499; bh=8YdDtosc2yuBrzAdShLNX5Aura5/QzNzsydkW/hbS2I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T1U9qA2wlrxkU1CVjCYWp0GerjGb58s+WTSjtIxE4BYp205CYsDTMhzesKrolDoo/
-	 TFJS4XQrJEHSq0UlwBOKu35k4/Ym2x/IhXgqG7mVe3rInRiLsHU6yIDKMjDTZzv1K6
-	 olHE1gOBmu3UyZXD0A54izrgMjiBR1QD1IrGAvhscaMAZyRb0oZrCv6N//q79US14E
-	 NIPQMvlfadSGb4l35ubjJgz2l3a9rB1XHJKjXdOWhqrFhrJY9qZry7KxzuzzrojXMH
-	 XNJbsBNbQv+i2nIvpVdM8tpyxTm+epmF6qI1XojxM6k9eUL4T4eYqVnH2JTItSVo8a
-	 v1Bu0rudI0qNg==
-Date: Sun, 17 May 2026 21:52:49 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	b=FeT4EohVSdz0//AGj/+rybSIAktQFGsZBGx+b2XCfQ2fy4e0lQGswwBNToLuCEbRH
+	 fL+pIcQYwVjShNYdxaFGLRo9FGopvFEV0yggvFZyd2UCOGu+uHALw+dejaixXxB1Fh
+	 l59MX3c3/vu+4oE8sBj7+q0p9sMB92tUZlrBNv4k=
+Date: Sun, 17 May 2026 21:58:12 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Nam Tran <trannamatk@gmail.com>,
-	=?utf-8?B?xYF1a2FzeiBMZWJpZWR6acWEc2tp?= <kernel@lvkasz.us>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v6 03/11] dt-bindings: mfd: add documentation for S2MU005
- PMIC
-Message-ID: <20260517-corrode-tuesday-a598ca734b38@spud>
-References: <20260515-s2mu005-pmic-v6-0-1979106992d4@disroot.org>
- <20260515-s2mu005-pmic-v6-3-1979106992d4@disroot.org>
- <20260515-justly-recite-6028f4bfb24a@spud>
- <DIJK5FTQ5KWG.HOKZAOXHTGU7@disroot.org>
- <20260516-esquire-chitchat-0fffa597e2f3@spud>
- <DIKZ5L2HC2CV.YL3MZUJQ2EV6@disroot.org>
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Ulf Hansson <ulfh@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH/RFC 05/14] firmware: arm_scmi: Add scmi_get_base_info()
+Message-ID: <agor5HJ0JFBoX3sZ@pluto>
+References: <cover.1776793163.git.geert+renesas@glider.be>
+ <72e2a0e7a5abda02fe36b3f5851842f7a77b2593.1776793163.git.geert+renesas@glider.be>
+ <aekXUvIPb8nkhdKu@pluto>
+ <CAMuHMdX8b9C3D8fV5th6GCgs6JAq7HZbF_SrOKz_gDy2H8ksow@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yhm6/mFYCWLfhh+J"
-Content-Disposition: inline
-In-Reply-To: <DIKZ5L2HC2CV.YL3MZUJQ2EV6@disroot.org>
-X-Rspamd-Queue-Id: 7D5CD563D8A
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299049-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com,lvkasz.us,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Action: no action
-
-
---yhm6/mFYCWLfhh+J
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMuHMdX8b9C3D8fV5th6GCgs6JAq7HZbF_SrOKz_gDy2H8ksow@mail.gmail.com>
+X-Rspamd-Queue-Id: 906F1563DE4
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[arm.com:s=foss];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-299050-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[arm.com,kernel.org,gmail.com,baylibre.com,pengutronix.de,broadcom.com,sang-engineering.com,mailbox.org,renesas.com,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.marussi@arm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[arm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email,arm.com:dkim]
+X-Rspamd-Action: no action
 
-On Sun, May 17, 2026 at 06:39:37PM +0530, Kaustabh Chakraborty wrote:
->> >> >> +
-> >> >> +    properties:
-> >> >> +      compatible:
-> >> >> +        const: samsung,s2mu005-rgb
-> >> >> +
-> >> >> +    required:
-> >> >> +      - compatible
-> >> >> +
-> >> >> +    unevaluatedProperties: false
-> >> >> +
-> >> >> +  reg:
-> >> >> +    maxItems: 1
-> >> >
-> >> > Move this above the child nodes please.
-> >>=20
-> >> But properties are sorted in lex order?
+On Fri, May 15, 2026 at 05:39:45PM +0200, Geert Uytterhoeven wrote:
+> Hi Christian,
+> 
+> On Wed, 22 Apr 2026 at 20:45, Cristian Marussi <cristian.marussi@arm.com> wrote:
+> > On Tue, Apr 21, 2026 at 08:11:38PM +0200, Geert Uytterhoeven wrote:
+> > > Currently non-SCMI drivers cannot find out what the specific versions of
+> > > each SCMI provider implementation on the running system are.
 > >
-> > Typically the binding is sorted in the same order as properties go in
-> > nodes. Common stuff like reg/clocks/interrupts therefore send up above
-> > child nodes.
->=20
-> So, do I change this? For one, I don't see the same being followed in
-> other schemas of samsung in the same dir (not that I'm trying to pose it
-> as an argument against your suggestion), and this was reviewed by
-> Krzysztof and is adderssed in v7.
+> > Thanks for your patches....this is not a proper full review of the series,
+> > BUT this patch catched my eye..
+> >
+> > Indeed, yes, it is deliberate that the SCMI version information is NOT
+> > exposed out of the SCMI world, since being the SCMI an attempt to
+> > standardize a common FW interface (as in [1] of course), you should not
+> > know what runs inside the black-box, it should be irrelevant...
+> >
+> > ...indeed the versioning is used inside the SCMI stack to deal properly
+> > with different protocol versions implemented by the server OR to apply
+> > proper quirks when needed, but all the rest should be standard....
+> 
+> [...]
+> 
+> > I watched a bit of the LPC discussions around this (from Marek I think)
+> > but sincerely most of those problems had one (not necessarily simple)
+> > solution: fix your firmwares AND/OR apply quirks in the meantime...
+> 
+> So let's forward to the future, where the firmware is fixed, is fully
+> compliant with the SCMI spec, and all IDs are stable, so no quirks are
+> needed.
+> 
+> Where do we specify the SCMI IDs to use?  Unless when using the
+> remapping driver proposed in this patch series, they must end up in the
+> DTB.  Existing upstream users put them either in the SoC-specific .dtsi,
+> or in board-specific .dts.
+> 
+> The SCMI server is supposed to expose to an agent (e.g. Linux) a
+> sequential and contiguous list of IDs that represent only resources that
+> the agent is allowed to use.
+>   - We cannot put the SCMI IDs in the SoC-specific .dtsi, as that
+>     describes all hardware in the SoC, which is typically much more than
+>     Linux can or even wants to use when running on a specific board.
+>   - You would think we could put the SCMI IDs in the board-specific
+>     .dts.  However, that would limit actual use cases later, which do
+>     not necessarily depend on the board solely.
+>       - E.g. when moving control of the CAN-FD controller from Linux to
+>         the Realtime OS, the CAN-FD node must be disabled in the DTB (by
+>         overriding status to "reserved", or by just deleting the CAN-FD
+>         node, both of which can be done by the boot loader). However,
+>         with SCMI, the IDs corresponding to CAN-FD resources must be
+>         removed from the ID space, causing a full renumbering. Who is
+>         supposed to update the IDs in the DTB?
 
-If Krzysztof doesn't care, then I won't ask you to change it.
+As per my previous email, after such a breaking change I would expect a
+new DTB describing the new HW to be needed anyway.
 
---yhm6/mFYCWLfhh+J
-Content-Type: application/pgp-signature; name="signature.asc"
+>       - E.g. when partitioning a single Linux system in multiple VMs,
+>         and distributing hardware across these VMs, all VMs need
+>         different DTBs, each describing a subset of the hardware.  With
+>         SCMI, each VM needs different SCMI ID spaces, causing not a
+>         simple partitioning of the devices in the DTB, but also a
+>         renumbering of all IDs.
 
------BEGIN PGP SIGNATURE-----
+Ok now I am lost..why do you need a distinct IDs space for each VM ?
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagoqoAAKCRB4tDGHoIJi
-0leuAP9Buz9rPpNnrPIjeAGYrA+vCW1UrZH0CEH0SKms57TxVgD9HnOrK1jIz9c2
-mx+0ei2gI/uPCPc7CzLafRs+JazK+QQ=
-=GxqQ
------END PGP SIGNATURE-----
+In a virtualized env, I would expect to leverage the SCMI stack to
+realize the exact opposite: same set of IDs advertised to each VM (and
+so same DTB potentially) by the server which in turn can decide to
+assign the same device (and handle the sharing) to some ID or assign
+different devices to the same or different IDs on each VM: i.e. you
+have a set of virtual_IDs that is what the server exposes to each VM
+SCMI agent, and then a bunch of real physical IDs, without any contraint
+on their numbering, that the server uses in the backstage to refer to
+the real resources and that it properly remaps to each per-VM set of
+exposed virtual_IDs during the build and/or boot board configuration
+phase....i.e. when the FW adapts and reconfigures to the specific
+board that is finally running on.
 
---yhm6/mFYCWLfhh+J--
+Thanks,
+Cristian
 
