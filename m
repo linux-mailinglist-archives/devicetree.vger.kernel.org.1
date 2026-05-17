@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-298928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298929-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QpzoHSXNCWo9qQQAu9opvQ
-	(envelope-from <devicetree+bounces-298928-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 16:13:57 +0200
+	id 4HZRLyTNCWq2qAQAu9opvQ
+	(envelope-from <devicetree+bounces-298929-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 16:13:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D80D561857
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9199D561851
 	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 16:13:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2BD943018AF8
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 14:13:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7706D300231D
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 14:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFF9230DEAC;
-	Sun, 17 May 2026 14:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754C830CD82;
+	Sun, 17 May 2026 14:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KH3wnxpD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MiexOe0o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958512F3C37
-	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 14:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252722FA0C6
+	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 14:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779027224; cv=none; b=bJmesBH4StN1IBkgQmKp/BInXJeXmWrB9KEb1iqj85HCqR2uFq8vz0QYvu+KXz5GHWTd0bJg5XPuPv/xxacma2FaES1mnskS54p9JSD+HkoDHRzRGeXkHQKtP19vzPIjBbIawwOTktT36kJT2a5ly/nO10HJ3xdEh6k1//oimng=
+	t=1779027234; cv=none; b=BDLUJDVRm4C/Ry2zHkHVwMwv28WRR81U5e55JQSxitEjeUICz833iQOvR4Vv3aQ25lvyWm/MImTmalB+n7YxHcvEEv4R4g9HSDlu4MBssXgLDk9PN8uRc1+sVARNgjnccUF3U5mgvinZ7t7Ti11oE9zyZYT9RicIV2UwneCYzBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779027224; c=relaxed/simple;
-	bh=o8Rj7B97yNJ2Oe/RYeivKyw6lYvJtZQ2PPPNuBi53pk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y4/uFsBD3fy6MkVjIhFfy2wo/pNQW6AeEjPhJcJiDPjHSF+5x3MOPkKLQ5DEBTO1uD8okkUx4vBI4ikiLFpsDSqNJmR+626f+6MJJYJ9xhZdxqpP3qgI41Z7vFxJpkKA5NkgVriInbN+P5RuqPsm6KlWK8HqubconkMZQ3v1UsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KH3wnxpD; arc=none smtp.client-ip=209.85.210.176
+	s=arc-20240116; t=1779027234; c=relaxed/simple;
+	bh=u+JI8R2LQAVfqakJyFmBVzSMkc2Y1IF7qqSKLB57m9g=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=pQpVYbjYvgNBWspW+zzBVBHDMeM/KqDNI2ZGD6/BLXetrBoYegnXDew5Mg4jk0ntmjMqD1kzAIECeHs0kZnKuzgCBjbGe75x4aIavMJAVTG6bQ7OMcbWqBhTsfheUV1KAkUNI/zBJ4YQArm3mSK+Vz6Hr/TcktM2Ughrw/eoZcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MiexOe0o; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-82f8b60e54dso1227401b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 07:13:42 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-836ebdeb969so532599b3a.3
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 07:13:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779027222; x=1779632022; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yk8HOd3Eg0mugUUA+8CSg5qLF5dL573+VzafG0ZQv/8=;
-        b=KH3wnxpDchmOk640OrXMpr2n2PQwbiwSdpMCXeFtAt+c+IFmXLEhLEmgOzTFQMA16l
-         Tf7s7A/VAQwgMQtAWwy3N6m2GUClFLPN2UghQkyfg5GEbdTsCnEmnoUxipSW0zHjatpD
-         y0/DX/eX0CiGUAjYNPV95MhANZToRCN1dmJkPBYv653QMjr2IsYbqaWAbxK3ym/KtZ8M
-         xm2E6PsKEI4wL9b7aFBt2ZH9kSL/SIB66V12edtRz42AumwKue8iSh2H3ZvLVDSnL7zr
-         3ysb4S8YjgO1QORbnfzMzIQ1kP+7seEyunlHmtCJVk2Ik9nRlOrKkH6MTlfxyZjvteDF
-         w3bQ==
+        d=gmail.com; s=20251104; t=1779027232; x=1779632032; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=seaxzvl1xgZZJAa+rRq0jV+BZBh4vJTt4ZSm28H6Xmk=;
+        b=MiexOe0o/pOACz1YfXOHwJdZSr8qFSFIU57wzR5On47PHsE9vYDS7YEYT//524tqKc
+         BZGIJiW5Hb3gkAglrgHzm9ij52U/1FZDlN2S9y9ykE0uLlkkWtUjaE+ybIx2NiGUgIoo
+         06GEUbyCBM7+HG+CmF3rPr4DAsr1ibHXDuoZNA7lMB+HOAOC/Iyyj78p+FEelUgj2olC
+         jquxTZIAJtHzzjo/fn+neS/8Fjw1pnxgGeurcWLPDhR6yq5avG1kW6isXzSSqAERGJgn
+         BrKPSJB6qg3mfQrvbC9YP36e97j1TMX53Fu7xCom497w+PLU8zFfVxRT/ZG1XFKvl9vU
+         JE7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779027222; x=1779632022;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yk8HOd3Eg0mugUUA+8CSg5qLF5dL573+VzafG0ZQv/8=;
-        b=eIj46YBVVNFw/xJTeS2W7O/yi/n5CCakfGbegVIMAtPb/vVdFS8o4+EM+AWl2u9Lnn
-         V2+ep4O851q76k32yC/5rfJDaWtULYgq+33cGY5I5vkbfpXXhhNwLkW6s2PXJ4GBoG/I
-         kvusAlVAciKWZHwC137i3sMTvGniGn0PByPkiLmbnBsBzwCQVQi6R8w7CcglTKv/gveO
-         qDjlXsw2AqhRbGEqC38prhHmCXYy9mmvs5VRK8BUxKOh0+Ump0e/F1JM2RoMVsnx8tWg
-         xsGc15Q/L1uQzO6tV7UydSgUtegUuNPlFkZWudOmkn8olIDZILZC/KqBsvFeHb6Ronhr
-         lvZw==
-X-Forwarded-Encrypted: i=1; AFNElJ+q+8VsYRTGHHeTg6Pw4rj30m6CRNd43AmMxs0igLdG7OZJ9cFeqcA5MjSuGxZ7zCIkw73pCUW1UWKp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNF2fTwiUU4o9Q5rCwpEIw3Zbe+RoVRmxN3c/ccBcNLSNs150l
-	kEUmog+QS7ACLSlgCYft7LkD/CLM2vjbnhC3vNpoepELwMRgI2t/IXG3
-X-Gm-Gg: Acq92OGqevcGaycNdr0LjnQ4fc7SAsbSKzM+Gb5r1MCnKgMo64dn3SZxx01fcC4G1GD
-	pKHg7lRXHh1HcB+i05Y32pEvM5md2D5hP17uf4+ZjoSlZ9mFiDiPQ0gKA5CoCXSkJKofeKBTLyM
-	CSwb0nyJZUgWHvf25x8UdC7AyPs4SKzmvqLtUiBeB0Ek+0GoMSMG1rUMTS5TUGsgkg/esaLRLml
-	OViLivJ1hOrmMoxF6nJglUL2/ROWg670DJPXCu9Zo3V59FUQcNVATuAwUHvknrj7863IeMhs8lE
-	pM31f3c/ccHQKudnuBWw3Wl45qSvBJPUUXhTUXDaSmXOb8/op2DQjegRTY7NamV4Ka99P+pV4LS
-	d5Q2gL/0GUMgU4pb1gk6VuhL6C45othkp4hJ+zwbKprr8rfG/2b+ZbhN1FCsJFcBi/mmp53myWG
-	TMLw1O6mfSEZ+I8BdRjQViFIjMUvzm
-X-Received: by 2002:a05:6a00:4212:b0:82f:42bc:3386 with SMTP id d2e1a72fcca58-83f33d0356bmr11819618b3a.21.1779027221951;
-        Sun, 17 May 2026 07:13:41 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1779027232; x=1779632032;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=seaxzvl1xgZZJAa+rRq0jV+BZBh4vJTt4ZSm28H6Xmk=;
+        b=mftvyuxueF8AQ4rzTOZPSjiNE1YAknQ4TrLuQSCbwH1hjT4m8nGLBM1DLfDjOoRfnl
+         EsgaQoEtaPoWMiCKfXUTwrKXChJxl8RQjwKGJydOI7lErHzq2/FuTg/senSgZHZxu337
+         gAmykPxxTNXyVAl8PTrHlEvoSdhd2nIAj4ghFBHyhiMVEa1noKlmqYs3fjzbgBirO6Np
+         rliWU1WXTeE4Al6uAlHeCAEbgpqikquitmqZ4fbty5sFYgJoKNwBV1IZStv9nQi2LN0I
+         5VkOsiNXxwz8aQ0nhXCUgDtjMRT+EQMiKnD/wZcYfU+yQGjyrvJh3q0tygeAfyLf5xLH
+         cp0Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/+Cvdh475tjsA/XTFZzpx0ZNfMBWqcWlQibVTgAGzRAolXn+PjHs8GTx0fxNQhexILlNZNM0vEznIN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzIQy4k24xx124Lmh62kKgRqNiJw9leILK4tT6LJ9azrinSXEh
+	sERxDrdcTSbdtnc1Am9V9wksWnSd19SA0BiiUQxBlgX2OtGgbwEOA9nz
+X-Gm-Gg: Acq92OHzhiVfrleLpJdSm1StJT7TCZIQtpNX+aiM+x/RnEFZ2pQUj1h/v42ISacuamJ
+	E0O4jjEkV1KV37fqttj/J5rUEInUyT4GZsS6Zf5G6xE/ah8FnAtUxqOzA9LvyAdvUcX7hDkwt79
+	qyM6w3CJjxtDGK/du6Rvj+JZVUZu3Q7W9hM/SMR+rh8JWa1d01ZFx7F1yiUpZR4PlyQ0jyJ7cTK
+	o1cVCjitINnUCqsAeB+8MNlvYHMAiWQwMtnIGio0KrXLu5Q4Dw/ohE6ROfBSmweBNQATMDjm5Mu
+	SxjQSGy76ngP9mdr4K+HWVgxPX6GeM469FXV/PlwrsZpP02y0tCKltFoDXHEet0gpj1iiLvb7JD
+	9m56Omx2m+xBJb8mPgKEGVf0SJJBvAnR8sdMZIwvaCLdinzR9MVvf/IsW2WPutzZjmPvcFj4cCV
+	sN4uuJBYt6auzx2RVFaRIg/PbV8N2/vZd9mwCS/q0=
+X-Received: by 2002:a05:6a00:4ac2:b0:82c:66f2:1226 with SMTP id d2e1a72fcca58-83f33d5494bmr11243398b3a.38.1779027232488;
+        Sun, 17 May 2026 07:13:52 -0700 (PDT)
 Received: from guoguo-lecoo.lan ([104.28.163.100])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f19fa5489sm10252528b3a.60.2026.05.17.07.13.33
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f19fa5489sm10252528b3a.60.2026.05.17.07.13.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 May 2026 07:13:41 -0700 (PDT)
+        Sun, 17 May 2026 07:13:52 -0700 (PDT)
 From: Chuanhong Guo <gch981213@gmail.com>
-Subject: [PATCH 0/4] clk: add Siflower SF21 topcrm support
-Date: Sun, 17 May 2026 22:12:54 +0800
-Message-Id: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
+Date: Sun, 17 May 2026 22:12:55 +0800
+Subject: [PATCH 1/4] riscv: add Siflower RISC-V SoC family Kconfig support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,10 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDU0NT3eI0I0PdkvyC5KJcXUMLU7NkA9MkM0NjCyWgjoKi1LTMCrBp0bG
- 1tQAa2/r4XQAAAA==
-X-Change-ID: 20260515-sf21-topcrm-1856c05b6138
+Message-Id: <20260517-sf21-topcrm-v1-1-438f2e0513ff@gmail.com>
+References: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
+In-Reply-To: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
  Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
  Michael Turquette <mturquette@baylibre.com>, 
@@ -100,18 +100,18 @@ Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
  Chuanhong Guo <gch981213@gmail.com>
 X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 0D80D561857
+X-Rspamd-Queue-Id: 9199D561851
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298928-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298929-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -130,37 +130,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Siflower SF21A6826 and SF21H8898 are RISC-V chips with quad-core
-T-Head C908 for home routers and gateways.
-This series adds the initial RISC-V Kconfig entry for Siflower SoCs and
-support for the toplevel clock and reset module on Siflower SF21 socs.
+Siflower RISC-V SoCs, including SF21A6826 and SF21H8898, are RISC-V
+chips with T-Head C908 cores for home routers and gateways. Add a
+Kconfig entry named ARCH_SIFLOWER for them.
+Notably these chips uses ARM PL011 for UART. ARM_AMBA is selected
+for its driver.
 
 Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
 ---
-Chuanhong Guo (4):
-      riscv: add Siflower RISC-V SoC family Kconfig support
-      dt-bindings: clock: add binding header for sf21-topcrm
-      dt-bindings: clock: add doc for Siflower sf21-topcrm
-      clk: add support for siflower sf21-topcrm
+ arch/riscv/Kconfig.socs | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- .../bindings/clock/siflower,sf21-topcrm.yaml       |   69 ++
- arch/riscv/Kconfig.socs                            |    7 +
- drivers/clk/Kconfig                                |    1 +
- drivers/clk/Makefile                               |    1 +
- drivers/clk/siflower/Kconfig                       |   22 +
- drivers/clk/siflower/Makefile                      |    1 +
- drivers/clk/siflower/clk-sf21-topcrm.c             | 1053 ++++++++++++++++++++
- include/dt-bindings/clock/siflower,sf21-topcrm.h   |   63 ++
- 8 files changed, 1217 insertions(+)
----
-base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
-change-id: 20260515-sf21-topcrm-1856c05b6138
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index c174ac0ec46b..9996591cd9db 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -37,6 +37,13 @@ config ARCH_SIFIVE
+ 	help
+ 	  This enables support for SiFive SoC platform hardware.
+ 
++config ARCH_SIFLOWER
++	bool "Siflower RISC-V SoCs"
++	select ARM_AMBA if TTY
++	select ERRATA_THEAD
++	help
++	  This enables support for Siflower RISC-V SoC platform hardware.
++
+ config ARCH_SOPHGO
+ 	bool "Sophgo SoCs"
+ 	help
 
-Best regards,
 -- 
-Chuanhong Guo <gch981213@gmail.com>
+2.54.0
 
 
