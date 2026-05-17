@@ -1,157 +1,130 @@
-Return-Path: <devicetree+bounces-298847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDoHHVp3CWo7bQQAu9opvQ
-	(envelope-from <devicetree+bounces-298847-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:07:54 +0200
+	id +O/hFzV9CWp1cQQAu9opvQ
+	(envelope-from <devicetree+bounces-298851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:32:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF4E55FE54
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:07:53 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A290A55FFA4
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:32:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4D974300767B
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 08:07:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61FB130086EF
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 08:32:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D0B305698;
-	Sun, 17 May 2026 08:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E468A345CAF;
+	Sun, 17 May 2026 08:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="juFrhcRZ"
+	dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.b="PMO/+ude"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vinatta.cz (vinatta.cz [37.205.8.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D63C241695;
-	Sun, 17 May 2026 08:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED7B36AF6;
+	Sun, 17 May 2026 08:32:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779005271; cv=none; b=VGPcmd1T8lZJDKREkHFvUHpHIANCdhflUCVvC0A55/b2GwWU48R3aZVI0gZ8JhJWx8vU3p3oyhFkE4YWDS6JKThbr6H7n6hnvBEGoM1V1mYvuakDgIbEc9KoB4dQ+WAHqPqBG2AeSU3NTPj+dO0CeJ9jISmPKALE04oOxzety84=
+	t=1779006769; cv=none; b=Xl/6miQSGPYNW7Ox07HFGBnLJpwMUnx5rXc8xrTIsPsrsBc4hyK1/62DZ0mH9VXUfk1Q5yzZS0h/5faw+ZevPFkG+ueJtV+dlrH7JpkQLs8pGMs80HK2R9k0/4xPpd1CtTYm92h6YWxyVeEOkKtuuWedipPl67O6hhfL4XT/8KU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779005271; c=relaxed/simple;
-	bh=q4n6M7y1hdiajGaA5S3Dv718bzU2NlS/k4sv46Jo9PE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I1C/6J9KKnZUW9bhasSz81bKDfHIWYsG5JKYARGSu/2YmsQnjP6qTEHYRcNkX7DQCdq9SDDh7Z8Pv+GI5SujlXP5zKOWpXo1s+582wX5BWwER37Z+8O87uT7DjBKO8s27Fcw3SN4/J2fPWm8YQWwIfcziKCRJ4G+Q+jFXcjhVA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=juFrhcRZ; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1779005270; x=1810541270;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q4n6M7y1hdiajGaA5S3Dv718bzU2NlS/k4sv46Jo9PE=;
-  b=juFrhcRZ2QFp07fyRbxAnjayL6J4g81wFcLpF1CuLbAd8NTVW4vtFVTg
-   DmdHM41MiVblm3bxylGxMVkTJrnX7Zjp+lyDhteKzW7nb0SyJaTv6KFFZ
-   FKKWml49ce8a5BDedL+GN1bFxU7JUwchCU8Uce4Q3HjxXciOKCU+eQe17
-   pn91Qr5b5k81vzeG4ArkPP+sVN8+DmO9VgIvWjV4DPPVeel3v4VWwPC1R
-   2VJ7hCvGMPY9N8efXCLMG/sQXPs9kH6tF7qeeOVW91ltY6nzdVJsP+F/Y
-   CiRimfrOoBbbskvMYHhtalDMyegrF61MOungDUTaiI8Rb6MqcNBxp/w0M
-   A==;
-X-CSE-ConnectionGUID: G4EiOwl2QQKmHDfML/XewQ==
-X-CSE-MsgGUID: EnDJgfURQU6k9WH+XXD4vA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="90996057"
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
-   d="scan'208";a="90996057"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2026 01:07:49 -0700
-X-CSE-ConnectionGUID: M99lICK9TzyYIdfFvW7whw==
-X-CSE-MsgGUID: jCiv8IbFQ96OYGlLHmFF1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
-   d="scan'208";a="232735120"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.182])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2026 01:07:42 -0700
-Date: Sun, 17 May 2026 11:07:40 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Christian Bruel <christian.bruel@foss.st.com>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Senchuan Zhang <zhangsenchuan@eswincomputing.com>,
-	Alex Elder <elder@riscstar.com>, Nam Cao <namcao@linutronix.de>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Randolph Lin <randolph@andestech.com>,
-	Vidya Sagar <vidyas@nvidia.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v2 2/5] PCI: spacemit-k1: Add multiple PHY handles support
-Message-ID: <agl3TJrvJMtEpHyl@ashevche-desk.local>
-References: <20260517014841.254085-1-inochiama@gmail.com>
- <20260517014841.254085-3-inochiama@gmail.com>
+	s=arc-20240116; t=1779006769; c=relaxed/simple;
+	bh=OxaLP5J/GZlEF9ERJgv3Nk5LgC1koMIzY2yYzqkHqo0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=tgV0fNw/TrQSa7Pn6fprKnoNMIZ4GCn69huMOT8To+hcxEU9nhAJUxt49rjp4e7xuyq8XBnp/gxfzgsMY79/b4lNhjAyrn127+Q+gCLMvFNtywjRCtu7ekFL4VU10DRJLstaftSQ8KlY6KkEGunQqsTRUQdOy+1Z+126nQv5HpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=vinatta.cz; dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.b=PMO/+ude; arc=none smtp.client-ip=37.205.8.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=matfyz.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinatta.cz
+DKIM-Signature: a=rsa-sha256; bh=OxaLP5J/GZlEF9ERJgv3Nk5LgC1koMIzY2yYzqkHqo0=;
+ c=relaxed/relaxed; d=vinatta.cz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
+ i=@vinatta.cz; s=default; t=1779005699; v=1; x=1779437699;
+ b=PMO/+udeo7XzeJ8ziq0fMVnhQ+lOkfiqksINzGQTUTMbfUvnCquMjhKwC3iwPY69pXYaTPBr
+ 0sYDtwXBrRrnzTxUb9iMiyQ1fWScUadCw1gNsRPnH3MAf89gDDidD+fIjXGtKdtEbyaylXRkjb4
+ KAqHsz2O73Xe2rKMmCUWIhfn6x0SyvfnJuJubOJMAZyWwgoOn7RAC9RN8hQjUIlP9S8R6bWfN0p
+ gslmcWbFPc1rV0XGiUzGb/CTfDGc+N/Z2rK0l6C+Yi008AthGl+Yt8jxLtjvtzfoUe37i/vEH38
+ XEL331//YH1DNuli4G5ud92X6UHMl0ipgir8EUdNwZs0w==
+Received: by vinatta.cz (envelope-sender <karel@vinatta.cz>) with ESMTPS id
+ 6a5c1ecf; Sun, 17 May 2026 10:14:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260517014841.254085-3-inochiama@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: CDF4E55FE54
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 17 May 2026 10:14:58 +0200
+Message-Id: <DIKSVZCAQES1.35I4QY11LBVNV@matfyz.cz>
+Cc: "Brian Norris" <briannorris@chromium.org>, "Francesco Dolcini"
+ <francesco@dolcini.it>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>, "Andrew Lunn"
+ <andrew@lunn.ch>, "Gregory Clement" <gregory.clement@bootlin.com>,
+ "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>, "Ulf Hansson"
+ <ulf.hansson@linaro.org>, "Frank Li" <Frank.Li@nxp.com>,
+ <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-mmc@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, "Jeff Chen" <jeff.chen_1@nxp.com>, "Peng
+ Fan" <peng.fan@nxp.com>, <david@ixit.cz>
+Subject: Re: [DONOTAPPLY RFC PATCH v2 0/4] WiFi support for
+ samsung,coreprimevelte
+To: "Johannes Berg" <johannes@sipsolutions.net>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20251026182602.26464-1-balejk@matfyz.cz>
+ <DEJL1ATTQMVE.120JV9YW59I27@matfyz.cz>
+ <aSnWYS2g5slVFaSk@gaggiata.pivistrello.it>
+ <DI5L100Q1RKO.1A68EJIPWYSRC@matfyz.cz>
+In-Reply-To: <DI5L100Q1RKO.1A68EJIPWYSRC@matfyz.cz>
+X-Rspamd-Queue-Id: A290A55FFA4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[vinatta.cz:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[matfyz.cz : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	TAGGED_FROM(0.00)[bounces-298847-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,google.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,foss.st.com,linaro.org,eswincomputing.com,riscstar.com,linutronix.de,ti.com,andestech.com,nvidia.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gentoo.org];
+	TAGGED_FROM(0.00)[bounces-298851-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[chromium.org,dolcini.it,kernel.org,dujemihanovic.xyz,lunn.ch,bootlin.com,gmail.com,linaro.org,nxp.com,vger.kernel.org,lists.infradead.org,lists.sr.ht,ixit.cz];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[balejk@matfyz.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[vinatta.cz:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vinatta.cz:dkim]
 X-Rspamd-Action: no action
 
-On Sun, May 17, 2026 at 09:48:37AM +0800, Inochi Amaoto wrote:
-> The PCIe controller on Spacemit K3 may use multiple PHYs at the
-> same time. The feature is not support by the current driver.
-> So extend the PHY definition to support multiple PHY handles.
+Johannes,
 
-...
+Karel Balej, 2026-04-29T12:55:23+02:00:
+> Brian, what are the options here now? Would it be possible to make an
+> exception and accept the patches without the firmware being in
+> linux-firmware? This is an old device with no mainstream audience so I
+> expect everyone who will want to use it will be able to supply the
+> firmware themselves and it would be great to not have to keep the
+> patches in a fork, especially when trying to build on top of them
+> further (such as to fix the driver-firmware incompatibilities discussed
+> in one of the patches of this series).
 
-> +	k1->phy = devm_kmalloc_array(dev, 1, sizeof(*k1->phy), GFP_KERNEL);
+would you please let us know whether there is any chance an exception
+could be made for this chip regarding the firmware or whether there is
+any other way to upstream the support?
 
-Hmm... What's the point in having _array(1) ? devm_kmalloc() should suffice.
-
-> +	if (!k1->phy)
-> +		return -ENOMEM;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thank you and best regards,
+Karel
 
