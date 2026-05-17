@@ -1,301 +1,193 @@
-Return-Path: <devicetree+bounces-298922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298923-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ONh3BLrGCWrcpAQAu9opvQ
-	(envelope-from <devicetree+bounces-298922-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:46:34 +0200
+	id WELuNYbICWropQQAu9opvQ
+	(envelope-from <devicetree+bounces-298923-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:54:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64976561451
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:46:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1053156153E
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A6CA30078D5
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 13:46:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DA019300293D
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 13:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F5A2517AC;
-	Sun, 17 May 2026 13:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A7726E165;
+	Sun, 17 May 2026 13:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQFeSA8K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ab9+YHNU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34FB248893
-	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 13:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD2011A9F9F;
+	Sun, 17 May 2026 13:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779025591; cv=none; b=sZcGTuVv+2a0xforGI6Bc8gP268Gqwl6IHYPwrezcO6QyrWcJ6dX8giiJIaL+SCQSwqLjCa5AepfKQP5QYI4ghAA2IHyPbwzU/QU08XZxWqBVWgCMbZ2fQ4SNyKmOTjpzhAAveoEt/YJKtDszGgyykSn2eBOaZOkhJyrv6qAP4o=
+	t=1779026045; cv=none; b=WlzH7YjR5YF8ahaapGQs/izAuJwcfgy7LkAbMOOebRkE2+9Ijixq/eJYPIOhmsxlJiaN8+Wkukq/v30Vbx7Vrxsb86ZM6+sDhNwpU6apTJ+PqHjRSd8i7xThDC8fmatpRqn0PsB+Nf4WVo4JTMIZk1YYtMPyzMVIfBoAQet51I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779025591; c=relaxed/simple;
-	bh=Mes1xx7FwvIHbFkHH2IXV3c19Dbw2xUwI0IjC1B3Rx8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MvEbFMVXW+rhJf7zUK1O0kR9QCfVKzEM5HpRNaZalq2AqdgORviQywX70D08RgSj/EC3WMtfA7mbHoaAXaBgzlsThGZNosAjE55MC77rAdRlw80mHp2n5AIUs1YrJmBt6Dacs8pexP7+RDktp+vPk7lL2wTC1Ori/tHHKTcYcbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQFeSA8K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 961CDC2BCB0;
-	Sun, 17 May 2026 13:46:30 +0000 (UTC)
+	s=arc-20240116; t=1779026045; c=relaxed/simple;
+	bh=fQCNw4EnSJMI7bx7pm4XaYCM6Vupjq8oyL3GdPFn8Q0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WBUd8m4FXyGkmthX1rKOJfpUn8uK445I0Xy2nDmCsT+TtzpF/jE7FKfrAjSnnnLzGg/S7cgSPKKyHUbv9SzG8YeTuadsU6eCicFa3KEA/KmNA1Tmc4RCnCf07zPNR/fOx4Z6vjCEx19aYrLeebeDZggEVkX1Sk2PQjaKzM/Olqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ab9+YHNU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FB82C2BCB0;
+	Sun, 17 May 2026 13:53:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779025590;
-	bh=Mes1xx7FwvIHbFkHH2IXV3c19Dbw2xUwI0IjC1B3Rx8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=gQFeSA8K9W4Loe+FV89UIcNnQy4oRUHs5Jskr7esh8luNIvmGSdAPUvpa/jmlCy/X
-	 vQTmOfuzP9ksWRmzl0JVyY2YAAGpEghKBA4HuatzCUb9oRHThecnHGKXjkooCg39Gc
-	 1YzbvZRlLUId87yaE6Bs/3eZoJGF3E1DI68btV+liUqPc5um+0JyITpX8JV//mPPnm
-	 aRhKARyPV9f6HpwbWuh/Ff3BT7CmDLu2ZSBf2PmF5eJGOF9ryQeOmqa3aMmt/DATVU
-	 cAxwuzyQjk+b8tbViLxTKfalmVy03XLlHYjXtCqfBYqFhsz3Zpl1NXk2kKX8ZIzZnM
-	 a6GIId9ozEhPA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: add basic devicetree for
- Ayaneo Pocket DS gaming console
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Alexandre Hamamdjian via B4 Relay" <devnull+azkali.limited.gmail.com@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260517-pocketds-v3-3-d5910c801756@gmail.com>
-References: <20260517-pocketds-v3-3-d5910c801756@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 17 May 2026 13:46:29 +0000
-Message-Id: <20260517134630.961CDC2BCB0@smtp.kernel.org>
+	s=k20201202; t=1779026045;
+	bh=fQCNw4EnSJMI7bx7pm4XaYCM6Vupjq8oyL3GdPFn8Q0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ab9+YHNUf/NlfMQYJ9XZnVPeNUOSgoPS1wojtV/MR6eLucxpYYgf6OYU+8G0aKNnY
+	 UhWcHcFMMmGvzqEUWqoTsTCKcdDoNq+wKaMYookjK6noRfmyXRNle74bC16/YwP3US
+	 0v9yE31Kgon9ztyHVMs2xFpSPZTm5S90199lwxVE+Ik/Tf89DDizjJZjaAnwHA+8lJ
+	 ngcBcq+/CtifzuBtsRBUYkSJeTxtTiAmfDVB2CuqwOYmq5i/6SCDMwPiclY/JtUcKd
+	 ynmNpb4R9h4gSywCrAVW2ya/0KcdtZQdPki6YM9ZwY00WqBLWfNzUKFajpgWEyrzPx
+	 yRQ2QXLzulSaQ==
+Date: Sun, 17 May 2026 14:53:52 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andrew Morton
+ <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, Steven Rostedt
+ <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky
+ <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v13 02/12] iio: kstrtox: add local
+ _parse_integer_limit_init() helper
+Message-ID: <20260517145352.5f059a41@jic23-huawei>
+In-Reply-To: <20260517-adf41513-iio-driver-v13-2-bb6e134a360f@analog.com>
+References: <20260517-adf41513-iio-driver-v13-0-bb6e134a360f@analog.com>
+	<20260517-adf41513-iio-driver-v13-2-bb6e134a360f@analog.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: 64976561451
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 1053156153E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298922-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298923-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,azkali.limited.gmail.com,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.2:email,0.0.0.1:email]
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
-s) to consider:
-- [Critical] Unresolved references to non-existent nodes `&panel0_in` and `=
-&panel1_in`.
-- [High] DisplayPort is not correctly routed to the USB-C connector.
-- [High] Missing PCI bridge properties in `pcie@0` root port node.
-- [High] Missing `pinctrl-1` sleep state for the `pwm-fan`.
-- [High] Thermal zones omit `cooling-maps` to bind the PWM fan and use inco=
-rrect trip types.
-- [Medium] Empty `panel@0` node lacks a `compatible` string.
-- [Low] Undocumented custom DT property `rocknix-u-boot-dt-id`.
---
+On Sun, 17 May 2026 10:13:57 +0100
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-commit d78e5e056b91e897429aec4c3dcd17b82685dc92
-Author: Teguh Sobirin <teguh@sobir.in>
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Add parsing helper that accepts an initial value for the accumulated
+> result when parsing an 64-bit integer. It reuses current implementation
+> for _parse_integer_limit(), which now consumes the new function with
+> init = 0. The diff algorithm would have the documentation header and
+> prototype of _parse_integer_limit() moved around so it is adjusted
+> according to guidelines.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Sashiko makes a good point on this. It is not currently IIO specific
+so the patch title should make that clear.
 
-arm64: dts: qcom: add basic devicetree for Ayaneo Pocket DS gaming console
+kstrox: add local_parse_integer_limit_init() helper.
 
-Add initial Device Tree for the Ayaneo Pocket DS gaming console based
-on the Qualcomm QCS8550 platform.
-
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocketds.dts b/arch/=
-arm64/boot/dts/qcom/qcs8550-ayaneo-pocketds.dts
-> new file mode 100644
-> index 0000000000000..416399a4179b4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs8550-ayaneo-pocketds.dts
-> @@ -0,0 +1,1883 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-
-[ ... ]
-
-> +/ {
-> +	model =3D "AYANEO Pocket DS";
-> +	compatible =3D "ayaneo,pocketds", "qcom,qcs8550", "qcom,sm8550";
-> +	rocknix-u-boot-dt-id =3D "u-boot-pocket-ds";
-
-This isn't a bug, but is this a documented standard property?
-Using custom properties may trigger dtbs_check warnings.
-
+> ---
+>  lib/kstrtox.c | 39 ++++++++++++++++++++++++++-------------
+>  1 file changed, 26 insertions(+), 13 deletions(-)
+> 
+> diff --git a/lib/kstrtox.c b/lib/kstrtox.c
+> index 97be2a39f537..0705461f51c0 100644
+> --- a/lib/kstrtox.c
+> +++ b/lib/kstrtox.c
+> @@ -39,23 +39,15 @@ const char *_parse_integer_fixup_radix(const char *s, unsigned int *base)
+>  	return s;
+>  }
+>  
+> -/*
+> - * Convert non-negative integer string representation in explicitly given radix
+> - * to an integer. A maximum of max_chars characters will be converted.
+> - *
+> - * Return number of characters consumed maybe or-ed with overflow bit.
+> - * If overflow occurs, result integer (incorrect) is still returned.
+> - *
+> - * Don't you dare use this function.
+> - */
+> -noinline
+> -unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned long long *p,
+> -				  size_t max_chars)
+> +static unsigned int _parse_integer_limit_init(const char *s, unsigned int base,
+> +					      unsigned long long init,
+> +					      unsigned long long *p,
+> +					      size_t max_chars)
+>  {
+>  	unsigned long long res;
+>  	unsigned int rv;
+>  
+> -	res = 0;
+> +	res = init;
+>  	rv = 0;
+>  	while (max_chars--) {
+>  		unsigned int c = *s;
+> @@ -87,6 +79,27 @@ unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned lon
+>  	return rv;
+>  }
+>  
+> +/**
+> + * _parse_integer_limit() - Convert integer string representation to an integer
+> + *			    limiting the number of characters parsed.
+> + * @s: The start of the string.
+> + * @base: The number base to use.
+> + * @p: Where to write the result of the conversion.
+> + * @max_chars: Maximum amount of characters to consume.
+> + *
+> + * Convert non-negative integer string representation in explicitly given radix
+> + * to an integer. A maximum of max_chars characters will be converted.
+> + *
+> + * Return: Number of characters consumed maybe or-ed with overflow bit.
+> + *	   If overflow occurs, result integer (incorrect) is still returned.
+> + */
+> +noinline
+> +unsigned int _parse_integer_limit(const char *s, unsigned int base,
+> +				  unsigned long long *p, size_t max_chars)
+> +{
+> +	return _parse_integer_limit_init(s, base, 0, p, max_chars);
+> +}
 > +
-> +	aliases {
+>  noinline
+>  unsigned int _parse_integer(const char *s, unsigned int base, unsigned long long *p)
+>  {
+> 
 
-[ ... ]
-
-> +	pmic-glink {
-> +		compatible =3D "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
-> +
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		orientation-gpios =3D <&tlmm 11 GPIO_ACTIVE_HIGH>;
-> +
-> +		connector@0 {
-> +			compatible =3D "usb-c-connector";
-> +
-> +			reg =3D <0>;
-> +
-> +			power-role =3D "dual";
-> +			data-role =3D "dual";
-> +
-> +			ports {
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +
-> +				port@0 {
-> +					reg =3D <0>;
-> +
-> +					pmic_glink_hs_in: endpoint {
-> +						remote-endpoint =3D <&usb_1_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg =3D <1>;
-> +
-> +					pmic_glink_ss_in: endpoint {
-> +						remote-endpoint =3D <&redriver_ss_out>;
-> +					};
-> +				};
-> +			};
-
-The commit message mentions "DisplayPort is muxed over the USB-C connector".
-Is the graph topology missing the DP Alt Mode port (port@2) for the
-usb-c-connector?
-
-> +		};
-> +	};
-> +
-> +	pwm_fan: pwm-fan {
-> +		compatible =3D "pwm-fan";
-> +
-> +		pinctrl-0 =3D <&fan_pwm_active>, <&fan_int>;
-> +		pinctrl-names =3D "default", "sleep";
-
-Does this missing pinctrl-1 property cause the pinctrl core to fail when
-transitioning to sleep state?
-
-> +
-> +		fan-supply =3D <&vdd_fan_5v0>;
-
-[ ... ]
-
-> +&cpu7_top_thermal {
-> +	polling-delay =3D <200>;
-> +
-> +	trips {
-> +		cpu7_top_fan0: trip-point2 {
-> +			temperature =3D <70000>;
-> +			hysteresis =3D <3000>;
-> +			type =3D "passive";
-> +		};
-
-Should active cooling devices like fans use type =3D "active" instead of
-"passive"?
-
-Also, are cooling-maps subnodes needed to bind these trip points to the
-pwm_fan cooling device? Without them, the thermal framework might not
-automatically engage the fan.
-
-> +
-> +		cpu7_top_fan1: trip-point3 {
-
-[ ... ]
-
-> +&mdss_dp0_out {
-> +	remote-endpoint =3D <&panel0_in>;
-> +
-> +	data-lanes =3D <0 1 2 3>;
-> +};
-
-Are these endpoints defined anywhere? The commit message mentions display
-panel support is deferred, but compiling this might result in a reference
-to a non-existent node.
-
-Also, should DisplayPort be routed to the USB QMP PHY's DisplayPort input
-instead of a standalone panel, given it is muxed over the USB-C connector?
-
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply =3D <&vreg_l3e_1p2>;
-> +
-> +	status =3D "okay";
-> +
-> +	display_panel: panel@0 {
-> +		reg =3D <0>;
-> +
-> +		pinctrl-0 =3D <&sde_dsi_active>, <&sde_te_active>;
-> +		pinctrl-1 =3D <&sde_dsi_suspend>, <&sde_te_suspend>;
-> +		pinctrl-names =3D "default", "sleep";
-> +	};
-
-Since display panel support is deferred, should this node be removed for no=
-w,
-or at least include a compatible string to prevent dtbs_check errors?
-
-> +};
-> +
-> +&mdss_dsi0_phy {
-
-[ ... ]
-
-> +&mdss_dsi1_out {
-> +	remote-endpoint =3D <&panel1_in>;
-> +	data-lanes =3D <0 1 2 3>;
-> +};
-
-Will this also cause a compilation failure due to referencing a non-existent
-node, as panel support is deferred?
-
-> +
-> +&mdss_dsi1_phy {
-
-[ ... ]
-
-> +&pcie1 {
-> +	wake-gpios =3D <&tlmm 99 GPIO_ACTIVE_HIGH>;
-> +	perst-gpios =3D <&tlmm 97 GPIO_ACTIVE_LOW>;
-> +
-> +	pinctrl-0 =3D <&pcie1_default_state>;
-> +	pinctrl-names =3D "default";
-> +
-> +	status =3D "okay";
-> +
-> +	pcie@0 {
-> +		/* Renesas =CE=BCPD720201 PCIe USB3.0 HOST CONTROLLER */
-> +		usb-controller@0 {
-> +			compatible =3D "pci1912,0014";
-> +			reg =3D <0x10000 0x0 0x0 0x0 0x0>;
-
-Does the pcie@0 bridge node need #address-cells =3D <3>, #size-cells =3D <2=
->, and
-a reg property so the child's reg can be properly parsed by the PCI subsyst=
-em?
-
-> +
-> +			avdd33-supply =3D <&upd720201_avdd33_reg>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260517-pocketds-v=
-3-0-d5910c801756@gmail.com?part=3D3
 
