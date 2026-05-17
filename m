@@ -1,123 +1,210 @@
-Return-Path: <devicetree+bounces-298912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298917-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBtQM2u+CWqkngQAu9opvQ
-	(envelope-from <devicetree+bounces-298912-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:11:07 +0200
+	id uLm+GkC/CWrDnwQAu9opvQ
+	(envelope-from <devicetree+bounces-298917-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:14:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77047561207
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:11:06 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45E3561245
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:14:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5C97B3007532
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 13:11:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5589C3000B8A
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 13:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F30391E5C;
-	Sun, 17 May 2026 13:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F823932E9;
+	Sun, 17 May 2026 13:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBkTOAOk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oUKCW9Lv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93249391837;
-	Sun, 17 May 2026 13:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC0838F929;
+	Sun, 17 May 2026 13:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779023462; cv=none; b=SwnDGxjvkwGjVVVWrX7dfTFHTRRh3ltUhLra5FcdcKFK8CIGSTUCdR1W2AYPSm8ZMs/SWNyQmwQz7N62fDQsQ+5qR7k+OBo1PXZwFb34Eomz09vEX6vP03Ef4HK/vFDFk70oKdjRwusEf47lkS0LtmhcvSr2yr9Lsf/gyshKX+I=
+	t=1779023665; cv=none; b=mPzaMWSFzoMxWpZn9yR/xLuCQ0Ih9pSFwS3MXBiSUzbmn8GMAnjTsYzNoap/fyqQ9aoy8N5jEdUokx6Yw+6CGJaAMVQBPhMXmneoUijAVlpBlCzIGO3+7InvjJIpvFRngmy8G/BWPWKiv26i+1+7oF1udS1V9nK7MnxrnKJdezU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779023462; c=relaxed/simple;
-	bh=Pl0ntdz5RoEzLeLIVajFgue9u5KyRkR49SApKaEd1T0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LZsk3TAN6BTIWCFeEEjugMtOvgFziaCL0itKDq2rX1ATQOtKVVikQECeH155pjr5qS1caoowpeVOqkNRdzVoS4voTwka5LIN5ktbL7dbxJJR8YldkZkVdFsl7/ScLRA6/5e4aWy2S6Ss51Md8uZOfyr0SKSkj98Ax4s4Iq8Q+Ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBkTOAOk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB09C2BCB0;
-	Sun, 17 May 2026 13:10:58 +0000 (UTC)
+	s=arc-20240116; t=1779023665; c=relaxed/simple;
+	bh=sgYaZc2jrbgHscXICpyw9V4m4a+P3iP44DuYc5/fTJA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oLXTALg5biWSYBhqGc5IAkgsycdyfsDdCM1rlFzMOQt8rOzbCtT8OslyXln3ssTzAuXdfrXmFwnQCj+ULRqID8DKDsO3jmMx9iuDEmSBdMBeJn094k94cXCvgL2m6KV1Hf/muN/pUFgchVAiZY81WF1IQPNRwRQvrP/f6D2rhZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oUKCW9Lv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EEF4CC2BCC6;
+	Sun, 17 May 2026 13:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779023462;
-	bh=Pl0ntdz5RoEzLeLIVajFgue9u5KyRkR49SApKaEd1T0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=JBkTOAOkOTae8Y3MeAx9p8Sj8wx+NZnVDSC97DmjVC0m6ekxlqFSV/epgq8NlhmLy
-	 BnJQntzmiRJLcf89cafQP12hlhWLrwiK0vNSpkRQckxuegoqab3hXZqntJgLIhNUTH
-	 QlNLLkKud3d509Lyok3WyCLc/X2pl9CLfFy7HYkDIaFbIKLqCPdSO5rqm1LXgrmclk
-	 yURjs9Ah3F06qzuUwqUW1U+FTz6n57P05DGZtUybRvCgxOn2HB4+gvg/q5+3Eenq8b
-	 LUJQDIPS4zuYN0L5T+8F1aRVWqAesjnAaLbbKltWUKQrBuBqPB+te/qlsuao65119v
-	 kUS8KsQvc3lIQ==
-Date: Sun, 17 May 2026 14:10:54 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Joshua Crofts <joshua.crofts1@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] iio: light: veml3328: add devicetree binding for
- new sensor
-Message-ID: <20260517141054.3981672c@jic23-huawei>
-In-Reply-To: <20260516-veml3328-v1-1-1d4b663e2fe3@gmail.com>
-References: <20260516-veml3328-v1-0-1d4b663e2fe3@gmail.com>
-	<20260516-veml3328-v1-1-1d4b663e2fe3@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20201202; t=1779023663;
+	bh=sgYaZc2jrbgHscXICpyw9V4m4a+P3iP44DuYc5/fTJA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=oUKCW9Lv+0iBC4b2XSuOL6a/ypq3tE8dZFTJfC+JBgp+xqFRT1mVlJX9JlR4KRzOV
+	 Y3Af4oduk7at0HRF0UPLUirJIHAU2ETFrzkozmKOOmHpOGvVBbszs221KlM2+hxkvQ
+	 dMaK8NqdrqAirGfVQltP3TUeivRKswhVGjzavWivLSGOqQUYaOUUHhCdxTjnFjrsCG
+	 SuN7uaE41CuahINhfF6vxCbn8YHuWL99Wa3ZaxCI3Oxrz666MEq/xa9hbuSqOwA2ny
+	 HoYcKDa2GvMW0jI0VwFL0Ll4QMrGygurDPv/2neqT1UbLF4GQ7OYMCFEnfaqRk9fsj
+	 V/XuimuB9uXnA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD8ECCD4F3D;
+	Sun, 17 May 2026 13:14:22 +0000 (UTC)
+From: Alexandre Hamamdjian via B4 Relay <devnull+azkali.limited.gmail.com@kernel.org>
+Subject: [PATCH v3 0/4] arm64: qcom: add Ayaneo Pocket DS gaming console
+Date: Sun, 17 May 2026 20:14:19 +0700
+Message-Id: <20260517-pocketds-v3-0-d5910c801756@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 77047561207
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22Nyw7CIBQFf6VhLYbSV3DlfxgX9HJpUVsaqETT9
+ N+FuqmJy0nOzFmIR2fQk1O2EIfBeGPHCMUhI9DLsUNqVGTCGa9ZlTM6WbjjrDxFhk0rBOiiFiT
+ OJ4favLbU5fpl/2xvCHPy06I3frbuvX2FPO3+ZENOGQXNKgkIrJb63A3SPI5gB5Kyge/FfCfyK
+ HIhlCp52Wj+I67r+gEwPo0H6wAAAA==
+X-Change-ID: 20260510-pocketds-e0e7b99cf369
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Alexandre Hamamdjian <azkali.limited@gmail.com>, 
+ Teguh Sobirin <teguh@sobir.in>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779023659; l=3953;
+ i=azkali.limited@gmail.com; s=20260510; h=from:subject:message-id;
+ bh=sgYaZc2jrbgHscXICpyw9V4m4a+P3iP44DuYc5/fTJA=;
+ b=FLHTQYk6KJTQIcyIF9YexupL/BpiCdbWDZybfo8Ryk9D4LP/0GYu/vJ4T35bZNOLmOJ1hBV9R
+ s/OcadF+wQyD1DFQTMhqPOZjmMudncENJvDhZwS5bLVgawKc0ghBjLc
+X-Developer-Key: i=azkali.limited@gmail.com; a=ed25519;
+ pk=I0Z0IdCdQJqNGX+FQUnXhrHg950u3cM6Xzz3YT6JOyQ=
+X-Endpoint-Received: by B4 Relay for azkali.limited@gmail.com/20260510 with
+ auth_id=774
+X-Original-From: Alexandre Hamamdjian <azkali.limited@gmail.com>
+Reply-To: azkali.limited@gmail.com
+X-Rspamd-Queue-Id: A45E3561245
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298912-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-298917-lists,devicetree=lfdr.de,azkali.limited.gmail.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,sobir.in];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.20:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	HAS_REPLYTO(0.00)[azkali.limited@gmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Sat, 16 May 2026 23:50:53 +0200
-Joshua Crofts <joshua.crofts1@gmail.com> wrote:
+This series adds initial support for the Ayaneo Pocket DS, a handheld
+gaming console built around the Qualcomm QCS8550 SoC. It has UFS
+storage, WiFi/Bluetooth, gaming buttons, microSD, dual displays, and
+USB-C with DisplayPort. Game controls are exposed through a Renesas
+uPD720201 PCIe USB 3.0 host controller hung off PCIe1, while a
+dedicated gamepad MCU is reached over UART11.
 
-> Add devicetree binding for the Vishay VEML3328 RGB/IR light sensor
-> connected via I2C (SMBus compatible).
-> 
-> Additionally, add an entry in MAINTAINERS.
-> 
-> Signed-off-by: Joshua Crofts <joshua.crofts1@gmail.com>
+The series is structured as:
 
-This is very standard looking. Have you considered if any similar
-bindings can be easily extended to cover this device?
+  1. dt-bindings entry for the new qcom,qcs8550-ayaneo-pocketds
+     compatible.
+  2. sm8550.dtsi: add labels for the cpuss/cpu/gpuss thermal zones so
+     the board can extend them with trip points and cooling maps via
+     &label overrides instead of redeclaring zones by path.
+  3. The Pocket DS board device tree itself, with the root-level
+     nodes alphabetised and the fixed regulators named per the
+     "<name>-regulator" convention.
+  4. sm8550.dtsi: add the QUP2 SE3 (UART11) controller node and its
+     default pinctrl, so the board can enable it as &uart11 instead
+     of open-coding the controller in the board dts.
 
-Note that there is no direct relationship between bindings and
-drivers, there are single bindings with multiple associated drivers
-and multiple bindings covered by a single driver.
-Also dt-bindings get used in multiple projects and some of those
-will do different splits in what code covers what parts.
+Only the basics are wired up at this stage (boot to console, core
+peripherals, USB-C and DP); the display panel will follow in a later
+submission.
 
-Jonathan
+Signed-off-by: Alexandre Hamamdjian <azkali.limited@gmail.com>
+---
+Changes in v3:
+- New prerequisite patch adding the QUP2 SE3 (UART11) controller node
+  and the qup_uart11_default pinctrl state to sm8550.dtsi, so the
+  board can enable the gamepad MCU UART via &uart11 instead of
+  duplicating the controller node in the board dts.
+- Alphabetised the root-level nodes in the board dts and renamed the
+  fixed regulators to the "<name>-regulator" node-name convention.
+- Link to v2: https://patch.msgid.link/20260511-pocketds-v2-0-299dd4247f2f@gmail.com
+
+Changes in v2:
+- Inlined the board into a single qcs8550-ayaneo-pocketds.dts, matching
+  the sm8650-ayaneo-pocket-s2 layout
+- Added qcom,qcs8550 to the compatible chain
+- Prerequisite patch labelling the sm8550 thermal zones so the board
+  can extend them via &label overrides (and refactored the board's
+  thermal-zones to use them)
+- Added the Renesas uPD720201 USB 3.0 controller as a child of pcie1
+  with proper avdd33 / vdd10 / vdd33 regulators
+- Moved gamepad_pwr_en off &pcie1's pinctrl-0 and onto the
+  usb-controller node
+- Split the lumped upd720201_active pinctrl into per-regulator states
+- Fixed mdss_dp0_out data-lanes to <0 1 2 3> (all four wired)
+- Fixed gpio-reserved-ranges to <32 4> (gpio 38-39 drive the Goodix
+  touchscreen)
+- Renamed nodes with underscores (llcc-lpi-region, splash-region,
+  gpio@20) per DT conventions
+- Reordered pinctrl-names after pinctrl-N file-wide
+- Dropped the unused cont_splash_region label
+- Link to v1: https://patch.msgid.link/20260510-pocketds-v1-0-cf05acec06af@gmail.com
+
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+---
+Alexandre Hamamdjian (3):
+      dt-bindings: arm: qcom: document the Ayaneo Pocket DS
+      arm64: dts: qcom: sm8550: add labels for thermal zones
+      arm64: dts: qcom: sm8550: add UART11 node
+
+Teguh Sobirin (1):
+      arm64: dts: qcom: add basic devicetree for Ayaneo Pocket DS gaming console
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    6 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/qcs8550-ayaneo-pocketds.dts      | 1883 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               |   52 +-
+ 4 files changed, 1929 insertions(+), 13 deletions(-)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260510-pocketds-e0e7b99cf369
+
+Best regards,
+--  
+Alexandre Hamamdjian <azkali.limited@gmail.com>
+
 
 
