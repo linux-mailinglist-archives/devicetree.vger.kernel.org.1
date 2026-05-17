@@ -1,187 +1,153 @@
-Return-Path: <devicetree+bounces-298881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298883-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJomM0+UCWqggQQAu9opvQ
-	(envelope-from <devicetree+bounces-298881-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:11:27 +0200
+	id cB5lKqWUCWqOgQQAu9opvQ
+	(envelope-from <devicetree+bounces-298883-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:12:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838AE56064A
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:11:22 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3E9560695
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:12:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5ACB43004923
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:11:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 79A803004D35
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF8335E1AD;
-	Sun, 17 May 2026 10:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAB035DA77;
+	Sun, 17 May 2026 10:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rciXCJPe"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="yLLHXpfr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5652235DA63
-	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 10:11:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.173
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779012678; cv=pass; b=O86CIWDP1/2D+xecy9S0oBilU1V+AVspYosj96Hy4XG+wwJ4DDLgYSjH7iYdnFJJTsHJQYY3wlLchrE4JViglTmLuX1msRgU/PstGz9Ou5lUvHvGmYQB0rVmxdYESOHpsYDFRrhhlYLJuoxBJpCdCN5R9+/gutdym4Dw1+xhQqE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779012678; c=relaxed/simple;
-	bh=ifauxA5VPfHKLiYlXWLHFvyPEzmbAuAokN126eppTSk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cfrkgFoCEQMvURff+J7lKXoH7zUcYd4CAsmW9KeJIcJpSQHjcJvjNTgvSlEXac4jz6waNoLRU/6GGw4c6UIwlMlhnUgt9QHfTKQPRIXPUjdxuiNVookTSHG328KtmlieLaIuRh6CNwbtkR2SQB9lpUiEVp4msDaYOzeliSsgEK0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rciXCJPe; arc=pass smtp.client-ip=74.125.82.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-30246cfd41aso2956934eec.1
-        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 03:11:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779012676; cv=none;
-        d=google.com; s=arc-20240605;
-        b=CpAOSEB3+tM2CtgRORSfC1iWqISXaUdI/ql0hDZWYvYVHVmeOedlTgDO46s59ndjp2
-         0keXFiOc8trrq1tEiaIG4cTK3Bxq2M1r4csXBAXP3YFKJ9TETlL11dlvE506QkFbyX+p
-         rMKt+odRKGar3+GXYTzxayuwQQqffsxddLJTMVw+ao7HXwCVSDXgSTKWEJdRnvvFXAYv
-         m4xg49ylpg+6/0uUrgMT5aQOQ1vGDgns8NgBlhAyhtQSbZ04QgBNQiQu8Vb3706qsF+/
-         Hg8QdnMRnuActM1D4jkiKuWjrPDYn95TBq7bQFtLved/XAvvFJ3Cd0qinvQlJV3j/xpa
-         9lVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ifauxA5VPfHKLiYlXWLHFvyPEzmbAuAokN126eppTSk=;
-        fh=EcroJvtbhiNSczNdNN0pSzdYrLtrMa0Lk7ZeohAPskw=;
-        b=fbOO45kJ+uDhC1TuLQl12PplTpIY72Zv2nyoqvNY3F2nOmo6nCONIhLOjVKE9AI2rh
-         4FW5F/CyAclviJhVQ9H17BSLZ8w7hg0CP73vCJIIVfqN2OJpQpxtQmsDSUgaLfoSuBRo
-         DLhQTc9sZa1DhHlS6FhYhyXmwCcbldWlWolu+e70b6dOhBZJjybyCwWqKi/kShOWqWOV
-         rF0EIK39Ko24Lyw/6IhzK3HN0t0De0imzNf2ZRXKByvPRH/4eKX4PfYNZ+zsaDma2Zhy
-         HsuywJ94/Bepi0tX/ZBbx7Je3Ehh0rX4ITZXdogHIOqFFcQWQKkWwwOlhNJws9A7tYzB
-         rHUA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779012676; x=1779617476; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ifauxA5VPfHKLiYlXWLHFvyPEzmbAuAokN126eppTSk=;
-        b=rciXCJPeT566uKV/w+At0X8Rs0RZV/FR/rji3r7v5LvvlzTyLylSU/Xzt91AF8VNNW
-         XN8A0EauYbrgo4watG8Yts5hYBUsa709meo1B9CmObIghjF8H+BXZwjQt+yx2jMyDijH
-         2iwsLse01gO9RFaghvIQuT7SbEbt2SVzdL7E+wFMBA3OoPrhnAENZnH/VClpeWB4dxyk
-         oM3zMzSfboDWz8Vi28CYGvdqVRP3qZOWO5TjTgdfXKX1oNqoFXrB/XNvEegSWLQ3WnhM
-         tEgJK2s49ifJyLvNL2YCaFkq1OK7DDMjfXTPd1Q5PGC2tKUQv7RQv04N1Qz/BWVn3U/+
-         5DMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779012676; x=1779617476;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ifauxA5VPfHKLiYlXWLHFvyPEzmbAuAokN126eppTSk=;
-        b=XSppbV8C8F2h5SHP9LfrincKTFSZjFHXomCtNaG9X3LHlS8ZD3xcP508P0ieCeIotZ
-         SoM43BV5xISLjYsNYqskd+zhv1lts6M94DrG/RzPbMDDbZ4Xml+wdyLegr3U86t2oKFD
-         MUtTjWZb/n7P9f9CAJqGw7ecgotUWnWWTovz9yTsCm3YnariGhlNVrhF3e4FoLxHVYIf
-         jKLREd/pFYOgNH9z2mLoscKSS3zPkGCqTPlT4v6owruQXGvnLVTecRWC5rok213ndJk+
-         gc7wcfBY2RPdm+QbGYsyY65x3xITsx7Fddoq4KasFH3s9wkBJ4DiXfdhp05kRSumvgzB
-         FlHQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/1PoNSx7khQjy2zYxgKL3r8RMWUndZBF1D+oB8ZqV6rlZGc1H8rEBr1d78hcBc+d41H+6Lqrq7H6Hz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yznhkix2hmUpjXiEc6aKnpCsObbpdl2/6MpBb2kyxdh6mnMP36F
-	ea2vwPuWCpHw9pSEnBnko+6+z/WgpfU5b9ZT2udsV1rtuLZzuJcQ3qYBtQRVzIlcGAI3sM1XQ6r
-	PmoedXKhJqXT7/9ARUWDJQvQms7RWZe8=
-X-Gm-Gg: Acq92OG2cZo9+sudnR7sfeEFs/V/P+UWdq46MA7XXZV4Wo8QG6Dslp5OGXYEiEFoVM+
-	SS7FBytE6OC2YFSy5hPvs8jTdWoVPRcEmOldUgMBjC4svXTEBrDhxw1FwoMKhLjqJyy4V0w6s/x
-	MYAoMIgftR5pMd86xhUVt9Htpdi4z+b8PET8TGQ+2aruBeCW6gQqGiNIkGpdyGFa8/4MXEuEaiD
-	/iB7PTQsfve1fcJCGudjR1idgmeiz3BuvfZrdAL7VCDXEa/dbXOvbIl1aGBhFJ+2xKodoFykkIq
-	EigXHVnX
-X-Received: by 2002:a05:7301:3d12:b0:2ea:5057:a304 with SMTP id
- 5a478bee46e88-3039818a65bmr4929254eec.2.1779012676435; Sun, 17 May 2026
- 03:11:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DD0359703;
+	Sun, 17 May 2026 10:12:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779012766; cv=none; b=mvolQ2U31M++OdlRhsVLnNYioHjiAlQR+LIl8L7d3nOlqzQUttFJkoc13IyIKNyYBH2dyYLkHky4h4hSPggmEgOY5TT+qkiZs+RUm23DL3OluBFeD15rtFil+HDiA5LpweW+E159arX4pwnMhUVGxe9rrhrehpwUYgbvl/TnTes=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779012766; c=relaxed/simple;
+	bh=iUYLHQY3uWeVAxMEfj+NOh/d+kYdwRIWjApEH09TTBs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4TehmOSv2N3alTyO/oSNTtlT8aoQJKulLtwHloXEpuCXqYOc8DXNWSaF5hkr64r3YftmnqqDYdyA+i6CSumMXzZ1Myqgcv3Ms2pb78QrfSagCrnQ5FGPYZ1jh64+xoKnnfjVAI6bXxbj5c/0V3cPgUCpzh5HdWGyXITsmddXWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=yLLHXpfr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B003BC2BCB0;
+	Sun, 17 May 2026 10:12:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1779012766;
+	bh=iUYLHQY3uWeVAxMEfj+NOh/d+kYdwRIWjApEH09TTBs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=yLLHXpfr/OESwdoqabAlvrm93iSx2OpiPgiTB9Q+OONko5U5elVHx41X0ryIlkZZw
+	 1nzyrdexgXUrkYREIx0jr3SxuOslNh2uHGT9F/yqu5y5lbxLEnTnQ6Pdz1E3q2+LWe
+	 2qll5oWHQiqGqeUTdPi0qewHup7qdp/l6YH2/uaA=
+Date: Sun, 17 May 2026 12:12:00 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc: Roman Gushchin <roman.gushchin@linux.dev>,
+	Krzysztof Kozlowski <krzk@kernel.org>, debarbos@redhat.com,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Konstantin Ryabitsev <mricon@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>, sashiko-bot@kernel.org,
+	sashiko-reviews@lists.linux.dev, sashiko@lists.linux.dev,
+	Linux Kernel Workflows <workflows@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+	devicetree@vger.kernel.org, kfree@google.com
+Subject: Re: Stop false review statements
+Message-ID: <2026051758-superbowl-baritone-2705@gregkh>
+References: <4f3d7f48-5766-425b-91f6-0acdb5554584@kernel.org>
+ <07602616-412B-4ED8-95D7-588C0D077EE3@linux.dev>
+ <20260517120556.248852d8@foz.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260517074306.30937-1-clamor95@gmail.com> <20260517074306.30937-3-clamor95@gmail.com>
- <agl0Z_EGzX8X4No4@ashevche-desk.local>
-In-Reply-To: <agl0Z_EGzX8X4No4@ashevche-desk.local>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Sun, 17 May 2026 13:11:05 +0300
-X-Gm-Features: AVHnY4L0_43-8RfJ6hM5f4ALu2Syvstfg64dnmlFGgfmiwaNMhHznD8dW2kFuMQ
-Message-ID: <CAPVz0n2D7q5kEECPr+bo=W=5OU=w4eni-FccdMEUMupkzHhvLw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/6] mfd: lm3533: Convert to use OF bindings
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>, dri-devel@lists.freedesktop.org, 
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 838AE56064A
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260517120556.248852d8@foz.lan>
+X-Rspamd-Queue-Id: 7C3E9560695
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298881-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298883-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mail.gmail.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	TAGGED_RCPT(0.00)[devicetree,huawei];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,linux.dev:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-=D0=BD=D0=B4, 17 =D1=82=D1=80=D0=B0=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 10:5=
-5 Andy Shevchenko <andriy.shevchenko@intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sun, May 17, 2026 at 10:43:02AM +0300, Svyatoslav Ryhel wrote:
-> > Since there are no users of this driver via platform data, remove the
-> > platform data support and switch to using Device Tree bindings.
-> > Additionally, optimize functions used only by platform data.
->
-> This is a mixture of at least (!) three patches:
+On Sun, May 17, 2026 at 12:05:56PM +0200, Mauro Carvalho Chehab wrote:
+> On Sat, 16 May 2026 14:59:44 -0700
+> Roman Gushchin <roman.gushchin@linux.dev> wrote:
+> 
+> > > On May 16, 2026, at 2:33 PM, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > 
+> > > I find it opposite: clogging commits with useless information, because
+> > > some arbitrary and completely closed-source tool did analysis means
+> > > nothing to me one year later when I look at the commit in the Git history.  
+> > 
+> > This is simple not true: Sashiko is fully open-source, under Apache 2.0 license
+> > and the code belongs to LF. 
+> 
+> > Yes, the instance behind sashiko.dev is using
+> > Gemini 3.1 Pro LLM, which is not open-source, but it’s not a fundamental limitation - 
+> > Sashiko is supporting various LLMs, including open models - it’s just a practical
+> > choice: to my knowledge the quality of open models is not on par with frontier closed
+> > models 
+> 
+> I would very much prefer using an open source LLM, even if not in pair 
+> with latest paid models.
+> 
+> > and it would require a non-trivial amount of hardware and infrastructure to run
+> > an open model at the required scale.
+> 
+> IMHO the best would be to have them running on some infra that would accept
+> open source models (*). If there aren't enough resources to have our own
+> infra, there are offers out there which allows running open source models
+> like https://ollama.com/pricing (I never used myself).
+> 
+> (*) For instance, Qwen3.6 is brand new and licensed under apache-2.0.
+>     Not bad on my tests running it locally.
 
-Maybe you can make a list of how to split it then. I have tried to
-make it complete and remain readable. I am open to your suggestions.
+You can run the tool locally, with whatever model you want, if you want
+to.
 
-> - devm conversion
+But for now, let's just take the free credits that Google is willing to
+throw at this thing and let it give us reviews IF the maintainer of the
+subsystem feels it is something they want to do.  No one is forcing
+maintainers to do this.
 
-This will be dropped.
+The netdev, bpf, and drm developers have been doing much the same for a
+while now, with who-knows-what model behind the thing.  The model
+doesn't matter, we aren't advertising for them, we just want the results
+that they can provide us.
 
-> - the change of some constants
+thanks,
 
-If you mean LM3533_ALS_RESISTOR_MIN and LM3533_ALS_RESISTOR_MAX they
-are used explicitly in r_select value. Previously it was passed via
-pdata as register value and now it is obtained from the device tree as
-resistance in Ohms and register value is actually calculated.
-Naturally ALS_RESISTOR boundaries changed.
-
-> - the rest
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+greg k-h
 
