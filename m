@@ -1,180 +1,167 @@
-Return-Path: <devicetree+bounces-298830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDb1JBBZCWp7WAQAu9opvQ
-	(envelope-from <devicetree+bounces-298830-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 07:58:40 +0200
+	id IJcaC39eCWqmWwQAu9opvQ
+	(envelope-from <devicetree+bounces-298832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 08:21:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB32255F602
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 07:58:39 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3124855F71E
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 08:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE2DE300F9E5
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 05:58:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2A2873004419
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 06:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 963C63176EF;
-	Sun, 17 May 2026 05:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E514F30C630;
+	Sun, 17 May 2026 06:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nw9jDAkE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GtFkhMTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A14C314A98
-	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 05:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B5C2C027B;
+	Sun, 17 May 2026 06:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778997496; cv=none; b=uCfQie1RcCfXVAbz5pn+5MND2/Ol8xdb8tKmSi5JvTkWpxhlJ9WwfBnxM60fpGj9T7gWhRK480FUbMbwN4XbQ6YUdJssg+1IK7xnJM9KG7TDiPMOKFXP30tnMlDkKXq1z6RDqvbotd1+fmyg9GLmF3uhlpe3LERttbt1rnhwvXU=
+	t=1778998904; cv=none; b=C8BX3Q44no8b+jaKm/VgPpVMT80CS5pYyudJtzJypVKIPbWCvzfQ/ZxGutudCvcG3Kwr8cmZaYga+CyXIWfZR57q9azmVXi+t/VRlYpbFRcal+Qs4mYn3KuboHdH2GUDinWcyEc+EVIlkFxnQy2nLxMkGxS3wlN7y0UMn/k3XmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778997496; c=relaxed/simple;
-	bh=eVDIf8kWLfkN5tByiqmh9nB1Pro87tdRZ6oSMEYIChU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lJJ4xN+HHOReMkDv3yklYWwuskwdZMCHZlWaBvPrjxmT24Gi003vQSUPsftV7mYADfV/gEF5qEVKbxYVUZm2lSVCm+WTEfMreVbd84CscXDbludHK/Xz5i5Co2rDRYTczNoEJ+Bjbs8BYyiS5qHqr+RLyhzEL7/g1CAx1d2J6rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nw9jDAkE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89B7CC2BCB0;
-	Sun, 17 May 2026 05:58:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778997496;
-	bh=eVDIf8kWLfkN5tByiqmh9nB1Pro87tdRZ6oSMEYIChU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=nw9jDAkE1fY2GtL9LW/UgVNWBM4r8AgRh1Mu7Uvsx0WekPoo+F5l2jf184fbNRC+S
-	 BfP3LTq+E3UxFxIRoQvNNUAiGverPGBMQbOlZyA2sgSgOjm3u2uqgQAoFAutdcz7MU
-	 IyIb3pnlUGybzfl8jH8PoxE7lEzupVBi/lwio0b7gO7VY2vTpayBsp66mWFq3xR4qf
-	 vJFlJAh1SAdHKh00VTcby358kgLGJgXfvL5hWywfhXa9B/HkNveFE6JoFR+AA1a9mM
-	 TnTpWE4tEMYz29ZdJ5+Rdc3tS17VV100b35HYMa6LIzzZl7z4nv80ABt/r6ahdZiiP
-	 23HFYMcWJJgwg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v7 10/10] net: airoha: Support multiple LAN/WAN
- interfaces for hw MAC address configuration
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Lorenzo Bianconi" <lorenzo@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260516-airoha-eth-multi-serdes-v7-10-99e0093303e2@kernel.org>
-References: <20260516-airoha-eth-multi-serdes-v7-10-99e0093303e2@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 17 May 2026 05:58:15 +0000
-Message-Id: <20260517055815.89B7CC2BCB0@smtp.kernel.org>
+	s=arc-20240116; t=1778998904; c=relaxed/simple;
+	bh=MFs0X5T5l/V3f7Mn14jCCW8eUJvUjiqMcQSUrk2+98w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fJ3rhmv/NMGMe1rbyyJumVYjvzmkGqlkVZQ7URJKmBieSdrJZO4wtipFhSVaYzorYX+MfccwHnnO0s1ezIf10oJ0M4YM25ynxDwsQykkzPrxS0vxJ8AiWX+c6HuiycO8mVFOD00OoM8vvKKOWfKzOJkdIhKQME0+BEUuvORu6F8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GtFkhMTy; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778998903; x=1810534903;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MFs0X5T5l/V3f7Mn14jCCW8eUJvUjiqMcQSUrk2+98w=;
+  b=GtFkhMTyB1+mn+GRMe3Y29u0Q7slAL0GbWHBtXCND+7PicjjjifQRPg+
+   99mu6SlKmei1h09iBGwlebTf0NJH0wa9yIL1hQMOWKeWFHGkks6T4QJ7x
+   QSsw/7dnIsYEOD3CQGnHUbAuAx8bgsdALkrWZbpQ6aQBd3Ta61e2ZLUaJ
+   TcbMs8O8ja2cU7FJxqVuOsvZQzLmErozKOne53e3ldfDMw3r0xFTKy7GM
+   Md0HGaUDBtv/gkbElkEIx9hzBTI3QdbWyWWlO4EuTL22g49bsnZpsT7sg
+   E/B9MjXHKk1Sdg3+F9fHvhExXBCa90P5Iz/HtvIWdIUh56r1jdbcCrri4
+   A==;
+X-CSE-ConnectionGUID: ZNWG6ExIQ2KxUSr5bpkSIQ==
+X-CSE-MsgGUID: 1lU2TPIRQnC2CDQKvDF9kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="91280545"
+X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
+   d="scan'208";a="91280545"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2026 23:21:42 -0700
+X-CSE-ConnectionGUID: ShTrU9S9Qt2/DVTiedohcQ==
+X-CSE-MsgGUID: 2OnQ+iWBQtK/F+rsT3pxow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
+   d="scan'208";a="239210789"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.182])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2026 23:21:40 -0700
+Date: Sun, 17 May 2026 09:21:37 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Vladislav Kulikov <vlad.kulikov.c@gmail.com>
+Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: magnetometer: add driver for MEMSIC MMC5983MA
+Message-ID: <aglecY6YjWccJTza@ashevche-desk.local>
+References: <20260511191135.36691-1-vlad.kulikov.c@gmail.com>
+ <20260511191135.36691-3-vlad.kulikov.c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: EB32255F602
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260511191135.36691-3-vlad.kulikov.c@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 3124855F71E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298830-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298832-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,ashevche-desk.local:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Device probe fails when multiple LAN/WAN interfaces are assigned r=
-andomly generated MAC addresses.
---
+On Mon, May 11, 2026 at 07:11:35PM +0000, Vladislav Kulikov wrote:
+> Add support for the MEMSIC MMC5983MA 3-axis magnetometer. The driver
+> provides raw magnetic field readings via IIO sysfs with SET/RESET
+> offset cancellation for each measurement.
 
-commit 7861c44e7e1da4203e80f67d02418deac7e491b4
-Author: Lorenzo Bianconi <lorenzo@kernel.org>
+Good driver, something to improve, though. Jonathan, can you tweak these in
+tree? But perhaps wait a bit for the answer on "why no cache?".
 
-net: airoha: Support multiple LAN/WAN interfaces for hw MAC address configu=
-ration
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-This commit extends the hardware MAC address configuration logic in the air=
-oha
-driver to support multiple LAN or WAN interfaces by deriving minimum and
-maximum values for the lower MAC bytes, while expecting the upper MAC bytes=
- to
-be shared.
+...
 
-> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ether=
-net/airoha/airoha_eth.c
-> --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-> @@ -71,20 +71,69 @@ static void airoha_qdma_irq_disable(struct airoha_irq=
-_bank *irq_bank,
->  	airoha_qdma_set_irqmask(irq_bank, index, mask, 0);
->  }
-> =20
-> -static void airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *add=
-r)
-> +static int airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *addr)
->  {
-> +	u8 ref_addr[ETH_ALEN] __aligned(2);
->  	struct airoha_eth *eth =3D dev->eth;
++ arrray_size.h
 
-[ ... ]
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/delay.h>
 
-> +			netdev =3D iter_dev->dev;
-> +			if (netdev->reg_state !=3D NETREG_REGISTERED)
-> +				continue;
-> +
-> +			ether_addr_copy(ref_addr, netdev->dev_addr);
-> +			val =3D (netdev->dev_addr[3] << 16) |
-> +			      (netdev->dev_addr[4] << 8) | netdev->dev_addr[5];
-> +			if (val < lmin)
-> +				lmin =3D val;
-> +			if (val > lmax)
-> +				lmax =3D val;
-> +		}
-> +	}
-> +
-> +	if (!is_zero_ether_addr(ref_addr) && memcmp(ref_addr, addr, 3)) {
++ dev_printk.h
++ err.h
 
-If the device tree lacks a MAC address for an interface and the driver assi=
-gns
-a random one via eth_hw_addr_random(), will this comparison fail during dev=
-ice
-probe?
+> +#include <linux/i2c.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
 
-Since eth_hw_addr_random() generates independent random bytes for each
-interface, the upper 3 bytes will likely mismatch. This returns -EINVAL and
-propagates up to register_netdev(), which causes the driver probe to abort.
+...
 
-Prior to this patch, the hardware MAC register was overwritten with the new=
-est
-interface's MAC, but the probe continued successfully. Can this be adjusted=
- to
-handle randomly generated MAC addresses without aborting the probe?
+> +static const struct regmap_config mmc5983_regmap_config = {
+> +	.name = "mmc5983_regmap",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = MMC5983_REG_ID,
+> +	.writeable_reg = mmc5983_is_writeable_reg,
+> +	.readable_reg = mmc5983_is_readable_reg,
+> +	.volatile_reg = mmc5983_is_volatile_reg,
+> +};
 
-> +		/* According to the HW design, hw mac address MS bits
-> +		 * must be the same for each net_device with the same
-> +		 * LAN/WAN configuration.
-> +		 */
-> +		netdev_err(dev->dev, "wrong mac addr for shared GDM port\n");
-> +		return -EINVAL;
-> +	}
+Why no cache?
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260516-airoha-eth=
--multi-serdes-v7-0-99e0093303e2@kernel.org?part=3D10
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
