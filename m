@@ -1,151 +1,142 @@
-Return-Path: <devicetree+bounces-298963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298964-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOv/ITDlCWo6twQAu9opvQ
-	(envelope-from <devicetree+bounces-298963-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 17:56:32 +0200
+	id yDaYLALtCWpCvQQAu9opvQ
+	(envelope-from <devicetree+bounces-298964-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 18:29:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 922495622F5
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 17:56:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12502562430
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 18:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1FE0B3001A4C
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 15:56:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BCDE63006B78
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 16:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B74C3BE15D;
-	Sun, 17 May 2026 15:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D7B3B4E88;
+	Sun, 17 May 2026 16:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hkYUKrx3"
+	dkim=pass (2048-bit key) header.d=mit.edu header.i=@mit.edu header.b="OMv5hXju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEECA3B9D84;
-	Sun, 17 May 2026 15:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DBB027A462
+	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 16:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.9.28.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779033385; cv=none; b=Arm+Ye1hucZCLKZa727aFx3nFRXywoHRw68f9ADXmgPUXx1LNGqWX1EzS3afOMD4I7G/rfwgW898Frs87ctigZnQw4sMcF+3fqr7YTlzi1TZThXezNwusI8xhHmfbt2uG0zBl/W3zkTBoQbtLWcp/JWuzJfXDHJfRk6ZOhRVSPE=
+	t=1779035391; cv=none; b=HolXiNdbDmz1cLPn96v5Bdc/zNbv3M7YRq+tBkL/hTYUwhfmm0CFtyR1BX67VT6zpGfQWGj54S6JSslGcbvCL3+ZBstOzWmbuYjs6nAMJnlhjgn1FDDNtviWUKgsBtN/OP9ilnDI0zOi36n7RI+NMECpSdP8TaJ0uHHUqm71m40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779033385; c=relaxed/simple;
-	bh=/vouAuRiL4u0L4OBvt2/nK/kw0Ct2vHfD2gvkrC+aaA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=asJtssE8ZMhcfWAx4inBML37m/s+GaLhFnidmPzqEZ59wVpDNnl6+ihK9WgK/NVtybNfNWK3ViY+Ktvn/V4VA6bBMi/t3S/Ctxum7jn/X9Ar47tfy/m61zI2d5S4/0MbnVZ6ta2EKwbupt+JBLj7DGd+7/i099r1AyQTZ5neWo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hkYUKrx3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A08C2BCB0;
-	Sun, 17 May 2026 15:56:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779033384;
-	bh=/vouAuRiL4u0L4OBvt2/nK/kw0Ct2vHfD2gvkrC+aaA=;
-	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
-	b=hkYUKrx3r8FP5x9qgjbJLhoYa7v56trxKb8axZawQNS0FvBQ5zpBC2+fZffDtI2nv
-	 Zwv7Dg4hg2N+LPhV0Vyr9bWOTaneNjBkWIWPudJVbNtAZcbQ9ARDOLnNB6NaeMgsKl
-	 TQRvu6U6HMC9gkTAc8+ho/K20Zk5eriWRndGZ/DPkWSHuL08Giz4OoT2rh04lTMnFt
-	 6H/b/M3U0WLfoj7Kri0UwkXH7ayQm3iE9GzRg8LxWxJogj93zsbnBFmg1+GjR//POH
-	 PUsioLy1G6e+fNO0MdKLVYAM2e3NdLD7cts96DNwilGj9uOXLLlWM+WkQAyK6vHcnG
-	 I22s2G3dZPlpw==
+	s=arc-20240116; t=1779035391; c=relaxed/simple;
+	bh=zi3F9jjBameBKB9vjfjoURcZxlkSiuLP1xjP/cLUT5I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jkE5A5TW3SeGqigazUWXmYIDhc/Sf1+dokWTcb+JgIDuV/7MMqDgHDToojmM0nyqLqq3AD3vwGWqWX/MZz19tLRLv8bnq/0PsTi5l9yK0Vk8pFTjopG0b696FEkBgvNbC6+OKBSaBtNm5XAJRd9CfgcPRzX2H8IsJC6FbBUzGCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mit.edu; spf=pass smtp.mailfrom=mit.edu; dkim=pass (2048-bit key) header.d=mit.edu header.i=@mit.edu header.b=OMv5hXju; arc=none smtp.client-ip=18.9.28.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mit.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mit.edu
+Received: from macsyma.thunk.org (pool-173-48-113-30.bstnma.fios.verizon.net [173.48.113.30])
+	(authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+	by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 64HGTCOa012302
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 17 May 2026 12:29:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mit.edu; s=outgoing;
+	t=1779035356; bh=ybqO5IyQZWG+yOAuxzWHV8Y8nXAPMHTC2dZ8p+w8Rk0=;
+	h=Date:From:Subject:Message-ID:MIME-Version:Content-Type;
+	b=OMv5hXjuOTQyRnU1KmIZA3vokJVdLvr2CS4amW3t7dbr1vrgJT0r3ffUR+K2/4WEt
+	 VlyY+tErhQE6NIZJYJKYuiDWeZS+rIwDbUA4R3IXhPxsXqmA4k1F5LluhhVv0LZzWE
+	 H/v/ToCWzUKYkBUedcceeBqmhMPCJtEFw/IY9Rgv39eAwakSuj3PFIP39wQ870USFr
+	 lpim7uWxLZ2t1tE88TorK9yLkvQx4qWT4ztAwOn1OBKFtq9SF57b2WPDQo/7NYCC2P
+	 Ft5A5H+uyHx99AQlABsOk6bdjNfog3Iwg5aiju2wVUYXNpXPQxdewAvRCTaIw3dFdz
+	 b+ikkRvIbReqw==
+Received: by macsyma.thunk.org (Postfix, from userid 15806)
+	id B3F5167E8B95; Sun, 17 May 2026 12:29:12 -0400 (EDT)
+Date: Sun, 17 May 2026 12:29:12 -0400
+From: "Theodore Tso" <tytso@mit.edu>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Roman Gushchin <roman.gushchin@linux.dev>,
+        Krzysztof Kozlowski <krzk@kernel.org>, debarbos@redhat.com,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Konstantin Ryabitsev <mricon@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>, sashiko-bot@kernel.org,
+        sashiko-reviews@lists.linux.dev, sashiko@lists.linux.dev,
+        Linux Kernel Workflows <workflows@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, kfree@google.com
+Subject: Re: Stop false review statements
+Message-ID: <20260517162912.GA51520@macsyma-wired.lan>
+References: <4f3d7f48-5766-425b-91f6-0acdb5554584@kernel.org>
+ <07602616-412B-4ED8-95D7-588C0D077EE3@linux.dev>
+ <20260517120556.248852d8@foz.lan>
+ <2026051758-superbowl-baritone-2705@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 17 May 2026 17:56:20 +0200
-Message-Id: <DIL2P8CHKVZD.2WVQQRN0FM28N@kernel.org>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, "Greg KH"
- <gregkh@linuxfoundation.org>, "Konstantin Ryabitsev" <mricon@kernel.org>,
- "Guenter Roeck" <linux@roeck-us.net>, "Miguel Ojeda" <ojeda@kernel.org>,
- <sashiko-bot@kernel.org>, <sashiko-reviews@lists.linux.dev>,
- <sashiko@lists.linux.dev>, "Linux Kernel Workflows"
- <workflows@vger.kernel.org>, "Linux Kernel Mailing List"
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <kfree@google.com>
-To: "Roman Gushchin" <roman.gushchin@linux.dev>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: Stop false review statements
-References: <b5989c0f-90da-42cc-a623-3b60df077848@kernel.org>
- <FA45D2AD-1135-4480-8423-63C0D37FE78D@linux.dev>
-In-Reply-To: <FA45D2AD-1135-4480-8423-63C0D37FE78D@linux.dev>
-X-Rspamd-Queue-Id: 922495622F5
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2026051758-superbowl-baritone-2705@gregkh>
+X-Rspamd-Queue-Id: 12502562430
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[mit.edu,none];
+	R_DKIM_ALLOW(-0.20)[mit.edu:s=outgoing];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298963-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-298964-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[mit.edu:+];
 	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tytso@mit.edu,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,huawei];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Sat May 16, 2026 at 9:15 PM CEST, Roman Gushchin wrote:
-> I agree, it=E2=80=99s sometimes gets tricky when a patchset is sent to mu=
-ltiple
-> mailing lists, which policy to apply. I have some improvements in my plan=
-s,
-> but it=E2=80=99s not always possible to say how it should be handled.
+It should also be noted that Intel's zero-day bot was (a) closed
+source, and (b) was sending its test regression reports with the
+linux-kernel mailing list cc'ed, and no one really complained because
+it was so useful, and if Intel was willing to use very expensive
+hardware in their data center to contribute reports, so long as the
+reports were useful and the false-positive noise was low enough, we
+decided to be grateful and not worry (too much) about the fact that
+Intel's zero-day bot was closed source.  (There was indeed some
+grumbling in the bar at Plumbers, of course.  :-)
 
-Which improvements do you have in mind?
+In my opinion, we should be doing the same for Sashiko, and that's the
+decision which the ext4 developers have made --- at least for ext4
+patches, after an experiment where we only sent reviews to the patch
+authors and the maintainer, people were satisifed that false positive
+rate was low enough (with the caveats that I had previously mentioned,
+but we were willing to live with them because at least for us, it was
+useful enough), that we will be requesting that Sashiko reviews be
+cc'ed to the ext4 mailing list.
 
-> It=E2=80=99s not fundamentally new: landing changes touching multiple sub=
-systems is
-> always harder exactly because maintainers might have different and someti=
-mes
-> conflicting views.
+I realize that there are some extra sensitivities around AI / LLM's,
+but from the perspective of reviewing patches, I don't see any
+difference between this and other closed source tools that we've used,
+such as Coverity and the Zero-day bot.  Not everyone will agree, of
+course, but at the moment, this is a decision that we are making on a
+subsystem by subsystem basis, which again, has strong historical
+precedence.
 
-It can also be relevant in cases where only a single subsystem is touched.
+Cheers,
 
-For instance, in the case of Rust, the rust-for-linux list serves two purpo=
-ses
--- when it is a Rust subsystem change and when Rust code of any other subsy=
-stem
-is touched, i.e. the rust-for-linux list has more of a LKML character and a=
-lso
-receives patches for subsystems whose maintainers may not have opted in to
-sashiko email delivery.
-
-That said, I personally don't mind too much, I really like sashiko, which i=
-s
-also why I asked for adding the driver-core list. My experience has been th=
-at it
-does a very decent job in providing feedback for C code; my feeling is that
-feedback for Rust code is not quite on par yet, but of course it also highl=
-y
-depends on the complexity and scope of the corresponding changes.
-
-However, I still have the same concern I raised previously when it comes to
-email delivery: I think that when sashiko sends feedback to contributors
-(without Cc'ing the mailing list and all other recipients), it should activ=
-ely
-ask the contributor to raise things on the list with all other recipients,
-reviewers and maintainers before acting on them, such that changes subseque=
-nt to
-the first submission on the list are aligned.
-
-Can this be added please?
-
-Thanks,
-Danilo
+						- Ted
 
