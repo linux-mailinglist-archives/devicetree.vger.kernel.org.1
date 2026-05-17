@@ -1,167 +1,120 @@
-Return-Path: <devicetree+bounces-298832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298834-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJcaC39eCWqmWwQAu9opvQ
-	(envelope-from <devicetree+bounces-298832-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 08:21:51 +0200
+	id WBlfDN1oCWouYwQAu9opvQ
+	(envelope-from <devicetree+bounces-298834-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 09:06:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3124855F71E
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 08:21:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F2355F989
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 09:06:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2A2873004419
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 06:21:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43713300B041
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 07:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E514F30C630;
-	Sun, 17 May 2026 06:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GtFkhMTy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBDF1307481;
+	Sun, 17 May 2026 07:05:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B5C2C027B;
-	Sun, 17 May 2026 06:21:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BA62FE56F;
+	Sun, 17 May 2026 07:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1778998904; cv=none; b=C8BX3Q44no8b+jaKm/VgPpVMT80CS5pYyudJtzJypVKIPbWCvzfQ/ZxGutudCvcG3Kwr8cmZaYga+CyXIWfZR57q9azmVXi+t/VRlYpbFRcal+Qs4mYn3KuboHdH2GUDinWcyEc+EVIlkFxnQy2nLxMkGxS3wlN7y0UMn/k3XmY=
+	t=1779001531; cv=none; b=hzqYO8+bZITprb3/qfmHhAx6yRPXCPQMnZiIrr9uML/psPRRZZAlSkmbGHvoTBjyK4ulftE616WlR43GdAeWtmyxoQCtTYiD9EsuNWtR8iWO2n0YGHtU3dtBeSNONnwipoB6jmyYO2+aSz8tVbYefpDjMaJZn1UABPStzOMtTho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1778998904; c=relaxed/simple;
-	bh=MFs0X5T5l/V3f7Mn14jCCW8eUJvUjiqMcQSUrk2+98w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fJ3rhmv/NMGMe1rbyyJumVYjvzmkGqlkVZQ7URJKmBieSdrJZO4wtipFhSVaYzorYX+MfccwHnnO0s1ezIf10oJ0M4YM25ynxDwsQykkzPrxS0vxJ8AiWX+c6HuiycO8mVFOD00OoM8vvKKOWfKzOJkdIhKQME0+BEUuvORu6F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GtFkhMTy; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1778998903; x=1810534903;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MFs0X5T5l/V3f7Mn14jCCW8eUJvUjiqMcQSUrk2+98w=;
-  b=GtFkhMTyB1+mn+GRMe3Y29u0Q7slAL0GbWHBtXCND+7PicjjjifQRPg+
-   99mu6SlKmei1h09iBGwlebTf0NJH0wa9yIL1hQMOWKeWFHGkks6T4QJ7x
-   QSsw/7dnIsYEOD3CQGnHUbAuAx8bgsdALkrWZbpQ6aQBd3Ta61e2ZLUaJ
-   TcbMs8O8ja2cU7FJxqVuOsvZQzLmErozKOne53e3ldfDMw3r0xFTKy7GM
-   Md0HGaUDBtv/gkbElkEIx9hzBTI3QdbWyWWlO4EuTL22g49bsnZpsT7sg
-   E/B9MjXHKk1Sdg3+F9fHvhExXBCa90P5Iz/HtvIWdIUh56r1jdbcCrri4
-   A==;
-X-CSE-ConnectionGUID: ZNWG6ExIQ2KxUSr5bpkSIQ==
-X-CSE-MsgGUID: 1lU2TPIRQnC2CDQKvDF9kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="91280545"
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
-   d="scan'208";a="91280545"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2026 23:21:42 -0700
-X-CSE-ConnectionGUID: ShTrU9S9Qt2/DVTiedohcQ==
-X-CSE-MsgGUID: 2OnQ+iWBQtK/F+rsT3pxow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
-   d="scan'208";a="239210789"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.182])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2026 23:21:40 -0700
-Date: Sun, 17 May 2026 09:21:37 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Vladislav Kulikov <vlad.kulikov.c@gmail.com>
-Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: magnetometer: add driver for MEMSIC MMC5983MA
-Message-ID: <aglecY6YjWccJTza@ashevche-desk.local>
-References: <20260511191135.36691-1-vlad.kulikov.c@gmail.com>
- <20260511191135.36691-3-vlad.kulikov.c@gmail.com>
+	s=arc-20240116; t=1779001531; c=relaxed/simple;
+	bh=pShye0OKl2FKUITelBTK/F1J9muALv+vuqGujMe/U2A=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=QZ884+gSIm9i+xo2cnZO/0jbUvl5n/Eqmi0UrsjNfJ8xzANKZ+N9w/qNjyI+Ihmxl77sKcgpDfcC5waacyVa36vyfxvPRqCOWXuGIcVWUGrzDzxBh5bIkSRbsHNwGhgM/e2GkAY2dUiv4LNwZJcACo1csdK2zE6Q7GGPzltrE0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from Vostro-3710.. (unknown [119.122.215.211])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3eb40bc05;
+	Sun, 17 May 2026 15:00:14 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: dlan@kernel.org
+Cc: alex@ghiti.fr,
+	amadeus@jmu.edu.cn,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	pjw@kernel.org,
+	robh@kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/1] riscv: dts: spacemit: enable QSPI for OrangePi RV2
+Date: Sun, 17 May 2026 15:00:06 +0800
+Message-Id: <20260517070006.1836396-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <177893657188.2456968.7429508961699495905.b4-ty@b4>
+References: <177893657188.2456968.7429508961699495905.b4-ty@b4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260511191135.36691-3-vlad.kulikov.c@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: 3124855F71E
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e34bc44fe03a2kunm6878ac1010c8b4
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTRhOVkkZGh4dGhgYS0gaSlYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJSkpZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	JNS0pVSktLVUtZBg++
+X-Rspamd-Queue-Id: B4F2355F989
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-298832-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-298834-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,ashevche-desk.local:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jmu.edu.cn:mid,a0000:email,a00000:email]
 X-Rspamd-Action: no action
 
-On Mon, May 11, 2026 at 07:11:35PM +0000, Vladislav Kulikov wrote:
-> Add support for the MEMSIC MMC5983MA 3-axis magnetometer. The driver
-> provides raw magnetic field readings via IIO sysfs with SET/RESET
-> offset cancellation for each measurement.
+Hi,
 
-Good driver, something to improve, though. Jonathan, can you tweak these in
-tree? But perhaps wait a bit for the answer on "why no cache?".
+> Applied, thanks!
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+Wow, you're so fast!
+The robot report has one typo:
 
-...
+> +			uboot@a00000 {
+> +				reg = <0xa0000 0x760000>;
+> +			};
 
-+ arrray_size.h
+This should be:
+```
+			uboot@a0000 {
+```
 
-> +#include <linux/bits.h>
-> +#include <linux/cleanup.h>
-> +#include <linux/delay.h>
+Could you fix it? Or I can send the v2 patch.
 
-+ dev_printk.h
-+ err.h
-
-> +#include <linux/i2c.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +#include <linux/time.h>
-> +#include <linux/types.h>
-
-...
-
-> +static const struct regmap_config mmc5983_regmap_config = {
-> +	.name = "mmc5983_regmap",
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MMC5983_REG_ID,
-> +	.writeable_reg = mmc5983_is_writeable_reg,
-> +	.readable_reg = mmc5983_is_readable_reg,
-> +	.volatile_reg = mmc5983_is_volatile_reg,
-> +};
-
-Why no cache?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Chukun
 
