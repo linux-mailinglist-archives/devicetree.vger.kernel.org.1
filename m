@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-299033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGB8BPMYCmr8wgQAu9opvQ
-	(envelope-from <devicetree+bounces-299033-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 21:37:23 +0200
+	id +M/lMzEaCmpawwQAu9opvQ
+	(envelope-from <devicetree+bounces-299034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 21:42:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63290563955
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 21:37:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D43C563999
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 21:42:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E2EF230075C8
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 19:36:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78BA930151C1
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 19:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0A735A3AF;
-	Sun, 17 May 2026 19:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25D7E3CFF70;
+	Sun, 17 May 2026 19:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ossV31Wo"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="lWQxxzYB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DE631E857;
-	Sun, 17 May 2026 19:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B483CF66A
+	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 19:42:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779046603; cv=none; b=h7R53i5pfkBb0VPATR4C3QUFvGMfisfwngKajLLOSBVaUfGFOSHK7wnicv04GUnPkhInryYgMFUF0lmvb1Kt22h7oivJEttu9gI098fvu932HNx0K5BHKfQfuaRDk9xrHD/6kb/jkZj3HddHx3HBrdZ4y2ZMtnw6EFtMLf/a2W4=
+	t=1779046950; cv=none; b=Bt5zjAJ+2GrdhOIdh6UU8L7I5OX+7hx5sSMnJnNu/2oV1pRCNWAAvyJ1MQoSxO4NNB7OKGxnLOIjbxgpfa9Rpz7NBxQlNeun9OcgPOS/BB8OM3ltC81iIAHxcGPWvVxS6TCX+9dg/eNgE8+EE5RfF7rICtZsh0PWs09ytlrEDY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779046603; c=relaxed/simple;
-	bh=VDtlqj2EeFq4cUo6AZgisMkvU67McHUjL/LopfxblMs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MeSRTgf/+/0KQF8VoLF9eoagUQKm/qepCZSRl/fPc6XYkVYh+fpDW1fRIHEXxZh+sU9V4LKPmwFNpPqsVBb07DyrzncrN/9v4UkhwcgfctnyXXOkowo79m5lj0aVJHv8oZwkyBg9MSqk1JKHUOlLAiZ+zosSuwtige1hzU+rvY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ossV31Wo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BAF4C2BCB0;
-	Sun, 17 May 2026 19:36:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779046603;
-	bh=VDtlqj2EeFq4cUo6AZgisMkvU67McHUjL/LopfxblMs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ossV31WoLiRsqCsoazkYJ7zxFvY5Bi5oOpjtTVmafJu9DvLRy5bzGAIqh4jiQpp9K
-	 2R384XjEg9RfEmNTNQ/NChs5stkTfYIGTNHd3QkxlmLyFI6kYnWE2iDMT1HHrOCXli
-	 wlUVe5J2rOd1J/8Q1AC0nLifxDvaXeLOvT/cqNjw+iOaZgRwO6WHW8Vau1vJcbVgOt
-	 x8NcP1GQXSt6Sr6mfYz3qWmyxpp9Xo4/evlEhmtcoqGWp23uXhJQIgIizOtfGgCRqO
-	 nE87zgMIZHXJOlxSV8VIroZwFN+4lWRvQToBG2dK8yXX6AKOvpaO3Ik8lElFaqh5TF
-	 6KNi0TzBzc73g==
-Date: Sun, 17 May 2026 21:36:36 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: "Theodore Tso" <tytso@mit.edu>
-Cc: Roman Gushchin <roman.gushchin@linux.dev>, Greg KH
- <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- debarbos@redhat.com, Arnaldo Carvalho de Melo <acme@kernel.org>, Konstantin
- Ryabitsev <mricon@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- sashiko-bot@kernel.org, sashiko-reviews@lists.linux.dev,
- sashiko@lists.linux.dev, Linux Kernel Workflows
- <workflows@vger.kernel.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
- kfree@google.com
-Subject: Re: Stop false review statements
-Message-ID: <20260517213636.19f332e5@foz.lan>
-In-Reply-To: <20260517185701.GB53471@macsyma-wired.lan>
-References: <20260517183959.37441984@foz.lan>
-	<F2FBD939-179D-467B-9FA8-BAA44F6C7524@linux.dev>
-	<20260517185701.GB53471@macsyma-wired.lan>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1779046950; c=relaxed/simple;
+	bh=g98agNYGLvJmlG0gWzhVWz4MCGR9K8snakUyUvhsPE4=;
+	h=Content-Type:From:Mime-Version:Subject:Message-Id:Date:Cc:To; b=qgwWnRb9f+9U716j1YFBxNnOEgoidHnHK2hXbjvacYLoeS7X0OpA3S06nXHiHwfdBmNRX6aSwonTwO4KpoG3Mp9jinGAIDNOGlUPxY3gxbkM1waA/+FLnD4O9CC3KB3Uom5z10eweDnRKvnFkMfUuBBe1JZ6VK3wLhDLqbVJFAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=lWQxxzYB; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Content-Type: text/plain; charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1779046946;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=7hDRf778T5lKPPnA0L91lKI2KUkCmaCfyUDmNKqu4DU=;
+	b=lWQxxzYBHxd1llWzpocEgJCr61/BFBXK1Ed97FxbusSZ4CzZmtObvWalYdevZM1+Jq+kaF
+	m7O90yKnUuA8IW+3IM/mtuV15GvyXunvTkFxHEmuGFlyX3snAWr5P8ZffYkoVKGli8tJlg
+	wrrvjCeHegR6CKUYSlfwkjb0sYCi0S0=
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Roman Gushchin <roman.gushchin@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 63290563955
+Mime-Version: 1.0 (1.0)
+Subject: Re: Stop false review statements
+Message-Id: <4ECB5626-01E2-4AEB-AD11-524AB224CAA0@linux.dev>
+Date: Sun, 17 May 2026 12:42:12 -0700
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, debarbos@redhat.com,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Konstantin Ryabitsev <mricon@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>, sashiko-bot@kernel.org,
+ sashiko-reviews@lists.linux.dev, sashiko@lists.linux.dev,
+ Linux Kernel Workflows <workflows@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ devicetree@vger.kernel.org, kfree@google.com
+To: Theodore Tso <tytso@mit.edu>
+X-Migadu-Flow: FLOW_OUT
+X-Rspamd-Queue-Id: 2D43C563999
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	FAKE_REPLY(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299034-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299033-lists,devicetree=lfdr.de,huawei];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mchehab@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[roman.gushchin@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,huawei];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,foz.lan:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[reddit.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:mid,linux.dev:dkim]
 X-Rspamd-Action: no action
 
-On Sun, 17 May 2026 14:57:01 -0400
-"Theodore Tso" <tytso@mit.edu> wrote:
-
-> On Sun, May 17, 2026 at 11:17:06AM -0700, Roman Gushchin wrote:
-> >=20
-> > I actually tried to run it with ollama on my
-> > personal framework 13. Adding nominal support is trivial, but the
-> > whole thing is not really useful: I can get maybe few hundreds
-> > tokens per second using a quantified model with reduced quality; an
-> > average sashiko review is consuming 3.5 millions tokens (with Gemini
-> > 3.1 pro, it=E2=80=99s also model-dependent). =20
+=EF=BB=BF
+> On May 17, 2026, at 11:57=E2=80=AFAM, Theodore Tso <tytso@mit.edu> wrote:
+> =EF=BB=BFOn Sun, May 17, 2026 at 11:17:06AM -0700, Roman Gushchin wrote:
+>>=20
+>> I actually tried to run it with ollama on my
+>> personal framework 13. Adding nominal support is trivial, but the
+>> whole thing is not really useful: I can get maybe few hundreds
+>> tokens per second using a quantified model with reduced quality; an
+>> average sashiko review is consuming 3.5 millions tokens (with Gemini
+>> 3.1 pro, it=E2=80=99s also model-dependent).
 >=20
 > I'm curious.  What hardware and LLM model were you using?  A few
 > hundred tokens per second seems surprising high.  My initial
 > research[1] showes that an M5 Max Macbook Pro costing 5 or 6 kilobucks
 > can do 31.6 tokens/second on a 27B 4-bit Quanitized model (Qwen 3.5).
->=20
-> [1] https://www.reddit.com/r/LocalLLaMA/comments/1rzkw4x/m5_max_128g_perf=
-ormance_tests_i_just_got_my_new/
+
+I=E2=80=99ve framework 13 with amd 7840u. I=E2=80=99ve tried several models b=
+oth on cpu and gpu.=20
+Sorry, it was a couple of months ago and I don=E2=80=99t remember all the de=
+tails, so I won=E2=80=99t=20
+claim any specific numbers, but as I remember the best numbers were around=20=
+
+a hundred tokens per second. In any case it=E2=80=99s few orders of magnitud=
+e slower than
+ what is realistically required.
+
+If someone has a powerful hardware and is willing to benchmark sashiko with o=
+pen-source
+models, I=E2=80=99m very interested in results.
+
+> [1] https://www.reddit.com/r/LocalLLaMA/comments/1rzkw4x/m5_max_128g_perfo=
+rmance_tests_i_just_got_my_new/
 >=20
 > The model matters of course.  With Gemma 3 27B and a 6-bit
 > quantization, it's 21 tokens/s, and with Deepseek R1 8B Q6_K, it's
@@ -128,42 +141,11 @@ ormance_tests_i_just_got_my_new/
 > reasonable amount of memory.  (I'll set aside the question of whether
 > spending $6k for a fully spec'ed out M5 Max Macbook Pro, or $15k for a
 > fully spec'ed out M3 Ultra Mac Studio is "reasonable".)
-
-Ted,
-
-Here, I'm using a RX9060XT, with is a relatively budget hardware.
-
-It is also at the range of dozens of tokens per second. If you're
-interested, I ran a benchmark this weekend with 3 models (just
-for the sake of testing a set of turboquant patches - those aren't
-the models I normally use).
-
-You can see results here:
-	https://github.com/ollama/ollama/pull/15505#issuecomment-4467278354
-
-llama3.2:3b with f16 speed gives 72.5 decode tokens/s, and 37 decode tokens=
-/s
-with tq4 (actually a modified version of it) which, according with the
-PR author, has quality almost identical to f16.
-
-The main issue on such hardware is to have only 16 GB VRAM, making
-it a little bit slow for models like qwen3.6:35b, as it will partially=20
-use CPU. Still, you can get a pretty decent answer in a couple of
-minutes, with thinking enabled.
-
+>=20
 > As a result I'm not entirely sure how realistic it is to do reviews
 > using "free" (you still have to pay $$$ for the hardware) local,
 > open-weight LLM's if an average review requires around 3.5 million
 > tokens.
 
-Yes, 3.5 million tokens is indeed too much. I wonder why. Maybe
-Gemini spreads the same query to multiple instances, making it=20
-spend a lot more tokens?
-
-Here, I did some tests asking some LLM models to review code,
-getting answers on a reasonable time (but didn't try to use sashiko
-prompts).
-
-Thanks,
-Mauro
+Fully agree. But it might change in few years, things are moving quickly.=
 
