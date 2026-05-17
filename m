@@ -1,137 +1,202 @@
-Return-Path: <devicetree+bounces-298896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298894-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDSxFqGeCWooiAQAu9opvQ
-	(envelope-from <devicetree+bounces-298896-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:55:29 +0200
+	id qCfNF/+bCWpHhQQAu9opvQ
+	(envelope-from <devicetree+bounces-298894-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:44:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A485609B8
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:55:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E59F5608F9
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:44:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9700C300A606
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:55:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E21963001FF0
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FEA34A76F;
-	Sun, 17 May 2026 10:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFB235E1AF;
+	Sun, 17 May 2026 10:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UfNZx+CV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48753164DF;
-	Sun, 17 May 2026 10:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAD63161AB
+	for <devicetree@vger.kernel.org>; Sun, 17 May 2026 10:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779015323; cv=none; b=XyJ6Kr6cyGL5CY30e7GPFfpaZnJaKqGanLg/Z0BBUoKzPP01bjADTVpOx5PcJ9bQUY9kG17tpV32leh5gQZ0NiIlAC/xbzb0GT/6GlsUKoiaeJs9WjjjmP70ohkIdxpqPconGwhJ5OyW6TvGRaWaxDZxMqm/785v1+GmDeI7ppw=
+	t=1779014648; cv=none; b=PTn4XyRLY8ZAuMk3B91xfVAXkMEIQLGa4bF8DOCM2WElW2ySkrqChhsEYBDyG4Qs7FIS7ij8HePpxEKb4Y7LngtR0oiCUH2PovpbM910/kxBquiGJzc+/OvlfFHJ50gAZrwS7Viet1yZE+sNkdzxf1aW1C1+co39Z52roGql6jk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779015323; c=relaxed/simple;
-	bh=mym2AZr8qHmYBPdF1FDnJxIrdkbbp8uIX7LVOJu77SU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=LSm1cmq4mdauQ5fxA6OB2dEkJdU8sV6RYGN2jRseR9Vz0G2pMie9mFftvDnCEUCysr2ABBPLZdAhs/+hBTaDgr4GB1iy/23rMGPPzMM3V5QM8yM5JbMs4iQ4v0pKsLu83wFmjduJodRKZX0lZwZoQ1qdw48q/t6620cia6zfZd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.. (unknown [119.122.215.211])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3eb5cf39b;
-	Sun, 17 May 2026 18:50:01 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: legoll@online.fr
-Cc: alex@ghiti.fr,
-	amadeus@jmu.edu.cn,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlan@kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	pjw@kernel.org,
-	robh@kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH 1/1] riscv: dts: spacemit: enable QSPI for OrangePi RV2
-Date: Sun, 17 May 2026 18:40:40 +0800
-Message-Id: <20260517104040.1941126-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <e92fc4a6-7a63-4d24-9c13-8fec3d8184d3@online.fr>
-References: <e92fc4a6-7a63-4d24-9c13-8fec3d8184d3@online.fr>
+	s=arc-20240116; t=1779014648; c=relaxed/simple;
+	bh=tlZmveqPOI0YGsJN4bEukbZ+5Bgq+D8k9OvRT/i7aSQ=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VLbsSAuQrGEgQSGZF1muQMAaC55seaizUXtGGrz25IArs9Ad3viG9ZnkzKuQV/oC19iSmkh5bx6VrwdretgXwGvyXZ1lKjTm6fG7nUkDTdB2OO863lNWo81o9LQVFIkKuUh8oxLTWcvxdITU2+EniJeeNFIAlP3O1rHlNXqLM3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UfNZx+CV; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-48e8132c6d0so6751495e9.1
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 03:44:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779014645; x=1779619445; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H5gIsWRNwchS9zsgu9M5QrXv9157pRu5lm3mw2NTNgU=;
+        b=UfNZx+CVoYK6vURd1/JBOO0KIqwUo8bBUqBX/Ox4GcxWAa/7doVBjKKWUt3JmV4vKU
+         T3+m4ynPzdF9kaT5Y42KsONbpy8zUABtjSrlwLSjwiu2ILhV2ZQVESyS6NSQlmDaCdpZ
+         ZbTByK5fLoHrZprriNcsMaqLmWvEN0b/ZmUyLxURMxxRDYlIJdUknnCsx+SgOQAdoyhE
+         clu9kwZG/t2BCJZqd7pqzjhtt2j9q60MZXTL62bPQJXVbqIYrmQYyrdCq09OV32NhiQP
+         95X8VFOh/6BurJ7tiLSZ+EEpEqK4Q1oGnmFR+JakZUkdVMenmKUUgW7cCWI+v0qFrmbE
+         LiqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779014645; x=1779619445;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H5gIsWRNwchS9zsgu9M5QrXv9157pRu5lm3mw2NTNgU=;
+        b=oSg43His0n118SXZ3WJDv775KzK8J6LclZtYOupICO/vKbZ448cu+A9TTCMG4LFCw+
+         Cjz611nUpsipmxb5+2Z5CLHV4dDrl4o5herBfbDy1kKHKHsMQizEz5uyMtJOsbdJOUNW
+         5lSJrPGovqxzId1DTWbiBZAQqtNCUaKcxCoy8Kt+n28tLQGx88dpGGDOvohuvQVV0ONZ
+         pKd5FDKhMNjmXLT0A8VjfJGlUFd7LbZJLwzQ9F4hNTSAtU4XlVQqeZMLLHBlZZ2i9Mey
+         v8bb1KbMbDWh1hQv8gTCM8i786UySCUIFXOqa8uCSTcsdR0Q/6/xb1mWJgmVOJDM4j2D
+         I2NA==
+X-Forwarded-Encrypted: i=1; AFNElJ9FYRrC2JF4VILTwqz2euQ54iHN4+RqptbiUclT6AZq0Y+j3km1ylQ2qs74Zdu/k6lU/I6+eK8k0hj8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHVwxJynxhbFZ+5YZ5Zv9SwfHHLjj8rhQeILFic5VxboH6Phtb
+	D+JgtQYqJdNUmmE/ZwMGhkGbkDKBGowXspE9qIlLuZLUuWICP89vApim
+X-Gm-Gg: Acq92OHjIA5WTBlvai5lW4kaFBtqnmpedeqhWyW4HuJiwX1jvDlTYBMPhXEb/KNd2N+
+	n0B5fTejt5bbr8r8sO5FOLPhnUKLvrfW2U45T0pviWqRwfnkViHKsuAMNZjLPN+uW5eGN+86QB+
+	/26laQWDrjBV48EGivfJcETy2BHu6Uyh9LgEq97UQflhJj36NLHg6jsa5QdVx4KZ/JccXGuxEt+
+	OGQRg1fdpHWrcus4E80HcETYg2AoOZQ/np8U5wO8UzpnZyswm6knjl5HEHfUNqr5l3rcnc4GIvB
+	qwvqadcLJ/01aw9NIhnpSKNJoYblfcy9YukO4w6Xxk9DITfOGjlKn+Ddl3NfRAN1RwSWoHDbyWT
+	NvpMoZqLKQAtTwxtD8GUNynY59ma/IrM+Rc2A6Ln6lNFF1ic+F80Y05IzExg5USojFezcxcRHCy
+	1XFbwuwFqQSeqh4mLC7wx+cxMnLaCrxSrGDxazB89VuaW1xJwg0jqXuwlM19GUa7heTFvxRK55k
+	qpr1LsJpf9vtn3ehkxkVMVScakvrdDKJHolhWrJeg2P5aI5eA==
+X-Received: by 2002:a05:600c:848c:b0:48a:52d4:888c with SMTP id 5b1f17b1804b1-48fe60e5241mr161739305e9.3.1779014645237;
+        Sun, 17 May 2026 03:44:05 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45d9ec3ac86sm28777006f8f.14.2026.05.17.03.44.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 May 2026 03:44:04 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Sun, 17 May 2026 11:44:02 +0100
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
+	Steven Rostedt <rostedt@goodmis.org>, Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
+	Sergey Senozhatsky <senozhatsky@chromium.org>, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v13 06/12] iio: core: add decimal value formatting into
+ 64-bit value
+Message-ID: <bhicqdxszledixf44h4ox6cdemuytyiotgha6ab7455vtmqatn@byvmhy5llaij>
+References: <20260517-adf41513-iio-driver-v13-0-bb6e134a360f@analog.com>
+ <20260517-adf41513-iio-driver-v13-6-bb6e134a360f@analog.com>
+ <agmVYvWBmLI4A65m@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e358ea40403a2kunm5a1540d111564e
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSx5PVk4YGRoZQh5KTExDSFYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJSkpZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pOTE5VSktLVUpCS0tZBg++
-X-Rspamd-Queue-Id: D6A485609B8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <agmVYvWBmLI4A65m@ashevche-desk.local>
+X-Rspamd-Queue-Id: 1E59F5608F9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298894-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-298896-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jmu.edu.cn:mid]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Hi,
+On 26/05/17 01:16PM, Andy Shevchenko wrote:
+> On Sun, May 17, 2026 at 10:14:01AM +0100, Rodrigo Alencar via B4 Relay wrote:
+> 
+> > Create new format types for iio values (IIO_VAL_DECIMAL64_*), which
+> > defines the representation of fixed decimal point values into a single
+> > 64-bit number. This new format increases the range of represented values,
+> > allowing for integer parts greater than 2^32, as bits are not "wasted"
+> > in the fractional part, which can be seen in IIO_VAL_INT_PLUS_MICRO and
+> > IIO_VAL_INT_PLUS_NANO. Helpers are created to compose and decompose 64-bit
+> > decimals into integer values used in IIO formatting interfaces, which
+> > creates consistency and avoid error-prone manual assignments when using
+> > wordpart macros. When doing the parsing, kstrtodec64() is used with the
+> > scale defined by the specific decimal format type.
+> 
+> ...
+> 
+> > +	{
+> > +		int scale = type - IIO_VAL_DECIMAL64_BASE;
+> 
+> > +		int l = 0;
+> 
+> Perhaps make it global in the function? We have the same in
+> IIO_VAL_INT_MULTIPLE case.
+> 
+> > +		s64 frac;
+> > +
+> > +		tmp2 = div64_s64_rem(iio_val_s64_from_s32s(vals),
+> > +				     int_pow(10, scale), &frac);
+> > +		if (tmp2 == 0 && frac < 0)
+> > +			l += sysfs_emit_at(buf, offset, "-");
+> > +
+> > +		l += sysfs_emit_at(buf, offset + l, "%lld.%0*lld", tmp2, scale,
+> > +				   abs(frac));
+> > +		return l;
+> > +	}
+> 
+> ...
+> 
+> >  #ifndef _IIO_TYPES_H_
+> >  #define _IIO_TYPES_H_
+> 
+> Also needs types.h now... Which makes me think if the proposed macros are
+> placed in the good enough location.
 
-> but cannot see anything relevant to SPI in dmesg, whereas I see [Q]SPI 
-> in u-boot output, but there it is listed as:
-> [   0.887] SF: Detected XM25QH128A with page size 256 Bytes, erase size 
-> 64 KiB, total 16 MiB
-> Which is not the same you tested (XM25QU128C).
+That is a good point. I left it there because they are related to IIO_VAL_INT_64
+and IIO_VAL_DECIMAL64_*. I had them as macros initially, but they are not exactly
+"types" indeed. 
 
-Please do not trust the flash name printed by vendor UBoot.
-XM25QU128C is 0x204118, while XM25QH128A is 0x207018.
+> 
+> (Note, iio/iio.h missing actually types.h, but includes it indirectly.)
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
-~ # cat /sys/kernel/debug/spi-nor/spi0.0/params 
-name            spi-nor-generic
-id              20 41 18 20 41 18
-size            16.0 MiB
+-- 
+Kind regards,
 
-You can also check the silkscreen of the SPI NOR flash. By
-the way, the IO voltages of these two flashes are different.
-
-> How can I know this patch is working properly ?
-
-[    1.116594] 6 fixed-partitions partitions found on MTD device d420c000.spi
-[    1.116609] Creating 6 MTD partitions on "d420c000.spi":
-[    1.116615] 0x000000000000-0x000000010000 : "bootinfo"
-[    1.119280] 0x000000010000-0x000000020000 : "private"
-[    1.120718] 0x000000020000-0x000000060000 : "fsbl"
-[    1.122064] 0x000000060000-0x000000070000 : "env"
-[    1.126373] 0x000000070000-0x0000000a0000 : "opensbi"
-[    1.127679] 0x0000000a0000-0x000000800000 : "uboot"
-
-These partitions can be tested using the mtd command.
-Or simply view the contents of these partitions:
-~ # hexdump -C /dev/mtd0
-
-Thanks,
-Chukun
+Rodrigo Alencar
 
