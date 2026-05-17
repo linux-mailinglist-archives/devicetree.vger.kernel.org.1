@@ -1,68 +1,79 @@
-Return-Path: <devicetree+bounces-299048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPQmF3YqCmonxQQAu9opvQ
-	(envelope-from <devicetree+bounces-299048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:52:06 +0200
+	id 0BeOOKoqCmpAxQQAu9opvQ
+	(envelope-from <devicetree+bounces-299049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:52:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29886563D6F
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5CD563D8A
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 22:52:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E1045301950E
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 20:52:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9C85301A1DF
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 20:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8283A2F549F;
-	Sun, 17 May 2026 20:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04C3303C9C;
+	Sun, 17 May 2026 20:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E1jaTnUp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T1U9qA2w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBC82C3271;
-	Sun, 17 May 2026 20:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADF92E22B5;
+	Sun, 17 May 2026 20:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779051122; cv=none; b=PA/94BpXi0azafOsK7zBy1Rolgk8TKv7kGTsauXqod2O7g+AoWfISKSfK+ySKFBnuK4mr5/Q3vOA4UhqqaNZK9EWlmpHHgbXO7DY0ZolettvUlEyOKvP7W4NG7YlheQJFK1qDeys5ojF7OK/7sCA4LU8LmY7EAkXF0wGrkxQUns=
+	t=1779051175; cv=none; b=fe0iPtur6HPp14P4IKmtwcOTuFsCbFjtRVdmY1QD2Qet8kGSPz4rEK8MUUte1dUjDPOvIDAhmCFxQAxiYIJlKXwLCeo1oBgnFUIIoxrlJHv0CIzD8u30fJtqTjFCbVQj8DhgjB+gtAhNkli6J3cLFCb2PBAIFKh0UhVganHdwf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779051122; c=relaxed/simple;
-	bh=Og4fBV0EtD0xhgQyzKrvnJkkN7/Nmm1sRZwXKkR+uWU=;
+	s=arc-20240116; t=1779051175; c=relaxed/simple;
+	bh=lBEeLCufjUUnTEWi6mtgR5ByJUe7zVY3tuV617Ah3d0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pNleYad3e84E/QCUgde+Ae5kvDVZCHymbKwZsjiO2UBbBOlZSFOARNAc0V+BJUbX30R0H8NsnDI5dzCddIs8LKOoKzOINk8fvT/Ixpt7B/VgdPfgteBHlsVjTE5FtszRMak08CfsCoQirk1ZCjZ/+yj31btaFdfLSTVXZ1+leEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E1jaTnUp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF625C2BCB0;
-	Sun, 17 May 2026 20:51:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IFgb0L7y9sgdQnRcp37+dmMt4fF68ucKP9TDBB5EEaI2Qhsk/12qvzq+RgHLM/bhMonAT70L+K7VBGoNkse9NvrstXVIegufVE7N+HL6u8QVsiyEYvrrkrgtAZHauGBkLtA3wwVepMkmyTaHfzMrQavC8utHNHrdMn2jCXutXuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1U9qA2w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F526C2BCB0;
+	Sun, 17 May 2026 20:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779051121;
-	bh=Og4fBV0EtD0xhgQyzKrvnJkkN7/Nmm1sRZwXKkR+uWU=;
+	s=k20201202; t=1779051175;
+	bh=lBEeLCufjUUnTEWi6mtgR5ByJUe7zVY3tuV617Ah3d0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E1jaTnUpR8hVplCRXocLMST2NUTRStFSqyNR/r0AdCRcRKkgG7wbT2QSTzUGIAaZU
-	 5erC8I20OCJEccLXKAm/EeTDPZTW+fAQv7zkZWKf0leDMThsIy2qGBrke9sqc9l3yy
-	 VbVGJKs/Nv1YHZiBb6BdrvyHpl63iwpPKc8b+U3AEochNJEN+gwlA/oJZC73FCtKY7
-	 xylPAAnVYcqiWg54xErmoNXLWPRP/VzscTYciqzPt0mFQS4WGRS2RzpmPOgLkoUljr
-	 hJ6T4V+YzxQnCEvO/rkJs+eG72lYTW7o6AbjuVerwvAyfBsHrxiuQyQ6srB0K+gsXD
-	 0fAp99LjNRDNA==
-Date: Sun, 17 May 2026 21:51:56 +0100
+	b=T1U9qA2wlrxkU1CVjCYWp0GerjGb58s+WTSjtIxE4BYp205CYsDTMhzesKrolDoo/
+	 TFJS4XQrJEHSq0UlwBOKu35k4/Ym2x/IhXgqG7mVe3rInRiLsHU6yIDKMjDTZzv1K6
+	 olHE1gOBmu3UyZXD0A54izrgMjiBR1QD1IrGAvhscaMAZyRb0oZrCv6N//q79US14E
+	 NIPQMvlfadSGb4l35ubjJgz2l3a9rB1XHJKjXdOWhqrFhrJY9qZry7KxzuzzrojXMH
+	 XNJbsBNbQv+i2nIvpVdM8tpyxTm+epmF6qI1XojxM6k9eUL4T4eYqVnH2JTItSVo8a
+	 v1Bu0rudI0qNg==
+Date: Sun, 17 May 2026 21:52:49 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chuanhong Guo <gch981213@gmail.com>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: clock: add binding header for
- sf21-topcrm
-Message-ID: <20260517-pulsate-shining-547432ab2ca0@spud>
-References: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
- <20260517-sf21-topcrm-v1-2-438f2e0513ff@gmail.com>
- <20260517-cartoon-slather-ec5ad7605449@spud>
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Nam Tran <trannamatk@gmail.com>,
+	=?utf-8?B?xYF1a2FzeiBMZWJpZWR6acWEc2tp?= <kernel@lvkasz.us>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 03/11] dt-bindings: mfd: add documentation for S2MU005
+ PMIC
+Message-ID: <20260517-corrode-tuesday-a598ca734b38@spud>
+References: <20260515-s2mu005-pmic-v6-0-1979106992d4@disroot.org>
+ <20260515-s2mu005-pmic-v6-3-1979106992d4@disroot.org>
+ <20260515-justly-recite-6028f4bfb24a@spud>
+ <DIJK5FTQ5KWG.HOKZAOXHTGU7@disroot.org>
+ <20260516-esquire-chitchat-0fffa597e2f3@spud>
+ <DIKZ5L2HC2CV.YL3MZUJQ2EV6@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,10 +81,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XBSltlWXNSQe/OJJ"
+	protocol="application/pgp-signature"; boundary="yhm6/mFYCWLfhh+J"
 Content-Disposition: inline
-In-Reply-To: <20260517-cartoon-slather-ec5ad7605449@spud>
-X-Rspamd-Queue-Id: 29886563D6F
+In-Reply-To: <DIKZ5L2HC2CV.YL3MZUJQ2EV6@disroot.org>
+X-Rspamd-Queue-Id: 7D5CD563D8A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -81,19 +92,19 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299048-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-299049-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com,lvkasz.us,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -108,44 +119,50 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 X-Rspamd-Action: no action
 
 
---XBSltlWXNSQe/OJJ
+--yhm6/mFYCWLfhh+J
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 17, 2026 at 09:47:26PM +0100, Conor Dooley wrote:
-> On Sun, May 17, 2026 at 10:12:56PM +0800, Chuanhong Guo wrote:
-> > +#define SF21_CLK_PCIE_REFP		30
-> > +#define SF21_CLK_MAX			31
+On Sun, May 17, 2026 at 06:39:37PM +0530, Kaustabh Chakraborty wrote:
+>> >> >> +
+> >> >> +    properties:
+> >> >> +      compatible:
+> >> >> +        const: samsung,s2mu005-rgb
+> >> >> +
+> >> >> +    required:
+> >> >> +      - compatible
+> >> >> +
+> >> >> +    unevaluatedProperties: false
+> >> >> +
+> >> >> +  reg:
+> >> >> +    maxItems: 1
+> >> >
+> >> > Move this above the child nodes please.
+> >>=20
+> >> But properties are sorted in lex order?
+> >
+> > Typically the binding is sorted in the same order as properties go in
+> > nodes. Common stuff like reg/clocks/interrupts therefore send up above
+> > child nodes.
 >=20
-> > +#define SF21_RESET_IROM			17
-> > +#define SF21_RESET_MAX			18
->=20
->=20
-> Having _MAX is not permitted, but is also really confusing that "max"
-> appears to be max+1, so actually represents the count not the max?
+> So, do I change this? For one, I don't see the same being followed in
+> other schemas of samsung in the same dir (not that I'm trying to pose it
+> as an argument against your suggestion), and this was reviewed by
+> Krzysztof and is adderssed in v7.
 
-To be clear, if you need a define like this, put it in the driver.
-Bindings having a "_MAX" or "NUM_CLKS" doesn't make sense, and half the
-time this number ends up changing anyway.
+If Krzysztof doesn't care, then I won't ask you to change it.
 
-Also, squash this with the patch adding the clock binding.
-
-Cheers,
-Conor.
-
-
-
---XBSltlWXNSQe/OJJ
+--yhm6/mFYCWLfhh+J
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagoqbAAKCRB4tDGHoIJi
-0kXQAP9LJgmoesY0Ipn5SDkHI1favq4yEm6Jb5EycZjpUwTLtAEAsN4MhlOWEdtS
-0trUPoitDOYu794uOuGQPIOzV0sDKQE=
-=ZyXF
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagoqoAAKCRB4tDGHoIJi
+0leuAP9Buz9rPpNnrPIjeAGYrA+vCW1UrZH0CEH0SKms57TxVgD9HnOrK1jIz9c2
+mx+0ei2gI/uPCPc7CzLafRs+JazK+QQ=
+=GxqQ
 -----END PGP SIGNATURE-----
 
---XBSltlWXNSQe/OJJ--
+--yhm6/mFYCWLfhh+J--
 
