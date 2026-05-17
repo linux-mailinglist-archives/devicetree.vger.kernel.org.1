@@ -1,180 +1,137 @@
-Return-Path: <devicetree+bounces-298893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-298896-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uEU1OySbCWpHhQQAu9opvQ
-	(envelope-from <devicetree+bounces-298893-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:40:36 +0200
+	id QDSxFqGeCWooiAQAu9opvQ
+	(envelope-from <devicetree+bounces-298896-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:55:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B085608AB
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A485609B8
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 12:55:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A5DF300A745
-	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:40:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9700C300A606
+	for <lists+devicetree@lfdr.de>; Sun, 17 May 2026 10:55:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C8EB35F163;
-	Sun, 17 May 2026 10:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oCnt/T1h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FEA34A76F;
+	Sun, 17 May 2026 10:55:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401C835DA6A;
-	Sun, 17 May 2026 10:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48753164DF;
+	Sun, 17 May 2026 10:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779014430; cv=none; b=tkeq54QWYqTk2uGixXnHGWdiIbQewl26b7OQY3JGQUldXZVEhxx+NVgeEbXXWlTcnIeBMlkm6xIE0qhuE4brkUhbYNUKRbX69xZPtvhykvaHSihO/VBaW2OY3+JYHu3y2Ux7IygKO6mo5u1nmAg3yDdqIEoge/rDZcbJElxmFmU=
+	t=1779015323; cv=none; b=XyJ6Kr6cyGL5CY30e7GPFfpaZnJaKqGanLg/Z0BBUoKzPP01bjADTVpOx5PcJ9bQUY9kG17tpV32leh5gQZ0NiIlAC/xbzb0GT/6GlsUKoiaeJs9WjjjmP70ohkIdxpqPconGwhJ5OyW6TvGRaWaxDZxMqm/785v1+GmDeI7ppw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779014430; c=relaxed/simple;
-	bh=3+pu7n1CG+XGB3Ldn4JBhKXZKe50YpSBlqvjDoYq7e4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u7IBTjabDXUwDzl3xECg0hYMKkjt8ML7zEYjng2K/f5Y1bNLWosKS6IdwcBLoQ2Wka9/LB482/7bc0EEUOepCXdhfleC/u4IysUFE0OWJtnSSXlsj8M/srzQYTlTCC3MCeEEt6kmt0NWHRyOtLxGbqEZysK3715Kp5qoohoPJRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oCnt/T1h; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1779014429; x=1810550429;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3+pu7n1CG+XGB3Ldn4JBhKXZKe50YpSBlqvjDoYq7e4=;
-  b=oCnt/T1hrNEJC7ZFmXgtq96bERBAv0NCNjyDHCiXlkBJ99nze3/XJ0yT
-   C7ZJIjYlFmGBI3P6Og2bxDFREzoVfnJu1eChHDZE9+H1GBgSc5kh53vXr
-   8Dd6sNNnZp0De5DCjNFuTM5Z46qEmA2AjW+b4m4lowTKbMVD+TVb3upTj
-   j5EDFpol0p/udo08kZkP5iQk76NtunQVwMPlo6KasFiJ40O/6GLT9goWC
-   caGy/OcVen2FGhjROf71GhJsE6IxTPr8g+KFk2oCAi1t7dh+fZhFrctD7
-   7Wap0sP/dG6C78XkT4kS1iZnAUpfBlUAmP9UhoXoOK7A1uw/iyYBuawDk
-   g==;
-X-CSE-ConnectionGUID: ljCdVK8KQPGBGjdo9LBWlw==
-X-CSE-MsgGUID: vqRgCxZfR2iudSr9I+iX1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="79864304"
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
-   d="scan'208";a="79864304"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2026 03:40:28 -0700
-X-CSE-ConnectionGUID: 0/XQ2Nl4Q3apw4ZJiajANw==
-X-CSE-MsgGUID: qo1alMKuTvC8X7PvF427pQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; 
-   d="scan'208";a="262908978"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.182])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2026 03:40:23 -0700
-Date: Sun, 17 May 2026 13:40:21 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v1 0/6] mfd: lm3533: convert to OF bindings, improve
- support
-Message-ID: <agmbFQHezUl5Nydn@ashevche-desk.local>
-References: <20260517074306.30937-1-clamor95@gmail.com>
- <agl1T8O6kwP7SFZ1@ashevche-desk.local>
- <CAPVz0n0tfbwa1AbgO4eKrmNunHvmTFLDqXDFd1=VfLayuafH8w@mail.gmail.com>
- <agmWVdi3TkBb2cxV@ashevche-desk.local>
- <CAPVz0n3Kn5VVxWxCgq2EcRiOaLWnB85hD+-S2Eou=H1PyycJCQ@mail.gmail.com>
+	s=arc-20240116; t=1779015323; c=relaxed/simple;
+	bh=mym2AZr8qHmYBPdF1FDnJxIrdkbbp8uIX7LVOJu77SU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=LSm1cmq4mdauQ5fxA6OB2dEkJdU8sV6RYGN2jRseR9Vz0G2pMie9mFftvDnCEUCysr2ABBPLZdAhs/+hBTaDgr4GB1iy/23rMGPPzMM3V5QM8yM5JbMs4iQ4v0pKsLu83wFmjduJodRKZX0lZwZoQ1qdw48q/t6620cia6zfZd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from Vostro-3710.. (unknown [119.122.215.211])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3eb5cf39b;
+	Sun, 17 May 2026 18:50:01 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: legoll@online.fr
+Cc: alex@ghiti.fr,
+	amadeus@jmu.edu.cn,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dlan@kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	pjw@kernel.org,
+	robh@kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/1] riscv: dts: spacemit: enable QSPI for OrangePi RV2
+Date: Sun, 17 May 2026 18:40:40 +0800
+Message-Id: <20260517104040.1941126-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <e92fc4a6-7a63-4d24-9c13-8fec3d8184d3@online.fr>
+References: <e92fc4a6-7a63-4d24-9c13-8fec3d8184d3@online.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPVz0n3Kn5VVxWxCgq2EcRiOaLWnB85hD+-S2Eou=H1PyycJCQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: 75B085608AB
+X-HM-Tid: 0a9e358ea40403a2kunm5a1540d111564e
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSx5PVk4YGRoZQh5KTExDSFYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJSkpZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pOTE5VSktLVUpCS0tZBg++
+X-Rspamd-Queue-Id: D6A485609B8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-298893-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-298896-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-0.998];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,ashevche-desk.local:mid]
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jmu.edu.cn:mid]
 X-Rspamd-Action: no action
 
-On Sun, May 17, 2026 at 01:34:32PM +0300, Svyatoslav Ryhel wrote:
-> нд, 17 трав. 2026 р. о 13:20 Andy Shevchenko <andriy.shevchenko@intel.com> пише:
-> > On Sun, May 17, 2026 at 01:13:22PM +0300, Svyatoslav Ryhel wrote:
-> > > нд, 17 трав. 2026 р. о 10:59 Andy Shevchenko <andriy.shevchenko@intel.com> пише:
-> > > > On Sun, May 17, 2026 at 10:43:00AM +0300, Svyatoslav Ryhel wrote:
-> > > > > Convert LM3533 to OF bindings, add missing VIN supply, add support for
-> > > > > setting mapping mode and LED sources based on device tree.
-> > > >
-> > > > How is this being different to
-> > > > https://lore.kernel.org/lkml/20250218132702.114669-1-clamor95@gmail.com/
-> > > > ?
-> > >
-> > > I have decided to have a fresh look, this is continuation.
-> >
-> > Then it should be something like v4?
-> 
-> That was more than a year ago, lets start fresh. Those patches are
-> gone, though I did add many of suggestions from there.
-> 
-> > > > What about this comment
-> > > > https://lore.kernel.org/lkml/ZmBcvtLCzllQDWVX@hovoldconsulting.com/
-> > > > ? Have you talked to Bjorn A and Johan?
-> > >
-> > > No, but since grep -r "lm3533_platform_data" * gives 0 results there
-> > > are no platform_data users of lm3533.
-> >
-> > Johan was against driver removal (while it sounds logical due to above) and
-> > referred to some other patches from somebody else. I think you need to
-> > synchronise with the people to have a clear roadmap that all stakeholders
-> > are agree with. With that, the split and other technical issues can be solved
-> > during the normal process.
-> 
-> And this discussion was 2 years ago, and
-> 
-> "This device is used in a bunch of Sony phones and Bjorn A posted a
-> series adding devicetree bindings a few years ago"
-> 
-> They have had more than enough time, don't you think? You would
-> definitely know if there were any activity since you are IIO reviewer
-> and would be included, were there any activity?
+Hi,
 
-At least it's polite to Cc them your version.
+> but cannot see anything relevant to SPI in dmesg, whereas I see [Q]SPI 
+> in u-boot output, but there it is listed as:
+> [   0.887] SF: Detected XM25QH128A with page size 256 Bytes, erase size 
+> 64 KiB, total 16 MiB
+> Which is not the same you tested (XM25QU128C).
 
--- 
-With Best Regards,
-Andy Shevchenko
+Please do not trust the flash name printed by vendor UBoot.
+XM25QU128C is 0x204118, while XM25QH128A is 0x207018.
 
+~ # cat /sys/kernel/debug/spi-nor/spi0.0/params 
+name            spi-nor-generic
+id              20 41 18 20 41 18
+size            16.0 MiB
 
+You can also check the silkscreen of the SPI NOR flash. By
+the way, the IO voltages of these two flashes are different.
+
+> How can I know this patch is working properly ?
+
+[    1.116594] 6 fixed-partitions partitions found on MTD device d420c000.spi
+[    1.116609] Creating 6 MTD partitions on "d420c000.spi":
+[    1.116615] 0x000000000000-0x000000010000 : "bootinfo"
+[    1.119280] 0x000000010000-0x000000020000 : "private"
+[    1.120718] 0x000000020000-0x000000060000 : "fsbl"
+[    1.122064] 0x000000060000-0x000000070000 : "env"
+[    1.126373] 0x000000070000-0x0000000a0000 : "opensbi"
+[    1.127679] 0x0000000a0000-0x000000800000 : "uboot"
+
+These partitions can be tested using the mtd command.
+Or simply view the contents of these partitions:
+~ # hexdump -C /dev/mtd0
+
+Thanks,
+Chukun
 
