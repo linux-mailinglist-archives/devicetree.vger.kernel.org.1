@@ -1,141 +1,191 @@
-Return-Path: <devicetree+bounces-299505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299492-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJLiK4UtC2opEQUAu9opvQ
-	(envelope-from <devicetree+bounces-299505-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:17:25 +0200
+	id 0M7lOfkmC2pAEAUAu9opvQ
+	(envelope-from <devicetree+bounces-299492-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:49:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB1056FBEF
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:17:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A328856F3A4
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D578D3044958
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:09:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 59703303BE95
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B014305693;
-	Mon, 18 May 2026 15:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A4027979A;
+	Mon, 18 May 2026 14:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kNuvDoUq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="av5vx73b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92392C0285;
-	Mon, 18 May 2026 15:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10958271A9A
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 14:47:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779116990; cv=none; b=HypVY+MqSPZRWOAyEC8NW1LT7ux+0spfAd0hNzYz4+WRcGUUZqt2ZkQMI/er3IuULLRrN2TVQU+JMTH/qpPZyHA1/ZZENnfFYAzRSDg32DTENEKwgz8nPqKkcNwAU3SElnxuAhq9hcQkd1TL66onZipmHB1eJFyFBgoDQ9tRwnI=
+	t=1779115640; cv=none; b=NsG8TSFgbEfMh5dPEip++uFXhLpVxRry+lgQtZnUksgLaUX/n3/vyVDp0Dvzhp597Gqwka+RgRrPIYW1CLMgr1e4JcrABNjRUT1laLppbONSMwp7/3PaDCkQx9Oe1Nlk6iY6KW+r6Tj4vue2QtVr49s1dm5d5OyMS1ywx6aTDQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779116990; c=relaxed/simple;
-	bh=WKZYEhuY2FvrtXJIroTIhV4+i/xLJHJ0x+vs4MSa9yg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qE76FneSJonTY6fYRk6/DE3iinill7gUmEaDkvb1BDPT2pooAFV7qgbHJfwvjfU6ywUrLt4thqGJNQk+UQte0EvlYzohyR5xa1TAJx9MtHw4cIofaUXnhyG9jonNujz44VhHr2hahjWMgofLP2OBohWnI2JVE66BsWVS79Yy1fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kNuvDoUq; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1779116989; x=1810652989;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WKZYEhuY2FvrtXJIroTIhV4+i/xLJHJ0x+vs4MSa9yg=;
-  b=kNuvDoUqTlSZdA0k5AN3AlCM0obPlRwpaFknrmHcRi9Ol34oFjFV24WY
-   f2msYJBidswrbKxCEgVWeaJH62uRNXsYKpbzT4xL40vxnc4pvYV4g/BNr
-   IxIpcyTTrhQPavU/KPlDeqYlfwduARDvYh+KGEXxDi8FAAsBLRrvVyOZG
-   tgL8LeKNnsWgb8q9u/W9BuEjZ8/qThgUDzGR0xZHlhh1I8+CTRJRBBshx
-   JT2ADb0CeFn9VLUabqW5Ygpn+FGA+JI5cDktFFLCHXL2/JqmEf3geklYU
-   neuaeOpobhgZCx/0Oz8aEc3gtCJe92i3Wg9tyd1PpI9ffXPJlqntwOq2E
-   g==;
-X-CSE-ConnectionGUID: mI4cPWxfQF2uSiAPQt38fg==
-X-CSE-MsgGUID: W/xM9S6MRxG7QkBdWFuw1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="79936793"
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; 
-   d="scan'208";a="79936793"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2026 08:09:48 -0700
-X-CSE-ConnectionGUID: 0y6fbu4jS0igkFBT3OggFw==
-X-CSE-MsgGUID: 1047+jEsSTyh71ATGR+IYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,242,1770624000"; 
-   d="scan'208";a="243436627"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa003.jf.intel.com with ESMTP; 18 May 2026 08:09:46 -0700
-Date: Mon, 18 May 2026 22:46:16 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Manish Baing <manishbaing2789@gmail.com>, s.trumtrar@pengutronix.de,
-	devicetree@vger.kernel.org, yilun.xu@intel.com, trix@redhat.com,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	linux-fpga@vger.kernel.org, krzk+dt@kernel.org, mdf@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: fpga: altr,socfpga-fpga-mgr: convert to
- DT schema
-Message-ID: <agsmOHxOSLdqk+3F@yilunxu-OptiPlex-7050>
-References: <20260512182033.66222-1-manishbaing2789@gmail.com>
- <177877399996.840047.5687994834400196062.robh@kernel.org>
+	s=arc-20240116; t=1779115640; c=relaxed/simple;
+	bh=vPaVPkElRKkI+lmUZzA09/LIbT0xt4R2+ENYZ4lLS5g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=raVozSS6rwLBPAASpTf6fWfvV9T5pFchsO6C0xVOEjJJxpBX3zxzl3mv+4xkT3Run1VQRqM9N6LnMDJm8H69DD5s+Xm16o92ExISn7uXoHUrSJ7twQLRkqqdst5QqyxEXBIRYpB6RuCpWj3Vyqkh8TDjlUvw7vJ+Xi9WQsI25pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=av5vx73b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC453C2BCFB
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 14:47:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779115639;
+	bh=vPaVPkElRKkI+lmUZzA09/LIbT0xt4R2+ENYZ4lLS5g=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=av5vx73bAiKuCKn/xuWqjVwaT8/gOojrPk8PuHYfDJPmDv2sqzpOCjrqr12AozgTg
+	 XrkEMEGmCvvaWmRT829lw+MPzOZ2DuVr4NP7Jwl6sLbn3rlhTFUNQZD4MDs5N+Ucs7
+	 h5M0utGAfqMK3Vej3dt7/13cw9omeP3AlJDxCLJJzfvWpya4vCDiFj3VeQWuCYrsCd
+	 aD5Po0q3MAmZvQmZwZa7UhgupPx0t65QUeuRzCsFjTx1J3de2mHDYREOm386RkIyuF
+	 IoT+XGcN/mSJEvqii7CY0gxUBQMTwdaCvGhIWpB+ytfy+5vt7ZgGflAiye15bz7zW1
+	 PeL3nvmxWK2Hw==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3939d2bd7ecso18818751fa.0
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 07:47:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+V8KcdWwILFPwnf0CdsjiAhpS5UVZL6lhGv25Ffx6Y3oTQNmpaFSOi01rfN24xVRxaX8AbSfgqY3OZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyE6oF8O1BLM6AfiTJdtIh48mfbdriP87iPuOlFuDT2xZFsb9Zf
+	wNs9c8yft6UnuQXjhrdyWOM3kjDAis6FXQ11ShcNPpTTrs630DXFvjhTXL9e0p1PYQd7zuMaPI2
+	EzFJp61wYjclr4af7xBa1uLRJfDiSAkU=
+X-Received: by 2002:a05:651c:2215:b0:38e:58c7:cda with SMTP id
+ 38308e7fff4ca-3956089f9d7mr43916861fa.1.1779115638118; Mon, 18 May 2026
+ 07:47:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <177877399996.840047.5687994834400196062.robh@kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+References: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
+ <20260510201644.4143710-4-alexander.sverdlin@gmail.com> <2306dd3c-6362-40ee-8d9f-77f89be3a502@arm.com>
+ <14a7e289ff5ffed8fcd6dcb9b2e8455a1b2c9420.camel@gmail.com> <256b1cd8-b143-4f71-91cc-8513be04ce4c@arm.com>
+In-Reply-To: <256b1cd8-b143-4f71-91cc-8513be04ce4c@arm.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Mon, 18 May 2026 22:47:05 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65jpG-XXNjT46H2KnLoM_SHOatFw82u38ZGEELgXmvDtQ@mail.gmail.com>
+X-Gm-Features: AVHnY4JuD0SObsLmoajC3ESMjVn3MS_VFZrbgNyTbswwAAsPI15UX8WD889AEwg
+Message-ID: <CAGb2v65jpG-XXNjT46H2KnLoM_SHOatFw82u38ZGEELgXmvDtQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: A133: add support for
+ Baijie Helper A133 board
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>, linux-sunxi@lists.linux.dev, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,pengutronix.de,vger.kernel.org,intel.com,redhat.com,kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.linux.dev,kernel.org,sholland.org,vger.kernel.org,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299505-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299492-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yilun.xu@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[wens@kernel.org];
 	RCVD_COUNT_FIVE(0.00)[5];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4BB1056FBEF
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,arm.com:email]
+X-Rspamd-Queue-Id: A328856F3A4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 14, 2026 at 10:53:58AM -0500, Rob Herring (Arm) wrote:
-> 
-> On Tue, 12 May 2026 18:20:33 +0000, Manish Baing wrote:
-> > Convert the Altera SoCFPGA FPGA Manager bindings from text
-> > format to YAML schema.
-> > 
-> > Signed-off-by: Manish Baing <manishbaing2789@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Removed Rob Herring from the maintainers list as per Conor's feedback.
-> > 
-> >  .../bindings/fpga/altera-socfpga-fpga-mgr.txt | 17 ---------
-> >  .../bindings/fpga/altr,socfpga-fpga-mgr.yaml  | 38 +++++++++++++++++++
-> >  2 files changed, 38 insertions(+), 17 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/fpga/altera-socfpga-fpga-mgr.txt
-> >  create mode 100644 Documentation/devicetree/bindings/fpga/altr,socfpga-fpga-mgr.yaml
-> > 
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Mon, May 18, 2026 at 7:16=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> Hi Alexander,
+>
+> On 5/17/26 22:38, Alexander Sverdlin wrote:
+> > Hi Andre,
+> >
+> > thanks for the quick feedback!
+> >
+> > On Mon, 2026-05-11 at 13:44 +0200, Andre Przywara wrote:
+> >>> --- /dev/null
+> >>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi
+> >>> @@ -0,0 +1,162 @@
+> >>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >>> +/*
+> >>> + * Copyright (c) 2025 Arm Ltd.
+> >>
+> >> Please put your own copyright here, even if that has been largely copi=
+ed
+> >> from an existing file.
+> >>
+> >>> + */
+> >>> +
+> >>> +/dts-v1/;
+> >>> +
+> >>> +#include "sun50i-a100.dtsi"
+> >>> +#include "sun50i-a100-cpu-opp.dtsi"
+> >>> +
+> >>> +/{
+> >>> +   compatible =3D "baijie,helper-a133-core",
+> >>> +                "allwinner,sun50i-a100";
+> >>> +
+> >>> +   aliases {
+> >>> +           serial1 =3D &uart1;       /* BT module */
+> >>
+> >> Do we really need an alias for the BT UART? And is the BT module
+> >> supported already? Then please add a child node to the UART node.
+> >
+> > That's the only thing I can do currently regarding BT: stabilize the
+> > serial enumeration, because UART1 cannot be used for anything else
+> > except BT module, because this is soldered inside "core" module.
+> > We can avoid different tty enumeration, should the support for
+> > BT be implemented in the future...
+> >
+> >> Isn't the WiFi/BT module on the SoM? Then please mention and enable MM=
+C1
+> >> here. Provide the child node for the WiFi chip, even if there is no
+> >> upstream support in the kernel for it yet.
+> >
+> > So both the above BT and the WiFi is AW869A/AIC8800 combo chip, which
+> > has neither upstream driver, nor [upstream] DT bindings. Even github
+> > driver for AIC8800 doesn't seem to use DT, therefore it looks quite
+> > pointless to me at this point to specify anything in the DT for the
+> > chip which doesn't have the bindings idea even theoretically.
+> >
+> > Nothing in the current DT shall block any future work on the AW869A
+> > support though and the above "aliases" entry shall even guarantee
+> > unchanged serial enumeration shall such support arise.
+>
+> Fair enough for not providing DT nodes for those unsupported chips, but
+> why do we need to force enumeration? For the eventual Bluetooth usage,
+> the driver will find the respective serial interface by just looking at
+> its parent interface. IIUC there is nothing referring to ttyS1
+> explicitly. So we wouldn't really need an alias, would we?
+> I see that some boards do define an alias, but others with Bluetooth
+> don't, which I think is the right thing to do. Which name the kernel
+> comes up with for UART1 shouldn't matter in any way.
 
-Acked-by: Xu Yilun <yilun.xu@intel.com>
+It does provide a hint for any users enabling more UARTs and adding
+aliases for them that they should number them starting from 2? And
+just stable numbering overall.
 
-Applied to for-next
 
-> 
-> 
+ChenYu
 
