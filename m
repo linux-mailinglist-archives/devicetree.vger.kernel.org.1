@@ -1,150 +1,241 @@
-Return-Path: <devicetree+bounces-299269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNR+BcPlCmqJ9AQAu9opvQ
-	(envelope-from <devicetree+bounces-299269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:11:15 +0200
+	id CAtgLYjlCmqJ9AQAu9opvQ
+	(envelope-from <devicetree+bounces-299271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:10:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70DF456A710
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:11:14 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 325A856A6BC
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B54030071DC
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:06:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6FB9B30269FA
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B2331A807;
-	Mon, 18 May 2026 10:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1FF31E82A;
+	Mon, 18 May 2026 10:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nAy4SXup"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4E131E850;
-	Mon, 18 May 2026 10:05:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1910731D366;
+	Mon, 18 May 2026 10:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779098761; cv=none; b=GixcjPCDW3NhrOAnGmdMaY+Gf77gbbe8i+Cpcc/J5Zs6nzIZN1p50Ko8zmaMYR26O7vlrGFOLs2Tice5enK2Mh4bb4RPTqfrOOCfPMgrfQW+wSbjeueGAj3CaLhCLbassVDUDGMVsU1jOw1ogEgKp5JtwtixNJNqpHFRQ2VKTug=
+	t=1779098990; cv=none; b=IcAkyn94civpsFL9O9D2B64M/cxn1jMCu0GPv8FXBDB/6q8A3QFclkxTBJJeYB2zwtFZeHZs1FftH6vlTbTWzPQ593+Mx1bCIT9oiJaPKNjdGDiOGAKYAChBE4LaG59uvu6QNZvy4TsezBffvK2R8TO2rRasli8swfHx1spQYbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779098761; c=relaxed/simple;
-	bh=0tfAzFMJ40E/JjfP6FdPvkJS1Us5o4hbVMYh7ny6N0g=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RNGsrZRw+pj86wCCla+ZfB1mCGouign6aNapNmBwqcsPhpY2Ih0x3772PhopDo2YtRmOAx3EsjrVPTglCxU3+YAehOQ9+iIL5aT1CHQdv/d+NS3oRQf9W4cfFwnF12x9AlD8Y1xHc9gnt12Smrp6FXFZ04wIeDz+naQJ6pmY85Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.. (unknown [119.122.215.211])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3ed2313df;
-	Mon, 18 May 2026 18:00:37 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH v2 1/1] riscv: dts: spacemit: enable USB3 on OrangePi R2S
-Date: Mon, 18 May 2026 18:00:30 +0800
-Message-Id: <20260518100030.2354606-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1779098990; c=relaxed/simple;
+	bh=u56jg7DlcON9+DXGEF4UUjo0mA99ELeWFFq/Ike9RM8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PuA6ERerbugj75ZPm3mIq2MDZogeYeRpSIEJ2MslV5+PcYNi9f1SOW5p0+mheLcRcRC1M/RsmB0KwlnlNbdu7xcqTqq/ARndal/BnwdaCkmLNwU/Q70119qdCHE7wsqig9CASsap/7LpTA3dD2nWWHL1yXOQDmjQOrCNC1s8N6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nAy4SXup; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A7E31C2BCC6;
+	Mon, 18 May 2026 10:09:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779098989;
+	bh=u56jg7DlcON9+DXGEF4UUjo0mA99ELeWFFq/Ike9RM8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=nAy4SXupexX5Yd/Jh65iRzTGGKibrwsVMx4Do553FwQOWDk8pNtcdeQiEYw/M1y1R
+	 2SOnNZtpy+5SgAR/UTPBE4m8hjVxGSdEUbt8WvJSeb8B1yYuFNRDAlglFqHBHRvNvW
+	 LJhMVt2nhI0SjNrBzmKBkv6E755upD6Yg+qxgyzaAuDuWiAD3NQL9/iqv1/z5yDSCg
+	 C4UPn298sXtznWOIpRevUfjk7j7bJ1BmpnEdD5QP4JwDMCfqnHEvF4jy4pM0WuR4EY
+	 vIQF/SIgRVbgrx2BqHCyHOeS9ws85RQFblwxJOdRTp5yJ2n1iRZo1rT/CCT0j7jJZL
+	 CeVlWEg1KkpwQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 965C3CD4F54;
+	Mon, 18 May 2026 10:09:49 +0000 (UTC)
+From: Rex Fu via B4 Relay <devnull+Rex.Fu.amd.com@kernel.org>
+Date: Mon, 18 May 2026 18:00:40 +0800
+Subject: [PATCH v2] ARM: dts: aspeed: anacapa: correct SGPIO names for
+ monitoring
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e3a87c55103a2kunm8420fbff14e784
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTB1JVkxPGB9KSB5OSEIeTlYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJSkpZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0tVSktLVUtZBg++
-X-Rspamd-Queue-Id: 70DF456A710
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260518-anacapa-sgpio-edsff-thermtrip-v2-1-e43b1847b2dc@amd.com>
+X-B4-Tracking: v=1; b=H4sIAEfjCmoC/42OSwrCMBRFt1Iy9kmSfhRH7kM6yOelfUKbkMSgl
+ O7dtm7A4YHDuXdhCSNhYrdqYRELJfLzBvJUMTOqeUAguzGTXHa8qTmoWRkVFKQhkAe0yTnII8Y
+ pRwqgjJbyql0nNLKtESI6eh/9R//j9NJPNHmP7sZIKfv4OQ4UsXv/bhUBAqSzLV5kU7eW39Vkz
+ 8ZPrF/X9QvqpmBx2gAAAA==
+X-Change-ID: 20260430-anacapa-sgpio-edsff-thermtrip-acb228bf61be
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Rex Fu <Rex.Fu@amd.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779098465; l=4551;
+ i=Rex.Fu@amd.com; s=20260417; h=from:subject:message-id;
+ bh=R6pEDyauTB50Fmhvxn0QsYGtV2og2/4FKpGrDbJds/8=;
+ b=RC64u2ytJ72iyOUFotIilIIvQnQwyvi5OfqMn3hKP+rzzxF8q2th+T0U1TtU6hXd+NbgacbZ0
+ kRDPXrW5GeECk58Ywm1UgI3Pjx7idCfONhNhX9W2thRQSbad/63mm9J
+X-Developer-Key: i=Rex.Fu@amd.com; a=ed25519;
+ pk=26ECoh24fxrbXDKgA4hCmgg0xjQ+IxU97kXb46ovwgc=
+X-Endpoint-Received: by B4 Relay for Rex.Fu@amd.com/20260417 with
+ auth_id=738
+X-Original-From: Rex Fu <Rex.Fu@amd.com>
+Reply-To: Rex.Fu@amd.com
+X-Rspamd-Queue-Id: 325A856A6BC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-299269-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299271-lists,devicetree=lfdr.de,Rex.Fu.amd.com];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[Rex.Fu@amd.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jmu.edu.cn:email,jmu.edu.cn:mid]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:email,ozlabs.org:email,codeconstruct.com.au:email,amd.com:email,amd.com:mid,amd.com:replyto,jms.id.au:email]
 X-Rspamd-Action: no action
 
-Enable the DWC3 USB3.0 controller and its associated PHY on the
-OrangePi R2S. The USB regulator provides VBUS for USB2 and USB3
-ports, but the USB2 ports are handled by a separate controller.
+From: Rex Fu <Rex.Fu@amd.com>
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
-v2: Remove vin-supply for the vcc5v0_usb regulator.
----
- .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Update several Anacapa SGPIO line names to match the existing platform
+hardware design and the signal names consumed by userspace monitoring.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-index de75f6aac740..1ecc40749e5a 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-@@ -21,6 +21,19 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0";
- 	};
-+
-+	vcc5v0_usb: regulator-vcc5v0-usb {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio K1_GPIO(126) GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vcc5v0_usb";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&combo_phy {
-+	status = "okay";
- };
+The previous names did not match the actual Anacapa SGPIO usage. Some
+lines were named as CPU or CPU power-good signals, but they are wired and
+used on Anacapa for EDSFF presence, EDSFF power-good, boot EDSFF
+presence, and thermal-trip assertion monitoring.
+
+Correct the mappings as follows:
+
+  PWRGD_PVDDCR_SOC_P0     -> L_PRSNT_EDSFF0_N
+  PWRGD_PVDDIO_P0         -> L_PRSNT_EDSFF1_N
+  PWRGD_PVDDIO_MEM_S3_P0  -> R_PRSNT_EDSFF2_N
+  PWRGD_CHMP_CPU0_FPGA    -> R_PRSNT_EDSFF3_N
+  PWRGD_CHIL_CPU0_FPGA    -> HPM_EDSFF_PG
+  EAM2_CPU_MOD_PWR_GD_R   -> PRSNT_EDSFF_BOOT_N
+  CPU0_SP7R1              -> L_EDSFF0_PG
+  CPU0_SP7R2              -> L_EDSFF1_PG
+  CPU0_SP7R3              -> R_EDSFF2_PG
+  CPU0_SP7R4              -> R_EDSFF3_PG
+  HPM_AMC_THERMTRIP_R_L   -> AMC_THERMTRIP_ASSERT
+  FM_CPU0_THERMTRIP_N     -> CPU_THERMTRIP_ASSERT
+
+The left-side EDSFF slots are numbered as EDSFF0 and EDSFF1 to match
+the platform slot numbering used by userspace. The thermtrip names are
+also updated to describe the asserted condition monitored by userspace
+instead of the raw active-low signal names.
+
+This is a naming correction for the existing Anacapa hardware design.
+There is no new board revision or underlying hardware change involved.
+
+Signed-off-by: Rex Fu <Rex.Fu@amd.com>
+---
+Update the Anacapa SGPIO line names to match the existing hardware
+design and the platform signal names used by userspace monitoring.
+
+The v2 commit message now explains why changing these userspace-visible
+GPIO line names is appropriate and lists the exact old-to-new mappings.
+---
+Changes in v2:
+- Reworked the commit message to explain why these userspace-visible
+  GPIO line names are changed.
+- Listed the exact old-to-new SGPIO line name mappings.
+- Clarified that this is a naming correction for the existing hardware
+  design and not a board revision or hardware change.
+- Link to v1: https://patch.msgid.link/20260430-anacapa-sgpio-edsff-thermtrip-v1-1-2fd5e72435d0@amd.com
+
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Joel Stanley <joel@jms.id.au>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-aspeed@lists.ozlabs.org
+Cc: linux-kernel@vger.kernel.org
+---
+ .../boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts  | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+index 2cb7bd128d24..e898bc11e6f5 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+@@ -908,11 +908,11 @@ &sgpiom0 {
+ 	"", "", "", "",
  
- &emmc {
-@@ -90,3 +103,13 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	vbus-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
--- 
-2.34.1
+ 	/* G0-G7 line 96-111 */
+-	"PWRGD_PVDDCR_SOC_P0", "",
+-	"PWRGD_PVDDIO_P0", "",
+-	"PWRGD_PVDDIO_MEM_S3_P0", "",
+-	"PWRGD_CHMP_CPU0_FPGA", "",
+-	"PWRGD_CHIL_CPU0_FPGA", "",
++	"L_PRSNT_EDSFF0_N", "",
++	"L_PRSNT_EDSFF1_N", "",
++	"R_PRSNT_EDSFF2_N", "",
++	"R_PRSNT_EDSFF3_N", "",
++	"HPM_EDSFF_PG", "",
+ 	"PWRGD_CHEH_CPU0_FPGA", "",
+ 	"PWRGD_CHAD_CPU0_FPGA", "FM_BMC_READY_PLD",
+ 	"", "",
+@@ -934,7 +934,7 @@ &sgpiom0 {
+ 	"EAM3_BRD_PRSNT_R_L", "",
+ 	"EAM0_CPU_MOD_PWR_GD_R", "",
+ 	"EAM1_CPU_MOD_PWR_GD_R", "",
+-	"EAM2_CPU_MOD_PWR_GD_R", "",
++	"PRSNT_EDSFF_BOOT_N", "",
+ 	"EAM3_CPU_MOD_PWR_GD_R", "",
+ 
+ 	/* J0-J7 line 144-159 */
+@@ -957,8 +957,8 @@ &sgpiom0 {
+ 	"PDB_ALERT_R_N", "",
+ 
+ 	/* L0-L7 line 176-191 */
+-	"CPU0_SP7R1", "", "CPU0_SP7R2", "",
+-	"CPU0_SP7R3", "", "CPU0_SP7R4", "",
++	"L_EDSFF0_PG", "", "L_EDSFF1_PG", "",
++	"R_EDSFF2_PG", "", "R_EDSFF3_PG", "",
+ 	"CPU0_CORETYPE0", "", "CPU0_CORETYPE1", "",
+ 	"CPU0_CORETYPE2", "", "FM_BIOS_POST_CMPLT_R_N", "",
+ 
+@@ -984,8 +984,8 @@ &sgpiom0 {
+ 	"HPM_PWR_FAIL", "Port80_b0",
+ 	"FM_DIMM_IP_FAIL", "Port80_b1",
+ 	"FM_DIMM_AH_FAIL", "Port80_b2",
+-	"HPM_AMC_THERMTRIP_R_L", "Port80_b3",
+-	"FM_CPU0_THERMTRIP_N", "Port80_b4",
++	"AMC_THERMTRIP_ASSERT", "Port80_b3",
++	"CPU_THERMTRIP_ASSERT", "Port80_b4",
+ 	"PVDDCR_SOC_P0_OCP_L", "Port80_b5",
+ 	"CPLD_SGPIO_RDY", "Port80_b6",
+ 	"", "Port80_b7",
+
+---
+base-commit: 9974969c14031a097d6b45bcb7a06bb4aa525c40
+change-id: 20260430-anacapa-sgpio-edsff-thermtrip-acb228bf61be
+
+Best regards,
+--  
+Rex Fu <Rex.Fu@amd.com>
+
 
 
