@@ -1,192 +1,257 @@
-Return-Path: <devicetree+bounces-299598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KBhvFFBrC2qnHAUAu9opvQ
-	(envelope-from <devicetree+bounces-299598-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 21:41:04 +0200
+	id +DtBDZxxC2p/HwUAu9opvQ
+	(envelope-from <devicetree+bounces-299600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:07:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB6A57306B
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 21:41:03 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C8F573394
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4434300B11D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:40:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A0C723014C53
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B26E38F947;
-	Mon, 18 May 2026 19:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AA1638AC8B;
+	Mon, 18 May 2026 20:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JKnDeAtu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="q3qXneyG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C2038E124;
-	Mon, 18 May 2026 19:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7029A1E511
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779133229; cv=none; b=IWhy6HUXgiMaBENGlXRY6rXg9VPGoStvR1YfiB+t8n0Do5o9JXL5fz8Fk4Jc+8MOlKDqSCkxD2ttEMrYH/jJRGYxJKTbhnAEENQtvoPg9mNAKl43eUa6DYZ4k2XCeDmIqCcFoBK/kYSazouGY8Fi+6gbMSq1t4dvhoBMk/P+0Aw=
+	t=1779134872; cv=none; b=mr4uw5FJDNuCmQjlpAf3kaT403a3F9RVjqHoShgxYW9sUzGf6kvDcrAmiVsxFMpIOvYcF0sajuDFdCWBqFMIjsUVZhGSSi7OJcDptOYsF5K0akpjJXifOAuqPeeZ9YQkPewsrh/efWbIrmrXN1FKksrzWdeBinXluO2j1fnGlGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779133229; c=relaxed/simple;
-	bh=Lj2y6Z/5yB8RGF1dZj4AOFVgzx3lRYityrUd9Yu85wY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cXlvikDSbJl9TE+oHWPpUa0xeFFeBqUAtknl7z1CftX2/T5PGFK7c0tnrNmk2P/PHpVB4v+9MDIvToVL7puy/wybb04jJ6hAfYuEvP2c1KyaThvW5mwHWT/musB+Rv7DjdADMiqPVWOfHEA4eC19Vh/OSZ4PSV2HLpo6bo02D70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKnDeAtu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68AD2C2BCB7;
-	Mon, 18 May 2026 19:40:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779133228;
-	bh=Lj2y6Z/5yB8RGF1dZj4AOFVgzx3lRYityrUd9Yu85wY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=JKnDeAtu/QV8Ha15MCZOZm/ucdQ/st7/AJB6NHDPW4+2YAIGegtsUIIttkbKhWg8w
-	 iXCh99HSSN7QsxV5QcE7XIQEFGLpjAHfh/5jG5Zyy3sFK+0ORwTQsahxWbNlds+aXs
-	 PlVcVj/BD9CPnqdfZlVW4Mbx0ODreKQLuOsh70CVr2JJ2rTvOhTJmdptdh2lJ2UFWz
-	 gb5VByelsFgfYSTgvVOWubD5Owf5Ftxo7agFcGAJ4D8y/V3VIhmtY5B5SdbNoo8cy9
-	 uzIUJTDwTmhtW9HF7y2VpE6vvfLTph8u9k5jddf4k+3apv64gYD9uLUPu1O1BDSPiX
-	 KgJL4SuTZw21A==
-Date: Mon, 18 May 2026 21:40:22 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: "Theodore Tso" <tytso@mit.edu>
-Cc: Jani Nikula <jani.nikula@intel.com>, Roman Gushchin
- <roman.gushchin@linux.dev>, Krzysztof Kozlowski <krzk@kernel.org>,
- debarbos@redhat.com, Arnaldo Carvalho de Melo <acme@kernel.org>, Greg KH
- <gregkh@linuxfoundation.org>, Konstantin Ryabitsev <mricon@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>, sashiko-bot@kernel.org,
- sashiko-reviews@lists.linux.dev, sashiko@lists.linux.dev, Linux Kernel
- Workflows <workflows@vger.kernel.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
- kfree@google.com
-Subject: Re: Stop false review statements
-Message-ID: <20260518214022.5f94f917@foz.lan>
-In-Reply-To: <20260518121601.GA87957@macsyma-wired.lan>
-References: <4f3d7f48-5766-425b-91f6-0acdb5554584@kernel.org>
-	<07602616-412B-4ED8-95D7-588C0D077EE3@linux.dev>
-	<2e20badf27b6910d619329841e37d2961556056f@intel.com>
-	<20260518121601.GA87957@macsyma-wired.lan>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1779134872; c=relaxed/simple;
+	bh=ydJ0FeTXnF3CWjz1VmMKW6XwgKlTkdUnjxsY2JTFk24=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bMyt3IUjqW7UOLvS0uZ4e8x4eZvCzypHWSfTmZsRdTuSeaUrP1yX2FvVgVRdGzxpxEud+sgH7xtHqAlft6L4v3T3iTEd9QMFKQlLina/QILsprqxcczo/gUg4//BWmkCPmEaB6r95pN9O8xb4jaP/5zPGpOuKylRzwmO3ZvYIN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=q3qXneyG; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7dca4debedaso2940626a34.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:07:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779134870; x=1779739670; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2aMdRv6ihcWtjppf7zSbeituA+UJ2sSFZR2RWfS3c1E=;
+        b=q3qXneyGldwHqwPySDXDiyL6BhHx0O6zMii1fBxEK8jojeT4720PafC1t7kfJSSvxl
+         LwkLYWx06umGcdSzIyt8nmbwbNkUpLU3yIUi7BH+rF0t+34vfHVKpflX2xvwuwXqfGGX
+         owzh4JvN03jpuAsI7aEJbfu04EQ/SdDEQl7wC1FbRiH/x2lkkWhlXTHaZ0dBqh6QgbyW
+         DTSpG4Pw1+BxFatqoioCjmDJs4JvPPqKedr/d6tA7WHt4Jg4L9tGAbmzz3BWzDKJe35S
+         8Le3662y2s2dQqVog5If16WWzLbXVglV5FghVurIEhIaLz6Rw9fStay2pmn72FvnijJa
+         d+jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779134870; x=1779739670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2aMdRv6ihcWtjppf7zSbeituA+UJ2sSFZR2RWfS3c1E=;
+        b=SnWP/hT/xJZi5GtNFa1AGt9smho6bpYPmJGxflBrTphORTlokw5PaalaMNYSCflXf0
+         D9uN6ilCs5dlH0eBR9WVBCpskfT5fN4i9Q62Npzo9VgfhSeRNOLuSvi7eUProrlsjGxH
+         vwNhz7ZtZS338KikUHG7Tqi7y1PrvDDPTS5aVnQTlGpKlNf2UaJQ0LhbHMfRRuebaGeb
+         DYUI+Ou2y1uQW06dpM4oLtHklTuHO8U/+0eRE8ru8uq2rS5s7P27dMUbC7VyWt5AJRrj
+         b+gWsKlDHkFvTxcZ8pXstssm7cCO9G3TrzOlSCWgBDDVoCrmUKGXbHolvlCM0i8o12so
+         88Wg==
+X-Forwarded-Encrypted: i=1; AFNElJ9CT3mSGD2JxwP81xHP5+tbkDJjvSAlqEs53TZOOOxDv1ZR0dbeWdyeeejr2GFJxRaAbRgW40Tzfus9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmnW33ej0dR/hqX2LkhLsgyhmGORG2j6q5JAKpLNJ1mArqTt01
+	DVH6fO2b9MXNzQ4b2zzx08I/G+/IOn+IYK/tlyk3fptCiGVaT2TirDdZ
+X-Gm-Gg: Acq92OESLdH3k6t8KZC9daw/o76GudrRhmvXKHTPIOHYIUrXwmbBipxdK29V2OUZFtu
+	PzzEzf8GE9AWGCTeAoYNz1zEAesd6JAlPCmPtMXmdTfbNE5Dv6uMRaUZlgqnuD8FQBuMsofOCfK
+	+AOAzkWqGYwVEe4GoPspa3nnbKIJhdnsSQWIYzhn+t+rh1GtUbb4SkDois+9hbQ0BS7eK7WeVKT
+	nYpsyL5p79Fsqst4/W1bDJsMocQJkJ408QhOK433R69ZyN92cL4C54TszqAHjtC0531SOquACg+
+	mRw7UZzXyuWHXvx2BQ9D1rSlHNYkaO4wv02ykG1+aY7zBgrnyjGuORazO8vEsejakaQaHLEGBFh
+	PYJyI8DNe15He8M6mB/V9M6U7tOLJfg3dcWzeItmyn4q56ZnGqklk4WysXp66IpvEY6fqFjvjAh
+	49x07+uquOM9HJqVnUf9aL
+X-Received: by 2002:a4a:ee07:0:b0:694:914f:c18f with SMTP id 006d021491bc7-69c94294299mr9985227eaf.3.1779134870134;
+        Mon, 18 May 2026 13:07:50 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-69d0462e85esm6113360eaf.6.2026.05.18.13.07.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 May 2026 13:07:49 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: andy@kernel.org,
+	nuno.sa@analog.com,
+	dlechner@baylibre.com,
+	jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	andriy.shevchenko@intel.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V8 00/10] Add Invensense ICM42607
+Date: Mon, 18 May 2026 15:05:15 -0500
+Message-ID: <20260518200526.458421-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mchehab@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,foz.lan:mid,shashiko.dev:url];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-299600-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299598-lists,devicetree=lfdr.de,huawei];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+]
-X-Rspamd-Queue-Id: 8EB6A57306B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: A5C8F573394
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 18 May 2026 08:16:01 -0400
-"Theodore Tso" <tytso@mit.edu> wrote:
+From: Chris Morgan <macromorgan@hotmail.com>
 
-> On Mon, May 18, 2026 at 11:04:29AM +0300, Jani Nikula wrote:
-> > > Sashiko is supporting various LLMs, including open models - it=E2=80=
-=99s just a practical
-> > > choice: to my knowledge the quality of open models is not on par with=
- frontier closed
-> > > models and it would require a non-trivial amount of hardware and infr=
-astructure to run
-> > > an open model at the required scale. =20
-> >=20
-> > In the context of the "Reviewed-by: Sashiko" discussion, this actually
-> > makes it really hard to assess the quality of those reviews. =20
->=20
-> Agreed.  There's a reason why the coding-assistants.rst specifies the
-> model which is used:
->=20
->   Assisted-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]
->=20
-> The problem is that (as Jon has pointed out) coding-assistants.rst was
-> intended for use when the tool was beging used to help create the code
-> --- that is, "Coding Assistants".  What we're doing here is more of a
-> reviewer assistance.  Something like:
->=20
->   Scanned-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]
->=20
-> Would be more interesting, but it doesn't actually tell us anything
-> about what the results were of the scan.
+Add support for the ICM42607 IMU. This sensor shares the same
+functionality but a different register layout with the existing
+ICM42600.
 
-I don't like scanned-by, even for a tool that would always get the
-same results like checkpatch. For LLM, this is even worse, as two runs
-may give different results for the same code.
+This driver should work with the ICM42607 and ICM42607P over both I2C
+and SPI, however only the ICM42607P over I2C could be tested.
 
-IMO what makes much more sense is to add information there when
-a change was done due avoid a problem detected by sashiko, and what
-was the fixed issue, e.g. a textual description like:
+Changes Since V1:
+ - Instead of creating a new driver, merged with the existing inv_icm42600
+   driver. This necessitated adding some code to the existing driver to
+   permit using a different register layout for the same functionality.
+ - Split changes up a bit more to decrease the size of the individual
+   patches. Note that patch 0004 is still pretty hefty; if I need to split
+   further I may need to create some temporary stub functions.
+ - Used guard() and PM_RUNTIME_ACQUIRE_AUTOSUSPEND() on the new functions
+   per Jonathan's recommendations.
 
-	Changed locking schema after Sashiko's report report about
-	XXX race condition.
+Changes Since V2:
+ - Went back to using a new driver on advice from Invensense engineer.
+ - Further split changes up into smaller chunks of functionality. Note
+   still that the largest patch is approximately 900 lines, and that while
+   the driver compiles cleanly at each commit it is not able to drive the
+   hardware until the commit that adds the Interrupt (as it also adds the
+   Makefile).
+ - Change the error to a warning when the devicetree binding does not match
+   the hardware ID.
+ - Dropped the ack on the devicetree bindings, as I am creating a new file
+   (for a new driver) instead of modifying the existing one.
 
-Also, except if 100% of the=20
+Changes Since V3:
+ - Numerous small fixes (too many to list here). Thank you to everyone who
+   provided feedback.
+ - Split power management additions into an additional commit to break
+   things up further.
+ - Consolidated devicetree documentation in existing
+   invensense,icm42600.yaml file.
+ - Removed most of the FIELD_PREP from header file to c files to make code
+   easier to read.
+ - Changed scale values to 2D arrays for Gyro and Accelerometer.
+ - Removed IIO_CHAN_INFO_CALIBBIAS attribute.
 
-> One of the problems here is that there is a distinction between the
-> infrastructure and review prompts in the Sashiko github repository,
-> and the reviews that are being published by Sashiko the web service
-> being run by Google that is being lost by some folks.  So I wonder if
-> for now, we should just do something like:
->=20
-> Link: https://sashiko.dev/#/patchset/20260515091829.194810-1-me%40linux.b=
-eauty
+Changes Since V4:
+ - Additional numerous small fixes, thank you again for all the feedback.
+ - Dropped power control API and instead run device in low noise mode.
+ - Split devicetree bindings into two distinct changes.
+ - Reordered adding of enums and structs to main header file so that they
+   are only brought in when needed.
+ - Stopped using enum for driver data and instead am using pointer to
+   device specific driver data.
 
-Adding a link makes sense to me. It doesn't need to be to the
-sashiko's email though: it can be to the entire thread.
+Changes Since V5:
+ - Corrected use of "dev_warn_probe" to just "dev_warn".
+ - Fixed some return scenarios which would unconditionally return 0
+   when an error was present.
+ - Corrected use of max() to min() for bounds checking. max() was
+   incorrect.
+ - Fixed using "st->conf.accel.odr" in the gyroscope function. It
+   should have been "st->conf.gyro.odr" which it now is.
+ - Additional small fixes suggested by "sashiko.dev".
+ - Added a regmap cache. I used the datasheet to try and determine
+   which registers might change without explicit writes.
 
-> Or just have a link to lore where the review has responded to the
-> Sashiko review stating where the Sashiko review reported a
-> pre-existing condition (perhaps one that we don't care about because
-> races in readahead logic is really Not A Big Deal, etc.)  We go for
-> this strategy, it would actually be better for the Shashiko.dev review
-> to get cc'ed to the mailing list.
->=20
-> Personally, I think that's probably be best way to go.  We already
-> don't insert into the git commit an explanation of why some bullsh*t
-> review by some wannabe human reviewer should be ignored, or why a
-> discussion of some problem discovered by a human review in the source
-> of the review would be handled in a future patch set.  That's what the
-> discussion on lore.kernel.org is for.  And we shouldn't treat AI
-> reviews any different from how we deal with human reviews.  So if we
-> want to give credit to an AI review, then let's go with the
-> Scanned-by.=20
+Changes Since V6:
+ - Corrected additional errors identified by sashiko.dev, mostly
+   fixing potential deadlocks, missing calls for pm runtime, and
+   potential overflow issues.
 
-If the entire content of a Sashiko review is ignored, I don't think
-it is worth adding anything. Just like we do with humans, IMO the
-best is to just mention what changed due to some feedback received
-by a human or by a bot, mentioning who/what bot helped to identify
-the issue.
+Changes Since V7:
+ - Dropped Wake on Movement patches, since some of the functionality
+   was only available for a device on which I cannot test.
+ - Dropped support for SPI 3-Wire mode, since it complicated the
+   bus setup (and I lack the hardware to test such features anyway).
+ - Fixed a few additional bugs identified by sashiko.dev bot.
 
-> Or we can just let people look at the mailing list, and
-> if people want to have statistics, we can ask people to use a script
-> running against public inbox to figure things out.
->=20
-> 						- Ted
->=20
+Chris Morgan (10):
+  dt-bindings: iio: imu: icm42600: Add mount-matrix to icm42600
+  dt-bindings: iio: imu: icm42600: Add icm42607 binding
+  iio: imu: inv_icm42607: Add inv_icm42607 Core Driver
+  iio: imu: inv_icm42607: Add I2C and SPI For icm42607
+  iio: imu: inv_icm42607: Add PM support for icm42607
+  iio: imu: inv_icm42607: Add Buffer support for icm42607
+  iio: imu: inv_icm42607: Add Temp Support in icm42607
+  iio: imu: inv_icm42607: Add Accelerometer for icm42607
+  iio: imu: inv_icm42607: Add Gyroscope to icm42607
+  arm64: dts: rockchip: Add icm42607p IMU for RG-DS
 
+ .../bindings/iio/imu/invensense,icm42600.yaml |   4 +
+ .../dts/rockchip/rk3568-anbernic-rg-ds.dts    |  20 +-
+ drivers/iio/imu/Kconfig                       |   1 +
+ drivers/iio/imu/Makefile                      |   1 +
+ drivers/iio/imu/inv_icm42607/Kconfig          |  30 +
+ drivers/iio/imu/inv_icm42607/Makefile         |  14 +
+ drivers/iio/imu/inv_icm42607/inv_icm42607.h   | 428 +++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_accel.c | 587 +++++++++++++++++
+ .../imu/inv_icm42607/inv_icm42607_buffer.c    | 573 +++++++++++++++++
+ .../imu/inv_icm42607/inv_icm42607_buffer.h    |  95 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 597 ++++++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_gyro.c  | 552 ++++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_i2c.c   |  90 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_spi.c   | 102 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.c  |  80 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.h  |  33 +
+ 16 files changed, 3206 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/iio/imu/inv_icm42607/Kconfig
+ create mode 100644 drivers/iio/imu/inv_icm42607/Makefile
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_i2c.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
 
+-- 
+2.43.0
 
-Thanks,
-Mauro
 
