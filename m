@@ -1,180 +1,205 @@
-Return-Path: <devicetree+bounces-299431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299432-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2L/zKHMYC2o5/wQAu9opvQ
-	(envelope-from <devicetree+bounces-299431-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:47:31 +0200
+	id 9Q9dE0oZC2q9DQUAu9opvQ
+	(envelope-from <devicetree+bounces-299432-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:51:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B135256DF34
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:47:30 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50AC956E02C
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:51:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 923273004681
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:45:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8F758300BC68
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E75322C77;
-	Mon, 18 May 2026 13:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3C033032B;
+	Mon, 18 May 2026 13:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="heX+I03Q"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mLoe+VM3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TQ5NjmPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722701FBEA8;
-	Mon, 18 May 2026 13:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACC1311C11
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779111948; cv=none; b=oIIgYVCm+8NCYf8SeHiNNgkGe+lcRKCw1aJuefqV4cRxfGc701HL2ezuOszI6eDXphRYESnJGNAvJLoMeuJuk50MR05fu38DtWkrsjsxcnR2WpvKSw37pLlL3wYgtofGV22EGrALR193JdxxUbTacUl6f3jCaT0uyHCQwfRd7eY=
+	t=1779112204; cv=none; b=UFyBm4dzDi+vmfx9i8W4TgvqzZsSiVtQAMjmNvz8kRH9DgqO+DagsCPmq2XhObEfuRoQWoIcDVLR7KUCHYXaYD7VRWk+oCDYGsSZ2Yh8SP05PsKFSivNF51oxL6WeFnE3tdHp95dAj5tLCRg8M4EO2cb4rww6o/HcOrJFjYX4L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779111948; c=relaxed/simple;
-	bh=tDAoFGFvkYgyrEHwppvlh3HDSU8G12IrZS59be5EKkg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VFkOhEd08F2f/0vrQee9KaXCG5kFbegYY0SRkDSOwFQSUSvrvxEOUCIkqWxQHA8M6NXhNTg87IZH5gg8ke9ku/yXzrjcdg/kKx0ffbiYctOJ6WEruzQCUZTw0gE00lQvrzPssufJtkL4bbz6xYMkqNKhPMsexO1cyEC/umheLFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=heX+I03Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB59C2BCB7;
-	Mon, 18 May 2026 13:45:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779111948;
-	bh=tDAoFGFvkYgyrEHwppvlh3HDSU8G12IrZS59be5EKkg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=heX+I03QVitiX4hw+zKWoFscXe7oBjinLU0dWj9eY1K6sRjGPJ+NSu+rnvQX7hBE8
-	 cxcTT3gb0Pk+0bB26m8pSI1Uy6cBNpxREtEcEXZ70wIg2LtnmXLOoUyCeVBqn8qiJu
-	 05wpvokNiQMg6+AWzX5jj3hmbDfyyFK/i8I5AJ+S2VLXoxCMiiiym1/8MsIDSFIpfF
-	 5isotSAgu5EEi9gPc2Mka4g2BBQMm7bBvWYnFXOIc2LTORXypRLTUVoctQplHLqze9
-	 ZZootCwkbYou8Sj0ftL9nXVhyabwMsKnEKRQxdisCOLqc1o18i0BqSMnBM6MTMu3pn
-	 KQK7K+upptsng==
-Date: Mon, 18 May 2026 14:45:37 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>,
- rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
- Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah
- Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH RFC v4 09/10] Documentation: ABI: testing: add docs for
- ad9910 sysfs entries
-Message-ID: <20260518144537.7c998308@jic23-huawei>
-In-Reply-To: <yrabhhhdkzmiuxlqzrrj6a47ftlzwvva7r2korzeszdy4yqrin@xl6obhhnnas4>
-References: <20260508-ad9910-iio-driver-v4-0-d26bfd20ee3d@analog.com>
-	<20260508-ad9910-iio-driver-v4-9-d26bfd20ee3d@analog.com>
-	<20260517155843.7f833658@jic23-huawei>
-	<yrabhhhdkzmiuxlqzrrj6a47ftlzwvva7r2korzeszdy4yqrin@xl6obhhnnas4>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1779112204; c=relaxed/simple;
+	bh=AlGBGljytiN4hDB9oPg2R7DR+x7S1E5bboaK2Vh4TXg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FQ8UWwJAYcP2Hs9yqeUhcZKXYYEZu/ekD/LP9RNWTsUzycIpRmVX6RDJpxxzTyMEe03psc/y8NX30bncQgZQ16ZclIyYURm/zz1JWWG2L4imhaxAtyPVXu9EAh8itfE+46VEIbU6vxWnts+uYmaEjaYSq1rZMuCDidYyOFYGqAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mLoe+VM3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TQ5NjmPb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64IA8eY22091139
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:50:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=CC0Pys7yhh/moaCo/yEEim
+	J2CkQSGIL8p0FbL7FdrhI=; b=mLoe+VM3eBbzaYBOL9UBa9fAAycg3gl9C+gUF3
+	pmYIJd9yiNGV8ZCGxn3BugOQUZX/yjxDQIFqTrQFv8rPdPd/sxOq7kArRGOWZfg2
+	3gJFGXx15kidvlcvGeaSqwkFzT8RIraIdYEpcFZS2pgEYxb079w03/z0dFQTIbHo
+	wshfu9rHB+mHBfuBw6D7g73sHUhIVlcVQhS+GUmChkGt/TQPy5aB7HLG1AEwSath
+	16n9rt/dT2NxVvoQv5e/tluuLHIT4V6NadgVmDyhMpzr7a2SQPatiKiBQGTQxMHV
+	yvQZ1LXpF+YoTnRtfvQ3WGKewOIW58czwqxUZT8R28OhXV0g==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e80rpgur2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:50:02 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2bd00a65673so16814965ad.1
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 06:50:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779112201; x=1779717001; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CC0Pys7yhh/moaCo/yEEimJ2CkQSGIL8p0FbL7FdrhI=;
+        b=TQ5NjmPbPsG88J8Wl+xFT8WJDq4DAHUDtfyphkMGdgGU1pVwbTXjOYNBpPRUone/F7
+         Xa1Id3W0122nVdeGlDKI9x9poebvzSnLp9ELQEiuAMIFUNrFJyNf6SPaMyy2C1bqZgGn
+         vkbKIevPtlSEbmS6i4wNe4cc+/y4d2/KO9f7LgnCD0btH4OR8RbqHl0K6D/pwrXVSTEq
+         xbIkjCFv8atzHLHLFysxDYEMu9/QbnMCWYDDrzDT61cU7C1zeN4cN1EVm2Fg48MH+GaY
+         TxVhIDEJp6aUNSoAmSD4eHmgY2mqROcFf6enW/xotsmGetztoY1xBf7Cf1X0cUHRLHlX
+         Y+8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779112201; x=1779717001;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CC0Pys7yhh/moaCo/yEEimJ2CkQSGIL8p0FbL7FdrhI=;
+        b=l4X/dbN0ckWenU1iwyGINj1lThI2saxdmRiXioKPF0UljPVqlepJUbj7CNXLfQAnSr
+         oaigj9WhCTXl4bDkeggvbZeeEG/JZ+TJYi4H6O5oIIM7j11QtY+CwmicnPoR1lKWaVHV
+         qw4qUZixx6faPit2AWf2NdQpTFbiBXlDlftLCKhlOQsl4/owV8ouiWZ45g6tMYkTrpTp
+         JyFyLu4yMQ9AB7fACuABgSHJqrh6qg2Xnhke/05qJgCj/LKazbJk6wYCuyNs89kukZNx
+         JJJwNrjCqd+bMSWzLMZqwthRAxBClySh34N6xp9Jz/dFoS+vKYqccNyjvo18XxDAnKBU
+         t47g==
+X-Forwarded-Encrypted: i=1; AFNElJ/UwuCiaQodFvLqWQIF7EMhGx9qz2XPLFMiCxABIwS2z2De2IKkWvOxCOoBXZ5HNs/oooSxMtvYJXNM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjIRbVr7iDflxHMRleGDBlmG3Z5W6guOmIcrtmC004YcFOQqhG
+	GAejiBcsMYf9kKEIJxepGIMTzzcJ33biZGRGnHe3xX/+w9na6TxbqPhWNlMB0CfEBMtBG0gp+Dm
+	SI9AVjxbioYmQvt8Pm25UDBvFrA9D5J3xahIlscPZPLlwAEEC2nW9w8JbBFavuik=
+X-Gm-Gg: Acq92OEVwZGynd5k07ZM91UYyYTAjXMM2toaEuvTeWmztI0IWz9gvGR8uDeApEu2QOq
+	zhF1QtXffcG1Bme5fFZAov+Ad+3re+V7TJ5xa1RO7G4GkX5v4IVNG/xbJ0xSlVkxl/hVpY6Tkkc
+	teGG7fuwyrF276j4UuG3u6kc15DUPuV0jk/X+Do/U5WBCfBC9540A0SmXm60wwvUnJXm46ltspP
+	Nsiy+c+ClIrWlu9lAeoVBpXsjjazgLAr9zD11VUcgcoJ7CDtsVNAAG4OcLk1vcNDhx9iLkrRaqR
+	sPL0OMYirIGqU18F3+HS+U4vHL9s+ZDx4BWlLa4U4uV5ZJ64HISAFcbi3WgVUpO5jYhRKF3Y3wv
+	L8RN+pdTQmVe8v6pOQjG8wc8ah3cKxMXkrjcHnEEznBXqnQ8jRkxUMSoPvpRh2w==
+X-Received: by 2002:a17:903:1109:b0:2bd:d6f1:3388 with SMTP id d9443c01a7336-2bdd6f13874mr43024645ad.28.1779112201413;
+        Mon, 18 May 2026 06:50:01 -0700 (PDT)
+X-Received: by 2002:a17:903:1109:b0:2bd:d6f1:3388 with SMTP id d9443c01a7336-2bdd6f13874mr43024295ad.28.1779112200943;
+        Mon, 18 May 2026 06:50:00 -0700 (PDT)
+Received: from hu-kotarake-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bd5c05f36fsm185411275ad.21.2026.05.18.06.49.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 May 2026 06:50:00 -0700 (PDT)
+From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Subject: [PATCH 0/2] qcom_battmgr: Add batteryless DC-adapter MAINS support
+Date: Mon, 18 May 2026 19:19:38 +0530
+Message-Id: <20260518-add_dc_in_support-v1-0-31fbaa329879@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-B4-Tracking: v=1; b=H4sIAPIYC2oC/x3MQQqAIBBA0avIrBNKK6KrRIg4Y83GRCuC8O5Jy
+ 7f4/4VMiSnDLF5IdHPmI1R0jQC327CRZKwG1aqxHbpJWkSDznAw+YrxSKf02mvXo3UjTVC7mMj
+ z8z+XtZQPi7RmU2MAAAA=
+X-Change-ID: 20260518-add_dc_in_support-f3f3c4dac6e8
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779112197; l=971;
+ i=rakesh.kota@oss.qualcomm.com; s=20250919; h=from:subject:message-id;
+ bh=AlGBGljytiN4hDB9oPg2R7DR+x7S1E5bboaK2Vh4TXg=;
+ b=AajfUv3+tI9ERd3k30BSORtEcMBzSPSdqFnpZ7pmCx16dx/V3w/9k3XHVKgWLxSiNMY02HevE
+ bVGQ9kIT/fRC2yMO9VEQEJFwKPWUup4Bv9CVsr+OtqpuaRUAQILbwLL
+X-Developer-Key: i=rakesh.kota@oss.qualcomm.com; a=ed25519;
+ pk=dFhv9yPC8egZglsSLDMls08cOvZKZkG6QQn1a/ofwNU=
+X-Proofpoint-GUID: FY6Vzkg6TEsaleZGRacxflMPizbAFRiz
+X-Proofpoint-ORIG-GUID: FY6Vzkg6TEsaleZGRacxflMPizbAFRiz
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE4MDEzNCBTYWx0ZWRfX3ZBcPKl5aPX+
+ JX2KdfRf7Guy2ycEm0aat85B+SxsWC+54Va+fgGJ4dglaJz5kf0QTtLM4JEU8rmI0vVmMjIgb9m
+ AURSJP43Ao83uKWI/rejp8RuWSU6kwVe5ZNv+Uv0auZSO2AOTOqWvAF1q3C2QJH9O8NowkbT6fn
+ kag9QzEHStnfXvRICTvUqw6twi7PB4gUwd8Px4wlTY7E/zXcg8SPtHhy8RDvmAfDJRrhbv+IhOW
+ YjVSp5iI34CZnMj2PPzu9INfI74YR68P48khq1E8U5/YG+sxJ/x7nXy/S80fTeOqrm0EpMJQsBO
+ nMzSfFkk1SHQ02YpXjsZhdpZgcOZxldgeL/P6UwjpvFcgUgdEEIk3mxcGzFpDxu8UKB2uL7/BAa
+ fv9W6kdEoqEGaLu+GTKDHzTDHNK44yP/7/nJJqVMFSnSk65IIj/aXnPGnW20KY54MKgaWDtlXwb
+ vcPQOQLIdjfK2cezMLA==
+X-Authority-Analysis: v=2.4 cv=ecMNubEH c=1 sm=1 tr=0 ts=6a0b190a cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=EUspDBNiAAAA:8 a=sIspjCRwiSg0d1WxQfkA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-18_03,2026-05-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ phishscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605180134
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-299432-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-299431-lists,devicetree=lfdr.de];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: B135256DF34
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 50AC956E02C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 17 May 2026 18:30:27 +0100
-Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
+On batteryless boards powered by 12V DC adapters, registering the
+power supply as BATTERY causes userspace to incorrectly trigger
+battery power-saving sequences.
 
-> On 26/05/17 03:58PM, Jonathan Cameron wrote:
-> > On Fri, 08 May 2026 18:00:25 +0100
-> > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> >   
-> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > 
-> > > Add custom ABI documentation file for the DDS AD9910 with sysfs entries to
-> > > control Parallel Port, Digital Ramp Generator and OSK parameters.
-> > > 
-> > > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>  
-> > I'm fine with phase and frequency as defined, but for the scaling it made me wonder.
-> > For outvoltage0 channels the assumption the value is the peak voltage so if
-> > we know what input to be modulated by the ramp generator can we express them
-> > in volts (well milivolts) rather than as a scaling multiplier?  
-> 
-> The DAC output is current-based and differential. Voltage conversion would happen
-> outside the device...
+This series introduces a new "qcom,batteryless" boolean DT property.
+When present, the driver registers the power supply as
+POWER_SUPPLY_TYPE_MAINS instead, accurately reflecting the hardware.
 
-Why aren't we representing this as out_altcurrentX-Y_xxxx?
+Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+---
+Rakesh Kota (2):
+      dt-bindings: soc: qcom: pmic-glink: Document batteryless property
+      power: supply: qcom_battmgr: Add support batteryless boards as MAINS
 
+ .../bindings/soc/qcom/qcom,pmic-glink.yaml         |  8 ++++
+ drivers/power/supply/qcom_battmgr.c                | 47 +++++++++++++++++++++-
+ 2 files changed, 54 insertions(+), 1 deletion(-)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260518-add_dc_in_support-f3f3c4dac6e8
 
-> using a resistor load or an op-amp transimpedance stage,
-> and I am no expert on that, but that often requires impedance matching so voltage
-> levels may depend on the frequency. Then, I suppose that voltage is not the right
-> unit to use.
-
-Understood that it can get complex!
-> 
-> The scale here controls the amplitude of the varying signal. Assuming the peak voltage
-> (amplitude) is constant means we have a constant envelope, but that should not mean
-> we can't control it or it should not mean that the hardware can have other ways to
-> control it. That said, scale behaves as a "gain multiplier".
-Understood. Given it's the envelope then if scale happened to be 1 always it would
-be presented as _processed. So this is consistent with other channel types.
-
-> 
-> > 
-> > That seems to me like it fits better with the overall ABI.
-> >   
-> > > +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_scale_offset
-> > > +KernelVersion:
-> > > +Contact:	linux-iio@vger.kernel.org
-> > > +Description:
-> > > +		For a channel that allows amplitude control through buffers, this
-> > > +		represents the value for a base amplitude scale. The actual output
-> > > +		amplitude scale is a result with the sum of this value.
-> > > +  
-> >   
-> > > +
-> > > +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_scale_roc  
-> > 
-> > Silly question perhaps but can work out how this related to millivolts/sec
-> > That might make a more intuitive interface than scaling multiplier per sec
-> > Perhaps the combination with offset makes this impossible though maybe that
-> > could be a expressed as a voltage offset?  Afterall if the amplitude being
-> > scaled is 5V then 5 * (offset + scale) = 5 * offset + 5 * scale
-> >    
-> > > +KernelVersion:
-> > > +Contact:	linux-iio@vger.kernel.org
-> > > +Description:
-> > > +		Amplitude scale rate of change in 1/s for channels that ramp
-> > > +		amplitude. This value may be influenced by the channel's
-> > > +		sampling_frequency setting.  
-> > 
-> >   
-> 
+Best regards,
+-- 
+Rakesh Kota <rakesh.kota@oss.qualcomm.com>
 
 
