@@ -1,168 +1,178 @@
-Return-Path: <devicetree+bounces-299576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDVbAztJC2o7FQUAu9opvQ
-	(envelope-from <devicetree+bounces-299576-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:15:39 +0200
+	id gND+HmlLC2o7FQUAu9opvQ
+	(envelope-from <devicetree+bounces-299578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:24:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A1F571827
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:15:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7428571987
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F0B4300D84F
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:10:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6DABD30056CE
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E40376490;
-	Mon, 18 May 2026 17:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900953815D4;
+	Mon, 18 May 2026 17:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="USV5QUc2"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ftaiTXkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C9B34F474;
-	Mon, 18 May 2026 17:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12DBA34E764
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 17:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779124256; cv=none; b=gkW32ZhawKfLJo9UXuxcm3ncRHQPhdLoM11PxSiCKBqi1TmZLY6ldOrQJoT3XGS9ru/zgtW/jJg9uVk+KZCKmmPp59IONq8ATS/O+G6Q3k+AbaaWlJKaWWGZ8z0f2XjT93gvBh7bkE24qJ6NVMMLdPctKjITPA9wIRpcqzRnyko=
+	t=1779124873; cv=none; b=d1CfAC8GY2SURi38+EowLxJDbOzj4mrZzkh0RJ+RYpGnHvv1im1C1rHQKOSQOlSb4rj+eIOuF2NMuxzRR7v7dtXZLLquhf/aUw4pNuzEjByUHa7H/PcEp4ek+d1cdN09/C9GRGwMo6sXuO4NZdepbOQ7Svm6VPUBnBtb9vLKMgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779124256; c=relaxed/simple;
-	bh=nF/HU1fjnqUQnaZoipkFcCFRl4r0iGbfmYpcV7+Cd60=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=T94WxymuurW0cZ4CK+i2i1tOT7xDzyJBLIHhYEnX5+uc96aGNJuYnHB3wiCWJMXwwtZezH87LoXT7/3s0oZ9PZeRPOfSxgKXIV0JiDZ21isRJ/NNlIPTOLBstelTMSjvS2rE7GJ0PE/lEoY3QvlU4x0iske1JbGfmK1ZN8r6nu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=USV5QUc2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B9DC2BCB7;
-	Mon, 18 May 2026 17:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779124256;
-	bh=nF/HU1fjnqUQnaZoipkFcCFRl4r0iGbfmYpcV7+Cd60=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=USV5QUc2OEB1Q1Tsbmo+9M8sJSDHjK4k+q77wwWZAaYzchNXndPFW1zD8nxkTwd/G
-	 hdJDtj5ao06XusriqbWwb466HyPTIUqlgCz2xQFk5zlyaDW3qNVpYd7yGJ0LqzckBO
-	 ZXyOvkHeapJQ1n8MomD5jjooqCJK5PLY0DUsIznGZNo5ikFDK2FnUS7ZCkXmnASKv5
-	 ebBC83WcfbWvZiCGasQ4qJa/twypYx0Nu1K5y6WhACwt2KFHiAbj84VddkpfpCh3WN
-	 OZDSZ5KdmCYEuFhFlWr+Sin4aLq8QALrj9tbq50+tJyfbKSFwtmaOb8kHbBvLyx5lJ
-	 qDE8Jt4j/IMcw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 9/9] ARM: dts: sun8i-a83t: Add BananaPi M3 OV8865
- camera overlay
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Paul Kocialkowski" <paulk@sys-base.io>
-Cc: linux-sunxi@lists.linux.dev, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260518153339.619947-10-paulk@sys-base.io>
-References: <20260518153339.619947-10-paulk@sys-base.io>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 18 May 2026 17:10:55 +0000
-Message-Id: <20260518171055.C8B9DC2BCB7@smtp.kernel.org>
+	s=arc-20240116; t=1779124873; c=relaxed/simple;
+	bh=sOJxMZchOv0WgrC6+6PbayYyvo16Eg4LJgmrDhVE/y0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=t3cVcHVP38FSgEy2X6c+C1AMpB1XHYlTGc1VSS47IkWzOHWj0OUpOMQwC64uDBPbqVEUmKL4SnwPg+NZ7fy25CQxUa3kb/xcoC5ul+OPcNS/VFJGZQM32a2SsrCGaQjV50ifToRtls4Ng2YTIRrd9oV/xLD2++mBEYfUZDQTfaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ftaiTXkn; arc=none smtp.client-ip=209.85.222.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-90d13fa59e8so273628785a.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 10:21:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1779124870; x=1779729670; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0QbJKB2lw5vG8p4X0Zp1dtcwqkjeJLsy09spRbfmWxU=;
+        b=ftaiTXknJQU+tPhf0Ef736xQ2IC+E5HA6zTcjLkHRXdJ4AUh+yYunRYSmE122A9jKX
+         FAoB107kSN/sju/DbzZh3DvGCyW4VIskIsYyfhX83BE/G5u4ojANrkHz9H+dg489oJs+
+         yfLRoAajB826OJmHgOA4t+hR71BsmCVBFppOk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779124870; x=1779729670;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0QbJKB2lw5vG8p4X0Zp1dtcwqkjeJLsy09spRbfmWxU=;
+        b=gHp9QbuNiglWbBdxgy9mrvw+Y72PWySniy73fgH8ns2Gswqt1LW+7BF0/rQonm3mS4
+         w9mtfjjR5JdBOT1dXl6fMJgQAUdPG3Uhd1e2Xs5SQf9wI+Pp2MUg6CqAi2GFzPPnhggX
+         PS4O47wo2B0vTg7zWlCFCONPa8NNTcv4w7nMEYcijcKDszRR9HWf5De/njbtf3ReQuaH
+         Wf4y9bxGbRzXDazG0hp4Eq8FBTuWoku+tJTLRZKQFMmpNFb/SKrM51N2JwCtZ83MSq8j
+         3u9tQ7/gTBlIiuwR1Dc8uEEHM1S35uFOeda8AGYOoXAxJ+CIUsaPLfmtqWGUVDRKOnQP
+         fxmQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+FoY3Uj4y7A/NFU+ksaljTmfzpPP3xsoOn8ArapucDR5n2LbtOcXnWMThVQWDl+O0UlsyUMZUVv/cv@vger.kernel.org
+X-Gm-Message-State: AOJu0YySATI7nI6DV9zIHTqOUra2i7oP/cmM1WpueXEbsvozqDv+Ieok
+	+hgCYMTo5tK9+Ju2t4iBWXBqyTrMxii3t/UloGZUJsnIXTqDhKDzk5PLJnLed9Qq0UbLpJVpb+P
+	jeto=
+X-Gm-Gg: Acq92OEmzomU4ZqRlJLqPJ5BJEgo4ELMYHq1JXca3+piOGg/qrOZNF8YXMXKiCqM9yn
+	8Xazm8TnA0aVmJMh+Fau6RTXBzr/h54qV0b/0hFHuLDTnff090bQm34/41b2SlNWZHRH03iS28+
+	MLMU368fpYbjHlpM+YGZ6LO40M9JT0m6ROOV5RS3DL2HRZ9HWnaUjlLO+fFqWWX+ff0AxaoD3aa
+	sBPhSp1O864r2lSxmkPcA2KVntOryJv83xxBbYnPOdnV9xnNRydTnxNS4QaLRStTPRkYohsHZIT
+	xt+LHDTzgfTjZYbiBzA4nPl6G2zS8uHNzcdGcTkE79cSCnpSv6ESlhRqKyVzK88QyPzj3+tcUs/
+	MJQ3GjoO+xngyOZVxpl580L0SbS/Yv+5A3AtE1gB2G3exo6hKcdbX9r22vCJIty89TezEC2gUZZ
+	7Jk9AteT5K01/OxHtqGiwLZDI50QWvTQnKdRvfAQJC7Rten2A42gefLJIlF5M1tGNJlvekmIxC5
+	Y5eA/TtAxM4C6E=
+X-Received: by 2002:a05:620a:a196:10b0:912:1206:ddce with SMTP id af79cd13be357-9121206e079mr1618945885a.6.1779124870466;
+        Mon, 18 May 2026 10:21:10 -0700 (PDT)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com. [209.85.222.169])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-910bc83b18dsm1547625985a.31.2026.05.18.10.21.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 May 2026 10:21:10 -0700 (PDT)
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-90cbb2b50ccso204431585a.0
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 10:21:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+NjgTuIZuA6HlRXbo9JSRNsPcwhRM4U+P9+xHRRVQ8FN8DoW65QyXl7pdfTbbdLubwmyvG/gTJYgzD@vger.kernel.org
+X-Received: by 2002:a0c:ea46:0:b0:8be:1620:a95a with SMTP id
+ 6a1803df08f44-8ca0f67c3d3mr193127066d6.27.1779124505831; Mon, 18 May 2026
+ 10:15:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+References: <cover.1778822464.git.harrison.vanderbyl@gmail.com> <9e749a3a483e4a3c684eac3ee6a4b241c94a0362.1778822464.git.harrison.vanderbyl@gmail.com>
+In-Reply-To: <9e749a3a483e4a3c684eac3ee6a4b241c94a0362.1778822464.git.harrison.vanderbyl@gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 18 May 2026 10:14:54 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W-T3gnhsPY1TPaShBcj6MtXhPntAm=ecZ8pK9aKg=LFg@mail.gmail.com>
+X-Gm-Features: AVHnY4IADEBlAYng-Vk8ynfnLq-alsFZFnj4hN5gU5NdDYItYKJ7p8Mb41QcTng
+Message-ID: <CAD=FV=W-T3gnhsPY1TPaShBcj6MtXhPntAm=ecZ8pK9aKg=LFg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] drm/panel-edp: Add panel for Surface Pro 12in
+To: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Herbert Xu <herbert@gondor.apana.org.au>, davem@davemloft.net, 
+	neil.armstrong@linaro.org, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+	jikos@kernel.org, bentiss@kernel.org, luzmaximilian@gmail.com, 
+	hansg@kernel.org, ilpo.jarvinen@linux.intel.com, 
+	Jessica Zhang <jesszhan0024@gmail.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-input@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299576-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-299578-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gondor.apana.org.au,davemloft.net,linaro.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 61A1F571827
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,chromium.org:dkim,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: D7428571987
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Fixed regulator node names do not match the required schema pattern.
---
+Hi,
 
-commit 7dbfc9e619262f99c508e48d6adf246ddf875f69
-Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+On Thu, May 14, 2026 at 10:43=E2=80=AFPM Harrison Vanderbyl
+<harrison.vanderbyl@gmail.com> wrote:
+>
+> Add an entry for the BOE NE120DRM-N28 panel,
+> used in the Microsoft Surface Pro 12-inch.
+>
+> The values chosen were tested to be working fine
+> for wake from sleep and hibernation.
+>
+> Panel edid:
+>
+> 00 ff ff ff ff ff ff 00 09 e5 c9 0c a0 06 00 07
+> 0a 22 01 04 a5 19 11 78 07 9f 15 a6 55 4c 9b 25
+> 0e 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+> 01 01 01 01 01 01 62 53 94 a0 80 b8 2e 50 18 10
+> 3a 00 fe a9 00 00 00 1a 13 7d 94 a0 80 b8 2e 50
+> 18 10 3a 00 fe a9 00 00 00 1a 00 00 00 fd 00 18
+> 5a 5b 88 20 01 0a 20 20 20 20 20 20 00 00 00 fc
+> 00 4e 45 31 32 30 44 52 4d 2d 4e 32 38 0a 00 0a
+>
+> Signed-off-by: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
+> ---
+>  drivers/gpu/drm/panel/panel-edp.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-ARM: dts: sun8i-a83t: Add BananaPi M3 OV8865 camera overlay
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-This commit adds a device tree overlay supporting the OV8865 sensor on the
-BananaPi Camera v3 peripheral board. It configures the fixed regulators,
-clocks, and MIPI CSI-2 endpoints needed for the camera module.
+Pushed to drm-misc-next:
 
-> diff --git a/arch/arm/boot/dts/allwinner/sun8i-a83t-bananapi-m3-camera-ov=
-8865.dtso b/arch/arm/boot/dts/allwinner/sun8i-a83t-bananapi-m3-camera-ov886=
-5.dtso
-> new file mode 100644
-> index 0000000000000..4340ca73bfaaf
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/allwinner/sun8i-a83t-bananapi-m3-camera-ov8865.dt=
-so
-
-[ ... ]
-
-> +&{/} {
-> +	/*
-> +	 * These regulators actually have DLDO4 tied to their EN pin, which is
-> +	 * described as input supply here for lack of a better representation.
-> +	 * Their actual supply is PS, which is always-on.
-> +	 */
-> +
-> +	ov8865_avdd: ov8865-avdd {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "ov8865-avdd";
-> +		regulator-min-microvolt =3D <2800000>;
-> +		regulator-max-microvolt =3D <2800000>;
-> +		vin-supply =3D <&reg_dldo4>;
-> +	};
-> +
-> +	ov8865_dovdd: ov8865-dovdd {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "ov8865-dovdd";
-> +		regulator-min-microvolt =3D <2800000>;
-> +		regulator-max-microvolt =3D <2800000>;
-> +		vin-supply =3D <&reg_dldo4>;
-> +	};
-> +
-> +	ov8865_dvdd: ov8865-dvdd {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "ov8865-dvdd";
-> +		regulator-min-microvolt =3D <1200000>;
-> +		regulator-max-microvolt =3D <1200000>;
-> +		vin-supply =3D <&reg_dldo4>;
-> +	};
-
-This isn't a bug, but do these fixed regulator node names trigger device
-tree schema validation warnings?
-
-According to the fixed regulator binding schema, node names should match
-the pattern ^regulator(-[0-9]+v[0-9]+|-[0-9a-z-]+)?$.=20
-
-Using arbitrary names like ov8865-avdd falls back to an "Any name allowed"
-clause in the schema that is marked as deprecated.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518153339.6199=
-47-1-paulk@sys-base.io?part=3D9
+[5/7] drm/panel-edp: Add panel for Surface Pro 12in
+      commit: 02f48ffdf96c83ca3e6600fe5dec872b34b68775
 
