@@ -1,163 +1,156 @@
-Return-Path: <devicetree+bounces-299328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8A7BCFn4CmpZ+QQAu9opvQ
-	(envelope-from <devicetree+bounces-299328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:30:33 +0200
+	id wJZjIsf6Cmpd+wQAu9opvQ
+	(envelope-from <devicetree+bounces-299330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:40:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA80356B90A
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:30:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32CBB56BBC1
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F1546300F5FB
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:30:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F0006311D918
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:31:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14FE43F54C3;
-	Mon, 18 May 2026 11:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E073F0AA5;
+	Mon, 18 May 2026 11:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bSLaogIl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oCySTja4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6903CAE72
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 11:29:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C0C3F23D3
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 11:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779103799; cv=none; b=SiTIryRNJ6+pdorTa0/k0ike8PvFrVaqJH/ll3MO5M5YpozD/VdeKl6/85EStqanFMNWh7TgMd4RFHsNyXqiQAVV2oSXsTv4IREShGCN8qRFtW2OkAwM5AUUOAXiUqcUKlYYkuKfCK6aznebD1mtPCdgL7aL/huRK6Bfv2vNChk=
+	t=1779103813; cv=none; b=BT/ZTAoaIPwsiEq1DlnqmPL7yLOCIHHtXvwbp0q0BVvpSlIILnDTJnp46dwE+cDJIx6T8RPgUzNo0F/5L9zkkMmVlUMPcNlEQuytP/2WTdgFw6abQ6oSxpDfSJ33hOChSVwZrA6FaQTf5Upu9+9t9QZSU1EhjNRVSy0ZELhEJic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779103799; c=relaxed/simple;
-	bh=Hcf2oqn9+1oTrvHZKQuLXActXOhO6WFTaxZkBm9KmB0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jtcLtIbcYlsw6PD0DAK0ShS9iBRzhc37KxSFp7dFAzN7Tr1M5M8qyu2Y3quXZoPBjRbch/tVuxuh6hpxz1lNo+24uvziWXXn0ePXA3QQWBtmGEvE7adSoq496QqlPyCIldeLhK/B7zBr85odAfgSJ1C1KV4MBxMvR3Nh+tMbZ3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bSLaogIl; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-488e1a8ac40so21940825e9.2
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:29:55 -0700 (PDT)
+	s=arc-20240116; t=1779103813; c=relaxed/simple;
+	bh=UHZ0whw83+z9VXkW6TAErZNmADE39pTiQfjcBIXSbTk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=ltOOoUSgvSxAHDlgGXD82/xRXeK7e2sAFKtgtQ+gUAP21InsJPI/biEuIk9Are7Sk0lPC+mhav4piZLUS4K1q3XDtdTt4+Nxy7Z8V1OxdIvUOmD7g8uJBK7YtqV91lYN/NywGrcyMhXnSl6ixK6rM59iAIUGDzBf/oDeYYNTQr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oCySTja4; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4891c0620bcso12510365e9.1
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:30:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779103794; x=1779708594; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Hcf2oqn9+1oTrvHZKQuLXActXOhO6WFTaxZkBm9KmB0=;
-        b=bSLaogIl4oDAgpaCxp6MbqYJ5MvesguldfDmf93PaMI/jqam1JcgUKGHdqDKeKsqSV
-         NaDMx3qxtS61FD/KMdKbjAvemc8mihqE+fIvXvPhDp/anPMtYcYrVgb00QUJK1x8r701
-         k2m1+e8jB/L/1BRoYlLDPeuqsehwNx1FG4nCNH0cjQ2uPLyzM5Pn6tQ4K4hVWHcplqIT
-         W77eSCFsbY8LjxusxZ9y6IBhKf3EXGoxwU9baA0VQ1uODRnIwfCRmAJ1M0e3hAzzFOUA
-         h56LsLshnROsFYUcvLxPtSdZzR8t/tKd60Ym9Tz8/vu//kQLWnKHlMcSnHn6rmzBExC5
-         RTlA==
+        d=linaro.org; s=google; t=1779103807; x=1779708607; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UHZ0whw83+z9VXkW6TAErZNmADE39pTiQfjcBIXSbTk=;
+        b=oCySTja4zyv/ptvGJvGnYt5M7a7pLXwB478QS9Iqz+4FeHGxDdotlEBY6LilD/IVlf
+         UXI8lzBhq7Upw0s2LEMtjXuouB8JFAb0VWi9kDWoe8xeRYMS+ohy12eyQASe6P2y8roA
+         5nSkTFGfPatN1oF5tAPgNKRs9pTiJCOZOZ3Sh1vgebe7tQLy+3MD1dgvvAgqUiYLmINg
+         CoI1BviPSFv5R0dFUCErT3scs8VTNv3kqq7jM4DhCGq57QDDZSH0AlyCBKzFpo4zlZJl
+         9dGJT703sVMoKjUmoXpWe9qHOdzOb94X6Ax31QVY4Dk0ygtKDo2NGmBuM7UBvos6l16i
+         BzyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779103794; x=1779708594;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hcf2oqn9+1oTrvHZKQuLXActXOhO6WFTaxZkBm9KmB0=;
-        b=ZsxSanSnsUXwfCDpkd1TamM1kG+gmRsD7smL71rglZ12iy3jd62PKsuMLHOaWO0/hk
-         Aovf9GDvY446xzMikKqraRqJUM2sD7VQefbigBezGJjXBLp+SKwosaVozpNI7/v3HVLN
-         crB/YTtZKjk6+EoQ3/fRt7eloE41m9U9+v39n9QgHgOh/sdaewKmtpr7LUtwTfBU8yVG
-         d2fOlf/ZGdv/cKZN2JFCA0Vcz2KSJUlfyRbF2uzMyC3V+So1n4MrvRd9x+KQ4bzWpT7C
-         8jprdEXjYlLS0bMspix1W5lYSMfjfSlm7SGkukops1WXzEvLh68RzwIr0QTDJ5eiEa+s
-         HH/w==
-X-Forwarded-Encrypted: i=1; AFNElJ8ucM8mKU4l3y0EfV/Pgf6b9WKBGaSWXVBbodTYHqgOIOwMaNu3VG0M484kyUGU9XtQDIH32m9WDg5e@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK/sEzo/vKHbTvXgPaASLaxnjoBRtoBvaXPVkASKG4Ha62xz+T
-	aKLC7nccpnDueLshCiXo45K8djv0thCAv/smVechccf3cp4zPsuhGhvc
-X-Gm-Gg: Acq92OFaX/WlslO9CHLvfA1cwIjNAVHNF5/BUYdlQrmeS7xRhKWtWaknLaHHYeHDcJd
-	Y1N0uTZidhhbREoPSMupsXgYLsJVNIvh6AFUCXFHjDN3jfUCPllfpgM2yowLA3sy0RH76phiQx2
-	rq/0xXZgGIUkJDtyvW/4P272q2dc6FCZDSaG4YCqyocbZ4Pdg7ZjLTIo7InCdE8JTCNmEpAbZL/
-	L3sD6e+kxTJaC55CR2RFQbBYjFRaXkU2PfLb/grjCiGQWvW1q7tCUNnJjxxE44EUnEp6AZGeNU9
-	28T+10Lbdx0AFEewimMh9qNB4pQvjo5SmmRWlD6NRViQEe5ro3G89+Jk+05MBjd2QdbRQnMgz7d
-	XJF0FAtur+7A4OcuJbOiz2I/dwO3O5EeOBdJqzAlX+dvT3a/8yVZ8NvOcYN9waME0cXjJjt1DkS
-	ccGTtZDB+JOv2rsbHV7tSJTXr6QNMig+GvtsCssdgEspkHVYocfmyJfjHNnYQniHAmJiihoA0Mv
-	fk=
-X-Received: by 2002:a05:600c:8184:b0:48f:d1b8:9aa5 with SMTP id 5b1f17b1804b1-48fe60ecd7dmr220286485e9.8.1779103793402;
-        Mon, 18 May 2026 04:29:53 -0700 (PDT)
-Received: from giga-mm-11.home (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48feb00e5easm80885505e9.13.2026.05.18.04.29.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 04:29:52 -0700 (PDT)
-Message-ID: <6d8659f393e0bb4f0805107a17e306422982247c.camel@gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: A133: add support for
- Baijie Helper A133 board
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>,  Samuel Holland <samuel@sholland.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Mon, 18 May 2026 13:29:51 +0200
-In-Reply-To: <256b1cd8-b143-4f71-91cc-8513be04ce4c@arm.com>
-References: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
-	 <20260510201644.4143710-4-alexander.sverdlin@gmail.com>
-	 <2306dd3c-6362-40ee-8d9f-77f89be3a502@arm.com>
-	 <14a7e289ff5ffed8fcd6dcb9b2e8455a1b2c9420.camel@gmail.com>
-	 <256b1cd8-b143-4f71-91cc-8513be04ce4c@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.1 
+        d=1e100.net; s=20251104; t=1779103807; x=1779708607;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UHZ0whw83+z9VXkW6TAErZNmADE39pTiQfjcBIXSbTk=;
+        b=BRsIVyrqgwLSnxwFTOQYZoamTSHJ3l9v+2odoCkN78UgzJenqZqeXMzCqG0pVR8YmB
+         KL78AotwxEgNNq5EjoLnjR07Q0n2OeeCtAZpXFMinpXqS5hyZqwu+7EreiEuGdUcN7q6
+         XaeXZB/5PxypDn9LyluVGmwxc9OJEDlFGaP5dtFdth8MZEDiR4fCJgJBpKyCzPWEp2HA
+         kJCW6VTIVpgdBZgiMHx8/jWs1AiGInn07oRyEmINQDJsolyIrI3VKNwXcUjlfKG/+oEP
+         jVDY0UR1obGjkG82q2yUC7UqTyj3f+OPcZujXiCcVgXDPnmDraFqo6fBQ1AGwxhAiITh
+         25Ew==
+X-Forwarded-Encrypted: i=1; AFNElJ+ZEVTnlcHdMhW3T3XNfdaDZeBwNmVpSwy7SwzNqPgXAPEhdf+MRvmbNF/J7JYrvcSKFrmMVBNkAWL8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy30bL9NJspiZCsiHLHqqGV5raXwIE/hpn/DT7iv2aPuPQvcBbW
+	n8GHdZXDKIVOA7wU9Ox++IN73Lrl30i1svm3o9Kd7cwZn4SYlJkj8cvwBeMEU73AmqA=
+X-Gm-Gg: Acq92OFYW9FIKTz+E+2DOL/aTtn/m+ksCJ63RIax/by6/+8UHJgHhI116nOXcejUjJG
+	kICdwUAJ6J+XznorkUHTwveJOCW8LVY6v5kB2K3KBRyL2MzF/Tj6biEmkTHhPsVHRrFewAWj6bU
+	IIDQtGjJ3XxXf0y05DpxA+tSOonr3OD/6p+Cwf3K0HD2mYMYlvB568e7CHWqfKLlWpxhV1Ys35j
+	uosLl/Cv8kbQtMSO7EgxlC2Azkcl4/nd/7x4vGkHTLApGpqMZjkj7VPeoyeBzfRXUROBbzRw5Li
+	JkAZ9Ld3PNHDpsWf3BkA1kC8Aq94LpvniKR+IZpHZFXtRT2536mgqLEm5OL2YQ0hEU4dH5UlIYT
+	lWsnR7AwH0r8eyYozA7hn/Yxc368cDd4xtVMKLTkYE6u0OoZjT9ynfb+Gmp8meAaVKeGo/0MB/4
+	csnynPxP1qTYa57oKVMpdpbl9wiKVhOE7QWVqFXhg/Cbxei0cUhBmWBTdVSLM75YJ2V8cbJF6h+
+	/N1FHig9cuF6Zd0ug==
+X-Received: by 2002:a05:600c:8209:b0:48a:58ae:993b with SMTP id 5b1f17b1804b1-48fe61f2a2fmr233190475e9.16.1779103807097;
+        Mon, 18 May 2026 04:30:07 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:33b7:a835:bc95:259f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe4c885d5sm228471045e9.5.2026.05.18.04.30.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 May 2026 04:30:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-Rspamd-Queue-Id: EA80356B90A
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 18 May 2026 12:30:05 +0100
+Message-Id: <DILRNXCXCO25.B3SAYAFHBU69@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: google,gs101-acpm-ipc:
+ document Exynos850 compatible
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Tudor Ambarus" <tudor.ambarus@linaro.org>, "Sam Protsenko"
+ <semen.protsenko@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>, "Alim Akhtar"
+ <alim.akhtar@samsung.com>
+Cc: "Peter Griffin" <peter.griffin@linaro.org>,
+ <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20260513-exynos850-acpm-firmware-support-v1-0-3858d097e433@linaro.org> <20260513-exynos850-acpm-firmware-support-v1-1-3858d097e433@linaro.org> <e91496f2-3b7a-4982-992a-91e8326367be@linaro.org>
+In-Reply-To: <e91496f2-3b7a-4982-992a-91e8326367be@linaro.org>
+X-Rspamd-Queue-Id: 32CBB56BBC1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299330-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299328-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url]
 X-Rspamd-Action: no action
 
-Hi Andre,
+On Thu May 14, 2026 at 3:46 PM BST, Tudor Ambarus wrote:
+> Hi, Alexey,
+>
+> Please check sashiko's review from:
+> https://sashiko.dev/#/patchset/20260513-exynos850-acpm-firmware-support-v=
+1-0-3858d097e433%40linaro.org
+>
+> does the gs101 pmic constraints apply to e850?
 
-On Mon, 2026-05-18 at 13:16 +0200, Andre Przywara wrote:
-> > > And anyway, I see a *dual* USB-A socket on the pictures online, in
-> > > addition to the USB-OTG port. So where does the third USB come from? =
-The
-> > > A133 only supports one host USB port plus the one OTG port. So is the=
-re
-> > > an USB hub chip on the board?
-> >=20
-> > There are two hubs, one on each usbphy. OTG side hub is even bus-powere=
-d,
->=20
-> What do you mean with OTG side hub, exactly? Is there a hub on USB0? How=
-=20
-> does this work, then?
+Thanks for the heads-up! Yes, sashiko-bot@kernel.org sends reports and
+I received it. The "To:" field there includes lesser email addresses and
+only device tree mail list.
 
-the upstream port of this hub is wired to the USB-C connector, one port has
-CH340E USB-UART on it for the console, the other port goes to the SoC usbph=
-y 0.
-So it would be "peripheral" only, I suppose.
+I need to check pmic thingy for e850 but probably yes. Obviously, it
+needs updating.
 
---=20
-Alexander Sverdlin.
+Thanks,
+Alexey
+
 
