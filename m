@@ -1,180 +1,158 @@
-Return-Path: <devicetree+bounces-299099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299102-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNIxMtSICmrt2wQAu9opvQ
-	(envelope-from <devicetree+bounces-299099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 05:34:44 +0200
+	id eA/XMi2JCmr62wQAu9opvQ
+	(envelope-from <devicetree+bounces-299102-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 05:36:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E5056573D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 05:34:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 560915657BD
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 05:36:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A69C3011101
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 03:34:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F25FC3031EBD
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 03:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECAB37FF68;
-	Mon, 18 May 2026 03:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6836380FC0;
+	Mon, 18 May 2026 03:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="KgAKrE+O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cP4GUQ6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92CD4349B16;
-	Mon, 18 May 2026 03:34:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DAF218C332
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 03:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779075281; cv=none; b=j1Bh+h/SG8gBCIQ1mINYT/7yPCla8oxibiAq1xlJW6Ekk2qc9nh33xBeR4qHEuNIW7/OyI5g9xFYdmIfrKpsbN0odXWwiR0yc2sNMrSAYQZX4LpIFyYrJ8AgLoWF7lsJadxPsUICE6MGaGxMo5b/HGHLmwfwgZk/NOEx9TPaSGU=
+	t=1779075290; cv=none; b=jfQonLW5abAwO9qaMAcIC4KfN6J5wFYBPfwKrDt3ZolAWVz+2hKNIGJX4EJihBa5sIuBISDFqXIxu3072fgoxzh7gU34jtqFnjBAnzegeSPU4pqOjhG/eM5AjpacdaCeJjX/m9/dCmS1HRg83TR/H3Sncb/2BfQX54Tspti0/BE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779075281; c=relaxed/simple;
-	bh=UcgnyaWra/zqeOQob/WjOC8W7jbkn7uDsfsNgx6yk+o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WhrCSVkycFHqeeaTgX7wZIBrMaW9SiCgwD6B0kKOVPZ6pmCtzO7wc4o4WWZtbHIyUEAJtpx2YvcNwg+MQKE+QDqZXIHXlFc9BbDhyOQur/94kIoeZh4hwoHsvUsj974k0GMGOgaOb98sbo7mZNV8Cab+SxBii41Gb/+hWWQhyE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=KgAKrE+O; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1779075188;
-	bh=q9cTs1Fc6HOosuoCIVUk0fjsfQdYZlWk0msB6oMaeBI=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=KgAKrE+OhCymuix1/hRI1S8yc8ga6RiqWlfK3jAHB+YC+dWRf7AtRaHoT1g1MWUUX
-	 EnO4rx67YfvpuT5WNUIPGZxQPcjSFY/fgMkyoS0lfd/DfjVIOBqGMDsW8w4oAPuQcf
-	 5MWtcg6NtJ2Iq9bUY1Mmhs92G+txtxhh9VI0Y3s8=
-X-QQ-mid: esmtpgz11t1779075186t3848c393
-X-QQ-Originating-IP: uPvjKO1t2KTQ8lO9f/xBXIPU/kPKelDT33PkQW+MWR8=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 18 May 2026 11:33:02 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16121621445768738612
-EX-QQ-RecipientCnt: 20
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Mon, 18 May 2026 11:32:44 +0800
-Subject: [PATCH v6 4/4] riscv: dts: spacemit: Add PDMA controller node for
- K3 SoC
+	s=arc-20240116; t=1779075290; c=relaxed/simple;
+	bh=91fuNRLob879Bleyg0TOGl9eY+h+Xga0/8cpxy2fFXo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gonDaBHORVTM4vj8XH8SPmLRSDrbZuJDb6R6vgaDuYYW4bFclou6PwijKoC/z9AsWAklXtLuHgMPDWchjpUjLU+Yy2oLZSzWAvDn1uPcMVBPyD7x1IAjpiWaYS/TnrZe2XJhBlydPa6S19MWLE73fLT19Y/5R050BZzC8BEsMxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cP4GUQ6H; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-c801d732058so604622a12.1
+        for <devicetree@vger.kernel.org>; Sun, 17 May 2026 20:34:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779075289; x=1779680089; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O4z4QeYZgLmQ+74XBWrLJRwdCJBglkAJbbIu6ajXqKY=;
+        b=cP4GUQ6H9pM+WEbmJAP9JEFkwJbVEgFIXwCMvSSUfAGVIRkVT+2HY/vWZOsCs+dlOJ
+         X7Y6rGiDqG07LKyX3meViHy22wDEFOdIp4m/bepBJwQl2jegZKhr8Fao2Q/EdfnfI4xM
+         mNvdBYh40w6vIYNejR/JkcO5WKIU9nLbhPJrrSOlkK5zLyUPE5Rt6QK+tT5RVzScTTKz
+         TB2EJrDa5W5gSXGaPbbDK0Qh61yBrtsntJJiAkLfvHDCqIk35q5e6isO5PTrMoIohpiz
+         YG6ltM/QKjtYEYLSdXiPBwaLFelJNI6HggpGW7y264K6/dm92f2kmbhgICpQQyTfGmRi
+         XtNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779075289; x=1779680089;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O4z4QeYZgLmQ+74XBWrLJRwdCJBglkAJbbIu6ajXqKY=;
+        b=BxrQaEAIThNn7RjKPVJPHrYXJdumVj+Bj9023ebnuoWS8sBBHg0oRx/+icPaG4Iqnx
+         /R8wbiMuBB7X9gg64OV3SkRQ0mYxDiJXdBR1crnelZH1fUDOZsIEH4KVQxVTO/bxj0EH
+         /ko9DlFSWH4zCy5lO5y4WVnZ91MCkg1mKf+nZPeXlbFTzE3FHEfnPaJBJN8+MVFahqjf
+         73dHOqJMtTWfzwHRHCji0Ti3OOGuMIzavsOaasCs4oghMD+EQaY4y70+OpIP5F1mbzEu
+         ZYkQ8c7zuJJLUXVQ88hHAhi1PCIBZ3C3UWaghFQpN+yNYUSlv/aAL4yiOdWGog33gGOD
+         VA7w==
+X-Forwarded-Encrypted: i=1; AFNElJ+nX+S5/D/BG5Wp1pulXNTPA0KqIxJlgv1yTUKnT41U0qtNDFAsZQ7ylQ1jp8FR1BLoFUQcBZD7AGGC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMLwtXxsjE0d4mHLwSvJe7SLbEsnA8MiD6aZFcu9Q+tU8j19Cr
+	9kYzupVweqdodyR/7w+Xm4eSqC1A34bdwRz/1hBkZXwQDr3EzHk7V3On
+X-Gm-Gg: Acq92OFoBcF26S/m4tbFXfc9Wu3ESLwxb/8mE4YXuyEhDyR01vkS64gNf8QSzUyWWha
+	2Lphu7Z7AsZDyR4RK6JCG3hDT/BXQmPZx4+/ALdG7/tf5ja11wC9pZZK80O8MpdwPXVeEWrrf9N
+	30PlmLMwpISleAAii4i+T/LQjLGGMKWNko5SK2pajQiejS5JJBx46QOqinci802NywzuZ5BHOJF
+	cCdP3CIOvMI4Tfe5OKMBh5XX+iyr18LXFRWbdKlNDSgbslM3R0dGiMMo1+5gNUP54XeuGIhgIAI
+	kpZHQy0rJlxalJdaGzMbvxKfdlR5zCAFxU1mx89CSsMimg1gE1tzo1/NBbCmxhl8ZOP/DBuCpKI
+	Z5mQVzlEF0PbMAeBkiX75fnFh4aQS81moWgG0lAR1aHxm+hi1i6ByTFfPVjwHnxy98wZlZ/y85c
+	tOYYcxZsZHwCMfD1Dr59KOBtN4ZHYlk2djvVx0tuiG
+X-Received: by 2002:a05:6a21:3987:b0:3b2:8674:9830 with SMTP id adf61e73a8af0-3b2867498e9mr3029580637.14.1779075288739;
+        Sun, 17 May 2026 20:34:48 -0700 (PDT)
+Received: from debian.prasanth ([103.177.82.201])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c82c4031662sm11183717a12.16.2026.05.17.20.34.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 May 2026 20:34:48 -0700 (PDT)
+From: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+To: joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: andrew+netdev@lunn.ch,
+	devicetree@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+Subject: [PATCH v3 0/2] Add ASRock Rack B650D4U BMC
+Date: Mon, 18 May 2026 09:04:38 +0530
+Message-ID: <20260518033440.17569-1-prasanth.padarthi10@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260518-k3-pdma-v6-4-67fdf319a8f8@linux.spacemit.com>
-References: <20260518-k3-pdma-v6-0-67fdf319a8f8@linux.spacemit.com>
-In-Reply-To: <20260518-k3-pdma-v6-0-67fdf319a8f8@linux.spacemit.com>
-To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
- Guodong Xu <guodong@riscstar.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779075161; l=1492;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=UcgnyaWra/zqeOQob/WjOC8W7jbkn7uDsfsNgx6yk+o=;
- b=gXXQW9P/zgQmIjJbTvYrldNydgUQ0POX1snKO+9oVuYzksb/se1r6RLbcyExplsG0Fr3Rofn1
- cD1g2gSAK/iDRuFZEXW1s8lE3NZkpBrVZIA3u20NvOouy8aU1cHk1Tb
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: N61MakLYUF4qyv5S5dKmpzAi9Um4L+jP7FpVxJLaQU4MvtKI+OBYB4V8
-	GlJll9vq2INCVBD9dfHZ1yW1ongAX9AUWiYGpkkDh6cjPhx7OHf5GI+65hIipNpG1dx9IQx
-	VfjD08dqB+0k2TqHwjOUvuts8h7IHXlxrEdOnciJLm2N9k3IjXZJE/HPn43NXWwFQpFNf12
-	eSvD2tvrf4+iaqUSXkBW8mZJRIHmt4MmMfPmlVfTrCrDNicOHKQsozIUSPNqhj0DpiKHP+j
-	yhLx26JM4j1DtYSyA5bleRJfbFs5Vo1wazO/sbeIF4TNch5zCpIFYPpIXVgLMYT9oHQTGwC
-	pWI3yjQHWvzAF2CGSRRn8bOVxQygOZsXkw4uEtusUwl+CZ3SSh4ZzADgXfX8cbYOrnRPDNM
-	fGrIqkt0CDyOQb9BW8J/9iHFf9WqNvzRyzXRiEbZA8sg9fXH1lG9+HLrpGAcoRzd/UDMC78
-	c5LaRkEcJpSY6/Duc0ACfFY2GUj5xMsJ9JPWAwFQVz/ZkhEsZ6x8y5ief+9OBVH8OzInBOu
-	lZ4sk5sfhm8wOSxFDuRWSYHjWnGWi+Lzoa8PSap8U7Ob2e5RBZSRSqIE6SjeAsyuGrUaoEb
-	y26+Kf4tna2yxp5jAj4kRSfOtUD8YqEjGmldQBMh9W01S0QCm+cB4FSMyNBY/8GR9kHObcn
-	wBRQKf9fgXTgBL2RzMSkVDnlISR+++F3zVDOKHXRLWTdUA1TXl/8pme5ykbqbyGkWVBj7fR
-	XJJU+BAeLNUFtLxyJwVomyp5NyprDwiECcxaSUR5++3TwDoh/2K0RqdKOukQBTRjphURQH7
-	dOGYEtSpuyRZ+HFJ0z6xatWPwKqDgkaJlcvx/aMxsPbU0heKcVaPLnRg33hy6n8y/ttzHm4
-	cTquZ8baumLdNMncwf6feKzTLFLKSlJJsMxNCSzyaqrx7BcasJnMPnVDQoaqSOzTNn06Ktz
-	8HzZN0VpixbVpud+6rSCiz5xlt8Bc7sMJodPgYYwYYPbxFs+QYW85vbBvPHvS/5W0cL1ENa
-	xn8+f8/s9sCc9F1OkIqMSD+EJ6gPdm/AyMJjD3AddxjO7YgWP8OXkEFK22zvG3eItXLybc7
-	R5py1SdkPQiMtMBVpk0zo8iWe/BteVcdQTEygXOR+swFxQPUr29JIHiW4cphg/jpQ==
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
-X-QQ-RECHKSPAM: 0
-X-Rspamd-Queue-Id: 75E5056573D
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 560915657BD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[spacemit.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299099-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299102-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,gmail.com];
 	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[prasanthpadarthi10@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,d4015000:email,linux.spacemit.com:mid,linux.spacemit.com:dkim]
+	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-Add the Peripheral DMA (PDMA) controller node for the SpacemiT K3 SoC.
-The PDMA controller provides general-purpose DMA capabilities for various
-peripheral devices across the system to offload CPU data transfers.
+Add initial devicetree support for the ASRock Rack B650D4U BMC,
+an ASPEED AST2600-based server management controller.
 
-Unlike the previous K1 SoC, where some DMA masters had memory addressing
-limitations (e.g. restricted to the 0-4GB space) requiring a dedicated dma-bus
-with dma-ranges to restrict memory allocations, the K3 DMA masters have
-full memory addressing capabilities. Therefore, the PDMA node is now
-instantiated directly under the main soc bus.
+Changes in v3:
+- Reorder board DTS nodes alphabetically by label.
+- Clarify that the management LAN PHY is an on-board discrete PHY.
+- Keep MAC0 phy-mode as "rgmii-rxid" based on the extracted vendor DTB.
+- Keep flash layout unspecified until it can be validated on hardware.
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- arch/riscv/boot/dts/spacemit/k3.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Changes in v2:
+- Add MAC0 dedicated management LAN description with MDIO PHY at address 0.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index a3a8ceddabec..cd321975fc18 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -438,6 +438,17 @@ soc: soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		pdma: dma-controller@d4000000 {
-+			compatible = "spacemit,k3-pdma";
-+			reg = <0x0 0xd4000000 0x0 0x4000>;
-+			clocks = <&syscon_apmu CLK_APMU_DMA>;
-+			resets = <&syscon_apmu RESET_APMU_DMA>;
-+			interrupts = <72 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-channels = <16>;
-+			#dma-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k3-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
+Prasanth Kumar Padarthi (2):
+  dt-bindings: arm: aspeed: Add ASRock Rack B650D4U
+  ARM: dts: aspeed: Add ASRock Rack B650D4U BMC
+
+ .../bindings/arm/aspeed/aspeed.yaml           |  1 +
+ arch/arm/boot/dts/aspeed/Makefile             |  1 +
+ .../dts/aspeed/aspeed-bmc-asrock-b650d4u.dts  | 71 +++++++++++++++++++
+ 3 files changed, 73 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-b650d4u.dts
 
 -- 
-2.54.0
+2.47.3
 
 
