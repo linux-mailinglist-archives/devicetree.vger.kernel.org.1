@@ -1,425 +1,225 @@
-Return-Path: <devicetree+bounces-299446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299440-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMj0M1IeC2q8DgUAu9opvQ
-	(envelope-from <devicetree+bounces-299446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:12:34 +0200
+	id sOATBtUcC2qZDgUAu9opvQ
+	(envelope-from <devicetree+bounces-299440-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:06:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E4E56E735
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AADE156E4AD
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:06:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6E7AB301746C
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:07:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 22540303420E
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42CB148AE18;
-	Mon, 18 May 2026 14:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C80233C18E;
+	Mon, 18 May 2026 13:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="eL3jJvdk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gBt/rLnO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZS45/0Mj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011024.outbound.protection.outlook.com [52.101.57.24])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8960036920D;
-	Mon, 18 May 2026 14:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779113232; cv=fail; b=ZeNG5eWBbeCQ1CBY4KYQMcnAg4k+mIUeeJZYXcr3rv/RvaKLcwQO+bkgDnm2oafRSdS91mfbMX0Rw1JsYStN3fdrEr+EaAHnwYHf5YrRdB3sItVE+0ZlyOme1YqmqTNkkMF0t9evqjJLS/dyH7m8EXH+TtcgQfnNmqcW/WwimdU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779113232; c=relaxed/simple;
-	bh=xu4hWulz234d67IyIypiXxwwjugvVy64WDvQtd+daXU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=lp5k2BuXLhLntMmuXz5QUp5HoXEPWRE25+JkziVXI/NJrZEOsEwQce1XN2mZGeMDQyEBEfR4dnXrYB826gpjTXkPGKGqSKhALY+bEYKmBJK3t2HiazDchxh9tdqvvbFCeC5/2bTpoOOHM2fzebUZQEBftBgTNtieZbX+2qkIu9U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=eL3jJvdk; arc=fail smtp.client-ip=52.101.57.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M8cH7FZLDEq0p8UEdSLo/TTjhShgEscaeMt+NsndkMGq0WoAZN9ygqhjARAQRdS3Z9zTk08Ns+MlVcYARDBWriPofz1dJfuZXGTdl9tueJIMFtLewsU5wdu2zFWV4LcTONRoa/3uOYl3lzxWyLJkJeP+ZTTC2CE2/UOz/L/XbN4vDW4JA7fNwqW6cQD1Zf3lM8Ib0C3LYXnZR+aw932i+nuS/z4efu51M7Jon1y8rC4/Xl0+OsV/yZIUwqX982f9n0iOuEWoqtKiCpkF3neHMMQR6go2+iVrzBABWqj43K1RvaiuckNyBfDF0FlSP5hYcbp7i0bCKzxyeMFypL/jwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BPUVSxXGDfK1oydVRK7t5rlzqrkdDqo4IZUCC81GrjY=;
- b=s5PJDzk4HfXhTL7OUHzfyjhPRkjj6qZxm9MKMUuwEW46TsSi2Ziv6lA+QqxG/o5AGXvG6wd6T97q8sAIIHaY0gJPf+nR5sexrPjGMaJ30WnOI1XlXnMND2gbvKzBjFpNLjSWxEdfYk5cOFX/+t1dYvjCmzBSnXgTRyS97+WwkHQigXlfEtH75h5HwXcv6hZOuHPqcv8z8vWR6EaqXeH0JZbbYfsTO0NgtSuPQLcJdfQWC0S8Uc4BwYcdvFqfa4MpRpwRth2eT48sRP2xtk5hay9e6Q9h8rsB1VqgW59uHRWwIEwZM5QS3sFMbbZEnM9ingcD9BU6Jn1a6SJPvQeXng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BPUVSxXGDfK1oydVRK7t5rlzqrkdDqo4IZUCC81GrjY=;
- b=eL3jJvdkIw/HN+ABNp6vW79LtRUKL4o8FoLyoeTsXbql9MAsRJVgQBXJGrnO75asHHWVXgeVnFouu4HDlT9od+aRvKD/tAKtkuYx7vwkZIPhOpGX8Hgi9ktnvr8cclN6eMYRnIz3Yo6+rerEceXMHo5lLS/47ou0nWiW7o4110I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from IA1PR12MB7736.namprd12.prod.outlook.com (2603:10b6:208:420::15)
- by DS0PR12MB6655.namprd12.prod.outlook.com (2603:10b6:8:d0::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Mon, 18 May
- 2026 14:06:40 +0000
-Received: from IA1PR12MB7736.namprd12.prod.outlook.com
- ([fe80::2274:9fed:8f3:8550]) by IA1PR12MB7736.namprd12.prod.outlook.com
- ([fe80::2274:9fed:8f3:8550%6]) with mapi id 15.21.0025.020; Mon, 18 May 2026
- 14:06:40 +0000
-Message-ID: <59884fdc-a9d0-49c6-8167-11d56a21dd11@amd.com>
-Date: Mon, 18 May 2026 14:56:21 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] iio: adc: versal-sysmon: add threshold event
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2F236493E
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779112683; cv=none; b=vC5BBnRgFcG3cJN88h3I5+Ir+cvirxv/ft3TYNubsM5YgHfT008s9TqYXK/wnvRh6qFUqlrEL4ysxgNONy+TPz5E/uEYE2BGALQL8Xf1Q5BSgS2aJI1FT48C1pNc8QCL7u8+AEMkxLPVZsYo3kDsRAyH6knUbLiK0l/OKgwpOMg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779112683; c=relaxed/simple;
+	bh=yfQr6oLUayQBBCZxtM7GuIaWrTQbBf8KpYeQggUmKhQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tVOv83N1hucUoShDZrR3Gwi3Za/oReZdsQLyRvwn20f3E6KOZ9C+AbiXlm8PYwRx4Go4EGFk9Ea0cwk/D06tvOHAbERNd8X10ipNAX6OP9V3+vlHqw2rsUTkEIEnCEQMzXhDhQRhU7SlPLBuQWEdAqHKEfXAKwtPvJXwQKrdhdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gBt/rLnO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZS45/0Mj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64IAGg6n2685076
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:58:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=tLXYm7cmK5lZVfqyqbHK14WV
+	psNYg+y7RQD2MbOLis0=; b=gBt/rLnOEPVJ29Bonn9jZD/MFBmF8jPA2RGRpnIY
+	0eT2sa55wpiniX0ZWKOR0ltWCK66MMfGy2drT7ImMyjL1tu1+zYqOU9i/lOeUyCt
+	qqyLtZYt6pxhxbP2W2ypKVHrweJyKNgEFiwBOIn6QVks32L0wyjCtiT33eNm1vTY
+	zHSX6O1Rm0gLZCWk2k0NT7dRWxYM6cpnf8Np3pL3Z2v+tFn/U6rOA203B6Avpwb5
+	pG5+wuaraUuvLn4tAegWM596kCJ8DCTv2V0qS1Mbbgc0xLfX5M6lDZEiLm3DRP7a
+	iKvK3X3CZhE0fJG7dBs1aT0HmB+yWvvMMVtbLf2CNlxi0g==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e7vrbt2s3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:58:01 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-515224a8aa0so29915441cf.0
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 06:58:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779112680; x=1779717480; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tLXYm7cmK5lZVfqyqbHK14WVpsNYg+y7RQD2MbOLis0=;
+        b=ZS45/0MjlUjwDnaQQXA8uvuyJ8ABjVwK3MrjYSrXuJEOn7K6RGaF9PKSNrR3a8Kpbj
+         giMKXVzbucINC8kt69iQ4uv/o37wq4+3CogoQwDHm076e6yy+wOK+0lNOONyfMZObiyg
+         VzpalCzlv8JUua0kSydr87h3hUYQbADFWEtvt0gn8J+Gh0uLf3Da3GLj0K8N9qaRT89u
+         FzfyroJyIVbSaHt7nHjcnHF9GCmji2LFFK14gb+vLma3EgTOemPTN4WsK+qqVnX0Tr7I
+         HqdbYBfmnhttqoTzNxwa6Ta7qCxxL+hoEmvuHfglOgcvly2BcGSwMAZy5kW2wm+JXx/t
+         JYOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779112680; x=1779717480;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tLXYm7cmK5lZVfqyqbHK14WVpsNYg+y7RQD2MbOLis0=;
+        b=Pm4MvjfQYAfA3grx29UThCKIc+7AAHzHAY3b1h8CF94r2uEYCxMWV9WgOyaqEEbudr
+         4xn37eghtkxUVnNCm7QNBpVYoBC3SLCaTB+OGQzLi653SOkmRvUKZOiozOxJJ8TpGwB0
+         4ZmhbvMJmT3eYqJE7xIjraDYaYyPB1X5aMRd2f4NUP4dTl3PpVw6Uob4FvPqGp4DTZ7h
+         tw0Bg76rytYZEeWbsfN0vPravcu7dFoRwpvxuI2OaVk/LoSdSws+MlBWyVHfeq02F1Gy
+         qi5BGcNWQkU+VMFAUUaqceb6m8Px0PdV6DSVJikq3FeeTjfYGpi1t2HzlrSAQfceGWtV
+         DHaA==
+X-Forwarded-Encrypted: i=1; AFNElJ+ldIpXPhIA64TrTqhFLqZyhNc4ECFjbWEDac6FAJwRMG2CeeE6iraWNgUsLwKAt+Q9X9I2uu3c4rnS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUa4dkVcO/SYuI+q8E0DGO+VwnsTqoMiWCL0j2rrP9+TeSc2tk
+	22G+Hztvu2Z834pEBLZsrbn9K45i2qePxQO4/uiZxaMJcQsnOwQv+2KWZr2bS0b1uyl2iEQ08fj
+	JTzhDhIhnnlCxdMKaZ2r2HlYUEX3tzcqjWAP4bQOJn9HoERRtWTYhpbxXJHkbOs0q
+X-Gm-Gg: Acq92OEgagCOnOvxaGwNWk9dC0MCi6xBGDfJ88R6J+YSB768/03nfUp3mMN2XGB10Ee
+	VySrfZ3NTdmOY7rPAyYJPK4CQq72VDBZJEPQ6Ga6FJ1chiHC1E5/TH9f+Jbnpic1LxN2ysuuK6f
+	atWW8BobzmFOlBJnXTweLwz2M+HVWXcJRrdGgAR7W4V8q4rTciAgbR0LwfDYM8wXF271y7APiZY
+	B5ZWrHi3oBrtZyBBwdE7+wVqTZbYQO8bnQWe8MmhaLGyq4GIveiKXGmwSJNab/zv8UZNaMfdP6r
+	mIHdFFQPUPuV8PvlBc6Z1s2WQVFCVoPPZoGp74UipJmulON7juyuDNwyaH39aACPkFzMzKZx76q
+	DzduBt8B+gimj+fbPQklSOb361qOwkxqJXBL8bTz8sOgcujernE1D2wn55AnU67vaY9oDrCm+6f
+	u9vlcy+dCABAHG+g7B/PMOEF8Gdd2+TZMWHt/x9LZvbXxcFQ==
+X-Received: by 2002:ac8:5c95:0:b0:50e:d330:f62d with SMTP id d75a77b69052e-5165a22aee1mr219637901cf.56.1779112679979;
+        Mon, 18 May 2026 06:57:59 -0700 (PDT)
+X-Received: by 2002:ac8:5c95:0:b0:50e:d330:f62d with SMTP id d75a77b69052e-5165a22aee1mr219637331cf.56.1779112679498;
+        Mon, 18 May 2026 06:57:59 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a90f118991sm3341803e87.18.2026.05.18.06.57.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 May 2026 06:57:58 -0700 (PDT)
+Date: Mon, 18 May 2026 16:57:56 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, usb4-upstream@oss.qualcomm.com,
+        Raghavendra Thoorpu <rthoorpu@qti.qualcomm.com>,
+        Mika Westerberg <westeri@kernel.org>, Sven Peter <sven@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/5] phy: qualcomm: qmp-combo: Add preliminary USB4
  support
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, git@amd.com,
- nuno.sa@analog.com, andy@kernel.org, dlechner@baylibre.com,
- michal.simek@amd.com, conall.ogriofa@amd.com, erimsalih@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260502111951.538488-1-salih.erim@amd.com>
- <20260502111951.538488-5-salih.erim@amd.com>
- <20260504184415.7b6688f5@jic23-huawei>
-Content-Language: en-US
-From: "Erim, Salih" <salih.erim@amd.com>
-In-Reply-To: <20260504184415.7b6688f5@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P265CA0288.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:38f::16) To IA1PR12MB7736.namprd12.prod.outlook.com
- (2603:10b6:208:420::15)
+Message-ID: <4nqlpu7qfptekyn77sd7sdn446stgn3v3lw2356bvizrnvjgnr@czqgivemigt5>
+References: <20260518-topic-usb4phy-v1-0-71d827c49dca@oss.qualcomm.com>
+ <20260518-topic-usb4phy-v1-3-71d827c49dca@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR12MB7736:EE_|DS0PR12MB6655:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0427298-4f69-43d6-3970-08deb4e6ae7e
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|4143699003|11063799003|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	H0GOxCpbURVOS5l2HsfK5DVl9gkOHNipGgee/k2qSWf+vGeM52te89yWLT8wZKtzThXHaLi3o7nbt+dKEyRjyhz/p+YwyG9i3V5kbv3gVd5/EbSPuOks9jrqubY4YIb0zMdowmOUMqCqdRZqbvGiu2tfPWOXgp21PZHhR9tbDO7Oo93ziCGMhCc2kGUhTRXamyrlfxUw6eNpyXLrk2Y+f4zU4yiWkmj7edPIoXcPGRIp7FhXl80W7IvU58vSTK1B29cQuw3tYXxeX8Lj0W5SXiFFW92U1LTkRJNGa19jHIyfm+dsqKAJwBlkYbxQf4zqiNTgd0d12oW/w60A0h8AOKYlAp5KRZI4x5SzD5IkiXDIIhuKxYW1ElhYcxk//QEb8xMJwNuohscfCe5BUJZThAbBOM0O7Kg6XauaPiFOVd/UnvGBlKrsyHdpASClMqoZHaO6Obeog5M38Lm8Z1QD+QWV23xBq6jkQg75AQMxodv3Pd9kyL9LWfbEZNh+lT7R+W6UQq1wNAFaNWxLfULiw1VxdHipx9ERXjnwGawiYVoZ+rcrAcnFGjBfnaTDH6bWclEF5o73ILE+7Kh8a83P4eq1i8dU6obaSTpTVz6hj5zSRMzEKMAFJ7kasoK5N9Zt0L8ht+HONLf894DdB/w77hyhfg4D2YOZI0/gFsDg9Ypz8I/7OUM6ql2mvrHruGml
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB7736.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(4143699003)(11063799003)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VTNKVzliK3RDbDBWVW1wdnFlQkIycGxWWVBpZ0k2WGRvS1ROL09RSUV2d2pE?=
- =?utf-8?B?NEd6ZU51RU14ZklOL2ZrOFhpREdQMnptTitQTzdnTW5iYUE2a0E5dWpjbUNk?=
- =?utf-8?B?OXVaSHo3UXptQ1JTMHJ3Q2laNzZLZW5XOG1qaUpic3ZZYjdYWldtbTBKWVRT?=
- =?utf-8?B?bEJ6Q2JDamFvTHJnZHlnVTlpa0Rkd0ZmRU5yZXVGN0IzYmNyN0Ewb2lDbEFE?=
- =?utf-8?B?WG9WOXVoVDRnL1RibCt2MDZjeVlmTWQ1aUg1d0pJbWhIZFZrV0l5TExmWXhE?=
- =?utf-8?B?WEJoSVR0TGxoeXh6NW9HOTllZlJnZTh4WWVaRFVhRy9IWS8xaHVXWGhhQTlH?=
- =?utf-8?B?cTEvcjVMRXFrakZ4NytFNzRSejUyVDhTQkZ2QkZGdFZOT2tZdXpBclVyTTlC?=
- =?utf-8?B?SFM4T1h1ZEh4Qkx4c1hTVU9hK1cxNnV1RlJpOCsvMUUrRzB6V3A1RFVmQWVv?=
- =?utf-8?B?aFRkbzFTRjVLdXE2NHRsREVHZjNBTDNpck10QWVhZldPSGpCcVByTUkxbUxk?=
- =?utf-8?B?K2x1SjY3clBQOFdBd3VSTTBoYXRxUVM1VGR6bEdFUlYxRGlNb2YzcWdSbVd2?=
- =?utf-8?B?dUxHeVNnVkdEclNzekFHMTdYUi9VSlVGRWlZZlU0RmdLOXFNQnROV3JFeDdV?=
- =?utf-8?B?UytGQkU4a3pGQ2lqcXBhL0w0N3hkUEJRbU9JcHdIaG5mbDZlYjk1Y0JFWG9n?=
- =?utf-8?B?OXRPTXpHTDhQMGtxR2JheERqZi9Ua1R3Z3kzYW55aENsNEZlTHJqMENsL3k4?=
- =?utf-8?B?b3J4dnNSYkdHeXVCdnQ1T3k5cGt0czFTb3ozV2g4N3o3bE9EcjByOU1lbDFo?=
- =?utf-8?B?Z0FOYmFRVFNJV1FZY1R0UHllSTRQNGFXYTdVTFZ5SGVKZG1zdXlBMlk1YXdY?=
- =?utf-8?B?cy9uRUM2WmRHakZ0aFZ3QXU0VzRvWG0ySStxSEtjT29TbGtocXYyU01EL1Ri?=
- =?utf-8?B?aGh2NTF0SW5tWDc3WDNJVVVnKzFCemcxUXVsN0hFb2RXTUpGOEtuZjdkVzdF?=
- =?utf-8?B?bGljZkJvQWk4SVh1Yi80NUU0emwxMGtNU2k1WWNDUXkyZklUODNvblZKYWY5?=
- =?utf-8?B?MDd5b1h3cS9ubndkUUZobHpMSUxoYllLMEt3MUFHTlMrMHRXV1hXZFZjeW5Z?=
- =?utf-8?B?WUdaWHZaYW9LL2tIVGZwYUpjL0RyZnJ3dTR3SHN2U0g3R3FZdGl1QWhuU3Az?=
- =?utf-8?B?OUpDMU9ST1JMZzlZVUtmU1BpYUlwV3dnQ0psbFpGcG1QWlJhNEFJRzhTbWVQ?=
- =?utf-8?B?cFowL1BrY0NtbThObDZ4K2tsOUk0b0I2ZHZKRE1FeU9GMmI4NlU5TDA1MStS?=
- =?utf-8?B?NjNYU25uMmpaZ3EyVFBZTVpGL2lLcnhieW8yMlJaVEdBdkpFR04wK3YzN3Vt?=
- =?utf-8?B?c0diaXU2d0cyTUR1NGowWWJGeElCWDM5SGZrc0FTRFp0bzhBdXZVYjQveEhm?=
- =?utf-8?B?dXFEaWxpOWc2YlFpV3lpOE5memN2ZkdGU1lZZEpFWmR0bkRwRVBrUk5jdEFr?=
- =?utf-8?B?SXEvOEtmQ0x6ZE9wWWprSHhJV1o2RnRHdDFKcWpZZ0VWWkpKZkxvOW5tSmtQ?=
- =?utf-8?B?UlVIanc2dzNmQVFzSDl5VytIMUZnZUJla1JMVVlmTkpNa0RuSUJ5TFZwMHc1?=
- =?utf-8?B?cXN1OUpZV1FIcWQxVnhIdWFscXlDL3crSkd4dk9LY1lwMW1QQ1FKaldiRHhr?=
- =?utf-8?B?aU5xVzdoYUxqSzY2c2wwZk9hd3RBRDNKZTYrWWduQW5wMERQdlA4SGtkNTdQ?=
- =?utf-8?B?UjJrbVZjU0RmV3dCWFNqQkwyWFB4K0FFcnNnZ2ZtVms2eUk3TnBvaEpZUmxF?=
- =?utf-8?B?ai8wRk1lZ0Q2UE5yeTJQSUQzMU5QWFNkWDU1OXU2dTJhT3hMZi9LbnVHdmFV?=
- =?utf-8?B?NlkrSjVrRXlEMWp2aG5lWVJCbFdCRTZOekJGdkZTTzUvQW1TZDN4MjA4c0hL?=
- =?utf-8?B?MDlrZTgvMmtTV0g4a1htaVY2YWQ3ZVFyZm9mQzNvSzhFQW91ZHU0WUQ4ZmI5?=
- =?utf-8?B?eGtRVk1hTkhhM2pSVno5eDhKc3UvU1M3cWpQZzNLU2loMmxjMkNoTGNzbmlN?=
- =?utf-8?B?V2x1ZE0rWUNsYlUzOUtDL0hiakhiQzFtYjhlaFdUQ1pvQ2VFSW82YVlrNjJG?=
- =?utf-8?B?ZVBVaFJ3eFBuZjNvN056cUM0ampHdytobHJrb1lkcG5SMkR4OHNRR2drWkdG?=
- =?utf-8?B?VzBGQkV3eDJLa1dHY0V3TDNXakY0MStOQzc0QjdDYXU3WDJYZzRmZTFveWpO?=
- =?utf-8?B?cnBqM0tQV2RFKzFHVE5uS3Nyd2pvaHJDMVR1THB3MzVqdXRZNHpUdjhwZUxN?=
- =?utf-8?Q?NRFK8E8CK2lMrNf22n?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0427298-4f69-43d6-3970-08deb4e6ae7e
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB7736.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2026 14:06:39.8433
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Apv++tg7HMVGihgk8ep/mt1tNacn8/MGDmv9l2BUGGJHX3emi9fc5JZX4V9tTqoE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6655
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260518-topic-usb4phy-v1-3-71d827c49dca@oss.qualcomm.com>
+X-Proofpoint-GUID: MN7feaMUpmFk_KNJFmkFRa5j8mpj5EUp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE4MDEzNyBTYWx0ZWRfX0qRZBLT+gzqF
+ +C9uuQsDycwG8zmhKGYVsRrbjhjhZQavFeV5NT9gkCfTUa/buRmDHkzDvGHZ+llE+nkJB2skeRc
+ /bh2WC5gSOSTjPMeQij10vNEGFCEgmdnfYCPNvROWLYxfSOL0WtB56P7YSe3XvZKDwMRZ1mMHjx
+ 96Dz7WrBqIyCEh9VROJwOb3iW2dOaIVDGEAGWg5uD4449I9xhkLb3Rhwvct3tgV7j62c/Bg9aXV
+ 0Le6CqOnvWXj4qkRVHZHbssW8T5LoJ5D3o95AydPx+zZ9s7mMc4UlegEw2LbuzIRqJSGHCzEAA+
+ XMV/uDAGsXBgR5PMg+m1IyTpI3KqP1QujZaMifDEeJkIv84mV2J/IUq1jdO2TvxqMoEh/nwYpht
+ eZ7ZpZrbUbpceOb+FJOn+37UknTgvBqdpeOLizXaWX3VuWduoZZffkb9TVv6mB8I/8s8hlgQCT/
+ GFpVHj/mEAmuTf5QsFQ==
+X-Authority-Analysis: v=2.4 cv=KZ3idwYD c=1 sm=1 tr=0 ts=6a0b1ae9 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
+ a=4-prPhlKnIwNWIxOTkcA:9 a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: MN7feaMUpmFk_KNJFmkFRa5j8mpj5EUp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-18_03,2026-05-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 phishscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605180137
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299446-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-299440-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,amd.com,analog.com,baylibre.com,gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 78E4E56E735
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: AADE156E4AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Jonathan,
-
-Thanks for the review.
-
-On 04/05/2026 18:44, Jonathan Cameron wrote:
-
+On Mon, May 18, 2026 at 12:29:50PM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
+> Some Combo PHYs (so far only on SC8280XP, X1E80100 and Glymur), come in
+> a flavor called USB43DP, which as the name implies, features USB4, USB3
+> and DP signal processing capabilities. In that architecture, USB3 and
+> USB4 PHYs share the same USB_PLL while featuring separate logic spaces.
+> The DP part is roughly the same as on the instances without USB4.
 > 
-> On Sat, 2 May 2026 12:19:50 +0100
-> Salih Erim <salih.erim@amd.com> wrote:
+> The USB4 and USB3/DP operation modes of the PHY are mutually exclusive.
+> Only one USB protocol (and flavor of pipe clock) can be active at a
+> given moment (not to be confused with USB3 not being able to be
+> tunneled as USB4 packets - that of course remains possible).
+> The DP PLL is still used for clocking tunneled DP links. It may be
+> turned off to save power when no tunnels are active, but that's left as
+> a TODO item for now.
 > 
->> Add threshold event support for temperature and supply voltage
->> channels.
->>
->> Temperature events:
->>    - Rising/falling threshold with configurable values
->>    - Over-temperature (OT) alarm with separate thresholds
->>    - Per-channel hysteresis configuration
->>
->> Supply voltage events:
->>    - Rising/falling threshold per supply channel
->>    - Per-channel alarm enable via alarm configuration registers
->>
->> The interrupt handler masks active threshold interrupts (which are
->> level-sensitive) and schedules a delayed worker to poll for condition
->> clear before unmasking. When no hardware IRQ is available (irq <= 0),
->> event channels are not created and interrupt init is skipped, since
->> the I2C regmap backend cannot be called from atomic context.
->>
->> When disabling a supply channel alarm, the group interrupt remains
->> active if any other channel in the same alarm group still has an
->> alarm enabled.
->>
->> Named constants replace magic numbers for hysteresis bit positions
->> (SYSMON_OT_HYST_BIT, SYSMON_TEMP_HYST_BIT) and alarm register width
->> (SYSMON_ALARM_BITS_PER_REG).
->>
->> Hysteresis values are validated to single-bit range (0 or 1) before
->> writing to the hardware register.
->>
->> Signed-off-by: Salih Erim <salih.erim@amd.com>
-> A few minor comments inline to add to what Andy found.
+> Due to the nature of USB4, the Type-C handling happens entirely inside
+> the Host Router, and as such the QMPPHY's mux_set() function is
+> nullified for the period when USB4 PHY remains active. This is strictly
+> necessary, as the Host Router driver is going to excercise manual
+> control over the USB4 PHY's power state, which is needed by the suspend
+> and resume flows. Failure to control that synchronously with other
+> parts of the code results in a SoC crash by unlocked access.
 > 
->>   drivers/iio/adc/versal-sysmon-core.c | 539 ++++++++++++++++++++++++++-
->>   drivers/iio/adc/versal-sysmon.h      |  36 ++
->>   2 files changed, 574 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/iio/adc/versal-sysmon-core.c b/drivers/iio/adc/versal-sysmon-core.c
->> index 37736c2900b..857fe21db7a 100644
->> --- a/drivers/iio/adc/versal-sysmon-core.c
->> +++ b/drivers/iio/adc/versal-sysmon-core.c
+> Because of that, a new struct phy is spawned to expose the USB4 mode,
+> along with a .set_mode callback to allow toggling between USB4 and TBT3
+> submodes.
 > 
->>
->> +/* OT and TEMP hysteresis bit positions in SYSMON_TEMP_EV_CFG */
->> +#define SYSMON_OT_HYST_BIT           BIT(0)
->> +#define SYSMON_TEMP_HYST_BIT         BIT(1)
+> Thunderbolt 3, having a number of differences vs USB4, requires a
+> couple specific overrides, pertaining to electrical characteristics,
+> which are easily accommodated for.
 > 
-> You use a mix of these defines and manual shift.  Use FIELD_GET()
-> /FIELD_PREP() to avoid that.
-
-Agreed. Will use FIELD_GET()/FIELD_PREP() consistently with the
-existing BIT() defines as masks.
-
->>
->> +#define SYSMON_CHAN_TEMP_EVENT(_chan, _address, _ext, _events) {     \
->> +     .type = IIO_TEMP,                                       \
->> +     .indexed = 1,                                           \
->> +     .address = _address,                                    \
->> +     .channel = _chan,                                       \
->> +     .event_spec = _events,                                  \
->> +     .num_event_specs = ARRAY_SIZE(_events),                 \
->> +     .scan_type = {                                          \
->> +             .sign = 's',                                    \
->> +             .realbits = 15,                                 \
->> +             .storagebits = 16,                              \
->> +             .endianness = IIO_CPU,                          \
->> +     },                                                      \
->> +     .datasheet_name = _ext,                                 \
-> 
-> As before - consider renaming this.
-
-Will rename _ext to _name, same as P2.
-
-> 
->> +}
-> 
->> +
->> +static int sysmon_read_event_value(struct iio_dev *indio_dev,
->> +                                const struct iio_chan_spec *chan,
->> +                                enum iio_event_type type,
->> +                                enum iio_event_direction dir,
->> +                                enum iio_event_info info, int *val,
->> +                                int *val2)
->> +{
->> +     struct sysmon *sysmon = iio_priv(indio_dev);
->> +     unsigned int reg_val;
->> +     u32 mask, shift;
->> +     int offset;
->> +     int ret;
->> +
->> +     guard(mutex)(&sysmon->lock);
->> +
->> +     if (chan->type == IIO_TEMP) {
->> +             if (info == IIO_EV_INFO_VALUE) {
->> +                     offset = sysmon_temp_thresh_offset(chan->address, dir);
->> +                     if (offset < 0)
->> +                             return offset;
->> +                     ret = regmap_read(sysmon->regmap, offset, &reg_val);
->> +                     if (ret)
->> +                             return ret;
->> +                     sysmon_q8p7_to_millicelsius(reg_val, val);
->> +                     return IIO_VAL_INT;
->> +             }
->> +             if (info == IIO_EV_INFO_HYSTERESIS) {
->> +                     mask = (chan->address == SYSMON_ADDR_OT_EVENT) ?
->> +                             SYSMON_OT_HYST_BIT : SYSMON_TEMP_HYST_BIT;
-> 
-> Not a massive amount of sharing for OT_EVENT vs others. Maybe just split it
-> and then you can use FIELD_GET() and get shift handling included via the mask.
-
-Agreed, the if/else with FIELD_GET() is cleaner than the ternary.
-Will apply to both read and write paths.
-
-> 
->                          ret = regmap_read(sysmon->regmap, SYSMON_TEMP_EV_CFG,
->                                            &reg_val);
->                          if (ret)
->                                  return ret;
->                          if (chan->addres == SYSMBO_ADDR_OT_EVENT) {
->                                  *val = FIELD_GET(SYSMON_OT_HYST_BIT, reg_val);
->                          else
->                                  *val = FIELD_GET(YSMON_TEMP_HYST_BIT, reg_val);
-> 
-> 
-> 
->> +                     *val = (reg_val & mask) >> shift;
->                          }
->> +                     shift = (chan->address == SYSMON_ADDR_OT_EVENT) ? 0 : 1;
->> +                     ret = regmap_read(sysmon->regmap, SYSMON_TEMP_EV_CFG,
->> +                                       &reg_val);
->> +                     if (ret)
->> +                             return ret;
->> +                     *val = (reg_val & mask) >> shift;
->> +                     return IIO_VAL_INT;
->> +             }
-> 
->> +
->> +static int sysmon_write_event_value(struct iio_dev *indio_dev,
->> +                                 const struct iio_chan_spec *chan,
->> +                                 enum iio_event_type type,
->> +                                 enum iio_event_direction dir,
->> +                                 enum iio_event_info info, int val, int val2)
->> +{
->> +     struct sysmon *sysmon = iio_priv(indio_dev);
->> +     unsigned int reg_val;
->> +     u32 mask, shift;
->> +     u32 raw_val;
->> +     int offset;
->> +     int ret;
->> +
->> +     guard(mutex)(&sysmon->lock);
->> +
->> +     if (chan->type == IIO_TEMP) {
->> +             if (info == IIO_EV_INFO_VALUE) {
->> +                     offset = sysmon_temp_thresh_offset(chan->address, dir);
->> +                     if (offset < 0)
->> +                             return offset;
->> +                     sysmon_millicelsius_to_q8p7(&raw_val, val);
->> +                     return regmap_write(sysmon->regmap, offset, raw_val);
->> +             }
->> +             if (info == IIO_EV_INFO_HYSTERESIS) {
->> +                     mask = (chan->address == SYSMON_ADDR_OT_EVENT) ?
->> +                             SYSMON_OT_HYST_BIT : SYSMON_TEMP_HYST_BIT;
->> +                     shift = (chan->address == SYSMON_ADDR_OT_EVENT) ? 0 : 1;
->> +                     if (val & ~1)
-> 
-> Just to confirm - this only has hysteresis values of 0 or 1?  That's unusually
-> small given hysteresis should be in same units as _raw.
-
-You're right, this is wrong. The current code exposes a mode-select
-bit from ALARM_CONFIG (0 = window mode, 1 = hysteresis mode), not an
-actual hysteresis value.
-
-The hardware has independent upper and lower threshold registers for
-each temperature alarm (DEVICE_TEMP and OT), plus a mode bit in
-ALARM_CONFIG that selects between window mode (alarm on crossing
-either threshold) and hysteresis mode (upper triggers, lower clears).
-Since the hardware has a single alarm bit per temperature channel,
-even in window mode you can't distinguish which threshold was
-crossed. Hysteresis mode maps naturally to the IIO event model.
-
-I'll rework this as follows:
-- Hard-code ALARM_CONFIG to hysteresis mode during init (both
-   DEVICE_TEMP and OT)
-- Expose hysteresis as a writable value in millicelsius, stored in
-   the driver
-- Keep both rising (upper) and falling (lower) thresholds writable
-- Couple the three attributes:
-     Write rising    -> recompute lower = upper - stored_hysteresis
-     Write falling   -> update stored_hysteresis = upper - lower
-     Write hysteresis -> recompute lower = upper - new_hysteresis
-- Read hysteresis returns the stored value
-
-This keeps full user control over both thresholds while exposing
-hysteresis as a proper temperature value, matching IIO semantics.
-Window mode support could be added later if needed without ABI
-changes.
-
-> 
-> Also similar to above, I'd split the two cases and use FIELD_PREP()
-
-This block will be replaced by the hysteresis rework described above.
-
-Best regards,
-Salih
-
-
-> 
->> +                             return -EINVAL;
->> +                     return regmap_update_bits(sysmon->regmap,
->> +                                               SYSMON_TEMP_EV_CFG,
->> +                                               mask, val << shift);
->> +             }
->> +     } else if (chan->type == IIO_VOLTAGE) {
->> +             offset = sysmon_supply_thresh_offset(chan->address, dir);
->> +             if (offset < 0)
->> +                     return offset;
->> +             ret = regmap_read(sysmon->regmap, offset, &reg_val);
->> +             if (ret)
->> +                     return ret;
->> +             sysmon_supply_processedtoraw(val, reg_val, &raw_val);
->> +             return regmap_write(sysmon->regmap, offset, raw_val);
->> +     }
->> +
->> +     return -EINVAL;
->> +}
-> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 392 ++++++++++++++++++++++++------
+>  1 file changed, 322 insertions(+), 70 deletions(-)
 > 
 
+Overall it looks good. The major question (after looking at TODOs), do
+we need a separate submode for USB+DP / TBT+DP?
 
 
+-- 
+With best wishes
+Dmitry
 
