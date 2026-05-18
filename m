@@ -1,175 +1,376 @@
-Return-Path: <devicetree+bounces-299353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2CRYGdABC2qJ/QQAu9opvQ
-	(envelope-from <devicetree+bounces-299353-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:10:56 +0200
+	id QFA0MUwCC2qj/QQAu9opvQ
+	(envelope-from <devicetree+bounces-299360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:13:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67BAC56C4FB
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:10:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B28E56C58B
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C337C304C6A7
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:55:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF2C7305E379
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DA53F5BCA;
-	Mon, 18 May 2026 11:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2344E3F7876;
+	Mon, 18 May 2026 11:59:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="JzALU++K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79613F8899;
-	Mon, 18 May 2026 11:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779105308; cv=none; b=dPc+UphNqqKT4AUVS4CH4G40VsJDwacJAOmgWaVTrGs9Li/7Jil5j+wOz4YDvzJJ6ZJl+77Yv1Lxd8YwH6LUbemLhVArQNaNluyuzQGhC1U0mbL2ihNwHA9YAoQm5Jfv2WCwTwPAxWmxVEBGch72W3AqjmUBicreH0waJk5vEyM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779105308; c=relaxed/simple;
-	bh=kAGzXERG5oNLhxVSrG85EZvGLqcUwrFCSavy/o5fVaQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qSZRW2d8JyRicarRCqb7vU42HBZF9b83Y83HpvDTCjzg02XBcqYHljTVj0IBQOZanYMkSHJztAsVZgFeucPfRbwuZ94PdpjIbSsVH51mjprMOfbesQef5U6GdYD/k1mcktldhofnzJF2ooM9WHH3s8FGbYpKGo7YYBIIV0u8ZdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id C2BEC1F80041;
-	Mon, 18 May 2026 11:55:02 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id A5850B407F5; Mon, 18 May 2026 11:55:01 +0000 (UTC)
-X-Spam-Level: 
-Received: from collins (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id 10335B407F1;
-	Mon, 18 May 2026 11:54:57 +0000 (UTC)
-Date: Mon, 18 May 2026 13:54:55 +0200
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: A133: add support for
- Baijie Helper A133 board
-Message-ID: <agr-D2UD0Dr1dLLn@collins>
-References: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
- <20260510201644.4143710-4-alexander.sverdlin@gmail.com>
- <2306dd3c-6362-40ee-8d9f-77f89be3a502@arm.com>
- <14a7e289ff5ffed8fcd6dcb9b2e8455a1b2c9420.camel@gmail.com>
- <256b1cd8-b143-4f71-91cc-8513be04ce4c@arm.com>
- <6d8659f393e0bb4f0805107a17e306422982247c.camel@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716E93F99EF;
+	Mon, 18 May 2026 11:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779105541; cv=pass; b=RMFCDs+49gEHXATfO9TGIpENMN/uvKIqH5NXmC+ooxoSfil22XWYKb/MAezSWdL/zOHDCv2PHYUxQgPEEzML1TX783+7OrZm7zquyWgIuyEwzK/6/QpcfPpW0jXqI5SYOAOz9RjUuTMkMJAbmdGYsA4jMORTWhG7YjxhZ+Jbvpc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779105541; c=relaxed/simple;
+	bh=byaLABfqNwMDByRvhemetpJjnCEttmMD0blSxdnig4A=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=cvHNykatanPa5M65jFiPBDF6oNzEyvTAvOad6Sw1zWZ1+5Gy8Jru26Y5NDX1fwPmuwAxqWo22t5MHktbHeZv6N8UIKChdVVXI+A+90NfeILiKayz1kq0Ds2MMg08aCRq2Gj/hITvQ80SVrW+K5+1eZzNo2YAMObl6jSGKReM1xo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=JzALU++K; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1779105489; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=IPkBQcOo5XFdejmJPG8InUSZQTBcbyzcNQZ1YvrvESMAwa1i0QvINOhHgv9vbPX3LrJ+n+scQFYzELVet96hYIXqGe2VGO81NmhEQLqoAuIyRJPyl0YNK838A1OEyMmhugGqYJVRbAQHYkmvlDUAbEwo3328+foUSA5x+cO68PQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1779105489; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=xjoH0EPjo8/NO/3DivGdW8xWQO4fJdSYvzOExA8pRko=; 
+	b=M/CD1+yDUMCIY3m9DmVym6VCYbVZtcN7xaV18lj0iP+Rtu+v1rnmT0p2pOAGYwIhD+CUTK6eJ6rXEU1mXg1aYwM4iR76U5jQW3Wp57m5u+4EhIQrk3k6jUaanTLEwv71UROlDc/a/kXh8KMHJZGIqPDPOggaVgPJ/dWlYSFuDeg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779105489;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Date:Date:From:From:To:To:CC:Subject:Subject:In-Reply-To:References:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To:Cc;
+	bh=xjoH0EPjo8/NO/3DivGdW8xWQO4fJdSYvzOExA8pRko=;
+	b=JzALU++KhOmnXGWFxVeL2M+gb6owfyGwdVllnBd7sh5or7TtbDoh23ZitayFoHZj
+	dDIWAmmlcgYouA9L+Y+rEVYzUI767VlMBOY+8J7xm9c9XRgAThrRFm7NFgKQUvJFvKi
+	yxveIGbT2XAf/dXOHUeEnJfG27lz8rFxwIDexq9ZdN69GGd9Ad1Kn4TVWKpoSsGvQDA
+	+KQdb1tQGJzB83HXyySSpDJB3I3DD1qnaNNuwu5zCGI0pRsYWwHm9mHetbZofktzzG0
+	owL5y/ArBJYw7Go9f3C3v7kmXHsVdGULCg8Ho58oK9H5sjiS4O18jc/S2P7Wc09rEHQ
+	xH12JleKnQ==
+Received: by mx.zohomail.com with SMTPS id 177910548572495.00359433048015;
+	Mon, 18 May 2026 04:58:05 -0700 (PDT)
+Date: Mon, 18 May 2026 19:57:33 +0800
+From: Icenowy Zheng <uwu@icenowy.me>
+To: dri-devel@lists.freedesktop.org, Joey Lu <a0987203069@gmail.com>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+CC: ychuang3@nuvoton.com, schung@nuvoton.com, yclu4@nuvoton.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_2/2=5D_drm/verisilicon=3A_add_support_fo?=
+ =?US-ASCII?Q?r_Nuvoton_MA35D1_DCUltra_Lite_display_controller?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <520e1683-6d5c-4e1f-8811-0ef78cf8d605@gmail.com>
+References: <20260511075142.54752-1-a0987203069@gmail.com> <20260511075142.54752-3-a0987203069@gmail.com> <93e69179dbc495188cfffd8015350b3a55ce7876.camel@iscas.ac.cn> <de35406e-874d-4bdd-be7f-3d74dc37b13f@gmail.com> <3b94806073de8bd1d79aa7ec956493f67679e46b.camel@iscas.ac.cn> <dfbc4042-64cf-49f2-a5de-12260beffaa0@gmail.com> <4bf6efbb222ebc4d770ad613d17c6185e7cb2fda.camel@iscas.ac.cn> <1d04dd6d-f245-4b83-96b0-c5491fad8093@gmail.com> <76a9e9b676509e85484a1eb31c723b46c7e21a19.camel@iscas.ac.cn> <1a42a168-1dbb-467e-9053-b5585a737f71@gmail.com> <1c4d8611411e2d14699ac0b9aeb5b2377feedc8a.camel@iscas.ac.cn> <520e1683-6d5c-4e1f-8811-0ef78cf8d605@gmail.com>
+Message-ID: <A8EFEF67-21EB-405B-91BA-293A7D0DE564@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yKavoZ/1HsL3ubxV"
-Content-Disposition: inline
-In-Reply-To: <6d8659f393e0bb4f0805107a17e306422982247c.camel@gmail.com>
-X-Rspamd-Queue-Id: 67BAC56C4FB
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: 4B28E56C58B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.56 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	SUBJ_EXCESS_QP(1.20)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[icenowy.me,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[icenowy.me:s=zmail2];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299353-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[arm.com,lists.linux.dev,kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-299360-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,gmail.com,iscas.ac.cn,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[sys-base.io];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[paulk@sys-base.io,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[uwu@icenowy.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[icenowy.me:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
 
---yKavoZ/1HsL3ubxV
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Alexander,
+=E4=BA=8E 2026=E5=B9=B45=E6=9C=8815=E6=97=A5 GMT+08:00 17:08:25=EF=BC=8CJo=
+ey Lu <a0987203069@gmail=2Ecom> =E5=86=99=E9=81=93=EF=BC=9A
+>
+>On 5/15/2026 4:38 PM, Icenowy Zheng wrote:
+>> =E5=9C=A8 2026-05-15=E4=BA=94=E7=9A=84 14:25 +0800=EF=BC=8CJoey Lu=E5=
+=86=99=E9=81=93=EF=BC=9A
+>>> On 5/12/2026 9:12 PM, Icenowy Zheng wrote:
+>>>> =E5=9C=A8 2026-05-12=E4=BA=8C=E7=9A=84 18:59 +0800=EF=BC=8CJoey Lu=E5=
+=86=99=E9=81=93=EF=BC=9A
+>>>>> On 5/12/2026 6:01 PM, Icenowy Zheng wrote:
+>>>>>> =E5=9C=A8 2026-05-12=E4=BA=8C=E7=9A=84 17:06 +0800=EF=BC=8CJoey Lu=
+=E5=86=99=E9=81=93=EF=BC=9A
+>>>>>>=20
+>>>>>> =3D=3D=3D=3D=3D=3D=3D 8< =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>>>>>>>>>> diff --git a/drivers/gpu/drm/verisilicon/vs_bridge=2Ec
+>>>>>>>>>>> b/drivers/gpu/drm/verisilicon/vs_bridge=2Ec
+>>>>>>>>>>> index 7a93049368db=2E=2E225af322de32 100644
+>>>>>>>>>>> --- a/drivers/gpu/drm/verisilicon/vs_bridge=2Ec
+>>>>>>>>>>> +++ b/drivers/gpu/drm/verisilicon/vs_bridge=2Ec
+>>>>>>>>>>> @@ -164,13 +164,16 @@ static void
+>>>>>>>>>>> vs_bridge_enable_common(struct
+>>>>>>>>>>> vs_crtc *crtc,
+>>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0			VSDC_DISP_PANEL_CONFIG_CLK_E
+>>>>>>>>>>> N);
+>>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	regmap_set_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_CONFIG(output),
+>>>>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0			VSDC_DISP_PANEL_CONFIG_RUNNI
+>>>>>>>>>>> NG);
+>>>>>>>>>>> -	regmap_clear_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_START,
+>>>>>>>>>>> -		=09
+>>>>>>>>>>> VSDC_DISP_PANEL_START_MULTI_DISP_SYNC);
+>>>>>>>>>>> -	regmap_set_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_START,
+>>>>>>>>>>> -
+>>>>>>>>>>> 			VSDC_DISP_PANEL_START_RUNNIN
+>>>>>>>>>>> G(ou
+>>>>>>>>>>> tput));
+>>>>>>>>>>>       -	regmap_set_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_CONFIG_EX(crtc-
+>>>>>>>>>>>> id),
+>>>>>>>>>>> -
+>>>>>>>>>>> 			VSDC_DISP_PANEL_CONFIG_EX_CO
+>>>>>>>>>>> MMIT);
+>>>>>>>>>>> +	if (dc->info->has_config_ex) {
+>>>>>>>>>>> +		regmap_clear_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_START,
+>>>>>>>>>>> +			=09
+>>>>>>>>>>> VSDC_DISP_PANEL_START_MULTI_DISP_SYNC);
+>>>>>>>>>>> +		regmap_set_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_START,
+>>>>>>>>>>> +				VSDC_DISP_PANEL_STAR
+>>>>>>>>>>> T_RU
+>>>>>>>>>>> NNIN
+>>>>>>>>>>> G(ou
+>>>>>>>>>>> tput
+>>>>>>>>>>> ));
+>>>>>>>>>>> +
+>>>>>>>>>>> +		regmap_set_bits(dc->regs,
+>>>>>>>>>>> VSDC_DISP_PANEL_CONFIG_EX(crtc->id),
+>>>>>>>>>>> +				VSDC_DISP_PANEL_CONF
+>>>>>>>>>>> IG_E
+>>>>>>>>>>> X_CO
+>>>>>>>>>>> MMIT
+>>>>>>>>>>> );
+>>>>>>>>>> Should the commit operation happen on
+>>>>>>>>>> DC8000/DCUltraLite
+>>>>>>>>>> too?
+>>>>>>>>>> (By
+>>>>>>>>>> writing to DcregFrameBufferConfig0=2EVALID)=2E
+>>>>>>>>>>=20
+>>>>>>>>>> Many registers written has "Note: This field is double
+>>>>>>>>>> buffered" in
+>>>>>>>>>> the
+>>>>>>>>>> DCUltraLite documentation=2E
+>>>>>>>>>>=20
+>>>>>>>>>> I suggest create a static function for commit -- write
+>>>>>>>>>> to
+>>>>>>>>>> the
+>>>>>>>>>> corresponding commit bit on DC8200, and write to
+>>>>>>>>>> DcregFrameBufferConfig0=2EVALID on DC8000/DCUltraLite=2E
+>>>>>>>>> [a] There is no commit operation for DCUltra Lite=2E
+>>>>>>>>> I'll not add a `VSDC_FB_CONFIG_VALID` macro=2E VALID
+>>>>>>>>> (BIT(3))
+>>>>>>>>> is a
+>>>>>>>>> hardware-managed double-buffer status bit: hardware
+>>>>>>>>> writes
+>>>>>>>>> 1=3DPENDING
+>>>>>>>>> when a new register set is ready and clears to 0=3DWORKING
+>>>>>>>>> after
+>>>>>>>>> the
+>>>>>>>>> VBLANK copy=2E Software must never write it, and there is
+>>>>>>>>> no
+>>>>>>>>> polling
+>>>>>>>>> use
+>>>>>>>> It seems to be writable and controls whether register
+>>>>>>>> buffering
+>>>>>>>> is
+>>>>>>>> enabled, see [1]=2E
+>>>>>>>>=20
+>>>>>>>> The description of this bit in MA35D1 TRM says "This
+>>>>>>>> ensures a
+>>>>>>>> frame
+>>>>>>>> will always start with a valid working set if this register
+>>>>>>>> is
+>>>>>>>> programmed last, which reduces the need for SW to wait for
+>>>>>>>> the
+>>>>>>>> start of
+>>>>>>>> a VBLANK signal in order to ensure all states are loaded
+>>>>>>>> before
+>>>>>>>> the
+>>>>>>>> next VBLANK", which indicates some kind of "committing
+>>>>>>>> write",
+>>>>>>>> although
+>>>>>>>> the code at [1] seems to indicate that double buffering is
+>>>>>>>> only
+>>>>>>>> enabled
+>>>>>>>> when bit is cleared=2E
+>>>>>>>>=20
+>>>>>>>> Anyway this bit should be programmable, and "Software must
+>>>>>>>> never
+>>>>>>>> write
+>>>>>>>> it" contradicts with the MA35D1 TRM=2E
+>>>>>>>>=20
+>>>>>>>> Thanks,
+>>>>>>>> Icenowy
+>>>>>>>>=20
+>>>>>>>> [1]
+>>>>>>>> https://github=2Ecom/rockos-riscv/rockos-kernel/blob/rockos-v6=2E=
+6=2Ey/drivers/gpu/drm/eswin/es_dc_hw=2Ec#L993
+>>>>>>> Thank you for the correction=2E I'll add
+>>>>>>> `#define VSDC_FB_CONFIG_VALID BIT(3)` to
+>>>>>>> vs_primary_plane_regs=2Eh
+>>>>>>> and
+>>>>>>> write it in `vs_primary_plane_commit()` for non-config_ex
+>>>>>>> variants=2E
+>>>>>>>>> case in the driver that requires a named constant=2E For
+>>>>>>>>> non-
+>>>>>>>>> config_ex
+>>>>>>>>> variants, `vs_primary_plane_commit()` performs no commit
+>>>>>>>>> operation =E2=80=94
+>>>>>>>>> `VSDC_FB_CONFIG_ENABLE` (OUTPUT, BIT(0)) is set in
+>>>>>>>>> `vs_crtc_atomic_enable()` and `VSDC_FB_CONFIG_RESET`
+>>>>>>>>> (BIT(4))
+>>>>>>>>> is
+>>>>>>>>> set/cleared in the bridge enable/disable paths=2E
+>>>>>> Well according to the driver code for DC8000 from Eswin, and
+>>>>>> the
+>>>>>> bit
+>>>>>> named "VALID", maybe it should be cleared before programming
+>>>>>> the
+>>>>>> registers, and set after programming registers, to make the
+>>>>>> process
+>>>>>> of
+>>>>>> programming registers atomic from the perspective of the
+>>>>>> display
+>>>>>> controller=2E
+>>>>>>=20
+>>>>>> Anyway this should require testing on real hardware to verify=2E
+>>>>>>=20
+>>>>>> By the way, I see multiple peripheral drivers for MA35D1 get
+>>>>>> applied in
+>>>>>> the torvalds tree, but the device tree is still only a
+>>>>>> skeleton;
+>>>>>> when
+>>>>>> will the device tree be updated?
+>>>>>>=20
+>>>>>> Thanks,
+>>>>>> Icenowy
+>>>>> Thanks for pointing this out=2E=C2=A0I=E2=80=99ll perform tests on r=
+eal hardware
+>>>>> since
+>>>>> I haven=E2=80=99t used this bit before=2E
+>>>>>=20
+>>>>> As for the device tree,=C2=A0we plan to update it comprehensively
+>>>>> after
+>>>>> completing several major IPs, with the goal of releasing the
+>>>>> update
+>>>>> later this year=2E
+>>>> Well I bought a MA35D1 board (MYIR MYB-LMA35 + RGB LCD) earlier
+>>>> this
+>>>> year (and this is where I got the MA35D1 identification register
+>>>> values)=2E Hope I can have a chance to test this driver by myself=2E
+>>>>=20
+>>>> As MMC, Ethernet and USB support is all applied, maybe it's already
+>>>> worthy to update the device tree ;-)
+>>>>=20
+>>>> Thanks,
+>>>> Icenowy
+>>> Yes you can!
+>>>=20
+>>> I have performed hardware validation on the MA35D1 and found that
+>>> this
+>>> bit acts as a manual latch for the shadow registers rather than an
+>>> auto-clearing trigger, which clarifies the slightly ambiguous
+>>> description in the TRM=2E
+>>>=20
+>>> Following your suggestion, I will align the implementation with
+>>> ESWIN's
+>>> DC8000 logic: setting the VALID bit at atomic_begin and clearing it
+>> Ah do you mean clearing it at begin and setting it at flush?
+>>=20
+>> In the Eswin driver (which seems to be based on reference code by
+>> Verisilicon, I saw similar driver code for DC8200),
+>> dc_hw_enable_shadow_register() clears VALID bit when enable is true,
+>> and all register setting sequences calls that function with enable =3D
+>> true before setting and enable =3D false after setting=2E
+>>=20
+>> In addition, considering this bit is called "VALID" instead of
+>> "INVALID", I think it represents that the DC will apply the new setting
+>> when it's set and keep the current setting when it's cleared, so I
+>> think it should be cleared before modeset sequence and be set after
+>> modeset sequence=2E
+>>=20
+>> Thanks,
+>> Icenowy
+>Thanks for pointing that out=2E To clarify, the TRM defines the states fo=
+r this bit as:
+>1: PENDING (Shadow registers are locked; incoming CPU writes are held in =
+the shadow buffer)=2E
+>0: WORKING (Shadow registers are unfrozen/live; configuration is committe=
+d)=2E
 
-Le Mon 18 May 26, 13:29, Alexander Sverdlin a =C3=A9crit :
-> Hi Andre,
->=20
-> On Mon, 2026-05-18 at 13:16 +0200, Andre Przywara wrote:
-> > > > And anyway, I see a *dual* USB-A socket on the pictures online, in
-> > > > addition to the USB-OTG port. So where does the third USB come from=
-? The
-> > > > A133 only supports one host USB port plus the one OTG port. So is t=
-here
-> > > > an USB hub chip on the board?
-> > >=20
-> > > There are two hubs, one on each usbphy. OTG side hub is even bus-powe=
-red,
-> >=20
-> > What do you mean with OTG side hub, exactly? Is there a hub on USB0? Ho=
-w=20
-> > does this work, then?
->=20
-> the upstream port of this hub is wired to the USB-C connector, one port h=
-as
-> CH340E USB-UART on it for the console, the other port goes to the SoC usb=
-phy 0.
-> So it would be "peripheral" only, I suppose.
+This sounds reasonable, thanks for the clarification=2E
 
-Yes like I explained in my other email there used to be a USB0 ID pin in
-earlier revisions of the board but it was reassigned and USB0 is now
-sitting behind the hub so it should be peripheral only.
+Sorry for me to be too lazy to verify it in HW=2E
 
-All the best,
+Thanks,
+Icenowy
 
-Paul
-
---=20
-Paul Kocialkowski,
-
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
-
-Expert in multimedia, graphics and embedded hardware support with Linux.
-
---yKavoZ/1HsL3ubxV
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmoK/g4ACgkQhP3B6o/u
-lQwT1w//dOWaOoXIX7oAskSSD4md2jxdMx8mlt4NJhi+iEBVB1ygE6+YmG+Q94LB
-awQBs/znsdHynNvV/5p7s5+yn3KPbERnXWh/FPh3XW8BoZCAFcwsRC/mgJM+v/89
-GsSlcHBXo0X8+ieoMeKizDXQpOCrOCQVtZAqW9w1/yJ5Fs5YdcOM4K11ox69nZug
-cNYtCIPqW6QBvRpRYDjYlqQA7L3r4aBilDeuwQ5PAaV9kkGhzjYhNyUqTdbaV1nb
-NoWdBq2L4UMn1SMX9sYUakANYpE1RmX07mZk/NQVRsU9Jh05lPTUUvPZlekx42cL
-mpV/LIAa1ektsktLQWkjRKK4+uTv80zWxumYb0ZSNUTJ6tP2B0juUeZ7dN0TNBmp
-aPv9rbxhD62c3KLDIKMgh9rysJrPiXejpxia+EbaNxEccwvDjKSUwYekexxKWNCp
-zWG/PDi4rjcvOMjleICe8P/nvB6RfOtoNDXP4Q8J8cnEHtJUBb24npppd17scOjP
-MQBhoREcq615+/ktmsjsf+xRbTwNTKqKjsY1qf1RUfsniWhuTjkP+5cl7EsVHHIf
-ChkTtyYKx2BMm5BWuoJ/lsAreGo/ti9QjcgsFWv986RhGGxRL9/g/Q3+FSj22LTA
-7SN83I5GsknORm5KcJQ+bI94J3KaKy3hSJJwTQYOswZXJcmRoTg=
-=Wukm
------END PGP SIGNATURE-----
-
---yKavoZ/1HsL3ubxV--
+>
+>Regarding the Eswin reference, `dc_hw_enable_shadow_register(hw, false)` =
+actually writes a 1 to isolate the registers during a batch update, and the=
+n transitions back to true (0) to flush them out=2E
+>My hardware test confirms this sequence:
+>
+>- atomic_begin: We set VALID =3D 1=2E This safely freezes the current sca=
+nout configuration so we can update multiple registers (like frame addresse=
+s and pitches) without mid-frame tearing=2E
+>- atomic_update: We write the new register values safely into the frozen =
+shadow space=2E
+>- atomic_flush: We clear VALID =3D 0=2E This releases the shadow lock, tr=
+iggering the hardware to latch the whole batch atomically=2E
+>
+>If we reverse this logic=E2=80=94leaving the bit at 1 after the flush =E2=
+=80=94 the hardware remains permanently stuck in the PENDING state, waiting=
+ to be unfrozen, which starves the display engine and results in the blank =
+screen behavior I observed=2E
+>>> at
+>>> atomic_flush=2E My tests confirm this allows the hardware to latch the
+>>> plane configuration correctly while avoiding the blank screen issues
+>>> observed with other configurations=2E
+>>>=20
+>>> I am preparing the v2 patchset with this change, along with the
+>>> requested commit splits, and will submit it shortly=2E=F0=9F=99=82
+>>>=20
+>>>>>>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D 8< =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>>>>>>>=20
 
