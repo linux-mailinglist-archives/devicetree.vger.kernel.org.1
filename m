@@ -1,200 +1,202 @@
-Return-Path: <devicetree+bounces-299230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEKbM5XUCmpK8gQAu9opvQ
-	(envelope-from <devicetree+bounces-299230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:57:57 +0200
+	id 0HlYA/fUCmpK8gQAu9opvQ
+	(envelope-from <devicetree+bounces-299232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:59:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF135693A8
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E0B5693DD
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:59:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BDA330048D0
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 08:53:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 123DB303798B
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 08:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C1793E3171;
-	Mon, 18 May 2026 08:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F223E315A;
+	Mon, 18 May 2026 08:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BiUPWewp"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="KPMuZx4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6EE3D5656
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 08:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFCD32B99E;
+	Mon, 18 May 2026 08:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779094407; cv=none; b=ezdj+LgRknCAiB6NucjYTjTbKC8A6M+jErjDJIGHmpzWCrBV3Cr3ICaSLXV7QlzIIGJ2mhDHg2YQmtlBoGhIEwf2Xbtz/xiDbR2CpZkXZjVev8YCmHYPmuxyTwMoBJLLCZKupR39NLhEgIF7xBSfDPqkc56GwtHourVMzXDVedk=
+	t=1779094547; cv=none; b=M1Z/RfkIzJWbBALJZTnuzDiP+e002KtWsfiz0UjopMb7AXwLloKMXr/UjRQNcASOw8Og7AYvqWuivghX6i6GTQZ4t3XjPVmPHL1pBqQ9UmzUSTLXJviT1QIWNdyw/Ou7O83z+BnXtOgKRKDf0+UjlmxZT2CHp03tDelQgkBCOeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779094407; c=relaxed/simple;
-	bh=BeY2D1xhKXuMNqWiLMcfM8mpDskYF1/TSSDTA7pllLc=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nRTh/DLaRW6+X7PHXIhMQQx4DmigqT+LUMIPu9nCFMwVyH/gd8qO3bNX17AoD/ZdGE9wWr5d5BWglAKKtCVk3uXjmnGHkaNNzaTThTUOftOFd92tb+BpklfFVbS6uUWK83MFVG2hHFPujiw0i8dhc9qj8y7yd6lB0vU1n4njq5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BiUPWewp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC20BC2BCC9
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 08:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779094406;
-	bh=BeY2D1xhKXuMNqWiLMcfM8mpDskYF1/TSSDTA7pllLc=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=BiUPWewpY7R5J0SFM+oxT1KFVOoRyuzVuZK4mkARnjO3rH1mtxsBxdRfjVRpND3ZQ
-	 udKva8WH8yafbXxhS5Rf0Umgh9L1/2aOJIWOnoVjtTgSzNB/751Bu95d+eV+BPi5eG
-	 yZiDT6sxun6iz9iTeLvsPVNwEohNheDlEw3i2ohSkyzmWtC8Fd5aYX4FooRtY6Aie+
-	 xAgy/XlMO6Ow5KJklTNJOZxeLgBdLk6+hvkKG9xec0+Kbq5nlV0auoN/HvHHRw/xm6
-	 5eWtMLdmJ8g3TmeYLeP+eMnw7KAZs8R7dFGuSsHXr6+xr5H5RGzgCvvK3iG0k+6wRR
-	 uC0lkvB9Nvmiw==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-38be5e86918so27858091fa.3
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 01:53:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+FGOioMHNAF1RPGuFPsRoq6Z1VXEJPbzgonxp2aT3IyJlVTtw24UqefXpmp5Qqw7FZnbE+xvc0pk4H@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLDKP4VQRHLb3ZEWB9jJe0nFzEKmwsbdWrXIP8tvma2DHDU+uR
-	MEQ9TaO//YC2eEvzm7rjn0dzM6phcwn/ds6Jl8NM9gLoH2Gna+K5GnZHc/bOgaORyrZvG91P2cY
-	haSdrPzUtC5HGtbVetozeRfOf70rBeiwcPIZ3OynzRQ==
-X-Received: by 2002:a05:651c:548:b0:393:7ab3:6d50 with SMTP id
- 38308e7fff4ca-395619b0770mr39038201fa.6.1779094405178; Mon, 18 May 2026
- 01:53:25 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 18 May 2026 01:53:22 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 18 May 2026 01:53:22 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260514-arm-psci-system_reset2-vendor-reboots-v22-9-28a5bde07483@oss.qualcomm.com>
+	s=arc-20240116; t=1779094547; c=relaxed/simple;
+	bh=l/0QBaIVRAi74g3JzPSXWF+89gHglLGuyCFTiDEvMro=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dxskKoVE2OdRAdiLEA5Nt9xQxdv15sj/obALzuHlYxDb4fSU62NYW3o9lxzDVZjMPkD5hBfBEclA07IHdSM/VLjahM8KouaY/RJrKQihProcCY4oDxIZ3gmb/wcYf+szsbgpBe6P5y00ZlxW6hlkKgtAKOmxZyZ9Q65vHw6meJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=KPMuZx4F; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64I4n50c675950;
+	Mon, 18 May 2026 04:55:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=yVQIY
+	5uXiyj4OBIsHKs8RtNgEMBy2EqjMlY+/fcuapw=; b=KPMuZx4FW8S0FyLm8QJkP
+	QQwfcnZ3m4v7czBI3RGHFLC7r/lPXFJiHV8gl0RmYE7VTMIeBgS9PP6p0fjpcKj8
+	CmixfL2DvClcgv8K1gf2/9MQn9ceoHjeSWe8hxeqtIf5YGKx6w0S3ZTBDsy8vyWX
+	b75jO5VD+4BI52itvwGqrbnRoG88BY+VzRxgFM/yG8eiUpPPkkG8pYBML4V0vp/c
+	p3iKDj1hlpH5H/BKdJkvgA6lRNkwxBTt3zOa/VhyPjFgkd7xk3nDxjOgzB9eiqro
+	FkixYoVuWrJWzkI5ti1xtl+mWmIONc5uMyXH77jn5Swc2NEb3oKADSz4ZQVXZmHF
+	Q==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4e79wdu032-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 May 2026 04:55:42 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 64I8tfji020398
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 18 May 2026 04:55:41 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 18 May
+ 2026 04:55:41 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Mon, 18 May 2026 04:55:41 -0400
+Received: from HYB-MkYHBcJRSnh.ad.analog.com (HYB-MkYHBcJRSnh.ad.analog.com [10.48.65.202])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 64I8tSe6019844;
+	Mon, 18 May 2026 04:55:30 -0400
+From: Liviu Stan <liviu.stan@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: Liviu Stan <liviu.stan@analog.com>, David Lechner <dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Andy Shevchenko
+	<andy@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Francesco Lavra <flavra@baylibre.com>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux@analog.com>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 6/7] dt-bindings: iio: temperature: Add ADT7604 support to adi,ltc2983
+Date: Mon, 18 May 2026 11:55:21 +0300
+Message-ID: <20260518085526.84987-1-liviu.stan@analog.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260516180358.094e6c2d@jic23-huawei>
+References:
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260514-arm-psci-system_reset2-vendor-reboots-v22-0-28a5bde07483@oss.qualcomm.com>
- <20260514-arm-psci-system_reset2-vendor-reboots-v22-9-28a5bde07483@oss.qualcomm.com>
-Date: Mon, 18 May 2026 01:53:22 -0700
-X-Gmail-Original-Message-ID: <CAMRc=MdMKGm2R28Kh3baXTWa8Bo5Yt8ybnL11-12ZJF8BbDB9w@mail.gmail.com>
-X-Gm-Features: AVHnY4KUs56aRoXVmyMp6zYpUiaetiLn907dXUa8eSIFV9OSLRkKS3ZdNxw4t9A
-Message-ID: <CAMRc=MdMKGm2R28Kh3baXTWa8Bo5Yt8ybnL11-12ZJF8BbDB9w@mail.gmail.com>
-Subject: Re: [PATCH v22 09/13] mfd: psci-mfd: Add psci-reboot-mode child cell
-To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Andre Draszik <andre.draszik@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, 
-	Srinivas Kandagatla <srini@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Sebastian Reichel <sre@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
-	Christian Loehle <christian.loehle@arm.com>, Ulf Hansson <ulfh@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
-	Andy Yan <andy.yan@rock-chips.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	John Stultz <john.stultz@linaro.org>, Moritz Fischer <moritz.fischer@ettus.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 3AF135693A8
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: qYEyVreoTZer4o6x5blIz6JBGRdHAX_V
+X-Authority-Analysis: v=2.4 cv=HKbz0Itv c=1 sm=1 tr=0 ts=6a0ad40e cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22 a=VwQbUJbxAAAA:8
+ a=K6Ps094s-QnVl3WvZGcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=t30qsMHlJzOsgWiHt2r7:22
+X-Proofpoint-GUID: qYEyVreoTZer4o6x5blIz6JBGRdHAX_V
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE4MDA4NSBTYWx0ZWRfXzccUjSFSfY3Z
+ UI1oV1pd+qWYgyPyBFTM8AqXwposVKibaHUo72yMpXa7L8TdEgyr1Oz5wsVW4d3GaC7h0Yj64b+
+ r4xJEzoQJrTiQtiwSHPUmLm3TGEpKCmnsmW8xDRW4GZgmW2TRXor9FlFF4wug4bC9zq6Y6yJyqB
+ jLxjhvZpDwdRWcCByT5CQhxoDN10ZDOzwh0LV2TnOKT9sb87ZHJ2TCdT3H3TEVOVVzAdTFLU4FO
+ dc9XGLdaNPcqM79DeOshzSpqDsAHdI1HDkR8QveOsvQ1Fw/MWaT7SlcaicKsdrHUVjPISdWVJ07
+ uEBViaGmF5A/m6y8xzfoFWd8D1dAutR7FuGAYecKdfIr6YP1o3FHNTzZPGA7pugCZuWc2jigdwm
+ +QhcaCrCwoRQHD6GO0AD8VSkNkaZL0qGeNssAPSSHg4YThZ11ICIadzmihaKWtA8hpfQpAHuweE
+ Y2DbsGiNevzvrbB1zeQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-18_02,2026-05-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 malwarescore=0 phishscore=0 impostorscore=0
+ adultscore=0 suspectscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605180085
+X-Rspamd-Queue-Id: 66E0B5693DD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299230-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[36];
+	RCVD_COUNT_SEVEN(0.00)[9];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,oss.qualcomm.com,linaro.org,linuxfoundation.org,arm.com,arndb.de,rock-chips.com,gmail.com,ettus.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[liviu.stan@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299232-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[analog.com:+]
 X-Rspamd-Action: no action
 
-On Thu, 14 May 2026 16:25:50 +0200, Shivendra Pratap
-<shivendra.pratap@oss.qualcomm.com> said:
-> The PSCI "reboot-mode" node does not define a compatible because it is a
-> configuration of boot-states provided by the underlying firmware. With
-> the new firmware-node based cells in mfd-core, this node can now be
-> exposed as a proper child cell.
->
-> Add the psci-reboot-mode child cell to the psci-mfd driver and associate
-> the reboot-mode node as its firmware-node.
->
-> Suggested-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-> ---
->  drivers/mfd/psci-mfd.c      | 18 ++++++++++++++++++
->  drivers/power/reset/Kconfig |  2 +-
->  2 files changed, 19 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mfd/psci-mfd.c b/drivers/mfd/psci-mfd.c
-> index 7affd6bb09dd83452664edeccb09290fe4f43186..852d8e294a438d4ee6789c556d16a83739af2013 100644
-> --- a/drivers/mfd/psci-mfd.c
-> +++ b/drivers/mfd/psci-mfd.c
-> @@ -7,11 +7,29 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +static struct fwnode_handle *psci_reboot_mode_get_child_fwnode(struct device *parent)
-> +{
-> +	struct fwnode_handle *fwnode;
-> +
-> +	fwnode = fwnode_get_named_child_node(dev_fwnode(parent), "reboot-mode");
-> +	if (!fwnode_device_is_available(fwnode)) {
-> +		fwnode_handle_put(fwnode);
-> +		fwnode = NULL;
-> +	}
-> +
-> +	return fwnode;
+On Sat, 16 May 2026 18:03:58 +0100 Jonathan Cameron <jic23@kernel.org> wrote:
 
-Is this reference put anywhere once the cell is torn down?
+...
 
-Bart
+> > +  '^leak-detector@':
+> > +    $ref: '#/$defs/sensor-node'
+> > +    unevaluatedProperties: false
+> > +    description: |
+> > +      Leak detector sensor (some parts only). Outputs resistance in ohms and,
+> > +      when a custom table is provided, a coverage percentage via
+> > +      IIO_COVERAGE_PERCENT (raw/1024 = coverage %).
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 2
+> > +        maximum: 20
+> > +
+> > +      adi,sensor-type:
+> > +        description: Sensor type for leak detector sensors.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        const: 33
+> > +
+> > +      adi,rsense-handle:
+> > +        description: Associated sense resistor sensor.
+> > +        $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +      adi,excitation-current-nanoamp:
+> > +        description:
+> > +          Excitation current applied to the leak detector. The correct value
+> > +          depends on the electrical characteristics of the liquid being sensed.
+> > +          For example, 10000 (10µA) is recommended for PG25 (see datasheet
+> > +          Table 39).
+> > +        enum: [250, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000,
+> > +               500000, 1000000]
+> > +
+> > +      adi,custom-leak-detector:
+> > +        description: |
+> > +          Lookup table mapping resistance to coverage data. Entries must be
+> > +          in ascending resistance order. The coverage data field encodes the
+> > +          coverage percentage P as (P + 273.15) expressed in uK, i.e.
+> > +          (P * 1000000 + 273150000).
+> 
+> I like sashiko's comment on this.  Why are we having the hardware / driver
+> offset encoded in DT?  Just put in the value without the offset and apply that
+> in the driver.
+> 
 
-> +}
->
->  static const struct mfd_cell psci_cells[] = {
->  	{
->  		.name = "psci-cpuidle-domain",
->  	},
-> +	{
-> +		.name = "psci-reboot-mode",
-> +		.get_child_fwnode = psci_reboot_mode_get_child_fwnode,
-> +	},
->  };
->
->  static int psci_mfd_probe(struct platform_device *pdev)
-> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-> index d9d1f768b8691abc3b32f2675519f2ddbaf19b84..79559206d5852ae5eae4c8eb2c390901cea7531c 100644
-> --- a/drivers/power/reset/Kconfig
-> +++ b/drivers/power/reset/Kconfig
-> @@ -350,7 +350,7 @@ config NVMEM_REBOOT_MODE
->
->  config PSCI_REBOOT_MODE
->  	bool "PSCI reboot mode driver"
-> -	depends on OF && ARM_PSCI_FW
-> +	depends on OF && ARM_PSCI_FW && MFD_PSCI
->  	select REBOOT_MODE
->  	help
->  	  Say y here will enable PSCI reboot mode driver. This gets
->
-> --
-> 2.34.1
->
->
+Will do this in v3.
+
+Thanks,
+Liviu
 
