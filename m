@@ -1,187 +1,186 @@
-Return-Path: <devicetree+bounces-299347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299338-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIBCG1T9CmqA+wQAu9opvQ
-	(envelope-from <devicetree+bounces-299347-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:51:48 +0200
+	id iCTuBQH8CmqA+wQAu9opvQ
+	(envelope-from <devicetree+bounces-299338-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:46:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ECDF56BFB0
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:51:47 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7782A56BDFC
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:46:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 91B2C301FAB6
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:49:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 394313023A6E
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C193F8894;
-	Mon, 18 May 2026 11:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E384D3F660D;
+	Mon, 18 May 2026 11:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="oJypSdsG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDB573F7A81
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 11:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779104926; cv=none; b=DQtApr5PR9zX8XUaR5AM+Cx5Jmifm8lOtmC3yv554rlT1XaXVRm+07NUOMblBcVf+xggbhgVQ3ERC2TruNSL7J6a9Ty6tdFwm0gzLewq7b72UP8HCwtnj9+nllLZ+Xj+Sw1X9IQCtgyL8435z6Q8UTCvX9JqCE89grpDecjNa1g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779104926; c=relaxed/simple;
-	bh=Ax2y7pmSuZrEkSP0ce0Fej26Z6ct7xdJQdPYertuzbQ=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7845134678E
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 11:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.160.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779104576; cv=pass; b=rQpPxe0/N6o+2jgKHGryKdfN0JNk1CaZ3pb7uUYIn0zPP+1JH6/5JAbQjC27pwspMBoEA3Cx9QqS9rIVLnFCnTnjiyP07bK50gnyQCrRmlHVC1yan1/1urRuhPE1DLjunO8ADxrMVs703favQ3x84a52NENgzwjerkRE5uBbbuY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779104576; c=relaxed/simple;
+	bh=eJ6iS27yRakIf4dYz6C/Y0DusUAUtD+ryR5U+Q9ozcs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WsbLrqtRtAZB9LaOdLZvuOHP68z0Fh9BhJpnbWEjLtFcH4lwK3h9Cih0Kw/wI9EGYsFGUqG++WzdKufRkubtj0khLuJQGOaZ3vNSJocHoSF3JAyQIMVAJmkAShUKiQb8IQvlri5wgcWpDM6MxplBYEpgHSPyg5Dy1DQK6BuU/f0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=AV1AVoXANY2IKkKzdqpJRWmIzrjRQ4v+yyxDVXJKkEb9VHr0L6T09G8KCmaBtuwB/V1W1CrsJpAq212yGCZ+y2biq97HcQok0fFt/v9CUM+QKRMJtf4WpP8NSFYaRvis2VFCNh9GQk1+6P+eqQj/RG2k2AZs6cAWBOA8biJMzaQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=oJypSdsG; arc=pass smtp.client-ip=209.85.160.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-9144163319fso104588385a.2
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:48:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779104923; x=1779709723;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-40423dbe98bso901633fac.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:42:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779104574; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LmTqDUpOaqfFwb7g3w+Dr3uruwFt7f8D/piOJOGlwX2Ibz+uVYzUeqhdSUrBnpXLXG
+         INsOJWUB+Qi0Tll4i1HFzJhub1PE6Ba+7oQsh9CWY/ujm4k11vPfMdF5DV/2nYcNb9aq
+         8blH6MxMKXQgt/ZVzcMEsYilp1EGmJkjQPgkqVoSWNHJkmqbTk2i/sQN3fqiMRysfsRQ
+         V+jMePI6Jj0HtI8DIacm0kOWrUpqIBBK0UR1NQk695V+K+TFNwlR6IWQ7WMAsie/3TCe
+         iF3w+uSw2Bo5lO1kLUEiMQyir34gJeJVhXoaObMci210av4fSfLJ65SjI60kskzK69xA
+         5anQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=PZSVFgnDLqoibhkNbK9QZ3coCLRNq5Ci4ji9hjqvuAE=;
+        fh=hqDLjh6jasF9mtnbf9x/85/7Ug6XXMb/njW0WbBDCgU=;
+        b=RMAd+AKdr1U/JxWyvExdeAzP+o9Nf+DKBGPXNMlL5FR5U26U246H2wM0NZCribN3AM
+         T1Vuxn+JybWaL25tYhrNFoxZuyGbCPJZU9k71oRcVJq2cU+iD5iXs8jSXPrN4hYXtOed
+         Y8p4CWGy6r/wKvKucBdV+UctHNTv3B1/g+oEMcCF66P9jUVe2RyPVmbM+EYbgL166Vjy
+         l2EM6My3hflYv/h/aOXKLfCTq50G1oOOvR0gm1Za7pMxDp499CoK4VwGGCiPxxB9AriP
+         7YHk7d/1tOf+P2TlVpd/4Z7IXRZbZWDZNEmKQnHFuSqh9KJR1epxaBHbkkyHo2gfXJxj
+         YfhQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779104574; x=1779709374; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=M3bmWUZgjAYZamnd3Aw3Zf+CdNP9jYAgiNz9GJP8Rro=;
-        b=pYPZqxpoWHu34J2QqKagtH80q1LUTKf4Dt89CUCHVO59KQGgdPAKHepF4Sh0eB1jcc
-         +ndcftLUyUOCfDe6B2ZjbPLUtRcFpvCAEHiNhxkwZjZ7/Tn/8fekSJIZFhlEglTkZHk3
-         CNeGmal6BWyktosWPwJqJE4ng+OhXy0Csf8oCNMX5ZlKtBeisK9xsdnhcMIppJrcYsb4
-         IHLZCQCdD8FuLueryAPaZZ/WTwO7odCFGV8bByOddTDLljmUAdU0nv2wzC2J4Y4Xi96e
-         W6gA8uwchkXbjImf+JfAyo150tpExNgviPHZwi0p0QhXjZ+TAVBnffGOpIrBCXgVgqWy
-         gvQw==
-X-Forwarded-Encrypted: i=1; AFNElJ+njwmco/BLHKOgy8nv4RXu/+vBkGhJOvRCbz1jskcqyHo8fCGCQascr9jniWYcMHPtMdQryl9IEM78@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKmVPCxnwjmYu+o+w51eYQADF0HvNF8F/hdlGgixzSdkEVxMkK
-	x3RpPPYMfKq1dPRAvZbGbpd/ot+YVTrJ1MQva8G5rX3hdFe0TRQgZ9MKcIiBc/f+
-X-Gm-Gg: Acq92OEo2TyFfZRDklOCxYHJOkp5Kap2IBvOKhT9oy4hIYv0tXSpB1Si6vBsyq82Nkd
-	s8q+zkpb8nSKEQqcIAYy3Uq6hrwet9uUVDR6I1tXGnoX5cTS4wmT2nM7r4C1wnECyzq9e7iCZdm
-	9u0EvRblNfItKqGKdrCHqN0QqhVcf3HUW2D1KBYdQ1MWJC/MCyfk4KbV+Kgx9qoPFPGNXy0sHJH
-	xR2w82DOmq939vmTQz+gNqrfGuBeJ2nd1ty4QluYN2suZTdHuIT6b+vKrAm2NrNpiPIBrtOyI9F
-	w7gKE1BtVDWiX+vparr3t+xYqTcNwX3ZCELkvJJ1UHC1eOZGtOs5TNicQ7PzdUDPyM7VXsp3Wya
-	J0u4MWZTa9yhh0/Zsfo/UZznv46edtv7gGzowemWse5+VsxBGTk9jteCrqsIPVskFdpWqxmdV+b
-	ary4/Ee6jaoQBT4UgSx0BpCVFRDMkAOe2bN8hKUwHOLDdSzK+9LAP/Ul9XNaWevWY3
-X-Received: by 2002:a05:620a:c41:b0:90f:c88d:ebce with SMTP id af79cd13be357-911cd175148mr2159836085a.1.1779104923363;
-        Mon, 18 May 2026 04:48:43 -0700 (PDT)
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-910bcf3584esm1443591885a.34.2026.05.18.04.48.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 May 2026 04:48:42 -0700 (PDT)
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-9144163319fso104585985a.2
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:48:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9L+Lnh4pRhZ4Hi5GtCOMA+zDlHjUbE5JmvGSqcGsEAZ1ulSUQ4undP4tFR2GiKVXHN33BrHxhpVJTf@vger.kernel.org
-X-Received: by 2002:a05:6122:4690:b0:573:a779:62cf with SMTP id
- 71dfb90a1353d-5760beaed3bmr5626640e0c.7.1779104463611; Mon, 18 May 2026
- 04:41:03 -0700 (PDT)
+        bh=PZSVFgnDLqoibhkNbK9QZ3coCLRNq5Ci4ji9hjqvuAE=;
+        b=oJypSdsGgLKt7n+LzPPxnf6laWcM6lAH+TuR15VSIhwssuo0/HtCkolSB2MmOEVgol
+         FCuzxrmIQIWVYaNWR6yC1uSQ/RT2lW0sRyugmN0cNgtds7m+FcXCunlC/d5XmQ/RDwYY
+         C4Rr3UXjACN3WCni3ha6RVg8to9uJ63/elvS6O8NX8up/tTu2D+T23yECCixNP5N3bTf
+         tHLAutIADvjhxnix0AD9lmiaQ4VDsATOQpZnO7z+lBfcepLMvHgSMUMasRbVrbZs5kWg
+         /7azJtaapX0zmZHx8MW59K1VsLaa5tG5EnrO13Fe/TARHIr1/81cxpRvvCRqC75TcGEG
+         TVkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779104574; x=1779709374;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=PZSVFgnDLqoibhkNbK9QZ3coCLRNq5Ci4ji9hjqvuAE=;
+        b=p08is7YkVfAiGk+Sewth7rdc3qk94X9zJqvi+QiKJqslPXCvcZyrQ5VgdjH6LqwiBC
+         NafTD5iQtw8/e69SJ60er05h/ar0RgHm2nuStOqg1DuuQoceS8J/olPfaaAWjTJUrJZa
+         C8at8aMI0R3cq8ih7gUGHrOl1z4sfXnc3qTMGHZ0XaoRVjJy5wSqYoXCtwyon7lvMzuy
+         YET17PmXwnwStRlW91sUwFADbP/rYPw6kwjUsYNZxNbP2Fls1709jSmiTZ7OF3GByfu8
+         2AXtYlkk4LRgBkAw8VuuJ1obOVUu9xDJHy34SgqP80C8mmPqAca8314aVSvYZZlq5zcO
+         xrgg==
+X-Forwarded-Encrypted: i=1; AFNElJ/tsM9sndykMGmGIKZaiNafPU96REzlHT0RZoxB6I70iXpZbaPdbRPX268aS/pKCjBbQHH6LlT+B3pz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxTkinXGzz4CVrfA3bMJuM98AZywrk5hv5uZM+CMAxlczCcLLb
+	xgzEcz2FOj5lgYw4rLjfuXp6XG1S0y3Wce2cxnQNT3rJC4D4pGmZNuNnvKfh9grEU2o0aFiTnd9
+	Fg1wCtUJvJfJj7ECbfSPPAUzCdSZTASU=
+X-Gm-Gg: Acq92OE+6ge8bo0uNZSuFS0xBf3afk3yng11plNeOWPmS7RPEFVUk6LIuW0YdoLLuOz
+	0ALfDCH9+RMjfY4w8wtjP+99bCTn0ZDMYx3tYV/Y7nzn5gPl1tj2B+yhMzVNY/Ipm58MyZQYI/D
+	yzjtyworEqayF8IQl0ATIbIm3RQzHA2N1qwTeKDiUhw3Eu4g9zHqm+oX18afUySWzj9elFMlTRM
+	X8sr4lbtk/cIdCgWeHW83BwFdnpIPT+x9W1xjQKHktkRmkvfY8a/V/MBqSdlqzXhkzqnKhbuTIv
+	BN5u++iAQfm1ilGWlXRpwlY4JQ==
+X-Received: by 2002:a05:6870:c233:b0:42c:711:a235 with SMTP id
+ 586e51a60fabf-43a2de6d4e8mr9184021fac.35.1779104574383; Mon, 18 May 2026
+ 04:42:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260515-rcar-du-dsc-v3-0-164157820498@ideasonboard.com> <20260515-rcar-du-dsc-v3-3-164157820498@ideasonboard.com>
-In-Reply-To: <20260515-rcar-du-dsc-v3-3-164157820498@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 18 May 2026 13:40:52 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUf4dGnK4ooTyw_31Ueanr-Ym3nhML4a12exU+5nFYh2g@mail.gmail.com>
-X-Gm-Features: AVHnY4Lo5h0gdtI7uD_PcBRMzgonT5rakDO4TjP7cpU7h0ngOw5-dH_yEpIVciE
-Message-ID: <CAMuHMdUf4dGnK4ooTyw_31Ueanr-Ym3nhML4a12exU+5nFYh2g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] drm/rcar-du: dsc: Add rudimentary Renesas R-Car
- V4H DSC driver
-To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
+ <20260517-sf21-topcrm-v1-2-438f2e0513ff@gmail.com> <20260517-cartoon-slather-ec5ad7605449@spud>
+ <20260517-pulsate-shining-547432ab2ca0@spud>
+In-Reply-To: <20260517-pulsate-shining-547432ab2ca0@spud>
+From: Chuanhong Guo <gch981213@gmail.com>
+Date: Mon, 18 May 2026 19:42:43 +0800
+X-Gm-Features: AVHnY4K5bYIE3B-YL63O3FZeaOtgyPunJ0_rHmAr8AXg2dK5L-d96T8-eA1kvlE
+Message-ID: <CAJsYDV+-VprPUK_CJsEpEa8ifphmp3ztHga__H=QWLoq8Jv4yw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: clock: add binding header for sf21-topcrm
+To: Conor Dooley <conor@kernel.org>
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 2ECDF56BFB0
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 7782A56BDFC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[glider.be,baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
-	TAGGED_FROM(0.00)[bounces-299347-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-299338-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,mail.gmail.com:mid,linux-m68k.org:email,ideasonboard.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FROM_NEQ_ENVFROM(0.00)[gch981213@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-Hi Tomi,
-
-On Fri, 15 May 2026 at 11:10, Tomi Valkeinen
-<tomi.valkeinen+renesas@ideasonboard.com> wrote:
+On Mon, May 18, 2026 at 4:52=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
 >
-> From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> On Sun, May 17, 2026 at 09:47:26PM +0100, Conor Dooley wrote:
+> > On Sun, May 17, 2026 at 10:12:56PM +0800, Chuanhong Guo wrote:
+> > > +#define SF21_CLK_PCIE_REFP         30
+> > > +#define SF21_CLK_MAX                       31
+> >
+> > > +#define SF21_RESET_IROM                    17
+> > > +#define SF21_RESET_MAX                     18
+> >
+> >
+> > Having _MAX is not permitted, but is also really confusing that "max"
+> > appears to be max+1, so actually represents the count not the max?
 >
-> The Renesas DSC Display Stream Compression is a bridge embedded in the
-> Renesas R-Car V4H SoC. The bridge performs VESA DSC encoding of up to
-> 8k or 400 Mpixel/s . Add rudimentary driver, which currently acts as a
-> pass-through bridge and allows DSI1 to be operational on R-Car V4H.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> [tomi.valkeinen: use bridge->next_bridge, minor changes]
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> To be clear, if you need a define like this, put it in the driver.
+> Bindings having a "_MAX" or "NUM_CLKS" doesn't make sense,
 
-> --- /dev/null
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c
+Sure. I'll move it to the driver and rename it in v2.
 
-> +static void rcar_dsc_atomic_enable(struct drm_bridge *bridge,
-> +                                  struct drm_atomic_state *state)
+> and half the
+> time this number ends up changing anyway.
 
-drm_atomic_state is no more since commit 5164f7e7ff8ec7d4
-("drm: Rename struct drm_atomic_state to drm_atomic_commit") in
-drm-misc/for-linux-next (next-20260506 and later).
+This one will definitely change later for the two clocks I can't test yet.
 
-> +{
-> +       struct rcar_dsc *dsc = bridge_to_rcar_dsc(bridge);
-> +
-> +       WARN_ON(pm_runtime_resume_and_get(dsc->dev));
-> +}
-> +
-> +static void rcar_dsc_atomic_disable(struct drm_bridge *bridge,
-> +                                   struct drm_atomic_state *state)
+> Also, squash this with the patch adding the clock binding.
 
-s/drm_atomic_state/drm_atomic_commit/g
+OK. I'll do so in v2.
 
-> +{
-> +       struct rcar_dsc *dsc = bridge_to_rcar_dsc(bridge);
-> +
-> +       pm_runtime_put(dsc->dev);
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--=20
+Regards,
+Chuanhong Guo
 
