@@ -1,128 +1,187 @@
-Return-Path: <devicetree+bounces-299190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299192-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOWAO+fICmqf8AQAu9opvQ
-	(envelope-from <devicetree+bounces-299190-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:08:07 +0200
+	id CBRtNV/LCmqf8AQAu9opvQ
+	(envelope-from <devicetree+bounces-299192-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:18:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 722EF568693
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:08:07 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5238F5688D7
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:18:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DE2E83007BB7
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 08:08:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A93C13026C9F
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 08:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084E33E120B;
-	Mon, 18 May 2026 08:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B6553E00BC;
+	Mon, 18 May 2026 08:12:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uj2yTF+3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKhBKul4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EC73E00BF;
-	Mon, 18 May 2026 08:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4681A3043BE;
+	Mon, 18 May 2026 08:12:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779091678; cv=none; b=Yk6p8rIY+S+Ne+L/WsIw3Lpb/JlP4TKTslErTEYfd0TGGJE0D7aQlCFtanBda49EV8AsWsEkXOOD2edREbMSBVFCHRtZJEbGtn0P9l9rqR+CGtotzuahJ9vCu6LsaI8eNXkb8lmUvvgzXTBq6NsYscdf4Mt2k+z0uoq9S7MMQEM=
+	t=1779091941; cv=none; b=e/Ge98pOnn7FEn81kFJwI3LxNDDXxQAm16wlYwCtEypqc3J7f0qBzPIJnjXvaOtqDaRRDYZCmnXuE372wc1yiIJjaKEOcZj91iUbtuRw0co/Lh3bIJqyYHoHbxl/+qD+W6Yl9coF8hIx7emrZtncPtFBYQiGkQjVHomIlCVdLLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779091678; c=relaxed/simple;
-	bh=N1rL5bYlFWe078xRHvCAZk6s22s0flwwFGijxeLG0KQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MVUmhzBeZTM2tbdoAIr22H+5mzR/6LkZA2koSLmckVYbyxvRymAoi4gvE+FkkCGYW1i9vq0PK1yBnmrQdbU1ghkt3umj2Cb+voPmFdokTxKGwb6rEpSco2Em5HXSzZupV9Fx5VBjINBq0d3rM/GoKpDFIn3WHgV7Gdgcof+/E74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uj2yTF+3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E978AC2BCB7;
-	Mon, 18 May 2026 08:07:57 +0000 (UTC)
+	s=arc-20240116; t=1779091941; c=relaxed/simple;
+	bh=o4jxgzNs5bOZxSNNfPfJHCCzqAcCx9wktE71rzKkbIs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N/JvP+z3KTTj5Ha1HwmCEz+IVdhtbdfR8SiTsB4uqmZ6FtMm5Ob/bqUu6iLKIQr4Y/02vdWXnKzRv30iY4oE1CFwWyVH6rbQ49vAMsOhB1KiOTW35GRXj4apTRxxc4NBOPLt1YuY84UDN6Kw0ebK2kwXrlY36/Xi3gfGADuvjjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKhBKul4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10DFDC2BCB7;
+	Mon, 18 May 2026 08:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779091678;
-	bh=N1rL5bYlFWe078xRHvCAZk6s22s0flwwFGijxeLG0KQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uj2yTF+3LWZriiVDbn8AhZQSFq7vI0WPONPTnykNwWRjxRqHm0Xvj5Uqw3qCR97Ur
-	 PvlIUX0ZSTMIW9fr155150i3B7qJVW2xdwuHbRhIpWqNY3gcN8iGMq/WwsZTM/YHBy
-	 TXGHXyWCOZBlaK30nCbPajYA5VFU3r4Ejfgnqo8wbeSO8S8x2N/ZycIJWmnsVM3s6p
-	 PbGKAnVC7xzx0Z2okKJiw3yGWI8zlPYYu7vpnZcznLzqYhdkx+Cf4CmotcJGT5clbC
-	 SHKjsYYc9OsiOOufXY1aFr2Rww5gv24ueyq976By+OG2pYMJ3f5/XpEJAwi+mnRt2/
-	 LOZspQ7tugolA==
-Date: Mon, 18 May 2026 10:07:56 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: memory: renesas,rzg3e-xspi: Add
- RZ/T2H and RZ/N2H support
-Message-ID: <20260518-efficient-pheasant-of-courtesy-eeca11@quoll>
-References: <20260515115202.1515577-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260515115202.1515577-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=k20201202; t=1779091941;
+	bh=o4jxgzNs5bOZxSNNfPfJHCCzqAcCx9wktE71rzKkbIs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fKhBKul4pi752/HxGru+0o87Ya5NYHTpeQDmZl5zLbTyCAYlI57wIRzuaBzCY/mho
+	 XEoV9TL3q3oouTzCE1mmpXKKjm65nh9tE8KAdgQAd8bMPVJrV3F/P8FuAngdLGluJM
+	 PdoT00Tc6Bw2Pyf+o+kmNhiFyV0hbU3mBmMzxAEv5ZUNLAIJeD6QUkSq98HSXG2wDH
+	 KwHb8hed7e2lAIpTKUQ27Vaxe4Imm+W1uoCEbuqACp3K5/gwMTZBBtr0ZOpSr/bHhL
+	 7t4oxu/T4XOiughWj2M7U/KP1L8Pdn9ZdXH+jm4j6kIBy38IY+VKWJvZOV9HXbR+6f
+	 4E85qbgsKXyng==
+Message-ID: <3267e320-99e9-4858-a292-7271abd5b14c@kernel.org>
+Date: Mon, 18 May 2026 10:12:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260515115202.1515577-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Rspamd-Queue-Id: 722EF568693
+User-Agent: Mozilla Thunderbird
+Subject: Re: Stop false review statements
+To: Jani Nikula <jani.nikula@intel.com>,
+ Roman Gushchin <roman.gushchin@linux.dev>
+Cc: debarbos@redhat.com, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ Konstantin Ryabitsev <mricon@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>, sashiko-bot@kernel.org,
+ sashiko-reviews@lists.linux.dev, sashiko@lists.linux.dev,
+ Linux Kernel Workflows <workflows@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ devicetree@vger.kernel.org, kfree@google.com
+References: <4f3d7f48-5766-425b-91f6-0acdb5554584@kernel.org>
+ <07602616-412B-4ED8-95D7-588C0D077EE3@linux.dev>
+ <2e20badf27b6910d619329841e37d2961556056f@intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <2e20badf27b6910d619329841e37d2961556056f@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 5238F5688D7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299190-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299192-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,bp.renesas.com,vger.kernel.org,renesas.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,linux.dev:email]
 X-Rspamd-Action: no action
 
-On Fri, May 15, 2026 at 12:52:01PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 18/05/2026 10:04, Jani Nikula wrote:
+> On Sat, 16 May 2026, Roman Gushchin <roman.gushchin@linux.dev> wrote:
+>>> On May 16, 2026, at 2:33 PM, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>
+>>> I find it opposite: clogging commits with useless information, because
+>>> some arbitrary and completely closed-source tool did analysis means
+>>> nothing to me one year later when I look at the commit in the Git history.
+>>
+>> This is simple not true: Sashiko is fully open-source, under Apache 2.0 license
+>> and the code belongs to LF. Yes, the instance behind sashiko.dev is using
+>> Gemini 3.1 Pro LLM, which is not open-source, but it’s not a fundamental limitation - 
+>> Sashiko is supporting various LLMs, including open models - it’s just a practical
+>> choice: to my knowledge the quality of open models is not on par with frontier closed
+>> models and it would require a non-trivial amount of hardware and infrastructure to run
+>> an open model at the required scale.
 > 
-> Document xSPI controller found on the Renesas RZ/T2H and RZ/N2H SoCs.
-> The xSPI IP on these SoCs is identical to that found on the RZ/G3E SoC.
+> In the context of the "Reviewed-by: Sashiko" discussion, this actually
+> makes it really hard to assess the quality of those reviews. It is
+> *currently* using a boatload of tokens with a specific LLM, and I find
+> it's often asking pretty good questions.
 > 
-> The RZ/G3E HW manual (Rev.1.15) references bridge channel 1 and its
-> bits, however the hardware actually supports only a single bridge
-> channel (channel 0), matching the RZ/T2H design. The references to
-> channel 1 and its configuration bits will be corrected in a future
-> revision of the HW manual.
-> 
-> Update clock/reset constraints to handle the SoC differences.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
+> People build their reviewer track record and gain trust over time, but
+> the reviews from what is portrayed as "Sashiko" heavily depend on the
+> models and resources spent in the background. As a maintainer, it's far
+> easier (though still laborous) to deal with the negative feedback from
+> LLMs than the positive, because you won't really know how rigorous the
+> review was when the response is just "LGTM".
 
-Wearing DT hat to fulfill the process:
+And this already happened with reviewed-by statement given to one-liner
+patch which still was not good enough for the maintainer:
+https://lore.kernel.org/all/ce11a8ba-8ebc-4c09-b6d0-7e98febeae6b@roeck-us.net/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-but anyway I will be applying this.
+Obviously same applies to humans - they also give Rb which misses some
+aspects - but I hope a person would not review such one-liner. Sashiko
+did and as well can provide such "review tags" for every little patch,
+which is not helping us really.
 
 Best regards,
 Krzysztof
-
 
