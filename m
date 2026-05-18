@@ -1,241 +1,176 @@
-Return-Path: <devicetree+bounces-299271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299260-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CAtgLYjlCmqJ9AQAu9opvQ
-	(envelope-from <devicetree+bounces-299271-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:10:16 +0200
+	id 0MzhFyHlCmqJ9AQAu9opvQ
+	(envelope-from <devicetree+bounces-299260-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:08:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325A856A6BC
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:10:15 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C8556A5FE
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:08:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6FB9B30269FA
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:09:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0052C300BC55
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1FF31E82A;
-	Mon, 18 May 2026 10:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nAy4SXup"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FD231F980;
+	Mon, 18 May 2026 10:01:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1910731D366;
-	Mon, 18 May 2026 10:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12BA31A061
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 10:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779098990; cv=none; b=IcAkyn94civpsFL9O9D2B64M/cxn1jMCu0GPv8FXBDB/6q8A3QFclkxTBJJeYB2zwtFZeHZs1FftH6vlTbTWzPQ593+Mx1bCIT9oiJaPKNjdGDiOGAKYAChBE4LaG59uvu6QNZvy4TsezBffvK2R8TO2rRasli8swfHx1spQYbA=
+	t=1779098484; cv=none; b=Xoc+bL6p/NU6yHHEqvzBMxe5CszPgHdfs3yyDY/R9Bz5+BrGHQodatDMVBrXMQMRK6Hmn5gHp/Qu5v+Eys/xnxrRd5LOLnL8jsZhZKwzpbck0jQWcVdjLslI5pStL0ilLNfC66VOLC/lKat9xUmWQZ36MpJNOSKQnI68t0jJTvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779098990; c=relaxed/simple;
-	bh=u56jg7DlcON9+DXGEF4UUjo0mA99ELeWFFq/Ike9RM8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PuA6ERerbugj75ZPm3mIq2MDZogeYeRpSIEJ2MslV5+PcYNi9f1SOW5p0+mheLcRcRC1M/RsmB0KwlnlNbdu7xcqTqq/ARndal/BnwdaCkmLNwU/Q70119qdCHE7wsqig9CASsap/7LpTA3dD2nWWHL1yXOQDmjQOrCNC1s8N6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nAy4SXup; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A7E31C2BCC6;
-	Mon, 18 May 2026 10:09:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779098989;
-	bh=u56jg7DlcON9+DXGEF4UUjo0mA99ELeWFFq/Ike9RM8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=nAy4SXupexX5Yd/Jh65iRzTGGKibrwsVMx4Do553FwQOWDk8pNtcdeQiEYw/M1y1R
-	 2SOnNZtpy+5SgAR/UTPBE4m8hjVxGSdEUbt8WvJSeb8B1yYuFNRDAlglFqHBHRvNvW
-	 LJhMVt2nhI0SjNrBzmKBkv6E755upD6Yg+qxgyzaAuDuWiAD3NQL9/iqv1/z5yDSCg
-	 C4UPn298sXtznWOIpRevUfjk7j7bJ1BmpnEdD5QP4JwDMCfqnHEvF4jy4pM0WuR4EY
-	 vIQF/SIgRVbgrx2BqHCyHOeS9ws85RQFblwxJOdRTp5yJ2n1iRZo1rT/CCT0j7jJZL
-	 CeVlWEg1KkpwQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 965C3CD4F54;
-	Mon, 18 May 2026 10:09:49 +0000 (UTC)
-From: Rex Fu via B4 Relay <devnull+Rex.Fu.amd.com@kernel.org>
-Date: Mon, 18 May 2026 18:00:40 +0800
-Subject: [PATCH v2] ARM: dts: aspeed: anacapa: correct SGPIO names for
- monitoring
+	s=arc-20240116; t=1779098484; c=relaxed/simple;
+	bh=1276fB5RBiZbAgWn9O/5ryiqLf6OwFygyCuZizASu6Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UTePz5tXIfwew/WseSMciBjLw7TUK5oYj2aSkfLj3nClFOTqqQz/cKPBNCF7YoLSIRXDq4RyiTAoLOIG4tQupJZCKV1Bd12IjjEc1Zh1pKmunkHyZ9wXyBalXcbB2tT7R1H60UcsnQJyrs1FAaAcYqp8JPSuWzen80ZE5fGQ02c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1wOumO-0001E5-Tt; Mon, 18 May 2026 12:00:56 +0200
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1wOumN-000ZTu-1T;
+	Mon, 18 May 2026 12:00:56 +0200
+Received: from ore by dude04 with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1wOumN-0000000Eu5p-3xhv;
+	Mon, 18 May 2026 12:00:55 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>,
+	Linus Walleij <linusw@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v13 0/6] mfd: Add support for NXP MC33978/MC34978 MSDI
+Date: Mon, 18 May 2026 12:00:47 +0200
+Message-ID: <20260518100054.3552143-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260518-anacapa-sgpio-edsff-thermtrip-v2-1-e43b1847b2dc@amd.com>
-X-B4-Tracking: v=1; b=H4sIAEfjCmoC/42OSwrCMBRFt1Iy9kmSfhRH7kM6yOelfUKbkMSgl
- O7dtm7A4YHDuXdhCSNhYrdqYRELJfLzBvJUMTOqeUAguzGTXHa8qTmoWRkVFKQhkAe0yTnII8Y
- pRwqgjJbyql0nNLKtESI6eh/9R//j9NJPNHmP7sZIKfv4OQ4UsXv/bhUBAqSzLV5kU7eW39Vkz
- 8ZPrF/X9QvqpmBx2gAAAA==
-X-Change-ID: 20260430-anacapa-sgpio-edsff-thermtrip-acb228bf61be
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Rex Fu <Rex.Fu@amd.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779098465; l=4551;
- i=Rex.Fu@amd.com; s=20260417; h=from:subject:message-id;
- bh=R6pEDyauTB50Fmhvxn0QsYGtV2og2/4FKpGrDbJds/8=;
- b=RC64u2ytJ72iyOUFotIilIIvQnQwyvi5OfqMn3hKP+rzzxF8q2th+T0U1TtU6hXd+NbgacbZ0
- kRDPXrW5GeECk58Ywm1UgI3Pjx7idCfONhNhX9W2thRQSbad/63mm9J
-X-Developer-Key: i=Rex.Fu@amd.com; a=ed25519;
- pk=26ECoh24fxrbXDKgA4hCmgg0xjQ+IxU97kXb46ovwgc=
-X-Endpoint-Received: by B4 Relay for Rex.Fu@amd.com/20260417 with
- auth_id=738
-X-Original-From: Rex Fu <Rex.Fu@amd.com>
-Reply-To: Rex.Fu@amd.com
-X-Rspamd-Queue-Id: 325A856A6BC
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: 63C8556A5FE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299271-lists,devicetree=lfdr.de,Rex.Fu.amd.com];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-299260-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[Rex.Fu@amd.com];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:email,ozlabs.org:email,codeconstruct.com.au:email,amd.com:email,amd.com:mid,amd.com:replyto,jms.id.au:email]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-From: Rex Fu <Rex.Fu@amd.com>
+changes v7:
+- drop gpiolib irq fix and make pinctrl more robust against NULL point
+  dereference.
 
-Update several Anacapa SGPIO line names to match the existing platform
-hardware design and the signal names consumed by userspace monitoring.
+This series adds support for the NXP MC33978/MC34978 Multiple Switch Detection
+Interface (MSDI) via the MFD framework.
 
-The previous names did not match the actual Anacapa SGPIO usage. Some
-lines were named as CPU or CPU power-good signals, but they are wired and
-used on Anacapa for EDSFF presence, EDSFF power-good, boot EDSFF
-presence, and thermal-trip assertion monitoring.
+Architecture overview:
+* mfd: Core driver handling 2-frame pipelined SPI, regulator sequencing, and
+  linear irq_domain. Harvests status bits from SPI MISO MSB.
+* pinctrl: Exposes 22 physical switch inputs as standard GPIOs. Proxies IRQs to
+  the MFD domain.
+* hwmon: Exposes thermal limits, VBATP/VDDQ voltage boundaries, and dynamic
+  fault alarms.
+* mux: Controls the 24-to-1 AMUX routing analog signals (switch voltages,
+  temperature, VBATP) to an external ADC.
 
-Correct the mappings as follows:
-
-  PWRGD_PVDDCR_SOC_P0     -> L_PRSNT_EDSFF0_N
-  PWRGD_PVDDIO_P0         -> L_PRSNT_EDSFF1_N
-  PWRGD_PVDDIO_MEM_S3_P0  -> R_PRSNT_EDSFF2_N
-  PWRGD_CHMP_CPU0_FPGA    -> R_PRSNT_EDSFF3_N
-  PWRGD_CHIL_CPU0_FPGA    -> HPM_EDSFF_PG
-  EAM2_CPU_MOD_PWR_GD_R   -> PRSNT_EDSFF_BOOT_N
-  CPU0_SP7R1              -> L_EDSFF0_PG
-  CPU0_SP7R2              -> L_EDSFF1_PG
-  CPU0_SP7R3              -> R_EDSFF2_PG
-  CPU0_SP7R4              -> R_EDSFF3_PG
-  HPM_AMC_THERMTRIP_R_L   -> AMC_THERMTRIP_ASSERT
-  FM_CPU0_THERMTRIP_N     -> CPU_THERMTRIP_ASSERT
-
-The left-side EDSFF slots are numbered as EDSFF0 and EDSFF1 to match
-the platform slot numbering used by userspace. The thermtrip names are
-also updated to describe the asserted condition monitored by userspace
-instead of the raw active-low signal names.
-
-This is a naming correction for the existing Anacapa hardware design.
-There is no new board revision or underlying hardware change involved.
-
-Signed-off-by: Rex Fu <Rex.Fu@amd.com>
----
-Update the Anacapa SGPIO line names to match the existing hardware
-design and the platform signal names used by userspace monitoring.
-
-The v2 commit message now explains why changing these userspace-visible
-GPIO line names is appropriate and lists the exact old-to-new mappings.
----
-Changes in v2:
-- Reworked the commit message to explain why these userspace-visible
-  GPIO line names are changed.
-- Listed the exact old-to-new SGPIO line name mappings.
-- Clarified that this is a naming correction for the existing hardware
-  design and not a board revision or hardware change.
-- Link to v1: https://patch.msgid.link/20260430-anacapa-sgpio-edsff-thermtrip-v1-1-2fd5e72435d0@amd.com
-
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Joel Stanley <joel@jms.id.au>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-aspeed@lists.ozlabs.org
-Cc: linux-kernel@vger.kernel.org
----
- .../boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts  | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-index 2cb7bd128d24..e898bc11e6f5 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-@@ -908,11 +908,11 @@ &sgpiom0 {
- 	"", "", "", "",
- 
- 	/* G0-G7 line 96-111 */
--	"PWRGD_PVDDCR_SOC_P0", "",
--	"PWRGD_PVDDIO_P0", "",
--	"PWRGD_PVDDIO_MEM_S3_P0", "",
--	"PWRGD_CHMP_CPU0_FPGA", "",
--	"PWRGD_CHIL_CPU0_FPGA", "",
-+	"L_PRSNT_EDSFF0_N", "",
-+	"L_PRSNT_EDSFF1_N", "",
-+	"R_PRSNT_EDSFF2_N", "",
-+	"R_PRSNT_EDSFF3_N", "",
-+	"HPM_EDSFF_PG", "",
- 	"PWRGD_CHEH_CPU0_FPGA", "",
- 	"PWRGD_CHAD_CPU0_FPGA", "FM_BMC_READY_PLD",
- 	"", "",
-@@ -934,7 +934,7 @@ &sgpiom0 {
- 	"EAM3_BRD_PRSNT_R_L", "",
- 	"EAM0_CPU_MOD_PWR_GD_R", "",
- 	"EAM1_CPU_MOD_PWR_GD_R", "",
--	"EAM2_CPU_MOD_PWR_GD_R", "",
-+	"PRSNT_EDSFF_BOOT_N", "",
- 	"EAM3_CPU_MOD_PWR_GD_R", "",
- 
- 	/* J0-J7 line 144-159 */
-@@ -957,8 +957,8 @@ &sgpiom0 {
- 	"PDB_ALERT_R_N", "",
- 
- 	/* L0-L7 line 176-191 */
--	"CPU0_SP7R1", "", "CPU0_SP7R2", "",
--	"CPU0_SP7R3", "", "CPU0_SP7R4", "",
-+	"L_EDSFF0_PG", "", "L_EDSFF1_PG", "",
-+	"R_EDSFF2_PG", "", "R_EDSFF3_PG", "",
- 	"CPU0_CORETYPE0", "", "CPU0_CORETYPE1", "",
- 	"CPU0_CORETYPE2", "", "FM_BIOS_POST_CMPLT_R_N", "",
- 
-@@ -984,8 +984,8 @@ &sgpiom0 {
- 	"HPM_PWR_FAIL", "Port80_b0",
- 	"FM_DIMM_IP_FAIL", "Port80_b1",
- 	"FM_DIMM_AH_FAIL", "Port80_b2",
--	"HPM_AMC_THERMTRIP_R_L", "Port80_b3",
--	"FM_CPU0_THERMTRIP_N", "Port80_b4",
-+	"AMC_THERMTRIP_ASSERT", "Port80_b3",
-+	"CPU_THERMTRIP_ASSERT", "Port80_b4",
- 	"PVDDCR_SOC_P0_OCP_L", "Port80_b5",
- 	"CPLD_SGPIO_RDY", "Port80_b6",
- 	"", "Port80_b7",
-
----
-base-commit: 9974969c14031a097d6b45bcb7a06bb4aa525c40
-change-id: 20260430-anacapa-sgpio-edsff-thermtrip-acb228bf61be
+Initial pinctrl implementation by David Jander, reworked into this MFD
+architecture.
 
 Best regards,
---  
-Rex Fu <Rex.Fu@amd.com>
+Oleksij
 
+David Jander (1):
+  pinctrl: add NXP MC33978/MC34978 pinctrl driver
+
+Oleksij Rempel (5):
+  dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+  mfd: add NXP MC33978/MC34978 core driver
+  pinctrl: core: Make pin group callbacks optional for pin-only drivers
+  hwmon: add NXP MC33978/MC34978 driver
+  mux: add NXP MC33978/MC34978 AMUX driver
+
+ .../bindings/pinctrl/nxp,mc33978.yaml         |  158 +++
+ drivers/hwmon/Kconfig                         |   10 +
+ drivers/hwmon/Makefile                        |    1 +
+ drivers/hwmon/mc33978-hwmon.c                 |  576 +++++++++
+ drivers/mfd/Kconfig                           |   15 +
+ drivers/mfd/Makefile                          |    2 +
+ drivers/mfd/mc33978.c                         |  187 +++
+ drivers/mux/Kconfig                           |   14 +
+ drivers/mux/Makefile                          |    2 +
+ drivers/mux/mc33978-mux.c                     |  141 ++
+ drivers/pinctrl/Kconfig                       |   16 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/core.c                        |   40 +-
+ drivers/pinctrl/pinconf.c                     |    9 +-
+ drivers/pinctrl/pinctrl-mc33978.c             | 1027 +++++++++++++++
+ drivers/platform/Kconfig                      |    2 +
+ drivers/platform/Makefile                     |    1 +
+ drivers/platform/misc/Kconfig                 |   10 +
+ drivers/platform/misc/Makefile                |    6 +
+ drivers/platform/misc/mc33978-core.c          | 1133 +++++++++++++++++
+ include/linux/mfd/mc33978.h                   |  160 +++
+ 21 files changed, 3504 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
+ create mode 100644 drivers/hwmon/mc33978-hwmon.c
+ create mode 100644 drivers/mfd/mc33978.c
+ create mode 100644 drivers/mux/mc33978-mux.c
+ create mode 100644 drivers/pinctrl/pinctrl-mc33978.c
+ create mode 100644 drivers/platform/misc/Kconfig
+ create mode 100644 drivers/platform/misc/Makefile
+ create mode 100644 drivers/platform/misc/mc33978-core.c
+ create mode 100644 include/linux/mfd/mc33978.h
+
+--
+2.47.3
 
 
