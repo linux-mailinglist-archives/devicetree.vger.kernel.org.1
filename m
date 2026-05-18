@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-299615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299616-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GNvFFEh1C2oHIAUAu9opvQ
-	(envelope-from <devicetree+bounces-299615-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:23:36 +0200
+	id mHefCmF1C2oHIAUAu9opvQ
+	(envelope-from <devicetree+bounces-299616-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:24:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C271B573528
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C52657354D
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:24:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0F9843042C4E
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:23:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0C7F6304AA89
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E9B3932C6;
-	Mon, 18 May 2026 20:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81E53932D1;
+	Mon, 18 May 2026 20:23:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SlmOn0XF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DhHbnNes"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCE4392C2C
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0203932D0
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779135793; cv=none; b=T1u66N2Z5x8L5MZPDirAJwTsz3SF+LDFBQOTE4oBXcD2flq71Mw6FAutr1EddzgNj2Nasu0ksmda4j8EdMBEslysvvQlWFbupQdfDivjuAgWYTVHxeI7WoIcEeLp9ktz8oAALpkSNRp1a/SHjmDHEq5mb4GKLwg1mOZmGWW4OTc=
+	t=1779135799; cv=none; b=ochVhCUItoCKTInuQZGuP1dIJRbEsWdJ0R9RqhzbGDM0yoam1p1jZOfH/j1cDXyqPXCY7J8JTm6n49FhpbaSuQbhB94+c16qMD4HzadP2Lg9NffxSXENxgapxinNknG/xCwW2tH/qA1WK1SWd+OMPtELaXvLe4dXUK7x460kEtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779135793; c=relaxed/simple;
-	bh=CJeSSYYnZeStLm7YVc5JWFlVV48PQFOvjmfLZx4cw/U=;
+	s=arc-20240116; t=1779135799; c=relaxed/simple;
+	bh=TYdy6nuGg2H6DLqJvqnXf3NKbUg3XykFU/TUZ5CEuWI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=czuSjpBiSTkgwU80iG299WE9H1AiTXKieSzo25vWKEA37ZmQWEWnPdC1kLItLxt2ACC89Z6ZaWNe+58612tuZJXHxxunbXY3TUkonCS3KPi2OHTA1ihmA18u7MGyXHA47K1sf2Cpxfx3jnYf9mS1dmmuUyRhufTpKTuLPhB4Npo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SlmOn0XF; arc=none smtp.client-ip=209.85.208.176
+	 MIME-Version; b=Dj4K24WZIHcexdzWFENPmLGeRhmvNUsAlGCKwzpEceXLTnk95kbv9dUOKKi3zj1Fr57+FBkl1QNQKTAX5pbcTUD6Y3h+LiXQrCggh3o4321CM3uh1dc5xHFM2k+LepIM8s+rn7VUkZeM7cNqfyusEWhz/nRGeWwvoOspPe3ezCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DhHbnNes; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-393a44854d2so26522391fa.3
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:23:11 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-38e800deae4so28045641fa.0
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:23:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779135790; x=1779740590; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779135794; x=1779740594; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tLtvCiHLhOODkbTb6ldPXwhZ1lgl9LVuxx7kGug/QYY=;
-        b=SlmOn0XFAv6VxT8niudZz3kzeKSzKL0MZZrEh2uMcyPYPhOk3IiOEq+m1keWp6lJGl
-         6CWdHexjCw4Ilm3Yb9uOS7fPXM3cBgT300bb1qjOV2TgV4xYbUuxo4V7YKwycu9cfoxn
-         +owxja5rcHk8aEeR7vzEeGVjOxnq0NLEhvyIGFSUirioGAc1FHGOYYqNZGdKieuVzbVn
-         s3OT2KVf+IkcRRG0o4EF/MHYgNQghvvrEajsC7FM51LDx1bIeNMff4FWCIaSjpB1Ded6
-         /cdtRBjETTxg1Tz1Gmdfg2zHIZxoawWxsIv+oNikpqrGhhSUvQRDUTiCZNZpyE5viUCq
-         iFMA==
+        bh=V7MgMydFIuv/r1d4/vML1sQi26pQ+VbIk3AiQmKgmmE=;
+        b=DhHbnNesJe2+EWPYUwyEinfP/Kg5FxHd6NLWVezExRXTBICvlq8xhfcts/6OUdR7fo
+         mXo/TsfgiWmX/z9bivqz7LiKH9Xjv1dyHqJ0zHNXt5pJ7+QvdP2UskWeMxnCgdYFKjEU
+         rSXn9xDp1i1zxJ7E0AZd+DgLraEqrh/GOFZ8Zc0rHCD+a0ual9Mt54U6ZfTlu9g7lQUZ
+         iQ3znw2kp1rSCDIrtmjOKB9EtWuxi6v329Fi/f54fF0oWX1Ut5PVluBZY0s22aOB1gWd
+         bPKbDg7gxsSDXJL2NMb8QlwyColEUmZhu03YqFmZTazKJ96L8RfDCt3P7dLJDwCwVls6
+         FMZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779135790; x=1779740590;
+        d=1e100.net; s=20251104; t=1779135794; x=1779740594;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=tLtvCiHLhOODkbTb6ldPXwhZ1lgl9LVuxx7kGug/QYY=;
-        b=eWANc/KVVsTRCvJI5ZIW+1+QCNQz4ZZZZvZhba0WzZgClBccAD1KlYaJOgD0+Y6Bco
-         shD9TqVglRsd1ryYcjzDz4o5EOtE36uMc86yAzxqSuGdXzpgfMo8fHFmTJv7fP7JZFT7
-         HfFe0MIOH+15L6GRzYrM6wz1eZibaSz8hzINAoKObzMaymmFFtCsmO31R0jnROp6yrbx
-         u43B349yoVqHb+jhG8I9RcY6LNOIqEolt2LyA3emyqufJTr9pvg42KVutsE3ZpGgIXwa
-         L9Nvaa0j2YuQlqlUgPydp1SwDNiRKkrAj/QvMfF6uoxSunjrphTOcBcinkXgxix6kJhE
-         fhsw==
-X-Forwarded-Encrypted: i=1; AFNElJ/0Nlxe2wGbDLF7f3oZHYPFBAzID6hf2Bo457XTNtgN7QMKajAt6eXAfeF28sTm8wJGF1GQfU5hG9OE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxv9aTXF/hYSmDy0/tWNkn/G8HiSg9kc3hThvZUMiqyMYqhAcXa
-	csOnSQGomacaxzFIOnmHkpcpQLHe9deIHzPBZa6WNzHIP6r9x86fZJxU
-X-Gm-Gg: Acq92OFtfs290pHjZvdCwQFouUO3BguSXcaPdeIm6080E3gYQjOLaohu/hq/NtUoDHs
-	dChr2Xx2Fe+1yfwYEcllxx343pKpp6zrcocuh3HIOvsy+fsS4wapoQCAhK+e4ZV12l3XdW+VXsZ
-	unVZRg/BL1cfOZGiM8vp3Y0gXYYBGke3W7Kyr/neAbGXZwl4lQoBGjky1Gwih/TqjSN8u7Znxdm
-	f4UbFpSBx62iSZ8BcgvfGMo4jUl6di/Zw8A993r8ZuWVmUpTlRF8Cyl4fJ5Rf0RnLdgetno6Pg2
-	A2XSorj9YDuG8gPJ0qNNLTWik+K5S/TUbmQossm5qTvV1XdyfpZyTo+Jpi9EMdPN+sN6K2wSrOV
-	vk46ODttrcpglgYPVtGxEiyzYejq6FcXpyE+uWxnqyGOofGsVSexY+3isFaYR/HtsXL4U+9vnDe
-	gIeyiuBed286ziIFVQ9TrBvpNLBAcxsGDy2zyv9jb1QBWMGHkds+4=
-X-Received: by 2002:a2e:a995:0:b0:393:a4f5:3e0f with SMTP id 38308e7fff4ca-39561ae1a22mr51690241fa.2.1779135789949;
-        Mon, 18 May 2026 13:23:09 -0700 (PDT)
+        bh=V7MgMydFIuv/r1d4/vML1sQi26pQ+VbIk3AiQmKgmmE=;
+        b=Z8CkNMU6oGDhDu9G0+2InccTZG8lodXcnWROXZS5picEGdNokWzu2VQTZm1N69UibW
+         mb+l4I3Y5nG+XcGPYlSkSb+jtqyxlMdmfBknVaYL+0Dd2YSpy9dUcUFYGygc1iryDtL1
+         YG/iGHlzoEuGBBgYBU3s2VgAVBMNyC+RYwWIgM+3/rreeE/d6OPgnEWhyfoawUWqTsXF
+         J2S1HUxKE8vW+RzuvMSAjG3arw+J4UXf6l3YFUc1DP3i1ztQVHfSVD6j+/WGR1y6XJCm
+         HpBZFybzvvt3Jyp+ahrQrfxXIqA9zPzw6cIXROLXjH03XMpKZOxuYi6+Mxgms/8Wjh/4
+         fz9A==
+X-Forwarded-Encrypted: i=1; AFNElJ8kS4/gg3+CX7eAfHyXPfSwvOzTwD/fR2YnQ3Es8v44fvpRkEn5iKarKr48Et7kTO0eqw5jiKwXuU9Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxx+jPwJMDDKsj7y27zXW72pof4CiWx+dhwmBmIekvlvwqYUid+
+	FNrO6xp7tkVeS8AFz9gyFVat52NDvcnzJYXS/2KE1/SdDH1LmJcqRtVi
+X-Gm-Gg: Acq92OEQsgPomVHT9LRA1lo1kdrTJiQxwHgZ2DVgixMACuls/hl//O4tBNVuBHC9fCO
+	6/Mkf5eUTXKqxqZo0t8GLTAjeUWO5J20ruhPi7suKBlPT4vOBWL9aKGJxNh7EWvpDToKkn0zFQm
+	4LRKRYVnTkzb4TBjScwiCLKi41DMN+okOrr1d2pcoPUot1nlkFsNmKaNhSMG308jthJ4FRjTy7l
+	Rvm9KCdpQ/6KDV5a4SlXr52ce3vcNDurEIs7cSNv+mhGb75QzMqra+jZn4bguw0dYe/EwuOWkSW
+	BnSOFcSxw4S4kHNhCrG7bd/46KqvVpdXDEskV5AHLHoIMmG19UOxC3BFhwllXuRKgEIzvNigKB1
+	9DWOMj+5+RxQ2ZAcP5LBHe4qC/buR++eqyh5XhaGy6SYj+b/Vb3N1+/gHt0inOBMauSL/QKI4NY
+	Vw1qBG7Db9ZahG26ZVn37iYClDlf7WjxYyKRi9EvhQ
+X-Received: by 2002:a2e:3318:0:b0:393:a145:54f3 with SMTP id 38308e7fff4ca-39561d62df2mr40726251fa.15.1779135793502;
+        Mon, 18 May 2026 13:23:13 -0700 (PDT)
 Received: from localhost.localdomain ([90.157.113.57])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-395887b42f8sm15225061fa.36.2026.05.18.13.23.07
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-395887b42f8sm15225061fa.36.2026.05.18.13.23.10
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 18 May 2026 13:23:08 -0700 (PDT)
+        Mon, 18 May 2026 13:23:12 -0700 (PDT)
 From: taygoth <taygoth@gmail.com>
 To: linux-arm-msm@vger.kernel.org,
 	linux-usb@vger.kernel.org,
@@ -93,9 +93,9 @@ Cc: Mark Brown <broonie@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
 	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
 	Casey Connolly <casey.connolly@linaro.org>
-Subject: [PATCH 4/6] arm64: dts: qcom: pmi8998: add USB Type-C and VBUS regulator nodes
-Date: Tue, 19 May 2026 01:22:49 +0500
-Message-ID: <10efd57e82ebceedb75dbe3e038af81de4f1557c.1779127507.git.taygoth@gmail.com>
+Subject: [PATCH 5/6] arm64: dts: qcom: sdm845-oneplus-common: enable USB Type-C role switching
+Date: Tue, 19 May 2026 01:22:50 +0500
+Message-ID: <ba3804796cc651aa281deab49234ca52cfdd3696.1779127507.git.taygoth@gmail.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <cover.1779127507.git.taygoth@gmail.com>
 References: <cover.1779127507.git.taygoth@gmail.com>
@@ -110,20 +110,20 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,quicinc.com,linuxfoundation.org,linux.intel.com,linaro.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299615-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,quicinc.com,linuxfoundation.org,linux.intel.com,linaro.org];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-299616-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -131,59 +131,101 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_PROHIBIT(0.00)[0.0.5.20:email,0.0.4.76:email,0.0.3.232:email];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,c000:email]
-X-Rspamd-Queue-Id: C271B573528
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 9C52657354D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The PMI8998 PMIC includes a USB Type-C detection block at SPMI offset
-0x1300 and a USB OTG VBUS boost converter at offset 0x1100. Both are
-left disabled here so that only boards which wire up the connector and
-USB role-switch enable them.
+Enable the PMI8998 Type-C controller and USB OTG VBUS regulator so the
+OnePlus 6 and OnePlus 6T can dynamically switch between USB peripheral
+and host roles depending on the connected cable, instead of being
+locked to peripheral mode at boot.
 
-The VBUS regulator falls back to the qcom,pm8150b-vbus-reg compatible
-because the OTG register layout (CMD_OTG, OTG_CFG, OTG_CURRENT_LIMIT)
-is identical to the PM8150B SMB5 block.
+The dwc3 controller is moved from dr_mode = "peripheral" to "otg" and
+gains a usb-role-switch property. The existing usb_1_dwc3_hs endpoint
+declared in sdm845.dtsi has its remote-endpoint pointed at the new
+pmi8998 Type-C connector subnode. The maximum-speed override is no
+longer required because role switching infrastructure handles speed
+negotiation through the usb-c-connector.
+
+The VBUS regulator current limits (500 mA - 1.5 A) match the boost
+converter capability noted in the downstream qpnp-smb2 charger config.
 
 Signed-off-by: taygoth <taygoth@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/pmi8998.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  | 43 ++++++++++++++++---
+ 1 file changed, 36 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-index cd3f0790fd42..08a5f58c9b85 100644
---- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-@@ -29,6 +29,25 @@ pmi8998_charger: charger@1000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 6b7378cf4d49..42badc71ba6a 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -606,6 +606,36 @@ &pmi8998_charger {
+ 	status = "okay";
+ };
  
-+		pmi8998_vbus: vbus-reg@1100 {
-+			compatible = "qcom,pmi8998-vbus-reg",
-+				     "qcom,pm8150b-vbus-reg";
-+			reg = <0x1100>;
-+			status = "disabled";
++&pmi8998_vbus {
++	regulator-min-microamp = <500000>;
++	regulator-max-microamp = <1500000>;
++	status = "okay";
++};
++
++&pmi8998_typec {
++	status = "okay";
++
++	connector {
++		compatible = "usb-c-connector";
++		label = "USB-C";
++		power-role = "dual";
++		data-role = "dual";
++		try-power-role = "sink";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				pmi8998_hs_in: endpoint {
++					remote-endpoint = <&usb_1_dwc3_hs>;
++				};
++			};
 +		};
++	};
++};
 +
-+		pmi8998_typec: typec@1300 {
-+			compatible = "qcom,pmi8998-typec";
-+			reg = <0x1300>;
+ &pmi8998_flash {
+ 	status = "okay";
+ 
+@@ -890,19 +920,18 @@ &usb_1 {
+ };
+ 
+ &usb_1_dwc3 {
+-	/*
+-	 * We don't have the capability to switch modes yet.
+-	 */
+-	dr_mode = "peripheral";
+-
+-	/* fastest mode for USB 2 */
+-	maximum-speed = "high-speed";
++	dr_mode = "otg";
++	usb-role-switch;
+ 
+ 	/* Remove USB3 phy as it's unused on this device. */
+ 	phys = <&usb_1_hsphy>;
+ 	phy-names = "usb2-phy";
+ };
+ 
++&usb_1_dwc3_hs {
++	remote-endpoint = <&pmi8998_hs_in>;
++};
 +
-+			interrupts = <0x2 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-+			interrupt-names = "type-c-change";
-+
-+			vdd-vbus-supply = <&pmi8998_vbus>;
-+
-+			status = "disabled";
-+		};
-+
- 		pmi8998_gpios: gpio@c000 {
- 			compatible = "qcom,pmi8998-gpio", "qcom,spmi-gpio";
- 			reg = <0xc000>;
+ &usb_1_hsphy {
+ 	status = "okay";
+ 
 -- 
 2.47.3
 
