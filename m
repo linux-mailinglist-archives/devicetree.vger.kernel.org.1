@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-299551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NrVJE48C2oJFAUAu9opvQ
-	(envelope-from <devicetree+bounces-299551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 18:20:30 +0200
+	id UA0eB54+C2pQFAUAu9opvQ
+	(envelope-from <devicetree+bounces-299553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 18:30:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D8E1570C4E
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 18:20:29 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B7B570EEA
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 18:30:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 843FF30095C6
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:20:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1345930A1E5B
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DC948AE0A;
-	Mon, 18 May 2026 16:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDF348B386;
+	Mon, 18 May 2026 16:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GVWLvW7B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mOvbwuoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C783224B05
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFEC481FBD
 	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 16:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779121224; cv=none; b=gCVe3L90QEsr1vyCWXyDeJt+Eby0Lm7VoIWGYHyU2+/uuKlXT9zgWKHkpqngZf1knhdUXTxCYxdnNibJqtzyfcwDonx0YYzC378QNwMca9DLO+KKb/OF+VwFZMJQRSz9TQ7hnKT79/3Rec3fZZEjuh9WggzA7ValCywegHjbYRQ=
+	t=1779121228; cv=none; b=oCz+s8/chwbR1LVTStmTTM/kmtxwnOvVPyzeW1MjTDJoTfcv787zYtqr+j3ny3fWCpzEofP7Wr2aWIFHI4a8C3L+xjxDILKyE1YFrc7PlHziZls9uLdq0pda3RXUsYFaVmO074zyK+m8IHnM09nlMqDsYOPyIP3Ia9RutWzCO88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779121224; c=relaxed/simple;
-	bh=szwVb7ha6bAIomsunYV5j5o9HMUkT6Mku/1VrKH1sas=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CJSqtjZq8nLLf+sgcF0FO8dEQ0aBq2YkanKSUYJ75JKb91j0CXDTUT6ng+Q4+AnN4jh4V3d5YBchMwx4Jyq0PBTPR3Nh8X6ZouzfCF0i/oS62YJ5RxIEZBKI7f3exUA9H2GvdsQVyL+UJRSRFD9W0u443otWLBe/U+eEEOFdAHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GVWLvW7B; arc=none smtp.client-ip=209.85.128.174
+	s=arc-20240116; t=1779121228; c=relaxed/simple;
+	bh=KtWQWhKC3Kxohq5UMc3habVp2D7N2gtkE1n6puIjLZU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=kH7kpvn4YnKLVRa9NURPxmktR/27XR7dcE4BRk8atlB0J1PAHnph31gyEU25beWpy7yIJ9lP+q/iVXjrsg1BjhnqxoudzaBvVPSIzp/N1FodN8gdgB2H05VFOj9XjIH3GGL2RmeRO5edLwLllCLkmXoao0mz5vctaO6aYs+3r0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mOvbwuoF; arc=none smtp.client-ip=74.125.224.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-7b4ee3a88e1so20214577b3.1
+Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-651d6347a69so4193918d50.0
         for <devicetree@vger.kernel.org>; Mon, 18 May 2026 09:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779121216; x=1779726016; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Urn1ATBBB6xhhKW9jeomFsTgrcuoAc20SB+ogv/eOw=;
-        b=GVWLvW7BCeg7eTLRlKpWq+4UBVGXVwf22K4mpRz/WQvHpF+92ob05Eqev4p6UlXnIq
-         ubX9Hc+eHSOC1zqXLnEn8PNJX1ew5xHVDKzK/z3ZxUHSec+8yo577vZWVgsCEa7oRDZg
-         jb+YzzPhX5VXUac8l0JlzY3psarXh4qZVOm9+Ffcp3P71hM7D0plp8T5ritm7TCtwRI8
-         +NSOcZZ+SNu88fj1vIa6lxvDkTCS2XZGFFw84ZhXjIaD8QygxbBumsMtq0TSaFJTgPN9
-         H/ukRWfqTYg5MLbGC/I6f9xz4gGokeCEezL8WKBDMUjZ9R4FD9WMWmdlaoqoVueS+4At
-         ppJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779121216; x=1779726016;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1779121217; x=1779726017; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/Urn1ATBBB6xhhKW9jeomFsTgrcuoAc20SB+ogv/eOw=;
-        b=P9/VWROppjNewdMzgpr2TFIFE6/GJU2jC7Yq+rEby0Z53acGiGjPv6pFOmmuS3zl1P
-         mC4m5blKVX2+1dI9FJpRCG6vSqJy/MF+n4HEoUw/Rp3/64dOJ5e9lp9IAfwhHwu3ps/Y
-         HKb2A16LKCbMsJJ5rzGMJjV64JKD0Oig2eLHd4RKMH/YXUsOPVd3EXR28W5HiV4BCQV4
-         xsdp6kF87hy/m9t6nnWKcjTYGQoAb4NntaPqm0ZonFAkjVmN3XZXufChznbwuZw8iWM+
-         kY6MYSxZOgtQszXIdj9+D4ARt1sd9k2wPm+GeBtjLzQSc9s+AG2v/9IvxND3P8CA4oDw
-         cCww==
-X-Forwarded-Encrypted: i=1; AFNElJ/UXA/+HwjCuLwCfvVPW4UHsYmGkDXZIPWCNL3UaY0xeJrVosVXqAsjqyUTXC1i83gUqZIin8IDWQSV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy93x1qjUvGTGLa9JpUrJRl5e5zKFhWKCqfssqdnofWJ5DL9vJg
-	p6eEv0iXvNdrN/Ft2pnYRZ9eoNT2tev0ax++wFd8GfNAqhNF0Oy2TQW+
-X-Gm-Gg: Acq92OHMfylpVCkPGXiglFAOjx0DhqNxSzEMlmItENOaBPI/8N5+zZEEShjlLAzpVJy
-	X8ZlTYtCg/Uy609fDz26+B4483xb58FB3UCQW/DFsA5iQXJZ1Qw5ZBeWTajYk9l4zxzsZY+NQbc
-	BLY95F+9uTs7f8GN18Ui+xFfU5PTZdGZ91gkdWh+cn8E0LeWCCDTJPexpBR0Rhh3t+3j4P50Kqy
-	iiTh1/wgJpMnr2TxlbS4mo8V7JkHP49XHHXDq9GcjMiusD4s/0H3vTRZ6ssdW2VuHXpbooav0/8
-	fjCEbZnMd4IVxg9K/UVW9PmawuQ7f/+df/vqrlh5FfULEed3c+D4jmn0EgFXCpXAX+zoLQxhcZ8
-	1Z4bkM3UGFbpZFUAAuxd9scvT72m6aMdLGHUFtnrmIaA/mI/cRSoeFRe5iSVYHeUbJhEGmdMxdh
-	4jDfbGETpaAEdhIt6k+eNhRz+8Acq3T10yljTv5u0pNg==
-X-Received: by 2002:a05:690e:1589:20b0:64a:ce9a:ace2 with SMTP id 956f58d0204a3-65e228a2c9amr13014197d50.56.1779121215879;
-        Mon, 18 May 2026 09:20:15 -0700 (PDT)
+        bh=m95kSTeSTgyCfxV7Wyxfftox/V8NCoAaJWZ67QlB3Ww=;
+        b=mOvbwuoFyUruF+IIX9LuZ6MfteNYMWr4CzJRV0lzmy2BwFxtROds+Q+BZZ9IzVl581
+         jAE/NBi+JXiAhmjP6u5brCE/95xWDlVjDTHOTpWex4CCRNgFDKK6kneBjipAIUaG37Qa
+         7hq6YfdM3aABtEIK6TrenMHZ9TRpp7a0fpMx7tBe3F/pt7Z0chZEpgBO5uRSQdNABj7/
+         dqeXCuq6qtEHsMs0yrNF0jn+U3HUjgXY+rfLCD/zz2QoGQ318eREeMm9AgJp7x3U7i5i
+         Zxf+rPQK3Rlqv2PhmeOWhdNLwnfrq6eIbiGhnE6XCIGXnpCUwebAWDq8kCLy9uB/9zfX
+         ELHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779121217; x=1779726017;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=m95kSTeSTgyCfxV7Wyxfftox/V8NCoAaJWZ67QlB3Ww=;
+        b=j9gVc7iMy7q7V+jdrYdYd1sWQZZAAF2eN5V1rzGdK4lWXDy6eCZ2+AvTKzp8gU4Uxa
+         lg9OQ6TNFZDy+9w47ci0BNxiTQm7XblTw3A98LeiBvOF0uBqvyEIQU5FlmeRc7zKXmfd
+         f2LTqdAicodNuIuEzv8k1OMsjKWgQeCxt/JXH4bOlveTtL79/nxl8FftAZV0iXmnsAQ7
+         rH7kmfr9UleRQqim6TU3CY99SKcLso77UPcKihPvuj8agQbs9i13dXToSJq0EjXR0TP2
+         FR64AAf8t4CFYH24R0110d7aj2oh5BQJxwQ5XEMATdhMKwP4FQ1NBD6BCm095Cn1wNp0
+         K6RQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8gOCpkHTtPJO1CJxmGjOXN51vz1+3ewnZiNXkmWqfhlnRmm2HyPqzrjTimPXQTvUbWUTnulXgvaDsb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzwcam7l96NV5U1CNhi1WZPdrLo98EfYmS4Qbx1kxd6nqARpS+5
+	bEb7s8jXOUQf0bB+2xIrjkxbW7QEPOG7ce43kVNE9CIRNNugqQinnXJ1
+X-Gm-Gg: Acq92OEW6sLdO+YHll9xO7CvjyAqEPGIdjY1pCsnXPCRjpFoFam8+JlaGZ9Wth1RwMM
+	U7w9q48l6dd+mpAR/FFI/xVCysz/CawhZdsskWTeC3gpxf6SJgXiCArd+q6BiJ1vUQ1m/0BrCQR
+	ePrQJ6vMO/TwGl4oxRUWfC+SapTz6pFQw3iwLjEt9FYpf5IFWPx/XpHp2h6QrFrnaP4aB7V4Km2
+	4e90PwIi0rj+63wvw/MCsAswS5SDZ9mZOHOgpKNS78J963d1N+0c+E2HAZ3eXPLmAde5iCXMV6K
+	fU/bzsRrTESMqFGh1AlHyhTnwWK4aNIWNv1ezrhVDpeqYJgTkXWqCNrZ9CN2TBBSOWxQhkTPr8W
+	8maKBnf8TL69it7+ihNPqfmK8vOM176CRs/sEyiQbWL45cEQbNWMJt0KFEtstrTB5IWeb9gNqB4
+	GdeCZVB0zsdYSt3gNlRvmlmOs1HgS2u1qmq0+9N45kZKYGh79Uj82R
+X-Received: by 2002:a53:b451:0:b0:65c:d26a:6e71 with SMTP id 956f58d0204a3-65e0b225732mr12388187d50.27.1779121216830;
+        Mon, 18 May 2026 09:20:16 -0700 (PDT)
 Received: from fsh.attlocal.net ([2600:1702:56e9:4b40:ed8c:6b8b:1fa3:d14b])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-65e0db60379sm6596021d50.14.2026.05.18.09.20.14
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-65e0db60379sm6596021d50.14.2026.05.18.09.20.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 09:20:15 -0700 (PDT)
+        Mon, 18 May 2026 09:20:16 -0700 (PDT)
 From: Akash Sukhavasi <akash.sukhavasi@gmail.com>
 To: krzk+dt@kernel.org
 Cc: robh@kernel.org,
@@ -83,10 +85,12 @@ Cc: robh@kernel.org,
 	linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] dt-bindings: usb: richtek,rt1711h: remove .txt binding and fix schema
-Date: Mon, 18 May 2026 11:20:12 -0500
-Message-ID: <20260518162014.18251-1-akash.sukhavasi@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: usb: richtek,rt1711h: remove deprecated .txt file
+Date: Mon, 18 May 2026 11:20:13 -0500
+Message-ID: <20260518162014.18251-2-akash.sukhavasi@gmail.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260518162014.18251-1-akash.sukhavasi@gmail.com>
+References: <20260518162014.18251-1-akash.sukhavasi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,18 +103,18 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299551-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299553-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
@@ -121,50 +125,71 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_NONE(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,0.0.0.0:email]
-X-Rspamd-Queue-Id: 8D8E1570C4E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.1:email,4e:email]
+X-Rspamd-Queue-Id: 85B7B570EEA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The richtek,rt1711h binding has a legacy plain-text file that was
-superseded by the YAML schema. Remove it.
+Remove the deprecated .txt binding for richtek,rt1711h. It was
+superseded by the YAML schema added in commit a72095ed8e65
+("dt-bindings usb: typec: rt1711h: Add binding for Richtek RT1711H").
 
-The YAML schema also declares 'additionalProperties: false' but
-omits the top-level 'port' property used by hi3660-hikey960.dts
-to describe the role-switch graph endpoint, causing dtbs_check
-to emit:
-
-  hi3660-hikey960.dtb: rt1711h@4e (richtek,rt1711h): 'port' does
-  not match any of the regexes: '^pinctrl-[0-9]+$'
-
-Add the missing property referencing /schemas/graph.yaml.
-
-A separate dtbs_check warning on the same node is out of scope
-for this series:
-
-  hi3660-hikey960.dtb: rt1711h@4e (richtek,rt1711h):
-  connector:ports: 'port@0' is a required property
-
-That one is in the connector subnode and is governed by
-usb-connector.yaml, not this binding.
-
+Signed-off-by: Akash Sukhavasi <akash.sukhavasi@gmail.com>
 ---
-Changes in v2:
-- Patch 1: No changes.
-- Patch 2: Fix port node indentation in example; port is now correctly
-  placed as a sibling of connector under rt1711h@4e.
-
-v1: https://lore.kernel.org/all/20260518142901.1747-1-akash.sukhavasi@gmail.com/
- 
-Akash Sukhavasi (2):
-  dt-bindings: usb: richtek,rt1711h: remove deprecated .txt file
-  dt-bindings: usb: richtek,rt1711h: add missing 'port' property
-
  .../bindings/usb/richtek,rt1711h.txt          | 44 -------------------
- .../bindings/usb/richtek,rt1711h.yaml         | 13 ++++++
- 2 files changed, 13 insertions(+), 44 deletions(-)
+ 1 file changed, 44 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/usb/richtek,rt1711h.txt
 
+diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt b/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt
+deleted file mode 100644
+index 6f8115db2..000000000
+--- a/Documentation/devicetree/bindings/usb/richtek,rt1711h.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-Richtek RT1711H TypeC PD Controller.
+-
+-Required properties:
+- - compatible : Must be "richtek,rt1711h".
+- - reg : Must be 0x4e, it's slave address of RT1711H.
+- - interrupts : <a b> where a is the interrupt number and b represents an
+-   encoding of the sense and level information for the interrupt.
+-
+-Required sub-node:
+-- connector: The "usb-c-connector" attached to the tcpci chip, the bindings
+-  of connector node are specified in
+-  Documentation/devicetree/bindings/connector/usb-connector.yaml
+-
+-Example :
+-rt1711h@4e {
+-	compatible = "richtek,rt1711h";
+-	reg = <0x4e>;
+-	interrupt-parent = <&gpio26>;
+-	interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+-
+-	usb_con: connector {
+-		compatible = "usb-c-connector";
+-		label = "USB-C";
+-		data-role = "dual";
+-		power-role = "dual";
+-		try-power-role = "sink";
+-		source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
+-		sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)
+-			     PDO_VAR(5000, 12000, 2000)>;
+-		op-sink-microwatt = <10000000>;
+-
+-		ports {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			port@1 {
+-				reg = <1>;
+-				usb_con_ss: endpoint {
+-					remote-endpoint = <&usb3_data_ss>;
+-				};
+-			};
+-		};
+-	};
+-};
 -- 
 2.54.0
 
