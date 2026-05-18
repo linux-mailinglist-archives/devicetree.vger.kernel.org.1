@@ -1,134 +1,174 @@
-Return-Path: <devicetree+bounces-299395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IG9EF8HC2r4/QQAu9opvQ
-	(envelope-from <devicetree+bounces-299395-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:34:39 +0200
+	id eMdTNdcIC2o0/gQAu9opvQ
+	(envelope-from <devicetree+bounces-299397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:40:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D648A56CC0D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:34:38 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D09056CDD7
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9DA1E306C08D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:29:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 25FB830031FF
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:29:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB7940584D;
-	Mon, 18 May 2026 12:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 163C240C5D6;
+	Mon, 18 May 2026 12:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="JgiEpNGs"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="Iz2B02Km"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE40409E1A;
-	Mon, 18 May 2026 12:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779107283; cv=none; b=BWZgoF7OJK56hTRtyhsdx3aE0Cy/gCGl+vD2dUhFKrPaVPEWOQAA42XwVWzyp0rAH6hcxxcqydfixT5k5gXU5cVeb9cOAGg+nMIV3UtruCcxfyeT/UvoIc4lc7tUN+9r9xQ7Wi3kKdWRp1eAHUFGRIBwfAt/xdt9WZ1UCBHJZAQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779107283; c=relaxed/simple;
-	bh=YsFmvc4ZHblbCYQuISYKcXJQ07qCsDZ6i5l+JLxB9eA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JrGry97105c1SIAs5POB5LP+FqJDVc/NERJWMjnt6DPiz/XmotOv/weOWbrWPV5bOFwMY3/HtHAYjbvH760ntBQYA1q3o0RRD0shDYGMI+8ZqzoBVHUlvB4x5diMkheK0iKLiyYeOPtHE9CQo9H2saBu7Dv7jVDqBdE3PByeHxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=JgiEpNGs; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1779107279;
-	bh=wj0yR9PYapzRO9WETQEouL8N/6Cx3siFuTTA4xukOso=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=JgiEpNGsV/MptSZiLUBCsoKNZCnbg/Pong+ZdioH3V1VMSsXzpLBszyHPglpYeEcu
-	 AA4yQrnj8775FFAT69kdOk23mSjjgbjGlDpcGnQeRBk1PS/sNMIoLX3emWPtgQuaqn
-	 qfvhc4ndnsfwkJf72cqvekBDXC67fFp4PwHbWmpKi8EejioKsEwUZl2JjroUSqL19X
-	 lflx7wLZeHr1i04ctMSPuOy0vrNcSC3iw9tT8M2IUO8+iTlY3dX7RhzKMp7HFsutQ1
-	 kYi8C9ccG7DhQC/HcuCfVynQchUH13RHHhCtUMPBuQbQdvezOMrPCM1GOy+WXeoor2
-	 BKnxh2aQe9B0Q==
-Received: from [192.168.68.117] (unknown [180.150.112.11])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 4F6096024D;
-	Mon, 18 May 2026 20:27:59 +0800 (AWST)
-Message-ID: <663d06c8c42892586075ddb2ba7111b06c58752f.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v13 0/2] Add Meta (Facebook) Ventura BMC (AST2600)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "P.K. Lee" <pkleequanta@gmail.com>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc: Jason-Hsu@quantatw.com, p.k.lee@quantatw.com
-Date: Mon, 18 May 2026 21:57:59 +0930
-In-Reply-To: <20260407081700.2658011-1-pkleequanta@gmail.com>
-References: <20260407081700.2658011-1-pkleequanta@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE5740C5CF;
+	Mon, 18 May 2026 12:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779107338; cv=pass; b=re/c/+se4Ttxn4xti2xP6JrdsotHvdU7VEY6L47oHsfd4i1j3ueqhC36NJDoTgrBYTYcyE2+djgtMQG0VxapTo7HVXvUeSMUqsECHenorOVDidCooH1NJOynDzkpNXw4BEq2XzgywRsgwa1XM2JIzpb2Z31zYDdxA1Zq2th1rF0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779107338; c=relaxed/simple;
+	bh=3NpnMPEgIunF72GH3cGsL80kznpItztnKmXaZNN5ufo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oz4dQvOjR8g/PtOZnKK8ZwPsRlmWnrRc/p2HHQfExyhJi3PiYbUiih0sZtb0AG0TMz/oCKseVe2abPUxw+rTdc3kyuSX1LnjqnZmAymfu0UmqXohk3KwHWVXtkueJQfKyKe/y0biqTSVvaJIY6FCkqvSvTTUC9dH3LiZyz9VKDQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=Iz2B02Km; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1779107313; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=SW3avIO7PHhCARW3Jpr8McY4KosYnH/k83cydUhMox6tXHl4rxjLW/TKyWWrWg5IJ+pG4GdSjh4YGwMQzG9k8ZSZ6cqm1sNPUMo2HYKZT0ImZq0l2ZMW+P7AmI//T4syB/Tbi1eQRzde0VZrbm3u+xW/B2Y+wsHF+9fUVaDuxe8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1779107313; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=le3jVWKWFfhs2Bh7uwp2bsCwo6wxH6tqo+u5P3QvLcI=; 
+	b=OQKJKZWMGFbb4Cgr3gRGTFvDnCA6YotlSAwhvwVBZ003NSPQqRLokBpOpieLXoDZa+sLMdW5SXnJZPZo98VBpMjREDg2PjeamaIERPCKwSqivXk3beoigCUzgoxzH1EMO9BdS5oqlaGUdvvFQ3uzyh+e0FgksWCt/o+cDu4Gdgw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779107313;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:Message-Id:Reply-To;
+	bh=le3jVWKWFfhs2Bh7uwp2bsCwo6wxH6tqo+u5P3QvLcI=;
+	b=Iz2B02KmiyGXtpk2uWlB56KwnBOE2SvemmUdDzBQ7zBhSy9HbCTaRVJIc653qXAh
+	H/hWun9uZpGhKPOsFScZgyHjYTYDhiWjFIPNbYisMl4X28S7dIz/eRm9Ii1LNWbTFHL
+	JrVJYZ8QI3jvjvJSIH9WQtFnfoAKe0MY6IvaJTgo=
+Received: by mx.zohomail.com with SMTPS id 1779107311092321.60245224509777;
+	Mon, 18 May 2026 05:28:31 -0700 (PDT)
+Date: Mon, 18 May 2026 12:28:19 +0000
+From: Yao Zi <me@ziyao.cc>
+To: Chuanhong Guo <gch981213@gmail.com>, Conor Dooley <conor@kernel.org>
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: clock: add doc for Siflower sf21-topcrm
+Message-ID: <agsF47bixKvB8uUk@pie>
+References: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
+ <20260517-sf21-topcrm-v1-3-438f2e0513ff@gmail.com>
+ <20260517-popper-rage-b675785e4d28@spud>
+ <CAJsYDVK+tOUZcF7rzP+og5JV2gkNS4WfGhq_hJVNvfUvQLZZrg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: D648A56CC0D
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJsYDVK+tOUZcF7rzP+og5JV2gkNS4WfGhq_hJVNvfUvQLZZrg@mail.gmail.com>
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: 5D09056CDD7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ziyao.cc,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[ziyao.cc:s=zmail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,jms.id.au,vger.kernel.org,lists.infradead.org,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-299395-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299397-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ziyao.cc:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi P.K.,
-
-On Tue, 2026-04-07 at 16:16 +0800, P.K. Lee wrote:
-> Add Linux device tree entry related to Meta (Facebook) Ventura specific
-> devices connected to the BMC (AST2600) SoC. The purpose of Ventura is to
-> detect liquid leakage from all compute trays, switch trays and rack
-> sensors within the rack, log the events, and take necessary actions
-> accordingly.
->=20
+On Mon, May 18, 2026 at 08:12:14PM +0800, Chuanhong Guo wrote:
+> Hi!
+> 
+> On Mon, May 18, 2026 at 4:50 AM Conor Dooley <conor@kernel.org> wrote:
 
 ...
 
-> ---
->=20
-> P.K. Lee (2):
-> =C2=A0 dt-bindings: arm: aspeed: add Meta Ventura board
-> =C2=A0 arm: dts: aspeed: ventura: add Meta Ventura BMC
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/siflower,sf21-topcrm.h>
 
-A few things on the commit subjects. Can you please:
+Though it isn't a big problem, the include is unnecessary, either, since
+you don't make use of any constants from the binding header in the
+example.
 
-- Capitalise the first word of the short description (the word after
-the final colon)
-- For the DTS patch, capitalise 'ARM' for consistency
-- Avoid redundancies
+> > > +    / {
+> >
+> > Replace this / with "soc".
+> 
+> Will do so in v2.
+> 
+> >
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <1>;
+> > > +
+> > > +        xin25m: clock-25000000 {
+> > > +            compatible = "fixed-clock";
+> > > +            #clock-cells = <0>;
+> > > +            clock-frequency = <25000000>;
+> > > +        };
+> >
+> > Delete this node, it's not needed in the example. The tooling will fill
+> > it in.
+> 
+> Oh, I didn't know that. I'll drop it in v2.
+> 
+> >
+> > Also, please test your bindings since this doesn't pass.
+> >
+> > pw-bot: changes-requested
+> 
+> It's failing on the example as root node missing "model" and "compatible".
+> and it will be fixed after changing "/" to "soc".
+> I'll remember to run the full dt check instead of using DT_SCHEMA_FILES
+> for my single file next time.
 
-So:
+Alternatively you could choose to drop the outer node and keep the
+clock-controller node only.
 
-   dt-bindings: arm: aspeed: Add Meta Ventura board
-   ARM: dts: aspeed: Add Meta Ventura BMC
+> 
+> -- 
+> Regards,
+> Chuanhong Guo
 
-Cheers,
-
-Andrew
+Best regards,
+Yao Zi
 
