@@ -1,163 +1,114 @@
-Return-Path: <devicetree+bounces-299665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299666-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QPd2EHyWC2rXJgUAu9opvQ
-	(envelope-from <devicetree+bounces-299665-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 00:45:16 +0200
+	id 4DzqJauYC2rXJgUAu9opvQ
+	(envelope-from <devicetree+bounces-299666-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 00:54:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC41574C1B
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 00:45:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38EC3574D1E
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 00:54:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DB47B3019051
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:41:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C7DCF30048D4
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E2034750B;
-	Mon, 18 May 2026 22:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2841430568D;
+	Mon, 18 May 2026 22:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SL5HGJeb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUmdd0Ux"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CA3302CD5
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 22:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CED2FD695;
+	Mon, 18 May 2026 22:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779144072; cv=none; b=bJrRBMujhPHmLYp4MVp+W38C6qAl6b7/5I4mA5FWUbTGzFnAI7mQz48OyHEWD/hsOMsV5GFtjqBd0iB9cP8mif9vjFZsMYfgDlgBgjVi6HTRTwzs7CEBnBMqR33m9KFJj1tz68jOWtdWS/9WCXP9e2p8deT2b9euXM5+bGIBOKI=
+	t=1779144766; cv=none; b=Eh/bbTNtiDL9RwpyuD0FBS/DDW1XfkKDUcd3hMLXYQZB+ylrpupNYOcZXDzg7yocmjDLEj9dTax9lXa1++Rx9tW5oBe+1+oSX6bVcVkc+Q19XYwdV86x3owWmrIWmpEwWuFzv7gRJzgx6Akbkmq0xWh5DqmvXZs2pRb+U09mK/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779144072; c=relaxed/simple;
-	bh=pjZOpE/h3pt3f5IsEyUGVZu+dzNOCCyqVw1JpG9DnFU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=W/seWqyvmKSTzd1Wj5kN+X9ux1HGx/Ekpjb0dk4Lt8J5csItycjoibkkUz2xbaDnfXxVDhr7XcwTQO5UL81xtLJTpLQRLYqrtLIkU8Eo1ltbcofs8W6NXLUgC5dV29DLimxbozEthMkipFqGWlK6vDLbpLANIjFT6BBKKlTQwTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SL5HGJeb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C635CC2BCB7;
-	Mon, 18 May 2026 22:41:11 +0000 (UTC)
+	s=arc-20240116; t=1779144766; c=relaxed/simple;
+	bh=jqNm7F0L0ueD2m/4Jv94ZtJyTZRWEJneJ2TmKhe3Zzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=e/6ohaiJnjNVxzftymz3KNJ//FQST2NlV/idT+rwsO46C0jGBLJJgqZ1UwX6EiWjeYzt6m7I4kCO7e77L84ETQFw6YSQg6PlvI0PuytO+fGx0J8b/qvsodf3AEV70FiALH1dOqJcfuqZal8ylNlte8DU+8G8bUSbmFgiVv//oMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUmdd0Ux; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 008A8C2BCB7;
+	Mon, 18 May 2026 22:52:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779144072;
-	bh=pjZOpE/h3pt3f5IsEyUGVZu+dzNOCCyqVw1JpG9DnFU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=SL5HGJebJygdwQtXVUFo6CfvDWlVWa2BtxFG2dUYTVqgMiCry3p5/86DaQWPHyVPU
-	 0WXkJ4TRScYJgGFKd4fE6kOFmQHC1FgktkAEwoVgyJhnq5dwKZGfd6dOstrfYG7ypH
-	 jCJd6O0dE9f1vvH8U0/CZ+tI8xYkWRKUFpUsrN3xI0X4/y1LciMhzf8xvDGJgeD4Kj
-	 ap1tiU6XB6uiQm/PYIKdebn/2KYaYNVBY8uhyYXANd1ViyRHSHVghaxcxHBCysfNLl
-	 lujKLoKrAI1+/C5hXKilWl0g7RwE6qaFJKrq1FQeES0DH/JSt11IDOgQZwmGGYkP+N
-	 5f8Mz2WFXBfvQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 10/11] iio: adc: hx711: pass iio_chan_spec to
- hx711_reset_read
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Piyush Patle" <piyushpatle228@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260518220228.63322-11-piyushpatle228@gmail.com>
-References: <20260518220228.63322-11-piyushpatle228@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 18 May 2026 22:41:11 +0000
-Message-Id: <20260518224111.C635CC2BCB7@smtp.kernel.org>
+	s=k20201202; t=1779144765;
+	bh=jqNm7F0L0ueD2m/4Jv94ZtJyTZRWEJneJ2TmKhe3Zzw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cUmdd0UxbWS8kjCHTD+qPSTtS3gqWqr3AiBWIYgVHq3vXR0/ybkZzYajMd26dZncW
+	 wKwTE25l3iUJYdM+iS4t5u+6w3sMYVaIK/H7lA0Y6fNEyJUnLzoPSN+F5HSrTy42Ba
+	 5shSj3XrtdYwPry0Vd0dF6dgFnRiYWdChP3DB7oDKHhK66PhLUh1558Ssdw4y0+sFh
+	 gjv3itWoEeKkFoITDlJau5zDaVPpobcDnq7gjlFGTWlWI7LGL4wdAvRc4EhJUyg5Uq
+	 luJJutFG8+0/w1QutTlJ+P/tDt7wRylyQVBpl6bcXMJf5nt4iJPE9A52AQ+VotBnPX
+	 UWvbKuro5092w==
+Date: Mon, 18 May 2026 15:52:44 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+ Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, "David
+ S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek
+ Vasut <marex@denx.de>, Simon Horman <horms@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/5] net: dsa: microchip: Add support for
+ KSZ8995XA/KS8995XA
+Message-ID: <20260518155244.575afa75@kernel.org>
+In-Reply-To: <CAD++jLk81ieH_d2oT_9-bcA3y2dCwT1qxnr5Y+1X9bMNT4whvg@mail.gmail.com>
+References: <20260516-ks8995-to-ksz8-v1-0-70d0ef4aa5f4@kernel.org>
+	<CAD++jLk81ieH_d2oT_9-bcA3y2dCwT1qxnr5Y+1X9bMNT4whvg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299665-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299666-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,denx.de,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 4AC41574C1B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 38EC3574D1E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Triggering the buffer with the soft timestamp channel enabled caus=
-es a bogus physical hardware read, leading to severe latency spikes and sam=
-ple rate degradation.
---
+On Sat, 16 May 2026 17:04:38 +0200 Linus Walleij wrote:
+> > This series breaks with the dated attempt to polish the old
+> > KS8995 driver, and instead implement support for the KS8995XA
+> > in the KSZ driver, and after that delete the old KS8995 driver.  
+> 
+> Obviously the patch series should have "net-next" in the
+> patch brackets. I am just expecting review comments and
+> AI buzz so I will need to spin many versions anyway.
 
-commit ca51c74e19ecc54987d0605c8007f8dcdc337783
-Author: Piyush Patle <piyushpatle228@gmail.com>
-
-iio: adc: hx711: pass iio_chan_spec to hx711_reset_read
-
-Change hx711_reset_read() to accept the channel descriptor directly and
-update its callers accordingly.
-
-> diff --git a/drivers/iio/adc/hx711.c b/drivers/iio/adc/hx711.c
-> index d7987c70beec2..8ec4dee1f451e 100644
-> --- a/drivers/iio/adc/hx711.c
-> +++ b/drivers/iio/adc/hx711.c
-[ ... ]
-> @@ -391,8 +406,8 @@ static irqreturn_t hx711_trigger(int irq, void *p)
->  	memset(&hx711_data->buffer, 0, sizeof(hx711_data->buffer));
-> =20
->  	iio_for_each_active_channel(indio_dev, i) {
-> -		hx711_data->buffer.channel[j] =3D hx711_reset_read(hx711_data,
-> -					indio_dev->channels[i].channel);
-> +		hx711_data->buffer.channel[j] =3D
-> +			hx711_reset_read(hx711_data, &indio_dev->channels[i]);
->  		j++;
->  	}
-
-Does this loop cause a bogus physical hardware read when the soft timestamp
-channel is enabled?
-
-Because iio_for_each_active_channel() iterates over all bits set in the
-active_scan_mask, it includes the soft timestamp channel, passing it
-directly into hx711_reset_read().
-
-For the timestamp channel, chan->channel is -1. When passed down to
-hx711_set_gain_for_channel(), any non-zero channel is treated as the
-secondary physical channel (Channel B), forcing a hardware channel switch.
-
-Since switching channels on the HX711 requires a dummy read and up to a 400=
-ms
-settling time handled in hx711_wait_for_ready(), toggling between Channel A
-and the Timestamp channel on every trigger could introduce an ~800ms
-blocking delay per sample.
-
-Is it necessary to explicitly skip the timestamp channel during the hardware
-read loop here, perhaps by checking chan->type !=3D IIO_TIMESTAMP?
-
-A related concern originally flagged an out-of-bounds array write to
-buffer.channel[2] here, leading to a UBSAN panic. While that specific memory
-safety issue is fixed later in the series by commit "iio: adc: hx711: add
-support for HX710B" which safely bounds the buffer using
-IIO_DECLARE_BUFFER_WITH_TS(), the underlying logic error of triggering a bo=
-gus
-hardware read for the timestamp channel appears to remain unfixed.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518220228.6332=
-2-1-piyushpatle228@gmail.com?part=3D10
+Looks like there some AI buzz in sashiko, but also - it doesn't 
+apply on net-next.
 
