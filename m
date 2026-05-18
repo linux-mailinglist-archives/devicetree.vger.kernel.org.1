@@ -1,173 +1,177 @@
-Return-Path: <devicetree+bounces-299371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yK12HTkEC2qj/QQAu9opvQ
-	(envelope-from <devicetree+bounces-299371-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:21:13 +0200
+	id ACYLC3wEC2rU/QQAu9opvQ
+	(envelope-from <devicetree+bounces-299373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:22:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E368C56C82A
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:21:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 982C856C888
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7C91030667CA
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:06:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 46B2231026C7
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6E63EEAD1;
-	Mon, 18 May 2026 12:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39EC3FB7CD;
+	Mon, 18 May 2026 12:09:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kbz7sOSu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VEcpMgSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62BEA3FBEAD
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 12:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779105992; cv=none; b=ssFYUM+zeuhs+/OWSy0chqAhBuTzMX5XWDe1dqiaPDCqxWd7g6FTtGMJQAwxHgHluTEnFM+kOh2ovsqeEKiRv5WO4b8HmrIVG1RIfwTaeiU20eEebJ/ke3SyTyzQRaqWqrG9BK9tLhtWJu/id3xGTzRo9GckZw5dbon8omkKVoA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779105992; c=relaxed/simple;
-	bh=crDGdPDPEw7MAKhN2S5SCV9IoXqEybejBgA+5NIizOc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oLXATn53ysq2emgqvdAvFnkeQnmFvHpyCVcfpFglCa1uGhOhVb6kTXU0TKwI5l+mtOAlw/og0t7qCDiWyNQinfseTqxEwSUaB6bypFOYYGX5v8BPwol95rkU3U2I03czJm8FAPy7Ql20/YJbtj4SVFWWdSCFEYz1mR/6WgvPTss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kbz7sOSu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67D96C2BCB7;
-	Mon, 18 May 2026 12:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779105991;
-	bh=crDGdPDPEw7MAKhN2S5SCV9IoXqEybejBgA+5NIizOc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Kbz7sOSuEwigpZuWohgTjcMP0PJaSW7ZdkO1RIatGKSSl9I0DOBYLF19XGiGJGabp
-	 RMu9yCatwNNJVwQs92LaLRn5zzeX4B8uWxEL6U6Rvm0g/wony/0JlfxLBnp9ChhIAA
-	 BCp7nAJfCDvjgFBBNlaH5wCA/YQeMKXy/oiR+Y9qO+Fl/+7pNs/kGDW9lgxuCZ3XTB
-	 UCtFoz7Hcj4uE5ZuWrkYehf7d6GCPeGGMpnCqwGl93TqE3caSNdTIP5LXde+oiLqaS
-	 gfoZ6BpegcrQM+4/nFdyfIgNtixqCBNeCV+5cDMM/sh+dtByQKoN4fnv+7z7baeTNH
-	 gjeskXKuNdJsg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] riscv: dts: spacemit: k3: Add pwm support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Yixun Lan" <dlan@kernel.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260518-04-k3-pwm-dts-v2-1-c0ccba430abf@kernel.org>
-References: <20260518-04-k3-pwm-dts-v2-1-c0ccba430abf@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 18 May 2026 12:06:30 +0000
-Message-Id: <20260518120631.67D96C2BCB7@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5097B3F58ED
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 12:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.176
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779106198; cv=pass; b=niO6tB7bsv1wJMxBaAk811Q8+oV8KMosuy8LVEO2FzhVhcSjwYicVO+b8yE3VTT89sLWVCLiDlraqQn5YMXWZVeE7Dn2Fd2ENqKi1aoCw5vZmRvpmNkqFspQV3dxkZ8KbN9/vx4F84jjXXP5FtSURIVfRMFcnkCBUC3p4XHhbuA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779106198; c=relaxed/simple;
+	bh=cd9XDVS5bJ+dblAmZlrlop+kZgyj3GivNWTk0OpSHRQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AWWziNJs7QMqQWZTv89A+/5fUFNtUukodEeYHjzccjREI3dp7zZVlYJsCYvnBfhgWmBjBharjGMqiAToKOWkc2XdcwXWNe9HdqLmJ5vo0k7ev3IKZoO72Wqi8X6DzeC53E/xff9cBwc94SzCWm4wfrwZWQ7CcmMe+K1TVF10SIM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VEcpMgSr; arc=pass smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5751770a178so581582e0c.3
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 05:09:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779106196; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NaflPPcsg8N62RRwf7eA/uUW/Xoyj2flmlz4P1/7waIFrEWR+UBAi9NJvJph9m0TGz
+         adYHW8Z8CAnDC4zTDTbZ57ZNqJXZ4R+Raxxpldyryq7Qsqg41nB2eYPL8YVfpqkOPkeq
+         avPd27cgot60okkf9Ayn/lMW73gKafhzfW2n01yyLH3FBJMIvet/EYSTrtHj2+uiIO11
+         1lywf5heeynV9g6pzto5SO0iGu7fq40R+2DhmXwCr+hARXbRtfBkN+AZ9SjiuBcWPMvz
+         yEA9itqdndKX3xZcZjVY170CxSQS85coXr/YZd6TVlFAnfr+xhboSEsepnreTcYoM/9z
+         LPEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=cd9XDVS5bJ+dblAmZlrlop+kZgyj3GivNWTk0OpSHRQ=;
+        fh=3jJ4yeL3nMmlyTzXFfGkTxA7/toM24O1fhEAbZaCykg=;
+        b=bfhEWhm/aNYjVItral5DwL4eRbIfwlEC3xtZX/o/Mm5eulT4NAw6SqCISRFC+OOVyG
+         e/JK0b1Pk/Wb5/zqCi7RCTVrheMckgLOX3vaJKv9LkmD97xFgd3SJpiJtWgTgiVGqfBl
+         4t80XpjmDWDYvhOaUlNMU4iQDzQ3fyC92Ne+0CICo7b0wacfAR90VgXQrQG4Cg8P2ehw
+         ysCGeNDoknCdR5pdwa2J12IGhzv+bL4qOIJoZ51SduVe9Kbi0Ux7X9uxg5g2QgCB/4bX
+         0L+F85aiA06Os5jQlshPOHq77RHtHwoxhKeNlUCjK30rdTg+LI/xS8thwltDHOaxZL7h
+         JTOA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779106196; x=1779710996; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cd9XDVS5bJ+dblAmZlrlop+kZgyj3GivNWTk0OpSHRQ=;
+        b=VEcpMgSrTCWwLdGo0GDRrmhpXA9gDUw19PYPHIJ/h6olhVXjCM9NfJIMfLmqMrXm6V
+         nheU+I20OqX1XY7y+v4ZU5uP6sqFkWtgKE1N1sf4QrxOFYP7/tvZoXNYYBYtR0IhXH67
+         PnnIjsO3DgjsB6pJZI/eirDcTSr7IkgENzY7LGs+aeNku70w4WAJ3TbmZ26HbUd7dCkC
+         QuWKkgEmBA5uQ3XwAvHKcjHECfWEVM0/GDmhab2Zzj9EBVjnBdk2mw4RoKzJWXpBCvnn
+         pEf61eqSCi2Nj88PBo2EcQ58I25w+xs5AMz5T+PhDkqa0jzsejkPjZh34Wwwhz3PHxVQ
+         D4Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779106196; x=1779710996;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cd9XDVS5bJ+dblAmZlrlop+kZgyj3GivNWTk0OpSHRQ=;
+        b=OGB3MiQXBfSY1Fry97e9RiIg4YzbRD+5EmYdj9n54PSXUgWIIdaY1Dgdi5DSk/xpU/
+         iZZ5ZpGwyzw1H+oR+gNo1msnj2FuPzWlQ36DB9yRhi2IlK6gzU4om/87ypA+4s4sgN7U
+         AbPV6q5KTRbMR1nWTFh/9MOvZAiKKlFF5AGL0aUgw0SHEBNJWPu+Wf4gJZul4GLvCuit
+         xPcY4fY7vni7+esUiBSyCTssLWhl/lbW5HYV5oPkh+oWlKYWCcAf+KBnCI9OqCMGaafZ
+         q3Pz5v7QFtC8yfBEjknwDvMHxDBErgAQg5UlvhzRT90k/BcZOdUW+jX0ggZdtvoY3LUG
+         xVJw==
+X-Forwarded-Encrypted: i=1; AFNElJ857xbM7GMrlVJWhJsLhEBDiPwVN33zxuphkaGljFsNcGkuCpbTgIi1cE6EvyIjYWhtxXtt6waUv2s2@vger.kernel.org
+X-Gm-Message-State: AOJu0YytTIxg0uwxg0mBPJCVVhg2uiRB6VSLK2BxF5oUCC+G3RDTizVo
+	X6XT8ZGTVlby6Sx6BqQ+4fyEKz2Wb26O87ItbAdnwWyhHaYATVJ8Snf+KzSsNW8ZlzaL9Au/VC2
+	KO8iHuLKHIpEcO8HR17RzrDsQ2b+ntP9qiCaypaMLEQ==
+X-Gm-Gg: Acq92OFH5S00vGI9y1aldcjtg/4nGWuVlqWo+79uhVWQwxD0miFFca3NtDQrMu4WknI
+	x7/Sdu1u8ZBbQJWxs0Py3Mdd56WbONeK0u8Bpj/rHv3ym/OfkwT7iBCqB1xUi5jKCDgAXgStZ1T
+	3yKcag3EFUtNEUbIbbGSTJkOOiVENl6Fs/kz6YsbdI5NMr8KsxaXc1fJ3qxVy2akoB3nTI6nBOA
+	TaBfrItkdnbipN9/gd4JNKHnXWswHp/2R1IPro8jE3lteWI02LoKyaVDvk5qHEMypDHj+zbymgk
+	W9KigXKfYq05D4ocHdfb4d0Q85pmQmtKpWnVm/c=
+X-Received: by 2002:a05:6122:2407:b0:575:29ef:7df8 with SMTP id
+ 71dfb90a1353d-5760be39b70mr7202066e0c.2.1779106196212; Mon, 18 May 2026
+ 05:09:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: E368C56C82A
+MIME-Version: 1.0
+References: <20250110092326.167575-1-mitltlatltl@gmail.com> <e94318be-1584-4e4d-8f92-99df8a284dfe@oldschoolsolutions.biz>
+In-Reply-To: <e94318be-1584-4e4d-8f92-99df8a284dfe@oldschoolsolutions.biz>
+From: Pengyu Luo <mitltlatltl@gmail.com>
+Date: Mon, 18 May 2026 20:08:55 +0800
+X-Gm-Features: AVHnY4Ksrs9aTussseNr09raAikIjCq76pmPVkVYEhG45aPbYof4tvxp5Ck7-Mw
+Message-ID: <CAH2e8h6skog5P6hPc_DkVpJzR1Wj3s7j8jx3vMcRyCn0+sYqCA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: correct usb phy power supply
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 982C856C888
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299371-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-299373-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] The driver ignores the `bus` clock, which will lead to a system ha=
-ng when accessing registers.
-- [Medium] DT binding violation due to undocumented compatible string and p=
-roperty constraints.
-- [Low] Copy-paste errors in pinctrl sub-node names.
---
+On Sun, May 17, 2026 at 3:19=E2=80=AFAM Jens Glathe
+<jens.glathe@oldschoolsolutions.biz> wrote:
+>
+> On 10.01.25 10:23, Pengyu Luo wrote:
+> > On this platform, according to dsdt tables, usb{0,1} phy consume the
+> > following regulators. usb2 phy should be corrected also, usb2 in dsdt
+> > is a little complicated, so correct usb{0,1} only for now.
+>
+> Can confirm that this works on blackrock and x13s. And I went a
+> different route when I tried to verify vregs for blackrock and noticed
+> that the vdd voltages didn't match the layer of logic schematic in the
+> dwc3 block (some TI documentation), so I switched them already for
+> blackrock.
+>
 
-commit 4d46fb2ab333b7a733df38e29f0f7c7d23523cee
-Author: Yixun Lan <dlan@kernel.org>
+I think they might take the power sequence into account when they were
+introducing the devices, vdda-phy(~0.9v) first and vdda-pll(1.2v)
+later in the upstream while vdd(0.912v) first and core(1.2v) later in
+the downstream. BTW, the DSDT is unreliable. On my platform, it
+describes that several components are consuming several LDOs, but
+these components work well with these LDOs manually disabled via rpmh.
 
-riscv: dts: spacemit: k3: Add pwm support
-   =20
-This patch populates all PWM device tree nodes for the SpacemiT K3 SoC. It
-also adds the corresponding pinctrl configurations to easily enable them.
+Best wishes,
+Pengyu
 
-> diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/bo=
-ot/dts/spacemit/k3-pinctrl.dtsi
-> index 23899d3f308a0..06abca6d08832 100644
-> --- a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-[ ... ]
-> +	/omit-if-no-ref/
-> +	pwm1_1_cfg: pwm1-1-cfg {
-> +		pwm0-0-pins {
-> +			pinmux =3D <K3_PADCONF(43, 6)>;	/* pwm1 */
-> +
-> +			bias-pull-up =3D <0>;
-> +			drive-strength =3D <25>;
-> +		};
-> +	};
-
-This isn't a bug, but it looks like there might be a copy-paste error here.
-Should this sub-node be named pwm1-1-pins instead of pwm0-0-pins? This
-pattern also appears in other blocks like pwm1_2_cfg and pwm6_1_cfg.
-
-[ ... ]
-> diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/s=
-pacemit/k3.dtsi
-> index e6faf8d8759e1..e331adbcb11a9 100644
-> --- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-[ ... ]
-> +		pwm0: pwm@d401a000 {
-> +			compatible =3D "spacemit,k3-pwm", "marvell,pxa910-pwm";
-> +			reg =3D <0x0 0xd401a000 0x0 0x10>;
-> +			clocks =3D <&syscon_apbc CLK_APBC_PWM0>,
-> +				 <&syscon_apbc CLK_APBC_PWM0_BUS>;
-> +			clock-names =3D "func", "bus";
-> +			resets =3D <&syscon_apbc RESET_APBC_PWM0>;
-> +			#pwm-cells =3D <3>;
-> +			status =3D "disabled";
-> +		};
-
-Will this cause make dtbs_check to fail?
-
-The existing schema in marvell,pxa-pwm.yaml restricts clocks to a single
-item, forbids clock-names entirely, and enforces #pwm-cells: 1 unless the
-compatible is spacemit,k1-pwm. Are there missing schema updates for
-spacemit,k3-pwm to allow these new properties?
-
-Could this also lead to a system hang when accessing registers?
-
-The device tree declares two clocks, but the driver in drivers/pwm/pwm-pxa.c
-uses devm_clk_get(dev, NULL), which fetches only the first clock.=20
-
-Since the bus clock is never requested or enabled by the driver, won't it
-be gated when the clock framework runs clk_disable_unused()? Accessing the
-PWM controller's MMIO registers while the APB bus clock is gated usually
-triggers a synchronous external abort.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518-04-k3-pwm-=
-dts-v2-1-c0ccba430abf@kernel.org?part=3D1
+> Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>
+> with best regards
+>
+> Jens
+>
 
