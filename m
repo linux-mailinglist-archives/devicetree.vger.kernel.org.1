@@ -1,314 +1,318 @@
-Return-Path: <devicetree+bounces-299460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uF7iGscgC2reDgUAu9opvQ
-	(envelope-from <devicetree+bounces-299460-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:23:03 +0200
+	id yM6qCfMgC2reDgUAu9opvQ
+	(envelope-from <devicetree+bounces-299464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:23:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F48456EA73
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:23:02 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 049BF56EAAD
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:23:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3BA45301FA83
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:21:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 12F4530158AB
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECBC48B365;
-	Mon, 18 May 2026 14:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71B12492194;
+	Mon, 18 May 2026 14:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B24OJsFo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gR6Agr3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1FA481ABB
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 14:20:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF50D3F6C3E;
+	Mon, 18 May 2026 14:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779114060; cv=none; b=gfFtIPngwWQM5dRNdxTLjcor7g0/uRBcESe6LS4CYFN2RlqmK2AXkrOAh9IprSThkI6PIvfplNfKRyj+YvN5JxuN9bbBM6TDW1+TU9rbpYIFQ7B5gYN/OJqJZTRoV9Vl7YrLP2y2tzC35yaDEH+v5X7Thppg+avyS7Y2E4CNYIk=
+	t=1779114078; cv=none; b=Qzz5H3hkaKiVh/9jEZ3v4e0Rh9TarwVRQP5aw21PZGz+7b0Fz1Cu7MOGIoDZrRsRlgXtmSWsvUQKba+jdC+IFJrWYO2YW1PqiF0cGiiFShaRcw3hp04l4mde787mst6Gqb0M90TyCuOSQXUahnPGV0FhaopWg6/vKzW+6mg3xSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779114060; c=relaxed/simple;
-	bh=7IxyLn7/GTQfidiqPllWO1BcJ/tmNAyzxF6iCaiajmc=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UorvjWg94ZdZlsw7I7u5WWz/GZjUE5lWU9g+7S6sXKWUvkJJlBg9PncUw/nMQdCOgIPBTdM+7oH88RRTsxn6IIKug7nlioWsp0taJ6MxAl0qtlI0BTCqbpkQk8YQmNySJTAI450uMFMIyhFTts/JOlxpgb2KA0yunpBXKQy79c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B24OJsFo; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-44c350a5b87so1355740f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 07:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779114054; x=1779718854; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Two8INXQM5ey4/UQP4u04Ps1i9Z9naN07Q8ziJqEkkw=;
-        b=B24OJsFou51aG0q89wR9ewMfHMadWDI6oCCiF8HhIyb0RLL6CeGZI7XRGi3cLq8/z0
-         EHPSTc+2rBAvFLBE9p86/KRcm8jc0G7CJnMtdVxmGoOOHWaUBE5cSlkfneUUL105pSjl
-         WFzhmNh0BF926dO7IFcQh8lqxFWxGYMVyrcIWxqlKKGKLSxCERoKJnX9jbRQPx0KvR5I
-         k4TfrDMp/e1cFvnl+BPOmL8W1N8a4KzEnayM2qRFUUzIon2iB2fzB96C0gsmH1hy2fHQ
-         2xT9jyu7q2I2OgRw/UoKoMpi+D6JHMg6r7ZrXl+mmfuhUq4jCBO6lzbVhevPvBFh8UFz
-         592A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779114054; x=1779718854;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Two8INXQM5ey4/UQP4u04Ps1i9Z9naN07Q8ziJqEkkw=;
-        b=eT4JJ1MHTzn5CHU+6O9tYowhr85HMX8MIKRPzX3wO80Wz2yWm97Egj3kEjSOp2r+XU
-         QFwK5BrCqRPAhej64iOrs+GHD6m1nZY3fyoiNej7Kd8WxwnLCv7U4vbVZICOz/IfUhti
-         vndwHOE41peo9dXr6WQHMMGOyFI/bowUh+tQFO8IZTl8egUV6FKEuZE4qjQ6OfZbRC1a
-         sSqAQaLXAhh4Qcgngrs9sjJfyyV7Kav3cFUIIqhaZvbzgBkLC3wKHe2JEifdsD5UpDqs
-         VrWraXf9BdR+pvDkdEPPMLfIEi9/pz03fYSEJwIUuBM8AITXBR2ddLw6YjgGALOv1Yku
-         t1wA==
-X-Forwarded-Encrypted: i=1; AFNElJ/R9AHD2EdeaHITFB2U+E9VANcsh1mdYFo8puP58R8wgnjUstQLmFJo7zyg4DSCPI+DOYhpCtStYTCp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy04OJ7+h/7KKan8YnQ0O28q0HiNW1VO16MpVcpvF8aFEwbHScp
-	ztlkQzhl2S2ba7fGajGjVFz2PPVXFXJRmi41C51gYrgrbbPV/Gta4L6O
-X-Gm-Gg: Acq92OHWsEa3TebeRJyjco1f921ChZiprZvFbvdzpyiAxfpWDX02X3Ai2BF+gXRe83O
-	kZ9sFYz766gBPoD1Q3xh3n5enem5NLazKvElB4msP92Vg0mzDkFM6u6swLjfJL4uYdjLw60Xtdu
-	VzBM2qHU1Cth5/lUr7A4rgJx5JyKg5xLR3g+VioMShC8uS3Dv7lTiFB/Myz3NyiVXWWratx7uwo
-	C9z2CcmV7Kf2J20yU3AucoABrhYCgOLIFcyIG+k4uv/sxJfCgY+gxS6FUtZAgvLo+e/teCul2jr
-	xGJFM0odRU3v6RB5JPUkUyHGC5VdZ4t6xNCL5uHTb7ELDqM2gWCJrjPUWYVfJHoBPwTRkh7B0qf
-	poZrE0x/RkFGeowduLD6q1Nx+RJvrEOz3+AscV1tOxTkav4pEU8Uc4vi3MUU9lVeZ8/QH2I7Pp7
-	mrzmYH51e8zZwRFLbWSASFNuxJ2ADEhqgRKOIW8DfKIIolulemLyB8Jom2XEwE0SdS8bsIxHgrT
-	VbZivn8Wg==
-X-Received: by 2002:a05:6000:26c4:b0:43c:fa96:d939 with SMTP id ffacd0b85a97d-45e5c5e2ee5mr23864236f8f.22.1779114053016;
-        Mon, 18 May 2026 07:20:53 -0700 (PDT)
-Received: from Ansuel-XPS24 (host-82-55-252-101.retail.telecomitalia.it. [82.55.252.101])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-45da0fe0fecsm34905626f8f.26.2026.05.18.07.20.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 07:20:52 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] nvmem: airoha: Add support for SMC eFUSE
-Date: Mon, 18 May 2026 16:20:32 +0200
-Message-ID: <20260518142042.8331-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260518142042.8331-1-ansuelsmth@gmail.com>
-References: <20260518142042.8331-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1779114078; c=relaxed/simple;
+	bh=4JTnJo51lYwkVot9a+w1x7GmHxbJZVsWI0vpr1W/ws8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u4vIdgz1weHKMwuB64MNv9LvySMs/hisN9FOyf/BNG13qe9sh+qgRgjKOm1kf2LeI89T+NY1WIJ5LtjtZsXA+78ftLoKqpydIrRgPDqVV5JhKHdJ/i3a82Ev7Olq+AgGuqS5ReMZKVvL70b2gfuBn+db/mf9W4PvZyJsxJ8fmAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gR6Agr3e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8253AC2BCFA;
+	Mon, 18 May 2026 14:21:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779114076;
+	bh=4JTnJo51lYwkVot9a+w1x7GmHxbJZVsWI0vpr1W/ws8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=gR6Agr3eAos7fSGAABTi1vFd6i19cW7ktH2QMt59oqUuyoX9bOJXYy4qbVBu7XYYr
+	 Qo39rkjpee7dPAQcn4IjkMO5kdQOCCF9Bbu0wdViedOm0U0Uc6Kno0aN06PvQ3a/Zi
+	 xW/leZBRumXNNB/tyh4IqLxg1rdgygkGvuHHOAh24p0rnTOfrVam422/hP5hnA2P70
+	 cNz49HhIQ1gEU97Xa1vKHFiIS0X1lfDk824L2ieJNf+tPWjX0HIJRocYQzHOYQqz09
+	 1GecBrZmDvMzbrqbBWCg7LoNDWPFus0YfJmOFnBk1RSNkHHLUYUROgqJLjtBg8kD0Y
+	 +6jqsWLT2MIfg==
+Date: Mon, 18 May 2026 15:21:03 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, Bartosz
+ Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v11 3/6] iio: adc: ad4691: add triggered buffer support
+Message-ID: <20260518152103.4d428c1e@jic23-huawei>
+In-Reply-To: <58a66855-9fb3-48ca-8cae-ff9277f745df@baylibre.com>
+References: <20260515-ad4692-multichannel-sar-adc-driver-v11-0-eab27d852ac2@analog.com>
+	<20260515-ad4692-multichannel-sar-adc-driver-v11-3-eab27d852ac2@analog.com>
+	<9b7986e1-6550-415d-b301-33089ba10177@baylibre.com>
+	<20260517132526.27c71b70@jic23-huawei>
+	<58a66855-9fb3-48ca-8cae-ff9277f745df@baylibre.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299460-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-299464-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,airoha_nvmem_config.dev:url]
-X-Rspamd-Queue-Id: 0F48456EA73
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,baylibre.com:email]
+X-Rspamd-Queue-Id: 049BF56EAAD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for SMC eFUSE on AN7581 SoC. The SoC have 2 set of 2048 bits of
-eFUSE that are used to read calibration value for PCIe, Thermal, USB and
-other specific info of the SoC like revision and HW device present.
+On Sun, 17 May 2026 14:21:30 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-eFuse value are taken by sending SMC command. ATF is responsible of
-validaing the data and rejecting reading protected data (like Private
-Key). In such case the SMC command will return non-zero value on a0
-register.
+> On 5/17/26 7:25 AM, Jonathan Cameron wrote:
+> > On Sat, 16 May 2026 12:32:51 -0500
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >  =20
+> >> On 5/15/26 8:31 AM, Radu Sabau via B4 Relay wrote: =20
+> >>> From: Radu Sabau <radu.sabau@analog.com>
+> >>>
+> >>> Add buffered capture support using the IIO triggered buffer framework.
+> >>>
+> >>> CNV Burst Mode: the GP pin identified by interrupt-names in the device
+> >>> tree is configured as DATA_READY output. The IRQ handler stops
+> >>> conversions and fires the IIO trigger; the trigger handler executes a
+> >>> pre-built SPI message that reads all active channels from the AVG_IN
+> >>> accumulator registers and then resets accumulator state and restarts
+> >>> conversions for the next cycle.
+> >>>
+> >>> Manual Mode: CNV is tied to SPI CS so each transfer simultaneously
+> >>> reads the previous result and starts the next conversion (pipelined
+> >>> N+1 scheme). At preenable time a pre-built, optimised SPI message of
+> >>> N+1 transfers is constructed (N channel reads plus one NOOP to drain
+> >>> the pipeline). The trigger handler executes the message in a single
+> >>> spi_sync() call and collects the results. An external trigger (e.g.
+> >>> iio-trig-hrtimer) is required to drive the trigger at the desired
+> >>> sample rate.
+> >>>
+> >>> Both modes share the same trigger handler and push a complete scan =
+=E2=80=94
+> >>> one big-endian 16-bit (__be16) slot per active channel, densely packed
+> >>> in scan_index order, followed by a timestamp.
+> >>>
+> >>> The CNV Burst Mode sampling frequency (PWM period) is exposed as a
+> >>> buffer-level attribute via IIO_DEVICE_ATTR.
+> >>>
+> >>> Signed-off-by: Radu Sabau <radu.sabau@analog.com> =20
+> >  =20
+> >>> +
+> >>> +static int ad4691_manual_buffer_preenable(struct iio_dev *indio_dev)
+> >>> +{
+> >>> +	struct ad4691_state *st =3D iio_priv(indio_dev);
+> >>> +	unsigned int k, i;
+> >>> +	int ret;
+> >>> +
+> >>> +	memset(st->scan_xfers, 0, sizeof(st->scan_xfers));
+> >>> +	memset(st->scan_tx, 0, sizeof(st->scan_tx));
+> >>> +
+> >>> +	spi_message_init(&st->scan_msg);
+> >>> +
+> >>> +	k =3D 0;
+> >>> +	iio_for_each_active_channel(indio_dev, i) {
+> >>> +		if (i >=3D indio_dev->num_channels - 1)
+> >>> +			break; /* skip soft timestamp */   =20
+> >>
+> >> I don't think timestamp gets set in the scan mask. It is handled separ=
+ately. =20
+> >=20
+> > FWIW that is a sashiko false postive (I believe anyway!)
+> > If we do hit this please shout as we have a core bug.
+> >=20
+> > If anyone has time to look at how hard it would be to tweak
+> > iio_for_each_active_channel to skip a last element timestamp that
+> > would be great.
+> >=20
+> > I think that iterates one too far which is what sashiko is tripping ove=
+r.
+> >=20
+> > I'm only keen to fix that if we can make it low cost and hid it entirely
+> > from drivers.
+> >=20
+> > Jonathan
+> >  =20
+> This is what I came up with (totally untested).
+>=20
+> Since timestamp can never be set in scan_mask/active_scan_mask, it should
+> be safe to exclude it from masklength without breaking existing code.
+Probably...=20
+>=20
+> I didn't check all callers of masklength/iio_get_masklength() though.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/nvmem/Kconfig             |  13 ++++
- drivers/nvmem/Makefile            |   2 +
- drivers/nvmem/airoha-smc-efuses.c | 118 ++++++++++++++++++++++++++++++
- 3 files changed, 133 insertions(+)
- create mode 100644 drivers/nvmem/airoha-smc-efuses.c
+That was the bit that made me nervous. Particularly if there is an off
+by one that is working by luck today - or someone who understood this
+oddity and did it deliberately.
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 74ddbd0f79b0..95a399258538 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -28,6 +28,19 @@ source "drivers/nvmem/layouts/Kconfig"
- 
- # Devices
- 
-+config NVMEM_AIROHA_SMC_EFUSES
-+	tristate "Airoha SMC eFuse support"
-+	depends on ARCH_AIROHA || COMPILE_TEST
-+	depends on HAVE_ARM_SMCCC
-+	default ARCH_AIROHA
-+	help
-+	  Say y here to enable support for reading eFuses on Airoha AN7581
-+	  SoCs. These are e.g. used to store factory programmed
-+	  calibration data required for the PCIe or the USB-C PHY or Thermal.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called nvmem-airoha-smc-efuses.
-+
- config NVMEM_AN8855_EFUSE
- 	tristate "Airoha AN8855 eFuse support"
- 	depends on COMPILE_TEST
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 7252b8ec88d4..f6f2bc51dee1 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -10,6 +10,8 @@ nvmem_layouts-y			:= layouts.o
- obj-y				+= layouts/
- 
- # Devices
-+obj-$(CONFIG_NVMEM_AIROHA_SMC_EFUSES)	+= nvmem-airoha-smc-efuses.o
-+nvmem-airoha-smc-efuses-y 		:= airoha-smc-efuses.o
- obj-$(CONFIG_NVMEM_AN8855_EFUSE)	+= nvmem-an8855-efuse.o
- nvmem-an8855-efuse-y 			:= an8855-efuse.o
- obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
-diff --git a/drivers/nvmem/airoha-smc-efuses.c b/drivers/nvmem/airoha-smc-efuses.c
-new file mode 100644
-index 000000000000..bb279d149519
---- /dev/null
-+++ b/drivers/nvmem/airoha-smc-efuses.c
-@@ -0,0 +1,118 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *  Author: Christian Marangi <ansuelsmth@gmail.com>
-+ */
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+#define AIROHA_SMC_EFUSE_FID		0x82000001
-+#define AIROHA_SMC_EFUSE_SUB_ID_READ	0x44414552
-+
-+#define AIROHA_EFUSE_CELLS		64
-+
-+struct airoha_efuse_bank_priv {
-+	u8 bank_index;
-+};
-+
-+static int airoha_efuse_read(void *context, unsigned int offset,
-+			     void *val, size_t bytes)
-+{
-+	struct regmap *regmap = context;
-+
-+	return regmap_bulk_read(regmap, offset,
-+				val, bytes / sizeof(u32));
-+}
-+
-+static int airoha_efuse_reg_read(void *context, unsigned int offset,
-+				 unsigned int *val)
-+{
-+	struct airoha_efuse_bank_priv *priv = context;
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_1_1_invoke(AIROHA_SMC_EFUSE_FID,
-+			     AIROHA_SMC_EFUSE_SUB_ID_READ,
-+			     priv->bank_index, offset, 0, 0, 0, 0, &res);
-+
-+	/* check if SMC reported an error */
-+	if (res.a0)
-+		return -EIO;
-+
-+	*val = res.a1;
-+	return 0;
-+}
-+
-+static const struct regmap_config airoha_efuse_regmap_config = {
-+	.reg_read = airoha_efuse_reg_read,
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static int airoha_efuse_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	for_each_child_of_node_scoped(dev->of_node, child) {
-+		struct nvmem_config airoha_nvmem_config = {
-+			.name = "airoha-efuse",
-+			.size = AIROHA_EFUSE_CELLS * sizeof(u32),
-+			.stride = sizeof(u32),
-+			.word_size = sizeof(u32),
-+			.reg_read = airoha_efuse_read,
-+		};
-+		struct airoha_efuse_bank_priv *priv;
-+		struct nvmem_device *nvmem;
-+		struct regmap *regmap;
-+		u32 bank;
-+
-+		ret = of_property_read_u32(child, "reg", &bank);
-+		if (ret)
-+			return ret;
-+
-+		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+		if (!priv)
-+			return -ENOMEM;
-+
-+		priv->bank_index = bank;
-+
-+		regmap = devm_regmap_init(dev, NULL, priv,
-+					  &airoha_efuse_regmap_config);
-+		if (IS_ERR(regmap))
-+			return PTR_ERR(regmap);
-+
-+		airoha_nvmem_config.priv = regmap;
-+		airoha_nvmem_config.dev = dev;
-+		airoha_nvmem_config.id = bank;
-+		nvmem = devm_nvmem_register(dev, &airoha_nvmem_config);
-+		if (IS_ERR(nvmem))
-+			return PTR_ERR(nvmem);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id airoha_efuse_of_match[] = {
-+	{ .compatible = "airoha,an7581-efuses", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, airoha_efuse_of_match);
-+
-+static struct platform_driver airoha_efuse_driver = {
-+	.probe = airoha_efuse_probe,
-+	.driver = {
-+		.name = "airoha-efuse",
-+		.of_match_table = airoha_efuse_of_match,
-+	},
-+};
-+module_platform_driver(airoha_efuse_driver);
-+
-+MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
-+MODULE_DESCRIPTION("Driver for Airoha SMC eFUSEs");
-+MODULE_LICENSE("GPL");
--- 
-2.53.0
+At one point we also had a few other timestamps - the ones come from hardwa=
+re.
+I can't remember how we handled those wrt to the scan mask.  I took a quick
+look and thing they are all fine.=20
+FWIW a nice precursor would be to make sure all timestamp channels are assi=
+gned
+using the macro. There are a few that are hand crafted.  I tested a few, bu=
+t obviously
+needs turning in to a proper set and cleaning up.
+
+diff --git a/drivers/iio/adc/ad4170-4.c b/drivers/iio/adc/ad4170-4.c
+index 627cbf5a37b0..890e25294baa 100644
+--- a/drivers/iio/adc/ad4170-4.c
++++ b/drivers/iio/adc/ad4170-4.c
+@@ -2385,9 +2385,7 @@ static int ad4170_parse_channels(struct iio_dev *indi=
+o_dev)
+ 	}
+=20
+ 	/* Add timestamp channel */
+-	struct iio_chan_spec ts_chan =3D IIO_CHAN_SOFT_TIMESTAMP(chan_num);
+-
+-	st->chans[chan_num] =3D ts_chan;
++	st->chans[chan_num] =3D IIO_CHAN_SOFT_TIMESTAMP(chan_num);
+ 	num_channels =3D num_channels + 1;
+=20
+ 	indio_dev->num_channels =3D num_channels;
+diff --git a/drivers/iio/adc/at91_adc.c b/drivers/iio/adc/at91_adc.c
+index 6e1930f7c65d..56baca1f5026 100644
+--- a/drivers/iio/adc/at91_adc.c
++++ b/drivers/iio/adc/at91_adc.c
+@@ -521,13 +521,7 @@ static int at91_adc_channel_init(struct iio_dev *idev)
+ 	}
+ 	timestamp =3D chan_array + idx;
+=20
+-	timestamp->type =3D IIO_TIMESTAMP;
+-	timestamp->channel =3D -1;
+-	timestamp->scan_index =3D idx;
+-	timestamp->scan_type.sign =3D 's';
+-	timestamp->scan_type.realbits =3D 64;
+-	timestamp->scan_type.storagebits =3D 64;
+-
++	*timestamp =3D IIO_CHAN_SOFT_TIMESTAMP(idx);
+ 	idev->channels =3D chan_array;
+ 	return idev->num_channels;
+ }
+diff --git a/drivers/iio/adc/cc10001_adc.c b/drivers/iio/adc/cc10001_adc.c
+index 2c51b90b7101..d42b747325aa 100644
+--- a/drivers/iio/adc/cc10001_adc.c
++++ b/drivers/iio/adc/cc10001_adc.c
+@@ -262,7 +262,7 @@ static const struct iio_info cc10001_adc_info =3D {
+ static int cc10001_adc_channel_init(struct iio_dev *indio_dev,
+ 				    unsigned long channel_map)
+ {
+-	struct iio_chan_spec *chan_array, *timestamp;
++	struct iio_chan_spec *chan_array;
+ 	unsigned int bit, idx =3D 0;
+=20
+ 	indio_dev->num_channels =3D bitmap_weight(&channel_map,
+@@ -289,13 +289,7 @@ static int cc10001_adc_channel_init(struct iio_dev *in=
+dio_dev,
+ 		idx++;
+ 	}
+=20
+-	timestamp =3D &chan_array[idx];
+-	timestamp->type =3D IIO_TIMESTAMP;
+-	timestamp->channel =3D -1;
+-	timestamp->scan_index =3D idx;
+-	timestamp->scan_type.sign =3D 's';
+-	timestamp->scan_type.realbits =3D 64;
+-	timestamp->scan_type.storagebits =3D 64;
++	chan_array[idx] =3D IIO_CHAN_SOFT_TIMESTAMP(idx);
+=20
+ 	indio_dev->channels =3D chan_array;
+=20
+diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
+index 96b05c86c325..702b2fc66326 100644
+--- a/include/linux/iio/iio.h
++++ b/include/linux/iio/iio.h
+@@ -353,7 +353,7 @@ static inline bool iio_channel_has_available(const stru=
+ct iio_chan_spec *chan,
+ 		(chan->info_mask_shared_by_all_available & BIT(type));
+ }
+=20
+-#define IIO_CHAN_SOFT_TIMESTAMP(_si) {					\
++#define IIO_CHAN_SOFT_TIMESTAMP(_si) (struct iio_chan_spec) {		\
+ 	.type =3D IIO_TIMESTAMP,						\
+ 	.channel =3D -1,							\
+ 	.scan_index =3D _si,						\
+
+Doing that will mean we can spot any unusual use of IIO_TIMESTAMP much more
+easily.
+
+Anyhow, basic approach looks good to me.
+
+Jonathan
+
+
+
+>=20
+> ---
+> diff --git a/drivers/iio/industrialio-buffer.c b/drivers/iio/industrialio=
+-buffer.c
+> index 9d66510a1d49..17f539fc23e2 100644
+> --- a/drivers/iio/industrialio-buffer.c
+> +++ b/drivers/iio/industrialio-buffer.c
+> @@ -2300,8 +2300,10 @@ int iio_buffers_alloc_sysfs_and_mask(struct iio_de=
+v *indio_dev)
+>  	if (channels) {
+>  		int ml =3D 0;
+> =20
+> -		for (i =3D 0; i < indio_dev->num_channels; i++)
+> -			ml =3D max(ml, channels[i].scan_index + 1);
+> +		for (i =3D 0; i < indio_dev->num_channels; i++) {
+> +			if (channels[i].type !=3D IIO_TIMESTAMP)
+> +				ml =3D max(ml, channels[i].scan_index + 1);
+> +		}
+>  		ACCESS_PRIVATE(indio_dev, masklength) =3D ml;
+>  	}
+> =20
+>=20
+>=20
+>=20
 
 
