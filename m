@@ -1,165 +1,286 @@
-Return-Path: <devicetree+bounces-299182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299184-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wN03FivFCmqa7wQAu9opvQ
-	(envelope-from <devicetree+bounces-299182-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 09:52:11 +0200
+	id WL63GIjHCmqf8AQAu9opvQ
+	(envelope-from <devicetree+bounces-299184-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:02:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D05568236
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 09:52:10 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF2B56852C
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:02:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 866EF302BCC7
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 07:48:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 50942300F62A
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 07:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F913C6A2B;
-	Mon, 18 May 2026 07:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7873B6BFA;
+	Mon, 18 May 2026 07:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="xnVR8jdl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011058.outbound.protection.outlook.com [52.101.70.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437103815E9
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 07:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779090481; cv=none; b=G+Vlbx2vru77oz5AHum1Pq+B5ABwL5j4aDlK7cwiSmXqemfbnPbwNA5aWxueuXRL6nCBOtEIUaVgQDZSylnKiNRSRkIQx1JVY84yVkaQmTb1QqmEuRSn/C5F66qvpUpObcaaipNHsQPA3qg2GNoVYt42cqPvPInnoG5Kv/rTXbA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779090481; c=relaxed/simple;
-	bh=PXlPK/z/WiNO414FMLo6oHl5jn6KF92WVH5j+46oWDo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tLIl9kV5HnxCZ2QN6demW5BTusqgj0ksTjSVGWwyc2gvajpfLTheha3LQWNP4Yc+zLpMWiLmm1uDczQeWMg1oiX+QWCWI0w1CFYhjuZcODrZ8YmtC3HsKqSZERsDRR0aKXpdru9sjbcKcNG10OHippeds9nQ5yoJLBfPLG4vUJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1wOshb-0001Wi-91; Mon, 18 May 2026 09:47:51 +0200
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Mon, 18 May 2026 09:47:46 +0200
-Subject: [PATCH v3 2/2] drm/panel: simple: add NEC NL6448BC33-70C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4143F313E3F
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 07:49:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779090587; cv=fail; b=ce5hcmmH+vA7NdGPDKyS2Z+K8DiOQY18y3NJPejSFMnUlUFcbIJulNabiChXkgkNxEkzkWoTQmCF88UZckY3rqA3O4+qwvr1bOreOT+m99CAtf56ffdu8i7HAdrIUgkUOZe3yzHC56WaCg9cbVLU4+H5NpTUcZ0vLh0aJzZV5aA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779090587; c=relaxed/simple;
+	bh=uI6A4X+vyjrk9nIboH2p+PpQhXfoghPUjuFDLAlFPB4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=BHynBqqw2p8i8mKgnMD+y6wY267OTAEvdSeCrBjVTHj+bnSrEMzLm0Jghr3bTJNuLLt4mb/lEFIShRaMJEJ5Y4iFrFBTm9xlsxTgsWAMSj/bw9Go86Y0heivv5alQSJw/Hcf2a3u1B+lndn1Yhm/7cWV60JpqY29NWILkBrwN6Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=xnVR8jdl; arc=fail smtp.client-ip=52.101.70.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gTL5LPeH1guUrs3jjX4m2dK90Xxd1vgC67b50m5EgffIIdVIVxASlFG3FvsNOvWfsyLzUKyNkNGZlxzWks42GzMQ4zDDeV2x5pdaxg6hnNYRrbWvTEOZiqLnSEbYVQi2PBnOw3B6kBcvvkP131EMcZCi9OpKSloFR0GD5lb1nGi8SyrTLpyq6zi5g7i64Wc+NeYUrVhCREjOSo9egkuzYPSkbU3pd49FUwtOL8VbS0+c95tqM3VcmBOYER+RFE/hq/PwadLQpq8ZtUJpvGOFpewdmTTIqlpzeeeRLXu7+7Ql9U7dL+MA80YANMeLd23puQrZaMYPiHLbN0+0G3d6+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sQXgFkJqbzmMeN3TiIicMDagP2MAammaCWcAfXEqj5E=;
+ b=ZIO8Oerja+7MIibWnqqJoeWAiayC1CGVvukd1tAQIqi3wRK+83bqw9nDuItsM9s1cjQEBnPJ2S6WQiDUMSsC/rnu0hSMZf7Mu518XFnGbudFOjV/mDdGE0Kv7bZhyC7/HfUwTG289qbBdo+De4S1tL8OlQ8FhniNUDJWF60Ic9Iz6jbz79Q8znr/vdjkXD0FbX0SAliUYBxMzrBUV5BczyFqgbQaJ3kQC+lwp/VE25PgXdmOci10ZyNyt1s4DDQlxtrND0iJeAJiQYEjG6qJxadzGbBMdlRkV98lkUZ9UtAlneIyZMc5N7Rk2wnL+c3/LLvb4xtv2grZFLD2Jmb/Mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sQXgFkJqbzmMeN3TiIicMDagP2MAammaCWcAfXEqj5E=;
+ b=xnVR8jdlpV1t+DkXJU4TEazcnJTr6z3PDEQEZERgmiJWwzV+PKuik71eit68Dg7HUsydAFvIWtLFz86jHOby2A7xJX/6LzeLwyxGurXdvldkkwDE/J9S3Hq8qd1pw8IQnwAm01nOxm+NG/WakR3tc5bMHEQjfWs0lPs+0GNtDh3BPTNrgcPt5xOpkMiMl4BXLqZAZlr8N7mcQzmpV23mpbef0nlN7i9NrG67qhmpefzCX1DVRsXAbmcX6t3mH7B9RHx1w2suLpk/N+JARpWDaFAUl+Ka4+sqOEJ/Tu2mZY4wDi5WVjtSUjCLMDuHtfqrEkrdHmiaisHz7KL1v54ZrQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MRWPR04MB12117.eurprd04.prod.outlook.com (2603:10a6:501:97::14)
+ by PAXPR04MB9187.eurprd04.prod.outlook.com (2603:10a6:102:221::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Mon, 18 May
+ 2026 07:49:39 +0000
+Received: from MRWPR04MB12117.eurprd04.prod.outlook.com
+ ([fe80::9a10:5b39:708:7f43]) by MRWPR04MB12117.eurprd04.prod.outlook.com
+ ([fe80::9a10:5b39:708:7f43%6]) with mapi id 15.21.0025.022; Mon, 18 May 2026
+ 07:49:39 +0000
+Message-ID: <91a27e49-c6d0-4959-a792-6ba3b197bc9e@oss.nxp.com>
+Date: Mon, 18 May 2026 15:49:32 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [EXT] Re: [PATCH v4 2/2] arm64: dts: freescale: add i.MX95 19x19
+ FRDM PRO board dts
+To: sashiko-reviews@lists.linux.dev
+Cc: imx@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org,
+ robh@kernel.org, Frank.Li@kernel.org
+References: <20260518-imx95_frdm_pro-v4-2-975346555a9b@nxp.com>
+ <20260518032046.198F0C2BCB3@smtp.kernel.org>
+Content-Language: en-US
+From: "Joseph Guo (OSS)" <qijian.guo@oss.nxp.com>
+In-Reply-To: <20260518032046.198F0C2BCB3@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2P153CA0031.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::18)
+ To MRWPR04MB12117.eurprd04.prod.outlook.com (2603:10a6:501:97::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260518-v7-1-topic-panel-simple-nl6448bc33-v3-2-21ea14a6e835@pengutronix.de>
-References: <20260518-v7-1-topic-panel-simple-nl6448bc33-v3-0-21ea14a6e835@pengutronix.de>
-In-Reply-To: <20260518-v7-1-topic-panel-simple-nl6448bc33-v3-0-21ea14a6e835@pengutronix.de>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Steffen Trumtrar <s.trumtrar@pengutronix.de>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1734;
- i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
- bh=PXlPK/z/WiNO414FMLo6oHl5jn6KF92WVH5j+46oWDo=;
- b=owGbwMvMwCUmtVehiCsuTInxtFoSQxbXERXmbwqP0niuTuc7rnh1wVtfB7YrD5xNj345teanT
- ZdCt+zujlIWBjEuBlkxRRaVhRV8oh4fPCOniXDBzGFlAhnCwMUpABOZFsbIcMzbf/aEK46/ygML
- PhdKzWa9k9pbbTR5ltmMwPKuOw3hlgz/DL5lC0XJpk/fmb87OE4/6nH97gLOljPm1ooxT3+J/u9
- gAgA=
-X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
- fpr=24A1780E1548F0495996140A1ABD20720A5E5622
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: C0D05568236
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MRWPR04MB12117:EE_|PAXPR04MB9187:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b604aa8-40df-4878-9de2-08deb4b2039d
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|19092799006|22082099003|18002099003|56012099003|11063799003|4143699003;
+X-Microsoft-Antispam-Message-Info:
+	U2Y/mjhvgqP5Eb92OJ297rWVS4FkanVnGoXlTLK62FoDUzuXkcgbKtAJxnZTlpLgTYMxS/rwUMvLh7j+gQUMmzys8Wee9m2B3SdLiWIc+BBFmoIVEmtduf+x9LAJtmpnwWgz5+ugy5zNal4u2C5NmDlP+48UXJ3YakcneFI8YW7Gsj5XIRPxFGAX4JZJ3If/CmoH1c5C2SLW7h7ukhTVrbCeKzm40LOYvzx4rzkt+nVHnciCUn3KjzxRqw1+BFn7z+Vth76u6E+Rop4D0u/OT45Y7g4zpZPzziswlsq+zJ5dJ+gOy73Xt5I0Te2JWks+2RvymM22B7zppf0XiuKtTQnQNMThszheRK64CgjHLFrbOhAtt2yNjGpaAIonclqnzCFAZ6frISaY6eLt4OAsqX/oA3nm8QwjACUFrSvoDvpuvh7iYeycRrY5HQjLK5kdXGjozjkdrXFnq7Q9trUkJaxg+Wc7eZCifXQrR2K36mh+Cad/HW42XWkjkmet/UZ7unfcWTdnE4BEcrk2at/WHmXVNoLwyIiwiNB3d1c0uyY8ixmm8Y7xtZwlpYVDcKxLYyHSDKVwr0ERck89d4sb73baKhMHZfdrtchxNqiU6eW7IEVtQgXv744ipgt1CH3yfLRJzwskgprR0vPBPMO5yB2+WKLiRk9uzthsgmc7A2ke8DX/DGsSr3nfePhyXEL/
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRWPR04MB12117.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(19092799006)(22082099003)(18002099003)(56012099003)(11063799003)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VmJVQ2NiRTEyVkhZK1NWWTgxRXFldmF4ZEkrVE1QL29VcWV5ZFpBYkw1NWor?=
+ =?utf-8?B?d2FONEhoZElMTFMvZXA1Z3RVUnFvekhkRjZOeVA4Y2JsdXB6elZwbk9DUWlT?=
+ =?utf-8?B?T0VneHpwUk9yRmhVUndrSzVhYWlyMDBBbEZ5NUhpWkJwRWxtaUx5dGVIVzJu?=
+ =?utf-8?B?SEVkZDFycnJlOE40VmEvekdSbzhOb0dZRmVYUnBickFOY2hldE9aWk9GYXZk?=
+ =?utf-8?B?Y3N6aHVqTlNzd2JqZnB1ZTdWTUx5YjVtcng2VzV1UE1sNkdTTTlZNGZ3RFBy?=
+ =?utf-8?B?UDBJVzVDVy9naS9ObEtaWllSRlFPeDVPY2xuQ3g1YmhKaURYYlZKMHhRVWda?=
+ =?utf-8?B?dWdqOFZacnJxdHAwdmhLUWdOelpsdVNEVmZhQXZyODM4MXJ1cnNGQVllNXhK?=
+ =?utf-8?B?WXhYaTUwczFENTRGZUpXd0g5T04vdUlCenVCZEg5UUZ0Y3QzTDJGdHZKOS9D?=
+ =?utf-8?B?K1ZqNHFmcUIrL3F1TnpEMkE5SjVDNXcvWmU1L1BzM05ITTY0UzVZTTdwOXln?=
+ =?utf-8?B?WUxsbDJpVW5SOUlIY2JrNEtEVlRvK1kvdTRkNnN1MXROL01tZG54MGRTSm52?=
+ =?utf-8?B?RHZlSmJuN3dLRFRKWithRnhMbVd1dWg0Y1V4Ujd4eGJkL3pYVnRsaEkwQjRN?=
+ =?utf-8?B?QUM1V0o1cmIzQkFaWWRLaW04RSthclBMRk9LOUpxbEVjT0tJTkllVkY1cmx6?=
+ =?utf-8?B?SUVIekVMUUFmQWlNT3BkcnRyTHhJclQvd2VINDdteWdrZjFPNjZ1S1NDRG01?=
+ =?utf-8?B?M0M4a0V4NkhFa2JoKzc0S1RKRlhmdXBTR01HVXdEd21VcnJOSUZSV1M5bGJH?=
+ =?utf-8?B?dVRaOWNPWVRQaFB2OU44N3QyU3V0WTV5VjFYK0R0UlJyMzdvVkhiTVBUWFZv?=
+ =?utf-8?B?RTIvMEZrNXlZUlpsUjZJQWUvODc1TTdpU040NURnc2xuaDVIdTdUTmxKSnMy?=
+ =?utf-8?B?U1lIRExRU3BnbHVUMStTSmlGc2lpbVN4SkppSEMrSUJ5RjhZbTVlSHhoYlNz?=
+ =?utf-8?B?OUUreW12cHlMSDBQa3F4eS85RXdNOTFna00zcTJmVlRWd1ZUYUMyOTZkUXY0?=
+ =?utf-8?B?YVZyNS85TTkxZTVuam5WN0pRU2pULzB3UzFnSElWVFFXZkFSTnh2akFPZE13?=
+ =?utf-8?B?THpKTzJZeEFLUkFSd2piNmI3ellZWmpsQUdTc256V2ZVZ0p6Ym02QkNMK2ha?=
+ =?utf-8?B?NzY1V3E4WW1LcVFCOWh0ZmJJd0M0ODM2TVNwdnhpbFZnam9CRG5FTjNVc0E3?=
+ =?utf-8?B?TDFTa29Jc1JqUEhjWXVBS01hdVdzazNpL1hiU0crb05JNjA4eldOQmZ2RE56?=
+ =?utf-8?B?L21rMVl2VUZNaDRaanB5OTUyVFNsYzBOc0htbThMSkJjVmQ3OHlmY2tOS2lt?=
+ =?utf-8?B?cmt6TkJNK0dXaHpnVDZiYVdqSm53ZGdnZGdiUlJWZVNsQmVLdDh0QkhnZ1Jm?=
+ =?utf-8?B?Z0NQZmNvWlVPdU00alR2REs1RTNycDNXU0srbXlhMkdyTVByM2VSQitrWks3?=
+ =?utf-8?B?UTR3WEFRbnVySEFhZFdRNzNCU1NqcnBXSTVyVlpvYkQ0dzlpbWNBU2h6R3Rx?=
+ =?utf-8?B?Z2tNYWpKaWVDeGw3ai9xVXpSWVJiSEFGK1VUSHc2dEduTVBndk9GWUgwZ0JH?=
+ =?utf-8?B?T1Z4SFdySUJRS20reHFmNHhubUdXdWtCMFpHMHdBY1J6c2pjWnlnZGhEcVQz?=
+ =?utf-8?B?MXQ0bzZzdGZVLzl5NlRsRjBCM1NNb0FGd0pTeUttODlnU0FyeWhRZTBSZVhC?=
+ =?utf-8?B?QTBZNGxSODYyMkJxdzFWS2ZNN002TDl4MGhmbHRML1JzZ0hjdDdMYVhpbkgv?=
+ =?utf-8?B?Ky91c0FRbFJFb0U3OXdrNGRLaTRLcXQxTGpxQWJnUUt0TURCdUlqb0JoODFU?=
+ =?utf-8?B?bzBSbXBqRFNMUTBDb1hza3NZM29nUFFad2svMFhPdGxJc2xQUFlDVkhTcnB6?=
+ =?utf-8?B?MVg0UU16dGxvd0h1WGFvK0xwZE9YN1hQM2FzSGdheXZWSE5XenhQQzdObDNB?=
+ =?utf-8?B?dWFpS3JGRVQrS2FMOS9PMElOUUFmTUJZRmpXdnlibmxQdStnMDY5UlBaZVE0?=
+ =?utf-8?B?bm5IOW9zbjBFaFN0b1ljK09LWGVDRmlxU2lFZW5uVGJldWJ6Yk9IbFZCUjVH?=
+ =?utf-8?B?QUV2dmF4Sys4Wjh1QmlVQ3oyQWhOekFhRUdQdHY0U3JGR09KSFYzTytPT2x4?=
+ =?utf-8?B?VnJvcmNMc2dxS1dLVndqVU56K1d1cWsvN3paUVYzT0kzU1NVVUVVcCs1alN2?=
+ =?utf-8?B?U0xBVmFmbEhMQWRvTWM3dEt4LzBQa2JkTWswN0sramVyTDM3Y0gxVlRMN3Qw?=
+ =?utf-8?B?UElzUExqTFNCR0RDZ0wwVXhJMFRNK3pqTGF2SXhYbDM0Q2N2WjRTZz09?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b604aa8-40df-4878-9de2-08deb4b2039d
+X-MS-Exchange-CrossTenant-AuthSource: MRWPR04MB12117.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2026 07:49:39.3764
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xWWeWPpvJJpGeQ+bpfzyp9vIQ4FFghPSKju8jml+d556VaESyKABblzSQR5n7dr0/VzMsJGxwwwmKyw5g8/VUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9187
+X-Rspamd-Queue-Id: 5FF2B56852C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [0.44 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299182-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-299184-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s.trumtrar@pengutronix.de,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[qijian.guo@oss.nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_NONE(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim,oss.nxp.com:mid]
 X-Rspamd-Action: no action
 
-Add NEC NL6448BC33-70C 10.4" 640x480 LCD module support.
+On 5/18/2026 11:20 AM, sashiko-bot@kernel.org wrote:
+> 
+> Thank you for your contribution! Sashiko AI review found 5 potential issue(s) to consider:
+> - [High] Architectural flaw preventing the M7 core from using the CAN1 transceiver.
+> - [High] Incorrect drive strength in `pinctrl_usdhc2_200mhz` causing potential SD card instability.
+> - [Medium] Mismatch between commit message claiming 10G ETH support and device tree implementation.
+> - [Medium] Dead pinctrl configuration in the reserved `flexcan1` node.
+> - [Low] Unused `reg_3p3v` regulator node.
+> --
+> 
+> commit 65457c99452cde3ade57a7afda12053dd0e2d5ee
+> Author: Joseph Guo <qijian.guo@nxp.com>
+> 
+> arm64: dts: freescale: add i.MX95 19x19 FRDM PRO board dts
+> 
+> This commit adds the device tree for the NXP i.MX95 19x19 FRDM PRO board,
+> which is based on the i.MX95 19x19 SoC. It configures various peripherals
+> including USB, PCIe, ethernet, CAN, and regulators.
+> 
+>> - 10G ETH interface
+> 
+> The commit message claims support for a 10G ETH interface, but the device tree
+> only configures enetc_port0 and enetc_port1 as 1 Gbps rgmii-id interfaces and
+> entirely omits the i.MX95 10G Ethernet MAC. Is this omission intentional?
+> 
+10G ETH interface is not enabled in this device tree. But it is supported by hardware.
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
- drivers/gpu/drm/panel/panel-simple.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 236bd56208ccf..0bf50b1ed69e6 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3659,6 +3659,32 @@ static const struct panel_desc nec_nl4827hc19_05b = {
- 	.bus_flags = DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
- };
- 
-+static const struct drm_display_mode nec_nl6448bc33_70c_mode = {
-+	.clock = 25175,
-+	.hdisplay = 640,
-+	.hsync_start = 640 + 16,
-+	.hsync_end = 640 + 16 + 48,
-+	.htotal = 640 + 16 + 48 + 96,
-+	.vdisplay = 480,
-+	.vsync_start = 480 + 2,
-+	.vsync_end = 480 + 2 + 31,
-+	.vtotal = 480 + 2 + 31 + 31,
-+	.flags = DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_PHSYNC,
-+};
-+
-+static const struct panel_desc nec_nl6448bc33_70c = {
-+	.modes = &nec_nl6448bc33_70c_mode,
-+	.num_modes = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 211,
-+		.height = 158,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode netron_dy_e231732_mode = {
- 	.clock = 66000,
- 	.hdisplay = 1024,
-@@ -5520,6 +5546,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "nec,nl4827hc19-05b",
- 		.data = &nec_nl4827hc19_05b,
-+	}, {
-+		.compatible = "nec,nl6448bc33-70c",
-+		.data = &nec_nl6448bc33_70c,
- 	}, {
- 		.compatible = "netron-dy,e231732",
- 		.data = &netron_dy_e231732,
+>> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-frdm-pro.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-frdm-pro.dts
+>> new file mode 100644
+>> index 0000000000000..b87a26b0d7fcf
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-frdm-pro.dts
+>> @@ -0,0 +1,1021 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright 2026 NXP
+>> + */
+> 
+> [ ... ]
+> 
+>> +     flexcan1_phy: can-phy0 {
+>> +             compatible = "nxp,tja1057";
+>> +             #phy-cells = <0>;
+>> +             max-bitrate = <5000000>;
+>> +             silent-gpios = <&i2c4_gpio_expander_22 11 GPIO_ACTIVE_HIGH>;
+>> +     };
+> 
+> [ ... ]
+> 
+>> +     reg_3p3v: regulator-3p3v {
+>> +             compatible = "regulator-fixed";
+>> +             regulator-name = "+V3.3_SW";
+>> +             regulator-max-microvolt = <3300000>;
+>> +             regulator-min-microvolt = <3300000>;
+>> +     };
+> 
+> Is this regulator used anywhere? It doesn't have the regulator-always-on
+> property and isn't referenced by any device node as a supply.
+> 
 
--- 
-2.53.0
+Reference 3v3 here. I think should keep it here.> [ ... ]
+> 
+>> +&flexcan1 {
+>> +     phys = <&flexcan1_phy>;
+>> +     pinctrl-0 = <&pinctrl_flexcan1>;
+>> +     pinctrl-names = "default";
+>> +     status = "reserved";
+>> +};
+> 
+> Will the M7 core be able to use the CAN1 transceiver with this setup?
+> 
+> Since flexcan1 is marked as reserved, the Linux CAN driver won't probe it.
+> As a result, Linux will never power on flexcan1_phy or drive the standby GPIO
+> low. The Linux driver core will also ignore the pinctrl-0 configuration.
+> 
+> If the M7 core depends on Linux to set up the pin multiplexing and enable the
+> PHY, does this need a gpio-hog on the expander and the pinctrl moved to an
+> active pinctrl_hog group instead?
+> 
+M7 core didn't reply any linux side to set up the CAN1.
+
+> [ ... ]
+> 
+>> +     pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+>> +             fsl,pins = <
+>> +                     IMX95_PAD_SD2_CLK__USDHC2_CLK                           0x158e
+>> +                     IMX95_PAD_SD2_CMD__USDHC2_CMD                           0x138e
+>> +                     IMX95_PAD_SD2_DATA0__USDHC2_DATA0                       0x138e
+>> +                     IMX95_PAD_SD2_DATA1__USDHC2_DATA1                       0x138e
+>> +                     IMX95_PAD_SD2_DATA2__USDHC2_DATA2                       0x138e
+>> +                     IMX95_PAD_SD2_DATA3__USDHC2_DATA3                       0x138e
+>> +                     IMX95_PAD_SD2_VSELECT__USDHC2_VSELECT                   0x51e
+>> +             >;
+>> +     };
+> 
+> Are these pad settings correct for 200MHz operation?
+> 
+> These use the exact same pad settings (0x138e and 0x158e) as the 100MHz group,
+> whereas usdhc1 and usdhc3 correctly configure higher drive strength (0x13fe and
+> 0x15fe) for 200MHz. Can this lower drive strength cause signal integrity
+> issues or CRC errors with the SD card at 200MHz?
+> 
+
+For SD card. The driver strength is enough for 200Mhz. No CRC error was found during stress test.
 
 
