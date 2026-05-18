@@ -1,191 +1,263 @@
-Return-Path: <devicetree+bounces-299608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oP3WMLhxC2qjHwUAu9opvQ
-	(envelope-from <devicetree+bounces-299608-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:08:24 +0200
+	id 2PfROiNxC2p/HwUAu9opvQ
+	(envelope-from <devicetree+bounces-299599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:05:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4DD573422
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:08:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5050157336D
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:05:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D8CF53042C52
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:08:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A0A63018764
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C163921E9;
-	Mon, 18 May 2026 20:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5393914E5;
+	Mon, 18 May 2026 20:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WtSARbnE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K6EWyO55"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A8C3392C4B
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:07:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCC238AC8B
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:05:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779134881; cv=none; b=adA889EGU86fhwXLt7CV6pU7yJOr05JiuP7rpX9gN7zQocx18QSkRbLxAvuHhrrF2OTdIQdoFHwdFXbB6XWgzFagTENphaMuU5NewKUW+e+K/h6PdJSBPHZsvZ2gFDq6v34n17Tib8dkDZghydVYxzwn7XUpSx2PFRrT6DNkBcg=
+	t=1779134729; cv=none; b=lEiddByfAsw9mA2Wrtwua8PtcFXlu7wS9hWwbTOH787cwoZH9kiRk8+uGYpDqJDy8ncbS8hh+FhSz6gGCSJSurZ+P/PuLNE555WEphy8aulLuSReK/MqSIdN3tNRQcKOHT+qSRCj6N+UAZ6VToJmu1FavDDY1TwcodQ0K6F+uBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779134881; c=relaxed/simple;
-	bh=7P166A8vdKpbCTvjwJ0c7DTCaR8r6ukvy1kUs71vwQ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jRnYjtlxQZCnxokyTH27MLidM7Z8jXtZaQFHldGHDU9Pg9+BaFH6toX+t9FaIOtZwg/QGynqnNFCcO30WtZXgYHOLkE4O1EW+mF+2+83TpnnkZmmSVA5p4vBtFKN4pZxbodSwFiA3EEh7bO++AM/f4woamUYEq0dKkQNssFtNDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WtSARbnE; arc=none smtp.client-ip=209.85.210.42
+	s=arc-20240116; t=1779134729; c=relaxed/simple;
+	bh=vb2AgGc35TL/XGOXSGbcvOchFSZiLg5xVi3rxt9C3Jc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=FmuDBGU4IXIc2Krewugs6ISI/F0BeZgkQHFueixiAmiAZx/36iaAUwwIXbdo2PMzolzDuPb4XiCONeKp4CR3AAh/jf4QvDrXFAXFxGOKumRx/1C2Y4hsXYe8NOBDwZsSrWc/BtRklgVqTTM0lOfnHW+Di3PwdvcOMv+I3+ij/os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K6EWyO55; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7dcdca9aa0bso4088986a34.0
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:07:59 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-43d76dd4ee8so134144f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:05:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779134878; x=1779739678; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=WtSARbnE08EEZ2+HIbA9BOIzvjIqNL3XLnsYpONVWdChZLO912wZ5ryRsAzrKe6Y1T
-         IQMnhNv3yjaOD8DAtng50xvhRx2GwbYeoxfT2h7iqMbEWUfQCIzlWXsd3q7A38flU+wk
-         aGfbMQt7rfTYd4ghiPTEBudPqsOV7Duz5cCTCwJTdqIb5iEovEnJzK3KNWNAY8OFfCqk
-         mtfewQ7GV0JLBhVt+j0FO+uaKvtLbkdbr4ithrCmnS5SBnTbjFH4kiHZoU2+/pXjTvh5
-         b1WJzAfGb+ZSkTqNQ2bqIRscJ2BiVWWfsOyIQwdOTecVpptGCr+Rte+B5nozAaFOTPie
-         pxHA==
+        d=gmail.com; s=20251104; t=1779134727; x=1779739527; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cAkY0vj7iSY+sZjzSMZGpI/xkJ9Jb7vUa4k3TiZjewI=;
+        b=K6EWyO55U+qM4qMSlAm8EKx1RPPf6yoJiz9flsaJXpScaXdbQghCcqcpDV2w/Qlh4O
+         5HJSjPjAKzJ+a9THNHNlFwRDsRMn3bs8X475OpyT+vXh4nwSG6p0vo4KGoTn0L/3u59X
+         E3ZW+86E8W7ugUvXTY/adTodcUCYk+J4Qi6mEkYtT75XyHuY8i8HoolTTCb9pObeGE64
+         ReDTPG2SJiR8YBos1+dyKrHqwqFOIt8nwRrvBw4r83pCSw+vssYZnc/m2FFtbxa0rTXL
+         b3nqrzb4WoQIKF0rb7pJkpacQqmtkCYuPfA+CuENx3afnfdNJcViBwY38tLsmZxcjHEC
+         hc8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779134878; x=1779739678;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=fnup7xyc63zP/nbSsZEqlxOju5v6ZYJGzPZ6/2Kd/m1dxwXSnzS+9gHZ+KwDYSmWC1
-         Dy+GTeu6ZtCIvLYLoLPM2APZqZzn56QxXTodFJATu4HOJK6QJXa4TwM/eNad51afbHXg
-         8eJG/x3CSh+XxOaV1npOI2+W1xFvGuSnV1KnK3/I028cXA7l/MYuh2X/0rvhlnH4C2q2
-         751UqYPoIUhHqoK7lp5EhXowxdbwgme/MOWdB4ixroWozO+of4S76AnY0U3n+s6L88NP
-         YHrKiEEl9B26HQnmFce4MghaX8uBVz5HAxhRicGzyesVbXKiYirbWAnIzt63OB/T2dhi
-         +KAw==
-X-Forwarded-Encrypted: i=1; AFNElJ96m22pIw4drgKVyk7Ws/4c9+pjbtNsyINOGvjKqtmAX/Smalb3XdUNfaYRCrY7V66Js1co6kCvmboQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyO6j4iksQ0sBBUtlrn7rO3cVAdDStiJtFabsMIHvqM1vM2f9m
-	cLO3DrYP/9yxKZVe7nU+r5jJTu7o19SZ1RHo+CGa8kjDbUG8baMNqZrj
-X-Gm-Gg: Acq92OEUgw2hkNNiKZaE1Sgm/+fEmhEI6PA6ogODxc9LC5rEsvBd4nXob852m6/JlUu
-	N4jyOHFtHVYFJRoQKDy94yUipDs6r0s1rlOAtiTWEPTLfQ0SlHnccPRH8hZF5nBk8aEKs8A4Uy2
-	YXWIdS96/d0Oq821y8UkG5IuuthYY0HmbM8uwqCDA7c6a/tqwgwuOTBFzIG1b1qRdUE4k4lWD1I
-	MAuU5JybdehzLZSF9jCjcuJkAHcmGo6DOdaO2oRkeNq9HBSDIZb7VvmtibxG17SqKTNXa0gmXd/
-	3JgtQI8uONrTA/OSbWXgzCZ0T+gfOnul2N+Jr1rTUvCg8SeQxGD+FJT2AnFF6h3sa+33DsWzatp
-	V31Z2KGigijfIGaZwDPUqS/GZ3cYURlLGpB5InwnwusbnaeiowMaiEOJXeBC+xjgK0Cf1+GRLyH
-	v1N+th6RbP6XeItJLzZlEHAWq1a7Zs1XY=
-X-Received: by 2002:a05:6820:1b05:b0:682:ecb8:c2b with SMTP id 006d021491bc7-69c5d3b8b7cmr8844624eaf.6.1779134878528;
-        Mon, 18 May 2026 13:07:58 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-69d0462e85esm6113360eaf.6.2026.05.18.13.07.57
+        d=1e100.net; s=20251104; t=1779134727; x=1779739527;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cAkY0vj7iSY+sZjzSMZGpI/xkJ9Jb7vUa4k3TiZjewI=;
+        b=RMyO2FotZHBu6E2doPUAKqgdxH9/dAqHQdu2EsGS/quCXxnhmOpVP7w8PQbC1hUMKK
+         798caAhVupm6KvxuLwDLRt0LxYUs85Q0LQWeiN3d1NNVTLRTAKDCP5inrK27MXHghsNZ
+         050fIeXh1dcQy1aqU+X/gjDi5AB7ZuJDp3bh4/pzm4bF/O+uTWvFYa+C2L8g0uLMjmVh
+         iPaVieHs7rQZbdut69O0WOfLbE+imIqXuKYaDjOyR/MY+NGGIMZ3X9mHRN6O1aYIICEs
+         tdEnXpM40UL2uekf2c8iblpHgsRtaAZyLBoWbwMBXhcZ10mO5xg0KpYMw3F2ETidOXj+
+         R4vQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+NPotexpjvYd58kkQMdkMPaXnWaPUkNgjSeKSiP68L41YnvrLllPxCQ14Vrx6zkAHFD1wqsZVTQR0c@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzr2faIvgrppvQt1CJNh54Mz850WmUduY9aI4YoZliVRMKB7QQE
+	l0iHlfEgQm/lNhMfpNjIyO49IUnFc8YCDaaVTBkY4YFi+CJ+YsBMrgas
+X-Gm-Gg: Acq92OGKwU/7cN9nndGuKkOC4I5CQzATmT9JPQmG2+kl6biC2d/dh9pqTng7oD5tlyJ
+	IVQK8cZh6cA2F+1xrY/49qtBi+cegmZpeMaEjf8BfScpywSHPx34HZtOSl7osmL6rBS9noCRki8
+	EaIiuu8c07G0CCup+GYq3MgGi6rim1S2AWWv8OHi/Ujwd/nvVCpvvAqVL/3YR8P2f1FaMh4SAg6
+	9KiRiWvopCnm2epL5X9dg5hR1ERoaVcHxn//YNnF1xFtfUQ9SFBg96nvH2dNyWv+eZ4V2gQsuaW
+	EXr1CpGVE5EadDF14viiQM4K4F3OH43MGfctPsOsFwF55Xu6K1zMpuCJtE0k21dyGDMO/2rcJye
+	Hh4oHp1Q/LJwMcvPg8XbWQ+UYovH3M4OK9VJARDcV8SRXI//78kj4IuzowWE8hXZiofU9ARQwcI
+	X2UzZpdM4MRxDwYwWxoUnHAEbDMBONcop9hSQ0+fQ6KXHN9KZ0h/TzRDb9WkUHHkGyW+ucZF8cg
+	kI=
+X-Received: by 2002:a5d:584c:0:b0:446:db72:e8ec with SMTP id ffacd0b85a97d-45e5c587281mr26781621f8f.23.1779134726576;
+        Mon, 18 May 2026 13:05:26 -0700 (PDT)
+Received: from giga-mm-11.home (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0a19c2dsm40825454f8f.21.2026.05.18.13.05.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 13:07:58 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: andy@kernel.org,
-	nuno.sa@analog.com,
-	dlechner@baylibre.com,
-	jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	andriy.shevchenko@intel.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V8 10/10] arm64: dts: rockchip: Add icm42607p IMU for RG-DS
-Date: Mon, 18 May 2026 15:05:25 -0500
-Message-ID: <20260518200526.458421-11-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260518200526.458421-1-macroalpha82@gmail.com>
-References: <20260518200526.458421-1-macroalpha82@gmail.com>
+        Mon, 18 May 2026 13:05:26 -0700 (PDT)
+Message-ID: <04da68168f92b196cce4d49c766fc62702bf6472.camel@gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: A133: add support for
+ Baijie Helper A133 board
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Paul Kocialkowski <paulk@sys-base.io>
+Cc: linux-sunxi@lists.linux.dev, Andre Przywara <andre.przywara@arm.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Mon, 18 May 2026 22:05:25 +0200
+In-Reply-To: <agr9m_tidBr6Cu2h@collins>
+References: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
+	 <20260510201644.4143710-4-alexander.sverdlin@gmail.com>
+	 <agr9m_tidBr6Cu2h@collins>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-299599-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-299608-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.68:email]
-X-Rspamd-Queue-Id: 4F4DD573422
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5050157336D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Hi Paul,
 
-Add the Invensense ICM42607P IMU for the Anbernic RG-DS. Mount-matrix
-was tested with iio-sensor-proxy and reports correct orientation.
+thanks for the review!
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3568-anbernic-rg-ds.dts    | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+On Mon, 2026-05-18 at 13:52 +0200, Paul Kocialkowski wrote:
+>=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi =
+b/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi
+> > new file mode 100644
+> > index 000000000000..65b094f30bf5
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-index 8d906ab02c5f..875ca884deca 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-@@ -871,7 +871,18 @@ aw87391_pa_r: audio-codec@5b {
- 		sound-name-prefix = "Right Amp";
- 	};
- 
--	/* invensense,icm42607p at 0x68 */
-+	icm42607p: imu@68 {
-+		compatible = "invensense,icm42607p";
-+		reg = <0x68>;
-+		interrupt-names = "INT1";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PD6 IRQ_TYPE_EDGE_FALLING>;
-+		mount-matrix = "-1", "0", "0",
-+			       "0", "1", "0",
-+			       "0", "0", "-1";
-+		pinctrl-0 = <&accel_irq>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &i2c3 {
-@@ -932,6 +943,13 @@ &i2s1_8ch {
- };
- 
- &pinctrl {
-+	accel {
-+		accel_irq: accel-irq {
-+			rockchip,pins =
-+				<0 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	gpio-keys {
- 		vol_keys_l: vol-keys_l {
- 			rockchip,pins =
--- 
-2.43.0
+[]
 
+> You should add:
+>=20
+> 	chosen {
+> 		stdout-path =3D "serial0:115200n8";
+> 	};
+
+I actually have it in .dts, but it's theoretically possible to deploy
+the core board in a way that serial0 is *not* a console, so the above
+probably will not be valid in all cases in .dtsi.
+
+>=20
+>=20
+>=20
+> > +&reg_dcdc2 {
+> > +	regulator-always-on;
+> > +	regulator-min-microvolt =3D <500000>;
+> > +	regulator-max-microvolt =3D <1300000>;
+>=20
+> Should be:
+> 	regulator-min-microvolt =3D <900000>;
+> 	regulator-max-microvolt =3D <1300000>;
+
+0.81..1.2v according to A133 Datasheet Revision 1.1 Jul.14, 2020?
+
+>=20
+> > +&reg_dcdc4 {
+> > +	regulator-always-on;
+> > +	regulator-min-microvolt =3D <500000>;
+> > +	regulator-max-microvolt =3D <1300000>;
+> > +	regulator-name =3D "vdd-sys";
+>=20
+> Should be:
+> 	regulator-min-microvolt =3D <810000>;
+> 	regulator-max-microvolt =3D <990000>;
+> 	regulator-name =3D "vcc-usb-sys";
+
+I'm a bit puzzled here: datasheet says 0.9..1.0v
+and it has no "Typ" value, similar to VDD_CPU, but
+VDD_SYS is not part of OPP tables, so who is going
+to adjust this? Or shall it be just
+
+regulator-min-microvolt =3D <950000>;
+regulator-max-microvolt =3D <950000>;
+
+?
+
+>=20
+> > +};
+> > +
+> > +&reg_dcdc5 {
+> > +	regulator-always-on;
+> > +	regulator-min-microvolt =3D <800000>;
+> > +	regulator-max-microvolt =3D <1840000>;
+> > +	regulator-name =3D "vcc-dram";
+>=20
+> Should be:
+> 	regulator-min-microvolt =3D <1100000>;
+> 	regulator-max-microvolt =3D <1100000>;
+> 	regulator-name =3D "vcc-dram-2";
+>=20
+> ALDO2 is the main DRAM supply, this is the second one.
+
+Core schematics mentions 1.1V/1.2/1.35/1.5 on this rail...
+Currently U-Boot has CONFIG_AXP_DCDC5_VOLT=3D1100, but potentially
+this is adjustable, right? At some point LPDDR4 chips they
+are soldering today will be unavailable. And in the current
+market it will happen rather sooner than later...
+
+>=20
+> > +};
+> > +
+> > +/* DCDC6 unused */
+> > +
+> > +&reg_dldo1 {
+> > +	regulator-min-microvolt =3D <700000>;
+> > +	regulator-max-microvolt =3D <3300000>;
+> > +	regulator-enable-ramp-delay =3D <1000>;
+>=20
+> Should be:
+> 	regulator-min-microvolt =3D <1800000>;
+> 	regulator-max-microvolt =3D <1800000>;
+> 	regulator-name =3D "vcc-pg";
+
+Do suggest to drop vendor's
+
+regulator-enable-ramp-delay =3D <1000>;
+
+in all cases?
+
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dt=
+s b/arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dts
+> > new file mode 100644
+> > index 000000000000..ccbca5d0a40c
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dts
+
+[]
+
+> > +	aliases {
+> > +		serial0 =3D &uart0;
+>=20
+> The is best added to the core dtsi.
+>=20
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path =3D "serial0:115200n8";
+>=20
+> Ditto.
+
+But it only physically materializes in Helperboard, the carrier.
+Potentially this one can be left floating or used for something else.
+
+--=20
+Alexander Sverdlin.
 
