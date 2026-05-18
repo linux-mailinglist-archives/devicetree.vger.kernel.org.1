@@ -1,263 +1,207 @@
-Return-Path: <devicetree+bounces-299599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PfROiNxC2p/HwUAu9opvQ
-	(envelope-from <devicetree+bounces-299599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:05:55 +0200
+	id +JzOGVF1C2oHIAUAu9opvQ
+	(envelope-from <devicetree+bounces-299611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:23:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5050157336D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:05:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFAD57352F
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:23:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A0A63018764
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:05:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A6A6B3014563
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5393914E5;
-	Mon, 18 May 2026 20:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26103815C3;
+	Mon, 18 May 2026 20:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K6EWyO55"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JYWi7qrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCC238AC8B
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E37405C33
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779134729; cv=none; b=lEiddByfAsw9mA2Wrtwua8PtcFXlu7wS9hWwbTOH787cwoZH9kiRk8+uGYpDqJDy8ncbS8hh+FhSz6gGCSJSurZ+P/PuLNE555WEphy8aulLuSReK/MqSIdN3tNRQcKOHT+qSRCj6N+UAZ6VToJmu1FavDDY1TwcodQ0K6F+uBw=
+	t=1779135781; cv=none; b=Jezr56QH1S7mKcNyQhS0uAqjDULEg2In+dju5PZ8jnBTNDhGjXu9gcz8+1tQq4xSgK43xnfLH1pv56BN5TgB6RrAUljT3EW8eXNGKNgPfl07aJ2CRKJnr8O/CPb2eIwFuw02hLlzYivcFOnnmF7eCG3qWN+MRuUAiMyIwUimzag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779134729; c=relaxed/simple;
-	bh=vb2AgGc35TL/XGOXSGbcvOchFSZiLg5xVi3rxt9C3Jc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FmuDBGU4IXIc2Krewugs6ISI/F0BeZgkQHFueixiAmiAZx/36iaAUwwIXbdo2PMzolzDuPb4XiCONeKp4CR3AAh/jf4QvDrXFAXFxGOKumRx/1C2Y4hsXYe8NOBDwZsSrWc/BtRklgVqTTM0lOfnHW+Di3PwdvcOMv+I3+ij/os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K6EWyO55; arc=none smtp.client-ip=209.85.221.49
+	s=arc-20240116; t=1779135781; c=relaxed/simple;
+	bh=7wjz55g5It7D1iARd2kd9SG5ABYHwmZ+CNk27XYM0yk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IerQzZpesFc2ItIDJZO0KV2r9/yK54jfaNsnoSV8Wxx6n+4PDv+8bgHOisLmFfa4rR8AYW243KgpfwjedzXjPzdnu//dh+qtzn607dFbuLBskq/cXG9Zj6AvYo2o8D5SlGbvuUaPhEoWlLO7o9sgMt63sVWJ9MOdzPVzGfXyNh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JYWi7qrO; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-43d76dd4ee8so134144f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:05:28 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-39556b00a85so25547441fa.0
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 13:23:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779134727; x=1779739527; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=cAkY0vj7iSY+sZjzSMZGpI/xkJ9Jb7vUa4k3TiZjewI=;
-        b=K6EWyO55U+qM4qMSlAm8EKx1RPPf6yoJiz9flsaJXpScaXdbQghCcqcpDV2w/Qlh4O
-         5HJSjPjAKzJ+a9THNHNlFwRDsRMn3bs8X475OpyT+vXh4nwSG6p0vo4KGoTn0L/3u59X
-         E3ZW+86E8W7ugUvXTY/adTodcUCYk+J4Qi6mEkYtT75XyHuY8i8HoolTTCb9pObeGE64
-         ReDTPG2SJiR8YBos1+dyKrHqwqFOIt8nwRrvBw4r83pCSw+vssYZnc/m2FFtbxa0rTXL
-         b3nqrzb4WoQIKF0rb7pJkpacQqmtkCYuPfA+CuENx3afnfdNJcViBwY38tLsmZxcjHEC
-         hc8g==
+        d=gmail.com; s=20251104; t=1779135779; x=1779740579; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2hKEXdf7SpgU8S8EsSxa8nph73zmVb4ykhaEpQLdhQs=;
+        b=JYWi7qrO1QGMYc4/kgccIhi5wzyqO7daO4KqRUfknPRvdgfN8F0cAj+glq2kTwHuSO
+         FM/IoYgQl05303L1NVjsPudRPqexYRrr7XDivoCo4Z3ZzPuJn/Ui3W/hRpdk4Ik5N/dL
+         vN+xJ3RORmCSo06GdwDLjz8VyPPlHDFiLr4cxSF5b/6h9Hd11T5zrqbTQMcYZ4dIWWPa
+         G5hwj4hmtpNb+TmlH4KMvtG+lQLm9xsQQ37yYee93Ar3P6lFlF4TyIeHlykACFEG9cRc
+         4ktCP7jmPqIZSlxqjDoeAVOpJyEWVSVclrRAxmSTEW15myYJxfXE7BNWp5KzJHUo0CjJ
+         s2QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779134727; x=1779739527;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cAkY0vj7iSY+sZjzSMZGpI/xkJ9Jb7vUa4k3TiZjewI=;
-        b=RMyO2FotZHBu6E2doPUAKqgdxH9/dAqHQdu2EsGS/quCXxnhmOpVP7w8PQbC1hUMKK
-         798caAhVupm6KvxuLwDLRt0LxYUs85Q0LQWeiN3d1NNVTLRTAKDCP5inrK27MXHghsNZ
-         050fIeXh1dcQy1aqU+X/gjDi5AB7ZuJDp3bh4/pzm4bF/O+uTWvFYa+C2L8g0uLMjmVh
-         iPaVieHs7rQZbdut69O0WOfLbE+imIqXuKYaDjOyR/MY+NGGIMZ3X9mHRN6O1aYIICEs
-         tdEnXpM40UL2uekf2c8iblpHgsRtaAZyLBoWbwMBXhcZ10mO5xg0KpYMw3F2ETidOXj+
-         R4vQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+NPotexpjvYd58kkQMdkMPaXnWaPUkNgjSeKSiP68L41YnvrLllPxCQ14Vrx6zkAHFD1wqsZVTQR0c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzr2faIvgrppvQt1CJNh54Mz850WmUduY9aI4YoZliVRMKB7QQE
-	l0iHlfEgQm/lNhMfpNjIyO49IUnFc8YCDaaVTBkY4YFi+CJ+YsBMrgas
-X-Gm-Gg: Acq92OGKwU/7cN9nndGuKkOC4I5CQzATmT9JPQmG2+kl6biC2d/dh9pqTng7oD5tlyJ
-	IVQK8cZh6cA2F+1xrY/49qtBi+cegmZpeMaEjf8BfScpywSHPx34HZtOSl7osmL6rBS9noCRki8
-	EaIiuu8c07G0CCup+GYq3MgGi6rim1S2AWWv8OHi/Ujwd/nvVCpvvAqVL/3YR8P2f1FaMh4SAg6
-	9KiRiWvopCnm2epL5X9dg5hR1ERoaVcHxn//YNnF1xFtfUQ9SFBg96nvH2dNyWv+eZ4V2gQsuaW
-	EXr1CpGVE5EadDF14viiQM4K4F3OH43MGfctPsOsFwF55Xu6K1zMpuCJtE0k21dyGDMO/2rcJye
-	Hh4oHp1Q/LJwMcvPg8XbWQ+UYovH3M4OK9VJARDcV8SRXI//78kj4IuzowWE8hXZiofU9ARQwcI
-	X2UzZpdM4MRxDwYwWxoUnHAEbDMBONcop9hSQ0+fQ6KXHN9KZ0h/TzRDb9WkUHHkGyW+ucZF8cg
-	kI=
-X-Received: by 2002:a5d:584c:0:b0:446:db72:e8ec with SMTP id ffacd0b85a97d-45e5c587281mr26781621f8f.23.1779134726576;
-        Mon, 18 May 2026 13:05:26 -0700 (PDT)
-Received: from giga-mm-11.home (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0a19c2dsm40825454f8f.21.2026.05.18.13.05.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 13:05:26 -0700 (PDT)
-Message-ID: <04da68168f92b196cce4d49c766fc62702bf6472.camel@gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: A133: add support for
- Baijie Helper A133 board
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Paul Kocialkowski <paulk@sys-base.io>
-Cc: linux-sunxi@lists.linux.dev, Andre Przywara <andre.przywara@arm.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+        d=1e100.net; s=20251104; t=1779135779; x=1779740579;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2hKEXdf7SpgU8S8EsSxa8nph73zmVb4ykhaEpQLdhQs=;
+        b=YyTNCwapRZgj/vHzUqE4uB5tCzh9EdROJbzsCDU2zHqp1uuCixmj36DU8stMlgQpzS
+         0L9dAjDr0YgxgF+XRw24lLb3k7ve6BhMkkT8GpFlA/hKMSULCZHKjuOIN+O/fNQG/2Px
+         ywuYOig+fnGraZFRFHOtzCBCyGeIYbAbGFuAMxwoceWwCE7Nw4yi79524G3LxyCS0Bpx
+         leWwfpNEXSXZOp+otzwylbgeCzQpDheVBKCKdavPXAvAo+/uWEU1TJsokNI47d3Gupgm
+         uGQMmB2bNfhJ9UdVV3d86jI/3p7hGFGGllzJ5joF3E3/62svQcRSiWGUJuDpNAj+g/AE
+         4EdA==
+X-Forwarded-Encrypted: i=1; AFNElJ+qTa7bL2EKoPbMwh6QI3SAQAlZShUHJ0Xfsy9nftSbNLnx+KVMxb1MW6FCNp7e4bZZN5me/OfT9tkq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYieIMnGpvoY7/em4gWIIyYTLl8SWae2TkNx7G9IEoQGCyryxF
+	wpm1w02EesIqat5ybc4fkDUpGzwnyKxSRjQHT8LZj3mwUsk6/u85gJfl
+X-Gm-Gg: Acq92OFuc/9+IFWubLynCIN3ejlh4ZbkSUWRVImKwK7St4dwfKtGDcKxEKEqa8AO1me
+	E5BSXvMR8l40Q2RJ5H8+LJ513U5Rcz6USrFd4RgZkFEqo0pUOUWHCiv7MsfKfWPgnyW7f5vbCH7
+	vtKDHcMJdmhTJw9mwn5jXxNJ4FcH1lUAiFrBcs7t8ixsqAsFnAvtsBnhnFd1SOTfBV019K9wFRy
+	rr94zxj5BnSUBpg5j8fYTfym9rUC0BZ+cXe8cUMW7ZTvK6jUNltAiakEqwWGfFHp7jqe1KbG7jr
+	ulZMCKL8TTqz5AXOCzuyEwNcTRFeGDR6SNumeL7yYtNbHzBwDxXP++CF4pXc8oPoemzo5rRi9xr
+	LSJUGlShq1UebsYA0NWVrHN732q3b/XiVZhClvHnFcpI7jE/E8RemmwmVW+r36S52r6QI9YPvLe
+	D25wE2nDTzvK7t60laOIzd1uNxQoNsNimPkVfGyjg/
+X-Received: by 2002:a05:651c:41d7:b0:38d:e220:8dc2 with SMTP id 38308e7fff4ca-39561dbd27dmr49775531fa.20.1779135778324;
+        Mon, 18 May 2026 13:22:58 -0700 (PDT)
+Received: from localhost.localdomain ([90.157.113.57])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-395887b42f8sm15225061fa.36.2026.05.18.13.22.56
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 18 May 2026 13:22:57 -0700 (PDT)
+From: taygoth <taygoth@gmail.com>
+To: linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Date: Mon, 18 May 2026 22:05:25 +0200
-In-Reply-To: <agr9m_tidBr6Cu2h@collins>
-References: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
-	 <20260510201644.4143710-4-alexander.sverdlin@gmail.com>
-	 <agr9m_tidBr6Cu2h@collins>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.1 
+Cc: Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Casey Connolly <casey.connolly@linaro.org>
+Subject: [PATCH 0/6] usb: typec: add Qualcomm PMI8998 USB Type-C role-switch support
+Date: Tue, 19 May 2026 01:22:45 +0500
+Message-ID: <cover.1779127507.git.taygoth@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299599-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,quicinc.com,linuxfoundation.org,linux.intel.com,linaro.org];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-299611-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[taygoth@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 5050157336D
+X-Rspamd-Queue-Id: BBFAD57352F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Paul,
+This series adds USB Type-C role-switch support for the PMI8998 PMIC
+used on SDM845 phones (OnePlus 6/6T, Xiaomi Poco F1, SHIFT 6mq), which
+have been locked to USB peripheral mode under mainline kernels until
+now.
 
-thanks for the review!
+The PMI8998 SMB2 charger block integrates a Type-C detection unit at
+SPMI offset 0x1300 that performs CC sensing, debounce and Rp/Rd
+resolution entirely in hardware. The state is exposed through the
+TYPE_C_STATUS_4 register and reported via a single consolidated
+"type-c-change" interrupt. The new driver reads that status on every
+interrupt and pushes the negotiated role to a usb_role_switch consumer
+(dwc3), enabling automatic peripheral/host switching on cable change.
+Because the hardware handles the Type-C state machine natively, no
+software TCPM port manager is required.
 
-On Mon, 2026-05-18 at 13:52 +0200, Paul Kocialkowski wrote:
->=20
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi =
-b/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi
-> > new file mode 100644
-> > index 000000000000..65b094f30bf5
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-baije-core.dtsi
+The Type-C block shares the SMB2 USBIN region with the already
+mainlined qcom_pmi8998-charger driver. The two coexist on the shared
+SPMI regmap without write conflict: the typec driver only reads
+TYPE_C_STATUS_* and touches the IRQ enable bits at offsets
+0x130b-0x130f and 0x1367-0x1368.
 
-[]
+The PMI8998 USB OTG VBUS boost converter at offset 0x1100 has the
+same CMD_OTG / OTG_CFG / OTG_CURRENT_LIMIT register layout as PM8150B,
+so the existing drivers/regulator/qcom_usb_vbus-regulator can drive it
+through a compatible cascade -- only the DT binding needs the new
+compatible string added.
 
-> You should add:
->=20
-> 	chosen {
-> 		stdout-path =3D "serial0:115200n8";
-> 	};
+Power Delivery is not implemented. The PMI8998 PDPHY block at offset
+0x1700 is register-identical to PM8150B and could be wired through
+the existing drivers/usb/typec/tcpm/qcom code in a follow-up if PD
+negotiation becomes a requirement.
 
-I actually have it in .dts, but it's theoretically possible to deploy
-the core board in a way that serial0 is *not* a console, so the above
-probably will not be valid in all cases in .dtsi.
+Tested-on: OnePlus 6T (sdm845-oneplus-fajita) running Mobian
+6.12-sdm845. A USB flash drive, USB ethernet adapter, USB WiFi
+adapter (TP-Link Archer T2) and a self-powered USB-C dock with
+downstream ethernet all enumerate through xHCI after the role
+transitions from peripheral to host. Repeat plug/unplug cycles drive
+the role through device -> none -> host -> none -> device cleanly
+with no IRQ stalls or stale role-switch state.
 
->=20
->=20
->=20
-> > +&reg_dcdc2 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <500000>;
-> > +	regulator-max-microvolt =3D <1300000>;
->=20
-> Should be:
-> 	regulator-min-microvolt =3D <900000>;
-> 	regulator-max-microvolt =3D <1300000>;
+Series mirror:
+  https://github.com/taygoth/linux/tree/pmi8998-typec
 
-0.81..1.2v according to A133 Datasheet Revision 1.1 Jul.14, 2020?
+taygoth (6):
+  dt-bindings: regulator: qcom,usb-vbus-regulator: add PMI8998
+  dt-bindings: usb: add Qualcomm PMI8998 Type-C controller
+  usb: typec: add Qualcomm PMI8998 role-switch driver
+  arm64: dts: qcom: pmi8998: add USB Type-C and VBUS regulator nodes
+  arm64: dts: qcom: sdm845-oneplus-common: enable USB Type-C role
+    switching
+  MAINTAINERS: add entry for Qualcomm PMI8998 USB Type-C driver
 
->=20
-> > +&reg_dcdc4 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <500000>;
-> > +	regulator-max-microvolt =3D <1300000>;
-> > +	regulator-name =3D "vdd-sys";
->=20
-> Should be:
-> 	regulator-min-microvolt =3D <810000>;
-> 	regulator-max-microvolt =3D <990000>;
-> 	regulator-name =3D "vcc-usb-sys";
+ .../regulator/qcom,usb-vbus-regulator.yaml    |   1 +
+ .../bindings/usb/qcom,pmi8998-typec.yaml      |  97 ++++++++
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  19 ++
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |  43 +++-
+ drivers/usb/typec/Kconfig                     |  17 ++
+ drivers/usb/typec/Makefile                    |   1 +
+ drivers/usb/typec/qcom_pmi8998_typec.c        | 213 ++++++++++++++++++
+ 8 files changed, 392 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmi8998-typec.yaml
+ create mode 100644 drivers/usb/typec/qcom_pmi8998_typec.c
 
-I'm a bit puzzled here: datasheet says 0.9..1.0v
-and it has no "Typ" value, similar to VDD_CPU, but
-VDD_SYS is not part of OPP tables, so who is going
-to adjust this? Or shall it be just
 
-regulator-min-microvolt =3D <950000>;
-regulator-max-microvolt =3D <950000>;
+base-commit: 5200f5f493f79f14bbdc349e402a40dfb32f23c8
+-- 
+2.47.3
 
-?
-
->=20
-> > +};
-> > +
-> > +&reg_dcdc5 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <800000>;
-> > +	regulator-max-microvolt =3D <1840000>;
-> > +	regulator-name =3D "vcc-dram";
->=20
-> Should be:
-> 	regulator-min-microvolt =3D <1100000>;
-> 	regulator-max-microvolt =3D <1100000>;
-> 	regulator-name =3D "vcc-dram-2";
->=20
-> ALDO2 is the main DRAM supply, this is the second one.
-
-Core schematics mentions 1.1V/1.2/1.35/1.5 on this rail...
-Currently U-Boot has CONFIG_AXP_DCDC5_VOLT=3D1100, but potentially
-this is adjustable, right? At some point LPDDR4 chips they
-are soldering today will be unavailable. And in the current
-market it will happen rather sooner than later...
-
->=20
-> > +};
-> > +
-> > +/* DCDC6 unused */
-> > +
-> > +&reg_dldo1 {
-> > +	regulator-min-microvolt =3D <700000>;
-> > +	regulator-max-microvolt =3D <3300000>;
-> > +	regulator-enable-ramp-delay =3D <1000>;
->=20
-> Should be:
-> 	regulator-min-microvolt =3D <1800000>;
-> 	regulator-max-microvolt =3D <1800000>;
-> 	regulator-name =3D "vcc-pg";
-
-Do suggest to drop vendor's
-
-regulator-enable-ramp-delay =3D <1000>;
-
-in all cases?
-
-> >=20
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dt=
-s b/arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dts
-> > new file mode 100644
-> > index 000000000000..ccbca5d0a40c
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-baijie-helper.dts
-
-[]
-
-> > +	aliases {
-> > +		serial0 =3D &uart0;
->=20
-> The is best added to the core dtsi.
->=20
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path =3D "serial0:115200n8";
->=20
-> Ditto.
-
-But it only physically materializes in Helperboard, the carrier.
-Potentially this one can be left floating or used for something else.
-
---=20
-Alexander Sverdlin.
 
