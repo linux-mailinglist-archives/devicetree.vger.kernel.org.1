@@ -1,138 +1,140 @@
-Return-Path: <devicetree+bounces-299316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299310-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UBsOLHXzCmpZ+QQAu9opvQ
-	(envelope-from <devicetree+bounces-299316-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:09:41 +0200
+	id MGqHEFLyCmpv+AQAu9opvQ
+	(envelope-from <devicetree+bounces-299310-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:04:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B57156B461
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:09:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C7456B328
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:04:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5A816304C4CE
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:05:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0B9D4300610D
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67BC43DDDD0;
-	Mon, 18 May 2026 11:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1CB3F20EF;
+	Mon, 18 May 2026 11:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="aeqFUWAF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o15OkzeX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C316D3EF0C5;
-	Mon, 18 May 2026 11:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779102329; cv=pass; b=qHpAMXl+myFgqyG02sfKNYmsNqdEB++UvLqfrrFyesvXdxtzp4k2+QqOgPLmFzJ2gX7jUxqgjFVn9jaxowlMRlscdrAHQLAEv23WRh9A+ZyHxv4MC6R3BBVLByGKM7XaDWI85BqqSZHSkBZGV1mEe38EJVWpsTiHxwCmdOcvPJ4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779102329; c=relaxed/simple;
-	bh=xXxWi+o9DH47nHPdoxzPOIMkApvtONEn9s5y/XBJsPA=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BFF43EFFCB
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 11:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779102286; cv=none; b=ro2zO1z9kkEhE0TjY0G5GF2Twp+huhMsE92WvRmFMXvN2XJjMhc8QLRMJxIPhw2boVPeDZHL5/3UtbinhX1rWdCunWvmDTFx4VGPTeL5VbRiF7JELT+YPFvwyadVL2v5XhcFWzh70lc4Hm9UB0mj99SfqGQZgMvNNF0FWO2FUAg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779102286; c=relaxed/simple;
+	bh=lSgAgfsm+ifdU5GgoJvsBiZptAzOBTrHgO6WCViTs/M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q3SdzjKoOnu945SZ0eHMc37xpQB16xkXGr0ADF99R8bvf2wtWcU/KBa3BPYFGZ6IFayR35XM9Z2wX3BudN/WprCnQlbkEWQcCmJr4ALeMpv50nLQtF2vrX1+oz6H7JPmYGfYM3lbkx6kvJYmiWG8MXgOtU4CzvTWUT5dWJpU5Lg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=aeqFUWAF; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-ARC-Seal: i=1; a=rsa-sha256; t=1779102291; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=gn2kIEfJnwoF952tKIfQO+fHEYobNWlBLWQIaDUJeWYWQypX9jSEbCOWUpPb/leEkBY9al4eJ11RlgaSQBvGd3w173cP7TDy6vL1+nD4ctRkYU8Aks5ttibDg5vvsO2YW4eDoj9D4JmziR6INEHzpIZt5ct0k5DujzPpYvOrLXQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1779102291; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=/pVSe07C+oBTUCWlNEbbGEQrf5pQhGx3DMPEzrhy4EY=; 
-	b=aVEcFowiZIDprVhADm7fZGpqCwnPZYxbEtRV8/vFH/Azr+aZiB/r1x6va0GYtgkLewSMFuZU8jKWmp4fbEVDFiqs53ukls/XpxSoer/KRXAnPfftsfjFBgzGg3uDTMXuDnRvZNro54nCJWBjrFQiZEWI0bx4K1qLisGmIuO/0E0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779102291;
-	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=/pVSe07C+oBTUCWlNEbbGEQrf5pQhGx3DMPEzrhy4EY=;
-	b=aeqFUWAFnS5fLHghxrKypEHX41FcGvmy7CmS4Y9qwzkJ1HBKqMHjY2DmaHbhlD/i
-	wtHrc8CqRTdzTG+ZEKBvWVLTU/rjSMiIXiFl3qPePtLr6YH+2jZtnDwPx0++SfNDjSc
-	iFkf+mY8g022SiT4HZhimDbc7rydzygZe/aTykkU=
-Received: by mx.zohomail.com with SMTPS id 1779102289610999.3891060736657;
-	Mon, 18 May 2026 04:04:49 -0700 (PDT)
-Date: Mon, 18 May 2026 11:04:39 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Chuanhong Guo <gch981213@gmail.com>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: clock: add binding header for
- sf21-topcrm
-Message-ID: <agryR7TRtYeILSeb@pie>
-References: <20260517-sf21-topcrm-v1-0-438f2e0513ff@gmail.com>
- <20260517-sf21-topcrm-v1-2-438f2e0513ff@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=t/ElXlQeWVKcs7TpwtmIkXXHP0nogOe19PBeWIO8Kr5ul7IOTkseuFjC95H4n8KMpZH4inEMarNKb2fzPg4JfU2lkB4FkCSH1A4ou0BYhu3HMzbgo9f+I3u7sOXMouvCFO1mQHUFeZYvHlXlibt4EHIum/cuOvb0eAYD8KKgzYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o15OkzeX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90C2DC2BCB7;
+	Mon, 18 May 2026 11:04:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779102285;
+	bh=lSgAgfsm+ifdU5GgoJvsBiZptAzOBTrHgO6WCViTs/M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o15OkzeXAMQyrt7tiEPJ65DlvmbL8phtOJn9IPU5pL+uOlFp32TPiANe7dMjcDY3C
+	 X8OT8/6vDQ2B4s1pquHUUebOgqeQZFHxu7XmP4/CmfRTDMGSI5v+U5sw2FoOgZ1AZl
+	 Wb96/DXLgdS5lXpF28Vyx/AQWraU+lF+qWrg41yLBsokeorerGal0MBVKW7Ks788Lg
+	 29oQXGKGu4h5FMqSVw33S9v7JMppMK8hjaakI+IQRHEb+L5/UMu7B1xjGFVv+U/sUs
+	 +2wj5tHa8qs7CNQzt4Qn8IKoobsm5yERVVMUnObUuGCf4h3nPbigTV0kMMn07pomlX
+	 WHUR5zHOqFUaw==
+Date: Mon, 18 May 2026 13:04:42 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	xsf@rock-chips.com, sre@kernel.org, simona@ffwll.ch, airlied@gmail.com, 
+	tzimmermann@suse.de, mripard@kernel.org, maarten.lankhorst@linux.intel.com, 
+	jesszhan0024@gmail.com, neil.armstrong@linaro.org, heiko@sntech.de, conor+dt@kernel.org, 
+	krzk+dt@kernel.org, robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 3/6] dt-bindings: display: panel: document Anbernic
+ TD4310 panel
+Message-ID: <20260518-fat-bouncy-capybara-f1be7c@quoll>
+References: <20260515221947.299229-1-macroalpha82@gmail.com>
+ <20260515221947.299229-4-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260517-sf21-topcrm-v1-2-438f2e0513ff@gmail.com>
-X-ZohoMailClient: External
-X-Rspamd-Queue-Id: 2B57156B461
+In-Reply-To: <20260515221947.299229-4-macroalpha82@gmail.com>
+X-Rspamd-Queue-Id: D9C7456B328
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ziyao.cc,quarantine];
-	R_DKIM_ALLOW(-0.20)[ziyao.cc:s=zmail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299310-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,baylibre.com,redhat.com,pengutronix.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-299316-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ziyao.cc:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,rock-chips.com,kernel.org,ffwll.ch,gmail.com,suse.de,linux.intel.com,linaro.org,sntech.de,hotmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Sun, May 17, 2026 at 10:12:56PM +0800, Chuanhong Guo wrote:
-> Add the device tree binding header for Siflower SF21A6826/SF21H8898
-> toplevel clock and reset module. The header covers both clock and
-> reset IDs provided by the block.
+On Fri, May 15, 2026 at 05:19:44PM -0500, Chris Morgan wrote:
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: anbernic,panel-vita-pro
 
-Would it be better to split reset stuff into a separate header in
-dt-bindings/reset, so it ends up with a clearer structure? This
-shouldn't cost a lot.
+You should have fallback compatible for the IC, at least that is the
+review I was consistently giving to others recently. Apologies if
+someone gave you opposite comment...
 
-Regards,
-Yao Zi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: Panel power supply
+> +
+> +required:
+> +  - compatible
+> +  - port
+> +  - reg
+> +  - reset-gpios
+> +  - vdd-supply
 
-> CLK_ETH_REF_P is a clock name that exists in the vendor datasheet.
-> This clock connects directly to CLK_PCIEPLL_FOUT2 and there's no
-> clock gate/mux in between. An alias is created for this clock
-> to make available clock names align with the datasheet.
-> 
-> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
-> ---
->  include/dt-bindings/clock/siflower,sf21-topcrm.h | 63 ++++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
+I guess this could go to panel-simple (after using power-supply instead
+of vdd), but it's fine as well.
+
+> +
+> +unevaluatedProperties: false
+
+Best regards,
+Krzysztof
+
 
