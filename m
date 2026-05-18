@@ -1,143 +1,187 @@
-Return-Path: <devicetree+bounces-299337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299347-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eCzKIpr8CmqA+wQAu9opvQ
-	(envelope-from <devicetree+bounces-299337-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:48:42 +0200
+	id GIBCG1T9CmqA+wQAu9opvQ
+	(envelope-from <devicetree+bounces-299347-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:51:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 949F656BEFF
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:48:41 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECDF56BFB0
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 13:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8B0F83006092
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:38:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 91B2C301FAB6
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 11:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F46372EC4;
-	Mon, 18 May 2026 11:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Z6pBIkpg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C193F8894;
+	Mon, 18 May 2026 11:48:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A873F58D0;
-	Mon, 18 May 2026 11:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDB573F7A81
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 11:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779104324; cv=none; b=bjeKVH4hieRqWDvkM6huPNUSs0mQ8CBbQvpUIkvQUHOMLd4RNBG0VnM7ZOX5PLpXc9esYdTl862MryKrcn9nhJ/coNsC4BznodTCmaP2nONS0lQMlsZ8yUUvRvYeUjbNVDU2WdmLMOXdowfNkE02nBsTI9j9PIW7OxKquHTwFFE=
+	t=1779104926; cv=none; b=DQtApr5PR9zX8XUaR5AM+Cx5Jmifm8lOtmC3yv554rlT1XaXVRm+07NUOMblBcVf+xggbhgVQ3ERC2TruNSL7J6a9Ty6tdFwm0gzLewq7b72UP8HCwtnj9+nllLZ+Xj+Sw1X9IQCtgyL8435z6Q8UTCvX9JqCE89grpDecjNa1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779104324; c=relaxed/simple;
-	bh=W6SMd/r6Jn4DX2gZlZ0PLt/2frDcuzAR/SRnm0Q/NPo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CbRdfxfiRWCXufLNR2BJMyTHK70ktUr0s/NE4O8+TfAzQCeyAZSN0xIAbuntyIwf9ztm7U/OI6WT+bPu0bRY2MbDrzoeoIDSG1+oAY8kay9XIZnpto+Lm4yttcoZpS/f65kRcv0rNUEiAzN6KUDuUu+DHqLfpaF5M6V7tGtDUYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Z6pBIkpg; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1779104318;
-	bh=nzsDWOOYvpaUy8TXIH2yV7CTdJ93Ilwd3B4S+TiEyrU=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Z6pBIkpgVu7nBeQyqo8FXqPA4g6Igx7OajR/dadXsp6OogcgWVhRx4wZ28No1SQTd
-	 lRAHCuby8EYWtCq4wI11yf6rNXUpehbiilnIkoZvZzxJwRVh9ep5FcxMPRNBoPYzhU
-	 lGFNBMvANxjU9q+4x7RRYR5IDDStHPDlqYkQ1cuK45Mz4lXVvtLvbVhyTTXAVjlSTS
-	 Q/iFw7YKvgq4ZUJSTMMEOSR6sLLDEUiiSwVQUvuaJL5fOxeUGKc1oa5mfcCrSgPt/2
-	 Qx2T9cg7QA54QEL3Ot6JZHQJSzWgB7uxD6x8OpWrSLwQdLUVSCuPNRYwCgOOTOVz1H
-	 +sCDeIZXrjWBQ==
-Received: from [192.168.68.117] (unknown [180.150.112.11])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5B0D66024D;
-	Mon, 18 May 2026 19:38:38 +0800 (AWST)
-Message-ID: <26a62f67c2aa5fafb019b59893d374047d2f5e70.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v1 2/7] ARM: dts: aspeed: system1: Enable video engine
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Ninad Palsule <ninad@linux.ibm.com>, eajames@linux.ibm.com,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc: Manojkiran Eda <manojkiran.eda@gmail.com>
-Date: Mon, 18 May 2026 21:08:38 +0930
-In-Reply-To: <20260421224551.1611818-3-ninad@linux.ibm.com>
-References: <20260421224551.1611818-1-ninad@linux.ibm.com>
-	 <20260421224551.1611818-3-ninad@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1779104926; c=relaxed/simple;
+	bh=Ax2y7pmSuZrEkSP0ce0Fej26Z6ct7xdJQdPYertuzbQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WsbLrqtRtAZB9LaOdLZvuOHP68z0Fh9BhJpnbWEjLtFcH4lwK3h9Cih0Kw/wI9EGYsFGUqG++WzdKufRkubtj0khLuJQGOaZ3vNSJocHoSF3JAyQIMVAJmkAShUKiQb8IQvlri5wgcWpDM6MxplBYEpgHSPyg5Dy1DQK6BuU/f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-9144163319fso104588385a.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:48:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779104923; x=1779709723;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M3bmWUZgjAYZamnd3Aw3Zf+CdNP9jYAgiNz9GJP8Rro=;
+        b=pYPZqxpoWHu34J2QqKagtH80q1LUTKf4Dt89CUCHVO59KQGgdPAKHepF4Sh0eB1jcc
+         +ndcftLUyUOCfDe6B2ZjbPLUtRcFpvCAEHiNhxkwZjZ7/Tn/8fekSJIZFhlEglTkZHk3
+         CNeGmal6BWyktosWPwJqJE4ng+OhXy0Csf8oCNMX5ZlKtBeisK9xsdnhcMIppJrcYsb4
+         IHLZCQCdD8FuLueryAPaZZ/WTwO7odCFGV8bByOddTDLljmUAdU0nv2wzC2J4Y4Xi96e
+         W6gA8uwchkXbjImf+JfAyo150tpExNgviPHZwi0p0QhXjZ+TAVBnffGOpIrBCXgVgqWy
+         gvQw==
+X-Forwarded-Encrypted: i=1; AFNElJ+njwmco/BLHKOgy8nv4RXu/+vBkGhJOvRCbz1jskcqyHo8fCGCQascr9jniWYcMHPtMdQryl9IEM78@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKmVPCxnwjmYu+o+w51eYQADF0HvNF8F/hdlGgixzSdkEVxMkK
+	x3RpPPYMfKq1dPRAvZbGbpd/ot+YVTrJ1MQva8G5rX3hdFe0TRQgZ9MKcIiBc/f+
+X-Gm-Gg: Acq92OEo2TyFfZRDklOCxYHJOkp5Kap2IBvOKhT9oy4hIYv0tXSpB1Si6vBsyq82Nkd
+	s8q+zkpb8nSKEQqcIAYy3Uq6hrwet9uUVDR6I1tXGnoX5cTS4wmT2nM7r4C1wnECyzq9e7iCZdm
+	9u0EvRblNfItKqGKdrCHqN0QqhVcf3HUW2D1KBYdQ1MWJC/MCyfk4KbV+Kgx9qoPFPGNXy0sHJH
+	xR2w82DOmq939vmTQz+gNqrfGuBeJ2nd1ty4QluYN2suZTdHuIT6b+vKrAm2NrNpiPIBrtOyI9F
+	w7gKE1BtVDWiX+vparr3t+xYqTcNwX3ZCELkvJJ1UHC1eOZGtOs5TNicQ7PzdUDPyM7VXsp3Wya
+	J0u4MWZTa9yhh0/Zsfo/UZznv46edtv7gGzowemWse5+VsxBGTk9jteCrqsIPVskFdpWqxmdV+b
+	ary4/Ee6jaoQBT4UgSx0BpCVFRDMkAOe2bN8hKUwHOLDdSzK+9LAP/Ul9XNaWevWY3
+X-Received: by 2002:a05:620a:c41:b0:90f:c88d:ebce with SMTP id af79cd13be357-911cd175148mr2159836085a.1.1779104923363;
+        Mon, 18 May 2026 04:48:43 -0700 (PDT)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com. [209.85.222.179])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-910bcf3584esm1443591885a.34.2026.05.18.04.48.42
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 May 2026 04:48:42 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-9144163319fso104585985a.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 04:48:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9L+Lnh4pRhZ4Hi5GtCOMA+zDlHjUbE5JmvGSqcGsEAZ1ulSUQ4undP4tFR2GiKVXHN33BrHxhpVJTf@vger.kernel.org
+X-Received: by 2002:a05:6122:4690:b0:573:a779:62cf with SMTP id
+ 71dfb90a1353d-5760beaed3bmr5626640e0c.7.1779104463611; Mon, 18 May 2026
+ 04:41:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 949F656BEFF
+References: <20260515-rcar-du-dsc-v3-0-164157820498@ideasonboard.com> <20260515-rcar-du-dsc-v3-3-164157820498@ideasonboard.com>
+In-Reply-To: <20260515-rcar-du-dsc-v3-3-164157820498@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 18 May 2026 13:40:52 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUf4dGnK4ooTyw_31Ueanr-Ym3nhML4a12exU+5nFYh2g@mail.gmail.com>
+X-Gm-Features: AVHnY4Lo5h0gdtI7uD_PcBRMzgonT5rakDO4TjP7cpU7h0ngOw5-dH_yEpIVciE
+Message-ID: <CAMuHMdUf4dGnK4ooTyw_31Ueanr-Ym3nhML4a12exU+5nFYh2g@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] drm/rcar-du: dsc: Add rudimentary Renesas R-Car
+ V4H DSC driver
+To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 2ECDF56BFB0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-299337-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[glider.be,baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-299347-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,codeconstruct.com.au:mid,codeconstruct.com.au:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,mail.gmail.com:mid,linux-m68k.org:email,ideasonboard.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Action: no action
 
-On Tue, 2026-04-21 at 17:45 -0500, Ninad Palsule wrote:
-> From: Manojkiran Eda <manojkiran.eda@gmail.com>
->=20
-> This patch enables the aspeed video engine support in ASPEED BMC for
-> IBM System1. It is crucial for facilitating the BMC's video capture
-> and redirection capabilities, which are integral to remote management
-> and KVM (Keyboard-Video-Mouse) over IP functionality.
+Hi Tomi,
 
-This is a real nitpick, but: The commit message seems a bit too
-grandiose for my tastes. Can you make it more succinct? Writing in
-imperative mood to avoid "this patch" is generally recommended too:
+On Fri, 15 May 2026 at 11:10, Tomi Valkeinen
+<tomi.valkeinen+renesas@ideasonboard.com> wrote:
+>
+> From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>
+> The Renesas DSC Display Stream Compression is a bridge embedded in the
+> Renesas R-Car V4H SoC. The bridge performs VESA DSC encoding of up to
+> 8k or 400 Mpixel/s . Add rudimentary driver, which currently acts as a
+> pass-through bridge and allows DSI1 to be operational on R-Car V4H.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> [tomi.valkeinen: use bridge->next_bridge, minor changes]
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-https://docs.kernel.org/process/submitting-patches.html#describe-your-chang=
-es
+> --- /dev/null
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c
 
-Andrew
+> +static void rcar_dsc_atomic_enable(struct drm_bridge *bridge,
+> +                                  struct drm_atomic_state *state)
 
->=20
-> Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
-> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> ---
-> =C2=A0arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 4 ++++
-> =C2=A01 file changed, 4 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> index 488d0b3916a1..0ca799893791 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> @@ -531,6 +531,10 @@ &lpc_snoop {
-> =C2=A0	snoop-ports =3D <0x80>, <0x81>;
-> =C2=A0};
-> =C2=A0
-> +&video {
-> +	status =3D "okay";
-> +};
+drm_atomic_state is no more since commit 5164f7e7ff8ec7d4
+("drm: Rename struct drm_atomic_state to drm_atomic_commit") in
+drm-misc/for-linux-next (next-20260506 and later).
+
+> +{
+> +       struct rcar_dsc *dsc = bridge_to_rcar_dsc(bridge);
 > +
-> =C2=A0&i2c0 {
-> =C2=A0	status =3D "okay";
-> =C2=A0
+> +       WARN_ON(pm_runtime_resume_and_get(dsc->dev));
+> +}
+> +
+> +static void rcar_dsc_atomic_disable(struct drm_bridge *bridge,
+> +                                   struct drm_atomic_state *state)
+
+s/drm_atomic_state/drm_atomic_commit/g
+
+> +{
+> +       struct rcar_dsc *dsc = bridge_to_rcar_dsc(bridge);
+> +
+> +       pm_runtime_put(dsc->dev);
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
