@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-299503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299506-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIdFEPUsC2opEQUAu9opvQ
-	(envelope-from <devicetree+bounces-299503-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:15:01 +0200
+	id CIT3DfsrC2oeEQUAu9opvQ
+	(envelope-from <devicetree+bounces-299506-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:10:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E43656FB79
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:14:59 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9DEC56FA42
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0A6F230136B8
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:08:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8A3EA3021588
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 15:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA469368269;
-	Mon, 18 May 2026 15:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B327A305693;
+	Mon, 18 May 2026 15:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n5HTs9cq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U1t1m1Q0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97824313552
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 15:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4AC26E165
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 15:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779116879; cv=none; b=AMR1Ye/qg0dnV8Yd9l6rb8GX4p1b666yx1Z+HL0BUGbDwSGlVqliPAFF0Szh8qymBHt5iaCkSE2bkTRYgSixhv+U7Sol8dJ9bQtadJEa2ZkxAWGKxtyYSqKPkJh1LhYOgyY66gsGOPOZTs6KQdAysQW7J7gD2FbBxRhzaEKJlsU=
+	t=1779117013; cv=none; b=j1uS/ePCB1FE2oyvQliuq32haYktn51j3h6I+X1AA6dvMH8yVByieviyfhgEsEIQKWZQSeLF58b1uz8MgJV2ONxWJNdAcrKMXRP6qWLKxzvgcwRRVU/i/3cG/b19rfNdkWp5FjXvdmMxr01qQmGbVpV7MTF5CSG5tXk+F3sEu3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779116879; c=relaxed/simple;
-	bh=yzILpXKKjOrTQfr+i4MMP1TXicuUMSWaXmmrnN/Q9gY=;
+	s=arc-20240116; t=1779117013; c=relaxed/simple;
+	bh=SzICCALtIOt1D5bf9vR4Qkg9kwPIG30Af0xOLr5Mrkc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jnZpLeqnAE/Lo1MDI5rBOJ/ONG3nJ1xNrW+/UpQx+XRbSEnj5W7EdhxjbI/vxZqSP6n0saufpCZwggzJXS3f3rFQ0z5OVbQzV8vHZRe3FpZcN4JWL9/BAZY2LMZcEFMLPvAv8y+/jlPkFLLRHlyiP7QRGKHd5CjtNvjzybPCiSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n5HTs9cq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 039F4C2BCB7;
-	Mon, 18 May 2026 15:07:58 +0000 (UTC)
+	 Message-Id; b=rpRdHgxITj71CytmAaWZN1qSsStjXQpvKlZLqr1mEQn0iv1wzgo8oS43kfvUeqG7Vc+N+g6+f7Qb2Og+RsQtwklegu9w9iusmZXw3lM9OG3CSJUKebTddsgAjJvRtOOBAn4/hffR1ngc2alI2rdXjnmrHiCoAUiDPo+NlTjArqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U1t1m1Q0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F8E6C2BCB8;
+	Mon, 18 May 2026 15:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779116879;
-	bh=yzILpXKKjOrTQfr+i4MMP1TXicuUMSWaXmmrnN/Q9gY=;
+	s=k20201202; t=1779117013;
+	bh=SzICCALtIOt1D5bf9vR4Qkg9kwPIG30Af0xOLr5Mrkc=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=n5HTs9cq0x/vYjA7SZCMMCochu/tIwmsCqN6/0jlv4QDdBheq1ZFi/DKIJbVpM+Fm
-	 QVi4ROjb67nEDuvNcVpE6ebGv5lPEnDVwQNpVLdzOrVe3FNqU4ZNBeEwGqbaiI4yeM
-	 Pykc6snMO2NKFCzJBPSaOY/zh8vQ2sSfIGJNqfBR5Ka8vgMjGADFrOp0g5YF6DDJR3
-	 4JpCKfVa/hVwCH/4U9gRgdXXbN1qsvCz+t9RM2a1BTx6o0WHSdgUwwQr1T1iwkIxOf
-	 lOi/7wu51FfekgriVl0J/fSfIHR8a8fg6c731U76zFppNZvEoiLOhbwqHn8fYdUHA7
-	 01AW6F43uTRkQ==
+	b=U1t1m1Q0JwpsOupvfpHN3SJz3gX0lwrSNtTk+DPC2vyofJNK3SRv2cgv4NAcUHPsy
+	 tP5qCitj/88KcLzva36Hm4GY6ypDCrBK2zcxF9gfYdVpTGRzn1SpJ61tOO1o1nZuSN
+	 OIRWImNgzJQ06lJDEWdCZ70TrSWZblqoPrvYPUzc5lp0LLDPwkUP2blD5iuvSqGfrk
+	 CFWB0i5hR+nPfFognWOw0RrpKTEKVc+Shkh6g27MZxpTkasnAJLmKMyOuq3n8bF3Mn
+	 dIszb9JlrixmJOTaXoBPQXiXp3CLFIBjwFIVM+Q5g9gTUT2hxnmJMpFEHOryzB7g4L
+	 rnB4El1iRgWoQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 13/15] arm64: dts: st: support Engicam
- MicroGEA-STM32MP257-RMM board
+Subject: Re: [PATCH 2/2] power: supply: qcom_battmgr: Add support
+ batteryless boards as MAINS
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Dario Binacchi" <dario.binacchi@amarulasolutions.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260518143150.3138712-14-dario.binacchi@amarulasolutions.com>
-References: <20260518143150.3138712-14-dario.binacchi@amarulasolutions.com>
+To: "Rakesh Kota" <rakesh.kota@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260518-add_dc_in_support-v1-2-31fbaa329879@oss.qualcomm.com>
+References: <20260518-add_dc_in_support-v1-2-31fbaa329879@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 18 May 2026 15:07:58 +0000
-Message-Id: <20260518150759.039F4C2BCB7@smtp.kernel.org>
+Date: Mon, 18 May 2026 15:10:12 +0000
+Message-Id: <20260518151013.0F8E6C2BCB8@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,12 +67,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299503-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299506-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -88,94 +88,137 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 8E43656FB79
+X-Rspamd-Queue-Id: D9DEC56FA42
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Incorrect clock override on the parent `&sai1` node.
-- [Low] Redundant redeclaration of labeled sub-nodes 'sai1a' and 'sai1b'.
+- [High] The new MAINS power supply exposes BATTERY properties (STATUS, PRE=
+SENT) instead of ONLINE, breaking userspace expectations.
+- [Medium] The `qcom,batteryless` property is silently ignored on `SC8280XP=
+` and `X1E80100` variants.
 --
 
-commit 33b586ab74c039ad01865906f417ac15ced15e98
-Author: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+commit fd3fd36bafd15a4f0b8a90d2f6b2f13ff0fc3a3d
+Author: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
 
-arm64: dts: st: support Engicam MicroGEA-STM32MP257-RMM board
+power: supply: qcom_battmgr: Add support batteryless boards as MAINS
 
-This commit adds device tree support for the Engicam MicroGEA-STM32MP257-RMM
-board. It configures peripherals including eMMC, DRAM, CAN, LEDs, LCD panel,
-SD card, audio codec, and buzzer.
+This commit adds support for the qcom,batteryless device tree property to
+register the power supply as a MAINS type instead of a BATTERY. This is
+intended to prevent userspace from triggering battery power-saving sequences
+on boards powered directly by adapters.
 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts b=
-/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts
-> new file mode 100644
-> index 0000000000000..1d5e023b3b442
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts
+> diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/q=
+com_battmgr.c
+> index 490137a23d00e..35d266375d8c4 100644
+> --- a/drivers/power/supply/qcom_battmgr.c
+> +++ b/drivers/power/supply/qcom_battmgr.c
+[ ... ]
+> @@ -930,6 +931,47 @@ static const struct power_supply_desc sm8550_bat_psy=
+_desc =3D {
+>  	.property_is_writeable =3D qcom_battmgr_bat_is_writeable,
+>  };
+> =20
+> +static int qcom_battmgr_dcin_get_property(struct power_supply *psy,
+> +					  enum power_supply_property psp,
+> +					  union power_supply_propval *val)
+> +{
+> +	struct qcom_battmgr *battmgr =3D power_supply_get_drvdata(psy);
+> +	int ret;
+> +
+> +	if (!battmgr->service_up)
+> +		return -EAGAIN;
+> +
+> +	ret =3D qcom_battmgr_bat_sm8350_update(battmgr, psp);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	switch (psp) {
+> +	case POWER_SUPPLY_PROP_STATUS:
+> +		val->intval =3D battmgr->status.status;
+> +		break;
+> +	case POWER_SUPPLY_PROP_PRESENT:
+> +		val->intval =3D battmgr->info.present;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const enum power_supply_property dcin_props[] =3D {
+> +	POWER_SUPPLY_PROP_STATUS,
+> +	POWER_SUPPLY_PROP_PRESENT,
+> +};
+> +
+> +static const struct power_supply_desc dcin_psy_desc =3D {
+> +	.name =3D "qcom-battmgr-dcin",
+> +	.type =3D POWER_SUPPLY_TYPE_MAINS,
+> +	.properties =3D dcin_props,
+> +	.num_properties =3D ARRAY_SIZE(dcin_props),
+> +	.get_property =3D qcom_battmgr_dcin_get_property,
+> +};
+
+Since dcin_psy_desc is registered as POWER_SUPPLY_TYPE_MAINS, should it
+expose POWER_SUPPLY_PROP_ONLINE instead of POWER_SUPPLY_PROP_STATUS and
+POWER_SUPPLY_PROP_PRESENT?
+
+Userspace power managers typically expect MAINS power supplies to report th=
+eir
+active state via the ONLINE property.
+
+If the firmware returns PRESENT=3D0 on a batteryless board, won't userspace
+fail to recognize the AC adapter as an active power source and still trigger
+power-saving or shutdown sequences?
 
 [ ... ]
+> @@ -1690,7 +1733,9 @@ static int qcom_battmgr_probe(struct auxiliary_devi=
+ce *adev,
+>  			return dev_err_probe(dev, PTR_ERR(battmgr->wls_psy),
+>  					     "failed to register wireless charing power supply\n");
+>  	} else {
+> -		if (battmgr->variant =3D=3D QCOM_BATTMGR_SM8550)
+> +		if (battmgr->batteryless)
+> +			psy_desc =3D &dcin_psy_desc;
+> +		else if (battmgr->variant =3D=3D QCOM_BATTMGR_SM8550)
+>  			psy_desc =3D &sm8550_bat_psy_desc;
+>  		else
+>  			psy_desc =3D &sm8350_bat_psy_desc;
 
-> +&sai1 {
-> +	pinctrl-names =3D "default", "sleep";
-> +	pinctrl-0 =3D <&sai1a_pins_a>, <&sai1b_pins_a>;
-> +	pinctrl-1 =3D <&sai1a_sleep_pins_a>, <&sai1b_sleep_pins_a>;
-> +	status =3D "okay";
-> +	clocks =3D <&rcc CK_KER_SAI1>;
+Does this bypass the qcom,batteryless property on SC8280XP and X1E80100
+variants?
 
-Does overriding the clocks property here remove the peripheral bus clock
-reference? The base SoC device tree defines this as clocks =3D <&rcc CK_BUS=
-_SAI1>
-with clock-names =3D "pclk".
+Looking at qcom_battmgr_probe(), the check for battmgr->batteryless is only
+placed inside the else block which executes for SM8350 and SM8550:
 
-If the bus clock is omitted, the clock framework might disable it, potentia=
-lly
-leading to bus faults when the st,stm32mp25-sai driver accesses the registe=
-rs.
+drivers/power/supply/qcom_battmgr.c:qcom_battmgr_probe() {
+...
+	if (battmgr->variant =3D=3D QCOM_BATTMGR_SC8280XP ||
+	    battmgr->variant =3D=3D QCOM_BATTMGR_X1E80100) {
+		if (battmgr->variant =3D=3D QCOM_BATTMGR_X1E80100)
+			psy_desc =3D &x1e80100_bat_psy_desc;
+		else
+			psy_desc =3D &sc8280xp_bat_psy_desc;
 
-Should the kernel clock (CK_KER_SAI1) be provided only to the sai1a and sai=
-1b
-sub-nodes instead?
+		battmgr->bat_psy =3D devm_power_supply_register(dev, psy_desc, &psy_cfg);
+...
+	} else {
+		if (battmgr->batteryless)
+			psy_desc =3D &dcin_psy_desc;
+...
+}
 
-> +
-> +	sai1a: audio-controller@40290004 {
-
-This isn't a bug, but does redefining the entire node structure and redecla=
-ring
-the label for sai1a (and sai1b below) clutter the tree and potentially trig=
-ger
-duplicate label warnings?
-
-The idiomatic approach is usually to reference the existing labeled nodes
-directly at the root level using &sai1a and &sai1b.
-
-> +		#clock-cells =3D <0>;
-> +		dma-names =3D "tx";
-> +		status =3D "okay";
-> +
-> +		sai1a_port: port {
-> +			sai1a_endpoint: endpoint {
-> +				remote-endpoint =3D <&sgtl5000_tx_endpoint>;
-> +				dai-format =3D "i2s";
-> +				mclk-fs =3D <512>;
-> +			};
-> +		};
-> +	};
-> +
-> +	sai1b: audio-controller@40290024 {
-> +		dma-names =3D "rx";
-> +		st,sync =3D <&sai1a 2>;
-> +		clocks =3D <&rcc CK_KER_SAI1>, <&sai1a>;
-> +		clock-names =3D "sai_ck", "MCLK";
-> +		status =3D "okay";
-
-[ ... ]
+If a board uses the SC8280XP or X1E80100 variant, won't it bypass this check
+and unconditionally register the standard battery power supply?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518143150.3138=
-712-1-dario.binacchi@amarulasolutions.com?part=3D13
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518-add_dc_in_=
+support-v1-0-31fbaa329879@oss.qualcomm.com?part=3D2
 
