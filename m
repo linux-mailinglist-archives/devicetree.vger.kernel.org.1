@@ -1,497 +1,164 @@
-Return-Path: <devicetree+bounces-299486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299472-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDGgDAklC2p5DwUAu9opvQ
-	(envelope-from <devicetree+bounces-299486-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:41:13 +0200
+	id aKloEnYkC2p5DwUAu9opvQ
+	(envelope-from <devicetree+bounces-299472-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:38:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8266B56F079
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:41:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D8A56EF9F
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 16:38:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 336A931035AB
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:34:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57BE0307FDF3
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB4F495516;
-	Mon, 18 May 2026 14:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E1E1C3BFC;
+	Mon, 18 May 2026 14:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="aDFEq0Sn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SeiULzxe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247D6492526
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 14:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFD93F39F8
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 14:31:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779114752; cv=none; b=QmZIqAqejppQC0kRcJR5rVaH8Wmt3jsR/efgFgy82CcGSr8mPtl1//ptyOEeKcdnbfjJx+jmN4HJn/pjzhGe4NM79w4eHY/od0RP+pR00YfK7Bw4e62ErIEh7kvkWRo43GS84VpT/pPLLvHCqKB43n+fLn9ZFgefur1vfXDD1cs=
+	t=1779114717; cv=none; b=jXET/KPnZgKgwzftbEw/wcEFzcZ4eno7kBxCEoUDJGgICjTX3ya7sLeRU7P8qrLMc8WMAzLK0pfzpiRvfknlX4th/PKLSLbIdGXSHh45njOMU/bg+pIh+biWA+ZOA3bgL/k/lo3uOvoi31KWrbjMlr28VGTyR0KVFG8FrCz6CNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779114752; c=relaxed/simple;
-	bh=QcL50GK3pIVA9DLn5XG/jcTBE4S3HFxFhOYzKKnA77w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PKHmBoSeqeUV8sX4cJThxowm0HbhMAajZxG8ufmArVjFOelOedD82lGrjAD6jDEF6uVPC7qRqh/LkT8/+56lKsIcOOerK4bbq85ixhkwZQWfJ8WLNe8tEvNcXDoKsgCyFbvTzxj1QHkP1dadZ49svuTQKQKzHlQUXQRvXG1vp68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=aDFEq0Sn; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48d102471a4so19388785e9.2
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 07:32:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1779114744; x=1779719544; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dBFHri4QRA65S7SM46tdHQTdd72pRFh4hnk7KaMPjyI=;
-        b=aDFEq0SngA1inIj9kz2LNkBnTt8qxpA8m2kbra7RwJlaaBctg7fxN9Eyov9oiNizzd
-         idf0vxLkymsj579U97MLc8jMeBP2+iAWFoGDhGzvsKD66pS16MI1xDsseNmBuknu86sX
-         r316c5G3ZX98UfRUhcfogEev8Wd2Pk9mXlZQE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779114744; x=1779719544;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dBFHri4QRA65S7SM46tdHQTdd72pRFh4hnk7KaMPjyI=;
-        b=L1L4AnZzaVPLOwNoDVGhB7CTaVxM1sJlZqt/GDrMjJS33lz/nPkDBBmkQkQDVJWshV
-         3v/YTnVpRlPzZaAfXqedV3ZuwI6gvc4/Y4/marrfuilWHYb6ocDFMvpX/y26s/ECVQxl
-         DzXOgeaIosT6nuPoNvosOE+VyeCCgtqOjqj6phs5w79WhPl7S8wYDaA+voEA6xNMux3w
-         JUBcx3PgJ44OhOXyeZzgNYpPlAQCOrf8kILiAzc+KUQYlnjBP0rx8+QvV3gZRLoBSzfP
-         O4TgF8ICPcaT2d0MK9kracuswRqBpUFnzmP0ci22dh205h1eoXZGrdniukNIXOInsqjW
-         yIzA==
-X-Forwarded-Encrypted: i=1; AFNElJ9iobof8sXe9va7RQyk+RY9FmfXNtS/dyCTYRxkXwN7xaH/NfKQg76z2xbLZjoEmzOdcuQlgJkM5jHL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOMJoK4h63oNkgVFpenQ72+cKNmLhKSydV/jo/QZTGq1Lkb+BB
-	Fk3PNIWEeaobq+SmZiaA8df70Ssntu6LHTViNbE4/c+iMSXblggrnNLW/dtFhLOuGdQ=
-X-Gm-Gg: Acq92OGQdlSwchos+mF1JXHKe/gObpON4o2WQ6M76ZYg1nRvRhzmEIu4COkbYr105YD
-	tg3ix2F0vcJiYMiJXMY/IWZNvn/acUvRQ0zOZy2dmpwHBc64FJZTiskx6pSpNmkrbvv0akQHxDM
-	YKxolMT8aS328qmermVhQwnX8Y8G+wLKwG+4/94K9n0WWxj6g76x/rK5iMR+BCvo209Cq94sqGu
-	nazWvem1mysZQYrEDh0vKztOVIojIoSWfRTnSDIcrO4q7GBjNEFBdih8NO85803qQPDdRlXivMo
-	ONiPAo0qRxQxIP6phOBXymFAXZFuC7PByLbtNpqRaKv0iwFI08d7oGiwlVp4BBZOwXbPa83K1qK
-	fGT6FvKYtxrZ2OfTnGA0MS2RlWnwnfiDAac1+/qmH01rQ0cO1CIpt9sXPNGdhVYAJrmplU7Ph8W
-	dLD/WKTDAfMyUtBPXAOUE31/NXDnPvoyUlzzFD/gzisBOFyT9WxV5XMbkzydeA3kbb+cGt54jzE
-	e3Kt5HhZ851T43yXn8phlMamkqHmczSKv7SjMDqtvNmJhPJqdp7DYim3uHM81N3od5Bzw==
-X-Received: by 2002:a05:600c:a405:b0:48a:52ce:a4b1 with SMTP id 5b1f17b1804b1-48fe60dd5e8mr228451065e9.15.1779114744494;
-        Mon, 18 May 2026 07:32:24 -0700 (PDT)
-Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com ([2.196.43.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0a1aeafsm39564572f8f.23.2026.05.18.07.32.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 07:32:24 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	domenico.acri@engicam.com,
-	francesco.utel@engicam.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 13/15] arm64: dts: st: support Engicam MicroGEA-STM32MP257-RMM board
-Date: Mon, 18 May 2026 16:31:28 +0200
-Message-ID: <20260518143150.3138712-14-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260518143150.3138712-1-dario.binacchi@amarulasolutions.com>
-References: <20260518143150.3138712-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1779114717; c=relaxed/simple;
+	bh=XapvubZBbeYrAAyjh9gzFPv+lTOc6fUaqaZry4ft/Uo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=SeEReEsFxzVfb8X+o/ZUQoifYd8kqxq7IhER+HlGx0dt+f+Ogb+djo7QWRGtdrdX+/4I1ok8l+UbS5f6zbs5BMOjhOz6+XcJZ5xR9kz+I7B+77WMJ9zzvY0dzZJAgQqHDZTGbA5mbv+k3rVoAXBgTHqA+cunNH3gXSP/V49VL6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SeiULzxe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F58EC2BCB8;
+	Mon, 18 May 2026 14:31:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779114716;
+	bh=XapvubZBbeYrAAyjh9gzFPv+lTOc6fUaqaZry4ft/Uo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=SeiULzxe7DazaQSUhaksY4SsnACoBcp2lYnj0PZeHyOBtak8zsUr+5MqsEfRWi7ME
+	 5a60/ooOfIc2Ewq7sEsdAjl31YX4FQmah6V+E2I8NW8iznlMWwd8zMaJHCTGPnYg8U
+	 uIdCc3E7ILvaHxr/4wbt6fKIvrjWWDG1+oQoPL91sSfrUeeugh2YU5Ei0Yc6hdOmag
+	 UY9GI1pto6IuSeIQ+7dXoAFn/9qI6NZXFuWLNgV+ezW7KoYnasOSl4z1s/mErYcXeE
+	 w1/8FASfcPOPs2klcrACtG6+KnYIh17+UpM46S5GYbOfmphavMVIs6HnWczeQyC/XF
+	 p27eAq46p312w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: airoha: add SMC eFuses
+ schema
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Christian Marangi" <ansuelsmth@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260518142042.8331-2-ansuelsmth@gmail.com>
+References: <20260518142042.8331-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 18 May 2026 14:31:55 +0000
+Message-Id: <20260518143156.4F58EC2BCB8@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amarulasolutions.com,engicam.com,foss.st.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-299486-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amarulasolutions.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_PROHIBIT(0.00)[2.102.198.232:email];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299472-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amarulasolutions.com:email,amarulasolutions.com:mid,amarulasolutions.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email,0.0.0.0:email,2.102.198.212:email,0.0.0.38:email]
-X-Rspamd-Queue-Id: 8266B56F079
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 96D8A56EF9F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Support for Engicam MicroGEA-STM32MP257-RMM board with:
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The `compatible` property enum omits the AN7583 SoC despite the =
+commit message claiming support.
+- [Medium] The `#address-cells` and `#size-cells` properties are missing fr=
+om the `required` list.
+--
 
- - 8 GB eMMC Flash
- - 2 GB LPDDR4 DRAM
- - CAN
- - LEDs
- - LCD panel with touchscreen
- - Micro SD card connector
- - Audio codec
- - Buzzer
+commit e333b70b463993a4fe3c97641d9aaa8019a4117c
+Author: Christian Marangi <ansuelsmth@gmail.com>
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
+dt-bindings: nvmem: airoha: add SMC eFuses schema
 
- arch/arm64/boot/dts/st/Makefile               |   1 +
- .../st/stm32mp257-engicam-microgea-rmm.dts    | 321 ++++++++++++++++++
- 2 files changed, 322 insertions(+)
- create mode 100644 arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts
+Add Airoha SMC eFuses schema to document new Airoha SoC AN7581/AN7583
+way of accessing the 2 eFuse bank via the SMC command.
 
-diff --git a/arch/arm64/boot/dts/st/Makefile b/arch/arm64/boot/dts/st/Makefile
-index 63908113ae36..386eca593c54 100644
---- a/arch/arm64/boot/dts/st/Makefile
-+++ b/arch/arm64/boot/dts/st/Makefile
-@@ -2,5 +2,6 @@
- dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp215f-dk.dtb \
- 	stm32mp235f-dk.dtb \
-+	stm32mp257-engicam-microgea-rmm.dtb \
- 	stm32mp257f-dk.dtb \
- 	stm32mp257f-ev1.dtb
-diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts
-new file mode 100644
-index 000000000000..1d5e023b3b44
---- /dev/null
-+++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts
-@@ -0,0 +1,321 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2026 Amarula Solutions, Dario Binacchi <dario.binacchi@amarulasolutions.com>
-+ * Copyright (C) 2026 Engicam srl
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "stm32mp257-engicam-microgea.dtsi"
-+
-+/ {
-+	model = "Engicam MicroGEA STM32MP257D RMM Board";
-+	compatible = "engicam,microgea-stm32mp257-rmm",
-+		     "engicam,microgea-stm32mp257", "st,stm32mp257";
-+
-+	aliases {
-+		mmc0 = &sdmmc1;
-+		mmc1 = &sdmmc2;
-+		serial0 = &usart2;
-+		serial1 = &usart1;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		brightness-levels = <0 100>;
-+		num-interpolated-steps = <100>;
-+		default-brightness-level = <85>;
-+		pwms = <&pwm2 0 100000 0>;
-+	};
-+
-+	buzzer {
-+		compatible = "pwm-beeper";
-+		pwms = <&pwm4 0 1000000 0>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer {
-+			compatible = "simple-framebuffer";
-+			clocks = <&rcc CK_BUS_LTDC>, <&rcc CK_KER_LTDC>;
-+			lcd-supply = <&reg_3v3>;
-+			status = "disabled";
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&gpioh 2 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+			status = "okay";
-+		};
-+
-+		led-1 {
-+			gpios = <&gpioh 6 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+			status = "okay";
-+		};
-+	};
-+
-+	mclk: clock-mclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+
-+	reg_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_ext_pwr: regulator-ext-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ext-pwr";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpiog 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card";
-+		label = "STM32MP25-RMM";
-+		widgets = "Headphone", "Headphone Jack",
-+			  "Microphone", "Microphone Jack";
-+		routing = "Headphone Jack", "HP_OUT",
-+			  "MIC_IN", "Microphone Jack",
-+			  "Microphone Jack", "Mic Bias";
-+		dais = <&sai1a_port &sai1b_port>;
-+		status = "okay";
-+	};
-+};
-+
-+&arm_wdt {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_a>;
-+	pinctrl-1 = <&i2c1_sleep_pins_a>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x38>;
-+		interrupt-parent = <&gpiob>;
-+		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpiod 1 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <1280>;
-+		touchscreen-size-y = <800>;
-+	};
-+};
-+
-+&i2c2 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c2_pins_a>;
-+	pinctrl-1 = <&i2c2_sleep_pins_a>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	sgtl5000: codec@a {
-+		compatible = "fsl,sgtl5000";
-+		reg = <0x0a>;
-+		#sound-dai-cells = <0>;
-+		clocks = <&mclk>;
-+
-+		VDDA-supply = <&reg_3v3>;
-+		VDDIO-supply = <&reg_3v3>;
-+		VDDD-supply = <&reg_1v8>;
-+
-+		sgtl5000_port: port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			sgtl5000_tx_endpoint: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&sai1a_endpoint>;
-+				frame-master = <&sgtl5000_tx_endpoint>;
-+				bitclock-master = <&sgtl5000_tx_endpoint>;
-+			};
-+
-+			sgtl5000_rx_endpoint: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&sai1b_endpoint>;
-+				frame-master = <&sgtl5000_rx_endpoint>;
-+				bitclock-master = <&sgtl5000_rx_endpoint>;
-+			};
-+		};
-+	};
-+};
-+
-+&ltdc {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&ltdc_pins_a>;
-+	pinctrl-1 = <&ltdc_sleep_pins_a>;
-+	status = "okay";
-+
-+	port {
-+		ltdc_out: endpoint {
-+			remote-endpoint = <&panel_in>;
-+		};
-+	};
-+};
-+
-+&m_can1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&m_can1_pins_a>;
-+	pinctrl-1 = <&m_can1_sleep_pins_a>;
-+	status = "okay";
-+};
-+
-+&sai1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sai1a_pins_a>, <&sai1b_pins_a>;
-+	pinctrl-1 = <&sai1a_sleep_pins_a>, <&sai1b_sleep_pins_a>;
-+	status = "okay";
-+	clocks = <&rcc CK_KER_SAI1>;
-+
-+	sai1a: audio-controller@40290004 {
-+		#clock-cells = <0>;
-+		dma-names = "tx";
-+		status = "okay";
-+
-+		sai1a_port: port {
-+			sai1a_endpoint: endpoint {
-+				remote-endpoint = <&sgtl5000_tx_endpoint>;
-+				dai-format = "i2s";
-+				mclk-fs = <512>;
-+			};
-+		};
-+	};
-+
-+	sai1b: audio-controller@40290024 {
-+		dma-names = "rx";
-+		st,sync = <&sai1a 2>;
-+		clocks = <&rcc CK_KER_SAI1>, <&sai1a>;
-+		clock-names = "sai_ck", "MCLK";
-+		status = "okay";
-+
-+		sai1b_port: port {
-+			sai1b_endpoint: endpoint {
-+				remote-endpoint = <&sgtl5000_rx_endpoint>;
-+				dai-format = "i2s";
-+				mclk-fs = <512>;
-+			};
-+		};
-+	};
-+};
-+
-+/* MicroSD */
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	broken-cd;
-+	disable-wp;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&scmi_v3v3>;
-+	vqmmc-supply = <&scmi_vddio1>;
-+	no-1-8-v;
-+	status = "okay";
-+};
-+
-+&spi1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&spi1_pins_a>;
-+	pinctrl-1 = <&spi1_sleep_pins_a>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cs-gpios = <&gpioh 8 GPIO_ACTIVE_HIGH>, <&gpioh 3 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	display: display@0 {
-+		compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
-+		reg = <0>;
-+		vdd-supply = <&reg_3v3>;
-+		spi-max-frequency = <10000000>;
-+		reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
-+		backlight = <&backlight>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&ltdc_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&timers2 {
-+	status = "okay";
-+
-+	pwm2: pwm {
-+		pinctrl-0 = <&pwm2_pins_a>;
-+		pinctrl-1 = <&pwm2_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+&timers4 {
-+	status = "okay";
-+
-+	pwm4: pwm {
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pwm4_pins_a>;
-+		pinctrl-1 = <&pwm4_sleep_pins_a>;
-+		status = "okay";
-+	};
-+};
-+
-+&usart1 {
-+	pinctrl-names = "default", "idle", "sleep";
-+	pinctrl-0 = <&usart1_pins_b>;
-+	pinctrl-1 = <&usart1_idle_pins_b>;
-+	pinctrl-2 = <&usart1_sleep_pins_b>;
-+	/delete-property/ dmas;
-+	/delete-property/ dma-names;
-+	status = "okay";
-+};
-+
-+&usart2 {
-+	pinctrl-names = "default", "idle", "sleep";
-+	pinctrl-0 = <&usart2_pins_a>;
-+	pinctrl-1 = <&usart2_idle_pins_a>;
-+	pinctrl-2 = <&usart2_sleep_pins_a>;
-+	/delete-property/ dmas;
-+	/delete-property/ dma-names;
-+	status = "okay";
-+};
--- 
-2.43.0
+> diff --git a/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.ya=
+ml b/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
+> new file mode 100644
+> index 0000000000000..e21ce07c4f411
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/airoha,smc-efuses.yaml
 
+[ ... ]
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - airoha,an7581-efuses
+
+The commit message mentions this schema supports both the AN7581 and AN7583
+SoCs. Should airoha,an7583-efuses be included in this enum, or is there a
+reason only the AN7581 compatible string is listed?
+
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+
+[ ... ]
+
+> +    required:
+> +      - reg
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+
+Since the schema defines child nodes (efuse-bank@[0-1]) that use the reg
+property, should #address-cells and #size-cells be added to this required
+list to ensure the device tree is structurally valid?
+
+> +
+> +additionalProperties: false
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518142042.8331=
+-1-ansuelsmth@gmail.com?part=3D1
 
