@@ -1,68 +1,92 @@
-Return-Path: <devicetree+bounces-299625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299627-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id En6PCot9C2qOIQUAu9opvQ
-	(envelope-from <devicetree+bounces-299625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:58:51 +0200
+	id KHDENMh9C2qOIQUAu9opvQ
+	(envelope-from <devicetree+bounces-299627-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:59:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B936573995
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D9B5739B9
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 22:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E634730036F2
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:56:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ACC423036D75
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 20:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F75D3845BE;
-	Mon, 18 May 2026 20:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51915395D8E;
+	Mon, 18 May 2026 20:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ask/1xp0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rU/h+E4d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D65E2D5A01
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 20:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0C83822BE;
+	Mon, 18 May 2026 20:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779137781; cv=none; b=Xj2BbiqgHnu1hc8VCQyTbI4Ww9o0a5HuzYwUafvv6GQdIHPV+6jrVgEmzvVG1q/vYKa3XzhdbVYaosYrwWH075EreszXriSOsu+R+gLM1GUqVmyf1pFZOwQQLdVkX73jfXPlywf5yp+y+DNm3SPEMwkTf+WTluuqUQnmUABRFuk=
+	t=1779137905; cv=none; b=kN2fDSgThgAlOwKUnI4tEL2UyJcNWAXaQKLcuDKg7CS1Ur5GT5yrttXVLyWmWdXy1hF82CHtwZ+zqqY7DCS59CAI3zUjNEGqqpcBYOP+5YjW6IiqqVq3Kf/MWLVdy31ei6aErA/TuWiOQtcq8VWNU9tNh1pKhy+2iCCNxtddUzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779137781; c=relaxed/simple;
-	bh=gRvS2RP5VtFp12MWm7XHVIHFW5iUeBqMckbLzmS9O+A=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=S/XErxUjUU6G+rX1nWEDUXDbVcuXZe5522ushEkJMBZI1+HzNMhR1ElLZv2ePs7RiB4T+brdFJ7lsk0ba1WCvRviqsGIcvBO7OpGCyGZIy9Q/TJZ/l7N8UDdL8KlQpw4gWqhoCZFNJwfIKoJ/dSDBjO4yqNzxHOZmqsW+PZj/qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ask/1xp0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C802CC2BCB7;
-	Mon, 18 May 2026 20:56:20 +0000 (UTC)
+	s=arc-20240116; t=1779137905; c=relaxed/simple;
+	bh=i8rjaRkxopw8OlF0S2A6bM63Z9+AhhS7gHX5DH8OmKE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oh5LWPsxaw7IYubJLZiYS3vCZNSvxq7cWZO/fk6M04xbjdMFEKkCqN2LrWNlvAR6rUzqfjc3Teh8W5dIQqBG9x7PqxkO1hFKl4rgBK/h9+G1uKkgVzjf92PJB9bQbZnP4h/Cv3d6W0YNHmWJx8zbGuMZ72o579J2agAENzyRnJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rU/h+E4d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 182E3C2BCC6;
+	Mon, 18 May 2026 20:58:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779137781;
-	bh=gRvS2RP5VtFp12MWm7XHVIHFW5iUeBqMckbLzmS9O+A=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=Ask/1xp0QOPDwDYQJoY64hIMpbWeyvnVKJbhJPtGM5250wkyoFWWwAtDfcoMMHcIZ
-	 jKFqS8cdzNLQ9UMpNQuXqlQp2aD7tzljl0s/nvDM96A1hyjjPGG9BaFJT+viPjZW3q
-	 Iw11786TTBM6b8aJz8A5PBnyFzHzzkWMmInKEPxuHglsR+ggohM+6PPDz5HjJPwJs+
-	 4itJH9tMW9Yx7A602fvLqnJW5nrnDdslEDIBzhfSCNZiDo500sH5ZiMnKfiE5ERVyI
-	 wboX7ASncwmykDqIYeZKsHjq2eyd0XN4dO12ygyFBELFFsOTtOZheeQZyTUJAxcFJ3
-	 8ESzMqYOC3I9A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V8 06/10] iio: imu: inv_icm42607: Add Buffer support for
- icm42607
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chris Morgan" <macroalpha82@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260518200526.458421-7-macroalpha82@gmail.com>
-References: <20260518200526.458421-7-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 18 May 2026 20:56:20 +0000
-Message-Id: <20260518205620.C802CC2BCB7@smtp.kernel.org>
+	s=k20201202; t=1779137904;
+	bh=i8rjaRkxopw8OlF0S2A6bM63Z9+AhhS7gHX5DH8OmKE=;
+	h=From:Date:Subject:To:Cc:From;
+	b=rU/h+E4dh0AdXeFgtVktati3S+YTYqhWKFEnvMd+ft72tUvf6BlIgdPpvVa/0Xk9I
+	 /CK1OwsLdiXQ5+Lx8pX5qQJ8+jxxhpjrcY+xB0kN4L00v0QNRZhjbxuOXFhhFjzdeY
+	 xrM2OUtdQoKml781VKun8tTTl+i8nlZFYcwm0PuAtbAG7iRWXjlKxgoBf3++o2cf7M
+	 myFNQOOMwf9ax4WNEK0R3K4Dwxwr6q+y5vpiRLrkMyBvO+i0U4Z5J7oGyyjO9NfHEW
+	 a9IwG3ojWkSRMm0+8IMq7EN9NyTJFuY+fDX6pteSKb5Us4V3gs0Nt3oL1xhl/fu8cR
+	 6FhjVXw05NNJw==
+From: Yixun Lan <dlan@kernel.org>
+Date: Mon, 18 May 2026 20:58:16 +0000
+Subject: [PATCH] dts: riscv: spacemit: k3: Fix I/O power settings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260518-07-dts-pinctrl-io-power-v1-1-abe19c14a726@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAGd9C2oC/yXMTQ6CMBBA4auQWTtJC6LoVYgL2w46xrTNTP1JC
+ He34PJbvDeDkjApnJsZhN6snGKF3TXg79d4I+RQDa1pD6a3A5ojhqKYOfoiT+SEOX1I0LrQdW6
+ ifjjtodZZaOLvdh4vf+vLPciXdQfL8gP15NuoewAAAA==
+X-Change-ID: 20260518-07-dts-pinctrl-io-power-1bd33bfe5894
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Inochi Amaoto <inochiama@gmail.com>, Han Gao <gaohan@iscas.ac.cn>, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1627; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=i8rjaRkxopw8OlF0S2A6bM63Z9+AhhS7gHX5DH8OmKE=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBqC31qYwQytJjsLBLJBfc0/6szLw4gCToBXYwaW
+ g7gbAcDvQWJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCagt9ahsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMiwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+01fg/9FSqJUEIvu4++shC1RVOfuefElopiNxTv0NbykiV57GNmsOY4TqNBw
+ ju5dnVyCPtcGashsbtiiaK74a3jhccrPbk2hBaR2UmTI1p38UVKLv9pO4PZ3BhcpTjXGRp+CvJH
+ C56dJm3NASSBBes/PGH86d/R6KXRD6vgLtpDHoLurHRlk2apgklJYE2VsUT/ovU87w2gVRpalqv
+ n0SK1J5pglbY/lGDkZRa5JhehAU9CQwcSzcjvCBGG3cO/WWwd31w/GH7bgROImRmep+G6OA6+vG
+ cOeAFheTEmqFaDvJD5JX8AIiAqarf+m87mzocbpByxwGzaSpnzoMZvSsu6zIIhbCEuxCrkJ29e/
+ yP3RExGnAjf2vukK7/cj6loKvE7Gw3WKS/GB+ME+DlUJG67bTQRttpyTp6jcIjt+wG7RAZMxRwF
+ a9hdRSMEDHWbPgzGdaL8rCp72RjQE08aGgMBIKhIy/NrRZKJZL4IwvtqTVlMfiQ+hS2cXDMWkVJ
+ lN4mQWyZnPwdILVfHVovrpBbWMCkFEHk+dKP75LXb23nYBpxQc4IMnUHWCKrlCGlXi7S2xghnoj
+ pX9UObDowwa1iPNnE9wgIlGCL98zr14d8cprlY7mdhgVKx8oxS/Kp023bt7sdhWXJuQQVHastAk
+ ZsvwsyxhDEi2GV7M4P36PUo0ezBUWE=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
@@ -71,181 +95,72 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299625-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299627-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[gmail.com,iscas.ac.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 7B936573995
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,d401f000:email,iscas.ac.cn:email]
+X-Rspamd-Queue-Id: 39D9B5739B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] inv_icm42607_buffer_set_fifo_en() writes an invalid state to the F=
-IFO mode register when disabling the last sensor, clobbering the bypass mod=
-e.
-- [High] Unaligned memory accesses when dereferencing packed struct members=
- trigger kernel panics on strict-alignment architectures.
-- [Medium] Teardown state variables are not unconditionally cleared on erro=
-r paths, causing permanent buffer desynchronization.
---
+SpacemiT K3 SoC support dual-voltage I/O power domain, while initially
+configure to 3.3v, and need to access register from APBC space to switch
+to 1.8v domain.
 
-commit 741f353925a2f661ebf37513ef1196056f86f563
-Author: Chris Morgan <macromorgan@hotmail.com>
+Fix the GMAC0's I/O pins 1.8v switch failure that will result a broken
+ethernet driver.
 
-iio: imu: inv_icm42607: Add Buffer support for icm42607
+Fixes: d8944577496b ("riscv: dts: spacemit: k3: add pinctrl support")
+Reported-by: Han Gao <gaohan@iscas.ac.cn>
+Signed-off-by: Yixun Lan <dlan@kernel.org>
+---
+This issue is reported by Han while booting kernel from UFS storage, and
+found the ethernet driver is broken, we can see the message as below:
 
-This commit adds FIFO parsing and reading functions to support the
-buffer in the inv_icm42607 driver.
+ [    1.635881] mdio_bus stmmac-0: MDIO device at address 1 is missing.
 
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c b/drivers=
-/iio/imu/inv_icm42607/inv_icm42607_buffer.c
-> new file mode 100644
-> index 0000000000000..a011f1f728b98
-> --- /dev/null
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
+This problem is caused by GMAC driver that unable to configure I/O power
+domain to 1.8v, which leads to the MDIO communication failure.
 
-[ ... ]
+We didn't find this problem due to using tftp(net) to load kernel images
+while bootloader already configured the I/O power.
+---
+ arch/riscv/boot/dts/spacemit/k3.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-> +struct inv_icm42607_fifo_1sensor_packet {
-> +	u8 header;
-> +	struct inv_icm42607_fifo_sensor_data data;
-> +	s8 temp;
-> +} __packed;
+diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
+index 815debd16409..2b0bf9cd755b 100644
+--- a/arch/riscv/boot/dts/spacemit/k3.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
+@@ -803,6 +803,7 @@ pinctrl: pinctrl@d401e000 {
+ 			clocks = <&syscon_apbc CLK_APBC_AIB>,
+ 				 <&syscon_apbc CLK_APBC_AIB_BUS>;
+ 			clock-names = "func", "bus";
++			spacemit,apbc = <&syscon_apbc>;
+ 		};
+ 
+ 		uart10: serial@d401f000 {
 
-[ ... ]
+---
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+change-id: 20260518-07-dts-pinctrl-io-power-1bd33bfe5894
 
-> +ssize_t inv_icm42607_fifo_decode_packet(const void *packet, const void *=
-*accel,
-> +					const void **gyro, const int8_t **temp,
-> +					const void **timestamp)
-> +{
-> +	const struct inv_icm42607_fifo_1sensor_packet *pack1 =3D packet;
+Best regards,
+--  
+Yixun Lan <dlan@kernel.org>
 
-[ ... ]
-
-> +	/* accel only */
-> +	if (header & INV_ICM42607_FIFO_HEADER_ACCEL) {
-> +		*accel =3D &pack1->data;
-
-Could this pointer assignment lead to an alignment fault on strict-alignment
-architectures?
-
-Because struct inv_icm42607_fifo_1sensor_packet is marked __packed and
-starts with a u8, the data member sits at an odd byte offset. This unaligned
-address is assigned to accel, which is later passed to
-inv_icm42607_fifo_is_data_valid() where it expects a naturally aligned
-struct inv_icm42607_fifo_sensor_data pointer.
-
-Dereferencing this pointer could trigger kernel panics on architectures
-that strictly enforce alignment.
-
-> +		*gyro =3D NULL;
-> +		*temp =3D &pack1->temp;
-> +		*timestamp =3D NULL;
-> +		return INV_ICM42607_FIFO_1SENSOR_PACKET_SIZE;
-> +	}
-
-[ ... ]
-
-> +int inv_icm42607_buffer_set_fifo_en(struct inv_icm42607_state *st,
-> +				    unsigned int fifo_en)
-> +{
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	/* update FIFO EN bits for accel and gyro */
-> +	val =3D 0;
-> +	if (fifo_en & INV_ICM42607_SENSOR_GYRO)
-> +		val |=3D INV_ICM42607_FIFO_CONFIG1_MODE;
-> +	if (fifo_en & INV_ICM42607_SENSOR_ACCEL)
-> +		val |=3D INV_ICM42607_FIFO_CONFIG1_MODE;
-> +	if (fifo_en & INV_ICM42607_SENSOR_TEMP)
-> +		val |=3D INV_ICM42607_FIFO_CONFIG1_MODE;
-> +
-> +	ret =3D regmap_write(st->map, INV_ICM42607_REG_FIFO_CONFIG1, val);
-
-Could this write an invalid state when disabling the last sensor?
-
-If fifo_en is 0, val evaluates to 0 and is directly written to the FIFO
-mode register. However, the correct disabled state for this register appears
-to be INV_ICM42607_FIFO_CONFIG1_BYPASS.
-
-Writing 0 might overwrite the bypass mode and leave the FIFO in an unspecif=
-ied
-state. It also looks like INV_ICM42607_FIFO_CONFIG1_MODE is redundantly ORed
-multiple times for each active sensor.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->fifo.en =3D fifo_en;
-> +	inv_icm42607_buffer_update_fifo_period(st);
-> +
-> +	return 0;
-> +}
-
-[ ... ]
-
-> +static int inv_icm42607_buffer_predisable(struct iio_dev *indio_dev)
-> +{
-> +	struct inv_icm42607_state *st =3D iio_device_get_drvdata(indio_dev);
-> +	int ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	if (st->fifo.on > 1) {
-> +		st->fifo.on--;
-> +		return 0;
-> +	}
-> +
-> +	/* set FIFO in bypass mode */
-> +	ret =3D regmap_write(st->map, INV_ICM42607_REG_FIFO_CONFIG1,
-> +			   INV_ICM42607_FIFO_CONFIG1_BYPASS);
-> +	if (ret)
-> +		return ret;
-
-Could returning early here leave the driver state permanently desynchronize=
-d?
-
-If this or the subsequent operations fail, the function returns early and
-st->fifo.on is never reset to 0. Since the IIO core ignores teardown
-errors and considers the buffer disabled anyway, a subsequent call to
-inv_icm42607_buffer_postenable() will see st->fifo.on > 0, assume the
-hardware is already fully initialized, and skip programming the hardware.
-
-This would leave the hardware permanently disabled while the software thinks
-it is streaming, leading to silent data loss.
-
-> +
-> +	/* flush FIFO data */
-> +	ret =3D regmap_write(st->map, INV_ICM42607_REG_SIGNAL_PATH_RESET,
-> +			   INV_ICM42607_SIGNAL_PATH_RESET_FIFO_FLUSH);
-> +	if (ret)
-> +		return ret;
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518200526.4584=
-21-1-macroalpha82@gmail.com?part=3D6
 
