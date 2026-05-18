@@ -1,352 +1,160 @@
-Return-Path: <devicetree+bounces-299380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299382-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2M1hOaEEC2qj/QQAu9opvQ
-	(envelope-from <devicetree+bounces-299380-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:22:57 +0200
+	id mK01L/cGC2r4/QQAu9opvQ
+	(envelope-from <devicetree+bounces-299382-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:32:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877D156C8A7
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:22:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D9656CB7B
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 14:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4DCD4301361C
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:22:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9CA16303C3E1
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30E24048B5;
-	Mon, 18 May 2026 12:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED7E4048BF;
+	Mon, 18 May 2026 12:23:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="dwnG5/yL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxPaS36p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8403040489B;
-	Mon, 18 May 2026 12:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7506A4048B0
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 12:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779106932; cv=none; b=AD9+ZoZZ2/CiMv5fDcG5CHJesJqb0GAIAx+Jr7VgT+xyY+U9fiQ3mHmHI0sXqyl5caGZga6dzNWHKIapllum8MWZXFO0zGTlAl4H785n1Pm9Bmnr36wVyWPdady2EEgKnCceQwxGO8yDZg1mpNDHuW6b5f9pNfh64jtcnHD8RmI=
+	t=1779107011; cv=none; b=Czg0OMO/0jh4W3uJogQY5CTQcFgeoJHKD2RCeogr+ALJuIvItGF2sC9ksjR+hHhT9S1uGKFPDC5fg1DGgxqb2YTVHIEULxTd2NDnyYRNVdb5ew6Yhv6tue54gHqXMDw+snuPPITONe/7iI61Hy8EONspXzOy4fdprtg7nvjn4+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779106932; c=relaxed/simple;
-	bh=zjW84CleZMbfgV29/aaYzu7wXUCP+K0/o0qDx4LUQ8g=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BzpgRuQin3GX6cveyYYmoNd0UGI+Y3RJGSgFoK97QioP2eNMRE/WHfXGPgfkoLzHhGwqU6XOU+C91zyUUvRKGrIwEJjyP8gGixUUYt8fR1c1kw4ZhiC/FbUUJRqW7q0SVFIFMV1H9QVtSgATAonD261uxji/umXYMiiLODETq9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=dwnG5/yL; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1779106926;
-	bh=oHFWziLvncRM91/hv45QHybaLAi9Rx72zyGVXfpBHSY=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=dwnG5/yL+eIioBdYDufbaQO2CbDUv/QlepkSyOxUnpJIvJqqekxWCN6gcZg5xxrjv
-	 FPaUEVzokmrjgz3icibmQZ0nXfqNNItRZBLmFH13t9bP4Qfpu/ikoWMN+Mf3przGCa
-	 +5NgQbpiYSTHytvXpZP1y3PVwUnwrfnmzasJgNYJgXPjzIshUmszQo5Z051BYFigz2
-	 Ll8YPaQYGQDqYOSNLp7EgM1PTOdOir2aa1GKJXfAETkfLIOtdP9c4bq8UxzosrOStq
-	 PBXt4X0AKUSfDYWnrWl3HFpnW/gwhSN4TeWIAIXJA5U5X4QA5geRKEjK8e3cTiK7lz
-	 jvAYxcjUyqLVw==
-Received: from [192.168.68.117] (unknown [180.150.112.11])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id DFEF26024D;
-	Mon, 18 May 2026 20:22:05 +0800 (AWST)
-Message-ID: <e5d1cbdb34dddf17b4d474446fb9cebddc0894d9.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v13 2/2] arm: dts: aspeed: ventura: add Meta Ventura BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "P.K. Lee" <pkleequanta@gmail.com>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc: Jason-Hsu@quantatw.com, p.k.lee@quantatw.com
-Date: Mon, 18 May 2026 21:52:05 +0930
-In-Reply-To: <20260407081700.2658011-3-pkleequanta@gmail.com>
-References: <20260407081700.2658011-1-pkleequanta@gmail.com>
-	 <20260407081700.2658011-3-pkleequanta@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+	s=arc-20240116; t=1779107011; c=relaxed/simple;
+	bh=usTofiHBe+VOrGvgSKALrk7cAdaELwleZ/gsJ3VfXWs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Anzh9yqPdmu6TL5ieLGALrgIqySj8wcjKRbWVif7cYlqm9FfwWDYwEKpmOOrVnXILHmoF0tECDevWmy+eYtzrvX9Qo4dl2Az1uoPkHNNn4Ic/x8lBwuEYInLRQ2Mg4qEjnWzOTP2Cdd1rTz6gSxrnmeJfHM4jWvP4zqvJc3Q2ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxPaS36p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE713C2BCB8;
+	Mon, 18 May 2026 12:23:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779107011;
+	bh=usTofiHBe+VOrGvgSKALrk7cAdaELwleZ/gsJ3VfXWs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=mxPaS36pEv8Wkx3Fl02K5yg9+3vlsp1R2724GV7W2hm22KBdXAnxmQIh53gsng2fC
+	 TWNwc1SgFEU/mleUvzA0CsHUr1aVxbyeTY6Q2N6SuNfXGjygnEXvIkvAkkGQeZRJkL
+	 8upEmn2e5BqQsdj6n620Nj4tz9VaN5bGZ6Z2/whTwziBDZYBixXLCDbMVZQgOszV6V
+	 BSWtBVgmZLkB24QMlB/arf1ylYbXKICpPFQpi0Behw2NpvFs5KSh+e14RXUT+q6acM
+	 TQ+nW7UYEAQviziYGIv/8prqaEmR192lJxJfDjeXnkq3CbKvhQS+zLRrnkfAgU+3aL
+	 YDEon8ugaDJiA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 09/10] dt-bindings: firmware: add arm,ras-cper
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ahmed Tiba" <ahmed.tiba@arm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260518-topics-ahmtib01-ras_ffh_arm_internal_review-v4-9-42698675ba61@arm.com>
+References: <20260518-topics-ahmtib01-ras_ffh_arm_internal_review-v4-9-42698675ba61@arm.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+Date: Mon, 18 May 2026 12:23:30 +0000
+Message-Id: <20260518122330.CE713C2BCB8@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-Rspamd-Queue-Id: 877D156C8A7
+X-Rspamd-Queue-Id: 11D9656CB7B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,jms.id.au,vger.kernel.org,lists.infradead.org,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-299380-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	TAGGED_FROM(0.00)[bounces-299382-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-Hi P.K.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The `memory-region` property uses a `oneOf` block with multiple `it=
+ems` lists, which causes a meta-schema validation failure during `make dt_b=
+inding_check`.
+--
 
-On Tue, 2026-04-07 at 16:17 +0800, P.K. Lee wrote:
-> Add Linux device tree related to Meta (Facebook) Ventura specific
-> devices connected to the BMC (AST2600) SoC. The purpose of Ventura is to
-> detect liquid leakage from all compute trays, switch trays and rack
-> sensors within the rack, log the events, and take necessary actions
-> accordingly.
->=20
-> Signed-off-by: P.K. Lee <pkleequanta@gmail.com>
-> ---
-> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> =C2=A0.../aspeed/aspeed-bmc-facebook-ventura.dts=C2=A0=C2=A0=C2=A0 | 1636=
- +++++++++++++++++
-> =C2=A02 files changed, 1637 insertions(+)
-> =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ven=
-tura.dts
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
-/Makefile
-> index 0f0b5b707654..f5ac72d5933c 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
-> =C2=A0	aspeed-bmc-facebook-minipack.dtb \
-> =C2=A0	aspeed-bmc-facebook-santabarbara.dtb \
-> =C2=A0	aspeed-bmc-facebook-tiogapass.dtb \
-> +	aspeed-bmc-facebook-ventura.dtb \
-> =C2=A0	aspeed-bmc-facebook-wedge40.dtb \
-> =C2=A0	aspeed-bmc-facebook-wedge100.dtb \
-> =C2=A0	aspeed-bmc-facebook-wedge400-data64.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts b/a=
-rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts
+commit c89aa0b853ed683df337769736a4dd661095a6ae
+Author: Ahmed Tiba <ahmed.tiba@arm.com>
+
+dt-bindings: firmware: add arm,ras-cper
+
+This commit adds a new DeviceTree binding to describe the Arm firmware-first
+CPER provider, exposing the Generic Error Status block and an optional ack
+buffer. It also adds an entry for the binding in the MAINTAINERS file.
+
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,ras-cper.yaml=
+ b/Documentation/devicetree/bindings/firmware/arm,ras-cper.yaml
 > new file mode 100644
-> index 000000000000..6ce6201f7755
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts
-> @@ -0,0 +1,1636 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (c) 2023 Facebook Inc.
-> +/dts-v1/;
+> +++ b/Documentation/devicetree/bindings/firmware/arm,ras-cper.yaml
+[ ... ]
+> +properties:
+> +  compatible:
+> +    const: arm,ras-cper
 > +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/i2c/i2c.h>
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +
-> +/ {
-> +	model =3D "Facebook ventura RMC";
+> +  memory-region:
+> +    oneOf:
+> +      - items:
+> +          - description:
+> +              CPER Generic Error Status block exposed by firmware
+> +      - items:
+> +          - description:
+> +              CPER Generic Error Status block exposed by firmware.
+> +          - description:
+> +              Optional firmware-owned ack buffer used on platforms
+> +              where firmware needs an explicit "ack" handshake before ov=
+erwriting
+> +              the CPER buffer. Firmware watches bit 0 and expects the OS=
+ to set it
+> +              once the current status block has been consumed.
 
-I suggest capitalising 'Ventura'.
+Does this oneOf block cause a meta-schema validation failure during
+make dt_binding_check?
 
-> +	compatible =3D "facebook,ventura-rmc", "aspeed,ast2600";
-> +
-> +	aliases {
-> +		serial4 =3D &uart5;
-> +		i2c16 =3D &i2c3mux0ch3;
-> +		i2c17 =3D &i2c3mux0ch4;
-> +		i2c18 =3D &i2c3mux0ch5;
-> +		i2c19 =3D &i2c3mux0ch6;
-> +		i2c20 =3D &i2c3mux0ch0;
-> +		i2c21 =3D &i2c3mux0ch1;
-> +		i2c22 =3D &i2c3mux0ch2;
-> +		i2c23 =3D &i2c3mux0ch7;
-> +		i2c24 =3D &i2c0mux0ch0;
-> +		i2c25 =3D &i2c0mux0ch1;
-> +		i2c26 =3D &i2c0mux0ch2;
-> +		i2c27 =3D &i2c0mux0ch3;
-> +		i2c28 =3D &i2c0mux0ch4;
-> +		i2c29 =3D &i2c0mux0ch5;
-> +		i2c30 =3D &i2c0mux0ch6;
-> +		i2c31 =3D &i2c0mux0ch7;
-> +		i2c32 =3D &i2c1mux0ch0;
-> +		i2c33 =3D &i2c1mux0ch1;
-> +		i2c34 =3D &i2c1mux0ch2;
-> +		i2c35 =3D &i2c1mux0ch3;
-> +		i2c36 =3D &i2c1mux0ch4;
-> +		i2c37 =3D &i2c1mux0ch5;
-> +		i2c38 =3D &i2c1mux0ch6;
-> +		i2c39 =3D &i2c1mux0ch7;
-> +		i2c40 =3D &i2c2mux0ch0;
-> +		i2c41 =3D &i2c2mux0ch1;
-> +		i2c42 =3D &i2c2mux0ch2;
-> +		i2c43 =3D &i2c2mux0ch3;
-> +		i2c44 =3D &i2c2mux0ch4;
-> +		i2c45 =3D &i2c2mux0ch5;
-> +		i2c46 =3D &i2c2mux0ch6;
-> +		i2c47 =3D &i2c2mux0ch7;
+In dt-schema, standard phandle array properties like memory-region require
+length limits to be explicitly defined or statically deducible at the top l=
+evel
+of the property definition.
 
-Many of the buses aliased here don't have any devices described below
-them. Can you add some commentary about why it's necessary to enable
-and alias each of these?
+Wrapping the items arrays inside a oneOf block hides these constraints from=
+ the
+core meta-schema, which prevents the tooling from extracting the implied
+maxItems and results in a missing maxItems validation error.
 
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial4:57600n8";
-> +	};
-> +
-> +	iio-hwmon {
-> +		compatible =3D "iio-hwmon";
-> +		io-channels =3D <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-> +			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-> +			<&adc1 2>;
-> +	};
-> +
+Could this be simplified to use a single items list with minItems: 1 instead
+of the oneOf block?
 
-...
-
-> +		i2c3mux0ch4: i2c@4 {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +			reg =3D <4>;
-> +
-> +			adc@1f {
-> +				compatible =3D "ti,adc128d818";
-> +				reg =3D <0x1f>;
-> +				ti,mode =3D /bits/ 8 <1>;
-> +			};
-> +
-> +			fan_leds_g2_gpio: gpio@21 {
-> +				compatible =3D "nxp,pca9555";
-> +				reg =3D <0x21>;
-> +				gpio-controller;
-> +				#gpio-cells =3D <2>;
-> +
-> +				gpio-line-names =3D
-> +				"", "",
-> +				"", "",
-> +				"", "",
-> +				"", "",
-> +				"FAN2_PRSNT", "FAN3_PRSNT",
-> +				"", "",
-> +				"", "",
-> +				"", "";
-> +			};
-> +
-> +			adc@35 {
-> +				compatible =3D "maxim,max11617";
-> +				reg =3D <0x35>;
-> +			};
-> +
-> +			// Fan Board 1 FRU
-
-I'd rather we pick one commenting style (/* */). Can you please fix
-that throughout?
-
-> +			eeprom@56 {
-> +				compatible =3D "atmel,24c128";
-> +				reg =3D <0x56>;
-> +			};
-> +		};
-> +
-> +		i2c3mux0ch5: i2c@5 {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +			reg =3D <5>;
-> +
-> +			pwm@20 {
-> +				compatible =3D "maxim,max31790";
-> +				reg =3D <0x20>;
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +				channel@2 {
-> +					reg =3D <2>;
-> +					sensor-type =3D "TACH";
-> +				};
-> +				channel@5 {
-> +					reg =3D <5>;
-> +					sensor-type =3D "TACH";
-> +				};
-> +			};
-> +
-> +			hwmon: hwmon@23 {
-> +				compatible =3D "nuvoton,nct7363";
-> +				reg =3D <0x23>;
-> +				#pwm-cells =3D <2>;
-> +
-> +				//fan 0 IL
-
-Can you please add a space between the comment marker and the comment
-itself? This needs fixing throughout.
-
-> +				fan-0 {
-> +					pwms =3D <&hwmon 0 20000>;
-> +					tach-ch =3D /bits/ 8 <0x09>;
-> +				};
-> +
-> +				//fan 0 OL
-> +				fan-1 {
-> +					pwms =3D <&hwmon 0 20000>;
-> +					tach-ch =3D /bits/ 8 <0x0B>;
-> +				};
-> +
-> +				//fan 1 IL
-> +				fan-2 {
-> +					pwms =3D <&hwmon 4 20000>;
-> +					tach-ch =3D /bits/ 8 <0x0A>;
-> +				};
-> +
-> +				//fan 1 OL
-> +				fan-3 {
-> +					pwms =3D <&hwmon 4 20000>;
-> +					tach-ch =3D /bits/ 8 <0x0D>;
-> +				};
-> +
-> +				//fan 2 IL
-> +				fan-4 {
-> +					pwms =3D <&hwmon 6 20000>;
-> +					tach-ch =3D /bits/ 8 <0x0F>;
-> +				};
-> +
-> +				//fan 2 OL
-> +				fan-5 {
-> +					pwms =3D <&hwmon 6 20000>;
-> +					tach-ch =3D /bits/ 8 <0x01>;
-> +				};
-> +
-> +				//fan 3 IL
-> +				fan-6 {
-> +					pwms =3D <&hwmon 10 20000>;
-> +					tach-ch =3D /bits/ 8 <0x00>;
-> +				};
-> +
-> +				//fan 3 OL
-> +				fan-7 {
-> +					pwms =3D <&hwmon 10 20000>;
-> +					tach-ch =3D /bits/ 8 <0x03>;
-> +				};
-> +			};
-> +		};
-> +
->=20
-
-...
-
-> +
-> +&mdio0 {
-> +	status =3D "okay";
-> +	/* * Intentionally left empty.
-
-The comment is a bit busted here. Can you please fix it?
-
-Andrew
-
-> +	 * Enabled to allow user-space tools (e.g., mdio)
-> +	 * to access the unmanaged Marvell switch registers.
-> +	 */
-> +};
-> +
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518-topics-ahm=
+tib01-ras_ffh_arm_internal_review-v4-0-42698675ba61@arm.com?part=3D9
 
