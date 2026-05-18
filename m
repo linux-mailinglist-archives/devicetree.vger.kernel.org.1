@@ -1,236 +1,151 @@
-Return-Path: <devicetree+bounces-299268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2I0PA4DlCmqJ9AQAu9opvQ
-	(envelope-from <devicetree+bounces-299268-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:10:08 +0200
+	id 6C/BK1HlCmqJ9AQAu9opvQ
+	(envelope-from <devicetree+bounces-299270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:09:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A95656A69B
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:10:07 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60EC356A645
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 12:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 314AB304345D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:03:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A9AE93000B0E
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE0A31C567;
-	Mon, 18 May 2026 10:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BA5317163;
+	Mon, 18 May 2026 10:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l66c26y2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="THt1RafR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1C3319871
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 10:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0135C21D3F5;
+	Mon, 18 May 2026 10:09:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779098615; cv=none; b=ciar5eXizGE/ANKE+mgobpc/3u6cphuVqWa4Xtgv0zHZqMLxdOB3JtqMlD9572vCm9Hf1hP8BY8UfyfukTZyV/FCSfYns888r4XSIV+qWhTF29jQb0hKSkkwztFN7OqdMXb6+5jshlK9GNJlu+h9OFDSueb+Kk8dFI0ezh4vMfE=
+	t=1779098958; cv=none; b=W/6PCuoPlr5RIHgd+jHcdyYq9q4XS/z0PElHEzg6RlOXuHpiZjUkN47M/1i1wPmA/FWiH/9E9DgG5k2bLSIYaD1qm4F5dn5TCe9zAeeiDRaCT+NzVLSEsnIfVa/DuWzd++lwWHJsH/HXGgq4DuNQDIV/LaQ8BXXlc/WHvq0Soyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779098615; c=relaxed/simple;
-	bh=OlVnZ6hgBjl6Z4wjcdiU1o7je41o2bODQ8xTkDcLa3M=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lL3rjf3+nWEnys0/mWg3oZnm1GSxG79Ras39Mch365mUZqD3aJ5ixxrsuJN3u4BZLSvYbod2ecSXbKVTxxLkUugTJBvT76TjpsAS/UWe2aKimx+yb4NYKij5lxDzlJ5hT1ZrfE68BLzpFG0jf0RIVghjbaYN2wxO4hCXCd2+uGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l66c26y2; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-67f94c078e8so3799973a12.1
-        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 03:03:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779098612; x=1779703412; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=J9ylC37SeHhzEHv6vV+fwrRGDdNjQ9Rkf4Ee3GfdjHs=;
-        b=l66c26y2HCl2ofOgm8mN9gFQxNXJmjgUbaj22MJZalI0IQUYLh6KWDyebsE3k3jMG1
-         3TDqvmqoFvE0YpYF+YFCq6cVfOWsS5cSJuvvHkQ9/xlT0IkabPsPohCW9jjhtv2dnwsH
-         XR08ai3ORBF+584Xz55zcG0fFZVBORnNYeoMsQNOvQa34PT28d7ThEfQNEq8b8oTIh3W
-         I4qn5rcyBLmOaYDyi0Hw6bj/8i6ge/vJP2MGZaYOMtkLFNCrCiF3yiQmbXlzQb2hgwFY
-         pSqyyyUQ82tXkSN79KURiGMJfMKKeYblF/hanGGBiFoSWlZdcRTWUS69wLRKM7Oxy/eb
-         m7Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779098612; x=1779703412;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J9ylC37SeHhzEHv6vV+fwrRGDdNjQ9Rkf4Ee3GfdjHs=;
-        b=cpEBtO2yItV6VHYsSezdmEv76IKWmDC/rTTiU3F/F9ykaaz2j+qOMkxjixO+JHJ2RX
-         lbz5PmRPJpg5bCtWyVYm789hf5f+yPrW/7H5VLi9F5HDQcrNpqeqbyyb+UBxaUezMXZR
-         1uO7YD4O9lW9FqEDP3u3+FZ87kofnZ2Jg4RFTWfFhCzwlmyGO1mft2l65Ha3zf9mSvoO
-         I5u2LJqFqn06H7Adt3w2xMW/3hZhQ7j35kMeDaCLGR1oOZHMWNwHVcHVkX8GEkCtz7Rb
-         ELRVH0HcrnTqLjFVjbadb8q0mk2p6pDcqKnlzqhBZH9nZBJ5IPrIP/STw8/4wV8vZwHJ
-         zBzg==
-X-Forwarded-Encrypted: i=1; AFNElJ91V3oJtGu40hXBj7+8YSkujeHvaeAjXJvnfi5/Hf3B+hxsSb23zDc+BahrBmnmQizZieOjjrEu06x1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5jcpy0orY2X3LaMxF0yrMTln9zZZQ7j2061aGTi5+se/tR2nE
-	HH48rDpe8JmC5VBVaBI2REHpaFO3VGEx+zwrvP2DBhSetfUFhNNPqN8h
-X-Gm-Gg: Acq92OHRGx5R9uTKudv4FooEbZeSEcivYLtj75kCSSisA3ljpXhTopJfchN38Mr4zbu
-	x1xnFmeZrpiISJvzJH7ViepsM5xalaOzd4WFV5SCfiXhDjfc060NgQcc2u+4QNkC9HlZUSAxfOr
-	OudL+dWnywirptXS3ZnwhvGhh0fWoTnhLnmHdq0HlcI11ROn7tA0qmCUxnrpqY9kOcaFxw+ZT12
-	5GDwQSmT4xZ7eHwYxW5WDFcccu4NKlzLwTSzTFjH4hwdGEgy7ht8row3U55aXZzWpH4E7hwtf/f
-	6yFwAG2s50evN7QSSMPbjwD/0iXqbvk2yTOtQTn/C2WJELZktdxc+Ucz7XBoxa+ibj1rDgtGaCE
-	eP9XM3gQFHUriQsaUjb86NxCr+wLowQifqMnwgapWMn1DtqlNdmQjXiTKxcu1GibHXaVbHGnfUo
-	1Wx3rZBmqGHh0sG8Dzu61dNIYmfm/iyjdnkhYB8sYRkZlGwHdcw3R+ZwLvXOWKc/dNlNfs21aF9
-	1+ggTS5YvTifSQ1yWIdraWtH6SYPi9YT/3uR9V6ZWxD0VnhCR853grQsbiSKHzAOrIUedc=
-X-Received: by 2002:a17:907:1608:b0:bd4:9a55:18e2 with SMTP id a640c23a62f3a-bd51797a54dmr747720366b.45.1779098612039;
-        Mon, 18 May 2026 03:03:32 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bd4f4bd2f67sm541480966b.7.2026.05.18.03.03.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 May 2026 03:03:31 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 18 May 2026 11:03:25 +0100
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Rodrigo Alencar <rodrigo.alencar@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
-	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v5 05/13] dt-bindings: iio: frequency: add ad9910
-Message-ID: <54aifnhtrlus35grvw2cgotvxwnp5p7peim3tke5wa5tjobmww@iiaajlvladrt>
-References: <20260517-ad9910-iio-driver-v5-0-31599c88314a@analog.com>
- <20260517-ad9910-iio-driver-v5-5-31599c88314a@analog.com>
- <20260518-zippy-ingenious-aardwolf-df46a2@quoll>
+	s=arc-20240116; t=1779098958; c=relaxed/simple;
+	bh=LQ13ebAO4UAXqbS/+/OyQ1q0rMBzWh0nkMrJYsP8yGQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ssIXr5+ih16FeYpBHxzH4KsV4IBtmHLT/bdLLPOid1gRYN7GHc1yzztk/smOptw92UHlYpx2OJ/J8MgwP6ID+upYeZCpYVy+Ax/hPZz4MnkR3e1rG4DR2mCyJCXcLIqQW/nrz4zwE9/Wvt+KK85dowcmehjV/48asL2eBX+y2NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=THt1RafR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53345C2BCB7;
+	Mon, 18 May 2026 10:09:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779098957;
+	bh=LQ13ebAO4UAXqbS/+/OyQ1q0rMBzWh0nkMrJYsP8yGQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=THt1RafRYxc1QTFiabyiyjuG/Sb6ASo61uirT7RHgZV+hxQ2/kwiPO0HeCc0okzIo
+	 lTViDaD5kYRNLytO9K9kzW7szwtsek5xaxsYlxPail2zxN6hPl3Vtmdjca8S6Y9AEM
+	 LD+56s7BleuLLMwbdGLQCq8xdXp70qGTFeONCVteEoNI1iA1vOyFqSaQc90bUPI08H
+	 ZijM+KCzCEXQiDAHinge0LbMj1QdqxX6TTZFOCweH1nqgGBilBhWHgJUT+a4lveH1q
+	 OLflW0dyfd7uqQ6CroBBSKq1c70AS9gGJqAPcUScY4l8MOa0Oa46EeV9X0rFtqcAv/
+	 ucwKt7Lm0l29Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 1/7] dt-bindings: embedded-controller: document ASUS
+ Transformer EC
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>
+Cc: dmitry.torokhov@gmail.com, linux-input@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260518095907.36158-2-clamor95@gmail.com>
+References: <20260518095907.36158-2-clamor95@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 18 May 2026 10:09:10 +0000
+Message-Id: <20260518100917.53345C2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260518-zippy-ingenious-aardwolf-df46a2@quoll>
-X-Rspamd-Queue-Id: 5A95656A69B
+X-Rspamd-Queue-Id: 60EC356A645
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-299270-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299268-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.990];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email,analog.com:url]
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Action: no action
 
-On 26/05/18 09:52AM, Krzysztof Kozlowski wrote:
-> On Sun, May 17, 2026 at 07:37:49PM +0100, Rodrigo Alencar wrote:
-> > +maintainers:
-> > +  - Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > +
-> > +description:
-> > +  The AD9910 is a 1 GSPS direct digital synthesizer (DDS) with an integrated
-> > +  14-bit DAC. It features single tone mode with 8 configurable profiles,
-> > +  a digital ramp generator, RAM control, OSK, and a parallel data port for
-> > +  high-speed streaming.
-> > +
-> > +  https://www.analog.com/en/products/ad9910.html
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: adi,ad9910
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 70000000
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: Reference clock (REF_CLK).
-> > +      - description: Optional synchronization clock (SYNC_IN).
-> > +
-> > +  clock-names:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: ref_clk
-> > +      - items:
-> > +          - const: ref_clk
-> > +          - const: sync_in
-> 
-> So that's just items with two items and minItems: 1. Like you have in
-> "clocks:".
-> 
-> You got this comment already at v2.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The `reg` property specifies `minItems: 2` but is missing an explic=
+it `maxItems: 2` constraint or an `items` array definition.
+--
 
-You're right! will adjust. For some reason I thought I had problems with
-the dt-binding check without this.
+commit 1a4f9a19859ef3d1429d7fbcebe0842f0c3684af
+Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-> 
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  clock-output-names:
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +    items:
-> > +      enum: [ sync_clk, pdclk, sync_out ]
-> 
-> Why are the names fixed? And why is the order random?
+dt-bindings: embedded-controller: document ASUS Transformer EC
 
-All of those would be optional. Having it in a specific order we would need
-to register all the clocks even if only one (or none) is used?
+This commit adds device tree binding documentation for the embedded
+controller used in the ASUS Transformer device series. The controllers
+are attached to an I2C bus and run custom ASUS firmware.
 
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    items:
-> > +      - description:
-> > +          Signal that indicates that Digital Ramp Generator has reached a limit.
-> > +      - description:
-> > +          Signal that indicates the end of a RAM Sweep.
-> > +
-> > +  interrupt-names:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    items:
-> > +      enum: [ drover, ram_swp_ovr ]
-> 
-> Your "interrupts:" do not allow flexibility. Are you sure interrupts are
-> optional in the hardware?
+> diff --git a/Documentation/devicetree/bindings/embedded-controller/asus,t=
+f201-ec-pad.yaml b/Documentation/devicetree/bindings/embedded-controller/as=
+us,tf201-ec-pad.yaml
+> new file mode 100644
+> index 0000000000000..60b6375864aaf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/embedded-controller/asus,tf201-ec=
+-pad.yaml
 
-Good point, They are optional. Should I drop the items and descriptions in "interrupts"?
+[ ... ]
 
-> > +
-> > +  dvdd-io33-supply:
-> > +    description: 3.3V Digital I/O supply.
-> > +
-> > +  avdd33-supply:
-> > +    description: 3.3V Analog DAC supply.
-> 
-> Best regards,
-> Krzysztof
-> 
+> +  reg:
+> +    description:
+> +      The ASUS Transformer EC has a main I2C address and an associated
+> +      DockRAM device, which provides power-related functions for the
+> +      embedded controller. Both addresses are required for operation.
+> +    minItems: 2
 
--- 
-Kind regards,
+Does this property need an explicit maxItems: 2 constraint or an items array
+definition to properly bound the schema?=20
 
-Rodrigo Alencar
+> +
+> +  reg-names:
+> +    items:
+> +      - const: ec
+> +      - const: dockram
+
+While the reg-names property correctly defines exactly two expected names,
+without an explicit upper bound or items array, the reg property definition
+might be incomplete according to standard dt-binding conventions.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518095907.3615=
+8-1-clamor95@gmail.com?part=3D1
 
