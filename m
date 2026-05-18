@@ -1,301 +1,420 @@
-Return-Path: <devicetree+bounces-299224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299226-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLcGErLQCmru8QQAu9opvQ
-	(envelope-from <devicetree+bounces-299224-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:41:22 +0200
+	id eLepNQnRCmru8QQAu9opvQ
+	(envelope-from <devicetree+bounces-299226-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:42:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D398B569054
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:41:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38AB456908D
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 10:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2EEA2300100D
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 08:36:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 63446300874D
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 08:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094423E3142;
-	Mon, 18 May 2026 08:36:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F4C3E314E;
+	Mon, 18 May 2026 08:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GWRPL/Si"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OdpEfQyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011066.outbound.protection.outlook.com [52.101.57.66])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010032.outbound.protection.outlook.com [52.101.69.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227C83E2AC8;
-	Mon, 18 May 2026 08:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE263E1D0B;
+	Mon, 18 May 2026 08:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.32
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779093415; cv=fail; b=FVXvJ0XkItmYdRVwDAhOQGrOG2o2h1TBZ5M46TdJH9E6JU7z4eoXaLnhro8FefbQLY/PSTVK8pUkwHIBZcayPRvKbOTPTKomOBiUZ4pB/KxCqhLklsfUHT+YV6DgEjpjIrxSrBe+IZEQKy9s02MttZYK9pj4i1XV7ADvd0WCjxQ=
+	t=1779093764; cv=fail; b=fcyXU5GiI3Vjq54uJ6icFxl0wNxD5JxbyBPFrXfJij1cM6Y0A6XknIdzMoaKqevJtmNT0jltXCqrifPbaz77pqYRL1LWHJDjQwHaP0Bt+zJuBMVwtuVjxFl3z2sW3f/FEt0se4INuorS4TYquISjUqC1D8TFYovGEyDe42PiM0A=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779093415; c=relaxed/simple;
-	bh=/Og1lG8pR4sY+kftidFkIp1heQMONf1Mvocs0/KEl1o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=anM9rTzwYIDnVHFZ0Oofb9P5FP1QccZU09D0VklfQWlFE8QQml0c29myLDIsf6M8b51iUt/LlgWmsDyA4OJn6JPAgeeof706trrS6hFRQoyPybQvKhoeUGDV8KLLkI/6qK6tb2T87m5/JFbwMX3bNqYYHgNt7BPG9qyTZqJrpVY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GWRPL/Si; arc=fail smtp.client-ip=52.101.57.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+	s=arc-20240116; t=1779093764; c=relaxed/simple;
+	bh=yl3ldlDU7wQ7r9Ow1QCmmtbBQaqpowIZhTI5yCKR8sY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Wbo1BD9zPfDFatY2dBbq8fy8zslO99jRko2Wp9CqTLDJEMbp8vDM5USPmUlAM/8eLhqWlBxaTazxw9YMccji7phtFTvoydKucKFxVoubmwYELgo+ZyF6iam66/Lfz4qMpd5PisfDnkDNlVq3YR5WnmJMhUhzXjUaX06F/le4ALc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OdpEfQyv; arc=fail smtp.client-ip=52.101.69.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u/esTwh6L7r9YOItUyUnUmrnAqD6Ti9rzyK4rN1qeUDTqGTw/vQGoo96jg70ELFaPLNAa/XzTGmaLpIQ9gtTshOlibg0qAnQHg8NBvXNE7VfL+93pY2YXlRlKOfddFSSgnQW+h3vgu+FEWCExc+FzVJgpVPnQMx93zjwTUeU71UYL/4BPshWQs5xp/E91HVEhm8PwSnPEh+YuVy+EzzrzWSaF7hflinGpSmF/fHE8hphgEyt5tSByBU3tN2mSpG8Xqggfm268NJVM8SMarvTJTDiY8Dj2CkB/eXcjTKoZAkhQReJlB9AqWi0Jn6DFdnnRUJ//68KYitC/D0IJDiP2g==
+ b=qttYvNkrhVUrEjR38A2v429ocOph9uCjz++DfMIltezVRmbdzz/aWfkBMJxhRC4VVp3PXRI0Du7mOxdgwgj8/9o2pK7g4W9eXP5ZpaiRIWAlCtr9BytvplEPIqgZjWsZsmhpAHg10yDFskgQUlB+0qpQWpf2FmMin7OCkyuIHotgfdlfMlyaPYw7wHTD3w0YpQGt2R5xujWAsaAPTGuIioeW0w+53+oTCRw6hJHrSUR0slM386XemCGB7tR3vjgfPo9r1DJBi0HUJjQFvJ/z3jut+rUw+fPRK+ZRio9j808bG5k6xgv5xMVI9N+X3T+sS0fUwnCXcNuG7jHgNOZkHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7A3Z8+5ib0bemV2lf5nKz3AkYhvzY/84byhmcRUt9rM=;
- b=YPc+rEJfgznY/lOy+gakzJijPnIhMXhUl4aMu3vgX5+6fqcwuETaut4QuOR4Jn/XvxUq4M67DPxUhnlbEbGh8hKf/Vr5sKXZHcXZUB9fa3JSs8L3qp0E9JWYMpRp39l2DgVBLbbpRffZy+8Rm11k4AnjKOlOeyeUEDpEavfirLq49bGkbwR9YaXVkBtEFPjjwC5iOGVpKXI+ApL5ZZ/Il9ie34DGIh87RchApIvLyAsgSGqovfAQSFfQPac/txEqQmTz7l3Pa29R236mLHomsykzdsmekwgDPefY9Vis/XT9Z2aMutL8klCoDNWQTlhrdwfELR8TFk3d5osTr8MIJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=nxp.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ bh=se49UU57phbmkJgjmZO35eDRlLDBBH2ZxwM8OzuGous=;
+ b=KFIM8661x+y8DEOlWxHQaJZG3806Pk8DM7ozFUBW4Xg5UCDwLfiOhRHXSbphlpDG7lpzd4FmNeRcGaSw/AVS4o/dy6PlZQG3gL9W5SUzhw6mkBLSlC2mzeLccEddf05YKx2E6BZqZV9P+1a+RBi9PwARcT7G8kZDHMAMkARCdPBnrKdrAexC84aheeB3JeWXxjLp2lMryUsV7v1X3Yg6KoMyPKNpTYhn67OcEGDlVXzIFriUhP5RAjUeqDvjtBodSNGK4rD4oamqGPgt0dPZ6UWTf3yTSnAReh8EfIrERZnD5jmjVxyCYrPcPyHD5AQc4rPdPTxHHbRFQEwkybDy0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7A3Z8+5ib0bemV2lf5nKz3AkYhvzY/84byhmcRUt9rM=;
- b=GWRPL/SixVVnK88PnLx7kErOAgMh7n8Y9Kf0HdrgB7EvKAxvQbuXLt6v0Xi5DzuQ0t41R/dbej2kK9I4zCvOt8yg8IuyJ0/WHKN8Pqa+8bI+m5PrkhoeO69iOexBqololOD1bEQ2puRIC8Fb4CCGo+zyykPL4C5pRURTa8gx5r0=
-Received: from SJ0PR03CA0133.namprd03.prod.outlook.com (2603:10b6:a03:33c::18)
- by DS7PR10MB5037.namprd10.prod.outlook.com (2603:10b6:5:3a9::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Mon, 18 May
- 2026 08:36:49 +0000
-Received: from SJ5PEPF000001D2.namprd05.prod.outlook.com
- (2603:10b6:a03:33c:cafe::a4) by SJ0PR03CA0133.outlook.office365.com
- (2603:10b6:a03:33c::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.23 via Frontend Transport; Mon, 18
- May 2026 08:36:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SJ5PEPF000001D2.mail.protection.outlook.com (10.167.242.54) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.48.11 via Frontend Transport; Mon, 18 May 2026 08:36:48 +0000
-Received: from DFLE206.ent.ti.com (10.64.6.64) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Mon, 18 May
- 2026 03:36:47 -0500
-Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 18 May
- 2026 03:36:47 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Mon, 18 May 2026 03:36:47 -0500
-Received: from [172.24.233.239] (uda0498651.dhcp.ti.com [172.24.233.239])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64I8ag7D1503492;
-	Mon, 18 May 2026 03:36:43 -0500
-Message-ID: <a90cb680-02aa-4630-9992-68788603800e@ti.com>
-Date: Mon, 18 May 2026 14:06:41 +0530
+ bh=se49UU57phbmkJgjmZO35eDRlLDBBH2ZxwM8OzuGous=;
+ b=OdpEfQyvQDnel66ksEDoAJYCU0NEMhaKnA2k2CEeR1aEFpHXS3AzpNIE6jHaDEQMa3e1V8Z3Xo5lO4gYITyryLZzoFbdYlxI1+xF9bkjCPoy8m9rHJZmhktKoxseavSVhMpH3PDcKkhjtcfA24elKuTjKU2gzOTyL0Y3Vu8GORb7zccqz4TIeDBBBy4f4MLMyAO5vGD5EG3LT/CUm9/OewiOv3U6NTTNsJIodH77+n9QTux52+3608wygEVDCyM858e15CSfIKmUSr9Jc9qHohiZkQfpWja81Iq6lGxAFdHXMPZiC7jpguFcLzfA7W71PW2oajppViPltGWmXC86Kg==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by DB9PR04MB9450.eurprd04.prod.outlook.com
+ (2603:10a6:10:369::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Mon, 18 May
+ 2026 08:42:38 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.21.0025.022; Mon, 18 May 2026
+ 08:42:38 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Frank Li
+	<frank.li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "mani@kernel.org"
+	<mani@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, Hongxing Zhu
+	<hongxing.zhu@nxp.com>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V14 02/12] PCI: host-generic: Add common helpers for
+ parsing Root Port properties
+Thread-Topic: [PATCH V14 02/12] PCI: host-generic: Add common helpers for
+ parsing Root Port properties
+Thread-Index: AQHc0jsxliV0xf54o0mI/gzBxIIshLYMsR4AgAbuO4A=
+Date: Mon, 18 May 2026 08:42:38 +0000
+Message-ID:
+ <VI0PR04MB1211452312EB9BC6EF1ED2E0192032@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260422093549.407022-3-sherry.sun@nxp.com>
+ <20260513224944.GA341451@bhelgaas>
+In-Reply-To: <20260513224944.GA341451@bhelgaas>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|DB9PR04MB9450:EE_
+x-ms-office365-filtering-correlation-id: f5098160-6264-43a8-da33-08deb4b96a9f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|19092799006|11063799003|22082099003|56012099003|18002099003|38070700021|4143699003;
+x-microsoft-antispam-message-info:
+ Cidq266q6PlNlWUGDmqZYpVkGGKq76gSEgvK9ITPnKdRR/Xzg7BpgxiRrnhUc5mpf5lHzrhIFA2u0d269J+mrnYQD7PQxgMfGykaYb+sChartgukqGx7AJCfVn7D6aOxneDTHXQ9MYTdRRXn0yrTcFTxITnPNsWYfnbTO7rNc7r8kk+cs/B7MMyhPZGZ/nAoi5YWTqJtbfCv4QCtJaak7OdoEhTJ24PLQrKkaqpeONr4nMBI6cq5KpYlqVr69YOy8bwoWPuR8FOkz3JlA/JpDgSt/NdPnN4XlYRGu2saH3B/h0VkVIslL22b10sCHxEqJNnYd4PAa82E8tsdPb38hq8LcluM8GkxUBk9TFFHP0XqBvm0XapwmPAHrx2gG2OPuSVJjBko+dTJwMSq364cZikWAKf+zzwYYzGh46dzCSGRcfSqicDU8wESzGUsK19uTnWpv0B6Fl5MZbTlmGpZ9j82gVY9MbMsxjb1eGHDcpYT2E+VYI66XU9VTNmpgQuAtDkJJPlgr9sqbJnpxEZb8oAkx2LcAb+cDyJtzcVEh3swvgp8w+ckPipNiZA0NZLxadMjkW8YYawef3OvRBf8GL8XlyEEV3DJ4qEqB8bajoKfN0CAd7ERbYzVdfkm5vQa5kCsZMCVNql5PcOHO+p7D+OYwXuNTh7aSJwKp5bCt5OGZ5lYSkcCKQoD7KCUG/wmP4/4yV6j8a4oUbVSbGYPXdVzfjr/ldlN/kdWPPZ4n4DJ98wxwunIR1pN7vPUubQK
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(19092799006)(11063799003)(22082099003)(56012099003)(18002099003)(38070700021)(4143699003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?ncPHyt0N9sF7eScjLHeoHWHoXLo6jh+m+9RmRvCnpCD/5IlyTJqjhrIY/PUK?=
+ =?us-ascii?Q?frxkQlueRTieD+L0FvUa7wFNUEDJaoSDXhRrVkeeZk0ohTpSAVvjepL0OPZM?=
+ =?us-ascii?Q?AYRHsXxnWEY/dET7xqm0GJ0k5IpNj9wgrHmU+vwwN5aFvh2GZkQpZ/Kvp9nq?=
+ =?us-ascii?Q?GBLUezN+tm1nfY9MuKakE/oaqUQXsthM+j78effZa6iF4lcrQnPYxQhy2L9f?=
+ =?us-ascii?Q?MBYjOkiLKixiMV+Z4R0pKXAediougn/eDgTnUq7+exGEScin2xciA4HTPEfU?=
+ =?us-ascii?Q?kXuGRfhXd6/fi5lOy7niomewhHeZMV8ycyTQIV7tAN8CMpff74qn3OAGN1W2?=
+ =?us-ascii?Q?c2u3LHFKuH6Za0C874QQf9sKo2uvw4wBwNI8QQ8lhNFe9llNgha40H2Mae3g?=
+ =?us-ascii?Q?jit3n7m/Y3ttwAs1oqlovI7DR3gHNDV0Aew64bKhe0DOAj1ESLzaUWSRZ44y?=
+ =?us-ascii?Q?Lji+WtBf2DVHiDekP9wkvoE2QspKjo5wt3G6CvPhtrmMQ0eCNf6YedqIKu9G?=
+ =?us-ascii?Q?pKVWNLSLFDhu/DKP2mi/vdjaz1QqM6FEcDY50fYcjWsPNpgruV0g0Fl2DuXj?=
+ =?us-ascii?Q?2fVv2QP4OAQMXQ//v4RNogJsyGVqa172nG1dL2ReDStRNQ9wB8TcvCD23Aoy?=
+ =?us-ascii?Q?uQipCQRfiqcmQ4lolnIxfo0d/AojBiBqK/fh8MhOsSLQEbLOsA3HLAu9LnOb?=
+ =?us-ascii?Q?p72tDiPcB8IsBNzXsl8H94E13CFTL5bjeNOFI7C/13IAgK3vZW6j3pgfp7I1?=
+ =?us-ascii?Q?fFKPYTFU2JDk8v6YYqAqhA0TuTi0LsvzfRlus2lN/E/l8mcHUSXTDRuAHEpL?=
+ =?us-ascii?Q?j1BMHxXMF0zoDlQA6V+ECJQKLRr/f92l87t2Adb0g5iMZ8HNsVhjFMFANmPE?=
+ =?us-ascii?Q?KMgXZ5h12aQ9ARHzuM+FOF5azRsUalRTfaiBdCnItKbEQZBg1yljHOjilscv?=
+ =?us-ascii?Q?hJQviTsNGafKYgwNylwosqNQZsvQ81MuT0uR2bWdE3gTndFnjJVm7B/ubnSa?=
+ =?us-ascii?Q?P94Z27Fv65R4l1ue8OK3hKGVowqnLOJGem7QpVkgHjgb/MMByNm40MA03QDJ?=
+ =?us-ascii?Q?/6jcGnkSa+OAGobXe6pSaIN4al/Ju28hYFeDh/Te1nUtbji4qIn/rDgatwVs?=
+ =?us-ascii?Q?4ZfPXsaahaIhEVhTsjrj3Z6jDw0KsuGI1WlYDufJDBoHjBi9YAJv4krLk0gZ?=
+ =?us-ascii?Q?U5GnKW60EI+QOC3MbVPJnMhIB6zXY22K8DGsL7RB5ebtfVK5Lz260DVK0Ifi?=
+ =?us-ascii?Q?BtsebBfelsogyCBQgHwoJHY6bu/6QtmPTtR92CWGyBW9nOW2ftEDboUGsNte?=
+ =?us-ascii?Q?WvbK/qrZ3CxTcIlcLYs/+eHheCcTmZGc8TWWFsSsnvlJ8DMT+nHE0T5BxtfM?=
+ =?us-ascii?Q?HPBG35ssweLwaeh3E0AljmHEw6OJCP0PbbYfhum7zAuUsK83DsniO7Uj8hTx?=
+ =?us-ascii?Q?JFmX4omOiDIwayB5djfMRnkycYmLg7VlIWNoiML7dRamkHZfxjh4UYyPI/wN?=
+ =?us-ascii?Q?oiYGX5ErVeQaLP65M+zjADLDi6xE01JrTU1DoW2wmu5/5bcP6dE5Po4h7pF9?=
+ =?us-ascii?Q?ySwk92K5swAgBov99MsUUzcQQX1ula+ToypvqaaWexpvQUoO+Jcsb4DS4HDW?=
+ =?us-ascii?Q?A8tNJVYArMyY8QXWK6TPDXfNF0/xNa8yH10pRSlXrDtpe3Pc8xoB2P6ibFGF?=
+ =?us-ascii?Q?wABw85hEwiqltQgaPNo4w+KpGM/6nxe0jHddY69ou1ul79AN?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 13/19] dt-bindings: dma: ti: Add K3 BCDMA V2
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <peter.ujfalusi@gmail.com>, <vkoul@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nm@ti.com>,
-	<ssantosh@kernel.org>, <dmaengine@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
-	<Frank.li@nxp.com>, <r-sharma3@ti.com>, <gehariprasath@ti.com>
-References: <20260428085202.1724548-1-s-adivi@ti.com>
- <20260428085202.1724548-14-s-adivi@ti.com>
- <20260430-orthodox-athletic-agama-be4111@quoll>
-Content-Language: en-US
-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-In-Reply-To: <20260430-orthodox-athletic-agama-be4111@quoll>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D2:EE_|DS7PR10MB5037:EE_
-X-MS-Office365-Filtering-Correlation-Id: 466c9c78-9fef-4b5f-4422-08deb4b899e7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700016|82310400026|18002099003|22082099003|56012099003|4143699003|3023799003;
-X-Microsoft-Antispam-Message-Info:
-	pdpVpWmflqPBVODUXDF2tcULbtZD7EYQl9xwONFPb7Dwa5eyp9P8Ulm6KbjRFo3NI7VDYTI2uhWavqrVgJ9ffJQcJJL55Ml2GKgObNzJ1XGuyarB8pQr3WdT+l7irZmIK1tDwFvCRNvKPf43BHdJPasG6tEt3/0j5HIMuAZIuyQx06aDkEDxmG1i9bT3E37QvZMUuweCCqlNwQilD6R6zjTY7eMgpNQ2cDH/dKG2HmkI2ck8CLLCYrUxuTWNnCjw9GYLizPkmBNHp4Oe8A/rZbwzv0nlGlg5xd5VasSUQj3qBsz83/wcgRDpcsKdzrjA/7wNFOYJqa1mLSSWqMmX2coBYiYuvC96GcEy7pQk3l9sPNY25y4gIc8NUh2w+Vuk71XwlVlzLsTMRWIaJCBbYFBxqhF1E7pKXEYlzORZDxko7Gi2tGw0kUgRRubcheP7vN3GovHMXCGKX6FVJRupzm4zcqYncPRi/ZSIQn/lvS3pINjEO4XuH8K3xjC5zC0k5FFGpPoQ3uDd21wlIvs0z/2BXrOQtP4H7IMt5X5FXzIbqthS5dUgTprrLzhYcBbE1akweh4mBoF3xBLXK2KFh6yGP3CzDNdpG6ghte6GSjsh2SVhqdIE800sY0V+ERsd6incvg49vOL2khO+ObGXgP5hFm5fdoNbQD5NBBIRZiLDj2CCkDqTOEO7vqm9GMd2
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700016)(82310400026)(18002099003)(22082099003)(56012099003)(4143699003)(3023799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	b6tiDtIm97YYnEzLxYfVJqHrFr3E8E23bM7iXpe69ts8jmC1PTvob4K4HkBlpCjQK5uibFv5JcWFbns+jSAW6KtBp/vLEQPV1V/itUiva7zH5GdHz2D79ozBOD71PsAYKyn6rnX7saeusXfHacFQsbMdhH8axZWk+naqTb5FqOmW5Qs22oU6/Uhrg02E9E2rKXUY0Z7CAFwW/7VHoi9jdEUYKYMNvaRR9ZryFS6VxMVpv+ArucDI3MUfc03E2fzXk32gCFi4sK6myYVGXCMKYDru51+ODv8YLlOGUUB8lKXn89bhQgNz+N9kvBqrilynnBmyE6Q0Hdpw3PznyOITLUkVo6RQcPm3p7+PD/Q3AwYXBm5xZAgjO7IdwiBOUDA7VzGdwVNIO1LlVVKZkfwxyF7ng6elJxmYV2kyLg1Nzdb80MaNV7MVbtP333CeMP5m
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2026 08:36:48.0866
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5098160-6264-43a8-da33-08deb4b96a9f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 May 2026 08:42:38.3707
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 466c9c78-9fef-4b5f-4422-08deb4b899e7
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001D2.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5037
-X-Rspamd-Queue-Id: D398B569054
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SW+DrQZzwfvnsf3Nguka/esxfUqwaK0/aaYf8oyb0DT55Ur9jQzKRZR/HDTnZjw1Y+Y/ZwhsCbwTtAMz7f6MOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9450
+X-Rspamd-Queue-Id: 38AB456908D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299224-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,ti.com,vger.kernel.org,lists.infradead.org,nxp.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-299226-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s-adivi@ti.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+> Subject: Re: [PATCH V14 02/12] PCI: host-generic: Add common helpers for
+> parsing Root Port properties
+>=20
+> On Wed, Apr 22, 2026 at 05:35:39PM +0800, Sherry Sun wrote:
+> > Introduce generic helper functions to parse Root Port device tree
+> > nodes and extract common properties like reset GPIOs. This allows
+> > multiple PCI host controller drivers to share the same parsing logic.
+> >
+> > Define struct pci_host_port to hold common Root Port properties
+> > (currently only list of PERST# GPIO descriptors) and add
+> > pci_host_common_parse_ports() to parse Root Port nodes from device
+> tree.
+> >
+> > Also add the 'ports' list to struct pci_host_bridge for better
+> > maintain parsed Root Port information.
+> > ...
+>=20
+> > +static int pci_host_common_parse_port(struct device *dev,
+> > +				      struct pci_host_bridge *bridge,
+> > +				      struct device_node *node)
+> > +{
+> > +	struct pci_host_port *port;
+> > +	int ret;
+> > +
+> > +	port =3D devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> > +	if (!port)
+> > +		return -ENOMEM;
+> > +
+> > +	INIT_LIST_HEAD(&port->perst);
+> > +
+> > +	ret =3D pci_host_common_parse_perst(dev, port, node);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/*
+> > +	 * 1. PERST# found in RP or its child nodes - list is not empty, cont=
+inue
+> > +	 * 2. PERST# not found in RP/children, but found in RC node - return =
+-
+> ENODEV
+> > +	 *    to fallback legacy binding
+> > +	 * 3. PERST# not found anywhere - list is empty, continue (optional
+> PERST#)
+> > +	 */
+> > +	if (list_empty(&port->perst)) {
+> > +		if (of_property_present(dev->of_node, "reset-gpios") ||
+> > +		    of_property_present(dev->of_node, "reset-gpio"))
+> > +			return -ENODEV;
+>=20
+> This doesn't seem right to me.  The parser of per-Root Port properties sh=
+ould
+> not be responsible for deciding whether legacy methods are valid, i.e.,
+> whether a property is in the Root Complex node.  I think it's up to the c=
+aller
+> to decide whether it needs to look elsewhere.
+>=20
+> I don't think this even needs to return a "success/failure" value because=
+ there
+> may be more properties in the future, and not all will be required.  This
+> function can't tell which properties a specific driver requires and which=
+ are
+> optional.
+>=20
+> The caller can check whether we found what it needs and fall back to a le=
+gacy
+> method as needed.
 
-On 30/04/26 12:59, Krzysztof Kozlowski wrote:
-> On Tue, Apr 28, 2026 at 02:21:42PM +0530, Sai Sree Kartheek Adivi wrote:
->> New binding document for
-> I don't see improvements.
->
->> Texas Instruments K3 Block Copy DMA (BCDMA) V2.
->>
->> BCDMA V2 is introduced as part of AM62L.
->>
->> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
->> ---
->>  .../bindings/dma/ti/ti,am62l-dmss-bcdma.yaml  | 121 ++++++++++++++++++
->>  1 file changed, 121 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
->> new file mode 100644
->> index 0000000000000..28dcfce5633ce
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
->> @@ -0,0 +1,121 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright (C) 2024-25 Texas Instruments Incorporated
->> +# Author: Sai Sree Kartheek Adivi <s-adivi@ti.com>
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/ti/ti,am62l-dmss-bcdma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments K3 DMSS BCDMA V2
->> +
->> +maintainers:
->> +  - Sai Sree Kartheek Adivi <s-adivi@ti.com>
->> +
->> +description:
->> +  The BCDMA V2 is intended to perform similar functions as the TR
->> +  mode channels of K3 UDMA-P.
->> +  BCDMA V2 includes block copy channels and Split channels.
->> +
->> +  Block copy channels mainly used for memory to memory transfers, but with
->> +  optional triggers a block copy channel can service peripherals by accessing
->> +  directly to memory mapped registers or area.
->> +
->> +  Split channels can be used to service PSI-L based peripherals.
->> +  The peripherals can be PSI-L native or legacy, non PSI-L native peripherals
->> +  with PDMAs. PDMA is tasked to act as a bridge between the PSI-L fabric and the
->> +  legacy peripheral.
->> +
->> +allOf:
->> +  - $ref: /schemas/dma/dma-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,am62l-dmss-bcdma
->> +
->> +  reg:
->> +    items:
->> +      - description: BCDMA Control & Status Registers region
->> +      - description: Block Copy Channel Realtime Registers region
->> +      - description: Channel Realtime Registers region
->> +      - description: Ring Realtime Registers region
->> +
->> +  reg-names:
->> +    items:
->> +      - const: gcfg
->> +      - const: bchanrt
->> +      - const: chanrt
->> +      - const: ringrt
->> +
->> +  "#address-cells":
->> +    const: 0
-> Why do you need address-cells?
->
->> +
->> +  "#dma-cells":
->> +    const: 4
->> +    description: |
->> +      cell 1: Trigger type for the channel
->> +        0 - disable / no trigger
->> +        1 - internal channel event
->> +        2 - external signal
->> +        3 - timer manager event
->> +
->> +      cell 2: parameter for the trigger:
->> +        if cell 1 is 0 (disable / no trigger):
->> +          Unused, ignored
->> +        if cell 1 is 1 (internal channel event):
->> +          channel number whose TR event should trigger the current channel.
->> +        if cell 1 is 2 or 3 (external signal or timer manager event):
->> +          index of global interfaces that come into the DMA.
->> +
->> +          Please refer to the device documentation for global interface indexes.
->> +
->> +      cell 3: Channel number for the peripheral
->> +
->> +        Please refer to the device documentation for the channel map.
->> +
->> +      cell 4: ASEL value for the channel
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    maxItems: 144
->> +    description:
->> +      Interrupts for DMA channels.
-> And interrupts are flexible because?
+Hi Bjorn,
+The code here was suggested by Mani, https://lore.kernel.org/all/lnzprzrdwr=
+a7pn7d6m3sbj5pvjy64blwpjl6i3lmlnfbyho63b@czpyhpgz5vum/.
+I think your suggestion here is reasonable, the per-Root Port parser should=
+n't
+check the RC-level binding. That's a policy decision that belongs to the ca=
+ller.
 
-I understand the issues now:
+Hi Mani, if you also agree, I'll rework this so that:
+1. pci_host_common_parse_port() only parses properties from the Root Port
+    (and its children) without checking the RC node.
+2. The function won't return failure for "property not found" - it will onl=
+y return
+     errors for real failures (e.g., -ENOMEM, GPIO acquisition errors).
+3. The legacy fallback logic will be moved to the caller, which can inspect=
+ the
+     parsed result and decide whether to fall back to the legacy binding.
 
-1. address-cells: remove this property - it should be a fixed hardware
+>=20
+> > +	}
+> > +
+> > +	INIT_LIST_HEAD(&port->list);
+> > +	list_add_tail(&port->list, &bridge->ports);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +/**
+> > + * pci_host_common_parse_ports - Parse Root Port nodes from device
+> > +tree
+> > + * @dev: Device pointer
+> > + * @bridge: PCI host bridge
+> > + *
+> > + * This function iterates through child nodes of the host bridge and
+> > +parses
+> > + * Root Port properties (currently only reset GPIOs).
+> > + *
+> > + * Returns: 0 on success, -ENODEV if no ports found or PERST# found
+> > +in RC node
+> > + * (legacy binding should be used), Other negative error codes on fail=
+ure.
+> > + */
+> > +int pci_host_common_parse_ports(struct device *dev, struct
+> > +pci_host_bridge *bridge) {
+> > +	int ret =3D -ENODEV;
+> > +
+> > +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> > +		if (!of_node_is_type(of_port, "pci"))
+> > +			continue;
+> > +		ret =3D pci_host_common_parse_port(dev, bridge, of_port);
+> > +		if (ret)
+> > +			goto err_cleanup;
+> > +	}
+>=20
+> I think we should export pci_host_common_parse_port() itself and drop thi=
+s
+> so we deal with a single Root Port, and drivers that support multiple RPs
+> should include their own loop similar to this.  That way the driver can d=
+o
+> several things at once in each iteration of that loop, e.g., get resource=
+s, power
+> up, configure, etc.
+>=20
+> I see that would require some rework of the devm_add_action_or_reset()
+> cleanup.
 
-   constant, not a binding property.
+Thanks for the suggestion, make sense.
+I'll export pci_host_common_parse_port() to deal with a single Root Port
+and drop pci_host_common_parse_ports().
 
-2. interrupts: replace minItems/maxItems ranges with a fixed count specific
+>=20
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return devm_add_action_or_reset(dev,
+> pci_host_common_delete_ports,
+> > +					&bridge->ports);
+> > +
+> > +err_cleanup:
+> > +	pci_host_common_delete_ports(&bridge->ports);
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL_GPL(pci_host_common_parse_ports);
+> > ...
+>=20
+> > + * struct pci_host_perst - PERST# GPIO descriptor
+> > + * @list: List node for linking multiple PERST# GPIOs
+> > + * @desc: GPIO descriptor for PERST# signal
+> > + *
+> > + * This structure holds a single PERST# GPIO descriptor.
+> > + */
+> > +struct pci_host_perst {
+> > +	struct list_head	list;
+> > +	struct gpio_desc	*desc;
+> > +};
+>=20
+> How do we associate an element of this list with something?
+>=20
+> Based on the imx6 changes, I guess we don't; we don't even associate the
+> pci_host_port with an RP.  We just assert/deassert PERST# for every RP at
+> once, and we do it for every GPIO associated with each RP.
+>=20
+> There's no way to assert PERST# for a single RP.  I guess we don't need t=
+hat?
 
-   to ti,am62l-dmss-bcdma hardware.
+You are right. In the current design, we assert/deassert PERST# for all GPI=
+Os across
+all Root Ports simultaneously - there is no per-RP independent PERST# contr=
+ol.
+And I think we don't need it for now, for most platforms, multiple RPs typi=
+cally share
+a single PERST# signal or require synchronized reset sequencing during init=
+ialization.
+I am not aware of a practical use case where independent per-RP PERST# cont=
+rol is
+required at the host controller driver level during probe/remove.
 
-The binding should encode hardware facts as fixed properties, not
-flexible ranges.
+The per-port structure is a natural result of parsing per-RP DT nodes (each=
+ Root Port
+child node maps to one pci_host_port, with PERST# GPIOs collected from the =
+RP and
+its downstream nodes). Even if such a requirement does arise in the future,=
+ since
+the controller driver now owns the multi-RP loop, the driver that needs per=
+-RP PERST#
+control could associate each parsed port with its own per-RP context and op=
+erate on
+specific ports independently.
 
-I'll address both in v7. Please let me know if I still misunderstood
-something.
+For the i.MX case (single Root Port), there's no need for per-RP PERST# con=
+trol -- we
+just assert/deassert all PERST# GPIOs at once.
 
+>=20
+> > +/**
+> > + * struct pci_host_port - Generic Root Port properties
+> > + * @list: List node for linking multiple ports
+> > + * @perst: List of PERST# GPIO descriptors for this port and its
+> > +children
+> > + *
+> > + * This structure contains common properties that can be parsed from
+> > + * Root Port device tree nodes.
+> > + */
+> > +struct pci_host_port {
+>=20
+> "host_port" is not really a standard term.  And despite the comments abov=
+e
+> and below, I don't think the list is restricted to Root Ports because we =
+traverse
+> the whole hierarchy below the RP.
 
-Best regards
+Ok. How about struct pci_root_port_info to better reflect its purpose, I ca=
+n also
+highlight in the struct comment that it holds common properties parsed from=
+ a
+Root Port device tree node and all PCIe bridge nodes under this Root Port (=
+currently
+only PERST# GPIOs). Or any other suggestions?
 
->
-> Best regards,
-> Krzysztof
->
+Best Regards
+Sherry
+
+>=20
+> > +	struct list_head	list;
+> > +	struct list_head	perst;
+> > +};
+>=20
+> > +	struct list_head ports;		/* Root Port list (pci_host_port) */
 
