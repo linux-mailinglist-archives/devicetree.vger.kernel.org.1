@@ -1,188 +1,197 @@
-Return-Path: <devicetree+bounces-299584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNNCB8BOC2o7FQUAu9opvQ
-	(envelope-from <devicetree+bounces-299584-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:39:12 +0200
+	id GJ2IEoxMC2o7FQUAu9opvQ
+	(envelope-from <devicetree+bounces-299579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:29:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAC8571B39
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:39:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E09B5719FA
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 19:29:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 838F5300D952
-	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:35:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5868830071D3
+	for <lists+devicetree@lfdr.de>; Mon, 18 May 2026 17:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1ACA3F58DE;
-	Mon, 18 May 2026 17:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AD63845BE;
+	Mon, 18 May 2026 17:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flowmailer.net header.i=@flowmailer.net header.b="oOv4FfQQ";
-	dkim=pass (2048-bit key) header.d=siemens-energy.com header.i=schuster.simon@siemens-energy.com header.b="dI1aE97G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X961oXhF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-129.flowmailer.net (mta-65-129.flowmailer.net [185.136.65.129])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B053845BE
-	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 17:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAC2364EB1
+	for <devicetree@vger.kernel.org>; Mon, 18 May 2026 17:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779125700; cv=none; b=i+0L326Sktxwagj7beWTYgF73bykkAgSFejfztoP995N3qUgrA4xiNrvx8JWC/Pltag9SD/4kDAi/YnEaC1rHLaCDTPn7NAWNd510cOHAqAoU16RJjFNoPJhb+nqxQkXDRqg/Zl2HDlZMNnhpgbaqHLVZryDgS44AcjkNKu9uKY=
+	t=1779125385; cv=none; b=aMIDBbF2nArFMblX38UtSREuykBbaGvFgLd9S6ld6B3+k8MmLcjLxl6kfhn9M460iWGvTFaOi6ill6UMH1Gx4aodBP3NiezEkiGCmGM7RslcWhDhI6RvpQ5mOTw4+bGf8pXgalgmak0vrEL++jgjc5cJFlczKlLzq7Ybd17poVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779125700; c=relaxed/simple;
-	bh=+rYo9RwlleK8Myvw5KVXSvl5djJdJZXOJbD7irbefyc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rZhkSlYdZZq1vlMK72kiuCND1n9uujBE3151KXv+faENmZhb/2pP8UgynGtGwH6SisVGXZIKI0/Sma+ymTbGIK8H0twIlkYfXXiCGg4a6T8dbKYy+X+hb5n3iQ58JQPer/CXEkvfH2XDWuf4O7xsXwg8Eouto4hGVLCi9DczT+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens-energy.com; spf=pass smtp.mailfrom=errorhandling.siemens-energy.com; dkim=pass (1024-bit key) header.d=flowmailer.net header.i=@flowmailer.net header.b=oOv4FfQQ; dkim=pass (2048-bit key) header.d=siemens-energy.com header.i=schuster.simon@siemens-energy.com header.b=dI1aE97G; arc=none smtp.client-ip=185.136.65.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens-energy.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=errorhandling.siemens-energy.com
-Received: by mta-65-129.flowmailer.net with ESMTPSA id 20260518172446f89d660ca20019fdd0
-        for <devicetree@vger.kernel.org>;
-        Mon, 18 May 2026 19:24:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=s1;
- d=flowmailer.net;
- h=from:from:sender:to:to:cc:cc:subject:subject:content-type:content-type:content-transfer-encoding:References:In-Reply-To:Date:Message-ID:MIME-Version;
- bh=/xBoFD2ZNsbMOTky3B3enP8bn+W9UZXo1Hl2aVCLXos=;
- b=oOv4FfQQlHtS5BCboX78gqtA1vOdIzc2Bde3Q6JtaXyf67I3yyl6ut16FqBNN9+Yj9rq9Z
- nyDRk4mSBg/XXlSyTrgBcXgDhCrmwyDzEj+K3hddaJfeuwolNJkOXXJ8o46GUX+ljc6wR96d
- SFujsYOnihqEglQ5vlocmhDkHNiKg=;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm3;
- d=siemens-energy.com; i=schuster.simon@siemens-energy.com;
- h=from:from:sender:to:to:cc:cc:subject:subject:content-type:content-type:content-transfer-encoding:References:In-Reply-To:Date:Message-ID:MIME-Version;
- bh=/xBoFD2ZNsbMOTky3B3enP8bn+W9UZXo1Hl2aVCLXos=;
- b=dI1aE97GXW4w7iNDnE322TQwRLqhXPJ7u7OOtHXqPwbH7I8b7QZPUcsZ5dpM3aKOX+wuYT
- LPsjcYlVTxPExZ5kMJNCcDWODnTNTrGp6pV8qtNcwDcVLy69NW0vpvbVMGwrINlSJJ+x3xuE
- 8IjsHXj0AnDwTdczWEYMyN3ZXAMnYVljNLinrYheZqc9sCRB5uWpiqfkBE0KYz9ZVSj4gXWO
- W3XtjKRwxfg4DG16B+5mpyk1TGNVwWG+Fbcs2a0kj3mxu3xIuWEGyaVHCYP7ptwU5BzA0nrO
- 6VN6z+VVxxOzsIQ5H6Xp7Kj7GVjsxvKu6BvSATf/LyzOGeeNKmSh+lOw==;
-Date: Mon, 18 May 2026 19:24:44 +0200
-From: Simon Schuster <schuster.simon@siemens-energy.com>
-To: Peter Zijlstra <peterz@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
-	Ethan Nelson-Moore <enelsonmoore@gmail.com>,
-	Dinh Nguyen <dinguyen@kernel.org>
-Cc: linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
- workflows@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
- dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-iio@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-hardening@vger.kernel.org, linux-kbuild@vger.kernel.org,
- "linux-csky@vger.kernel.org" <linux-csky@vger.kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas
- Gleixner <tglx@kernel.org>, Alex Shi <alexs@kernel.org>, Yanteng Si
- <si.yanteng@linux.dev>, Dongliang Mu <dzm91@hust.edu.cn>, Hu Haowen
- <2023002089@link.tyut.edu.cn>, Kees Cook <kees@kernel.org>, Oleg Nesterov
- <oleg@redhat.com>, Will Deacon <will@kernel.org>, "Aneesh Kumar K.V (Arm)"
- <aneesh.kumar@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- Nicholas Piggin <npiggin@gmail.com>, Vinod Koul <vkoul@kernel.org>, Frank
- Li <Frank.Li@kernel.org>, Dave Penkler <dpenkler@gmail.com>, Andi Shyti
- <andi.shyti@kernel.org>, Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof
- WilczyDski <kwilczynski@kernel.org>, Andreas Oetken
- <andreas.oetken@siemens-energy.com>
-Subject: Re: [PATCH] nios2: remove the architecture
-Message-ID: <20260518172444.zyd47mcagrcwu7wt@dev-vm-schuster>
-References: <20260518042833.272221-1-enelsonmoore@gmail.com>
- <d40b1e80-37fc-4c88-9d7f-dae6458efe6c@app.fastmail.com>
- <20260518105735.GW3126523@noisy.programming.kicks-ass.net>
+	s=arc-20240116; t=1779125385; c=relaxed/simple;
+	bh=MT5hotBsGBvGo6ebLCh0/y2UPVnF0qNyMVgDULEhvWA=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=NImAkuiqDQ81Q9gTI+9pO1foKeLNRLmInJ05DqNE1zpjnYCRZ3zzspH+oyfy5U4dXOyMK0wSlH6Mz9YCz++pfY5REwGbNhWRDheecw4f1cUzFzbYdn32N0hcJdkawneDPhzVx3HehoTtuoID8/hJyj0djSIVXi8vuDlWHmqMFHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X961oXhF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 657FFC2BCB7;
+	Mon, 18 May 2026 17:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779125385;
+	bh=MT5hotBsGBvGo6ebLCh0/y2UPVnF0qNyMVgDULEhvWA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=X961oXhFdoMlepy2QzXoDEWGbenkjr9FqAYrpd5emjqgJ2BZxxSeHT/ZKNG1i+oLT
+	 EYn6bs/n9JiIgrNAfiBwsgwVcXcdhaOd5q4xnfOFp/HPpU14M9/CAu+JKhJhRIb+PA
+	 DPu97NF5LUkIXg8luzhtdQC3bLrG4phPP4t4ldRSzyolS763hM70yBIvwibNvjumfC
+	 HjdRRDhr1uU9uWp6MKfzF7nT7SemMHlg5cgDSEXAOtBxEYFTflymKBgu4sHOTNul4M
+	 9YhhSaGiPNwCGUUlt1vpZtPOCKheZuNwCs701OYah9VxzJtk1adnPVoVe1Yzp5mJD1
+	 G3p+J+9lR6v4w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V1 3/3] phy: qcom-qmp-ufs: Add UFS PHY support on Hawi
+Reply-To: sashiko-reviews@lists.linux.dev
+To: palash.kambar@oss.qualcomm.com
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, linux-phy@lists.infradead.org
+In-Reply-To: <20260518165346.1732548-4-palash.kambar@oss.qualcomm.com>
+References: <20260518165346.1732548-4-palash.kambar@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 18 May 2026 17:29:43 +0000
+Message-Id: <20260518172944.657FFC2BCB7@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260518105735.GW3126523@noisy.programming.kicks-ass.net>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[siemens-energy.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[flowmailer.net:s=s1,siemens-energy.com:s=fm3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-299584-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,linaro.org,gmail.com,lists.infradead.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[infradead.org,arndb.de,gmail.com,kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[flowmailer.net:+,siemens-energy.com:+];
+	TAGGED_FROM(0.00)[bounces-299579-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[50];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[schuster.simon@siemens-energy.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lwn.net,linuxfoundation.org,kernel.org,linux.dev,hust.edu.cn,link.tyut.edu.cn,redhat.com,linux-foundation.org,gmail.com,baylibre.com,analog.com,lunn.ch,davemloft.net,google.com,siemens-energy.com];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[flowmailer.net:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 7FAC8571B39
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 9E09B5719FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Ethan, Arnd, Peter and Dinh,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Missing UFS HS-G4 gear configuration overlay for the Hawi PHY will=
+ leave critical hardware capabilities uninitialized during G4 negotiation.
+--
 
-On Mon, May 18, 2026 at 11:29:48AM +0200, Arnd Bergmann wrote:
-> We last discussed this a year ago when Simon Schuster mentioned[1]
-> that Siemens Energy is still using NIOS-2 in production and would
-> prefer to have this still included in Linux for at least another
-> few years until the obligation for kernel updates ends.
+commit a0d83dfe8a3203b506d45d5c8262f7f0b14d810a
+Author: Palash Kambar <palash.kambar@oss.qualcomm.com>
 
-First off, thank you, Arnd, for remembering us as this patch series came
-up and also to Dinh for his maintenance of the architecture!
+phy: qcom-qmp-ufs: Add UFS PHY support on Hawi
 
-Regarding our status in relation to nios2, Arnd's response already gives
-you the gist:
+Adds the initialization sequence tables and configuration for the UFS
+QMP PHY found in the Hawi SoC.
 
-We are well aware that the architecture was deprecated by Intel and are
-therefore phasing it out in favour of more contemporary hardware.
-I'm also fully aware of the uncertain future of 32-bit architectures as
-a whole [0] and that this fate will come to nios2 sooner or later.
-But as of now, the mainline support is still in very good shape.
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualco=
+mm/phy-qcom-qmp-ufs.c
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+[ ... ]
+> @@ -1844,6 +1868,119 @@ static const struct qmp_phy_cfg sm8750_ufsphy_cfg=
+ =3D {
+[ ... ]
+> +static const struct qmp_phy_init_tbl hawi_ufsphy_g5_pcs[] =3D {
+> +	QMP_PHY_INIT_CFG(QPHY_V7_PCS_UFS_PLL_CNTL, 0x3b),
+> +	QMP_PHY_INIT_CFG(QPHY_V7_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x05),
+> +	QMP_PHY_INIT_CFG(QPHY_V7_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x05),
+> +};
+> +
+> +static const struct qmp_phy_cfg hawi_ufsphy_cfg =3D {
+> +	.lanes			=3D 2,
+> +
+> +	.offsets		=3D &qmp_ufs_offsets_v7,
+> +	.max_supported_gear	=3D UFS_HS_G5,
+> +
+> +	.tbls =3D {
+> +		.serdes		=3D hawi_ufsphy_serdes,
+> +		.serdes_num	=3D ARRAY_SIZE(hawi_ufsphy_serdes),
+> +		.tx		=3D hawi_ufsphy_tx,
+> +		.tx_num		=3D ARRAY_SIZE(hawi_ufsphy_tx),
+> +		.rx		=3D hawi_ufsphy_rx,
+> +		.rx_num		=3D ARRAY_SIZE(hawi_ufsphy_rx),
+> +		.pcs		=3D hawi_ufsphy_pcs,
+> +		.pcs_num	=3D ARRAY_SIZE(hawi_ufsphy_pcs),
+> +	},
+> +
+> +	.tbls_hs_overlay[0] =3D {
+> +		.pcs		=3D hawi_ufsphy_g5_pcs,
+> +		.pcs_num	=3D ARRAY_SIZE(hawi_ufsphy_g5_pcs),
+> +		.max_gear	=3D UFS_HS_G5,
+> +	},
+> +
 
-On Mon, May 18, 2026 at 12:57:35PM +0200, Peter Zijlstra wrote:
-> Isn't that what we have LTS branches for?
+Is there a missing UFS HS-G4 gear configuration overlay for the Hawi PHY he=
+re?
 
-Unfortunately, as we are an infrastructure provider for civil energy
-infrastructure, the refurbishment cycle is a bit slower than for
-traditional consumer systems. This implies that the traditional LTS
-support duration (max. Dec 2028 as of writing [1]) is rather short, and
-we would be glad if we could keep the architecture in mainline for at
-least 5 years and only then "decay" to LTS.
+When the UFS controller negotiates HS-G4 (e.g., connected to a G4-only
+device or during fallback) and requests the PHY to operate at G4,
+qmp_ufs_get_gear_overlay() will fail to find a matching configuration.
 
-On Mon, May 18, 2026 at 11:29:48AM +0200, Arnd Bergmann wrote:
-> My feeling is that the maintenance burden of keeping nios2 is
-> relatively low. On the other hand, maintaining it out of tree
-> as a patch set is also something that should not be all that
-> hard if it does get removed.
+In qmp_ufs_get_gear_overlay(), it initializes floor_max_gear to 5.
+It then checks the only available table where max_gear is 5.
+Since submode (4) =3D=3D max_gear (5) is false, and max_gear (5) <
+floor_max_gear (5) is also false, it returns -EINVAL.
 
-Judging from the architecture's git history, it seems that it's
-currently mainly touched by treewide refactors, which are extremely
-helpful as we therefore do not have to piece these changes together 
-downstream. In other respects, we try to be good citizens and contribute
-bugfixes as well as required cleanups (such as implementing clone3 [2]
-and fixing its flag behaviour on 32-bit architectures) as they come up.
+Because qmp_ufs_get_gear_overlay() returns -EINVAL,
+qmp_ufs_init_registers() will skip applying any overlay. This means
+capabilities like QPHY_V7_PCS_UFS_TX_HSGEAR_CAPABILITY are never
+programmed during G4 operation.
 
-If desired, we also would be happy to intensify our support regarding
-reviews or testing to share the maintnance burden if it helps to keep
-nios2 in mainline a bit longer.
+Other G5-capable PHYs (like sm8750) seem to provide both G4 and G5 overlays:
 
-Best regards,
-Simon
- 
-0: https://lwn.net/Articles/1035727/
-1: https://www.kernel.org/category/releases.html
-2: https://lore.kernel.org/lkml/20250821-nios2-implement-clone3-v1-0-1bb24017376a@siemens-energy.com/
+static const struct qmp_phy_cfg sm8750_ufsphy_cfg =3D {
+[ ... ]
+	.tbls_hs_overlay[0] =3D {
+		.pcs		=3D sm8750_ufsphy_g4_pcs,
+		.pcs_num	=3D ARRAY_SIZE(sm8750_ufsphy_g4_pcs),
+		.max_gear	=3D UFS_HS_G4,
+	},
+	.tbls_hs_overlay[1] =3D {
+		.pcs		=3D sm8650_ufsphy_g5_pcs,
+		.pcs_num	=3D ARRAY_SIZE(sm8650_ufsphy_g5_pcs),
+		.max_gear	=3D UFS_HS_G5,
+	},
+[ ... ]
+};
+
+Will leaving these uninitialized cause link instability or initialization
+failure on devices falling back to HS-G4?
+
+> +	.vreg_list		=3D hawi_ufsphy_vreg_l,
+> +	.num_vregs		=3D ARRAY_SIZE(hawi_ufsphy_vreg_l),
+> +	.regs			=3D ufsphy_v7_regs_layout,
+> +};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260518165346.1732=
+548-1-palash.kambar@oss.qualcomm.com?part=3D3
 
