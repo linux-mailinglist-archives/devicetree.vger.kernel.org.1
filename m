@@ -1,176 +1,221 @@
-Return-Path: <devicetree+bounces-300164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300174-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aPRAIWh4DGoSiQUAu9opvQ
-	(envelope-from <devicetree+bounces-300164-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:49:12 +0200
+	id 4DQPJwl4DGqihwUAu9opvQ
+	(envelope-from <devicetree+bounces-300174-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:47:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE588580E13
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:49:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B36580D0B
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:47:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6A8330ECE95
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 14:43:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5CAC1304E949
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 14:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622514E3776;
-	Tue, 19 May 2026 14:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F704EA388;
+	Tue, 19 May 2026 14:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="OH+Qgj+t";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3B2kVHX1"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="opTAlKc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011013.outbound.protection.outlook.com [40.107.208.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD274DD6E7;
-	Tue, 19 May 2026 14:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779201786; cv=none; b=YYFqgBm6TajgO9RTv79uo2vrLcxallZ24k2kzVwxflspF454w3u2R1VTAR2gQlm8USg9XBMWGZgon+FkIy4zgdV1zFPpOQtIRCbXW6NH9GLsLctH4i1vtTw+jERmPDN3xdYwkOy2J3iEr5S81/+k+ynGrMM/hLw76HVuGylxNwg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779201786; c=relaxed/simple;
-	bh=TWofFx/L7B82ZB0Wmdrz/l3gvZ/qJJHsm2e0U8H+1EI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f5Km8OLBX6Mm0vqgKUWwGIDz9WXv5C4ZaOkjkCAsX0RxhU3zoUOt+9xt1dijp7dJWGa6FqYWGbRnu4TW9JUzOxYAsc684qcWbvuBCiyuJOQXo+VOQuY7AJSP4wplSah2PW7FXB5HzBIJTjF0IKG9YW1HuBvrD9e4E9Iddfj3SL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=OH+Qgj+t; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3B2kVHX1; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-Date: Tue, 19 May 2026 16:42:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1779201777;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CMGlyrCBop3la0imMgYJeakA2V0whVzG/+pLGAlldu8=;
-	b=OH+Qgj+tzCHqtO+cprnzOIC4l4VI6aeYCO5YXg4tv8XLtgRrzbBKmzIgaxPNqQ67DC2/21
-	IeyERJwhSv4TCCjZHXnd88+eyhmLSnOO3vIOS7GfxIZ3hG4zfmdAJa++f9wqGI+bbxN6pv
-	SB4Z37YA4jUmWwgNHkwr2zmMv9LHTQfwfe29oHnvLZt0M1IqRMqJi07XNMPtpMP72aTKby
-	KYoQ4utgevUG+o03QCXw1uW9MXA02ljj9N4gAF/P7HJ1nQ/X2T+H7vkn9xqztLuB699/JD
-	jIPbNTQnyD1KWSZc682vV9RR2dApXmLWBbezCchY/2QhYQ5YGZCo++c+dPr4ug==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1779201777;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CMGlyrCBop3la0imMgYJeakA2V0whVzG/+pLGAlldu8=;
-	b=3B2kVHX1Tw0rd+7jn56ZQDjP9WpyGeprzdwvSyiyokdmGpVza++UDyU4p1CHwUUy1ZP0Gr
-	9uGwBCTd22SA/IAA==
-From: Gregor Herburger <gregor.herburger@linutronix.de>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
-	Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v4 2/5] nvmem: Add the Raspberry Pi OTP driver
-Message-ID: <v3trqljork46ao3haew4abeky4q5ghjhf2uvkttpptlqgn46ht@kmgbgv6h7qqj>
-References: <20260508-rpi-otp-driver-v4-0-cf8d725d8821@linutronix.de>
- <20260508-rpi-otp-driver-v4-2-cf8d725d8821@linutronix.de>
- <20260519110041-2d8d92c2-d265-43d1-848f-bf9231a106c8@linutronix.de>
- <bv4vwmkkjh23lahkrupwclqs7il4vxqeknalgqn52k3wc6ztsg@z5ukn774brtg>
- <20260519123911-0a9ca1dc-7fee-425f-ba0f-e86368596e55@linutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83B5340407;
+	Tue, 19 May 2026 14:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779201864; cv=fail; b=FauVxfkp+ID0QSSgO0acGR9kJC1awesmAwyEdCDuGG8JJMCR2Xgkd3+5v4XDvhNKTLPrBN4VT2bHvBroGNe/PZSYoYr8WC1bsxpbRvJlEibbV1TJQp6+g7iXlBSppY5zQ/6n0zSQ1aQSGo2GHlOi/Met/+8CE+28HqpmVv8uBYM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779201864; c=relaxed/simple;
+	bh=wVfBAJWVvlF7hyw3ZwpHZmSVN9a8MwNy/L4/iIMMP7c=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KiZxVtpW9ie2G1M4e4YtZoYYigQWez9nO9zomk2T+trqMwb+PcgTbxO0ZMpXQD6XKTpapmJ8Ppq43NwiPIUDsoRFiK0AMxnhbo/bTKd4DKv90yj5IgEYN2ZDY6XZ6mcz3tVWd8asy6C41hKS666iq/oHBQ9bl4Ki+7ADuRHh5HE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=opTAlKc2; arc=fail smtp.client-ip=40.107.208.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XNW03WQILXCu3TG+rxraB88zSpZSCI0zCMcYdNK7p/hvKI0zk+YaGzu7bEek4YcLHx2xcPaGnE6wIVOd7QC90DPYZnSk4ag64deUVIkXq40Kscg3+k8waNjm+y/+CXRVZhLb+jpEFQe5n94kpIKMMwULR6vPYJVbXVzVyBMQQVfq84Jqhby9mIhOHfhgwX6PX+t58odVPfLLzT73T4nfuN7j45Z2BeIUjwkFKLLh6SYhlkx4XH2TpdTChHEjl2Nd8wKynihx5QU+E4xVgFTmtbX2fe2ODKaWySjuFgTkHcbTyaoK3jQqrYMa+nNdMJHTXbdaA+qqIzQGfaJJ4VWTBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TdInfb5gfUmC8CLj8y7s0uBQCkA+1Q8N7KMSUQ6CwhA=;
+ b=jq5qBTbYKDzZn0N8eAhGcZgpAqOiNpae8OPkwY+X/sdnjTXyusS78ZxzT4b0b875UqU0+uwWGBAZRDDfpRYHMbl2DSth/B6LAE2mqdvvkZP8XrqwXI7BwmUpfbo/COiOWf/+BVuUmlM+Atb18McJg6vuQKcmrYXOSzi1CrtuMPxgxqUg7GXUgxN1obIyklSV/yWDp0ts+JFRsHSAzbMgg7NWGyIdkDhu2cavBdYXLaS63/lu1AwlqFVLIhCShTsZDjcmoK6QT6Y1vC6X9MM7GEYWsWGGsq9AL1aFTj6GnLU0WtrBzB6npSqf1J8d4800fhjYZOB9CWU/guoRULrS7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TdInfb5gfUmC8CLj8y7s0uBQCkA+1Q8N7KMSUQ6CwhA=;
+ b=opTAlKc2ItdXjlDSktqU4if62Ha/eLHlEqcukJP1vw4wbtrj5rtTcOgGp0Ect6juSBm0zaCVWDbTQTLYd3zFOsU4+BtV0s+YsEwhHj8inx+eF5GDjJPviv61YeZ88pEj/Ly9BI8q5c84CREosA1uPLyejnlIMuZp3izt16C8UAzooIOSTu7LCIK6M+CtU1uYqpWSefcCb19gibL0qAYAguHkMsCestjvesmn5HRXH/vvXShGlPH0yDiqw8/GFSp/iDQLp9BxFjybUdVD8lPp++m2+TDaNruSOXuUjJMWpWT+lde+3h21HU1pf93rllS+GmjPExovdTY1/RhCVhFwsg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
+ by SN7PR12MB8169.namprd12.prod.outlook.com (2603:10b6:806:32f::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Tue, 19 May
+ 2026 14:44:02 +0000
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391%6]) with mapi id 15.21.0025.022; Tue, 19 May 2026
+ 14:44:02 +0000
+Message-ID: <d10a46b8-2a01-45d8-b1a4-7d003fdb25bd@nvidia.com>
+Date: Tue, 19 May 2026 15:43:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: tegra: Add iommu and dma properties for
+ Tegra194 QSPI
+To: webgeek1234@gmail.com, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@kernel.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260515-tegra194-qspi-iommu-v1-0-57dfb63cd3d6@gmail.com>
+From: Jon Hunter <jonathanh@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <20260515-tegra194-qspi-iommu-v1-0-57dfb63cd3d6@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0063.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:153::14) To DS2PR12MB9750.namprd12.prod.outlook.com
+ (2603:10b6:8:2b0::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260519123911-0a9ca1dc-7fee-425f-ba0f-e86368596e55@linutronix.de>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|SN7PR12MB8169:EE_
+X-MS-Office365-Filtering-Correlation-Id: 864897e7-bdd3-4595-f072-08deb5b51170
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|11063799006|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	8kfWeMOTMvFpfjoBSK8gM+GTgUXs10T3/Ah8Ik2L4yl3Shi8+EbMYt2HWgijAYwtAu5/x1cVpJJwDIvRUZJDKG0BE/VBA725lk7GJX2O1t2ZzMN2JHxJ2NOkkqGxPB6iFw0f/PbtsvfGc2GSwGaJATEULEnDenTmIn8d1Z9skArkU4WhDSXkfGxmksJbHzznlDWX21oi5/jOACQO5+oS0xwEUUAswY4fQagDmmb1Tl/ULQAShKMGHHEHkfaf1ZYAv/N9E/2hr7Tv6rIVYsgR3PX0dJkt/cpnVayd0zZ61gvv3Oib9S2Ir0l28o3YckBSBAMy7Q1g1hY1D78oVTRHLeaMdySHtcl+NjBliorRtEQuJmDLu571ApAh0JPKP8uUD8/QEsRSJO+dlmhVj2q+NQBss5wR+hoybpejn2CygH3jAZhyO5tB/2bgBV1itJMDY/jNc/CMy3ZOzNl5TIkQeWCNI4IKpgElIeYaHOaClyX3y8Lqmm7cRDsmHnNR7yo5YOueim4eaY+9AhKnW5vbWvLgcDHr86kkCP5fUr/ntBAqyBLFGZ8dPEWHiqcerCuNfg6VmE0cl9udWWA0MvSyKmgl3TphTZS05TJtQaBz1TMMrAmmv31PSudMSoRnphK6AwoN4Rh6twqSXHFieOvXhDZn5g6810OKeMsSBUl9+ytZKwqdpazDowS7KNbcasLZ
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(11063799006)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dXJQVnpXc0F0RVdDL05WNjJKNGVVTEtkTWtnZlBLRzFwUFVMbHZFKzdmdzFN?=
+ =?utf-8?B?SlN5andqUnFCVmhFMlFhNHlWdVpSMGg4SHpmcWM3dzZ3bGdQOUNiUWpZQXIw?=
+ =?utf-8?B?SU5RTkVaQmY4M0FYYWw0YkZyWWJEQW5TU3BDc3ZENUxyUTNqeUNEcERMckhr?=
+ =?utf-8?B?NmwyQnl5cFNkdlZtSitGT2lXQSttTDJZMUwxaTZKRTdNYnhYSnpTSEpIK0pY?=
+ =?utf-8?B?Uk52V0ZCampjQmtUR28vcFdwU29reTZiL2c2Q25xbFhUYzlqNXo1c2o3b2JR?=
+ =?utf-8?B?cG9peUIzMExLVlBmL2x5RGVoVEdXUjN6aDZ1WWxXS2JJR1VRbGFBVE9HNDhS?=
+ =?utf-8?B?UkM1MlBVTmN1dTRiN2RFZldYRDJVR0tKOXhxZFNQMXhBRE5mc2dmVlFZYVhO?=
+ =?utf-8?B?RWw4a1p1bEpWSW0yT0dkRG1xdXVFYnBuNW9SZVNyNXZkdzkyU3pqUTNpMG1C?=
+ =?utf-8?B?UEN1SnlmRm1xNnUyU0lMQ0NVQU1KMDNWVWRiK0RwS2VmWjE5WFJsU0hwaUJB?=
+ =?utf-8?B?d01ycHNKeDB1b0dWQysvSlJrMGtoVEdsemM1Z2xZMmZSZndXVVFQUEowek01?=
+ =?utf-8?B?U01KbjI1VkxlT0x5MXdDbTM5WWFKbStxTzRveEo2c09hVzlLRmJFTUtMdE9t?=
+ =?utf-8?B?MVljdkduMy9zd0lrRWhPSHFOY0NsYkI2UU5TcU41V2tDbm9DTXl3RGFrRXBC?=
+ =?utf-8?B?ck80aXJ6WXJQeGttcHpjdkcyYWlkbGpwMEFCa2ZNTGJ4NlNqM2E1UDBCTkU1?=
+ =?utf-8?B?bGlndHVZcm5IcnJvcVRuaUpCRTAzUFRZYVRMb21IREh0OXhCbVhHWndZYzlp?=
+ =?utf-8?B?cmN5OHA3alRldHYwTnozMXRiL1pGM1JMZmxZZXlhWUkyc0p1R21KdDlOWWRs?=
+ =?utf-8?B?Zk1DVnhnbzErc1Z4ZmhJek02OW8vNTFxQ0tPUjZqMG9adEc0QStvWWlPZGxR?=
+ =?utf-8?B?RnF1UEFXdU5reUdYRXFiNGs1VnBhVlFNYjEvQ1JyekNJZ3JSV1JBS1VOMGhv?=
+ =?utf-8?B?eDVUMVhHbzNGcDgvZ2g0U2o3OERURFJvMExDZ2F4dHlnS0ZDZ0dtOXgvMnlS?=
+ =?utf-8?B?Y0ZtbVc4UWx5enpmSUFkeXI1TnZJemt5bEJOVUt0TXZ6Q1UwV0xkWHpyZ0c4?=
+ =?utf-8?B?WU9JWkpDM1pqd3c3VzVXVWk3c2srWXZ2TEs0ZndDVThCTU5ZdzJHSDdTQ2hh?=
+ =?utf-8?B?ZWx3alY3UGNVZTZDbTVZNncrV3Fyb0xUVnJJMnpmczVkQU5rY1R6YzU5d28r?=
+ =?utf-8?B?SCs4Y3A5QVd6aG9tL0lDeFNxWFJ4YmdlR0NXWS9mRFQxeUdIMGsxK1dOc0Rl?=
+ =?utf-8?B?V2xwVWZxMitoVnllcEYvZCtsUHUxR0lWUXpUQ2tZZ0Y2amoyN1lKeG5rM0hI?=
+ =?utf-8?B?OXFtekFWd0NmMWhkaUJxRlErU1ZPVUpKakJSZGIvZXFzbFZmVml5RTlVbHlw?=
+ =?utf-8?B?dXlsWXdOekRlVUR5NmNyeWNlODNhQmFuUlRYRnZiMU0zaUhCUEJOd0JNMitT?=
+ =?utf-8?B?S0dBdzd0Qkt5ZWZrcDlEb0hRazFRWjdFb2hWMkIrc2xVTU9WNlB0RGhwdzVr?=
+ =?utf-8?B?MURhRjM3cnBvbDFwZ3NOckhUYWNrMWROTVU5dUhYZU52cTc0anFacVVTaDk0?=
+ =?utf-8?B?QXpqVFh5STZuR3ZKTGplT3ljUU9aVXcrRnArQWNTanlFK09iNjZkYXk1TTdh?=
+ =?utf-8?B?ckZJZlh4bGIwMWlWVDRRRGpVM2JHUHVKZS9LWE5nYnQ0OENlbWd0ZU4vYm1C?=
+ =?utf-8?B?MERzb1RRYTcrbEpIank0aUY4OE5pRmdTMGdQczdWa1Q1TXRwWUVzbmswd1Bm?=
+ =?utf-8?B?S0tBcTVKRGFIV29xNTRDRmhxRGVLbXovbDIrNTcrR3JHVEJadG04cmxPWHVh?=
+ =?utf-8?B?Nml4T1Z6RXFBYmQrT2tTSEFwdVRFLzhLSHJudkx3T1JJRE9lNlVrbjg3dG1F?=
+ =?utf-8?B?dTk4MDBzSGMrN2VLSnkwTFVtb2EwMys0NTVDazBmNXlEN3hXV1J5MEpNY1Bm?=
+ =?utf-8?B?QWFSbVNOVURkNjlvRXhVOWdXY0V0cys3M0hYVUNaQjBKOU5Ya3RQMWcvOHFu?=
+ =?utf-8?B?RlgxNGwrSDdwNGZUR2JPZWs5cXdzS2hhcktaYTZqaGpzMkRiUTVpcW9iNHMr?=
+ =?utf-8?B?ZjBhTVVtTy9KWnNsN1VVeUo0OXd0RVFmbE0vdGdxLzlIS0hKYy9VR09rc3dC?=
+ =?utf-8?B?ZkY5YWdHZVI5d2x2Y082MXZ1NVVaVFVvYUl4a1VDZHZya0lHSG1qWjdQbnNG?=
+ =?utf-8?B?ajU4bUVaMFl0ZTRzb1dZUFFyRGJjeC92VjdCQzRDU0VNUTF5empaQzQ4TlZn?=
+ =?utf-8?B?Skt4VmRQSXh5V09ES1N4VFJmS3lML0FjWitBZFBZVWNvVERqS0dTZz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 864897e7-bdd3-4595-f072-08deb5b51170
+X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2026 14:44:02.0416
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c34NsWNDd5E8SSnTBCK3PGtvFNMLo3P+IFD7i+7HYRHTjFMhF4fkwjxYyCATdeRY4jnw1+g0bo0sqIcrflDvsQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8169
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
-	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-300174-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300164-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linutronix.de:+];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,anholt.net,gmx.net,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linutronix.de:dkim]
-X-Rspamd-Queue-Id: DE588580E13
+	DBL_PROHIBIT(0.00)[0.35.24.96:email];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,Nvidia.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 79B36580D0B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 19, 2026 at 12:47:31PM +0200, Thomas Weißschuh wrote:
-> On Tue, May 19, 2026 at 12:20:14PM +0200, Gregor Herburger wrote:
-> > On Tue, May 19, 2026 at 11:14:28AM +0200, Thomas Weißschuh wrote:
-> > > On Fri, May 08, 2026 at 04:42:45PM +0200, Gregor Herburger wrote:
-> > > > +config NVMEM_RASPBERRYPI_OTP
-> > > > +	tristate "Raspberry Pi OTP support"
-> > > > +	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWARE)
-> > > 
-> > > The '&& !RASPBERRYPI_FIRMWARE' clause looks weird, is it really necessary?
-> > 
-> > Yes it does looks weird but I think it is necessary. Without this it would be
-> > possible to build RASPBERRYPI_FIRMWARE=m and NVMEM_RASPBERRYPI_OTP=y which
-> > results in linker errors.
-> 
-> Fair enough. I would prefer the solution below, though.
-> It would cleanly solve the issues also for other (future) drivers.
-> 
-> diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
-> index 17595a96e90b..0efd479ffced 100644
-> --- a/include/soc/bcm2835/raspberrypi-firmware.h
-> +++ b/include/soc/bcm2835/raspberrypi-firmware.h
-> @@ -188,7 +188,7 @@ struct rpi_otp_driver_data {
->         int size;
->  };
->  
-> -#if IS_ENABLED(CONFIG_RASPBERRYPI_FIRMWARE)
-> +#if IS_REACHABLE(CONFIG_RASPBERRYPI_FIRMWARE)
->  int rpi_firmware_property(struct rpi_firmware *fw,
->                           u32 tag, void *data, size_t len);
->  int rpi_firmware_property_list(struct rpi_firmware *fw,
-> 
-> (...)
-> 
-Yes this should work. Will change it in the next version.
 
-> > > > +static int rpi_otp_read(void *context, unsigned int offset, void *buf, size_t bytes)
-> > > > +{
-> > > > +	struct rpi_otp_priv *priv = context;
-> > > > +	struct rpi_otp_header *fwbuf;
-> > > > +	u32 count;
-> > > > +	int ret;
-> > > > +
-> > > > +	if (!IS_ALIGNED(offset, 4) || !IS_ALIGNED(bytes, 4))
-> > > > +		return -EINVAL;
-> > > 
-> > > Isn't this already enforced by the nvmem core?
-> > 
-> > Only for sysfs access through bin_attr_nvmem_read/bin_attr_nvmem_write. But
-> > there is an in-kernel API nvmem_device_read/nvmem_device_write which does not
-> > have alignment checks. So I added the check to be more defensive here.
-> 
-> The other drivers don't seem to check this explicitly. It looks like an
-> accident waiting to happen.
+On 15/05/2026 21:35, Aaron Kling via B4 Relay wrote:
+> The reason for this is to properly support the spi nor chip on the
+> Jetson Xavier NX module. Prior to this, it would time out on all
+> transfers and sometimes even trigger a cbb fault, locking up the entire
+> unit. With this, reading and writing to the flash memory works as
+> expected.
 
-Indeed, I will have a look at nvmem core and see if I can find a proper solution
-for this.
+What kernel's do you see this on? With the latest mainline/-next I do 
+see ...
 
-Gregor
+  tegra-qspi 3270000.spi: cannot use DMA: -19
+  tegra-qspi 3270000.spi: falling back to PIO
+
+But I don't see the crash. However, on linux-6.1.y I do see the crash ...
+
+  tegra-qspi 3270000.spi: cannot use DMA: -19
+  tegra-qspi 3270000.spi: falling back to PIO
+  tegra-qspi 3270000.spi: transfer timeout
+  tegra-qspi 3270000.spi: error in transfer, fifo status 0x20400006
+  CPU:0, Error: cbb-noc@2300000, irq=15
+
+So I believe recent upstream changes in the Tegra210 QSPI driver have 
+fixed this.
+
+This series does fix the issue on linux-6.1.y but I believe that is 
+because this is really enabling DMA support and so PIO is still broken. 
+Ideally, PIO should work if DMA support is missing in device-tree.
+
+IMO this series simply enables DMA support. May be we should clarify 
+this in the commit message, but otherwise, I am fine with these changes.
+
+Jon
+
+-- 
+nvpublic
+
 
