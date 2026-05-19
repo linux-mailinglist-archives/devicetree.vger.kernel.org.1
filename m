@@ -1,309 +1,386 @@
-Return-Path: <devicetree+bounces-299910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL7hA0clDGoIXQUAu9opvQ
-	(envelope-from <devicetree+bounces-299910-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:54:31 +0200
+	id ANLoEnolDGoIXQUAu9opvQ
+	(envelope-from <devicetree+bounces-299912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:55:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB0157A943
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:54:29 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4B957A97E
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:55:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F0A9D3001052
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:42:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0091E304534A
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CBE3E5567;
-	Tue, 19 May 2026 08:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B5D3E316B;
+	Tue, 19 May 2026 08:43:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bVfZs8cJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AkFCp6+W"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="i3WzDKci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287FD3E2754
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:42:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779180158; cv=none; b=V4kN1JjkUI4f/G1WGWzy6ajzOEd5yTPS+ov2awiseS2pn8OpvPdkjFlGcsYD8kY2L4E+uZVhowrccRkC1TWnfQF/XDevoxoqDPfox6qn7T9iGbjUFxHEix6XXneR2Kkn7UtkRP97XSNZ3en3DDfLu3LK4Mvtd+g/QxsjgKRj/XI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779180158; c=relaxed/simple;
-	bh=0m2b/SksJcOAFPjMQPTWeZcO/lplBz+CZOC1BuzElpA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BoKI/g8m8r2QclMz4OPhwKs4CxjogY5QGrk6ae0L4DIzWoTFZ07UQCwLZ2XkGJBqiHH4Vb4ghrM7SMLcS5VwD+37Hm1PvRx6hYqndwr/N5BAIebZ9lvzZe6GujZCSYJBImZ+ZNY7j5oQSGikZgP1z5vUl3NnHI3jubnrCZhL8VM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bVfZs8cJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AkFCp6+W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64J3I8fA2091264
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:42:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Kv7IMgrAnrqVIrZvkc8Dgwy+Yh+GluIWmluC1cHmISQ=; b=bVfZs8cJ8RmdGXrH
-	oph0ED/BLqIJjiY7JtZzhi9yoO5NaW1fmQKhwTIEGIj/htqUK0NwcTuGkkSq1EvW
-	3AlyZB8gtVAQ/mvrTxfnJ/ihQQqFLXqs8LOLd7mSCrFqjd2vNjqRFaTc3V5gZI20
-	q6v3Xy2fh45ceXB0Kwvmj46Q1Bj1Abx1QxT38XqusSDb4i36O3aT5mPaedtw8V5o
-	EgQXpJlkkCZa6Tdn1/bbCuTeGnjT7wGf8ZYuFX2oT03O1uO5LbZdk5r81zO3kBjT
-	t+5dZKypZZV4vvSYEn2PiVd4MPkODdWbsN810czL2CpuzZZMXAvgqouzbKVfkfWd
-	3FHLfQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e80rpmn90-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:42:36 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-365fd467cf6so2756495a91.0
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 01:42:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC8E3E120A
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779180193; cv=pass; b=ocwCP7CbHtGtcPjYJ5b6rVO2yiUdKl/D/GAFPw7h5X8vkky7iJzCg8gA0/hle08i22szWGHTpWHVPDSHAzZTdg6AHPmPiS3MS28xZQX8CMrVGckT+p8xdmjMr4t56mn5WF0O46TONGls+L9wkgAHrh9UIVFyK6wzCf0qrRcWTK0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779180193; c=relaxed/simple;
+	bh=/5/1C/nfDchQen7a0uWhsJKKNfxIdxaNrtMjwRBDWI4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SMozjfW4x19yuCfb+wso0Btu4BKpENvJl3SPn7OX2eTIUqo+LW18HYdP5P0lMIL1Koeqg3/jvSX+sGUpnu07q/xu3Wwg6AUPwIFrW2VFYXVhtfV0U3L/OHH+so0maN3c7qMZ7DKKqsyk8RexCoq+uewuBNB0t8K9xF9vNOiW73s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=i3WzDKci; arc=pass smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5a8891f0c88so2155558e87.1
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 01:43:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779180190; cv=none;
+        d=google.com; s=arc-20240605;
+        b=I8L3veVJHPQff/cf6YL1FgiDmNw1KlGailzw7UCLQU0y29rrjdoZm/B0/+GEv7BP9R
+         Jg5qt0khtH9QPFh+kyYP1DfQE4/Z4SdarTEkE0odWoZU91iTVeQIteIQRW3pIq0jkNpE
+         DpmBY05OWOOvdhWK9qYCKuEVb+qAC4mDJNWzYS97j0aVyXMjYNSzeKhyQypfYBOFRity
+         Qk1TMVzOgTUkIYzcnj04zTTB12+pXQSRwrT/9QIDPPTjBvVZxAxH6oKGytsvVXnwy3Ix
+         fi6bz2HrYJM6gx1P2g7/lM5ov2XL3TGE9TpWkjAQU85H80tmkzZYNOjIYn6GbbtrPQwV
+         Ithw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=fU6FJfQ/76+9tMzcnc5nPEzKVK7hTRt2Hbmts6N3fto=;
+        fh=ihTCB+RP6tV/U8etoCYg3gWdFSEoZMpKKYvWCNB5Z64=;
+        b=PrgyAVdOUETANnOMBtk5H0qTSj/TA5YkOj/47jwISrgd/7iGNX48/qGuv11Pbs88c6
+         WjhWqQm5qsP3UTBsjur2unfHJMOR9fMLhisusbfBAW8SfjIZPKFOAuhqnUOLjodlSMdo
+         nZCkls5iXEvgIEYp6wjqbngTrpyw/paryqVNGbJ2TwwKOZ+Zlt6FLYRs2NaaCdiJRb5E
+         RQn5e05h3vndGp6VJqWeG25vTdOkxtBYmTkxrHvQOOCmAendGNWWAujRQ7NMQ6DsHufH
+         wobFPuwUg6CYiNmR2TTOITPQcrNMwU4mNXqKViDWz/lB0YMPOautBbT8bLx5E6oAzDDi
+         5zQw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779180155; x=1779784955; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Kv7IMgrAnrqVIrZvkc8Dgwy+Yh+GluIWmluC1cHmISQ=;
-        b=AkFCp6+WMyq5BxbmlFPS9QG5t8kmQjTojS3AA+niYakv37XrzY0ATQxj/TYzxSFIqN
-         vLP+RsbiCpO+y2s64w9jq1265RcusFlUxDzOeCkaK/tQIPANuxC1OTcJRC1f+x3ZrdJS
-         9RgfiUmccjjvV1a9+6EEH1JKPnX+SC30rahcIPjOKQ6HtHSnruQgnnIYRKIEyv4TiafK
-         4pKyZw5rFS557nDzJdTPIqsNGFr6GmOYVdouBjafbkM5azsq6lleWembqOFPt8+sBgwx
-         GO2Qi5hoEDtD164z5kziX19Vx4Fjm2pI2W59jSOVNNr5VtsvDwp81/NAMIwYZKFgSPFP
-         2p9w==
+        d=chromium.org; s=google; t=1779180190; x=1779784990; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fU6FJfQ/76+9tMzcnc5nPEzKVK7hTRt2Hbmts6N3fto=;
+        b=i3WzDKciNW8m7qsosKSxuNLin4pwyDtQ1yJ60VLkGYiJmKtCj+YKN9VZqwJIZ52+S3
+         guRvvbxkeAkK8JsRXl1ZidYxmogPxBpPQJzvt40Q2iy9nwhWHFYPMGi5PDNggqqp9BMn
+         L/VAi9pLZ0hPbVV6tObIJgY05YJbkV+pAJntk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779180155; x=1779784955;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kv7IMgrAnrqVIrZvkc8Dgwy+Yh+GluIWmluC1cHmISQ=;
-        b=OIKU9CddjQJWnjyZB0Y+R5Z6THmmkX2NaYa0m37Fyxdvxe+c2XVj1Jmz7vFyTDH3ZE
-         mNlqqdhbXusnJoH1pN/BgBDw5kJZcVwanHGSUvwt/ycSrOtc/QTNNYle2AHN+40EZ7WJ
-         87fhIBb1COMjYluaGGk8wRCiAZg1eIwHiIIzkCNqUvwnaV+4CIoJCV2D7Xdoy1PQk5rz
-         ejAFuDhJmvELTNcQu4BIZM8AGs+Vuyy5Ie5M6j4rOcprLEVr06sfdQNwhUR1m0bMNzpK
-         jExNhzDgu7nEK/JSsn/kLjA+gyFoc9OkABvGsoYF0VQLM3PQPrR18GSTvOFHJwsjsISW
-         dq9A==
-X-Forwarded-Encrypted: i=1; AFNElJ8NQtJgRqmFgOdf1uNCyK8YPAlzJ/CdCKnsERCiJsNFQsCImEq0kAScKExrRsSS5cy3EbcGywBklPiR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSCECHK+gl5nHEsw5gLWRt2YaAzJjKBdtzKWVtwc7MsLmlHCgM
-	reobxHaAy/AoK3VBt/mRYdy9c4+JMYb+gSptR+01VJxRutT6u7TCYKhaMuE1FpCkLE8PG9/miye
-	2zfXakTE52f7sKHV1UDeAV5Vx+dZWCZJdRsaI3f5BcXrnp1GzNglCnfeTv/URPD+X
-X-Gm-Gg: Acq92OHVlknVSFhDO36SD1myQR5EfFfKmmUD8kc4viu4tu4DPyLC6D/XpZ5+I56PGf7
-	G9r7od2z7Ad6RmRzfOC+qpJbvDm8GlrJC4PSNgP5di28/Y6tnFB+2bdbbp4CJFSdoj9UoRirUw4
-	1gSDa5HTtgE5T8Ipeu0Ehxhgj9ppN9SNlVHeNneQWinrPfG/HfxK599NfYycGjLBjujQ8NawbBQ
-	UGh4KmnQxJ4aNHDbmy4OkUWZ/QUqgLOT9DKa1qkDHVkeeamxIe1oY0GdJnc1D3u9MjPs3A2YIJz
-	kviduaJtFmZjIAlwfjK/VOtPSgOusK6+4EP+DCXQUwzJ9dt+QAuctgOXfU7tBqgP4ZMi9L+1AH2
-	3Kz6UGm33uW0Ydjp8OEIaZmMFl1/Whgm1gxwb9fLaBAwblryD
-X-Received: by 2002:a17:90b:3146:b0:367:f76c:4cbb with SMTP id 98e67ed59e1d1-36951b97b5dmr19072849a91.18.1779180154991;
-        Tue, 19 May 2026 01:42:34 -0700 (PDT)
-X-Received: by 2002:a17:90b:3146:b0:367:f76c:4cbb with SMTP id 98e67ed59e1d1-36951b97b5dmr19072809a91.18.1779180154335;
-        Tue, 19 May 2026 01:42:34 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-369c4bb4d4dsm3055289a91.1.2026.05.19.01.42.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 May 2026 01:42:34 -0700 (PDT)
-Date: Tue, 19 May 2026 14:12:27 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <linux@gurudas.dev>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 1/4] dt-bindings: firmware: qcom,scm: Add minidump SRAM
- property
-Message-ID: <20260519084227.pfkasblfliqyxqxx@hu-mojha-hyd.qualcomm.com>
-References: <20260507080727.3227367-1-mukesh.ojha@oss.qualcomm.com>
- <20260507080727.3227367-2-mukesh.ojha@oss.qualcomm.com>
- <CAL_JsqJJ9ma2wTwyrV6AmkGULJk7YMU6qm3Guj+jC0t_-hfV+g@mail.gmail.com>
+        d=1e100.net; s=20251104; t=1779180190; x=1779784990;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fU6FJfQ/76+9tMzcnc5nPEzKVK7hTRt2Hbmts6N3fto=;
+        b=CHrmngToM9q/0Z+CqV9qOaayTdqPPNVQyNBh94ea1xy+rRdAaXZCBw4cFgGabpxfFT
+         hsHAnWdreOJIfyK2OCkZt4aBka67JteHm9YEQmYjqNiTgdONZZL44TC2GaJ0x883WtEK
+         Abl0Impa1Iks5zq1Gko2OaAV/wDDni8PteklvqDGLgYW4wppVIBkoufclYK1B7nO8YZ1
+         cnFvY8cUhTs+z0eXLe4i+Z7M43cftWhX8IwB92TBKyonrCz+MjNUBtS1NZQVEgBxOWCe
+         /xDIs7rZjoLCNpS+ezYfDgw4M9EvGUbymQtNCAj4H/v6ZxXEJ9DTQCw50GkCAhuB+Ey9
+         3/zw==
+X-Forwarded-Encrypted: i=1; AFNElJ/m6X8Bxv7mv7M/SXQAuMV+7rdgVVAIL5DbC3eWz0LBUYFpgyoUA9r+a0QdTAkp0PIJDyP0aZpeylPp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaNoI3l49B8wkS8UVvsnQQevRolUY+iqo6Qvt68yZsKQockzlD
+	N46mgi2VGPI8a/mn+FVAQTlJniXBKo/4dLKnaUIyk5zBZ4NLu1OTf2KILUflHOLuQTapQlxfAWf
+	kfR1it0VsDL9a31zZFotSJ+ll+V1aCcfiuR9sPf5i
+X-Gm-Gg: Acq92OED/J2iWc9p7yKkcQpEec5iXmbUOSFNMqDwY4LrmxvFlAdFO193J1vWOfr3gmD
+	Ao2UWcd+S7DwvipdYFzI6d5Yv2VP1lKputqXNglLLQHNUYNEH0P13tNJptXEY8NA7fSxFwS2j2L
+	WmRRJGdUqAfBXY1c1/kmb+uiPPHad80ulzRkRJttM+mPA62uIsqgd7PR/LLyxOcmRlZAYZraXit
+	OehHKwSuE/AIAksb9U0zh+qnY/UF5cWZwObKURh/5IdqPTQ04xugaf2KY/VNcPu7hkxk9VuDNtF
+	OEUC3LqjyTO7kk3gftc9Oas5Z7L6PUupLSKWdckOsEDPSHLM
+X-Received: by 2002:a05:6512:1291:b0:5a8:64fd:142 with SMTP id
+ 2adb3069b0e04-5aa0e60aebdmr5661162e87.15.1779180189498; Tue, 19 May 2026
+ 01:43:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJJ9ma2wTwyrV6AmkGULJk7YMU6qm3Guj+jC0t_-hfV+g@mail.gmail.com>
-X-Proofpoint-GUID: P07-NsFmUGZKpDR_D8xH3jDwbjDmJbax
-X-Proofpoint-ORIG-GUID: P07-NsFmUGZKpDR_D8xH3jDwbjDmJbax
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE5MDA4NSBTYWx0ZWRfX31Mp+r9Jhkng
- o2/6whbHKbVCceKZfVf/WwdLTzCDmGrAuRl7c7VgyZZ56SXHxSqttRHg9wfRdEYZhlUjWUAYnbh
- fd1CJSxJ56juhw68KJIEqXg4epadpa9a8cEsyluyxkOdp+1wgL/m/FWQdHadN34Ezz30TDn5nNK
- LviNutfEGYboExn/ErWA6YSKDTqNuyjrglSNA1Zv4GTasbJsgJz/HP+rXGBxgQJPsnxLiFmO0Wh
- vZk7B+osCJ1AhelDWv74PjG6V5qN2sJoA9NqRYGGbN6SaDloQPrxoaWQoZaQNIJK5PFQWS96MNz
- ImBXhvcrAwgTSFqyjh+O41mpXzrfwLth1hiCU73TbhefPUUlahnAxVvnXTVrGqVpnq6759Xz0de
- 7Qeg29TGlocdztqDOjUYux7yEXQv5v1lR72iqmQLzG4i2GCpE/VdehETrr5njqPC0T+mt4+jjGH
- 9mOUoDQb5cuI26t/Wlg==
-X-Authority-Analysis: v=2.4 cv=ecMNubEH c=1 sm=1 tr=0 ts=6a0c227c cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=HagyCSpqj1WAloSUK8IA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-19_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
- phishscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605190085
+References: <20260508063633.3894348-1-wenst@chromium.org> <locoul5wdzuvvmm7mqpuntjqu4o75gmyd5npgfqrw3zuwsrse6@dhrjggs4cihh>
+ <CAGXv+5GAaMQbaoUVr5zcwtHaofyXwHz03TxBe-QyWj_sNoQZsg@mail.gmail.com>
+ <qnikqcqoiw7z2yh5wruqcli3rk56yomyymghzivlcmekp2blwc@dfhsfl3sqcla>
+ <CAGXv+5GBraoTrQatQdrM5b+dOteL_Y5K7_UQBUt-2L1x=c94KA@mail.gmail.com>
+ <2tq4zy3zhcrz25rl2qhdsxvoedcry4z3v2lmmropesxqgzhtlp@fn6htdl74ogu>
+ <CAGXv+5GRBv8+pLbb-AyFW0cAx=c45JhWd-odzJGDdWABKQLaqg@mail.gmail.com> <rphuqwucr2r6gsgrkzkpzy7fn4qa7q4afzbwtzae53dtudmush@kxtzdoq426uz>
+In-Reply-To: <rphuqwucr2r6gsgrkzkpzy7fn4qa7q4afzbwtzae53dtudmush@kxtzdoq426uz>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 19 May 2026 16:42:56 +0800
+X-Gm-Features: AVHnY4LLo4eF_VaQ6YS2FYY5drqx5D71hzS5a123cTm8zGoSSsL-Aobf3coFKV4
+Message-ID: <CAGXv+5Hd91gS=j4x8rEPVSaU8ET-W0qygLTbCLVe6uGC-tQBrg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: mediatek-gen3: Allow memory-region for
+ restricted DMA buffer
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Ryder Lee <ryder.lee@mediatek.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gurudas.dev,vger.kernel.org,oss.qualcomm.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1c:email,hu-mojha-hyd.qualcomm.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim,0.223.255.192:email];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-299910-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-299912-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,collabora.com,mediatek.com,kernel.org,google.com,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0CB0157A943
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,chromium.org:dkim,bootlin.com:url,mail.gmail.com:mid,2.250.240.128:email]
+X-Rspamd-Queue-Id: 4A4B957A97E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 08, 2026 at 07:07:14AM -0500, Rob Herring wrote:
-> On Thu, May 7, 2026 at 3:07 AM Mukesh Ojha <mukesh.ojha@oss.qualcomm.com> wrote:
+On Tue, May 19, 2026 at 3:21=E2=80=AFPM Manivannan Sadhasivam <mani@kernel.=
+org> wrote:
+>
+> On Mon, May 18, 2026 at 05:02:11PM +0800, Chen-Yu Tsai wrote:
+> > On Fri, May 15, 2026 at 8:34=E2=80=AFPM Manivannan Sadhasivam <mani@ker=
+nel.org> wrote:
+> > >
+> > > On Fri, May 15, 2026 at 05:16:19PM +0800, Chen-Yu Tsai wrote:
+> > > > On Thu, May 14, 2026 at 7:48=E2=80=AFPM Manivannan Sadhasivam <mani=
+@kernel.org> wrote:
+> > > > >
+> > > > > On Thu, May 14, 2026 at 03:54:29PM +0800, Chen-Yu Tsai wrote:
+> > > > > > On Thu, May 14, 2026 at 1:23=E2=80=AFPM Manivannan Sadhasivam <=
+mani@kernel.org> wrote:
+> > > > > > >
+> > > > > > > On Fri, May 08, 2026 at 02:36:32PM +0800, Chen-Yu Tsai wrote:
+> > > > > > > > On some SoCs without an IOMMU behind the PCIe controller, t=
+he PCIe
+> > > > > > > > controller memory access could be limited to a small region=
+ by the
+> > > > > > > > firmware configuring a memory protection unit. This memory =
+region
+> > > > > > > > must be assigned to the PCIe controller so that the OS know=
+s to
+> > > > > > > > use that region. Otherwise PCIe devices would not work prop=
+erly.
+> > > > > > > >
+> > > > > > >
+> > > > > > > So this means, the PCIe devices can only access a specific ca=
+rveout memory
+> > > > > > > configured by MPU for DMA? If so, you should use 'dma-ranges'=
+ as suggested by
+> > > > > > > Rob.
+> > > > > > >
+> > > > > > > 'memory-region' also serves the purpose, but for PCI, we have=
+ the dedicated
+> > > > > > > 'dma-ranges' property.
+> > > > > >
+> > > > > > I think I need some sort of guide on writing the 'dma-ranges' p=
+roperty,
+> > > > > > because it is not working for me.
+> > > > > >
+> > > > > > I'm adding
+> > > > > >
+> > > > > >     dma-ranges =3D <0x42000000 0 0x00000000 0 0xc0000000 0 0x40=
+00000>;
+> > > > > >
+> > > > >
+> > > > > So the device DMA address start from 0x0? Isn't it a 1:1 mapping?
+> > > >
+> > > > I actually don't know. But
+> > > >
+> > > > >         dma-ranges =3D <0x42000000 0 0xc0000000 0 0xc0000000 0 0x=
+4000000>;
+> > > >
+> > > > this didn't work either.
+> > >
+> > >
+> > > Hmm. Can you print the DMA address programmed to the device? i.e., th=
+e address
+> > > returned by dma_map_single() in the driver.
 > >
-> > On most Qualcomm SoCs where minidump is supported, a word in always-on
-> > SRAM is shared between the kernel and boot firmware. Before DDR is
-> > initialised on the warm reset following a crash, firmware reads this
-> > word to decide if minidump is enabled and collect a minidump and where
-> >  to deliver it (USB upload to a host, or save to local storage).
+> > On a working system still using the restricted-dma-pool memory region,
+> > it gives something like 0x00000000c0009000, so indeed it is 1:1 mapping=
+?
+>
+> It has to be 1:1 mapping.
+>
+> > These are for the RX/TX descriptors [1][2].
 > >
-> > Add 'sram' and 'sram-names' properties to the SCM binding to describe
-> > a region in always-on SRAM where the minidump download destination
-> > value could be written. Boot firmware reads it before DDR is initialised
-> > on a warm reset to decide where to store the minidump either to host
-> > PC or to on device storage.
+> > When using dma-ranges, the failure is from dma_alloc_coherent() [3][4],
+> > which is the descriptor ring. On a working system, this is something
+> > like 0x00000000c0c9d000, so again 1:1.
 > >
-> > Most of the Qualcomm SoC supporting minidump supports this, added the
-> > kaanapali SoC for now.
+> > [1] https://elixir.bootlin.com/linux/v7.0.8/source/drivers/net/wireless=
+/realtek/rtw88/pci.c#L221
+> > [2] https://elixir.bootlin.com/linux/v7.0.8/source/drivers/net/wireless=
+/realtek/rtw88/pci.c#L829
+> > [3] https://elixir.bootlin.com/linux/v7.0.8/source/drivers/net/wireless=
+/realtek/rtw88/pci.c#L192
+> > [4] https://elixir.bootlin.com/linux/v7.0.8/source/drivers/net/wireless=
+/realtek/rtw88/pci.c#L265
 > >
-> > Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> > ---
-> >  .../bindings/firmware/qcom,scm.yaml           | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
+> > > Also, using prefetchable flag is not correct for DMA memory. You shou=
+ld use:
+> > >
+> > >         dma-ranges =3D <0x02000000 0 0xc0000000 0 0xc0000000 0 0x4000=
+000>;
 > >
-> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> > index 7918d31f58b4..6813081fd74a 100644
-> > --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> > @@ -127,6 +127,22 @@ properties:
-> >            - description: offset of the download mode control register
-> >      description: TCSR hardware block
+> > This didn't work either. What exactly is supposed to handle dma-ranges?
+> > I see some code parsing it in the PCI core, but it just saves it to a l=
+ist.
 > >
-> > +  sram:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> 
-> Drop. This is a common property though we need to create a common definition.
+>
+> I think the failure is due to marking the memory as 'reserved' in DT. Wit=
+h
+> 'dma-ranges', the allocator will only ensure that the allocated memory st=
+ays
+> within this limit. But the allocator itself will not use this property to
+> allocate from the reserved region.
 
-Did you mean to just drop ref for now? And common definition could be followed later or
-create one as part of the series.
+It didn't work with the reserved regions removed either, since CMA and
+SWIOTLB take up the space by coincidence.
 
-> 
-> > +    description:
-> > +      Phandle to a region in always-on SRAM used to store the download
-> > +      mode value for boot firmware to read before DDR is initialised on
-> > +      the next warm reset.
-> > +    maxItems: 1
-> > +
-> > +  sram-names:
-> > +    items:
-> > +      - const: minidump
-> 
-> You don't need -names with 1 entry and sram-names is not a common property.
+> Now, I'm not sure if you can reliably get dma-ranges to work for this use=
+case
+> of forcing the dma_alloc_coherent() to use the reserved memory.
 
-Will drop it.
+Well I think that would be a bit sketchy. But we do want the reserved
+memory, as the whole point of limiting PCIe DMA to that region is to
+isolate the DMA, so we don't want the system using it for something
+else and potentially getting overriden by some rogue PCIe device.
 
-> > +
-> > +dependencies:
-> > +  sram: [ sram-names ]
-> > +  sram-names: [ sram ]
-> > +
-> >  allOf:
-> >    # Clocks
-> >    - if:
-> > @@ -229,6 +245,18 @@ allOf:
-> >        properties:
-> >          memory-region: false
+> So looks like 'memory-region' is your only option here.
+
+Thanks. Hopefully Rob understands and gives an ack for the DT binding
+change.
+
+
+ChenYu
+
+> - Mani
+>
 > >
-> > +  - if:
-> > +      not:
-> > +        properties:
-> > +          compatible:
-> > +            contains:
-> > +              enum:
-> > +                - qcom,scm-kaanapali
-> > +    then:
-> > +      properties:
-> > +        sram: false
-> > +        sram-names: false
-> > +
-> >  required:
-> >    - compatible
+> > Here's a function graph trace for the dma_alloc_coherent() call:
 > >
-> > @@ -247,3 +275,32 @@ examples:
-> >              clock-names = "core", "bus", "iface";
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    /* kaanapali — minidump SRAM */
-> > +    / {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        sram@14680000 {
-> > +            compatible = "qcom,kaanapali-imem", "mmio-sram";
-> > +            reg = <0x0 0x14680000 0x0 0x1000>;
-> > +            ranges = <0x0 0x0 0x14680000 0x1000>;
-> > +            no-memory-wc;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +
-> > +            minidump_config: minidump-config@1c {
-> > +                reg = <0x1c 0x4>;
-> > +            };
-> > +        };
-> 
-> You don't need providers in examples. Really, don't need a whole other
-> example for 1 added property.
-
-Sure, will drop it.
-
-> 
-> > +
-> > +        firmware {
-> > +            scm {
-> > +                compatible = "qcom,scm-kaanapali", "qcom,scm";
-> > +                sram = <&minidump_config>;
-> > +                sram-names = "minidump";
-> > +                #reset-cells = <1>;
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.53.0
+> > funcgraph_entry:                   |  dma_alloc_attrs() {
+> > funcgraph_entry:        6.538 us   |    dma_alloc_from_dev_coherent(); =
+(ret=3D0x0)
+> > funcgraph_entry:                   |    dma_direct_alloc() {
+> > funcgraph_entry:                   |      __dma_direct_alloc_pages.isra=
+.0() {
+> > funcgraph_entry:        4.846 us   |        dma_alloc_contiguous(); (re=
+t=3D0x0)
+> > funcgraph_entry:                   |        __alloc_pages_noprof() {
+> > funcgraph_entry:                   |          __alloc_frozen_pages_nopr=
+of() {
+> > funcgraph_entry:        5.539 us   |            fs_reclaim_acquire();
+> > (ret=3D0xffffff80c7dcd580)
+> > funcgraph_entry:        5.077 us   |            fs_reclaim_release();
+> > (ret=3D0xffffff80c7dcd580)
+> > funcgraph_entry:                   |            __might_sleep() {
+> > funcgraph_entry:        5.153 us   |              __might_resched(); (r=
+et=3D0x0)
+> > funcgraph_exit:       + 16.230 us  |            } (ret=3D0x0)
+> > funcgraph_entry:        5.077 us   |
+> > __next_zones_zonelist(); (ret=3D0xffffffd055d598e0)
+> > funcgraph_entry:                   |            get_page_from_freelist(=
+) {
+> > funcgraph_entry:                   |              _raw_spin_trylock() {
+> > funcgraph_entry:        5.385 us   |
+> > do_raw_spin_trylock(); (ret=3D0x1)
+> > funcgraph_exit:       + 16.923 us  |              } (ret=3D0x1)
+> > funcgraph_entry:                   |              _raw_spin_unlock() {
+> > funcgraph_entry:        5.077 us   |
+> > do_raw_spin_unlock(); (ret=3D0x1)
+> > funcgraph_exit:       + 16.538 us  |              } (ret=3D0x100000001)
+> > funcgraph_exit:       + 54.231 us  |            } (ret=3D0xfffffffec051=
+c540)
+> > funcgraph_exit:       ! 123.462 us |          } (ret=3D0xfffffffec051c5=
+40)
+> > funcgraph_exit:       ! 134.692 us |        } (ret=3D0xfffffffec051c540=
+)
+> > funcgraph_entry:                   |        __free_pages() {
+> > funcgraph_entry:                   |          ___free_pages() {
+> > funcgraph_entry:                   |            __free_frozen_pages() {
+> > funcgraph_entry:        5.538 us   |
+> > __get_pfnblock_flags_mask.isra.0(); (ret=3D0x0)
+> > funcgraph_entry:                   |              _raw_spin_trylock() {
+> > funcgraph_entry:        5.077 us   |
+> > do_raw_spin_trylock(); (ret=3D0x1)
+> > funcgraph_exit:       + 16.538 us  |              } (ret=3D0x1)
+> > funcgraph_entry:        5.385 us   |
+> > free_frozen_page_commit(); (ret=3D0x1)
+> > funcgraph_entry:                   |              _raw_spin_unlock() {
+> > funcgraph_entry:        5.077 us   |
+> > do_raw_spin_unlock(); (ret=3D0x1)
+> > funcgraph_exit:       + 16.385 us  |              } (ret=3D0x100000001)
+> > funcgraph_exit:       + 75.000 us  |            } (ret=3D0x0)
+> > funcgraph_exit:       + 86.230 us  |          } (ret=3D0x0)
+> > funcgraph_exit:       + 97.384 us  |        } (ret=3D0x0)
+> > funcgraph_exit:       ! 262.846 us |      } (ret=3D0x0)
+> > funcgraph_exit:       ! 274.538 us |    } (ret=3D0x0)
+> > funcgraph_exit:       ! 309.077 us |  } (ret=3D0x0)
 > >
-
--- 
--Mukesh Ojha
+> >
+> > And here are kernel logs for all the system's memory regions:
+> >
+> > Reserved memory: created DMA memory pool at 0x000000013ff00000, size 1 =
+MiB
+> > OF: reserved mem: initialized node audio-dma-pool, compatible id shared=
+-dma-pool
+> > OF: reserved mem: 0x000000013ff00000..0x000000013fffffff (1024 KiB)
+> > nomap non-reusable audio-dma-pool
+> > OF: reserved mem: 0x00000000ffe65000..0x00000000fff64fff (1024 KiB)
+> > map non-reusable ramoops
+> > Reserved memory: created DMA memory pool at 0x0000000050000000, size 41=
+ MiB
+> > OF: reserved mem: initialized node scp@50000000, compatible id shared-d=
+ma-pool
+> > OF: reserved mem: 0x0000000050000000..0x00000000528fffff (41984 KiB)
+> > nomap non-reusable scp@50000000
+> > cma: Reserved 16 MiB at 0x00000000c3000000
+> >
+> > Zone ranges:
+> >   DMA      [mem 0x0000000040000000-0x00000000c3ffffff]
+> >   DMA32    [mem 0x00000000c4000000-0x00000000ffffffff]
+> >   Normal   [mem 0x0000000100000000-0x000000013fffffff]
+> >
+> > Early memory node ranges
+> >   node   0: [mem 0x0000000040000000-0x000000004fffffff]
+> >   node   0: [mem 0x0000000050000000-0x00000000528fffff]
+> >   node   0: [mem 0x0000000052900000-0x00000000545fffff]
+> >   node   0: [mem 0x0000000054700000-0x00000000ffdfffff]
+> >   node   0: [mem 0x0000000100000000-0x000000013fefffff]
+> >   node   0: [mem 0x000000013ff00000-0x000000013fffffff]
+> >
+> > software IO TLB: area num 8.
+> > software IO TLB: mapped [mem 0x00000000bf000000-0x00000000c3000000] (64=
+MB)
+> >
+> >
+> > So I think it could be that the usable memory has all been given away t=
+o
+> > other bits? But then dma_alloc_contiguous() returned NULL.
+> >
+> >
+> > ChenYu
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
