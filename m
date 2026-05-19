@@ -1,248 +1,208 @@
-Return-Path: <devicetree+bounces-299807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299809-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJzIBOUODGoZVQUAu9opvQ
-	(envelope-from <devicetree+bounces-299807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:19:01 +0200
+	id yLw7HLEODGoZVQUAu9opvQ
+	(envelope-from <devicetree+bounces-299809-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:18:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5CA578DF5
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:19:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E8A578D4A
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:18:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A7F8A302FC2A
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:17:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A5E2A30154AB
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394243CDBC0;
-	Tue, 19 May 2026 07:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3026B3CF661;
+	Tue, 19 May 2026 07:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dFBxivyz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WlALzWw7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TKv320VY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169023CE096
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 07:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C833C197C
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 07:18:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779175039; cv=none; b=UBFnXpVQ6u41xpjApEcUnRCAZJI7c5e5icfIQVC7aSGFUssKMQumb7EKok+Qjvl1eh9ORvaA2nS9I0LHooG2OtF1I+2Cdlu+jM61yBrfIDkKTUfFMWxORHF07Mv3D4FvocpRu/OH5fU2EaR81+axNCCX+YSe+v5cCo1bkxliDrU=
+	t=1779175083; cv=none; b=Zo9R8im6eIM0qEtOr6u/ejp3uG/d0Fir0KIB+fHi/PeO3HWSx1INCjMRiTez2QAagA89Bq5paWab22TxFHhbNOjQ4sPjpe+GNzamNTOT1j/15ny8c+UwapBxVRmZrucB7ibkg6uK5CVdemrXhEVe9GGfB1cZDH9mgn57DVFj94U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779175039; c=relaxed/simple;
-	bh=lH3pEk5DRZeC6AMrW6GWVPEEfnndqWFxCI/5TdrqQSk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZEAUhOK9gVxiWNelGwcGj2dNZbLIjb5wSE3o+wVEKAwVtW3BqIMTZpnT2ZTzuBQAlt2J29LFBv6UmZKjVqBqtvCUH6OQOCg6/usBu3bK3d12H47b+UVsMJXMPIOz5eTbqm01tUCcitnvMWyiQPQYJjmu3qjeUW6Ol0KlTDiWZCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dFBxivyz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E718C2BCB3;
-	Tue, 19 May 2026 07:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779175039;
-	bh=lH3pEk5DRZeC6AMrW6GWVPEEfnndqWFxCI/5TdrqQSk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=dFBxivyzLqv464p9yFJiSeh2MAsZW9s3dyL5NFENUFV4OyUUGZF81epZ2fdNXXX1v
-	 JBkvb62Vbba+QteBaaYQoydYs1JbZJGzAe+YIfWiRiEpb49MfAbFQgrGOzA6apXio7
-	 NDOGCJsMHwO9mc8mT00lAKtM4ub1PFovKh0S8EchiGvhfXShiery3iiTFr9iuZsiu3
-	 kbmzsAxuq7arGxp54sUm4cUW7KHt74JiRF0z4QLGZEKAxv5jvG1rw9V2px3nadpFCA
-	 9TiRIYGybVMNztoeqqkpw3IjuR56c7rFcUJj3EwlY4K+xnEU4nu83+kneXaDqErkva
-	 b4iJM4cXJpNqA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/4] drm/verisilicon: add Nuvoton MA35D1 DCU Lite
- display controller support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Joey Lu" <a0987203069@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260519055114.1886525-5-a0987203069@gmail.com>
-References: <20260519055114.1886525-5-a0987203069@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 19 May 2026 07:17:17 +0000
-Message-Id: <20260519071718.2E718C2BCB3@smtp.kernel.org>
+	s=arc-20240116; t=1779175083; c=relaxed/simple;
+	bh=ayFPy0wIUE3z1Wf6Itqi4sRWCq27IFdSmnp4mJZEsok=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WwS9fqmbZCxJEubbuigeCdi2Re2qgY6hFeVYcUYbSmyYFS7P9YsnYkMnFX5bqZ6umMbSYThYGHeML+o5A8Y8UjF1mpFcnZ0P5ulb5nJ67k7lud4xxDw297HRH123LFp1bplPwvs2JXy7YTwyrgwCsdwcpXoY409s0sNhDi9JCU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WlALzWw7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TKv320VY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64J7BIOP353070
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 07:18:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=4Ug6IDBbRLbmptWcG+9fHW
+	+eYyJhtinuYtZLJuDRfxg=; b=WlALzWw7BmbCyl3B9W8f2DVeFVJcCACZwS2z2H
+	xSn9Q0Vac3Fc7GAKbVG4UaUEf0+gFvzF0NJJorT7ICLfrnK1baQL0epxl8Xp8tPN
+	dbbYCit1qjWyb2DchsKDhnyhLxmyBFSw3NaFfte+42EW5PMv+889N0f2b8jBmkSl
+	pB8y6HH15zivEP1a5RDjUN3ktEzl2il+EowI+9+tXBet/glPsif+XEBsPpF2jFDV
+	a/1grwNeXUPq+azXLRuza3LglQo7xPev1pTLgJijDtNrUYXH6IWPCiJweAwIFq+F
+	hJniPo1jv0EHMqiM0xrm9wiJPoZXDzwdY9HqRNGXArVMqz9A==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e7xjamvpw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 07:18:00 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-1353a6f29deso3683224c88.1
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 00:17:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779175079; x=1779779879; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Ug6IDBbRLbmptWcG+9fHW+eYyJhtinuYtZLJuDRfxg=;
+        b=TKv320VYHD1/pbh7sgoISDoJXBF182PeFx+Z/av55gLYtVcWJxgfmpNOBIY4odc/Hz
+         tjzl0wlcm7KLmNU1emGJyafXGhYsKEOwwMvlC6y/Ykds4cvT1rzFoMWo+Fg54agb38pH
+         dYs5hftPwskmNwx1n64AnXz02J5X/7tHx9tZvMpoDiYKx08Fq9zRP8pRxntoDX+yImZt
+         Jets40lTIa25T0M9QanXY2l2DF9QpdOgFKL50wQ1q+MakhReThvsCJxT/aj63LpjqBUp
+         lLo6KjJonvbhtRUhi64Elib8Lzuwlkw8G8wTEZGjDawqNihzdLiKAk0H+zu6WTIwjhUB
+         S/YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779175079; x=1779779879;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Ug6IDBbRLbmptWcG+9fHW+eYyJhtinuYtZLJuDRfxg=;
+        b=Z0EAVa5g/4cKp85vh0A7DSbbmSYu3q5+7VzdYEk7fNEl7gWwHHmn6LEJnSk9NQLiJ9
+         JjXpxMq92nrmUOxoiLSTSixBLczXoW1SGW1BalXlYrCLbEjV8C9Tlma+9Ilzd48IEAsb
+         YFbwwHdAfXvFVWXZSjWDpB+pBKLe+1EzP3sis9zi5lnWpEld8CvthPWnDHjwU/DpvT4y
+         VRt19YBheWUTh5VWErtZqsk+3/9nxzLGOU2XupKKeiR76/nyMI8qDW9NyGmCBBcl8hx9
+         VxitygNwHG5U7vIixcgzoLHQK+jZdXD5qrLUdX9CweaVbzlxKdRAQ76BHJxnfQuLamU7
+         84gQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9Ai6llY5w7lEs+tDmyu1xYxJkoF67erSDRSknpD4Dn9I9g+EAMsmilyO2XMpntBpRcUsWxX7kyEPYB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaTeqGF63ZmCs5hQv0coFGe2guxTJoa4h8jxqOVHYXatj4GTXN
+	IOtEi+PWQbmjZZgEofcfY1ox1YsxTN6f7v+phYZ3RFsnv1s4mWylZzCt6RHDkKktQBw8IyA/OCd
+	NFsnpPF7ru4plLEzg9+9WdsBCDO5HyzfcBVo6Kc4u6Z6VuUeB6gEiBP0Tj0FR79nG
+X-Gm-Gg: Acq92OGiji1gbnsOoKZca4JR4dK+uFY/FtsUEaICiKr7jc8zuuva+unyZEhdF6P74p0
+	59DzyYHlwhjs5E0riuXavM5ypjhHyKkycPd2dkvv0ii/vSUUtTJO1xq0EJV/eG4NvDBY89ECt9P
+	MySVwjsWjXohwH0XUh137TMnzSWcJHOudiOI1/UhEm6KLEu9gBb6/cRPaK1aS1CJH7tFboMRNWT
+	SrpIZmSiKxiuM8IEakkqMedLNuGLCchk3bzR+QXVhzFvY3rCD+udexAc4jLpbKLiEYom1+ZH61i
+	2Hkn0EPIEKUwwvkynaINEIFXroHzcNNyAFpeCpblAhjYTrKi22D3n7vWP0BibeV4RAxJ29iCL8+
+	gt5WaawwPb6WntS+pPxFHX9ahPlLcF9b/HedP4PxUhdM1/rRIKEHsYkgY/9pBGY1zhumXQPMB7k
+	bloVzZGc3Q1ek=
+X-Received: by 2002:a05:7022:f9d:b0:133:1ba6:f42d with SMTP id a92af1059eb24-1350451e2b2mr9202196c88.3.1779175079032;
+        Tue, 19 May 2026 00:17:59 -0700 (PDT)
+X-Received: by 2002:a05:7022:f9d:b0:133:1ba6:f42d with SMTP id a92af1059eb24-1350451e2b2mr9202183c88.3.1779175078560;
+        Tue, 19 May 2026 00:17:58 -0700 (PDT)
+Received: from hu-hangxian-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-134cbed2232sm23323747c88.7.2026.05.19.00.17.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 May 2026 00:17:58 -0700 (PDT)
+From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Subject: [PATCH 0/3] Add CCI and CAMSS support for SM8750
+Date: Tue, 19 May 2026 00:17:55 -0700
+Message-Id: <20260519-pakala-camera-v1-0-b6d897864916@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKMODGoC/zXMQQrCMBCF4auEWTuQtCilV5EuJslEB01akyiF0
+ rsbLC7/B+/boHAWLjCqDTJ/pMicWpiTAnendGMU3xo63V302Qy40IOehI4iZ0IbdM+9D8bbAdp
+ nyRxk/XnX6ejMr3dj6zGCpcLo5hiljirxWvFPw7TvXzXqaGaQAAAA
+X-Change-ID: 20260518-pakala-camera-bf03e3df1db8
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        jeyaprakash.soundrapandian@oss.qualcomm.com,
+        Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE5MDA3MCBTYWx0ZWRfXxC1N21o1EWyg
+ iPMTm/XpEO727VgQ3s35FIc3knnu7+8X/weujJwcSn682HhkiRS7310CRgyx50nlj3hyk6alEO4
+ TH6vyIJfSqRBTEanYxXBCjPkhADAgxEmuhFIgyzGXQuifzfJpspgxsxmEbeIjTvoP2XKI4ynUWn
+ s7vP9nJhp2IOfHlT4VC/YjwVAHbwLTiRmenmAKr1ml5rXJHE0XcTdQge8mPDec4HRhDwlgO1QcW
+ rlByQLANiDcU6MPecq68D+z7Wtp/qqQuqW737WqkT7G9td9uXyLTcnsCo7F3hNJN8GP97nw6c3n
+ KQdax9WqvA7BaZxiX7Qc6tPYshnOuGToIMmQwc9nko1+iMiUbq7WT7GwtYqYVn4lacd9r1gwT6q
+ GSybRVG9YW6YfVXJOqOu0tFvz+ZlAEj/CsUrixbnd3zoZ2TzjgkyIwzn2kuj0mO/O+acGW/rNDU
+ gplAQ0o23dkOOo1PuDg==
+X-Authority-Analysis: v=2.4 cv=BYHoFLt2 c=1 sm=1 tr=0 ts=6a0c0ea8 cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=OFdHJre5LK366wQswZQA:9 a=QEXdDO2ut3YA:10
+ a=vBUdepa8ALXHeOFLBtFW:22
+X-Proofpoint-ORIG-GUID: 7lnIk401RwSuMp5UMNOk21QV89B2XPYL
+X-Proofpoint-GUID: 7lnIk401RwSuMp5UMNOk21QV89B2XPYL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-19_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0
+ phishscore=0 clxscore=1015 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605190070
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299807-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-299809-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hangxiang.ma@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 9E5CA578DF5
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D5E8A578D4A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [Critical] Pre-existing early IRQ request race condition leads to a NULL =
-pointer dereference crash during probe.
-- [High] The bridge_enable callback fails to set the PANEL_CONFIG.RUNNING b=
-it, contradicting the commit message and preventing panel output.
-- [High] Framebuffer enablement is incorrectly tied to the CRTC lifecycle r=
-ather than the Plane lifecycle, risking IOMMU faults or memory corruption.
-- [High] The DCU Lite interrupt handler reads the status register but fails=
- to acknowledge (clear) the interrupts, risking an interrupt storm.
-- [High] Pre-existing heap buffer overflow in `vs_dc_probe()` due to unchec=
-ked `display_count` from hardware.
---
+This series adds CCI and CAMSS support for Qualcomm SM8750 SoC.
 
-commit 234a098981976180e2d53f562af404422d7cd953
-Author: Joey Lu <a0987203069@gmail.com>
+This series has been tested using the following commands with a downstream
+driver for S5KJN5 sensor.
+- media-ctl --reset
+- media-ctl -V '"msm_csiphy2":0[fmt:SGBRG10/4096x3072]'
+- media-ctl -V '"msm_csid0":0[fmt:SGBRG10/4096x3072]'
+- media-ctl -V '"msm_vfe0_rdi0":0[fmt:SGBRG10/4096x3072]'
+- media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
+- media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+- yavta  --capture=20 -I -n 5 -f SGBRG10P -s 4096x3072 -F  /dev/video0
 
-drm/verisilicon: add Nuvoton MA35D1 DCU Lite display controller support
+Driver and dt-binding are waiting to be merged:
+https://lore.kernel.org/all/20260508-add-support-for-camss-on-sm8750-v3-0-fc6861a65c67@oss.qualcomm.com/
 
-This commit adds support for the Verisilicon DCU Lite display controller
-found on the Nuvoton MA35D1 SoC. It implements a new vs_dc_funcs vtable
-with dedicated hardware operations to account for differences from the
-existing DC8200 controller.
+Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+---
+Hangxiang Ma (3):
+      arm64: dts: qcom: sm8750: Add camss node
+      arm64: dts: qcom: sm8750: Add CCI definitions
+      arm64: dts: qcom: sm8750: Add camera MCLK pinctrl
 
-> 2. No PANEL_START register: panel output starts when
->    PANEL_CONFIG.RUNNING is set; no multi-display sync start register
->    is used.
+ arch/arm64/boot/dts/qcom/sm8750.dtsi | 541 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 541 insertions(+)
+---
+base-commit: e9c9ed45e9870a5c221ff199fff1fb529f3f1691
+change-id: 20260518-pakala-camera-bf03e3df1db8
 
-The commit message explicitly documents that panel output starts when
-PANEL_CONFIG.RUNNING is set.
+Best regards,
+-- 
+Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
 
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/verisilicon/vs_dcu_lite.c b/drivers/gpu/drm/=
-verisilicon/vs_dcu_lite.c
-> new file mode 100644
-> index 0000000000000..11ef57d5ebaa4
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_dcu_lite.c
-> @@ -0,0 +1,78 @@
-
-[ ... ]
-
-> +static void vs_dcu_lite_bridge_enable(struct vs_dc *dc, unsigned int out=
-put)
-> +{
-> +	regmap_set_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			VSDC_FB_CONFIG_RESET);
-> +}
-
-However, vs_dcu_lite_bridge_enable() sets VSDC_FB_CONFIG_RESET instead,
-and never writes to PANEL_CONFIG.RUNNING.
-
-Will this prevent panel output from starting? Also, could asserting a reset
-bit during the enable path hold the framebuffer block in a continuous reset
-state?
-
-[ ... ]
-
-> +static void vs_dcu_lite_crtc_enable(struct vs_dc *dc, unsigned int outpu=
-t)
-> +{
-> +	regmap_set_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			VSDC_FB_CONFIG_ENABLE);
-> +}
-> +
-> +static void vs_dcu_lite_crtc_disable(struct vs_dc *dc, unsigned int outp=
-ut)
-> +{
-> +	regmap_clear_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			  VSDC_FB_CONFIG_ENABLE);
-> +}
-
-The patch implements crtc_enable and crtc_disable to toggle
-VSDC_FB_CONFIG_ENABLE, but leaves plane disable callbacks unimplemented.
-
-If userspace dynamically disables the primary plane while keeping the CRTC
-active, will the hardware framebuffer remain enabled?
-
-Could this cause the hardware to continuously scan out from a disabled DRM
-framebuffer that the kernel might unpin or free, leading to IOMMU faults?
-
-[ ... ]
-
-> +static u32 vs_dcu_lite_irq_handler(struct vs_dc *dc)
-> +{
-> +	u32 irqs;
-> +
-> +	regmap_read(dc->regs, VSDC_DISP_IRQ_STA, &irqs);
-> +	return irqs;
-> +}
-
-The interrupt handler reads VSDC_DISP_IRQ_STA but does not appear to write
-back to clear the pending interrupt bits.
-
-If this status register requires a Write-1-to-Clear (W1C) operation, could
-failing to explicitly acknowledge the interrupt cause the IRQ line to remain
-asserted, resulting in an interrupt storm?
-
-While reviewing this patch, I noticed a pre-existing issue in vs_dc_probe().
-The code reads dc->identity.display_count from hardware registers and
-loops up to this value to populate the dc->pix_clk array:
-
-drivers/gpu/drm/verisilicon/vs_dc.c:vs_dc_probe() {
-    ...
-    if (port_count > dc->identity.display_count) {
-        dev_err(dev, "too many downstream ports than HW capability\n");
-        ret =3D -EINVAL;
-        goto err_rst_assert;
-    }
-
-    for (i =3D 0; i < dc->identity.display_count; i++) {
-        snprintf(pixclk_name, sizeof(pixclk_name), "pix%u", i);
-        dc->pix_clk[i] =3D devm_clk_get(dev, pixclk_name);
-    ...
-}
-
-While the code validates port_count <=3D VSDC_MAX_OUTPUTS and
-port_count <=3D dc->identity.display_count, it doesn't appear to ensure
-dc->identity.display_count <=3D VSDC_MAX_OUTPUTS.
-
-Could a malfunctioning hardware device reporting a large display_count
-cause an out-of-bounds write of clock pointers on the kernel heap?
-
-There also appears to be a pre-existing race condition in vs_dc_probe()
-where the IRQ is requested before the DRM device is initialized:
-
-drivers/gpu/drm/verisilicon/vs_dc.c:vs_dc_probe() {
-    ...
-    ret =3D devm_request_irq(dev, irq, vs_dc_irq_handler, 0,
-                           dev_name(dev), dc);
-    ...
-    ret =3D vs_drm_initialize(dc, pdev);
-    ...
-}
-
-If the bootloader leaves the display controller active, could the hardware
-immediately fire an interrupt once unmasked?
-
-If this occurs, the interrupt handler vs_dc_irq_handler() would call
-vs_drm_handle_irq(), which dereferences dc->drm_dev->crtcs[i]. Because
-dc->drm_dev is not allocated and assigned until vs_drm_initialize() runs
-later in the probe sequence, would this cause a NULL pointer dereference?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260519055114.1886=
-525-1-a0987203069@gmail.com?part=3D4
 
