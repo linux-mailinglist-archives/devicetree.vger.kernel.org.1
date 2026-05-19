@@ -1,128 +1,166 @@
-Return-Path: <devicetree+bounces-300181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300205-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UBQqK6V9DGoSiQUAu9opvQ
-	(envelope-from <devicetree+bounces-300181-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:11:33 +0200
+	id jv2xICmCDGqpigUAu9opvQ
+	(envelope-from <devicetree+bounces-300205-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:30:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2552D581297
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:11:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DBAD5817C5
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E406F30C4BB5
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:08:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 49FF5300F74F
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0EE3AFCFF;
-	Tue, 19 May 2026 15:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D3B408016;
+	Tue, 19 May 2026 15:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbVjSLLd"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=computergamingpc.com header.i=@computergamingpc.com header.b="VhiRz1/3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=smtpmessage.com header.i=@smtpmessage.com header.b="qPiu0Bv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailer241.gate86.rs.smtp.com (mailer241.gate86.rs.smtp.com [74.91.86.241])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA04F3AFCE2;
-	Tue, 19 May 2026 15:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A23F40802A
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 15:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.91.86.241
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779203299; cv=none; b=EPeg6ZL+xtUdYdORaKJajqn60m+3Hl+p0fqqdQtHIhs2ZQYOBAXdWo6+UYRV8QACQqtjdGofL8YcOoyKts6ynh3PIiXR5IxO47Z4e94LMfUMNk8bIBGiocxaJ/ybK0S9qdDKdv6DI3t038vRG+hkMUclSDPm1rUgxapCYcD3RkU=
+	t=1779204596; cv=none; b=eM2kXkDPHhPd4inbPftdza6y07zx7K7WX8Nrzo4qz6P5K8fr4UDhUTmx3j4c/I5rL32nibS3ODLhkamageOqVRlfYiw3PR2KSMWqXmGmZzyoRfRn6RZrzQyK7IO3O7pstOdyecSjjz+JxcFOL5zFgnX8XOMe2vRcOvlML0uBbX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779203299; c=relaxed/simple;
-	bh=3ZLik51hIIMeMd9ZBFmo7bGqchDBoZfkdoyYMKpDxmg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NVYO9mDKPgbqWmmaKB5MkxRyGC2MB8BnQ55F5CdPkSGrCWTfjvvCpeh7BtuOJumc2j783VTw16RI0QR5Nc1ZDhHjUvzC/BPlnDlLf5EcZPDJk5HfNOUXM+6OYrCTbMIxSPU4GtgIIYpPicrNDGcNJiji1lphReCBDt6oMhDgSB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbVjSLLd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CC9DC2BCB3;
-	Tue, 19 May 2026 15:08:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779203299;
-	bh=3ZLik51hIIMeMd9ZBFmo7bGqchDBoZfkdoyYMKpDxmg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SbVjSLLdqZ9SytoNK/5ut2wJJZvhevbtX8Rsi1gJIkWHOFBKzqCQHXylwJh3DdDTU
-	 cLCDIu7ot5gZo61LN7VPl2uJQ2M+ybArfygEMPJPAPNjzKvjcHzXVrSQXJH1+paa63
-	 kRVXaIV/+36r/OH71GLOzeR9vvo26Am3gKx7Dz8d8qrIbxkAjsGw3nd8YgP+tTt7jp
-	 T2H1T+xVjJxeGf6Z0Z1QKT9XwrcAbPF+vm6p4X6xMWZbhLEtqrWgxmFwwdWQUY87eT
-	 qNp1y7z0wXZk9SHoXgxs33cEsDwh5se5lOdaqLZjL26zewOMG549oaWxJ3TNNKpti3
-	 9QD65N/TT0fZg==
-Message-ID: <1353ac66-d963-4ab7-8a6f-32a8756d460b@kernel.org>
-Date: Tue, 19 May 2026 16:08:16 +0100
+	s=arc-20240116; t=1779204596; c=relaxed/simple;
+	bh=gy/AsyDebalhiVwAUC0JUvsXaHvpZEUUAvd0kQApG7U=;
+	h=From:Subject:To:Content-Type:Date:Message-Id; b=psJXjzGkENBHcB67IBTAuSlyN1luT8Ul0NrMUtBAtRS8r28sDo9caovTsBvDAZGGJTorStylXJ6CtzAjMMoV/CgBUNoY1cy6+pmadd82oQCiUSd5qg1zAYclLAdhd/3i9DF5vuWvy8LyXQ93brxvP1NDnNrBsf/UKpVyup/c76E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=computergamingpc.com; spf=fail smtp.mailfrom=computergamingpc.com; dkim=pass (2048-bit key) header.d=computergamingpc.com header.i=@computergamingpc.com header.b=VhiRz1/3; dkim=pass (2048-bit key) header.d=smtpmessage.com header.i=@smtpmessage.com header.b=qPiu0Bv5; arc=none smtp.client-ip=74.91.86.241
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=computergamingpc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=computergamingpc.com
+X-Report-Abuse: SMTP.com is an email service provider. Our abuse team cares
+ about your feedback. Please contact abuse@smtp.com for further investigation.
+Received: from [10.0.16.23] (unknown [10.138.12.92])
+	by mtl-mta02-out1 (Halon) with ESMTP
+	id a0c2a8fa-909e-4b22-bf4d-4ec1a06ae0fb;
+	Tue, 19 May 2026 15:09:47 +0000 (UTC)
+Received: Received from 10.138.12.40 by Caffeine (s0-aws-app-swarm-manager-2)
+ with SMTP id ce95a583-c22b-4776-a8a7-26233e52afd5  for
+ devicetree@vger.kernel.org;  Tue, 19 May 2026 15:09:32 +0000 (UTC)
+Feedback-ID: 9194450:SMTPCOM
+Received: from ObaTech (unknown [52.14.167.181])
+	by s0-aws-app-mta-in-1 (Halon) with ESMTPSA
+	id ce95a583-c22b-4776-a8a7-26233e52afd5;
+	Tue, 19 May 2026 15:09:32 +0000 (UTC)
+From: "Computer Gaming pc" <sales@computergamingpc.com>
+Subject: FW: GPUs & Enterprise SSDs Available - 23438003
+To: <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Reply-To: <sales@computergamingpc.com>
+Date: Tue, 19 May 2026 16:09:31 +0100
+Priority: urgent
+X-Priority: 1
+Importance: high
+Message-Id: <1931202605091697B65BB50B-41BA8EDF21@computergamingpc.com>
+X-SMTPCOM-Sender-ID: 9194450
+X-SMTPCOM-Tracking-Number: ce95a583-c22b-4776-a8a7-26233e52afd5
+X-SMTPCOM-Message-ID: 4b38df4a-93c8-42fe-8bdb-20bfc91e91c7
+X-SMTPCOM-Payload: 
+ uPG7ZutJvn2jv3ExiBCbEx4MKpZ4g6orT1pAng_UZRlgoo8ojdqgvWQ3DTJQL3VELNaZ9KpIwCfpe5evAvcwpC3Y2zQBEW0aY2m4G8SitdC8uhRnDgIHau-ZGfPey543BPqPg1ZGtbwKRwzbv31qJcWNhhyyGqls9gg2DuHZVJwlYxyCDaQshasZ6p-nbOf1
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=computergamingpc.com; i=@computergamingpc.com; q=dns/txt; s=smtpkey;
+ t=1779203377; h=feedback-id : from : subject : to : content-type :
+ content-transfer-encoding : reply-to : date : message-id :
+ list-unsubscribe : list-unsubscribe-post : from : subject : to : date;
+ bh=gy/AsyDebalhiVwAUC0JUvsXaHvpZEUUAvd0kQApG7U=;
+ b=VhiRz1/3cySzBnrvnLnMdwBklMPmdI63qGaBlItEgWUjiGLMyCiP/NDrxPyfuLgAMK1QU
+ vbdtdowqNB/PL14rcZiVTCgKrWmjU8ghThOrJetpP+yHygqDF4ZPJvh3d7nzskt/o/yopmX
+ L6I7rCiGajNYYY23nICgllN4sd5e3q9DQjFv1A3DbW+CHFhHsJPjQZ379vdZN1RMWrYROaI
+ G6NWzO5ewALwFALQPt7lHxiav6KDGNJjyXONKZqDeZ6vRSrKWYxyhDSX3f/leQVib+LyAEG
+ uNd+PeSLfm1IZqLeMxTqiI6tz6axT03f/tOiVz4YSahGQIrFueIM+ygIrtxg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=smtpmessage.com;
+ i=@smtpmessage.com; q=dns/txt; s=smtpcustomer; t=1779203377;
+ h=feedback-id : from : subject : to : content-type :
+ content-transfer-encoding : reply-to : date : message-id :
+ list-unsubscribe : list-unsubscribe-post : from : subject : to : date;
+ bh=gy/AsyDebalhiVwAUC0JUvsXaHvpZEUUAvd0kQApG7U=;
+ b=qPiu0Bv5OCXPFEgbmI37snOOXrEcd35PzTH+JAsiasXa7nZTOV6HCN61MiQJx+j/ZkuyH
+ b2tjPCphddhHHydSd9BTGPj1xyG7Vq3s1+ZwdjmcKm/nWAHthApJn9uS7+RkjLFvkdtwSue
+ +oJuTe7GazAtTFnq9T0G2JxLgW3Bc9+DgLjnfo0KJU/J/fF4TmFzqllqkOUEaISZou6dmbQ
+ RPuALtkOllEzSFx9DlrMJmHwqWbvuhBhH2XIR5HxFk9qjMvrEb8EX+yuxrtoOGOT331j7zY
+ GkwlnKnw2wjWc/UzHfrH9Zhi3Z+Zduo2cbl4/5IrXlXR+n1/7Yl+4F+8ZegQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: qfprom: Add Milos compatible
-To: Alexander Koskovich <akoskovich@pm.me>,
- Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260331-milos-qfprom-v1-0-36017cc642db@pm.me>
- <20260331-milos-qfprom-v1-1-36017cc642db@pm.me>
-Content-Language: en-US
-From: Srinivas Kandagatla <srini@kernel.org>
-In-Reply-To: <20260331-milos-qfprom-v1-1-36017cc642db@pm.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [1.64 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_REJECT(1.00)[computergamingpc.com:s=smtpkey,smtpmessage.com:s=smtpcustomer];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[computergamingpc.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-300181-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[computergamingpc.com:-,smtpmessage.com:-];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-300205-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srini@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
+	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 2552D581297
+	HAS_REPLYTO(0.00)[sales@computergamingpc.com];
+	HAS_X_PRIO_ONE(0.00)[1];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sales@computergamingpc.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,computergamingpc.com:replyto,computergamingpc.com:mid,computergamingpc.com:email]
+X-Rspamd-Queue-Id: 2DBAD5817C5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi,
+Quick update — these units are in stock and can ship today:
 
+Mobile & RFID Devices
+Zebra TC53 (51 units) – $600
+Honeywell CT477 (51 units) – $600
+Zebra MC93 (60 units) – $600
+Zebra TC55 (71 units) – $600
+Zebra MC9401 (81 units) – $1,100
+Zebra TC22 Standard Range (80 units) – $500
+Zebra TC21 (81 units) – $220
+Zebra RFD40 Premium RFID Reader/Writer (56 units) – $610
+Honeywell CK65 (86 units) – $600
 
-On 4/1/26 3:24 AM, Alexander Koskovich wrote:
-> Document compatible string for the QFPROM on Milos platform.
-> 
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
-> ---
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> index 839513d4b499..936878e74895 100644
-> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - qcom,ipq8064-qfprom
->            - qcom,ipq8074-qfprom
->            - qcom,ipq9574-qfprom
-> +          - qcom,milos-qfprom
->            - qcom,msm8226-qfprom
->            - qcom,msm8916-qfprom
->            - qcom,msm8917-qfprom
+GPUs & Accelerators
+RTX 5090 Founders Edition 32GB (90 units) – $2,100
+RTX Asus/Gigabyte 4090 24GB (45 units) – $1,680
+RTX 4090 Founders Edition 24GB (90 units) – $2,000
+RTX A6000 48GB Ada (54 units) – $1,100
+RTX 6000 48GB Ada (51 units) – $1,200
+Nvidia L40s GPU (45 units) – $3,000
+Nvidia H100 80GB PCIe (9 units) – $20,000
+H200 141GB NVL PCIE 9 unit $27,000.00
 
-applied thanks,
---srini
-> 
+Storage & CPUs
+Samsung PM9A3 2.5" SSD PCIe 4.0 7.68TB (115 units) – $650.00
+7.68TB SAS SSD 2.5" 12G Server Drive (140 units) – $650.00
 
+For quotes, availability, or inspection scheduling, please reach out
+directly:
+sales@computergamingpc.com
+Call or WhatsApp: +1(774) 559-1248 | +1 (641)232-4364
+Thank you for your continued partnership.
+Ann Kamila
+Computer Gaming PC Trading
+2500 US-6, Iowa City, IA 52240, USA
 
