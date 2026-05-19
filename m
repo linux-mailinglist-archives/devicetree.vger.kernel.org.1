@@ -1,354 +1,222 @@
-Return-Path: <devicetree+bounces-299929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299931-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFpzCmwkDGroXAUAu9opvQ
-	(envelope-from <devicetree+bounces-299929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:50:52 +0200
+	id uOwGGFUkDGpqXAUAu9opvQ
+	(envelope-from <devicetree+bounces-299931-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:50:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEFD57A85C
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:50:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC36357A81F
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D691B303F20D
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:49:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C7DD3011772
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443B130F543;
-	Tue, 19 May 2026 08:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6A33EDACE;
+	Tue, 19 May 2026 08:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yapf5uR0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nbv3bfVc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AF9399031
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5850F3E0C67
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779180535; cv=none; b=Z+6/bBC2Y/f8buSlTDgOdUALKFfHid+iOdtrLcm1Vmb0tQNmB7xcd8n3pOFk5YBmw9bnHDPWiRbaFgaCXN3d7iFjNhzsCAF0L4IaUfAYjQr1esdb16SrC0h1KlEsIwc0TVtxdDyevqfhy3GlNon2xTgKHhK493BfZWTWpeoJdpg=
+	t=1779180611; cv=none; b=j5YxqfJoVZgJRuai/ULVegJHVI6/E2yz5BvngV8lGVZllwxFV9LHkuE7rdcmwrEcWBXBqj+oaKWHGin/DUA3EBNhmFVIpphLxXLCxvyF4pifo5cT/Nf9599g/19xR6iFcbEzJI6JSt1k6b1k6iJKsWC7OmWXt6hvb2LxJLct1TI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779180535; c=relaxed/simple;
-	bh=UF7I3CX4d9g3O1rFS2mjaBJ4vc//5Lek40KwUaI9wLA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BNu+nLRtf5leVKWrhdO+rhntY9T1ARP5FC5CRSyf12tvtgn4Raf6vS46nyhVGLr5+s4/NgbWln0ngeT6UE/JG2Cs0fTh/Wwvw4p/V+vzsfS3o2XsXh4WWUhRwzd1CJBtuLyFpbvjTbiWYngVFAigxqr18b9Mtey9zx871YEYcwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yapf5uR0; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-459bf19e87bso1915014f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 01:48:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779180527; x=1779785327; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9A5oR9LfUq1C8nNCS43EEqyFoc4Cg2m4/oap+7EljRU=;
-        b=Yapf5uR0uYBjOQnZwkg/9Ry6t+BhP5VWiqmrwOHy0wDlB+p9XUjaDRaIv1n7yQEC5v
-         ma9+mreQAQfDinwurfTkOmx5Tk1ILHbK5Ekpi7AYYMOuHqfIVCcqCdzUNyOADUgYWw9p
-         +ysIQT98PPXPLXAUmnJ98d/BG8frwttrYTKJzDPOs1cBKEwZa//UvaPwaTZMbLnKSyGb
-         TxdboSGs1eKBt6zn+wkqVUMsZarbZ/zNeddLO94HChMlyI+cVQFSctDmIQrn0wLS0pwm
-         0m/mBeovPrXYzfWT6ZzWDFzORTl9yG+4CMYzRWl1XipjX5wtRxkbPiPMI+FuaQW01NTZ
-         ZdLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779180527; x=1779785327;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9A5oR9LfUq1C8nNCS43EEqyFoc4Cg2m4/oap+7EljRU=;
-        b=LE/2l6AMKO/YvP/v2EqCjlPSGTN9JmkpUsOTmwvYt6sGVvsWyerPDrL+0o13mDKz/Q
-         kE1Es6hNUn/CEkjpUFRVL7wPrTKkiGXKANwdJ9c8kDlMUi4XCWcoROtAFS6NaIcnFqrJ
-         ykJstni2xl0ds8cUSeJczcGhHHTEp9LHVK9OW7k8ra/V+ypWhpOAwXI1EPt0itvaYxPy
-         tk/Mxl6tu/zVsa3BIwhBtHzg3mfGoFj06lp3z3tzWHymrkn66d67wviUOjBiCPz/l8Z2
-         fCzdYse3+z98P0m1Ur+Q+BVnGtc1YVp2rfpAI0+CmxjYIbwyaDAcG+xCpA9O1bGDToTD
-         at9Q==
-X-Forwarded-Encrypted: i=1; AFNElJ+3evAQJQqKyE2umZl86YneOCQo3Mrrnev4bpMXWVxK95yP19gyDkpmCXySPEsX/ca3ugDrFx1GyuuI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJu/zDpyHUNeCDIshxwigP54vILcpJCTaGgxEoeUKagHvzmxFZ
-	DQSQoCaSI1PrYGqawxqYck0y31TMdxSFoP8Uja9ULa/rbIIphEX7Yvj+EQKor4rDoNM=
-X-Gm-Gg: Acq92OEWrJCD4dDiQ87oYDnsoNkdhCHcnEDfLgON0DSEV2+NUUT0tOB+hByfL2WKmHK
-	mSCoypKPHoAq9JFlCP6eJt/p00Jvzpc5Uv86vYK/W6Zoxn16o5IkxFYG4CKYAGvVJTRjjx93zGZ
-	vGz8cPE/+ipFuShB8F7I/wPgHp+HbBMImJd2InapsQY9wCkLvzocVPAImofFWsMcaNvuSBxLnuZ
-	71nUiheEtv+3lLhuE1s7EWGr7jm9Kk1h60uxXkQJnuFyXYd2NRx+CMHJIzfAv6snV24JxndKIi4
-	5DedzoGTsJFu/6lSS9uv7f+OXwLUTRPdE9w+Aq3mLP5ve9DcwHxDBWfcNv8qD/Mt2jsOOxAe3Jf
-	osn2bRS1eP7gyIO6CieF9dEnLZ4TKWSbWAjG7sS+LI3fepjBt4VQB5zTah05uPo9Al5860tRmjK
-	uhTSDnknJusWiByO7F1tfZZZ5At286c6ReZkHlZ7ZjHM3KrbSm09GomD39fC30+/47TWzsJUNCe
-	ex1E1PWZjc6IeI=
-X-Received: by 2002:a05:6000:1885:b0:45e:8978:f176 with SMTP id ffacd0b85a97d-45e8978f1aemr3150966f8f.0.1779180527287;
-        Tue, 19 May 2026 01:48:47 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:1d4b:274c:94d:a69f? ([2a01:e0a:106d:1080:1d4b:274c:94d:a69f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0a178adsm46361312f8f.18.2026.05.19.01.48.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 May 2026 01:48:46 -0700 (PDT)
-Message-ID: <c269c248-dcee-4ba6-bcb5-0185bfceedbc@linaro.org>
-Date: Tue, 19 May 2026 10:48:46 +0200
+	s=arc-20240116; t=1779180611; c=relaxed/simple;
+	bh=qO9OQkbrpxgoymEUi8XxSIQ1hb0/JFhnaJJzFviE5S0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=kJjvC12+ZOMq0AsG0yGQbP9bzzKCz/o0PveTegYgE/2FyuKTb2JeLnRl8O1SmFO34CD9SdnHwSNIC2kfvQUXNd9MNHuGPof11I07VRK5gtfJCS6jF5QIaCUmzZHUgPfk43sDimnKYBFHfRfi1I+5PF/gsfOy/FXRNfINgb982Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nbv3bfVc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8FA3C2BCB3;
+	Tue, 19 May 2026 08:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779180611;
+	bh=qO9OQkbrpxgoymEUi8XxSIQ1hb0/JFhnaJJzFviE5S0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=Nbv3bfVc/zyOLtqKsuN2vo7zQ2bnW0GrBKTAUeDCJwhw3Txb4H3GV6otnJ4r2iTAY
+	 6S+FXrFKBGJtb5umAh1me3+fAV9DhS57/DrCemefgyzUblKYV54HdDNSx5e6n0oxEh
+	 2WXMkEz+4nHGyhY6eXfTo6qiSk7bCZyjBHKKnfFo1clSfi7x4fYz5zRAc+Hrba4NBu
+	 6aWUVF5J1duO13+2uls1Loeipe4HHryFfAxAkGm2FNcL+ECKNaWMWURe1XCHyoNhr7
+	 v8LnIOlSwvUE6sWXjtztgsXJMeyQWUQnlesAxym0hHqwtmQl/LE34Czf37Q3MxY0si
+	 yDuMH8h7EKMtw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 5/6] remoteproc: qcom: pas: Add late attach support
+ for subsystems
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jingyi Wang" <jingyi.wang@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260519-knp-soccp-v6-5-cf5d0e194b5f@oss.qualcomm.com>
+References: <20260519-knp-soccp-v6-5-cf5d0e194b5f@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 19 May 2026 08:50:10 +0000
+Message-Id: <20260519085010.D8FA3C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 2/2] drm: panel: add support for the Renesas R63419
- based dual-DSI video mode Display Panels
-To: sashiko-reviews@lists.linux.dev
-Cc: wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org,
- robh@kernel.org, conor+dt@kernel.org
-References: <20260519-topic-sm8650-ayaneo-pocket-s2-r63419-v4-2-b8929af5e951@linaro.org>
- <20260519083204.445EAC2BCB3@smtp.kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260519083204.445EAC2BCB3@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,outlook.com:email,linaro.org:replyto,linaro.org:mid,linaro.org:dkim];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299929-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299931-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: BEEFD57A85C
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: BC36357A81F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/19/26 10:32, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 6 potential issue(s) to consider:
-> - [High] DCS initialization sequence sends SET_DISPLAY_ON before EXIT_SLEEP_MODE.
-> - [High] Incorrect hardware power sequencing during teardown risks hardware damage.
-> - [High] Resource leak of `vdd_supplies` in the `renesas_r63419_prepare()` error path.
-> - [High] Panel is registered to DRM before DSI devices are attached, causing a race condition.
-> - [High] Secondary DSI device is registered with the primary's `of_node`, causing an unintended re-probe.
-> - [Medium] Silent ignore of errors on the secondary DSI link in multi-context DCS sequences.
-> --
-> 
-> commit 536a4ce2d0cffbeb00543674b725c12c37ef3272
-> Author: KancyJoe <kancy2333@outlook.com>
-> 
-> drm: panel: add support for the Renesas R63419 based dual-DSI video mode Display Panels
->      
-> Implement support for the Renesas 63419 based dual-DSI video mode
-> Display Panels found in the Ayaneo gaming handled devices.
-> 
->> diff --git a/drivers/gpu/drm/panel/panel-renesas-r63419.c b/drivers/gpu/drm/panel/panel-renesas-r63419.c
->> new file mode 100644
->> index 0000000000000..1643a9c78c3fd
->> --- /dev/null
->> +++ b/drivers/gpu/drm/panel/panel-renesas-r63419.c
-> [ ... ]
->> +static int renesas_r63419_on(struct renesas_r63419_panel *ctx)
->> +{
->> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi[0] };
->> +	struct mipi_dsi_multi_context dsi_ctx1 = { .dsi = ctx->dsi[1] };
->> +
->> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
->> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx1);
->> +	mipi_dsi_msleep(&dsi_ctx, 150);
->> +
->> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
->> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx1);
->> +	mipi_dsi_msleep(&dsi_ctx, 50);
-> 
-> Are the DCS commands sent in the correct order? Standard MIPI DCS sequences
-> require exiting sleep mode (0x11) and waiting for the hardware to wake up
-> before setting the display on (0x29). Sending a Display On command while
-> the panel is still in sleep mode can prevent the display from turning on.
-> 
-> Also, does this silently ignore errors on the secondary DSI link?
-> If a command fails on dsi_ctx1, the error doesn't seem to be captured or
-> checked here. Additionally, mipi_dsi_msleep() only checks the primary
-> context, so if a failure occurs on the primary, the sleep is bypassed, and
-> commands to the secondary are sent without the required delay.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Critical] Calling `rproc_report_crash()` followed by returning an error =
+from `.attach()` causes critical Use-After-Free vulnerabilities.
+- [High] Returning `-EINVAL` when the subsystem is not ready breaks the int=
+ended fallback to offline boot and causes device probe failure.
+- [Medium] The `handover_irq` is left enabled on multiple error paths, caus=
+ing an unbalanced IRQ enablement depth.
+--
 
-Right indeed, we may need to use a shared dsi_ctx, I overlooked this
+commit 1111bc6bad772baf2e724e0d339a047f01859d2f
+Author: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 
-> 
->> +
->> +	return dsi_ctx.accum_err;
-> 
-> Should this return a combination of both dsi_ctx.accum_err and
-> dsi_ctx1.accum_err?
-> 
->> +}
-> [ ... ]
->> +static int renesas_r63419_prepare(struct drm_panel *panel)
->> +{
->> +	struct renesas_r63419_panel *ctx = to_renesas_r63419_panel(panel);
->> +	int ret;
->> +
->> +	ret = regulator_bulk_enable(ARRAY_SIZE(renesas_r63419_vdd_supplies),
->> +				    ctx->vdd_supplies);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	usleep_range(1000, 2000);
->> +
->> +	ret = regulator_bulk_enable(ARRAY_SIZE(renesas_r63419_vcc_supplies),
->> +				    ctx->vcc_supplies);
->> +	if (ret < 0)
->> +		return ret;
-> 
-> If regulator_bulk_enable() for vcc_supplies fails here, does this leak the
-> regulator reference for the already-enabled vdd_supplies?
+remoteproc: qcom: pas: Add late attach support for subsystems
 
-Hmm, indeed
+This commit adds late attach support for subsystems brought out of reset by
+early bootloaders. It introduces qcom_pas_attach() to check subsystem state
+via SMP2P bits, reporting crashes or falling back to offline mode.
 
-> 
->> +
->> +	usleep_range(1000, 2000);
->> +
->> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->> +
->> +	usleep_range(3000, 4000);
->> +
->> +	ret = renesas_r63419_on(ctx);
->> +	if (ret < 0) {
->> +		dev_err(panel->dev, "Failed to initialize panel: %d\n", ret);
->> +		regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vcc_supplies),
->> +				       ctx->vcc_supplies);
->> +		regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vdd_supplies),
->> +				       ctx->vdd_supplies);
->> +
->> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> 
-> Could this hardware power sequencing risk hardware damage? The power
-> regulators are disabled before the reset GPIO is asserted. Leaving a logic
-> high voltage driven on an IO pin of an unpowered IC can back-power the
-> chip through its ESD protection diodes. The reset GPIO should likely be
-> asserted before disabling the regulators.
-> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom=
+_q6v5_pas.c
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
 
-This is asked by the spec
+[ ... ]
 
->> +
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int renesas_r63419_unprepare(struct drm_panel *panel)
->> +{
->> +	struct renesas_r63419_panel *ctx = to_renesas_r63419_panel(panel);
->> +
->> +	regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vcc_supplies), ctx->vcc_supplies);
->> +	regulator_bulk_disable(ARRAY_SIZE(renesas_r63419_vdd_supplies), ctx->vdd_supplies);
->> +
->> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> 
-> The same power sequencing issue seems to exist here during teardown.
+> @@ -510,6 +511,57 @@ static unsigned long qcom_pas_panic(struct rproc *rp=
+roc)
+>  	return qcom_q6v5_panic(&pas->q6v5);
+>  }
+> =20
+> +static int qcom_pas_attach(struct rproc *rproc)
+> +{
+> +	int ret;
+> +	struct qcom_pas *pas =3D rproc->priv;
+> +	bool ready_state;
+> +	bool crash_state;
+> +
+> +	pas->q6v5.handover_issued =3D true;
+> +	enable_irq(pas->q6v5.handover_irq);
+> +
+> +	pas->q6v5.running =3D true;
+> +	ret =3D irq_get_irqchip_state(pas->q6v5.fatal_irq,
+> +				    IRQCHIP_STATE_LINE_LEVEL, &crash_state);
+> +
+> +	if (ret)
+> +		goto disable_running;
 
-This is asked by the spec
+If ret is non-zero, we jump to disable_running and return an error without
+calling disable_irq(). Does this leave the handover_irq enabled?
 
-> 
->> +
->> +	return 0;
->> +}
-> [ ... ]
->> +static int renesas_r63419_probe(struct mipi_dsi_device *dsi)
->> +{
-> [ ... ]
->> +	/* Copy current DSI info */
->> +	strscpy(info.type, dsi->name, sizeof(info.type));
->> +	info.channel = dsi->channel;
->> +	info.node = dev_of_node(dev);
->> +
->> +	/* Register the second DSI device */
->> +	ctx->dsi[1] = devm_mipi_dsi_device_register_full(dev, dsi1_host, &info);
-> 
-> Could setting info.node to dev_of_node(dev) for the secondary DSI device
-> cause an unintended re-probe loop? Because the secondary device shares the
-> same of_node as the primary device, the MIPI DSI bus driver matching logic
-> will match it against the same renesas_r63419_driver and invoke probe()
-> again for the secondary device.
+Since the attach fails, the remoteproc core never calls the stop callback,
+meaning qcom_q6v5_unprepare() is bypassed. This might permanently leak the
+IRQ enable count.
 
-Hmm, good question
+> +
+> +	if (crash_state) {
+> +		dev_err(pas->dev, "Subsystem has crashed before driver probe\n");
+> +		rproc_report_crash(rproc, RPROC_FATAL_ERROR);
+> +		ret =3D -EINVAL;
+> +		goto disable_running;
+> +	}
 
-> 
->> +	if (IS_ERR(ctx->dsi[1]))
->> +		return dev_err_probe(dev, PTR_ERR(ctx->dsi[1]),
->> +				     "Failed to register second DSI device\n");
->> +
->> +	ctx->dsi[0] = dsi;
->> +	mipi_dsi_set_drvdata(dsi, ctx);
->> +
->> +	/* Get panel orientation */
->> +	ret = of_drm_get_panel_orientation(dev->of_node, &ctx->orientation);
->> +	if (ret < 0 && ret != -ENODEV)
->> +		return dev_err_probe(dev, ret,
->> +				     "Failed to get panel orientation\n");
->> +
->> +	ctx->panel.prepare_prev_first = true;
->> +
->> +	ret = drm_panel_of_backlight(&ctx->panel);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to get backlight\n");
->> +
->> +	ret = devm_drm_panel_add(dev, &ctx->panel);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to add panel\n");
->> +
->> +	/* Configure and attach both DSI devices */
->> +	for (i = 0; i < ARRAY_SIZE(ctx->dsi); i++) {
->> +		ctx->dsi[i]->lanes = ctx->desc->lanes;
->> +		ctx->dsi[i]->format = ctx->desc->format;
->> +		ctx->dsi[i]->mode_flags = ctx->desc->mode_flags;
->> +
->> +		ret = devm_mipi_dsi_attach(dev, ctx->dsi[i]);
-> 
-> Does registering the panel to DRM before attaching the DSI devices
-> introduce a race condition? Calling devm_drm_panel_add() makes the panel
-> immediately visible to consumers. If a consumer prepares the panel right
-> away, it will attempt to send DCS commands over unattached DSI links.
-> 
+Could calling rproc_report_crash() and then returning an error lead to
+use-after-free conditions?
 
+rproc_report_crash() asynchronously queues the crash_handler work on
+rproc_recovery_wq. If auto_boot is true, the attach failure causes
+rproc_add() to abort, and devres will free the rproc object. The queued
+crash handler is not explicitly cancelled during cleanup, so it may
+dereference the freed rproc memory when it executes.
 
+If auto_boot is false, rproc isn't freed, but rproc_attach() cleans up its
+failure by calling rproc_disable_iommu(), which frees rproc->domain. The
+async crash handler later executes, fails to abort on the RPROC_DETACHED
+state, sets the state to RPROC_CRASHED, and triggers recovery. The recovery
+process calls rproc_stop() -> qcom_pas_stop() -> qcom_pas_unmap_carveout(),
+which unconditionally dereferences the freed rproc->domain via
+iommu_unmap().
 
+Additionally, does this path leave the handover_irq enabled as well?
+
+> +
+> +	ret =3D irq_get_irqchip_state(pas->q6v5.ready_irq,
+> +				    IRQCHIP_STATE_LINE_LEVEL, &ready_state);
+> +
+> +	if (ret)
+> +		goto disable_running;
+> +
+> +	if (unlikely(!ready_state)) {
+> +		/*
+> +		 * The bootloader may not support early boot, mark the state as
+> +		 * RPROC_OFFLINE so that the PAS driver can load the firmware and
+> +		 * start the remoteproc.
+> +		 */
+> +		dev_err(pas->dev, "Failed to get subsystem ready interrupt\n");
+> +		pas->rproc->state =3D RPROC_OFFLINE;
+> +		disable_irq(pas->q6v5.handover_irq);
+> +		ret =3D -EINVAL;
+> +		goto disable_running;
+> +	}
+
+Does returning -EINVAL here prevent the intended fallback to offline boot?
+
+If the device has auto_boot enabled, rproc_add() treats the -EINVAL from
+the auto-boot attempt as a fatal error. It executes goto rproc_remove_dev,
+which destroys the remoteproc device entirely and fails the driver probe.
+This makes the intended fallback impossible, as the device is never
+registered.
+
+> +
+> +	return 0;
+> +
+> +disable_running:
+> +	pas->q6v5.running =3D false;
+> +
+> +	return ret;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260519-knp-soccp-=
+v6-0-cf5d0e194b5f@oss.qualcomm.com?part=3D5
 
