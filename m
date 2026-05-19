@@ -1,166 +1,293 @@
-Return-Path: <devicetree+bounces-300205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300184-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jv2xICmCDGqpigUAu9opvQ
-	(envelope-from <devicetree+bounces-300205-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:30:49 +0200
+	id II+MFMt/DGo1igUAu9opvQ
+	(envelope-from <devicetree+bounces-300184-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:20:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DBAD5817C5
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:30:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C335814DC
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 49FF5300F74F
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:29:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB393310B642
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D3B408016;
-	Tue, 19 May 2026 15:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF964657C4;
+	Tue, 19 May 2026 15:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=computergamingpc.com header.i=@computergamingpc.com header.b="VhiRz1/3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=smtpmessage.com header.i=@smtpmessage.com header.b="qPiu0Bv5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BL9EjWYR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailer241.gate86.rs.smtp.com (mailer241.gate86.rs.smtp.com [74.91.86.241])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A23F40802A
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 15:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.91.86.241
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888CB409608
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 15:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779204596; cv=none; b=eM2kXkDPHhPd4inbPftdza6y07zx7K7WX8Nrzo4qz6P5K8fr4UDhUTmx3j4c/I5rL32nibS3ODLhkamageOqVRlfYiw3PR2KSMWqXmGmZzyoRfRn6RZrzQyK7IO3O7pstOdyecSjjz+JxcFOL5zFgnX8XOMe2vRcOvlML0uBbX4=
+	t=1779203602; cv=none; b=RSjult2yObJPQbw+mhoYuLP+GNVBjK3jaEgAcSHyv8MqEfaBpKKciTEn/oyO2JigJFUiKDBg2Rnc2rZx33P89FV6llPLpGCR1L2SyoCNGmqssgWmtEcg866yzzgVPJFq8nhLR+BKtI7HY+gYSE6Qb0vZxyZwGGidkNDXgy/31fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779204596; c=relaxed/simple;
-	bh=gy/AsyDebalhiVwAUC0JUvsXaHvpZEUUAvd0kQApG7U=;
-	h=From:Subject:To:Content-Type:Date:Message-Id; b=psJXjzGkENBHcB67IBTAuSlyN1luT8Ul0NrMUtBAtRS8r28sDo9caovTsBvDAZGGJTorStylXJ6CtzAjMMoV/CgBUNoY1cy6+pmadd82oQCiUSd5qg1zAYclLAdhd/3i9DF5vuWvy8LyXQ93brxvP1NDnNrBsf/UKpVyup/c76E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=computergamingpc.com; spf=fail smtp.mailfrom=computergamingpc.com; dkim=pass (2048-bit key) header.d=computergamingpc.com header.i=@computergamingpc.com header.b=VhiRz1/3; dkim=pass (2048-bit key) header.d=smtpmessage.com header.i=@smtpmessage.com header.b=qPiu0Bv5; arc=none smtp.client-ip=74.91.86.241
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=computergamingpc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=computergamingpc.com
-X-Report-Abuse: SMTP.com is an email service provider. Our abuse team cares
- about your feedback. Please contact abuse@smtp.com for further investigation.
-Received: from [10.0.16.23] (unknown [10.138.12.92])
-	by mtl-mta02-out1 (Halon) with ESMTP
-	id a0c2a8fa-909e-4b22-bf4d-4ec1a06ae0fb;
-	Tue, 19 May 2026 15:09:47 +0000 (UTC)
-Received: Received from 10.138.12.40 by Caffeine (s0-aws-app-swarm-manager-2)
- with SMTP id ce95a583-c22b-4776-a8a7-26233e52afd5  for
- devicetree@vger.kernel.org;  Tue, 19 May 2026 15:09:32 +0000 (UTC)
-Feedback-ID: 9194450:SMTPCOM
-Received: from ObaTech (unknown [52.14.167.181])
-	by s0-aws-app-mta-in-1 (Halon) with ESMTPSA
-	id ce95a583-c22b-4776-a8a7-26233e52afd5;
-	Tue, 19 May 2026 15:09:32 +0000 (UTC)
-From: "Computer Gaming pc" <sales@computergamingpc.com>
-Subject: FW: GPUs & Enterprise SSDs Available - 23438003
-To: <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Reply-To: <sales@computergamingpc.com>
-Date: Tue, 19 May 2026 16:09:31 +0100
-Priority: urgent
-X-Priority: 1
-Importance: high
-Message-Id: <1931202605091697B65BB50B-41BA8EDF21@computergamingpc.com>
-X-SMTPCOM-Sender-ID: 9194450
-X-SMTPCOM-Tracking-Number: ce95a583-c22b-4776-a8a7-26233e52afd5
-X-SMTPCOM-Message-ID: 4b38df4a-93c8-42fe-8bdb-20bfc91e91c7
-X-SMTPCOM-Payload: 
- uPG7ZutJvn2jv3ExiBCbEx4MKpZ4g6orT1pAng_UZRlgoo8ojdqgvWQ3DTJQL3VELNaZ9KpIwCfpe5evAvcwpC3Y2zQBEW0aY2m4G8SitdC8uhRnDgIHau-ZGfPey543BPqPg1ZGtbwKRwzbv31qJcWNhhyyGqls9gg2DuHZVJwlYxyCDaQshasZ6p-nbOf1
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=computergamingpc.com; i=@computergamingpc.com; q=dns/txt; s=smtpkey;
- t=1779203377; h=feedback-id : from : subject : to : content-type :
- content-transfer-encoding : reply-to : date : message-id :
- list-unsubscribe : list-unsubscribe-post : from : subject : to : date;
- bh=gy/AsyDebalhiVwAUC0JUvsXaHvpZEUUAvd0kQApG7U=;
- b=VhiRz1/3cySzBnrvnLnMdwBklMPmdI63qGaBlItEgWUjiGLMyCiP/NDrxPyfuLgAMK1QU
- vbdtdowqNB/PL14rcZiVTCgKrWmjU8ghThOrJetpP+yHygqDF4ZPJvh3d7nzskt/o/yopmX
- L6I7rCiGajNYYY23nICgllN4sd5e3q9DQjFv1A3DbW+CHFhHsJPjQZ379vdZN1RMWrYROaI
- G6NWzO5ewALwFALQPt7lHxiav6KDGNJjyXONKZqDeZ6vRSrKWYxyhDSX3f/leQVib+LyAEG
- uNd+PeSLfm1IZqLeMxTqiI6tz6axT03f/tOiVz4YSahGQIrFueIM+ygIrtxg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=smtpmessage.com;
- i=@smtpmessage.com; q=dns/txt; s=smtpcustomer; t=1779203377;
- h=feedback-id : from : subject : to : content-type :
- content-transfer-encoding : reply-to : date : message-id :
- list-unsubscribe : list-unsubscribe-post : from : subject : to : date;
- bh=gy/AsyDebalhiVwAUC0JUvsXaHvpZEUUAvd0kQApG7U=;
- b=qPiu0Bv5OCXPFEgbmI37snOOXrEcd35PzTH+JAsiasXa7nZTOV6HCN61MiQJx+j/ZkuyH
- b2tjPCphddhHHydSd9BTGPj1xyG7Vq3s1+ZwdjmcKm/nWAHthApJn9uS7+RkjLFvkdtwSue
- +oJuTe7GazAtTFnq9T0G2JxLgW3Bc9+DgLjnfo0KJU/J/fF4TmFzqllqkOUEaISZou6dmbQ
- RPuALtkOllEzSFx9DlrMJmHwqWbvuhBhH2XIR5HxFk9qjMvrEb8EX+yuxrtoOGOT331j7zY
- GkwlnKnw2wjWc/UzHfrH9Zhi3Z+Zduo2cbl4/5IrXlXR+n1/7Yl+4F+8ZegQ==
+	s=arc-20240116; t=1779203602; c=relaxed/simple;
+	bh=K+kJKbvXPW88Oa7p0gODZiBRpGr+iOkCDH6/id8w14s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OtpVdP0wwyib4kJHDhky9qzC9AjGz/Tuu2mPp7mneBtwlJr7DmditnVOSic3M4t7EWQX0p25uoIAXW8dwN2T2zC4027rTtQXIK3M96iKThsBJyTlAci5U8b3+BfnZBnytbNzE7F3DuLILBKhX1sza7k7qHm5im4vySWP+pQGZpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BL9EjWYR; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-67e9e343b22so5522101a12.0
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:13:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779203599; x=1779808399; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UpC2oUS51Lj9ty9gOUkVj4nIoOC8+fY+yRPYKX23s6Y=;
+        b=BL9EjWYRNsy4oJMpaQBktI8FUC4mSpAP0N82ypauCsARV3vLIfvAfC46dS9PD4vWM0
+         JPSHgB6IkCDJJgLglHFjwplQl5jdfuQr4agJ101PfBEOOghIN1vMqxfICVei7ETDjVDS
+         D/cmiDedGPugoRMm/7f0GhIBxFijPE0qLYpbQIlfol1N5SUo/JsbQDHJv+DRWidx4h23
+         lG31hiYds0mWIpWQWjSTnKnffTiQuJxDlhw/fML+lbzDeDxWyeERXlpn7UxtTOmjL2pY
+         73HQV6rivX10NNB3eYM3iFjw/8BabajaXQ1ZumUpD6D9lmosTt6oDbhlCL+DZBCREp46
+         Lqvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779203599; x=1779808399;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UpC2oUS51Lj9ty9gOUkVj4nIoOC8+fY+yRPYKX23s6Y=;
+        b=D+scsQDVHEZcoB95bG1vCne1kMEik9r8bbhH53eWGRSQJP3tZyU+aRNtqao5mIYaSv
+         9SmdAV9PZB5gmCFD81Cfg9HPHzZATekxQIqZLCT21TZIOoZ4Jxfh1NXrWAPEKRcka7UP
+         iQraSB5uYrI8+dbMrL6lZWVM8upsMfd0rKfpKa51o3fyU7ETyPrYKZf5nmlNvthYYFBJ
+         EulTlmz1JZFZoyjjebCtSy2oGeLSYnXGLUszvNid1po0Ip1AipS61IFer4nbuK8B6EMw
+         VUxm1taQoWjNM4Zw2Krhf/fPU70AAIYzrL3qknhgPKDePLFtnIXcsMmpq8jnKTizk2Ro
+         8q8Q==
+X-Forwarded-Encrypted: i=1; AFNElJ+nvekwRIGzqirsepVENL5qyYN43QN+a4svN09no03ASJ77LRwO5geqpd9b5poga0RZ5zXKiC6Ur9Zd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvdFdKPwuJm3p3NfValWcAQ5m9sN+Xv9yUIgteSwa5P5/vmWwM
+	RIWM/HRT6CgUxO563HoHel0t8M4Yu/RzLhR6sx4D+jkbnwRSoZ67oUWY
+X-Gm-Gg: Acq92OG79BQX77i/ycdq4fIZroAqRbaK4ymkq6e0BXS6OpgCCMOOJITme0uv4T4D5Zd
+	wjK2DqZS9XSHHQZyZneQYffbEPNuFKBx35gquE51po0uzXvDBaDgtt+q5zdIDBzYhwuzR1RTLu3
+	fnN1xV2J2W0a/38a9x9u2XS8lz8mc96zWRkzlHWposc9lTE+6xX2CvERaGGfTtUksBhAGplX8dg
+	W+UVAuiNCMjfhoukoWADTJoDXKBrMt2488l6LaJN5ATqBPKXik3+u1XUMlSnH3xk1+rSFwj6Mq8
+	yLnNGREm1ohIPEFD0tutU64pnxjH+hY8U7EvJ6zXXuGaOImPJ5YHW09jIjmjK4BvgptzZuwqEXy
+	hrdK4MvMAkJNHY/1grQhRDznZ0nZp3mvc4PmgqFAHJrv5N6wvdrAbrgQyppcU1UsstEVI9+NYb+
+	4r+yU9W83jUO+dfns17leDzzoqLw==
+X-Received: by 2002:a05:6402:e04:b0:67c:5745:ba00 with SMTP id 4fb4d7f45d1cf-683baa39509mr10623913a12.0.1779203598493;
+        Tue, 19 May 2026 08:13:18 -0700 (PDT)
+Received: from [192.168.0.39] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68310b52675sm6697700a12.8.2026.05.19.08.13.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 May 2026 08:13:17 -0700 (PDT)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Subject: [PATCH v8 0/9] media: qcom: venus: add MSM8939 support
+Date: Tue, 19 May 2026 18:10:45 +0300
+Message-Id: <20260519-msm8939-venus-rfc-v8-0-542ec7557ebc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.64 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33PwU7DMAwG4FeZciYoceKk4cR7IA6N52xBtEXNV
+ oGmvjvpOFCViuMv/f5s30ThMXMRT4ebGHnKJQ99Dc3DQdC57U8s87FmAQqcstrJrnRNMEFO3F+
+ LHBNJUoBkydvUsqhzHyOn/Hk3X15/crnGN6bLAi2Ncy6XYfy6L5300vvPn7RUslUhUQICc0zPp
+ 67N7480dGLxJ1gJgHsCVCG5wAjROFB+K5i14PcEUwVoGh0wRh/0H8H+Cqh2v7BVCMEm5AjQUtw
+ KuBZ2b8AqHH1EboEYg94KbiVotSe4KrAL1qHxGJTaCn4t2D3BV8EYcuRSDNDgWpjn+RsxifvIU
+ AIAAA==
+X-Change-ID: 20260416-msm8939-venus-rfc-c025c4c74fae
+To: Bryan O'Donoghue <bod@kernel.org>, 
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[computergamingpc.com:s=smtpkey,smtpmessage.com:s=smtpcustomer];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[computergamingpc.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[computergamingpc.com:-,smtpmessage.com:-];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300205-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-300184-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sales@computergamingpc.com];
-	HAS_X_PRIO_ONE(0.00)[1];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sales@computergamingpc.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,linaro.org,oss.qualcomm.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,computergamingpc.com:replyto,computergamingpc.com:mid,computergamingpc.com:email]
-X-Rspamd-Queue-Id: 2DBAD5817C5
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: B4C335814DC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-Quick update — these units are in stock and can ship today:
+This patch series adds support for Venus on MSM8939. It is mostly
+similar to MSM8916 Venus, except it needs two additional cores to be
+powered on before it can start decoding.
 
-Mobile & RFID Devices
-Zebra TC53 (51 units) – $600
-Honeywell CT477 (51 units) – $600
-Zebra MC93 (60 units) – $600
-Zebra TC55 (71 units) – $600
-Zebra MC9401 (81 units) – $1,100
-Zebra TC22 Standard Range (80 units) – $500
-Zebra TC21 (81 units) – $220
-Zebra RFD40 Premium RFID Reader/Writer (56 units) – $610
-Honeywell CK65 (86 units) – $600
+As per Dmitry's request, I am attaching Fluster results and
+v4l2-compliance output. Fluster results were very inconsistent and
+caused power collapse fails.
+H.264: https://pastebin.com/C15qeq5W
+H.265 (HEVC): https://pastebin.com/WDsnxvuk
+VP8: https://pastebin.com/egAgEm15
+v4l2-compliance: https://pastebin.com/VpBhEFc1
+Power collapse fail log: https://pastebin.com/rTivMcpK
 
-GPUs & Accelerators
-RTX 5090 Founders Edition 32GB (90 units) – $2,100
-RTX Asus/Gigabyte 4090 24GB (45 units) – $1,680
-RTX 4090 Founders Edition 24GB (90 units) – $2,000
-RTX A6000 48GB Ada (54 units) – $1,100
-RTX 6000 48GB Ada (51 units) – $1,200
-Nvidia L40s GPU (45 units) – $3,000
-Nvidia H100 80GB PCIe (9 units) – $20,000
-H200 141GB NVL PCIE 9 unit $27,000.00
+Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+---
+Changes in v8:
+- Only enable vcodec clks if power domains attatched to them are
+  present.
+- Reworded GDSC clock commit. Frankly, I'm not sure why exactly it
+  happens, I only know that if I don't set this flag and pass control to
+  hardware, the cores won't power up.
+- Extracted conversion of MSM8916 to a new blacklisting mechanism into a
+  commit of its own.
+- Fixed GDSC power domain not being powered off after failing to pass
+  control to hardware.
+- Reordered commits to include schema first, then driver changes, then
+  device tree source.
+- Link to v7: https://patch.msgid.link/20260514-msm8939-venus-rfc-v7-0-33c6c6fb9285@gmail.com
 
-Storage & CPUs
-Samsung PM9A3 2.5" SSD PCIe 4.0 7.68TB (115 units) – $650.00
-7.68TB SAS SSD 2.5" 12G Server Drive (140 units) – $650.00
+Changes in v7:
+- Moved codec blacklist mechanism to be applied before MSM8939 struct is
+  added.
+- Vcodec power domains are attached with a managed method now.
+- Removed duplicate clock rates in msm8939_freq_tbl.
+- Redid the merge of vcodec_clks done in v5.
+- Removed the {vdec,venc}_{get,power}() methods and moved them to their
+  respective core_* parts. Vcodec cores are now powered up along with
+  the core.
+- Switched HW_CTRL to HW_CTRL_TRIGGER in Venus core GDSCs. They are now
+  powered up first, then their control is passed to hardware.
+- For now, document just the change of halt check in the commit message
+  of setting GDSCs to hardware controlled. I'm not sure what happens
+  exactly, but if they are set to BRANCH_HALT, probing the driver fails:
+  https://pastebin.com/EYQekR1p
+- Given the power management behavior has changed substantially in the
+  power domain enable logic patch, I removed Bryan's "Reviewed-by: "
+  tag.
+- Link to v6: https://patch.msgid.link/20260510-msm8939-venus-rfc-v6-0-e69465375900@gmail.com
 
-For quotes, availability, or inspection scheduling, please reach out
-directly:
-sales@computergamingpc.com
-Call or WhatsApp: +1(774) 559-1248 | +1 (641)232-4364
-Thank you for your continued partnership.
-Ann Kamila
-Computer Gaming PC Trading
-2500 US-6, Iowa City, IA 52240, USA
+Changes in v6:
+- Added a more generic mechanism on blacklisting codecs.
+- Reworded a commit for setting Venus core GDSCs to hardware controlled.
+- Reworded a commit for adding HEVC decoding to MSM8939.
+- Link to v5: https://patch.msgid.link/20260507-msm8939-venus-rfc-v5-0-d7b5ea2ce591@gmail.com
+
+Changes in v5:
+- Undid the merge of vcodec_clks, they are split back to
+  vcodec{0,1}_clks now.
+- Extracted a dev_pm_domain_attach_list() call into a function of its
+  own to reduce nesting.
+- Added missing "power-domain-names" required property to device tree
+  binding.
+- Renamed vcodec clocks and power domains to match other Venus bindings.
+- Reordered commits and grouped them by subsystems. Now first come DTB
+  patches, then clock, then media.
+- Removed "status = "disabled"" in the device tree example.
+- Link to v4: https://patch.msgid.link/20260506-msm8939-venus-rfc-v4-0-994f5eb22acb@gmail.com
+
+Changes in v4:
+- Removed vcodec{0,1}_pmdomains and merged vcodec{0,1}_clks into
+  vcodec_clks instead for MSM8939.
+- Inlined video decoder and encoder device tree nodes in the driver and
+  removed them from the binding.
+- Kept vdec and venc methods for HFI v3 separate from HFI v1.
+- {vdec,venc}_get() are now called as early as before, since it is no
+  longer needed for us to attach power domains to dev_dec and dev_enc.
+- Link to v3: https://patch.msgid.link/20260427-msm8939-venus-rfc-v3-0-288195bb7917@gmail.com
+
+Changes in v3:
+- Added missing vcodec1_clks to resource struct.
+- Removed enc_nodename from resource struct since we include
+  video-decoder now.
+- Link to v2: https://patch.msgid.link/20260425-msm8939-venus-rfc-v2-0-f69e52b36207@gmail.com
+
+Changes in v2:
+- Enabled GDSCs during encoding as well.
+- Merged vcodec{0,1}_pmdomains_num into vcodec_pmdomains_num.
+- Reworded commit for marking GDSCs as hardware controlled. Same
+  situation as in cdc59600bccf ("clk: qcom: gcc-msm8953: fix stuck venus0_core0 clock")
+- Clarified the reason for missing firmware-name property in device
+  tree.
+- Clarified the reason for moving vdec_get and venc_get for later.
+- Link to v1: https://patch.msgid.link/20260416-msm8939-venus-rfc-v1-0-a09fcf2c23df@gmail.com
+
+To: Bryan O'Donoghue <bod@kernel.org>
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+To: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: André Apitzsch <git@apitzsch.eu>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Brian Masney <bmasney@redhat.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+
+---
+André Apitzsch (4):
+      media: dt-bindings: venus: Add qcom,msm8939 schema
+      media: qcom: venus: Add msm8939 resource struct
+      arm64: dts: qcom: msm8939: Add venus node
+      arm64: dts: qcom: msm8939-longcheer-l9100: Enable venus node
+
+Erikas Bitovtas (5):
+      clk: qcom: gcc-msm8939: mark Venus core GDSCs as hardware controlled
+      media: qcom: venus: add power domain enable logic for Venus cores
+      media: qcom: venus: add codec blacklist mechanism
+      media: qcom: venus: migrate MSM8916 to new blacklist mechanism
+      arm64: dts: qcom: msm8939-asus-z00t: add Venus
+
+ .../bindings/media/qcom,msm8939-venus.yaml         |  79 +++++++++++++
+ arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts     |   8 ++
+ .../boot/dts/qcom/msm8939-longcheer-l9100.dts      |   8 ++
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              |  23 ++++
+ drivers/clk/qcom/gcc-msm8939.c                     |   4 +
+ drivers/media/platform/qcom/venus/core.c           |  42 +++++++
+ drivers/media/platform/qcom/venus/core.h           |   5 +
+ drivers/media/platform/qcom/venus/hfi_parser.c     |  10 +-
+ drivers/media/platform/qcom/venus/pm_helpers.c     | 124 ++++++++++++++++++++-
+ 9 files changed, 293 insertions(+), 10 deletions(-)
+---
+base-commit: 6a50ba100ace43f43c87384367eb2d2605fcc16c
+change-id: 20260416-msm8939-venus-rfc-c025c4c74fae
+
+Best regards,
+--  
+Erikas Bitovtas <xerikasxx@gmail.com>
+
 
