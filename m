@@ -1,65 +1,102 @@
-Return-Path: <devicetree+bounces-299757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299741-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENw9F7v/C2pcTQUAu9opvQ
-	(envelope-from <devicetree+bounces-299757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:14:19 +0200
+	id IGxlGIL6C2qISwUAu9opvQ
+	(envelope-from <devicetree+bounces-299741-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:52:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0C6577CD1
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:14:18 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 054FC577976
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D397C3092163
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 06:10:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 61E093012210
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 05:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3381382F16;
-	Tue, 19 May 2026 06:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2499B34EF0F;
+	Tue, 19 May 2026 05:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="euTm77qq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SvL/W2+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2FF382397;
-	Tue, 19 May 2026 06:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A7B34D910
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 05:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779171020; cv=none; b=H0VdH0dR1Ez3AJwIzW33FV9YYcchZkPQDyGoVfXlTCDG8L+L6vMe9Irx/6e2Z15FeiRYbInN90OXSRTTDTQY/xByMOymkr+o6DsgF7t6APR4m1Um1FA++lBB5cowbcFJMiJIjB6doC5KdEsM0up0TPUEmd9CRinw18XpbLpXDO0=
+	t=1779169920; cv=none; b=U9+tLJSpxg0vEuEgzBapNFbbMXN4E2U8HXkXfweJ2esGiT+8p9OupYsQu1fftnQq/nSH/wxFbI5+0iCG3K3NEwacfpmFHc3DsfxjGm94N/9BgowmIyQdXHSFo2k9LHpBNbgzeGZ8ZgnPVMNafj+eXspp84H9r0d07cFr4z3Ao9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779171020; c=relaxed/simple;
-	bh=wpKGBlOYBdKJ4Q3xmvvS2FfxdbVWdVLuU4ffh+M1+ug=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o8b11N2ZFzPmIDcdNYnYGw0M0Z1PjhUPATuDnrT3V8mMbopu8fYT+6oiyNBm2cDri4t7Jl0dc24HiuwVqX13ZXPyYOKSSoiLrgM7xiqroXaaCU62n3XSMRAkpG3mszBda9SdkAv/Aq1AFf8UkPsQzQk55x4vYTkq06SQqPypKj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=euTm77qq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20626C2BCC6;
-	Tue, 19 May 2026 06:10:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779171020;
-	bh=wpKGBlOYBdKJ4Q3xmvvS2FfxdbVWdVLuU4ffh+M1+ug=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=euTm77qqOUp4jCvU4+5FWlkNyePO9vaVjVdyEekosoS2uR1WHOI4eE2wOe+lYRJvA
-	 epkCk1DzgqJw0ldntiv7TNjsQi7mHy58vkalUuI71Q5RpLjF/RqZNQREpqll7nyum3
-	 C/Omy2aJWpBN0+VprN/WodxdGb1gAS/GpgCGs8Yah7qZvDMobEQEP8n1LLvAr5ujAt
-	 HxsJUAOzcqGbT/DFAatNRjtJe3SVcNFz47tAWHZ73MVlxWtf0s3ka4Gm+kIGE/bBSJ
-	 C7alvT1hTtCqlopqcW6VAivP3aIqMLj8ii2Hlumi3cdT5zo7p1ufu3znZ+kDMGmh5a
-	 5YMtwkY0WZkJA==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-i3c@lists.infradead.org,
+	s=arc-20240116; t=1779169920; c=relaxed/simple;
+	bh=yg5X2+G6j9XIgwns/fMKSvLnhPKx6m7uwNbB+8kiUsY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iI/CE6yDPYS4i4BT79gf+Jo/pwQ27YOKLQI7ftFe/eiDqgJuMXkX0z6AD635DZxQeje2k0XChMlAKhN2ZQ7kEAwPIX2gFMahd0+bKPBO6j8N1mkDo5ZFwdKkcCPzmm5vnm8FfRypSSAr84XV0DNAVo+bGTcqwNN21rk0KTGLsjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SvL/W2+y; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-82f8893bff3so1396976b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 18 May 2026 22:51:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779169918; x=1779774718; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=At2RDd/JrXkyJVQsow486779/5ZNt3HX5SfY5tKfcDY=;
+        b=SvL/W2+yaA2vX5yIEGX7/skmuCg8uO9RadFuwHJZV1RaUzw+W5Tdi7K4KgN6Z9iAVQ
+         PGNd5QL42RRp+pt/Se/Zo7GQ67jSfQlVrTqxxj4uv8xaHV9rc2DeCXr5S+iTBfwNVRDX
+         FD9df61nwkri9Q5XQ50pQ6pHGlo9SJfVsUeAdg5fUUK8tOGvqvFDSgf4+Km+/CpOPPAw
+         VLf/29tZ5t08mtjudDTKajy0v8afPE5ToizNLlQGDKJ22eBwivuOQhqcgWfJ0PW6TPO4
+         bJvvrOmPH9JEqvn59o2x5BIkfCChZVLRiVNiDMILl3n2kQDZFjCODDJ5KMN2t4lYB32U
+         8dgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779169918; x=1779774718;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=At2RDd/JrXkyJVQsow486779/5ZNt3HX5SfY5tKfcDY=;
+        b=iCaW9KOxvYYFrQHv+s+/SCsWJ9+XVzTeGoawpLMGtRZ14K08sKRs/Qcpc/eZM3B5Y+
+         +tweJUIwnxPJLhwsobzgET62Z4m6r7R/nKb6zV6cECrFB8AgcBWMDM5bt6Vtd3j3rm0U
+         +aJKTdM5lvR19zfl+omWDmmlr/JjxKxWU0pvOSlBKpikS0F9keb8uH+G5OJsWiXsEAqe
+         e2/iMCIWOxnuEmabBTlBruuwUo+GdwKt40xxi6sZavqeJpZohqJP5a+8UhpYAP7KxgPn
+         kKbUSCNhUyYQYY46mp8l885dn3wiM3RsR6Fz1qktPOMtus+CK8YzhAUS5fMKZ123i34F
+         l+zg==
+X-Forwarded-Encrypted: i=1; AFNElJ/BkcLi4Qyf1D96RaR8X7P//1nmVCpAUkXzFeT1CE7KkqSQgYrfPFc2Xo1J0SI20sIeo/A/+BQ6Fixo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmrMOtf8uyLGPMlVOVWdJkjVqMeKR/eRkX3fLOF2ooz0zovkAl
+	mjPSNeevYTXZApqlys1vka8Mrn3jQPMyCISJsFfYPv8sch9wSoMbr9rJ
+X-Gm-Gg: Acq92OFdvE7OzHC2246d/bdfFCIrH4ZWJLsVkp4GEACQmraYJKD6FcJjxxJ4By8Qk7L
+	Umj8W2VkckLNDtK9w9/d9JOLwRy7nv0P/Pgmwh6ycOTuwJCz5VbzdMQDQZ3gl1cPZv2tDoiyllp
+	RJRmK9FcEYEwm/ZeIJhFVYpqny6uXulB+vkcpxQbJ/B+mGOpi4w5YdeuSauGbpYsRZwSLHTe/dG
+	1TgUIl91wZ7MrEcXiV+KCejXcVuOK/2nT9hV2SrXwXLJT1n0+z+83NtVHMjoYAMM6Gduw/PygX/
+	/mi+Wvbs5qHtWmKDESAboKUlOy2ePaYVqs+dvlbl8+pyXSXmKSKFRjA31MJS/bjpZdBgD6kYJfL
+	5WWTMWoEg8mRfFPCBqTbOIfpN//pnMiqstGlng2SLPFlYMEAg5TMfiFi2OTlFvHApMV5lInfL/M
+	miVkelAm9w/UZDytS8E38TpfhtfkMZGIyaTpeLwveqekfVe/9ol7GyzNaygsbHi4bFdRCJUqnwf
+	E9JusWBdaMs
+X-Received: by 2002:a05:6a00:1f09:b0:835:41f3:f453 with SMTP id d2e1a72fcca58-83f33c45ccemr17469354b3a.17.1779169917992;
+        Mon, 18 May 2026 22:51:57 -0700 (PDT)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f8b9c2ea5sm2641252b3a.13.2026.05.18.22.51.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 May 2026 22:51:57 -0700 (PDT)
+From: Joey Lu <a0987203069@gmail.com>
+To: zhengxingda@iscas.ac.cn,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	yclu4@nuvoton.com,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] i3c: dw: Add apb reset support
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH v2 0/4] drm/verisilicon: add Nuvoton MA35D1 DCU Lite support
 Date: Tue, 19 May 2026 13:51:05 +0800
-Message-ID: <20260519055105.13079-5-jszhang@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260519055105.13079-1-jszhang@kernel.org>
-References: <20260519055105.13079-1-jszhang@kernel.org>
+Message-ID: <20260519055114.1886525-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,88 +106,132 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-299741-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[iscas.ac.cn,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299757-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[nuvoton.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jszhang@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: AF0C6577CD1
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,iscas.ac.cn:email]
+X-Rspamd-Queue-Id: 054FC577976
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support of apb reset which is to reset the APB interface.
+This series adds support for the Verisilicon DCU Lite display controller
+as integrated in the Nuvoton MA35D1 SoC.
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- drivers/i3c/master/dw-i3c-master.c | 7 +++++++
- drivers/i3c/master/dw-i3c-master.h | 1 +
- 2 files changed, 8 insertions(+)
+The Verisilicon DC driver and its DT binding were originally written by
+Icenowy Zheng <zhengxingda@iscas.ac.cn> for the T-Head TH1520 SoC, which
+carries a DC8200 IP block.  The present series builds on that foundation
+with gratitude to Icenowy for the original work.
 
-diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index c4a848cc978a..ae7aa6880e8f 100644
---- a/drivers/i3c/master/dw-i3c-master.c
-+++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -1591,6 +1591,11 @@ int dw_i3c_common_probe(struct dw_i3c_master *master,
- 	if (IS_ERR(master->core_rst))
- 		return PTR_ERR(master->core_rst);
- 
-+	master->apb_rst = devm_reset_control_get_optional_exclusive_deasserted(&pdev->dev,
-+									       "apb");
-+	if (IS_ERR(master->apb_rst))
-+		return PTR_ERR(master->apb_rst);
-+
- 	spin_lock_init(&master->xferqueue.lock);
- 	INIT_LIST_HEAD(&master->xferqueue.list);
- 
-@@ -1765,6 +1770,7 @@ static int __maybe_unused dw_i3c_master_runtime_suspend(struct device *dev)
- 	dw_i3c_master_disable(master);
- 
- 	reset_control_assert(master->core_rst);
-+	reset_control_assert(master->apb_rst);
- 	dw_i3c_master_disable_clks(master);
- 	pinctrl_pm_select_sleep_state(dev);
- 	return 0;
-@@ -1777,6 +1783,7 @@ static int __maybe_unused dw_i3c_master_runtime_resume(struct device *dev)
- 	pinctrl_pm_select_default_state(dev);
- 	dw_i3c_master_enable_clks(master);
- 	reset_control_deassert(master->core_rst);
-+	reset_control_deassert(master->apb_rst);
- 
- 	dw_i3c_master_set_intr_regs(master);
- 	dw_i3c_master_restore_timing_regs(master);
-diff --git a/drivers/i3c/master/dw-i3c-master.h b/drivers/i3c/master/dw-i3c-master.h
-index c5cb695c16ab..a4ba60043288 100644
---- a/drivers/i3c/master/dw-i3c-master.h
-+++ b/drivers/i3c/master/dw-i3c-master.h
-@@ -37,6 +37,7 @@ struct dw_i3c_master {
- 	struct dw_i3c_master_caps caps;
- 	void __iomem *regs;
- 	struct reset_control *core_rst;
-+	struct reset_control *apb_rst;
- 	struct clk *core_clk;
- 	struct clk *pclk;
- 	char version[5];
+The DCU Lite is a different variant in the DC IP family.  While the two
+IPs share a broadly similar register layout, a number of differences
+prevent the existing driver from working on the MA35D1 without
+modification:
+
+  - No CONFIG_EX commit path: the DC8200 staging registers
+    (FB_CONFIG_EX, FB_TOP_LEFT, FB_BOTTOM_RIGHT, FB_BLEND_CONFIG,
+    PANEL_CONFIG_EX) are absent.  The DCU Lite uses enable (bit 0) and
+    reset (bit 4) bits in FB_CONFIG for direct framebuffer updates, and
+    requires a per-frame VALID bit toggle (FB_CONFIG bit 3) to latch
+    configuration changes.
+
+  - No PANEL_START register: panel output begins when
+    PANEL_CONFIG.RUNNING is set; the DC8200 multi-display sync start
+    register at 0x1CCC does not exist.
+
+  - Different IRQ registers: DISP_IRQ_STA at 0x147C / DISP_IRQ_EN at
+    0x1480, versus the DC8200's TOP_IRQ_ACK at 0x0010 / TOP_IRQ_EN at
+    0x0014.
+
+  - Simpler clock topology: two clocks ("core" bus gate and "pix0" pixel
+    divider); no axi or ahb clocks required.
+
+  - Single display output: no per-output indexing beyond index 0 is
+    needed.
+
+  - Hardware-discoverable identity: the DCU Lite exposes chip identity
+    registers whose model field reads 0x0 (revision 0x5560,
+    customer_id 0x305), allowing the existing vs_fill_chip_identity()
+    path to identify the variant purely through register reads.  No
+    separate OF compatible string is introduced.
+
+Patch 1 generalises the verisilicon,dc DT binding to accommodate
+variants with flexible clock/reset counts and a single output, using
+allOf/if-then-else to keep per-variant constraints in-schema.
+
+Patches 2-4 introduce the driver changes in three logical steps:
+register-level constants and the DCU Lite chip identity table entry;
+the vs_dc_funcs hardware ops table with DC8200 ops extracted into
+vs_dc8200.c; and finally the DCU Lite ops in vs_dcu_lite.c with the
+necessary Kconfig and clock-optionality changes.
+
+All patches have been tested on Nuvoton MA35D1 hardware.
+
+Changes from v1:
+  - Corrected "DC8000" to "DC8200" throughout (the existing supported
+    IP is DC8200, not DC8000).
+  - Dropped the separate nuvoton,ma35d1-dcu.yaml; variant constraints
+    are now expressed inline in verisilicon,dc.yaml via allOf/if-then-else.
+    The MA35D1 uses the generic "verisilicon,dc" compatible string.
+  - Replaced the vs_dc_info platform-data flags approach with a
+    vs_dc_funcs hardware ops table, giving cleaner per-variant dispatch
+    without scattering if/else branches across multiple files.
+  - DCU Lite variant is identified through hardware registers rather than
+    the OF match table.
+  - Series split from 2 patches to 4 for clearer logical progression.
+  - Renamed plane ops in vs_dc_funcs: plane_enable/disable to
+    plane_enable_ex/disable_ex, plane_update_ext to plane_update_ex.
+
+Joey Lu (4):
+  dt-bindings: display: verisilicon,dc: generalize for  single-output
+    variants
+  drm/verisilicon: add model ID constants and DCU Lite chip identity
+  drm/verisilicon: introduce per-variant hardware ops table
+  drm/verisilicon: add Nuvoton MA35D1 DCU Lite display controller
+    support
+
+ .../bindings/display/verisilicon,dc.yaml      | 135 ++++++++++++++----
+ drivers/gpu/drm/verisilicon/Kconfig           |   2 +-
+ drivers/gpu/drm/verisilicon/Makefile          |   2 +-
+ drivers/gpu/drm/verisilicon/vs_bridge.c       |  20 +--
+ drivers/gpu/drm/verisilicon/vs_crtc.c         |  38 ++++-
+ drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |   1 +
+ drivers/gpu/drm/verisilicon/vs_dc.c           |  13 +-
+ drivers/gpu/drm/verisilicon/vs_dc.h           |  33 +++++
+ drivers/gpu/drm/verisilicon/vs_dc8200.c       | 107 ++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_dcu_lite.c     |  78 ++++++++++
+ drivers/gpu/drm/verisilicon/vs_hwdb.c         |  16 ++-
+ drivers/gpu/drm/verisilicon/vs_hwdb.h         |   3 +
+ .../gpu/drm/verisilicon/vs_primary_plane.c    |  32 +----
+ .../drm/verisilicon/vs_primary_plane_regs.h   |   3 +
+ 14 files changed, 398 insertions(+), 85 deletions(-)
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc8200.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dcu_lite.c
+
 -- 
-2.53.0
+2.43.0
 
 
