@@ -1,68 +1,63 @@
-Return-Path: <devicetree+bounces-299746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299748-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFavL+77C2r2SwUAu9opvQ
-	(envelope-from <devicetree+bounces-299746-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:58:06 +0200
+	id OKiEGJb7C2r2SwUAu9opvQ
+	(envelope-from <devicetree+bounces-299748-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:56:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2550E577A8C
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:58:06 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB66577A66
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:56:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CBB03099864
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 05:52:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2C63B3022FF1
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 05:54:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB6E34E760;
-	Tue, 19 May 2026 05:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59BE35DA5B;
+	Tue, 19 May 2026 05:54:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hle+rkwI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uUM4jbxC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196FF34D910;
-	Tue, 19 May 2026 05:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F8235BDB2;
+	Tue, 19 May 2026 05:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779169956; cv=none; b=mgKogYilTUliwsMwZjgCNPjDwtYRu6oOZwbv3UzqCpERl/RSmDSV6Yf2pgRaIMzYZC623nYdEFBSnq2awO03shGs575hDuc+OGjjP1m/FPIJh6LrMQ0r0IT/9nOHWnC15gLt3Z1f92fpBAlwBiVLVBUZ7XjNQSW5ZIa4LWU/+rA=
+	t=1779170077; cv=none; b=a2tn6XqEmvTPqAEJh1i4BWR4hftDYyQvFY6am5zxZYzrxQTgQh70GNC8Nj9gfd7wATX/sqnNSJxvFDMm78//y78G2nOWGkL99lANnfIuQSQFanrGDHPGQOv6sjddIgTqvqr/wTitS8jmGWtyI5Q0jFIajSkl2DDX1n0xrRdH+QU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779169956; c=relaxed/simple;
-	bh=K7UKJ6sYP2y8DZracD2ty+9g+TETER+ES7eLcMmhpa0=;
+	s=arc-20240116; t=1779170077; c=relaxed/simple;
+	bh=9GXtTAUKjC8yFJM1OpFqMKYuZGvD2bBJJa3k5I/WQvA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RmTOTzqtxttlY+ECoqnlkSD9ogc2Npa2+CnICLKAO0O+JzFKKi44N57IhA4Ae96M+IcEAF9fcuclZlJDOfE9InB6wPywo9PWXDwXJ/CdrJtxUUe/5YEt965PtmXMcIjHa8Vy3el8m/1eYDTQJGs5V8uUxtmYDwzDCKngH3fzr+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hle+rkwI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 065E6C2BCB3;
-	Tue, 19 May 2026 05:52:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=L3E3QJP1YwCpMWDnGJE8vwiL4gDIULYBbhIvRyIypNCShtZ0C6EbFx1gRucH5sRdqRnav/wSU6f95vOIpw/MeqdX3K+zsKthJU0oXsMAHNwUFcrMjhETH0iZMYrK723tbbMmI2Mkn2Da2L2AYyxmIZRdB3VoVjHwHrREHfsmCug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uUM4jbxC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4170BC2BCB3;
+	Tue, 19 May 2026 05:54:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779169955;
-	bh=K7UKJ6sYP2y8DZracD2ty+9g+TETER+ES7eLcMmhpa0=;
+	s=k20201202; t=1779170076;
+	bh=9GXtTAUKjC8yFJM1OpFqMKYuZGvD2bBJJa3k5I/WQvA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hle+rkwIjgCpLvvRebMQjZUD4RpHe4vaD/NMGctxBCcJgKhOh/KxmTkh1IEWPeE0o
-	 HvgQadE+/aDUPAjYedw+3kXpGLh501Egr0d3XQUWNHNcZyIqtSmVCE+paU4g1TV3Yv
-	 mqX0kdDhiSwhrU8Q3e5Fi/sXH0TVxvuGTvwmLtXk8la7G8uqONvLtzi2UxI5LEJ3V5
-	 QK3zQ8TBGnDL3bLaILxx3Z9xPCMNObwlzppslIwRzOueLfLeqRiQf2T3Xdw2Ia2q5o
-	 Vc4zt4fBuUlGStJjsL5LNl3L1MAKli7+a3rCiBXuW7D+4MmTZ4Baf+hdRTTcW1mFL4
-	 fTuYlLiQaLyDA==
-Date: Tue, 19 May 2026 11:22:26 +0530
-From: "mani@kernel.org" <mani@kernel.org>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	"festevam@gmail.com" <festevam@gmail.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
-	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	Hongxing Zhu <hongxing.zhu@nxp.com>, "l.stach@pengutronix.de" <l.stach@pengutronix.de>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V14 02/12] PCI: host-generic: Add common helpers for
- parsing Root Port properties
-Message-ID: <xyued2adtz2fs47nnl537aef7rsjuhswivcaieh6lxhlxpohkr@gpxmdcpczik7>
-References: <20260422093549.407022-3-sherry.sun@nxp.com>
- <20260513224944.GA341451@bhelgaas>
- <VI0PR04MB1211452312EB9BC6EF1ED2E0192032@VI0PR04MB12114.eurprd04.prod.outlook.com>
+	b=uUM4jbxCjhY6UU6USI1M35xrK4r49GjEOuABe0w9zuIDJL7hrU0NLFTIgS8hnQJ3g
+	 B7D9HeIpUNenL6UXDDcIqY3kaOjSBD2wf3d7ULeYYPViaA8dR7vc6RyYwNTDqlL0EE
+	 G4+Qgrc8vVyofgDZ5BwaSK+x77YMSgh0+r/Jnb3JPIOE/VxnvCwYmEJ4pMmobtVdhB
+	 7Z5drBdHfHPSNGNm83+VQdVZS78JaTTcMxlMss3ASYS56PQC8z4ZtoVqK7jxGaCTnx
+	 rlOc+96msoapW8czxnYtZse09ZnPS0hLoywZiZ3TMPq0yXkEaBlLcQFyoaRNIA5rzy
+	 IS+7XZlFNXBrw==
+Date: Tue, 19 May 2026 11:24:27 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: palash.kambar@oss.qualcomm.com
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
+	avri.altman@wdc.com, bvanassche@acm.org, andersson@kernel.org, 
+	dmitry.baryshkov@oss.qualcomm.com, abel.vesa@oss.qualcomm.com, luca.weiss@fairphone.com, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
+Subject: Re: [PATCH V1 2/3] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy:
+ Document the Hawi UFS controller
+Message-ID: <yoh53w5anjjfb6d3zdsh54whlnhkw4lwg3v273qmj74u5k6sp2@vu33qv6dxyas>
+References: <20260518165346.1732548-1-palash.kambar@oss.qualcomm.com>
+ <20260518165346.1732548-3-palash.kambar@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,124 +67,78 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <VI0PR04MB1211452312EB9BC6EF1ED2E0192032@VI0PR04MB12114.eurprd04.prod.outlook.com>
-X-Spamd-Result: default: False [0.84 / 15.00];
+In-Reply-To: <20260518165346.1732548-3-palash.kambar@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	FROM_DN_EQ_ADDR(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299746-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299748-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 2550E577A8C
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
+X-Rspamd-Queue-Id: 9FB66577A66
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 18, 2026 at 08:42:38AM +0000, Sherry Sun wrote:
-> > Subject: Re: [PATCH V14 02/12] PCI: host-generic: Add common helpers for
-> > parsing Root Port properties
-> > 
-> > On Wed, Apr 22, 2026 at 05:35:39PM +0800, Sherry Sun wrote:
-> > > Introduce generic helper functions to parse Root Port device tree
-> > > nodes and extract common properties like reset GPIOs. This allows
-> > > multiple PCI host controller drivers to share the same parsing logic.
-> > >
-> > > Define struct pci_host_port to hold common Root Port properties
-> > > (currently only list of PERST# GPIO descriptors) and add
-> > > pci_host_common_parse_ports() to parse Root Port nodes from device
-> > tree.
-> > >
-> > > Also add the 'ports' list to struct pci_host_bridge for better
-> > > maintain parsed Root Port information.
-> > > ...
-> > 
-> > > +static int pci_host_common_parse_port(struct device *dev,
-> > > +				      struct pci_host_bridge *bridge,
-> > > +				      struct device_node *node)
-> > > +{
-> > > +	struct pci_host_port *port;
-> > > +	int ret;
-> > > +
-> > > +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> > > +	if (!port)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	INIT_LIST_HEAD(&port->perst);
-> > > +
-> > > +	ret = pci_host_common_parse_perst(dev, port, node);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	/*
-> > > +	 * 1. PERST# found in RP or its child nodes - list is not empty, continue
-> > > +	 * 2. PERST# not found in RP/children, but found in RC node - return -
-> > ENODEV
-> > > +	 *    to fallback legacy binding
-> > > +	 * 3. PERST# not found anywhere - list is empty, continue (optional
-> > PERST#)
-> > > +	 */
-> > > +	if (list_empty(&port->perst)) {
-> > > +		if (of_property_present(dev->of_node, "reset-gpios") ||
-> > > +		    of_property_present(dev->of_node, "reset-gpio"))
-> > > +			return -ENODEV;
-> > 
-> > This doesn't seem right to me.  The parser of per-Root Port properties should
-> > not be responsible for deciding whether legacy methods are valid, i.e.,
-> > whether a property is in the Root Complex node.  I think it's up to the caller
-> > to decide whether it needs to look elsewhere.
-> > 
-> > I don't think this even needs to return a "success/failure" value because there
-> > may be more properties in the future, and not all will be required.  This
-> > function can't tell which properties a specific driver requires and which are
-> > optional.
-> > 
-> > The caller can check whether we found what it needs and fall back to a legacy
-> > method as needed.
-> 
-> Hi Bjorn,
-> The code here was suggested by Mani, https://lore.kernel.org/all/lnzprzrdwra7pn7d6m3sbj5pvjy64blwpjl6i3lmlnfbyho63b@czpyhpgz5vum/.
-> I think your suggestion here is reasonable, the per-Root Port parser shouldn't
-> check the RC-level binding. That's a policy decision that belongs to the caller.
-> 
-> Hi Mani, if you also agree, I'll rework this so that:
-> 1. pci_host_common_parse_port() only parses properties from the Root Port
->     (and its children) without checking the RC node.
-> 2. The function won't return failure for "property not found" - it will only return
->      errors for real failures (e.g., -ENOMEM, GPIO acquisition errors).
-> 3. The legacy fallback logic will be moved to the caller, which can inspect the
->      parsed result and decide whether to fall back to the legacy binding.
+On Mon, May 18, 2026 at 10:23:45PM +0530, palash.kambar@oss.qualcomm.com wrote:
+> From: Palash Kambar <palash.kambar@oss.qualcomm.com>
 > 
 
-Fine with me. The reason for suggesting fallback within this API itself was to
-avoid duplicating the fallback code as it will be mostly generic. But I do agree
-with Bjorn on the fact that individual host controller drivers might have
-optional properties in the RC node and we can't incorporate all of them here.
+Subject is wrong. It should be:
 
-But no need to rework this series as it got applied for v7.2. You can send
-rework patches on top of this series.
+scsi: ufs: qcom: dt-bindings:
 
 - Mani
+
+> Document the UFS Controller on the Hawi Platform.
+> 
+> Signed-off-by: Palash Kambar <palash.kambar@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> index f28641c6e68f..3de00affa4c6 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> @@ -16,6 +16,7 @@ select:
+>        contains:
+>          enum:
+>            - qcom,eliza-ufshc
+> +          - qcom,hawi-ufshc
+>            - qcom,kaanapali-ufshc
+>            - qcom,sm8650-ufshc
+>            - qcom,sm8750-ufshc
+> @@ -27,6 +28,7 @@ properties:
+>      items:
+>        - enum:
+>            - qcom,eliza-ufshc
+> +          - qcom,hawi-ufshc
+>            - qcom,kaanapali-ufshc
+>            - qcom,sm8650-ufshc
+>            - qcom,sm8750-ufshc
+> -- 
+> 2.34.1
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
