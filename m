@@ -1,282 +1,192 @@
-Return-Path: <devicetree+bounces-299911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299913-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCA5KkQkDGroXAUAu9opvQ
-	(envelope-from <devicetree+bounces-299911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:50:12 +0200
+	id YHT6JsciDGrjWwUAu9opvQ
+	(envelope-from <devicetree+bounces-299913-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:43:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBAF57A80E
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:50:11 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0093557A5C8
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:43:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6B60C308F031
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:43:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4A933006B68
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5D33E5ECF;
-	Tue, 19 May 2026 08:43:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B2B3E834B;
+	Tue, 19 May 2026 08:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="geOMkfgD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mSi+SAFM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666CA3E5A2F
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8963E7BA9
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779180192; cv=none; b=P+gEuo2rN1emgshWx30AvfMKr0p6wGg9SLPzfpeszj0etbqMelCat6j55sjLewwFWg86aITGhAzvUYSERve0KNTtum6o2o5gMCdAGhU+btssyXMes35kAv+IBeB0/KFy1JOvr5vIoJJumgpIVsZVsSdFuw1ym10lAbNmxDEzlBY=
+	t=1779180228; cv=none; b=IqIzv75W/6Cdt2+21rPQbgoCKCEstddFKGZ+6jC6dAZrA+xpZXE9S0HTKZwnjVi1x0IA6p+44L0UsGrzVegebyyVK4andWCmE1EWLMOKTvUcyn1MC54p2oAo7Hdh7dnfOyEB3GY8uFVV5ce1VnXcMVE0h6+BWc6XdxYIrei4lm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779180192; c=relaxed/simple;
-	bh=GZByO2VDIprL7smzrTiU2wMTuNMdmVEjQ7Th5ILaSAE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=o1tlODAPz8vXm/NfxS7XamzhMdJ3ARlLlCa/U0KAQg74KHhk1B4R579Z2rJ7mKoOMILvDad1eIS9AlfavJm8IFy24mio5omDgBDBQcjbq8P23IIwGrUxw8skKwAybSPaFj9J7zlnnY/lpcPDq1jO2ZVEonUL+uMRN3ZrO8+jsAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=geOMkfgD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A81A0C2BCB3;
-	Tue, 19 May 2026 08:43:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779180192;
-	bh=GZByO2VDIprL7smzrTiU2wMTuNMdmVEjQ7Th5ILaSAE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=geOMkfgDuDiAtI941M18j+Pf2UpIZ1j8Zdi5hu/1smSeg57NfbIsLU1v/iRtlE1sR
-	 H1pLsZ1VhUisluD/8yqwOZqd/CR/QacUmB/gafMydNiq8iATvUfkyjYjEwzQfFExus
-	 /s8AjGsR341EEXA4OTyR1ZlcG5JjtLSrFkdOv+kAi/PtBBe6FdkzKo8XP/whOQ8Ce9
-	 Xaw2H4uikOBpzmj7M3kN+mMWdM0L+Ym6fg2MhqmV1dRggH0uZ/vWUPWcexUtIMRMJF
-	 OMShaWhEg1KvKGzMxWSuJEBqwo80/+YAmeZC8ANO+yYGWe3WzhCGAyZtfM3Ioks55t
-	 RHhEGFUDqsIgg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 4/8] iommu/msm: Look up masters per IOMMU instance
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Alexandre MINETTE via B4 Relay" <devnull+contact.alex-min.fr@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260519-mainline-send-v1-sending-v3-4-3dd7aa125353@alex-min.fr>
-References: <20260519-mainline-send-v1-sending-v3-4-3dd7aa125353@alex-min.fr>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 19 May 2026 08:43:05 +0000
-Message-Id: <20260519084305.A81A0C2BCB3@smtp.kernel.org>
+	s=arc-20240116; t=1779180228; c=relaxed/simple;
+	bh=SBsRx6COMWb8PWEHsPOkez+jZUIfIF/PVkJNqhE4ISI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uve17IUpu6JMreJ3P1A//t3atVgVIoJ8iD7+MaCDc1mgQnRip2dESU4uTdlDacifoLhS3Oi5aFcjOlq/44sln/po4koNeKBw96Uc/5n3h1lCuJe7KOuiWCszRzqFRONTgLhoQBSpHScQy8pK7nPu5Z6o8XE4sxrJmZcj9GtM3JA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mSi+SAFM; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-44a5174670eso1803390f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 01:43:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1779180223; x=1779785023; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FmS0AK5bqXeh0xlGi+onoeqz5lotlB7Tla6Mg7VB7/0=;
+        b=mSi+SAFMgqDpfu2NifGgD9RXIyBIPLxHraaKGpHN6XuXY8C/s8tVOJ3brFKkdVtDnk
+         /bUVGTcmN97MYNB8cIQDuBxENtfB8j88yNkJ+fJenv/2Fyk1MItPcBNCzobQf/Wf5AD4
+         2AoRUwhmkdTJpeIgdxBRKdLO6XSAz+XvvK+p8Vp336JVlya0zjCgDeqdJmQQaXM0fS2Q
+         9GSnKFyDmJkKB+eHRG8Ftem3GPp47ef162VQ2/7FrS7tA5Bv6Z0ZQeyJXJ7Q3lP9hyqL
+         dr7P5K/1mn7sWVos2/fa6bJWurg5qTugydic+8SF0IqTTspkIwY/BdC+uf52sV+csMEV
+         JKfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779180223; x=1779785023;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FmS0AK5bqXeh0xlGi+onoeqz5lotlB7Tla6Mg7VB7/0=;
+        b=ePqh4GPSkplcmU0VX59UeY7olGHtBR7FqPALoVkqixVWixPlEUZdv6k3G6CdXJzMJy
+         Ir4OcTGTFvuA+jlU3tSnS2dbSXGwYe3/tP5O6WkZflnNds0ZWTU/VFcsQ7KIfOav242q
+         qsiqXJz9RzRqenhbsmTLuhVIcjAoBwp9PcgGqEB+zKIBFvNdg7ovCSfWlL5s6m4NQi69
+         WvqajeUpvjPVwByUkIVji6Brz71SjRve1yXcAD6yPjbiqrUj6R4WubsMIu2IJin3aSUK
+         Rm3aiqlU8zMFSz4kicFA7Q2nQmHZhnv/WvATREv/rKJ2lPaS227BEZRKOgolgY5i/5FI
+         q5nQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+574gJkLxmO+l4BANL0IeoMOuzgpQrtKwIHbbUwx/GkGDZdm2Tab9RbAh0HwpeVz2AgMtlA41l7zTP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH/lbU6htPcnbprsE1KktXhOt5OD7i4Y7dxL2a2V9VTojuvxO+
+	5ZbZMUCcx0MKKBvqfxnT8xaJWewu0fBv+zdZGfQUFexhYApuydQ3un4tCWEsLCDTNew=
+X-Gm-Gg: Acq92OF/GSfdx0ZtrNRyOoE5xUUXyJ+qy1ZhjZaMgtcPPq9vSvZggW1huxFxAul6zt5
+	kOXkNroH6P2s46sg+LHsSst5AvN1tSsh8LFXgzSdZakqpvl9HaLP2nvocs9Dl9eCYhvvE/xW809
+	dOgxN9iMZAl3CVxmX/Wg91ilTAeTOrssyRPNDBg2XOPqSaxLHHInudlauW/MKsetHEDpKs5H8HJ
+	Hx22qo1MhUlK+Ya1HFDgqwF3OpEIT8ogCB6s+eorKij08r5Zzpm0e2ajcG/IcZUJdyqJEiRp/Kt
+	jG8ozug7RkyVTlRg4EGtXvqEaQQ4g/rR3oFBvoLBiBk/9zTkf34JAD7Jw4NLF65RcXTcNi05KRb
+	JLb4c3h9NzsNzK+YE+PHopiEs9A5geYHe6wZH7IdPVwgaTW/h0Wv9UHRA8cn5/M5G4D/xIKgZhb
+	QpxJ9Ro/Ci8WM04wtHBz6RA4ughY7Jp1+N5/4aaFVUlsMg
+X-Received: by 2002:a05:6000:4210:b0:43b:4f86:e985 with SMTP id ffacd0b85a97d-45e5c5dd47amr28790430f8f.33.1779180223003;
+        Tue, 19 May 2026 01:43:43 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0fe1a41sm47709855f8f.31.2026.05.19.01.43.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 May 2026 01:43:42 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/2] backlight: Add SY7758 6-channel High Efficiency LED
+ Driver support
+Date: Tue, 19 May 2026 10:43:37 +0200
+Message-Id: <20260519-topic-sm8650-ayaneo-pocket-s2-sy7758-v3-0-ec8194bbc885@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALkiDGoC/5WPzQ6CMBAGX8X07JqlpYCefA/joZQF6g8lLRIJ4
+ d1t8aI3PU7yZWZ3Zp6cIc8Om5k5Go03tgsgthumW9U1BKYKzDjyDFNewGB7o8Hfi0wiqEl1ZKG
+ 3+koDeA5+ynNZgMAiIcrrhLhkQdU7qs1zzZzOb/aP8kJ6iO64aI0frJvWO8Yk7v5MjgkgoFaqI
+ llXpeDHm+mUszvrGhabI/+wCvzRyoM1fpNilmJF+y/rsiwvRIsjIEEBAAA=
+X-Change-ID: 20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-3081ee7f1e25
+To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
+Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, KancyJoe <kancy2333@outlook.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1520;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=SBsRx6COMWb8PWEHsPOkez+jZUIfIF/PVkJNqhE4ISI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqDCK8S/slQPHXNXiiLc2aYeHWz7TKawBWv30dZUIO
+ Bdzq9q6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCagwivAAKCRB33NvayMhJ0XWrD/
+ 9ZkZGEDmabhlVXZ5CFJPKdgl4HPnSgbIpAlrs4w9RkP9cT0IDxI2J9pjhr5x4YRFpvOs6QzMB+d4Lw
+ g9FlRycyhX93EgznWHgvhpvjWItJewGSwLOJ/bx+lHK4eBr4faFs/mOJsNXNtH9b5jcmO90q49sreq
+ mRHdEngfAO3DMOcZkMEMQr0/+Do3r1fQd+5dfD0qs7kOXC9ZG1jCBvipyUVwWisgKMdHDILdv7sZXv
+ zTE15MoylurfnE4m8EkDvTOSEx85N3Ibq4SRRz1psqLOIbhmfJ+gsej1aMQWoh6MZMlINgDXfojFo8
+ CLZlIjVDuIh6+lHeW4XOC1NBh/2Xvug09+3nAUFh4MuMPFij9RTS+p1d/tJiLA+6+SCmiZn5pWgcvy
+ ZIVmofvjUjEIk6B5RPmqiMvR7RbqnHC5N4FSKHRmpqgGlovDaUa7gelUvkqsLAuR+vECNP+njNU1Zn
+ 4pPBYMisf+g+t5tt/Uo9l0dOyCsvwmzR/kzwI91BQ2vJzSQDpfPGtEn+dneZLjjLwDl30Yk8MLnej1
+ 4SrZHx/dvwSYJTs5FW6yXSLRZNeL0gOZ78YnlrFXfP+t+gmUkCCwcaQPajPQ3XbMeAjxrwuw6yvd7m
+ LH3MGkaGlvfSUFgi2pwuB5ty4Kn0fUnYEaGfaG1zdOl5XNv1CjonJOJS2byg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299911-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299913-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,gmx.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,outlook.com,linaro.org,oss.qualcomm.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,contact.alex-min.fr,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[alex-min.fr:email,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: 1FBAF57A80E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 0093557A5C8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [Critical] msm_iommu_attach_dev and detach unconditionally loop over all =
-shared masters, breaking IOMMU isolation, causing attach failures, and corr=
-upting domain lists.
-- [High] msm_iommu_iova_to_phys() performs address translation using the wr=
-ong hardware context bank for shared IOMMUs.
-- [High] Error path in msm_iommu_attach_dev leaks IOMMU clocks.
-- [High] Buffer overflow in insert_iommu_master when writing stream IDs to =
-master->mids array.
-- [High] msm_iommu_probe modifies a global list without acquiring the requi=
-red lock, causing race conditions.
---
+Implement support for the Silergy SY7758 6-channel High Efficiency LED Driver
+used for backlight brightness control in the Ayaneo Pocket S2 dual-DSI panel.
 
-commit a857d6e3a3b0380237f9c6c7b9ba76932246dfa4
-Author: Alexandre MINETTE <contact@alex-min.fr>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Dropped unused macros
+- Added second autho entry to match header and commit message
+- Move my signof at the end
+- Switched to flseep()
+- Link to v2: https://patch.msgid.link/20260430-topic-sm8650-ayaneo-pocket-s2-sy7758-v2-0-308140640de9@linaro.org
 
-iommu/msm: Look up masters per IOMMU instance
+Changes in v2:
+- Fixed bindings subject and removed "|"
+- Added review tag
+- Added higher delay before reading ID from HW (100us was too short)
+- Removed probe defer if i2c read fails
+- Link to v1: https://patch.msgid.link/20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-v1-0-0caade5fdb32@linaro.org
 
-This commit updates the MSM IOMMU driver to look up context descriptors on
-each IOMMU instance instead of using a global device provider. It introduces
-a helper to search the target IOMMU context list when probing and attaching
-devices. This aims to prevent null pointer dereferences when a device
-references multiple IOMMU provider nodes.
+---
+KancyJoe (1):
+      backlight: Add SY7758 6-channel High Efficiency LED Driver support
 
-> diff --git a/drivers/iommu/msm_iommu.c b/drivers/iommu/msm_iommu.c
-> index 0ad5ff431d5b6..9c03878d0d2cb 100644
-> --- a/drivers/iommu/msm_iommu.c
-> +++ b/drivers/iommu/msm_iommu.c
-> @@ -357,17 +357,25 @@ static int msm_iommu_domain_config(struct msm_priv =
-*priv)
->  	return 0;
->  }
-> =20
-> +static struct msm_iommu_ctx_dev *find_iommu_master(struct msm_iommu_dev =
-*iommu,
-> +						   struct device *dev)
-> +{
-> +	struct msm_iommu_ctx_dev *master;
-> +
-> +	list_for_each_entry(master, &iommu->ctx_list, list)
-> +		if (master->of_node =3D=3D dev->of_node)
-> +			return master;
-> +
-> +	return NULL;
-> +}
+Neil Armstrong (1):
+      dt-bindings: leds: backlight: document the SY7758 6-channel High Efficiency LED Driver
 
-Since this patch allows multiple masters to be added to an IOMMU's ctx_list,
-are there other functions that still assume the list only contains a single
-element?
+ .../bindings/leds/backlight/silergy,sy7758.yaml    |  53 +++++
+ drivers/video/backlight/Kconfig                    |   8 +
+ drivers/video/backlight/Makefile                   |   1 +
+ drivers/video/backlight/sy7758.c                   | 259 +++++++++++++++++++++
+ 4 files changed, 321 insertions(+)
+---
+base-commit: 39704f00f747aba3144289870b5fd8ac230a9aaf
+change-id: 20260428-topic-sm8650-ayaneo-pocket-s2-sy7758-3081ee7f1e25
 
-For example, doesn't msm_iommu_iova_to_phys() hardcode
-list_first_entry(&iommu->ctx_list, ...) to select the master and query its
-specific hardware context bank?
+Best regards,
+--  
+Neil Armstrong <neil.armstrong@linaro.org>
 
-If translation is requested for any device other than the first one attached
-to the IOMMU, could the driver read the hardware registers for the wrong
-context bank, returning incorrect physical addresses?
-
->  /* Must be called under msm_iommu_lock */
->  static struct msm_iommu_dev *find_iommu_for_dev(struct device *dev)
->  {
->  	struct msm_iommu_dev *iommu, *ret =3D NULL;
-> -	struct msm_iommu_ctx_dev *master;
-> =20
->  	list_for_each_entry(iommu, &qcom_iommu_devices, dev_node) {
-
-This problem wasn't introduced by this patch, but msm_iommu_probe() adds the
-newly allocated device to the global qcom_iommu_devices list without holding
-the msm_iommu_lock spinlock:
-
-msm_iommu_probe() {
-    ...
-    list_add(&iommu->dev_node, &qcom_iommu_devices);
-    ...
-}
-
-Since other functions (like find_iommu_for_dev) concurrently access this
-list under the lock, could this unprotected list mutation lead to list
-corruption or a crash in asynchronous probing scenarios?
-
-> -		master =3D list_first_entry(&iommu->ctx_list,
-> -					  struct msm_iommu_ctx_dev,
-> -					  list);
-> -		if (master->of_node =3D=3D dev->of_node) {
-> +		if (find_iommu_master(iommu, dev)) {
->  			ret =3D iommu;
->  			break;
->  		}
-
-[ ... ]
-
-> @@ -405,10 +413,7 @@ static int msm_iommu_attach_dev(struct iommu_domain =
-*domain, struct device *dev,
-> =20
->  	spin_lock_irqsave(&msm_iommu_lock, flags);
->  	list_for_each_entry(iommu, &qcom_iommu_devices, dev_node) {
-> -		master =3D list_first_entry(&iommu->ctx_list,
-> -					  struct msm_iommu_ctx_dev,
-> -					  list);
-> -		if (master->of_node =3D=3D dev->of_node) {
-> +		if (find_iommu_master(iommu, dev)) {
->  			ret =3D __enable_clocks(iommu);
->  			if (ret)
->  				goto fail;
-
-With this change, multiple masters can be present in the ctx_list, but
-msm_iommu_attach_dev() and msm_iommu_identity_attach() still unconditionally
-iterate over the entire ctx_list instead of filtering for the target master:
-
-msm_iommu_attach_dev() {
-    ...
-    if (find_iommu_master(iommu, dev)) {
-        ...
-        list_for_each_entry(master, &iommu->ctx_list, list) {
-            ...
-
-When the first device attaches, does this incorrectly provision hardware
-contexts for all shared devices using its own domain, breaking IOMMU
-isolation?
-
-Also, because msm_iommu_alloc_ctx() can return 0, the safety check
-if (master->num) evaluates to false for context bank 0. When a subsequent
-device attaches, the loop re-allocates contexts and executes
-list_add(&iommu->dom_node, &priv->list_attached) a second time. Could this
-result in corruption of the doubly-linked domain list, leading to an
-infinite loop and hang?
-
-If a non-zero context bank was allocated, subsequent attaches hit
-if (master->num) and unconditionally fail with -EEXIST. Would this prevent
-shared IOMMUs from functioning?
-
-Furthermore, does detaching one device via msm_iommu_identity_attach()
-unintentionally tear down active DMA mappings for all other shared devices?
-
-If the loop encounters a master with a non-zero context bank
-(if (master->num)), it sets ret =3D -EEXIST and goes to the fail label:
-
-msm_iommu_attach_dev() {
-    ...
-    if (master->num) {
-        dev_err(dev, "domain already attached");
-        ret =3D -EEXIST;
-        goto fail;
-    }
-
-Since the fail label unlocks the spinlock and returns without calling
-__disable_clocks(iommu), and shared IOMMUs will hit this reliably, does
-this cause a permanent clock resource leak during probe/attach?
-
-[ ... ]
-
-> @@ -601,10 +606,10 @@ static int insert_iommu_master(struct device *dev,
->  				struct msm_iommu_dev **iommu,
->  				const struct of_phandle_args *spec)
->  {
-> -	struct msm_iommu_ctx_dev *master =3D dev_iommu_priv_get(dev);
-> +	struct msm_iommu_ctx_dev *master =3D find_iommu_master(*iommu, dev);
->  	int sid;
-> =20
-> -	if (list_empty(&(*iommu)->ctx_list)) {
-> +	if (!master) {
->  		master =3D kzalloc_obj(*master, GFP_ATOMIC);
->  		if (!master) {
->  			dev_err(dev, "Failed to allocate iommu_master\n");
-> @@ -612,7 +617,6 @@ static int insert_iommu_master(struct device *dev,
->  		}
->  		master->of_node =3D dev->of_node;
->  		list_add(&master->list, &(*iommu)->ctx_list);
-> -		dev_iommu_priv_set(dev, master);
->  	}
-> =20
->  	for (sid =3D 0; sid < master->num_mids; sid++)
-
-This wasn't introduced by this patch, but does this function lack bounds
-checking when appending stream IDs to the master->mids array?
-
-If a maliciously crafted or malformed Device Tree provides more than
-MAX_NUM_MIDS (32) stream IDs for a single device, could this result in an
-out-of-bounds write, corrupting adjacent heap memory?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260519-mainline-s=
-end-v1-sending-v3-0-3dd7aa125353@alex-min.fr?part=3D4
 
