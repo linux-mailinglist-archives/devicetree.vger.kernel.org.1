@@ -1,179 +1,146 @@
-Return-Path: <devicetree+bounces-299900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299902-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cCs9GGoiDGpCXAUAu9opvQ
-	(envelope-from <devicetree+bounces-299900-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:42:18 +0200
+	id yAEuEqIhDGqiWwUAu9opvQ
+	(envelope-from <devicetree+bounces-299902-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:38:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE71C57A566
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:42:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A55157A484
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 40A1A30948CB
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:29:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81C84304743A
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF3D3DEADC;
-	Tue, 19 May 2026 08:29:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74C8C3E169F;
+	Tue, 19 May 2026 08:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N0cgEBog"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcQmoS6G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBB3241C62;
-	Tue, 19 May 2026 08:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 516B63E0239
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779179393; cv=none; b=pY+xW/TaK2Os2EPIyBPUSqXQroWHObpOa3vxXe4bumWez2tmsX5Gt7waY3++giBfgBtPx5RScgdaP7sxKCHtXFkYme3pR3u8aOYIWZmV9z9F2KL+2kgJYB+mU3jTES/u9YZ8Xl6DQib6xfj3aHwqz88ny/arTxpnb8qdRO4y568=
+	t=1779179480; cv=none; b=NhVIkadQfbE+VT/S2aJBkJHdQVKN22HPw5urONJWdQMVj2wuK/ncioRNTJIHiLzWH7wAVsicBV8SYUDkLvRIa4RLH7dR4oMuBuUFZMhmcu9JAANcLg7jmK/RYoIiorHQ7j/OtcSk+KYKwlCvjsKdavWU68MZl6m7oiIjqRdm4C0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779179393; c=relaxed/simple;
-	bh=sxi4Nd3428EAjrfiX0HNjbsVsdPmFrqLWCGIPz6abEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NiXSvRyK5/dICgs/NU2eItsvT0ncNHAfuClzZqtw5LI6g2tD+lREuxRS62syUbWzBu1QT/LGmmKqsKZPxnWsEPLSculIPWNHYD35snURsbYhKtkBtLVhz7v9ybUuou8FY7FxqnSGzvCvYmEqNx5u+tPmn2bb73+2TkoWtT7T7xM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N0cgEBog; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBF03C2BCB3;
-	Tue, 19 May 2026 08:29:52 +0000 (UTC)
+	s=arc-20240116; t=1779179480; c=relaxed/simple;
+	bh=gYstxcuWc96pDbCmO9hN3d3Df6cw8nt86KfRpF2dMc0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hYm/E7M6I8E2cpdKlbSwkheOlqN5BRaLBoPGXip0ZFS+t/wH3+Qq/ooDGhwgqT+eWaCHDYjvChiVscUxuftDa9dZe+v13ErUwsCwWTfaYCOjJ9YCMW7eFBqhmA1TGby/AkuIfnxpd3r7mX8Js5yajTknDfLx5jT3rjBASXzGtTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcQmoS6G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D1E8C2BCF6
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:31:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779179393;
-	bh=sxi4Nd3428EAjrfiX0HNjbsVsdPmFrqLWCGIPz6abEI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N0cgEBogM3z+HeA/OXJOJ2GxWoPy8vgw4rkhTieDJOdOOcdM6JqbMBZAhJxziSrrR
-	 ZiVCL98OhiOOQF714K+o0uEE3cwuOqTQc6jFtALsCuHLI3rHX9N+RjM7DPIucbLyIs
-	 TKTz8Yt21LLhJdLZ+aJ08Oe9LEQlKudXiKniDXktGDayEp9ef88qx4VWsJtD2Hd3K0
-	 8TxhN5l9nFsCd4TplzqT9ZaMvIlwkrSnTzd4jbEwHtacuzSvI+m90o6HH6b7m2wTMq
-	 lQJFknLZNhTFDNYHkmqM/Tpd+Fr+xxdoIc/ofp9F8AE7daqpTM2aVcGfRApQG837fr
-	 7cf/QlG7APnhQ==
-Date: Tue, 19 May 2026 10:29:50 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	Frank Li <frank.li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
-	"festevam@gmail.com" <festevam@gmail.com>, "mturquette@baylibre.com" <mturquette@baylibre.com>, 
-	"sboyd@kernel.org" <sboyd@kernel.org>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	"Chancel Liu (OSS)" <chancel.liu@oss.nxp.com>
-Subject: Re: [PATCH 2/5] dt-bindings: connector: Add fsl,io-connector binding
-Message-ID: <20260519-macho-degu-from-nibiru-960af2@quoll>
-References: <20260509024846.2094049-1-chancel.liu@nxp.com>
- <20260509024846.2094049-3-chancel.liu@nxp.com>
- <20260515-resourceful-singing-roadrunner-ce25ec@quoll>
- <AM9PR04MB8353FE81D06852D45514E460E3032@AM9PR04MB8353.eurprd04.prod.outlook.com>
- <d2b13e51-1684-4acb-a5ed-294c8aa95906@kernel.org>
- <AM9PR04MB83538C4A07A6835FF8A74793E3002@AM9PR04MB8353.eurprd04.prod.outlook.com>
+	s=k20201202; t=1779179480;
+	bh=gYstxcuWc96pDbCmO9hN3d3Df6cw8nt86KfRpF2dMc0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dcQmoS6GLFi2R0yaK0C+WYP8gkJewzayiAjBXzXfT2KcyF9dSeBYIddmtSFZtBWHU
+	 O3DHth1w+2iP4VE1/+TCuDrZtuO/MvbRD+/IeJ7MCnPFz3/JCBhBrKwCjySS/kzVC6
+	 k0UtWCTfrG54Q87sNtpV2drr5qvL+Vh/SJi6BxmRE1hO/6PS9li7m+OvpeFZkNLibk
+	 oiEGK6BoYE7HYf8Q/6oXBtDdmTCTriNYHqCotL0fi4SZ09Wt21k4uNzeoakik30+lm
+	 xp/PeYQgwws2zh+kiQPKBaIpfFuiTkK9T+lvBcznaEzGQRP2vxEJqNZtuvC0yZzG9D
+	 /wIRXTeiCkuNA==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5a88db610ccso3830281e87.2
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 01:31:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9TQVi0PxGx/zWMZyvKeq/8sD+Xai2QU6r+ZncVxpzEOGxb/rwpoJHmLxRxAbqGqIFCyuesxNIb5u/6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD3CZvRPWorRQ5mumafh3mgdvkDmiCoJ60+bPywbQfa59aCHpY
+	L9qi2SzbTtnLRlxFVPv+GS4kldjsgAfXlP0BRtzfxdGpKZ6pdXwKMbsBS95XdavIqtXIa1Z/kU6
+	m/gH5SPssz6+yCDT16DktUD8szKyYzeU=
+X-Received: by 2002:a05:6512:1286:b0:5a8:65c8:dd90 with SMTP id
+ 2adb3069b0e04-5aa0e73f4d5mr5272064e87.4.1779179478814; Tue, 19 May 2026
+ 01:31:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB83538C4A07A6835FF8A74793E3002@AM9PR04MB8353.eurprd04.prod.outlook.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+References: <20260519-mainline-send-v1-sending-v3-0-3dd7aa125353@alex-min.fr> <20260519-mainline-send-v1-sending-v3-3-3dd7aa125353@alex-min.fr>
+In-Reply-To: <20260519-mainline-send-v1-sending-v3-3-3dd7aa125353@alex-min.fr>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 19 May 2026 10:31:06 +0200
+X-Gmail-Original-Message-ID: <CAD++jLm=BxHsPJ4rgqwY8SvaefZUO+Pfv8E8xizqPsdJZw5weA@mail.gmail.com>
+X-Gm-Features: AVHnY4IFkYYcJkwE7oBtW7Rq4mnePDIoacVSym4JzKnPjR_3OiAFXxYaV2dbJIA
+Message-ID: <CAD++jLm=BxHsPJ4rgqwY8SvaefZUO+Pfv8E8xizqPsdJZw5weA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/8] pinctrl: qcom: Register functions before enabling pinctrl
+To: contact@alex-min.fr
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Guru Das Srinagesh <linux@gurudas.dev>, Rob Clark <robin.clark@oss.qualcomm.com>, 
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, iommu@lists.linux.dev, 
+	phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-299902-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299900-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,baylibre.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,oss.nxp.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: CE71C57A566
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,alex-min.fr:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 9A55157A484
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 19, 2026 at 02:56:24AM +0000, Chancel Liu wrote:
-> > >>> +description:
-> > >>> +  The NXP I/O connector represents a physically present I/O
-> > >>> +connector on the
-> > >>> +  base board. It acts as a nexus that exposes a constrained set of
-> > >>> +I/O
-> > >>> +  resources, such as GPIOs, clocks, PWMs and interrupts, through
-> > >>> +fixed
-> > >>> +  electrical wiring. All actual hardware providers reside on the base
-> > board.
-> > >>> +  The connector node only defines index-based mappings to those
-> > >> providers.
-> > >>> +
-> > >>> +properties:
-> > >>> +  compatible:
-> > >>> +    const: fsl,io-connector
-> > >>
-> > >> Everything is IO. Everything is connector, so your compatible does
-> > >> not match requirements from writing bindings.
-> > >>
-> > >
-> > > Yes, this compatible is too generic. I will rename the compatible to
-> > > fsl,aud-io-connector.
-> > 
-> > aud is not much better. Which boards have it? What's the pinout? What's
-> > standard? Is it described anywhere? If so, provide reference to spec/docs.
-> >
-> 
-> This is not an industry standard electrical interface. This connector
+Hi Alexandre,
 
-Then if you do not have standard, then you have board specific layouts
-thus you need board-specific compatibles. You can use fallbacks. Generic
-fallback could work, but both io-connector and aud-io-connector are just
-too generic. Every connector is "connector" and "io", thus absolutely
-anything can be "io-connector". "aud" improves it only a bit, thus
-honestly I would go with board specific fallback as well.
+thanks for your patch!
 
-> is present on i.MX95-19x19-EVK and i.MX952-EVK. For example, the
-> "i.MX 95 19mm x 19mm Evaluation Kit" homepage[1] publicly documents an
-> audio board connection through which IMX-AUD-IO card is connected. The
-> detailed user manual (UM12022) is listed as official documentation[2],
-> but it is behind an NXP login, so it is not suitable as a public
-> reference for upstream. Therefore I list it here to illustrate it's
-> mechanism:
-> 
-> +-----------------------------+                      
-> |        Base Board           |                      
-> |   +-----+      +---------+  |           +---------+
-> |   | SPI +------+         |  |           |         |
-> |   +-----+      |         |  | GPIO MAP  |         |
-> |                |         +--|-----------+         |
-> |   +-----+      |         |  |           |         |
-> |   | I2C +------+         |  |           |         |
-> |   +-----+      |         |  | CLOCK MAP |  AUD-IO |
-> |                |connector+--|-----------+   CARD  |
-> |   +-----+      |         |  |           |         |
-> |   | I2S +------+         |  |           |         |
-> |   +-----+      |         |  |           |         |
-> |                |         |  | INT MAP   |         |
-> |   +-----+      |         +--|-----------+         |
-> |   | I/O +------+         |  |           |         |
-> |   +-----+      +---------+  |           +---------+
-> +-----------------------------+                      
-> 
-> [1]https://www.nxp.com/design/design-center/development-boards-and-designs/IMX95LPD5EVK-19
-> [2]https://docs.nxp.com/bundle/UM12022/page/topics/pcie_interface1.html
+On Tue, May 19, 2026 at 9:16=E2=80=AFAM Alexandre MINETTE via B4 Relay
+<devnull+contact.alex-min.fr@kernel.org> wrote:
 
-Best regards,
-Krzysztof
+> From: Alexandre MINETTE <contact@alex-min.fr>
+>
+> pinctrl consumers can request states while the pinctrl core enables the
+> controller. On Qualcomm pinctrl drivers this can happen before the SoC
+> function list has been registered, which leaves the function table
+> incomplete during state lookup.
+>
+> On APQ8064 this can fail while claiming pinctrl hogs:
+>
+>    apq8064-pinctrl 800000.pinctrl: invalid function ps_hold in map table
+>    apq8064-pinctrl 800000.pinctrl: error claiming hogs: -22
+>    apq8064-pinctrl 800000.pinctrl: could not claim hogs: -22
+>
+> Register Qualcomm pinctrl with devm_pinctrl_register_and_init(), add the
+> SoC pin functions, and only then enable the pinctrl device.
+>
+> Signed-off-by: Alexandre MINETTE <contact@alex-min.fr>
 
+I think I've seen this one before, if Bj=C3=B6rn or someone else from Qualc=
+omm
+can review this and test on some other hardware it would be great.
+
+But if there is no reaction I might just merge it so something happens.
+
+Yours,
+Linus Walleij
 
