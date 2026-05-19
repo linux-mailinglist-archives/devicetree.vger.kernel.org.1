@@ -1,116 +1,120 @@
-Return-Path: <devicetree+bounces-299847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299849-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GNB1M1wVDGoZVQUAu9opvQ
-	(envelope-from <devicetree+bounces-299847-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:46:36 +0200
+	id eNueIf8WDGrrVwUAu9opvQ
+	(envelope-from <devicetree+bounces-299849-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:53:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BFC5795BE
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:46:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4769D57974F
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:53:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 36CBD30245BD
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:46:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C68D6304FB81
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 07:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D923DD526;
-	Tue, 19 May 2026 07:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876FA3DCDAE;
+	Tue, 19 May 2026 07:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ce6+8eSh"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Vzag1gZm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812FB3DD502;
-	Tue, 19 May 2026 07:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5E13DD503
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 07:47:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779176792; cv=none; b=owBy/bDIovpccX//HOsVr24GWnwq2em8jHGBatJpFlSlavhP+0NytVEfSzn8ql3W2TnvbVTiXVjUWQmNZDZ96lgAe8qPQvHQqP6aZjCVuGAnP2vz9Vvfr3+qf6aymn+83YCN0auXlDp3smO2YfYWtprFNv/zx8ph+lE0t8RZuZ0=
+	t=1779176847; cv=none; b=CVtIbxbaJN4aRaMGj4w6KcfDPIh+gI5xhkkuckfKLrYWilLj9zJkAhBOs/EfsQrYOp+ZdWU9+8EFBR/r9jR9uTcZrtRxq4oOODlljFMkITLj9jOb5tEO3WXhacqPdDUlTNRdIm8Wgy3v+eLHtEVIIOWrq339iS+c9QyBIN/IGQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779176792; c=relaxed/simple;
-	bh=rPpr6j3hbc/67sdYImJCYumiIOeGmiXbExh3K2Pa4vE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fjM/NNepZq2eo2RAMYcCajD5LqVfwvJ+a7d7jn2z7VtX9znhyqQG2Kh20ZmUneCeBByer2LxPQFh+lbio1U1b0fba1u5bZRzUrayYyjO+JbspA1lroC4yKc8pSrbmhWfwXon/wNQciFz132c+do/zA0yNvXzJBmQeF/bLsPkIDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ce6+8eSh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1F91C2BCF6;
-	Tue, 19 May 2026 07:46:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779176792;
-	bh=rPpr6j3hbc/67sdYImJCYumiIOeGmiXbExh3K2Pa4vE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ce6+8eShtnvia4gGyb/+HtvmYH7LTUNwBUbsNptPu0O+uy/vnOjaB0eoYuzypZQvw
-	 Ur/hKB9G2YDinkrdzGfmFo1/Ff4y4TXFyW+/NZ8IXhxVhKg4Dhm1wuDOZ6dqz+mB7w
-	 At0nEFFiQpEigKQM0RIP+HI8MNJXjYYTn8vKbpUf27VdsUgV3OmYYD26NL+K/srUNv
-	 Vf/3ut8Pyjk7Ld7LyYOF3rPqeCjJQTz746UtvhTbR/y9JSu8h3OrVUa1veQv6gRibD
-	 BDSBvFCGYtezVgZA67gk77ADHe/Dnclc1D3YS176EfcqqTlAWRni61HO9bmRrl1VGO
-	 pmXTNvN07JLYA==
-Date: Tue, 19 May 2026 09:46:29 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Taniya Das <taniya.das@oss.qualcomm.com>, Shawn Guo <shengchao.guo@oss.qualcomm.com>, brgl@kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom: add the definition for
- the USB2 PHY reset
-Message-ID: <20260519-able-vagabond-jaguar-ceb8fd@quoll>
-References: <20260518-nord-clk-usb2-phy-v2-0-17a86cb307c3@oss.qualcomm.com>
- <20260518-nord-clk-usb2-phy-v2-1-17a86cb307c3@oss.qualcomm.com>
+	s=arc-20240116; t=1779176847; c=relaxed/simple;
+	bh=Es658tDUhANj0f65HggskjZBi7myAITa1mQQ3XfnQ7k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oDfwdn3eE+MY5uu9zPGK3oYaA63DM6RLxz/CeJrzcQbzRjmv97w9/Z13K2A8m6qXBi3kdQrIYO0Yhl6ce998XKkJu/h7V2GNwLAjlwFMHDNTk1QTBgEsA3DeLn6+ng3kabpRd41cXANNyixe+/F3aPh+qVqv60Ep51rIwBdRslA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Vzag1gZm; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=srNJzadSlYth5E
+	K7RTZS50LIHoTspbgGwB8oo2XUbM0=; b=Vzag1gZminY87pBKXNWF21D2DuLBMg
+	e8WtpP3ur4/E6j6Fl4khJB/ahtS3i1DcBp1DomtzJ9dI5lj+vKw/wsiewJvnNWk7
+	wSlNnc2WyHxqYqv72SrjAfRHUtVLgvfzA5D0fjtNllWSzLiYiO45uEXl81wBxMbA
+	r7PwvoKVVCU6HgUr/vrmhg+QfIWRx4ouyt3EwDvFT4wJ/5eDZBCtgrFJq28A5qOG
+	1EFgXRFSBWq7WhWzzKU/7b6zE4lo5HRJnlO53rbsplYswiFh2WSeURDLhTqYwAUX
+	6OXifaUzwb8wjSKdvJpx6WMBnQWgtvL4Ltx9qjupuGRZ5SCR4hPz6NjQ==
+Received: (qmail 167933 invoked from network); 19 May 2026 09:47:12 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 May 2026 09:47:12 +0200
+X-UD-Smtp-Session: l3s3148p1@PW8R4yZSGLhUszca
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 0/2] arm64: renesas: r8a78000-ironhide: enable SCMI
+Date: Tue, 19 May 2026 09:47:02 +0200
+Message-ID: <20260519074702.3308-4-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260518-nord-clk-usb2-phy-v2-1-17a86cb307c3@oss.qualcomm.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-299847-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-299849-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FREEMAIL_CC(0.00)[sang-engineering.com,kernel.org,vger.kernel.org,glider.be,gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
-X-Rspamd-Queue-Id: 74BFC5795BE
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:mid,sang-engineering.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 4769D57974F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 18, 2026 at 12:34:32PM +0200, Bartosz Golaszewski wrote:
-> Provide the USB2 PHY reset definition in dt-bindings for the Nord negcc
-> module in order to enable adding the USB nodes in DTS.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> ---
->  include/dt-bindings/clock/qcom,nord-negcc.h | 1 +
->  1 file changed, 1 insertion(+)
+Here are the DT additions which allow the Renesas R-Car Gen5 board
+Ironhide to handle clocks via the SCP through SCMI. For that, we enable
+MFIS controllers, STCM transport nodes, and finally, SCMI. Needs the
+MFIS driver which is currently in -next.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Best regards,
-Krzysztof
+Changes since (internal) v1:
+* improved comment about transport nodes in patch 1
+* fixed abbreviation typo in commit message in patch 2 (Thanks, Marek!)
+
+Kuninori Morimoto (2):
+  arm64: renesas: r8a78000: add MFIS, MFIS SCP and transport nodes
+  arm64: renesas: r8a78000-ironhide: enable to use SCMI
+
+ .../boot/dts/renesas/r8a78000-ironhide.dts    |  34 +++++
+ arch/arm64/boot/dts/renesas/r8a78000.dtsi     | 129 +++++++++++++++++-
+ 2 files changed, 160 insertions(+), 3 deletions(-)
+
+-- 
+2.51.0
 
 
