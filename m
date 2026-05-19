@@ -1,147 +1,194 @@
-Return-Path: <devicetree+bounces-299982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299983-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMxOCaY3DGq2aAUAu9opvQ
-	(envelope-from <devicetree+bounces-299982-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 12:12:54 +0200
+	id WMvKEVc6DGp8aQUAu9opvQ
+	(envelope-from <devicetree+bounces-299983-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 12:24:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E68D57BF89
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 12:12:53 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A64357C288
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 12:24:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F308B30EB594
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:54:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 08AEC30072A7
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 09:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA74C36308D;
-	Tue, 19 May 2026 09:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070BB3D8103;
+	Tue, 19 May 2026 09:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rC5Gv2sN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QOxWZbLR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BBD2550D5;
-	Tue, 19 May 2026 09:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EBA351C0B;
+	Tue, 19 May 2026 09:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779184473; cv=none; b=lEBmbrwO0Ra9IEKnaT4yxo7hqTcrnfoFQX47eXwQP/EIlHcdzgWR7sjaMXBOowFMLMMjjkkMcZP2LwOLWI9e5sWZVYjV84vIidJlJH4WCJXNZZPk+MBIUeFsu9HN/zAopcH4B4sQSUN/KPpCACV23QS1F+vDfCqpsnNwYffQ4x0=
+	t=1779184530; cv=none; b=hYVl7X6jFjNqnyUCwRuH7m6wRg4jvaGGn3LsBCX4nf+2vOkzOlKZCNhIaVN6rLydn4WYe1X6PflY15UKzEM1Y37cm8Keo+Api2HfXWhAICvphFiT/YYwj71LA97/S2nF/DdxqypodkrvRq1YHKjElyPmBacBGnvmk6O0DV0Ox+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779184473; c=relaxed/simple;
-	bh=THaes1BbQCXcAQrkIDiv5GjJoelblGdx+pV8br6MkOY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qloz4y6bN8Ylo0qaNlNtNBKfqzNVRQ4Mw8OTvZcwdP0oxihRTpXjQWzfMAMmOsGpQNeV3KuDW4Zhm5ITLM5lSnddE4Rba4DN4Ty8I9qq8YjXRANyiCRTcYSsN/oNkDS7YK4NAVxYFsAu6ZfzhpoG2Bd+jR4f3iHjm5Oyf7GGhg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rC5Gv2sN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 200D5C2BCB3;
-	Tue, 19 May 2026 09:54:33 +0000 (UTC)
+	s=arc-20240116; t=1779184530; c=relaxed/simple;
+	bh=P68ocLlfcKq8sVnOcphv9kpBQ+r9lZFcgkUppEe9QY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BuUctXO7Oz/wtoBL12NbcmxsP43VRlqURuKq75ttYUNry2Ad5bKkyoZJ0vf1VWlJSqTkAQspc8eXRsv9YGZrrYy3e1g8lpbMhu1NM5Wo0NBbNVCq+MpKNs0RGhJ5zoKYWrbJpIoBnI6tdE1Lx7wlkfZStBE3ZsTYWyKRsBrPWVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QOxWZbLR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DCDFC2BCF5;
+	Tue, 19 May 2026 09:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779184473;
-	bh=THaes1BbQCXcAQrkIDiv5GjJoelblGdx+pV8br6MkOY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rC5Gv2sNfAnq+TcxRsPg0ph2PUEM2H9cdzDhHJIYgldE+kliQLEVVuS8XpynlnT3+
-	 rnT0S2U/oTg0bd2cWrjTp0DdW8ZFJe62asWzZBZwyyyS+9afnm+8sfh3UixBevs7wx
-	 XIi9g6Z9cG6dgD7oZboZy0B+8rBUm+19oCDpcVuwuJsK43Sy8JRmo6oyyEPfdgZuNE
-	 BiFRAOcdQGmHMUPf/e/EWbHb0pFmcc3iv5w+GoAH36Hy0z0RMrGvNyYMxTZJzZO0KJ
-	 UeU4GDKPVLkKT0+yXE1D8L5pekNggYywuqwJpX5ZZUATYz+gKdDpuIOtJLyaNCAgnk
-	 du4i3aQhuzIEQ==
-Date: Tue, 19 May 2026 04:54:32 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1779184530;
+	bh=P68ocLlfcKq8sVnOcphv9kpBQ+r9lZFcgkUppEe9QY0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QOxWZbLRx8wwsYl8j9fGRHGyeY7CuTV0qqQFTksbogaNR7ZQHcH1OAfNC95OTVCh+
+	 n8Y+f4NxjQW5G2WT1EnzWKj9Nakt90JoWtCkCMAqjTpWL0TYdef5y/i1SPtqFvW1v1
+	 jP85gqVMr5Edl3KkHleAshLxFTY9sdPzEok5tMXBjbB0gKPeOYfMZFR7YYXqZAg+JU
+	 lJHeDqhbrKN4oWU8hNluNCvIpbLpoQWiWsRhRTfol4JtFDRwfqnHOmefVPgY7kZDUP
+	 UGCl2EEQM3QxLCvQhGXmP9RtmJzwIV6XDZm01inM5v1dS3JaemNS4sGn/i/Y/UG4ha
+	 2woeC4V38tysg==
+Date: Tue, 19 May 2026 10:55:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+Cc: sashiko-reviews@lists.linux.dev, robh@kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org
+Subject: Re: Re: [PATCH net v2 1/5] dt-bindings: ethernet: eswin: add
+ optional TXD and RXD delay register offsets
+Message-ID: <20260519-presuming-arrest-718fc461b055@spud>
+References: <20260518022023.427-1-lizhi2@eswincomputing.com>
+ <20260519022334.35742C2BCB7@smtp.kernel.org>
+ <20260519-thinness-slashing-cc0310904419@spud>
+ <44d1ad42.8505.19e3fa56a49.Coremail.lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, aiqun.yu@oss.qualcomm.com, 
- trilok.soni@oss.qualcomm.com, Mathieu Poirier <mathieu.poirier@linaro.org>, 
- shengchao.guo@oss.qualcomm.com, Manivannan Sadhasivam <mani@kernel.org>, 
- yijie.yang@oss.qualcomm.com, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>, tingwei.zhang@oss.qualcomm.com, 
- Luca Weiss <luca.weiss@fairphone.com>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-In-Reply-To: <20260519-knp-soccp-v6-4-cf5d0e194b5f@oss.qualcomm.com>
-References: <20260519-knp-soccp-v6-0-cf5d0e194b5f@oss.qualcomm.com>
- <20260519-knp-soccp-v6-4-cf5d0e194b5f@oss.qualcomm.com>
-Message-Id: <177918447247.2753487.2425115852853158786.robh@kernel.org>
-Subject: Re: [PATCH v6 4/6] dt-bindings: remoteproc: qcom: Document pas for
- SoCCP on Hawi SoC
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="KnJSF7QB1NgE5tAq"
+Content-Disposition: inline
+In-Reply-To: <44d1ad42.8505.19e3fa56a49.Coremail.lizhi2@eswincomputing.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-299982-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-299983-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 2E68D57BF89
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,eswincomputing.com:email,linux.dev:email]
+X-Rspamd-Queue-Id: 4A64357C288
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Tue, 19 May 2026 00:24:22 -0700, Jingyi Wang wrote:
-> From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> 
-> Document SoCCP remote processor used on Hawi SoC which is fully
-> compatible with Kaanapali.
-> 
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/remoteproc/qcom,kaanapali-soccp-pas.yaml         | 1 +
->  1 file changed, 1 insertion(+)
-> 
+--KnJSF7QB1NgE5tAq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Tue, May 19, 2026 at 05:51:05PM +0800, =E6=9D=8E=E5=BF=97 wrote:
+>=20
+>=20
+>=20
+> > -----Original Messages-----
+> > From: "Conor Dooley" <conor@kernel.org>
+> > Send time:Tuesday, 19/05/2026 17:11:59
+> > To: sashiko-reviews@lists.linux.dev
+> > Cc: lizhi2@eswincomputing.com, robh@kernel.org, devicetree@vger.kernel.=
+org, conor+dt@kernel.org
+> > Subject: Re: [PATCH net v2 1/5] dt-bindings: ethernet: eswin: add optio=
+nal TXD and RXD delay register offsets
+> >=20
+> > On Tue, May 19, 2026 at 02:23:33AM +0000, sashiko-bot@kernel.org wrote:
+> > > Thank you for your contribution! Sashiko AI review found 1 potential =
+issue(s) to consider:
+> > > - [Medium] Missing `minItems: 4` constraint makes the newly added opt=
+ional cells mandatory, breaking schema backward compatibility.
+> > > --
+> > >=20
+> > > commit 2992483df88af2823c275fc86187f7e38acbee5c
+> > > Author: Zhi Li <lizhi2@eswincomputing.com>
+> > >=20
+> > > dt-bindings: ethernet: eswin: add optional TXD and RXD delay register=
+ offsets
+> > >=20
+> > > This commit documents two optional cells in the eswin,hsp-sp-csr prop=
+erty
+> > > for the TXD and RXD delay control register offsets.
+> > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-et=
+h.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> > > > --- a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> > >=20
+> > > [ ... ]
+> > >=20
+> > > > @@ -82,6 +91,8 @@ properties:
+> > > >            - description: Offset of AXI clock controller Low-Power =
+request
+> > > >                           register
+> > > >            - description: Offset of register controlling TX/RX cloc=
+k delay
+> > > > +          - description: Optional offset of register controlling T=
+XD delay
+> > > > +          - description: Optional offset of register controlling R=
+XD delay
+> > >=20
+> > > Will this make the two new offsets strictly required instead of optio=
+nal?
+> > >=20
+> > > In dt-schema, when an items list defines a tuple, minItems implicitly
+> > > defaults to the total number of items in that list. By increasing the=
+ list
+> > > from 4 to 6 items without adding a minItems: 4 constraint to the inne=
+r items
+> > > list, won't validation now strictly require exactly 6 items?
+> > >=20
+> > > Could this cause dt_binding_check to fail for existing device trees t=
+hat
+> > > correctly specify only the original 4 elements?
+> >=20
+> > Looks like a valid complaint to me.
+> > pw-bot: changes-requested
+> >=20
+> You're right, this is a valid issue.
+>=20
+> I'll fix it in v3 by adding only minItems: 4 to preserve backward
+> compatibility with existing 4-cell device trees.
+>=20
+> Should I drop your Acked-by in v3 due to the schema change, or should
+> it be retained?
 
-yamllint warnings/errors:
+Just fix it, and you can retain.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml: properties:qcom,smem-states:items:1: 'anyOf' conditional failed, one must be fixed:
-	'items' is a required property
-	'minItems' is a required property
-	'maxItems' is a required property
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+--KnJSF7QB1NgE5tAq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-doc reference errors (make refcheckdocs):
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260519-knp-soccp-v6-4-cf5d0e194b5f@oss.qualcomm.com
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagwzjwAKCRB4tDGHoIJi
+0otQAQDm1kk2i60YjFGgUWijyPbE2FoJPZiCkqbk18+HKWun4QD+J3Hs6fI3lQC5
+JtmJl87KXaRMy4+WlNT+LBuj5nr5Qgg=
+=fhGo
+-----END PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--KnJSF7QB1NgE5tAq--
 
