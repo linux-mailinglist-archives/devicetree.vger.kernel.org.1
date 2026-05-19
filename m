@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-300249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300250-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLbPOTGfDGq8jwUAu9opvQ
-	(envelope-from <devicetree+bounces-300249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 19:34:41 +0200
+	id iHa1KHqfDGq8jwUAu9opvQ
+	(envelope-from <devicetree+bounces-300250-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 19:35:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D8D583252
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 19:34:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F372D58329F
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 19:35:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 356A330F872D
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:28:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C5293015C94
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 17:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746B3367B7E;
-	Tue, 19 May 2026 17:28:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9953FC5C8;
+	Tue, 19 May 2026 17:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BJuRGtQK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXhVRCRE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395D83EA968;
-	Tue, 19 May 2026 17:28:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479653FC5BC;
+	Tue, 19 May 2026 17:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779211709; cv=none; b=EmJ+JdhtfV+7nWE+dPalIC4fMOF/q2seoDRQX4OwQDb1pvNP4j1J9kUMIIU5+2aeE5sDMHgnpdo6xjF8pAUi2iskntB+qkvB2BmB8PHPnj8n6/uVTZuCSnwdpTwJgFkMNnM+CohuyZFQFsYEGllEXYZuIUbxaI9ySk9C4j6Aa54=
+	t=1779211824; cv=none; b=bsfpCDEG2YFsKzZnt3cPh2chDxcEoBc21g5RrOTwU90+Fyhe5dwkZ2CiH3/oWnWmv9JyCLVCp9WFWIB656Fgbbo+P9lKj79kqdoFxIaXqSPCXJy/JGP6J7yvlRJ0lRvvz+/DxBB2nVgasSWip/Z8tFNPjCQzM2zm1brrVJUcS50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779211709; c=relaxed/simple;
-	bh=RKWyZbPWuUpHMpEcmcrxpzeWRj5dXSA2zi3P0zxJu/4=;
+	s=arc-20240116; t=1779211824; c=relaxed/simple;
+	bh=1Hngtuvji026UtpbR4cijfhOjd1RM/qoNXf0Ci2GrEY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kLUBDAkSriGCdE5Fnr/8O78NCCbo/lRUu7G+wj5Qq38a86pM73V3YdscYpOPsn6/olyQc3ZcEa66c2qyK5V5iOv5u1m+kTwigwN7GI5erNMqlXFfcOm1pzO4Zy0J9Q0Z6/dQIBiyFFNTpCwRhACZQKrQ4Zewfj97W801W10k6ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BJuRGtQK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B08C2BCB3;
-	Tue, 19 May 2026 17:28:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JMA6HMKP+fvyUwirQectg56/oabFOXD03WjepQoXTzoXbH5cXCTdDY7npKPv78D1C134AnGs6kKQf12B5xwmI1wCT5Z3dUFVHeVczAqPxfzcoL6E5Y/C/6w6obsYnVo1knalCiCo5lcbLhHu6WFYLIRH51+rT8fLqLitVujyOOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXhVRCRE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 963A0C2BCB3;
+	Tue, 19 May 2026 17:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779211709;
-	bh=RKWyZbPWuUpHMpEcmcrxpzeWRj5dXSA2zi3P0zxJu/4=;
+	s=k20201202; t=1779211823;
+	bh=1Hngtuvji026UtpbR4cijfhOjd1RM/qoNXf0Ci2GrEY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BJuRGtQKyZi73Wx4x0AwbHwbeuM1v8TFWCVdbGub3SpzOoAC+nWgpHQCp6rranABl
-	 cefUmDkKcZ2ZEmNt7kPW6heuhYP/HWQETszrLHMHG/pztV12SYAWqc7hbgwrTijoXV
-	 0klQROwLPaRty8oMG8aSQAcZOCGfAPPwB76xSDB/P6nFUm76HYRC9yvswDgN7LFe0w
-	 puAHthp7SqWQtteHG8FJaquFtTERX+gSBc8wlVfUVJPkaDtY5uqhyXWsQA+Fm/9BaJ
-	 EtLBKzgSgCeTNePqwan9m3wfmnuEqDL8+NlpTVkIxEunBGHgAkp4yr8rzRNBopQDux
-	 BkKBRVCAPIl3g==
-Date: Tue, 19 May 2026 18:28:24 +0100
+	b=oXhVRCREENOMw1BIcEkB5pc5hNtkTVZafssr0z56Trvat89vdWdAxos2vAFQuv53d
+	 Y81JzakPlVp6D9ZyWRJtWHg/26rNeQLUktgNH41GkNd7LFKuEWouIlT7Iyr7EWnNPi
+	 jAuJHE4mEchxbnySl52gvoIRdNGlr7na5UBv5YVRh9ARlDOM51IU2hikoGH4pGWbvw
+	 wU08x9nbTjz2ZoUWo8Tr6YwwALdj+vzXlIwVXi5EAnX43YU45mDcWUr3/NqT4OLhSD
+	 DGMGFM/r1bFvtL8Enp2EOUGy0N0bKO4GOTgjp3ffWLGZSTnb724UAszFW/c7ijFA4d
+	 J+gdeb91yHmnQ==
+Date: Tue, 19 May 2026 18:30:20 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] regulator: dt-bindings: Add Unisoc SC2730 PMIC
-Message-ID: <20260519-grazing-although-18c95489592f@spud>
-References: <20260519-sc2730-regulators-v3-0-5bf0e02507e3@abscue.de>
- <20260519-sc2730-regulators-v3-1-5bf0e02507e3@abscue.de>
+To: "Jose A. Perez de Azpillaga" <azpijr@gmail.com>
+Cc: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: light: add Broadcom APDS9999
+Message-ID: <20260519-overdrawn-cofounder-59752aa87d4f@spud>
+References: <cover.1779181370.git.azpijr@gmail.com>
+ <12b145839a1a9c5381946a9e5237bfe6fe0ae9a7.1779181370.git.azpijr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,137 +62,166 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qwknFIGc4u/T29dv"
+	protocol="application/pgp-signature"; boundary="fo0hn6NU+KpHuZ5l"
 Content-Disposition: inline
-In-Reply-To: <20260519-sc2730-regulators-v3-1-5bf0e02507e3@abscue.de>
-X-Spamd-Result: default: False [-2.26 / 15.00];
+In-Reply-To: <12b145839a1a9c5381946a9e5237bfe6fe0ae9a7.1779181370.git.azpijr@gmail.com>
+X-Spamd-Result: default: False [-3.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300249-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-300250-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux.alibaba.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url]
-X-Rspamd-Queue-Id: 38D8D583252
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,0.0.0.52:email]
+X-Rspamd-Queue-Id: F372D58329F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---qwknFIGc4u/T29dv
-Content-Type: text/plain; charset=iso-8859-1
+--fo0hn6NU+KpHuZ5l
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 19, 2026 at 02:06:11PM +0200, Otto Pfl=FCger wrote:
-> Add bindings for the regulators found in the Spreadtrum/Unisoc SC2730
-> PMIC, used e.g. with the UMS512 and UMS9230 SoCs.
+On Tue, May 19, 2026 at 11:23:13AM +0200, Jose A. Perez de Azpillaga wrote:
+> Add Device Tree binding for the Broadcom APDS9999 ambient light
+> and proximity sensor. A separate binding file is used rather
+> than merging with avago,apds9300.yaml because the APDS9999
+> has an additional vled-supply for the VCSEL.
 >=20
-> Signed-off-by: Otto Pfl=FCger <otto.pflueger@abscue.de>
+> The APDS9999 features individual R, G, B, and IR channels with
+> a green channel that uses optical coating to approximate the
+> human eye spectral response for ALS/lux measurements. Calibrated
+> RGB color sensing is not yet implemented in the driver.
+>=20
+> Signed-off-by: Jose A. Perez de Azpillaga <azpijr@gmail.com>
 > ---
->  .../bindings/regulator/sprd,sc2730-regulator.yaml  | 47 ++++++++++++++++=
-++++++
->  1 file changed, 47 insertions(+)
+>  .../bindings/iio/light/brcm,apds9999.yaml     | 54 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/brcm,apds=
+9999.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/regulator/sprd,sc2730-regu=
-lator.yaml b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regula=
-tor.yaml
+> diff --git a/Documentation/devicetree/bindings/iio/light/brcm,apds9999.ya=
+ml b/Documentation/devicetree/bindings/iio/light/brcm,apds9999.yaml
 > new file mode 100644
-> index 000000000000..5b91c7b7f3ee
+> index 000000000000..4d9e9aff8894
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.y=
-aml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/iio/light/brcm,apds9999.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/regulator/sprd,sc2730-regulator.yaml#
+> +$id: http://devicetree.org/schemas/iio/light/brcm,apds9999.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc SC2730 Power Management IC regulators
+> +title: Broadcom APDS-9999 Digital Proximity and RGB Sensor
 > +
 > +maintainers:
-> +  - Otto Pfl=FCger <otto.pflueger@abscue.de>
+> +  - Jose A. Perez de Azpillaga <azpijr@gmail.com>
+> +
+> +description: |
+> +  Broadcom APDS-9999 is a digital proximity and RGB sensor with
+> +  ambient light sensing (ALS) capability. The device uses individual
+> +  R, G, B, and IR channels plus a Vertical Cavity Surface Emitting
+> +  Laser (VCSEL) for proximity detection.
+> +
+> +  Datasheet: https://docs.broadcom.com/docs/APDS-9999-DS
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,apds9999
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  vled-supply:
+> +    description: VCSEL power supply
 
-How is this binding meant to apply without a compatible?
-pw-bot: changes-requested
+Why does the name in the description disagree with the name in the
+property? If the pin is called vcsel, please call the property that.
 
-Thanks,
+Cheers,
 Conor.
 
 > +
-> +patternProperties:
-> +  "^dcdc-(core|cpu|gen[0-1]|gpu|mem|memq|modem|sram)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +  "^ldo-avdd(12|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vdd(18-dcxo|28)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vdd(emmccore|kpled|ldo[0-2]|sd(core|io)|sim[0-2]|usb33|wcn|wifip=
-a)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vddcam(a0|a1|d0|d1|io|mot)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +  "^ldo-vddrf(1v25|18)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
+> +additionalProperties: false
 > +
 > +required:
 > +  - compatible
+> +  - reg
+> +  - vdd-supply
 > +
-> +additionalProperties: false
-> +...
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        light-sensor@52 {
+> +            compatible =3D "brcm,apds9999";
+> +            reg =3D <0x52>;
+> +            vdd-supply =3D <&vdd_reg>;
+> +            vled-supply =3D <&vled_reg>;
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1aa9c989973f..2d8d4e2eab6e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -5000,6 +5000,12 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
+>  F:	drivers/iio/light/apds9160.c
 >=20
-> --=20
-> 2.51.0
+> +BROADCOM APDS9999 AMBIENT LIGHT SENSOR DRIVER
+> +M:	Jose A. Perez de Azpillaga <azpijr@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/iio/light/brcm,apds9999.yaml
+> +
+>  BROADCOM ASP 2.0 ETHERNET DRIVER
+>  M:	Justin Chen <justin.chen@broadcom.com>
+>  M:	Florian Fainelli <florian.fainelli@broadcom.com>
+>=20
 >=20
 
---qwknFIGc4u/T29dv
+pw-bot: changes-requested
+
+--fo0hn6NU+KpHuZ5l
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagyduAAKCRB4tDGHoIJi
-0uAPAQDtUHuNV+i3gtG9IAQN3k9nSRDZ3fLf6SiQ707974lffgEAkXLH/ab3RmlR
-u3bxaEdpNEUMUMbw8fKKCs6KfdofJgk=
-=s5oH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCagyeLAAKCRB4tDGHoIJi
+0kTuAP4iStldexlbRq5hLYN5WNkTQCwerz5uV4LUwZC6MbKouAD9HGRPWcFQTESc
+FNHYGs8Ah85UaO0SbxHTLZICJjecCQ8=
+=eWJU
 -----END PGP SIGNATURE-----
 
---qwknFIGc4u/T29dv--
+--fo0hn6NU+KpHuZ5l--
 
