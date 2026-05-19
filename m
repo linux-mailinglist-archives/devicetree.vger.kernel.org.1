@@ -1,204 +1,197 @@
-Return-Path: <devicetree+bounces-300021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFMRHm1GDGrQcQUAu9opvQ
-	(envelope-from <devicetree+bounces-300021-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 13:15:57 +0200
+	id oBeBDW08DGp8aQUAu9opvQ
+	(envelope-from <devicetree+bounces-300009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 12:33:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBFD57D574
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 13:15:57 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED8157C4C2
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 12:33:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9FFA531EEB77
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:43:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A1B933013628
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:30:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEE63F1AB6;
-	Tue, 19 May 2026 10:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8036233957;
+	Tue, 19 May 2026 10:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flowmailer.net header.i=@flowmailer.net header.b="EZaazZKd";
-	dkim=pass (2048-bit key) header.d=siemens-energy.com header.i=schuster.simon@siemens-energy.com header.b="Te2jAfZD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H3hkma2x";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Xurs1aAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-134.flowmailer.net (mta-65-134.flowmailer.net [185.136.65.134])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C5B32B121
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 10:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.134
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375D723394C
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 10:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779187229; cv=none; b=OVdIAQ5ZkIswCBNOpdBg1ltObdoL8ZzwOlVr2EHjiKX+swmnspBLsxfg7sfAAOw/PQAmDzhDdb72lfRN13QW0vemF2oSw8hUqMbVXEecbJmT5Ihm4TVg+9pvTl/HJwB4WM+hgPLvlCTQG3TZkD/5fvABSlXu/laZGMipNE+sz/A=
+	t=1779186648; cv=none; b=OVFbW8wzT8XRFilpLBV8J3fzecKcf8hgKMedJsxnRO84PpuYWrgB0Bb3Pown53Jw/kq4aAbqXlAUTPcAW3Wn/j36/14a5a/Ci2TXQ7AEEgQMZnNHo4rBNPVz6PSCFP6VWG0zfKTNuEf8ApUBK3Dxk81Svw9eCUqSaMJHaPg+FXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779187229; c=relaxed/simple;
-	bh=FMylFNF2LBIsDQTt92IHLCTEBM4Uc4LrYwy7HvJjx8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VxuQwvDd2hZ+fcrn/0xWdYVFZNHYiGU7vrIMpwMmEWx3UXpz8BBgGZR+9Z4s1LkUHs3nH0IAHz9qLZ8ZzYsNgM3lRJYnK2eoT+9K5tdfdtphY23dgS3u1X+VBoh3l+fPFidr+CCBELd1Hy4oA3VLqVWxL/opu3cHKc2wnoOx+D4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens-energy.com; spf=pass smtp.mailfrom=errorhandling.siemens-energy.com; dkim=pass (1024-bit key) header.d=flowmailer.net header.i=@flowmailer.net header.b=EZaazZKd; dkim=pass (2048-bit key) header.d=siemens-energy.com header.i=schuster.simon@siemens-energy.com header.b=Te2jAfZD; arc=none smtp.client-ip=185.136.65.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens-energy.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=errorhandling.siemens-energy.com
-Received: by mta-65-134.flowmailer.net with ESMTPSA id 202605191030151ef1f001460019fdaf
-        for <devicetree@vger.kernel.org>;
-        Tue, 19 May 2026 12:30:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=s1;
- d=flowmailer.net;
- h=from:from:sender:to:to:cc:cc:subject:subject:content-type:content-type:content-transfer-encoding:References:In-Reply-To:Date:Message-ID:MIME-Version;
- bh=VQcumpK/VH7AMVe3D9QfBdm875bqYNSA1S/WhQcMd50=;
- b=EZaazZKd3ZONXRq4GpMzuNQLKWTjDM3BCDcJN1Zro5Jf4shP6ldQEZRd/JpK1AZ4rlK0YF
- /Aa7cioXIloqt5aLEMZp2zhOmX1/9l/6y1VhiFuSN27YZpJ0WrZoxkmuTSB8KOR9mJccLgIF
- U5YZLq88tEC65edr76mfk0J41cOEg=;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm3;
- d=siemens-energy.com; i=schuster.simon@siemens-energy.com;
- h=from:from:sender:to:to:cc:cc:subject:subject:content-type:content-type:content-transfer-encoding:References:In-Reply-To:Date:Message-ID:MIME-Version;
- bh=VQcumpK/VH7AMVe3D9QfBdm875bqYNSA1S/WhQcMd50=;
- b=Te2jAfZD7hDN23NQ3+54hePl7vopCgSM3JMxLh/fm7xcDVL3oowG/1GukwfDalvkw/93pk
- r1edcvtKHS8aMq6NRNiOadutVoT+ObgjmyLqPfqBF0IzKI4s/3l4Ljo3Ns0e8129/XbiB/f0
- eILgqZumYF4wXN2RrKqjT6iJT48jJyha8qiB1Ms2c7YCYUsoOaUZYeqchP96MjjkD2jP9Tnp
- Bup5ZCH2E2PIWkx0GqjYc7NY1+ofQc4JMbJbK42rmOgM8diRAjnGGhXNzlSI65tykwA8DWj2
- tjMUFpTA0awNupV3gXQUmo6aF83iBjTdaCqUN4ZyrwUBouDMkjB7zheA==;
-Date: Tue, 19 May 2026 12:30:12 +0200
-From: Simon Schuster <schuster.simon@siemens-energy.com>
-To: Ethan Nelson-Moore <enelsonmoore@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Peter Zijlstra <peterz@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
- Dinh Nguyen <dinguyen@kernel.org>, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, workflows@vger.kernel.org, Linux-Arch
- <linux-arch@vger.kernel.org>, dmaengine@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, Netdev
- <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-hardening@vger.kernel.org,
- linux-kbuild@vger.kernel.org, "linux-csky@vger.kernel.org"
- <linux-csky@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
- <skhan@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Daniel
- Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Alex Shi <alexs@kernel.org>, Yanteng Si <si.yanteng@linux.dev>, Dongliang
- Mu <dzm91@hust.edu.cn>, Hu Haowen <2023002089@link.tyut.edu.cn>, Kees Cook
- <kees@kernel.org>, Oleg Nesterov <oleg@redhat.com>, Will Deacon
- <will@kernel.org>, "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Nicholas Piggin
- <npiggin@gmail.com>, Vinod Koul <vkoul@kernel.org>, Frank Li
- <Frank.Li@kernel.org>, Dave Penkler <dpenkler@gmail.com>, Andi Shyti
- <andi.shyti@kernel.org>, Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof
- WilczyDski <kwilczynski@kernel.org>, Andreas Oetken
- <andreas.oetken@siemens-energy.com>
-Subject: Re: [PATCH] nios2: remove the architecture
-Message-ID: <20260519103012.blot4bssgiqfer6p@dev-vm-schuster>
-References: <20260518042833.272221-1-enelsonmoore@gmail.com>
- <d40b1e80-37fc-4c88-9d7f-dae6458efe6c@app.fastmail.com>
- <20260518105735.GW3126523@noisy.programming.kicks-ass.net>
- <20260518172444.zyd47mcagrcwu7wt@dev-vm-schuster>
- <CADkSEUjhq6HSdg4ignzbuJiN5uXATsTdxFbRJ3BMxs5=WUWLDg@mail.gmail.com>
+	s=arc-20240116; t=1779186648; c=relaxed/simple;
+	bh=DrHYf7tqRQlk8+UMJlzpuLDOe7qhskYNuKQLTOdIGBY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=G0BUQgwdecUwT8pGgMdoExqbyPCxB1yPtGUINp02fdUoHiZPs2OO5+y2yolGu3f7Zx4vry28MqmOf1dzPe/FMEB3PN9TGsSHAKTGoQeCoIGrF6GLk91ZT7ikxb6017qtNHmvKsm6FJWetQFLSW+vl+T3eq4q1Q49vtuinyR0jao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H3hkma2x; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Xurs1aAp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64J9LsiF4063029
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 10:30:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mNNb3VR0RTAlc7kc9jSJqHqxgcj5jehGaItIcUWnHNk=; b=H3hkma2xRjIZtP16
+	Csj0mBKxkVcPv6DtcNTKqaocgLwHueHcZ96igOx89nPEZTLo0fJ9INS1V7Mh79NV
+	7AznsPqHleu7XeWJ8Y/4/g/hChEJ+LzyGOh1awoLzGuoTd1mm1um8VeVdKE/N5/S
+	TNmcGp+HDNqGIstPoRY/aytFmoISjPIdhL6OtXHD2Pl68kYsmbthYWkanjP+G5WQ
+	XX3YowAoooZcD+B2uFDBLf+uh35EUhmBCDSg3/JP7OrKujAMbBZmxeuOiR+XNspR
+	o2zLdjY9Pn8Rf0iJCStGLm2OtM+pelnu06oBkVpSvVh9nvBIDvT2W6PnhVgz8Yos
+	tSWmpw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e8n5u094c-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 10:30:46 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50faec938fcso9323691cf.3
+        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 03:30:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779186645; x=1779791445; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=mNNb3VR0RTAlc7kc9jSJqHqxgcj5jehGaItIcUWnHNk=;
+        b=Xurs1aAp295XWToBaHA2/tCFXYbQ1laT8Ar7hUOnOFfKY9yP0zf1tgJ62LRtHritRK
+         7akXy3+2vn6rRASWeKE93HUaSPVoIdbolIH+d1wqHVce5V4NRMWG/HX47rnMNiFaWeR2
+         VnDJi/NK6nWheOsJeA/UyfQqeNfaOm3FpftXXVq077vnkV7g5E/SL5k52pYs5BHJs2ia
+         IXSifVDL9u0UVfBEODlP+cJvEU8WrvQnDGSstxvuGci8i20/CVq5av26Z+FsQmadTsrJ
+         QIpZ7UpcM7gQYpVX8VCkWH2acqvTRsVRjXEFSxa6vsS1mSUvXEy887LcpQzuRt5jmnex
+         tEXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779186645; x=1779791445;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mNNb3VR0RTAlc7kc9jSJqHqxgcj5jehGaItIcUWnHNk=;
+        b=eYO9hnBM5pyePC03DiGJrY2m2iRXJqpVxp7rsxcJk40Bd9dZ+CR3XutlVm7u9FmnoT
+         OnIdCOab4p++SX04xk2FQOp5YxkNWPfpNpm4EAR3K3BqueIE/9lU7YUXheGbg2wHpAJ6
+         vUZgPD7lNjJccR/srP7OopUx2IziG7Cgd0q/Xj6V8AqMVX6zlmxa8WpGbmy52RGgTPQZ
+         9Q59gRliMaPmCgIR8uufvZx3Yn5bSWFbsFvjH78Ti/9JWrRKAdc1R+Whzp9fcDKYkQpR
+         b/1y/dvVjDNSisggDqPKwsdCIwS1sL0SFXUpriCLIkUtQFtFh5V9UW4Ro4EP6g6nr0e6
+         4a1A==
+X-Forwarded-Encrypted: i=1; AFNElJ866TAgyvKIlzeHMfR9sjBsNPZaGqvYpgiKCOTtMsw2TwnBTv37vOaKxxDckIyOBfXC1q7OSCYQPswE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqppxgS0skwaJ3mteYnk/YCl038qQCZWjyajUHJCxKNDVsEhTp
+	OlxBA+S31y3kxfPfVImG6GcEHk6gRokaNdI8ahG2h1Ge4hjhXyiEkgIeR/tQ8aXDArD23LFXSat
+	dpOOWNaBqbMII9hlwjHh54845a4y8ZcWRFDIkyjDCXawqtjhR5wXUnp1ybQYFKGki
+X-Gm-Gg: Acq92OFUjj4Sa78FTrNrbvKW0yUnYj2GHO2wverhC08P3IBuky5wXFfYm4GsVnNf/jk
+	775VDHlDN3cNAwOc91U0p03UU6gLF6B9q4RY9mS7PvYsIU2L5WmcJfjDTx0YR8luW7GwF8BTT/W
+	xq4JIPzsAff1Q5XToMHF2F3z0uahablEGRZ87MS21lj98k6AXEyQ8HSMsT1aZcBmKRF2sF1mJWQ
+	n6Ts2fzPouiJjdCk0RxMMULbOuk2g1YHjPgmB0aqYU/Gt/Kzk2zpp0mB3SxkkBYvvz8QNQGg9Kl
+	XaL3BjwdfWhCMVPzfwoueNyNN3DFwwv/h2dIob9RihqO6jJI3sbiU5UPaX0pu1KVHrbRVtEtJtj
+	DupP37+SkaQS7kVm6u6GChvhmdxzHaSXPe/bwPw+txHmEYr2sBmTJ7gzQzYJHQEhWDa7kkE8bGk
+	+llSM=
+X-Received: by 2002:ac8:7dc4:0:b0:510:144a:636 with SMTP id d75a77b69052e-5165a22eb4emr174859161cf.8.1779186645635;
+        Tue, 19 May 2026 03:30:45 -0700 (PDT)
+X-Received: by 2002:ac8:7dc4:0:b0:510:144a:636 with SMTP id d75a77b69052e-5165a22eb4emr174858921cf.8.1779186645103;
+        Tue, 19 May 2026 03:30:45 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bd4f4c24178sm692805766b.15.2026.05.19.03.30.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 May 2026 03:30:44 -0700 (PDT)
+Message-ID: <6773be1f-d48a-433d-927d-f2a90e56e82b@oss.qualcomm.com>
+Date: Tue, 19 May 2026 12:30:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CADkSEUjhq6HSdg4ignzbuJiN5uXATsTdxFbRJ3BMxs5=WUWLDg@mail.gmail.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,pmic-typec: Drop redundant
+ port
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260519100014.282058-3-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260519100014.282058-3-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=MfBcfZ/f c=1 sm=1 tr=0 ts=6a0c3bd6 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=nMIgit4TKir8xPiZD48A:9 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: 5F0gAMrZY8rLMNZTADLFAXXhr-yb3pmi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE5MDEwMyBTYWx0ZWRfXxDkfpAWaFUup
+ px8WiL85bB9PKTjMfkxxvto8rL927oUe+mHoqrGxq3Et5EgUBxITiWOkNf3QyBeCHzORKauCmBq
+ +Y/NRhRAsF4mswLiGH8HboQ9UpTr3PGCtzs39eABLZ8g9yzu2I+p4EYqUGrKk48jbYNp+FAlWLa
+ 6gwqAVk1yXHjgRs9ZMUE3e1wn3RePWurgubN/DLs9sNMCOEGEgVslM9G/L49WJ8Ftmycf6K8KhJ
+ 359fnWpPE8eFDB6AfGRbabi9K9rYGvnB61e9LIO/CIzdKeOyrXGg7FfXvJtCh9zsj6DjPERewMd
+ vlg0Y63IqbP6Spm+6A+hYdGYfPT/ZliMmmDQJrxgGjoAuh37VstzL3gQPmEBvOD4XB2qghj0Zum
+ Y8eIhfP5SiHcLz9Uhhhlb8rDSBj0FZ0HccJxG2NNKSKDoXUDy+gH9Zcm65NQu432ycmofA1gBl0
+ MY6eG2593m3IqW1KuWQ==
+X-Proofpoint-ORIG-GUID: 5F0gAMrZY8rLMNZTADLFAXXhr-yb3pmi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-19_03,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 malwarescore=0 bulkscore=0
+ impostorscore=0 spamscore=0 phishscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605190103
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[siemens-energy.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[flowmailer.net:s=s1,siemens-energy.com:s=fm3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-300021-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,sang-engineering.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[flowmailer.net:+,siemens-energy.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[51];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[schuster.simon@siemens-energy.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[infradead.org,arndb.de,kernel.org,vger.kernel.org,lwn.net,linuxfoundation.org,linux.dev,hust.edu.cn,link.tyut.edu.cn,redhat.com,linux-foundation.org,gmail.com,baylibre.com,analog.com,lunn.ch,davemloft.net,google.com,siemens-energy.com];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300009-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[siemens-energy.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linuxfoundation.org:url,flowmailer.net:dkim]
-X-Rspamd-Queue-Id: 1DBFD57D574
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: CED8157C4C2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Ethan, hi Wolfram,
-
-Thank you for your thoughtful responses.
-
-On Mon, May 18, 2026 at 05:13:58PM -0700, Ethan Nelson-Moore wrote:
-> Your reasoning makes complete sense. However, there is an alternative
-> to maintaining the architecture in mainline.
+On 5/19/26 12:00 PM, Krzysztof Kozlowski wrote:
+> The binding defines both "port" and "connector" properties, where the
+> "port" is claimed to be for "data-role switching messages".  There is no
+> such dedicated data port for this device and role switching is part of
+> connector ports - the port going to the USB controller.
 > 
-> The Civil Infrastructure Platform project maintains super-LTS kernels
-> (and a set of base Debian packages) for 10 years. They are intended to
-> be used for exactly these kinds of devices.
-> See here: https://wiki.linuxfoundation.org/civilinfrastructureplatform/start#kernel_maintainership
-> and here: https://cip-project.org/about/linux-kernel-core-packages
+> The driver does not use the "port" property and there is no upstream DTS
+> which would have it.  It looks like it's left-over of early versions of
+> this patchset and is completely redundant now, so let's drop it.
 > 
-> CIP will maintain kernel 6.12 until 2035. Is this long enough for your
-> lifecycle? What kernel are you currently using? If it's newer than
-> 6.12, we can easily wait until the next CIP SLTS release to remove
-> Nios II support to avoid a downgrade.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
 
-This depends. For released/maintained firmware revisions we already
-track CIP SLTS versions (candidates) to be prepared, the majority of which
-is currently still running 6.1.x with 6.12.x up-and-coming.
-But for the reasons outlined by you regarding architectural and feature
-support in CIP SLTS, we do not, however, use the extended support duration
-SLTS releases in production, and instead upgrade with the kernel.org LTS
-branch release schedule and track these internally alongside mainline
-to prevent major obstacles during version jumps.
-2035 is still a rather tight timeframe for our typical support/phase-out
-period (we would hope to get close to 2040 with the SLTS extensions),
-which is also the reason for our targeted 'lifetime extension' for the
-nios2 architecture for approximately 5 years, or more precisely ~2-3
-SLTS kernels assuming the usual cadence of 2 years between SLTS versions
-(+ some safety margin).
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> Also, CIP focuses on architectures used by CIP members - currently I
-> think they are x86 (32 and 64-bit), ARM (32 and 64-bit) and RISC-V.
-> Since Siemens is already a CIP member, you can simply ask them to add
-> Nios II to the list, and you can assist them with testing and directly
-> submit patches to them once the standard 6.12 LTS period ends.
-
-We have already been in contact with the CIP team (even though the
-contact has unfortunately lapsed a bit, mostly our fault), but adding an
-additional architecture seemed to be a more substantial effort.
-N.B.: Due to past circumstances, we are a completely distinct business
-entity from Siemens AG that merely shares the trademark and a common
-history; but of course this should not hinder us from getting directly
-involved in CIP (quite the opposite!). But this also requires some setup
-time.
-
-On Mon, May 18, 2026 at 10:46:55PM +0200, Wolfram Sang wrote:
-> > If desired, we also would be happy to intensify our support regarding
-> > reviews or testing to share the maintnance burden if it helps to keep
-> > nios2 in mainline a bit longer.
-> 
-> ... but given this, you might want to get added in MAINTAINERS as
-> reviewer (or even maintainer) for nios2? Besides that your efforts are
-> already worth it in my book, it would also ensure you get CCed on
-> patches like this. Then, you are not depending on people like Arnd
-> putting you in the loop manually.
-
-Sure, I'd be glad to do so, but so far I refrained from it as I was a bit
-unsure about the netiquette (can I simply do so by self-proclamation? At
-least the git history seems to suggest so...).
-
-Best regards,
-Simon
+Konrad
 
