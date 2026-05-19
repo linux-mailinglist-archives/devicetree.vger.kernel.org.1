@@ -1,282 +1,149 @@
-Return-Path: <devicetree+bounces-299877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-299876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BSPJfwdDGpJWQUAu9opvQ
-	(envelope-from <devicetree+bounces-299877-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:23:24 +0200
+	id eBPoNkYfDGqoWgUAu9opvQ
+	(envelope-from <devicetree+bounces-299876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:28:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F58579ECB
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:23:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E198B57A0CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 10:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36D5E30BBD51
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:17:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9FD8C3018A22
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 08:17:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED5A3E0754;
-	Tue, 19 May 2026 08:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB143DCDAB;
+	Tue, 19 May 2026 08:17:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HT3SeN3u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1A13E0731;
-	Tue, 19 May 2026 08:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CBF1917CD
+	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 08:17:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779178648; cv=none; b=rltRR9qYtI+QltJgBJ4SDw879ifpTHT7do67jBxzEo1fQaE8vQ1kP6sldlTaXfPdj/2pi6CclheN4QFbv0jchYwq/VEffpBlJBxwhiw+lkoKnvKkp2tatro3g6F4RO74YWKjUMRoArDe9hrbA7ZWy1MBl5Ui0XVcogLabd3DhX4=
+	t=1779178639; cv=none; b=Q3dU0CbhHJO4AxxJjIK+m0DgrBOO2NjdnYhRuVIFLWjqXgpN0RoQN7G1VzGC25OhNqmOOtOR3tICTK8emCaZOpUsesE4S10GRojHW6BSYqOLgOHaTl7PA+D8MFhzwBdG6FMaFk+Ti4YiSImLVnyBpME6p8cRdxyl1XLkvkA+F5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779178648; c=relaxed/simple;
-	bh=EEEW8rJ1d4eDTFU3GMj/R6i/rV5mm+bLe/au5f9GY7A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KPgmXtNOtXF1QxOHXjdSyIRiRhI6wKJ7UGNabvSHNv1V+diZHmF5naoO+p3EgI2apVSpfNjmeZHTTvodYc0oWHtEh01Vtx0jOR1Rfy9FoyPZmCzzG22LC3JiCEFBLRQ09ghKDXN4H+USDw+jStgQ32njnvNtK5AHjzfggRHNpCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgBH2293HAxqNbEaAA--.1154S2;
-	Tue, 19 May 2026 16:16:57 +0800 (CST)
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	huangyifeng@eswincomputing.com,
-	dongxuyang@eswincomputing.com,
-	benoit.monin@bootlin.com,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: [PATCH v6 3/3] reset: eswin: Add eic7700 HSP reset driver
-Date: Tue, 19 May 2026 16:16:52 +0800
-Message-Id: <20260519081652.1643-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260519081431.1424-1-dongxuyang@eswincomputing.com>
-References: <20260519081431.1424-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1779178639; c=relaxed/simple;
+	bh=+CkX3Ct25kkDaGBbufT0s6p2kSmiSqfV78wPFNx3uM4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=CR3h8JLlCelamboUEfnCV9XUbFaEYicYy7BcnmKYSAHo6VTnyrtNv9tAZHqAhkxfl4qlArhR0wUTVDeUssfzkuv3yD7xKoBxjUySrKYvxc1qCnUMqSzB2JfcvJQKkFQ4c8UzanhdtrVlXqhtAjXyADmNsEzaKQbK5T3p0N9uFrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HT3SeN3u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F790C2BCB3;
+	Tue, 19 May 2026 08:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779178639;
+	bh=+CkX3Ct25kkDaGBbufT0s6p2kSmiSqfV78wPFNx3uM4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=HT3SeN3u+g0g/hInKILA/uADl6s140SIpSOtDer1RHyA6cj6jXrzWB85QcTTBU7BT
+	 /0k/4x9yRq9Q35Tywl0CwlJwBmMjC4Ngd6CSHA37GvXdvi6/Bkr+Zx8oO3nP7qYxl0
+	 vcim2gmYg6oewDrxgVpZSZt+LzW5MnrOHshUi3yni5uMTalBSPxOB8Ea4B1BVI6+LD
+	 f2AgnMBui3a0u4qkIk5yTP22oDDy/Dkv9wGiTpKXA/o00Anl76WHGIIqEVCqnk/ORg
+	 lMQvoM5Dgg5p4zXmEwhUJ4OuKq+dmTSUnJV5nCOKA9DTln1DrM2BErNohKb/il/u72
+	 W3tsTbn3L2WdQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: renesas: r8a78000-ironhide: enable to use
+ SCMI
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Wolfram Sang" <wsa+renesas@sang-engineering.com>
+Cc: conor+dt@kernel.org, wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260519074702.3308-6-wsa+renesas@sang-engineering.com>
+References: <20260519074702.3308-6-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 19 May 2026 08:17:17 +0000
+Message-Id: <20260519081718.4F790C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgBH2293HAxqNbEaAA--.1154S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxuFy7Kw4UCrWDKF4DKFyrXrb_yoW7tw4UpF
-	WrCF13Ar4UXrWfGFZ7GF1qyFy3Wan3tryYk3yxJ3WS9rsxWFyUJrWUta40yF9rJr9rGry5
-	JF1agF1xuFnIyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9C14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
-	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxK
-	x2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
-	0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUpwZcUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	TO_DN_NONE(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,renesas.com:email];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-299876-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-299877-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:email]
-X-Rspamd-Queue-Id: 03F58579ECB
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: E198B57A0CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add auxiliary driver to support ESWIN EIC7700 high-speed peripherals
-system. The reset controller is created using the auxiliary device
-framework and set up in the clock driver.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The patch adds an include directive for `<dt-bindings/soc/renesas,r=
+8a78000-mfis.h>`, but this header is not included in the commit and does no=
+t exist in the repository.
+--
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- drivers/reset/Kconfig             |  11 +++
- drivers/reset/Makefile            |   1 +
- drivers/reset/reset-eic7700-hsp.c | 113 ++++++++++++++++++++++++++++++
- 3 files changed, 125 insertions(+)
- create mode 100644 drivers/reset/reset-eic7700-hsp.c
+commit 12e4bb3b81767937e835c191fd20007f6b57db69
+Author: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index d009eb0849a3..f63e89ed6a4e 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -83,6 +83,17 @@ config RESET_EIC7700
- 	  The driver supports eic7700 series chips and provides functionality for
- 	  asserting and deasserting resets on the chip.
- 
-+config RESET_EIC7700_HSP
-+	tristate "EIC7700 HSP Reset controller"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	select AUXILIARY_BUS
-+	help
-+	  This enables the HSP reset controller driver for ESWIN SoCs. This
-+	  driver is specific to ESWIN SoCs and should only be enabled if using
-+	  such hardware.
-+	  The driver supports EIC7700 series chips and provides functionality
-+	  for asserting and deasserting resets on the chip.
-+
- config RESET_EYEQ
- 	bool "Mobileye EyeQ reset controller"
- 	depends on EYEQ || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 3e52569bd276..a75af831ef58 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
- obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
-+obj-$(CONFIG_RESET_EIC7700_HSP) += reset-eic7700-hsp.o
- obj-$(CONFIG_RESET_EYEQ) += reset-eyeq.o
- obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-diff --git a/drivers/reset/reset-eic7700-hsp.c b/drivers/reset/reset-eic7700-hsp.c
-new file mode 100644
-index 000000000000..1575ee4a20d6
---- /dev/null
-+++ b/drivers/reset/reset-eic7700-hsp.c
-@@ -0,0 +1,113 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * ESWIN EIC7700 HSP Reset Driver
-+ *
-+ * Authors: Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+
-+#include <dt-bindings/reset/eswin,eic7700-hspcrg.h>
-+
-+/**
-+ * struct eic7700_hsp_reset_data - reset controller information structure
-+ * @rcdev: reset controller entity
-+ * @regmap: regmap handle containing the memory-mapped reset registers
-+ */
-+struct eic7700_hsp_reset_data {
-+	struct reset_controller_dev rcdev;
-+	struct regmap *regmap;
-+};
-+
-+struct eic7700_hsp_reg {
-+	u32 reg;
-+	u32 bit;
-+	bool active_low;
-+};
-+
-+static inline struct eic7700_hsp_reset_data *
-+to_eic7700_hsp_reset(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct eic7700_hsp_reset_data, rcdev);
-+}
-+
-+static const struct eic7700_hsp_reg eic7700_hsp_reset[] = {
-+	[EIC7700_HSP_RST_SATA_P0]	= {0x340, BIT(0), false},
-+	[EIC7700_HSP_RST_SATA_PHY]	= {0x340, BIT(1), false},
-+	[EIC7700_HSP_RST_USB0]		= {0x800, BIT(24), true},
-+	[EIC7700_HSP_RST_USB1]		= {0x900, BIT(24), true},
-+	[EIC7700_HSP_RST_USB0_PHY]	= {0x800, BIT(25), false},
-+	[EIC7700_HSP_RST_USB1_PHY]	= {0x900, BIT(25), false},
-+};
-+
-+static int eic7700_hsp_reset_assert(struct reset_controller_dev *rcdev,
-+				    unsigned long id)
-+{
-+	struct eic7700_hsp_reset_data *data = to_eic7700_hsp_reset(rcdev);
-+
-+	return regmap_assign_bits(data->regmap, eic7700_hsp_reset[id].reg,
-+				  eic7700_hsp_reset[id].bit,
-+				  !eic7700_hsp_reset[id].active_low);
-+}
-+
-+static int eic7700_hsp_reset_deassert(struct reset_controller_dev *rcdev,
-+				      unsigned long id)
-+{
-+	struct eic7700_hsp_reset_data *data = to_eic7700_hsp_reset(rcdev);
-+
-+	return regmap_assign_bits(data->regmap, eic7700_hsp_reset[id].reg,
-+				  eic7700_hsp_reset[id].bit,
-+				  eic7700_hsp_reset[id].active_low);
-+}
-+
-+static const struct reset_control_ops eic7700_hsp_reset_ops = {
-+	.assert = eic7700_hsp_reset_assert,
-+	.deassert = eic7700_hsp_reset_deassert,
-+};
-+
-+static int eic7700_hsp_reset_probe(struct auxiliary_device *adev,
-+				   const struct auxiliary_device_id *id)
-+{
-+	struct eic7700_hsp_reset_data *data;
-+	struct device *dev = &adev->dev;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->regmap = dev_get_regmap(dev->parent, NULL);
-+	if (!data->regmap)
-+		return dev_err_probe(dev, -ENODEV, "failed to get regmap!\n");
-+
-+	data->rcdev.owner = THIS_MODULE;
-+	data->rcdev.ops = &eic7700_hsp_reset_ops;
-+	data->rcdev.of_node = dev->parent->of_node;
-+	data->rcdev.dev = dev;
-+	data->rcdev.nr_resets = ARRAY_SIZE(eic7700_hsp_reset);
-+
-+	return devm_reset_controller_register(dev, &data->rcdev);
-+}
-+
-+static const struct auxiliary_device_id eic7700_hsp_reset_ids[] = {
-+	{ .name = "clk_eic7700_hsp.hsp-reset", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(auxiliary, eic7700_hsp_reset_ids);
-+
-+static struct auxiliary_driver eic7700_hsp_reset_driver = {
-+	.probe	= eic7700_hsp_reset_probe,
-+	.id_table = eic7700_hsp_reset_ids,
-+};
-+
-+module_auxiliary_driver(eic7700_hsp_reset_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Xuyang Dong <dongxuyang@eswincomputing.com>");
-+MODULE_DESCRIPTION("ESWIN EIC7700 HSP Reset Controller Driver");
--- 
-2.34.1
+arm64: renesas: r8a78000-ironhide: enable to use SCMI
 
+This commit enables SCMI via MFIS-SCP and the STCM transport area to manage
+clocks on the r8a78000-ironhide platform.
+
+> diff --git a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts b/arch/arm=
+64/boot/dts/renesas/r8a78000-ironhide.dts
+> index a721734fbd5d0..86bbe5fbb118a 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
+> @@ -6,6 +6,7 @@
+>   */
+> =20
+>  /dts-v1/;
+> +#include <dt-bindings/soc/renesas,r8a78000-mfis.h>
+
+Is the dt-bindings/soc/renesas,r8a78000-mfis.h header missing from this
+patch? The file doesn't seem to be included in the commit or currently
+present in the repository, which causes a build failure during the C
+preprocessing step.
+
+[ ... ]
+
+> @@ -20,6 +21,23 @@ chosen {
+>  		stdout-path =3D "serial0:1843200n8";
+>  	};
+> =20
+> +	firmware {
+> +		scmi: scmi {
+> +			compatible =3D "arm,scmi";
+> +			mboxes =3D <&mfis_scp 2 MFIS_CHANNEL_TX>, <&mfis_scp 2 MFIS_CHANNEL_R=
+X>;
+
+Are MFIS_CHANNEL_TX and MFIS_CHANNEL_RX defined anywhere else? Without the
+header file included above, these macros remain undefined.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260519074702.3308=
+-4-wsa+renesas@sang-engineering.com?part=3D2
 
