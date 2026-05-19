@@ -1,280 +1,176 @@
-Return-Path: <devicetree+bounces-300173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300164-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eECAErp3DGqihwUAu9opvQ
-	(envelope-from <devicetree+bounces-300173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:46:18 +0200
+	id aPRAIWh4DGoSiQUAu9opvQ
+	(envelope-from <devicetree+bounces-300164-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:49:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE36580C81
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:46:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE588580E13
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 16:49:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5276B303FD76
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 14:44:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6A8330ECE95
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 14:43:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA5C4F796E;
-	Tue, 19 May 2026 14:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622514E3776;
+	Tue, 19 May 2026 14:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="RFofw2PA"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="OH+Qgj+t";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3B2kVHX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011051.outbound.protection.outlook.com [40.107.130.51])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43893546D8;
-	Tue, 19 May 2026 14:43:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779201844; cv=fail; b=VOB4MW7HOkn+s7SvQvLZ0Hd8D+KetYWXV5d/WPsrXHHJlzzlTIl2901xQ0fGchHiWTHinS0SHYx1Z3Bjw5GOHodONsTqzV/0yyHGM+QE6BvzQWkFGoEGLxSM0hgYWDddvoMdFsgazDM6PXxfD2fRfy33dxefSwNMip/pxXp35Ik=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779201844; c=relaxed/simple;
-	bh=94giEF1jQOOOed+QbSKBG4OBl3G6O8kPKNTyYNWfW2M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=K2iczR3XtLmskcEaabhTEQugyIwh21fx7PYB56q8z03Dws4FiOe4UxvgzaqllK1T26udfSEOd23/33pIuSqwkwjnCV0nyKQf4ptP2M0siTGkdiv4zVX0sjL+Hx0U8fjmw+oZRk3qS4vSMyDDL6yunCaZLl2YECYuC+x4RUTXhgs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=RFofw2PA; arc=fail smtp.client-ip=40.107.130.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UqeDIFyc61ft/fOOpkj+MOnVwOdunCOe/YfsDK7oZgiFoa/u2YfR1SEKyZLuLyGqq/I+DLdQj3Y9SnoTEW7q4AtMCeTxwL91+wbA5+6yA2nruZFfE/IXKTKpSVcGL/8S8Dymxnn48jm0GwGy/GC83vpjS+NdcgAFkM/gxcwpBepNHtXMb3ObivV4kMeHiwZoWcsDngqaz6eAKH5DfU81caTvLTDrS99Eiaou6sjUR1doAMo6ikZiYpHnvUF7MqXHmLeRgPhMi+0LJNJ1YWal5MiBjYZuXskaSQOB49k/KH/sBLZnTmew3jY2SAcT/1per+40uZgZ9hGWIvJEuPAKAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vK5rmGCgOZlMyDhnZdvRZrqGqxweqQL/9cKA7vaFhok=;
- b=r9ZoRm66iHDL1H69zjJfg+4wQOJYTCyUCUw8Eg7Av2ZoQbIxa/xaELzScR+xcx+BzTnRLXux/JZEYFPEJEmt11WCbE0K5tMrgYeUcMLZkZhYkQTGTu1PEi7EtKm0aAf406tgbFFBjZ6ZmrqAISywZhKvw26Vp6Qc8w/TRrSHcxYOjKs5wxRs09+H+Jz2NZf4iOx/Rze3xlh5gMRqCp0VwS/CNpDoPkDWfnO6tVITcIrH3WkaHtESvcm/88h2xTi5a7xPVPFx+oqWXsdMcBTp3ubl/qqnyloOieykqAo5MNztTezp9+3MdYVTh+kjUn8JtvpKk8m6pI3szT8sk4I/4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vK5rmGCgOZlMyDhnZdvRZrqGqxweqQL/9cKA7vaFhok=;
- b=RFofw2PACczAjhOBgTLS1zn3ps2guelYnKP78awklChhHDQmSa0Xk8N8KdnHkHHeUQkLFQa5EikoXKhmVm5XR46hGg+5DX9z6k5aqTcQLOS8WsFrUU4uM4tX4hNk8vSNffNmwvVYO8XLlykzSxyBv4KXvRAlXaI5wYjfPaiQGuNXcE2qbgnnUpN+ESrkWw2zO8KVRQWu7JXWvdmPCAQSSEPfY7cvOTbJiYve2rEC2DdB6KnMowtYoK3uWcB6ZK9BnOWKwgsAgxkz/QsbFTY5LhJsxubpYowmdNP3V6sGxAXkkxBBofb0kb9UUaB+7x5ARO+ucVS1g5Uhc+OR7vmPwA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV1PR04MB9135.eurprd04.prod.outlook.com (2603:10a6:150:26::19)
- by VI1PR04MB10025.eurprd04.prod.outlook.com (2603:10a6:800:1e0::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.24; Tue, 19 May
- 2026 14:43:30 +0000
-Received: from GV1PR04MB9135.eurprd04.prod.outlook.com
- ([fe80::3826:2706:1e81:c9e2]) by GV1PR04MB9135.eurprd04.prod.outlook.com
- ([fe80::3826:2706:1e81:c9e2%5]) with mapi id 15.21.0025.023; Tue, 19 May 2026
- 14:43:30 +0000
-From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Ying Liu <victor.liu@nxp.com>
-Subject: [PATCH v23 8/8] arm64: dts: imx8mq: tqma8mq-mba8mx: Enable HDMI support
-Date: Tue, 19 May 2026 14:42:31 +0000
-Message-ID: <20260519-dcss-hdmi-upstreaming-v23-8-5615524a9c63@oss.nxp.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260519-dcss-hdmi-upstreaming-v23-0-5615524a9c63@oss.nxp.com>
-References: <20260519-dcss-hdmi-upstreaming-v23-0-5615524a9c63@oss.nxp.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS4P191CA0004.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d5::10) To GV1PR04MB9135.eurprd04.prod.outlook.com
- (2603:10a6:150:26::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD274DD6E7;
+	Tue, 19 May 2026 14:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779201786; cv=none; b=YYFqgBm6TajgO9RTv79uo2vrLcxallZ24k2kzVwxflspF454w3u2R1VTAR2gQlm8USg9XBMWGZgon+FkIy4zgdV1zFPpOQtIRCbXW6NH9GLsLctH4i1vtTw+jERmPDN3xdYwkOy2J3iEr5S81/+k+ynGrMM/hLw76HVuGylxNwg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779201786; c=relaxed/simple;
+	bh=TWofFx/L7B82ZB0Wmdrz/l3gvZ/qJJHsm2e0U8H+1EI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f5Km8OLBX6Mm0vqgKUWwGIDz9WXv5C4ZaOkjkCAsX0RxhU3zoUOt+9xt1dijp7dJWGa6FqYWGbRnu4TW9JUzOxYAsc684qcWbvuBCiyuJOQXo+VOQuY7AJSP4wplSah2PW7FXB5HzBIJTjF0IKG9YW1HuBvrD9e4E9Iddfj3SL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=OH+Qgj+t; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3B2kVHX1; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+Date: Tue, 19 May 2026 16:42:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1779201777;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CMGlyrCBop3la0imMgYJeakA2V0whVzG/+pLGAlldu8=;
+	b=OH+Qgj+tzCHqtO+cprnzOIC4l4VI6aeYCO5YXg4tv8XLtgRrzbBKmzIgaxPNqQ67DC2/21
+	IeyERJwhSv4TCCjZHXnd88+eyhmLSnOO3vIOS7GfxIZ3hG4zfmdAJa++f9wqGI+bbxN6pv
+	SB4Z37YA4jUmWwgNHkwr2zmMv9LHTQfwfe29oHnvLZt0M1IqRMqJi07XNMPtpMP72aTKby
+	KYoQ4utgevUG+o03QCXw1uW9MXA02ljj9N4gAF/P7HJ1nQ/X2T+H7vkn9xqztLuB699/JD
+	jIPbNTQnyD1KWSZc682vV9RR2dApXmLWBbezCchY/2QhYQ5YGZCo++c+dPr4ug==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1779201777;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CMGlyrCBop3la0imMgYJeakA2V0whVzG/+pLGAlldu8=;
+	b=3B2kVHX1Tw0rd+7jn56ZQDjP9WpyGeprzdwvSyiyokdmGpVza++UDyU4p1CHwUUy1ZP0Gr
+	9uGwBCTd22SA/IAA==
+From: Gregor Herburger <gregor.herburger@linutronix.de>
+To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
+	Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] nvmem: Add the Raspberry Pi OTP driver
+Message-ID: <v3trqljork46ao3haew4abeky4q5ghjhf2uvkttpptlqgn46ht@kmgbgv6h7qqj>
+References: <20260508-rpi-otp-driver-v4-0-cf8d725d8821@linutronix.de>
+ <20260508-rpi-otp-driver-v4-2-cf8d725d8821@linutronix.de>
+ <20260519110041-2d8d92c2-d265-43d1-848f-bf9231a106c8@linutronix.de>
+ <bv4vwmkkjh23lahkrupwclqs7il4vxqeknalgqn52k3wc6ztsg@z5ukn774brtg>
+ <20260519123911-0a9ca1dc-7fee-425f-ba0f-e86368596e55@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9135:EE_|VI1PR04MB10025:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1dd977a4-df68-4039-dbcd-08deb5b4fe4c
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|7416014|376014|18002099003|22082099003|56012099003|11063799006|3023799003;
-X-Microsoft-Antispam-Message-Info:
-	hvKuOHVKLrhjA4xt2bbUEffYZ6kNHwto0eJSPDXIE422VoKkAcLdFqKzzsRe4+SqbAshJDeGP15/ltlQ9ZTl7rBMZndoPtR4IJlYOEWfIY8B8i3zzMTd7UScZG1/dhjOW6BqKtsH9+QqY03d2iQscN/7x44T5Y+TZi4HXCNgteg8J7m6f5VYLJgog4F9jC4pzEqcPb2nDbfiN8hMBEvamU42AwC34C2Fnc11yvQHRx2p6FuPzD5d5v0q1wtlcqewRpIQI4QphMRx3rmtae+JZopTzJdanbT4l3eY7BSEhuG0gglPQEGIe2vasNkTApzFp596cdSfMGBh+WMVIMyj+5I7CgAxFJjhkSJvsT7ePYEU310VkBq0jMi7gdQYNNWGpN+wVucNIe3KUPsMSHxT3ZI5KGV8s1eqCkX8UM8zVObUUzesdbFkKs/4eKcLVTLckkiod9HE84K1CwEjf5zSrHOvZ5ejprVeH3Sao0P3njw56QzNVyLA8kgCwl022yQURxFbcEB3RKQYGeDvShViW4HcCJWKPf7e2Ji2j7mNw4emjlW1nW+fug8rCwhIvlv0E+cSyehD+sV6eV100xlknQXZf173vr+8LZIqx5QGTewUmZXalqgMgt3hlfWCYv0cs9gv7rSDZiqZ1qG0P6bbzHhX5/f5pq0G18Y0IYwJD8D1vEW91G3RyGYMA0MJj8kK
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9135.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(7416014)(376014)(18002099003)(22082099003)(56012099003)(11063799006)(3023799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z0RHV0tuVTBEc1hJNFc4SlRLdzV4NEVWTVAyeW1xSUt6MjUyZU9Ma2tWMkJ6?=
- =?utf-8?B?NnRrYXYydmtuSWwyL1dTc05rQVYvTHIxZFBoeDNRQ2tpNFJVK21PTmM3RDdB?=
- =?utf-8?B?bXFwVWh5REhCTksvU3Z6RHhKYWhtVUx3TFVIQW8yNGhIQks5Q3lZc3E0eUha?=
- =?utf-8?B?NzBud2ZjYW40aGlRMFZrOE5saTdHWStPbFE5N1VvM01oTVB4eWJKdTNNSERI?=
- =?utf-8?B?akFxNjhCTlZQWklQcmU4ajdsaUc4M3dHektUZTdGcFFia1U4M2RjSTNXQUto?=
- =?utf-8?B?ZEcyemtINUxVQ2Y4QXYwalp2UmZXVS9ONkJ2Mm9UYkdZWnJuVUFQek5mTDZE?=
- =?utf-8?B?dW9ZL3M1L3MzUmxJUlk3T0RwdGRrWVdwWTlDK1FVRTkwTDlXb3RDcWw2dUNs?=
- =?utf-8?B?aVlxVHE2djZlTnZUbXp6cmpBdGhmWEQrUStFMVVDZGMzb1lTeXpWVjVJY0Vp?=
- =?utf-8?B?T0RJeWZDWGdUZE9OVzN1Ym5mYjhrWkxWcU1XaWxOcDkza0VSUmxMQ29pRUd4?=
- =?utf-8?B?OXhuMjdXSEhKMi9xZWRhNDNHc21HYWpDWmx1TjN1SXNEMEV0RUFuZTY1dVND?=
- =?utf-8?B?QTVQVHczWWRCQ282eldOL3JMN0dXc3F2U3VsN1B1ZE9Eay9oRDNyOW5jQjFW?=
- =?utf-8?B?K1dWOTd2MXJ5RUZYb3RNNVRBM0dTVDI5QWZ0cDVkMWJNR2hHRWRVT25nL2d5?=
- =?utf-8?B?UndVVkxqWGEvMVFCcXk1QklPeVB0YndlMHU4U1pucFRqNzFTV1NLZGpTdnls?=
- =?utf-8?B?TUc5SkROSEM1Z1p6VkI0MzBkVDBYSkZ3eFdvTlRvSXd3RHBtaDAzSm5pdVdJ?=
- =?utf-8?B?M284ekhLZWc5RTRGeVVmWnRRVGVrdVBFZlAzOFFFVjdmZEdCaU9hVytJbkwr?=
- =?utf-8?B?b2R5VDFwdm5NaWJpZklWUUx3N1F5eEYxcmh5OGVGZnhrZ3g5cUpRdFB3Zmpo?=
- =?utf-8?B?ZVFUYXhJRDFraC8zYTI4U1VnVU1ZbHBrZEFLWkFiV2VWU1I2dmhIMlh6cTZR?=
- =?utf-8?B?QjJ2cDVRUWtldElPYlllNnozSE1IZUxQQkl6TklOYkZOcTBRcm45bDl0RUs4?=
- =?utf-8?B?a3Z5ekR6RmR0SGhlMVRGRHJXTG55QlVxSXVjZFBFSVV1b1ZJMS90amgxNFB2?=
- =?utf-8?B?QmNpMEFjUzhmUnQrU0t5RjNuR2RUalZzL0FDRWg2TlF5QW9jcDJ0QS95SHky?=
- =?utf-8?B?VlU4SUZVL0dQUkZVQXJYL3ZteDhIWHRaOXN3aXBOQjNDNnhzd2psd3cyTUZ3?=
- =?utf-8?B?K3ZoQUErM2t3Unp5RDVhOVpuTXEzamhhUmovV2xPY24xTWxXVkJlR0hPOVBY?=
- =?utf-8?B?M2QwQ25QaldBYjh6RjBVSzJUQlNhdHIza0R5ZmRpVmNjV0UwekJFZDFLSXJ1?=
- =?utf-8?B?S1FhTXRra0tqOGVEdEs3bkFBbk9qNW40a0RkVmdMZGEySDlGQkwvZUJCOWlR?=
- =?utf-8?B?TzBoM0dxbUZNNEtLTGhZelE2NWRIemg3Ni9VV3lXZHBXZGs3aDhLb3VYdmZ6?=
- =?utf-8?B?S2wzVnZGUDVWbURMNDB5dkdBRyswRm9vU0FnR2Yvc0RHT3dwMjg0UkhMTDJJ?=
- =?utf-8?B?R2ZTb1A1QzBvVEgwUlRtMExhdnczMzdKaU9DUXN3a1Z1UDZiWmJ3RHZyYWJY?=
- =?utf-8?B?ck5ISmh5V0d1Q0Vva25tdjdhWWtRcWdlNFE2aUtMeERZdTNjZElYSGdXNVBQ?=
- =?utf-8?B?ck1BaEtKeWNrQWpGd0hqejEzVkhla0l6ZFVRWWFQT2lwR1pHK0dkcFVLdVZU?=
- =?utf-8?B?U0dRZTY5bWc0SDR4RWtEdTVRbzF5cDBDbmNubGZ4VEl0TXE5RmNnSmV4OWha?=
- =?utf-8?B?bTBvYVg0RVVZMjhuSWJBZ1g2WWplRklidnFyNVhtQzhaSmF1S1ZiRHJwSCs0?=
- =?utf-8?B?YmQ4aU55OW5oMWkzaFZFR2ZrNHRzdUZBSG1rN1d0cGlPa2tCRTYxK05BSFcy?=
- =?utf-8?B?a3FyN2tGbEJyUSt3TitVQlNmVmhoQ25LTG56cEh5NG83ZGl0ek84TmsyTmY2?=
- =?utf-8?B?a1dEVlZDQVNqVGlXN2tNZnY4NWpySFZacFhHM09kbTBEcGM1ck1iU1FDckc5?=
- =?utf-8?B?NU90a0NLRG9qOVY1M1RoczFmVWd1ZlVGRGRsaUQvVkZFQng0Yit6QXVmQUYz?=
- =?utf-8?B?aFNPbG53YnpRa0IzclFHS1FDU3dydzdtT2txWGI1OGZVNUxkN3B6c1BFeFhK?=
- =?utf-8?B?eVQvdEQzejF1ZXIvNnZCYUlxQkwybjdCemg2VWQrZlJva01aUEthK29pRm9h?=
- =?utf-8?B?cC8veHg3Z0dqVXFRS2Z2bGtHaUdTT2JnVGZUUlcvSXVDbm9xYXlybXRidjF0?=
- =?utf-8?B?MlU3R2ZTMEdjN3R4U1VhZXpzNXdzdHc5RlB0Y3FvaHJSOVIyMkhqUEpZWjQ5?=
- =?utf-8?Q?IGCkccmIgAfReTbY=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dd977a4-df68-4039-dbcd-08deb5b4fe4c
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9135.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2026 14:43:30.0349
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WcUwY3RuIur6hPaZGWIJU9E+6nBaoPXi+4aCDOtn4am6D6Ng2pL/8qXtle81UiiHURgm4FQPDkuE5N31rSteQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB10025
-X-Spamd-Result: default: False [1.94 / 15.00];
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260519123911-0a9ca1dc-7fee-425f-ba0f-e86368596e55@linutronix.de>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
+	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300173-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-300164-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiu.palcu@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linutronix.de:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,anholt.net,gmx.net,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,oss.nxp.com:mid,tq-group.com:email,NXP1.onmicrosoft.com:dkim,0.0.0.25:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nxp.com:email]
-X-Rspamd-Queue-Id: CAE36580C81
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linutronix.de:dkim]
+X-Rspamd-Queue-Id: DE588580E13
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Tue, May 19, 2026 at 12:47:31PM +0200, Thomas Weißschuh wrote:
+> On Tue, May 19, 2026 at 12:20:14PM +0200, Gregor Herburger wrote:
+> > On Tue, May 19, 2026 at 11:14:28AM +0200, Thomas Weißschuh wrote:
+> > > On Fri, May 08, 2026 at 04:42:45PM +0200, Gregor Herburger wrote:
+> > > > +config NVMEM_RASPBERRYPI_OTP
+> > > > +	tristate "Raspberry Pi OTP support"
+> > > > +	depends on RASPBERRYPI_FIRMWARE || (COMPILE_TEST && !RASPBERRYPI_FIRMWARE)
+> > > 
+> > > The '&& !RASPBERRYPI_FIRMWARE' clause looks weird, is it really necessary?
+> > 
+> > Yes it does looks weird but I think it is necessary. Without this it would be
+> > possible to build RASPBERRYPI_FIRMWARE=m and NVMEM_RASPBERRYPI_OTP=y which
+> > results in linker errors.
+> 
+> Fair enough. I would prefer the solution below, though.
+> It would cleanly solve the issues also for other (future) drivers.
+> 
+> diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
+> index 17595a96e90b..0efd479ffced 100644
+> --- a/include/soc/bcm2835/raspberrypi-firmware.h
+> +++ b/include/soc/bcm2835/raspberrypi-firmware.h
+> @@ -188,7 +188,7 @@ struct rpi_otp_driver_data {
+>         int size;
+>  };
+>  
+> -#if IS_ENABLED(CONFIG_RASPBERRYPI_FIRMWARE)
+> +#if IS_REACHABLE(CONFIG_RASPBERRYPI_FIRMWARE)
+>  int rpi_firmware_property(struct rpi_firmware *fw,
+>                           u32 tag, void *data, size_t len);
+>  int rpi_firmware_property_list(struct rpi_firmware *fw,
+> 
+> (...)
+> 
+Yes this should work. Will change it in the next version.
 
-Add HDMI connector and connect it to MHDP output. Enable peripherals
-for HDMI output.
+> > > > +static int rpi_otp_read(void *context, unsigned int offset, void *buf, size_t bytes)
+> > > > +{
+> > > > +	struct rpi_otp_priv *priv = context;
+> > > > +	struct rpi_otp_header *fwbuf;
+> > > > +	u32 count;
+> > > > +	int ret;
+> > > > +
+> > > > +	if (!IS_ALIGNED(offset, 4) || !IS_ALIGNED(bytes, 4))
+> > > > +		return -EINVAL;
+> > > 
+> > > Isn't this already enforced by the nvmem core?
+> > 
+> > Only for sysfs access through bin_attr_nvmem_read/bin_attr_nvmem_write. But
+> > there is an in-kernel API nvmem_device_read/nvmem_device_write which does not
+> > have alignment checks. So I added the check to be more defensive here.
+> 
+> The other drivers don't seem to check this explicitly. It looks like an
+> accident waiting to happen.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
----
- .../boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts   | 28 ++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/mba8mx.dtsi          |  7 ++++++
- 2 files changed, 35 insertions(+)
+Indeed, I will have a look at nvmem core and see if I can find a proper solution
+for this.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-index 0165f3a259853..4ea1c790bae46 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-@@ -53,6 +53,10 @@ &btn2 {
- 	gpios = <&gpio3 17 GPIO_ACTIVE_LOW>;
- };
- 
-+&dcss {
-+	status = "okay";
-+};
-+
- &gpio_leds {
- 	led3 {
- 		label = "led3";
-@@ -60,6 +64,16 @@ led3 {
- 	};
- };
- 
-+&hdmi_connector {
-+	status = "okay";
-+
-+	port {
-+		hdmi_connector_in: endpoint {
-+			remote-endpoint = <&mhdp_out>;
-+		};
-+	};
-+};
-+
- &i2c1 {
- 	expander2: gpio@25 {
- 		compatible = "nxp,pca9555";
-@@ -91,6 +105,20 @@ &led2 {
- 	gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
- };
- 
-+&mhdp {
-+	status = "okay";
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			mhdp_out: endpoint {
-+				remote-endpoint = <&hdmi_connector_in>;
-+				data-lanes = <0 1 2 3>;
-+			};
-+		};
-+	};
-+};
-+
- /* PCIe slot on X36 */
- &pcie0 {
- 	reset-gpio = <&expander0 14 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index c24ae953cbc25..a723547dd71d1 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -89,6 +89,13 @@ gpio_delays: gpio-delays {
- 		gpio-line-names = "LVDS_BRIDGE_EN_1V8";
- 	};
- 
-+	hdmi_connector: connector {
-+		compatible = "hdmi-connector";
-+		label = "X11";
-+		type = "a";
-+		status = "disabled";
-+	};
-+
- 	panel: panel-lvds {
- 		/*
- 		 * Display is not fixed, so compatible has to be added from
-
--- 
-2.51.0
+Gregor
 
