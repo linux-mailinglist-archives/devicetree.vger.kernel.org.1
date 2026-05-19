@@ -1,233 +1,245 @@
-Return-Path: <devicetree+bounces-300145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300147-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jyYOL5VsDGpjhgUAu9opvQ
-	(envelope-from <devicetree+bounces-300145-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:58:45 +0200
+	id 2JKGMc9sDGpKhgUAu9opvQ
+	(envelope-from <devicetree+bounces-300147-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:59:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1B858020A
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:58:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69283580251
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 15:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D918A30BB2DD
-	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 13:53:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D7836304276F
+	for <lists+devicetree@lfdr.de>; Tue, 19 May 2026 13:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2B83ED3A8;
-	Tue, 19 May 2026 13:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4F54028C5;
+	Tue, 19 May 2026 13:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XBxhJYGQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RJrQRc32"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="g+dFbUD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out198-18.us.a.mail.aliyun.com (out198-18.us.a.mail.aliyun.com [47.90.198.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65832293B5F
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 13:53:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD1D3ED3D0;
+	Tue, 19 May 2026 13:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779198821; cv=none; b=UaUVHiqlR/mZKgqmkjz4Oc/UCZ8n/Fgn8EPdt8BQSA7xnW0qhMdP8EYRRRaeNJ7sbAP+EY1GuLwX7iifn2b11s1Hs5oYNQNHHEpb9wENQYMpuoGQb4k3pb2awBhQBN2MD413/Px3Pyld66dxKSNRYFVeQAFWbTT04NBbA5+E2Gc=
+	t=1779199120; cv=none; b=Xf8uHea18oEX6JPaCmqpJ9wbetALhyHlF5meMZnU4T79ZXbaUCrgALNIDxaTU/Jm2JSBghwEA+e2ywi484UrMaUtR2AOiU55OAL8/YgggdLFR+GXdbBvzxQl+IOcXxtOrKfekOgMTRFXPYiHaZTpb8bYhUeQeXiblrFUfJXkXPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779198821; c=relaxed/simple;
-	bh=HNcI1kNzIGfM0x3r8RbKIKrdoY5+TDkvSLJtco1ZEO4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MbkOFudAwwAGDj+EE+kuolzY0xz8RtKQGe+Uhvpv/PdQQQmkw/G8OPUFQ1wPWo6xw7mhjuHRjailfeEek74VBXK9RZK2ZCpBGLxEGZsAypmDkaDePRfEP7gv9Ol/eTp31VGbNDe6oUfNdUaiXcpIt+gQJSJsoo9CfZmVQ0nQI+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XBxhJYGQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RJrQRc32; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64JCa9VY1396782
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 13:53:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SHd/seu6GWeewtLPWuKEX1k3PpnC+gd0X961ojf5+Tc=; b=XBxhJYGQgHoNEFMl
-	89KArmF0aZ/h9a2LoUeXhUrYySj9Y1oaF8J8BR7JC1ZWz8QTTHnSksW4EhBh4Jbx
-	9OTdEZVwd735yccEBgkFaekYCtS0lESzk8YcOQAQsC/9J39+sSF5e87uI8Wwjj57
-	weG/UlD/ZpTD8XudL+6M8ErVvAKzawCgqfi0PMvU7lFe+4+Av3jE/+PvpdH6A6Ce
-	IQvAM7Sw8DTDoG63APSaxxA0faWxLTZU7ywBpi8xuezyMq9ggYz3s496JfVfVwsH
-	QEchz1Y19grGgFYd87dOHI+0Ji4EMTLBAFW4t5lm/yMpWafVph5RTGdfcZiU5X1J
-	Lvag9g==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e8r0q0axw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 19 May 2026 13:53:38 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-36641bb3d97so2162094a91.3
-        for <devicetree@vger.kernel.org>; Tue, 19 May 2026 06:53:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779198818; x=1779803618; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SHd/seu6GWeewtLPWuKEX1k3PpnC+gd0X961ojf5+Tc=;
-        b=RJrQRc32NXaansnrjr6KjIGI/+OIATs2GW3GW5IFQmg432KV4I98Uh7jqUnIvL35Vm
-         dXB+cU+si9Vzs0Pmx+4FQwMbID9opJkvYDqYgiXw4y4TRYBKLlJmxXpgNeGBVzLf3X4z
-         Gqn70lt+GO5HHcbeRDF8gOOfNEVFBbBaSygg7Vdh1n2LCehlLWQcNXPNXvVqsAlDqpXx
-         8+HlBKxtG77s9c1jbgbkBmrbF0euBd42c+eLuXsTpfibSyEVK+r6NCfIuZaKFY5c5u6v
-         i1Z15V8gct+w0cGd/ASsCYvLE/G8Gt4xnTt0/o2TshlWid5/E3rmGTPbJsknOIp+Dx3O
-         eE0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779198818; x=1779803618;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SHd/seu6GWeewtLPWuKEX1k3PpnC+gd0X961ojf5+Tc=;
-        b=psJtsbE4F77MIC78jWLNRPuW/NtP/tu55DgjiFzt/zXdYUHuuIYYdtvV8L63y6LcNP
-         70NRFC/DNWDBKFzzcVoKD+dYwJq55D1J2QThc9v0sgKvYiRtyjQzaeYnO8VSoGoR9ZNd
-         v7H53OotOpZTsB0zjYRXigyImRYZn1xIKGiZtpW0dA04JHLkLafkJoegLVoBf7IYbnnP
-         7tSPOjmY2WLhWOEBN3GBX5ExN6K6mVKgKXyl0U2nqX2IbXQer+L2WHf6SK5ULzlrRt9d
-         8YhHrLjfrssu8DTDCbG4gmHlBLMrQ/pu70BoVnH+F8X4bB2TrJ6sou3g2ViFU21OQaZ0
-         YJmg==
-X-Forwarded-Encrypted: i=1; AFNElJ+GzWadjFJ9wLCbU6KECXFquWTaNg+ARHPYFaurMW+qy5yWcFTmo49LCuzI28gmigheJaIHHEOYIUPf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfuhFIG96CDIY0YO++BGyr1/xQW/ACOchskMO0UJZCD54hC7r9
-	IWq49G45xetv0c3W9anN4YXKGMSSNO+StC2ZIe6LVN3IbcgWrvUDqrom3Duz2QegcL3IZKhNpo6
-	DO2aBEJopPkzyhyJ36RTY37sc7aN0LNuwmvlla/HY/BAojLsR5gQg8OPrEh4FlT8U
-X-Gm-Gg: Acq92OEHqUcV1+z/+rW7akFHx0AY1V70c8BW0/AckfBBckG7Mml0ZoOQPfASbGFGISc
-	QitIdYn9pMCzte3/vz+6HhsN9MGQfgjcsPX5bVvc66aCRkcG6qiXf+lEWCbrR4qrW41D1nCsHh5
-	pL5TD41VnJFIf0ubpuz4+YKY3fzv1rkUUKWClG0s1GJuj+YinEFpVfiNmMlXbN4YURqQLBkLzGT
-	Car//CO4CsttIybQmOkqHmxvU87Oq7oG2wGk6ZlDuCuCPSQLIApufJ5MBFALHNjKFEmicRe2/64
-	wErOTlFhyE8cpR4RNEAQ2jbMy2A77cCkMgmKxjkI1U3pc6obDqcJzcNMYR3wjmw5E1607SImYP+
-	wSpNkZiHSAtgy+7/zClbhgMU5C0HJ4PWr1dxpabJezd5D2Fqk
-X-Received: by 2002:a17:90b:3505:b0:368:9da3:c496 with SMTP id 98e67ed59e1d1-36951ca7638mr19545341a91.24.1779198817956;
-        Tue, 19 May 2026 06:53:37 -0700 (PDT)
-X-Received: by 2002:a17:90b:3505:b0:368:9da3:c496 with SMTP id 98e67ed59e1d1-36951ca7638mr19545289a91.24.1779198817413;
-        Tue, 19 May 2026 06:53:37 -0700 (PDT)
-Received: from [10.219.56.98] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-369c4bb4d4dsm3568780a91.1.2026.05.19.06.53.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 May 2026 06:53:37 -0700 (PDT)
-Message-ID: <a437f9f9-3560-40f8-85ea-35433e33c428@oss.qualcomm.com>
-Date: Tue, 19 May 2026 19:23:09 +0530
+	s=arc-20240116; t=1779199120; c=relaxed/simple;
+	bh=pQxm2QYPzLdQr8tQqONPg2xaPCffTDLc+VBIED6lAK0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=YRW9+jbdMV7ikDFaieasHJiA4woj/5LINjCCrOnir5EhW72UJQnc/S0h9l+LgTeLDUmnCgldWP25rlvUhUJCYuWZht00JXVxzwyVNAnDlmBfFPExZq6NZDJi8WVKJbrDpPbJp00OXy80m+lUJRPwOU5r2ignTWDFZ2T8VI0V5wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=g+dFbUD2; arc=none smtp.client-ip=47.90.198.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1779199101; h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type;
+	bh=dC5p6WLx+1YxvRHi0MVkMvCJDk91rLzUfKqhoVO1xj4=;
+	b=g+dFbUD2UZTM0oTIT4nMsIOvfknOyY2ijSD2QByYafhtUTkuxxdLSp8H3QxA3i6JfbqJuBaV1gCAucD99CI0Q4cVD/zE+ZbH9eEiJntPGmjLtiQRQ1hPrwfhR/MEpHLWEF+WiUi23GfhiABVhoPjKwagjirBh+WecI7Srn+A6cW7a3P90oTqer5wruldCcKGhRzwyACVksQpYNOwCZKXz858KxuPDh/kljql61YZQ82VhuYTtDmh+l3CLsU3PWgLp51eWIBYhhkvV/htvhinNDtAZglLFC5sOYaXV/CrvUBfQ9EjKOwkAdIjuKoFq22IWngTkoGPVrnjIOAGe6IMHQ==
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07439937|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00537018-0.000131359-0.994498;FP=7573218646630785144|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033045018182;MF=syyang@lontium.com;NM=1;PH=DS;RN=23;RT=23;SR=0;TI=SMTPD_---.hbB8zG0_1779199098;
+Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hbB8zG0_1779199098 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Tue, 19 May 2026 21:58:19 +0800
+From: syyang@lontium.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	maarten.lankhorst@linux.intel.com,
+	rfoss@kernel.org,
+	mripard@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	tzimmermann@suse.de,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	xmzhu@lontium.corp-partner.google.com,
+	xmzhu@lontium.com,
+	rlyu@lontium.com,
+	xbpeng@lontium.com,
+	qdchen@lontium.com,
+	llzhang@lontium.com,
+	Sunyun Yang <syyang@lontium.com>
+Subject: [PATCH v10 0/2] Add Lontium LT7911EXC eDP to MIPI DSI bridge
+Date: Tue, 19 May 2026 21:58:14 +0800
+Message-Id: <20260519135816.26996-1-syyang@lontium.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iommu: arm,smmu: Document optional
- interconnects property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260516-smmu_interconnect_addition-v1-0-f889d933f5c1@oss.qualcomm.com>
- <20260516-smmu_interconnect_addition-v1-1-f889d933f5c1@oss.qualcomm.com>
- <20260518-mellow-robust-caterpillar-93fcaa@quoll>
-Content-Language: en-US
-From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-In-Reply-To: <20260518-mellow-robust-caterpillar-93fcaa@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE5MDEzNyBTYWx0ZWRfX1wcIiArWkQ24
- tI/5VcrELmGPapSQNy1/E1uH+Q2BGSJPXKsOywCTQidCmMlbFhKyvFriaIlRDTZ5JG94z5mQ2Xx
- rNLMHffACewLTR5vIqRmSRKpgkfp4tppcUVACP4xrfv6Ok5Us8BcJLu4SpchbvM4X8QOFi6R4IZ
- IHUnBEsIdU57Ombzn96IKx/gd5n94pgzatNwJN4zj1B5T8fOs4dolcH8N8+bO6S6MntO4gjIvV7
- hKW+oJ/Vh0vxM2r0582jdDg7T0hDe0/lV4gIhDV8IOpxkF9pwHafJU+62zePwUj/YFYMC+fEClU
- olYawAf1Us7MZNn0XObARmsSkEoyVT0gHESI0WOmnQOL6S3eBZtEx5lfLhVi2aX25VU0PYhWOPv
- KZJ3kTxmUpNdgQJW57SpbHqmmWjo9G+/has+FHJPIt96rEamrCXZC9obCILDSBp8V6W9sr2sNsD
- v2QSIdUqd7CqHQbVUAA==
-X-Proofpoint-GUID: 8caiy_pGDo3N_FF1pWPhwrb7LH_g_BkF
-X-Authority-Analysis: v=2.4 cv=Q6/iJY2a c=1 sm=1 tr=0 ts=6a0c6b62 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=E2rNws97cCCTNOQwQB8A:9 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-ORIG-GUID: 8caiy_pGDo3N_FF1pWPhwrb7LH_g_BkF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-19_03,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 priorityscore=1501 clxscore=1015 spamscore=0
- phishscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605190137
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300145-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	TAGGED_FROM(0.00)[bounces-300147-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[lontium.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bibek.patro@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 1B1B858020A
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DKIM_TRACE(0.00)[lontium.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lontium.com:email,lontium.com:mid,lontium.com:dkim,0.0.0.0:email,0.0.0.1:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 69283580251
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+From: Sunyun Yang <syyang@lontium.com>
 
+The LT7911EXC is an I2C-controlled bridge that receives eDP1.4
+and output mipi dsi. This series introduces:
 
-On 5/18/2026 6:03 PM, Krzysztof Kozlowski wrote:
-> On Sat, May 16, 2026 at 06:04:03PM +0530, Bibek Kumar Patro wrote:
->> Some SoC implementations require a bandwidth vote on an interconnect
-> 
-> Then this should be disallowed for other devices in "allOf:".
-> 
+- A device tree binding YAML file describing the hardware
+- A new DRM bridge driver implementing the basic functionality
 
-As of now, we still are checking which all SoCs do not need this 
-interconnects field. So would we need to add the allOf here for now?
+Signed-off-by: Sunyun Yang<syyang@lontium.com>
+---
+Change in v10:
+- dt-binding:
+- drm/bridge:
+ 1. Fixed the firmware upgrade error paths to always clear the upgrade
+    flag before returning, including firmware size validation failures
+    and allocation failures.                                                                [sashiko-bot]
+ 2. Added proper locking in lt7911exc_atomic_pre_enable() and
+    lt7911exc_atomic_post_disable() to serialize register accesses with the
+    firmware upgrade flow and avoid concurrent I2C transactions.
+ 3. Added an exclusivity check in lt7911exc_dsi_host_attach() to reject multiple
+    downstream attachments and prevent repeated drm_bridge_add() calls and panel bridge leaks.
+ 4. Reworked lt7911exc_firmware_store() to use mutex_trylock() so concurrent sysfs writers
+    immediately return -EBUSY instead of blocking behind an active firmware upgrade.
+ 5. Updated the remove path to prevent new firmware upgrade work from being queued after
+    device removal by setting the upgrade state before cancelling the worker.
+- Link to v9: https://lore.kernel.org/lkml/20260519105019.22622-1-syyang@lontium.com/
 
->> path before the SMMU register space is accessible. Add the optional
->> 'interconnects' property to the binding to allow platform DT nodes
->> to describe this path.
->>
->> The arm-smmu driver uses these properties to vote for bandwidth before
->> accessing any SMMU registers and releases the vote on runtime suspend.
->>
->> Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
->> ---
->>   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index 06fb5c8e7547cb7a92823adc2772b94f747376a6..5cbf944f2d3e178b3723d4dbaa19ee0d33446979 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -243,6 +243,15 @@ properties:
->>       minItems: 1
->>       maxItems: 3
->>   
->> +  interconnects:
->> +    maxItems: 1
->> +    description:
->> +      Optional interconnect path to the SMMU register space. On some SoCs
->> +      the SMMU registers are only accessible after a bandwidth vote has been
-> 
-> Drivers are irrelevant here, drop. Also first sentence is redundant.
-> Schema says what is and what is not optional.
-> 
+Change in v9:
+- dt-binding:
+- drm/bridge:
+ 1. DSI transfer callback returns success for reads without populating                        [sashiko-bot]
+    the receive buffer, leaking uninitialized memory. - fixed it by 
+    implementing  a strict whitelist mechanism.
+ 2. DSI transfer callback polls for eDP video readiness before the 
+    upstream encoder is enabled, guaranteeing a timeout. - removed
+ 3. The driver attempts I2C transfers while the hardware is held in
+    physical reset. - fixed
+ 4. Missing DRM_MIPI_DSI Kconfig dependency causes linker errors. - fixed
+ 5. request_firmware is called while holding the hardware lock and
+    halting the MCU, risking a system pipeline stall. - fixed
+ 6. Sleeping functions are called from atomic context in the DRM bridge callbacks. - fixed
+ 7. lt7911exc_dsi_host_transfer bypasses the required MCU hardware halt sequence. - fixed by 
+    internal firmware controls the panel initialization sequence and handles all MIPI
+    DSI command transmission.
+- Link to v8: https://lore.kernel.org/lkml/20260515080934.9870-1-syyang@lontium.com/
 
-Sure, got it. I will remove the "driver" quotation and "optional"
-wording from both binding description and commit text.
+Change in v8:
+- dt-binding:
+- drm/bridge:
+ 1. Protect firmware upgrade and DRM bridge callback paths with ocm_lock.          [sashiko-bot]
+ 2. Remove the hardware reset from the remove callback, and ensure that
+    all hardware reset operations are protected by ocm_lock.
+ 3. crc reconstruction explicitly casts each byte to u32 before shifting
+ 4. The display configuration is handled by the firmware, and the MIPI
+    DSI host registration issue has been fixed.
+ 5. The batch register read/write operations have already been updated
+    to include return value checking.
+ 6. The dev_err_probe() used outside of probe context has been fixed.
+- Link to v7: https://lore.kernel.org/lkml/20260512064013.40066-1-syyang@lontium.com/
 
-Thanks & regards,
-Bibek
+Change in v7:
+- dt-binding:
+ 1. fix commit message typos(Receiver、signal)                            [sashiko-bot]
+ 2. remove the ambiguity caused by "signal/dual".
+- drm/bridge:
+ 1. using devm_regulator_get_enable avoids power leaks.                   [sashiko-bot]
+ 2. set reset gpio is low after cutting off power in lt7911exc_remove function, avoid backpowering.
+ 3. synchronous request_firmware() call cause a permanent probe failure if the driver is built-in,
+    probe executes before the root filesystem is mounted, which would cause this to fail with -ENOENT,
+    we have removed this functionality. Use trigger to upgrade.
+ 4. add `depends on I2C` and `select REGMAP_I2C` in Kconfig.
+ 5. add return value of `devm_drm_bridge_add()` in `probe()`.
+ 6. add directly header files (linux/slab.h, linux/delay.h, linux/regulator/consumer.h)
+- Link to v6: https://lore.kernel.org/lkml/20260508134702.4713-1-syyang@lontium.com/
 
-> Best regards,
-> Krzysztof
-> 
+Change in v6:
+- dt-binding:
+- drm/bridge:
+ 1. use #define FW_FILE  "Lontium/lt7911exc_fw.bin" to match linux-firmware
+- Link to v5: https://lore.kernel.org/lkml/20260506013153.2240-1-syyang@lontium.com/
+
+Change in v5:
+- dt-binding:
+- drm/bridge:
+ 1. Change "mipi" to "mipi dsi" in the commit message.     [Dmitry]
+ 2. Change "eDP/MIPI" to "eDP/MIPI DSI" in Kconfig.
+- Link to v4: https://lore.kernel.org/lkml/20260430094612.3408174-1-syyang@lontium.com/
+
+Change in v4:
+- dt-binding:
+ 1. Fix the missing spaces on the "subject".             [Krzysztof]
+ 2. Fix the error descriptions for port@0 and port@1.
+- drm/bridge:
+- Link to v3: https://lore.kernel.org/lkml/20260429040541.3404116-1-syyang@lontium.com/
+
+Change in v3:
+- dt-binding:
+- drm/bridge:
+ 1. already submit lt7911exc_fw.bin to linux-firmware.  [Dmitry]
+ 2. remove lt7911exc_remove function.
+ 3. drop  the "lontium, "  in lt7911exc_i2c_table.
+- Link to v2: https://lore.kernel.org/lkml/20260428063224.3316655-1-syyang@lontium.com/
+
+Change in v2:
+- dt-binding:
+ 1. reset pins use active low.                        [Dmitry]
+- drm/bridge:
+ 1. use atomic_* callbacks.                           [Quentin]
+ 2. fix the incorrect formatting and spaces.
+ 3. add the required header files.                    [Dmitry]
+ 4. remove "enabled" flag.
+ 5. remove *fw from the lt7911exc struct.
+ 6. .max_register and .range_max use actual range.
+ 7. regulator use bulk interface.
+ 8. use dev_err_probe, devm_mutex_init and devm_drm_bridge_add.
+ 9. Replace GPL v2 with GPL.
+- Link to v1: https://lore.kernel.org/lkml/20260420023354.1192642-1-syyang@lontium.com/
+
+---
+Sunyun Yang (2):
+  dt-bindings: bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+  drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
+
+ .../display/bridge/lontium,lt7911exc.yaml     |  89 +++
+ drivers/gpu/drm/bridge/Kconfig                |  16 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/lontium-lt7911exc.c    | 688 ++++++++++++++++++
+ 4 files changed, 794 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt7911exc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt7911exc.c
+
+-- 
+2.34.1
 
 
