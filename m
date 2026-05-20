@@ -1,227 +1,160 @@
-Return-Path: <devicetree+bounces-300770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301697-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BXJNrbdDWqC4QUAu9opvQ
-	(envelope-from <devicetree+bounces-300770-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:13:42 +0200
+	id YItOB2cyEGqEUwYAu9opvQ
+	(envelope-from <devicetree+bounces-301697-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:39:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8534D591A23
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:13:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F595B24CE
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:39:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E79D5301BEF7
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 16:11:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EBFF7309BB34
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E80355F5C;
-	Wed, 20 May 2026 16:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C003CB2DF;
+	Fri, 22 May 2026 10:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JyQktzbl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NhkcvpWU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84A2352024
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 16:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22AA3CB910
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 10:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779293485; cv=none; b=tgg7Hykh+i0cF40OFhvMnrlcGOz+ED2s8WarUubeaYXuFyxijb4x+unJA+e4Y7bbIyu/CJmO9bgy1+vZRvKyozfnMBhRpNQnLj3UFu7LyUpTiuwmdd0s9g4VoBOz2jo2x69/zswbIppGG7qYr3oXq0JvE1Hkt1LQFhzhK0mDMiY=
+	t=1779445277; cv=none; b=XSNmcNrBfG0Anf8f8b1UZYKL7GNL2KNoG238tvr9eSs+QdVvoJQS7eFsmPz3u4tXtNbDYs/+x8md9MLjt/G37dRjQf1a6B8+66gxuTQvDCYMNOspCfddFQKt1gKLMqx7s2BD043clI+5b26ixFYw6Be4LIyhfefM9yOE/oWmBcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779293485; c=relaxed/simple;
-	bh=VcViSfCqKuzRHJHzNBajDg/V1DBPt5STBVHZ1i/cIrU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RsKYLZKlbfu0c4x9kzUD9eoFG4LPE035POXe0S9tMUOBktvhTNSFxSdVmJ3pcayK1IuRNPusMO0abieRaDZxDQvCPh46LmcojqHILjPDpyz8nI2GY2FZ7GJ2In9qb3jsTbHAUul6ufxYiVdGLpM4kbvqw4xVI1pYD8cGMTagkXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JyQktzbl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0291F000E9;
-	Wed, 20 May 2026 16:11:23 +0000 (UTC)
+	s=arc-20240116; t=1779445277; c=relaxed/simple;
+	bh=S86o6RsskkHWtZ3c4SAC2I3qNeFXbs4tllWVFU88BEU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=iwQaiJYwP+0Hf0CVxxPIlr0AJNA1TtKjKqod2a5M4rpndLWXT/jafH05PO58T5TWNz/4DRSPbn3f88xrEoC6XvDkz4oZINaJDIG/SUNKjv+Trq3qko6SNve8yC1luB3PBgtHU3y7Bb+tPTdrddVrEaeZ0vTkuB50F+kgfJ15vFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NhkcvpWU; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D741F00A3D;
+	Fri, 22 May 2026 10:21:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779293483;
-	bh=aWqgRPW6W/P6RXTfg8d65pUNlrgUfF/Ex4LHRj3mF4E=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=JyQktzblYKfCSr3/81ZGoNQnCm5ERgGlEdOCuHlyD3sBo8cSQnM7M116c8Ys9ONf9
-	 RxrG5biE/OhZ27Qq548M7ZfrSyrNIXgZpnIV95wfKWBCIni0yCLov6R1ccw+Z1E/GK
-	 EqOHHyUFxvaOid99Un+5uEc0Y/Qb9nImASmBnl3DL8gI0W7vvMvbZfDznFk0bAjmIs
-	 QWw5vsUW/u/rrTcV6UcHSiLChxGmtPGy84m7jMs0oew3/TRft6p0ifDvCMOWVzwPZV
-	 bWBNowuyAfDFKXJ3Qq/Q4jCyE2k0i2z6qZ9Z8qII6slK8/b1y/avhfqbqdBUprVvE8
-	 8r6dHDpw8Zc5g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/7] thermal/drivers: airoha: fix copy paste error on
- clamp_t low temp
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260520155525.22239-2-ansuelsmth@gmail.com>
-References: <20260520155525.22239-2-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 16:11:22 +0000
-Message-Id: <20260520161123.0F0291F000E9@smtp.kernel.org>
+	s=k20260515; t=1779445275;
+	bh=2DgGODNadjgGJsoo1ylpwBE577qTB7GC2dApkXhqSvs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=NhkcvpWU504XJCVZIPuxMhF+fcN7kh6dOwSwL+rQUWKSJFrMBp8taYuFNrkdISKN/
+	 abWD5h50FvIuX7UjOZBUywR0mZaC6RXN5MpJ47RVaprIPPQ6N7FNhkaHL4fy9oLWE2
+	 bNk3b8Rq1182L+j1Wb/k0lWztKC0eXWY4KfGYS6NfFSOBNPb1ZeeE6lFNwtMkEk3Mb
+	 Kb0wvQDuYU0JB/n1n35ItS+VZmCk1aVZe3osldYV/ScWkqlRUqfXn3vCJyE/GOXg/r
+	 pqFht5RWvoOULbjItGw3YXezQHj6JQEvAzJeI3PTUU0i4hq7bKqsxctyEzIScCRifk
+	 TVuxXgR+11pSg==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20260514091520.2718987-1-wenst@chromium.org>
+References: <20260514091520.2718987-1-wenst@chromium.org>
+Subject: Re: (subset) [PATCH v4 0/6] regulator: mt6359: cleanup and add
+ supplies
+Message-Id: <177929384264.56665.1047692628146708628.b4-ty@b4>
+Date: Wed, 20 May 2026 17:17:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1804; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=S86o6RsskkHWtZ3c4SAC2I3qNeFXbs4tllWVFU88BEU=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqEC4YxSKtcKDBHMtlwOBWiLs/4dlCeUfDdAjCo
+ bwUG1Bb2ReJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCahAuGAAKCRAk1otyXVSH
+ 0BmQB/0ebTYeZ/V6SuHqtRkYGeTSKGRrPgmho05X8NIN9HYgS6LDOcttuTZCuNG7WN/j7BPMUsi
+ V33UcE8/EW3SjzddG9h6BCurQ+IgT+chjLN3BeRpgIYUV6A5rui0Xlw+8+2quWAGyJVPi9UfamL
+ ri8PPkEbzP8Oe5d1dxr3n3f+QfntPP8GOcCI4ZtreI/suhmwcuoQU/Q1Q26PPB0tng25HF44k/G
+ S2r7dIDussmXd5sp1EzyEax09lMGi4f8vDJuwItc3uCH6SUvd3YGFax5zN20+Sm8HVOn0W4VL/+
+ Gru5baz35mbj0LYOpAVvdj0FXNolFpFUedwdsc+QNqfNudnG
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[42];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300770-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-301697-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com,chromium.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 8534D591A23
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 20F595B24CE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+On Thu, 14 May 2026 17:15:13 +0800, Chen-Yu Tsai wrote:
+> regulator: mt6359: cleanup and add supplies
+> 
+> Hi,
+> 
+> This is v4 of my "MT6359 PMIC cleanup and add supplies" series. This
+> version addresses review comments from Sashiko.
+> 
+> [...]
 
-Pre-existing issues:
-- [High] The driver fails to clear old thresholds or disable the thermal mo=
-nitor when trip points are disabled, potentially causing an interrupt storm.
-- [High] The interrupt handler uses a `switch` statement on a bitmask, sile=
-ntly dropping events if both hot and cold interrupts are asserted simultane=
-ously.
-- [High] The thermal interrupt is requested before the thermal zone is regi=
-stered, which can lead to a NULL pointer dereference.
---
+Applied to
 
-commit e9247122d90d0d1f57f8075a6a171215a771b2d6
-Author: Christian Marangi <ansuelsmth@gmail.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.2
 
-thermal/drivers: airoha: fix copy paste error on clamp_t low temp
+Thanks!
 
-In airoha_thermal_set_trips, there is a copy paste error on clamping the
-value for the low trip temp point. Fix it to the correct value and actually
-clamp for the low variable.
+[2/6] regulator: dt-bindings: mt6359: Drop regulator-name pattern restrictions
+      https://git.kernel.org/broonie/regulator/c/cdc517688ffa
+[3/6] regulator: dt-bindings: mt6359: Deprecate bogus vcn33_[12]_* split regulators
+      https://git.kernel.org/broonie/regulator/c/beb4fe279989
+[4/6] regulator: mt6359: const-ify regulator descriptions
+      https://git.kernel.org/broonie/regulator/c/eb17a319f1c9
+[5/6] regulator: mt6359: Add regulator supply names
+      https://git.kernel.org/broonie/regulator/c/10be8fc1d534
+[6/6] regulator: mt6359: Add proper ldo_vcn33_[12] regulators
+      https://git.kernel.org/broonie/regulator/c/fb6a6297acfa
 
-> diff --git a/drivers/thermal/airoha_thermal.c b/drivers/thermal/airoha_th=
-ermal.c
-> index b9fd6bfc88e5e..439aa011b75c7 100644
-> --- a/drivers/thermal/airoha_thermal.c
-> +++ b/drivers/thermal/airoha_thermal.c
-> @@ -273,7 +273,7 @@ static int airoha_thermal_set_trips(struct thermal_zo=
-ne_device *tz, int low,
-> =20
->  	if (low !=3D -INT_MAX) {
->  		/* Validate low and clamp it to a supported value */
-> -		low =3D clamp_t(int, high, RAW_TO_TEMP(priv, 0),
-> +		low =3D clamp_t(int, low, RAW_TO_TEMP(priv, 0),
->  			      RAW_TO_TEMP(priv, FIELD_MAX(EN7581_DOUT_TADC_MASK)));
-> =20
->  		/* We offset the low temp of 1=C2=B0C to trigger correct event */
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-[Severity: High]
-This is a pre-existing issue, but does this function properly handle the ca=
-se
-where trip points are disabled?
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If a trip point boundary is disabled (e.g., passing INT_MAX for the high tr=
-ip),
-its corresponding threshold register (EN7581_TEMPOFFSETH) is not updated. If
-both boundaries are disabled, enable_monitor is set to false, and the monit=
-or is
-never explicitly disabled via EN7581_TEMPMONCTL0.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-This leaves stale thresholds active in hardware. If the temperature crosses
-these stale thresholds, the hardware will continue asserting interrupts.
-Because the trip is disabled in software, the thermal core will not take
-action to adjust the boundaries, which could lead to an unhandled interrupt
-storm that can render the system unusable.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
+Thanks,
+Mark
 
-[Severity: High]
-This is another pre-existing issue, but could the interrupt handler silently
-drop events if both hot and cold interrupts assert simultaneously?
-
-Looking at airoha_thermal_irq():
-
-drivers/thermal/airoha_thermal.c:airoha_thermal_irq() {
-	...
-	status =3D readl(priv->base + EN7581_TEMPMONINTSTS);
-	switch (status & (EN7581_HOFSINTSTS0 | EN7581_LOFSINTSTS0)) {
-	case EN7581_HOFSINTSTS0:
-		event =3D THERMAL_TRIP_VIOLATED;
-		update =3D true;
-		break;
-	case EN7581_LOFSINTSTS0:
-		event =3D THERMAL_EVENT_UNSPECIFIED;
-		update =3D true;
-		break;
-	default:
-		/* Should be impossible as we enable only these Interrupt */
-		break;
-	}
-
-	/* Reset Interrupt */
-	writel(status, priv->base + EN7581_TEMPMONINTSTS);
-
-	if (update)
-		thermal_zone_device_update(priv->tz, event);
-	...
-}
-
-If the hardware asserts both the hot and cold interrupt bits simultaneously
-(e.g., due to a delayed IRQ handler combined with temperature fluctuations,
-or a hardware glitch), the bitmask value matches neither case.
-
-It will fall through to default, leaving update =3D false, and clear both
-interrupts in hardware without notifying the thermal core.
-
-
-[Severity: High]
-This is also a pre-existing issue, but could requesting the interrupt before
-registering the thermal zone lead to a NULL pointer dereference?
-
-Looking at airoha_thermal_probe():
-
-drivers/thermal/airoha_thermal.c:airoha_thermal_probe() {
-	...
-	ret =3D devm_request_threaded_irq(&pdev->dev, irq, NULL,
-					airoha_thermal_irq, IRQF_ONESHOT,
-					pdev->name, priv);
-	...
-	priv->tz =3D devm_thermal_of_zone_register(dev, 0, priv, &thdev_ops);
-	...
-}
-
-The driver does not explicitly disable or clear hardware interrupts prior to
-requesting the IRQ.
-
-If a bootloader or previous kernel left the thermal monitor running and
-interrupts enabled, an interrupt can fire immediately upon request. The
-handler airoha_thermal_irq() will execute and call
-thermal_zone_device_update(priv->tz, event).
-
-Because priv->tz is not yet populated, this would cause a NULL pointer
-dereference during initialization.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520155525.2223=
-9-1-ansuelsmth@gmail.com?part=3D1
 
