@@ -1,168 +1,287 @@
-Return-Path: <devicetree+bounces-300649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300651-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sCbXKei0DWoT2QUAu9opvQ
-	(envelope-from <devicetree+bounces-300649-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:19:36 +0200
+	id QEmdOKK1DWrC2QUAu9opvQ
+	(envelope-from <devicetree+bounces-300651-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:22:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BBD58EA95
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:19:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB6858EB34
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 502D1309EE38
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:10:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3365F3025D3E
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B65203DFC60;
-	Wed, 20 May 2026 13:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45F33D890C;
+	Wed, 20 May 2026 13:15:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mlf4BpR/"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="bRj/oVxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5576C18A92F
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 13:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34133DB310;
+	Wed, 20 May 2026 13:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779282616; cv=none; b=BjZQMUpTWkTcvISo2A/oVwEtws+WRy76sLaT+Na1AakfqmjFNJ693hC91KVLIB95L8jcpYDOae2XArXIGB3BJykjqdsiocj5lvQbei6rAK83ujMpVx0GgcLUrmnvcmCV/jta4jlzg+ProJdWsEHNjR95S1o736/+L06mZbH5kec=
+	t=1779282907; cv=none; b=XdAQ0tB6tmeBa2jlxfecNTN9HXiY/4p+yiCYmqWrwjuU2b6vwiwBS60ZTf7Y5LnJnWn2GZLiqW8vHIGODvmbK0cSBWS/CkTR8GzHkkHN2Klr6xLLL/G/FnqwnTolmA/wHIID6czS3JX1i4igmNa4tZxwV3U903bcnyc3n/GNAF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779282616; c=relaxed/simple;
-	bh=n1Woqfj+ZQRSmAN/Z77KEYG5XpBP2Q+PEFvLzS+eQ3g=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fyM7uBbYHM6tcFpq4mnKLXsk8Eug+Gmr3XYaOctaHP4FvdTbIQty056Cv+4e8eKiDWbjRLqqOp67HLjtILUKvytZPEwS8R+F5Qy5AOuhex1HtA1dJO3Zs70Zn7RuE35fhEF3UrqeKzFBGTySt0EmdOfzfcgLlsdGBxPMP0bneXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mlf4BpR/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AADB41F000E9;
-	Wed, 20 May 2026 13:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779282613;
-	bh=sbuzNoheUphYFCY3oHKky5E0BnvfM+xA1Sj2wdIZy4Q=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Mlf4BpR/0aFDrGNjBTMKxD0Em0ZA4rTPWbt5p/5hp2hMZOT/Es7znZd/nNEPyNBpp
-	 AljaNQqiJWBjU29dLHXHTUKjnSvGx6159QxpHMIZW6wC6MZfmkM2Pm7BZSWc8Je2JC
-	 /n6fnR448cafpsCr/Y8mJv1qEBbPi34BuezWAODCf2Wksi/vGTpFik9YMrrlguU01w
-	 Xjylz1oa0xXSZgiM26NfqhpmDsAef1/k6N8q6/UPT/abs1FbpXDQEiMh8S3Rn/XE5+
-	 41l3VqrjsxQzW0EQ0n2iu0C5BghHMM7xLji1mf1JEjdSvcN6ZWy2Eky3/8fdzqUyG7
-	 HwpWoU1B+Qqag==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 8/8] loongarch: kdump: exclude non-dumpable reserved
- memory regions from vmcore
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Wandun Chen" <chenwandun1@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260520091844.592753-9-chenwandun@lixiang.com>
-References: <20260520091844.592753-9-chenwandun@lixiang.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 13:10:13 +0000
-Message-Id: <20260520131013.AADB41F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779282907; c=relaxed/simple;
+	bh=p6JhUk/QCPu3Ceszn4wC1ZtmRnN1mBXz+DFHYbZKdoU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mxn2lZ4hXGyDp440GyfkoA+8ti+OSO7H9WU6dkFcISJ6Pm/j6pJ+oHeCaukQQJ8IJkzlk+DO0Aa7KvM2/z6jPcLZS3EfZCjNH8IpT7XWLfrxoHGqkQjWulGUSnz2nixNMTDPy6cQFZffJZuZeCDyBXLnCuvti+8pWzlYM0HP9o0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=bRj/oVxq; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 14BC2434F14;
+	Wed, 20 May 2026 15:14:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1779282896; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=0FsuxVeXijvwiF0XWTrA9FENYRux1wdKVJSgIRmPFrQ=;
+	b=bRj/oVxqmBfStdkPBII2DqzZWMMwBdHXJBsKJBpZHI4Cr+ZCWQPQRKsSG/Lbdfne4CZ66u
+	8bFUa9Ojes7u3fbANA2n5VzEh8AHwT5uSWBt82cgntl3VDJYITjSGUlySqvT5VvyA4koaf
+	ZfCwMP6glic0yjCWEXF2FWBfSm/sUK4DYtMDBM+agwZvFD07LhqnYveGcbKbFSI2zRz3kP
+	wrUoJG1DoK+/0NxrLqCp7Tc2fuswf6kMBAF/l06IHLZJ2IWKKgwwxV3izbJKgVXGtnXKu1
+	MdOY16xl1YeDiAiWK1GSSu3Ubd0YABTw7AuGuvanqB9/4kC4JFtVCPi1h6rRaA==
+Message-ID: <1552f47b-7542-414e-ab6a-a07efc8e81e5@cjdns.fr>
+Date: Wed, 20 May 2026 15:14:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v7 2/2] PCI: mediatek: Add support for EcoNet EN7528 SoC
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: sashiko-reviews@lists.linux.dev, Bjorn Helgaas <helgaas@kernel.org>,
+ robh@kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20260514151318.3444959-3-cjd@cjdns.fr>
+ <20260514210141.2DEF2C2BCB3@smtp.kernel.org>
+ <22d7274b-640a-470e-86b0-997a4b6e102d@cjdns.fr>
+ <ihqxutsgrcrbusbtblxmaq3swcp3xtiq6ycnpi7nl45fup36ym@6kvdzwu4zivy>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <ihqxutsgrcrbusbtblxmaq3swcp3xtiq6ycnpi7nl45fup36ym@6kvdzwu4zivy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-300651-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300649-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 20BBD58EA95
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:email,cjdns.fr:mid,cjdns.fr:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 3CB6858EB34
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+Thanks for weighing in
 
-Pre-existing issues:
-- [High] Lockless iteration of memblock.memory during kexec_file_load can r=
-ace with memory hotplug, leading to Use-After-Free (UAF) and out-of-bounds =
-writes.
---
 
-commit 940dd878bcc6cf760efd15c48a5b87206c6b6d94
-Author: Wandun Chen <chenwandun1@gmail.com>
+On 20/05/2026 10:34, Manivannan Sadhasivam wrote:
+> On Fri, May 15, 2026 at 03:34:53PM +0200, Caleb James DeLisle wrote:
+>> Regarding this, I could use some advice. Bjorn I tagged you in because
+>> you're probably best to have an opinion here.
+>>
+>>
+>> On 14/05/2026 23:01, sashiko-bot@kernel.org wrote:
+>>> Thank you for your contribution! Sashiko AI review found 5 potential issue(s) to consider:
+>>> - [High] mtk_pcie_retrain() iterates the PCI bus without locks and holds an unreferenced device pointer, leading to a Use-After-Free.
+>>> - [High] mtk_pcie_retrain() only retrains the first root port, silently ignoring any other ports on the same host.
+>>> - [High] Link retraining occurs after downstream endpoint drivers are probed, causing a race condition that can lead to system crashes.
+>>> - [High] Calling virt_to_phys() on an __iomem pointer causes undefined behavior and potential memory corruption.
+>>> - [Medium] The IS_BUILTIN() workaround silently degrades hardware capabilities when the driver is compiled as a module.
+>>> --
+>>>
+>>> commit 08338fe344200ef55148194108ab3b65616af7c7
+>>> Author: Caleb James DeLisle <cjd@cjdns.fr>
+>>> Subject: PCI: mediatek: Add support for EcoNet EN7528 SoC
+>>>
+>>> This commit adds support for the PCIe controller found on EcoNet EN7528 SoCs.
+>>> It introduces a hardware quirk to retrain the link after startup, as some
+>>> ports capable of Gen2 operation will initially start at Gen1 speeds.
+>>>
+>>>> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+>>>> --- a/drivers/pci/controller/pcie-mediatek.c
+>>>> +++ b/drivers/pci/controller/pcie-mediatek.c
+>>> [ ... ]
+>>>> @@ -753,6 +764,135 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>>> [ ... ]
+>>>> +	/* Activate INTx interrupts */
+>>>> +	val = readl(port->base + PCIE_INT_MASK);
+>>>> +	val &= ~INTX_MASK;
+>>>> +	writel(val, port->base + PCIE_INT_MASK);
+>>>> +
+>>>> +	if (IS_ENABLED(CONFIG_PCI_MSI))
+>>>> +		mtk_pcie_enable_msi(port);
+>>> Is it safe to call mtk_pcie_enable_msi() here? Looking at
+>>> mtk_pcie_enable_msi(), it calculates the message address using:
+>>>
+>>>       virt_to_phys(port->base + PCIE_MSI_VECTOR)
+>>>
+>>> Since port->base is an ioremapped __iomem pointer, passing it to
+>>> virt_to_phys() produces undefined behavior and could return a garbage
+>>> physical address. If this address overlaps with valid physical RAM mapped
+>>> for DMA, could memory writes from the PCIe endpoint corrupt random system
+>>> memory?
+>> Learned a few things from that note. Seems ioremap is just giving us a KSEG1
+>> address and virt_to_phys() is getting the real address back. In any case I'm
+>> just doing what the driver already does.
+> This looks definitely wrong because virt_to_phys() is supposed to be used for
+> virtual address, not the ioremapped address. virt_to_phys() will calculate the
+> physical address using the page offset, which doesn't apply to ioremapped
+> address.
+>
+> Correct way would be to store the physical address while doing the ioremap:
+>
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index 75722524fe74..c503fbd774d0 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -175,6 +175,7 @@ struct mtk_pcie_soc {
+>   /**
+>    * struct mtk_pcie_port - PCIe port information
+>    * @base: IO mapped register base
+> + * @phys_base: Physical address of the I/O register base region
+>    * @list: port list
+>    * @pcie: pointer to PCIe host info
+>    * @reset: pointer to port reset control
+> @@ -196,6 +197,7 @@ struct mtk_pcie_soc {
+>    */
+>   struct mtk_pcie_port {
+>          void __iomem *base;
+> +       phys_addr_t phys_base;
+>          struct list_head list;
+>          struct mtk_pcie *pcie;
+>          struct reset_control *reset;
+> @@ -405,7 +407,7 @@ static void mtk_compose_msi_msg(struct irq_data *data, struct msi_msg *msg)
+>          phys_addr_t addr;
+>   
+>          /* MT2712/MT7622 only support 32-bit MSI addresses */
+> -       addr = virt_to_phys(port->base + PCIE_MSI_VECTOR);
+> +       addr = port->phys_base + PCIE_MSI_VECTOR;
+>          msg->address_hi = 0;
+>          msg->address_lo = lower_32_bits(addr);
+>   
+> @@ -520,7 +522,7 @@ static void mtk_pcie_enable_msi(struct mtk_pcie_port *port)
+>          u32 val;
+>          phys_addr_t msg_addr;
+>   
+> -       msg_addr = virt_to_phys(port->base + PCIE_MSI_VECTOR);
+> +       msg_addr = port->phys_base + PCIE_MSI_VECTOR;
+>          val = lower_32_bits(msg_addr);
+>          writel(val, port->base + PCIE_IMSI_ADDR);
+>   
+> @@ -953,6 +955,7 @@ static int mtk_pcie_parse_port(struct mtk_pcie *pcie,
+>          struct mtk_pcie_port *port;
+>          struct device *dev = pcie->dev;
+>          struct platform_device *pdev = to_platform_device(dev);
+> +       struct resource *res;
+>          char name[20];
+>          int err;
+>   
+> @@ -961,7 +964,14 @@ static int mtk_pcie_parse_port(struct mtk_pcie *pcie,
+>                  return -ENOMEM;
+>   
+>          snprintf(name, sizeof(name), "port%d", slot);
+> -       port->base = devm_platform_ioremap_resource_byname(pdev, name);
+> +       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
+> +       if (!res) {
+> +               dev_err(dev, "failed to get port%d base\n", slot);
+> +               return -EINVAL;
+> +       }
+> +
+> +       port->phys_base = res->start;
+> +       port->base = devm_ioremap_resource(&pdev->dev, res);
+>          if (IS_ERR(port->base)) {
+>                  dev_err(dev, "failed to map port%d base\n", slot);
+>                  return PTR_ERR(port->base);
+>
+> I see a couple of other drivers also doing something similar. So I'll try to
+> send fixes for all of them separately.
+If you want me to integrate this fix in my patchset to avoid merge 
+conflicts, just let me know.
+>>>> +
+>>>> +	/* Set AHB to PCIe translation windows */
+>>> [ ... ]
+>>>> +static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *host)
+>>>> +{
+>>>> +	struct pci_dev *rp;
+>>>> +	int ret = -ENOENT;
+>>>> +	u16 lnksta = 0;
+>>>> +	u32 speed;
+>>>> +
+>>>> +	/* Should already have been warned about during startup_port */
+>>>> +	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
+>>>> +		return 0;
+>>>> +
+>>>> +	for_each_pci_bridge(rp, host->bus) {
+>>>> +		if (pci_pcie_type(rp) == PCI_EXP_TYPE_ROOT_PORT)
+>>>> +			goto found_port;
+>>>> +	}
+>>>> +
+>>>> +	/* Should not happen */
+>>>> +	return dev_err_probe(dev, ret, "root port not found\n");
+>>>> +
+>>>> +found_port:
+>>> The commit message mentions that it is most convenient to retrain every port
+>>> after startup. Does the goto found_port here unintentionally skip all
+>>> subsequent root ports by breaking out of the loop after the first match?
+>> There aren't any.
+> That's today, not tomorrow. You should do retrain for each of the Root Port
+> detected, and not the first one. Also, the driver is structured to handle
+> multiple Root Ports. So bailing out during first Root Port is not correct.
+Okay I'll change that.
+>
+>>> Also, is it safe to traverse host->bus->devices via for_each_pci_bridge()
+>>> without holding the pci_bus_sem read lock? If a device is concurrently added
+>>> or removed, this might lead to list corruption.
+>>>
+>>> Finally, pcie_retrain_link() is a sleepable function. Because the code does
+>>> not acquire a reference to the root port via pci_dev_get() before sleeping,
+>>> could a concurrent removal event free the pci_dev structure and result in a
+>>> use-after-free?
+> This is concern is not valid. mtk_pcie_retrain() is getting called during
+> controller driver probe(), so there is almost no chance that the Root Port will
+> get removed during pcie_retrain_link().
 
-loongarch: kdump: exclude non-dumpable reserved memory regions from vmcore
+Okay thanks for the guidance here, I couldn't really quantify the risk 
+but the complexity of trying to eliminate it was becoming a concern.
 
-This commit applies non-dumpable reserved memory filtering to LoongArch
-kdump. It uses of_reserved_mem_kdump_exclude() to drop flagged regions and
-of_reserved_mem_kdump_nr_ranges() to pre-size the crash_mem array.
 
-> diff --git a/arch/loongarch/kernel/machine_kexec_file.c b/arch/loongarch/=
-kernel/machine_kexec_file.c
-> index 5584b798ba464..c5cead362d2db 100644
-> --- a/arch/loongarch/kernel/machine_kexec_file.c
-> +++ b/arch/loongarch/kernel/machine_kexec_file.c
+I'll be back soon with v8
 
-[ ... ]
 
-> @@ -67,6 +68,7 @@ static int prepare_elf_headers(void **addr, unsigned lo=
-ng *sz)
->  	nr_ranges =3D 2; /* for exclusion of crashkernel region */
->  	for_each_mem_range(i, &start, &end)
->  		nr_ranges++;
+Thanks,
 
-[Severity: High]
-This isn't a bug introduced by this patch, but can this lockless iteration
-of memblock.memory race with memory hotplug?
+Caleb
 
-The kexec_file_load syscall enters prepare_elf_headers() without holding
-get_online_mems() or any lock that serializes against CPU/memory hotplug.
-
-Inside prepare_elf_headers(), for_each_mem_range() locklessly iterates over
-the memblock.memory regions twice: first to count the regions (nr_ranges),
-and second to populate the cmem->ranges array.
-
-On architectures that keep memblock post-boot (like LoongArch with
-CONFIG_ARCH_KEEP_MEMBLOCK), a concurrent memory hotplug event
-(e.g., add_memory_resource()) can mutate memblock.memory via
-memblock_add_node().
-
-If memblock.memory.cnt reaches its capacity, memblock_add_node() invokes
-memblock_double_array(), which allocates a larger array, copies the
-contents, and frees the old array. The concurrent for_each_mem_range() loop
-could then access the freed array, resulting in a use-after-free.
-
-Additionally, if memblock.memory.cnt increases between the first counting
-loop and the second population loop, cmem->nr_ranges will exceed the
-allocated size of the flex array, causing an out-of-bounds write into the
-cmem->ranges array.
-
-> +	nr_ranges +=3D of_reserved_mem_kdump_nr_ranges();
-> =20
->  	cmem =3D kmalloc_flex(*cmem, ranges, nr_ranges);
->  	if (!cmem)
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520091844.5927=
-53-1-chenwandun@lixiang.com?part=3D8
+>
+> - Mani
+>
 
