@@ -1,213 +1,180 @@
-Return-Path: <devicetree+bounces-300528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300530-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNqsEvKWDWoMzwUAu9opvQ
-	(envelope-from <devicetree+bounces-300528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:11:46 +0200
+	id EGYsK2CYDWoMzwUAu9opvQ
+	(envelope-from <devicetree+bounces-300530-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:17:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B10B58C258
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:11:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1443458C362
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:17:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2159C300F7A9
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:11:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C80EF30970F2
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FCF3DB301;
-	Wed, 20 May 2026 11:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA4B3DB313;
+	Wed, 20 May 2026 11:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b="HRs3QHil"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="TT+3S/0C";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="BvMOqBxt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4961A3DA7F1
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171093DA7E0
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779275499; cv=none; b=Huau+CJ/jg/cJFwck54ILz6B1IEFL9HbbC6++iZlaNm05dHgSILQIVeia16GPRsqKFL4pXhsZrSWmG/+yfwxxIK9wCE/glx4hYBYhAPly8ta9ckI2sCtDiCLG8uIUt9Fwf4gKCtrmYyix0LocrIW7E8CtV1WDcN85PWLCr08mnc=
+	t=1779275575; cv=none; b=pHGmMeiRlk2OA66Si2ui8tIQ8i9kJRVK+XY8s7cZMNXQ8k3QHDchXHEC+uQrWfm4yY9eTSBpF+T+k7foDSxnLdRzNOCe4RIi6BL2DJdqbKaHtb9c1hynYwD/156NHscrnhAaTVfFfFlYp+W/ZKTVNTQ2M8kde7nFy2X37WfS9yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779275499; c=relaxed/simple;
-	bh=cfAIhH8OlC/rUFBfMHcfbIEw1X3DBJ4OiDfy5zoYzMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eGZ2GMEsaNA4Qv950tCezLLNSAnU3nx/slbF56qh7y0QFMiTt3k2WCx2f/FF7qsVBubZx0YOa8NkVw2ahfrs4WKlTU1XOyaSYsNIrRfVkJ/gPyxgpObabZ7qQdcn8FJ72/L47yzNmPC37Mo1ldlmZKTmrKHcKeYPZCBMi0OVHUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=HRs3QHil; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-911449d9d03so567096985a.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 04:11:37 -0700 (PDT)
+	s=arc-20240116; t=1779275575; c=relaxed/simple;
+	bh=/5mZ4vEYwygrUeR+eebBg7UtHWLg/gMI2VfnFbye610=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lypqiXAwmbOrYjQa/3O3/Cm6RUOBFxPrj3J9NYBm4YB7YMR0UsdvP5c8W0890wL1c5wFd1YarUXCKvsJcYIRogfRYQUern2QJYr/IWqSRheagGXdWYX4eoFoeywdRz8E/e4LxNGzpMPvA/pHx4OlLbEAbAyO6uPd1hyKPpAwBWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=TT+3S/0C; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=BvMOqBxt; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1779275572;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=PqGQtbCak1DjkDn83NNdBzK9LLbqEMF51G2q8Su3L7g=;
+	b=TT+3S/0CRaSAdZyVwJOZni3tAUCNkqhu/orzmhmKbl2IumiG4U1p7GwWxQqeNjQxpaXFzj
+	82qOeVc4WJYOSb8cn3LY2+9wXo9GHG4v+O2uS1CGxehthsA5d6f1HKa15lgoQTKyUyTNHT
+	1Kzof/4710LzuBAHL5hHCTSd1n23p+g=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-3-zNGl0Ck2OF6nHTpKFVuA3Q-1; Wed, 20 May 2026 07:12:50 -0400
+X-MC-Unique: zNGl0Ck2OF6nHTpKFVuA3Q-1
+X-Mimecast-MFC-AGG-ID: zNGl0Ck2OF6nHTpKFVuA3Q_1779275570
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5104b861649so194865661cf.1
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 04:12:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1779275496; x=1779880296; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lIkzPbGJvuJiBs7z1ji9U2DALkh6krIE8tTV4POiT4k=;
-        b=HRs3QHil29I/u+1orVRsSwdHu6prg4wSZbVhHdL/zsHLvYK9P7l2E0hR5hwc8m6IVS
-         /tHf8X+RzCwBpX+B/4UtQyQMa+iXxj831o+f1/WwuvMvZ2Xot6ZqR+6ltLULJgMBdzd5
-         JzI9nlxdXCqHZXaEOoRefY2zH4VwaujwX4cWiXsqHTPq/QT+mV25am8AcWOyvCbie0A0
-         Vd6yaoPjL1knK2OJBrdjFij88E0ypq9nUpq1Gb3UZfnOU5rI20Mq5K1wFj+OJUUOcqYa
-         Wc3KItyPcViQLb+d7CNxa7oekRGtcp6lwPT42mvWjHF4fi0Ko/H1JN+FpPYInlAYAk6Q
-         tAeA==
+        d=redhat.com; s=google; t=1779275570; x=1779880370; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PqGQtbCak1DjkDn83NNdBzK9LLbqEMF51G2q8Su3L7g=;
+        b=BvMOqBxtf+l/AzXLS9rbjvyeB+DT+bcEIapRBAnSECW00LjqTRhh/usj696FIQ7W2t
+         GjFx437q6upbq/NbxDcKuzUfYgW3Vk9wvn5zuaB40DPEd1w+QL+DHTkOkBt3WYV6Biyp
+         iXYqgbgy1Tv/3anfIxvRCLlpHPOKiiv+0yDHlEfyqydmVnNNvmCWupT4OiFW2RjIfXJo
+         6W+DEDBo1FOlZF2AaoC81rJ7W6rwUX3zSzMjwqXHZZOVdWuK8Z306TYXbgFMgkpaeeqr
+         a1zaBxZ+uOUHUpf5cxGL6JXSJPuIGpa+mT8Fy31l0//TnGbd0MzHNdtxkkzK5WEtqMO1
+         kicA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779275496; x=1779880296;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lIkzPbGJvuJiBs7z1ji9U2DALkh6krIE8tTV4POiT4k=;
-        b=nk3vgXPJeeiavCus1DZTF0Vh1KRaagB/K+QQWvNxJhfK/owSWkERPHby2IZrXy9RmV
-         QnMxf3GeoKAskXO7a96HIHjRMdtEyGZ88L11KYLjDMTJSSWdUPMpFWnNRnHU2T3rhGEI
-         SMq0/kOJFkWcPfKrfHoLAbSLJxLU0Hac2BdbqP3kb8IibR675sy4JRhI43QEy3LRv/+U
-         1DePx1ThY1uEJ/vA4OnXkZnPPy41xypoJDyKMfQ2Bei0JJ5DR9MuZIcClBwhd/SrHMS7
-         k1lvTc0wqfre0ubL/GNHKEy1sVF4AQegor7m3I++UOUexz2QkYfn6kuaFF67VNRcYg05
-         2KZw==
-X-Forwarded-Encrypted: i=1; AFNElJ+KVBHIMThxGpzOChyO1k+bYwZPYN5qDUiXKtRTqemwXWXlUJDHtU8UDJeEtczebyypt4S+EA1Js0oN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdpoGs30rMzAQKCx0x0nZyK4oeQvSYFj8SoLyD8B+/Pq76rC2B
-	RaKULndpglPamJtkb+ojw5mmWOOTu/XH24HqFohmQMVVcjjs5Hg75rvLBeBfoPA5zHQ=
-X-Gm-Gg: Acq92OF5TssAmZDT8WsCpQLAI3+UgObc1oyOK+7Is2ePX05nfzdvmEn7tnQBJg1mCAs
-	KmDyUxpHjUYppCZMpXZEwc+wSGb+08y14qph36UaYcj0xAcR1gPtUo9h3byTPrtIfqqECoZbixz
-	HlCCXEkd+LCAqD0yVMIwXCgNjN8mJv/6ebOdd1vixv8VAwG7/IZq+8320n5TvRHSOn9kC9KxfXB
-	j6lSZFynQ6PjuANrup5cFHAWfF2Xja5NcW9NJ9V8+rgxUYX51PUEP/shft/o0LfvrMJJmt0sSY2
-	xMn3WdADinaQe2kjs351chVSTUL8yEyu+J/L+GDrItbPXZHNMmw9glZdzvlkQ1pu7ISO0ANYFV5
-	pbFyDJ7Cpb7gcNRUVp+oMuo1Rhtpt9DHVxTw+Zqee38uhhxVviys571WHEdNuk7crK0jVJhJIAZ
-	nMSBo9N8eEo+/cgTXKEucl4naA6gSeAmxFVDqTsx+c0AEDEx3F34MIHrFPUtpTczZJ4jQqEWIso
-	16y
-X-Received: by 2002:a05:620a:1a0a:b0:90f:6d8b:2654 with SMTP id af79cd13be357-911ce332987mr3395608885a.22.1779275496216;
-        Wed, 20 May 2026 04:11:36 -0700 (PDT)
-Received: from ?IPV6:2001:1970:3847:e000:9cf2:2d6b:fbf2:991c? ([2001:1970:3847:e000:9cf2:2d6b:fbf2:991c])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-9138a830c89sm1320813985a.6.2026.05.20.04.11.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 May 2026 04:11:35 -0700 (PDT)
-Message-ID: <86ac46cd-b7bc-42cc-8c29-996ae21f3654@baylibre.com>
-Date: Wed, 20 May 2026 07:11:32 -0400
+        d=1e100.net; s=20251104; t=1779275570; x=1779880370;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PqGQtbCak1DjkDn83NNdBzK9LLbqEMF51G2q8Su3L7g=;
+        b=ofI5aJ5ZfCmK2mo3Acnu+defKNQyMCHZxomOR7lM8TqzZ7I49IjVXHx0KY++cP1h1q
+         nXidULsNvNegWPvc6z3EaQ6KoeXvhnr5Zp+kHEzunhblPxe+LX+uzLGPvuu3G5AKdQWh
+         PF2XPgXOR0edW6k1nsxuRMt4ZDd10slA+GL2K/PE12/a7NpbZZpbMm9reCFw6Z+rM/71
+         f4Cb0k2Xex4WqOxYiwQIHEvpbgKatz0TkWjCAUh8nuq/Y8Abg7dcjGf8dWA6FNKb1rHg
+         DolXLSlOb3XO/y85y6p/x1aiI4jfcp/v51Z+L9o93DywvnPmkZjit5+4mp8Slnyu8kWK
+         g+Mg==
+X-Forwarded-Encrypted: i=1; AFNElJ9zE0hWcQnWZpCjhuYbW5rcWGg0P7yo35n5d63SzmtnntI2YCcVgX7KZezU7NA6/49mzWfkDRx1TicO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyd1ONd5BjUFzB+lx+VO7yz0ZnhdjjG7g5hJNsupHixm64ijZTJ
+	aGgUX4xMD19hB57VdAw9wHoy4TAnKSSWCz/UgZhlBjAacQMeRu7z9ORznK0P+0vBcEHUltNMVbp
+	gDdiu96E3PRohFsjlOtSMYqbm3BZY6Uq//z3Y/vr4+864bvYeUZFOLbv+kcdsXz0=
+X-Gm-Gg: Acq92OH18MmnSREblby0u584bfJuqB6alO6pcia5BJk4QV6VKfBfPtk+x139bSxJrKH
+	WnfIdM0RnPpW0ge/eksuNxeMGBFQG1x9nZl2sIJLOuzGsZk67aMOUKbpIqhd/RE1Z6gCSsaF8Ay
+	yx0otyTSaRK0RhLC6HXKlNvfDPQ7Xl5BGzozDOk/OzIA+F/ZQkxfOTKKgBtT3UkOXkDpTIBzpVH
+	H2C32DFqs6BLwxboxIbedSwEKXvO5Wu9oNW3gZ1eRnQMcz+PLMlR2odaQBz6mjKMftTs3FR/CJi
+	HimZ4sMUjpL95WTW+qaDWLkFjCym/nM7eT5G3msJP1TDMkjPZdxP+iAujb8huQay122LiVbkZd9
+	du+h/rDGpe0P8
+X-Received: by 2002:a05:622a:489b:b0:50f:bdc1:3bbc with SMTP id d75a77b69052e-5165a1e3c7cmr308794361cf.45.1779275570360;
+        Wed, 20 May 2026 04:12:50 -0700 (PDT)
+X-Received: by 2002:a05:622a:489b:b0:50f:bdc1:3bbc with SMTP id d75a77b69052e-5165a1e3c7cmr308793991cf.45.1779275569917;
+        Wed, 20 May 2026 04:12:49 -0700 (PDT)
+Received: from rhdev.redhat.com ([2600:1700:f361:20bf::14c1])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8ca360979c2sm119479176d6.18.2026.05.20.04.12.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 04:12:49 -0700 (PDT)
+From: Jennifer Berringer <jberring@redhat.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Cc: spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jennifer Berringer <jberring@redhat.com>
+Subject: [PATCH] riscv: dts: spacemit: set console baud rate on OrangePi RV2
+Date: Wed, 20 May 2026 07:11:50 -0400
+Message-ID: <20260520111150.3300707-1-jberring@redhat.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v10 0/4] riscv: spacemit: enable SD card support
- with UHS modes for OrangePi RV2
-To: Andre Heider <a.heider@gmail.com>, Yixun Lan <dlan@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Ulf Hansson <ulfh@kernel.org>, Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: Troy Mitchell <troy.mitchell@linux.dev>,
- Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Anand Moon <linux.amoon@gmail.com>, Vincent Legoll <legoll@online.fr>,
- Margherita Milani <margherita.milani@amarulasolutions.com>,
- Aurelien Jarno <aurelien@aurel32.net>
-References: <20260515-orangepi-sd-card-uhs-v10-0-094af27e310d@gmail.com>
- <177889984452.2298656.1074391459031404894.b4-ty@b4>
- <7e68e745-0d70-46db-9475-38d3dd5b9cf4@baylibre.com>
- <6b945153-5a7b-415e-904a-1c350b7d52ee@gmail.com>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <6b945153-5a7b-415e-904a-1c350b7d52ee@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-300528-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.dev,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,online.fr,amarulasolutions.com,aurel32.net];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-300530-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tgamblin@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
+	FROM_NEQ_ENVFROM(0.00)[jberring@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,baylibre.com:mid,baylibre.com:dkim]
-X-Rspamd-Queue-Id: 8B10B58C258
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 1443458C362
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Set the baud rate to 115200, matching what is used by U-Boot on this
+platform so that the console is usable even when console options are not
+specified in cmdline.
 
-On 2026-05-20 03:53, Andre Heider wrote:
-> Hi Trevor,
->
-> On 16.05.26 2:35 PM, Trevor Gamblin wrote:
->>
->> On 2026-05-15 22:57, Yixun Lan wrote:
->>> On Fri, 15 May 2026 12:48:58 +0200, Iker Pedrosa wrote:
->>>> This series enables complete SD card support for the Spacemit K1-based
->>>> OrangePi RV2 board, including UHS (Ultra High Speed) modes for
->>>> high-performance SD card operation.
->>>>
->>>> Background
->>>>
->>>> The Spacemit K1 SoC includes an SDHCI controller capable of supporting
->>>> SD cards up to UHS-I speeds (SDR104 at 208MHz). However, mainline
->>>> currently lacks basic SD controller configuration, SDHCI driver
->>>> enhancements for voltage switching and tuning, and power management
->>>> infrastructure.
->>>>
->>>> [...]
->>> Hi Iker,
->>> I've picked patch 1-3, for [4/4] I think it should be merged after
->>> https://lore.kernel.org/all/20260513071958.29574-1-a.heider@gmail.com/
->>
->> Hi Yixun,
->>
->> That makes sense. In response to your earlier feedback I had drafted 
->> a more
->> complete dts after another schematic comparison, but Iker and I 
->> discussed it
->> and opted to avoid changing scope too much. Andre's series includes 
->> the bits I
->> wanted to add and more, so that works out.
->
-> I have 4/4 rebased on my series anyway, do you want me to send it?
+Fixes: bab8dea259100 ("riscv: dts: spacemit: Add OrangePi RV2 board device tree")
+Signed-off-by: Jennifer Berringer <jberring@redhat.com>
+---
+ arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-If you have an update to make, please do!
+diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+index 7c49bce427f30..07dbd292eee33 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+@@ -22,7 +22,7 @@ aliases {
+ 	};
+ 
+ 	chosen {
+-		stdout-path = "serial0";
++		stdout-path = "serial0:115200n8";
+ 	};
+ 
+ 	pcie_vcc3v3: regulator-pcie-vcc3v3 {
 
-Trevor
+base-commit: e2518e8cb1dde64af2d1bb246639bb7ef7523f7a
+-- 
+2.53.0
 
->
-> Thanks,
-> Andre
->
->>
->> Thanks!
->>
->> Trevor
->>
->>>
->>> Applied, thanks!
->>>
->>> [1/4] riscv: dts: spacemit: k1: add SD card controller and pinctrl 
->>> support
->>> https://github.com/spacemit-com/linux/commit/2d77e577109967ef65f269c1fc1d6a659d4260fb
->>> [2/4] riscv: dts: spacemit: k1-orangepi-rv2: add SD card support 
->>> with UHS modes
->>> https://github.com/spacemit-com/linux/commit/2585c60ce2f977b13f14a67d1e3ed9c73fd7f381
->>> [3/4] riscv: dts: spacemit: k1-bananapi-f3: add SD card support with 
->>> UHS modes
->>> https://github.com/spacemit-com/linux/commit/c76e2f058cbcab84e4a703f26857a58bdf6a0042
->>>
->>> Best regards,
->
 
