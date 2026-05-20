@@ -1,306 +1,154 @@
-Return-Path: <devicetree+bounces-300650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOZuKma0DWoT2QUAu9opvQ
-	(envelope-from <devicetree+bounces-300650-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:17:26 +0200
+	id GHmCFKK5DWpv2wUAu9opvQ
+	(envelope-from <devicetree+bounces-300664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:39:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4BC58EA57
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:17:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FD158EEF4
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:39:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 86E1D302D98E
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:15:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C9AB3007351
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC733A5422;
-	Wed, 20 May 2026 13:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14F82D3EC1;
+	Wed, 20 May 2026 13:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MXtgGHEH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ogq7rU78"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6822C1A6801
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 13:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C5D2D6E72;
+	Wed, 20 May 2026 13:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779282898; cv=none; b=XsU6vX146ZTRQJIYmLE8FRl3DqAJm8JDxV76bGi1C0lVZFp8PDzilGZQEkVfcnXQtNM91V0tWHLu5X5twjqECWwDs2TR8kXDBrICCOZkvKZBOmeObLgEAkrQVAcYTsN06USuJLS4Z5Baq3d7cOPDmEO1v1web5Rdu0KbR0fTCjs=
+	t=1779284263; cv=none; b=m0hUnZFnekd0mp9uVvKWdrvco6/R4m5OCFu9INvhp4SYgfCKi9GOI8fMofAQkZ7XnGkNsMwDF1AIHXEYkF9dtIwV0Mxoic32542O3UnGO3l4+AfzTtiIWDRxY6KWVZJZMyK9XmcWmrGyPL+sG2LohHVyopwCC/k06x/tKtvKVas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779282898; c=relaxed/simple;
-	bh=tu+d6m0Yu4IYa8Ns6fYDi6gvTSIvuSu9sEuSZBy5+aA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=tq6EZ3xrAWcgvEiB3dyJZ//rB29nechhDTDpnwyNoM38WzcTWb6Y1pHkgNNJ56BDLVoZmG7ySXUOGOpOnLt8cMaH1eLjFDpAx71qoLy7NkQC5cIgcyUkuTNSGqjB5YCRJghymLbaQ+/yhDk0pEP7VH+giiZW9y5Y7A+e3Anr9MI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MXtgGHEH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9FE1F00893;
-	Wed, 20 May 2026 13:14:56 +0000 (UTC)
+	s=arc-20240116; t=1779284263; c=relaxed/simple;
+	bh=PeR8Il5PxKRvIYuRfOdbGF1+vCEu4kSYkw0AEI25qWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fjTRC+zVIgM16azYltvgKJH7pQ8Mwy3mpqx+2dO1KOxwppE7Q2Tj6AZRGUBvq+h22HekBGWpELsU9b4tAU9Oaa/tuwxm50Zv3dn0zJ9qJ1oIQzInBBa8mr7PkAh8LTygRT6OEnSdSjaO7mWlkxFzFa5y1K6TFrBklWm1gHJaaOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ogq7rU78; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B45751F000E9;
+	Wed, 20 May 2026 13:37:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779282897;
-	bh=38OnKagQN7SDmI16fTYmrs+bY1uTcMv1AfLimQKvZo4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MXtgGHEHoCbfR61cIX6WVQz+ThJTwHFwNFBuPsroX9U4jbbvb7k9Anxp6wAkcptt2
-	 RchX2INbUDbkgLxb8km57N5tWow32ruO8OUF5+RpujF96HxR06wnLexr2uEqvsEHjM
-	 QtDlPjb9rUkAdy0njA86C4TXfdiAEKS+Box2o95aLzerliy3COGHJfPyoEFZj9DhZ+
-	 NQk+cdnhUKUlO4O4CvWQ3lxgsiB+bw0+ch1wvj1S/hZQNMg+a/RWjPRWF3iSbAZj5l
-	 0cmmtKRNrRkgjZ4hMmlnR/Rd1vLLZ13BR/B8lc6Q9KKMbes27Vy2HMHbgOUx2/MVvY
-	 U3sxzIYv/F4Rw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 17/17] media: ti: j721e-csi2rx: Support system
- suspend using pm_notifier
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Rishikesh Donadkar" <r-donadkar@ti.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260520120022.539913-18-r-donadkar@ti.com>
-References: <20260520120022.539913-18-r-donadkar@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 13:14:56 +0000
-Message-Id: <20260520131456.DD9FE1F00893@smtp.kernel.org>
+	s=k20260515; t=1779284262;
+	bh=SzfdZlB8TxUrqiukwfq5Djv/xODrOaSicE7WBGa2brA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Ogq7rU7851egImmViI9erNCqTDDaR7u3kE2urX7lYUWUSqOgZ9N8utC+LIrNzz9ef
+	 ipPoEeDEKfMRqlQpFAOK2/A9aqmPp5m00lk5sopI3hP5WqXw/XU0crcxbHaLSKBkIG
+	 9pCJ20Eyk00k0tB9hCIvcxLtV1PLnrqFbe4bcNESWzmAeaZ5UYHpV/YlruIv5hCZFn
+	 NnTHI1dzWs988NmCCPW0v/FPTGgeYyTVGO5+bQh3z0gGctl6CVUYKPAFyQxeRwU50q
+	 wX7D5OtfkVeukQq0kDK2kcFOQirl+jwPQrqzqqDtChuEJG07NXufftuTLbVxy6Ho4l
+	 6agHNaewlDnSw==
+Date: Wed, 20 May 2026 21:18:35 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: cdns,xspi: add sdma-io-width
+Message-ID: <ag20q5CuB2XsqKS_@xhacker>
+References: <20260511031732.3199-1-jszhang@kernel.org>
+ <20260511031732.3199-2-jszhang@kernel.org>
+ <20260515-expert-devious-cricket-faff56@quoll>
+ <agz0kDsQBaeQPPQ4@xhacker>
+ <21d30826-bfe6-44cd-8c89-c1986f539e48@kernel.org>
+ <ag2fjCX0DuSVxubv@xhacker>
+ <14719378-7bf5-4688-81e9-bccedf618d18@kernel.org>
+ <de325dba-0b82-4808-910b-68f0f6426c5f@sirena.org.uk>
+ <37a3e9dd-88c2-4d8d-8ae4-6037a1eeedcc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <37a3e9dd-88c2-4d8d-8ae4-6037a1eeedcc@kernel.org>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300650-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-300664-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[jszhang@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 8D4BC58EA57
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cadence.com:url]
+X-Rspamd-Queue-Id: A8FD158EEF4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
-s) to consider:
+On Wed, May 20, 2026 at 03:22:07PM +0200, Krzysztof Kozlowski wrote:
+> On 20/05/2026 14:30, Mark Brown wrote:
+> > On Wed, May 20, 2026 at 02:16:21PM +0200, Krzysztof Kozlowski wrote:
+> >> On 20/05/2026 13:48, Jisheng Zhang wrote:
+> > 
+> >>> If you mean "Why this cannot be deduced from the compatible?", I think
+> >>> the slave dma port is part of the cdns xspi, so its io width belongs
+> >>> to xSPI device property.
+> >>> From another side, we have seen such property in other drivers such as
+> >>> the reg-io-width for the dw spi DW_SPI_DR port io width.
+> > 
+> >> So you mean it depends on SPI device? Then why spi-peripheral-props is
+> >> not applicable here?
+> > 
+> > That will be controller side, not device side.
+> > 
+> >> If this is not bus width, but DMA-something, is not really then SPI
+> >> device dependent, but rather DMA controller limitation, so either
+> >> deducible from compatible or something else is missing here.
+> > 
+> > My understanding is that this is a connection between the SPI and DMA
+> > controllers so it's not as obvious as it could be which side of that
+> > link should have the property, eg:
+> > 
+> >   https://www.cadence.com/content/dam/cadence-www/global/en_US/documents/tools/silicon-solutions/design-ip/controller-ip-qspi.pdf
+> > 
+> > shows a separate direct connection between the DMA controller and the
+> > xSPI controller, the DMA controller isn't interacting with registers on
+> > the CPU visible buses.  The width is probably a design time configurable
+> > option on both sides of the link.
+> 
+> Yes and that sounds a lot specific to particular controller, thus should
+> be implied by / deducible from the compatible.
 
-New issues:
-- [Critical] PM notifiers modify hardware and V4L2 state without holding th=
-e context mutex, allowing concurrent userspace ioctls to corrupt state or r=
-estart streams during system suspend.
-- [Critical] Replacing `.suspend` / `.resume` callbacks entirely with PM no=
-tifiers breaks hybrid sleep (suspend-to-both).
-- [High] The DMA drain operation in the suspend path is instantly terminate=
-d without waiting for completion, rendering it ineffective.
-- [High] The PM notifier is unregistered too late during device unbinding, =
-creating a race window for a Use-After-Free.
-- [High] Lockless runtime PM status checks allow concurrent clock gating du=
-ring MMIO access, risking a synchronous external abort.
-- [Medium] DMA drains are unconditionally initiated even for already-stoppe=
-d contexts, submitting descriptors that will never complete.
+This is IP feature, so if we couple the IP's feature with platform
+compatible, I would see some unnecessary LoCs. For example,
+Let's assume the IP has 10 users, they all support 4 bytes io width,
+other features are the same. 
 
-Pre-existing issues:
-- [High] Calling `pm_runtime_set_suspended()` while runtime PM is active le=
-aks DMA channels and violates PM API contracts.
---
+If implied by the compatible string, we need to add 10 compatible
+string support both in code and dt-bindings.
 
-commit cb8a02a3113637917c3f826385776d24c0186002
-Author: Jai Luthra <jai.luthra@ideasonboard.com>
+vs
 
-media: ti: j721e-csi2rx: Support system suspend using pm_notifier
+If supported by "sdma-io-width", nothing is needed after this patch
 
-As this device is the "orchestrator" for the rest of the media
-pipeline, we need to stop all on-going streams before system suspend and
-enable them back when the system wakes up from sleep.
+IMHO, the 2nd sounds better, what do you think?
 
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driv=
-ers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index d68b8d6ffeb19..21388284cbaab 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-[ ... ]
-> @@ -1544,6 +1545,124 @@ static int ti_csi2rx_runtime_resume(struct device=
- *dev)
->  	return 0;
->  }
-> =20
-> +static int ti_csi2rx_suspend(struct device *dev)
-> +{
-> +	struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
-> +	enum ti_csi2rx_dma_state state;
-> +	struct ti_csi2rx_ctx *ctx;
-> +	struct ti_csi2rx_dma *dma;
-> +	unsigned long flags =3D 0;
-> +	int i, ret =3D 0;
-> +
-> +	/* If device was not in use we can simply suspend */
-> +	if (pm_runtime_status_suspended(dev))
-> +		return 0;
-
-[Severity: Critical]
-Since PM notifiers like PM_SUSPEND_PREPARE run before userspace tasks are
-frozen, is there anything preventing userspace from calling VIDIOC_STREAMON
-concurrently?
-
-Because this function does not hold ctx->mutex or set a state flag, could
-userspace restart the streams and DMA engine immediately after this suspend
-notifier finishes, leaving active DMA transfers to memory when the system
-actually enters sleep?
-
-[Severity: High]
-Can a concurrent userspace operation trigger a pm_runtime_put() and drop the
-usage counter to zero while this PM notifier is executing?
-
-Because the status is checked locklessly here without acquiring a runtime PM
-reference, the device could runtime suspend and gate its clocks while this
-notifier is actively writing to memory-mapped registers, which might cause a
-synchronous external abort.
-
-> +
-> +	/*
-> +	 * If device is running, assert the pixel reset to cleanly stop any
-> +	 * on-going streams before we suspend.
-> +	 */
-> +	writel(0, csi->shim + SHIM_CNTL);
-> +
-> +	for (i =3D 0; i < csi->num_ctx; i++) {
-> +		ctx =3D &csi->ctx[i];
-> +		dma =3D &ctx->dma;
-> +
-> +		spin_lock_irqsave(&dma->lock, flags);
-> +		state =3D dma->state;
-> +		spin_unlock_irqrestore(&dma->lock, flags);
-> +
-> +		if (state !=3D TI_CSI2RX_DMA_STOPPED) {
-> +			/* Disable source */
-> +			ret =3D v4l2_subdev_disable_streams(&csi->subdev,
-> +							  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-> +							  BIT(0));
-> +			if (ret)
-> +				dev_err(csi->dev, "Failed to stop subdev stream\n");
-> +		}
-> +
-> +		/* Stop any on-going streams */
-> +		writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-> +
-> +		/* Drain DMA */
-> +		ti_csi2rx_drain_dma(ctx);
-
-[Severity: Medium]
-Will this unconditionally submit a DMA drain even for contexts that are alr=
-eady
-TI_CSI2RX_DMA_STOPPED?
-
-If the DMA stream was already stopped, could this submit a read descriptor =
-that
-waits for hardware data that will never arrive?
-
-> +
-> +		/* Terminate DMA */
-> +		ret =3D dmaengine_terminate_sync(ctx->dma.chan);
-
-[Severity: High]
-Does this instantly terminate the DMA drain operation submitted just above?
-
-Since there is no wait for the drain to complete, the DMA channel is aborted
-immediately, which defeats the purpose of draining the FIFO and leaves stale
-data in the hardware.
-
-> +		if (ret)
-> +			dev_err(csi->dev, "Failed to stop DMA\n");
-> +	}
-> +
-> +	return ret;
-> +}
-[ ... ]
-> +static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
-> +				 unsigned long action, void *data)
-> +{
-> +	struct ti_csi2rx_dev *csi =3D
-> +		container_of(nb, struct ti_csi2rx_dev, pm_notifier);
-> +
-> +	switch (action) {
-> +	case PM_HIBERNATION_PREPARE:
-> +	case PM_SUSPEND_PREPARE:
-> +	case PM_RESTORE_PREPARE:
-> +		ti_csi2rx_suspend(csi->dev);
-> +		break;
-> +	case PM_POST_SUSPEND:
-> +	case PM_POST_HIBERNATION:
-> +	case PM_POST_RESTORE:
-> +		ti_csi2rx_resume(csi->dev);
-
-[Severity: Critical]
-Does replacing the dev_pm_ops suspend and resume callbacks with PM notifiers
-break hybrid sleep (suspend-to-both)?
-
-During hybrid sleep, the system creates a hibernation image, triggers the
-PM_POST_HIBERNATION notifier which restarts the streams here, and then dire=
-ctly
-transitions to S3 suspend without firing the PM_SUSPEND_PREPARE notifier ag=
-ain.
-
-Because there is no suspend callback to notify the driver of the S3
-transition, could the device be actively performing DMA to RAM while the sy=
-stem
-goes to sleep?
-
-> +		break;
-> +	}
-> +
-> +	return NOTIFY_DONE;
-> +}
-[ ... ]
-> @@ -1644,6 +1777,8 @@ static void ti_csi2rx_remove(struct platform_device=
- *pdev)
->  		ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
-
-[Severity: High]
-This is a pre-existing issue, but does calling pm_runtime_set_suspended()
-earlier in this function cause ti_csi2rx_cleanup_ctx() to leak DMA channels?
-
-By forcefully setting the status to suspended, ti_csi2rx_cleanup_ctx()
-evaluates !pm_runtime_status_suspended(ctx->csi->dev) as false, causing the
-driver to skip the dma_release_channel() calls.
-
-> =20
->  	ti_csi2rx_cleanup_notifier(csi);
-> +	unregister_pm_notifier(&csi->pm_notifier);
-
-[Severity: High]
-Is there a race window here that could lead to a use-after-free?
-
-Since unregister_pm_notifier() is called after ti_csi2rx_cleanup_ctx(), whi=
-ch
-destroys V4L2 structures and releases DMA channels, if a system suspend is
-triggered concurrently during this window, the PM notifier could execute
-ti_csi2rx_suspend(). The suspend callback would then dereference ctx->dma.c=
-han
-and call dmaengine_terminate_sync() on a freed channel.
-
-> +
->  	ti_csi2rx_cleanup_v4l2(csi);
->  	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
->  			  csi->drain.paddr);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520120022.5399=
-13-1-r-donadkar@ti.com?part=3D17
+Thanks
 
