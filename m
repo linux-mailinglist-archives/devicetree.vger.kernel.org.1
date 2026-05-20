@@ -1,165 +1,205 @@
-Return-Path: <devicetree+bounces-300813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300814-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8P1gFULqDWrM4gUAu9opvQ
-	(envelope-from <devicetree+bounces-300813-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:07:14 +0200
+	id 0MsIFb/0DWry4wUAu9opvQ
+	(envelope-from <devicetree+bounces-300814-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:51:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43DF592EEE
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:07:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57452594C3D
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:51:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 720A830620EF
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:04:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EC082311590F
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2CD3F44C9;
-	Wed, 20 May 2026 17:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD353F1ACA;
+	Wed, 20 May 2026 17:04:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nlCiIqm1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzOdRs1l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9B73F4114
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 17:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6E83F929E
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 17:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779296603; cv=none; b=ekoi6A+uD0oiaWyohNbiSbINJmziKM+P6C06ZRrF8zV1PKK0eMzxKsN6SLzsbkN97rT6118yPguIx2b0j2FcW2Qbg8qGyDrAA6zPUSw0uMX4/4EXTC+x4drYg6S6cKqP5diLaxAtPlTjBZP8ZFLpdMjDlM3RMjztOWDK9IpPZ9o=
+	t=1779296664; cv=none; b=GOK7+NRotD/tUsoLnsJiSo26ZhS4WiD+DbNihw1/pyLvHXMi0ebSvWYlVZA157t7IA8eoYxe7oInB5SSBJHV7/r7/Rj6Jfq7g6sui5abuFLPYn1jaJYKI9Pnc6SpC45CCe1saHko+16Mh8Rt/7nJx+nimUWSCfZF2lERq1kC4tE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779296603; c=relaxed/simple;
-	bh=V05fA5wMWovZbR5ons36e9gJtJ17rsaO52RQsGdKtP8=;
+	s=arc-20240116; t=1779296664; c=relaxed/simple;
+	bh=ABLS89GogwxuSpH+7xOK9mftRbMOmlJc/2wcmRcOkEk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hK4FUseqQAjIuArY8kVQdTvlDgJulXbE9mKKseGntG3tqxPfgcMwWCSwbyDtrcVvEJeb+JZU0rYFpseHswUIZr9DatAW4Ud0tWIboSQ3UQmunBCBkNMxWYeC/BQOgaZgPi6QoUWTJ0DCrAILrCthUAGh+8/Hzrh5pvUge2ur01c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nlCiIqm1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15271F00894;
-	Wed, 20 May 2026 17:03:13 +0000 (UTC)
+	 Message-Id; b=M7leLC0LTiR7O+bI00e4c5zJXtUBPWysZ+aPpOff7BzNLl0C4qTAe0L1Xf5TolCnHbe0D7TPaNh7Ogl+fbjaK9sDV+0WXWfgcKjOSt2RPK5JWKworD0DTLtExT2EH7xNefQD6zNzXyeaE3Dc6zYYG8o19DEf1/w5Ple6/Rshe0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzOdRs1l; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E07B1F000E9;
+	Wed, 20 May 2026 17:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779296602;
-	bh=v303taeh6Gc9dHuXH/32pddfGtpDRLGNs0ejPPPJ+SU=;
+	s=k20260515; t=1779296663;
+	bh=vgzCXrY7OVN3UjPtZ2OukZnuN1ljc7DAkOWS4yi2WK0=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nlCiIqm1e8XYhsxal49YBS2pYA6BWREtwROH0HBQ5njLN4yx4WS+9wCQ9RAhZZIwa
-	 rNKoE962GDsQvUUAPO2d7MmLy9nWlh6gH2l9mCf3aEQjgH4tvf09eplfucnprIqfQy
-	 ZmzfCKkVtGTTf24e5Fw7trUnS+k6L7p/T1C+0pW3EyyEbxO2CrIvjpvMsVQ+zIKXEF
-	 nO0rNkfRCmXYAo6KCT/DGMynshQAHNXVrMTJ8XXr1uSyRKTtmzq9xuAo3gtRMyqYuZ
-	 fdzsZCaGADY5prXle6W/Vy3Zb83WgsE0VmSmohjwfDN8A/P5UtV3pMuJ7+QrDMkH2s
-	 XOClloAdLH31A==
+	b=bzOdRs1lKDtx6NQ1Yalxs0SemoWXtZZNhvUuXIzbzQ1Ks+HAyAMfbGpv6+t5JCttJ
+	 S/FpzVAyUbsdDLPJVzo/u4BnJ/ruAM7lY2wHxsQ+aDQXafHn9Br+CmSs7j4gqPEJ3k
+	 CfYueH0oe46yisejgofS7i23hGm0lwlzOstwXHKOjG/fVKCS8ukuaz4OonLEV8TT9X
+	 16xgI3W0ZSGgr0KQwwE+7ut0+RYag/188A91huUwwZTTQFo+dEfMV9Es0+eObnozpC
+	 xpPxG/xh3OvEsREeeTJtXGjnC0+iPxJRAChQxm3oBFJ/3ggBk4781gBbKSWC2Uba3S
+	 P0SDieNhVrueA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/3] rtc: ds1307: Add driver for Epson RX8901CE
+Subject: Re: [PATCH 03/11] arm64: dts: qcom: sc8280xp-arcata: Enable the eDP
+ display
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Fredrik M Olsson" <fredrik.m.olsson@axis.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260520-ds1307-rx8901-add-v2-3-e069ea32e1db@axis.com>
-References: <20260520-ds1307-rx8901-add-v2-3-e069ea32e1db@axis.com>
+To: =?utf-8?b?SsOpcsO0bWUgZGUgQnJldGFnbmUgdmlhIEI0IFJlbGF5?= <devnull+jerome.debretagne.gmail.com@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260520-surface-sp9-5g-for-next-v1-3-9df52552bf87@gmail.com>
+References: <20260520-surface-sp9-5g-for-next-v1-3-9df52552bf87@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 17:03:13 +0000
-Message-Id: <20260520170313.C15271F00894@smtp.kernel.org>
+Date: Wed, 20 May 2026 17:04:21 +0000
+Message-Id: <20260520170422.7E07B1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300813-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300814-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,jerome.debretagne.gmail.com,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto,axis.com:email]
-X-Rspamd-Queue-Id: D43DF592EEE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,0.0.0.1:email,sashiko.dev:url,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 57452594C3D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] Trickle charging is not explicitly disabled when requested, posing=
- a battery safety hazard.
+- [Medium] The patch silently removes the `&dispcc1` status override, disab=
+ling the secondary Display Clock Controller.
+- [Low] The patch alters global power behavior by implicitly removing `regu=
+lator-always-on` from `vreg_l6b`.
+- [Low] Usage of the deprecated top-level `data-lanes` property in the Disp=
+layPort controller node.
 --
 
-commit 1b11fec487efda4e55a4152eb696205b964ae2cd
-Author: Fredrik M Olsson <fredrik.m.olsson@axis.com>
+commit a8b912654646fb57f736aa1acf5bb9207884cc9d
+Author: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
 
-rtc: ds1307: Add driver for Epson RX8901CE
+arm64: dts: qcom: sc8280xp-arcata: Enable the eDP display
 
-This commit adds I2C RTC driver support for the Epson RX8901CE. It includes
-support for time reading/writing, Backup Switch Mode (BSM) configuration,
-trickle charging, and battery voltage low status detection.
+This commit adds the vreg_edp_3p3, edp_reg_en, and mdss0_dp3 nodes to
+enable the eDP-based LCD display on the Surface Pro 9 5G. It also maps
+GPIO 36 for panel enable based on decompiled ACPI dumps.
 
-> diff --git a/drivers/rtc/rtc-ds1307.c b/drivers/rtc/rtc-ds1307.c
-> index bf42c250ea7d1..23dd104aa2be7 100644
-> --- a/drivers/rtc/rtc-ds1307.c
-> +++ b/drivers/rtc/rtc-ds1307.c
+Link: https://github.com/alexVinarskis/qcom-aeob-dumps/blob/master/microsof=
+t-surface-pro-9-5G-1996/qcdxkmext8280_ARC_part2.json#L156-L168
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts b/arc=
+h/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
+> index 14287092fb07e..7f1cc18990025 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
 
 [ ... ]
 
-> @@ -568,6 +717,26 @@ static u8 do_trickle_setup_rx8130(struct ds1307 *ds1=
-307, u32 ohms, bool diode)
->  	return setup;
->  }
+> @@ -361,7 +377,6 @@ vreg_l6b: ldo6 {
+>  			regulator-max-microvolt =3D <880000>;
+>  			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-boot-on;
+> -			regulator-always-on;	// FIXME: VDD_A_EDP_0_0P9
+
+[Severity: Low]
+Is it intentional to leave this removal out of the commit message?
+
+The commit correctly reassigns the vreg_l6b regulator to be dynamically
+managed by the eDP PHY and removes its always-on property, resolving the
+FIXME comment. While logically correct, this change in the power
+lifecycle is an undocumented side effect. Could this be noted in the
+commit message?
+
+>  		};
+>  	};
+
+[ ... ]
+
+> @@ -465,10 +480,6 @@ &dispcc0 {
+>  	status =3D "okay";
+>  };
 > =20
-> +static int do_trickle_setup_rx8901(struct ds1307 *ds1307, u32 ohms __alw=
-ays_unused, bool diode)
-> +{
-> +	int ret;
-> +	unsigned int setup;
-> +
-> +	ret =3D regmap_read(ds1307->regmap, RX8901_REG_PWSW_CFG, &setup);
-> +	if (ret) {
-> +		dev_err(ds1307->dev, "Failed to read PWSW_CFG register\n");
-> +		return ret;
-> +	}
-> +
-> +	/* Enable low battery voltage detection */
-> +	setup |=3D RX8901_REG_PWSW_CFG_VBATLDETEN;
-> +
-> +	if (diode)
-> +		setup |=3D RX8901_REG_PWSW_CFG_CHGEN;
+> -&dispcc1 {
+> -	status =3D "okay";
+> -};
+> -
 
-[Severity: High]
-If diode is false, does this code need to explicitly clear the
-RX8901_REG_PWSW_CFG_CHGEN bit?
+[Severity: Medium]
+Does this silently disable the secondary Display Clock Controller?
 
-Because RX8901_REG_PWSW_CFG is a battery-backed register, a previously
-set charge enable bit (for example, from a bootloader or a prior warm
-reboot) might remain set even if trickle charging is explicitly disabled
-by the system configuration.
+While this might be an intentional cleanup since mdss1 is not enabled on
+this board and dispcc0 is used for the eDP, removing a major clock
+controller is an implicit behavioral change. Could this modification be
+explicitly documented in the commit message to prevent confusion?
 
-Could this lead to a physical safety hazard by unintentionally charging a
-primary (non-rechargeable) battery if the bit is not explicitly cleared
-using something like setup &=3D ~RX8901_REG_PWSW_CFG_CHGEN?
+>  &gpi_dma0 {
+>  	status =3D "okay";
+>  };
+
+[ ... ]
+
+> @@ -511,6 +522,42 @@ &mdss0_dp1_out {
+>  	remote-endpoint =3D <&usb_1_qmpphy_dp_in>;
+>  };
+> =20
+> +&mdss0_dp3 {
+> +	compatible =3D "qcom,sc8280xp-edp";
+> +	/delete-property/ #sound-dai-cells;
+> +
+> +	data-lanes =3D <0 1 2 3>;
+
+[Severity: Low]
+Is it correct to use the data-lanes property at the top level of the
+DisplayPort controller node?
+
+According to the MSM DP controller YAML binding schema
+(Documentation/devicetree/bindings/display/msm/dp-controller.yaml),
+defining data-lanes at the top level is explicitly marked as deprecated.
+
+To comply with standard graph bindings, should this property be placed
+inside the controller's output endpoint instead (for example, inside the
+&mdss0_dp3_out port@1/endpoint)?
 
 > +
-> +	return setup;
-> +}
+> +	status =3D "okay";
+> +
+> +	aux-bus {
+> +		panel {
+> +			compatible =3D "edp-panel";
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520-ds1307-rx8=
-901-add-v2-0-e069ea32e1db@axis.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520-surface-sp=
+9-5g-for-next-v1-0-9df52552bf87@gmail.com?part=3D3
 
