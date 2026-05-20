@@ -1,363 +1,283 @@
-Return-Path: <devicetree+bounces-300854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300852-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIfkOD0FDmqs5QUAu9opvQ
-	(envelope-from <devicetree+bounces-300854-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:02:21 +0200
+	id 2J+TK1sCDmqs5QUAu9opvQ
+	(envelope-from <devicetree+bounces-300852-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:50:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB645979C2
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:02:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D89D597488
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:50:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B9B03806C87
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:44:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 29F0832130EF
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5004E43C061;
-	Wed, 20 May 2026 18:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829A242B751;
+	Wed, 20 May 2026 18:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="FZgzIMZD"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="C6UGr9oB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010008.outbound.protection.outlook.com [52.101.84.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A0D439010;
-	Wed, 20 May 2026 18:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779302349; cv=none; b=Ut1pMUM6AMZPsn8UvbyrIrJAK0qPzeKM5tD9QV0F/xmWKaNRZ6V0yW/1EZ3FMMOJnTkuLu12ftd/vigqN9tJgtVNGnk/5fiXZZV0MnNg6Mv+asc7L1wDWIt3ImorSVxLngmcSSeUuqzDCXzsf9utHoTtMBWAGtachil6bPtXZg8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779302349; c=relaxed/simple;
-	bh=8C37hzjR1SVnXQ8/GTqJJCIov2hR+IOPo1WmYm27f8I=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OB8+1tX+E1fJK0hIb0IpSGXeVqiDonn8GAIda7DA3NPxElkeS5TnD3p4t4By7857rUg73RZKSV6EtGEqqnEETCkdnSgwZlM1M9jA7+Dp8pk5XTOVMw8KkcLRPMp9VhHTkeYJk5cA4okUsn+q8DeK/Zxqe0P1Ge9j0I3YL7aTp2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=FZgzIMZD; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BD065440F94;
-	Wed, 20 May 2026 20:39:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1779302344; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=XGm9ZWVoNbn0xhTUGl1gaGb/LD9HwB97Pokf5bwcBhw=;
-	b=FZgzIMZDpowBKKjMQFUR8NIgr9ZFC1bgfGg+ZosrJr+lk5W8mdcVO7t9hKA4yr2IV3G3yG
-	bhEREpCE9aCxOrmID5aM979/lfZintVTJIPQHgnduTsqfqbbMXCg/2ByFEsygLw1FKwRme
-	nkQya41qEDPvke05KNzWqtWPR8Bh4ZTHSxcURwddpT+zDEWLu1/YC2fhRDjozMvJGoA8PP
-	cDRtahDsAcZ+WYznKL4uVpQEjdiiLagCOxTWsg8wv6wGMy/0QrEiNJXIjJVO8o1Iu1bHgF
-	aHqlNPSf2UlHS1CafI0Rn3VF8Zd0XSYXimLyFRW/XxEIJE/WV6WneQ9/tS2nHw==
-From: Caleb James DeLisle <cjd@cjdns.fr>
-To: linux-pci@vger.kernel.org
-Cc: linux-mips@vger.kernel.org,
-	naseefkm@gmail.com,
-	ryder.lee@mediatek.com,
-	helgaas@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ansuelsmth@gmail.com,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Caleb James DeLisle <cjd@cjdns.fr>
-Subject: [PATCH v8 3/3] PCI: mediatek: Add support for EcoNet EN7528 SoC
-Date: Wed, 20 May 2026 18:38:27 +0000
-Message-Id: <20260520183827.908243-4-cjd@cjdns.fr>
-In-Reply-To: <20260520183827.908243-1-cjd@cjdns.fr>
-References: <20260520183827.908243-1-cjd@cjdns.fr>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF8942847F;
+	Wed, 20 May 2026 18:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779302344; cv=fail; b=aFLe5Zmidw7VPHnyPoIgBonARvd7kWOVf4G0UEoI/HhAmKIBd1UrW22mt4m3iFNActKglRPBNYYEVEQTVShYVlWnccAP+/WUP0mSj7GKgdmTF9lJ7zs7e72BECJm9seREP3+WHhTpPcu2yDX1EZ+GsXl/9QqYNfye9agTKexSJQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779302344; c=relaxed/simple;
+	bh=wkuqEGFybXrdCkSB9t4PhBS5rt6bDxHf0JmX5dk/Ddk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=mSpmVg7j7InKdDh4vGmvyFTtLTXiC7AjU33xiwUCSnYQtV0ur2oiIzaYMlfOsQNBLlxnGX/GeF45mobwX109T3BVVvHp5AMSpqkQgeGuhO17cuW3ElIqoIbfF14jbLMzs/v81knGLrn6jjUULm0C+UMhM7t2b+uT5J5dhU6JBuc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=C6UGr9oB; arc=fail smtp.client-ip=52.101.84.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UuldstZ/N7K55kxaRpLTkguVum9ZuvQzDBpH2u4GE2ccnhoqjTHxkfNXchC30m5RAffCooGhO00G1Ual4L8DxA3hwozdevPYBMg4KlZwGwvPsBXynWGVQUSpcE3CfMVAJ1Y07zjms2Pf8E9QyVdM9tIwuLGXjvttJpeZe4xOtDhMWi3Ff0/QUq4XJIJyM9Vs1YzSZIT61t6QwJ1qYN4u115hwT6jK9zbnREwi1GtUMwDWJLu9dfsxIpwv8HX+ubmPRP5CDn3jn9nmYoI761svJ7Z4hZVMVOIvZgjuq5bEVjeWsbpznQ2EUwe+OrolOJbidBGyVENSURnxL8wXbjoFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l6kOsKjpcCNvCmXxwOH93ZURdxywG3QWkIOA9Gg2afA=;
+ b=nHPMmCxmRUWN+q2Z79tqhWBZucn15J0y9dyx3o5IANiGcHw1BfMBkWaHOCu3SljVw8JslINZd8SQ0Eo/rho9FHbXqoN6tOZiMMmQ3ZDXmDrprc3XfV8YjMQV4hWaaAvyV2a1SVLJGQs7dZLDiEQL71LZBQlxwwWrx5QKzZ6v27k+nNsq51REWhFlr3T9BZ3T0drbpAKqOP9/W16AjPnAsTXMoyGkReCF/6SiIGp/PzHFFwH9pv1RtTl352a62iQPNxoJ21ppAQriTyMZITrvPIZeJH3k9X+El4lRwMjrFaH9xgm1bHu3LPa62cEfmTtqGWwKJphdIoKR2uSKxucW3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l6kOsKjpcCNvCmXxwOH93ZURdxywG3QWkIOA9Gg2afA=;
+ b=C6UGr9oBrxQjGLLPYsU6WuYUnSwykB5Fdx7L6gDkOzgbkHKvMaFLsJHnLGMeV0ZiZSu1mkO8Z93TScPS16Dc5nXZApjd4s8VaVj/zVQu2fOkcNMRo6kevllMfcfKKZEfofDomn1MxIhyczD8jXwPMZkAd23mYvyMy5LbHRtZ13hHtjtlpep86c+e4k09vcxW+AtWeXFxy3Dsf50GRdsMYnB+Z8SDIv7MYFgW6034ui0ocujsg6JiPyCqi3UQNaUVIwD7hhk/7jBgxqIv9qDhTP2BSfjhbm/wIqXZRdR00u4IeIK2d3zmvxXSNuxu323Hfen/6Nx8cnoJFNEhPA+Jtw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by AMBPR04MB12312.eurprd04.prod.outlook.com (2603:10a6:20b:723::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.21; Wed, 20 May
+ 2026 18:39:00 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%3]) with mapi id 15.21.0048.013; Wed, 20 May 2026
+ 18:39:00 +0000
+Date: Wed, 20 May 2026 14:38:48 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: "Sherry Sun (OSS)" <sherry.sun@oss.nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	bhelgaas@google.com, hongxing.zhu@nxp.com, l.stach@pengutronix.de,
+	imx@lists.linux.dev, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, sherry.sun@nxp.com
+Subject: Re: [PATCH V3 1/8] PCI: imx6: Integrate new pwrctrl API for pci-imx6
+Message-ID: <ag3_uFchYZoE9sMn@lizhi-Precision-Tower-5810>
+References: <20260520084904.2424253-1-sherry.sun@oss.nxp.com>
+ <20260520084904.2424253-2-sherry.sun@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260520084904.2424253-2-sherry.sun@oss.nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0132.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::17) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AMBPR04MB12312:EE_
+X-MS-Office365-Filtering-Correlation-Id: 851392eb-62a8-4f1d-c127-08deb69f0ec7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|376014|52116014|7416014|1800799024|11063799006|22082099003|56012099003|18002099003|38350700014|4143699003;
+X-Microsoft-Antispam-Message-Info:
+	avd2O8kc1c+9jqhHOLGpqfDcorN79YIYbOz9BeOIZD/uCvIRdFQc0Hh4DPhoYiGSVV2VPKCbywxGKPpuJnP3AXNDavxT2V6lQHf3DkDWKG8Xpu2A0GnBI8XZc0fUNSANpadOLWqqQ+QansSleM0vKj+ZCE7rtUgL4m0i4PEFUN/dDMO5G8Z/hSfhl36XjqFUX7IEtDNcFl9hDqvnBxnnFv/dxQTNQB+SkrSa/dXTuTlSzEr2pMgjCFTN5h2EeKkfDlpAz7SaoProBBQP3oIuOPLMaB578mMZLEz+vVDvF0rOQraptq5glMyp5j8uPglQzk7piNR0AMI7njnNvd22APRa4qtOrXZBi2oTpgDgFSWkCuMcZOow62dILsTaGslgqKyU2ZdX+VwXe8l0GjpWJHZQTZw+WD/ACmJevAAFuTTEUP0eb6bpXiP/Rcqtwm4B0HVbMuV+n97qE9CAd7nPXsU2xMmR6AmhtbJvhREgypkcH2CTWtRXrfKYT7V4YHKxQxE4XDtD9SI1MxBA+3mXUqiCDWJTlo6IrGxRfiglG45OsqmcJmQxwH9hDKHcdRqufXNQaHyB2Hu4XZkJEwv5FCZVD6XdRc/emRdea25JuQvT0I9aFg+iL0pPBg4xbkFWut1cGlL0RTk8pzuehykbyIL/Vy3rUQxpNbxbrGI1NmQt7dOQjcWcps8ByKhxwA8X+j2JiLnEZbSfIv5OvEMkiAtmf7s1mb/i78D+IK59bNoTTDRbeWpz4GjRhgvj22mg
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(376014)(52116014)(7416014)(1800799024)(11063799006)(22082099003)(56012099003)(18002099003)(38350700014)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?2kklEzewmn34FV3bIExavHzho0OWr4DmCleh1c4DUNHefThcyAotU5VHXbBn?=
+ =?us-ascii?Q?8avloLC6Gip7mfJ9dKvbM96aV4eBlfrrRpoM5ZkjtpXH0OoOvn83sFf1KLIY?=
+ =?us-ascii?Q?rhlI2GkE+A+pjgZXwBDVrxHT68uNQ/Y9+50b7bLP4zWln6H8rt5lY0LtmQG5?=
+ =?us-ascii?Q?Q8kzrbnz7PZn372VPevE2EJpvLiIL6dJFQauelNKbqz36BljSyQ27rdiE0pV?=
+ =?us-ascii?Q?PjjCwzA7XzC3oIUY/EI3rSnwGJ4xkTGwq7SZRC4CoeVWWI2/+1LyZNp4DRAm?=
+ =?us-ascii?Q?OnWA1Lf/kaTg2PMCL3Fsmt/v+QZIFB8w8ZMFzVFG618+uxHepNYG8t9vVxt2?=
+ =?us-ascii?Q?sx2uEo7lmrj+bJ3LZXFE3rpgzBglap+uBqa1t5GvtYNjBe5zfjXceuxBF84h?=
+ =?us-ascii?Q?UVt6Ve+1hOuOQ3cAtYdox8hI2SfF2zWpP//0kW9KLx5zO2GPHW/2R1gMcRC3?=
+ =?us-ascii?Q?B7MmAGehv2iQxaXriiF80iMBpmyoRdufKSjZ9x4vVtVtYLuUf9S+AzXamZBJ?=
+ =?us-ascii?Q?jxd/DGXHlFlP69gNy2N9wWP1AY24HG89QYV+0/vf2vEGMQdjluZI0phgV0pk?=
+ =?us-ascii?Q?k4VENNZfjOmRV61gRRumqHyWG+R/vJ4UZ2zXGr8uLzqnMpm8CGzEg76M74Tf?=
+ =?us-ascii?Q?KToPMy8c2rTN2CfQxEG7ZdorHtJsuoESiO1U/VKPOFveaIo+Ku6agPSWsa4Z?=
+ =?us-ascii?Q?VpTqr7Jw2QK4Fv81mvvl3Zl6V8iR/YW2NV0R4+2JPT1BaQqUnqazOFtDBg7y?=
+ =?us-ascii?Q?UjnHPONdFWwHOlGQw0XvTXwXmqHbK/pBAKpmoN/Q+vY0wf6h/EJkYOZmiP9b?=
+ =?us-ascii?Q?ccTGkPBFVvtHV8uraVkduo+QUkxWYQm9jGalhSlaSXICLGHCSJMCeRehMOL3?=
+ =?us-ascii?Q?/PPEZeuuFncraNmu2Z2pjvYaRDmLrZrpJkcvfsv8RjUJIna0OGSZIhkJHPDv?=
+ =?us-ascii?Q?KP26KP5NXPYRtWWHByShSIfZIjOsAjpK4Mc85ospgNqOkc+pIUYW+OV8lifN?=
+ =?us-ascii?Q?pwEBSuJ5q36hAntu/4XO92K15XLzpypju7W9IrSKrkAAIjt0QnGs9wSRP86N?=
+ =?us-ascii?Q?3ciGJ886FXO8i9I8DX5hF7swhuRQP3qUm/7k2gD+xfAgQUyCTI0U+BcQiTZr?=
+ =?us-ascii?Q?yv7B1qZ3LDzAmJksW+iuuA0+ZCI8GBr8dUPp13CQyRcNAc+7u6CoLBEuNK3I?=
+ =?us-ascii?Q?AebxRhrxH4korUyB+dY59kDj/YqvYXfpvGvVc1d/sS0bpeNT2p8/3swvScXY?=
+ =?us-ascii?Q?n1QBVgftSPdAdUeAhzHnUAKj+dXFqy4Z5CHuoTWs8RPzkrNTa+fAKLwUsUiB?=
+ =?us-ascii?Q?lE03CoIbpmuDLpbAZudmsAULgl2l4SM3J6anmj45YuysSufsdH/TVQ2CqBVr?=
+ =?us-ascii?Q?rEsAKRoO7eZPSvs1PtRBMoO7qnpELcsHehFZK4CiSzTv6itK/kbLehabBl3S?=
+ =?us-ascii?Q?sU4KbDh62EavQ4t+kiCzOHDcmvmf4oGlC50HQvCC9a03YuuI/tP7N0WV9vQD?=
+ =?us-ascii?Q?sUHb8LeBwhMqtyewGhHJhUdD7LHBbd+rMA2BfnAhBIryLlP5v9+KUZP91aTP?=
+ =?us-ascii?Q?RQ/QB94yiPyWJfJNJeE4ENr3Ir/hhwnqcrAiH5Y12U0k2iTTA7gp9mbyxH3L?=
+ =?us-ascii?Q?v0A2a7M5ywe65jWootXyM//K9BDGFI65kDe0l2qOYnizqxnd7CyxDrU+n4XC?=
+ =?us-ascii?Q?QeS8hg3LmoiQ+y9ZBzB2cTCg343L3krLYTLFsbEPIOup3wdqoIUakKZReEVp?=
+ =?us-ascii?Q?6QcVhpVe1Q=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 851392eb-62a8-4f1d-c127-08deb69f0ec7
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2026 18:38:59.9963
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n1v454oHBaEehe/G3iPdzIFKctcjBYD1gAuxGhOKniG+uEx6tjMd65Kk6HxzpMD5OVJIZOcsw24GKkpf5XpWrQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR04MB12312
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300852-lists,devicetree=lfdr.de];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-300854-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org,cjdns.fr];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,google.com,nxp.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,cjdns.fr:email,cjdns.fr:mid,cjdns.fr:dkim]
-X-Rspamd-Queue-Id: 3FB645979C2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,i.mx:url]
+X-Rspamd-Queue-Id: 2D89D597488
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the PCIe present on the EcoNet EN7528 (and EN751221) SoCs.
+On Wed, May 20, 2026 at 04:48:57PM +0800, Sherry Sun (OSS) wrote:
+> From: Sherry Sun <sherry.sun@nxp.com>
+>
+> Integrate the PCI pwrctrl framework into the pci-imx6 driver to provide
+> standardized power management for PCIe devices.
+>
+> Legacy regulator handling (vpcie-supply at controller level) is
+> maintained for backward compatibility with existing device trees.
+> New device trees should specify power supplies at the Root Port
+> level to utilize the pwrctrl framework.
+>
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> ---
 
-These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
-require re-training after startup.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Co-developed-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
----
- drivers/pci/controller/Kconfig         |   2 +-
- drivers/pci/controller/pcie-mediatek.c | 152 +++++++++++++++++++++++++
- 2 files changed, 153 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-index 2247709ef6d6..8a3a31b2bc12 100644
---- a/drivers/pci/controller/Kconfig
-+++ b/drivers/pci/controller/Kconfig
-@@ -209,7 +209,7 @@ config PCI_MVEBU
- 
- config PCIE_MEDIATEK
- 	tristate "MediaTek PCIe controller"
--	depends on ARCH_AIROHA || ARCH_MEDIATEK || COMPILE_TEST
-+	depends on ARCH_AIROHA || ARCH_MEDIATEK || ECONET || COMPILE_TEST
- 	depends on OF
- 	depends on PCI_MSI
- 	select IRQ_MSI_LIB
-diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-index c503fbd774d0..4e4d4b1559f7 100644
---- a/drivers/pci/controller/pcie-mediatek.c
-+++ b/drivers/pci/controller/pcie-mediatek.c
-@@ -9,11 +9,13 @@
- 
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/errno.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqchip/irq-msi-lib.h>
- #include <linux/irqdomain.h>
-+#include <linux/kconfig.h>
- #include <linux/kernel.h>
- #include <linux/mfd/syscon.h>
- #include <linux/msi.h>
-@@ -77,6 +79,7 @@
- 
- #define PCIE_CONF_VEND_ID	0x100
- #define PCIE_CONF_DEVICE_ID	0x102
-+#define PCIE_CONF_REV_CLASS	0x104
- #define PCIE_CONF_CLASS_ID	0x106
- 
- #define PCIE_INT_MASK		0x420
-@@ -89,6 +92,11 @@
- #define MSI_MASK		BIT(23)
- #define MTK_MSI_IRQS_NUM	32
- 
-+#define EN7528_HOST_MODE	0x00804201
-+#define EN7528_LINKUP_REG	0x50
-+#define EN7528_RC0_LINKUP	BIT(1)
-+#define EN7528_RC1_LINKUP	BIT(2)
-+
- #define PCIE_AHB_TRANS_BASE0_L	0x438
- #define PCIE_AHB_TRANS_BASE0_H	0x43c
- #define AHB2PCIE_SIZE(x)	((x) & GENMASK(4, 0))
-@@ -148,12 +156,15 @@ struct mtk_pcie_port;
-  * @MTK_PCIE_FIX_DEVICE_ID: host's device ID needed to be fixed
-  * @MTK_PCIE_NO_MSI: Bridge has no MSI support, and relies on an external block
-  * @MTK_PCIE_SKIP_RSTB: Skip calling RSTB bits on PCIe probe
-+ * @MTK_PCIE_RETRAIN: Retrain link to bridge after startup because some
-+ *                    Gen2-capable devices start as Gen1.
-  */
- enum mtk_pcie_quirks {
- 	MTK_PCIE_FIX_CLASS_ID = BIT(0),
- 	MTK_PCIE_FIX_DEVICE_ID = BIT(1),
- 	MTK_PCIE_NO_MSI = BIT(2),
- 	MTK_PCIE_SKIP_RSTB = BIT(3),
-+	MTK_PCIE_RETRAIN = BIT(4),
- };
- 
- /**
-@@ -755,6 +766,132 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 	return 0;
- }
- 
-+static int mtk_pcie_startup_port_en7528(struct mtk_pcie_port *port)
-+{
-+	struct mtk_pcie *pcie = port->pcie;
-+	struct pci_host_bridge *host = pci_host_bridge_from_priv(pcie);
-+	struct resource *mem = NULL;
-+	struct resource_entry *entry;
-+	u32 val, link_mask;
-+	int err;
-+
-+	entry = resource_list_first_type(&host->windows, IORESOURCE_MEM);
-+	if (entry)
-+		mem = entry->res;
-+	if (!mem)
-+		return -EINVAL;
-+
-+	if (!pcie->cfg) {
-+		dev_err(pcie->dev, "EN7528: pciecfg syscon not available\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Assert all reset signals */
-+	writel(0, port->base + PCIE_RST_CTRL);
-+
-+	/*
-+	 * Enable PCIe link down reset, if link status changed from link up to
-+	 * link down, this will reset MAC control registers and configuration
-+	 * space.
-+	 */
-+	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-+
-+	msleep(PCIE_T_PVPERL_MS);
-+
-+	/* De-assert PHY, PE, PIPE, MAC and configuration reset */
-+	val = readl(port->base + PCIE_RST_CTRL);
-+	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-+	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-+	writel(val, port->base + PCIE_RST_CTRL);
-+
-+	writel(PCIE_CLASS_CODE | PCIE_REVISION_ID,
-+	       port->base + PCIE_CONF_REV_CLASS);
-+	writel(EN7528_HOST_MODE, port->base);
-+
-+	link_mask = (port->slot == 0) ? EN7528_RC0_LINKUP : EN7528_RC1_LINKUP;
-+
-+	/* 100ms timeout value should be enough for Gen1/2 training */
-+	err = regmap_read_poll_timeout(pcie->cfg, EN7528_LINKUP_REG, val,
-+				       !!(val & link_mask), 20,
-+				       PCI_PM_D3COLD_WAIT * USEC_PER_MSEC);
-+	if (err) {
-+		dev_err(pcie->dev, "EN7528: port%d link timeout\n", port->slot);
-+		return -ETIMEDOUT;
-+	}
-+
-+	/* Activate INTx interrupts */
-+	val = readl(port->base + PCIE_INT_MASK);
-+	val &= ~INTX_MASK;
-+	writel(val, port->base + PCIE_INT_MASK);
-+
-+	if (IS_ENABLED(CONFIG_PCI_MSI))
-+		mtk_pcie_enable_msi(port);
-+
-+	/* Set AHB to PCIe translation windows */
-+	val = lower_32_bits(mem->start) |
-+	      AHB2PCIE_SIZE(fls(resource_size(mem)));
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_L);
-+
-+	val = upper_32_bits(mem->start);
-+	writel(val, port->base + PCIE_AHB_TRANS_BASE0_H);
-+
-+	writel(WIN_ENABLE, port->base + PCIE_AXI_WINDOW0);
-+
-+	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-+		dev_info(pcie->dev,
-+			 "module not built-in, Gen2 unavailable even if supported\n");
-+
-+	return 0;
-+}
-+
-+/**
-+ * mtk_pcie_retrain - retrain the root bridge link if needed
-+ * @dev: The device, for use in logging
-+ * @host: The host bridge which contains the link
-+ *
-+ * Due to what is likely a hardware bug, some devices (notably EcoNet) start up
-+ * as Gen1, and must be retrained once after initial configuration in order to
-+ * reach Gen2.
-+ *
-+ * These devices always self-identify as Gen2 capable, but sometimes the PHY is
-+ * only capable of Gen1 operation, and sometimes the PCIe card (e.g. wifi) is
-+ * only Gen1 capable. Therefore it is most convenient to retrain every port
-+ * after startup.
-+ */
-+static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *host)
-+{
-+	struct pci_dev *rp;
-+	int ret = -ENOENT;
-+	u16 lnksta = 0;
-+	u32 speed;
-+
-+	/* Should already have been warned about during startup_port */
-+	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
-+		return 0;
-+
-+	for_each_pci_bridge(rp, host->bus) {
-+		if (pci_pcie_type(rp) != PCI_EXP_TYPE_ROOT_PORT)
-+			continue;
-+
-+#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
-+		ret = pcie_retrain_link(rp, true);
-+#endif
-+
-+		if (ret)
-+			return dev_err_probe(&rp->dev, ret,
-+					     "failed to retrain port\n");
-+
-+		pcie_capability_read_word(rp, PCI_EXP_LNKSTA, &lnksta);
-+		speed = lnksta & PCI_EXP_LNKSTA_CLS;
-+
-+		pci_info(rp, "link retrained, speed %s\n",
-+			 pci_speed_string(pcie_link_speed[speed]));
-+
-+	}
-+
-+	return 0;
-+}
-+
- static void __iomem *mtk_pcie_map_bus(struct pci_bus *bus,
- 				      unsigned int devfn, int where)
- {
-@@ -1159,6 +1296,13 @@ static int mtk_pcie_probe(struct platform_device *pdev)
- 	if (err)
- 		goto put_resources;
- 
-+	/*
-+	 * Ignore error because pci_host_probe() was already called, and in any
-+	 * case it is possible that the port will still work as Gen1.
-+	 */
-+	if (pcie->soc->quirks & MTK_PCIE_RETRAIN)
-+		mtk_pcie_retrain(dev, host);
-+
- 	return 0;
- 
- put_resources:
-@@ -1274,8 +1418,16 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
- 	.quirks = MTK_PCIE_FIX_CLASS_ID | MTK_PCIE_FIX_DEVICE_ID,
- };
- 
-+static const struct mtk_pcie_soc mtk_pcie_soc_en7528 = {
-+	.ops = &mtk_pcie_ops_v2,
-+	.startup = mtk_pcie_startup_port_en7528,
-+	.setup_irq = mtk_pcie_setup_irq,
-+	.quirks = MTK_PCIE_RETRAIN,
-+};
-+
- static const struct of_device_id mtk_pcie_ids[] = {
- 	{ .compatible = "airoha,an7583-pcie", .data = &mtk_pcie_soc_an7583 },
-+	{ .compatible = "econet,en7528-pcie", .data = &mtk_pcie_soc_en7528 },
- 	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
- 	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
--- 
-2.39.5
-
+>  drivers/pci/controller/dwc/Kconfig    |  1 +
+>  drivers/pci/controller/dwc/pci-imx6.c | 24 +++++++++++++++++++++++-
+>  2 files changed, 24 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> index 216ede0a867e..aa0b784c85b4 100644
+> --- a/drivers/pci/controller/dwc/Kconfig
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -114,6 +114,7 @@ config PCI_IMX6_HOST
+>  	depends on PCI_MSI
+>  	select PCIE_DW_HOST
+>  	select PCI_IMX6
+> +	select PCI_PWRCTRL_GENERIC
+>  	help
+>  	  Enables support for the PCIe controller in the i.MX SoCs to
+>  	  work in Root Complex mode. The PCI controller on i.MX is based
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 773ab65b2afa..b137551871fc 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  #include <linux/pci.h>
+> +#include <linux/pci-pwrctrl.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> @@ -1331,6 +1332,7 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
+>  			return ret;
+>  	}
+>
+> +	/* Legacy regulator handling for DT backward compatibility. */
+>  	if (imx_pcie->vpcie) {
+>  		ret = regulator_enable(imx_pcie->vpcie);
+>  		if (ret) {
+> @@ -1340,10 +1342,22 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
+>  		}
+>  	}
+>
+> +	ret = pci_pwrctrl_create_devices(dev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to create pwrctrl devices\n");
+> +		goto err_reg_disable;
+> +	}
+> +
+> +	ret = pci_pwrctrl_power_on_devices(dev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to power on pwrctrl devices\n");
+> +		goto err_pwrctrl_destroy;
+> +	}
+> +
+>  	ret = imx_pcie_clk_enable(imx_pcie);
+>  	if (ret) {
+>  		dev_err(dev, "unable to enable pcie clocks: %d\n", ret);
+> -		goto err_reg_disable;
+> +		goto err_pwrctrl_power_off;
+>  	}
+>
+>  	if (pp->bridge && imx_check_flag(imx_pcie, IMX_PCIE_FLAG_HAS_LUT)) {
+> @@ -1402,6 +1416,11 @@ static int imx_pcie_host_init(struct dw_pcie_rp *pp)
+>  	phy_exit(imx_pcie->phy);
+>  err_clk_disable:
+>  	imx_pcie_clk_disable(imx_pcie);
+> +err_pwrctrl_power_off:
+> +	pci_pwrctrl_power_off_devices(dev);
+> +err_pwrctrl_destroy:
+> +	if (ret != -EPROBE_DEFER)
+> +		pci_pwrctrl_destroy_devices(dev);
+>  err_reg_disable:
+>  	if (imx_pcie->vpcie)
+>  		regulator_disable(imx_pcie->vpcie);
+> @@ -1420,6 +1439,7 @@ static void imx_pcie_host_exit(struct dw_pcie_rp *pp)
+>  	}
+>  	imx_pcie_clk_disable(imx_pcie);
+>
+> +	pci_pwrctrl_power_off_devices(pci->dev);
+>  	if (imx_pcie->vpcie)
+>  		regulator_disable(imx_pcie->vpcie);
+>  }
+> @@ -1931,6 +1951,8 @@ static void imx_pcie_shutdown(struct platform_device *pdev)
+>  	/* bring down link, so bootloader gets clean state in case of reboot */
+>  	imx_pcie_assert_core_reset(imx_pcie);
+>  	imx_pcie_assert_perst(imx_pcie, true);
+> +	pci_pwrctrl_power_off_devices(&pdev->dev);
+> +	pci_pwrctrl_destroy_devices(&pdev->dev);
+>  }
+>
+>  static const struct imx_pcie_drvdata drvdata[] = {
+> --
+> 2.37.1
+>
 
