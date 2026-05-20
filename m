@@ -1,246 +1,161 @@
-Return-Path: <devicetree+bounces-300862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300863-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oPvYDUcIDmp25gUAu9opvQ
-	(envelope-from <devicetree+bounces-300862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:15:19 +0200
+	id mC6UO3AfDmpd6QUAu9opvQ
+	(envelope-from <devicetree+bounces-300863-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:54:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E0C598060
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:15:18 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0580759A47C
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1CE3332BBF2E
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:57:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E213E3106F9C
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFBE3E2AAD;
-	Wed, 20 May 2026 18:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71064028D6;
+	Wed, 20 May 2026 18:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IggBUpcT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3HC1AWl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA4E272E56;
-	Wed, 20 May 2026 18:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81223D75AB;
+	Wed, 20 May 2026 18:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779303199; cv=none; b=ahklsaQFp2UEG86MjMveoO4leShp0duMpCNkyBcqoAWwFaiT33hSJqDs0sskemfUMVnPyVfVD6X7xNYvUZ6YsFCRvqZEh3WYFF3ex6Lm2BkkOByyIbJKn0duVyiocZ07Rk8FPiAUb4NT2HkPWauHKT88oteOc0C9M5F6hYzliOc=
+	t=1779303335; cv=none; b=gM0EwEwkifwAbhvsvXx1xLqmibW8SOdctsAQvk8NYaPAvRWJV9LU8frnl7rWbFYQAsf9DW8K1uGWW5gBjx4Ee2kMLQTqFwmv+WV+72MT8YliB0HC0MHmhIeE8TzWYVB5477r80B+IolIHh0W638njZ3Uyz90WEt4cKQD3dmAjy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779303199; c=relaxed/simple;
-	bh=Ywx1mGdSgqbv5k9HmpLCR0s+Q572k8jWkACMalkVr/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HoHgq5XUqvhUk1kKw0lUZVvGEdNeO3l9etBR5tzQWBigBMSnxu14/qg+8wbyv8N027vi1cEupuhM7X1gCM4ZGfCfeLRmqRFhxHjcWrNioKas4QU9/0sHdjcJhscaluakEMeDR7ExqE6cYEVDqfyHiHBTNg6qwO09pE+A5id6XMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IggBUpcT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4A901F000E9;
-	Wed, 20 May 2026 18:53:12 +0000 (UTC)
+	s=arc-20240116; t=1779303335; c=relaxed/simple;
+	bh=PvpeF/Zoun/FX1KkahgKET3g0uHQyd8hBFJoc4f5kUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dRdUEwLIZhm8/7Zb8EQYEL5p3T48Q7nPcAl97dfD28zz7cb1nFU18wh/RfF+vbUt36Usw4gwL9s+Wp9OTuGmWWt8iXpbkLHVDY8iGLP9TeTWoMps8MZRDpIvgOpjaGKGMaXWVTIw2raKs19PMh3RTom/psQXO6X/xZnyzxOmzO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3HC1AWl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 108B21F000E9;
+	Wed, 20 May 2026 18:55:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779303198;
-	bh=tdxodyJKcIQWQQePbZ1iQzbrwRLc3HZLKX6TGNn3DJg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=IggBUpcTMOD7KV5y7K3N5L0xosHIkx8y+TVtDSuHdZzDglbbW+mvovC06wfxbhVwD
-	 X8cD8qBFKK2y9FafiB7lErihgowON3bsLpwrHIzmEcr/k4uiG3F/W4guY8ThhF0Kd9
-	 EX/DDUPxdsMy9vAIYgA+Y6HVVGIqm6BZOzX3tsmZtbwcSd3ChQCq1q3rT21+NWblBR
-	 ZH5nSFcP7Uf30dbU8ywktbuzS5tvQIviQaLohjMV5GpPgUNaIW4fRS/2SmZctWpGRD
-	 no1V7oRHXRzZvAn+WFGQZeXAUvD1+Wlnlsq0RtprmPbn7emTLv1UxDHJ3qtMOw/QrJ
-	 ZJuVpq8v5jObA==
-Date: Wed, 20 May 2026 19:53:07 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Liviu Stan <liviu.stan@analog.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>, Francesco Lavra
- <flavra@baylibre.com>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux@analog.com>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] iio: temperature: ltc2983: Add support for
- ADT7604
-Message-ID: <20260520195307.6c06760d@jic23-huawei>
-In-Reply-To: <20260520181940.548759-1-liviu.stan@analog.com>
-References: <20260518145802.49a3bc94@jic23-huawei>
-	<20260520181940.548759-1-liviu.stan@analog.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1779303334;
+	bh=1T+Q/YxtQARU2EGQLE/zHDY4XgcSiULTKufiyFMk81o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=d3HC1AWlxYQloLRdwFfkhaO9j224EwZJKTWuqbNerYPPwboNaP5Oz+iENzlzxFIap
+	 aB83fyHfHkO46WDersl/s2y9fMKNnVWY7cjunQ3dZWU8yCNtPQ19Yr5yJ/gO+07XZa
+	 nEA65mrqtesRALxniBsxDYR26TgwmwQbhOQ2kWquww7WOG+HhUp2rhuD0XkQpnUKl4
+	 3jcPM5N7E+loqNENnYvCO7XLTC/PSQpsIvSfJezjYB+z5Mb6JhpjxAe0MsCcyo7EgJ
+	 zbX+IR/im+BQAIPoSDd/EOu68/1bNkHfVz3edQcj3+K+CFV6P24opy4+L1dj3HWqu9
+	 P6iMyHvEgXW/g==
+Date: Wed, 20 May 2026 19:55:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Tomasz Jeznach <tomasz.jeznach@linux.dev>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Joel Stanley <joel@jms.id.au>, Joerg Roedel <joerg.roedel@amd.com>,
+	Nicholas Piggin <npiggin@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: iommu: riscv: Add bindings for
+ Tenstorrent RISC-V IOMMU
+Message-ID: <20260520-imminent-graded-6e1f0f4c54d0@spud>
+References: <20260520061855.1623468-4-fustini@kernel.org>
+ <20260520-frayed-fervor-7c887193ab19@spud>
+ <ag36CHVAERc3ZYmi@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="XDMycSDARlTDf9SM"
+Content-Disposition: inline
+In-Reply-To: <ag36CHVAERc3ZYmi@x1>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-300863-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-300862-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linux.dev,8bytes.org,kernel.org,arm.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.linux.dev,lists.infradead.org,vger.kernel.org,jms.id.au,amd.com,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,analog.com:email]
-X-Rspamd-Queue-Id: C2E0C598060
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 0580759A47C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 20 May 2026 21:19:37 +0300
-Liviu Stan <liviu.stan@analog.com> wrote:
 
-> On Mon, 18 May 2026 14:58:02 +0100 Jonathan Cameron <jic23@kernel.org> wrote:
-> ...
-> > > > > +		    !(st->info->supported_sensors & BIT_ULL(sensor.type)))
-> > > > > +			return dev_err_probe(dev, -EINVAL,
-> > > > > +					     "sensor type %d not supported on %s\n",
-> > > > > +					     sensor.type, st->info->name);
-> > > > > +
-> > > > > +		dev_dbg(dev, "Create new sensor, type %u, channel %u",
-> > > > >  			sensor.type, sensor.chan);
-> > > > >      
-> > > >     
-> > > > > @@ -1445,8 +1782,9 @@ static int ltc2983_eeprom_cmd(struct ltc2983_data *st, unsigned int cmd,
-> > > > >  
-> > > > >  static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
-> > > > >  {
-> > > > > -	u32 iio_chan_t = 0, iio_chan_v = 0, chan, iio_idx = 0, status;
-> > > > >  	struct device *dev = &st->spi->dev;
-> > > > > +	u32 iio_chan_t = 0, iio_chan_v = 0, iio_chan_r = 0, iio_chan_c = 0;
-> > > > > +	u32 chan, iio_idx = 0, status;
-> > > > >  	int ret;
-> > > > >  
-> > > > >  	/* make sure the device is up: start bit (7) is 0 and done bit (6) is 1 */
-> > > > > @@ -1493,8 +1831,26 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
-> > > > >  		    !assign_iio)
-> > > > >  			continue;
-> > > > >  
-> > > > > +		/*
-> > > > > +		 * Copper trace and leak detector sensors without a custom table
-> > > > > +		 * produce only a resistance result; the chip does not populate
-> > > > > +		 * the temperature result register. Emit only an IIO_RESISTANCE
-> > > > > +		 * channel in this case.    
-> > > > 
-> > > > Do we care?  That is are they useful without the table? We could just make it
-> > > > required in the binding.
-> > > >     
-> > > 
-> > > The datasheet specifies the table is optional. But more practically, in order to
-> > > be able to add accurate values to the custom table, the users first need to measure
-> > > the sensor's resistance at multiple known conditions, so I think the resistance-only
-> > > output is useful during that characterization phase, before the table exists. Making
-> > > it required would force users to provide placeholder values just to get the driver
-> > > to probe.  
-> > Who cares of datasheet is crazy :)  
-> 
-> Fair enough :)
+--XDMycSDARlTDf9SM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Nice if I could type "if" obviously!
+On Wed, May 20, 2026 at 11:14:32AM -0700, Drew Fustini wrote:
+> On Wed, May 20, 2026 at 05:17:41PM +0100, Conor Dooley wrote:
+> > On Tue, May 19, 2026 at 11:16:28PM -0700, Drew Fustini wrote:
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - tenstorrent,riscv-iommu
+> > > +    then:
+> > > +      properties:
+> > > +        reg:
+> >=20
+> > > +          items:
+> > > +            - description: IOMMU base registers
+> > > +            - description: Tenstorrent IOMMU machine mode registers.
+> >=20
+> > Should this also have minItems: 2?
+>=20
+> I think items: with 2 items implies minItems: 2 but I see your later
+> point about the description and names don't belong in the allOf: block.
 
-> 
-> > 
-> > The initial case could I think be handled by an 'identity' table. 
-> > If it's useful in more general cases maybe we should always put out the resistance
-> > channels? This would be a bit like we often do for ambient light sensors, where
-> > we have a computed illuminance channel (IIO_LIGHT) + the data it comes from
-> > (IIO_INTENSITY)  
-> 
-> I checked internally and we could make the table required for leak detectors. For
-> copper traces, sub-ohms variants cannot have one, but we could make it required
-> for > 1ohm ones.
-Great. Thanks for chasing that down.
+It would usually, but this is a conditional portion of a wider binding
+that you've modified to look like
+| reg:
+|  minItems: 1
+|  maxItems: 2
+outside the conditional section, and since you don't further constrain
+reg in the conditional section, this minItems: 1 applies.
 
-> 
-> This means we could remove the LTC2983_SENSOR_LEAK_DETECTOR from the if condition,
-> and have something like this in ltc2983_setup:
-> 
-> if (st->sensors[chan]->type == LTC2983_SENSOR_COPPER_TRACE) {
->     if (st->sensors[chan]->n_iio_chan == 1) {
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->         continue;
->     }
-> }
-> + the n_iio_chan == 2 check at the end
-> 
-> or drop the n_iio_chan == 2 check and do something like:
-> 
-> if (st->sensors[chan]->type == LTC2983_SENSOR_COPPER_TRACE) {
->     if (st->sensors[chan]->n_iio_chan == 1) {
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->     } else {
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_TEMP, iio_chan_t++, chan);
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->     }
->     continue;
-> }
-> 
-> if (st->sensors[chan]->type == LTC2983_SENSOR_LEAK_DETECTOR) {
->     st->iio_chan[iio_idx++] =
->         LTC2983_CHAN(IIO_COVERAGE_PERCENT, iio_chan_c++, chan);
->     st->iio_chan[iio_idx++] =
->         LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->     continue;
-> }
-> 
-> or use a switch case:
-> 
-> switch (st->sensors[chan]->type) {
-> case LTC2983_SENSOR_COPPER_TRACE:
->     if (st->sensors[chan]->n_iio_chan == 1) {
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->     } else {
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_TEMP, iio_chan_t++, chan);
->         st->iio_chan[iio_idx++] =
->             LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->     }
->     continue;
-> case LTC2983_SENSOR_LEAK_DETECTOR:
->     st->iio_chan[iio_idx++] =
->         LTC2983_CHAN(IIO_COVERAGE_PERCENT, iio_chan_c++, chan);
->     st->iio_chan[iio_idx++] =
->         LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
->     continue;
-> case LTC2983_SENSOR_DIRECT_ADC:
->     chan_type = IIO_VOLTAGE;
->     iio_chan = &iio_chan_v;
->     break;
-> default:
->     chan_type = IIO_TEMP;
->     iio_chan = &iio_chan_t;
->     break;
-> }
-> st->iio_chan[iio_idx++] = LTC2983_CHAN(chan_type, (*iio_chan)++, chan);
-> 
-> What do you think?
-> 
-I don't immediately have a strong opinion. So choose which ever
-looks most readable in situ.
+--XDMycSDARlTDf9SM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Jonathan
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCag4DoAAKCRB4tDGHoIJi
+0i52AQCcMVQtjCAMXGJzQtwBxYsFksRtUfjkaDGhaqziPvWuBQD/T3ApAlZSXRoR
+lowYATvKW0j7qswukibEBKJMYExAhgw=
+=Cpyi
+-----END PGP SIGNATURE-----
 
-> Thanks,
-> Liviu
-
+--XDMycSDARlTDf9SM--
 
