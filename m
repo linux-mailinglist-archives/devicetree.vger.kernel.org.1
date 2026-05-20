@@ -1,267 +1,216 @@
-Return-Path: <devicetree+bounces-300894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300895-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGPfDnk2DmpN8QUAu9opvQ
-	(envelope-from <devicetree+bounces-300894-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:32:25 +0200
+	id MMgvIydGDmoM9gUAu9opvQ
+	(envelope-from <devicetree+bounces-300895-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:39:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A826359C0FA
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:32:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC05C59CD56
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:39:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5A9DC319B907
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:26:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 18756324F1FA
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF2B379988;
-	Wed, 20 May 2026 22:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E406328616;
+	Wed, 20 May 2026 22:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KpjhyQv3"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jAg3j/Fm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08273BCD25
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 22:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5B537B012
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 22:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779315989; cv=none; b=Jspo36/wlVCVFNFK7Ew4Pmhz0W89hKZNRfa2fT9GaB9vC+H/maZKJcTgMkIqYAmTYZtV44sIGe6DfTApQu3OduD0jDb5/H86icot/GEsiIECkXWi1OtqCXbT46IrToKMDOootHiVX7TyTKSbIrLcuNJoJAvndMJLkvi3PzWaf7A=
+	t=1779316015; cv=none; b=cWLA5+Gwf17oIc7XyQxvo9SiMOPFa7CYf1A2tqJUWEoqVAeVTnd8x0u0mNc7rciGMSjin8/PLDI54eUv0h2v+IbBRj7+jQ3AzX8r7KRZkNpVrBPEBCg9SzHlKAstWrSrP+7iPM5H7Jk/oGBfDhHPHmKeo2gW5obyUh9tm8MM7sM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779315989; c=relaxed/simple;
-	bh=j+vvG9tL9x9Qm2N4qCmquu0PIMkZ01SDZnad8HjsKkM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JaL9mSrFBcE+kzUTaiFYdko3JnwHQa16vBTEnUdmkSDCvCMFonvL5cGJ3gGmdVnaRdkIIsjBOC3c7XfPFuDpmMcJFFxwr5n9eFjb4AAXEv/yfMMkhW3BoA2Rr87e8YgyXsjIRjWNBC4M+XyMgeY9cy+xaXDOYBh+48sHGA5cZuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KpjhyQv3; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-44b330c5cc6so3994006f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 15:26:27 -0700 (PDT)
+	s=arc-20240116; t=1779316015; c=relaxed/simple;
+	bh=cy+Adq9eGUkKCtEDYTRhdOcKj5ym02Xspdpj1pEVglQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EF+ms4vKOQnsEyqzJXQoadNxCtGGhbuWnrgJWrWSp51Jni/RC1ufFJBAQkteNDyvOLl+8E59bi2HsFkeD+kd5+bDdJ20xDB1c1J6TboKYGK5g1lQ32nOj2YHLG1lx5Gjm1tGd2WVjdWIq8TetQVEVqaxmEGAj41g0YSOzkIBCF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jAg3j/Fm; arc=none smtp.client-ip=74.125.82.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-3025d725a05so13707490eec.1
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 15:26:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779315986; x=1779920786; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YG82xVAXQwQE8PumNL8zBtus2ibRKhYEPkSULunC6/w=;
-        b=KpjhyQv3vClXosjoGWZmpqAYKelW8CDboFucNDCLebSdcjqL+k9S7q3hyuuAHh0lHN
-         0+abZeVZgZqyyDO1m9oGSre1k8S2KYj6P1XFfAYKK8B9wqlGclNWWmQnoT+mo85HEupM
-         PXPyFLR7xbEanO/YuzOLirj/kCZueVgK5D0nNdhqpw+sk+xHqEwEx2km7A3v2olWadur
-         vk2Tsz9T1qtEu+BZJnieURhwWipITU8pmrgo0e24uCALwfVkHTLf1YadtyaOkb47MjxW
-         2zPL8AszT0RJwlBXEauCkr+lm2Q1P8vi/IGDeqZRYE9n7H/TcK5kwuzzNKWCirO6oL1m
-         AIRA==
+        d=chromium.org; s=google; t=1779316013; x=1779920813; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XBKzFLJqNcvKI9IGFU+zHGxm6jLvnApDykMdfiJ4Nmc=;
+        b=jAg3j/FmVAk45onQ8QgNTyffC4tfm0ixpvh6XvtxupmU47LdaBkZVbQNpjA4CVI7CJ
+         eGwGD2z2lKHh4hql6v+1mZiRhVMutW8CNCydmLv4iD9hYX9vx+Nd0fvd5c/k4gWC2hMv
+         O19BrWCwG6ODegMaJdDMnHJV2yTCaU6asV1cM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779315986; x=1779920786;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YG82xVAXQwQE8PumNL8zBtus2ibRKhYEPkSULunC6/w=;
-        b=CQQk9DZA6TQTZtsuXO8twsUjvvCLMI9x+tPRFLElMOkaGHVKo4LyoOPskXXbf930Ub
-         4xwptbZefbQz3EMMBm/7pNaZPEErAAcUTxoOjD53sGc1TvMVlhyG/TxTwOufnWqilqyz
-         ap35+5jPGAdt22bwMc/fSLMJVO2IMwjKdS8/DQAXPUM1/AiGhBfngN/Oz9MZvcAK7usE
-         8T2OqSvVwBAcqbQ16v2f8XAo69htfVKlOwctUVuO6Lg5hqMd0eubcnimq3KMmaAdIEwi
-         gdJqS1LoD3YaWwIuSL3eFDV690EhFEBRPCZnG7MupxGDt5i+fga2DRiQ4TWD5Dc63RYe
-         R6Sw==
-X-Forwarded-Encrypted: i=1; AFNElJ9u+RJIeGp9dJOThbkMVdvO05cNmQ3MiafNPtxm9i42oqAJECrUWm7dJKUfgyaPFSmWztsx+A0czxpj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVKXzmHbyCfGy7E6uCO7j5Oz36xxtKDWajuvtLARS4kXTfw8dL
-	vAJabacanJ3DYZJWAkBVCD8XldIx5R8tbLygJM8qqzhYzXxgKRP8XV4=
-X-Gm-Gg: Acq92OFxAciKLQ1Ze5olTcQy0K7cXBytHPhOB0Kg61vrRLuNjIg0Git9ZvmmerJ13cl
-	YgIHix6ZpIQCuYQTuNuufcN7uW6PAJgyygXs1lzppVXE5I1jKppWLQwZYSmpBjuHG+/2gCrSn00
-	tUPabTBVLJtAeSmYKBnNzZ1Qj72k6c7fUQ/BTQmxnBj+QqLIJKdK6vk63unsr5Mai+uYcO6htlw
-	/GKAk7SeCt9DWPLLREo1ER3rceraD9df/v4iP0j239DlNWfQYRWVHcLSCWoRY63QSheXUIoNYQj
-	0+L+J4rIN8Qwsd/LqMAHIybWqeDx4XPIDWETq+NDqkXhzFqFyyUbHQ+U40wAfjZGNWZ0rwyNQP5
-	M2muLfukZedqLqovGV76iBM2u5bnoGPBso8YsO+tvi5QM3I9mt5linDj/oJCjHbJlKEGfTj3D+0
-	BL6gJyYz8y5gamNYAMw5a6mW7ViAiwl4R+9aN3UioBxFqvDUskg+tnqdY1y+8NqOMeNBadbqjps
-	gjpXZT50JLF0Vx4BULzVUwwP63NRQ4iQJbI5SIeu+K7aMdozuH/D5EOfuZkArVPm7voaQ==
-X-Received: by 2002:a5d:584c:0:b0:452:c246:ab69 with SMTP id ffacd0b85a97d-45ea38c687bmr331364f8f.13.1779315985965;
-        Wed, 20 May 2026 15:26:25 -0700 (PDT)
-Received: from ?IPV6:2a01:cb08:52d:7400:bbd7:ca83:de4a:f625? (2a01cb08052d7400bbd7ca83de4af625.ipv6.abo.wanadoo.fr. [2a01:cb08:52d:7400:bbd7:ca83:de4a:f625])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0fe1a41sm61784681f8f.31.2026.05.20.15.26.25
+        d=1e100.net; s=20251104; t=1779316013; x=1779920813;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XBKzFLJqNcvKI9IGFU+zHGxm6jLvnApDykMdfiJ4Nmc=;
+        b=AGN++qnMu6ozfsS6R2G+tZ/NWLoEJtqKiwdxMjq5tPRHIZ+FP1WZh6V834KBBLEa39
+         mntWdwa8r6G/Tf4Tg/JzcVLK5Z/OYw4+w8AEWymn0NzS2papVxrpOfUJgX4KmZGW9+Nd
+         aA15StLkMSbtuYIMmleH8N0vnko66SqsQmZCT7u8V5nOjtb5JPSIg8GddtOjcv39guYf
+         VaUNxHYrLDaRQ3e1mvWs+O1u9vUqDIQT5eWTywp0mTkhxlTWINcib7QTGgQDAbRdE9Ar
+         otRKMj0cZFk14yEtM5YFMgnXNHuAKGE8+tkyAlX0MckJgFKEaav2rOK2U9xhF5VyoVFe
+         ujag==
+X-Forwarded-Encrypted: i=1; AFNElJ8jI70h7odbb6fuXXcDA9i8eUEgU4t6LxU5n5I1IMWVlH8vroxBChqNsi3RZJzjg534HB3s2sHkLI7b@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ36L7IcmDgc8r/HV/5w+jKEdfIw/z/XadP50wCHRHEIzajjr+
+	nQjf8ifQzDuq4+dC+EYj2zfzO92k+qZRGzgkxE4M4QTHGO86b8iELrsw0zmUmJmrJQ==
+X-Gm-Gg: Acq92OFO2uJTn/COnEpA42tixUuPwFCJZ9etZiOG6uAPj8OTyuhlXE/yMWCmLDEQV2C
+	azS2ovtrxZedyv8dkpM+NNJQ2ubpUv7FkKW+VP6PadgSnO2lqvJdXPomkn+KHuFUEO9cnHZTz+8
+	9ZWmnMXVOVLBrnALzZj67GhLIxJrmVa11m2YaLeKdDCWS1hr7l6hinI6/071sx5EZuG6qsnIKXG
+	+fDBQXrLJoDkEJGv5EzavUGzoF92M4x8nYhdCkHoRNnWsgB/rKeuHWPcAxZatFeHPxS6PYuYKwr
+	Cp0INPNxb+Oxzvo0L6PbvOmCTrFwuGu6w2nbtYibwI+T44UDDBAxn8d3N6AzJLpbJS8/cvu0nsa
+	dAmBAH6FuvXYO3ABb8q3/+fFrTf2Sru9Pe7QAoFT8jZF2BogVcuslwlVeX+P/KCbvuVLf+CTOWG
+	nkZkssvFIjUIjadN5lEOF7+5uEvc4Gvl7tEENhTH522m5NMjk1M1fGdDYjeB80cw==
+X-Received: by 2002:a05:7300:2156:b0:2f5:5dd3:1fcf with SMTP id 5a478bee46e88-3042f477009mr321500eec.10.1779316012933;
+        Wed, 20 May 2026 15:26:52 -0700 (PDT)
+Received: from localhost ([2a00:79e0:2e7c:8:3e8a:9a7f:5887:90fd])
+        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-30294500a97sm22879655eec.9.2026.05.20.15.26.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 May 2026 15:26:25 -0700 (PDT)
-Message-ID: <f5f70aa2-a1b8-40e0-838f-6709e6e08a5a@gmail.com>
-Date: Thu, 21 May 2026 00:26:24 +0200
+        Wed, 20 May 2026 15:26:52 -0700 (PDT)
+Date: Wed, 20 May 2026 15:26:49 -0700
+From: Brian Norris <briannorris@chromium.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
+	Dwaipayan Ray <dwaipayanray1@gmail.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yingying Tang <yingying.tang@oss.qualcomm.com>
+Subject: Re: [PATCH v2] checkpatch: Don't emit warnings for ID-base USB & PCI
+ DT compatibles
+Message-ID: <ag41KWtNpU1ZZs6m@google.com>
+References: <20260520084428.257066-1-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/11] arm64: dts: qcom: sc8280xp-arcata: Enable backlight
-To: Douglas Anderson <dianders@chromium.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20260520-surface-sp9-5g-for-next-v1-0-9df52552bf87@gmail.com>
- <20260520-surface-sp9-5g-for-next-v1-2-9df52552bf87@gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
-In-Reply-To: <20260520-surface-sp9-5g-for-next-v1-2-9df52552bf87@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.01 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260520084428.257066-1-wenst@chromium.org>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-300894-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FREEMAIL_TO(0.00)[chromium.org,linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,canonical.com,perches.com,gmail.com,vger.kernel.org,oss.qualcomm.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	PRECEDENCE_BULK(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300895-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jeromedebretagne@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[briannorris@chromium.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.34.96:email,0.0.0.3:email]
-X-Rspamd-Queue-Id: A826359C0FA
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: EC05C59CD56
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/20/26 18:40, Jérôme de Bretagne via B4 Relay wrote:
-> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+Hi Chen-Yu,
+
+On Wed, May 20, 2026 at 04:44:27PM +0800, Chen-Yu Tsai wrote:
+> The USB and PCI device bindings define some compatible patterns based
+> on device IDs that use the comma to separate vendor and product IDs.
 > 
-> Add backlight nodes and enable backlight so that it can be controlled
-> with the corresponding buttons found on Surface Pro Type Cover keyboards.
+> These prefix patterns include:
 > 
-> The nodes are almost identical to the ones from the ThinkPad X13s with
-> a different enable GPIO for the vreg_edp_bl node.
+>   - ^usb(if)?[0-9a-f]{1,4},
+>   - ^pci[0-9a-f]{2,4},
+>   - ^pciclass,
 > 
-> The difference was found by looking at the output of /sys/kernel/debug/gpio
-> on the ThinkPad X13s to see the properties of its enable gpio9:
+> These are not real vendor prefixes. Don't emit warnings for them.
+> Instead just skip over the DT compatible check altogether, and leave
+> the real check to the DT validator. This avoids false positive warnings
+> about undocumented DT vendor prefixes and compatibles.
 > 
->    gpiochip1: GPIOs 742-751, parent: platform/c440000.spmi:pmic@1:gpio@8800, c440000.spmi:pmic@1:gpio@8800:
->     ...
->     gpio9 : out  high normal  vin-1 pull-down 10uA              push-pull  medium  atest-1 dtest-0
->     ...
-> 
-> The same gpio9 on the Surface Pro 9 5G has different properties:
-> 
->    gpiochip0: 10 GPIOs, parent: platform/c440000.spmi:pmic@1:gpio@8800, c440000.spmi:pmic@1:gpio@8800:
->     ...
->     gpio9 : in   high normal  vin-1 pull-up 30uA                push-pull  low     atest-1 dtest-0
->     ...
-> 
-> Looking for a match on the Surface Pro 9 5G pointed to this only one:
-> 
->    gpiochip2: 10 GPIOs, parent: platform/c440000.spmi:pmic@3:gpio@8800, c440000.spmi:pmic@3:gpio@8800:
->     ...
->     gpio6 : out  high normal  vin-1 pull-down 10uA              push-pull  medium  atest-1 dtest-0
->     ...
-> 
-> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> Note that the script mostly only checks the first compatible string of
+> each node, as it processes the source file line-by-line, and the check
+> only matches on the line with 'compatible = "..."'. Otherwise there
+> would be more warnings from arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> since that file also includes compatibles like "pciclass0c0310" and
+> "pciclass0c03" which are not accepted either.
+
+Looking at IEEE Std 1275-1994 (PCI Bus Binding), you're right, that's
+incorrect.
+
+> "pci0014,7a24.0" is not
+> valid either,
+
+It's possible that's trying to follow the "pciVVVV,DDDD.RR" format
+mentioned in the spec, although it's not clear if it should require 2
+digits after the dot/period. Notably, the dt-schema does *not* include
+the "dot" option at all, so maybe there's room for improvement.
+
+Anyway, that just adds to why this is a good choice:
+
+> but this patch leaves the real check to the DT validator.
+
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
->   .../boot/dts/qcom/sc8280xp-microsoft-arcata.dts    | 49 ++++++++++++++++++++++
->   1 file changed, 49 insertions(+)
+> Changes since v1:
+> - Moved check earlier and match against full compatible string to avoid
+>   false positives for undocumented compatibles as well
+> - Added comma to patterns as they are now matched against the full
+>   compatible string
+> - Fixed patterns in commit message to just cover the prefix portion
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-> index f2b4470d4407fb5b6a3dbac8bc972c010c31bd06..14287092fb07ea15e527fd318f7ea2155448b26c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-> @@ -46,6 +46,16 @@ wcd938x: audio-codec {
->   		#sound-dai-cells = <1>;
->   	};
->   
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pmc8280c_lpg 3 1000000>;
-> +		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
-> +		power-supply = <&vreg_edp_bl>;
+> This is a simplified version of what Brian Norris previously posted [1],
+> but more comprehensive and more perl-y than what Yingying Tang posted
+> [2], which only covered the second pattern.
+> 
+> This is based on next-20260519.
+> 
+> Also, odd observation: the other regex patterns in this script escape
+> the comma ',', but AFAIK this is not needed.
+> 
+> [1] https://lore.kernel.org/all/20190223022440.146915-1-briannorris@chromium.org/
+> [2] https://lore.kernel.org/all/20251210073812.1380803-1-yingying.tang@oss.qualcomm.com/
+> ---
+>  scripts/checkpatch.pl | 6 ++++++
+>  1 file changed, 6 insertions(+)
+
+Reviewed-by: Brian Norris <briannorris@chromium.org>
+Tested-by: Brian Norris <briannorris@chromium.org>
+
+> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> index 0d18771f1b01..d4ee9d88ad07 100755
+> --- a/scripts/checkpatch.pl
+> +++ b/scripts/checkpatch.pl
+> @@ -3783,6 +3783,12 @@ sub process {
+>  			my $vp_file = $dt_path . "vendor-prefixes.yaml";
+>  
+>  			foreach my $compat (@compats) {
+> +				# Skip ID-based PCI and USB compatible patterns.
+> +				# DT validation will check them properly.
+> +				next if $compat =~ /^pciclass,/;
+> +				next if $compat =~ /^pci[a-f0-9]{2,4},/;
+> +				next if $compat =~ /^usb(if)?[a-f0-9]{1,4},/;
 > +
-> +		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-
-
-Investigating the feedback I got from an AI bot review [1], I plan to 
-update this patch in v2. Let me know what you think.
-
-I was skeptical at first but upon review I've tried the following patch:
-
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts 
-b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-index f938e68c69ea..82e0a01276a8 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-@@ -198,7 +198,7 @@ vreg_edp_bl: regulator-edp-bl {
-                 regulator-min-microvolt = <3600000>;
-                 regulator-max-microvolt = <3600000>;
-
--               gpio = <&pmc8280c_gpios 6 GPIO_ACTIVE_HIGH>;
-+               gpio = <&pmc8280_2_gpios 6 GPIO_ACTIVE_HIGH>;
-                 enable-active-high;
-
-                 pinctrl-0 = <&edp_bl_reg_en>;
-@@ -1050,6 +1050,11 @@ vol_up_n: vol-up-n-state {
-  };
-
-  &pmc8280_2_gpios {
-+       edp_bl_reg_en: edp-bl-reg-en-state {
-+               pins = "gpio6";
-+               function = "normal";
-+       };
-+
-         wwan_sw_en: wwan-sw-en-state {
-                 pins = "gpio1";
-                 function = "normal";
-@@ -1061,11 +1066,6 @@ edp_bl_pwm: edp-bl-pwm-state {
-                 pins = "gpio8";
-                 function = "func1";
-         };
--
--       edp_bl_reg_en: edp-bl-reg-en-state {
--               pins = "gpio6";
--               function = "normal";
--       };
-  };
-
-  &pmr735a_gpios {
-
-
-
-and ... backlight still works! It can also be enabled/disabled with:
-    /sys/class/backlight/backlight/bl_power
-as expected.
-
-I have no clue why both gpio6 on pmc8280_2 and gpio6 on pmc8280c can 
-enable and disable the backlight. Is it a common scenario?
-
-Anyway, if I follow my own investigation fully based on the X13s 
-reference and the properties of its backlight enable GPIO, I should 
-switch to pmc8280_2 to use the better match.
-
-I will update this patch in v2.
-
-Jérôme
-
-
-[1] https://lore.kernel.org/all/20260520165709.E485C1F00893@smtp.kernel.org/
-
+>  				my $compat2 = $compat;
+>  				$compat2 =~ s/\,[a-zA-Z0-9]*\-/\,<\.\*>\-/;
+>  				my $compat3 = $compat;
+> -- 
+> 2.54.0.631.ge1b05301d1-goog
+> 
 
