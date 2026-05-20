@@ -1,473 +1,185 @@
-Return-Path: <devicetree+bounces-300547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDBxFy+iDWq10QUAu9opvQ
-	(envelope-from <devicetree+bounces-300547-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:59:43 +0200
+	id ED0eK22eDWpO0AUAu9opvQ
+	(envelope-from <devicetree+bounces-300549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:43:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B578858D21B
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:59:42 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121B758CD48
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:43:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DFC57316A120
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:34:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AE38630DA66E
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A28B3EEAC6;
-	Wed, 20 May 2026 11:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8ABD3D1CDB;
+	Wed, 20 May 2026 11:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GEjBGMtE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/cEav5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC6B3DD51F
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2F3371063;
+	Wed, 20 May 2026 11:31:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779276652; cv=none; b=itBW8zxKdEWnihyDWTCGAckncPKCpGu/cOTYWT53vXCrW0K2W3Vwv2JG3pMQVvKVllhg6v+7F6FTakfly5JruhmGIOI9Lg4Bg4HtzICyK2O6W8KFCLlNfc9NTb+SxT9wbTRqsrSf3evDbC47BIUDD1FWLwPFBOVFLO/2ZiJIadY=
+	t=1779276701; cv=none; b=oBrw2OKNQPwva8ZwIKw9SOh07FVUHXlOnhMjSLn9hiC8zCg0Nse+NC+B85XOcKwQhQtBSLS/98OvL1y9Mu7EXlGXZdSimg5AIDWtP/zsxytbIGeRf1a89+zwPvQMAI8QrdIIccCXHsWU27piIEI6V84Vb/Ukkv0uHYSWTkuDkW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779276652; c=relaxed/simple;
-	bh=2e8b0M4uNeWedv6NB/3GyL8xLLu1YJtlv19qlyMXonw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cWZpA03A734f6GzBhZEylPm3g5Rwt2P1nxNA+4tZX+rwKdjmYzzKU+MVIRHMyupKnMdFMIkoKZDIzAwrEBTEFW64Kko9DqGnXqlNVFJSrfuVd3n+KVhn5KH6nDmAi12pFPxvv2T/v7vaIVTvi+vVKisVXbm9ZbQpSa57tV8fyGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GEjBGMtE; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-488b0e1b870so69384045e9.2
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 04:30:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779276649; x=1779881449; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=75AeIr75fobPYjOr1b7dv2ioRyiyydGt2gFhT2IfAuY=;
-        b=GEjBGMtEwQG0BNZ6dDvyokCBkkIJwmQoJ2QYFVQBK2X09TtpCrrFnjQKRSFtnDZtpk
-         S9D+TviiuxNylNP+4tOc3k0ioS+J0+c/dMbdnoEfaJDNDIjsVW4gEtD+1DW8+ybePphc
-         7x2kr6vfjeZ8dVFyznLZ8PUBXXvqxxAbLtpN51n1e5jFPwlibYTiiZ1h+ZiC0wSpZyBa
-         SQI1+eZmteWFcKt0PYHkKBIadB18goKQTXBuCwePPu5SNx2wj2cLXzVy6Yhb8N6XncS5
-         40vMqxmMqUyRRGHxe3rjdaNKs9O5ehHe0kAr/r1lzeRGGECJ3ST2fk48TGYD9kppJvfr
-         kHYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779276649; x=1779881449;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=75AeIr75fobPYjOr1b7dv2ioRyiyydGt2gFhT2IfAuY=;
-        b=Ho6P0ykZiRMP41vo6PrTEgFRhqSi+YmoO09eOZfu62svVyeCK0pDrMTHe32zgkpNQr
-         rYQjotFejmKduswlv14tkSQCKUbLJnzgpCOhWLKm3DgttTPJZ0bK8XlzOOf04mq7KKEZ
-         dFXzLeUIzgKA9/br08RploY1NdWqvpNHuEhCvaxwDbSltEMtHwe3gsLPyP/DHf5qXqeX
-         VcuoYK83tRr4aqjO3sYPG1yUNpAw1mTklOby2IJHxVoxcIEM/+f0kporNhREB6MuZQQv
-         wugmVjYnIERtElXg1eF08K0wy2/H2nUZMlrtPB7MDosIqBnXIR+94CJEQAIXXD3X/jZ8
-         JYZw==
-X-Gm-Message-State: AOJu0YxUtUcqSPL0ilZpaqyoQUip/Y7LBDh0TjC6XY1KFGiQlt7ucWMr
-	W9aSMSuzNjOLkHVymqPhfthVkRr63pmx2WUgZhQ5gFi0xTNMnFvzrfML
-X-Gm-Gg: Acq92OEdqJgTf7c+KEF/K3NC6TFiIo/NWZ4J+qp0EkxIe1GbxiZpLXaUYsyuz4ycb7I
-	MnrPoI+oXJ74Orwfbnljxx/PCeSPNR/Z4Qiw5GgR9ziOlaW04howRsgWqyoW07qplHD87Ny9Q4K
-	tybIqGFnKLW2pWkQj4LpvFVsjNMi7ibB3seCCwEt7UFsxWcDJjVo8rv5AW62+zhBzaMBiiCgcLd
-	/3rmM8GUM9M9jXttaocJ9VF3SqV6L/TbrfCdEicGjHDFGb8oFGONuRYr+HZl038hR6WlNl/Ap+1
-	zNsRMTDDPzkrw3bv1ZobpV1p16BQtzZrAtPpx7eHxVm9n3+UV4YCbfhEaLdGq6CRNQq5ds/s/yW
-	6hx7hWBvzUG/9BZH7lI49W7nfkfwAF2MzH4D03eyY3u8tX3eyXcP7TDKJJvHcoQc/C71D8KkAil
-	0gv8YT9MxTBQFzStY9JO6Lslu7/cqZkKr/vspfv5f+n7u3p5Ni6Z8ExjOsJ5tseSqYc0QwyZZyp
-	NnLEavS6m0F+BY0mMsE99X2iu0dWMo8G5XEvra8Vm/eSzdVNowf1vGzpplkMmh8wF4THfnKprdI
-	v7xSgtM6dqnt
-X-Received: by 2002:a05:600c:4fc9:b0:489:1c1f:35df with SMTP id 5b1f17b1804b1-48fe60e58ecmr337661595e9.10.1779276648507;
-        Wed, 20 May 2026 04:30:48 -0700 (PDT)
-Received: from [127.0.1.1] (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe5ab3977sm430363315e9.9.2026.05.20.04.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2026 04:30:48 -0700 (PDT)
-From: Franz Schnyder <fra.schnyder@gmail.com>
-Date: Wed, 20 May 2026 13:30:34 +0200
-Subject: [PATCH v2 3/3] arm64: dts: freescale: imx95-aquila: Add Clover
- carrier board
+	s=arc-20240116; t=1779276701; c=relaxed/simple;
+	bh=EvB6gGfDNvT2Ao7Q0FP2fZ1gLkK/2Q87kWN9XljFsPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qabz18aTI7bn5utyG3BmFe+dvnV1auT2HJCbodRNYtAkgiPAWGwkS1QMB9OD/RSd4HH6/INocMCBegtj/MwW1/7Ds5H0MnL209z2bvPi488jjTbQsv5OhbWYjfxzyCYfJV0g2mx4oB37jaAAbDjJCRGvdn41zHV0WZ5uwGuR1fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/cEav5e; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFA8F1F000E9;
+	Wed, 20 May 2026 11:31:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779276700;
+	bh=jU4RY1MXfxstue/GxrrGI/R6d88bgt3L79phjkKZMvI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=F/cEav5et0J4vrESdmHTeG45bNaj43c7+k/MXOyikkKJEEhvjM/IZSHvoxmnLhSzM
+	 ptgBzeYEmC46Z50IhKctJfFjfWeGuttKfRDXXXrEMRyajEwztAMhN5y7Rl4R0wKC8l
+	 +aivf+hPl7MioHsgJtduZQkTTGlZcy1bCCL9acQn+FTuUW0L7/1CfqyIhneSEn6w2G
+	 WIlPgRFU2JjwWHo1cYqVnSgKh7xRH10hcHI8mOV+WU67fsveipexcHqholyxbaKmsl
+	 /6kGZlyjHj2rlitQ4glHypCgLAG08R21QMXesVr1k3MFe5IOgDSp4wEfC6Y0SsXuUe
+	 3ToKllqW9lgwQ==
+Date: Wed, 20 May 2026 12:31:29 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Shuah
+ Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, "Gustavo A.
+ R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v5 02/13] iio: core: support 64-bit register through
+ debugfs
+Message-ID: <20260520123129.1696f2e3@jic23-huawei>
+In-Reply-To: <unsohuo2hfsa7zzhprfpvtbatmu3guew6jpal7k2wvirpzwxfn@rjb4uz3k5dp3>
+References: <20260517-ad9910-iio-driver-v5-0-31599c88314a@analog.com>
+	<20260517-ad9910-iio-driver-v5-2-31599c88314a@analog.com>
+	<unsohuo2hfsa7zzhprfpvtbatmu3guew6jpal7k2wvirpzwxfn@rjb4uz3k5dp3>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260520-add-aquila-imx95-v2-3-06424a51e33a@toradex.com>
-References: <20260520-add-aquila-imx95-v2-0-06424a51e33a@toradex.com>
-In-Reply-To: <20260520-add-aquila-imx95-v2-0-06424a51e33a@toradex.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Francesco Dolcini <francesco@dolcini.it>, 
- Franz Schnyder <franz.schnyder@toradex.com>, 
- Antoine Gouby <antoine.gouby@toradex.com>
-X-Mailer: b4 0.15.2
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300547-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300549-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fraschnyder@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:url,toradex.com:email,toradex.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.57:email,0.0.0.18:email]
-X-Rspamd-Queue-Id: B578858D21B
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 121B758CD48
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Antoine Gouby <antoine.gouby@toradex.com>
+On Mon, 18 May 2026 14:56:06 +0100
+Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
 
-Add support for the Aquila i.MX95 SoM mated with the Clover carrier
-board. Clover is a low-cost carrier board for the Aquila family
-featuring a small form factor (Nano-ITX 120mm x 120mm) and built for
-volume production.
-
-Link: https://www.toradex.com/computer-on-modules/aquila-arm-family/nxp-imx95
-Link: https://www.toradex.com/products/carrier-board/clover
-Signed-off-by: Antoine Gouby <antoine.gouby@toradex.com>
-Signed-off-by: Franz Schnyder <franz.schnyder@toradex.com>
----
-v2: no changes
-v1: https://lore.kernel.org/all/20260506-add-aquila-imx95-v1-3-69c8ee1c5413@toradex.com/
----
- arch/arm64/boot/dts/freescale/Makefile             |   1 +
- .../boot/dts/freescale/imx95-aquila-clover.dts     | 294 +++++++++++++++++++++
- 2 files changed, 295 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index c8697b6ae01c5..3ce082c121036 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -523,6 +523,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-aquila-clover.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-aquila-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-tqma9596sa-mb-smarc-2.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx95-aquila-clover.dts b/arch/arm64/boot/dts/freescale/imx95-aquila-clover.dts
-new file mode 100644
-index 0000000000000..021d437763412
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-aquila-clover.dts
-@@ -0,0 +1,294 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/aquila-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/clover
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/usb/pd.h>
-+#include "imx95-aquila.dtsi"
-+
-+/ {
-+	model = "Aquila iMX95 on Aquila Clover Board";
-+	compatible = "toradex,aquila-imx95-clover",
-+		     "toradex,aquila-imx95",
-+		     "fsl,imx95";
-+
-+	aliases {
-+		eeprom1 = &carrier_eeprom;
-+	};
-+
-+	dp_1_connector: dp0-connector {
-+		compatible = "dp-connector";
-+		dp-pwr-supply = <&reg_dp_3p3v>;
-+		type = "full-size";
-+
-+		port {
-+			dp_1_connector_in: endpoint {
-+				remote-endpoint = <&dsi2dp_out>;
-+			};
-+		};
-+	};
-+
-+	reg_dp_3p3v: regulator-dp-3p3v {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_21_dp>;
-+		/* Aquila GPIO_21_DP */
-+		gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "DP_3V3";
-+		startup-delay-us = <10000>;
-+	};
-+};
-+
-+/* Aquila ADC_[1-4] */
-+&adc1 {
-+	status = "okay";
-+};
-+
-+/* Aquila CTRL_WAKE1_MICO# */
-+&aquila_key_wake {
-+	status = "okay";
-+};
-+
-+&dsi2dp_out {
-+	remote-endpoint = <&dp_1_connector_in>;
-+};
-+
-+/* Aquila ETH_1 */
-+&enetc_port0 {
-+	status = "okay";
-+};
-+
-+/* Aquila CAN_1 */
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+/* Aquila CAN_2 */
-+&flexcan2 {
-+	status = "okay";
-+};
-+
-+/* Aquila CAN_3 */
-+&flexcan3 {
-+	status = "okay";
-+};
-+
-+/* Aquila CAN_4 */
-+&flexcan4 {
-+	status = "okay";
-+};
-+
-+/* Aquila QSPI_1 */
-+&flexspi1 {
-+	pinctrl-0 = <&pinctrl_flexspi1_4bit>,
-+		    <&pinctrl_qspi_cs1>;
-+
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-max-frequency = <66000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
-+		cdns,read-delay = <0>;
-+		cdns,tchsh-ns = <3>;
-+		cdns,tsd2d-ns = <10>;
-+		cdns,tshsl-ns = <30>;
-+		cdns,tslch-ns = <8>;
-+	};
-+};
-+
-+&gpio4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio_1>,
-+		    <&pinctrl_gpio_2>,
-+		    <&pinctrl_gpio_3>,
-+		    <&pinctrl_gpio_4>;
-+};
-+
-+/* Aquila I2C_2 */
-+&i3c2 {
-+	status = "okay";
-+};
-+
-+/* Aquila I2C_1 */
-+&lpi2c2 {
-+	status = "okay";
-+
-+	fan_controller: fan@18 {
-+		compatible = "ti,amc6821";
-+		reg = <0x18>;
-+		#pwm-cells = <2>;
-+
-+		fan {
-+			cooling-levels = <255>;
-+			pwms = <&fan_controller 40000 PWM_POLARITY_INVERTED>;
-+		};
-+	};
-+
-+	temperature-sensor@4f {
-+		compatible = "ti,tmp1075";
-+		reg = <0x4f>;
-+	};
-+
-+	/* USB-C OTG (TCPC USB PD PHY) */
-+	tcpc@52 {
-+		compatible = "nxp,ptn5110", "tcpci";
-+		reg = <0x52>;
-+		interrupt-parent = <&som_gpio_expander_1>;
-+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			data-role = "dual";
-+			op-sink-microwatt = <0>;
-+			power-role = "dual";
-+			self-powered;
-+			sink-pdos = <PDO_FIXED(5000, 0, PDO_FIXED_USB_COMM)>;
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			try-power-role = "sink";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					typec_con_hs: endpoint {
-+						remote-endpoint = <&usb1_con_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					typec_con_ss: endpoint {
-+						remote-endpoint = <&usb1_con_ss>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
-+	carrier_eeprom: eeprom@57 {
-+		compatible = "st,24c02", "atmel,24c02";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+/* Aquila I2C_6 */
-+&lpi2c5 {
-+	status = "okay";
-+};
-+
-+/* Aquila SPI_1 */
-+&lpspi6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi6 &pinctrl_gpio_5>;
-+	cs-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>, <&gpio4 18 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+
-+	tpm@1 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_6>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+		spi-max-frequency = <12000000>;
-+	};
-+};
-+
-+/* Aquila UART_3, used as the Linux Console */
-+&lpuart1 {
-+	status = "okay";
-+};
-+
-+/* Aquila UART_4 */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Aquila UART_1 */
-+&lpuart3 {
-+	status = "okay";
-+};
-+
-+/* Aquila UART_2 */
-+&lpuart7 {
-+	status = "okay";
-+};
-+
-+/* Aquila PCIE_1 */
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&som_dsi2dp_bridge {
-+	status = "okay";
-+};
-+
-+/* Aquila PWM_1 */
-+&tpm3 {
-+	status = "okay";
-+};
-+
-+/* Aquila PWM_3_DSI and PWM_4_DP */
-+&tpm5 {
-+	status = "okay";
-+};
-+
-+/* Aquila PWM_2 */
-+&tpm6 {
-+	status = "okay";
-+};
-+
-+/* Aquila USB_2, optional Bluetooth USB */
-+&usb2 {
-+	status = "okay";
-+};
-+
-+/* Aquila USB_1 */
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	status = "okay";
-+
-+	port {
-+		usb1_con_hs: endpoint {
-+			remote-endpoint = <&typec_con_hs>;
-+		};
-+	};
-+};
-+
-+&usb3_phy {
-+	orientation-switch;
-+
-+	status = "okay";
-+
-+	port {
-+		usb1_con_ss: endpoint {
-+			remote-endpoint = <&typec_con_ss>;
-+		};
-+	};
-+};
-+
-+/* Aquila SD_1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-
--- 
-2.43.0
+> On 26/05/17 06:56PM, sashiko-bot@kernel.org wrote:
+> > Thank you for your contribution! Sashiko AI review found 1 potential is=
+sue(s) to consider:
+> > - [Medium] Silent truncation of 64-bit values when written to a 32-bit =
+register access function.
+> > --
+> >=20
+> > commit 64785a0c1416e2cf718b558aa7a2cc9ac39b2d81
+> > Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> >=20
+> > iio: core: support 64-bit register through debugfs
+> >=20
+> > This commit introduces a debugfs_reg64_access function pointer to iio_i=
+nfo
+> > to allow 64-bit register reads and writes through debugfs. The file ope=
+ration
+> > callbacks are modified to prefer the 64-bit variant when available.
+> >  =20
+> > > diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrial=
+io-core.c
+> > > index e587aca79b8e7..5c8404efd0a56 100644
+> > > --- a/drivers/iio/industrialio-core.c
+> > > +++ b/drivers/iio/industrialio-core.c =20
+> >=20
+> > [ ... ]
+> >  =20
+> > > @@ -429,7 +439,7 @@ static ssize_t iio_debugfs_write_reg(struct file =
+*file,
+> > > =20
+> > >  	buf[ret] =3D '\0';
+> > > =20
+> > > -	ret =3D sscanf(buf, "%i %i", &reg, &val);
+> > > +	ret =3D sscanf(buf, "%i %lli", &reg, &val64);
+> > > =20
+> > >  	switch (ret) {
+> > >  	case 1:
+> > > @@ -437,8 +447,12 @@ static ssize_t iio_debugfs_write_reg(struct file=
+ *file,
+> > >  		break;
+> > >  	case 2:
+> > >  		iio_dev_opaque->cached_reg_addr =3D reg;
+> > > -		ret =3D indio_dev->info->debugfs_reg_access(indio_dev, reg,
+> > > -							  val, NULL);
+> > > +		if (indio_dev->info->debugfs_reg64_access)
+> > > +			ret =3D indio_dev->info->debugfs_reg64_access(indio_dev, reg,
+> > > +								    val64, NULL);
+> > > +		else
+> > > +			ret =3D indio_dev->info->debugfs_reg_access(indio_dev, reg,
+> > > +								  val64, NULL); =20
+> >=20
+> > Could this introduce a regression where values are silently truncated i=
+f the
+> > provided input exceeds 32 bits?
+> >=20
+> > Since the input is now unconditionally parsed as a 64-bit integer, fall=
+ing
+> > back to debugfs_reg_access (which takes an unsigned int for writeval) w=
+ill
+> > implicitly cast val64. If a user provides a value larger than UINT_MAX =
+to a
+> > driver that only provides the 32-bit callback, it appears the value wil=
+l be
+> > truncated rather than rejected with an error like -EINVAL. =20
+>=20
+> Maybe -EINVAL can be returned for that case indeed. For a debug interface=
+ I
+> did not see that as a problem.
+Agreed - I don't see this as important either way.
+> =20
+> > --=20
+> > Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260517-ad9910=
+-iio-driver-v5-0-31599c88314a@analog.com?part=3D2 =20
+>=20
 
 
