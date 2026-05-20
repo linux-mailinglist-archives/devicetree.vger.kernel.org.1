@@ -1,268 +1,306 @@
-Return-Path: <devicetree+bounces-300484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300479-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMYfA4eHDWpdygUAu9opvQ
-	(envelope-from <devicetree+bounces-300484-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:05:59 +0200
+	id KB/4OFmHDWpdygUAu9opvQ
+	(envelope-from <devicetree+bounces-300479-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:05:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F1FF58B532
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:05:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463AB58B511
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:05:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7FE59303B6BE
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:05:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C8C6301F1B4
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B988C3D093F;
-	Wed, 20 May 2026 10:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FBB3C1402;
+	Wed, 20 May 2026 10:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UbvoVKIx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LywJeMGb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840DB3D330A;
-	Wed, 20 May 2026 10:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B978839524E
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 10:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779271538; cv=none; b=b6LU2riwggy3qfgIK8SDyVem6RyXEPFf2+V43fDlzMCbV5ch4GYXdzc9DxK9DtgZvCMs0W1OijEAJ1RwcYWJJ2NI4p1sKgO/KyPCLYseNcZxUQbo6RjY2jRy0dFG3uiVvfNlTpmt3+wDpuNHv5d3++/FautmwK3xuG69sFBdfw0=
+	t=1779271287; cv=none; b=C+UlSA8zouFAMx0kbxpoUoOxcO+pWlcFYOSeCeE31Ud2iCVrv1ftmZGGC2vAPzfaNz4hAUcNHOw4+ff5f9sipd3XP0qs6/kqhENmd91Zc2YTquC1CduXUXKeY431LA/XtKwWQaYi8FbP4no1RrSmzYx4cf4uFC1fjR7FQxDLsA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779271538; c=relaxed/simple;
-	bh=pski7XBsuhbjIavTXw6+KZPkR7NoukNSf8oY8daP1fM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M3oRIAkzKXs0/DVOdtX+0Tlci4ObwzU2KdGKDqwGq5gGJ1hXYq+d3hI9EfT3qq40/n8m8hOf2tgmJ3b6oLDu152YL/+ssVKlZefltLXVdejZIBWbfwwEXfnvqujTzEKqTDJR2afDYUDnI7G42Vvn8R8/+UeW1scOQ8ohHoJWrL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.. (unknown [113.80.141.90])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3f243c2bc;
-	Wed, 20 May 2026 18:00:16 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 1/1] riscv: dts: spacemit: enable PMIC on OrangePi R2S
-Date: Wed, 20 May 2026 18:00:00 +0800
-Message-Id: <20260520100000.575719-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1779271287; c=relaxed/simple;
+	bh=vmfiAM6t9g85B4wTeavLutgdJmjQ8DwXDbuj4/5wtWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HTvt720eXQgbZRBfvTwQ3OOlof0SGyK9UsT26MIi9B1C3UxfPTYc+H/jqKbh5NM5fHz7lSZxNGfxgnhCysrAJW3y29C+jWsrXu6iH6gggpwqMxxeRLlfm7kZAEbRdPnRLpP6dlwC0cCqdJ8EZEoa3KgdpqmPgXqJE/lHFybp/UY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UbvoVKIx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LywJeMGb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64K8ucas4115180
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 10:01:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=B3C1pz46TF7EHcIOJMpu/WwJ
+	O4LBgll2RsOEX4nsprA=; b=UbvoVKIxzTzwbQCPxC7gsotpNPgW75B7myi+nsFT
+	JaE0nCg2U4nFoRG2y4AVv+315MIpPUTUX/dUvqylKhCK0KkKXxdWtX2qpFZl6Dpm
+	ynCqSjxrfD5s/Wi0M+PqhH+43EtjrTDq3MLbnr/BSXv+uOWtdSWHhFhEJEiubdf4
+	pjaNfAjHImRIiTJqJ3AMlqHqlhEQmn7IHxu+RY9AHHSSE8DPhj89fjtxlRB5O2BS
+	1zAnYoJCimoOlt4STa3oulrBqxIZyxjAQLULq7i2Z93ylCWqyF/lKm9udGUSbqtk
+	8WGjRyh2pi5BiXn9k/NUmqj5h5BTVrZ6iw0qQVtaX3Aryg==
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com [209.85.210.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e99w0g8m5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 10:01:24 +0000 (GMT)
+Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-7dcda4880efso6689414a34.0
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 03:01:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779271284; x=1779876084; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=B3C1pz46TF7EHcIOJMpu/WwJO4LBgll2RsOEX4nsprA=;
+        b=LywJeMGb0ZR3GD6rhwhSSVyreBEOSTVOGenh8hV13z9fI/GP+gEklQYHt3DiB/8u4o
+         WsCj6SsDeea2B37kNk43UAhO+lMryLvKGsuMNVaIExdKpi00Dsb8PnRa5SAS+vBxwrxx
+         zw4UVMxYDghHLx7G4bo1HwYA6BZvZcGD278C89dfgWXeMDO4DuHG/i1jEiNdxvK4AIAk
+         Qs2uTjNKi/DS8C4UMTims22ypVvgqjlgylpgrnt3Ly6s8mW/oxjr+LmyR9p/VltK4/ld
+         25m1VSOFVx0CRIuyXNziAYmv8Y5E0BqU53pIDNtUlzCnBbe9hFdUmT+g/xDYxzjSPeyX
+         37OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779271284; x=1779876084;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B3C1pz46TF7EHcIOJMpu/WwJO4LBgll2RsOEX4nsprA=;
+        b=qkfv+yZY5wUCmFeQf/hgG/uudTN2VHreBL/Il1+gu+i007pR1on4VmQN57HGuAKAUJ
+         YTaAZtfR5VYN/GilRIu186Zn5MRHLOZlNu9m1GpPiDobLRZevjRhvN68ZiyTFUSCNGPE
+         ysIVRyIu/rzB/pB03V6NKXdIiVMCrUxjgt6LKR7/HfW63z+WQENrA1hdbaAvsl2JGQPA
+         psx9oH8vXeI6cr1F76EcrZXo8wEw462dUagfXRpXppUGJFFD+j4GSjdciwUnDTdtJCWq
+         CcFDjMUuGS3zUE3mw1d5vuYZ1O7nH3HwxMMbQFCA1J3s76d9Prihb+xz1cmxs09Un4Bi
+         IOlQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9YlquO4DA7fi87jCw8PGryvW+Isx6oOJDhGqEv0XW2kXZ4HN1um4KFNjzv+HTsl7h7/brZH7gfGckZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvpshwioclZeRcx9Vieiu76VX4T5pUlLMuPGiMLDBWMDk1k31l
+	LHDmxB6eHFX2//u8dHWa2re74npa25c6WpBpLZtqedx5/smMCkJ6urlD+FF23gYcPi61ehiK7zp
+	Fv3rq8ji5D4ZnAAEX35Bx99tMmFLeDXZmtwhxDw8Jk+VRUYcyi3Y1njMuL4WJxk+J
+X-Gm-Gg: Acq92OGkBBo9XowU4vW5UDVw4361gJWEiqOPNuR+C3HRUwvAacgjZ8psrU04uwnnPV6
+	PiPJU4kBMai5lYrw37VED7yGSkgiQ4J/OHDNmEK1lpHBG89PihCIJ6Q35dKX5OJdAOz4EsscLTx
+	kFYGx/JWCnSERSVSGnodS7dGogC20wZnU+BEgndUyMkxWFtfFrBeuEsaxKwfszgf2qrcaPoRLPs
+	0WWXYsWWDXsuyXUC2pXNCC5WmEjRqtgz2EY3va5KaM0nv+E3vZbx0Zg6sobZStONJfBdKlS23TD
+	7jevkqnZZxhFOyHdnbTMnBL6rXs/FHfw7P2aqNzt68vj+4ZYDUs2+iVswftQaphVwyfwlF7KF3d
+	qYUG5m0J2EFt4iJS6MBKgn9nCvJ56BKTQGcT8Juzs/zxnFdzBsbOIlBc+RH8EmK8W66Inz4m9VM
+	fqC03eHSGCFmuR3Hx2QxTGNcFfANDbZIsKn64=
+X-Received: by 2002:a05:6830:610d:b0:7e3:d7d6:a4b7 with SMTP id 46e09a7af769-7e4ea0319a0mr16222969a34.3.1779271284021;
+        Wed, 20 May 2026 03:01:24 -0700 (PDT)
+X-Received: by 2002:a05:6830:610d:b0:7e3:d7d6:a4b7 with SMTP id 46e09a7af769-7e4ea0319a0mr16222938a34.3.1779271283621;
+        Wed, 20 May 2026 03:01:23 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a90f11a7a0sm4778570e87.24.2026.05.20.03.01.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 03:01:22 -0700 (PDT)
+Date: Wed, 20 May 2026 13:01:20 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Akash Kumar <akash.kumar@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: usb: typec: Add Cypress CYPD6129 UCSI
+ controller compatible
+Message-ID: <w7xunralidmy3lntzlmr7zfkhdifbp2y6lf4z56ssliyih7nae@gx32fjexuzkl>
+References: <20260520093902.2064730-1-akash.kumar@oss.qualcomm.com>
+ <20260520093902.2064730-2-akash.kumar@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e44d4287503a2kunma0ccfee1365fd
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZQx5MVklLTk5DHU0fHx5JHVYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkhVQ0tVSk9KVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
-	NMVUpLS1VLWQY+
-X-Spamd-Result: default: False [1.64 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260520093902.2064730-2-akash.kumar@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: mrdUczhRF1rbmjALme7HcIOF-JWO9gqe
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDA5NiBTYWx0ZWRfXxeuy99lSs0Uk
+ lKvekXXMQcHLzVmfbqLnqY5LCyYg4q8Cbmy/Rgw8XMWIraubbA0pCs3qzeuD+PzLHFwvoffWPYQ
+ Pt47XxTdd4HW2JsdyDtMMui0GErecLcbLX0c5i6RI93jKReIkIWj65DFHcRnCDrAI+GRuZ+iysJ
+ PMegp1BuCUgm9ItoiRw3XQIjwPNTPRbzOWO7Jg2X9B1RRkR4xRYNwfwK6FlkyHHeMIatWU7neNn
+ ikMb1yc84X6RrAngPcQyDbZsyr2n7BPjyYEPJcKIdUb9Gv4IgMamVdVi+up31metecRRSApF+0H
+ JATx1w4jVl4SQf6O644+vt4in60RPWlNSgoh0TgjlIYlhHiIqhCE1aG2k0KaD2Y3Z5lZUCvZ4En
+ w1EtuQSRtriz4z5r7l/lHiLiFSraTuosQQT7AEIaYaUk1A7cb3NTfswVvDYr2gOtcwJ27MAypnv
+ v1smFzqlucC9v+PyAjA==
+X-Authority-Analysis: v=2.4 cv=RZigzVtv c=1 sm=1 tr=0 ts=6a0d8674 cx=c_pps
+ a=z9lCQkyTxNhZyzAvolXo/A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8
+ a=81s-UeQjukf3pHKFtO8A:9 a=CjuIK1q_8ugA:10 a=EyFUmsFV_t8cxB2kMr4A:22
+X-Proofpoint-GUID: mrdUczhRF1rbmjALme7HcIOF-JWO9gqe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-20_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 impostorscore=0 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605200096
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-300484-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-300479-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim,0.0.0.8:email,0.0.0.0:email];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,jmu.edu.cn:mid,jmu.edu.cn:email,0.0.0.1:email,0.0.0.41:email]
-X-Rspamd-Queue-Id: 9F1FF58B532
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 463AB58B511
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the i2c8 interface and add the connected SpacemiT P1 PMIC and
-its associated regulators to support voltage regulation on the board.
+On Wed, May 20, 2026 at 03:07:32PM +0530, Akash Kumar wrote:
+> Document the "cypress,cypd6129" compatible string for the Cypress/Infineon
+> EZ-PD CCGx UCSI controller.
+> 
+> The CYPD6129 is compatible with the existing CCGx binding, so allow it as a
+> valid compatible and permit the existing "cypress,cypd4226" fallback where
+> appropriate.
+> 
+> Signed-off-by: Akash Kumar <akash.kumar@oss.qualcomm.com>
+> ---
+>  .../bindings/usb/cypress,cypd4226.yaml        | 73 ++++++++++++++-----
+>  1 file changed, 55 insertions(+), 18 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> index 0620d82508c1..90769c43ac95 100644
+> --- a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> +++ b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> @@ -15,7 +15,13 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: cypress,cypd4226
+> +    oneOf:
+> +      - enum:
+> +          - cypress,cypd6129
+> +          - cypress,cypd4226
+> +      - items:
+> +          - const: cypress,cypd6129
+> +          - const: cypress,cypd4226
+>  
+>    '#address-cells':
+>      const: 1
+> @@ -63,10 +69,42 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      i2c {
+> -      #address-cells = <1>;
+> -      #size-cells = <0>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        #interrupt-cells = <2>;
+> +
+> +        typec@8 {
+> +            compatible = "cypress,cypd6129";
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 134 ++++++++++++++++++
- 1 file changed, 134 insertions(+)
+What does this example bring here?
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-index 1ecc40749e5a..b13a8d6a2670 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
-@@ -13,6 +13,7 @@ / {
- 	compatible = "xunlong,orangepi-r2s", "spacemit,k1";
- 
- 	aliases {
-+		i2c8 = &i2c8;
- 		serial0 = &uart0;
- 		ethernet0 = &eth0;
- 		ethernet1 = &eth1;
-@@ -22,6 +23,15 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
-+	vcc4v0: regulator-vcc4v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc4v0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <4000000>;
-+		regulator-max-microvolt = <4000000>;
-+	};
-+
- 	vcc5v0_usb: regulator-vcc5v0-usb {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -94,6 +104,130 @@ rgmii1: phy@1 {
- 	};
- };
- 
-+&i2c8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c8_cfg>;
-+	status = "okay";
-+
-+	pmic@41 {
-+		compatible = "spacemit,p1";
-+		reg = <0x41>;
-+		interrupts = <64>;
-+		vin1-supply = <&vcc4v0>;
-+		vin2-supply = <&vcc4v0>;
-+		vin3-supply = <&vcc4v0>;
-+		vin4-supply = <&vcc4v0>;
-+		vin5-supply = <&vcc4v0>;
-+		vin6-supply = <&vcc4v0>;
-+		aldoin-supply = <&vcc4v0>;
-+		dldoin1-supply = <&buck5>;
-+		dldoin2-supply = <&buck5>;
-+
-+		regulators {
-+			buck1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck3_1v8: buck3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck4_3v3: buck4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck5: buck5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			aldo1_3v3: aldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			aldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			dldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo7 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+		};
-+	};
-+};
-+
- &pdma {
- 	status = "okay";
- };
+> +            reg = <0x08>;
+> +            interrupt-parent = <&node>;
+> +            interrupts = <GPIO IRQ_TYPE_LEVEL_LOW>;
+> +            firmware-name = "ccg_primary.cyacd2";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            connector@0 {
+> +                compatible = "usb-c-connector";
+> +                reg = <0>;
+> +                label = "USB-C";
+> +                data-role = "dual";
+> +
+> +                ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+>  
+> -      typec@8 {
+> +                    port@0 {
+> +                        reg = <0>;
+> +                        endpoint {
+> +                            remote-endpoint = <&usb_role_switch0>;
+> +                        };
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +  - |
+> +    typec@8 {
+
+Ugh, definitely not. The default here is #size-cells = <1>, which is not
+suitable for I2C devices.
+
+>          compatible = "cypress,cypd4226";
+>          reg = <0x08>;
+>          interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+> @@ -74,20 +112,19 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>          connector@0 {
+> -          compatible = "usb-c-connector";
+
+Don't mix cleanups (whitespace changes) and sensible changes.
+
+> -          reg = <0>;
+> -          label = "USB-C";
+> -          data-role = "dual";
+> -          ports {
+> -            #address-cells = <1>;
+> -            #size-cells = <0>;
+> -            port@0 {
+> -              reg = <0>;
+> -              endpoint {
+> -                remote-endpoint = <&usb_role_switch0>;
+> -              };
+> +            compatible = "usb-c-connector";
+> +            reg = <0>;
+> +            label = "USB-C";
+> +            data-role = "dual";
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                port@0 {
+> +                    reg = <0>;
+> +                    endpoint {
+> +                        remote-endpoint = <&usb_role_switch0>;
+> +                    };
+> +                };
+>              };
+> -          };
+>          };
+> -      };
+>      };
+> -- 
+> 2.43.0
+> 
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
