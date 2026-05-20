@@ -1,96 +1,95 @@
-Return-Path: <devicetree+bounces-300838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cHirB7n8DWru5AUAu9opvQ
-	(envelope-from <devicetree+bounces-300838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:26:01 +0200
+	id gL+qKU/9DWok5QUAu9opvQ
+	(envelope-from <devicetree+bounces-300840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:28:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04975961FA
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:26:00 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D35759640C
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:28:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E10F230DD7AA
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:20:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 06DEA3129532
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CD73F8896;
-	Wed, 20 May 2026 18:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E643F9F25;
+	Wed, 20 May 2026 18:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="nVeGxpKj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DzNk9hke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D563A6B99;
-	Wed, 20 May 2026 18:20:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6646371048
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 18:23:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779301210; cv=none; b=ar/9ZFD6oBVNWUz/SLRdydwsAf2bYjQ3m+Ody7FkEtgh+yxuZcEZxiqvap+OK58sbEpQcaRAgZg188xvKDfG6OESU9+r4cfV4pt/99nKJAQqbiJfIhJ0v/cPcUD1aRUBS0aaYHP7TRKy4s/9YkvGiQ39ga5jLgyCF0xWAOuzCc0=
+	t=1779301398; cv=none; b=f94ZYBAGyx9i70KjqSfm+JlEZGPsEof70EdNECSkj6XdVzfr4yayPfnj8zi9F51EMjXHbDzj9SsnnGS3AIcMY945W+vUkuo9QedVsMDsgN2eGWlm0Q/fhTI2v5XejgmIXDJFRvv8gfnAtzJaKWuUsu7wEtdibtDEgw2IfsksMMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779301210; c=relaxed/simple;
-	bh=5kKsuOwfJfrcZs58nRlKq2lOcw+su6ViD5dTtabf2/Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BQqlJ6luDGdXvtyDMM1ArzgOzIqyYfYqqpSayqFDBGzutJflQn50Rb8zIs8kbFeKSuFY0vgP8L1EG1mIJVHYfyrifvSRHKP4djLYymI+92z9g+YpjhZ9LlGtK/tbyZlVq0fpy0LwlKLKaBbgQ7E/PDW6k7CTOYblR7UAPs+5PIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=nVeGxpKj; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64KDopJX416888;
-	Wed, 20 May 2026 14:19:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=NqWwN
-	kNZZcF7rAIasVqF0QpBlWWMevk4YAQsojXwevA=; b=nVeGxpKj3O9ahcuGhHhJD
-	Gexz34rW/IdBQ66oJR/I4q89vRSE52rXdyPsdzWRTLjSXZc3kfibGIBu3cwTl2eo
-	VparHouce/2QS5gu8pFDmfHU0rMDvO0ds79qlM1z8I/yERxwaLGgKwLbKJ4cHXf2
-	7FQMgHtvgYF2QF5Jvujiz7h15BbUWUBwGNabFf5WpIad1/jZMTQpxWGsom2wv2K/
-	mK61RdrDY6Qarn5GHFqZSdu6W7ZuLShxS4Xo+oJlVUf7SSLmzcR1gw7rWuPhDVPc
-	Vdkg8SoV6cdZLgcKW4Nlxf2DrkKxMmDHL6LAL6r4pRzXoz7E9NT+mSXIrLHqnF60
-	w==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4e9e6wryuc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 May 2026 14:19:59 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 64KIJwO7052865
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 20 May 2026 14:19:58 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 20 May 2026 14:19:58 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 20 May 2026 14:19:57 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Wed, 20 May 2026 14:19:57 -0400
-Received: from HYB-MkYHBcJRSnh.ad.analog.com (HYB-MkYHBcJRSnh.ad.analog.com [10.48.65.148])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 64KIJiKo030378;
-	Wed, 20 May 2026 14:19:46 -0400
-From: Liviu Stan <liviu.stan@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: Liviu Stan <liviu.stan@analog.com>, David Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Andy Shevchenko
-	<andy@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Francesco Lavra <flavra@baylibre.com>, <linux-iio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux@analog.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] iio: temperature: ltc2983: Add support for ADT7604
-Date: Wed, 20 May 2026 21:19:37 +0300
-Message-ID: <20260520181940.548759-1-liviu.stan@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260518145802.49a3bc94@jic23-huawei>
-References:
+	s=arc-20240116; t=1779301398; c=relaxed/simple;
+	bh=u2OLiahfl07CNATXuFabWWh9FHbJAKKwBhG0BfZL37o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bh3UNj7FY+zzT8YLd1N14i/2snHTSQ0HE5qxYzPZHcyuEzYVDdJEalKQjk+tZ5UacaLdTr8Ge8Na/pyQH+wlgCq7R1AAY2ZzgqoktJBk5/7u0Lf/M9Apk9WXjmPo2lwNWzWWA1PlNs997T8rf9Dc/j1MHgTbalJTTwATh66DYxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DzNk9hke; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-444826c16ffso4696959f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779301395; x=1779906195; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YOOkfLDGxoFwS+H8nJxSYqxjZdBzyZuCgc0/2jHIOOo=;
+        b=DzNk9hkeA5tH0IcOuG4LNn2Pt1H0Baagmyfj2myXoEdVJb2uimWH2UhtK5DFJ18l6R
+         ZTrq93rHGKC9SSzsnDKzepy4pQ2XDUZufdlmHO+dWswFqHTvKbN4QbfZ0m9fayvUVyiM
+         rMC+LtlKNPVPDW4oQV7aEbyuA7CRxehWcmlzhD/ZZrDRWbZiofpj+CYM4qg8yEf1sOG7
+         GK1IcoPIhyTQbtsCZ05fYuKYuD+yeBgLl4lBMUmfSqPORgm4rnAs1peUog0OACwvYzO/
+         ZmcgbGwX9cysd2hcKbfYXz+k8IHruYhjZavmIaOLo86hMvylXAaVvge8VK5fRm4dPp7a
+         9qkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779301395; x=1779906195;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YOOkfLDGxoFwS+H8nJxSYqxjZdBzyZuCgc0/2jHIOOo=;
+        b=T1QMWT/E9C79nfgYkht2DNIYpSoQH2FCxUvRCS85q6cMNS7o2d18lh/WDgJkfUcp06
+         W+T5XhGIK2xmO5SGf2X7/beHfsenxGPWOKyk5tVC5AZl0JufkfEOiZHGrjBFlHxPuYwU
+         +4qhfhQGOhEKk9YwxFJNG/wbMhHtJ70WNQDaobSbE+E7doL9mXycPxw2ZuXOY3h/zp/8
+         Ca4urLhx97PaeHj2o7SPwznQkSEKYnqiu39FEzU2bXr2dGXz7KY2VgP7vKILI2IvyG5F
+         bsNdzDsZhBiUyxivXYD4JG3BmV7iT6fP1jKbrs6Zmrm8Q9sFeP24dt0AoVq7MJBosf90
+         Pfkw==
+X-Forwarded-Encrypted: i=1; AFNElJ+XgEcq+aYrxYj5r2tvfIjZ+4sGk5yp5z4nMkhEvfMIa7ve5HP+lVSgjYjZBPSRgRYIwZYtgQnMYSnP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu5PSA19io40jLEUhv0RmdjVswySvBEkJyB/nyzl2CFb4hYz3w
+	H+d+ay6ZVNGCTYEo1GHC34JflY+J4z70ZDZveytbR8sS9djLYcY5SKHT
+X-Gm-Gg: Acq92OF/obT2Paj4Ow/a4xE8Ch8kFOZ6sY2lXmvwgwYtYRuNZJh/ma/GKah90BTDof5
+	+CsYkW6rtE/0c9yoQOAsnRox9Mt9ciZa9T2+kh0Za+76pwoAeDT/BVo8/kAWu4h01BAcdyG2wgE
+	UKbU6fl/+NloRyGn5p8eh84Vqyb20amBEI5j53omxJlAplEu7yHhWirmu5bun5pBCzwh+D6dZ4Q
+	T8ak+ysj8fQGKfVLK9il3YY5PGDIbDkzmHdOvoAOf5vtPCsdy+gox/8cII3d1cnVAO3/89relRZ
+	HK0NSlPWJIdSEvKdLyjFdq7bYPZlN+Q/Hrfx8xABJVDs2D6Gz0AUDJTY9iDXoGKJRub+Liop76X
+	EuzEkyvO0kMFrpKAOIiux+Wf2aSDK4XH7QgKnPxVYOidWhqwzIsICCtgMAdbQi65v43XFIcFEJN
+	KuMhsAKbdUBQB8f9jdwte+ULA=
+X-Received: by 2002:a05:6000:2f83:b0:43b:3d02:7806 with SMTP id ffacd0b85a97d-45e5c58ed80mr42266150f8f.28.1779301395198;
+        Wed, 20 May 2026 11:23:15 -0700 (PDT)
+Received: from xeon ([188.163.112.61])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45d9ec3b18fsm51297739f8f.11.2026.05.20.11.23.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 11:23:14 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: [PATCH v6 0/6] mfd: cpcap: convert documentation to schema and add Mot board support
+Date: Wed, 20 May 2026 21:21:18 +0300
+Message-ID: <20260520182124.117863-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,185 +97,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: -Q2oC0WsZjWx2SHQzAmmedjMvjdqL4nl
-X-Proofpoint-ORIG-GUID: -Q2oC0WsZjWx2SHQzAmmedjMvjdqL4nl
-X-Authority-Analysis: v=2.4 cv=K8gS2SWI c=1 sm=1 tr=0 ts=6a0dfb4f cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
- a=Z0pTeXoby7EwIRygza74:22 a=VwQbUJbxAAAA:8 a=dzM6K9NnNKbWQKe0cTMA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDE3OSBTYWx0ZWRfXyEyYp5ycarKZ
- 5FP7bfOA/6zskAYuRfjB49UJ3ccryETPThYXDkz4gMWQ9o5CJmPVWx3hM5a71wMDRVnbMqZbeHr
- V+wwWvx7JRt8meSA7PLbijJAv4ZaMB9vntUJ3qMCG8ykJyfxBIVJRYk+4TMUBaifpcQ14H7+53I
- 2495KtQkXipzBtZ7bpV5G954NyqPOCe8SkDKeYUh9tcw6OpM4zgFJyajsNdV07WhVuevIKintus
- Lb7h/BmwZ2Y+gmO5wPlnlUHwoyJghqaZBlnWSHUfuFVyadpDgqaXsCMQylOVd5e7MdWKrTPsVen
- ilJLMJJAkcrtiIZO6DxJfdvAei3vgWJiMopRXD0rLD1W8+9iWOKx3vLXGUziKc6oNtaQbnAV2OC
- TSq+tSq9CseS9CgWw52fNsU5U5iX+BgV01elkS7S0GR4fKKsI62nf5a0ff7rtHDlJjxQfT+UImv
- +I2biID1uT8XeCuQ0gA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-20_03,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 clxscore=1015 bulkscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605200179
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_FROM(0.00)[bounces-300840-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300838-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[liviu.stan@analog.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,analog.com:mid,analog.com:dkim];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: D04975961FA
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5D35759640C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 18 May 2026 14:58:02 +0100 Jonathan Cameron <jic23@kernel.org> wrote:
-...
-> > > > +		    !(st->info->supported_sensors & BIT_ULL(sensor.type)))
-> > > > +			return dev_err_probe(dev, -EINVAL,
-> > > > +					     "sensor type %d not supported on %s\n",
-> > > > +					     sensor.type, st->info->name);
-> > > > +
-> > > > +		dev_dbg(dev, "Create new sensor, type %u, channel %u",
-> > > >  			sensor.type, sensor.chan);
-> > > >    
-> > >   
-> > > > @@ -1445,8 +1782,9 @@ static int ltc2983_eeprom_cmd(struct ltc2983_data *st, unsigned int cmd,
-> > > >  
-> > > >  static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
-> > > >  {
-> > > > -	u32 iio_chan_t = 0, iio_chan_v = 0, chan, iio_idx = 0, status;
-> > > >  	struct device *dev = &st->spi->dev;
-> > > > +	u32 iio_chan_t = 0, iio_chan_v = 0, iio_chan_r = 0, iio_chan_c = 0;
-> > > > +	u32 chan, iio_idx = 0, status;
-> > > >  	int ret;
-> > > >  
-> > > >  	/* make sure the device is up: start bit (7) is 0 and done bit (6) is 1 */
-> > > > @@ -1493,8 +1831,26 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
-> > > >  		    !assign_iio)
-> > > >  			continue;
-> > > >  
-> > > > +		/*
-> > > > +		 * Copper trace and leak detector sensors without a custom table
-> > > > +		 * produce only a resistance result; the chip does not populate
-> > > > +		 * the temperature result register. Emit only an IIO_RESISTANCE
-> > > > +		 * channel in this case.  
-> > > 
-> > > Do we care?  That is are they useful without the table? We could just make it
-> > > required in the binding.
-> > >   
-> > 
-> > The datasheet specifies the table is optional. But more practically, in order to
-> > be able to add accurate values to the custom table, the users first need to measure
-> > the sensor's resistance at multiple known conditions, so I think the resistance-only
-> > output is useful during that characterization phase, before the table exists. Making
-> > it required would force users to provide placeholder values just to get the driver
-> > to probe.
-> Who cares of datasheet is crazy :)
+The initial goal was only to add support for the CPCAP used in the Mot
+Tegra20 board; however, since the documentation was already partially
+converted, I decided to complete the conversion to schema too.
 
-Fair enough :)
+The CPCAP regulator, leds, rtc, pwrbutton and core files were converted
+from TXT to YAML while preserving the original structure. Mot board
+compatibility was added to the regulator and core schema. Since these
+were one-line patches, they were not separated into dedicated commits;
+however, the commit message notes this for both cases.
 
-> 
-> The initial case could I think be handled by an 'identity' table. 
-> If it's useful in more general cases maybe we should always put out the resistance
-> channels? This would be a bit like we often do for ambient light sensors, where
-> we have a computed illuminance channel (IIO_LIGHT) + the data it comes from
-> (IIO_INTENSITY)
+Finally, the CPCAP MFD was slightly refactored to improve support for
+multiple subcell compositions.
 
-I checked internally and we could make the table required for leak detectors. For
-copper traces, sub-ohms variants cannot have one, but we could make it required
-for > 1ohm ones.
+---
+Changes in v2:
+- fixed code style
+- rtc conversion was picked, so patch dropped
+- added audio ports description into mfd schema
+- splitted schema conversion and compatible addition
+- minor style improvements and typo fixes
 
-This means we could remove the LTC2983_SENSOR_LEAK_DETECTOR from the if condition,
-and have something like this in ltc2983_setup:
+Changes in v3:
+- added regulator node names list into pattern
+- filled spi_device_id with driver data
+- ADC patches were picked, so changes dropped
 
-if (st->sensors[chan]->type == LTC2983_SENSOR_COPPER_TRACE) {
-    if (st->sensors[chan]->n_iio_chan == 1) {
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-        continue;
-    }
-}
-+ the n_iio_chan == 2 check at the end
+Changes in v4:
+- dropped regulator patches (applied)
 
-or drop the n_iio_chan == 2 check and do something like:
+Changes in v5:
+- switched to MFD_CELL_* macros
+- switched to use determinator of model
+- switched to spi_get_device_match_data
 
-if (st->sensors[chan]->type == LTC2983_SENSOR_COPPER_TRACE) {
-    if (st->sensors[chan]->n_iio_chan == 1) {
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-    } else {
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_TEMP, iio_chan_t++, chan);
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-    }
-    continue;
-}
+Changes in v6:
+- removed address-cells and size-cells from main node
+- changed macros formatting and OF matches
+- factored out common devices and made device addition staged
+- dropped cpcap->variant check for 0
+- EINVAL > ENODEV in variant checking switch
+---
 
-if (st->sensors[chan]->type == LTC2983_SENSOR_LEAK_DETECTOR) {
-    st->iio_chan[iio_idx++] =
-        LTC2983_CHAN(IIO_COVERAGE_PERCENT, iio_chan_c++, chan);
-    st->iio_chan[iio_idx++] =
-        LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-    continue;
-}
+Svyatoslav Ryhel (6):
+  dt-bindings: leds: leds-cpcap: convert to DT schema
+  dt-bindings: input: cpcap-pwrbutton: convert to DT schema
+  dt-bindings: mfd: motorola-cpcap: convert to DT schema
+  dt-bindings: mfd: motorola-cpcap: document Mapphone and Mot CPCAP
+  mfd: motorola-cpcap: diverge configuration per-board
+  mfd: motorola-cpcap: add support for Mot CPCAP composition
 
-or use a switch case:
+ .../bindings/input/cpcap-pwrbutton.txt        |  20 -
+ .../input/motorola,cpcap-pwrbutton.yaml       |  32 ++
+ .../devicetree/bindings/leds/leds-cpcap.txt   |  29 --
+ .../bindings/leds/motorola,cpcap-leds.yaml    |  42 ++
+ .../bindings/mfd/motorola,cpcap.yaml          | 408 ++++++++++++++++++
+ .../bindings/mfd/motorola-cpcap.txt           |  78 ----
+ drivers/mfd/motorola-cpcap.c                  | 143 +++---
+ include/linux/mfd/motorola-cpcap.h            |   7 +
+ 8 files changed, 571 insertions(+), 188 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
+ create mode 100644 Documentation/devicetree/bindings/input/motorola,cpcap-pwrbutton.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-cpcap.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/motorola,cpcap-leds.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/motorola-cpcap.txt
 
-switch (st->sensors[chan]->type) {
-case LTC2983_SENSOR_COPPER_TRACE:
-    if (st->sensors[chan]->n_iio_chan == 1) {
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-    } else {
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_TEMP, iio_chan_t++, chan);
-        st->iio_chan[iio_idx++] =
-            LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-    }
-    continue;
-case LTC2983_SENSOR_LEAK_DETECTOR:
-    st->iio_chan[iio_idx++] =
-        LTC2983_CHAN(IIO_COVERAGE_PERCENT, iio_chan_c++, chan);
-    st->iio_chan[iio_idx++] =
-        LTC2983_CHAN(IIO_RESISTANCE, iio_chan_r++, chan);
-    continue;
-case LTC2983_SENSOR_DIRECT_ADC:
-    chan_type = IIO_VOLTAGE;
-    iio_chan = &iio_chan_v;
-    break;
-default:
-    chan_type = IIO_TEMP;
-    iio_chan = &iio_chan_t;
-    break;
-}
-st->iio_chan[iio_idx++] = LTC2983_CHAN(chan_type, (*iio_chan)++, chan);
+-- 
+2.51.0
 
-What do you think?
-
-Thanks,
-Liviu
 
