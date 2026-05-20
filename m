@@ -1,199 +1,321 @@
-Return-Path: <devicetree+bounces-300401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300377-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id t5KGEaKGDWp4ygUAu9opvQ
-	(envelope-from <devicetree+bounces-300401-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:02:10 +0200
+	id AIJrMCNhDWquwgUAu9opvQ
+	(envelope-from <devicetree+bounces-300377-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:22:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4B958B454
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DDA588D5D
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:22:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72900305901C
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 07:51:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC902300A624
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 07:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7C4392C5F;
-	Wed, 20 May 2026 07:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF3534DCC8;
+	Wed, 20 May 2026 07:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Y5QMAoY3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2094.outbound.protection.partner.outlook.cn [139.219.146.94])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013062.outbound.protection.outlook.com [40.107.162.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADC53438B1;
-	Wed, 20 May 2026 07:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.94
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C7922425B
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 07:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.62
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779263477; cv=fail; b=AtnMD1FDOabF7c6uct1WoRx2qcrfOaujWoX08Uxg8jxQziOXFVTlYYTJX/FyClRYyv5TNG+3bcEWEeMgMg13Sb8d/kizGbsT0OF0D2DDznhjgcy56rWqpRUOZwUOdXI9cLG7HLD2HrNmW3bz7S64ZitDrAjGOi2yyL5Go7BVsZM=
+	t=1779261470; cv=fail; b=FPJGt/uJp4Rd2dj68hYwPdKiGthcidzWzzzGXeAXPf/APrc0U7sWvHDSsGPM0S0p81g+fZBdRiMJdpmVyZ0MXs6L8hIKzsSMAHqTkDER41v6ePEaP42eWWPKI3yIbSA20k9I+5pqas+ksA/wSo6LC4/y9mkWu+Hw/Iwem2Fo8k8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779263477; c=relaxed/simple;
-	bh=tBYwTIkg7Rl5r0EYU1wwfTNBwZ8E/1c9Rrr0lpOOcJw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ohNfyROGt2ZzpL2G7ilpft9RPikEwNKQ40bWnFUL2HXPkbG5kZP5FfC79BDJLTzarevdsCbPd9ixYcxhujJkYWba7y2b0Nxg0vQqH967HuEjWOh5OMoCWSSieVN4Fv2ZAokn0jeH72TSgFhI4hHfHR0Io73+jjj4zxCB0eZTqv8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=adfXoRakl4+ua9TEhRAnGBlbCxa8llx9ycRxyfIqTqFHIV7xMCJewPFqYKjgS07NLdA0GWjwRpM3rsQ/qVz1XkZCDU+NS6gLk2vgkewcgM8UmedNVrp9OXXM3xoScMfwcLNw8AtR65rVpR28xRK0Ao69OC9568AvY98uiiBHMkLS0ajk1ZLDpxHQSdF2H6alpsX0sfSXVG2og0zfTKwi13218u2wZzuBY23VfQ417ewoxp/XIXf9oAE0PyBEmk4OVr6QUS/Kb3oNlM9fbVc/1nDwEshzHjMvo6+0wugmEJW+tHye9BBFhcNoQzdTxOBB1OuW+6W0tdTDE5bu1Uk99w==
+	s=arc-20240116; t=1779261470; c=relaxed/simple;
+	bh=/U0wqx9Zuty8lsfyXpCC6FIwP/jt4dSruhamyTAvYLA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=MS1jiFp6e5ofjm3QQsgppe55F7WQEXXL3qXRNpLV7NaKRd4+sEQUb9AIw7AweUYpEnYuBrm1Xn0GMwM3m2egnqA5HyiJgWC6Cf/YBJllQ5WtepYvaTfK6zuwjRCGHbInAfMKv+bUjnD7nMbTVld/JHcy70S3NAwbS3+vDh3w4ok=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Y5QMAoY3; arc=fail smtp.client-ip=40.107.162.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZDvUmaPbBE8r96tr8Jd4OiavFG5Edvw6rnrY30poBxDKXBICrtA5HrLetwRRoj4elOe6UzJDC4xr+Gq4UmFkna1e4vdKd1Dbfa/EmCZSEe1yRl7z00noojjcQCG4bxnjwyV6Q2AX9BqdFSTXb91AfS0JDcHZTYfSFAzEL1LkJK+bSWKW2dpQF3xfirpaTGn4xvUbZPupJotwe9n/uluOQ0eI4w+I4wykQNN/wwiFXkK77LRtd8k5zwxTet5iGRXZ5GIOJSOM36O8JslcKTyH1kQpOarQNh8umykgGcRBiPuJ1DJm0C5GvOtywepuJQVhK0kQP10CfltB8TlFvj9ZoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tBYwTIkg7Rl5r0EYU1wwfTNBwZ8E/1c9Rrr0lpOOcJw=;
- b=m+6G54rpofBJUPSs/EBQBR7sc/eGtvT28yjcrNMCp86CiydgCKkyB8s7Zr97/NiZJI5QucsQvEJnI5b2wiChRUG/LQSBoRg8pUTfFb9EOhRKoCOXWrHDkgnfWZ+R7opcFgR3f9jiLv1YysDSOvgg9YHnCGGNP47jjtDiXa/mVAVFrXBZwVjz/7UOKd0sTedspou9ZIUO/qtoc3eORKodOiiArTsuZcUbFKyyvba52hAWxJplcqZ/DptiRmCDAReq5hDCUKsfL9+/Dl0cRAcpC19HkhYZK3YZrJcyasEQlH5DDUPDCwj4DZhGlQGDw/nDrkVrwHU/ZvRUzNaRFWQ+0w==
+ bh=/0A28/LUc0SG6U8S6xppJEDn75y60wX6wRXE8nqim0M=;
+ b=DSzaUaTqXWdcv/5SAu+9+UzIKsTJHR3lhIU7QWRxp+kdWThPRaWpg4bbu+S0/f2G/6Dhn5o+nFDTVaXs1ohkEP6LiFa00OlVod7Uhh2365Fe5yEMyOsB3CPmQX+dT291V5sKgCs8AEfhgkNAeGKP68QQlgcPoZNngtcox83BXEt6VWfPLb0f5/JsziIp7Hop1AIJEk0YfgLEszg+XsxXkr4z4vnTd4fFPD0DF6LU8UPcFQNAs+xvEwftl/uU9sfkWJu/YitY66qniN7eAbIqzbhgd2vZJy6opyRZHonRVU1+rgjFyr2jJq4x4UlGURdZ5NDh2Ws6XGqVsoIxqizl4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) by SHXPR01MB0893.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1c::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.15; Wed, 20 May
- 2026 07:18:22 +0000
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- ([fe80::9b99:12dc:a115:b90f]) by
- SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::9b99:12dc:a115:b90f%3])
- with mapi id 15.20.9891.021; Wed, 20 May 2026 07:18:22 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Emil Renner
- Berthing <emil.renner.berthing@canonical.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor@kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: Re: [net-next v4 3/5] dt-bindings: net: starfive,jh7110-dwmac: Add
- jhb100 sgmii rx clk
-Thread-Topic: [net-next v4 3/5] dt-bindings: net: starfive,jh7110-dwmac: Add
- jhb100 sgmii rx clk
-Thread-Index: AQHc53hT59M+uKUzr0qKiLTpANMLHLYWff6AgAAEvlA=
-Date: Wed, 20 May 2026 07:18:22 +0000
-Message-ID:
- <SHXPR01MB086346EAB66ACAFAE228E290E6012@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
-References: <20260519101436.111476-1-minda.chen@starfivetech.com>
- <20260519101436.111476-4-minda.chen@starfivetech.com>
- <20260520-acrid-kickass-kittiwake-6d4247@quoll>
-In-Reply-To: <20260520-acrid-kickass-kittiwake-6d4247@quoll>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0893:EE_
-x-ms-office365-filtering-correlation-id: 77a6f82c-33af-4eb8-cdcb-08deb63ff9dc
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021|22082099003|56012099003|18002099003|3023799007|4143699003;
-x-microsoft-antispam-message-info:
- hoGusLfIeh7bK3rl/T6DqKOQcNuAGIPHOUaIPZ0yK8ywTnaxG/xONYJwXP94Md78KDUadKZ8uc36LZiDlB33esvsgB0x3HNtmyox7bEUKa7fH7ep3UfoQYyph2a/JPyAnS5xr1ghJnEuhShTGUnmcjuvJ1yaA7McehTQqPkH0XEVxm/uboYh+R+KNq7wgLcYJmRZsPhRMrdrhcl0n0Er06OJTCUwYPz5Rq1R6EmLeg39KN+VToLhrQ1YErqiTzhz332iJ7r4miS3j5TBHvwH7Gi/ypo8Ek59UhrinrcXOmIW7UBz5UTak428jXchc3UT/DFy51Io3IVbbSZi1sTbWdudeYL26GomiRkYYL+8sWGRebTIWdjiwhsnZw8xw5/Oi5l00t+Ehx+tfqJojlNqd8nfMvUt4GsP5ObIolkq0L2ZGV6jX/TffDujfavJj6/ooab12tVnBD78/7HxnNS/kRQ2ZTQOxPr5o+l6q5IBHkSVD6vtnKau/0/EJz+G9ZcSGFiaVQzc06KRySZl+ZkwFSEwVKe/B/ifUiI9XjMxegsIGikoDNRfJ2SZp85o0ToG
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021)(22082099003)(56012099003)(18002099003)(3023799007)(4143699003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bHh3ZkpxamlKL3I1eDZtWkZ3S05hNWQxNkE1RFE4WjdqRWtrb1hVeDlBUjM4?=
- =?utf-8?B?ai9SNG1JWklnbnVhNGtIY1NVdVNnaTRPZHZjRzB6VEUza1Z2dExFZkk1d0FC?=
- =?utf-8?B?aEZUSFhtRkd3dzlKUWNTemlXMXozRGlZQktlTDJ2SHlqbWZzT1M4azNhSXNQ?=
- =?utf-8?B?N0ZXZVdUMlBQamNXYXNiUXVBRDc0K3dxaVl1c21GYkxGdDR3cGV2bFpPY25x?=
- =?utf-8?B?bDJ3TmFnUm4zc29JWk1wbXg0YjgzU0FBWmMzMzJ3RjhsTm5MNndIdllRUFJZ?=
- =?utf-8?B?cFZpQ3Y1bnh5L1VZN2U1WVR3cVhDb2VmK1NiSG1jOGc4MWZpUWltQzNkbUxH?=
- =?utf-8?B?VUlqbjZtRTROdmNSZkxmbEVFT050cDdWTkt4a3lreEpFejNVb0o4UTdiZHRY?=
- =?utf-8?B?RGZ3RG1FL3ZRbGREREdEd1k4a2RWbHpnaVR1eFBHcWxuVnNmd0JhZS9GSUpF?=
- =?utf-8?B?RGk0M2Y5ZzQxUjNNR25qT2lNa0dEODdIUmZmNUVRU1FDOEFoOHdtZWRrMWpj?=
- =?utf-8?B?eEpIUUdQZ25WWldKeVdrRno5aWwvRlFOdExybExxeW82UVJaNm1nblJ2M1lp?=
- =?utf-8?B?ZXY4RVAzcGxKN3JuNlZMK2xSRUwweXJBYXdPRHRRclVDdnVKR3hpNzcyWk5O?=
- =?utf-8?B?MWNvVjBqWEpCZDFFN0tLOEZZcnIrZUFocCtnYzJjL2ROKzRTZGhPeDlTSEJU?=
- =?utf-8?B?NjFWVHlSaFRWVGRsVnpZeVhVNzN0RndmWDg1TjJiNEFqTytpWWVYSjJyTVdM?=
- =?utf-8?B?Q1BxT25lek9senZzSDlBcjVqN2Q1NzBBQnVHMlI5RVpNZTI4aUNpc3VsQzZC?=
- =?utf-8?B?QUJTTkZQMnZLbVpsVEJhVWp1VjRBc3BFdzlXcEZyK1F3UyszM3RFUS9VZ0Nz?=
- =?utf-8?B?RDlBZ3lzcVZzWFN3RWxNUmFUQTVpV09ZOWEyWlhhMXNWOUJrNmVtREJKNlVT?=
- =?utf-8?B?QUluWnNQZWdnc01yMklYa0NPZFVPNTNMYm9OazhCTS9yTENaVW9VdlAvelht?=
- =?utf-8?B?YW56MHhjbXJrQW43Z2lsV3ArRTJ3L2Q0WWwxL3cvay9EdElsV2QrOHJWOGo4?=
- =?utf-8?B?NW9iZFBmenVrc2tySWM3NERGWmZoN3VxbGU5eWpHNHhLSDgwQkNqc0k4S3Bt?=
- =?utf-8?B?VGZBT1lScDN1cEovYXNXQUtTQmlXODBvajY3VEJKNTRZeEJtMkFidTlYV3A1?=
- =?utf-8?B?OWk5NXlpMjhSa0tFcHJOOVVSV0x6YW1CaWVnOUVibng0NFpOOUFiZThTVUFQ?=
- =?utf-8?B?SGNyWU0zM09rekpocjhaNkZzc3ZMbVZENDRlWWthcERjN2UyMFhlUDErQ2wx?=
- =?utf-8?B?MFE1M3phRHNzZEl2VzlNeUtZVVRISkNxWDk1YjhtMTdqc2wvYmEyVGpDVGZ3?=
- =?utf-8?B?R1NDWGc5ZlJ5TytIMVFJWTdKaThOcHJ1OVUvRGwxa3plTUNwTmZLVFMxemE2?=
- =?utf-8?B?M080RklZNDF4UFpCSW1jYjJmWm5lRkhSb0NpL3Y5cGhpbndhb2lUc01VR3Fx?=
- =?utf-8?B?S1kyRXRCYlErMzZaanA2ZCtXbS9VZno2NENVY0JaRGszTEQrUTMwYnErTjdm?=
- =?utf-8?B?anAxUlBiaHFVYld4MWl5ZmVqdERBOXg5ZG1aYnlxMFl3S1NxTHBHSjR0bUVF?=
- =?utf-8?B?TE9KNEx0bjArNHRaZU9CbEhmVUNURGxSb3ZTWFo3V0NwUmR0RHlZZ1dMNGV4?=
- =?utf-8?B?OGRiSnpFMHlleGVsMFVvQ1h6QnFmKzhlZGNEbWJVWUxJNmc0cnZBZ29jcXNw?=
- =?utf-8?B?Q0YxUGRCbmJiYmNRanQwUG02U3hmUURIQkwzdFZtbEd3d0pUdWpvdDRWZGlM?=
- =?utf-8?B?bHkyaVBsTkdYbCsrSkg4SElDVVJjQ3hiWG5tQ3M0SmtGckpXK0tPUEtQaGZ5?=
- =?utf-8?B?ZGJ5NDhYRHEzVWFJWDVuZjJUdDFjRWErV3hDVFNYWVIwVWJCb3RmUzNpK3Bx?=
- =?utf-8?B?MUtvOS94TDdqdlF2WFF6cmg4aVE1cFFUUTJhRWRBQ0puK1diWkg3ZUI1UE1p?=
- =?utf-8?B?ajlzcDJGanlNdGd0VVh0RUpvdE4rN1pJTGcwZ0NnbHZuM1lzNTNOZ3dZWEs3?=
- =?utf-8?B?NVVVVFN2SDRxQ0w3UGFLT0ZxUUJzaFE5bDZlQlFoUmRNNDNiQXR5djIxdGEz?=
- =?utf-8?B?UU04cGdCVTBoUWV1RS9Qa3Z6YTE1RldReWRUN3FnLzd2QlAwNHNjOXowZkRY?=
- =?utf-8?B?TGhLVm9PL0dmdkJKbE5qWVM0WDdGQzFVQVJ5NXRUQkpGSmVzeW9kclg4MTVj?=
- =?utf-8?B?RDBRM1JpQ0tPUndZNjFmcTRYNUszWUo3U3ArUlVCdmJqWEhwaU5WVG9MUXQx?=
- =?utf-8?B?YTFvcU9YbUJ5a1pvYis0UGNMclhlRnVPM1hEZjJaNnJ6L1p1cyt2UT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/0A28/LUc0SG6U8S6xppJEDn75y60wX6wRXE8nqim0M=;
+ b=Y5QMAoY3iqlvN1dzRe44wzB2filbyNwXhz+eD8aw36MFk95kWG1IBUvSydasRk+n2JdRhUiwxQZPBA/nLUSeIjxU5ShCzaTujHJdCpK4sPZdLrc4i8MXdls0xMidZxU5/EfW1H0FZWrdvC3DwydMDtWOL6jTZ2QpafbC8zmeMdrtSxvXqXZuTC/ejctr1nWO7wfpuXaJJPAvh1QTAJdtWkR//qQc8cus3sAR8nDhvMCKOHKeiYlyduhAaKH94diLD5FKqsi7pOX2I76uGy6I5vJzp96QL6UWMeBB2Hm8XIwlSLqPg4vUA8HAje8GrdHFxsbxsLtooiCoUvG9jiGATA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com (2603:10a6:102:c5::5)
+ by GV2PR04MB12137.eurprd04.prod.outlook.com (2603:10a6:150:304::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Wed, 20 May
+ 2026 07:17:43 +0000
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50]) by PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50%6]) with mapi id 15.21.0048.013; Wed, 20 May 2026
+ 07:17:43 +0000
+Date: Wed, 20 May 2026 15:20:06 +0800
+From: Robby Cai <robby.cai@nxp.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: imx@lists.linux.dev, conor+dt@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: imx8mq-evk: Enable MIPI CSI and dual
+ OV5640 cameras
+Message-ID: <20260520072006.GB2269979@shlinux88>
+References: <20260515111143.2980956-1-robby.cai@nxp.com>
+ <20260515113318.2A02EC2BCB0@smtp.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260515113318.2A02EC2BCB0@smtp.kernel.org>
+X-ClientProxiedBy: SG2P153CA0025.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::12)
+ To PA4PR04MB7821.eurprd04.prod.outlook.com (2603:10a6:102:c5::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB7821:EE_|GV2PR04MB12137:EE_
+X-MS-Office365-Filtering-Correlation-Id: 908f08a7-640d-43f2-4a14-08deb63fe29b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|52116014|19092799006|366016|38350700014|4143699003|22082099003|56012099003|18002099003|11063799006;
+X-Microsoft-Antispam-Message-Info:
+	tAZx1UVsOeVn9hb+in99XZbEYb0zO+3QPDDHhni4rwyJi8LjFZVBueTL8cw04Q2cte5F13/ROoctOuNYFhBwViXqfx0IX8FDi6oNKJGDoOUxGsUbEOpfOcvMcoKIu4XuBZ3u6DzZZIJmG0F7L0EZ7cJ3cvoXgVPRnhjWrEp0RyuoKC5RMmD3g7Dqo+J1chtFBKBJRbU+MWbam5oWTsSgeQga6WzCiliAyyYmWUZL3Z2yMxl4ObaKNOqF9yXscbbl+aCFG5z4w22miYaeLsr5ANtqI1CVfG5zk8yzP3j6ygOwLG6BMJJ/hzwYyb/tKx39L61mfzsdqwtrDWPdnf5wnlzxKTbrbvNRrM7qpAEU7HXnDAcRp39adkNJ6BNP2COizFI3CpJoyuVy9/+0JVFRKir1UkyEm3EbTyazHIdUcO7ofYG6hKV+LTvC44Gayo5/mtiH9t6JrKaqI6QN7NNnO7LTY3SbXpj1OQsIkv0UYbpRF5Wf49M5RmHBtZzvZoq7yuaZ6uhwLre640CI5WO49jjncWHAOMrjwkOkrGTgN4nzmz4Jpsf4aeWkpsWyVsbHwsgv96nYuKL/cOig4dw8ySBglqjRG20iooT3yOmhYmlcgfXZee63D3toqaWB49TL+VAmWqhNIuCdFHcqP74G8fZxGRqTGigLEQatiZth1MN8dV+2d8L7z3G3l/8wiHRj
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7821.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(19092799006)(366016)(38350700014)(4143699003)(22082099003)(56012099003)(18002099003)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ni9jbpoUE8wZnwRzxQZABmmLpd2Asx+ae/LDmV4LHBz/5bzpc6lSUSGwhAKj?=
+ =?us-ascii?Q?is0UXlJQHAgRsfMLUs4ie4rL1z6Xg9Nrk82n3Nnn6KSLMTYEtEBl/w/MT7hu?=
+ =?us-ascii?Q?LWciZpNSH6ir4jH5ohbvVpsNEQMrZHrcrzCUd37dbDqJSj3fM29C/MSCZVh2?=
+ =?us-ascii?Q?bw+7jS984/wutfiL0OHL0r+VnPwnioKvIACOiG4orQ5PSayV/sfqs/NLhb94?=
+ =?us-ascii?Q?Wtl509N1IxtlTmEJNfCk83gkLP50nG8wTVFZ0eqRuAaL3F2AOJ1LO6k56Dlp?=
+ =?us-ascii?Q?/0Ie0H1J3P/BFpTucTgRxExZIi2p2ol+DUNvb/RrIbgVXHIvp7gNoRV6Gqml?=
+ =?us-ascii?Q?1IwP9goP2DvAzoiU1fROkO/n/QmmuqWs4Im2CVW117JlWm8tFquQLIpwLhT0?=
+ =?us-ascii?Q?363YGcGexuhkON1hyPdS+Bve0+IXwqUmW+Zx0zWT+FT79zCuOvSqm3RXsXUT?=
+ =?us-ascii?Q?x7/KlWqRncA39xKW2ln0r+v/MqoZk8+5T/0Hptg5SEozL7NLwN2ne/AgP8Cp?=
+ =?us-ascii?Q?JWt56u7FwSqZyshvdIVH+ta7q2T7RuIVowyX48RYYvMIRfZKMae585ixPIIy?=
+ =?us-ascii?Q?39TvcY3oEdwApeOZ2sJvsZeg1ujrrIg+7N0j+naf6//41xD/u2+yparVab9n?=
+ =?us-ascii?Q?qxlR4Y2OTN6CB9SbMNnbbSWzQzti9GIym52SUojDwYV9PRUZFe0ahOU/u1DE?=
+ =?us-ascii?Q?SOQDSFuXD8QtI7eQnJjkpMpviTR05bi6zDgiU7tZV11bhAEKkwsuTf8/tPsP?=
+ =?us-ascii?Q?lfQNIzoEKV5x+X6+mLMcHKUcFuZY7bmJgMiAHAAK2HYt0pvQNxu6MfydZy/E?=
+ =?us-ascii?Q?+YVil3IjDkMf6r0QqHv1MSVOg1btFJnvJdWDgIbui2EezpYSv81IYQ0zc/tH?=
+ =?us-ascii?Q?vYAlkV2QNm50TKL0XkPYFdH+DnMrCnSlvm2SH2/ojjsJRhbCum6u/CeHy2VT?=
+ =?us-ascii?Q?y+xUnkJQAeIf3T6k6vCTx/Uy68OP8s1Ln3Kf5x5p5PlJQM5tgkehIf1JrmYh?=
+ =?us-ascii?Q?n4FKIRaHcBEgilkSfsCYmYOXrPa3gAeToMT0m099L++44cN1GcC61e+VKa5s?=
+ =?us-ascii?Q?/jwixzSDytQLlEz4/t+smOGj96usNZQD/DmmrJaakalNXs+r8nPxIyB4//3O?=
+ =?us-ascii?Q?/Fz6B5ojwrPhoGQhwqmSxWqkzU+kdIjXlN2P5/sJcds1rDuT/OuGgvf5PVMH?=
+ =?us-ascii?Q?g3z0zcbB7s5XFWnCpOV4AdsDf+9YCJnPiXChjVoMTG/R2myRYl1rhuKEZXkp?=
+ =?us-ascii?Q?sW6nS7KWqE5f2dKBNElawX2SF4CyGe88ffYTUEyvU+O3X1ayTTM0sCc8gioI?=
+ =?us-ascii?Q?aR6O1SHBX1oYHjmsZnABh5UiDZaAGMCbDG6YGOgdlLYPmY3k5gPizv0ZjDk0?=
+ =?us-ascii?Q?03WhM925msxJeXlUqeru3didfSQn8+l+K2g+Cxlp6koQAy0qrCH5MFOIdsji?=
+ =?us-ascii?Q?ByjiHJZX48iMWc2VO30Q8xhvJJdgnfaavStSI5aubQibGlbjpZx/4E/SdVTs?=
+ =?us-ascii?Q?Q85FprqTNTjBba4L7yD+luK1xqK7XBTnXMFgY5uzIWuYuzyDT8THMCG+aVUo?=
+ =?us-ascii?Q?3987oWj3hu+0qs5ywafvEj6r7WwSJxOBR7ZmmBPV6Yjl/SY4Azr8rEs4vs6I?=
+ =?us-ascii?Q?JDISzTfhtJ27fsWpfp3U9soDMjKaF2Hg1dlUm9jeR0xsTFqJmlj2jHRo3JjB?=
+ =?us-ascii?Q?Io0Aah09Ihk8TvUMMoKyAzJw4ISWjNh/P4qj1U6fX6NaOVMfpwhEa4csf0XP?=
+ =?us-ascii?Q?9fU1/mX0vg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 908f08a7-640d-43f2-4a14-08deb63fe29b
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7821.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77a6f82c-33af-4eb8-cdcb-08deb63ff9dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2026 07:18:22.3909
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2026 07:17:43.6494
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jFbaBn3+/kBRV+RTYgiwzxnmJV+2Sl+4jPHK/EgxYE2r+BEb8716LW3BEvqvUAh10/jtZSyfQI5AGnLsNp2C69zf5MltnEkp0w4eC9G9Skg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0893
-X-Spamd-Result: default: False [4.64 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IupZo3jDaFQZFLAnmJZAqYrynXvy65XQR5pcFjLFwynzjqwj39nW15JXniOhvj/k7LUSWhKudIiDcGwbioutHQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB12137
+X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-300401-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[foss.st.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,canonical.com,vger.kernel.org,st-md-mailman.stormreply.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[minda.chen@starfivetech.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-300377-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	R_DKIM_NA(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn:mid]
-X-Rspamd-Queue-Id: 7B4B958B454
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robby.cai@nxp.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,3c:email,nxp.com:email,nxp.com:dkim]
+X-Rspamd-Queue-Id: 23DDA588D5D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-DQoNCj4gDQo+IE9uIFR1ZSwgTWF5IDE5LCAyMDI2IGF0IDA2OjE0OjM0UE0gKzA4MDAsIE1pbmRh
-IENoZW4gd3JvdGU6DQo+ID4gamhiMTAwIFNHTUlJIGludGVyZmFjZSB0eC9yeCBtYWMgY2xvY2sg
-aXMgc3BsaXQgYW5kIHJlcXVpcmUgdG8gc2V0DQo+ID4gY2xvY2sgcmF0ZSBpbiAxME0vMTAwTS8x
-MDAwTSBzcGVlZC4gU28gZHRzIG5lZWQgdG8gYWRkIGEgbmV3IHJ4IGNsb2NrDQo+ID4gaW4gY29k
-ZSwgZHRzIGFuZCBkdCBiaW5kaW5nIGRvYy4NCj4gPiBTbyBpbiBqaGIxMDAgU0dNSUkgaW50ZXJm
-YWNlIGNvbnRhaW4gNiBjbG9ja3MsIFJNSUkvUkdNSUkgaW50ZXJmYWNlDQo+ID4gc3RpbGwgY29u
-dGFpbCA1IGNsb2Nrcy4NCj4gDQo+IElmIHRoaXMgaXMgZm9yIGpoYjEwMCwgd2h5IGlzbid0IHRo
-aXMgcGFydCBvZiBwcmV2aW91cyBwYXRjaD8NCj4gDQo+IERvZXMgdGhpcyBuZWVkIGNvbnN0cmFp
-bnRzIHBlciB2YXJpYW50IG9mIHRoZSBkZXZpY2U/DQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEty
-enlzenRvZg0KDQpPa2F5LiBJIHdpbGwgbWVyZ2UgdGhpcyB0byBwYXRjaDIuIA0KDQo=
+On Fri, May 15, 2026 at 11:33:17AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] The proposed device tree configuration intends to use software reset by omitting `reset-gpios`, but the upstream OV5640 driver skips the software reset sequence if `powerdown-gpios` is present.
+> --
+> 
+> commit d18d0c4c95f98f3312c777b828bf09c413169ce3
+> Author: Robby Cai <robby.cai@nxp.com>
+> 
+> arm64: dts: imx8mq-evk: Enable MIPI CSI and dual OV5640 cameras
+> 
+> Enable the MIPI CSI bridges and corresponding CSI-2 host interfaces
+> on the i.MX8MQ EVK, and add two OV5640 camera sensors.
+> 
+> > Both OV5640 sensors share a single reset GPIO on this board,
+> > which prevents independent hardware reset when both cameras
+> > are enabled. As a result, the reset line is kept deasserted
+> > via a GPIO hog, and sensor reset is performed via software.
+> 
+> Will the software reset actually occur if powerdown-gpios is provided?
+> 
+> Looking at the ov5640 driver's power up sequence, the software reset is
+> skipped if the powerdown gpio is present:
+> 
+> drivers/media/i2c/ov5640.c:ov5640_powerup_sequence() {
+> 	if (sensor->pwdn_gpio) {
+> 		gpiod_set_value_cansleep(sensor->reset_gpio, 1);
+> 		...
+> 		gpiod_set_value_cansleep(sensor->reset_gpio, 0);
+> 	} else {
+> 		/* software reset */
+> 		ov5640_write_reg(sensor, OV5640_REG_SYS_CTRL0,
+> 				 OV5640_REG_SYS_CTRL0_SW_RST);
+> 		...
+> 	}
+> }
+> 
+> Since the device tree nodes define powerdown-gpios, does this mean the
+> driver will skip the software reset branch entirely?
+> 
+
+Yes, that's correct.
+
+When `powerdown-gpios` is present, the OV5640 driver follows the
+PWDN-controlled power cycle path and skips the explicit software reset.
+
+This is intentional for this board, where both sensors share a single
+reset line and cannot be reset independently. To avoid interference,
+the reset line is kept deasserted (via a GPIO hog), and initialization
+relies on the powerdown GPIO and power cycling instead.
+
+This matches setups described in the driver where a single control
+signal effectively drives both reset and power sequencing (e.g. PWUP-
+style designs), making a separate software reset unnecessary. [1]
+
+Additionally, using the powerdown path preserves the intended hardware
+integration: PWDN is the only per-device control signal, while reset
+is shared. This allows independent control of each sensor and avoids
+introducing artificial dependencies on the shared reset line.
+
+For these reasons, the design intentionally relies on powerdown-based
+sequencing rather than the software reset path.
+
+I will update the commit message to make this behavior explicit.
+
+
+[1] https://github.com/torvalds/linux/blob/master/drivers/media/i2c/ov5640.c#L2449-L2464
+
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> > index d48f901487d49..2311a05b88c50 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> 
+> [ ... ]
+> 
+> > @@ -330,12 +367,101 @@ vgen6_reg: vgen6 {
+> >  			};
+> >  		};
+> >  	};
+> > +
+> > +	camera@3c {
+> > +		compatible = "ovti,ov5640";
+> > +		reg = <0x3c>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_camera2_pwdn>;
+> > +		clocks = <&clk IMX8MQ_CLK_CLKO2>;
+> > +		clock-names = "xclk";
+> > +		assigned-clocks = <&clk IMX8MQ_CLK_CLKO2>;
+> > +		assigned-clock-parents = <&clk IMX8MQ_SYS2_PLL_200M>;
+> > +		assigned-clock-rates = <20000000>;
+> > +		powerdown-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
+> 
+> Since the reset gpio is omitted here and is kept deasserted by a hog
+> elsewhere, does providing powerdown-gpios result in both hardware
+> and software resets being bypassed?
+
+Not exactly.
+
+The software reset is skipped, but the sensor is still reset
+via the power-cycle sequence using the PWDN GPIO.
+
+The hardware reset line is intentionally not used since it is
+shared between both sensors.
+
+> 
+> > +		DOVDD-supply = <&sw4_reg>;
+> > +		AVDD-supply = <&reg_2v8>;
+> > +		DVDD-supply = <&reg_1v5>;
+> > +
+> > +		port {
+> > +			camera2_ep: endpoint {
+> > +				remote-endpoint = <&mipi_csi2_in_ep>;
+> > +				clock-lanes = <0>;
+> > +				data-lanes = <1 2>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c2 {
+> > +	clock-frequency = <100000>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_i2c2>;
+> > +	status = "okay";
+> > +
+> > +	camera@3c {
+> > +		compatible = "ovti,ov5640";
+> > +		reg = <0x3c>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_camera1_pwdn>;
+> > +		clocks = <&clk IMX8MQ_CLK_CLKO2>;
+> > +		clock-names = "xclk";
+> > +		assigned-clocks = <&clk IMX8MQ_CLK_CLKO2>;
+> > +		assigned-clock-parents = <&clk IMX8MQ_SYS2_PLL_200M>;
+> > +		assigned-clock-rates = <20000000>;
+> > +		powerdown-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+> 
+> Could this regression also prevent initialization on the second camera
+> for the same reason?
+> 
+
+No, it should not.
+
+Each sensor has its own powerdown GPIO, so initialization is handled
+independently via the PWDN-controlled power cycle.
+
+The shared reset line is not used, so there is no cross-impact between
+the two cameras during initialization.
+
+> > +		DOVDD-supply = <&sw4_reg>;
+> > +		AVDD-supply = <&reg_2v8>;
+> > +		DVDD-supply = <&reg_1v5>;
+> 
+> -- 
+> Sashiko AI review  https://sashiko.dev/#/patchset/20260515111143.2980956-1-robby.cai@nxp.com?part=1
 
