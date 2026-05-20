@@ -1,263 +1,195 @@
-Return-Path: <devicetree+bounces-300799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OK/qLeLzDWoF5AUAu9opvQ
-	(envelope-from <devicetree+bounces-300799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:48:18 +0200
+	id YELxG3j0DWoF5AUAu9opvQ
+	(envelope-from <devicetree+bounces-300805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:50:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149765949B5
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6DB6594B87
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:50:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 359CA32AC79A
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 16:49:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7859E335AE97
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 16:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F44939C00B;
-	Wed, 20 May 2026 16:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D938636B059;
+	Wed, 20 May 2026 16:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VRtD7X3c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SXMjNnCs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5171356762;
-	Wed, 20 May 2026 16:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD20369D6E
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 16:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779295753; cv=none; b=IlXeFZOhFrbm+yENgUwaqMpG/a1ggPFhf8U57Qj6j+GEs8aoI705FbptqOYMe9zn6FroYX1kl+enM0BXGTUarlxNSHDEJiguVCPiptSevdtSdvirksot/YZ8WXUz5ZVZDBQdRymlC++w1MjxjmV8nPZBJTEtrbda0UCdWqv5r0I=
+	t=1779295823; cv=none; b=EnzUIDZ9quK1efwi2MBjSNXc9yoYvZxtI1TJjxjMUnjHBxP/+w8gM6PsTGJ4b+p2GEqXbo6/rQ+pkArNn7ZN94eusmEsiISdCflZ9QDKpQv9gdK0b+MrsPejtTMA2BStf28K8FZ/ahTF9809U/k8cS3PPQ8s8OQ59VXPENmfd+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779295753; c=relaxed/simple;
-	bh=IqFbB5E/mcqriC9G7m12Xanx0cKnvei5h0SH8wa6fN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gYlB0MtEk0YEeSEasUXz63Mz9GDMqTk9J2OL5e/ujvhgGB0G8ZS6hj0fv0laMbxB5YSGqLD0TyiWnTc6pL0arQtyX9Mrm9pWt4Qu9zK0Ium2kMNe9rhhlP4WgekfrXZmhTk9T1pDCrKCiUeeoF2TW7Z0oE/3kKSQ7YLowX6YmBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VRtD7X3c; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCD7C1F000E9;
-	Wed, 20 May 2026 16:49:06 +0000 (UTC)
+	s=arc-20240116; t=1779295823; c=relaxed/simple;
+	bh=4StO3GMn4Gxk9XTKt6uPC3P4PuxH61uGY6QVK/IFduQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HY/cbUGVF+ROcdktPL1TJ4h3U0Ig/uxFEY0fppqtSfwhaRmxyyuAsvfMmTEOjrEpCH4coN6p8WP1gIc315i1eOPYa8FmWJEMcvHtCEmaHYUWHPw7/wzqMeAYkldKA9sbGdMVZpo7QANIzY8+cadl3LVo9igxmwcjMh6wTIouaSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SXMjNnCs; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E501E1F00893;
+	Wed, 20 May 2026 16:50:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779295751;
-	bh=2EYGOyHOoy1RVuJWBWnb5bN4dRtWTtSSDwlqhTkXu7I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=VRtD7X3c3QzEtK90eKxbGHYpUFqgqd1tglBN9Y6o69TruAlm27IqMfMajz/YX5C65
-	 bVG+FFjHJmrdwKt/XjvGprimjp7JsTIbtU+CJzTwViR8/48hAJROJ82YmUdaTN6hvy
-	 1NYnqf+4nAUq8z50j3whNiKgpCIfR1YZt3HPlPVuiD/ehDXeQy0m6nqRTEYdIsEtgj
-	 fVZcg6NVwIpmvgT8+ru/7Qff6TKx3Epq4j8J0DH9EZjhnA2mWy/liVI+L5GYr9LsI2
-	 rWkzM4GTxJkB56Kl8y1B49f65+95zrsP9ZQ15b9PwY7bjZRkz75DF8SUVZbvk1t6EM
-	 aD/G0vV4H6SlA==
-Date: Wed, 20 May 2026 17:49:02 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
- dlechner@baylibre.com, jean-baptiste.maneyrol@tdk.com,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- andriy.shevchenko@intel.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V8 03/10] iio: imu: inv_icm42607: Add inv_icm42607 Core
- Driver
-Message-ID: <20260520174902.3e19117e@jic23-huawei>
-In-Reply-To: <20260518200526.458421-4-macroalpha82@gmail.com>
-References: <20260518200526.458421-1-macroalpha82@gmail.com>
-	<20260518200526.458421-4-macroalpha82@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1779295822;
+	bh=sfocF3u5HLfFiamdAfLSxEaZCOrKo/tdWFUpAkSfQi4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=SXMjNnCs5cPfn1p/rB1u3USNpbzfQm9eeNI6aIHoPK3462MbmcAX23OcJlrHSh29K
+	 +G3jzSOwB31wt9J45bm17EB3ScAmyj5AtV8MrBY2kdqRSX0uIwTZbn5Uul/4isX8mt
+	 46y+Q7FlCpNtIcBEBOe1pmS8C0DrodI/vWzRBz4IxS+3oKx5tTov3eeZOUQtkAQbAE
+	 WEUGemWkDbgdHEErGspOXIhXRWNmBWvkjftJHp9wcwMmPaSDx8f4J6knNaXh6cPGTy
+	 TFIy+r43qLRfjbJkGIvhsS+BU2ZelX8sqylQBzYtXMEfdxNTxm/areSSyNdz5fperF
+	 eNOKo+h/r+X1w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 4/8] nvmem: Add the Raspberry Pi OTP driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Gregor Herburger" <gregor.herburger@linutronix.de>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260520-rpi-otp-driver-v5-4-b26e5908eeac@linutronix.de>
+References: <20260520-rpi-otp-driver-v5-4-b26e5908eeac@linutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 20 May 2026 16:50:21 +0000
+Message-Id: <20260520165021.E501E1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300805-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300799-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 149765949B5
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: B6DB6594B87
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 18 May 2026 15:05:18 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Missing Validation / FORTIFY_SOURCE Panic
+- [High] Logic Error / Silent Data Loss on Read-Only OTPs
+--
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add the core component of a new inv_icm42607 driver. This includes
-> a few setup functions and the full register definition in the
-> header file.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Mainly the interrupt names thing - which is probably a case for
-a precursor fix for the existing binding.
+commit 2e3b6ccd5e0a968798b760a4875d946be03546f6
+Author: Gregor Herburger <gregor.herburger@linutronix.de>
 
-Otherwise really small stuff I'd not have bothered you with if we
-weren't already looking like we'll need a v9
+nvmem: Add the Raspberry Pi OTP driver
 
-Jonathan
+This patch introduces a new nvmem driver for accessing Raspberry Pi OTP
+registers. The registers are accessed via the videocore firmware interface,
+supporting both the customer OTP and the device specific private key OTP.
 
-> ---
->  drivers/iio/imu/inv_icm42607/inv_icm42607.h   | 332 ++++++++++++++++++
->  .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 197 +++++++++++
->  2 files changed, 529 insertions(+)
->  create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607.h
->  create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
-> 
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607.h b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> diff --git a/drivers/nvmem/raspberrypi-otp.c b/drivers/nvmem/raspberrypi-=
+otp.c
 > new file mode 100644
-> index 000000000000..6c5e7d9b08b7
 > --- /dev/null
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> +++ b/drivers/nvmem/raspberrypi-otp.c
 
-> +
-> +typedef int (*inv_icm42607_bus_setup)(struct inv_icm42607_state *);
-> +
-> +extern const struct regmap_config inv_icm42607_regmap_config;
-> +
-> +int inv_icm42607_core_probe(struct regmap *regmap, const struct inv_icm42607_hw *hw,
-Trivial but I'd wrap the line above after first ,
+[ ... ]
 
-Still prefer staying under 80 chars if it doesn't hurt readability and here
-it doesn't.
-
-> +			    inv_icm42607_bus_setup bus_setup);
-> +
-> +#endif
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
-> new file mode 100644
-> index 000000000000..b270d48335ba
-> --- /dev/null
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
-> @@ -0,0 +1,197 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (C) 2026 InvenSense, Inc.
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/irq.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-
-Give the includes another quick check. I'd expect at least
-dev_printk.h in here. There may be others missing to following
-the approximate include what you use approach preferred for kernel
-drivers.
-
-> +#include "inv_icm42607.h"
-
-> +/**
-> + *  inv_icm42607_setup() - check and setup chip
-> + *  @st:	driver internal state
-> + *  @bus_setup:	callback for setting up bus specific registers
-> + *
-> + *  Returns 0 on success, a negative error code otherwise.
-> + */
-> +static int inv_icm42607_setup(struct inv_icm42607_state *st,
-> +			      inv_icm42607_bus_setup bus_setup)
+> +static int rpi_otp_read(void *context, unsigned int offset, void *buf, s=
+ize_t bytes)
 > +{
-> +	const struct device *dev = regmap_get_device(st->map);
-> +	unsigned int val;
+> +	struct rpi_otp_priv *priv =3D context;
+> +	struct rpi_otp_header *fwbuf;
+> +	u32 count;
 > +	int ret;
 > +
-> +	ret = regmap_read(st->map, INV_ICM42607_REG_WHOAMI, &val);
+> +	count =3D bytes / 4;
+> +
+> +	fwbuf =3D kzalloc(struct_size(fwbuf, data, count), GFP_KERNEL);
+> +	if (!fwbuf)
+> +		return -ENOMEM;
+> +
+> +	fwbuf->start =3D cpu_to_le32(offset / 4);
+> +	fwbuf->count =3D cpu_to_le32(count);
+> +
+> +	ret =3D rpi_firmware_property(priv->fw, priv->read_tag, fwbuf,
+> +				    sizeof(struct rpi_otp_header) + bytes);
 > +	if (ret)
-> +		return ret;
+> +		goto out;
 > +
-> +	if (val != st->hw->whoami)
-> +		dev_warn(dev, "invalid whoami %#02x expected %#02x (%s)\n",
+> +	memcpy(buf, fwbuf->data, bytes);
 
-Can we tweak that to unknown whoami
+[Severity: High]
+If the firmware returns a partial read and reduces the value of fwbuf->coun=
+t,
+will this memcpy trigger a FORTIFY_SOURCE bounds violation?
 
-It might well be valid afterall!
+The rpi_otp_header struct uses __counted_by_le(count) for the data array. If
+the firmware alters the count during rpi_firmware_property, the dynamically
+evaluated object size of fwbuf->data will shrink.
 
-> +			 val, st->hw->whoami, st->hw->name);
-> +
-> +	ret = regmap_write(st->map, INV_ICM42607_REG_SIGNAL_PATH_RESET,
-> +			   INV_ICM42607_SIGNAL_PATH_RESET_SOFT_RESET);
-> +	if (ret)
-> +		return ret;
-> +
-There is some moaning here from sashiko. I think it's wrong but take a look.
+Continuing to copy the originally requested bytes could exceed the updated
+bounds and crash the kernel. Should the driver limit the copy size to the
+returned count or handle short reads as an error?
 
-> +	ret = regmap_read_poll_timeout(st->map, INV_ICM42607_REG_INT_STATUS,
-> +				       val, val & INV_ICM42607_INT_STATUS_RESET_DONE,
-> +				       INV_ICM42607_RESET_TIME_MS * 100,
-> +				       INV_ICM42607_RESET_TIME_MS * 1000);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "reset error, reset done bit not set\n");
-> +
-> +	ret = bus_setup(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_set_bits(st->map, INV_ICM42607_REG_INTF_CONFIG0,
-> +			      INV_ICM42607_INTF_CONFIG0_SENSOR_DATA_ENDIAN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_INTF_CONFIG1,
-> +				 INV_ICM42607_INTF_CONFIG1_CLKSEL_MASK,
-> +				 INV_ICM42607_INTF_CONFIG1_CLKSEL_PLL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return inv_icm42607_set_conf(st, st->hw->conf);
-> +}
+[ ... ]
 
-
-> +int inv_icm42607_core_probe(struct regmap *regmap, const struct inv_icm42607_hw *hw,
-> +			    inv_icm42607_bus_setup bus_setup)
+> +static int rpi_otp_probe(struct platform_device *pdev)
 > +{
-> +	struct device *dev = regmap_get_device(regmap);
-> +	struct inv_icm42607_state *st;
-> +	int irq;
-> +	int ret;
-> +
-> +	irq = fwnode_irq_get_byname(dev_fwnode(dev), "INT1");
+> +	struct device *dev =3D &pdev->dev;
+> +	struct nvmem_device *nvmem;
+> +	struct rpi_otp_priv *priv;
+> +	const struct rpi_otp_driver_data *data;
+> +	struct nvmem_config config =3D {
+> +		.read_only =3D false,
+> +		.word_size =3D 4,
+> +		.stride =3D 4,
+> +		.reg_read =3D rpi_otp_read,
+> +		.reg_write =3D rpi_otp_write,
+> +		.id =3D NVMEM_DEVID_NONE,
+> +	};
 
-Sashiko raises a valid point on this one.  The binding has interrupt-names as optional
-even if we have interrupts. The binding could document a default but doesn't. 
+[Severity: High]
+If the platform data specifies a read-only OTP region (like the device
+specific private key OTP) with a write_tag of 0, could this cause silent
+data loss during a write attempt?
 
-Can you check the other drivers sharing that binding and either 'fix' the binding
-or add a default - I'd guess INT1 - but this wouldn't be the first time a driver
-has gotten written against a board that wires INT2 only and that's there for
-the default choice.
+If a write is attempted, rpi_otp_write would pass a tag of 0 to
+rpi_firmware_property. Since tag 0 signifies RPI_FIRMWARE_PROPERTY_END,
+the firmware will immediately terminate property processing, ignore the
+payload, and return success.=20
 
-Note that sashiko's fallback is a bad idea if we don't have a default in the binding!
+This would mislead the NVMEM subsystem and userspace into thinking the write
+succeeded when the data was actually discarded. Could the driver conditiona=
+lly
+set .read_only =3D true and omit .reg_write if data->write_tag is 0?
 
-
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "Unable to get INT1 interrupt\n");
-
-
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520-rpi-otp-dr=
+iver-v5-0-b26e5908eeac@linutronix.de?part=3D4
 
