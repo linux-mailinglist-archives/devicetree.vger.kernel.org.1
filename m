@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-300943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300944-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cD29FzFHDmoM9gUAu9opvQ
-	(envelope-from <devicetree+bounces-300943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:43:45 +0200
+	id uIIcOjJHDmoM9gUAu9opvQ
+	(envelope-from <devicetree+bounces-300944-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:43:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF21D59CDF9
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB93D59CE02
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E9F88309CC7C
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 23:43:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EE635302A4F3
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 23:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15253A3E9C;
-	Wed, 20 May 2026 23:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75373A3E9C;
+	Wed, 20 May 2026 23:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZFGHAOwG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dUfmJUmO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612A73A453F
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 23:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554253CBE6B
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 23:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779320596; cv=none; b=EhO/pJKPI3VKnc1++Vt4tqbli7D9igWIC7s4vJRRh94VIissklp9EO03nDGB2aj8gFqkWc1K+gAf3FL5XQfhzqPB9AaZj+wAkf+K0ozK3raXvDfEAlWhjtd9toeJYXDDd2Oe42qM14+Vqejsl6qTRJZqdLz5ozrX9CToRkXWTKU=
+	t=1779320597; cv=none; b=ovbP+KgF0JV34qGrN+5vJNmo+9POWbV5dIWCJA2uRdBfpT+E2K2vG4pGIrRWMdtnNM9UFWsSvwY0Z+V7pHdIv6ohiv0ougIOYbuQqE5U2jEe0BNDYzO688RgRT8yYXbFqqxc4rjEA3OsFQSUAfBIj8z3zaNnm/cZ75Nyf+FFgVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779320596; c=relaxed/simple;
-	bh=QCQ1mswDZYOd714Qbd0tB+AOwBGnQn0w4CRVgW/9eRc=;
+	s=arc-20240116; t=1779320597; c=relaxed/simple;
+	bh=ecD8vYC/JmsD2rJ/qICGW4vmvMNLJvHvpveFDLaUkVQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Ke7Za7ur6HL+tlSlb7nt/+DMCNBmysNSReXucADwbnYFGxf8sE9X1KZAbJomRWrVTHSuLyc1MPR33Z0e+Ng9/p/pbjiH+jXwT2QguQlbOa2bx7XpLOVlUi7cVGql4i6TPdHmr7tFTwN+ItViJTLn2/G1MfoeYnvegETKSRodlHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZFGHAOwG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 179711F000E9;
+	 Message-Id; b=Z4XMhLaC6KsoUW+KoSEY3EYNhnRx6L3kJQc9J+OMNykWo6xkg2+f3rMYkAiFT0nYfatl/282oACg7Dcy8jpbv9l114tFdm+VCJImgit4HTeTnRPbkJfxwd++1n8y6p6Y8gK/ttIVhtSS4vAO69OGcVycbCZ1I0DrJ2SV2hu6p84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dUfmJUmO; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5FE81F00A39;
 	Wed, 20 May 2026 23:43:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1779320595;
-	bh=gt7DEeArdQlgzhvjI5nSWFrZ2OM+npyCe/dtRPeb4f8=;
+	bh=vcwqITOGdv/zb1umYn+dUTFzYdxjafHeRjesZkjsSMo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ZFGHAOwG8H/5rZseUqeoLD7s2UklXC+kiCXIaCiqZNWC7lo8rMEm8DNWWndSvWwVd
-	 v4AstiiIbQhJ0ksSvAz+zN3OgIeRAUUkyQ5I81Y6P0tDjNtvFdUyv3Mku+xFGq5Yi+
-	 EbNPh2P0stRSz5O7q8jIFTZoAvzR7H+U4zU5EDd9URsY4YK7pJshP5G8MSja7G6Xqq
-	 hHPr8yyKGtyWfnmkSZ/R3u0m0rDZPK8T4YTl3sLv+JaJWoyUKTZo0NOYx91MY2cgTO
-	 gCPU4d39GEw+/5mG2znawnVvDEXcvuOrnmCuyW9lKf6UjcSmf3lbtE1kl3ZhjfaiKH
-	 Xv4QfstHShF8Q==
+	b=dUfmJUmOvqe6YtzTEGMb1Thinm/a8LSvuNlUOuo3rooldIrlh+5Fs3KtZ6zBL3emb
+	 lHXpchagcCc9MuUvs10dwhlgm1HeBmnzH2GnipwSzN0Su6KvEMF1oWgJ2zOsq949J8
+	 4QUaDuUTepsPfLRgg2nDbvIIZ+dhDB9QJ3ItPGeCPUqvRep0ZRnRdrN6/cgBBx0yCs
+	 8AAcbBH9gDlPD+UxMBsMGxrskj8x1mz8n7JGKG0Zd05u1QluDcwxAXo9XfPoxQlXIB
+	 TJ/Cjs0M2+KjE1QBvGP2R1+NbHPsFxB3mbEFcDua8dkruF4f/KY5WwgnVQ/EPs/Du1
+	 Y/4uPQacw2Wzw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 06/28] media: rockchip: rga: fix too small buffer
- size
+Subject: Re: [PATCH v7 20/28] media: rockchip: rga: support external iommus
 Reply-To: sashiko-reviews@lists.linux.dev
 To: =?utf-8?b?U3ZlbiBQw7xzY2hlbA==?= <s.pueschel@pengutronix.de>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260521-spu-rga3-v7-6-3f33e8c7145f@pengutronix.de>
-References: <20260521-spu-rga3-v7-6-3f33e8c7145f@pengutronix.de>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260521-spu-rga3-v7-20-3f33e8c7145f@pengutronix.de>
+References: <20260521-spu-rga3-v7-20-3f33e8c7145f@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 23:43:14 +0000
-Message-Id: <20260520234315.179711F000E9@smtp.kernel.org>
+Date: Wed, 20 May 2026 23:43:15 +0000
+Message-Id: <20260520234315.A5FE81F00A39@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,142 +70,121 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300943-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-300944-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,pengutronix.de:email,sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: CF21D59CDF9
+X-Rspamd-Queue-Id: AB93D59CE02
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [Critical] Teardown asymmetry and Use-After-Free during device unbind due=
- to premature resource release.
-- [Critical] Use-After-Free of the main rockchip_rga structure due to devre=
-s lifecycle mismatch.
-- [High] DMA API violation and potential out-of-bounds memory invalidation =
-on command buffer.
+- [High] An off-by-one error in `fill_descriptors()` causes a heap out-of-b=
+ounds write when the number of scatterlist pages exceeds the allocated desc=
+riptor array capacity.
 --
 
-commit f24ab77ddd82ca43a87c0f75d653428b04cd703c
+commit 2e365bb7afaa0f34bfb42a3262b5eb4f962bcac6
 Author: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
-Subject: media: rockchip: rga: fix too small buffer size
 
-This commit fixes the RGA_CMDBUF_SIZE macro to represent the command
-buffer size in bytes rather than in number of u32 elements. It adjusts
-the memset() in rga_cmd_set() to use the correct byte size.
+media: rockchip: rga: support external iommus
+   =20
+In preparation for the RGA3 add support for external iommus. This is a
+transition step to just disable the RGA2 specific mmu table setup code.
+Currently a simple rga_hw struct field is used to set the internal iommu.
 
-> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media=
-/platform/rockchip/rga/rga-hw.c
-> index 43ed742a16492..d1618bb247501 100644
-> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
-> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-> @@ -414,7 +414,7 @@ static void rga_cmd_set(struct rga_ctx *ctx,
->  {
->  	struct rockchip_rga *rga =3D ctx->rga;
+> diff --git a/drivers/media/platform/rockchip/rga/rga-buf.c b/drivers/medi=
+a/platform/rockchip/rga/rga-buf.c
+> --- a/drivers/media/platform/rockchip/rga/rga-buf.c
+> +++ b/drivers/media/platform/rockchip/rga/rga-buf.c
+[ ... ]
+> @@ -136,17 +140,21 @@ static int rga_buf_prepare(struct vb2_buffer *vb)
+>  	for (i =3D 0; i < vb->num_planes; i++) {
+>  		vb2_set_plane_payload(vb, i, f->pix.plane_fmt[i].sizeimage);
 > =20
-> -	memset(rga->cmdbuf_virt, 0, RGA_CMDBUF_SIZE * 4);
-> +	memset(rga->cmdbuf_virt, 0, RGA_CMDBUF_SIZE);
+> -		/* Create local MMU table for RGA */
+> -		n_desc =3D fill_descriptors(&rbuf->dma_desc[curr_desc],
+> -					  rbuf->n_desc - curr_desc,
+> -					  vb2_dma_sg_plane_desc(vb, i));
+> -		if (n_desc < 0) {
+> -			v4l2_err(&ctx->rga->v4l2_dev,
+> -				 "Failed to map video buffer to RGA\n");
+> -			return n_desc;
+> +		if (rga_has_internal_iommu(ctx->rga)) {
+> +			/* Create local MMU table for RGA */
+> +			n_desc =3D fill_descriptors(&rbuf->dma_desc[curr_desc],
+> +						  rbuf->n_desc - curr_desc,
+> +						  vb2_dma_sg_plane_desc(vb, i));
 
 [Severity: High]
-This isn't a bug introduced by this patch, but I noticed the driver
-allocates the command buffer using dma_alloc_attrs() with
-DMA_ATTR_WRITE_COMBINE, yet it calls dma_sync_single_for_device() later
-in this function:
+This is a pre-existing issue, but does fill_descriptors() contain an
+off-by-one error that can lead to a heap out-of-bounds write?
 
-	/* sync CMD buf for RGA */
-	dma_sync_single_for_device(rga->dev, rga->cmdbuf_phy,
-		PAGE_SIZE, DMA_BIDIRECTIONAL);
+Looking at fill_descriptors() in drivers/media/platform/rockchip/rga/rga-bu=
+f.c:
 
-The DMA API prohibits calling streaming sync functions on coherent or
-write-combined allocations.
+static ssize_t fill_descriptors(struct rga_dma_desc *desc, size_t max_desc,
+                struct sg_table *sgt)
+{
+    ...
+    for_each_sgtable_dma_page(sgt, &iter, 0) {
+        if (n_desc > max_desc)
+            return -EINVAL;
+        addr =3D sg_page_iter_dma_address(&iter);
+        tmp->addr =3D lower_32_bits(addr);
+        tmp++;
+        n_desc++;
+    }
+    ...
+}
 
-Because the memory is mapped as write-combined, the implicit write barrier
-provided by writel() when writing to the command register should be suffici=
-ent
-to drain the write buffers, making the sync unnecessary.
+When n_desc equals max_desc, the bounds check (n_desc > max_desc) evaluates
+to false. This allows the code to write to tmp->addr, which is one element
+past the end of the allocated descriptor array.
 
-Additionally, the sync size is hardcoded to PAGE_SIZE (4096 bytes) instead
-of the actual buffer size. If the system allocator packs small allocations
-into a sub-page coherent pool, syncing 4096 bytes could cause out-of-bounds
-cache invalidation for adjacent memory objects.
+Since V4L2 allows userspace to queue oversized buffers, a scatterlist might
+contain more pages than the calculated descriptor capacity. If the oversized
+buffer has exactly max_desc + 1 pages, fill_descriptors() could silently wr=
+ite
+out of bounds and potentially corrupt adjacent kernel memory.
 
-Could we remove this unnecessary sync or switch to a proper streaming DMA
-allocation?
-
-> =20
->  	rga_cmd_set_src_addr(ctx, src->dma_desc_pa);
->  	/*
-
-Additionally, while reviewing the driver, I noticed a couple of other
-pre-existing lifetime and teardown issues:
-
-[Severity: Critical]
-This is a pre-existing issue, but I noticed a potential use-after-free
-during device unbind due to premature resource release.
-
-In rga_remove(), the driver tears down core resources by calling
-v4l2_m2m_release(rga->m2m_dev) before video_unregister_device(rga->vfd).
-
-Because the video device is still registered, user space could issue an ioc=
-tl
-(e.g., VIDIOC_QBUF) concurrently.
-
-The V4L2 core routes this to the m2m handlers, which would dereference the
-already-freed m2m_dev.
-
-Furthermore, the hardware isn't stopped and the devres-managed IRQ isn't
-disabled during teardown. If an active hardware job completes after
-rga_remove() returns, the interrupt handler will access freed memory.
-
-Should the driver unregister the video device and halt the hardware before
-releasing the m2m context?
-
-[Severity: Critical]
-This is a pre-existing issue, but there appears to be a use-after-free
-vulnerability related to the devres lifecycle of the main rockchip_rga
-structure.
-
-The core device structure (struct rockchip_rga) is allocated using
-devm_kzalloc(), which tightly binds its lifetime to the platform device.
-
-However, the V4L2 character device can be held open by user space
-independently of the hardware's bind/unbind lifecycle.
-
-If the platform device is unbound, rga_remove() executes and the devres
-manager frees the rockchip_rga structure immediately.
-
-When user space later closes its file descriptor, the V4L2 release callback
-(rga_release()) is invoked and attempts to acquire a mutex
-(mutex_lock(&rga->mutex)) embedded within the already-freed structure.
-
-Should the core structure's lifetime be decoupled from devres and instead
-be reference-counted?
+> +			if (n_desc < 0) {
+> +				v4l2_err(&ctx->rga->v4l2_dev,
+> +					 "Failed to map video buffer to RGA\n");
+> +				return n_desc;
+> +			}
+> +			dma_addrs[i] =3D curr_desc << PAGE_SHIFT;
+> +			curr_desc +=3D n_desc;
+> +		} else {
+> +			dma_addrs[i] =3D vb2_dma_contig_plane_dma_addr(vb, i);
+>  		}
+> -		dma_addrs[i] =3D curr_desc << PAGE_SHIFT;
+> -		curr_desc +=3D n_desc;
+>  	}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-spu-rga3-v=
-7-0-3f33e8c7145f@pengutronix.de?part=3D6
+7-0-3f33e8c7145f@pengutronix.de?part=3D20
 
