@@ -1,187 +1,159 @@
-Return-Path: <devicetree+bounces-300623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aN4zCNGqDWox1QUAu9opvQ
-	(envelope-from <devicetree+bounces-300623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:36:33 +0200
+	id iLOFFr+nDWpr1AUAu9opvQ
+	(envelope-from <devicetree+bounces-300607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:23:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D7E58DCCA
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:36:32 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C32EE58D8F8
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:23:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CE8413009884
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:36:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3BE24308FFA2
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394653D34AC;
-	Wed, 20 May 2026 12:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D333D7D82;
+	Wed, 20 May 2026 12:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpBHBZ8/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b4yXqtwV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0620B233946;
-	Wed, 20 May 2026 12:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C7A3D7A03
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 12:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779280579; cv=none; b=HeRSXaSPMiJzePenSt+IqItWlGJb05982YgImGChIbqv3jqYDjZNB+H+ZMNVuQl9BOj+fBQgpBJe4sehXdJ8bmMCjKrXiC7Jyrzv3Oh6qE3LMhP4POxz6THNMit5JapXv2TEtIbNvJ9O4xqYjaPt7I5E8LpvQQeUM4R+6GegbK8=
+	t=1779279541; cv=none; b=nzQDvttyg5cDHwBS0eNFGIqID0Q5GuW0FNt/QGQPDQRVsWhus2XTWuDglzShnGy6KOgj4gpd4iXM2zt73TdinZnwMYRua3eKplJwXLr5xMJCv0Nm39I2oGOe4XHQggCuNb56rCxtJZAlZXybMGk1DUcZ1qnkyhOGcbrkX684qHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779280579; c=relaxed/simple;
-	bh=nt8lCm2RpzOX/pBw+tRqEoSwrBELMRMCqGwCuE3SdTI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jojHL6KtKBggvl6h+q3qTXF9i8eUsk2/Z698xeTgCodFLa/pcsi4vtFeEnI1yspMI2fTrH+b9yo2a7gGmYh+tO4SVVv3y+H9m8Xj9L6YKiziIUoZvaAq48DCzxuZymueYRgs/Tt+veOPr5seb0pbNbDAo08M8UBnWTRATvF/rHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpBHBZ8/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CC211F000E9;
-	Wed, 20 May 2026 12:36:15 +0000 (UTC)
+	s=arc-20240116; t=1779279541; c=relaxed/simple;
+	bh=taDXSlOb7ejwRT0H5RgT2/xaqf6RPnnCVMosam40/zE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Sr34H/WFNtp9gDt7K/3ATIQArEoGMjWLXVJzqxq5V+k0obHD6+KMxlArInqxX4KrnQ+S9hssW3FQBGNjY9gcLyjhMmkarjyvF4VbV1ku4Hh+VSNDOFI1ZU0dGr9zF6vpfh/vWHXH7hnQss4lfQCbjZgRTS3KW+vTYhjvW6GkYtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4yXqtwV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50EDB1F000E9;
+	Wed, 20 May 2026 12:18:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779280577;
-	bh=RQPKtJS8Fb1xlnROffPpHMMEw16wTiSxp/gZlJ/z1B4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=EpBHBZ8/rYrJ1TwrxBe8JqYMbiirC3CAteLgOHOAOKonYznKJvDKeVYBeK2cwX/d/
-	 Qegb0BXj2nIOtBYO4Jdx2/M2hXNvtenPbxosboqUgmJbSv39UJeIn0eUwDNS3kIA04
-	 ZYpOlBblWAw25NFtyvge6fdpFZD3915VNN66q9b8R0+2kxXg/hovy4FU6PQ3Hc+KA5
-	 BHKjC92f+FShK0pi50qlPA16TivsTEmhLrTD679vn1NWnFeOTdaRdaZxUk+sa2Z9bR
-	 vACDnhg0RmRLkFfdkSzfzuqJQC9134o+olpxus7m1PN8NaTehQKEisxA2iD+LU/VPJ
-	 lKf+t/zYorADA==
-Date: Wed, 20 May 2026 20:17:07 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] spi: dt-bindings: cdns,xspi: add sdma-io-width
-Message-ID: <ag2mQzz0tBQBmc4O@xhacker>
-References: <20260511031732.3199-1-jszhang@kernel.org>
- <20260511031732.3199-2-jszhang@kernel.org>
- <20260515-expert-devious-cricket-faff56@quoll>
- <agz0kDsQBaeQPPQ4@xhacker>
- <21d30826-bfe6-44cd-8c89-c1986f539e48@kernel.org>
- <ag2fjCX0DuSVxubv@xhacker>
- <14719378-7bf5-4688-81e9-bccedf618d18@kernel.org>
+	s=k20260515; t=1779279540;
+	bh=OpkxJt8I5vWa7467XgL3oUdWKmEM0M9cmnAKZ8LbELA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=b4yXqtwVZjLsxMFGqSzZxdPE1zyC0gtPpaZXg+UHtB1o4ktK9uPMkOx8gbRJzBgrF
+	 YAAIZINytrvvSw2wo4TP0vikaChWpZyqM7ZTzG65Na+/z+M8oOubV2FstkvREAxTC3
+	 3IBQ/OUPsztN/RwTVlSeRWWRxptoGM67NiD0kQdyEKn7rO1olFlr324a4FkvUPCQH0
+	 vy2dHpPH/aUcEUI4NzOh+Z6IZFgkw9E7PGKDfcihEh6zuFQvvKZLjlIQe9m94Jodgb
+	 3J9W25Pb1L4dQm2erR0Gn8kh5WCGf6yrIKKEtylNZoeWWoa7pLxA+38Litye63iVoC
+	 kyg6o2zulegPA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: ti: Update audio-refclk binding and
+ j721e system controller
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Moteen Shah" <m-shah@ti.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260520115603.2662930-2-m-shah@ti.com>
+References: <20260520115603.2662930-2-m-shah@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 20 May 2026 12:18:59 +0000
+Message-Id: <20260520121900.50EDB1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <14719378-7bf5-4688-81e9-bccedf618d18@kernel.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300607-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300623-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jszhang@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 07D7E58DCCA
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: C32EE58D8F8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, May 20, 2026 at 02:16:21PM +0200, Krzysztof Kozlowski wrote:
-> On 20/05/2026 13:48, Jisheng Zhang wrote:
-> > On Wed, May 20, 2026 at 09:09:55AM +0200, Krzysztof Kozlowski wrote:
-> >> On 20/05/2026 01:38, Jisheng Zhang wrote:
-> >>> On Fri, May 15, 2026 at 10:00:50AM +0200, Krzysztof Kozlowski wrote:
-> >>>> On Mon, May 11, 2026 at 11:17:31AM +0800, Jisheng Zhang wrote:
-> >>>>> The cdns xspi controller SDMA data port may support wider I/O width.
-> >>>>> Wider I/O width can benefit performance. A simple test with QSPI nor
-> >>>>> flash on one arm64 platform:
-> >>>>>
-> >>>>> 1 byte io width (default):
-> >>>>>  # dd if=/dev/mtdblock0 of=/dev/null bs=8192 count=1000
-> >>>>>  1000+0 records in
-> >>>>>  1000+0 records out
-> >>>>>  8192000 bytes (7.8MB) copied, 1.368735 seconds, 5.7MB/s
-> >>>>>
-> >>>>> 4 bytes io width:
-> >>>>>  # dd if=/dev/mtdblock0 of=/dev/null bs=8192 count=1000
-> >>>>>  1000+0 records in
-> >>>>>  1000+0 records out
-> >>>>>  8192000 bytes (7.8MB) copied, 1.088787 seconds, 7.2MB/s
-> >>>>>
-> >>>>> Improved by 26.3%!
-> >>>>>
-> >>>>> Add dt binding for sdma-io-width.
-> >>>>>
-> >>>>> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/spi/cdns,xspi.yaml | 6 ++++++
-> >>>>>  1 file changed, 6 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> >>>>> index 38a5795589de..1fd4b6dfd417 100644
-> >>>>> --- a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> >>>>> @@ -40,6 +40,12 @@ properties:
-> >>>>>    interrupts:
-> >>>>>      maxItems: 1
-> >>>>>  
-> >>>>> +  sdma-io-width:
-> >>>>> +    description: Slave DMA data port I/O width (in bytes)
-> >>>>
-> >>>> Waht is SDMA? What is Slave DMA? The same?
-> >>>>
-> >>>> Why this cannot be deduced from the compatible? DMA is fixed per
-> >>>> platform and SDMA do not sound like SPI device (so slave in older
-> >>>> terminology) property.
-> >>>
-> >>> in cdns xspi, sdma == slave dma. It can be read by any master, such
-> >>> as DMA engine or CPU. Its purpose and usage is similar as the data
-> >>> reg in other spi controllers, e.g the DW_SPI_DR in dw spi. 
-> >>
-> >> You did not really answer the questions.
-> >>
-> > 
-> > If you mean "Why this cannot be deduced from the compatible?", I think
-> > the slave dma port is part of the cdns xspi, so its io width belongs
-> > to xSPI device property.
-> > From another side, we have seen such property in other drivers such as
-> > the reg-io-width for the dw spi DW_SPI_DR port io width.
-> 
-> So you mean it depends on SPI device? Then why spi-peripheral-props is
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Standard `clock@...` node names for the audio reference clock wi=
+ll fail validation because they will match the existing SERDES control patt=
+ern in `ti,j721e-system-controller.yaml`.
+--
 
-Nope, it depends on the spi controller itself.
+commit e99145dc81945477b02ec4f36bbd799351ed4236
+Author: Moteen Shah <m-shah@ti.com>
 
-> not applicable here?
-> 
-> If this is not bus width, but DMA-something, is not really then SPI
-> device dependent, but rather DMA controller limitation, so either
+dt-bindings: ti: Update audio-refclk binding and j721e system controller
 
-The "sdma" name is a bit misleading but that's from the hw. It's
-a data io port in fact. Any SPI controller has this data io reg or
-port. It's not DMA controller at all. IMHO, what io width
-may be supported is determined by the setting during IP configuration. 
+This commit adds ti,j721s2-audio-refclk as a supported compatible string
+in the ti,am62-audio-refclk binding. It also extends the
+ti,j721e-system-controller clock-controller@ child pattern to accept
+audio-refclk schemas alongside ehrpwm-tbclk.
 
-So from this point of view, is it SPI controller property?
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-con=
+troller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-con=
+troller.yaml
+> index f3bd0be3b279f..364be49f8c7c7 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller=
+.yaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller=
+.yaml
 
-> deducible from compatible or something else is missing here.
-> 
-> Argument that some drivers do that is obviously wrong, so I am jumping
-> there.
-> 
-> Best regards,
-> Krzysztof
+[ ... ]
+
+> @@ -53,9 +53,11 @@ patternProperties:
+> =20
+>    "^clock-controller@[0-9a-f]+$":
+>      type: object
+> -    $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
+> +    oneOf:
+> +      - $ref: /schemas/clock/ti,am62-audio-refclk.yaml#
+> +      - $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
+>      description:
+> -      Clock provider for TI EHRPWM nodes.
+> +      Clock provider for TI EHRPWM or Audio Reference Clock nodes.
+
+[Severity: Medium]
+Does placing the audio reference clock schema under the
+clock-controller@... pattern force device tree authors to use that specific
+node name to pass validation?
+
+In ti,j721e-system-controller.yaml, the ^clock@[0-9a-f]+$ pattern is strict=
+ly
+bound to the SerDes control schema (ti,am654-serdes-ctrl.yaml).
+
+If an author attempts to use the standard clock@... naming as demonstrated =
+in
+the ti,am62-audio-refclk.yaml example, does the node mistakenly trigger the
+SerDes schema validation and fail, forcing an inconsistency in generic node
+naming conventions?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520115603.2662=
+930-1-m-shah@ti.com?part=3D1
 
