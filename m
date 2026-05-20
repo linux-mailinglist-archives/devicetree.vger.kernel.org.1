@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-300442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300444-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EO/dIkF+DWosyAUAu9opvQ
-	(envelope-from <devicetree+bounces-300442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:26:25 +0200
+	id UCAFHGF4DWqGxwUAu9opvQ
+	(envelope-from <devicetree+bounces-300444-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:01:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89BB58ABD1
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:26:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8DB58A506
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:01:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE56C3062957
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 08:59:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 284A9304D9F1
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 08:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BBF3B2FE6;
-	Wed, 20 May 2026 08:59:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BADE3A545A;
+	Wed, 20 May 2026 08:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pg4j4NDi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j3gbwJ+C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3F439C00D
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 08:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F257F3A3E74
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 08:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779267575; cv=none; b=kCjl0rWPvDUPvKi1nuFIsUNDBQYv+3F0Ih2Aj0vV3FfWQBiEX2yKW/WJcvAHXfRZIjMWsSGzwCDN7eQlInL/W5U+FNDv/l3ac6mf+Yg3A8O3V7Ek21vXS8kuAwDEuxRimIIPvw8QiN7/yEM2CmBprJBsS66ySu5/nDqk6edK1Lg=
+	t=1779267578; cv=none; b=Gu/5eDRt+lsUJCawTITDAdMWU84yGQb5h1UZgMnOjnPuIaRQElLei8DshWSLHJnWtMa6eYMqopBX/OFl7hVOZd+njTDA350+csAX928fknfJ8NFvHcIk9uVLDk/vkZPLtVGHxgjbfm8+XN+9WhJ7Xs4xiZ+dPwVGdG/U9r2ihIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779267575; c=relaxed/simple;
-	bh=ALVPyjs2Yxz8nNxYKSL+tPFeEC9NZ92kfG1INWfibxI=;
+	s=arc-20240116; t=1779267578; c=relaxed/simple;
+	bh=XxfBcCgX8ANUjLz6RbBA9rHyYpdNyry359ccbsJ2hpU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Qpu8vohwmk3gnr/tlABFV16YTX/iYcw0tUU8SADqfmMP5tBVlzXuyGBF3Q7JE1vWzEQHGR4jK3se+suSSawNM8lwBYuVqFVQs6LlVpiiYap/pyuEoPSw/06t+s785+axWcAH4TmR8BNrSKNzLQf0I6f5tGypHfBGoXmjQ2RtgWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pg4j4NDi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9473C1F000E9;
-	Wed, 20 May 2026 08:59:32 +0000 (UTC)
+	 Message-Id; b=DxafimstXZbgURrWbrLtzsACWH5X4tvNo5wMYVsOumjNzYn6dI4vdrX4ckvAGMDUIctOS/fq1aHOu1m3iGu1sp7gIrUyVa3beuDsVDWKkFj4CefrGwt60gQ/UrbJ92XvkrkpGty77YvkwSJfw7bl07Vsl7RwVAeM6fg7F1L3dRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j3gbwJ+C; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C009F1F00893;
+	Wed, 20 May 2026 08:59:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779267572;
-	bh=eMa8RVgH1cIOC4Z2AmJZWsVxO5KdtkjuQCWAMuNISkc=;
+	s=k20260515; t=1779267573;
+	bh=lN+Gl8AcYxA36IokVmiov3/3l8Tgedi3oR63xb7iN7c=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Pg4j4NDil6K9IxQ2POB8GgpSP7LH1txwKqKGaseA5nKo5Rf0zJxpgyHlL9z3ZF4OO
-	 o+io71ENwaJFBc529dkCyZ59gM3qACu2ptmkD3lacf7rprbyQTvDc0KdoWnETEsFf/
-	 td6+9jqP4+Bl3/LGHCtTbNDST1qS0qERMzEbQ0IOMi7x8rzIfig+rMySmG5ZMmUANw
-	 4QYon3Sf++agYh+53Mbr3ZcEE7JkRYNLYHP5hQ/8R4fb/y/cGWnCAeJrTVUQ5y5HKI
-	 r/lgg3YD/nEaLJurOUpg6zqtS/lk1nDGGqvuNSmfb2yb1/ezSErb+1gNGAXVRZPosz
-	 spG/Xui+GYnhg==
+	b=j3gbwJ+C2QByDn89f3DQSaYxrJJarb/F52w8hzQPSzjKqoU2ZWWFQXGUGJ134tPls
+	 4feh15jiH6RPpZ0GYJHrb8LqYdKSxOZAgOflx9YDmfBxOvxEGkFsFh4DyCEwmbzoqz
+	 aFQ/z1ENqnYKoGrsRwPHmr0vGYoGxdH6jRdzWX5UGV7889bJj86Jmqe2nrWtUPy3Nj
+	 zRv8E3Ogs95Lkjch0w80t3ksvAZU2fXpmDT0hFfWHCtbljixxFBZVaxKcZ6tqV9Hsb
+	 9JiXMJ0e6PQtUl029WhJUaqHXKNFt39Fr2eIzY9cie3Qln1pxGCo42ZcqyUirXBQai
+	 xaZG6RrrqheEw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v8 02/10] net: airoha: Introduce airoha_gdm_dev
- struct
+Subject: Re: [PATCH net-next v8 09/10] net: airoha: Introduce WAN device
+ flag
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Lorenzo Bianconi" <lorenzo@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260519-airoha-eth-multi-serdes-v8-2-6bd70e329df6@kernel.org>
-References: <20260519-airoha-eth-multi-serdes-v8-2-6bd70e329df6@kernel.org>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260519-airoha-eth-multi-serdes-v8-9-6bd70e329df6@kernel.org>
+References: <20260519-airoha-eth-multi-serdes-v8-9-6bd70e329df6@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 08:59:32 +0000
-Message-Id: <20260520085932.9473C1F000E9@smtp.kernel.org>
+Date: Wed, 20 May 2026 08:59:33 +0000
+Message-Id: <20260520085933.C009F1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,105 +66,152 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300442-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300444-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: E89BB58ABD1
+	RSPAMD_EMAILBL_FAIL(0.00)[sashiko-reviews.lists.linux.dev:query timed out,lorenzo.kernel.org:query timed out];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid]
+X-Rspamd-Queue-Id: 5C8DB58A506
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] Potential deadlock in `airoha_update_hw_stats()` due to using `spi=
-n_lock()` instead of `spin_lock_bh()`.
+- [High] Hardware CPU port mapping overwrite when multiple devices share a =
+GDM port.
+- [High] Strict probe-order dependency leads to hardware misconfiguration a=
+nd multiple WAN devices.
+- [Medium] Global hardware MAC filter overwrite for multiple LAN devices.
 --
 
-commit 6823c137925a562390270eb1ce7967caaa011b7b
+commit 8a565b44990bb31355dea04fc03116c38aa783db
 Author: Lorenzo Bianconi <lorenzo@kernel.org>
 
-net: airoha: Introduce airoha_gdm_dev struct
+net: airoha: Introduce WAN device flag
 
-This commit introduces the airoha_gdm_dev struct to collect net_device rela=
-ted
-info, accommodating future support for connecting multiple external SerDes =
-to
-GDM3 or GDM4 ports via a hardware arbiter.
+This commit introduces a WAN flag to specify if a given device is used to
+transmit or receive WAN or LAN traffic. It updates the initialization path
+to select the proper QDMA and MAC address registers based on this role.
 
 > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ether=
 net/airoha/airoha_eth.c
-> index 5a027cc7ffcb1..5335271ea8654 100644
+> index 15ad5a7edd439..328f94fef2e28 100644
 > --- a/drivers/net/ethernet/airoha/airoha_eth.c
 > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+[ ... ]
+> +static void airoha_dev_set_qdma(struct airoha_gdm_dev *dev)
+>  {
+>  	struct airoha_eth *eth =3D dev->eth;
+>  	int i;
+> =20
+>  	/* QDMA0 is used for lan ports while QDMA1 is used for WAN ports */
+>  	dev->qdma =3D &eth->qdma[!airoha_is_lan_gdm_dev(dev)];
+>  	dev->dev->irq =3D dev->qdma->irq_banks[0].irq;
+> +
+> +	for (i =3D 0; i < eth->soc->num_ppe; i++)
+> +		airoha_ppe_set_cpu_port(dev, i, airoha_get_fe_port(dev));
+> +}
+
+If multiple devices share a physical GDM port, and the first initialized
+device assumes the WAN role, it will set the hardware per-physical-port
+register to route inbound traffic to the WAN QDMA.
+
+If a second device then initializes on the same physical port, it will
+default to the LAN role.
+
+Could this second initialization silently overwrite the previous hardware
+mapping since the physical port is shared, effectively routing all traffic
+to the LAN QDMA and starving the WAN device?
 
 [ ... ]
-
-> @@ -1877,10 +1888,11 @@ static int airoha_dev_init(struct net_device *dev)
->  	return 0;
->  }
-> =20
-> -static void airoha_dev_get_stats64(struct net_device *dev,
-> +static void airoha_dev_get_stats64(struct net_device *netdev,
->  				   struct rtnl_link_stats64 *storage)
->  {
-> -	struct airoha_gdm_port *port =3D netdev_priv(dev);
+> +static int airoha_dev_init(struct net_device *netdev)
+> +{
 > +	struct airoha_gdm_dev *dev =3D netdev_priv(netdev);
 > +	struct airoha_gdm_port *port =3D dev->port;
->  	unsigned int start;
 > =20
->  	airoha_update_hw_stats(port);
+>  	switch (port->id) {
+>  	case AIROHA_GDM3_IDX:
+> +	case AIROHA_GDM4_IDX: {
+> +		struct airoha_eth *eth =3D dev->eth;
+> =20
+> +		/* GDM2 supports a single net_device */
+> +		if (eth->ports[1] && eth->ports[1]->devs[0])
+> +			break;
 
-This isn't a bug introduced by this patch, but could this lead to a deadloc=
-k?
+Is there a strict probe-order dependency for these interfaces?
 
-Because airoha_dev_get_stats64() is registered as the ndo_get_stats64 callb=
-ack,
-it can be called from both process context (e.g., via user-space netlink du=
-mps)
-and software interrupt context (BH) (e.g., via bonding or teaming drivers).
+If GDM3 or GDM4 is probed before GDM2, eth->ports[1]->devs[0] will be NULL.
+This leads GDM3/GDM4 to assume GDM2 is inactive, take the WAN role, and for=
+ce
+GDM2 into loopback mode.
 
-Looking at airoha_update_hw_stats(), it uses spin_lock() to protect the
-hardware statistics update:
+Later, when GDM2 initializes:
 
-drivers/net/ethernet/airoha/airoha_eth.c:airoha_update_hw_stats() {
+> +	case AIROHA_GDM2_IDX:
+> +		/* GDM2 is always used as wan */
+> +		dev->flags |=3D AIROHA_PRIV_F_WAN;
+>  		break;
+
+It unconditionally assigns itself the WAN role.
+
+Does this probe ordering create multiple WAN devices and leave GDM2's
+hardware silently misconfigured since its routing capabilities were disabled
+by GDM3's loopback configuration?
+
+>  	default:
+>  		break;
+>  	}
+> =20
+> +	airoha_dev_set_qdma(dev);
+> +	airoha_set_macaddr(dev, netdev->dev_addr);
+
+When setting the MAC address, airoha_set_macaddr() does the following:
+
+static void airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *addr)
+{
 	...
-	spin_lock(&port->stats.lock);
-	u64_stats_update_begin(&port->stats.syncp);
+	reg =3D airoha_is_lan_gdm_dev(dev) ? REG_FE_LAN_MAC_H : REG_FE_WAN_MAC_H;
 	...
+	airoha_fe_wr(eth, reg, val);
 }
 
-Because spin_lock() disables preemption but not softirqs, if a process cont=
-ext
-call is interrupted by a BH call on the same CPU, the BH handler will attem=
-pt
-to acquire the already-held lock.
+Since REG_FE_LAN_MAC_H is a global forwarding engine register rather than
+per-port, will initializing subsequent LAN devices overwrite the hardware
+MAC filter configured by the first LAN device?
 
-Should this be upgraded to spin_lock_bh() to prevent a potential deadlock?
+Might this cause the hardware to drop packets for LAN interfaces that do not
+match the single overwritten MAC address?
+
+(Note: This was observed to be fixed later in the series by commit "net:
+airoha: Support multiple LAN/WAN interfaces for hw MAC address configuratio=
+n",
+but is mentioned here as it appears to introduce a regression in this commi=
+t.)
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260519-airoha-eth=
--multi-serdes-v8-0-6bd70e329df6@kernel.org?part=3D2
+-multi-serdes-v8-0-6bd70e329df6@kernel.org?part=3D9
 
