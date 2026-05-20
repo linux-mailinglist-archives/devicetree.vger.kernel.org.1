@@ -1,322 +1,214 @@
-Return-Path: <devicetree+bounces-300826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300828-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LggFd74DWqq5AUAu9opvQ
-	(envelope-from <devicetree+bounces-300826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:09:34 +0200
+	id qL79Mdv2DWry4wUAu9opvQ
+	(envelope-from <devicetree+bounces-300828-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:00:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED44F5956D5
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:09:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C0345951B6
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 98F6E30C1DFA
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:51:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A2DDA30914F6
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22E23F39F5;
-	Wed, 20 May 2026 17:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065DF3F929A;
+	Wed, 20 May 2026 17:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QM+UTv5O";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZeeR8inz"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="NqNpUJx0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D7B3E5ECF
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 17:51:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F813F86F4;
+	Wed, 20 May 2026 17:58:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779299478; cv=none; b=BFAKhJot4iVw4PrV8yEl/nMQBuNwfazaIN/bFkLW74G2CEWoKDBy3yGJWC34mF9yRkXvlq8aRtVRRBBHu4K1i6fQnaJiS7rMb/AOnSuaQzbHIPQZt//eGxLkZWcoUoyeah381vnUq2G+DK9KpmZu/ZN2nbDO2pkn5zy/hAAp7Gk=
+	t=1779299892; cv=none; b=GIfHDJxhgwhqlj/N1XT21bLhpru9vd0rxhh5mT8w9LzW2Fs2oAQkiYsN6n2NRwy/asmE6fdpu0+IZqMriLBOd9fUvyYo+mRmxFb1tiW5Uuz4V15OSxbBvqJhMJR0DtJ8MIJ1DYHpSMuC/s2E5Lk0l3Z6MlSDYJmupOcAF2JckPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779299478; c=relaxed/simple;
-	bh=EDn9tZ5+fUuBBKe3xoJ2cTQEWFARqiy4G3gqZ26/v0s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=sofpwt/DXIFOvJGDAZt0Cdk8Gf9VMqY179p1JgBEp0J+9JkvkFedkiAHKX8uDHcpnoSA7gQF1tukE/fJrGbNJ95uGh0Ss+jAHJRTHEyo85ftCrPRXUDrjfVIZyIjVcduKr32MnTd+OYm5IgczEimsMFEoKDkl3OnXNlG/8toGjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QM+UTv5O; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZeeR8inz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64KEFY3q963696
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 17:51:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mc/+ti7MrgQz8y3VEqUCtk+lZgtdhsk+7nKCgcRoRzc=; b=QM+UTv5OhjXtuCSi
-	KN1xd8tqFVIXPKAg5jpokGrnXAf0a1U4PUDSH3RX5ZcUSIfS/ljobzI66f/YMPd5
-	OeW7owetPzdc/VIDYIMFX5XxBnVHgbg1qEhvVvggSHh2Dt/Ai4ugHZN/Td7jCcq9
-	qyP882YaEvZp+IISYEfjT1pwzbZU9wdrEhAxs/IPN1KoC3Hi34gmT1kRn4vpCfso
-	bFoTCdn+DayrQ9/LCEQJ/yNsLfAEbMpX8BsqZXr3sSIunXz2D9AyUARKzHRV8lI0
-	3pkoMnRs95y7EPSnM6BdMWD7BEOab50OdNnC7yFkBK9+Zeqi1ejGSw4ewFaAHUWU
-	uy/sAw==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9ejh10e6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 17:51:16 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2ba268cb5e6so53244915ad.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 10:51:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779299475; x=1779904275; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mc/+ti7MrgQz8y3VEqUCtk+lZgtdhsk+7nKCgcRoRzc=;
-        b=ZeeR8inzCduryRtM+EI6j79s1QmDbtHjB0q7DV6gz/oujudf8o+kyFtou5z9yi0BNd
-         vTgkcqYwSK94MED1GspVtGAzunggJGNXXE9iecQaznKAkwrxNjql7PjvnG68+vLf40mv
-         MS2bHv9ijHNxJK3epFR1c0u4FRVkINXRwhyH/10oWILkcTVb7yXFuBvByI/Sj8KOGsTB
-         zN8lxpdCtUZZkcGVxyh8bo/Vp4KWFWgnBawKO6o1Vl7kbbjnRtTXw+XongU4vmppGtsP
-         ViBXvKS3UgM5Dk34bojYxdJBkGR/5k0690AtYbRRU6aHx0aU5aqnLjn2wrG8BPrcMyQa
-         VxAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779299475; x=1779904275;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mc/+ti7MrgQz8y3VEqUCtk+lZgtdhsk+7nKCgcRoRzc=;
-        b=E6gutNSnpiu+19ULX43H/xg2tjk/hY4wXOh1rW7o7E5XMssS9AuQG2tqEItCqTOZq3
-         SFTTutAn62buNVJ09PLlOBBFMvS4AP5JnR6xM6Rt1dNQ58ftdDNQFxvchd3YjkDfalPD
-         qYmQ8ypMSS/3cSMRdkaPA3EHZ3ZQGxXI5nq/zF5GdI9kzWxnwyF6AbJhX1pr8/vkL2O/
-         g1vjTiLHg/atG7vqd+rtG7HBgFt/ac8GPhPCNOofK20uNoNLZVJBDUF4v4mD8znsepIV
-         oW0GgEU2cGPRNHflqRRNci0ieehso8fC8A+nxFMIEBVPuOvgzy9uof+Yvb5OPWy8CTLD
-         bySg==
-X-Forwarded-Encrypted: i=1; AFNElJ973+qqI5YS6ncUV2ZKrdNlAkgGSexn+afZP7p7cTvqn00Hd4K+FeoqnI3HedvX5i6nlZuT5T3sfrTG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZozm1Fkeu99AAC41B0CkzgKMPzZaYt5lKBAwE4Ov3B0QJbmoI
-	1uPdK7HIZ9P6YkZpoMTnvGSD8a7k9JXdGXLFxs5CAtyNM3DzHX70A8feQ0mbFNuawKTUk1Mr6t1
-	YTZWy8peYtF32+43lv8fUltm2tiYPSi3JZsFYdysccPGy6uWD8GGxCsYVhFNXQHF4
-X-Gm-Gg: Acq92OF6c4dtq3IF0Segx9HAnHXP3NpcvInbQzHbIWqVGQkF7U2BwFed7Sx2Zr04fWu
-	RZ8cNI950prINJAgKDm7I6zG9T0dL/KTlvCoIKUGVA5Y1LHlTmvLRluJnjQAx5pmkUQ3VlMPIwb
-	OQGqNj1MjBOkBwHBkTibS/vGRX1BmT0EwEOErGnrt65la7CizjRqYHa3ChLw9hhwfwvzqKoMeEC
-	2jiNCmq/Iu7y/ObovgJqM12kaH5qHZLcn8dwNtRLN03OPx9Af+PdR/Gr74QvkPpanfN6ImUtW6e
-	LWA42RR+egp7TxVDzUgbm5d5DZNARhDl7VmyL4ugrECSUXUCt1DN/tO1FNkAh9SlRrR3hPCRtfc
-	85VEWeMQd0Cvrk3HPAI9lKEAFnUSJwxMQdzZqnUVWo3NPnwKPXdj+9xuBF4XvcHDEDUPjNNmxUK
-	2fYorgpZzfV0vBShZT
-X-Received: by 2002:a17:903:2ecb:b0:2bd:936c:8155 with SMTP id d9443c01a7336-2bd936c85b3mr230398865ad.13.1779299475117;
-        Wed, 20 May 2026 10:51:15 -0700 (PDT)
-X-Received: by 2002:a17:903:2ecb:b0:2bd:936c:8155 with SMTP id d9443c01a7336-2bd936c85b3mr230398345ad.13.1779299474561;
-        Wed, 20 May 2026 10:51:14 -0700 (PDT)
-Received: from ?IPV6:2405:201:c408:b079:35d3:6970:1f3c:72e2? ([2405:201:c408:b079:35d3:6970:1f3c:72e2])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bd5bd5f2dcsm225979395ad.13.2026.05.20.10.51.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 May 2026 10:51:14 -0700 (PDT)
-Message-ID: <b16ab4d5-40d0-4438-8fab-6cff3fa6845c@oss.qualcomm.com>
-Date: Wed, 20 May 2026 23:21:02 +0530
+	s=arc-20240116; t=1779299892; c=relaxed/simple;
+	bh=2NkRc386fV0Tgt0p2m70A2/Us9y0xHQS2xgqPJg5ZGo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NdDhq0rU1sjoNZg66p8/KlupLMXMmH6j0vmx/4+EOS7Lj44oyOl1agbp243Rb7dkfrPNGpVXCHQ5PP4pTLEXXRV+DTmuXuG6K839LcYE4ZatwLZrQQob6ogL9+WyeK+Y/hORYhVHcL2lCOGsH91PPmkxtTa1/VjbBhexgDSJJr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=NqNpUJx0; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 739D8275C1;
+	Wed, 20 May 2026 19:58:02 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id A--ynDofJVxY; Wed, 20 May 2026 19:58:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1779299881; bh=2NkRc386fV0Tgt0p2m70A2/Us9y0xHQS2xgqPJg5ZGo=;
+	h=From:To:Cc:Subject:Date;
+	b=NqNpUJx0xMWpt1b+Vz1gM2M3iqjOih+wqzH1Pyicrwx7+WwcYrTTxU5M5hDOt3aIm
+	 SEmdvG41TZ1sKK/5AIEHPr6Ez/GJesa2362tvxiStbvz+DnjPaV3t+QC/ofxFPcoQ4
+	 WxeqpEF1Qu3xCv2IMYehP3v+h4/cbc+VJSZBohVfryCfOXYjRhgTi6xV3P0Fg/FKwD
+	 XspOzd3CKlDaSsOV9Og0DpigDwGfohi5HGgYgiD8yGH89E8Aei9Zr3SyyucExJK7bg
+	 RF24Y5vPa1YfPKExWeRYvW6qo1gKmLvebdk8CcP/rckg9N5k56w5eyjZ4V9ODjmBlK
+	 Zc1DUv7t8lktg==
+From: Rustam Adilov <adilov@disroot.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stanley Chang <stanley_chang@realtek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Rustam Adilov <adilov@disroot.org>
+Subject: [PATCH v6 0/6] phy: realtek: usb2: support for RTL9607C USB2 PHY
+Date: Wed, 20 May 2026 22:57:22 +0500
+Message-ID: <20260520175728.720877-1-adilov@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v22 08/13] mfd: core: Add firmware-node support to MFD
- cells
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-To: Bartosz Golaszewski <brgl@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Florian Fainelli
- <florian.fainelli@broadcom.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        Christian Loehle <christian.loehle@arm.com>,
-        Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Matthias Brugger
- <matthias.bgg@gmail.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        Sudeep Holla <sudeep.holla@kernel.org>
-References: <20260514-arm-psci-system_reset2-vendor-reboots-v22-0-28a5bde07483@oss.qualcomm.com>
- <20260514-arm-psci-system_reset2-vendor-reboots-v22-8-28a5bde07483@oss.qualcomm.com>
- <CAMRc=Mde7Y3CQ3yi=U+999JyHTNacebiK8jJhHuYBGaqn59yYg@mail.gmail.com>
- <f604833d-b333-4514-91fa-3cf95f99f9e7@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <f604833d-b333-4514-91fa-3cf95f99f9e7@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=QptuG1yd c=1 sm=1 tr=0 ts=6a0df494 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
- a=UQidBoyNrwidYc1BrrYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDE3NCBTYWx0ZWRfX1F0vKBWGJfM2
- vMvTCt30Yqm0DtaCIz1FvfucrNVfZc6NTvmd7LyuK4l3p834IegmtxrQRxTIvBExnZoqPvOurVT
- sFspQBZcmGfAIJEYS5CtwQM3hMDJdbisn7Che3dPIkwSEWt+R3TTB5T6AmAFmy0gCQWtM6Ofili
- TPsIVyxoCaO1YyLnFzZ2eO6oKbeJVF45lMr2ysWb/cpFjNDmeddpQzLGp+OXkN0Z7SXNdF7wZEd
- Jt0y2Mg29dzMxqELWBMqiBAEHMjnXWs4owbsZF+hqz5uYZsu3xRGa4HTMFMywWM2DvkBdvIqdsi
- AKEZGELqdaUrNtToVIENpb3F9qmTGju9e6zrrDuDIktdwwdsoWfqGnzJh4pgnqzEE1fPLOT+OEI
- 9TWoyXiCwV2d7fxgweNBJRCbFTLnMXEfk0GQSXRv+YvRvFXC5aEbXmMn/ueALvGa16BFCqSAd30
- OixQtFjMJn+k8C18rlw==
-X-Proofpoint-GUID: n9GPGtDCkddl-U9egu78zkjVAja_5xMu
-X-Proofpoint-ORIG-GUID: n9GPGtDCkddl-U9egu78zkjVAja_5xMu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-20_03,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
- clxscore=1015 impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605200174
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,kernel.org,oss.qualcomm.com,linaro.org,linuxfoundation.org,arm.com,arndb.de,rock-chips.com,gmail.com,ettus.com];
-	TAGGED_FROM(0.00)[bounces-300826-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-300828-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shivendra.pratap@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: ED44F5956D5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 4C0345951B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This patch series for Realtek USB2 PHY driver adds support for RTL9607C
+USB2 PHY.
 
+RTL9607C is a big endian MIPS CPU which is quite far from RTD series SoCs
+supported by realtek usb2 phy driver, but the phy initilization is found
+to be very indentical in most areas.
 
-On 18-05-2026 22:11, Shivendra Pratap wrote:
-> 
-> 
-> On 18-05-2026 14:27, Bartosz Golaszewski wrote:
->> On Thu, 14 May 2026 16:25:49 +0200, Shivendra Pratap
->> <shivendra.pratap@oss.qualcomm.com> said:
->>> MFD core has no way to register a child device using an explicit 
->>> firmware
->>> node. This prevents drivers from registering child nodes when those 
->>> nodes
->>> do not define a compatible string. One such example is the PSCI
->>> "reboot-mode" node, which omits a compatible string as it describes
->>> boot-states provided by the underlying firmware.
->>>
->>> Extend struct mfd_cell with a callback that allows drivers to provide an
->>> explicit firmware node. The node is added to the MFD child device during
->>> registration when none is assigned by device tree, ACPI, or software
->>> matching.
->>>
->>> Suggested-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
->>> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
->>> ---
->>>   drivers/mfd/mfd-core.c   | 30 ++++++++++++++++++++++++++++++
->>>   include/linux/mfd/core.h | 14 ++++++++++++++
->>>   2 files changed, 44 insertions(+)
->>>
->>> diff --git a/drivers/mfd/mfd-core.c b/drivers/mfd/mfd-core.c
->>> index 
->>> 7aa32b90cf1eb7fa0a05bf3dc506e60a262c9850..cc2a2a924d6d3044e29a9f864b536ee325ed797b 100644
->>> --- a/drivers/mfd/mfd-core.c
->>> +++ b/drivers/mfd/mfd-core.c
->>> @@ -10,6 +10,7 @@
->>>   #include <linux/kernel.h>
->>>   #include <linux/platform_device.h>
->>>   #include <linux/acpi.h>
->>> +#include <linux/fwnode.h>
->>>   #include <linux/list.h>
->>>   #include <linux/property.h>
->>>   #include <linux/mfd/core.h>
->>> @@ -148,6 +149,11 @@ static int mfd_match_of_node_to_dev(struct 
->>> platform_device *pdev,
->>>       return 0;
->>>   }
->>>
->>> +static void mfd_child_fwnode_put(void *data)
->>> +{
->>> +    fwnode_handle_put(data);
->>> +}
->>
->> Ah, this seems to answer my previous question, but...
->>
->>> +
->>>   static int mfd_add_device(struct device *parent, int id,
->>>                 const struct mfd_cell *cell,
->>>                 struct resource *mem_base,
->>> @@ -156,6 +162,7 @@ static int mfd_add_device(struct device *parent, 
->>> int id,
->>>       struct resource *res;
->>>       struct platform_device *pdev;
->>>       struct mfd_of_node_entry *of_entry, *tmp;
->>> +    struct fwnode_handle *fwnode;
->>>       bool disabled = false;
->>>       int ret = -ENOMEM;
->>>       int platform_id;
->>> @@ -224,6 +231,29 @@ static int mfd_add_device(struct device *parent, 
->>> int id,
->>>
->>>       mfd_acpi_add_device(cell, pdev);
->>>
->>> +    if (!pdev->dev.fwnode && cell->get_child_fwnode) {
->>> +        fwnode = cell->get_child_fwnode(parent);
->>> +        if (fwnode) {
->>> +            device_set_node(&pdev->dev, fwnode);
->>> +
->>> +            /*
->>> +             * platform_device_release() drops only of_node refs.
->>
->> Which is a separate problem we're discussing elsewhere. It should 
->> probably drop
->> the fwnode reference it holds, not the one of of_node.
->>
->>> +             * Track non-OF fwnodes explicitly so they are put on
->>> +             * all teardown paths.
->>> +             */
->>> +            if (!to_of_node(fwnode)) {
->>> +                ret = devm_add_action(&pdev->dev,
->>> +                              mfd_child_fwnode_put,
->>> +                              fwnode);
->>
->> What if the device never gets bound to the driver? The release will 
->> never be
->> called, this is why it's wrong to schedule devres actions for unbound 
->> devices
->> and one of the reasons for patch 1 in this series.
->>
->> What I suggest for now is: in tear-down path: see if the cell has the
->> get_child_fwnode() callback and - if so - drop the reference. Add a 
->> big, fat
->> comment saying that this must be removed if we decide to switch to 
->> dropping the
->> device's fwnode reference in platform driver core which may happen soon.
-> 
-> Ack. sure. lets me work it out.
+Most of the code was based on the Realtek's usb driver from the GPL tarball
+in [1] and adjusted to fit into the realtek usb2 phy driver code format.
 
-Hi Lee,
+The patch series was split into smaller patches that add/change something
+in the driver that are not exactly related to RTL9607C and that also
+helps for easier review. That also means, patch 5 depends on all the prior
+patches that come before it.
 
-While planning to address this for the next spin, it would be helpful if 
-you could review and share any additional comments that should be taken 
-care in next spin.
+USB2 PHY on RTL9607C is primarly used for its internal OHCI/EHCI controllers.
 
-thanks,
-Shivendra
+Tested on my RTL9607C based machine as a backport to 6.18 linux in OpenWrt.
+
+[1] - https://github.com/jameywine/GPL-for-GP3000/blob/main/linux-5.10.x/arch/mips/rtl9607c/usb.c
+
+---
+Changelog in v6:
+Driver has been refactored with enabled SWAP_IO_SPACE config in mind.
+- Patch 1
+ - fixed one line exceeding 80 columns.
+- Patch 2
+ - changed to use the introduced read/write functions for reg_wrap_vstatus
+   instead of reg_gusb2phyacc0.
+- Patch 3
+ - properly added the review tag from v4 of patch series.
+- Patch 5
+ - fixed the lines exceeding 80 columns.
+ - changed msleep(10) to usleep_range(10000, 11000).
+ - changed the read and write functions to use ioread32be instead of __le32 
+   now that we are using them for reg_wrap_vstatus.
+- Link to v5: https://lore.kernel.org/linux-phy/20260420191941.81834-1-adilov@disroot.org/
+
+Changelog in v5:
+Mostly addressing LLM review
+- Patch 1
+ - changed int to u32 type for new_reg_req and vstatus_busy data fields.
+ - changed comments in rtk_phy_read/write from PHY_NEW_REG_REQ to phy_reg->new_reg_req.
+- Patch 2
+ - explained readl/writel native endianess issue in more detail.
+ - explained why vstatus register doesn't need byte swapping.
+- Patch 4
+ - moved reset_control_deassert to rtk_phy_init function to keep it outside of for loop.
+ - changed msleep(5) to usleep_range(5000, 6000).
+ - explained why reset_control_assert is not needed.
+- Patch 5
+ - explained readl/writel native endianess issue here as well.
+ - explained why FORCE_DISCONNECT_REG doesn't need byte swapping.
+- Link to v4: https://lore.kernel.org/linux-phy/20260406181228.25892-1-adilov@disroot.org/
+
+Changelog in v4:
+- Patch 2
+ - moved the le variations of read/write functions to Patch 5 where it is actually used because
+   otherwise, it results in unused errors when only Patch 2 is applied.
+ - updated the commit message to to point the reason for le32 wrappers around readl/writel.
+- Patch 3
+ - added "Reviewed by Krzysztof Kozlowski"
+- Patch 5
+ - updated the commit message to include the addition of little endian read/write functions from
+   Patch 2.
+- Link to v3: https://lore.kernel.org/linux-phy/20260402154414.196012-1-adilov@disroot.org/
+
+Changelog in v3:
+- Patch 2
+ - renamed phy read and functions to "rtk_usb2phy" to not collide with networking API functions
+ - fixed the sparse warnings by creating intermidiate "tmp" variable and then pass it to writel
+ - sligtly adjusted commit message to instead use "default read" not "default phy_read"
+- Patch 4
+ - added the check for reset_control_deassert() just in case
+ - changed mdelay(5) to msleep(5)
+ - changed dev_err and return combo with one dev_err_probe for phy_rst
+- Patch 5
+ - changed mdelay(10) under force_host_disconnect to msleep(10)
+ - removed struct fields with false like force_host_disconnect and more in rtl9607_phy_cfg
+- Patch 6
+ - updated the #endif commend to now include MACH_REALTEK_RTL to reflect if on top
+- Link to v2: https://lore.kernel.org/linux-phy/20260327160638.15134-1-adilov@disroot.org/
+
+Changelog in v2:
+- Patch 3
+ - removed the line about OHCI/EHCI controllers from description.
+ - set the resets to false for RTD SoC devices and changed the
+   commit message to reflect that.
+- Link to v1: https://lore.kernel.org/linux-phy/20260326193419.48419-1-adilov@disroot.org/
+
+Rustam Adilov (6):
+  phy: realtek: usb2: introduce vstatus/new_reg_req variables to driver
+    data
+  phy: realtek: usb2: introduce read and write functions to driver data
+  dt-bindings: phy: realtek,usb2phy.yaml: extend for resets and RTL9607C
+    support
+  phy: realtek: usb2: introduce reset controller struct
+  phy: realtek: usb2: add support for RTL9607C USB2 PHY
+  phy: realtek: Make configs available for MACH_REALTEK_RTL
+
+ .../bindings/phy/realtek,usb2phy.yaml         |  25 ++-
+ drivers/phy/realtek/Kconfig                   |   4 +-
+ drivers/phy/realtek/phy-rtk-usb2.c            | 178 ++++++++++++++++--
+ 3 files changed, 189 insertions(+), 18 deletions(-)
+
+-- 
+2.54.0
+
 
