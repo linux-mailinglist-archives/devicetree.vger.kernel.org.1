@@ -1,534 +1,472 @@
-Return-Path: <devicetree+bounces-300408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300410-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGTEGBBrDWq+xAUAu9opvQ
-	(envelope-from <devicetree+bounces-300408-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:04:32 +0200
+	id CCuYB99sDWrgxAUAu9opvQ
+	(envelope-from <devicetree+bounces-300410-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:12:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB97F5895B2
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:04:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 743B9589779
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:12:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2EB88301DC1A
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 08:03:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AB7430F4FE0
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 08:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831703A16A0;
-	Wed, 20 May 2026 08:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79ED83A4F32;
+	Wed, 20 May 2026 08:05:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="luM+++5c";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WJ3epMvj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WwuujswO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010055.outbound.protection.outlook.com [52.101.201.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77AF3A2556
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 08:03:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779264236; cv=none; b=pVktK5e3cYx6WDUzlzfFHGKRoCUHTMo7FFUZ/mMT2/ahxFBOWwPLuytKelEpxKbBIgDZhfG55SBRHeHT65aXjEHLtYtc3frroUZkP1JJuROhLA4Nq++aflF7Et9td/vgiLrdx5M6jQ7f3ABLZN0y4JeU5H+aEUuADac0LR2CWPo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779264236; c=relaxed/simple;
-	bh=05WQlFCqkNTf3GyTitJ0XJCe2vv1RfwvLI1D5eOFLT0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=f81hB0zfeZJ8dzupaTP0i+SuVZsQ9xxjRZQrrA6taDJ6pMML3aRmrKCa55G/5NiprmRdK83NphfkMKNYHwt1bSyjtJtYJmAayE0vAc2XPrTa9ye+SYJVbNFN2VMfJ4wJ8/2bD+VMEalz58PFe5VujV40+TgyqCXSpGkn2Tb329I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=luM+++5c; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WJ3epMvj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64K7EsRv1637020
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 08:03:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gXN8U+lu0TOvT7NP9tTGGGw5W2W1/7IB2Iy+LKjXH2U=; b=luM+++5cgw90nkNo
-	5Zd0jhfTVMw5CDRRadpgCFomLuNTbxIHLp3U6lTjTQCcWznOS5C4xB0FQmcY1ljZ
-	OgL3dXMNPmNOcMbfrRnPZQwnHm3KbTosZ6tHrH0IQT6poxwkexxlBTId/cDR/cem
-	GEE6UBFCLGcQ5j7zMioKhjmkXcTp0g5D4wwrp9NEsW0wCJKxy5x1584PDOmMjFu9
-	johrHH0PgwKI6aix2qxpesOck+IjR/gDowjJUKKXsdtxR/QfKcrc2Pdp8UsfBg8/
-	6ZPI0f/UGDNUP2WXxfwRCQMxP4m7AvLTxSblN9cQABYRxslL4HvBKx0xad/ZihTf
-	S2ed7g==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e8t3sbju5-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 08:03:52 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-365ff2ab7beso4683250a91.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 01:03:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779264231; x=1779869031; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gXN8U+lu0TOvT7NP9tTGGGw5W2W1/7IB2Iy+LKjXH2U=;
-        b=WJ3epMvjhxbapCyeStBvzPNKiN0odCa7qb66qkGuh3ACvvuDikAwO6VZiddlcX3ypA
-         RS5XhOVjX6whkBZjt9b1tIXyM0W74QaXn0rPEPzf2pus5QLXrdCvmrRy1nU8hyMcx4Lr
-         bOXeKcoojMzMRsOQamoaMj7RD6cmnY2q44wsM3YsogvgqukcNNFe/2Zo+kZjsW53bAjP
-         hVCFRUTI3Dzef1mGq+M8ovfUpbCeBbb2vIqRo3hMnbLquZWPeBAggk7bRr/78hZMQzwS
-         Zksuf/tDeBlv2UXR4dGoMGHXCvi1bZpvjuBg9NymrQcFAlvMuwPKLiUAGK/42pkUvrN5
-         980g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779264231; x=1779869031;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gXN8U+lu0TOvT7NP9tTGGGw5W2W1/7IB2Iy+LKjXH2U=;
-        b=BnH6wSu/W2uJyDEeopSkK5RtBFDdle/J8PIB24nF5DO4LeEfyZOhi7uejsxYBcDqi1
-         b604kogn88mpenREpfydOlCu1pQUx7D+QvKBdpVV9kCXsbDglqAzwxyS7/7Wl3dTUz36
-         RVhKGtHC/e6ueiScg/6taIEMT4Cl3o+8rjwCgXuKtU6/Zto+M/p4JHmT/22qR8eLZ0OC
-         CwdErbhgkhli3M+Gkg+yMzZAg4jHDWKihopVpJsuZWj4l8uwGXVAJQu/2nv4Ra7M6Nwe
-         rJhws54IFxSDvzyZDXLiy4ED7fnvfNQAs3pgTwPoX8/NB237cj7YliwH5Xf8SCD6I5p1
-         rUpg==
-X-Forwarded-Encrypted: i=1; AFNElJ8P4NajA2exR/r91gXvcyoezTfo9GcsLpdN9mGmQq8ZS04R53yXSnqNh4nmQUCS8xVs7Uw3S46K+MST@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCXNvprXp9rs9v5NOw7OUWjqocB11ZuYepOGQf4/YWvUAYpBUW
-	YAHXSVFjRAvkEnqe2LJM4y/DM6fFgrqO6LdUHvbnAkFU7NEMbIhWfEukSJ5hg4eFG3hoIQN+xOk
-	0SwjjLi1snXYIjttALcRZ5XPL/deJ0UE73S+7215WQm17BOlYptaFXZdpzsxr7w3OKCdEAcYR
-X-Gm-Gg: Acq92OGy4928koMI4KyVZhB35RMQRd1rYO9aNIoGhiYi9zJTETqJnPQ8jXolg6kYwgW
-	BnVUS1M8kwe/VyfMCZp8c0m9YNGFTp2/ur9izc5L8cPEeCFIGAok74jKT+DhBZsdOiDT5ycrW9K
-	dVCOPYCI0WE7dj6hNIniX1Ro2hL1bXttEXt73T3J9YCj+5omr0u87qKqM04oXlGy+MW33f2ZJXc
-	1ndaO+l+295AGbwyJmO6Qz0mkQD0bWkNsVRXAzye+lBjkWZ9fEqoFhuJ93xg/18IDQctM9pwhMt
-	+QiCw0qCXC9L+8EOTwUemYAX2d5FKELLfbsfH1xm2QGdfUa3obzjAYOm478SKnyjlphzYO/XAwN
-	hM3PrQaKm6LGau3xnrXxCqu7NNZljC9VzkjAnos3ng2D6KjvVzuQjo1ZE
-X-Received: by 2002:a17:90b:38c9:b0:369:9469:aeba with SMTP id 98e67ed59e1d1-3699469b41cmr11587680a91.1.1779264231273;
-        Wed, 20 May 2026 01:03:51 -0700 (PDT)
-X-Received: by 2002:a17:90b:38c9:b0:369:9469:aeba with SMTP id 98e67ed59e1d1-3699469b41cmr11587664a91.1.1779264230586;
-        Wed, 20 May 2026 01:03:50 -0700 (PDT)
-Received: from hu-vjitta-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-369517aa6f8sm20889290a91.11.2026.05.20.01.03.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2026 01:03:49 -0700 (PDT)
-From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-Date: Wed, 20 May 2026 13:32:42 +0530
-Subject: [PATCH v15 3/3] of: Respect #{iommu,msi}-cells in maps
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D865C22425B;
+	Wed, 20 May 2026 08:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779264341; cv=fail; b=HaqNK0NPb0ZDI8aFaQn7nH4BFNfDWt1Oc/WGNQoKqCXrBMg+Y3dOJn67n/MAAqNWXq1jaGAob9GbPejHbij5CsIvubKXygf2Yl6BnvKZBf4+Eje3QUF0ft6cS76NQ7u55PhY/4ec1Zya2fcchklkb6Vwab45asuxbKfqO7MGpek=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779264341; c=relaxed/simple;
+	bh=SijWe56oA3wNI80HVkc3nDGYqMr0FlOutnESmP1VGBY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LT/6PYwVkxMlbEOQlsE9zlTTHEIpqStEHkBpPnSejp1tRkGF3EKpgQyWBhiXDcobHB2JP25O4R2Sd9WAi6ywS1+cSNtfySoqvuWeqbGsW91QnPDuCUY/Ol5OEi6dTVKGhY/QtNA7vnlZjRwEDM7en032W5tFUaOvXYm4YOiShH4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WwuujswO; arc=fail smtp.client-ip=52.101.201.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=p9g4ltW6GecI7wTnpFCn8v79byzfG0Fl5pUE7J/96K4MGpA3TjRls3KrSg25/zRmZvl/5W842SmQ/6wih56fy8ivsx6j+mewZ38x5cpQQmxFHfiqaqze+NCRSpm1589pSBVYvI5p6PvNbd/g8xNWGWbT6pDDAiJ7JBmyUxGeACqXnrRwj6V0ygFTZkbZqtRGSOzG1hHbhUnKFtO2LKFCKOWFh3/TVrwZZ6iSE76D/QQE5l1ix1y+QsykDiwVJ5QCkk4Dyc7o2e/HX9aPupe8Gy0+ytlNPiTVf+DCsz5hfsj/e9OZxoRPO10Or9YrzxUQkJvwlEqCrTjsRj4D+iW/gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/mkqAyBPrj4Z/KLO2qKqbOPXxTmOrxZtTTwt5AsX518=;
+ b=qdarI+QUhjxd4TZ7AdFuIaKuMnvOoyWER9+CP8o+5pXAIYsgZ9ZNRhZkbE7IhdsQbz+LL15TVR/Sc3PBY3NGcehfPbgCdOnxUxUIboh33ub8lKjBsue6k59Rg2aoQzoU7adoU0A/HW29Hf/Q4RR50xUrVDx0KOuBDx9qvmnMt2dmQWx8KQbeo4iX8k346a/wJJhB9YpmlTvp6XR4HcFRF1cMULR8IyAjjVcgOs89cPCVOb9Vfp0D/Cw9tYFo1fhK6QRYcy91X7BOg+bY4hSKCUqXPD9PSjPzFJzwBK+QvWVyUoT3IbGcarBmD5GFfCvIWxm/Mm4svrxos8SOwfEJQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/mkqAyBPrj4Z/KLO2qKqbOPXxTmOrxZtTTwt5AsX518=;
+ b=WwuujswOwYEq78SwfR5bkQ337MH7OvWR2OW3eQ7SY5NSBIoFnJCbfmcfDcryjgEaPCKm6OPUrXYD28Shx7Fsx/8kSQ9Yd7IRqycjm8GBzyPOzLAl9IdYwQVMtraoC+ahNMhXqBHo9KHT7Mndi1wDX4sAE9vJSd9XYBCpojczz/c=
+Received: from PH7PR10CA0011.namprd10.prod.outlook.com (2603:10b6:510:23d::12)
+ by MW4PR10MB6653.namprd10.prod.outlook.com (2603:10b6:303:22e::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.24; Wed, 20 May
+ 2026 08:05:31 +0000
+Received: from SJ1PEPF000023D7.namprd21.prod.outlook.com
+ (2603:10b6:510:23d:cafe::4a) by PH7PR10CA0011.outlook.office365.com
+ (2603:10b6:510:23d::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.48.16 via Frontend Transport; Wed, 20
+ May 2026 08:05:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF000023D7.mail.protection.outlook.com (10.167.244.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.71.0 via Frontend Transport; Wed, 20 May 2026 08:05:28 +0000
+Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 20 May
+ 2026 03:04:56 -0500
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 20 May
+ 2026 03:04:56 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Wed, 20 May 2026 03:04:56 -0500
+Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64K84nIm1560973;
+	Wed, 20 May 2026 03:04:50 -0500
+Message-ID: <f0fe6742-77e8-4a4f-b206-42f28a3560c9@ti.com>
+Date: Wed, 20 May 2026 13:34:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 15/17] media: cadence: csi2rx: Support runtime PM
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+CC: <jai.luthra@linux.dev>, <laurent.pinchart@ideasonboard.com>,
+	<mripard@kernel.org>, <y-abhilashchandra@ti.com>, <devarsht@ti.com>,
+	<s-jain1@ti.com>, <vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
+	<hverkuil-cisco@xs4all.nl>, <tomi.valkeinen@ideasonboard.com>,
+	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
+	<sjoerd@collabora.com>, <dan.carpenter@linaro.org>,
+	<hverkuil+cisco@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20260313090701.646534-1-r-donadkar@ti.com>
+ <20260313090701.646534-16-r-donadkar@ti.com>
+ <agxXs3irq0pZkg5O@kekkonen.localdomain>
+Content-Language: en-US
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+In-Reply-To: <agxXs3irq0pZkg5O@kekkonen.localdomain>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260520-parse_iommu_cells-v15-3-b5f99ad4e7e8@oss.qualcomm.com>
-References: <20260520-parse_iommu_cells-v15-0-b5f99ad4e7e8@oss.qualcomm.com>
-In-Reply-To: <20260520-parse_iommu_cells-v15-0-b5f99ad4e7e8@oss.qualcomm.com>
-To: Nipun Gupta <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Thomas Gleixner <tglx@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Frank Li <Frank.Li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Prakash Gupta <prakash.gupta@oss.qualcomm.com>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Cc: linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, imx@lists.linux.dev,
-        xen-devel@lists.xenproject.org, linux-arm-msm@vger.kernel.org,
-        Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>,
-        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779264185; l=12523;
- i=vijayanand.jitta@oss.qualcomm.com; s=20260301; h=from:subject:message-id;
- bh=xwYkAEs+q6jRw+I3dHPltl1MmPPWsBwiOXNPNgKt/0c=;
- b=wcATq9lX5Bq1e8erTyBpni5Dih/s1c6wO9/NnG4qxR1ffvxl+OPEk6rtMC5rr4W4VoKcAWrsQ
- FdmlXhXN/pYDkytoi0wtNZgLMf9D1M6bGdq1x4YOiNvy+TxTUK7PV8y
-X-Developer-Key: i=vijayanand.jitta@oss.qualcomm.com; a=ed25519;
- pk=Lpi7Cs3wHe8KZtqvyci7FTOLzsKpEHKGCaPNZw+1zRI=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDA3NiBTYWx0ZWRfXyWcRxnpLWzRq
- 4Ox+Z7IufezpPQ3sc7UgJsBPTcfhILXbq26D8Y7c1rs8apRSrNEtpQsxSi83j7J7s+Yyu+s2QKc
- lQPQg5JQ+NQnJbYEF6Y0+XdOdjdL3fnAUvNIXV7BG+/zqsXGzau9bNU021lWGk6poUT+4JP23PM
- 2/pxcFN3c1n/oPu49jwVDm1+XlkVDQkYDbE2btM5WhN8e1tA4h2xReEvhQ6JXb4mbb3pGwNOTuu
- D8rkVNdeCyIbf+qOe8md/kXcgEDiqXdBaoE4BIxmiOdLWT5OTnO+W7vPI32TZlNllilzSNAexU2
- Bajmv2WIausf8Q5fESAHf0vM+w0cr9DA4QGPZ0QcLOcwax9Bdm2/4iI+1B096KHgGyRoK0ftKXC
- p40/l8KCkNMQWHgjq4xAPUYuf6WEzABhQEodAjthK47H88S/TxpA81J/Expw+ZdiUTx9adXdszp
- ehW29nRRalGNHN/20Sw==
-X-Authority-Analysis: v=2.4 cv=Oc6oyBTY c=1 sm=1 tr=0 ts=6a0d6ae8 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=7CQSdrXTAAAA:8 a=EUspDBNiAAAA:8 a=9707C7GnR82a18xSEiYA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-GUID: ANDHQc5QLqE4vOSM9W7Zfd0-qYdXrdS0
-X-Proofpoint-ORIG-GUID: ANDHQc5QLqE4vOSM9W7Zfd0-qYdXrdS0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-20_01,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 clxscore=1015 bulkscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605200076
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D7:EE_|MW4PR10MB6653:EE_
+X-MS-Office365-Filtering-Correlation-Id: fffb3430-f6da-42a8-7640-08deb6468e68
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|376014|7416014|56012099003|4143699003|5023799004|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	NbvE4wSBdG53dLrRlNgemZ81lDn8TUMQ/EDgvoFfArTpc1U57/G1rOuaIBO8MT407thDa6RLIqAQWpqtxlSbfKZjujq247CmJomqDzI0J4dHg9FncSqrgZYDkkGWpX9kX4TRxSGxN35k4SpdV2pkOK39QjgWYRaMrszZ7mi6EHSOWWLtkEzZvbZeh78sQa7CaSAbDeIZ399uy8c8ZWuLAxlFdijCgOoIAo+k+SsXnIDIn7NQ1hHZwNk5Mf8wyZnt8V2/++0f7sLOIRzRAmbETK4AaYFaQpO/u1/3maNozi881uPJCty8Ps3voqS0z9HdBFnG6vHkc8+iId63Ykprd1jn2Bdg02y2KsKk5vnWGaC0q6qlXQFgum+lMbwhBbswSCgx1gO/VTlYF4KDl2J3r4JL2E0+VX77VZ+HVzRSkD3iCA4nWXQGm/68pLW+qT/JfXXKxJghTIQvRS9AglChpNXi95eGJBYjp7+IdGYU/bYEbBJBDQ97ACYYXjpQ/KFjwZukO44+7/KwuKkfgKC8/6Hi2r5Lo8gnkz1RtJWjAZiwOI1S33loNLx0Noxvnlafbk909mRJ/yOXCS2OgjRyOG3SDKtCZFcTPBC4Tt+PAFrl3OlUThn9lFsaNoFIO1KV4JJZxZLeZIL7d6Difgck+OWBw9ocyxqoZvB+3FIDI3GcKZoQFUDU4Ok0tZo8eyrQRC/ngqUqVRvC4/yK+9e12rlBtw9olGfA4/ffYw+6s/A=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(7416014)(56012099003)(4143699003)(5023799004)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	gZYHpEAQBie6vPFyuenZnBwh7aDKagoRM/g+qBhtRcq82DRkhsclPsDjSlEOxNVO49H+r7zWIU4a5I95xmAhkuwm/TYyV3GkNTzOZ8JL6qGjfaa4bfSv8JbygwmpaZznV/2pZ9bHrqWHoo0g2X0/AoTJvZ/n6rn1nfSXMW9i3sBWQlb0FCnbg2QiHpHmxBk8+jfGzz2uXNqt4nvzQeDlGfQ9E32JqbSh//ArDlMusTcrP/n8MSevSWKBwLvpB5vroc9KUaXtALPqLnI+zLsjxwS1Vk0ojMW6jc1v0IprHJ2/llKYN0kGF8OQPXYBXuFsRQE49RSlblHE+bKHdgxpM8LGYqridWFkrWvN3BNELRuIxu3wdsP2fmUzjABeuZaLWXZnll4B6YhE/Zq94Q4tYeBALdFLJLZsQerblQkynv55qvLXbPLcdEsna2WwhruT
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2026 08:05:28.5762
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fffb3430-f6da-42a8-7640-08deb6468e68
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000023D7.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6653
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-300408-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,arm.com:email];
-	FREEMAIL_TO(0.00)[amd.com,8bytes.org,kernel.org,arm.com,nxp.com,pengutronix.de,google.com,gmail.com,suse.com,epam.com,oss.qualcomm.com];
+	TAGGED_FROM(0.00)[bounces-300410-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vijayanand.jitta@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux.dev,ideasonboard.com,kernel.org,ti.com,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[r-donadkar@ti.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: CB97F5895B2
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 743B9589779
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Robin Murphy <robin.murphy@arm.com>
 
-So far our parsing of {iommu,msi}-map properties has always blindly
-assumed that the output specifiers will always have exactly 1 cell.
-This typically does happen to be the case, but is not actually enforced
-(and the PCI msi-map binding even explicitly states support for 0 or 1
-cells) - as a result we've now ended up with dodgy DTs out in the field
-which depend on this behaviour to map a 1-cell specifier for a 2-cell
-provider, despite that being bogus per the bindings themselves.
+On 19/05/26 17:59, Sakari Ailus wrote:
+> Hi Rishikes,
 
-Since there is some potential use in being able to map at least single
-input IDs to multi-cell output specifiers (and properly support 0-cell
-outputs as well), add support for properly parsing and using the target
-nodes' #cells values, albeit with the unfortunate complication of still
-having to work around expectations of the old behaviour too.
+Hi Sakari,
 
-Since there are multi-cell output specifiers, the callers of of_map_id()
-may need to get the exact cell output value for further processing.
-Update of_map_id() to set args_count in the output to reflect the actual
-number of output specifier cells.
+Thank you for the review !
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
----
- drivers/of/base.c  | 166 +++++++++++++++++++++++++++++++++++++++++------------
- include/linux/of.h |   6 +-
- 2 files changed, 134 insertions(+), 38 deletions(-)
+>
+> On Fri, Mar 13, 2026 at 02:36:59PM +0530, Rishikesh Donadkar wrote:
+>> From: Changhuang Liang <changhuang.liang@starfivetech.com>
+>>
+>> Use runtime power management hooks to save power when CSI-RX is not in
+>> use. Also, shift to goto based error handling in
+>> csi2rx_enable_streams() function
+>>
+>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   drivers/media/platform/cadence/Kconfig       |   1 +
+>>   drivers/media/platform/cadence/cdns-csi2rx.c | 136 ++++++++++++-------
+>>   2 files changed, 88 insertions(+), 49 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/cadence/Kconfig b/drivers/media/platform/cadence/Kconfig
+>> index 1aa608c00dbce..ea85ef82760e6 100644
+>> --- a/drivers/media/platform/cadence/Kconfig
+>> +++ b/drivers/media/platform/cadence/Kconfig
+>> @@ -5,6 +5,7 @@ comment "Cadence media platform drivers"
+>>   config VIDEO_CADENCE_CSI2RX
+>>   	tristate "Cadence MIPI-CSI2 RX Controller"
+>>   	depends on VIDEO_DEV
+>> +	depends on PM
+>>   	select MEDIA_CONTROLLER
+>>   	select VIDEO_V4L2_SUBDEV_API
+>>   	select V4L2_FWNODE
+>> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+>> index f34df341a2cac..18737d00a7d7a 100644
+>> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+>> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+>> @@ -340,11 +340,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   	u32 reg;
+>>   	int ret;
+>>   
+>> -	ret = clk_prepare_enable(csi2rx->p_clk);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>> -	reset_control_deassert(csi2rx->p_rst);
+>>   	csi2rx_reset(csi2rx);
+>>   
+>>   	if (csi2rx->error_irq >= 0)
+>> @@ -385,7 +380,7 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   		if (ret) {
+>>   			dev_err(csi2rx->dev,
+>>   				"Failed to configure external DPHY: %d\n", ret);
+>> -			goto err_disable_pclk;
+>> +			return ret;
+>>   		}
+>>   	}
+>>   
+>> @@ -400,12 +395,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   	 * hence the reference counting.
+>>   	 */
+>>   	for (i = 0; i < csi2rx->max_streams; i++) {
+>> -		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
+>> -		if (ret)
+>> -			goto err_disable_pixclk;
+>> -
+>> -		reset_control_deassert(csi2rx->pixel_rst[i]);
+>> -
+>>   		writel(CSI2RX_STREAM_CFG_FIFO_MODE_LARGE_BUF |
+>>   			       FIELD_PREP(CSI2RX_STREAM_CFG_NUM_PIXELS_MASK,
+>>   					  csi2rx->num_pixels[i]),
+>> @@ -418,30 +407,8 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
+>>   	}
+>>   
+>> -	ret = clk_prepare_enable(csi2rx->sys_clk);
+>> -	if (ret)
+>> -		goto err_disable_pixclk;
+>> -
+>> -	reset_control_deassert(csi2rx->sys_rst);
+>> -
+>> -	clk_disable_unprepare(csi2rx->p_clk);
+>>   
+>>   	return 0;
+>> -
+>> -err_disable_pixclk:
+>> -	for (; i > 0; i--) {
+>> -		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+>> -		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
+>> -	}
+>> -
+>> -	if (csi2rx->dphy) {
+>> -		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+>> -		phy_power_off(csi2rx->dphy);
+>> -	}
+>> -err_disable_pclk:
+>> -	clk_disable_unprepare(csi2rx->p_clk);
+>> -
+>> -	return ret;
+>>   }
+>>   
+>>   static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>> @@ -450,10 +417,6 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>>   	u32 val;
+>>   	int ret;
+>>   
+>> -	clk_prepare_enable(csi2rx->p_clk);
+>> -	reset_control_assert(csi2rx->sys_rst);
+>> -	clk_disable_unprepare(csi2rx->sys_clk);
+>> -
+>>   	writel(0, csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
+>>   
+>>   	for (i = 0; i < csi2rx->max_streams; i++) {
+>> @@ -468,14 +431,8 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>>   		if (ret)
+>>   			dev_warn(csi2rx->dev,
+>>   				 "Failed to stop streaming on pad%u\n", i);
+>> -
+>> -		reset_control_assert(csi2rx->pixel_rst[i]);
+>> -		clk_disable_unprepare(csi2rx->pixel_clk[i]);
+>>   	}
+>>   
+>> -	reset_control_assert(csi2rx->p_rst);
+>> -	clk_disable_unprepare(csi2rx->p_clk);
+>> -
+>>   	if (csi2rx->dphy) {
+>>   		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+>>   
+>> @@ -549,10 +506,15 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>>   	 * enable the whole controller.
+>>   	 */
+>>   	if (!csi2rx->count) {
+>> +		ret = pm_runtime_resume_and_get(csi2rx->dev);
+>> +		if (ret < 0)
+>> +			goto err;
+>> +
+>>   		csi2rx_update_vc_select(csi2rx, state);
+>> +
+>>   		ret = csi2rx_start(csi2rx);
+>>   		if (ret)
+>> -			return ret;
+>> +			goto err_put_pm;
+>>   	}
+>>   
+>>   	/* Start streaming on the source */
+>> @@ -562,13 +524,20 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>>   		dev_err(csi2rx->dev,
+>>   			"Failed to start streams %#llx on subdev\n",
+>>   			sink_streams);
+>> -		if (!csi2rx->count)
+>> -			csi2rx_stop(csi2rx);
+>> -		return ret;
+>> +		goto err_stop_csi;
+>>   	}
+>>   
+>>   	csi2rx->count++;
+>>   	return 0;
+>> +
+>> +err_stop_csi:
+>> +	if (!csi2rx->count)
+>> +		csi2rx_stop(csi2rx);
+>> +err_put_pm:
+>> +	if (!csi2rx->count)
+>> +		pm_runtime_put(csi2rx->dev);
+>> +err:
+>> +	return ret;
+>>   }
+>>   
+>>   static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
+>> @@ -590,8 +559,10 @@ static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
+>>   	csi2rx->count--;
+>>   
+>>   	/* Let the last user turn off the lights. */
+>> -	if (!csi2rx->count)
+>> +	if (!csi2rx->count) {
+>>   		csi2rx_stop(csi2rx);
+>> +		pm_runtime_put(csi2rx->dev);
+>> +	}
+>>   
+>>   	return 0;
+>>   }
+>> @@ -1078,6 +1049,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>>   	if (ret)
+>>   		goto err_cleanup;
+>>   
+>> +	pm_runtime_enable(csi2rx->dev);
+>>   	ret = v4l2_async_register_subdev(&csi2rx->subdev);
+>>   	if (ret < 0)
+>>   		goto err_free_state;
+>> @@ -1092,6 +1064,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>>   
+>>   err_free_state:
+>>   	v4l2_subdev_cleanup(&csi2rx->subdev);
+>> +	pm_runtime_disable(csi2rx->dev);
+>>   err_cleanup:
+>>   	v4l2_async_nf_unregister(&csi2rx->notifier);
+>>   	v4l2_async_nf_cleanup(&csi2rx->notifier);
+>> @@ -1110,9 +1083,73 @@ static void csi2rx_remove(struct platform_device *pdev)
+>>   	v4l2_async_unregister_subdev(&csi2rx->subdev);
+>>   	v4l2_subdev_cleanup(&csi2rx->subdev);
+>>   	media_entity_cleanup(&csi2rx->subdev.entity);
+>> +	pm_runtime_disable(csi2rx->dev);
+>>   	kfree(csi2rx);
+>>   }
+>>   
+>> +static int csi2rx_runtime_suspend(struct device *dev)
+>> +{
+>> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
+>> +	unsigned int i;
+>> +
+>> +	reset_control_assert(csi2rx->sys_rst);
+>> +	clk_disable_unprepare(csi2rx->sys_clk);
+>> +
+>> +	for (i = 0; i < csi2rx->max_streams; i++) {
+> You could declare i here.
+>
+>> +		reset_control_assert(csi2rx->pixel_rst[i]);
+>> +		clk_disable_unprepare(csi2rx->pixel_clk[i]);
+>> +	}
+>> +
+>> +	reset_control_assert(csi2rx->p_rst);
+>> +	clk_disable_unprepare(csi2rx->p_clk);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int csi2rx_runtime_resume(struct device *dev)
+>> +{
+>> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
+>> +	unsigned int i;
+>> +	int ret;
+>> +
+>> +	ret = clk_prepare_enable(csi2rx->p_clk);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	reset_control_deassert(csi2rx->p_rst);
+>> +
+>> +	for (i = 0; i < csi2rx->max_streams; i++) {
+>> +		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
+>> +		if (ret)
+>> +			goto err_disable_pixclk;
+>> +
+>> +		reset_control_deassert(csi2rx->pixel_rst[i]);
+>> +	}
+>> +
+>> +	ret = clk_prepare_enable(csi2rx->sys_clk);
+>> +	if (ret)
+>> +		goto err_disable_pixclk;
+>> +
+>> +	reset_control_deassert(csi2rx->sys_rst);
+>> +
+>> +	return 0;
+>> +
+>> +err_disable_pixclk:
+>> +	for (; i > 0; i--) {
+> 	while (i--) {
+>
+> ?
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index d658c2620135..f436e2676381 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -2116,19 +2116,49 @@ int of_find_last_cache_level(unsigned int cpu)
- 	return cache_level;
- }
- 
-+/*
-+ * Some DTs have an iommu-map targeting a 2-cell IOMMU node while
-+ * specifying only 1 cell. Fortunately they all consist of value '1'
-+ * as the 2nd cell entry with the same target, so check for that pattern.
-+ *
-+ * Example:
-+ *	IOMMU node:
-+ *		#iommu-cells = <2>;
-+ *
-+ *	Device node:
-+ *		iommu-map = <0x0000 &smmu 0x0000 0x1>,
-+ *			    <0x0100 &smmu 0x0100 0x1>;
-+ */
-+static bool of_check_bad_map(const __be32 *map, int len)
-+{
-+	__be32 phandle = map[1];
-+
-+	if (len % 4)
-+		return false;
-+	for (int i = 0; i < len; i += 4) {
-+		if (map[i + 1] != phandle || map[i + 3] != cpu_to_be32(1))
-+			return false;
-+	}
-+	return true;
-+}
-+
- /**
-  * of_map_id - Translate an ID through a downstream mapping.
-  * @np: root complex device node.
-  * @id: device ID to map.
-  * @map_name: property name of the map to use.
-+ * @cells_name: property name of target specifier cells.
-  * @map_mask_name: optional property name of the mask to use.
-  * @filter_np: pointer to an optional filter node, or NULL to allow bypass.
-  *	If non-NULL, the map property must exist (-ENODEV if absent). If
-  *	*filter_np is also non-NULL, only entries targeting that node match.
-  * @arg: pointer to a &struct of_phandle_args for the result. On success,
-- *	@arg->args[0] will contain the translated ID. If a map entry was
-- *	matched, @arg->np will be set to the target node with a reference
-- *	held that the caller must release with of_node_put().
-+ *	@arg->args_count will be set to the number of output specifier cells
-+ *	as defined by @cells_name in the target node, and
-+ *	@arg->args[0..args_count-1] will contain the translated output
-+ *	specifier values. If a map entry was matched, @arg->np will be set
-+ *	to the target node with a reference held that the caller must release
-+ *	with of_node_put().
-  *
-  * Given a device ID, look up the appropriate implementation-defined
-  * platform ID and/or the target device which receives transactions on that
-@@ -2137,11 +2167,13 @@ int of_find_last_cache_level(unsigned int cpu)
-  * Return: 0 on success or a standard error code on failure.
-  */
- int of_map_id(const struct device_node *np, u32 id,
--	       const char *map_name, const char *map_mask_name,
-+	       const char *map_name, const char *cells_name,
-+	       const char *map_mask_name,
- 	       struct device_node * const *filter_np, struct of_phandle_args *arg)
- {
- 	u32 map_mask, masked_id;
--	int map_len;
-+	int map_bytes, map_len, offset = 0;
-+	bool bad_map = false;
- 	const __be32 *map = NULL;
- 
- 	if (!np || !map_name || !arg)
-@@ -2149,7 +2181,7 @@ int of_map_id(const struct device_node *np, u32 id,
- 	/* Ensure bypass/no-match success never returns a stale target node. */
- 	arg->np = NULL;
- 
--	map = of_get_property(np, map_name, &map_len);
-+	map = of_get_property(np, map_name, &map_bytes);
- 	if (!map) {
- 		if (filter_np)
- 			return -ENODEV;
-@@ -2159,11 +2191,9 @@ int of_map_id(const struct device_node *np, u32 id,
- 		return 0;
- 	}
- 
--	if (!map_len || map_len % (4 * sizeof(*map))) {
--		pr_err("%pOF: Error: Bad %s length: %d\n", np,
--			map_name, map_len);
--		return -EINVAL;
--	}
-+	if (map_bytes % sizeof(*map))
-+		goto err_map_len;
-+	map_len = map_bytes / sizeof(*map);
- 
- 	/* The default is to select all bits. */
- 	map_mask = 0xffffffff;
-@@ -2176,39 +2206,93 @@ int of_map_id(const struct device_node *np, u32 id,
- 		of_property_read_u32(np, map_mask_name, &map_mask);
- 
- 	masked_id = map_mask & id;
--	for ( ; map_len > 0; map_len -= 4 * sizeof(*map), map += 4) {
-+
-+	while (offset < map_len) {
- 		struct device_node *phandle_node;
--		u32 id_base = be32_to_cpup(map + 0);
--		u32 phandle = be32_to_cpup(map + 1);
--		u32 out_base = be32_to_cpup(map + 2);
--		u32 id_len = be32_to_cpup(map + 3);
-+		u32 id_base, phandle, id_len, id_off, cells = 0;
-+		const __be32 *out_base;
-+
-+		if (map_len - offset < 2)
-+			goto err_map_len;
-+
-+		id_base = be32_to_cpup(map + offset);
- 
- 		if (id_base & ~map_mask) {
--			pr_err("%pOF: Invalid %s translation - %s-mask (0x%x) ignores id-base (0x%x)\n",
--				np, map_name, map_name,
--				map_mask, id_base);
-+			pr_err("%pOF: Invalid %s translation - %s (0x%x) ignores id-base (0x%x)\n",
-+			       np, map_name, map_mask_name, map_mask, id_base);
- 			return -EFAULT;
- 		}
- 
--		if (masked_id < id_base || masked_id >= id_base + id_len)
--			continue;
--
-+		phandle = be32_to_cpup(map + offset + 1);
- 		phandle_node = of_find_node_by_phandle(phandle);
- 		if (!phandle_node)
- 			return -ENODEV;
- 
-+		if (bad_map) {
-+			cells = 1;
-+		} else if (of_property_read_u32(phandle_node, cells_name, &cells)) {
-+			pr_err("%pOF: missing %s property\n", phandle_node, cells_name);
-+			of_node_put(phandle_node);
-+			return -EINVAL;
-+		}
-+
-+		if (cells > MAX_PHANDLE_ARGS) {
-+			pr_err("%pOF: %s cell count %d exceeds maximum\n",
-+			       phandle_node, cells_name, cells);
-+			of_node_put(phandle_node);
-+			return -EINVAL;
-+		}
-+
-+		if (offset == 0 && cells == 2) {
-+			bad_map = of_check_bad_map(map, map_len);
-+			if (bad_map) {
-+				pr_warn_once("%pOF: %s has 1-cell entries targeting 2-cell %s, treating as 1-cell output\n",
-+					     np, map_name, cells_name);
-+				cells = 1;
-+			}
-+		}
-+
-+		if (map_len - offset < 3 + cells) {
-+			of_node_put(phandle_node);
-+			goto err_map_len;
-+		}
-+
-+		out_base = map + offset + 2;
-+		offset += 3 + cells;
-+
-+		id_len = be32_to_cpup(map + offset - 1);
-+		id_off = masked_id - id_base;
-+		if (masked_id < id_base || id_off >= id_len) {
-+			of_node_put(phandle_node);
-+			continue;
-+		}
-+		if (id_len > 1 && cells > 1) {
-+			/*
-+			 * With 1 output cell we reasonably assume its value
-+			 * has a linear relationship to the input; with more,
-+			 * we'd need help from the provider to know what to do.
-+			 */
-+			pr_err("%pOF: Unsupported %s - cannot handle %d-ID range with %d-cell output specifier\n",
-+			       np, map_name, id_len, cells);
-+			of_node_put(phandle_node);
-+			return -EINVAL;
-+		}
-+
- 		if (filter_np && *filter_np && *filter_np != phandle_node) {
- 			of_node_put(phandle_node);
- 			continue;
- 		}
- 
- 		arg->np = phandle_node;
--		arg->args[0] = masked_id - id_base + out_base;
--		arg->args_count = 1;
-+		for (int i = 0; i < cells; i++)
-+			arg->args[i] = id_off + be32_to_cpu(out_base[i]);
-+		arg->args_count = cells;
- 
- 		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-base: %08x, length: %08x, id: %08x -> %08x\n",
--			np, map_name, map_mask, id_base, out_base,
--			id_len, id, masked_id - id_base + out_base);
-+			np, map_name, map_mask, id_base,
-+			cells ? be32_to_cpup(out_base) : 0,
-+			id_len, id,
-+			cells ? id_off + be32_to_cpup(out_base) : id_off);
- 		return 0;
- 	}
- 
-@@ -2219,6 +2303,10 @@ int of_map_id(const struct device_node *np, u32 id,
- 	arg->args[0] = id;
- 	arg->args_count = 1;
- 	return 0;
-+
-+err_map_len:
-+	pr_err("%pOF: Error: Bad %s length: %d\n", np, map_name, map_bytes);
-+	return -EINVAL;
- }
- EXPORT_SYMBOL_GPL(of_map_id);
- 
-@@ -2228,18 +2316,21 @@ EXPORT_SYMBOL_GPL(of_map_id);
-  * @id: Requester ID of the device (e.g. PCI RID/BDF or a platform
-  *      stream/device ID) used as the lookup key in the iommu-map table.
-  * @arg: pointer to a &struct of_phandle_args for the result. On success,
-- *	@arg->args[0] contains the translated ID. If a map entry was matched,
-- *	@arg->np holds a reference to the target node that the caller must
-- *	release with of_node_put().
-+ *	@arg->args_count will be set to the number of output specifier cells
-+ *	and @arg->args[0..args_count-1] will contain the translated output
-+ *	specifier values. If a map entry was matched, @arg->np holds a
-+ *	reference to the target node that the caller must release with
-+ *	of_node_put().
-  *
-- * Convenience wrapper around of_map_id() using "iommu-map" and "iommu-map-mask".
-+ * Convenience wrapper around of_map_id() using "iommu-map", "#iommu-cells",
-+ * and "iommu-map-mask".
-  *
-  * Return: 0 on success or a standard error code on failure.
-  */
- int of_map_iommu_id(const struct device_node *np, u32 id,
- 		    struct of_phandle_args *arg)
- {
--	return of_map_id(np, id, "iommu-map", "iommu-map-mask", NULL, arg);
-+	return of_map_id(np, id, "iommu-map", "#iommu-cells", "iommu-map-mask", NULL, arg);
- }
- EXPORT_SYMBOL_GPL(of_map_iommu_id);
- 
-@@ -2252,17 +2343,20 @@ EXPORT_SYMBOL_GPL(of_map_iommu_id);
-  *	If non-NULL, the map property must exist (-ENODEV if absent). If
-  *	*filter_np is also non-NULL, only entries targeting that node match.
-  * @arg: pointer to a &struct of_phandle_args for the result. On success,
-- *	@arg->args[0] contains the translated ID. If a map entry was matched,
-- *	@arg->np holds a reference to the target node that the caller must
-- *	release with of_node_put().
-+ *	@arg->args_count will be set to the number of output specifier cells
-+ *	and @arg->args[0..args_count-1] will contain the translated output
-+ *	specifier values. If a map entry was matched, @arg->np holds a
-+ *	reference to the target node that the caller must release with
-+ *	of_node_put().
-  *
-- * Convenience wrapper around of_map_id() using "msi-map" and "msi-map-mask".
-+ * Convenience wrapper around of_map_id() using "msi-map", "#msi-cells",
-+ * and "msi-map-mask".
-  *
-  * Return: 0 on success or a standard error code on failure.
-  */
- int of_map_msi_id(const struct device_node *np, u32 id,
- 		  struct device_node * const *filter_np, struct of_phandle_args *arg)
- {
--	return of_map_id(np, id, "msi-map", "msi-map-mask", filter_np, arg);
-+	return of_map_id(np, id, "msi-map", "#msi-cells", "msi-map-mask", filter_np, arg);
- }
- EXPORT_SYMBOL_GPL(of_map_msi_id);
-diff --git a/include/linux/of.h b/include/linux/of.h
-index ea50b45d9ff7..374b249766a2 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -465,7 +465,8 @@ const char *of_prop_next_string(const struct property *prop, const char *cur);
- bool of_console_check(const struct device_node *dn, char *name, int index);
- 
- int of_map_id(const struct device_node *np, u32 id,
--	       const char *map_name, const char *map_mask_name,
-+	       const char *map_name, const char *cells_name,
-+	       const char *map_mask_name,
- 	       struct device_node * const *filter_np,
- 	       struct of_phandle_args *arg);
- 
-@@ -950,7 +951,8 @@ static inline void of_property_clear_flag(struct property *p, unsigned long flag
- }
- 
- static inline int of_map_id(const struct device_node *np, u32 id,
--			     const char *map_name, const char *map_mask_name,
-+			     const char *map_name, const char *cells_name,
-+			     const char *map_mask_name,
- 			     struct device_node * const *filter_np,
- 			     struct of_phandle_args *arg)
- {
 
--- 
-2.34.1
+Yes, will do this
 
+
+Rishikesh
+
+>
+>> +		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+>> +		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
+> Then you can refer to i here instead instead of i - 1.
+>
+>> +	}
+>> +
+>> +	reset_control_assert(csi2rx->p_rst);
+>> +	clk_disable_unprepare(csi2rx->p_clk);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct dev_pm_ops csi2rx_pm_ops = {
+>> +	RUNTIME_PM_OPS(csi2rx_runtime_suspend, csi2rx_runtime_resume, NULL)
+>> +};
+>> +
+>>   static const struct of_device_id csi2rx_of_table[] = {
+>>   	{ .compatible = "starfive,jh7110-csi2rx" },
+>>   	{ .compatible = "cdns,csi2rx" },
+>> @@ -1127,6 +1164,7 @@ static struct platform_driver csi2rx_driver = {
+>>   	.driver	= {
+>>   		.name		= "cdns-csi2rx",
+>>   		.of_match_table	= csi2rx_of_table,
+>> +		.pm		= &csi2rx_pm_ops,
+>>   	},
+>>   };
+>>   module_platform_driver(csi2rx_driver);
 
