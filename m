@@ -1,251 +1,268 @@
-Return-Path: <devicetree+bounces-300478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300484-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHn5OveFDWo8ygUAu9opvQ
-	(envelope-from <devicetree+bounces-300478-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:59:19 +0200
+	id MMYfA4eHDWpdygUAu9opvQ
+	(envelope-from <devicetree+bounces-300484-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:05:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A6058B39B
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1FF58B532
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:05:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 509D43020659
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:59:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7FE59303B6BE
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 10:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A3B3CF03F;
-	Wed, 20 May 2026 09:59:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F04FTaOU";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N2edcI3M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B988C3D093F;
+	Wed, 20 May 2026 10:05:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF6D3B38AA
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 09:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840DB3D330A;
+	Wed, 20 May 2026 10:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779271156; cv=none; b=EJJV6W/PIWQ24vbHF0g1+BKuZYC0Ypug5PtRHakmRyRNv55HQav52THPoQtM0S9W2Hn3ClshZunDDZarkUhVbm35Py8/M9/JOiLMkpDv4dy9ExCS8maAN/9Cm2zO5/HyYLWh7WDl6pn0YVP+tJUhjhAXgOevrQ5sFe7w/fxnmqs=
+	t=1779271538; cv=none; b=b6LU2riwggy3qfgIK8SDyVem6RyXEPFf2+V43fDlzMCbV5ch4GYXdzc9DxK9DtgZvCMs0W1OijEAJ1RwcYWJJ2NI4p1sKgO/KyPCLYseNcZxUQbo6RjY2jRy0dFG3uiVvfNlTpmt3+wDpuNHv5d3++/FautmwK3xuG69sFBdfw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779271156; c=relaxed/simple;
-	bh=l9HvU/DVijk97NHpwl1aTz9bBNRUApT99CO5CbwcKEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LlYbM2GphOX0ZtppWVWNv5Bcs3I/IJJhtMvRDEyTQEukzRkfk9I6/z7BEfA9Y/ChDxIvHRXIR/GCTROJCzLIdsm1h+MrqGUs3AQiayiBrBzOrRIgGL36izJ75DjE70koVDJInAYfHpjnYEVQUL9bQ9iAcka168wFSmsIE8sKCEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F04FTaOU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=N2edcI3M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64K9nm23447958
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 09:59:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	f36z/IBn3RKMlhcSXkpC7uKq90SQCuiNVyuOJltpb2E=; b=F04FTaOU0agfylrK
-	lIW2hpN+9kQ8w4zIusw41jMTU8qAX4dNXmYoqHMmhVE0f1U5azTNpBFHiWf7Tog2
-	64es+wbmVNKvYEw5Xc6XUKX6nMUty40Xs/AUTIDzo7zsIeUSHLCRSbp1/6hLOPZw
-	i5FOp6FCAhoOmOYAAFChD+4GBopMMQsGMOszrBvc2cLwxCR0cO/XxWwsUZFBaks0
-	//j3Oe59CJ898iOagZxKFVuGTgBOmXFO8PDliGXH5qrYumzpdotvX5XbNV6KoAgC
-	BcET1m0eovAWpmqcvI0QR5Xam+mkrL1YNbFugIaPDaBJRxfK0QOiVWGK0jp2l0IY
-	GrB31A==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9anrg142-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 09:59:14 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50e429ba4dfso13252901cf.3
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 02:59:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779271153; x=1779875953; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f36z/IBn3RKMlhcSXkpC7uKq90SQCuiNVyuOJltpb2E=;
-        b=N2edcI3MJ7C9mbRIjatfUdAlxLrarVQH86oxzgh73Yfr0vdJSC0zy5v6Wk9v8MpK2e
-         Q4Tyq3yqqP2tVWBnLt+M7zbd0tlqweQKmZVFkQ0oxcBnrw304eUtyZ1BZ3ohybNCGDUH
-         SdMExqhGFsFzQLz+5AJbAM+rbwoEokTpSWf3XKIkmx00bWEHaUip7N1j382J3WnoKCRU
-         Uv8n/leJ2rELWCkXaMMznnGxufUiAFn5r0HUeNwsOVFVeDugAEh5c6wFVxmZ57tmQNL9
-         9cGbY8A7djCc3PPhvxH8gKVXvWloPkmwOm8hdKdGXjkaV/SDwQF0kioH6lUTRJ83sptW
-         wxsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779271153; x=1779875953;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f36z/IBn3RKMlhcSXkpC7uKq90SQCuiNVyuOJltpb2E=;
-        b=UTbeKl3XnCAtHOqGEkKvZ4DFjvj53V8v30/2gw5Jhi94J4x+PTz7wjVaDmzUrliCIo
-         v83S5Xux5fmk9Q9QNK9nhF/87WX5JrDqp9d4dYYT7O4NK+kuSMckG/mjebj1MuqZuugx
-         yim+lcC9y6xILlNHszTqX12+AHLLqMr4Tz4PIJhT1GuxfOVGjjQJgt8C4PEP2jElXt4a
-         5DcIalZklX1dhVaHcCcW3x0s+WkAIC4p9YS5NUnBTelwC7VZeAFqY3R0gozBYN3FzML/
-         1OfA8AR7b/ikN3tpOJ8VORwC9Ke4sireh91NhCF/S/HKc2yXi4mpHZdUY0UYlwKQDAW0
-         RRfw==
-X-Forwarded-Encrypted: i=1; AFNElJ+8tNcNUFh0yokC7vnp6e0x8ww7e98j0bbU3nX4uGT0zeAgKsUjR/8JG47VkT0C0Ki3dnrKdGI5KIbB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4OmZ8HDdtvywI8sDucUN1fAZZ3NuA5+kYitqulNSgoHyWiHRs
-	ztL0Kux0gAmwW3VGItvpYOcI+qNQVUWMfwgkuVR64u0W3SJ5ZG4nmHHosPZjLETLpp8KcPpL5Jw
-	inUVZOwft7fFxC9RvlUz2lfHSZP8Vs22NKpiDObMC5tfMv+LlydFpwXDCOZuY/FMY
-X-Gm-Gg: Acq92OEuagtjo6gxaDlI5jgeLL2HbhKwUGN92ZFP5i835x+QwqoJiXdjaw9ADCJAFbG
-	ln2bW3nlvpWZ5DZMeplewW/Ccuefbj50dDSQWlHMrFOxUs0mIXcx6DH7QTUbfxd02izbpdwSzrx
-	UI2hk8htR1CjGxh9DopcymQmYCC9uxVCHq+/CwGGmsGVEE5ElKuV2u3o3jC6ipYW+GdepkueSf4
-	/mCFVcG290N/1wXXvECAUKD1xdN1xCpEg5epVXuavFqyJdOglaOOFAFnfDJ1gpTFpmB9jH/m/Bc
-	okDPf312G95f+CcGUIUo+A7qdENCvGWcBGXq1fiXySYWrDR9XftR8DUsiSX986wIwpG7ra96V4j
-	mfxmxcFJ4GcBG+1Z+pOLUN2U73scE9NCgUBjGqvOXDRaq9ZwbsAXQrWB3nqwyzHK6xyjMDIIGV1
-	7CFzk=
-X-Received: by 2002:a05:622a:1313:b0:501:4767:a6f with SMTP id d75a77b69052e-5165a1ddf59mr223272931cf.3.1779271153569;
-        Wed, 20 May 2026 02:59:13 -0700 (PDT)
-X-Received: by 2002:a05:622a:1313:b0:501:4767:a6f with SMTP id d75a77b69052e-5165a1ddf59mr223272671cf.3.1779271153029;
-        Wed, 20 May 2026 02:59:13 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68310d58df1sm7847371a12.13.2026.05.20.02.59.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 May 2026 02:59:11 -0700 (PDT)
-Message-ID: <da2443f4-b80e-4ba5-8f83-4a4e893dd51b@oss.qualcomm.com>
-Date: Wed, 20 May 2026 11:59:09 +0200
+	s=arc-20240116; t=1779271538; c=relaxed/simple;
+	bh=pski7XBsuhbjIavTXw6+KZPkR7NoukNSf8oY8daP1fM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M3oRIAkzKXs0/DVOdtX+0Tlci4ObwzU2KdGKDqwGq5gGJ1hXYq+d3hI9EfT3qq40/n8m8hOf2tgmJ3b6oLDu152YL/+ssVKlZefltLXVdejZIBWbfwwEXfnvqujTzEKqTDJR2afDYUDnI7G42Vvn8R8/+UeW1scOQ8ohHoJWrL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from Vostro-3710.. (unknown [113.80.141.90])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3f243c2bc;
+	Wed, 20 May 2026 18:00:16 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 1/1] riscv: dts: spacemit: enable PMIC on OrangePi R2S
+Date: Wed, 20 May 2026 18:00:00 +0800
+Message-Id: <20260520100000.575719-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: Document CDSP Power
- Management
-To: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260520-cdsp-power-v1-0-85eb9501a1cd@oss.qualcomm.com>
- <20260520-cdsp-power-v1-1-85eb9501a1cd@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260520-cdsp-power-v1-1-85eb9501a1cd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 7p_bgwY0y_nPNjNe2ma7Zk2m1y8YRhst
-X-Proofpoint-ORIG-GUID: 7p_bgwY0y_nPNjNe2ma7Zk2m1y8YRhst
-X-Authority-Analysis: v=2.4 cv=UuJT8ewB c=1 sm=1 tr=0 ts=6a0d85f2 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=b5dwZOq_2XybwdJL-ncA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDA5NSBTYWx0ZWRfX4OAys+9UrjSG
- JA40eIzMXYHHCbHVhQfh8QLL5S3whDxqCCBOPAfg/MY6tRBRibwyW6MDnA4SRy40/xfJYrrddAD
- Mlz9pWanNCQQvUlTFtXrPqV6jO5UM3Z4vVedkbcRR9b56sYvqgsqn3O+7ONctC9EIsxbn8vAxOV
- W2890WabJ/W6VifYia0gHqZxZJAR+P/SdttLD/l7NrQ6aWQxtPOWJl06F2KJExQ5bEegB3I+a/h
- uhvXhI/TTjIh3vw1q66kHfMyhpIl0n+TowQN/AHUo+w3L46GgjyqZIRRlkqhuPLuDC4vtwxo4A6
- Ry46XYe1DXteiTW9Ok0xpzCp6tAW2Ht6bPkvloCALazy5rmJvVxL0DUHPEUUJ4P1853/9bc9vx0
- j/b3p6gTQaoR0P2YIQxQyUgLBujqBSTGG5sznF4n8O2DJduIUI+0JXBnLDfjhr0+JYYaZnTsgN9
- 0u2z3Xy6h0yXeqVWoiQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-20_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 suspectscore=0 spamscore=0 malwarescore=0 bulkscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605200095
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e44d4287503a2kunma0ccfee1365fd
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZQx5MVklLTk5DHU0fHx5JHVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkhVQ0tVSk9KVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
+	NMVUpLS1VLWQY+
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-300478-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-300484-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 90A6058B39B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,jmu.edu.cn:mid,jmu.edu.cn:email,0.0.0.1:email,0.0.0.41:email]
+X-Rspamd-Queue-Id: 9F1FF58B532
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/19/26 9:05 PM, Vignesh Viswanathan wrote:
-> Add documentation for the CDSP Power Management driver, which handles
-> Dynamic Clock and Voltage Scaling (DCVS) requests via SMEM, manages Low
-> Power Mode (LPM) transitions via MPM handshake, and provides virtual
-> regulators for the remoteproc driver to control CDSP power rails.
-> 
-> Signed-off-by: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
-> ---
+Enable the i2c8 interface and add the connected SpacemiT P1 PMIC and
+its associated regulators to support voltage regulation on the board.
 
-[...]
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 134 ++++++++++++++++++
+ 1 file changed, 134 insertions(+)
 
-> +maintainers:
-> +  - Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
-> +
-> +description:
-> +  The CDSP Power Management driver provides power management services for the
-> +  Qualcomm Compute DSP (CDSP) subsystem. It handles Dynamic Clock and Voltage
-> +  Scaling (DCVS) requests via SMEM, manages Low Power Mode (LPM) transitions
-> +  via MPM handshake, and provides virtual regulators that are consumed by the
-> +  CDSP remoteproc driver.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,cdsp-power
+diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
+index 1ecc40749e5a..b13a8d6a2670 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
+@@ -13,6 +13,7 @@ / {
+ 	compatible = "xunlong,orangepi-r2s", "spacemit,k1";
+ 
+ 	aliases {
++		i2c8 = &i2c8;
+ 		serial0 = &uart0;
+ 		ethernet0 = &eth0;
+ 		ethernet1 = &eth1;
+@@ -22,6 +23,15 @@ chosen {
+ 		stdout-path = "serial0";
+ 	};
+ 
++	vcc4v0: regulator-vcc4v0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc4v0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <4000000>;
++		regulator-max-microvolt = <4000000>;
++	};
++
+ 	vcc5v0_usb: regulator-vcc5v0-usb {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -94,6 +104,130 @@ rgmii1: phy@1 {
+ 	};
+ };
+ 
++&i2c8 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c8_cfg>;
++	status = "okay";
++
++	pmic@41 {
++		compatible = "spacemit,p1";
++		reg = <0x41>;
++		interrupts = <64>;
++		vin1-supply = <&vcc4v0>;
++		vin2-supply = <&vcc4v0>;
++		vin3-supply = <&vcc4v0>;
++		vin4-supply = <&vcc4v0>;
++		vin5-supply = <&vcc4v0>;
++		vin6-supply = <&vcc4v0>;
++		aldoin-supply = <&vcc4v0>;
++		dldoin1-supply = <&buck5>;
++		dldoin2-supply = <&buck5>;
++
++		regulators {
++			buck1 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck2 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck3_1v8: buck3 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck4_3v3: buck4 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck5: buck5 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			buck6 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3450000>;
++				regulator-ramp-delay = <5000>;
++				regulator-always-on;
++			};
++
++			aldo1_3v3: aldo1 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++			};
++
++			aldo2 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			aldo3 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			aldo4 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			dldo1 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++			};
++
++			dldo2 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			dldo3 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			dldo4 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			dldo5 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++
++			dldo6 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			dldo7 {
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <3400000>;
++			};
++		};
++	};
++};
++
+ &pdma {
+ 	status = "okay";
+ };
+-- 
+2.34.1
 
-This really needs to be SoC-specific
-
-> +
-> +  reg:
-> +    items:
-> +      - description: MPM (Modem Power Manager) register region
-> +      - description: RSCC (RSC Configuration) register region
-
-I was under the impression that these two belong to separate
-universes..
-
-> +  vdd-cx-supply:
-> +    description:
-> +      Phandle to the CX voltage regulator. This is the actual hardware regulator
-> +      (e.g., from MP8899 PMIC) that supplies power to the CDSP CX rail.
-
-I believe the second sentence is wholly redundant
-
-[...]
-
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        cdsp_power: cdsp-power@4ae000 {
-> +            compatible = "qcom,cdsp-power";
-> +            reg = <0x0 0x004ae000 0x0 0x1000>,
-
-MPM is a top-level peripheral, but this is a slice dedicated to the
-CDSP so maybe it'd pass, but..
-
-> +                  <0x0 0x26018018 0x0 0x4>;
-
-This is a single random register within the CDSP's register space, so
-we should definitely be able to describe this better..
-
-Konrad
 
