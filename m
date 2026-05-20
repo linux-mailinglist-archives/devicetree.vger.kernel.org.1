@@ -1,163 +1,187 @@
-Return-Path: <devicetree+bounces-300606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8E7IDASpDWox1QUAu9opvQ
-	(envelope-from <devicetree+bounces-300606-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:28:52 +0200
+	id aN4zCNGqDWox1QUAu9opvQ
+	(envelope-from <devicetree+bounces-300623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:36:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EE158DA75
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:28:50 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D7E58DCCA
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:36:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E9FF3151A71
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:16:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CE8413009884
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6281C3DC4D8;
-	Wed, 20 May 2026 12:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394653D34AC;
+	Wed, 20 May 2026 12:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpVGGMWu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpBHBZ8/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7176325491;
-	Wed, 20 May 2026 12:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0620B233946;
+	Wed, 20 May 2026 12:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779279402; cv=none; b=a+PnMoMTWQRvU5D6D3QmqAzfveD52LZLHYWFceZcGbCr9lHUIF13DCi5/m6bEJLrMRCuBZHjl98X4Hvx8NltlVeJHXgrX8qcv4upIDr75W5C3Ogm8IgvkFnc5Qcmf1FyOvAc3Kg7ufyPkJMGXES3iT+3YQW3KrjFGFMWdEjtxpg=
+	t=1779280579; cv=none; b=HeRSXaSPMiJzePenSt+IqItWlGJb05982YgImGChIbqv3jqYDjZNB+H+ZMNVuQl9BOj+fBQgpBJe4sehXdJ8bmMCjKrXiC7Jyrzv3Oh6qE3LMhP4POxz6THNMit5JapXv2TEtIbNvJ9O4xqYjaPt7I5E8LpvQQeUM4R+6GegbK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779279402; c=relaxed/simple;
-	bh=NGoOU3Z4rOZ1Tcqf+wi74ye+svzH+jA3Vj9YZFQhbJ8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=BcEED5IZtmBUkfiAZ2IW3E8aCDTC+f/zN4kSzUEfTJ+KPQNygdsVjn6cqMweJ3T1VHuLCv85ZVCUQE03AxyWHxgYYQQb+fYk5dayeyjCBlcnj/ckh1s/ALKWE5DDvh9sYDt135DbaLJBsPtNRaWF4Tuk2ugdJZZNYCL4IiRG11w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpVGGMWu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97C711F000E9;
-	Wed, 20 May 2026 12:16:39 +0000 (UTC)
+	s=arc-20240116; t=1779280579; c=relaxed/simple;
+	bh=nt8lCm2RpzOX/pBw+tRqEoSwrBELMRMCqGwCuE3SdTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jojHL6KtKBggvl6h+q3qTXF9i8eUsk2/Z698xeTgCodFLa/pcsi4vtFeEnI1yspMI2fTrH+b9yo2a7gGmYh+tO4SVVv3y+H9m8Xj9L6YKiziIUoZvaAq48DCzxuZymueYRgs/Tt+veOPr5seb0pbNbDAo08M8UBnWTRATvF/rHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpBHBZ8/; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CC211F000E9;
+	Wed, 20 May 2026 12:36:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779279399;
-	bh=+ZH6Rx+nARLKQ6V4H3k9RxfcHDh6K3AZprg5NAg0PfI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=EpVGGMWu6rzsb1NTj6OngVhZ5SZ4N236E+cQOH2+BERKcbfsLpgG8AQ+Ew7gI2qK5
-	 9o7mFcdgZxgG8/lMXHcs1POUt2ksosf8EXiujUdfyuyaVgmDKkh8Yg1Kqqf/GOvIEx
-	 bWIxQ2YzXu69bo6WUEKoq5KxFef++nmtVYbTUOPxuzM821uExpxeq2+r7gfrMaedag
-	 pfo+6osuXLM8qVjyaKkNhiOVA+uaJ4uLFSQv+c+uiKn4Sl1YKx6KSpZfPzhWA5FKvu
-	 g5Kt8VbpxrfQL0HTtUTxnKOzWuNjtfqPueDuL6E8xJQuvuSYK23n0/RrLxsR/+MdPT
-	 5wC3bzhNYsAVQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: freescale: imx95-aquila: Add Clover
- carrier board
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Franz Schnyder" <fra.schnyder@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, robh@kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260520-add-aquila-imx95-v2-3-06424a51e33a@toradex.com>
-References: <20260520-add-aquila-imx95-v2-3-06424a51e33a@toradex.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 12:16:38 +0000
-Message-Id: <20260520121639.97C711F000E9@smtp.kernel.org>
+	s=k20260515; t=1779280577;
+	bh=RQPKtJS8Fb1xlnROffPpHMMEw16wTiSxp/gZlJ/z1B4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=EpBHBZ8/rYrJ1TwrxBe8JqYMbiirC3CAteLgOHOAOKonYznKJvDKeVYBeK2cwX/d/
+	 Qegb0BXj2nIOtBYO4Jdx2/M2hXNvtenPbxosboqUgmJbSv39UJeIn0eUwDNS3kIA04
+	 ZYpOlBblWAw25NFtyvge6fdpFZD3915VNN66q9b8R0+2kxXg/hovy4FU6PQ3Hc+KA5
+	 BHKjC92f+FShK0pi50qlPA16TivsTEmhLrTD679vn1NWnFeOTdaRdaZxUk+sa2Z9bR
+	 vACDnhg0RmRLkFfdkSzfzuqJQC9134o+olpxus7m1PN8NaTehQKEisxA2iD+LU/VPJ
+	 lKf+t/zYorADA==
+Date: Wed, 20 May 2026 20:17:07 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: cdns,xspi: add sdma-io-width
+Message-ID: <ag2mQzz0tBQBmc4O@xhacker>
+References: <20260511031732.3199-1-jszhang@kernel.org>
+ <20260511031732.3199-2-jszhang@kernel.org>
+ <20260515-expert-devious-cricket-faff56@quoll>
+ <agz0kDsQBaeQPPQ4@xhacker>
+ <21d30826-bfe6-44cd-8c89-c1986f539e48@kernel.org>
+ <ag2fjCX0DuSVxubv@xhacker>
+ <14719378-7bf5-4688-81e9-bccedf618d18@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <14719378-7bf5-4688-81e9-bccedf618d18@kernel.org>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300606-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-300623-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 87EE158DA75
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jszhang@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 07D7E58DCCA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The flexspi1 flash node incorrectly uses Cadence QSPI specific prop=
-erties (cdns,*) with an NXP FlexSPI controller.
---
+On Wed, May 20, 2026 at 02:16:21PM +0200, Krzysztof Kozlowski wrote:
+> On 20/05/2026 13:48, Jisheng Zhang wrote:
+> > On Wed, May 20, 2026 at 09:09:55AM +0200, Krzysztof Kozlowski wrote:
+> >> On 20/05/2026 01:38, Jisheng Zhang wrote:
+> >>> On Fri, May 15, 2026 at 10:00:50AM +0200, Krzysztof Kozlowski wrote:
+> >>>> On Mon, May 11, 2026 at 11:17:31AM +0800, Jisheng Zhang wrote:
+> >>>>> The cdns xspi controller SDMA data port may support wider I/O width.
+> >>>>> Wider I/O width can benefit performance. A simple test with QSPI nor
+> >>>>> flash on one arm64 platform:
+> >>>>>
+> >>>>> 1 byte io width (default):
+> >>>>>  # dd if=/dev/mtdblock0 of=/dev/null bs=8192 count=1000
+> >>>>>  1000+0 records in
+> >>>>>  1000+0 records out
+> >>>>>  8192000 bytes (7.8MB) copied, 1.368735 seconds, 5.7MB/s
+> >>>>>
+> >>>>> 4 bytes io width:
+> >>>>>  # dd if=/dev/mtdblock0 of=/dev/null bs=8192 count=1000
+> >>>>>  1000+0 records in
+> >>>>>  1000+0 records out
+> >>>>>  8192000 bytes (7.8MB) copied, 1.088787 seconds, 7.2MB/s
+> >>>>>
+> >>>>> Improved by 26.3%!
+> >>>>>
+> >>>>> Add dt binding for sdma-io-width.
+> >>>>>
+> >>>>> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> >>>>> ---
+> >>>>>  Documentation/devicetree/bindings/spi/cdns,xspi.yaml | 6 ++++++
+> >>>>>  1 file changed, 6 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
+> >>>>> index 38a5795589de..1fd4b6dfd417 100644
+> >>>>> --- a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
+> >>>>> @@ -40,6 +40,12 @@ properties:
+> >>>>>    interrupts:
+> >>>>>      maxItems: 1
+> >>>>>  
+> >>>>> +  sdma-io-width:
+> >>>>> +    description: Slave DMA data port I/O width (in bytes)
+> >>>>
+> >>>> Waht is SDMA? What is Slave DMA? The same?
+> >>>>
+> >>>> Why this cannot be deduced from the compatible? DMA is fixed per
+> >>>> platform and SDMA do not sound like SPI device (so slave in older
+> >>>> terminology) property.
+> >>>
+> >>> in cdns xspi, sdma == slave dma. It can be read by any master, such
+> >>> as DMA engine or CPU. Its purpose and usage is similar as the data
+> >>> reg in other spi controllers, e.g the DW_SPI_DR in dw spi. 
+> >>
+> >> You did not really answer the questions.
+> >>
+> > 
+> > If you mean "Why this cannot be deduced from the compatible?", I think
+> > the slave dma port is part of the cdns xspi, so its io width belongs
+> > to xSPI device property.
+> > From another side, we have seen such property in other drivers such as
+> > the reg-io-width for the dw spi DW_SPI_DR port io width.
+> 
+> So you mean it depends on SPI device? Then why spi-peripheral-props is
 
-commit 58fa26ce8327e303e6d4b9e4915178ba8d66e5b7
-Author: Antoine Gouby <antoine.gouby@toradex.com>
+Nope, it depends on the spi controller itself.
 
-arm64: dts: freescale: imx95-aquila: Add Clover carrier board
+> not applicable here?
+> 
+> If this is not bus width, but DMA-something, is not really then SPI
+> device dependent, but rather DMA controller limitation, so either
 
-This commit adds device tree support for the Aquila i.MX95 SoM mated with
-the Clover carrier board. It configures basic interfaces including DP,
-Ethernet, CAN, and the FlexSPI controller.
+The "sdma" name is a bit misleading but that's from the hw. It's
+a data io port in fact. Any SPI controller has this data io reg or
+port. It's not DMA controller at all. IMHO, what io width
+may be supported is determined by the setting during IP configuration. 
 
-Link: https://www.toradex.com/computer-on-modules/aquila-arm-family/nxp-imx=
-95
-Link: https://www.toradex.com/products/carrier-board/clover
+So from this point of view, is it SPI controller property?
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-aquila-clover.dts b/arch=
-/arm64/boot/dts/freescale/imx95-aquila-clover.dts
-> new file mode 100644
-> index 0000000000000..021d437763412
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx95-aquila-clover.dts
-
-[ ... ]
-
-> +/* Aquila QSPI_1 */
-> +&flexspi1 {
-> +	pinctrl-0 =3D <&pinctrl_flexspi1_4bit>,
-> +		    <&pinctrl_qspi_cs1>;
-> +
-> +	status =3D "okay";
-> +
-> +	flash@0 {
-> +		compatible =3D "jedec,spi-nor";
-> +		reg =3D <0x0>;
-> +		spi-max-frequency =3D <66000000>;
-> +		spi-rx-bus-width =3D <4>;
-> +		spi-tx-bus-width =3D <4>;
-> +		cdns,read-delay =3D <0>;
-> +		cdns,tchsh-ns =3D <3>;
-> +		cdns,tsd2d-ns =3D <10>;
-> +		cdns,tshsl-ns =3D <30>;
-> +		cdns,tslch-ns =3D <8>;
-
-[Severity: Low]
-Are these cdns,* properties intended for the NXP FlexSPI controller?
-
-The imx95 SoC utilizes the NXP FlexSPI controller, but these cdns properties
-are specific to the Cadence QSPI driver. The NXP FlexSPI driver does not
-parse or support any cdns,* properties, so these timing configurations will
-be silently ignored by the kernel.
-
-> +	};
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520-add-aquila=
--imx95-v2-0-06424a51e33a@toradex.com?part=3D3
+> deducible from compatible or something else is missing here.
+> 
+> Argument that some drivers do that is obviously wrong, so I am jumping
+> there.
+> 
+> Best regards,
+> Krzysztof
 
