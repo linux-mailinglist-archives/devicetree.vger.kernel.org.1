@@ -1,306 +1,179 @@
-Return-Path: <devicetree+bounces-300520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300523-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8AvcDleVDWoMzwUAu9opvQ
-	(envelope-from <devicetree+bounces-300520-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:04:55 +0200
+	id 2FurGwiVDWpczwUAu9opvQ
+	(envelope-from <devicetree+bounces-300523-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:03:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F1A58C175
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:04:54 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB2A58C121
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 13:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 541FA30A0C8D
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:02:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5BDD6300F279
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 11:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7B8351C2A;
-	Wed, 20 May 2026 11:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872673D9DD4;
+	Wed, 20 May 2026 11:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B8WAP1M1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BDqtNqRa"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RYBTev16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15C773DA5C3
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5CF3D6465;
+	Wed, 20 May 2026 11:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779274926; cv=none; b=f85OFCVXhNHdnc90Jav6AUAtcpJm10LIfz5Zvpa4TY/1wad6RpytYseJN/XmdlH+31RbQJwqhGmmG4paqvva7QVSnUWoE9g91lXI09NR2eKremHq/HpHMXTul+3SPGg989eBgMpYcIFMGhfr8/SlJcaFXD1qZhTZlvi14vKaOUE=
+	t=1779275011; cv=none; b=MWjfUVSv3afCJV/RzbWhRiPK+VUWA9mi36ooLhWVByJcADWooA1tMGphr0FwRBHhEdRD3xdT/mOUrceFu60Ja1bzIGqDGxBOGblWrmvfKLeeeEuSZBfr21ewbM145I2SImaf508FuIqrhO//DR/jgdp8e8xjU0bQ4ZWdbLUMsmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779274926; c=relaxed/simple;
-	bh=EcsG3OcBHWatj218IEmU+YqnRsTeebclTu/zvz+F2/I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z8K3T6u+LgKb8HWWmyxjVcfvkBHn9cl2GHeVmrv9YKd7flsHCEqNVw+B1HTh6B5wUMxjc02AY+90eQMK0MMxYCL3BmbGlt+cSaDM2XY4aLCcnFItiHr1xkm1aTyhI9xnpo5F6wojDPSncmbh1NuA2t0E3BYdTj/oHF179o11Y4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B8WAP1M1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BDqtNqRa; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64K9lg4I267045
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:01:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lo5MkJYHpFxheGWji+TQIhnd3x4bpUJbquv575x5QgY=; b=B8WAP1M1TMjiWzKi
-	x+De4qLwV0+bqyhb0ezjxxAWjTpfYNJsYA5p0A4QoEE8QtVJ4YYduaUuizLmkqPx
-	av7CpLxMuMz4J9cMcSG/wS3Tm9eLhvxi1BsJ6jefrDTz4RqjBCqcf2/4Id7S07WV
-	AIMYJlv7oijeTLqhmxEjf9aY+20bTW/7axyllnFK9/zXguAhf0D+YFpD1mBsNb7z
-	9ZvCs1TOYjsdim+y3yXWQ/dv7PFvY1gnNoHmZ3iZMks6t85nSGDVEMY3n/wd6xDQ
-	t7AoTb4hQRF497TReFYpeHYhKn24kLLz29R+yEweg/po+Ggnkd/deS9s5Qtle4ai
-	7S5jaQ==
-Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com [209.85.161.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9amxr8he-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:01:57 +0000 (GMT)
-Received: by mail-oo1-f71.google.com with SMTP id 006d021491bc7-69b76062cffso5918863eaf.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 04:01:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779274917; x=1779879717; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lo5MkJYHpFxheGWji+TQIhnd3x4bpUJbquv575x5QgY=;
-        b=BDqtNqRappXhaXOcg0XpupLIjjlFNKJBogPtWCO3hS2gNA1XhFSFMa6lQIPiZJ3HYO
-         cR8v9PNS5HXCuInpVGcd8g347vUFf5tn9siK2bMoQHOL6esX+/E14AgKRA55zL2wBZDk
-         FK+ONRU3Ei+VVGV+u3bPdJOXXgSKkuWuzvWfCRLrmLnEoLziJqosjs+Xp7CYW1QtSbVV
-         8GoXVYQxLRDppAJ3EKkMZ21cUZWcQ/HRLOlUH81DsnBqOZYuGzandSHQP5YH5fgdeXHJ
-         HLvRyFEuWaf3y/D5y6AIlU6BsNdGEkugLgi9YSVCPd3MbVWNEBIP8K/9tM9Ms5QBmRj4
-         e3jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779274917; x=1779879717;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lo5MkJYHpFxheGWji+TQIhnd3x4bpUJbquv575x5QgY=;
-        b=jiDrBmio4jIsOr/7fNUU8BJBf2E/NRkgnuzO6hP+3TnNYMchhlJT9F2f0K1mUsmfui
-         gelkW2VHcXCYWm+pnMKKYYx4Erd8eOg4lkTGpQ/lYiNQZXje7sKxposBqS0W0TLmvNwL
-         qagDjRY884X2XJuPr8cRZt8kJRjIuA8mFVn3dDPIub51LkTw/8yqcceg7hBCRMFIxx4b
-         payKYOAsHI8QqFVqSvFg7MNwzlXluUHGG7Xa/6eUwAH4OtwfF4THgHko8uc26rNariql
-         bBAFVRMFF5dnA8nUkncjcI9zcFNi+gEvEWcWO+XVALNa2w3qctf2VLkfTpR15RYwaQE7
-         x67A==
-X-Forwarded-Encrypted: i=1; AFNElJ96+kyeAhfqZlqT3GBE9m6eCslFIutVIz1YmfNgX76j3HIKTwqGwoIrVMWkkllo8f9JpprcdlUfqyvS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCwJ/D5OuejfK+47AyQ01Iz0ljRG05JBAHak5+VxvG7G/86N9M
-	BRJgT8VR1ymJuD3ZLcOao11ju1hUeh9+N0H7XuNF3D65IgdJm874VgXz/BhpZoOM+uA8Ovg+BlA
-	07ZTr8llrUUTdncBTW3hwoBzcQM1rC3vm7WLLIZmWC0j760qdqvxMYhIgooXaQCJnfVcRvI1B
-X-Gm-Gg: Acq92OEKS3IwhEQxQUTuKLD8Gins2BcTFBcBKHnPa6Rkg55YEUVT0xnFzjGpcRsbNjf
-	jnOdS0/qpAFQuJfskVgUyZ2FOGASjPi5CSGDOcWpP2L9qcJXUg7r5QRVQsvIGKqI/OVVzcOqU3d
-	rqNObmQesW4l16Wshl+SG36mfSDguYDzh2xhUklVdHqHDLcVu2GUXVJ3/qNEmeW1/SqcMecFGmc
-	Q6e+qz39LhVVNC+S0ceOnKuLxAdLQSrAoxzwhs6DUFlhKL0Gn4VD7epP2FqVDgckWmyL24ufgtG
-	KVvDix9Jqk04yhKC0kGB8mS4ADAahLi57LZhsiBzMNU3U9zBfjrFXN+xP0g9xf8uIp0P77LZbVZ
-	3ifB+OVwOSaMeEKU9uv1U+7NLQWIM4bAy/jguQ55jdvNSnHKHsoqeJQXBtA9pcWH2kL0Ws8epIl
-	jrohPR+tAgOqPRcYRs
-X-Received: by 2002:a05:6820:6ae5:b0:694:96ff:d4b with SMTP id 006d021491bc7-69c9437169fmr13536832eaf.26.1779274916646;
-        Wed, 20 May 2026 04:01:56 -0700 (PDT)
-X-Received: by 2002:a05:6820:6ae5:b0:694:96ff:d4b with SMTP id 006d021491bc7-69c9437169fmr13536729eaf.26.1779274915807;
-        Wed, 20 May 2026 04:01:55 -0700 (PDT)
-Received: from QCOM-eG0v1AUPpu.na.qualcomm.com ([2a01:e0a:830:450:9d48:e1ec:d837:6344])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bd4f4eb6320sm840310266b.59.2026.05.20.04.01.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2026 04:01:54 -0700 (PDT)
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Wed, 20 May 2026 13:01:44 +0200
-Subject: [PATCH 3/3] arm64: dts: qcom: monaco-arduino-monza: Add QCA2066
- M.2 WiFi/BT support
+	s=arc-20240116; t=1779275011; c=relaxed/simple;
+	bh=QnDCM7xAlCAkIXGCnMd9mUnAUFCYybLAWsbrLk9JNW4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GdgTN0WZue+gbS277GvAuu+lqYcVZ3lGowv1xiAQxw8qYMt6J2GE/WfYE1EKqPBpFGv6mO5Vck6EStoa6ZxBLRpr3fIvH1mPfKhOXF5CUUwVxn82wDScgSUrK85Pi3+IT4eHPc+WbVoCp1IRtbT0cwW+1mI2k1bQD4o/fnHk7ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RYBTev16; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=0pSVK+9EQxqVMM7Yjv49ZmJRac0skbNKar4/N2MFVSo=; b=RYBTev16Cq3YvXNlWCcs0wFF69
+	eDsv+adZLd1yT5ULefQtKo+X44tNcAfUl7t5o/+u1cHreJ/abr4bRZAV5wiboCua7jRg8cb4PKW8+
+	iV8dK9Iwn/0DzGNqFo9QYDao4UtZXXZN4gEdvRcrawQmjOn4gaeea5dZino47REa62XIqncgRRbG4
+	WHmyxcV/KDsnFDUSbfsKoZ3kLMCN6lQS9L3ky99UPpD9mHwBimd7B0+XIZPHeACsIgJ/cfmCa5MJ6
+	rVJ/9tdrUlRY+PFZTbKHebAYyizsnFaclzUbWe2lc3+DVt34ghHvhSYC3+iRF3wrpIix+IcQ+vHFc
+	9xKGG2CQ==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Chaoyi Chen <kernel@airkyi.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Peter Chen <hzpeterchen@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, Hugh Cole-Baker <sigmaris@gmail.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v15 0/9] Add Type-C DP support for RK3399 EVB IND board
+Date: Wed, 20 May 2026 13:03:00 +0200
+Message-ID: <4958503.687JKscXgg@phil>
+In-Reply-To: <c0bc4796-afe5-40ff-8816-9605a6114d23@rock-chips.com>
+References:
+ <20260304094152.92-1-kernel@airkyi.com> <agxo8ic94e81nQRx@kuha>
+ <c0bc4796-afe5-40ff-8816-9605a6114d23@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260520-monza-wireless-v1-3-9f6942310653@oss.qualcomm.com>
-References: <20260520-monza-wireless-v1-0-9f6942310653@oss.qualcomm.com>
-In-Reply-To: <20260520-monza-wireless-v1-0-9f6942310653@oss.qualcomm.com>
-To: Manivannan Sadhasivam <mani@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: NHT0h9JqJd-i26eEzjn1vscdsk2fJuU3
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDEwNiBTYWx0ZWRfX9NgLCsAjQ+7A
- gE7/XiwpaBYvZhPDZE+e7alyIDgg+OKRD9BjulZ3oqzUlK6infwQRoHuhfKGdpE7vxalM0LeQRr
- Ok7rNIqwXQC6Zdy4a6sNQpBz8F+X7EbYmJgUmynfRtELaCGjCSusWlkMfPSKamPdWgIoOp1eCYV
- mY7rMG/wqqR7gxZZQhgZGjU6/NfEjTLrOIW3yVfTD+nyRuNq5L5q0Kz3g82kc1sNsstAQUo7Cd0
- GQWgDsxHtVN1Icqs/CeJQPAi+AMP1VS0z/7VLEPfKE0UBXVSfeqZoUytasPioqi25v2kEmewmQ4
- HAAOhYbkZvz+bzJxzBK3K53a7DWZiamqnh1fMBLSn5XISsCMWd+KsWnhHYZLAkwO9dU8IFrUvBx
- CR71XIPOexv6ieL+YQxF9P9x+s64pUylrJKuGul6lKWKLJKkzttDV4gHFOfqbks2Q9C+rC3R3Ms
- FSHOsLDQSJ4o/cswjOQ==
-X-Authority-Analysis: v=2.4 cv=TO11jVla c=1 sm=1 tr=0 ts=6a0d94a5 cx=c_pps
- a=V4L7fE8DliODT/OoDI2WOg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
- a=1BEw5LmG3YzgyHxDt7YA:9 a=QEXdDO2ut3YA:10 a=WZGXeFmKUf7gPmL3hEjn:22
-X-Proofpoint-ORIG-GUID: NHT0h9JqJd-i26eEzjn1vscdsk2fJuU3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-20_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 clxscore=1015 lowpriorityscore=0
- impostorscore=0 suspectscore=0 spamscore=0 adultscore=0 phishscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605200106
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300520-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,holtmann.org,gmail.com];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.3:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.0.2:email,0.0.0.0:email,qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-300523-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[40];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[airkyi.com,linuxfoundation.org,gmail.com,kernel.org,rock-chips.com,intel.com,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 94F1A58C175
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sntech.de:dkim,rock-chips.com:email]
+X-Rspamd-Queue-Id: 9DB2A58C121
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the QCA2066 (QCNFA765) WiFi/Bluetooth module on the
-Arduino VENTUNO Q board. The module is interfaced via LGA and is
-compatible with the M.2 Key E.
+Hi,
 
-Add wireless-lga-connector node using pcie-m2-e-connector binding,
-connecting PCIe port 0 to the WiFi interface and UART10 port 3 to
-the Bluetooth interface.
+Am Mittwoch, 20. Mai 2026, 03:13:25 Mitteleurop=C3=A4ische Sommerzeit schri=
+eb Chaoyi Chen:
+> Hello Heikki,
+>=20
+> On 5/19/2026 9:43 PM, Heikki Krogerus wrote:
+> > Hi,
+> >=20
+> > On Wed, Mar 04, 2026 at 05:41:43PM +0800, Chaoyi Chen wrote:
+> >> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> >>
+> >> This series focuses on adding Type-C DP support for USBDP PHY and DP
+> >> driver. The USBDP PHY and DP will perceive the changes in cable status
+> >> based on the USB PD and Type-C state machines provided by TCPM. Before
+> >> this, the USBDP PHY and DP controller of RK3399 sensed cable state
+> >> changes through extcon, and devices such as the RK3399 Gru-Chromebook
+> >> rely on them. This series should not break them.
+> >=20
+> > What's the status with this series?
+> > Are these inteded to go via the DRM tree?
+> >=20
+> > thanks,
+> >=20
+>=20
+> Thank you very much for your continued attention to this series.
+> The maintainers seem quite busy... Despite there being no further review
+> comments, this series have yet to be merged into the DRM tree.=20
+>=20
+> And some of my other patches are in the same situation.=20
+> Do you happen to know what the next steps should be? Thank you.
 
-Add pcie@1,0 downstream port node with pciclass,0604 compatible so
-the pci-pwrctrl driver can acquire the power sequencer and enable
-the M.2 slot before PCIe enumeration.
+=46or this series, I would think it'd be best to split it a bit.
 
-Add nfa725b_default_state pinctrl for the W_DISABLE1/2 GPIOs
-(gpio56/gpio55) used by the power sequencer.
+=2D Make patches 1, 2, 5-7 its own series
+  * patch 5 _should_ be included here, needs an Ack from the phy-maintainer
+    to go through the drm-tree. It does look independent from the other
+    phy changes (code changes themself), but needs the function from patch =
+2.
 
-Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts | 65 +++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
+=2D Make patches 3+4 its own series, so that phy maintainers notice
+  The code-changes themself seem independent of the rest
+  * Reference the drm-series and explicity note that the phy-patch in it
+    needs an Ack from the phy maintainer to through the drm-tree
+    Hopefully helps to get that
+  * patch 1 has a Reviewed-by from the type-c side, but needs someone
+    knowing drm-bridge internals to agree
 
-diff --git a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
-index 93ed575817af1c5e903662c209ead629fe202ee2..6fcad77f320cb82eccb6f07244d185abfb1976d9 100644
---- a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
-+++ b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
-@@ -154,6 +154,39 @@ vreg_nvme: regulator-3p3-m2 {
- 		enable-active-high;
- 		startup-delay-us = <20000>;
- 	};
-+
-+	wireless-lga-connector {
-+		compatible = "pcie-m2-e-connector";
-+		vpcie3v3-supply = <&vdc_3v3>;
-+		vpcie1v8-supply = <&vdc_1v8>;
-+		w-disable1-gpios = <&tlmm 56 GPIO_ACTIVE_LOW>;
-+		w-disable2-gpios = <&tlmm 55 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&nfa725b_default_state>;
-+		pinctrl-names = "default";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/* WiFi/PCIe */
-+			port@0 {
-+				reg = <0>;
-+
-+				lga_pcie_ep: endpoint {
-+					remote-endpoint = <&pcie_bridge_ep>;
-+				};
-+			};
-+
-+			/* Bluetooth/UART */
-+			port@3 {
-+				reg = <3>;
-+
-+				lga_uart_ep: endpoint {
-+					remote-endpoint = <&uart10_ep>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &cci1 {
-@@ -408,6 +441,22 @@ pci@0,0 {
- 		ranges;
- 		reg = <0x010000 0x00 0x00 0x00 0x00>;
- 
-+		pcie@1,0 {
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			compatible = "pciclass,0604";
-+			bus-range = <0x00 0xff>;
-+			ranges;
-+			reg = <0x020800 0x00 0x00 0x00 0x00>;
-+
-+			port {
-+				pcie_bridge_ep: endpoint {
-+					remote-endpoint = <&lga_pcie_ep>;
-+				};
-+			};
-+		};
-+
- 		pci@2,0 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
-@@ -500,6 +549,12 @@ max98091_default: max98091-default-state {
- 		bias-pull-up;
- 	};
- 
-+	nfa725b_default_state: nfa725b-default-state {
-+		pins = "gpio55", "gpio56";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	pcie1_default_state: pcie1-default-state {
- 		wake-pins {
- 			pins = "gpio21";
-@@ -540,6 +595,16 @@ &uart7 {
- 	status = "okay";
- };
- 
-+&uart10 {
-+	status = "okay";
-+
-+	port {
-+		uart10_ep: endpoint {
-+			remote-endpoint = <&lga_uart_ep>;
-+		};
-+	};
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
+=2D Makes patches 8+9 its own series, reference both series from above
+  as dependencies.
 
--- 
-2.34.1
+
+That would be my take here, to have the right maintainers notice they
+should do something.
+
+
+Heiko
+
 
 
