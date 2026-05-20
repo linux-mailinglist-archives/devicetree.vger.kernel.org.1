@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-300902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300904-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uC8uIeU5Dmqu8wUAu9opvQ
-	(envelope-from <devicetree+bounces-300902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:47:01 +0200
+	id 2C+yIgM6Dmqu8wUAu9opvQ
+	(envelope-from <devicetree+bounces-300904-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:47:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3888459C458
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:47:01 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB7459C476
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:47:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E35B43048897
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:46:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5742C30365EF
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C653E832A;
-	Wed, 20 May 2026 22:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AECE3EFD14;
+	Wed, 20 May 2026 22:44:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352253D6CD8
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 22:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 940203ED3A9
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 22:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779317092; cv=none; b=WXPhOrXlzfKNaS1se8H966bF/WZ1hHXSJm+bKlqgqLAdYHat0HBmKO0aGOBJxueMqpfmUB7Mb3yqFgVdvBUNtOB4nBIy0/fK8yK6jLOygi3TROQYj6NZdla1J1AbIy3dZq9hrV/VOAuziDyd1OjJiydFYa73UD6nCwsym5kBVIQ=
+	t=1779317095; cv=none; b=HyoJxmaD85l9+bn2GC7w+49swM1K/O3bgWTQxYuaj9IgzXYF1+RKQknVShLFSwAQWOABz6fDWVC1WqrRA9WKPz2spAjEJLtNbya9iypp42Ej1WYW9BqUWI+fUACOp2LYE5Gx55C7ArXJOBrPQcI/cjXVEPTg+omQzjM13hj04qY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779317092; c=relaxed/simple;
-	bh=0QTRGTAleaIYM+L2IF0gJiuGr/B2srVcDGVkPHs0akg=;
+	s=arc-20240116; t=1779317095; c=relaxed/simple;
+	bh=Fpg+E4AMLX9834hLYDO5eO1HMRGNzdORSc2gTM/NtXE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=txJnZSczqSX29Y77+SBhNMnHJBjcMzvzAhh1+RH+piUdwyd4wkcdlFi74sG+4362HbWgpsCyVyT+q8C2x8UzmYWx1+U+rFVoH41hNkxQ1xde//qduUBepKPur73N5NEDdFhcPv2LS7oFbJp9j75rQmgbHUfkcvptFTvvxLYYkQ0=
+	 In-Reply-To:To:Cc; b=qXzwVgDCT0gZeSlbQYKqWzvXHnOJK08teXndpKy/ea322jzZIszjCAPgLvAkd+qH1p9DxM5bci6lJio3QGSO/QIk01dcZNW6Ov7LvPmDCJtnxlo/QaVsEsN9z1pHr73pcEBHds5aS6gkXmoWTEra2IwHEtph9WBFqaVlTTtfVIY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1wPpeT-0005vy-GI; Thu, 21 May 2026 00:44:33 +0200
+	id 1wPpeV-0005vy-3y; Thu, 21 May 2026 00:44:35 +0200
 From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Thu, 21 May 2026 00:44:11 +0200
-Subject: [PATCH v7 06/28] media: rockchip: rga: fix too small buffer size
+Date: Thu, 21 May 2026 00:44:12 +0200
+Subject: [PATCH v7 07/28] media: rockchip: rga: use clk_bulk api
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,7 +47,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260521-spu-rga3-v7-6-3f33e8c7145f@pengutronix.de>
+Message-Id: <20260521-spu-rga3-v7-7-3f33e8c7145f@pengutronix.de>
 References: <20260521-spu-rga3-v7-0-3f33e8c7145f@pengutronix.de>
 In-Reply-To: <20260521-spu-rga3-v7-0-3f33e8c7145f@pengutronix.de>
 To: Jacob Chen <jacob-chen@iotwrt.com>, 
@@ -71,7 +71,7 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -80,11 +80,11 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300902-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-300904-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
@@ -93,60 +93,146 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,pengutronix.de:mid,pengutronix.de:email,sashiko.dev:url,collabora.com:email]
-X-Rspamd-Queue-Id: 3888459C458
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:email,pengutronix.de:mid,pengutronix.de:email]
+X-Rspamd-Queue-Id: 2AB7459C476
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Fix the command buffer size being only a quarter of the actual size.
-The RGA_CMDBUF_SIZE macro was potentially intended to specify the length
-of the cmdbuf u32 array pointer. But as it's used to specify the size of
-the allocation, which is counted in bytes. Therefore adjust the macro
-size to bytes as it better matches the variable name and adjust it's
-users accordingly.
+Use the clk_bulk API to avoid code duplication for each of the three
+clocks.
 
-As the command buffer is relatively small, it probably didn't caused
-an issue due to being smaller than a single page.
-
-Fixes: f7e7b48e6d79 ("[media] rockchip/rga: v4l2 m2m support")
 Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
-
 ---
+ drivers/media/platform/rockchip/rga/rga.c | 65 ++++---------------------------
+ drivers/media/platform/rockchip/rga/rga.h |  6 +--
+ 2 files changed, 11 insertions(+), 60 deletions(-)
 
-Flagged by Sashiko:
-https://sashiko.dev/#/patchset/20260325-spu-rga3-v4-0-e90ec1c61354%40pengutronix.de?part=10
----
- drivers/media/platform/rockchip/rga/rga-hw.c | 2 +-
- drivers/media/platform/rockchip/rga/rga-hw.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
-index 43ed742a16492..d1618bb247501 100644
---- a/drivers/media/platform/rockchip/rga/rga-hw.c
-+++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-@@ -414,7 +414,7 @@ static void rga_cmd_set(struct rga_ctx *ctx,
+diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
+index fea63b94c5f3d..4e710a050cb7c 100644
+--- a/drivers/media/platform/rockchip/rga/rga.c
++++ b/drivers/media/platform/rockchip/rga/rga.c
+@@ -698,48 +698,10 @@ static const struct video_device rga_videodev = {
+ 	.device_caps = V4L2_CAP_VIDEO_M2M_MPLANE | V4L2_CAP_STREAMING,
+ };
+ 
+-static int rga_enable_clocks(struct rockchip_rga *rga)
+-{
+-	int ret;
+-
+-	ret = clk_prepare_enable(rga->sclk);
+-	if (ret) {
+-		dev_err(rga->dev, "Cannot enable rga sclk: %d\n", ret);
+-		return ret;
+-	}
+-
+-	ret = clk_prepare_enable(rga->aclk);
+-	if (ret) {
+-		dev_err(rga->dev, "Cannot enable rga aclk: %d\n", ret);
+-		goto err_disable_sclk;
+-	}
+-
+-	ret = clk_prepare_enable(rga->hclk);
+-	if (ret) {
+-		dev_err(rga->dev, "Cannot enable rga hclk: %d\n", ret);
+-		goto err_disable_aclk;
+-	}
+-
+-	return 0;
+-
+-err_disable_aclk:
+-	clk_disable_unprepare(rga->aclk);
+-err_disable_sclk:
+-	clk_disable_unprepare(rga->sclk);
+-
+-	return ret;
+-}
+-
+-static void rga_disable_clocks(struct rockchip_rga *rga)
+-{
+-	clk_disable_unprepare(rga->sclk);
+-	clk_disable_unprepare(rga->hclk);
+-	clk_disable_unprepare(rga->aclk);
+-}
+-
+ static int rga_parse_dt(struct rockchip_rga *rga)
  {
- 	struct rockchip_rga *rga = ctx->rga;
+ 	struct reset_control *core_rst, *axi_rst, *ahb_rst;
++	int ret;
  
--	memset(rga->cmdbuf_virt, 0, RGA_CMDBUF_SIZE * 4);
-+	memset(rga->cmdbuf_virt, 0, RGA_CMDBUF_SIZE);
+ 	core_rst = devm_reset_control_get(rga->dev, "core");
+ 	if (IS_ERR(core_rst)) {
+@@ -771,23 +733,12 @@ static int rga_parse_dt(struct rockchip_rga *rga)
+ 	udelay(1);
+ 	reset_control_deassert(ahb_rst);
  
- 	rga_cmd_set_src_addr(ctx, src->dma_desc_pa);
- 	/*
-diff --git a/drivers/media/platform/rockchip/rga/rga-hw.h b/drivers/media/platform/rockchip/rga/rga-hw.h
-index cc6bd7f5b0300..2b8537a5fd0d7 100644
---- a/drivers/media/platform/rockchip/rga/rga-hw.h
-+++ b/drivers/media/platform/rockchip/rga/rga-hw.h
-@@ -6,7 +6,7 @@
- #ifndef __RGA_HW_H__
- #define __RGA_HW_H__
+-	rga->sclk = devm_clk_get(rga->dev, "sclk");
+-	if (IS_ERR(rga->sclk)) {
+-		dev_err(rga->dev, "failed to get sclk clock\n");
+-		return PTR_ERR(rga->sclk);
+-	}
+-
+-	rga->aclk = devm_clk_get(rga->dev, "aclk");
+-	if (IS_ERR(rga->aclk)) {
+-		dev_err(rga->dev, "failed to get aclk clock\n");
+-		return PTR_ERR(rga->aclk);
+-	}
+-
+-	rga->hclk = devm_clk_get(rga->dev, "hclk");
+-	if (IS_ERR(rga->hclk)) {
+-		dev_err(rga->dev, "failed to get hclk clock\n");
+-		return PTR_ERR(rga->hclk);
++	ret = devm_clk_bulk_get_all(rga->dev, &rga->clks);
++	if (ret < 0) {
++		dev_err(rga->dev, "failed to get clocks\n");
++		return ret;
+ 	}
++	rga->num_clks = ret;
  
--#define RGA_CMDBUF_SIZE 0x20
-+#define RGA_CMDBUF_SIZE 0x80
+ 	return 0;
+ }
+@@ -935,7 +886,7 @@ static int __maybe_unused rga_runtime_suspend(struct device *dev)
+ {
+ 	struct rockchip_rga *rga = dev_get_drvdata(dev);
  
- /* Hardware limits */
- #define MAX_WIDTH 8192
+-	rga_disable_clocks(rga);
++	clk_bulk_disable_unprepare(rga->num_clks, rga->clks);
+ 
+ 	return 0;
+ }
+@@ -944,7 +895,7 @@ static int __maybe_unused rga_runtime_resume(struct device *dev)
+ {
+ 	struct rockchip_rga *rga = dev_get_drvdata(dev);
+ 
+-	return rga_enable_clocks(rga);
++	return clk_bulk_prepare_enable(rga->num_clks, rga->clks);
+ }
+ 
+ static const struct dev_pm_ops rga_pm = {
+diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
+index 72a28b120fabf..2db10acecb405 100644
+--- a/drivers/media/platform/rockchip/rga/rga.h
++++ b/drivers/media/platform/rockchip/rga/rga.h
+@@ -6,6 +6,7 @@
+ #ifndef __RGA_H__
+ #define __RGA_H__
+ 
++#include <linux/clk.h>
+ #include <linux/platform_device.h>
+ #include <media/videobuf2-v4l2.h>
+ #include <media/v4l2-ctrls.h>
+@@ -81,9 +82,8 @@ struct rockchip_rga {
+ 	struct device *dev;
+ 	struct regmap *grf;
+ 	void __iomem *regs;
+-	struct clk *sclk;
+-	struct clk *aclk;
+-	struct clk *hclk;
++	struct clk_bulk_data *clks;
++	int num_clks;
+ 	struct rockchip_rga_version version;
+ 
+ 	/* vfd lock */
 
 -- 
 2.54.0
