@@ -1,148 +1,155 @@
-Return-Path: <devicetree+bounces-300328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300329-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAlxLrcEDWoLsQUAu9opvQ
-	(envelope-from <devicetree+bounces-300328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 02:47:51 +0200
+	id PDCZNnUODWpxswUAu9opvQ
+	(envelope-from <devicetree+bounces-300329-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 03:29:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B28C5865F5
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 02:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 304FF586890
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 03:29:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 471BD30115BD
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 00:47:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C11A03013D64
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 01:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8359025782D;
-	Wed, 20 May 2026 00:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394402DE6E6;
+	Wed, 20 May 2026 01:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SQRizg74"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="gwTF78PP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m155110.qiye.163.com (mail-m155110.qiye.163.com [101.71.155.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E1E248891;
-	Wed, 20 May 2026 00:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984EB3438A4;
+	Wed, 20 May 2026 01:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779238067; cv=none; b=NdZYDUh9z8I7U8CiW8eKqe6aN0o83QdTZhXn7H8jHVuj6Kna/4ykA5iku9XGi+ggdC80guNU3OYMpueGQ8xCK0B8Ccw0vYTaClL6Zilq3sMtLXjv5NFCxlPoCryr/YApVpauZteWVzxOSt3ljKZpv7PZ619kdOEsUpPPgskNd98=
+	t=1779240561; cv=none; b=b0AH0WE1dsmvxqlFIHP0Hp4DNwOqHTfNMez2wEcZvCw5Dmp51bsjCJhjwdAu3jGpKZGXQO5myFL7FfcdhuF7EkPb2igq/MJqqjG4sPOQYpCIgBaYeRl2pMRe4rQGyOmH3YAtbIZ+z657++T6bYDsrOLzqNpozyFgOjryrV5Akus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779238067; c=relaxed/simple;
-	bh=AlfeGIex8acgaQlBvVAJC3Hn7prtf8cr9o1AsZjmSHY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nebLrM96f1OpvQN3PUsBet9r+BEYbboQ0Di8DBj9EIe4OFhVNdSFi3Xxmz7oDJIrhM2dOPnngOJ+vUkb0BexOpE06au1rA+VosiZKT796ratndKW+jLrl8IOfAF4GYEDIxOCs1ck7SzfKQi2Hte8jzt775xwUdxKgOQF7JQbkTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SQRizg74; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB761F000E9;
-	Wed, 20 May 2026 00:47:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779238066;
-	bh=nuuKFj60ZRWnxMPfd6Npm27bww2j10ECDUt/wSu+QTA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=SQRizg74chhPQa21LJ72S+JpA1iGw6xE0JO7HAfxC7LeREFjo7w7TcK+odaCfJaiK
-	 Iitb4zNLhnO+XE3XMuhDotpXo6wKhCXyXmxsrYd9tdY4HMxdfcTAm0qwc6o/ZYriPx
-	 qQwRwlajoAR7qKY05Ru4KicHC0VG8RdVeWLCmmP5JgbnKW/u4sfhbvbw6l6TeF+/Hy
-	 W0pB9oiWsmi58qkYvGtEp53U+/YfpmSJ4YCW+pv7A4MqjPOVmywW5+fjvPA+/f5kIc
-	 MsrgHRshP5bl4G660A2NRvN1n/458ZqalC2KlEOjGMvioDbDf9aePzR2r/D0iPFxxC
-	 AqdIGSTeWeDwQ==
-From: Jakub Kicinski <kuba@kernel.org>
-To: robert.marko@sartura.hr
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	o.rempel@pengutronix.de,
-	kory.maincent@bootlin.com,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	luka.perkov@sartura.hr
-Subject: Re: [PATCH net-next v2 2/2] net: pse-pd: pd692x0: support disabling disable ports GPIO
-Date: Tue, 19 May 2026 17:47:36 -0700
-Message-ID: <20260520004735.4027213-2-kuba@kernel.org>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260515115050.691119-2-robimarko@gmail.com>
-References: <20260515115050.691119-2-robimarko@gmail.com>
+	s=arc-20240116; t=1779240561; c=relaxed/simple;
+	bh=eNY+r0g315K8v20Wzfkmq5r9clhD3MRkrGleKkpczMU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j0KKCfp1n+59klH0mHWQ6AICxsTFt7cU2/Mqb6JniS++feI4imMWFyurmP4EqwJJHfN2lBdh+eqpt3ji/YaRxAAiVvKLCoHPO9U7cLwMUcqjlRirKjgiSPn28SRsa8F+1m65p5re+UA2UVtNJ9smvRUZZWV2HoJRL1R74t1pEQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=gwTF78PP; arc=none smtp.client-ip=101.71.155.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.51] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3f0f4bf32;
+	Wed, 20 May 2026 09:13:41 +0800 (GMT+08:00)
+Message-ID: <c0bc4796-afe5-40ff-8816-9605a6114d23@rock-chips.com>
+Date: Wed, 20 May 2026 09:13:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v15 0/9] Add Type-C DP support for RK3399 EVB IND board
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, Hugh Cole-Baker <sigmaris@gmail.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20260304094152.92-1-kernel@airkyi.com> <agxo8ic94e81nQRx@kuha>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <agxo8ic94e81nQRx@kuha>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e42f214cf03abkunmde1056153a93c
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDQkoaVhhOGE9LGE9LQ01JTFYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pPSExVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=gwTF78PPuLUm1sysWyZUVBaAIEKd3WixyNY3bmjSc5enP6t3T7LjW1vDPot1Ro5hpeJzDUUuaKmRf3Cz6DX9uu/L1JxbBv2q7RmlverbAPspYQqTopSj5X3/+EdlkoFK2PHIs+UdzLX137UjUapaHB2spXQq0d9N+RLByQu9LFk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=Puww1BH0j/oGm+Paq7ifcsE10dx5Hg0yZyciu4GUl4o=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-300328-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-300329-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[40];
+	FREEMAIL_CC(0.00)[airkyi.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,bootlin.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 5B28C5865F5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
+X-Rspamd-Queue-Id: 304FF586890
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is an AI-generated review of your patch. The human sending this
-email says "nit picks but why not.."
----
-net: pse-pd: pd692x0: support disabling disable ports GPIO
+Hello Heikki,
 
-This commit adds support for parsing the disable ports GPIO on Microchip
-PSE controllers and configuring its default state to enable PoE during probe.
+On 5/19/2026 9:43 PM, Heikki Krogerus wrote:
+> Hi,
+> 
+> On Wed, Mar 04, 2026 at 05:41:43PM +0800, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> This series focuses on adding Type-C DP support for USBDP PHY and DP
+>> driver. The USBDP PHY and DP will perceive the changes in cable status
+>> based on the USB PD and Type-C state machines provided by TCPM. Before
+>> this, the USBDP PHY and DP controller of RK3399 sensed cable state
+>> changes through extcon, and devices such as the RK3399 Gru-Chromebook
+>> rely on them. This series should not break them.
+> 
+> What's the status with this series?
+> Are these inteded to go via the DRM tree?
+> 
+> thanks,
+> 
 
-> So lets support parsing that GPIO and using the GPIO flags to set it to
-> output high by default and enable PoE on all ports during probe.
+Thank you very much for your continued attention to this series.
+The maintainers seem quite busy... Despite there being no further review
+comments, this series have yet to be merged into the DRM tree. 
 
-Does the commit message contradict the implementation? 
+And some of my other patches are in the same situation. 
+Do you happen to know what the next steps should be? Thank you.
 
-The message mentions setting the GPIO to "output high by default", but the
-code below uses GPIOD_OUT_LOW. 
-
-While setting a "disable-ports" pin low to enable PoE makes logical sense,
-could the commit message be updated to accurately reflect the code's behavior?
-
-> diff --git a/drivers/net/pse-pd/pd692x0.c b/drivers/net/pse-pd/pd692x0.c
-> index 4a3c852780f58..6c5c5a26bbaa6 100644
-> --- a/drivers/net/pse-pd/pd692x0.c
-> +++ b/drivers/net/pse-pd/pd692x0.c
-[ ... ]
-> @@ -1780,6 +1782,11 @@ static int pd692x0_i2c_probe(struct i2c_client *client)
->  	priv->client = client;
->  	i2c_set_clientdata(client, priv);
->  
-> +	disable_ports = devm_gpiod_get_optional(dev, "disable-ports", GPIOD_OUT_LOW);
-> +	if (IS_ERR(disable_ports))
-> +		return dev_err_probe(&client->dev, PTR_ERR(disable_ports),
-> +				     "Failed to get disable ports GPIO\n");
-
-This isn't a bug, but should this use the local 'dev' variable instead of
-dereferencing '&client->dev' again? 
-
-The 'dev' variable is used in the devm_gpiod_get_optional() call just above
-this line.
 -- 
-pw-bot: cr
+Best, 
+Chaoyi
 
