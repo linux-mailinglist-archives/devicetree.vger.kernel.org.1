@@ -1,234 +1,193 @@
-Return-Path: <devicetree+bounces-300797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDeSOuEQDmrw5wUAu9opvQ
-	(envelope-from <devicetree+bounces-300797-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:52:01 +0200
+	id iCKNMYURDmrw5wUAu9opvQ
+	(envelope-from <devicetree+bounces-300800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:54:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52042598D04
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:52:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BF45598E03
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 21:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5CED832FE8C6
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 16:48:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AA8D331FDC9B
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 16:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF8A369D4E;
-	Wed, 20 May 2026 16:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2FE36D4E1;
+	Wed, 20 May 2026 16:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RlCiP22I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DfKLfiyX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1585334C1D
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 16:48:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5915371D00
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 16:49:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779295684; cv=none; b=i54A7X1bjJ5ahMVkf62H4Wo1DLJQ2D06UCymwD8s4xILI2Y0g03ukq43cepq7tRfCz9CsEs9WABjE8+Fq4S2AYBrsNlImqjrnPrJCAAiv3qWwd2aZbGLb+y0baOIaloZRHpXq7Zgte7noL3jvYOpI1athy+gE9jbxvWOlL/JjNY=
+	t=1779295755; cv=none; b=I74OwEy/eRlH29bXFy1Bcq9l3sXbKQh5Pim/u6AfioTdG2R73ItXAl29Lu4b8dk6gkE1/6WULY0j0/JXXO6eBDOezmXdJFrmmEYdYvteECozzDk+5idlP72V8iwV8TKdk8JKw2yXQyuJtsOjjAX9uEzSFUJtytXgGNefURmBgGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779295684; c=relaxed/simple;
-	bh=vm0PxFDshxFv/4DPW2RzAaUhI046C86xI/8jRmNuvRE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=o4UyzbRsfOtXp/KCJi5zvjGWQIug3riCBoMASM9P9p0xAQTr+9YFk9EVpCUoxPmUum5t6ye+bUFSQ7Fk0uC5ceswlrqg3p15Qid7v+VNmUa7FxAXlhFS9qq4P9gumufK0bA6M4jrhNWVQqyJ1y70/b13wr8wkyZjHBLLP90U0vQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RlCiP22I; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EF4C1F00894;
-	Wed, 20 May 2026 16:48:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779295682;
-	bh=J4vxLNl+gJPC+p7R6B5rrEq/XMJRAV/OYYQouBMD8CY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=RlCiP22IKCBpNGJMhJhtCetpHhytrLFR+XirYyblMOZAeUm6gOvNRGYVzcVqFGhsR
-	 NUSRYZDlf07I6ZIS96rTd/g1UTaiiJ6d4hq2moQqhQqJbKblaD4jAVUuSmdvt2oKrN
-	 FdZM1txAn2oc8+TDC7kWDy9paC3WflUQ8cgCoUEzIjyXURZVsvodfm8/Z78HwuPq3k
-	 0K099xZ54AU2IXXAzfEyJoHGw+Ibr6fbj1o59iFCSCf0A8D5imzn45lJN+jm2tLudd
-	 QyVHwA7GjanPOGvvRAdPudLUu7uK5cSEOjhZDUnuNGeWKMoiWp2caGXsM20YMzDU5e
-	 erjgqsDofN/fw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 3/7] thermal/drivers: airoha: Convert to regmap API
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260520155525.22239-4-ansuelsmth@gmail.com>
-References: <20260520155525.22239-4-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 20 May 2026 16:48:02 +0000
-Message-Id: <20260520164802.8EF4C1F00894@smtp.kernel.org>
+	s=arc-20240116; t=1779295755; c=relaxed/simple;
+	bh=1wdbQGuw6HvmZIeFn+pMLa4ccPKyAcHlFLo3mDEmmuU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=exvA0Ij+FkjlMCFo6DcjvcE9WIRwrJhhYvc7HEwB1wKT5CCW1UhoffMiU4C3+4NJw8lBp0W67M6C+wOBoROLIugBbAihrDO4L+T4pXQl0b4i3WJRcDT6E5eEHmBesHY0VDb8ytpFri3kq9EZMwrg7K7qy+7cZgn04uoEcqKmE7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DfKLfiyX; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-48e6db3ff7eso26552875e9.0
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 09:49:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779295751; x=1779900551; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I9V3EBCqEjOEBqzqMBD7+ufR2GQPQMJRKrFaD0tdiJU=;
+        b=DfKLfiyXIgG1aD37LJUqaHfLFOJZ4FGIixMlYb3lhoElmalo7j92dDiIPq6z1mCox4
+         8zsZ6j1vRBaYTp0BELd6E4COLwbIilwmjuXzQdYiwkI1Y1UmP/QuIvjMESlNuLFSIOuO
+         UL5LCuPIrhJJP9ybzR3WjOMikMt1SP6/RVsP7wEyDtvBO3bgBOEEDr3U26xTXuNO8WN5
+         SVX4sYKWHcKoR2PzGxx9XiCGEiFqDJjkhwYSGIMufoifkU9ZDCr1zl2CaRTcpRT0PHpG
+         g+1HDIfjNT6r9KaXuZCk8Vn21v/GOAGfnYG7w+OPmG3hYJMEczEJCklQnLcPzfMNLKOC
+         JrqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779295751; x=1779900551;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I9V3EBCqEjOEBqzqMBD7+ufR2GQPQMJRKrFaD0tdiJU=;
+        b=PS/lCALPSgQxpnEBcQdubavZnqx3FSGbWq43mw1A7AwzIJdD+GxhZfDG0Cedjg+hCP
+         v8Bz1rpiw0EomluFKso0+EGIZf3IFCyIlsqgj38RN7lylyDkBiJj26AXMss1czt0D6rw
+         gRzG4lAIxc72cBiDQxdZUMGCpADb4K1JoZN6i4kUW15xIe5UsYFHbK80lCAQ0jYSeuJ+
+         f/eGwZZo3U2d3qy8V3eyEizQPtkk+arWAPSqLDCCs66KPvUIriHkNOF2CgMMHkNUuaZd
+         JeQOVXlczlFnMaz6UwY9nBbJFJxio7s1lmL/Bo52orommYYSoG3m2iQdNMUjHNhqhGpZ
+         cTbQ==
+X-Forwarded-Encrypted: i=1; AFNElJ88unDblEgOPU3PwLU9aoZgyN7PGexppGz04s9SDlcRrZ+Ja0xG1gDTgShfRHfVVBKQ3yNhYRB3PcVa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3advNYMBKjdi41BpIkUw8jZb9E11bPMhuV2UcGwcxErGUIRQG
+	I2QFzETlhCClBf3iV24sjOtcwSU1UWxEGBKRQjdoA1RY/rCsj/dXgVXR
+X-Gm-Gg: Acq92OEuKNgO+IcPB9HTZm0gtgByLpbM1M38XFvpJWEHsO65UXqhWhSzrId/o9U3rTs
+	AlSQZMBOrvlv/JAYkz69YvUdZhfocWTbESWYUiOIRJ8hhyO/3ucY8SR/HgPCaxQFBHakf6TCtYO
+	iLMj9cLR3A8I4OnpQzg59q+Ma+uXiJdrtEF9DY6IFyGVdTOcfrfx/QnDLu++pgmTfufYt/ZqhU+
+	1ITn02/frpmqUQsPud3oStYnwrCMhKsheIyCi0hc4MRco1yU0DVBJ9vPwlKsC4B+Zy/pZKKIZ2H
+	B2IpgD5Xg2Th2TJiXftO7BUFdgTRrX7Hiw7owEN4wrTUH9huVH7m1fN9H7D6WB1nFz028tbnppa
+	WsXvWKErR2fICuNbMgIMc23HwZTFjL/U/ivKcpdJkByPDREZUbfd2RdQWx8NDlmiKE+M6fCcl5G
+	ewrCP1Mp6gS1mEltVOi4l5clEwqCF9MJlpP9GvgFa5DiHmcJk8Oy/6bJ0M+xTbWICtMT+pqIeUT
+	EAgF5fGlb0nMyJ6UOLGZt/jSZJ9/7bgH8+eP+uz7cwoIS4=
+X-Received: by 2002:a05:600d:8:b0:488:904b:f31 with SMTP id 5b1f17b1804b1-48fe6325213mr316461235e9.22.1779295750801;
+        Wed, 20 May 2026 09:49:10 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:dcb8:81c1:dc9e:cd68])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49033d8e71dsm3110285e9.9.2026.05.20.09.49.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 09:49:10 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Manivannan Sadhasivam <mani@kernel.org>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/4] Add PCIe support for RZ/V2H(P) SoC
+Date: Wed, 20 May 2026 17:48:19 +0100
+Message-ID: <20260520164823.436992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300797-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300800-lists,devicetree=lfdr.de];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[kernel.org,bp.renesas.com,google.com,pengutronix.de,glider.be,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: 52042598D04
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,renesas.com:email,bp.renesas.com:mid]
+X-Rspamd-Queue-Id: 4BF45598E03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Pre-existing issues:
-- [High] Simultaneous temperature trip interrupts are dropped instead of be=
-ing handled.
-- [High] The IRQ is requested before the thermal zone is registered, allowi=
-ng a potential NULL pointer dereference in the IRQ handler.
-- [High] Non-atomic read-modify-restore sequence on a shared syscon regmap =
-without external locking.
---
+Hi all,
 
-commit 952c01597265eea8ee25e21cc2c92bef3e5ca97e
-Author: Christian Marangi <ansuelsmth@gmail.com>
+This series adds support for the PCIe host controllers found on the
+Renesas RZ/V2H(P) SoCs. The RZ/V2H(P) controller includes additional
+features for PCIe lane control and supports multilink operation with
+two independent controllers.
 
-thermal/drivers: airoha: Convert to regmap API
+v2->v3:
+- Dropped using linux,pci-domain property.
+- Switched property to phandle-array for renesas,sysc
+  to support multiple controllers with different SYSC register sets.
+- Parsed controller-id from the "renesas,sysc" property instead of
+  using linux,pci-domain.
+- Updated commit message for clarity in patch #1
 
-In preparation for support of Airoha AN7583, convert the driver to
-regmap API. This is needed as Airoha AN7583 will be based on syscon
-regmap.
+v1->v2:
+- Dropped RZ/V2N DT binding patch as it has been merged in the
+  pci/dt-binding branch.
+- Dropped un-necessary new line in schema.
+- Renamed RZG3S_PCIE_CHANNEL_ID* to RZG3S_PCIE_CONTROLLER_ID* for clarity.
+- Added locks to protect shared lane configuration state and
+  prevent concurrent access issues during probe.
+- Added cleanup action to release lanes on driver removal.
+- Reconfigured RZG3S_SYSC_FUNC_ID_LINK_MASTER in resume path.
+- Renamed num_channels to num_pcie_controllers for clarity.
+- Updated commit messages for clarity in patches 1-4.
 
-> diff --git a/drivers/thermal/airoha_thermal.c b/drivers/thermal/airoha_th=
-ermal.c
-> index 829a7327fc403..b63893a8997a3 100644
-> --- a/drivers/thermal/airoha_thermal.c
-> +++ b/drivers/thermal/airoha_thermal.c
+note, the patches have been rebased on top of next-20260520.
 
-[ ... ]
+Cheers,
+Prabhakar
 
-> @@ -300,9 +300,9 @@ static irqreturn_t airoha_thermal_irq(int irq, void *=
-data)
->  	struct airoha_thermal_priv *priv =3D data;
->  	enum thermal_notify_event event;
->  	bool update =3D false;
-> -	u32 status;
-> +	u32 status =3D 0;
-> =20
-> -	status =3D readl(priv->base + EN7581_TEMPMONINTSTS);
-> +	regmap_read(priv->map, EN7581_TEMPMONINTSTS, &status);
->  	switch (status & (EN7581_HOFSINTSTS0 | EN7581_LOFSINTSTS0)) {
->  	case EN7581_HOFSINTSTS0:
->  		event =3D THERMAL_TRIP_VIOLATED;
+Lad Prabhakar (4):
+  dt-bindings: PCI: renesas,r9a08g045-pcie: Add RZ/V2H(P) support
+  PCI: rzg3s-host: Use shared reset controls for power domain resets
+  PCI: rzg3s-host: Prepare System Controller handling for multiple
+    controllers
+  PCI: rzg3s-host: Add support for RZ/V2H(P) SoC
 
-[Severity: High]
-This is a pre-existing issue, but what happens if both high and low
-temperature interrupt status bits are set simultaneously?
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  34 ++-
+ drivers/pci/controller/pcie-rzg3s-host.c      | 232 ++++++++++++++++--
+ 2 files changed, 246 insertions(+), 20 deletions(-)
 
-If both EN7581_HOFSINTSTS0 and EN7581_LOFSINTSTS0 are set, the bitwise AND
-will yield a combination of both bits. Since there are only case statements
-for the individual bits, the code will fall through to the default case.
+-- 
+2.54.0
 
-The status will be written back to clear the interrupts, but the events
-will be silently dropped without notifying the thermal core.
-
-Would it be safer to replace this switch statement with independent if
-checks for each interrupt flag?
-
-> @@ -329,18 +329,19 @@ static irqreturn_t airoha_thermal_irq(int irq, void=
- *data)
->  static void airoha_thermal_setup_adc_val(struct device *dev,
->  					 struct airoha_thermal_priv *priv)
->  {
-> -	u32 efuse_calib_info, cpu_sensor;
-> +	u32 efuse_calib_info =3D 0;
-> +	u32 cpu_sensor =3D 0;
-> =20
->  	/* Setup thermal sensor to ADC mode and setup the mux to DIODE1 */
->  	airoha_init_thermal_ADC_mode(priv);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but is it possible for the
-chip_scu regmap sequence to race with other drivers?
-
-Looking at airoha_init_thermal_ADC_mode(), it performs a read-modify-restore
-sequence on a shared syscon regmap:
-
-static void airoha_init_thermal_ADC_mode(struct airoha_thermal_priv *priv)
-{
-    ...
-    regmap_read(priv->chip_scu, EN7581_PLLRG_PROTECT, &pllrg);
-    regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT,
-                 EN7581_SCU_THERMAL_PROTECT_KEY);
-    ...
-    regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT, pllrg);
-}
-
-Because the internal regmap lock is only held during individual register
-accesses, could another driver (like a clock or pinctrl driver) accessing
-the SCU concurrently cause the protect key to be incorrectly overwritten or
-prematurely removed?
-
-[ ... ]
-
-> @@ -462,8 +475,8 @@ static int airoha_thermal_probe(struct platform_devic=
-e *pdev)
->  	platform_set_drvdata(pdev, priv);
-> =20
->  	/* Enable LOW and HIGH interrupt */
-> -	writel(EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0,
-> -	       priv->base + EN7581_TEMPMONINT);
-> +	regmap_write(priv->map, EN7581_TEMPMONINT,
-> +		     EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0);
-> =20
->  	return 0;
->  }
-
-[Severity: High]
-This is a pre-existing issue, but could we encounter a NULL pointer
-dereference if an interrupt fires before the thermal zone is registered?
-
-Looking earlier in airoha_thermal_probe():
-
-    ret =3D devm_request_threaded_irq(&pdev->dev, irq, NULL,
-                                    airoha_thermal_irq, IRQF_ONESHOT,
-                                    pdev->name, priv);
-
-    ...
-
-    priv->tz =3D devm_thermal_of_zone_register(dev, 0, priv, &thdev_ops);
-
-If an interrupt is already pending (for example, left active by the
-bootloader) when the IRQ is requested, the handler will run immediately.
-
-If an event is detected, airoha_thermal_irq() will call
-thermal_zone_device_update(priv->tz, event). Since priv->tz is still NULL
-at that point, it will crash.
-
-Should the IRQ be requested after the thermal zone registration is complete?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520155525.2223=
-9-1-ansuelsmth@gmail.com?part=3D3
 
