@@ -1,275 +1,235 @@
-Return-Path: <devicetree+bounces-300736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300740-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oC6kCvPZDWrE4AUAu9opvQ
-	(envelope-from <devicetree+bounces-300736-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:57:39 +0200
+	id CALnNlTVDWrW3wUAu9opvQ
+	(envelope-from <devicetree+bounces-300740-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:37:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD5B591558
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:57:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81045910CA
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 17:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA4EE322AD95
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:19:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B3C2E308A755
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 15:21:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CFE3F39C7;
-	Wed, 20 May 2026 15:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79DE3E8C67;
+	Wed, 20 May 2026 15:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h8sogdFH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l/UNZfEe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92C53F23A1
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 15:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779290293; cv=pass; b=SFyJOou2cY3IN6fg/LJ3k+HippFhT8LPoFR8kIg7bBdXtrulxXnqpSOhrtBVBD/cgW74tpnT8QicHanjD3q/nmGCMo1ZThLA1d25DrZr2obBK0/ze3qFeDmw8Bm2Jg1gwusV0HcdEgNE47seeh17NwHnz1HfHPbnZbPpaOhRIFE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779290293; c=relaxed/simple;
-	bh=eiOOIR+BuCgNoFXzdn/1KJetRl3m/Y+Ifs/Wqtp9Tg4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c8xrvlWaTW3/7zFda+xRP0qHFMb3xgcVAbCnlx28vzSBFm2MvYjXf9tOXhqL6fsztgUP8L3Q3+Wbn/vk+7pxiiF8C5Ykuj5jhSZ4JE2UMO4DmjTTMR4bienJDKabsBkRXXppADouqOyD1CVaI+D24pqhsE5K2H+DCENtAVLo+Jk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h8sogdFH; arc=pass smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-67c1e0229acso8397427a12.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 08:18:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779290289; cv=none;
-        d=google.com; s=arc-20240605;
-        b=iAHx9ppipqLK9W1N/ZBUfrzW3M9zT64jJCuM4lmYWiDwqfpj0XQvWHijF50wAmRJZy
-         GizILWeB51Uir/2mHY0tFeDsZpemXZA5Iiy09H/e7vGRqsBqbr3LMfLFFyIFN1Ta7OO+
-         dUOyxRnTDYJHeZFpOqt4rqqLdL6r40o2nrBJtA2wh/4kLU+EkWEiAPRTEIuNrlKkjpou
-         FPn30WqFllWa9Rv1rKbw9D1RvymuIiIfmzkLkjyF30/R7PbkfkKtODGUXfN4NqlAiTTE
-         cg49YzVbzSljPN4MOac9YRyajAQo2W7DG7NTK7MPRY/Xj2s392HY16O7EFW1nrnN5p+k
-         T35A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=m9qLByd2PzQi0vKZgnHfAth5+WLU5IX+PErom9/qoQk=;
-        fh=SkufWz++dgrcFQOyXZMLL41Gwzw6B9RjqoHO+4R+pgw=;
-        b=bk8kQK+CVGxshkRgO66PVFjGOansamqpwPOTWDAhWoly56JTFezR9/OlOwuWbAY5zD
-         9e8DecWza8O2E215WO9VgRBrhdoe611hULlETJMdBqUySAzafRZP6tNUbSrt3WG1tRKl
-         YkJ3iOEL4C/4FBMRt7KAm7KBTI8LCd49VTNWN1yLY1ma7pJOaK2lIWew87xpX38+4c8z
-         jnt0/F0Wm1xKYtnvxai6LJzUXsmpY55T/9XaVF/+GLFMcUhIDw3Xqb6r5CL4aNXEdpAX
-         330LAALtapKa4e91jFCBpLKy1DyGjsiGGOBNdOFTF8i1G3h+v0Zfk9XSNDIHdNVsdzp2
-         lqXA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779290289; x=1779895089; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m9qLByd2PzQi0vKZgnHfAth5+WLU5IX+PErom9/qoQk=;
-        b=h8sogdFH2cYt4F/ShN5FoLrwrLKsUN5lhQEpBx3CYNijo/kidvmkwn+AVnCC6cryw4
-         jOGh49qn2vQRvIzlx50T46iavk7ghjO8Amvr4MRtsi8bbB01HTEzAbw75Qxb33OjTxNc
-         5pbij6JSFLFhUqIXzYTmr7rEVu1RpyWwUwWs6PYsivM/Q6hxKyClHE9Uf9q2ls5vqmXy
-         r1qb6HQiAi6rA1cWUefkA7Wfqlax+Fqrt/m2cqmIMiHv4gQbBAFdIPah7aX6J2MSDhYq
-         X1a0tRAG6t5oL+ZHzOiRvI9cpF2XCM8EkgB4cClok31AbVYQcp1jWxTaVfY9xNCaPVHx
-         nFeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779290289; x=1779895089;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=m9qLByd2PzQi0vKZgnHfAth5+WLU5IX+PErom9/qoQk=;
-        b=HfVU4zaYUE1joglaw1c/ESkdMLoTGON6xYr0+OT2z2BvLN5qgEK4FfHtWs5oTBozLA
-         l9UBZ/Di+7mWkHEgywGyxN6QReOInBKLy5TVXwDXMCVB9BDsSDXCuVhrlRR4ZXVpCkgw
-         ejeP3cYSs8dPfYa203lKFmWOrN235ZtN0Yq4xwFWV37LZE97Ax0IXnr3m2fj5Jeez0Fq
-         YDdFQSRJp/FdGBrD/90jY2dSU2fSIprOUjcEDgIK7b3dseCJYCOuA/1pwjOACrJxS1EF
-         4Wx/VIvCxhkNu2sQ00Ha9Wff+/NJ7b3yiVqU9/7F9qyJwRPBg6W8mS5DgDq7TK81dhGI
-         Z+kg==
-X-Forwarded-Encrypted: i=1; AFNElJ+ECpeMz7OckLbhZrz5xvAkVbAL0QqRXlH7dahvnZM+b11tmY0ouA76nKuzcp+KS1KudNYrso+OLMWZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+xB1GdtHmictygbtAGIaeT1WLJSeDFBqRobAkIDrIUb74ptt8
-	Inr0sV0munrZx+/49qTiXF+tZOkZNxKLHT1qHbDJ10atP0thmfxwAv+uDmHmeIo0Op116XPaZdW
-	uqrAph1LZzVmBT4O1As5aq/mt3yQ/GfM=
-X-Gm-Gg: Acq92OHL4QWNzH6H5PQWVjWQ9BM+nGtfTI6CtuIUP10vzecRgh6LQYdLWBzVIokdAj+
-	Qp3N8opDdmp2LHqRxF8W/1z/IioAv27OVftjqPgAMhqHA0EuFMQB37DisAFXY4HjIaqAhP8EaXJ
-	+WZo5HEMAwsYaOwICMhn9/jVDLjj/eA1OlL5xDj4Xg83m3hPVQM9BUKRI4KdcG8HoYYY7za83Tb
-	uLca8phLdifLMqpF478g5wEr4qwYy/an32eTHrfC0lHi9vfUa6/7UvoviugQc54qpodJopw1/nV
-	XpxMDh6jdjJc9oc2h3SSta79EnW6FlWoV1eZUtOVqrizsU+14wpkfC7K7nUpUosw
-X-Received: by 2002:a17:907:998d:b0:bd5:5834:1d3f with SMTP id
- a640c23a62f3a-bd558341ef5mr1219917066b.22.1779290288833; Wed, 20 May 2026
- 08:18:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CA13ED125
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 15:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779290458; cv=none; b=eI3a1Vv7fuTJ7105kbCW3kGmZvbQYjS21OwwWWynzBDL6T7Ewe+HnQLLA7D5Spd3mCXuKQDbZbYxhgG5wwiGCCVJBpteOY0SmhK3M8/pkvZCd/KhVpbKtP8DPGStKMtxtZwTtHxakMQ0WYZ1Z15GVCTE5jg6rB333wns2fXFiGU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779290458; c=relaxed/simple;
+	bh=KFL5GTCAvk1c+j5Va3JOJCqqeLKFxgbwNyKarrYsSF4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=WV9D480utI/KNjo6pt+Sb2TnnTl6W2qhVlKytTx+r3VV3BRNmQ1+mJqiOIi9Lyc+KDF1rfLe1FnOy06JQWe2D0icEOdGVmEEahb1cFirND8sLbsuY4qkCwgoNZD/iibz2eJMGEFS6Ni6Dd7NTDpVsZXiSo+VU2xPt1+yho8X7Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l/UNZfEe; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 215E81F000E9;
+	Wed, 20 May 2026 15:20:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779290457;
+	bh=jjyA7T21uEb/7VKspBpd8f2VgAykRtNr2FCWxH3XFBM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=l/UNZfEems1rTTWX8O1HsGUiJysqVrYqjluCmyWRbTihklxNS1T6XisJIHN8pczVx
+	 r0W8dR7HZMknu707Hcjwgpb+gnynREjznXr6WmA4FRnztuAp4w+4ZH/X7hkTCDzsZM
+	 tBFfkJr3JjxXgh1HYUyXVo9DLeHik9AA5yVojwiXFvD58mTg7ctvp3sjqCW+7PPAe2
+	 M8tkBZYfVkDhdcB6PNMGiDXSjPQ4owCzGExgJ3pMqUEOKdWlWxC/peBZp8heLnktnK
+	 muCIXhBoT+8wBBrNSFFIIqytH2zBKyyM+BlPo+YvBJTRaGKSS5MRytTe8nPGHidD65
+	 kfSbxEcu9lyzw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 6/6] leds: is31fl32xx: Move pwm frequency setting to
+ init_regs()
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jun Yan" <jerrysteve1101@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260520133343.1423946-7-jerrysteve1101@gmail.com>
+References: <20260520133343.1423946-7-jerrysteve1101@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 20 May 2026 15:20:56 +0000
+Message-Id: <20260520152057.215E81F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260518155324.168948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260518155324.168948-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW1m1bUJY+7AF+W7hZ_zpcBt=nbJivjr-nrmSLBiZv8qw@mail.gmail.com>
-In-Reply-To: <CAMuHMdW1m1bUJY+7AF+W7hZ_zpcBt=nbJivjr-nrmSLBiZv8qw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 20 May 2026 16:17:42 +0100
-X-Gm-Features: AVHnY4JybpRBzBUvxwIH8V6FnXAx2_urpMr8NNxvoYafQOv4Ri8o8_Tz826UNqQ
-Message-ID: <CA+V-a8uY0Bit=3g-3ZMB+nDyMXoCqHuqQiusi-c29DWMfWHJ_w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: renesas,r9a08g045-pcie: Add
- RZ/V2H(P) support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, sashiko-bot@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300736-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,bp.renesas.com,pengutronix.de,glider.be,gmail.com,vger.kernel.org,renesas.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300740-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,mail.gmail.com:mid,renesas.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: ABD5B591558
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: E81045910CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Geert,
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-Thank you for the review.
+Pre-existing issues:
+- [High] LED class devices are registered before hardware initialization co=
+mpletes, causing race conditions and state loss.
+- [High] Missing initialization of `output_frequency_setting_reg` for IS31F=
+L3293 causes erroneous I2C writes to register 0x00.
+- [High] The current limit calculation in `is31fl3293_reset()` incorrectly =
+uses `max()` instead of `min()`, risking hardware damage.
+- [High] Concurrent brightness updates on different channels can cause torn=
+ multi-byte PWM writes and visible glitches.
+--
 
-On Tue, May 19, 2026 at 7:57=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, 18 May 2026 at 17:53, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support for the PCIe controller found on the Renesas RZ/V2H(P) SoC.
-> >
-> > The RZ/V2H(P) controller is similar to the RZ/G3E variant but includes
-> > additional registers and configuration bits for PCIe lane control. It
-> > supports multilink operation configured as either a single x4 link
-> > or two independent x2 link controllers.
-> >
-> > Unlike earlier SoCs supported by this driver which only feature a singl=
-e
-> > PCIe controller, the RZ/V2H(P) SoC implements two controllers. Both
-> > controllers rely on the system controller (`sysc`) for configuration,
-> > but the required registers reside at different offsets for each instanc=
-e.
-> > To correctly identify the controller instance and map the corresponding
-> > system controller registers, make the "linux,pci-domain" and "num-lanes=
-"
-> > properties mandatory for this SoC and restrict their values according t=
-o
-> > the hardware capabilities.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
->
-> > @@ -235,6 +238,20 @@ allOf:
-> >            maxItems: 1
-> >          reset-names:
-> >            maxItems: 1
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,r9a09g057-pcie
-> > +    then:
-> > +      properties:
-> > +        linux,pci-domain:
-> > +          enum: [0, 1]
->
-> Sashiko has the following comments about this property[1]:
->
-> | Is it appropriate to use linux,pci-domain to identify the hardware
-> | controller instance?
-> | Device Tree is designed to describe hardware rather than software polic=
-y
-> | or configuration. The linux,pci-domain property is an OS-specific hint
-> | used to assign logical PCI domain numbers.
-> | Using it to identify hardware instances strictly couples the hardware
-> | register mapping to an OS numbering scheme.
->
-> and
->
-> | Does limiting this to [0, 1] cause a regression for valid software
-> | configurations?
-> | For example, if a board with multiple PCIe controllers assigns domains =
-2
-> | and 3 to these instances to avoid conflicts, the binding will fail
-> | validation and the driver will fail to probe.
-> | Could the hardware instances instead be identified via standard hardwar=
-e
-> | descriptive mechanisms, such as their physical base address (reg),
-> | standard aliases, or by adding a phandle specifier argument to
-> | renesas,sysc?
->
-> dtschema/schemas/pci/pci-host-bridge.yaml states:
->
-> | linux,pci-domain:
-> |   description:
-> |     If present this property assigns a fixed PCI domain number to a
-> host bridge,
-> |     otherwise an unstable (across boots) unique number will be assigned=
-.
-> |     It is required to either not set this property at all or set it for=
- all
-> |     host bridges in the system, otherwise potentially conflicting
-> domain numbers
-> |     may be assigned to root buses behind different host bridges.  The d=
-omain
-> |     number for each host bridge in the system must be unique.
->
-> In the RZ/V2H case, the number is local to the SYSC instance referenced
-> by the renesas,sysc property, while linux,pci-domain is global to the
-> full system by definition. Fixing the numbers to zero and one works,
-> until some other controller in the system has conflicting requirements.
->
-> I do see a future case where this may break: if Renesas would release a
-> new SoC containing two RZ/V2H dies, there would be four PCIe controllers
-> and two SYSC controllers.  This would require two PCIe controllers to
-> have linux,pci-domain =3D <0>, and two having linux,pci-domain =3D <1>,
-> which is not permitted.
->
-Agreed.
+commit 7b1ac7769467fbaf4418cb18df93e48ba5bbff75
+Author: Jun Yan <jerrysteve1101@gmail.com>
 
-> Hence adding a second cell to the renesas,sysc property, to specify
-> the base offset of the PCIe-related registers inside SYSC seems like
-> the best way to go?
->
-Ok, I will change renesas,sysc to use phandle-array so that we can
-pass the controller index.
+leds: is31fl32xx: Move pwm frequency setting to init_regs()
 
-Cheers,
-Prabhakar
+Commit a18983b95a61 swapped the order of is31fl32xx_parse_dt() and
+is31fl32xx_init_regs(). This patch moves the PWM frequency setting logic fr=
+om
+is31fl32xx_parse_dt() to is31fl32xx_init_regs() to prevent the configuration
+from being overwritten by the register reset operation.
+
+> diff --git a/drivers/leds/leds-is31fl32xx.c b/drivers/leds/leds-is31fl32x=
+x.c
+> index 5678c2273bbd9..3e86e414c532b 100644
+> --- a/drivers/leds/leds-is31fl32xx.c
+> +++ b/drivers/leds/leds-is31fl32xx.c
+[ ... ]
+> @@ -346,6 +347,14 @@ static int is31fl32xx_init_regs(struct is31fl32xx_pr=
+iv *priv)
+>  	if (ret)
+>  		return ret;
+> =20
+
+[Severity: High]
+This isn't a bug introduced by this patch, but is the current limit calcula=
+tion
+in is31fl3293_reset() risking hardware damage?
+
+The function calculates the operating current limit using
+max(led_data->max_microamp, IS31FL3293_MAX_MICROAMP). If the device tree
+requests a lower limit like 5000 microamps, max() will override it to 20000
+microamps, potentially overdriving the LED hardware.
+
+Furthermore, if a limit larger than 20mA is requested, the calculated value
+exceeds 255. When passed to the 8-bit is31fl32xx_write(), it will silently
+truncate and result in an unpredictable current limit setting.
+
+Should this logic use min() instead to safely enforce the hardware constrai=
+nt?
+
+> +	if ((cdef->output_frequency_setting_reg !=3D IS31FL32XX_REG_NONE) &&
+> +		priv->pwm_22khz) {
+
+[Severity: High]
+This is a pre-existing issue, but does this check work correctly for the
+IS31FL3293 chip?
+
+The is31fl3293_cdef structure omits the initialization of
+.output_frequency_setting_reg, so it defaults to 0x00. Since
+IS31FL32XX_REG_NONE is 0xFF, this condition evaluates to true.
+
+If the device tree contains the "issi,22khz-pwm" property for an IS31FL3293
+device, will the driver incorrectly write the 22kHz setting to register 0x0=
+0?
+
+> +		ret =3D is31fl32xx_write(priv, cdef->output_frequency_setting_reg,
+> +				       		IS31FL32XX_PWM_FREQUENCY_22KHZ);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+[ ... ]
+> @@ -420,7 +429,6 @@ static struct is31fl32xx_led_data *is31fl32xx_find_le=
+d_data(
+>  static int is31fl32xx_parse_dt(struct device *dev,
+>  			       struct is31fl32xx_priv *priv)
+>  {
+> -	const struct is31fl32xx_chipdef *cdef =3D priv->cdef;
+>  	int ret =3D 0;
+
+[Severity: High]
+This is a pre-existing issue, but does the current driver initialization fl=
+ow
+expose LEDs to userspace before the hardware is ready?
+
+In is31fl32xx_probe(), is31fl32xx_parse_dt() is called before
+is31fl32xx_init_regs(). is31fl32xx_parse_dt() registers the LED devices via
+devm_led_classdev_register_ext(), making them available to userspace and the
+kernel LED subsystem immediately.
+
+If default triggers or userspace actions configure the PWM registers before
+is31fl32xx_init_regs() runs, wouldn't the subsequent hardware reset wipe out
+those user configurations?
+
+[ ... ]
+> -	if ((cdef->output_frequency_setting_reg !=3D IS31FL32XX_REG_NONE) &&
+> -	    of_property_read_bool(dev_of_node(dev), "issi,22khz-pwm")) {
+> -
+> -		ret =3D is31fl32xx_write(priv, cdef->output_frequency_setting_reg,
+> -				       IS31FL32XX_PWM_FREQUENCY_22KHZ);
+> -
+> -		if (ret) {
+> -			dev_err(dev, "Failed to write output PWM frequency register\n");
+> -			return ret;
+> -		}
+> -	}
+> +	priv->pwm_22khz =3D of_property_read_bool(dev_of_node(dev), "issi,22khz=
+-pwm");
+
+[Severity: High]
+This is a pre-existing issue, but are concurrent brightness updates suscept=
+ible
+to torn multi-byte PWM writes?
+
+The is31fl32xx_brightness_set() function lacks driver-level locking. For
+chips like IS31FL3293 that require two consecutive I2C writes (low byte then
+high byte) per channel, could concurrent updates break the atomicity of the
+12-bit PWM update?
+
+For example, if Thread A writes the low byte for LED 1, and Thread B
+concurrently writes the high byte for LED 2 and triggers the Update registe=
+r,
+could the chip latch LED 1's new low byte with its old high byte?
+
+Does this sequence require a mutex to serialize the multi-byte PWM write?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520133343.1423=
+946-1-jerrysteve1101@gmail.com?part=3D6
 
