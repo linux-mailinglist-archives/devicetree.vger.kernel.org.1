@@ -1,186 +1,261 @@
-Return-Path: <devicetree+bounces-300923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300926-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yI8PL+Y8Dmqr9AUAu9opvQ
-	(envelope-from <devicetree+bounces-300923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:59:50 +0200
+	id mBGuNEk9Dmqr9AUAu9opvQ
+	(envelope-from <devicetree+bounces-300926-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:01:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEE259C785
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 00:59:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFB359C7E2
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 47F5D3217F53
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:50:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B76AA31553B2
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 22:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4633CF660;
-	Wed, 20 May 2026 22:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09EB3932C0;
+	Wed, 20 May 2026 22:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MLmhEWq6";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="dfD/xHFp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FB03CFF46
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 22:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A2CD375AC3
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 22:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779317134; cv=none; b=Nj0wz/ZLsFkuGvyGTsQ4bq1oessCtZfMk1V1y9Jk/XHe3/wuFEUWAj+quxB4O64batUa7gH/pnLoBBix4AWsqVn2Y9AbNfnXwMz0EmsLMRVMy+5gB3DrePly+Ig1f/cuMXgqxuySROhyXtH9/fLaGL1GLIBV+Xlt3I4vluXJZIM=
+	t=1779317640; cv=none; b=CFY4Hf4DWldm7/Rd/xI+wVXV5I2VFHgVWRfm+yTfDPQ46CHuJmweq01kaLR7qKhD7B6Q0kNIoxODcGfEOb7ujMgmvXLSvFs2zl4Ia629asIDSXWXAw25MMG+NBJT6Ki5EShZWgJmEsAf3vGGhczHpdZH2rNZJy4FSALZqp9PxY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779317134; c=relaxed/simple;
-	bh=oVSpsOO+/mpbk1DadBzbAO6b7Utf3jRs5ytOVAnoum8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mJYz243g/VyElStHa++rR+cDZwO4ZpDIJcwHWTBZbpjzx2mJxSyaMaPSai2BvJCxESSeOj2jZLtdsiu7I1tJDmmYUDlLCY7wBuSplRfDxZNg/li86MTbjny6Cv8W8z6eKrCRxxSaKvcZks184RCOxK7PJjywykRMfUJIStVgqms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1wPpf1-0005vy-NW; Thu, 21 May 2026 00:45:07 +0200
-From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Thu, 21 May 2026 00:44:33 +0200
-Subject: [PATCH v7 28/28] arm64: dts: rockchip: add rga3 dt nodes
+	s=arc-20240116; t=1779317640; c=relaxed/simple;
+	bh=xz5sbl1et1Zg0+e1v9ss1rtdhz7lsvw1T1O6UGhgYt0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ahmXeQ80/VlkHZoF3dPNyEVx0bZjbr9hWiioLRTJF1WMY6t47Bl3Zi4Ux80etWKcQ3bbRC2cY7qo5rBp/9Ld8x2vhG5z7H6jmj09TJbiIgmdg9QCaNtQrPjGwu+k6kZI5vqbB3EIYl3JTLy8VkVuhWajQjZZbGK81NcD5ya0kw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MLmhEWq6; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=dfD/xHFp; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1779317638;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ehQ7mVBa+qZzMlqKHomdvNj5vjtqdC5856eNsb/cSyQ=;
+	b=MLmhEWq6lFTDcvm64mhbI8NABF4t4BeY3fww5EIhqifzNjHn4Yct/nXXWTc76FtGwKDa75
+	ZH8d2MdXPiK1T7e0wDnsSgkDy6b5rLKy7QfcqYPOgKzfHT5h8TSSim15kEuOorhd/pbzU7
+	5Wk4r69WBcVC8RoCTXMMaGyJmR/5wZ4=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-271-U5dWDzT-MsiDSME60_ckSA-1; Wed, 20 May 2026 18:53:55 -0400
+X-MC-Unique: U5dWDzT-MsiDSME60_ckSA-1
+X-Mimecast-MFC-AGG-ID: U5dWDzT-MsiDSME60_ckSA_1779317634
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50da529ff48so152810271cf.3
+        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 15:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1779317634; x=1779922434; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ehQ7mVBa+qZzMlqKHomdvNj5vjtqdC5856eNsb/cSyQ=;
+        b=dfD/xHFpNWtZb036dOF9E5313PugolBY2fpCdbNi5tDY+LrpGUQ1T1ivGkrktY1UQO
+         YL01Fl1ddFIg5ywbaWE6wq56jIxyR7SHYUaaPjx7M64Ceux4d3WsRxmtkcYnPdJYAr7x
+         U0MGKUEGGX1W7vllD/INtJTwnVxo0EEFdML628ixe1bRGUGMikaDhzwbL2WlC/fezq3+
+         ghyT+42oAtf/dEwWsnOZactQF4tHJLEU1oFPsYzKlvLaeK8vDyi8XuioQdRFeDUVHnvP
+         JZAMsxLuhYdWNzHXZ+9A5FY/xCwmnbb01XmuBYKREzkL7vYq2apysr7Xx6LJYimllwkg
+         Zghw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779317634; x=1779922434;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ehQ7mVBa+qZzMlqKHomdvNj5vjtqdC5856eNsb/cSyQ=;
+        b=Awn9vS6YasAto3n7PkoknfZ9tSX2QXlB6BJ5AJ1jhcGDQyZ8Di3pgsui/5M7KH6nHN
+         nARhNHN2mCff66qON1/qpKHi0h420eGjLccG9U0sdB5AqkrhxDA3QIhqVi1vjWDYffcc
+         qrrPOagwoMgp4TwjzmpJUKHDdtWZMghnRdfjquc+eEDaJLck/cuyKNzqFCY/kIA+Thy6
+         qXX6T1bjbuSpTejLTsRia7Z1gPOfjV3TbLQlGdP1lD1ziPSTdFv97VSMdy918MKDRzFL
+         5rh/t0tlOuq3GHjN6duBTSP10/0tJsk4LTI6Iv87Y0ueffhLf/SAmiK25q48EUagbNZg
+         A3iw==
+X-Forwarded-Encrypted: i=1; AFNElJ8s01hJuwNEd4Baj5phvZ3uGxQ01R2lovvNdwcyR7dcaLb4htRn4q+OXd9qD2vNGyZuTDosV916xvF+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyroYXz5NhM8nqfVox/r3TEEIwzAw3tkMnOP51gGUtuJ4JqOb56
+	+OIBavqsDYooQHk3YzrVQqr3LZTKbd1yASWSURDq4zcAvD9j8cbLqr8B6xLbmpV4XWbRBvvtqCA
+	4084/0JhQGU3noZa4eZNqrA7tlfx2642km0qGQcDIYYfRN8Qbc2H6b30+6F7ideI=
+X-Gm-Gg: Acq92OGxca3F+VX/vfgCMsSW0QlLxvc3F8IMhaUbTjh/kDbehJMsibXvIcqLfADk1xS
+	tVUsJCDPnA5Zmo2sEf2XPXdb4J0+OuwkSN7HviYi2ScWVTQM46+uLXZz4ef+kBSinANl9AAScH1
+	GtaLQdvpqlVH7sN5MOJKtsxIZgFDLV7XaEmLAPWwU+E8N6Y2g4DWj2Vp6v1CpRYqftppKSj/Qs+
+	EV1FynULZrfDU6On2qnPjJLjwApRN0fJrj2yhB5V8XpBZ9NOkS2+cyGn3blhfW29Fm8GiHQuMix
+	GAZ12V1NDgOewUvkAmyU0mLqLlrI9nXt/ACl6KPR1cqQJM/fy/FlzIKr9zFymDtLNZouhh4VXr2
+	2uD4guFFqGuxV3lrqsSRJhKucWEg=
+X-Received: by 2002:ac8:5d4c:0:b0:50e:6399:eed3 with SMTP id d75a77b69052e-516c54557c3mr7169991cf.20.1779317634522;
+        Wed, 20 May 2026 15:53:54 -0700 (PDT)
+X-Received: by 2002:ac8:5d4c:0:b0:50e:6399:eed3 with SMTP id d75a77b69052e-516c54557c3mr7169681cf.20.1779317634055;
+        Wed, 20 May 2026 15:53:54 -0700 (PDT)
+Received: from redhat.com ([69.43.42.202])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-516514e0b91sm191843371cf.15.2026.05.20.15.53.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 15:53:52 -0700 (PDT)
+Date: Wed, 20 May 2026 18:53:51 -0400
+From: Brian Masney <bmasney@redhat.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v8 3/5] clk: en7523: Add support for selecting the Serdes
+ port in SCU
+Message-ID: <ag47f8ZgCEZJurHE@redhat.com>
+References: <20260520150912.11614-1-ansuelsmth@gmail.com>
+ <20260520150912.11614-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260521-spu-rga3-v7-28-3f33e8c7145f@pengutronix.de>
-References: <20260521-spu-rga3-v7-0-3f33e8c7145f@pengutronix.de>
-In-Reply-To: <20260521-spu-rga3-v7-0-3f33e8c7145f@pengutronix.de>
-To: Jacob Chen <jacob-chen@iotwrt.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de, nicolas@ndufresne.ca, 
- sebastian.reichel@collabora.com, m.tretter@pengutronix.de, 
- p.zabel@pengutronix.de, 
- =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-X-Mailer: b4 0.15.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260520150912.11614-4-ansuelsmth@gmail.com>
+User-Agent: Mutt/2.3.1 (2026-03-20)
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-300926-lists,devicetree=lfdr.de];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300923-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s.pueschel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fdb70f00:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pengutronix.de:mid,pengutronix.de:email,fdb80000:email,fdb60f00:email,sashiko.dev:url,fdb60000:email,fdb50800:email]
-X-Rspamd-Queue-Id: 3DEE259C785
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 7BFB359C7E2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add devicetree nodes for the RGA3 (Raster Graphics Acceleration 3)
-peripheral in the RK3588.
+Hi Christian,
 
-The existing rga node refers to the RGA2-Enhanced peripheral. The RK3588
-contains one RGA2-Enhanced core and two RGA3 cores. Both feature a similar
-functionality of scaling, cropping and rotating of up to two input
-images into one output image. Key differences of the RGA3 are:
+On Wed, May 20, 2026 at 05:09:08PM +0200, Christian Marangi wrote:
+> In the SCU register for clock and reset, there are also some register to
+> select the Serdes port mode. The Airoha AN7581 SoC have 4 different Serdes
+> that can switch between PCIe, USB or Ethernet mode.
+> 
+> Add a simple PHY provider that expose the .set_mode OP to toggle the
+> requested mode for the Serdes port.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  drivers/clk/Kconfig      |   1 +
+>  drivers/clk/clk-en7523.c | 216 ++++++++++++++++++++++++++++++++++++++-
+>  2 files changed, 214 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index b2efbe9f6acb..e60a824b5117 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -221,6 +221,7 @@ config COMMON_CLK_EN7523
+>  	bool "Clock driver for Airoha/EcoNet SoC system clocks"
+>  	depends on OF
+>  	depends on ARCH_AIROHA || ECONET || COMPILE_TEST
+> +	select GENERIC_PHY
+>  	default ARCH_AIROHA
+>  	help
+>  	  This driver provides the fixed clocks and gates present on Airoha
+> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+> index 1ab0e2eca5d3..d4b73c5f15b9 100644
+> --- a/drivers/clk/clk-en7523.c
+> +++ b/drivers/clk/clk-en7523.c
+> @@ -6,14 +6,18 @@
+>  #include <linux/io.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/phy.h>
+> +#include <linux/phy/phy.h>
+>  #include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/reset-controller.h>
+> +#include <linux/spinlock.h>
+>  #include <dt-bindings/clock/en7523-clk.h>
+>  #include <dt-bindings/reset/airoha,en7523-reset.h>
+>  #include <dt-bindings/reset/airoha,en7581-reset.h>
+>  #include <dt-bindings/clock/econet,en751221-scu.h>
+>  #include <dt-bindings/reset/econet,en751221-scu.h>
+> +#include <dt-bindings/soc/airoha,scu-ssr.h>
+>  
+>  #define RST_NR_PER_BANK			32
+>  
+> @@ -40,9 +44,22 @@
+>  #define   REG_HIR_MASK			GENMASK(31, 16)
+>  /* EN7581 */
+>  #define REG_NP_SCU_PCIC			0x88
+> +#define REG_NP_SCU_SSR3			0x94
+> +#define REG_SSUSB_HSGMII_SEL_MASK	BIT(29)
+> +#define REG_SSUSB_HSGMII_SEL_HSGMII	FIELD_PREP_CONST(REG_SSUSB_HSGMII_SEL_MASK, 0x0)
+> +#define REG_SSUSB_HSGMII_SEL_USB	FIELD_PREP_CONST(REG_SSUSB_HSGMII_SEL_MASK, 0x1)
+>  #define REG_NP_SCU_SSTR			0x9c
+>  #define REG_PCIE_XSI0_SEL_MASK		GENMASK(14, 13)
+> +#define REG_PCIE_XSI0_SEL_PCIE		FIELD_PREP_CONST(REG_PCIE_XSI0_SEL_MASK, 0x0)
+> +#define REG_PCIE_XSI0_SEL_XFI		FIELD_PREP_CONST(REG_PCIE_XSI0_SEL_MASK, 0x1)
+> +#define REG_PCIE_XSI0_SEL_HSGMII	FIELD_PREP_CONST(REG_PCIE_XSI0_SEL_MASK, 0x2)
+>  #define REG_PCIE_XSI1_SEL_MASK		GENMASK(12, 11)
+> +#define REG_PCIE_XSI1_SEL_PCIE		FIELD_PREP_CONST(REG_PCIE_XSI1_SEL_MASK, 0x0)
+> +#define REG_PCIE_XSI1_SEL_XFI		FIELD_PREP_CONST(REG_PCIE_XSI1_SEL_MASK, 0x1)
+> +#define REG_PCIE_XSI1_SEL_HSGMII	FIELD_PREP_CONST(REG_PCIE_XSI1_SEL_MASK, 0x2)
+> +#define REG_USB_PCIE_SEL_MASK		BIT(3)
+> +#define REG_USB_PCIE_SEL_PCIE		FIELD_PREP_CONST(REG_USB_PCIE_SEL_MASK, 0x0)
+> +#define REG_USB_PCIE_SEL_USB		FIELD_PREP_CONST(REG_USB_PCIE_SEL_MASK, 0x1)
+>  #define REG_CRYPTO_CLKSRC2		0x20c
+>  /* EN751221 */
+>  #define EN751221_REG_SPI_DIV		0x0cc
+> @@ -81,6 +98,8 @@ enum en_hir {
+>  	HIR_MAX		= 14,
+>  };
+>  
+> +#define EN_SERDES_PHY_NUM		4
+> +
+>  struct en_clk_desc {
+>  	int id;
+>  	const char *name;
+> @@ -113,6 +132,18 @@ struct en_rst_data {
+>  	struct reset_controller_dev rcdev;
+>  };
+>  
+> +struct en_serdes_phy_instance {
+> +	struct phy *phy;
+> +	unsigned int serdes_port;
+> +};
+> +
+> +struct en_clk_priv {
+> +	void __iomem *base;
+> +	/* protect SCU register */
+> +	spinlock_t lock;
 
-- supports 10bit YUV output formats
-- supports 8x8 tiles and FBCD as inputs and outputs
-- supports BT2020 color space conversion
-- max output resolution of (8192-64)x(8192-64)
-- MMU can map up to 32G DDR RAM
-- fully planar formats (3 planes) are not supported
-- max scale up/down factor of 8 (RGA2 allows up to 16)
+This spinlock is not initialized with spin_lock_init(). You can do this in
+en7523_clk_probe() after devm_kzalloc().
 
-Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+With that fixed:
 
----
-Changes in v6:
-- reordered before the rga node to fix the sorting order.
-  Flagged by sashiko.dev:
-  https://sashiko.dev/#/patchset/20260325-spu-rga3-v4-0-e90ec1c61354%40pengutronix.de?part=27
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 44 +++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 4fb8888c281c8..a4f44af512375 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1262,6 +1262,50 @@ vpu121_mmu: iommu@fdb50800 {
- 		#iommu-cells = <0>;
- 	};
- 
-+	rga3_core0: rga@fdb60000 {
-+		compatible = "rockchip,rk3588-rga3";
-+		reg = <0x0 0xfdb60000 0x0 0x200>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_0>, <&cru HCLK_RGA3_0>, <&cru CLK_RGA3_0_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA3_0_CORE>, <&cru SRST_A_RGA3_0>, <&cru SRST_H_RGA3_0>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_RGA30>;
-+		iommus = <&rga3_0_mmu>;
-+	};
-+
-+	rga3_0_mmu: iommu@fdb60f00 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb60f00 0x0 0x100>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_0>, <&cru HCLK_RGA3_0>;
-+		clock-names = "aclk", "iface";
-+		#iommu-cells = <0>;
-+		power-domains = <&power RK3588_PD_RGA30>;
-+	};
-+
-+	rga3_core1: rga@fdb70000 {
-+		compatible = "rockchip,rk3588-rga3";
-+		reg = <0x0 0xfdb70000 0x0 0x200>;
-+		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_1>, <&cru HCLK_RGA3_1>, <&cru CLK_RGA3_1_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA3_1_CORE>, <&cru SRST_A_RGA3_1>, <&cru SRST_H_RGA3_1>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_RGA31>;
-+		iommus = <&rga3_1_mmu>;
-+	};
-+
-+	rga3_1_mmu: iommu@fdb70f00 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb70f00 0x0 0x100>;
-+		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_1>, <&cru HCLK_RGA3_1>;
-+		clock-names = "aclk", "iface";
-+		#iommu-cells = <0>;
-+		power-domains = <&power RK3588_PD_RGA31>;
-+	};
-+
- 	rga: rga@fdb80000 {
- 		compatible = "rockchip,rk3588-rga", "rockchip,rk3288-rga";
- 		reg = <0x0 0xfdb80000 0x0 0x180>;
-
--- 
-2.54.0
+Reviewed-by: Brian Masney <bmasney@redhat.com>
 
 
