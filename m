@@ -1,227 +1,207 @@
-Return-Path: <devicetree+bounces-300845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eD+yIq79DWok5QUAu9opvQ
-	(envelope-from <devicetree+bounces-300845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:30:06 +0200
+	id AHEdOmAoDmpq6gUAu9opvQ
+	(envelope-from <devicetree+bounces-300839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 23:32:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44AA85965EC
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 20:30:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A25E59AFDA
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 23:32:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ACEE9302BBF4
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:24:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E49A63679A4D
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 18:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419C13FD14D;
-	Wed, 20 May 2026 18:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982913F4DD6;
+	Wed, 20 May 2026 18:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jsaKqcYs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VrO8p/AM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9D63FE376
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 18:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D961372B31
+	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 18:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779301407; cv=none; b=ShpNkMyPCPf2Yc0IGvieZdh0evcpSrIkmkZ9/CnI5TgYMngRxeoqwRSsiEEU5Vg24EmGqWwwOsg83IREDo78V0yEiQVxd6qve9fNRVdBk5c4GaQyG2ngsAx4YUN8ohBFDmA36VXV4dX3ANboDHj4wylGB1HNf0oJYrpOCjbFGIM=
+	t=1779301392; cv=none; b=S2rJPAmedXujKCd44VYQ7tVGAQlSJYDaVfwJl9kuTyc0vhmQ46J8ofGXjZARXjp4ShTe0lbjRFQVskxr8Dkqht6bWI8cEvp2P+VkkpmmHyOOfIKHxH2eltaVJvCAB5McV34xIxhaT14Qq59SgJMW8ijEil9eseaiyUzw/9pvJM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779301407; c=relaxed/simple;
-	bh=OyZE0FTSId5Xw2BLHh/qgzyUvjlvhM+aMzq4+ikPxSI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p28yABWHmmilR9wiouB9k5tGkLnzZGLTSo1hfQ0gjHhEab96vsaqlMLmW6wObW01kNZHJlwlwqQHeZ203Mkve4nKl0ppnJf134SFkwe2gRQgHrcPqg4bNehnO+OUBCYlWly2KMRPIZ7ybajLaLKcENcS83tpe4PKOLF2r5e7yzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jsaKqcYs; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4891b0786beso36402955e9.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 11:23:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779301403; x=1779906203; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vaU/m8RkZFKacQOirk2OKWVZO3CMn2gzTIkZTYwhda4=;
-        b=jsaKqcYsz39jWnosGbzDD6+Pimi7MmfIseiAUAM7qhNK/iYBOfXDrbDSaNvazmSOVi
-         Myhir/H2zsaA1UYQsqNmBXfEi2P1z0siThGMHxl5ILyTpYDzmFKbUIPPHJbg1danS4n9
-         WUL5VSeO7d7HfEzlK7FSDOAHNrQfDEVfZL4UXN1hVdIMSA7+jl0/D1GKExMHaqGJq+xy
-         SlfbaInZ764mIvSFA4E52H1Nh0E0dVIWu5M/4Vr8bBstoRKYsTIqUMNt6Sz+0sd3oa9i
-         d5ogimLhY3tOQkuEv+XaYeVvIWJlYpT6A+DHoCqz6EoLzR17tGg3miMXbAKxL8UTGg+o
-         CHQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779301403; x=1779906203;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vaU/m8RkZFKacQOirk2OKWVZO3CMn2gzTIkZTYwhda4=;
-        b=figRR420oCRhiRpqCpoKOj4/xhW2S0KJ0gJqQ1AG+l9sx6jRFcPxpp+yH5SgvCr+ku
-         AxY3YNqvmcQhbY5AKSVPV1gIhg0ToQujqxqbU6UtJwA2ehEKOiluRkBylN+l14sxN/SS
-         2oPe1m7VVN/hs/JzR6m/XfoTZjV4zxLXJG1UGStq+ruCKdwhLxmf6lpASW8dBiLbNOd+
-         FscaRdFOpmSDwtaA7GhZSCdWXrjSqNtsu3L4kjM9j7aZJyQtpSQjvLsig4oDowW/C5XT
-         HkUJiHaoVAQccaS6nBOh5XuXpHjosaxR3G/chap+JhvSoFco0zwHOReyMGfXWBJW7xO3
-         3MxA==
-X-Forwarded-Encrypted: i=1; AFNElJ/ZNe0cRCz+yZAgvKv8dyP7JtIWXCzcS6ESn19s0W2C2JOwdcBj+thzsRzyt7trwwBmyDnZkVzf2XBl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRrwgeu5k/O4VF0Zh29nkMThYGwVQpdOiGvhqAv4fPJh4FsEhR
-	RFl861XBR2yKRcohe9SDi2WmRhgINVNQ5hgniRXcGBkIz4zOm9WMYcf9
-X-Gm-Gg: Acq92OH1AKD3RJpl3dbUO48v3dZc09uUaAeA/VNW5FicPj5vMbo/qLbj7HiBbBakjWj
-	lFOrEMbam7yQoaBhb969SibZF7LWUoQoYG0pXDzUcNmOeyJOTzTv5CA5SQrZzvhJBQV94hRmYEm
-	bxHKHHsJNgOQyJ5mEBErdP8G7dZEsw2KRrDEIDJQ+fI888OUaoK9sKeIuE3m9Bp6vOL4pAKAvUB
-	vMROREYNQ5XmDgn2k+RUUQKdfviFqurVK3mYJh+6oRN2BxPqu8/DRdSsq4OhMERFHgXV1ETpbCZ
-	SVZOJczlmzu4s2u0KZIucDGF+mpwGnrGDIwU/olTNhbiMsaBdUMCSWFmtGqMFeEJECH95gqzp0k
-	vlO2/+tMB2nsbyrJsVh3BLOWOwb/9XCqpwamuoZVdi52bs2NOOjRni7F78DGx6hCPWYcgJIfycc
-	20e5OPoBPlAdp17dDeNGAdmV3vQo8DJH3V+Q==
-X-Received: by 2002:a05:600c:6383:b0:488:c014:34da with SMTP id 5b1f17b1804b1-48fe651690fmr390912175e9.26.1779301403428;
-        Wed, 20 May 2026 11:23:23 -0700 (PDT)
-Received: from xeon ([188.163.112.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45d9ec3b18fsm51297739f8f.11.2026.05.20.11.23.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2026 11:23:23 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: [PATCH v6 6/6] mfd: motorola-cpcap: add support for Mot CPCAP composition
-Date: Wed, 20 May 2026 21:21:24 +0300
-Message-ID: <20260520182124.117863-7-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260520182124.117863-1-clamor95@gmail.com>
-References: <20260520182124.117863-1-clamor95@gmail.com>
+	s=arc-20240116; t=1779301392; c=relaxed/simple;
+	bh=XeV1aWDitY2Uc/Q25ms4y2sAr3ivbUnsqVyl65VKAB8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=l2xyDUr/rP+rIFN+fCud1rWL+L4kAzWiEnxrVmJg+PfTg/D051T5TljgaIEn+YhCn0y5O4LSo57a1kS1/dIalWpWavG35Ju6qztrz1+FMw0Bhli73CpCL9wnK9TK+xNnYeE5l+xQLr3TFG7+pXSjftfD3Is3FqHDFsf9D4wLZp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VrO8p/AM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF28C1F00894;
+	Wed, 20 May 2026 18:23:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779301391;
+	bh=O8pZXT88JamUOEed+p0VRDdpFezDMQUWHy5KfPCJ8UA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=VrO8p/AMcDA4prnhPQKZPU/r0NwjL012ao+Z11dfCzhTxxH88F88NloBkfaivVqKa
+	 dw6iv2NYB+xgbQv1V+zhy+X0g+r3ii+kjrMk7oV6Stb0RKqpWMnU1o4GZfumGTtfxC
+	 FWtTXBlXMbrhEugq28Tq5RTEkKzjQlAO/gjJAAMGWkx8nS6/4YjdlOnSZV1OFT1D7t
+	 +lmd2y+/IDO/V+yJc2Wd/lWoMPSTufw48/kNbu6l6bCD0xQpt9z0Q/XSPtfkyXYZqw
+	 cpfOHCCgPz3p4zrzB7z1Dai/hmzLiFPLWW2dgtHkW3DdDPHDt6FjGKOYGEJOVjTJIa
+	 QvRzN5LyqhtEQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 1/6] phy: realtek: usb2: introduce
+ vstatus/new_reg_req variables to driver data
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Rustam Adilov" <adilov@disroot.org>
+Cc: neil.armstrong@linaro.org, robh@kernel.org, devicetree@vger.kernel.org, olteanv@gmail.com, linux-phy@lists.infradead.org, vkoul@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260520175728.720877-2-adilov@disroot.org>
+References: <20260520175728.720877-2-adilov@disroot.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 20 May 2026 18:23:10 +0000
+Message-Id: <20260520182310.AF28C1F00894@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_FROM(0.00)[bounces-300845-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300839-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,vger.kernel.org,gmail.com,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 44AA85965EC
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,disroot.org:email,smtp.kernel.org:mid,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 4A25E59AFDA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a MFD subdevice composition used in Tegra20 based Mot board
-(Motorola Atrix 4G and Droid X2).
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/mfd/motorola-cpcap.c       | 20 +++++++++++++++++++-
- include/linux/mfd/motorola-cpcap.h |  1 +
- 2 files changed, 20 insertions(+), 1 deletion(-)
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but the driver fails=
+ to check the return value of `of_iomap()`, which can lead to a NULL pointe=
+r dereference.
+- [High] This problem wasn't introduced by this patch, but incorrect pointe=
+r arithmetic on a `void __iomem *` pointer results in unaligned I/O memory =
+accesses for multi-port setups.
+- [High] This problem wasn't introduced by this patch, but I/O memory mappi=
+ngs created by `of_iomap()` are never unmapped, leading to resource leaks.
+- [High] This problem wasn't introduced by this patch, but multi-port PHY c=
+onfigurations concurrently modify shared hardware registers without synchro=
+nization or a read-modify-write cycle.
+--
 
-diff --git a/drivers/mfd/motorola-cpcap.c b/drivers/mfd/motorola-cpcap.c
-index 5b6ca6b81c23..f6198276d266 100644
---- a/drivers/mfd/motorola-cpcap.c
-+++ b/drivers/mfd/motorola-cpcap.c
-@@ -237,7 +237,6 @@ static const struct mfd_cell cpcap_common_devices[] = {
- 	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 1, "motorola,cpcap-led-green"),
- 	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 2, "motorola,cpcap-led-blue"),
- 	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 3, "motorola,cpcap-led-adl"),
--	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 4, "motorola,cpcap-led-cp"),
- 	MFD_CELL_NAME("cpcap-codec"),
- };
- 
-@@ -245,6 +244,7 @@ static const struct mfd_cell cpcap_default_devices[] = {
- 	MFD_CELL_OF("cpcap_adc", NULL, NULL, 0, 0, "motorola,cpcap-adc"),
- 	MFD_CELL_OF("cpcap-regulator", NULL, NULL, 0, 0, "motorola,cpcap-regulator"),
- 	MFD_CELL_OF("cpcap-usb-phy", NULL, NULL, 0, 0, "motorola,cpcap-usb-phy"),
-+	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 4, "motorola,cpcap-led-cp"),
- };
- 
- static const struct mfd_cell cpcap_mapphone_devices[] = {
-@@ -252,6 +252,18 @@ static const struct mfd_cell cpcap_mapphone_devices[] = {
- 	MFD_CELL_OF("cpcap-charger", NULL, NULL, 0, 0, "motorola,mapphone-cpcap-charger"),
- 	MFD_CELL_OF("cpcap-regulator", NULL, NULL, 0, 0, "motorola,mapphone-cpcap-regulator"),
- 	MFD_CELL_OF("cpcap-usb-phy", NULL, NULL, 0, 0, "motorola,mapphone-cpcap-usb-phy"),
-+	MFD_CELL_OF("cpcap-led", NULL, NULL, 0, 4, "motorola,cpcap-led-cp"),
-+};
-+
-+/*
-+ * The Mot board features a USB-PHY and charger similar to the ones in
-+ * Mapphone; however, because Mot is based on Tegra20, it is incompatible
-+ * with the existing implementation, which is tightly interconnected with
-+ * the OMAP USB PHY.
-+ */
-+static const struct mfd_cell cpcap_mot_devices[] = {
-+	MFD_CELL_OF("cpcap_adc", NULL, NULL, 0, 0, "motorola,mot-cpcap-adc"),
-+	MFD_CELL_OF("cpcap-regulator", NULL, NULL, 0, 0, "motorola,mot-cpcap-regulator"),
- };
- 
- static int cpcap_probe(struct spi_device *spi)
-@@ -276,6 +288,10 @@ static int cpcap_probe(struct spi_device *spi)
- 		cells = cpcap_mapphone_devices;
- 		num_cells = ARRAY_SIZE(cpcap_mapphone_devices);
- 		break;
-+	case CPCAP_MOT:
-+		cells = cpcap_mot_devices;
-+		num_cells = ARRAY_SIZE(cpcap_mot_devices);
-+		break;
- 	default:
- 		return dev_err_probe(&spi->dev, -ENODEV,
- 				     "Unknown device %d\n", cpcap->variant);
-@@ -327,6 +343,7 @@ static int cpcap_probe(struct spi_device *spi)
- static const struct of_device_id cpcap_of_match[] = {
- 	{ .compatible = "motorola,cpcap", .data = (void *)CPCAP_DEFAULT },
- 	{ .compatible = "motorola,mapphone-cpcap", .data = (void *)CPCAP_MAPPHONE },
-+	{ .compatible = "motorola,mot-cpcap", .data = (void *)CPCAP_MOT },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, cpcap_of_match);
-@@ -334,6 +351,7 @@ MODULE_DEVICE_TABLE(of, cpcap_of_match);
- static const struct spi_device_id cpcap_spi_ids[] = {
- 	{ "cpcap", CPCAP_DEFAULT },
- 	{ "mapphone-cpcap", CPCAP_MAPPHONE },
-+	{ "mot-cpcap", CPCAP_MOT },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(spi, cpcap_spi_ids);
-diff --git a/include/linux/mfd/motorola-cpcap.h b/include/linux/mfd/motorola-cpcap.h
-index 1a85b06272c8..bb23363eeccd 100644
---- a/include/linux/mfd/motorola-cpcap.h
-+++ b/include/linux/mfd/motorola-cpcap.h
-@@ -28,6 +28,7 @@
- enum cpcap_variant {
- 	CPCAP_DEFAULT = 1,
- 	CPCAP_MAPPHONE,
-+	CPCAP_MOT,
- 	CPCAP_MAX
- };
- 
--- 
-2.51.0
+commit 734507efb75a6be151dcde389bfc7f0e1df95132
+Author: Rustam Adilov <adilov@disroot.org>
 
+phy: realtek: usb2: introduce vstatus/new_reg_req variables to driver data
+
+This commit introduces vstatus_offset, vstatus_busy, and new_reg_req variab=
+les=20
+to the driver data to handle different register offsets and busy bit=20
+definitions in the RTL9607C SoC. These variables are added to the existing=
+=20
+PHY configuration structures and assigned default values.
+
+> diff --git a/drivers/phy/realtek/phy-rtk-usb2.c b/drivers/phy/realtek/phy=
+-rtk-usb2.c
+> index 248550ef98cab..bd9ee895b9f90 100644
+> --- a/drivers/phy/realtek/phy-rtk-usb2.c
+> +++ b/drivers/phy/realtek/phy-rtk-usb2.c
+
+[ ... ]
+
+> @@ -194,25 +200,26 @@ static int rtk_phy_write(struct phy_reg *phy_reg, c=
+har addr, char data)
+>  	int ret =3D 0;
+> =20
+>  	/* write data to VStatusOut2 (data output to phy) */
+> -	writel((u32)data << shift_bits, reg_wrap_vstatus);
+> +	writel((u32)data << shift_bits,
+> +	       reg_wrap_vstatus + phy_reg->vstatus_offset);
+
+[Severity: High]
+This is a pre-existing issue, but does writing directly to this register
+without a read-modify-write cycle overwrite the configuration for other
+ports?
+
+In multi-port setups, all PHY instances appear to share this same base
+address, and a direct writel() could clear the bits belonging to other PHYs.
+
+Is there also a need for synchronization to prevent concurrent writes across
+different ports?
+
+> =20
+> -	ret =3D utmi_wait_register(reg_gusb2phyacc0, PHY_VSTS_BUSY, 0);
+> +	ret =3D utmi_wait_register(reg_gusb2phyacc0, phy_reg->vstatus_busy, 0);
+>  	if (ret)
+>  		return ret;
+
+[ ... ]
+
+> @@ -974,6 +982,9 @@ static int parse_phy_data(struct rtk_phy *rtk_phy)
+>  		phy_parameter->phy_reg.reg_wrap_vstatus =3D of_iomap(np, 0);
+>  		phy_parameter->phy_reg.reg_gusb2phyacc0 =3D of_iomap(np, 1) + index;
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does the driver need to
+check the return value of of_iomap() here?
+
+If the mapping fails, this would leave the pointers as NULL and cause a
+dereference during I/O operations.
+
+[Severity: High]
+This is a pre-existing issue, but does adding index directly to the
+void __iomem * returned by of_iomap() result in exactly a 1-byte offset
+when index > 0?
+
+If so, this could cause an unaligned memory access fault on ARM
+architectures. Should the index be scaled appropriately?
+
+[Severity: High]
+This is also a pre-existing issue, but does the driver leak these I/O
+mappings?
+
+The driver maps the memory here using of_iomap(), but there does not
+appear to be a matching iounmap() in the driver cleanup paths. Would
+using devm_of_iomap() prevent this leak?
+
+>  		phy_parameter->phy_reg.vstatus_index =3D index;
+> +		phy_parameter->phy_reg.vstatus_offset =3D phy_cfg->vstatus_offset;
+> +		phy_parameter->phy_reg.vstatus_busy =3D phy_cfg->vstatus_busy;
+> +		phy_parameter->phy_reg.new_reg_req =3D phy_cfg->new_reg_req;
+> =20
+>  		if (of_property_read_bool(np, "realtek,inverse-hstx-sync-clock"))
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260520175728.7208=
+77-1-adilov@disroot.org?part=3D1
 
