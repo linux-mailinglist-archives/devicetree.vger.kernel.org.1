@@ -1,160 +1,283 @@
-Return-Path: <devicetree+bounces-301697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300771-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YItOB2cyEGqEUwYAu9opvQ
-	(envelope-from <devicetree+bounces-301697-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:39:35 +0200
+	id wH7NEWvpDWrM4gUAu9opvQ
+	(envelope-from <devicetree+bounces-300771-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:03:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20F595B24CE
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:39:33 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4BD592DE9
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 19:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EBFF7309BB34
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:23:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6BBE2303FE3B
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 16:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C003CB2DF;
-	Fri, 22 May 2026 10:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73972363C4C;
+	Wed, 20 May 2026 16:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NhkcvpWU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iUvpkw++"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B22AA3CB910
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 10:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8EB32B9B5;
+	Wed, 20 May 2026 16:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779445277; cv=none; b=XSNmcNrBfG0Anf8f8b1UZYKL7GNL2KNoG238tvr9eSs+QdVvoJQS7eFsmPz3u4tXtNbDYs/+x8md9MLjt/G37dRjQf1a6B8+66gxuTQvDCYMNOspCfddFQKt1gKLMqx7s2BD043clI+5b26ixFYw6Be4LIyhfefM9yOE/oWmBcY=
+	t=1779293868; cv=none; b=bDPfxzkEyKHFFT+d43v4zHKM66PT9Vaq6EEVhALkNXb1MwqdEvMmr0esSamtfcOtTdhZ/sbpzrNB/S3tb+Eez4KuJP6SeRQTI1Lwzlks61KjCsuyzEISE191zEC7+lhuRqxAxZv+GxtUcglIHSQGXgogkgplm+PwAewztBwqemc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779445277; c=relaxed/simple;
-	bh=S86o6RsskkHWtZ3c4SAC2I3qNeFXbs4tllWVFU88BEU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=iwQaiJYwP+0Hf0CVxxPIlr0AJNA1TtKjKqod2a5M4rpndLWXT/jafH05PO58T5TWNz/4DRSPbn3f88xrEoC6XvDkz4oZINaJDIG/SUNKjv+Trq3qko6SNve8yC1luB3PBgtHU3y7Bb+tPTdrddVrEaeZ0vTkuB50F+kgfJ15vFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NhkcvpWU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D741F00A3D;
-	Fri, 22 May 2026 10:21:13 +0000 (UTC)
+	s=arc-20240116; t=1779293868; c=relaxed/simple;
+	bh=b3vKhjIYlsPeDXkc73gbpzqKiZ/oByXD2DsPE/pC1+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PH0w4iNTZY1AEBzpQjeEeiXo6SSC5t/DEd1JbJM9Q7NaotKWgZFPLWNPPPPTS+Z5Zrsy2dZc+WXu5Tzbdyz4yDEXydOzrr0jlB8G4u8Rv1OHpFX7cQAV6//oHRWxSf+n5QRKwzz34GxA3lLH+yivuShR1q+jjp4KnHdkkbMrv/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iUvpkw++; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89BEE1F000E9;
+	Wed, 20 May 2026 16:17:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779445275;
-	bh=2DgGODNadjgGJsoo1ylpwBE577qTB7GC2dApkXhqSvs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=NhkcvpWU504XJCVZIPuxMhF+fcN7kh6dOwSwL+rQUWKSJFrMBp8taYuFNrkdISKN/
-	 abWD5h50FvIuX7UjOZBUywR0mZaC6RXN5MpJ47RVaprIPPQ6N7FNhkaHL4fy9oLWE2
-	 bNk3b8Rq1182L+j1Wb/k0lWztKC0eXWY4KfGYS6NfFSOBNPb1ZeeE6lFNwtMkEk3Mb
-	 Kb0wvQDuYU0JB/n1n35ItS+VZmCk1aVZe3osldYV/ScWkqlRUqfXn3vCJyE/GOXg/r
-	 pqFht5RWvoOULbjItGw3YXezQHj6JQEvAzJeI3PTUU0i4hq7bKqsxctyEzIScCRifk
-	 TVuxXgR+11pSg==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20260514091520.2718987-1-wenst@chromium.org>
-References: <20260514091520.2718987-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH v4 0/6] regulator: mt6359: cleanup and add
- supplies
-Message-Id: <177929384264.56665.1047692628146708628.b4-ty@b4>
-Date: Wed, 20 May 2026 17:17:22 +0100
+	s=k20260515; t=1779293867;
+	bh=50nNEwYXko+BmsraW2yGRNKOx6hjeiwEGQR9Xa9Nd+Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=iUvpkw++CXIDgG39Hc92KF9gYAxLGGJGnbXyRg4pKhWDoC3DfFeRUb3X9LuneUjao
+	 FXZ/2WUd3RR/KmWcQxc8Y+LTIHA8pAtaRS8sNpCuAoVMnRAZ2PIlWEazDltWGgR9ud
+	 CAu20QC9a2NmorfhH4yxKQV2gvL3jFfA2k4qGJ2sPw6MQSn5vDInLNTOIk1l5OAzbn
+	 s9i1VQZUa/kXQfJOIpqrjknzEJQR0W3l4O0Fi5e6s6x/pHCmGJK1w0+vQ2nNu5C0gU
+	 f1KthJu7CI80H1N9UL5aaMwgwTJoXyvpifKmMkkxWAC/N+WsmxZeHrdwgJ5B5FApkv
+	 AyigbNF5qMKgg==
+Date: Wed, 20 May 2026 17:17:41 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Tomasz Jeznach <tomasz.jeznach@linux.dev>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Joel Stanley <joel@jms.id.au>, Joerg Roedel <joerg.roedel@amd.com>,
+	Nicholas Piggin <npiggin@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: iommu: riscv: Add bindings for
+ Tenstorrent RISC-V IOMMU
+Message-ID: <20260520-frayed-fervor-7c887193ab19@spud>
+References: <20260520061855.1623468-4-fustini@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1804; i=broonie@kernel.org;
- h=from:subject:message-id; bh=S86o6RsskkHWtZ3c4SAC2I3qNeFXbs4tllWVFU88BEU=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqEC4YxSKtcKDBHMtlwOBWiLs/4dlCeUfDdAjCo
- bwUG1Bb2ReJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCahAuGAAKCRAk1otyXVSH
- 0BmQB/0ebTYeZ/V6SuHqtRkYGeTSKGRrPgmho05X8NIN9HYgS6LDOcttuTZCuNG7WN/j7BPMUsi
- V33UcE8/EW3SjzddG9h6BCurQ+IgT+chjLN3BeRpgIYUV6A5rui0Xlw+8+2quWAGyJVPi9UfamL
- ri8PPkEbzP8Oe5d1dxr3n3f+QfntPP8GOcCI4ZtreI/suhmwcuoQU/Q1Q26PPB0tng25HF44k/G
- S2r7dIDussmXd5sp1EzyEax09lMGi4f8vDJuwItc3uCH6SUvd3YGFax5zN20+Sm8HVOn0W4VL/+
- Gru5baz35mbj0LYOpAVvdj0FXNolFpFUedwdsc+QNqfNudnG
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NGNLZDzmLzoPMudc"
+Content-Disposition: inline
+In-Reply-To: <20260520061855.1623468-4-fustini@kernel.org>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[42];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301697-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com,chromium.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-300771-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linux.dev,8bytes.org,kernel.org,arm.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.linux.dev,lists.infradead.org,vger.kernel.org,jms.id.au,amd.com,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 20F595B24CE
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,amd.com:email]
+X-Rspamd-Queue-Id: 4B4BD592DE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 14 May 2026 17:15:13 +0800, Chen-Yu Tsai wrote:
-> regulator: mt6359: cleanup and add supplies
-> 
-> Hi,
-> 
-> This is v4 of my "MT6359 PMIC cleanup and add supplies" series. This
-> version addresses review comments from Sashiko.
-> 
-> [...]
 
-Applied to
+--NGNLZDzmLzoPMudc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.2
+On Tue, May 19, 2026 at 11:16:28PM -0700, Drew Fustini wrote:
+> From: Nicholas Piggin <npiggin@gmail.com>
+>=20
+> Extend the binding to cover details specific to the Tenstorrent RISC-V
+> IOMMU. In particular, a second register range is added which contains
+> M-privileged registers, e.g., PMAs and PMPs.
+>=20
+> The RISC-V spec S-privileged registers remain in the first register
+> range and are compatible with "riscv,iommu" so the Linux driver does not
+> notice any difference, but the binding will be used by OpenSBI and
+> potentially other M-mode software.
+>=20
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> Acked-by: Joerg Roedel <joerg.roedel@amd.com>
+> Signed-off-by: Nicholas Piggin <npiggin@gmail.com>
+> [fustini: fix dt_binding_check errors]
+> Signed-off-by: Drew Fustini <fustini@kernel.org>
+> ---
+> v2 changes:
+> - Fix dt_binding_check errors
+> - Add the Acked-by: from Joerg
+> - Drop RFC prefix
+>=20
+> Link to v1:
+> https://lore.kernel.org/lkml/20260310003850.3837030-1-npiggin@gmail.com/
+>=20
+>  .../bindings/iommu/riscv,iommu.yaml           | 62 ++++++++++++++++---
+>  1 file changed, 55 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml b/D=
+ocumentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> index d4838c3b3741..5aad8cf67840 100644
+> --- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+> @@ -32,22 +32,35 @@ properties:
+>    # should be specified along with 'reg' property providing MMIO locatio=
+n.
+>    compatible:
+>      oneOf:
+> -      - items:
+> +      - description: Platform (non-PCIe) IOMMU implementations
+> +        items:
+>            - enum:
+>                - qemu,riscv-iommu
+>            - const: riscv,iommu
+> -      - items:
+> +      - description: PCIe IOMMU implementations
+> +        items:
+>            - enum:
+>                - pci1efd,edf1
+>            - const: riscv,pci-iommu
+> +      - description: Tenstorrent IOMMUs implementing "riscv,iommu"
+> +        items:
+> +          - enum:
+> +              - tenstorrent,riscv-iommu
+> +          - const: riscv,iommu
 
-Thanks!
+You should be able to put this into the enum alongside the qemu
+compatible, right?
 
-[2/6] regulator: dt-bindings: mt6359: Drop regulator-name pattern restrictions
-      https://git.kernel.org/broonie/regulator/c/cdc517688ffa
-[3/6] regulator: dt-bindings: mt6359: Deprecate bogus vcn33_[12]_* split regulators
-      https://git.kernel.org/broonie/regulator/c/beb4fe279989
-[4/6] regulator: mt6359: const-ify regulator descriptions
-      https://git.kernel.org/broonie/regulator/c/eb17a319f1c9
-[5/6] regulator: mt6359: Add regulator supply names
-      https://git.kernel.org/broonie/regulator/c/10be8fc1d534
-[6/6] regulator: mt6359: Add proper ldo_vcn33_[12] regulators
-      https://git.kernel.org/broonie/regulator/c/fb6a6297acfa
+> =20
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>      description:
+> -      For non-PCI devices this represents base address and size of for t=
+he
+> -      IOMMU memory mapped registers interface.
+> -      For PCI IOMMU hardware implementation this should represent an add=
+ress
+> -      of the IOMMU, as defined in the PCI Bus Binding reference.
+> +      For non-PCI devices the first item represents base address and siz=
+e of
+> +      for the IOMMU memory mapped registers interface.
+> +      For PCI IOMMU hardware implementation the first item should repres=
+ent
+> +      an address of the IOMMU, as defined in the PCI Bus Binding referen=
+ce.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: base
+> +      - const: machine
+> =20
+>    '#iommu-cells':
+>      const: 1
+> @@ -75,6 +88,31 @@ required:
+> =20
+>  additionalProperties: false
+> =20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - tenstorrent,riscv-iommu
+> +    then:
+> +      properties:
+> +        reg:
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +          items:
+> +            - description: IOMMU base registers
+> +            - description: Tenstorrent IOMMU machine mode registers.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Should this also have minItems: 2?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +        reg-names:
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +          items:
+> +            - const: base
+> +            - const: machine
+> +              description:
+> +                Region containing platform specific MMRs for machine-mode
+> +                configuration, such as PMA and PMP registers.
 
-Thanks,
-Mark
+And this you should replace with minItems: 2 or delete. The reg property
+is where your description here belongs and all the names do here is
+re-list what's available outside the condition.
 
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +
+>  examples:
+>    - |+
+>      /* Example 1 (IOMMU device with wired interrupts) */
+> @@ -145,3 +183,13 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |+
+> +    /* Example 5 (Tenstorrent IOMMU device with MSIs) */
+> +    iommu5: iommu@d2020000 {
+> +        compatible =3D "tenstorrent,riscv-iommu", "riscv,iommu";
+> +        reg =3D <0xd2020000 0x10000 0xaa000000 0x10000>;
+
+This is not the correct format for multiple reg properties. Hint: you're
+missing ">, <".
+
+pw-bot: changes-requested
+
+Cheers,
+Conor.
+
+> +        reg-names =3D "base", "machine";
+> +        msi-parent =3D <&imsics_smode>;
+> +        #iommu-cells =3D <1>;
+> +    };
+> --=20
+> 2.43.0
+>=20
+
+--NGNLZDzmLzoPMudc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCag3epQAKCRB4tDGHoIJi
+0kjMAQDoJlJN2dTEH+xMoB8Mnr78NFamKp3i7rYNk1U2RW83OQEA0Id4LMpNIS3S
+WT9+SVPfv7/qcHgFS9fmA8jE5nXmkgI=
+=qrOu
+-----END PGP SIGNATURE-----
+
+--NGNLZDzmLzoPMudc--
 
