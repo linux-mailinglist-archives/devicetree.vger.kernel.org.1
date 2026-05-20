@@ -1,168 +1,156 @@
-Return-Path: <devicetree+bounces-300385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300387-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OPN1DuZiDWquwgUAu9opvQ
-	(envelope-from <devicetree+bounces-300385-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:29:42 +0200
+	id QNQSMwJlDWquwgUAu9opvQ
+	(envelope-from <devicetree+bounces-300387-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:38:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E8E588F7A
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:29:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ABA8589069
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:38:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6756830360A5
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 07:29:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0F4CB302ED7F
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 07:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E20370AE2;
-	Wed, 20 May 2026 07:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F791372ED2;
+	Wed, 20 May 2026 07:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zwp8o4ir"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BmXjwgd4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C37A36EAAB
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 07:29:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA22632E72F;
+	Wed, 20 May 2026 07:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779262161; cv=none; b=Vuzeq3YhKMnBs9ZcG9GJOY+X6mhcNVYLNoeyMmbtKjhZcb+6XOHItyaCv0l7kviJKruQsOPwIljrxp4oorSqWoylowb4NovKeXRRjenyRVwF5Z8qemcNZPRewz68eyHIFWTd0StuegR9gUlBcokZ8CE8hla5VuPY+2skgygykDc=
+	t=1779262391; cv=none; b=KC1L//KVoRySzpPtZGPi84yoLEhcmPDpqa6q5pZxH62/+Aq1jVsZF6FSvVoo74jrsNg2Zr4D/nmLOU9YcdIgSiu5YUuhhWJYLf3g1LSI77vVV8CXXxtGaEbcrrsmrJU2jeJ4508wXJs2w47UjNiTGI7QDKUKvpbvR+GxUQaZEbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779262161; c=relaxed/simple;
-	bh=E3m8x+5Py+DrS1yhwjO4bfslD31NqZ/mOBktiWRfdYE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mB/I+1AKHEE9AlURnsvyjis8ZErVVRUo7Bv/NB79Ow/rbV9gz+7e8+xnX8kmdryD1y2kYO5lta3JGRWAS8nMIDA0sLOOOoXtP2HdYISMAjl1HCqMB4gpbv+qCBg9UPHez+iFaQJbwxv1Cn7vIzcN1kmP6j5JujqyFAegMAGAFCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zwp8o4ir; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c80227b1f6cso1709193a12.1
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 00:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779262160; x=1779866960; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AK8uyh5+5gdeHTCxNeKbZQznp1Z1On5Jje2vJ7+Ah9w=;
-        b=Zwp8o4ir+C7flTamJlshf6rLgfr4jJrGTNQgXvItc/O1eOMAIhrrEUc6MJHLjxLa6M
-         6AoTM0rYX36gkaLtBjaS31vJybtKyxug+7ZnWEb5ioywQM/SzX3Jk6fmhC/VchsYEqhy
-         9QOo8nPDT3anAaCeZERTTkwTrJQ6L3PlRDUfx4QEnUONVgRp9Ykt9ZZa34FSsjcWnv8k
-         t3Tv+zlUBLBWy6W0vYFhHmNYg6LLaxyEZG4KoAGjDvmGzE1t4p904OoG+qjgLCg1cBW8
-         ktDfynW5tSwlcX6nbFXLDq+mmqESwl8z7FaR0wy45r0jjlqkQcrkZicKrRKzsd2najst
-         XHzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779262160; x=1779866960;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=AK8uyh5+5gdeHTCxNeKbZQznp1Z1On5Jje2vJ7+Ah9w=;
-        b=DRhlT8FcCIme8yINk4lEu3CtUmSRTUE4P6/jWygxk7cwkBz7lbyP2GI2MhzOvmrfIw
-         qjZy/FmnBNyV/ZFe9xUoTd51h0cDVuFbKZ8ES4bfZFe+Bpik1Z8iT5XUSxSCYd5yzE5l
-         IIw8163gwnlTzdAuP5dWgFesznKrs/EiYQzFfn3ow+Vaff6JRkHss1T7IrxoduzWoPW+
-         GSQZ7bC8LD20zCM1S53jRcKvCKOiwMgvS+0USXFnpbI1XBWmH77G9Iuw2E8YqQOJ49W/
-         Z0wqQc3AZdRFCF4+jheH9LweGd9XttYG/GFf3GlILTwBDYaUDCKBhskQ3FkOvYH2jk9U
-         GMrg==
-X-Forwarded-Encrypted: i=1; AFNElJ9XcNx2i5wZ2+nKkfhVrQzzQoPO65Z1KkGgMNjbyakZ6ey3DiZxJd1+WmWUIjSY1ZuMEgoHtchCZXR9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1Yv2j7m9/o3IvGFB+MlRdtI4dEXnIiUgoTkCLyao5WdxVGwaX
-	j7vLf0Fu3TYzzrbvI1gkt1j6HQ1RhggjQBVL7HWT6KEvfjRyx8yHCa0F
-X-Gm-Gg: Acq92OHYZTgrDouYV0lYZgYXcBHa47aZz2IWfZMkTN5S9DSSA+tixZ5fxCtrLguhc/I
-	ucG0aqr/QezPXdDwtgFUo1Ry7XcS4gfS1H53FzwO97ViraUO20EeHK2IjAgwzk4jp8URWVW+DXc
-	9lWaIyeVXTV8Ef01ZqpeNE/yEvl9eS+l3qhv8T0Ktg7IGReakU98OPffZaAOYeWFiwQe/FxkwHr
-	JLQsuqFAJMQLZ5dsGho47fky7yvxnl1km07ajDf2tIiLb+t1+KiwhxMC+PimlOfW75OeJAMYFIH
-	sadEJdjHR2whfyvh52K/JSRzmjNGEP1vrVOm9J6IB6V3/D85y1tfRqNPd19IgO9wlL0SkfOIu73
-	Q0K3WOdRJlmiPywxpy0HHzComGmDUjX/IFGlhb3BMKsr8ikZ2GVqZXq7llyKZ3jcU5+axsIE8xQ
-	fmFHEW3RuBBAkh4dN81rj6vDeMCyLwyOwNaJZZYcddCYzf2yCoD2WzzXBX/eankw1flU4LMeR03
-	xRmwX3PwQMiPi24vEAlZEcvvFoHJMhWwI15ECH8W5wSLjuX
-X-Received: by 2002:a17:902:ce85:b0:2bd:ef15:9fce with SMTP id d9443c01a7336-2bdef15a1e4mr111156975ad.20.1779262159642;
-        Wed, 20 May 2026 00:29:19 -0700 (PDT)
-Received: from DESKTOP-G3E0OSP.localdomain ([112.172.255.242])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bd5c05f27csm206258595ad.25.2026.05.20.00.29.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2026 00:29:19 -0700 (PDT)
-From: Jinseob Kim <kimjinseob88@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	linux-iio@vger.kernel.org
-Cc: David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH RFC 3/3] MAINTAINERS: add Open Sensor Fusion IIO driver entry
-Date: Wed, 20 May 2026 16:28:43 +0900
-Message-ID: <20260520072843.3593-4-kimjinseob88@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260520072843.3593-1-kimjinseob88@gmail.com>
-References: <20260520072843.3593-1-kimjinseob88@gmail.com>
+	s=arc-20240116; t=1779262391; c=relaxed/simple;
+	bh=1efeFbnUp5AtAp3mSSjrOzfID8L1uBlM5v1U4iWTNzg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VET6ma+yAgl0iX6hNZM227dbmTP4xxvtlCIIahnoBKpJLnAkVmtZfn0Wykj1lTy5uDqMMOO3MjTzT2gXmK5lKyzkvHl5JgUm0ARGfQSPIZg7wzuIUcYcUI4AXEtYVROKQPMjIbcGDp4JUbSs2e7E/2LHX2k7qfxfq+MS0HHQg9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BmXjwgd4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B081F000E9;
+	Wed, 20 May 2026 07:33:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779262386;
+	bh=PcVXy75goYYW/CkPoEERDevx0ZCw9tGQ2veC2FqMe44=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=BmXjwgd4xAiYfywgqlUYh1l/pgJPNcuy9Wzc78NsLIPm2nY48RZH3GhW0ujyG4bij
+	 0qXKFaV6OfRAguoE1i/XDiXygIpxzqJAO8UlOLEDuMJwdMhzECAeqESV0ByBytsE3a
+	 GyOSVBAuJd8ZyTx6dRQNejkyaSgoiy1VYrpzrW69yIbN+VB45rFzRZ6XX4cCrre5IL
+	 C0OFF6nr3j533WN6tSGGty6GxH2PA+GyaLJM5EdA38rBublWfD34yM/3GsGcLoMcBc
+	 E4exAqGhxD0Jc5BFtwL3TDUWwVaD+mwfdy0RIaaNf1G6MBztS1YnAS7TbSRea1hGMC
+	 PA3e4Sgm5RSiw==
+Message-ID: <b7311879-b4ec-4af0-98bc-cb67392eacf7@kernel.org>
+Date: Wed, 20 May 2026 09:33:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: richtek,rt1711h: add missing
+ 'port' property
+To: Akash Sukhavasi <akash.sukhavasi@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, gene_chen@richtek.com,
+ gregkh@linuxfoundation.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, robh@kernel.org
+References: <20260519-quixotic-lobster-of-experience-b894cb@quoll>
+ <20260520045334.159097-1-akash.sukhavasi@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260520045334.159097-1-akash.sukhavasi@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300385-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-300387-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kimjinseob88@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: B7E8E588F7A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 3ABA8589069
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a maintainer entry for the Open Sensor Fusion IIO driver and binding.
+On 20/05/2026 06:53, Akash Sukhavasi wrote:
+> 
+> Dropping patch 2/2 from this series.
+> 
+> Can patch 1/2 (.txt removal) be applied independently with your Reviewed-by?
+> 
 
-The driver path reflects the current RFC layout. It may need to be adjusted
-after review if the driver moves under a different IIO directory.
+You should rather send a v2, with only the first patch and with my tag.
 
-Signed-off-by: Jinseob Kim <kimjinseob88@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c2c6d7927..001ba4ea6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20011,6 +20011,13 @@ F:	Documentation/devicetree/
- F:	arch/*/boot/dts/
- F:	include/dt-bindings/
- 
-+OPEN SENSOR FUSION IIO DRIVER
-+M:	Jinseob Kim <kimjinseob88@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-uart.yaml
-+F:	drivers/iio/opensensorfusion/
-+
- OPENCOMPUTE PTP CLOCK DRIVER
- M:	Vadim Fedorenko <vadim.fedorenko@linux.dev>
- L:	netdev@vger.kernel.org
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
