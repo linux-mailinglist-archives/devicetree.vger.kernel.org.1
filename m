@@ -1,336 +1,238 @@
-Return-Path: <devicetree+bounces-300376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300386-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCPiG65fDWquwgUAu9opvQ
-	(envelope-from <devicetree+bounces-300376-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:15:58 +0200
+	id IJsYJ6ljDWquwgUAu9opvQ
+	(envelope-from <devicetree+bounces-300386-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:32:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D650588C6F
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:15:56 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A41C4588FB8
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 09:32:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CD8143008E2C
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 07:15:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8B940301081A
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 07:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC8234A79D;
-	Wed, 20 May 2026 07:15:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="MKI5592d"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DAFB322A1F;
+	Wed, 20 May 2026 07:32:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C4534DB6D
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 07:15:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779261340; cv=none; b=DmII27Y9Ry52QfAy186pB4SPRVdomTyeTivdB6B9AMN+yj2sT/1YP9GaU6bamngNxtZbW52JOSQ8XtSnacWEVSrsr/u8rcYnpXOKEUNbl3NfkDRKppgp2wKYB1bZJkHMopdhqFDF6ktkYnMcA9LyjmUS7YjLXSUfSbLIGw+goh8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779261340; c=relaxed/simple;
-	bh=5v0bBklZMAI11axTsyPo+y6JTU4aEE2dE3vxU2Rr3sM=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=Jv251pXZyrrpGoA+FCoAulVWYvA5GFDdEungq3spigCJHs62se6zRTuz7nHZ+kPWpvT7q579IPZWwuApG0EgwsnTkijDFzfk9iAfR1KxWB++BnjMmzftThnevODdVIESZWlK1527drQOEtiojibNQlp9eNeTrg+4ojqEHPTt2po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=MKI5592d; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=J3YrheZdqW+duFn409E1je+nPJyCNsond
-	JsbSI32P1k=; b=MKI5592dDqeZC78qO7kw4nmMFreuTuNMelKcS1RZMly8V8E+C
-	k1ANN2SMGYoccRahzELFoDBz+5WjL4fcLzKF2orsD8YyeKYYZsN+4ECzc+UAevMR
-	/Tgj3XU3xQSGZ2xBn+/sEWr6mSmOyAEiZ7hQ6J4yDykH87IsGc7xfcgxzo=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnYUKuXw1qQO0EAA--.6649S2;
-	Wed, 20 May 2026 15:15:58 +0800 (CST)
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2122.outbound.protection.partner.outlook.cn [139.219.17.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62FEC24293C;
+	Wed, 20 May 2026 07:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.122
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779262370; cv=fail; b=SYW7YGwF/Pm//BHKa0xJZQcPEiUIAWdmiC2MEq14piLr1MbcEc4bxKZ3DtVxFb0HSfyu6uqzk98/T0BPtlAFpR7FASncfJ0xTdSvv2wVEzewZzwWkmOebUg+MXtQmSn5zWP6hynwIrmn5sGL18X4gaSi1OGjIjp1vNbetlOlHpE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779262370; c=relaxed/simple;
+	bh=RWoqrYLaMJhlygCiJ/8bM58vzUxdzEiQ86iXK2L87dI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=UrEkk7vIZpCmJVB5dMC+B+8mUjod4zSkjS1vLcKAj9xdvDDcdmYMa0ejTqdo1pN7nxRDVGJ9A4PYqYoTN/k+brbF1pcFNAj3ijiKdE/d2X0LXOkcG/SPixhIsfODUa2RIYgqLw+QUHCSgLU4Xsl9pweUNE+MAaMItp18MZ1hOu8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A5j0t0vQ3mYlyL01kRc8Lu61UjRcvx77AZJMMzUF/isVzMzZBM+FJPpPmk5pQEUbfiMRGijOBvRsjBNi/gkKTixvMkQeVhGFERLar7yFmNue/xNnHdVCB6Mgx95ce94ap9j9l5EvZyozBAxTnPaJWinv1BrVSJHBCxME6LaFZAuAi86mssEcx7cAnLao7fr8stmkgs68ZNXb3pbiw8lxaCqzeILqZ7KZPEOYXrCAk/+47+jcO9OhhoCMxC4Mehs3mvqaIrBl/dDbn6udgyw/KxCEdG2EQGrPSpDf+6W4Uwv8PtkEGgbanaik06QN9ITw7Ny7u11yiFSVimp9yu6QLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KUvkoKV6OPo3U49ZxrwKYkS+mzW7t1Us0+gldRfvbSg=;
+ b=I/Z3R+8V4TU13Jx4uuJ3MDesHZbWq3pWSwZaUosAcpEv0WyGrdIo3ZN5mI5i4sxa92GKLc6KAL+REVP292/V/l2k7UdqFg5PhS9SvvM9IF2OstyL8GzH2opw2mQGq2+RFsGnjQN4koQQw0RVATi72Ucq36jH2p7dfkUqgNaUAtEjGEN6AKW8LpyMooCQX6p5RTftT2FdUWC+AcvvuYSjVD8sjcnJRHzwWbGNxswfAkyNyYlyEoeAaphjLKWsB/ELRv2DNE7nfmkpHeZEib3zZ8crStF2/H7Hxu8YovQ/hVcws+Xz5bhliJEWVlhxPSGOesDX8lThp7NoUa/b+GsegA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15) by SHXPR01MB0893.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1c::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.15; Wed, 20 May
+ 2026 07:16:47 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::9b99:12dc:a115:b90f]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::9b99:12dc:a115:b90f%3])
+ with mapi id 15.20.9891.021; Wed, 20 May 2026 07:16:47 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Emil Renner
+ Berthing <emil.renner.berthing@canonical.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor@kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com"
+	<linux-stm32@st-md-mailman.stormreply.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: Re: [net-next v4 4/5] net: stmmac: starfive: Add jhb100 SGMII
+ interface
+Thread-Topic: [net-next v4 4/5] net: stmmac: starfive: Add jhb100 SGMII
+ interface
+Thread-Index: AQHc53hU+JPeVlYe+EWGQV8dabD2M7YVZY0AgAEcvhA=
+Date: Wed, 20 May 2026 07:16:47 +0000
+Message-ID:
+ <SHXPR01MB0863206A6ED966AABE7B3407E6012@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+References: <20260519101436.111476-1-minda.chen@starfivetech.com>
+ <20260519101436.111476-5-minda.chen@starfivetech.com>
+ <6eff2d70-a0ac-4d9c-8261-eb5249b7c877@lunn.ch>
+In-Reply-To: <6eff2d70-a0ac-4d9c-8261-eb5249b7c877@lunn.ch>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0893:EE_
+x-ms-office365-filtering-correlation-id: 15a16b51-a1cb-42a9-dc18-08deb63fc137
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021|22082099003|56012099003|18002099003|4143699003;
+x-microsoft-antispam-message-info:
+ WH0rLBO9RVD2hXBkiWzoX/8UpCUP3iEPMVNXGOroz6IAcgdVXAaqSq5G2BZ+xP0tjvunzH4+/1qViL3Eq8wGbiEU3FYFr4qkPOcRiR8jVU2ohMbsdXUcfXm3ccq653CTEHqKTo14J/36fCRvwcsPQxh9oLeuIXen6hdMJOb1K7TzaguCXcx6krFP9aP3PHYXbCiD36LSL23DLlrCA9Dtsz9azojtAC6go/Y+6X3GENAUDrcNeLZifQilee4RwYIP4LB3+QxeAu4nWWgg+4/GGF6NywrT4bNK3HsnsQxCbd8S1LlsimpVmIgzHpARbNAxYcm3HdaLQj/r/NxPOJqrqH7IQhOuaq5KMrD1YtHvAn9LRqCQWid9iOttXHvpjuyQeQJfEgc5MA8N2jm842Gkc6pkhMPV+51EpsvM2koX2imrbF2UlQT8qRIoAsW0k7LasZRLAh+gYjdypno0YSqVHI0Aphk0kyD1YKEi3R/vYnJlaaPemp8zN9aGf0w8r2kHxtmsoUNfGYpHQ1vi0NekC4ll0m0UAew4ggX5bAT+o4QUdKSctFMeQjg51N5Ff+Xy
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021)(22082099003)(56012099003)(18002099003)(4143699003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?rtR3bmjr/mh8tQv/wvw67vrkiVP6X6B/a+zv5W4dTsQml0o2TU8vHtZxZ4tK?=
+ =?us-ascii?Q?8E1PWPaSq5U9gpBzrH2HWU3Qbx77INiLWrVvPR9Z5n8TjvAKRCgI7dlQGmNg?=
+ =?us-ascii?Q?Z/6o/c8dP33RBurPURohQyzjZECMgytKwR0BxDXSDpLGaqIF69Lmw3J3gdG+?=
+ =?us-ascii?Q?I3F9H0b1aJ/KFPrpVBCOPN++DXziLk7MUOXpf4+HwqybZW00ctc3cIXY7xK7?=
+ =?us-ascii?Q?D0JJEMzBALMbp3WwYLw/Ypd5j5lf7GS4hh2vwe/k63ePRs/M9CLLfrhxUu7O?=
+ =?us-ascii?Q?aS0ETZayXthCXNEz5w2wInUx3SJbBbHYN8HZgqkQJShyRLKwFVyjwqkMD+Sb?=
+ =?us-ascii?Q?puhohaSU8YupsQoTiOTREftC5YT8TO4m8Db73WeK8igWQX40F4+IEQrKa1cv?=
+ =?us-ascii?Q?Q/ymd63fPQ3QP1waWYF5arxLJunGkW2sACgIdyw5V0VtuHsRhfeDOHMg/VfC?=
+ =?us-ascii?Q?C9KPhx4OPXy7o4yzhhUlzqfYRUREtOiwOIy043C5zHIiHgtG0DasHDI53GDW?=
+ =?us-ascii?Q?xdIdqlPn4ttudm/vdkx+8ihyPK22AgQ4nXtr0OfVgfYdM+eUiJJTkkDLcaG8?=
+ =?us-ascii?Q?QAWj94jXPv1SkQHtLE/SIPJqEoMvvnSPLsWen1nkQXJn0tq4Ru8d351LF1TW?=
+ =?us-ascii?Q?0thN6GKfmwrFZinYCP17pvVdrPgI0m9sA6TPfHjnQZXT9SPtagXN9AkLEbg1?=
+ =?us-ascii?Q?UBDGpluWKhhBrfjS9jbu80E5MckvTYRdrG31z/H/6tbYkPj2OQV8Nz0mds9V?=
+ =?us-ascii?Q?xyJm2e7a70zkFqRu/QazNXANf+/xggINiofrYugtZmaDdEuHO/YFCju+j9PM?=
+ =?us-ascii?Q?VB2YKFjdrmn/E0kD78t84GuRh1CHpfGc2xXH/QMILWEhb+sXQbh3BBmeji2u?=
+ =?us-ascii?Q?EerpbqnjcKQByGtxBPEGp6udKWUY8JbOYm1+h+I4GZqSrBUaA9fQG/8o7Ikb?=
+ =?us-ascii?Q?hp5msLTRXZV77FtnN80c7tHpIGgCL+TicRSA0Npziyaaoe9dsHYS93XptZfW?=
+ =?us-ascii?Q?fkX8bUHGJfiEEZ13m/2Y0mij5YxfiNHZQW7enNHVK/85IKExsXNuR+u6JOKR?=
+ =?us-ascii?Q?ikJLnohiLNGPxdDrYTaAlJyEWiRioRqWd0GTLHIDNM9lPFXewk/7Qs7Zqyhy?=
+ =?us-ascii?Q?73KtTVqtLpb0AUG8voawiUtt71bOLn3Uh+lUrm5mXkk7hKvhyLMNUGZ5lUaX?=
+ =?us-ascii?Q?APVWjkLRFyTqmiA33C0jjDNCvQjhyhhCKqm7U6MGO5SlXdGcZWLrb3kxPDMg?=
+ =?us-ascii?Q?CSacqRG5zi5uYNwpYJnXdXOpgU2zHVBhCq8M88nUxniPC+HbgTocMpId4/6Y?=
+ =?us-ascii?Q?of6ANhAXcmAbSu002+LkYjHvqh7ydPj2S1tKc4vC/C5bnigZs+/tAB7Tzfqx?=
+ =?us-ascii?Q?6oDDgoNFn401GCn7x+0WCFa4R64HQvRQ8l3M/pOhsJP7ctzqAXrPZT93mWMG?=
+ =?us-ascii?Q?xC1ZN+sx+2O3/Df4lshYwheN4hwYnLC01T9Ks9cpcExmUh5bVmG77bXAQKPi?=
+ =?us-ascii?Q?QO/ttJFH4VQOerxkEJrSB3Ud+ZwwMjtU5E8vIidmnrQ7xNcTNECkIQGLlR+T?=
+ =?us-ascii?Q?2grHDTtPNkcASo0TeyNtCdRYDgVn4IyTTLReS6cGa6f7frdXyh2jr7DGD9Ip?=
+ =?us-ascii?Q?52Serg6gvbIHtk5WsnguvLYjxqHzPCeWadR70CfAh+uP+X5MIsMCzJfqSlJj?=
+ =?us-ascii?Q?tube9BtXnia/JRaJxpr6a5XNP3ggoqkbpJutkmBaomh4wvYeEpxj02Y3XBIx?=
+ =?us-ascii?Q?b5QuYftRvg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 6/9] pinctrl: ultrarisc: Add UltraRISC DP1000 pinctrl
- driver
-From: Jia Wang <wangjia@ultrarisc.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>, 
- conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, 
- krzk+dt@kernel.org
-In-Reply-To: <20260515022854.5CCECC2BCB3@smtp.kernel.org>
-References: <20260515-ultrarisc-pinctrl-v1-6-bf559589ea8a@ultrarisc.com>
- <20260515022854.5CCECC2BCB3@smtp.kernel.org>
-Date: Wed, 20 May 2026 15:15:17 +0800
-Message-Id: <177926131756.943957.13034250409955560370.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779261317; l=7643;
- i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=5v0bBklZMAI11axTsyPo+y6JTU4aEE2dE3vxU2Rr3sM=;
- b=1SHdhTa7/XXqBvBO5si7ZJ1yZWKItKf+teEf19t+50ZV52xGugqg6YcBypmRUfrsV4FE8tP07
- V5mdeaxcNyRATDdPVrPObe1M/73HA72rTGZ56dM/HB147QaYDd0y3jH
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
-X-CM-TRANSID:AQAAfwAnYUKuXw1qQO0EAA--.6649S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxKr1xKF4kCr4kAF4xZw4fKrg_yoW3GF4fpF
-	Z5Ga13tFW8JFWaqr40q3ykGF1rX3Z7AFWUGrZ8try2yFnIyrykXrW5K3yYvayDCr4qkr4a
-	va15X3sI9ws8Ja7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUv0b7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l
-	c2xSY4AK6svPMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I
-	8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWU
-	twCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x
-	0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_
-	Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU5
-	Ksj5UUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQANEWoL3kQAGQADs8
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15a16b51-a1cb-42a9-dc18-08deb63fc137
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2026 07:16:47.3411
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qshQ8i/lLkaIQh0gZR29BH++5/HXQKnUTLF7qL6WX40ExMSEqyys7f3dudEcCWt4mK/j/48IJktTcfb6N11roaj/6276smvim2xi+FcJiKU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0893
+X-Spamd-Result: default: False [3.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[foss.st.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,canonical.com,vger.kernel.org,st-md-mailman.stormreply.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300386-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-300376-lists,devicetree=lfdr.de];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,wangjia.ultrarisc.com,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ultrarisc.com:email,ultrarisc.com:dkim,pin_val.pin:url]
-X-Rspamd-Queue-Id: 9D650588C6F
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[minda.chen@starfivetech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn:mid]
+X-Rspamd-Queue-Id: A41C4588FB8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-05-15 02:28 +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 5 potential issue(s) to consider:
-> - [High] Memory leak of temporary DT parsing arrays on consumer probe paths
-> - [Medium] Silent ignoring of unsupported pin configurations
-> - [Low] Build failure due to dynamic mask in `field_prep()`
-> - [Low] Signed integer overflow during pin mux configuration
-> - [Low] Unnecessary Kconfig dependencies selected
-> --
-> 
-> commit 03445610d24a54757505c7f2def35cc4894dd19f
-> Author: Jia Wang <wangjia@ultrarisc.com>
-> 
-> pinctrl: ultrarisc: Add UltraRISC DP1000 pinctrl driver
-> 
-> This commit adds the pinctrl driver for the UltraRISC DP1000 pinctrl
-> controller.
-> 
-> > diff --git a/drivers/pinctrl/ultrarisc/Kconfig b/drivers/pinctrl/ultrarisc/Kconfig
-> > new file mode 100644
-> > index 0000000000000..ba8747b90127d
-> > --- /dev/null
-> > +++ b/drivers/pinctrl/ultrarisc/Kconfig
-> > @@ -0,0 +1,23 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +
-> > +config PINCTRL_ULTRARISC
-> > +	tristate
-> > +	depends on OF
-> > +	select PINMUX
-> > +	select GENERIC_PINCTRL_GROUPS
-> > +	select GENERIC_PINCONF
-> > +	select GENERIC_PINMUX_FUNCTIONS
-> > +	select GPIOLIB
-> > +	select IRQ_DOMAIN_HIERARCHY
-> > +	select MFD_SYSCON
-> 
-> This isn't a bug, but is it necessary to select IRQ_DOMAIN_HIERARCHY and
-> MFD_SYSCON here? The driver code doesn't seem to include the corresponding
-> headers or use their APIs.
->
 
-I’ll drop them in v2, thanks.
- 
-> [ ... ]
-> > diff --git a/drivers/pinctrl/ultrarisc/pinctrl-ultrarisc.c b/drivers/pinctrl/ultrarisc/pinctrl-ultrarisc.c
-> > new file mode 100644
-> > index 0000000000000..774746943e283
-> > --- /dev/null
-> > +++ b/drivers/pinctrl/ultrarisc/pinctrl-ultrarisc.c
-> [ ... ]
-> > @@ -0,0 +1,746 @@
-> [ ... ]
-> > +static int ur_write_pin_conf(struct ur_pinctrl *pctldata, unsigned int pin, u32 conf)
+>=20
+> > +static int stmmac_starfive_sgmii_set_clk_rate(void *bsp_priv, struct c=
+lk
+> *clk_tx_i,
+> > +					      phy_interface_t __maybe_unused interface,
+> > +					      int speed)
 > > +{
-> > +	const struct ur_port_desc *port_desc;
-> > +	struct ur_pin_val pin_val;
-> > +	unsigned long flags;
-> > +	void __iomem *reg;
-> > +	u32 reg_offset;
-> > +	u32 val;
-> > +	u32 shift;
-> > +	u32 mask;
+> > +	struct starfive_dwmac *dwmac =3D bsp_priv;
+> > +	long rate =3D rgmii_clock(speed);
+> > +	int ret;
 > > +
-> > +	if (ur_pin_num_to_port_pin(pctldata->match_data, &pin_val, pin))
-> > +		return -EINVAL;
-> > +
-> > +	port_desc = &pctldata->match_data->ports[pin_val.port];
-> > +	reg_offset = ur_get_pin_conf_offset(port_desc, pin_val.pin);
-> > +	reg = pctldata->base + reg_offset;
-> > +	shift = (pin_val.pin % UR_CONF_PIN_PER_REG) * UR_CONF_BIT_PER_PIN;
-> > +	mask = GENMASK(UR_CONF_BIT_PER_PIN - 1, 0) << shift;
-> > +
-> > +	raw_spin_lock_irqsave(&pctldata->lock, flags);
-> > +	val = readl_relaxed(reg);
-> > +	val = (val & ~mask) | field_prep(mask, conf);
-> 
-> Does this cause a build failure? The field_prep() macro strictly enforces
-> that its mask argument must be a compile-time constant. Because mask is
-> calculated dynamically based on pin_val.pin, the driver will fail to compile.
-> 
-
-No. This code uses `field_prep()`, not `FIELD_PREP()`. The lowercase helper
-allows runtime-computed masks, so using a dynamically calculated `mask` here
-is valid and does not cause a build failure.
-
-> > +	writel_relaxed(val, reg);
-> > +	raw_spin_unlock_irqrestore(&pctldata->lock, flags);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ur_set_pin_mux(struct ur_pinctrl *pctldata, struct ur_pin_val *pin_val)
-> > +{
-> > +	const struct ur_port_desc *port_desc = &pctldata->match_data->ports[pin_val->port];
-> > +	void __iomem *reg = pctldata->base + port_desc->func_offset;
-> > +	unsigned long flags;
-> > +	u32 val;
-> > +
-> > +	raw_spin_lock_irqsave(&pctldata->lock, flags);
-> > +	val = readl_relaxed(reg);
-> > +	val &= ~((UR_FUNC0 | UR_FUNC1) << pin_val->pin);
-> 
-> Could this shift result in a signed integer overflow?
-> 
-> UR_FUNC0 is 1 and UR_FUNC1 is 0x10000, so their bitwise OR is 0x10001. If
-> pin_val->pin is 15, left-shifting 0x10001 by 15 results in 0x80008000.
-> This shifts a bit into the sign bit of a 32-bit signed integer.
-> 
-> Should these macros be defined with unsigned literals, such as 1U and
-> 0x10000U?
->
-
-Yes, good point. I’ll update these mode macros to use unsigned literals so
-the mask calculation is done in an unsigned type.
- 
-> > +	val |= pin_val->mode << pin_val->pin;
-> > +	writel_relaxed(val, reg);
-> > +	raw_spin_unlock_irqrestore(&pctldata->lock, flags);
-> > +
-> > +	return 0;
-> > +}
-> [ ... ]
-> > +static int ur_config_to_hw(unsigned long config, u32 *conf)
-> > +{
-> > +	enum pin_config_param param = pinconf_to_config_param(config);
-> > +	u32 arg = pinconf_to_config_argument(config);
-> > +
-> > +	switch (param) {
-> > +	case PIN_CONFIG_BIAS_DISABLE:
-> > +	case PIN_CONFIG_BIAS_HIGH_IMPEDANCE:
-> > +		FIELD_MODIFY(UR_PULL_MASK, conf, UR_PULL_DIS);
+> > +	/* MAC clock rate the same as RGMII */
+> > +	if (rate < 0)
 > > +		return 0;
-> > +	case PIN_CONFIG_BIAS_PULL_UP:
-> > +		FIELD_MODIFY(UR_PULL_MASK, conf, UR_PULL_UP);
-> > +		return 0;
-> > +	case PIN_CONFIG_BIAS_PULL_DOWN:
-> > +	case PIN_CONFIG_BIAS_PULL_PIN_DEFAULT:
-> > +		FIELD_MODIFY(UR_PULL_MASK, conf, UR_PULL_DOWN);
-> > +		return 0;
-> > +	case PIN_CONFIG_DRIVE_STRENGTH:
-> > +		for (u32 i = 0; i < ARRAY_SIZE(ur_drive_strengths); i++) {
-> > +			if (ur_drive_strengths[i] != arg)
-> > +				continue;
-> > +			FIELD_MODIFY(UR_DRIVE_MASK, conf, i);
-> > +			return 0;
-> > +		}
-> > +		return -EINVAL;
-> > +	case PIN_CONFIG_DRIVE_PUSH_PULL:
-> > +	case PIN_CONFIG_INPUT_ENABLE:
-> > +	case PIN_CONFIG_OUTPUT_ENABLE:
-> > +	case PIN_CONFIG_PERSIST_STATE:
-> > +		return 0;
-> 
-> Does this code silently ignore unsupported configurations?
-> 
-> Returning 0 here tells the pinctrl framework that the configurations were
-> successfully applied, even though no hardware state was modified. Should
-> this return -ENOTSUPP for configurations the hardware doesn't support?
->
+>=20
+> You probably should return the error code, because something has gone wro=
+ng,
+> you have been asked to do a rate you don't support.
+>=20
+Okay. I think return -EINVAL is correct.
 
-Agreed, returning 0 is misleading for unsupported options. I'll change these
-cases to return -EOPNOTSUPP in v2.
- 
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +}
-> [ ... ]
-> > +static int ur_legacy_parse_prop(struct pinctrl_dev *pctldev,
-> > +				struct device_node *np,
-> > +				const char *propname,
-> > +				struct ur_legacy_prop_data *prop)
-> > +{
-> > +	struct ur_pinctrl *pctldata = pinctrl_dev_get_drvdata(pctldev);
-> > +	int rows;
+> > +	ret =3D clk_set_rate(clk_tx_i, rate);
+> > +	if (ret)
+> > +		return ret;
 > > +
-> > +	rows = pinctrl_count_index_with_args(np, propname);
-> > +	if (rows < 0)
-> > +		return dev_err_probe(pctldev->dev, rows, "%pOF: invalid %s count\n",
-> > +				     np, propname);
+> > +	return clk_set_rate(dwmac->sgmii_rx, rate); }
 > > +
-> > +	prop->pin_vals = devm_kcalloc(pctldev->dev, rows, sizeof(*prop->pin_vals),
-> > +				      GFP_KERNEL);
-> > +	if (!prop->pin_vals)
-> > +		return -ENOMEM;
-> > +
-> > +	prop->group_pins = devm_kcalloc(pctldev->dev, rows, sizeof(*prop->group_pins),
-> > +					GFP_KERNEL);
-> 
-> Will this leak memory when consumer devices defer probe?
-> 
-> The devm_kcalloc() allocations are tied to pctldev->dev, which is the pinctrl
-> provider device. Since ur_legacy_parse_prop() is called from dt_node_to_map
-> during the consumer's probe sequence, these allocations will remain on the
-> provider's devres list and accumulate each time the consumer defers probe.
-> 
-> Should standard kcalloc() be used here instead and explicitly freed at the
-> end of ur_legacy_dt_node_to_map()?
->
+> >  static int starfive_dwmac_probe(struct platform_device *pdev)  {
+> >  	struct plat_stmmacenet_data *plat_dat; @@ -102,23 +122,33 @@ static
+> > int starfive_dwmac_probe(struct platform_device *pdev)
+> >  		return dev_err_probe(&pdev->dev, PTR_ERR(clk_gtx),
+> >  				     "error getting gtx clock\n");
+> >
+> > -	/* Generally, the rgmii_tx clock is provided by the internal clock,
+> > -	 * which needs to match the corresponding clock frequency according
+> > -	 * to different speeds. If the rgmii_tx clock is provided by the
+> > -	 * external rgmii_rxin, there is no need to configure the clock
+> > -	 * internally, because rgmii_rxin will be adaptively adjusted.
+> > -	 */
+> > -	if (!device_property_read_bool(&pdev->dev, "starfive,tx-use-rgmii-clk=
+"))
+> > -		plat_dat->set_clk_tx_rate =3D stmmac_set_clk_tx_rate;
+> > -
+> >  	dwmac->dev =3D &pdev->dev;
+> > -	plat_dat->flags |=3D STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP;
+> >  	plat_dat->bsp_priv =3D dwmac;
+> > -	plat_dat->dma_cfg->dche =3D true;
+> > +	if (plat_dat->phy_interface =3D=3D PHY_INTERFACE_MODE_SGMII) {
+>=20
+> Does the PCS support 1000BaseX? It is not needed now, but it is something=
+ to
+> keep in mind, try to avoid making to code too SGMII specific when it migh=
+t need
+> to be more generic to support 1000BaseX as well.
+>=20
+> 	Andrew
 
-Good catch. I'll switch these to kcalloc() and free them explicitly in
-ur_legacy_dt_node_to_map() to avoid leaks during probe deferral in v2.
- 
-> > +	if (!prop->group_pins)
-> > +		return -ENOMEM;
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260515-ultrarisc-pinctrl-v1-0-bf559589ea8a@ultrarisc.com?part=6
-> 
-
-Best Regards,
-Jia Wang
-
-
+No. do NOT support 1000BaseX in jhb100 soc. I think 1000BaseX need new serd=
+es PHY
+be Intergrated it and maybe new setting.
 
