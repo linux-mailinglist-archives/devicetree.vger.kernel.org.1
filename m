@@ -1,221 +1,318 @@
-Return-Path: <devicetree+bounces-300632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300634-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGhWL6KtDWrW1QUAu9opvQ
-	(envelope-from <devicetree+bounces-300632-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:48:34 +0200
+	id OO65KYWtDWq51QUAu9opvQ
+	(envelope-from <devicetree+bounces-300634-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:48:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C5B58E2DC
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:48:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F08C758E28F
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 14:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5951C306938B
-	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:46:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2D7003008FD7
+	for <lists+devicetree@lfdr.de>; Wed, 20 May 2026 12:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5763E122D;
-	Wed, 20 May 2026 12:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1038B3DD85B;
+	Wed, 20 May 2026 12:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bJKrYH+H";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fb2TRzKe"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="jHWswEbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1F73E0745
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 12:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779281160; cv=none; b=ZVl+XC6DG4LV7bOD4itmfpFQLBCrdIv9gvQ9METu03vIgvldCY0AJ0SWSziVyzAAWvaYuJqz4MbTs20kCn66BfVTaj+t620AKzAS2zJLTDZndgSDZ4Oe2MI8N1M8yxaX5CpQbDZ0WRA8Fox3Dd4LVo68f/dAk31pLuhty+uK3i8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779281160; c=relaxed/simple;
-	bh=cLaTmSKhZdE69LzIgcez/DsGhTPNYNcrI9RL0CruJ5g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aUyeu7Xg9TjwFVjw0r38HKLnQmDjqeWljKJWjrhHFrRg7IpaC8VLZCqfF5VQtl9bmv8zkdu+BRI+upqVbKr7wdipxC5SHmih/htJHkAa/FF2QAWRsoNbinnrbAa0L0NSyLzlxAL1lJULjdVWZ/228R7xVxn31B0pA2OAU4LJP5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bJKrYH+H; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fb2TRzKe; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64K7qA6d2065195
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 12:45:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=cIZhTAzDt9+wu0W7bhluPXYB
-	8tTK/ULqj6C6vI+4RFM=; b=bJKrYH+HZjulNKG2nXTbJFE5pY6emoCZ1RcOpXoq
-	HXkHQ92QHj6os7+z3O3bpOMY7W7DN2TN5b5UPzpda9mZLuAS27CGgatIBNS2zqju
-	GsocGnD0zr81EiY6gImdXecz/ASrZh+Q3KJ9MYSQV40m+CKba1NEfY1Fx6Jn581i
-	BYMdzKMfiHVX9JzdXNuPq1z/nwOHC+dN7T1UsVomfbWvcM4TXyC2IkNZx7A2OYnP
-	6Vn2mIf0a/P+mKl4lUz3haD9lB4nJTzamlD4g9W4XrBsOExzMLvlxG21UUkpqZHF
-	m4pVbaO/Vee4X9P4PzNse/kXjwj8uGr2KEg3Nh0ZaIqU9g==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e8t3t4pfg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 20 May 2026 12:45:57 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-5760d43e659so11634765e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 20 May 2026 05:45:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779281157; x=1779885957; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cIZhTAzDt9+wu0W7bhluPXYB8tTK/ULqj6C6vI+4RFM=;
-        b=fb2TRzKe9UYzUgJCV5unZl/sJTnYfj8OY+MhBEN2E2moL63XSeXcXoogXQQOZHmtO5
-         T+aG6vPA/iJ12f7Kgx+CXBUa//AkOeKyq70LnyqurgI7WB35rGagMkoNVwaHEi2b2rgp
-         zgZWf4+93EPDitRYzWRSQ/fDnemiicQyzrBhyHWXHrb4Mp36P9ev+IK4r9WnKKmBtQ/q
-         pCADlY5rn4bqiUVGD622xSLJCVsyvibeW9ois8ETGrGIviGXs/E/Z2g6b1lTUPmMjdif
-         l37S8AjD3MjGkCkgbPCAfM05l2gOzTWUQb6AXHwUjT0KgfX/yIC3AeshtwSbVFjwSwYo
-         pd5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779281157; x=1779885957;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cIZhTAzDt9+wu0W7bhluPXYB8tTK/ULqj6C6vI+4RFM=;
-        b=Ji8elwcDyjRev0xJEyRSCXvExzjSIf4w9nBiZKJmTRa0JPXj9QanyCMZWqQSLQDwE8
-         G2inD9LdqSr4/PeR627AQ55AUvv4taIzKEXl3Jd0toAqeg4RGP9W0XxuK1r3igXUvldt
-         SKRgG+IgwEmIbXtOzYExurRiBSglyFwAoh1fWHdJL6dz65HuUsasCh5joMhtzkL7W/YZ
-         oUsoVBfQaJUEZAXc+RHkbVvM7iidbF67eVkfSuoUrqLvOJ2f0FrgXaQ3qW2N2PoVE7I8
-         fa9C0qxPsgnhLHrICL/1rMCr+qreKCZ9z0m/2SoBJZMBdS95yVnI9lbpDzsmiRkbjNzD
-         G3gw==
-X-Forwarded-Encrypted: i=1; AFNElJ/30wv9Dlm/u3SatFmXQIzjc0HF5XRRoE2KM/1JehPDnM/ccEIehjcZIOxtNI07x+rzgjR0Dr1iVJKX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyalB/CfdmDRMe4Tz+kqEKW+tAUVNOX7Xdf5eeu/nl5Muq+bGnY
-	I2Lr0kCF88WvqD5kLJ9/zWHzz6NuSAtO/sMZBGwU+phcQD9UHcDvt8DB8oG/rPBbqzJH33BgU9t
-	EXqnMTliEmXwZQnn25WL/NlgqnxO7c37gI4q//dtybmImrICAqcCfwIhVFQ3k37eA
-X-Gm-Gg: Acq92OFnfxvAw9JifTnoDVCy6PeCua7k82NmQaEr9Gw8750M0/nTHZBKTEBRRBc6kGv
-	3ZeVvWW3lqc/EwNuTZA0n+ie53FHhz4K1w77xO7vUrLDRgBxoOzvC9o0NOEMzfdZwfLFn+AGq6S
-	g/zY0fdvBnGIKmtKq4fwfxPVhUYBRLz7eLahlqiwNCgyRRiGfLvygraYgu4qYVei54LYD7Y17x9
-	8FUe1rC7Y+rjVmhc3tPKobX/gqCjQk3fUiy5RLY72nwaWUpDMeFlc1Em6AqEO4KpmF4ZaaO2uMA
-	oPRoXaeAfe+SA1Lpai/CdNsKYdRz5Sjy8SH7LuGuzcwJQimdV77cLSzxr/0PZtHj8pbTb//9g1n
-	VGfl/nIro7zMc3NOW3eWcFfkt3S+S/rZa0Adktns+6wXLeZz5chXwPPy96Rdx5hjfz60xIrIDnq
-	zrujm1ydTC7sR0S1VN5NvcSpcCs2TwJuvlfbA=
-X-Received: by 2002:a05:6122:a5c7:10b0:577:51e4:ef1f with SMTP id 71dfb90a1353d-57751e4eff9mr6284062e0c.9.1779281157277;
-        Wed, 20 May 2026 05:45:57 -0700 (PDT)
-X-Received: by 2002:a05:6122:a5c7:10b0:577:51e4:ef1f with SMTP id 71dfb90a1353d-57751e4eff9mr6283671e0c.9.1779281152095;
-        Wed, 20 May 2026 05:45:52 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a9164c5712sm4836341e87.59.2026.05.20.05.45.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 May 2026 05:45:51 -0700 (PDT)
-Date: Wed, 20 May 2026 15:45:48 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: Bryan O'Donoghue <bod@kernel.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH v8 5/9] media: qcom: venus: migrate MSM8916 to new
- blacklist mechanism
-Message-ID: <mvlslbtufxodehvqqcmhihtchct3tegjbfjl2nmt3bh3fczdze@4fnrrtm2njlv>
-References: <20260519-msm8939-venus-rfc-v8-0-542ec7557ebc@gmail.com>
- <20260519-msm8939-venus-rfc-v8-5-542ec7557ebc@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FDC39BFFA;
+	Wed, 20 May 2026 12:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779281235; cv=pass; b=bdJYHOH0CWCoy3SAyjNOlfHFHu9UBzFYHan6sxj/zHeXAtXqLreuBEMy0CYgXV8JlZ3ST0ywzLb/2QQoZUYvTZX7mrw4Eynn7Bs+vtAdy8Hc0W2y3quwBehpVd1lqZLsNnlh4GFFe59Gi0xfxD0cfT22Yh8ysPCQfoT+sXBcEbk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779281235; c=relaxed/simple;
+	bh=dTXcnPiwDtqWk2v4IuUn3hfvsZ/QJSIh+tZ0dccqi6E=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=A7fF3ezaOSsBDaCKCNYIWqhOP8a16mqaHq1ABRC+l9aeQkQVJVA6nEMjklg7qarBhpecjh4PfteG5dmQROomBHwsJGIazh9MR680s8+CLTa2WWEtq6Mzgt0R67V43mmUu9t3SBEveCLDJTn7+9D0hy3to/7rGqiKM0dGnGg1CWM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=jHWswEbl; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1779281190; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mo1rJIqCjsETSxeBlA/L09pa826Mm+LiDvydim+2eo2AYNHhOluWEbNed8kaEfd97DMvCEdkl4PZznAoVkEIYssHGSkEW2p63Ihq2lB7QLtGr+VwznZNwhvdSrYOS95uSkVBaoFihQujArEUKAVI3dHjTxYrhbt/Jg13Kq/ntBQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1779281190; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=L6RTBcDwCUAggrkL6cocI+jcG+EHQ7is9sXnrTTyELw=; 
+	b=aGduDpgjxZOUrVuepzUN475CJOp0FxUmYSlpVfaKvE77g6l6aPj2sYxvUlV3dcVtyExK0vio8C5SAbNvwGEdkUsIanPddG0+yreOB5/+5UeBzJsXj4tyUI5zL/JU4Hyh4CWKZvZhxHJNjK0cijAlo7xDeUIzGnt5WDCH52rY6+8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
+	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779281190;
+	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=L6RTBcDwCUAggrkL6cocI+jcG+EHQ7is9sXnrTTyELw=;
+	b=jHWswEblvW1vK8XuhlZdi620omvMnhmjmsspqomaIrUxF6boKfMqcgaAawSVlJpk
+	/OAJH3cZ8+sxHYSO6fHHRAOt5VDvAZPGJuQYUTDV+4srCmRMXTX9N/f8J2aozt6iJyC
+	uIlWdFzbYc1wM3FSeLSZoRNviH8pHKE/ViT7MpFQ=
+Received: by mx.zohomail.com with SMTPS id 1779281188633314.64127682579726;
+	Wed, 20 May 2026 05:46:28 -0700 (PDT)
+Message-ID: <d61f709524326a4f9943188fcabb5746a1b11e3d.camel@collabora.com>
+Subject: Re: [PATCH net-next v3 5/6] net: phy: Introduce Airoha AN8801/R
+ Gigabit Ethernet PHY driver
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn	
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet	 <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni	 <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit	 <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com,
+ matthias.bgg@gmail.com, 	kernel@collabora.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, 	linux-kernel@vger.kernel.org
+Date: Wed, 20 May 2026 14:46:22 +0200
+In-Reply-To: <e77b4028-c201-4dd4-9214-721bdf67e976@bootlin.com>
+References: 
+	<20260512-add-airoha-an8801-support-v3-0-1edb34e363ae@collabora.com>
+	 <20260512-add-airoha-an8801-support-v3-5-1edb34e363ae@collabora.com>
+	 <e77b4028-c201-4dd4-9214-721bdf67e976@bootlin.com>
+Organization: Collabora Ltd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260519-msm8939-venus-rfc-v8-5-542ec7557ebc@gmail.com>
-X-Proofpoint-GUID: 6XqHtjXGUEfiadW1M0pmHzP8pDhslXoV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDEyMyBTYWx0ZWRfXxTqOax47X/jL
- +EhTRkYaXy7hwOB+aTBGSHtkcGhzmdrU+yikxSYdtr2fyIqxLCAs7ILaFLyN9m4g0+MT/i7y9un
- rk3z3mdBWf1vQsl1hrP3+VXotlI/UROaw6v5qc0ehm7zcss7C4z4Emvt+1wMw8tv8gZ3YYzIPd1
- hEEWubmnrSC4pL9lEPlnPzDxA6SBB6pZ7EeWXOJAEDJFpmsvlTyXYP3yQRa3apEDcuzHjKiiSTm
- wxHTb+lk42OA3VccH6sLEjsXJJIXzfIBxAL/30uhTIZdjzMozfR88F2ZqxK76HrTe+U7IamuhjH
- 80wOJdkW53EzLtjjb9b1JYRI/1WlE0J/59llKGq8zrq/845UKMaf2Xm/B3RiA+fylNKtcO1B9Wu
- nJZrp/91RC6v2YYhw18NgBqsvd21+I22yO6XD8Dq0Tr3wCtWxNrQUptKcgZ4m300QMrtz1r4SM1
- H0Htw0ctl3+LKTDwBdA==
-X-Proofpoint-ORIG-GUID: 6XqHtjXGUEfiadW1M0pmHzP8pDhslXoV
-X-Authority-Analysis: v=2.4 cv=C4LZDwP+ c=1 sm=1 tr=0 ts=6a0dad05 cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=pGLkceISAAAA:8
- a=FYQP979REZT08Aj4asUA:9 a=CjuIK1q_8ugA:10 a=tNoRWFLymzeba-QzToBc:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-20_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 spamscore=0 phishscore=0 priorityscore=1501
- adultscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605200123
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-300632-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-300634-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:dkim];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 64C5B58E2DC
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: F08C758E28F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 19, 2026 at 06:10:50PM +0300, Erikas Bitovtas wrote:
-> Blacklist unsupported codecs for MSM8916 reported by firmware to prevent
-> them from loading.
+Hi Maxime,
 
-This should be squashed in the previous commit. Otherwise the codec list
-will be broken between these two commits.
+On Tue, 2026-05-12 at 12:06 +0200, Maxime Chevallier wrote:
+> Hi :)
+>=20
+> This looks good, I just have very minimal comments
+>=20
+> On 5/12/26 06:33, Louis-Alexis Eyraud wrote:
+> > From: AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com>
+> >=20
+> > Introduce a driver for the Airoha AN8801R Series Gigabit Ethernet
+> > PHY; this currently supports setting up PHY LEDs, 10/100M, 1000M
+> > speeds, and Wake on LAN and PHY interrupts.
+> >=20
+> > Signed-off-by: AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com>
+> > Signed-off-by: Louis-Alexis Eyraud
+> > <louisalexis.eyraud@collabora.com>
+>=20
+> [...]
+>=20
+> > +static u32 an8801r_led_blink_ms_to_hw(unsigned long req_ms)
+> > +{
+> > +	u32 req_ns, regval;
+> > +
+> > +	if (req_ms > AN8801_MAX_PERIOD_MS)
+> > +		req_ms =3D AN8801_MAX_PERIOD_MS;
+> > +
+> > +	req_ns =3D req_ms * 1000000;
+>=20
+> Use NSEC_PER_MSEC :)
+I'll fix this in the next version.
 
-> 
-> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-> ---
->  drivers/media/platform/qcom/venus/core.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index a87e8afb23df..3baa6bb4968f 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -684,6 +684,8 @@ static const struct venus_resources msm8916_res = {
->  	.vmem_addr = 0,
->  	.dma_mask = 0xddc00000 - 1,
->  	.fwname = "qcom/venus-1.8/venus.mbn",
-> +	.dec_codec_blacklist = HFI_VIDEO_CODEC_HEVC | HFI_VIDEO_CODEC_SPARK,
-> +	.enc_codec_blacklist = HFI_VIDEO_CODEC_HEVC,
->  	.dec_nodename = "video-decoder",
->  	.enc_nodename = "video-encoder",
->  };
-> 
-> -- 
-> 2.54.0
-> 
+>=20
+> > +
+> > +	/* Round to the nearest period unit... */
+> > +	regval =3D req_ns + (AN8801_PERIOD_UNIT / 2);
+> > +
+> > +	/* ...and now divide by the full period */
+> > +	regval >>=3D AN8801_PERIOD_SHIFT;
+> > +
+> > +	return regval;
+> > +}
+> > +
+>=20
+> [...]
+>=20
+> > +static int an8801r_led_hw_control_set(struct phy_device *phydev,
+> > u8 index,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long rules)
+> > +{
+> > +	u16 on =3D 0, blink =3D 0;
+> > +	int ret;
+> > +
+> > +	if (index >=3D AN8801R_NUM_LEDS)
+> > +		return -EINVAL;
+> > +
+> > +	ret =3D an8801r_led_trig_to_hw(rules, &on, &blink);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret =3D phy_modify_mmd(phydev, MDIO_MMD_VEND2,
+> > LED_ON_CTRL(index),
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 LED_ON_EVT_MASK, on);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret =3D phy_modify_mmd(phydev, MDIO_MMD_VEND2,
+> > LED_BLINK_CTRL(index),
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 LED_BLINK_EVT_MASK, blink);
+> > +
+> > +	if (ret)
+> > +		return ret;
+>=20
+> Extra newline before the if()
+I'll fix this in the next version too.
 
--- 
-With best wishes
-Dmitry
+>=20
+> > +
+> > +	return phy_modify_mmd(phydev, MDIO_MMD_VEND2,
+> > LED_ON_CTRL(index),
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LED_ON_EN, on | blink ? LED_ON_EN :
+> > 0);
+> > +}
+> > +
+>=20
+> [...]
+>=20
+> > +static int an8801r_rgmii_rxdelay(struct phy_device *phydev, bool
+> > enable,
+> > +				 u16 delay_steps)
+> > +{
+> > +	u32 reg_val;
+> > +
+> > +	if (delay_steps > RGMII_DELAY_STEP_MASK)
+> > +		return -EINVAL;
+> > +
+> > +	if (enable) {
+> > +		reg_val =3D delay_steps & RGMII_DELAY_STEP_MASK;
+> > +
+> > +		 /* Set align bit to add extra offset for RX delay
+> > */
+> > +		reg_val |=3D RGMII_RXDELAY_ALIGN;
+> > +
+> > +		 /* Set force mode bit to enable RX delay
+> > insertion */
+> > +		reg_val |=3D RGMII_RXDELAY_FORCE_MODE;
+> > +	} else {
+> > +		reg_val =3D 0;
+> > +	}
+> > +
+> > +	return an8801_buckpbus_reg_write(phydev,
+> > AN8801_BPBUS_REG_RXDLY_STEP,
+> > +					 reg_val);
+> > +}
+> > +
+> > +static int an8801r_rgmii_txdelay(struct phy_device *phydev, bool
+> > enable,
+> > +				 u16 delay_steps)
+> > +{
+> > +	u32 reg_val;
+> > +
+> > +	if (delay_steps > RGMII_DELAY_STEP_MASK)
+> > +		return -EINVAL;
+> > +
+> > +	if (enable) {
+> > +		reg_val =3D delay_steps & RGMII_DELAY_STEP_MASK;
+>=20
+> Is this bitwise and needed, as you have the check above ?
+Indeed, it is not needed, so I'll remove this masking operation here
+and in an8801r_rgmii_rxdelay too.
+
+>=20
+> > +
+> > +		 /* Set force mode bit to enable TX delay
+> > insertion */
+> > +		reg_val |=3D RGMII_TXDELAY_FORCE_MODE;
+> > +	} else {
+> > +		reg_val =3D 0;
+> > +	}
+> > +
+> > +	return an8801_buckpbus_reg_write(phydev,
+> > AN8801_BPBUS_REG_TXDLY_STEP,
+> > +					 reg_val);
+> > +}
+> > +
+> > +static int an8801r_rgmii_delay_config(struct phy_device *phydev)
+> > +{
+> > +	bool enable_delay;
+> > +	u16 delay_step;
+> > +	int ret;
+> > +
+> > +	if (phydev->interface =3D=3D PHY_INTERFACE_MODE_RGMII_ID ||
+> > +	=C2=A0=C2=A0=C2=A0 phydev->interface =3D=3D PHY_INTERFACE_MODE_RGMII_=
+TXID) {
+> > +		enable_delay =3D true;
+> > +		delay_step =3D AN8801_RGMII_TXDELAY_DEFAULT;
+> > +	} else {
+> > +		enable_delay =3D false;
+> > +		delay_step =3D RGMII_DELAY_NO_STEP;
+> > +	}
+> > +
+> > +	ret =3D an8801r_rgmii_txdelay(phydev, enable_delay,
+> > delay_step);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (phydev->interface =3D=3D PHY_INTERFACE_MODE_RGMII_ID ||
+> > +	=C2=A0=C2=A0=C2=A0 phydev->interface =3D=3D PHY_INTERFACE_MODE_RGMII_=
+RXID) {
+> > +		enable_delay =3D true;
+> > +		delay_step =3D AN8801_RGMII_RXDELAY_DEFAULT;
+>=20
+> Is it correct that AN8801_RGMII_RXDELAY_DEFAULT expands to=20
+> RGMII_DELAY_NO_STEP ? feels strange, but it may simply be how the HW
+> is=20
+> made :)
+As I replied in an earlier comment ([1]), for the inserted RX delay,
+when the RGMII_RXDELAY_ALIGN bit is set, the "no step" value is then
+the closest setting to the 2ns value.
+
+I'll improve the AN8801_RGMII_RXDELAY_DEFAULT comment to say that it
+corresponds to the 1.992ns delay value when the align bit is set and -
+0.008ns otherwise.
+
+[1]:https://lore.kernel.org/linux-mediatek/199e674cfdbccad104db761964611b1d=
+6352f9f3.camel@collabora.com/
+
+Best regards,
+Louis-Alexis
+>=20
+> Thanks,
+>=20
+> Maxime
 
