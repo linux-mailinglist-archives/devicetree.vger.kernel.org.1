@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-301116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301119-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNC7InjKDmovCQYAu9opvQ
-	(envelope-from <devicetree+bounces-301116-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:03:52 +0200
+	id UMU1BZXIDmoACQYAu9opvQ
+	(envelope-from <devicetree+bounces-301119-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:55:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035A95A1C71
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:03:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD875A194C
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:55:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4B8603222FEA
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:46:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3EA88306A700
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F093DB970;
-	Thu, 21 May 2026 08:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCFA361656;
+	Thu, 21 May 2026 08:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mO5xywU9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6NK2Tyo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E681A3A71A8
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394F82F362B
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779352713; cv=none; b=HQ2FuAu+Qvcsq75gaWLcjF24UnkeFGOfFdgnW2xpJu7oKk1ZCnTFWlMuszdSmEAfAnyU+v7hQcary/zCErQRoV97erb4D1hOmMKpUqNDpb4CU3NTczS+FGesrsAMx7waEm3aRkEkGJJidsIJAQ/SVfEARZ8ervyIvjCLbr1ufOY=
+	t=1779353139; cv=none; b=KETTZUmb7als+yZBkn1oqSCo0YBtxL22oKw9OmFSnvN0STZx+RO0Gwv/WIt9rGMg2T+6ncvJ1Uy0l98NK6i0UZ2G2TUPU3BItYt4qqKU7mXAgmjkKNX0+BTTVq6TEowNy5lzOCZ3TEJ4PqKwDT+feFPgRDRsvZLQa5cHUOENzOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779352713; c=relaxed/simple;
-	bh=k4+HJdHvoocEm7/dX1kXkWNmiwFiahSrm+fwJGf8vfA=;
+	s=arc-20240116; t=1779353139; c=relaxed/simple;
+	bh=5jcrO5tOvosfJDVSl5LeQpG72CAK2ujBuU1VzW4l294=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=fHneSkecJg3cSuFJ/aWqMhiH71BFW+wmHC+e4n51ljREL4PQ+FHRNLTf7Rk2NW9JL+4vGCVgYYb+GFvkJqqrcf894N0OB3SGuKgKL3UfwUCuEXGxg7dpSyvd65frRwtuIAup8agOTSYW6KC1rgtO6TbgtwDChOHC/OXLfoSn5gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mO5xywU9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998661F000E9;
-	Thu, 21 May 2026 08:38:21 +0000 (UTC)
+	 Message-Id; b=BTLiyYG8CN5qUYe3ku81i38XfW/dqOL3fx1Q5/pg8nA12Uo0F7N2Bid3wWJnuhRP5czDNl/1mMNW8IF/WdvuVnwU6tn8b3uPx4vdJY4MkWxK9G4G05lxkkIoGrRcPs4fpIOnQ3LI3xaFsHEUciOKsvK3TyhCPdXIyv8InuxAPuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6NK2Tyo; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E14B71F000E9;
+	Thu, 21 May 2026 08:45:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779352702;
-	bh=JDypL139UJF0B2UPszaw08UcrGR8O+emky234XEENhs=;
+	s=k20260515; t=1779353138;
+	bh=eZ2hLaDgzHxqWfW7V6FIeKRfeVb4EFIGgA1gxsKZD3s=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mO5xywU9aaMVZc72qKg2yh3K4cJIHNfsb2VVoV+6smfv95+pDN1GoZYZsDqZjHpBN
-	 qBeq9zPHoVwMiQHyUyWQJP9HBDrkdZ/YndNYBPesD8eH1bQmIPK8QtES23LCMSb3H2
-	 Hco9n/rYK2CdUHTpey2Y9q46Vml/RbYY0Gr7GN/OFN6RBqgo7NJz2Fhb7ZUs4F8jO8
-	 lzmvgzdvZCqu9KagExC6tHwpJXVnCN0mHYppglY9sL5HAZggR+5VG+birga5fnQSQt
-	 27TSTzQHRPgaUgjY+flqKtYRvF/uXH1mqzP2BpbgLzrLLNTTvtcnJkpY8BhRSn9ttu
-	 ufQ13R4qK90Dg==
+	b=g6NK2Tyo35KsE/PnnCAa5fjMbJ9nLV5SLoXUDo+ZFgwXzbPlBzBRQJIwsHbgWEHLr
+	 QtPHZ8cn5pfITWvZwPlIQ1DSP2GM4pOU4tOdIVnhbVWTyVv3MtQzm5uQEw8X5/NAkP
+	 7s3EdTiyDbODndxxOBPXjwgKvcaiUZQ/JehmkPYviK03uL54C/Nn/Ajums7a5FVY1n
+	 KDthPsoyQXIDV4s1unyyk7ZHMIyMv7/1vT0z4craJTO56mC5osKi0YTB4LzUB0ZUBk
+	 vVCBGVaarGXkJUIT5K50yMj0BFpFuodRVy2v9tQgJG0dGJ4+sG4w3YpU5LDPKY/AMd
+	 GRX1hxuHlWLHQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/2] drm: panel: add support for the Renesas R63419
- based dual-DSI video mode Display Panels
+Subject: Re: [PATCH v4 2/2] backlight: Add SY7758 6-channel High Efficiency
+ LED Driver support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260521-topic-sm8650-ayaneo-pocket-s2-r63419-v5-2-dd5700299390@linaro.org>
-References: <20260521-topic-sm8650-ayaneo-pocket-s2-r63419-v5-2-dd5700299390@linaro.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-2-73c732615e4a@linaro.org>
+References: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-2-73c732615e4a@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 21 May 2026 08:38:20 +0000
-Message-Id: <20260521083821.998661F000E9@smtp.kernel.org>
+Date: Thu, 21 May 2026 08:45:37 +0000
+Message-Id: <20260521084537.E14B71F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,159 +67,191 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301116-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301119-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 035A95A1C71
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,outlook.com:email,smtp.kernel.org:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: 1FD875A194C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [High] Uninitialized stack variable `dsi_ctx` causes undefined behavior i=
-n DSI initialization
-- [High] Incorrect MIPI DCS initialization sequence (Set Display On before =
-Exit Sleep Mode)
-- [High] Race condition due to panel registration before DSI hardware is at=
-tached
+- [High] The driver incorrectly uses regmap_write() to update specific fiel=
+ds in configuration registers, wiping out unreferenced bitfields.
+- [High] The 'enable' GPIO is driven HIGH during probe but never explicitly=
+ set LOW during removal or on probe failure, causing hardware resource leak=
+s and potential electrical back-powering.
+- [Medium] Critical hardware configuration is lost across system suspend/re=
+sume cycles.
+- [Medium] Non-atomic updates to the 12-bit brightness registers may cause =
+visible backlight flicker.
 --
 
-commit 1aa27fde3d1fe4c1d08cfa9a63d3e7e28912831f
+commit 98100c9f3380a75d76d0213c9564c18833a54b8e
 Author: KancyJoe <kancy2333@outlook.com>
 
-drm: panel: add support for the Renesas R63419 based dual-DSI video mode Di=
-splay Panels
+backlight: Add SY7758 6-channel High Efficiency LED Driver support
+   =20
+This commit implements support for the Silergy SY7758 6-channel High
+Efficiency LED Driver used for backlight brightness control in the Ayaneo
+Pocket S2 dual-DSI panel.
 
-Implement support for the Renesas 63419 based dual-DSI video mode
-Display Panels found in the Ayaneo gaming handled devices.
-
-> diff --git a/drivers/gpu/drm/panel/panel-renesas-r63419.c b/drivers/gpu/d=
-rm/panel/panel-renesas-r63419.c
+> diff --git a/drivers/video/backlight/sy7758.c b/drivers/video/backlight/s=
+y7758.c
 > new file mode 100644
+> index 0000000000000..198d559394389
 > --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-renesas-r63419.c
+> +++ b/drivers/video/backlight/sy7758.c
 
 [ ... ]
 
-> +static int renesas_r63419_on(struct renesas_r63419_panel *ctx)
+> +static int sy7758_backlight_update_status(struct backlight_device *backl=
+ight_dev)
 > +{
-> +	struct mipi_dsi_multi_context dsi_ctx;
-
-[Severity: High]
-Does leaving dsi_ctx uninitialized here leave dsi_ctx.accum_err with
-random stack garbage?
-
-The helper dsi_link_switch() only assigns the dsi pointer, so subsequent
-multi-context calls like mipi_dsi_dcs_set_display_on_multi() might immediat=
-ely
-return if accum_err is non-zero, silently skipping the initialization.
-
+> +	struct sy7758 *sydev =3D bl_get_data(backlight_dev);
+> +	unsigned int brightness =3D backlight_get_brightness(backlight_dev);
+> +	int ret;
 > +
-> +	dsi_link_switch(ctx, &dsi_ctx, 0);
-> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> +	dsi_link_switch(ctx, &dsi_ctx, 1);
-> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-> +	mipi_dsi_msleep(&dsi_ctx, 150);
-> +
-> +	dsi_link_switch(ctx, &dsi_ctx, 0);
-> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> +	dsi_link_switch(ctx, &dsi_ctx, 1);
-> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-> +	mipi_dsi_msleep(&dsi_ctx, 50);
-
-[Severity: High]
-Is it intentional to send the Set Display On command before Exit Sleep Mode?
-
-According to the MIPI DCS specification, the display must exit sleep mode a=
-nd
-stabilize before it can process the Set Display On command. Sending these
-commands in this order will likely result in the panel ignoring Set Display=
- On,
-causing it to remain blank.
-
-> +
-> +	return dsi_ctx.accum_err;
-> +}
-> +
-> +static int renesas_r63419_disable(struct drm_panel *panel)
-> +{
-> +	struct renesas_r63419_panel *ctx =3D to_renesas_r63419_panel(panel);
-> +	struct mipi_dsi_multi_context dsi_ctx;
-
-[Severity: High]
-Like in renesas_r63419_on(), can this uninitialized struct leave
-dsi_ctx.accum_err with stack garbage? This might cause the panel disable
-commands to be silently skipped.
-
-> +
-> +	dsi_link_switch(ctx, &dsi_ctx, 0);
-> +	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-
-[ ... ]
-
-> +static int renesas_r63419_probe(struct mipi_dsi_device *dsi)
-> +{
-
-[ ... ]
-
-> +	ret =3D devm_drm_panel_add(dev, &ctx->panel);
+> +	ret =3D regmap_write(sydev->regmap, REG_BRT_12BIT_L,
+> +			   FIELD_PREP(MSK_BRT_12BIT_L,
+> +				      brightness & 0xff));
 > +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to add panel\n");
+> +		return ret;
 > +
-> +	/* Configure and attach both DSI devices */
-> +	for (i =3D 0; i < ARRAY_SIZE(ctx->dsi); i++) {
-> +		ctx->dsi[i]->lanes =3D ctx->desc->lanes;
-> +		ctx->dsi[i]->format =3D ctx->desc->format;
-> +		ctx->dsi[i]->mode_flags =3D ctx->desc->mode_flags;
-> +
-> +		ret =3D devm_mipi_dsi_attach(dev, ctx->dsi[i]);
+> +	ret =3D regmap_write(sydev->regmap, REG_BRT_12BIT_H,
+> +			   FIELD_PREP(MSK_BRT_12BIT_H,
+> +				      (brightness >> 8) & 0xf));
 
-[Severity: High]
-Could registering the panel before the DSI hardware is attached cause a race
-condition?
+[Severity: Medium]
+Will writing the LSB and MSB in separate I2C transactions cause visible
+flicker during smooth dimming?
 
-If a bridge driver concurrently finds the panel and triggers a display enab=
-le
-sequence, it might invoke the panel's callbacks before the DSI endpoints are
-actually attached, leading to DCS command timeouts or crashes.
+If the brightness transitions across a byte boundary (e.g., from 0x0FF to
+0x100), writing the LSB first will momentarily set the hardware to 0x000
+before the MSB write corrects it to 0x100.
 
-Additionally, because devm actions are executed in reverse order on cleanup,
-the DSI devices would be detached before the panel is unregistered, exposing
-an unattached panel during driver unload. Should devm_drm_panel_add() be
-called only after all hardware setup and DSI attachments are complete?
+Unless the hardware specifically latches the value only when the MSB is
+written, could this use regmap_bulk_write() to update both contiguous
+registers atomically?
 
-> +		if (ret < 0)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to attach DSI device %d\n", i);
-> +	}
+> +	if (ret)
+> +		return ret;
 > +
 > +	return 0;
 > +}
+> +
+> +static const struct backlight_ops sy7758_backlight_ops =3D {
+> +	.options =3D BL_CORE_SUSPENDRESUME,
+
+[Severity: Medium]
+Since BL_CORE_SUSPENDRESUME is set, does the driver also need PM suspend/re=
+sume
+callbacks to restore the configuration registers?
+
+If the system cuts power to the controller during suspend, the initializati=
+on
+performed in sy7758_init() might be permanently lost upon resume, causing t=
+he
+device to operate with uninitialized or default settings.
+
+Could a regmap cache with regcache_sync() in a resume handler be used, or
+perhaps re-invoking sy7758_init() on resume?
+
+> +	.update_status =3D sy7758_backlight_update_status,
+> +};
+> +
+> +static int sy7758_init(struct sy7758 *sydev)
+> +{
+> +	int ret =3D 0;
+> +
+> +	ret =3D regmap_write(sydev->regmap, REG_DEV_CTL,
+> +			   BIT_DEV_CTL_FAST | BIT_DEV_CTL_BL_CTLB |
+> +			   FIELD_PREP(MSK_DEV_CTL_BRT_MODE, 2));
+
+[Severity: High]
+Does using regmap_write() here wipe out unreferenced bitfields in these
+configuration registers?
+
+Because regmap_write() replaces the entire register contents, it implicitly
+clears all unreferenced bitfields to 0. For example, in REG_OTP_CFG9 below,
+writing FIELD_PREP(MSK_CFG9_VBST_MAX, 4) forces JUMP_EN, JUMP_TH, and
+JUMP_VOLTAGE to 0, which might destroy their default or OTP-loaded values.
+
+Could this use regmap_update_bits() when modifying specific fields to prese=
+rve
+the state of other bits?
+
+> +	if (ret)
+> +		return ret;
+
+[ ... ]
+
+> +static int sy7758_probe(struct i2c_client *client)
+> +{
+> +	struct backlight_properties props =3D { };
+> +	struct device *dev =3D &client->dev;
+> +	struct sy7758 *sydev;
+> +	unsigned int dev_id;
+> +	int ret;
+
+[ ... ]
+
+> +	/* Get and enable regulators */
+> +	ret =3D devm_regulator_get_enable(dev, "vddio");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get regulator\n");
+> +
+> +	fsleep(100);
+> +
+> +	/* Get enable GPIO and set to high */
+> +	sydev->gpio =3D devm_gpiod_get(dev, "enable", GPIOD_OUT_HIGH);
+
+[Severity: High]
+Is the enable GPIO ever explicitly driven LOW during removal or on probe
+failure?
+
+During driver removal or probe failure, devres automatically calls
+gpiod_put(), which simply releases the software descriptor without actively
+driving the pin LOW. Immediately afterward, devres disables the vddio regul=
+ator.
+
+This sequence leaves the host driving a logic HIGH into the enable pin of an
+unpowered SY7758 controller, which violates electrical sequencing and might
+cause back-powering or hardware damage.
+
+Could the driver register a custom devm action (e.g., using
+devm_add_action_or_reset()) to explicitly set the GPIO to 0 before the
+regulator is disabled?
+
+> +	if (IS_ERR(sydev->gpio))
+> +		return dev_err_probe(dev, PTR_ERR(sydev->gpio),
+> +				     "failed to get enable GPIO\n");
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-topic-sm86=
-50-ayaneo-pocket-s2-r63419-v5-0-dd5700299390@linaro.org?part=3D2
+50-ayaneo-pocket-s2-sy7758-v4-0-73c732615e4a@linaro.org?part=3D2
 
