@@ -1,522 +1,232 @@
-Return-Path: <devicetree+bounces-301318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOSuNCETD2pzEwYAu9opvQ
-	(envelope-from <devicetree+bounces-301318-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:13:53 +0200
+	id OLBeLKAUD2otFAYAu9opvQ
+	(envelope-from <devicetree+bounces-301320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:20:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5EF5A6F56
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:13:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2846E5A71E6
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:20:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 65FF9303CE31
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 13:27:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A85D93171302
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 13:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321673A1A50;
-	Thu, 21 May 2026 13:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9057426698;
+	Thu, 21 May 2026 13:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MO/j9lVs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N1tjIUmd";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cDcxoX87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F08312836
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 13:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B869C3FE657
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 13:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779370042; cv=none; b=BbjtpJywpf3iaN9EFRysoPddAHJC7rqLfHd5rWeDZR1nhN+p5xPuUpyZQRylOmJLt633yu/wyISI+adesZ0lW2WEcWBCenZ/pKb0g8EY1yXCgG33RkgyBVHjDzMdmZDj/0xpvoVGe/q1Pxm52l97T3O1/L9vYY44pOtY5ftq7go=
+	t=1779370416; cv=none; b=tZEwrpDxxRTWGOEgyfr6PFhyjQDxKtoejdX4INdaKJ9VPs0A5eGhQUo9lhZ5GccRWt2WXzlIxau4DGR0/upz2ZjLi9LM1cpdtLSlrjAf+PWU169jNpLvQ6aP5/1KM2JcrA3k3FcSxqbsLW0Qpf7YQUAhvMCcyRVOhffBrKEjcbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779370042; c=relaxed/simple;
-	bh=gTFBdtB/zrij8eO12aV//EuVoHhltjpirFUj+0yxtLk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=HSowwKJP3pVPE2n0X6nXjg2GrCNfJzc/rrnuR1fcqxTOxEkJrCzV6QFxFFkqEG1txjxr9waPeMmQGoiI7Q37AcyLf8GwDkmtIY8joKFnkYAixGBF15JbW/vHKZ3SrDhV9DAyzA+Vfe0sDUx/1RCKw2/WI7+ymKTCj5p3ojUDxb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MO/j9lVs; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D530C1F00ADE;
-	Thu, 21 May 2026 13:27:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779370040;
-	bh=af+w1rnQaV3Ro5XzdGIU9wVrpE0b00upQXHJcMv5G9c=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MO/j9lVs2mSJLoegQPtRXQxAsPbPWr6b4cR9Ol5uQAfzsOZLi1ZsSluo9I7dSmKjY
-	 qz55vUgYATWIm7LoisN+R9M7/cYq7WLQ6KDRK2TycI2BGBO0tpq/tAt8qHz+kexvpK
-	 sMNs98PqiT8wcSQe3aOMZBLppgrAbos1bIKzdBJKjcdSBdh5zbQ9i6vPVUJTTorZha
-	 FbvGjbPScEYmsXxb/bIhhrkgWSvzAZMKv1QdcaahWNJn50Ib+tDBzOw0WRLoh4dh2L
-	 JyfAwXHpHaAGyZn3edrFhr7ArRv1JgFrqZuFSTQ4pryCJFtGt32PPa4q8D3uHhBJB9
-	 4euQS4qW5E0/w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 15/22] media: i2c: add Maxim GMSL2/3 deserializer
- framework
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Dumitru Ceclan via B4 Relay" <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260521-gmsl2-3_serdes-v12-15-b26d92931196@analog.com>
-References: <20260521-gmsl2-3_serdes-v12-15-b26d92931196@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 21 May 2026 13:27:19 +0000
-Message-Id: <20260521132719.D530C1F00ADE@smtp.kernel.org>
+	s=arc-20240116; t=1779370416; c=relaxed/simple;
+	bh=omTSRI5QDbAE48o5gj/pF9REcCIQsYOtUUvqIJycswY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NHHyOb+QCDvYkp3+dXVhlnrKXexzFcC9KTSC1oxG7vVnXN0KUvbyy0v/nRQbnMq/NMfOJbbgKdMcRJ8/w11VlySYWqMYogIIzlIKEX7o/pZ8GSkHc9gHQX+Qyd52k7fsjmkopZbeB9iUXZd08IAFFMKH4X1Gezsy8/waDoXvXpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N1tjIUmd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cDcxoX87; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64L99xDx2632717
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 13:33:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IdH3GzdWYwa8Q9g94MkFFyBEguHq6S6gLpwxGL6T8Lk=; b=N1tjIUmdoMUeArtK
+	wv16fhVTlZgeOgT64/QAU0TQmUtrNWAI7InzUUnlZegw71TxbGXHq7q7pcJAVJic
+	K+uivRbB0JV3lwhVzgEMIVAhMpIHP/yc0ZxCdMlQyn5WxSRwNdA2jyGpTixiRF6i
+	cFC4rqskn3u+LNMH/lA5F9W82UlvMVtOgzMoj7jJARaIWd6nCX4wZ7LrWIjVKmOF
+	BEMuY7k6XugMo0me3LP4lZMIAdMH5lnMGkQFCeO8bNesQgQ2uMX894t8qxqXYUvW
+	14kiG+bSmYr0GgzzS1+c18Xw3CWKjK7KFzuaXV9G3c29Tbsu4wR0GhUA56CM6No0
+	9xSHBw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9ee8d79f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 13:33:32 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2ba86e35aa1so103138415ad.1
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 06:33:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779370412; x=1779975212; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IdH3GzdWYwa8Q9g94MkFFyBEguHq6S6gLpwxGL6T8Lk=;
+        b=cDcxoX877jswhPSTHmxgsrNPDefRzLoSYV/nc4zY2FUEcSyXBueboIygErG7josP/n
+         qKfqMVfDfQj1SMDrge0mXCBk+WnOkUwZNplJGyfB1wRYMenHHFh4XEwtJ7DRVUE28YN5
+         fXb4XUdOwcs+xwzd01yi1RWA8qUh8ePsQjlCfOVvpuwZmPl1emlBog3QsMgrCl42uBqU
+         dW9c7ceSQPihINH52jYkhDzdgj87tNlBqW+TLAkv+CNNfz4ZJGLeNxWlDtOws2a2ULlS
+         wBMGoFkqXh/BfwEjVVBAD4rFyQlBSKafHEbWPmdfANqf2P0Rm8QGw+qGOvVWpGj4E3iP
+         7PvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779370412; x=1779975212;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IdH3GzdWYwa8Q9g94MkFFyBEguHq6S6gLpwxGL6T8Lk=;
+        b=aErb8aHbLQ5VoadIHOLsvxUpBcBCqZsg1M72hqk03uCNeUgeTg427nzdCrT+YrGYgE
+         zJxQ4YNjKOGg1p1swKpf2cfViinsmHJRqZes+pM/NpyF++ORDUBWzvi71yvus2/on6F0
+         KpDDuQCQeO3Ngn48xaD46E/RJTQdDPUDdYtxu97c+rWx1TBoUUQBs7Z5PzrL6CEEzjBx
+         yMGFLwoqMrYFxuaehrs4la6ISx05Zrr2XjeKkUx3rLBdgTHwgtCohZaJZLKfuqVK6OMT
+         qO/GulCslWZeOcgxYOTEoVjoLi6wuuqKY4mTzJPufnoCiovUMH2s7RaI85hJN8tgrkZ4
+         qpWw==
+X-Forwarded-Encrypted: i=1; AFNElJ9g8crapWtWkphq5bh8Ok64XyfN5Jntosr16QN3Y+B+2+AJjsXu1FMfGUcJUg3+OsGQ1ihJOSQh1HmO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZIW1vlXmQfckXCstw8IitWdq//LMMot/pTVTE4N1J9rtjc8hX
+	KhPDgfCSgdTntoZi/27F8oOSRnTs1/tKhAAYRXH0byYVmGcXIcUiBOCz+Sg7VeBCfbaZafuQhSr
+	uMzBdfJ3jBE1DZjuTGy97UZPd7lB+iH1NF3kHJ/HHNxYLu/j1T9Z8pcWCRRtRoMtSh+URJz/W
+X-Gm-Gg: Acq92OH0OYn2p0OHhCFEDTgvE1iEGurgOpGYJPpEWx5gXzgRg4lg5iev5Nol4CFjPgc
+	lUfFFULNwMGCiLVHvJrFX9G4IZh6iEQlX0HvI+S9Lt1hXU+3KEa01GnUn2HHqKGnxH4JXuRN7Zy
+	la8ar5/hWnGk+LMIXM+Nx7Bhr8utmif03Aj8c4nL977LUqRACVXp3PfMXy+vzdR17QGwj5UBGap
+	5IqL4LTTbc/iKfeXaPlYeaGkcPiCw0sjbajHiTwGk/YzWcImHcs35RlS1Bk6EjcHdGD7HYOEQ77
+	+C0tKx+xl+RNULe/RgjLx7kp60q42Ubbnl8VF2DQhrXvv33AXzSXntdGyQ/aNxhNdTnz1TQk1yE
+	qAa2iLRjpd0cdEn509u8dmHOxeyebH5fxuKLoAvTtGCqGoGp1
+X-Received: by 2002:a17:902:da89:b0:2ae:ce35:2686 with SMTP id d9443c01a7336-2bea32d02c6mr33845145ad.5.1779370411841;
+        Thu, 21 May 2026 06:33:31 -0700 (PDT)
+X-Received: by 2002:a17:902:da89:b0:2ae:ce35:2686 with SMTP id d9443c01a7336-2bea32d02c6mr33844565ad.5.1779370411223;
+        Thu, 21 May 2026 06:33:31 -0700 (PDT)
+Received: from [10.219.57.29] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bea9172520sm13349495ad.6.2026.05.21.06.33.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 May 2026 06:33:30 -0700 (PDT)
+Message-ID: <1712f500-d4a9-4387-947b-b02853484d21@oss.qualcomm.com>
+Date: Thu, 21 May 2026 19:03:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: qcom: Document Shikra and its
+ EVK boards
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, conor+dt@kernel.org, olteanv@gmail.com,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        neil.armstrong@linaro.org, vkoul@kernel.org
+References: <20260519-shikra-dt-v2-1-c01b90fb4395@oss.qualcomm.com>
+ <20260519113234.BA75FC2BCB3@smtp.kernel.org>
+Content-Language: en-US
+From: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+In-Reply-To: <20260519113234.BA75FC2BCB3@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: o-uF_fGtP_gaTHQo5BVvVGeo9FfBPqCL
+X-Authority-Analysis: v=2.4 cv=e5k2j6p/ c=1 sm=1 tr=0 ts=6a0f09ac cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=2bXR4lxtNcP_XfbIfakA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDEzNiBTYWx0ZWRfX0Jc5JYlrrloc
+ 0VTW2y/QOg2ys8Si3C7AlWxrUietieQhnMAQpEjI1vhXY8FrcuHjYOQ+UvjxteWGWSJO0q/yGWY
+ navyzv8W/atQIkRgrwihUIVXb9l45J+lJ//D5a5jdUQ7KvraQt5hKnoOgUvUO2urPk2Rk+aKA00
+ hYGYoRDU7w6JMHOcyG8V5UbUF0qhoZ0534R9pPSCzB1lncCqblFd5y2S3qWr7Gr2ipkSVIWCmTz
+ rAgYlJEZF+5xQb/AjOp5YC7Aw6WG3pglziBBC3FZ4Hc3M3Fy0BpgkwyR6FQ+zvKPUq7hZLUu1lV
+ 8uVY3D3VxLy5CoP+vlSJjlSKxmTlQAPBrbZAUzr7+0K0uT7vZFNO1QUAvR2887ETDPdFlRKlUgE
+ NWQrUfPkEQJ0/E0pbxVY3UIBJSdx4KLR8saEDGhF2x1VxBTqV9XunZpuE7CJWWGfaiC5klOhG2n
+ XGLIaMwCd1+GowIM9sw==
+X-Proofpoint-GUID: o-uF_fGtP_gaTHQo5BVvVGeo9FfBPqCL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
+ adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210136
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301318-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	TAGGED_FROM(0.00)[bounces-301320-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dumitru.ceclan.analog.com,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 3D5EF5A6F56
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[komal.bajaj@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 2846E5A71E6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 14 potential issue=
-(s) to consider:
-- [High] Missing initialization and bounds check for `fd->num_entries` in `=
-max_des_get_frame_desc_state`.
-- [High] Stack buffer overflow in `max_des_set_pipes_stream_id` via unvalid=
-ated `stream_id`.
-- [High] Checking `pipe->num_vc_remaps` instead of `pipe->vc_remaps` causes=
- sequential devm memory leaks.
-- [High] I2C bus notifier relies on an adapter array that is not yet popula=
-ted during synchronous driver binding.
-- [High] Uninitialized `struct v4l2_mbus_frame_desc fd` is passed to the se=
-rializer subdev.
-- [High] Output struct fields are used as search constraints in `max_des_en=
-um_frame_interval`.
-- [High] Unbalanced POC regulator unwinding causes warnings and halts clean=
-up.
-- [High] Unprotected access to `source->sd` leads to TOCTOU NULL pointer de=
-references and dangling pointers.
-- [High] Lockless array iteration in `max_des_log_status` causes a Use-Afte=
-r-Free (UAF) vulnerability.
-- [High] Hardware state corruption due to an I2C multiplexing race conditio=
-n during serializer binding.
-- [High] Incorrect `chan_id` mapping in `max_des_i2c_mux_bus_notifier_call`.
-- [Medium] Fwnode reference leak in `max_des_parse_sink_dt_endpoint`.
-- [Medium] Memory leak of `streams_masks` on the error path in `max_des_upd=
-ate_streams`.
-- [Medium] I2C ATR instances and adapters are leaked if link selection fail=
-s in `max_des_i2c_atr_init`.
---
+On 5/19/2026 5:02 PM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+> - [Medium] Device tree compatible strings use generic abbreviations instead of specific hardware part numbers.
+> - [Low] Alphabetical sorting violation in qcom.yaml.
+> --
+>
+> commit d5de85f1dcdd73430dd4bed54ebebe0837ba7f5e
+> Author: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+>
+> dt-bindings: arm: qcom: Document Shikra and its EVK boards
+>
+> This commit introduces compatible strings for the Qualcomm Shikra SoC in
+> System-on-Module (SoM) form factors and their corresponding EVK carrier
+> boards.
+>
+>>      Add compatible strings for the CQ2390M, CQ2390S, IQ2390S SoM variant and its
+>>      corresponding EVK boards.
+> Should these compatible strings use the specific hardware part numbers
+> (CQ2390M, CQ2390S, IQ2390S) instead of generic abbreviations like
+> qcom,shikra-cqm-som?
+>
+> If the generic abbreviations are kept, can the schema map these
+> abbreviations to the specific part numbers to document the ABI?
 
-commit 83b14a77624d98c746a5672b763eea7d8ac99877
-Author: Cosmin Tanislav <demonsingur@gmail.com>
-Subject: media: i2c: add Maxim GMSL2/3 deserializer framework
+SoC number 2390 corresponds to Shikra, so using shikra-cqm-som style 
+compatibles looks appropriate. Same applies to shikra-cqs-som and 
+shikra-iqs-som.
 
-This commit introduces a common framework for Maxim GMSL2/3 deserializers.
-It adds support for features like the full Streams API, I2C ATR, automatic
-GMSL link version negotiation, and automatic stream ID selection.
+>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> index af266d584fae6..7c5c5f4fc30f7 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> @@ -968,6 +968,24 @@ properties:
+>>             - const: qcom,qcs9100
+>>             - const: qcom,sa8775p
+>>   
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,shikra-cqm-evk
+>> +          - const: qcom,shikra-cqm-som
+>> +          - const: qcom,shikra
+> This isn't a bug, but should these new blocks be sorted alphabetically
+> based on the root SoC compatible string?
+>
+> Since 'h' comes after 'd', could qcom,shikra be placed after qcom,sdm845
+> instead of after qcom,sa8775p?
 
-> diff --git a/drivers/media/i2c/maxim-serdes/max_des.c b/drivers/media/i2c=
-/maxim-serdes/max_des.c
-> new file mode 100644
-> index 0000000000000..a03101678360f
-> --- /dev/null
-> +++ b/drivers/media/i2c/maxim-serdes/max_des.c
-> @@ -0,0 +1,3205 @@
-[ ... ]
-> +static int max_des_route_to_hw(struct max_des_priv *priv,
-> +			       struct v4l2_subdev_state *state,
-> +			       struct v4l2_subdev_route *route,
-> +			       struct max_des_route_hw *hw)
-> +{
-> +	struct max_des *des =3D priv->des;
-> +	struct v4l2_mbus_frame_desc fd;
+Yeah, I missed it, will correct in next series.
 
-[Severity: High]
-Could the uninitialized fd here lead to issues?
+Thanks
+Komal
+>
 
-If the subdev expects fd.num_entries to start at 0, or reads other fields,
-it might operate on garbage stack data.
-
-> +	struct max_des_link *link;
-> +	unsigned int i;
-> +	int ret;
-[ ... ]
-> +static int max_des_set_pipes_stream_id(struct max_des_priv *priv)
-> +{
-> +	bool stream_id_usage[MAX_SERDES_STREAMS_NUM] =3D { 0 };
-> +	struct max_des *des =3D priv->des;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	for (i =3D 0; i < des->info->num_links; i++) {
-> +		struct max_des_link_hw hw;
-> +		unsigned int stream_id;
-[ ... ]
-> +		if (ret =3D=3D -EOPNOTSUPP) {
-> +			/*
-> +			 * Serializer does not support setting the stream id,
-> +			 * retrieve its hardcoded stream id.
-> +			 */
-> +			ret =3D max_ser_get_stream_id(hw.source->sd, &stream_id);
-> +		}
-> +
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (stream_id_usage[stream_id] && des->info->needs_unique_stream_id) {
-
-[Severity: High]
-Is a bounds check needed for stream_id before using it to index the
-stream_id_usage stack array?
-
-A malformed or unexpectedly large value from the serializer could cause an
-out-of-bounds stack write here.
-
-> +			dev_err(priv->dev, "Duplicate stream id %u\n", stream_id);
-> +			return -EINVAL;
-> +		}
-[ ... ]
-> +static int max_des_update_pipe_vc_remaps(struct max_des_priv *priv,
-> +					 struct max_des_remap_context *context,
-> +					 struct max_des_pipe *pipe,
-> +					 struct v4l2_subdev_state *state,
-> +					 u64 *streams_masks)
-> +{
-[ ... ]
-> +	ret =3D max_des_set_pipe_vc_remaps(priv, pipe, vc_remaps, num_vc_remaps=
-);
-> +	if (ret)
-> +		goto err_free_new_vc_remaps;
-> +
-> +	if (pipe->num_vc_remaps)
-> +		devm_kfree(priv->dev, pipe->vc_remaps);
-
-[Severity: High]
-Is there a potential memory leak if the previous state allocated memory but
-populated 0 remaps?
-
-Checking pipe->num_vc_remaps instead of the pointer pipe->vc_remaps might
-bypass the free on stream updates, leaving the device-managed memory leaked.
-
-> +
-> +	pipe->vc_remaps =3D vc_remaps;
-> +	pipe->num_vc_remaps =3D num_vc_remaps;
-> +
-> +	return 0;
-[ ... ]
-> +static int max_des_init_link_ser_xlate(struct max_des_priv *priv,
-> +				       struct max_des_link *link,
-> +				       struct i2c_adapter *adapter,
-> +				       u8 power_up_addr, u8 new_addr)
-> +{
-> +	struct max_des *des =3D priv->des;
-> +	u8 addrs[] =3D { power_up_addr, new_addr };
-> +	u8 current_addr;
-> +	int ret;
-> +
-> +	ret =3D des->ops->select_links(des, BIT(link->index));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D max_ser_wait_for_multiple(adapter, addrs, ARRAY_SIZE(addrs),
-> +					&current_addr);
-
-[Severity: High]
-Can setting the hardware mux directly via select_links and performing I2C
-transactions bypass the i2c_mux core locks?
-
-Since the bus notifier can execute concurrently while different clients pro=
-be,
-this sequence could potentially overwrite the hardware mux state and misdir=
-ect
-I2C traffic to the wrong serializers.
-
-> +	if (ret) {
-> +		dev_err(priv->dev,
-[ ... ]
-> +static int max_des_i2c_atr_init(struct max_des_priv *priv)
-> +{
-[ ... ]
-> +	for (i =3D 0; i < des->info->num_links; i++) {
-> +		struct max_des_link *link =3D &des->links[i];
-> +
-> +		if (!link->enabled)
-> +			continue;
-> +
-> +		mask |=3D BIT(link->index);
-> +	}
-> +
-> +	return des->ops->select_links(des, mask);
-
-[Severity: Medium]
-If des->ops->select_links(des, mask) fails here, should it clean up the
-allocated resources?
-
-Returning the error code immediately bypasses the err_add_adapters label,
-which seems like it would leak the ATR object and its adapters.
-
-> +
-> +err_add_adapters:
-> +	max_des_i2c_atr_deinit(priv);
-[ ... ]
-> +static int max_des_i2c_mux_bus_notifier_call(struct notifier_block *nb,
-> +					     unsigned long event, void *device)
-> +{
-[ ... ]
-> +	client =3D i2c_verify_client(dev);
-> +	if (!client)
-> +		return NOTIFY_DONE;
-> +
-> +	for (chan_id =3D 0; chan_id < priv->mux->max_adapters; ++chan_id) {
-> +		if (client->adapter =3D=3D priv->mux->adapter[chan_id])
-> +			break;
-> +	}
-
-[Severity: High]
-Is it guaranteed that the priv->mux->adapter array is populated at this
-point?
-
-If a serializer binds synchronously during adapter registration, this notif=
-ier
-might fire before i2c_mux_add_adapter() populates the array, causing it to
-silently skip link version negotiation.
-
-> +
-> +	if (chan_id =3D=3D priv->mux->max_adapters)
-> +		return NOTIFY_DONE;
-> +
-> +	max_des_ser_attach_addr(priv, chan_id, client->addr, client->addr);
-
-[Severity: High]
-Additionally, does this chan_id indexing correctly map to the hardware link=
-s?
-
-Because i2c_mux_add_adapter() packs adapters sequentially for enabled links,
-if link 0 is disabled, link 1 might sit at array index 0. This could cause
-the driver to initialize link 0's data structures for a device connected to
-link 1.
-
-> +
-> +	return NOTIFY_DONE;
-> +}
-[ ... ]
-> +static int max_des_enum_frame_interval(struct v4l2_subdev *sd,
-> +				       struct v4l2_subdev_state *state,
-> +				       struct v4l2_subdev_frame_interval_enum *fie)
-> +{
-> +	struct max_des_priv *priv =3D v4l2_get_subdevdata(sd);
-> +	struct max_des *des =3D priv->des;
-> +	const struct max_serdes_tpg_entry *entry;
-> +
-> +	if (!max_des_pad_is_tpg(des, fie->pad) ||
-> +	    fie->stream !=3D MAX_SERDES_TPG_STREAM)
-> +		return -ENOTTY;
-> +
-> +	entry =3D max_des_find_tpg_entry(des, fie->index, fie->width, fie->heig=
-ht,
-> +				       fie->code, fie->interval.denominator,
-> +				       fie->interval.numerator);
-
-[Severity: High]
-Is it safe to use fie->interval.numerator and denominator as search
-constraints here?
-
-Since interval is an output parameter during
-VIDIOC_SUBDEV_ENUM_FRAME_INTERVAL, userspace might provide uninitialized
-memory, which would cause the search to fail with garbage data.
-
-> +	if (!entry)
-> +		return -EINVAL;
-[ ... ]
-> +static int max_des_log_status(struct v4l2_subdev *sd)
-> +{
-[ ... ]
-> +		if (des->ops->set_pipe_remap) {
-> +			v4l2_info(sd, "\tremaps: %u\n", pipe->num_remaps);
-> +			for (j =3D 0; j < pipe->num_remaps; j++) {
-> +				struct max_des_remap *remap =3D &pipe->remaps[j];
-
-[Severity: High]
-Does this function need to hold the subdev active state lock while iterating
-over pipe->remaps and pipe->vc_remaps?
-
-Concurrent stream updates might free and reallocate these arrays under the
-lock, which could lead to a use-after-free here.
-
-> +
-> +				v4l2_info(sd, "\t\tremap: from: vc: %u, dt: 0x%02x\n",
-> +					  remap->from_vc, remap->from_dt);
-[ ... ]
-> +static int max_des_get_frame_desc_state(struct v4l2_subdev *sd,
-> +					struct v4l2_subdev_state *state,
-> +					struct v4l2_mbus_frame_desc *fd,
-> +					unsigned int pad)
-> +{
-> +	struct max_des_remap_context context =3D { 0 };
-> +	struct max_des_priv *priv =3D sd_to_priv(sd);
-> +	struct v4l2_subdev_route *route;
-> +	int ret;
-> +
-> +	fd->type =3D V4L2_MBUS_FRAME_DESC_TYPE_CSI2;
-
-[Severity: High]
-Should fd->num_entries be explicitly initialized to 0 here before appending
-new entries?
-
-Since it appears this might be called with an uninitialized stack variable
-from other places (like max_des_route_to_hw), it could result in an
-out-of-bounds write to the array.
-
-> +
-> +	ret =3D max_des_populate_remap_context(priv, &context, state);
-> +	if (ret)
-[ ... ]
-> +static int max_des_update_streams(struct v4l2_subdev *sd,
-> +				  struct v4l2_subdev_state *state,
-> +				  u32 pad, u64 updated_streams_mask, bool enable)
-> +{
-[ ... ]
-> +	ret =3D max_des_set_modes(priv, &mode_context);
-> +	if (ret)
-> +		goto err_free_streams_masks;
-> +
-> +	ret =3D max_des_set_vc_remaps(priv, &context, state, streams_masks);
-> +	if (ret)
-> +		return ret;
-
-[Severity: Medium]
-If max_des_set_vc_remaps() fails, should this go to
-err_free_streams_masks?
-
-Returning the error code directly seems to skip freeing the dynamically
-allocated streams_masks.
-
-> +
-> +	ret =3D max_des_set_pipes_stream_id(priv);
-[ ... ]
-> +static int max_des_notify_bound(struct v4l2_async_notifier *nf,
-> +				struct v4l2_subdev *subdev,
-> +				struct v4l2_async_connection *base_asc)
-> +{
-[ ... ]
-> +	source->sd =3D subdev;
-> +	source->pad =3D ret;
-> +
-> +	ret =3D media_create_pad_link(&source->sd->entity, source->pad,
-> +				    &priv->sd.entity, pad,
-> +				    MEDIA_LNK_FL_ENABLED |
-> +				    MEDIA_LNK_FL_IMMUTABLE);
-> +	if (ret) {
-> +		dev_err(priv->dev, "Unable to link %s:%u -> %s:%u\n",
-> +			source->sd->name, source->pad, priv->sd.name, pad);
-
-[Severity: High]
-If media_create_pad_link() fails here, should source->sd be set back to
-NULL?
-
-Leaving it populated on failure might result in a dangling pointer.
-
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static void max_des_notify_unbind(struct v4l2_async_notifier *nf,
-> +				  struct v4l2_subdev *subdev,
-> +				  struct v4l2_async_connection *base_asc)
-> +{
-> +	struct max_serdes_asc *asc =3D asc_to_max(base_asc);
-> +	struct max_serdes_source *source =3D asc->source;
-> +
-> +	source->sd =3D NULL;
-
-[Severity: High]
-Could setting source->sd =3D NULL here without locking race against streami=
-ng
-paths like max_des_set_tunnel()?
-
-This looks like it could lead to a time-of-check to time-of-use NULL pointer
-dereference.
-
-> +}
-[ ... ]
-> +static int max_des_update_pocs(struct max_des_priv *priv, bool enable)
-> +{
-[ ... ]
-> +		if (enable)
-> +			ret =3D regulator_enable(priv->pocs[i]);
-> +		else
-> +			ret =3D regulator_disable(priv->pocs[i]);
-> +
-> +		if (ret) {
-> +			dev_err(priv->dev,
-> +				"Failed to set POC supply to %u: %u\n",
-> +				enable, ret);
-
-[Severity: High]
-If regulator_enable() fails here, the function returns without disabling
-the already-enabled links.
-
-During the error path cleanup, this function is called again with
-enable =3D false, which tries to disable the regulator that originally fail=
-ed.
-Could this trigger a kernel warning and halt further unwinding, leaving
-genuine regulators permanently enabled?
-
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-[ ... ]
-> +static int max_des_parse_sink_dt_endpoint(struct max_des_priv *priv,
-> +					  struct max_des_link *link,
-> +					  struct max_serdes_source *source,
-> +					  struct fwnode_handle *fwnode)
-> +{
-[ ... ]
-> +	ep =3D fwnode_graph_get_endpoint_by_id(fwnode, pad, 0, 0);
-> +	if (!ep)
-> +		return 0;
-> +
-> +	source->ep_fwnode =3D fwnode_graph_get_remote_endpoint(ep);
-> +	fwnode_handle_put(ep);
-> +	if (!source->ep_fwnode) {
-
-[Severity: Medium]
-Does this code leak the fwnode handle acquired for source->ep_fwnode?
-
-It doesn't seem to be released via fwnode_handle_put() anywhere in the
-driver's teardown path or error cleanup.
-
-> +		dev_err(priv->dev,
-> +			"Failed to get remote endpoint on port %u\n", pad);
-> +		return -ENODEV;
-> +	}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-gmsl2-3_se=
-rdes-v12-0-b26d92931196@analog.com?part=3D15
 
