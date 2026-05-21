@@ -1,238 +1,184 @@
-Return-Path: <devicetree+bounces-301457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301459-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GM+cMPtRD2pEJAYAu9opvQ
-	(envelope-from <devicetree+bounces-301457-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 20:42:03 +0200
+	id QHA7KL5JD2ptIgYAu9opvQ
+	(envelope-from <devicetree+bounces-301459-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 20:06:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFBAD5AB303
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 20:42:02 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D2655AAC37
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 20:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 439A23047AA3
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 17:57:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ABB06315F295
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 17:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53093E5587;
-	Thu, 21 May 2026 17:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D3C83E9C06;
+	Thu, 21 May 2026 17:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="wZkZwyPC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="p/xgWpQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011039.outbound.protection.outlook.com [52.101.57.39])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A21378803;
-	Thu, 21 May 2026 17:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.39
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779386224; cv=fail; b=lBpR5FFAFhoV32YMgRQkik2ADNlExuFtGRqy56JzeswzedP9Ziv5mfOUlhHRq2BAQshviCx/U5jptfnMSWy+uld+gWcAIO8XkIE6gNBoCnRRDt1RimVYrl4OOVzz8dIpucJybySF7ISMJdoTZhM59d0xp5Bdd+h2/sHOeVMPxVg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779386224; c=relaxed/simple;
-	bh=hFxEXSdwvsD5rl6jYvYjwMLlMgWRsdTjzBh9OWlRe74=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=iny6la3+LKMmQV34hK8Lt5d2ACbU3BuXBav2vxafBrF5kSV3wMn5D04DfU8oie4UJEJ2C87vx5yg2ZzjyZcKnFTwkyLWaxzFj9I+1TglACm72zeOBYrKgErBcHxwdxw9RodBxOZ1i9LQHlpH0vcVmgk/381vCKDdgfrdeWXTBtE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=wZkZwyPC; arc=fail smtp.client-ip=52.101.57.39
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YRC5RmnC6lX/NVoYRX/yF6bJWL2kj3/2HQCmw6+ZT/GkNC23C5DMO2Rc5awIcFb/27Tke+m99YaoL1/cC1xtsYqiObMe28kF2vCLcUIQj496eu4TnifP1P44ePoApWps0ccJQx2mrYW4yllHf4uCTf+iEPnXrJJukGgC8hzmUlltduUywoaiIOAPLGaTgEZkvvoSFHuISc+90c0+iQU8OXN1atC+Dh6oz75f9BtGN5DTkbTz9kSsENrSzLgnCJr8iYoFVLw/+rehoM3cwL/7zW90noCwD01Kle/ZBApRSBv8j7+QyIMPdZeoRssNN0Q5pGMUplRxnxwuZqrGjvwq/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yu1XFCx7lmzN8NFXXFb64IQ+8/6qoRQqfg26MrPpub8=;
- b=PgQj9GS0GTOrdAn3kf2t9Zol5aekSMUS79265oIUFbs/nT4fyRZqwmRDtia+rveg9kk0x7ND6eSuMNou9Sgvu2lj79NLpkHmeSgYPKnMmiS4H8fhZUrexHiFPAtB7dYaTrjTWSqSHi+qUsYcWAETOhXr3MouWN5R+zu3Hoz7AMVoXqIwhKICEJvLarsP2rRbi7jM7yjoPitlRsl0gZpVR0F8/VBN5ohlX7FBfAspsYEzlR1z6h3dOdd65X8HaW5IcPikAR8J3xOuMmN0QP+zMiUL9shIdjFSv3FnatG3ZHC+MdlUSmAEHZ3Bm8yaBVMFs0c3alaEB4H6sTfYC2/xuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yu1XFCx7lmzN8NFXXFb64IQ+8/6qoRQqfg26MrPpub8=;
- b=wZkZwyPCrW2hot1vba5Al5Ew0kL41WC62UM39nXmHLcbK9TX/T1s4HxWGB/YmO3i1W9btppJ+RuKKufmL+lAdHOyk5F5EEQTUrrjvnsbzaypkRBayaOu+320ieXNRWAeuCTKjHhLFkvqsm/m0G/wRbJwJhoj4qsXdE+zUUk4jnjGZ/H/asqHU7p6a5ZHAwG2dsdWvtauUiS9raEz+vwIPii6CqR6D+wltgqoPzDhWdcPj833tyyUIHgeaIr2gCPl/aiwhMUN+ccfI7Nuew88hSsHmM1jaTv2xwTsIaL2yO1hcosaO9nmidor5r5sP3MZrEKbAd/kJSVMKB+KOAX0ig==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from DM4PR03MB6208.namprd03.prod.outlook.com (2603:10b6:5:39c::19)
- by BY1PR03MB7995.namprd03.prod.outlook.com (2603:10b6:a03:5b5::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Thu, 21 May
- 2026 17:56:56 +0000
-Received: from DM4PR03MB6208.namprd03.prod.outlook.com
- ([fe80::2216:93ef:67b:9e04]) by DM4PR03MB6208.namprd03.prod.outlook.com
- ([fe80::2216:93ef:67b:9e04%6]) with mapi id 15.21.0048.016; Thu, 21 May 2026
- 17:56:55 +0000
-Message-ID: <5401fcc1-c89d-41e5-9df2-460e4d7a4ad8@altera.com>
-Date: Thu, 21 May 2026 23:26:45 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/9] arm64: dts: agilex5: add Cadence SD6HC controller
- and SOCDK enablement
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260511202132.5597-1-tanmay.kathpalia@altera.com>
- <20260511202132.5597-4-tanmay.kathpalia@altera.com>
- <20260515-tuscan-spider-of-realization-ffafdf@quoll>
-Content-Language: en-US
-From: "Kathpalia, Tanmay" <tanmay.kathpalia@altera.com>
-In-Reply-To: <20260515-tuscan-spider-of-realization-ffafdf@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0191.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b2::14) To DM4PR03MB6208.namprd03.prod.outlook.com
- (2603:10b6:5:39c::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775C12BDC32
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 17:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779386260; cv=none; b=IPgttl7NLpqHGwsuxCZxwltFhGrhKNN09MOeF8MlDeUBDagHCFXkFQAnQvr0o83W8+EUbIyHo2x5MY+QzJGOCG/yUwe06FUZlDe8vfYQVdPuFlUuvLL1AxJ6XVDXE1sWKXlmPrGD8Ki7XI0RRhCDjtta6y4fug1fl1h1l2BznD4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779386260; c=relaxed/simple;
+	bh=xFmemDVgnr2azGMiC2daYpx3i+eCsGeDZTwp9hgqNlE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CgHXzj6IbrsjTa+1bwXomC92S8h/xkA3vRqJ9pIxYCXzCcz7of0+yx2qNFI7MZ34KGYRmQGulX55XndXTDPJyUjXiAVB288bxR465OVsPiGRpU/BwED8knLiZWsgxijjHKZWHaGIMN7XWJq3VR/ntd5T5h9Qjn3g5r7bURGbC6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=p/xgWpQH; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4903d730b1fso6896705e9.2
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 10:57:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779386258; x=1779991058; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gylbKCiCuocOK7umlWhz6aOgovCb2toi5YR+NyOexAY=;
+        b=p/xgWpQHIJmFyFhjT/gSY+ScGe80MOkbw3CwlxtQVBRenMRqSLSzHDVgO9bVkf7FYq
+         VmePIE8JtD8wrj4909vUt4jHw7s52XM4/U1Kp7CEXD6DzVHzYGyLeqFc3O8dX/JaD6Dl
+         oyUIdrnsgHtGxOraMc9A5cFRA6bajygSdIX7gdjUeFD/a5kB45TTArT7aQuxrmq6TBVW
+         vYjZGGgmhzR3YMkahF0kzf5du/PvTwOFqf/H/gZ7VIAOMlFkVd4ZcTFMl+lPtiosql3X
+         yZbjgQgmK1mfVPL+LoRTzO5N94ivQrsq/q5/wNuRYOZXMHG7fFEUFnY3WexDbLqLN4gd
+         a+FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779386258; x=1779991058;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gylbKCiCuocOK7umlWhz6aOgovCb2toi5YR+NyOexAY=;
+        b=oau/KFvgdyZnYTKHs2VD13uFGamMak+XVEdYf3MMIDWyawOBdHXuW7XbF7flf3hNB/
+         9BjA8wISYo9AHe9rlK6GWtAXfYqpZ/X78KakV4d5eayZprvMosQBoxa+0qHOf9pmSxdP
+         t0XcbodtTDRKd9kopHn3JUE5lWmRPeSVEMqB47uKKlIntp6fE7g3U6RLL+R1FIEh+pjf
+         aCwb8RhWH6d0lMLgG+isbbwOp+JN3qlvx8axRks/IB7lKC+2qwd+1Ct8UG/NNLqQHJy4
+         5p7iOBKCgDXmng4BLJdD+fWqbwXnet6DMm/HHRqhTwdn81Drb+xeV9+m6wUpekpK9HX0
+         9tOw==
+X-Forwarded-Encrypted: i=1; AFNElJ9VJMYh71GmnvX4pizmGFg/na0Q0gaXYxuYwBnVo5QCRuk23HdWzOw4YYgMnCOEEP8ezhKhFb5lWrjJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeN908uTH1KfbC511Ll2UpMuAp9DTM28U3FY9fA7Ucfk0AFqid
+	3Va768OrFS8373GTfOfAw2z0E5k/T64//RSP5tdPErsclcex09RW9D4=
+X-Gm-Gg: Acq92OElt4ctHDDUwopHAxNklSB/aj4etwzrSMyKY5TYPJvSYkpKE0x9snyJCH5puk+
+	qOaGL27e8iMfCG801taiYjCyEuRQky2pIC77z3K7TXO724EZzQEdq644uCYiiN15TBMEXI3NJNx
+	T6r+L0nj47kLEsM8CQYIHrNPd5Vi3j+w6/ngaN7halBmCa/3QaF4GlVfpzvwozZmqUDwjaFmCWz
+	A3I1jzXK5AhLo466dGgfNSsp5aZQ0rVZ7MJessbFoEFCVPQjNR/zkqrzomwbyKvXQU5oEo/528R
+	fshpuyTxgvvRSabb5Bl1jSFuIENHTnJ4QRlejRhycWgpJioiHmQAMTOstqhB7yEarZWvvBpBmAj
+	ZaD0HnEk9Atobw0dbiSY1xd8OpkzqHTE3547oSL7rE0+3MgAmNV4KXUaDo5E7Bm1vuun8M2d5EP
+	y3fnAnITYEhViIVoP1PMjIS46Plm8bDOY7X2l0uRzVaHrhsQCohtdwp5LBAruJc7DK1pThRJ18s
+	dW4MRPVXrE4tzRBQCaBczd4X9XqG7dmU04GU7cyd5XPkHlUZDl7+MxLQj5gB4UnPC4YYw==
+X-Received: by 2002:a05:600c:c084:b0:489:1a3a:9e45 with SMTP id 5b1f17b1804b1-490360d2970mr47342025e9.26.1779386257641;
+        Thu, 21 May 2026 10:57:37 -0700 (PDT)
+Received: from ?IPV6:2a01:cb08:52d:7400:bbd7:ca83:de4a:f625? (2a01cb08052d7400bbd7ca83de4af625.ipv6.abo.wanadoo.fr. [2a01:cb08:52d:7400:bbd7:ca83:de4a:f625])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49033dab0besm74323395e9.15.2026.05.21.10.57.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 May 2026 10:57:37 -0700 (PDT)
+Message-ID: <9eddfa15-ec2e-4d3c-8d55-2be5a974866f@gmail.com>
+Date: Thu, 21 May 2026 19:57:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR03MB6208:EE_|BY1PR03MB7995:EE_
-X-MS-Office365-Filtering-Correlation-Id: d14c9183-9208-42ee-4a46-08deb76257c1
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|55112099003|4143699003|11063799006|3023799007|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	ZrO8yxbm20C5+x7AWGdU/fRBTzQ3tWtALexEu/IiIsk2DOvXlZkvrXC6KszzbKGtV2Xi4IqShlI4Tre7PEO9ZleJrUvc1e69pX7X6FweHc24GdfQGjjw8PrNeiCRWZnAgDlHoYfRMfjJQj9V6zcrxP8lR36YFMvF6Jp/QCbwUnyNZPnfugQPvdp3UrmLno+qplyYL9r8wqvx5NtUB0zYVk2znh7QWA3S8cQaCuu0xU1zya0iLYVSgHATh8dxQXZzHDPGVcGrzvoivwovpK+HVxp4EsI+Do5223jP1LV1IAV6OCoXOzjqQU0g6LigJ4W7DSba0mHG1JfZKHW/P4p2N3wTlABptjtLCZzVjnxPftTEMHJClsyKDt2DqMWpL5MZHeGdgfDu71uC9JuD6xepVPWiolGJ0Psc8KSgUXI7QYABkNfSqU253WC3YuZk0ArlPiavtjCpkFZmECALNNouW29wxZ5zuVHV2izEIQP2yPNKAmlkSYpr+w/rJHrx0TWo1AUENP4wmAPiMU0My8HLty+UnxLxr+IZnciYZPu5UKkWusy5LToGpmOaqSyNkkv9S2ZoKJFfzADpRNaP3B9Vrs0tVwUejCT5WhDkEfLA5nQCa/6nX1BBsoCVmz4Dz6TPGgxoJQX5SA8OLYhBt+9zx4D4/JKUibKalybrIf+HYqPOH3LW3NJyELqggbHv8oXA
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR03MB6208.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(55112099003)(4143699003)(11063799006)(3023799007)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aEdLK05BT01TZXFyTCtPQ0Y5cWVSQzhmRWtscTJCbnJBWWE5eGhHWS9LblE3?=
- =?utf-8?B?UzdTaWtPTEN5d21mWkYwRXZWZnVlQi9EWjdqUSs3TFFMNWRuZGFlNjN2SFcz?=
- =?utf-8?B?a3kvRUxjSFdWcXpUTlowUWJsVnJuS2hieGhPUTNXQStESFdBVkh5dSt0Uldx?=
- =?utf-8?B?V3FyOG5uRjR5STNPS2E0NzJkc1FyWFNLUWcrd2I5Q0VzUHU3NWYyQVVPLzhB?=
- =?utf-8?B?TkZvVHlDcHlxbGo1Z2NiZ0tvRXhZMjhVZWErTXZLZzV1TnhPS0MzVE5IYVZq?=
- =?utf-8?B?V2dkRXhMM1A1YjdmcnBEbGVyTVZ5eEJMRlJYSTFNSG42Nm8xbkY2VHBBSGtz?=
- =?utf-8?B?ZzUveWdvN1BBZXpVZEQyenc5Sm4wa0t1R1NGbXVXUU1YUkF2d29IYktOSnlh?=
- =?utf-8?B?V1NFam9BNG83K1NWa2M2aHBFRzA5MVVUZDFhWGlVNXhJbFQyclRuM3JHR0pF?=
- =?utf-8?B?SFZjSlZGWUttOFlja3k2S0daenlQcEJRV3ZhTnAyRlhHVUI1cnFyNTZRZzdx?=
- =?utf-8?B?WWhIdWtrTHlJRzBsS3A1Uy92Wko5L1lTOElrSzNSNFdaaWxnYW9BeEJJSFkw?=
- =?utf-8?B?TnRjOTgvRlFXS0RtN3NiM3o0eVBGSFpBTGFvNkpuSWFTL1VJODhwZUZ2bHR4?=
- =?utf-8?B?Z01wTFhUNmlkME1mbGd2UE1pV2F0cEhtOUVVVFphT2s5KzFrNmR5Skw5dnNK?=
- =?utf-8?B?SmF0Y24zVXd6UmVYRUNtQTN2TjBLdXYxRVF1amRMLzl5Z0MyZDNzdWJsVkl6?=
- =?utf-8?B?ZFpXcko0Rno1cVc0RDZXOTgvV1JkMzhxV3RJam9MUHErMUdhS2c3SnNVTG1L?=
- =?utf-8?B?SHFvN3k3UkpYaEk3R3VoL1JLemZBL1ZNR0ROeDR4U3dlL21iSCsycUIxQitD?=
- =?utf-8?B?VFdaOHhRWEpYcUlNNnl4MGY4MHdadDBHMVZPTjVYcFN0ZG4zNUc0TDhPVGds?=
- =?utf-8?B?WUg0dHd0QUFBT3IwekhVMlF5eXVjc1dVL2h0dlF3STczT1BmclhTb1lVWk84?=
- =?utf-8?B?Q1ZPRnFRS2szV29JQWZFUjVHODlqejdPYUdHdWhPOGgyRkNzVDZiTE91b1c1?=
- =?utf-8?B?RXpZd0RnLzFVOVZGVDR1dEQzaW9vS0U2eFFJRFBxK1lnUk9GemJBMllhNU93?=
- =?utf-8?B?eGJHRXBDOFBSZnNKTGdwWlRHenloUGN2MEF6dFczTHAvRkY4c1NLR2xhUjc1?=
- =?utf-8?B?dUIyUVpOR3Z5MUdsdW43WFFRYjU3dFBVNUlTdUEwQWJ0Q2lYSDNqeWZvRUNF?=
- =?utf-8?B?UGptYVdhamJSbHYydld2MVhjTlZBVXp1TkZ6UFBjcmpoaFBVRDFRWi96TDhl?=
- =?utf-8?B?WDBjRVZlamEzUVpYZVpNdVo4Wk9xZUFpNmU3L1Y4MHRtT0plY2hURFMrdzVC?=
- =?utf-8?B?VjMyNEt2djZsdTMvNFo5Z0tTWjJLQTFtT0owV1d2VzFPWG5OdGF5WCtPVjk4?=
- =?utf-8?B?c2dINWl0VCtDOGVIRUdLalROci92N2lpa0YxY3pGUW5kazkyOTVyajdFSnla?=
- =?utf-8?B?VkxFRGJsQkFqVkVkOUFhS2QyTTFpc0MvOEtFNGpDUmM4OFF1aHlYd0hJYXdx?=
- =?utf-8?B?MmFTNFZHT2UxdVl2Z3B2UFE5RFFQUTdQL1VvWGN0R3krbDdkRUVoR0w3K2JV?=
- =?utf-8?B?dW5YYU54TUVIRTY1RnQzNkZrdjU4cjRyZ3YzclA0VEhqVWhKTFBGVDFlWlZP?=
- =?utf-8?B?TFdrYU9IU0YvM0xXb0tLTlo5eHpkMkRJRG8rV1FUMHM0Z053WTJlWTZYVXJR?=
- =?utf-8?B?b0Q4TUxCbFZpZ1NTQjYyQU1KQkYwbzhOcmV2Zm4wRUp5Vm5jUHZUWHFFRllX?=
- =?utf-8?B?dUl3YjJBdVFucUxzNHNBRDBoMzIweXpQMXNqTVNxS0x2dWdWWElwc05zUzRD?=
- =?utf-8?B?ZDdUYkZZcGtuMmk5Q3loeGdzS2pvMFdzdkxmUmtFdmVEY0pDQlNtcitKeDhT?=
- =?utf-8?B?U3BXYnNxOVdjN0hwUEJjUkl2MVJXMktQVVlpUGVzc2hGeDlJQnFQV09QRTR2?=
- =?utf-8?B?M2VtUHhvVm5GRk56azNSMS9ER1ljdElxV0l2Yi8xcCtDSERscm0wU01GdlE4?=
- =?utf-8?B?czVFNk1oc0loZ01hMlhtOGU0Sy9FZGdmaXhJTmtPenRzTUNCdmM2aEEzSHJs?=
- =?utf-8?B?R0VvTGRqZ01tZ3dPd1AzQm04MldhOWVlWXdMR3hEVnY0YTlpRGdGM2tkMkFp?=
- =?utf-8?B?Z2tuKzRzWHkvcCtmMTF5MFJ1L3ZybTMzU2pneStzQjRUaXN3blFVZU01UzJE?=
- =?utf-8?B?WC9adVFTaHZNTUc0SXdrTUsvSVd3aUZnL0ZQVUZJQ2FZRThWdWwzdGVtZEdv?=
- =?utf-8?B?Y0pncjBZZnFuSjVFNDdCbW1mWUxBc0xXZFUvMVVSMGxpTkdEL0VNd00zYUsz?=
- =?utf-8?Q?yX5B+eaC2/rLSXEM=3D?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d14c9183-9208-42ee-4a46-08deb76257c1
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR03MB6208.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 17:56:55.9619
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Pny5tMzE0INyWsjFGkboFV/qWXAY2kRMILRS48MUCYpf2QzExRSBzIOLYXhzYYd1iEpz1LOg52TmqRg2rTYzIR9+eRkuxKKKxGgJdR2Hy+Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR03MB7995
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/11] arm64: dts: qcom: sc8280xp-arcata: Enable backlight
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Douglas Anderson <dianders@chromium.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>
+References: <20260520-surface-sp9-5g-for-next-v1-0-9df52552bf87@gmail.com>
+ <20260520-surface-sp9-5g-for-next-v1-2-9df52552bf87@gmail.com>
+ <f5f70aa2-a1b8-40e0-838f-6709e6e08a5a@gmail.com>
+ <624a780c-0b22-45e3-aec5-e61c319de901@oss.qualcomm.com>
+Content-Language: en-US
+From: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
+In-Reply-To: <624a780c-0b22-45e3-aec5-e61c319de901@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.01 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MIXED_CHARSET(0.67)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-301459-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-301457-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[altera.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,chromium.org,linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tanmay.kathpalia@altera.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jeromedebretagne@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,0.0.0.0:email,altera.com:email,altera.com:mid,altera.com:dkim]
-X-Rspamd-Queue-Id: BFBAD5AB303
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 1D2655AAC37
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi K
-
-Thanks for your feedback.
-
-On 5/15/2026 2:08 PM, Krzysztof Kozlowski wrote:
-> On Mon, May 11, 2026 at 01:21:25PM -0700, Tanmay Kathpalia wrote:
->> The Agilex5 SoC device tree gains an SD/MMC controller node backed by
->> the Cadence SD6HC, with IOMMU integration via the system SMMU. Card
->> power is supplied by a fixed 3.3V regulator and I/O voltage switching
->> between 1.8V and 3.3V is handled by a GPIO-controlled regulator.
+On 5/21/26 10:48, Konrad Dybcio wrote:
+> On 5/21/26 12:26 AM, Jérôme de Bretagne wrote:
+>> On 5/20/26 18:40, Jérôme de Bretagne via B4 Relay wrote:
+>>> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+>>>
+>>> Add backlight nodes and enable backlight so that it can be controlled
+>>> with the corresponding buttons found on Surface Pro Type Cover keyboards.
+>>>
+>>> The nodes are almost identical to the ones from the ThinkPad X13s with
+>>> a different enable GPIO for the vreg_edp_bl node.
+>>>
+>>> The difference was found by looking at the output of /sys/kernel/debug/gpio
+>>> on the ThinkPad X13s to see the properties of its enable gpio9:
+> 
+> [...]
+> 
+>> and ... backlight still works! It can also be enabled/disabled with:
+>>    /sys/class/backlight/backlight/bl_power
+>> as expected.
 >>
->> The SOCDK board enables the controller for SD-only operation in 4-bit
->> bus width with high-speed and SDR104 UHS-I modes at 200 MHz maximum
->> clock. SDHCI capability overrides clear the SDR50 tuning flag and
->> override the clock base mask to report 200 MHz.
->>
->> Signed-off-by: Tanmay Kathpalia <tanmay.kathpalia@altera.com>
->> ---
->>   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 38 +++++++++++++++++++
->>   .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 26 +++++++++++++
->>   2 files changed, 64 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->> index 352c96d144a8..7e080f13166f 100644
->> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->> @@ -300,6 +300,44 @@ portb: gpio-controller@0 {
->>   			};
->>   		};
->>   
->> +		sd_emmc_power: regulator-fixed-3p3v {
-> NAK, this fails basic rules of organizing DTS/DTSI and the nodes. This
-> is simple-bus, so how could you have here a regulator which is non MMIO?
->
-> Plus, explain me how these regulators managed to appear on the SoC
-> die/silicon?
->
-> Best regards,
-> Krzysztof
+>> I have no clue why both gpio6 on pmc8280_2 and gpio6 on pmc8280c can enable and disable the backlight. Is it a common scenario?
+> 
+> Could it be that one of them is an ENABLE_BL pin, while the other one
+> enables the regulator?
+> 
+> Konrad
 
+I've looked at more device trees and seen that quite a few of them
+simply don't have a "power-supply = <&vreg_edp_bl>" property in their
+backlight node. Trying a similar approach, the backlight still works
+so the gpio6 I was adding wasn't used (or even useful).
 
-Apologies, you are right on both counts.
+I will send a simpler patch in v2, removing the power-supply property
+and the vreg_edp_bl & edp_bl_reg_en nodes.
 
-In v2 this will be fixed:
-1. sd_emmc_power and sd_io_1v8_reg will be moved to the root level
-of socfpga_agilex5_socdk.dts where they belong.
-2. emmc_io_1v8_reg will be moved to the root level of
-socfpga_agilex5_socdk_emmc.dts.
-3. The shared socfpga_agilex5.dtsi will carry only the SoC-level
-emmc controller node with no board-specific regulators.
+Jérôme
 
-Regards,
-Tanmay
 
