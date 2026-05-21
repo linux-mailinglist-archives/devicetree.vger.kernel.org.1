@@ -1,282 +1,216 @@
-Return-Path: <devicetree+bounces-301030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301032-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mE2ODhu1DmosBQYAu9opvQ
-	(envelope-from <devicetree+bounces-301030-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:32:43 +0200
+	id vkxAIHW1DmrBBgYAu9opvQ
+	(envelope-from <devicetree+bounces-301032-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:34:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A417A5A029F
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:32:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A815A02EA
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 328A73013013
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:27:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 481AC302633B
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EE48397AEF;
-	Thu, 21 May 2026 07:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xy55XxSG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946BB399890;
+	Thu, 21 May 2026 07:29:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023138.outbound.protection.outlook.com [40.107.44.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F29D3998BF
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 07:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779348449; cv=none; b=E4wtihg1L3lEg4/7J4KF4NtIxpFE373N1t2MWYctMqKBBnd6yuu2c7z4OL07C6V2yQk4bOrUkaoBpWwagSDJw+wrsiOq9oIKg+A8tA6D3ByupZL4bnJGCL6KLwM/PSwJkfL1hJqTgSvgIEaqBIZFNBv+xZH41JYTjIUvbVB62CQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779348449; c=relaxed/simple;
-	bh=ZEyxLI0lf564rDk4JjFFdxgPMl+0k4bCxBPAjmJ1U8k=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uley91mVGi7kwYud0pAF3lONhkIFcWwZ+vHHLT/70DAQ6ZdY9Un9yPUdwht6fJM8ARhJCDMX65jAIwKGWMfmLkrOv7UGdaoQCvVqfd+oGySTEWzPqHbGMcT700lTC3wA0GfSg8ruPVpcPjWs74AlLp180CciWkbtmBn9GS9tOPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xy55XxSG; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 3367A4E42D0D;
-	Thu, 21 May 2026 07:27:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DB95360495;
-	Thu, 21 May 2026 07:27:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9FAB3107EA6BE;
-	Thu, 21 May 2026 09:27:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1779348440; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=LdCmqb+Q/RWbEKnG9EY6/RiX3h/16cPj3Fyl+P2nPJA=;
-	b=xy55XxSGj8wfpzSly2SLiplATXUej0wVb1nJbVpSvYl+2JW0eU8oZPSWIdBYcsyx+GLjad
-	T1FAb5HyZE/P1rDfgx9eCp3Uvgc1E3ZaGyspLIV/k/wubdH/GF63WyxRhk/iDu79q5VBw3
-	oe1xqz8bZloI+DH4woo7KpLxIMgtTe9mpNTBXq5Cl1vuFYEXMDozYd7MBLltNJbE4wutXi
-	VN6RJ4r2zkH+n4A7CWG+ujzrTbU+82BFz0N53MzcpVy2Y3J8USso4w0AJMKU/G09HMyhBk
-	qIBxBfv68H2uSaE/nznx4f9uLX1EV7d8dycsUI+nCdzzPD8FR98nWAMc8vZLiQ==
-Message-ID: <dbd4078b-180a-45fe-850c-86d86c66614a@bootlin.com>
-Date: Thu, 21 May 2026 09:27:17 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484143AC00;
+	Thu, 21 May 2026 07:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779348575; cv=fail; b=fhnUapWv/Qirwe9DdSVCZbgqyDD4i5Ne0M0us4Pxz4yTFJuGh2MWXZJhoj0GG3OyA83pDKHX4VY0lk/Gpval+cxU3NQI4wWy7n/yVygZa8BobcJ9FiD4s7Nq3VN/bkcukkJx/mgatVXXVfGR0WaaoNaqQx7combvF8VYPl0MM1E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779348575; c=relaxed/simple;
+	bh=GbOym+CfPHD89sISyCW3KckYVRWkvPoPfdZwNHOOIos=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=slENI4Xh3yySYJHNrWRwmC3DhepA3zisd4kP4jKlgtFe8GE7bJ3uFwEn5iM8a8Bwz2eP6Doyk6BUFriw0e7f/+VO7/GQlkId/cmX9QVR2voeTcr3I6lNnZYV13TnDdEOiYvdK4azaGkt4RvlCc3De1AFoPmV5RaGr1aEKb1/14Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JN2nKm54R48Gv3Qi3JrqFvfXPtWRZAUI9HDtpGt1IVFrlxr1NkVP1wVSmLXLIJROXykhGywdHGJjwVLX8XXiA/oHveOgsOGAbT/VthJwKRX2x98gGlKwvJ6RhUoAJ1KU8yKSkmxhZPLu906l4viq52QgYvUJun4wGJau1agHwkLhD0IzslkhU3DJzJZcaSrhAhf/Gk65bRIlY0q137r/ndv4UFwnO9jVUPolxHIufFTBOKJjBgpJeP7CUQtZKGgD5QaAfoTygl12paec0SvwpKFs6DTZtDhnIUWX/Tdgcrt9WHA75kfGKRKqE/pCJRQDxEQuqNHctH2WhmdXDgynpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L+OT5iaiiu/0ZtCdDzuQMDNl5GzGIj6UbV2daq3Pmuw=;
+ b=FanMF2su73jspUhX9NARBHxRuhAuqT42fvDpKIA42XcnoUMWrodwlAxBTLlqjo7ktI1fWzuokF0fhbSm5dMW4UPjTB+QsUtVihY4YbBqSHXg53Oy6n94CNErEtlF3/MhLA096yzEHlPfMdMq7GhjrtaSeA0Unn/lPa5mhF0Xl4nyYsZs/cY9/WnzHFlURAUczjX5ajqvgdErRYMbTH5iJEMZ9SErYkiDurKNe85jINJ2tzQ45xlSGZCVuZgg832rwmZRJDFsJATXowcYFiHpBPvql0jdYZ+a/g0x96nNH/aQBMyHP3xKOZfHzmRHvkz3cTC183kIZundsGPZEABEcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR02CA0046.apcprd02.prod.outlook.com (2603:1096:4:196::15)
+ by PUZPR06MB6267.apcprd06.prod.outlook.com (2603:1096:301:115::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 21 May
+ 2026 07:29:28 +0000
+Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
+ (2603:1096:4:196:cafe::7e) by SI2PR02CA0046.outlook.office365.com
+ (2603:1096:4:196::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.48.17 via Frontend Transport; Thu, 21
+ May 2026 07:29:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.48.11 via Frontend Transport; Thu, 21 May 2026 07:29:27 +0000
+Received: from guoo-System-Product-Name.. (unknown [172.20.64.188])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 1FD0641609C7;
+	Thu, 21 May 2026 15:29:26 +0800 (CST)
+From: Jun Guo <jun.guo@cixtech.com>
+To: peter.chen@cixtech.com,
+	fugang.duan@cixtech.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	vkoul@kernel.org,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	robin.murphy@arm.com,
+	Frank.Li@kernel.org
+Cc: dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	linux-arm-kernel@lists.infradead.org,
+	Jun Guo <jun.guo@cixtech.com>
+Subject: [PATCH v7 0/2] dmaengine: arm-dma350: handle shared channel IRQ wiring on sky1
+Date: Thu, 21 May 2026 15:29:22 +0800
+Message-Id: <20260521072924.3000282-1-jun.guo@cixtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Richard GENOUD <richard.genoud@bootlin.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: ti: k3-j7: Reserve memory for LPM meta
- data
-To: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Udit Kumar <u-kumar1@ti.com>,
- Abhash Kumar <a-kumar2@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
- Thomas Richard <thomas.richard@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260427160326.370415-1-richard.genoud@bootlin.com>
- <20260427160326.370415-2-richard.genoud@bootlin.com>
- <20260505125945.mxucy4cfpno2x66z@slacking>
-Content-Language: en-US, fr
-Organization: Bootlin
-In-Reply-To: <20260505125945.mxucy4cfpno2x66z@slacking>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|PUZPR06MB6267:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 98ebc0d0-ec36-417f-afca-08deb70ab091
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014|7416014|56012099003|18002099003|921020|3023799007|5023799004;
+X-Microsoft-Antispam-Message-Info:
+	3KONVPLm4rlMDY0a9ooZWrmOP3dffoneav7XAUcY5GvsvoiWgTBmwzkq94VRXX1BUbcEx6eT5xPT2ZsakIf1St8iCX0QAe8Z6zL+7gzBBBjrv/DiRJFTMYJygd9WcNeU6zghKtlWNn9JGWM9HW41soqCVrYu12HdETlFIaNI8lalonV9F67EKbk1hUHfvX4mDw5yLTWT6FnKgEVd9oNbbNAPlWwpl8hsRbIAHV4spRyEJef7V9Wh/P64XSNEdWT0Uutrl/nOfO6UfhOXZ5sv2YjEDQUZmkxQHRSsmxPybJJZrY/kfVoYXq/S7OtswqKyBWujcxEF+551gMDbQb4fAITO8VHiF71avTC5CQWhvRk9FqNGgsWNEvnM9cLc7zN1v5rIakU249K3XRyNAQKyKRE5spewIbMVj6mEIKKRnq8v8UX9NuOnqcM11Fu/AYDRnvFv8ltF6YmszWIHvcI2fLAaid7UIEcdD9Yav3SwccHpkhakK8WSP4tuYPIbjhNwk8h6ePFnWTzd4918C2Fu86hHNTREZ12I0TQ3n08NsXfdAkPGw48yXuzffgPBmqrLTbSoH5LgZjAsB37YHrGfs7XUho2JEcVhfN3IJ0TLdTvcI3tk+mHiL3LpyJfvjYhcbQZ8OkVEIvZJVO9YCq9T/2XNi/6z20xl9mFTxrNCRe94lUFyhkgaqZGK3ppIpT7lOfSKN35XN1wV/zi0nYyLAYxVlZwvKIg+nmH67LFEw6bpuIFXWARUH3VAUtKt68nTVibQbeK/16TcOC3Stem0gw==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(7416014)(56012099003)(18002099003)(921020)(3023799007)(5023799004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	adb3x4yDlw848MmGVtX0wAq3nhQjbQgFeq7QhnCgfcuOQ4kgiwmgQzJFckX2eKIksOBCaGNn6UlXdS/8WhRJRI5Y64LtKodgScAXI9OmY2pmy04eZ+V6Cr3MpH2NhG0WkWdsfkNxVxOSvOJfoWrq0o6SLShoq7NSg8uOMO1JX14g2Cn+JgFI9QY1I30mytOOqK7OBtwF0XlImnVGPqnuH0vVTlEhdV5DxhzF+V5cGSXpoGoQ0rYur/1jdzaA2vbLr1CRyL5xiyh3bNdrDQ7CVDv1RIlbifj+T1zvxZbs48E6utO1GMt+XG8yMMogVGoqdbBLW1VJJH/eO0jxOM+j9K7ToVE3ki0cZmHeaXP5Bt/UKSl7k84OxM/IzPXxsrQ2Fzcr8OsMv0SxcASr6EoL7u+RUpJRVJP4ik8VytqhF2M+hxi9Pk6YptpZkvyVgcCv
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 07:29:27.1364
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98ebc0d0-ec36-417f-afca-08deb70ab091
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CC.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB6267
+X-Spamd-Result: default: False [3.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-301030-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DMARC_NA(0.00)[cixtech.com];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-301032-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[richard.genoud@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jun.guo@cixtech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A417A5A029F
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D9A815A02EA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Nishanth,
+This series updates DMA-350 support for the SKY1 integration where all
+DMA
+channel interrupt outputs are wired to the same GIC SPI.
 
-Le 05/05/2026 à 14:59, Nishanth Menon a écrit :
-> On 18:03-20260427, Richard Genoud (TI) wrote:
->> From: Prasanth Babu Mantena <p-mantena@ti.com>
->>
->> For TI SOCs J7200, J784S4, J722S, J721s2 which support low power modes,
->> a chunk of memory is reserved for LPM meta data, which is needed for
->> saving ATF context and the certificate information of ATF and OPTEE and
->> DM image. This LPM metadata area is firewalled to be accessed only by
->> TIFS.
->>
->> U-Boot/TIFS will use this area to save and restore:
->> - ATF context
->> - ATF certificate information
->> - OPTEE certificate information
->> - DM image
-> 
-> DM image is loaded from storage, correct?
-Actually, after being loaded from storage at boot time by U-Boot R5 SPL, 
-the DM image is copied in this memory, so that it doesn't have to be 
-loaded from storage at resume. (This speeds up the resume time)
+Patch 1 enables DMANSECCTRL.INTREN_ANYCHINTR in the driver so
+per-channel
+interrupt status is propagated even when channels share one parent IRQ
+line.
 
-For the context:
-At resume, U-Boot R5 SPL is executed and detects that the board is 
-resuming (with a flag set in the PMIC), then it:
-- brings out of retention the DDR
-- retrieves the LPM memory region from DTS
-- authenticates certificates from LPM memory region and applies firewalls
-- asks TIFS to restore TFA and its own minimal context
-- starts TFA on remote proc
-- loads back DM image from memory and jumps to DM
+Patch 2 adds the SKY1 DMA-350 DT node and describes the channel
+interrupt
+sources using 8 channel entries, while all entries map to the same SPI.
 
->>
->> https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html#lpm-msg-lpm-save-addr
->>
->> U-Boot has to parse and retrieve this area from the device tree, thus
->> @lpm-memory node are used instead of the generic @memory.
->>
->> Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
->> Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 6 ++++++
->>   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 6 ++++++
->>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts      | 6 ++++++
->>   arch/arm64/boot/dts/ti/k3-j742s2-evm.dts     | 9 +++++++++
->>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 9 ++++++---
-> 
-> Split this up into platform wise. I dont understand why you'd not modify
-> the ipc-firmware.dtsi and use the phandle similar to https://lore.kernel.org/all/20260318-topic-am62a-ioddr-dt-v6-19-v3-4-c41473cb23c3@baylibre.com/
-The wkup_r5fss0_core0_memory_region can't be used in our case because 
-the DM memory isn't retained during suspend.
-For Sitara, the LPM metadata are stored in the DM DDR, but here, as the 
-DM memory is not kept during suspend, the LPM meta-data is stored in 
-another memory region, so I don't think I can use this phandle.
+Tested on CIX SKY1 with dmatest:
+  % echo 2000 > /sys/module/dmatest/parameters/timeout
+  % echo 1 > /sys/module/dmatest/parameters/iterations
+  % echo "" > /sys/module/dmatest/parameters/channel
+  % echo 1 > /sys/module/dmatest/parameters/run
 
-> 
-> Split the patches per ipc-firmware.dtsi as required.
-> 
->>   5 files changed, 33 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
->> index 5a8c2e707fde..756928a2d411 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
->> @@ -40,6 +40,12 @@ mcu_r5fss0_core0_memory_region: memory@a0100000 {
->>   			reg = <0x00 0xa0100000 0x00 0xf00000>;
->>   			no-map;
->>   		};
->> +
->> +		lpm_memory_region: lpm-memory@a4800000 {
-> 
-> vignesh already flagged this in previous revision - just use phandle
-> reference in u-boot and make this memory@
-I would happily use the phandle, but as this memory is not related to 
-the DM DDR, I don't think I can.
+Changes in v7:
+- Modify the commit log format for the driver patch.
 
+Changes in v6:
+- Drop the dt-binding update and keep the existing 8-channel interrupt
+ schema.
+- Simplify driver change to a minimal fix:
+ enable DMANSECCTRL.INTREN_ANYCHINTR.
+- Update SKY1 DT node to describe 8 channel interrupt entries mapped
+ to one SPI.
 
-Thanks!
+Changes in v5:
+- Fix the formatting issue in the AI tag.
+- Remove the unnecessary "cix,sky1-dma-350".
 
-Regards,
-Richard
+Changes in v4:
+- Reword binding text to align with kernel style.
+- Revise the AI attribution to the standard format.
+- Remove redundant links from the commit log.
 
-> 
->> +			reg = <0x00 0xa4800000 0x00 0x00300000>;
->> +			no-map;
->> +			bootph-all;
->> +		};
->>   	};
->>   
->>   	mux0: mux-controller-0 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
->> index 12a38dd1514b..ceab8f057640 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
->> @@ -42,6 +42,12 @@ mcu_r5fss0_core0_memory_region: memory@a0100000 {
->>   			reg = <0x00 0xa0100000 0x00 0xf00000>;
->>   			no-map;
->>   		};
->> +
->> +		lpm_memory_region: lpm-memory@a9c00000 {
->> +			reg = <0x00 0xa9c00000 0x00 0x00300000>;
->> +			no-map;
->> +			bootph-all;
->> +		};
->>   	};
->>   
->>   	mux0: mux-controller-0 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->> index e66330c71593..eebc5cc7d4cd 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
->> @@ -63,6 +63,12 @@ wkup_r5fss0_core0_memory_region: memory@a0100000 {
->>   			reg = <0x00 0xa0100000 0x00 0xf00000>;
->>   			no-map;
->>   		};
->> +
->> +		lpm_memory_region: lpm-memory@a6c00000 {
->> +			reg = <0x00 0xa6c00000 0x00 0x00300000>;
->> +			no-map;
->> +			bootph-all;
->> +		};
->>   	};
->>   
->>   	vmain_pd: regulator-0 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
->> index fcb7f05d7faf..d0752c8a6b37 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
->> @@ -23,4 +23,13 @@ memory@80000000 {
->>   		device_type = "memory";
->>   		bootph-all;
->>   	};
->> +
->> +};
->> +
->> +&reserved_memory {
->> +	lpm_memory_region: lpm-memory@ab000000 {
->> +		reg = <0x00 0xab000000 0x00 0x00300000>;
->> +		no-map;
->> +		bootph-all;
->> +	};
->>   };
->> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> index 6c7458c76f53..114594f37f0b 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->> @@ -23,10 +23,13 @@ memory@80000000 {
->>   		device_type = "memory";
->>   		bootph-all;
->>   	};
->> +};
->>   
->> -	reserved_memory: reserved-memory {
->> -		#address-cells = <2>;
->> -		#size-cells = <2>;
->> +&reserved_memory {
->> +	lpm_memory_region: lpm-memory@ac000000 {
->> +		reg = <0x00 0xac000000 0x00 0x00300000>;
->> +		no-map;
->> +		bootph-all;
->>   	};
->>   };
->>   
-> 
+Changes in v3:
+- Rework binding compatible description to match generic-first model.
+- Keep interrupts schema support for both 1-IRQ and 8-IRQ topologies.
+- Drop SoC match-data dependency for IRQ mode selection.
+- Detect IRQ topology via platform_irq_count() in probe path.
+- Refactor IRQ handling into a shared channel handler.
+- Enable DMANSECCTRL.INTREN_ANYCHINTR only in combined IRQ mode.
+
+Changes in v2:
+- Update to kernel standards, enhance patch description, and refactor
+ driver to use match data for hardware differentiation instead of
+ compatible strings.
+
+Jun Guo (2):
+  dmaengine: arm-dma350: enable ANYCH interrupt for shared IRQ wiring
+  arm64: dts: cix: add sky1 DMA-350 node with channel IRQ entries
+
+ arch/arm64/boot/dts/cix/sky1.dtsi | 14 ++++++++++++++
+ drivers/dma/arm-dma350.c          |  9 +++++++++
+ 2 files changed, 23 insertions(+)
+
+-- 
+2.34.1
+
 
