@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-301020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFd0Op2vDmr6AwYAu9opvQ
-	(envelope-from <devicetree+bounces-301020-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:09:17 +0200
+	id QGrLJWywDmr6AwYAu9opvQ
+	(envelope-from <devicetree+bounces-301021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:12:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E696359FE7E
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:09:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EE859FEEE
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:12:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E3A663009382
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:09:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCC773008223
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF303546E0;
-	Thu, 21 May 2026 07:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE9E399039;
+	Thu, 21 May 2026 07:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GqE3gO14"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YGOZfAr8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808361F3BAC;
-	Thu, 21 May 2026 07:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360EA397B1C;
+	Thu, 21 May 2026 07:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779347352; cv=none; b=cnox6DlzaH4Z+Kf/l0Ls/wsRtvuYEEEO+e/ED8PFsdrXYXiVFPsvp95fexd41rj8DSeCbR6MuNfhzIHIYZFX34afOi8sSm+6tn330lq3nvQ5LceFHXEdfTQBBMm5ZBrB6MRiqHLhyC0j6yNnY9tnGHIoyc0wpNj9iXnTFhnY/Mc=
+	t=1779347517; cv=none; b=enxnmNIEUHYYKwwFJ20ZmMVDnx/yqyjMKtiTDEX4Y/2gv7+eVXGgkZB2RPltit0mMP+aGByyagxe5Ep7apcvnBXhZ2ATK0HVxiAEQHvBNtTyg+Qak2aQ8IJzM46xmtz4GLcd8N3p24r2zj/Juw/2lCn3Y/Ci9WgpVuTuDgAbGug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779347352; c=relaxed/simple;
-	bh=06DlYLMzDEsjxgRLDFP9ecsf0TUvM6TZuHNU93oyPH0=;
+	s=arc-20240116; t=1779347517; c=relaxed/simple;
+	bh=hRBptVK4N3Fvsr5GwzX7e1R9Geu69NsLiG/QhvHLUck=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=haK1u5DSnKUDYc/VXvqIKwW8PCojYNjWz0OYtfM0QCDTE3hMDYptxbTiGZbZ9zUvIpfS/orPFO2daOfk0/B6k/CEi5dTdQuPt9E6tYnyqzr26wvc9gjaZMycUknFJJtkW1isR1WOPwr8I+ftT6SRv4SrEgIK5JO1BikVE1rHErU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GqE3gO14; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0311F000E9;
-	Thu, 21 May 2026 07:09:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UnE6neo/TWX+pADJJxpkpKhXkRlX99e/YT7Of2j2++tUvTT1EyqnIscdxuJLw//n1TbFW+W1wACgy/QBkQTirepQ94F8wZHPlK7HkXPAUuM56LX2wfqg1KUc0mdf1BtQoYkp5IzgkC3frxx7H+3YLVMbl/juXyhTbkaOSF0g9R4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YGOZfAr8; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 296051F000E9;
+	Thu, 21 May 2026 07:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779347351;
-	bh=06DlYLMzDEsjxgRLDFP9ecsf0TUvM6TZuHNU93oyPH0=;
+	s=k20260515; t=1779347514;
+	bh=08nYU04nwfmpYlYminOuyIMtkIuYwETpU0Ql3Rvr2TI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=GqE3gO14ik0QN6Ey0d5TDclenZhFs1yxXQ5+zJMLtCv6ELME+HAT4W449fnjLjUJx
-	 8hKCw7e/t9SYZ6Cxgn87sTinZqK16R40p9+J8EjGFyUAWTAke1wF1Ge9uz6xwEpKbH
-	 9TksEcUqYnapq/A14cS51ELoTEjQ34Q+vZEfPw4bVmhTWKTfB6dsTiJ7LaQbhqROzl
-	 F8B/zXrUpIV/U9W/8WxTGFQqGXPRFAGJpNQ5BMs7Z+3m4AokoCk6LgKUbpGyml3QqH
-	 FHXx6oFLMoS2eZ97UzwyJMHMlyYY9/q86uZW/nzAjpiZs3zFUgJAXDQSsFtEP91gLU
-	 LmJob/u7WCXBg==
-Message-ID: <1556aa8a-0ffa-466f-9565-530dea7b9235@kernel.org>
-Date: Thu, 21 May 2026 09:09:03 +0200
+	b=YGOZfAr8nUN54KESZnb1D1LLzyOQKY+kcFvmqzEaZPGuCJeEl9th/PMKpDta6HWw9
+	 o/uo8LpsC/zrgAIOTVBA3LsJj7STNRLyeI2RBEe8ElkqGvFef/MrI3jpgiEJTjoKvC
+	 poy+40FsmKCtcRkcJAu0wDqe09kbnldhoVt34Y8E/IffFLSL+vdbPfmJJaYUv5b46z
+	 N8FdM2BV0esUz/PDiSV/WIzEaXZIVKFOpkbb8c9gdqZI9DX6INBT3be3Dcx9bO9Te/
+	 z9FxbL6GU68t1XUntxRzMTBpfRYOWmrXSveX8vs6H/qp+ZSR/hF3n21A/nkQHhUFwv
+	 D3ntkws+PCpTA==
+Message-ID: <8454c168-97e2-4cd1-8279-a92916a6471d@kernel.org>
+Date: Thu, 21 May 2026 09:11:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,8 +53,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 8/8] arm64: defconfig: Enable the raspberrypi otp
- driver as module
+Subject: Re: [PATCH v5 7/8] dt-bindings: raspberrypi,bcm2835-firmware: Drop
+ unnecessary select
 To: Gregor Herburger <gregor.herburger@linutronix.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -67,9 +67,9 @@ To: Gregor Herburger <gregor.herburger@linutronix.de>,
  =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
 Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
+ linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
 References: <20260520-rpi-otp-driver-v5-0-b26e5908eeac@linutronix.de>
- <20260520-rpi-otp-driver-v5-8-b26e5908eeac@linutronix.de>
+ <20260520-rpi-otp-driver-v5-7-b26e5908eeac@linutronix.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260520-rpi-otp-driver-v5-8-b26e5908eeac@linutronix.de>
+In-Reply-To: <20260520-rpi-otp-driver-v5-7-b26e5908eeac@linutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -123,16 +123,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301020-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301021-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[linutronix.de,kernel.org,broadcom.com,anholt.net,gmx.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -144,19 +144,23 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: E696359FE7E
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 19EE859FEEE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/05/2026 16:28, Gregor Herburger wrote:
-> Enable the newly add Raspberry Pi OTP driver as module to allow access
-> to the otp registers.
+On 20/05/2026 16:27, Gregor Herburger wrote:
+> The select schema is not necessary because the
+> raspberrypi,bcm2835-firmware compatible is already matched by the
+> compatible string values. 
 
-... on foo bar board?
+This is wrong. The select was not because of that. Select was needed
+because of simple-mfd, but dtschema was changed, so please rephrase:
 
-Otherwise, why do we want it in upstream?
+The "select" in schema is not necessary anymore since dtschema drops
+simple-mfd when constructing the select/filter query for schemas with
+compatibles.
 
 Best regards,
 Krzysztof
