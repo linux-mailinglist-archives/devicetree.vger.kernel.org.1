@@ -1,67 +1,105 @@
-Return-Path: <devicetree+bounces-301152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IN7PGD3TDmr2CQYAu9opvQ
-	(envelope-from <devicetree+bounces-301152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:41:17 +0200
+	id KJddEIrRDmrqCQYAu9opvQ
+	(envelope-from <devicetree+bounces-301154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:34:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 663B85A2820
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:41:15 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADB4D5A26BC
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5F1EF30623DA
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:23:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 18E7F31290D2
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2589376479;
-	Thu, 21 May 2026 09:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E247D37881C;
+	Thu, 21 May 2026 09:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="jngC8ob9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O4rGFuJJ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AfwAsDHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B60372EDA;
-	Thu, 21 May 2026 09:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D38E3793AC
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 09:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779355408; cv=none; b=NwPFi5snZsqUU0NeoJNJW0b9DQ8811DFXTXFK8ZbKgXn+6gVd4QpKFoINHZpI61TDZ0UMyYuOGyzYye2B5qd8yePr4kOP60c7TAtr4YeO8nVGSPelbNRAKqzCU6RU5NqZSUdEGAQm3+qTLtgglLPjij1/7LwAlol7IynU9qjHG4=
+	t=1779355560; cv=none; b=FRdpgxNZ5bJ+f0lbVQLCYYl5vL8MDyfcwMdjdUya7sdvdWSn5vXtIDAvWWgjrfyS1xOtPna1hH5jyJKwJB50FLuPtv39O8rN/pm+XONl1halyrNQ+85xlhVJ1rV28arm3GCcUv6mbgH71gdFaOc8K7ZHSbloXSaqE7Huv1DGs68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779355408; c=relaxed/simple;
-	bh=HUaw0GYFktM4i/W6aor9kZD5qgYVMQfqE6Onquu5g4c=;
+	s=arc-20240116; t=1779355560; c=relaxed/simple;
+	bh=Nqr0JkyvOkWgV0sS6fsZzWc6BzCw19rKxhEgw4XggE8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g6T2TwMCrE3YsfxC9jdeTctQSNS811Lpn1KEMXe3J7h4l0+zm4xyYlm3TRF+SvfQpplmBIR5dIacloownlFiG9Ft1EbKth+qQQ+RPifcARunC37rKD+zg6yij4nD7gU+9TsGSm8ArJ12IiSNP7JI2cz/rz0NuE0fQQIOLNgsb9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=jngC8ob9; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id F36F1600300F;
-	Thu, 21 May 2026 10:23:22 +0100 (WEST)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id X5vN4DKspH5q; Thu, 21 May 2026 10:23:21 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id E0B1D600300D;
-	Thu, 21 May 2026 10:23:20 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1779355400;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qQNSCTh24/TxAkpNclCRhegFcgT71o0jMtEZ8taZbrc=;
-	b=jngC8ob9ah2AEwzTgyCuZNkzZjVq3WfouXc91sT//xjgQ8Wg7QYm4XuyEH3FsRQ4jU8RE/
-	tkNGbG9S1tBN1TWHRLpoow0ulXeLvJ6DztetAG6tufeOjx1rX6yejqa3KgGseL8yZYe4a/
-	PQvN2P7sKyqvha0VpiRd2Og0xE7qKoiNzFyxiOK/rKlZH9R99So3YVGmkczatvWXpwsJb7
-	1nDFe3mgPgBhGDKu84f+fQ+9kGA03re5vHmrZVQkpKB4i0mt2rtJOLRpbGeXD73SJT583A
-	gyZPAUBG2nohB5VrY8b8N0iTpsUSG/zeMOwbu3ZEX6rlNJQgGmKIIrBcvNhB/g==
-Received: from [192.168.96.1] (unknown [89.214.153.114])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 245FF360257;
-	Thu, 21 May 2026 10:23:16 +0100 (WEST)
-Message-ID: <367bb557-81a0-4286-8788-0e7272cc4d02@tecnico.ulisboa.pt>
-Date: Thu, 21 May 2026 11:23:11 +0200
+	 In-Reply-To:Content-Type; b=Kn66qADrn7ZxtoPcub0cROfRaErWVQIxSxkDLoYP1j59mtOhPO46pc1Uj9bwTPdgFdZ5ZaRXlpnuWuvcIpxQ0RMbt9rdMuSZcUqmGG0b8/6QPvkCBK5H4TaE7VGoILNA9ArzQ4y+LTOcspStNj/NJ11npoytLFrb4OfUNXcU+eE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O4rGFuJJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AfwAsDHF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64L99kQB3527366
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 09:25:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KVNml/ucS7PAjION1Kkzv3EoaYbS6bYt8OV/SwpvUBk=; b=O4rGFuJJa/RUy66+
+	B37Scskag1m2+a99JU1Cfhs6rVEBL6k/iQwqN1Ph05mJWLyAnlLmfaRfLiKMX49a
+	cNRf/tMyanfsxoxWSEAv7H9RCptbGxxtTukul6QFbPnEr8e/cH/jsDQ6KGEW1CY8
+	S5Q+aV2Pn31w700TuUYbKfetyB3PDoH81x0hYmyDgwSB3fwLfQ0EcB3qSiNTg2rz
+	fdzYediEtpypCSs6NchwZhrDNOjy0dFqn6YdMak75qIUf/TQbskoSQJ0Oth5bQAx
+	LL75E/ocmQXtueIn1fjwgAX0WnNHTEcGIOMEgL8c76QRS/DEx6W5pDk2lD/EyfYY
+	bgDdsQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9vhbgtqx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 09:25:58 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-90fe39eab32so100087785a.3
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 02:25:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779355558; x=1779960358; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KVNml/ucS7PAjION1Kkzv3EoaYbS6bYt8OV/SwpvUBk=;
+        b=AfwAsDHF6/IdhYoKWTavG5y4jj71K/pMGJAXU/efiHySGoGDTB58uW5wPtXQRVHaP9
+         PV8JeonG3mF8fnCnZo+VPoNH0vQcCatNAUixHLixfwOtLwLFnrFxnXjXf0aRobUqZrVk
+         ZiBpjZp/+55WpXuwIPL4y3MObFAKISEPiTyiYzOx9RrGQAvaN4bPXmfJzav/fHO1yLNg
+         ZL2UdWHmA/c2muA3TUPk916y9cSJ3gAJHhCHDpukoUrs3n2oV5HHRxohn+qQrF9vWEIA
+         +wQSNKge5/4UaSOfasjm/9RS3nmaL4FIz0yowIqvPetCDNkOvxnG1c69WAoya75mqVT1
+         jSkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779355558; x=1779960358;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KVNml/ucS7PAjION1Kkzv3EoaYbS6bYt8OV/SwpvUBk=;
+        b=EyCXhS+/FB0lXZWC+3cHdCdvzM7xONxxDK0CqbYel7uMW3EYoj60yH77PcC8aAXgmx
+         ZZRF+Sx57RHtlbtwD/cu8xbg8sJWemIhKRNoEJ/iE6eJaVArCGUulc1SFSeT9VqDanyW
+         C2OxqRggGQINx92axctcsqUIiIynpgLUMbhdCuI4rhEt5X/2Y4mDRkB+H0qzgtBg6lvx
+         JKs80cuvykBqQKiLDc+FAr2gTqFOMP7FLk3WtjUzVRwyiI/QWA6GKXJ4yG1x/Id0oOzN
+         9Vj3jdlCdLdeWgWVzA9Mc0k9T27YBtpTBKsih4oqlb6ztOm/nVeZZ5bxbhxXCsf6mFWh
+         Awjw==
+X-Forwarded-Encrypted: i=1; AFNElJ99TjqjgpAJFY8ofjVPcx4fterj3Q9ikECFQUkdgp3M/kvyi4SNeTlj2/Lf3IlLvqLbylq6sa3z1Ib+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxofv9jJ2gx0CU30SaSS0+3ua8SM6rcKpmDBx04rCb+wDsWEil0
+	9uh9R2f0ykEUTnlPJdut1+VEsl3Y1K1pGszCs9t6peHopwJusU+QI6/H8EtTBBF1Cc8YR7HUYpW
+	ieBE/saWijUS8JQNwwzV7K2zlrvhXYxruglnRGppOdR6CzlmdjX7rc+3rW+eqltAR
+X-Gm-Gg: Acq92OGlqSUgdHOE77ggvHpCFjMH2H20UIrLcV6caJfaybydqMs0rRDAMKZsLHbeig+
+	1S1DDL9TEdQ92RJ1P2Q3EsxuKKiwqzXDDUDjHUl7N6djM9F/CtnmyKDGpA2+3jfCYS01zBjQMii
+	qMCAqKNFMYHB2nWsTrn6l2B45QjtohRunJQH4EfZwy9eLQ1R5QCBIKnr1A89Ie9pO57uhrJoRN5
+	4u8CfCymmjLhq3vVA3crNOYgH7PHN7aouhnUWUto/mrh1R027Dox/yviYMb30RGSwMJduQvLcSB
+	G3R/8CfPpYjxfubXlEIoPVeUTaElDTaPhtTj/PwO0S5ksQEjGAttEiPmHPYudqMrZO/Vo9S8TPf
+	eMAp62GPZDzrCpEr5ZvmyuZw80QMUqtVeWd60l2cf+R6LDmKRvcB8iSoDfERJKQMoCq5lQpqTj/
+	9qSdc=
+X-Received: by 2002:a05:620a:bce:b0:912:38a1:1273 with SMTP id af79cd13be357-914a29e3d84mr176221285a.1.1779355557702;
+        Thu, 21 May 2026 02:25:57 -0700 (PDT)
+X-Received: by 2002:a05:620a:bce:b0:912:38a1:1273 with SMTP id af79cd13be357-914a29e3d84mr176218585a.1.1779355557257;
+        Thu, 21 May 2026 02:25:57 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68310b3e6d1sm8694015a12.5.2026.05.21.02.25.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 May 2026 02:25:56 -0700 (PDT)
+Message-ID: <1c570243-45b2-4813-b070-9b22dfa787eb@oss.qualcomm.com>
+Date: Thu, 21 May 2026 11:25:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,84 +107,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] mfd: max77620: override PSCI poweroff handler on
- Pixel C
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20260514-smaug-poweroff-v1-0-30f9a4688966@tecnico.ulisboa.pt>
- <20260514-smaug-poweroff-v1-3-30f9a4688966@tecnico.ulisboa.pt>
- <ag65LXrLLbbeTbTb@orome>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: correct usb phy power supply
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Xilin Wu <sophon@radxa.com>
+References: <20250110092326.167575-1-mitltlatltl@gmail.com>
+ <e94318be-1584-4e4d-8f92-99df8a284dfe@oldschoolsolutions.biz>
+ <CAH2e8h6skog5P6hPc_DkVpJzR1Wj3s7j8jx3vMcRyCn0+sYqCA@mail.gmail.com>
+ <ec4d11b5-7a82-4e7f-bab6-290d1055f1d8@oldschoolsolutions.biz>
 Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-In-Reply-To: <ag65LXrLLbbeTbTb@orome>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <ec4d11b5-7a82-4e7f-bab6-290d1055f1d8@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDA5MiBTYWx0ZWRfXxDBQ/lsS1fFO
+ cGsGDrWxIxp9lulcwW1LTShSb7/svb2PXSOGPJ3iFbv0mcvKid+qbKE8kZBOaJk7HIXjSpe67UI
+ XOFL7ZU3Z44zZ7WfSl7+ed5UqJdVgnIoQWn6G0aVpFfjBEh3XdRpUMRmcjDOII/Vgg0WJlrrIwD
+ zvh7XDuP9NdzT/Vz+CsAnjePUGFcmktj3F8fNKoti631TTdKkqk0tJedQpW/d3Bm0GkoiLjSScc
+ ERzSBoD9d5TUvpKJ957TXzulSqK+w6yVI7DGTx42wPgiTg/nGN5C2sgT6jaYgLyuolrGJVk7ACf
+ 3peT/EcyPg1wz7FjEJkfi2irpRaaWGRvm0GPOn0f2Z5ul6pbhAavnkF0R4mcMcH1pXf+zuxhKZ1
+ QtlNwa9IEKw7tsfJefi2ZwxapLGlTjQkyBmCdXlf+1utflTbU2vawlmJ6gTyvpZjUvLS73EYEH5
+ gUGxsCMApMWn5pjRBiw==
+X-Authority-Analysis: v=2.4 cv=GYAnWwXL c=1 sm=1 tr=0 ts=6a0ecfa6 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=6WkqVPdYesW7Ksm6RcgA:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: e91Nk2onjWJ6xFs0xIJLvDUE4zKnqrU4
+X-Proofpoint-ORIG-GUID: e91Nk2onjWJ6xFs0xIJLvDUE4zKnqrU4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_01,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 bulkscore=0
+ priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210092
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301152-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,tecnico.ulisboa.pt:mid,tecnico.ulisboa.pt:dkim];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_TO(0.00)[oldschoolsolutions.biz,gmail.com];
+	TAGGED_FROM(0.00)[bounces-301154-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim,a600000:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,a800000:email];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 663B85A2820
+X-Rspamd-Queue-Id: ADB4D5A26BC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 5/21/26 09:52, Thierry Reding wrote:
-> On Thu, May 14, 2026 at 04:47:21PM +0200, Diogo Ivo wrote:
->> On Pixel C, shutdown must be handled by the MAX77620 PMIC rather
->> than the PSCI SYSTEM_OFF call, whose firmware implementation is:
+On 5/20/26 9:45 AM, Jens Glathe wrote:
+> On 18.05.26 14:08, Pengyu Luo wrote:
+>> I think they might take the power sequence into account when they were
+>> introducing the devices, vdda-phy(~0.9v) first and vdda-pll(1.2v)
+>> later in the upstream while vdd(0.912v) first and core(1.2v) later in
+>> the downstream. BTW, the DSDT is unreliable. On my platform, it
+>> describes that several components are consuming several LDOs, but
+>> these components work well with these LDOs manually disabled via rpmh.
 >>
->> __dead2 void tegra_system_off(void)
->> {
->>          ERROR("Tegra System Off: operation not handled.\n");
->>          panic();
->> }
-> 
-> Ugh... sounds very familiar. We have similar stub implementations on
-> Jetson TX1 and/or Nano, if I remember correctly. Luckily newer platforms
-> seem to have proper implementations for these.
+>> Best wishes,
+>> Pengyu
+>>
+> Hmm looks like schematics would trump these speculations. Maybe wait until this can be confirmed.
 
-Yes, on my TX1 I was encountering the same problem. However in that case
-is it possible to update the firmware with a proper implementation?
+My previous reply was wrong.
 
-> Thanks for doing this. I might want to take inspiration from this for
-> these older Jetson platforms.
+via CRD8280X schematics:
 
-My pleasure!
+                USB0    USB1    USB2    USB3    USB4    USB5
+HSPHY   0p9     L9D     L4B     L1B     L8D     [L10D   L10D]
+HSPHY   1p8     L1C     L1C     [L1C    L1C]    [L8C    L8C]
+HSPHY   3p1     L7D     L13C    [L7D    L7D]    [L2D    L2D]
 
-Diogo
+SSPHY   0p9     L9D     L4B     L1B     L8D     N/A     N/A
+SSPHY   1p2     L4D     L3B     L4D     L4D     N/A     N/A
 
-> Thierry
+USB0 - usb@a600000
+USB1 - usb@a800000
+USB2/3 - usb@a400000 ports 0/1
+USB4/5 - usb@a400000 ports 2/3
+
+Regulators in square brackets share a single input pin on the SoC
+
+Konrad
 
