@@ -1,221 +1,185 @@
-Return-Path: <devicetree+bounces-301396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CBXLjs0D2qSHgYAu9opvQ
-	(envelope-from <devicetree+bounces-301396-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:35:07 +0200
+	id PX4YHrc7D2rQIAYAu9opvQ
+	(envelope-from <devicetree+bounces-301403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:07:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C8A5A9622
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:35:07 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C9F5A9DF2
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1A2833FA42D
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 15:36:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C0EAE333314F
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 15:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67927368D74;
-	Thu, 21 May 2026 15:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21685368D5B;
+	Thu, 21 May 2026 15:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gtrt33Ni"
+	dkim=pass (1024-bit key) header.d=flowmailer.net header.i=@flowmailer.net header.b="MMFq36yT";
+	dkim=pass (2048-bit key) header.d=siemens-energy.com header.i=schuster.simon@siemens-energy.com header.b="Zq3CXr0l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mta-64-140.flowmailer.net (mta-64-140.flowmailer.net [185.136.64.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC4B36AB5A
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 15:36:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0033C356777
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 15:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.140
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779377773; cv=none; b=naq73kE6sm7f4S4o6B3N6d1tDwBl6oH5lzuVz5Hx5a+/URn0dkTXbfzfjf3Ol4g7mSMwkygJTsNRDKArFxDxgk8dptTrEKrC1HyWlQmsT4uM7cJ1ZnFDxaob1a08mdaurdn34XdNBfeUyzngpWQAKGgLzJuXuWduNEeCmXHKyuc=
+	t=1779377864; cv=none; b=lt1X6zaZlOdQjxupAqLDbHI+mcJcauoPXPTTPpW69E7JSeUwpXm5si3d9wbskjGZmU1YLV1y/RhIwn3Ic30JaqlS18vqi3U3+fQadZhcjEgaSYEuuwsQCCLOf5uXNoqR8/l0pBufK+kt3dUM8ct1HhIHGAjbW/Lb2SqlTTHrrt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779377773; c=relaxed/simple;
-	bh=rGYF2CUBtEnyhzpYsNB5Y6dzRnLg4IpMqoZMJVYk+nw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oxYOhZT7q6z61CsWnPIrKObUyzdDtadDVUKnFUnWTnRSZ9xDmw5S96P6HFOnMOKW6XCXob4erVI6fzV/ARcHfyZ7mzCGKRGI++9q9hHHsvLVXwBR2Ma6F4MmMW+5QgutDg616kOcNd1ahbFyMLA/CESVMWheF1n2wHJ/QnGBj3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gtrt33Ni; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-43d7e23defbso3549782f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:36:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779377770; x=1779982570; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IWk6GQzhGW2RryhVAKkuT+Tv5fS5Q4uWu1yky+LSRfs=;
-        b=gtrt33Niu2bkgLybMhWfgarNi4MOpC13Ubv2PME4nJHuWiJeeemWZTYKdfyT2T6a1A
-         9gWz5EYkEAWXklpPGjPrnLx9jWtHFAJJ17/Q14Ecl+kbs1AVBhu4juB21sOsyAQOVFpk
-         BN+KZGh7W5cf2Zwkiy4zSd2jCtZhu355ffjoLWB7fBQh6ShMwuRUANsYcWp7i40YxAzu
-         WwjaFOyJLFSsgS2t2Rep9nP6TRp80E0Ii+B5gu5PZqIyF9GtTWPRJuHsdXI7X6i1odOi
-         a0ccFwORUmhOiRFmvRz9NQJyZL+rZXMDi/YJJBfRA13dxUoXouZioSXbZ1mavAP8xaAE
-         PwUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779377770; x=1779982570;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IWk6GQzhGW2RryhVAKkuT+Tv5fS5Q4uWu1yky+LSRfs=;
-        b=SqrTg+kg5UOvlMJhuAKiJVPepHWF5Et84QHkM13HZenrmm7mWaKafNtEHkm9VIvids
-         lSnz8WE7A/Qk0lSLp/GC/YI9K/FjMTVTFsFlcpIJNnc5WVYR9Kg10GQj1CLrGNHp23jy
-         q+jTV/CdiPWBjg2dc4IAHVdc7u5BkESG8UTotmX/6BM3POtqz1sigdcYQsI8z+/+ZEV4
-         iljxZH7nI6n0uM5FsCbXXbOKVAAhobN7mgKuiMHtUmT6CkkL1zxy1tkM0EQSVCVFpJxG
-         ZRCSSlZtoKp+mOMJRU4zwIpUFwUeO7+2nzbJvFvg1y+/t6/N0e/hgmd6OVoaxOvr9M2Q
-         zG9A==
-X-Forwarded-Encrypted: i=1; AFNElJ9agy1tz/sFjcpINaSmGUSi4b/FHoAYJUP90zo+0qtWaGgeoNa6kbnuLoexf4CCEBNEEtKfHc0GpM5H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwN8wCEjzxCEhdIuMLJGuPGmWWRYt4dA/EwaNkQcw8cWp+4cQG5
-	1hCnPK8FU0x5zaFMrEvWZkBVkrm84K8v/z/HhDgTWuykVmj1p3uy3nDAMnl6k30fXhz4Xbn8oOA
-	WpZxLAic=
-X-Gm-Gg: Acq92OEirhZn9JrDRvn2hYbfKqa7yMTQZvEBGHgfZRT5O7ij8pSJiTrqjJ1/648i45f
-	Mkz3gkjRwjXx60waUXawLA4l+LGI9NQ8Q2H3oPn0NgWzh3bAHNRXqewmlM8Q2zJ+9LUXkypVejJ
-	MtrVPK8DUewtSubbXR7CpVO0zFu1uiOG2+r0bxNs3sI4GTmDJWdDSxYg/5MLb/DTwTpUgZE2dcc
-	zL6tsZU+bSrIa3moh+Z/tGAe1FZ+DTAuKAYYyEHLzzQpUqG1QeH3QWXo+48fmDb3kw9XN5T45hF
-	KvcrXic2DmR1pJKgwyowJtGhNGJaMQJ4++JJ5R8KosMnK7KUKO1br+VUOFHKZZtZxzYgkol5z32
-	SNrY2im0qnBEo2dJaxunxfoQ7bTiPIqRYrwTuIgpLs2ok6BuaEjVWriSCkEltwe+04WEkXXrxxT
-	I3oIOuipTz6QQB2LDkhSWBTVCUvWp4xSaXEA==
-X-Received: by 2002:a05:6000:1ace:b0:43d:300b:2285 with SMTP id ffacd0b85a97d-45ea37bbfb9mr6086071f8f.11.1779377769950;
-        Thu, 21 May 2026 08:36:09 -0700 (PDT)
-Received: from [192.168.0.35] ([109.76.55.220])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eaa93ce5fsm3749850f8f.33.2026.05.21.08.36.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 May 2026 08:36:09 -0700 (PDT)
-Message-ID: <634c0951-dabb-4505-ad52-4101a8ec0bbd@linaro.org>
-Date: Thu, 21 May 2026 16:36:08 +0100
+	s=arc-20240116; t=1779377864; c=relaxed/simple;
+	bh=ueEF+bxWvWqR586sT6h/9OE/noXhk1FsLD5ozFIo48g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p2d7GBznICDEK8/WTcUKiWn2TWHRV/N4+WImkuPujJhcCzEb6cem6l8VqthZtXNLqebYVnOhH0fvKVRCRuAaglmGLmHQ7cqHu/+MswSF3vZlm60ZofUO64aPK1yrQVk461LroOUobMGolKPDxhnfD0z4MHcsRe/EJl3XQ63xmSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens-energy.com; spf=pass smtp.mailfrom=errorhandling.siemens-energy.com; dkim=pass (1024-bit key) header.d=flowmailer.net header.i=@flowmailer.net header.b=MMFq36yT; dkim=pass (2048-bit key) header.d=siemens-energy.com header.i=schuster.simon@siemens-energy.com header.b=Zq3CXr0l; arc=none smtp.client-ip=185.136.64.140
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens-energy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=errorhandling.siemens-energy.com
+Received: by mta-64-140.flowmailer.net with ESMTPSA id 202605211537324a7eefa69d0019fd35
+        for <devicetree@vger.kernel.org>;
+        Thu, 21 May 2026 17:37:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=s1;
+ d=flowmailer.net;
+ h=from:from:sender:to:to:cc:cc:subject:subject:content-type:content-type:content-transfer-encoding:References:In-Reply-To:Date:Message-ID:MIME-Version;
+ bh=KcRzYfxPkdiV7UzaW+6lIfDEOBCRNUcUcG27X2U1VSs=;
+ b=MMFq36yTf/DJOdkiWD8dxyVJTeBb2CpUxQWl6ikCBdoeyzPO1YF1TlVatLLSDsvGHWcQd5
+ VDsmO4GbpHypEfkjO53Qz6kghqkYW63SBOu0Z3QcrtuSqWyhCWSOJvxnT/UwU+hUbYuuGM0J
+ HuZSr59c5et2+K6wbsqMmvXOzxMIc=;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm3;
+ d=siemens-energy.com; i=schuster.simon@siemens-energy.com;
+ h=from:from:sender:to:to:cc:cc:subject:subject:content-type:content-type:content-transfer-encoding:References:In-Reply-To:Date:Message-ID:MIME-Version;
+ bh=KcRzYfxPkdiV7UzaW+6lIfDEOBCRNUcUcG27X2U1VSs=;
+ b=Zq3CXr0liSNgT0BCELoEs6XA0YM8cHIjZYr0stylqb6wFZbahGV2hbEmOBF/1TqoTWIGML
+ pQmKEA14s3UI+M6MccDXkCrApiCPspbcb8X1z4i0qqkc0XKsEuZWyaX++RCNyx2Oho4OkebH
+ CljyjSOBruD/mCsSnEVDpu/bRn9huDA1sfKAPLG4TnjoGEs76ifH2dvqbyplGH4LM/bN//MJ
+ TbAfvH9UHgJigDJ9qujRe7uPZe7uulWgnP1HXFpgW6KlqYd6iasg0kXPD7frFGW+6jdQlaQd
+ pc5Ftr3JZPBE4ZdvXY4aK24gQwmJHg5mcdt41zeDIsJIor2N0FKdzstA==;
+Date: Thu, 21 May 2026 17:37:29 +0200
+From: Simon Schuster <schuster.simon@siemens-energy.com>
+To: Arnd Bergmann <arnd@arndb.de>, Dinh Nguyen <dinguyen@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Ethan Nelson-Moore <enelsonmoore@gmail.com>, Peter Zijlstra
+ <peterz@infradead.org>, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, workflows@vger.kernel.org, Linux-Arch
+ <linux-arch@vger.kernel.org>, dmaengine@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, Netdev
+ <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-hardening@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, "linux-csky@vger.kernel.org"
+ <linux-csky@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+ <skhan@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Daniel
+ Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+ Alex Shi <alexs@kernel.org>, Yanteng Si <si.yanteng@linux.dev>, Dongliang
+ Mu <dzm91@hust.edu.cn>, Hu Haowen <2023002089@link.tyut.edu.cn>, Kees Cook
+ <kees@kernel.org>, Oleg Nesterov <oleg@redhat.com>, Will Deacon
+ <will@kernel.org>, "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Nicholas Piggin
+ <npiggin@gmail.com>, Vinod Koul <vkoul@kernel.org>, Frank Li
+ <Frank.Li@kernel.org>, Dave Penkler <dpenkler@gmail.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof
+ WilczyDski <kwilczynski@kernel.org>, Andreas Oetken
+ <andreas.oetken@siemens-energy.com>
+Subject: Re: [PATCH] nios2: remove the architecture
+Message-ID: <20260521153729.ig2xgvskkbg3nx47@dev-vm-schuster>
+References: <20260518042833.272221-1-enelsonmoore@gmail.com>
+ <d40b1e80-37fc-4c88-9d7f-dae6458efe6c@app.fastmail.com>
+ <20260518105735.GW3126523@noisy.programming.kicks-ass.net>
+ <20260518172444.zyd47mcagrcwu7wt@dev-vm-schuster>
+ <CADkSEUjhq6HSdg4ignzbuJiN5uXATsTdxFbRJ3BMxs5=WUWLDg@mail.gmail.com>
+ <20260519103012.blot4bssgiqfer6p@dev-vm-schuster>
+ <76af64fa-7820-4d92-8aa9-826c3bd812a1@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-To: sashiko-reviews@lists.linux.dev
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org, olteanv@gmail.com, linux-phy@lists.infradead.org,
- robh@kernel.org
-References: <20260521-x1e-csi2-phy-v6-1-9d73d9bd7d20@linaro.org>
- <20260521122645.3EF9B1F000E9@smtp.kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20260521122645.3EF9B1F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <76af64fa-7820-4d92-8aa9-826c3bd812a1@app.fastmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[siemens-energy.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[flowmailer.net:s=s1,siemens-energy.com:s=fm3];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301396-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,vger.kernel.org,gmail.com,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-301403-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[arndb.de,kernel.org,sang-engineering.com,gmail.com];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,infradead.org,vger.kernel.org,lwn.net,linuxfoundation.org,kernel.org,linux.dev,hust.edu.cn,link.tyut.edu.cn,redhat.com,linux-foundation.org,baylibre.com,analog.com,lunn.ch,davemloft.net,google.com,siemens-energy.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[52];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[schuster.simon@siemens-energy.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[flowmailer.net:+,siemens-energy.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email,linaro.org:email,linaro.org:mid,linaro.org:dkim,0.0.0.2:email]
-X-Rspamd-Queue-Id: 16C8A5A9622
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt,netdev];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[siemens-energy.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,flowmailer.net:dkim]
+X-Rspamd-Queue-Id: F0C9F5A9DF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 21/05/2026 13:26, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [Medium] The schema unconditionally requires `clock-lanes` for `port@0`, which incorrectly breaks C-PHY configurations.
-> - [Low] The example device tree node is missing required `data-lanes` and `clock-lanes` properties in the `port@0` endpoint.
-> --
-> 
-> commit bec75335fd5214a065f090cefeb28f9c895cfd3c
-> Author: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-> 
-> This commit adds a new base devicetree schema for Qualcomm MIPI CSI2 PHY
-> devices, initially for the x1e80100. It supports CPHY, DPHY, and DPHY split
-> modes across three ports, allowing per-PHY voltage rails to be individually
-> defined and required.
-> 
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
->> new file mode 100644
->> index 0000000000000..c9116246c1e9e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
-> [ ... ]
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        description: Sensor input. Always present.
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/media/video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +            properties:
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
->> +              clock-lanes:
->> +                maxItems: 1
->> +              remote-endpoint: true
->> +            required:
->> +              - data-lanes
->> +              - clock-lanes
-> 
-> [Severity: Medium]
-> The commit description mentions the PHY supports both C-PHY and D-PHY modes.
-> Since C-PHY embeds the clock signal within the 3-phase data lanes, there isn't
-> a separate physical clock lane. Does requiring clock-lanes unconditionally
-> here break configurations that need to use C-PHY mode?
+Hi Arnd, Dinh, Wolfram, and Miguel,
 
-Fair hadn't thought of that.
+thank you for your explanations and encouragement; I've now sent my
+application for co-maintainership for arch/nios2 to you, Dinh.
 
+On Wed, May 20, 2026 at 09:06:33AM +0200, Arnd Bergmann wrote:
+> I think that is a reasonable target. We have a bunch of embedded
+> architectures that have a similarly small user base and I expect
+> that we will want to remove most of them at some point, as we did
+> for seven architectures in linux-4.17.
 > 
->> +              - remote-endpoint
-> [ ... ]
->> +examples:
->> +  - |
-> [ ... ]
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@0 {
->> +                reg = <0>;
->> +                csiphy0_in_ep: endpoint {
->> +                    remote-endpoint = <&sensor_out>;
+> As long as there is a maintainer for nios2 and it's not actively
+> getting in the way of a specific treewide change, I don't see any
+> reason to remove this any earlier than the other ones.
 > 
-> [Severity: Low]
-> The schema definition above explicitly requires data-lanes and clock-lanes to
-> be present in the port@0 endpoint. Will omitting them from this example cause
-> a validation failure when running dt_binding_check?
+> Obviously at some point nios2 will have to get removed because
+> of the limit to gcc-14 or older, but that should not be a problem
+> for the next few LTS releases.
 
-Yes this is what happens when you ask the question "should I run the 
-check one more time" and say no.
+This all sounds quite reasonable, including the toolchain
+considerations. Thank you for the offer to keep it around a bit.
+If any issues arise with tree-wide changes I'd be happy to look into
+what can be done on the arch/nios2 side; now that the issues should
+reliably reach me via mail.
 
->> +                };
->> +            };
->> +
->> +            port@2 {
->> +                reg = <2>;
->> +                csiphy0_out_ep: endpoint {
->> +                    remote-endpoint = <&controller_in>;
->> +                };
->> +            };
->> +        };
->> +    };
-> [ ... ]
+> > Sure, I'd be glad to do so, but so far I refrained from it as I was a bit
+> > unsure about the netiquette (can I simply do so by self-proclamation? At
+> > least the git history seems to suggest so...).
 > 
+> Dinh already replied that he welcomes the help, and I also suggested
+> the same thing a year ago. As the only known user that has contributed
+> patches in a long time, you are obviously qualified.
+> 
+> Sending a patch for the MAINTAINERS file to Dinh is the first step,
+> once he has sent that upstream, you can (optionally) apply for
+> kernel.org account that would let you host a git tree on kernel.org
+> or have a tree that you both have access to.
 
+I've sent the patch, I'm sure we can work everything else out from
+there.
+
+Best regards,
+Simon
 
