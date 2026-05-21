@@ -1,182 +1,248 @@
-Return-Path: <devicetree+bounces-301442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JxDLvFAD2qcIQYAu9opvQ
-	(envelope-from <devicetree+bounces-301442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:29:21 +0200
+	id MJq1BwE/D2pNIQYAu9opvQ
+	(envelope-from <devicetree+bounces-301448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:21:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FA05AA426
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:29:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFB7E5AA1BC
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:20:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F4D83051162
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:59:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 221D03036E6E
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 17:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185251EB9F2;
-	Thu, 21 May 2026 16:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F6339D3F1;
+	Thu, 21 May 2026 17:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+QqISau"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R03u+1Ih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB90D23BCEE;
-	Thu, 21 May 2026 16:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40031368D4F;
+	Thu, 21 May 2026 17:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779382763; cv=none; b=f+A55dRpMfEjgL7b9gOsULMGg4/8XHbFhabB+60fcW5HBsVUZ97aI8zWqso4CrAmsv7tcOZ0ehvUjAnGEeNJoScuXEPRJBCVfUk/ZljZHgCNzqI4gMdy2skbaBlwljGHqfubYtP1mdbYCv6fHU55VR37mHtG8bCnezi3kxXSfp4=
+	t=1779383825; cv=none; b=Ls3a97B0tb+e8Tzj1lM0ApMyiWK6KpLDYJGuV6GbCiTdmqZCN1kwN4Wyq2bZL4ftznEudyw/gMZ2WhGZHztM9zv8lsSSByriE7oBY+1+mshOmIBHNwURsuDWcSl6NtlRvEQb+gwCDTYfgqLMNB/C8UX8DDxWMQHGzlUf4lI8rlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779382763; c=relaxed/simple;
-	bh=2GKmZkZRT/ZSfNAcD2QRXrR4w9pDGNsPRX334Y/Rl20=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ll8PsfwXKrvS4SBpDKfEquc2JfSoaRfXBrIre9SRJ8N0mxuED0UTpxGem+l3emglLAR5DwnQcJcANB+Lqikc9Z7I1oqA6DJt7hyNYsjQiykck3h2sTrZT4Q79lMQxiYYhB1yBVxgWh0MoCdsXax0UyBBYJKRcyHdsMTKE/FAUJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+QqISau; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346391F000E9;
-	Thu, 21 May 2026 16:59:18 +0000 (UTC)
+	s=arc-20240116; t=1779383825; c=relaxed/simple;
+	bh=N6FoxpRJuTOXCqPUvQH+NFE5+mmoVpWbXtfGXeEKzdU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qwwBOiiHzoYPr7voVkaPNHV3C1zRMpIKpFt/OdN9tI9lrQc0roF/wPtMg0wQLX9Ttu9qEdIxcQw7j09oAz4PZrHLyaqDDCO3lLjAMsUVme3llb1+SccdJIZLUBgI+vLJmdNfHIsa0AB5ejHisSv+tEHxt8UndieTnLSZkA954MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R03u+1Ih; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A3FC1F000E9;
+	Thu, 21 May 2026 17:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779382762;
-	bh=EM0tOpRC6ixc7T8RIHjmgk36nAVQgn8lpdFzEdyfyNI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=g+QqISauQqVYxSIXaHqVaUlLJHDcMT4QNJN/9mxUtxf6sJycMYnsGFXAZU3wvySRq
-	 tfVy50AWhc8dHAB6jL2KIqy2aqEQdwp94yXY3Wpp+Gc1XtFJgHuWH2Hy6I7mletKwf
-	 8XN2+KM2UmpbI3mqBqctxzmNiaYUCYpQt41jrU+8QN4W3bDm9OLPpK7ic1jwvnuYCk
-	 2rzqJAeJKol7jUWW4iTOVuGywYeNKo3amm643l4OxM5RSkHV874dU0jP8VDYdcl6nZ
-	 SpADqiIHtY1es6/WpDQzJifaN4XoMcrq3sBLxF3jK8rn0MzJMreog3QgYveKDqZYTT
-	 wPlMSXrbx49Iw==
-Date: Thu, 21 May 2026 17:59:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Vitor Soares <ivitro@gmail.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	s=k20260515; t=1779383823;
+	bh=TzvtaM0HFO3hTTzXz7hMDZGf1pih4p7h/VA/ScQingo=;
+	h=From:To:Cc:Subject:Date;
+	b=R03u+1IhglKS+fD4HrN34UdKSTml7c8/JKlusR/RqHb/FhZug2oS3UjI+ZRWX6B9a
+	 7w9pbUIEUMOJV1dBfc71064/evHIVrgIwwlXgjACKIOUejQVQuVno5CToaMO/HiJKI
+	 KZfhzWsDwuw23BQt1xNqPVOoHeeif76+voYUku0cVNOTaDyU1VpZhVeR4l8oP3DcVp
+	 zv4zVWTN8JFVyKS1ehM7RqXoAiUsixu1AWXyeNilf23XMcruxVVdjliDOSX1Vm43uj
+	 euqBlmmpBCKfVgUm0J9e3iLRrQ92bxzTKpKf0Vc0iXYtATd2i9qItrbDY/dnq+EsP9
+	 ULXD7955uxeig==
+From: Drew Fustini <fustini@kernel.org>
+To: Tomasz Jeznach <tomasz.jeznach@linux.dev>,
+	Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Vitor Soares <vitor.soares@toradex.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 13/15] dt-bindings: display: panel-lvds: Add
- dual-channel LVDS support
-Message-ID: <20260521-cleaver-starboard-963eec225121@spud>
-References: <20260521150038.103538-17-ivitro@gmail.com>
- <20260521150038.103538-30-ivitro@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: iommu@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Drew Fustini <fustini@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Joerg Roedel <joerg.roedel@amd.com>,
+	Nicholas Piggin <npiggin@gmail.com>
+Subject: [PATCH v4] dt-bindings: iommu: riscv: Add bindings for Tenstorrent RISC-V IOMMU
+Date: Thu, 21 May 2026 10:06:33 -0700
+Message-ID: <20260521170652.1880662-2-fustini@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zZiN10fyI46t4nxn"
-Content-Disposition: inline
-In-Reply-To: <20260521150038.103538-30-ivitro@gmail.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301442-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,lists.infradead.org,vger.kernel.org,kernel.org,jms.id.au,amd.com,gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-301448-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ti.com,bp.renesas.com,ravnborg.org,toradex.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: D9FA05AA426
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,d2020000:email]
+X-Rspamd-Queue-Id: AFB7E5AA1BC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+From: Nicholas Piggin <npiggin@gmail.com>
 
---zZiN10fyI46t4nxn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Extend the binding to cover details specific to the Tenstorrent RISC-V
+IOMMU. In particular, a second register range is added which contains
+M-privileged registers, e.g., PMAs and PMPs.
 
-On Thu, May 21, 2026 at 04:00:49PM +0100, Vitor Soares wrote:
-> From: Vitor Soares <vitor.soares@toradex.com>
->=20
-> The panel-lvds binding only supports single-channel panels.
-> Extend it to support dual-channel LVDS panels by referencing the
-> lvds-dual-ports schema when a ports container is present.
->=20
-> Assisted-by: Claude:claude-sonnet-4.6
-> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+The RISC-V spec S-privileged registers remain in the first register
+range and are compatible with "riscv,iommu" so the Linux driver does not
+notice any difference, but the binding will be used by OpenSBI and
+potentially other M-mode software.
 
-Ah, this is part of what sashiko was talking about I guess.
-nvm that email so.
-Why can't your new device go into panel-simple-lvds-dual-ports?
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+Acked-by: Joerg Roedel <joerg.roedel@amd.com>
+Signed-off-by: Nicholas Piggin <npiggin@gmail.com>
+[fustini: fix dt_binding_check errors]
+Signed-off-by: Drew Fustini <fustini@kernel.org>
+---
+v4 changes:
+- Add minItems: 1 to reg-names so it is legal to for platforms other
+  than tenstorrent,riscv-iommu to use "base"
+- Add reg-names constraints to the allOf: block
+- Sashiko review:
+  https://lore.kernel.org/lkml/20260521070154.9CAA41F000E9@smtp.kernel.org/
+- Link to v3:
+  https://lore.kernel.org/lkml/20260521064445.1740782-2-fustini@kernel.org/
 
-> ---
->  .../bindings/display/panel/panel-lvds.yaml          | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.y=
-aml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> index 7ed0c486870b..45183a1439ce 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> @@ -82,6 +82,17 @@ required:
->    - width-mm
->    - height-mm
->    - panel-timing
-> -  - port
-> +
-> +oneOf:
-> +  - required:
-> +      - port
-> +  - required:
-> +      - ports
-> +
-> +if:
-> +  required:
-> +    - ports
-> +then:
-> +  $ref: /schemas/display/lvds-dual-ports.yaml#
-> =20
->  ...
-> --=20
-> 2.54.0
->=20
+v3 changes:
+- Move tenstorrent,riscv-iommu to the enum with qemu,riscv-iommu
+- Move descriptions out of the allOf:
+- Add minItems: 2 for tenstorrent,riscv-iommu in allOf:
+- Fix reg syntax in Example 5
+- Link to v2:
+  https://lore.kernel.org/lkml/20260520061855.1623468-4-fustini@kernel.org/
 
---zZiN10fyI46t4nxn
-Content-Type: application/pgp-signature; name="signature.asc"
+v2 changes:
+- Fix dt_binding_check errors
+- Add the Acked-by: from Joerg
+- Drop RFC prefix
+- Link to v1:
+  https://lore.kernel.org/lkml/20260310003850.3837030-1-npiggin@gmail.com/
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/iommu/riscv,iommu.yaml           | 59 ++++++++++++++++---
+ 1 file changed, 51 insertions(+), 8 deletions(-)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCag855AAKCRB4tDGHoIJi
-0l4mAP9LCzA3DYw150Odv8EVXwZMevxuRD/apsBgRbxPRJbN6wD/ZX/TS7nMkBei
-vgOWMO7ndOs70m86sVKr1GJtxamNnAQ=
-=xKXx
------END PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+index d4838c3b3741..f83efb3ee000 100644
+--- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
++++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+@@ -32,22 +32,35 @@ properties:
+   # should be specified along with 'reg' property providing MMIO location.
+   compatible:
+     oneOf:
+-      - items:
++      - description: Platform (non-PCIe) IOMMU implementations
++        items:
+           - enum:
+               - qemu,riscv-iommu
++              - tenstorrent,riscv-iommu
+           - const: riscv,iommu
+-      - items:
++      - description: PCIe IOMMU implementations
++        items:
+           - enum:
+               - pci1efd,edf1
+           - const: riscv,pci-iommu
+ 
+   reg:
+-    maxItems: 1
+-    description:
+-      For non-PCI devices this represents base address and size of for the
+-      IOMMU memory mapped registers interface.
+-      For PCI IOMMU hardware implementation this should represent an address
+-      of the IOMMU, as defined in the PCI Bus Binding reference.
++    minItems: 1
++    items:
++      - description:
++          For non-PCI devices, base address and size of the IOMMU memory
++          mapped registers interface. For PCI IOMMU hardware
++          implementation, an address of the IOMMU, as defined in the PCI
++          Bus Binding reference.
++      - description:
++          Region containing platform specific MMRs for machine-mode
++          configuration, such as PMA and PMP registers.
++
++  reg-names:
++    minItems: 1
++    items:
++      - const: base
++      - const: machine
+ 
+   '#iommu-cells':
+     const: 1
+@@ -75,6 +88,26 @@ required:
+ 
+ additionalProperties: false
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - tenstorrent,riscv-iommu
++    then:
++      properties:
++        reg:
++          minItems: 2
++        reg-names:
++          minItems: 2
++    else:
++      properties:
++        reg:
++          maxItems: 1
++        reg-names:
++          maxItems: 1
++
+ examples:
+   - |+
+     /* Example 1 (IOMMU device with wired interrupts) */
+@@ -145,3 +178,13 @@ examples:
+             };
+         };
+     };
++
++  - |+
++    /* Example 5 (Tenstorrent IOMMU device with MSIs) */
++    iommu5: iommu@d2020000 {
++        compatible = "tenstorrent,riscv-iommu", "riscv,iommu";
++        reg = <0xd2020000 0x10000>, <0xaa000000 0x10000>;
++        reg-names = "base", "machine";
++        msi-parent = <&imsics_smode>;
++        #iommu-cells = <1>;
++    };
 
---zZiN10fyI46t4nxn--
+base-commit: 80dd246accce631c328ea43294e53b2b2dd2aa32
+-- 
+2.43.0
+
 
