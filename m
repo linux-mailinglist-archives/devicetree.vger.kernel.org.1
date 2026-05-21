@@ -1,317 +1,196 @@
-Return-Path: <devicetree+bounces-301495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301497-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JR8AttpD2qOLAYAu9opvQ
-	(envelope-from <devicetree+bounces-301495-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 22:23:55 +0200
+	id qJqxFVFqD2oDLgYAu9opvQ
+	(envelope-from <devicetree+bounces-301497-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 22:25:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C23B5ABBB3
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 22:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6595ABC0B
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 22:25:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0CA09302263E
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 20:22:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F785303D734
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 20:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0FF40FDB7;
-	Thu, 21 May 2026 20:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A0A413247;
+	Thu, 21 May 2026 20:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YJE5Bo35"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="jZD9SlwE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1151C40DFC6;
-	Thu, 21 May 2026 20:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7737E40FDB9;
+	Thu, 21 May 2026 20:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779394967; cv=none; b=dB16vurUpt5PBUWpzLecXGfKuw5GnomRN9lV/UPu+DrgKKKbRpatjhUsesE/EbVNrubu8UeWwN0pEokhfJal/ccy1fGZt6oxMzySA4OF3LVbKFH3+xBSV2OZCfoAm5dyuQZL4S9BRaIM48InEl7KT8Lp2G86tzvmCfpWnNghrZc=
+	t=1779395105; cv=none; b=GVwD5DL13l1N93lYu7QVki0OIjeIMHb2dB87iQqENTcAChm/gNAjw1efXPNg5pcEQ1k3grgiV7QJZUzoRXQ+bo4cnI15R7Of63Q3b7Hk44b8CgGfiHCPU1kyw2NBRUCXHtrRVl8hd2BtzBhK4LI/OhOvxCNhXkWAzxOUOk7dF4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779394967; c=relaxed/simple;
-	bh=vgGrGXlC8B7W+qEX0JsaxybsdkpKyA4CnsAsSut9k9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kiz1tBkjXXKMFM3PipIhgCkuSAXnhoNpFdxGMHWDXwBm80xOxOVzNEzNq2LMA9k6seGgYtOYKfgs/ZjUoa2CMJsbubWzmweczCxQediXXZymZZnYsgqMkJV2b9CWzMVrIme9D0wYbsIeDOaAuQwbBJvAP5wp7uhELJlzx6ettvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YJE5Bo35; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79CEA1F000E9;
-	Thu, 21 May 2026 20:22:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779394965;
-	bh=Tik6LxcYQF93n5WZRj36JO4fyVLR22dFV2Ovqk5ipg0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=YJE5Bo35Y4bAcOKUB4CUD0jfpY5JBQcHCttZzsCM5CPDzodDGI5MgDYiSt7SwuTN9
-	 q9CWywyeAPFps7oN7pmeR5PMN5gz+/DRNWSKPE1OodMZCEBqZ2ic4wXjUvDWWESyI/
-	 Ku0ljrzb8vl+znn0HuKDAYJahG9tb/3agYfRbkIs09lqiBBlRbIjy4GBRTZAO3DJyp
-	 c91iIuT6QuPwla0Wfo0T3O6IdKNnmiPkK8G89pmg16dfNPsq+BXxRjJK8939QovB8X
-	 syWpu7NiL4fTFNRQX0KNsjpmJXDKljs5wreSkeGM6DgvpCZaqUUr3r9SSbgoUK7AEK
-	 3/xm6TcH2+MwQ==
-Date: Thu, 21 May 2026 21:22:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "lianfeng.ouyang" <lianfeng.ouyang@starfivetech.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: i2c: snps,dwc-i2c: Add StarFive
- JHB100 bindings
-Message-ID: <20260521-deflected-overhand-47befb9dd5a4@spud>
-References: <20260521034340.27837-1-lianfeng.ouyang@starfivetech.com>
- <20260521034340.27837-2-lianfeng.ouyang@starfivetech.com>
+	s=arc-20240116; t=1779395105; c=relaxed/simple;
+	bh=VBJblbfRXVasXmc1tUXRza74fdyKHvYZVpFpOZMDTzM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=GtggtIkMyxUi2sxwzL//fP3rhozj0Z538rpKWNLQtxRgRqxAo0ZPBIxFa8FOxhPwdW81oGhWbaKYk5K7Tir3lZHnmzIBKZ0hZyc+e3RD5PrNdoZShmxACqSmyXjor/40K6D867pSvOBvoqJ8zY7ZcQTyi4gb8Dp3hFiWl4vvqxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=jZD9SlwE; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64LHMSF42083442;
+	Thu, 21 May 2026 16:24:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=YwjTp
+	V7wR1YJqK/hsAlBffHL6vypkkCvpDmi7r3PdLY=; b=jZD9SlwEaFOf9mEOj4FJu
+	1dfbyTuKbqleoYu6X9xrN2zfYqMytOhrfBncgNd2GwCO42/y9qRmF6wJ4YlShbX9
+	2PZ2kZf41Qu/sU5Cbi4fQoHE97jnjxlUVIHiuIba3zV1fguzxSJu8b1VJO8q0rfZ
+	Rw7MIqBepHzRzVWToHZlHKGLxBtuKT186/RN7ozBUjQn1D2C3Ah0CgiqqQuxKaol
+	fLk5UsYwKdzhp4FnykoFNWUKUuTPVlSy6X510IkWGNNLpdsT698+LmGU69DqIuHa
+	iFaYBBMD4MuYZ4pUnwcg2cUYZY2SlRe0i3S5nofz5N6u8vWfbEvnp1xmoPnAy4pL
+	Q==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4ea6d2gn6p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 May 2026 16:24:42 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 64LKOfVu016537
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 May 2026 16:24:41 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 21 May
+ 2026 16:24:41 -0400
+Received: from ASHBMBX9.ad.analog.com ([fe80::a11:40fc:1a6f:d912]) by
+ ASHBMBX9.ad.analog.com ([fe80::a11:40fc:1a6f:d912%20]) with mapi id
+ 15.02.1748.037; Thu, 21 May 2026 16:24:41 -0400
+From: "Regus, Ciprian" <Ciprian.Regus@analog.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
+        Andrew Lunn
+	<andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric
+ Dumazet" <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>,
+        Simon Horman <horms@kernel.org>, Jonathan Corbet
+	<corbet@lwn.net>,
+        Shuah Khan <skhan@linuxfoundation.org>,
+        Heiner Kallweit
+	<hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH net-next 3/5] net: phy: Add support for the ADIN1140 PHY
+Thread-Topic: [PATCH net-next 3/5] net: phy: Add support for the ADIN1140 PHY
+Thread-Index: AQHc2or/PLR+XGRoA0qfDv6DdRV2trX7uOeAgB1N4UA=
+Date: Thu, 21 May 2026 20:24:41 +0000
+Message-ID: <1d7f5247b07f44f2a30cfed8f7d3cd6d@analog.com>
+References: <20260503-adin1140-driver-v1-0-dd043cdd88f0@analog.com>
+ <20260503-adin1140-driver-v1-3-dd043cdd88f0@analog.com>
+ <2cfa6680-503a-4c4a-91bc-5f9a4331967d@lunn.ch>
+In-Reply-To: <2cfa6680-503a-4c4a-91bc-5f9a4331967d@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-adiruleop-newscl: Rule Triggered
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KEJkg/M9spC7AjA9"
-Content-Disposition: inline
-In-Reply-To: <20260521034340.27837-2-lianfeng.ouyang@starfivetech.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Authority-Analysis: v=2.4 cv=dpbrzVg4 c=1 sm=1 tr=0 ts=6a0f6a0a cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=xqWC_Br6kY4A:10 a=3zxtOzucoeEA:10 a=kj9zAlcOel0A:10 a=NGcC8JguVDcA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22 a=uXIjobp8t2wMuQ0fPvqm:22
+ a=PVazNrEYVzhFiYv-KssA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDIwNSBTYWx0ZWRfX+QHZcDJkxNRI
+ OMCuXq4ICTSDM7TP/6OJzZq5b2ve0Hl1NtO14ELjK3yiobGgz2neOTdAtnstl7p8MuB17XCotxk
+ 8pNQ2dyplvBCAvK7RZFHEzCSwmmPBAFChCugfIsnhaQ7PicOwk11VtgzAG+aQaHK3gCBzjxa8WW
+ n/K1bheCDZsMZmqnQmk22JcX3B2p0Gh3zTjFJUPfECKNTDcZSuK0qaEo7Zg1tsBE55dDkJRRJN6
+ 4cgm18UwRX5zm9QttHzk6FVbeL3bEm5oELWa2AGDlK3ORAp7iOOyiT5GaH4F4+9PsyznoS0EBH4
+ ziZQzxo22Q6ABcc9vFSvMI0hzUnhB0uE2gYBw7W32Bc393kEiB3M97njTB7dD+3tGlTLMNiaYGX
+ IWCpPJRag9JQ+xhawp4tQjfgr/B6GU1aRfGmJBtvlbG2j28P7MJN7dOhaigWJOf0b1+khw2KZt1
+ j8KMV7OFgxicuJmP8Cw==
+X-Proofpoint-GUID: VfiWibBCwsAhzXUZg141LbN1MCLGwRUx
+X-Proofpoint-ORIG-GUID: VfiWibBCwsAhzXUZg141LbN1MCLGwRUx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_04,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ bulkscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210205
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301495-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-301497-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:mid,analog.com:dkim];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[analog.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[Ciprian.Regus@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,starfivetech.com:email,devicetree.org:url,0.0.0.64:email,f0000:email,0.0.7.208:email]
-X-Rspamd-Queue-Id: 4C23B5ABBB3
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: AF6595ABC0B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---KEJkg/M9spC7AjA9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, May 21, 2026 at 11:43:38AM +0800, lianfeng.ouyang wrote:
-> From: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+> > +static int adin1140_phy_read_mmd(struct phy_device *phydev, int
+> devnum,
+> > +				 u16 regnum)
+> > +{
+> > +	struct mii_bus *bus =3D phydev->mdio.bus;
+> > +	int addr =3D phydev->mdio.addr;
+> > +
+> > +	return __mdiobus_c45_read(bus, addr, devnum, regnum);
+> > +}
+> > +
+> > +static int adin1140_phy_write_mmd(struct phy_device *phydev, int
+> devnum,
+> > +				  u16 regnum, u16 val)
+> > +{
+> > +	struct mii_bus *bus =3D phydev->mdio.bus;
+> > +	int addr =3D phydev->mdio.addr;
+> > +
+> > +	return __mdiobus_c45_write(bus, addr, devnum, regnum, val);
+> > +}
 >=20
-> Add device tree bindings for the Synopsys DesignWare Core (DWC) I2C
-> controller and its StarFive JHB100 implementation
->=20
-> The binding introduces a new compatible string: "snps,dwc-i2c", intended
-> for the generic IP. It also defines two platform-specific compatibles
-> for the StarFive JHB100 implementation:
-> - "starfive,jhb100-dwc-i2c-master"
-> - "starfive,jhb100-dwc-i2c-slave"
+> Why do these exist?
+>
 
-Do you have two different i2c controllers on the device, one which
-implements only slave mode and one that only implements master?
-Or can the same controller be both master or slave depending on how the
-user wants to use it?
-
->=20
-> The controller supports standard I2C and SMBus protocols, programmable
-> FIFO depths, and optional SMBus Alert routing. The binding documents
-> the necessary clocks, resets, and timing properties.
->=20
-> Signed-off-by: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
-> ---
->  .../devicetree/bindings/i2c/snps,dwc-i2c.yaml | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/snps,dwc-i2c.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/i2c/snps,dwc-i2c.yaml b/Do=
-cumentation/devicetree/bindings/i2c/snps,dwc-i2c.yaml
-> new file mode 100644
-> index 000000000000..7227f24f7cbe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/snps,dwc-i2c.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 StarFive Technology Co., Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/snps,dwc-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DWC I2C Controller
-> +
-> +maintainers:
-> +  - Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: Generic Synopsys DWC I2C controller
-> +        const: snps,dwc-i2c
-
-I think you should delete this, we don't want to permit avoiding using
-soc-specific compatibles.
-
-Why can't this go into the existing designware i2c binding?
-
-> +      - description: StarFive JHB100 I2C master controller
-> +        items:
-> +          - const: starfive,jhb100-dwc-i2c-master
-> +          - const: snps,dwc-i2c
-
-This fallback needs to be a lot more specific about what the revision
-is, so that people can figure out which fallback applies to them.
-
-> +      - description: StarFive JHB100 I2C slave controller
-> +        items:
-> +          - const: starfive,jhb100-dwc-i2c-slave
-> +          - const: snps,dwc-i2c
-> +
-> +  reg:
-> +    description: DWC I2C controller memory mapped registers
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: I2C controller reference clock source
-> +      - description: APB interface clock source
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: ref
-> +      - const: pclk
-
-Please add a conditional section that sets the correct number of clocks
-for your jhb100.
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    description: Desired I2C bus clock frequency in Hz
-> +    enum: [100000, 400000, 1000000, 3400000]
-> +    default: 400000
-> +
-> +  i2c-sda-hold-time-ns:
-> +    description: |
-> +      The property should contain the SDA hold time in nanoseconds.
-> +      This value is used to compute value written into DW_IC_SDA_HOLD re=
-gister.
-
-Missing a default here.
-
-> +
-> +  i2c-scl-falling-time-ns:
-> +    description: |
-> +      The property should contain the SCL falling time in nanoseconds.
-> +      This value is used to compute the tLOW period.
-> +    default: 300
-> +
-> +  i2c-sda-falling-time-ns:
-> +    description: |
-> +      The property should contain the SDA falling time in nanoseconds.
-> +      This value is used to compute the tHIGH period.
-> +    default: 300
-> +
-> +  starfive,mctp-i2c-ms:
-> +    description: |
-> +      The property should contain reference to the master node associate=
-d with the slave.
-> +      This value is only used in slave mode, especially for MCTP applica=
-tion.
-
-This property is missing a type, but I also don't understand what it is
-for. You shouldn't need to know what the i2c master is.
-I assume it is meant to be a phandle? Can you share an example dts
-that contains this property in use?
-
-> +
-> +  dwc-i2c-tx-fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The property describes the tx fifo depth.
-> +    default: 8
-> +
-> +  dwc-i2c-rx-fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The property describes the rx fifo depth.
-> +    default: 8
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-clocks and clock-names too.
-
-Bunch of valid complaints from sashiko on this, so
-pw-bot: changes-requested
-
-Thanks,
-Conor.
-> +
-> +examples:
-> +  - |
-> +    i2c@f0000 {
-> +      compatible =3D "snps,dwc-i2c";
-> +      reg =3D <0xf0000 0x1000>;
-> +      interrupts =3D <11>;
-> +      clock-frequency =3D <400000>;
-> +    };
-> +  - |
-> +    i2c@2000 {
-> +      compatible =3D "snps,dwc-i2c";
-> +      reg =3D <0x2000 0x100>;
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +      clock-frequency =3D <400000>;
-> +      clocks =3D <&i2cclk>;
-> +      interrupts =3D <0>;
-> +
-> +      eeprom@64 {
-> +        compatible =3D "atmel,24c02";
-> +        reg =3D <0x64>;
-> +      };
-> +    };
-> +...
-> --=20
-> 2.43.0
->=20
-
---KEJkg/M9spC7AjA9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCag9pkQAKCRB4tDGHoIJi
-0kgJAP94z1e7pviwGRZFAeIV+Y37K9/HpKSoHWFvPMa9IVrpdwD/cGxWbe2hUQuf
-qTgTSGL/fz/9O6umJmm4wcXG2bSYpwg=
-=ZXwL
------END PGP SIGNATURE-----
-
---KEJkg/M9spC7AjA9--
+The PHY is always probed over C22. Unless read_mmd()/write_mmd() are define=
+d,
+phylib will default to indirect accesses to MMD devices. The 0xD and 0xE PH=
+Y registers
+are not implemented, so those transfers won't have any effect.
 
