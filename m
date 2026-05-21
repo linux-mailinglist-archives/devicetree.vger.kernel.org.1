@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-300972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300973-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id pSZ4AfFhDmpQ+QUAu9opvQ
-	(envelope-from <devicetree+bounces-300972-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:37:53 +0200
+	id qN5XMJBhDmoD+QUAu9opvQ
+	(envelope-from <devicetree+bounces-300973-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:36:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F3D59DB78
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:37:52 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0C159DB0F
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:36:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70A853045472
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:30:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 16E14300899B
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA742F362B;
-	Thu, 21 May 2026 01:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28732F99B8;
+	Thu, 21 May 2026 01:30:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2120.outbound.protection.partner.outlook.cn [139.219.17.120])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2100.outbound.protection.partner.outlook.cn [139.219.17.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701742D97B7;
-	Thu, 21 May 2026 01:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C24C2F8E9B;
+	Thu, 21 May 2026 01:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.100
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779327013; cv=fail; b=eBjnkJJYOtAvMrb9KqrhSuOCS8lZ2IARNBkXq3wMXm7nbDX9iB02VlxipzmpPBrSvYXk0ogM+V9FU7+ZIi0M3LdggxFaWUa03bmHlOVYiSlt6US/p6flxjVYaQ48w7/qoAqWG0ubYZnTlT/5YoQsJ7ccPspJqPu9fPMpXeXlsmc=
+	t=1779327017; cv=fail; b=KfeAei0r0RIfWfJ9GMyvdsSsPHNdH2QWn4dvvPHxYjnbWPcJu6xRXkbi0h8omx3ZH0Xj42kFnXIKWXlxlOZMZlre6viEVEo5PGeu3SmBlaU8CQwLur3Wu24Z7HPl3DoQscFZ/6w5aekSt5jvNhCBPqkMu7Lsfoty53MTv+t3QNs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779327013; c=relaxed/simple;
-	bh=yMZ0UenlJv9hNkfw79tuFsH+UEGkmADfJeWdivicRhI=;
+	s=arc-20240116; t=1779327017; c=relaxed/simple;
+	bh=nxj1aKAYxXHnYpUP1CoD7dPlTGgHUvamSboTfHn77hY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=q+EvOlHZK3+Pbkr4a/MZnIL8w2LXCc+csB1Em0BY0Tj+DJuS+tZeixik410vJK39Bj7vK7KpGvPpWPEo1GUaILzAH2+8Gx1vTCn0Px4LtRFUmeMNguOJ5WnDwkQryfls5Y8tYXnY6d17T/KX1ovatvgBVxOven0e+LJaggOY6GU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.120
+	 Content-Type:MIME-Version; b=QzFTGxOtGi4Q0W9Vt67naI6TkFQcEJTGvpy7vMkGQcjtpgBRWmpcTlNUxBJbICZqBnRJzFaWMTjp9FNtq0LvrAS0eLSZ1fp+DFmwkl+WtnkqqWprrFb94k3zSyTg7Ig1uKJ6djkr1tivq/WhLQiINTD23c2jqoPMU4FwPW0V+GY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.100
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RqPIEpZX78/rzuONTG+e/T+8t4pbLgoddwzf3I8O7w2xOKvbCqe5tNuEBoQw8FwKyAwpR2JNlFbcvuNd1/dPeXONEyX8lb5nhb3tB7ToYGDXyIUDcnLHlDqCBsmUk6N1PuM9NC4omax9h8O2NATu97TE6whX2iJgbtoluVX6uIQ24m834IELw4aCNFPTmHU2P9VzpvkONipLvhjOlvuuJBi0ZY7/Pen6uzgciFvxAAIIv9JLfjxO1wBxrO9QJ+B/fwffsrSIJi2DWepMQ3sVDKEbsERu12hk4270dhJiyBqtc+JptZwb0B4LN0jjRFKx1v1IKaGwyGLsG5d2CNYhGw==
+ b=DyIIaNw4IzYIyoYTp0i0OJ7i1tlGxrIQqAAHu1xwMw2E0KMf+6CYWr6tFZRoaSR9QxePApqH95Vr3cc9aM0Jk+K/Mgu5HeZvwz2EOaXNRbJpPHW/aZpLsNXqBcYjwoiPiOKD+GH5+If8NIweKEWPtI3X4o3RnQ3lyosaj1o+S0bNt5HbHgRYj032cXeE2wa3itRx0F7ubltXngTC9Twa5abQM4FIp9B37MEuAPesW8GdD0pO4lme0/K64FizW8ikmC0K2rffjbOrEjeacireSyOH0gKKE0j1G7M4V+jTW9uwNxYGLDOI/VTCRb20DhefuKqPxFkiQFg50OhF+bN8dA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a/RgWBFX56WfctvecHdsRyna7MLooAMvXFMoH8z/5BY=;
- b=nXSxltG22BCzUaT6J0DVJie4iKSxX4eBT4qejbdO/ATIGgBZu7Ed7l4u7+bysK8aW6SS8nYCZ0F0k4MVGWuvJL6EmCr60LBgi0tEMJE1a2PrAVsGkYWDLO6PtNZ8uWBRLOtwJ/5/g3s7om4EqsbE3c+PJqHg/XgEQs+gCmO9fDQ/p2AM9VoLZZtltMrkjeUVHpzEwU8zWw7i5NaB4udwlH35JO8WB0x56DQDTsqn/i1WWxXRD1/nO4r8WC7Ew9Q9zhqbtCnkExhiqYya+21Y9GjfkzdJar5CnAIbQB6vEJ/wkx8dl72XocdXydVpfTy3I3Kvwb9P8PgP4wxMy2kGtg==
+ bh=6kS5yw6QgyHtnoTjEwLb7p29lHY/LB8j+mS1uf+codY=;
+ b=UHkluxMsoCX3lt/YTjP43gefQS+SUT2JwPsbJspe9m5SL+3tyukTfv7ds2zLX2rRBDgHoXIS5TidH/q54q18fQhoTPPpXeWrr02HdCMV1OKJprW2cVK60dmHOsKfKhoMZv7OJ9T5xBfclLAaNvYnFl4J9jZ3JPyulr90pFc+dqz+pB73h1opIDz7iyviCgkuV7clfyi/Hs8qHwsVOjeTfeyudsOvXvSbimhcB9+iZ70NeqQ0L2eoHgMMVxaeZWg/eItZ0ZlJ5r3hxGReqXv3dOxTdt3TOf7oOoFpiZAPEjuyvOtbHC6UFNk5V/9N6Q4eBXyRPduTJbJueZpjPEG9rA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
@@ -48,11 +48,11 @@ Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:17::6) by ZQ4PR01MB1281.CHNPR01.prod.partner.outlook.cn
  (2406:e500:c550:13::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.16; Thu, 21 May
- 2026 01:29:48 +0000
+ 2026 01:29:49 +0000
 Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
  ([fe80::e7d4:256c:b066:850d]) by
  ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.21.0048.016; Thu, 21 May 2026 01:29:48 +0000
+ with mapi id 15.21.0048.016; Thu, 21 May 2026 01:29:49 +0000
 From: Changhuang Liang <changhuang.liang@starfivetech.com>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
@@ -76,9 +76,9 @@ Cc: Chen Wang <unicorn_wang@outlook.com>,
 	devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v3 1/8] dt-bindings: soc: starfive: Add StarFive JHB100 syscon modules
-Date: Wed, 20 May 2026 18:29:25 -0700
-Message-Id: <20260521012932.24163-2-changhuang.liang@starfivetech.com>
+Subject: [PATCH v3 2/8] clk: starfive: Add system-0 domain PLL clock driver
+Date: Wed, 20 May 2026 18:29:26 -0700
+Message-Id: <20260521012932.24163-3-changhuang.liang@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260521012932.24163-1-changhuang.liang@starfivetech.com>
 References: <20260521012932.24163-1-changhuang.liang@starfivetech.com>
@@ -95,56 +95,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1281:EE_
-X-MS-Office365-Filtering-Correlation-Id: ebedc895-33ee-4ffb-8123-08deb6d8723e
+X-MS-Office365-Filtering-Correlation-Id: d02d3afb-accf-4dfd-4c95-08deb6d8733a
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|52116014|1800799024|366016|921020|38350700014|3023799007|6133799003|22082099003|18002099003|56012099003;
+	BCL:0;ARA:13230040|7416014|376014|52116014|1800799024|366016|921020|38350700014|22082099003|18002099003|56012099003;
 X-Microsoft-Antispam-Message-Info:
-	E6jSDzRCtQ/dyXwsKLSAcEyM3wYZVkoruzXN27LR+A1rwlvLBFzGDnc9Q3BKNK2a3SV8KTjbI56tlJch5zbHenQRIV7Xk4zqUAmIfSEA1N1CHCMYGeqZwvSiXK279whZDxYNp6NI6u3m1h+WOZ5RuwjQLpryjtoi7EIRFt59Pz+QCMp3u1YFo/oXgFsnleqpnpUb7n3DHxuK2fvlhKrQaPqe9xmabaGKMD3f17Yn42sfK71SNDARvwObb0ts3h/UazAp9I36reCvJSRlV3j5H6Ftf0K9Xil6eYCwEgvgXx6wkD7kPplDA1pEc9BDgcyee1Ry+QDUVYFy6kSEoPZv9enH2pHcnqRQBpgpw80UgAAATwONH700n/bbEwrod0q2qxaO74IUXaP/fCqL5mO/AD5d5iujH7udJjON3VKIRjOXF/VxMedJsSCkaY84+J9xvkwrsnRzmsNrvHTsCslBWiuIAT/JzuAWMvkaVwnjcNhDuxBWGxCYQ6p+q7y1R8ZDX8fIckd5Pe5IpFreACxCK2XTYRcscif9W/b+L4McD1LO83x2Tumb9tmcailjTvvd
+	S2nvYLqdNpmunX2FCpvbTsrEiRdQE14Nm+sG0ZtwU3rD7vJrKq1DrEH06WW3Q5sROcx8bGpamVhOx9eX1oV/kxHAlc7/fn4DFfZYm/KDpRMTDxYfwWTX081rs9CqkI/Gt/TumWmLdW/JFyicCqkf8EQpJsXzUY2i8ByHsvEl5qCqceSXROTw0UE7/wCx8YzGMSZ0k5tKgLkP7IdiiXLijdpsTxX6bgdmjJxy4BhNt/a2c0UCBSnwRRf9Z0rNw+eEIfo3jD7x0vGIR3uCr/I01cXUhMAFdxZwnDa1H0pIKAuRkfLvDD0MxgppXLnsVr7X9ADe0VEk6meTIvjPhsw8V3U4ytmauzK2g/JGeBQH0eDZZxmOrpAeIuxKNfJwPxxVmO7bmZc6B2htzZxJkM0V+UFihH1Wdb2wu+5DUPJk6dHfBI5FrqKldmf+pal14XkTPGOU/GJv/ZxRnwQ/gohUEmsXW58EfrjXRP/O9DmA43gaJgBtML6mmkAMr6k89B8C+OtEyZqs/jyapiosQyiDZQkk5TSRxe3UDjlG1w1qDOJMjP/ZiPSekXFsapaJYlEqfAj5j+fUMMunfpkn8e3stA==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(1800799024)(366016)(921020)(38350700014)(3023799007)(6133799003)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(1800799024)(366016)(921020)(38350700014)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?wTvbUlb67vgs2MjPeh3rsg9EAq7RBBqsuPCZjz1TpvulPsy9DALWH0n00qJB?=
- =?us-ascii?Q?8xQPOkH6qRhiuUW495PwXNrMD9QZFNuiTe5+RA1WNk6MOjPY0vfp1zVausCB?=
- =?us-ascii?Q?ljHVngY323/Ghrc2FuMD5cbZw2t8C1vuOF/vy4upg2iSLCSV335N1d//E91/?=
- =?us-ascii?Q?n1mZPJk6Q2yCk50S95uU8SwSTPeziTH1IxHVqTe3X4IZwDJVDB9sTclf54Wk?=
- =?us-ascii?Q?ay5Ns3PJWsDp1PNNgPdyi0pc10FTIV8ivZ+lssDnpMZBk8ZpVGAwIuajLyWS?=
- =?us-ascii?Q?DKeC7LUyZZiYUIfJg5CKYztD2Z6jJjihUCZ2V510yd560ckJUyWxhKZEakl+?=
- =?us-ascii?Q?0BeVIvuT6xmBy4gbG2pGzw2ymCuqPlI+6MmbVvoC7MeIvx5sqJNmxDNPf332?=
- =?us-ascii?Q?x5mrLfYTvhM2/T1IO4SSH0OVPBqiXHlKlf8X1DICFXYmIyAfHUoyeiOeXfFE?=
- =?us-ascii?Q?SvOMnibATJn+4tsYegAA+1pQTMmw16qQdNTOWUeJIPyZeGz8TxfHmZzWB6b0?=
- =?us-ascii?Q?kpv4WyxG/lrWBOIylVNg7DMdf3O2iv4L3yorSeGUJXzgiP3wK8IIE2ARLTdE?=
- =?us-ascii?Q?fVPEYpg9/47haMZbRKKmULfHR7ypRHTmOv6DleThuO6mV9bHAeXZwrP1sQxZ?=
- =?us-ascii?Q?DiopxT9wmNXjmflKlyufpOdcf4CkTlsvoHV4FoCdvyDYKCbtF/obw1MjYcCC?=
- =?us-ascii?Q?5hCRXbdEopfiPrbLl2iC/31JI5lR55D0LOOMt/HDcFXjtYl9jz517SZZG1Tj?=
- =?us-ascii?Q?Kx3vshiNQw8OIGQOKSEKGq4Xywfe6h9CD4Lwcw7JI6w9ypqiS7O+StUOpEwM?=
- =?us-ascii?Q?mT7D1x5zEaZnzIzg8ha+0P6qRzryL0zi7y1/D2QzlCHPaSc9lR3gVCTiqe1s?=
- =?us-ascii?Q?CRkT/jMGYM6Z/YYIu6Vd+gJ7OczjVYnIIKyErDPFgLX4XCN4Nr1etBV2pFrZ?=
- =?us-ascii?Q?h1Rz1B9mecX/pt6PUq7PhdBov5pvTx0mX9nIEHMIkJkVo8SwRosaUfGYe3F7?=
- =?us-ascii?Q?h/LXwW59Zd6sodpLUBb4VutzGToEPJ7RE3ZBFk8Ws2kDzihy15jDvh/4Ah9n?=
- =?us-ascii?Q?MAnMRvWjIF6o/3fJY84EssA+dD1T9qj5z9vNfJ8jliNOsiFsDk+juHSLvkc2?=
- =?us-ascii?Q?iK8TjUJfbdIDzLZg1m5a7XutjVtErHZYFFBDQEOw7hWnPEmtw2isg9+YAR//?=
- =?us-ascii?Q?KtqAeTzRAtDuSAnMkcL7svcI3QQbTPw5e0oGHq6uHD3mqrtCNOK+5Xd78cTb?=
- =?us-ascii?Q?F5N7XX0j2XMrOuBzV337t+SKTJCu1lOAA/gUWBQAkXJ78M8xumIJEQhMQDPe?=
- =?us-ascii?Q?c3eTCwnlu3agTVIdlnesJkNBBavCSjkn44P340qTlvpMlzhB3nkfRFkGvGIk?=
- =?us-ascii?Q?YHd/eCYmlaBCu7otMn1H4Khiamb7yTgEJVaFswgMMr6sQlSHZIjagLdZUzUc?=
- =?us-ascii?Q?Udnsa9VOTqPHJdiBMJQ326YaX57PGn6OIamdRe9v2NtqyBobfOz3aatLswNf?=
- =?us-ascii?Q?9UQn859gnkWIlVDhzyuoqprsajf2ICrhK7fkyApM8fm2C+W7sY+BY8pIuKKh?=
- =?us-ascii?Q?Sj/I0BY9g2ERenyl9JrxCrBAyVO6jTMcnw5SQeg/f0OPXtGlYhaetlihJay5?=
- =?us-ascii?Q?3DZrZkVqGTqH+N7MQ3iZoEx6Ei300W55/BPya9tImKtueO9+/bJZ/ApqwHzr?=
- =?us-ascii?Q?RWeCJX//Wga/p7anPd+nYmKoSC9dxXVDjnY4X8HsiRmvD3xekmSV0AHQhnz6?=
- =?us-ascii?Q?wBZvHOn88INSKJeWHs2YJBtthUxs6GJsBh7ENMwQs0YwvoT4k/qX?=
+	=?us-ascii?Q?L0rZantNDeKbOqasBdLdkeJ3FsfTPKXlBXLV6Hu3RwwhbiCS7lVjdeEsuJWL?=
+ =?us-ascii?Q?0J+s1U08P5vjN4mSf7qAGHitkZCif68kLxs8PMaBVEuu2tjNL7dgQuJPjDYg?=
+ =?us-ascii?Q?hvxhzrQlvSyNUCY/RhOxfGqqbrFeMy6J7O9K6UybHZGZsGcaRcw81BaarHed?=
+ =?us-ascii?Q?pH02hyzuzde+CFD4t6JFNDlAPyGmpMtF/qNJ2HNKgFj+eJ/MroK0IUsFnr6T?=
+ =?us-ascii?Q?eAAa79eQ9MAd1CNjJ2fFYoIsfS+XKxtT8r1N/HVx7FXo9wbWFCKampnjTT0A?=
+ =?us-ascii?Q?afULWpc/fYk7vSx0PzcH8EH6spd4vTaIcdbAj3ahwNwXJQiaOe2OQg5SZrFc?=
+ =?us-ascii?Q?U8+4qYZOEejkDKExYcRKmsv5RFqRMRtrVHnnxW61Gx/w5+/SJPy5dPS7dEN2?=
+ =?us-ascii?Q?Wo7SkDA3VaNlT13IExnSTyPS3TgKGT2uwkf7hWuBe/RrZ0iAvFORHWYD9qRz?=
+ =?us-ascii?Q?CvPcKBel69eQvKZKg3KWgxEEgXQVYDJR+djBA6xiVN2GV/PeIrFxJFEbHDun?=
+ =?us-ascii?Q?CneheP+jIRhtF9JK2MQLh8YruQ3titoz1GVCjfaSlaYR6nDNpcZyxcwVfD8B?=
+ =?us-ascii?Q?jNJt+AnvgY0xrAtXIZT9Lam+gwPlT8S0VdpHKT3wlQvBoL6k6BqXTztuzCjo?=
+ =?us-ascii?Q?U9xyZ2xU11A3EgnzNwve76ovkmQPrqz+77dnmqhqc1mhm+p68ArT713WbrUx?=
+ =?us-ascii?Q?MDi155HkeWIOgsM3d4fQInHLZXSGViFfLRTnLICVwDwOCv0OsYPaMfmYBUv6?=
+ =?us-ascii?Q?tbBETLlLZVcPNY+W7bBh9L5OIDPE+qo3EX8HDGJRZpO6eauMpgyr9lwDCQ6/?=
+ =?us-ascii?Q?ojRu9c2EYfq24ivw0v3OlbA2eBcwOXx1eZNhS2opWJpMP6JRd8TK5Rlz6Tcl?=
+ =?us-ascii?Q?Xc+lV0X4uEF5qyu4G4Kjn9sK6wur5JA/i+sb3ueul95oTq/ZSQklWlTMWLAN?=
+ =?us-ascii?Q?Yd1G4EheQBqyP5wDMEU7GWXRGWTyPRlVfesJpo5ifft2CkUxiZ4Ywtv28Kx5?=
+ =?us-ascii?Q?A0CeLYzgMNiMvK1v60NrleJuEU+1Yhe5h2er8NxOqcW4HWnQdjH/+CWOlXU5?=
+ =?us-ascii?Q?QqOLwpWcatsjZzJu9gSCLN0hDAkzkM7hrYvdwAEZZd8xd24790vRT4zqR8uz?=
+ =?us-ascii?Q?VcMdU6GLVJSaiNQIDKPa9UXB3s+lALfoUf3V+G+0NxQX2ZNTdhkOo5XjoYK+?=
+ =?us-ascii?Q?3q1mvJ1WK8Ywg3W6xVVJE73uwoSD4OzS3WAmo/OPnUFI4qmbI9q9pQKgAaAO?=
+ =?us-ascii?Q?UOD3ZnHDb6dfdFjdXi5GFQPJd5g9Gs6ozkh2BUzIUvpQYQ83LGkuumKaZ9ZA?=
+ =?us-ascii?Q?i0Ixi4R9Sw2VAAuPoT9sMFwkH1YGR5apuR3YfsJPbZ0kPbuCTyr3tgH+OJRf?=
+ =?us-ascii?Q?cem3lxQNLxKyA4IY1/e4YzNpIdhbMTCQC+lJk7z1yIVDCvOI4E2OgfZGXKB+?=
+ =?us-ascii?Q?nLIsekmjKYvSwkvcJAzcCWq7HXFRzIqhterBd4Q54vFvYpl1e7/PdZYZ1TWK?=
+ =?us-ascii?Q?TNAbqeE8VOKYpb8FOAWxSbmIpKGIvz7wy8oDQ+VvjWbHzkuK0Mi3UvD3TrRe?=
+ =?us-ascii?Q?sknoCj/sa1P0mzRDJmyYnTFXNONaGcUI1L1/g/WlknCbw/sDxZTGJWSUtnuy?=
+ =?us-ascii?Q?BCfHW4pPrZKGXLRcbCq+uk4CkorfAE/5KKXkZcw/Sqsfb8T4QUZTyAXN8A4H?=
+ =?us-ascii?Q?Ir9E21gURYv951kJG+RJ0WISEaHquMdjFnibS7HTPZFB0/93RqjL3KiCraI0?=
+ =?us-ascii?Q?0aupRWO7olGZKijnchDxayfMbQaEBeTb8YWHyAUIyavnagldcu4P?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebedc895-33ee-4ffb-8123-08deb6d8723e
+X-MS-Exchange-CrossTenant-Network-Message-Id: d02d3afb-accf-4dfd-4c95-08deb6d8733a
 X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 01:29:48.0690
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 01:29:49.6966
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aW+1UoqC+fT2lzjzK/PNZmQp5J7j/AhWZaEA2/8E9mKurDZQ2EY8tTacx33/yM4B0WveqAHM5DdjUyfx0ADrmnuJoji05ZTrSWlQfH1D1nYOLmrfK7YGniT24EhE66p7
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qkc+qHwjLl6Z6mtkWalXOKnjs/N33UTiAN27oDYaGm26sd7G8iH0Wl4UY1KEPLY7rEp3dd9Ls+ySyEAi4bF2GUV84vmpIa9Lr6xqUo8srtC56MxDJlKeKHKPAT643IYN
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1281
 X-Spamd-Result: default: False [5.04 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
@@ -152,219 +152,607 @@ X-Spamd-Result: default: False [5.04 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-300972-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org,starfivetech.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-300973-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.178.209.88:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.198.132.80:email,infradead.org:email,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.198.147.240:email,starfivetech.com:mid,starfivetech.com:email]
-X-Rspamd-Queue-Id: 76F3D59DB78
+	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org,starfivetech.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:mid,starfivetech.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5F0C159DB0F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add documentation to describe StarFive JHB100 SoC System Controller
-Registers.
-
-Add the PLL clocks for the sys0, per0, and per1 domains under syscon,
-as well as the PCIe RP reset.
+Add system-0 domain PLL clock driver for StarFive JHB100 SoC.
 
 Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 ---
- .../soc/starfive/starfive,jhb100-syscon.yaml  | 114 ++++++++++++++++++
- MAINTAINERS                                   |   5 +
- .../dt-bindings/clock/starfive,jhb100-crg.h   |  12 ++
- .../dt-bindings/reset/starfive,jhb100-crg.h   |   3 +
- 4 files changed, 134 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jhb100-syscon.yaml
+ drivers/clk/starfive/Kconfig                  |   8 +
+ drivers/clk/starfive/Makefile                 |   1 +
+ .../clk/starfive/clk-starfive-jhb100-pll.c    | 528 ++++++++++++++++++
+ 3 files changed, 537 insertions(+)
+ create mode 100644 drivers/clk/starfive/clk-starfive-jhb100-pll.c
 
-diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jhb100-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jhb100-syscon.yaml
+diff --git a/drivers/clk/starfive/Kconfig b/drivers/clk/starfive/Kconfig
+index c612f1ede7d7..cc712da68bd0 100644
+--- a/drivers/clk/starfive/Kconfig
++++ b/drivers/clk/starfive/Kconfig
+@@ -105,6 +105,14 @@ config CLK_STARFIVE_JHB100_PER3
+ 	  Say yes here to support the peripheral-3 clock controller
+ 	  on the StarFive JHB100 SoC.
+ 
++config CLK_STARFIVE_JHB100_PLL
++	bool "StarFive JHB100 PLL clock support"
++	depends on ARCH_STARFIVE || COMPILE_TEST
++	default ARCH_STARFIVE
++	help
++	  Say yes here to support the PLL clock controller on the
++	  StarFive JHB100 SoC.
++
+ config CLK_STARFIVE_JHB100_SYS0
+ 	bool "StarFive JHB100 system-0 clock support"
+ 	depends on ARCH_STARFIVE || COMPILE_TEST
+diff --git a/drivers/clk/starfive/Makefile b/drivers/clk/starfive/Makefile
+index f00690f0cdad..547a8c170728 100644
+--- a/drivers/clk/starfive/Makefile
++++ b/drivers/clk/starfive/Makefile
+@@ -15,6 +15,7 @@ obj-$(CONFIG_CLK_STARFIVE_JHB100_PER0)		+= clk-starfive-jhb100-per0.o
+ obj-$(CONFIG_CLK_STARFIVE_JHB100_PER1)		+= clk-starfive-jhb100-per1.o
+ obj-$(CONFIG_CLK_STARFIVE_JHB100_PER2)		+= clk-starfive-jhb100-per2.o
+ obj-$(CONFIG_CLK_STARFIVE_JHB100_PER3)		+= clk-starfive-jhb100-per3.o
++obj-$(CONFIG_CLK_STARFIVE_JHB100_PLL)		+= clk-starfive-jhb100-pll.o
+ obj-$(CONFIG_CLK_STARFIVE_JHB100_SYS0)		+= clk-starfive-jhb100-sys0.o
+ obj-$(CONFIG_CLK_STARFIVE_JHB100_SYS1)		+= clk-starfive-jhb100-sys1.o
+ obj-$(CONFIG_CLK_STARFIVE_JHB100_SYS2)		+= clk-starfive-jhb100-sys2.o
+diff --git a/drivers/clk/starfive/clk-starfive-jhb100-pll.c b/drivers/clk/starfive/clk-starfive-jhb100-pll.c
 new file mode 100644
-index 000000000000..0e642609af07
+index 000000000000..603b928bbb81
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jhb100-syscon.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/starfive/starfive,jhb100-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/clk/starfive/clk-starfive-jhb100-pll.c
+@@ -0,0 +1,528 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * StarFive JHB100 PLL Clock Generator Driver
++ *
++ * Copyright (C) 2024 StarFive Technology Co., Ltd.
++ *
++ * Author: Changhuang Liang <changhuang.liang@starfivetech.com>
++ */
 +
-+title: StarFive JHB100 SoC system controller
++#include <linux/bits.h>
++#include <linux/clk-provider.h>
++#include <linux/debugfs.h>
++#include <linux/device.h>
++#include <linux/kernel.h>
++#include <linux/mfd/syscon.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/units.h>
 +
-+maintainers:
-+  - Kevin Xie <kevin.xie@starfivetech.com>
-+  - Changhuang Liang <changhuang.liang@starfivetech.com>
++#include <dt-bindings/clock/starfive,jhb100-crg.h>
 +
-+description:
-+  The StarFive JHB100 SoC system controller contains MMIO registers used by
-+  other hardware modules (e.g., PLL, eMMC, PCIe). These modules access
-+  specific register offsets, bit masks, and shifts within the system
-+  controller region for configuration and status.
++/* this driver expects a 25MHz input frequency from the oscillator */
++#define JHB100_PLL_OSC_RATE		(25 * HZ_PER_MHZ)
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - starfive,jhb100-b2h-syscon
-+          - starfive,jhb100-gpu-syscon
-+          - starfive,jhb100-h2b-syscon
-+          - starfive,jhb100-host-syscon
-+          - starfive,jhb100-husb-syscon
-+          - starfive,jhb100-husbcmn-syscon
-+          - starfive,jhb100-husbd-syscon
-+          - starfive,jhb100-npu-syscon
-+          - starfive,jhb100-pcieep-ecsr-syscon
-+          - starfive,jhb100-pcierp-ecsr-syscon
-+          - starfive,jhb100-pcierp-syscon
-+          - starfive,jhb100-per0-syscon
-+          - starfive,jhb100-per1-syscon
-+          - starfive,jhb100-per2-syscon
-+          - starfive,jhb100-per3-syscon
-+          - starfive,jhb100-strap-syscon
-+          - starfive,jhb100-sys0-syscon
-+          - starfive,jhb100-sys1-syscon
-+          - starfive,jhb100-sys2-syscon
-+          - starfive,jhb100-usb-syscon
-+          - starfive,jhb100-vout-syscon
-+      - const: syscon
++/* System-0 domain PLL */
++#define JHB100_PLL2_OFFSET		0x00
++#define JHB100_PLL3_OFFSET		0x0c
++#define JHB100_PLL4_OFFSET		0x18
++#define JHB100_PLL5_OFFSET		0x24
 +
-+  reg:
-+    maxItems: 1
++#define JHB100_PLL_CFG0_OFFSET		0x0
++#define JHB100_PLL_CFG1_OFFSET		0x4
++#define JHB100_PLL_CFG2_OFFSET		0x8
 +
-+  clocks:
-+    maxItems: 1
++#define JHB100_PLLX_CFG0(offset)	((offset) + JHB100_PLL_CFG0_OFFSET)
++/* fbdiv value should be 16 to 4095 */
++#define   JHB100_PLL_FBDIV			GENMASK(13, 2)
++#define   JHB100_PLL_FBDIV_SHIFT		2
++#define   JHB100_PLL_FOUTPOSTDIV_EN		BIT(14)
++#define   JHB100_PLL_FOUTPOSTDIV_EN_SHIFT	14
++#define   JHB100_PLL_FOUTVCOP_EN		BIT(16)
++#define   JHB100_PLL_FOUTVCOP_EN_SHIFT		16
 +
-+  '#clock-cells':
-+    const: 1
++#define JHB100_PLLX_CFG1(offset)	((offset) + JHB100_PLL_CFG1_OFFSET)
++/* frac value should be decimals multiplied by 2^24 */
++#define   JHB100_PLL_FRAC			GENMASK(23, 0)
++#define   JHB100_PLL_FRAC_SHIFT			0
++#define   JHB100_PLL_LOCK			BIT(24)
++#define   JHB100_PLL_LOCK_SHIFT			24
 +
-+  '#reset-cells':
-+    const: 1
++#define JHB100_PLLX_CFG2(offset)	((offset) + JHB100_PLL_CFG2_OFFSET)
++#define   JHB100_PLL_PD				BIT(13)
++#define   JHB100_PLL_PD_SHIFT			13
++#define   JHB100_PLL_POSTDIV			GENMASK(15, 14)
++#define   JHB100_PLL_POSTDIV_SHIFT		14
++#define   JHB100_PLL_REFDIV			GENMASK(23, 18)
++#define   JHB100_PLL_REFDIV_SHIFT		18
 +
-+required:
-+  - compatible
-+  - reg
++#define JHB100_PLL_TIMEOUT_US		1000
++#define JHB100_PLL_INTERVAL_US		100
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - starfive,jhb100-per0-syscon
-+              - starfive,jhb100-per1-syscon
-+              - starfive,jhb100-sys0-syscon
-+    then:
-+      required:
-+        - clocks
-+        - '#clock-cells'
-+    else:
-+      properties:
-+        clocks: false
-+        '#clock-cells': false
++struct jhb100_pll_preset {
++	unsigned long freq;
++	u32 frac;			/* frac value should be decimals multiplied by 2^24 */
++	unsigned fbdiv		: 12;	/* fbdiv value should be 8 to 4095 */
++	unsigned refdiv		: 6;
++	unsigned postdiv	: 2;
++	unsigned foutpostdiv_en	: 1;
++	unsigned foutvcop_en	: 1;
++};
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: starfive,jhb100-pcierp-syscon
-+    then:
-+      required:
-+        - '#reset-cells'
-+    else:
-+      properties:
-+        '#reset-cells': false
++struct jhb100_pll_info {
++	char *name;
++	const struct jhb100_pll_preset *presets;
++	unsigned int npresets;
++	unsigned long flag;
++	u8 offset;
++	bool continuous;
++};
 +
-+additionalProperties: false
++#define _JHB100_PLL(_idx, _name, _presets, _npresets, _offset, _flag, _cont)	\
++	[_idx] = {							\
++		.name = _name,						\
++		.offset = _offset,					\
++		.presets = _presets,					\
++		.npresets = _npresets,					\
++		.flag = _flag,						\
++		.continuous = _cont,					\
++	}
 +
-+examples:
-+  - |
-+    syscon@13010000 {
-+        compatible = "starfive,jhb100-sys0-syscon", "syscon";
-+        reg = <0x13010000 0x2000>;
-+        clocks = <&osc>;
-+        #clock-cells = <1>;
-+    };
++#define JHB100_PLL(idx, name, presets, npresets, offset, cont)			\
++	_JHB100_PLL(idx, name, presets, npresets, offset, 0, cont)
 +
-+    syscon@13014000 {
-+        compatible = "starfive,jhb100-sys1-syscon", "syscon";
-+        reg = <0x13014000 0x4000>;
-+    };
++struct jhb100_pll_match_data {
++	const struct jhb100_pll_info *pll_info;
++	int num_pll;
++};
 +
-+    syscon@11719000 {
-+        compatible = "starfive,jhb100-pcierp-syscon", "syscon";
-+        reg = <0x11719000 0x1000>;
-+        #reset-cells = <1>;
-+    };
++struct jhb100_pll_data {
++	struct clk_hw hw;
++	unsigned int idx;
++};
 +
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 47e4b368347f..6f6aac7cea95 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25613,6 +25613,11 @@ S:	Maintained
- F:	drivers/reset/starfive/reset-starfive-jhb1*
- F:	include/dt-bindings/reset/starfive,jhb1*.h
- 
-+STARFIVE JHB100 SYSCON
-+M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/soc/starfive/starfive,jhb100-syscon.yaml
++struct jhb100_pll_priv {
++	struct device *dev;
++	struct regmap *regmap;
++	const struct jhb100_pll_match_data *match_data;
++	struct jhb100_pll_data pll[];
++};
 +
- STATIC BRANCH/CALL
- M:	Peter Zijlstra <peterz@infradead.org>
- M:	Josh Poimboeuf <jpoimboe@kernel.org>
-diff --git a/include/dt-bindings/clock/starfive,jhb100-crg.h b/include/dt-bindings/clock/starfive,jhb100-crg.h
-index bdf7d628b381..4270bfa532e8 100644
---- a/include/dt-bindings/clock/starfive,jhb100-crg.h
-+++ b/include/dt-bindings/clock/starfive,jhb100-crg.h
-@@ -8,6 +8,18 @@
- #ifndef __DT_BINDINGS_CLOCK_STARFIVE_JHB100_H__
- #define __DT_BINDINGS_CLOCK_STARFIVE_JHB100_H__
- 
-+/* SYS0PLL clocks */
-+#define JHB100_SYS0PLL_PLL2_OUT				0
-+#define JHB100_SYS0PLL_PLL3_OUT				1
-+#define JHB100_SYS0PLL_PLL4_OUT				2
-+#define JHB100_SYS0PLL_PLL5_OUT				3
++struct jhb100_pll_regvals {
++	u32 fbdiv;
++	u32 frac;
++	u32 postdiv;
++	u32 refdiv;
++	bool foutpostdiv_en;
++	bool foutvcop_en;
++};
 +
-+/* PER0PLL clocks */
-+#define JHB100_PER0PLL_PLL6_OUT				0
++static struct jhb100_pll_data *jhb100_pll_data_from(struct clk_hw *hw)
++{
++	return container_of(hw, struct jhb100_pll_data, hw);
++}
 +
-+/* PER1PLL clocks */
-+#define JHB100_PER1PLL_PLL7_OUT				0
++static struct jhb100_pll_priv *jhb100_pll_priv_from(struct jhb100_pll_data *pll)
++{
++	return container_of(pll, struct jhb100_pll_priv, pll[pll->idx]);
++}
 +
- /* SYS0CRG clocks */
- #define JHB100_SYS0CLK_BMCPCIERP_NCNOC_MAIN		17
- #define JHB100_SYS0CLK_BMCPCIERP_NCNOC_CFG		18
-diff --git a/include/dt-bindings/reset/starfive,jhb100-crg.h b/include/dt-bindings/reset/starfive,jhb100-crg.h
-index 872a4dd25beb..1489bb01c2bd 100644
---- a/include/dt-bindings/reset/starfive,jhb100-crg.h
-+++ b/include/dt-bindings/reset/starfive,jhb100-crg.h
-@@ -183,4 +183,7 @@
- #define JHB100_PER3RST_MAIN_RSTN_PERIPH3_SENSORS			5
- #define JHB100_PER3RST_IOMUX_PRESETN					6
- 
-+/* PCIERP SYSCON resets */
-+#define JHB100_PCIERP_SYSCONRST_PE2RST_OUT				0
++static int jhb100_pll_enable(struct clk_hw *hw)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	const struct jhb100_pll_info *info = &priv->match_data->pll_info[pll->idx];
 +
- #endif /* __DT_BINDINGS_RESET_STARFIVE_JHB100_CRG_H__ */
++	return regmap_update_bits(priv->regmap, JHB100_PLLX_CFG2(info->offset),
++				  JHB100_PLL_PD, 0);
++}
++
++static void jhb100_pll_disable(struct clk_hw *hw)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	const struct jhb100_pll_info *info = &priv->match_data->pll_info[pll->idx];
++
++	regmap_update_bits(priv->regmap, JHB100_PLLX_CFG2(info->offset),
++			   JHB100_PLL_PD, BIT(JHB100_PLL_PD_SHIFT));
++}
++
++static int jhb100_pll_is_enabled(struct clk_hw *hw)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	const struct jhb100_pll_info *info = &priv->match_data->pll_info[pll->idx];
++	u32 val;
++	int ret;
++
++	ret = regmap_read(priv->regmap, JHB100_PLLX_CFG2(info->offset), &val);
++	if (ret)
++		return ret;
++
++	return !(val & JHB100_PLL_PD);
++}
++
++static int jhb100_pll_regvals_get(struct regmap *regmap,
++				  const struct jhb100_pll_info *info,
++				  struct jhb100_pll_regvals *val)
++{
++	u32 value;
++	int ret;
++
++	ret = regmap_read(regmap, JHB100_PLLX_CFG0(info->offset), &value);
++	if (ret)
++		return ret;
++
++	val->fbdiv = (value & JHB100_PLL_FBDIV) >> JHB100_PLL_FBDIV_SHIFT;
++	val->foutpostdiv_en = !!((value & JHB100_PLL_FOUTPOSTDIV_EN) >>
++				 JHB100_PLL_FOUTPOSTDIV_EN_SHIFT);
++	val->foutvcop_en = !!((value & JHB100_PLL_FOUTVCOP_EN) >>
++			      JHB100_PLL_FOUTVCOP_EN_SHIFT);
++
++	ret = regmap_read(regmap, JHB100_PLLX_CFG1(info->offset), &value);
++	if (ret)
++		return ret;
++
++	val->frac = (value & JHB100_PLL_FRAC) >> JHB100_PLL_FRAC_SHIFT;
++
++	ret = regmap_read(regmap, JHB100_PLLX_CFG2(info->offset), &value);
++	if (ret)
++		return ret;
++
++	val->postdiv = (value & JHB100_PLL_POSTDIV) >> JHB100_PLL_POSTDIV_SHIFT;
++	val->refdiv = (value & JHB100_PLL_REFDIV) >> JHB100_PLL_REFDIV_SHIFT;
++
++	return 0;
++}
++
++static unsigned long jhb100_pll_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	struct jhb100_pll_regvals val;
++	unsigned long rate;
++	u32 power = 0;
++	int ret;
++
++	ret = jhb100_pll_regvals_get(priv->regmap, &priv->match_data->pll_info[pll->idx], &val);
++	if (ret)
++		return 0;
++
++	/*
++	 *
++	 * if (foutvcop_en)
++	 *      rate = parent * (fbdiv + frac / 2^24) / refdiv
++	 *
++	 * if (foutpostdiv_en)
++	 *      rate = parent * (fbdiv + frac / 2^24) / refdiv / 2^(postdiv + 1)
++	 *
++	 * parent * (fbdiv + frac / 2^24) = parent * fbdiv + parent * frac / 2^24
++	 */
++
++	if (!!val.foutvcop_en == !!val.foutpostdiv_en || !val.refdiv)
++		return 0;
++
++	rate = (parent_rate * val.frac) >> 24;
++
++	if (val.foutpostdiv_en)
++		power = val.postdiv + 1;
++
++	rate += parent_rate * val.fbdiv;
++	rate /= val.refdiv << power;
++
++	return rate;
++}
++
++static int jhb100_pll_determine_rate(struct clk_hw *hw, struct clk_rate_request *req)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	const struct jhb100_pll_info *info = &priv->match_data->pll_info[pll->idx];
++	const struct jhb100_pll_preset *selected = &info->presets[0];
++	unsigned int idx;
++
++	/* if the parent rate doesn't match our expectations the presets won't work */
++	if (req->best_parent_rate != JHB100_PLL_OSC_RATE) {
++		req->rate = jhb100_pll_recalc_rate(hw, req->best_parent_rate);
++		return 0;
++	}
++
++	/* continuous means support any rate */
++	if (info->continuous)
++		return 0;
++
++	/* find highest rate lower or equal to the requested rate */
++	for (idx = 1; idx < info->npresets; idx++) {
++		const struct jhb100_pll_preset *val = &info->presets[idx];
++
++		if (req->rate < val->freq)
++			break;
++
++		selected = val;
++	}
++
++	req->rate = selected->freq;
++
++	return 0;
++}
++
++static int jhb100_pll_set_preset(struct clk_hw *hw, const struct jhb100_pll_preset *val)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	const struct jhb100_pll_info *info = &priv->match_data->pll_info[pll->idx];
++	unsigned int value, cfg;
++	int ret;
++
++	cfg = ((u32)val->fbdiv << JHB100_PLL_FBDIV_SHIFT) |
++	      ((u32)val->foutpostdiv_en << JHB100_PLL_FOUTPOSTDIV_EN_SHIFT) |
++	      ((u32)val->foutvcop_en << JHB100_PLL_FOUTVCOP_EN_SHIFT);
++
++	ret = regmap_update_bits(priv->regmap, JHB100_PLLX_CFG0(info->offset),
++				 JHB100_PLL_FBDIV | JHB100_PLL_FOUTPOSTDIV_EN |
++				 JHB100_PLL_FOUTVCOP_EN, cfg);
++	if (ret)
++		return ret;
++
++	ret = regmap_update_bits(priv->regmap, JHB100_PLLX_CFG1(info->offset), JHB100_PLL_FRAC,
++				 val->frac << JHB100_PLL_FRAC_SHIFT);
++	if (ret)
++		return ret;
++
++	cfg = ((u32)val->refdiv << JHB100_PLL_REFDIV_SHIFT) |
++	      ((u32)val->postdiv << JHB100_PLL_POSTDIV_SHIFT);
++
++	ret = regmap_update_bits(priv->regmap, JHB100_PLLX_CFG2(info->offset),
++				 JHB100_PLL_REFDIV | JHB100_PLL_POSTDIV, cfg);
++	if (ret)
++		return ret;
++
++	/* waiting for PLL to lock */
++	return regmap_read_poll_timeout_atomic(priv->regmap, JHB100_PLLX_CFG1(info->offset),
++					       value, value & JHB100_PLL_LOCK,
++					       JHB100_PLL_INTERVAL_US,
++					       JHB100_PLL_TIMEOUT_US);
++}
++
++static int jhb100_pll_rate_to_preset(struct clk_hw *hw, unsigned long rate,
++				     unsigned long parent_rate)
++{
++	struct jhb100_pll_preset val = {
++		.refdiv = 1,
++		.postdiv = 3,
++		.foutpostdiv_en = 1,
++		.foutvcop_en = 0,
++	};
++	unsigned int power = 0;
++	unsigned long fbdiv_24, t;
++
++	if (val.foutpostdiv_en)
++		power = val.postdiv + 1;
++
++	t = val.refdiv << power;
++	t *= rate;
++
++	val.fbdiv = t / parent_rate;
++
++	fbdiv_24 = (t << 24) / parent_rate;
++	val.frac = fbdiv_24 - (val.fbdiv << 24);
++
++	return jhb100_pll_set_preset(hw, &val);
++}
++
++static int jhb100_pll_set_rate(struct clk_hw *hw, unsigned long rate,
++			       unsigned long parent_rate)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	const struct jhb100_pll_info *info = &priv->match_data->pll_info[pll->idx];
++	const struct jhb100_pll_preset *val;
++	unsigned int idx;
++
++	/* if the parent rate doesn't match our expectations the presets won't work */
++	if (parent_rate != JHB100_PLL_OSC_RATE)
++		return -EINVAL;
++
++	if (info->continuous)
++		return jhb100_pll_rate_to_preset(hw, rate, parent_rate);
++
++	for (idx = 0, val = &info->presets[0]; idx < info->npresets; idx++, val++) {
++		if (val->freq == rate)
++			return jhb100_pll_set_preset(hw, val);
++	}
++	return -EINVAL;
++}
++
++#ifdef CONFIG_DEBUG_FS
++static int jhb100_pll_registers_read(struct seq_file *s, void *unused)
++{
++	struct jhb100_pll_data *pll = s->private;
++	struct jhb100_pll_priv *priv = jhb100_pll_priv_from(pll);
++	struct jhb100_pll_regvals val;
++	int ret;
++
++	ret = jhb100_pll_regvals_get(priv->regmap, &priv->match_data->pll_info[pll->idx], &val);
++	if (ret)
++		return ret;
++
++	seq_printf(s, "fbdiv=%u\n"
++		      "frac=%u\n"
++		      "refdiv=%u\n"
++		      "postdiv=%u\n"
++		      "foutpostdiv_en=%u\n"
++		      "foutvcop_en=%u\n",
++		      val.fbdiv, val.frac, val.refdiv, val.postdiv,
++		      val.foutpostdiv_en, val.foutvcop_en);
++
++	return 0;
++}
++
++static int jhb100_pll_registers_open(struct inode *inode, struct file *f)
++{
++	return single_open(f, jhb100_pll_registers_read, inode->i_private);
++}
++
++static const struct file_operations jhb100_pll_registers_ops = {
++	.owner = THIS_MODULE,
++	.open = jhb100_pll_registers_open,
++	.release = single_release,
++	.read = seq_read,
++	.llseek = seq_lseek
++};
++
++static void jhb100_pll_debug_init(struct clk_hw *hw, struct dentry *dentry)
++{
++	struct jhb100_pll_data *pll = jhb100_pll_data_from(hw);
++
++	debugfs_create_file("registers", 0400, dentry, pll,
++			    &jhb100_pll_registers_ops);
++}
++#else
++#define jhb100_pll_debug_init NULL
++#endif
++
++static const struct clk_ops jhb100_pll_ops = {
++	.enable = jhb100_pll_enable,
++	.disable = jhb100_pll_disable,
++	.is_enabled = jhb100_pll_is_enabled,
++	.recalc_rate = jhb100_pll_recalc_rate,
++	.determine_rate = jhb100_pll_determine_rate,
++	.set_rate = jhb100_pll_set_rate,
++	.debug_init = jhb100_pll_debug_init,
++};
++
++static struct clk_hw *jhb100_pll_get(struct of_phandle_args *clkspec, void *data)
++{
++	struct jhb100_pll_priv *priv = data;
++	unsigned int idx = clkspec->args[0];
++
++	if (idx < priv->match_data->num_pll)
++		return &priv->pll[idx].hw;
++
++	return ERR_PTR(-EINVAL);
++}
++
++static int __init jhb100_pll_probe(struct platform_device *pdev)
++{
++	const struct jhb100_pll_match_data *match_data;
++	struct jhb100_pll_priv *priv;
++	unsigned int idx;
++	int ret;
++
++	match_data = of_device_get_match_data(&pdev->dev);
++	if (!match_data)
++		return -EINVAL;
++
++	priv = devm_kzalloc(&pdev->dev,
++			    struct_size(priv, pll, match_data->num_pll),
++			    GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->match_data = match_data;
++	priv->dev = &pdev->dev;
++	priv->regmap = syscon_node_to_regmap(priv->dev->of_node);
++	if (IS_ERR(priv->regmap))
++		return PTR_ERR(priv->regmap);
++
++	for (idx = 0; idx < match_data->num_pll; idx++) {
++		struct clk_parent_data parents = {
++			.index = 0,
++		};
++		struct clk_init_data init = {
++			.name = match_data->pll_info[idx].name,
++			.ops = &jhb100_pll_ops,
++			.parent_data = &parents,
++			.num_parents = 1,
++			.flags = match_data->pll_info[idx].flag,
++		};
++		struct jhb100_pll_data *pll = &priv->pll[idx];
++
++		pll->hw.init = &init;
++		pll->idx = idx;
++
++		ret = devm_clk_hw_register(&pdev->dev, &pll->hw);
++		if (ret)
++			return ret;
++	}
++
++	return devm_of_clk_add_hw_provider(&pdev->dev, jhb100_pll_get, priv);
++}
++
++static const struct jhb100_pll_preset jhb100_pll2_presets[] = {
++	{
++		.freq = 903168000,
++		.fbdiv = 72,
++		.frac = 4252017,
++		.refdiv = 1,
++		.postdiv = 0,
++		.foutpostdiv_en = 1,
++		.foutvcop_en = 0,
++	},
++};
++
++static const struct jhb100_pll_preset jhb100_pll3_presets[] = {
++	{
++		.freq = 800000000,
++		.fbdiv = 64,
++		.frac = 0,
++		.refdiv = 1,
++		.postdiv = 0,
++		.foutpostdiv_en = 1,
++		.foutvcop_en = 0,
++	},
++};
++
++static const struct jhb100_pll_info jhb100_sys0_pll_info[] = {
++	JHB100_PLL(JHB100_SYS0PLL_PLL2_OUT, "pll2_out", jhb100_pll2_presets,
++		   ARRAY_SIZE(jhb100_pll2_presets), JHB100_PLL2_OFFSET, false),
++	_JHB100_PLL(JHB100_SYS0PLL_PLL3_OUT, "pll3_out", jhb100_pll3_presets,
++		    ARRAY_SIZE(jhb100_pll3_presets), JHB100_PLL3_OFFSET,
++		    CLK_IS_CRITICAL, false),
++	_JHB100_PLL(JHB100_SYS0PLL_PLL4_OUT, "pll4_out", NULL, 0,
++		    JHB100_PLL4_OFFSET, CLK_IGNORE_UNUSED, true),
++	_JHB100_PLL(JHB100_SYS0PLL_PLL5_OUT, "pll5_out", NULL, 0,
++		    JHB100_PLL5_OFFSET, CLK_IGNORE_UNUSED, true),
++};
++
++static const struct jhb100_pll_match_data jhb100_sys0_pll = {
++	.pll_info = jhb100_sys0_pll_info,
++	.num_pll = ARRAY_SIZE(jhb100_sys0_pll_info),
++};
++
++static const struct of_device_id jhb100_pll_match[] = {
++	{
++		.compatible = "starfive,jhb100-sys0-syscon",
++		.data = &jhb100_sys0_pll,
++	},
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, jhb100_pll_match);
++
++static struct platform_driver jhb100_pll_driver = {
++	.driver = {
++		.name = "clk-starfive-jhb100-pll",
++		.of_match_table = jhb100_pll_match,
++	},
++};
++builtin_platform_driver_probe(jhb100_pll_driver, jhb100_pll_probe);
 -- 
 2.25.1
 
