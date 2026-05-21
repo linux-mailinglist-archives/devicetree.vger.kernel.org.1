@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-301072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2A79DCjADmpDCAYAu9opvQ
-	(envelope-from <devicetree+bounces-301072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:19:52 +0200
+	id SPqkDpHADmrXBwYAu9opvQ
+	(envelope-from <devicetree+bounces-301073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:21:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 371B45A0ED8
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A2A5A0F1C
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:21:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5630C300462A
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:19:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E420130046BB
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:21:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C994F332EA2;
-	Thu, 21 May 2026 08:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A499E347515;
+	Thu, 21 May 2026 08:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LgpDwOz/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KA0mc5+S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB68D3090F4
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591392ED860;
+	Thu, 21 May 2026 08:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779351585; cv=none; b=XjL0taIDkTTMkMCvO4Jlkoor/G7ngSKaBbxTF6J3RKWTxaJpyofhO11LRiZzuYUaEMc/Lw1NVGcVRWXg+in+DGX9nEDBRlcot4xJpp43Nai9iO3rMVapiJPCnjwTspDwyOMCZt+a1o70bdfpNPffJzWGUdemoIqsF3hZpECxrVQ=
+	t=1779351691; cv=none; b=LTrT5aT25KAhF9VeWEPfEa74g9Me30GytHEGaGQqhUKuRuHyw3L+Yg2BxzEQJ0Pueqr07lHaEzC2Q2tnmyLiZYZVuGF5GtcAhFIgT5jOZgnCQjcoa0LH++vRQ84ecCcCCdanNycqDb13xR38IfM3zUZ/3mC6b1MQC6TBENwCwMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779351585; c=relaxed/simple;
-	bh=9DjWiZ9eKzjV/RR+718cLs9IsQ4urlE0+mMcUsf7q3I=;
+	s=arc-20240116; t=1779351691; c=relaxed/simple;
+	bh=ZfEvdJmbSLV/BYoSnh/NDHvbvOvarI+N2DALAuf7eIA=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=d0KkZ8jayF8HCgOprq/Wcagz7czDHFnJRRQzpUAOK5ha39Eb07ORb9E8iRBgI4pRn6BF9wHLLDL6R7HdViPWp3rDz3gq9ggpBlBU27NsCHkzHyF7hx04xHdp0bmsMCNI3a2hU0lzc7jcjbgsDkkxQd5bsRWBzLy4dnN3zWQOkJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LgpDwOz/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CDAC1F000E9;
-	Thu, 21 May 2026 08:19:42 +0000 (UTC)
+	 Message-Id; b=KiIch+gbqLsrrvz8y5Vg3Dd3Ltn0OPqAdX2q0fHKza56Rsi1zcMj+scJQX26+am0gGl3PnVaOG7L8Zxd0zxcQBqiZi0Z/6nSdLgKzbpLnPlw22XBQ2G3ga4qJSbPyplwGKoP418kJ4d7CF5FmZUqN0bZ+aE4VcHcVq/2fmitA50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KA0mc5+S; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3FE1F00A3B;
+	Thu, 21 May 2026 08:21:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779351584;
-	bh=LR96YHAoUJW/rEF9Igwm6oGauP81UOFaTxSLrGbLiFs=;
+	s=k20260515; t=1779351690;
+	bh=RsTL9FOW4wrOkfMOa0WAFaXlKJyboMFZ1uHWJa5m12c=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=LgpDwOz/fj3WNNACrPxJpGXHKjQKTsfmlU1z6vz0x6PRI/ZTSs90YvUgT6b2DaJ3V
-	 yz/Qp/9dFctkOlpRcKcVAbKzdtamfGjuchIRYeMc7bLxJqoEPYALXJuFPOfdpX3+i6
-	 IvE9TZN09xVisq6tS5EnwG7ME15nk9IrJVjKALS8deaMk+wR1YIvuYceq3E1wmQo7K
-	 mN9d7knF3zbLzyCy8/Gych9teDrfkEICYUobBnBk3SrmUfpz+kbZ1LaVq4jH682MOK
-	 yKbTLPPBelo9cCW9ej+TdnFybSkLPjG1QEHd63W4Ifowf84Tv5ta+EoHqQeNRTH7Qr
-	 vyC6LxbcYljAw==
+	b=KA0mc5+SKIb1Tbp6M9FDpKHI7hyt7xhCLJ51gYspXbV2dgYWUnY7zFuEj0MDG0vNW
+	 CH88QlX271eCpX065CiHu/mviFcpKwcPysfm5+t9xhq5ZvkB5vea+zBaoIn0JXl30y
+	 dmzkHpc+XXJ12aANnYkd3toSE4JJiD2yPDQLJ13JEERs17eS6afzZ+Dm07rUGT4lu8
+	 LxiQFcDXj10grrYNXOTtXF3QkVCDwQ4FXFNwrGqiMYv2UPlZbiTwipTFq7gblOuIdR
+	 4MR75rc4cpGlFb6J6pyq5ncW2QUnz9g9g+eU2RCKDYry4UKaKxPHxXbkYtsgdbZgaU
+	 5OABAdAeb0T5A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds: backlight: document the
- SY7758 6-channel High Efficiency LED Driver
+Subject: Re: [PATCH v8 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-1-73c732615e4a@linaro.org>
-References: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-1-73c732615e4a@linaro.org>
+To: "Xianwei Zhao via B4 Relay" <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, neil.armstrong@linaro.org, vkoul@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260521-amlogic-dma-v8-1-86cc2ce94142@amlogic.com>
+References: <20260521-amlogic-dma-v8-1-86cc2ce94142@amlogic.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 21 May 2026 08:19:42 +0000
-Message-Id: <20260521081943.4CDAC1F000E9@smtp.kernel.org>
+Date: Thu, 21 May 2026 08:21:29 +0000
+Message-Id: <20260521082129.9F3FE1F00A3B@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,88 +71,100 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301072-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301073-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,xianwei.zhao.amlogic.com,dt];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,linaro.org:email,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 371B45A0ED8
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,amlogic.com:email]
+X-Rspamd-Queue-Id: 44A2A5A0F1C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] Missing main power supply property (e.g., `vin-supply` or `vsys-sup=
-ply`) for the LED boost converter.
+- [Low] The macros DMA_TX and DMA_RX are defined in a global header without=
+ any vendor or subsystem prefix.
+- [Low] The binding specifies `#dma-cells: const: 2` but fails to document =
+the semantics of the two cells.
 --
 
-commit f0b2513f96c13c59660da8495c808919bb4b44ab
-Author: Neil Armstrong <neil.armstrong@linaro.org>
+commit 7a02c7e6145050221d77d7a4745ee4d4e651163b
+Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-dt-bindings: leds: backlight: document the SY7758 6-channel High Efficiency=
- LED Driver
+dt-bindings: dma: Add Amlogic A9 SoC DMA
 
-Document the Silergy SY7758 6-channel High Efficiency LED Driver
-used for backlight brightness control.
+This commit adds device tree binding documentation for the Amlogic A9 SoC
+general-purpose DMA controller. It also introduces a new dt-bindings header
+file with property values for the DMA transfer directions.
 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/silergy,sy7=
-758.yaml b/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.=
-yaml
+> diff --git a/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml b/=
+Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
 > new file mode 100644
-> index 0000000000000..80e978d691c29
+> index 0000000000000..efd7b2602c336
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/backlight/silergy,sy7758.yaml
-
+> +++ b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
 [ ... ]
-
 > +properties:
 > +  compatible:
-> +    const: silergy,sy7758
+> +    const: amlogic,a9-dma
+[ ... ]
+> +  clock-names:
+> +    const: sys
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vddio-supply: true
+> +  '#dma-cells':
+> +    const: 2
 
 [Severity: Low]
-Should there be a vin-supply or vsys-supply property included here for the
-main power input?
+Should this include a description explaining what the two cells represent?
 
-Looking at the driver implementation, it references VBST (V-Boost) register=
-s,
-confirming it operates as a boost converter to drive multiple LED channels.
-A logic I/O supply like vddio-supply typically cannot provide the high
-current required to drive a boost coil for a backlight.
-
-Omitting the primary power supply could prevent the kernel from actively
-managing the main power rail on boards where it is switchable.
-
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +required:
+Usually bindings with multiple cells document the semantics of each cell
+(e.g., first cell for the request line, second for transfer direction) so
+clients know how to construct their dmas specifier.
 
 [ ... ]
+> diff --git a/include/dt-bindings/dma/amlogic,a9-dma.h b/include/dt-bindin=
+gs/dma/amlogic,a9-dma.h
+> new file mode 100644
+> index 0000000000000..c59c2fd4b9561
+> --- /dev/null
+> +++ b/include/dt-bindings/dma/amlogic,a9-dma.h
+> @@ -0,0 +1,8 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +
+> +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> +
+> +#define DMA_TX			0
+> +#define DMA_RX			1
+
+[Severity: Low]
+Would it be safer to add a vendor or device prefix to these macros?
+
+Since this header is globally accessible and can be included in both device
+tree sources and driver code, generic names like DMA_TX and DMA_RX might
+cause macro redefinition conflicts with other kernel components. Adding a
+prefix like AMLOGIC_A9_ would avoid this.
+
+> +#endif /* __DT_BINDINGS_DMA_AMLOGIC_DMA_H__ */
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-topic-sm86=
-50-ayaneo-pocket-s2-sy7758-v4-0-73c732615e4a@linaro.org?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-amlogic-dm=
+a-v8-0-86cc2ce94142@amlogic.com?part=3D1
 
