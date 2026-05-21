@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-301340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301231-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNeBH8YfD2pSGAYAu9opvQ
-	(envelope-from <devicetree+bounces-301340-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 17:07:50 +0200
+	id KJweCZX6DmoSDwYAu9opvQ
+	(envelope-from <devicetree+bounces-301231-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:29:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5B85A7ED3
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 17:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6C15A4D08
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:29:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60DA13315A67
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:09:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1D0D3095615
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 12:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D465E30BF66;
-	Thu, 21 May 2026 14:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB223D092E;
+	Thu, 21 May 2026 12:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hqdjcljG"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EXC1F9yu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3290.qiye.163.com (mail-m3290.qiye.163.com [220.197.32.90])
+Received: from mail-m32118.qiye.163.com (mail-m32118.qiye.163.com [220.197.32.118])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D59626ED25;
-	Thu, 21 May 2026 14:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E783CF02E;
+	Thu, 21 May 2026 12:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.118
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779372494; cv=none; b=Hc+v1SUBvTMOeMNgFrQymZlP/ymMj+eCf//QzBKUVLnW5+blNL8r4L1tCC1xZR62jVhL0GDaf20SaXTIAI5zVPalD6RJhtmiD3u/ZaB/mxdJPlmQUn3kFr0wbOwOWn7B//GeQ+fUlN7WF/srUCkXG52p7Vqbyfzqs8hf3npkoQc=
+	t=1779366055; cv=none; b=GPYKAk41CXHTaMeNo/a6zu7Iktob2jOrvykz4Fh3BRur9DUfHX28LAlkDnJtspduzw4yJJmxbHUlEBGPeNqCBSA+Ujel53G5wAkxTdedA0VAvzDjZWfdkdT9JG1bExU9qyw4gZNqi/CklUkgBDjXwcuS3DI1fmJLGnG5FMdCuPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779372494; c=relaxed/simple;
-	bh=PzCfdeMgxHZUAy6GyRAEU851bWonkK4ZMObu0m3qBQE=;
+	s=arc-20240116; t=1779366055; c=relaxed/simple;
+	bh=4BWCPZnCEYs5vgRGHHEtO//oZUNtWemwT86caw3lyn4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TMot0GFubomhXyZYoh5JKK7h7iPZA5Ow0y8uoclm5xu3cZR/kMW77nQvQjYxBCK2M1cosLknms1kLx9V1bcRkaattesncm9HJxVmDVEvLMuWPE72JwFIj/0KeqXgR0Gs/D/asbH8s3gbkJOLgW2yApb6DKTLBdWJlQWMuo2cCsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hqdjcljG; arc=none smtp.client-ip=220.197.32.90
+	 MIME-Version; b=H/PErf5s6kd5z6J8APBv2qp3GtOETwD89zFYegvw6h/742Ibylwum81WYugVrny+Q65QCvV/pw9mS38CcfhCtmNjZkFln58iJ/5G9jnvi8rfRCKbu31lI7w5Ht/qmewHTahBqCSYu7sLZ/BUdJEzkxw0WEbv1oBdEolinbKbUg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EXC1F9yu; arc=none smtp.client-ip=220.197.32.118
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3f5009432;
-	Thu, 21 May 2026 19:45:13 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3f5009434;
+	Thu, 21 May 2026 19:45:14 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: hjc@rock-chips.com,
 	heiko@sntech.de,
@@ -68,9 +68,9 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v2 1/3] dt-bindings: display: bridge: analogix-dp: Add data-lanes support for endpoint
-Date: Thu, 21 May 2026 19:44:57 +0800
-Message-Id: <20260521114459.1394264-2-damon.ding@rock-chips.com>
+Subject: [PATCH v2 2/3] dt-bindings: rockchip: analogix-dp: Add data-lanes example
+Date: Thu, 21 May 2026 19:44:58 +0800
+Message-Id: <20260521114459.1394264-3-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260521114459.1394264-1-damon.ding@rock-chips.com>
 References: <20260521114459.1394264-1-damon.ding@rock-chips.com>
@@ -81,15 +81,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e4a5a9f7303a3kunmad9184e677768
+X-HM-Tid: 0a9e4a5aa4a203a3kunmad9184e67776c
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGkJLVk1DSEkeGB4YTE1IS1YVFA
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTRhCVkpPGB1NSB0dGB4eT1YVFA
 	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
 	pKQk1VSktLVUpCWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=hqdjcljGsxyTmfX06y3C3Se7JNYUa+1+U/AnCJYEDwzLTCpDOT65czKGEl1ajeT5UUJVHGeGEaCZOT8rG6eXZGp4wldTEtvfJpmFZiJWLK5rpYSJjz3ceQxw1sNTIjH3lYKxznkaWp+TX4cBZxcT70HqGZOwHTE7k97Tu7CU8O8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=Xu79CGy7oXgHkId0a/dytBXCz0cn2ptJALLOPB88Bf8=;
+	b=EXC1F9yuTc+tl5/F+N4awUmmaKrZe9mRfjiMId9aWVSauh2NxtXP9orD84HZrTLA7f8DGJkCLMhAlGy5/HB5EPvlVTl9hen/oXiLd3Q9DEB66SvpTsDZ8OFBa7NugzdDBuO4IcCFv1NNZcmQcmjmPVR2XsxYF4mVBgHn7IEhfvw=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=KlebGy4vmLFS3sABadJGKLU3IR8mYj+LJC5u2ExLQAI=;
 	h=date:mime-version:subject:message-id:from;
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -102,7 +102,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301340-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301231-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -119,63 +119,31 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 5E5B85A7ED3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 4A6C15A4D08
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add data-lanes property support to the port@1 endpoint for physical
-lane mapping configuration.
-
-Lane mapping is mainly used for below scenarios:
-1. Correct PCB lane swap and differential line routing crossover
-   without hardware changes;
-2. Adapt mismatched lane pin definitions between SoC and eDP panel;
-3. Support multiple panel hardware variants on the same board
-   by configuring data-lanes in device tree only.
+Add data-lanes setting in endpoint example to show actual lane mapping
+usage.
 
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-
 ---
+ .../bindings/display/rockchip/rockchip,analogix-dp.yaml          | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-- Add lane mapping application scenarios in commit message.
-- Remove redundant deprecated property 'data-lanes' for eDP node.
-- Update port@1 $ref to /schemas/graph.yaml#/$defs/port-base.
----
- .../bindings/display/bridge/analogix,dp.yaml    | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml
-index 62f0521b0924..e34fdb21adb4 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml
-@@ -42,13 +42,20 @@ properties:
-     properties:
-       port@0:
-         $ref: /schemas/graph.yaml#/properties/port
--        description:
--          Input node to receive pixel data.
-+        description: Input node to receive pixel data.
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+index bb75d898a5c5..cf75c926318b 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+@@ -151,6 +151,7 @@ examples:
+           reg = <1>;
  
-       port@1:
--        $ref: /schemas/graph.yaml#/properties/port
--        description:
--          Port node with one endpoint connected to a dp-connector node.
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        description: Port node with one endpoint connected to sink device node.
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            properties:
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+                items:
-+                  enum: [ 0, 1, 2, 3 ]
- 
-     required:
-       - port@0
+           edp_out_panel: endpoint {
++            data-lanes = <0 1>;
+             remote-endpoint = <&panel_in_edp>;
+           };
+         };
 -- 
 2.34.1
 
