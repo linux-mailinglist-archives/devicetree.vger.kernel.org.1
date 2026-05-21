@@ -1,465 +1,179 @@
-Return-Path: <devicetree+bounces-301058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301153-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2AviG3O9Dmr1BwYAu9opvQ
-	(envelope-from <devicetree+bounces-301058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:08:19 +0200
+	id uE8uLhvWDmr2CQYAu9opvQ
+	(envelope-from <devicetree+bounces-301153-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:53:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0FE5A0B86
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:08:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B055A2B78
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:53:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C4B1D302AF35
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:08:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A88363154C01
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 470E13A3803;
-	Thu, 21 May 2026 08:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0801336655B;
+	Thu, 21 May 2026 09:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W844u0n0"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="LXD4Wsjk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49247.qiye.163.com (mail-m49247.qiye.163.com [45.254.49.247])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633233A255F
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF7E34B1B0;
+	Thu, 21 May 2026 09:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779350890; cv=none; b=ONti6BpHwTaqGZRw/Dds37MFquKzYk9cKz+st+i8dnH9sgDaGvM7nhKnbfIUUSU4abv9FED3bK7F0RiLKO/yyKxh2wpRhbR4KFd2IeB5DHPcfylQ1Q2Vx895/DWI2Bo6Rp1PiA6U1QEdfpu9JgLJp0HSSrxwqgmlwh0voZSBzD4=
+	t=1779355491; cv=none; b=Kp4YgmuHOQXF7AJfsovu2YabGlaB8Sx4teBrwfgsSc9HGy6jWPh9HdZnSEuNnxN13hh5BcPWXQxs5gFKmNk27t2RIzlFgOgif8BHlOCoql5F8fE+YzXqvx8kTRwJYdAsPHTRCoHGNfDRoAW5z3kbOrQWcg7cdaOBnZ6no9iXwiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779350890; c=relaxed/simple;
-	bh=YM4aydwESMgjV/jGUV++ipJrCu/qhshZ0GSCTAoHrLM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hPpfQ5nLJYS52Om4KS/N8ZMCL5zH2FMpUuFXJlGyK+mId29LnpR2nNu38GMnq6dPmytRDNcsJMB9Yt3taUbUeAKlblEDNZ560dpWOHkIRKl35s/FczjqZ4BXA4sHhw+RTYczN1EdphoEi0uIcVOsX7dB6WUrJBEuHxQ8wFkUQEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W844u0n0; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-44a5174670eso3387495f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:08:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779350886; x=1779955686; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hqmwp3XSllutSgEQB4jfU8Pcl5vqj8wTCUN+On/194E=;
-        b=W844u0n0KB5faTISphy5D4W4nxSxVCWuhdDOn2FH3fPny0Yk05FqARrSdY8eb7jdlk
-         Ch86mlMTsBURFe/3xmo3+b2XdiYOcT0bnBz11V9pwonvbHnm1P+Ym5pcihd9jgTw7x6W
-         l5zt2gBYta/7GWjD8tsWuhUkYL6DtNFHw8sB0BE5OB8d9xCUxSuhdow0188JrhJeWhKe
-         BKXEp2kaGXLD5YTt42DGast4z89381gxJKJR92X1VxAO6hkVVA5W6pfrjK84cEddUt94
-         SnJMlCTQIZHsCQuLsBsx6F1t2uFzztzcU07PZAp1D5hxpmb2g+eHSf72y2IVKdZVD04Y
-         wZmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779350886; x=1779955686;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hqmwp3XSllutSgEQB4jfU8Pcl5vqj8wTCUN+On/194E=;
-        b=Rjcul2xO7uuNzPyH0ezVuVR96XtQ19FwiaqS8JM0qZ91fxfS7rZBsYSh72b3z6w4AK
-         2ZXcf+InVcUsH3UjNB/zRtVmMgqkiCYcl+gLe1J9CqG/r0j8iGCKkpEUoXyqBeCuRxSq
-         RVRT+9J+NC24T81CyLF0A/IJ8aRyYT9IH1A8Mh+g4+MqyWBXkmCl1VnEYEtGAUAPP8DM
-         cGex5rI/LmmL8Ulh3QbSoPNxzPKZm6ES1JzpBczcOHzgkeyU/cFl6Lp+EYrlw2u89DMm
-         15wA+NGZq0iWTw8BXVI51tVYvwHWkX0itAN3TJHHPGC0EsdrZRz7o/7nZOxrYXn5Js8w
-         RghA==
-X-Forwarded-Encrypted: i=1; AFNElJ8qSYuWidvqfTN0MB4S4Joj6yoXX3XFfZAHabLZtJiTKzyv06UP0LW2gIi+YmzUGrDIZzvpygszHnNI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE3Dmmq0n7ic4hhWBSaddLhduUuo1XJ6yn3391fHDfgEKBiUbH
-	reZPMuYzAcGAPhwfJrKdZ30KXCWQYNxzSLAREDD2xjix9r0y6ywcuYxs+ZdyDFvaEvTBb3jIrus
-	2y75o
-X-Gm-Gg: Acq92OGLZIQ5Uf6Aoexemw4wAEUlgg95yxpG2qN6K4cLVPWMj44U3vXO4SrVC151v4S
-	cPJEtPc4dOQAq9TW9r1bz5dcxLFYOnsxWXYLdP8hv72Pfad5K2IjgHpxGIESoCePbalYRW8NSmL
-	e9pWecgvcRB1jyRMB8yCFPzNv22Ws2rRnzWn3LJSdtk7qXte7MlDgr+um67N+JLeGN2slIQEaWB
-	E51xppk/oVLG42Sd5lQQgvSRxLgsXi1H1kluCuYjGXCE8Rf4V2use3r64+Uh0FieKtNoZ87FnTx
-	i2seoRXZs/EqcSo/DiVSCn1SK97Qb2CfVkcd3A9rmCwYOubCJFYnnwQbVXNyJGK04ZH/mQUf2vh
-	1KoZalDaIHKwm+5UmINpQy3DYIueLpv2dfcHMGfPed5HyoKZ76pz8l90QxECLEsbPL6DxJyfsgn
-	wvXJP0YBqubMZK9J61BYMnnp+G8yejt5KK8UC7dolFsvj0
-X-Received: by 2002:a05:600c:45c6:b0:488:ac01:72de with SMTP id 5b1f17b1804b1-49036033502mr22829275e9.5.1779350885518;
-        Thu, 21 May 2026 01:08:05 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eaa92ca4esm814369f8f.22.2026.05.21.01.08.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 01:08:05 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 21 May 2026 10:08:01 +0200
-Subject: [PATCH v4 2/2] backlight: Add SY7758 6-channel High Efficiency LED
- Driver support
+	s=arc-20240116; t=1779355491; c=relaxed/simple;
+	bh=enxS6LX75gY+Zwhp7EmegJ4TAofUxMIXqCA7oF6YGhk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KFuK0jyu+qVN3UT3XAqxc+uca/EQzo7FZfMY7xoJt/jyfVvluI6KMMOWT69OM9nUD6TaJ2h4FbeVCGWiheVCQo4Az195kOapFIO3PayDMDfSwu+2CK2HZOtQK7Gp6F7gCNBzesTCHS+ZWj9hbbLk4Ozfqa53RpgLQpxz3ymzJy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=LXD4Wsjk; arc=none smtp.client-ip=45.254.49.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3f48aae48;
+	Thu, 21 May 2026 16:08:54 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v6 00/10] Add eDP support for RK3576
+Date: Thu, 21 May 2026 16:08:25 +0800
+Message-Id: <20260521080835.1362416-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-2-73c732615e4a@linaro.org>
-References: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-0-73c732615e4a@linaro.org>
-In-Reply-To: <20260521-topic-sm8650-ayaneo-pocket-s2-sy7758-v4-0-73c732615e4a@linaro.org>
-To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
-Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, KancyJoe <kancy2333@outlook.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9059;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=hejPZrQ9SUd6MBtEDhNk7MB+lykwJGM3b2AfdI4PgS0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqDr1iNl+h8A/oQZ3DGDFQqAjp7LOGLMYbn5N0O5r1
- pftF2FiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCag69YgAKCRB33NvayMhJ0dfvEA
- C1J1n3YlTRKzMOie9ESSzPDglS9AEq0GgP3WeSUIDZx2tK8t3CqxtClVHl5EKNNhbKzv5oEZCRKi3g
- Gu53zhdzaREkWyXG7ytUP9JTFyOiMMah4EeGwSbPnsxuA7KQqQqM0lehFZY066nYH378bfh7l2V3IO
- iDUiZTROYr0piNlmWwsxB8ZX7OIXTekS6Yo+zP8HXiUFQNx8HbDJyT4cn7v1+d6EAdpJoVjIJ3JhxD
- qKXMx9vwP63si+LAm2rAAuz5SjTLyfLMrEUj5PKW5ab9R8PuzQIqjjyKIfsicmYP1WZ3KkSQj3MM6+
- uss4IXMGWzAXLjxh6B5IFEGLulKtV7k1/hhCPUu1NL/d7f0LcYX0Trq16rnh4aG3fNyvg5Q8LVxIpa
- o/F6+8h174shFN6EXYCPSh3dH3ewyBdRdb40oE/mW3NxSse6JNAeRehBzpxkaW8XBfLZodlhgGK/q7
- PsZX84nz8RSf33PlTZWPHrdYdJkX8E2RMoktR+1YkqoM4KYMjrUvHH9yvW1wDEng9FroVjJrIhGS8J
- HesQovwRCwKIsAiNCNFQl2p6+RfsGOWJATDUvyFgQX95wGv3ts412mHB/oyn2CD1TDhoffynWfIRs0
- WmNBOE35T7b11dlmYwL16lAcueUy/zY5k1Uy8uZfsDa9F7kgsZ+xsFV+rqAg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e499494ea03a3kunm810e96ea5eb72
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSBlCVkgeHRgYGUpPSkxMHVYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZS1VLVUtVS1
+	kG
+DKIM-Signature: a=rsa-sha256;
+	b=LXD4WsjkCNBPEVPlMwLHc2gloJVQYGAY4DGswlt1lXdamyW22XQww3iCr8GTX90W084ddQKWhuYH152tlELjsvedgx2TlVuELesTuCNKBBGBwWGU9zoyP02k03PyWMaU6hjot4vD7sen5pVLPaXyb17LE7MTTuBBLtEqyMyCEvM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=GyFf527O1l0SXTpuwsi/Qfvpfrf3BrGga1wKoHFIU0I=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301058-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301153-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,gmx.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,outlook.com,linaro.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:mid,linaro.org:dkim,outlook.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 0A0FE5A0B86
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rock-chips.com:mid,rock-chips.com:dkim]
+X-Rspamd-Queue-Id: 15B055A2B78
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: KancyJoe <kancy2333@outlook.com>
+Patch 1-5 are to add missing clock "hclk" for RK3588 eDP nodes.
+Patch 6-7 are to add the RK3576 eDP node.
+Patch 8~10 are to support the RK3576 Analogix DP controller.
 
-Implement support for the Silergy SY7758 6-channel High Efficiency LED
-Driver used for backlight brightness control in the Ayaneo Pocket S2
-dual-DSI panel.
+This series is followed by the [0] series.
 
-Signed-off-by: KancyJoe <kancy2333@outlook.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+[0] https://lore.kernel.org/all/20260409065301.446670-1-damon.ding@rock-chips.com/
+
+Damon Ding (10):
+  dt-bindings: display: rockchip: analogix-dp: Fix hclk as third clock
+    for RK3588
+  dt-bindings: display: rockchip: analogix-dp: Add per-clock
+    descriptions
+  arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
+  arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
+  drm/rockchip: analogix_dp: Enable hclk for RK3588
+  dt-bindings: display: rockchip: analogix-dp: Add support for RK3576
+  arm64: dts: rockchip: Add eDP node for RK3576
+  drm/bridge: analogix_dp: Rename and simplify is_rockchip()
+  drm/bridge: analogix_dp: Add support for RK3576
+  drm/rockchip: analogix_dp: Add support for RK3576
+
+ .../rockchip/rockchip,analogix-dp.yaml        | 44 ++++++++++++++++---
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 28 ++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  4 +-
+ .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |  4 +-
+ .../drm/bridge/analogix/analogix_dp_core.c    |  3 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 18 ++++----
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 15 +++++++
+ include/drm/bridge/analogix_dp.h              | 13 +++++-
+ 8 files changed, 108 insertions(+), 21 deletions(-)
+
 ---
- drivers/video/backlight/Kconfig  |   8 ++
- drivers/video/backlight/Makefile |   1 +
- drivers/video/backlight/sy7758.c | 259 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 268 insertions(+)
 
-diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-index a7a3fbaf7c29..a1f70a2bae99 100644
---- a/drivers/video/backlight/Kconfig
-+++ b/drivers/video/backlight/Kconfig
-@@ -207,6 +207,14 @@ config BACKLIGHT_KTZ8866
- 		Say Y to enable the backlight driver for the Kinetic KTZ8866
- 		found in Xiaomi Mi Pad 5 series.
- 
-+config BACKLIGHT_SY7758
-+	tristate "Backlight Driver for Silergy SY7758"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Say Y to enable the backlight driver for the Silergy SY7758
-+	  backlight controller found in Ayaneo Pocket S2.
-+
- config BACKLIGHT_LM3533
- 	tristate "Backlight Driver for LM3533"
- 	depends on MFD_LM3533
-diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-index 794820a98ed4..39ef588b1cf2 100644
---- a/drivers/video/backlight/Makefile
-+++ b/drivers/video/backlight/Makefile
-@@ -56,6 +56,7 @@ obj-$(CONFIG_BACKLIGHT_PWM)		+= pwm_bl.o
- obj-$(CONFIG_BACKLIGHT_QCOM_WLED)	+= qcom-wled.o
- obj-$(CONFIG_BACKLIGHT_RT4831)		+= rt4831-backlight.o
- obj-$(CONFIG_BACKLIGHT_SAHARA)		+= kb3886_bl.o
-+obj-$(CONFIG_BACKLIGHT_SY7758)		+= sy7758.o
- obj-$(CONFIG_BACKLIGHT_SKY81452)	+= sky81452-backlight.o
- obj-$(CONFIG_BACKLIGHT_TPS65217)	+= tps65217_bl.o
- obj-$(CONFIG_BACKLIGHT_WM831X)		+= wm831x_bl.o
-diff --git a/drivers/video/backlight/sy7758.c b/drivers/video/backlight/sy7758.c
-new file mode 100644
-index 000000000000..198d55939438
---- /dev/null
-+++ b/drivers/video/backlight/sy7758.c
-@@ -0,0 +1,259 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Silergy SY7758 6-channel High Efficiency LED Driver
-+ *
-+ * Copyright (C) 2025 Kancy Joe <kancy2333@outlook.com>
-+ * Copyright (C) 2026 Linaro Limited
-+ * Author: Neil Armstrong <neil.armstrong@linaro.org>
-+ */
-+#include <linux/backlight.h>
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/of.h>
-+#include <linux/err.h>
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define DEFAULT_BRIGHTNESS	1024
-+#define MAX_BRIGHTNESS		4080
-+#define REG_MAX			0xAE
-+
-+/* Registers */
-+#define REG_DEV_CTL		0x01
-+#define REG_DEV_ID		0x03
-+#define REG_BRT_12BIT_L		0x10
-+#define REG_BRT_12BIT_H		0x11
-+
-+/* OTP memory */
-+#define REG_OTP_CFG0		0xA0
-+#define REG_OTP_CFG1		0xA1
-+#define REG_OTP_CFG2		0xA2
-+#define REG_OTP_CFG5		0xA5
-+#define REG_OTP_CFG9		0xA9
-+
-+/* Fields */
-+#define BIT_DEV_CTL_FAST	BIT(7)
-+#define MSK_DEV_CTL_BRT_MODE	GENMASK(2, 1)
-+#define BIT_DEV_CTL_BL_CTLB	BIT(0)
-+
-+#define MSK_BRT_12BIT_L		GENMASK(7, 0)
-+#define MSK_BRT_12BIT_H		GENMASK(3, 0)
-+
-+#define MSK_CFG0_CURRENT_LOW	GENMASK(7, 0)
-+
-+#define BIT_CFG1_PDET_STDBY	BIT(7)
-+#define MSK_CFG1_CURRENT_MAX	GENMASK(6, 4)
-+#define MSK_CFG1_CURRENT_HIGH	GENMASK(3, 0)
-+
-+#define BIT_CFG2_UVLO_EN	BIT(5)
-+#define BIT_CFG2_UVLO_TH	BIT(4)
-+#define BIT_CFG2_BL_ON		BIT(3)
-+#define BIT_CFG2_ISET_EN	BIT(2)
-+#define BIT_CFG2_BST_ESET_EN	BIT(1)
-+
-+#define BIT_CFG5_PWM_DIRECT	BIT(7)
-+#define MSK_CFG5_PS_MODE	GENMASK(6, 4)
-+#define MSK_CFG5_PWM_FREQ	GENMASK(3, 0)
-+
-+#define MSK_CFG9_VBST_MAX	GENMASK(7, 5)
-+#define BIT_CFG9_JUMP_EN	BIT(4)
-+#define MSK_CFG9_JUMP_TH	GENMASK(3, 2)
-+#define MSK_CFG9_JUMP_VOLTAGE	GENMASK(1, 0)
-+
-+struct sy7758 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct gpio_desc *gpio;
-+	struct backlight_device *bl;
-+};
-+
-+static const struct regmap_config sy7758_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = REG_MAX,
-+};
-+
-+static int sy7758_backlight_update_status(struct backlight_device *backlight_dev)
-+{
-+	struct sy7758 *sydev = bl_get_data(backlight_dev);
-+	unsigned int brightness = backlight_get_brightness(backlight_dev);
-+	int ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_BRT_12BIT_L,
-+			   FIELD_PREP(MSK_BRT_12BIT_L,
-+				      brightness & 0xff));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_BRT_12BIT_H,
-+			   FIELD_PREP(MSK_BRT_12BIT_H,
-+				      (brightness >> 8) & 0xf));
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct backlight_ops sy7758_backlight_ops = {
-+	.options = BL_CORE_SUSPENDRESUME,
-+	.update_status = sy7758_backlight_update_status,
-+};
-+
-+static int sy7758_init(struct sy7758 *sydev)
-+{
-+	int ret = 0;
-+
-+	ret = regmap_write(sydev->regmap, REG_DEV_CTL,
-+			   BIT_DEV_CTL_FAST | BIT_DEV_CTL_BL_CTLB |
-+			   FIELD_PREP(MSK_DEV_CTL_BRT_MODE, 2));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_BRT_12BIT_L,
-+			   FIELD_PREP(MSK_BRT_12BIT_L,
-+				      DEFAULT_BRIGHTNESS & 0xff));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_BRT_12BIT_H,
-+			   FIELD_PREP(MSK_BRT_12BIT_H,
-+				      (DEFAULT_BRIGHTNESS >> 8)));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_OTP_CFG5,
-+			   FIELD_PREP(MSK_CFG5_PS_MODE, 6) |
-+			   FIELD_PREP(MSK_CFG5_PWM_FREQ, 4));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_OTP_CFG0,
-+			   FIELD_PREP(MSK_CFG0_CURRENT_LOW, 85));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_OTP_CFG1,
-+			   BIT_CFG1_PDET_STDBY |
-+			   FIELD_PREP(MSK_CFG1_CURRENT_MAX, 1) |
-+			   FIELD_PREP(MSK_CFG1_CURRENT_HIGH, 10));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_OTP_CFG9,
-+			   FIELD_PREP(MSK_CFG9_VBST_MAX, 4));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(sydev->regmap, REG_OTP_CFG2,
-+			   BIT_CFG2_BL_ON | BIT_CFG2_UVLO_EN);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int sy7758_probe(struct i2c_client *client)
-+{
-+	struct backlight_properties props = { };
-+	struct device *dev = &client->dev;
-+	struct sy7758 *sydev;
-+	unsigned int dev_id;
-+	int ret;
-+
-+	sydev = devm_kzalloc(dev, sizeof(*sydev), GFP_KERNEL);
-+	if (!sydev)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, sydev);
-+
-+	/* Initialize regmap */
-+	sydev->client = client;
-+	sydev->regmap = devm_regmap_init_i2c(client, &sy7758_regmap_config);
-+	if (IS_ERR(sydev->regmap))
-+		return dev_err_probe(dev, PTR_ERR(sydev->regmap),
-+				     "failed to init regmap\n");
-+
-+	/* Get and enable regulators */
-+	ret = devm_regulator_get_enable(dev, "vddio");
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get regulator\n");
-+
-+	fsleep(100);
-+
-+	/* Get enable GPIO and set to high */
-+	sydev->gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(sydev->gpio))
-+		return dev_err_probe(dev, PTR_ERR(sydev->gpio),
-+				     "failed to get enable GPIO\n");
-+
-+	/* Let some time for HW to settle */
-+	fsleep(10000);
-+
-+	/* try read and check device id */
-+	ret = regmap_read(sydev->regmap, REG_DEV_ID, &dev_id);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to read device id\n");
-+	if (dev_id != 0x63) {
-+		dev_err(dev, "unexpected device id: 0x%02x\n", dev_id);
-+		return -ENODEV;
-+	}
-+
-+	/* Initialize and set default brightness */
-+	ret = sy7758_init(sydev);
-+	if (ret)
-+		return ret;
-+
-+	props.type = BACKLIGHT_RAW;
-+	props.max_brightness = MAX_BRIGHTNESS;
-+	props.brightness = DEFAULT_BRIGHTNESS;
-+	props.scale = BACKLIGHT_SCALE_LINEAR;
-+
-+	sydev->bl = devm_backlight_device_register(dev, "sy7758-backlight",
-+						   dev, sydev, &sy7758_backlight_ops,
-+						   &props);
-+	if (IS_ERR(sydev->bl))
-+		return dev_err_probe(dev, PTR_ERR(sydev->bl),
-+				     "failed to register backlight device\n");
-+
-+	return backlight_update_status(sydev->bl);
-+}
-+
-+static void sy7758_remove(struct i2c_client *client)
-+{
-+	struct sy7758 *sydev = i2c_get_clientdata(client);
-+
-+	backlight_disable(sydev->bl);
-+}
-+
-+static const struct i2c_device_id sy7758_ids[] = {
-+	{ "sy7758" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, sy7758_ids);
-+
-+static const struct of_device_id sy7758_match_table[] = {
-+	{ .compatible = "silergy,sy7758", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, sy7758_match_table);
-+
-+static struct i2c_driver sy7758_driver = {
-+	.driver = {
-+		.name = "sy7758",
-+		.of_match_table = sy7758_match_table,
-+	},
-+	.probe = sy7758_probe,
-+	.remove = sy7758_remove,
-+	.id_table = sy7758_ids,
-+};
-+
-+module_i2c_driver(sy7758_driver);
-+
-+MODULE_DESCRIPTION("Silergy SY7758 Backlight Driver");
-+MODULE_AUTHOR("Kancy Joe <kancy2333@outlook.com>");
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
-+MODULE_LICENSE("GPL");
+Changes in v2:
+- Split out separate patches to add the "hclk" clock reference.
+- Split out separate patches to enable the "hclk" clock.
+- Add Reviewed-by tag.
+
+Changes in v3:
+- Add a patch to expand descriptions for clocks of the eDP node.
+- Add Reviewed-by tag.
+
+Changes in v4:
+- Modify commit msg.
+
+Changes in v5:
+- Enforce the correct third clock name on a per-compatible basis.
+- Modify the commit msg simultaneously.
+- Add Acked-by tag.
+
+Changes in v6:
+- Expand more detail commit msg about using hclk instead of grf clock.
 
 -- 
 2.34.1
