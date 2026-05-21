@@ -1,131 +1,142 @@
-Return-Path: <devicetree+bounces-301515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301698-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLNgA8WND2pfNQYAu9opvQ
-	(envelope-from <devicetree+bounces-301515-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 00:57:09 +0200
+	id +NdXBVIxEGoaUwYAu9opvQ
+	(envelope-from <devicetree+bounces-301698-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:34:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4335AC7E8
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 00:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 884645B2357
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:34:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E2FCA302F407
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 22:56:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6AC1C3038A71
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017B236606A;
-	Thu, 21 May 2026 22:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB0A3CDBCF;
+	Fri, 22 May 2026 10:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwHlTSwN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Of9edK5n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C7735975;
-	Thu, 21 May 2026 22:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E308F3CCFD4;
+	Fri, 22 May 2026 10:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779404195; cv=none; b=Zkb9X04DrkiuO9KPJCr53RnmH3XtS0MU2U+C21Cy9zYlwrybEMKQk9n3weh1PkE4UR0QLyUDMHdKizyBx9lK9sGh724ZAwz7iI3gGSJeMU+/I2XQP+rYwkLWeKBp9nBytXV8Od1Xrg7MdNTbJPxOrgfkzfaMCMvG60+yQ8UwYhQ=
+	t=1779445285; cv=none; b=ESbgLXhGKFjXBSpHTJ7i5fxVqvsrkv1GmcnB/Zp2580C+gJaK3Rg1mDAJSjCpl+p94qZhPcmcLb3GlITtq32upjiiM1hzX0JM+/BRpoGXtJx9UrYfLCAwreczScaAmoj5dsr7Zf7/ADdncT4SjxN9VkY5pxUYY8V/GU0sctiaa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779404195; c=relaxed/simple;
-	bh=bMZAJMrhnl5mtLM3XXeIQK/Kapd/yQRGPTj7JFVbg2s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OGTsVCUjeo0j7f8ohGeB2a0GZ/ckihha3652RQUqdh+2e0qcuGeOr2BpiATh4h+xIvF6zRobwBzy9FQ8RuAUUMnd3bWbQ+FZlMhc2gxAN0dBWltbtf7TarBCDZcFg6Fds+4t6BkiWqmg7pMlxRB5/nnq5gBk8czFusq9QCz87EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwHlTSwN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D2081F000E9;
-	Thu, 21 May 2026 22:56:33 +0000 (UTC)
+	s=arc-20240116; t=1779445285; c=relaxed/simple;
+	bh=hQbgFnBSRPPGLtJDVSn8W1/x06HNaDFZgo7K4RTCvJY=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=szxpyWCx0xU8/CwT/m5/w7uBJY8ogKwRluv5XFksxFQq5NkbxfzJOBxNw+cgJV8utAN4CgXUKoJCQ6y2xuGxnRz5HCWT/aHqxkgOtgvs02cmUJbdsP/DwEQ1+ZZ9R0hBRnvPslGMVwZXTUL/LhBqczzPkNNuMscKx+xmDbNA0IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Of9edK5n; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05B561F000E9;
+	Fri, 22 May 2026 10:21:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779404194;
-	bh=7cg3PP8ir4Dvr0mIjKf6vyi330dA3SFiHExUj/R/Euc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=TwHlTSwNc9VSV72PesrrH/8a3Q9VZZAvH0Oj8RNk3JnqzscjLlEfmiimuADYaTxSO
-	 lTlPhKGW8Fi0qhvQBgXq7n/jxVza8NsgWdR0X8fgG0hUdXl/gpK9ii1P1DpVbQtAY2
-	 M98jd/tvlmxRA4xaHvTcbALwNI2DkK8YNCIZhlhsuHgQ5ElKFS/Cg+zLDoqBDDvM2y
-	 Os4dwt+SYb1CJZxS5nMqt7PnC9gT6qp2DxVFBtAl4ZRQiItgMTNit/est6lO4jNF5N
-	 LqTHrsdLmvDJ3s4SF9C1M6jIVWFewzx/nRLcwNmHK7peV2O2IWvCfdaHmd5el04RLt
-	 0/S9idqtE66og==
-Date: Thu, 21 May 2026 17:56:29 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, jishnu.prakash@oss.qualcomm.com, 
-	kamal.wadhwa@oss.qualcomm.com
-Subject: Re: [PATCH 0/2] qcom_battmgr: Add batteryless DC-adapter MAINS
- support
-Message-ID: <ag-NLvh4ROgTCs_L@baldur>
-References: <20260518-add_dc_in_support-v1-0-31fbaa329879@oss.qualcomm.com>
- <56a54a34-1040-44ae-92e2-ce65a3d3acb5@oss.qualcomm.com>
- <20260519065938.4i5wot72pfxy4m3d@hu-kotarake-hyd.qualcomm.com>
+	s=k20260515; t=1779445283;
+	bh=fKVEdOr2RzcA3rdMqyuatu+3TO4o4RuODlSYsnlMFys=;
+	h=From:To:In-Reply-To:References:Subject:Date;
+	b=Of9edK5nBIMY0lUHir4lgmavX7OoGGXmzTVbsJgWQYq9atlY2kfvJ9nZ0Hezhfl0d
+	 qRit2yxmN/VOmQ9g7FarBlVhLVb68/JDuPTUktILE6lel80+rthUWRw1jxTm7UtlJP
+	 Qyk0xpfMf0/NAORIbqelImtm89qYxDXpW83ORhSTbt8Gu2mI2OxBWz0Bj1LeYm2O9A
+	 gsDhn14l5bRuKbgJToRxngKlvNlu5GrqgQeOln1x33tVkJh0tnwcO3W6jd+S0IOzvp
+	 yPJc7/kLGJ5xgD6xuLgZDbP1D2L513wwfQW9ioUKMbdz7uDc9bf1++90NMuRgySQIa
+	 PmJvRQ08ZGE3Q==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, Frank.Li@nxp.com, shengjiu.wang@gmail.com, 
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Chancel Liu <chancel.liu@nxp.com>
+In-Reply-To: <20260331012450.1298115-1-chancel.liu@nxp.com>
+References: <20260331012450.1298115-1-chancel.liu@nxp.com>
+Subject: Re: [PATCH v4] ASoC: dt-bindings: imx-card: Complete the full list
+ of supported DAI formats
+Message-Id: <177940550339.58022.2317951355365638081.b4-ty@b4>
+Date: Fri, 22 May 2026 00:18:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260519065938.4i5wot72pfxy4m3d@hu-kotarake-hyd.qualcomm.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1169; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=hQbgFnBSRPPGLtJDVSn8W1/x06HNaDFZgo7K4RTCvJY=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqEC4gILdOGrZTLWv2gfMWgPbwRQgjUIjNKTW51
+ 0aTiuTo2fKJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCahAuIAAKCRAk1otyXVSH
+ 0PpLB/0YSaPGbRAdXB2fmsDzvAgb1YXEmRPNp0GMA3E+OKtbVXP/w/vZB3pTHbHqCr5IkdyNB7v
+ qTnRjqFZs37mpGSxSuYV7RDpJ+TQsjeBvB5gApzbcR7wUvfrJAdC430fr+Uu5vIcSJg2PlcsW0/
+ wDr8wx15L5FNcmgISfStNgsbZf0e/ARVF9mX1O4UQy5ew08FeETxnGn7TAIU3+s1WvJI3BxKEQY
+ 2i0AlRbqlnWcPhCdw68fU4n/CQ5v8Svd500VGMWQrDOVkIPHA6tLrOw2AdxsKkeynfGog0j6FoE
+ OWKiOVZC02iWbRmlaOjeV3HtKddGtfLyVRJOBQqvutPugS4w
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-301698-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301515-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 7C4335AC7E8
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 884645B2357
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 19, 2026 at 12:29:38PM +0530, Rakesh Kota wrote:
-> On Mon, May 18, 2026 at 04:36:32PM +0200, Konrad Dybcio wrote:
-> > On 5/18/26 3:49 PM, Rakesh Kota wrote:
-> > > On batteryless boards powered by 12V DC adapters, registering the
-> > > power supply as BATTERY causes userspace to incorrectly trigger
-> > > battery power-saving sequences.
-> > 
-> > Does battman really offer no way of differentiating whether a battery
-> > is *actually* present in such cases?
-> >
-> > What boards are affected?
-> >
-> Currently, batteryless support is only implemented for the
-> qcs6490-rb3gen2(Kodiak) board.
-> 
+On Tue, 31 Mar 2026 10:24:50 +0900, Chancel Liu wrote:
+> ASoC: dt-bindings: imx-card: Complete the full list of supported DAI formats
 
-What do you mean?
+Applied to
 
-Are you saying that the pmic_glink firmware in Kodiak has a one-off hack
-that no other implementation of this firmware has?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
 
-My Lenovo IdeaCentre (hamoa) doesn't have battery, what should I do now?
+Thanks!
 
-Regards,
-Bjorn
+[1/1] ASoC: dt-bindings: imx-card: Complete the full list of supported DAI formats
+      https://git.kernel.org/broonie/sound/c/caa7a3711862
 
-> regards
-> Rakesh
-> > Konrad
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
