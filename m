@@ -1,151 +1,245 @@
-Return-Path: <devicetree+bounces-301395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QEFwHTQvD2r+HQYAu9opvQ
-	(envelope-from <devicetree+bounces-301395-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:13:40 +0200
+	id oBLYED05D2rUHwYAu9opvQ
+	(envelope-from <devicetree+bounces-301397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:56:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182835A8FE7
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:13:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C715A9B36
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5FEF631B3504
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 15:36:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E7078365634A
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 15:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6461535F612;
-	Thu, 21 May 2026 15:35:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD693546E0;
+	Thu, 21 May 2026 15:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WgIOVQ24"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O+HaIqgw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5763A25B0B3;
-	Thu, 21 May 2026 15:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFB62BDC32
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 15:36:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779377745; cv=none; b=Q4RqDq4r7fPMUFQDB3pXg+wq+EW2UVWupaOHb77fakRuhB7qEzlOeRx5Wtw6F+bzGve2dTHPyijhBVhhuwxHir7IXSsVDK5jzZiI90g2aGCdDN23wi8K1eJ6wnC8B5r2SAyzFBz2htaHEoNiOG3i4G78bHpdw09BlzncHNcxkss=
+	t=1779377817; cv=none; b=dlJX4hY/Qyz4DT3IfPV3laXSq/HS59Lut52QBTKxofJZFVPQDp+DE3/1ZVlnm4TjJNHUZd2eT0f9k9cgviQB7RX8YaG7j92k0iFYo6KT5W0XkrHhZEWG7uhFCzX4HLgAxaDdL14bKC8XCcmHIXzTArMP76XhnZ0WAJXJ4STUBvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779377745; c=relaxed/simple;
-	bh=oImRwjI+XSNpas5HABW8j0NwP849AjVk4QzoZ8axO3M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JYazgh10SszssM5wUegrDrnStLyOCqpBKzd9KpE+//VCtQnLJ+27q0nil0xuFJyQ3l6gojJJx6kAZRnG8leROAYsSdH/uIG0VsafuMXM32sht8HzHdJeVcDF7CKmwyBttPf7uY09SCqn4c7yKWLsiZnegJuT0+4iCBrhSvI4U9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WgIOVQ24; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB1D1F000E9;
-	Thu, 21 May 2026 15:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779377743;
-	bh=TQwSrXVYnpbCfJdtfPjLSghRrh3omoKn1DB2+rGBNjE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WgIOVQ24fSOQxyG4iGiLd0T3oOMQsbj1BC/sFOR9UkwhioDe7MhOPISoGe7bQweJ1
-	 E4IzCvBrBQmsxwuyT87jWxYliddNtjMx6Zi7iUgHkXoWXLwPRm2snsiTWNSvkM38Lf
-	 FBxiOdrm2SVUxF2l2KsRygGAmu7mNxlgwV6N9rgnbLAbjiY749XK/HmuChFRFfEc/4
-	 jJkvGrMQSD5HgBEcQUYrRwBamaJOSWdeGFM/u7LtU+ZSoRNi6VQIoEe1CwCFgkIESV
-	 9FsHq3NjbHUiXO7DM5sTA3mKiBno3JbQeCMt8Ei03tGAkHinbeBqRmepmXaq5Uaqs0
-	 ziTJdrplekOwg==
-Date: Thu, 21 May 2026 16:35:39 +0100
-From: Mark Brown <broonie@kernel.org>
-To: YLCHANG2 <neo.chang70@gmail.com>
-Cc: Neo Chang <YLCHANG2@nuvoton.com>, lgirdwood@gmail.com, perex@perex.cz,
-	robh@kernel.org, krzk+dt@kernel.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-	kchsu0@nuvoton.com, sjlin0@nuvoton.com
-Subject: Re: [PATCH v2 2/2] ASoC: codecs: nau8360: Add support for NAU83G60
- amplifier
-Message-ID: <934509a9-1347-4b02-a341-0db0d1db42e7@sirena.org.uk>
-References: <20260518024704.118613-1-YLCHANG2@nuvoton.com>
- <20260518024704.118613-3-YLCHANG2@nuvoton.com>
- <ce8d5ba7-22aa-47ac-90ab-026ed1ee3928@sirena.org.uk>
- <ddacfe50-072d-66fd-c760-c898bdab52f4@gmail.com>
+	s=arc-20240116; t=1779377817; c=relaxed/simple;
+	bh=jYXygDsMTmmAvlNt7SLorTLjZntIVRWjwlL1muBsyXk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=WQDvP5nyw09bE8nPr7uXSndiGezssbTCyG9EQvTR2zwHXp38nYt92huCicOd7MXINudjvtqPB4Rw7qPleMc6sUvDp48v+dzhKsSteGrh8oa26EE1hYNWbuaafHLk3c8wsUNzKhEMWdEZStRhq0mV6Xe3RhEk0wzFWo2lEZXDRss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O+HaIqgw; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-488ab2db91aso65909375e9.3
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:36:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779377813; x=1779982613; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yI2KtTIwiuNK+knqFFW8fgG1npheFcqTp4LO6YB2KS4=;
+        b=O+HaIqgweZrYiajNw1wvBZeS2CNvbQwRsjqaB723Y6sPFXy30QF22p8BEStWv+arHo
+         MqolxzlyjwuCtNMYElt0Ww1W4atIPVxwmYaijJQZPWQDNG7IHqaBvhTKj5k8yxkLd5py
+         nNjbr4d68VW5e3Ls4mBBQwab00rvWuuAPlj2O5+lNtLyH6QxVfMCpEVJjZkH4+ylnFl4
+         TnQXq7AZCNKSwqi0WalpvJxzpG7trYAzDKM8mBK2CL1CDM84fhw5MbyTX+yHZas5kJJb
+         GRqohV8YtZ7YhRwdK8T2HV6wdYJWoezZizK8bSCiD3XfA1SjdHJN1+mOs6a/oMnkwtG4
+         vaqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779377813; x=1779982613;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yI2KtTIwiuNK+knqFFW8fgG1npheFcqTp4LO6YB2KS4=;
+        b=bz9c/IiPGVgZQPwXxBI7R/xaIhAallyRbHWkr2kpU4xpK1J/4AoNKpI7VIwJL8YPzt
+         VxsdOtLjifdC4DqyY5EwhFLFcwPC5uqryYTUh80Igavs7Kx9b+mNBkoYJzFVbhHG7/GQ
+         7Rb5u/9X9C6DIdlX4VwHyvb2TPJHSCFbRe8z8A5EVetH1ohar8eQR2zOTCL+8NU/RpSv
+         7byHAcHYuB4gv1hLlpWX4aRT8pd3XmjfhmEYjLRKOnHn2axgSF21ZqSYx0rcCANuvEsy
+         ngIguXGcHEpvI5Q5fcLTCO3wDdopwsy/J142/ZCUrpFWD/thFP6Gp6DPIsNunU3sRpCW
+         PGqQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8H5i/RYlmOTy3hxOHgH/CN275OGUv5ecYPZv0egxpuy5Xb1gsZJF4vk4IfOnswzjDfnIl+5i95lfuf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCXa+6uCqxqPnzqeakMtXo5FyDjbayrVd1Ti1bSRV1FAgZRzIm
+	O2omtgjrl8cArUVp3MIeVPSOTtdF+1GbNmBMSYiNdPbisPBwYAvPRvAP
+X-Gm-Gg: Acq92OEDRg86qoyPPiirPKRZYj/5MN2otmj4KHQeUkcqRFFc9qxT/YExAo0kD2Qav/R
+	wMqj0Jhdbpql9EO2cK7/W783EN1ta11PxXObxoPshrHSWyegyrnanht6Rst1x2N3Zxa0PlaCBlw
+	s2Yer+Nc0NwPuUlQ7aNj1kV/1DZDwZYz2RvQ7+WjRBhbIXewiDhF9Jkb65/uNHwuDwTNjAeFBI/
+	DBbvCkZmQt2CmZY8BRdbs1bEpN3aoZPz/5QbEK7ndVWp5quEaPa3terWEqgt4TBp/qVN5xlPQDZ
+	GTI1yu62tlOjiJKhJXSp342Ylie0t8CH+ldAR77c88ocPHMghNJBLhIoogtUjhaN1gCZx4vcEjQ
+	ZVTbxiUBKnnApMGfXAQeArZo2wKb8VCeKmbark6BHrL7RVZ+bkQo6nk0ON8VyFTQO0mrZKKG7m7
+	HcOOd15dMxW6OoZ/ebxb6TiFGoiyews7/E6x2sXRqxZQQdFZeXSuuhmnB2F+Eh3EHcocZ7By0wZ
+	w==
+X-Received: by 2002:a05:600c:8b34:b0:490:3d27:94f4 with SMTP id 5b1f17b1804b1-4903d2797c3mr28980425e9.7.1779377812772;
+        Thu, 21 May 2026 08:36:52 -0700 (PDT)
+Received: from Ansuel-XPS24 (host-79-22-5-99.retail.telecomitalia.it. [79.22.5.99])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-49033d9edcbsm79159825e9.13.2026.05.21.08.36.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 May 2026 08:36:50 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Subject: [PATCH v9 0/5] airoha: an7581: USB support
+Date: Thu, 21 May 2026 17:35:51 +0200
+Message-ID: <20260521153645.7028-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UVs/AC80Z1SYC8M2"
-Content-Disposition: inline
-In-Reply-To: <ddacfe50-072d-66fd-c760-c898bdab52f4@gmail.com>
-X-Cookie: No shirt, no shoes, no service.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301395-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[nuvoton.com,gmail.com,perex.cz,kernel.org,vger.kernel.org,alsa-project.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-301397-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,redhat.com,gmail.com,linaro.org,nbd.name,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 182835A8FE7
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: B8C715A9B36
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This is a major rework of the old v2 series.
 
---UVs/AC80Z1SYC8M2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The SoC always support USB 2.0 but for USB 3.0 it needs additional
+configuration for the Serdes port. Such port can be either configured
+for USB usage or for PCIe lines or HSGMII and these are configured
+in the SCU space.
 
-On Wed, May 20, 2026 at 11:01:53AM +0800, YLCHANG2 wrote:
-> On 5/18/26 19:35, Mark Brown wrote:
+The previous implementation of a dedicated SSR driver was too
+complex and fragile for the simple task of configuring a register
+hence it was dropped and the handling is entirely in the PHY driver.
 
-> > > +static bool nau8360_volatile_reg(struct device *dev, unsigned int reg)
-> > > +{
-> > > +	switch (reg) {
-> > > +	case NAU8360_R00_SOFTWARE_RST ... NAU8360_R02_I2C_ADDR:
-> > > +	case NAU8360_R06_INT_CLR_STATUS:
-> > > +	case NAU8360_R21_VBAT_READOUT ... NAU8360_R22_TEMP_READOUT:
-> > > +	case NAU8360_R41_CLK_CTL2:
-> > > +	case NAU8360_R46_I2C_DEVICE_ID:
+Everything was reducted to the dt-bindings to describe the Serdes line.
 
-> > Are the I2C addresss and device ID volatile or do they just not have
-> > defaults?
+Also the property for the PHY are renamed to a more suitable name and
+everything is now mandatory to simplify the implementation.
+(the PHY are always present and active on the SoC)
 
-> For NAU8360_R02_I2C_ADDR, it requires a write operation to latch the I2C
-> device address.
-> For NAU8360_R46_I2C_DEVICE_ID, although it is read-only, its value is
-> determined by the hardware configuration
-> of the GPIO1 and GPIO2 pins at boot (e.g., 0x1a, 0x1b, 0x4a, or 0x4b).
+Also other unrelated patch are dropped from this series.
 
-In that case they shouldn't be marked as volatile, just omitted from the
-defaults - they can be cached on first use.
+Changes v9:
+- Add spinlock init
+- Add ack tag
+- Add review tag
+- Add additional comments for phys on USB 3.0
+- Add extra logic to make phys optional for USB 3.0
 
---UVs/AC80Z1SYC8M2
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes v8:
+- Squash header to clk Documentation patch
+- Address comments from AI Bot
+  Link: https://lore.kernel.org/all/20260520150912.11614-1-ansuelsmth@gmail.com/
 
------BEGIN PGP SIGNATURE-----
+Changes v7:
+- Rework to double PHY implementation
+  (suggested by Rob)
+  Now the clk driver expose a PHY for Serdes port
+  USB PHY driver selects it
+- Rebase on top of linux-next
+  Link: https://lore.kernel.org/all/20260519220813.28468-1-ansuelsmth@gmail.com/
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoPJkoACgkQJNaLcl1U
-h9D6Dgf+MTFdSAqe+sVth1MJROGJFObulkedu9OA8uG35UgzyoNnZLCBJkQpVIZ4
-1px0piveEdCEof5YO8E36u8e6DnBz+J+muskMv1lTEoM0vi6PsNtkLUg8WzCHXdK
-uZyxdPv+/442PssImFrXj15dZgIVv4TU5yE5ILxY3HVWmYsIRu7SSTzKzNZxUfJM
-TBptlzzjjHTqfOO12fmq4m7JC9D2/HBGpGZ8MKSp3MwJogC5/a54Pb+R7Z5CxVez
-x914kR1dNsvlpgRFTLCC2CGXLZMXIaXSAQMaDsWAkpyhl5aVky111iJRQhmHsdYd
-aL9m3xbjCglFXQmN+Am3B+kL4DQ5+g==
-=ySQG
------END PGP SIGNATURE-----
+Changes v6:
+- Fix kernel test robot (sparse warning)
+  Link: https://lore.kernel.org/all/20260306190156.22297-1-ansuelsmth@gmail.com/
 
---UVs/AC80Z1SYC8M2--
+Changes v5:
+- Add Ack and Review tag from Connor
+- Implement Ethernet support in the USB driver
+  (testing support for this Serdes on a special reference board)
+- Use an7581 prefix for USB PHY driver
+  Link: https://lore.kernel.org/all/20251107160251.2307088-1-ansuelsmth@gmail.com/
+
+Changes v4:
+- Rename PCIe and USB PHY to AN7581
+- Drop airoha,scu (handled directly in driver)
+- Drop dt-bindings for monitor clock in favor of raw values
+- Better describe the usage of airoha,usb3-serdes
+- Simplify values of dt-bindings SSR SERDES
+  Link: https://lore.kernel.org/all/20251107160251.2307088-1-ansuelsmth@gmail.com/
+
+Changes v3:
+- Drop clk changes
+- Drop SSR driver
+- Rename property in Documentation
+- Simplify PHY handling
+- Move SSR handling inside the PHY driver
+  Link: https://lore.kernel.org/all/20251029173713.7670-1-ansuelsmth@gmail.com/
+
+Changes v2:
+- Drop changes for simple-mfd
+- Rework PHY node structure to single node
+- Drop port-id property in favor of serdes-port and
+  usb2-monitor-clock-sel
+- Make the SSR driver probe from the clock driver
+
+Christian Marangi (5):
+  dt-bindings: clock: airoha: Add PHY binding for Serdes port
+  dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
+  clk: en7523: Add support for selecting the Serdes port in SCU
+  phy: move and rename Airoha PCIe PHY driver to dedicated directory
+  phy: airoha: Add support for Airoha AN7581 USB PHY
+
+ .../bindings/clock/airoha,en7523-scu.yaml     |   9 +
+ .../bindings/phy/airoha,an7581-usb-phy.yaml   |  62 ++
+ MAINTAINERS                                   |  11 +-
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/clk-en7523.c                      | 218 ++++++-
+ drivers/phy/Kconfig                           |  11 +-
+ drivers/phy/Makefile                          |   4 +-
+ drivers/phy/airoha/Kconfig                    |  24 +
+ drivers/phy/airoha/Makefile                   |   4 +
+ .../phy-an7581-pcie-regs.h}                   |   2 +-
+ .../phy-an7581-pcie.c}                        |   6 +-
+ drivers/phy/airoha/phy-an7581-usb.c           | 559 ++++++++++++++++++
+ include/dt-bindings/soc/airoha,scu-ssr.h      |  11 +
+ 13 files changed, 901 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+ create mode 100644 drivers/phy/airoha/Kconfig
+ create mode 100644 drivers/phy/airoha/Makefile
+ rename drivers/phy/{phy-airoha-pcie-regs.h => airoha/phy-an7581-pcie-regs.h} (99%)
+ rename drivers/phy/{phy-airoha-pcie.c => airoha/phy-an7581-pcie.c} (99%)
+ create mode 100644 drivers/phy/airoha/phy-an7581-usb.c
+ create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
+
+-- 
+2.53.0
+
 
