@@ -1,198 +1,236 @@
-Return-Path: <devicetree+bounces-301048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMFrHOC8DmrXBwYAu9opvQ
-	(envelope-from <devicetree+bounces-301048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:05:52 +0200
+	id cN/jIV69DmrXBwYAu9opvQ
+	(envelope-from <devicetree+bounces-301055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:07:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E61A5A0A3A
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:05:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0267E5A0B26
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:07:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3EC40303D2C8
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:00:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F19903009549
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC5339EB40;
-	Thu, 21 May 2026 08:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="faC0/XMS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MEkZ8tfv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D7738423B;
+	Thu, 21 May 2026 08:07:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6840A399CE6
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1EEA22D4C3
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779350410; cv=none; b=NXqU5wXRdRriDl542ZKtzHckKgqwzuOwZBR5l35oc88B8VNT4ZPDRRhaDoDbN+DNrgwjyDGuGut8ASNv1S8IXNwo+ohtmHrxPNbkWnxflfVHotFQuQ60cEsEzsIKb3oBmuHEKFQB7tb5505caiS+tad1VlLZOLxmRFSobEv5UTw=
+	t=1779350876; cv=none; b=lpQWucEO4gF6eISfAtpRNY5afatqsLXYBB2CNXr5P3K3uvJudWmPpYArx06WeTbCLcgr1EcBSmB0BwqUpeAFeSU8EWyFkT6RvRwCJhPW5xXVAuJH+0Yv6a701YtvNI9RJs2xxDWAcVGlJSOWxaOgrgn7XOBNLNOL59o8N4dDH8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779350410; c=relaxed/simple;
-	bh=PIXdGqeVUA9gIf8fLO/9smTMqHiJUQLQYlG0rQP84Rw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=tuwtLJYxhYfFX7eBsWUMx35KkZPHxI6nv+mpp969oizqE2c/6x+5ppc+OJmbohnTJmJKtNPDUIY/B66NBCFl1LLhwoVXQQZAiWnxDlu1E8IkfGdemjw2W51eMceatTWnOd76I4t9Hl+OqjEz9LysEcAqNVQ1RmuX0WSJNLZ/7c8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=faC0/XMS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MEkZ8tfv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64L7U9sh119076
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:00:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FOltQE9tPpawJwPt3pLzjokKU4kONo8BTpdoRrWvcOU=; b=faC0/XMSoJerD1AP
-	Xpk+BoX2bgGjtD4vqg9S9b34oxe+Me8ZLP9WAfPDAV4OWNMDXjLoJyiy8RXDR7Ib
-	oFpeR99e4NlRdedMV9z2WUBQR98OvW1o6EYteguRuVKSLHsWftTEsxrs0A1BEsmm
-	EzORaCy7hABAwBM3ZmCEmy4CX3ESbelJDb8PW6azZefp3YmrtnmIB4jGCk8RLhN0
-	WgI23qYBqJBBl7OgCYrw7DiBSmHqDxzQwKJc7OlcM2DHtSYmLCe7pUkRaGflZ/CF
-	BK6lgCMQ2sOQ0d0bQrF+KD6g0dViGsE5EdaVv9BQ1GhGVeku9ExzMT9+8Cx/LZdI
-	Noq5yA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9ee8buua-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:00:08 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50e576143baso16511921cf.2
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:00:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779350407; x=1779955207; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FOltQE9tPpawJwPt3pLzjokKU4kONo8BTpdoRrWvcOU=;
-        b=MEkZ8tfvAUpnwQyLEjlCiHYzbJRMpepOgZff9rPraEv0/M8f+Ib3WMf0HvDaO1v0tb
-         txsYc9s/atz/Oz5/bOGtjKwpS2i7oZ3n+MTDOUjA1lS3NGsfiHh97FrXRgFF5Zy97kg5
-         SznstDrdLC4cypHXHDsniFzY/O5Du/wVEiQYq41n2ZV7qaPjT10GBP8Z3DnyrVE1aASp
-         36MP6OYb8653mD/JsVGbnbXuD9apUDuIdv/XtKaiNqWkNAhovowYHVEtHNkLmyQc00CI
-         +HK2l977Ou4UhImkPnwakIBS6J9PYjb3/U+8CrdpgUds/qS3rcL7NvHV8u8ZG63jDwue
-         0UeA==
+	s=arc-20240116; t=1779350876; c=relaxed/simple;
+	bh=+RDLim/geriyK6BHkVN+y+fbAsLHqr+xXa+qxaKtufQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eMij30iFAANuc7hoPROhYzNOX36ZxFJDbt1+3YQKm3atZ0AL9CxXNOvrZ0hld3N0vxg5eUEG2xKeenR/jHo285xkCBhnwhhvtUrhYa3Rd9+g6hDOALoBNAfC4k+W4sCuo2+rci09DFV+3pFs98/L9KEcGdJqMGkA8KcO7kvhXBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7e4004a4a6fso5732641a34.1
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:07:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779350407; x=1779955207;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FOltQE9tPpawJwPt3pLzjokKU4kONo8BTpdoRrWvcOU=;
-        b=X3EWfVJZr3E/C8LULbODXBjXMpl1OjGvYnBWr5SjlZmmZ+xNv2SeCxhWtDcxyD6rCa
-         cnojXZP3m7jBEmyd0y9LmtV4A/FN6ff3UAL10WOOrq6IKhApsJHqCtFGpF5ozBuySYbU
-         bB5micp+g6NgTc1xy/s/WnHafJn5KQdbb5JvVKrLP/wHTOHGMtmJV3/GMlcrui/GWYkw
-         uts3wIKinrUQi1/WAT9LmfW8tItAgxJ48khuSvsveTl2dZP7O7rT4xhKSGauFhcVHmFe
-         ODUkdKf5zKyr2qP+VYAvRDhnImY8MdYEfcJW7JY3UizuD46LaHYokRLfLX2rlCucGrOd
-         +RtA==
-X-Forwarded-Encrypted: i=1; AFNElJ9g2Ad9VCEKJ7Vi7L6cz9tUc6iCSXB/2Vwgxv/FwwUUINMLc0rzqoBPhYIto/3bMpvnCj1kdZ7zamBG@vger.kernel.org
-X-Gm-Message-State: AOJu0YysTLptnaCPiBWEKen8ue0HUYYQlsUJ4g+NLBXL2KagcP/yiNWu
-	wlPDmXpoCf82G2AOcJcQcNL/TYwmRnKuFs1sQlxFiD1Cyz9rMswbe1dhWFjBiyGIiFreZntkr9L
-	r7xgGDQ66q6sAtWdKCJgYxVYSnQdXhcPDtwGL9UpV6pQgWN+nrwh6wGdHtpAsG+NE
-X-Gm-Gg: Acq92OF9DhUIWONAmy0Cj97trc6Q+hPBzHJjctFzKbC9xj0cStl3BCnMXCSvwxW5e+x
-	Nl3v82uXijfW9X+uGTE+q/mAsMC90RkJGakfZBi/asd7zfI8jZTUCQIMULc136jzpeGnWzPO7XO
-	7OMpTl17J5pg9DuGrFvIdk62lEEB77Jm3A966OsVe7cIZELCAwbAx2LtomHy3LiFPFMSAox8gBF
-	NP5gCGJMnig+wAOHFWoawhh6u2n8mAf9iA/MqUIuEXWPju7uFmK/wBWST/yuLmIZ/7KH2xj7C3Q
-	LAo4C83uXGNf3rbJb9KXEhR3e/Zf7wcIAhJefxEINunO45G4s/mk4gU4NgCWMDhO45EyiLoPYAG
-	ebqIWT9zmRhAL+nCm473iykGPs18hgnO1SmMy16yw8+GCoHdN0/fkaZgnQ9ptxB8DBh3JAMNktu
-	ESM8U=
-X-Received: by 2002:ac8:7f0b:0:b0:509:2b5a:808 with SMTP id d75a77b69052e-516c54c0464mr18827211cf.2.1779350407124;
-        Thu, 21 May 2026 01:00:07 -0700 (PDT)
-X-Received: by 2002:ac8:7f0b:0:b0:509:2b5a:808 with SMTP id d75a77b69052e-516c54c0464mr18826611cf.2.1779350406434;
-        Thu, 21 May 2026 01:00:06 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bdc8a50594esm12245866b.33.2026.05.21.01.00.04
+        d=1e100.net; s=20251104; t=1779350874; x=1779955674;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kh5ilGfgBOd7IY4hv5kPF1I4gBzJqYiKUxJVuEQxYWY=;
+        b=g5WM3ctjVp5o1mLAxwEZiUsmBTIffmIlEUtGyPR1X0bAQfTyK8hSeqBlzt4/VRH5qu
+         7b+tahm4b400P3wVgS+5H1swUl+dZchnmxnLyqJf6I9fLreTZcZv/vPxD87MxHAIVKOY
+         BH5KRHbIPEkZBvMGbIe4c5QrtfnCNb1JI99HTp/Ja4HoXZ5jh1NSPguoqqcs6KkVJsL0
+         NeCdF5XFlQeuO3JGIclRPNQRyUdIo+8lxa2ocJDsvIUvx6/XSohzMbkHIANfeUcmB0MM
+         ybAypZVPprFo7H8qOdxV00wqsT7T2xsUZuqhHbmY4HElmhdW2Ygtpu+NyCd3ln30XbLk
+         a6Pg==
+X-Forwarded-Encrypted: i=1; AFNElJ/ocd+Mbb/fFhf3cpleaTm8VFoc61VT2CkyCTj5ef3JAuMr39UPgiQ5z3K6rloMz7+7TPq6qex4P83s@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy39gMDt2kZxo5ifhs/Bm+yL6Jw2NVbfaVnd9N8z2oRhTIugN5x
+	IznyhBWw/vEPvha9fWw1F6elNrE+EMKTFSdQkNjPNmw16ULJMxiOQo0bJwTd8v+WJmY=
+X-Gm-Gg: Acq92OHp2r/cPIQdabc+oMAzzzGwH6TRirPE+BlCsR+HFPNmIeM0kRaNo3VQ8YKtUgp
+	wiq5soBZ/b2vi/HVGAqh74YILn8RuWRfYtRwDLqt1SkHY16uGuKD4zpCr0W7vHOG6d5YhCenQlp
+	lsPDbaT5jT8GnqT92Nh7XfuJwP6xNQUSeTbpdgPcIYfqDufNOxVJedjT/DQTfZnZpIGUjxRgA68
+	TPvcCnrFTEwzzEb24H57DH0abOckgVkeCsbTdsCS8oiEfYjdC6gXAN6tag4UIZwFy1w0iIRzYdd
+	DH0BBDXt2FzIHlOUYq0zo203lvQpfuNzG20qw/HJLi0qiIcwVtQSXlmfL/LBmEtOeRbqmKDstDt
+	2M8upL+xRtpMYvB4qvhv1WX1Qw8J1jQ0zh29cDvq/p33120QX4cA6Yskrv2Ve/SB8UB5XJ4G1fm
+	It4upEqsDCZbFMaKuCd76jb+cx+zXAA1YxJwQyBNo2PAjQAkXvrX5JvlfFzVbHG3LReUpXOVw=
+X-Received: by 2002:a05:6830:673a:b0:7d7:d510:4bf9 with SMTP id 46e09a7af769-7e5ec4950ccmr943189a34.12.1779350873735;
+        Thu, 21 May 2026 01:07:53 -0700 (PDT)
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com. [209.85.160.52])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e55b95b82fsm15751422a34.12.2026.05.21.01.07.53
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 May 2026 01:00:05 -0700 (PDT)
-Message-ID: <2b5a516d-f847-4cb6-9ea5-21f56448b00f@oss.qualcomm.com>
-Date: Thu, 21 May 2026 10:00:03 +0200
+        Thu, 21 May 2026 01:07:53 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-4043b27ddeaso3604657fac.1
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:07:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/LyBqjN+LLVUgY5JOv+G+vE1bn/oB/1wox3SrcTYvaHgDfwFnztAmo1s0UqBVHVc9cuXnLEx3cjDP6@vger.kernel.org
+X-Received: by 2002:a05:6102:952:b0:660:cba2:b6a5 with SMTP id
+ ada2fe7eead31-6738d46a2c9mr965451137.7.1779350455953; Thu, 21 May 2026
+ 01:00:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] interconnect: qcom: x1e80100: Revert ABI break
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260520184944.182148-3-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260520184944.182148-3-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 7ex9QsH9gCNQ8TiWSGxSTCRwXAd4TRn_
-X-Authority-Analysis: v=2.4 cv=e5k2j6p/ c=1 sm=1 tr=0 ts=6a0ebb88 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=mQNDsmP-micbF6_pwTUA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDA3NyBTYWx0ZWRfX8mjRdjvFpXnP
- YEXViJnx2pzNMY35gmxyUSA6XSR2Cb19CV/Z3xOg/SVOC44k1W0cbWkI17dM9giRpXgA6uCBEqN
- AJwtcqGb7SwumbicL/FntVds98o1LUaHdmco81uBywmvTzrZRKe3O1tzo2sJZzOkcdPo/gKzCs0
- 5E+NzLMW673u1qmXDS+OXOD2089gGHbHzlJU3HActxPlBlXdqEni5BaDEjtslh6tXXErD/P/oVe
- CiMB9iAcuJB5/4xXkkGE2PQC6o70L0Hs88dP9c/kyz46wPAK20w8yjiqxnkiF+IvOW1A1bXzqgI
- P1nyJ8Lq/9xZXb6RogLHtpjeBZCZZ7p/cfwUepNCqnTKHGSuRpdHq5pI97PcFVf399/zMQFvE/i
- 7GsWY7Fk0dcX8y5AEjxJeK1WqZhe6w+NMSe3/Qp5c4fvjgS1M80z5+b02iY/8BP5AD7Yi0molNh
- a/ujWBg1SoBXn0vNBpA==
-X-Proofpoint-GUID: 7ex9QsH9gCNQ8TiWSGxSTCRwXAd4TRn_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-21_01,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0
- adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210077
-X-Spamd-Result: default: False [-2.16 / 15.00];
+References: <cover.1776793163.git.geert+renesas@glider.be> <72e2a0e7a5abda02fe36b3f5851842f7a77b2593.1776793163.git.geert+renesas@glider.be>
+ <aekXUvIPb8nkhdKu@pluto> <CAMuHMdX8b9C3D8fV5th6GCgs6JAq7HZbF_SrOKz_gDy2H8ksow@mail.gmail.com>
+ <agor5HJ0JFBoX3sZ@pluto>
+In-Reply-To: <agor5HJ0JFBoX3sZ@pluto>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 21 May 2026 10:00:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJrXcp7_S-KTKQJ8NuVhywiCWEHXMVvWkTFZwnmQayyA@mail.gmail.com>
+X-Gm-Features: AVHnY4LKAf9GYj9Cj8Ma9x6mjosVr-AC-oJEzWQ_9yBj7Yua2eAsFSXzEFT0UeE
+Message-ID: <CAMuHMdWJrXcp7_S-KTKQJ8NuVhywiCWEHXMVvWkTFZwnmQayyA@mail.gmail.com>
+Subject: Re: [PATCH/RFC 05/14] firmware: arm_scmi: Add scmi_get_base_info()
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Ulf Hansson <ulfh@kernel.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, arm-scmi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301048-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,pengutronix.de,broadcom.com,sang-engineering.com,mailbox.org,renesas.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-301055-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0E61A5A0A3A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linux-m68k.org:email,arm.com:email]
+X-Rspamd-Queue-Id: 0267E5A0B26
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/20/26 8:49 PM, Krzysztof Kozlowski wrote:
-> Revert commit c70f7dcd0921 ("interconnect: qcom: x1e80100: enable QoS
-> configuration") because it breaks the ABI without justification what was
-> broken and what was not working.  It claims the clocks are needed for
-> QoS, which might be correct, but QoS itself is not a mandatory thing for
-> the device to operate.
+Hi Cristian,
 
-???
+On Sun, 17 May 2026 at 22:58, Cristian Marussi <cristian.marussi@arm.com> wrote:
+> On Fri, May 15, 2026 at 05:39:45PM +0200, Geert Uytterhoeven wrote:
+> > On Wed, 22 Apr 2026 at 20:45, Cristian Marussi <cristian.marussi@arm.com> wrote:
+> > > On Tue, Apr 21, 2026 at 08:11:38PM +0200, Geert Uytterhoeven wrote:
+> > > > Currently non-SCMI drivers cannot find out what the specific versions of
+> > > > each SCMI provider implementation on the running system are.
+> > >
+> > > Thanks for your patches....this is not a proper full review of the series,
+> > > BUT this patch catched my eye..
+> > >
+> > > Indeed, yes, it is deliberate that the SCMI version information is NOT
+> > > exposed out of the SCMI world, since being the SCMI an attempt to
+> > > standardize a common FW interface (as in [1] of course), you should not
+> > > know what runs inside the black-box, it should be irrelevant...
+> > >
+> > > ...indeed the versioning is used inside the SCMI stack to deal properly
+> > > with different protocol versions implemented by the server OR to apply
+> > > proper quirks when needed, but all the rest should be standard....
+> >
+> > [...]
+> >
+> > > I watched a bit of the LPC discussions around this (from Marek I think)
+> > > but sincerely most of those problems had one (not necessarily simple)
+> > > solution: fix your firmwares AND/OR apply quirks in the meantime...
+> >
+> > So let's forward to the future, where the firmware is fixed, is fully
+> > compliant with the SCMI spec, and all IDs are stable, so no quirks are
+> > needed.
+> >
+> > Where do we specify the SCMI IDs to use?  Unless when using the
+> > remapping driver proposed in this patch series, they must end up in the
+> > DTB.  Existing upstream users put them either in the SoC-specific .dtsi,
+> > or in board-specific .dts.
+> >
+> > The SCMI server is supposed to expose to an agent (e.g. Linux) a
+> > sequential and contiguous list of IDs that represent only resources that
+> > the agent is allowed to use.
+> >   - We cannot put the SCMI IDs in the SoC-specific .dtsi, as that
+> >     describes all hardware in the SoC, which is typically much more than
+> >     Linux can or even wants to use when running on a specific board.
+> >   - You would think we could put the SCMI IDs in the board-specific
+> >     .dts.  However, that would limit actual use cases later, which do
+> >     not necessarily depend on the board solely.
+> >       - E.g. when moving control of the CAN-FD controller from Linux to
+> >         the Realtime OS, the CAN-FD node must be disabled in the DTB (by
+> >         overriding status to "reserved", or by just deleting the CAN-FD
+> >         node, both of which can be done by the boot loader). However,
+> >         with SCMI, the IDs corresponding to CAN-FD resources must be
+> >         removed from the ID space, causing a full renumbering. Who is
+> >         supposed to update the IDs in the DTB?
+>
+> As per my previous email, after such a breaking change I would expect a
+> new DTB describing the new HW to be needed anyway.
 
-Would a saner resolution not be to simply adjust the bindings change to
-mimic the other post-factum QoS clock additions, where `required:`
-wasn't altered?
+The underlying hardware would still be the same...
 
-e.g.
+> >       - E.g. when partitioning a single Linux system in multiple VMs,
+> >         and distributing hardware across these VMs, all VMs need
+> >         different DTBs, each describing a subset of the hardware.  With
+> >         SCMI, each VM needs different SCMI ID spaces, causing not a
+> >         simple partitioning of the devices in the DTB, but also a
+> >         renumbering of all IDs.
+>
+> Ok now I am lost..why do you need a distinct IDs space for each VM ?
 
-e07f3b8c9e1c ("dt-bindings: interconnect: qcom,qcs615-rpmh: add clocks property to enable QoS")
+Aren't the different VMs different SCMI agents?  If not, how do you
+prevent them from stepping on each other's resources?
 
-Konrad
+> In a virtualized env, I would expect to leverage the SCMI stack to
+> realize the exact opposite: same set of IDs advertised to each VM (and
+> so same DTB potentially) by the server which in turn can decide to
+> assign the same device (and handle the sharing) to some ID or assign
+> different devices to the same or different IDs on each VM: i.e. you
+> have a set of virtual_IDs that is what the server exposes to each VM
+> SCMI agent, and then a bunch of real physical IDs, without any contraint
+> on their numbering, that the server uses in the backstage to refer to
+> the real resources and that it properly remaps to each per-VM set of
+> exposed virtual_IDs during the build and/or boot board configuration
+> phase....i.e. when the FW adapts and reconfigures to the specific
+> board that is finally running on.
+
+Again[1], how would that work?  Clock, resets, and power domains are
+not the final resources that are used by the OS.  They are merely
+resources for devices that are described in DTB with other resources
+(MMIO register ranges, interrupt numbers, ...) which are not handled
+by SCMI.  If the server remaps e.g. a clock to a different clock,
+it will no longer work with the corresponding device described in DT.
+
+[1] https://lore.kernel.org/all/CAMuHMdVunEehM01pLa3t5a6o0NmMOCQRwh7n5J+OkDk2YR9kUA@mail.gmail.com
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
