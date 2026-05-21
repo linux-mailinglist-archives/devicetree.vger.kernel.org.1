@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-301023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301025-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IK0iEBaxDmr6AwYAu9opvQ
-	(envelope-from <devicetree+bounces-301023-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:15:34 +0200
+	id CMqXIiCzDmosBQYAu9opvQ
+	(envelope-from <devicetree+bounces-301025-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:24:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7F4A59FF68
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:15:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5EF5A00F9
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:24:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1448030488C7
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:15:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 55DDD30164BA
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3EB237F755;
-	Thu, 21 May 2026 07:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FED3822A6;
+	Thu, 21 May 2026 07:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o3BFOKAu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQ9+cjtw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFDA30677D;
-	Thu, 21 May 2026 07:15:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DA130DEB2;
+	Thu, 21 May 2026 07:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779347705; cv=none; b=IgZMBMjbRDhUc4fRkSFwxjCAEm2zhugvCYUD1a0u0iFI8MPYd2oBn03Ezfx+pTS/bAyUg5DvWGXWiRmjOxNzGZcOvA2OdAtzXIDUPyRI9s6m5mRdjHe1ylaFPogZ9wyEEqNxvLy22Vlc71zylo0FVOyYeIpiSat6aSqbSdHdkzE=
+	t=1779348050; cv=none; b=psOcr1caEeP9F+u9lXuG2zBbt9se7/+tjvXeVMgo5y+IC1iOR85FpwU9MAfUAWOPyGqJRUP1ZUbpp3rfKREqvzyq1vYW5lx9tngw0JDNEx6nICYgd+OBpiUBQ5LQMUHAXI800ie4z+iY3Ou/TLEhhr+xtaPcEeYL78/k9rS//5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779347705; c=relaxed/simple;
-	bh=0tuatrgSZLxX6JuH2l3AHqLUVM9jp7j6ZkklyfphM9E=;
+	s=arc-20240116; t=1779348050; c=relaxed/simple;
+	bh=NJTuqVhhx4ZZxUfa0gsUnmbbhttyXCV5v2ViNtsMC80=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s7wZ7XdRbRPexpIqgKU3z5O2y+Y8+k/X30RGD8KRLAvY9rCTokCcyMS0EBajcQhkBI+GLwRVO03G6pvwAmiBQ5Wbi5Dpp7WwsU8Q2XX6TgbVNIY/NTx6JVqC/IHuJ6yYUNm5f6t9CPyEMBi3KR8LQ5ca2Fis9wMgz/3LyoaJJ14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o3BFOKAu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D001F000E9;
-	Thu, 21 May 2026 07:15:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=W/0O31nWYSM5a4qKumD2300L1egMvfeZKUQKD1R9UN3F0jfdYWz+7AFwl/W1Nyg0iolGURBmNezVeFPFXxfqAcL4qYxXbqGcKXwZOUVRkXsaNBgLiZBR+4J6yo0KeTz1IKRh5OZ/ISQ4GNyfU8iJpkSz0yBpYYinwSFr1QU2PFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQ9+cjtw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2431A1F000E9;
+	Thu, 21 May 2026 07:20:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779347704;
-	bh=m3uRx8eDhutExABFhJL6iQpic3ktHG4D5BXwjOzXRS4=;
+	s=k20260515; t=1779348049;
+	bh=nI+G+aCuQ9siluJQySImBqqIqDQnteIx2vdEuLDlJvI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=o3BFOKAu5B4V2E/Ja6+JPG0nWpnltWUqD+kzAnJkgu2vDmBLwvLQGQNqMzEo3/rm6
-	 OQx/SIzzGxyLDleDg0SvXISSefgQXlI6IEY+ObWQd3R8BZ9tI5c0dDoxOVNWIXb2e8
-	 FRl7KkBtNq2jExfztmsjdp5gB+fBVO11JFD8yVK9+CDAeKD5oxk9hdZtTNpzcXW2iT
-	 VszOJH8wvx1Ck2ln3gdtB9niifdnusWb8oESmOAKlS4wgBfKfDrTpARd4CMwzBVpbZ
-	 UcMWLYxv3Zbko3N6/esHUgJFrV0DN8MeUJG9VW14Hn2SdtxGgpxp7Tca+6dzeyKS6A
-	 aZZ+yCIM8dUFQ==
-Message-ID: <50516d7b-4732-4354-a79d-40732592cb75@kernel.org>
-Date: Thu, 21 May 2026 09:14:59 +0200
+	b=GQ9+cjtws8KOBpcE6OwlZIUgpsEIZfC93Nr7AvRXM31Al+yg3J8s6DyWN9ZN2wvuI
+	 PRNs8IuC8nkFzYl51762dQ9DnCLECQDAeDFiOiKL4dqjACkM1WKMrpiYnxhMJmFd87
+	 rZdb3coZQJY549hcgIEWdtwmdLyM0j1wrnSdlqmXIeX5f8bq0jp4s+lISqNMfs3QY4
+	 scVM3cl+zxWqdLmclcYqBCYSiHRDBJ8c2FEkOzCw0o03myMOvpaC9GVaFHgVqRcSR1
+	 wHeBaVDGz3Jv9aT5nid6N2qqsW+vsrW4kAbcSwLLipPJf11HhqnIy3TMemEolI128h
+	 7CgCKlzBU1o0Q==
+Message-ID: <86f76a81-832d-4ba5-81d5-38b46b7dc0a7@kernel.org>
+Date: Thu, 21 May 2026 09:20:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,25 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: pwm: dwc: add optional reset
-To: Xuyang Dong <dongxuyang@eswincomputing.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
- p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
- pinkesh.vaghela@einfochips.com
-References: <20260424094529.1691-1-dongxuyang@eswincomputing.com>
- <20260424095435.1721-1-dongxuyang@eswincomputing.com>
- <ee58a5d6-9268-445c-a270-1f4a49b49c6e@kernel.org>
- <622e18f1.5bb3.19dd36d0c40.Coremail.dongxuyang@eswincomputing.com>
- <7bd6129a-dd37-48e8-a54c-cc149a2b84a2@kernel.org>
- <1ac7fae4.5c66.19dd892ec4d.Coremail.dongxuyang@eswincomputing.com>
- <b3a1b5ba-c381-407f-9118-aac7217138af@kernel.org>
- <f4f7edf.6067.19e15df803f.Coremail.dongxuyang@eswincomputing.com>
- <1d1a21a6-720d-4e8d-9798-27f8cc593403@kernel.org>
- <2e3c6632.66d0.19e493f4f19.Coremail.dongxuyang@eswincomputing.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: pmic-glink: Document
+ batteryless property
+To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+ jishnu.prakash@oss.qualcomm.com
+Cc: Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20260518-add_dc_in_support-v1-0-31fbaa329879@oss.qualcomm.com>
+ <20260518-add_dc_in_support-v1-1-31fbaa329879@oss.qualcomm.com>
+ <fd58d6d7-26cf-4b11-82ad-05b4863b6dd1@kernel.org>
+ <20260519082526.odmn5dqi2jftwnln@hu-kotarake-hyd.qualcomm.com>
+ <20260519-first-wine-bulldog-a6a4c7@quoll>
+ <20260521071341.q4efqssppvettaey@hu-kamalw-hyd.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,29 +115,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <2e3c6632.66d0.19e493f4f19.Coremail.dongxuyang@eswincomputing.com>
+In-Reply-To: <20260521071341.q4efqssppvettaey@hu-kamalw-hyd.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301023-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301025-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[3.7.107.208:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -148,172 +144,54 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A7F4A59FF68
+X-Rspamd-Queue-Id: EF5EF5A00F9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 21/05/2026 08:35, Xuyang Dong wrote:
+On 21/05/2026 09:13, Kamal Wadhwa wrote:
+> On Tue, May 19, 2026 at 12:35:13PM +0200, Krzysztof Kozlowski wrote:
+>> On Tue, May 19, 2026 at 01:55:26PM +0530, Rakesh Kota wrote:
+>>>
+>>>> And isn't lack of monitored battery property enough to indicate that?
+>>>
+>>> Regarding monitored-battery — its absence alone isn't sufficient. The
+>>> BATT_ID line on debug boards is pulled to ~10kΩ, which is used during
+>>> development phase where some battery properties are still present. The
+>>> same ~10kΩ value is also used on some genuinely battery-less production
+>>> platforms where no battery properties exist, making auto-detection
+>>> unreliable. Hence the need for an explicit DT property to identify
+>>> hardware platforms where no battery populated. 
 >>
->>>>>>>>> +allOf:
->>>>>>>>> +  - $ref: pwm.yaml#
->>>>>>>>> +
->>>>>>>>> +  - if:
->>>>>>>>> +      properties:
->>>>>>>>> +        compatible:
->>>>>>>>> +          contains:
->>>>>>>>> +            const: eswin,eic7700-pwm
->>>>>>>>
->>>>>>>> Same problem as v3 which I commented. I do not understand why your new
->>>>>>>> device has also 1 reset.
->>>>>>>>
->>>>>>>> Your commit msg MUST explain why 1 reset is valid.
->>>>>>>>
->>>>>>>
->>>>>>> Hi Krzysztof,
->>>>>>>
->>>>>>> Although the PWM IP supports two clock domains, each requiring a reset, 
->>>>>>> the EIC7700 implementation uses the same clock domain for both clock 
->>>>>>> signals. Therefore, the eic7700-pwm only supports one reset.
->>>>>>>
->>>>>>
->>>>>> If we speak about eic7700, explain why it has two resets now, according
->>>>>> to schema, even though you say it has not.
->>>>>>
->>>>>> But I was speaking about dw-apb-timers-pwm, which has one reset as well!
->>>>>> Why you are not having proper constraints? Please read writing bindings
->>>>>> document.
->>>>>>
->>>>>
->>>>> Hi Krzysztof,
->>>>>
->>>>> Let me clarify the reset signals.
->>>>>   - snps,dw-apb-timers-pwm2: IP spec has 2 optional reset signals (one per
->>>>> clock domain), SoC vendor decides whether to wire them — so maxItems: 2, 
->>>>> optional in required.
->>>>
->>>> Two reset signals but what is exactly optional? Each of them? Only the
->>>> first? Binding does not allow the first to be optional.
->>>>
->>>
->>> Hi Krzysztof,
->>>
->>> Thank you for the review. 
->>>
->>> For the generic snps,dw-apb-timers-pwm2 binding, both reset signals 
->>> are now fully optional by not including resets in the required list.
->>>
->>> When a single optional reset signal is used, the interface bus reset 
->>> (index 0) is used by default.
->>>
->>> Keep the YAML as follows:
->>> +  resets:
->>> +    minItems: 1
->>> +    items:
->>> +      - description: Interface bus reset
->>> +      - description: PWM timer logic reset
->>>
->>> Add the following description to the commit message:
->>
->> We speak about hardware, not binding. I asked, why your new device has
->> only one reset.
->>
+>> I don't understand this logic. So you claim you have debug boards which
+>> do not have battery, but define monitored-battery? Then these are wrong
+>> and fix them first.
 > 
-> Hi Krzysztof,
+> Actually our firmware treats the debug board as a "fake battery" rather then
+> a "no-battery" case.
 > 
-> Thank you for the detailed review.
+> This is done to avoid triggering shutdown or trigger power/thermal related
+> mitigations to kick in from the HLOS (android) that is configured mainly for
+> battery-backed devices.
 > 
-> I don't quite understand the meaning of your sentence: "We speak about 
-> hardware, not binding. I asked, why your new device has only one reset."
-> If you mean that the commit message in dt-bindings does not accurately 
-> describe why the EIC7700 has only one reset, I have pasted below the 
-> complete commit message that will be included in the next v7 version.
+> Note that we can know if its a debug board, just by looking at the battery
+> ID resistance or the battery profile name in the power supply properties
+> for `qcom-battmgr-bat` in sysfs.
 > 
-> Does this commit message address your question?
+> However, the problem started with the boards that are battery-less and
+> unfortunetely used the same debug board batt ID resistance value, so from
+> the firmware side the batteryless board is also seen same as a board with
+> debug-board connected.
 > 
-> The DesignWare PWM includes separate reset signals dedicated to each clock
-> domain:
-> The presetn signal resets logic in pclk domain.
-> The timer_N_resetn signal resets logic in the timer_N_clk domain.
-> The resets are active-low.
-> 
-> EIC7700 uses DesignWare IP for PWM controllers. Add ESWIN EIC7700 support
-> in snps,dw-apb-timers-pwm2.yaml.
-> EIC7700 physically ties presetn signal and timer_N_resetn signal to one reset 
-> — so exactly 1, required.
+> Since firmware does not have a way to dynamically tell if it on a
+> debug-board powered device or a DCIN powered device, We are required to
+> add this new DT property.
 
-Your binding says that EIC7700 has one or two resets. Here you say
-EXACTLY one, so why do you say in the schema one or two? That was the
-question.
+Neither debug-board powered device nor battery-less will have
+monitored-battery, thus again, why lack of that property cannot tell you
+what you need?
 
-You need to make your binding strict - see writing-bindings and
-writing-schema.
-
-Or any other example!
-
-> 
->>>
->>> Whether each signal is wired on a given SoC is a board integration 
->>> decision, so the resets property is optional for snps,dw-apb-timers-pwm2. 
->>> When present, up to two handles may be supplied: the bus reset is always 
->>> at index 0 and the timer reset at index 1.
->>>
->>>>>   - eswin,eic7700-pwm: SoC physically ties both signals to one reset — so
->>>>> exactly 1, required.
->>>>
->>>> Then two would not be right and you need to restrict that.
->>>>
->>>
->>> For the specific eswin,eic7700-pwm binding, the reset signal is required 
->>> and fixed to one via conditional schema (if:then:), with maxItems: 1 
->>> and resets added to required. And add an example for eswin,eic7700-pwm.
->>> The changes are as follows:
->>>
->>> +allOf:
->>> +  - $ref: pwm.yaml#
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: eswin,eic7700-pwm
->>> +    then:
->>> +      properties:
->>> +        resets:
->>> +          maxItems: 1
->>> +      required:
->>> +        - resets
->>> +
->>>
->>> +  - |
->>> +    pwm@50818000 {
->>> +      compatible = "eswin,eic7700-pwm";
->>> +      reg = <0x50818000 0x4000>;
->>> +      #pwm-cells = <3>;
->>> +      clocks = <&bus>, <&timer>;
->>> +      clock-names = "bus", "timer";
->>> +      resets = <&reset>;
->>> +    };
->>>
->>> Then change the binding's subject from "dt-bindings: pwm: dwc: add optional 
->>> reset" to "dt-bindings: pwm: dwc: add eswin,eic7700-pwm compatible and resets".
->>>
->>> Do these changes look acceptable to you?
->>
->> So two resets or one reset? I am completely confused what you are
->> replying to.
->>
->> Please read writing bindings document.
-
-DID YOU FINALLY READ IT?
-
->>
-> 
-> I think the "resets" in the subject is ambiguous. It could mislead people
-> into thinking that the EIC7700 has multiple reset signals.
-> I think the subject should be changed to 
-> "dt-bindings: pwm: dwc: Add eswin compatible and resets property".
-
-I finished with responses here.
+And no, you are not required to add a new DT property. Every wrong
+property was also justified like that...
 
 Best regards,
 Krzysztof
