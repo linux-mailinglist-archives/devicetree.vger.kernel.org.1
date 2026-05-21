@@ -1,277 +1,216 @@
-Return-Path: <devicetree+bounces-301129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301131-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDUtJmbIDmoHCQYAu9opvQ
-	(envelope-from <devicetree+bounces-301129-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:55:02 +0200
+	id 4Ne7LCrMDmovCQYAu9opvQ
+	(envelope-from <devicetree+bounces-301131-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:11:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A21E5A1921
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:55:02 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AE75A1F9E
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 11:11:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4A31B3051773
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:52:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5119A31C844D
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93520357A25;
-	Thu, 21 May 2026 08:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A563636827E;
+	Thu, 21 May 2026 08:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="a5ZGiPtb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GRm4uhJC";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Kn7OzrEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD82364049;
-	Thu, 21 May 2026 08:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3303335E953
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779353559; cv=none; b=iP71K4p/2aXJLjvioaVRmW6s7TRwlAa0BG46X0hM1vobgpjtv81TmgAlvtA9sNWQZS6xWXSvktEHZ2UMUN1Mq5/g8THXSYb2J1Yd0aJZpw6Pqrn/Z/tI6HbYwSvofM6lU55r6MnR5M1IOEMGhwQVpj182ioflPpmZdCUetv7R/w=
+	t=1779353598; cv=none; b=uk4IVPQ2FkPOWrfY22oawAPM61AhRKTUDGpwXbJ35+y5q0rR2o4FDYcbsQWqInLjSkCSvclaibw4se8J3I+hwo066KFpwe2s9zF71H7ZZE//L7NtusxIQcbDw5ZrloN3sDO9VZ7c51UX96YrGn9yAp38TyfEX5N9d5Pe7slZG0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779353559; c=relaxed/simple;
-	bh=Z0l6n+8KPWLfEXEGyF2doqbUOXPnz/AqIuOLLkx1gMA=;
+	s=arc-20240116; t=1779353598; c=relaxed/simple;
+	bh=eGD1n2Ion5p1/DHY8IcJMRs8e/fMsqdh5ittH4YWLhQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mEPCg4GAm6NaJzjtr+3es2wBidoTjem/BuvbcpSHsRQ8r0XX7c73Afytnggfk66rWI6engeXtTPQC/qjgsR/bYvRAQBlwdarX/7nVTGWyUfrlvBvltT9cUlotLCwWuo14JFEd6Gt1ktXgRYkGggapM04pm04BCwIwkyXbTU36dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=a5ZGiPtb; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DA9EC447707;
-	Thu, 21 May 2026 10:52:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1779353554; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=CcYqCiCTpSF2c1/Tx3uk0iXJngFvjxCHybS5Uhc3c/4=;
-	b=a5ZGiPtbPgU8pPdwVoufxmAErYMUVdxuBNs3rB9CwpeCVzqrs3NhjnOpYP6XBOBt6EdHH8
-	bQqthAyafa3D6Tw0dzhAKdD1pow1T/JhVwsUCbPKUfC0iuzJZqoNv8bPeturebtYhsR4ml
-	tuGL7mKlK9G24quzCdMjR3NmbPovw7a82H2/DC1I/JM/PX8y0+PuoF2hT53iY6lnUfPTjX
-	u8C62wyY7IxNFszJvlNvQflaaMxZgMhbzsTqdoNu5Ht3u6bjtLU0M1fUlS8ahSbtAeUUX5
-	Tkm+E1D+hBXkEq0+UO+kRBKU/Tv2aGKR7dz3hz+VNRPBfR9NzGXV/a5G84WWQw==
-Message-ID: <6ee00f5a-627e-4d1f-b73a-276cc3252042@cjdns.fr>
-Date: Thu, 21 May 2026 10:52:33 +0200
+	 In-Reply-To:Content-Type; b=cljhCSbjYu513aVcKKxCw0O8bSBL7hEJpEbkgqdCRQxOJr9mko1cO96Isc4p2FpMflqmK3SHvkxB6HI7SzudFMzOs9c6yo26yICaiSlM3qK/iZrtHiL0fgdx2YJ1GWk6l5NdahH4guR+4y/rgQCcTEHzScI3lKHb74k99uf/vTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GRm4uhJC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Kn7OzrEx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64L6PdFJ1798819
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:53:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	elzPaWmOKLsXoiTCtcan47fSW0zgacEY+5u9ATsGPN0=; b=GRm4uhJC+C0BghoO
+	xgoXnCW0+nOegy3A5BJsr/Uo7QveiulOO+hu1TjUf2sym106+1XaKJnpQxNOhjfK
+	TRstywF8S4JJkXLrbHpTyebeyftvFsSRd+yAIKMwQHzoXPzq+93wcDr2nESMoSng
+	E5Yl3c4WI1xxKEquiCcr1K5P6Q7FQv4BusnTQrBK/4bNicVa+cKt/L6sCy3fuABh
+	69KvScARtw5RiCUDd5oxvBdgBsjuB/hm+g+6rn5ERoojPec+3zMRdRIARc6kdD8q
+	q/loxq1+N3OCTQyBOE7mfePMn1sPqy9XDqhhFYlRtHDCV5ck1CtzjENsN63bRW3O
+	KdwDwg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e9dxu4437-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:53:16 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-91345d517bdso123339885a.3
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:53:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779353595; x=1779958395; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=elzPaWmOKLsXoiTCtcan47fSW0zgacEY+5u9ATsGPN0=;
+        b=Kn7OzrExCIu2bqqW/6kXjcc52NlTWoIsKzO0TX5Nm5mh7KxIbU1IMmO8gGP5z23xt/
+         02ShlK69K9blWFuxqYEVfqDG8MOZHcyHe0npYe50vH2t0VVFBDoZRI80hQl7/8XThOgU
+         waThd/tU49n6X5jxfF2cX5ejnhX/moHQvQs4o/R9uNUwOxe5kNugiaONVum7soNNxfDZ
+         oFsps1kEjYu1gpHdvny+iP34aKNaz/Zfun/LEUJYdTF87tZ9flpCJy+HR2xc0QG5rjlk
+         kFU49fYwSdo3jYhbbqzW0JhjVQ8MOTWKExeXQ2jg5JSPbswmFKZhCs6d238vA3NNGAqh
+         6OUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779353595; x=1779958395;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=elzPaWmOKLsXoiTCtcan47fSW0zgacEY+5u9ATsGPN0=;
+        b=DvvMs2l1HycnwcRE4LuOV0dSagSVNecuGXiA6sCsOqomV+jEdi/icmDEp6XpEh5YU/
+         WUK3NEwYrcLJr4GgGGUrIM0HvYuT/BZEQ1bXeEn8n/hffJ4Ghi6w8TW9fkfC9QEajWVL
+         qQRaGN/F0Of59Hi/t34LaKVi8Dc8wKupnSFmk09eOeuEGt0g9wQLj44xSVFw7fT1WPuI
+         AJd9msxwgKErrqENKhZMLYNYuatZbEBegxt+ZAsQfdcqoTu1jpf08DZRlROo2hJoR5ik
+         LBvM6tOY+anwPG4GdcOsC0l0Ml0Mbe5//lO4oJjLGR+iUJ2N53y9ZPZq1jGlDNxM36x1
+         M3YQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+L2eOpXIGcqrxcyMHn2e6JpBR7y+Y5ExXti/e0dTVCDhQPQ/VnDDUWzkYU6iddJODw9PNva/5FkefU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzz39KJT5qGi5aLN9CIV8flKDDKeDYhV5L5RPKxLb9PdiSBgeFu
+	OydcSmDypqgWPUrhBjnL0hE7L6R4dZ8KPLtlPdfPEVdlfJIgm2GvCFkEbOFtrOXJWUOlm3szF2f
+	1jZW88mRoEmg3aa1JdK/rsw97o1TTjHEGDyMb+dtYTwGOispIkLkZriWbvABbh9Sj
+X-Gm-Gg: Acq92OEEEM0sjG/vTX55ECFT8pvAqfCNntURHzlpqspxmTYd1UGMyD1Ik8NOQ8WtO7r
+	kYD7TFkS5L3VlUa3T4gzEV3s5GvI14o6lKfFKqlWgEAxyGFhf4/WOxkxprCEZiPTc4rDrt3Andq
+	TZcIEj4vhBFhtjM6NVbag0XC21DH77FXUDlxI1cKdItzdLcmVPCtyYYqg4rR1nQ3EE4nx1GMzcj
+	My1+79+bTzpSYH21Wt5HhwyHCGg6Uac8twj9EwoBPH0DxC+ReN3CuBM0WXQx62JnZphT9+Xtgmi
+	hiCekllmP8PCqAFG6FvSdUxxaBlpd1ihFbGKgm7jI4mgfcm211GZhS8xfHi/0HVIVkOx8/jRFA9
+	oPHGVjNzFwrLCZI5U9ofbjbkSyXbOYQZnzmCsSOkyS3kwXxarwMwh3rOaLUPa2N9M1iDxx9dK/Q
+	kZPqw=
+X-Received: by 2002:a05:620a:2909:b0:911:e556:c7c5 with SMTP id af79cd13be357-914a2d1a4famr157592785a.8.1779353595216;
+        Thu, 21 May 2026 01:53:15 -0700 (PDT)
+X-Received: by 2002:a05:620a:2909:b0:911:e556:c7c5 with SMTP id af79cd13be357-914a2d1a4famr157589685a.8.1779353594684;
+        Thu, 21 May 2026 01:53:14 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6882442b03fsm572015a12.12.2026.05.21.01.53.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 May 2026 01:53:13 -0700 (PDT)
+Message-ID: <990a0d6b-ef5c-4d7b-ab63-e75c37825397@oss.qualcomm.com>
+Date: Thu, 21 May 2026 10:53:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v8 3/3] PCI: mediatek: Add support for EcoNet EN7528 SoC
-To: Manivannan Sadhasivam <mani@kernel.org>, sashiko-reviews@lists.linux.dev
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- conor+dt@kernel.org
-References: <20260520183827.908243-4-cjd@cjdns.fr>
- <20260520195806.4726A1F000E9@smtp.kernel.org>
- <r2l6c665a3feivxabhlkqx5hghvg4s6spxz7xmqvlxawqijkub@qz3gcdxuavf7>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/11] arm64: dts: qcom: sc8280xp-arcata: Fix top USB-C DP
+ alt mode
+To: jerome.debretagne@gmail.com, Douglas Anderson <dianders@chromium.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+References: <20260520-surface-sp9-5g-for-next-v1-0-9df52552bf87@gmail.com>
+ <20260520-surface-sp9-5g-for-next-v1-5-9df52552bf87@gmail.com>
 Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <r2l6c665a3feivxabhlkqx5hghvg4s6spxz7xmqvlxawqijkub@qz3gcdxuavf7>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-2.16 / 15.00];
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260520-surface-sp9-5g-for-next-v1-5-9df52552bf87@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDA4NiBTYWx0ZWRfX29DOsG6+m6GV
+ AatF0wt2JaiiG0juJCAPuLlOpb9yzylrhgXhm8Lz2UiT7k44jcTpblN2D3a55iPOMk80ip10z30
+ f7gHSjRHThXy/D1SGGfhL4sPk5dAK+caWZQTmd7/3Q6sXtHd72ZR7TwkReDFTVopSWGG+1qGU+G
+ hzk5GYEQVfVPZHVUGJ8h5KQUotHWb7sutjoj1hKSvXap4tan/SLAOX+b5rXFBzEzRsOQ8z5q8XH
+ QiKGVY2eHOkbqmpZNbz3MVlhvciCQSx5x11aardZNbX4SmTFTSrCMXc3n2M6mqxnJaIrcoCDNYV
+ iieQZPZwyy+dAR/0+A9fEdomTRJGdFdGhwHGKEM8gtU86qz2m39rhVfxYQT0c+ETQj2QPM4cV1x
+ 0Vo3KEiM3L+zOdxHnGvsiWnBVhqU/5IHqSfZZYI+qtfbSM05tMRBu8uvkJgrzQmDENDi5jCHj8A
+ 6Fk2iSClLINgpo8UQPA==
+X-Authority-Analysis: v=2.4 cv=Zckt8MVA c=1 sm=1 tr=0 ts=6a0ec7fc cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=VwQbUJbxAAAA:8 a=gxl3bz0cAAAA:8 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8
+ a=3tLAdUXkJK0rNdSNFTIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=kiRiLd-pWN9FGgpmzFdl:22
+X-Proofpoint-GUID: 6Z426lgmNLT2JF8gLVcGsjGxD1_xpHd0
+X-Proofpoint-ORIG-GUID: 6Z426lgmNLT2JF8gLVcGsjGxD1_xpHd0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_01,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
+ phishscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605210086
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301131-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,chromium.org,linaro.org,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-301129-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 5A21E5A1921
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 35AE75A1F9E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 5/20/26 6:40 PM, Jérôme de Bretagne via B4 Relay wrote:
+> From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> 
+> The top USB-C port (usb0) didn't switch to DP alt mode, as reusing the
+> same GPIO 101 as on the SC8280XP CRD or Lenovo ThinkPad X13s was not
+> working on the Surface Pro 9 5G.
+> 
+> Investigation [1] by Jens on the Windows Dev Kit (WDK2023), the other
+> sc8280xp-based "blackrock" model from Microsoft, found a reference
+> to GPIO 100 in the DSDT in addition to 101. Switching to GPIO 100
+> fixed the issue on blackrock, as it does on arcata to enable
+> external screen when using the left-side top USB-C port.
+> 
+> [1] https://lore.kernel.org/all/20250609-blackrock-usb0-mux-v1-1-7903c3b071e4@oldschoolsolutions.biz/
+> 
+> Cc: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+> Fixes: f6231a2eefd4 ("arm64: dts: qcom: sc8280xp: Add Microsoft Surface Pro 9 5G")
 
-On 21/05/2026 09:33, Manivannan Sadhasivam wrote:
-> On Wed, May 20, 2026 at 07:58:05PM +0000, sashiko-bot@kernel.org wrote:
->> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
->>
->> New issues:
->> - [High] Link retraining is performed after device enumeration and driver binding, causing a severe race condition.
->> - [High] Iterating the PCI bus devices list without holding the pci_bus_sem read lock.
->> - [Medium] Early return in mtk_pcie_retrain() aborts retraining of all remaining root ports if a single port fails.
->>
->> Pre-existing issues:
->> - [High] Freeing port in error paths causes a Use-After-Free because the active IRQ domain's host_data still points to it.
->> --
->>
->> commit c1c3bb9bcba6bb8a070037578912a2f02c381591
->> Author: Caleb James DeLisle <cjd@cjdns.fr>
->> Subject: PCI: mediatek: Add support for EcoNet EN7528 SoC
->>
->> This commit adds support for the PCIe controller present on the EcoNet
->> EN7528 (and EN751221) SoCs. These SoCs feature a mix of Gen1 and Gen2 ports,
->> and require a manual link retraining after startup for Gen2 ports to function.
->>
->>> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
->>> index c503fbd774d09..4e4d4b1559f71 100644
->>> --- a/drivers/pci/controller/pcie-mediatek.c
->>> +++ b/drivers/pci/controller/pcie-mediatek.c
->> [ ... ]
->>
->>> @@ -755,6 +766,132 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
->>>   	return 0;
->>>   }
->>>   
->>> +static int mtk_pcie_startup_port_en7528(struct mtk_pcie_port *port)
->>> +{
->> [ ... ]
->>
->>> +	/* 100ms timeout value should be enough for Gen1/2 training */
->>> +	err = regmap_read_poll_timeout(pcie->cfg, EN7528_LINKUP_REG, val,
->>> +				       !!(val & link_mask), 20,
->>> +				       PCI_PM_D3COLD_WAIT * USEC_PER_MSEC);
->>> +	if (err) {
->>> +		dev_err(pcie->dev, "EN7528: port%d link timeout\n", port->slot);
->>> +		return -ETIMEDOUT;
->>> +	}
->> [Severity: High]
->> This is a pre-existing issue, but returning an error here can cause a
->> use-after-free crash.
->>
->> When a port fails to start up (for example, if the slot is empty and link
->> training times out), the caller frees the port structure by calling
->> mtk_pcie_port_free(). However, mtk_pcie_port_free() does not call
->> irq_domain_remove().
->>
->> Since mtk_pcie_init_irq_domain() sets the newly allocated port structure
->> as the IRQ domain's host_data, the domain remains registered with a
->> dangling pointer.
->>
->> Could we make sure the IRQ domain is properly cleaned up in error paths?
->>
->> [ ... ]
->>
-> This is a valid concern. I've sent the fix for it:
-> https://lore.kernel.org/linux-pci/20260521071907.13614-1-manivannan.sadhasivam@oss.qualcomm.com/
-Would you like me to integrate that in my patchset or is it sufficiently 
-decoupled that it should be handled separately ?
->>> +static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *host)
->>> +{
->>> +	struct pci_dev *rp;
->>> +	int ret = -ENOENT;
->>> +	u16 lnksta = 0;
->>> +	u32 speed;
->>> +
->>> +	/* Should already have been warned about during startup_port */
->>> +	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
->>> +		return 0;
->>> +
->>> +	for_each_pci_bridge(rp, host->bus) {
->> [Severity: High]
->> Does iterating the PCI bus devices list here require holding the pci_bus_sem
->> read lock?
->>
->> Since mtk_pcie_retrain() is called after pci_host_probe() completes, the PCI
->> bus is live and devices are exposed to the system. Concurrent operations like
->> sysfs hotplug events could modify the host->bus->devices list during traversal.
->>
->> Should we hold down_read(&pci_bus_sem) or use pci_walk_bus() to avoid a race
->> condition?
->>
-> This is also a valid concern. You should wrap the loop with 'pci_bus_sem'. I see
-> a few other drivers are also doing the same, but I'll fix them separately.
-OK
->>> +		if (pci_pcie_type(rp) != PCI_EXP_TYPE_ROOT_PORT)
->>> +			continue;
->>> +
->>> +#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
->>> +		ret = pcie_retrain_link(rp, true);
->>> +#endif
->>> +
->>> +		if (ret)
->>> +			return dev_err_probe(&rp->dev, ret,
->>> +					     "failed to retrain port\n");
->> [Severity: Medium]
->> Will this early return abort the retraining process for all remaining root
->> ports?
->>
->> If pcie_retrain_link() fails on the first port, we immediately break out of
->> the loop.
->>
->> Should this log the error and use continue instead, so that a failure on one
->> independent slot does not prevent the others from retraining successfully?
->>
-> This you can ignore as we should treat retrain failure for a single Root Port as
-> a hard failure.
-Agreed
->>> +
->>> +		pcie_capability_read_word(rp, PCI_EXP_LNKSTA, &lnksta);
->>> +		speed = lnksta & PCI_EXP_LNKSTA_CLS;
->>> +
->>> +		pci_info(rp, "link retrained, speed %s\n",
->>> +			 pci_speed_string(pcie_link_speed[speed]));
->>> +
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->> [ ... ]
->>
->>> @@ -1159,6 +1296,13 @@ static int mtk_pcie_probe(struct platform_device *pdev)
->>>   	if (err)
->>>   		goto put_resources;
->>>   
->>> +	/*
->>> +	 * Ignore error because pci_host_probe() was already called, and in any
->>> +	 * case it is possible that the port will still work as Gen1.
->>> +	 */
->>> +	if (pcie->soc->quirks & MTK_PCIE_RETRAIN)
->>> +		mtk_pcie_retrain(dev, host);
->>> +
->> [Severity: High]
->> Can retraining the link at this stage cause issues with actively bound endpoint
->> drivers?
->>
->> By the time pci_host_probe() returns, devices have already been discovered,
->> exposed to the system, and their drivers bound. Retraining the PCIe link forces
->> it into recovery, which could stall transactions or temporarily drop the link.
->>
->> If an endpoint driver (like NVMe or Wi-Fi) is actively performing MMIO or DMA,
->> could this cause unhandled exceptions, AER errors, or initialization failures?
->>
->> Would it be safer to retrain before devices are added to the system (e.g.,
->> before pci_bus_add_devices())?
->>
-> This can also be ignored as you don't have much choice here. Once the driver is
-> bound to the device, doing any link level activity without quiescing the device
-> warrants trouble. But since it happens right after the pci_host_probe(), most
-> likely the client drivers wouldn't have started functioning i.e., initiating DMA
-> transfers etc... So the chances of failure are very less.
+Fixes should go before your sign-off
 
+otherwise
 
-I was just looking though the initialization process, and I notice that 
-pcie_failed_link_retrain() is called unconditionally and it LOOKS like 
-it ought to be solving our problem. So I'm going to throw a bunch of 
-logs in there and see what's going on, and whether it seems like we can 
-safely piggyback on that for EcoNet, and I'll come back with a v9 which 
-either switches to that, or else adds the pci_bus_sem and continues with 
-the mtk_pcie_retrain solution.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-
-Thanks,
-
-Caleb
-
-
->
-> - Mani
->
+Konrad
 
