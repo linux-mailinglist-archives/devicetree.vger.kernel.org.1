@@ -1,202 +1,197 @@
-Return-Path: <devicetree+bounces-301081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301075-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oENcC7XBDmrXBwYAu9opvQ
-	(envelope-from <devicetree+bounces-301081-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:26:29 +0200
+	id QNtnNtTADmrXBwYAu9opvQ
+	(envelope-from <devicetree+bounces-301075-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:22:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DBEE5A1029
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:26:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB4F5A0F48
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:22:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4A69A30BBCE3
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:23:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A71743008E21
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB2C3A6F03;
-	Thu, 21 May 2026 08:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC08E3546F0;
+	Thu, 21 May 2026 08:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eYn7FEC4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y1RPX4Tr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D543A3816;
-	Thu, 21 May 2026 08:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3BC351C28
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779351767; cv=none; b=K6amoCExnKLe6Rfe5R2AMOpPpUZhpUeSa0M4YZtWY3kunLpxqxTonj0Qxzox4aETK55BMVhRBacWAPViVSoio4gX2kskQY7xC4Vw4XuLuyrkiKAYCK4JmBpWe4VCc7E/qhIcbC7HbpLn76FZaubfJUsR7eXCP7UShGefiOBAAzU=
+	t=1779351753; cv=none; b=o4BUI3GpQFJ9X6uG72hXbigNk5NJvkE2+Iopv0hX7hWcqsUbV2BcNSkbaNFk3oOy3dOHFgsVveLSJ19Z8yUi8GT84lIclp6K6rPKMEh1dbtHH9cnPlIdTV85TiYf2nVXvU9z2OQRGdOROn7OD4rDsUwA8EQ0pg2fR5pFGSH2tdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779351767; c=relaxed/simple;
-	bh=CWjNHp3lVq1P1BWK7ilWt1phFCJ5rYaKgQ1jBzqDdC4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=taQXOwWCIEn7woJP7g07CzaHLHYUTPOtjSjDkJGP+FD7sFBKJTOpPYpEXXUH0c1qAlns2fkSVAjYlHCV2U6Q/5XXtcBwefcbICMJ4ga8HhasXmp+oU6FDnYju3dOEbp9JUlYAyJo+xeM7Js++IWGdCM+A6H0WpqL7XzkyENm1tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eYn7FEC4; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1779351762;
-	bh=CWjNHp3lVq1P1BWK7ilWt1phFCJ5rYaKgQ1jBzqDdC4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=eYn7FEC4jU99Os15lM7ysV8MVNZ5cDHrPV2RrLJtQyJZNSfSx/3nLbeQgY1RQY7LK
-	 9cRRM3OJ/cBeavnPMiX0r6yQoePltpsfq9TmBRiUXrX4RtGhi45b5Ft/GkcarK1cO2
-	 TcXKgQWdUV87RHJ+Kp12fnCFlWTiEudDkB4gFFDkrw97reER9a64jHA+FOwPNTxgVt
-	 FA4lE+zLw+ecA3oM8Il7MHo0htM6qZek0vj31XvRCVDf8OyUEGXX6IMRIzD+qbAz+L
-	 fY3q9HbPVCXJRbvlpfQAiSYLKFgj7jLBLTB8i9dk9GpQ1Swo7j/rWs9P/rcPFhp+mo
-	 /ikV7Mg9pt15Q==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CADAE17E132E;
-	Thu, 21 May 2026 10:22:40 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Thu, 21 May 2026 10:21:59 +0200
-Subject: [PATCH net-next v4 6/6] net: phy: air_an8801: ensure maximum
- available speed link use
+	s=arc-20240116; t=1779351753; c=relaxed/simple;
+	bh=2U4Iz+y/ftIEQD2G9GHkxV5IQLWcE2W5F9DA9bvujfE=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m3GzOKJKR/JLmDzsOvtMN7fUH/1rwksv2mAVxn/5S0Kf7sbAboonuwUwQnAZ+b5JRdfFPVRlwwE9r67Nke7EOJYzUuzB7shyV/ur6wVY4hbjieeBrjlGLm0jqPYS0/78aH3Cir3evW2zFhKl0Sg3DIRgRT52CChy53jz7BeNCl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y1RPX4Tr; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4896c22fcbaso48314135e9.0
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:22:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779351751; x=1779956551; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=iCcyB5LFRmVcSIROxmyKJG5EejU8FPAzcsI/5iDjdGU=;
+        b=Y1RPX4TrHsw4GfhL/hlzBc7o0EBKZ404MMtMm9nl9sKh2faf3YcHRDm5/fXHxjSYvA
+         ORz13F6JG1EraOGiT/j3w89DwyrifOeytE2R2aHu4JMHRzbGtmLAm6Ql4nkI2ZVD9hOy
+         WPMoiqbRqlmT2D4vP/z0PpAgH/6zOS00Clg5N8D7f1ISkR2DHeth9KRS9yjU/NFmFC8T
+         xfY293wXAVSvGX73fkj+UHxQ9Zjsz+Vc9++YiAkcB3xx/CX5B8/WC5cdRq5syopbcRh/
+         ggYm+v6uy+DDsNu1wwRopoIdyY3AnbDIJPHubn9aD7PAnkdkE4tZV+D8Jpst0DyyTBF6
+         CA2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779351751; x=1779956551;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iCcyB5LFRmVcSIROxmyKJG5EejU8FPAzcsI/5iDjdGU=;
+        b=UZybKiltLnsDP7RcyZOvrfngZtYOhNmC2vvm+os2ErI0exeaf9gClwdCbYEDCClmeU
+         5A0vspci2dhvg8ZLpurkcyQTNexXwYIxLvN/Zf2W/WCyZYicPUX2aY7Dl+WdGtgDk0Bt
+         gcBziuzJf2mvkh6Du5RErmRCwsMxsZcudR7fDO6RhOyMxkx4+hr8OfrdPoDcaFs3RUis
+         JmiLuz5iC609MCoYPMJcRvI36Rv0p8Mztq8tg3rA3EKxJ6C2vIsTTN35zZnrUAsMrzao
+         BM8JMSPb0TG/3hYqvNDZwc2TGfbU6iv9BxJ4bRyz+lqAClTxC6xtJfEyaWIZozWo5yIJ
+         uNgw==
+X-Forwarded-Encrypted: i=1; AFNElJ+57rTnVOyYm33N8zivXDCXLFJPhMIOFYw0jmRJZyuNs+E26Dau+/vd9Q7jlH93GoLUI6CAbGjTzfxR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFoU468lplYBs/VnT0j7A/BBoGGOHCdR0qNeD3wxt4Dxc5nZo2
+	pkuz9wMlYk3+7r2I4Z1l7YLq93ScG9nN04B5GqXQ+EVCEZ1i8nwkcM19
+X-Gm-Gg: Acq92OEXPGgab9cUofESmbZeSa8ew+Y4ZxeNAUxDWHIFf3xeVH6tRiklC7lIjiekYoJ
+	3jy44ZkeP9iorhyRBCJkr+9YOeWepctYbeI6RNiLAbxVLe5Xsd5QlMt9xuqUQc+x3GMjisF25tz
+	H1iuFWQWjfoj9jTXSPhjEt+tsM6ye7WEpK1+ucaw8V3mBSM8X+5OoMdQ4oXPLOJabEHfgzJhytf
+	LOsCgyxhxP8koF4tElGy7dx2G3VK72mzlShs1A4cqfIRXlg3FVD8LSwxTuQYM2oqxjaHOyQOAaK
+	27GG7K8pj/+U0MfGrl2kNbIYuNe0zJQONejg58tayllECld5+ze+57UncIWowQRzYDnUehJDdc2
+	OKFmRJ8WdaoQNFyA9+odqfJbuRFFmS7NAxDH6h1SE/STR8jABjrXKOBN3deQuL/8+BycZXwziPr
+	EtqLbPwm1gmZosTgx3kWOI2Le+lvKihFx+r2pvS0Z6+EbxIZNRIl6DBgc4ZYDLWi+63IP2RCVv
+X-Received: by 2002:a05:600c:858c:b0:490:778:4fec with SMTP id 5b1f17b1804b1-490360f28f7mr17896195e9.33.1779351750348;
+        Thu, 21 May 2026 01:22:30 -0700 (PDT)
+Received: from Ansuel-XPS. (host-79-22-5-99.retail.telecomitalia.it. [79.22.5.99])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4903caede9fsm9490145e9.14.2026.05.21.01.22.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 May 2026 01:22:29 -0700 (PDT)
+Message-ID: <6a0ec0c5.16c38fd9.2b754a.4dc3@mx.google.com>
+X-Google-Original-Message-ID: <ag7Aww1CbIvhnItD@Ansuel-XPS.>
+Date: Thu, 21 May 2026 10:22:27 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v8 2/5] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+References: <20260520150912.11614-1-ansuelsmth@gmail.com>
+ <20260520150912.11614-3-ansuelsmth@gmail.com>
+ <20260521-ambrosial-abiding-lyrebird-9dc86f@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260521-add-airoha-an8801-support-v4-6-1e4837d30ef4@collabora.com>
-References: <20260521-add-airoha-an8801-support-v4-0-1e4837d30ef4@collabora.com>
-In-Reply-To: <20260521-add-airoha-an8801-support-v4-0-1e4837d30ef4@collabora.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>
-Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com, 
- matthias.bgg@gmail.com, kernel@collabora.com, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779351750; l=2402;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=CWjNHp3lVq1P1BWK7ilWt1phFCJ5rYaKgQ1jBzqDdC4=;
- b=VyzIoCdpeWn8XvAgkZ+U0CxFZMGW7ROgymrXgmziebcmXzI3bFPS7IqXSmZswrGGXY0MFsfe6
- dQXDwoabVL4DJO8krNlUYO3VktXt3im52mbwf5gN+b3TNutVvD0dUPM
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260521-ambrosial-abiding-lyrebird-9dc86f@quoll>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301081-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-301075-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:email,collabora.com:mid,collabora.com:dkim]
-X-Rspamd-Queue-Id: 9DBEE5A1029
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mx.google.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5EB4F5A0F48
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-To ensure that the Airoha AN8801R PHY uses the maximum available link
-speed, an additional register write is needed to configure the function
-mode for either 1G or 100M/10M operation after link detection.
+On Thu, May 21, 2026 at 09:44:16AM +0200, Krzysztof Kozlowski wrote:
+> On Wed, May 20, 2026 at 05:09:07PM +0200, Christian Marangi wrote:
+> > Add documentation for Airoha AN7581 USB PHY that describe the USB PHY
+> > for the USB controller.
+> > 
+> > Airoha AN7581 SoC support a maximum of 2 USB port. The USB 2.0 mode is
+> > always supported. The USB 3.0 mode is optional and depends on the Serdes
+> > mode currently configured on the system for the relevant USB port.
+> > 
+> > To correctly calibrate, the USB 2.0 port require correct value in
+> > "airoha,usb2-monitor-clk-sel" property. Both the 2 USB 2.0 port permit
+> > selecting one of the 4 monitor clock for calibration (internal clock not
+> > exposed to the system) but each port have only one of the 4 actually
+> > connected in HW hence the correct value needs to be specified in DT
+> > based on board and the physical port. Normally it's monitor clock 1 for
+> > USB1 and monitor clock 2 for USB2.
+> > 
+> > To correctly setup the Serdes mode attached to the USB 3.0 mode, a phys
+> > property is required with the phandle pointing to the correct Serdes port
+> > provided by the SCU node.
+> 
+> 
+> ^^^ here - required but:
+>
 
-So, in air_an8801 driver, implement a custom read_status callback, that
-after genphy_read_status determines the link speed, sets the bit 0 of
-the link mode register (REG_LINK_MODE) if the detected speed is 1Gbps,
-or unsets it otherwise.
+I think I have to rephrase it. It's required if the USB3 is used/wanted. In
+the other case for the USB2 phy is not needed.
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- drivers/net/phy/air_an8801.c | 43 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
-
-diff --git a/drivers/net/phy/air_an8801.c b/drivers/net/phy/air_an8801.c
-index 73f94e84da07..c64fa153b738 100644
---- a/drivers/net/phy/air_an8801.c
-+++ b/drivers/net/phy/air_an8801.c
-@@ -977,6 +977,48 @@ static int an8801r_config_init(struct phy_device *phydev)
- 	return 0;
- }
+I will bettet describe this in commit description and on the phys property
+description.
  
-+static int an8801r_read_status(struct phy_device *phydev)
-+{
-+	int prev_speed, ret;
-+	u32 val;
-+
-+	prev_speed = phydev->speed;
-+
-+	ret = genphy_read_status(phydev);
-+	if (ret)
-+		return ret;
-+
-+	if (!phydev->link) {
-+		phydev->speed = SPEED_UNKNOWN;
-+		return 0;
-+	}
-+
-+	if (prev_speed != phydev->speed) {
-+		/* Ensure that PHY switches to 1G speed when available,
-+		 * by configuring the function mode for either 1G or 100M/10M
-+		 * operation.
-+		 * Therefore, set the link mode register, after read_status
-+		 * determines the link speed.
-+		 */
-+		val = phydev->speed == SPEED_1000 ?
-+		      AN8801_BPBUS_LINK_MODE_1000 : 0;
-+
-+		ret = an8801_buckpbus_reg_rmw(phydev,
-+					      AN8801_BPBUS_REG_LINK_MODE,
-+					      AN8801_BPBUS_LINK_MODE_1000,
-+					      val);
-+		if (ret) {
-+			/* Restore previous speed on failure to ensure this
-+			 * register setting is retried on the next poll
-+			 */
-+			phydev->speed = prev_speed;
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int an8801r_probe(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
-@@ -1074,6 +1116,7 @@ static struct phy_driver airoha_driver[] = {
- 	.suspend		= an8801r_suspend,
- 	.resume			= an8801r_resume,
- 	.config_aneg		= genphy_config_aneg,
-+	.read_status		= an8801r_read_status,
- 	.config_intr		= an8801r_config_intr,
- 	.handle_interrupt	= an8801r_handle_interrupt,
- 	.set_wol		= an8801r_set_wol,
+> > +  phys:
+> > +    items:
+> > +      - description: phandle to Serdes PHY
+> > +
+> > +  '#phy-cells':
+> > +    description: The cell contains the mode, PHY_TYPE_USB2 or PHY_TYPE_USB3,
+> > +      as defined in dt-bindings/phy/phy.h.
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - airoha,usb2-monitor-clk-sel
+> 
+> 'phys' is not required? I think you need it to configure the serdes
+> correctly, no?
+> 
+> > +  - '#phy-cells'
+> > +
+> > +additionalProperties: false
+> 
+> Best regards,
+> Krzysztof
+> 
 
 -- 
-2.54.0
-
+	Ansuel
 
