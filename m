@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-301413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WL58DeY6D2otIAYAu9opvQ
-	(envelope-from <devicetree+bounces-301413-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:03:34 +0200
+	id +EbtMuI6D2rUHwYAu9opvQ
+	(envelope-from <devicetree+bounces-301411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:03:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269A35A9D23
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E78245A9D1A
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:03:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84B893201A8F
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:18:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5BE60305F14B
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66DE37C90A;
-	Thu, 21 May 2026 16:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91CB379C4E;
+	Thu, 21 May 2026 16:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="e7m2TseT"
+	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="paelamEw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83534377EDF;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835BE3783AE;
 	Thu, 21 May 2026 16:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779380325; cv=none; b=G7fwe4HBwn92Aozdz78QoINIUEIifiP7bkK6Z+8tPhrwOcduXB0B1+8Fcfb+m07oKyAkOpRFz7Pp1wBY6+r2378AfQOIDVURNkjW8RNInkqFLgZmK5+YZVumSuHN/bUQyPs0IRGxbFlexWFQZM5HcaPJrsS3KyCjlD7mcwYSUnw=
+	t=1779380324; cv=none; b=TJNPwxMnAaK77nrQcK0MFZzHuXleoX4pHqUrqnpI23TRTjBRHjRZudK3XtYWP7VJ+vMh5+apNkd1v9tykqYi0Jv5B/4MkTOZJROeXTqlWf2RNYHPH+tILtJMbkKlYcBnBluNRP8IaajtqhSf2tRy69RWxhhzPOXbyrwngxxA7dU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779380325; c=relaxed/simple;
-	bh=BtKJb60RH22N8q5bA132HNWfF01wxJbGNhtoMMQgXJo=;
+	s=arc-20240116; t=1779380324; c=relaxed/simple;
+	bh=XzD44KZDsCC3Vjgdgd1Sj34ih/8aBN8rkmHtReURtAA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SLCLJGAWlFLJkyqZ6CxcFbANw1rPGq3g1vOnA4khHQlxs4To1Q8AY/9vvAdve/W6SPQUWQNFVybIfNxJ71dH7DofGWSGmKb4q04Hk3i/M4weT2UWfQPNqJ7yVPuq9v3LPK6JAqf06UeumD8wXPFuxHqSJQFWlLZ4oMlLIvwLFYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=e7m2TseT; arc=none smtp.client-ip=89.58.28.240
+	 In-Reply-To:To:Cc; b=gOunhMrrbHwDSXg1Y5mJcmFFfn9VPR4RheTag39sE3XEjROodf0eSxurbT+k/0uNcXezG172kJtufHkl5NVioAarXsXs2T1TxiSpaVC7w8tWxZbj9XCJL5VJnRtpRJ48zSBJU5iqUXtfrh3vOwPnDqPTVZIADKJclJLZD5Us7jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=paelamEw; arc=none smtp.client-ip=89.58.28.240
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
 Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cdfc:e00:ebbc:d4ad:bda4:649a])
-	by srv01.abscue.de (Postfix) with ESMTPSA id 2FC141C698E;
+	by srv01.abscue.de (Postfix) with ESMTPSA id C5B911C698F;
 	Thu, 21 May 2026 18:18:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
-	t=1779380314;
+	t=1779380315;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=GZND7fks3TiIGjH/cHhuHXZ8h2Dnzuccv9iznYuslCc=;
-	b=e7m2TseTmTYvV1eL8PrFXajVTt9hv/FMpJK+mp0kbjvLI161dNdHu+mp0it+5r/JJgoZXN
-	6mBS1k6n79XOk08zNA/vQL+tvcqjK6Z+IFVfnIbkeA5R1SYNg2zJbGJ7v3GCwoVvLX1V8f
-	dC20JTD1S1XUVYZrBYX32tCK0S7rvJOgsmaSHyTLhKBJhdR6jtTq72LMkfr/j4YYVO1xZY
-	Be3jmEpKdkIx+PNjeK6AC1S+wNMNnDGcnC+BcYjqLmGN2xiLr0yf8uxEy9R26aT5IH9M3M
-	cQpkY0Y3gUnrkpLgk/pqLMLb8IXQVuHL4SmGGRFMz0SdrQ1xLK/wCBuJRbbc3A==
+	bh=WiTRgSP8t7TA5kJ1tVlAvoc/XyDZMqtXipVnqisqr1M=;
+	b=paelamEwXZSP5w4aB74ynBJYWNgqmaXXqAYIwlfvfGcOb2+UYIc9CjZF90n5DUXKAAjRI3
+	oMVPZ1RS4SrAb7UlpaERCNEbB/1HNass3dyol6yuvFDiaO86WXtrV/XZdSBS9OfRPF9vy4
+	T3MTb4qTaSqoLcTQSePf8Rhfk4DrpXTfhtQYEv6MnlkNFVmipGQUHte74HGmiDbNQW1Vxp
+	db4EGJBdV7aPz0waQjRV1Mg8Zd6Tu0Ge+Whr+vK4V9STyRmf6GqifYs2JpUi/Ec4+n9nbC
+	alJmFrLJi1CnLEPeCWLbqA6F3nP1n7Eh1z7ffUmmUfaGEB9zHVkNsjiY6wwcTw==
 From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Date: Thu, 21 May 2026 18:17:06 +0200
-Subject: [PATCH v4 1/4] regulator: dt-bindings: Add Unisoc SC2730 PMIC
+Date: Thu, 21 May 2026 18:17:07 +0200
+Subject: [PATCH v4 2/4] dt-bindings: mfd: sprd,sc2731: Include SC2730
+ regulator bindings
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260521-sc2730-regulators-v4-1-1ac8a3b5ed82@abscue.de>
+Message-Id: <20260521-sc2730-regulators-v4-2-1ac8a3b5ed82@abscue.de>
 References: <20260521-sc2730-regulators-v4-0-1ac8a3b5ed82@abscue.de>
 In-Reply-To: <20260521-sc2730-regulators-v4-0-1ac8a3b5ed82@abscue.de>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -82,7 +83,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linux.alibaba.com];
-	TAGGED_FROM(0.00)[bounces-301413-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301411-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	DMARC_NA(0.00)[abscue.de];
 	MIME_TRACE(0.00)[0:+];
@@ -98,69 +99,70 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,abscue.de:email,abscue.de:mid,abscue.de:dkim]
-X-Rspamd-Queue-Id: 269A35A9D23
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,abscue.de:email,abscue.de:mid,abscue.de:dkim]
+X-Rspamd-Queue-Id: E78245A9D1A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add bindings for the regulators found in the Spreadtrum/Unisoc SC2730
-PMIC, used e.g. with the UMS512 and UMS9230 SoCs.
+The SC2730 PMIC provides a different set of regulators from SC2731 and
+thus requires separate regulator bindings. Allow using them for the
+"regulators" node.
+
+Add a conditional to make this depend on the top-level compatible of the
+PMIC so that wrong combinations do not pass device tree binding
+validation, e.g. if the SC2730 regulators are mistakenly added to an
+SC2731 node.
 
 Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
 ---
- .../bindings/regulator/sprd,sc2730-regulator.yaml  | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Regarding Krzysztof's earlier suggestion to split the MFD bindings, I
+would currently prefer not to make such a large change that duplicates
+a large part of this binding. I am not planning to additionally restrict
+the compatible properties for nodes that still have them, only the
+regulators are affected by this.
+---
+ .../devicetree/bindings/mfd/sprd,sc2731.yaml        | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml
-new file mode 100644
-index 000000000000..ab945c46b08e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/sprd,sc2730-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+index b023e1ef8d3c..39d26b6ab477 100644
+--- a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
++++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+@@ -54,7 +54,6 @@ properties:
+ 
+   regulators:
+     type: object
+-    $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
+ 
+ patternProperties:
+   "^adc@[0-9a-f]+$":
+@@ -101,6 +100,26 @@ required:
+ 
+ additionalProperties: false
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: sprd,sc2730
++    then:
++      properties:
++        regulators:
++          $ref: /schemas/regulator/sprd,sc2730-regulator.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: sprd,sc2731
++    then:
++      properties:
++        regulators:
++          $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
 +
-+title: Unisoc SC2730 Power Management IC regulators
-+
-+maintainers:
-+  - Otto Pflüger <otto.pflueger@abscue.de>
-+
-+patternProperties:
-+  "^dcdc-(core|cpu|gen[0-1]|gpu|mem|memq|modem|sram)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+
-+  "^ldo-avdd(12|18)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+
-+  "^ldo-vdd(18-dcxo|28)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+
-+  "^ldo-vdd(emmccore|kpled|ldo[0-2]|sd(core|io)|sim[0-2]|usb33|wcn|wifipa)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+
-+  "^ldo-vddcam(a0|a1|d0|d1|io|mot)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+
-+  "^ldo-vddrf(1v25|18)$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+
-+additionalProperties: false
-+...
+ examples:
+   - |
+     #include <dt-bindings/gpio/gpio.h>
 
 -- 
 2.51.0
