@@ -1,453 +1,228 @@
-Return-Path: <devicetree+bounces-300977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-300980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2BgAKBNjDmpG+QUAu9opvQ
-	(envelope-from <devicetree+bounces-300977-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:42:43 +0200
+	id sFqkN+ZhDmoD+QUAu9opvQ
+	(envelope-from <devicetree+bounces-300980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:37:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55DB59DC1F
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:42:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A9259DB5A
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 03:37:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ED45D306CFF1
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:30:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AC964307BFFD
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 01:32:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AD730BF5C;
-	Thu, 21 May 2026 01:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4E32F362B;
+	Thu, 21 May 2026 01:32:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WZDnRymr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2118.outbound.protection.partner.outlook.cn [139.219.17.118])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98AF2EACF9;
-	Thu, 21 May 2026 01:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.118
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779327032; cv=fail; b=ZA7YteT9s6Cti83sz+gsF4QZUB+O0KlpOmEA0IQSwOi34NlLKlrfdxcJ5V9prbfTOxliRN8q2avVyzXzowunfVAdebs52QH6rtX5/Ui/pmNyZSjrohmB1T3sCCsh+bsWiX37HEeyf3Ch4vmCUKOtYbrfcLA3wb4VQAeTqo3tAAA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779327032; c=relaxed/simple;
-	bh=ko8yUEFHehT4TqDlsflVqL6grfoWaKVgbAO/PZgourQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZknGFQVMnu2yYOIFWCV9wX/gSCb+aviheQIC3T+GVGpCvPmM0mnDGQDZAneI1VXPhZWvmTMxWqgC6/wwc0I+W/8zvo+ulKDXHqHCoRnqWJTkcydxNnjRZjVLdiYtI7aQJIPZbfaTjjSBNlDz+rw39AEiA4+1AE1PoTMgiV87FEg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HR0XNh3RvHHxCrMs/DfdnGgGNlUPbXHthGAAV22qVTma5gM7CGIohhL7sP1qFPejyUgEU3VxeSPT7BbvE8WWikJtWuBuNPjpwbTix7mazDj2rBZFREUgoMq36d3sWloj9mjs9005mqLK+FZYf93x8ufX3UZtQNBjlCFgiRUKxYsmPvMREemAmKOUQfG8PwngK+wtNAPKG3aspOUfLP9pryNB1GfOaSxUWm3KdPovCR/VUmbJCWfBTqjj+OS2lNhPQe7VyUXTH/WGHGRl8cWg2zTWTaad8NPtH1JvJ3Jv3Kr6mJYu1SHqeURkQsAWhylPzNq1qWrEApZ7Yy+HLVIN6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U3s7NRKVTV96UArsQWaj8CWg4YNBsiYVibAuvTpcN0Q=;
- b=Ci+dN14nO7vrUMwpSxORFqYREWLQnYZyNjoQqAXuooa44PoW0TDKYRfBl4pqRj6/RsZwprA7WKT1H+78EMDCX44zdYij2klGgzLk6emPwlz3FDlKmaf7IeeTNu4W4dou54UMsy7GKqyuczTGjzdR1bcB3jMCGq3/U/Uelf2GpfNooB8bHPym+Ou+JXhaNzWPNxXmjZmQ3KxHAp2YD7PpPqtkKLxLlCmMb8e1F5lnO4at70RE+ywm9VaXwWZJYEYTBUJGdLuWrWAtyJVAg1B5BODb71tSdlyanCkywYbpMVOigsDFtSnRvY73u2tNGcFBIpQD2doBa4qMvkMhhifbKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6) by ZQ4PR01MB1330.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:16::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.16; Thu, 21 May
- 2026 01:29:59 +0000
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- ([fe80::e7d4:256c:b066:850d]) by
- ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.21.0048.016; Thu, 21 May 2026 01:29:59 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Emil Renner Berthing <kernel@esmil.dk>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Alexey Charkov <alchark@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v3 8/8] riscv: dts: starfive: jhb100: Add syscon nodes
-Date: Wed, 20 May 2026 18:29:32 -0700
-Message-Id: <20260521012932.24163-9-changhuang.liang@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260521012932.24163-1-changhuang.liang@starfivetech.com>
-References: <20260521012932.24163-1-changhuang.liang@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: NT0PR01CA0020.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:c::16) To ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4926B2BE655
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779327151; cv=none; b=ONBOqmuq/bYgv0mMkca94DtdGXs42Mt4ANOU5ielZRr9YOLgdfvOjeZ5TXmO7aFKPYXwRtMY0N1zbrHYGuzr6p+V0FpaK+eV3P2e2qUUo9GtmJBYLxPoypR39p2fhHe/+v1TUR/0nuSH42VFRETqoBbpwthbsTLLtKqdcZotkdc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779327151; c=relaxed/simple;
+	bh=lLNMwq6t0uGBVBJhdlCtfxnyfXrg2Jh3Gt2OOlmGFdE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=nuZnXjHmMXeWK3qjLo5xJ1ow6OLLnXmY+NnaO0II32/HWLCHTN14FrgGu9X/96vYWif7yf2ARnkqNA27kLDHTCrKtQFBAjpRMrWYkEB5H8POeXoaFDuBKdmWG/cAGXTmfebMmijdzlc33lupSXM05RlLuqM112xJUrEi/19wWS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WZDnRymr; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC4F31F000E9;
+	Thu, 21 May 2026 01:32:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779327140;
+	bh=4oCHS9JaNse608Ki3VIT/VqoREB//wwT9D+C6wCoSSg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=WZDnRymrwc5QBndBcFkkg6ikfeFSknDYKuiC5o5Jrrf2EuGJA7WBJpRaS1ID94Rsf
+	 yGidXowM6ziDRmswFzz+rhGBdkOdrIce6SEBucMCy0HxmObN94uoJ+t5wsKxze7vfs
+	 k8cwuaYCcQUvIgK5OVXrCNft1n0IhcNzlirdfprzjwRR1OdzwtyqjVMAHNbezwQiAg
+	 OmI0UIItcX5mR9lBb2jymCmCm0/T4N5ZvsqMKJ60cIdeJkFF8auluRvG2w24oRxgUO
+	 aQ4zTldvBtrKOK3c62fc9LJXCfEwEurNDE+Ojc5ENh44crLuRvvITpU98UNbh/4St/
+	 kdS685OdGdYwg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/4] phy: qcom: qmp-combo: skip USB power_off/exit after
+ device teardown
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Michael Scott" <mike.scott@oss.qualcomm.com>
+Cc: neil.armstrong@linaro.org, olteanv@gmail.com, conor+dt@kernel.org, vkoul@kernel.org, robh@kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20260521003615.1260844-2-mike.scott@oss.qualcomm.com>
+References: <20260521003615.1260844-2-mike.scott@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 21 May 2026 01:32:18 +0000
+Message-Id: <20260521013219.BC4F31F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1330:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c45451d-7f56-45ca-ae7e-08deb6d87911
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|22082099003|18002099003|56012099003|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	r3s+DaCJ54i4yDxYvO824Q2dgL03CMiEpax+O7rsbCu9xU7iFtO8Uix3Y5EfEeqOwmfo/LFwU2TGQpD6PTeNYuGOmkw68Cj2onIDWErjt1FEVsV0s65/igCjSXtPggNrIA+MEdTe/bqgkxX18EyuPaPVzlXhRj78m4LHQ7PUHRbMtCNSkvJfFdeeGl7PceH7N3wZKiwmfntT3FLU0IIDb8sY9QzTe4qJqdEaLxvvESnMJbiwfvu0eb0PoKz5+RkosnqLSc5NkNs4jG/0soXguam+kCwvr8D1zVjSawifsRBbS0oewb6+dDUkhDPDf/2RoaEeLWOyIM+Q+Kn4/g64bUwlN5FVG55aIzo3h1U9WUm7bOWvILjnuAs41YsgsvSfniMYDQVKg5GD0jFnXAiN+zO+xcrd5HMzeOIKlhVnmUquMuLh2sGOMWntFuFPWQLnuJOo/rz5GUJiBd5ZbX/ZgLIP1eA3ae2pNVL34o3E6B5FhQl4VO9HjeNn/iPZYzoB3j8oT8BupgAgg46Ao9vjl757HYqaURfOk9dSSZHmz5ryYbkQ9tDMrodr1/fZoOEPnDv8tSsA6hVZwxdcghiDJg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(22082099003)(18002099003)(56012099003)(38350700014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?rSgr7O2bc8tPusbwEZEzggxgy4g3MAKmzFRXabx0NhjAxmX2xd0HGlnnB0vw?=
- =?us-ascii?Q?sbnBvoJC7lroclNZoFlsdkLPciCsld+BcHKEdqmNT/bV3jRn3FBWUEhH8jGk?=
- =?us-ascii?Q?bB/UFqoXOkuadd+EBxSBSVIdQEeZQzOKxVDHTfuhq9vAIuaoVLTyn23DMyX5?=
- =?us-ascii?Q?GKGDNCE6ZTNSrCiKkGmTXvwxrMbZGOf9w4GAz3au3ib922JbAilZp/9E+a65?=
- =?us-ascii?Q?wzeZYEyFvcvyA7M6nWAX85wJBcp58JoU/HATHtyk7rDn1h9d2HzgbRR5GepQ?=
- =?us-ascii?Q?RHPp4g8gl3u80PbMmTVKL8p9gY9VIU//LOau9dicEGdgyfVP5GdnPNTKbSFr?=
- =?us-ascii?Q?9ZW6NXwm9m95G8frTm9y4Fkkk6PgrODP9AAz4i0wEpreuLu3tPlWeBvjpZ7z?=
- =?us-ascii?Q?AgMzgidBJlc7ezHGjFXprMM8S+yYud29WGA0dRFlhU846vTn1WpCkw83Hl+h?=
- =?us-ascii?Q?mHK9QriiSWBWRJflcQyT5hWNn2GwxhgtIIKTlDq//pLB/7/EpWcTLYIFpAba?=
- =?us-ascii?Q?2dc8ti+r8H7eMUEQMZlpdn+QfQyKUUtCuL9CoiCvKEWqYzsXFBF5BpfctiWC?=
- =?us-ascii?Q?VjqUUIH+PzAFn15gZ1j6wDQPCKwA+YLyVeLbIdHPeGMm3JXq+8UfRFb1xbRh?=
- =?us-ascii?Q?10Ijv5mc/xM2Z78xJX+Mr87Umm/QbjKagw53hRv1+XuCFFoAATdOaECKR8po?=
- =?us-ascii?Q?kkYyCRtOENflY3GIue56334kuOKB0ZQoEypLeaGE8+Y2s3it2NuZkiqusFQk?=
- =?us-ascii?Q?5/NQhFgMpiZOoENOcGD+UQUsdLG4UezweLaKZikua21G7hlVBxdpD0h6wPq4?=
- =?us-ascii?Q?zVONgyLh0sjtJAb7QdLOkjAR6Yt4YrHPhQBSnROwt52WEodaqZuPzHXyFuW3?=
- =?us-ascii?Q?FsAaICYE3tXe3Nsf8G2pvi6QGoUrmDUv1OJZpxnF4p82Auj45GRSdJ0po0PV?=
- =?us-ascii?Q?KOpDX4/nDe4Ptcl/m55QTTUYxLbJchxyLXdcJU7bgxur43JEQ5s+WKtXdV47?=
- =?us-ascii?Q?Pt/QG1fCdKBTzSqwYxeac0DABsfKCFtRGfMMy3FKtV/Ckenoja0QhZ2DF82Z?=
- =?us-ascii?Q?f+esTLpJZ6hKhgOY6oOttSu5fOP5woHJuRyyb2BCacyqq5fCxDtHfRJfo7vv?=
- =?us-ascii?Q?LInstRKCurwOZP+XeU7fv+ViAeA54nr1rcFOau2DhLEN8NLgYLhlxsHl85o3?=
- =?us-ascii?Q?lbteWAhSxLRf6WM8d2x3dXhJ8C7JHu37/ZzPhayCEvSkeY1cZ/rmgFszcKf/?=
- =?us-ascii?Q?7Y/e/JUQUm7PI0P1xYmAoD7RJu436vwHdX7ha15/8lknC3bpYrFIJgfdAe0B?=
- =?us-ascii?Q?6Qf0vk18PbgIIE3YtOfgbeGD+WptTEV/ip+qMLDmcV8VFR10CnF4CGawz8g5?=
- =?us-ascii?Q?IQo3d41c0ZAtsSF0t8Y6aJghFrboBbNNNjuWPKePnmFI7MGJpUVjQegiwEfe?=
- =?us-ascii?Q?WpGWuLZ/K6n+7ZTdYnZ9AAUj/DOYPw2gQdwm/2cy4LYX39XpSJfkRTfzi8vf?=
- =?us-ascii?Q?JF5DuNsAYta2YWgF0EaQvur6pHS2djLF5HCwPOmnR+qz7hdB4BsRgf4kGm8U?=
- =?us-ascii?Q?drK6m7puOgcXvqc+4SpM0C2AlnvCMJqo4I7P4Y8HFR8FAAg5z3qJq+hYezVH?=
- =?us-ascii?Q?IuHU6FUxc7u/MNun1tuP75DvjBqdEVVrgkOcG7zSMhXrjUpHV8ma9EpRfnwT?=
- =?us-ascii?Q?gg5sqc7Y4siID2kgQO+9j0TcpPW5n5wtjrpVQg3h8AVYjUvtALDw+vbB4tB6?=
- =?us-ascii?Q?iFJReUmpNw4VJaDtQLrITrDd7ejH6HxiJagyPtl7IvhIUczqz9W0?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c45451d-7f56-45ca-ae7e-08deb6d87911
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 01:29:59.4897
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3vrnQCv9TFGydWMe4SMTY01WXl2pCob6JH8sdgcbDehrYq5wtwyrslTHlM0j89QY+uc3XN8WIvSRCt5QM2THdV+dCUwkMq+NIXUoW0q+ZxaLZf/AedvC+RPMCa7S14rt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1330
-X-Spamd-Result: default: False [5.04 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-300980-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	TAGGED_FROM(0.00)[bounces-300977-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FREEMAIL_CC(0.00)[outlook.com,gmail.com,alpha.franken.de,vger.kernel.org,lists.infradead.org,starfivetech.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: D55DB59DC1F
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: D3A9259DB5A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add syscon nodes for JHB100 RISC-V BMC SoC. They contain
-pcieep0_ecsr_syscon | host0_syscon | husb0_syscon | husbd0_syscon |
-pcieep1_ecsr_syscon | host1_syscon | husb1_syscon | husbd1_syscon |
-gpu0_syscon | gpu1_syscon | husbcmn_syscon | b2h_syscon | h2b_syscon |
-vout_syscon | pcierp_ecsr_syscon | pcierp_syscon | usb_syscon |
-npu_syscon | per0_syscon | per1_syscon | per2_syscon | per3_syscon |
-sys0_syscon | sys1_syscon | sys2_syscon | strap_syscon.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-Also update the references of pll nodes.
+New issues:
+- [High] Bailing out early in `qmp_combo_usb_exit()` completely bypasses th=
+e release of shared common resources, causing a permanent reference leak wh=
+en a Type-C switch to `DP_ONLY` occurs.
+- [High] A lockless Time-of-Check to Time-of-Use (TOCTOU) race condition on=
+ `qmp->usb_init_count` in `qmp_combo_usb_exit()` leads to integer underflow=
+ and state corruption.
 
-Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jhb100.dtsi | 180 ++++++++++++++++++-----
- 1 file changed, 145 insertions(+), 35 deletions(-)
+Pre-existing issues:
+- [High] The patch attempts to fix an MMIO crash by introducing a Use-After=
+-Free read on the `qmp` driver data structure.
+--
 
-diff --git a/arch/riscv/boot/dts/starfive/jhb100.dtsi b/arch/riscv/boot/dts/starfive/jhb100.dtsi
-index 943324b3b2fd..bbdc717399e5 100644
---- a/arch/riscv/boot/dts/starfive/jhb100.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jhb100.dtsi
-@@ -288,37 +288,7 @@ pll1: clock-pll1 {
- 		clock-frequency = <1000000000>;
- 	};
- 
--	pll2: clock-pll2 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <903168000>;
--	};
--
--	pll4: clock-pll4 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <100700000>;
--	};
--
--	pll5: clock-pll5 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <100700000>;
--	};
--
--	pll6: clock-pll6 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <2400000000>;
--	};
--
--	pll7: clock-pll7 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <1950000000>;
--	};
--
--	per2_gmac2_rgmii_rx: clock-per2-gmac2-rgmii-rx {
-+	per2_gmac2_rgmii_rx: clock-per2-gmac2-rgmii-rx  {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <125000000>;
-@@ -399,6 +369,97 @@ bus_nioc: bus_nioc {
- 				     <0x4 0x00000000 0x4 0x00000000 0x2 0x0>;
- 			ranges;
- 
-+			pcieep0_ecsr_syscon: syscon@10511000 {
-+				compatible = "starfive,jhb100-pcieep-ecsr-syscon", "syscon";
-+				reg = <0x0 0x10511000 0x0 0x1000>;
-+			};
-+
-+			host0_syscon: syscon@10519000 {
-+				compatible = "starfive,jhb100-host-syscon", "syscon";
-+				reg = <0x0 0x10519000 0x0 0x1000>;
-+			};
-+
-+			husb0_syscon: syscon@10695000 {
-+				compatible = "starfive,jhb100-husb-syscon", "syscon";
-+				reg = <0x0 0x10695000 0x0 0x800>;
-+			};
-+
-+			husbd0_syscon: syscon@10695800 {
-+				compatible = "starfive,jhb100-husbd-syscon", "syscon";
-+				reg = <0x0 0x10695800 0x0 0x800>;
-+			};
-+
-+			gpu0_syscon: syscon@10745000 {
-+				compatible = "starfive,jhb100-gpu-syscon", "syscon";
-+				reg = <0x0 0x10745000 0x0 0x1000>;
-+			};
-+
-+			pcieep1_ecsr_syscon: syscon@10d11000 {
-+				compatible = "starfive,jhb100-pcieep-ecsr-syscon", "syscon";
-+				reg = <0x0 0x10d11000 0x0 0x1000>;
-+			};
-+
-+			host1_syscon: syscon@10d19000 {
-+				compatible = "starfive,jhb100-host-syscon", "syscon";
-+				reg = <0x0 0x10d19000 0x0 0x1000>;
-+			};
-+
-+			husb1_syscon: syscon@10e95000 {
-+				compatible = "starfive,jhb100-husb-syscon", "syscon";
-+				reg = <0x0 0x10e95000 0x0 0x800>;
-+			};
-+
-+			husbd1_syscon: syscon@10e95800 {
-+				compatible = "starfive,jhb100-husbd-syscon", "syscon";
-+				reg = <0x0 0x10e95800 0x0 0x800>;
-+			};
-+
-+			gpu1_syscon: syscon@10f45000 {
-+				compatible = "starfive,jhb100-gpu-syscon", "syscon";
-+				reg = <0x0 0x10f45000 0x0 0x1000>;
-+			};
-+
-+			husbcmn_syscon: syscon@11045000 {
-+				compatible = "starfive,jhb100-husbcmn-syscon", "syscon";
-+				reg = <0x0 0x11045000 0x0 0x1000>;
-+			};
-+
-+			b2h_syscon: syscon@11135000 {
-+				compatible = "starfive,jhb100-b2h-syscon", "syscon";
-+				reg = <0x0 0x11135000 0x0 0x400>;
-+			};
-+
-+			h2b_syscon: syscon@11135400 {
-+				compatible = "starfive,jhb100-h2b-syscon", "syscon";
-+				reg = <0x0 0x11135400 0x0 0x200>;
-+			};
-+
-+			vout_syscon: syscon@11135800 {
-+				compatible = "starfive,jhb100-vout-syscon", "syscon";
-+				reg = <0x0 0x11135800 0x0 0x400>;
-+			};
-+
-+			pcierp_ecsr_syscon: syscon@11711000 {
-+				compatible = "starfive,jhb100-pcierp-ecsr-syscon", "syscon";
-+				reg = <0x0 0x11711000 0x0 0x1000>;
-+			};
-+
-+			pcierp_syscon: syscon@11719000 {
-+				compatible = "starfive,jhb100-pcierp-syscon", "syscon";
-+				reg = <0x0 0x11719000 0x0 0x1000>;
-+				#reset-cells = <1>;
-+			};
-+
-+			usb_syscon: syscon@11820000 {
-+				compatible = "starfive,jhb100-usb-syscon", "syscon";
-+				reg = <0x0 0x11820000 0x0 0x10000>;
-+			};
-+
-+			npu_syscon: syscon@118e5000 {
-+				compatible = "starfive,jhb100-npu-syscon", "syscon";
-+				reg = <0x0 0x118e5000 0x0 0x100>;
-+			};
-+
- 			uart6: serial@11982000 {
- 				compatible = "snps,dw-apb-uart";
- 				reg = <0x0 0x11982000 0x0 0x400>;
-@@ -416,7 +477,8 @@ uart6: serial@11982000 {
- 			per0crg: clock-controller@11a08000 {
- 				compatible = "starfive,jhb100-per0crg";
- 				reg = <0x0 0x11a08000 0x0 0x1000>;
--				clocks = <&osc>, <&pll6>,
-+				clocks = <&osc>,
-+					 <&per0_syscon JHB100_PER0PLL_PLL6_OUT>,
- 					 <&sys0crg JHB100_SYS0CLK_BMCPER0_CFG_400>,
- 					 <&sys0crg JHB100_SYS0CLK_BMCPER0_CFG_800>,
- 					 <&sys0crg JHB100_SYS0CLK_BMCPER0_NCNOC_INIT>,
-@@ -428,10 +490,17 @@ per0crg: clock-controller@11a08000 {
- 				#reset-cells = <1>;
- 			};
- 
-+			per0_syscon: syscon@11a09000 {
-+				compatible = "starfive,jhb100-per0-syscon", "syscon";
-+				reg = <0x0 0x11a09000 0x0 0x1000>;
-+				clocks = <&osc>;
-+				#clock-cells = <1>;
-+			};
-+
- 			per1crg: clock-controller@11b40000 {
- 				compatible = "starfive,jhb100-per1crg";
- 				reg = <0x0 0x11b40000 0x0 0x1000>;
--				clocks = <&pll7>,
-+				clocks = <&per1_syscon JHB100_PER1PLL_PLL7_OUT>,
- 					 <&sys0crg JHB100_SYS0CLK_BMCPER1_NCNOC_INIT>,
- 					 <&sys0crg JHB100_SYS0CLK_BMCPER1_CFG_800>,
- 					 <&sys2crg JHB100_SYS2CLK_BMCPER1_NCNOC_TARG>,
-@@ -443,6 +512,13 @@ per1crg: clock-controller@11b40000 {
- 				#reset-cells = <1>;
- 			};
- 
-+			per1_syscon: syscon@11b41000 {
-+				compatible = "starfive,jhb100-per1-syscon", "syscon";
-+				reg = <0x0 0x11b41000 0x0 0x1000>;
-+				clocks = <&osc>;
-+				#clock-cells = <1>;
-+			};
-+
- 			per2crg: clock-controller@11bc0000 {
- 				compatible = "starfive,jhb100-per2crg";
- 				reg = <0x0 0x11bc0000 0x0 0x1000>;
-@@ -464,6 +540,11 @@ per2crg: clock-controller@11bc0000 {
- 				#reset-cells = <1>;
- 			};
- 
-+			per2_syscon: syscon@11bc1000 {
-+				compatible = "starfive,jhb100-per2-syscon", "syscon";
-+				reg = <0x0 0x11bc1000 0x0 0x1000>;
-+			};
-+
- 			per3crg: clock-controller@11c40000 {
- 				compatible = "starfive,jhb100-per3crg";
- 				reg = <0x0 0x11c40000 0x0 0x1000>;
-@@ -483,11 +564,16 @@ per3crg: clock-controller@11c40000 {
- 				#reset-cells = <1>;
- 			};
- 
-+			per3_syscon: syscon@11c41000 {
-+				compatible = "starfive,jhb100-per3-syscon", "syscon";
-+				reg = <0x0 0x11c41000 0x0 0x1000>;
-+			};
-+
- 			sys0crg: clock-controller@13000000 {
- 				compatible = "starfive,jhb100-sys0crg";
- 				reg = <0x0 0x13000000 0x0 0x4000>;
- 				clocks = <&osc>, <&pll0>, <&pll1>,
--					 <&pll2>;
-+					 <&sys0_syscon JHB100_SYS0PLL_PLL2_OUT>;
- 				clock-names = "osc", "pll0", "pll1", "pll2";
- 				#clock-cells = <1>;
- 				#reset-cells = <1>;
-@@ -497,7 +583,9 @@ sys1crg: clock-controller@13004000 {
- 				compatible = "starfive,jhb100-sys1crg";
- 				reg = <0x0 0x13004000 0x0 0x4000>;
- 				clocks = <&osc>, <&pll0>, <&pll1>,
--					 <&pll2>, <&pll4>, <&pll5>,
-+					 <&sys0_syscon JHB100_SYS0PLL_PLL2_OUT>,
-+					 <&sys0_syscon JHB100_SYS0PLL_PLL4_OUT>,
-+					 <&sys0_syscon JHB100_SYS0PLL_PLL5_OUT>,
- 					 <&sys0crg JHB100_SYS0CLK_NPU_NCNOC_INIT>;
- 				clock-names = "osc", "pll0", "pll1", "pll2",
- 					      "pll4", "pll5", "npu_ncnoc_init";
-@@ -517,6 +605,28 @@ sys2crg: clock-controller@13008000 {
- 				#reset-cells = <1>;
- 			};
- 
-+			sys0_syscon: syscon@13010000 {
-+				compatible = "starfive,jhb100-sys0-syscon", "syscon";
-+				reg = <0x0 0x13010000 0x0 0x2000>;
-+				clocks = <&osc>;
-+				#clock-cells = <1>;
-+			};
-+
-+			sys1_syscon: syscon@13014000 {
-+				compatible = "starfive,jhb100-sys1-syscon", "syscon";
-+				reg = <0x0 0x13014000 0x0 0x4000>;
-+			};
-+
-+			sys2_syscon: syscon@13018000 {
-+				compatible = "starfive,jhb100-sys2-syscon", "syscon";
-+				reg = <0x0 0x13018000 0x0 0x4000>;
-+			};
-+
-+			strap_syscon: syscon@1301a000 {
-+				compatible = "starfive,jhb100-strap-syscon", "syscon";
-+				reg = <0x0 0x1301a000 0x0 0x2000>;
-+			};
-+
- 			intc: interrupt-controller@13220000 {
- 				compatible = "starfive,jhb100-intc";
- 				reg = <0x0 0x13220000 0x0 0x80>;
--- 
-2.25.1
+commit 35c4e56f462fac540e8354624e2048c6bd3ecd9e
+Author: Michael Scott <mike.scott@oss.qualcomm.com>
 
+phy: qcom: qmp-combo: skip USB power_off/exit after device teardown
+
+This commit adds checks to qmp_combo_usb_power_off() and qmp_combo_usb_exit=
+()
+to guard against being called by an external consumer after the device's
+backing resources have been released. It uses the usb_init_count variable
+to determine if the PHY is powered on, skipping the operations to prevent
+an oops.
+
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qual=
+comm/phy-qcom-qmp-combo.c
+> index 93f1aa10d4008..4057583c0cfeb 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> @@ -3922,6 +3922,17 @@ static int qmp_combo_usb_power_off(struct phy *phy)
+>  	struct qmp_combo *qmp =3D phy_get_drvdata(phy);
+>  	const struct qmp_phy_cfg *cfg =3D qmp->cfg;
+> =20
+> +	/*
+> +	 * Reachable as ->exit from external consumers (notably dwc3) after
+> +	 * this device's backing resources have already been released along
+> +	 * a teardown chain. Refuse to touch registers in that case.
+> +	 */
+> +	if (!qmp->usb_init_count) {
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does this check introduce
+a use-after-free read on the qmp driver data structure?
+
+The commit message notes that this path runs after the device's backing
+resources are released. Since qmp is allocated using devm_kzalloc(), it is
+also freed during devres teardown.
+
+When dwc3 calls phy_exit() later, phy_get_drvdata() returns a freed pointer.
+
+Dereferencing qmp->usb_init_count accesses this freed memory. If the memory
+was reallocated and non-zero, or if KASAN is enabled, wouldn't this still
+trigger a use-after-free and crash instead of masking the teardown order bu=
+g?
+
+> +		dev_dbg(qmp->dev, "%s: PHY not powered on, skipping\n",
+> +			__func__);
+> +		return 0;
+> +	}
+> +
+>  	clk_disable_unprepare(qmp->pipe_clk);
+
+[ ... ]
+
+> @@ -3966,6 +3977,17 @@ static int qmp_combo_usb_exit(struct phy *phy)
+>  	struct qmp_combo *qmp =3D phy_get_drvdata(phy);
+>  	int ret;
+> =20
+> +	/*
+> +	 * See qmp_combo_usb_power_off(): an external consumer may call
+> +	 * phy_exit() after the QMP device's resources have been torn
+> +	 * down. usb_init_count tracks usb_init/usb_exit balance.
+> +	 */
+> +	if (!qmp->usb_init_count) {
+
+[Severity: High]
+Does bailing out early here bypass the release of shared common resources,
+causing a reference leak when a Type-C switch to DP_ONLY occurs?
+
+When the Type-C mux switches to QMPPHY_MODE_DP_ONLY,
+qmp_combo_typec_mux_set() decrements usb_init_count to 0 but leaves
+init_count unchanged. If the consumer unbinds and calls phy_exit() in
+this state, this early return bypasses the qmp_combo_com_exit(qmp, false)
+call.
+
+Doesn't this mean qmp->init_count is never decremented, permanently
+leaking shared resources like clocks and regulators?
+
+
+[Severity: High]
+Is there a lockless Time-of-Check to Time-of-Use race condition here?
+
+This check is performed before acquiring qmp->phy_mutex. If another path
+like qmp_combo_typec_mux_set() holds the mutex and decrements
+usb_init_count to 0:
+
+CPU1
+qmp_combo_usb_exit()
+   if (!qmp->usb_init_count) // observes > 0
+   mutex_lock(&qmp->phy_mutex); // blocks
+
+CPU2
+qmp_combo_typec_mux_set()
+   mutex_lock(&qmp->phy_mutex);
+   qmp->usb_init_count--; // becomes 0
+   mutex_unlock(&qmp->phy_mutex);
+
+When CPU1 acquires the lock, it proceeds to decrement qmp->usb_init_count
+without re-verifying the state. Doesn't decrementing 0 cause an integer
+underflow to UINT_MAX, breaking the PHY's power management balance?
+
+> +		dev_dbg(qmp->dev, "%s: PHY not initialised, skipping\n",
+> +			__func__);
+> +		return 0;
+> +	}
+> +
+>  	mutex_lock(&qmp->phy_mutex);
+>  	ret =3D qmp_combo_usb_power_off(phy);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521003615.1260=
+844-1-mike.scott@oss.qualcomm.com?part=3D1
 
