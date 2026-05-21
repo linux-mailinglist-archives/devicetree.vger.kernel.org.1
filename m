@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-301470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301472-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wH/WDPlZD2qcJQYAu9opvQ
-	(envelope-from <devicetree+bounces-301470-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 21:16:09 +0200
+	id wC4/HRZaD2qcJQYAu9opvQ
+	(envelope-from <devicetree+bounces-301472-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 21:16:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96595AB617
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 21:16:08 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B815AB635
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 21:16:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9DD07300915D
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:16:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9A65430071C7
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D097F3612ED;
-	Thu, 21 May 2026 19:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587AB405C4B;
+	Thu, 21 May 2026 19:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="qROX2v0L"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="JFfOpeUL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011064.outbound.protection.outlook.com [52.101.65.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19778395AE9;
-	Thu, 21 May 2026 19:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10764403E92;
+	Thu, 21 May 2026 19:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.64
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779390962; cv=fail; b=dT7cPakdkWZJJ+YdAXgnWA6O5j+Iq1s3WuKKd1KdzcV7OIA+F5wxpVRKBkbCWwHhluzOp4gz+s16vvRQQpqFTlr5I3lZWQhuciD9OtuhQk2i8xxljtytSL/jxL5xhPzQTsWqzpO5REHW6gg0nHrVExattF3Sabs1Gcq9l6io5uk=
+	t=1779390970; cv=fail; b=lY9U01D1smCby4UN628GJeFuMgQ3KT9fw6wYHiakne+Ys5XTFnoivoRDk2KNVrM0qEdVfBC25FZLq9J+Uh+RWuRBk6fD6VeTKzBtdMyNUuNVZapDyMZPBt1iqgqbaFzT4G3GpfTY+BMqr0gBRnEYptVTYJMIdzKsRYZomAk7PkU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779390962; c=relaxed/simple;
-	bh=CBEnntAPdIMLploixS2+lpc0bmCLU0s8Pfkm//x+N78=;
+	s=arc-20240116; t=1779390970; c=relaxed/simple;
+	bh=tF05/ysNe3ItFIsUZr5pUQfKi5jWcIRC+JBxR5DpOUY=;
 	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=FximOTByiI2ooH1Dgw5NmWHaV175AOiCy63pei+C/q4QyiQpan2mbwaQqqiZc6RNtUKsSPFLHMTK+Cpucp/ancmndF0jekjqCfMnJa+B+Zt2GYF7g2w5CWAGFlZmXmGWhNgG/IM3XAHzRD/V6FUpGKFin5qNJLXmgZxN9ASvRns=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=qROX2v0L; arc=fail smtp.client-ip=52.101.65.64
+	 To:Cc:MIME-Version; b=itP+oSaAr21ycovaI4vXinJj81wBzWvf1ll6I9ckuD7LSbe2Os7WQfmQ54ph7fPHb1T5uzO8Ok5Eb0/v/DhZUqrSZUwy9s6OufMRaittODGx8HTroPPNavOJ4t6b4EgKZ1hMzq9r6pB3s/GzN/NhYjdVcDTibEO9vhf3Rzx6fmM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=JFfOpeUL; arc=fail smtp.client-ip=52.101.65.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QSOEwcw2/o9VKekOxs4QqLOW4E9g9D7oN/dwrAUw78ynGibTkVowpsk37riCDJcW0flO+/QG9YNqTB9QE/dlqzk9dvfXmsqHiW4pj+EIPqP/0W5yllWAJq4vOPOcinv3ctlKrzxe+FpDbga/lsuq0UkkHfEuc6+fPMoIctoadFmsx64ai7VZiH1nnYcDe3Sd65PTWcX0NWXoQ3sMjg32ux25hWkSvrzf94KQdAavaVwTb2dBWU9hSE6FD4kuU3exSI6tXkGEihyWIGPAdPwfNy7fDhk1RjA2RqCEQ+FzAgxEu4MWB2qP2Hgno5WFlW9VbehoLR5v3Zaa/SlTiM6Tmw==
+ b=co4OcXLNuU8gCd2dyMvvbksEHXw8KzZw3dPi1S7Yei1cn25cj1eV3FEIuX2wAhE7UYNSYVv5HuX1EnFDEHuTIXcNshjFqBCGvkMT1if1I9eGEdL3FLvkiPX9pxHtUC+oiHReCNI/fhMpR26R/Oc2FV1+SwBKy1w3URpXIvrvDwLSVlwAS44sQxSmQiOiuuIw3r+1tasL05TwwoGAiJQpI+jg/oYVYMBtE+nqjwXN4k/Y8nNgYydaixRGElQkOjRE146Rsv28Bn6nHMHhOu464aYU+UoxA9OF5FFMGvzgHfYtCcZAaIcn3dL6pLjj7mBStGUSrHTEtn3GWuarPz277A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8+cH5oBYGATjnZaa04J2VhWAiNIlrh58OzU3zV70StI=;
- b=OFFDwYSgmDD1BAZWlbsT6pHg/DvkbEZ6Ed9zVn8vwwrpzmbEJFUoC4qKJa5CG4X1dYVHFOMErEN0tq/Ck4dWLp7QHUSXt7MtyIgvFiRAxWDicEyJhpVU20fLG5aBECmUIIICczCcKVHlkjRU4MDSNS6fKT3nWCFG/iCxAPFsnkPBSsQCN7iyREjCwvsK6qVJTGyj447vq3adhtXDwwdjiENOK6gtNGqpsK8S8/883crDPQ18krEMoWZjkwbgtEYJBii4SGv/AO54bwOdzGdnm58TZ5Zk/typpDVGtGH3jfZSbLEfRRhFdXPrd2QJ8PzLBniGDSYkVYczyIRytzRVEA==
+ bh=fk0zwC8qeFdXGPcQkN8OiVBkBI4vLtjc41xgv6hSHUY=;
+ b=ppZBioyK5dNb/aYA1ChZnqwdZN3y2f9ZOncBhfsS3L9n+WYdyzGSm67x8srIMf1pBaRysX6TJCq4Gn9335wwlJBD5VQtdVDjGKz4veL4gNVUgk8HWR8TZ7mZ48Qd9PLWaNxCMAOpC7FYHupXYKgS7LGgVAhaqMH3iAzc5uCNdy21L+/PNKOhF4krfZZ+LaU6hYYFj4FxiXrKcu4f9/HgU0gMccNe0gbLU52jmNvfx2E56gjWRxXZeN8NJV21vpPXe2j+U/0BZ398dManVRPxkMoi0q9RY0i0g4GyjpRKBe7JAeozOjftSFKIwuSGZ0lI/RIQrMmTj20hI7aQOM1Wjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
  dkim=pass header.d=oss.nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
  s=selector1-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8+cH5oBYGATjnZaa04J2VhWAiNIlrh58OzU3zV70StI=;
- b=qROX2v0LK5/My2lHynAD/myr57V3/k0aaG6S4KB7ak/j+huWR6TYWPq+s4dPunfdp00L0uRKtp6tv0rJn8c8mGX7o2yIrnvMS1PiyGpPdvSv3453beavq8TasJUVpg3P+q2TQhlY7K6aC2HaZj1ZgQ9WvgJbKtEoiyGbNm7j2KFO8Iu2x76kAtAqiZblNcgeESL9rqXEMmFIdPxxEb2sqsiT/bay5KoLco1wf/X/mwMm03TcQbsiyyuob1/NEUp81nI/IEFm20ki37lzP7iDyxXWj4zKIlKdJ0eo4riz3zZrLBUTTKtf6LV7wrCX30c2GjPM8g3Nr/lsI6TnrFsf5A==
+ bh=fk0zwC8qeFdXGPcQkN8OiVBkBI4vLtjc41xgv6hSHUY=;
+ b=JFfOpeUL6jlhbqAhZl46wnswDNVLcAVFlg2rflvN7nKZYydZ+JXJMUsexjL7FNItTPgfWmaSfehpjmjePOVUxN76ycHp6YqBQfL3bmo/Dp5VTMPLJ9rajDEXG8v4IoSn4GjMhvFq09Ay3IMfc34zXNB1JiJG3QxE35RmDaccdCglxgWcM/p/cm3NQQ1hPpOZIoDk+lFuPBK+86lRIB7aADEZrTV6sjQb+uxGJmdI5M0STV9l6wBrMJ0RbMkleHMKGMxkKyqU5kskVq8uXX/oOuL7OJxlSIPdlfQjuvpfWmbeQLCD/1GZeqlbgl5CYFcaGooWTJXCTdu8L0kr4fPnCA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=oss.nxp.com;
 Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
  by PA1PR04MB11261.eurprd04.prod.outlook.com (2603:10a6:102:4eb::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 21 May
- 2026 19:15:55 +0000
+ 2026 19:15:59 +0000
 Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
  ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
  ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0048.016; Thu, 21 May 2026
- 19:15:55 +0000
+ 19:15:59 +0000
 From: Frank.Li@oss.nxp.com
-Date: Thu, 21 May 2026 15:15:39 -0400
-Subject: [PATCH v2 1/6] ARM: dts: imx: add (power|vdd)-supply for related
- node
+Date: Thu, 21 May 2026 15:15:40 -0400
+Subject: [PATCH v2 2/6] ARM: dts: imx: remove redundant bus-width for
+ video-mux
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260521-imx25_dts_simple_warning_2-v2-1-c6557df516a9@nxp.com>
+Message-Id: <20260521-imx25_dts_simple_warning_2-v2-2-c6557df516a9@nxp.com>
 References: <20260521-imx25_dts_simple_warning_2-v2-0-c6557df516a9@nxp.com>
 In-Reply-To: <20260521-imx25_dts_simple_warning_2-v2-0-c6557df516a9@nxp.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -77,15 +77,15 @@ Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Frank Li <Frank.Li@nxp.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779390945; l=3158;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779390945; l=6448;
  i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=Fok0Smbontcbd61beBA1IUhskkUUFX5if8Q61QTAuOw=;
- b=6nK5D+s1rSYHs+30AgYddpLzIVSRWLCybI/HQGHelmOznIGj8JmcdmEQx5hagl54qXN9beXnJ
- 1WdzO5BAjbjDCvqXtef1ogSW7ziZMTNEWZneuBdlaHOBGN9tqwSc4Ty
+ bh=mMfnzH3qOKeVPT3NCKfNMI+HNBExCRqXGLNInK6ZoGU=;
+ b=lcBCBQPfYE5+p83QWR5fHaT9MRLOX/uzSbVSVI6xg1qw6vR39EoFfou1k7xD+SierTgL7q1ov
+ jQpsH6frnGvD5xf769bO2k80s6lp44pEYir1RhxREqUGQbArsfpkR5i
 X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
  pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SN7PR04CA0083.namprd04.prod.outlook.com
- (2603:10b6:806:121::28) To GV2PR04MB11799.eurprd04.prod.outlook.com
+X-ClientProxiedBy: SA1P222CA0033.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:806:2d0::6) To GV2PR04MB11799.eurprd04.prod.outlook.com
  (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -95,78 +95,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|PA1PR04MB11261:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2229b858-cea6-4ca5-b0c2-08deb76d61a2
+X-MS-Office365-Filtering-Correlation-Id: 4ead4a72-921b-409a-dfb4-08deb76d6443
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|19092799006|11063799006|18002099003|22082099003|56012099003;
+	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|19092799006|11063799006|18002099003|22082099003|56012099003|3023799007;
 X-Microsoft-Antispam-Message-Info:
-	Xyi//KZYFyLVRF9hp7Ab08wNDoeGiOKZfluxccZA8J+DwCvNMM2y44tAo848L6xZO96NNwAnvrzs1bm7OOJYaS4PuPkinNleZiqGJvQWF61lJXteYH8tTs/OGr2PbcMeGHXmOnrkYwDU1gRCjMclwrx34JrxSKRF6YdeYPpEH+F8KSDXJux1rIlEaBCUQuRW4Cq5gigKeHUp97nfGMyCmQY6iGBVaveN7o3CnrsL7WMqtYW1Cwdk7ph3c+FTdLvym0vqckYf6WikhX0fBT4vtsuODkT0ZCwPEdjAMAmiH5th+G6Ir7T0TYI9VzbPIdx4fgacyrAyQPBO0O3GWGQOorhh0TLBedKT3dkeBupnMxW0Fc4p/esDFIkOa4djZ/t+MMMGj0wAmeiyqCrD8cPiImGh576H12adUR9RuB+SG/WRNeEQlyFqBhAeuujUzkFPv1yXqX4ooPO9lVeYXlPz7nz8vEs0YUEi5zRyrbdvHyyfAH0NGKqD/jlhOPj4lrhZ4n1l9/Z2NJfVShgvQl5G+6YdS6GFa7idJbFRet2TySMU4jpWdByC7orly3Q1SV04NFTCBSABa3xdEfwJ/2nhYYMPgwO7p3oS+FmlZXZyCw19Qdb9nqbsI/TEkbNacsbW+omJvxz+s1VQYFZhZHp35j2qHuMIGPlxA3/xV7toGlGUvh3EmsWCAnbmzo8DmFq0
+	dEpTb5lSL66LPV8xzXHFlD30DDyZVVB3dG0VWejxARRbkJbbuV8vIth3qZ2l2DzuvHWPhz0X0EZwqXET3Ve/EVIFctJfPm8I+BCB8jB7G9fuRtsJJXU42/8QzIY09NisJP3tmfiG08sNH/DQZikQidlQpR/Ag83w7XvzfSOYJF7Q0mYkTEgl73RO8hWPePsadoNi8bAq+evBak3j4HaNblKXectSPblYQcvz2PBEy800KFVdzcgbgmlgNeXbJPxNV5qeuV8Xx2rHgZC8qx05Oy+1/lEnXIcW2DjuzV4LioTb7eEWHQd+gK8n6QiVnvOAAq25fAM1MrlXgrgqDKa6uKAOjMJ4Q2esrVgPDW5tX4uPcjhH+ZIARPtxI8Psld+KDP2EpG2UczrCHHVXLPOPYn9tNdqYHQLCTVyu8SroNqEV4UXKUFH8Lq/Zg+9R/OS3o0+yVBNTXTMh341YiQA7ywTtFKXzqko81RdBPKZeGwxdXDfZk/VgTrgrn8iSLCJh8OGQP+SGSlBloaLRrBAkgv9arPfXvv/P+qTgw5xM6yNUhdGZfoB1Ms+1jcxNfYcCxtW9C+dxyXO7yvWCaDynW7eKwDEvzGnCsm5NilXoSRL9F0eRgUzay7vN1nRqkkfg4w3rY/vgw1SSgoNDfmR494o5YprGnZo55yglX3DLPw4yuY4stADGIS/CRxKhu9NQ
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(19092799006)(11063799006)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(19092799006)(11063799006)(18002099003)(22082099003)(56012099003)(3023799007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?d0RXRWRaUEFQU2tuYTM3RDFrYXU4RjUzT2MwWTdyR3VUamhYcHpUNFZhRkkz?=
- =?utf-8?B?bGYrRlRBWmx5eHN1UktOTzB2UzJXb3ZtdUlVUWlTU1NHTkZrTFVJSkFVMFFB?=
- =?utf-8?B?YUxZQW9VZ3o3MmprN2N5SExGcmIrU3pOV09COXFGRy9HS2RpcXFjYm1GMzl3?=
- =?utf-8?B?MDlBVTJiVWdxQjZsU3NrQkFWaEd5RnFMWVliSWxLQlVLTU1HbGovQ2pHa1dC?=
- =?utf-8?B?TjVYSy9SalFOZjZ0ZEtxMnNoRHRNRWZJY0FVd1UrZ0pad0ZoaktibHprTTNN?=
- =?utf-8?B?N2Vra2dWUUgzVWJ4QWMrTXZUb3EyM3BxQmc5TVVrN3lWeE1maUpWNW01M3Mx?=
- =?utf-8?B?aDcyRTdubmlSSU9zaTNFenp5MzVnSVNrVTd6N3VnSkdGS0ZMMkR0WjRXWWh5?=
- =?utf-8?B?ek9aa0E1OWhYMTJxSWpYZmZJUGQrbit4Z2p2aEY2M0xHeWdiUzMvUXErZUYy?=
- =?utf-8?B?UE03Uitpc2JxSnRLSmJDcE9vL1lCWDdKRzNuVlRFTm8rTzgybm5MdiswU09U?=
- =?utf-8?B?Q25MWGcyK3oyNDB2VTlSWU9qanoxMzg0K0tuQ09FWU1Ub2Zzcjl4NitBRHE5?=
- =?utf-8?B?VW9XbWMrbzljYUo5N2F3MWFBZlJFaHV0dWYwTUZIVVh3N0Q0U25MWTMvVFda?=
- =?utf-8?B?MzZEZHl3QlNudlpMbkR4b29vYWFoOENPQlpHd1JEdW4wckwvbmFzMlc2ellu?=
- =?utf-8?B?d0dHTmZERDlKdWs5SkorR3VwS0g4QkVFTUVvVEpVazBKejZEdi95cnFiTFhh?=
- =?utf-8?B?RTBkU3pzaVhXZWYxeGg2R1kwMFVhTTF2KzMrdmx1U0FiWGkrRHZuQmZ5bDJY?=
- =?utf-8?B?cVhKL2JaTHJCN3Y4N3dLTHJ4S3htcVF0V0Nlbm1CNnF1dXNMSjVmMllkdTgy?=
- =?utf-8?B?S2dXaGVDUkIvTGp1RWFDeXhlN0x0cXB0cWhZUDQxZXhMTjhmUmJ3YnZLMDhC?=
- =?utf-8?B?WUlOYVJyWDdvcCsza1BUZGxuYTJLdEl4NmhldkI2Q0liTTZZYjJxVmt4VG40?=
- =?utf-8?B?SUhoeWFQcjV1SktVU2lEdHIzdXdYbDV4WW1QS2xMOTVycm0vMEdGMjZNcmw1?=
- =?utf-8?B?QnBIdE03WER2aDVQbis0bXRuaXFRY2crK1RPZlhoYlpvQ00rSnFmZnoyOFJT?=
- =?utf-8?B?Y0cxcVpQZ0Rya0pZSzEvOWFJOXQ4cEErSmRDN096ZExFcVVEVzZLaHByNjJy?=
- =?utf-8?B?ek1tSFZVODdCRitvRE1xKzgrODFCdHJvS0IvdEdZN3V4UVFvb2tPa1Q3VGdR?=
- =?utf-8?B?Ti9RUXR4RVlwamlGY2MzQmZzRDdVcnk5Ri8xMjlQUDBSajdMWFd6QkRVY1Vu?=
- =?utf-8?B?U1ZydU56R1FjaEgrYjVOWXFNSGUwSVBSUjlyOXBBZ2t5U0dXT0VNK1ZVQ0F1?=
- =?utf-8?B?SWhaOW0zZ0puMWZmYTlZYlk2bURvYlBXZmQ5aDdxeUd1S1FjZHljdVpnNUZX?=
- =?utf-8?B?NHQvRElCeC93UU5obm40TXphR2hoZ3d4N1NQUFY2T25uM0p6Y3BadGJ1S0o5?=
- =?utf-8?B?MXAyNXpYUytYeURNOEhJblJOOUxjb2xETXFpS1ltVTh1djhVWUh6RWlJZnpj?=
- =?utf-8?B?N3lYNkhSaDZaWWFJcFF3UUxKb2VJR090czUzdWJZZGRsQ0lqVFgzVzgydFQy?=
- =?utf-8?B?b2FESDFnOW9aamhtcDZCZWRaeUwrdjZZaVVaUHBUU2xneVNsTTAveEczWmQv?=
- =?utf-8?B?anNLajMyTDJPcE9SdXV2QTBJaVVUbzMxbEtWSDBIdWg5MUYwZTNXRXdlbFVu?=
- =?utf-8?B?Z1RXMEhLb0xIemtkVW4vd1pOUWlOYk1HVm16SlY4WXZPUklLeEpPVzVEK3BM?=
- =?utf-8?B?V1VteFR6OW5KRTlkYTZPWTdPWmp0MFdnQkJwTWVnQzFEZVFwSWpOTDB6NHpP?=
- =?utf-8?B?L3hkSmZHdUUvaDdlbEdrSzFsNnQwbm1vWVdMc0hxNHNidUVnbDkxQW5Vd3VT?=
- =?utf-8?B?N3ZQYytOcjM0em4rRGNmZVNYWHRBV1BtK1NNaGtEaWZJR010OVcvdmJjNERo?=
- =?utf-8?B?S2VEN0xRK290R1pnV2w0TE5EZG5sKzhSSmM2ZGlkTlN4Vnk4VG1Ebm1JeGFx?=
- =?utf-8?B?TmNwSmFETFN5TUU2NVRteXM2cGJuRExnMUFDMTkrWVAvUklCYmQycHdEa3lQ?=
- =?utf-8?B?SmJuOTRQUHFkMk93WWVRbEhQTnVxRmJROGx5WVkvbTNmdk1FVjJHaTM4TlhC?=
- =?utf-8?B?OVVTZXhKaVVSYVdLWUZTM0gwMDVHemtZdlcxcXRjbGVvbmRRdkhyTzV6WTda?=
- =?utf-8?B?Nk9ZZzNzTDIyS3U0OUtrMFFERWhxM0k0TzNwZjZsNUp2YTZoQnJRb2xUTlFH?=
- =?utf-8?B?azlwVkp5K2JJN3I2Y3dzaFhjb1ZvUTJIbTcwNWY3Z0tUZHNKVURrSFRpL2R6?=
- =?utf-8?Q?4+mdxmTtrrvLSmkA=3D?=
+	=?utf-8?B?dDBoTnFaNXpTcThYbmtmNVF4MGpHMnB4YWlCM25Yc2hZZkR3WWc3a0RYZE5F?=
+ =?utf-8?B?VnVJbVllcW5JUjAybEtobGJKcEEzVUxDS1RCUTh3RHJKa0dCSkF1RXZ3a2VC?=
+ =?utf-8?B?emdyVU5VQi9odGpMYU5TNGc1YWxYV014VmdyOXU1SG4wOG1rb1NHYnZuUXJT?=
+ =?utf-8?B?RWxOd2hKS0FtQmw4cnk4cjQraTVpWjVQV2JoYmU3dmEzVklJa1dXZkxBdzhW?=
+ =?utf-8?B?cis5bGp1TkdmNVhTYjlKcTNxdDg2Vys4WkQrY2sya3FQbTFSUXhwMnVmY2tv?=
+ =?utf-8?B?d25xS3BRc1dTZllEZFBweEtIYW9Rdmh6V0FXdUp5cmxwZWRubzQrT2xia2U1?=
+ =?utf-8?B?VTJhTjdhVlNYTnNra0x6LytKdXBFUXBIS2wrSWlQckd4TCt1MnR0ZmdHOFlO?=
+ =?utf-8?B?WmNyWFFDQ3NkRFpaWlNKWHdERzRqSHpDaGt1YTRjRGRDUHErZVhOeUZBckJO?=
+ =?utf-8?B?Nk52VjVER2VyQVpEOGk2dzE4Y3ZSZHhNNjM3Q1l4andndlFrcXo1NjFLdnBJ?=
+ =?utf-8?B?UnVNM0VsSlRtNE5udmE4V0dNamxKdVA1ZnhJMHI1K2tKeWN0cHJEZUJ4cjVY?=
+ =?utf-8?B?UGZacUMyZkRRalVsekJxaVFjejRSWDFQUllLRE9RZEFOa0dZU01ndFBrNEtQ?=
+ =?utf-8?B?cUxMT3pHaHl6Q0lGSUJoYkh4QnNHNjFXVzk1WCtmTlNTNWJTa1JVc2xZVEIy?=
+ =?utf-8?B?NnJTbWN6Zi9QMmxoVmlSVFNDL1BMSU5GM0g4RlM2OVlNYVFudFhRS3JiZHg4?=
+ =?utf-8?B?cUFxRUZCZEpKaFdGOUdRTmt1N3Z5cHFYWDhGd2xNTHZQOXgvZU1uUjZ6OWh6?=
+ =?utf-8?B?cjNiMHRsM3hZVkhZTFh6NVI1bGFZbWJKWmh2S2o1aDlITHBFYTl4ZFJLR1NU?=
+ =?utf-8?B?SHZPQU1wejZCUVArQXk0eTJQalpCZWFKYWs5a29pZjV2TldDUlpGTVExaHI3?=
+ =?utf-8?B?UWJ3YkF4Rmwxd3ZKWVpRcFBKVkErL0RzNEFOQzVCYkwvbVZuN3N1VUx2MHlS?=
+ =?utf-8?B?aSsyNUZGeTVyb1dENWEvcVU5SEp2eXJEMjdaSGpNQ0xZKy85OE5hZWdJaDI5?=
+ =?utf-8?B?b1F3TEZ2eW5qQVlIc2I0WVl2VGdEeHFkeUlUS2JNUk9PaEZ6Wk9DRStCUm54?=
+ =?utf-8?B?aHNma3FNcWQ4Q25DeU5WT0xITDhFQWo4Vmd3OURlZEVndS9mYjY4YXN1OU1P?=
+ =?utf-8?B?LzlzY012amhSc2JpSHlwR0YvTmg2Nlkva29ieTlhV3pHS1A4RFBmNmF5eXh0?=
+ =?utf-8?B?WUtMbVBaS2pKYjRINXQyUDRhOVJ0ZmRneFM2WUp6d2tRSTZreEl1OVNYSkJu?=
+ =?utf-8?B?S2tOYk51NllZNGlneE9ERkc3QjhMUnBuenZ2VGFUM2F5aU1rQ0pNK0xuMnJs?=
+ =?utf-8?B?RkNjNk5aTEhyZWgyRFZvUHhuTFRYOXZGWjJ6NmNrMWFQV2VIOFJ1cWVCQXNr?=
+ =?utf-8?B?NVhKNk5FS0RpVGRpR04rRUZtdlNid2F5K0RBQTZ2ODdFYXZYOE5RUmtCdGln?=
+ =?utf-8?B?bFQvM0d3OHBvalEzeWV4aElDMFlGZGI0UmZ3ZmVxcXZtcmFhcHFadllldzN3?=
+ =?utf-8?B?TFhxTndzSEorS1BjVURVcGRkY0ZPckFxNUVuUitBMm9kMGR1MmJXdk14T2ZO?=
+ =?utf-8?B?U0FjeHZHLytHOXBrRjhPWFVuVGsvM1BMZWJMSTJLY08zSnI5L1FjNnV1dW9Q?=
+ =?utf-8?B?OEhCTnBOS1lxSEs2LzUrdkRVdGlKYXJYeWc0QkhYSnpmcGpXZno0ZUt6cHBt?=
+ =?utf-8?B?QVRESUpkV3NyR0VlUEplbGU2TEkzZVZOUnZmbFd1T3g3UjIwbG96Ymhxc01p?=
+ =?utf-8?B?VXlRZnhoT0VyLzd5d0hSR0NGaFhZV2tUTHpXbFQ3OERrZDVyd242b1prSFlF?=
+ =?utf-8?B?NlZsbEV1ODJsbzFTeFlqQmcwd2lkeEpUSEhkYTRaallZOHQxWjZTV3Y0WlNw?=
+ =?utf-8?B?ZmtkV0Y4ZFo0UXZwWmgvT2FQTGpIYTlEaVdPMzUrTU9ZK0FHbmJyQWRXUnF1?=
+ =?utf-8?B?Z0ZPaGV0QWVHLzFCM1JtQW9FN0R6UGM2OGhZRWQyU3VDdVlGQWxubEk5Vk1q?=
+ =?utf-8?B?dnlvS2phYXNTbWI4d21DdGlGS2g2MVMrZWUxY01rVkM2c1ZsSTJ2amFsZ1Fr?=
+ =?utf-8?B?QWhZMDhlU2dydTRPdWErU3VRb3F6RVJ1QXRuSXJBUzJneW90S2RrMDJnZGZv?=
+ =?utf-8?B?eGQwMnkyVUhlUXQrQmxzbHlqU0xHMWI1dWFlWWtvNDBndU1aRTM2VWppMHh1?=
+ =?utf-8?B?ZnRRZHR4TDAvUWo3VG0rNEFpNUtGOUUvV1hIN2RPZmVNdzhsL01vRHZwOXpk?=
+ =?utf-8?B?NTFmK2E5d21zWWo4aHRVOGxoeUNnNGdVWEpxYUlhK3ZrcFRaRmkwT0pBOGtT?=
+ =?utf-8?Q?NA8gYOeK9hYQxWeg=3D?=
 X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2229b858-cea6-4ca5-b0c2-08deb76d61a2
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ead4a72-921b-409a-dfb4-08deb76d6443
 X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 19:15:55.2020
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 19:15:59.6195
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W+gDHzbYV3N86yLi02NNfKqiO0KsV66SFcDCcx0kw9+q0DwxX6PmaBKisa9NyaWb4tIJbTkVKyeLGdZA7PYJUGW7FcXvM82YImC4EO7NYHBAkrOwhP+qwdDzWgF3RIEb
+X-MS-Exchange-CrossTenant-UserPrincipalName: yxVm9yIaHCJnMm58DGHbijNJa8njeubT4dybYjCpd4JNIoZz/B2JYVRL6NqCLYY8IbEvw9w6bsE/CDBk5ICmd7GY5ehpaBkpdc50SCHwhru1smPGQ57GTtjSPdlZ53Eq
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB11261
 X-Spamd-Result: default: False [1.94 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301470-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301472-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -175,113 +175,226 @@ X-Spamd-Result: default: False [1.94 / 15.00];
 	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[4.44.29.128:email];
+	DBL_PROHIBIT(0.00)[0.0.0.4:email];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,0.0.0.60:email,NXP1.onmicrosoft.com:dkim,0.0.0.50:email]
-X-Rspamd-Queue-Id: C96595AB617
+	DBL_BLOCKED_OPENRESOLVER(0.00)[NXP1.onmicrosoft.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,1c:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 15B815AB635
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Frank Li <Frank.Li@nxp.com>
 
-Add required power-supply and vdd-supply properties to fix below CHECK_DTB
-warnings:
-    arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dtb: panel (edt,etm0700g0dh6): 'power-supply' is a required property
+Remove redundant bus-width property according to video-mux.yaml to fix
+below CHECK_DTBS warnings:
+arch/arm/boot/dts/nxp/imx/imx6dl-gw51xx.dtb: ipu1_csi0_mux (video-mux): port@4:endpoint: Unevaluated properties are not allowed ('bus-width' was unexpected)
+        from schema $id: http://devicetree.org/schemas/media/video-mux.yaml
+
+The bus-width already set at remote endpoint (camera).
 
 Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
-change in v2
-- change regulator name to 5v (sashika AI)
----
- arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts            | 9 +++++++++
- arch/arm/boot/dts/nxp/imx/imx53-sk-imx53-atm0700d4.dtsi | 1 +
- arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts            | 7 +++++++
- arch/arm/boot/dts/nxp/imx/imx6q-novena.dts              | 1 +
- 4 files changed, 18 insertions(+)
+ arch/arm/boot/dts/nxp/imx/imx6dl-gw52xx.dts      | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6dl-gw53xx.dts      | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6dl-gw54xx.dts      | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6q-gw52xx.dts       | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6q-gw53xx.dts       | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6q-gw54xx.dts       | 4 ----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw51xx.dtsi    | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw551x.dtsi    | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi    | 2 --
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi | 2 --
+ 10 files changed, 22 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts b/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts
-index 6210673f93bea..2acbc86cabb31 100644
---- a/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts
-@@ -84,6 +84,7 @@ panel {
- 		pinctrl-0 = <&pinctrl_display_gpio>;
- 		pinctrl-names = "default";
- 		enable-gpios = <&gpio6 0 GPIO_ACTIVE_HIGH>;
-+		power-supply = <&reg_3p2v>;
- 
- 		port {
- 			panel_in: endpoint {
-@@ -98,6 +99,13 @@ beeper {
- 		gpios = <&gpio6 3 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	reg_usbh1_vbus: regulator-usbh1-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vbus";
-@@ -259,6 +267,7 @@ eeprom@50 {
- 	dac@60 {
- 		compatible = "microchip,mcp4725";
- 		reg = <0x60>;
-+		vdd-supply = <&reg_3v3>;
- 	};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-gw52xx.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-gw52xx.dts
+index 9ea23dd54f3ce..62b05fe70cd97 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-gw52xx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-gw52xx.dts
+@@ -32,12 +32,10 @@ adv7180_to_ipu1_csi1_mux: endpoint {
  };
  
-diff --git a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53-atm0700d4.dtsi b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53-atm0700d4.dtsi
-index e395004e80e6d..34cb0c344ff6e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53-atm0700d4.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53-atm0700d4.dtsi
-@@ -10,6 +10,7 @@
- / {
- 	panel: panel-rgb {
- 		compatible = "powertip,ph800480t013-idf02";
-+		power-supply = <&reg_5v>;
+ &ipu1_csi1_from_ipu1_csi1_mux {
+-	bus-width = <8>;
+ };
  
- 		port {
- 			panel_rgb_in: endpoint {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
-index 1a00d290092ad..ebec884958776 100644
---- a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
-@@ -29,6 +29,13 @@ memory@70000000 {
- 		reg = <0x70000000 0x20000000>;
- 	};
+ &ipu1_csi1_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu1_csi1_mux>;
+-	bus-width = <8>;
+ };
  
-+	reg_5v: regulator-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
- 	reg_usb1_vbus: regulator-usb-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "usb_vbus";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts b/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts
-index 24fc3ff1c70c2..cd9a050fa906e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts
-@@ -109,6 +109,7 @@ led-heartbeat {
- 	panel: panel {
- 		compatible = "innolux,n133hse-ea1";
- 		backlight = <&backlight>;
-+		power-supply = <&reg_lvds_lcd>;
- 	};
+ &ipu1_csi1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-gw53xx.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-gw53xx.dts
+index 182e8194c2490..c1787510d3941 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-gw53xx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-gw53xx.dts
+@@ -32,12 +32,10 @@ adv7180_to_ipu1_csi1_mux: endpoint {
+ };
  
- 	reg_2p5v: regulator-2p5v {
+ &ipu1_csi1_from_ipu1_csi1_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi1_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu1_csi1_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-gw54xx.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-gw54xx.dts
+index a106c4e3e3299..934b0325e6f5a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-gw54xx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-gw54xx.dts
+@@ -32,12 +32,10 @@ adv7180_to_ipu1_csi1_mux: endpoint {
+ };
+ 
+ &ipu1_csi1_from_ipu1_csi1_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi1_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu1_csi1_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-gw52xx.dts b/arch/arm/boot/dts/nxp/imx/imx6q-gw52xx.dts
+index 6e1c493c9c8c4..31996ddde117a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-gw52xx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-gw52xx.dts
+@@ -32,12 +32,10 @@ adv7180_to_ipu2_csi1_mux: endpoint {
+ };
+ 
+ &ipu2_csi1_from_ipu2_csi1_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu2_csi1_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu2_csi1_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu2_csi1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-gw53xx.dts b/arch/arm/boot/dts/nxp/imx/imx6q-gw53xx.dts
+index f13df8e9c8c4b..f224273fa863e 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-gw53xx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-gw53xx.dts
+@@ -32,12 +32,10 @@ adv7180_to_ipu2_csi1_mux: endpoint {
+ };
+ 
+ &ipu2_csi1_from_ipu2_csi1_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu2_csi1_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu2_csi1_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu2_csi1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-gw54xx.dts b/arch/arm/boot/dts/nxp/imx/imx6q-gw54xx.dts
+index d5d46908cf6ed..804ee044be52d 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-gw54xx.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-gw54xx.dts
+@@ -90,12 +90,10 @@ tda1997x_to_ipu1_csi0_mux: endpoint {
+ };
+ 
+ &ipu1_csi0_from_ipu1_csi0_mux {
+-	bus-width = <16>;
+ };
+ 
+ &ipu1_csi0_mux_from_parallel_sensor {
+ 	remote-endpoint = <&tda1997x_to_ipu1_csi0_mux>;
+-	bus-width = <16>;
+ };
+ 
+ &ipu1_csi0 {
+@@ -104,12 +102,10 @@ &ipu1_csi0 {
+ };
+ 
+ &ipu2_csi1_from_ipu2_csi1_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu2_csi1_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu2_csi1_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu2_csi1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw51xx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw51xx.dtsi
+index beff5a0f58ab4..fb18b87adb441 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw51xx.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw51xx.dtsi
+@@ -384,12 +384,10 @@ adv7180_to_ipu1_csi0_mux: endpoint {
+ };
+ 
+ &ipu1_csi0_from_ipu1_csi0_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi0_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu1_csi0_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi0 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw551x.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw551x.dtsi
+index 6136a95b92599..55647c1dacfa5 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw551x.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw551x.dtsi
+@@ -440,12 +440,10 @@ tda1997x_to_ipu1_csi0_mux: endpoint {
+ };
+ 
+ &ipu1_csi0_from_ipu1_csi0_mux {
+-	bus-width = <16>;
+ };
+ 
+ &ipu1_csi0_mux_from_parallel_sensor {
+ 	remote-endpoint = <&tda1997x_to_ipu1_csi0_mux>;
+-	bus-width = <16>;
+ };
+ 
+ &ipu1_csi0 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi
+index 552114a69f5b9..bdbcad5e35d82 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw553x.dtsi
+@@ -397,12 +397,10 @@ adv7180_to_ipu1_csi0_mux: endpoint {
+ };
+ 
+ &ipu1_csi0_from_ipu1_csi0_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi0_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu1_csi0_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi0 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi
+index b9dde0af3b995..40d8887cb8bc7 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabreauto.dtsi
+@@ -245,12 +245,10 @@ accelerometer@1c {
+ };
+ 
+ &ipu1_csi0_from_ipu1_csi0_mux {
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi0_mux_from_parallel_sensor {
+ 	remote-endpoint = <&adv7180_to_ipu1_csi0_mux>;
+-	bus-width = <8>;
+ };
+ 
+ &ipu1_csi0 {
 
 -- 
 2.43.0
