@@ -1,222 +1,159 @@
-Return-Path: <devicetree+bounces-301410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301414-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DRfFac5D2otIAYAu9opvQ
-	(envelope-from <devicetree+bounces-301410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:58:15 +0200
+	id EOI2GMw6D2otIAYAu9opvQ
+	(envelope-from <devicetree+bounces-301414-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:03:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A325A9BD1
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6395A9CFD
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:03:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8A8A329841D
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:08:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4A7A3209429
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 16:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E07367287;
-	Thu, 21 May 2026 16:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB8437D13B;
+	Thu, 21 May 2026 16:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bwy14QR+"
+	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="EuEk8Ig1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A8E367283
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 16:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F363333B6F9;
+	Thu, 21 May 2026 16:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779379670; cv=none; b=IaIDsccA4w0hy7o4clwKhVoGGQ55N4gSyqhVZ/ia8TfAetXlhjFj1/LITwp/HIdcQl8sUT04WNJDY3dqg8URc3OQ1dFr10ulrV19/cOidxh6O8fYJmD+ptPqDXl18wHz1UVuvQBlXJ3XZ+A1JfVcGDl7+7m/JTaKeU5OaE9wmz8=
+	t=1779380325; cv=none; b=tYrz6Xiygwt2XXWzIcIZSrkU9PV0L12QfED9kJVXljxCZfn0aa0oD3VGuUXoWRhLT56HL17zrSGfwKadNRU3A/58Q7J9l6wSAgu7pE2o5upqud07iFDz6tH/BVyFyjnvR2WQAST1VG68MVAgpoXSN2XsKJtOgp0/vHWbjCSzYUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779379670; c=relaxed/simple;
-	bh=i5AcCrCNsclF/I/Vs+d8ILuWO7HCNkOLoFCgNnyW/Z0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OgYpq/TJrchA39G1RWhMR6acp1A0+izTGlTI9lSlly3WUq0WVDX2R92Tu7O9fN6XpG9iiTjwRbv7f4ft1XmqSEz7qclrJYTH2XhmUEvLWUuCPYMppy9sbTzipS9GYQH32cRD9ruzl/UrnkTrOhqyvf87RQoxV7qf2wPre4D39oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bwy14QR+; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C94941F000E9;
-	Thu, 21 May 2026 16:07:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779379669;
-	bh=I+nicCEQH3k3MCPNUqu1ZkC6LyIIUQd/vdyf1KEbB9w=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Bwy14QR+HBrwzWiZyRPWcIUDOker2meAQZtkItE82jpETzWspZ5PI1v5U8yT0eLAa
-	 ncqdX2/a+5GYAj8INOpQQt2KnATH7O8dqEc/drctcq1DGpRdcZG9wyYOE16xMNH/5D
-	 rhIpZcSii5kfrJBeR5pGiG/4SqToYF7lAO+E2KCw8vmhk4KxpYioVoMp3jSIxLOmvS
-	 hGzw+ReWAOnWyusfxoe2kMZ4TIww6infIVM3iLikbwcKbEpznD9iy9ca2GwXeSOnX/
-	 G/TcSYCGiURr52E/Ww9Wpv8nRzEWBPZ1FVUCe3DuvoRA3C5KJYjl95Z4DQjlmconIC
-	 iOjvA8CKvnt8w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/5] dt-bindings: display: Add Synaptics R63455 panel
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jun Nie" <jun.nie@linaro.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260521-sm8650-7-1-bonded-dsi-v4-4-a4dd5e0850f1@linaro.org>
-References: <20260521-sm8650-7-1-bonded-dsi-v4-4-a4dd5e0850f1@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 21 May 2026 16:07:48 +0000
-Message-Id: <20260521160748.C94941F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779380325; c=relaxed/simple;
+	bh=0YwTcn5UZCuR7slzy/6UFt3CnMDrIbdwSBIOnTb9K0g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OLU/aTtniNnfaVBxhf6HvWa2O0VQccG0nhUEXWiXElxwDi9jd9BUv7U+hYe8yqmTTp6MLaTUD+Shdk1zo5zG7N3ZwP+4fTZbJwyLx2aYsnPpgLCZNJzUSRJJTwieBaIYpstUtTEgztGY3b1b8v97NIq9W3HBkw12D13Ny1iqQkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=EuEk8Ig1; arc=none smtp.client-ip=89.58.28.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
+Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cdfc:e00:ebbc:d4ad:bda4:649a])
+	by srv01.abscue.de (Postfix) with ESMTPSA id 67D211C698B;
+	Thu, 21 May 2026 18:18:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
+	t=1779380313;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=n7cUyFtCpLGNIbBqPrT3hsFxfCg5RcZ5fcuGngD9Vaw=;
+	b=EuEk8Ig1SzXeJOql/JCzDTqkKzDmcjuNQ0DmWmHsA37woncwTzIfZHj7UckvUhLlD2V+9l
+	Y7xjMNmYlqvJJSoFOVpmS+X7mmqsKjZYSnNbddP2DL/yxDBRYvzJ6XABB053Rnfonje6hF
+	MgpWxhx8KinMyWlxF9j/O3j7Bmj/7eta9MDR6oBjWWATT048REIP35H24UCwFma3GKLLxH
+	Z97/hmNPGF90+qor4YZhcnPCb66N0hkZ07Sk5MhtjonSgcdBJTMdZ/B5+C662KxenlBDG4
+	QumQjK6KkMRTCI7r00J5QfxCEKcsETm1y8wzcoW53fUVUJJ2o8rtqKXg6HleEg==
+From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+Subject: [PATCH v4 0/4] regulator: Add support for Unisoc SC2730 PMIC
+ regulators
+Date: Thu, 21 May 2026 18:17:05 +0200
+Message-Id: <20260521-sc2730-regulators-v4-0-1ac8a3b5ed82@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAEwD2oC/23NUQuCMBDA8a8Se26x3aZzPfU9oodt3nQQGltKI
+ X73pgRJ+Pg/7n43kYQxYCLnw0QijiGFvsshjwfiWtM1SEOdmwCDkgEvaXKgBKMRm+Funn1MlAt
+ rVKVLyY0k+e4R0YfXal5vuduQ8t57fTHyZfrVgO1oI6eMCg/WOo3Oc3kxNrkBTzWSRRvhJxS82
+ hMgC9oUVhhlOUr9L4itoPcEkYXCeoYMCqZQbIV5nj99M9BGNgEAAA==
+X-Change-ID: 20260216-sc2730-regulators-13ba789641a4
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Zhongfa Wang <zhongfa.wang@unisoc.com>
+X-Mailer: b4 0.14.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[abscue.de:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301410-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linux.alibaba.com];
+	TAGGED_FROM(0.00)[bounces-301414-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[abscue.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[otto.pflueger@abscue.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[abscue.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email]
-X-Rspamd-Queue-Id: A9A325A9BD1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[abscue.de:email,abscue.de:mid,abscue.de:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: CB6395A9CFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [Low] Invalid inline mapping for `$ref` under `ports` property.
-- [Low] The `reg` property is used in the device tree example but omitted f=
-rom the schema definitions.
-- [Low] Missing closing brace for the panel device node in the DTS example.
-- [Low] The `reset-gpios` property's `maxItems: 2` constraint conflicts wit=
-h the strictly enforced `maxItems: 1` inherited from `panel-common.yaml`.
---
+Add device tree bindings and a driver for the regulators found in the
+Spreadtrum/Unisoc SC2730 PMIC.
 
-commit 5bb531a3ba9addcc1e532a73333c359429ef1ea6
-Author: Jun Nie <jun.nie@linaro.org>
-Subject: dt-bindings: display: Add Synaptics R63455 panel support
+The second patch in this series depends on the first patch.
 
-Add support for the dual-panel system found in the virtual reality device.
-This system consists of two physical 2160x2160 panels, each connected via
-a MIPI DSI interface.
+Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+---
+Changes in v4:
+- Add missing patch for MFD cell registration
+- Use conditional binding for referencing the regulators now that the
+  child node cannot be distinguished by its compatible for validation
+  purposes.
+- Drop requirement for removed compatible property (sorry, should have
+  double-checked this before sending v3)
+- Link to v3: https://lore.kernel.org/r/20260519-sc2730-regulators-v3-0-5bf0e02507e3@abscue.de
 
-> diff --git a/Documentation/devicetree/bindings/display/panel/synaptics,r6=
-3455.yaml b/Documentation/devicetree/bindings/display/panel/synaptics,r6345=
-5.yaml
-> new file mode 100644
-> index 0000000000000..a94b355ed9557
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/synaptics,r63455.ya=
-ml
-[ ... ]
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - sharp,ls026b3sa06
-> +        - boe,vs026c4m-n52-6000
-> +      - const: synaptics,r63455
-> +
-> +  reset-gpios:
-> +    maxItems: 2
+Changes in v3:
+- Drop compatible property
+- Drop unused VDDSIM0 and VDDSIM1 IDs
+- Link to v2: https://lore.kernel.org/r/20260518-sc2730-regulators-v2-0-9a5b3a7b1e49@abscue.de
 
-[Severity: Low]
-Will this conflict with panel-common.yaml? Since panel-common.yaml is
-included via allOf, and it restricts reset-gpios to maxItems: 1, a device
-tree providing two GPIOs will fail validation against the inherited schema.
-The local relaxation to maxItems: 2 cannot override the stricter requirement
-from panel-common.yaml.
+Changes in v2:
+- Use lowercase names without underscores for device tree nodes
+- Use oneOf for binding reference instead of making it conditional
+- Remove some excess line breaks
+- Fix author name in driver and add original Signed-off-by
+- Link to v1: https://lore.kernel.org/r/20260220-sc2730-regulators-v1-0-3f2bbc9ecf14@abscue.de
 
-> +    description: 2 reset pins for 2 physical panels
-[ ... ]
-> +  vdda-supply:
-> +    description: core 1.8V supply for panels
-> +
-> +  ports: $ref: /schemas/graph.yaml#/properties/ports
+---
+Otto Pflüger (4):
+      regulator: dt-bindings: Add Unisoc SC2730 PMIC
+      dt-bindings: mfd: sprd,sc2731: Include SC2730 regulator bindings
+      mfd: sprd-sc27xx: Add SC2730 regulator cell
+      regulator: Add regulator driver for Unisoc SC2730 PMIC
 
-[Severity: Low]
-Does this syntax cause a YAML parser error? In YAML, a colon followed by a
-space indicates a mapping value, and a plain scalar cannot contain an
-unquoted colon-space sequence. Should the $ref be placed on a new line with
-proper indentation?
+ .../devicetree/bindings/mfd/sprd,sc2731.yaml       |  21 +-
+ .../bindings/regulator/sprd,sc2730-regulator.yaml  |  44 +++
+ drivers/mfd/sprd-sc27xx-spi.c                      |   1 +
+ drivers/regulator/Kconfig                          |   7 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/sc2730-regulator.c               | 411 +++++++++++++++++++++
+ 6 files changed, 484 insertions(+), 1 deletion(-)
+---
+base-commit: 550604d6c9b9efc8d068aff94dc301694a7afdee
+change-id: 20260216-sc2730-regulators-13ba789641a4
 
-> +
-> +required:
-> +  - compatible
-[ ... ]
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    &mdss_dsi0 {
-> +        vdda-supply =3D <&vreg_l3i_1p2>;
-> +        status =3D "okay";
-> +
-> +        qcom,dual-dsi-mode;
-> +        qcom,master-dsi;
-> +
-> +        panel: panel@0 {
-> +            compatible =3D "sharp,ls026b3sa06", "synaptics,r63455";
-> +            reg =3D <0>;
+Best regards,
+-- 
+Otto Pflüger <otto.pflueger@abscue.de>
 
-[Severity: Low]
-Should the reg property be explicitly defined in the local schema
-properties block? It is used here in the example but omitted from the
-schema definitions. Since additionalProperties is false, dt_binding_check
-will fail with an undocumented property error.
-
-> +
-> +            reset-gpios =3D <&pm8550_gpios 3 GPIO_ACTIVE_HIGH>,
-[ ... ]
-> +            ports {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +                port@0 {
-> +                    reg =3D <0>;
-> +                    panel0_in: endpoint {
-> +                        remote-endpoint =3D <&mdss_dsi0_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg =3D <1>;
-> +                    panel1_in: endpoint {
-> +                        remote-endpoint =3D <&mdss_dsi1_out>;
-> +                    };
-> +                };
-> +            };
-> +    };
-
-[Severity: Low]
-Is there a missing closing brace for the panel node here? The brace
-indented at 12 spaces closes the ports subnode, and the next brace indented
-at 4 spaces closes the root mdss_dsi0 node. The lack of an 8-space indented
-closing brace for the panel node will cause a syntax error from the Device
-Tree Compiler.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-sm8650-7-1=
--bonded-dsi-v4-0-a4dd5e0850f1@linaro.org?part=3D4
 
