@@ -1,194 +1,274 @@
-Return-Path: <devicetree+bounces-301031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOKLGmW0DmosBQYAu9opvQ
-	(envelope-from <devicetree+bounces-301031-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:29:41 +0200
+	id CKbHGy62DmrBBgYAu9opvQ
+	(envelope-from <devicetree+bounces-301034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:37:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18FB5A0217
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:29:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D93E35A035D
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 98BE73000B98
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:29:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 88CC530C84B3
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:31:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6633815DD;
-	Thu, 21 May 2026 07:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B72039BFF1;
+	Thu, 21 May 2026 07:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="V0SesEAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023123.outbound.protection.outlook.com [40.107.44.123])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649E8399039;
-	Thu, 21 May 2026 07:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779348575; cv=fail; b=Bz/XbmsoCWHTR6yAn+QlmzNH4uHlUOLOLxA1bkkq0E6fRQKPSEgu49iYHSNVhC96/bYnfvZp1XWTTa+2cDfAuHeGD6FjCLNj1PJF/EVRlm1m+BG/R/2xqlFpiVN9SCItOCmToyGJ3+UpUkrqQH0u0Hr5xnsGKJRcrR+ygMcJyz8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779348575; c=relaxed/simple;
-	bh=HYkwSF1+DvBufNm2Ewk4k3jImkDzwCBdm12gtJIriZE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZXa+8X33AIDLG7sC8ir6mTBBYF4DFZDX18OOViVGRiqP44OwZ6Do5i439+ab6+PCccWBArf0q/uBNpaT4yx1p/Cfu3kImLRvMFO4jSKp6PxEpHYlkVLE4y5LNVOphpB5blhm0DQ76qO+qA1CU1EKNlnzqrOtxqh2Hak7xCeI9d8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RkIeVPCdn+4Pc3Zpto8j4keeE3PDmW6ZBPd1SmwSPKLS+rDUtlg/p0WzeMtg6KjwwEZOk6gawSEbe8ettbBZ6+Xqz6Oh8U8SwkcUUvIwqLkUT+4PwNjKNv8ZWVV9Kvq3YmnW9M2eD0H8aIr+NBL+A0xvRO0oMGeya9NqB4bGruSGAAhF73SytTWFDVC6rdmoH/lbANq3z0ArTUNH9gyJaztGJwJMgGt5+ZrVh+l3CNPECTJlFTecY3fs6NgTfaoigSJnSHunJVOVC9z9+g40H04m4mEfxJz5JwOGx/Ta4pJyxQbsTIXB3VLXRCNdVRPo0Yaw9bV7lHiRRhYbg87tUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2NFEHhBIbJD1YCyMXcRYvDkf8EG7neu+txkBEQyH45Y=;
- b=lO6QoCtFL3B+hSu+f6evkrnULvlk6kCitbK4FidHoBCAWtEnvE0Ic95TgJdOsMxY5UgpnCdJWMQgb+wrY9ifUfiVtLlwpZbNI+dNgsLgow652+a6NsjnPwbe9VcaiydKPWD7Atr0zXakmm1aK3GzaKRrDjTBbBHCAeC2jqxPUDihvbq5lNe8avHNbUj9j2V+Muau740kQJuFTbjOhW0jSi3II4mStom9ekQT2BVrx85wDm4tDfXbvWr8OhZ93Wg6uqkJpW8i2P8wSLQQ5kz4JkOTHnOSM/CtLr62ZMom15ZWcYIfSc2i18dHr+p6ebTgT45USIUG2nePQR/1hJXbrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from TYCP286CA0060.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2b5::15)
- by SE1PPF4D95A16FB.apcprd06.prod.outlook.com (2603:1096:108:1::414) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.16; Thu, 21 May
- 2026 07:29:29 +0000
-Received: from TY2PEPF0000AB88.apcprd03.prod.outlook.com
- (2603:1096:400:2b5:cafe::fb) by TYCP286CA0060.outlook.office365.com
- (2603:1096:400:2b5::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.48.17 via Frontend Transport; Thu, 21
- May 2026 07:29:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB88.mail.protection.outlook.com (10.167.253.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.48.11 via Frontend Transport; Thu, 21 May 2026 07:29:28 +0000
-Received: from guoo-System-Product-Name.. (unknown [172.20.64.188])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id EA55841609D9;
-	Thu, 21 May 2026 15:29:26 +0800 (CST)
-From: Jun Guo <jun.guo@cixtech.com>
-To: peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	vkoul@kernel.org,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	robin.murphy@arm.com,
-	Frank.Li@kernel.org
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org,
-	Jun Guo <jun.guo@cixtech.com>
-Subject: [PATCH v7 2/2] arm64: dts: cix: add sky1 DMA-350 node with channel IRQ entries
-Date: Thu, 21 May 2026 15:29:24 +0800
-Message-Id: <20260521072924.3000282-3-jun.guo@cixtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260521072924.3000282-1-jun.guo@cixtech.com>
-References: <20260521072924.3000282-1-jun.guo@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F39A39BFED;
+	Thu, 21 May 2026 07:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779348665; cv=none; b=PogEftTAZgiUTob1lyp8+brpYyracpTRaAwUfCNA5tudBlT+4wFsmjOunxpbW2/kb38kLgbbUhx+zzRrRWtZMZiBFptR09D51QlWwo/2k7DNwm5UKCMuWalp4jZJD2aGbgANg/OWbgucGvLyyIoxpnoBSH49PACQfIhO8Y8KRl4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779348665; c=relaxed/simple;
+	bh=EUIAnhlGU8MnIszvjINplPMFDRzN+GGGnhbHFUGwXaA=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=iVwI/XQo6/qUbb8bepe6frjWpUCu73O2NyxIUA5beB2bPl+ulwmiXeqbc1kGn3HKD6UqMgS1D4QDa1IFRXHxaP94XzLTJzlpmhI03PmTYc+WqwRa2N/Fg2oeI24PpAEJ/IdwUdPde3Ps4tNDNSR1Xh1XcBygYah/OIViG3Co7og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=V0SesEAJ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2a01:cb1d:8f2:800:ad48:920a:da6f:a034])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9730563D;
+	Thu, 21 May 2026 09:30:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1779348645;
+	bh=EUIAnhlGU8MnIszvjINplPMFDRzN+GGGnhbHFUGwXaA=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=V0SesEAJ+jgzPtiGfXxR+EA6v2MnF3qkuta5FnyNumTfqMNg7iQOJpB+eEwarpm+v
+	 Bq0uKwjBxPG0N0PWWOmL5mfb3SalZu60V4hTNm6bC92hYUhtaonc/q7bLAgvW8dvQ5
+	 /J08T8X3yio8MvOWt314xL8WsdBNvu555F0bej2s=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB88:EE_|SE1PPF4D95A16FB:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 43d594bc-f59c-4da2-e362-08deb70ab169
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700016|22082099003|18002099003|56012099003|921020;
-X-Microsoft-Antispam-Message-Info:
-	46TnyAE17GHy5OP1bdmiwOIo0Ojl8viM2pUXPjlNUYqHMoffPaD5ETDJ0NVT8EAfFo9p5YaM7djnb8LqQ5GNppFlomA1KcVoEaJD4RBro+jifNKDG9RbrhofB0ts7PEFp4nRgEqQsjKDyVSNIzhCC794hCnpqGbRxKftl+FNfxAwIEPCzIqOa2Gq7tNw0rVSlpN6y6srmLKs1NOkGU3YW3XD+SGeJM9WccP5SoEAhJWkg2+JW49TWjc8ef0wDCsz0sLzV0pfcGDj5TTHVggPnKNJeJK6SYLPea52pU3Lgigw/QvUCjJIJ9OMhcsfuULVkbetM7PJdD0qhLCJGArPGIfyK0jGOBsseBB8gAe0dPGmn6CLlMmQZ2YT773EWErKO5aCaU1R/OVCDS35hz2Y7RSwNcB/bxJNwf8CTkN0+/R8koOJa6yDa4fCRGwjGJxH0G2tuev8XlPA+EFpJUh435R9Qq8A+9BBVqN6ezapeLNsLb6iWXo45uYulDWwEjMvufRfhUePHaugvPgifklrkALf8Z9wec2EFumxbcTcOrX2SZuZIy1UF/0ekhenPZncVZM6dXGdXuGRtMLTbiOcWKfA4jl6ANPFboHNk+ATPC+1CjQPyM4UMHuZWrHB/oLD8bnnv/OSdlWE4l4XgQ4EIf3crmwNib2jsNvirwnXAM7rXFlyKiA9dKNCIA3Q1r8492KwIMK6QDuNafA9gPOUVrT1v+HRAyDjHmHatSQ9TXCDr2rh/NF1Zy2ZEcarU7/WJyyWfmpvdETGwR/gqeg+5g==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700016)(22082099003)(18002099003)(56012099003)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	yRjxJU5iVjQlAJdt0WacJl0Oc9KzXVCKAW1fTvHmsNKgTRNSXYNEZlDWOi86Ef9b7Zyk8t95tS06p5eRk7i7j4VNvUenkpBPEm/c92JmER3Vaie8Tfp6c0/OF05STQLtWristkcLy3UtjoH8Yef4Qws7v/oSvpLghdI/Z9eK0wrLJ2WNnSSL64DMk1zor/8Ar9UNtwotxTwXjxUUh+UF6JSuBpg/+xYui+0fM3JsK/8+g37hOkUWkVtUgniLPd9tpnXuH6PiCxVum+a4+1kO+ZSnAXdJ9rUfEEYVx3/tvDdgyegW0UBS+HrqJ49E30PlOrPR3Y1tfXJTB0VwBXyJLF64lhFK1Zdhghj54sggVsEFAlY+sxWGuc+HYq+wpBamQqIaOkM1YFby58WLVruUBQChV0gKhS49gtPqiYUas1WR4frnRBIBUYw9q71N+z8Q
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 07:29:28.4949
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43d594bc-f59c-4da2-e362-08deb70ab169
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB88.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1PPF4D95A16FB
-X-Spamd-Result: default: False [3.54 / 15.00];
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260520-during-rocklike-a7436513d559@spud>
+References: <20260520-imx678-v3-0-8b5f9676486e@ideasonboard.com> <20260520-imx678-v3-1-8b5f9676486e@ideasonboard.com> <20260520-crusher-species-cf707a9a8b46@spud> <177929757691.2341049.18374545669142492074@selene> <20260520-during-rocklike-a7436513d559@spud>
+Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add Sony IMX678
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Kieran Bingham <kieran.bingham@ideasonboard.com>, Lachlan Michael <Lachlan.Michael@sony.com>, Ryuichi Tadano <Ryuichi.Tadano@sony.com>, Kengo Hayasaka <Kengo.Hayasaka@sony.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Conor Dooley <conor@kernel.org>
+Date: Thu, 21 May 2026 09:30:56 +0200
+Message-ID: <177934865612.2341049.12699321483523040036@selene>
+User-Agent: alot/0.12.dev70+g31692a239
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301034-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301031-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[cixtech.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jun.guo@cixtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,0.63.239.48:email,0.77.53.160:email,0.63.161.16:email]
-X-Rspamd-Queue-Id: F18FB5A0217
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: D93E35A035D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Describe the DMA-350 channel interrupt sources in DT using 8
-interrupt entries, while all entries map to the same GIC SPI
-as wired on this platform.
+Quoting Conor Dooley (2026-05-21 00:04:16)
+> On Wed, May 20, 2026 at 07:19:36PM +0200, Jai Luthra wrote:
+> > Hi Conor,
+> >=20
+> > Thank you for the review.
+> >=20
+> > Quoting Conor Dooley (2026-05-20 17:56:29)
+> > > On Wed, May 20, 2026 at 05:17:25PM +0200, Jai Luthra wrote:
+> > > > Sony IMX678 is an 8.4 Megapixel (3856x2180) CMOS sensor, that can o=
+utput
+> > > > pixels over MIPI CSI-2 bus. Add bindings for it.
+> > > >=20
+> > > > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> > > > ---
+> > > > Changes in v3:
+> > > > - Use `reset-gpios`, mentioning the sensor XCLR acts like RESETN, i=
+nstead of `xclr-gpios`
+> > > > Changes in v2:
+> > > > - Add per-variant compatibles for mono and colour, alongside the
+> > > >   generic fallback, so the variant can be declared without powering
+> > > >   the sensor at probe.
+> > > > - Rename reset GPIO to xclr as that's what it's called in the
+> > > >   datasheet, and how it behaves
+> > > > - Reference the generic video interface devices schema and switch to
+> > > >   unevaluatedProperties.
+> > > > - Drop "link-frequencies: true"
+> > > > - Drop the T: entry for media.git from MAINTAINERS.
+> > > > ---
+> > > >  .../devicetree/bindings/media/i2c/sony,imx678.yaml | 129 +++++++++=
+++++++++++++
+> > > >  MAINTAINERS                                        |   6 +
+> > > >  2 files changed, 135 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx67=
+8.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx678.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..d85745ddbefd
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx678.yaml
+> > > > @@ -0,0 +1,129 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +# Copyright (C) 2026 Ideas on Board Oy
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/media/i2c/sony,imx678.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Sony IMX678 Sensor
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jai Luthra <jai.luthra@ideasonboard.com>
+> > > > +
+> > > > +description:
+> > > > +  Sony IMX678 diagonal 8.86 mm (Type 1/1.8) CMOS active pixel type=
+ solid-state
+> > > > +  image sensor with a square pixel array and 8.40M (3856x2180) eff=
+ective pixels.
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - sony,imx678
+> > > > +      - sony,imx678-aamr
+> > > > +      - sony,imx678-aaqr
+> > > > +    description:
+> > > > +      The IMX678 sensor exists in a colour variant (IMX678-AAQR) a=
+nd a mono
+> > > > +      variant (IMX678-AAMR). An internal register can also help de=
+tect this at
+> > > > +      runtime.
+> > >=20
+> > > I don't understand the compatibles here. If aaqr is tge colour varian=
+t,
+> > > and aamr is mono, what does the suffix-less compatible represent?
+> >=20
+> > Sorry, I had seen Laurent's comment on this area in v2 but forgot to up=
+date
+> > it in this revision.
+> >=20
+> > The suffix-less compatible is for the cases where a product comes in two
+> > variants with the sensor being either mono or color.
+>=20
+> This response is very weird. It's worded in a really generic way that
+> barely seems to be a response to my mail. We aren't talking about
+> "a product" here, we are specifically talking about the imx678, and we
+> know it comes it these variants. There are no "cases" involved.
+>=20
 
-Signed-off-by: Jun Guo <jun.guo@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+It's very myopic to say bindings should only care about the camera sensor
+on its own and not how or where it is integrated in, which is usually a
+"product".
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index bb5cfb1f2113..823adeef51f1 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -444,6 +444,20 @@ iomuxc: pinctrl@4170000 {
- 			reg = <0x0 0x04170000 0x0 0x1000>;
- 		};
- 
-+		fch_dmac: dma-controller@4190000 {
-+			compatible = "arm,dma-350";
-+			reg = <0x0 0x4190000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#dma-cells = <1>;
-+		};
-+
- 		mbox_ap2se: mailbox@5060000 {
- 			compatible = "cix,sky1-mbox";
- 			reg = <0x0 0x05060000 0x0 0x10000>;
--- 
-2.34.1
+Maybe my response won't sound "weird" (?) if you see Dave's comment on v1:
+https://lore.kernel.org/all/CAPY8ntBi88-dd2HxxftErf8h5-ERRPcGy5KJ-+oF7jawNO=
+JpuA@mail.gmail.com/
+and Laurent's recent proposal(s) for handling this for a different sensor:
+https://lore.kernel.org/linux-media/20260505163713.GE1547435@killaraus.idea=
+sonboard.com/
 
+Both of those threads have you in CC, so I assumed you were aware. That's a
+higher bar for "being aware of something" than DT maintainers often have
+for contributors, like Krzysztof's comment with unnecessarily snappy tone
+about the reset-gpio on v2.
+
+> > It allows sharing DT blobs amongst the two variants, where the driver
+> > powers the sensor on and reads the register to figure out if it is mono
+> > or color.
+>=20
+> To be honest, I don't really get why the driver uses the specific
+> compatibles at all, if it can just determine if it is colour or mono at
+> runtime. Seems to me like this should be
+> compatible:
+>   items:
+>     - enum:
+>        - imx678-aamr
+>        - imx678-aaqr
+>     - const: imx678
+
+Yes, that's the other proposal. The downside being having a certainty of
+the variant at integration time, and not allowing sharing binary blobs
+as-is between two "products" that differ only in which of the two sensor
+variants it ships with.
+
+>=20
+> Or just entirely drop the suffixed compatibles from the binding, since
+> you can detect mono v colour at runtime. The justification for the
+> aamr/aaqr compatibles seems to be that it avoids powering on the device
+> to check, but it looks like you unconditionally power it on and check
+> which variant it is, so that argument holds no water.
+>=20
+> > It allows sharing DT blobs amongst the two variants, where the driver
+> > powers the sensor on and reads the register to figure out if it is mono
+> > or color.
+>=20
+> Why would you want to share the dtb anyway? That makes no sense to
+> me as a usecase in the first place. If the sensor isn't part of the
+> board, you should be using an overlay or something similar to apply it,
+> because if you can swap the sensor you can also have no sensor!
+>=20
+> Also doesn't your driver print a warning if you did this anyway?
+>=20
+
+I thought the bindings are for the hardware and all its potential usecases,
+and not tied to a specific driver or OS? Has that changed??
+
+The specific compatibles are useful for the potential usecase of not waking
+up the sensor to save boot-time or avoiding privacy LED flash at multiple
+stages of the boot process.
+
+What we do in the linux driver today should be irrelevant to it.
+
+--
+Jai
+
+> > > Your commit message says:
+> > > > - Add per-variant compatibles for mono and colour, alongside the
+> > > >   generic fallback, so the variant can be declared without powering
+> > > >   the sensor at probe.
+> > > But that's not what you have permitted in the binding, you've describ=
+ed
+> > > 3 different variants and using the one with no suffix as a fallback w=
+ill
+> > > produce validation errors.
+> > >=20
+> >=20
+> > "fallback" was a wrong choice of word, I'll update the description in v=
+4.
+> >=20
+> > > I think this probably is
+> > > pw-bot: changes-requested
+> > >=20
+> > > Thanks,
+> > > Conor.
+> >=20
+> > Thanks,
+> >     Jai
 
