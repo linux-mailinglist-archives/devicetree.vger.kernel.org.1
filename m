@@ -1,329 +1,336 @@
-Return-Path: <devicetree+bounces-301230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301227-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHurLV/6DmoSDwYAu9opvQ
-	(envelope-from <devicetree+bounces-301230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:28:15 +0200
+	id 2NUOFuT5DmoSDwYAu9opvQ
+	(envelope-from <devicetree+bounces-301227-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:26:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 164BC5A4CBC
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:28:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA4A85A4C05
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:26:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 12EFD3080106
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 12:20:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B4316304F2D8
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 12:20:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8313CF66E;
-	Thu, 21 May 2026 12:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2598B3CF66E;
+	Thu, 21 May 2026 12:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ImEv4Ai5";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cLMrNeV9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yDtoQuCe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795913D090D
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:20:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAB531690E
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:20:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779366025; cv=none; b=AJwLqwTPfMLCUCPn5h8Cy93Q5OG1zTnTBD09BV07o9oc7Inm6CRlDtjA80fI3ob6+I6FR0B9N7A9vzb5AaKuyEK/Dx5Oql3H9HAaP11++iNsjIc+5qTiTrCVEWjMJn+hjsimAwmr9pXz0BJ9cLNj2TRAl/iKfQOLzNdCVfxQJd4=
+	t=1779366017; cv=none; b=speoe19E626HaoDpVeKFi8MxnxnUYDJfE5TU0QRzVuKQ279uiExMdlVZC8lo2AgOMNl03g6PSiQ40pD/fEtVpRYTmHU+F/uqTTGkzWP8pka1aYEIR/5vfcu+aGDxKbmkXCCkYyRTY9rOWo/N2di5/9IWM9QpT0PZMvfcqKPBd1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779366025; c=relaxed/simple;
-	bh=m5vq5lzBfI3cQdgIp7nM79N6LDabjGabpgW/KV4LQy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kJKT1375N6E0/c4Io9eUsEd/a+1lAFgRL/f7A/n8F30vZCf6fFL2CssUUN2Wn0KlQEMrkRYCQwJh1hJbs26Qq5FmSTKnCVaoWW8gHt44xZJE019v36rLYpPvx7FHI6R7e7CiTRjTBtkulrwYJWz9HQVmeZETKAhSZtMDZPgTJ9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ImEv4Ai5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cLMrNeV9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64LAXvsx818881
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:20:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TwK02OO4K1epQED36FGkSoJT4inoRnIOR99uClBefzI=; b=ImEv4Ai599CkKWct
-	28BA/t+9vRGd5MBP7ry2a53XDrFhmSAHGsRtyliCdQ5YKRfW1Bh1Gxns0N4G6ssK
-	HQET9yhe8qDT6Jy2C/JFNNPd/qE2aWrX3PEyGEQTTy8vHmvk76zfeWM7feJ3k5ga
-	RGKcE1FLRVm9bx55awCHNyRoLTicBQBYgsRo/1etey2TNkPVJX243Z6+PVqx5brP
-	qKocHiZtcdEL3XAQOUeWmmkrh8DCY2g2e844j7AFlirWv67+T15Vb3eu1Sc1fg/0
-	zZ9MMzUelSnBhh/QDqO992G3e4SyivLJq4ojL6/eu2cafltwEvyb+EILUw2EmW1J
-	zYPTCw==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ea0dkgc3s-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:20:21 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c827c880e39so3056009a12.0
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 05:20:21 -0700 (PDT)
+	s=arc-20240116; t=1779366017; c=relaxed/simple;
+	bh=7m/hWiQX3n2vc6JG/2EGJ6AyMvFiI1Zw9vnDHfoz3gE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aqjehlAPOcLMoN/n4B5RHp4anNTx/GTkJpZsssPxjdJH44UPOwybZlYVTmoFhkipdiiWu3eb8KL15uJo6cDM+bnq2CDfGaPoFZo6/ZJJnSibJMrqpVd5gC5MhOh68+g0m1V36+6bxlvxQ9sulB6yViGkeQyfbvgNQarVlZpEn1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yDtoQuCe; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-488ab2db91aso63398645e9.3
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 05:20:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779366021; x=1779970821; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TwK02OO4K1epQED36FGkSoJT4inoRnIOR99uClBefzI=;
-        b=cLMrNeV9Uh0cbmZtjrwnUReHA1vLzJ+Q+kSi8B6WTLxXsDUze+X+vbv627UMa0YCss
-         e63Bh1xM4L6X9ufiH7Ktpk1e5q0H93NJ9mbL3UaVzmj9aVdDvLxRdtz05jw1duM1sSYt
-         wOtsPLmJjrBolRQ6HwF6SNiaX8bniMgSfxwgvf85ZVgKPQPnhdlIREWcTrADlFUKYrUo
-         YZX/so/HsB/nUjm7guDF9Kzthvl9oerzKPJpx9BM64rPSij7AHapFKzUu1K8SH73FnBp
-         TkAKzVS/ad116VHg4oQx2gs1A5WxdjO9wXspQV1d5EaQFHHmvxWrSFMo8FuC9ko46/cb
-         LpLg==
+        d=linaro.org; s=google; t=1779366013; x=1779970813; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SDcsdkpl9E4U296Yjx3tUvOW5/YDiwW/HnNWSZqwZp4=;
+        b=yDtoQuCeB2XMbBwTFPOavZ9yRwKEZsBFoGB51HMJQZCDBS83eJrSRlOgYa8rknaZPa
+         XPl9kIyQ7LKJDrOe4fTSU78X7PKqfIcpUp/49biyKjhVZNZsQorMHO4a88xorhYnyS/8
+         4MTk4AILYgBzGhEbP5uBUOszpJkjXzTevmxCMTAhicLLMFQ9jFicadXT/u5KC57yrGUg
+         T8OthtRDphICX+V+FSGzbeKiKQY0N401Knk6nf0Hn1ku+7WWT/gnVF0lMnbfFAO7j0tL
+         f7YlQPfP5MN7uZa2pis4tRzqq3G2Jhii0lErhM7Rbxt3A3Oo6PMWtmbnXJeO2sAx1AmU
+         sRJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779366021; x=1779970821;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TwK02OO4K1epQED36FGkSoJT4inoRnIOR99uClBefzI=;
-        b=n56Awii2UmiYQWA/nVZUtFbUFMGmC0lh98jACCOnReE9FF1pgACagSEOp6HZeLqMtU
-         OI2uThMJf2h8iMzcD2a3jFB8GXdsZUgyFwDW1aWm+pXKmtZeL6JXwRypNnLotMUamgbA
-         VgLhW9ZHxxah8ysiOPWUyo2W0PH6BNhU2hrzN811q7hfZCvtQSsxECp6ySbpbJfj62T6
-         DsQ8F1bEEiA2wYQ70VicgNdd7V7fvk3pA5MDSyB22DqsHKMNf6DItISsFJiATI9FkO0y
-         h4S87qoCV+DaXz641CDZqaCHAR5hjQIakiwm/b21LLzyVI4MbzPYZ8UQTu95vujEpOVO
-         RiCg==
-X-Forwarded-Encrypted: i=1; AFNElJ/vasuBi6HS/v5HU3kT8tRvx6HQcLSiuJEd2M6CebbPQRQcSgbfmhgBJlONL7d1v6tUzN26UnuRK1yE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQKseHKp2vSwXEC9yXwixFOeMXYYvpgThnPsBZYg2cL9puBb0s
-	MHEJb1sl3p0RRipmXuifptslbximVGU6R9qfSoapMxzIZylcET8hU+OtlG/FtVy/tH1fYRW83wW
-	bT85ybl/IDUHadnH1/WjDg0n5ux2MXppPI8Ce1CtJ4LJ2M0pLzTfUOqiXRBlYgj1/
-X-Gm-Gg: Acq92OEx5IhVcXwc6Jzv5Gg3Ln7xUmfMgiQrPzpDmkK8UyYI8Q8GT4vRnciZgcnauPu
-	txgvp8OO3rWPoTugvrnkGW0b516kJXTn8vPXpAS1V0o4V0q1OAivrUPaHZlSOwZg0LIhkrRXTAv
-	tQgvrj1w1fpZEjvefaQs98mSBeBczU9J1niRPQ3fu+GxkFnAPERXvfv0IyWQbpj7FX5lR8IKapz
-	wZyhivPPIDbhYz0KRMzyNZqRQdtKagTomw8z2hOoR+SR3qWKkzUq4M4h2jdciHOOQteS/u+J+E3
-	IPcAkZDqZAwGQ7SZKrC35Ry4/85rLwSaJxN9d7XeODppKSW5GTA8csQDL/wQQiIWL4ZZsxu/iHg
-	ftP418XN73EuKJE9SJhsAXFejRPCvpAgedaOjwChCKatFrxyngxeqoPLdBBc=
-X-Received: by 2002:a05:6a20:9183:b0:398:6bb5:54c4 with SMTP id adf61e73a8af0-3b30854e9c4mr3264420637.5.1779366020825;
-        Thu, 21 May 2026 05:20:20 -0700 (PDT)
-X-Received: by 2002:a05:6a20:9183:b0:398:6bb5:54c4 with SMTP id adf61e73a8af0-3b30854e9c4mr3264348637.5.1779366020198;
-        Thu, 21 May 2026 05:20:20 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c851980bcdcsm240706a12.14.2026.05.21.05.20.05
+        d=1e100.net; s=20251104; t=1779366013; x=1779970813;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SDcsdkpl9E4U296Yjx3tUvOW5/YDiwW/HnNWSZqwZp4=;
+        b=P45Fl9fb1IidBe9tmfus2iFTJYSWa630LziCRV+FSihzPaYn//uEi7iPlidG+QY0No
+         YSrWZ1mViolFiv10uiCEqoCi5QMYNmjgEJzOr2lCtJY/YeHkKAsff8aTdvcIaHicpLW7
+         2+0zmUZrr/Wjs/8MphB+Rubtm43+hvtZb29IrQAqeZHJm9ByPtsP5jAv3xDPEaJScnOd
+         OxmpFOXuiBQkrblhXdPInaHkrn1WnyIa15f80XCpmvJcOOteVPyUw+oyrsYzVloh354b
+         StdXt1371NkQugcuvOd/tqbO7MsWQMo/ZH5WMYxVlRH3AAAVs4IjeZxvljZQzYUA1c62
+         TouQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/QLi29fkxcBAX9jRNGqvaPngKAWnXVInYsVpketAc4z8HWDu4XvCwGqbEOI5zCE7HaCUdzYMn3FtgE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKY/P84209SyuUsbeMjVQTVaZPgbQ8k38aXX1n2nVMgE2UqPVy
+	EfZSTmP3HbT2IyLPEpX66q9se94nPtzxtkFDRlJ1k8t0Hylsp6gTC0Wyypd3HR15ddA=
+X-Gm-Gg: Acq92OF2nrdRiRcH6/RNWzst/H/8iB/YfpkwsRJDOs0RFRcJDorW3jsoPAhFILQ3Wsr
+	F2PJUrkuOsFZp2G9n4DDwl4RPS6yi7sMmIRfDNOb5IHLW8iqskPRpmM9O/aCsiyIPLvopskE20o
+	zIEUm2SX9RZNIV6zyldX7lsA+8zc8g2Ca89H+ZomY595RMChjaFa2L+UywlL3x0uffGqS0Cbv3z
+	ih3Iq1fBIIL/P/a/CfzgQ0Sf+W9VswTUoHVMBRzk1J3tFtX64ktvpZqtVfwm0Bp5X8N1n6Lzl8R
+	OBfYvIJX97wgJIcQahhBwpf3o8+8jzKo0at0GGz9aIgtdzN9jK2VCFqJa/pEUMFQO6lYJNK4LFk
+	Rs/on8m9EQxNswPUXN67oZV/XvCNaUWr4lMbZ74Zvc+/JpPw62XmN2/iygs9eAgcOmGA46bLI/0
+	K6eujcSfG2DIKAZjtgYT//qzv/SbKtmKzVHw==
+X-Received: by 2002:a05:600c:444e:b0:489:c57:7836 with SMTP id 5b1f17b1804b1-490360dbb9emr35633075e9.27.1779366013106;
+        Thu, 21 May 2026 05:20:13 -0700 (PDT)
+Received: from [192.168.0.35] ([109.76.55.220])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4903caf0967sm21981685e9.15.2026.05.21.05.20.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 05:20:19 -0700 (PDT)
-Date: Thu, 21 May 2026 17:50:02 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
-        Eugen Hristev <eugen.hristev@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Dennis Zhou <dennis@kernel.org>,
-        Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@gentwo.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Thomas Gleixner <tglx@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Anna-Maria Behnsen <anna-maria@linutronix.de>,
-        Frederic Weisbecker <frederic@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>, Juri Lelli <juri.lelli@redhat.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
-        Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
-        David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
-        "Liam R. Howlett" <Liam.Howlett@oracle.com>,
-        Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
-        Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
-        Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
-        Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
-        Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
-        Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
-        Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
-        Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
-        John Ogness <john.ogness@linutronix.de>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>, workflows@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arch@vger.kernel.org, linux-mm@kvack.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 00/25] Introduce meminspect
-Message-ID: <20260521122002.etqupwnjv67didat@hu-mojha-hyd.qualcomm.com>
-References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
- <abdnp90cC5PI9wyz@baldur>
- <20260316181647.m7x4ncmwdjho6yvr@hu-mojha-hyd.qualcomm.com>
- <abtlUQqMOxj5PwGB@baldur>
+        Thu, 21 May 2026 05:20:12 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v6 0/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+Date: Thu, 21 May 2026 13:20:07 +0100
+Message-Id: <20260521-x1e-csi2-phy-v6-0-9d73d9bd7d20@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <abtlUQqMOxj5PwGB@baldur>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDEyMyBTYWx0ZWRfX7nQN8iP2yrT9
- wIByPA8rDmH8IDzaWoHyRlPygzuZGaQiH1yrF1qBzDjavuqtT+e6zjIvnfFX12VtSyJM+Vb5ULR
- 9nWgUWZUmPx7uhbkJteuuSbjJQaTmdgtNDRZ8PsGmQrVocfWWeukSN9nPfxr41iJfZwNfE9DDAT
- TBoCXAhfQgKcCFPkaZU0vGmQkxo5Qlk1rCt53QAOcbMLjUrepmB7y+O3ZVWJ59LAlyro/3hlb0t
- m08iuzvR+kd0wpu7cPoG7v00V/WRoPvglM0BQlKMUGqDsA2J6x73m4OBOKGmvvhuanVe0vsQSVm
- pv1VVKegHFBuRK3nZL0Uwq5Yn6Z5Awfq6RIH+VfK2J/wCRnk5wIgqq3dtVEq9LGwLm0IaS0dqR5
- g2RH/t+0p3JsG6qVvdD5yr2gAlq+itiEqs8gD5G5S86YkZnLjfdRy6On6yLS3lHi+1HSGxVZ5nu
- C86d4zabRr8qawMuQfQ==
-X-Authority-Analysis: v=2.4 cv=aueCzyZV c=1 sm=1 tr=0 ts=6a0ef885 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=NEAV23lmAAAA:8 a=mDV3o1hIAAAA:8 a=0QWIX89dG7aUu2ROjmkA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-GUID: kv9l7k-jeUBeMTEbD1s_sbYoiizhvRh3
-X-Proofpoint-ORIG-GUID: kv9l7k-jeUBeMTEbD1s_sbYoiizhvRh3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-21_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 adultscore=0 phishscore=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605210123
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XPTWrDMBAF4KsErasyM/qzs+o9QhaSPI4FxQ5SM
+ QnBd68cKE1tunwD33vMQxTOiYs4Hh4i85xKmsYa7NtBxMGPF5apq1kQkAGHIG/IMpZE8jrcZW+
+ 10sEa7JQXlVwz9+n2rDudax5S+Zry/dk+43r9p2hGCdJpH0MwAS2Fj880+jy9T/ki1qaZfrQFI
+ rPRtGpnLHfBOvbtTqtXbTdaVY3IFhpnWo2w0/pXK9xu66pbiNASqKZpup02L3q3baquuI+uNxH
+ w79/LsnwD/tcHEqEBAAA=
+X-Change-ID: 20250710-x1e-csi2-phy-f6434b651d3a
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bryan O'Donoghue <bod@kernel.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8422;
+ i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
+ bh=7m/hWiQX3n2vc6JG/2EGJ6AyMvFiI1Zw9vnDHfoz3gE=;
+ b=owEBbQKS/ZANAwAKASJxO7Ohjcg6AcsmYgBqDvh5ZI6sA7CiwkIIDfK20VJXLVSaDnf25icWY
+ 5GzaWkxTi2JAjMEAAEKAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCag74eQAKCRAicTuzoY3I
+ OkWbEACKe0h4DZNOHwJb3x+yMVSaxW8ZM6Umn+L/n5NWYoLwXv2VnrLTY1rcNb05fCBqFUxcwor
+ 187Z1CLx0AWyEQWVLEiD+oeztnFDXJo+bYOJCD4eCK46w57McWp2TaH/3d5HSo1rTyDh551Scmy
+ O7T6B78k+Twnpuet9N+qQvb1AFmH2bqRmomus1XC4Sy85RA625d4Fe1I3JKYKJ7hqWIgTIm5Yyz
+ lfPFrgrguZar5UaO0q4xSURgHLXmeGSCnAiLzxh69LSaqbtGqEYusfow1Y3K0FIwsVC8+qCWW8R
+ ee6eMBoIm+d+tgUxK+SF1qSmFT93vwB7yKUMKefcmUc3JtRwqyDDXMlfS4zDa70oa3eEcqEObhi
+ 8j+mo5qNnZqiROkhQ9py57o+Rwgzykd6/6s9TPfgEn0ifvLpLA6omRgBt0Fpy5TXVaTbnHr56ce
+ i7FWF5FnICfYio7OsJFPLtNJJ9xEGWMnJr077oWWMP1lv89luHDGSBP608fnIsef4RTqv+exsI4
+ SYqUlb3/5k76Hvu/zugt2sDkWEbz/WTRakLdrYn3xSAD/JWI9O+cBjKjzITMIrmIY94WkR52p2F
+ lRW8p814e1K4fRKECUdzfDXP1XhfOrolPTSlssTrWolVeALpRjNPZOjqs6KyQlYPE4J+6wyGj+q
+ D9RrZWi4wodsO5g==
+X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
+ fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org,vger.kernel.org,kvack.org];
-	TAGGED_FROM(0.00)[bounces-301230-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:dkim,hu-mojha-hyd.qualcomm.com:mid,gnu.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-301227-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_GT_50(0.00)[56];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 164BC5A4CBC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,codelinaro.org:url,0.0.0.1:email,0.0.0.0:email,linaro.org:email,linaro.org:mid,linaro.org:dkim]
+X-Rspamd-Queue-Id: AA4A85A4C05
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 09:55:29PM -0500, Bjorn Andersson wrote:
-> On Mon, Mar 16, 2026 at 11:46:47PM +0530, Mukesh Ojha wrote:
-> > On Sun, Mar 15, 2026 at 09:24:39PM -0500, Bjorn Andersson wrote:
-> > > On Wed, Mar 11, 2026 at 01:45:44AM +0530, Mukesh Ojha wrote:
-> [..]
-> > > >, to get all the regions as
-> > > > separate files.  The tool from the host computer will list the regions
-> > > > in the order they were downloaded.
-> > > > 
-> > > > Once you have all the files simply use `cat` to put them all together,
-> > > > in the order of the indexes.  For my kernel config and setup, here is my
-> > > > cat command : (you can use a script or something, I haven't done that so
-> > > > far):
-> > > 
-> > > So these need to be sorted in numerical order, by that number at the end
-> > > of the file name?
-> > > 
-> > > Do you manually punch these in? How do we make this user friendly?
-> > 
-> > Yes, manually.. but I think we can do better. We could make
-> > this more user‑friendly by using the section header and string table in
-> > the md_KELF binary both of which existed in the earlier implementation.
-> > Then, we can write an upstream‑friendly script that reads this KELF
-> > metadata file, checks whether a binary with the registered name is
-> > present, and stitches everything together to form a complete ELF that
-> > the crash tool can consume.  Let me know if you have any suggestion..
-> > 
-> 
-> Can we somehow identify that these regions belong to the minidump and
-> teach QDL to build the ELF for us?
+Changes in v6:
+- Taking feedback from lively debate added ports and
+  endpoints to the PHY - Neil, Vlad
+- Detection of split mode by way of which ports are declared.
+  port@0 is always a sensor input.
+  port@1 is optional and if present implies split-mode
+  port@2 is always the output. - Dmitry, Neil, Vlad.
+- Split mode is left as -ENOTSUPP unless/until someone with the appropriate
+  hardware can take on responsibility to drive to completion.
+- Extending phy_config_opts dropped.
+  I think this is a worthwhile extension but this series no longer depends
+  on it so dropped. - Bryan
+- MX/MXC.
+  Two OPP tables one for CSIPHY0/1/2 scaling MXC one for CSIPHY4 keeping
+  MXA at LOWSVS_D1 - to be implemented in DT not here. Taniya, Konrad, Bryan
+- Changed MAINTAINERS from Supported to Maintained.
+  Hobby time for me right now. - Bryan
+- Link to v5: https://lore.kernel.org/r/20260326-x1e-csi2-phy-v5-0-0c0fc7f5c01b@linaro.org
 
-Raised PR for the QDL https://github.com/linux-msm/qdl/pull/243 which
-does not use numerating order and we can completely drop.
+v5:
+- Adds support to apply passed parameters for clock/data position/polarity - Neil
+- Drops GEN1/GEN2 differentiation this can be reconstituted if GEN1 ever
+  gets supported in this driver - Dmitry
+- Drops camnoc_axi, cpas_ahb - Konrad
+- Renames csiphy->core csiphy_timer->timer - Konrad
+- Renames rail from 0p8 to 0p9 schematics say  VDD_A_CSI_n_0P9 - Konrad
+- TITAN_TOP_GDSC dropped - Konrad
+- Passes PHY_QCOM_CSI2_MODE_{DPHY|CPHY|SPLIT_DPHY} with the controller
+  selecting the mode. Only DPHY mode is supported but the method to pass
+  CPHY or split-mode DPHY configuration is there.
+  Since split-mode is a Qualcomm specific mode the PHY modes are defined in
+  our binding instead of adding a new type to include/linux/phy/phy.h - bod
+- Depends-on: https://lore.kernel.org/r/20260325-dphy-params-extension-v1-0-c6df5599284a@linaro.org
+- Link to v4: https://lore.kernel.org/r/20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org
 
-With that PR, QDL will be generating minidump.elf .
+v4:
+- MMCX, MCX and MX/MXA power-domains added - Dmitry, Vijay, Konrad
+- power-domain-names added as required - bod
+- opp-tables amended to capture RPMHPD deps - Dmitry, Vijay
+- Switched to dev_pm_opp_set_rate, dev_pm_domain_attach_by_name etc
+  dropped inherited CAMSS code - Dmitry
+- Amended parameters structure to specify power-domain name list - bod
+- Removed dead defines - Dmitry
+- Noted in CSIPHY commit log intention to rework patterns of
+  PHY lane configs into loops/defines/bit-fields later - Dmitry, bod
+- Lowercase hex throughout - Dmitry
+- The yaml and code in this driver doesn't care if the node is a
+  sibling or a sub-node of CAMSS confirmed to work both ways - Dmitry, bod
+- Link to v3: https://lore.kernel.org/r/20260226-x1e-csi2-phy-v3-0-11e608759410@linaro.org
 
-And I checked the latest crash tool with no extra patching and just the
---minimal option (as we do not have everything in the minidump) and just
-dmesg.
+v3:
 
+- Resending this to make clear this submission is additive to x1e/Hamoa
+  The existing bindings and code will continue to work 
+  Bindings are added only, nothing is subtracted from existing ABI.
+- Link to v2: https://lore.kernel.org/r/20260225-x1e-csi2-phy-v2-0-7756edb67ea9@linaro.org
 
-$ ./crash  --minimal minidump/vmlinux ./minidump/minidump.elf
+v2:
 
-crash 9.0.2++
-Copyright (C) 2002-2026  Red Hat, Inc.
-Copyright (C) 2004, 2005, 2006, 2010  IBM Corporation
-Copyright (C) 1999-2006  Hewlett-Packard Co
-Copyright (C) 2005, 2006, 2011, 2012  Fujitsu Limited
-Copyright (C) 2006, 2007  VA Linux Systems Japan K.K.
-Copyright (C) 2005, 2011, 2020-2024  NEC Corporation
-Copyright (C) 1999, 2002, 2007  Silicon Graphics, Inc.
-Copyright (C) 1999, 2000, 2001, 2002  Mission Critical Linux, Inc.
-Copyright (C) 2015, 2021  VMware, Inc.
-This program is free software, covered by the GNU General Public License,
-and you are welcome to change it and/or distribute copies of it under
-certain conditions.  Enter "help copying" to see the conditions.
-This program has absolutely no warranty.  Enter "help warranty" for details.
+In this updated version
 
-GNU gdb (GDB) 16.2
-Copyright (C) 2024 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-Type "show copying" and "show warranty" for details.
-This GDB was configured as "--host=x86_64-pc-linux-gnu --target=aarch64-elf-linux".
-Type "show configuration" for configuration details.
-Find the GDB manual and other documentation resources online at:
-    <http://www.gnu.org/software/gdb/documentation/>.
+- Added operating-point support
+  The csiphy clock sets the OPP prior to setting the rate
+  for csiphy and csiphy_timer - Konrad
 
-For help, type "help".
-Type "apropos word" to search for commands related to "word"...
+- Combo mode
+  Combo mode in CAMSS yaml has been added. Right now
+  no code has been changed in the PHY driver to support it as
+  I don't have hardware to test. In principle though it can
+  be supported. - Vladimir
 
-NOTE: minimal mode commands: log, dis, rd, sym, eval, set, extend and exit
+- CSIPHY init sequences
+  I left these as their "magic number formats". With my diminished
+  status as a non-qcom VPN person - I can no longer see what the bits
+  map to. Moreover this is the situation any non-VPN community member
+  will be in when submitting CSIPHY sequences derived from downstream.
 
-crash> log
-[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x512f0030]
-[    0.000000] Linux version 7.1.0-rc2-next-20260504-00228-g2595b97d6061 (@f134cd6ce783) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #11 SMP PREEMPT Fri May 15 09:34:41 UTC 2026
-[    0.000000] KASLR disabled on command line
-[    0.000000] random: crng init done
-[    0.000000] Machine model: Qualcomm Technologies, Inc. XXXX
-[    0.000000] earlycon: qcom_geni0 at MMIO 0x0000000000a9c000 (options '')
-[    0.000000] printk: legacy bootconsole [qcom_geni0] enabled
-[    0.000000] efi: UEFI not found.
-...
-..
+  I think it is perfectly reasonable to take public CSIPHY init sequences
+  as magic numbers. If someone with bit-level access wants to enumerate
+  the bits that's fine but, it shouldn't gate in the interim. - Konrad/bod
 
+- Sensor endpoints
+  I've stuck to the format used by every other CSIPHY in upstream.
+  Sensor endpoints hit the CAMSS/CSID endpoint not a endpoint in the PHY.
+  Given the proposed changes to CAMSS though to support "combo mode" I
+  think this should achieve the same outcome - multiple sensors on the one
+  PHY without introducing endpoints into the PHY that no other CSIPHY in
+  upstream currently has.
 
-[   48.488296] sysrq: Trigger a crash
-[   48.492004] Kernel panic - not syncing: sysrq triggered crash
-[   48.497944] CPU: 3 UID: 0 PID: 363 Comm: sh Tainted: G        W           7.1.0-rc2-next-20260504-00228-g2595b97d6061 #11 PREEMPT
-[   48.510055] Tainted: [W]=WARN
-[   48.513140] Hardware name: Qualcomm Technologies, Inc. XXXX
-[   48.519699] Call trace:
-[   48.522276]  show_stack+0x18/0x24 (C)
-[   48.526089]  dump_stack_lvl+0x34/0x8c
-[   48.529903]  dump_stack+0x18/0x24
-[   48.533366]  vpanic+0x47c/0x4dc
-[   48.536646]  do_panic_on_target_cpu+0x0/0x1c
-[   48.541078]  sysrq_reset_seq_param_set+0x0/0x94
-[   48.545788]  __handle_sysrq+0xd4/0x1b8
-[   48.549679]  write_sysrq_trigger+0xc0/0xd0
-[   48.553930]  proc_reg_write+0x9c/0xf0
-[   48.557737]  vfs_write+0xd4/0x358
-[   48.561187]  ksys_write+0x6c/0x104
-[   48.564724]  __arm64_sys_write+0x1c/0x28
-[   48.568809]  invoke_syscall+0x54/0x10c
-[   48.572704]  el0_svc_common.constprop.0+0xc0/0xe0
-[   48.577578]  do_el0_svc+0x1c/0x28
-[   48.581025]  el0_svc+0x38/0x138
-[   48.584317]  el0t_64_sync_handler+0xa0/0xe4
-[   48.588660]  el0t_64_sync+0x198/0x19c
-[   48.592474] SMP: stopping secondary CPUs
-[   48.796761] Kernel Offset: disabled
-[   48.806510] Memory Limit: none
-crash>
+- Bitmask of enabled lanes
+  Work needs to be done in the v4l2 layer to really support this.
+  I propose making a separate series dedicated to non-linear bit
+  interpretation after merging this so as to contain the scope of the
+  series to something more bite (byte haha) sized. - Konrad/bod
 
--- 
--Mukesh Ojha
+- Link to v1: https://lore.kernel.org/r/20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org
+
+v1:
+This short series adds a CSI2 MIPI PHY driver, initially supporting D-PHY
+mode. The core logic and init sequences come directly from CAMSS and are
+working on at least five separate x1e devices.
+
+The rationale to instantiate CSI2 PHYs as standalone devices instead of as
+sub-nodes of CAMSS is as follows.
+
+1. Precedence
+   CAMSS has a dedicated I2C bus called CCI Camera Control Interface.
+   We model this controller as its own separate device in devicetree.
+   This makes sense and CCI/I2C is a well defined bus type already modelled
+   in Linux.
+
+   MIPI CSI2 PHY devices similarly fit into a well defined separate
+   bus/device structure.
+
+   Contrast to another CAMSS component such as VFE, CSID or TPG these
+   components only interact with other CAMSS inputs/outputs unlike CSIPHY
+   which interacts with non-SoC components.
+
+2. Hardware pinouts and rails
+   The CSI2 PHY has its own data/clock lanes out from the SoC and indeed
+   has its own incoming power-rails.
+
+3. Other devicetree schemas
+   There are several examples throughout the kernel of CSI PHYs modeled as
+   standalone devices which one assumes follows the same reasoning as given
+   above.
+
+I've been working on this on-and-off since the end of April:
+Link: https://lore.kernel.org/linux-media/c5cf0155-f839-4db9-b865-d39b56bb1e0a@linaro.org
+
+There is another proposal to have the PHYs be subdevices of CAMSS but, I
+believe we should go with a "full fat" PHY to match best practices in
+drivers/phy/qualcomm/*.
+
+Using the standard PHY API and the parameter passing that goes with it
+allows us to move away from custom interfaces in CAMSS and to conform more
+clearly to established PHY paradigms such as the QMP combo PHY.
+
+Looking at existing compat strings I settled on
+"qcom,x1e80100-mipi-csi2-combo-phy" deliberately omitting reference to the
+fact the PHY is built on a four nano-meter process node, which seems to
+match recent submissions to QMP PHY.
+
+My first pass at this driver included support for the old two phase
+devices:
+
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/commit/a504c28d109296c93470340cfe7281231f573bcb#b6e59ed7db94c9da22e492bb03fcda6a4300983c
+
+I realised that the device tree schema changes required to support a
+comprehensive conversion of all CAMSS to this driver would be an
+almost certainly be unacceptable ABI break or at the very least an enormous
+amount of work and verification so I instead aimed to support just one new
+SoC in the submission.
+
+I've retained the callback indirections give us scope to add in another type of
+future PHY including potentially adding in the 2PH later on.
+
+This driver is tested and working on x1e/Hamoa and has been tested as not
+breaking sc8280xp/Makena and sm8250/Kona.
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (2):
+      dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
+      phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+
+ .../bindings/phy/qcom,x1e80100-csi2-phy.yaml       | 205 ++++++++++++
+ MAINTAINERS                                        |  10 +
+ drivers/phy/qualcomm/Kconfig                       |  13 +
+ drivers/phy/qualcomm/Makefile                      |   5 +
+ drivers/phy/qualcomm/phy-qcom-mipi-csi2-3ph-dphy.c | 361 ++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-mipi-csi2-core.c     | 368 +++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-mipi-csi2.h          |  94 ++++++
+ 7 files changed, 1056 insertions(+)
+---
+base-commit: a1db83cc6f7e88a166c77d9060507ec01d617784
+change-id: 20250710-x1e-csi2-phy-f6434b651d3a
+
+Best regards,
+--  
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
