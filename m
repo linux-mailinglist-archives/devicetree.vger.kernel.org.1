@@ -1,180 +1,260 @@
-Return-Path: <devicetree+bounces-301026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301029-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AXGIgOzDmosBQYAu9opvQ
-	(envelope-from <devicetree+bounces-301026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:23:47 +0200
+	id 0KUfLp+zDmpjBQYAu9opvQ
+	(envelope-from <devicetree+bounces-301029-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:26:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDDD5A00DD
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4882A5A013E
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:26:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B07513021BAD
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:23:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4EF5C300B1F6
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:26:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CDC1385D75;
-	Thu, 21 May 2026 07:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FDA239AD45;
+	Thu, 21 May 2026 07:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQSer9Mt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XzYTUHDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735062DB791;
-	Thu, 21 May 2026 07:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779348225; cv=none; b=XGwSo3tDqXKXRG2eLirmcnvOu006hmGwAMJ8BiqvewPm3r4Fo4fElEgE0S+kT9+98AIlzXZoBxoM5Jmu84RJly8TKUkU74Ie6iZwSSyOdA/AkcyJjt2aBH4ADEWupMQhLHZJUgq+EpKrJ9lsvvla5/rBYVqqlw1qcxPPwpvi8uI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779348225; c=relaxed/simple;
-	bh=AaiOpIcIh3A0lBeFxHwNa9dRAhxscW+mi3AGm/pz4tU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t0pwz0NbKCMoHHvKI4/nEVgQ8tpyTHgAzh+vhHHdrolUclgXDzNmL4mvjgWEKs8hn7ZMXPamevjOwv9mypRcQBOnEieL0oMSZXffozPMvjg4k4Q2a9fxMTz7x/SEj2g5/2i3IOmNjA8cgQTO4s66zBaUrYVd7EfdiQC6c8KKAiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQSer9Mt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F07B1F000E9;
-	Thu, 21 May 2026 07:23:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779348224;
-	bh=TCqf+SLxqDAmyK38cKu26c5GgsQXSCx2ylDh6U+MSwk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=eQSer9MtLEq5q9kfnWHpBZZsG+6+OCTD6dmCsRDDeWBQUb/tHXRo7SMc7wMCEFwS3
-	 h/vs3HxfJnMz32fyyCJxMKObLJIOa+FXD+eVqCpdBrGt60ypRAyTrcVx1UPNX7qsgB
-	 WcKcCeTLuuN95b2e+7lxjlBarsQuQhTJU93+9ho00UqME4JuVx4NDW/gEjrPW7qIK7
-	 5iO7kppwYxojnoDrLnZWa29VH01BOi/2QaTZMqxIRxL6pNk2TZQ7/ddfYHaFD1zAeW
-	 lL7d/n7wd+Pznye8PhgCT+6IO5qKTktwCBbAYwSjOnIwpwrI45RdygMWRDi/43g8er
-	 cWQLUmICR8jjg==
-Message-ID: <e3067b12-02d0-465c-a065-e6903d6c4c39@kernel.org>
-Date: Thu, 21 May 2026 09:23:39 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6007395AE6
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 07:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.175
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779348377; cv=pass; b=LtepvQGunUIveOHvsn7KaAYCL+IE613DU56wzcP4lNQGbaasi4+e/oi039tUMfq65/zexju9uZSrLTmgQcoTSaWaIvmtJ5MKnlz35XupJV10EyMWZCm72P1KnhZirifwIzp7srHtBOqiVrpAETir7WiXkG2T7wLpKVlcDEU2DZ4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779348377; c=relaxed/simple;
+	bh=YDcx1Y0+zlRN1nWyttwEdWnkWzDunYKkzU5UZ8ogEHc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nxl353C1hzk1Sb9ntZLvA2DSEOYk0miPWB+yl8jr02uHtPLTnhaCBgtJDAvB9e2He/y3ebqT+9rJ55ZiOl+5bAEWgTnVpehz9sIGbdsxpCJhhlI/rIt2drEM+/0tw5kYkMA54gtaeSiEpwEl1ECKB1ee/vtC1P1aISDWhequzKs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XzYTUHDY; arc=pass smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2ba856db1c0so42034775ad.3
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 00:26:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779348373; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Hoe9SixxlEKSok5KbMgpay3hWBsIhKwFQASGbGn+F60Ax4+yVkpzqM1twW7xd/VPBv
+         Pcf1JCLi/CAVGX2pRzeY5gwEq4GC3cojzNY+B2T+TXRF2eqKudQH5aRN6lGER/j4zqjq
+         QDqpLs/HyhOfcDYC3soeEGVWvuUWPGKoybf5Pja8tn9NM5r2jm4ScNgtO4ZONhLiNwo/
+         feWrGlxOP2wMYCaR4O06FKpJsI2uRGV/Q2FMGt3bKY94GY2SbZ2jngYsiJvbKPsvQR/2
+         aqdZbv+AUOzYELvS886r6ekJ8rjMOicoYOZFAV7cuc/SeedCKD0yso5VV3nyOt+sXx24
+         EbSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=lXbPb+/1MyUml7SUP3O01YVktPIbQ8L41vVAOmxyw2c=;
+        fh=Hyw0TbXx1RVElIDoL41SJffvA+oZR0lvJGf7l/E9wf0=;
+        b=VyoyKkKvBUjCt1ecjffn3eV+pjHvoYeczG5AVYqnQRW3kgNo+rTOOT167ysew275X7
+         P/gRPYIeaUYgZj12xgp7xNpM0BTb2W3E9vyqP0Tmvhu8DisKhVAifOvlPY2flMFEQp9l
+         V9qnGEoebUUqTsF/Jo6bREyGj0/Rbh7ktu4EtAw9W+Ah+drrRnLt8P6nlE2/Kq/LxRf/
+         jkEjAJq1I6wxC53IyUKDERpG42DStIWPaXUSNrkwQDuJNoOfzSOg74O7jjqU4mDhRJ8w
+         U9QJ7EOG0nQtl/7HAT9L8cnXxBXwBW3EB1d2hEW/UrgtQf/HAcehbFz5jiNvF+YL1xat
+         WONg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779348373; x=1779953173; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lXbPb+/1MyUml7SUP3O01YVktPIbQ8L41vVAOmxyw2c=;
+        b=XzYTUHDYBLLf2kJqbQ+2bsnjW8d37U2b4YA6I8cXZ871zPjVb9bpxoJogC/QLRtiiA
+         Xj1xoTHBIzu2S5w3ngutXFYXfcL4i0WDp9/seb+ioeqr5JrUcmq7R8UB4mDcYzRqG4vs
+         Ciz8RW1f+s6uJ9nWCJJwOusons1mIlApG45JrQUa2rGkTSf0q46HWjF2G+yfRAb0JNQx
+         r9KkpYsScVfi8QPKnVLOLzYQ2ktCru98X3EHKqK0i3UaqVEoFOvQyKVnQHPRakxFtUJU
+         6YWzYG2E2XPyZ+1cjzQ6fyrlTPLl9FDrpw98gtBL1eZq3j/vQ16ZDeKqTfTC+cvumtuf
+         pDOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779348373; x=1779953173;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lXbPb+/1MyUml7SUP3O01YVktPIbQ8L41vVAOmxyw2c=;
+        b=UD/mZs98U7iSY0LXjsmV9XAG3J87b/9x/SpCdjGIqli7ztqjHmDGIGxumKij0GCXCB
+         00T8KfmffsgUNdiqf0Y2FujcpqActwq+5awdtq5VahwcAttYc4jjsUXXR9DKLRMCbX+w
+         4R29aVCTn9JFwEW/K8KrfytAtVFILiT4NxKCx1eViMgK0YdeKbfFm8CXqy+vN29vx6cT
+         VaEcZaahTUg8qzTPrJP4LKW4Ta7tPSe0kkjewjJ7rUMKTT7UY7VhscgMaWs1tmCGTCnP
+         Yu1Ce9rg1aRHpNrx4cXTL0D5AL3sRl//e787Q0buDDrpLdLVQ0OBik2uB1hn8Pa49Gk8
+         ZT1w==
+X-Forwarded-Encrypted: i=1; AFNElJ8x8ZQFFX7rb/4Jp15yJREd9eLtAGWsPwAV50AeU4gYG5C7l59gD4yLo6gVxnlA4wNl2ZUzE7y0X5i/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzfy8rBefMLqh7wIoE0aG6oEEghg0xaXzfdpePaRYP/FAVZq8w0
+	uGvJa9PsOSqbboN2Y3f9da0UZ/hWzGhn+EB0Z2AURx66el6v6WZoIArxRkPUKjZ727NfERNHryp
+	w1A07adQFSqn7U1q/7rFOcMFITlm0QFo=
+X-Gm-Gg: Acq92OELnHrn0vdZMNuchLsot2jpilnNexgGIZs3q0wMTeyAJ8AuO7RN5Ny00XOvC/F
+	HsYGw8jk25Y6F0E6AHQ58E6LzWoo1ifACcdTyimgFf2eN+BEaunDSSLsw9ecZYqTUQI4BxhtZ7u
+	32nxeKr+SD9S0uHDmoPWfD+Rs8Ba4Y82edQWofUrAN3KZ/VM3PNMfywbbTJ69q75/3hj4JSgTDC
+	e2o5xGxNm4Fa+DYPBxvK4oDj/aExhAc3M7/cTrXgz0nviXRVnJXXbMZZLRlB1bc/WZob0JtW+jJ
+	Z13SzaB1INEAYi6UESkOrQQc5/j6aJp0dJn5M3mTn1bAPwXY
+X-Received: by 2002:a17:902:ce92:b0:2bc:eea4:83c3 with SMTP id
+ d9443c01a7336-2bea337dcb9mr16838125ad.25.1779348373000; Thu, 21 May 2026
+ 00:26:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 net-next 1/3] dt-bindings: vendor-prefixes: add SiTime
- Corporation
-To: Ali Rouhi <rouhi.ali@gmail.com>, jiri@resnulli.us
-Cc: vadim.fedorenko@linux.dev, arkadiusz.kubalewski@intel.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- cjubran@nvidia.com, Oleg.Zadorozhnyi@devoxsoftware.com,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ali Rouhi <arouhi@sitime.com>
-References: <20260520191943.73938-1-arouhi@sitime.com>
- <20260520191943.73938-2-arouhi@sitime.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260520191943.73938-2-arouhi@sitime.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260510084303.122426-8-phucduc.bui@gmail.com> <20260511234758.6C022C2BCB0@smtp.kernel.org>
+In-Reply-To: <20260511234758.6C022C2BCB0@smtp.kernel.org>
+From: Bui Duc Phuc <phucduc.bui@gmail.com>
+Date: Thu, 21 May 2026 14:26:00 +0700
+X-Gm-Features: AVHnY4JVOeDnjezg1KYm702bCERj-oBsD-Y1fM4Qrg16PXkHjwRlY3W_TbeGcO8
+Message-ID: <CAABR9nHH2D-StaU8hMEnPmtZGoSbk0tO4H5YU+qL-TVmsEov_g@mail.gmail.com>
+Subject: Re: [PATCH v3 07/10] ASoC: renesas: fsi: refactor clock initialization
+To: sashiko@lists.linux.dev
+Cc: wsa+renesas@sang-engineering.com, krzk+dt@kernel.org, 
+	devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	Mark Brown <broonie@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301026-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,resnulli.us];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-301029-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:url]
-X-Rspamd-Queue-Id: 4DDDD5A00DD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 4882A5A013E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/05/2026 21:19, Ali Rouhi wrote:
-> Add vendor prefix for SiTime Corporation, manufacturer of
-> programmable clock generators and MEMS oscillators.
-> 
-> Signed-off-by: Ali Rouhi <arouhi@sitime.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+Hi all,
 
+First of all, I appreciate receiving review comments from the AI bot.
+I think it is quite helpful for learning and improving patches.
 
+However, I have a few questions regarding the expected workflow:
 
-<form letter>
-This is a friendly reminder during the review process.
+1. I noticed that the bot reply only CCs a subset of the original recipient=
+s.
+    Is there a specific reason or convention behind that behavior?
+2. When receiving review comments from the bot, is it generally
+    expected that contributors reply to those comments?
+3. If replying is recommended, should I keep the same CC list as the
+    original patch submission, or only reply to the bot thread participants=
+?
 
-It looks like you received a tag and forgot to add it.
+Sorry if these are basic questions. I just want to better understand the
+usual mailing list workflow.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+Best Regards,
+Phuc
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state in the patch changelog
-or cover letter why and what changed.
-</form letter>
-
-Best regards,
-Krzysztof
+On Tue, May 12, 2026 at 6:47=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
+>
+> Thank you for your contribution! Sashiko AI review found 1 potential issu=
+e(s) to consider:
+> - [Critical] The return value of `fsi_clk_init()` is ignored in `fsi_prob=
+e()`, which breaks probe deferral and leads to a kernel panic from derefere=
+ncing error pointers.
+> --
+>
+> commit 055b3b167e655ece1592450b8baaea9abe771d10
+> Author: bui duc phuc <phucduc.bui@gmail.com>
+>
+> ASoC: renesas: fsi: refactor clock initialization
+>
+> This commit moves fsi_clk_init() to probe and uses devm_clk_get_optional(=
+)
+> for optional clocks. It allows probe to succeed when optional clocks are
+> missing, while set_rate() validates clock availability.
+>
+> > diff --git a/sound/soc/renesas/fsi.c b/sound/soc/renesas/fsi.c
+> > index 55a11f1fe8aa1..8c46d68069581 100644
+> > --- a/sound/soc/renesas/fsi.c
+> > +++ b/sound/soc/renesas/fsi.c
+> [ ... ]
+> > @@ -973,35 +983,42 @@ static int fsi_clk_set_rate_cpg(struct device *de=
+v,
+> >       return ret;
+> >  }
+> >
+> > -static int fsi_clk_init(struct device *dev,
+> > -                     struct fsi_priv *fsi,
+> > -                     int xck,
+> > -                     int ick,
+> > -                     int div,
+> > -                     int (*set_rate)(struct device *dev,
+> > -                                     struct fsi_priv *fsi))
+> > +static int fsi_clk_init(struct device *dev, struct fsi_priv *fsi)
+> >  {
+> [ ... ]
+> >       clock->own =3D devm_clk_get(dev, NULL);
+> >       if (IS_ERR(clock->own))
+> >               return -EINVAL;
+>
+> Does returning -EINVAL here mask probe deferral? If devm_clk_get() return=
+s
+> -EPROBE_DEFER, returning -EINVAL will permanently fail the driver probe
+> rather than deferring it.
+>
+> [ ... ]
+> > @@ -1997,6 +2001,7 @@ static int fsi_probe(struct platform_device *pdev=
+)
+> >       fsi->running_streams =3D 0;
+> >       fsi_port_info_init(fsi, &info.port_a);
+> >       fsi_handler_init(fsi, &info.port_a);
+> > +     fsi_clk_init(&pdev->dev, fsi);
+>
+> Is it safe to ignore the return value of fsi_clk_init() here?
+>
+> If devm_clk_get_optional() fails and returns an error pointer like
+> -EPROBE_DEFER, those error pointers will be stored in the clock fields
+> instead of NULL.
+>
+> Later, when fsi_clk_set_rate_external() checks if the clocks are missing:
+>
+>     if (!xck || !ick) {
+>
+> This check will pass because the error pointers are not NULL. The error
+> pointers will then be passed to common clock framework APIs like
+> clk_get_rate(), which will dereference them and cause a crash.
+>
+> Should the return value of fsi_clk_init() be checked and propagated?
+>
+> >       ret =3D fsi_stream_probe(fsi, &pdev->dev);
+> >       if (ret < 0) {
+> >               dev_err(&pdev->dev, "FSIA stream probe failed\n");
+> > @@ -2011,6 +2016,7 @@ static int fsi_probe(struct platform_device *pdev=
+)
+> >       fsi->running_streams =3D 0;
+> >       fsi_port_info_init(fsi, &info.port_b);
+> >       fsi_handler_init(fsi, &info.port_b);
+> > +     fsi_clk_init(&pdev->dev, fsi);
+>
+> Would the same return value check be needed here as well?
+>
+> >       ret =3D fsi_stream_probe(fsi, &pdev->dev);
+> >       if (ret < 0) {
+> >               dev_err(&pdev->dev, "FSIB stream probe failed\n");
+>
+> --
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260510084303.12=
+2426-1-phucduc.bui@gmail.com?part=3D7
 
