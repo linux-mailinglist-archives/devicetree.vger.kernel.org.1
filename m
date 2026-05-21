@@ -1,171 +1,154 @@
-Return-Path: <devicetree+bounces-301074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6BoKFs/ADmrXBwYAu9opvQ
-	(envelope-from <devicetree+bounces-301074-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:22:39 +0200
+	id MLJ1EWHDDmqiCAYAu9opvQ
+	(envelope-from <devicetree+bounces-301088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:33:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582D05A0F39
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:22:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BF45A11AE
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:33:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 077C13004D12
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:22:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCDA4303ADC0
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A39833F8C5;
-	Thu, 21 May 2026 08:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC1F35676E;
+	Thu, 21 May 2026 08:27:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mQEZJpRY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gDf6J9CW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED02F31A07B
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C4632AAB5;
+	Thu, 21 May 2026 08:27:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779351752; cv=none; b=fdQpSuqz+jHJa6Dm9nfsURFn47fyL3y7iGAGtGxBv7WnaM7Nf7vnQkVHS62alf992Smj1YD9w+8pbBrn1DX501cY7TCzsnEgxZ7hqAJdafNJ8lH0vIJeCWXrrrHrBI+8VzZQBzQAfaxxPL4cS4KxgHxxzQemHqoasYzHpDlBFPQ=
+	t=1779352028; cv=none; b=TrRdSlQpa451P2TTwaXyyGzI2MMOO3BCVvlOJd6CvfkEItucN803nNdV5sLSh1TtbrN11y1s0SqW9dgooUSOq8LhIwOYXZhdjlZqvKts5vROoAsuTSyqe2AgDVV5CihvYUqE/V2MBdzkVjsoK15jYOXpOFoo18X3s3kzH9xJp1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779351752; c=relaxed/simple;
-	bh=gWLO77tZ9MbajFEgPVEjQUCT6ZTSoktNSTsYB3WGDKU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=h8YorwGtl3jHqJJJK943v/P4o1jAthY+tLREsYDLBn30ci0wPAoSZ7+J4FzbYEHscbMWsepoNMP4TEcEH40wu1v38ZOUIfGLDiK6+cLFcRDc812kPSlYGX7uavRGo9Tk0aFOY13bMFCX4cRZHNK8wuu299iqrDt7F/s31dVr7s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQEZJpRY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BD161F000E9;
-	Thu, 21 May 2026 08:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779351750;
-	bh=qv3TtZ0qONesORUEiWfS5ijOH+9Ehz6dBfj4D+Vm9RM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mQEZJpRYBUHi7Up/9Cm41+0WtSqk+Fai0ElVHvajbn7wXFclzQW8tsnG+g0fWbvy5
-	 XNoOQn7n/jDP5bAvIq/l773+hQ5Hn2F/xhH3LjoOHnOeEIfQXXSdsApnmyAPCLJz6I
-	 qnkusBaKBJpO25UqzZAEj4U60Qip4CHtDv8huPLPfRSEn0dm4elgO2oay/nRWf07F/
-	 tjYTZqsS8FF6H1ZGhKqFxtNUb9kRo87SOAlFC4BxnrVK90A5ddeJabT8xhfziXJ6tl
-	 +wkxd2XHLp1R2FP/nDzrJU3nWl/hq9obre7ZC+6RzIZzaM8qy0/Sv7zrHF+BLEVdrP
-	 gEm4AVVC8gyGQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: display: panel: document the
- Renesas R63419 based dual-DSI video mode Display Panels
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com, conor+dt@kernel.org
-In-Reply-To: <20260521-topic-sm8650-ayaneo-pocket-s2-r63419-v5-1-dd5700299390@linaro.org>
-References: <20260521-topic-sm8650-ayaneo-pocket-s2-r63419-v5-1-dd5700299390@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 21 May 2026 08:22:30 +0000
-Message-Id: <20260521082230.6BD161F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779352028; c=relaxed/simple;
+	bh=bzdk7Kr97M8ZTKkR73nEt8S7smKlwLk3jyxCaislBCE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NIV+y5cBAus/EVnF9AoZUrsR52hiok4KDdYY/5WM+oJtgmn6iv60oNuQi+N/fLVoeEUCchzCOR0Bw4oNACjiF8guYcnyFlbCnU5yFA7ndRkfNawb4D6V9H5tObBcDc7ApyB3FExCUR+7dzdlnJtXFkFTUAmqykQw899fC+WzmGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gDf6J9CW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AC2C5C2BCB4;
+	Thu, 21 May 2026 08:27:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779352027;
+	bh=bzdk7Kr97M8ZTKkR73nEt8S7smKlwLk3jyxCaislBCE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=gDf6J9CWA0Jkj+sVyKVjYft0qdrfcuAu3LQz1WoiH+hv0NLkaIZ2ATVwNpmU97ioz
+	 0ykkbd4X4S1LvMXMliPzlR/X14Zr+i6PJcnG1/whPEFaw/e7mxFfdo4gwiCupEfN3H
+	 NIHycvMdX6bfrvnknGywZ4OAKDyLRPJ/+i+oztVtQluhAa+A9miJsj+qLzpcehTaze
+	 8kIxP6UET+zM7aP/LRUPtTGoFKsSwNFdn0l/T1JWvSXjMTu6ozAJjX27+78IQjT/8s
+	 W1hIfRQLsjgSn05fJd+BZ8GWrh9i6Y3rbnSW+X1mAvCseKQcUt1V3X3FyFhrd32JT+
+	 BBX/2nkVR32mg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EE88CD5BAC;
+	Thu, 21 May 2026 08:27:07 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/2] Add PWM support Amlogic S7 S7D S6
+Date: Thu, 21 May 2026 08:26:57 +0000
+Message-Id: <20260521-s6-s7-pwm-v3-0-57b073fbafef@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANHBDmoC/1WMzQ6CMBAGX4X07Jqy2B88+R7GA5QCmwglrakaw
+ rtbSIx4nN1vZmbBerKBnbOZeRspkBsTFIeMmb4aOwvUJGbIUfICBQQJQcH0HAB1LoWutVaFZGk
+ /edvSa2tdb4l7Cg/n31s65uv1W5G7SsyBg1QWW4V1qWtzqYa768gcjRvY2on4c08c9y6urlCNs
+ elTCvnvLsvyARIbnMHgAAAA
+X-Change-ID: 20260325-s6-s7-pwm-281658b88736
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Junyi Zhao <junyi.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779352023; l=1053;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=bzdk7Kr97M8ZTKkR73nEt8S7smKlwLk3jyxCaislBCE=;
+ b=fQiZzM/Lh8PPnpiLD5LGzPb/OkLEGlqImpKBfEDcs3FUg3JubOsnLumaApJU5vjcr4iZI7XYT
+ stuhJIZ/1xGCaD7/XckedZzIBGzrxZzihsUTqgTQOjCd/oOqTvvpAOr
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301074-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,linaro.org:email,smtp.kernel.org:mid];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-301088-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,baylibre.com,googlemail.com];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 582D05A0F39
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,amlogic.com:replyto,amlogic.com:mid,amlogic.com:email]
+X-Rspamd-Queue-Id: A8BF45A11AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The schema incorrectly uses `additionalProperties: false` instead o=
-f `unevaluatedProperties: false` when inheriting from a common schema.
---
+Add bindings and driver support Amlogic S7/S7D/S6 SoCs.
 
-commit 06ab207971a6f54327d9bb05b5e8355cbba81b0c
-Author: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v3:
+- Use npwm instead of single_pwm in priv_data and format adjustments.
+- Link to v2: https://lore.kernel.org/r/20260402-s6-s7-pwm-v2-0-657dce040956@amlogic.com
 
-dt-bindings: display: panel: document the Renesas R63419 based dual-DSI vid=
-eo mode Display Panels
+Changes in v2:
+- Simpler s7 clock desc, and drop the example in bindings.
+- Make minor changes to probe based on Martin's suggestion.
+- Link to v1: https://lore.kernel.org/r/20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com
 
-This commit adds a new device tree binding document for the Renesas
-R63419 generic DDIC. The DDIC is used to control dual-DSI LCD panels,
-such as those found in Ayaneo gaming handheld devices.
+---
+Junyi Zhao (1):
+      dt-bindings: pwm: amlogic: Add new bindings for S6 S7 S7D
 
-> diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r634=
-19.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r63419.ya=
-ml
-> new file mode 100644
-> index 0000000000000..adfdd2c300a35
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/renesas,r63419.yaml
-[ ... ]
-> +allOf:
-> +  - $ref: panel-common-dual.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - ayaneo,wt0600-2k
-> +          - ayaneo,wt0630-2k
-> +      - const: renesas,r63419
-[ ... ]
-> +  backlight: true
-> +  reset-gpios: true
-> +  rotation: true
-> +  ports: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-[ ... ]
-> +  - reset-gpios
-> +  - ports
-> +
-> +additionalProperties: false
+Xianwei Zhao (1):
+      pwm: meson: Add support for Amlogic S7
 
-[Severity: Low]
-Since this schema inherits from panel-common-dual.yaml in the allOf block
-above, should this be unevaluatedProperties: false instead?
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 19 ++++++++++
+ drivers/pwm/pwm-meson.c                            | 41 ++++++++++++++++++++--
+ 2 files changed, 57 insertions(+), 3 deletions(-)
+---
+base-commit: b1385d0c7b7c633e55adcf4a7c1ef46c43a84a4a
+change-id: 20260325-s6-s7-pwm-281658b88736
 
-In JSON schema, additionalProperties: false only considers the properties
-explicitly listed in the local properties block. This means any standard
-panel properties (like width-mm, height-mm, or enable-gpios) not explicitly
-listed here will be incorrectly rejected during validation.
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Using unevaluatedProperties: false would allow properties defined in the
-inherited schemas. It would also eliminate the need to redundantly define
-properties like backlight or ports in the local properties block.
 
-> +
-> +examples:
-> +  - |
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-topic-sm86=
-50-ayaneo-pocket-s2-r63419-v5-0-dd5700299390@linaro.org?part=3D1
 
