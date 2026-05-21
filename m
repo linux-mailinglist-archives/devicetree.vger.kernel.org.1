@@ -1,252 +1,218 @@
-Return-Path: <devicetree+bounces-301222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301224-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cP09J031Dmq+DgYAu9opvQ
-	(envelope-from <devicetree+bounces-301222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:06:37 +0200
+	id OM/3I3H0DmqmDQYAu9opvQ
+	(envelope-from <devicetree+bounces-301224-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:02:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 376185A485D
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:06:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A1155A4715
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 14:02:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D75BD30C4179
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 12:00:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C200D3032807
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 12:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B519B3C8737;
-	Thu, 21 May 2026 12:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A9A3CB8F0;
+	Thu, 21 May 2026 12:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qr8twvrP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HfPFOT3I";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ccYXFI19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CCE3C4B6F
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA7C3C552F
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779364823; cv=none; b=POd8ZFVKvC1pqV++b8Xv47qPKEkj7hBAqFg096lIDvBL5baBZiIJG42SHDyUAAa2hfwAyKRXdAV/NCXFhUFPc9/SpqrbKs5mz9n9nGNTjqJsjiDyLm2NtmCfLYemnvSTtejVW8PKF+nw3cg1vqEyObDZU5EQm6aIyx4xbNRMyNU=
+	t=1779364869; cv=none; b=pSwVelAASM7myX0fg7GxvpJuOkcsdC574j/IG4xzois333XoqCJ3IJJZ2dqTDG4z0H5yzIIewsVeFhU57kmP+2z5rfuRkPQGSN3KzCaLZzmxyVXyvXELJD+bJW9JWNZ8I37yhx/DEoK+iFvVnA7GUlsK2ExbuNyTDVLyn2jXrec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779364823; c=relaxed/simple;
-	bh=SHgxTl7i8ZJcoJsANiAFTcbeJAToHEACN55Qh8i2i6s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sPVnrI9vN4jQ8q37Ms4FZ62QLTbPoWS/TvOC3Y/6VD/fc2Q0PY2OyyPAmvkGONBFkmU7kKTgm6UF3R/6duaj1QKs2kPtB0ARoAwcxZ5bhAVmPKfsZ33oyKeAEQkq6mWpZAkTc7SUs8NiSzkawXnoMSFTXQemguFJY4nIPuxjKEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qr8twvrP; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48896199cbaso47086675e9.1
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 05:00:21 -0700 (PDT)
+	s=arc-20240116; t=1779364869; c=relaxed/simple;
+	bh=b5GVsqiFRvyRNXuaoJrVvQ++KB3PSjMRJdFjuy/X++Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lAjaOJ33OpWoKiS3ctb3cmjUlMR8jqFZ2jekejZs5sjUtYD51XTRmg+meYwJ+iIUZD3rhOE49AtxdmcIgfnlC5Dh14eQ3onj6xjDvOpvBm79DsSBuH26aI9cC/RdlCe/CSFVwCaCGsjyrPN5C7YntJF1B2kAi1uOdLef6Oy+I2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HfPFOT3I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ccYXFI19; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64LAXuAK818843
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:01:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=zuiIFZmi278YoDP8dW7O5YBXYG/k2Hucyz8
+	pSyqs9ZY=; b=HfPFOT3IMnhcPAAoOD5eaSF7Yz+Euf+T/uav/QrtMc6pJNNZVWF
+	CBNIEgAE+BBRcL1lGau5CqXdLiC9RdXc1+qX352HUa3SceSekmHXnC8sFd/T9qKC
+	e2ksJrJ9Pn9dXslLrIuzulmH4skY3VdB0LufVqL8JhmSNLk0eXI4h8yaT6J+Zi1k
+	rmFPrXLBfRuW0j/0rfGBWrVVGPYYdNijJlB8CnZqDZRMkyNSPoCnmRH9Pf8LgDar
+	nn6/81XiUtwGGiKwAfNgW+ymUl8i0uBcpgNw/sgXSvl1TXgZRilfyuhmxifx9rfj
+	GyuoMEymezwRDmW6U5xUCBYmrHK4DcLbPPQ==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ea0dkg9kr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 12:01:07 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c828b1b7fddso3428320a12.3
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 05:01:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779364820; x=1779969620; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CyUjlgC7rWY0SffOj02D7tXJ5nKvMClnXbMF17mpGVU=;
-        b=qr8twvrPrsik9O3eSGYnPGqLhfZy1H8fJ8RcAQdP9z1YUBWMoKhiVacap3AcxDm57I
-         QyToA06UThOCleWBwaDNOOZ7JhyfxsqyMMOGjIbsQcQXzDukpXRMsGh8YkThHCLGR9hr
-         EwQdAc/mPYYf/i7APD9NKUpLrUInMFgjzkBP/bCh+/DC4AHps9xct8uZGdk7u1Gee4Og
-         z7sGBs31M/FoWNRdExWB3H/ytTzZWMSoIUcuq8lTLgg2UU5hAexVeZJNephsuarJfcYM
-         HXnSxQu13sLLqSXAxsRY+UIwlYsbedu4fXhf1wArFwEH/lV8rQ4mOq+LYCjPInJTCJbp
-         pGGw==
+        d=oss.qualcomm.com; s=google; t=1779364867; x=1779969667; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zuiIFZmi278YoDP8dW7O5YBXYG/k2Hucyz8pSyqs9ZY=;
+        b=ccYXFI19iJ8cRwM/STPfulotK6M9+SwlnMuUklgzCRb17Q/wdFL/LL1gg2lQoOVrAN
+         NvIvA+mTTMNEqdPXs0UushApcGO+tVNTWXOdBwK3VRoKI3D2WgFIIlz5quxd2yYHhE9d
+         +DwZLsmvCYLxYRlrTgjhlRoIumRw+H+nN+EMzwytTO3mNpquPYcxbAhXB7oyKg8ceAvx
+         HL4UPReoOHSqnD5knt8I4sNPgyIgvr4VHeo8NMLovalNpnaQZnW+1sMyIZC5dFkpMpEY
+         ELrO6Gy96DyIppdLS1uWoQ2jNNUNPrr76lV1f2vIEWJmVRRDrEZhy43WaPeqzRflr96Y
+         caoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779364820; x=1779969620;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CyUjlgC7rWY0SffOj02D7tXJ5nKvMClnXbMF17mpGVU=;
-        b=pUwo7WYKMh3YyTcZpmB2NF3Wz5nt0DErQcCawGW/ClhaV5bcGrE3k2eFe9OzrO/flq
-         2XIWNIzNAuYMqSXZRxOM+BwWjKnUYpoPxUjObwt08YeiJWQA8I5Qozt7PVeGY1gRGAI4
-         Q9oayrbRWYjZpe/wO+qKcAezzHf1KF6wdkXmVwD23bxMG084RywSpexAxu6wYwrDa26f
-         AJH42zwRJVoyn7BbDZ2RHal4LW+fbyQTMJ47NCNo3PEFrkbkmc7YMrXOfcm910HE8DpQ
-         I7VZQKetCRp9mnKITJwlrW9vt8Gq5wUPuhEMAc9nvQX+VmJvC0WIvly/0k03I80Gek94
-         f5Ig==
-X-Forwarded-Encrypted: i=1; AFNElJ9tplyUgqJG+XsW2UJyBnL0uXFWxPWr7H37TaEKbQ42RizeIQbfZeBuITWetxk47qIWgEm/3MsjW+9+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzNHS479Parim+RmaMhAyCB+0+XxvXD8cDgF2FPGVGz5PKQjqM
-	sUYcWsnlmEeOrWGYamnq9Qqu6ONcenSRiiW3mSoVkWQt+DJSbXMqsobg0XG07em/5hg=
-X-Gm-Gg: Acq92OHxG0cGKJY8nS0x6e8ij6Jx9pvIyGCWwuENptLaT8jQglVVJZj6mgI4Vw3PRjW
-	4zKW/nHMjekZKBaYOeZlK8tT6grw/pQlEEzvRTHqNNC9LaVB4FYdD3N0h6sr0LP3ZKAdzNSFQ7a
-	WvSEHJcMBudWJFy9pUNpbaEHVaPixkXIj0kUD5dY0jFfqnFBGRMVGLbPFHHVvjIfFD4X2kG8PPL
-	WS92erf/TDASILZGuP0TZNIBdZVEpdVasGqT1RRDNq+txtKrdcXGtgyiUekz7dpeVRCtMIKSFWv
-	anpOMUsOmYx3OSwjUyrdOVA61tL7l9S+woVJ2wqCNNNstTSLnBCQ2Nnww2CW5d11gy00famG0xe
-	lKJsoIYmh/7lv9QGitS/4Aib8Je0UCDP3/fIJxj+ZnQ9MNcwRlJlBmExVmvbnkK84HF4aKdNdxP
-	0iW9QEfVo1P7heaauovCb7jMoDFkbsmKCdpzi7YeSjpAAb
-X-Received: by 2002:a05:600c:4fc7:b0:48a:66a8:9981 with SMTP id 5b1f17b1804b1-490360ddce0mr34321265e9.27.1779364819051;
-        Thu, 21 May 2026 05:00:19 -0700 (PDT)
-Received: from [192.168.0.35] ([109.76.55.220])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eaa7dd9e6sm2386503f8f.16.2026.05.21.05.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 May 2026 05:00:18 -0700 (PDT)
-Message-ID: <5cb46913-9aa5-4a12-b18f-5eccb6ca861b@linaro.org>
-Date: Thu, 21 May 2026 13:00:17 +0100
+        d=1e100.net; s=20251104; t=1779364867; x=1779969667;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zuiIFZmi278YoDP8dW7O5YBXYG/k2Hucyz8pSyqs9ZY=;
+        b=cQJiUf9jEPV32SwLp7v/PBGcf0sIGrbwT7KKGYMJQ0bXf/YivkHLNJwiwDRve8aTeQ
+         n30Z6MXDKZ6NOFeiV87hOraAYWFUFxEbPkkliWNDFwp/6BZsSdzBmDVGYgI41TjLSWLg
+         rrCtiqLPw1gMSi5YnqO45uBXSyD5662/hbml+zYijL9ffJ6GBTuUryJOt/1ibG0xOkwS
+         Rh/YGZFwCacvn2BKbpG2oPa6ApIRrfG/20zZLQvrE2/ZJgsP864IifQca+7eKxXe7OrZ
+         zUYBqz25VHpaeqYYuNRslMuXXlIDZLG/gz19xLZnqqdl+aVU3e9Rk211vZj+VVE1Aml2
+         7atA==
+X-Forwarded-Encrypted: i=1; AFNElJ/XRVkw6K9smKeBvPJeav3oq8rvBaQbegRF4s9lH0OKpTa+aWNJNTiKcWoEypUzJDs85oCM+CxHN0lI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaDj2ohIJDs0ew1rFpUuj2u8aVHVfOvKZw2pJR7Wuf7S0RDI1K
+	om9nATrrtf0llj2COVAcx2ZPARCmQd1NcwUeyoEiFCkgZGAruAdmGXhGvZqntFqcyFSK0kwoCWr
+	qigr2pVFjosQ8cxBsAqoIt4kzgZI6VjHkSNfC4kRIcU9bOPtySuXyku8lUKGMYZFs
+X-Gm-Gg: Acq92OGFGwGltSJdurCpKweezZyVIDIyZrbaf/EzzUJKsjvYnifz61FUs9OIdmQ3Xr4
+	seqDqb3r0JgRMTi4Xk8liPBnVPrnyWxmlOi1V6TNXmHXNhWJuFA2XlE8GRumadJeaPrKyxvKitD
+	MeJaJSTtjhxdookiZOBGwe+aFNA+avHdqhWhd7kBejmZdiwbeJb1jsy/7pZQmd10Ojw4q23q83n
+	CvCTwmSXNsidHEvNPDL/k2z16wTGtAG45n+m7MOUP07f9OIXiEAB8B5R0kItoFBzGJZLDZAoG+c
+	BkRSoBWMAnQh9eCfLd3INX68ZsepSDU6d53dwq8EApBPN+Dj85GuMw1qB4qWbabnVOLi4Q7J6oz
+	4EzJJtbMPPhm5fbybaeJLNW1gR2UwO38vC1yD4s+twFWT8wtuGRLcX/9XkQynHUM=
+X-Received: by 2002:a05:6a20:12d0:b0:398:7357:bb91 with SMTP id adf61e73a8af0-3b30878f308mr3215384637.33.1779364865245;
+        Thu, 21 May 2026 05:01:05 -0700 (PDT)
+X-Received: by 2002:a05:6a20:12d0:b0:398:7357:bb91 with SMTP id adf61e73a8af0-3b30878f308mr3215287637.33.1779364864642;
+        Thu, 21 May 2026 05:01:04 -0700 (PDT)
+Received: from hu-sauana-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c85198f4f98sm169544a12.15.2026.05.21.05.01.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 May 2026 05:01:04 -0700 (PDT)
+From: Saurabh Anand <saurabh.anand@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_riteshk@quicinc.com,
+        quic_vproddut@quicinc.com, quic_mkuntuma@quicinc.com,
+        mahadevan.p@oss.qualcomm.com
+Subject: [PATCH] arm64: dts: qcom: glymur: Configure DP endpoints for 2-lane operation
+Date: Thu, 21 May 2026 17:30:58 +0530
+Message-Id: <20260521120058.2966709-1-saurabh.anand@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] phy: qcom: qmp-combo: track whether the cached
- typec_mux mode was committed to hardware
-To: Michael Scott <mike.scott@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org,
- dmitry.baryshkov@oss.qualcomm.com, wesley.cheng@oss.qualcomm.com,
- abelvesa@kernel.org, faisal.hassan@oss.qualcomm.com,
- linux-phy@lists.infradead.org, andersson@kernel.org, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, val@packett.cool, laurentiu.tudor1@dell.com,
- alex.vinarskis@gmail.com, linux-kernel@vger.kernel.org
-References: <20260521010935.1333494-1-mike.scott@oss.qualcomm.com>
- <20260521010935.1333494-3-mike.scott@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20260521010935.1333494-3-mike.scott@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIxMDExOSBTYWx0ZWRfX32Mrp/cE2n0n
+ n2sof+aRb7E7KYICM6uM9RILuMQWP2JjEu3MeoF+EVBWDxx8bEoKoh0cJoGx7XQpUeyN+cOxjvg
+ sZtFK5bja7MaKl38gjDGs9oCHfARyeWjDeAVOMmdo/IO/VtmUzPjFv6oPWT11wlmReFKe4v1e3s
+ oLPWbNqwrHrVu+WiA73CbgFAAvTLr7bOAtQFudPZKGCeQL1FJ3NBYzdywHMU40Hl58lYwCPhflJ
+ k+dY+H/A+FIo6krdRnDSGZRHepvL3fKYZ5gbU0hipgDFYZJG38cthjNv7DDmGPy5eF7tTHgWstt
+ jIczOi+EVyC6X9U6TmwJGpJIjn1emWwEDUrMopqFzRR3URsVa1VS9qyseE2/3gZKkRZhW9Y3jnf
+ 59V3rG2mufKpqcbU99LiqLGB7JmvcIE1XMEnGqScFYO1R3pmfz8YJ8qqQFqohvv4b2fuxum2yGf
+ Jx1lmFxwM0avADnc8/g==
+X-Authority-Analysis: v=2.4 cv=aueCzyZV c=1 sm=1 tr=0 ts=6a0ef403 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
+ a=whlQpUbcimcIkjChax8A:9 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-GUID: j5GJwrWMPg-a5UxbX5FyO7N3c9tuAImN
+X-Proofpoint-ORIG-GUID: j5GJwrWMPg-a5UxbX5FyO7N3c9tuAImN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-21_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 adultscore=0 phishscore=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1015
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
+ definitions=main-2605210119
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,oss.qualcomm.com,lists.infradead.org,vger.kernel.org,packett.cool,dell.com,gmail.com];
-	TAGGED_FROM(0.00)[bounces-301222-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[saurabh.anand@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-301224-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,fd5000:email,fde000:email,qualcomm.com:email,qualcomm.com:dkim,0.0.0.1:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,linaro.org:mid,linaro.org:dkim]
-X-Rspamd-Queue-Id: 376185A485D
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6A1155A4715
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 21/05/2026 02:09, Michael Scott wrote:
-> qmp_combo_typec_mux_set() updates qmp->qmpphy_mode (the cached state)
-> unconditionally, but only reprograms hardware when qmp->init_count is
-> non-zero. If pmic_glink_altmode (or any other typec_mux consumer)
-> calls into the PHY before DWC3 has performed phy_init() -- a real
-> ordering observed during testing of USB-C role-switch enablement on
-> Snapdragon X (X1E80100) -- the cache transitions away from the
-> probe default QMPPHY_MODE_USB3DP but the hardware is never touched.
-> 
-> Subsequent calls (for example on partner detach, where TYPEC_STATE_SAFE
-> also resolves to QMPPHY_MODE_USB3_ONLY in the !DP-SVID branch) then
-> match the cached mode and the function bails out early with:
-> 
->    qcom-qmp-combo-phy faXX000.phy: typec_mux_set: same qmpphy mode, bail out
-> 
-> leaving the lane mux in whatever configuration it powered up in. On
-> the Dell Latitude 7455 this manifests as the SS lanes being left in
-> the default state when the first altmode notification arrives during
-> DWC3 probe, with the function bailing out on every subsequent attach.
-> 
-> Track separately whether the cached mode has actually been committed
-> to hardware. The bail-out optimization is only safe when the cache
-> truly reflects the hardware:
-> 
->    - qmp_combo_typec_mux_set(): bail only when the cached mode matches
->      and was committed; clear the committed flag whenever the cache is
->      updated, set it again after a successful reprogram inside the
->      init_count-guarded block.
-> 
->    - qmp_combo_com_init(): set the committed flag at the end of a
->      successful init, since com_init() programs registers from the
->      cached qmpphy_mode.
-> 
-> No behavioural change on platforms where typec_mux_set never fires
-> before phy_init -- committed remains true through normal operation.
-> 
-> Signed-off-by: Michael Scott <mike.scott@oss.qualcomm.com>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 25 +++++++++++++++++++++--
->   1 file changed, 23 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> index 0db200292642..e28bc1cc7a78 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> @@ -2295,6 +2295,7 @@ struct qmp_combo {
->   	struct mutex phy_mutex;
->   	int init_count;
->   	enum qmpphy_mode qmpphy_mode;
-> +	bool qmpphy_mode_committed;
->   
->   	struct phy *usb_phy;
->   	enum phy_mode phy_mode;
-> @@ -3754,6 +3755,9 @@ static int qmp_combo_com_init(struct qmp_combo *qmp, bool force)
->   	qphy_setbits(qmp->pcs, cfg->regs[QPHY_PCS_POWER_DOWN_CONTROL],
->   			SW_PWRDN);
->   
-> +	/* com_init() just programmed registers from qmp->qmpphy_mode. */
-> +	qmp->qmpphy_mode_committed = true;
-> +
->   	return 0;
->   
->   err_disable_clocks:
-> @@ -4509,9 +4513,22 @@ static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_s
->   		new_mode = QMPPHY_MODE_USB3_ONLY;
->   	}
->   
-> +	/*
-> +	 * Fast-path bail only when the cached mode is also known to be
-> +	 * committed to hardware. The cache may be ahead of the hardware
-> +	 * if a typec_mux_set arrived while the PHY had not yet been
-> +	 * initialised (init_count == 0); in that case the cache update
-> +	 * below was the only thing that ran, and we still need to drive
-> +	 * the registers when the PHY does come up.
-> +	 */
->   	if (new_mode == qmp->qmpphy_mode) {
-> -		dev_dbg(qmp->dev, "typec_mux_set: same qmpphy mode, bail out\n");
-> -		return 0;
-> +		if (qmp->qmpphy_mode_committed) {
-> +			dev_dbg(qmp->dev,
-> +				"typec_mux_set: same qmpphy mode (committed), bail out\n");
-> +			return 0;
-> +		}
-> +		dev_dbg(qmp->dev,
-> +			"typec_mux_set: same qmpphy mode but uncommitted; reprogramming\n");
->   	}
->   
->   	if (qmp->qmpphy_mode != QMPPHY_MODE_USB3_ONLY && qmp->dp_powered_on) {
-> @@ -4523,6 +4540,7 @@ static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_s
->   		qmp->qmpphy_mode, new_mode);
->   
->   	qmp->qmpphy_mode = new_mode;
-> +	qmp->qmpphy_mode_committed = false;
->   
->   	if (qmp->init_count) {
->   		if (qmp->usb_init_count)
-> @@ -4551,6 +4569,9 @@ static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_s
->   			if (qmp->dp_init_count)
->   				cfg->dp_aux_init(qmp);
->   		}
-> +
-> +		/* Reprogram complete; cache now reflects hardware. */
-> +		qmp->qmpphy_mode_committed = true;
->   	}
->   
->   	return 0;
+Add explicit data-lanes to the MDSS DP output endpoints to enable
+display port in 2 lanes configuration and disable the mode-switch
+property from the USB QMP PHY node.
 
-Can we not make the commit to hardware atomic from the perspective of 
-the caller ?
-
-i.e. use a workqueue and a completion timeout when setting ?
-
+Signed-off-by: Saurabh Anand <saurabh.anand@oss.qualcomm.com>
 ---
-bod
+ arch/arm64/boot/dts/qcom/glymur.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+index 72c7dc6e4f09..d6b3c5bfebd5 100644
+--- a/arch/arm64/boot/dts/qcom/glymur.dtsi
++++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+@@ -2445,7 +2445,6 @@ usb_0_qmpphy: phy@fd5000 {
+ 			#clock-cells = <1>;
+ 			#phy-cells = <1>;
+ 
+-			mode-switch;
+ 			orientation-switch;
+ 
+ 			status = "disabled";
+@@ -2517,7 +2516,6 @@ usb_1_qmpphy: phy@fde000 {
+ 			#clock-cells = <1>;
+ 			#phy-cells = <1>;
+ 
+-			mode-switch;
+ 			orientation-switch;
+ 
+ 			status = "disabled";
+@@ -4550,6 +4548,7 @@ port@1 {
+ 						reg = <1>;
+ 
+ 						mdss_dp0_out: endpoint {
++							data-lanes = <0 1>;
+ 							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+ 						};
+ 					};
+@@ -4641,6 +4640,7 @@ port@1 {
+ 						reg = <1>;
+ 
+ 						mdss_dp1_out: endpoint {
++							data-lanes = <0 1>;
+ 							remote-endpoint = <&usb_1_qmpphy_dp_in>;
+ 						};
+ 					};
+-- 
+2.34.1
+
 
