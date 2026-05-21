@@ -1,55 +1,84 @@
-Return-Path: <devicetree+bounces-301063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301067-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yQHSNLu/DmpDCAYAu9opvQ
-	(envelope-from <devicetree+bounces-301063-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:18:03 +0200
+	id uPyGHuzADmrXBwYAu9opvQ
+	(envelope-from <devicetree+bounces-301067-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:23:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A6495A0E7A
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B62655A0F65
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 10:23:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 76CE0304651E
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:12:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 236D830F8CBC
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 08:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F553A425B;
-	Thu, 21 May 2026 08:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB413A5429;
+	Thu, 21 May 2026 08:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JUe1K9It"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uZF1b3f4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF19A39FCC6;
-	Thu, 21 May 2026 08:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6293A254A
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779351174; cv=none; b=RY8103ERlruhqpencC9K1A1gTHjeiUI0mrFUyj7ucBwIfjMnM5PDzc/qT0iMyk5KaOTaatv70h1nJSliYbut2BiyEFLuj+cPrr8KmCNaHZmZO8dQYWNFSBmpoCGtTwWEH3YaaVawQSDocScNkTbpvJikc3+GlmIWaRojQThVvHQ=
+	t=1779351265; cv=none; b=PKLXg90p7xFuLSfegcpLslQ5ImsfQ1UC3wUqJvZU+vtUWoQofGyOfQ0Jv7UvYjkjl/KBMThlZ+uIQbtZ/mGTbecDmnmIiQItqQeyHA7esA0JMPBIrTR3pkBa9EkKZkrpYpxQAv52QtyEashuF0d7ooWBcFDaumt7492ovjXljAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779351174; c=relaxed/simple;
-	bh=dVB8HV59AKDkbplOU4oG6hOnwwfesLEdFNSBUC+kk5w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZPL0DLhExX77y+j3K/7XizgoFr5lfZI+bnBmC35vFkwwYE+0zWVUAARO3B2u3fsKTIJJ6s+qOnkHpDrBT8l+FPqMi87OOGEr4pBdi6nI6ef75KaEkgnRARSkDHoW2frx9ttP3HwfmP8XC6UKqoeN0KzhHqQBL56TAYan2QDMzd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JUe1K9It; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6FB10C4AF11;
-	Thu, 21 May 2026 08:12:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779351174;
-	bh=dVB8HV59AKDkbplOU4oG6hOnwwfesLEdFNSBUC+kk5w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JUe1K9ItL9utIDCjWchfDEhhKbcAiSOP8gego+oGKfJXemHuc+xMefZCGPBx9AxfV
-	 9kJBQYYlnz7edUL9YU1ATCN7w9orR72viP3YaGHv4UivzcoiQg2EHX+lMQsftGj229
-	 bb94NKb1nYevbQvD+P8KQYkMh+0hJdOGEazZ1JBgp7CBGx5uWjkucn+FSQA8LWmTtI
-	 ucdcZVD6bf5iQdZ0T9/r9TcFfggdQBumz68SJd5p86bn5Wb5NKF3XKfkZYarx4mt2R
-	 OMt2WUDYzU4tkO8BdEXLZObV542/J3Vxs28TB0/FmlxP9kF4CXKs03UyQtJfas3+KF
-	 cubzarQCXJ+yw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EA8CCD5BA4;
-	Thu, 21 May 2026 08:12:54 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 21 May 2026 08:12:45 +0000
-Subject: [PATCH v8 3/3] MAINTAINERS: Add an entry for Amlogic DMA driver
+	s=arc-20240116; t=1779351265; c=relaxed/simple;
+	bh=0pTdcu/kVI+eVxLSPSl8lJa1+3nzA1VclyY+DaWoszU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B0UE2Vdq7c3Q0CccDVW5Dq0SGqwHQdiUUdq711djHN1c2PbdHM/nYAMaI0hHAGVYCEIvTggobcNA1oz9nuBjyJCrJJ3Df25rGe6yokbxqWd9o/bLwKdUq3w2VSNGU1MbEXkiSAXNPV6gjzbhMu7ixsbOFCqy8u+ZZr7ZzKIOv9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uZF1b3f4; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-45e6a4d0be0so2476235f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 01:14:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1779351262; x=1779956062; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pGOnSJlvkub39LzIjocgenS5JEKrBfHwIH34CbFHt/0=;
+        b=uZF1b3f4OEj8KtUnePsop7PrV8mevXnfmVuAWLl3wDSG0Kc0xTd23mu4QUGyCYtW4x
+         wuStMZy41z4/rUfXm37ZCEn6L1D7f6OC85yjUytGMe4Rj+dHepb1V+/2EgooZIcNYsBA
+         ncEcXtCRCVQPmBVC7wqFFdXharn15gG1KRWLgpbVqWsGKY5nftiMicqgk5tVX9jC+rzO
+         ofoRUI4RVya6gwFyzi/XyM4dsOuW8OlvO4cAw4cmnTQweXG/a9nr+2JLBncspNAqDtX1
+         t2+UbEGPnnWGBiA5J/mbw3rZPByxTWSmR0OKXl/Vxpvfm5oSenLQgz9NUnU59gnMlUUx
+         VIWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779351262; x=1779956062;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pGOnSJlvkub39LzIjocgenS5JEKrBfHwIH34CbFHt/0=;
+        b=ozXlDuJ2pAeujI0KSVbWSN9U9T2+MvZFs+3RtHhKjKSGPLchAXoa/J5IqPFeMwbb2B
+         SL+JQGLlZzYYMEODs7u8sYTd5jDQDZ1YjsNHTb0U2laAWXJ/eukvYUfOcMv3uQUYOx+5
+         ZwXFnIilTVm11MSUDkdoooLiwU1FAFHmOgO/4KuuWkVrsKotSIF54yS7OqtydDEPM/gR
+         2JU/F/hRIa9+E8dKsGTtk6ml7Qw0jBI3X/QPh4U1f3AewUD99q8VVHeQRLnUWvZuUuFS
+         Ae+f87iK/TKGgbozpja5kcgI6V172hQtL3+hbCGKDAttowM/JUwXXtbt/z3HwXRBTnpr
+         i8ng==
+X-Forwarded-Encrypted: i=1; AFNElJ85FhfZuSrH1dUtkFugCXqdjloOZ3IMdSU26zxBSWxX7ZgubQVE4dp6R8RW1wQJo+q48qFXQJp/Fodc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyxkq50h89nS6QFmwFPW//2F2ZwF2+kLCMWyXNctP90Czr5hlm2
+	aU2s941EypvJkDPvBDYwXzurIHSzMnp7jepex3DbhlYLzSh++KhPncCEzUcdjaWkeTQ=
+X-Gm-Gg: Acq92OEIvN3sVlp257TzFo72QF/AtvQ4w348aclEqN/eUjKJcKV/9ZIZ3Yk8c0INrbZ
+	jrAoGC9jL9h8t6l26L7xO1U3pb6l3zFDvYq5J2Wskpv5/kRjprqqF5PD57hJp3anzINmuhlIEIg
+	oJE7SaKmuPujdKeVxFRQ6pJ62D/eIT4JOqC9C88QqDV9d6mRJUqwUJAK85nrnAZKcR1hj62pv6K
+	scJHkfURqNLDQvvq8Ud7H+CMzZKIfzknC8BBqJzYOBa6srO7Pmk4Q+Ug6Il/jYEayWNKPgTx0Ul
+	x0vOe5OoJEmd38WzhoqrHGeuaKzf4wthIZOhW0lVEl/2oofqC6oLt7nek782/t9dF/RX8WBoued
+	oxJJQ4KSMPdr0KeTJGjbe//z8tN9rFk9XhWURpCZTxHAdN5432uexh79wCBMzRwgqJjoZXmcycf
+	gJxA3JJlreKCX9A1mMdp+vl5gkIW8cDD2460yUPwI+phtD
+X-Received: by 2002:a05:6000:430c:b0:45e:9417:556f with SMTP id ffacd0b85a97d-45ea3ef385amr3051597f8f.39.1779351262175;
+        Thu, 21 May 2026 01:14:22 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eaa7dab28sm1056384f8f.12.2026.05.21.01.14.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 May 2026 01:14:21 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v5 0/2] drm: panel: support the R63419 based dual-DSI video
+ mode Display Panels
+Date: Thu, 21 May 2026 10:14:18 +0200
+Message-Id: <20260521-topic-sm8650-ayaneo-pocket-s2-r63419-v5-0-dd5700299390@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,92 +87,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260521-amlogic-dma-v8-3-86cc2ce94142@amlogic.com>
-References: <20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com>
-In-Reply-To: <20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Frank Li <Frank.Li@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779351171; l=791;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=ea/JI9Hvv+vNA+wMdcjhON7BZ5DBq9Qj6Fijtk3no2I=;
- b=VpqzypwBr2y9x03dnOyMlDKg41NxGl/t7n+gGtYbqaf6oAUkGiYlKLKck8RlIagVU/PkcMbNG
- 41UH4rtA0NzDdL+2vwxO71uFPNwtQmnTcj3ZHqRFekiADQCKwplBirx
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+X-B4-Tracking: v=1; b=H4sIANq+DmoC/5XQTU7DMBAF4KtUXjPIHv80YcU9EAvbGbcGGkd2i
+ Kiq3B27LKjoJkizedL4eyNfWKEcqbCn3YVlWmKJaaxBP+yYP9rxQBCHmhlyNFxhB3Oaoody6oz
+ mYM92pART8u80Q0HIRirRA+1RmT3h4HhglZoyhfh1rXl5/cnl072Rn5vdNo6xzCmfr3csou39s
+ 3IRwKHvBDlt62jx/BFHm9NjygfWOhe8USXfqGJThfWCKy0H7u9U+atqrjaqsqnBCB9QWXLhTlU
+ 3an2wTVVVdV2PvQ2a+j8/sK7rN/SMXTDtAQAA
+X-Change-ID: 20260428-topic-sm8650-ayaneo-pocket-s2-r63419-e72467e2db0f
+To: Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ KancyJoe <kancy2333@outlook.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2346;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=0pTdcu/kVI+eVxLSPSl8lJa1+3nzA1VclyY+DaWoszU=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqDr7belusu44FW5o5tWy/5pavxW0qYJXy2xYOIk1N
+ HIk0ojeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCag6+2wAKCRB33NvayMhJ0RDtD/
+ 4nwtOkEETae9L29EDFr5Wp/CKfD0Q2rJQfvKzuHuQuZRXnUtbvuAFS1DzjpvSP+5avgjgZcXY5dIyu
+ jtIOugjYR7reb8kOwLGlOIYGeKRzy0JjyBd7bQD/GXustifK3ssc1GvpWR2Ia2YduINdoocLpJFIJV
+ ELnklONOBnw/egakFHLU/dFewh2Yx54p0m9w/HcgiXmlhw2HDv8d6v0+5AiotFEjOUFQiFOAcHxN6k
+ hhTU9tc/zuA3SWcz0e/hyiF124Br7ZMvxwq+/j2n3Dkq5UEUJWD31NnyWUbFKxFHh1w3pxlXnl9Mrl
+ GycqiUzdWenWAPjmcLLHD7UjdlNTvGTFpSrGcOTBgJJE2qDA8Hvi/G1zteT+gj2DDzNM0rv7eO/4DH
+ FXTa1RLmljGt+4lxh9tevxfQmO6q2kzfgMHxsPjiQvEi0EgPLGUPydlOi2BL7dklwWtVwaCNJeUOHR
+ U9/aOEyaPKdjloZjebasc63GTtE+GyS6fkeNEGvcpYG75l7zXTwRhLA5GyDURLV4vrQJVgQP3q8HYp
+ YNhXpDtjZ2hvfgk19/bLqbaxlY+SudP5q4Tv81vyDUbwbSEmgQv/28bTo1x1ooO2c0X6uJnCdq8QOi
+ Jvh2KODE7B7fi3/mmPgaUt8AAtKZvHG8p0abKkxpWXQlY9jczpIJQBHQEbxA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-301067-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301063-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,glider.be];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com,linaro.org,outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:email,amlogic.com:replyto,amlogic.com:mid,amlogic.com:email]
-X-Rspamd-Queue-Id: 5A6495A0E7A
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,linaro.org:email,linaro.org:mid,linaro.org:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: B62655A0F65
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Add support for the Renesas 63419 based dual-DSI video mode
+Display Panels found in the Ayaneo gaming handled devices.
 
-Add Amlogic DMA controller entry to MAINTAINERS to clarify
-the maintainers.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes in v5:
+- Import panel-common-dual.yaml in bindings
+- Set reg as required
+- fix bindings example typo
+- Add helper to switch link in order to use single dsi_ctx to properly handle errors
+- Disable vdd supplies if vcc supplied fail to enable
+- Precise the power off sequence is recommended by the vendor spec
+- Drop passing of node to second dsi to avoid re-probing the driver twice
+- Link to v4: https://patch.msgid.link/20260519-topic-sm8650-ayaneo-pocket-s2-r63419-v4-0-b8929af5e951@linaro.org
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b38452804a2d..e7530b1e7152 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1316,6 +1316,13 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
-+AMLOGIC DMA DRIVER
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-+F:	drivers/dma/amlogic-dma.c
-+
- AMLOGIC ISP DRIVER
- M:	Keke Li <keke.li@amlogic.com>
- L:	linux-media@vger.kernel.org
+Changes in v4:
+- Moved height/width in the drm_mode, duplicated modes to use drm_connector_helper_get_modes_fixed
+- Create dsi_info on the stack with proper OF node and name passed
+- Switched to devm_drm_panel_add/devm_mipi_dsi_attach & dropped remove
+- Link to v3: https://patch.msgid.link/20260504-topic-sm8650-ayaneo-pocket-s2-r63419-v3-0-9f61cf24aebf@linaro.org
 
--- 
-2.52.0
+Changes in v3:
+- Added DDIC compatible as fallback
+- Added rotation in bindings example
+- Fixed bindings subject
+- Added second MODULE_AUTHOR entry and re-ordered signed-off-by order
+- Link to v2: https://patch.msgid.link/20260430-topic-sm8650-ayaneo-pocket-s2-r63419-v2-0-91ac10453d0c@linaro.org
 
+Changes in v2:
+- Add missing rotation property into bindings
+- Fix commit message & subject typos
+- Link to v1: https://patch.msgid.link/20260428-topic-sm8650-ayaneo-pocket-s2-r63419-v1-0-981eb5ab5a51@linaro.org
+
+---
+KancyJoe (1):
+      drm: panel: add support for the Renesas R63419 based dual-DSI video mode Display Panels
+
+Neil Armstrong (1):
+      dt-bindings: display: panel: document the Renesas R63419 based dual-DSI video mode Display Panels
+
+ .../bindings/display/panel/renesas,r63419.yaml     |  98 ++++++
+ drivers/gpu/drm/panel/Kconfig                      |  12 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-renesas-r63419.c       | 364 +++++++++++++++++++++
+ 4 files changed, 475 insertions(+)
+---
+base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+change-id: 20260428-topic-sm8650-ayaneo-pocket-s2-r63419-e72467e2db0f
+
+Best regards,
+--  
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
