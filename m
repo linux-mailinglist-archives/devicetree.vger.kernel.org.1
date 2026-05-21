@@ -1,151 +1,165 @@
-Return-Path: <devicetree+bounces-301382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301383-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENcACSguD2r+HQYAu9opvQ
-	(envelope-from <devicetree+bounces-301382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:09:12 +0200
+	id iCpGDIM7D2qZIAYAu9opvQ
+	(envelope-from <devicetree+bounces-301383-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:06:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B055A8EB9
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 18:09:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 118545A9DAF
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 19:06:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 56AD434001DB
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 15:08:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6FA843489550
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 15:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E428D334C1C;
-	Thu, 21 May 2026 15:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B4C349CCA;
+	Thu, 21 May 2026 15:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JHpnXSAh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/AA6XJm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com [74.125.224.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2203D280331
-	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 15:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D4F347BD7
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 15:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779376073; cv=none; b=CL9m2vNo8YBqRmP7FMgY932DWi76affnb6/laVAOjQvOXr8KNK2lkpWkaxzfp9h4s4xGLKh4HocqN2/MSQ/lTTBkTvfjAnrKPgonmB6kog4/TsKGavbxZZCQ7DPC/DPtrKN9x4XdyGw6V9tU52iHUXh+DiXoidXe+yNh81d7Qbc=
+	t=1779376136; cv=none; b=t4/4PobI287wXUwp+Q0p+1Om06sqzTpPZ2PTJmPiggsXJHyr9QMv2vwlYN4seL6Tij0rfuYqkXY4InuThkCt2ADXbG18iLPMRqY8jzzBX/Le5PV44bPWokVToWFsExoZffrvw6OPoqrc4xCPtqF0EaQTpGWQnjYDNvNSj9L4Cdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779376073; c=relaxed/simple;
-	bh=cd3dKYTuIZtproMToprtB8KNI0LgkvRevMgBh5hgm6M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XjeFYhdu+Tdfru0hWXzN1c5LMMps4tAeIAMVuTDVuKrtXBxZ0LCOiHitAYHMKWgpeB2p9yu/R/ggIO8hIOcexH3ku73UjxkhZb7iOSUkPy+n8I/dfE1t7yKZUG69WViZCEiOv8caNS0gWxlVs3Rrn+CZr1RyHQxLjQ3oIFvunmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JHpnXSAh; arc=none smtp.client-ip=74.125.224.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-65db820588aso5293110d50.2
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 08:07:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779376070; x=1779980870; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WjKxID8eOM6JKjQ4xHwsGmipvQwbvP3kOWH+IvP0XSY=;
-        b=JHpnXSAh/+6w6M6AVP782QAHcW/uoyrcqXk7QyULxV3SAHJbsQ5vHvV4v9fTJKzyKj
-         7jLl4RQQiH5k6EETcar8UFyMAslcLbwO7gpQkZ3vkIZUDDCQhXilDSH0pXsWOVxR0GA4
-         xvYGK8inLNPmoxFiSAHlJrT5C8/dUpf866WplMIcDoY4avttoDLqVM+u46AQM75aHOE7
-         /uJ8yZzkZugndhm0QP/LEJl82r2C8xH1FtzZ+ySseTRyTaRmjBE+oCU2zL7I5gh+Zuuo
-         ZNRNRR+9eGdEKp0FU2z5x+xrOEGV7z3duna8f9Uco1zgaXPAMnZchBkypQ44CVHSHBci
-         2K9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779376070; x=1779980870;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WjKxID8eOM6JKjQ4xHwsGmipvQwbvP3kOWH+IvP0XSY=;
-        b=ezSiUQAyAmzydD8KDQXmJEc6w8UW49bOp98Ldl+GIoc8CHUuEQs5UXqwxomQXqWapS
-         v+GPHnNqAKJw2PrY6ADg3sijBBGALcUon4YnRMTiQVQMpK1IEdq8zr4z9UNvoqOjdvuw
-         u5XMyZpydwWK68KT2Ab7bEbKODHbvuQvRjo6W1C3KlUMXJ2bdLBbccgWNDq3jE1fO81O
-         5sF4UQ/s6jHW7YTiit/sBVxwzJEw2dm5+iTvR5V7VBqLjnTAfHrj97anwGIs+qqyxPDB
-         XJ1aZw8A3gkFMSBMZe7TVLVbOnIoCH4DiloPC/okoRYAFhpjaAR0zmHROBcNKbSOH52u
-         2sOg==
-X-Forwarded-Encrypted: i=1; AFNElJ+OsKVmofv0od1fHwD6jVP74xVLU9bYG9mlICDE1Cm2wNaL81wP2ScEu0v7SVXBApDur8dnebCL0JCV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDkReTcVvqJMpBvXDVKcnW41HR3ENnGbK9Rdk87BIYxI1mmr5m
-	x9QX+YCeKB7013A8Nx7Oemlf9wjcc4Ct6uvR3+DRzMb3yNaBut2uTyfZ
-X-Gm-Gg: Acq92OHt1FTPhVbzT3ylr61FSPhFxlg9kXScAcQCwMQ98ZCF9M6nrsO74yM6Xsz0jiZ
-	1jq9QQmnrgSs+LEJsI5bymEpVyAmXPZ6mmZCB5YH/1V8MKD/8m11wHpTiGrIYqDSE8NFWFWe72a
-	JxbZEhqmjo7CJXTZ+iF54OXbdRt4zlk1jBOKyaX7sBCV6xpLD02zgK192WZc5lEtcH6tLAqSLXw
-	z53w+4MkOxqgUTOqN2Lk7fydCtkdeIjwklI4xdWrgV81JZwEul/KXGva769MWAUt6argC2ojh56
-	rdvIoghZdifV5MNmxgPmubzaujlLaknBAC2RqsNIm4dWcPfKGc3BFj+sPc3ERJ/LQSb8NyG+Kxq
-	mtU+arIzKlBLU300EEOdCvQ8O1D32aN0R+O1oJJp5yJxc84tMvJ4F/bqVU8o28WN3OppxeA4vd9
-	paIVXtGuucfk4jwl/JWpdRzEXWnYMR42B9KYlcJ2CGIoGQZnHD7Uax
-X-Received: by 2002:a05:690e:4812:b0:64c:f7d0:5c07 with SMTP id 956f58d0204a3-65eae047184mr1880107d50.10.1779376069874;
-        Thu, 21 May 2026 08:07:49 -0700 (PDT)
-Received: from fsh.attlocal.net ([2600:1702:56e9:4b40:ed8c:6b8b:1fa3:d14b])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-65ec1eeadd3sm288264d50.10.2026.05.21.08.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 08:07:49 -0700 (PDT)
-From: Akash Sukhavasi <akash.sukhavasi@gmail.com>
-To: krzk+dt@kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: rs485: remove deprecated .txt binding stub
-Date: Thu, 21 May 2026 10:07:47 -0500
-Message-ID: <20260521150748.4816-1-akash.sukhavasi@gmail.com>
-X-Mailer: git-send-email 2.54.0
+	s=arc-20240116; t=1779376136; c=relaxed/simple;
+	bh=Q/z/ME+rOqmH2CEAK5U7U1JU26DR/q1ddXd/woZCseU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Hb94zWcDPDFKChBXSnKukn4EIoZ0mwJdigT2mkt3O465os8aPbLraV1e1IlXkryxAebQ8m4q5SVRoW2qqiBaQPH1BBHYM3oh5pAQSSQguFKzrfiJGiPZD/nlVR9GDC/k0booHxMeWRWU1zMX9EaUsAqnnNN1rezecfOP4h8d3m8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/AA6XJm; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACB9D1F00A3B;
+	Thu, 21 May 2026 15:08:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779376134;
+	bh=wBZnRerxBnIPKqEkFoHIOHsRlqHRmRL+50IEQjaerR0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=n/AA6XJm2b/3OnJPPbs++5TK+LjMRGOE0nKbjUQWv7RNUoFe2lBq7hRUzZn5O74aS
+	 QUF6AuDwTFQIUaAYnMwYCwdFlQ5gnj72x9aZBC9ryBX/9stG0R/xjjJj6hFBY6ReNy
+	 3wagWHMGmqcA/eyL4kkFvaES506Uld0jXg+J2SIRzJbYQcMGqv3F4ffc/gWY/JpLo7
+	 +mOkfbsDkKlHK9r8VOjw6OZU5LclCuricypWiZoQmp02jj+i9U+VehaBVIUSx9gsLa
+	 AxCKT/tfTaj5Q1FcWbTgKJI3GDCV/SdU/JPE3VMxYXATxPsuFrLoODInTMP/Mh+52J
+	 khU1hdeX0HuLA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 1/5] drm/msm/dsi: support DSC configurations with
+ slice_per_pkt > 1
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jun Nie" <jun.nie@linaro.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260521-sm8650-7-1-bonded-dsi-v4-1-a4dd5e0850f1@linaro.org>
+References: <20260521-sm8650-7-1-bonded-dsi-v4-1-a4dd5e0850f1@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 21 May 2026 15:08:54 +0000
+Message-Id: <20260521150854.ACB9D1F00A3B@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-301382-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301383-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akashsukhavasi@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 69B055A8EB9
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,linaro.org:email]
+X-Rspamd-Queue-Id: 118545A9DAF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The plain-text binding file was superseded by the YAML schema in
-commit d50f974c4f7f ("dt-bindings: serial: Convert rs485 bindings
-to json-schema"). The file now contains only a redirect notice.
-Remove it.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-Signed-off-by: Akash Sukhavasi <akash.sukhavasi@gmail.com>
----
- Documentation/devicetree/bindings/serial/rs485.txt | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/rs485.txt
+Pre-existing issues:
+- [High] Failure to clear `msm_host->dsc` and `dsc_slice_per_pkt` when a pa=
+nel without DSC is attached leads to a potential use-after-free.
+--
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.txt b/Documentation/devicetree/bindings/serial/rs485.txt
-deleted file mode 100644
-index a7fe93efc..000000000
---- a/Documentation/devicetree/bindings/serial/rs485.txt
-+++ /dev/null
-@@ -1 +0,0 @@
--See rs485.yaml
--- 
-2.54.0
+commit 4b3fdd757a84f263ad4c869c8ef48cdc07ee2b22
+Author: Jun Nie <jun.nie@linaro.org>
 
+drm/msm/dsi: support DSC configurations with slice_per_pkt > 1
+
+This commit adds support for sending multiple DSC slices in a single packet
+for the MSM DSI driver. It introduces a dsc_slice_per_pkt member into struct
+drm_dsc_config and updates the relevant timing calculations.
+
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi=
+/dsi_host.c
+> index 565d425f88b86..10589389650fc 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+
+[ ... ]
+
+> @@ -1718,8 +1708,11 @@ static int dsi_host_attach(struct mipi_dsi_host *h=
+ost,
+>  	msm_host->lanes =3D dsi->lanes;
+>  	msm_host->format =3D dsi->format;
+>  	msm_host->mode_flags =3D dsi->mode_flags;
+> -	if (dsi->dsc)
+> +	if (dsi->dsc) {
+>  		msm_host->dsc =3D dsi->dsc;
+> +		/* for backwards compatibility, assume 1 if not set */
+> +		msm_host->dsc_slice_per_pkt =3D dsi->dsc->dsc_slice_per_pkt ?: 1;
+> +	}
+
+[Severity: High]
+This is a pre-existing issue, but does failing to clear msm_host->dsc and
+dsc_slice_per_pkt when a panel without DSC is attached lead to a potential
+use-after-free?
+
+When a panel driver is unbound, the DRM pipeline is torn down, and the pane=
+l's
+memory (including the embedded drm_dsc_config structure) is freed.
+
+However, the msm_dsi_host structure persists in memory because it belongs
+to the DSI host controller driver. If a new panel without DSC is subsequent=
+ly
+bound, dsi->dsc will be NULL, causing dsi_host_attach() to skip the assignm=
+ent
+and leave msm_host->dsc pointing to the freed memory.
+
+When the display is later enabled, dsi_timing_setup() executes
+if (msm_host->dsc) and performs a use-after-free write
+(dsc->pic_width =3D mode->hdisplay;).
+
+Since this patch extends this pattern to the newly added dsc_slice_per_pkt
+field, should there be an else branch to clear these fields when dsi->dsc
+is NULL?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-sm8650-7-1=
+-bonded-dsi-v4-0-a4dd5e0850f1@linaro.org?part=3D1
 
