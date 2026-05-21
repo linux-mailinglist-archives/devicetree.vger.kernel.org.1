@@ -1,51 +1,58 @@
-Return-Path: <devicetree+bounces-301028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301030-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6L32OvO0DmqqBgYAu9opvQ
-	(envelope-from <devicetree+bounces-301028-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:32:03 +0200
+	id mE2ODhu1DmosBQYAu9opvQ
+	(envelope-from <devicetree+bounces-301030-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:32:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 081A95A0271
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:32:02 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A417A5A029F
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 09:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F189B3048AE2
-	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:26:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 328A73013013
+	for <lists+devicetree@lfdr.de>; Thu, 21 May 2026 07:27:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3F939A7F7;
-	Thu, 21 May 2026 07:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EE48397AEF;
+	Thu, 21 May 2026 07:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EVV1TIFv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xy55XxSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A271D3955C5;
-	Thu, 21 May 2026 07:26:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F29D3998BF
+	for <devicetree@vger.kernel.org>; Thu, 21 May 2026 07:27:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779348377; cv=none; b=OSSflHZ5BALPaJv1titicqSEFS18yyxbySYssdyo43a4sjErFw96IDnolz4DDybvevwoIuy1HmirewMWA7r+Y5fYkFofeIdZ3Zt+Hn6/DaHq09/K+FQUiMtP1WVfFuHHkVKOIZ7BiNWfvUZFjmAK5RsjirTvec9u9D7JQgR+MFA=
+	t=1779348449; cv=none; b=E4wtihg1L3lEg4/7J4KF4NtIxpFE373N1t2MWYctMqKBBnd6yuu2c7z4OL07C6V2yQk4bOrUkaoBpWwagSDJw+wrsiOq9oIKg+A8tA6D3ByupZL4bnJGCL6KLwM/PSwJkfL1hJqTgSvgIEaqBIZFNBv+xZH41JYTjIUvbVB62CQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779348377; c=relaxed/simple;
-	bh=OFrMN6zDaqSIP5FGJvYTyqZ2WeD27ThPOdSlDMTVUZw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H8IoRa5HFGWrCN/a4jWNCocTIU/7y5aHO2KJVBk4EqwvXLS1Uep3Hyc39x5VwwgLwznSauKNHyA6LW6uDjcTjrKD+YPjuIsXDiV+69baU1Qfx26l7le/GHES6XfpJ9Ms3iT8F9ZnUCPgR4ZcSSwPjTn/zHfp5Es7hdL9VPIjlb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EVV1TIFv; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5C0B1F000E9;
-	Thu, 21 May 2026 07:26:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779348373;
-	bh=o9bC+9cpiCSB3nTnXAJVVDIec3sZpcV7549Ot/IF0lE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=EVV1TIFvEJnrYVqmXZjyV294rD5EgD5Eqsc6y/zsG5mumVzK46O2m/xpL+eZ+GG66
-	 58J71kmpPTCrP2hazDM2va/SoQcGIT7hkn+QYvnQgpXGq6SBXcax8CPHH0E0OMZfxi
-	 ZXSIYXRlBLCi6nFHImYL27aQQHDIMTeKVfuaih/gD2uJl3EEH760rq+ipMuNOPOxCr
-	 HLFF1SOEvYXCPNu3BpaqBsjBaUwmJ1x0HCP4uhPyi7P7MoOklbVzDYoY8o9uKOKOtK
-	 b/y+7tR8vIkugCR4KJf7GULb/pbnS3Mej7U9xKyQaT6P17c7mCloQgyX5Jmpp0SVGx
-	 gWV6NZyBMWeaQ==
-Message-ID: <48cc27ed-48e8-41db-8351-166774466a69@kernel.org>
-Date: Thu, 21 May 2026 09:26:09 +0200
+	s=arc-20240116; t=1779348449; c=relaxed/simple;
+	bh=ZEyxLI0lf564rDk4JjFFdxgPMl+0k4bCxBPAjmJ1U8k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=uley91mVGi7kwYud0pAF3lONhkIFcWwZ+vHHLT/70DAQ6ZdY9Un9yPUdwht6fJM8ARhJCDMX65jAIwKGWMfmLkrOv7UGdaoQCvVqfd+oGySTEWzPqHbGMcT700lTC3wA0GfSg8ruPVpcPjWs74AlLp180CciWkbtmBn9GS9tOPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xy55XxSG; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 3367A4E42D0D;
+	Thu, 21 May 2026 07:27:22 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DB95360495;
+	Thu, 21 May 2026 07:27:21 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9FAB3107EA6BE;
+	Thu, 21 May 2026 09:27:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1779348440; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=LdCmqb+Q/RWbEKnG9EY6/RiX3h/16cPj3Fyl+P2nPJA=;
+	b=xy55XxSGj8wfpzSly2SLiplATXUej0wVb1nJbVpSvYl+2JW0eU8oZPSWIdBYcsyx+GLjad
+	T1FAb5HyZE/P1rDfgx9eCp3Uvgc1E3ZaGyspLIV/k/wubdH/GF63WyxRhk/iDu79q5VBw3
+	oe1xqz8bZloI+DH4woo7KpLxIMgtTe9mpNTBXq5Cl1vuFYEXMDozYd7MBLltNJbE4wutXi
+	VN6RJ4r2zkH+n4A7CWG+ujzrTbU+82BFz0N53MzcpVy2Y3J8USso4w0AJMKU/G09HMyhBk
+	qIBxBfv68H2uSaE/nznx4f9uLX1EV7d8dycsUI+nCdzzPD8FR98nWAMc8vZLiQ==
+Message-ID: <dbd4078b-180a-45fe-850c-86d86c66614a@bootlin.com>
+Date: Thu, 21 May 2026 09:27:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,227 +60,223 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 net-next 2/3] dt-bindings: dpll: add SiTime SiT9531x
- clock generator
-To: Ali Rouhi <rouhi.ali@gmail.com>, jiri@resnulli.us
-Cc: vadim.fedorenko@linux.dev, arkadiusz.kubalewski@intel.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- cjubran@nvidia.com, Oleg.Zadorozhnyi@devoxsoftware.com,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ali Rouhi <arouhi@sitime.com>
-References: <20260520191943.73938-1-arouhi@sitime.com>
- <20260520191943.73938-3-arouhi@sitime.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260520191943.73938-3-arouhi@sitime.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Subject: Re: [PATCH v2 1/1] arm64: dts: ti: k3-j7: Reserve memory for LPM meta
+ data
+To: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+ Abhash Kumar <a-kumar2@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+ Thomas Richard <thomas.richard@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260427160326.370415-1-richard.genoud@bootlin.com>
+ <20260427160326.370415-2-richard.genoud@bootlin.com>
+ <20260505125945.mxucy4cfpno2x66z@slacking>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <20260505125945.mxucy4cfpno2x66z@slacking>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301028-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,resnulli.us];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-301030-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[richard.genoud@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,sitime.com:email,0.0.0.68:email]
-X-Rspamd-Queue-Id: 081A95A0271
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: A417A5A029F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/05/2026 21:19, Ali Rouhi wrote:
-> Add device tree binding documentation for the SiTime SiT95316
-> and SiT95317 DPLL clock generators.
+Hi Nishanth,
+
+Le 05/05/2026 à 14:59, Nishanth Menon a écrit :
+> On 18:03-20260427, Richard Genoud (TI) wrote:
+>> From: Prasanth Babu Mantena <p-mantena@ti.com>
+>>
+>> For TI SOCs J7200, J784S4, J722S, J721s2 which support low power modes,
+>> a chunk of memory is reserved for LPM meta data, which is needed for
+>> saving ATF context and the certificate information of ATF and OPTEE and
+>> DM image. This LPM metadata area is firewalled to be accessed only by
+>> TIFS.
+>>
+>> U-Boot/TIFS will use this area to save and restore:
+>> - ATF context
+>> - ATF certificate information
+>> - OPTEE certificate information
+>> - DM image
 > 
-> Co-developed-by: Oleg Zadorozhnyi <Oleg.Zadorozhnyi@devoxsoftware.com>
-> Signed-off-by: Oleg Zadorozhnyi <Oleg.Zadorozhnyi@devoxsoftware.com>
-> Signed-off-by: Ali Rouhi <arouhi@sitime.com>
+> DM image is loaded from storage, correct?
+Actually, after being loaded from storage at boot time by U-Boot R5 SPL, 
+the DM image is copied in this memory, so that it doesn't have to be 
+loaded from storage at resume. (This speeds up the resume time)
 
-Mismatched DCO. Use consistent identity or fix your commits.
+For the context:
+At resume, U-Boot R5 SPL is executed and detects that the board is 
+resuming (with a flag set in the PMIC), then it:
+- brings out of retention the DDR
+- retrieves the LPM memory region from DTS
+- authenticates certificates from LPM memory region and applies firewalls
+- asks TIFS to restore TFA and its own minimal context
+- starts TFA on remote proc
+- loads back DM image from memory and jumps to DM
 
-> ---
->  .../bindings/dpll/sitime,sit9531x.yaml        | 145 ++++++++++++++++++
->  1 file changed, 145 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dpll/sitime,sit9531x.yaml
+>>
+>> https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html#lpm-msg-lpm-save-addr
+>>
+>> U-Boot has to parse and retrieve this area from the device tree, thus
+>> @lpm-memory node are used instead of the generic @memory.
+>>
+>> Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
+>> Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 6 ++++++
+>>   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 6 ++++++
+>>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts      | 6 ++++++
+>>   arch/arm64/boot/dts/ti/k3-j742s2-evm.dts     | 9 +++++++++
+>>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 9 ++++++---
 > 
-> diff --git a/Documentation/devicetree/bindings/dpll/sitime,sit9531x.yaml b/Documentation/devicetree/bindings/dpll/sitime,sit9531x.yaml
-> new file mode 100644
-> index 000000000000..ac88f2f0b2ae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dpll/sitime,sit9531x.yaml
-> @@ -0,0 +1,145 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dpll/sitime,sit9531x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SiTime SiT9531x DPLL Clock Generator
-> +
-> +maintainers:
-> +  - Ali Rouhi <arouhi@sitime.com>
-> +
-> +description: |
-> +  SiTime SiT95316 and SiT95317 are I2C-controlled programmable clock
-> +  generators with integrated DPLL for synchronization applications.  Both
-> +  variants contain four PLLs with automatic/manual reference selection,
-> +  DCO frequency adjustment, and phase offset measurement via an on-chip
-> +  TDC (Time-to-Digital Converter).
-> +
-> +  SiT95317 provides 4 inputs and 8 outputs; SiT95316 provides
-> +  4 inputs and 12 outputs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sitime,sit95316
-> +      - sitime,sit95317
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      External crystal/oscillator feeding the chip's XIN/XO_CLK input.
-> +      The chip's PLL Fvco is computed relative to this reference, so the
-> +      driver requires a non-zero rate at probe time.
+> Split this up into platform wise. I dont understand why you'd not modify
+> the ipc-firmware.dtsi and use the phandle similar to https://lore.kernel.org/all/20260318-topic-am62a-ioddr-dt-v6-19-v3-4-c41473cb23c3@baylibre.com/
+The wkup_r5fss0_core0_memory_region can't be used in our case because 
+the DM memory isn't retained during suspend.
+For Sitara, the LPM metadata are stored in the DM DDR, but here, as the 
+DM memory is not kept during suspend, the LPM meta-data is stored in 
+another memory region, so I don't think I can use this phandle.
 
-Same as last time. Why are you describing drivers?
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xtal
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO connected to the chip's active-low reset pin (RESETB).
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Interrupt from the chip's active-low INTRB output.  Asserted when
-> +      the device detects a status change such as lock acquisition or loss.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - $ref: /schemas/dpll/dpll-device.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    xo: xo {
-> +        compatible = "fixed-clock";
-> +        #clock-cells = <0>;
-> +        clock-frequency = <48000000>;
-> +    };
-
-Drop node. Wasn't here before, so why did you add it?
+> 
+> Split the patches per ipc-firmware.dtsi as required.
+> 
+>>   5 files changed, 33 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+>> index 5a8c2e707fde..756928a2d411 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+>> @@ -40,6 +40,12 @@ mcu_r5fss0_core0_memory_region: memory@a0100000 {
+>>   			reg = <0x00 0xa0100000 0x00 0xf00000>;
+>>   			no-map;
+>>   		};
+>> +
+>> +		lpm_memory_region: lpm-memory@a4800000 {
+> 
+> vignesh already flagged this in previous revision - just use phandle
+> reference in u-boot and make this memory@
+I would happily use the phandle, but as this memory is not related to 
+the DM DDR, I don't think I can.
 
 
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dpll@68 {
-> +            compatible = "sitime,sit95317";
-> +            reg = <0x68>;
-> +            clocks = <&xo>;
-> +            clock-names = "xtal";
-> +        };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    xo2: xo2 {
-> +        compatible = "fixed-clock";
-> +        #clock-cells = <0>;
-> +        clock-frequency = <48000000>;
-> +    };
+Thanks!
 
-Drop.
+Regards,
+Richard
 
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-
-
-
-Best regards,
-Krzysztof
+> 
+>> +			reg = <0x00 0xa4800000 0x00 0x00300000>;
+>> +			no-map;
+>> +			bootph-all;
+>> +		};
+>>   	};
+>>   
+>>   	mux0: mux-controller-0 {
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> index 12a38dd1514b..ceab8f057640 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+>> @@ -42,6 +42,12 @@ mcu_r5fss0_core0_memory_region: memory@a0100000 {
+>>   			reg = <0x00 0xa0100000 0x00 0xf00000>;
+>>   			no-map;
+>>   		};
+>> +
+>> +		lpm_memory_region: lpm-memory@a9c00000 {
+>> +			reg = <0x00 0xa9c00000 0x00 0x00300000>;
+>> +			no-map;
+>> +			bootph-all;
+>> +		};
+>>   	};
+>>   
+>>   	mux0: mux-controller-0 {
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+>> index e66330c71593..eebc5cc7d4cd 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+>> @@ -63,6 +63,12 @@ wkup_r5fss0_core0_memory_region: memory@a0100000 {
+>>   			reg = <0x00 0xa0100000 0x00 0xf00000>;
+>>   			no-map;
+>>   		};
+>> +
+>> +		lpm_memory_region: lpm-memory@a6c00000 {
+>> +			reg = <0x00 0xa6c00000 0x00 0x00300000>;
+>> +			no-map;
+>> +			bootph-all;
+>> +		};
+>>   	};
+>>   
+>>   	vmain_pd: regulator-0 {
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+>> index fcb7f05d7faf..d0752c8a6b37 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
+>> @@ -23,4 +23,13 @@ memory@80000000 {
+>>   		device_type = "memory";
+>>   		bootph-all;
+>>   	};
+>> +
+>> +};
+>> +
+>> +&reserved_memory {
+>> +	lpm_memory_region: lpm-memory@ab000000 {
+>> +		reg = <0x00 0xab000000 0x00 0x00300000>;
+>> +		no-map;
+>> +		bootph-all;
+>> +	};
+>>   };
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> index 6c7458c76f53..114594f37f0b 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>> @@ -23,10 +23,13 @@ memory@80000000 {
+>>   		device_type = "memory";
+>>   		bootph-all;
+>>   	};
+>> +};
+>>   
+>> -	reserved_memory: reserved-memory {
+>> -		#address-cells = <2>;
+>> -		#size-cells = <2>;
+>> +&reserved_memory {
+>> +	lpm_memory_region: lpm-memory@ac000000 {
+>> +		reg = <0x00 0xac000000 0x00 0x00300000>;
+>> +		no-map;
+>> +		bootph-all;
+>>   	};
+>>   };
+>>   
+> 
 
