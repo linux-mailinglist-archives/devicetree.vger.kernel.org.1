@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-301849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aAp/HapbEGqDWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:35:38 +0200
+	id oGxoNcNbEGqDWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:36:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08C55B53FA
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:35:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 716625B5421
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:36:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CDCD7319615F
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:22:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4CB6F3059A6E
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987823B1017;
-	Fri, 22 May 2026 13:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E183B4423;
+	Fri, 22 May 2026 13:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OMA3FvwB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OapLeajH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C9F3AF64B
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:20:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37143B1EFC
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:20:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779456050; cv=none; b=qz8uA0oqC0IoV/t0zuUKu6VS3vzjJs0uJ7PcluobLpgmgLjNp2ZpvWW8dGDow5xCZoIkL4QZAUj6u3fIIpOK5Soic1S11hQuSmcMyUQ8b7eWw46IMIEdfJdehx/Cfja4bSKlbASMzeKHxhux8ZuRY70c+c9074xIel4v4KVp2e0=
+	t=1779456053; cv=none; b=WotDZ3IJ5Y1GOsJtOF5OKhFjwD4A67/ya8igpSNFrg/3z0iOCYg2jdjCtItBo57nuSo0Y3DUd+g5Xd5VLks0N9KYSnVG/UlzgffUjttN70akHmx1YJ5TYy/rm1tiwbGDaHypF3RXi2QI6Ak+hMUGh3SmsLectY2dgeVDLy+wyqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779456050; c=relaxed/simple;
-	bh=ZLqTvLWlGVqpc/WhFD89fa/q9UaQQhCW1j3oilKl0C4=;
+	s=arc-20240116; t=1779456053; c=relaxed/simple;
+	bh=Onfdz/xscxQ/YvwLu1pxDVtAauf991A7gIDb6FNuNSA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AxgIVBvPVXXAlNuozSsVg8Y9nsFxV7yoAvJ+hrlmElODAADDrQaD2yv7sdDv+x1hXZA6Dlc//I2wz5knV+VnBQixCXMoWRC8MoHnL8CJvD63Df0W+mBfw52MrOkVEGjehTeawyommxCc83oFzCaK5mbak7AM9gCKw4rA9YIrL5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OMA3FvwB; arc=none smtp.client-ip=209.85.128.43
+	 MIME-Version; b=UWjvREvEn1V0idt9l15M415VBZWNL2oYCJ7KxNfBVrwlsSowtNhORHraLlZXAqV23oMFO77kpW9qSDNTMrrhYQCVCjVzfd9ZIysozyc8Oq31UJ8toSK1TpejoCrOCbRwPCK8k7d1H5vgu1GFEl/Fb6R0g6lbXEVuITAIIvGKuZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OapLeajH; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-49041fb8c23so7167525e9.0
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:48 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-49040362e4aso13421905e9.0
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779456047; x=1780060847; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779456050; x=1780060850; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sEzEUIi3oWaa4bkqOIR8hzCtlujzV1XyxBwf8XTkUg4=;
-        b=OMA3FvwBiLH7Tr6sMpwroirRyF+06MI8mbTwZK8sdzh28QWfqnmh69tFA3NPwfFh2f
-         DeLQ5tEKfo4xL/7cMV6wM+fLiVHEZ3hUBMwJeEMW8gGzH6Nlk5qHyCQJUnwd09cp9DVl
-         Bo7xlKMN7o0Z7TJ9/2KLDnN3maJY97wSmyNQDie6uCl6PhTRhvBLlaKCDbO2NSrw66WV
-         aNh80aBWb+OuE7sswso8lGmjCFqDiuHuot2mYLxCdkINUkjC7bV3xy4HHHDKcGUaCAwB
-         Yw4b3Z0IrnBubmRJbtFlr5yArNWn+JKKtD8EXtAl/75a5IO+OweIUzUqaVHJPu5+/1wa
-         HSVg==
+        bh=RP+CltVi6jUCZJal0Anzdw8j6V9ipqNLat7Pdw8ZHRU=;
+        b=OapLeajHY+pPMYnPtBtOcuJMbj2yJ2fixTWV+oH9Paet6ORjC+1VsEWYGcvlEI+U2O
+         almowyGX1W2qGFeMVY9KDP5grmdPxwQl8EsZg5wen1t10oluRgPvupgl6fonmUrzNw+F
+         X4qlsyvBZt8LrEUlszidev/7Dg3B1hwRRcla8fArupkBu148wgKZVSjt7Z7xAlDKZV00
+         F7Z8TKRf6c53pyVt08TFBCN5cKADfBU6IxkNwf4m+7vlHmcQ5pQt5X9YsytrIULABjGP
+         Jlqjp0Le57gQLHauO6yOsDRibJDHnAERXa2aILEoTFUBo7+MpVHpWSWAkASMJEIjWlJ8
+         X99w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779456047; x=1780060847;
+        d=1e100.net; s=20251104; t=1779456050; x=1780060850;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=sEzEUIi3oWaa4bkqOIR8hzCtlujzV1XyxBwf8XTkUg4=;
-        b=r516eyl8BAMeOmyDMxIAmwDkv31MlzFDfecVWPNn05ogDrj7upbuGuQk2uvG3i/OEr
-         EfMBwBvVb7iKVxtpo3CxYT+9MSjNne4JrSdAW0gyq/i8P6ESxxNC3Pfvlit2bv6GNmDU
-         DRHM0K2GdPXf7i8/V6BLe/MJYQMDya5XCXCyvkz6N/uSqg+KiOMddA00VjrGPMgOrCZy
-         kRfYgt4qCEz8kdXA1U5DvkdBzu3QtVTnAAmHsk4kRv1qSOnrhXnm5pdQLbJkeozVJGD6
-         c8cnKLCA4e8X15Nf1Eb1O/XN4mxgektOWqj/nwJ5l67aORaMmR9T1NbeW77i7zZw+U3O
-         bEwg==
-X-Forwarded-Encrypted: i=1; AFNElJ8R0NK52sOFPK8ZPESVg25qMeVA8AahrDnoLvkPOpWP4Nr3+z5EoeAlCrC6ksNcXTsL1x8Nj3pTGvJM@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq1uPYyCBv7zptJ/5NCaRQ0rMIQeJCv44O7vE4fVSVA4IpbCQ+
-	rmYNSG91elFLPZB3wv9Hcban+KxJHqJD1MXjduYOhRFPfSgOuVic5jNk
-X-Gm-Gg: Acq92OGkh3nsGhxW7bR4looS5LeXCQwVPns/CSbKzeL+gXDghC0IYvo8ZFNgAUsajUi
-	VeSzFL6bIewElRpHyonrLi0nflBkVSv2ZWCXLyYT54vALJd9qK9NFhjw8adjFvoazsmDrp4jjzj
-	6YkV+XroM0SfOSCop4w81S1v9FWuNoKp1ZqNws2EChCs/sJSG8D2IugMFwwRDDgsgRflroHqEoE
-	HsyQL1B0XMrwRpTG/4l7dRvUhJD9BanA1vWjlhY4DYseebrgSHo5wOiYGV2SbQAr88/+dLVNpX8
-	U6kTNCdpELU1tANHj9Fhkpi24Es4JX76827mcSasAOjDUmz9G6a9sYY/r43Jk67RaCFExx/QTOW
-	mHvRKZrSW+5+CKpeHJAs6lpciP1339JMTwiwbw2iIO2W5xN2h+LE8LCu1yTmlvqk5f1j0e2CDnk
-	v12Xiug8h0WRW0skj2Q66ie9QmvVtPhgW4PbhJMw1EeA==
-X-Received: by 2002:a05:600c:470e:b0:489:1cd2:610a with SMTP id 5b1f17b1804b1-490426aa413mr49128005e9.9.1779456046963;
-        Fri, 22 May 2026 06:20:46 -0700 (PDT)
+        bh=RP+CltVi6jUCZJal0Anzdw8j6V9ipqNLat7Pdw8ZHRU=;
+        b=X1m1yeIJOQCY6b58DEz5/AVihImOL4S9pk0qRhmNWt9djmeUUKxd49LDyv0HHxlujQ
+         EB72Kr3rlsAWASGP1GhGx5vuiSn1m4tmyxxXCYzTiUAVw/j685xkJW8Vq13AFRJXXayW
+         48T0ZR3d90KJCsQFe8KQ8GGvVkJFSq5Dh5hP8ocKXuW/mE/xtD0Pq1rYczAyp7hLUKWH
+         diaez1PRpuEMI2RvpHCAYytZ0JKtfj5ncpjztjUuHsc/NGIF4oI5dqeOLkzG5vxxx7iU
+         RfCURI8MYdyaanyGuyBDDtwQoh71+flzJUshRwFXZq1Sac2xyD+psoJ9PLaXMLRttM/M
+         lfqA==
+X-Forwarded-Encrypted: i=1; AFNElJ/s8TDPowCxiIaLq7z4mpti1zJ7XGsnTB5QGLp5JBbb9db8DdiwhPhgFTfJRMFGO93YVHaabBqSXg5+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsNs8QHVMSnAEQ3qGUkQnXaHtpig018vnUkWJs29wuypb7vSGI
+	oE0td1FYd6P7nUrGPOM/JmVAqPXK20wH5g4GwDU7I+BR1i11A8TQV1Nl
+X-Gm-Gg: Acq92OGz+wkPfTOiqpWAZHKg4zbOFkdVW+v2BybGd9Mhknt2pi1iRKoTwsU+aC1ciip
+	q3l7C5tWzA7EV9UUHTU5pIn2IzR9Iosqe5+vr+vtz8aRw6mpKYUjJG/9O7LanOWC4p+Tx8m9eP6
+	pfpNZr6tWsIV3aOv7S7FX0HZJlXqHvXtIszEnHc7JwxNaAuh77xCNxqjedHBaW0pdOZzzXBDNFA
+	gdU1+5PIvUO178kR3Z5SpWtnNJR/Zxb+74Wj11ujOKedKgzG6IaeN1FN+A14MNEDxlykxluQ88e
+	bf3+g5QYxIvJD7a9RwbT2bWYQ3kzap52Rak3A4NcnFrJYryQcr8tv1VyQgt5LJSRzGLw5lQQpCa
+	j+M4YeRlgpIyODfPaeknsEIMVAkWRMxwpm4rxJ5Fd2OA2Ziag8F8Kik1gbXzRFFZVoTjjtPape5
+	USuGgf4JqtrLbb3NbYIFM6S758LzWRI3YobPf6Nlr/cA==
+X-Received: by 2002:a05:600c:4510:b0:48f:d5a0:284e with SMTP id 5b1f17b1804b1-490428e03b8mr49601195e9.28.1779456049615;
+        Fri, 22 May 2026 06:20:49 -0700 (PDT)
 Received: from vitor-nb (dsl-113-208.bl27.telepac.pt. [176.79.113.208])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0cd5sm52220755e9.10.2026.05.22.06.20.45
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0cd5sm52220755e9.10.2026.05.22.06.20.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 May 2026 06:20:46 -0700 (PDT)
+        Fri, 22 May 2026 06:20:49 -0700 (PDT)
 From: Vitor Soares <ivitro@gmail.com>
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -98,9 +98,9 @@ Cc: Vitor Soares <vitor.soares@toradex.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 07/11] arm64: dts: ti: k3-am62-verdin: Add NAU8822 Bridge Tied Load
-Date: Fri, 22 May 2026 14:20:20 +0100
-Message-ID: <20260522132014.226721-20-ivitro@gmail.com>
+Subject: [PATCH v2 08/11] arm64: dts: ti: k3-am62-verdin: Reserve UART_4 for Cortex-M4F
+Date: Fri, 22 May 2026 14:20:21 +0100
+Message-ID: <20260522132014.226721-21-ivitro@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260522132014.226721-13-ivitro@gmail.com>
 References: <20260522132014.226721-13-ivitro@gmail.com>
@@ -118,13 +118,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301849-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301851-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
@@ -138,75 +138,72 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-0.968];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: F08C55B53FA
+X-Rspamd-Queue-Id: 716625B5421
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Vitor Soares <vitor.soares@toradex.com>
 
-Add a device tree overlay enabling Bridge Tied Load (BTL) mode on the
-Nuvoton NAU8822 audio codec present on the Verdin Development Board.
-In BTL mode, the two loudspeaker outputs are bridged to deliver higher
-output power on the X28 speaker connector.
+Add a device tree overlay reserving AM62 MCU_UART0 (Verdin UART_4) for
+use by the Cortex-M4F co-processor as its debug UART.
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
 ---
- arch/arm64/boot/dts/ti/Makefile                    |  4 ++++
- .../dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso    | 14 ++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso
+ arch/arm64/boot/dts/ti/Makefile                     |  4 ++++
+ .../boot/dts/ti/k3-am625-verdin-uart4-mcu.dtso      | 13 +++++++++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-uart4-mcu.dtso
 
 diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 14898f8ab0e2..a1083c0b2502 100644
+index a1083c0b2502..31c9bc1d48b1 100644
 --- a/arch/arm64/boot/dts/ti/Makefile
 +++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-tqma62xx-mba62xx.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dev-nau8822-btl.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dsi-to-hdmi.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia-dsi-to-hdmi.dtb
-@@ -224,6 +225,8 @@ k3-am625-sk-hdmi-audio-dtbs := k3-am625-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
- k3-am625-verdin-wifi-dev-dsi-to-lvds-panel-cap-touch-10inch-dtbs := \
- 	k3-am625-verdin-wifi-dev.dtb \
- 	k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtbo
-+k3-am625-verdin-wifi-dev-nau8822-btl-dtbs := k3-am625-verdin-wifi-dev.dtb \
-+	k3-am625-verdin-dev-nau8822-btl.dtbo
+@@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-zinnia.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-panel-cap-touch-10inch-dsi.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-panel-cap-touch-10inch-lvds.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-panel-cap-touch-7inch-dsi.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-uart4-mcu.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia-dsi-to-hdmi.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia-panel-cap-touch-10inch-dsi.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
+@@ -230,6 +231,8 @@ k3-am625-verdin-wifi-dev-nau8822-btl-dtbs := k3-am625-verdin-wifi-dev.dtb \
  k3-am625-verdin-wifi-dev-panel-cap-touch-7inch-dsi-dtbs := \
  	k3-am625-verdin-wifi-dev.dtb \
  	k3-am625-verdin-panel-cap-touch-7inch-dsi.dtbo
-@@ -332,6 +335,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am625-sk-csi2-tevi-ov5640.dtb \
- 	k3-am625-sk-hdmi-audio.dtb \
++k3-am625-verdin-wifi-dev-uart4-mcu-dtbs := k3-am625-verdin-wifi-dev.dtb \
++	k3-am625-verdin-uart4-mcu.dtbo
+ k3-am625-verdin-wifi-mallow-panel-cap-touch-10inch-lvds-dtbs := \
+ 	k3-am625-verdin-wifi-mallow.dtb \
+ 	k3-am625-verdin-panel-cap-touch-10inch-lvds.dtbo
+@@ -337,6 +340,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
  	k3-am625-verdin-wifi-dev-dsi-to-lvds-panel-cap-touch-10inch.dtb \
-+	k3-am625-verdin-wifi-dev-nau8822-btl.dtb \
+ 	k3-am625-verdin-wifi-dev-nau8822-btl.dtb \
  	k3-am625-verdin-wifi-dev-panel-cap-touch-7inch-dsi.dtb \
++	k3-am625-verdin-wifi-dev-uart4-mcu.dtb \
  	k3-am625-verdin-wifi-mallow-panel-cap-touch-10inch-lvds.dtb \
  	k3-am62-lp-sk-hdmi-audio.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso b/arch/arm64/boot/dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso
+ 	k3-am62-lp-sk-nand.dtb \
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-uart4-mcu.dtso b/arch/arm64/boot/dts/ti/k3-am625-verdin-uart4-mcu.dtso
 new file mode 100644
-index 000000000000..e4b662519a6b
+index 000000000000..e263809cdf74
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso
-@@ -0,0 +1,14 @@
++++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-uart4-mcu.dtso
+@@ -0,0 +1,13 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
 + * Copyright (c) Toradex
 + *
-+ * Enable Bridge Tied Load (BTL) speaker mode on the Verdin Development Board,
-+ * combining the two loudspeaker outputs for higher output power.
++ * Verdin AM62 Cortex-M4F debug UART
 + */
 +
 +/dts-v1/;
 +/plugin/;
 +
-+&nau8822_1a {
-+	nuvoton,spk-btl;
++&mcu_uart0 {
++	status = "reserved";
 +};
 -- 
 2.54.0
