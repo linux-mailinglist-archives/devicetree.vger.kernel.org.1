@@ -1,167 +1,197 @@
-Return-Path: <devicetree+bounces-301550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301552-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yN/MMNbvD2omRgYAu9opvQ
-	(envelope-from <devicetree+bounces-301550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 07:55:34 +0200
+	id GKUaMv7yD2o2RwYAu9opvQ
+	(envelope-from <devicetree+bounces-301552-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:09:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67E25AF4BD
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 07:55:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69FB35AF60C
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:09:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 40D373002F49
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 05:55:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33BB7303852F
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A5B3A5437;
-	Fri, 22 May 2026 05:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0559A3A5E64;
+	Fri, 22 May 2026 06:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CTPJf1Se"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a5iMVgax"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF1639DBDD;
-	Fri, 22 May 2026 05:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B34F360EF6
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779429326; cv=none; b=WNs/4FDTJBftPhqetR/MFeMJNI8DOtPTfUF081TDYoXQ4A5KJhay9/hUMDYwJzDpIU+6Viaj5Xu74a2TL2x+eNXgDGI7JZCcRD2h4MDAncyhAfHteZ6464A98thLqxRxqIGN1cwdWJ9/kjUSFkZRfuSs1/2KibCfR+z00695/0w=
+	t=1779430030; cv=none; b=MBV3yC7W8KtthDVajGKLaQm/Y2PsOfQ4tHiE+4oczrapPkzNsNq5+26/hHGl746bmpW7KoTPUj27Uj1R7HUopP7N+M1BFkwUaxhQLwq7EqHmHFBkpvmdDeLXmzV7ymAFOW47wp4AEoT8o9b8lKLeFdEd5bOD++NtBN/Rvk2ZCE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779429326; c=relaxed/simple;
-	bh=9S3Am5zlSDxIPy9JoMBjGoTMZN3NGySSG/6keJHKyOI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=t5THQCev8AOmiVQ2tYgHUBODZvwwL8fLVH4y+lLxwly/G1shXr8PpWfUpJmlpB2H6/zTAsTPZl2XzIlKT0/V+b7b8xDZT6AqkIdrFfdYIVWguYBNYFZ8IRvvKgSCPEq5HLtf0ieXLMJ7MZYiiPUVKtHB9/v0EJWstRtYUHSJfYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CTPJf1Se; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C86311F000E9;
-	Fri, 22 May 2026 05:55:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779429325;
-	bh=Rm6dtuuYj6/GdbVvh2/gOXnU8R+0AFSWCl9ecrBIjZM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=CTPJf1Se6LmHHAcb75Ne7HSbCcFey85v/NtDoibYQIPUz9YTSJg49gj3JO5H5j27D
-	 f24mKEGLAsZKkbHrL9Uy+yQb5Wyf8LpVqaxmYAx3MZcflL/l2u21r5RF760rJB2OQt
-	 89tkomqEQbQ0C9ysQ2le68DvOkX8kvwxM4etONNPHKlaewZsaRXIyUsWMTHDzBIdLf
-	 eTY86IDwUHcdQBfAjTGRFhq60oTHg13Ut9XEwmDFC57tIb9VNOMJPjMe5gT9GPMwZ7
-	 iS4PHSoISr6KscNCVhpArFyBiYL2H0zKXxgUz4lOatsVPk/z7gLDD/ZpjEMdNvC1ju
-	 a2HSQAR+QMzag==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 3/6] pinctrl: core: Make pin group callbacks
- optional for pin-only drivers
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Oleksij Rempel" <o.rempel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260522044855.1772639-4-o.rempel@pengutronix.de>
-References: <20260522044855.1772639-4-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 05:55:24 +0000
-Message-Id: <20260522055524.C86311F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779430030; c=relaxed/simple;
+	bh=iHhwE2eVqf4ok5rAOm0fwHhxHhkcmCh7ggTtcpzcbv8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VsVjyJoECG95hif4zrL1924NWzZO66W9zlfAB47f4sgTPJOUPe9Z3IePbOgPkr+zcNYbbdAjcb/azNfrqB0AlpUIQ331Yp/ZW0I5S6TK4qoGPsg+TAYjnA9oJOSeDCbwGO/A2bWnU6f+SQfvoMZxrZiq9Ja59yQ9f6n+97mVD08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a5iMVgax; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-367cbac9c37so3840403a91.2
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 23:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779430028; x=1780034828; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Lq3gUXb9qkQGbBL6A3En/oIKNPxjfDzFOS4CLMToOE=;
+        b=a5iMVgaxG+378ioLHEgw1Wl33gUydJQvdRFbwoZhZicwD3Wrro15tLsm/iL6yZ8tQS
+         lUVKXFl64aimhv7PyA3+zLgdkndUUndpxe7VQ1cE+ZlQMt/u1BySUIsfPfBo34L3Ittn
+         XRVxo88fEISiVXuRWr7F8rhrpYnlllyh4PXH8N6nAX0Lh5nj0+Ih30g84NIH8FNXx8gR
+         aCTb3AHNSeWfRG3Ho0Ll8RAW/mCrAuStzYUij4MQKWdbL7NPIxj7jAMQQ5zKYKVQ0sdn
+         VXb+Sh/HSGfhfRE5sFcHT8/Emf9yqojLb/MADIyvGvqYhCNiYnqnVibVjVaDfzsGlY+M
+         XzFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779430028; x=1780034828;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Lq3gUXb9qkQGbBL6A3En/oIKNPxjfDzFOS4CLMToOE=;
+        b=Ck8A/bpPuKRwC7yPGNLWYZyqnceoVGn32HXUuwdUFazGDeAOHDED0X/FoHQ5bB0rf/
+         Ed1RnVcPSGHUtrxZwSE0so7nbBVWxAgEWeazQFFqaBzw7N8FJWFKMdiq5MoN/+UTkCBR
+         /vyxXWBCDuVe+e1Zc81EoNmnAAPYE0H3T3fZmZgm1AtXtVAoJssFRAiPOvz/I/hEMeEp
+         M4wTtLwORpZO57XZxRmiYVjUQHllDe9qRrJAP1djYD59cFoGkmWO/GrANRVwbd1BqnVh
+         Th6mlzAHhoq1Nbqc1wU0DZmB8ylN3J0R9XJjITW1viBbidTzIrLYIc1kL/lXnmEskNju
+         luIQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8mErYNyalMaSoXlvZzGXIm/AcsEsk5VZQKGd6wJMMpW7+dgZbC+T7G1B5tpmaMBVH5iowi9RrfPKBo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAVXNGamNkf7gBTtYFCztMn477DHCDNPeuzJ3yPkEcmQVr1yHe
+	y0qcOv55DeYusqyPbZKTLHvnY7TCd1EaAsDZAEigDD0XovJGH5p/XdvE
+X-Gm-Gg: Acq92OGxaSKBjLA5xrzy21aJBppNoA2HRBDbQ5xpHlv8+KGoD4j4IlXm5uJCdPBbfb4
+	vauNggZ52fKwiAY6npJhJ0yGErn++anrbHDSty9JIQG97Oyx/p+tEBzK9JJbf2rhuJ7r7MMYz0w
+	tGQQm7NBtUggxYu/L8VOGjFpjQOKoVq9MyAb9vpeHzGTI8PREWkqVZKbMCKeYASGKxy6fHN1DiF
+	RBIX+60dok/xQDI6ZggNazMWgGTNAc29Fb7Luy5UvcDPaFYRkG6fq+u3UdLFA6IJEbS/GMWEoAt
+	fFlMFbtVU/ibYqS6QLGSJ06xd826q+B/e3khywyCtGJoPJluntPVsK5pf+TCWh6IkOVH2Ya+Tk3
+	Fk/h4KUjpz5VUPve3Dcbzu/l/E33p2rFZCYyTdjwjjEpUcWYOXgTWG43ZArxmQomhfIgEq1riPm
+	KGONKdgPDgX/9ASEOJn9QLVtlmH/nv3huNAUDA4sL0CVz4HDYTMAMKpzeAhM2tNOBaKQ==
+X-Received: by 2002:a17:90b:5823:b0:366:aba:4c86 with SMTP id 98e67ed59e1d1-36a676931aamr2338804a91.27.1779430027543;
+        Thu, 21 May 2026 23:07:07 -0700 (PDT)
+Received: from radxa (122-58-25-162-adsl.sparkbb.co.nz. [122.58.25.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a7212aa06sm428572a91.3.2026.05.21.23.07.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 May 2026 23:07:06 -0700 (PDT)
+From: Graham O'Connor <graham.oconnor@gmail.com>
+To: linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robin.clark@oss.qualcomm.com,
+	lumag@kernel.org,
+	abhinav.kumar@linux.dev,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Graham O'Connor <graham.oconnor@gmail.com>
+Subject: [PATCH 0/6] arm64: qcom: Enable additional hardware on Radxa Dragon Q6A
+Date: Fri, 22 May 2026 18:06:39 +1200
+Message-ID: <20260522060645.4399-1-graham.oconnor@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sashiko.dev:url,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301550-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,lists.freedesktop.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301552-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[grahamoconnor@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: C67E25AF4BD
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 69FB35AF60C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+The Radxa Dragon Q6A is a compact single-board computer based on the
+Qualcomm QCS6490 SoC (sc7280 family). A basic DTS for this board
+already exists in mainline. This series enables the remaining hardware
+and fixes platform-specific issues required for correct operation when
+booting via UEFI firmware.
 
-Pre-existing issues:
-- [High] Missing mutex lock in pinconf_groups_show() leading to potential U=
-se-After-Free during debugfs access.
---
+Patches 1-3 fix platform issues affecting QCS6490 boards booting via
+UEFI firmware:
 
-commit 3be3569fd20f9c647f76233cee1c7285d9ad8584
-Author: Oleksij Rempel <o.rempel@pengutronix.de>
+- The RSC hardware solver is left active by the UEFI firmware, causing
+  a security violation if the kernel attempts to reinitialize it.
+- EFI variable access requires the board compatible string in the SCM
+  allowlist.
+- The RA620 DP-to-HDMI bridge does not complete link training at
+  voltage swing level 3. Capping at level 2 matches the vendor kernel
+  behaviour and allows HDMI output to work correctly.
 
-pinctrl: core: Make pin group callbacks optional for pin-only drivers
+Patches 4-6 add DTS nodes enabling:
 
-This patch relaxes the requirement for pin-only drivers to implement
-.get_groups_count and .get_group_name callbacks by making them optional
-when no muxing or group pin configuration support is provided. The core
-and debugfs helpers are updated to check for these callbacks before
-invoking them.
+- GPU (Adreno 643) with clock controller and GMU
+- DisplayPort output via RA620 passive DP-to-HDMI bridge
+- USB3 SuperSpeed via the QMP combo PHY shared with DisplayPort
 
-> diff --git a/drivers/pinctrl/pinconf.c b/drivers/pinctrl/pinconf.c
-> index dca963633b5d1..81686844dfa5f 100644
-> --- a/drivers/pinctrl/pinconf.c
-> +++ b/drivers/pinctrl/pinconf.c
+The following has been confirmed working on this board with mainline
+drivers:
+- KDE Plasma 6.6.5 desktop on Wayland with GPU acceleration
+- HDMI display output via RA620 passive DP-to-HDMI bridge
+- USB3 SuperSpeed (5Gbps confirmed via lsusb)
+- OpenGL 4.6 and Vulkan 1.3 via Mesa Freedreno/Turnip
+- Hardware video decode/encode via Venus (H.264, HEVC, VP9, MPEG-2)
+- Audio via WCD938x codec (headphone output, microphone, HDMI audio)
+- FastRPC interface to Hexagon DSP available (/dev/fastrpc-cdsp)
+  though inference workloads have not been tested
 
-[ ... ]
+With the out-of-tree AIC8800 driver for the onboard Quectel FCU760K
+WiFi/BT module, all remaining hardware on the board is functional
+under mainline Linux.
 
-> @@ -348,8 +348,13 @@ static int pinconf_groups_show(struct seq_file *s, v=
-oid *what)
->  {
->  	struct pinctrl_dev *pctldev =3D s->private;
->  	const struct pinctrl_ops *pctlops =3D pctldev->desc->pctlops;
-> -	unsigned int ngroups =3D pctlops->get_groups_count(pctldev);
->  	unsigned int selector =3D 0;
-> +	unsigned int ngroups;
-> +
-> +	if (!pctlops->get_groups_count || !pctlops->get_group_name)
-> +		return 0;
-> +
-> +	ngroups =3D pctlops->get_groups_count(pctldev);
+Tested on Radxa Dragon Q6A (QCS6490) with mainline Linux 7.0.9.
 
-[Severity: High]
-This is a pre-existing issue, but does pinconf_groups_show() need to hold
-pctldev->mutex while iterating through pin groups?
 
-Drivers such as pinctrl-lpass-lpi dynamically remove groups via
-pinctrl_generic_remove_group() during device unbind (e.g., in
-lpi_pinctrl_remove()). This deletes the radix tree node and frees the
-group memory via devm_kfree(). Because the controller is registered
-with devm_pinctrl_register(), the debugfs entries remain fully accessible
-during the driver's remove() callback until devres cleanup runs later.
 
-Could a concurrent read of the pinconf-groups debugfs file race with
-this group removal, causing pinctrl_generic_get_group_name() to perform
-an unsafe radix_tree_lookup() and dereference the freed group struct?
+Graham O'Connor (6):
+  soc: qcom: rpmh-rsc: Skip TCS init when RSC is managed by firmware
+  firmware: qcom: scm: Allow EFI variable access on Radxa Dragon Q6A
+  drm/msm/dp: Limit voltage swing level to 2 for RA620 bridge
+  arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Add regulator supplies and
+    disable EUD
+  arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable GPU and display
+    pipeline
+  arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable USB3 SuperSpeed
 
-Also, since pinconf_groups_show() eventually calls pin_config_group_get()
-which acquires pctldev->mutex, would wrapping the loop in
-mutex_lock(&pctldev->mutex) cause a self-deadlock, thus requiring
-unlocked internal accessors to fix properly?
+ .../dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 176 ++++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c              |   1 +
+ drivers/gpu/drm/msm/dp/dp_link.h              |   2 +-
+ drivers/soc/qcom/rpmh-rsc.c                   |  14 ++
+ 4 files changed, 192 insertions(+), 1 deletion(-)
 
-> =20
->  	seq_puts(s, "Pin config settings per pin group\n");
->  	seq_puts(s, "Format: group (name): configs\n");
+-- 
+2.53.0
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522044855.1772=
-639-1-o.rempel@pengutronix.de?part=3D3
 
