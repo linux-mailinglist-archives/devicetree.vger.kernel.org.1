@@ -1,164 +1,259 @@
-Return-Path: <devicetree+bounces-301534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMfWIvzED2qJPgYAu9opvQ
-	(envelope-from <devicetree+bounces-301534-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:52:44 +0200
+	id 0CU7H0jKD2r/PgYAu9opvQ
+	(envelope-from <devicetree+bounces-301536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 05:15:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53FE55AE2B3
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:52:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC8F5AE44A
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 05:15:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BF9F83004420
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 02:52:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E154303352C
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 03:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F73A3101C8;
-	Fri, 22 May 2026 02:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D72430BF4F;
+	Fri, 22 May 2026 03:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="YWNMy7+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmtyylji0my4xnjqumte4.icoremail.net (zg8tmtyylji0my4xnjqumte4.icoremail.net [162.243.164.118])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4349C30FC39
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 02:52:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.164.118
+Received: from mail-m49196.qiye.163.com (mail-m49196.qiye.163.com [45.254.49.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C331F84039;
+	Fri, 22 May 2026 03:08:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779418358; cv=none; b=uRnVTI7YFJs5eQBgvOhMe/+HDvlPvWtS6zMJOpfgBLyLkg/qFQba9HknZbBtjrGJqfPLXdVfxbj7gGkluflQojkwS1oNOajlnUTXg5NxsaPn8UrUVY5noNp7xTSNFbyJgfk5cqA3HmxQxL0OboF6AdIGwByqJSEzblNfbZidm1w=
+	t=1779419304; cv=none; b=mtvo07ZXUG7fhGskQMJFHGNt8VRe+6trq8bHY6FWFFeTCLvyDNDjOGKSTeChZn4yewJj8p1x8wBbdV6EokYfQ2ChFgAjxZCANJs3RrwndfjR9M//T2HFTEG4Hm4N8Ng0WUPVxgVJlER4N52MGPT9/55jVX9KPVOe9NYmte1h/tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779418358; c=relaxed/simple;
-	bh=KokvCDqJliLVlcUvBettVfGpwxZKQB+tn4K88cCMdg4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=LKSHL+xJmZePKHb0xt/LxFmzeeAm22LlKBI1hgvhQdiEjuhjY7DP/6JV3nYsaZGtPgYaPupG9JsrHOtE8VXckV0+A5V9rSXoczR1rUZ4V7Vm5KUNaws3LOe3La9q6fyrwoEHt0qZOuhyxbqWlVvxM6tk4MPQY95XN5NL73ifRF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=162.243.164.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from lizhi2$eswincomputing.com ( [10.11.96.26] ) by
- ajax-webmail-app1 (Coremail) ; Fri, 22 May 2026 10:52:27 +0800 (GMT+08:00)
-Date: Fri, 22 May 2026 10:52:27 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: sashiko-reviews@lists.linux.dev, robh@kernel.org,
-	devicetree@vger.kernel.org, conor+dt@kernel.org
-Subject: Re: Re: Re: [PATCH net v2 1/5] dt-bindings: ethernet: eswin: add
- optional TXD and RXD delay register offsets
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20260519-presuming-arrest-718fc461b055@spud>
-References: <20260518022023.427-1-lizhi2@eswincomputing.com>
- <20260519022334.35742C2BCB7@smtp.kernel.org>
- <20260519-thinness-slashing-cc0310904419@spud>
- <44d1ad42.8505.19e3fa56a49.Coremail.lizhi2@eswincomputing.com>
- <20260519-presuming-arrest-718fc461b055@spud>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1779419304; c=relaxed/simple;
+	bh=UgyYXgpEUovLTSwTieJLE54f1YVtcM9zLpNkg5uzLek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FLEijbNjC8yDXHGL13sO+3OfgUdwiQQ7s9iGL0zslR0pHgG8G0s5ki5kwte4+JUfqudzuzhajhhdFuPZfe6g03Gw1hFaxU8+zJMYp6w8gNFpR9TgDEChWrrvN8sQ0lhmHy+4q/VDz11yVfCXxQz3hVgxqEWg8BlPVi6xA5KO6cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=YWNMy7+N; arc=none smtp.client-ip=45.254.49.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3f63c7eb5;
+	Fri, 22 May 2026 11:03:00 +0800 (GMT+08:00)
+Message-ID: <fb40d3fb-b7c6-4c31-b9a7-89318c36c739@rock-chips.com>
+Date: Fri, 22 May 2026 11:02:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <1dd4d673.86ff.19e4d99369e.Coremail.lizhi2@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TAJkCgBn_HDrxA9qqWcbAA--.7512W
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/1tbiAQEPDGoPM54QSAACsR
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
-X-Spamd-Result: default: False [1.14 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 01/10] dt-bindings: display: rockchip: analogix-dp: Fix
+ hclk as third clock for RK3588
+To: Conor Dooley <conor@kernel.org>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260521080835.1362416-1-damon.ding@rock-chips.com>
+ <20260521080835.1362416-2-damon.ding@rock-chips.com>
+ <20260521-waking-case-cd709f0a7712@spud>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260521-waking-case-cd709f0a7712@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e4da2df0203a3kunmcdc39b7bb3028
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHklPVkIeS0hIH09LQxhPT1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=YWNMy7+NkSl3ewSULgQHdbz/2vosC6n4DoirPKOBaGSW+pxLBmEJMuFE6VmFA0OsHpCBjRp/wI7NBieBAoJT91OdjP2y71rQaC9sSqazDzS8MMXYV9YYsXo6X7O1/AqGOeprWhYDlfadH5Pr+Q8+gAehYLkah0zmjTaJGrnQmuE=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=ix2iDSv2xXDyggBMNPYyTIg1mIFriHtuF7LmuxwXjjM=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-301534-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-301536-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.354];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,eswincomputing.com:mid,eswincomputing.com:email]
-X-Rspamd-Queue-Id: 53FE55AE2B3
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
+X-Rspamd-Queue-Id: 5AC8F5AE44A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiAiQ29ub3IgRG9vbGV5IiA8
-Y29ub3JAa2VybmVsLm9yZz4KPiBTZW5kIHRpbWU6VHVlc2RheSwgMTkvMDUvMjAyNiAxNzo1NToy
-Nwo+IFRvOiDmnY7lv5cgPGxpemhpMkBlc3dpbmNvbXB1dGluZy5jb20+Cj4gQ2M6IHNhc2hpa28t
-cmV2aWV3c0BsaXN0cy5saW51eC5kZXYsIHJvYmhAa2VybmVsLm9yZywgZGV2aWNldHJlZUB2Z2Vy
-Lmtlcm5lbC5vcmcsIGNvbm9yK2R0QGtlcm5lbC5vcmcKPiBTdWJqZWN0OiBSZTogUmU6IFtQQVRD
-SCBuZXQgdjIgMS81XSBkdC1iaW5kaW5nczogZXRoZXJuZXQ6IGVzd2luOiBhZGQgb3B0aW9uYWwg
-VFhEIGFuZCBSWEQgZGVsYXkgcmVnaXN0ZXIgb2Zmc2V0cwo+IAo+IE9uIFR1ZSwgTWF5IDE5LCAy
-MDI2IGF0IDA1OjUxOjA1UE0gKzA4MDAsIOadjuW/lyB3cm90ZToKPiA+IAo+ID4gCj4gPiAKPiA+
-ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlcy0tLS0tCj4gPiA+IEZyb206ICJDb25vciBEb29sZXki
-IDxjb25vckBrZXJuZWwub3JnPgo+ID4gPiBTZW5kIHRpbWU6VHVlc2RheSwgMTkvMDUvMjAyNiAx
-NzoxMTo1OQo+ID4gPiBUbzogc2FzaGlrby1yZXZpZXdzQGxpc3RzLmxpbnV4LmRldgo+ID4gPiBD
-YzogbGl6aGkyQGVzd2luY29tcHV0aW5nLmNvbSwgcm9iaEBrZXJuZWwub3JnLCBkZXZpY2V0cmVl
-QHZnZXIua2VybmVsLm9yZywgY29ub3IrZHRAa2VybmVsLm9yZwo+ID4gPiBTdWJqZWN0OiBSZTog
-W1BBVENIIG5ldCB2MiAxLzVdIGR0LWJpbmRpbmdzOiBldGhlcm5ldDogZXN3aW46IGFkZCBvcHRp
-b25hbCBUWEQgYW5kIFJYRCBkZWxheSByZWdpc3RlciBvZmZzZXRzCj4gPiA+IAo+ID4gPiBPbiBU
-dWUsIE1heSAxOSwgMjAyNiBhdCAwMjoyMzozM0FNICswMDAwLCBzYXNoaWtvLWJvdEBrZXJuZWwu
-b3JnIHdyb3RlOgo+ID4gPiA+IFRoYW5rIHlvdSBmb3IgeW91ciBjb250cmlidXRpb24hIFNhc2hp
-a28gQUkgcmV2aWV3IGZvdW5kIDEgcG90ZW50aWFsIGlzc3VlKHMpIHRvIGNvbnNpZGVyOgo+ID4g
-PiA+IC0gW01lZGl1bV0gTWlzc2luZyBgbWluSXRlbXM6IDRgIGNvbnN0cmFpbnQgbWFrZXMgdGhl
-IG5ld2x5IGFkZGVkIG9wdGlvbmFsIGNlbGxzIG1hbmRhdG9yeSwgYnJlYWtpbmcgc2NoZW1hIGJh
-Y2t3YXJkIGNvbXBhdGliaWxpdHkuCj4gPiA+ID4gLS0KPiA+ID4gPiAKPiA+ID4gPiBjb21taXQg
-Mjk5MjQ4M2RmODhhZjI4MjNjMjc1ZmM4NjE4N2Y3ZTM4YWNiZWU1Ywo+ID4gPiA+IEF1dGhvcjog
-WmhpIExpIDxsaXpoaTJAZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gPiA+IAo+ID4gPiA+IGR0LWJp
-bmRpbmdzOiBldGhlcm5ldDogZXN3aW46IGFkZCBvcHRpb25hbCBUWEQgYW5kIFJYRCBkZWxheSBy
-ZWdpc3RlciBvZmZzZXRzCj4gPiA+ID4gCj4gPiA+ID4gVGhpcyBjb21taXQgZG9jdW1lbnRzIHR3
-byBvcHRpb25hbCBjZWxscyBpbiB0aGUgZXN3aW4saHNwLXNwLWNzciBwcm9wZXJ0eQo+ID4gPiA+
-IGZvciB0aGUgVFhEIGFuZCBSWEQgZGVsYXkgY29udHJvbCByZWdpc3RlciBvZmZzZXRzLgo+ID4g
-PiA+IAo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9uZXQvZXN3aW4sZWljNzcwMC1ldGgueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9uZXQvZXN3aW4sZWljNzcwMC1ldGgueWFtbAo+ID4gPiA+ID4gLS0tIGEvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9lc3dpbixlaWM3NzAwLWV0aC55YW1s
-Cj4gPiA+ID4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2Vz
-d2luLGVpYzc3MDAtZXRoLnlhbWwKPiA+ID4gPiAKPiA+ID4gPiBbIC4uLiBdCj4gPiA+ID4gCj4g
-PiA+ID4gPiBAQCAtODIsNiArOTEsOCBAQCBwcm9wZXJ0aWVzOgo+ID4gPiA+ID4gICAgICAgICAg
-ICAtIGRlc2NyaXB0aW9uOiBPZmZzZXQgb2YgQVhJIGNsb2NrIGNvbnRyb2xsZXIgTG93LVBvd2Vy
-IHJlcXVlc3QKPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnaXN0ZXIKPiA+
-ID4gPiA+ICAgICAgICAgICAgLSBkZXNjcmlwdGlvbjogT2Zmc2V0IG9mIHJlZ2lzdGVyIGNvbnRy
-b2xsaW5nIFRYL1JYIGNsb2NrIGRlbGF5Cj4gPiA+ID4gPiArICAgICAgICAgIC0gZGVzY3JpcHRp
-b246IE9wdGlvbmFsIG9mZnNldCBvZiByZWdpc3RlciBjb250cm9sbGluZyBUWEQgZGVsYXkKPiA+
-ID4gPiA+ICsgICAgICAgICAgLSBkZXNjcmlwdGlvbjogT3B0aW9uYWwgb2Zmc2V0IG9mIHJlZ2lz
-dGVyIGNvbnRyb2xsaW5nIFJYRCBkZWxheQo+ID4gPiA+IAo+ID4gPiA+IFdpbGwgdGhpcyBtYWtl
-IHRoZSB0d28gbmV3IG9mZnNldHMgc3RyaWN0bHkgcmVxdWlyZWQgaW5zdGVhZCBvZiBvcHRpb25h
-bD8KPiA+ID4gPiAKPiA+ID4gPiBJbiBkdC1zY2hlbWEsIHdoZW4gYW4gaXRlbXMgbGlzdCBkZWZp
-bmVzIGEgdHVwbGUsIG1pbkl0ZW1zIGltcGxpY2l0bHkKPiA+ID4gPiBkZWZhdWx0cyB0byB0aGUg
-dG90YWwgbnVtYmVyIG9mIGl0ZW1zIGluIHRoYXQgbGlzdC4gQnkgaW5jcmVhc2luZyB0aGUgbGlz
-dAo+ID4gPiA+IGZyb20gNCB0byA2IGl0ZW1zIHdpdGhvdXQgYWRkaW5nIGEgbWluSXRlbXM6IDQg
-Y29uc3RyYWludCB0byB0aGUgaW5uZXIgaXRlbXMKPiA+ID4gPiBsaXN0LCB3b24ndCB2YWxpZGF0
-aW9uIG5vdyBzdHJpY3RseSByZXF1aXJlIGV4YWN0bHkgNiBpdGVtcz8KPiA+ID4gPiAKPiA+ID4g
-PiBDb3VsZCB0aGlzIGNhdXNlIGR0X2JpbmRpbmdfY2hlY2sgdG8gZmFpbCBmb3IgZXhpc3Rpbmcg
-ZGV2aWNlIHRyZWVzIHRoYXQKPiA+ID4gPiBjb3JyZWN0bHkgc3BlY2lmeSBvbmx5IHRoZSBvcmln
-aW5hbCA0IGVsZW1lbnRzPwo+ID4gPiAKPiA+ID4gTG9va3MgbGlrZSBhIHZhbGlkIGNvbXBsYWlu
-dCB0byBtZS4KPiA+ID4gcHctYm90OiBjaGFuZ2VzLXJlcXVlc3RlZAo+ID4gPiAKPiA+IFlvdSdy
-ZSByaWdodCwgdGhpcyBpcyBhIHZhbGlkIGlzc3VlLgo+ID4gCj4gPiBJJ2xsIGZpeCBpdCBpbiB2
-MyBieSBhZGRpbmcgb25seSBtaW5JdGVtczogNCB0byBwcmVzZXJ2ZSBiYWNrd2FyZAo+ID4gY29t
-cGF0aWJpbGl0eSB3aXRoIGV4aXN0aW5nIDQtY2VsbCBkZXZpY2UgdHJlZXMuCj4gPiAKPiA+IFNo
-b3VsZCBJIGRyb3AgeW91ciBBY2tlZC1ieSBpbiB2MyBkdWUgdG8gdGhlIHNjaGVtYSBjaGFuZ2Us
-IG9yIHNob3VsZAo+ID4gaXQgYmUgcmV0YWluZWQ/Cj4gCj4gSnVzdCBmaXggaXQsIGFuZCB5b3Ug
-Y2FuIHJldGFpbi4KCkhpIENvbm9yLAoKSSBub3RpY2VkIHRoYXQgdGhlIHYyIHNlcmllcyBoYXMg
-YWxyZWFkeSBiZWVuIGFwcGxpZWQgdG8gbmV0LmdpdDoKaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
-bGttbC8xNzc5MzU4MjEyNjQuNDAxMzQ5OC40NjQ3Njc2NTIwNTUyODM5NzA3LmdpdC1wYXRjaHdv
-cmstbm90aWZ5QGtlcm5lbC5vcmcvCgpTaW5jZSB0aGUgbWlzc2luZyBtaW5JdGVtczogNCBicmVh
-a3MgYmFja3dhcmQgY29tcGF0aWJpbGl0eSBmb3IKZXhpc3RpbmcgNC1jZWxsIGRldmljZSB0cmVl
-cywgSSBwbGFuIHRvIHNlbmQgYSBuZXcgc2luZ2xlLXBhdGNoIHNlcmllcwp0YXJnZXRpbmcgbmV0
-IHRvIGFkZCB0aGUgbWlzc2luZyBjb25zdHJhaW50LgoKSnVzdCB3YW50ZWQgdG8gY29uZmlybSB0
-aGF0IHRoaXMgaXMgdGhlIHByZWZlcnJlZCBhcHByb2FjaC4KClRoYW5rcywKWmhpCg==
+Hi Conor,
+
+On 5/22/2026 3:54 AM, Conor Dooley wrote:
+> On Thu, May 21, 2026 at 04:08:26PM +0800, Damon Ding wrote:
+>> RK3588 eDP controller requires HCLK_VO1 to access the VO1 GRF
+>> registers and enable the video datapath.
+>>
+>> Previously, the clock was enabled implicitly via the 'rockchip,vo-grf'
+>> phandle reference, which allowed the eDP to work without explicitly
+>> managing the hclk_vo1 clock. However, this is not safe or explicit.
+>>
+>> To make the clock dependency explicit, enforce per-SoC clock-names
+>> requirements:
+>>   - RK3288: 2 clocks (dp, pclk)
+>>   - RK3399: 3 clocks (dp, pclk, grf)
+>>   - RK3588: 3 clocks (dp, pclk, hclk)
+>>
+>> Do not reuse the 'grf' clock name for RK3588 because it represents
+>> a different clock with distinct control logic:
+>> - The 'grf' clock is only for GRF register access and is toggled
+>>    dynamically during register access.
+>> - The 'hclk' clock controls both GRF access and video datapath
+>>    gating, and must remain enabled during probe.
+>>
+>> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v4:
+>> - Modify the commit msg.
+>>
+>> Changes in v5:
+>> - Enforce the correct third clock name on a per-compatible basis.
+>> - Modify the commit msg simultaneously.
+>>
+>> Changes in v6:
+>> - Expand more detail commit msg about using hclk instead of grf clock.
+>> ---
+>>   .../rockchip/rockchip,analogix-dp.yaml        | 37 +++++++++++++++++--
+>>   1 file changed, 33 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> index d99b23b88cc5..8001c1facf98 100644
+>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> @@ -23,10 +23,7 @@ properties:
+>>   
+>>     clock-names:
+>>       minItems: 2
+>> -    items:
+>> -      - const: dp
+>> -      - const: pclk
+>> -      - const: grf
+> 
+> Instead of removing this, you can make it
+> 
+> items:
+>   - const: dp
+>   - const pclk
+>   - enum:
+>       - grf
+>       - hclk
+> 
+>> +    maxItems: 3
+> 
+> And delete this.
+> 
+
+Oh I see, thanks for clarifying.
+
+The idea is to keep all valid clock names at the top level, and use only 
+minItems/maxItems in allOf to differentiate platforms.
+
+>>   
+>>     power-domains:
+>>       maxItems: 1
+>> @@ -60,6 +57,33 @@ required:
+>>   allOf:
+>>     - $ref: /schemas/display/bridge/analogix,dp.yaml#
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,rk3288-dp
+>> +    then:
+>> +      properties:
+>> +        clock-names:
+>> +          items:
+>> +            - const: dp
+>> +            - const: pclk
+> 
+> Then this becomes
+>    clock-names:
+>      maxItems: 2
+>    clocks:
+>      maxItems: 2
+> 
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,rk3399-edp
+>> +    then:
+>> +      properties:
+>> +        clock-names:
+>> +          items:
+>> +            - const: dp
+>> +            - const: pclk
+>> +            - const: grf
+> 
+> maybe this needs a minItems: 3? Depends on if the grf clock is
+> mandatory. Also probably needs a
+> clocks:
+>    minItems: 3
+> if that's the case.
+> 
+
+Yes, the minItems should be 3 for both clocks and clock-names.
+
+>> +
+>>     - if:
+>>         properties:
+>>           compatible:
+>> @@ -68,6 +92,11 @@ allOf:
+>>                 - rockchip,rk3588-edp
+>>       then:
+>>         properties:
+>> +        clock-names:
+>> +          items:
+>> +            - const: dp
+>> +            - const: pclk
+>> +            - const: hclk
+> 
+> And the same here as for the 3399.
+> 
+
+Will update in v7.
+
+Best regards,
+Damon
+
 
