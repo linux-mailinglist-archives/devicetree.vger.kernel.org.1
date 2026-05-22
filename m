@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-301635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301636-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFSEO0MgEGqjTwYAu9opvQ
-	(envelope-from <devicetree+bounces-301635-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 11:22:11 +0200
+	id gPI/L7QgEGqjTwYAu9opvQ
+	(envelope-from <devicetree+bounces-301636-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 11:24:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F735B10F1
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 11:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21FC05B117F
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 11:24:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5947E3039895
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 09:15:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CABC53054523
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 09:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D8C3ABD82;
-	Fri, 22 May 2026 09:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B383AEF3E;
+	Fri, 22 May 2026 09:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gc4Q/J9z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/NJF9xZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C5F37FF50;
-	Fri, 22 May 2026 09:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A70B3BADB7;
+	Fri, 22 May 2026 09:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779441327; cv=none; b=K6iDRr9tprlUxhQfvlbY8qkGn1nptVLur8ZsGEJn9Xd7sJyJD35QeoAcFEomgcrguIRl8qdw3Yoi5tALZ30f8lmjiFVAD6o3IoAQ9BjhJRcLAI2P1SzgI2vm+f+FSIdrS9c+bY1912WEXL/oSlAresvwCRGVTbFXFfnBGXPdBPs=
+	t=1779441411; cv=none; b=BBpsqjGrxvg4BJH2aeLP9PUlc7Zu2iiJBHiKH6T/5vX5h0Pq/W66rguXjWD2RLU4eFDL3KclWk98SRQZ9AgTO1BhhLfvX4pzCKGvT5VxXL9ykI42s0zOCJQudsKY7kb0ODUa9U738LgaTrKT6odgnSuEsoR6S9rvp/5Ege6TNYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779441327; c=relaxed/simple;
-	bh=w5qogauuNm/fdkjNFOc0iV0VJSvNJiFtE7nYKdFXIc8=;
+	s=arc-20240116; t=1779441411; c=relaxed/simple;
+	bh=n+spfNVVS+GI8264VRMvQxK9NQgTox7CsKfUOhYTb4c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nFV00QyXATWoVL4hLDasaXNcFXzMleYxMdYyswOnfOhIRBb3S83HCnCS6EkUxxtI2CO4GudJQCOUWbJxe9/JIsXfGGizygIyhZzbFCyEL+er6UKh8LDi75IEd7iqLrGiuBixm6Le9g5eaRLDeLXJBZGnlxEUiggtqkv5h3iE5tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gc4Q/J9z; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26B0B1F000E9;
-	Fri, 22 May 2026 09:15:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F1lziJZ7v9TsqKM0UbCCbEC5hME0LcMPjbpM9S2zOkt5X7B9Gf76IC3HFkfnXCR+3/ZqSAjNY68R+4lYqwbOD5m7y4HUu+EYyv/HhW5n39fkmrT9VpUrYvzk4+Jhx79Rc6AUrD5gFu/c//dReJNPRkDmDEy3qgnrJ7AmH3FH328=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/NJF9xZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BCD1F000E9;
+	Fri, 22 May 2026 09:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779441326;
-	bh=UBs4iXjj9qAsNBktQZSDX34OCyHEDuC98TxgTELiX4I=;
+	s=k20260515; t=1779441406;
+	bh=WzBfufw4gsYrpdbP3F7fvJ8me51W/Y5BIcajdiRbGaA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Gc4Q/J9zADjrGg9rwUe/kvb8qa/LcJOWHDg16r/uEVNqjfN0ORtJ0C4k3Veoohzjv
-	 3Zhbpobf3RZz5rpCRWpft+OifCEJz8H3hNRsiXGb1Kx+nQMlpu3BYDzlXsVBQTJOFm
-	 8fr8XGcyNJNa4mVkp+dZpgguXsXtgY50PpoVpGmczmbTxtQ7GR0TPFjCxhzksri45b
-	 ycc8+G+MrooeHqvWULe4hsMrSzP3TPbCSR3sth0cyzXYDJejvF0HOYHO2A9vFJnFjA
-	 wcXugwjdv84uxVwEdjLg0i54vygE3UKUSmKt3nXzNj4I/AoeXcrD5BpxavjD0L5Scu
-	 uBqiH63Q3KPpw==
-Message-ID: <04465873-17bd-4c84-ad51-29e648a88b4c@kernel.org>
-Date: Fri, 22 May 2026 11:15:22 +0200
+	b=B/NJF9xZWYqY981BOl9XMhydNqyZ58WfjpUI7KVuJ2oFkq/D6D1d8b6jcfvQtVcEO
+	 M7d48rvU7scHsCE23bvqZOTWII3DNH8EwAo1V4TFzLEcRmTM+lgZILr/vJh0hdsuXc
+	 b/bNeCJlL0elNxZwc5z24JGRRcuf+fGnGTEzBLQLfpRV/AP2qyGB3osg1aELGpiw4F
+	 DLYZiufH3bfm7JrarPG2nQS75EZW+QIFtDzCh41Gsn8+hJle97IXohHI/J2znmbtTa
+	 DjOVxfxhdr0tXv50SXAm8yu0nkigbgzBN5FfyRg6bLDwjXH7T3Sz0RegKoQBt/3/hq
+	 eJ0zQO7YV79yg==
+Message-ID: <7c458070-a56a-4d49-89fc-efeb388beffc@kernel.org>
+Date: Fri, 22 May 2026 11:16:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: firmware: qcom,scm: Add minidump SRAM
- property
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 02/10] dt-bindings: clock: Add Amlogic A9 PLL clock
+ controller
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>,
- Guru Das Srinagesh <linux@gurudas.dev>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260519171442.1582987-1-mukesh.ojha@oss.qualcomm.com>
- <20260519171442.1582987-2-mukesh.ojha@oss.qualcomm.com>
- <20260520-hopeful-beautiful-agama-ecbebf@quoll>
- <20260522075200.lzpj3cfqvrpzv7r3@hu-mojha-hyd.qualcomm.com>
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao
+ <xianwei.zhao@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+ <20260511-b4-a9_clk-v1-2-41cb4071b7c9@amlogic.com>
+ <20260515-subtle-sepia-tuatara-cfee3d@quoll>
+ <40e83bed-e7a0-4c66-806c-c2988c5d0f33@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,99 +115,111 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260522075200.lzpj3cfqvrpzv7r3@hu-mojha-hyd.qualcomm.com>
+In-Reply-To: <40e83bed-e7a0-4c66-806c-c2988c5d0f33@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gurudas.dev,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-301635-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-301636-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 82F735B10F1
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,amlogic.com:email,linaro.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url]
+X-Rspamd-Queue-Id: 21FC05B117F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 22/05/2026 09:52, Mukesh Ojha wrote:
-> On Wed, May 20, 2026 at 12:17:21PM +0200, Krzysztof Kozlowski wrote:
->> On Tue, May 19, 2026 at 10:44:39PM +0530, Mukesh Ojha wrote:
->>> On most Qualcomm SoCs where minidump is supported, a word in always-on
->>> SRAM is shared between the kernel and boot firmware. Before DDR is
->>> initialised on the warm reset following a crash, firmware reads this
->>> word to decide if minidump is enabled and collect a minidump and where
->>>  to deliver it (USB upload to a host, or save to local storage).
+On 22/05/2026 08:20, Jian Hu wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your review.
+> 
+> On 5/15/2026 4:09 PM, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On Mon, May 11, 2026 at 08:47:24PM +0800, Jian Hu wrote:
+>>> Add the PLL clock controller dt-bindings for the Amlogic A9 SoC family.
 >>>
->>> Add a 'sram' property to the SCM binding to describe a region in
->>> always-on SRAM where the minidump download destination value could be
->>> written. Boot firmware reads it before DDR is initialised on a warm
->>> reset to decide where to store the minidump either to host PC or to
->>> on device storage.
->>>
->>> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 >>> ---
->>>  .../devicetree/bindings/firmware/qcom,scm.yaml   | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
+>>>   .../bindings/clock/amlogic,a9-pll-clkc.yaml        | 110 +++++++++++++++++++++
+>>>   include/dt-bindings/clock/amlogic,a9-pll-clkc.h    |  55 +++++++++++
+>>>   2 files changed, 165 insertions(+)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>> index 25f62bacbc91..27422d00b8fc 100644
->>> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->>> @@ -129,6 +129,13 @@ properties:
->>>            - description: offset of the download mode control register
->>>      description: TCSR hardware block
->>>  
->>> +  sram:
->>> +    description:
->>> +      Phandle to a region in always-on SRAM used to store the download
->>> +      mode value for boot firmware to read before DDR is initialised on
->>> +      the next warm reset.
+>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml
+>>> new file mode 100644
+>>> index 000000000000..4ee6013ba1a1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml
+>>> @@ -0,0 +1,110 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (C) 2026 Amlogic, Inc. All rights reserved
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/amlogic,a9-pll-clkc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Amlogic A9 Series PLL Clock Controller
+>>> +
+>>> +maintainers:
+>>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>>> +  - Jian Hu <jian.hu@amlogic.com>
+>>> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - amlogic,a9-gp0-pll
+>>> +      - amlogic,a9-hifi0-pll
+>>> +      - amlogic,a9-hifi1-pll
+>>> +      - amlogic,a9-mclk0-pll
+>>> +      - amlogic,a9-mclk1-pll
+>>> +
+>>> +  reg:
 >>> +    maxItems: 1
 >>> +
->>>  allOf:
->>>    # Clocks
->>>    - if:
->>> @@ -250,3 +257,12 @@ examples:
->>>              clock-names = "core", "bus", "iface";
->>>          };
->>>      };
+>>> +  '#clock-cells':
+>>> +    const: 1
 >>> +
->>> +  - |
->>> +    firmware {
->>> +        scm {
->>> +            compatible = "qcom,scm-kaanapali", "qcom,scm";
->>
->> Incomplete, missing interrupts.
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: pll input oscillator gate
+>>> +      - description: fixed input clock source for mclk_sel_0
+>>> +      - description: u3p2pll input clock source for mclk_sel_0 (optional)
+>> Second clock is also optional. Drop "(optional)" comment, just
+>> confusing.
 > 
-> Interrupt number comes from firmware and has not even been described
-> statically for SCM  for any SoC and so I am not sure to include it in
-> the example. Perhaps I took the wrong example here and should have taken
-> some pre-Gunyah Qualcomm SoC.
+> 
+> GP0 has only one parent clock, while MCLK has three.
+> 
+> The second and third parent entries of GP0 are vacant,
+> 
+> so they need to be marked optional.
+> 
+> I will add the optional property for the second clock in the next revision.
 
-Then you do not need a new example. Difference in one property (reset
-cells) does not justify new example.
-
+How? Read the previous feedback...
 
 Best regards,
 Krzysztof
