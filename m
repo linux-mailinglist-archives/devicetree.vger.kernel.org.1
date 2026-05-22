@@ -1,124 +1,203 @@
-Return-Path: <devicetree+bounces-301565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301572-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGe1ELP3D2oTSAYAu9opvQ
-	(envelope-from <devicetree+bounces-301565-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:29:07 +0200
+	id sEKeDyv5D2pDSAYAu9opvQ
+	(envelope-from <devicetree+bounces-301572-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:35:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A808D5AF814
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:29:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1CA5AF911
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:35:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B9CE3301E991
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:29:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 036EE3016918
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 541D8352032;
-	Fri, 22 May 2026 06:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B9F358360;
+	Fri, 22 May 2026 06:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KI3QZYei"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ge2Vi3wu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m3281.qiye.163.com (mail-m3281.qiye.163.com [220.197.32.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B95285CBA;
-	Fri, 22 May 2026 06:29:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4A1344D9B;
+	Fri, 22 May 2026 06:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779431343; cv=none; b=T2tx811Y1u74zOf+yo+01elrYKtMR3usE4eC+AbMvuiGzmLhL11Rpq0Y9oF5vEk7TuHa/VAEm0pM1kOM7DRJc1aOF2MYZNa0XCNQ2IGfV+/A39oa/LU+rOOxnzVHGEN5e2C+8NyOU9F1HznnwvaBvOXZdZeR4eHeo1eTU6Gm/lw=
+	t=1779431680; cv=none; b=H0r5JY+eUuS+SSRANUWtjI6ZtyZv57enicEDMzRj32cFu/Tg2wqYw7h4BeKuP5HdbYmUrQOCg3yuvAcW9+f3GjUkgjVT88K051PmQsefSwufFHMXzVR1ba+kQYeK50+U+T74my9VZU8KPWrkWvN65RxjWTVMy1e/N8k9P6laKgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779431343; c=relaxed/simple;
-	bh=Dmr0uz19Y0qoRbRorMSjdHFLVpzXXBvzDias751tk4k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VayjP7ygjsbRHdnnQDNoL4B6JqoRKzry6QjbpAxZW6dMJ6wXQc6MreiRBUNEujLWISS29xU/5J3K2VS0aVn1vZGn0PIpcVH9MaDjZO2czGTGXtjwcevcNBhrc0P5LqtyWyYRZctf7GdxbZ3AHax4nij772pdnDpBR+Oo1IW4YlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KI3QZYei; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C4361F000E9;
-	Fri, 22 May 2026 06:29:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779431341;
-	bh=PmjyP9zj2TRo9gtgPsdexHG5HynloSoScMlQf40YaJY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=KI3QZYeiE9TCMyyUigCWbCUfk3/DstaIaKoxmks2HUx2Bd7yRR7dwzTc9KFBMgIN+
-	 k9DHIAtSLxqJWajQxVtXFwLC89fVtGstdf0vAqeqWAXH0WnscUvptZW+QpmbM0E5cu
-	 1aHVd1yCrA381MIEQHYAPl9ifKU4yI4HYOy8Fu60rMIROkPOWATYq6iFj8SXYV0E3t
-	 2Glnj1xPsUi7bInocOcypFujg0AoCB3QLzHWWi84uGt4SbYGS2IQM5kVfBtb/S0IbB
-	 75D1oWhEDKffLHcC32bslhn1gg2yn5JpTsxJN++kgq+SxKEVEi94d6UHEpo/9Z5n6Z
-	 WT0qdZhCu7f7g==
-Date: Fri, 22 May 2026 08:28:59 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd,sc2731: Include SC2730
- regulator bindings
-Message-ID: <20260522-sweet-magic-kelpie-d6daec@quoll>
-References: <20260521-sc2730-regulators-v4-0-1ac8a3b5ed82@abscue.de>
- <20260521-sc2730-regulators-v4-2-1ac8a3b5ed82@abscue.de>
+	s=arc-20240116; t=1779431680; c=relaxed/simple;
+	bh=G0w/yVt7IF2FrFurra7P0MfyhYxus9/u0UriauC9NPI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p2bT9T7IthUeXElD1Hm87lDn34RgfpJ64ZwuitHkl9En+z9YrfQDoyujtVS/N5g/TCg59PlY3YhApRYcOd/DR1FDQTl9qtqTsWTCPgRhXNZyPOeGC8LWr2zPSWi4cmrDLK5+gupv0T030L/w6E1HhqOA/NFcwu+fLw6VfOEz6k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Ge2Vi3wu; arc=none smtp.client-ip=220.197.32.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3f6a8ca63;
+	Fri, 22 May 2026 14:29:13 +0800 (GMT+08:00)
+Message-ID: <32192c5f-cc25-4a2d-ada6-53f28edb6cbb@rock-chips.com>
+Date: Fri, 22 May 2026 14:29:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260521-sc2730-regulators-v4-2-1ac8a3b5ed82@abscue.de>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 01/10] dt-bindings: display: rockchip: analogix-dp: Fix
+ hclk as third clock for RK3588
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260521080835.1362416-1-damon.ding@rock-chips.com>
+ <20260521080835.1362416-2-damon.ding@rock-chips.com>
+ <20260522-demonic-shaggy-wasp-a3f261@quoll>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260522-demonic-shaggy-wasp-a3f261@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e4e5fadf103a3kunmc160eef7c9158
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSx0dVh0aQ0sYS00ZSk5IHlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=Ge2Vi3wu2ir9dKSljIze3RU0HI4ooU+nbjYYN4NtZj672UOwX4tXHZTNQBewK8gB1YpVxTOQiJbWg6hCG5TY5DkfojEbr4ySYSz6NS7/DhB3GUh9wi1h+ORTDA9wJNNjA9a563651C6YEN+H6GxyCjSRhiEP3Y5LAchPv2jlqA0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=qMah8/jyNcPvAfqkwCIR/RWKyy2WqG3nOuBp+tSy2AA=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301565-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301572-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux.alibaba.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A808D5AF814
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
+X-Rspamd-Queue-Id: AE1CA5AF911
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 21, 2026 at 06:17:07PM +0200, Otto Pfl=C3=BCger wrote:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: sprd,sc2731
+Hi Krzysztof,
 
-And what about every other variant?
+On 5/22/2026 2:11 PM, Krzysztof Kozlowski wrote:
+> On Thu, May 21, 2026 at 04:08:26PM +0800, Damon Ding wrote:
+>> RK3588 eDP controller requires HCLK_VO1 to access the VO1 GRF
+>> registers and enable the video datapath.
+>>
+>> Previously, the clock was enabled implicitly via the 'rockchip,vo-grf'
+>> phandle reference, which allowed the eDP to work without explicitly
+>> managing the hclk_vo1 clock. However, this is not safe or explicit.
+>>
+>> To make the clock dependency explicit, enforce per-SoC clock-names
+>> requirements:
+>>   - RK3288: 2 clocks (dp, pclk)
+>>   - RK3399: 3 clocks (dp, pclk, grf)
+>>   - RK3588: 3 clocks (dp, pclk, hclk)
+>>
+>> Do not reuse the 'grf' clock name for RK3588 because it represents
+>> a different clock with distinct control logic:
+>> - The 'grf' clock is only for GRF register access and is toggled
+>>    dynamically during register access.
+>> - The 'hclk' clock controls both GRF access and video datapath
+>>    gating, and must remain enabled during probe.
+>>
+>> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v4:
+>> - Modify the commit msg.
+>>
+>> Changes in v5:
+>> - Enforce the correct third clock name on a per-compatible basis.
+>> - Modify the commit msg simultaneously.
+>>
+>> Changes in v6:
+>> - Expand more detail commit msg about using hclk instead of grf clock.
+>> ---
+>>   .../rockchip/rockchip,analogix-dp.yaml        | 37 +++++++++++++++++--
+>>   1 file changed, 33 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> index d99b23b88cc5..8001c1facf98 100644
+>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> @@ -23,10 +23,7 @@ properties:
+>>   
+>>     clock-names:
+>>       minItems: 2
+>> -    items:
+>> -      - const: dp
+>> -      - const: pclk
+>> -      - const: grf
+>> +    maxItems: 3
+>>   
+>>     power-domains:
+>>       maxItems: 1
+>> @@ -60,6 +57,33 @@ required:
+>>   allOf:
+>>     - $ref: /schemas/display/bridge/analogix,dp.yaml#
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - rockchip,rk3288-dp
+>> +    then:
+>> +      properties:
+>> +        clock-names:
+>> +          items:
+>> +            - const: dp
+>> +            - const: pclk
+> 
+> Why aren't there constraints for clocks? They always must come together.
+> 
+> Please open any other binding and look how it is done there.
+> 
+> 
 
-> +    then:
-> +      properties:
-> +        regulators:
-> +          $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
-> +
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
->=20
-> --=20
-> 2.51.0
->=20
+Yes, as Conor's suggestion, the right way is to keep all valid clock 
+names at the top level, and use only minItems/maxItems in allOf to 
+differentiate clocks and clock-names of platforms.
+
+I will update this in next version.
+
+Best regards,
+Damon
+
 
