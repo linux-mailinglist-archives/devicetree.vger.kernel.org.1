@@ -1,195 +1,172 @@
-Return-Path: <devicetree+bounces-301605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKupDIMMEGpqSwYAu9opvQ
-	(envelope-from <devicetree+bounces-301605-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 09:57:55 +0200
+	id +CiBMEoNEGpqSwYAu9opvQ
+	(envelope-from <devicetree+bounces-301607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:01:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875D95B047C
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 09:57:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E615B04BE
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B39F3002B4D
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 07:52:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B7DDC304502B
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 07:57:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EA739061D;
-	Fri, 22 May 2026 07:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C48D3905F8;
+	Fri, 22 May 2026 07:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KOvAsNJl"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="T70v+PIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5613358360
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 07:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502E428469B;
+	Fri, 22 May 2026 07:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779436323; cv=none; b=TcICGjMH079LIglNZ1r9GT9TxrjycJy0sp0qX4z6+QamvKOFAzaPkRcEsHFFenexJGUtOz9GUU0BMPL1kq1pwUKoZKkXT3YoYscxh/PXmThzufJGhrJPTIce7K4qQzy6DF1oZhdKP9FJV4es4Qe7sbVOv1fPFicQIXWPF1Fy5mY=
+	t=1779436634; cv=none; b=teXzYXa4pPoS9NwBcwB2VsKyxu483YQDOTyEOkflZzl9C5Xr1BNjAhK6dwsOfFF/sE1mjC2aJ/D+wEfZjM4XckKA5twCvgMzB8Hy+irmGC4d07CuNQ2fXIJQ/+7TMEqKT/qoQ3mx5m2EHQw2/RgC/br5qCywf+pagmyspNljPp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779436323; c=relaxed/simple;
-	bh=JuZoznb9TEKnrlZGjuJ+jtBySPoG6mHnrpkZSDLC54E=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=mp5lo+QCiKkLY8FIRduq+6K9dqhTssdJwXRvFoed75qHPQrItgPu9AH36zTaZHdsKNIE2NRD4P7leMwdokehXjOK+R0C9EIMecjylmcDAH9VFj/aqDBkloGfhn29JLTUAmes1ZXJ0Agl7g9aIAj43MowE7pRGeAqbrQM5jx3GeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KOvAsNJl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC7A41F000E9;
-	Fri, 22 May 2026 07:52:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779436321;
-	bh=f144jHQmGJM1FIMfpf5hNTNtM1jWZSUH6xtaXs7pJPc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=KOvAsNJloftUb9g/RR1rr8pnp8JwS4/ecySTV5nJUX5WR2jfevIWK4nNGNgEvyH6n
-	 a7P7KM23aMyEubFLnRKG/xWAl3h3ctM3gCJ73WvyN+FlqjPjTSXq6dl7O1DrLFXvCA
-	 EkGf+oWmQTpVqd2HB+YB/IiYVNtR645g/XPxQvn403JXjC8T+G/cX51fhkVuNUxRVb
-	 GrFuqizOUHL2TwRZKsD86+5PpVM6podNrtEcjprIdVFtFqDkeTw1QbMpknLWh4nmQd
-	 2yepp4ZlQXodFW8GzkwJ/uQHdVOYnuTrNBlzagjyu9kWrghOQUW97bzZ907TJwFNqd
-	 Iwl8RknsUg8Qw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable
- GPU and display pipeline
-Reply-To: sashiko-reviews@lists.linux.dev
-To: =?utf-8?b?R3JhaGFtIE8nQ29ubm9y?= <graham.oconnor@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260522060645.4399-6-graham.oconnor@gmail.com>
-References: <20260522060645.4399-6-graham.oconnor@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 07:52:00 +0000
-Message-Id: <20260522075200.EC7A41F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779436634; c=relaxed/simple;
+	bh=BwtchG0ETEQSFHsYacF7gVfctprh8+30FR+g52KfqWc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aHLMxjjHPhaMf2JNqHbiI86/tHNnYm5H//scczIEsFqbLD+S1HVN7mJeRQ0NPXslietBmiCZK5MH2cPJoVbAmmGIKC7ai4RnyHuJuTrp8trHv80hsYtWTSuY9BgypWX13300o2FvMz3H3Ov20Gp7LTiDRKtjp8P1vsTo7uh8zSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=T70v+PIX; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=OPHAwVgQXavr8pHEdeyqFVjyPUU2VdkLtJW8RyVr+d4=; b=T70v+PIXxZQunMW6eL2mevEWRM
+	+Q5DAXEGLo57DQ69vQOtWY09wRZBWv/2Jheeh2uboGoCI1Hfnh/58qZhGi8+tEb/nmohh8IGYX6I5
+	JLM/kiuQDqe90/Zb6ZtdGwGvBMQPMCc74LVVjbXwpdafuBP84W6XaN18xZqBJlgJFQnY2Wsx1B9Mq
+	OJkrNYaJjd36Ilj/bkUnIG8bbWkkzv13TTfm9ivgOlG2EMC3hDiWOctLTRPjOwhh07X5TV6Htl49g
+	Ih4emmADNhldjxhNrz9CWmgteYwN6oAPZ1EQwSPjj0Yqw0Wpl4I1KXC6jSr/GltBRJN5Q+C+7ogz3
+	61mKbS1g==;
+Received: from sslproxy05.your-server.de ([78.46.172.2])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wQKkn-0000Yj-2Z;
+	Fri, 22 May 2026 09:57:09 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wQKkm-0005QG-1J;
+	Fri, 22 May 2026 09:57:09 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Paul Gerber <paul.gerber@tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	linux-renesas-soc@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm: fsl: add TQMa8MPxS board
+Date: Fri, 22 May 2026 09:56:54 +0200
+Message-ID: <20260522075656.841745-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	TO_EXCESS_BASE64(1.50)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/28008/Fri May 22 08:24:46 2026)
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301605-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-301607-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[microchip.com:query timed out,tq-group.com:query timed out];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,glider.be];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-0.911];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,0.0.0.1:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,0.0.0.0:email]
-X-Rspamd-Queue-Id: 875D95B047C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email]
+X-Rspamd-Queue-Id: 60E615B04BE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] The `hdmi-bridge` node misuses the `dp-connector` compatible strin=
-g, violating device tree schemas and breaking the DRM bridge chain.
-- [High] The device tree references an undefined label `usb_dp_qmpphy_out_d=
-p` and defines a unidirectional OF graph connection, causing a DTC compilat=
-ion failure.
-- [Medium] The DP HPD pinctrl state is incorrectly assigned to the passive =
-bridge node instead of the SoC's active DP controller node.
---
+From: Paul Gerber <paul.gerber@tq-group.com>
 
-commit 92168a3bddd844517ae0cec7b663112085ad6837
-Author: Graham O'Connor <graham.oconnor@gmail.com>
+TQMa8MPxS is a SOM family using NXP i.MX8MP CPU family.
+MB-SMARC-2 is an evaluation mainbord for this SOM
 
-arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable GPU and display pipeline
+The SOM needs a mainboard, therefore we provide two compatibles here:
 
-Enable the GPU, GMU, dispcc, and MDSS subsystems, and wire up the DisplayPo=
-rt
-output pipeline through a passive RA620 DP-to-HDMI bridge. Disable unused
-DSI and eDP interfaces.
+"tq,imx8mp-<SOM>" for the module and
+"tq,imx8mp-<SOM>-<SBC>"
 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch=
-/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-> index 4003837ad5756..e8ad6e666f5fd 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+Signed-off-by: Paul Gerber <paul.gerber@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes in v3:
+* None
 
-[ ... ]
+ Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-> +/ {
-> +	hdmi-bridge {
-> +		compatible =3D "dp-connector";
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 4d167cf392830..67437c8d669dd 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1310,6 +1310,18 @@ properties:
+           - const: tq,imx8mp-tqma8mpql            # TQ-Systems GmbH i.MX8MP TQMa8MPQL SOM
+           - const: fsl,imx8mp
+ 
++      - description:
++          TQMa8MPxS is a series of SOM featuring NXP i.MX8MP system-on-chip
++          variants. It has the SMARC-2.0 form factor and is designed to be
++          placed on different carrier boards. All CPU variants use the same
++          device tree hence only one compatible is needed. MB-SMARC-2 is a
++          carrier reference design.
++        items:
++          - enum:
++              - tq,imx8mp-tqma8mpqs-mb-smarc-2    # TQ-Systems GmbH i.MX8MP TQMa8MPQS SOM on MB-SMARC-2
++          - const: tq,imx8mp-tqma8mpqs            # TQ-Systems GmbH i.MX8MP TQMa8MPQS SOM
++          - const: fsl,imx8mp
++
+       - description: Variscite VAR-SOM-MX8M Plus based boards
+         items:
+           - const: variscite,var-som-mx8mp-symphony
+-- 
+2.43.0
 
-[Severity: High]
-Does using the dp-connector compatible string here break the DRM bridge
-chain?
-
-The dp-connector binding designates port@1 exclusively for AUX signals, not
-downstream video bridging. The Linux display-connector DRM driver acts as a
-terminal endpoint and only parses port@0 for its upstream connection, never
-searching for a downstream bridge.
-
-Because of this, it looks like the DRM pipeline will terminate prematurely =
-at
-the hdmi-bridge, exposing a DisplayPort connector to userspace instead of an
-HDMI connector, and leaving the hdmi-connector node completely orphaned.
-
-Should this use compatible =3D "radxa,ra620" instead, which the simple-brid=
-ge
-driver supports for bridging video to an output port?
-
-> +		label =3D "hdmi";
-> +		type =3D "full-size";
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&dp_hot_plug_det>;
-
-[Severity: Medium]
-Should this pinctrl state be requested by the &mdss_dp node instead of the
-passive bridge node?
-
-The dp_hot_plug_det configuration sets GPIO47 to the dp_hot alternate
-function, which natively routes the physical hardware signal directly to the
-SoC's DP controller block (mdss_dp).
-
-Tying the SoC's hardware pin multiplexing to a downstream connector seems to
-bypass the DP driver's ability to correctly manage the pin's state during
-suspend and resume cycles.
-
-> +		ports {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +			port@0 {
-> +				reg =3D <0>;
-> +				hdmi_bridge_in: endpoint {
-> +					remote-endpoint =3D <&usb_dp_qmpphy_out_dp>;
-
-[Severity: High]
-Does referencing the &usb_dp_qmpphy_out_dp label here cause a dtc compilati=
-on
-failure?
-
-The label usb_dp_qmpphy_out_dp does not appear to be defined anywhere in the
-included device trees at this commit, which will cause dtc to fail with an
-undefined reference error. Furthermore, the reverse link from the PHY's
-output endpoint back to the bridge's input is missing.
-
-While this build regression is fixed later in the patch series by commit
-"arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable USB3 SuperSpeed", each
-individual patch in a series must compile to maintain bisectability.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522060645.4399=
--1-graham.oconnor@gmail.com?part=3D5
 
