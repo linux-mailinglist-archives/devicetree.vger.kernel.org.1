@@ -1,132 +1,173 @@
-Return-Path: <devicetree+bounces-301821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301823-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJDLOQlXEGopWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:15:53 +0200
+	id mJWCDnhXEGocWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301823-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:17:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B195B4EFD
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF595B4F75
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:17:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 10ADA30774E6
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:56:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DE12D3057B5F
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DBBE38237D;
-	Fri, 22 May 2026 12:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBE3390C9F;
+	Fri, 22 May 2026 13:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="deAIec7G"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="LZNgU1Uw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B2F370AF3;
-	Fri, 22 May 2026 12:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779454586; cv=none; b=Xd6Lu4fB6DoNjhycw7Lu3AJB+B5cx8nWjujxmssz9oX7UWMR0ukVXF3vhDtzq4U2lI1KYksH/3qVSft3LH+GpI8LS0CffrNmJ857Ot81UNll2pCFj3Jvs34ykX8E2H/Q5qO613dlQYktjqmMnyOinKPXzq78nf3Hv6LOmtiddbg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779454586; c=relaxed/simple;
-	bh=NPY6tTvJdf8czIhinVg83cy4u3+V1kPkXcLSPSj3bD8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GwRdH+z1VOQLzUSEnh5UJ231jxXCj+/09EmDvrAm5nCcXOQTySqNqsdKuA0UfUJ5PyRUQMSg8HmKz1bbczjkd4/zZYrj8NFsZJe0R2NHXne7cEH1LleSaEDzmnUPhl5rG8RA+PtHCuSAF2I4hbFgSopBiMLAu/Z596gKMmoiQl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=deAIec7G; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34FDE1F000E9;
-	Fri, 22 May 2026 12:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779454584;
-	bh=g0tr6Yh3FKk7hSqo6GTr+UUjL2W1eIwrk5OKxZH/yYs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=deAIec7GpPREeK/GUwRUyyCY1lyrGVojPGhtgWU0Mk1e5C9a5j5bBsRhDOQlI4tg/
-	 uNPVd9ZpQ5dHPOtitkLMpD4Prs8tRSQ6hM5NGavPYQl4xpu71092rp4S2dAJylHmCq
-	 4Y2VvLbNjUM4ZnMJFn7wpBrzeGD2t1TMsaH+Q/l2ZexXo+cFvkld8/U2ztjZWMndZK
-	 3geG3IbCayliPcUSADyKOiGhLiYlIMd4SJennWsQ3xt8IAiO8WpcE8vBUY5Zi4iIv0
-	 jlfSFVw8be35bpLnMeGbjvU3l/WvkzJ5bc2cOOMJCfB1e+1bAXgLkqQROJWOurlnP7
-	 zX8hzKWeJXvNA==
-Date: Fri, 22 May 2026 13:56:14 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Joshua Crofts <joshua.crofts1@gmail.com>
-Cc: Liviu Stan <liviu.stan@analog.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Antoniu
- Miclaus <antoniu.miclaus@analog.com>, Francesco Lavra
- <flavra@baylibre.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux@analog.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/8] iio: temperature: ltc2983: Fix macro
- parenthesization and rename
-Message-ID: <20260522135614.484c1882@jic23-huawei>
-In-Reply-To: <CALoEA-xwm4bM+qp0jHu6SxcBz98y9v4jvdiJMdWWADSJBUdy=w@mail.gmail.com>
-References: <20260521164323.770626-1-liviu.stan@analog.com>
-	<20260521164323.770626-2-liviu.stan@analog.com>
-	<CALoEA-xwm4bM+qp0jHu6SxcBz98y9v4jvdiJMdWWADSJBUdy=w@mail.gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FD738B122;
+	Fri, 22 May 2026 13:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779454856; cv=pass; b=Q47HyvoQ83xIojeBgvvw5paltdSKsMiATp3K8DUwb4grOlIXljS7f34VNpsZFx//QyTkONiSXqZEuSVtcjiVFLmBAGHM/ZhD3Z8S3A7tlZoVMpHLgsRcKLMDvNVpmlQ0BKVYCYOOAUblXrdmhNYHdhXets3B/dnXijVIqCgAmR4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779454856; c=relaxed/simple;
+	bh=2a2Ues8oit5F0hamVRvNnhy1TDmBusJ+DQa9IX5JqNQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZMBEKrB4Ldx0xeLTWQC+YpK4oXSfU2Bl4yMjNX1pSOYD/v175fJpnQxhKz3wZCNNxbg4vrXGOi/qO5wpFCk9XSOmed13Mft/7/xYs36LQvCwoFGRWrdDOJUF229y8GUZRg94YqH9M9QfAMMi2sFa7alVd9v2b6z9ojq1owWKvno=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=LZNgU1Uw; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1779454836; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mXHalvZ2De87nqdd+Qu9KejK7X7MjBsUkinnEita0NpFch6ur7DdcDRoqF5KC5Fj2Omk3eO8X5XSy6IlZ6FHTc1qMRoWoKvCSOM2xNmqSoXRG9Z151NwXa/ZrEkNpJxzXONpLjgP5qtYE5n+/WFiun4t0GzFG9TtpQus8BHteIM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1779454836; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=JX4/HzHgr9Ln2K8EGkhp70E2oDhc6Dp0qS3CpdjxcfQ=; 
+	b=JEB+Q9kwAq8S+OunkVsGFsekfZ9tc+ZY9ZUMJmV+1qFYAqVV40vfTA/POq7At6oj0T26IfumIjLbAg5GyJtMeJbZPE+BTP4wW/psuUaiygKGa+C7vmIA7SbuyIZqA2UqH+8eKTWPuAyyt8LElyvywS9ai0Em995/TpUUQI5qzu4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779454836;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID:Reply-To;
+	bh=JX4/HzHgr9Ln2K8EGkhp70E2oDhc6Dp0qS3CpdjxcfQ=;
+	b=LZNgU1UwZJKElt8ZqwmVKwQcyAxKscQZEb7E8wVgPi/WkeBfHNVYQnTs6MOWtlOc
+	BAI7vOXBBOJLSH2zzdyPXRvm8cGL1feHbggGYDzMDI4ECTwwOOE9R1hw18GPbhSWHrc
+	UKP6Xgu8diFjXdUgXtSu5j6JyS9wyLvvbZsq5C2Y=
+Received: by mx.zohomail.com with SMTPS id 1779454831935958.224223537089;
+	Fri, 22 May 2026 06:00:31 -0700 (PDT)
+From: Xukai Wang <kingxukai@zohomail.com>
+To: Conor Dooley <conor.dooley@microchip.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
+	Xukai Wang <kingxukai@zohomail.com>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Troy Mitchell <TroyMitchell988@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	kernel test robot <lkp@intel.com>
+Subject: [PATCH] clk: canaan: k230: Fix sparse warnings reported by LKP
+Date: Fri, 22 May 2026 20:59:12 +0800
+Message-Id: <dee4605ca30f9bbd55ccb4fcce9590ceee1fa10b.1779453284.git.kingxukai@zohomail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260522-eligible-vivacious-3ce9bc30dd53@wendy>
+References: <20260522-eligible-vivacious-3ce9bc30dd53@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+Content-Transfer-Encoding: 8bit
+Feedback-ID: zu08011227c6335346a63148b9f6cec2f70000b3c03c513edafb3405058bc9ea8ac70ec1c949f9169db7a4fa:ZohoMail
+X-Zoho-CM-AccountID: 2ee5dd3c83366259b2ba1e9826250ffebed1ef2dd213857d649ad25aba73b429
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [6.34 / 15.00];
+	SEM_URIBL(3.50)[zohomail.com:email,zohomail.com:dkim];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-301823-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-301821-lists,devicetree=lfdr.de];
+	GREYLIST(0.00)[pass,meta];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	R_DKIM_ALLOW(0.00)[zohomail.com:s=zm2022];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,sifive.com,gmail.com,kernel.org,intel.com];
+	DMARC_POLICY_ALLOW(0.00)[zohomail.com,reject];
+	DKIM_TRACE(0.00)[zohomail.com:+];
+	NEURAL_HAM(-0.00)[-0.906];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c09:e001:a7::/64:c];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 97B195B4EFD
-X-Rspamd-Action: no action
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: DDF595B4F75
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
+X-Spam: Yes
 
-On Fri, 22 May 2026 11:11:59 +0200
-Joshua Crofts <joshua.crofts1@gmail.com> wrote:
+Fix all sparse warnings detected during LKP randconfig testing:
+- Replace plain integer 0 with NULL.
+- Add static modifier to k230_plls and k230_pll_divs.
 
-> On Thu, 21 May 2026 at 19:19, Liviu Stan <liviu.stan@analog.com> wrote:
-> >
-> > Wrap the 'chan' parameter in LTC2983_CHAN_START_ADDR() and
-> > LTC2983_CHAN_RES_ADDR() with parentheses to prevent potential
-> > macro argument expansion issues. Also rename LTC2983_CHAN_START_ADDR
-> > to LTC2983_CHAN_ASSIGN_ADDR and LTC2983_CHAN_RES_ADDR to
-> > LTC2983_RESULT_ADDR, to better reflect the datasheet names and avoid
-> > them being confused as related.
-> >
-> > Signed-off-by: Liviu Stan <liviu.stan@analog.com>
-> > ---  
-> 
-> Reviewed-by: Joshua Crofts <joshua.crofts1@gmail.com>
-> 
-I had a quick datasheet dive. The naming in there is rather
-messy and to me seems inconsistent but these two names are indeed
-used at least sometimes.  Along with conversion result start address
-(which indexed by conversion channel)
-(table 8).
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202605220724.j4ZeM3KI-lkp@intel.com/
+Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+---
+ drivers/clk/clk-k230.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-So whilst I don't have a strong preference in favour of this rename
-I guess it's fine.
-
-Jonathan
+diff --git a/drivers/clk/clk-k230.c b/drivers/clk/clk-k230.c
+index d883a1e1118e..cfc437038e4e 100644
+--- a/drivers/clk/clk-k230.c
++++ b/drivers/clk/clk-k230.c
+@@ -270,12 +270,12 @@ static const struct clk_ops k230_clk_ops_mul_div = {
+ 	.recalc_rate	= k230_clk_get_rate_mul_div,
+ };
+ 
+-K230_CLK_PLL_FORMAT(pll0, 0, CLK_IS_CRITICAL, 0);
+-K230_CLK_PLL_FORMAT(pll1, 1, CLK_IS_CRITICAL, 0);
+-K230_CLK_PLL_FORMAT(pll2, 2, CLK_IS_CRITICAL, 0);
+-K230_CLK_PLL_FORMAT(pll3, 3, CLK_IS_CRITICAL, 0);
++K230_CLK_PLL_FORMAT(pll0, 0, CLK_IS_CRITICAL, NULL);
++K230_CLK_PLL_FORMAT(pll1, 1, CLK_IS_CRITICAL, NULL);
++K230_CLK_PLL_FORMAT(pll2, 2, CLK_IS_CRITICAL, NULL);
++K230_CLK_PLL_FORMAT(pll3, 3, CLK_IS_CRITICAL, NULL);
+ 
+-struct k230_pll *k230_plls[] = {
++static struct k230_pll *k230_plls[] = {
+ 	&pll0,
+ 	&pll1,
+ 	&pll2,
+@@ -296,7 +296,7 @@ K230_CLK_FIXED_FACTOR_FORMAT(pll3_div2, 1, 2, 0, &pll3.hw);
+ K230_CLK_FIXED_FACTOR_FORMAT(pll3_div3, 1, 3, 0, &pll3.hw);
+ K230_CLK_FIXED_FACTOR_FORMAT(pll3_div4, 1, 4, 0, &pll3.hw);
+ 
+-struct clk_fixed_factor *k230_pll_divs[] = {
++static struct clk_fixed_factor *k230_pll_divs[] = {
+ 	&pll0_div2,
+ 	&pll0_div3,
+ 	&pll0_div4,
+-- 
+2.34.1
 
 
