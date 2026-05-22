@@ -1,175 +1,233 @@
-Return-Path: <devicetree+bounces-301948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301951-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIHVNhiBEGrdXwYAu9opvQ
-	(envelope-from <devicetree+bounces-301948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 18:15:20 +0200
+	id oGmcIpqAEGrdXwYAu9opvQ
+	(envelope-from <devicetree+bounces-301951-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 18:13:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9267D5B7762
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 18:15:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9605B76F9
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 18:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E35123028E8D
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 16:10:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 66538302127B
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 16:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2073837F8D5;
-	Fri, 22 May 2026 16:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62DC34218AC;
+	Fri, 22 May 2026 16:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FmHS8Wnx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DZpwqerC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB2A25B0B8;
-	Fri, 22 May 2026 16:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD1F2E0B5C
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 16:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779466254; cv=none; b=SNfcWmiEbUHDPYuHUhmu0rTte/QyO67Mx7Sz4XfZwc1id+bCU9Ul7TONr6zLEQi304ZcyNauoI189eXmIzYTe8RCcI07ibyw1Cei85Y1CqWjHUhvaWBh07Ei3XOLRqfZG437UsebZJTGDOAaFNinViSPuDrNyHyLyIH0NyF8/GE=
+	t=1779466303; cv=none; b=ZmHjF3kIdEsScSJqr6Ot8kGtkEJ0F3zzKr6B5rJ0qMLM0cxHKzZkocgyA3bfqbiGhcEcUmAjxtC57umBsO9w5pyuUbSXVu+JYxN7iNLXxn4s2qghga4bI9w65KEVvl4IeVenm/1VHWvTbXjqfvowMAiSXP6zWDA+aSjNKxuxcL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779466254; c=relaxed/simple;
-	bh=kZ3uO1OHIz+Oyc/syQrZykUktdTCHmv/DqOGbsRZOt8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=owrW92tG5uebI3cNOW/RefpFXpfb8gMzIqxvGiL9XN5k3yude/GH41xtrh2myXTlbGl/rnD5NlYmlCW0m/5saHBMYWeCmM6enfyy8FlG8Y75tOtVvhkPFDLLLQKHKlCYIqCn8stF248o42KF637/4QVR3ZZ9K6JsPUMC2tuwtmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FmHS8Wnx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7640A1F000E9;
-	Fri, 22 May 2026 16:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779466252;
-	bh=iN2cfL6+N15d2D6sIkMUpDrp0tb/pVV8+rm64soeidE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=FmHS8Wnx1VnRCrPMVSXHMlMIO+ddJST6PH78ZrK7nxOeGFaKp8blaWNBQTBPguoig
-	 Rlipz00S76y23y8D2qK/jmhbBSeXjbj07cPTvAAKEAxsUPZahQ/0dxJCvt2lGh8hlP
-	 xQypYPlyQ0c2odkus8Fs1BNu1q18NiwFHeJISIecxj9rEULxAdBGgZ62RW8yl0uYMo
-	 ZkyoBck/SgL2vqibbuiGP1ib5+u77WAdCRx76RmfR1E/d2zjfUhneGWvoe20IDIrpW
-	 1C2Q8dMHxVv4BHD0rmkKeI2OE08wOllY9cNeI4OR8BF7tRZYGooPFsty5Zi0PV0Xog
-	 A2uQVxgNes+OQ==
-Date: Fri, 22 May 2026 17:10:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
+	s=arc-20240116; t=1779466303; c=relaxed/simple;
+	bh=Q0piT9wV2DARExCTZUIEMPOKXTz7h/HQugD3Y50M72g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rSIkbV0jfPOlfZvkTDnAFtbnIEZL6tdJdWbphf/9tSmCIaJM2qyWZCBaVZj8O40KpZNvbGy2SmqBfGj1W1tg0l7r4cvc4oNcWNfaby7debtU5/bPj44Rlc2kX9QcARYyov8YGfR5pWgNowsu1MuGRShil7VNY2OfAp6ddGx8dEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DZpwqerC; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4891b0786beso51626075e9.1
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 09:11:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779466300; x=1780071100; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QPGVYKqn3FQ80LKzOq7xEivdqWu7ECBxaeXMtXQgpig=;
+        b=DZpwqerCtlLofI2RVrpPVG6z95FTRxcmPwK/Rh7m+vmIvLPG/LllT9rFbRvWZ/p9mP
+         nGoaVLGsuHeOY6wvJLVaiM4mNGk/TL3dKtdjPfuXdoJwdEhDgVmXf9truOUwG6EbmTWe
+         /NNiAZ6hv2DYrDgaXl9p1MGgGfZeF4TWIbsqbuVFr8h5RB7xUidX6fL7YxvmcVu56xc+
+         hG33GnLrV/frLtxryGHLoZGeuxGn0cO1OJl4FNGaTEkHYjEcAWA7ASLRnHR+AgNmG5mI
+         s5RF9gOU9e72kyzNosOZ7O7RWIkg23KqwfR01KuqqqkhE4lYd+FmIPfMz0i4uy/ZTf0c
+         wLKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779466300; x=1780071100;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QPGVYKqn3FQ80LKzOq7xEivdqWu7ECBxaeXMtXQgpig=;
+        b=fxEwzJu8Yz/Ha45NNb5FHnrMbzXa6n3HmFABYvK9tJQZC2PMjItfj9n4HheNpC+7Am
+         1YeLxxGcpnCD685Wkjjzd4MrNslhSNBqmJl0sXR1sZfv+0EVTZhw64jRK3ANRUqWoY2z
+         2c9B9GqgXws/rIRCL4GpQVY+0beuozvlt8WLZHb2QDVVudyo4wRMMaFE/NVljWZEK431
+         UfQGW2Tzdkg39L7HKskGvNs9reoPBLej/2t1tDd61hkYNkUD4yHgOZYLFLMbE4HnE0On
+         2TnVT+P6p7ZyW7IP2MwmahA43jcGXu2hUORG69vB+OghYA8sQpdzsBIzTVfteodKZP4b
+         2IgA==
+X-Forwarded-Encrypted: i=1; AFNElJ+TvnvS1R6pLZa3iE74hZtTokYQsWx9zwqIPwNMv3Bo4SonoFKuifkfyv09QRDXF2N4dYF/BFzXcCwI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzqg2dUorNjPIwGcCl0XGyxF/+fLXg+SL6hqpHYFXwmvraOLUVg
+	Gl5LypBcImUIPiPuy4zeDen/+pGavB33etB/pkDw8tDDTnyLX5fs4WM+
+X-Gm-Gg: Acq92OGpfi/pgc5axOrknNjsvqOEBYTw0f6D07UrYUvSmwW3laVAc/qDSe2kgRp7IZz
+	QcvEH0DI5WtFgx/DaVBpcSLy5msx6QKB1XpczYL/Qz3MalYE7iUX1RbUxZjlIVYlOumy8XuXj0N
+	jLM5gG3gI/yL9+Ama+3v2rGlwKkNNroz9DgF2xV4xOVPtBZiETtku2QjZs8Kagd+GplIDB6BQ/6
+	xBfPH6SQUzs3BgCry4eN+xXQaddHHOmqRqJG/cufpZtmUN78RYx3sYoxTDxpxkAG7TxoFmwZzTM
+	HC7Uly7nH8vMqZh6LnlmwsmLDhVVEOrD3WLzgAteeJohdvjJgwHikyPFOEx/q/mNa+22GU60bqD
+	CD+S3BSAnSeEivpb0mhnreG/WQvLf/qzgPzWiFPTd4MQ/WPsic+wn67jOgRSkt/hnn/MOCGYiA3
+	rA0KrMJXRjJ9tG/VOmQTp+2uwGP/e2YMJN6QCTvvnMIQ==
+X-Received: by 2002:a05:600c:1c0a:b0:490:402f:324d with SMTP id 5b1f17b1804b1-490428e03admr60430125e9.29.1779466299935;
+        Fri, 22 May 2026 09:11:39 -0700 (PDT)
+Received: from vitor-nb (dsl-113-208.bl27.telepac.pt. [176.79.113.208])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0b9asm51042755e9.11.2026.05.22.09.11.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 May 2026 09:11:39 -0700 (PDT)
+From: Vitor Soares <ivitro@gmail.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux@analog.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ad4080: add AD4884 support
-Message-ID: <20260522-oyster-uneatable-e96b9521db20@spud>
-References: <20260522115337.18188-1-antoniu.miclaus@analog.com>
- <20260522115337.18188-2-antoniu.miclaus@analog.com>
- <20260522133228.06521c5d@jic23-huawei>
+	Conor Dooley <conor+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Thierry Reding <thierry.reding@gmail.com>
+Cc: Vitor Soares <vitor.soares@toradex.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 00/11] arm64: dts: ti: k3-am62-verdin: Add display and peripheral overlays
+Date: Fri, 22 May 2026 17:11:04 +0100
+Message-ID: <20260522161105.277519-13-ivitro@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lZtEreREFkGJ1kwy"
-Content-Disposition: inline
-In-Reply-To: <20260522133228.06521c5d@jic23-huawei>
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301948-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-301951-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[ideasonboard.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ti.com,bp.renesas.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.983];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 9267D5B7762
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: CC9605B76F9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+From: Vitor Soares <vitor.soares@toradex.com>
 
---lZtEreREFkGJ1kwy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds device tree overlays, expanding the hardware support for
+the Toradex Verdin AM62 SoM. The overlays target displays, cameras, audio,
+and peripherals available through Toradex carrier boards and the accessory
+ecosystem.
 
-On Fri, May 22, 2026 at 01:32:28PM +0100, Jonathan Cameron wrote:
-> On Fri, 22 May 2026 14:53:36 +0300
-> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
->=20
-> > Add AD4884 compatible string to the AD4080 devicetree binding.
-> >=20
-> > The AD4884 is a dual-channel, 16-bit, 40 MSPS SAR ADC, sharing the same
-> > register map and interface as the AD4080 family. Like the AD4880, it
-> > requires two SPI chip selects and two io-backends for its independent
-> > ADC channels.
->=20
-> I don't see anything in here to say how it is different in a fashion
-> that doesn't allow a fall back compatible to the ad4880. Probably just
-> needs a statement about the resolution being different.=20
+Display additions cover three interface types:
+- native OLDI (LVDS) with Toradex Capacitive Touch Display 10.1" LVDS
+- DSI-to-LVDS adapter based on the SN65DSI84 with Toradex Capacitive Touch
+  Display 10.1" LVDS
+- DSI driving Toradex Capacitive Touch Display 7" and 10.1" DSI.
 
-With one,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+The Riverdi vendor prefix and panel bindings required by the DSI overlay
+patches are also added.
 
->=20
-> >=20
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> > index 9c6a56c7c8ef..4a3f7d3e05c3 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
-> > @@ -39,6 +39,7 @@ properties:
-> >        - adi,ad4087
-> >        - adi,ad4088
-> >        - adi,ad4880
-> > +      - adi,ad4884
-> > =20
-> >    reg:
-> >      minItems: 1
-> > @@ -99,7 +100,9 @@ allOf:
-> >        properties:
-> >          compatible:
-> >            contains:
-> > -            const: adi,ad4880
-> > +            enum:
-> > +              - adi,ad4880
-> > +              - adi,ad4884
-> >      then:
-> >        properties:
-> >          reg:
->=20
+Non-display additions include OV5640 CSI camera support in 24 MHz and
+27 MHz oscillator variants, NAU8822 Bridge Tied Load mode on the
+Development Board, MCU_MCAN1 on the Mezzanine board low-speed header,
+and MCU_UART0 reservation for the Cortex-M4F debug UART.
 
---lZtEreREFkGJ1kwy
-Content-Type: application/pgp-signature; name="signature.asc"
+TI maintainers: patches adding the Riverdi vendor prefix and panel-lvds
+bindings are required by the DTS patches.
+Are you fine picking up the full series once those patches are acked by
+the DT/display maintainers?
 
------BEGIN PGP SIGNATURE-----
+---
+Changes in v3:
+- Add missing regulator-name property on fixed regulators
+- Simplify regulator labels (reg_3v3_lvds_native -> reg_3v3_lvds,
+  reg_3v3_lvds_bridge -> reg_3v3_dsi)
+- Rename touch@ nodes to touchscreen@
+- Link v2: https://lore.kernel.org/all/20260522132014.226721-13-ivitro@gmail.com/
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCahCACAAKCRB4tDGHoIJi
-0vKvAP94ddzMvuSf51+nrjjjLNIBJFlun3nfV0Tbng1XehDt9QD+NwQeCw+uom6i
-rzKUBtLYdkfIZPCaGQnYxF3zuGedbwY=
-=hQYQ
------END PGP SIGNATURE-----
+Changes in v2:
+- Add Ab tags
+- Drop introduction of the LG LP156WF1 15.6" FHD dual-channel LVDS panel
+- Drop migration of "logictechno,lt170410-2whc" to panel-lvds.yaml
+- Link v1: https://lore.kernel.org/all/20260521150038.103538-17-ivitro@gmail.com/
+---
 
---lZtEreREFkGJ1kwy--
+Vitor Soares (11):
+  arm64: dts: ti: k3-am62-verdin: Add Toradex DSI to LVDS adapter with
+    10.1" display
+  arm64: dts: ti: k3-am62-verdin: Add Toradex Capacitive Touch Display
+    10.1" LVDS
+  dt-bindings: vendor-prefixes: Add Riverdi
+  dt-bindings: display: panel-lvds: Add Riverdi RVT70HSLNWCA0 and
+    RVT101HVLNWC00
+  arm64: dts: ti: k3-am62-verdin: Add Toradex Capacitive Touch Display
+    10.1" DSI
+  arm64: dts: ti: k3-am62-verdin: Add Toradex Capacitive Touch Display
+    7" DSI
+  arm64: dts: ti: k3-am62-verdin: Add NAU8822 Bridge Tied Load
+  arm64: dts: ti: k3-am62-verdin: Reserve UART_4 for Cortex-M4F
+  arm64: dts: ti: k3-am62-verdin: Add Toradex OV5640 CSI Cameras
+  arm64: dts: ti: k3-am62-verdin: Add Toradex Verdin Mezzanine CAN
+  arm64: dts: ti: k3-am62-verdin: Add Mezzanine with Toradex Display
+    10.1" LVDS
+
+ .../bindings/display/panel/panel-lvds.yaml    |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/ti/Makefile               |  49 +++++++
+ .../ti/k3-am625-verdin-dev-mezzanine-can.dtso |  28 ++++
+ ...mezzanine-panel-cap-touch-10inch-lvds.dtso |  98 +++++++++++++
+ .../ti/k3-am625-verdin-dev-nau8822-btl.dtso   |  14 ++
+ ...in-dsi-to-lvds-panel-cap-touch-10inch.dtso | 124 ++++++++++++++++
+ .../dts/ti/k3-am625-verdin-ov5640-24mhz.dtso  |  17 +++
+ .../boot/dts/ti/k3-am625-verdin-ov5640.dtsi   |  71 ++++++++++
+ .../boot/dts/ti/k3-am625-verdin-ov5640.dtso   |  18 +++
+ ...625-verdin-panel-cap-touch-10inch-dsi.dtso | 132 ++++++++++++++++++
+ ...25-verdin-panel-cap-touch-10inch-lvds.dtso | 120 ++++++++++++++++
+ ...m625-verdin-panel-cap-touch-7inch-dsi.dtso | 132 ++++++++++++++++++
+ .../dts/ti/k3-am625-verdin-uart4-mcu.dtso     |  13 ++
+ 14 files changed, 822 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-can.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640-24mhz.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-dsi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-7inch-dsi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-uart4-mcu.dtso
+
+-- 
+2.54.0
+
 
