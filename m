@@ -1,156 +1,180 @@
-Return-Path: <devicetree+bounces-301855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301856-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iL3XD4laEGqDWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301855-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:30:49 +0200
+	id EO/1HvZbEGqDWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301856-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:36:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2A35B52D2
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:30:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81F15B5461
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:36:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4131E307D7D3
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:23:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9304931AED28
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F473A6EE0;
-	Fri, 22 May 2026 13:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E7C93AB5BB;
+	Fri, 22 May 2026 13:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N64Baokz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE4C3A1CEC
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1493AA4E8;
+	Fri, 22 May 2026 13:21:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779456081; cv=none; b=QlHC56J9jYntRz+a72xU0fijzTb2rAj5tk8Cm+DCNI8WLiYpL8GC4Bx63vvk/XC9RtoeoLEZSsEGAHErjHQPuWuyZ+yuqwOlNXWQdLDLobNnRF2GOsddeDDsOUMZAqyrr2l9YaWOahGR87/9L7D+Y3qx579bsJ/y1PJGhEwkFwU=
+	t=1779456104; cv=none; b=PBK9gnMogNQkXEjXn3QVCsiDNhc97aKcfTo6EpghvWtiWzUh5xDK1icEHPugZAbemxoblZh+90peux1yla7ix59ekm6YtcvZ+5pZuGNnr+hFlBgco7IzgvcSjNPAEi84f2cb8t448b/SkBSFAIDhlJvKHJzqBOlO8ubEeaGmQNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779456081; c=relaxed/simple;
-	bh=0PK4bMqXimU9iNRWNX/eX952I3s/oyh75Caj0sz7gdk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dzwFcswufe9Mzsd5pwkLGWSlpg3hB3DtTGudVBEuwAX/ZE4MSTkpZ8MZtqKW9RYbOy7/YOUUkPW4OtcK+zE2xMgG1KXIhh0WyZIpGR18EoMp533zx2WwQfc3x5uy6bO57WWQT/kR3TZaxe83aVGPBrnRbSSwldUaRY1Picl46X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-bd8f9889a8cso828473666b.1
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:21:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779456078; x=1780060878;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b8+hN45m6EcBjSVmc7/E001s4aXOZE0CXpfrpaEBAfw=;
-        b=tFJs3dDRPXABXQ7A5npMOa2qnybAcNAA+5j74EmoeIXYROWaoNNaELAxqQgz0eaBmj
-         b6CL/y5WW856NtZLe5dqRhRzd88Zf71e5A60XG6Pu7lGDslEW2rnePzEovPNJsWwb7aH
-         7oZ+SZ9T4c7vrk/cnZTfkUTdlstVgFG2NkH7SZ5p+qJf+oN1QoQhDLtmNVDUEbFZdEsB
-         l8XnE5MbniqcohGzVBA1fXSX2nv4Ps8qtsH4pYn7S5a0WLSx3Z4Wb2qLvw5LC+eiKZPM
-         nMTiYR4zGasXP80T/tfP9u2SwF11T3UXWKpQxRdNsgy+6vZh6CQaISSyyHxc9TMF2uXK
-         EMWw==
-X-Forwarded-Encrypted: i=1; AFNElJ+PvFtlMIAmmmTnBpfc+WxKtYxNWUF+fYTFucwfXpWffAWLQ5V2SLqARDNrMZndioDktI2uAlWz3JP1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTDEWchQpEOPW1R0bzFwBKOIGCXrItVsGkZovRbmtVgvjMlsZY
-	DBtpUF9WDK1nZPFKifiEtillpj5IV4XgqD+lSk/b02jzq4w+/SE/56lGHsT6n9sDbY0=
-X-Gm-Gg: Acq92OE6VdKK7fRdJGGNv3T3foB5vhTnaMdMEvnepA8upR1/cQ1ElNQuHuzRNcuRrsS
-	B5m4Zqf0YH84v/9ZHBzvMmw2h01nZB03f6dMtTj7laydlg5VSf44ztAeLBEBCnsFUnqaMW1KTox
-	VAKudWZ+gI1Ysyx+adXLurGJGB9FppGZbgxG29ViH6Zj/yZkPxDWFW7TZF7PhNbCF+D4+rT+ojN
-	KeUdUR+WjJ6hDuONXViNrFyhn52JTdYHrqwHAkD5fGnyWnufUzT68wDyBTCSXRiOVPJH6anm9c/
-	9EfAwWCdqaxkb03Bo2nErzx3m8ub2JZ7ZQ0UGKFdtNQsb1jMPNelfcoKuSbbyPZP+Agew74BcFO
-	lZvUGnwgqu4KUtyg6w6lcoldGo11N/p/fyO+4m/YMipTK6vK9JZtRO8vTd7xtY06vPMZNf6j/ED
-	rdtrBuiMGso7ujOiWi1+pyYWiSZmpttrKGjr/xZoxO7DD75vsN1yd69H/CTn8k+0sg1J5pa2Q=
-X-Received: by 2002:a17:907:928a:b0:bd2:fcd8:4cf9 with SMTP id a640c23a62f3a-bdd263c932fmr231652366b.41.1779456078327;
-        Fri, 22 May 2026 06:21:18 -0700 (PDT)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com. [209.85.208.49])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bddc62d770csm53471966b.49.2026.05.22.06.21.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 May 2026 06:21:16 -0700 (PDT)
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-67e43a8996fso9239676a12.0
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:21:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ88azKj7yj1BrBVRR6vt67mZTs7B0ZyyeHk2DZxRDVSG3m/3nW+4jXzGiyzXDUCburiaJGjXqy1Hmus@vger.kernel.org
-X-Received: by 2002:a05:6402:11d3:b0:66e:56a2:b67b with SMTP id
- 4fb4d7f45d1cf-6889cc44111mr1956174a12.20.1779456076494; Fri, 22 May 2026
- 06:21:16 -0700 (PDT)
+	s=arc-20240116; t=1779456104; c=relaxed/simple;
+	bh=w2uC4KEU/XGM0jk2e74rArLy20DXVoL5AqLuH4INTh8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K5m+0tI22zk6azyetuOBQwA4AYszpaolEvKVcUo5GJCywSIFkFGG2s6Vl4HJqH+1kErzeS0WJLGlvCiwciwKBv4XY9oQPVyIKIMF53R/2oytRjGH65eKAGr/4gkzR3SmRrB82rzUB8gyeTODYRa3QrrchPP85ys1KuIn8UkqFdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N64Baokz; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0F5A1F000E9;
+	Fri, 22 May 2026 13:21:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779456098;
+	bh=AFXnbDIOp70mSGa808OXTFdaVCnAygQDwPE1EOrUSLo=;
+	h=From:Subject:Date:To:Cc;
+	b=N64BaokzKL+1T66c07adCMQSsHX0Srb5Q32B+xeuZsH8KIFAYO9wqb77bdj/00Ig6
+	 SuRRT/UmhO19SBd0hgbRpqxbOg+Jecw/DldgUTpH8wobUXl3ugE03HaXC4FYN2dXyZ
+	 +KxYsiuly2/acoDIhx3kZ4R+xDymbpLiYy5va18LxzVJAOCFS2LcLZMrCzPszAc9ch
+	 +gkZ7yma1nqC6Jen6zTNTBBVYpg+xDpybj0P/4MJrAEOqf7r3mOSjcB2Y+O9oY+geI
+	 0hlvOS0I5krWX/PdF2Di07Yx7vf7sUzxjnCN29vIV94+pttkQaAuNfWjz3utwbhxwi
+	 i7851FYRLHC5Q==
+From: Linus Walleij <linusw@kernel.org>
+Subject: [PATCH net-next v2 0/5] net: dsa: microchip: Add support for
+ KSZ8995XA/KS8995XA
+Date: Fri, 22 May 2026 15:21:22 +0200
+Message-Id: <20260522-ks8995-to-ksz8-v2-0-5712c0dc9e75@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260505034325.167797-1-marek.vasut+renesas@mailbox.org> <20260505034325.167797-4-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260505034325.167797-4-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 22 May 2026 15:21:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVu22aJCHqrnAv=jk4=71Uz4YsJoAYWMOogANSKvSv=eA@mail.gmail.com>
-X-Gm-Features: AVHnY4Lff0GBvrpmknTfKgnni8ny_chPw6wlBCXf2gW_qkc9A8w4cPoubzyZE64
-Message-ID: <CAMuHMdVu22aJCHqrnAv=jk4=71Uz4YsJoAYWMOogANSKvSv=eA@mail.gmail.com>
-Subject: Re: [PATCH 03/11] arm64: dts: renesas: eagle: Specify ethernet PHY
- reset timings
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/12NTQ6CMBCFr0Jm7Zi2UqCuvIdhgTCFqmlNWwlKu
+ LsFdu7ey/v5ZgjkDQU4ZzN4Gk0wziYjDhm0Q2N7QtMlD4KJgkmm8BEqpSRGl9S3Qi71Sau2EiX
+ XkEYvT9pM2+EVLEW0NEWo9yS8b3dq4/q3dgcTovOfjT3ybbFjePGPGTkyLFnHSOdNI3V+eZC39
+ Dw630O9LMsPj5AXS8kAAAA=
+X-Change-ID: 20260509-ks8995-to-ksz8-15f3f9c8271f
+To: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com, 
+ Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+ Simon Horman <horms@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, Woojung Huh <Woojung.Huh@microchip.com>, 
+ devicetree@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-301855-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301856-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,denx.de,armlinux.org.uk];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: DD2A35B52D2
+X-Rspamd-Queue-Id: E81F15B5461
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 5 May 2026 at 05:43, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> The KSZ9031RNX reference manual [1] DS00002096H page 60 FIGURE 7-7:
-> POWER-UP/POWER-DOWN/RESET TIMING Note 2 states, that after the
-> de-assertion of reset, wait a minimum of 100 us before starting
-> programming on the MIIM (MDC/MDIO) interface. Set DT property
-> reset-deassert-us to three times that, 300 us, to provide ample
-> time between reset deassertion and MDIO access.
->
-> The KSZ9031RNX reference manual [1] DS00002096H page 60 TABLE 7-7:
-> POWER-UP/POWER-DOWN/RESET TIMING PARAMETERS row tSR Stable supply
-> voltages to de-assertion of reset is at minimum 10 ms. Set DT
-> property reset-assert-us to 10ms because the KSZ9031RNX RM does
-> not explicitly spell out how long the reset has to be asserted,
-> but this at least covers the worst case scenario.
->
-> [1] https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/KSZ9031MNX-Data-Sheet-DS00002096.pdf
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+This series breaks with the dated attempt to polish the old
+KS8995 driver, and instead implement support for the KS8995XA
+in the KSZ driver, and after that delete the old KS8995 driver.
 
-Modulo the document references:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.2.
+The hardware clearly has the same ancestry, the KSZ8995XA is
+just a rebrand of the much older Micrel KX8995XA switch.
 
-Gr{oetje,eeting}s,
+The old drivers referce to "KS8995" was actually KS8995XA only,
+it never supported the sibling devices KS8995E or KS8995MA.
+This is reflected in this patch set.
 
-                        Geert
+Add new compatibles, add special code paths for the KSZ8995XA
+and add a new tagger for the special front tag found in the
+KSZ8995XA.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The patches were tested with the Actiontec MI424WR rev D (which
+has the KS8995XA) and OpenWrt as userspace.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+Changes in v2:
+- Avoid trying to configure TOS priority settings (DCB) on the KSZ8995XA.
+  It does have some support for this, but let's add that later.
+- Pick up Krzysztof's ACK on the new DT bindings.
+- Reset the KSZ8995XA by disabling and enabling the switch like the old
+  driver does.
+- Move mutually exclusive Kconfig over to the patch introducing the
+  old Micrel compatibles to the Microchip ksz_spi driver.
+  (this complaint from Sashiko.)
+- Use __be16 instead of u16 when casting into the SKB in the tagger
+  (this complaint from Sashiko.)
+- Do not modify the hdr->h_vlan_TCI if no hardware accelerated tag
+  is detected, it would get nullified. Use whatever the Linux network stack
+  assigned to TCI there.
+  (this complaint from Sashiko.)
+- Avoid dereference of NULL in debug prints in the tagger.
+  (this complaint from Sashiko.)
+- Ignored comment: Sashiko complains about ilog2(0) being potentially
+  undefined but that is clearly defined as 0 in the Linux kernel.
+- Link to v1: https://patch.msgid.link/20260516-ks8995-to-ksz8-v1-0-70d0ef4aa5f4@kernel.org
+
+---
+Linus Walleij (5):
+      net: dsa: microchip: Add fallback Micrel compatibles
+      dt-bindings: net: dsa: microchip: Add KSZ8995XA
+      net: dsa: tag_ks8995: Add the KS8995 tag handling
+      net: dsa: microchip: Support Microchip KSZ8995XA / KS8995XA
+      net: dsa: ks8995: Delete surplus driver
+
+ .../devicetree/bindings/net/dsa/microchip,ksz.yaml |   1 +
+ drivers/net/dsa/Kconfig                            |   8 -
+ drivers/net/dsa/Makefile                           |   1 -
+ drivers/net/dsa/ks8995.c                           | 857 ---------------------
+ drivers/net/dsa/microchip/Kconfig                  |   1 +
+ drivers/net/dsa/microchip/ksz8.c                   | 166 +++-
+ drivers/net/dsa/microchip/ksz8.h                   |   2 +
+ drivers/net/dsa/microchip/ksz8_reg.h               |   7 +
+ drivers/net/dsa/microchip/ksz_common.c             |  70 +-
+ drivers/net/dsa/microchip/ksz_common.h             |  11 +-
+ drivers/net/dsa/microchip/ksz_spi.c                |  33 +-
+ include/linux/platform_data/microchip-ksz.h        |   1 +
+ include/net/dsa.h                                  |   2 +
+ net/dsa/Kconfig                                    |   6 +
+ net/dsa/Makefile                                   |   1 +
+ net/dsa/tag_ks8995.c                               | 132 ++++
+ 16 files changed, 395 insertions(+), 904 deletions(-)
+---
+base-commit: f2dfcc4b4bc28ba8ad45bce43ad76fa9575e27f5
+change-id: 20260509-ks8995-to-ksz8-15f3f9c8271f
+
+Best regards,
+--  
+Linus Walleij <linusw@kernel.org>
+
 
