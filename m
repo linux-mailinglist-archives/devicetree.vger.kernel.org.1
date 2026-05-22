@@ -1,172 +1,178 @@
-Return-Path: <devicetree+bounces-301715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIOSHFczEGqVUwYAu9opvQ
-	(envelope-from <devicetree+bounces-301715-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:43:35 +0200
+	id aMcONVIzEGqVUwYAu9opvQ
+	(envelope-from <devicetree+bounces-301717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:43:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB4E35B260B
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:43:34 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B67F05B25FF
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:43:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 46D4C30117B5
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:37:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BCDD53024AAB
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:38:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6CC43CC7C7;
-	Fri, 22 May 2026 10:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A703CB8FD;
+	Fri, 22 May 2026 10:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1L+oLnp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQHxNiJn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C214138E13F
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 10:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B773911CE
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 10:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779446269; cv=none; b=BJqcrznKuq7rkzEjpV1zVU3sBb4deg4V4OKpRiVPSAaA+0MCBcrnr6ZHB3SMzmjyNQ0vO9Ty0liZ874mPZ6RRrWzcQFRkc6uuzJWF643JVaUgFzNyLX6TfGVY6FS6Y93h/OUNo6G9HhDVdZTg2VSQrBr+YGkSTU5M4F8AiA/G1Y=
+	t=1779446309; cv=none; b=qyAmcXhYYw9VGDhxtwFUZerOMt+Llqvfd93iZfDWR0NspfXjrnmehXsCZFrH2qanllcyLbhaHMW45UiSoo8N9S5upq7Laq+DraulvOk1GhA4BIAsY/sOtStvQbO1tsrF6zSILhgbDCMB7wIzqoy/oYjvCGFvAgjvJZmzn2G20KA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779446269; c=relaxed/simple;
-	bh=Vq9i9HJdegVeP24RNEnfL9MR912xCTqphc80g2IGfRE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=VgAgzFxw7XVvQoW0NnlOnlMRNQ/zYV104DP3iMlEX6JM9x5HxWh0acSsX2letNSLe+7R677yWYUp5D8RQuZ4uktAFh0N7NHA3iEYJ4jnzHr84zZia70vvVFOprVNBoXcjOPgrVtXR0oewafVKGDW7kT+7R0BB8VnlQZZNk7pEiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M1L+oLnp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D92031F000E9;
-	Fri, 22 May 2026 10:37:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779446264;
-	bh=YQi7MouMgkBqzkmRvi3vGMNt072U99/ef29MGhPxcwo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=M1L+oLnpwa3/ReEGZ8Bohoq7DXSROYGpRdOhk795LRDrfrq7A2f1IzMV+bj1a1F2C
-	 0aH5ebAl0txArNIKyToSvSNBD4BxbP6IKOHQnmmxE0Rxtbzj5Nvf5BYPtzRJ7C22e0
-	 AJHKy233eo2bAvdtzK0zadSpbYp1WpsrjyMYWgOvtxvacbL842jqX+B7zJlnCvxd0i
-	 qxF599jIqe7EHPMEB40DOqY9cyykqr7aHvS96LtrXuThpK5keEVhMfLzpu5JSjnKHp
-	 DLsFt7fVixXtg3VKkMI7f/pwTr9BPTHzTaguenAQues+273rE16yKVbei21N1Sdr4l
-	 Lhn2VDV21YPnw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] riscv: dts: spacemit: k1: Add Banana Pi BPI-CM6 IO
- board
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Junhui Liu" <junhui.liu@pigmoral.tech>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260522-bpi-cm6-v1-3-707ef1917a30@pigmoral.tech>
-References: <20260522-bpi-cm6-v1-3-707ef1917a30@pigmoral.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 10:37:43 +0000
-Message-Id: <20260522103743.D92031F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779446309; c=relaxed/simple;
+	bh=/wJ57xNPnCf8dH8DjzmbGHCzUBmnFHtfYvzgs74xh6k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YFnkfzk7cvKuNx51OO1C19PVjsBabAhFL1XwGzlmbh6MqzScYmI00PKucWN1Tsox1nboWmwzNeMZPugsk4xK6oVheJcwmz1HJIG5tdAG1rLec+TVOjyS3W78f7DUDamtiIYczZ//tjdThXyHNPmh/5UXLGVaTaPIKgXmCUAX+Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQHxNiJn; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4903997fcb5so17149155e9.2
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 03:38:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779446306; x=1780051106; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mLsUocanVpLcdr3xQCUl3kNzYIEe9clsefrb8kWlcvk=;
+        b=JQHxNiJnKrHq3OULqFsFgAz2seUp3wkoDGf56P609Lz8zcvIRqceYfvhxA02DLMXYU
+         mMwnJptOGIzJxZymhJHIjbWvLCmeuj8n7UIOICLHS1gmmNzKr8p2KhNzX6DVGRlIPlpF
+         VSz47h5C310AHM5l0xhftcy5tNUaVEPxRuSyak2yNSeWwErCCIpAyjoV+RbORQCkxRmX
+         m3NVnxQYrV1baXShcz2azKhJZtASpm5UrCWmDSnwFuG70S1h9x8Z4yPPgKS4c91gBA64
+         MA64GSY7llXVpYA9LFZ9x/2syM5AohGARrIEuPf7aGGumOsihGLkUvpC+Z11FmkpZpfI
+         muiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779446306; x=1780051106;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mLsUocanVpLcdr3xQCUl3kNzYIEe9clsefrb8kWlcvk=;
+        b=s9gXqkLNcerlowuULTAjnAWGDwYGbLSxsy3I/SL7NL2g1VTQoWKmkKkSTV1hwIiaff
+         Sxxva3RaZDZWj/oSPfskPX+PjbXOvtX+5VRjw3XYxlNac5qGOoLuM0GO0EwnQO1e7FK7
+         xrEvGmqwQla7n1A/5VCedTRBVE4vrArDHY+gr+3sqy6rPKoJjwmhWqhP3B2n/Xt6M/uZ
+         ME4luKeLU1UAQqLszwov6zbjVpDEQQMw8aUOklSM0d0FSV7YD/QsgbpxVEkO5Cg1sKxD
+         de7aFp6Iuah1KX0InJmTGxBatws4kw9JQmKlksDWXEMX53d9kV1uT2LJmJ/f2FfF7xRM
+         chCg==
+X-Forwarded-Encrypted: i=1; AFNElJ9ntskYeDsxQBEl6If+0KfKgCQoIvMGE5InPGY6bETZm1JxkVuS2yG2c+jEYY+siYOksWpw+ysXpoLv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQe8dU7Sz2YSH2qfy9zOywm/7wh/HQ9So/JPnjgnRtRifZG3uJ
+	QygPOIoCSusRu36sLIQJbVQVq+FP5BesAsLbYImXH00RyNJuqDwjimqQ
+X-Gm-Gg: Acq92OGfESMvt+sd3f93nd1dex4cCyZPjcb8ceL4WfcaeOKWkF0gVZ3Z/kJMF0aphFE
+	7xDOEct00v5j9zV5JOSxa1+Ud4BGXueaLLeiyVVECvxLSv7KrUGyDQ5b7vT5fICCPh3ofZijKow
+	L67C8wXfmdv88egnc1DQI1b7XigbCFx+5t31ve4suaryyT8XLroko9Z8/qk9jQt4YQFxaNfV7Bj
+	eBZnkaIyb5JosCCy5N7G2szeNOrTfKDTAE5GauiUYkT9fPvQ3kYoNBkWZ/9dZbeKMqY4s95fySv
+	EDKWdwO9bJLiU6gLaQnm0A1J7jpZBDCSkFrOKDsVz9O+sjbzzCKG5HhGaWvz7otO1Dro7qZ81Wj
+	vaCUYzpjJQtCJXksRQazPYogVP6okwkZ1fH5IERS96oTbYc8dDwEVikYYOtidICKGxYif34gBgL
+	Y0og58nX7Z2foSs/qL6JYIG3bhyFCSE7plKqccJR68B8MpSkydw9dFGhsIBrhKGO/oZS898jy4C
+	JfG8VBExjrNfA==
+X-Received: by 2002:a05:600c:3e0c:b0:488:ac01:72de with SMTP id 5b1f17b1804b1-49042489c30mr44798295e9.5.1779446305909;
+        Fri, 22 May 2026 03:38:25 -0700 (PDT)
+Received: from orome (p200300e41f291e00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f29:1e00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490428d63f8sm13240135e9.18.2026.05.22.03.38.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 May 2026 03:38:24 -0700 (PDT)
+Date: Fri, 22 May 2026 12:38:22 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v6 09/10] dmaengine: tegra: Add Tegra264 support
+Message-ID: <ahAyF4i51x5ldppq@orome>
+References: <20260331102303.33181-1-akhilrajeev@nvidia.com>
+ <20260331102303.33181-10-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4oagdshx4rnxulqg"
+Content-Disposition: inline
+In-Reply-To: <20260331102303.33181-10-akhilrajeev@nvidia.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301715-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301717-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pigmoral.tech:email,smtp.kernel.org:mid]
-X-Rspamd-Queue-Id: EB4E35B260B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierryreding@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nxp.com:email]
+X-Rspamd-Queue-Id: B67F05B25FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The `vpcie3v3-supply` property is incorrectly applied to both the P=
-CIe host controller nodes (`&pcie1`, `&pcie2`) and their root port child no=
-des (`&pcie1_port`, `&pcie2_port`).
---
 
-commit 0620787d4f86f8d706f7dc3a6b25263906add1bd
-Author: Junhui Liu <junhui.liu@pigmoral.tech>
+--4oagdshx4rnxulqg
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 09/10] dmaengine: tegra: Add Tegra264 support
+MIME-Version: 1.0
 
-riscv: dts: spacemit: k1: Add Banana Pi BPI-CM6 IO board
+On Tue, Mar 31, 2026 at 03:53:02PM +0530, Akhil R wrote:
+> Add compatible and chip data to support GPCDMA in Tegra264, which has
+> differences in register layout and address bits compared to previous
+> versions.
+>=20
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/dma/tegra186-gpc-dma.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 
-This commit adds initial device tree support for the Banana Pi BPI-CM6 IO
-board. The board features the SpacemiT K1 SoC, and this patch configures
-interfaces such as UART, eMMC, SD card, I2C, PCIe, USB, and dual Ethernet.
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-Link: https://docs.banana-pi.org/en/BPI-CM6/BananaPi_BPI-CM6
+--4oagdshx4rnxulqg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-cm6-io.dts b/arch/r=
-iscv/boot/dts/spacemit/k1-bananapi-cm6-io.dts
-> new file mode 100644
-> index 0000000000000..b2767f44e8d62
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-cm6-io.dts
+-----BEGIN PGP SIGNATURE-----
 
-[ ... ]
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmoQMh4ACgkQ3SOs138+
+s6FfphAAs+xOd5AbT8+y/eH+MoUKuhrW0ACB8ym66bqs+OCu+VVuM9p6LR7+6Mux
+2+AFLpjeYRRdRYHjzoAsdnUo0VnC/+IFrrqOdoTD8npmeo2SveLrJx+f+BQJ4McM
+aHS06cHVboDMya7H3UWHieyto9IZcEmAQjudHId+FPg6rYs3rjbDI2r71M2PM5Ns
+nkjaOnkF9S/zPaUptXfdATyviC3yseTgJ36x6N0zKh9EKs1r+kcwlMchCu3k4M/e
+uAOx0TEw1Jr12BwQRevhHWPn7JQAbq6a5aSsP4y6Ubvoe0JZIg28+FMFjLC0OvLp
+3RMXYpH/0ovuRq3ruMN2NIdpAVZrAnd6OBCAb6c8bQ875+PrkCuQWNhzkV5GsqCN
+XNTZRbHAXRfc6Oh/HkxR0rB/US58pr170vp06VeeKsPvpaZYaLT/a+gpVrhyytnZ
+0fHu/2sGTgXGdgDdSK37XFlqgCtOMluSPDPrf+mNyDYWorMNK5zrHDIlbIDsZdyT
+z4aCMtFdeZhIQSf0IZse1Yi6Kp4pCJEc6836c2FwSDm4iy1o0sH9g8qnvRC1jgej
+3FxbqdYz6rvsT/Ri3MdhfZJC+J7vgpZvO5Fptkc9Y4b0OfeisLlRNxMJdIZqDoq2
+BIo1f/fukHUAiDdo79dDfnLb/UViqXKst2JZCqdgOykedZy9E4M=
+=Y6T/
+-----END PGP SIGNATURE-----
 
-> +&pcie1_port {
-> +	phys =3D <&pcie1_phy>;
-> +	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
-> +};
-> +
-> +&pcie1 {
-> +	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
-
-[Severity: Low]
-Does this cause a dt_binding_check validation failure for the host
-controller node?
-
-According to the spacemit,k1-pcie-host.yaml binding schema, the
-vpcie3v3-supply property is exclusively defined and required within the
-patternProperties for the root port child node, rather than for the
-top-level host controller itself.
-
-Should this property be removed from the &pcie1 node to avoid an
-unevaluated property warning?
-
-> +	status =3D "okay";
-> +};
-
-[ ... ]
-
-> +&pcie2_port {
-> +	phys =3D <&pcie2_phy>;
-> +	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
-> +};
-> +
-> +&pcie2 {
-> +	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
-
-[Severity: Low]
-Similar to the &pcie1 node above, does the vpcie3v3-supply property belong
-in the host controller node &pcie2, or should it only be present in the
-&pcie2_port child node?
-
-> +	status =3D "okay";
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522-bpi-cm6-v1=
--0-707ef1917a30@pigmoral.tech?part=3D3
+--4oagdshx4rnxulqg--
 
