@@ -1,203 +1,251 @@
-Return-Path: <devicetree+bounces-301572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301566-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEKeDyv5D2pDSAYAu9opvQ
-	(envelope-from <devicetree+bounces-301572-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:35:23 +0200
+	id 6HSPJ/33D2oTSAYAu9opvQ
+	(envelope-from <devicetree+bounces-301566-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:30:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1CA5AF911
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:35:22 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2EF75AF832
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:30:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 036EE3016918
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:34:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D26A13000582
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B9F358360;
-	Fri, 22 May 2026 06:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE1F358360;
+	Fri, 22 May 2026 06:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ge2Vi3wu"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="qbE+B9tv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3281.qiye.163.com (mail-m3281.qiye.163.com [220.197.32.81])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012047.outbound.protection.outlook.com [40.107.209.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4A1344D9B;
-	Fri, 22 May 2026 06:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779431680; cv=none; b=H0r5JY+eUuS+SSRANUWtjI6ZtyZv57enicEDMzRj32cFu/Tg2wqYw7h4BeKuP5HdbYmUrQOCg3yuvAcW9+f3GjUkgjVT88K051PmQsefSwufFHMXzVR1ba+kQYeK50+U+T74my9VZU8KPWrkWvN65RxjWTVMy1e/N8k9P6laKgI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779431680; c=relaxed/simple;
-	bh=G0w/yVt7IF2FrFurra7P0MfyhYxus9/u0UriauC9NPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p2bT9T7IthUeXElD1Hm87lDn34RgfpJ64ZwuitHkl9En+z9YrfQDoyujtVS/N5g/TCg59PlY3YhApRYcOd/DR1FDQTl9qtqTsWTCPgRhXNZyPOeGC8LWr2zPSWi4cmrDLK5+gupv0T030L/w6E1HhqOA/NFcwu+fLw6VfOEz6k0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Ge2Vi3wu; arc=none smtp.client-ip=220.197.32.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.43] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3f6a8ca63;
-	Fri, 22 May 2026 14:29:13 +0800 (GMT+08:00)
-Message-ID: <32192c5f-cc25-4a2d-ada6-53f28edb6cbb@rock-chips.com>
-Date: Fri, 22 May 2026 14:29:12 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5826035A3AD;
+	Fri, 22 May 2026 06:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779431416; cv=fail; b=DjQMTFeTJk1Q6HgE7UAghN9CYLwyFTPhhKKah432s3opICu5g+eo7PP0/8Gy52+uQ/nR+iJ/m5W2FO6WpURwR4g+7Q4YqkQ+FZe0+xXh5Mbbqi39poeH4voo+FMi3r2C8ldyMvBh23/gitX3SDfRRWy/nKQ24+e08zGLLht5BV8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779431416; c=relaxed/simple;
+	bh=FNAncha1nU/w1WbbMGOZJ5XcRXImHqlp/cdmX2QnAqg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=NC/tLfeb5w0ipNLo9fkEifaiO2uvDRfoRNoAIjgyDL6ayA+RwIG5/Chn8q/pPCioWhRZ9EU3NGLZ0qk5ModOaEFoHBJa6jdjLoiN3vOt+8uW796o31VjOnK9aJlBdwxB0pXcbS7PCOpVEvUbvF09rvhTq5eXKQyM+kMcQOBNA/g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=qbE+B9tv; arc=fail smtp.client-ip=40.107.209.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hoK3ZWwD4E1iX0nBo+FpYnkX30hy7xEfEh9vjN410j8RNBaDI9FPIheoFtQKfl3ixSwm0PZqgrD1MTBSfVzRryUK6mYtcl9i9BNhDWYqDthPHYcr3iBoWNC9Nj4gVbGNqV6ziCV5N7qe92Ex0tHgyTUaxaRNPrxnuk1/2ibTNh6hTEYZ1A8SftcsnMLRYIfzhIpIRqX1CV7p2eQppOpEG2D1SVBnmsxQoWD5d9RkJQnPwTh4BnN2IwYlk46CD1Zf9l+mqsc/BMh0YGVGmO2bvroPWvV/HBP/w/SRKSnVDFyRT8BJkqgDEokRAc220Srt4pneMMLxweK1BD5RZsr73A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BZ98iTepTShIqUdjLp2pTeeMYPCkpxyxIwgYOfP3O0U=;
+ b=QAKh/JZbm+ERquVfGZ4sDX9HvJVlI8tBLzPdvu22bB00GPnXODA5kll7ayt9CMJOFTReZRCVMlHD6bud3PWyc/87AAOFy0BEStJ9vmt05vyDMRE9aBe/VVTVN0ArcTWF0nxmQuTopnLnP/7h6TU74ZFspiNNm6XHM4kYkxJkzl7xeFZKyrVJqv6eV8WjE5SPt0d8WP4lyEAeN8rJx+6P4iOkFcN0FeS35h5pC2ADDwcqxOt8l3Y/Q3zKwQle/t4G/3gcFJ3D/9pKFsrKujS1v55ieifMfSYR6s0tCDRpx6LwIEkpp4FKCeqltnb0ooMT4vuEbgFbb1nWjDyw5/svzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BZ98iTepTShIqUdjLp2pTeeMYPCkpxyxIwgYOfP3O0U=;
+ b=qbE+B9tvaUur53ierz8Vbl6RgYMkBhYg4Dg3TDEUs/5en+GOXXJj1OJGU+vsRIH/N5r9A8Hj9/+V8z+h+q0UbmVRJjNJE/jqz3QqnsYN2b1tnLMvLNVGhKH7FWTO0VKtr1Y3NqZRt6fCRG8at340jXMfN2XvStxh5f0enqV/kbbPL8SgNQcvCesGV/4O4eDEmLnpkJ+RS4AUA/ooZTgjJjuBdUYgt6RpScuoSMMTfpOdgIMTcyMM3mRJeeHp1zvTU1isS6hRj0TBIeEolL4SPELNnPFJzWt7ZWtL1n6JblQ6zlgAtDbZ+wr+FdWL1n6Xc0PUX4JYIEVIsuvCWJ3GYg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from DM4PR03MB6208.namprd03.prod.outlook.com (2603:10b6:5:39c::19)
+ by DS1PR03MB7918.namprd03.prod.outlook.com (2603:10b6:8:222::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Fri, 22 May
+ 2026 06:30:11 +0000
+Received: from DM4PR03MB6208.namprd03.prod.outlook.com
+ ([fe80::2216:93ef:67b:9e04]) by DM4PR03MB6208.namprd03.prod.outlook.com
+ ([fe80::2216:93ef:67b:9e04%6]) with mapi id 15.21.0048.016; Fri, 22 May 2026
+ 06:30:11 +0000
+Message-ID: <5c9587e0-035a-40b1-a61c-e897744b6c5c@altera.com>
+Date: Fri, 22 May 2026 12:00:02 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 5/9] arm64: dts: agilex5: add SOCDK eMMC daughter board
+ support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
+ Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260511202132.5597-1-tanmay.kathpalia@altera.com>
+ <20260511202132.5597-6-tanmay.kathpalia@altera.com>
+ <20260515-grinning-inescapable-butterfly-eba39d@quoll>
+Content-Language: en-US
+From: "Kathpalia, Tanmay" <tanmay.kathpalia@altera.com>
+In-Reply-To: <20260515-grinning-inescapable-butterfly-eba39d@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0090.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::19) To DM4PR03MB6208.namprd03.prod.outlook.com
+ (2603:10b6:5:39c::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/10] dt-bindings: display: rockchip: analogix-dp: Fix
- hclk as third clock for RK3588
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
- cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
- dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
- dianders@chromium.org, m.szyprowski@samsung.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260521080835.1362416-1-damon.ding@rock-chips.com>
- <20260521080835.1362416-2-damon.ding@rock-chips.com>
- <20260522-demonic-shaggy-wasp-a3f261@quoll>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <20260522-demonic-shaggy-wasp-a3f261@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9e4e5fadf103a3kunmc160eef7c9158
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSx0dVh0aQ0sYS00ZSk5IHlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=Ge2Vi3wu2ir9dKSljIze3RU0HI4ooU+nbjYYN4NtZj672UOwX4tXHZTNQBewK8gB1YpVxTOQiJbWg6hCG5TY5DkfojEbr4ySYSz6NS7/DhB3GUh9wi1h+ORTDA9wJNNjA9a563651C6YEN+H6GxyCjSRhiEP3Y5LAchPv2jlqA0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=qMah8/jyNcPvAfqkwCIR/RWKyy2WqG3nOuBp+tSy2AA=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR03MB6208:EE_|DS1PR03MB7918:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49331f63-7182-4252-aef3-08deb7cb9307
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|366016|1800799024|22082099003|3023799007|4143699003|11063799006|56012099003|18002099003|55112099003;
+X-Microsoft-Antispam-Message-Info:
+	QbugWWnrlw+jX9lTaAPMT+52kSpb+BXNTyMx4ft4oowL/beDvTZvGYdz68IE9bg9vRSYWMaC2ZCZcf/4exi36qBpct6RnvlwHrhdTONdifAa14n6mIdLyGTVjIj65qQZGlP9JQH9YI8VG20PkJboltr2tYzuyCZIX0a9YVhCitilqTMqvas4cKrDtsyn2I8SwHvhAxLegLKBd0Ccsahw2xC7IUE0RNHtLYos1OR+VX+rk4JkcAil2mkW2Ci+C/Iwu+qW7JxhEsHnYHXcXxoL3RQ87LP2vlBkuLcoT6s0ohy41Ifc2ilcfwnTRKyHK6WxnysSbFvOYlKjxBhXQdQGXwsd9AinJcI4g3cKtRQBHP0EWiUyDqAzWSrRuYT/dqFsh+LXEemnI4gUrTdeZxtdAEF8X0Lw9eVioIJvGhJEph4giP0ZkeqPu6sorfLTX/4DdCaapLdVdKalm48np79gxgLyvd7moAv5Vwu90b0O4bhR7ioCitatF6ODgsPv3jH6AGZsmqlLqg9n8ecAc+cVGisRHuysU2LlIox7g3Tprx3pxyg/S3GR0vZC5vEWLb7JeKGCZfVbQGJq6Q85sjdEBTg/rrvHpBVn3cctvXVh0ux888ZLiSW8aHMgnXRxn/Z7MGr35SNEk99JV3Ohgns1s74yL07DvostlnjED7DtBuue+Tk96jyi3g2slT1ZI3wg
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR03MB6208.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(22082099003)(3023799007)(4143699003)(11063799006)(56012099003)(18002099003)(55112099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dTI3NzN2NWpmdlVQcUkvdlZIalNyemhiTGROQ0ExSDV2anoyalZkcG51ZVpZ?=
+ =?utf-8?B?UmlmZWU3YnVjSjQrR3JZZERCc016UlVVZ3JkN0M0OEYwam5nUmczV1cyYys0?=
+ =?utf-8?B?V0haWUExWWl5TWtGUFVYeFdQV1lieTdyWVdid1dmazdqY1dsbUVNOUYybkNQ?=
+ =?utf-8?B?NkJmbTRmSWFIQWZLM2NqSzdDZEpibmJVWTdUQ3ppendTOW1SNjBJempOd09j?=
+ =?utf-8?B?QUp3RnRBbnZkLy9NMkFHYWF5NWFxU1N4V1paclRNTGorWnZqM1djb2ZTdWk3?=
+ =?utf-8?B?b29ON21sVHk5SkZIb2Q0bnBnaEViNll1RUNlMUZqcjZQT3Y1VU9jMUlWZ0w1?=
+ =?utf-8?B?Y2tIT0NVU0hucVp5OUQyajRoYjBPQlNiKzdwVXFwRXQ2ME5wUytNbDNiSzVL?=
+ =?utf-8?B?SWpSVnpBM2dySk9vbVFLV2NHcUZHTVpzU1ZXZW05YjQ4VWF4eFVHZkVHMmMv?=
+ =?utf-8?B?KzhNNjRhWHJKVERoRm5kOWNHR3k5VEtLd3BKanovR3MrRzgrSUlFallZYzV3?=
+ =?utf-8?B?cWtkckFLUEpqZE8vUjM2RnF0Z0crdFhUNDQxMWk0LzFlK0JLWUhCT3l3bEh0?=
+ =?utf-8?B?U0pVZ3I3K3ZrQlg3a29sYldiZEFqb3dPTTByOHhHTFpYd01IVm1pWGd2NTRK?=
+ =?utf-8?B?WDhGbTRkelpHRDgrMElXeGN2TG5iTDRMeHFBZEJYa3FGcmJEKy9NZHRQRlhV?=
+ =?utf-8?B?VVJDejdjb2tWRFZLY04rOXhLb25uU0pQdWpYRkFyN1pFcTJrWGJhYmhrVGI5?=
+ =?utf-8?B?blY1V3IxTjRUdUxsa0Z4bTBkRjZuWVRka1JwRU5ITTVBMnNIZjQwaWlUajFx?=
+ =?utf-8?B?UDQzOWg4WXJ2ZmpkTU0va0VKQkZDaEk5MVFacDZNb3Q1SE5QWk1IWU9yTERS?=
+ =?utf-8?B?cTQvKzZDWEFtakVwcHNNUkhzRE1BZTZuWG5WZWVEZGhvMStsRUxpZmRXbXBm?=
+ =?utf-8?B?U3duQnh3ciszb0NJYURIZVltNVgzSTkyWDM3RzFiV3MrWjRKVE9MNzN3WkMz?=
+ =?utf-8?B?eVhaVXJEc2MwczVqMTIrOXlMQnJIcTIvN0tmMVdKZjlpdFFoM3grUnYwc291?=
+ =?utf-8?B?dFhPVVJpQmtHamJKS2tXUXgwVExEZkpzVXB4STdINmQyczBZSnZKbVJtZDhU?=
+ =?utf-8?B?YXZJR3g4TGd4aUIybElSOVY0OXlpVkVTaTZyUGRpc0ZoTkIzdU1sYjZOcUNW?=
+ =?utf-8?B?UXlIaHNFWllLa2p0WnpqTzYrVExJRC9YaVkrdm1nczJFMUJhQk9SNm9tTlY0?=
+ =?utf-8?B?SzZvS01aOFNENUEvMFYvd0QwZGtuUjlHd3JlQUQ1cUJja1JWc2VRRHRGQkRQ?=
+ =?utf-8?B?OTB2enVodGR5NlBjWkVIUDR0cE9RTXp1QVFJTTlQcitrQXFVcjFNWDlscEZo?=
+ =?utf-8?B?VlR4VDZQNnlDcnpnVW1DM1pXZ0ZWNzQvVjhMYkNFZ3dWaHBDaW5SNy9tVTND?=
+ =?utf-8?B?MVJOUnlieGRuRHpKcUlheG15S1N2d3dlUGVUeXZpQ2VGVVRrU09QZkVYL2JL?=
+ =?utf-8?B?NzZPZlZReTNjREU0U0dVOS9FNE12d1VpU2tmWjhCTXRKWjE5TTZZVjRlbmpF?=
+ =?utf-8?B?YSt0QzhtcEZSSXl1T3ZJT1N0SDNTTzQ2MkJGbHFNUWFnZ1VMRmYvWUt3VzJk?=
+ =?utf-8?B?and1WXpqaGZQTjlkK3NSdllVNjh4RW5nYnBialFKbGZsT0FuZHg2YW9MNWVS?=
+ =?utf-8?B?bzFOV05rbmlYVzRON3VQT2p5L3p6M1poM3NVV0gvMDAvM2pkdUZtdmY2QXkw?=
+ =?utf-8?B?YWJRa3lOL04rb3VQWkFkSklubjJMSXlTUjJuM2grNGZnT0k0SVJ1eVJUYzkz?=
+ =?utf-8?B?cDRudXRmN3cxQ1pBSmJCV1JTNHFWYnhXUVNuVWFRbTV0NDRGSU9Nc013b05V?=
+ =?utf-8?B?WFYvOVJMandaYWYzMGd4U1k0Zkp3YkVUMHorYm1oN1VPOFBxeVJnZlpyVFYv?=
+ =?utf-8?B?ek5hbmFLN0EzNWs1em15Nm1Iay9QOFNZeHFTakRabG9iTFFVOHZyU0xabWJR?=
+ =?utf-8?B?SVZySW1MVlhjQzRndVFFampKeG4vQ2NGUDlyMFpURlRtV1RLdUV1T2VGRTVk?=
+ =?utf-8?B?Q01oZFhhdXcwUmJqdXp0UGowMURvbkk1WFJGLzJzWmRuN0VZNWhqYjFMRG1s?=
+ =?utf-8?B?RlpRY0kreVdMbVBTZ3lvQnRmcFpCaEhUclY3WTZBeS9iM0JHMlZrM1ZtYWF6?=
+ =?utf-8?B?eERhd3FMekJ2YkZvcHVXWFpqb3ZlNHdBWlJHOWFFUTJ5N0hJVU9NQXlNZlBu?=
+ =?utf-8?B?R2VoalRuMTdSRSs1MVlJNXg1TmkzSzhwbUpDMUVYays0STl3QnZlemdPTE80?=
+ =?utf-8?B?ZjBDZERQZ3JiQXZhdXdXdzl2UFVFOGd0MnZDbFJteGdtdUpTVHdjSXhFQ0JV?=
+ =?utf-8?Q?fsMI9DySEGCgDTQA=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49331f63-7182-4252-aef3-08deb7cb9307
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR03MB6208.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2026 06:30:11.0236
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d3ltBWC8y3OwXqrI9vEb8oDZlfn4NHCHtxvohqO0+6mgGmSYTTeuRrCSvgWEOoxhdZ7Ux5f5g1Ag2bykEQ6An7V7I1gvNXhrHnvo4zotFs4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS1PR03MB7918
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301572-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-301566-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[altera.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FROM_NEQ_ENVFROM(0.00)[tanmay.kathpalia@altera.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
-X-Rspamd-Queue-Id: AE1CA5AF911
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: A2EF75AF832
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Krzysztof,
+[Re-sending in plain text due to HTML rejection by the mailing list.]
 
-On 5/22/2026 2:11 PM, Krzysztof Kozlowski wrote:
-> On Thu, May 21, 2026 at 04:08:26PM +0800, Damon Ding wrote:
->> RK3588 eDP controller requires HCLK_VO1 to access the VO1 GRF
->> registers and enable the video datapath.
+Hi Krzyztof,
+
+Thanks for your feedback.
+
+On 5/15/2026 2:07 PM, Krzysztof Kozlowski wrote:
+> On Mon, May 11, 2026 at 01:21:27PM -0700, Tanmay Kathpalia wrote:
+>> Add device tree support for the Agilex5 SOCDK board variant with
+>> eMMC daughter card.
 >>
->> Previously, the clock was enabled implicitly via the 'rockchip,vo-grf'
->> phandle reference, which allowed the eDP to work without explicitly
->> managing the hclk_vo1 clock. However, this is not safe or explicit.
+>> Update the SoC dtsi with a fixed 1.8V regulator for eMMC I/O voltage.
 >>
->> To make the clock dependency explicit, enforce per-SoC clock-names
->> requirements:
->>   - RK3288: 2 clocks (dp, pclk)
->>   - RK3399: 3 clocks (dp, pclk, grf)
->>   - RK3588: 3 clocks (dp, pclk, hclk)
+>> Add socfpga_agilex5_socdk_emmc.dts with eMMC controller configured for:
+>> - 8-bit bus width
+>> - Non-removable eMMC device
+>> - High-speed, HS200, and HS400 modes at 1.8V
+>> - 200MHz maximum frequency with SDHCI clock base capability override
 >>
->> Do not reuse the 'grf' clock name for RK3588 because it represents
->> a different clock with distinct control logic:
->> - The 'grf' clock is only for GRF register access and is toggled
->>    dynamically during register access.
->> - The 'hclk' clock controls both GRF access and video datapath
->>    gating, and must remain enabled during probe.
->>
->> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>
+>> Signed-off-by: Tanmay Kathpalia <tanmay.kathpalia@altera.com>
 >> ---
+>>   arch/arm64/boot/dts/intel/Makefile            |   1 +
+>>   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |   8 ++
+>>   .../dts/intel/socfpga_agilex5_socdk_emmc.dts  | 111 ++++++++++++++++++
+>>   3 files changed, 120 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts
 >>
->> Changes in v4:
->> - Modify the commit msg.
->>
->> Changes in v5:
->> - Enforce the correct third clock name on a per-compatible basis.
->> - Modify the commit msg simultaneously.
->>
->> Changes in v6:
->> - Expand more detail commit msg about using hclk instead of grf clock.
->> ---
->>   .../rockchip/rockchip,analogix-dp.yaml        | 37 +++++++++++++++++--
->>   1 file changed, 33 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->> index d99b23b88cc5..8001c1facf98 100644
->> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->> @@ -23,10 +23,7 @@ properties:
+>> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+>> index 33fcc55d0cb9..5bbbcfda1f48 100644
+>> --- a/arch/arm64/boot/dts/intel/Makefile
+>> +++ b/arch/arm64/boot/dts/intel/Makefile
+>> @@ -8,5 +8,6 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
+>>   				socfpga_agilex5_socdk_013b.dtb \
+>>   				socfpga_agilex5_socdk_modular.dtb \
+>>   				socfpga_agilex5_socdk_nand.dtb \
+>> +				socfpga_agilex5_socdk_emmc.dtb \
+>>   				socfpga_n5x_socdk.dtb
+>>   dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>> index 7e080f13166f..feb4ccb317a7 100644
+>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>> @@ -317,6 +317,14 @@ sd_io_1v8_reg: regulator-1p8v {
+>>   					<3300000 0x0>;
+>>   		};
 >>   
->>     clock-names:
->>       minItems: 2
->> -    items:
->> -      - const: dp
->> -      - const: pclk
->> -      - const: grf
->> +    maxItems: 3
->>   
->>     power-domains:
->>       maxItems: 1
->> @@ -60,6 +57,33 @@ required:
->>   allOf:
->>     - $ref: /schemas/display/bridge/analogix,dp.yaml#
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - rockchip,rk3288-dp
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          items:
->> +            - const: dp
->> +            - const: pclk
-> 
-> Why aren't there constraints for clocks? They always must come together.
-> 
-> Please open any other binding and look how it is done there.
-> 
-> 
+>> +		emmc_io_1v8_reg: regulator-fixed-1p8v {
+> How is this property of a SoC? How SoC itself has a fixed regulator for
+> EMMC? Really?
+>
+> Best regards,
+> Krzysztof
 
-Yes, as Conor's suggestion, the right way is to keep all valid clock 
-names at the top level, and use only minItems/maxItems in allOf to 
-differentiate clocks and clock-names of platforms.
+Apologies, you are absolutely right.
 
-I will update this in next version.
+The emmc_io_1v8_reg regulator is a fixed 1.8v rail on the eMMC
+daughter card, not a property of the SoC silicon.
 
-Best regards,
-Damon
+In v2 this will be fixed:
+emmc_io_1v8_reg will be moved to the root level of
+socfpga_agilex5_socdk_emmc.dts where it correctly describes
+board-level hardware.
+
+Regards,
+Tanmay
 
 
