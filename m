@@ -1,156 +1,142 @@
-Return-Path: <devicetree+bounces-301879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301881-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gB3pI7BbEGqDWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301879-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:35:44 +0200
+	id yBG5KyNcEGqDWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301881-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:37:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06CD15B540B
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF205B549D
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:37:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A7383036624
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:33:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F008D303A936
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16053C9EF6;
-	Fri, 22 May 2026 13:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmmmkyJd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADC43CD8CD;
+	Fri, 22 May 2026 13:34:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D543C585C
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9ED3CC338
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779456826; cv=none; b=jZeHneaL9gvV8ULfSm+kY4Sr5nHDTRkYYJZCAXfxWDIbxsnYZXYzH4smwPcCKI5/lm62a/jr6+otaJG4Y3NyTEGD6TIPKI95El0oOFPh9RMDaXQpEc7MT74taC3QZy3x+lEPrfqahjZVYMbcjeYzYCH3nVWvX0AJD0J9mOGNb8s=
+	t=1779456860; cv=none; b=MOQQNiWs4sLTx6vEncyqBXokGhDTVM32nbebKFwdDESmmeb+oFXekb6VkT5dN0j6hsaDhmNODQmwX56CuLmbrBxIzJFEcSJmqZhwQ4DXg6KC6hIWKFWIOrfyO6/AUfXfCdszXUojUK8pF3dkgamJlliyhUHeFLRZVlL+vU6hOXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779456826; c=relaxed/simple;
-	bh=baa9PVGJ06rjbDKSMwLL5Qk4PBtU8i+dODqmDqTM9y0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DZDjuAOxyyio9ILCMqUYmKQUw7kPoHdBTOXsUzWYsMjw6IOTaCfdRSlFOUvbt5Sj/EGU4aSXjeMdctDnb2TQONf13RCIATlWdXAOiIItOvXyJuvX/1FB7zGDHcssHVsd9nG3a1pA/w30NWKKjrXLD5ZcEUTxzooOJdcFKddjw24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmmmkyJd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE51B1F000E9;
-	Fri, 22 May 2026 13:33:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779456825;
-	bh=KruDMTe6arO72GJpDGMGE7A/i9l7loCdWIzErSmQzU8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=VmmmkyJdqzJn7uaLCwXxN4u2rcWoB5Bk47ncMfgbD6s22FU8qgFlzSatlv5O5sRbp
-	 adMJcCgtvKwVreBI+2B1BVC92YkCB40wwmYrD+wgtWFvwB9Y6PNCfiS3qS7povysLp
-	 C4ilOAYMWJmxSbG9EVtLq3Q0MwJR+yt+fBpchoqaQKQIhiwvQRbpOX3Xf4Kpn1urs7
-	 pi952KBbUkIQ6GLI42SlqMF2s1e9+NXWVeegejZ2rvpjy+emO66SUAtJkYQDqSHBeq
-	 3AeUL4vr7zXuLgHCyo6EoeqnD8nVWzV7AaV1rY+/peXcxhVpm9ws1u6ozKvqoGIQl3
-	 i0DK/uHBIF3Cg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/2] ASoC: spacemit: add K3 SoC support with
- additional clocks
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Troy Mitchell" <troy.mitchell@linux.spacemit.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260522-k3-i2s-v3-2-08e3eb811d93@linux.spacemit.com>
-References: <20260522-k3-i2s-v3-2-08e3eb811d93@linux.spacemit.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 13:33:44 +0000
-Message-Id: <20260522133344.EE51B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779456860; c=relaxed/simple;
+	bh=oCVQeqNkgLC+A8DsyABQmEoKPm1VZ97E3MIdW+uHGTE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fOcEL4iivSqEuzuo6uk2BtQHWcofqqrmDRTKo8DdZfk/NeOrthevE3VSKsiAqD5R3Q0lFWzt/NWpi+RWsJo5EnQoITQxz15QZXBl0FEbmSORoiu4IsvyjW3ufXKk59VmMno+Er5ZFSIeFz2jugxf6hGpJiDxPRuabRhrftbSRro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-575171b1ce7so2360112e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:34:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779456858; x=1780061658;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zq0bJbefph0AAGvXGgXMgxADCBjnqDWg/GTQ4ba21xY=;
+        b=rupKQ/vgEiF5Oqm4tLPBFyLnZalDHsGfj1cOd6XcGZ8bCiPX/NxKvQloxf1ov01aTn
+         ZIjJ1xB+Fp/j4XmqwLnnzD+J4O1JTXSQuTqaKaUAf/4Gb3g6+wA4iyZ48ozp5boMCdKn
+         X+ZMmqUsCTMs48XQIDau+Ko3c7VFiqaSxUEI2uvhGYA5magI2V/tkuwFUiJOZwgGXr53
+         KfMwcwSUF2tOTdgUqA66t7uELwY3dDKq6b+XVt4G+g1+S/XfxronqHJXHRlA8SF23Bhm
+         L/V6pO1KXbKnTVoAjUWBgB/QzdnoeKxpIpYHxPoqhEQGnovEe6JrP5hS1Cdi0FflYmKA
+         Qo1Q==
+X-Forwarded-Encrypted: i=1; AFNElJ8Nx+3g8lLiMrw81ZTBrtzkYL45Db7tdpynsGc5X/NOhg4/IWAA+qqazoERneQ6vfe0tHfhM32cXvGQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxValV2+xI7Pi8jKGvCxtWFJMcGF4Xa06aseKC1o8zAKtdOJeG4
+	RRmHkMlFegn9490OJV0OoYDrEINfIE/ZQUb8HgjIZI8I7y6gKZjp20Yo/YmRr1aK+/4=
+X-Gm-Gg: Acq92OGogkLIKgUCZJKxNJCZAAqFNtzUgEnppuHv55fX18iCULj4teNZPX9EIPUXnp0
+	ssMmwf1txvjhxxzXgeA54rz9Z8zwweL/E/vaQ3ynSCgdNzv5h6sRm+XcXcgkqjkpSRHIKWO4VHb
+	9TKtqpziNPBxev+QWbDwqeCWRHTBCP37ThG8twtAbhk5D4vxVAzq4r+pEsuGFT7QVULkWl5XJGT
+	V5mnr0fXVCLnS28Guh5RdIVPySO2tSutcP2WYUg2lwnByu2tvjXA8KrU2Z0h8XWBbBiTSPAXTk1
+	n1wcTsCSMUI9hvJr0kfu7nNg9lNjv6DEJnnlXTvsWHVRQrs+GntPF931SMALk1DXo9v+QSHIeKG
+	p74BidHtmQ2voJvmwC4Eksk8rOOMBhjrU4Kc/RRxc7axyDivo8OLs4udoDfDywFjMpH0rnc2bbS
+	RSRhGmKEOeBrYjJ43kx2Y2hgK1RYgW+Sp+8nohFw+WWMAyr0EiRaS4o+DrtEGzY1WI35hW/isqX
+	Ss=
+X-Received: by 2002:a05:6122:32c5:b0:575:fea0:559 with SMTP id 71dfb90a1353d-5865f05be53mr1897944e0c.4.1779456858533;
+        Fri, 22 May 2026 06:34:18 -0700 (PDT)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-961738b2babsm1558016241.7.2026.05.22.06.34.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 May 2026 06:34:17 -0700 (PDT)
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-57611a6a69eso2170880e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:34:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9HmyTWnVdpMRznn63DFMbK0oE/+eIUikrGUkNKf/Ut+Dfau+6dqF4bez+GE5ohKaWvC80eQ7DC/vg+@vger.kernel.org
+X-Received: by 2002:a05:6122:3214:b0:56f:2609:cd95 with SMTP id
+ 71dfb90a1353d-586626bd8acmr2048945e0c.9.1779456857164; Fri, 22 May 2026
+ 06:34:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+References: <20260504225704.115125-1-marek.vasut+renesas@mailbox.org> <20260504225704.115125-5-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260504225704.115125-5-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 22 May 2026 15:34:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX7cQ8N3L0g6K4nsJSy8UUut2hNcP7=FovSf+UK_VzwDw@mail.gmail.com>
+X-Gm-Features: AVHnY4L1t-E-4KNi3I0TSerFd7ad9ospqXgo4JNrc9drpmUktdoXOv4OmGqhgvQ
+Message-ID: <CAMuHMdX7cQ8N3L0g6K4nsJSy8UUut2hNcP7=FovSf+UK_VzwDw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: renesas: ulcb: Rename clk-multiplier to clock-controller
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301879-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 06CD15B540B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-301881-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: ADF205B549D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Unprotected rate changes on shared clocks `c_sysclk` and `c_bclk=
-` can corrupt active audio streams on other I2S controllers.
---
+On Tue, 5 May 2026 at 00:57, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Use standard clock-controller node name for the CS2000-CP.
+> No functional change.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-commit f3c6244a03afa7c9321de2747d7f0c3a9bc65bd2
-Author: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.2.
 
-ASoC: spacemit: add K3 SoC support with additional clocks
+Gr{oetje,eeting}s,
 
-This commit adds support for the SpacemiT K3 SoC I2S controller. It acquires
-new clocks (sysclk_div, c_sysclk, and c_bclk) using
-devm_clk_get_optional_enabled() and configures their rates dynamically based
-on the sample rate during stream setup.
+                        Geert
 
-> diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
-> index 5420ca2aefbd8..8871fc15b29cc 100644
-> --- a/sound/soc/spacemit/k1_i2s.c
-> +++ b/sound/soc/spacemit/k1_i2s.c
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-[ ... ]
-
-> @@ -206,6 +209,14 @@ static int spacemit_i2s_hw_params(struct snd_pcm_sub=
-stream *substream,
->  		    params_rate(params) *
->  		    data_bits;
-> =20
-> +	ret =3D clk_set_rate(i2s->c_sysclk, bclk_rate * 2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D clk_set_rate(i2s->c_bclk, bclk_rate);
-> +	if (ret)
-> +		return ret;
-> +
-
-[Severity: Medium]
-The commit message notes that c_sysclk and c_bclk are shared across multiple
-I2S controllers on the K3 SoC. If multiple controllers are concurrently
-active and request different sample rates, will calling clk_set_rate() here
-silently overwrite the shared clock rates?
-
-Could this instantaneous frequency change disrupt the active audio stream on
-the other controllers, causing pitch shifts or FIFO underflows?
-
-Would it be safer to use clk_set_rate_exclusive() to lock the rate while the
-stream is active and reject conflicting requests?
-
->  	ret =3D clk_set_rate(i2s->bclk, bclk_rate);
->  	if (ret)
->  		return ret;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522-k3-i2s-v3-=
-0-08e3eb811d93@linux.spacemit.com?part=3D2
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
