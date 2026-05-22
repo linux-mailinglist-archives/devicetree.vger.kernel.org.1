@@ -1,884 +1,501 @@
-Return-Path: <devicetree+bounces-301524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301527-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mALGJuu4D2qCPAYAu9opvQ
-	(envelope-from <devicetree+bounces-301524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:01:15 +0200
+	id yLPtCfO5D2qCPAYAu9opvQ
+	(envelope-from <devicetree+bounces-301527-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:05:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4FE05ADD38
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:01:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795485ADDBB
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:05:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 61A2E302C143
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 01:57:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41D073076F15
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 01:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFC92C326C;
-	Fri, 22 May 2026 01:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 668972D7812;
+	Fri, 22 May 2026 01:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="lU7/XELH"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="nQYo8h84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-196.mail.aliyun.com (out28-196.mail.aliyun.com [115.124.28.196])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013051.outbound.protection.outlook.com [40.107.159.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B012C08DC;
-	Fri, 22 May 2026 01:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.196
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779415075; cv=none; b=X5ih3bcMIZN4wYYydKh/SlY08Ds7PwrGhybLCs/OCC9bKanIBSqrvDwkV6+j4R/iIpU0Jwi8QX7fYxeTeODiwHZwOHW9TC5qsfUGmKtfbOHAcWdnfzMW4KDXv4e6vMAYAsQsyLv/KgIOUDTk5yxdg4n2OJaYheIHrHdebUCNFhw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779415075; c=relaxed/simple;
-	bh=wyIHbOuiOtjcvFAd62ZydogEsXKU5k5yvPnaRuJAi/w=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eSf+J0bPrEMpBMGGxIAd7odGHwObKmDpM+LfQuV8TVtsHKG7YcOD+MoPDqXCAqOz7NFDqwfEEyQbIv2QgJdok2XoKE/WBYyI3R57W9g9pHQt7Q+1skvloj7TXjIsHkL9M82PnGjkBPs1DIpzLMtW2FMF+PQJVL3q73Vfv9ktfpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=lU7/XELH; arc=none smtp.client-ip=115.124.28.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=lontium.com; s=default;
-	t=1779415063; h=From:To:Subject:Date:Message-Id:MIME-Version;
-	bh=wEGmL6DpTrqTgt3M1ArJvm9kULTDFQgLrJKw6Apo1/0=;
-	b=lU7/XELHS5E0ZCTBizjuA84mLnQBy01xj/dOszjQGKApqYr8vRrGqJHkAZK9Re9f05qnKmRCrz70gju+1wwuzaE88wSMf5LQ838kXO1LmB9L4GYqn5JgsLhMKln4APQgS4VzPeiWbJRFAO7S4MKbUN+P1gHQA9Bz/7CzN0jQBui42kVoH9Rx19Y3sBLC5FnbcMk1/aaa0UaR93grWpjETDUbj1qzrAuiSxsetp4bfBy+SaAMr2I8PZCfmqKZj5GUVOBmOSX3X3boTWHOEi1nzn/9vcZtNte9v5BVuDnzRhvRqw4o9Y08/dc2mFQoU4EjtMK8H/jXg8Jafv6CpuO1Ew==
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436259|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.022651-0.000401907-0.976947;FP=18327748716022818555|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037022039;MF=syyang@lontium.com;NM=1;PH=DS;RN=23;RT=23;SR=0;TI=SMTPD_---.hdTsru7_1779415060;
-Received: from DESKTOP-V2MKAT2.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.hdTsru7_1779415060 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Fri, 22 May 2026 09:57:41 +0800
-From: syyang@lontium.com
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	dmitry.baryshkov@oss.qualcomm.com,
-	maarten.lankhorst@linux.intel.com,
-	rfoss@kernel.org,
-	mripard@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com,
-	tzimmermann@suse.de,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	xmzhu@lontium.corp-partner.google.com,
-	xmzhu@lontium.com,
-	rlyu@lontium.com,
-	xbpeng@lontium.com,
-	qdchen@lontium.com,
-	llzhang@lontium.com,
-	Sunyun Yang <syyang@lontium.com>
-Subject: [PATCH v11 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
-Date: Fri, 22 May 2026 09:57:35 +0800
-Message-Id: <20260522015735.2833-3-syyang@lontium.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260522015735.2833-1-syyang@lontium.com>
-References: <20260522015735.2833-1-syyang@lontium.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C5C42C0F91;
+	Fri, 22 May 2026 01:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779415161; cv=fail; b=hMuPyX/kF7+nVmatQwqbq1JkuteLT+ZHw18jCaIDc2qcw9/wHsakU+sOfnq1gyrHvY1e8/q4X+MG05ACEIssYGRfAPGbKKZ67mwRzvx9tfHfAZQYb+CmmP9Yks3ScdL1RMWylt/ZUw+97BzGa2DtVrU7blZLBm2WxMhVX1PCdxc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779415161; c=relaxed/simple;
+	bh=FIQYlKVlBCnTtOQHsUDOgeTHdlU8Sm7yIBSHQRAdN9Y=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=IC/Z3+XiGJIq+2gipguSwldIsXlJN+IXyX9Zxfy0FL25YkicuiDrGdnnqi1g23XhEJuekiUWFnBb5m0ey9CoiPLIVNnYDU9QIceMR23mXmQWCREr5A5AjuiqjXE9xSgm9r70ryaiWvBCPzCdpzHzGiyilX39+lIa9j6BIvdHA8c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=nQYo8h84; arc=fail smtp.client-ip=40.107.159.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QoTA0r12azOkPtJSRTzx+AeEzbjODSgscZft04mC/76sn1PF6zGUXhda/OiGJn4czPNOCc2evVOD8YYRg9EAbPrJsXBTFgLe3Ct9RsQhIxC75sxcNsazSPi1sYUVmQRy5c+oIkmUKP+gDMorZ+JEy8aW6SoRPYSiCmbQWkmDLSysAyxr7sUMXE+Dj9C/Amnmp61mepfMrAIyIC3HriiyxS0Xhqn/KhIPRE/H2Vk150JZmA2aNBJ2/zwMOCt93VVKUfYbw5cGol53QUZYHWAWKUejgYYJhDA2FfB+iSk0A3MNu+XE5tcbcIYv6N/mjUIztC17R7Y6c/1oYjys55fMtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FIQYlKVlBCnTtOQHsUDOgeTHdlU8Sm7yIBSHQRAdN9Y=;
+ b=fYQdtoVynigzEwrmNg3SrPInQ/dOxIm8iRLIKNTULAi3o89qOoJNUXBn6h0d6cXAdV3C7j4zBs7DGwpvJo3yg1rdIKmpk5yCgPR9FXIJqlBEmmFLWOWcv9WAlwZFB1gkOpbzVtchPX+iJaCaxorG4eD6gTO8sYDxrKYAj22b4MVLHk1O8lib3wYf7SKnQafKCvIq7zBZQkaiTG8i3aBUEzw1ussdlZYo5Bf1fnEnBYbaeguD/BdevuCVWQMQLqIHmtA0x+uob3IBLBwytgL0NckRch+llP5Nt3ZIy3dUbBM8QlU6laNygxzgUUpBVIjABXNgRKRGzNqbwDcJO5cCFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FIQYlKVlBCnTtOQHsUDOgeTHdlU8Sm7yIBSHQRAdN9Y=;
+ b=nQYo8h84Qy/8hMjbHj9+0ooeHuzBXeZRlLcyCPxQYx6bmTeUoeplgRrbwSzzdbbzbEliETaqB6syDvT2hyTtg79iii6cA2b2ueAVuYRNtARUDCG9i0fPdZABBWbW1RtC3X3OUkCxRlWQ1vsTntwGbLKrDAZtKfL6UZWYRRyt6hOrxH+zMEYDyrnK8fcQLfELNwWODFzJ8TXDo4ZIjZVLqPL/DcP6tfq7n15Yqyaij74lT1o8bfzcliSUEzMdIg9mUDkN+JWTcfE1SlqgZSknLlhFF1hrxeVdPUT6xiYbIVU22abdPvFeqfiLL9axI/YW/UT6enGWRSZI0w+NozuRXg==
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
+ by DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Fri, 22 May
+ 2026 01:58:56 +0000
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::92c2:2e03:bf99:68eb]) by AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::92c2:2e03:bf99:68eb%6]) with mapi id 15.21.0048.016; Fri, 22 May 2026
+ 01:58:56 +0000
+From: "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>, Michael Riesch
+	<michael.riesch@collabora.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Laurent
+ Pinchart <laurent.pinchart@ideasonboard.com>, Frank Li <frank.li@nxp.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>, Mehdi Djait <mehdi.djait@linux.intel.com>, Hans
+ Verkuil <hverkuil+cisco@kernel.org>, "G.N. Zhou (OSS)"
+	<guoniu.zhou@oss.nxp.com>, "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
+CC: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
+	<linux-rockchip@lists.infradead.org>, "G.N. Zhou (OSS)"
+	<guoniu.zhou@oss.nxp.com>
+Subject: RE: [PATCH v4 4/6] media: synopsys: Add PHY stopstate wait for i.MX93
+Thread-Topic: [PATCH v4 4/6] media: synopsys: Add PHY stopstate wait for
+ i.MX93
+Thread-Index: AQHc5zP2JYPXSBO7kE+Ny5UmAbIYVbYWxKQAgAF1pYCAACfqgIAA6p7A
+Date: Fri, 22 May 2026 01:58:56 +0000
+Message-ID:
+ <AS8PR04MB9080844E610F8E8012647B39FA0F2@AS8PR04MB9080.eurprd04.prod.outlook.com>
+References: <20260519-csi2_imx95-v4-0-84ea4bb78a88@oss.nxp.com>
+ <10853728.nUPlyArG6x@steina-w>
+ <AS8PR04MB9080D3B1A6B522F3F9342E23FA0E2@AS8PR04MB9080.eurprd04.prod.outlook.com>
+ <3606153.44csPzL39Z@steina-w>
+In-Reply-To: <3606153.44csPzL39Z@steina-w>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB9080:EE_|DU0PR04MB9417:EE_
+x-ms-office365-filtering-correlation-id: f3b59df1-30cd-4965-75a4-08deb7a5aeb5
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|19092799006|1800799024|366016|376014|7416014|38070700021|921020|56012099003|22082099003|18002099003|11063799006|6133799003|5023799004|3023799007|4143699003;
+x-microsoft-antispam-message-info:
+ 0GJ8t+y+MC/G7KA82hoPXAdLtg+LlEt6Clb+EjC2wfPLhVSjHS8f2iwW282jF1UjHZe0+6EPeqEg6koI/x6TsTVP9YypKbXB98/z8P7DX1uFuG9KHDGoISH3cnNpk/U+DF7eG2oXD9uGZFqJqRzJAB1+BoLAa+onG+VuxO8KbmVWvBRSX/f8hGTw1IST4cnrkZV3jFjWjpBqa6mVdiWjr4xEBXcbnKRq0cRxgWY254MVaeqG41kELs/CSS/xoRGxXTyS6dd8mp65bI7Jo9ZPLEwp/Wnq8UkjKZ6Cv1kXUZVyQC2rYlPHe0cbvUIFmvIY4bBPxDyNH7AiqRFA/uYIl06dJ9vijZiXNxSoe9CRhnyq5vB27DUKAXyGo3ocXppXtDzjzCjZD+4CxTxxuaKMvxWMvn19ekPMx/gJihYjpV+2/TJ3QFUCjzKGovTPOpovOKddYMmYT8SOaXS6yoxvXHDR/MSqH73rIbBjoHmO+OE8+vF72K6eMTwkM18Uxu4vBjM+6siUVeOKp6Qe+Roq4cpk759O7mRWWIYGRmDcV9+iuYUMyWl0XnUterlMPH15LDQpIdmi0IlB5SVKDVVEPdC0RhHfmzk7P3e45NYGxZgOfGrIcs62rMdFfMoJWLiJA00Y+YSpmF01hWBQ5m2ska1QClx6ItXUlrLrVKZMv5DHVpiV1aJ6l+XWL1YNw6Ear1FDRHyC7YMaXW9hDENqwA==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(366016)(376014)(7416014)(38070700021)(921020)(56012099003)(22082099003)(18002099003)(11063799006)(6133799003)(5023799004)(3023799007)(4143699003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?ekR3SXVJa2hWbERUcWVUcWt4RjA4YVY4VmxGME5TdzUrUXpVaTh2T1hTY3J1?=
+ =?utf-8?B?M0FyYTNkRkx4RDNLbUZSLzN3aVhnUkFjQjVGZzBuWmtXSmQvOGw0dlJiRmVB?=
+ =?utf-8?B?Wm9ZbkY1RDF5Z1VVd2U4eW5oazY5RWxQL1g3MzhiRWNLbXpVb2s0WjdnRHQz?=
+ =?utf-8?B?U2lzRmxhVzJMN1N3ZnZEV0J5UktaL1YxcE9ySlJOUm5PUjE3SG9rZUdQcG9q?=
+ =?utf-8?B?d29sMlBpR0hTbUlzWTIvdzBKeGZCNXpxOHM0dHBrNjhjVmcraHlNZE9DMEp0?=
+ =?utf-8?B?YmUrNkJleDNKSTM1RHFsb2w4SFd3M3BCNlFiZUdTQ2lyNEtoV2F0ek1Oam4w?=
+ =?utf-8?B?MXZTdjNKRUtvdVBDU0NpYmVuUm9vaExoSS9ER0tyVnlzSm5ldUpMWjhjNVlU?=
+ =?utf-8?B?dCtzRlVyOFJvYlRNaEV5K0svT2J6d1cvSUwxNXJRWTg3RUZEalRUMDI5c0lC?=
+ =?utf-8?B?UzVmU0lTS2NJLzNpMFJNdnZCRjNsdnpGSUdsS0lsMzVQWENveWNjU0dBVHo4?=
+ =?utf-8?B?cDZ4a1M0ODAyR2s0QkhMQVFlYTFLbjd2K3lPYnZMb0dJQkJ4b2l0aWYrTTR5?=
+ =?utf-8?B?RUl3VmRUQ0ZHc2V5UkxPQUQxNS9GMHllUmFmQTZ0elMzSTU3ZzNuSkdubC9y?=
+ =?utf-8?B?SUFOT0twR2k3b3dBYnArRmxmNkNNa0M2aUNiUGlMSUFBaG5IVzNsbDd5QUJt?=
+ =?utf-8?B?WkdhR2gxY2RZYm9ONXVEaEtJZTFOL0lvUmxaYTVuNGo3K3c2N3M3UW82VHBB?=
+ =?utf-8?B?S0N1Z0N6M3g4NCt3NytsTjV5U012dEJxaXAzWDRBVFdmSlRQcFRNQ0pDNnVu?=
+ =?utf-8?B?djZQV1ppRUNXLzdJNm5CdVN0WlBvRmNlS1ZzcE1mM2tKVU5VR09iMzc1eFp5?=
+ =?utf-8?B?SThqdlFoY2pRbGlKTmVWOTNpczVWRm5nOVBpSkswbE1wbkpaMnYwaUJCTHho?=
+ =?utf-8?B?R01WVWFzQlQycGRmK2N0amhrT0tSdmhhTjZ0QXlMSDNNaEJMVFZIQmx3ejB4?=
+ =?utf-8?B?dHRoOWkvRVV1VW1WWjVrcmhNVTcwR2VjeXR4ZEwxaGN4b004R0o0VFZIMWtp?=
+ =?utf-8?B?bno1bFRXM0hab0ZuNmE2bzR0VUM5QnRvZkhlUlZYeGtCZE5BSzE1RmpJdG5r?=
+ =?utf-8?B?V2dtZ0JucDNKZzJXSE1VQ25GbzRUaUZqZHBmbGE2VUhRcW1YKzlQM29Qck9O?=
+ =?utf-8?B?UWI1K3RvVXE1WkhTdlhMWHFBUjVEeFI0MzYxNHk1R05VUkFBTGVFVW9vSkZs?=
+ =?utf-8?B?WW9YbjdvdlhpWnRiZ01lODlGTUlCUU52cFY0WlRhM3hyb3dIVVVOdkZmVXll?=
+ =?utf-8?B?OGlZTGZYenJ3bnoxUFdZM21oOUdTRlJucHdPMjN1U1VRZ2pxNzBSemlRTEFQ?=
+ =?utf-8?B?RVZMZ1hsWEFuL0lFWUJkZ2ZMWks1eldXcXpML2YvK3dzc2xYSGdNTml0NCtx?=
+ =?utf-8?B?S2lxQUtsTVRjQVc5VHRNNThIWTB5TEtaajdLa3l5Y2VPc2lpaFZyWFZSdGlX?=
+ =?utf-8?B?WU42RnYzcDNwaTRwaDh1bmltS0xGOXdRYTdLZjMxaUZxVG5zNHFtaEN1cm44?=
+ =?utf-8?B?N05uRUJTY21RaGxCNmtRdXczRjhhOVREUEgvRnU2SGY2RkRCRmFrT0NCdjRE?=
+ =?utf-8?B?alcyZzJRSkdPbkNDVEc1Q1pYeXhTU0ZXeG8vQXN0TFQraFRPS3ZyVFIyVENQ?=
+ =?utf-8?B?SWVOU1V5SW05SWV6TWYzU3VkK0VSWXhydFlCMk56SHdIazUwZzgydUpscTNR?=
+ =?utf-8?B?OVE3M1lzUHdHVGJYZEdYb0paR2RTQUgxNHU0QXNzc3lDNDM5SWlscmlpbkNn?=
+ =?utf-8?B?a1N1TjVBa0ZJa2pDeTdhbkZhU2ZiSkY2TmljVjVndDh5c0lDQjk5bnd1RWpS?=
+ =?utf-8?B?by92cjhnbVk3WUQzRmtNanpVNm00WlJuamMzOXZEMHNna3BrWlR5S0JNaVVj?=
+ =?utf-8?B?V2ZmR2NzWGtmQVVsODh5M2lCZ0g1djZEbTh5Y2o5d3ZGMk5rU2RJaGI1TXlC?=
+ =?utf-8?B?Mng2K3RlNE0vVGtaemNvYTFqakd3ZHQzOFhxZzBDL1Z2aUFOUEhyQUZRTjN5?=
+ =?utf-8?B?UFpubWdVVGUyREw5b2pwK1VHdWFNVmhER2EzR2NrdmtCQ3lDWnc1eTZ2c2Z0?=
+ =?utf-8?B?ZEVULzVZM1MvTksrVWdEeFpqRHA3Q0NnelpSTTdva3V2Qi9XSkMxZ0dXY003?=
+ =?utf-8?B?QnFGaC9wQ2pnelFneWgrd1libGh5bUsxRy9JNzlZaU0wZnl2SndnNVh4TXJ6?=
+ =?utf-8?B?NFJHNlBqWUVuUjFSVWxuZi9TMGdiQ0NYVy9Neml0ek5kMUNyNG8xejZST2Fu?=
+ =?utf-8?B?ZEF2a3NzdlNSQzlCVzQ0Z01Sa0R4RDk0K3NTZFVyeFJhMVQxd2dTQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3b59df1-30cd-4965-75a4-08deb7a5aeb5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2026 01:58:56.1424
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DGCMlhalX5l9EFj5awjBBaKxwavWLHSametP//ZMHrqMpHq6y4Sz6CYuBizqSozIff2qTPAnl8BI5QBSj65kMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9417
+X-Spamd-Result: default: False [2.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[lontium.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301524-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301527-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[lontium.com];
-	DKIM_TRACE(0.00)[lontium.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[syyang@lontium.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,suse.de,kwiboo.se,gmail.com,vger.kernel.org,lists.freedesktop.org,lontium.corp-partner.google.com,lontium.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lontium.com:email,lontium.com:mid,lontium.com:dkim]
-X-Rspamd-Queue-Id: E4FE05ADD38
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[guoniu.zhou@oss.nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	NEURAL_HAM(-0.00)[-0.978];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 795485ADDBB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Sunyun Yang <syyang@lontium.com>
-
-Add support for the Lontium LT7911EXC bridge chip, which converts
-eDP input to MIPI DSI output using an internal firmware-controlled
-pipeline.
-
-The driver provides:
-- DRM bridge integration for eDP-to-DSI routing
-- MIPI DSI host interface for downstream panel attachment
-- Firmware upgrade mechanism over I2C (erase/program/verify)
-- GPIO-based reset and regulator management
-
-Display timing and MIPI DCS packet generation are handled by the chip
-firmware and are not configured by the driver.
-
-Signed-off-by: Sunyun Yang <syyang@lontium.com>
----
- drivers/gpu/drm/bridge/Kconfig             |  16 +
- drivers/gpu/drm/bridge/Makefile            |   1 +
- drivers/gpu/drm/bridge/lontium-lt7911exc.c | 698 +++++++++++++++++++++
- 3 files changed, 715 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/lontium-lt7911exc.c
-
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index c3209b0f4678..013e431e8871 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -132,6 +132,22 @@ config DRM_ITE_IT6505
- 	help
- 	  ITE IT6505 DisplayPort bridge chip driver.
- 
-+config DRM_LONTIUM_LT7911EXC
-+	tristate "Lontium eDP/MIPI DSI bridge"
-+	depends on OF
-+	depends on I2C
-+	select CRC32
-+	select DRM_PANEL
-+	select DRM_MIPI_DSI
-+	select DRM_KMS_HELPER
-+	select FW_LOADER
-+	select REGMAP_I2C
-+	help
-+	  DRM driver for the Lontium LT7911EXC bridge
-+	  chip.The LT7911EXC converts eDP input to MIPI
-+	  DSI output.
-+	  Please say Y if you have such hardware.
-+
- config DRM_LONTIUM_LT8912B
- 	tristate "Lontium LT8912B DSI/HDMI bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index beab5b695a6e..70ddca75dd3a 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_DRM_I2C_NXP_TDA998X) += tda998x.o
- obj-$(CONFIG_DRM_INNO_HDMI) += inno-hdmi.o
- obj-$(CONFIG_DRM_ITE_IT6263) += ite-it6263.o
- obj-$(CONFIG_DRM_ITE_IT6505) += ite-it6505.o
-+obj-$(CONFIG_DRM_LONTIUM_LT7911EXC) += lontium-lt7911exc.o
- obj-$(CONFIG_DRM_LONTIUM_LT8912B) += lontium-lt8912b.o
- obj-$(CONFIG_DRM_LONTIUM_LT9211) += lontium-lt9211.o
- obj-$(CONFIG_DRM_LONTIUM_LT9611) += lontium-lt9611.o
-diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
-new file mode 100644
-index 000000000000..1aec60f02f91
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
-@@ -0,0 +1,698 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2026 Lontium Semiconductor, Inc.
-+ */
-+
-+#include <linux/crc32.h>
-+#include <linux/delay.h>
-+#include <linux/firmware.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of_graph.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_of.h>
-+#include <drm/drm_probe_helper.h>
-+#include <video/mipi_display.h>
-+
-+#define FW_SIZE (64 * 1024)
-+#define LT_PAGE_SIZE 32
-+#define FW_FILE  "Lontium/lt7911exc_fw.bin"
-+#define LT7911EXC_PAGE_CONTROL 0xff
-+
-+struct lt7911exc_dsi_output {
-+	struct mipi_dsi_device *dev;
-+	struct drm_panel *panel;
-+	struct drm_bridge *bridge;
-+};
-+
-+struct lt7911exc {
-+	struct device *dev;
-+	struct i2c_client *client;
-+	struct drm_bridge bridge;
-+	struct work_struct work;
-+	struct mipi_dsi_host dsi_host;
-+	struct lt7911exc_dsi_output output;
-+	struct regmap *regmap;
-+	/* Fast lock: guards short register r/w and status checks */
-+	struct mutex ocm_lock;
-+	/* Long lock: serializes firmware upgrade process to prevent DRM interference */
-+	struct mutex upgrade_lock;
-+	struct gpio_desc *reset_gpio;
-+	int fw_version;
-+	bool upgrade;
-+	bool removed;
-+};
-+
-+static const struct regmap_range_cfg lt7911exc_ranges[] = {
-+	{
-+		.name = "register_range",
-+		.range_min =  0,
-+		.range_max = 0xe8ff,
-+		.selector_reg = LT7911EXC_PAGE_CONTROL,
-+		.selector_mask = 0xff,
-+		.selector_shift = 0,
-+		.window_start = 0,
-+		.window_len = 0x100,
-+	},
-+};
-+
-+static const struct regmap_config lt7911exc_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0xe8ff,
-+	.ranges = lt7911exc_ranges,
-+	.num_ranges = ARRAY_SIZE(lt7911exc_ranges),
-+};
-+
-+static u32 cal_crc32_custom(const u8 *data, u64 length)
-+{
-+	u32 crc = 0xffffffff;
-+	u8 buf[4];
-+	u64 i;
-+
-+	if (!length || (length & 3))
-+		return 0;
-+
-+	for (i = 0; i < length; i += 4) {
-+		buf[0] = data[i + 3];
-+		buf[1] = data[i + 2];
-+		buf[2] = data[i + 1];
-+		buf[3] = data[i + 0];
-+		crc = crc32_be(crc, buf, 4);
-+	}
-+
-+	return crc;
-+}
-+
-+static inline struct lt7911exc *bridge_to_lt7911exc(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct lt7911exc, bridge);
-+}
-+
-+static inline struct lt7911exc *dsi_host_to_lt7911exc(struct mipi_dsi_host *host)
-+{
-+	return container_of(host, struct lt7911exc, dsi_host);
-+}
-+
-+static void lt7911exc_reset(struct lt7911exc *lt7911exc)
-+{
-+	/* Assert reset pin: logical 1 -> physical state low (Reset Active) */
-+	gpiod_set_value_cansleep(lt7911exc->reset_gpio, 1);
-+	msleep(20);
-+
-+	/* Deassert reset pin: logical 0 -> physical state high (Run state) */
-+	gpiod_set_value_cansleep(lt7911exc->reset_gpio, 0);
-+	msleep(400);
-+
-+	dev_dbg(lt7911exc->dev, "lt7911exc physical hardware reset sequence completed.\n");
-+}
-+
-+static int lt7911exc_hw_mcu_halt(struct lt7911exc *lt7911exc)
-+{
-+	return regmap_write(lt7911exc->regmap, 0xe0ee, 0x01);
-+}
-+
-+static int lt7911exc_hw_mcu_run(struct lt7911exc *lt7911exc)
-+{
-+	return regmap_write(lt7911exc->regmap, 0xe0ee, 0x00);
-+}
-+
-+static int lt7911exc_regulator_enable(struct lt7911exc *lt7911exc)
-+{
-+	int ret;
-+
-+	ret = devm_regulator_get_enable(lt7911exc->dev, "vcc");
-+	if (ret < 0)
-+		return dev_err_probe(lt7911exc->dev, ret, "failed to enable vcc regulator\n");
-+
-+	usleep_range(5000, 10000);
-+
-+	ret = devm_regulator_get_enable(lt7911exc->dev, "vdd");
-+	if (ret < 0)
-+		return dev_err_probe(lt7911exc->dev, ret, "failed to enable vdd regulator\n");
-+
-+	return 0;
-+}
-+
-+static int lt7911exc_read_version(struct lt7911exc *lt7911exc)
-+{
-+	u8 buf[3];
-+	int ret;
-+
-+	/* no need to halt MCU for this register access */
-+	ret = regmap_bulk_read(lt7911exc->regmap, 0xe081, buf, ARRAY_SIZE(buf));
-+	if (ret)
-+		return ret;
-+
-+	return (buf[0] << 16) | (buf[1] << 8) | buf[2];
-+}
-+
-+static int lt7911exc_block_erase(struct lt7911exc *lt7911exc)
-+{
-+	struct device *dev = lt7911exc->dev;
-+	const u32 addr = 0x00;
-+	int ret;
-+
-+	const struct reg_sequence seq_write[] = {
-+		REG_SEQ0(0xe0ee, 0x01),
-+		REG_SEQ0(0xe054, 0x01),
-+		REG_SEQ0(0xe055, 0x06),
-+		REG_SEQ0(0xe051, 0x01),
-+		REG_SEQ0(0xe051, 0x00),
-+		REG_SEQ0(0xe054, 0x05),
-+		REG_SEQ0(0xe055, 0xd8),
-+		REG_SEQ0(0xe05a, (addr >> 16) & 0xff),
-+		REG_SEQ0(0xe05b, (addr >> 8) & 0xff),
-+		REG_SEQ0(0xe05c, addr & 0xff),
-+		REG_SEQ0(0xe051, 0x01),
-+		REG_SEQ0(0xe050, 0x00),
-+	};
-+
-+	ret = regmap_multi_reg_write(lt7911exc->regmap, seq_write, ARRAY_SIZE(seq_write));
-+	if (ret)
-+		return ret;
-+
-+	msleep(200);
-+	dev_dbg(dev, "erase flash done.\n");
-+
-+	return 0;
-+}
-+
-+static int lt7911exc_prog_init(struct lt7911exc *lt7911exc, u64 addr)
-+{
-+	int ret;
-+
-+	const struct reg_sequence seq_write[] = {
-+		REG_SEQ0(0xe0ee, 0x01),
-+		REG_SEQ0(0xe05f, 0x01),
-+		REG_SEQ0(0xe05a, (addr >> 16) & 0xff),
-+		REG_SEQ0(0xe05b, (addr >> 8) & 0xff),
-+		REG_SEQ0(0xe05c, addr & 0xff),
-+	};
-+
-+	ret = regmap_multi_reg_write(lt7911exc->regmap, seq_write, ARRAY_SIZE(seq_write));
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int lt7911exc_write_data(struct lt7911exc *lt7911exc, const struct firmware *fw, u64 addr)
-+{
-+	struct device *dev = lt7911exc->dev;
-+	int ret;
-+	int page = 0, num = 0, page_len = 0;
-+	u64 size, offset;
-+	const u8 *data;
-+
-+	data = fw->data;
-+	size = fw->size;
-+	page = (size + LT_PAGE_SIZE - 1) / LT_PAGE_SIZE;
-+	if (page * LT_PAGE_SIZE > FW_SIZE) {
-+		dev_err(dev, "firmware size out of range\n");
-+		return -EINVAL;
-+	}
-+
-+	dev_dbg(dev, "%u pages, total size %llu byte\n", page, size);
-+
-+	for (num = 0; num < page; num++) {
-+		offset = num * LT_PAGE_SIZE;
-+		page_len = (offset + LT_PAGE_SIZE <= size) ? LT_PAGE_SIZE : (size - offset);
-+		ret = lt7911exc_prog_init(lt7911exc, addr);
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_raw_write(lt7911exc->regmap, 0xe05d, &data[offset], page_len);
-+		if (ret) {
-+			dev_err(dev, "write error at page %d\n", num);
-+			return ret;
-+		}
-+
-+		if (page_len < LT_PAGE_SIZE) {
-+			regmap_write(lt7911exc->regmap, 0xe05f, 0x05);
-+			regmap_write(lt7911exc->regmap, 0xe05f, 0x01);
-+			//hardware requires delay
-+			usleep_range(1000, 2000);
-+		}
-+
-+		regmap_write(lt7911exc->regmap, 0xe05f, 0x00);
-+		addr += LT_PAGE_SIZE;
-+	}
-+
-+	return 0;
-+}
-+
-+static int lt7911exc_write_crc(struct lt7911exc *lt7911exc, u32 crc32, u64 addr)
-+{
-+	u8 crc[4];
-+	int ret;
-+
-+	crc[0] = crc32 & 0xff;
-+	crc[1] = (crc32 >> 8) & 0xff;
-+	crc[2] = (crc32 >> 16) & 0xff;
-+	crc[3] = (crc32 >> 24) & 0xff;
-+
-+	regmap_write(lt7911exc->regmap, 0xe05f, 0x01);
-+	regmap_write(lt7911exc->regmap, 0xe05a, (addr >> 16) & 0xff);
-+	regmap_write(lt7911exc->regmap, 0xe05b, (addr >> 8) & 0xff);
-+	regmap_write(lt7911exc->regmap, 0xe05c, addr & 0xff);
-+
-+	ret = regmap_raw_write(lt7911exc->regmap, 0xe05d, crc, 4);
-+	if (ret)
-+		return ret;
-+
-+	regmap_write(lt7911exc->regmap, 0xe05f, 0x05);
-+	regmap_write(lt7911exc->regmap, 0xe05f, 0x01);
-+	usleep_range(1000, 2000);
-+	regmap_write(lt7911exc->regmap, 0xe05f, 0x00);
-+
-+	return 0;
-+}
-+
-+static int lt7911exc_upgrade_result(struct lt7911exc *lt7911exc, u32 crc32)
-+{
-+	struct device *dev = lt7911exc->dev;
-+	u32 read_hw_crc = 0;
-+	u8 crc_tmp[4];
-+	int ret;
-+
-+	regmap_write(lt7911exc->regmap, 0xe0ee, 0x01);
-+	regmap_write(lt7911exc->regmap, 0xe07b, 0x60);
-+	regmap_write(lt7911exc->regmap, 0xe07b, 0x40);
-+	msleep(150);
-+	ret = regmap_bulk_read(lt7911exc->regmap, 0x22, crc_tmp, ARRAY_SIZE(crc_tmp));
-+	if (ret) {
-+		dev_err(lt7911exc->dev, "Failed to read CRC: %d\n", ret);
-+		return ret;
-+	}
-+	regmap_write(lt7911exc->regmap, 0xe0ee, 0x00);
-+
-+	read_hw_crc = ((u32)crc_tmp[0] << 24) | ((u32)crc_tmp[1] << 16) |
-+				((u32)crc_tmp[2] << 8) | ((u32)crc_tmp[3]);
-+
-+	if (read_hw_crc != crc32) {
-+		dev_err(dev, "lt7911exc firmware upgrade failed, expected CRC=0x%08x, read CRC=0x%08x\n",
-+			crc32, read_hw_crc);
-+		return -EIO;
-+	}
-+
-+	dev_dbg(dev, "lt7911exc firmware upgrade success, CRC=0x%08x\n", read_hw_crc);
-+	return 0;
-+}
-+
-+static void lt7911exc_firmware_upgrade_work(struct work_struct *work)
-+{
-+	struct lt7911exc *lt7911exc = container_of(work, struct lt7911exc, work);
-+	struct device *dev = lt7911exc->dev;
-+	const struct firmware *fw;
-+	u8 *buffer;
-+	size_t total_size = FW_SIZE - 4;
-+	u32 crc32;
-+	int ret;
-+
-+	ret = request_firmware(&fw, FW_FILE, dev);
-+	if (ret) {
-+		dev_err(dev, "failed to load '%s'\n", FW_FILE);
-+		goto out_clear_status;
-+	}
-+
-+	if (fw->size > total_size) {
-+		dev_err(dev, "firmware too large (%zu > %zu)\n", fw->size, total_size);
-+		goto out_release_fw;
-+	}
-+
-+	buffer = kvmalloc(total_size, GFP_KERNEL);
-+	if (!buffer) {
-+		ret = -ENOMEM;
-+		goto out_release_fw;
-+	}
-+
-+	memset(buffer, 0xff, total_size);
-+	memcpy(buffer, fw->data, fw->size);
-+	crc32 = cal_crc32_custom(buffer, total_size);
-+	kvfree(buffer);
-+
-+	mutex_lock(&lt7911exc->upgrade_lock);
-+
-+	mutex_lock(&lt7911exc->ocm_lock);
-+	lt7911exc_reset(lt7911exc);
-+	lt7911exc_hw_mcu_halt(lt7911exc);
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+
-+	ret = lt7911exc_block_erase(lt7911exc);
-+	if (ret) {
-+		dev_err(dev, "failed to block erase.\n");
-+		goto out_unlock;
-+	}
-+
-+	ret = lt7911exc_write_data(lt7911exc, fw, 0);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to write firmware data\n");
-+		goto out_unlock;
-+	}
-+
-+	ret = lt7911exc_write_crc(lt7911exc, crc32, FW_SIZE - 4);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to write firmware crc\n");
-+		goto out_unlock;
-+	}
-+
-+	mutex_lock(&lt7911exc->ocm_lock);
-+	lt7911exc_reset(lt7911exc);
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+
-+	ret = lt7911exc_upgrade_result(lt7911exc, crc32);
-+	if (ret)
-+		dev_err(dev, "firmware verification failed\n");
-+
-+out_unlock:
-+	mutex_lock(&lt7911exc->ocm_lock);
-+	lt7911exc_hw_mcu_run(lt7911exc);
-+	lt7911exc->fw_version = lt7911exc_read_version(lt7911exc);
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+
-+	mutex_unlock(&lt7911exc->upgrade_lock);
-+	/* Notify DRM framework that hardware state changed/needs a modeset */
-+	if (lt7911exc->bridge.dev)
-+		drm_kms_helper_hotplug_event(lt7911exc->bridge.dev);
-+
-+out_release_fw:
-+	release_firmware(fw);
-+
-+out_clear_status:
-+	mutex_lock(&lt7911exc->ocm_lock);
-+	/* Only clear status if the module is not in the process of removal */
-+	if (!lt7911exc->removed)
-+		lt7911exc->upgrade = false;
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+}
-+
-+static void lt7911exc_atomic_pre_enable(struct drm_bridge *bridge, struct drm_atomic_state *state)
-+{
-+	struct lt7911exc *lt7911exc = bridge_to_lt7911exc(bridge);
-+
-+	guard(mutex)(&lt7911exc->ocm_lock);
-+
-+	//enable mipi stream
-+	if (!lt7911exc->upgrade)
-+		regmap_write(lt7911exc->regmap, 0xe0b0, 0x01);
-+}
-+
-+static void lt7911exc_atomic_post_disable(struct drm_bridge *bridge, struct drm_atomic_state *state)
-+{
-+	struct lt7911exc *lt7911exc = bridge_to_lt7911exc(bridge);
-+
-+	guard(mutex)(&lt7911exc->ocm_lock);
-+
-+	//disable mipi stream
-+	if (!lt7911exc->upgrade)
-+		regmap_write(lt7911exc->regmap, 0xe0b0, 0x00);
-+}
-+
-+static int lt7911exc_bridge_attach(struct drm_bridge *bridge,
-+				   struct drm_encoder *encoder,
-+				   enum drm_bridge_attach_flags flags)
-+{
-+	struct lt7911exc *lt7911exc = bridge_to_lt7911exc(bridge);
-+
-+	if (!lt7911exc->output.bridge) {
-+		dev_warn(lt7911exc->dev, "Next bridge/panel not attached yet, deferring\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	return drm_bridge_attach(encoder, lt7911exc->output.bridge, bridge, flags);
-+}
-+
-+static const struct drm_bridge_funcs lt7911exc_bridge_funcs = {
-+	.attach = lt7911exc_bridge_attach,
-+	.atomic_pre_enable = lt7911exc_atomic_pre_enable,
-+	.atomic_post_disable = lt7911exc_atomic_post_disable,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+};
-+
-+static int lt7911exc_dsi_host_attach(struct mipi_dsi_host *host, struct mipi_dsi_device *dev)
-+{
-+	struct lt7911exc *lt7911exc = dsi_host_to_lt7911exc(host);
-+	struct drm_bridge *bridge;
-+	struct drm_panel *panel;
-+	int ret;
-+
-+	if (lt7911exc->output.dev)
-+		return -EBUSY;
-+
-+	ret = drm_of_find_panel_or_bridge(host->dev->of_node, 1, 0, &panel, &bridge);
-+	if (ret)
-+		return ret;
-+
-+	if (panel) {
-+		bridge = drm_panel_bridge_add_typed(panel, DRM_MODE_CONNECTOR_DSI);
-+		if (IS_ERR(bridge))
-+			return PTR_ERR(bridge);
-+	}
-+	lt7911exc->output.dev = dev;
-+	lt7911exc->output.bridge = bridge;
-+	lt7911exc->output.panel = panel;
-+
-+	return 0;
-+}
-+
-+static int lt7911exc_dsi_host_detach(struct mipi_dsi_host *host, struct mipi_dsi_device *dev)
-+{
-+	struct lt7911exc *lt7911exc = dsi_host_to_lt7911exc(host);
-+
-+	if (!lt7911exc->output.dev)
-+		return 0;
-+
-+	lt7911exc->output.dev = NULL;
-+
-+	return 0;
-+}
-+
-+/*
-+ * The internal firmware controls the panel initialization
-+ * sequence and handles all MIPI DSI command transmission.
-+ */
-+static ssize_t lt7911exc_dsi_host_transfer(struct mipi_dsi_host *host,
-+					   const struct mipi_dsi_msg *msg)
-+{
-+	struct lt7911exc *lt7911exc = dsi_host_to_lt7911exc(host);
-+
-+	if (msg->rx_len) {
-+		dev_warn(lt7911exc->dev, "MIPI DSI read is not supported\n");
-+		return -EOPNOTSUPP;
-+	}
-+
-+	switch (msg->type) {
-+	case MIPI_DSI_DCS_SHORT_WRITE:
-+	case MIPI_DSI_DCS_SHORT_WRITE_PARAM:
-+	case MIPI_DSI_DCS_LONG_WRITE:
-+	case MIPI_DSI_GENERIC_SHORT_WRITE_0_PARAM:
-+	case MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM:
-+	case MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM:
-+	case MIPI_DSI_GENERIC_LONG_WRITE:
-+	break;
-+	default:
-+	return -EOPNOTSUPP;
-+	}
-+
-+	guard(mutex)(&lt7911exc->ocm_lock);
-+
-+	if (lt7911exc->upgrade)
-+		return -EBUSY;
-+
-+	return msg->tx_len;
-+}
-+
-+static const struct mipi_dsi_host_ops lt7911exc_dsi_host_ops = {
-+	.attach = lt7911exc_dsi_host_attach,
-+	.detach = lt7911exc_dsi_host_detach,
-+	.transfer = lt7911exc_dsi_host_transfer,
-+};
-+
-+static ssize_t lt7911exc_firmware_store(struct device *dev, struct device_attribute *attr,
-+					const char *buf, size_t len)
-+{
-+	struct lt7911exc *lt7911exc = dev_get_drvdata(dev);
-+
-+	if (!mutex_trylock(&lt7911exc->upgrade_lock))
-+		return -EBUSY;
-+
-+	mutex_lock(&lt7911exc->ocm_lock);
-+
-+	if (lt7911exc->upgrade || lt7911exc->removed) {
-+		mutex_unlock(&lt7911exc->ocm_lock);
-+		mutex_unlock(&lt7911exc->upgrade_lock);
-+		return -EBUSY;
-+	}
-+
-+	lt7911exc->upgrade = true;
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+	mutex_unlock(&lt7911exc->upgrade_lock);
-+
-+	schedule_work(&lt7911exc->work);
-+
-+	return len;
-+}
-+
-+static ssize_t lt7911exc_firmware_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct lt7911exc *lt7911exc = dev_get_drvdata(dev);
-+	int version;
-+
-+	mutex_lock(&lt7911exc->ocm_lock);
-+	version = lt7911exc->fw_version;
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+	return sysfs_emit(buf, "0x%04x\n", version);
-+}
-+
-+static DEVICE_ATTR_RW(lt7911exc_firmware);
-+
-+static struct attribute *lt7911exc_attrs[] = {
-+	&dev_attr_lt7911exc_firmware.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group lt7911exc_attr_group = {
-+	.attrs = lt7911exc_attrs,
-+};
-+
-+static const struct attribute_group *lt7911exc_attr_groups[] = {
-+	&lt7911exc_attr_group,
-+	NULL,
-+};
-+
-+static int lt7911exc_probe(struct i2c_client *client)
-+{
-+	struct lt7911exc *lt7911exc;
-+	struct device *dev = &client->dev;
-+	struct device_node *np = dev->of_node;
-+	int ret;
-+
-+	if (!np)
-+		return -ENODEV;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-+		return dev_err_probe(dev, -ENODEV, "device doesn't support I2C\n");
-+
-+	lt7911exc = devm_drm_bridge_alloc(dev, struct lt7911exc, bridge, &lt7911exc_bridge_funcs);
-+	if (IS_ERR(lt7911exc))
-+		return dev_err_probe(dev, PTR_ERR(lt7911exc), "drm bridge alloc failed.\n");
-+
-+	dev_set_drvdata(dev, lt7911exc);
-+
-+	lt7911exc->client = client;
-+	lt7911exc->dev = dev;
-+	lt7911exc->upgrade = false;
-+	lt7911exc->removed = false;
-+
-+	ret = devm_mutex_init(dev, &lt7911exc->ocm_lock);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to init mutex\n");
-+
-+	ret = devm_mutex_init(dev, &lt7911exc->upgrade_lock);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to init upgrade_lock\n");
-+
-+	lt7911exc->regmap = devm_regmap_init_i2c(client, &lt7911exc_regmap_config);
-+	if (IS_ERR(lt7911exc->regmap))
-+		return dev_err_probe(dev, PTR_ERR(lt7911exc->regmap), "regmap i2c init failed\n");
-+
-+	lt7911exc->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(lt7911exc->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(lt7911exc->reset_gpio),
-+				     "failed to acquire reset gpio\n");
-+
-+	ret = lt7911exc_regulator_enable(lt7911exc);
-+	if (ret)
-+		return ret;
-+
-+	lt7911exc_reset(lt7911exc);
-+
-+	mutex_lock(&lt7911exc->ocm_lock);
-+
-+	lt7911exc->fw_version = lt7911exc_read_version(lt7911exc);
-+
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+
-+	if (lt7911exc->fw_version < 0)
-+		return dev_err_probe(dev, lt7911exc->fw_version, "failed read version of chip\n");
-+
-+	lt7911exc->dsi_host.dev = dev;
-+	lt7911exc->dsi_host.ops = &lt7911exc_dsi_host_ops;
-+	lt7911exc->bridge.of_node = np;
-+
-+	INIT_WORK(&lt7911exc->work, lt7911exc_firmware_upgrade_work);
-+
-+	i2c_set_clientdata(client, lt7911exc);
-+
-+	drm_bridge_add(&lt7911exc->bridge);
-+
-+	ret = mipi_dsi_host_register(&lt7911exc->dsi_host);
-+	if (ret) {
-+		drm_bridge_remove(&lt7911exc->bridge);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void lt7911exc_remove(struct i2c_client *client)
-+{
-+	struct lt7911exc *lt7911exc = i2c_get_clientdata(client);
-+
-+	mutex_lock(&lt7911exc->ocm_lock);
-+	lt7911exc->removed = true;
-+	lt7911exc->upgrade = true;
-+	mutex_unlock(&lt7911exc->ocm_lock);
-+
-+	cancel_work_sync(&lt7911exc->work);
-+
-+	mipi_dsi_host_unregister(&lt7911exc->dsi_host);
-+	drm_bridge_remove(&lt7911exc->bridge);
-+
-+	if (lt7911exc->output.panel && lt7911exc->output.bridge)
-+		drm_panel_bridge_remove(lt7911exc->output.bridge);
-+
-+	gpiod_set_value_cansleep(lt7911exc->reset_gpio, 1);
-+}
-+
-+static const struct i2c_device_id lt7911exc_i2c_table[] = {
-+	{"lt7911exc"},
-+	{/* sentinel */}
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, lt7911exc_i2c_table);
-+
-+static const struct of_device_id lt7911exc_devices[] = {
-+	{.compatible = "lontium,lt7911exc"},
-+	{/* sentinel */}
-+};
-+MODULE_DEVICE_TABLE(of, lt7911exc_devices);
-+
-+static struct i2c_driver lt7911exc_driver = {
-+	.id_table	= lt7911exc_i2c_table,
-+	.probe		= lt7911exc_probe,
-+	.remove		= lt7911exc_remove,
-+	.driver		= {
-+		.name	= "lt7911exc",
-+		.of_match_table = lt7911exc_devices,
-+		.dev_groups = lt7911exc_attr_groups,
-+	},
-+};
-+module_i2c_driver(lt7911exc_driver);
-+
-+MODULE_AUTHOR("SunYun Yang <syyang@lontium.com>");
-+MODULE_DESCRIPTION("Lontium LT7911EXC EDP to MIPI DSI bridge driver");
-+MODULE_LICENSE("GPL");
-+MODULE_FIRMWARE(FW_FILE);
--- 
-2.34.1
-
+SGkgQWxleGFuZGVyLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEFs
+ZXhhbmRlciBTdGVpbiA8YWxleGFuZGVyLnN0ZWluQGV3LnRxLWdyb3VwLmNvbT4NCj4gU2VudDog
+VGh1cnNkYXksIE1heSAyMSwgMjAyNiA3OjUzIFBNDQo+IFRvOiBNaWNoYWVsIFJpZXNjaCA8bWlj
+aGFlbC5yaWVzY2hAY29sbGFib3JhLmNvbT47IE1hdXJvIENhcnZhbGhvIENoZWhhYg0KPiA8bWNo
+ZWhhYkBrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz47IEtyenlzenRv
+ZiBLb3psb3dza2kNCj4gPGtyemsrZHRAa2VybmVsLm9yZz47IENvbm9yIERvb2xleSA8Y29ub3Ir
+ZHRAa2VybmVsLm9yZz47IEhlaWtvIFN0dWVibmVyDQo+IDxoZWlrb0BzbnRlY2guZGU+OyBMYXVy
+ZW50IFBpbmNoYXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+Ow0KPiBGcmFu
+ayBMaSA8ZnJhbmsubGlAbnhwLmNvbT47IFNha2FyaSBBaWx1cyA8c2FrYXJpLmFpbHVzQGxpbnV4
+LmludGVsLmNvbT47IEJyeWFuDQo+IE8nRG9ub2dodWUgPGJyeWFuLm9kb25vZ2h1ZUBsaW5hcm8u
+b3JnPjsgTWVoZGkgRGphaXQNCj4gPG1laGRpLmRqYWl0QGxpbnV4LmludGVsLmNvbT47IEhhbnMg
+VmVya3VpbCA8aHZlcmt1aWwrY2lzY29Aa2VybmVsLm9yZz47DQo+IEcuTi4gWmhvdSAoT1NTKSA8
+Z3Vvbml1Lnpob3VAb3NzLm54cC5jb20+OyBHLk4uIFpob3UgKE9TUykNCj4gPGd1b25pdS56aG91
+QG9zcy5ueHAuY29tPg0KPiBDYzogbGludXgtbWVkaWFAdmdlci5rZXJuZWwub3JnOyBsaW51eC1r
+ZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgaW14
+QGxpc3RzLmxpbnV4LmRldjsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9y
+ZzsgbGludXgtcm9ja2NoaXBAbGlzdHMuaW5mcmFkZWFkLm9yZzsgRy5OLiBaaG91IChPU1MpDQo+
+IDxndW9uaXUuemhvdUBvc3MubnhwLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCA0LzZd
+IG1lZGlhOiBzeW5vcHN5czogQWRkIFBIWSBzdG9wc3RhdGUgd2FpdCBmb3INCj4gaS5NWDkzDQo+
+IA0KPiBIaSwNCj4gDQo+IHRoYW5rcyBmb3IgdGhlIHJlcGxheS4NCj4gDQo+IEFtIERvbm5lcnN0
+YWcsIDIxLiBNYWkgMjAyNiwgMTE6Mjk6MzkgQ0VTVCBzY2hyaWViIEcuTi4gWmhvdSAoT1NTKToN
+Cj4gPiBIaSBBbGV4YW5kZXIsDQo+ID4NCj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+DQo+ID4gPiBGcm9tOiBBbGV4YW5kZXIgU3RlaW4gPGFsZXhhbmRlci5zdGVpbkBldy50cS1ncm91
+cC5jb20+DQo+ID4gPiBTZW50OiBXZWRuZXNkYXksIE1heSAyMCwgMjAyNiA3OjEyIFBNDQo+ID4g
+PiBUbzogTWljaGFlbCBSaWVzY2ggPG1pY2hhZWwucmllc2NoQGNvbGxhYm9yYS5jb20+OyBNYXVy
+byBDYXJ2YWxobw0KPiA+ID4gQ2hlaGFiIDxtY2hlaGFiQGtlcm5lbC5vcmc+OyBSb2IgSGVycmlu
+ZyA8cm9iaEBrZXJuZWwub3JnPjsNCj4gPiA+IEtyenlzenRvZiBLb3psb3dza2kgPGtyemsrZHRA
+a2VybmVsLm9yZz47IENvbm9yIERvb2xleQ0KPiA+ID4gPGNvbm9yK2R0QGtlcm5lbC5vcmc+OyBI
+ZWlrbyBTdHVlYm5lciA8aGVpa29Ac250ZWNoLmRlPjsgTGF1cmVudA0KPiA+ID4gUGluY2hhcnQg
+PGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNvbT47DQo+ID4gPiBGcmFuayBMaSA8ZnJh
+bmsubGlAbnhwLmNvbT47IFNha2FyaSBBaWx1cw0KPiA+ID4gPHNha2FyaS5haWx1c0BsaW51eC5p
+bnRlbC5jb20+OyBCcnlhbiBPJ0Rvbm9naHVlDQo+ID4gPiA8YnJ5YW4ub2Rvbm9naHVlQGxpbmFy
+by5vcmc+OyBNZWhkaSBEamFpdA0KPiA+ID4gPG1laGRpLmRqYWl0QGxpbnV4LmludGVsLmNvbT47
+IEhhbnMgVmVya3VpbA0KPiA+ID4gPGh2ZXJrdWlsK2Npc2NvQGtlcm5lbC5vcmc+OyBHLk4uIFpo
+b3UgKE9TUykNCj4gPiA+IDxndW9uaXUuemhvdUBvc3MubnhwLmNvbT4NCj4gPiA+IENjOiBsaW51
+eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+
+ID4gPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgaW14QGxpc3RzLmxpbnV4LmRldjsgbGlu
+dXgtYXJtLQ0KPiA+ID4ga2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4LXJvY2tjaGlw
+QGxpc3RzLmluZnJhZGVhZC5vcmc7IEcuTi4NCj4gPiA+IFpob3UgKE9TUykgPGd1b25pdS56aG91
+QG9zcy5ueHAuY29tPg0KPiA+ID4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCA0LzZdIG1lZGlhOiBz
+eW5vcHN5czogQWRkIFBIWSBzdG9wc3RhdGUgd2FpdA0KPiA+ID4gZm9yDQo+ID4gPiBpLk1YOTMN
+Cj4gPiA+DQo+ID4gPiBIaSwNCj4gPiA+DQo+ID4gPiBBbSBEaWVuc3RhZywgMTkuIE1haSAyMDI2
+LCAwNDowNzo0MSBDRVNUIHNjaHJpZWIgR3Vvbml1IFpob3U6DQo+ID4gPiA+IEltcGxlbWVudCB3
+YWl0aW5nIGZvciBELVBIWSBsYW5lcyB0byBlbnRlciBzdG9wIHN0YXRlIG9uIGkuTVg5My4NCj4g
+PiA+ID4gVGhpcyBlbnN1cmVzIHByb3BlciBQSFkgaW5pdGlhbGl6YXRpb24gYnkgdmVyaWZ5aW5n
+IHRoYXQgdGhlIGNsb2NrDQo+ID4gPiA+IGxhbmUgYW5kIGFsbCBhY3RpdmUgZGF0YSBsYW5lcyBo
+YXZlIGVudGVyZWQgdGhlIHN0b3Agc3RhdGUgYmVmb3JlDQo+ID4gPiA+IHByb2NlZWRpbmcgd2l0
+aCBmdXJ0aGVyIG9wZXJhdGlvbnMuDQo+ID4gPiA+DQo+ID4gPiA+IFJldmlld2VkLWJ5OiBGcmFu
+ayBMaSA8RnJhbmsuTGlAbnhwLmNvbT4NCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogR3Vvbml1IFpo
+b3UgPGd1b25pdS56aG91QG9zcy5ueHAuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4gQ2hhbmdl
+cyBpbiB2MjoNCj4gPiA+ID4gLSBSZW1vdmVzIHJlZHVuZGFudCByZWdpc3RlciBhdmFpbGFiaWxp
+dHkgY2hlY2sNCj4gPiA+ID4gLSBVc2VzIHJlYWRfcG9sbF90aW1lb3V0KCkgd2l0aCBkd19taXBp
+X2NzaTJyeF9yZWFkKCkgaW5zdGVhZCBvZg0KPiA+ID4gPiAgIHJlYWRsX3BvbGxfdGltZW91dCgp
+IHdpdGggZGlyZWN0IHJlZ2lzdGVyIGFkZHJlc3MNCj4gPiA+ID4gLSBGaXhlcyBzdG9wc3RhdGUg
+Y29uZGl0aW9uIGxvZ2ljDQo+ID4gPiA+IC0gQ2hlY2sgUEhZIHN0b3BzdGF0ZSBhZnRlciBzZW5z
+b3IgZW5hYmxlIGluc3RlYWQgb2YgYmVmb3JlIHRvIGVuc3VyZQ0KPiA+ID4gPiAgIGNvcnJlY3Qg
+dGltaW5nLg0KPiA+ID4gPiAtIE9wdGltaXplIFBIWSBzdG9wc3RhdGUgcG9sbGluZyBwYXJhbWV0
+ZXJzICgxMDAwdXMtPjEwdXMsIDJzLT4xbXMpIHRvDQo+ID4gPiA+ICAgYmFsYW5jZSBwZXJmb3Jt
+YW5jZSBhbmQgcmVzcG9uc2l2ZW5lc3MuDQo+ID4gPiA+IC0tLQ0KPiA+ID4gPiAgZHJpdmVycy9t
+ZWRpYS9wbGF0Zm9ybS9zeW5vcHN5cy9kdy1taXBpLWNzaTJyeC5jIHwgMzYNCj4gPiA+ID4gKysr
+KysrKysrKysrKysrKysrKysrKysrDQo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMzYgaW5zZXJ0
+aW9ucygrKQ0KPiA+ID4gPg0KPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9wbGF0
+Zm9ybS9zeW5vcHN5cy9kdy1taXBpLWNzaTJyeC5jDQo+ID4gPiA+IGIvZHJpdmVycy9tZWRpYS9w
+bGF0Zm9ybS9zeW5vcHN5cy9kdy1taXBpLWNzaTJyeC5jDQo+ID4gPiA+IGluZGV4IDkyMTc4YTNk
+ZWM1ZC4uOGEzNGFlYzU1MGFkIDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2ZXJzL21lZGlhL3Bs
+YXRmb3JtL3N5bm9wc3lzL2R3LW1pcGktY3NpMnJ4LmMNCj4gPiA+ID4gKysrIGIvZHJpdmVycy9t
+ZWRpYS9wbGF0Zm9ybS9zeW5vcHN5cy9kdy1taXBpLWNzaTJyeC5jDQo+ID4gPiA+IEBAIC0xMSw2
+ICsxMSw3IEBADQo+ID4gPiA+ICAjaW5jbHVkZSA8bGludXgvY2xrLmg+DQo+ID4gPiA+ICAjaW5j
+bHVkZSA8bGludXgvZGVsYXkuaD4NCj4gPiA+ID4gICNpbmNsdWRlIDxsaW51eC9pby5oPg0KPiA+
+ID4gPiArI2luY2x1ZGUgPGxpbnV4L2lvcG9sbC5oPg0KPiA+ID4gPiAgI2luY2x1ZGUgPGxpbnV4
+L21vZHVsZS5oPg0KPiA+ID4gPiAgI2luY2x1ZGUgPGxpbnV4L29mLmg+DQo+ID4gPiA+ICAjaW5j
+bHVkZSA8bGludXgvcGh5L3BoeS5oPg0KPiA+ID4gPiBAQCAtMzUsNiArMzYsOCBAQA0KPiA+ID4g
+PiAgI2RlZmluZSBEV19SRUdfRVhJU1QJCUJJVCgzMSkNCj4gPiA+ID4gICNkZWZpbmUgRFdfUkVH
+KHgpCQkoRFdfUkVHX0VYSVNUIHwgKHgpKQ0KPiA+ID4gPg0KPiA+ID4gPiArI2RlZmluZSBEUEhZ
+X1NUT1BTVEFURV9DTEtfTEFORQkJQklUKDE2KQ0KPiA+ID4gPiArDQo+ID4gPiA+ICAjZGVmaW5l
+IERQSFlfVEVTVF9DVFJMMF9URVNUX0NMUglCSVQoMCkNCj4gPiA+ID4NCj4gPiA+ID4gICNkZWZp
+bmUgSVBJX1ZDSURfVkMoeCkJCQlGSUVMRF9QUkVQKEdFTk1BU0soMSwgMCksDQo+ID4gPiAoeCkp
+DQo+ID4gPiA+IEBAIC02NSw2ICs2OCw3IEBAIGVudW0gZHdfbWlwaV9jc2kycnhfcmVnc19pbmRl
+eCB7DQo+ID4gPiA+ICAJRFdfTUlQSV9DU0kyUlhfUEhZX1RTVF9DVFJMMCwNCj4gPiA+ID4gIAlE
+V19NSVBJX0NTSTJSWF9QSFlfVFNUX0NUUkwxLA0KPiA+ID4gPiAgCURXX01JUElfQ1NJMlJYX1BI
+WV9TSFVURE9XTlosDQo+ID4gPiA+ICsJRFdfTUlQSV9DU0kyUlhfUEhZX1NUT1BTVEFURSwNCj4g
+PiA+ID4gIAlEV19NSVBJX0NTSTJSWF9JUElfREFUQVRZUEUsDQo+ID4gPiA+ICAJRFdfTUlQSV9D
+U0kyUlhfSVBJX01FTV9GTFVTSCwNCj4gPiA+ID4gIAlEV19NSVBJX0NTSTJSWF9JUElfTU9ERSwN
+Cj4gPiA+ID4gQEAgLTg3LDYgKzkxLDcgQEAgc3RydWN0IGR3X21pcGlfY3NpMnJ4X2RydmRhdGEg
+ew0KPiA+ID4gPiAgCXZvaWQgKCpkcGh5X2Fzc2VydF9yZXNldCkoc3RydWN0IGR3X21pcGlfY3Np
+MnJ4X2RldmljZSAqY3NpMik7DQo+ID4gPiA+ICAJdm9pZCAoKmRwaHlfZGVhc3NlcnRfcmVzZXQp
+KHN0cnVjdCBkd19taXBpX2NzaTJyeF9kZXZpY2UgKmNzaTIpOw0KPiA+ID4gPiAgCXZvaWQgKCpp
+cGlfZW5hYmxlKShzdHJ1Y3QgZHdfbWlwaV9jc2kycnhfZGV2aWNlICpjc2kyKTsNCj4gPiA+ID4g
+KwlpbnQgKCp3YWl0X2Zvcl9waHlfc3RvcHN0YXRlKShzdHJ1Y3QgZHdfbWlwaV9jc2kycnhfZGV2
+aWNlDQo+ID4gPiA+ICsqY3NpMik7DQo+ID4gPiA+ICB9Ow0KPiA+ID4gPg0KPiA+ID4gPiAgc3Ry
+dWN0IGR3X21pcGlfY3NpMnJ4X2Zvcm1hdCB7DQo+ID4gPiA+IEBAIC0xMzksNiArMTQ0LDcgQEAg
+c3RhdGljIGNvbnN0IHUzMg0KPiA+ID4gPiBpbXg5M19yZWdzW0RXX01JUElfQ1NJMlJYX01BWF0N
+Cj4gPiA+ID0gew0KPiA+ID4gPiAgCVtEV19NSVBJX0NTSTJSWF9QSFlfU0hVVERPV05aXSA9IERX
+X1JFRygweDQwKSwNCj4gPiA+ID4gIAlbRFdfTUlQSV9DU0kyUlhfRFBIWV9SU1RaXSA9IERXX1JF
+RygweDQ0KSwNCj4gPiA+ID4gIAlbRFdfTUlQSV9DU0kyUlhfUEhZX1NUQVRFXSA9IERXX1JFRygw
+eDQ4KSwNCj4gPiA+ID4gKwlbRFdfTUlQSV9DU0kyUlhfUEhZX1NUT1BTVEFURV0gPSBEV19SRUco
+MHg0YyksDQo+ID4gPiA+ICAJW0RXX01JUElfQ1NJMlJYX1BIWV9UU1RfQ1RSTDBdID0gRFdfUkVH
+KDB4NTApLA0KPiA+ID4gPiAgCVtEV19NSVBJX0NTSTJSWF9QSFlfVFNUX0NUUkwxXSA9IERXX1JF
+RygweDU0KSwNCj4gPiA+ID4gIAlbRFdfTUlQSV9DU0kyUlhfSVBJX01PREVdID0gRFdfUkVHKDB4
+ODApLCBAQCAtNTU2LDEwICs1NjIsMTkNCj4gPiA+IEBADQo+ID4gPiA+IHN0YXRpYyBpbnQgZHdf
+bWlwaV9jc2kycnhfZW5hYmxlX3N0cmVhbXMoc3RydWN0IHY0bDJfc3ViZGV2ICpzZCwNCj4gPiA+
+ID4gIAlpZiAocmV0KQ0KPiA+ID4gPiAgCQlnb3RvIGVycl9jc2lfc3RvcDsNCj4gPiA+ID4NCj4g
+PiA+ID4gKwlpZiAoIWNzaTItPmVuYWJsZWRfc3RyZWFtcyAmJg0KPiA+ID4gPiArCSAgICBjc2ky
+LT5kcnZkYXRhLT53YWl0X2Zvcl9waHlfc3RvcHN0YXRlKSB7DQo+ID4gPiA+ICsJCXJldCA9IGNz
+aTItPmRydmRhdGEtPndhaXRfZm9yX3BoeV9zdG9wc3RhdGUoY3NpMik7DQo+ID4gPiA+ICsJCWlm
+IChyZXQpDQo+ID4gPiA+ICsJCQlnb3RvIGVycl9kaXNhYmxlX3N0cmVhbXM7DQo+ID4gPiA+ICsJ
+fQ0KPiA+ID4gPiArDQo+ID4gPiA+ICAJY3NpMi0+ZW5hYmxlZF9zdHJlYW1zIHw9IHN0cmVhbXNf
+bWFzazsNCj4gPiA+ID4NCj4gPiA+ID4gIAlyZXR1cm4gMDsNCj4gPiA+ID4NCj4gPiA+ID4gK2Vy
+cl9kaXNhYmxlX3N0cmVhbXM6DQo+ID4gPiA+ICsJdjRsMl9zdWJkZXZfZGlzYWJsZV9zdHJlYW1z
+KHJlbW90ZV9zZCwgcmVtb3RlX3BhZC0+aW5kZXgsIG1hc2spOw0KPiA+ID4gPiAgZXJyX2NzaV9z
+dG9wOg0KPiA+ID4gPiAgCS8qIFN0b3AgQ1NJIGhhcmR3YXJlIGlmIG5vIHN0cmVhbXMgYXJlIGVu
+YWJsZWQgKi8NCj4gPiA+ID4gIAlpZiAoIWNzaTItPmVuYWJsZWRfc3RyZWFtcykNCj4gPiA+ID4g
+QEAgLTg3MSwxMSArODg2LDMyIEBAIHN0YXRpYyB2b2lkDQo+ID4gPiA+IGlteDkzX2NzaTJyeF9k
+cGh5X2lwaV9lbmFibGUoc3RydWN0DQo+ID4gPiBkd19taXBpX2NzaTJyeF9kZXZpY2UgKmNzaTIp
+DQo+ID4gPiA+ICAJZHdfbWlwaV9jc2kycnhfd3JpdGUoY3NpMiwgRFdfTUlQSV9DU0kyUlhfSVBJ
+X01PREUsIHZhbCk7ICB9DQo+ID4gPiA+DQo+ID4gPiA+ICtzdGF0aWMgaW50IGlteDkzX2NzaTJy
+eF93YWl0X2Zvcl9waHlfc3RvcHN0YXRlKHN0cnVjdA0KPiA+ID4gPiArZHdfbWlwaV9jc2kycnhf
+ZGV2aWNlICpjc2kyKSB7DQo+ID4gPiA+ICsJc3RydWN0IGRldmljZSAqZGV2ID0gY3NpMi0+ZGV2
+Ow0KPiA+ID4gPiArCXUzMiBzdG9wc3RhdGVfbWFzazsNCj4gPiA+ID4gKwl1MzIgdmFsOw0KPiA+
+ID4gPiArCWludCByZXQ7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlzdG9wc3RhdGVfbWFzayA9IERQ
+SFlfU1RPUFNUQVRFX0NMS19MQU5FIHwgR0VOTUFTSyhjc2kyLQ0KPiA+ID4gPmxhbmVzX251bSAt
+DQo+ID4gPiA+ICsxLCAwKTsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCXJldCA9IHJlYWRfcG9sbF90
+aW1lb3V0KGR3X21pcGlfY3NpMnJ4X3JlYWQsIHZhbCwNCj4gPiA+ID4gKwkJCQkodmFsICYgc3Rv
+cHN0YXRlX21hc2spID09IHN0b3BzdGF0ZV9tYXNrLA0KPiA+ID4gPiArCQkJCSAxMCwgMTAwMCwg
+dHJ1ZSwNCj4gPiA+ID4gKwkJCQkgY3NpMiwgRFdfTUlQSV9DU0kyUlhfUEhZX1NUT1BTVEFURSk7
+DQo+ID4gPiA+ICsJaWYgKHJldCkNCj4gPiA+ID4gKwkJZGV2X2VycihkZXYsICJsYW5lcyBhcmUg
+bm90IGluIHN0b3Agc3RhdGU6ICUjeCwNCj4gPiA+IGV4cGVjdGVkICUjeFxuIiwNCj4gPiA+ID4g
+KwkJCXZhbCwgc3RvcHN0YXRlX21hc2spOw0KPiA+ID4NCj4gPiA+IERpZCB5b3UgYWN0dWFsbHkg
+dGVzdCB0aGlzIG9uIGlteDkzPyBJJ20gdHJ5aW5nIHRvIGdldCBteSBpbXgzMjcNCj4gPiA+IHNl
+bnNvciB0byBydW4sIGJ1dCBvbmx5IHJ1biBpbnRvIHRoaXMgZXJyb3IgbWVzc2FnZToNCj4gPiA+
+IGR3LW1pcGktY3NpMnJ4IDRhZTAwMDAwLm1pcGktY3NpOiBsYW5lcyBhcmUgbm90IGluIHN0b3Ag
+c3RhdGU6IDB4MCwNCj4gPiA+IGV4cGVjdGVkDQo+ID4gPiAweDEwMDAzDQo+ID4NCj4gPiBUaGFu
+a3MgZm9yIHRlc3RpbmcuIFJlZ2FyZGluZyB0aGUgbGFuZSBzdG9wIHN0YXRlIGVycm9yIG9uIGku
+TVg5MyB3aXRoDQo+IGlteDMyNzoNCj4gPg0KPiA+IFRoaXMgZXJyb3IgaW5kaWNhdGVzIHRoZSBD
+U0ktMiBsYW5lcyBhcmUgbm90IGluIExQLTExIChzdG9wKSBzdGF0ZQ0KPiA+IHdoZW4gZXhwZWN0
+ZWQuIFBsZWFzZSBjaGVjazoNCj4gPg0KPiA+IDEpIFZlcmlmeSB0aGUgc2Vuc29yIFBIWSBpcyBp
+biBMUC0xMSBzdGF0ZSBiZWZvcmUgcmV0dXJuaW5nIGZyb20gdGhlIHNlbnNvcidzDQo+ID4gICAg
+c19zdHJlYW0oMSkgY2FsbC4gVGhlIENTSS0yIHJlY2VpdmVyIGV4cGVjdHMgbGFuZXMgdG8gYmUg
+aW4gc3RvcCBzdGF0ZQ0KPiA+ICAgIGluaXRpYWxseS4NCj4gDQo+IFdlbGwsIHRoaXMgbWlnaHQg
+YmUgdHJpY2t5IGFzIEkgZG9uJ3QgaGF2ZSBELVBIWSBjYXBhYmxlIHNjb3Blcy4NCj4gSSBjYW4g
+c3VjY2Vzc2Z1bGx5IHVzZSB0aGlzIHNlbnNvciBvbiBhIGlteDhtcCwgc28gSSBhbSBleHBlY3Rp
+bmcgdGhpcyB0byBiZQ0KPiBva2F5Lg0KPiANCj4gPiAyKSBDaGVjayBpZiB0aGUgaW14MzI3IGRy
+aXZlciBoYXMgYSBkZWxheSBiZXR3ZWVuIHN0YXJ0aW5nIHRoZSBzdHJlYW0gYW5kDQo+ID4gICAg
+cmV0dXJuaW5nIGZyb20gc19zdHJlYW0oKS4gSWYgdGhlIHNlbnNvciB0cmFuc2l0aW9ucyBQSFkg
+b3V0IG9mIExQLTExDQo+ID4gICAgc3RhdGUgZHVyaW5nIHRoaXMgZGVsYXksIHRoZSBDU0kgZHJp
+dmVyJ3MgbGFuZSBzdGF0ZSBjaGVjayB3aWxsIGZhaWwNCj4gPiAgICB3aGVuIGl0IHJ1bnMgbGF0
+ZXIuIFRoZSBzZW5zb3Igc2hvdWxkIHJlbWFpbiBpbiBMUC0xMSB1bnRpbCB0aGUgQ1NJDQo+ID4g
+ICAgY29udHJvbGxlciBjb21wbGV0ZXMgaXRzIGluaXRpYWxpemF0aW9uLg0KPiANCj4gSW4gaW14
+MjkwX3NldF9zdHJlYW0oKSBhbmQgc3Vic2VxdWVudGx5IGlteDI5MF9zdGFydF9zdHJlYW1pbmco
+KSBzZXR0aW5nDQo+IElNWDI5MF9YTVNUQSBzdGFydHMgdGhlIHN0cmVhbS4gSSBleHBlY3QgdGhp
+cyBpcyB0aGUgcG9pbnQgd2hlbiB0aGUgc2Vuc29ycw0KPiBzd2l0Y2hlcyBmcm9tIExQLTExIHRv
+IEhTLiBCdXQgYWdhaW4sIEkgY2FuJ3QgdmVyaWZ5Lg0KDQpBcyBtZW50aW9uZWQgaW4gIzIsIEkg
+cmV2aWV3ZWQgZHJpdmVycy9tZWRpYS9pMmMvaW14MjkwLmMgYW5kIGlkZW50aWZpZWQgYSAzMG1z
+DQpkZWxheSB0aGF0IGFwcGVhcnMgdG8gYmUgdGhlIHJvb3QgY2F1c2Ugb2YgdGhpcyBpc3N1ZS4N
+Cg0KVGhlIHByb2JsZW0gb2NjdXJzIGJlY2F1c2U6DQoNClRoZSBzZW5zb3IgZXhpdHMgTFAtMTEg
+c3RhdGUgYW5kIHRyYW5zaXRpb25zIHRvIEhTIG1vZGUgYWZ0ZXIgSU1YMjkwX1hNU1RBIGlzIHdy
+aXR0ZW4NClRoZSAzMG1zIGRlbGF5IGluIHNfc3RyZWFtKCkgY2F1c2VzIHRoZSBmdW5jdGlvbiB0
+byByZXR1cm4gbGF0ZQ0KQnkgdGhlIHRpbWUgdGhlIENTSSBjb250cm9sbGVyIHBlcmZvcm1zIGl0
+cyBsYW5lIHN0YXRlIGNoZWNrLCB0aGUgc2Vuc29yIGhhcyBhbHJlYWR5IHN3aXRjaGVkDQpmcm9t
+IExQLTExIHRvIEhTIG1vZGUsIGNhdXNpbmcgdGhlIGNoZWNrIHRvIGZhaWzjgIINCg0KUHJvcG9z
+ZWQgZml4Og0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9pMmMvaW14MjkwLmMgYi9kcml2
+ZXJzL21lZGlhL2kyYy9pbXgyOTAuYw0KaW5kZXggMjFjYmM4MWNiMmVkLi41MTlhYTMzNjI0OWEg
+MTAwNjQ0DQotLS0gYS9kcml2ZXJzL21lZGlhL2kyYy9pbXgyOTAuYw0KKysrIGIvZHJpdmVycy9t
+ZWRpYS9pMmMvaW14MjkwLmMNCkBAIC0xMDU5LDcgKzEwNTksNiBAQCBzdGF0aWMgaW50IGlteDI5
+MF9zdGFydF9zdHJlYW1pbmcoc3RydWN0IGlteDI5MCAqaW14MjkwLA0KIA0KICAgICAgICBjY2lf
+d3JpdGUoaW14MjkwLT5yZWdtYXAsIElNWDI5MF9TVEFOREJZLCAweDAwLCAmcmV0KTsNCiANCi0g
+ICAgICAgbXNsZWVwKDMwKTsNCiANCiAgICAgICAgLyogU3RhcnQgc3RyZWFtaW5nICovDQogICAg
+ICAgIHJldHVybiBjY2lfd3JpdGUoaW14MjkwLT5yZWdtYXAsIElNWDI5MF9YTVNUQSwgMHgwMCwg
+JnJldCk7DQoNClJlbW92aW5nIHRoaXMgZGVsYXkgYWxsb3dzIHNfc3RyZWFtKCkgdG8gcmV0dXJu
+IGltbWVkaWF0ZWx5LCBnaXZpbmcgdGhlIENTSSBjb250cm9sbGVyDQp0aW1lIHRvIGNvbXBsZXRl
+IGl0cyBpbml0aWFsaXphdGlvbiBiZWZvcmUgdGhlIHNlbnNvciB0cmFuc2l0aW9ucyBQSFkgc3Rh
+dGUuDQoNCkNvdWxkIHlvdSB0ZXN0IHRoaXMgcGF0Y2ggYW5kIGNvbmZpcm0gaWYgaXQgcmVzb2x2
+ZXMgdGhlIGxhbmUgc3RhdGUgY2hlY2sgZmFpbHVyZT8NCg0KQmVzdCBSZWdhcmRzDQpHLk4gWmhv
+dQ0KDQo+IA0KPiBXaXRoIGVuYWJsaW5nIGRlYnVnDQo+ID4gZWNobyAibW9kdWxlIHZpZGVvZGV2
+ICtwIiA+IC9zeXMva2VybmVsL2RlYnVnL2R5bmFtaWNfZGVidWcvY29udHJvbA0KPiA+IGVjaG8g
+MHhmZiA+IC9zeXMvY2xhc3MvdmlkZW80bGludXgvdmlkZW8wL2Rldl9kZWJ1Zw0KPiANCj4gQWZ0
+ZXIgSSBzZXR1cCB0aGUgbWVkaWEgcGlwZWxpbmUsIHJ1bm5pbmcgdGhlIGNvbW1hbmQNCj4gPiB2
+NGwyLWN0bCAteiAicGxhdGZvcm06NGFlNDAwMDAuaXNpIiAtZCAibXhjX2lzaS4wLmNhcHR1cmUi
+DQo+ID4gLS1zdHJlYW0tbW1hcCAtLXN0cmVhbS1jb3VudD0xIC0tc3RyZWFtLXRvPWlteDkzLnJh
+dw0KPiBJIGdldCB0aGUgZm9sbG93aW5nIGRlYnVnIG91dHB1dDoNCj4gDQo+IC0tODwtLQ0KPiBw
+bGFuZSAwOiBieXRlc3BlcmxpbmU9Mzg0MCBzaXplaW1hZ2U9NDE0NzIwMCBteGMtaXNpIDRhZTQw
+MDAwLmlzaToNCj4gdmFsaWRhdGluZyBsaW5rICJjcm9zc2JhciI6MiAtPiAibXhjX2lzaS4wIjow
+IG14Yy1pc2kgNGFlNDAwMDAuaXNpOiB2YWxpZGF0aW5nDQo+IHN0cmVhbSAiY3Jvc3NiYXIiOjI6
+MCAtPiAibXhjX2lzaS4wIjowOjAgbXhjLWlzaSA0YWU0MDAwMC5pc2k6IHZhbGlkYXRpbmcgbGlu
+aw0KPiAiZHctbWlwaS1jc2kycnggNGFlMDAwMDAubWlwaS1jc2kiOjEgLT4gImNyb3NzYmFyIjow
+IG14Yy1pc2kgNGFlNDAwMDAuaXNpOg0KPiB2YWxpZGF0aW5nIHN0cmVhbSAiZHctbWlwaS1jc2ky
+cnggNGFlMDAwMDAubWlwaS1jc2kiOjE6MCAtPiAiY3Jvc3NiYXIiOjA6MA0KPiBteGMtaXNpIDRh
+ZTQwMDAwLmlzaTogdmFsaWRhdGluZyBsaW5rICJpbXgzMjcgNC0wMDFhIjowIC0+ICJkdy1taXBp
+LWNzaTJyeA0KPiA0YWUwMDAwMC5taXBpLWNzaSI6MCBteGMtaXNpIDRhZTQwMDAwLmlzaTogdmFs
+aWRhdGluZyBzdHJlYW0gImlteDMyNyA0LQ0KPiAwMDFhIjowOjAgLT4gImR3LW1pcGktY3NpMnJ4
+IDRhZTAwMDAwLm1pcGktY3NpIjowOjAgbXhjLWlzaSA0YWU0MDAwMC5pc2k6DQo+IGVuYWJsZSBz
+dHJlYW1zICJjcm9zc2JhciI6Mi8weDEgbXhjLWlzaSA0YWU0MDAwMC5pc2k6IGNvbGxlY3Rfc3Ry
+ZWFtczoNCj4gImNyb3NzYmFyIjoyOiBmb3VuZCAweDEgZW5hYmxlZCAweDANCj4gaW14MjkwIDQt
+MDAxYTogRnJhbWUgZGVzY3JpcHRvciBvbiBwYWQgMCwgdHlwZSBDU0ktMg0KPiBpbXgyOTAgNC0w
+MDFhOiAgIHN0cmVhbSAwLCBjb2RlIDB4MzAwZiwgbGVuZ3RoIDAsIGZsYWdzIDB4MDAwMCwgdmMg
+MCwgZHQgMHgyYg0KPiBkdy1taXBpLWNzaTJyeCA0YWUwMDAwMC5taXBpLWNzaTogRnJhbWUgZGVz
+Y3JpcHRvciBvbiBwYWQgMSwgdHlwZSBDU0ktMg0KPiBkdy1taXBpLWNzaTJyeCA0YWUwMDAwMC5t
+aXBpLWNzaTogICAgICAgIHN0cmVhbSAwLCBjb2RlIDB4MzAwZiwgbGVuZ3RoIDAsIGZsYWdzDQo+
+IDB4MDAwMCwgdmMgMCwgZHQgMHgyYg0KPiBteGMtaXNpIDRhZTQwMDAwLmlzaTogZW5hYmxlIHN0
+cmVhbXMgImR3LW1pcGktY3NpMnJ4IDRhZTAwMDAwLm1pcGktDQo+IGNzaSI6MS8weDEgZHctbWlw
+aS1jc2kycnggNGFlMDAwMDAubWlwaS1jc2k6IGNvbGxlY3Rfc3RyZWFtczogImR3LW1pcGktY3Np
+MnJ4DQo+IDRhZTAwMDAwLm1pcGktY3NpIjoxOiBmb3VuZCAweDEgZW5hYmxlZCAweDAgbXhjLWlz
+aSA0YWU0MDAwMC5pc2k6IGVuYWJsZQ0KPiBzdHJlYW1zICJpbXgzMjcgNC0wMDFhIjowLzB4MQ0K
+PiBpbXgyOTAgNC0wMDFhOiBjb2xsZWN0X3N0cmVhbXM6IHN1Yi1kZXZpY2UgImlteDMyNyA0LTAw
+MWEiIGRvZXMgbm90IHN1cHBvcnQNCj4gc3RyZWFtcyBkdy1taXBpLWNzaTJyeCA0YWUwMDAwMC5t
+aXBpLWNzaTogbGFuZXMgYXJlIG5vdCBpbiBzdG9wIHN0YXRlOiAweDAsDQo+IGV4cGVjdGVkIDB4
+MTAwMDMgbXhjLWlzaSA0YWU0MDAwMC5pc2k6IGRpc2FibGUgc3RyZWFtcyAiaW14MzI3IDQtDQo+
+IDAwMWEiOjAvMHgxDQo+IGlteDI5MCA0LTAwMWE6IGNvbGxlY3Rfc3RyZWFtczogc3ViLWRldmlj
+ZSAiaW14MzI3IDQtMDAxYSIgZG9lcyBub3Qgc3VwcG9ydA0KPiBzdHJlYW1zIG14Yy1pc2kgNGFl
+NDAwMDAuaXNpOiBlbmFibGUgc3RyZWFtcyAxOjB4MSBmYWlsZWQ6IC0xMTAgbXhjLWlzaQ0KPiA0
+YWU0MDAwMC5pc2k6IGZhaWxlZCB0byBlbmFibGUgc3RyZWFtcyAweDEgb24gJ2R3LW1pcGktY3Np
+MnJ4IDRhZTAwMDAwLm1pcGktDQo+IGNzaSc6MTogLTExMCBteGMtaXNpIDRhZTQwMDAwLmlzaTog
+ZW5hYmxlIHN0cmVhbXMgMjoweDEgZmFpbGVkOiAtMTEwIG14Yy1pc2kNCj4gNGFlNDAwMDAuaXNp
+OiBGYWlsZWQgdG8gZW5hYmxlIHBpcGUgMA0KPiB2aWRlbzA6IFZJRElPQ19TVFJFQU1PTjogZXJy
+b3IgLTExMDogdHlwZT12aWQtY2FwLW1wbGFuZQ0KPiB2aWRlb2RldjogdjRsMl9yZWxlYXNlOiB2
+aWRlbzA6IHJlbGVhc2UNCj4gLS04PC0tDQo+IA0KPiBGb3IgY29tcGxldGVuZXNzIHRoaXMgaXMg
+bXkgbWVkaWEgZGV2aWNlIGNvbmZpZw0KPiAtLTg8LS0NCj4gIyBtZWRpYS1jdGwgIC1wDQo+IE1l
+ZGlhIGNvbnRyb2xsZXIgQVBJIHZlcnNpb24gNy4xLjANCj4gDQo+IE1lZGlhIGRldmljZSBpbmZv
+cm1hdGlvbg0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gZHJpdmVyICAgICAgICAgIG14
+Yy1pc2kNCj4gbW9kZWwgICAgICAgICAgIEZTTCBDYXB0dXJlIE1lZGlhIERldmljZQ0KPiBzZXJp
+YWwNCj4gYnVzIGluZm8gICAgICAgIHBsYXRmb3JtOjRhZTQwMDAwLmlzaQ0KPiBodyByZXZpc2lv
+biAgICAgMHgwDQo+IGRyaXZlciB2ZXJzaW9uICA3LjEuMA0KPiANCj4gRGV2aWNlIHRvcG9sb2d5
+DQo+IC0gZW50aXR5IDE6IGNyb3NzYmFyICgzIHBhZHMsIDIgbGlua3MsIDEgcm91dGUpDQo+ICAg
+ICAgICAgICAgIHR5cGUgVjRMMiBzdWJkZXYgc3VidHlwZSBVbmtub3duIGZsYWdzIDANCj4gICAg
+ICAgICAgICAgZGV2aWNlIG5vZGUgbmFtZSAvZGV2L3Y0bC1zdWJkZXYwDQo+ICAgICAgICAgcm91
+dGVzOg0KPiAgICAgICAgICAgICAgICAgMC8wIC0+IDIvMCBbQUNUSVZFXQ0KPiAgICAgICAgIHBh
+ZDA6IFNJTkssTVVTVF9DT05ORUNUDQo+ICAgICAgICAgICAgICAgICBbc3RyZWFtOjAgZm10OlNS
+R0dCMTBfMVgxMC8xOTIweDEwODAgZmllbGQ6bm9uZSBjb2xvcnNwYWNlOnJhd10NCj4gICAgICAg
+ICAgICAgICAgIDwtICJkdy1taXBpLWNzaTJyeCA0YWUwMDAwMC5taXBpLWNzIjoxIFtFTkFCTEVE
+LElNTVVUQUJMRV0NCj4gICAgICAgICBwYWQxOiBTSU5LLE1VU1RfQ09OTkVDVA0KPiAgICAgICAg
+IHBhZDI6IFNPVVJDRQ0KPiAgICAgICAgICAgICAgICAgW3N0cmVhbTowIGZtdDpTUkdHQjEwXzFY
+MTAvMTkyMHgxMDgwIGZpZWxkOm5vbmUgY29sb3JzcGFjZTpyYXddDQo+ICAgICAgICAgICAgICAg
+ICAtPiAibXhjX2lzaS4wIjowIFtFTkFCTEVELElNTVVUQUJMRV0NCj4gDQo+IC0gZW50aXR5IDU6
+IG14Y19pc2kuMCAoMiBwYWRzLCAyIGxpbmtzLCAwIHJvdXRlcykNCj4gICAgICAgICAgICAgdHlw
+ZSBWNEwyIHN1YmRldiBzdWJ0eXBlIFVua25vd24gZmxhZ3MgMA0KPiAgICAgICAgICAgICBkZXZp
+Y2Ugbm9kZSBuYW1lIC9kZXYvdjRsLXN1YmRldjENCj4gICAgICAgICBwYWQwOiBTSU5LDQo+ICAg
+ICAgICAgICAgICAgICBbc3RyZWFtOjAgZm10OlNSR0dCMTBfMVgxMC8xOTIweDEwODAgZmllbGQ6
+bm9uZSBjb2xvcnNwYWNlOnJhdw0KPiAgICAgICAgICAgICAgICAgIGNvbXBvc2UuYm91bmRzOigw
+LDApLzE5MjB4MTA4MA0KPiAgICAgICAgICAgICAgICAgIGNvbXBvc2U6KDAsMCkvMTkyMHgxMDgw
+XQ0KPiAgICAgICAgICAgICAgICAgPC0gImNyb3NzYmFyIjoyIFtFTkFCTEVELElNTVVUQUJMRV0N
+Cj4gICAgICAgICBwYWQxOiBTT1VSQ0UNCj4gICAgICAgICAgICAgICAgIFtzdHJlYW06MCBmbXQ6
+U1JHR0IxMF8xWDEwLzE5MjB4MTA4MCBmaWVsZDpub25lIGNvbG9yc3BhY2U6anBlZw0KPiB4ZmVy
+OnNyZ2IgeWNiY3I6NjAxIHF1YW50aXphdGlvbjpmdWxsLXJhbmdlDQo+ICAgICAgICAgICAgICAg
+ICAgY3JvcC5ib3VuZHM6KDAsMCkvMTkyMHgxMDgwDQo+ICAgICAgICAgICAgICAgICAgY3JvcDoo
+MCwwKS8xOTIweDEwODBdDQo+ICAgICAgICAgICAgICAgICAtPiAibXhjX2lzaS4wLmNhcHR1cmUi
+OjAgW0VOQUJMRUQsSU1NVVRBQkxFXQ0KPiANCj4gLSBlbnRpdHkgODogbXhjX2lzaS4wLmNhcHR1
+cmUgKDEgcGFkLCAxIGxpbmspDQo+ICAgICAgICAgICAgIHR5cGUgTm9kZSBzdWJ0eXBlIFY0TCBm
+bGFncyAwDQo+ICAgICAgICAgICAgIGRldmljZSBub2RlIG5hbWUgL2Rldi92aWRlbzANCj4gICAg
+ICAgICBwYWQwOiBTSU5LDQo+ICAgICAgICAgICAgICAgICA8LSAibXhjX2lzaS4wIjoxIFtFTkFC
+TEVELElNTVVUQUJMRV0NCj4gDQo+IC0gZW50aXR5IDE2OiBkdy1taXBpLWNzaTJyeCA0YWUwMDAw
+MC5taXBpLWNzICgyIHBhZHMsIDIgbGlua3MsIDEgcm91dGUpDQo+ICAgICAgICAgICAgICB0eXBl
+IFY0TDIgc3ViZGV2IHN1YnR5cGUgVW5rbm93biBmbGFncyAwDQo+ICAgICAgICAgICAgICBkZXZp
+Y2Ugbm9kZSBuYW1lIC9kZXYvdjRsLXN1YmRldjINCj4gICAgICAgICByb3V0ZXM6DQo+ICAgICAg
+ICAgICAgICAgICAwLzAgLT4gMS8wIFtBQ1RJVkVdDQo+ICAgICAgICAgcGFkMDogU0lOSyxNVVNU
+X0NPTk5FQ1QNCj4gICAgICAgICAgICAgICAgIFtzdHJlYW06MCBmbXQ6U1JHR0IxMF8xWDEwLzE5
+MjB4MTA4MCBmaWVsZDpub25lIGNvbG9yc3BhY2U6cmF3DQo+IHhmZXI6bm9uZSB5Y2Jjcjo2MDEg
+cXVhbnRpemF0aW9uOmZ1bGwtcmFuZ2VdDQo+ICAgICAgICAgICAgICAgICA8LSAiaW14MzI3IDQt
+MDAxYSI6MCBbRU5BQkxFRF0NCj4gICAgICAgICBwYWQxOiBTT1VSQ0UNCj4gICAgICAgICAgICAg
+ICAgIFtzdHJlYW06MCBmbXQ6U1JHR0IxMF8xWDEwLzE5MjB4MTA4MCBmaWVsZDpub25lIGNvbG9y
+c3BhY2U6cmF3DQo+IHhmZXI6bm9uZSB5Y2Jjcjo2MDEgcXVhbnRpemF0aW9uOmZ1bGwtcmFuZ2Vd
+DQo+ICAgICAgICAgICAgICAgICAtPiAiY3Jvc3NiYXIiOjAgW0VOQUJMRUQsSU1NVVRBQkxFXQ0K
+PiANCj4gLSBlbnRpdHkgMjE6IGlteDMyNyA0LTAwMWEgKDEgcGFkLCAxIGxpbmssIDAgcm91dGVz
+KQ0KPiAgICAgICAgICAgICAgdHlwZSBWNEwyIHN1YmRldiBzdWJ0eXBlIFNlbnNvciBmbGFncyAw
+DQo+ICAgICAgICAgICAgICBkZXZpY2Ugbm9kZSBuYW1lIC9kZXYvdjRsLXN1YmRldjMNCj4gICAg
+ICAgICBwYWQwOiBTT1VSQ0UNCj4gICAgICAgICAgICAgICAgIFtzdHJlYW06MCBmbXQ6U1JHR0Ix
+MF8xWDEwLzE5MjB4MTA4MCBmaWVsZDpub25lIGNvbG9yc3BhY2U6cmF3DQo+IHhmZXI6bm9uZSB5
+Y2Jjcjo2MDEgcXVhbnRpemF0aW9uOmZ1bGwtcmFuZ2UNCj4gICAgICAgICAgICAgICAgICBjcm9w
+LmJvdW5kczooMCwwKS8xOTQ1eDEwOTcNCj4gICAgICAgICAgICAgICAgICBjcm9wOigxMiw4KS8x
+OTIweDEwODBdDQo+ICAgICAgICAgICAgICAgICAtPiAiZHctbWlwaS1jc2kycnggNGFlMDAwMDAu
+bWlwaS1jcyI6MCBbRU5BQkxFRF0NCj4gLS04PC0tDQo+IA0KPiBBbnl0aGluZyBvZGQgaGVyZT8N
+Cj4gDQo+ID4gWW91IG1heSBuZWVkIHRvIHJlbW92ZSBhbnkgZGVsYXlzIGluIHRoZSBpbXgzMjcg
+c19zdHJlYW0NCj4gPiBpbXBsZW1lbnRhdGlvbiwgb3IgZW5zdXJlIHRoZSBzZW5zb3Igc3RheXMg
+aW4gTFAtMTEgc3RhdGUgdW50aWwgdGhlIENTSQ0KPiByZWNlaXZlciBpcyByZWFkeS4NCj4gPg0K
+PiA+IElmIHBvc3NpYmxlLCBjb3VsZCB5b3Ugc2hhcmUgdGhlIGlteDMyNyBkcml2ZXIgY29kZSBv
+ciBjaGVjayBpdHMgc19zdHJlYW0NCj4gaW1wbGVtZW50YXRpb24/DQo+IA0KPiBJdCdzIGVzc2Vu
+dGlhbGx5IHVwc3RyZWFtIGluIGRyaXZlcnMvbWVkaWEvaTJjL2lteDI5MC5jLg0KPiBJIG9ubHkg
+aGF2ZSBhIGR1bW15IGltcGxlbWVudGF0aW9uIGZvciBnZXRfZnJhbWVfZGVzYyBhbmQgYSBzbWFs
+bA0KPiBhZGp1c3RlbWVudCBmb3IgbXkgY2FtZXJhIG1vZHVsZSByZWdhcmRpbmcgaTJjIGFjY2Vz
+cy4NCj4gDQo+IC0tODwtLQ0KPiBzdGF0aWMgaW50IGlteDI5MF9nZXRfZnJhbWVfZGVzYyhzdHJ1
+Y3QgdjRsMl9zdWJkZXYgKnNkLCB1bnNpZ25lZCBpbnQgcGFkLA0KPiAJCQkJIHN0cnVjdCB2NGwy
+X21idXNfZnJhbWVfZGVzYyAqZmQpDQo+IHsNCj4gCWNvbnN0IHN0cnVjdCB2NGwyX21idXNfZnJh
+bWVmbXQgKmZvcm1hdDsNCj4gCXN0cnVjdCB2NGwyX3N1YmRldl9zdGF0ZSAqc3RhdGU7DQo+IA0K
+PiAJc3RhdGUgPSB2NGwyX3N1YmRldl9sb2NrX2FuZF9nZXRfYWN0aXZlX3N0YXRlKHNkKTsNCj4g
+CWZvcm1hdCA9IHY0bDJfc3ViZGV2X3N0YXRlX2dldF9mb3JtYXQoc3RhdGUsIHBhZCk7DQo+IAl2
+NGwyX3N1YmRldl91bmxvY2tfc3RhdGUoc3RhdGUpOw0KPiANCj4gCWZkLT50eXBlID0gVjRMMl9N
+QlVTX0ZSQU1FX0RFU0NfVFlQRV9DU0kyOw0KPiAJZmQtPm51bV9lbnRyaWVzID0gMTsNCj4gCWZk
+LT5lbnRyeVswXS5waXhlbGNvZGUgPSBmb3JtYXQtPmNvZGU7DQo+IAlmZC0+ZW50cnlbMF0uc3Ry
+ZWFtID0gMDsNCj4gCWZkLT5lbnRyeVswXS5idXMuY3NpMi52YyA9IDA7DQo+IAlmZC0+ZW50cnlb
+MF0uYnVzLmNzaTIuZHQgPSBNSVBJX0NTSTJfRFRfUkFXMTA7IC8vVE9ETzoNCj4gZ2V0X2RhdGFf
+dHlwZV9ieV9jb2RlKGZvcm1hdC0+Y29kZSk7DQo+IA0KPiAJcmV0dXJuIDA7DQo+IH0NCj4gLS04
+PC0tDQo+IA0KPiBBbm90aGVyIHRoaW5nLiBJIHVzZSBodHRwczovL2xvcmUua2VybmVsLm9yZy9p
+bXgvMjAyNTA3MDEtOTVfY2FtLXYxLTItDQo+IGM1MTcyYmFiMzg3YkBueHAuY29tLw0KPiBmb3Ig
+dGhlIEQtUEhZLiBJcyB0aGVyZSBhbnkgdXBkYXRlL3Byb2dyZXNzIG9uIHRoYXQgZHJpdmVyPw0K
+PiANCj4gQmVzdCByZWdhcmRzLA0KPiBBbGV4YW5kZXINCj4gLS0NCj4gVFEtU3lzdGVtcyBHbWJI
+IHwgTcO8aGxzdHJhw59lIDIsIEd1dCBEZWxsaW5nIHwgODIyMjkgU2VlZmVsZCwgR2VybWFueQ0K
+PiBBbXRzZ2VyaWNodCBNw7xuY2hlbiwgSFJCIDEwNTAxOA0KPiBHZXNjaMOkZnRzZsO8aHJlcjog
+RGV0bGVmIFNjaG5laWRlciwgUsO8ZGlnZXIgU3RhaGwsIFN0ZWZhbiBTY2huZWlkZXINCj4gaHR0
+cDovL3d3dy50cS1ncm91cC5jb20vDQo+IA0KDQo=
 
