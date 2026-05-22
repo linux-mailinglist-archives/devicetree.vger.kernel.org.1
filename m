@@ -1,187 +1,212 @@
-Return-Path: <devicetree+bounces-301708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0C3gJhUxEGoaUwYAu9opvQ
-	(envelope-from <devicetree+bounces-301708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:33:57 +0200
+	id SMvvKfcyEGqVUwYAu9opvQ
+	(envelope-from <devicetree+bounces-301710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:41:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF6F5B22F4
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:33:57 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 531EC5B25A0
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63F003093C39
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:27:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 506973016D35
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CF83F6C3D;
-	Fri, 22 May 2026 10:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EBC13CAA3C;
+	Fri, 22 May 2026 10:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BaUCIE1k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hI+Po3py"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404FA3F54AA;
-	Fri, 22 May 2026 10:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C157246783
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 10:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779445417; cv=none; b=tCg6pkLU/bxL24yQapci48S4UiRIPVbhIBd3f+lnJ4jSmDkGPP46xWFuUytfip6OoxoBcszmCBHeK8VCYMT4ikimdFw1DwN4PF5/HDI7I0EdQYAAdpztpryr7eAYF7NKJX7eiDwkvLWKEmd9Wa3U4Hk2kj0UNOufa55Zph+TYfU=
+	t=1779445947; cv=none; b=Oq+DsQtvZUcFvsocrulERzi3lmdeK9RXBbINJEZSbhfZ6gZZoYQnWABbqg8fYCYKKe6WP53Cjuj1fncBqgaRZtkR1HS3qhy4UIT0z26artTGwQdwKh7rzkoSVfvGLvagoQovd+EJ/yE/3sPRMViygh/UP7joKQlqUiC9y8JEmlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779445417; c=relaxed/simple;
-	bh=W9lPTgx6mDxArcLHARU/ZZqLqgXOeySBXq57O5dffOs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SWGCi6tKDzwYC4IGVBTBB04zlenHDZLugup0pzQYK8hXg8O7G4lVuUfgyY/mhsvk8Iupkh1rjTL//VRDaZU0A5CZ5m28yX4KbSXQH1olu0wZ6USIEoJIDmZngmrcB6KTNDlKx6mc/tP9WwmCBuG5HDMVU1u4dTnwQvzT9/c1u7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BaUCIE1k; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D34031F00A3F;
-	Fri, 22 May 2026 10:23:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779445416;
-	bh=6QEWAjHSDHCKnr4dwU2wD6RoMsBK3plNIjm7Iq3i+s8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=BaUCIE1kfn+KGCxtZcLLpv0Y863cq/kKP75/p17kFXApysgQCbjRPhocHhu/IaBFN
-	 3u66CR12I398qeXH123vQMeXsT+Ew+gTqLuQco5rm8IupF5I5mGPQkBfgbXMBRP6x5
-	 Hoig1NUC+STlw353HUNCDqKw916OGcdRq32uXaTCCDek+qt3vO5tahJNeXDa+u4eFD
-	 QFXTjNs8/Q2WozqWzgREVGFySQ7BeVjnk4I1GloLYcqTa6AqANo7q4cWAtWbHv45fP
-	 RFr9AZPd+22TYJP3SWaSsu9Ho4XjnWWWBM0SgyjrMQSxHRVsrnSQ+TXvj5No3yAWde
-	 XOhgQYSCP1Yxg==
-From: Claudiu Beznea <claudiu.beznea@kernel.org>
-To: geert+renesas@glider.be,
-	linusw@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	magnus.damm@gmail.com,
-	wsa+renesas@sang-engineering.com
-Cc: claudiu.beznea@kernel.org,
-	claudiu.beznea@tuxon.dev,
-	linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 9/9] arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
-Date: Fri, 22 May 2026 13:22:51 +0300
-Message-ID: <20260522102251.1723392-10-claudiu.beznea@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260522102251.1723392-1-claudiu.beznea@kernel.org>
-References: <20260522102251.1723392-1-claudiu.beznea@kernel.org>
+	s=arc-20240116; t=1779445947; c=relaxed/simple;
+	bh=D94xm1ZPq71rloJ5O/ZkWsXW8+dnSRk5jN9ZBex4bRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rUJwN39XpRbCVfVlBYPHUJzdtWtvwSrp4T8M2KvdKoqKF/BZ4Fik1UQZLEl8EqGdNBO8vbsVd3oNihj4einqz+4p6K6PcG10/2Pha/9Ythgp6qoDj2WEpEmKrKesFgUfrrfRDSrA7laiTo7O5XZkEKt57m68zuTwJ4yT1CiuZ98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hI+Po3py; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-44a5174670eso4203725f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 03:32:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779445944; x=1780050744; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zPSvL8/xGB/fffNh3By+5mlW+vShs6KMGbW1Sla0/4k=;
+        b=hI+Po3py2VQ7ojEzbn4Qtl0H9JUIYV9spYs+LByD7BtQey3VLkLgFs1ILVEksAXhmx
+         P0SMy+oW7445a26qLiG9QdKaVdt4MS4c0hSTpnUKZGaX0wpUR1oE3OIxmp3OiK6xE4fz
+         jQ9h+S3xFrhkmKoUbRRhMQ5nn08QvX7qeqBQvbrrjV5NxOYrBdfYSS1slfvDWVioMA2u
+         HfZh8sUlntwBxuFzw2KUByNUrpb00qrN52E3Pzn6WNQejNRpERXLDhhmSoV5i/ah/LF2
+         tNWDSc5ajWyPnYTXjrFdKCji2l/ctXGe/vB24wf6BWNGCIYQClilUbP/Snadmx2Vdrwv
+         VrRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779445944; x=1780050744;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zPSvL8/xGB/fffNh3By+5mlW+vShs6KMGbW1Sla0/4k=;
+        b=CLbAtP4Bk9O72wYTc+NJrEN/qCs3aYV1cJ4ZNiQBdLAbZTtX7GFAL3frVk+WDTwgbt
+         YibPKNLa8AlMiGBDj1rJNNjYOj3Kru6TffvCWveQB6MJhjQG99zSnWj3u8/p5A7GqvSC
+         10abIyuXLhwdM/2Bta3ZP8i3mLvm8DedMIV8NuzG0FCu6AC+iTli+ovbQAmm4E8dUVC5
+         AT9/Pq8qV5/ZSNiAxF7lZ5JCR9tNXa7eRGeXc/I+l9jb/FfeQUd0erRIcUaajKcuQ+a0
+         5keatKUNbvIX1/w2cv4HqJR+sBqTDMUd+dVDk/gRMLJyo3L3gdDhNOKO5PF4YYffTaQf
+         Ojig==
+X-Forwarded-Encrypted: i=1; AFNElJ/1Md2XXuTSwjKLlvzDOd3Xj+JlzdyhIRWsEyY8cJJl9qRIAhVRAvJ2wQXCJNFum1m+DU2thrTMcNK7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6JMDoRACmCk/5HFZUBvxrbkIQ0lIVQL+2qgL4H3zKwttCTqxK
+	bSoFSkXjectDcZ7V0mj/Ng0L+IE+3HQrJxiCgM3D1JXsOLvy+ZaJr4IS
+X-Gm-Gg: Acq92OEWsTrLdRxw2nttZt6VVI6JH4nVBMp+zk01VNUeymbQOl0zh1avFA3Kk/2/kFA
+	ubAaB5QWQhIBOv4LOq1/bevFEPhdd2EAa6Ge4B9QR9izAvH+Sic5ur5+lkZqDhZNBmMnOjBwao9
+	4jkLEIJUs3ueqSrPG/EUBhQsfbjgwUUQfrxGtdge8La5mm9ASnbbpWXEmymiiutlMoKsSOGyoaf
+	IwVh9qCIrjTIlzS4Sfk5FKnUpzUdgZ4zp/oiFztJgEEXzWoSyWyHPKdkAU7SBe+ezpOm0IVNNea
+	Z8acKIOMidtZZRZKPwtucXdt2vOZjmsCfxplqGQN8STPuyh+LuAJHtIImtrnsT0jr0i97UZpq+3
+	Pji3uNw+AJ+I6wxcxnZN6j+IJoA8V47KpRvrETul620C7whSTqTiTL9OSNGCkvWyQv106im1ift
+	B4F2XkQSlWbMnwz5eGL8TrCftTH+lrMvp+Oy9msPw6pjexG/Wxa5Lp0d2qPHpZQqf+BmZJ6eLk2
+	ltzBqC92h9Vmg==
+X-Received: by 2002:a05:6000:1a87:b0:43f:e2b7:7160 with SMTP id ffacd0b85a97d-45eb3673319mr4587250f8f.4.1779445944458;
+        Fri, 22 May 2026 03:32:24 -0700 (PDT)
+Received: from orome (p200300e41f291e00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f29:1e00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eb6c9f548sm3620523f8f.2.2026.05.22.03.32.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 May 2026 03:32:22 -0700 (PDT)
+Date: Fri, 22 May 2026 12:32:20 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Laxman Dewangan <ldewangan@nvidia.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v6 06/10] dmaengine: tegra: Support address width > 39
+ bits
+Message-ID: <ahAtps7D2ZgjlP6f@orome>
+References: <20260331102303.33181-1-akhilrajeev@nvidia.com>
+ <20260331102303.33181-7-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cevphyjvhbnvt5ow"
+Content-Disposition: inline
+In-Reply-To: <20260331102303.33181-7-akhilrajeev@nvidia.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301708-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[glider.be,kernel.org,gmail.com,sang-engineering.com];
+	TAGGED_FROM(0.00)[bounces-301710-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.983];
+	FROM_NEQ_ENVFROM(0.00)[thierryreding@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 3EF6F5B22F4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nvidia.com:email]
+X-Rspamd-Queue-Id: 531EC5B25A0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-The Renesas RZ/G3S SMARC SoM board has a connector for I3C interface.
-Enable I3C.
+--cevphyjvhbnvt5ow
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 06/10] dmaengine: tegra: Support address width > 39
+ bits
+MIME-Version: 1.0
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 30 +++++++++++++++++++
- .../boot/dts/renesas/rzg3s-smarc-switches.h   |  4 +++
- 2 files changed, 34 insertions(+)
+On Tue, Mar 31, 2026 at 03:52:59PM +0530, Akhil R wrote:
+> Tegra264 supports address width of 41 bits. Unlike older SoCs which use
+> a common high_addr register for upper address bits, Tegra264 has separate
+> src_high and dst_high registers to accommodate this wider address space.
+>=20
+> Add an addr_bits property to the device data structure to specify the
+> number of address bits supported on each device and use that to program
+> the appropriate registers.
+>=20
+> Update the sg_req struct to remove the high_addr field and use
+> dma_addr_t for src and dst to store the complete addresses. Extract
+> the high address bits only when programming the registers.
+>=20
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/dma/tegra186-gpc-dma.c | 83 +++++++++++++++++++++-------------
+>  1 file changed, 52 insertions(+), 31 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-index b45acfe6288a..370b39b6a33d 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-@@ -168,6 +168,15 @@ a0 80 30 30 9c
- 	};
- };
- 
-+&i3c {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i3c_pins>;
-+	pinctrl-1 = <&i3c_standby_pins>;
-+	i2c-scl-hz = <400000>;
-+	i3c-scl-hz = <12500000>;
-+	status = "okay";
-+};
-+
- &pcie_port0 {
- 	clocks = <&versa3 5>;
- 	clock-names = "ref";
-@@ -302,6 +311,27 @@ mux {
- 		};
- 	};
- 
-+	i3c_pins: i3c {
-+		pins = "I3C_SDA", "I3C_SCL";
-+#if SW_CONFIG4 == SW_ON
-+		power-source = <1200>;
-+#else
-+		power-source = <1800>;
-+#endif
-+		input-enable;
-+		renesas,i3c-standby = <0>;
-+	};
-+
-+	i3c_standby_pins: i3c-standby {
-+		pins = "I3C_SDA", "I3C_SCL";
-+#if SW_CONFIG4 == SW_ON
-+		power-source = <1200>;
-+#else
-+		power-source = <1800>;
-+#endif
-+		renesas,i3c-standby = <1>;
-+	};
-+
- 	sdhi0_pins: sd0 {
- 		data {
- 			pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3";
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h b/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h
-index bbf908a5322c..9cccc87da057 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h
-@@ -25,9 +25,13 @@
-  * @SW_CONFIG3:
-  *	SW_OFF - SD2 is connected to SoC
-  *	SW_ON  - SCIF1, SSI0, IRQ0, IRQ1 connected to SoC
-+ * @SW_CONFIG4:
-+ *	SW_OFF - I3C voltage is 1.8V
-+ *	SW_ON  - I3C voltage is 1.2V
-  */
- #define SW_CONFIG2	SW_OFF
- #define SW_CONFIG3	SW_ON
-+#define SW_CONFIG4	SW_OFF
- 
- /*
-  * SW_OPT_MUX[x] switches' states:
--- 
-2.43.0
+Sorry for not noticing this earlier.
 
+My understanding is that previously this IP (along with most others) did
+support 40 bit addressing. That's a much more natural boundary, too. The
+reason why 39 is often mentioned in this context is that bit 39 was
+treated specially and interpreted by the memory controller as a way to
+swizzle memory between the Tegra and discrete GPU formats.
+
+I assume GPC DMA was in the same category. I'd be very surprised if
+there really was a limit on exactly 39 bits. Looking at the register
+documentation, I see that the high address register is 8 bits, which
+together with the 32 bits from the regular ADR register gives 40 bits.
+
+Given the above this patch looks wrong. Technically the previous
+iterations did support the full 40 bits, and that should be reflected in
+the DMA mask. The platform-specific 39-bit restriction due to the
+swizzle bit is something that we've always represented via the
+dma-ranges property, but it doesn't reflect the capabilities of the
+hardware.
+
+It's a bit odd that GPC DMA on Tegra264 supports 41 bits. I think the
+regular address map is only 40 bits, but I guess if the registers define
+it this way, might as well support it.
+
+Thierry
+
+--cevphyjvhbnvt5ow
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmoQMLIACgkQ3SOs138+
+s6GMKA//Zsd4id+3QfoWyRWwhV+6CfBiwzkSsWLutUEplaLCZX9m7tkf1dqz++/4
+Uan45SUGxGwuTtklIb9KqGn6mmj8m610UV+2rxoabpFAYm3g6V2oT2L+0yVegL7h
+upbIvuRAbfDNX4IpVB3bfD5adzYI3+rvq0XZWzY+Zcqbo4gbwImrUUVUIBBKClre
+xG0f61R6LYLnw0NLeZ5PJDhoGhM7hnNCn1/lYzVyRi8r5psw+29BpkfAqgMUOuYZ
+E0WSJtR8NYEXbQ3yDUTNigAKeCC2vlSX9aGvDWwU1Qms1Tz0EB9Oy77ZuJREWJfI
+rbty4B/9jXCHnFdQ7NW/48o2gNqPoVJ8bqrCyqM+G1Ynzp3LZFpyIRczccSUcsXG
+WWWBuFLhe/k87hSwIZR7ECj73zOl9805T/0WOQ5oadix4YZpivB5PQu5W6saFg/Y
+IRU/ei+YOt8SGwWSdXVvetFmRLqoiXflFE9nmrDPtHoA3ZSstvVgPqDGqGqTGjVG
+CelizaKOYRsSGW64dJEZxLDjaJxeyhThIj7/ReuATh9khCkTaD9RbOc6ktNUMggQ
+JGDMztbSxfgDwPqJ2M8L87qly5FBGN1REL7C7h8+5UtU9XP0H+XXv6mM0cxnJLU1
+WsPURBePMEITyNOPQz3w2WlnSob7Erlr7waccIcUtliOGBZt8F4=
+=r0y0
+-----END PGP SIGNATURE-----
+
+--cevphyjvhbnvt5ow--
 
