@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-301844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301845-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IGEEJZReEGobWwYAu9opvQ
-	(envelope-from <devicetree+bounces-301844-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:48:04 +0200
+	id cODhCQRaEGqDWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301845-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:28:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60FB5B574C
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:48:03 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C494C5B5279
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:28:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 25C2A30C81F4
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:21:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A58F13061DF1
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A442B3A9856;
-	Fri, 22 May 2026 13:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FA13A9636;
+	Fri, 22 May 2026 13:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DOht/yxL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K+SkLsze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854E93A6B94
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B12369990
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779456042; cv=none; b=A6d2HitIghJuMhBKCaeECs02kVRyHlGremrWNq0jGEjSpz8FXorCT3BQh7Z5Euspl64v+NgjqDgQjahGPCQJGZJOkNCvsuQ0Vybqt6fdKRoUjewh2ljbqZPokBajDneUWGnpj4iqxqlLtIrm63tKtk5l1k91EBqSkoOk4gyoZL0=
+	t=1779456044; cv=none; b=nqe6tn9RNLgiVUATvXIJyHx1XOaYC6gWOlzm5ybjuFx+juCuJP+kIPdjo5ltRplhhTjvZf9yyvq3gUOitvf5tjzUlrrVl6akExUpQUHEaAJsUpJ+ymwLpxS40tdYmKl0Ih7Hw6iDb4lLW4SJ8JZzJ4oNWRVMyU0xg5DWTHRyUjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779456042; c=relaxed/simple;
-	bh=cHCaWaKHSAVlz3hbAE4AqeMh8fvDrBYkXwMJtSBTMP0=;
+	s=arc-20240116; t=1779456044; c=relaxed/simple;
+	bh=xChP0+PeorC5u7ydzAD9QaUHKklzoy+4vL9/vem4XhY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g8JIzHid9P4dU3ZyLz9jnioqjgU+Mik8M7HSRD+f/OXUPHkS/qqPoBDxHCgDMIebSF83l/Uk4OkONlnKaJ3ev9269hubiBsf46A4XLEydMgyJfuZO59g6l/kcg4uIZ7HJy5T/c/cB9qWnsAcDS78rJODfRxFegSvKtrOndlpoYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DOht/yxL; arc=none smtp.client-ip=209.85.128.42
+	 MIME-Version; b=d4w8znLMj5/4Ukve3VSaKjnxWGtRJs2ZCYbcPpnkldNXBHcKWsmMwfUdRLrt02GddWT7SaiONo3WSwjemWfNNYlICqEAQ33zCjPHlxZL7HK5qlIYTeqdyS2YEBD1EMU6ehBOqjpsOJ+RDKE+ZtSYBoUCUAJDIe1FWZlHNBJB1WI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K+SkLsze; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4903d5c67bfso8132395e9.1
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:40 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4891e5b9c1fso64293025e9.2
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779456039; x=1780060839; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779456040; x=1780060840; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wF/xdHDvjpswHjQlyB9UB/0Ql6EbDcVwyoLerz8dv4c=;
-        b=DOht/yxLzniWrJsAjcA623FTifCDGownKnrKLn1jo7nz9N2JsBgS1c25c4x/NodlBD
-         vR0+gdrMKgzz/wbe3y1ANwwsRdEHJdD3VD1/SbGBlQvqqMmzIpCf07LawBQorU+tltNj
-         oeoffFV56buFEn0wXM3YLLjE/eHMda/hIqj/2EIyYzXJdhQa4jby69ZJHXk1FddloEr9
-         TSwvw3PoHotszsT0RiTjPZpzNVaaFAN+Mk3CXZ56xbI0dqZMzNm9/RH9kA5fg3QO2G7k
-         DU0ovfsGU3WGlUygmHTQVeSauhdo69TCo9XIq3gNoWVJtqytGYunmMcPjfZOJBSQHmhg
-         NImA==
+        bh=MxhTRa0jJQh6ofFG9sXlZ7aauhKliKnMeyOlOjmQWhU=;
+        b=K+SkLsze9NGUUYssjGtci2RCaTPwWHqENBSvWrCpeni2spPpT46JLhEWJYcVgTvzyk
+         8a51OTq6fRiFDjvOeP6w3ieCwuM2iDcmucQKsVlH+XSYYbLI5eC7ClpIK6bsPUx5OdNn
+         a7E4SxMmcdw3yCSTM5iFR0PDuQd09l2ypZ8cCUcFsrs7qdcz2fu29oAF2n+QqadqqoFL
+         MeRauVZL9YifdgzahjoK8d5StpExH3p9Bpfy+KofGTG+qY2cStrBWb1r2QFnbKUp4sab
+         Pw64XM/PTtOX/xKHCZfpR9Sy0rH5qtcA6py7KVr3kbXL3qLrKcV9UtM717Ioavw2iopf
+         jnMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779456039; x=1780060839;
+        d=1e100.net; s=20251104; t=1779456040; x=1780060840;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=wF/xdHDvjpswHjQlyB9UB/0Ql6EbDcVwyoLerz8dv4c=;
-        b=H8TcJsS3dXxeI2n1WbW6CTdw6evBckxe946oeC1Rbl1QgFTBiQnP66Ux6uMieeiJqE
-         I7lqUoXSDYsdUt/eC/hGlxWjYVRwqLC+kfVzTmHZwJZOLo9eMc8gMkMPTa0D5fNhFbOk
-         Jp7CtVuqVVjLhwVNF0hvI3ZTb7DPudeLWFhRedeSJRKkYOEfxnJjy05Tzyp526yu6mV4
-         fUNQDF1qqMPNan6ES10rMWg4Z9bRYfcDSXbF1UIyudvhXHa4kfCnG5znfP1Oj988847U
-         pfd/09wAo38W/lklmmkqWepS3hcS6SFUgOYQ+ORW54TOwn7kMEyZ3+URnVVeLIhKeTlF
-         HSzw==
-X-Forwarded-Encrypted: i=1; AFNElJ8bhZStzka+NrZKvfNuSJXhhar+qdCAPsZ3WOp7s+Emor8R0VE23Sx7TZOWpspslgogmdSZc4y7u8x5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZCHMc0z0qOGBP7xEpgUbNeMlaE2fmZZmBcBus425O/j3JvlYK
-	ZzhG6sn8oTGol/Zy9o4Cyf8h6Hy4IDKBiQdewB7kuh1rAUluHGui7K4l
-X-Gm-Gg: Acq92OEHyTdhcFCkc+lYL4g4AGBmLk+uXIG1pD2tWdKccT1OR2nCwqyn7slTwqjfyie
-	DpTPtjTWrLFmIhnGTfPAsBMyW8gP8acLGmG7BXCaUa1FhP2pw7B3B2BJmwS7Apjvt8VKu3LFOYj
-	aOdk0JP+FFkTeoPjAGg23Ds/ixZaKRg987bXGR/ZiN5ukW+GqsXDVSl/y7IfSdXH/W55HAD6l8u
-	e2YHKDgHE+Wd7OrAg0VUyzpVfAx3XpuUP0HQw5zSDIv/BANd9gfJzDRD9hj80Y9Vb2bhLptBsMM
-	jPCU9YCgz83pzjcEeTj/sqbAcZltAkTC/X5HeNnyuO06zYEjFF/voIW1FrWwH7Mh1jGAOdokwG0
-	TurRh/BuAHq01bmIKZ9joJRf7T1VLbGJrOmisWmtYupVn57OaPu5oEkfpUaTepCggPquRvcp/Wh
-	UjOmLCkSF6L1CdX2ZO5j07Q0ZKwRVaWvcRNKsgd2kTfg==
-X-Received: by 2002:a05:600c:4ecc:b0:488:a824:fdff with SMTP id 5b1f17b1804b1-490426d190cmr49964645e9.22.1779456038767;
-        Fri, 22 May 2026 06:20:38 -0700 (PDT)
+        bh=MxhTRa0jJQh6ofFG9sXlZ7aauhKliKnMeyOlOjmQWhU=;
+        b=SJPul3Q7T8DICaYpywk/KZGylmHz7uAwsdzCu6hROhZUxUwkv+fMeoKLrCtCHiNC8Q
+         t9QRZdHxDyRqlb9kASMfL+ll+0dTGn4JwG5DoG9x76NeXWFFQGXA5DX4IzebD9Ih9EzM
+         ARp4oXagHN0fiYKOtbuT7mLqPOW6gcIvQnh2YoFVBi1NhuPaVKttKc9je6OOisqyyqHj
+         tiYDjYJHVuRiefFkQeaaz1DtkubDKdYjVXIfPjytjwcM2ydCdiV5dhhFauBW3iGvwJna
+         09fojNEFZsVtlZP6u7BjyFSuLl5/hLDWjI8pbvhM/HWq07AuHvQjcOpQMc+dnM7JzNIQ
+         wHpw==
+X-Forwarded-Encrypted: i=1; AFNElJ8o1uWEPh4b1g/GXeupYQgSIR2wA2M8BwnH55Y/I9d/KHS3wYD610KpkTV8rhWqkzSQ4qSuoZ1VwDgW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzq5C8dulaYiDXNWGxLWH/kjwzBCpyyB9VjQLBes4qoo8Hhi/48
+	95n/yLcc7fud9cgUwsWiSS/X8kpjCV0JMqDJvr1OTax9woaLmE8iQPG+
+X-Gm-Gg: Acq92OHz8r7R/Ymo/429uNe2pZRi1j/sFx7iqtFm4/yv035JirKmYWYZ02sgsxa+YCo
+	bm+kW9iTzuHlmjgbh69huV6sFJhGj0FurrXbZAif2/LmN9xiIob4XEBeByeH9sJX+stsm1JgRO1
+	UvJVWPuJYwaqd3D4lwn23aZs1rItZg6qBgvl98VyjU1C7L3h+YpAjHQ3bmY/JeBOejbWQ5iq1Wk
+	phq+/RrCDukaTQ4tJEosF4UXN9040+TE5+Jiyhf7i/3MxD9nAgaJ1wv8tPSUcxJ+iieWc6l1mPe
+	dF+hqFWN67c9k/Ng30uFaUzmv+5Wwsnxm/VdskPuobN7aofg90o8GAC+Ng53qVxQBJX4rFUxbMX
+	2TdRm+95moTTYWd95eUHUBdRu+hjDl+mdCkAPQldLtqbkonX/XdwK9fww4PYdogPJCCwNLCORxb
+	ikfFlXVL31M0SWvvgXip1l18vabl9eY9dv+l1Jn9C74A==
+X-Received: by 2002:a05:600c:a402:b0:486:fd5c:2b35 with SMTP id 5b1f17b1804b1-490426adf66mr39371215e9.13.1779456040467;
+        Fri, 22 May 2026 06:20:40 -0700 (PDT)
 Received: from vitor-nb (dsl-113-208.bl27.telepac.pt. [176.79.113.208])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0cd5sm52220755e9.10.2026.05.22.06.20.37
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0cd5sm52220755e9.10.2026.05.22.06.20.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 May 2026 06:20:38 -0700 (PDT)
+        Fri, 22 May 2026 06:20:39 -0700 (PDT)
 From: Vitor Soares <ivitro@gmail.com>
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -97,10 +97,11 @@ Cc: Vitor Soares <vitor.soares@toradex.com>,
 	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 02/11] arm64: dts: ti: k3-am62-verdin: Add Toradex Capacitive Touch Display 10.1" LVDS
-Date: Fri, 22 May 2026 14:20:15 +0100
-Message-ID: <20260522132014.226721-15-ivitro@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 03/11] dt-bindings: vendor-prefixes: Add Riverdi
+Date: Fri, 22 May 2026 14:20:16 +0100
+Message-ID: <20260522132014.226721-16-ivitro@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260522132014.226721-13-ivitro@gmail.com>
 References: <20260522132014.226721-13-ivitro@gmail.com>
@@ -118,15 +119,15 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301844-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301845-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[ideasonboard.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ti.com,bp.renesas.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -135,190 +136,40 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.979];
+	NEURAL_HAM(-0.00)[-0.986];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: D60FB5B574C
+X-Rspamd-Queue-Id: C494C5B5279
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Vitor Soares <vitor.soares@toradex.com>
 
-Add a device tree overlay for the Toradex Capacitive Touch Display 10.1"
-LVDS connected via Verdin AM62 OLDI on carrier boards exposing LVDS
-interface (e.g., Mallow). The panel is a LogicTechno LT170410-2WHC 10.1"
-WXGA IPS LCD and the touch input is provided by an Atmel MaxTouch
-capacitive touch controller.
+Add vendor prefix for Riverdi Sp. z o.o, a design and manufacturer
+of TFT display solutions.
 
-Link: https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
-Assisted-by: Claude:claude-sonnet-4.6
+Link: https://riverdi.com
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
 ---
-Changes in v2:
-- Use panel-simple compatible form
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- arch/arm64/boot/dts/ti/Makefile               |   5 +
- ...25-verdin-panel-cap-touch-10inch-lvds.dtso | 119 ++++++++++++++++++
- 2 files changed, 124 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index b2408f62c139..867c05b675d1 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-ivy.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-mallow.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-zinnia.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-panel-cap-touch-10inch-lvds.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia-dsi-to-hdmi.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev-dsi-to-hdmi.dtb
-@@ -213,6 +214,9 @@ k3-am625-sk-hdmi-audio-dtbs := k3-am625-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
- k3-am625-verdin-wifi-dev-dsi-to-lvds-panel-cap-touch-10inch-dtbs := \
- 	k3-am625-verdin-wifi-dev.dtb \
- 	k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtbo
-+k3-am625-verdin-wifi-mallow-panel-cap-touch-10inch-lvds-dtbs := \
-+	k3-am625-verdin-wifi-mallow.dtb \
-+	k3-am625-verdin-panel-cap-touch-10inch-lvds.dtbo
- k3-am62-lp-sk-hdmi-audio-dtbs := k3-am62-lp-sk.dtb k3-am62x-sk-hdmi-audio.dtbo
- k3-am62-lp-sk-nand-dtbs := k3-am62-lp-sk.dtb k3-am62-lp-sk-nand.dtbo
- k3-am62a7-phyboard-lyra-disable-eth-phy-dtbs := k3-am62a7-phyboard-lyra-rdk.dtb \
-@@ -315,6 +319,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am625-sk-csi2-tevi-ov5640.dtb \
- 	k3-am625-sk-hdmi-audio.dtb \
- 	k3-am625-verdin-wifi-dev-dsi-to-lvds-panel-cap-touch-10inch.dtb \
-+	k3-am625-verdin-wifi-mallow-panel-cap-touch-10inch-lvds.dtb \
- 	k3-am62-lp-sk-hdmi-audio.dtb \
- 	k3-am62-lp-sk-nand.dtb \
- 	k3-am62a7-phyboard-lyra-disable-eth-phy.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds.dtso b/arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds.dtso
-new file mode 100644
-index 000000000000..48479e83dcd3
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds.dtso
-@@ -0,0 +1,119 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex Capacitive Touch Display 10.1" connected via Verdin AM62 OLDI
-+ * on carrier boards with a Toradex standard LVDS display connector
-+ * (e.g., Mallow).
-+ *
-+ * https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
-+ * https://www.toradex.com/accessories/capacitive-touch-display-10.1-inch-lvds
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pwm/pwm.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	backlight_pwm2: backlight-pwm2 {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i2s_2_d_out_gpio>;
-+		brightness-levels = <0 45 63 88 119 158 203 255>;
-+		default-brightness-level = <4>;
-+		/* Verdin I2S_2_D_OUT as GPIO (SODIMM 46) */
-+		enable-gpios = <&main_gpio0 34 GPIO_ACTIVE_HIGH>;
-+		/* Verdin PWM_2 (SODIMM 16) */
-+		pwms = <&epwm0 1 6666667 PWM_POLARITY_INVERTED>;
-+	};
-+
-+	panel-lvds-native {
-+		compatible = "logictechno,lt170410-2whc";
-+		backlight = <&backlight_pwm2>;
-+		power-supply = <&reg_3v3_lvds_native>;
-+
-+		port {
-+			panel_lvds_native_in: endpoint {
-+				remote-endpoint = <&oldi0_out>;
-+			};
-+		};
-+	};
-+
-+	reg_3v3_lvds_native: regulator-3v3-lvds-native {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+	};
-+};
-+
-+&dss {
-+	status = "okay";
-+};
-+
-+&dss_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* DSS VP1: internal DPI output to OLDIx */
-+	port@0 {
-+		reg = <0>;
-+
-+		dss0_out: endpoint {
-+			remote-endpoint = <&oldi0_in>;
-+		};
-+	};
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&main_i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touch@4a {
-+		compatible = "atmel,maxtouch";
-+		reg = <0x4a>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i2s_2_d_in_gpio>, <&pinctrl_i2s_2_sync_gpio>;
-+		/* Verdin I2S_2_SYNC as GPIO (SODIMM 44) */
-+		interrupt-parent = <&main_gpio0>;
-+		interrupts = <37 IRQ_TYPE_EDGE_FALLING>;
-+		/* Verdin I2S_2_D_IN as GPIO (SODIMM 48) */
-+		reset-gpios = <&main_gpio0 33 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	/* Mallow Touch RST */
-+	pinctrl_i2s_2_d_in_gpio: main-gpio0-33-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0088, PIN_INPUT, 7) /* (L24) GPMC0_OEn_REn.GPIO0_33 */ /* SODIMM 48 */
-+		>;
-+	};
-+
-+	/* Mallow Touch INT# */
-+	pinctrl_i2s_2_sync_gpio: main-gpio0-37-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0098, PIN_INPUT, 7) /* (U23) GPMC0_WAIT0.GPIO0_37 */ /* SODIMM 44 */
-+		>;
-+	};
-+};
-+
-+&oldi0 {
-+	status = "okay";
-+};
-+
-+&oldi0_port0 {
-+	oldi0_in: endpoint {
-+		remote-endpoint = <&dss0_out>;
-+	};
-+};
-+
-+&oldi0_port1 {
-+	oldi0_out: endpoint {
-+		remote-endpoint = <&panel_lvds_native_in>;
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 28784d66ae7b..bac056d486e7 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1403,6 +1403,8 @@ patternProperties:
+     description: Embest RIoT
+   "^riscv,.*":
+     description: RISC-V Foundation
++  "^riverdi,.*":
++    description: Riverdi Sp. z o.o
+   "^rockchip,.*":
+     description: Rockchip Electronics Co., Ltd.
+   "^rocktech,.*":
 -- 
 2.54.0
 
