@@ -1,147 +1,199 @@
-Return-Path: <devicetree+bounces-302013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302014-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAahFxyqEGrKcAYAu9opvQ
-	(envelope-from <devicetree+bounces-302013-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 21:10:20 +0200
+	id CbuBELqtEGqPcQYAu9opvQ
+	(envelope-from <devicetree+bounces-302014-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 21:25:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E295B945A
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 21:10:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C37B5B96D5
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 21:25:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CAF41300107A
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 19:10:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 617B6300878A
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 19:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E722B368277;
-	Fri, 22 May 2026 19:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD5A36AB5A;
+	Fri, 22 May 2026 19:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hRWIruui"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5e/dvoX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90DC2BFC60
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 19:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F166B3563C7;
+	Fri, 22 May 2026 19:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779477014; cv=none; b=eoa/+IhacrViMafrghJVw/VYtqzpohm3Af80Hg8/8kPc65Or9LZP29nq+NpKG3Ssi/R/rwI0lO6vELbY9mCPk/o1nhp+cQM98UIvgo3EYJy3yqEX8MEMeddPMUcfQ3Sz/L/eeb6sOX8dFPsxW6Hmj0zAYANGv4evikqPlt+eKcY=
+	t=1779477942; cv=none; b=NJdb+XFNkszDxmTsaifV0XAZ531T8K1fr5EdMv/tQw4SOG82p8dYv9tgKtN7e6C4JfmCefzMHrEhQnE5QOCkLYEq8smzGAVxaaZ+8n8qcNnDb6TN092R44uug4n4jyYFYd409d7CYxoEbu9/FRDP7dyeHfDjah4u8Z539TulLJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779477014; c=relaxed/simple;
-	bh=isAN5nKx3wYrYeprEHbLJBY4eHWrL1nJkCyPuEKrF2E=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IWxqeRGpX9OzsdZQ24DRTbUcv6ttMIKsKit4sWwee/REIAAhyiaRxOSwnnc8ulB+iQ1gTIFnVFdzSiPgrbf/rLOUYOi06ODGoALknalBuDmAar8bWIxmXHT1SPnSzOtnzoQEKvBkuDq3a2ZbZh/b6ZRuBPO1xS85FysYW2pBi5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hRWIruui; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23B0C1F000E9;
-	Fri, 22 May 2026 19:10:13 +0000 (UTC)
+	s=arc-20240116; t=1779477942; c=relaxed/simple;
+	bh=Or5fQ1YCPE+2AHxAOKBFXorPm++H3+m8dRzh+3qm7fc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wui6DQlLU3j3BZ3unWP3tfglKRIIgr6KU5uOx6h9LgouqSQ0OLbAbaw4HM5pHsGhuomj4rI9oI6JkDhlU5tNKTRWwYZxwywQM40PL+17JlvXX470H1pZFUaiIaPKG3oLtztHE3TvUREt2WggbgyStHkgy2F7xtccb+q7gJs9ji8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5e/dvoX; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0873A1F000E9;
+	Fri, 22 May 2026 19:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779477013;
-	bh=mFAcp27og0cjzpa1aXmWe2jJV1nm7DfxIJJcZgl/iQs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hRWIruuiPRUVodyQp//b7nVCnHYHtDUYW3grShxVHbfWoP9yQzbqWz7sLiUX2ZWbE
-	 wPnAe5f7RUU7mRCIDarYPrzFi6p66RrwvX9hN6+bOxtHD/JICjjkdas0kS0OsPhqNg
-	 E+4LJt5+ISwaheTnxLxK8DhAaA7QSmBS9zASRQ0wQmDBw7ZtWYdixeAT2wa9M96wOy
-	 caWQL6HKkmLRtP/0CpGD4Hrycwbc4NmfU4VDA6XLo86HxN8vbGexBtODi6yMKXXfLs
-	 a7Px1iaZHP+YvAXD2cMeDeRRoWKeo1xk+m4prS/FDGBsfHcn+uEjhw3YoQUgAo38kd
-	 yXBRTquv3Ka2A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/5] arm64: dts: qcom: Add Shikra CQ2390M SoM
- platform
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Komal Bajaj" <komal.bajaj@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-phy@lists.infradead.org, neil.armstrong@linaro.org, conor+dt@kernel.org, olteanv@gmail.com, vkoul@kernel.org, robh@kernel.org
-In-Reply-To: <20260522-shikra-dt-v3-3-80ffde8a3dc4@oss.qualcomm.com>
-References: <20260522-shikra-dt-v3-3-80ffde8a3dc4@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 19:10:12 +0000
-Message-Id: <20260522191013.23B0C1F000E9@smtp.kernel.org>
+	s=k20260515; t=1779477940;
+	bh=RojEkkbyfvmtTftKGHnFUwJgtWSamSkZZu/jQFeaWSc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=W5e/dvoXBpz2FofolimiQYP+RaRBPpqcZjGq1ebug4W41tbnF9zi7GkVRIDtLVw+s
+	 iqMvWvp9vTm3lqR0yCO4fJYZBeG9aI/sGngE+Mi/fBIE0KJ9ORB73zkdmBDc73AObG
+	 KXXMsf0zRcRa3AaiIxPdL+6d5mAHiy6VzbmpakfIurGwOrkSvxGO83W/u/7GaEVxOH
+	 cQ2MStyqhRn2XKeCH2zhh3sYQnr1jXWaGT3EWWvekpGWy92kSStx9VVvqgPb88QCh/
+	 DFLGz3eFjYrBqsn7Rs2kea6GIvZhgf1/IlCYNfp8giQlCxJbPENSSzv8uu6UjvrRgR
+	 RJjy5X/OMKc9Q==
+Date: Fri, 22 May 2026 21:25:37 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: sashiko-reviews@lists.linux.dev, robh@kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v8 10/10] net: airoha: Support multiple LAN/WAN
+ interfaces for hw MAC address configuration
+Message-ID: <ahCtsVA1VhYmhZq-@lore-desk>
+References: <20260519-airoha-eth-multi-serdes-v8-10-6bd70e329df6@kernel.org>
+ <20260520085934.54AD01F00894@smtp.kernel.org>
+ <ag2t4eVe4DcfU2yZ@lore-desk>
+ <20260522112514.1ad6e947@kicinski-fedora-PF5CM1Y0>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jukOReBCAgX4Obp/"
+Content-Disposition: inline
+In-Reply-To: <20260522112514.1ad6e947@kicinski-fedora-PF5CM1Y0>
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302013-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302014-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,linaro.org,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 55E295B945A
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,linux.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 8C37B5B96D5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The commit message claims to add PM8005 PMIC regulator definitio=
-ns, but the patch explicitly disables the PM8005 regulators and provides no=
- configuration.
---
 
-commit b8207cdfd80924e291ee52448a105708aa7b6a09
-Author: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+--jukOReBCAgX4Obp/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-arm64: dts: qcom: Add Shikra CQ2390M SoM platform
+On May 22, Jakub Kicinski wrote:
+> On Wed, 20 May 2026 14:49:37 +0200 Lorenzo Bianconi wrote:
+> > > Does this strict OUI validation cause the driver probe to fail when M=
+AC addresses
+> > > are randomly generated?
+> > >=20
+> > > If a MAC address is not provided in the device tree, the driver gener=
+ates a random
+> > > one via eth_hw_addr_random(). For multi-port configurations, each por=
+t receives an
+> > > independently generated random MAC address.
+> > >=20
+> > > Since the upper 3 bytes of these random addresses will almost certain=
+ly differ,
+> > > when register_netdev() is called for the second port, its ndo_init ca=
+llback
+> > > (airoha_dev_init) will invoke airoha_set_macaddr() and hit this check=
+=2E Returning
+> > > -EINVAL will fail register_netdev() and abort the entire driver probe=
+, leaving
+> > > the system without networking.
+> > >=20
+> > > Does this also prevent users from changing the MAC address OUI?
+> > >=20
+> > > When an administrator attempts to change the MAC address via standard=
+ userspace
+> > > tools, only one interface can be modified at a time. The driver will =
+compare the
+> > > new MAC against the existing MAC of the other port.
+> > >=20
+> > > If the MSBs differ, the change is rejected. This makes it impossible =
+to atomically
+> > > change the OUI of both interfaces simultaneously, locking the MAC add=
+ress OUI
+> > > to its initial probe-time value. =20
+> >=20
+> > As pointed out before, this is a hw design requirement when multiple
+> > net_devices are configured as LAN.
+>=20
+> What about Clashiko report about the MAC address?
 
-This commit adds the device tree include for the CQ2390M variant of the
-Shikra System-on-Module. It integrates the Shikra SoC and includes PMIC
-regulator configurations for the retail SoM.
+Do you the following one?
+https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20260519-airoha-eth-mul=
+ti-serdes-v8-0-6bd70e329df6%40kernel.org
 
-> The DTSI includes the common shikra.dtsi, adds PM4125 and PM8005 PMIC
-> regulator definitions specific to this variant.
+- What happens when device tree does not provide MAC addresses for two or
+  more same-side GDM interfaces?
+  - This is the same comment reported in [0].
+    Since the hw exposes just a single register (REG_FE_LAN_MAC_H or
+    REG_FE_WAN_MAC_H) for the LAN/WAN mac address MSBs, we need to
+    require all the interfaces configured as LAN or WAN to share the
+    mac address MSBs and the user needs to select the new mac address
+    observing this limitation.
+    Please note this limitation is only valid if multiple net_devices
+    are configured as LAN (or WAN). Since in the current codebase we
+    do not support multiple interfaces configured as LAN or WAN, we are
+    not introducing any regression.
+    I do not think selecting a "base" for the mac address is helpful
+    if the user does not provide the mac address via the DTS or NVME
+    (as suggested by sashiko) since it will not help us if the mac
+    addresses configured via DTS are "wrong" (if they do not respect
+    the limitation described above).  What do you think?
+=20
+- If airoha_set_macaddr() succeeds (and has just widened the shared
+  [lmin, lmax] range to include this dev) and airoha_set_gdm2_loopback()
+  then fails, airoha_dev_init() returns the error but there is no=20
+  airoha_dev_uninit / ndo_uninit to roll the LMIN/LMAX update back.=20
+  The shared range is then wider than the set of currently-registered peers.
+  - I guess it is not harmful to keep the already configured mac address
+    range if airoha_set_gdm2_loopback() fails and I decided to not unwind
+    the changes to keep the code simple.  Moreover, in the current codebase,
+    if ndo_init() fails, the airoha_probe() will fail.
 
-[ ... ]
+Regards,
+Lorenzo
 
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi b/arch/arm64/bo=
-ot/dts/qcom/shikra-cqm-som.dtsi
-> new file mode 100644
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi
+[0] https://sashiko.dev/#/patchset/20260519-airoha-eth-multi-serdes-v8-0-6b=
+d70e329df6%40kernel.org
 
-[ ... ]
+--jukOReBCAgX4Obp/
+Content-Type: application/pgp-signature; name=signature.asc
 
-> +&pm8005_regulators {
-> +	status =3D "disabled";
-> +};
+-----BEGIN PGP SIGNATURE-----
 
-[Severity: Medium]
-Is the commit message inaccurate, or are the definitions for the PM8005
-regulators missing from this patch?
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCahCtsQAKCRA6cBh0uS2t
+rN/wAQCIS+axnhlXTKcfCUsWDcOYLeS/TGc95axOtNeEY9ZKrgEAyXH5klwWATaf
+0r/GIfveXTyaKFrvvGF7YTBMOsdbOgE=
+=UJ1t
+-----END PGP SIGNATURE-----
 
-The commit message states that PM8005 PMIC regulator definitions are
-added, but the code explicitly disables them without providing any
-configuration. If the SoM variant requires the PM8005 regulators to power
-hardware components, will leaving them disabled result in runtime failures?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522-shikra-dt-=
-v3-0-80ffde8a3dc4@oss.qualcomm.com?part=3D3
+--jukOReBCAgX4Obp/--
 
