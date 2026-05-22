@@ -1,262 +1,167 @@
-Return-Path: <devicetree+bounces-301718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEKeObMzEGqqUwYAu9opvQ
-	(envelope-from <devicetree+bounces-301718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:45:07 +0200
+	id GMXZNBs1EGqqUwYAu9opvQ
+	(envelope-from <devicetree+bounces-301721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:51:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56DFF5B264D
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:45:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F215B27B3
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:51:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4A8F73011C60
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:40:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 45A1A304F255
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E26E38423B;
-	Fri, 22 May 2026 10:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A214E3D3309;
+	Fri, 22 May 2026 10:43:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C0uKlOyt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M2pQjDKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD283438A2;
-	Fri, 22 May 2026 10:40:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B953CDBD8;
+	Fri, 22 May 2026 10:43:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779446405; cv=none; b=fOl4JD/npyD1ovGYDmp5muvWq3v0LghoTqGC0vhCH1ahAKlzP7REnv0G0Zk6VL3F5iqS+JCtX7Mgnp0sPRxC6/GPlHhJLBiDCNXBQW+mdY4mZRCWfheHDwDv5cQxo7cysXy8WrE6bZNW0dOp3ek82nfNtUq4rcmN2L8zCYhocqI=
+	t=1779446625; cv=none; b=hjvjilrPPKmzPAGVjiDpa7iyPXt27vhjuVXtT33Xsqq2Q52TOwVfneqiTKoatqJGoir4P/Gw8zNksMyYJgnC0Ys1nz51/vrsUAjZxT4Hq9muo5+wSXjHuRTDA0NOqGh/aZlHOmyhjKRIv+kINDpc3ZZQwzEZLknGxIFhQWJW9dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779446405; c=relaxed/simple;
-	bh=c0BeStXdY1FuuRgE12pPYKk+yXdU62dLQ+ab1L+PruA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qk50JbhN6YJh//H5ebgcr3uyQ7IsVPIeOdWRzW+4L0ygIPKPOIfxXU44h+i9IXOgUsmO4fsnsz0l9I9qfh16OMsIrcMtYbUWqmh89vqLcCC8dt+TUl5GqRnI6INwuvKlHW1mBTyEm4dOyl+mQyPi15CC+Biql3Oxvtv+yuPhVzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C0uKlOyt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF4581F000E9;
-	Fri, 22 May 2026 10:40:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779446404;
-	bh=TOeENsJONCm8A8ptsypYNFAVXXJmb30h97nu7b0oPA4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=C0uKlOyt9wx1ZuV5BLASb/MIxwa+P55xZoZrWACqPyhWcqOPbkRP0imyt9YwbsFV7
-	 1GROqPhdzZTtqWlEcoktRpKpS970YtozTVF2KqaywwjfG2+l+Zjs2eKR559hdcb/iY
-	 jljzyjV1EuFbSLkXsdCxuDOCU4yxB8o13643wsUjuOWsCoZhvXqtbqkEw0XNUxQuA0
-	 C8FO7dfhh6Rfi6ECodZYCELW0Tvozqf+Zzvs7OGejUKRz9MK2+v9Ary1OHqNTd7y7u
-	 hG2VNtUNmpgQPz5LdzpNQYfY2amEusjavnlfAp3rwcnLygojJplV5FUGRCGWFfI7MW
-	 pdqLCxd9/Dmyw==
-Date: Fri, 22 May 2026 16:09:59 +0530
-From: Sumit Garg <sumit.garg@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 04/16] firmware: qcom: Add a PAS TEE service
-Message-ID: <ahAyf4i7ZZrJETG9@sumit-xelite>
-References: <20260518072856.22790-5-sumit.garg@kernel.org>
- <20260519073354.03927C2BCB3@smtp.kernel.org>
+	s=arc-20240116; t=1779446625; c=relaxed/simple;
+	bh=irxIhZ6k1GrtmGJb1YpRm0XRzp3/Js4t6j+aLIg3dKs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TlpvrXUEg+pvBXQ7IdY6Bhrk1Ulf7Gleb4VM4mnXHXIQgCmn4WUriL6xgRyZDw6l1BV40kMWpszOIRsNQ7RdTV9SnIVFV7cvVjl/7lTXuvOUTVjWE6xka3QQ9ZHUTfGJcY/FUxJGD9GYBn2Nl5OlqDF4u5ejeJftMc/JIZKg440=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2pQjDKv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 11918C2BCB8;
+	Fri, 22 May 2026 10:43:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779446625;
+	bh=irxIhZ6k1GrtmGJb1YpRm0XRzp3/Js4t6j+aLIg3dKs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=M2pQjDKvmtEH/3ulRVdQgMU01Lq1QXf/WdiMYLkRJ5ogwSzPO4Iielhu0HLJas0TN
+	 V7xhUyg5VfzMVXBEx9kD8vYbGEjOPBCctNYGZnO/liQVa+1drv2PZ6vKWmJaSmgqaP
+	 wMeBE+Uw8maJxoKNfd8e3xAy6/WX1Ag6Da3eGmjrHfK4kvadYpVB9FA5umPC76+nJ0
+	 cliCmR8MxpNCw/zWwz/3uWTX+l5h9aPADM2z8kWn3peKKvz3gYhaLGZvSKn88Cu6Q+
+	 DDzS1xu/T5qYkhxzSEQ+U/lop6x0Joe+KpmiKbKVgwZ5Z00oWP3BEKg7o9qIuqhVlb
+	 cx0tFyM6jFPzQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 07598CD4F5B;
+	Fri, 22 May 2026 10:43:45 +0000 (UTC)
+From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne_via_B4_Relay?= <devnull+jerome.debretagne.gmail.com@kernel.org>
+Subject: [PATCH v2 00/10] Microsoft Surface Pro 9 5G update
+Date: Fri, 22 May 2026 12:43:16 +0200
+Message-Id: <20260522-surface-sp9-5g-for-next-v2-0-dd9d477407f5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260519073354.03927C2BCB3@smtp.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAEQzEGoC/4WNQQ6DIBBFr2JYdwydlKJd9R6NC8BBSSoYsMTGe
+ PeiF+jyJe+/v7FE0VFij2pjkbJLLvgCeKmYGZUfCFxfmCHHOxfIIX2iVYYgzS2IAWyI4GldQDa
+ tNFpze0PDynqOZN16ll9dYa0SgY7Km/HoZVnzQxtdWkL8nv/5esj/r/IVOLS9FSgEatvI5zAp9
+ 65NmFi37/sPHhuR8tUAAAA=
+X-Change-ID: 20260520-surface-sp9-5g-for-next-7897cbb0f42c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Bartosz Golaszewski <brgl@kernel.org>, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779446623; l=1924;
+ i=jerome.debretagne@gmail.com; s=20260520; h=from:subject:message-id;
+ bh=irxIhZ6k1GrtmGJb1YpRm0XRzp3/Js4t6j+aLIg3dKs=;
+ b=NOSLd7sF2MWxhkxnaNfms5y9agY3AwNtPGV7zT1dRmJiAcXdQ203Em7hbWMboSng7PkErw+m+
+ Csz/RtuLHRTA6xgdWtNf4E+zboFeu7DU4+N9Sd0GfXEocwx4d8t74xT
+X-Developer-Key: i=jerome.debretagne@gmail.com; a=ed25519;
+ pk=3/JYhgYjGg5V9mlFxc0A0+pFiyjsuDB/TtDlNMId9fk=
+X-Endpoint-Received: by B4 Relay for jerome.debretagne@gmail.com/20260520
+ with auth_id=785
+X-Original-From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
+Reply-To: jerome.debretagne@gmail.com
+X-Spamd-Result: default: False [1.93 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_MIXED_CHARSET(0.59)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301718-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-301721-lists,devicetree=lfdr.de,jerome.debretagne.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.993];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,oldschoolsolutions.biz,oss.qualcomm.com,linaro.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
-X-Rspamd-Queue-Id: 56DFF5B264D
+	HAS_REPLYTO(0.00)[jerome.debretagne@gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 52F215B27B3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 19, 2026 at 07:33:53AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
-> - [Critical] Unvalidated buffer sizes from TEE lead to heap buffer overflow and out-of-bounds read.
-> - [High] The `shm_free` cleanup wrapper fails to handle `ERR_PTR`, causing a kernel crash on allocation failure.
-> - [High] Unconditional unregistration and global static ops structure corruption in probe/remove.
-> --
-> 
-> commit 117a287c92ded04ad43f9ed963b43a8069a13f94
-> Author: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> 
-> firmware: qcom: Add a PAS TEE service
-> 
-> Add support for Peripheral Authentication Service (PAS) driver based
-> on TEE bus with OP-TEE providing the backend PAS service implementation.
-> 
-> > diff --git a/drivers/firmware/qcom/qcom_pas_tee.c b/drivers/firmware/qcom/qcom_pas_tee.c
-> > new file mode 100644
-> > index 0000000000000..2067a43c44c37
-> > --- /dev/null
-> > +++ b/drivers/firmware/qcom/qcom_pas_tee.c
-> > @@ -0,0 +1,476 @@
-> [ ... ]
-> > +DEFINE_FREE(shm_free, struct tee_shm *, tee_shm_free(_T))
-> 
-> Will this crash if an allocation failure occurs? By default, DEFINE_FREE
-> only guards against NULL pointers. However, tee_shm_alloc_kernel_buf() can
-> return an ERR_PTR, which evaluates to true.
-> 
-> > +
-> > +static void *qcom_pas_tee_get_rsc_table(struct device *dev,
-> > +					struct qcom_pas_context *ctx,
-> > +					void *input_rt, size_t input_rt_size,
-> > +					size_t *output_rt_size)
-> > +{
-> [ ... ]
-> > +	if (param[1].u.memref.size) {
-> > +		struct tee_shm *rt_shm __free(shm_free) =
-> > +			tee_shm_alloc_kernel_buf(data->ctx,
-> > +						 param[1].u.memref.size);
-> 
-> If this allocation fails, rt_shm will be an ERR_PTR. When the function
-> returns early, shm_free will pass the ERR_PTR to tee_shm_free(), triggering
-> a kernel panic.
+This series updates the support for the Microsoft Surface 9 5G
+(Arcata), bringing it more up-to-date and aligned with the other
+sc8280xp models such as the Lenovo ThinkPad X13s.
 
-Ack, will fix it.
+As highlights, it finally enables the built-in screen, it fixes
+Display Port alt mode on the top left-side USB-C port, it enables
+the volume up/down keys and the lid switch.
 
-> 
-> > +		void *rt_shm_va;
-> > +
-> > +		if (IS_ERR(rt_shm)) {
-> > +			dev_err(dev, "rt_shm allocation failed\n");
-> > +			return rt_shm;
-> > +		}
-> > +
-> > +		rt_shm_va = tee_shm_get_va(rt_shm, 0);
-> > +		if (IS_ERR(rt_shm_va)) {
-> > +			dev_err(dev, "rt_shm get VA failed\n");
-> > +			return ERR_CAST(rt_shm_va);
-> > +		}
-> > +		memcpy(rt_shm_va, input_rt, input_rt_size);
-> 
-> Can this cause a heap buffer overflow? The buffer is allocated using
-> param[1].u.memref.size, but the code unconditionally copies input_rt_size
-> bytes into it.
+Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+---
+Changes in v2:
+- The panel-edp patch was accepted as a subset. Removed from this series [Doug]
+- Update the backlight patch to keep only the necessary nodes
+- Add R-by: tags and move a Fixes tag [Konrad]
+- Strip details from the "Enable the eDP display" commit message [Konrad]
+- Fix misleading commit message about USB-C orientation [Konrad]
+- Link to v1: https://lore.kernel.org/r/20260520-surface-sp9-5g-for-next-v1-0-9df52552bf87@gmail.com
 
-Nope, param[1].u.memref.size is always more or equal to input_rt_size
-based on OP-TEE ABI.
+---
+Jérôme de Bretagne (10):
+      arm64: dts: qcom: sc8280xp-arcata: Enable backlight
+      arm64: dts: qcom: sc8280xp-arcata: Enable the eDP display
+      arm64: dts: qcom: sc8280xp-arcata: add USB-C orientation GPIOs
+      arm64: dts: qcom: sc8280xp-arcata: Fix top USB-C DP alt mode
+      arm64: dts: qcom: sc8280xp-arcata: Enable 4-lane DP support
+      arm64: dts: qcom: sc8280xp-arcata: Add volume up/down GPIO keys
+      arm64: dts: qcom: sc8280xp-arcata: Add lid switch
+      arm64: dts: qcom: sc8280xp-arcata: model the PMU of the on-board wcn6855
+      arm64: dts: qcom: sc8280xp-arcata: Switch to uefi rtc offset
+      arm64: dts: qcom: sc8280xp-arcata: Drop duplicate DMIC supplies
 
-> 
-> > +
-> > +		param[1].u.memref.shm = rt_shm;
-> > +		ret = tee_client_invoke_func(data->ctx, &inv_arg, param);
-> > +		if (ret < 0 || inv_arg.ret != 0) {
-> > +			dev_err(dev, "PAS get RT failed, pas_id: %d, ret: %d, err: 0x%x\n",
-> > +				ctx->pas_id, ret, inv_arg.ret);
-> > +			return ret ? ERR_PTR(ret) : ERR_PTR(-EINVAL);
-> > +		}
-> > +
-> > +		if (param[1].u.memref.size) {
-> > +			*output_rt_size = param[1].u.memref.size;
-> > +			rt_buf = kmemdup(rt_shm_va, *output_rt_size, GFP_KERNEL);
-> 
-> Does this kmemdup() introduce an out-of-bounds read? The size returned by
-> the TEE in param[1].u.memref.size could potentially be larger than the
-> originally allocated size.
+ .../boot/dts/qcom/sc8280xp-microsoft-arcata.dts    | 279 ++++++++++++++++++---
+ 1 file changed, 243 insertions(+), 36 deletions(-)
+---
+base-commit: 028ef9c96e96197026887c0f092424679298aae8
+change-id: 20260520-surface-sp9-5g-for-next-7897cbb0f42c
 
-Nope, this won't happen as it's part of OP-TEE ABI.
+Best regards,
+-- 
+Jérôme de Bretagne <jerome.debretagne@gmail.com>
 
-> 
-> > +			if (!rt_buf)
-> > +				return ERR_PTR(-ENOMEM);
-> > +		}
-> > +	}
-> > +
-> > +	return rt_buf;
-> > +}
-> [ ... ]
-> > +static struct qcom_pas_ops qcom_pas_ops_tee = {
-> > +	.drv_name		= "qcom-pas-tee",
-> > +	.supported		= qcom_pas_tee_supported,
-> > +	.init_image		= qcom_pas_tee_init_image,
-> > +	.mem_setup		= qcom_pas_tee_mem_setup,
-> > +	.get_rsc_table		= qcom_pas_tee_get_rsc_table,
-> > +	.auth_and_reset		= qcom_pas_tee_auth_and_reset,
-> > +	.prepare_and_auth_reset	= qcom_pas_tee_prepare_and_auth_reset,
-> > +	.set_remote_state	= qcom_pas_tee_set_remote_state,
-> > +	.shutdown		= qcom_pas_tee_shutdown,
-> > +	.metadata_release	= qcom_pas_tee_metadata_release,
-> > +};
-> > +
-> > +static int optee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
-> > +{
-> > +	return ver->impl_id == TEE_IMPL_ID_OPTEE;
-> > +}
-> > +
-> > +static int qcom_pas_tee_probe(struct tee_client_device *pas_dev)
-> > +{
-> > +	struct device *dev = &pas_dev->dev;
-> > +	struct qcom_pas_tee_private *data;
-> [ ... ]
-> > +	data->session_id = sess_arg.session;
-> > +	dev_set_drvdata(dev, data);
-> > +	qcom_pas_ops_tee.dev = dev;
-> 
-> Could concurrent probes overwrite this shared static structure? Since the ops
-> structure is global, multiple devices probing at the same time could clobber
-> the dev pointer.
 
-Only single device is supported on TEE bus here.
-
-> 
-> > +	qcom_pas_ops_register(&qcom_pas_ops_tee);
-> 
-> Should this check for a return value or register failure? If another backend
-> like SCM is already registered, this operation will fail, but the probe
-> routine proceeds as if it was successful.
-
-Only one PAS backend is expected to be present at a time.
-
-> 
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void qcom_pas_tee_remove(struct tee_client_device *pas_dev)
-> > +{
-> > +	struct device *dev = &pas_dev->dev;
-> > +	struct qcom_pas_tee_private *data = dev_get_drvdata(dev);
-> > +
-> > +	qcom_pas_ops_unregister();
-> 
-> If the registration failed in probe, will this unconditionally unregister the
-> active SCM backend and break PAS functionality system-wide?
-
-Concurrent PAS backends aren't supported.
-
--Sumit
-
-> 
-> > +	tee_client_close_session(data->ctx, data->session_id);
-> > +	tee_client_close_context(data->ctx);
-> > +}
-> 
-> -- 
-> Sashiko AI review � https://sashiko.dev/#/patchset/20260518072856.22790-1-sumit.garg@kernel.org?part=4
 
