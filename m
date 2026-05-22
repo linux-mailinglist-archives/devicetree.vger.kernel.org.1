@@ -1,240 +1,215 @@
-Return-Path: <devicetree+bounces-301828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301830-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yKQ/HKNYEGocWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301828-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:22:43 +0200
+	id 0OVtO/VWEGocWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301830-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:15:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E155B50FC
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:22:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6886C5B4ED5
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 909863031413
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:08:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7275330571A6
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A36394E80;
-	Fri, 22 May 2026 13:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3CBB39D3DB;
+	Fri, 22 May 2026 13:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VHFmoVU/";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="acLAmuad"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JrGkqI61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F61535675F
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1040394464
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779455299; cv=none; b=qvpiQKl4BB9N/x6C4tvbc8iWPN+QskkbFRSTTBezAo9YYrMu0bxZaWbAD/El39UGFl6GUmwWFeAGKRdBt8CQYRUF5biI5PrWdkaghgK/OeBTBYuMhivy2v41K4kUXsx+gCPpr7r7akLxHvQPP0PMMvuBw4G+C9SAzckL2T/0WSE=
+	t=1779455359; cv=none; b=Goyzi2ohpgJfmrQ0gJLPMcjT4pPZ85EBv4mIH5vPAHnC1Qoo2d8413sld5yTYFyd7ruCx8TBiEGB2XzKmC/iieK4GH5Jt441ILHIXfIdClR52ACn0gmk8whg+UvRES3TiNS4KYh3EQHXQro1EEMQr/P6aTHvSrnlmnuQSo4NQC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779455299; c=relaxed/simple;
-	bh=OrukJg8m46sj1Pu8mW6Du4FkCv/lEs0V0+4sCQUjoAU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k8LOtHlPMn6U2WO72PGPtIbYf/wEmkFM7+hZ05h43p+FPp8Arpn7vu1VYwp1nqA3fcvQQ7GzjW+btyGPsBeBGaEOszcMyeWFyNBO5rucEv7nDkjZVFVI/NOyM0L5/tiaPTiSAavmlaQi8yV+6N4YnYhwEBUA7WwYWBA2N9J7ujI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VHFmoVU/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=acLAmuad; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64M9015p3005132
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:08:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9xi3o5QDtxodOA7hKGtfvSi8vreN8UVFATY7/epF/EI=; b=VHFmoVU/Ssi+h4ke
-	2Yud1BoX2w7H1GNDk9jhpRH7icB1RLXDxZ45ptkgMl3+x3381MvAbws8CQhB2Cy+
-	rC4yvNQt4W0VeHR4PM/39ljBmA+YRyDa/wTKqVR6mztau8lsgnZWDRXvMzz76Wiu
-	usqycIYBcaWF8Y3QyCNgxZp6PTPh9+bGtKmt3BrcaixpyEFCLFj4hyFkm/R9FBnx
-	Wwfr1HR6vLzAPOXxVThafyAbiXpO+2IeWhIcjg7qit1zmaohL36/Pp8TwJrIGheO
-	1gS7Ng3aWrvqAztxdqhPR2mnZ+r/YNRtMsyZUYeq2aeApoaTP9F2QPlmRafabxVS
-	LD5yaA==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eafrta2h0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:08:17 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-836d0184333so9032406b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:08:17 -0700 (PDT)
+	s=arc-20240116; t=1779455359; c=relaxed/simple;
+	bh=LtTpgGcpgPzqlzqQe4SsOV1m4Lxz45qMFFeKP4Prwnc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kRTNdS42ongzl9AmMaTU7duOtZRB3XUXxIZCANH4sSydYsqasN8prmQVRPJCq300L1Hzc9Rv94i+Tyb03Ypcifr4oOhaafiibd7q1w9BNnHgRV5VkFOpEVpOWzhNr91TWiMi8Je+ivnCHyXXyqEtg8QKR75FEOlekJL9RTk42LQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JrGkqI61; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4891c0620bcso46562355e9.1
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:09:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779455297; x=1780060097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9xi3o5QDtxodOA7hKGtfvSi8vreN8UVFATY7/epF/EI=;
-        b=acLAmuad4y+EFIMBpH5+yXjEU0WObQAEtGya5A0XX0QHrDIxUlpB4ptkssC6juXcli
-         +T0pvFiMRdTl9nSZSFjNv6pyP5irQo1cVU3JIIWEPZneTRsxFs92JRDoe7o/xt+Elhxa
-         KLztubl0ALP6vqZXypCVWVbwDZTBADF23nnyyDN63gXSFQ725apgqy+66MhwNpzx1oKo
-         SmdkckypxpKwf+oNe7/iqdQF9i6Wwu2qS3R0TfaKEW7a/0ekh7kJtaoMb4yN0zNn8Rad
-         tYY1qFTc0XxtScx3iTdWWxH2Crl3vTNyYJMeB72eokYoEz00ATWTmHxzQm5UixDsKUmK
-         LIfA==
+        d=linaro.org; s=google; t=1779455355; x=1780060155; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fCjNO80m5P6W/2r92SstgFa0tnAthws9clevMsWOPw8=;
+        b=JrGkqI61GADWTk/Di5gryGczgLSQd++TMpm9Sbvfe8rPFr4WbJdpi+tR80SHhDMmYu
+         M0bzw2v0m4ymMldJnQmNJyL6NDxmLE4X4Hh5DH7ay07NvapkGAbfXd6+xeZaJT+VIUi8
+         Ae7hU4NHj4lP1qIjQKp4cyN3AkxssocXTx3MQ4bzmoHRGJ5SL9sVMFM0dTMvG0L1JaW+
+         fTCmYkcxljlXugmI2xjw9FYGEVVmboWTfg1fdlr+yHaqh0SCjTI5GNz1w+FGAQv0efaI
+         AAb8R7WhLOLMNOCyc0xrjEmJwfJyy4tvuor69aCoULWKG/kzCY5hFv8RcwTKE9+Sx9cN
+         P9CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779455297; x=1780060097;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9xi3o5QDtxodOA7hKGtfvSi8vreN8UVFATY7/epF/EI=;
-        b=H6NeoFPdhwUnLqMffRCEXussmg6SS3kXMcWNh5B4c5GJ6Tgfp0LlWLKbsWzTmtM2J5
-         ssNorpq0MxN/RT1BmqB2naTgSlPRHoryjfROnUWlhfONUKTSfTBkPxGDmmMuIHjAZwN3
-         YmNsM+Tw4itiB8FLyf3oMRq6q43qAGHkXmYTTxjJavkl2IvJTS7o31Z3d9HpMAvrJT7V
-         Yy1Xh+pZtA1GGIYiuTsNDCrWgLXJOh+fBJdsmxIoL8ZzHoFDjNFosUmP65sxrqqvDy2/
-         14xiGkYp+08jY9ct+YS0vo8KIXFxQvgrojPGyQoeVUKCe8jSOgDhifGQLEb4NGX3qF8o
-         bwNA==
-X-Forwarded-Encrypted: i=1; AFNElJ8D957asuwKHht6Ey3Pxtd7WanNp8/logkn6RXDMhw/Dxoz7njPywodoMRjuzOyyj/oV/CrCOrLHn0O@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUBpkZ5dRs+32Tzt5gLotFiL1Bgj8K1Zh5wN9DOzMHe1q9w/Wl
-	cUH8wtpCYvRwwx7cXIOKEl6fXaVBAHIBH+B8qjU2+2hGCXUK5D6koDysAVvDCKfw80BP3tLeNAr
-	7iAk/+acsiMwLTEgdYOAnw1Mih7tNDHc6XP9tTlxjehqLDJtBClAhd1blZx8dosX6idnCpFAD
-X-Gm-Gg: Acq92OHxDbOptuI99REQPXOehvC/TiyeS/aMDlPwpbOCAdKJ3jN4fCXJQfTuFUdw+Vj
-	Ha1W6OuYD32Kti186bznQW9ENcOw7MMUvRBit907ynoqph6+06hsHNbdkAL0HWbRlJaLKtQnIxo
-	dqI6z9RU8JneTvDx4aUfnjq4Q/sgQs4fjQN7SbWavWmBsmzCN4Hyt26RE7kZ9gG+xBfFEFkYBm4
-	N/geHNwrdLmJhdmlv7frHgKykFccHIufShfWm0B6lhu+3jk5/b/ro0hkW7dPJuYRnWVrM1s17Tw
-	AGBPQtA379OJDRC4NNNH8WPicuNCh09RdRe0C4ER6qdc6ikhbFapm2dSYpsKACc8NMk9x52wkEi
-	X8GlGZf2yL49uSviXb+8TohbibIHltHLJJ+k9ZaKtpe6LcjzG
-X-Received: by 2002:aa7:9a85:0:b0:82f:776f:a78a with SMTP id d2e1a72fcca58-8415f3019a0mr3899230b3a.30.1779455296658;
-        Fri, 22 May 2026 06:08:16 -0700 (PDT)
-X-Received: by 2002:aa7:9a85:0:b0:82f:776f:a78a with SMTP id d2e1a72fcca58-8415f3019a0mr3899184b3a.30.1779455296159;
-        Fri, 22 May 2026 06:08:16 -0700 (PDT)
-Received: from [10.219.57.29] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84164b1af1csm1902328b3a.27.2026.05.22.06.08.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 May 2026 06:08:15 -0700 (PDT)
-Message-ID: <ab679636-a15e-4876-b658-7534484e337e@oss.qualcomm.com>
-Date: Fri, 22 May 2026 18:38:12 +0530
+        d=1e100.net; s=20251104; t=1779455355; x=1780060155;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fCjNO80m5P6W/2r92SstgFa0tnAthws9clevMsWOPw8=;
+        b=nOB9WDJ9YeR0odLTC6iXtTxFntfmW5U7NQZZU/m7SdoAOHR2Ja5kYz6AkpJNOPYifO
+         ALdl3xJSkJaYYMy0HFHh1tbTN8Of/rnd1NDCv0bsHgYFcWN4LI1wepOMeod6sytwbdPD
+         vSW19F7GTFrmSaUkGt+h9rYjZrpQG/7HADVHhmj7gof0i8nGrBOapWU0CM6xcVYuVJYF
+         MGDwK2knv3IqU8i7UihFQhT0xnCq5UoA8gULj8dyrRfYkLvzdYlvMCuq1r8WnxNYP9aD
+         3sunaamz9f7yB16UZ1eGjqg6WTmVMcXL5rg2KLN3xmh5Ap2h9fORgzGv67dHg1TrMgFv
+         OeQA==
+X-Forwarded-Encrypted: i=1; AFNElJ8vAsY6wHSCL9Rm5sf2VUsA7cj3GMxSWm9AoCsn9azMhhf2GbjLNmXfu1AaQw47p4aLuiPzlznqhQF6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHUdu/2nPt1XyOt7OVBcWXErH/0BEn3nAnyNUKE5LLkkiKWRti
+	Y6uOy6aTHgQY6tkz33djuwlEV+hLD5vj9ucXPXRmrjXBTYRLW6shkXEX8vb3F6Cmgx8=
+X-Gm-Gg: Acq92OEA8hh8EfDo7SBGnNe0/smUYHVhRao3Y/7Yr22CKxbAGL8GCariMVUC9eLhxkW
+	SnkvFFagplknJ1u0nCKpIoWHZC64TD9/9a39TS48rW+Pk1iVLx+EMRdGRukfmcoE5zTUiMSEQHi
+	NGFZKtyeG6d1kccCBuR6MVz/I1MH1URYfwxDjjfShamEeWlYDz61ELycwS3jc2kNuqwt3/uK2Hq
+	8yWAas+2cIQkWAsZVekRjiedlAv8mTEHeeLD4iDoE9WWfHzlnqT5hilre6DELvWRJ2x+a6ISZ7y
+	KTc43ZSUah9m5fWZKXsXT1XAcjT7nGIpO1FCprNheRaFa5c1xuJ/287TotEuSztz3HFzdsWtfMv
+	pfIc52sSRBPOczRxy5wv5N/YYhnhmfxZZaYZ5P9Xv4XjbFM7wE8hW4lhN9fn9flITToP8lQUHhJ
+	R+Up76YD5yWZYpouZGOaXbS/kQLBWLuRwwmH78nhxGbzqHn6BSjr+DF6I=
+X-Received: by 2002:a05:600c:4fc4:b0:490:41b4:a1 with SMTP id 5b1f17b1804b1-490426aa4b0mr44171055e9.11.1779455354871;
+        Fri, 22 May 2026 06:09:14 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0b82sm45413615e9.9.2026.05.22.06.09.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 May 2026 06:09:14 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v5 0/2] regulator: add support for SGM3804 Dual Output
+ driver
+Date: Fri, 22 May 2026 15:09:11 +0200
+Message-Id: <20260522-topic-sm8650-ayaneo-pocket-s2-sgm3804-v5-0-bd6b1c300ecc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] remoteproc: qcom: pas: Add Shikra remoteproc
- support
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20260521-shikra-rproc-v3-2-2fca0bbe1ad7@oss.qualcomm.com>
- <20260521135659.A15C11F000E9@smtp.kernel.org>
-Content-Language: en-US
-From: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
-In-Reply-To: <20260521135659.A15C11F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=JN0LdcKb c=1 sm=1 tr=0 ts=6a105541 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=j0AMz7HbSoZG04DGXxAA:9 a=QEXdDO2ut3YA:10
- a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIyMDEzMSBTYWx0ZWRfX2TrG8n1wjfS3
- iqAWTQ1z+ZGJv8LHOc43xY1aBMKdBrbcsj86oJoQHDm+/ggBeTO86/EEDNobyHm+hw7aN63dnR4
- Dru7FbVo6N3rVsGBGjCH7Cktd+B3r+x8nAijthh0Nd0FZ68FY6ReijhZshDgw8c4dEsUcNQoiDZ
- tmCoDVXNrOtOilUgWxuNgcXDSt9t4UQRDkmR6FsvFisjV6828TW2U6Ud94As4md86G3gE2QByUB
- smK6Qy2SEh287Ul4Qu4aC/kZholMCuawzNjnWQU5sMPuShAHd6Ltx6F+u9BfkGCy1XEtK29dJ8e
- rS6fmmkSrYdkX1331tGb2q54yOY3zovLQy5mhiMAYTQuvJ2lfjFXtSr5iP7ncoCC5hzGJ6wGZms
- bC52ptzrswRQVGirMCX9YJclY1y6ypcOoGlD5yLQtWt66wcIsYGY4j+RSuwBwgcOl/eUb6AExr/
- rcV8HCFLHW+I3+2neKA==
-X-Proofpoint-GUID: KoriuaRTM--TSwGx0TrDKAo_EijD7KbW
-X-Proofpoint-ORIG-GUID: KoriuaRTM--TSwGx0TrDKAo_EijD7KbW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-22_03,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0
- phishscore=0 bulkscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605220131
+X-B4-Tracking: v=1; b=H4sIAHdVEGoC/5XOTU7DMBAF4KtUXjPI8c/YYcU9UBeOM00NNI7sE
+ LWqcnfssqCom7B80pvvzZVlSoEye9ldWaIl5BDHEvTTjvmjGweC0JfMBBfIlbAwxyl4yCeLmoO
+ 7uJEiTNF/0AxZQB5O0nIF1qA6dJ0R1BlWrCnRIZxvO2/7n5y/unfyc8Vr4xjyHNPl9sjS1N5/N
+ 5cGODS97b3Bcqrx9TOMLsXnmAZWRxdxx0q+lRWFNdhw61E7jfyBlb+sLgcbWVlYr4yVSknb8u6
+ BVfcsbmVV/Va1mkzLNbbyD7uu6zcJgKvj8gEAAA==
+X-Change-ID: 20260428-topic-sm8650-ayaneo-pocket-s2-sgm3804-8764fbb72eb7
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ KancyJoe <kancy2333@outlook.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2656;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=LtTpgGcpgPzqlzqQe4SsOV1m4Lxz45qMFFeKP4Prwnc=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqEFV4Dc1eLiMssjlM1bfIJzOo2pRV3MvUFzWXcII4
+ PoDUTZiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCahBVeAAKCRB33NvayMhJ0bxbEA
+ CIeZ1wXQt6z4SCDkAo2+gCK/M2V5c5E7mpKsQYo2siiWY6Tq+6+LGb2DM4mV4drsoH1KIFJJEH3Rhj
+ n1PbNINlSmQe8d2GUlpzG5PIpvHjlJ02Ij7BF9A+nmb8AB9pJhthKrUnmOcRa8cBW0A0sBwshTOydI
+ 2VTiifprVvfOHDPOHMVF2nlOzNmr2Ev46cLuqneW2XaMGqBw5s+pi8Q99H7TwEhawPXkeJJjhQdWjO
+ IrUEyU4IAisbzSV1LVLM7j2d9MR/hz4XrHnkhML2od5vWH2MURO/PcjdikVmIqH7TBkURtKSyuaYI7
+ JUc4O3rp0FP4eJCM6ws/OcFs3S6ETBfgCgaiIm665dlzVFoWpBms7kfVbVUG9f7y2ZwoHmPrr5EOye
+ zhs2LPqFTeW2w5Ro/DcZBbqsWw8o6Z8zj3DQvlDqkQqoEnLQWSbmA9fzdRws9eVaNW/Iocg4FmK5h0
+ Ql38DEF+7LpgykItMTbyx8qlj8Y+WxMjeZR1qrdnn3BvBwqhtxxYZwYGqGaolazu/Fjm2aubcVulCU
+ 8EeGNQSBSAE91HbeclVQdtv74lb5olo1s5HbyjtPbYuCoU859gP8W5RHsRAk0Jdf2h+kYbRVIVftW/
+ iXsPnS7bhp5+85cl7u2wqij6AuzyB+zJwqceWZG5su/Oy684Jl9riKNsDZKQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,outlook.com,linaro.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301828-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-301830-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[komal.bajaj@oss.qualcomm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 12E155B50FC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 6886C5B4ED5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/21/2026 7:26 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] Missing `ssctl_id` initialization for `shikra_lpaicp_resource` causing graceful shutdown failure.
-> --
->
-> commit de542ab4b48a2146f6973ba793bbbd6328de204c
-> Author: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
->
-> remoteproc: qcom: pas: Add Shikra remoteproc support
->      
-> This commit adds the CDSP, LPAICP and MPSS Peripheral Authentication Service
-> support for the Qualcomm Shikra SoC.
->
->> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
->> index da27d1d3c9da6..0101f1db6458e 100644
->> --- a/drivers/remoteproc/qcom_q6v5_pas.c
->> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> [ ... ]
->> @@ -1457,6 +1457,51 @@ static const struct qcom_pas_data sc7280_wpss_resource = {
-> [ ... ]
->> +static const struct qcom_pas_data shikra_lpaicp_resource = {
->> +	.crash_reason_smem = 682,
->> +	.firmware_name = "lpaicp.mbn",
->> +	.dtb_firmware_name = "lpaicp_dtb.mbn",
->> +	.pas_id = 0x56,
->> +	.dtb_pas_id = 0x57,
->> +	.minidump_id = 0,
->> +	.auto_boot = true,
->> +	.ssr_name = "lpaicp",
->> +	.sysmon_name = "lpaicp",
->> +};
-> [Severity: High]
-> Does this resource definition need an ssctl_id initialized?
->
-> The sysmon subdevice is enabled by setting .sysmon_name = "lpaicp", but it
-> fails to define .ssctl_id. Because .ssctl_id is uninitialized, it defaults
-> to 0, which means qcom_add_sysmon_subdev() will be passed 0 as the QMI
-> SSCTL instance ID.
->
-> Looking at ssctl_new_server() in drivers/remoteproc/qcom_sysmon.c, the
-> version 2 QMI service binding requires svc->instance ==
-> sysmon->ssctl_instance. Since modern Qualcomm PAS QMI SSCTL services
-> advertise non-zero instance IDs, could this cause the binding to fail?
->
-> If the remoteproc framework never establishes an SSCTL connection to the
-> LPAICP DSP, sysmon_stop() will explicitly skip waiting for the SSCTL service
-> connection since ssctl_instance == 0.
->
-> When the DSP needs to be stopped, will sysmon_stop() bypass
-> ssctl_request_shutdown() and forcefully power off the DSP instead of
-> gracefully shutting down?
->
-> Forceful shutdowns of active DSPs can lead to hardware state corruption
-> or SMMU faults, which often cascade into kernel panics on these platforms.
+Add support for the SG Micro SGM3804 Single Inductor Dual Output
+Buck/Boost Converter used to power LCD panels a provide positive
+and negative power rails with configurable voltage and active
+discharge function for each output.
 
-On Shikra LPAICP, we are not hosting the QMI SSCTL service currently, so 
-there is no SSCTL instance to bind to and .ssctl_id is intentionally 
-left unset (defaults to 0). In this setup, the sysmon SSCTL 
-connection/shutdown path is not used; shutdown relies on the normal PAS 
-power-down sequence.
+The SGM3804 is powered by the enable GPIO pins inputs and only
+supports I2C write messages. 
+In order to add flexibility and simplify the driver, the
+regmap cache is enabled and populated with default values
+since we can't write registers when the 2 GPIOs are down.
 
-Thanks
-Komal
+This regulator is used to provide vsn and vsn power to the
+Ayaneo Pocket S2 dual-DSI LCD panel.
 
->
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v5:
+- Add dependencies on GPIOLIB
+- Mark as cache only if sync fails
+- Use proper selector number for n_voltages
+- Link to v4: https://patch.msgid.link/20260506-topic-sm8650-ayaneo-pocket-s2-sgm3804-v4-0-7495e7905693@linaro.org
+
+Changes in v4:
+- Moved the enable-gpios to subnodes due to enable-gpio bindings constraint
+- Added code to get enable gpios from subnodes using fwnode to avoid the of->fwnode dance
+- Switch last gpio call to cansleep
+- Moved the Kconfig/Makefile entry in the right place
+- Link to v3: https://patch.msgid.link/20260504-topic-sm8650-ayaneo-pocket-s2-sgm3804-v3-0-c4783443890b@linaro.org
+
+Changes in v3:
+- Change header in c++ comment block
+- Switch to regcache dirty/only instead of custom handling
+- Use GPIO_ASIS to avoid turning off regulator on boot
+- Use gpio cansleep
+- Add my MODULE_AUTHOR and reorder the signoff
+- Link to v2: https://patch.msgid.link/20260430-topic-sm8650-ayaneo-pocket-s2-sgm3804-v2-0-76108c65a560@linaro.org
+
+Changes in v2:
+- Fixed bindings subject and gpios minItems
+- Fixed regulator signed-off order
+- Added second MODULE_AUTHOR entry
+- Added more comments on how regmap cache is configured to work
+- Link to v1: https://patch.msgid.link/20260428-topic-sm8650-ayaneo-pocket-s2-sgm3804-v1-0-1d8dc7620256@linaro.org
+
+---
+KancyJoe (1):
+      regulator: add SGM3804 Dual Output driver
+
+Neil Armstrong (1):
+      regulator: dt-bindings: document the SGM3804 Dual Output regulator
+
+ .../bindings/regulator/sgmicro,sgm3804.yaml        |  77 +++++
+ drivers/regulator/Kconfig                          |   8 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/sgm3804-regulator.c              | 314 +++++++++++++++++++++
+ 4 files changed, 400 insertions(+)
+---
+base-commit: 39704f00f747aba3144289870b5fd8ac230a9aaf
+change-id: 20260428-topic-sm8650-ayaneo-pocket-s2-sgm3804-8764fbb72eb7
+
+Best regards,
+--  
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
