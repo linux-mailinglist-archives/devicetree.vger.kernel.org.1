@@ -1,124 +1,181 @@
-Return-Path: <devicetree+bounces-301578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INpwISj8D2qCSAYAu9opvQ
-	(envelope-from <devicetree+bounces-301578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:48:08 +0200
+	id QHtaJi/8D2qCSAYAu9opvQ
+	(envelope-from <devicetree+bounces-301579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:48:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BE35AFA78
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:48:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F249B5AFA7F
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6A6E63004627
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:47:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9303C300D140
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 803DC32B10B;
-	Fri, 22 May 2026 06:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619392475D0;
+	Fri, 22 May 2026 06:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOaC7qxQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m/tQy6OA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517A52EC08C;
-	Fri, 22 May 2026 06:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C0F6223323
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779432473; cv=none; b=suR21l2leRKCa8mea+R8Dq4m3qm8JnqJJwo/03rEeykrXYr2GOPMRv6Hu32+ujq/h1aexdiYXcZy17AYbglMLJMm1+2wIlsrR0GfiZoZHVowZqDpr+dmv4ahmai92UBYRwkrM9C0hDYhMrO1VabpoGYZPVa5SBS+Llyai+pD42Q=
+	t=1779432492; cv=none; b=qsCWgArdgNRmAqYjHAAxr0rGOAGmkCKhwHNWRE01OVHHwUYZHSFKh3y4KSY1gYKWKsZZMZ5fp6ZyJaEknrg3r2KoyfU3ANkwoL/DgOYyd9iSvvcxJM5nkOXosdGnsE4/QsAcfuVp8Uh7iRl6vn1OneRUi7yd6pKbiSyZcT5KEWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779432473; c=relaxed/simple;
-	bh=m7UOauPJ2V72k5KA66WV4GSuitUg2G8KkRPaMl+IPdw=;
+	s=arc-20240116; t=1779432492; c=relaxed/simple;
+	bh=vWzIfiNfCxxIcs6sbxjGi0QwSEMRtRQdhlZtYbOJmp8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=m1v0UtlcAEm4yJ7IfbKk41JlcsKKzQxCSvF8e1E12gkisj8immMIyR/YpfnFPvg6bDx0TWWcy60V74zChx/IEZ9T0CaOSrUDVCxMXIo7yVxdWX6HQ/xc3cyBWWGeYRSbYdvN7GObrT3rtH+GcoclWviYWPUGByvjawBCF4EMEeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOaC7qxQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2FE11F000E9;
-	Fri, 22 May 2026 06:47:51 +0000 (UTC)
+	 Message-Id; b=L5lMdHDPladUGqlmqoh2pECsBxMNuFS/SZFfO/G01+wdFOd3cBC/CCRFu/ZxUCVQCQs6/USs3Y8/2h7cmlxtonO49DlT68j3Oz77Q91IWXw9oVilsA9id0brDFGFnzUcawqiwy1Lsuf2jFpKVIvW2IfIO2RRwDrCD1kcjjnmSd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/tQy6OA; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A37981F000E9;
+	Fri, 22 May 2026 06:48:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779432471;
-	bh=dM8fcdGWrFGaeHz3dUJlNu/LaM96WKoReFuLdtM5syw=;
+	s=k20260515; t=1779432490;
+	bh=IiAkI3khKkmrBEFVL2qOX+ug5MYWajI6wuZ/hWQZvEg=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OOaC7qxQRty0yjtHcdWnBonXONW+WgEJ47y9Yv8dIrQg0iZonTXtQKZKz6VhW93X/
-	 KGNMCE7BB57wSucJAmTw7KxRCKDVe1OZd3S+u+sTDVkWVtKaNdTEpysYbkARIDnP/6
-	 MCyO20crUawrmkG+bRml4eXgpLi3aIO7PZWBOm+RYHJNu8FravEfnXXdo7Frphfink
-	 6QeLiW94gyFp3qHqYQmdRXr+HjkXVq8pGORIHiQA3yIp4rFkQEi3n9J2WpLxK8Z3G+
-	 1S3Aoj8vWaBMHCrvbGx9DfhsbIICIW5b+3HpMlwcL9AIb0haygc97jDEDqp6FJ1Wfa
-	 18105aT803BGg==
+	b=m/tQy6OApjlnB2TwlPDdF2sqO3jiSZt61jT7LfFWIDiyqi4O9CBx/Zx/Cuk1XGRfQ
+	 YEQCnV23SYugj02xIrM3BY7IWI23bJtjpMCo0hokQ9IlzjK34pEosaHyPoRJ/LhhUe
+	 RgapQktSTBi7vTBlAAR+6xSTjx5755iRAMtbBbdvjTQHHvYsSqRaMen18mb3iAm4Ky
+	 CCdm1oRFB/Sl59jPtCdv+RAX+2fBvJSiqqEOfvpHmQob4Q1dgk8+6JiCiOJztwvXg3
+	 IbqRT9bWxQV4ovnqNjYEfqXYoEI53vIvqrG8HTrQdGtucvp4+NjHQ3x5rLP7QQ7L7l
+	 //dkXd5zkzpsQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 5/6] hwmon: add NXP MC33978/MC34978 driver
+Subject: Re: [PATCH 1/6] soc: qcom: rpmh-rsc: Skip TCS init when RSC is
+ managed by firmware
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Oleksij Rempel" <o.rempel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, linux-hwmon@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260522044855.1772639-6-o.rempel@pengutronix.de>
-References: <20260522044855.1772639-6-o.rempel@pengutronix.de>
+To: =?utf-8?b?R3JhaGFtIE8nQ29ubm9y?= <graham.oconnor@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260522060645.4399-2-graham.oconnor@gmail.com>
+References: <20260522060645.4399-2-graham.oconnor@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 06:47:51 +0000
-Message-Id: <20260522064751.B2FE11F000E9@smtp.kernel.org>
+Date: Fri, 22 May 2026 06:48:10 +0000
+Message-Id: <20260522064810.A37981F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	TO_EXCESS_BASE64(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,pengutronix.de:email,lists.linux.dev:replyto];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301578-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301579-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 88BE35AFA78
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid]
+X-Rspamd-Queue-Id: F249B5AFA7F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Add hardware monitoring support for the NXP MC33978/MC34978 Multiple
-> Switch Detection Interface (MSDI).
->=20
-> The hardware utilizes a clear-on-read FAULT register, but physical
-> faults remain asserted as long as the underlying condition exists. This
-> asserts a global FAULT_STAT bit on the SPI bus. To handle this without
-> trapping the CPU in an interrupt storm, this driver implements the
-> following architecture:
-> - Requests a rising-edge nested IRQ (IRQF_TRIGGER_RISING) from the MFD
->   core to catch the initial 0 -> 1 transition of the global fault state.
-> - Caches hwmon-specific alarm bits and calculates state edges (XOR) to
->   isolate alarm transitions from system integrity faults.
-> - Implements a 1Hz delayed workqueue that polls the hardware as long as
->   any alarm is active. This compensates for the edge-triggered IRQ by
->   discovering secondary faults that occur without a rising edge, and
->   detecting when the hardware clears.
->=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Critical] Returning early from the probe function bypasses the initializ=
+ation of critical locks, waitqueues, and list heads, leading to kernel pani=
+cs when RPMh APIs are invoked.
+- [High] The early return completely skips `devm_of_platform_populate()`, p=
+reventing essential child devices from probing and permanently breaking the=
+ system boot process.
+--
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+commit 42c9f85b1ee98ffd687b17f97edf46cb0e222ced
+Author: Graham O'Connor <graham.oconnor@gmail.com>
+
+soc: qcom: rpmh-rsc: Skip TCS init when RSC is managed by firmware
+
+This commit skips TCS initialization in the RPMh RSC driver when the hardwa=
+re
+solver is already active. This prevents security violations and system rese=
+ts
+caused by reinitializing a controller that is actively managed by firmware.
+
+> --- a/drivers/soc/qcom/rpmh-rsc.c
+> +++ b/drivers/soc/qcom/rpmh-rsc.c
+
+[ ... ]
+
+> @@ -1074,6 +1074,20 @@ static int rpmh_rsc_probe(struct platform_device *=
+pdev)
+>  	else
+>  		drv->regs =3D rpmh_rsc_reg_offset_ver_2_7;
+> =20
+> +	/*
+> +	 * On some platforms the RSC is already managed by the firmware
+> +	 * when the kernel boots. Calling rpmh_probe_tcs_config() in this
+> +	 * state would reinitialize the controller and cause a security
+> +	 * violation. Skip TCS initialization if the hardware solver is
+> +	 * already active.
+> +	 */
+> +	if (readl_relaxed(drv->base + drv->regs[DRV_SOLVER_CONFIG]) &
+> +	    (DRV_HW_SOLVER_MASK << DRV_HW_SOLVER_SHIFT)) {
+> +		dev_dbg(&pdev->dev, "RSC already managed by firmware, skipping TCS ini=
+t\n");
+> +		platform_set_drvdata(pdev, drv);
+> +		return 0;
+
+[Severity: Critical]
+Since drv is allocated with devm_kzalloc(), bypassing the rest of the probe
+function leaves essential software structures uninitialized.
+
+Specifically, spin_lock_init(&drv->client.cache_lock),
+init_waitqueue_head(&drv->tcs_wait), and INIT_LIST_HEAD(&drv->client.cache)
+are skipped.
+
+Because platform_set_drvdata(pdev, drv) exposes this controller to other
+drivers, will standard RPMh APIs like rpmh_write() crash with a NULL pointer
+dereference when attempting to acquire the uninitialized spinlock or add to
+the zero-initialized list head?
+
+[Severity: High]
+Does this early return also skip the instantiation of child devices?
+
+The rpmh_rsc_probe() function normally relies on devm_of_platform_populate()
+at the end of the function to instantiate its children. By returning early,
+crucial child devices such as the clock controller (rpmhcc), power domain
+controller (rpmhpd), and interconnect voters (bcm-voter) are never created.
+
+Will this leave downstream peripheral drivers that depend on these clocks
+or regulators permanently stuck in an -EPROBE_DEFER state, breaking the
+system boot process?
+
+> +	}
+> +
+>  	ret =3D rpmh_probe_tcs_config(pdev, drv);
+>  	if (ret)
+>  		return ret;
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522044855.1772=
-639-1-o.rempel@pengutronix.de?part=3D5
-
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522060645.4399=
+-1-graham.oconnor@gmail.com?part=3D1
 
