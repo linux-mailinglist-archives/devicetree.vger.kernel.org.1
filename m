@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-301929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCVuHrp6EGrdXwYAu9opvQ
-	(envelope-from <devicetree+bounces-301929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:48:10 +0200
+	id eP0zJPN4EGoZXgYAu9opvQ
+	(envelope-from <devicetree+bounces-301927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:40:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAD15B71FE
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:48:10 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378095B708C
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:40:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 270003012BEB
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:40:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EA2463004DE3
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3014477E58;
-	Fri, 22 May 2026 15:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2C9477E2E;
+	Fri, 22 May 2026 15:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="N3RN5lZL";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="VGIyAPTw"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="L3KHMcbP";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="izsKWg4L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2006314B6E;
-	Fri, 22 May 2026 15:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890B944DB73;
+	Fri, 22 May 2026 15:40:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779464418; cv=none; b=JaPLaQNI0xi41wIcPipjfXw5BhxFnySZqt9y00B5XR3UJ2tolH6h4W6eJ2ecgAbcPaACVKVmPD2eWf1Y8Qsckz7L0GMS8fX9wz5/kE4mL7LJG+iq8shaPokjmn+MIGkJKDnmlomKyZKl3B6HIQ3sSQe8rFmZie0F4DoJEj5wqbs=
+	t=1779464416; cv=none; b=g30x3acDb2lMb3bc2DZt7C5Mx67kSbOSXc/X4YCH9SiKqre/O5c7DKyU9neTuuo1heecITtiXDIN+NWtd19dcNXy+0w5CRtbieNaXlkPUJs4v7fWJxkflK/eSXOUxb0//OBenThyZn568ncqLDL++pPFUHxVDnriMjiFUb4IlL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779464418; c=relaxed/simple;
-	bh=nkY5azp+A+UWoeeL2t0qgGKBeLRleS7Kpqh3++oUvvk=;
+	s=arc-20240116; t=1779464416; c=relaxed/simple;
+	bh=qD30315sFDKvQ1zxeTxTP4/+d92pYx/4B3/nMfkSHxk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Y2Hyj2+/PfDaMC0LpJ1vRcBCAP78bzrEHgXD9mbWeMPNDoAWXKrLetUyRtCW6h95rklVOZvgBfwudIYVo9j2ulz5nwrnjkCahifwPCXTeOBPng2ZKPMtiSYAEQQkLwjr1BEnsjvSllOvM/fRR5V5E2hiGiEG3POnmeE3yj+DiDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=N3RN5lZL; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=VGIyAPTw; arc=none smtp.client-ip=193.142.43.55
+	 In-Reply-To:To:Cc; b=HPOjxf78LEGX6nXNr8CqDBiOC2dG02pm/P65lg1m+h8ovLCiFbZwYAqzW/JFT7hQk3Rta+kdEgQt9aagf8Mqocf7ZnKkG43/AKPBzBhKxh2W0o821ejDe+LW1JaHh0INxIw5ZOoiD5aYc4DV8HMCNywnurdTCHaHg9cRfSNPqFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=L3KHMcbP; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=izsKWg4L; arc=none smtp.client-ip=193.142.43.55
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
 From: Gregor Herburger <gregor.herburger@linutronix.de>
@@ -42,24 +42,24 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=fjBziMqP+PJLTJDATutLEWUFDXldiskQHavpB7dOOeQ=;
-	b=N3RN5lZL4aOD6r+AFVYsY8Y3zHjc/I3HSKZNqV2+9ib4Mm8RrffjnCLwB3KccUzHyDGuEO
-	kIUcpo6hY9H2+pkI0pjw0pQG47MHWmoJJeVseiXdbDaOFouZbVJ/uzqHB1ArUqwClpjkWD
-	rwBupJH4iImSJmRkVi/2MRf99Yr59cfwCa3nrzH1E7di6cjNL5uoWDZcIw4b351fthZ3K0
-	5VHorA7cX4jMFq/7FOxthPxFuUUBQZ4HvfEd0fJxShh//q7tMxuXmGNE9jWWpvBaHBKGOz
-	E41HP1Re26Zn7lWyUsp9OCUOhonZR2z3P4TBBEYCm+oH9B38l0P8xbIC50t2ew==
+	bh=e571YxZZj8gyO1yRbMno9e5ALDgboYntuW/WsLJaO3E=;
+	b=L3KHMcbPUskhBGOWh2gaa8GcGuh9MJC2yVWT3+AMIyei9r0ouNHbfDtK59o/3RYzrnbOB1
+	JGQbdQfSOe+/yqfRjQluIi5y+9N+fwzp444RKZeu/idOs0aFprmA3LwlIyqxDwsRzzLv8F
+	1hQpRlycKKxB5SIc+BedkgqIi1J4hR72Z/XDF5vqEtxmgqwMRJuse/lxpdZy+pBtT6qhZE
+	aElU3yljCudT2s3wxVtMpcuyL9Mto9WZJKvyttq28s6rk+Xqn9CHYVFw+jke9njlrjTPX8
+	y1heWjwlc3Vy0Bc34CjhWozwLcfgXJOZBOCVPSUyWcsNtftt/13sEpgkmzsJAQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
 	s=2020e; t=1779464408;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=fjBziMqP+PJLTJDATutLEWUFDXldiskQHavpB7dOOeQ=;
-	b=VGIyAPTwMD+z+zuGsqkqk7L9GAVBvmOdg3uEu0IvwB57uRBaNe9T8P0zri+YAec7bRvBvU
-	r3XgrIE0utb302Aw==
-Date: Fri, 22 May 2026 17:40:02 +0200
-Subject: [PATCH v6 02/10] nvmem: core: Enforce stride and alignment checks
- for nvmem_device functions
+	bh=e571YxZZj8gyO1yRbMno9e5ALDgboYntuW/WsLJaO3E=;
+	b=izsKWg4LVCP4kDh5I5r9pM+zlCZOwAQfpCoTtMVoj4oGbfPbWAQGlQPPp5A0jjgan6WcDf
+	uyCTgrXKyU00TTCQ==
+Date: Fri, 22 May 2026 17:40:03 +0200
+Subject: [PATCH v6 03/10] dt-bindings: raspberrypi,bcm2835-firmware: Add
+ bcm2712-firmware compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260522-rpi-otp-driver-v6-2-b0eac97d1428@linutronix.de>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260522-rpi-otp-driver-v6-3-b0eac97d1428@linutronix.de>
 References: <20260522-rpi-otp-driver-v6-0-b0eac97d1428@linutronix.de>
 In-Reply-To: <20260522-rpi-otp-driver-v6-0-b0eac97d1428@linutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -83,13 +83,13 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Russell King <linux@armlinux.org.uk>
 Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
  Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779464406; l=1407;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779464406; l=1250;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=nkY5azp+A+UWoeeL2t0qgGKBeLRleS7Kpqh3++oUvvk=;
- b=zkG55RPzfHGtmzKdBRW2aruMJWmpMYQRk47PUpceDJC9Tttp25pqOXFnTWLO+5hhrWm9OJiD5
- ipba3TZfLHIDy4v14VDjidG+qdHikHZ7FpB6KigcQ5AccrT6CSVezhU
+ bh=qD30315sFDKvQ1zxeTxTP4/+d92pYx/4B3/nMfkSHxk=;
+ b=q/QVJSLY9Sm34v48tDRySt9gYiLoBmdLykB6cLhVZQtjLPjYUFeFJeiB6tPHnqKmY2iiAP6EW
+ xtMh1bty8OsCFL7442lh571bGMJgMw9sQbgGD8ZoPRYRKpuy96Yvs6v
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -97,78 +97,65 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
 	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301929-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301927-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,broadcom.com,anholt.net,gmx.net,linutronix.de,armlinux.org.uk];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[linutronix.de:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,linutronix.de:mid,linutronix.de:dkim]
-X-Rspamd-Queue-Id: 1FAD15B71FE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,linutronix.de:mid,linutronix.de:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:email]
+X-Rspamd-Queue-Id: 378095B708C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The stride and word_size attributes in the nvmem_config struct are
-currently only used when reading/writing through sysfs functions
-bin_attr_nvmem_read/bin_attr_nvmem_write and in the nvmem_cell api.
-Reads and writes with nvmem_device_write/nvmem_device_read still allow
-unaligned access.
+Add a compatible string for the bcm2712 firmware. The bcm2712-firmware
+is compatible with the bcm2835-firmware so allow the bcm2835-firmware as
+fallback.
 
-Add a check to these functions to enforce word_size and stride_length
-aligned reads and writes.
-
-Reviewed-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
 ---
- drivers/nvmem/core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml        | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 311cb2e5a5c02..6b313f63d07ef 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -2068,6 +2068,12 @@ int nvmem_device_read(struct nvmem_device *nvmem,
- 	if (!nvmem)
- 		return -EINVAL;
+diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+index 983ea80eaec97..a3a5243b91706 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+@@ -21,9 +21,14 @@ select:
  
-+	if (!IS_ALIGNED(offset, nvmem->stride))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(bytes, nvmem->word_size))
-+		return -EINVAL;
-+
- 	rc = nvmem_reg_read(nvmem, offset, buf, bytes);
+ properties:
+   compatible:
+-    items:
+-      - const: raspberrypi,bcm2835-firmware
+-      - const: simple-mfd
++    oneOf:
++      - items:
++          - const: raspberrypi,bcm2835-firmware
++          - const: simple-mfd
++      - items:
++          - const: raspberrypi,bcm2712-firmware
++          - const: raspberrypi,bcm2835-firmware
++          - const: simple-mfd
  
- 	if (rc)
-@@ -2096,6 +2102,12 @@ int nvmem_device_write(struct nvmem_device *nvmem,
- 	if (!nvmem)
- 		return -EINVAL;
- 
-+	if (!IS_ALIGNED(offset, nvmem->stride))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(bytes, nvmem->word_size))
-+		return -EINVAL;
-+
- 	rc = nvmem_reg_write(nvmem, offset, buf, bytes);
- 
- 	if (rc)
+   mboxes:
+     maxItems: 1
 
 -- 
 2.47.3
