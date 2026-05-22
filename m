@@ -1,161 +1,229 @@
-Return-Path: <devicetree+bounces-301729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301730-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENfaOD41EGqqUwYAu9opvQ
-	(envelope-from <devicetree+bounces-301729-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:51:42 +0200
+	id KCDMJ3k2EGoaVAYAu9opvQ
+	(envelope-from <devicetree+bounces-301730-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:56:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708BA5B27FE
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB515B2926
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:56:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C0A430B3A53
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:44:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8F2530E78F9
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 10:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102D83D5222;
-	Fri, 22 May 2026 10:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B6D3B442B;
+	Fri, 22 May 2026 10:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WlUul++t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OBlcQfpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA063D3D00;
-	Fri, 22 May 2026 10:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5573233ED;
+	Fri, 22 May 2026 10:44:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779446625; cv=none; b=l7ycMJGSl8vPLVGDNDUbhMcdbYRdblvfcz9+b5uaksXvn/Gj7kS4j0K9+qjvk0rILP5U5/XkT00QViiY3QDe6mLPaf6ABzH/Y+jAHHI8mPvOAGN1/CuRCE+NraBQWGeG1KeV05Nj2Tw9VPj/jbjzeqeYqWDKzW/yA/+bw5f39dM=
+	t=1779446691; cv=none; b=PyhnY7XyR7S0aGXeTWGmI6w124Ce8SRChh9scs8sjLC0c2vbRCstWMOb7XA3egOtQOgId3WKUTr7VTU6STSD6GZy5ZsBpNCIINWJ2B3Pikf+v+aWitGNlza1Ib4rANoD9HlZWIW234M33avPzcyCi7mw0PSrUM03Mp7PZ4ld+Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779446625; c=relaxed/simple;
-	bh=dGAnhZyp9ThqWpBanX+G2jl/9rxp8oVAzFmh/PruNkw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eefIQ27FFUf13Tg//Y0X3HleQd4+PHo1o5y0AabB5luWb+PlgFtleVt330Vp/VIKsPrc7upEUTYA9fXRE0tiRrfhVV+b626cd0y3TLCYGdlx7Ktm4+CJlxX8VcmUwU/EpgyGojwbjOuNsVd7zP5uOReFxwSk9oARF6Ngx17UzV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WlUul++t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9A713C2BCB3;
-	Fri, 22 May 2026 10:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779446625;
-	bh=dGAnhZyp9ThqWpBanX+G2jl/9rxp8oVAzFmh/PruNkw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=WlUul++t0E45TCYkE7z0PiRP6lgIDnQtOevvhEwuRJaPyQp1S11/VPATvom5QzT6L
-	 ag04i2OF/uBWXVqIKlv49GX/Bpct3l0QlfLixBBHsA/3ExF3B5Y8qEhP2mjFPoZ/Hb
-	 911EM3XrCGZgnp9Sy3GaTuckUy93zsIzMv+bB4VMp5S3AWIQlBxfCRFnHu/n5c2+Gn
-	 odMmgMrJelK+wLA7JGtlP8ARq5HXjM8D9usET3uzqy1TX/ESdAtpU/8rM2yvmZ+6zk
-	 a04Eb3D2ntUpaP19vfklTY/9lhIRJtQ2FWqS0cE0G1mvf9Xz8kPXtfEAHOZzWhrDRl
-	 ZUJeNo9qUjD4g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9186CCD5BAC;
-	Fri, 22 May 2026 10:43:45 +0000 (UTC)
-From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne_via_B4_Relay?= <devnull+jerome.debretagne.gmail.com@kernel.org>
-Date: Fri, 22 May 2026 12:43:26 +0200
-Subject: [PATCH v2 10/10] arm64: dts: qcom: sc8280xp-arcata: Drop duplicate
- DMIC supplies
+	s=arc-20240116; t=1779446691; c=relaxed/simple;
+	bh=qu97kFPigUJFnfn0oMzF0ND0GUMl25D3w22C5QA2TQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u2LPRTlfAKG6b3SyaWwJRqA++dOdCU8TpE+hJx8P891eRRxLt1qyOOV3OmV5QVZ2Y3nrvAPP+lWmerKQYlXd5P/rgMtfbDls/LXwihNeqUWywjniFIUMh3BOMjWnnFfPIZoP8Iux5H67m84lGRnLcgS5+Zxq55byS1DlsVojio4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OBlcQfpX; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 245901F000E9;
+	Fri, 22 May 2026 10:44:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779446689;
+	bh=D7blBQmroDeTnVftbWiUElk5r8f+qUupeB7df97/Pak=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=OBlcQfpXr05HcYteALrtvl3TiDkfEF7iLSZvxfvGimKS2I+jUOVHagLExOEpqy8ws
+	 lSrLPp88pWHJsAkztozNs+3SwczZDJ8PrBWZsdiTNPD10o1WaZ0dC69mWK0BdK0aCH
+	 Mblf4WUMa6QUchPR3PWGFFgabLStFeQ13v/NxBRjLjoeauyOuHSwKW+5bH+eMU3lhP
+	 aN3p8o/Adp3s+pYk+4gnLVG/THNuKpTW82ZBSOAlG6chEoUm+rhF/g38g12qjLcgQc
+	 FLHiL9+mEABkwUIzXtaQgA7fALmMt4eQPT1ZzW35K1CwR4sl1J2DDWUSliCx+LMLfd
+	 DAesSiTuoV6oA==
+Date: Fri, 22 May 2026 16:14:45 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 05/16] remoteproc: qcom_q6v5_pas: Switch over to
+ generic PAS TZ APIs
+Message-ID: <ahAznR7z3rYZCbwX@sumit-xelite>
+References: <20260518072856.22790-6-sumit.garg@kernel.org>
+ <20260519073355.98831C2BCB3@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260522-surface-sp9-5g-for-next-v2-10-dd9d477407f5@gmail.com>
-References: <20260522-surface-sp9-5g-for-next-v2-0-dd9d477407f5@gmail.com>
-In-Reply-To: <20260522-surface-sp9-5g-for-next-v2-0-dd9d477407f5@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>, 
- Stephan Gerhold <stephan.gerhold@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779446623; l=1416;
- i=jerome.debretagne@gmail.com; s=20260520; h=from:subject:message-id;
- bh=JlRG4nTcgg3o5MKMFi2SWQY9MXhILWt8VcNKctZNamw=;
- b=8qu1s7ecMCbQOFhN3sTt5DFnmB6ExgzvNv057us0GMNE3dcWrNZVlHucqpnZDpkqo3wbhbODp
- XAC/8BfDmMGB5hyIceCbdwAgVxFmuf6LvOLTeJZEsmOFKj6hMvCKbea
-X-Developer-Key: i=jerome.debretagne@gmail.com; a=ed25519;
- pk=3/JYhgYjGg5V9mlFxc0A0+pFiyjsuDB/TtDlNMId9fk=
-X-Endpoint-Received: by B4 Relay for jerome.debretagne@gmail.com/20260520
- with auth_id=785
-X-Original-From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
-Reply-To: jerome.debretagne@gmail.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260519073355.98831C2BCB3@smtp.kernel.org>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301729-lists,devicetree=lfdr.de,jerome.debretagne.gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301730-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.981];
+	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,linaro.org,oss.qualcomm.com];
+	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[jerome.debretagne@gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
-X-Rspamd-Queue-Id: 708BA5B27FE
+X-Rspamd-Queue-Id: 0CB515B2926
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+On Tue, May 19, 2026 at 07:33:55AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
+> - [Critical] Unconditionally calling `qcom_scm_assign_mem()` without checking SCM availability causes a NULL pointer dereference on non-SCM platforms.
+> - [High] MDT firmware loading is not abstracted and continues to hardcode SCM APIs, causing both a build warning and functional failure on non-SCM backends.
+> - [High] The DTB subsystem (dtb_pas_id) is authenticated but never shut down in the error paths of qcom_pas_start().
+> - [High] The firmware object pas->dtb_firmware is leaked on the success path of qcom_pas_load().
+> --
+> 
+> commit e21bc74de5d7e3215e46e9baa1c3a6b26f353409
+> Author: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> 
+> remoteproc: qcom_q6v5_pas: Switch over to generic PAS TZ APIs
+> 
+> This patch switches the qcom_q6v5_pas client driver over to generic PAS TZ
+> APIs. This allows supporting multiple TrustZone implementation backends
+> such as QTEE and OP-TEE.
+> 
+> > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> > index da27d1d3c9da6..847249c28c1be 100644
+> > --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> [ ... ]
+> > @@ -118,8 +119,8 @@ struct qcom_pas {
+> >  	struct qcom_rproc_ssr ssr_subdev;
+> >  	struct qcom_sysmon *sysmon;
+> >  
+> > -	struct qcom_scm_pas_context *pas_ctx;
+> > -	struct qcom_scm_pas_context *dtb_pas_ctx;
+> > +	struct qcom_pas_context *pas_ctx;
+> > +	struct qcom_pas_context *dtb_pas_ctx;
+> >  };
+> 
+> Does changing this struct cause a compiler warning and functional regression
+> for non-SCM backends?
+> 
+> Since this patch changes the context type to struct qcom_pas_context * but
+> still passes it to qcom_mdt_pas_load(), it appears to cause an incompatible
+> pointer type warning.
+> 
+> Furthermore, qcom_mdt_pas_load() internally hardcodes calls to SCM-specific
+> APIs like qcom_scm_pas_init_image(), bypassing the generic PAS backend
+> entirely. This seems to prevent the driver from working on non-SCM backends
+> like OP-TEE.
+> 
+> I notice this is fixed later in the series in the commit "soc: qcom:
+> mdtloader: Switch to generic PAS TZ APIs", but I am pointing it out here as
+> it breaks the build and functionality at this step.
 
-Align with the reference implementation from the ThinkPad X13s.
+Ack, will rather merge the mdtloader patch into this one instead to
+enable git bisection.
 
-The audio-routing setup specifies two power supplies for each DMIC,
-but only one of them can be active at the same time.
+> 
+> [ ... ]
+> > @@ -250,7 +251,7 @@ static int qcom_pas_load(struct rproc *rproc, const struct firmware *fw)
+> >  	return 0;
+> >  
+> >  release_dtb_metadata:
+> > -	qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
+> > +	qcom_pas_metadata_release(pas->dtb_pas_ctx);
+> >  	release_firmware(pas->dtb_firmware);
+> >  
+> >  	return ret;
+> 
+> Is there a pre-existing resource leak here?
+> 
+> When request_firmware() allocates the DTB firmware and qcom_mdt_pas_load()
+> succeeds, the function returns 0 and skips the release_dtb_metadata label
+> where release_firmware() is called.
+> 
+> The pas->dtb_firmware pointer appears to be retained but never freed in any
+> teardown function like qcom_pas_unprepare() or qcom_pas_stop(). Could this
+> permanently leak the firmware object and its backing buffer on every
+> successful start?
 
-Drop the redundant routes to the pull-up "VA MIC BIASn" supplies as
-done in commit a2e617f4e698 ("arm64: dts: qcom: sc8280xp-x13s: Drop
-duplicate DMIC supplies").
+Out of scope for this patch-set.
 
-There is no functional difference except that we skip briefly switching
-to pull-up mode when shutting down the microphone.
+> 
+> [ ... ]
+> > @@ -339,13 +340,13 @@ static int qcom_pas_start(struct rproc *rproc)
+> >  	ret = qcom_q6v5_wait_for_start(&pas->q6v5, msecs_to_jiffies(5000));
+> >  	if (ret == -ETIMEDOUT) {
+> >  		dev_err(pas->dev, "start timed out\n");
+> > -		qcom_scm_pas_shutdown(pas->pas_id);
+> > +		qcom_pas_shutdown(pas->pas_id);
+> >  		goto unmap_carveout;
+> >  	}
+> 
+> Does this error path miss shutting down the DTB subsystem?
+> 
+> While this was not introduced by this patch, if the DTB authentication
+> step earlier in this function succeeds, but a subsequent step like
+> qcom_q6v5_wait_for_start() fails, the error path shuts down the main PAS but
+> misses calling qcom_pas_shutdown(pas->dtb_pas_id).
+> 
+> The code then jumps to unmap_dtb_carveout and unmaps the Linux-side memory,
+> leaving the DTB subsystem active in TrustZone while its backing memory is
+> unmapped.
+> 
 
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts | 3 ---
- 1 file changed, 3 deletions(-)
+Out of scope for this patch-set.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-index 60f65fd450ecba8196509a620be029314e5efc05..74e218cf8aaaa5658982c5cda0b231802712650d 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-@@ -776,9 +776,6 @@ &sound {
- 			"VA DMIC0", "MIC BIAS1",
- 			"VA DMIC1", "MIC BIAS1",
- 			"VA DMIC2", "MIC BIAS3",
--			"VA DMIC0", "VA MIC BIAS1",
--			"VA DMIC1", "VA MIC BIAS1",
--			"VA DMIC2", "VA MIC BIAS3",
- 			"TX SWR_ADC1", "ADC2_OUTPUT";
- 
- 	wcd-playback-dai-link {
+> [ ... ]
+> > @@ -746,7 +747,7 @@ static int qcom_pas_probe(struct platform_device *pdev)
+> >  	if (!desc)
+> >  		return -EINVAL;
+> >  
+> > -	if (!qcom_scm_is_available())
+> > +	if (!qcom_pas_is_available())
+> >  		return -EPROBE_DEFER;
+> >  
+> >  	fw_name = desc->firmware_name;
+> 
+> Could this change lead to a NULL pointer dereference on non-SCM platforms?
+> 
+> By replacing the qcom_scm_is_available() check with qcom_pas_is_available(),
+> the probe function can now continue on platforms using non-SCM backends like
+> OP-TEE.
+> 
+> However, further down in probe, qcom_pas_assign_memory_region() is still
+> unconditionally called if pas->region_assign_idx is set:
+> 
+> qcom_pas_assign_memory_region()
+>    qcom_scm_assign_mem()
+> 
+> qcom_scm_assign_mem() accesses __scm->mempool without checking if __scm is
+> NULL. On non-SCM platforms, __scm will be NULL, which seems like it would
+> cause a kernel panic during probe for devices requiring memory region
+> assignment.
 
--- 
-2.47.3
+qcom_scm_assign_mem() is still supported with an OP-TEE PAS backend too.
 
-
+-Sumit
 
