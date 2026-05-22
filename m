@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-301557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301558-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJSFDarzD2qXRwYAu9opvQ
-	(envelope-from <devicetree+bounces-301557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:11:54 +0200
+	id oC7ZFs7zD2qXRwYAu9opvQ
+	(envelope-from <devicetree+bounces-301558-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:12:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89F045AF666
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:11:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F4C5AF682
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:12:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97A2C301D68B
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:07:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42A19307B42F
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361483603DA;
-	Fri, 22 May 2026 06:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666133A48F4;
+	Fri, 22 May 2026 06:07:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="p/jJTGtL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bE3Djwvu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8926362152
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3485314D1F
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779430064; cv=none; b=swdcijoyw2KuxviMixGLN14/SrmM0A0KL9iI33Yhc5QOnbp2dD/F3pfdr5xJMnYf3sHsnvRlfmoxGMvJt9AOz6qE1ZrX8wqTGwrNjGW5hn6wWvbrCshECBeOKnbd2nVGxIf1yxnfPuJKv3XfgXBJ0othfeKU+ai+qO0B7o+FslA=
+	t=1779430071; cv=none; b=eRFtmwLQM60uvGPNVXKzFET5++qHSLMVVcjZNUV0MfOUp/WEcA9NK+fVrdh94vAFtSp79nizpqfwusNhbQbz6bB+iR5vrtsCFgFbdw7dAHTuAIu5arBuWuE6r5lnPglS4SRqd9BvA2YNLnzkwo6Fu80fvEDpg1GFpRMXUJeLHcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779430064; c=relaxed/simple;
-	bh=tCgf4Nxi5GVQmf8H0tRvdS3R9HxkfuZfIUdm9ZjkiPg=;
+	s=arc-20240116; t=1779430071; c=relaxed/simple;
+	bh=mrDDTyHidK7gIb+A0+rJo9vmv0kzw3uLhyTLM/pl1LA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EEmEqAKDfOfVsGjKVYCvGXAQwu2H848K/9jN5KBvVLmOxNUkkuIdHZJoAZUURnuH7wldIDJuuQpi+U4TsrtwVtXcESj4R4B32EOazslRvGxQxJuLmKDKKK13AW0lz5xhcnVLuO06bHs10kzfIF3vCqJ9xidjl5xWQJ4YHfABDs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=p/jJTGtL; arc=none smtp.client-ip=209.85.216.50
+	 MIME-Version; b=f8pToFhFY/0tFkDJ8vyzkSwLCcJv2L17WhuN02m1otqThNjToiFk52S8wx2epmumjAySu9TpuuSQ6GzQlMy0pQ4EVkuwyTwqrqSH/L5qUThflK64jId4a19rH6dZZ9FVuVoWMtWtM4il9UZ5MrA5vN8XAbpiFFiArbD8kzLa3eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bE3Djwvu; arc=none smtp.client-ip=209.85.216.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-3697c35eab7so4051493a91.0
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 23:07:42 -0700 (PDT)
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-36a3dd2e66eso1184710a91.0
+        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 23:07:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779430062; x=1780034862; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779430069; x=1780034869; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FtlQB08OaLofyAigz7tBTikvmBp8Je7frCtpNBxUmSE=;
-        b=p/jJTGtL3ye+b9h/sg5DRBBTWW1e5ceeLveeN/YUaOs5S13XotJ4g+QUBax7ZPqeOl
-         AxVXQD4ThW0lrhic0EuVq27VI6TLwACIrm7ZESGgF3ewTzXxQV9BYqEAEp6v5r3NhSR6
-         JUVyTtRu2CySeZmUNjKr+jsOUnR0ZyfOe+65sQmxfvX90gP1B724dMG9MyWM8VF4wxwd
-         NPu+HaLUTcl8jrbet/R6FfpuQRzqWNS8ukzFC53a1BLjwpjyr9SAZ9mXrWu7eDt5gObM
-         p8X5IO+3r7mkAWL3VuqqqdUF9nlWvIi95IIAg6eqJp9vjQtF2xQC57JMzNgkCJojnuKa
-         cC6g==
+        bh=JFcHoXp5EtCVviQjlRg/5s6sU9USys2y1GAqhGol8hg=;
+        b=bE3Djwvuzd64qFyD5AdfgY5XUMPfCSFxpgObAEQG+NXSGimDhVYwic8zFzy0eI77dy
+         /HPdgEgw27Gl0+eqeNWveeG1AkWQp7ThgexUxPLXQtRElPIe6JK0xqyqiUxNlARRBEwG
+         S2saozu2FLPzPgPl+li+l2oKeOX5hep8gVyHJKSDh4W0CA6z3QhFBcv57rkSEckQ16Cz
+         l9t7PmuBJriObcYkKu34eTijusJBkkuACzTcrWq2AsZjXbejyXdzxFi+pG+HxYZQAy54
+         PhvOp1mKk2w5PBT9xomZm7MbrRRYZAuyh9H9jd6wt+mYzqc2nHrGftttUKFOETRP5Oqg
+         6ozA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779430062; x=1780034862;
+        d=1e100.net; s=20251104; t=1779430069; x=1780034869;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=FtlQB08OaLofyAigz7tBTikvmBp8Je7frCtpNBxUmSE=;
-        b=WqecD5ovHZMSRtK4o8Q8MnOU1CaeDnHi7la1RCYMWe1W0QfGgdUdAK17oNNMmdmzdB
-         1jimULM6hCP0DMEFA7qAu3hs4hdauQrxbJEnTIgDiij/NxllfEhH9Iu2uRMkL4fERdX3
-         GtlNvHGekd27uEVC1GFvuSqO7Znn35SPMjG5EIb+aBJchZlRld+FZkkINf1X76PZ4+Fu
-         9ENETbuqUkC4dP6D/m/ffQL/FkO6XufIwOQCmRJ1Tfli0XGmP/P3SbRAa6pW/m3ClytB
-         qN4y27ubN0giD7YxFfcmlcXsvqEi5fd6hb0Rge+8zyKZ4OeLF7fvh3647HLdxeA9t2GG
-         4oxw==
-X-Forwarded-Encrypted: i=1; AFNElJ+SY0uePs6Fvxt04V1UWtyVvKttXNiWrWou7+i4mA+M35nk73R9xoNv2oVl7U/76xMhFkx+t4dU/lyA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFLbu/c3mTfGqyNNu5FE2bC7wJKeZ99fBIXik4E+Y0w3AR/87F
-	0K4JGjTmQdPps62hyej1sXC6ZG7WIq0TEenVoyGOJTlTEQ+FxOgwh7rs
-X-Gm-Gg: Acq92OE52Aly1NwXwjDIA0nS78ySxx9pcDE4tt6+fucR+KND7QIgZBDBes2a3uOqZ2Q
-	lp4wng6wyJcq+nJmDXhdRrFWDDMPUltua9eD2P6Sn49g+COHyovztt40oVejKhBHZRpDcOaOp/4
-	iCbmHkXPMCZ2dfizxzi6Ak6s33Y75lFu6a44KLISHvYTB5h1+UllRoJTi0Y6dY2UvCiFybjywhA
-	KtQa2Aldeb42SmmkaJ40CP6mKg5f63KxCi4JraXgpI4TrAX3YvamYXoiaqNwD/Z/mmc5cJBnZUr
-	6GEYI2fbZXAoKA7ENxYYePROiSv+vRCm2o2Lliw9Poj0bcVWliM4E+mAin6nadePq4aBMdUTM4l
-	BXrjGmg1DEGATrEnnbHcDrljgH7/OnSQjt+3/VrryJsU867zef1mYLLbJuzG4OBKfuGRSwoL0jS
-	claYdNomKj9tOrEyE7CKz4OytffQBwf4wTLGs9cGNhKTRiypD5UG/98JY=
-X-Received: by 2002:a17:90b:3dcd:b0:35f:bfdd:f5a1 with SMTP id 98e67ed59e1d1-36a677fd1ebmr1992255a91.13.1779430061997;
-        Thu, 21 May 2026 23:07:41 -0700 (PDT)
+        bh=JFcHoXp5EtCVviQjlRg/5s6sU9USys2y1GAqhGol8hg=;
+        b=Dkk7Am5/cn8uMDPbVWHv0wvukH0Lq0JZDHf1gS3Q+KhhLgOymB0tPOHOEkQqLn4zKM
+         nzjYSIKIfYS1+9QweeR2Z8Udxp700HWPisVcqq0PXSGU+KHk2tn9oasnh69JyjQxz+wZ
+         Fc9l+7nhglofDGscfY5zqpAadidVkN75lM3nTeZRaVo5U/gVSUuzE4cdcJcoXB6XhWKE
+         HmJLMVyWpWWBeKMBQrilc9FafR6Ijfb52VemB4Oeu7DqDtroRyzhBTx8zQO6BMg1hEay
+         RYWPZe4lvS7yqyyOKgAl4ioJGKmUPxmQhVrLtc0dBitATtphqCQGrGgYLuy75PRoL2Bu
+         nrRg==
+X-Forwarded-Encrypted: i=1; AFNElJ8TqIHCygEbxYKhhOIeaicTKz6rcli+HizQyEnmP0EFA+s0b9y/NzJiFxh0RnjXMiVAclLBqUDYfADu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYItVqKnr4pK775RIfwft5kAFsKQ5C47XUnAk2ha+YPO3PG3B8
+	OMW+eA8TmQcFh9LzgpbfU6szVEkLHL7woSrg9rJoqoc1Ybn7t3FppJ2s
+X-Gm-Gg: Acq92OGGkPulg3jAqgetQB/HhcHIxl0xDR/QRp8XENvpSzVcyBkfcck3phnYCYZRRKb
+	hW0XbNBUhAg58YXaI5r8sSMdRvLBsedQVW7XU69mTgc+kYz/xxytUdpV/qyb1ZulpLZ9z16Br17
+	7XzBY7iegeTYFUo/oA77Gx24NQZvNTuTQCb5gg0AJ57uq5zEqaO78y7nZEw1Jb2r/+F4kCbNeuj
+	96LSJ43FB+cevR+lVZKDpkbgQf/HJlzORyXbu30kaRSxYNq6BDqpkedci8rnZ/bKYZQRPPGbQcj
+	+DEtXrYZSxAho2C4cJ+mSEsqH/fkMruTt0JmAzVPwfwtwxDufB7PSEoPhnsP6Qdxo7dC88KmDdm
+	CpNYctZ0eYp5vbV7wFyzi4YPCDzk8sMTN/7ERcbTJwJpUWffW1jG0OuCbcRDTlsKUtSSVoEUv1s
+	cFdmmMHuJ2AI/YD532+3Rm11zwFXxTl0ayiF5tX/uS+pe3SVlZCI87qIs=
+X-Received: by 2002:a17:90b:2246:b0:364:edd2:812 with SMTP id 98e67ed59e1d1-36a6789ac27mr2255781a91.25.1779430068873;
+        Thu, 21 May 2026 23:07:48 -0700 (PDT)
 Received: from radxa (122-58-25-162-adsl.sparkbb.co.nz. [122.58.25.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a7212aa06sm428572a91.3.2026.05.21.23.07.37
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a7212aa06sm428572a91.3.2026.05.21.23.07.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 23:07:41 -0700 (PDT)
+        Thu, 21 May 2026 23:07:48 -0700 (PDT)
 From: Graham O'Connor <graham.oconnor@gmail.com>
 To: linux-arm-msm@vger.kernel.org
 Cc: andersson@kernel.org,
@@ -90,9 +90,9 @@ Cc: andersson@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Graham O'Connor <graham.oconnor@gmail.com>
-Subject: [PATCH 5/6] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable GPU and display pipeline
-Date: Fri, 22 May 2026 18:06:44 +1200
-Message-ID: <20260522060645.4399-6-graham.oconnor@gmail.com>
+Subject: [PATCH 6/6] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable USB3 SuperSpeed
+Date: Fri, 22 May 2026 18:06:45 +1200
+Message-ID: <20260522060645.4399-7-graham.oconnor@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260522060645.4399-1-graham.oconnor@gmail.com>
 References: <20260522060645.4399-1-graham.oconnor@gmail.com>
@@ -108,7 +108,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -118,10 +118,10 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,lists.freedesktop.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301557-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301558-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[grahamoconnor@gmail.com,devicetree@vger.kernel.org];
@@ -132,123 +132,111 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 89F045AF666
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email]
+X-Rspamd-Queue-Id: B5F4C5AF682
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the GPU clock controller (gpucc), GMU, display clock controller
-(dispcc), and MDSS display subsystem.
+Enable the USB3-A port by configuring the USB HSPHY with required
+regulator supplies and the QMP combo PHY with correct lane assignments
+for this fixed USB-A connector.
 
-Add DisplayPort HPD pinctrl state for GPIO47 and wire up the DP output
-pipeline through the RA620 DP-to-HDMI bridge. The RA620 is a passive
-hardware bridge requiring no driver - it converts DP to HDMI
-autonomously. Add the dp-connector and hdmi-connector nodes to complete
-the display graph.
+The QMP combo PHY shares lanes between DisplayPort and USB3 SuperSpeed.
+Configure port@0 with two endpoints: endpoint@0 for DP output (lanes
+0-1) connected to the HDMI bridge, and endpoint@1 for USB3 SS output
+(lanes 2-3). Remove the orientation-switch property as this is a fixed
+USB-A connector with no orientation switching.
 
-Disable DSI, DSI PHY, eDP, and eDP PHY as these interfaces are not
-present on the Radxa Dragon Q6A hardware.
+Add a usb-a-connector node wiring the HS and SS paths to the DWC3
+controller and QMP PHY respectively. Set dr_mode to host as this is
+a fixed host-only USB-A port.
 
-Tested on Radxa Dragon Q6A (QCS6490) with RA620 DP-to-HDMI bridge
-connected to an HDMI monitor.
+Tested on Radxa Dragon Q6A (QCS6490) with USB3 SuperSpeed confirmed
+via lsusb showing 5000M link speed.
 
 Signed-off-by: Graham O'Connor <graham.oconnor@gmail.com>
 ---
- .../dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 85 +++++++++++++++++++
- 1 file changed, 85 insertions(+)
+ .../dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-index 4003837ad..e8ad6e666 100644
+index e8ad6e666..c16c3664e 100644
 --- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
 +++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-@@ -1113,3 +1113,88 @@ &pcie1 {
- &eud {
+@@ -1198,3 +1198,74 @@ &mdss_edp {
+ &mdss_edp_phy {
  	status = "disabled";
  };
 +
-+&gpucc {
++&usb_1_hsphy {
++	vdda-pll-supply = <&vreg_l10c_0p88>;
++	vdda18-supply = <&vreg_l1c_1p8>;
++	vdda33-supply = <&vreg_l2b_3p072>;
 +	status = "okay";
 +};
 +
-+&gmu {
++&usb_1_qmpphy {
++	vdda-phy-supply = <&vreg_l6b_1p2>;
++	vdda-pll-supply = <&vreg_l1b_0p912>;
++	/delete-property/ orientation-switch;
 +	status = "okay";
-+};
 +
-+&dispcc {
-+	status = "okay";
-+};
++	ports {
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+&mdss {
-+	status = "okay";
-+};
++			/delete-node/ endpoint;
 +
-+&tlmm {
-+	dp_hot_plug_det: dp-hot-plug-det-state {
-+		pins = "gpio47";
-+		function = "dp_hot";
-+		bias-disable;
++			/* DP output - connected to hdmi-bridge */
++			usb_dp_qmpphy_out_dp: endpoint@0 {
++				reg = <0>;
++				data-lanes = <0 1>;
++				remote-endpoint = <&hdmi_bridge_in>;
++			};
++
++			/* USB3 SS output */
++			usb_dp_qmpphy_out_usb: endpoint@1 {
++				reg = <1>;
++				data-lanes = <2 3>;
++				remote-endpoint = <&usb3_con_ss_in>;
++			};
++		};
 +	};
 +};
 +
 +/ {
-+	hdmi-bridge {
-+		compatible = "dp-connector";
-+		label = "hdmi";
-+		type = "full-size";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&dp_hot_plug_det>;
++	usb3_con: connector {
++		compatible = "usb-a-connector";
++
 +		ports {
 +			#address-cells = <1>;
 +			#size-cells = <0>;
++
 +			port@0 {
 +				reg = <0>;
-+				hdmi_bridge_in: endpoint {
-+					remote-endpoint = <&usb_dp_qmpphy_out_dp>;
++				usb3_con_hs_in: endpoint {
++					remote-endpoint = <&usb_1_dwc3_hs>;
 +				};
 +			};
++
 +			port@1 {
 +				reg = <1>;
-+				hdmi_bridge_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
++				usb3_con_ss_in: endpoint {
++					remote-endpoint = <&usb_dp_qmpphy_out_usb>;
 +				};
 +			};
 +		};
 +	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_bridge_out>;
-+			};
-+		};
-+	};
 +};
 +
-+&mdss_dp {
++&usb_1_dwc3_hs {
++	remote-endpoint = <&usb3_con_hs_in>;
++};
++
++&usb_1 {
++	dr_mode = "host";
 +	status = "okay";
-+};
-+
-+&mdss_dp_out {
-+	data-lanes = <0 1>;
-+};
-+
-+&mdss_dsi {
-+	status = "disabled";
-+};
-+
-+&mdss_dsi_phy {
-+	status = "disabled";
-+};
-+
-+&mdss_edp {
-+	status = "disabled";
-+};
-+
-+&mdss_edp_phy {
-+	status = "disabled";
 +};
 -- 
 2.53.0
