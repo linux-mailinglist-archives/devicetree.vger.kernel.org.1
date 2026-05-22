@@ -1,170 +1,291 @@
-Return-Path: <devicetree+bounces-301774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301782-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMtdM5RIEGrzVgYAu9opvQ
-	(envelope-from <devicetree+bounces-301774-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 14:14:12 +0200
+	id qPSDLyhHEGryVgYAu9opvQ
+	(envelope-from <devicetree+bounces-301782-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 14:08:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB1285B3AD0
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 14:14:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58EEB5B38E0
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 14:08:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 315F33059F87
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:02:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C0BC330433C6
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 12:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116D2370AD6;
-	Fri, 22 May 2026 12:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB32437F017;
+	Fri, 22 May 2026 12:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ah0zfKYh"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="hQLcA1R4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77B536AB54;
-	Fri, 22 May 2026 12:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E312349CE4;
+	Fri, 22 May 2026 12:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779451279; cv=none; b=rtFXI/RSbxsbAhVkd2OakRyT8xrQDd1RIEgi/6mtBO24UqYfVj0bS8IJM+hz1/z8dKU06vuzvFVBY22k8pD5c+ra1HjuQo71z9TmJgzeeociGT3EOQc8l1CaFJyqA80whN3DnUKY2XdeidBYPNHsKu9CRA5kD7Uo+WwbT3zAjoc=
+	t=1779451385; cv=none; b=f2pgIoXigG+W89HfLELYWJIoa6YAXPnC6K0D+2n7RcoatGPYZcDFEzBAwyfgwrJImXXw6T6/OWlX4dArjsjD6Dq0lwLMSdRkLnrISSjTZEJ9INK1z4QKS0ucYvyIBKhG7KaJoAWBFHLdYcgKrouaAekZ7WAieYKC09Flc2umXVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779451279; c=relaxed/simple;
-	bh=BFiPANneCVeAt8GPV/X3VXJdN0Wjj6gY3eGImz6UQ9s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mQhfRGUczJ/T9uZ3/sNXXTRKsvQFwr58/eVTfsAB49ycz87X2JYHaVJcOC3RbUyLSR5nGY64LVVQPiY5oitZls9o2RRtWLuevzz9R8ZprnZSUG+rR4jCi9ddEtdWJILqmlAgxr1YMAUE4TWI4TF7CYYqmI4ijDFs3vqM9qAFovU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ah0zfKYh; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCACA1F000E9;
-	Fri, 22 May 2026 12:01:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779451277;
-	bh=pOYGhlgiAGuPggI6pSrYAlA0acBLZaAn2+zncHvls/s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Ah0zfKYh2JYCKvm+JkLAkVgSypzzSaAJ5KBThBxZzXbbVcRJuyCQTo0XlXj7Q+7YB
-	 +67FQdZhFZliPvr2z5AOCyCX3mzMTNRlHw5x5wcVd7s8MUKSwR4rJ6sZ0ZPNes6HR2
-	 xTwm5nRbRCUBwqSy+SSJccoebHvis6SS2nZtOvuVTfAPSIqjsbXTXhgH3+1Rk6R7+e
-	 gsNWhQnc+8GDRXNZNllMPlmJIZY80AvpYF/T/xi3sOgwPMqXZAPxhEFlbJwr+00G8y
-	 eHbM3CcUiv2Yboig6MX+SPBGUVo8fb2OhIoc6a+slbfx/8+JEREwx0+4In+NtrSjN2
-	 T/ZI16I/1OugQ==
-Date: Fri, 22 May 2026 13:01:13 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, KancyJoe <kancy2333@outlook.com>
-Subject: Re: [PATCH v4 2/2] regulator: add SGM3804 Dual Output driver
-Message-ID: <8916f45b-3a97-4a5e-b608-5feaea40f2b2@sirena.org.uk>
-References: <20260506-topic-sm8650-ayaneo-pocket-s2-sgm3804-v4-0-7495e7905693@linaro.org>
- <20260506-topic-sm8650-ayaneo-pocket-s2-sgm3804-v4-2-7495e7905693@linaro.org>
+	s=arc-20240116; t=1779451385; c=relaxed/simple;
+	bh=mtP6eQwIAC+5sOyhuqR1fcwb/5Uotac7KXM+4LolK0s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KnBFdFesHq2PNgP7R4ps72rmlClEVtYN/44Vu8P4H8zchfZQvnMkkvXHy3T2f7/4jcSbeHWIbVNUj73ktsQ32vFHY2nfsHkBjdTE87IugxbKlE4HfIZJKMCYLVX3+qu1m6qJfE4cXZLvBlcUb/vA0DOT9CLiif8rOjTEdN+LP7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=hQLcA1R4; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=npoaRceVSKcBIA7XnqArtD5X9kOzz4sAZEkny7h7tJ4=; b=hQLcA1R414V+btOIJDOD+tGBES
+	uDEs/ZrExwzWFrdgA2r4itlz8ocKj3qVx/Px03FRFevQRRMraNv3f7W2bvjBN5kFIOJGeb8k7IBXZ
+	6LsHV3nrbRV68SeA96efVg2L53IrdTQBf+ImquXkal8G8iu4FOBfNKYxhu7b5kXN5A4k6B/EG2y0j
+	A2SlkcEx8m3sDfRMwjkN7Q/kmEW5OifhXxKxD9djBPHAr4PZ3yNKA/6oGESvfHi4Gm9OmH4ztnnRQ
+	29d2UdC5J1Q//bqZXoOXiBdQk8M5YpAoUZEm98OEJBD/d6E0QF0umpnWhFoj8xl6vPFKe6cX/3cY2
+	L34qoIfQ==;
+Received: from sslproxy08.your-server.de ([78.47.166.52])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wQOag-000FcQ-0J;
+	Fri, 22 May 2026 14:02:58 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy08.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wQOae-000ErM-1x;
+	Fri, 22 May 2026 14:02:57 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Michael Riesch <michael.riesch@collabora.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Frank Li <frank.li@nxp.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>,
+ "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>,
+ "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
+Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
+Subject: Re: [PATCH v4 4/6] media: synopsys: Add PHY stopstate wait for i.MX93
+Date: Fri, 22 May 2026 14:02:56 +0200
+Message-ID: <118820958.nniJfEyVGO@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To:
+ <AS8PR04MB9080844E610F8E8012647B39FA0F2@AS8PR04MB9080.eurprd04.prod.outlook.com>
+References:
+ <20260519-csi2_imx95-v4-0-84ea4bb78a88@oss.nxp.com>
+ <3606153.44csPzL39Z@steina-w>
+ <AS8PR04MB9080844E610F8E8012647B39FA0F2@AS8PR04MB9080.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4EC8Aj0qfw+omTw2"
-Content-Disposition: inline
-In-Reply-To: <20260506-topic-sm8650-ayaneo-pocket-s2-sgm3804-v4-2-7495e7905693@linaro.org>
-X-Cookie: Celebrity voices impersonated.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/28008/Fri May 22 08:24:46 2026)
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-301774-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,outlook.com];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-301782-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: CB1285B3AD0
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ew.tq-group.com:dkim,tq-group.com:url]
+X-Rspamd-Queue-Id: 58EEB5B38E0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi,
 
---4EC8Aj0qfw+omTw2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Am Freitag, 22. Mai 2026, 03:58:56 CEST schrieb G.N. Zhou (OSS):
+> > > Thanks for testing. Regarding the lane stop state error on i.MX93 with
+> > imx327:
+> > >
+> > > This error indicates the CSI-2 lanes are not in LP-11 (stop) state
+> > > when expected. Please check:
+> > >
+> > > 1) Verify the sensor PHY is in LP-11 state before returning from the =
+sensor's
+> > >    s_stream(1) call. The CSI-2 receiver expects lanes to be in stop s=
+tate
+> > >    initially.
+> >=20
+> > Well, this might be tricky as I don't have D-PHY capable scopes.
+> > I can successfully use this sensor on a imx8mp, so I am expecting this =
+to be
+> > okay.
+> >=20
+> > > 2) Check if the imx327 driver has a delay between starting the stream=
+ and
+> > >    returning from s_stream(). If the sensor transitions PHY out of LP=
+=2D11
+> > >    state during this delay, the CSI driver's lane state check will fa=
+il
+> > >    when it runs later. The sensor should remain in LP-11 until the CSI
+> > >    controller completes its initialization.
+> >=20
+> > In imx290_set_stream() and subsequently imx290_start_streaming() setting
+> > IMX290_XMSTA starts the stream. I expect this is the point when the sen=
+sors
+> > switches from LP-11 to HS. But again, I can't verify.
+>=20
+> As mentioned in #2, I reviewed drivers/media/i2c/imx290.c and identified =
+a 30ms
+> delay that appears to be the root cause of this issue.
+>=20
+> The problem occurs because:
+>=20
+> The sensor exits LP-11 state and transitions to HS mode after IMX290_XMST=
+A is written
+> The 30ms delay in s_stream() causes the function to return late
+> By the time the CSI controller performs its lane state check, the sensor =
+has already switched
+> from LP-11 to HS mode, causing the check to fail=E3=80=82
 
-On Wed, May 06, 2026 at 09:34:07AM +0200, Neil Armstrong wrote:
+This sounds wrong, see below.
 
-> +config REGULATOR_SGM3804
-> +	tristate "SGMicro SGM3804 voltage regulator"
-> +	depends on I2C && OF
-> +	select REGMAP_I2C
-> +	help
-> +	  This driver supports SGMicro SGM3804 dual-output voltage regulator.
-> +
+>=20
+> Proposed fix:
+>=20
+> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+> index 21cbc81cb2ed..519aa336249a 100644
+> --- a/drivers/media/i2c/imx290.c
+> +++ b/drivers/media/i2c/imx290.c
+> @@ -1059,7 +1059,6 @@ static int imx290_start_streaming(struct imx290 *im=
+x290,
+> =20
+>         cci_write(imx290->regmap, IMX290_STANDBY, 0x00, &ret);
+> =20
+> -       msleep(30);
+> =20
+>         /* Start streaming */
+>         return cci_write(imx290->regmap, IMX290_XMSTA, 0x00, &ret);
+>=20
+> Removing this delay allows s_stream() to return immediately, giving the C=
+SI controller
+> time to complete its initialization before the sensor transitions PHY sta=
+te.
+>=20
+> Could you test this patch and confirm if it resolves the lane state check=
+ failure?
 
-The GPIO usage in the driver looks non-optional so we should have a
-GPIOLIB dependency shouldn't we?
+Removing these 30ms does not fix the problem. Actually the delay change is
+hardly measurable, as the i2c transfer take much more time. I added a messa=
+ge
+for start/exit of imx290_enable_streams(). Just the transfers take >600ms.
 
-> +static int sgm3804_sync_regcache_state(struct sgm3804_data *ctx)
-> +{
-> +	guard(mutex)(&ctx->lock);
-> +
-> +	/* If both GPIOs are down, IC is powered down and I2C writes will fail */
-> +	if (!gpiod_get_value_cansleep(ctx->gpios[SGM3804_POS_RAIL]) &&
-> +	    !gpiod_get_value_cansleep(ctx->gpios[SGM3804_NEG_RAIL])) {
-> +		regcache_cache_only(ctx->regmap, true);
-> +		regcache_mark_dirty(ctx->regmap);
-> +	} else {
-> +		/* At least a GPIO is up, we can write registers */
-> +		regcache_cache_only(ctx->regmap, false);
-> +		return regcache_sync(ctx->regmap);
+=2D-8<--
+[   40.507273] plane 0: bytesperline=3D3840 sizeimage=3D4147200
+[   40.512628] mxc-isi 4ae40000.isi: validating link "crossbar":2 -> "mxc_i=
+si.0":0
+[   40.519945] mxc-isi 4ae40000.isi: validating stream "crossbar":2:0 -> "m=
+xc_isi.0":0:0
+[   40.527789] mxc-isi 4ae40000.isi: validating link "dw-mipi-csi2rx 4ae000=
+00.mipi-csi":1 -> "crossbar":0
+[   40.537105] mxc-isi 4ae40000.isi: validating stream "dw-mipi-csi2rx 4ae0=
+0000.mipi-csi":1:0 -> "crossbar":0:0
+[   40.546940] mxc-isi 4ae40000.isi: validating link "imx327 4-001a":0 -> "=
+dw-mipi-csi2rx 4ae00000.mipi-csi":0
+[   40.556680] mxc-isi 4ae40000.isi: validating stream "imx327 4-001a":0:0 =
+=2D> "dw-mipi-csi2rx 4ae00000.mipi-csi":0:0
+[   40.573332] mxc-isi 4ae40000.isi: enable streams "crossbar":2/0x1
+[   40.579446] mxc-isi 4ae40000.isi: collect_streams: "crossbar":2: found 0=
+x1 enabled 0x0
+[   40.587373] imx290 4-001a: Frame descriptor on pad 0, type CSI-2
+[   40.593390] imx290 4-001a:   stream 0, code 0x300f, length 0, flags 0x00=
+00, vc 0, dt 0x2b
+[   40.601489] dw-mipi-csi2rx 4ae00000.mipi-csi: Frame descriptor on pad 1,=
+ type CSI-2
+[   40.609147] dw-mipi-csi2rx 4ae00000.mipi-csi:        stream 0, code 0x30=
+0f, length 0, flags 0x0000, vc 0, dt 0x2b
+[   40.618894] mxc-isi 4ae40000.isi: enable streams "dw-mipi-csi2rx 4ae0000=
+0.mipi-csi":1/0x1
+[   40.627082] dw-mipi-csi2rx 4ae00000.mipi-csi: collect_streams: "dw-mipi-=
+csi2rx 4ae00000.mipi-csi":1: found 0x1 enabled 0x0
+[   40.638184] mxc-isi 4ae40000.isi: enable streams "imx327 4-001a":0/0x1
+[   40.644728] imx290 4-001a: collect_streams: sub-device "imx327 4-001a" d=
+oes not support streams
+[   40.653431] imx290 4-001a: imx290_enable_streams start
+[   41.294967] imx290 4-001a: imx290_enable_streams exit
+[   41.301064] dw-mipi-csi2rx 4ae00000.mipi-csi: lanes are not in stop stat=
+e: 0x0, expected 0x10003
+[   41.309884] mxc-isi 4ae40000.isi: disable streams "imx327 4-001a":0/0x1
+[   41.316534] imx290 4-001a: collect_streams: sub-device "imx327 4-001a" d=
+oes not support streams
+[   41.361401] mxc-isi 4ae40000.isi: enable streams 1:0x1 failed: -110
+[   41.367690] mxc-isi 4ae40000.isi: failed to enable streams 0x1 on 'dw-mi=
+pi-csi2rx 4ae00000.mipi-csi':1: -110
+[   41.379854] mxc-isi 4ae40000.isi: enable streams 2:0x1 failed: -110
+[   41.387325] mxc-isi 4ae40000.isi: Failed to enable pipe 0
+[   41.399231] video0: VIDIOC_STREAMON: error -110: type=3Dvid-cap-mplane
+[   41.408340] videodev: v4l2_release: video0: release
+=2D-8<--
 
-This should really put the regmap back into cache only mode if the sync
-fails.
+Given this I would ague the CSI host initialization order is wrong. The
+documentation for enable_streams states:
+> The struct v4l2_subdev_pad_ops->enable_streams() and struct
+> v4l2_subdev_pad_ops->disable_streams() callbacks are used by the receiver=
+ driver
+> to control the transmitter driver's streaming state.
 
-> +static const struct regulator_desc sgm3804_regulator_desc[] = {
-> +	/* Positive Output */
-> +	{
-> +		.name = "pos",
-> +		.of_match = "pos",
-> +		.supply_name = "vin",
-> +		.id = SGM3804_POS_RAIL,
-> +		.ops = &sgm3804_ops,
-> +		.type = REGULATOR_VOLTAGE,
-> +		.linear_ranges = sgm3804_voltages,
-> +		.n_linear_ranges = ARRAY_SIZE(sgm3804_voltages),
-> +		.n_voltages = SGM3804_VOLTAGES_COUNT,
+So IMHO calling enable_streams it is expected the sensors switched to
+HS mode. Unfortunately even checking PHY stopstate before enabling the subd=
+ev
+streams does not fix this error message.
+There is still=20
+> dw-mipi-csi2rx 4ae00000.mipi-csi: lanes are not in stop state: 0x0, expec=
+ted 0x10003
 
-n_voltages is misnamed and should really be maximum selector, for a
-device like this with sparse selectors it doesn't do what you'd expect
-unfortunately.
+I also noticed that before the s_stream call (imx290_set_stream) call the
+device is powered down. That might explaing that reversing the order will
+not help.
 
---4EC8Aj0qfw+omTw2
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoQRYgACgkQJNaLcl1U
-h9Calwf6A8IMxdZKrZxzrfZvZzJnabcdm2wNlnmam4upSSxb8ZC9QBD9aC4DibCk
-Td2Pa+rj85fObFhw4zyWOzlLXHG50R/9meZwVHXTnDrjLSLji0rpR3HXGT2IfgvD
-kj1P97L4aqnn8Open2NPCbVGLfBjyXbn7kQonWOCvABJTe54JKcSmUfENvFWuUDo
-61AtUL2f9hWm8KWsPhmNfqprLaJkMdkaP9KAV3Pvg0bEdqCXI+axn5BwoWt1LZxG
-+4LWe+zrzBlgfB/Wg5/4RO5vIGXXGfRJs/OvZVdDWExTRHWyQ86zrDKSq7+We3F9
-KDwoS80I+XWdruKD3ULaYOEFRCf3tw==
-=dXEl
------END PGP SIGNATURE-----
-
---4EC8Aj0qfw+omTw2--
 
