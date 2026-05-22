@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-301548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KHeI3/iD2pERAYAu9opvQ
-	(envelope-from <devicetree+bounces-301548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:58:39 +0200
+	id YK1wMX/oD2q5RQYAu9opvQ
+	(envelope-from <devicetree+bounces-301549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 07:24:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AED5AED5D
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:58:38 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 800E75AF1C5
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 07:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 10C933019C87
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 04:58:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4F3C6300BB97
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 05:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26311357D02;
-	Fri, 22 May 2026 04:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4373939A6;
+	Fri, 22 May 2026 05:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ic0Fw+1G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n2ZeLI19"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E2C2030A;
-	Fri, 22 May 2026 04:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C6F389107;
+	Fri, 22 May 2026 05:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779425917; cv=none; b=sI/mBmoO6tTf07VNU9pmcCSrKP4oD3UgSmQx95CGccxjIWigNBcEP9/+Eq5JikTrZ4x7zE/g4JUbHeaxDM7yf65OaNjnoUI70nVb3ErhJiNVeC2nIteFIhTalxeB9PnuILyaryKVYneJ8vL00iJJHDPGlDbbe8t9dLr5y1azOBU=
+	t=1779427447; cv=none; b=uBIDzV8IHxr0RUkzv0lU5PMfGLEHuA9VNfSPrZoUaGhOfLH0vp+OjeOYYg7ArR/JKx/3l8pKkftxqFLbshflercOcpR74a/gepf99LjpGHA/HBloU6T1T6lIItbCgDyoZ+JxnrNkm6y8hEQP+fpeiaE7hcbKdFbT7r45pobubMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779425917; c=relaxed/simple;
-	bh=Vdq6HxNIIYOoAy0xIPkR2FS/hD3MeFYBG2bF0UDUDVs=;
+	s=arc-20240116; t=1779427447; c=relaxed/simple;
+	bh=Fmt0bPk2u6cDfkfdh+ve2ehg5Sfq61uewGOB9CJv2sQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=MzKJSbNiiTPpozF/7m3T73MUeXh/QFuQfUqSdIKCLKvPmRqp2XGX3DHkB70ApNjn9ymdeFcgHB8DVapbvbW4PssttxJt7XH5/wt1bbo5vpInH4Fe+C0gfAEvFdrPadb02lXstCDotA3JqkQwUVYr2XSthxrOSIwTOH+aAMhTRxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ic0Fw+1G; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 706CD1F000E9;
-	Fri, 22 May 2026 04:58:35 +0000 (UTC)
+	 Message-Id; b=oImtGJIeT0bJ4fA1VIMkyQO+V08bXXnEkqwGAGH8HGEYW0zeMRDi7JQLhXbsRSkIf9G9V1bjQs5NWoyHp+jkKRw1Vbc+cKfMBPX29K7qO+GMm0NEe0oVYzb+pkrTFf+BRH93+qBgzXF4mBw5nM1fjAk1Yw5EwxPbzllP9p+I/os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2ZeLI19; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 197E81F000E9;
+	Fri, 22 May 2026 05:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779425915;
-	bh=EKJpuSzusa+V+sgDvtjQZPi8LVH236oqJ/RJL6yQTOw=;
+	s=k20260515; t=1779427446;
+	bh=vzZzFiGEMRTK/DE0DfwDjbTWysjgc1+1FLyYSie3bsk=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ic0Fw+1GQej7lTI0QLOU7LKxI0kChhSaGVv5gAUnzrMB5A97zaq3mWZfztUGsX1wK
-	 /eFGI66xCVXwkFPRDmWHwCVfKx0WwcvDIcFgTZXOs0N89P/6x4OTi9RQtAHMSxFt7L
-	 yxsb6LPJkktS0QKMQS+NPkysLo/kaTe1pIihQDCacl1iIILZpZrAcL9cOF0JUt35Ia
-	 F8faEkg+XTvwmvm7LKqJeq9y8J3ZjhOWl0dYFvDTqXlfRQQewqdprHS3jMDj4/jVoe
-	 EuFbkLDSHJychFPVEN489QDVVwIIkZIaLgAqvmX5KUIEy2YmA8l92xq81bx+M0x+Pl
-	 Li350T8U5wz0A==
+	b=n2ZeLI19fsHEd37e0zRJY1/3jeTvY7ivN2yuUKFPrri8GdDIrJzo+gCasemH1vapV
+	 cXr9YYuag1MzxIGMq+EjqjzvsHUA7/ee9vuQK509JrXoawOMrg/6fPOSR3m+f9UE+1
+	 tUcbujiFxfq4s9p23Lc0ufA8rt5a9IsPaHbk4dBwUss01s6JVM2OCxGGv/sypmRRzw
+	 plpACh2EoRTEWJPXpQtjVkVK5xybNt1rOREZPlbVPYg8MAcu01MjZ0LlfQfzwdOO8a
+	 fam0KJVcy43reTTg07LJQbsiqEzi44Sdlp9dTCbK5c0xqVWT60eYMEdVcOKKyXLEIC
+	 iH/SRNrhp2Y0w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 1/6] dt-bindings: pinctrl: add NXP MC33978/MC34978
- MSDI
+Subject: Re: [PATCH v14 2/6] mfd: add NXP MC33978/MC34978 core driver
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Oleksij Rempel" <o.rempel@pengutronix.de>
-Cc: linux-hwmon@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260522044855.1772639-2-o.rempel@pengutronix.de>
-References: <20260522044855.1772639-2-o.rempel@pengutronix.de>
+Cc: conor+dt@kernel.org, robh@kernel.org, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260522044855.1772639-3-o.rempel@pengutronix.de>
+References: <20260522044855.1772639-3-o.rempel@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 04:58:35 +0000
-Message-Id: <20260522045835.706CD1F000E9@smtp.kernel.org>
+Date: Fri, 22 May 2026 05:24:05 +0000
+Message-Id: <20260522052406.197E81F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,13 +65,13 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,pengutronix.de:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301548-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301549-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -88,39 +87,38 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 09AED5AED5D
+X-Rspamd-Queue-Id: 800E75AF1C5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Add device tree binding documentation for the NXP MC33978 and MC34978
-> Multiple Switch Detection Interface (MSDI) devices.
+> Add core Multi-Function Device (MFD) driver for the NXP MC33978 and
+> MC34978 Multiple Switch Detection Interfaces (MSDI).
 >=20
-> The MC33978 and MC34978 differ primarily in their operating temperature
-> ranges. While not software-detectable, providing specific compatible
-> strings allows the hwmon subsystem to correctly interpret thermal
-> thresholds and hardware faults.
+> The MC33978/MC34978 devices provide 22 switch detection inputs, analog
+> multiplexing (AMUX), and comprehensive hardware fault detection.
 >=20
-> These ICs monitor up to 22 mechanical switch contacts in automotive and
-> industrial environments. They provide configurable wetting currents to
-> break through contact oxidation and feature extensive hardware
-> protection against thermal overload and voltage transients (load
-> dumps/brown-outs).
+> This core driver handles:
+> - SPI communications via a custom regmap bus to support the device's
+>   pipelined two-frame MISO response requirement.
+> - Power sequencing for the VDDQ (logic) and VBATP (battery) regulators.
+> - Interrupt demultiplexing, utilizing an irq_domain to provide 22 virtual
+>   IRQs for switch state changes and 1 virtual IRQ for hardware faults.
+> - Inline status harvesting from the SPI MSB to detect and trigger events
+>   without requiring dedicated status register polling.
 >=20
-> The device interfaces via SPI. While it provides multiple functions, its
-> primary hardware purpose is pin/switch control. To accurately represent
-> the hardware as a single physical integrated circuit without unnecessary
-> DT overhead, all functions are flattened into a single pinctrl node:
-> - pinctrl: Exposing the 22 switch inputs (SG/SP pins) as a GPIO controller
->   and managing their pin configurations.
-> - hwmon: Exposing critical hardware faults (OT, OV, UV) and static
->   voltage/temperature thresholds.
-> - mux: Controlling the 24-to-1 analog multiplexer to route pin voltages,
->   internal temperature, or battery voltage to an external SoC ADC.
+> Child devices (pinctrl, hwmon, mux) are instantiated by the core driver
+> from match data.
+>=20
+> Note: The device currently lacks suspend/resume power management callback=
+s.
+> If the system enters a sleep state cutting power to VDDQ/VBATP, the device
+> will wake up in POR state with hardware interrupt masks reset. Power
+> management support is intentionally deferred for now.
 >=20
 > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
@@ -128,6 +126,6 @@ Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522044855.1772=
-639-1-o.rempel@pengutronix.de?part=3D1
+639-1-o.rempel@pengutronix.de?part=3D2
 
 
