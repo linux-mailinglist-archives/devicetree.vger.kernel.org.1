@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-301934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEQ3LhV7EGpjYAYAu9opvQ
-	(envelope-from <devicetree+bounces-301934-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:49:41 +0200
+	id uCxuDPB6EGrdXwYAu9opvQ
+	(envelope-from <devicetree+bounces-301930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:49:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB235B7249
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:49:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3F25B7224
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 17:49:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 831A13084B9B
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:40:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 55AF7307AD1C
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C545247B405;
-	Fri, 22 May 2026 15:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3AD47799F;
+	Fri, 22 May 2026 15:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="GbrDk0/+";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="1HZycACm"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="PeW7RWXt";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="FP20AERF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC78477E4E;
-	Fri, 22 May 2026 15:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19B146AEC2;
+	Fri, 22 May 2026 15:40:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779464422; cv=none; b=goQ4g8I21m3W1CWMxplqh7JMnPhrYukCbonfrgah5zJH2cg/bPZudVGlMsOgk9ZNpEm2bbGza9KtWfWLjz0VOI0NoLlZMAWdHTONoeE7hU+t50Xqcz+C7w2ufJAW8Antc088dbF5Mn2QdOvanMvUpGbTu9yPhGTeWJs0EAnOlHU=
+	t=1779464420; cv=none; b=ekqsnVyU2LTUFju0IdtslhcDnQxoBvkLfTdCyk7fhJZ1w0KKT8bQx9Zk4Gfw3PmEZqe9f3CE0aP3Eex3GEvSM9X1vSuo0gne/wOJkANQJTM8bMGOTa5CroKSxbLlnNgdNJYN2njpbcWuDw/9XWkPtUIIOb1qM/XYZ9CYL1AIYP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779464422; c=relaxed/simple;
-	bh=IfrsMSCpNJWQEqfe46rlehUOfwK8xizeSOL7BdUbETY=;
+	s=arc-20240116; t=1779464420; c=relaxed/simple;
+	bh=W3od+N7ms8LBhCXN/JpOtSic+LkKIcRVMQF9+TfNOg4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=A1NmYOVQIlCTou+joktq2ZgC1ArpB4k9O2E8/xBIgw4MfbFhl+uPy6L25mirsw8MBJ26ZHtvXNkvVRv6DFvxpG6cXCEF460BKwJEsbvebGLdL8BSkacY4zFF0f6TzuYFeycYuAie+mE2qIksjRDGo9YKLGnIbhtP1Mnow5/UFYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=GbrDk0/+; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=1HZycACm; arc=none smtp.client-ip=193.142.43.55
+	 In-Reply-To:To:Cc; b=BZHVbvE6l7GaEZFd5oHWDm21HYc2pthhz6WFK5m0mxCZBjwHyf8vXRj0axr4Mg/pgBidOfpVdP0ziICDukYkyYxOoK5n7IjBSxZEjwBl315zZHJ15wlp5sp9KrqevMXrYH31LTY0Q+1fsyWWKSHMpNiwuDDaYGr37NdvSHTZFSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=PeW7RWXt; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=FP20AERF; arc=none smtp.client-ip=193.142.43.55
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
 From: Gregor Herburger <gregor.herburger@linutronix.de>
@@ -42,24 +42,24 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=6ObXh6kk4XunevPthCtxU9yhwucuotgK1jqwXTy/qtQ=;
-	b=GbrDk0/+3zWfKH0IdzVUilm7KTRmyZqSyX+EsQl/5RdrVpCzHktcDRvUAuQIvJrHIYazaw
-	2rAvk+Y9nbJjuxe/x27prvp41nBnPaV1wbYie98/I2/I5g03Ho7gqhb6iRV/fPI8SFcAin
-	YoNv5nZjZt8yAqwbMWIcFgKQidSmBGkssvmKKNvWtQGwSKzEwRXIWpj4c7C7taFHgj9iDM
-	IhmCDwVzfha5iJWcNOy6mMNKCorywHLlPyDI2KaK7NEIiioEHjxjwNwpaAbO7mET8bzvGK
-	cqpKJUw0mmKWoU3uqndqsUp2grPXTIwadmOis+5D3Z2r/TaWYNPvWrwXWoSuFA==
+	bh=vqxlm0R5Wd0RrDJc5qf7hWcJWc/FoDh8Mkn++k5Hxho=;
+	b=PeW7RWXtB8dNpBjtqAuzknD6YIeNWIlj560/kokuYKeP2iZfGvG0ZyjC+K6m9aHmLAWtjY
+	HGrSqN5ATspKKfezk3Z798vb/AnFsFS/cNAQKLEha4UMnu+vSHLo6HWdMWisu5K75sL3IZ
+	vcHiTHA9A51VaN4c8WOzn+li1R+wLLp0MVA679JAiCuvBrOIXGdrBISOdx8lle7Fy0WGP9
+	KkP4bz6hB3+NxHhvTOnGxdj/7ui/VuFRocx5JvfNSkydi8Kba8VTm3E/pEU9wLEzJkdxt0
+	+N6TN0JK3oszZlI/6GcQUSULe6gTxkmUV5ofqmnKZ77CPYYtWVgbkIDnT98Y1Q==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
 	s=2020e; t=1779464410;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=6ObXh6kk4XunevPthCtxU9yhwucuotgK1jqwXTy/qtQ=;
-	b=1HZycACm1rjGF/hGUUACNmMyMiDQHiBg+Gq9f2Pmb6/kd1uh72J6I83UYCbNva7noWpjAz
-	cxQvLedQ6cE82NCg==
-Date: Fri, 22 May 2026 17:40:07 +0200
-Subject: [PATCH v6 07/10] dt-bindings: raspberrypi,bcm2835-firmware: Drop
- unnecessary select
+	bh=vqxlm0R5Wd0RrDJc5qf7hWcJWc/FoDh8Mkn++k5Hxho=;
+	b=FP20AERFPEgsCyqxYTObObpLvBVoVITO2G4VKGk81EX0Ss4ym6WmwVvnBAQx9rMWhxEJx9
+	Xznhv0ohlYX3ROAA==
+Date: Fri, 22 May 2026 17:40:08 +0200
+Subject: [PATCH v6 08/10] arm64: defconfig: Enable the raspberrypi otp
+ driver as module
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260522-rpi-otp-driver-v6-7-b0eac97d1428@linutronix.de>
+Message-Id: <20260522-rpi-otp-driver-v6-8-b0eac97d1428@linutronix.de>
 References: <20260522-rpi-otp-driver-v6-0-b0eac97d1428@linutronix.de>
 In-Reply-To: <20260522-rpi-otp-driver-v6-0-b0eac97d1428@linutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -83,13 +83,13 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Russell King <linux@armlinux.org.uk>
 Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ linux-hardening@vger.kernel.org, 
  Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779464406; l=1090;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779464406; l=987;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=IfrsMSCpNJWQEqfe46rlehUOfwK8xizeSOL7BdUbETY=;
- b=n26q+46/ZqDMYFZey78jD9XG/wo3dvjxG+HkjrhGRGCgwgUxSzxhDBQBQJJKmPN5PWSi64pHe
- QeILNf39v3MDliJUcnLKRu9UO6v2sDxix9Xj857BxIyDah5qLzDy6OC
+ bh=W3od+N7ms8LBhCXN/JpOtSic+LkKIcRVMQF9+TfNOg4=;
+ b=El25Y3nV3USsdO3HnhHOD39+moGC7yQlHwDZobn7c5IdnDfIhTZ7J2pDbwLYYkAZGn36W34UG
+ JRg3YhKIVJ7BjoGaB8DBBtdyq7P60+jVQ+6AWkc9K0gqRvbgf5iQDn6
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -97,16 +97,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
 	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301934-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-301930-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,broadcom.com,anholt.net,gmx.net,linutronix.de,armlinux.org.uk];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -116,44 +116,40 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[gregor.herburger@linutronix.de,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[linutronix.de:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linutronix.de:email,linutronix.de:mid,linutronix.de:dkim,microchip.com:email,anholt.net:email]
-X-Rspamd-Queue-Id: 4AB235B7249
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,linutronix.de:mid,linutronix.de:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: CB3F25B7224
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The "select" in schema is not necessary anymore since dtschema drops
-simple-mfd when constructing the select/filter query for schemas with
-compatibles.
+Enable the newly added Raspberry Pi OTP driver as module to allow access
+to the otp registers. This driver provides access to the OTP registers
+present on all Raspberry Pi boards and the private OTP registers present
+on the Raspberry Pi 5.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Enabling this in the generic arm64 defconfig allows standard upstream
+kernels to use these registers on Raspberry Pi 3, 4 and 5 out of the
+box.
+
 Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
 ---
- .../bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml           | 9 ---------
- 1 file changed, 9 deletions(-)
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-index a3a5243b91706..7cf9a6fa1e5be 100644
---- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-@@ -10,15 +10,6 @@ maintainers:
-   - Eric Anholt <eric@anholt.net>
-   - Stefan Wahren <wahrenst@gmx.net>
- 
--select:
--  properties:
--    compatible:
--      contains:
--        const: raspberrypi,bcm2835-firmware
--
--  required:
--    - compatible
--
- properties:
-   compatible:
-     oneOf:
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index e44e83bc57812..3abb3ca34c708 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -1849,6 +1849,7 @@ CONFIG_NVMEM_SPMI_SDAM=m
+ CONFIG_NVMEM_SUNXI_SID=y
+ CONFIG_NVMEM_UNIPHIER_EFUSE=y
+ CONFIG_NVMEM_ZYNQMP=m
++CONFIG_NVMEM_RASPBERRYPI_OTP=m
+ CONFIG_FPGA=y
+ CONFIG_FPGA_MGR_ALTERA_CVP=m
+ CONFIG_FPGA_MGR_STRATIX10_SOC=m
 
 -- 
 2.47.3
