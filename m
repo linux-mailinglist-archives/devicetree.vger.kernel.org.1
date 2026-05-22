@@ -1,242 +1,196 @@
-Return-Path: <devicetree+bounces-301833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301835-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WFGhN3pdEGqDWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301833-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:43:22 +0200
+	id 8KazFLVYEGocWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301835-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:23:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13D75B5646
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:43:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C68965B513B
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 32DF830695FE
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:12:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5C12304EA1D
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041B439EF38;
-	Fri, 22 May 2026 13:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E365378806;
+	Fri, 22 May 2026 13:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="nboAmI/t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BucKeSkq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D8B35675F;
-	Fri, 22 May 2026 13:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09BC628488F
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779455556; cv=none; b=uiq2i7yw3sfiJ9V+0FfN4e7az0ttYw89AonYAlY0BhLfxp3IDwQZQzq7lOx6/ykqDV+lrsKGUQgoljozceeLD5RamAHbHFJHo1TqsGqjIaoeD73g32UpnyK+jBLOehi3MPM8dHTjq50fPlzn8aFzJcG2GiIkVAcynICeib01NcU=
+	t=1779455719; cv=none; b=HwzfxXsVbVvXAiTjqmX9xN3Ha17aWFnLJ5VhdvI63+QNUV4LdTSHl/9NRdeTJ9E/fPIZZa4b6lbDkRS2FhYs6WB3RNLHDplqr33/l6JGRXB8hvufWJiNzTGde8At/uQPtC1rzh0044wM4W+k4IGpt7MfqmH2SS+KT4B0u1pAzzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779455556; c=relaxed/simple;
-	bh=JsTztEtOCXDQSlvZta39qdd0kWNPa/QXuRXyaf1EX7k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QevRXWox+cHDyAaHCEJFA6f6m5pZSjAjIOELDIWMcKSK+UeNsY3WzuMEzXvg4XkaoL8E/aMk/DWm78CoAcsZbvdQkXRr+ttWOU3NfqX83UouGSXvj3Ti+HstqNJVrRG0JfCKVnFM0qDa7PDtHXVEA3wvwG0BWkj8fAfMzQBFFAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=nboAmI/t; arc=none smtp.client-ip=54.206.34.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1779455549;
-	bh=sNGKriiR40VmWfFFzwCnZIBf5B7xIayu130MyGqFNhk=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=nboAmI/tbwlhS9yKLDGmEbh8LUKlxDpowbr/9yhEHwG/Uuegyjal03022pc9g9nE8
-	 IufI6JbtUTTZLE+1Og2A4oS7Hn33WP/6Ll3tTRuJm6Yn7ZichjEYh94aDhr8okBVni
-	 ihlVPhHCoCAeunTeKr16jIebMoYjJWLhu4RmBU6s=
-X-QQ-mid: zesmtpgz7t1779455546t364b2750
-X-QQ-Originating-IP: cH+OXfIEeHuVZdMzFu6pI+Ce7vT+VIferESzO7hFrM0=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 22 May 2026 21:12:22 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 8738155976280777522
-EX-QQ-RecipientCnt: 15
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Fri, 22 May 2026 21:12:15 +0800
-Subject: [PATCH v3 2/2] ASoC: spacemit: add K3 SoC support with additional
- clocks
+	s=arc-20240116; t=1779455719; c=relaxed/simple;
+	bh=eYtBpb/TNeNAeMhhgFvIrzbT7zJxJfNxdMqTQo7WAvU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=FYAkpEZaxpfcwqI603WRUrSWbmAA+j3VmdI6m/5A4op8Ug3Ki0CZj6HqpfH3ViDEUWcHCecccdIk65rQUTKsSUetQall2Ut+yvGCO8mnwDJeOgWwSh1WT6rpfkDG5J3chd+lY8B0h9xQdku4Kgrx0tIjzxCt4VFPvPyUmv8AXuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BucKeSkq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4013D1F00A3D;
+	Fri, 22 May 2026 13:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779455717;
+	bh=+d/b9nUsVFt0quqFAPyaZIa0IMqG6+4LHZZFHMp14GI=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=BucKeSkqxbmVHsavZslmcr+rkUuLJjVXvJxORWwlauHYZzSDgxdjtdkpgat+OdBzi
+	 YCuzI2ZscH/LWqIHhw6Dt0w3mlpS20rc3K+W2kcr8Un4+q3Wy4YbjnHosqP8LFnR4u
+	 rwSm3QkCxYh3tvm3Vb1Zser8EmHYx82G/NRKc0kBNUifOXjatTTU93HE7f87cVOebN
+	 TJrO5eGHyP98AIYK0Cp87lQtzH2XFxkoRxQEQzfyDUYQMzOZ5A/h23p+Xkw13B+zhy
+	 Jz44H7bfMRs7nuW4WIYSPfN8Ucy70EyqYjJoowsUZONlYNTfMawzzIQXIKuv/uN7rc
+	 JMKCtJ1INI+vA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 2/9] reset: eyeq: Add EyeQ7H compatibles
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?QmVub8OudCBNb25pbg==?= <benoit.monin@bootlin.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260522-clk-eyeq7-v7-2-14ad6c2c5213@bootlin.com>
+References: <20260522-clk-eyeq7-v7-2-14ad6c2c5213@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 22 May 2026 13:15:16 +0000
+Message-Id: <20260522131517.4013D1F00A3D@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260522-k3-i2s-v3-2-08e3eb811d93@linux.spacemit.com>
-References: <20260522-k3-i2s-v3-0-08e3eb811d93@linux.spacemit.com>
-In-Reply-To: <20260522-k3-i2s-v3-0-08e3eb811d93@linux.spacemit.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Yixun Lan <dlan@kernel.org>, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779455534; l=3766;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=JsTztEtOCXDQSlvZta39qdd0kWNPa/QXuRXyaf1EX7k=;
- b=hZhgyBa5r9WaBK6RB90JU4T4V6eX1l3KokC15CCQU7blElm1vNKU85QWeehz4Dx/RCd4MJWvS
- tMOXXzBkTHSDYMxzvvDWx1AQUMWHd/9N7WsZO2hUFjd1ATUcpO9Wn0K
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: MXhM23rn16UwduSu4u3pTAA3okWr9Z4iLq7/tCqpbYbPSGkTB9YIb0D2
-	vtTwbwOsejiFInehAn067YhaqHK4I5E34odnMnWM7qk/eim6gsbjG5EhiV70Ft9PrYyYga8
-	Dj58Yzgz6wv8kaS7dKP52ctfxWmA5nhTpQ8xDoCVDfD93QyrRViTS/bEccLezO/4RAO5w3g
-	WrFU6vnLxk/AHlzRP9Y/9lJIUsAceZGsOp1KAn2tKbVQ/bXxJfjhKQn4C266jA8uxkQtpNE
-	BA9PSRSHfqmIuI5Cf6lRfL82E583yhaDqADMdCvuYw/oJ5QDnW1ZqV04lRt2yZblfdqYbV3
-	nFhxt9dv/qBsi0uLBTGZrvh0rhSUkoOCz5IiV+T8t75powRTt6QiosHIOCq44EEyaxz1ebc
-	Y0+8kX0rKvkbsmMzfAuUdCgxjpNRZ1ICiAztBhuqxo1BsZ/2U1xvx/NPrrVgV/2tHIPsV+w
-	8MHQkfcxVFkXvG9bSwPXPCHJTPPC5/SK+ZObcDaxTzX7cVDZ3fMyLx9JhSld7HktR/0bica
-	3QlREm1lbFQgZGb73MhzL/K71vO+Q2wTDfIV3maNlJJOwjKAFv9f2sa++/PDoSCHIzTctis
-	OVU/qDP5ao4tN3EyJPtxawxHdFPzvGFmQI8SrPSlCK5iNfgMpuD2RBjpbrvg25z20vgdh8+
-	B89sIyRX+1RooacSRAPW452xFP35Lj9xS815pGRFQK+QP8tEYVf4HfAf+4CJyDWxUbDmRBn
-	buLvLpEHHfWUy3XGSJfIr7gRi99igpk2dt7c3JyUBF7nwqAvppuzRYjoGMFQDBCztC+hy5k
-	tlRhrNlQHl4NC7XFnXzLZzpVq06Muop+89QJfYUGaUpJ80dTB+erVTSrN/snxn3hzs3dxmH
-	VIQMEGsaY7H+wFyxZmmkk9u+CjdWcyUKZE6Ir38hOYmv8YaRHbxBGjQwGRjm86qQzYNEl6t
-	j67y6vlnLW/PFv6DZboj0kq6SBj8t4xHkmlY+tE7q9ySeorUclCjoQ+CnHm5Eef20a+BO4M
-	a7c6wyocdLS7eaDOi6swXut/gNyY01khxIpXI4h7zqjnXMK5G5rIs2hXIknjvrcCNxRg8bV
-	ZjJVs8tXMoDkRZas5gMPYY8Gtk4LcscE5JRrxb/CH4/7jkRK+nPckaOLWFucvKlYp9MipIo
-	193np3Lpiw+2iHBu7O58P6Gk2Yq7f6UkdshTonvZZd9B1nWBeYbsOneilg==
-X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
-X-QQ-RECHKSPAM: 0
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-301835-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[spacemit.com];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com,linux.spacemit.com];
-	TAGGED_FROM(0.00)[bounces-301833-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[troy.mitchell@linux.spacemit.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.spacemit.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: E13D75B5646
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: C68965B513B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the SpacemiT K3 SoC I2S controller, which shares the
-same IP as K1 but requires additional clocks: sysclk_div, c_sysclk,
-and c_bclk. These clocks only exist on K3 and are not present on K1.
-The sysclk_div clock is present on most K3 I2S controllers except I2S1.
-The c_sysclk and c_bclk clocks are shared across multiple I2S
-controllers on K3.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The `valid_mask` values for several new EyeQ7H reset domains are i=
+ncorrectly calculated based on the total number of items rather than acting=
+ as a bitmask of valid hardware offsets, causing valid reset requests to be=
+ rejected.
+--
 
-Use devm_clk_get_optional_enabled() to acquire these clocks so that
-the driver works on both K1 (where they are absent) and K3 without
-needing SoC-specific match data. For K3, the sysclk_div rate is set
-before sysclk in set_sysclk, and the common clock rates are configured
-in hw_params based on the sample rate.
+commit 8189291a57ece537a6cbcca42424bb22f1515514
+Author: Beno=C3=AEt Monin <benoit.monin@bootlin.com>
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- sound/soc/spacemit/k1_i2s.c | 36 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 35 insertions(+), 1 deletion(-)
+reset: eyeq: Add EyeQ7H compatibles
 
-diff --git a/sound/soc/spacemit/k1_i2s.c b/sound/soc/spacemit/k1_i2s.c
-index 1cb99f1abc7c..4e655d714623 100644
---- a/sound/soc/spacemit/k1_i2s.c
-+++ b/sound/soc/spacemit/k1_i2s.c
-@@ -53,6 +53,9 @@ struct spacemit_i2s_dev {
- 	struct clk *sysclk;
- 	struct clk *bclk;
- 	struct clk *sspa_clk;
-+	struct clk *sysclk_div;
-+	struct clk *c_sysclk;
-+	struct clk *c_bclk;
- 
- 	struct snd_dmaengine_dai_dma_data capture_dma_data;
- 	struct snd_dmaengine_dai_dma_data playback_dma_data;
-@@ -189,6 +192,14 @@ static int spacemit_i2s_hw_params(struct snd_pcm_substream *substream,
- 		    params_rate(params) *
- 		    data_bits;
- 
-+	ret = clk_set_rate(i2s->c_sysclk, bclk_rate * 2);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_set_rate(i2s->c_bclk, bclk_rate);
-+	if (ret)
-+		return ret;
-+
- 	ret = clk_set_rate(i2s->bclk, bclk_rate);
- 	if (ret)
- 		return ret;
-@@ -200,10 +211,17 @@ static int spacemit_i2s_set_sysclk(struct snd_soc_dai *cpu_dai, int clk_id,
- 				   unsigned int freq, int dir)
- {
- 	struct spacemit_i2s_dev *i2s = dev_get_drvdata(cpu_dai->dev);
-+	int ret;
- 
- 	if (freq == 0)
- 		return 0;
- 
-+	if (i2s->sysclk_div) {
-+		ret = clk_set_rate(i2s->sysclk_div, freq);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return clk_set_rate(i2s->sysclk, freq);
- }
- 
-@@ -418,6 +436,21 @@ static int spacemit_i2s_probe(struct platform_device *pdev)
- 		return dev_err_probe(i2s->dev, PTR_ERR(i2s->sspa_clk),
- 				     "failed to enable sspa clock\n");
- 
-+	i2s->sysclk_div = devm_clk_get_optional_enabled(i2s->dev, "sysclk_div");
-+	if (IS_ERR(i2s->sysclk_div))
-+		return dev_err_probe(i2s->dev, PTR_ERR(i2s->sysclk_div),
-+				     "failed to enable sysclk_div clock\n");
-+
-+	i2s->c_sysclk = devm_clk_get_optional_enabled(i2s->dev, "c_sysclk");
-+	if (IS_ERR(i2s->c_sysclk))
-+		return dev_err_probe(i2s->dev, PTR_ERR(i2s->c_sysclk),
-+				     "failed to enable c_sysclk clock\n");
-+
-+	i2s->c_bclk = devm_clk_get_optional_enabled(i2s->dev, "c_bclk");
-+	if (IS_ERR(i2s->c_bclk))
-+		return dev_err_probe(i2s->dev, PTR_ERR(i2s->c_bclk),
-+				     "failed to enable c_bclk clock\n");
-+
- 	i2s->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
- 	if (IS_ERR(i2s->base))
- 		return dev_err_probe(i2s->dev, PTR_ERR(i2s->base), "failed to map registers\n");
-@@ -444,6 +477,7 @@ static int spacemit_i2s_probe(struct platform_device *pdev)
- 
- static const struct of_device_id spacemit_i2s_of_match[] = {
- 	{ .compatible = "spacemit,k1-i2s", },
-+	{ .compatible = "spacemit,k3-i2s", },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, spacemit_i2s_of_match);
-@@ -458,4 +492,4 @@ static struct platform_driver spacemit_i2s_driver = {
- module_platform_driver(spacemit_i2s_driver);
- 
- MODULE_LICENSE("GPL");
--MODULE_DESCRIPTION("I2S bus driver for SpacemiT K1 SoC");
-+MODULE_DESCRIPTION("I2S bus driver for SpacemiT K1/K3 SoC");
+This commit adds support for the reset controllers found in the EyeQ7H OLB.
+It introduces three new types of reset domains, defines their respective
+configurations, and updates the wait timings.
 
--- 
-2.54.0
+> diff --git a/drivers/reset/reset-eyeq.c b/drivers/reset/reset-eyeq.c
+> index 1a38579838970..381237d50f061 100644
+> --- a/drivers/reset/reset-eyeq.c
+> +++ b/drivers/reset/reset-eyeq.c
+> @@ -73,6 +74,40 @@
+>   *  9. PMA0	10. PMA1	11. MPC0	12. MPC1
+>   * 13. MPC2	14. MPC3	15. PERIPH
+>   *
+> + * Known resets in EyeQ7H acc domain 0 (type EQR_EYEQ7H_ACRP)
+> + *  1. VMP0	2. XVMP1	3. VMP2		4. VMP3
+> + *  5. MPC0	6. MPC1		7. PMA0		8. PMA1
+> + *
+> + * Known resets in EyeQ7H acc domain 1 (type EQR_EYEQ7H_ACC)
+> + *  1. NCORE0	 2. NCORE1	3. NCORE0_M	4. NCORE1_M
+> + *  5. NCORE_NOC 6. VMP_NOC	7. MPC_NOC	8. PMA_NOC
+> + *
+> + * Known resets in EyeQ7H ddr (type EQR_EYEQ7H_CFG)
+> + *  0. APB	2. DMI		3. DFI		4. PHY_SMS
+> + *  5. CTL_SMS
+> + *
+> + * Known resets in EyeQ7H east (type EQR_EYEQ7H_CFG)
+> + *  0. ISP	2. VEU		3. LBIST
+> + *
+> + * Known resets in EyeQ7H periph (type EQR_EYEQ6H_SARCR)
+> + *  0. gpio	1.EXT TIMER	3.UART		4. SPI
+> + *  5. I2C0	6. I2C1		7.I2C2		8. I2S
 
+[ ... ]
+
+> @@ -558,6 +681,113 @@ static const struct eqr_match_data eqr_eyeq6h_acc_d=
+ata =3D {
+
+[ ... ]
+
+> +static const struct eqr_domain_descriptor eqr_eyeq7h_ddr_domains[] =3D {
+> +	{
+> +		.type =3D EQR_EYEQ7H_CFG,
+> +		.valid_mask =3D 0x1F,
+
+[Severity: High]
+Will this valid_mask reject valid reset requests for the CTL_SMS (offset 5)
+reset?=20
+
+The known resets listed above include APB (0), DMI (2), DFI (3), PHY_SMS (4=
+),
+and CTL_SMS (5). Using 0x1F only covers bits 0 through 4, meaning a request
+for offset 5 will fail the bitmask check in eqr_of_xlate_internal() and
+return -EINVAL.
+
+Should this mask be 0x3D instead?
+
+> +		.offset =3D 0x008,
+> +	},
+> +};
+
+[ ... ]
+
+> +static const struct eqr_domain_descriptor eqr_eyeq7h_per_domains[] =3D {
+> +	{
+> +		.type =3D EQR_EYEQ6H_SARCR,
+> +		.valid_mask =3D 0xFF,
+
+[Severity: High]
+Is this mask calculated based on the total number of items rather than acti=
+ng
+as a bitmask of valid hardware offsets?=20
+
+The known resets for the periph domain include I2S at offset 8, but a mask
+of 0xFF only covers bits 0 through 7. This appears to affect several other
+new domains as well (like east and xnn), where the valid_mask value seems
+to be calculated as (1 << num_resets) - 1 rather than setting the specific
+bits that correspond to the valid offsets.
+
+> +		.offset =3D 0x030,
+> +	},
+> +};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522-clk-eyeq7-=
+v7-0-14ad6c2c5213@bootlin.com?part=3D2
 
