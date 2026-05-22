@@ -1,304 +1,156 @@
-Return-Path: <devicetree+bounces-301854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301850-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IWjMANbEGqDWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301854-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:32:51 +0200
+	id UMtMAWRaEGqDWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301850-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:30:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 686C45B532F
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:32:50 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969EE5B52BB
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:30:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1C66D307B8B1
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:23:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 07AC730719D3
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE373B95E3;
-	Fri, 22 May 2026 13:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VC3wsrGh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5301D3B2D1F;
+	Fri, 22 May 2026 13:20:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF643B4439
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:20:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFBB3B19AB
+	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779456061; cv=none; b=F/edNiFIpN/ZcicSw2IlF/PvJUfzmqEBs/koVhhWAQs/LGCNwnyb/X78sVAvTwyReO0upkotD2fZE3HfX4FAxXsEIAUx/TjoJO4Oa0RdDxPlsbglYzkce84zBi0h93QQ2DGa+Np9rTahbihlRUzY/eNZ1kTz3g37eIKJpqGera8=
+	t=1779456052; cv=none; b=s3Sl5sU+RTOQw5K6d9PhVjkBE2KPWYBuLhYZquWD05vxbcngrBi2wd4scvScClb3GoRGMv4/TVnoeCejVeJYxzyPxyfWniT4pya/mxpf9ftVSHBISZy8rABmBL040kfkMxPkTq6sFOFI2YCT3nGWe8khwfN/S1BDl0l+EdfxwGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779456061; c=relaxed/simple;
-	bh=QlyV8vMGwKoqf7FiKSNytPuaut0AEgdBufjksRwPbzQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aSFNEzA4fOO+YXQA5NBuCJuLG5HkrqWeJhcLK7KQdl4i1Gl5XHQ2KG5aDFLlKPHBBHymj12CfGDh+GKvFufi5x1tMEaN/hE6X0zXH95ecXIBiWnHXgtYZG3tFZwXUbACdYzPqJmYHcvop2NkrpfsA/9X17+c6FAxQEfOuXXWGds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VC3wsrGh; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1779456052; c=relaxed/simple;
+	bh=0PK4bMqXimU9iNRWNX/eX952I3s/oyh75Caj0sz7gdk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jE4iCmF1euGT39J+uTV6ySlw8AlwEROpZMnQCQcRWFIenyDHtnf5a976ATnempDxDz9KTt+OvpA30q6b6ZVmpIKgDWz6gCQxiUs97MuKCfUsfKjR7nehSJsDNMPSx2CSa4SB98cOQR4fP+Tl7Th6OwVu3l85UTrJ/dsZuOUEbsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-490388fd0dbso17904055e9.0
-        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779456055; x=1780060855; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mT2TeAGB5r/QQzUONQHaRVtIxNJg6PZJsffLV09ADoQ=;
-        b=VC3wsrGhw3iUlptwscbm1HqWzrzOb0hMICnEEopgPj+tcKEjdcCh7WwOt6Wa7efdCW
-         T3aY2r8XHr2TtKTcURHLRF6PeFneOeeiJLcdJR6gsJhzly2e30D0/grqQuR4pa/73f/F
-         K5vDorYeH4ogD6zbSYr8LGdLlKdjBriHf4hmvtgnLX9eDYvAdfy0zgrstAhT25dMY2aH
-         HGy1+LYnND7X9rbmkoiDfqyjRVRYHuGbvOskvTyi8Hyd0C5qG/Js201Zo/tDutoc4LzB
-         ywIvLEKcOajqUWhnpRC6vaWW6GGFXs5NVBTgff6YNiKdUvjeXndrUNbHjw5x9zycMht7
-         NpeQ==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-bd8d0e4e341so1008859466b.0
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779456055; x=1780060855;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=mT2TeAGB5r/QQzUONQHaRVtIxNJg6PZJsffLV09ADoQ=;
-        b=ZrAx1K7qug00dvAxL1Gm7tcQ9QDT/AHgY1HCNdK4gE+9x/WwT9KQppjCn29XS0keRx
-         8rOFO8HBnowb1IMuqZzZu97VmPEV6vGRMp0rNr05GSjBd5o4ekjn5dInK11HcAJ6rAnv
-         5cZ2C0bQEDuGzhtYX8Qks5VWZN0Ee0fle4qRgYLAV1Dfu4Z9gWxvkV46LGDaUDQDDM/V
-         HWxzpze4VjZY7AHH65hdSzW/rpEDOarGCtAg/dzwQ6tIeN4j3j6I69sDKH53VNX9Duj9
-         pbs8GJycGzPp/ecndfNSaaU45QtwvuYCqfjjLCOxiOVOyq7KSfrDEOQFCWx33+DMauoO
-         BLWw==
-X-Forwarded-Encrypted: i=1; AFNElJ+uriWX8Ur/Qn1dXMFWZLFwINGAL86E8XG4O64LQoN9Vf2HysbbF5TgkcekA/EEorw1czHDeoZoMtI2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe72FPixYDvqiDtNXDXRNyVdblpqZzjr4l+1UmxjDThIZ3Gkx1
-	gx8FpBHGgli04A2jvaHOvypcE6GaWrkzBVAiyi1U3591s7cNrZCzcATF
-X-Gm-Gg: Acq92OHjsVu0YcM9wJ+1U4DLTQDFeiWLj6NaTo3UlaQAsKiYoys8PSM+GMcgujLEcTO
-	PUiTRfh1IXKltuki17IL2S8M6O4uRPLTGO56PTUf4NqvY4b2zfKRIu5cFvbN8kmt7R5lZaV6i4N
-	So7FOKBqItb9KMuOvFZmfKB6UWTfEq+x1rvjaKRy2bK07NNSjkAeXoCr5jiQMrKgq27GWQKIVQL
-	6JEPHrajCEyaZuCy/Rd2jvO5FBpvzTQJR4ZbpB+5j4ckgQAzqY+mjlXt7CWICIO9BeDtyx/Z5Fw
-	wBabOOLN7HsZJiBj5Sag/wE8BzUZxAOpBqi3s1sr0nN2evHx/ssBxG1gpKNpITMig4KJgM85EY+
-	psVydE+eWhNHHLKlMbD+fREGg7Q65dy17pnIFb0tGuHArxbwXLKmpJvCHzRcDeoWB1tHxL19Ktm
-	fSo2aaDaFtNQaA+6o6j6NdBLS+vdrzDDmMfdlhClTlQA==
-X-Received: by 2002:a05:600c:a402:b0:48f:e6de:1cba with SMTP id 5b1f17b1804b1-490426c5b3emr40882445e9.17.1779456054568;
-        Fri, 22 May 2026 06:20:54 -0700 (PDT)
-Received: from vitor-nb (dsl-113-208.bl27.telepac.pt. [176.79.113.208])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454a0cd5sm52220755e9.10.2026.05.22.06.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 May 2026 06:20:54 -0700 (PDT)
-From: Vitor Soares <ivitro@gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Thierry Reding <thierry.reding@gmail.com>
-Cc: Vitor Soares <vitor.soares@toradex.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 11/11] arm64: dts: ti: k3-am62-verdin: Add Mezzanine with Toradex Display 10.1" LVDS
-Date: Fri, 22 May 2026 14:20:24 +0100
-Message-ID: <20260522132014.226721-24-ivitro@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260522132014.226721-13-ivitro@gmail.com>
-References: <20260522132014.226721-13-ivitro@gmail.com>
+        d=1e100.net; s=20251104; t=1779456049; x=1780060849;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b8+hN45m6EcBjSVmc7/E001s4aXOZE0CXpfrpaEBAfw=;
+        b=OGIAeNFke7Z16C0G+7yE7hQvuWSsHx7p8O2D+wtQf2/DkJw+Jt+vH+hjtKkqpjfpM3
+         J845uyoT9mji7w9h3JY9MDu25NxdaUVLX7fFlbl8NXq541cBSEKv0QNi8260osIDM2Xv
+         Am2oOTC7JHZF+3pc4TSxlTQmYkKb/lS4KfgGqBpf/Pv7aqLdv00h/NvI8nEi6M27SVfa
+         pmkT4lXYSwAx2l7Na0NZ9Agx0WukjVqagjC/C55nlRQQCAwK69cvVwa90X/Fx6NpvOHI
+         duzEchev7yzKYTZvAXLuSHdTxFPjmzue3Jclkpz7KDAwJ+DkOYFXX9kjq3060RJwTMhC
+         GgbA==
+X-Forwarded-Encrypted: i=1; AFNElJ9KdJ2f6w8+XNDDB9aTSK9A0K1B/WqXxt8Cb0cbUuqWp/rCVIs5q41NswmaHRlQGhEKIVP0klp4oh/k@vger.kernel.org
+X-Gm-Message-State: AOJu0YyU9DAn0P7TBbJxAOKcIylCSSl3+4jmzUW6UnkfeUzUWjEogRkM
+	tDLF84Gl4pu7zxWrH6s60iaZ0gYw4smjdStDg78tnwWPem7MS0eWkZ/mmj/rHpSmTgk=
+X-Gm-Gg: Acq92OEw2Vop0TG84almhsbVxI0+pbfmGgI68442LyCqe0O/I2i8XK8cybf3EGijWTq
+	vjbt7+IEFH1YJ/3EsvAHAGNIQhbxXmFBQi19+3Iv1UrYbCGrUyEday61TvO7heaga2s6WdAEtbE
+	0QbHmnm1HnYjsKnVRtb7A6rmWNUFm3StIXyQjR9Q3fmpokJOxBOlbds22mrglzmIO+lKpbbQxPF
+	XaWlV+ljdw/tG6ugEIZI9r3ZK9naaIhP3771GymYXox8r3racUsGRzOjobO/1ZAKB9Wn2RteSkB
+	vY0NxoRglF/+pquEOR+mcNElr9tl5FVfQFnt87FDC42nxpVptojrBRfr29tFI9lpcDlb/r1mZ4F
+	NAHGlxeIImGOno3JOJ7zAZhLK7RTVxU28no934DUTamK0wo+pvSuFo5+4HCiiSeHV6t0tc3O+5z
+	tMG1WfJRIOgdmE5zMMo/XsXURN9c4LdaLFVMsWV6+FBvVZ6fkvQNE/OKF+B706j1I3fvrfHgM=
+X-Received: by 2002:a17:907:a68a:b0:bce:267f:19cf with SMTP id a640c23a62f3a-bdd236004a7mr235523166b.12.1779456049010;
+        Fri, 22 May 2026 06:20:49 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com. [209.85.208.42])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bddc69d716dsm53003066b.62.2026.05.22.06.20.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 May 2026 06:20:48 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-68707d88626so6999410a12.0
+        for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:20:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+7Y3hyVTyZ2D0mNai4GENKZqBuKc5KCStSpna8wqUhCEQLYpQMRXg5G7BspsOVn6plkR5A/D7ibFmI@vger.kernel.org
+X-Received: by 2002:a05:6402:2111:b0:683:93a2:dfb9 with SMTP id
+ 4fb4d7f45d1cf-6889c437481mr1999990a12.1.1779456047876; Fri, 22 May 2026
+ 06:20:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260505034325.167797-1-marek.vasut+renesas@mailbox.org> <20260505034325.167797-3-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260505034325.167797-3-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 22 May 2026 15:20:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXM9+4Zhz1-jOu14rwNLvfY5zvoO5Tz2AN0VaCzNMqTdg@mail.gmail.com>
+X-Gm-Features: AVHnY4L_KbB8gzS9scFyMNemawa__tn8rl0sAqed-jsnkmOH1xrDTQxnThDhUyo
+Message-ID: <CAMuHMdXM9+4Zhz1-jOu14rwNLvfY5zvoO5Tz2AN0VaCzNMqTdg@mail.gmail.com>
+Subject: Re: [PATCH 02/11] arm64: dts: renesas: ulcb: Specify ethernet PHY
+ reset timings
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301854-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[ideasonboard.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ti.com,bp.renesas.com];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-301850-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.979];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 686C45B532F
+	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 969EE5B52BB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Vitor Soares <vitor.soares@toradex.com>
+On Tue, 5 May 2026 at 05:43, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> The KSZ9031RNX reference manual [1] DS00002096H page 60 FIGURE 7-7:
+> POWER-UP/POWER-DOWN/RESET TIMING Note 2 states, that after the
+> de-assertion of reset, wait a minimum of 100 us before starting
+> programming on the MIIM (MDC/MDIO) interface. Set DT property
+> reset-deassert-us to three times that, 300 us, to provide ample
+> time between reset deassertion and MDIO access.
+>
+> The KSZ9031RNX reference manual [1] DS00002096H page 60 TABLE 7-7:
+> POWER-UP/POWER-DOWN/RESET TIMING PARAMETERS row tSR Stable supply
+> voltages to de-assertion of reset is at minimum 10 ms. Set DT
+> property reset-assert-us to 10ms because the KSZ9031RNX RM does
+> not explicitly spell out how long the reset has to be asserted,
+> but this at least covers the worst case scenario.
+>
+> [1] https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/KSZ9031MNX-Data-Sheet-DS00002096.pdf
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Add a device tree overlay enabling the Toradex Capacitive Touch Display
-10.1" LVDS on the Verdin Development Board with Verdin AM62 Mezzanine
-expansion board. The panel connects via the AM62 OLDI0 on the Mezzanine
-LVDS interface (J10). The panel is a LogicTechno LT170410-2WHC 10.1" WXGA
-IPS LCD and the touch input is provided by an Atmel MaxTouch capacitive
-touch controller.
+Modulo the document references:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.2.
 
-Link: https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
-Assisted-by: Claude:claude-sonnet-4.6
-Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
----
-Changes in v2:
-- Use panel-simple compatible form
+Gr{oetje,eeting}s,
 
- arch/arm64/boot/dts/ti/Makefile               |  5 +
- ...mezzanine-panel-cap-touch-10inch-lvds.dtso | 97 +++++++++++++++++++
- 2 files changed, 102 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso
+                        Geert
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 90bb3b0522d3..371f9a043fe5 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -30,6 +30,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-tqma62xx-mba62xx.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dev-mezzanine-can.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dev-nau8822-btl.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dsi-to-hdmi.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtbo
-@@ -231,6 +232,9 @@ k3-am625-verdin-wifi-dev-dsi-to-lvds-panel-cap-touch-10inch-dtbs := \
- 	k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtbo
- k3-am625-verdin-wifi-dev-mezzanine-can-dtbs := k3-am625-verdin-wifi-dev.dtb \
- 	k3-am625-verdin-dev-mezzanine-can.dtbo
-+k3-am625-verdin-wifi-dev-mezzanine-panel-cap-touch-10inch-lvds-dtbs := \
-+	k3-am625-verdin-wifi-dev.dtb \
-+	k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtbo
- k3-am625-verdin-wifi-dev-nau8822-btl-dtbs := k3-am625-verdin-wifi-dev.dtb \
- 	k3-am625-verdin-dev-nau8822-btl.dtbo
- k3-am625-verdin-wifi-dev-ov5640-24mhz-dtbs := k3-am625-verdin-wifi-dev.dtb \
-@@ -348,6 +352,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am625-sk-hdmi-audio.dtb \
- 	k3-am625-verdin-wifi-dev-dsi-to-lvds-panel-cap-touch-10inch.dtb \
- 	k3-am625-verdin-wifi-dev-mezzanine-can.dtb \
-+	k3-am625-verdin-wifi-dev-mezzanine-panel-cap-touch-10inch-lvds.dtb \
- 	k3-am625-verdin-wifi-dev-nau8822-btl.dtb \
- 	k3-am625-verdin-wifi-dev-ov5640-24mhz.dtb \
- 	k3-am625-verdin-wifi-dev-ov5640.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso b/arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso
-new file mode 100644
-index 000000000000..f15231ef68f9
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex Capacitive Touch Display 10.1" LVDS on the Verdin AM62 Mezzanine
-+ * LVDS interface (J10), used with the Verdin Development Board.
-+ *
-+ * https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
-+ * https://www.toradex.com/accessories/capacitive-touch-display-10.1-inch-lvds
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+&{/} {
-+	backlight_pwm2: backlight-pwm2 {
-+		compatible = "pwm-backlight";
-+		brightness-levels = <0 45 63 88 119 158 203 255>;
-+		default-brightness-level = <4>;
-+		/* Verdin GPIO_4 (SODIMM 212) - LVDS_BKL_EN */
-+		enable-gpios = <&mcu_gpio0 4 GPIO_ACTIVE_HIGH>;
-+		/* Verdin PWM_2 (SODIMM 16) - LVDS_PWM */
-+		pwms = <&epwm0 1 6666667 PWM_POLARITY_INVERTED>;
-+	};
-+
-+	panel-lvds-native {
-+		compatible = "logictechno,lt170410-2whc";
-+		backlight = <&backlight_pwm2>;
-+		power-supply = <&reg_3v3_lvds_native>;
-+
-+		port {
-+			panel_lvds_native_in: endpoint {
-+				remote-endpoint = <&oldi0_out>;
-+			};
-+		};
-+	};
-+
-+	reg_3v3_lvds_native: regulator-3v3-lvds-native {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+	};
-+};
-+
-+&dss {
-+	status = "okay";
-+};
-+
-+&dss_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* DSS VP1: internal DPI output to OLDIx */
-+	port@0 {
-+		reg = <0>;
-+
-+		dss0_out: endpoint {
-+			remote-endpoint = <&oldi0_in>;
-+		};
-+	};
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&main_i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touch@4a {
-+		compatible = "atmel,maxtouch";
-+		reg = <0x4a>;
-+		/* Verdin GPIO_3 (SODIMM 210) - LVDS_TOUCH_INT# */
-+		interrupt-parent = <&mcu_gpio0>;
-+		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+		/* Verdin GPIO_2 (SODIMM 208) - LVDS_TOUCH_RST# */
-+		reset-gpios = <&mcu_gpio0 2 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&oldi0 {
-+	status = "okay";
-+};
-+
-+&oldi0_port0 {
-+	oldi0_in: endpoint {
-+		remote-endpoint = <&dss0_out>;
-+	};
-+};
-+
-+&oldi0_port1 {
-+	oldi0_out: endpoint {
-+		remote-endpoint = <&panel_lvds_native_in>;
-+	};
-+};
 -- 
-2.54.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
