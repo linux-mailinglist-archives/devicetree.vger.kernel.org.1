@@ -1,244 +1,137 @@
-Return-Path: <devicetree+bounces-301558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oC7ZFs7zD2qXRwYAu9opvQ
-	(envelope-from <devicetree+bounces-301558-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:12:30 +0200
+	id 6PlqJoTyD2o2RwYAu9opvQ
+	(envelope-from <devicetree+bounces-301551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:07:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F4C5AF682
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:12:29 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE675AF5A9
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 08:06:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42A19307B42F
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:07:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1067F301427D
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 06:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666133A48F4;
-	Fri, 22 May 2026 06:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F313235E921;
+	Fri, 22 May 2026 06:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bE3Djwvu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bTaHUPD5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3485314D1F
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 06:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2F0119CD1D;
+	Fri, 22 May 2026 06:06:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779430071; cv=none; b=eRFtmwLQM60uvGPNVXKzFET5++qHSLMVVcjZNUV0MfOUp/WEcA9NK+fVrdh94vAFtSp79nizpqfwusNhbQbz6bB+iR5vrtsCFgFbdw7dAHTuAIu5arBuWuE6r5lnPglS4SRqd9BvA2YNLnzkwo6Fu80fvEDpg1GFpRMXUJeLHcM=
+	t=1779430017; cv=none; b=cZojH0zHTD/jSAvHFGM58/TifgzPtqyDHIhSnVArH5b7RlKgkVAwA/PBJVt62oJprwCC8GootrIfAoABJ4R37VaNHcP4cN8ABfe/bhc9YHUwLE3k31SDX6QV6a9NU2s0znVu3QkjJLP69xDg0u1SSXVQYbdPT7PtykPEVx62XvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779430071; c=relaxed/simple;
-	bh=mrDDTyHidK7gIb+A0+rJo9vmv0kzw3uLhyTLM/pl1LA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=f8pToFhFY/0tFkDJ8vyzkSwLCcJv2L17WhuN02m1otqThNjToiFk52S8wx2epmumjAySu9TpuuSQ6GzQlMy0pQ4EVkuwyTwqrqSH/L5qUThflK64jId4a19rH6dZZ9FVuVoWMtWtM4il9UZ5MrA5vN8XAbpiFFiArbD8kzLa3eI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bE3Djwvu; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-36a3dd2e66eso1184710a91.0
-        for <devicetree@vger.kernel.org>; Thu, 21 May 2026 23:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779430069; x=1780034869; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JFcHoXp5EtCVviQjlRg/5s6sU9USys2y1GAqhGol8hg=;
-        b=bE3Djwvuzd64qFyD5AdfgY5XUMPfCSFxpgObAEQG+NXSGimDhVYwic8zFzy0eI77dy
-         /HPdgEgw27Gl0+eqeNWveeG1AkWQp7ThgexUxPLXQtRElPIe6JK0xqyqiUxNlARRBEwG
-         S2saozu2FLPzPgPl+li+l2oKeOX5hep8gVyHJKSDh4W0CA6z3QhFBcv57rkSEckQ16Cz
-         l9t7PmuBJriObcYkKu34eTijusJBkkuACzTcrWq2AsZjXbejyXdzxFi+pG+HxYZQAy54
-         PhvOp1mKk2w5PBT9xomZm7MbrRRYZAuyh9H9jd6wt+mYzqc2nHrGftttUKFOETRP5Oqg
-         6ozA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779430069; x=1780034869;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JFcHoXp5EtCVviQjlRg/5s6sU9USys2y1GAqhGol8hg=;
-        b=Dkk7Am5/cn8uMDPbVWHv0wvukH0Lq0JZDHf1gS3Q+KhhLgOymB0tPOHOEkQqLn4zKM
-         nzjYSIKIfYS1+9QweeR2Z8Udxp700HWPisVcqq0PXSGU+KHk2tn9oasnh69JyjQxz+wZ
-         Fc9l+7nhglofDGscfY5zqpAadidVkN75lM3nTeZRaVo5U/gVSUuzE4cdcJcoXB6XhWKE
-         HmJLMVyWpWWBeKMBQrilc9FafR6Ijfb52VemB4Oeu7DqDtroRyzhBTx8zQO6BMg1hEay
-         RYWPZe4lvS7yqyyOKgAl4ioJGKmUPxmQhVrLtc0dBitATtphqCQGrGgYLuy75PRoL2Bu
-         nrRg==
-X-Forwarded-Encrypted: i=1; AFNElJ8TqIHCygEbxYKhhOIeaicTKz6rcli+HizQyEnmP0EFA+s0b9y/NzJiFxh0RnjXMiVAclLBqUDYfADu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYItVqKnr4pK775RIfwft5kAFsKQ5C47XUnAk2ha+YPO3PG3B8
-	OMW+eA8TmQcFh9LzgpbfU6szVEkLHL7woSrg9rJoqoc1Ybn7t3FppJ2s
-X-Gm-Gg: Acq92OGGkPulg3jAqgetQB/HhcHIxl0xDR/QRp8XENvpSzVcyBkfcck3phnYCYZRRKb
-	hW0XbNBUhAg58YXaI5r8sSMdRvLBsedQVW7XU69mTgc+kYz/xxytUdpV/qyb1ZulpLZ9z16Br17
-	7XzBY7iegeTYFUo/oA77Gx24NQZvNTuTQCb5gg0AJ57uq5zEqaO78y7nZEw1Jb2r/+F4kCbNeuj
-	96LSJ43FB+cevR+lVZKDpkbgQf/HJlzORyXbu30kaRSxYNq6BDqpkedci8rnZ/bKYZQRPPGbQcj
-	+DEtXrYZSxAho2C4cJ+mSEsqH/fkMruTt0JmAzVPwfwtwxDufB7PSEoPhnsP6Qdxo7dC88KmDdm
-	CpNYctZ0eYp5vbV7wFyzi4YPCDzk8sMTN/7ERcbTJwJpUWffW1jG0OuCbcRDTlsKUtSSVoEUv1s
-	cFdmmMHuJ2AI/YD532+3Rm11zwFXxTl0ayiF5tX/uS+pe3SVlZCI87qIs=
-X-Received: by 2002:a17:90b:2246:b0:364:edd2:812 with SMTP id 98e67ed59e1d1-36a6789ac27mr2255781a91.25.1779430068873;
-        Thu, 21 May 2026 23:07:48 -0700 (PDT)
-Received: from radxa (122-58-25-162-adsl.sparkbb.co.nz. [122.58.25.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a7212aa06sm428572a91.3.2026.05.21.23.07.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 23:07:48 -0700 (PDT)
-From: Graham O'Connor <graham.oconnor@gmail.com>
-To: linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robin.clark@oss.qualcomm.com,
-	lumag@kernel.org,
-	abhinav.kumar@linux.dev,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Graham O'Connor <graham.oconnor@gmail.com>
-Subject: [PATCH 6/6] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable USB3 SuperSpeed
-Date: Fri, 22 May 2026 18:06:45 +1200
-Message-ID: <20260522060645.4399-7-graham.oconnor@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260522060645.4399-1-graham.oconnor@gmail.com>
-References: <20260522060645.4399-1-graham.oconnor@gmail.com>
+	s=arc-20240116; t=1779430017; c=relaxed/simple;
+	bh=62plWfu9YLO/1j5mOJl2kBA3xulZRGnUXzKNwubtZ/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qyvH4T5k+gmeNg+QqH3lWSQ/bRQ+J6piOoDsiHZgtrOq2/+S8q7Q0uETOlm2oAGU1elnlQRXzcqmE2LODj5XldLlL71WIPXgtfkOd+6IOj+EWB8P5YXZLbSCSHFx/22jzA/P9qmNzbzfLcn81Fkq2wN5Gi2ZnvaQLu0DpFASWMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTaHUPD5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F241F000E9;
+	Fri, 22 May 2026 06:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779430016;
+	bh=Zv+bq8Y4125ZUtVQWA5vR0XBl99zeMI54gkrK9c5vNE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=bTaHUPD5OkGxNjL9uDPG4wGMmKtXLO5mPQJ/MqDVK5784jUhIG9jhLGixf0M7782/
+	 xHdlQaLig7FdM8Ht8T9tEHIZRzxp74JaRC7kKg48+RQ7lpqiq7pMnddYb8fyhP7Vj2
+	 BfZUktHANeYE5bMliEjICrkfRZMMGeM3xlKRCUDPMx3ZwybizsnxkJ6A4wjXGmztFg
+	 /t1mgbdSx1cVLlinmtNaMTqk5dumtUrGw3ZRyfNbm/CbxVCjyTamvaTiQhx15KXRUG
+	 mm/WU2adz4GbLOYZph/VQTLmuURBDMePgoZPN1CtvjNIbMTHGZjoIWxkbIhIpFOJof
+	 tRmum7N4OWKNg==
+Date: Fri, 22 May 2026 08:06:54 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v9 2/5] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+Message-ID: <20260522-obedient-lovely-kingfisher-2deda1@quoll>
+References: <20260521153645.7028-1-ansuelsmth@gmail.com>
+ <20260521153645.7028-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260521153645.7028-3-ansuelsmth@gmail.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linux.dev,lists.freedesktop.org,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301558-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[grahamoconnor@gmail.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-301551-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email]
-X-Rspamd-Queue-Id: B5F4C5AF682
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
+X-Rspamd-Queue-Id: 2FE675AF5A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the USB3-A port by configuring the USB HSPHY with required
-regulator supplies and the QMP combo PHY with correct lane assignments
-for this fixed USB-A connector.
+On Thu, May 21, 2026 at 05:35:53PM +0200, Christian Marangi wrote:
+> Add documentation for Airoha AN7581 USB PHY that describe the USB PHY
+> for the USB controller.
+> 
+> Airoha AN7581 SoC support a maximum of 2 USB port. The USB 2.0 mode is
+> always supported. The USB 3.0 mode is optional and depends on the Serdes
+> mode currently configured on the system for the relevant USB port.
+> 
+> To correctly calibrate, the USB 2.0 port require correct value in
+> "airoha,usb2-monitor-clk-sel" property. Both the 2 USB 2.0 port permit
+> selecting one of the 4 monitor clock for calibration (internal clock not
+> exposed to the system) but each port have only one of the 4 actually
+> connected in HW hence the correct value needs to be specified in DT
+> based on board and the physical port. Normally it's monitor clock 1 for
+> USB1 and monitor clock 2 for USB2.
+> 
+> To correctly setup the Serdes mode attached to the USB 3.0 mode, a phys
+> property is required with the phandle pointing to the correct Serdes port
+> provided by the SCU node. Providing the phys property is optional if USB
+> 3.0 is not used.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/phy/airoha,an7581-usb-phy.yaml   | 62 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
 
-The QMP combo PHY shares lanes between DisplayPort and USB3 SuperSpeed.
-Configure port@0 with two endpoints: endpoint@0 for DP output (lanes
-0-1) connected to the HDMI bridge, and endpoint@1 for USB3 SS output
-(lanes 2-3). Remove the orientation-switch property as this is a fixed
-USB-A connector with no orientation switching.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Add a usb-a-connector node wiring the HS and SS paths to the DWC3
-controller and QMP PHY respectively. Set dr_mode to host as this is
-a fixed host-only USB-A port.
-
-Tested on Radxa Dragon Q6A (QCS6490) with USB3 SuperSpeed confirmed
-via lsusb showing 5000M link speed.
-
-Signed-off-by: Graham O'Connor <graham.oconnor@gmail.com>
----
- .../dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 71 +++++++++++++++++++
- 1 file changed, 71 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-index e8ad6e666..c16c3664e 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-@@ -1198,3 +1198,74 @@ &mdss_edp {
- &mdss_edp_phy {
- 	status = "disabled";
- };
-+
-+&usb_1_hsphy {
-+	vdda-pll-supply = <&vreg_l10c_0p88>;
-+	vdda18-supply = <&vreg_l1c_1p8>;
-+	vdda33-supply = <&vreg_l2b_3p072>;
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	vdda-phy-supply = <&vreg_l6b_1p2>;
-+	vdda-pll-supply = <&vreg_l1b_0p912>;
-+	/delete-property/ orientation-switch;
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/delete-node/ endpoint;
-+
-+			/* DP output - connected to hdmi-bridge */
-+			usb_dp_qmpphy_out_dp: endpoint@0 {
-+				reg = <0>;
-+				data-lanes = <0 1>;
-+				remote-endpoint = <&hdmi_bridge_in>;
-+			};
-+
-+			/* USB3 SS output */
-+			usb_dp_qmpphy_out_usb: endpoint@1 {
-+				reg = <1>;
-+				data-lanes = <2 3>;
-+				remote-endpoint = <&usb3_con_ss_in>;
-+			};
-+		};
-+	};
-+};
-+
-+/ {
-+	usb3_con: connector {
-+		compatible = "usb-a-connector";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				usb3_con_hs_in: endpoint {
-+					remote-endpoint = <&usb_1_dwc3_hs>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				usb3_con_ss_in: endpoint {
-+					remote-endpoint = <&usb_dp_qmpphy_out_usb>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&usb3_con_hs_in>;
-+};
-+
-+&usb_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
--- 
-2.53.0
+Best regards,
+Krzysztof
 
 
