@@ -1,171 +1,158 @@
-Return-Path: <devicetree+bounces-301822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-301824-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIaGMrZZEGqDWgYAu9opvQ
-	(envelope-from <devicetree+bounces-301822-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:27:18 +0200
+	id uFAVBa5YEGocWgYAu9opvQ
+	(envelope-from <devicetree+bounces-301824-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:22:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF6EA5B5244
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:27:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B675B512C
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 15:22:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 85DDE305B17F
-	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:00:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3028530A9A7E
+	for <lists+devicetree@lfdr.de>; Fri, 22 May 2026 13:01:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9646D38B122;
-	Fri, 22 May 2026 13:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60C8394781;
+	Fri, 22 May 2026 13:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L4lu9Pq3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T5nGxVmZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D953822A1
-	for <devicetree@vger.kernel.org>; Fri, 22 May 2026 13:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03C7388893;
+	Fri, 22 May 2026 13:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779454820; cv=none; b=RGYgMccB5LsaEPV7XaDWyWAN0IVJEsfYmdciX3lRg/oNDzYR9O9bkspA/kN+pUdnz4VTrK0AXgsHGw/0NbmfcjkQ8AwVTuVEuKQj0GoWgxjE8q7xRX98FnObqWAQk/ORCn4r4W6qGVD+hG75bh1HdT9BW79ciC7XL6iCesdjhVE=
+	t=1779454914; cv=none; b=jbmaclz3C9Crs7yuxffjRUqcojUY/OQGv+R0tuSuQ13JIfZBtUgz2DD/GwCtBGCOEnh+aARdgDlBDtUrEu8IMg7L8YUKNpqFaf8R0zFEdYNQpZz2GHRriDJqZu52jKqdYFa6wn1KrzhnPrsWAMibs8fRzogA9bvd5HfiXdYYiqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779454820; c=relaxed/simple;
-	bh=QaAWdugz0rWgwrfBpQGnEszyijoTQid2T7rN2cjWOqc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=YVGrgPtGJT5oxqYFGN2j/59w6SvV3s0S7FjkhZzNlEXiDOOJw72G+0CRknl5osuKl49FTwXzc4GVWVpaECzjVSqShuR0/a25933b78GUpAg11LWAfoTfuAu1B4MY9sk4qfEQeAJ0bSekWAAtxI44VjU4ku+LZIqwDlU4Cl9vRHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L4lu9Pq3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C999A1F000E9;
-	Fri, 22 May 2026 13:00:18 +0000 (UTC)
+	s=arc-20240116; t=1779454914; c=relaxed/simple;
+	bh=Es7Vb9ABTUmgzzmnqEEGOu7GP+RMFAjOpM00ciITgFE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h9g29ZaBcKOVdl8RkOWQcpOy0hPiHYyczMYl21Sm4TtBllanX4ejpk/LrbILWbDZ3fhe6jK/JaZWpXGiWQA5h8qS2++CTP3ESegQLuHnCb6RhDkidWcCX2L81sGQpco9zGxiFuzyNCNzm9rjiZtbrItL30B6OKA0FNfM4ESZxok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T5nGxVmZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCEC11F000E9;
+	Fri, 22 May 2026 13:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779454819;
-	bh=UKbHxJPb+Z3Pi1GoEBseLiaeLdTgHra0YjGjV7NQbnY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=L4lu9Pq3ehhVuVSwfFB/J4d9nbC//s/OThmAho4fuooEJOXmDuLpnM+sYjTh+AJFC
-	 3Pir7AC0kZE4DAjQDd+GBdVCI9OZxydJVkGGedciuH3nfZsstswCLhcCOX+Nt3nf9e
-	 xAVpEK5ebImmFAqFJQ+QOHxbh4uf1hX7Jg3SgFoX5IjZ7SxeF2YP5UYPSu7k15tjV/
-	 EWvqHSmmEkCE52yHhNmb5nFC86YGXbsTh2gFknzUyObKXeNkIdAwuHmzrQphnTR17D
-	 iSvtemZ5W8jHaQ95JaGrcRPAF6vlhEValfAl/d+AJMFCnDuDl62DwGfHupgVWbMT3s
-	 N6xa8BEbF0f8w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: display: panel: document the
- Renesas R63419 based dual-DSI video mode Display Panels
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com, robh@kernel.org
-In-Reply-To: <20260522-topic-sm8650-ayaneo-pocket-s2-r63419-v6-1-16edddda9951@linaro.org>
-References: <20260522-topic-sm8650-ayaneo-pocket-s2-r63419-v6-1-16edddda9951@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 22 May 2026 13:00:18 +0000
-Message-Id: <20260522130018.C999A1F000E9@smtp.kernel.org>
+	s=k20260515; t=1779454913;
+	bh=iAvcOQlHfItm6RV8kDuEo5a7+X4i437AKkSh6Oa6+5Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=T5nGxVmZhnWsSDibU0hWrbUOcLh39IfcYmSPjEoMhdS+SGEYRzQhUeKOomYjfeJX1
+	 hKbaSjobLHiKV6lzFL/6LClX7PZoKtSbp4CLMe/yvMVzILMdiNUwYPY1yUfXiq/7qh
+	 PB/8skuf3e6Y112NpVRICUhZ1PW0vmIGVzafRBwRStTg+xuLt4URx/FALzHXATUp2r
+	 2DNCwHw1T+Ke++b9/50j185f4KvZVceitez4wpPnjLdHonbAdu+AGNdmUvEod/qtSq
+	 c6LdcUpIgBoELj6Q/Fa5+sh++jHC+lyR/MzARpNY9H+8eSRNfUPjVxxlYeEGKp57MG
+	 8T8nX2rZhgyBQ==
+Message-ID: <f2ffcf92-34b7-40e8-877c-669c2d320506@kernel.org>
+Date: Fri, 22 May 2026 16:01:48 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: geert+renesas@glider.be, linusw@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
+ claudiu.beznea@tuxon.dev, linux-renesas-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20260522102251.1723392-1-claudiu.beznea@kernel.org>
+ <20260522102251.1723392-10-claudiu.beznea@kernel.org>
+ <ahBMKWrKQDko3cG8@shikoro>
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@kernel.org>
+In-Reply-To: <ahBMKWrKQDko3cG8@shikoro>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-301822-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,tuxon.dev,vger.kernel.org,bp.renesas.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-301824-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: BF6EA5B5244
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 80B675B512C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Incorrect use of `additionalProperties: false` with a `$ref` to a c=
-ommon schema, causing validation failures for standard properties.
---
+Hi, Wolfram,
 
-commit d5d9023fc9149b85c30a89eb9e658f1d3b246c85
-Author: Neil Armstrong <neil.armstrong@linaro.org>
+On 5/22/26 15:29, Wolfram Sang wrote:
+> Hi Claudiu,
+> 
+>> +	i3c_pins: i3c {
+>> +		pins = "I3C_SDA", "I3C_SCL";
+>> +#if SW_CONFIG4 == SW_ON
+>> +		power-source = <1200>;
+>> +#else
+>> +		power-source = <1800>;
+>> +#endif
+>> +		input-enable;
+>> +		renesas,i3c-standby = <0>;
+>> +	};
+>> +
+>> +	i3c_standby_pins: i3c-standby {
+>> +		pins = "I3C_SDA", "I3C_SCL";
+>> +#if SW_CONFIG4 == SW_ON
+>> +		power-source = <1200>;
+>> +#else
+>> +		power-source = <1800>;
+>> +#endif
+>> +		renesas,i3c-standby = <1>;
+>> +	};
+> 
+> That doesn't look like HW description to me because the pins are the
+> same for regular and standby mode.
 
-dt-bindings: display: panel: document the Renesas R63419 based dual-DSI vid=
-eo mode Display Panels
+Yes, same pins, different states. Isn't that the role of different pinctrl 
+entries in DT for the same node? E.g., for SHDI we use the same approach, same 
+pins but different states. Bellow is an example from RZ/G3S but same approach is 
+used for other Renesas SoCs as well:
 
-This commit documents the Renesas R63419 generic display driver IC used to
-control dual-DSI LCD panels. It introduces a new YAML binding schema for
-devices such as the Ayaneo gaming handheld panels.
+https://elixir.bootlin.com/linux/v7.1-rc4/source/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi#L305
 
-> diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r634=
-19.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r63419.ya=
-ml
-> new file mode 100644
-> index 0000000000000..adfdd2c300a35
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/renesas,r63419.yaml
-[ ... ]
-> +allOf:
-> +  - $ref: panel-common-dual.yaml#
-> +
-> +properties:
-> +  compatible:
-[ ... ]
-> +  vdd-supply: true
-> +  vddio-supply: true
-> +  vsp-supply: true
-> +  vsn-supply: true
-> +  vci-supply: true
-> +
-> +  backlight: true
-> +  reset-gpios: true
-> +  rotation: true
-> +  ports: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +  - vddio-supply
-> +  - vsp-supply
-> +  - vsn-supply
-> +  - vci-supply
-> +  - backlight
-> +  - reset-gpios
-> +  - ports
-> +
-> +additionalProperties: false
+https://elixir.bootlin.com/linux/v7.1-rc4/source/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi#L321
 
-[Severity: Low]
-Should unevaluatedProperties: false be used here instead of
-additionalProperties: false?
+> Their state is changed when powering
+> down, but that should not need DT encoding, I'd think. The driver should
+> know what to do, or?
 
-Because this schema includes a reference to panel-common-dual.yaml in an
-allOf block, additionalProperties only considers the properties explicitly
-declared in this local file. This requires redundantly redeclaring standard
-properties like backlight, reset-gpios, rotation, and ports to prevent
-validation errors during dtbs_check.
+Through different pinctrl states different pinctrl settings are applied in the 
+pin controller HW by calling well known pinctrl APIs from the consumer drivers 
+(e.g. pinctrl_pm_select_sleep_state() in case of the I3C driver as proposed in [1]).
 
-Using unevaluatedProperties: false would properly evaluate against the
-referenced schemas and allow removing the redundant property declarations.
+Is there another way the I3C driver (or any pinctrl driver consumer) could apply 
+pinctrl settings?
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522-topic-sm86=
-50-ayaneo-pocket-s2-r63419-v6-0-16edddda9951@linaro.org?part=3D1
+[1] https://lore.kernel.org/all/20260522101815.1722909-18-claudiu.beznea@kernel.org
+
+-- 
+Thank you,
+Claudiu
+
 
