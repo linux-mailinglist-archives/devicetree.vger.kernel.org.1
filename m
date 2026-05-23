@@ -1,109 +1,131 @@
-Return-Path: <devicetree+bounces-302062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302064-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aF9XCRQNEWpJgwYAu9opvQ
-	(envelope-from <devicetree+bounces-302062-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 04:12:36 +0200
+	id sFcZL68PEWrDgwYAu9opvQ
+	(envelope-from <devicetree+bounces-302064-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 04:23:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0CBD5BC7EC
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 04:12:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257D05BC9C7
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 04:23:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B2363017248
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 02:04:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40606301BA56
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 02:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE2D2F616A;
-	Sat, 23 May 2026 02:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA362D23A6;
+	Sat, 23 May 2026 02:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n7t6sf+F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KmNN19rl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219A82F9D89;
-	Sat, 23 May 2026 02:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C481282F14;
+	Sat, 23 May 2026 02:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779501872; cv=none; b=A8XuX/4UPh9n3vD4nkEN+dJT7ZqIx2PCnPBp6BT1/v5qqT7OgPe9rZGnLmb/Z2HY7bXFyRR06EKLzd7IP0T7+WeHb0lw57+zjw9PAFR1BUXfKshvamXypGfaVoaXOlqM3pXX5TjzlP5gNEFulUtH9r6+VVyN0qJf44vGpAaj7HY=
+	t=1779502811; cv=none; b=NkH8rm1HVuwstL4oY/bWJIDxKBC6hlsfrV+47VD9U6Rw82Q8+2oYkNFo9PpZ6e4iG71499ujY755ukVDrgEbJVG2OlrjH3IzRa5E+vdAxjbTcf70hHCWq7XWZdyPoq0UsrRjlstah9bYk6Nq3UuxEEhXzbZrzMKrsrY5swAm8x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779501872; c=relaxed/simple;
-	bh=fGi9yGlZ0q5byT9au7IMWauGYrYhzbWbLQITkJV6E7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=txT+OlAL0Sqvg31usy3zZBy7AmcE+VsPCfJFL6zzropTJdgRarz/p0iw+MTwGtd+F21AtpeA//YH4CvmDDrQT2+e8+xTE5lmTYPCkfjFdRM5gtY3pu0A5f9lH2SQBvny3LMTR0JjGSiJLXLJNmwyhv+D5V+fSTG8xbeeGwR1I6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n7t6sf+F; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E24E1F000E9;
-	Sat, 23 May 2026 02:04:18 +0000 (UTC)
+	s=arc-20240116; t=1779502811; c=relaxed/simple;
+	bh=0f9diajCf0c6ZXQ22Ho6P7ZZtuJmw3d7sOWic9hlJf4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QVJdnn7ARdWc4tz7hPxSsilXKDKRntgcYVlP2dhy4zPraSctBht0vU/9wVy597UhH3XWOn11jqs5qEg+EYrdbQia3YPzSdR0E2XSkCCBpCH4csHOiYmvPPxHvbzRsE7Z63i09h7d77C8UIeMNw0bKPCV6koF//M4I4Ptk+GnqZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KmNN19rl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 550C81F000E9;
+	Sat, 23 May 2026 02:20:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779501859;
-	bh=fGi9yGlZ0q5byT9au7IMWauGYrYhzbWbLQITkJV6E7w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=n7t6sf+FE3vP8YoQyqI6cQjY5Xwhy43e2uYq3BJAYWWXOGE6+nwl9RpZ4/d11+jg0
-	 oHM7ek+V4xerdzyfgCeYhSONxgfJDY6c/d6pS8re2du9BKaZ5c+mopSUlfUVwqyNoB
-	 DLuutO7wOMbiLEjXQNxt0ANC/droPABZD/gIkqJjCl1l/7XSDXwguZJtPRbboGcmxj
-	 VFWfXARJtbOALWWHl8xNA7D6H6NaCLVCt11VNAnTfTEhOpdilGPDGlR9BlK3umhHSq
-	 3HQHYJfKMaYxfrNEA4OZbSmChQ7x4/Z+dJDHHB+r0iynHRWY4MQn8ghaUJeFZkMNWe
-	 hBrE0HvxITvOA==
-Date: Fri, 22 May 2026 19:04:17 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Jens Emil Schulz =?UTF-8?B?w5hzdGVyZ2FhcmQ=?=
- <jensemil.schulzostergaard@microchip.com>
-Cc: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "Vladimir
- Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Simon
- Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung
- Huh <woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>,
- Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
- <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v5 0/9] net: dsa: add DSA support for the
- LAN9645x switch chip family
-Message-ID: <20260522190417.53ab9cc4@kernel.org>
-In-Reply-To: <20260518-dsa_lan9645x_switch_driver_base-v5-0-968fbf34ffa3@microchip.com>
-References: <20260518-dsa_lan9645x_switch_driver_base-v5-0-968fbf34ffa3@microchip.com>
+	s=k20260515; t=1779502810;
+	bh=L5JlirbjFfB21zoUQZA7EqZmU6R3Fk117vmWr9nl5K4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=KmNN19rleHUOpp6yHYW0gN15Ho2E1L+kssQ+lHdmWTAWPs+jpQ4UHEI7g098HLqrA
+	 1VXu4+eyJj8HqptI4TRdYJUcFlytypayhmA2NT7WItBDyZomKHaAbCuOCmbEx7aowT
+	 8M2yfVCKsHKqYkXCAx4TeCZIIYrfvF9IQlxyuumWuwpNQKojw2fHBJ2xkTqQpdSP5A
+	 pTDCnoYlRZntmLuPIyrxl8mKKTY5qtYRtCcJCMO2ryCyicXQhP1T5ZOUIPy4xBVmsd
+	 YzM28K99rIFnrS6NY8V/KxtSyKYdhqheKlU/km4S2Ha0lXYssQZ2hpV6c5dH7SyqUo
+	 yqfhzr7ZAhifA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] arm64: dts: qcom: eliza: Fix debug UART and add more support
+Date: Fri, 22 May 2026 21:19:39 -0500
+Message-ID: <177950280320.1097700.16123203155680537119.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260515-eliza-dts-fix-debug-uart-and-more-support-v2-0-5ad3da81b9d3@oss.qualcomm.com>
+References: <20260515-eliza-dts-fix-debug-uart-and-more-support-v2-0-5ad3da81b9d3@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302062-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,redhat.com,kernel.org,armlinux.org.uk,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-302064-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B0CBD5BC7EC
+X-Rspamd-Queue-Id: 257D05BC9C7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 18 May 2026 14:24:55 +0200 Jens Emil Schulz =C3=98stergaard wrote:
-> This series provides the Microchip LAN9645X Switch driver.
 
-Looks like this needs a rebase.
+On Fri, 15 May 2026 16:22:37 +0300, Abel Vesa wrote:
+> Fix the Eliza MTP debug UART index and then add the missing
+> QUPv3 WRAP1/WRAP2 serial engines, the matching GPI DMA controllers,
+> SDHCI controllers, their pinconf state and the LLCC system cache
+> controller.
+> 
+> This series depends on the following Eliza binding updates:
+> https://lore.kernel.org/all/20260513-eliza-llcc-v2-1-27381ae833d5@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260515-eliza-gpi-dma-v2-1-1255b43d5ca9@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260513-eliza-bindings-sdhci-v1-1-b2cae44163c1@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260318-eliza-bindings-qmp-phy-v1-1-96a0d529ad2d@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260504-eliza-bindings-phy-eusb2-v2-1-fa3a1fd65ab1@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260515-eliza-tlmm-group-qup1-se4-lanes-v2-1-ebb630de0dcf@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260504-eliza-bindings-aoss-v2-1-c3628ca79a25@oss.qualcomm.com/
+> https://lore.kernel.org/all/20260504-eliza-bindings-pmic-glink-v2-1-d6b5397b7899@oss.qualcomm.com/
+> 
+> [...]
+
+Applied, thanks!
+
+[1/2] arm64: dts: qcom: eliza-mtp: Fix the debug UART index
+      commit: 179d11c1c0cfaddcfc984edc3c1863ab600f679f
+[2/2] arm64: dts: qcom: eliza: Add QUPv3, GPI DMA, SDHCI and LLCC nodes
+      commit: 844807e1f89d8852d570b4be5297a79ea674fc47
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
