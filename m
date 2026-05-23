@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-302153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oINEKae0EWpupAYAu9opvQ
-	(envelope-from <devicetree+bounces-302153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:07:35 +0200
+	id EBgXB+m0EWpupAYAu9opvQ
+	(envelope-from <devicetree+bounces-302154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:08:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46BD05BF3E9
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:07:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CEA05BF407
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:08:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C751304D5E8
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8453B30570E4
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDF63A2553;
-	Sat, 23 May 2026 14:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2E13A3834;
+	Sat, 23 May 2026 14:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X9wjJfSL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DuSVkzN0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BEF39FCA6;
-	Sat, 23 May 2026 14:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A0839D6DB;
+	Sat, 23 May 2026 14:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779544982; cv=none; b=eg1CULMLQ0SXqwmJgVP259q/0kGpopcy+7ESfd0QWwmEQ46vdbV/ZKlqX3ERQtWA8BzLE3Vxe8QPZUnHIyifjtPJTMNByt7cKKmmM+jQKtPsNU87jbkzfdMn2n4hSY3et4nNzm7NWINZ9PS5YOkO39kz6r9ihJSqqrphrJJNzX0=
+	t=1779544982; cv=none; b=VdjxErn90CbfmxKMnTKhyI+vY+8sO8S1xtmn+FAcNnU7j1+cuAS6m6i25ojbygbDumHKsepgECKcy810Jmse+bSsocwdtw3755lPTXUZYACIvWyfQ0EXTfUF+EXgkM0Z0aI/cEktbpyZE4+Rk8vQzz2U2mu1F8CowwSxx9iReRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1779544982; c=relaxed/simple;
-	bh=W4cmxivtYi3nun2PcS0FnwCVsLQ2R9LW3MSa/17BLCA=;
+	bh=C8QlCN0PZK11mrLCs9oNNpttQLwIcnWA9/xtBgloldA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EQex/tEa5wvq+2sznK3KZv7FGn4TP7PxPzs0Zpniz+eCPi5XohJDTynSpDNAxasQ4rjJQSbkcYp5WKW0l4lHWrKkAOl7zYibNS+LFO0OQE5CPB2ratGafFSg1sctE22yJTlG5AywDW290qWZ05QaP7fC4oXfk4PQgsPn/9tY4Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X9wjJfSL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D1B11F00A3D;
+	 MIME-Version; b=aqf/Nni651NPwoANzmdx1UA6gKO0GIZomgezeG73D4Nu2jzHhTyNDtJPuaG/Ln6lAfBSqLN7som7MV9pLRxwOo/GpbHeYHYdow60UBa6N0ziFVi3KldUDFZTYD/RV9Cbq0PHgtfrdJM5jDBa9WRYwSsWaoCVAh5o6qu9/HdLWa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DuSVkzN0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFB2F1F00A3E;
 	Sat, 23 May 2026 14:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779544980;
-	bh=vNWXSp7Nbj9O77x61TBFotnY7B/VVUrjuRV9QAofvts=;
+	s=k20260515; t=1779544981;
+	bh=iVYOFKxX2nTK7xBG+dFvf5BN63MQ7IZrJ1lALABuKpI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=X9wjJfSLTH4QV+UscvWR3Zk+6niq3BAYHpUVozubed6gL5dOTwxpPVDO3ueQ9K6sc
-	 5sZgvb45nS+dbUZ8o8qkkRUtv/U3eNw26OM/dH9OC0TBDUESCdq4JyvCMju6fMezl7
-	 8yLR5QSl9oL4QUMS7qDoOCCdxN/RGYtujRXQQZyulSGPwRq8EqUzIZXICNhkyKdRNo
-	 dBXrRl2ukI8UnCU9Tdc0bOJ70c3Dr/NGWd+KmK8e4hzDyw5bEuD+a+++QasnMpETM+
-	 TpcjZnD6wtqGk8Tz+0LMbEa9oFWhRyE84TjC2qB2Hb1Sq+o9wak8n7/+RtLn9FiARO
-	 B/2keHXC0a/qg==
+	b=DuSVkzN0d8p3/jyc9iabj4PY0S9LSlmREOfbZtIOZ+2Gyb4RSk5IiKdi/dJ8bMlPd
+	 rEVkWlru26pC1jpNdL+AhuXw1eDySOeaz4Z/WXAl8gaCJGeqqBUftcSy2gARk6G4VB
+	 vE9wmIwUUV/iPeYdV1cPsmovCZ19UVhvnuT/Yw03ic5Z3QdIx0xv5S3/MGzCeHbGz0
+	 LkR5ITQmfoWy8ycG8Xknz8sWjs95FVP8lqFElNQgkHQkI8itgZY7uk7JZgZazeORnX
+	 zZmh08Wp33m7eMnGNAG2IGTFhz4CMNRrJQBNtc9j9Kp441IyU8XHn+vfxR3F+P7L2x
+	 By1cU8l1XrdaA==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wQmwM-00000005YFc-1n5h;
-	Sat, 23 May 2026 14:02:58 +0000
+	id 1wQmwM-00000005YFc-47zB;
+	Sat, 23 May 2026 14:02:59 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-acpi@vger.kernel.org,
@@ -98,9 +98,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH v3 10/17] arm64: dts: intel: Add EL2 virtual timer interrupt
-Date: Sat, 23 May 2026 15:02:35 +0100
-Message-ID: <20260523140242.586031-11-maz@kernel.org>
+Subject: [PATCH v3 11/17] arm64: dts: mediatek: Add EL2 virtual timer interrupt
+Date: Sat, 23 May 2026 15:02:36 +0100
+Message-ID: <20260523140242.586031-12-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
 References: <20260523140242.586031-1-maz@kernel.org>
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -130,10 +130,10 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
 	RCPT_COUNT_TWELVE(0.00)[47];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302153-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302154-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
@@ -141,37 +141,96 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 46BD05BF3E9
+X-Rspamd-Queue-Id: 7CEA05BF407
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The ARMv8.2 based CPUs used in the agilex5 SoC are missing the EL2 virtual
-timer interrupt. Add it.
+The ARMv8.1+ based CPUs used in a number of Mediatek SoCs are missing
+the EL2 virtual timer interrupt. Add it.
 
-Acked-by: Dinh Nguyen <dinguyen@kernel.org>
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi | 3 ++-
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 3 ++-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 3 ++-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 3 ++-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 ++-
+ 5 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-index 02e62d954e949..6db2d48b9bad3 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-@@ -155,7 +155,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+index 70f3375916e8c..106df7603d533 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+@@ -108,7 +108,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW 0>;
  	};
  
- 	usbphy0: usbphy {
+ 	soc {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+index b91f88ffae0e8..a4621ce370d8e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+@@ -815,7 +815,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW 0>;
+ 	};
+ 
+ 	soc {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+index 75133794cec38..614e75f46c72d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+@@ -918,7 +918,8 @@ timer: timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH 0>;
+ 		clock-frequency = <13000000>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 9f8f115edd4cc..873c4fae6afc9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -328,7 +328,8 @@ timer: timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH 0>;
+ 		clock-frequency = <13000000>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index c72e34c57629d..3c9a7a08612b9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -451,7 +451,8 @@ timer: timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH 0>;
+ 	};
+ 
+ 	soc {
 -- 
 2.47.3
 
