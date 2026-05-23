@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-302152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302153-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGUuHpi0EWpupAYAu9opvQ
-	(envelope-from <devicetree+bounces-302152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:07:20 +0200
+	id oINEKae0EWpupAYAu9opvQ
+	(envelope-from <devicetree+bounces-302153-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:07:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20ADB5BF3DA
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:07:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46BD05BF3E9
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:07:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47B3C304AA14
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C751304D5E8
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A283A1E67;
-	Sat, 23 May 2026 14:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDF63A2553;
+	Sat, 23 May 2026 14:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Goh2jhvK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X9wjJfSL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DD839EB53;
-	Sat, 23 May 2026 14:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BEF39FCA6;
+	Sat, 23 May 2026 14:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779544981; cv=none; b=gUMwe9IvEg3tr5xyhtbqa+EenS1LbXPLe9m0XIo0PwOUYCagLO/Lj+S80tatFYnMJHS4XJCDp3728CZ6iYBiMsIsrXs8z2ypZC4k1QY9FWrr5ngi5kR7R7p7wTNTHPfxe50bYzFUAEY9t1D6MZFTq2FDzOFZsWJ2zGEJHNxN5jE=
+	t=1779544982; cv=none; b=eg1CULMLQ0SXqwmJgVP259q/0kGpopcy+7ESfd0QWwmEQ46vdbV/ZKlqX3ERQtWA8BzLE3Vxe8QPZUnHIyifjtPJTMNByt7cKKmmM+jQKtPsNU87jbkzfdMn2n4hSY3et4nNzm7NWINZ9PS5YOkO39kz6r9ihJSqqrphrJJNzX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779544981; c=relaxed/simple;
-	bh=CJXY43NWPhe/kEFDLFlqtBJ4A3u4UFccm33o2sFJ4aY=;
+	s=arc-20240116; t=1779544982; c=relaxed/simple;
+	bh=W4cmxivtYi3nun2PcS0FnwCVsLQ2R9LW3MSa/17BLCA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=h8+At8htthvJhmTt1jRUQdz9/C/XRGWr/C9AyNOf64uCy4w6ibmsqWtKBp3Qt6FKfcvvaTuw4tJ47822NnajPEuv3ut8AUhjtkkgDunb3iFvKSg7Ldry2oG3T9Tlu8JS93/mMWgTxkWQUrtFD6zoIW6JmeB7Chbb/QqGevjVWmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Goh2jhvK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A87BF1F00A3C;
-	Sat, 23 May 2026 14:02:59 +0000 (UTC)
+	 MIME-Version; b=EQex/tEa5wvq+2sznK3KZv7FGn4TP7PxPzs0Zpniz+eCPi5XohJDTynSpDNAxasQ4rjJQSbkcYp5WKW0l4lHWrKkAOl7zYibNS+LFO0OQE5CPB2ratGafFSg1sctE22yJTlG5AywDW290qWZ05QaP7fC4oXfk4PQgsPn/9tY4Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X9wjJfSL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D1B11F00A3D;
+	Sat, 23 May 2026 14:03:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779544979;
-	bh=kdwPUE6uMU4a+MsZ+02gTvznxPhCfL9jHHrYZahv22g=;
+	s=k20260515; t=1779544980;
+	bh=vNWXSp7Nbj9O77x61TBFotnY7B/VVUrjuRV9QAofvts=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Goh2jhvKEFOMXEG4BgCGv96rzQ9VLk/1kq+iTTJ/0Ft1n2xTVTaVVwYYylcMA0x35
-	 BF+AU3OV/IOPVrP3fJFGSkgPjn4jtrrYfKXirBF1Tq8X+1apL5CTHqtAIJ2BYU0oEN
-	 aBA4XzIzqcSBYqpmA6i46TSAFQSXVg+mTFf4eA2jsWFIUwowmanoypeDuB9BsWl2NK
-	 kBgQXdH1ef6uA2CzFPeMJJc0umtMyfuFCq+OJg0OcDZBgPMjTLhh/a6cEQh52omJ9i
-	 uqon9i3iOP14Gs0Nv5QabGgahykrxLfx2vvs+QlJwnBUy9jjzeWJQVVLIaA0NegWqu
-	 hAhjMr37zH4tg==
+	b=X9wjJfSLTH4QV+UscvWR3Zk+6niq3BAYHpUVozubed6gL5dOTwxpPVDO3ueQ9K6sc
+	 5sZgvb45nS+dbUZ8o8qkkRUtv/U3eNw26OM/dH9OC0TBDUESCdq4JyvCMju6fMezl7
+	 8yLR5QSl9oL4QUMS7qDoOCCdxN/RGYtujRXQQZyulSGPwRq8EqUzIZXICNhkyKdRNo
+	 dBXrRl2ukI8UnCU9Tdc0bOJ70c3Dr/NGWd+KmK8e4hzDyw5bEuD+a+++QasnMpETM+
+	 TpcjZnD6wtqGk8Tz+0LMbEa9oFWhRyE84TjC2qB2Hb1Sq+o9wak8n7/+RtLn9FiARO
+	 B/2keHXC0a/qg==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wQmwL-00000005YFc-3hvT;
-	Sat, 23 May 2026 14:02:57 +0000
+	id 1wQmwM-00000005YFc-1n5h;
+	Sat, 23 May 2026 14:02:58 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-acpi@vger.kernel.org,
@@ -98,9 +98,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH v3 09/17] arm64: dts: freescale: Add EL2 virtual timer interrupt
-Date: Sat, 23 May 2026 15:02:34 +0100
-Message-ID: <20260523140242.586031-10-maz@kernel.org>
+Subject: [PATCH v3 10/17] arm64: dts: intel: Add EL2 virtual timer interrupt
+Date: Sat, 23 May 2026 15:02:35 +0100
+Message-ID: <20260523140242.586031-11-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
 References: <20260523140242.586031-1-maz@kernel.org>
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -130,10 +130,10 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
 	RCPT_COUNT_TWELVE(0.00)[47];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302152-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302153-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
@@ -141,87 +141,28 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.998];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 20ADB5BF3DA
+X-Rspamd-Queue-Id: 46BD05BF3E9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The ARMv8.2 based CPUs used in a number of NXP/FSL SoCs are missing
-the EL2 virtual timer interrupt. Add it.
+The ARMv8.2 based CPUs used in the agilex5 SoC are missing the EL2 virtual
+timer interrupt. Add it.
 
+Acked-by: Dinh Nguyen <dinguyen@kernel.org>
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx91_93_common.dtsi | 3 ++-
- arch/arm64/boot/dts/freescale/imx94.dtsi           | 3 ++-
- arch/arm64/boot/dts/freescale/imx95.dtsi           | 3 ++-
- arch/arm64/boot/dts/freescale/imx952.dtsi          | 3 ++-
- arch/arm64/boot/dts/freescale/s32n79.dtsi          | 3 ++-
- 5 files changed, 10 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-index 46a5d2df074d5..679b9a6f7160f 100644
---- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-@@ -82,7 +82,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
- 		clock-frequency = <24000000>;
- 		arm,no-tick-in-suspend;
- 		interrupt-parent = <&gic>;
-diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
-index c460ece6070f8..7431ce293625b 100644
---- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-@@ -147,7 +147,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
- 		clock-frequency = <24000000>;
- 		interrupt-parent = <&gic>;
- 		arm,no-tick-in-suspend;
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 71394871d8dd0..e318048dc755b 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -524,7 +524,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
- 		clock-frequency = <24000000>;
- 		arm,no-tick-in-suspend;
- 		interrupt-parent = <&gic>;
-diff --git a/arch/arm64/boot/dts/freescale/imx952.dtsi b/arch/arm64/boot/dts/freescale/imx952.dtsi
-index b30707837f353..7c65956bc72dc 100644
---- a/arch/arm64/boot/dts/freescale/imx952.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx952.dtsi
-@@ -298,7 +298,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
- 		clock-frequency = <24000000>;
- 		arm,no-tick-in-suspend;
- 		interrupt-parent = <&gic>;
-diff --git a/arch/arm64/boot/dts/freescale/s32n79.dtsi b/arch/arm64/boot/dts/freescale/s32n79.dtsi
-index 94ab58783fdc8..fb40abec4c5cd 100644
---- a/arch/arm64/boot/dts/freescale/s32n79.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32n79.dtsi
-@@ -357,6 +357,7 @@ timer: timer {
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+index 02e62d954e949..6db2d48b9bad3 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+@@ -155,7 +155,8 @@ timer {
  		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
  			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
  			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
@@ -229,7 +170,8 @@ index 94ab58783fdc8..fb40abec4c5cd 100644
 +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
 +			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
  	};
- };
+ 
+ 	usbphy0: usbphy {
 -- 
 2.47.3
 
