@@ -1,89 +1,106 @@
-Return-Path: <devicetree+bounces-302141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302144-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBKNDQOwEWqdowYAu9opvQ
-	(envelope-from <devicetree+bounces-302141-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 15:47:47 +0200
+	id kAvXMrazEWompAYAu9opvQ
+	(envelope-from <devicetree+bounces-302144-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:03:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FAF5BF1B3
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 15:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 777D25BF2E9
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:03:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C5D1300B60B
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 13:47:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 523943020025
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176A037189D;
-	Sat, 23 May 2026 13:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B753339BFEE;
+	Sat, 23 May 2026 14:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EkwcMPf6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TNxmWDzS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06AA36C9EE;
-	Sat, 23 May 2026 13:47:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477913537E8;
+	Sat, 23 May 2026 14:02:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779544064; cv=none; b=ojA5XHmVZzlEh62cCo/hlMWttJdVOYggW6qxayDNQI42dcDa1NuKYOMQouhMe0pnlTkEY8NF1uabgdl0ovs2ALmIMQRDGcHClU/eRVhYtDVTOuGkdf+y2yL4oE6qYrA4rtnp5n41Uz1pm33AdDlddg4F+lTVPck7QSr478EPXAA=
+	t=1779544978; cv=none; b=kWOEPSNXVKlUbQP00WBOMZ4FJhyWI+IDRbKDkhSg0EFH3TPp0n9EXwmk363tmiDXvvwPIWf+k8CnwHsR9H84evPREYMTRyt4zKCUAWKZ3E109DMCchvLN6k6oGVD6zBQuMr8G0iB2lcbW4iMlPpPGT75JdFPXdwPfzlUVnio1K0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779544064; c=relaxed/simple;
-	bh=B4gm9pP+88IyVqw9AfTTIVVlGJusAq/2/0b2EiHNMzQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=V4kF0Rbwz7yJCm9WDYXDtf1YjeVfHqY44DgwYzDcNebxRJOlGJtrXCPvwGD1zCAGIJblF977qRTZwWiql0TVSwRFNy9cM3P8wBGdoffLLSvPfMSs/bwHUkE7/lcIiySb9GziLu6nv6NZ/R2/S155ldosNcnBxOMuml8d6SpmD1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EkwcMPf6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64N51oPk492201;
-	Sat, 23 May 2026 13:47:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=QDmQ9U+JNxb
-	EO0gcsaYLF8lGo8oTH0HPmPD+4YMUfCY=; b=EkwcMPf6inEwYbaKvwtbOgVAWUb
-	eBBck14FEaoSpeCmbbXR9dPmL16JJF9PfdERjXJItlLRhQLpSUo/cP3MakT55jTa
-	/QSP25cHUJWScHywQROaaCCRnKn79B1pLZYv3xI5K2hWgT6O+s9jGKCpjvvZ4eWn
-	KXPdlpdmQN9r7ZxZP14lX1vruAkmuzGkLeNu8fgfGzC73gDWrjbcWQtb7JZ920WW
-	+9UaWmmGpAcHdCUJAJIsl39DkI1SR6twqxwoOfdONXpmeOHGLpLFKmljYujCFepP
-	OefCqJqHqyfnJ6gN21CYDYx3BE+KBNj3a1GVbIXvlLQwj9Ix2yF4ARDOLNg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eb4ass1je-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 May 2026 13:47:20 +0000 (GMT)
-Received: from pps.filterd (NALASPPMTA02.qualcomm.com [127.0.0.1])
-	by NALASPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 64NDlJ3m026938;
-	Sat, 23 May 2026 13:47:19 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by NALASPPMTA02.qualcomm.com (PPS) with ESMTPS id 4eb5ahjyvh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 May 2026 13:47:19 +0000 (GMT)
-Received: from NALASPPMTA02.qualcomm.com (NALASPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 64NDlI9I026932;
-	Sat, 23 May 2026 13:47:18 GMT
-Received: from hu-devc-lv-u22-c.qualcomm.com (hu-cang-lv.qualcomm.com [10.81.25.255])
-	by NALASPPMTA02.qualcomm.com (PPS) with ESMTPS id 64NDlIik026931
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 May 2026 13:47:18 +0000 (GMT)
-Received: by hu-devc-lv-u22-c.qualcomm.com (Postfix, from userid 359480)
-	id 9B90C61F; Sat, 23 May 2026 06:47:18 -0700 (PDT)
-From: Can Guo <can.guo@oss.qualcomm.com>
-To: bvanassche@acm.org, beanhuo@micron.com, peter.wang@mediatek.com,
-        martin.petersen@oracle.com, mani@kernel.org
-Cc: linux-scsi@vger.kernel.org, Can Guo <can.guo@oss.qualcomm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
-        Zhaoming Luo <zhml@posteo.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-        linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 1/2] dt-bindings: ufs: Document static TX Equalization settings properties
-Date: Sat, 23 May 2026 06:47:10 -0700
-Message-Id: <20260523134711.323425-2-can.guo@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260523134711.323425-1-can.guo@oss.qualcomm.com>
-References: <20260523134711.323425-1-can.guo@oss.qualcomm.com>
+	s=arc-20240116; t=1779544978; c=relaxed/simple;
+	bh=XcI9E99lmjEqc67YZwRW1EoV9W6z7lpLdUqdqu0gSKY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gqDu5r0hXIUxKxa0NXIUEhoPfnT899sF2zXo5GCBlnx5isUnmJBW1yqkuPR0hHrfK1Ba6gK4RY160Ipe4OebG2IPAU3G5fkRJ3r1R3IMud5vyvifCo/yLIbdc90vsr3nfHLXm4OAnr2dMZXTj39exYylXloAd5VkPg1GnLy9cvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TNxmWDzS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FDEC1F000E9;
+	Sat, 23 May 2026 14:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779544975;
+	bh=iKSF8GdN2oB/rm7vq210aNx19r8g8NagqG/cGhDvljI=;
+	h=From:To:Cc:Subject:Date;
+	b=TNxmWDzSY4CjGL/jSWZD1X7AQsa7sQupIw81htXWcH07NZ+54yTlD/isc1MRCcUZ8
+	 LP922+wccqoF34JeE0Hic5ZcMjNaDmOvek63gVv5Jj55bC+2F4/nISUuukXF5l6sZw
+	 fJ0pu63wSupJ+tq9rPW102ZFsAlaUv2m2ZS0siy5HsVV+JxnbqQfnbLU0CGbWpDVDj
+	 BPocMK66phJqIVZzTqXIgXN5NrI4t5zn/8fznt/ojVOjNha6vfJq9dBq9b49canjJy
+	 MK/ghvVNfzgkZ3KdPmoMbJGUvlqvwrqXgQuhIWmsM8M9qbCKy/12RD3xEY6NqJyxJ6
+	 BWmHMjtW26YUQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1wQmwG-00000005YFc-3f2t;
+	Sat, 23 May 2026 14:02:52 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Ge Gordon <gordon.ge@bst.ai>,
+	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+	Jesper Nilsson <jesper.nilsson@axis.com>,
+	Lars Persson <lars.persson@axis.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	=?UTF-8?q?Yu-Chun=20Lin=20=5B=E6=9E=97=E7=A5=90=E5=90=9B=5D?= <eleanor.lin@realtek.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Michal Simek <michal.simek@amd.com>
+Subject: [PATCH v3 00/17] arm64: Use EL2 virtual timer when running VHE
+Date: Sat, 23 May 2026 15:02:25 +0100
+Message-ID: <20260523140242.586031-1-maz@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,110 +108,164 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIzMDE0MSBTYWx0ZWRfX60Tww3EPf5nK
- pBkG40fRZWFFV+gWKH3kk5V0A5V0T5zqSlqu6Tw67Ow2Ehtp0UVCwJ67ZbUdR5Fds0c3GN272uC
- l0bOxxg57SRQ3QMYnhK46SgtS7+6RRHwAa9tw8NzMcIabFAbECniwj0NUwfTd+7OTvP06zinZ5N
- a1CfBZWqhcLEz8+RQlQ1xhgTjyoFcOwV244qCh22DzsOjfXORz34RfFHv5TQluUUJ2SToJOzcbK
- vyEq1LoYpxIMmbmLp7FRYwFhKN2/+qspgFeL5ZsNdoR16ZtqFT1PAbzCqCafmA7q7oLSQUCJuSi
- HroObotGwLG0oV4EoSYL93sC+9ezDTdQbgdfSobfHZgoCXEi0SrLYkamhU9UQGOqmngYzb2t/pZ
- bfjL7GXSVeAPJOqKdZZN4vX+f+iU+ouh8DAg0/QdELWggZQE/Tw7s6rH4inByE3v4l5UpMMzjnn
- oEPkTKx4c+Wz4ZlqG0g==
-X-Proofpoint-ORIG-GUID: OAzdKCJNzJU62l1N5GPqv1UiaZ7C_VYA
-X-Proofpoint-GUID: OAzdKCJNzJU62l1N5GPqv1UiaZ7C_VYA
-X-Authority-Analysis: v=2.4 cv=c6ebhx9l c=1 sm=1 tr=0 ts=6a11afe8 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8 a=I_qBOUeEE_endWPDY1kA:9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-23_04,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 spamscore=0 malwarescore=0 adultscore=0
- suspectscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605230141
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, guohanjun@huawei.com, sudeep.holla@kernel.org, catalin.marinas@arm.com, will@kernel.org, rafael@kernel.org, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, gordon.ge@bst.ai, bst-upstream@bstai.top, jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, ivo.ivanov.ivanov1@gmail.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, dinguyen@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, thierry.reding@kernel.org, jonathanh@nvidia.com, andersson@kernel.org, konradybcio@kernel.org, afaerber@suse.de, 
+ eleanor.lin@realtek.com, heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
+	RCPT_COUNT_TWELVE(0.00)[47];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-302144-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302141-lists,devicetree=lfdr.de];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[can.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 88FAF5BF1B3
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 777D25BF2E9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-UFS v5.0/UFSHCI v5.0 add HS-G6 support (46.6 Gbps/lane) via UniPro v3.0
-and M-PHY v6.0. In these specs, TX Equalization is defined for all High
-Speed Gears (not only HS-G6) to compensate channel loss and improve signal
-integrity at high speed operation.
+This is the third version of the series initially posted at [1],
+which
 
-For HS-G6, M-PHY uses PAM4 1b1b line coding, Pre-Coding may also be
-required depending on channel characteristics.
+- updates the ACPI GTDT parsing to deal the v3 layout and the EL2
+  virtual timer,
+- moves the architected timer driver to use it when running VHE,
+- fixes a number of DTs to reflect the reality of the HW.
 
-Add vendor-neutral DT patternProperties:
-txeq-settings-g[1-6]
+This results in significant performance uplift in deeper nested virt
+scenarios, at no overhead to the host.
 
-Each property is a uint32 array of per-lane tuples:
-(PreShoot, DeEmphasis, PrecodeEn)
+Patches based on -rc3, tested on Amlogic SM1, QC X1E, Ampere Altra,
+and Apple M2, as well as KVM NV guests.
 
-Tuple order is:
-Host Lane 0, [Host Lane 1], Device Lane 0, [Device Lane 1]
+* From v2 [2]:
 
-Accept 2..4 tuples (6..12 u32 values) to cover x1/x2 lane configs. These
-patternProperties carry board-level SI characterization data used as
-static TX Equalization settings for each High Speed Gear.
+  - Add more consistency checks to the GTDT parsing
 
-Signed-off-by: Can Guo <can.guo@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/ufs/ufs-common.yaml | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+  - Match the virtual counter when using the KVM PTP backend
 
-diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-index ed97f5682509..bc83948fc168 100644
---- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-+++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-@@ -105,6 +105,17 @@ properties:
-       Restricts the UFS controller to rate-a or rate-b for both TX and
-       RX directions.
- 
-+patternProperties:
-+  "^txeq-settings-g[1-6]$":
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 6
-+    maxItems: 12
-+    description: |
-+      Static TX Equalization settings for High Speed (HS) gears.
-+      The settings are specified as an array of tuples (PreShoot, DeEmphasis, PrecodeEn).
-+      The array must contain these tuples in the following order:
-+      Host Lane 0, [Host Lane 1], Device Lane 0, [Device Lane 1].
-+
- dependencies:
-   freq-table-hz: [ clocks ]
-   operating-points-v2: [ clocks, clock-names ]
+  - Drop a number of changes to Qualcomm DTs, being only tangentially
+    related and that will be posted separately
+
+  - Fix the Realtek Kent platform, which had the GICv3 maintenance
+    interrupt advertised as the EL2 virtual timer
+
+  - Collected TBs and RBs, with thanks
+
+* From v1 [2]:
+
+  - Now also using the EL2 virtual counter, which further improve
+    things when running at a deeper nesting level
+
+  - Updated consistency checks for the platform timers when finding a
+    GTDTv3
+
+  - Collected ABs and RBs, with thanks
+
+[1] https://lore.kernel.org/r/20260507125544.2903406-1-maz@kernel.org
+[2] https://lore.kernel.org/r/20260514150945.3917510-1-maz@kernel.org
+
+Marc Zyngier (17):
+  ACPI: GTDT: Account for GTDTv3 size when walking the platform timer
+    descriptors
+  ACPI: GTDT: Parse information related to the EL2 virtual timer
+  clocksource/drivers/arm_arch_timer: Default to EL2 virtual timer when
+    running VHE
+  dt-bindings: timer: arm,arch_timer: Fix requirements for interrupt
+    description
+  arm64: dts: allwinner: Add EL2 virtual timer interrupt
+  arm64: dts: amlogic: Add EL2 virtual timer interrupt
+  arm64: dts: bst: Add EL2 virtual timer interrupt
+  arm64: dts: exynos: Add EL2 virtual timer interrupt
+  arm64: dts: freescale: Add EL2 virtual timer interrupt
+  arm64: dts: intel: Add EL2 virtual timer interrupt
+  arm64: dts: mediatek: Add EL2 virtual timer interrupt
+  arm64: dts: nvidia: Add EL2 virtual timer interrupt
+  arm64: dts: qcom: Add EL2 virtual timer interrupt
+  arm64: dts: realtek: Add EL2 virtual timer interrupt
+  arm64: dts: rockchip: Add EL2 virtual timer interrupt
+  arm64: dts: sprd: Add EL2 virtual timer interrupt
+  arm64: dts: xilinx: Add EL2 virtual timer interrupt
+
+ .../bindings/timer/arm,arch_timer.yaml        | 21 +++----
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi |  3 +-
+ .../boot/dts/amlogic/amlogic-a4-common.dtsi   |  8 ---
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi   |  8 +++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi   |  9 +++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi   |  3 +-
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi   |  3 +-
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi  |  3 +-
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 13 -----
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi    |  9 +++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 10 ++++
+ arch/arm64/boot/dts/bst/bstc1200.dtsi         |  3 +-
+ arch/arm64/boot/dts/exynos/axis/artpec9.dtsi  |  3 +-
+ arch/arm64/boot/dts/exynos/exynos2200.dtsi    |  3 +-
+ arch/arm64/boot/dts/exynos/exynos990.dtsi     |  3 +-
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |  3 +-
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi  |  3 +-
+ .../boot/dts/freescale/imx91_93_common.dtsi   |  3 +-
+ arch/arm64/boot/dts/freescale/imx94.dtsi      |  3 +-
+ arch/arm64/boot/dts/freescale/imx95.dtsi      |  3 +-
+ arch/arm64/boot/dts/freescale/imx952.dtsi     |  3 +-
+ arch/arm64/boot/dts/freescale/s32n79.dtsi     |  3 +-
+ .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |  3 +-
+ arch/arm64/boot/dts/mediatek/mt6779.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  3 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  2 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  3 +-
+ arch/arm64/boot/dts/qcom/eliza.dtsi           |  3 +-
+ arch/arm64/boot/dts/qcom/hamoa.dtsi           |  3 +-
+ arch/arm64/boot/dts/qcom/kaanapali.dtsi       |  3 +-
+ arch/arm64/boot/dts/qcom/kodiak.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/lemans.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/monaco.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi        |  3 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        |  3 +-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi          |  3 +-
+ arch/arm64/boot/dts/qcom/sm8750.dtsi          |  3 +-
+ arch/arm64/boot/dts/realtek/kent.dtsi         |  2 +-
+ arch/arm64/boot/dts/realtek/rtd16xx.dtsi      |  3 +-
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi |  3 +-
+ arch/arm64/boot/dts/sprd/sc9863a.dtsi         |  3 +-
+ arch/arm64/boot/dts/sprd/ums512.dtsi          |  3 +-
+ arch/arm64/boot/dts/sprd/ums9620.dtsi         |  3 +-
+ arch/arm64/boot/dts/xilinx/versal-net.dtsi    |  3 +-
+ drivers/acpi/arm64/gtdt.c                     | 42 +++++++++++++-
+ drivers/clocksource/arm_arch_timer.c          | 55 +++++++++++--------
+ 54 files changed, 206 insertions(+), 102 deletions(-)
+
 -- 
-2.34.1
+2.47.3
 
 
