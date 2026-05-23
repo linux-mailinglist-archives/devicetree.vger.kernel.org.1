@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-302156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EElwHS61EWpupAYAu9opvQ
-	(envelope-from <devicetree+bounces-302156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:09:50 +0200
+	id wGpwKIO1EWpupAYAu9opvQ
+	(envelope-from <devicetree+bounces-302160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:11:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC14E5BF435
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:09:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D035BF470
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:11:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5DE6B301325B
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5308B3074BE4
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED173A48DD;
-	Sat, 23 May 2026 14:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BDF3A6B62;
+	Sat, 23 May 2026 14:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vc4zUcpk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JmFA7TXc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9A63A3808;
-	Sat, 23 May 2026 14:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454913A3E72;
+	Sat, 23 May 2026 14:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779544984; cv=none; b=TONzax4oBF0U400cpBH7srdmGbenBWvBRnNl2Nnr+WN0SzAVCN8p48qUZPfAvjXlfZ6nI4EKIqzCHV4tD5RzOxOI2amMwYfzKkigg7YRtA4oJLX05nsw2DtESm+jMVuo4dQYaNCTiuU+jHWEjwDrfEH/TY+rTy9Ts+S+dkWPHa0=
+	t=1779544986; cv=none; b=ooVKnI0uhWTNByDNZeJHRMqnXUx4SsRZ14P4cEAiIACaIMMefICl9LvuM4UjNsrThpnXV4L2QjEMvoy/TbUpEmNHmddCKQNQk7v91pKpbb83LXfxK09wfbU1Fv1gvWHl3ZMH1c33ZopKIZ3KWIoetfxcQhpv4YIqPC3tgEvyFnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779544984; c=relaxed/simple;
-	bh=DrpxD5qHnaE1Vvd/k5+Le8i7HjZdU5uqnh3kmij5rg0=;
+	s=arc-20240116; t=1779544986; c=relaxed/simple;
+	bh=MJi7t5TPt89sDo4VGxfAxl6xMQMyA0A0mhskuAXvJcY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IjQYSKGcIvoZ9P63MvguCavrnDKnESsgAdj3g0jWO44B7qAzmjmiP80jlMrGRLoehN2eTZAlMOVDBaeFa1O6WVy3LQJi8I10rMVhtPtRiVHmJENVyAkrKCaB6xBzYHxpFp1s1CrdVx9fy2cZ+zI4sTmhZ3iEmMcV+8Gp0h0YKFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vc4zUcpk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77D5A1F01564;
-	Sat, 23 May 2026 14:03:02 +0000 (UTC)
+	 MIME-Version; b=rxm4TQv/wQ9jQB3ZX0+A9DteCoKaXOO6Csq4ddRSnwDZFbKGwYIHNwBDFXF6kWZy8ZFsHGdKAtpJGlYWLLwe2FE/7rd+x+gi67dqVAJkhCjDAdZXuKdG7B0fCpB4pDBD6m6QK4Xy+RuyID6r19DQ1OkQtc9l37Btn1LKNZLMLwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JmFA7TXc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10E0F1F00A3D;
+	Sat, 23 May 2026 14:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779544982;
-	bh=FWX7TUqGEicTVQxA2GTttmQpVSfoy/ldj1hTfdnKHgI=;
+	s=k20260515; t=1779544983;
+	bh=d7T6wzUDec4336BxIngLV82kCrrKAPX2+jfs+nI48nk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Vc4zUcpkYimo1lDe8Ux1B1kIRJxytV1b7YTxsC0iL0vdN/FwY4gdxe5XA2S+dvSKc
-	 Y3WWYhmdEPUPwl7DHvk/4lg3PPbCUS+w2YEuVUgv6FTgjjYQE7aKzDPEMa/sjcGdbC
-	 G2jwPXn0Z8mXDS+9B2ejSfRYbF2Ej6CKvgnFDPr6c8Zx7WRqSzqFzIEd7WdTvQbZtd
-	 c6e4Wjl/XVqddaCNdsJ1xXzDmvyQJl4wnsGP+RC9asIUrifQ6OetbvO3/uoRc38/eL
-	 Gc0U8kHQZnoy/PlfvKEiaaogNKIa9Z1P86n/341/WeMbcEjt+7t65cX76K7VhhelrH
-	 rMm5rgd/OzTdQ==
+	b=JmFA7TXcey2gVl0iVsPynxQdFDOSOHzpg7+Dl3BLFTboKL2xypLyPczHO+YOv9ajQ
+	 oZFCfnLClKfspIjuJ8ULldvHrZm6vjarfWFP6IsU2HS+O4XFcXZM3f1lXLop3NdCOB
+	 bB44fYcO05fTVXXNzXBTh4TpmauP4ce4DGkU5nzzZ3HEeRgQ16sS+5WkM7hrMFsjSu
+	 OHrfXjasenTs6UEl0BDXfZDeQ2JoCVfx2m2P/Tutvy9MKSymMYH1/JJit8nmQF8EYL
+	 fFOrhTT70cLhwEDXHDicmU8P+T3NVCVtW+WdIzqB9KAeUJHwLJMFZzzULJHTIDoDLK
+	 LjfVUsE0M6uRQ==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <maz@kernel.org>)
-	id 1wQmwO-00000005YFc-2gSK;
-	Sat, 23 May 2026 14:03:00 +0000
+	id 1wQmwP-00000005YFc-11D1;
+	Sat, 23 May 2026 14:03:01 +0000
 From: Marc Zyngier <maz@kernel.org>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-acpi@vger.kernel.org,
@@ -98,9 +98,9 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH v3 14/17] arm64: dts: realtek: Add EL2 virtual timer interrupt
-Date: Sat, 23 May 2026 15:02:39 +0100
-Message-ID: <20260523140242.586031-15-maz@kernel.org>
+Subject: [PATCH v3 15/17] arm64: dts: rockchip: Add EL2 virtual timer interrupt
+Date: Sat, 23 May 2026 15:02:40 +0100
+Message-ID: <20260523140242.586031-16-maz@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
 References: <20260523140242.586031-1-maz@kernel.org>
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -130,10 +130,10 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
 	RCPT_COUNT_TWELVE(0.00)[47];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302156-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302160-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
@@ -145,51 +145,33 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: CC14E5BF435
+X-Rspamd-Queue-Id: E5D035BF470
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The ARMv8.2 based CPUs used in a number of Realtek SoCs are missing
+The ARMv8.2 based CPUs used in a number of Rockchip SoCs are missing
 the EL2 virtual timer interrupt. Add it.
 
-Furthermore, the "kent" platform appears to assign PPI9 to both the
-EL2 virtual timer and the GIC Maintenance Interrupt, which can't be
-right. Attempt a fix by setting the former to PPI12, as PPI9 is
-traditionally wired to the GIC itself.
-
+Acked-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- arch/arm64/boot/dts/realtek/kent.dtsi    | 2 +-
- arch/arm64/boot/dts/realtek/rtd16xx.dtsi | 3 ++-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index ae006ce244205..4147e4269247a 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -23,7 +23,7 @@ timer {
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI  9 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index 64bdd8b7754b5..a5832895bd392 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -195,7 +195,8 @@ timer {
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
 +			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 		arm,no-tick-in-suspend;
  	};
  
- 	cpus {
-diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-index 3a7f6e35b7f74..43b13d133c324 100644
---- a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
-@@ -105,7 +105,8 @@ timer {
- 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
- 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
- 	};
- 
- 	arm_pmu: pmu {
 -- 
 2.47.3
 
