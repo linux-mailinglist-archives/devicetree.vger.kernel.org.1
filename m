@@ -1,178 +1,139 @@
-Return-Path: <devicetree+bounces-302159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEibEIq1EWpupAYAu9opvQ
-	(envelope-from <devicetree+bounces-302159-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:11:22 +0200
+	id yFALJ1q2EWpupAYAu9opvQ
+	(envelope-from <devicetree+bounces-302161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:14:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB4B5BF477
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:11:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E105BF4C6
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 16:14:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A2C5B30262CE
-	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:03:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A72443007A7E
+	for <lists+devicetree@lfdr.de>; Sat, 23 May 2026 14:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38358356767;
-	Sat, 23 May 2026 14:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 546E239FCCD;
+	Sat, 23 May 2026 14:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bSOJOl7w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gnhkl5dX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467E03168FB;
-	Sat, 23 May 2026 14:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1FD39FCAF;
+	Sat, 23 May 2026 14:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779544986; cv=none; b=ekHzNfDo8qSI9B2mycEhTt2DgOyI+ePiDFBlb75RIG+Ql4oT8Bu9f8/7OBCmUP8bW0le+/CBBKIn8rObD7adH7FLuwvF+8iaRjwId/Id/7j3+UYW09l2u8aQIAed/bdTfBYcabKA042S35aXSTIzEMJ3Pd3YKiMPJGYvAISX6Rs=
+	t=1779545684; cv=none; b=XefV4RstgPD9TXeFVAU2g8EcX2KSSXulDTDLH3M66bb8KokM/0p9QsowBRBtSVcLonKydRuRyQq12WpYQFq4XDwbLZ7eOOnZg8mrkhxWxQbTkcObw1Y5TRceXVFWGRzgNS63K9J7+/4+FN4UCcIcKjHeoeezGJ9DGdyLT89Zdnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779544986; c=relaxed/simple;
-	bh=aUhTz9jm+Ra2Q6RC2n0qYxb1bA+A3HUaTCXCNCF7HOA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=spHMHpNHRFQXB6TvVNlLdrJCxy7bRYwxnsvzPLwUQyIlMcgOX21udRPSTKXJycvqJa0GKPCC3s6XFBcNkJjkeDgKqyGtMPJQoBlU3UPVRpcjiIHd7NQAa//Qm7Ulv7MN40Tw3a+BkRBEzFqYaWYIwxNOkobe4uX+KGeedy/uSDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bSOJOl7w; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 191631F00A3F;
-	Sat, 23 May 2026 14:03:04 +0000 (UTC)
+	s=arc-20240116; t=1779545684; c=relaxed/simple;
+	bh=Y4jcun+ro1rgWcs1fAzBJ0gx8tgAoHvL8X4LwGRmMrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pfFVcqKGeWMWvRF2CwdTavxvTLfp1xpQzk+ICCgipdFWKoA9NqAe6fBB6RTS48TEW+v6juRln7hngEAjZiG3s6XeFrRcHSM6Jdq02DkVPheGFzm4nMV2V1VJT8TXU185PtCa83glKt9sMp4GjqU40eahb3A+VTrM/z2NGTFq6rM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gnhkl5dX; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C5CD1F00A3A;
+	Sat, 23 May 2026 14:14:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779544984;
-	bh=8rYvi+3JVZJtERBC/gfJzp98B/b/Fpz7xNSQPS8u1Nc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=bSOJOl7wKDMWKFPYKCprmK5iMeFOfMuB0ZRTyNl36MtQXWICt6vAEKvSI2WUdCq0I
-	 Nzl1W+/UGNWVTNyUMdWd77lAiFBTdqHXG/pLHBfJ7J3oMOA32xKXavlAluSD5Cyf3t
-	 nyfJpdDoWqiJULYOprJvVn/i/zPJa5Tae1lYrS/jBM5qlvxGZpU+BShSO2LYPp9mg9
-	 R/KQoMqNeU1tXQChayB3fprHG1fV720Znu5ffE4fmg3aESGC9LFwIgOL6lxwpH3cGB
-	 i0C4hNTIFT58PKzBJG6W/esVSVHH4q1y3suAkvN43bxHfTZJba/WmSPPnJ0c6YZqjB
-	 10Ds6WzlFyRdg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1wQmwQ-00000005YFc-1ECC;
-	Sat, 23 May 2026 14:03:02 +0000
-From: Marc Zyngier <maz@kernel.org>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Ge Gordon <gordon.ge@bst.ai>,
-	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	Lars Persson <lars.persson@axis.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	=?UTF-8?q?Yu-Chun=20Lin=20=5B=E6=9E=97=E7=A5=90=E5=90=9B=5D?= <eleanor.lin@realtek.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Michal Simek <michal.simek@amd.com>
-Subject: [PATCH v3 17/17] arm64: dts: xilinx: Add EL2 virtual timer interrupt
-Date: Sat, 23 May 2026 15:02:42 +0100
-Message-ID: <20260523140242.586031-18-maz@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
-References: <20260523140242.586031-1-maz@kernel.org>
+	s=k20260515; t=1779545683;
+	bh=bbeAZ/pWJi2Q6lOIbC6mtCkYgBo9dqxuAIJI4cU4wvc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=gnhkl5dXp8hrDPFOVyvJgET9Jv7RIEArTtEwqRg3RSnw9RBJ69xbCbYysDcQYkY5k
+	 i1aCbIGR54d4Qh+rvZmjDS8MZlLXnFpokjHL5naPuf/IqkUSDA85AWkEWeq7Fod/jz
+	 CshxXuap5kiO/ecVVF84xJgvVBPY0HLodbIdNB7C0qpmhK1oveXAb+AblWqaLd04la
+	 H5OVtppX3SCqZgm0l7jwOPmuIQkaVtOGdNjK0Y92tm4WbsPrjjEe84SbrxYXvmuLd1
+	 f6r9ht1l/X2CVWkpXgZ8V1bJonX5ljgbG1TsSAnhM4Hp2TiWKwB5w2ZZ/3oTfMFiD7
+	 eHzS+jEFBPdmA==
+Date: Sat, 23 May 2026 19:44:34 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Can Guo <can.guo@oss.qualcomm.com>
+Cc: bvanassche@acm.org, beanhuo@micron.com, peter.wang@mediatek.com, 
+	martin.petersen@oracle.com, linux-scsi@vger.kernel.org, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, Zhaoming Luo <zhml@posteo.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Document static TX Equalization
+ settings properties
+Message-ID: <m6qq3kxgfs73jve2pjmmszymgxb7aizdfo2rwg72o66n2rvov2@xkcvifciwu3z>
+References: <20260523134711.323425-1-can.guo@oss.qualcomm.com>
+ <20260523134711.323425-2-can.guo@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lpieralisi@kernel.org, guohanjun@huawei.com, sudeep.holla@kernel.org, catalin.marinas@arm.com, will@kernel.org, rafael@kernel.org, mark.rutland@arm.com, daniel.lezcano@kernel.org, tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, gordon.ge@bst.ai, bst-upstream@bstai.top, jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, ivo.ivanov.ivanov1@gmail.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, dinguyen@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, thierry.reding@kernel.org, jonathanh@nvidia.com, andersson@kernel.org, konradybcio@kernel.org, afaerber@suse.de, 
- eleanor.lin@realtek.com, heiko@sntech.de, shawn.lin@rock-chips.com, orsonzhai@gmail.com, baolin.wang@linux.alibaba.com, michal.simek@amd.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spamd-Result: default: False [0.84 / 15.00];
+In-Reply-To: <20260523134711.323425-2-can.guo@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
-	RCPT_COUNT_TWELVE(0.00)[47];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302159-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-302161-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.998];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 7DB4B5BF477
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: A8E105BF4C6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The ARMv8.2 based CPUs used in the versal SoC are missing the EL2 virtual
-timer interrupt. Add it.
+On Sat, May 23, 2026 at 06:47:10AM -0700, Can Guo wrote:
+> UFS v5.0/UFSHCI v5.0 add HS-G6 support (46.6 Gbps/lane) via UniPro v3.0
+> and M-PHY v6.0. In these specs, TX Equalization is defined for all High
+> Speed Gears (not only HS-G6) to compensate channel loss and improve signal
+> integrity at high speed operation.
+> 
+> For HS-G6, M-PHY uses PAM4 1b1b line coding, Pre-Coding may also be
+> required depending on channel characteristics.
+> 
+> Add vendor-neutral DT patternProperties:
+> txeq-settings-g[1-6]
+> 
+> Each property is a uint32 array of per-lane tuples:
+> (PreShoot, DeEmphasis, PrecodeEn)
+> 
 
-Acked-by: Michal Simek <michal.simek@amd.com>
-Signed-off-by: Marc Zyngier <maz@kernel.org>
----
- arch/arm64/boot/dts/xilinx/versal-net.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I don't think combining all EQ settings (PreShoot, DeEmphasis, PrecodeEn) in a
+single property as opaque tuples is the right approach. These are three
+semantically distinct parameters with independent value ranges. So packing
+them into a uint32 array makes validation impossible in the schema.
 
-diff --git a/arch/arm64/boot/dts/xilinx/versal-net.dtsi b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
-index 15f767608e67f..0aac93675ad77 100644
---- a/arch/arm64/boot/dts/xilinx/versal-net.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
-@@ -728,7 +728,8 @@ fpga: fpga-region {
- 
- 	timer: timer {
- 		compatible = "arm,armv8-timer";
--		interrupts = <1 13 4>, <1 14 4>, <1 11 4>, <1 10 4>;
-+		interrupts = <1 13 4>, <1 14 4>, <1 11 4>, <1 10 4>,
-+			     <1 12 4>;
- 	};
- 
- 	versal_fpga: versal-fpga {
+AFACIS, PrecodeEn is applicable only to HS-G6 (PAM4), but the proposed
+patternProperties forces it into G1-G5 tuples as well, which is semantically
+wrong.
+
+PCIe binding defines one property per data rate for EQ presets:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-bus-common.yaml#L193
+
+Similarly, UFS should define one property per gear per (like, txeq-preshoot-g6,
+txeq-deemphasis-g6, txeq-precode-enable-g6,...) rather than clubbing everything
+into opaque tuples.
+
+- Mani
+
 -- 
-2.47.3
-
+மணிவண்ணன் சதாசிவம்
 
