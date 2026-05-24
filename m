@@ -1,152 +1,204 @@
-Return-Path: <devicetree+bounces-302187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFMeGia2Empy3AYAu9opvQ
-	(envelope-from <devicetree+bounces-302187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 10:26:14 +0200
+	id JqToIJe8EmpW3QYAu9opvQ
+	(envelope-from <devicetree+bounces-302188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 10:53:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10885C1ADA
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 10:26:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 221E85C1B65
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 10:53:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB584300CE59
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 08:16:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2F0FE30039BF
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 08:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 887FF30677B;
-	Sun, 24 May 2026 08:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1706B38D01E;
+	Sun, 24 May 2026 08:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="AedBdfyX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pqcZ4VzN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0851519B4;
-	Sun, 24 May 2026 08:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779610604; cv=pass; b=NNNK+wcH1L0YgDKsc+Pwy9UQQai9iP0reD+VGbRDFIrg9EaOhIqUohdCABCg4hPGP3r0yEsCSuX+89xn9VcJQYpqLhl5Rwjmnm932UzRsWnUq19uNOIFQM42Fg3NL/R+nWW9g4KA3Zee4dsUMmx9fXmz1LIS8V1Vh7ej65ee334=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779610604; c=relaxed/simple;
-	bh=LIOTkxHHoupeefog3sB7TdaW9PQIuAHiPYH6C5s2qZM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wg6JGxTRcEOo4LoRDSZ/YmU/FIzGtL/O0i+opgEtNQZwrPC1a0cKpLg6xTB3FlXIXpKIIawl80vkqL9gt1hFuFS1tKE2ACtfQ4y3kSG9rOUubwcXklA1b/ZiThD5oVb7bGZzr4JRiCFnqh6zrLCwHpmllBLTBGOp34vm+LW94dA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=AedBdfyX; arc=pass smtp.client-ip=136.143.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1779610587; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=cUOwPIx6qfiFmgLCH5f3QxNtUdUWMlcLeq+/824dVkd4j+AS+EcnDJcUlsA5KhfnowH+99Zu9asZcxv+8bIA9QeRGlb6ZGv1vb5oT78yQypTPlTSvT5qJYXJCl8cJMzfGNk7th7jwZemJFodGRFmgvWf/D2vUOypwO19e+xFB3w=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1779610587; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=f+BcqMfSRMkHNRkV+bnfbEWhWrwUx4sqId1SmAVeFZA=; 
-	b=dmC8iQDcB3WUrZgX9T0Pqs9fXuqSXhN/uRaXxOZqoFBMPVJMlFu93GJvpA5P1eYFw4PGhaqvFAY+yyd3OKsSjy8ILSDaCz12ReRf7U15trYjIaRd05QCw+U4ttOzXsgNrr4dZ0X1L2REYQSGRwEljQE5f3HRyVj7skKen8sg4mE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779610587;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=f+BcqMfSRMkHNRkV+bnfbEWhWrwUx4sqId1SmAVeFZA=;
-	b=AedBdfyXsgDs6fl69lPu03X3jaQMDrHVby1SRFy69EV4IQjkerMKUcGdj/H+CU45
-	z8DRnGJ1oUKVPf2QqwGUhNEkiz8Z9L2L+J8f68+gUVurFwoHvyDGjPIAyTwsEhJbvU6
-	6yzaYu/R9fRE4HGsn4gMaQBDvmB5ys+wOrChUfLY=
-Received: by mx.zohomail.com with SMTPS id 1779610584243760.6124410802614;
-	Sun, 24 May 2026 01:16:24 -0700 (PDT)
-Message-ID: <89885938-f126-4e1b-aedb-3edb2da5df2d@zohomail.com>
-Date: Sun, 24 May 2026 16:16:06 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C30A2368D7F
+	for <devicetree@vger.kernel.org>; Sun, 24 May 2026 08:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779612819; cv=none; b=HkgtEwfOBWX0tF+ZAB6b2npYJwjt4dBB7aa3CcMiCUnBckOV2ovV+rDAGhNcw8+XdH2Sm2/pEeQWxaK3/ZoyFiLi7nrGiEssr6TSB+1dE7HIJa9tDoKk4z2l/xs7sEpScGEjACMYOfrDE3psSn+M6zSB81Ci6dfQH7Y6doMtrOM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779612819; c=relaxed/simple;
+	bh=c6CmS2PsElbd14byoasEvR7Kwc0TKu6y36ZmXrs+kBg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TABZgyQHpy5COtNzahf50fTKXMU1phHlqIhp+m0LsHrQ/Eie+Gpn3fSOV8NtfTPLX6myBdIPR2WHJTMjAwHydwgHuX/U8JRXDwuzqHGT2wvZr+P93M0mBVQK8H2NYv0iFSHSWXzt6BlgSMUTz169OMW0B5cAoAZlp+TUP7fEIzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pqcZ4VzN; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-837b39eb078so5972167b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 24 May 2026 01:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779612817; x=1780217617; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LLgoBL/zLcvxr6bj3saZaEcREqHREuQoofVTcPdITuo=;
+        b=pqcZ4VzNEgajWghYCVMf2nQ7fzuQIPZW7zkgIimyU5gfpsKWm3okoeLzCgmu1iBDr0
+         HKKGcMOucpzgxLUnNz2sV/p6FLI0XCBmN7sImcjLKIqIfEPBfSs//bI6BHgKjLVaCqBb
+         YJfb00+94BIozZOu5COL0bMLJgwOoVhlBMzyJgdzVW1hCJkbxrtA4aOxRaL9BWmLVvB3
+         g0pOkpkKJ0avRB+4eKWrwgKIkOHY437YZiGPi4Bky4xzkWGtCfcVoLBPD4z8f/9YDY5I
+         Bo2UqOh5mB4w/aWyp3VeAU6gOSsGt42IduQ0WaD4EiP3CUb9f1CPnel3AOYQDx3LveOl
+         ja0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779612817; x=1780217617;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LLgoBL/zLcvxr6bj3saZaEcREqHREuQoofVTcPdITuo=;
+        b=W4dzLYzzovV2hKTp4QmzokK2FhzStAIS8ZjVbVrqp80WL7XOJ3lRHi1tt5uSUTLpFS
+         lYI4p5te3n9cNwlLJKE9AgRtDoU0c3UjOG6Zms3lLD9yvq3Yx1YRN9tjFZYUtvA3zk6P
+         tJm3nBs6dOlZx1jlC1uJ+qpJZIeyAgVQ7nC8yuni5iTkTFq/7vugIPl+zTMWTyLDMU//
+         6pgjm0yTfGQU4InZqL43sutBVtX8j0AEqOxdmokRBEdxl/HXDUCTB0HbjzDdzMaplQ0t
+         6Q8wJj1Q4+kyJ5Inm/FwFOmx+IBXFgobMAzK5UJHRrEJr/5LBDpokMhRwHOBV9V9VlUt
+         777w==
+X-Forwarded-Encrypted: i=1; AFNElJ+5JGgvnyoKdHoDn18HWEODhZ+dTLilgaufENZsq7zKnOCWg//DFzXX0F0BHHst9FM9KzgeLw++VeUR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8aoL0VDN9Kh/ZrnfipHSftpxJp+n4liaXhQMAk1hsXPCkEzww
+	OEA8s2yMDlDUqpsQTtyOuquxUrS18UC5rBV+sX8IAt61wbiva9bfZfaH
+X-Gm-Gg: Acq92OFgCJw3F7Bj2x/55i3TxbSwhuAuJ1xcX+gDq4CzpdEW+qfkBzNT+tujSqpE85A
+	AbQsjQjduErRhEBjveMQ2lTu3YGNV45oAyyeEujPOQ8Uih/Lr9yAa1SsWnplclbmUT8lD45Gq/a
+	4VWmqtYdprTyZoE8qn8vn2J4WT5uf7RMmDM+vteo4VX+hbWzSlyC5VaHo0Ex0WkqmHQfSwFEOdf
+	rJh7ysLSxKvN9fzKECPJ5xYE+7ObF1gDWE+7xUTdzHXZenyO8bQLraLAOM+Maom9R2lMZ4WYdDi
+	u4OVeeHEJp7Qxj8I7vXPk64tpilvsH/ZfS9MZhLu3RVt8rAn2ghCumIYNQOdt75PrJPAvgrsvw4
+	AJKQb/6wAwEo4b1+/Q5wnLhloCpvmrXEo+H2DeeS1QX2AsNTdjS4YvwDAGgnFXFOe5V8lOklB/Z
+	VIwno0iuBbWPBG1Q5AdiPEqYTHvTht9B0UC3qszA+coo4ebvLanXHCy5cfdMjN2/35CW6eCOsHW
+	Y/ZS52KXrErGgl6CXNit9MgTdSntynBFaqT9A==
+X-Received: by 2002:a05:6a00:3003:b0:82c:d986:e917 with SMTP id d2e1a72fcca58-8415f56374bmr9672521b3a.22.1779612817004;
+        Sun, 24 May 2026 01:53:37 -0700 (PDT)
+Received: from DESKTOP-G3E0OSP.localdomain ([112.172.255.242])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84164ea4de4sm6353116b3a.35.2026.05.24.01.53.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 May 2026 01:53:36 -0700 (PDT)
+From: Jinseob Kim <kimjinseob88@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	linux-iio@vger.kernel.org
+Cc: David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jinseob Kim <kimjinseob88@gmail.com>
+Subject: [PATCH RFC v2 0/7] iio: add Open Sensor Fusion UART driver
+Date: Sun, 24 May 2026 17:53:05 +0900
+Message-ID: <20260524085312.15369-1-kimjinseob88@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] clk: canaan: k230: Fix sparse warnings reported by LKP
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Samuel Holland <samuel.holland@sifive.com>,
- Troy Mitchell <TroyMitchell988@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20260522-eligible-vivacious-3ce9bc30dd53@wendy>
- <dee4605ca30f9bbd55ccb4fcce9590ceee1fa10b.1779453284.git.kingxukai@zohomail.com>
- <20260522-removed-lyricism-7c879febc3b3@spud>
- <1f74efd2-444f-4330-a1e8-62f75e85ecfa@zohomail.com>
- <20260523-punctual-backslid-712c06f0db61@spud>
-From: Xukai Wang <kingxukai@zohomail.com>
-Content-Language: en-US
-In-Reply-To: <20260523-punctual-backslid-712c06f0db61@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Feedback-ID: zu08011227a77cded047123cf15881bd2500005897bdee7dc29404c51879fd2aa9d5b7ee1f6dec0232dff2a8:ZohoMail
-X-Zoho-CM-AccountID: 2ee5dd3c83366259b2ba1e9826250ffebed1ef2dd213857d649ad25aba73b429
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [4.84 / 15.00];
-	SEM_URIBL(3.50)[zohomail.com:email,zohomail.com:dkim];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302187-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	R_DKIM_ALLOW(0.00)[zohomail.com:s=zm2022];
-	GREYLIST(0.00)[pass,body];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[microchip.com,baylibre.com,kernel.org,sifive.com,dabbelt.com,eecs.berkeley.edu,vger.kernel.org,lists.infradead.org,gmail.com];
-	DKIM_TRACE(0.00)[zohomail.com:+];
+	TAGGED_FROM(0.00)[bounces-302188-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kingxukai@zohomail.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[zohomail.com,reject];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64:c];
+	FROM_NEQ_ENVFROM(0.00)[kimjinseob88@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,zohomail.com:email,zohomail.com:mid,zohomail.com:dkim]
-X-Rspamd-Queue-Id: C10885C1ADA
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 221E85C1B65
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series adds an IIO driver for a UART-attached sensor aggregation
+device. The device sends OSF0 binary frames over serdev UART. The driver
+uses capability reports to register IIO devices for supported sensors.
 
-On 2026/5/23 22:02, Conor Dooley wrote:
-> On Sat, May 23, 2026 at 03:00:15PM +0800, Xukai Wang wrote:
->> On 2026/5/23 04:39, Conor Dooley wrote:
->>> On Fri, May 22, 2026 at 08:59:12PM +0800, Xukai Wang wrote:
->>>> Fix all sparse warnings detected during LKP randconfig testing:
->>>> - Replace plain integer 0 with NULL.
->>>> - Add static modifier to k230_plls and k230_pll_divs.
->>>>
->>>> Reported-by: kernel test robot <lkp@intel.com>
->>>> Closes: https://lore.kernel.org/oe-kbuild-all/202605220724.j4ZeM3KI-lkp@intel.com/
->>>> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
->>> Forgot to reply earlier, but I went and squashed this in.
->> Thanks Conor!
-> I dunno if you saw my message about giving what I have in my
-> branches a go, but if you could try what's in the riscv-soc-for-next
-> branch, that'd be great. Just to make sure that I have all the bits in
-> place.
-I have successfully tested your riscv-soc-for-next branch on K230
-hardware. The clock controller probes correctly, and clk_summary shows
-all PLLs and clocks are running as expected.
+v2 preparation changes:
+
+- split the previous RFC driver patch into smaller patches
+- add a Device Tree binding
+- add an OSF0 protocol reference
+- use get_unaligned_le16/32/64() for wire fields
+- use IIO timestamp handling for buffered samples
+- push decoded samples directly to registered IIO devices
+
+Tested path:
+
+- STM32F405 OSF0 UART stream
+- Raspberry Pi 4 serdev
+- kernel 6.12.75+rpt-rpi-v8
+- IIO devices: osf-accel, osf-gyro, osf-magn, osf-temp
+- raw reads from accel, gyro, magn, and temp
+- buffer reads from accel, gyro, magn, and temp
+
+No OSF oops, panic, or call trace was observed in the Raspberry Pi
+runtime smoke.
+
+Jinseob Kim (7):
+  dt-bindings: iio: add Open Sensor Fusion UART device
+  Documentation: iio: add Open Sensor Fusion protocol v0 reference
+  iio: osf: add protocol v0 decoding
+  iio: osf: add stream parser
+  iio: osf: add UART serdev transport
+  iio: osf: register IIO devices from capabilities
+  MAINTAINERS: add Open Sensor Fusion IIO driver
+
+ .../iio/imu/opensensorfusion,osf-uart.yaml    |  33 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../iio/open-sensor-fusion-protocol-v0.rst    | 267 +++++++++++++++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/Kconfig                           |   1 +
+ drivers/iio/Makefile                          |   1 +
+ drivers/iio/opensensorfusion/Kconfig          |  15 +
+ drivers/iio/opensensorfusion/Makefile         |   6 +
+ drivers/iio/opensensorfusion/osf_core.c       | 311 ++++++++++++++++++
+ drivers/iio/opensensorfusion/osf_core.h       |  67 ++++
+ drivers/iio/opensensorfusion/osf_iio.c        | 288 ++++++++++++++++
+ drivers/iio/opensensorfusion/osf_iio.h        |  22 ++
+ drivers/iio/opensensorfusion/osf_protocol.c   | 220 +++++++++++++
+ drivers/iio/opensensorfusion/osf_protocol.h   | 100 ++++++
+ drivers/iio/opensensorfusion/osf_serdev.c     | 111 +++++++
+ drivers/iio/opensensorfusion/osf_stream.c     | 207 ++++++++++++
+ drivers/iio/opensensorfusion/osf_stream.h     |  31 ++
+ 17 files changed, 1691 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-uart.yaml
+ create mode 100644 Documentation/iio/open-sensor-fusion-protocol-v0.rst
+ create mode 100644 drivers/iio/opensensorfusion/Kconfig
+ create mode 100644 drivers/iio/opensensorfusion/Makefile
+ create mode 100644 drivers/iio/opensensorfusion/osf_core.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_core.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_iio.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_iio.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_protocol.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_protocol.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_serdev.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_stream.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_stream.h
 
 -- 
-Best regards,
-Xukai Wang
+2.43.0
 
 
