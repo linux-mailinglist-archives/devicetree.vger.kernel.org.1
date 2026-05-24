@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-302291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302292-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8KyfLLFKE2pq+AYAu9opvQ
-	(envelope-from <devicetree+bounces-302291-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 21:00:01 +0200
+	id uXFqFL5ME2pA+QYAu9opvQ
+	(envelope-from <devicetree+bounces-302292-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 21:08:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07CDA5C374C
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 21:00:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 975525C376F
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 21:08:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 01E9F30080AD
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 19:00:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 828DA3007F46
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 19:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0BDE309EE9;
-	Sun, 24 May 2026 18:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB1E4303A37;
+	Sun, 24 May 2026 19:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAwJYsut"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/7/oLOE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AA2168BD;
-	Sun, 24 May 2026 18:59:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654DA212566;
+	Sun, 24 May 2026 19:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779649197; cv=none; b=qJvkuLDFyXqtDq3rtWr4RGML/8Jz7zlx7L1U+r2aFEyb0aITuaNv5MxdbgWsunpun7q5Ha6zReUPyVUFBpEXks64tdm1Yy+0YYVRmkKe7XyikV1qZoiMsNNTmOdWOAHx6/iN/qYtyE3rX9njgL44si6VBqm1B8biZBshkt80LD8=
+	t=1779649721; cv=none; b=cfq2reBfsVUpgHbBW6aV6kg15a7qeiVPKW2ZZFdIyeXQz8g7/Rdth5r+zh/zP4gqn2kE8ma9NzQ2X+t8GZbc2mZ6+OATIFa4N4RxXDI97svH2CFBy53Z3VhTDcOM61pph2QUWcGtQDBj3tBOpYce9i5rhQmhb9sWuycnSljZ/Cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779649197; c=relaxed/simple;
-	bh=6I4ZCSMAJ7iQtpK76gcdXEbJdcgNHzNSzs1S5ulmoLg=;
+	s=arc-20240116; t=1779649721; c=relaxed/simple;
+	bh=KAhDqm0j8XX4wZhPAqq1yA0xoWy0iEaA69359oL9CvA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VnJn2y3+am4jZVWJfBxcNxHtusd/TbT9VJC7RY9vGrSqObY5tTYz0zYTbeVmjg4YeCfmlKH5fJg1LlQvk4PLfygI8xIPKLm0CV3MBGFHtT9UQ7fsdccRtvmB5IjG5dQoOCvVh+RANJgnniZcNSr1n4ynnkEKLPXz37Cx13JaSfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAwJYsut; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 114321F000E9;
-	Sun, 24 May 2026 18:59:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SfoKJfwzefspJpI9rrcCDBRf00biJc/A4HsAA50GCv9e/Hsok2gizQxSzDVGRTXnwSiv09PYcpvocmryeq2YX2vU4aR1rb2m+err/fZ6xgal0PeFP+3xPyvZlW7SJsxbWFnsl7n29qJlsLXMvT3TwLbm22OeA9i4ztiG5oyXDrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/7/oLOE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 991341F000E9;
+	Sun, 24 May 2026 19:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779649196;
-	bh=c+QuToO6bKhvGIN86vmichQVbmiWTb4MzyAjSQ5uLNE=;
+	s=k20260515; t=1779649720;
+	bh=KLRQ2wACRuipMVnIkUKL2r6pZUOgBEEve1ZZpHIHskM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=lAwJYsutI/8sUCK+NLsIWlt6ESlOsb+8mQFRGqhDyGJgT7HBZxE8kpZsdQWuH2ah9
-	 HzFbSuMHnv/3JAQw7G8fmpLm+Q5EiRniuiBUtIEiZJWpdcY8ktv8wVXdc1wcn+Pwb9
-	 VfcC4XhX+m5ce4PMKyENHzUWpsv+TX62d3FqtreIuEatkaUYxeRrQsQTUQWlgMQRYv
-	 osWY31jkEiv1axo+7MqEHc49l7Oqt7oFFMYHLoqm+DOAeydv2TxY46dLrJ9U4DHto/
-	 Qdoynn5S28EjntB+32flUH4SgslaNy3HlJehDZq9zdCi3/zQ4GcVzPvbyIDgLtVKMl
-	 bJ71CwEoqz1rw==
-Message-ID: <15b94878-d562-4e74-b0c1-cfa5d94692d4@kernel.org>
-Date: Sun, 24 May 2026 20:59:52 +0200
+	b=n/7/oLOEv+z4+YBMo7iLr1qDDwBbqDZx0/+21SVPQ8MjnRNQ2kRyNBNHtdkJqsxO5
+	 UCphTz5rjChomuGjjw7Alujmzz16yQF9e/dOuUJHZClq6z5bXKorZQLsnskc5i3xLe
+	 NyEr3uinVD+mp2udqEpQTj2HaPlrwC8PnhRWs/ZbgJLD53PXk+8hXQLjmtvFuWnJf3
+	 1vDk2I2UtqR5/z/e+R6L8KnzA42iHlpYOopzIoHNCQJje4twutgbqNlOoF4NHRiL7f
+	 EtpSG86SYs1lytdf9iK0ppVZlrw3cAA4MhZObcKwMltzOOwND/3HGh2bvtTdUAQmYS
+	 hIZ/GZQJE7P7Q==
+Message-ID: <50e53fd9-4cca-4cac-9f8d-868de3a8a7bc@kernel.org>
+Date: Sun, 24 May 2026 21:08:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/7] dt-bindings: iio: add Open Sensor Fusion UART
- device
-To: Jinseob Kim <kimjinseob88@gmail.com>, Jonathan Cameron
- <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260524085312.15369-1-kimjinseob88@gmail.com>
- <20260524085312.15369-2-kimjinseob88@gmail.com>
+Subject: Re: [RESEND,v2 1/2] dt-bindings: memory-controllers: mtk-smi: Add
+ support for mt8189
+To: mtk20898 <zhengnan.chen@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20260427070444.20247-1-zhengnan.chen@mediatek.com>
+ <20260427070444.20247-2-zhengnan.chen@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,29 +109,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260524085312.15369-2-kimjinseob88@gmail.com>
+In-Reply-To: <20260427070444.20247-2-zhengnan.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302291-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302292-lists,devicetree=lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[collabora.com:server fail,sea.lore.kernel.org:server fail,mediatek.com:server fail];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -139,73 +139,33 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree-specification.readthedocs.io:url]
-X-Rspamd-Queue-Id: 07CDA5C374C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 975525C376F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 24/05/2026 10:53, Jinseob Kim wrote:
-> Add a binding for the OSF0 UART-attached sensor aggregation device.
+On 27/04/2026 09:04, mtk20898 wrote:
+> From: Zhengnan Chen <zhengnan.chen@mediatek.com>
 > 
-> Signed-off-by: Jinseob Kim <kimjinseob88@gmail.com>
-> ---
->  .../iio/imu/opensensorfusion,osf-uart.yaml    | 33 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
->  2 files changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-uart.yaml
+> Add binding description for mt8189.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-uart.yaml b/Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-uart.yaml
-> new file mode 100644
-> index 000000000..d4a8f6819
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-uart.yaml
-> @@ -0,0 +1,33 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/imu/opensensorfusion,osf-uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Open Sensor Fusion UART sensor aggregation device
-> +
-> +maintainers:
-> +  - Jinseob Kim <kimjinseob88@gmail.com>
-> +
-> +description:
-> +  UART-attached sensor aggregation device using the OSF0 frame format.
-> +  The device sends capability, status, and sample frames to the host.
-> +
-> +properties:
-> +  compatible:
-> +    const: opensensorfusion,osf-uart
+> The clocks number of mt8189 smi-sub common has a bit difference.
+> Its clock count is 2, while mt8195 has 3. Therefore, the minimum
+> number of clocks is changed to 2, with the third one being optional.
 
-1. No such vendor. You need to test against entire bindings.
-2. Looks heavily incomplete - no resources. Compatible and hardware
-description looks also incomplete - what is osf? It's exactly ONE
-device? Why do you use bus suffix? Please start with writing bindings or
-DTS101 slides.
+Then why does the binding say that mt8195 has two clocks? You already
+received exactly this question.
 
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    serial {
-> +        osf {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
-
-> +            compatible = "opensensorfusion,osf-uart";
+> 
+> About what smi-sub-common is, please check the below diagram,
+> we add it in mediatek,smi-common.yaml file.
+> 
+> Signed-off-by: Zhengnan Chen <zhengnan.chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
+No need to resend this. You received comments at v2 and you should have
+implemented them.
 
 Best regards,
 Krzysztof
