@@ -1,215 +1,238 @@
-Return-Path: <devicetree+bounces-302233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302235-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 3CTdBVPvEmoN5gYAu9opvQ
-	(envelope-from <devicetree+bounces-302233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 14:30:11 +0200
+	id MNOhKFvwEmo25gYAu9opvQ
+	(envelope-from <devicetree+bounces-302235-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 14:34:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6074A5C25BA
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 14:30:09 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4180D5C2604
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 14:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 68CB9300795F
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 12:30:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 05B4D3002300
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 12:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2F5392C52;
-	Sun, 24 May 2026 12:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDEA13932C5;
+	Sun, 24 May 2026 12:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fNjesyUx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="by+KhC5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5F01D61B7
-	for <devicetree@vger.kernel.org>; Sun, 24 May 2026 12:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAF638E5FF
+	for <devicetree@vger.kernel.org>; Sun, 24 May 2026 12:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779625807; cv=none; b=COrFSQHQ7Gg5p3MyXYN7f7Qq1Lz2DI4skdXEH8kVC/xUnCR6Njw+qNeBpBPZLxWUNwgeSh7NLJ/Kmd7mPCWIks7hWIDUsnTfkttD1V7tC4n7VUIUKblvzSxKwkl5xvbsHhIIsZj6VqGjnitA+qGIWmfR37TrLEMFVKoOdPDT53U=
+	t=1779626071; cv=none; b=jFSElo3NxtfUk2pp2KTZ9qPYXiWWs2jmT4kSdxuPZO46ujMaA+chXfZM0k4B4DYj4uhSY3yy1cx9rVi+gCFFy0AggvidrEBI+4NDasWVSks5yI4uEOB/ZQrs1NVP0Qrzh5QLJdh0PW4AgGtxo086LSJ2vL3lEtcakTLjhod7OlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779625807; c=relaxed/simple;
-	bh=ERoTsAxoECnJLoZkCdSBrxZOe8Upzt4O9Uj+YfgixCw=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EWVCniRdFr7swBYd3wnrVcjoKhed8GPIbO4jBkzKvGPqcr3rSHhLYGYPRltFstD8YdAN5aNS/9bLP33uSP/Pb0hJoERbB9DQeINTCpjldMXKLE/nD4wTWPVnQKkjJq6CmxpRGfDqdTjIjdAeA/+b0vm3xfDj6Ql6IWSLlLLRcGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fNjesyUx; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1779626071; c=relaxed/simple;
+	bh=583KH+DCxPQ/knkRR9QEOGjJuOjydKdrPkk8dL6UTUM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZdXE+J/ZsyftWNqbjeeIU7dGBmNZbPzX+KpFrUJfWqCC9c1D9mToSPdIHqh05sLhJ/HhIDF3ewq/ObZoFphdDKf6kVkYQvoUnqcWH7UUS1dwBGMePv9EnI3DAKIAbvnemX3byjF8tIpHefq0T1eKxesJ40oZHhEBCR6bS7tGF5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=by+KhC5E; arc=none smtp.client-ip=209.85.210.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4891e86fabeso111539295e9.1
-        for <devicetree@vger.kernel.org>; Sun, 24 May 2026 05:30:04 -0700 (PDT)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-8379e010b01so3801797b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 24 May 2026 05:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779625803; x=1780230603; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T1o+DvC19PR6GkTpTccEfjTify4jzFt0w17PhEVHA98=;
-        b=fNjesyUxCwzSP6/O1jV8L47nm3Lc8Rb3gKfxQztn+6mSVAn7FXb8Rz7msnnsH07K0M
-         GIr6IkNtzF+VPW4hCYyLy77k5+C0YiS4Qcj/G4Dtv0dLevVnaUz4laIPGVh2uek3p963
-         b2PDIRvK+Z4WLlJH88vrrRFJsmXj7wsImj9wP+eLi16vtmHg0uiy3GCEeSPC5UxtSsnL
-         EaqldWS6jq4Q4D8pgj5v/LWSrAnzlsJ0KHU/DOxC0fmxcIgroo49EAFiAAm+7ouKBUnC
-         qfBBFdo5mdOdpEG4DJwJVweteUneN9sAlEa25HKkLOZqidGjFGj33EPTBJlWcGjyBF2x
-         Fj0Q==
+        d=gmail.com; s=20251104; t=1779626070; x=1780230870; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=viQH8T8avmF+llB67Wz4hsS8DneqALZYYyFNV5J0o5s=;
+        b=by+KhC5EaCTmBv3F/2INfAGLkONnLLEsq/rL7DyXAFsDyB2Y/hS0kmSXXT6vhdJ2VW
+         3gwaLlhsjKO31ziJwD+RF7R+tYDlfcd6kCEkSJc1GvbGP9P1H0PLOwim7w9NY2vxq88G
+         9H7VADbhpjeCcDKVsnRuXTjVzSdf2f+h5eGTW6LMPDbmFTBlhYGGIVnEKjasMveKHKmA
+         9I1Ob88E+H8FpEupCOAiHHsWia0jVRzJpCwF72jPOhFC8wp3p/pv4MZFywgHhRb1plXr
+         RWEduBJ8HW8jzRWZjGaYrXBdl6U4jcLsXXWyUNNH52g1JVk0HSlMNV8Ko78X/Dp2gwz6
+         aLqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779625803; x=1780230603;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T1o+DvC19PR6GkTpTccEfjTify4jzFt0w17PhEVHA98=;
-        b=nlwFaTOELbBpKb2kyvGJystk9V6bHiG5XnkA8iwXJ+OrQjny3MD30ZBRtM6SzzjaRn
-         56JFZxWzsGTHJcyokXB87LRQQU47mi9b4/BmfVBUaQp//t3QxNDobdIwm7q1NSM8yWyb
-         9soIEKmhkNTuj/+DmGvWk6bi6N3XQCZcQT3gOFJyyePa6BVhVp6I6SUyCt6vPbsanK72
-         5T+3OgiO1zsv2juz/VoLVwD/M3KCA25pIpAASQKUcQTK4rJx55Nn2m2O4Nd34CMkpNcr
-         khlQZ1ZvIsW/sMT2moEmTTLY586tiDwjFbcnwJHaZGXxekDx3BMMrJKGujHDa6SNK0j3
-         g8Cg==
-X-Forwarded-Encrypted: i=1; AFNElJ9gsDVnNpDqIX/PqxU6Kug2/b8OjaxsbOG2O6+3YSQE/3MAQL4llOs8alV77+iloHV43SR0tXDtcoN4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnQDuZNABSGNb/jNyeLIEL0eqWcDXPIbr1l4leWcZDtiNb7SWE
-	XvKXTzifAb6fMJa/61is7bFR8OAeMbhhy73Mt5TsjjgOkk7JGOeNa159
-X-Gm-Gg: Acq92OFSsj1RaYM9tk+9FSzKn9gmp9OvHG11HhYgwkq20nwsSnGYBqPS3quwSzbIqgn
-	jo2BJoropi0SgjWDwUhaEgr5XWiG2BOwEddrTZ3vhfV/ICG6o2cdUpYBe6lrOo11SPR5OMnwwgZ
-	QLZpV1ABfo1ZssLPmVupNUGA/W6ntOI//02I68mTCUNtz4jUaadC42NdVSNyp6hyd1EOfneByWQ
-	G554CsHWO3zpNyPg+yb3jB54f1udBbojggccHWwiWjOsGdE0tToMcbVAax3/JvTbrc90fwOYwWL
-	5Ikt95GOmWyTf4K/phI2AJASA76TcMQllssq85PNl+T97apZKbgcAkGsY4omuXuejGFG41/KOeS
-	OPjRi0eyL475EohASk7MZoU7YI0YrxrFc3Wqu5UvlHB5VzOUnwdTQJgDYOsd8EY57ojdDbckIyB
-	FCRaYsSqzu4jrJ/VJnRqM9TfO/LvVoweJgZTymc8NngjEVBm3DX9s7lYXbkdSz0+vCfsA1pBq0J
-	n6LMPXVyMJY5Xg6byO5tuiWuFx83XHRFersS07Wxqqo9X0aRk2muxfeOMtU
-X-Received: by 2002:a05:600c:3547:b0:48f:e6b9:c740 with SMTP id 5b1f17b1804b1-490428f30bcmr180656565e9.30.1779625803084;
-        Sun, 24 May 2026 05:30:03 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490424aa561sm84023815e9.5.2026.05.24.05.30.00
+        d=1e100.net; s=20251104; t=1779626070; x=1780230870;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=viQH8T8avmF+llB67Wz4hsS8DneqALZYYyFNV5J0o5s=;
+        b=fapVd6dFPUy5NDKzICYmpB4XWVVlGp7UUsm9mIkGfQlBPYU8+pZY8phsgVSYvydlf8
+         c0OYAwJeFNVBNrGlKD3pgOsnXdces/SExayqGgbW+cVFY+p6V2Z/M2/fF1dHUMH4yyfp
+         XgMoTPUatcG23rHVQ7VsokX577pOSZSRC3FGbgu1QML2Qt4PzbrukoG2XWHYCT2NNhq8
+         anAL+mnm9R7Zyby/s+DiA5IeqqhoLo+yFZKaiduTe8ZyoeTGPasmosZbVXGC7OzRLD6n
+         zfY2FsuKlQihFcct5VYlPQI2J1phW1XhqWaHpWy7pUTRdZkFLBN+ebGTNaw1zM4qb9jf
+         7cMw==
+X-Forwarded-Encrypted: i=1; AFNElJ9/YuUzlnh+N7MEQ8/ycdh3tSwS6UBJMRs5bVVSOL2E9Tk7Y5eARXshpTQM3HBwej0ZVHqfV3cI8sxt@vger.kernel.org
+X-Gm-Message-State: AOJu0YynksSXalpe48/WuU+Um1eR/J5S2fCGW3qqKhC8HHbl0upnmgFi
+	bGpof2PjY0BIcwR6WpfyTRXOgSekxhq1GOrvd18r5t8hI3dCElwubI5z
+X-Gm-Gg: Acq92OEMBJwadAKK9i4zwm30D0HCzaXFQyGxqb1a4PWZ+uwAi/4vwQu/5//YtpjWxJH
+	ruJfaymjvQmAjahCkv4GG/2rbfmkkcChHhip2WnttuBvmHWcd+VdPpRcQzR1PYvtHtOrEELW4M0
+	VZfQQKh7S+FStTWIvtPUd3oC3MOIb3XdfSy5cVeykH9VAH5GJcG0yidwqAZF2CcFdcS8nFKqa5C
+	q0SnqMx1vepOx4QSyTA6OFsYGdbbKyjlHreE5q+BwDNGSylpJ0xjeNi5C2L0aM1I/VKfZoymPqe
+	KjbGNDdFFaJlQCzLKKIvwY6gVbtwQkBicpAkt5UE38CkfPi8DzLx+D4ePFuMLsG0KFh/dl1ZH63
+	sTEUFAh+sGkPOy9qjIzC5iy5uCMiJdhlV296mvSdVD9FtLD2MV93n9RX28RBbc3Rn/th12cNlS4
+	b7LHBUbbGuynuevGVZ3k+/8aqo+9V/ayb9xp8nSC9NL1iveuu41w2nxX0JuVAj2YHLrrk=
+X-Received: by 2002:a05:6a00:1907:b0:83e:6fde:54d3 with SMTP id d2e1a72fcca58-8415f7010d4mr9922617b3a.50.1779626069700;
+        Sun, 24 May 2026 05:34:29 -0700 (PDT)
+Received: from Ubuntu.. ([49.37.169.210])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84164b1b3d2sm7648811b3a.26.2026.05.24.05.34.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 May 2026 05:30:01 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Sun, 24 May 2026 13:29:59 +0100
-To: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
-	Steven Rostedt <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky <senozhatsky@chromium.org>, 
-	Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v14 10/12] iio: frequency: adf41513: features on
- frequency change
-Message-ID: <ivren25tav5pgaynyrsujqo5zqfp4l52wu7jtlk5cotc62vbjs@nop6xcq6gjyj>
-References: <20260524-adf41513-iio-driver-v14-0-06824d9c15f4@analog.com>
- <20260524-adf41513-iio-driver-v14-10-06824d9c15f4@analog.com>
+        Sun, 24 May 2026 05:34:29 -0700 (PDT)
+From: Manish Baing <manishbaing2789@gmail.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	peron.clem@gmail.com
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	manishbaing2789@gmail.com
+Subject: [PATCH] ASoC: dt-bindings: sound: asahi-kasei,ak4118: Convert DT schema
+Date: Sun, 24 May 2026 12:33:30 +0000
+Message-ID: <20260524123415.108301-1-manishbaing2789@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260524-adf41513-iio-driver-v14-10-06824d9c15f4@analog.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302233-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302235-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[manishbaing2789@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url]
-X-Rspamd-Queue-Id: 6074A5C25BA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,0.0.0.13:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 4180D5C2604
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26/05/24 11:15AM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] Bleed current is not computed or updated when switching from Integer-N to Fractional-N mode if the PFD frequency remains unchanged.
-> --
-> 
-> commit 299bd27511dd5b2a2354c749631d53bcff158e2b
-> Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
-> iio: frequency: adf41513: features on frequency change
-> 
-> This commit adds bleed current configuration, lock detector window adjustments,
-> and phase resync support to the ADF41513 driver when changing the PFD
-> frequency.
-> 
-> > diff --git a/drivers/iio/frequency/adf41513.c b/drivers/iio/frequency/adf41513.c
-> > --- a/drivers/iio/frequency/adf41513.c
-> > +++ b/drivers/iio/frequency/adf41513.c
-> 
-> [ ... ]
-> 
-> > +static void adf41513_set_bleed_val(struct adf41513_state *st)
-> > +{
-> > +	u32 bleed_value, cp_index;
-> > +
-> > +	if (!(st->regs[ADF41513_REG6] & ADF41513_REG6_BLEED_ENABLE_MSK))
-> > +		return;
-> 
-> [ ... ]
-> 
-> > @@ -630,6 +725,14 @@ static int adf41513_set_frequency(struct adf41513_state *st, u64 freq_uhz, u16 s
-> >  		st->regs[ADF41513_REG6] |= ADF41513_REG6_BLEED_ENABLE_MSK;
-> >  	}
-> >  
-> > +	if (pfd_change) {
-> > +		adf41513_set_bleed_val(st);
-> 
-> [Severity: High]
-> Will the bleed current be properly configured if the device switches
-> from Integer-N to Fractional-N mode without changing the PFD frequency?
-> 
-> In adf41513_set_bleed_val(), if the device is previously in Integer-N mode,
-> ADF41513_REG6_BLEED_ENABLE_MSK is cleared. If the PFD frequency changes
-> while in Integer-N mode, adf41513_set_bleed_val() returns early without
-> updating the register.
-> 
-> If a subsequent frequency change switches the PLL to Fractional-N mode but
-> maintains the exact same PFD frequency, pfd_change will be false. Since
-> adf41513_set_bleed_val() is only called when pfd_change is true, the bleed
-> value configuration gets skipped entirely.
-> 
-> Could this leave the bleed circuit enabled with a stale or uninitialized
-> current value, potentially preventing the PLL from locking?
+Convert the Asahi Kasei AK4118 S/PDIF transceiver bindings from
+text format to YAML schema.
 
-This make sense. After adding the suggested guard for bleed enabled I should
-have move adf41513_set_bleed_val() to be called bellow...
+Signed-off-by: Manish Baing <manishbaing2789@gmail.com>
+---
+ .../devicetree/bindings/sound/ak4118.txt      | 22 -------
+ .../bindings/sound/asahi-kasei,ak4118.yaml    | 57 +++++++++++++++++++
+ 2 files changed, 57 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ak4118.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
 
-> > +		adf41513_set_phase_resync(st);
-> > +	}
-> > +
-> > +	if (pfd_change || mode_change)
-here..
-> > +		adf41513_set_ld_window(st);
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260524-adf41513-iio-driver-v14-0-06824d9c15f4@analog.com?part=10
-
-At least, that would be a quick one. We can have another round of reviews on
-the decimal parse function... worst case, we can have another week.
-
+diff --git a/Documentation/devicetree/bindings/sound/ak4118.txt b/Documentation/devicetree/bindings/sound/ak4118.txt
+deleted file mode 100644
+index 6e11a2f7404c..000000000000
+--- a/Documentation/devicetree/bindings/sound/ak4118.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-AK4118 S/PDIF transceiver
+-
+-This device supports I2C mode.
+-
+-Required properties:
+-
+-- compatible : "asahi-kasei,ak4118"
+-- reg : The I2C address of the device for I2C
+-- reset-gpios: A GPIO specifier for the reset pin
+-- irq-gpios: A GPIO specifier for the IRQ pin
+-
+-Example:
+-
+-&i2c {
+-	ak4118: ak4118@13 {
+-		#sound-dai-cells = <0>;
+-		compatible = "asahi-kasei,ak4118";
+-		reg = <0x13>;
+-		reset-gpios = <&gpio 0 GPIO_ACTIVE_LOW>
+-		irq-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
+new file mode 100644
+index 000000000000..54cee45ac051
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4118.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Asahi Kasei AK4118 Digital Audio Transceiver
++
++maintainers:
++  - Clément Péron <peron.clem@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: asahi-kasei,ak4118
++
++  reg:
++    maxItems: 1
++    description: I2C address of the device
++
++  "#sound-dai-cells":
++    const: 0
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO used for the Reset pin
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        audio-codec@13 {
++            compatible = "asahi-kasei,ak4118";
++            reg = <0x13>;
++            #sound-dai-cells = <0>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <0 IRQ_TYPE_EDGE_RISING>;
++            reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
++        };
++    };
 -- 
-Kind regards,
+2.43.0
 
-Rodrigo Alencar
 
