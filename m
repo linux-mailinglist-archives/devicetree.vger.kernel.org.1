@@ -1,153 +1,331 @@
-Return-Path: <devicetree+bounces-302567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302363-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIfPFPogFGpjKAcAu9opvQ
-	(envelope-from <devicetree+bounces-302567-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 12:14:18 +0200
+	id tVP6NHSBE2qXCgcAu9opvQ
+	(envelope-from <devicetree+bounces-302363-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 00:53:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA32C5C921D
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 12:14:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28BF45C4AE9
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 00:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 54BA13000FEE
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 10:14:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AB87D300462F
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 22:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F2B345CDD;
-	Mon, 25 May 2026 10:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E3F3AE6E9;
+	Sun, 24 May 2026 22:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RDMu/TLC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E4nx6rQO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00593382DC;
-	Mon, 25 May 2026 10:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18073ADB98
+	for <devicetree@vger.kernel.org>; Sun, 24 May 2026 22:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779704054; cv=none; b=c1EPShOWggZZPZ1//YIWeiSXnhlZOAq/rLjV+49Uhd//Tt1p7Dc6KsKJjrEiAkGv4p3Fq0wzH/NOeLh1RjuhuXKJOXIJ6UUCStq8rRzJe7v14Z5X5JHjQvuJ7QinmfiDiTp20XNRNVmAT0N+GLjKQ9NkU6x6Tue/B+tMP8f5S4Y=
+	t=1779663218; cv=none; b=IpT2AfEI7rikWVA9zmHSidK64FWdmCA/bxrWmGX8azDB1V+U2yeg96gKKCkEZ0TjexfTY/9JzT8Gewltc7XAboe1lZ3PsaeWQxN0Lsj6a2D1H8A45c08RxJSR7byuy6AyPMkQDhhJVgOku7JAPf0ymMDuHoEnJUmlJTc/fizge0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779704054; c=relaxed/simple;
-	bh=k7v5GEdkzcydxpc5MvIfHq+A02nGrCLlHWY7mzRaaeo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=rsz6uflaPwHINKnikzcWnS0+6cXasD6/81u2nEDmQ7xrlmQCi+W4BNx9EH9bVbb1mhEqf8l2bC0tlm+X5MrhDdI4MA2RVnp5ziOFUWzzUjcXh5ahEWtp6YFl2BdU/Q938RgPFum4lah1PmF6Mujvdqdpu473ykg4STVRTLKH+WE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RDMu/TLC; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C38D1F000E9;
-	Mon, 25 May 2026 10:14:11 +0000 (UTC)
+	s=arc-20240116; t=1779663218; c=relaxed/simple;
+	bh=U8HorvtucUjeIm6YK8sb9dGMrq/aT+YjNFlOu/NBFSc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=BoC3d1H7JO4+Wp62M4wjaG4KmzrjQ6UCRzqD4zrhs362BSMuW+GcbCs35X3ImadyfhCHCpcZ6QW/7CR71bVn33ZTF+wPiTR3nHaOaws61AYNFFE3NfcCmnLU2Iww5veLTmLRBshA1jWeagw8q4WJ5f3QFkCfwi4evz29/0JHo9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E4nx6rQO; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 450AF1F000E9;
+	Sun, 24 May 2026 22:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779704053;
-	bh=JK9rJSaQEpusmJlFZSrvIvsLrGVJQ12596AEN969qU0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=RDMu/TLCX1a7lFahRAI271FNP1CzJtnNSmp26mfk1YlsWi3syZ13oK3C3pEA070ej
-	 Y3fsjfeWvO8iMwt979GISKTN5n4Ynft0opQKIIFkEw0uy3t0iBAiPlKHQjboBYZALc
-	 YfEyDU74jUrSxq4WCkJDAaIOLiXb2k19a/L7QYINmBnz2Kx97xPo9RZdj5MG+e+EUW
-	 BEu+3XJoZfJljiPhS8BmypNkfwC8YujgYCkYVIJwPEJy/Ow1G4qZp8lKcOn4a5wKEx
-	 c9fAlOZ0yvaREBUL/I2/62NZbmg4AQdVaau8tuW0rSxd+yQFAo/uWf8YESmuHVOstG
-	 EC2eSnsD3GKKg==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- KancyJoe <kancy2333@outlook.com>
-In-Reply-To: <20260522-topic-sm8650-ayaneo-pocket-s2-sgm3804-v5-0-bd6b1c300ecc@linaro.org>
-References: <20260522-topic-sm8650-ayaneo-pocket-s2-sgm3804-v5-0-bd6b1c300ecc@linaro.org>
-Subject: Re: [PATCH v5 0/2] regulator: add support for SGM3804 Dual Output
- driver
-Message-Id: <177966214295.70905.14964085869538189497.b4-ty@b4>
-Date: Sun, 24 May 2026 23:35:42 +0100
+	s=k20260515; t=1779663216;
+	bh=j0J+VJ0n9DDhpJnBSwjagYE/KKRbv5oVKazJBvzrvCY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=E4nx6rQOSHSizAVgeK0E0fHTSwVa+dvczN8n8r8UcyhZObIwy/N/r7w6u3vxQ4Rzj
+	 xo2zHNjbpBvSoEMLTp10KRnpvriJ2QB33u1Tc5xy1TMBSCBMWc94vIpUSK8I38m18r
+	 /UMQXkETKQYs8b4EiVzKdchHrNJmACDiBB6ejVS/V7G/NP3U8GGn85xMe4KiQ9d02Q
+	 oBh/sbioigQbMHrdKH/K2ZAgBCcca5SqVL0xO3K48Cj45rYfeBYt5xw9YCmgeQwwC1
+	 o4UYWl9I9rqTkiMzSfsz7yxJfGd+LiwhCtBcVz7f1gzt+8RIDnzQe8CW3Qx6qrgsfg
+	 leWbhPqmvYmrA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/4] iio: light: add support for veml6031x00 ALS
+ series
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260524-veml6031x00-v3-2-29165609b2b5@gmail.com>
+References: <20260524-veml6031x00-v3-2-29165609b2b5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 24 May 2026 22:53:35 +0000
+Message-Id: <20260524225336.450AF1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1516; i=broonie@kernel.org;
- h=from:subject:message-id; bh=k7v5GEdkzcydxpc5MvIfHq+A02nGrCLlHWY7mzRaaeo=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqFCDwrFft/hKTCSlxSqoomU7g4kw3HPwpmMCtH
- 6jv6jBprkaJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCahQg8AAKCRAk1otyXVSH
- 0DElB/0XgXwwXigApZ/XD4RZYiLi+RNzIVfi7pciR1JVh7oSyqNV5D2xXupWcjvETG2mcFFCJk5
- RDulAy5vxey0f6sb9rZqqbFSK8KbZZWRZEWWUMQx223oS3D9rocS9Y9ha611pXng6GnJdX+GkUW
- e7sJGIrGSptPoaGyk2jxSsagOMbG5il44QFwb7JCLRsoapKnxpor2y+i+RVtpTjKhCYA/s0LSvT
- P/bPEHy1Py+f648D8/xKm/UC1Ymompe7fziCoO8/qcQgHiSHgA8eBglow8pbfh2HYnf9v78VY4r
- tiZgKncrJzoRm6AHi4de4n1qzKD2ImM4/lxW+cDcaysFX+IG
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302567-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302363-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,outlook.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: EA32C5C921D
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 28BF45C4AE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 22 May 2026 15:09:11 +0200, Neil Armstrong wrote:
-> regulator: add support for SGM3804 Dual Output driver
-> 
-> Add support for the SG Micro SGM3804 Single Inductor Dual Output
-> Buck/Boost Converter used to power LCD panels a provide positive
-> and negative power rails with configurable voltage and active
-> discharge function for each output.
-> 
-> [...]
+Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+s) to consider:
+- [High] Mixing `devm_pm_runtime_get_noresume()` with manual `pm_runtime_pu=
+t_autosuspend()` causes a PM usage counter underflow.
+- [High] `veml6031x00_write_raw()` modifies hardware registers over I2C wit=
+hout acquiring a runtime PM reference.
+- [High] The shutdown devres action performs I2C writes without ensuring th=
+e device and its parent are resumed.
+- [Medium] Missing locks in `veml6031x00_read_raw()` for `IIO_CHAN_INFO_SCA=
+LE` and `IIO_CHAN_INFO_INT_TIME` allow torn reads of configuration fields.
+- [Medium] Incorrect scale attribute exposure for the IR channel and failur=
+e to mark shared hardware attributes.
+- [Medium] The driver unconditionally sleeps for the integration time on ev=
+ery raw read, introducing unnecessary latency.
+--
 
-Applied to
+commit 02aa1fda2e77e393230904b3d122bdbb99445c9f
+Author: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.2
+iio: light: add support for veml6031x00 ALS series
 
-Thanks!
+These sensors provide two light channels (ALS and IR), I2C communication
+and a multiplexed interrupt line to signal data ready and configurable
+threshold alarms.
 
-[1/2] regulator: dt-bindings: document the SGM3804 Dual Output regulator
-      https://git.kernel.org/broonie/regulator/c/8480ea35d715
-[2/2] regulator: add SGM3804 Dual Output driver
-      https://git.kernel.org/broonie/regulator/c/0c47e1a8cf5d
+This first implementation provides basic functionality (measurement
+configuration, raw reads and ID validation) and defines the different
+register regions in preparation for extended features in the subsequent
+patches of the series.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> diff --git a/drivers/iio/light/veml6031x00.c b/drivers/iio/light/veml6031=
+x00.c
+> new file mode 100644
+> index 0000000000000..50979d2392301
+> --- /dev/null
+> +++ b/drivers/iio/light/veml6031x00.c
+> @@ -0,0 +1,657 @@
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+[ ... ]
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +static const struct iio_chan_spec veml6031x00_channels[] =3D {
+> +	{
+> +		.type =3D IIO_LIGHT,
+> +		.address =3D VEML6031X00_REG_ALS_L,
+> +		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_INT_TIME),
+> +		.info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_INT_TIME),
+> +		.info_mask_separate_available =3D BIT(IIO_CHAN_INFO_SCALE),
+> +	},
+> +	{
+> +		.type =3D IIO_INTENSITY,
+> +		.address =3D VEML6031X00_REG_IR_L,
+> +		.modified =3D 1,
+> +		.channel2 =3D IIO_MOD_LIGHT_IR,
+> +		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+[Severity: Medium]
+Does this code expose hardware gain globally or independently per channel?
 
-Thanks,
-Mark
+If hardware gain (gain and pd_div4) is globally applied to the entire chip,
+writing to a separate attribute must not silently alter another channel's
+state. Should shared hardware settings be exposed via info_mask_shared_by_a=
+ll
+instead?
 
+Additionally, the scale value returned for the IR channel is computed using=
+ a
+lux-to-count base which might be physically meaningless for raw IR intensit=
+y.
+
+[ ... ]
+
+> +static int veml6031x00_single_read(struct iio_dev *iio, enum iio_chan_ty=
+pe type,
+> +				   int *val)
+> +{
+
+[ ... ]
+
+> +	IIO_DEV_ACQUIRE_DIRECT_MODE(iio, claim);
+> +	if (IIO_DEV_ACQUIRE_FAILED(claim))
+> +		return -EBUSY;
+> +
+> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(data->dev, pm);
+> +	ret =3D PM_RUNTIME_ACQUIRE_ERR(&pm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D veml6031x00_get_it(data, &it_usec);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* integration time + 10 % to ensure completion */
+> +	fsleep(it_usec + (it_usec / 10));
+
+[Severity: Medium]
+Does this unconditionally sleep for the integration time on every raw read?
+
+Since the device measures continuously when active, this delay is likely on=
+ly
+needed if the device was just resumed from sleep. Forcing this delay on eve=
+ry
+read unnecessarily throttles the maximum polling read rate.
+
+Could this be optimized by manually calling pm_runtime_get_sync() and check=
+ing
+its return value (which returns 1 if already active) to apply the sleep only
+when strictly necessary?
+
+[ ... ]
+
+> +static int veml6031x00_read_raw(struct iio_dev *iio,
+> +				struct iio_chan_spec const *chan, int *val,
+> +				int *val2, long mask)
+> +{
+> +	struct veml6031x00_data *data =3D iio_priv(iio);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		return veml6031x00_single_read(iio, chan->type, val);
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		*val =3D 0;
+> +		return veml6031x00_get_it(data, val2);
+> +	case IIO_CHAN_INFO_SCALE:
+> +		return veml6031x00_get_scale(data, val, val2);
+
+[Severity: Medium]
+Could concurrent reads and writes cause torn reads of configuration fields
+here?
+
+When handling IIO_CHAN_INFO_SCALE or IIO_CHAN_INFO_INT_TIME, this function
+does not acquire the IIO direct mode lock or any other mutex. It performs
+multiple non-atomic regmap_field_read() operations (e.g., reading both
+gain and pd_div4 in veml6031x00_get_scale()).
+
+If a sysfs read interleaves with a write, the read might fetch a transient,
+inconsistent mix of old and new register bits.
+
+[ ... ]
+
+> +static int veml6031x00_write_raw(struct iio_dev *iio,
+> +				 struct iio_chan_spec const *chan,
+> +				 int val, int val2, long mask)
+> +{
+> +	IIO_DEV_ACQUIRE_DIRECT_MODE(iio, claim);
+> +	if (IIO_DEV_ACQUIRE_FAILED(claim))
+> +		return -EBUSY;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		return veml6031x00_set_it(iio, val, val2);
+> +	case IIO_CHAN_INFO_SCALE:
+> +		return veml6031x00_set_scale(iio, val, val2);
+
+[Severity: High]
+Does this code modify hardware registers over I2C without acquiring a runti=
+me
+PM reference?
+
+Unlike veml6031x00_single_read(), this function directly writes to the
+sensor's configuration registers without a PM reference. Because the regmap=
+ is
+not configured with .pm_runtime =3D true, I2C transactions may be attempted
+while the client device (or its parent controller) is runtime suspended, wh=
+ich
+can trigger bus transfer errors.
+
+[ ... ]
+
+> +static int veml6031x00_probe(struct i2c_client *i2c)
+> +{
+
+[ ... ]
+
+> +	ret =3D devm_add_action_or_reset(dev, veml6031x00_als_shutdown_action, =
+data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to add shutdown action\n");
+
+[Severity: High]
+Can this shutdown devres action perform I2C writes while the device is
+suspended?
+
+Because this devres action is registered before
+devm_pm_runtime_set_active_enabled(), on driver unbind, PM is disabled and =
+the
+device state is forced to suspended before the shutdown action executes due=
+ to
+devres LIFO execution order.
+
+The shutdown action then attempts to perform I2C writes to the shutdown
+register. Accessing the I2C bus while the device state is suspended can cau=
+se
+bus errors or hangs.
+
+[ ... ]
+
+> +	ret =3D devm_pm_runtime_set_active_enabled(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable runtime PM\n");
+> +
+> +	ret =3D devm_pm_runtime_get_noresume(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get runtime PM\n");
+
+[ ... ]
+
+> +	ret =3D veml6031x00_hw_init(iio);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_put_autosuspend(dev);
+
+[Severity: High]
+Does mixing devm_pm_runtime_get_noresume() with manual
+pm_runtime_put_autosuspend() cause a PM usage counter underflow?
+
+The devm_pm_runtime_get_noresume(dev) call increments the PM usage counter
+and registers a devres action to decrement it on driver unbind.
+
+However, the explicit pm_runtime_put_autosuspend(dev) decrements the usage
+counter to its pre-get state. When the driver is subsequently removed (or if
+probe fails after the put), the devres action will blindly decrement the
+counter a second time, resulting in an underflow.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260524-veml6031x0=
+0-v3-0-29165609b2b5@gmail.com?part=3D2
 
