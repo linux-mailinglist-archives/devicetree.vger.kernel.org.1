@@ -1,219 +1,210 @@
-Return-Path: <devicetree+bounces-302198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHHZMd3CEmpM3gYAu9opvQ
-	(envelope-from <devicetree+bounces-302198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 11:20:29 +0200
+	id AaQcD+rHEmow3wYAu9opvQ
+	(envelope-from <devicetree+bounces-302199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 11:42:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 478D85C1C9C
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 11:20:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B895C1CF5
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 11:42:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 314AE300D6AC
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 09:20:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9FF2F300B604
+	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 09:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B458E39021D;
-	Sun, 24 May 2026 09:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FC126F2BF;
+	Sun, 24 May 2026 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="duOQWtjP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmxOStzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44D1346AC1
-	for <devicetree@vger.kernel.org>; Sun, 24 May 2026 09:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CECF1FB1
+	for <devicetree@vger.kernel.org>; Sun, 24 May 2026 09:41:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779614423; cv=none; b=YAfei9r2SEh8yDAPklJd5X98UANTn4wh7nugPlnSHSrRn0PBAlaS978wtmmn6J+JINymtzo3LScMAYVP6HH35lPNiS/Zpint7IsDq3obUk2W+ui88mFG9H5ncyMB+rERQ08ndSVcEjCV/VWHa85WqruNMotWEBkePTPzeTNsWVA=
+	t=1779615718; cv=none; b=dFlPu51rl2RJE5B++oa8+gGYkPCJto6OIOKx+NXY7ktOv/2f8CHzqA4QTQtOWjJbLXghVt+uiA9SoyL1ANokP73qYZb/kukZXSBicKyads9Kbhuq8NOjfyi3VMqD0U7o5DRoQKvXvroVO+RQr3RA3hFDprGnDh7ye+h5yPfy1xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779614423; c=relaxed/simple;
-	bh=m5MldW8/rj/cmWsdxos1cei2w4g8s18jCasI/5xDt9k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s104CwbjgH5G6upodwHpuCDErpUA2Yw+iWrqa81NAqTPnVJ98J0+1B0vChTDECHAHptVc+ORgoAo0pkOCOUSFXcILF6faCJQvLMS+LPmFG5okFx3CXCLGaWmJxW/idG2HTs5VzpRfE9trSLoruuPPjsFKCfzUBemXVb2BF+Y2Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=duOQWtjP; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-49041e84237so18145625e9.1
-        for <devicetree@vger.kernel.org>; Sun, 24 May 2026 02:20:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779614420; x=1780219220; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fBUAhsBB20qNgqheJcG9wI7Ac9cNCmknHQW+c+a7mQ0=;
-        b=duOQWtjPGifffMgAK0gY9fpvEt8ziUtsyPGUF1k2NAC8kgSDWKZnZx+lZRqxIstHek
-         B/dgmu2N15UpbeSDwHdJFjhqA8L4NE/d54wUQTM8GBBo9otbi3YcKcmUwjR3jAk2J+yc
-         yQzDShDbvY19QqVKnbx8exL/fz0N1DNuHALqef9S1CmG4gmnTfi0YVZfj5+5jyHwWstQ
-         I0MYecraj5PI4ogX2PM5Yjn+ckiF7FSafM07ggMwvv1Opa6Mx1NIpGJpTuiht3k2jCUU
-         jKvza3v8v+ZmcFUfUSX5YJJJuP8rnAat4epbNEYUS5a5fH+ehhoFLuAqTa1z/P+jutLJ
-         OB3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779614420; x=1780219220;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fBUAhsBB20qNgqheJcG9wI7Ac9cNCmknHQW+c+a7mQ0=;
-        b=kTv3grj9VfyXlSPRMecjVb6+gjZhL0JmvfTnRsZJ1kq0cmpp1PF8mn0yRGJ8ZB11n7
-         5A2mL8TdpcgmurQIcTvOebFwvqa9cXe5uee/YXiRTAWp7UNe7dj9Hb/rYyRjC3973MLA
-         DcaPRLoky1soVm2BCc7swftUc4PJlqZQtdb3DeeIvh5Vz00B80Pa0jsMhZBvTvp9b8bH
-         VZpLKV/A+PsKtAgEdlnziFpWvBCIIzpYPNLPMdYjtv0LfceNAAeD+ybszKvfL8yibIPh
-         j32y6i0DhwIefGJGa/Sx1Nle+bz/nlkuo1fdr2u3DoD7Uh1YvBh6JPBwItnuBGpEZu/W
-         oCsA==
-X-Forwarded-Encrypted: i=1; AFNElJ+SC8dORMTKQlJPmGDqH5bhiXK3m+jyFrKJf7S+AA3zj7fumeEJ0D1fDz7oIoeud6iAK1EEWhuckDUX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXU0zfHu6G2lSuNjAKEQ9vW8tYhvFKkwnFkloJi4liBopZF6eq
-	dakls7peFP71zOxIC9HzjfOpAukUqf+1nOcB27kstkE6qHP/idIbKx+/
-X-Gm-Gg: Acq92OH3XbngILEk/HMsCWdgU7GUv958mMiknSG/2RrP9oTDFSoiZ70m2uXCfgyJ6A3
-	uXUM7epKJ9cfpCREx3fk4Syxa2ohPn9w43GOqAaeyYhtHMQeIoNHoyvJOBf2S8oNu5qWApqMkLI
-	iu8dnbumNmB0vlDchzLmu97iHoax8a5Km9O+iSa+7G190gGRdHzOkEKJ3x87QzIjf248XOqgjiS
-	0FPVSUf6QlsVwFKf/N9fmpvXV+tC+xXZkYwYJEr++cZSpXBX3AA+gmxAPBeKpHSGC3Ulp7S3OTn
-	n2NEoa7Bv65qv2m4xhEGyzw3tu+1LgrJL48ElSXIkWoobPxUtMnoYUqzTO05SUwsY12OUXmMpsz
-	KjD0GUD6AB1j1AjN/ylx3/qsWAK851CMXUEnxtMxJBkR0bqxgxJqr5iYABxK4uCzHHO9wYLsBWB
-	Vn23sSUGRq1QnSqm/BAuhSd4Q5zqWjqYA6Sglp0saFTAkB2MpEvZA3cC//+as=
-X-Received: by 2002:a05:600c:1992:b0:48a:79d8:a8d6 with SMTP id 5b1f17b1804b1-4904245f54cmr129956015e9.7.1779614419836;
-        Sun, 24 May 2026 02:20:19 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:23c4:a700:7301:ae73:a12b:ca55:91be])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4904179c615sm59140785e9.4.2026.05.24.02.20.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 May 2026 02:20:19 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH] arm64: dts: renesas: rzg3e-smarc-som: Sort pinmux entries and fix blank line
-Date: Sun, 24 May 2026 10:20:11 +0100
-Message-ID: <20260524092016.46346-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1779615718; c=relaxed/simple;
+	bh=xHVae84KgPkCPSqEbzuXwq0KRlnsddffK6oq0JltY/A=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ot6WGLXilZgQsS/6GwMWHJe7I2tPI1NART71AC9v1PlS20Zv01VYT2WzmSKO0xCJntQ1nEpH7+UAaddrl/H9GIWZCPrfvu4mdBaUlnNJbK2aleSIRm6cQWcnHlvRhqCiOc5L/ovx5Nah22Thm3Dl1byS8OWQMBvHmVmzza+xSxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmxOStzd; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7B1E1F000E9;
+	Sun, 24 May 2026 09:41:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779615717;
+	bh=RK1CqKtlPOAXmyK5G1x20M/Q/KAo6x9vR6jJmSZIBhc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=QmxOStzdKuVWFNnLE8xiQRfFNQVFnhC5TInlESaPZP/ZzfGVKsRyV94QlVH+RxY3M
+	 k7JqjI3N/2bV0Bg1AdONNdhVTfECd26v+o8JByQVPsjoCNasvUVWkjxNNf38C+HCBB
+	 /GyQZikxQGeLZ2MpTKHeLhiCiJLchiDlFRhJufEBxVkH+BIugJ6xPTfT2bKaew9Bjm
+	 b4CyZoJYCISa6phrCGARwn3dGVNRCwlIZ5UOBmfkowCu0vMccILnl4lIShHg0UUNhO
+	 +kRdaPyMhxtrYybyLRdc5pu19WJXZxX12Of/xuNbmmT4ltS+ZDZCAqLInsKs9lN1UF
+	 hNdEtBYwww3sQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RFC v2 4/7] iio: osf: add stream parser
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jinseob Kim" <kimjinseob88@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260524085312.15369-5-kimjinseob88@gmail.com>
+References: <20260524085312.15369-5-kimjinseob88@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 24 May 2026 09:41:56 +0000
+Message-Id: <20260524094156.D7B1E1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302198-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302199-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 478D85C1C9C
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 82B895C1CF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The 'partial_frames' statistic is incremented erroneously during=
+ normal chunked data reception, making the metric artificially spammed and =
+useless.
+- [Low] The frame is successfully parsed into a stack variable, but the pop=
+ulated structure is ignored and completely unused.
+--
 
-Sort the pinmux entries for both GMAC ctrl nodes in port order (A/B/C and
-D/E/F respectively) and remove the extra blank line before the second
-pinmux assignment.
+commit f278438df751263938f58f94af6a218883f9f11f
+Author: Jinseob Kim <kimjinseob88@gmail.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 49 +++++++++----------
- 1 file changed, 24 insertions(+), 25 deletions(-)
+iio: osf: add stream parser
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-index d978619155d2..2e1d9686df88 100644
---- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-@@ -193,20 +193,20 @@ clk {
- 		};
- 
- 		ctrl {
--			pinmux = <RZG3E_PORT_PINMUX(A, 1, 1)>, /* MDC */
--				 <RZG3E_PORT_PINMUX(A, 0, 1)>, /* MDIO */
--				 <RZG3E_PORT_PINMUX(C, 2, 15)>, /* PHY_INTR (IRQ2) */
--				 <RZG3E_PORT_PINMUX(C, 1, 1)>, /* RXD3 */
--				 <RZG3E_PORT_PINMUX(C, 0, 1)>, /* RXD2 */
--				 <RZG3E_PORT_PINMUX(B, 7, 1)>, /* RXD1 */
--				 <RZG3E_PORT_PINMUX(B, 6, 1)>, /* RXD0 */
--				 <RZG3E_PORT_PINMUX(B, 0, 1)>, /* RXC */
-+			pinmux = <RZG3E_PORT_PINMUX(A, 0, 1)>, /* MDIO */
-+				 <RZG3E_PORT_PINMUX(A, 1, 1)>, /* MDC */
- 				 <RZG3E_PORT_PINMUX(A, 2, 1)>, /* RX_CTL */
--				 <RZG3E_PORT_PINMUX(B, 5, 1)>, /* TXD3 */
--				 <RZG3E_PORT_PINMUX(B, 4, 1)>, /* TXD2 */
--				 <RZG3E_PORT_PINMUX(B, 3, 1)>, /* TXD1 */
-+				 <RZG3E_PORT_PINMUX(A, 3, 1)>, /* TX_CTL */
-+				 <RZG3E_PORT_PINMUX(B, 0, 1)>, /* RXC */
- 				 <RZG3E_PORT_PINMUX(B, 2, 1)>, /* TXD0 */
--				 <RZG3E_PORT_PINMUX(A, 3, 1)>; /* TX_CTL */
-+				 <RZG3E_PORT_PINMUX(B, 3, 1)>, /* TXD1 */
-+				 <RZG3E_PORT_PINMUX(B, 4, 1)>, /* TXD2 */
-+				 <RZG3E_PORT_PINMUX(B, 5, 1)>, /* TXD3 */
-+				 <RZG3E_PORT_PINMUX(B, 6, 1)>, /* RXD0 */
-+				 <RZG3E_PORT_PINMUX(B, 7, 1)>, /* RXD1 */
-+				 <RZG3E_PORT_PINMUX(C, 0, 1)>, /* RXD2 */
-+				 <RZG3E_PORT_PINMUX(C, 1, 1)>, /* RXD3 */
-+				 <RZG3E_PORT_PINMUX(C, 2, 15)>; /* PHY_INTR (IRQ2) */
- 		};
- 	};
- 
-@@ -217,21 +217,20 @@ clk {
- 		};
- 
- 		ctrl {
--
--			pinmux = <RZG3E_PORT_PINMUX(D, 1, 1)>, /* MDC */
--				 <RZG3E_PORT_PINMUX(D, 0, 1)>, /* MDIO */
--				 <RZG3E_PORT_PINMUX(F, 2, 15)>, /* PHY_INTR (IRQ15) */
--				 <RZG3E_PORT_PINMUX(F, 1, 1)>, /* RXD3 */
--				 <RZG3E_PORT_PINMUX(F, 0, 1)>, /* RXD2 */
--				 <RZG3E_PORT_PINMUX(E, 7, 1)>, /* RXD1 */
--				 <RZG3E_PORT_PINMUX(E, 6, 1)>, /* RXD0 */
--				 <RZG3E_PORT_PINMUX(E, 0, 1)>, /* RXC */
-+			pinmux = <RZG3E_PORT_PINMUX(D, 0, 1)>, /* MDIO */
-+				 <RZG3E_PORT_PINMUX(D, 1, 1)>, /* MDC */
- 				 <RZG3E_PORT_PINMUX(D, 2, 1)>, /* RX_CTL */
--				 <RZG3E_PORT_PINMUX(E, 5, 1)>, /* TXD3 */
--				 <RZG3E_PORT_PINMUX(E, 4, 1)>, /* TXD2 */
--				 <RZG3E_PORT_PINMUX(E, 3, 1)>, /* TXD1 */
-+				 <RZG3E_PORT_PINMUX(D, 3, 1)>, /* TX_CTL */
-+				 <RZG3E_PORT_PINMUX(E, 0, 1)>, /* RXC */
- 				 <RZG3E_PORT_PINMUX(E, 2, 1)>, /* TXD0 */
--				 <RZG3E_PORT_PINMUX(D, 3, 1)>; /* TX_CTL */
-+				 <RZG3E_PORT_PINMUX(E, 3, 1)>, /* TXD1 */
-+				 <RZG3E_PORT_PINMUX(E, 4, 1)>, /* TXD2 */
-+				 <RZG3E_PORT_PINMUX(E, 5, 1)>, /* TXD3 */
-+				 <RZG3E_PORT_PINMUX(E, 6, 1)>, /* RXD0 */
-+				 <RZG3E_PORT_PINMUX(E, 7, 1)>, /* RXD1 */
-+				 <RZG3E_PORT_PINMUX(F, 0, 1)>, /* RXD2 */
-+				 <RZG3E_PORT_PINMUX(F, 1, 1)>, /* RXD3 */
-+				 <RZG3E_PORT_PINMUX(F, 2, 15)>; /* PHY_INTR (IRQ15) */
- 		};
- 	};
- 
--- 
-2.43.0
+This commit introduces byte stream assembly and frame synchronization
+capabilities for OSF0 frames. It handles buffering, magic sequence matching,
+and payload validation before passing frames to the core.
 
+> diff --git a/drivers/iio/opensensorfusion/osf_stream.c b/drivers/iio/open=
+sensorfusion/osf_stream.c
+> --- /dev/null
+> +++ b/drivers/iio/opensensorfusion/osf_stream.c
+
+[ ... ]
+
+> +static int osf_stream_process(struct osf_stream *stream)
+> +{
+> +	struct osf_frame frame;
+> +	size_t decoded_len;
+> +	size_t discarded;
+> +	size_t frame_len;
+> +	u32 payload_len;
+> +	int first_err =3D 0;
+> +	int ret;
+> +
+> +	while (stream->len) {
+> +		discarded =3D osf_stream_discard_to_magic(stream);
+
+[ ... ]
+
+> +		if (!stream->len)
+> +			break;
+> +
+> +		if (stream->len < OSF_FRAME_HEADER_LEN) {
+> +			stream->stats.partial_frames++;
+
+[Severity: Medium]
+Is it intentional to increment this statistic during normal chunked data
+reception?=20
+
+Since stream data often arrives in partial fragments, breaking here is expe=
+cted
+behavior while waiting for the rest of the stream. Incrementing an error
+counter on every normal yield might spam the metric and make it less useful
+for debugging actual issues.
+
+> +			break;
+> +		}
+> +
+> +		if (get_unaligned_le16(stream->buf + 6) !=3D
+
+[ ... ]
+
+> +		frame_len =3D OSF_FRAME_HEADER_LEN + payload_len + OSF_FRAME_CRC_LEN;
+> +		if (stream->len < frame_len) {
+> +			stream->stats.partial_frames++;
+
+[Severity: Medium]
+Similarly, does this falsely increment the partial_frames statistic while
+simply waiting for the rest of a valid payload to arrive?
+
+> +			break;
+> +		}
+> +
+> +		ret =3D osf_protocol_decode_frame(stream->buf, frame_len, &frame,
+> +						&decoded_len);
+
+[ ... ]
+
+> +		if (decoded_len !=3D frame_len) {
+> +			stream->stats.dropped_bytes++;
+> +			osf_stream_drop_invalid_head(stream);
+> +			if (!first_err)
+> +				first_err =3D -EMSGSIZE;
+> +			continue;
+> +		}
+> +
+> +		ret =3D osf_core_receive_frame(stream->osf, stream->buf, frame_len);
+
+[Severity: Low]
+Does this code need to pass the raw buffer to osf_core_receive_frame()
+instead of the parsed struct osf_frame?
+
+The earlier call to osf_protocol_decode_frame() successfully parses the fra=
+me
+into the stack variable frame, but it appears to go unused. Passing the
+already-parsed structure to the core might avoid redundant decoding
+inefficiency.
+
+> +		if (ret) {
+> +			osf_stream_discard(stream, frame_len);
+> +			if (!first_err)
+> +				first_err =3D ret;
+> +			continue;
+> +		}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260524085312.1536=
+9-1-kimjinseob88@gmail.com?part=3D4
 
