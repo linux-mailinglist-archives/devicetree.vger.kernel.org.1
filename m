@@ -1,181 +1,194 @@
-Return-Path: <devicetree+bounces-302762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302764-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LiDAoBiFGrsMwcAu9opvQ
-	(envelope-from <devicetree+bounces-302762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 16:53:52 +0200
+	id UPoVNg9oFGriNAcAu9opvQ
+	(envelope-from <devicetree+bounces-302764-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 17:17:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 546A75CBF93
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 16:53:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE665CC289
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 17:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A04B8300332D
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 14:49:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7D2E8300517D
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 15:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDC73F164E;
-	Mon, 25 May 2026 14:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A8E34C9A3;
+	Mon, 25 May 2026 15:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KXEqcm/I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SLgk1eCS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2247B384CCA
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 14:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CBC3A1DB
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 15:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779720560; cv=none; b=PnudRTDjZGWujpivkBkmByHjtnibXjl+0EKb5fKYLK4F6uW0W5JVI2vZCB6VUaOP4mjH0B4RUTyb2+bsjGswUoWQt6ifMRg+Pa8SkpubAP2hsD/hHmw/XfNa6ioCUAXAgEDZzdQZuYZ8+vvhgPlYXvpYHy6S41enKpOnCVVSABQ=
+	t=1779722250; cv=none; b=S5vhB9mlcx1AXiT/jGdh+MmJpOdD9aS4FB8JPjPI/Y/1ztyUrEuc+/SStlksjJ3l6sT+o16pKAt+aUlbzUdfIzYGEHP2HL8RjGmXhfVr83CJfMrn9H0ZmxedXFMxggHXNHwWH4T/TAoR+5SUUVXu2rt/b/A8kY2lvT2xVVi5DzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779720560; c=relaxed/simple;
-	bh=UrFSRVdGBmh9DUklZmSwUJeubdTX7wcI+aVIJWzATz8=;
+	s=arc-20240116; t=1779722250; c=relaxed/simple;
+	bh=OHz7LbAXzaFwZrpRRno0mSqbe8h0w6nOlwLOEzTTCqc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=E747BtpGoEeMhe6oI4tbA/+VEQ3SN2Bkp75K2THr/L3zn+aV/D9ac5avJOhA86qbeUFDs24gAPamY02zTasvC9m5fC9hIuC0FdWy6aA4IbOrjUJYgt836gzzSxdIZ80MfYwWLhuqWp68mB3+RJbsX59+YRrz442lFwcV4RJ4Vf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KXEqcm/I; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86B711F000E9;
-	Mon, 25 May 2026 14:49:18 +0000 (UTC)
+	 Message-Id; b=JiaNNyDz+LPKZwihS9MnfYdToh5nT4LGnAG3S/IAaJuUhctF1ucPXI36wqmrZA/WI4ELzIAFdUcFkr59RLaFod+6IT6xKxlv2J0X94jbe8EbbMLUA83jf2TxhWoEY8pa+1y+m01Fwvz8x6KB56yMZcxOYtPqgsGkxLeq7TNNArk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SLgk1eCS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4A3B1F00A3A;
+	Mon, 25 May 2026 15:17:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779720558;
-	bh=xLbBhNBtrcAFocX5iciV8jU+JEM2do+MXCyw+GJwDGY=;
+	s=k20260515; t=1779722248;
+	bh=FMgOdtjlME3ikR+FWWil/7Ykiis2ROUZlo8nibhDleM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=KXEqcm/I5bAV+alAyW2RnL93aVrR5pdvtnDTeOBpWyuizCS3HGSZZxFQAgr/QcIv5
-	 vrSGaUIQUP2/CiEtmwriL077rZ9j3NNAEzlx/jLPE9nNC6Vpw0sjib8bkdUjDfc+pf
-	 4W3iiakhbRc0CBvqrlfOXo+By3Ik1HBhfIfmkCbS3qkuJ/jh+R4WKEcsX/3dF9l3Va
-	 wuY1PEPN+pW9ocF+mVAte9c27QLxUchI44gWeJZk6+x1TJYWyZUtVleQbQ2fNysn8V
-	 DKZLRBDrT6zKdCFRJg7zD2sfp3TveOm09aQNyd6HGl0xcmBhRbrntIf2L6q4UjMs5q
-	 t8V+S0n4ZrMtQ==
+	b=SLgk1eCS9qgJYOgLdqAkWGJdJSzga13YQ8YtYTcwvEouDGQYfqPDgiPUPAW29G/aV
+	 hgVf7BWaT7SC2bnKXZQDXLL3ZxEkwdnzfQGUApC2D4tA8uMgGu9Wj3rC7GcCTQE/qH
+	 frrFXdp1jw0TltaAIQZehaSfhdCNDxpNqlMThvFki114ZfEVoNQA9qzyXGLD/ZHRyN
+	 tKcjHa7fXdmCezc3+F7rI258IGM1n/9MP/TbAqb18g2Ad0/Na1YgSk2e8PYz9jBP6F
+	 nGaueukaG/UEj2bMEZ9PSXlG5NSm7XsY4U8egoMVWCmugSZWq4j9C9nQO//hIi/nDq
+	 sGC6Np3su1WrA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/3] i3c: dw: Add apb reset support
+Subject: Re: [PATCH v2 2/6] leds: is31fl319x: Fix shutdown GPIO initial
+ state and remove redundant startup pulse
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jisheng Zhang" <jszhang@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260525140018.19598-4-jszhang@kernel.org>
-References: <20260525140018.19598-4-jszhang@kernel.org>
+To: "Jun Yan" <jerrysteve1101@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260525144629.498630-3-jerrysteve1101@gmail.com>
+References: <20260525144629.498630-3-jerrysteve1101@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 14:49:18 +0000
-Message-Id: <20260525144918.86B711F000E9@smtp.kernel.org>
+Date: Mon, 25 May 2026 15:17:28 +0000
+Message-Id: <20260525151728.A4A3B1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302762-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302764-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 546A75CBF93
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,lumissil.com:url,sashiko.dev:url,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: DCE665CC289
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-New issues:
-- [High] Asymmetric reset assertion/deassertion order for APB and Core rese=
-ts violates hardware sequencing rules.
-
-Pre-existing issues:
-- [High] Missing error handling for clock enablement and reset deassertion =
-in runtime resume leads to potential kernel panics.
+- [High] Changing the shutdown GPIO initialization to `GPIOD_OUT_LOW` break=
+s backwards compatibility with existing device trees that use `GPIO_ACTIVE_=
+HIGH`.
+- [High] Removing the 5ms startup pulse on the shutdown GPIO eliminates a c=
+ritical hardware stability workaround necessary for I2C recovery.
 --
 
-commit f0e43b6549a854c56bb22e329a26e4ad0bcd7e1c
-Author: Jisheng Zhang <jszhang@kernel.org>
-Subject: i3c: dw: Add apb reset support
+commit fcc0a676fc8cf1ed234a4483a3db1410e5475415
+Author: Jun Yan <jerrysteve1101@gmail.com>
 
-This commit adds support for an APB interface reset in the DesignWare I3C
-master driver. It fetches the optional reset during probe and updates the
-runtime power management callbacks to assert and deassert it alongside the
-core reset.
+leds: is31fl319x: Fix shutdown GPIO initial state and remove redundant star=
+tup pulse
 
-> diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i=
-3c-master.c
-> index a7593d6efac5a..03efd46db8d0c 100644
-> --- a/drivers/i3c/master/dw-i3c-master.c
-> +++ b/drivers/i3c/master/dw-i3c-master.c
+This commit alters the initial state of the shutdown GPIO from OUT_HIGH
+to OUT_LOW. It also removes the 5ms toggle of the shutdown GPIO during
+driver probe, relying instead on the existing software reset via I2C.
+
+Link: https://lumissil.com/assets/pdf/core/IS31FL3193_DS.pdf
+
+> diff --git a/drivers/leds/leds-is31fl319x.c b/drivers/leds/leds-is31fl319=
+x.c
+> index e411cee06dabd..41087ed262cb4 100644
+> --- a/drivers/leds/leds-is31fl319x.c
+> +++ b/drivers/leds/leds-is31fl319x.c
+> @@ -396,7 +396,10 @@ static int is31fl319x_parse_fw(struct device *dev, s=
+truct is31fl319x_chip *is31)
+>  	int count;
+>  	int ret;
+> =20
+> -	is31->shutdown_gpio =3D devm_gpiod_get_optional(dev, "shutdown", GPIOD_=
+OUT_HIGH);
+> +	/* Driving this GPIO line low (in fact high) takes the chip out of shut=
+down,
+> +	 * as it is flagged as GPIO_ACTIVE_LOW in provider (such as the device =
+tree).
+> +	 */
+> +	is31->shutdown_gpio =3D devm_gpiod_get_optional(dev, "shutdown", GPIOD_=
+OUT_LOW);
+
+[Severity: High]
+Does this break backwards compatibility with existing device trees that
+configured the shutdown pin as GPIO_ACTIVE_HIGH?
+
+Legacy device trees mapping logical 1 (GPIOD_OUT_HIGH) to a physical HIGH
+signal will now drive the physical pin LOW when GPIOD_OUT_LOW is used. This
+keeps the chip permanently in shutdown.
+
+While a subsequent gpiolib commit in this series attempts to add a polarity
+quirk, that quirk only covers 3 specific compatibles (issi,is31fl3199,
+si-en,sn3190, si-en,sn3193). The driver supports 10 distinct compatibles,
+so out-of-tree device trees using the other 7 (like issi,is31fl3193 or
+si-en,sn3196) will bypass the quirk and fail to probe.
+
 [ ... ]
-> @@ -1784,6 +1789,7 @@ static int __maybe_unused dw_i3c_master_runtime_sus=
-pend(struct device *dev)
->  	dw_i3c_master_disable(master);
+
+> @@ -506,12 +509,6 @@ static int is31fl319x_probe(struct i2c_client *clien=
+t)
+>  	if (err)
+>  		return err;
 > =20
->  	reset_control_assert(master->core_rst);
-> +	reset_control_assert(master->apb_rst);
->  	dw_i3c_master_disable_clks(master);
->  	pinctrl_pm_select_sleep_state(dev);
->  	return 0;
-> @@ -1796,6 +1802,7 @@ static int __maybe_unused dw_i3c_master_runtime_res=
-ume(struct device *dev)
->  	pinctrl_pm_select_default_state(dev);
->  	dw_i3c_master_enable_clks(master);
->  	reset_control_deassert(master->core_rst);
-> +	reset_control_deassert(master->apb_rst);
+> -	if (is31->shutdown_gpio) {
+> -		gpiod_direction_output(is31->shutdown_gpio, 0);
+> -		mdelay(5);
+> -		gpiod_direction_output(is31->shutdown_gpio, 1);
+> -	}
+> -
 
 [Severity: High]
-Should the reset deassertion order in resume be reversed to follow standard
-hardware sequencing?
+Does removing this hardware toggle prevent recovery of a wedged I2C bus?
 
-Currently, the resets are asserted in the suspend path as core_rst followed
-by apb_rst, and they are deasserted in the resume path in the exact same
-order. Standard practice usually requires a last-in, first-out sequence.
+The commit message states the toggle is redundant because a software reset
+is performed via I2C later. However, the original commit adding this pulse
+(dddb4e38c6ba) noted it was to make the chip more stable in complex EM
+environments.
 
-Additionally, dw_i3c_common_probe() requests these resets in core_rst then
-apb_rst order. This means the automatic devres teardown will assert them as
-apb_rst then core_rst, which is the opposite of the manual runtime suspend
-logic introduced here.
+If EMI causes the chip's I2C state machine to become stuck (e.g., holding
+SDA low), the subsequent software reset command via regmap_write() will
+fail because the bus is unresponsive. Toggling the hardware shutdown pin
+acts as a hardware reset for the I2C interface. Without this pulse, the
+driver loses its ability to recover a hung I2C interface, which could lead
+to probe failures with a no response from chip write error.
 
-Could this asymmetric sequencing cause bus hangs or IP initialization
-failures if a core is released from reset while its APB bus interface
-remains in reset?
-
-[Severity: High]
-This is a pre-existing issue, but this patch extends the pattern to the new=
-ly
-added apb_rst. Are we missing error handling for the clock enablement and
-reset deassertion?
-
-The return values from dw_i3c_master_enable_clks() and both calls to
-reset_control_deassert() are being discarded. If any of these operations
-fail, the driver will proceed to configure the hardware by calling
-dw_i3c_master_set_intr_regs().
-
-Would it be safer to check these return values and return an error code to
-the PM framework to avoid potential synchronous external aborts when
-accessing inactive IP registers?
-
-> =20
->  	dw_i3c_master_set_intr_regs(master);
->  	dw_i3c_master_restore_timing_regs(master);
+>  	is31->client =3D client;
+>  	is31->regmap =3D devm_regmap_init_i2c(client, is31->cdef->is31fl319x_re=
+gmap_config);
+>  	if (IS_ERR(is31->regmap))
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525140018.1959=
-8-1-jszhang@kernel.org?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525144629.4986=
+30-1-jerrysteve1101@gmail.com?part=3D2
 
