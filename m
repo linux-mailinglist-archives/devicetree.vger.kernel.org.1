@@ -1,340 +1,258 @@
-Return-Path: <devicetree+bounces-302384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302386-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wojiG0qUE2oIDwcAu9opvQ
-	(envelope-from <devicetree+bounces-302384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:14:02 +0200
+	id 0ChyNemXE2qyDwcAu9opvQ
+	(envelope-from <devicetree+bounces-302386-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:29:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9A55C4FE8
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:13:59 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D1C75C5061
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:29:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 65A343001A79
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 00:13:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BF1A6300337B
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 00:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89646FC3;
-	Mon, 25 May 2026 00:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B633D1B3B19;
+	Mon, 25 May 2026 00:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2lzzbCV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="njSlvOcT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84958632
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 00:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1470818872A
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 00:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779668032; cv=none; b=nWNEABXDl4QOz3xorbf+3WE9re3xLF4r3JIvPrCNyQlhEwv2h41iRFdKEV3Zg5KkUKqJL0bz8Jv/Lkp3VgCCMNskEJr71QvtW+LqZWjbl6hkfAFr37Ew7Bv6JsY9GccGJEi+E8MWJJ8Y1C2s0hJln+fVhleG12rsxUpyMGWd+6w=
+	t=1779668965; cv=none; b=RMXdzGRk61yNzM8P8chTTKXJhIKZlAK4KVUvYg+w6vSsW7rQdsNyjH/Mot2UDx/PsjWB46PRHUieUC5jS33NFIiKRuKuWOpNPi4o3y3nI5o0LFbAv7Z+DZZYdXJ/X8U3YDpUjzZX5eywBczxBIQA09pzcGgBtm1jNR8zdWHQydE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779668032; c=relaxed/simple;
-	bh=ekVuOU05YAsiGWkmpwCIzKcEVQiCLoQw9FPXCoaLYgw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=FZha0wco46yrs1OdeUlnq+ccqZRC7LN2ecnEEE8GZ47KJvA61JmV5gnh9MUWel3Dahw5ks8xvPcc3AKgITbyJ6hvVGn1nMHwq8G8MR/Es24H8Cif9xMRPXdG7MOIJ201HuFk1dTFWzHkqH7h4H/M3SmTcUFwVDYjIRvX1/Qsu7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2lzzbCV; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 987641F000E9;
-	Mon, 25 May 2026 00:13:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779668030;
-	bh=uDyYD3xQB1/xl3yuMuNAwPUZ4dFTkRojhXwSEHAPBRs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=J2lzzbCVSFFnx+xaZvy3R5MDf/GhbnEqa72+ysEcAloxULxAJ/7xpEPdpL4pWUoGD
-	 GcjAtELItSXi+3WoBWu8nqFTvT0g8j9tZgZUZyJBYsK3c0gtjBr6fR5hZLKEBupBbK
-	 m+vAIKilVBXKeD/eYnDvYtu3LJVs+/IPkgj/IuNlG08O0SQkIXNWldbdgNN0MmVwim
-	 WSXRobAjZ8OU1RR46q4a3061BXvZQdwQdzSWNLSRT1FODDoiqrcgC/QlZ0D1sxlaOF
-	 jsy+JGvB6bZDHSGkxX3KmpDriHUwcg1C3ET1XOpCtPN/p7J1QPYMu9Mmnc0bMRLU8l
-	 gpwKStqJUulEQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 4/4] iio: light: veml6031x00: add support for events
- and trigger
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260524-veml6031x00-v3-4-29165609b2b5@gmail.com>
-References: <20260524-veml6031x00-v3-4-29165609b2b5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 00:13:50 +0000
-Message-Id: <20260525001350.987641F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779668965; c=relaxed/simple;
+	bh=F/KWhKY9me5A2Sa/I7jFBd9C4AXQZ5ECUYFiuLrbMMQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=pcBJ0rBa7+AYRJLsxlX+BbMY9LPtVymP/sDv7OxhiuVNsK7GnfkQcQ7+Kq5Nm5zc+27YvuVL10azlc0gazpGSX5tG5l1yyyQhvb0VmDuQDmoU3lwmKNeaS2HloBh8FucVXJxWR5OatWdoyYxcCGt680yzZlRlmbIQF4ctMDcxB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=njSlvOcT; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4891d7164ddso43762245e9.3
+        for <devicetree@vger.kernel.org>; Sun, 24 May 2026 17:29:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779668962; x=1780273762; darn=vger.kernel.org;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XZPN3CbJBUZQrnFfjLJre9HEteqTWcy5zl2bMbcjDkg=;
+        b=njSlvOcTMaJzh/zljeLFXBSUPdIrpRShLzdYhcpomqIHZbBHSZNF2cbUB/hWwKFfJW
+         VEnngQdWAqweJ8I9beXWhEmcGjIPX/fksjzOb3XpVXk6Xx8FhaqQpHlYFthUhtXELjiL
+         FjSKtp7PkOD5ETTanEL12wU67o3ZvkQGS9ioOL8Su26JxO0RlPsl2aUy3LyBV7DbgiSd
+         iz6chJ5E2l6Hs/5ovhd6s7IAYsFWoAWNn+gdy3MSO7cC+pZEJTlx55IoelhFWiGSaaDl
+         8e8nFlqidiBZEB0y7ZUNUatTP3VjAueYQwdgAiO28Nzas25jm1Y1hw3TRzA09z4oQOXO
+         BviA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779668962; x=1780273762;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XZPN3CbJBUZQrnFfjLJre9HEteqTWcy5zl2bMbcjDkg=;
+        b=ZX+B8Nu+iCR2OPcsvB60O9LhoSO34EGrrDEFGrpbzNq4cy63BEeVfHjMl/fQGZ+qDB
+         x/Ja9/cD/hIGcQrDMuAOFlI+JFtBj6fo7PzwcbvIYCDf9YXyLjBCM8AKxTisgLx/m6Nr
+         1vvJo5XWhlqgylURn3GBfi6PuWZfDTcty5K0kf7niJXjtYkFS4beJZWtY2b5ZwszKvaU
+         lMRiIsccl1II9p+OWlG2zcaN3mZwBFV6WIDkVE+7cBfexj0AlRre3uclTEM01MJfRHmP
+         hxQTLrPkyAkK346aVPxax/de1M58uor4tRxW1LOwc1hazX4TdGhllsmzBDI09aQMfwxm
+         JKsA==
+X-Forwarded-Encrypted: i=1; AFNElJ/0Pgm5TrnXBUq2E6bV5nJEZc5Baz/HzAbx9I9rhnPMBobU93FzO7gZC1tvseOlZ/Oyxgc0ASAE9kiK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyX6/MH0gtBEmb08DFV+lER5j94oEXVVLakoBP5PPGuO7UgZ3Cz
+	PyHVD2z5a0RryBDKC9R7tz6ObLTzPY2Fafbdc/IWmOACGNMywfiRnamR62b7pQ==
+X-Gm-Gg: Acq92OGNcmSTo5BG5xt9P+RqMmjXaxqKK34soxFBf8G4KbG60VG8vDtxuVOlbaqbh4G
+	q8m/6yli9NYQfU3pKRL7Udcl25OUP37xcKhDjMGXFAvCj/VbvZ4CjfsOoxnyu1NeJFFGoaFKkVW
+	J/6VcimaYvAJ8Jv/au0dIKjvScOyJ66zimJs9qnZvL8UDjYF9NZIWyti8DaO4uNZo/9JNi417dc
+	FBIaCDDQSX6OI6AylJC6WlHNDxe4ZM0fHxx0B49C+ZqPCkx2W7QZSiHhPN0m2NPB2qfVkKSvL1r
+	F6ncmG27xNblGq3Y4K+Wxe/lROw8CKhys/ovrvBXHv43MiqOIPC//+M+i6GBfAJGAU4FULarvwC
+	kZDbxr6rtgsAXk+MBs4/M60Tf+N9K0ZnJL+q8S1LDgXUi7vfoJQ4nR3HiAdx4ycCikIk8ddbUE8
+	CPRcW2yO1iPtLJc3DYYhHRSRp0576h4+qJhAZBLEBkaXtLnYLngKlLaYOrdrq1qeDcBHIjpyhFd
+	I67Mg==
+X-Received: by 2002:a05:600c:4ecc:b0:490:3d62:f5e1 with SMTP id 5b1f17b1804b1-490426cbba2mr204504635e9.22.1779668962188;
+        Sun, 24 May 2026 17:29:22 -0700 (PDT)
+Received: from localhost (213-225-2-150.nat.highway.a1.net. [213.225.2.150])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490428d44f6sm98033265e9.8.2026.05.24.17.29.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 24 May 2026 17:29:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 25 May 2026 02:29:18 +0200
+Message-Id: <DIRBZSWW96SV.3CWW1CXJWD1S6@gmail.com>
+Subject: Re: [PATCH v3 2/4] iio: light: add support for veml6031x00 ALS
+ series
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+To: <sashiko-reviews@lists.linux.dev>, "Javier Carrasco"
+ <javier.carrasco.cruz@gmail.com>
+From: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
+X-Mailer: aerc 0.21.0-143-g2f3a2e260c09
+References: <20260524-veml6031x00-v3-2-29165609b2b5@gmail.com>
+ <20260524225336.450AF1F000E9@smtp.kernel.org>
+In-Reply-To: <20260524225336.450AF1F000E9@smtp.kernel.org>
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302384-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-302386-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[lists.linux.dev,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	NEURAL_SPAM(0.00)[0.649];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[javiercarrascocruz@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: DD9A55C4FE8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 7D1C75C5061
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
+On Mon May 25, 2026 at 12:53 AM CEST, sashiko-bot wrote:
+> Thank you for your contribution! Sashiko AI review found 6 potential issu=
+e(s) to consider:
+> - [High] Mixing `devm_pm_runtime_get_noresume()` with manual `pm_runtime_=
+put_autosuspend()` causes a PM usage counter underflow.
+> - [High] `veml6031x00_write_raw()` modifies hardware registers over I2C w=
+ithout acquiring a runtime PM reference.
+> - [High] The shutdown devres action performs I2C writes without ensuring =
+the device and its parent are resumed.
+> - [Medium] Missing locks in `veml6031x00_read_raw()` for `IIO_CHAN_INFO_S=
+CALE` and `IIO_CHAN_INFO_INT_TIME` allow torn reads of configuration fields=
+.
+> - [Medium] Incorrect scale attribute exposure for the IR channel and fail=
+ure to mark shared hardware attributes.
+> - [Medium] The driver unconditionally sleeps for the integration time on =
+every raw read, introducing unnecessary latency.
+> --
 
-New issues:
-- [High] Cache pollution of AF_TRIG causes unintended conversions and unnec=
-essary I2C reads.
-- [High] The trigger reference acquired via iio_trigger_get() is leaked on =
-probe error paths and driver unbind.
-- [High] PM runtime usage counter leaks if the driver unbinds while an even=
-t is enabled.
-- [High] Sysfs read/write functions and trigger operations access hardware =
-without acquiring a PM runtime reference.
-- [High] Out-of-bounds array write in veml6031x00_trig_handler when the tim=
-estamp channel is enabled.
-- [Medium] Dead event sysfs attributes are exposed when no IRQ is present.
+...
 
-Pre-existing issues:
-- [High] Unbalanced double-put of the runtime PM usage counter on driver un=
-bind.
-- [High] The shutdown action accesses I2C registers after PM runtime has be=
-en disabled.
---
+>> +static int veml6031x00_write_raw(struct iio_dev *iio,
+>> +				 struct iio_chan_spec const *chan,
+>> +				 int val, int val2, long mask)
+>> +{
+>> +	IIO_DEV_ACQUIRE_DIRECT_MODE(iio, claim);
+>> +	if (IIO_DEV_ACQUIRE_FAILED(claim))
+>> +		return -EBUSY;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_INT_TIME:
+>> +		return veml6031x00_set_it(iio, val, val2);
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		return veml6031x00_set_scale(iio, val, val2);
+>
+> [Severity: High]
+> Does this code modify hardware registers over I2C without acquiring a run=
+time
+> PM reference?
+>
+> Unlike veml6031x00_single_read(), this function directly writes to the
+> sensor's configuration registers without a PM reference. Because the regm=
+ap is
+> not configured with .pm_runtime =3D true, I2C transactions may be attempt=
+ed
+> while the client device (or its parent controller) is runtime suspended, =
+which
+> can trigger bus transfer errors.
+>
 
-commit cbdd69d1454af4788d5d18a23d3fb6854c9981e9
-Author: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+The registers are always accessible as long as the device is powered,
+both in normal operation and power down. Therefore, this function cannot
+be compared to veml6031x00_single_read() that acquires a PM reference to
+carry out a measurement, and the write operations work fine.
 
-iio: light: veml6031x00: add support for events and trigger
+>> +static int veml6031x00_probe(struct i2c_client *i2c)
+>> +{
+>
+> [ ... ]
+>
+>> +	ret =3D devm_add_action_or_reset(dev, veml6031x00_als_shutdown_action,=
+ data);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to add shutdown action\n");
+>
+> [Severity: High]
+> Can this shutdown devres action perform I2C writes while the device is
+> suspended?
+>
+> Because this devres action is registered before
+> devm_pm_runtime_set_active_enabled(), on driver unbind, PM is disabled an=
+d the
+> device state is forced to suspended before the shutdown action executes d=
+ue to
+> devres LIFO execution order.
+>
+> The shutdown action then attempts to perform I2C writes to the shutdown
+> register. Accessing the I2C bus while the device state is suspended can c=
+ause
+> bus errors or hangs.
+>
+> [ ... ]
+>
+>> +	ret =3D devm_pm_runtime_set_active_enabled(dev);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to enable runtime PM\n");
+>> +
+>> +	ret =3D devm_pm_runtime_get_noresume(dev);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to get runtime PM\n");
+>
+> [ ... ]
+>
+>> +	ret =3D veml6031x00_hw_init(iio);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	pm_runtime_put_autosuspend(dev);
+>
+> [Severity: High]
+> Does mixing devm_pm_runtime_get_noresume() with manual
+> pm_runtime_put_autosuspend() cause a PM usage counter underflow?
+>
+> The devm_pm_runtime_get_noresume(dev) call increments the PM usage counte=
+r
+> and registers a devres action to decrement it on driver unbind.
+>
+> However, the explicit pm_runtime_put_autosuspend(dev) decrements the usag=
+e
+> counter to its pre-get state. When the driver is subsequently removed (or=
+ if
+> probe fails after the put), the devres action will blindly decrement the
+> counter a second time, resulting in an underflow.
 
-The device provides a shared interrupt line for to notify events and
-data ready, which can be used as a trigger. The interrupt line is not a
-requirement for the device to work. Implement variants for the cases
-whether the interrupt line is provided or not.
+I believe Sashiko is misinterpreting how this pattern works (not
+introduced by me, it is already available upstream in
+drivers/spi/atmel-quadspi.c). Decrementing the usage counter is fine
+because the devres action uses pm_runtime_put_noidle(), which in turns
+uses atomic_add_unless(usage_count, -1, 0) to avoid decrementing the
+usage_count if it is already 0. Sashiko has reported the same issue in
+other patches of this series.
 
-> diff --git a/drivers/iio/light/veml6031x00.c b/drivers/iio/light/veml6031=
-x00.c
-> index 9968d4414dc96..c57aaa29abf30 100644
-> --- a/drivers/iio/light/veml6031x00.c
-> +++ b/drivers/iio/light/veml6031x00.c
-
-[ ... ]
-
-> @@ -136,6 +189,8 @@ static const struct iio_chan_spec veml6031x00_channel=
-s[] =3D {
->  		.info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_INT_TIME),
->  		.info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_INT_TIME),
->  		.info_mask_separate_available =3D BIT(IIO_CHAN_INFO_SCALE),
-> +		.event_spec =3D veml6031x00_event_spec,
-> +		.num_event_specs =3D ARRAY_SIZE(veml6031x00_event_spec),
-
-[Severity: Medium]
-Will this expose dead event sysfs attributes when no IRQ is present?
-
-When i2c->irq is 0, the driver registers veml6031x00_info_no_irq which lacks
-event callbacks. However, this channel array unconditionally defines
-event_spec and num_event_specs. The IIO core will parse these and expose
-event sysfs files. Reading or writing these files will fail with -EINVAL
-because the callbacks are NULL, which violates the sysfs API contract.
-
-[ ... ]
-
-> +static int veml6031x00_read_event_val(struct iio_dev *iio,
-> +				      const struct iio_chan_spec *chan,
-> +				      enum iio_event_type type,
-> +				      enum iio_event_direction dir,
-> +				      enum iio_event_info info,
-> +				      int *val, int *val2)
-> +{
-
-[Severity: High]
-Are PM runtime references needed here before accessing hardware?
-
-This function, as well as veml6031x00_write_event_val() and
-veml6031x00_set_trigger_state(), performs I2C accesses via regmap without
-first calling pm_runtime_resume_and_get(). If the device is
-runtime-suspended and its PM domain has powered it off, will these I2C
-accesses fail or time out?
-
-[ ... ]
-
-> +static int veml6031x00_write_event_config(struct iio_dev *iio,
-> +					  const struct iio_chan_spec *chan,
-> +					  enum iio_event_type type,
-> +					  enum iio_event_direction dir,
-> +					  bool state)
-> +{
-> +	struct veml6031x00_data *data =3D iio_priv(iio);
-> +	int ret;
-> +
-> +	guard(mutex)(&data->lock);
-> +
-> +	/* avoid multiple increments/decrements from one source */
-> +	if (state =3D=3D data->ev_en)
-> +		return 0;
-> +
-> +	if (state) {
-> +		ret =3D pm_runtime_resume_and_get(data->dev);
-
-[Severity: High]
-Could this leak the PM runtime usage counter if the driver unbinds?
-
-Enabling an event increments the PM runtime usage counter here. If the
-driver is unbound via sysfs while an event is enabled, the IIO core does
-not automatically disable the event. Since there is no unbind cleanup
-mechanism to release the pending PM reference when data->ev_en is true,
-does this keep the device powered on indefinitely?
-
-[ ... ]
-
-> +/* AF_TRIG is reset by hardware, but the rest of the fields are persiste=
-nt */
-> +static int veml6031x00_set_af_trig(struct veml6031x00_data *data, bool s=
-tate)
-> +{
-> +	regcache_drop_region(data->regmap, VEML6031X00_REG_CONF0,
-> +			     VEML6031X00_REG_CONF0);
-> +
-> +	return regmap_update_bits(data->regmap, VEML6031X00_REG_CONF0,
-> +				  VEML6031X00_CONF0_AF_TRIG,
-> +				  FIELD_PREP(VEML6031X00_CONF0_AF_TRIG, state));
-> +}
-
-[Severity: High]
-Can this cause unintentional active force conversions due to cache pollutio=
-n?
-
-This sets the self-clearing AF_TRIG bit using regmap_update_bits().
-Because CONF0 is not marked as a volatile register, regmap_update_bits()
-writes AF_TRIG=3D1 and caches it. Any subsequent read-modify-write on CONF0
-(e.g., toggling the interrupt or changing integration time) will read the
-cached AF_TRIG=3D1 and write it back to hardware, unintentionally triggering
-an active force conversion and causing hardware state corruption.
-
-[ ... ]
-
->  static irqreturn_t veml6031x00_trig_handler(int irq, void *p)
->  {
->  	struct iio_poll_func *pf =3D p;
->  	struct iio_dev *iio =3D pf->indio_dev;
->  	struct veml6031x00_data *data =3D iio_priv(iio);
->  	int ch, ret, i =3D 0;
->  	struct {
->  		__le16 chans[2];
->  		aligned_s64 timestamp;
->  	} scan =3D { };
-> =20
->  	if (*iio->active_scan_mask =3D=3D (BIT(VEML6031X00_SCAN_ALS) |
->  				       BIT(VEML6031X00_SCAN_IR))) {
->  		ret =3D regmap_bulk_read(data->regmap,
->  				       VEML6031X00_REG_ALS_L,
->  				       &scan.chans, sizeof(scan.chans));
->  		if (ret)
->  			goto done;
->  	} else {
->  		iio_for_each_active_channel(iio, ch) {
->  			ret =3D regmap_bulk_read(data->regmap,
->  					       iio->channels[ch].address,
->  					       &scan.chans[i++],
-
-[Severity: High]
-Does this loop cause an out-of-bounds array write if the timestamp
-channel is enabled?
-
-The iio_for_each_active_channel() loop does not exclude the soft timestamp
-channel. If the user enables ALS, IR, and TIMESTAMP channels, the loop
-iterates 3 times. However, the scan.chans array is declared as=20
-__le16 chans[2]. Processing the timestamp channel increments the index i
-to 2 and writes to scan.chans[2], causing an out-of-bounds memory write.
-
-Furthermore, because the timestamp channel's address is 0, this incorrectly
-attempts a bogus I2C read from VEML6031X00_REG_CONF0.
-
-[ ... ]
-
-> +static int veml6031x00_setup_irq(struct i2c_client *i2c, struct iio_dev =
-*iio)
-> +{
-> +	struct veml6031x00_data *data =3D iio_priv(iio);
-> +	struct device *dev =3D data->dev;
-> +	int ret;
-> +
-> +	data->trig =3D devm_iio_trigger_alloc(dev, "%s-drdy%d", iio->name,
-> +					    iio_device_id(iio));
-> +	if (!data->trig)
-> +		return -ENOMEM;
-> +
-> +	data->trig->ops =3D &veml6031x00_trigger_ops;
-> +	iio_trigger_set_drvdata(data->trig, iio);
-> +
-> +	ret =3D devm_iio_trigger_register(dev, data->trig);
-> +	if (ret)
-> +		return ret;
-> +
-> +	iio->trig =3D iio_trigger_get(data->trig);
-
-[Severity: High]
-Is the trigger reference acquired here leaked on driver unbind?
-
-Calling iio_trigger_get() increments the trigger device's refcount and the
-driver module's refcount. If the driver fails probe afterwards or is unbound
-later, iio_trigger_put() is never called because there is no devres action
-registered for it and no custom remove callback. Does this permanently leak
-the trigger device reference and prevent the module from being unloaded?
-
-[ ... ]
-
-> @@ -618,6 +1039,10 @@ static int veml6031x00_probe(struct i2c_client *i2c)
-
-[ ... ]
-
->  	ret =3D devm_add_action_or_reset(dev, veml6031x00_als_shutdown_action, =
-data);
-
-[Severity: High]
-This is a pre-existing issue, but does this shutdown action access I2C
-registers after PM runtime has been disabled?
-
-This action is registered via devm_add_action_or_reset() before PM runtime
-is enabled. On teardown, devm actions run in reverse, meaning PM runtime is
-disabled before the shutdown action runs. The shutdown action then attempts
-I2C writes while PM runtime is disabled. If the device was suspended, it
-cannot be resumed, potentially causing I2C transfer failures.
-
-[ ... ]
-
->  	pm_runtime_put_autosuspend(dev);
-
-[Severity: High]
-This is a pre-existing issue, but is there an unbalanced double-put of the
-runtime PM usage counter on driver unbind?
-
-The probe function registers a cleanup action to drop the PM reference via
-devm_pm_runtime_get_noresume(dev). However, this explicit put at the end
-of probe means the devm action will drop the reference a second time on
-unbind, causing a PM usage counter underflow that breaks the PM runtime
-state machine.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260524-veml6031x0=
-0-v3-0-29165609b2b5@gmail.com?part=3D4
+Best,
+Javier
 
