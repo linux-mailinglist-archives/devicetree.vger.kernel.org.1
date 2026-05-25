@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-302780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302785-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOjbHGd8FGowNwcAu9opvQ
-	(envelope-from <devicetree+bounces-302780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:44:23 +0200
+	id WDCrFzB9FGowNwcAu9opvQ
+	(envelope-from <devicetree+bounces-302785-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:47:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDB65CD00E
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B66575CD07E
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:47:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF1673044830
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 16:41:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 586B63018BC5
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 16:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F1B38228F;
-	Mon, 25 May 2026 16:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B043F65EF;
+	Mon, 25 May 2026 16:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FaYYP1Hv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fCu7yDOZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821F63F4135;
-	Mon, 25 May 2026 16:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B513F5BED;
+	Mon, 25 May 2026 16:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779727305; cv=none; b=kRGToo3FNKWsfFacAcVK6D3uVLItOwV+P8UXxoVxJkDKqHxBwhqxjowGJKYI5DrX7B2UoDofjjhgiVzCb5iMjqHzgjOHTizxJnEetnlZLG7Lb4nIzZGTiyY6NyHfptGSBCOls8Rf5S8KxfXNzS2fwzCRi2Qlj3G/lRnayehyaY0=
+	t=1779727424; cv=none; b=XS7J60Fmoqw1TGloRhSRW5cdYk9nLa4PIZ2qQVP55yRcIZHMEg8+W7mpjnFaLmWGKgkPs3EiX0byGH2mSgGxhYlWgNV6HqRUJRydW09MlWszYq2vcCCY5i5PZu/l1wFw0mc+gQzvCr0EiGx2/aNWAgbzd9A5k8t+FD23SYJzkAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779727305; c=relaxed/simple;
-	bh=kLDyj8Q66/bPiLXCiftTL+cptht+gtf6AS8vrPXTl9I=;
+	s=arc-20240116; t=1779727424; c=relaxed/simple;
+	bh=OgsDFyP42Vfjuq6OtI+aOC2Wv89vd3+bjandhQMxepc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QQNG/mKnsq6vPQOV6Y8Hs7QKye/QSr/K2O+hgNP7UNliV+nlfDhm9q/3AfAFI2YfOGz0dgC6/LMzeBglJrttCxoXAHg22s8TkMDVcn3IeOc/4IkmxITPzqaQKTV46ldUmenHY233IerOx6jF9UKldOlkNq89qV39CjIgOY+vIOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FaYYP1Hv; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 150E31F000E9;
-	Mon, 25 May 2026 16:41:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k+DgeSi8VGe+W2iGgdsxgp6mrIQ8wPMttACjUnDKB1Opj6IJV2iv/nandcrPe9ukYw0goRjvmxeQ4mml3CJqQuVpjzQmdWBI0j4BEFYtK+N9rJuW07kJ9jNpiHofHL7XbJYrwjnJ/htmBH7OMUQoxwiaeh/T/LCDd2i1kApUYnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fCu7yDOZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BDB1F000E9;
+	Mon, 25 May 2026 16:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779727304;
-	bh=Ub3un0HwrZIgXb4W43Ub12pPYxU2IUC0+Qd8HSzysC4=;
+	s=k20260515; t=1779727423;
+	bh=OgsDFyP42Vfjuq6OtI+aOC2Wv89vd3+bjandhQMxepc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=FaYYP1HvvgnergOAsD/6NMZr2lemID4MtTM1pEK0/pCUuiZnyDxZe8k5t2YYvZzk2
-	 amlDrwyhZID7DH9mrNWpliXXr6NA6Hrfq5iP1L5b6DECY/4skH5cO4LL4Hnn0PopMF
-	 e7+3K56eIBzyX1h6mSQY3TXYx6SC4r/qLAh9LX6JKNXOyvM+9MSV57LFw7S5gp/KAy
-	 W/tpAF8aVX//z21t/jbgB30GjL+AnbuMTFHpSrys3+5LtJUC2Ai+6GbTBnuX1cjZBW
-	 rB7UVuEX5tX015PQvr+v7g6GBFOb8vNnW4qFrYAWgAI4ikCxL1svm8aXdjU/e3upYt
-	 ycJyAEJwp36qg==
-Date: Mon, 25 May 2026 17:41:41 +0100
+	b=fCu7yDOZyggX2FSu9uIyU4+X5Ymjl/iMEyoZv8QPH1Z3OXcUm6cVj28CSPbofYdLr
+	 6Wqry44T1/Clwkp0BN0PiKHJUJ4Y25k8zM4vhNq56r9rfD20AEqN6603p92ljAkR6P
+	 PJPJ5v77+6b+gpB7PX7+WpFThAmRejKMZjGzFgMRpEY5gZjj1I0vztjFmwUtvKstqH
+	 6rH51B0E0CgZ5b0792IZZj3K/AxIhCNz1nwjvEUc1T8e8ocdrilHSGPUSflb4G1HDe
+	 Ng+Hl56lVmKNybXf8qTJqwgQzZQbXqVExMnD30v3KGAiEcVCdJa4v7jBnc0y167rER
+	 nv3Fodai6UA+g==
+Date: Mon, 25 May 2026 17:43:39 +0100
 From: Conor Dooley <conor@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: Manish Baing <manishbaing2789@gmail.com>, devicetree@vger.kernel.org,
-	robh@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: mellanox,bluefield-dw-mshc: Convert DT
- schema
-Message-ID: <20260525-radio-ungodly-9725b95ed67a@spud>
-References: <20260524094616.106660-1-manishbaing2789@gmail.com>
- <20260524101513.A76711F000E9@smtp.kernel.org>
+To: Patrick Barsanti <patrick.barsanti@amarulasolutions.com>
+Cc: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org, heiko@sntech.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-amarula@amarulasolutions.com, michael@amarulasolutions.com,
+	dario.binacchi@amarulasolutions.com
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Axelera AI
+Message-ID: <20260525-prototype-dingbat-1aa80f9a112e@spud>
+References: <20260522174918.61523-1-patrick.barsanti@amarulasolutions.com>
+ <20260522174918.61523-2-patrick.barsanti@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,117 +63,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CWN4pHQhd76h/Vhu"
+	protocol="application/pgp-signature"; boundary="yU57OYvm+3N+PKUP"
 Content-Disposition: inline
-In-Reply-To: <20260524101513.A76711F000E9@smtp.kernel.org>
+In-Reply-To: <20260522174918.61523-2-patrick.barsanti@amarulasolutions.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-302785-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302780-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,0.42.201.32:email]
-X-Rspamd-Queue-Id: BFDB65CD00E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: B66575CD07E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---CWN4pHQhd76h/Vhu
-Content-Type: text/plain; charset=iso-8859-1
+--yU57OYvm+3N+PKUP
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 24, 2026 at 10:15:13AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
-> - [Low] Mismatch between node unit-address and `reg` property base addres=
-s in the YAML example.
-> --
->=20
-> commit cdc4e472d6093984a0a6b661575b015b013ec9d6
-> Author: Manish Baing <manishbaing2789@gmail.com>
->=20
-> dt-bindings: mmc: mellanox,bluefield-dw-mshc: Convert DT schema
->=20
-> This commit converts the Mellanox BlueField SoC extensions for the Synops=
-ys
-> Designware Mobile Storage Host Controller from text format to YAML schema.
->=20
-> > diff --git a/Documentation/devicetree/bindings/mmc/mellanox,bluefield-d=
-w-mshc.yaml b/Documentation/devicetree/bindings/mmc/mellanox,bluefield-dw-m=
-shc.yaml
-> > new file mode 100644
-> > index 0000000000000..32d50e45ddb86
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mmc/mellanox,bluefield-dw-mshc.=
-yaml
->=20
-> [ ... ]
->=20
-> > +examples:
-> > +  - |
-> > +    /* Mellanox BlueField SoC MMC */
-> > +    mmc@2804000 {
-> > +        compatible =3D "mellanox,bluefield-dw-mshc";
-> > +        reg =3D <0x6008000 0x400>;
->=20
-> [Severity: Low]
-> Should the node unit-address match the first address in the reg property
-> here?
+With the changed company name
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Of course it should.
 pw-bot: changes-requested
 
->=20
-> The converted YAML example uses mmc@2804000 as the node name, but retains
-> reg =3D <0x6008000 0x400>. This mismatch typically causes a unit_address_=
-vs_reg
-> warning during dt_binding_check validation.
->=20
-> > +        interrupts =3D <32>;
-> > +        fifo-depth =3D <0x100>;
-> > +        clock-frequency =3D <24000000>;
-> > +        bus-width =3D <8>;
-> > +        cap-mmc-highspeed;
-> > +    };
->=20
-> --=20
-> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260524094616.10666=
-0-1-manishbaing2789@gmail.com?part=3D1
-
---CWN4pHQhd76h/Vhu
+--yU57OYvm+3N+PKUP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCahR7xQAKCRB4tDGHoIJi
-0lsmAQDGcj3Q1+XAdIFwOTVlh4Pe301Y9pxqquqDqCAGVi3zCAD43ahUEcOZdLMc
-+NKQ2WXYtcUTno7bdKEjZoB9tL9yAA==
-=HIIh
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCahR8OwAKCRB4tDGHoIJi
+0pziAP4xs1iS8eMho7n65WZfzFGlOikZNpNfbCAqCzQB4jjgYwD+KNZpr8CllB8D
+wuCtPYseppNZoAc4eOeohE6q3dAU7AQ=
+=5Eju
 -----END PGP SIGNATURE-----
 
---CWN4pHQhd76h/Vhu--
+--yU57OYvm+3N+PKUP--
 
