@@ -1,148 +1,146 @@
-Return-Path: <devicetree+bounces-302523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302526-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0AWmFeoVFGo4JgcAu9opvQ
-	(envelope-from <devicetree+bounces-302523-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:27:06 +0200
+	id YCw8HrIVFGpOJgcAu9opvQ
+	(envelope-from <devicetree+bounces-302526-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:26:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C935C5C88E2
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:27:05 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9DC5C8890
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:26:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5564C30391EB
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:25:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 11C2D3005ABF
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:26:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8A83E8322;
-	Mon, 25 May 2026 09:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C429F3E5A3D;
+	Mon, 25 May 2026 09:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="r7Mk1wHK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H7H8MfXD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4053E8320;
-	Mon, 25 May 2026 09:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A1D3E5A32;
+	Mon, 25 May 2026 09:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779701106; cv=none; b=qSIud4Oz2AaLPeBKngQBgxN5iQ4qpLNoutkcd7creKisEo9BTmQ1DvkXbovQEAwFUGLq9BCT6sgIar0YfthA9pNXSm+1Br5UBjFaRpa6npdRp0bc9o/hkRmZplZNrze3epw/c/QES6R9wuy+Y8Qazoqyhcy4vL2G7w838z+/KjI=
+	t=1779701167; cv=none; b=G1cVuzqSPuw3H071PtPEDv1+9TaDMELcy6Vrz6EnqAUnCanJKdrNGWqPD1WvBGx65Q5Q94xrnjJOdQlOMBbELOP2Z/Rhfz26zblbnyVWcWsjN+HmbxI0pSG23ld+zrVvvceR9yQwJ25C893MIVpyNnkLPBzHrouY4YjVAByOsY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779701106; c=relaxed/simple;
-	bh=6AUu28k/Clqbv8wTtKnnwKjWBW9XtjZIigR38lrNNYw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nVIW2e5Mdmp2oiviluSlSKLYqFaTvJTvMAUbmlyxlMc7mrQ42pZWtFAgfaqimUX2GobUL2vJWEoOVD2wVr0wIti3o/4y2uaBLRtSWiYeQvzPtBbDMT6V7s1X2uG7zcyVKgYmwPvP+YmxbCoM0GylMEwLkG0ENnAYgUkR8mcTc1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=r7Mk1wHK; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1779701105; x=1811237105;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=6AUu28k/Clqbv8wTtKnnwKjWBW9XtjZIigR38lrNNYw=;
-  b=r7Mk1wHK6JmYRX2gFQTXt3Yh9/I1pBlz7YS/lzMSlOIVlUPxPXdiUUSb
-   YdhJSkvCbl5j3h3yV+but5+ByMaUo1F6KlMNiUzirsN81aC1o5nl+xES1
-   1ffFHkYnPNVtKohE8oMMJaltgv0uQaMs7all8acUb+lmDZuY4X9NbBUzt
-   fPdrk20edtTeOIez6TaAMzMLZKtQOFrLmmrTE/ty0sQbHgM7RPNKXyh9v
-   f2yorbE3/C94B7W/Um6hdwzJh6azSMHZPmUhtAN12mNXhp1EecWU7JA5Q
-   od6SnWdt8DDDRiZLPS1vyGR09jdhGhLMVgG+pGMhTqohczCQioySodTVf
-   g==;
-X-CSE-ConnectionGUID: w72KhTerRzCNpgloKDd3vQ==
-X-CSE-MsgGUID: /Y7BedzdS4eyqLDAz5w4zw==
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; 
-   d="scan'208";a="57215514"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2026 02:25:04 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.41; Mon, 25 May 2026 02:25:04 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 25 May 2026 02:24:55 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <alexandre.belloni@bootlin.com>, <Frank.Li@nxp.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<claudiu.beznea@tuxon.dev>, <linux@armlinux.org.uk>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <bmasney@redhat.com>,
-	<aubin.constans@microchip.com>, <Ryan.Wanner@microchip.com>,
-	<romain.sioen@microchip.com>, <tytso@mit.edu>,
-	<cristian.birsan@microchip.com>, <adrian.hunter@intel.com>,
-	<npitre@baylibre.com>, <linux-i3c@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
-CC: Manikandan Muralidharan <manikandan.m@microchip.com>, Durai Manickam KR
-	<durai.manickamkr@microchip.com>
-Subject: [PATCH v7 5/5] ARM: configs: at91: sama7: add sama7d65 i3c-hci
-Date: Mon, 25 May 2026 14:54:05 +0530
-Message-ID: <20260525092405.1514213-6-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260525092405.1514213-1-manikandan.m@microchip.com>
-References: <20260525092405.1514213-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1779701167; c=relaxed/simple;
+	bh=jmYi9k8kfIYDV6PSc0blAw2ZCe6obcAFkc4TkEVBsD0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z104y+NCD/uTTfSCAHgIEO3k1gw+qNdD2zDJiNweiNflheIZzJfmOzfSf6yrxwXzLupGiGAQyhfRwDms+MyY9i0Ic5YaIrOWk9/Q7+Ayg+v/ZVYUJkvzmhnc9vGyj2vJup1jcnY9Fi936Fs223/d50RA8P0vXhcGnHez7I+Dsfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H7H8MfXD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A02E1F000E9;
+	Mon, 25 May 2026 09:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779701166;
+	bh=skzTssuwru7jF3TpsgIsQPJu8IbIuLMfcBBNvTemjVE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=H7H8MfXDgcg2czwLwQhZFCL2kqMjRCt9tXoVzp4zeEDmKAYkQrEXUVc2JEUW2iIjK
+	 Vuzy3H5k3Lla3w9XIbEjkEw8EIAEUxPr9Ik+YywZqcE3XvMlv0kK6kyA9tTXjno7ax
+	 YZGG6k95KRRS3MHsk0avHWKKMJA+wHrlHeDeeYtuBWyv+l8X9+TDVPr8HJxWx+TXLZ
+	 DzQ4fKJC3n1V0kfuXrlqZ9kmDUuSBoEywRGAyrWlR1QAL/PvGbajSvlG5VuW6KgYe8
+	 Pg9qRoSl+NV2ibriujglyE7gRvcEXZwZx+fG2cs5PIfYpf+TQ44LxUg/jTMrE4RZvv
+	 Sdbjhi2TLVoxQ==
+From: Sven Peter <sven@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Neal Gompa <neal@gompa.dev>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Mark Kettenis <kettenis@openbsd.org>,
+	Sasha Finkelstein <k@chaosmail.tech>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Janne Grunau <j@jannau.net>
+Cc: Sven Peter <sven@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-watchdog@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	Joshua Peisach <jpeisach@ubuntu.com>,
+	Michael Reeves <michael.reeves077@gmail.com>
+Subject: Re: (subset) [PATCH v3 0/5] Initial Apple silicon M3 device trees and dt-bindings
+Date: Mon, 25 May 2026 11:25:48 +0200
+Message-ID: <177970089799.4336.5106410094266979561.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
+References: <20260507-apple-m3-initial-devicetrees-v3-0-ca07c81b5dc7@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302526-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,ubuntu.com,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302523-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[manikandan.m@microchip.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.995];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,microchip.com:email,microchip.com:mid,microchip.com:dkim,tuxon.dev:email]
-X-Rspamd-Queue-Id: C935C5C88E2
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sven@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5B9DC5C8890
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the configs needed for I3C framework and microchip
-sama7d65 i3c-hci driver.
+On Thu, 07 May 2026 09:33:06 +0200, Janne Grunau wrote:
+> Hej,
+> 
+> This series adds initial device trees for M3 Apple silicon devices. The
+> device trees contain only a minimal set of hardware not going much
+> beyond the minimum required for booting kernel and initramfs and
+> verify via serial console that the hardware and drivers work.
+> The hardware with the exception of the interrupt controller is
+> compatible with the M1 and M2 SoCs and the existing drivers.
+> `make dtbs_check` depends on the already applied and dropped apple,i2c
+> and apple,pmgr dt-binding changes.
+> The watchdog load depends on stalled and forgotten addition of the
+> "apple,t8103-wdt" compatible posted in [1]. I've replied to the thread
+> to get the change merged.
+> 
+> [...]
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
----
- arch/arm/configs/sama7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Applied to local tree (apple-soc/dt-7.2), thanks!
 
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index e52f671ccec4..6470c7d3fe8a 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -117,6 +117,8 @@ CONFIG_HW_RANDOM=y
- CONFIG_I2C=y
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_AT91=y
-+CONFIG_I3C=y
-+CONFIG_MIPI_I3C_HCI=y
- CONFIG_SPI=y
- CONFIG_SPI_ATMEL=y
- CONFIG_SPI_ATMEL_QUADSPI=y
+[1/5] dt-bindings: power: apple,pmgr-pwrstate: Add t8122 compatible
+      https://github.com/AsahiLinux/linux/commit/4d28a9a428f6
+[3/5] dt-bindings: pwm: apple,s5l-fpwm: Add t8122 compatible
+      https://github.com/AsahiLinux/linux/commit/d0960529afbd
+[4/5] dt-bindings: arm: apple: Add M3 based devices
+      https://github.com/AsahiLinux/linux/commit/5701af106b03
+[5/5] arm64: dts: apple: Initial t8122 (M3) device trees
+      https://github.com/AsahiLinux/linux/commit/1dfa78533534
+
+Best regards,
 -- 
-2.25.1
+Sven Peter <sven@kernel.org>
 
 
