@@ -1,263 +1,200 @@
-Return-Path: <devicetree+bounces-302509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302511-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4IaiKMgSFGpeJQcAu9opvQ
-	(envelope-from <devicetree+bounces-302509-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:13:44 +0200
+	id mFBmHykUFGorJgcAu9opvQ
+	(envelope-from <devicetree+bounces-302511-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:19:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DD75C8645
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 259285C86E9
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA0383003303
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:11:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AB2203013A8A
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38EB93264CA;
-	Mon, 25 May 2026 09:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132C23E51EB;
+	Mon, 25 May 2026 09:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecCdrPBK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DZ2ogOOh";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Yougnboi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9997330B11
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5861334688
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779700311; cv=none; b=Zii8K4J+cRGRK8lDj0VXErIBGSTe4bLmwLMDgZZu7RKQLw2SCIf5n5X7RgXGfJ06yrRG+7pAhJR1mE5ojyuxyZPVZBfHaifvT+FncXoimicwYsmVdFcYbFGw3iel/8XBODejHKgZ8RBF26B5GKHAySPynepOsU4Eg0+9ZZJmSUA=
+	t=1779700758; cv=none; b=trAx0ogvPMLlEJzMJ21rLsN+MU42WV44J9GKlu4WbYn1Nbng/kgvUc/7Ea21QDkF5+ZY5ocngWeMgU70pIftETw71VP7sldaxKbMwO23WboCJard9LPvfZiAux0b0Ys0EvyUmBoahcEWMwV/oJZYpBdrdhF6PqPxgC9vNHLXHdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779700311; c=relaxed/simple;
-	bh=t3Uj+AAmWqrYhDRnj/Jc73UEUesmnCGX1RIcFLcaWZY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ZxcrSIlfNxRmOJ35rSrSBb79OMv7iMESjCLzeO8bEnc0EiXW4hGFGWgw2NOaNILzvrwj6HClBdGNBlh4tODzMpQvPPoPBjFyPlDS67+I62Ij+DsMnGcs/rYYHWjaQnwXBtCda/5jqyUyDRUSc3AQvyZBABO/mKJGwbNkrHM/vp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecCdrPBK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A1E01F00A3D;
-	Mon, 25 May 2026 09:11:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779700309;
-	bh=DFQgW4KRUMLUlZr52Gl1waa6iZspm+vHBYyC1vWUSm0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ecCdrPBKwzmz5n1ZdUQI5fHEb6DYdHjI8r7kcj68X5UEYjhpKnHL82Yx2yIogK8F/
-	 XWautovR8Xl4CF2CpAf53GTnYD831O5sXxfiNU8kMyadZQ2RVuM6+VxtVOiLXmQMWT
-	 u3eGz0d32GZyQck3rrmTcjSSvO770TJDJngy68Te9bBsuMY8RLZSEVnneWTBw9dFPc
-	 M2o8I27jQvWSir+qbXwBbDbVS6MaLbqvKebtG+7XOPrMVLaul2CDhFYdVXjrscgLgd
-	 tysBFD7Qo3pGEpXNqZoyjyLCsMap6buDICKeTFoenY+jJJEHg6K8MyPorQXi05l44M
-	 K4LcCTqf30F+A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 04/17] arm64: kexec: Fix image->elf_headers memory
- leak during retry loop
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jinjie Ruan" <ruanjinjie@huawei.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260525084932.934910-5-ruanjinjie@huawei.com>
-References: <20260525084932.934910-5-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 09:11:48 +0000
-Message-Id: <20260525091149.1A1E01F00A3D@smtp.kernel.org>
+	s=arc-20240116; t=1779700758; c=relaxed/simple;
+	bh=wUdMiM4gznb6+rt3vTR+q6cMpxLdznGhivqWLAYNrG0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JlPfHW9DXMxWpMD/XoHH5Ab78TFXUrg5OSvSET+2t1qCtUW+i8FarnJcLwIirkvp07txxKN0OMAuy2CxNRqOOHIHRRESp9TF/Y/4trz9xosrRlkm5AFZW7HtdlRKsMmjalGHTsiGC7SsuLLn9xlQyy8QrHUFVhbrcAIx97MjEus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DZ2ogOOh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Yougnboi; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64P7QLKr3063411
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:19:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=bmgCDfsrFew+pg6RojZwQYb+
+	pd6o+Ri4V4tsZlDZDeo=; b=DZ2ogOOhcNvpHlFCfgpKqgyFLqn9yO7FArZS5Paa
+	DPpSUGk+80vPBbIJyaEp9thVPUMwsbRgEmPmIu3TzjGsg4DQshxGnV2h+WNybQKJ
+	W70mbM51yCHCiCDmgbpFVlGjk1AmL6TzdZPC0YaceT4qGAWy7maCjH6OtveKq/zd
+	d3zyvlOd4cpUiTUoACK6LKIegS4tT9gKII6/RdDLORqDcPEaR10qG3BUn4ZbO8G+
+	6ApEAtsa57iSR/dE8bWNw/ylUaOA666WeBlz3H1YdUNkoy7/f4BP8qbCBu0jOAlT
+	+Bqhqq/nNYdri/g065Mua9piP+NHkFItLcTNnNMY3MRlWw==
+Received: from mail-vk1-f199.google.com (mail-vk1-f199.google.com [209.85.221.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ecj1ggesf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:19:15 +0000 (GMT)
+Received: by mail-vk1-f199.google.com with SMTP id 71dfb90a1353d-5753ef2562aso6989307e0c.2
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2026 02:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779700755; x=1780305555; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bmgCDfsrFew+pg6RojZwQYb+pd6o+Ri4V4tsZlDZDeo=;
+        b=YougnboiE8xlKuiDoElCBh3mR1ilC2hCb80HcEuW2UR0navXc+DCOjL95Jdwgirdsk
+         CAF+h9y4O/85XwisdIVKIdE6XitEMt4CjecvTnsfori6y8Irn1Q36F/UE3W6sgLdVbzs
+         q/Dsp4rUnDdOeWVARCJBXjTgMnyUXz+5Bk/y1HjPs4F0OKdI3wFxVq1Lwoy+zqjN4Q9K
+         9gBVHngBSHxyXwfIuxgKJ+YBTc1VoChvGweexR6Fi/lZ3L+fbwEmHfsS1qSy+QFASGxI
+         WoXSIBG05cJv0bc9cpwhsqVBJI0rf+oTuvMGOk8pbefT32/P5LnVJ5Yif/XK4zjrvu1W
+         Uxig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779700755; x=1780305555;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bmgCDfsrFew+pg6RojZwQYb+pd6o+Ri4V4tsZlDZDeo=;
+        b=C0XZJQOQYn8OF3ZvXos1teU4blfeY1XLPijJYzJcw7TRzxcdguM+qEbMH6zSw9QkPl
+         cK+1uRro7AUV98V8zccBkH/gi5qW9yG7ApKcm5kkXkQQZ8g4QPE6ecT8BQZ/pURVk021
+         htDbE4arHhFiY3jH311mQTVPLn7PQtEQuKMTvNIOYwUA6d7BoiiHQGr4T7xn8ZsQyrl6
+         OENi3/oojM5XHF28snu6U8+w+UFvrcOUGEcXuwUNvtul1txxX+oPIWpLGsnBGEkjyUwa
+         EoaC3NgE/YamF/Cvsza2UKO12gMsulcRJSLi5DUQwgMAoJtRfyPdnC/QQKEptVO9Es47
+         mhTQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/QNCWxkN+XlO1ME+8moJLWih99Y0llG+yhHWXHDI7KV4x7IHS2IiDE+Y8F91w2E4kA1JqVJejJeDMh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMGOBzuXCBYw58rWi732POp5hiZDGbfajUMPVdC4+mfcBA0laK
+	1iVI8mBXn283xkD4NNXd3NtLpK1oxx0eec+JBTLUPxoj4UpUzA9M0o4xZCzjdYv0aGFJOniazND
+	Fq+z3i6oWt4Czdwo8EBsttEGyl8avLBoUfmEX17hG0u6sV3rX7RzT00VPXleckBsD
+X-Gm-Gg: Acq92OE3tdjiw+oYTBB/NGtuNNfzkwfWtdLUS/3vZ9hXwp5ubUNmM9KP9sRw28CtnDg
+	S0Z/jYnT7gbxf5c2APMrli9HuAPMOZsHCCJS15xZrlpYK1sjTWpTZG7qecxokxl9KTktj5FmOgX
+	itf3+tKYcEOti2jNuSZH72fA6tKH/pSL+GCZfFtn7gTjpTNz4cgef8GXPo96jMoXqJL7JTXLnlh
+	x3JEZ1SQFG4vbGimsb2YMEbsiyJ+f1st+yiy06p35UdbZCjslRSXmYQQnnG41hqBPTia+Hqt/AH
+	9WXKQnoj9/+mFAs+CHVF3vkbsGCKgobXGSKL5nBS2OBVRWVF7vsO3qGRU5rGg23E8VQsyBXs9q6
+	ZXW4RG902vxNd3cXYHA+OnGJUg/EMDJIX5bLpx2wnrepdGaX7PasllfJzSWBYUGuNYrDgTDSEzU
+	OS+PNKqmCif0OOroNKkoijXdSpGf6k+mlQy2M=
+X-Received: by 2002:a05:6102:418f:b0:660:d26b:5077 with SMTP id ada2fe7eead31-67c738b7be1mr6149839137.6.1779700755002;
+        Mon, 25 May 2026 02:19:15 -0700 (PDT)
+X-Received: by 2002:a05:6102:418f:b0:660:d26b:5077 with SMTP id ada2fe7eead31-67c738b7be1mr6149831137.6.1779700754643;
+        Mon, 25 May 2026 02:19:14 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa32cb369fsm2511211e87.15.2026.05.25.02.19.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 May 2026 02:19:13 -0700 (PDT)
+Date: Mon, 25 May 2026 12:19:11 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Aastha Pandey <aastha.pandey@oss.qualcomm.com>
+Subject: Re: [PATCH 04/16] arm64: dts: qcom: shikra: Add cpufreq scaling node
+Message-ID: <aibebzgnfdvfnb7hapjoym2ruawpsx7qbtedhyvn6b7gd6dqnk@3l4scbc74wsq>
+References: <20260525-shikra-dt-m1-v1-0-f51a9838dbaa@oss.qualcomm.com>
+ <20260525-shikra-dt-m1-v1-4-f51a9838dbaa@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260525-shikra-dt-m1-v1-4-f51a9838dbaa@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: 3OqYFb97xost0V3nmXg_nsABF8Mw7Xzx
+X-Proofpoint-GUID: 3OqYFb97xost0V3nmXg_nsABF8Mw7Xzx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDA5NCBTYWx0ZWRfX9NnFFVb42Eqv
+ c+bpih89HSLpoK8hdRxPN4wDJbTWk/8/aryaZnkcymVK+PIZWAkY2vz+YoKVsiiVAMCHD4H/8iX
+ ww12vc7fXivkZzBMmX/AClF9aMAEmHSIVv6eSgi6w8JWsgbOqwDC6L3K8gFNJdMuCTSFFrK31K7
+ CWzxu4XvUDdHmO13xAPz757bmpKS8pZtkh9CsiSAG8rzxuhsydNIiNTKRxDXwNQa3G75hd6hLl9
+ fOti9RtFs/gskJvZD4qetmop3gi0p43lZXIGy5qYi+fiC9HsKG+VmRzRGAo+u5ObcjBiR7k6V6s
+ XAcx+XhW2QYlS7CaijsJNYlDF1+BQ6EQdCi5mnePi+nQeCwTVD4FSm+GWTANrc1Vc84VIUm9oRW
+ ywV/W3DrH6R+bJAnJ61wgcW0bzvPtrS7LnmZeoNndKfMnAAmsZ3cenGysi27Ea1GIxvEyOSRw4a
+ J5wqxLnmrjNFUKz1nSw==
+X-Authority-Analysis: v=2.4 cv=D8F37PRj c=1 sm=1 tr=0 ts=6a141413 cx=c_pps
+ a=+D9SDfe9YZWTjADjLiQY5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=gR7PYC-x2pxtVi67x8UA:9 a=CjuIK1q_8ugA:10 a=vmgOmaN-Xu0dpDh8OwbV:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-25_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 malwarescore=0 priorityscore=1501 spamscore=0
+ adultscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605250094
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302509-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302511-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: F3DD75C8645
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 259285C86E9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
+On Mon, May 25, 2026 at 01:19:08AM +0530, Komal Bajaj wrote:
+> From: Imran Shaik <imran.shaik@oss.qualcomm.com>
+> 
+> Add cpufreq-hw node to support cpufreq scaling on Qualcomm Shikra SoCs.
+> 
+> Co-developed-by: Aastha Pandey <aastha.pandey@oss.qualcomm.com>
+> Signed-off-by: Aastha Pandey <aastha.pandey@oss.qualcomm.com>
+> Signed-off-by: Imran Shaik <imran.shaik@oss.qualcomm.com>
+> Signed-off-by: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/shikra.dtsi | 31 +++++++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
 
-New issues:
-- [Critical] Use-After-Free and Double Free due to residual `vfree(headers)=
-` in the error path.
-- [Low] Compilation failure when CONFIG_CRASH_DUMP is disabled.
-- [Low] Uninitialized variables passed to `load_other_segments()` when load=
-ing non-crash kernels.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Pre-existing issues:
-- [High] CMA pages allocated for kexec segments are permanently leaked when=
- `image->nr_segments` is truncated.
---
 
-commit c40f3dfedb4fb90dbc751e696184623090b1055a
-Author: Jinjie Ruan <ruanjinjie@huawei.com>
-arm64: kexec: Fix image->elf_headers memory leak during retry loop
-
-This commit moves the ELF header allocation outside the retry loop in
-image_load() to fix a memory leak during kexec placement retries. It reuses
-the single allocated buffer and updates load_other_segments() to receive the
-headers and size as arguments instead of allocating them internally.
-
-> diff --git a/arch/arm64/kernel/kexec_image.c b/arch/arm64/kernel/kexec_im=
-age.c
-> index b70f4df15a1ae..79efeaeb71e93 100644
-> --- a/arch/arm64/kernel/kexec_image.c
-> +++ b/arch/arm64/kernel/kexec_image.c
-> @@ -44,6 +44,11 @@ static void *image_load(struct kimage *image,
->  	struct kexec_buf kbuf =3D {};
->  	unsigned long text_offset, kernel_segment_number;
->  	struct kexec_segment *kernel_segment;
-> +#ifdef CONFIG_CRASH_DUMP
-> +	/* load elf core header */
-> +	unsigned long headers_sz;
-> +	void *headers;
-> +#endif
->  	int ret;
-
-[ ... ]
-
-> @@ -89,6 +94,18 @@ static void *image_load(struct kimage *image,
-> =20
->  	kernel_segment_number =3D image->nr_segments;
-> =20
-> +#ifdef CONFIG_CRASH_DUMP
-> +	if (image->type =3D=3D KEXEC_TYPE_CRASH) {
-> +		ret =3D prepare_elf_headers(&headers, &headers_sz);
-> +		if (ret) {
-> +			pr_err("Preparing elf core header failed\n");
-> +			return ERR_PTR(ret);
-> +		}
-> +		image->elf_headers =3D headers;
-> +		image->elf_headers_sz =3D headers_sz;
-> +	}
-> +#endif
-> +
->  	/*
->  	 * The location of the kernel segment may make it impossible to satisfy
->  	 * the other segment requirements, so we try repeatedly to find a
-> @@ -99,7 +116,8 @@ static void *image_load(struct kimage *image,
->  		kernel_segment =3D &image->segment[kernel_segment_number];
->  		ret =3D load_other_segments(image, kernel_segment->mem,
->  					  kernel_segment->memsz, initrd,
-> -					  initrd_len, cmdline);
-> +					  initrd_len, cmdline,
-> +					  headers, headers_sz);
-
-[Severity: Low]
-Will this cause a build failure when CONFIG_CRASH_DUMP is disabled?
-
-The headers and headers_sz variables are declared inside an
-#ifdef CONFIG_CRASH_DUMP block, but are unconditionally passed to
-load_other_segments() here.
-
-Also, when CONFIG_CRASH_DUMP is enabled but the image is a standard kexec
-kernel (image->type !=3D KEXEC_TYPE_CRASH), headers and headers_sz remain
-uninitialized.
-
-Could passing these uninitialized variables trigger compiler warnings or
-undefined behavior?
-
->  		if (!ret)
->  			break;
-> =20
-> @@ -107,7 +125,7 @@ static void *image_load(struct kimage *image,
->  		 * We couldn't find space for the other segments; erase the
->  		 * kernel segment and try the next available hole.
->  		 */
-> -		image->nr_segments -=3D 1;
-> +		image->nr_segments =3D kernel_segment_number;
-
-[Severity: High]
-This is a pre-existing issue, but does truncating image->nr_segments here
-leak CMA pages?
-
-When kexec_add_buffer() successfully allocates from CMA, it saves the page
-in image->segment_cma[image->nr_segments]. If we erase segments by rolling
-back image->nr_segments, the cleanup function kimage_free_cma() will only
-iterate up to the new nr_segments.
-
-Are the CMA pages for the discarded segments permanently lost?
-
->  		kbuf.buf_min =3D kernel_segment->mem + kernel_segment->memsz;
->  		kbuf.mem =3D KEXEC_BUF_MEM_UNKNOWN;
->  	}
-> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/m=
-achine_kexec_file.c
-> index e31fabed378a5..daf81a873bbd3 100644
-> --- a/arch/arm64/kernel/machine_kexec_file.c
-> +++ b/arch/arm64/kernel/machine_kexec_file.c
-
-[ ... ]
-
-> @@ -105,16 +106,7 @@ int load_other_segments(struct kimage *image,
->  	kbuf.buf_min =3D kernel_load_addr + kernel_size;
-> =20
->  #ifdef CONFIG_CRASH_DUMP
-> -	/* load elf core header */
-> -	void *headers;
-> -	unsigned long headers_sz;
->  	if (image->type =3D=3D KEXEC_TYPE_CRASH) {
-> -		ret =3D prepare_elf_headers(&headers, &headers_sz);
-> -		if (ret) {
-> -			pr_err("Preparing elf core header failed\n");
-> -			goto out_err;
-> -		}
-> -
->  		kbuf.buffer =3D headers;
->  		kbuf.bufsz =3D headers_sz;
->  		kbuf.mem =3D KEXEC_BUF_MEM_UNKNOWN;
-> @@ -128,9 +120,7 @@ int load_other_segments(struct kimage *image,
->  			vfree(headers);
->  			goto out_err;
-
-[Severity: Critical]
-Since the headers buffer allocation was moved out to image_load(), does this
-vfree() cause a use-after-free and double free?
-
-If kexec_add_buffer() fails, this path frees the headers buffer and returns
-an error. The retry loop in image_load() will then unconditionally call
-load_other_segments() again, passing the now freed headers pointer back to
-kexec_add_buffer().
-
-Additionally, the post-load cleanup function
-arch_kimage_file_post_load_cleanup() unconditionally calls
-vfree(image->elf_headers).
-
-Could this lead to memory corruption?
-
->  		}
-> -		image->elf_headers =3D headers;
->  		image->elf_load_addr =3D kbuf.mem;
-> -		image->elf_headers_sz =3D headers_sz;
-> =20
->  		kexec_dprintk("Loaded elf core header at 0x%lx bufsz=3D0x%lx memsz=3D0=
-x%lx\n",
->  			      image->elf_load_addr, kbuf.bufsz, kbuf.memsz);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525084932.9349=
-10-1-ruanjinjie@huawei.com?part=3D4
+-- 
+With best wishes
+Dmitry
 
