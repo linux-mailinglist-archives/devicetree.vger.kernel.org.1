@@ -1,177 +1,160 @@
-Return-Path: <devicetree+bounces-302438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302439-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGYjLg3zE2puHwcAu9opvQ
-	(envelope-from <devicetree+bounces-302438-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:58:21 +0200
+	id OFD5AMr0E2puHwcAu9opvQ
+	(envelope-from <devicetree+bounces-302439-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:05:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8BE5C6D3B
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:58:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F66E5C6E1E
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:05:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 79B393001A56
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 06:58:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C89AA30073D0
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 07:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE843A874B;
-	Mon, 25 May 2026 06:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B6F3B1034;
+	Mon, 25 May 2026 07:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RzhSYObS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JUolPVjw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032743A7F52;
-	Mon, 25 May 2026 06:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C12E3A5E89
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 07:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779692295; cv=none; b=MLkjnOUUMRdrdK4fm3lp3nRi5pVGtmK+3v8rpjBvopBjG3rNq6Jd5hE+BQ5mRHn40iwp4swWnZ8zFYro0P1AafQm0hKU79xqHZvjXhezmDxy2T7DmNlH2Opj30l4xLNfYvu3kaU0oxmk2mn6Wf9yTYseXxk3E7bxeKMcuU+wIW8=
+	t=1779692740; cv=none; b=iocUDUBlqE/ZAzsxwdclgdpn9KK7VKNhAJ/cQoYBgN7qBD9Yoj8ZqGybC6rcSgmZJ4Jc+w+TGCmWHJoOLjLI5VaU8meLNen9Kf1XJ13xuq4CSEv7I6ZMb4dSTclvECWhv7lxC4ZhKw2BlkP3BDba88qhUFZOBpRpNdwkQMvmIHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779692295; c=relaxed/simple;
-	bh=+Gr3bo/4b6bslzWH5OQc0A7oXbghh7OsNlaAnkLPC64=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FsnmiEixlk8vb2R+F0NQdhIEfzQ0Tdb2FYiG9IHxMWLaQ0pn3Lmp53yPoAuNlattM3/spRGSMbl6pyZThDF8WWpqMbFLEJneLGXeIgayzSDB6lhlPNzzgr2wuHD6uKgwn26XbrImOCSDevuhKD8sbeMKrbS2HC1Nez6tNJqvAk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RzhSYObS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E3F61F000E9;
-	Mon, 25 May 2026 06:58:10 +0000 (UTC)
+	s=arc-20240116; t=1779692740; c=relaxed/simple;
+	bh=vQ0HG6h/IrTvpCXgtQoGw2ZSEd/GlpaYCtk5uIjOF6A=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=mH0yt0bHXjrlceZFJrFZujhZpgl+ttDZU7EJdua/HDjf5NK3OmeSv5gUa+WQ6n/vZn9ci9vpseVnXtKlY5rP3y+zVbFf9qpTOIgnQphhLq2TYFxVkcXvlTAHBpWAIfsxN8Pj7+2YCeTqCB0i0R0idpGlQy10W1RrEejPk69g7VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JUolPVjw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF7A1F000E9;
+	Mon, 25 May 2026 07:05:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779692290;
-	bh=9GMsuVITApWCiCWjCPt+wl5oC/ya7MXvk1NcNbZ+Loc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=RzhSYObSOslRMXDdFHSY3I9529tqzP3MbZ+XBOZRZ80wJoo7/vadxT0I/6bi9ZmeP
-	 zBYuVHVU9hjypuMSut6ohuK/BKm309XY2AC0mkiqJSqbZBU/zh9Pb5r6s5FtbKeFep
-	 GsRuA8fgMLpw1dt4xEBdj9IfWJt5YvoLCByYAsysUN+/AMX5QVNYKJAnY4WKc1Nw43
-	 aXXqzq+jxlrdWB5R+RI3tHYxGwgx8F0oeNLYOLGlrHdHqUlifsdtBONP8EO0yBKEyB
-	 ltzUvp45xZe8+eUCRx8do05mA/ZKVdvzdYOSQ3BbLoANwDFTNA/woiG3xu3PJ0IDFW
-	 tDnxsGVi/Eglg==
-Date: Sun, 24 May 2026 23:58:09 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH RFC v5 08/18] riscv_cbqri: Add capacity controller
- monitoring device ops
-Message-ID: <ahPzAaVon3TLSq8W@gen8>
-References: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-8-78d3a7ba9dbe@kernel.org>
- <20260525002922.B257D1F000E9@smtp.kernel.org>
+	s=k20260515; t=1779692736;
+	bh=leWOtyNxqopbKyjmWyNvkGUTrXSBiZX95Te/85SrrOY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=JUolPVjwc5qlrTDYtvDWauAWdGo6aFIM8uy74cD0JI86X0x/JZKJGF/LJ3t4geXhv
+	 NqeUOa3pmrEAz0r81+I4X2qQ4awRKWAu8e4Sbng9F5LgsJMfI6G1Y/4xO1DRU1s9It
+	 djsgnJ2G4u6iaoYGLuqlrAdozsPFKuVnCVXAiLTT8NCdBaFoVqIdUt6Wd6W1PsW9Qa
+	 b6NROfHcFFN6urhpaI5SbR35sXOES/Mi4DMyaRQsYK7AdjBrKf178CTSYtnkp3myKg
+	 XAlE2W8x8P9CJCW9Dkn5EIKuBXvaDQXIfrH5s0nvMaxeUN9DOff0bBFVCnfLcfkP/o
+	 brIi8J7UGhCbQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 1/9] i3c: master: rename
+ i3c_master_reattach_i3c_dev() to *_locked
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260525064209.2263045-2-lakshay.piplani@nxp.com>
+References: <20260525064209.2263045-2-lakshay.piplani@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 25 May 2026 07:05:35 +0000
+Message-Id: <20260525070535.DDF7A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260525002922.B257D1F000E9@smtp.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302438-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302439-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 0B8BE5C6D3B
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,nxp.com:email]
+X-Rspamd-Queue-Id: 6F66E5C6E1E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 25, 2026 at 12:29:22AM +0000, sashiko-bot@kernel.org wrote:
-> > +	/* Probe monitoring features */
-> > +	err = cbqri_probe_feature(ctrl, CBQRI_CC_MON_CTL_OFF,
-> > +				  CBQRI_CC_MON_CTL_OP_READ_COUNTER, &status,
-> > +				  &has_mon_at_code);
-> 
-> [Severity: Medium]
-> Is it safe to reuse cbqri_probe_feature() for the MON_CTL register here?
-> 
-> cbqri_probe_feature() attempts to verify Access Type (AT) support by writing
-> to the AT field bits. However, the MON_CTL register does not define an AT
-> field, which means this implicitly writes to reserved (WPRI) bits. Could
-> this helper be updated to conditionally skip the AT probe sequence for
-> monitoring registers?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-WPRI tolerates the write so this is not a correctness issue today. But
-to avoid confusion, I will split cbqri_probe_feature() so the AT probe
-sequence is only run for alloc_ctl registers.
+Pre-existing issues:
+- [High] The return value of `i3c_master_reattach_i3c_dev_locked()` is igno=
+red in `i3c_master_add_i3c_dev_locked()`, which can lead to an I3C address =
+collision and bus address slot corruption on failure.
+--
 
-> Will this probe sequence falsely disable monitoring on hardware?
-> 
-> This invokes cbqri_probe_feature() using the READ_COUNTER operation, which
-> zeroes out all other fields including EVT_ID. This sends a read command for
-> the NONE event (EVT_ID=0) to an unconfigured slot, which the hardware may
-> reject with an error status. If the hardware returns an error, this check
-> will fail and disable monitoring. Could this probe instead use
-> CONFIG_EVENT or handle expected failure codes?
+commit c8a363e4e146cbd0fba01ffdf2e47defa9bd5b84
+Author: Lakshay Piplani <lakshay.piplani@nxp.com>
 
-The NONE event as is a valid configured state. But I will switch the
-probe operation to CONFIG_EVENT with a probe-safe EVT_ID to remove the
-ambiguity.
+i3c: master: rename i3c_master_reattach_i3c_dev() to *_locked
 
-> > +/*
-> > + * Pre-arm every MCID with the Occupancy event so a subsequent READ_COUNTER
-> > + * just snapshots the live counter rather than re-configuring the slot.
-> > + * Called once per CC during resctrl-side cpuhp online for the L3 monitoring
-> > + * domain.
-> > + */
-> > +int cbqri_init_mon_counters(struct cbqri_controller *ctrl)
-> > +{
-> > +	int i, err;
-> > +
-> > +	for (i = 0; i < ctrl->mcid_count; i++) {
-> > +		mutex_lock(&ctrl->lock);
-> > +		err = cbqri_mon_op(ctrl, CBQRI_CC_MON_CTL_OFF,
-> > +				   CBQRI_CC_MON_CTL_OP_CONFIG_EVENT,
-> > +				   i, CBQRI_CC_EVT_ID_OCCUPANCY, NULL);
-> 
-> [Severity: Medium]
-> Does mcid_count need bounds checking against the physical hardware limit?
-> 
-> The ctrl->mcid_count value is used as the loop boundary, but if firmware
-> supplies an erroneously large value, this loop could block the CPU for an
-> extended period during hotplug. 
-> 
-> Additionally, because the MCID field mask is 12 bits, any mcid_count larger
-> than 4096 will be truncated in cbqri_mon_op(), causing logical MCIDs to
-> incorrectly alias to the same physical hardware slot. Should an upper bound be
-> enforced on mcid_count?
+This commit renames i3c_master_reattach_i3c_dev() to *_locked() to make the
+locking requirement explicit and consistent with other I3C core helpers
+that require the bus lock to be held by the caller.
 
-I'll add a check in v6.
+> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+> index 6b8df8089a357..c45b450af319d 100644
+> --- a/drivers/i3c/master.c
+> +++ b/drivers/i3c/master.c
 
-> > +/* mon_ctl field masks (CC and BC share an identical OP/MCID/EVT_ID/STATUS layout) */
-> > +#define CBQRI_MON_CTL_OP_MASK        GENMASK(4, 0)
-> > +#define CBQRI_MON_CTL_MCID_MASK      GENMASK(19, 8)
-> > +#define CBQRI_MON_CTL_EVT_ID_MASK    GENMASK(27, 20)
-> 
-> [Severity: High]
-> Will using GENMASK() here inadvertently clear the upper 32 bits of the 64-bit
-> control register on 32-bit architectures?
-> 
-> When used with FIELD_MODIFY(), ~(_mask) will evaluate to a 32-bit unsigned
-> value which gets zero-extended to 64 bits. When this is bitwise ANDed with
-> the 64-bit register variable, it will wipe out the upper 32 bits, corrupting
-> the STATUS field before the register is written back. Should these 64-bit
-> field masks be defined with GENMASK_ULL() instead?
+[ ... ]
 
-Yes, I will chnage to GENMASK_ULL.
+> @@ -2358,7 +2358,7 @@ int i3c_master_add_i3c_dev_locked(struct i3c_master=
+_controller *master,
+>  		if (!ret) {
+>  			old_dyn_addr =3D newdev->info.dyn_addr;
+>  			newdev->info.dyn_addr =3D expected_dyn_addr;
+> -			i3c_master_reattach_i3c_dev(newdev, old_dyn_addr);
+> +			i3c_master_reattach_i3c_dev_locked(newdev, old_dyn_addr);
 
--Drew
+[Severity: High]
+This is a pre-existing issue, but does this code ignore the return value
+of the reattach function on failure?
+
+If i3c_master_reattach_i3c_dev_locked() fails (for example, if the
+controller's reattach_i3c_dev callback returns an error), it internally
+calls i3c_master_put_i3c_addrs(). This frees the dynamic and static address
+slots by marking them as I3C_ADDR_SLOT_FREE in the master's bus address map.
+
+Because i3c_master_add_i3c_dev_locked() completely ignores the return value
+and proceeds to return 0 (success), the device remains attached and active
+on the bus tracking the newly assigned dynamic address, while the bus state
+considers the address slot empty.
+
+Could this structural inconsistency lead to the master assigning the exact
+same dynamic address to a new hot-joining device or during subsequent
+dynamic address assignment, resulting in an address collision and bus
+communication corruption?
+
+>  		} else {
+>  			dev_err(&master->dev,
+>  				"Failed to assign reserved/old address to device %d%llx",
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525064209.2263=
+045-1-lakshay.piplani@nxp.com?part=3D1
 
