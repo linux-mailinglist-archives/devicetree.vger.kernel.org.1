@@ -1,166 +1,340 @@
-Return-Path: <devicetree+bounces-302382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302384-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO4ZNgKSE2ofDgcAu9opvQ
-	(envelope-from <devicetree+bounces-302382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:04:18 +0200
+	id wojiG0qUE2oIDwcAu9opvQ
+	(envelope-from <devicetree+bounces-302384-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:14:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777BD5C4F91
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:04:17 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD9A55C4FE8
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 02:13:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 67BEC304E6E0
-	for <lists+devicetree@lfdr.de>; Sun, 24 May 2026 23:58:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 65A343001A79
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 00:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2D83BE653;
-	Sun, 24 May 2026 23:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89646FC3;
+	Mon, 25 May 2026 00:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mfzq/ULd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2lzzbCV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E6363BB122;
-	Sun, 24 May 2026 23:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84958632
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 00:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779667068; cv=none; b=mgwzKX1kc0ImZwr9Helpk8LcvNpTlgPwKfv13wFfed9D/pK0RdvH5U4bedCXjK4Ywn8bJalWTLqT5AO/jt2TodHF0pPYK5OAeoK1tHpoLI9WK08hGm5JPxz9f1ColPM2nKyAncEw0mLR0KNC55cnkXDh78YgwInJqVjykls2nIk=
+	t=1779668032; cv=none; b=nWNEABXDl4QOz3xorbf+3WE9re3xLF4r3JIvPrCNyQlhEwv2h41iRFdKEV3Zg5KkUKqJL0bz8Jv/Lkp3VgCCMNskEJr71QvtW+LqZWjbl6hkfAFr37Ew7Bv6JsY9GccGJEi+E8MWJJ8Y1C2s0hJln+fVhleG12rsxUpyMGWd+6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779667068; c=relaxed/simple;
-	bh=6CzKXhV0tXNwm1l8Ur8ud/xHZoolzjjof2zwrYxGHkE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eSsPPv8ivsboI0v4UzXilG+XOPJu5M3buwcKk/bKgQU1TS008LBfF8fS7+duczDaW79lHytQWerB4jAgtmKzLvrokApyIluEQk9ZUxG4AhC0I8VPAjt1o5jZJAsDTMIYnPEfZsTOAKjPWCOseE+3ztLzTEej87Vk3wp6/iLW8Zk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mfzq/ULd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCC9A1F0155F;
-	Sun, 24 May 2026 23:57:43 +0000 (UTC)
+	s=arc-20240116; t=1779668032; c=relaxed/simple;
+	bh=ekVuOU05YAsiGWkmpwCIzKcEVQiCLoQw9FPXCoaLYgw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=FZha0wco46yrs1OdeUlnq+ccqZRC7LN2ecnEEE8GZ47KJvA61JmV5gnh9MUWel3Dahw5ks8xvPcc3AKgITbyJ6hvVGn1nMHwq8G8MR/Es24H8Cif9xMRPXdG7MOIJ201HuFk1dTFWzHkqH7h4H/M3SmTcUFwVDYjIRvX1/Qsu7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2lzzbCV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 987641F000E9;
+	Mon, 25 May 2026 00:13:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779667064;
-	bh=U+t+EwaLSa9WOo0VEMTYqUakFDohqsI+NxBxDSmeLYo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=mfzq/ULd0DV+QNlVEhr9XFW6OF/x+rYk2V4xRINI5a4vvntHUe1d5IQBsxvrjPHXe
-	 vTjfwAIsq+prV5KLSkVzKKrVWBse4bVU6kAMzQMIhmlRTl5jEgUqvyj+ZGiMOLQ5W+
-	 7SRgcnBEongICe2JjaD6k0XP+oCc3MyXoCY/fD5H0r2eBZORdbC2PuPfF72w+V3DUX
-	 MfM9c1H0je9JAqe9gyfA9HHkYxGfaRWYUmvcOgbPw1ztAW0ukmSFt07csrn8FL2J7q
-	 8/u8iygz4nF1HXowICQc3nvnditlbmUwv5mz4HdpjE8ztpoE6TVXsKvhrI8g86P3jb
-	 w2YIufaWpjqaw==
-From: Drew Fustini <fustini@kernel.org>
-Date: Sun, 24 May 2026 16:55:48 -0700
-Subject: [PATCH RFC v5 18/18] riscv: enable resctrl filesystem for Ssqosid
+	s=k20260515; t=1779668030;
+	bh=uDyYD3xQB1/xl3yuMuNAwPUZ4dFTkRojhXwSEHAPBRs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=J2lzzbCVSFFnx+xaZvy3R5MDf/GhbnEqa72+ysEcAloxULxAJ/7xpEPdpL4pWUoGD
+	 GcjAtELItSXi+3WoBWu8nqFTvT0g8j9tZgZUZyJBYsK3c0gtjBr6fR5hZLKEBupBbK
+	 m+vAIKilVBXKeD/eYnDvYtu3LJVs+/IPkgj/IuNlG08O0SQkIXNWldbdgNN0MmVwim
+	 WSXRobAjZ8OU1RR46q4a3061BXvZQdwQdzSWNLSRT1FODDoiqrcgC/QlZ0D1sxlaOF
+	 jsy+JGvB6bZDHSGkxX3KmpDriHUwcg1C3ET1XOpCtPN/p7J1QPYMu9Mmnc0bMRLU8l
+	 gpwKStqJUulEQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 4/4] iio: light: veml6031x00: add support for events
+ and trigger
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260524-veml6031x00-v3-4-29165609b2b5@gmail.com>
+References: <20260524-veml6031x00-v3-4-29165609b2b5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 25 May 2026 00:13:50 +0000
+Message-Id: <20260525001350.987641F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-18-78d3a7ba9dbe@kernel.org>
-References: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-0-78d3a7ba9dbe@kernel.org>
-In-Reply-To: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-0-78d3a7ba9dbe@kernel.org>
-To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Adrien Ricciardi <aricciardi@baylibre.com>, 
- Nicolas Pitre <npitre@baylibre.com>, 
- =?utf-8?q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
- Atish Patra <atish.patra@linux.dev>, 
- Atish Kumar Patra <atishp@rivosinc.com>, 
- Vasudevan Srinivasan <vasu@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>, 
- Conor Dooley <conor.dooley@microchip.com>, 
- yunhui cui <cuiyunhui@bytedance.com>, Chen Pei <cp0613@linux.alibaba.com>, 
- Liu Zhiwei <zhiwei_liu@linux.alibaba.com>, Weiwei Li <liwei1518@gmail.com>, 
- guo.wenjia23@zte.com.cn, Gong Shuai <gong.shuai@sanechips.com.cn>, 
- Gong Shuai <gsh517@gmail.com>, liu.qingtao2@zte.com.cn, 
- Reinette Chatre <reinette.chatre@intel.com>, 
- Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>, 
- Peter Newman <peternewman@google.com>, Fenghua Yu <fenghua.yu@intel.com>, 
- James Morse <james.morse@arm.com>, Ben Horgan <ben.horgan@arm.com>, 
- Dave Martin <Dave.Martin@arm.com>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
- Robert Moore <robert.moore@intel.com>, Sunil V L <sunilvl@ventanamicro.com>, 
- Drew Fustini <fustini@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
- Dave Hansen <dave.hansen@linux.intel.com>, "H. Peter Anvin" <hpa@zytor.com>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
- Jonathan Corbet <corbet@lwn.net>
-Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- x86@kernel.org, linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev, 
- devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
- Conor Dooley <conor@kernel.org>, linux-rt-devel@lists.linux.dev, 
- linux-doc@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=876; i=fustini@kernel.org;
- h=from:subject:message-id; bh=6CzKXhV0tXNwm1l8Ur8ud/xHZoolzjjof2zwrYxGHkE=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWQJT8hyDui1m3n1++9tLquObCj3FNFK+lv+/BXfvtbPr
- wWufH9xrKOUhUGMi0FWTJFl04e8C0u8Qr8umP9iG8wcViaQIQxcnAIwkXc8jAxTOVY9da/nfqT3
- oMR4GleDhuuibZur1s+XTvXwSZ26aBofw/868d1sd85vcd29dUXEr61BEx3sfmU0GXgeyP285+d
- auWJmAA==
-X-Developer-Key: i=fustini@kernel.org; a=openpgp;
- fpr=1B6F948213EA489734F3997035D5CD577C1E6010
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302382-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,microchip.com,bytedance.com,linux.alibaba.com,gmail.com,zte.com.cn,sanechips.com.cn,intel.com,amd.com,google.com,arm.com,redhat.com,alien8.de,linux.intel.com,zytor.com,linutronix.de,goodmis.org,lwn.net];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302384-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[57];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 777BD5C4F91
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: DD9A55C4FE8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-RISCV_ISA_SSQOSID selects RISCV_CBQRI_DRIVER unconditionally.
+Thank you for your contribution! Sashiko AI review found 8 potential issue(=
+s) to consider:
 
-The resctrl filesystem integration is gated separately by
-RISCV_CBQRI_RESCTRL_FS, a silent option that defaults to y when both
-RISCV_CBQRI_DRIVER and RESCTRL_FS are enabled. Enabling the resctrl
-filesystem itself stays a user choice via the standard fs/Kconfig
-MISC_FILESYSTEMS menu.
+New issues:
+- [High] Cache pollution of AF_TRIG causes unintended conversions and unnec=
+essary I2C reads.
+- [High] The trigger reference acquired via iio_trigger_get() is leaked on =
+probe error paths and driver unbind.
+- [High] PM runtime usage counter leaks if the driver unbinds while an even=
+t is enabled.
+- [High] Sysfs read/write functions and trigger operations access hardware =
+without acquiring a PM runtime reference.
+- [High] Out-of-bounds array write in veml6031x00_trig_handler when the tim=
+estamp channel is enabled.
+- [Medium] Dead event sysfs attributes are exposed when no IRQ is present.
 
-Signed-off-by: Drew Fustini <fustini@kernel.org>
----
- arch/riscv/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+Pre-existing issues:
+- [High] Unbalanced double-put of the runtime PM usage counter on driver un=
+bind.
+- [High] The shutdown action accesses I2C registers after PM runtime has be=
+en disabled.
+--
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 390353a6153a..dd65248df117 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -596,6 +596,7 @@ config RISCV_ISA_SSQOSID
- 	depends on 64BIT
- 	default n
- 	select ARCH_HAS_CPU_RESCTRL
-+	select RISCV_CBQRI_DRIVER
- 	help
- 	  Adds support for the Ssqosid ISA extension (Supervisor-mode
- 	  Quality of Service ID).
+commit cbdd69d1454af4788d5d18a23d3fb6854c9981e9
+Author: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
--- 
-2.43.0
+iio: light: veml6031x00: add support for events and trigger
 
+The device provides a shared interrupt line for to notify events and
+data ready, which can be used as a trigger. The interrupt line is not a
+requirement for the device to work. Implement variants for the cases
+whether the interrupt line is provided or not.
+
+> diff --git a/drivers/iio/light/veml6031x00.c b/drivers/iio/light/veml6031=
+x00.c
+> index 9968d4414dc96..c57aaa29abf30 100644
+> --- a/drivers/iio/light/veml6031x00.c
+> +++ b/drivers/iio/light/veml6031x00.c
+
+[ ... ]
+
+> @@ -136,6 +189,8 @@ static const struct iio_chan_spec veml6031x00_channel=
+s[] =3D {
+>  		.info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_INT_TIME),
+>  		.info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_INT_TIME),
+>  		.info_mask_separate_available =3D BIT(IIO_CHAN_INFO_SCALE),
+> +		.event_spec =3D veml6031x00_event_spec,
+> +		.num_event_specs =3D ARRAY_SIZE(veml6031x00_event_spec),
+
+[Severity: Medium]
+Will this expose dead event sysfs attributes when no IRQ is present?
+
+When i2c->irq is 0, the driver registers veml6031x00_info_no_irq which lacks
+event callbacks. However, this channel array unconditionally defines
+event_spec and num_event_specs. The IIO core will parse these and expose
+event sysfs files. Reading or writing these files will fail with -EINVAL
+because the callbacks are NULL, which violates the sysfs API contract.
+
+[ ... ]
+
+> +static int veml6031x00_read_event_val(struct iio_dev *iio,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir,
+> +				      enum iio_event_info info,
+> +				      int *val, int *val2)
+> +{
+
+[Severity: High]
+Are PM runtime references needed here before accessing hardware?
+
+This function, as well as veml6031x00_write_event_val() and
+veml6031x00_set_trigger_state(), performs I2C accesses via regmap without
+first calling pm_runtime_resume_and_get(). If the device is
+runtime-suspended and its PM domain has powered it off, will these I2C
+accesses fail or time out?
+
+[ ... ]
+
+> +static int veml6031x00_write_event_config(struct iio_dev *iio,
+> +					  const struct iio_chan_spec *chan,
+> +					  enum iio_event_type type,
+> +					  enum iio_event_direction dir,
+> +					  bool state)
+> +{
+> +	struct veml6031x00_data *data =3D iio_priv(iio);
+> +	int ret;
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	/* avoid multiple increments/decrements from one source */
+> +	if (state =3D=3D data->ev_en)
+> +		return 0;
+> +
+> +	if (state) {
+> +		ret =3D pm_runtime_resume_and_get(data->dev);
+
+[Severity: High]
+Could this leak the PM runtime usage counter if the driver unbinds?
+
+Enabling an event increments the PM runtime usage counter here. If the
+driver is unbound via sysfs while an event is enabled, the IIO core does
+not automatically disable the event. Since there is no unbind cleanup
+mechanism to release the pending PM reference when data->ev_en is true,
+does this keep the device powered on indefinitely?
+
+[ ... ]
+
+> +/* AF_TRIG is reset by hardware, but the rest of the fields are persiste=
+nt */
+> +static int veml6031x00_set_af_trig(struct veml6031x00_data *data, bool s=
+tate)
+> +{
+> +	regcache_drop_region(data->regmap, VEML6031X00_REG_CONF0,
+> +			     VEML6031X00_REG_CONF0);
+> +
+> +	return regmap_update_bits(data->regmap, VEML6031X00_REG_CONF0,
+> +				  VEML6031X00_CONF0_AF_TRIG,
+> +				  FIELD_PREP(VEML6031X00_CONF0_AF_TRIG, state));
+> +}
+
+[Severity: High]
+Can this cause unintentional active force conversions due to cache pollutio=
+n?
+
+This sets the self-clearing AF_TRIG bit using regmap_update_bits().
+Because CONF0 is not marked as a volatile register, regmap_update_bits()
+writes AF_TRIG=3D1 and caches it. Any subsequent read-modify-write on CONF0
+(e.g., toggling the interrupt or changing integration time) will read the
+cached AF_TRIG=3D1 and write it back to hardware, unintentionally triggering
+an active force conversion and causing hardware state corruption.
+
+[ ... ]
+
+>  static irqreturn_t veml6031x00_trig_handler(int irq, void *p)
+>  {
+>  	struct iio_poll_func *pf =3D p;
+>  	struct iio_dev *iio =3D pf->indio_dev;
+>  	struct veml6031x00_data *data =3D iio_priv(iio);
+>  	int ch, ret, i =3D 0;
+>  	struct {
+>  		__le16 chans[2];
+>  		aligned_s64 timestamp;
+>  	} scan =3D { };
+> =20
+>  	if (*iio->active_scan_mask =3D=3D (BIT(VEML6031X00_SCAN_ALS) |
+>  				       BIT(VEML6031X00_SCAN_IR))) {
+>  		ret =3D regmap_bulk_read(data->regmap,
+>  				       VEML6031X00_REG_ALS_L,
+>  				       &scan.chans, sizeof(scan.chans));
+>  		if (ret)
+>  			goto done;
+>  	} else {
+>  		iio_for_each_active_channel(iio, ch) {
+>  			ret =3D regmap_bulk_read(data->regmap,
+>  					       iio->channels[ch].address,
+>  					       &scan.chans[i++],
+
+[Severity: High]
+Does this loop cause an out-of-bounds array write if the timestamp
+channel is enabled?
+
+The iio_for_each_active_channel() loop does not exclude the soft timestamp
+channel. If the user enables ALS, IR, and TIMESTAMP channels, the loop
+iterates 3 times. However, the scan.chans array is declared as=20
+__le16 chans[2]. Processing the timestamp channel increments the index i
+to 2 and writes to scan.chans[2], causing an out-of-bounds memory write.
+
+Furthermore, because the timestamp channel's address is 0, this incorrectly
+attempts a bogus I2C read from VEML6031X00_REG_CONF0.
+
+[ ... ]
+
+> +static int veml6031x00_setup_irq(struct i2c_client *i2c, struct iio_dev =
+*iio)
+> +{
+> +	struct veml6031x00_data *data =3D iio_priv(iio);
+> +	struct device *dev =3D data->dev;
+> +	int ret;
+> +
+> +	data->trig =3D devm_iio_trigger_alloc(dev, "%s-drdy%d", iio->name,
+> +					    iio_device_id(iio));
+> +	if (!data->trig)
+> +		return -ENOMEM;
+> +
+> +	data->trig->ops =3D &veml6031x00_trigger_ops;
+> +	iio_trigger_set_drvdata(data->trig, iio);
+> +
+> +	ret =3D devm_iio_trigger_register(dev, data->trig);
+> +	if (ret)
+> +		return ret;
+> +
+> +	iio->trig =3D iio_trigger_get(data->trig);
+
+[Severity: High]
+Is the trigger reference acquired here leaked on driver unbind?
+
+Calling iio_trigger_get() increments the trigger device's refcount and the
+driver module's refcount. If the driver fails probe afterwards or is unbound
+later, iio_trigger_put() is never called because there is no devres action
+registered for it and no custom remove callback. Does this permanently leak
+the trigger device reference and prevent the module from being unloaded?
+
+[ ... ]
+
+> @@ -618,6 +1039,10 @@ static int veml6031x00_probe(struct i2c_client *i2c)
+
+[ ... ]
+
+>  	ret =3D devm_add_action_or_reset(dev, veml6031x00_als_shutdown_action, =
+data);
+
+[Severity: High]
+This is a pre-existing issue, but does this shutdown action access I2C
+registers after PM runtime has been disabled?
+
+This action is registered via devm_add_action_or_reset() before PM runtime
+is enabled. On teardown, devm actions run in reverse, meaning PM runtime is
+disabled before the shutdown action runs. The shutdown action then attempts
+I2C writes while PM runtime is disabled. If the device was suspended, it
+cannot be resumed, potentially causing I2C transfer failures.
+
+[ ... ]
+
+>  	pm_runtime_put_autosuspend(dev);
+
+[Severity: High]
+This is a pre-existing issue, but is there an unbalanced double-put of the
+runtime PM usage counter on driver unbind?
+
+The probe function registers a cleanup action to drop the PM reference via
+devm_pm_runtime_get_noresume(dev). However, this explicit put at the end
+of probe means the devm action will drop the reference a second time on
+unbind, causing a PM usage counter underflow that breaks the PM runtime
+state machine.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260524-veml6031x0=
+0-v3-0-29165609b2b5@gmail.com?part=3D4
 
