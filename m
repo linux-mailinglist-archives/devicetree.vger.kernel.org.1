@@ -1,179 +1,184 @@
-Return-Path: <devicetree+bounces-302703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IG9/HjZGFGpTLwcAu9opvQ
-	(envelope-from <devicetree+bounces-302703-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 14:53:10 +0200
+	id kMW5HS5oFGriNAcAu9opvQ
+	(envelope-from <devicetree+bounces-302763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 17:18:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1D55CABAB
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 14:53:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4695A5CC2A6
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 17:18:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 004B23017FA3
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 12:52:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6367E3036627
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 15:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB58383333;
-	Mon, 25 May 2026 12:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AD234C9A3;
+	Mon, 25 May 2026 15:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fzijUU48"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Unbu8r8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m3290.qiye.163.com (mail-m3290.qiye.163.com [220.197.32.90])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9641381AE6
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 12:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979393F44C5;
+	Mon, 25 May 2026 15:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779713573; cv=none; b=nuvLr3MSYNjKmHItscRs0vzUZoNYPsjAm03+hj/EHyzgEYZo5tfeEjThsN47MVcYyjE6WOhYdOrUsBIQB+jlVsek0fO+0Ld/S0jEwpjkQ852Nx9xaZB1VF0pnpmyrb6TzId69WTvh0XH4Q7SGcLEDUAHNxpUnMVQi62r0Elcnjc=
+	t=1779722197; cv=none; b=KavpEbGroulIkUpteRNl9qSCRpkp0u9LLfjntvELaZ4bXkDJwErhVZnmp9vXy0oYHcgLis+Pn+Z1JyFo/CZLBSeQ0Q/K0vbBuJ4OSYstrIvke7bux3liJ0jH6iMwmIzSJvaByvHONmR4HjFCcME1CzpDTiibSCTl8Ee+lV9dbdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779713573; c=relaxed/simple;
-	bh=eCc7hZro3sukGdKk+rDds8H6ZCx+O9dGtp3uVqlctV0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=luC3FU5CW8gHwjnOGEjwhQLXTAdl4kkwt0SNx0vTddBzt5blr6UNjhbQxRs91imtg7tLED9WPBOpMVFJWDtAu0tyknolU/ye6Xs5WqJhsgTGk9+eAYoqLqYoTSPchRkg3Yd0Yxbrn4rJg71BxGKf4c4Yl02bA6nX0wfpYGEM0vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fzijUU48; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-49050bfe053so23015355e9.3
-        for <devicetree@vger.kernel.org>; Mon, 25 May 2026 05:52:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779713569; x=1780318369; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=H9aiTARP7drgu+dP0YCc4GfgWTsxTwUR3Caw1q6/RRg=;
-        b=fzijUU48k/vepNszAUK901cYf1r3irIkIjmHuTjkBC1dbFv89jOUGIWRXPn4eZHEy1
-         +3arK3SGl9cngDP6F3rBKy+jsNTA7VPtav6RzyFodUPGaenNQOn3aNxhR8dB/ReNrSOk
-         uQSDbuuBHTsqX3kLJPI/8IAE/SqJ9oIVBkrksk71i5JPeWYsempJXp71OWXzv30yw4DN
-         IitpSWt47uACuNiy2OmJsKsNb3bE0ZGTKP9XCq2ZlpLPTDjDbJWzr6VVgck/XizVMyeL
-         kW1N4JECRcMpx97JtZG5rGk4RnWbwVGFQtpSSWZGERMyi2WVlhvcRMZgP2O0EFjvbrC0
-         mjWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779713569; x=1780318369;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H9aiTARP7drgu+dP0YCc4GfgWTsxTwUR3Caw1q6/RRg=;
-        b=rPNqsVOtTvM3kqars1yprFBwoVkmv34O9dJO2wrR2UwCcjB1xLeGlIhiy3MeaDelqy
-         8/A2OJQgt0XCxinV1P2qnL15hER/+FaFZKvEjdjSuj7oH686N8ihSWkfe18GkZadI+60
-         jqrWjJfPc5fFsAD7UGH4WJORUo9A1KzXuHQTlnvH3tX9+ffxUPHi19zGWbkPPudMJocy
-         xyNRUhQ/0ShPxAdYakSURjzNfVPzBZZ5NCgviKpYUhf+jaumNvjHieyQdf6O8m4GwFFM
-         rhFb+gY5sM5Ru3TPNcsc14gfruXkfQotbVpu8OHRfWAbU0W+KXurUnpDKpBdcBSVXz/x
-         b4SA==
-X-Forwarded-Encrypted: i=1; AFNElJ8sUPedsaK/swxBqLRrrpmbhHnkwKfVukc9aExiAwZzkGP5nPElzdSgSUO+q/Q2G1TgrWyyYdp7jtyS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPC42z2OGP++JJ6BRrtG4eJR7ZXGA4D/aNZI2GNB24BEo4ZXD5
-	/eporuM0euS8PdKStE3eGvSlqZ4mJCOsNAQb6UsC61ivcWgEZ3H51fjw
-X-Gm-Gg: Acq92OFUXH8QaUGD42fhKwHrWUWO6fmqiJWl5YjivWGmZx48R5LF5LXmVj1uZHYrMf9
-	0ObXYSsdQ1B2mYxHGI6gXnI8wsqwv0BTICZMlWftsU57pEYvso5z+KBPsiXBuS9g62gNsORa1SP
-	UT09fXwMMdCDynRz/OWR5+ShhpRVz0tTheODyIS06pU+cd50D2BXA7rl+nEbfxhTfK2T8c5JAKI
-	25X+GbbDAdXJI1uHOrZdzu0exw6jxzAIDmuDlBeoSIIJiin50g7d61zfiw+OiponhuVTLVZ6ty/
-	JhxczzCOe6gqobOfU4NNLkFtybGDnObuTkylvmrw//QKE/hb/YpZOslI4GCezjVgoYcQeUeM6Ee
-	JDXymZyZO1derGfw2LSfjuY8w5OG72flaIKdzNdWhjyCQIqXREt3OvG8xL9cGdvFtYtbpWevjpK
-	JvOG/uvavHSDdtjroDc0agAsb3pRInxl5wF8xeTbN2dBQc5rUP5NI364/2
-X-Received: by 2002:a05:600c:1c0d:b0:48f:d612:3c59 with SMTP id 5b1f17b1804b1-490424b3927mr260477655e9.9.1779713569065;
-        Mon, 25 May 2026 05:52:49 -0700 (PDT)
-Received: from [10.25.212.250] ([128.77.115.157])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4904561f682sm267142095e9.13.2026.05.25.05.52.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 May 2026 05:52:48 -0700 (PDT)
-Message-ID: <a9e929ef-f8fe-45ce-b1a1-de1c1e23dfa4@gmail.com>
-Date: Mon, 25 May 2026 05:52:46 -0700
+	s=arc-20240116; t=1779722197; c=relaxed/simple;
+	bh=hC2PiAnL7iVsUhwI37Obo54ip1RzK2jZF6PcsE73xCY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JjxPN4m9ULmXCUf40boCZGCjftKsGpA+NtvoINkLl/JGdjy8VpRt3yV1NX5Ep1boD07L5AiUGgvptFMdsEz7mhg+JpztB2czC+UwNKfGjSrm7jyvnMN4OC4ZpmPNrpMjYr02Wf6hWnVKpxVgX+2y+wCr9+onvEJWknX5VMD1PcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Unbu8r8i; arc=none smtp.client-ip=220.197.32.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3fbb28c33;
+	Mon, 25 May 2026 20:53:51 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v8 00/10] Add eDP support for RK3576
+Date: Mon, 25 May 2026 20:53:21 +0800
+Message-Id: <20260525125331.140059-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: remoteproc: imx_rproc: document optional
- "memory-region-names"
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260522111849.783-1-laurentiumihalcea111@gmail.com>
- <20260522111849.783-2-laurentiumihalcea111@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20260522111849.783-2-laurentiumihalcea111@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e5f32e6b203a8kunm7b8971f5af5ca0
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaQkIZVk9PHUhCHk5OSUtJGFYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=Unbu8r8icwtrjcO9bJWbgyedDBWLtIQMcJ/L7/Fu8f7fEzaQTTRhR5S9GA+bptIqGqeKVRmj8E8HRavqsTn4KT8Q24RZXo7j8iDwup7+eTmC1EvQi/soT2/NbDpyaAdY07kVagckD7cr+vhRS28XTsDImhf7zDtNM3BeXUK10ho=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=1chQECBbO/WhCQ59gb6Beg7H8hoog+2uyixWh6CVuXg=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-302763-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302703-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
-X-Rspamd-Queue-Id: 2F1D55CABAB
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
+	NEURAL_HAM(-0.00)[-0.994];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rock-chips.com:mid,rock-chips.com:dkim]
+X-Rspamd-Queue-Id: 4695A5CC2A6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Patch 1-5 are to add missing clock "hclk" for RK3588 eDP nodes.
+Patch 6-7 are to add the RK3576 eDP node.
+Patch 8-10 are to support the RK3576 Analogix DP controller.
 
+Damon Ding (10):
+  dt-bindings: display: rockchip: analogix-dp: Fix hclk as third clock
+    for RK3588
+  dt-bindings: display: rockchip: analogix-dp: Add per-clock
+    descriptions
+  arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
+  arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
+  drm/rockchip: analogix_dp: Enable hclk for RK3588
+  dt-bindings: display: rockchip: analogix-dp: Add support for RK3576
+  arm64: dts: rockchip: Add eDP node for RK3576
+  drm/bridge: analogix_dp: Rename and simplify is_rockchip()
+  drm/bridge: analogix_dp: Add support for RK3576
+  drm/rockchip: analogix_dp: Add support for RK3576
 
-On 5/22/2026 4:18 AM, Laurentiu Mihalcea wrote:
-> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> 
-> Document the optional "memory-region-names" property.
-> 
-> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> ---
->  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml     | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index c18f71b64889..6679b10f9da5 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -62,6 +62,14 @@ properties:
->      minItems: 1
->      maxItems: 32
->  
-> +  memory-region-names:
-> +    minItems: 1
-> +    maxItems: 32
-> +    items:
-> +      oneOf:
-> +        - const: rsc-table
-> +        - pattern: '^vdev[0-9](buffer|vring[0-9])$'
-> +
->    power-domains:
->      minItems: 2
->      maxItems: 8
+ .../rockchip/rockchip,analogix-dp.yaml        | 41 ++++++++++++++++++-
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 28 +++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  4 +-
+ .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |  4 +-
+ .../drm/bridge/analogix/analogix_dp_core.c    |  3 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 18 ++++----
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 15 +++++++
+ include/drm/bridge/analogix_dp.h              | 13 +++++-
+ 8 files changed, 108 insertions(+), 18 deletions(-)
 
-So, I think the AI bot is right on this one. I've missed the fact that the programming
-model allows you to specify additional carveouts (currently not allowed by the constraints
-here), based on the firmware used. An in-tree example of this would be imx95-verdin, which
-takes another carveout called "m7_reserved".
+---
 
-Based on this, I wonder if it would make more sense to leave this property unconstrained
-w.r.t the names we allow.
+Changes in v2:
+- Split out separate patches to add the "hclk" clock reference.
+- Split out separate patches to enable the "hclk" clock.
+- Add Reviewed-by tag.
+
+Changes in v3:
+- Add a patch to expand descriptions for clocks of the eDP node.
+- Add Reviewed-by tag.
+
+Changes in v4:
+- Modify commit msg.
+
+Changes in v5:
+- Enforce the correct third clock name on a per-compatible basis.
+- Modify the commit msg simultaneously.
+- Add Acked-by tag.
+
+Changes in v6:
+- Expand more detail commit msg about using hclk instead of grf clock.
+
+Changes in v7:
+- List all valid clock names at the top level, and constrain the clock
+  count for each platform with minItems/maxItems in allOf.
+
+Changes in v8:
+- Fix indentation to 10 for enum in clock-names property.
+
+-- 
+2.34.1
+
 
