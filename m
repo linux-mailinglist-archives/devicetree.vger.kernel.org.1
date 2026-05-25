@@ -1,212 +1,228 @@
-Return-Path: <devicetree+bounces-302424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302426-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLPnJh7vE2qmHgcAu9opvQ
-	(envelope-from <devicetree+bounces-302424-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:41:34 +0200
+	id kBCrE27vE2qmHgcAu9opvQ
+	(envelope-from <devicetree+bounces-302426-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:42:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F2A5C6A3C
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D48B05C6A82
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 038FB302F5AE
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 06:36:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 672E73028B30
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 06:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB983A7F46;
-	Mon, 25 May 2026 06:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mGczDeV1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IaTXbkc2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC263A7F46;
+	Mon, 25 May 2026 06:42:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E64E361DC1
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 06:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3621639AD55;
+	Mon, 25 May 2026 06:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779691015; cv=none; b=GsYAhQCIf8xKp9E3D+iE84SrSNgvZM+q9OPny4Qu+dIpv5wOoNcF5ON0q39ZKrl2IgU1xFmZkPVf6HSB5j0lGr0xhd+tPQaBJwWWpuclraQ5vA4/QNFV5+aGgm5G5BnRRstHWsJxkxj5OELmMFV9znmixkf2F+ZhugGbXzYlznM=
+	t=1779691348; cv=none; b=RQfac1kQhrFwCt36XVbmug+f4L2drje6m3HX00FSZlI3zsZFk2uvV9rrVIvI6pzgYC218Ye5xHTudsKduM9ECREPIQQARIxGFHHF5Oikhu8ibxdCFME/Cmg7fRkiYnNiue11nm2gVk4gl5wGfobPyfM2dnVlG3JoEsPulY5HKKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779691015; c=relaxed/simple;
-	bh=DVo2xi7RyBHNKdZAZ8GSGGWIbM7R2VtURBEfwF6e5DE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=H8iNx4v67Vbg4E+RRA78JtLNNTfDIfUSCkxkhe2PjYzenBjqARQqjKmvEwvEufWg8dnf7akWwMQnlEK2v2e/+dsqzXQtDXRbZ3zg7ZEKJLXjSMeESIETssxLNht92jC3Wrjuj4WIuc00RNlK1mXVNUNwrdDddM55fdPVqov8n94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mGczDeV1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IaTXbkc2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64OMo18A3019604
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 06:36:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=NOkeK1lAOdXCk7zOceGzmI
-	a2wijOY9THVdbXy2AekNo=; b=mGczDeV15w8SQuG4qOOrciZtGIfJM1SUUI9CYn
-	10Y+B8IDUPq8MhUyU+WAETrNSGIF77CY+waXxubH4vMvS/0yu0oUYEb96vbG51pg
-	RUparnSoSlch9OaQafb22n6JPWfPqims8SiqeW8yaFwM/9wByXd33vZ7o8ZR93y8
-	VGk9Aw53lfUjfL3ZOk280CvzQuJh9CsI78PcwCG4QjY0MbWUz8WlhE4yisnYaIWD
-	T5Yns3sMXiIRiOCpeLpO/QWfnwElqJ8PVRJjgMNo75rRnRVTwaeJAjDmc1XN+Sgr
-	D/jjmm81UIJRAaFOHPz04Ptg6qm6uurB8TRu+8aCamyks5Hw==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eb36t5hdp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 06:36:52 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2f3eb8f3419so738061eec.1
-        for <devicetree@vger.kernel.org>; Sun, 24 May 2026 23:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779691012; x=1780295812; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NOkeK1lAOdXCk7zOceGzmIa2wijOY9THVdbXy2AekNo=;
-        b=IaTXbkc25AEF2uPh2d6OID9ENv0Um5jRVd+iKBdl4eJmfeQLWmzUlSUoMEWmwAfm8n
-         JGgKftPxi0eyw5HK72eHEVgfjJn/wcsTLJrjLalgAYYscM8lFQdjXtozdQkWRfErB04E
-         7fZxkgJnJ3qiz/036shvoziOTKeO13LQj9o0uUl7MgXFyXNGE7hH0ufzpxHC1ysC+UTM
-         RWEawmZ0jNdzrrO3DNdCSAfhXLMoEPqyf+b1U3T+uC6EcvijcpSxfNaGBagf3AC4BLMH
-         /f6PuWK7swVaikMDm0Xpo//GUr0rrWK0uXz78AI65L7bi6Ps7dBqiG1FgEHxdTSx0diK
-         V4dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779691012; x=1780295812;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NOkeK1lAOdXCk7zOceGzmIa2wijOY9THVdbXy2AekNo=;
-        b=YjyJ9nXFDbN2MyELwN+FUVJf6/KI2S2o6ak8QNxBmh2EioQWNPJ0oddUG57D6l4rZ5
-         Hp1OKQATUrsEmlvOQXW+pOnLST8nsGGhDLNjmNGb/lBlUQBeePGQPIznLjJU522MtfDz
-         EeORmx+qjyD4v5Ou/HX0BaY2EyUHUFgPSfwlKyRCX1ld8SIchbmirEQ3rapi1ZxCCGH6
-         UWKhwbc9Tr6sRovK3JXUoKhKnjnXF/4BAOQoxMXI8TkNLKoC8kUxXaIMykbdDJWYy7/z
-         bQSPNl/e172pSVYIJ3Lj5IVUDoxU8CxY7gewzrSzMNNmvnC3PvhKzCAw4MgK2qiRN0xj
-         ghjw==
-X-Forwarded-Encrypted: i=1; AFNElJ91vlAw+FllBhtkHPeaPPuveWrcAiv9axgBR0LyaMzoeM8zNkNnwAQ2vOnyQBin87m21waEpyyTQLYg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6U1ZfVNKIjTeKWIWATZ4mdkAu3ZWDE0S1j93gawFJsXsnZWLg
-	cy7p4SM3tBLxZe3tIe63ExCKp/uDsIx+g/uwjUC3FtP3k7xNer3ZAbO/e1xwX42OY78SWInoP2p
-	VDbVR+q860kD64hmSnMQhmguUSHB6eokvk9IYx/7jk2uD42aF4xqgXDMq6q+VS2Bt
-X-Gm-Gg: Acq92OE6/gQuMFCDM+1L1M49cLo5AOkDtiavIRPTYte3uJQfkukGUUqsnqb3a53US9M
-	HVFJM9frrESnghfwXyfL3dgaWdHkZVkJzcIPPidMVGTdRDtAgWdfEF7NoOEZiIgt9sBnUS6J0d6
-	pbnfJO1eNB8njrdv6UhKUacGpFZkp22gTJPgtNirF/PTL9Q0DTfaH5uBJRxnQ5z8eRUpJjyu/xO
-	MZvuKEEGS9zoDiiq7rJBGglpzzOF8gZYe9/pPxNMgKG/N5k21ssfzucwHZ2F3I0J8xXL0tp+jK1
-	owsQXZ2+wEKydbVzN0Q1E4rLfRmzrKIUuAFQZ6EL0rxw5ZiBWrWYJMkoC+erNRlRJ5/VKcRUl7J
-	9hvFlxWdiCxiAofkoMYm7wvnlKsEyFLQQsLs7lypFIqVSD6WVlh/GUMoJwE6SOQmy4SeYIAC4
-X-Received: by 2002:a05:7300:4305:b0:2ef:1d11:18ae with SMTP id 5a478bee46e88-3044912c25amr6303191eec.28.1779691011572;
-        Sun, 24 May 2026 23:36:51 -0700 (PDT)
-X-Received: by 2002:a05:7300:4305:b0:2ef:1d11:18ae with SMTP id 5a478bee46e88-3044912c25amr6303171eec.28.1779691011032;
-        Sun, 24 May 2026 23:36:51 -0700 (PDT)
-Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30452255234sm8860713eec.20.2026.05.24.23.36.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 May 2026 23:36:50 -0700 (PDT)
-From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Date: Sun, 24 May 2026 23:36:41 -0700
-Subject: [PATCH] dt-bindings: watchdog: Document Qualcomm Maili watchdog
+	s=arc-20240116; t=1779691348; c=relaxed/simple;
+	bh=LtOc5bgzPn6E1ldy8y9HFnOM8IVVlrRUe/BuP4pvKQE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k8imMiAquQ2o00h0r1kOZtTc9l0SXRXudFsl5Jdpag+liVUy7nuvK1YxH1bM0IfNra+UHKvtqNNHUi735WoacfGLN+gsUVt9swWIyZHvjzRxkg22GLY/KmiqWuoU6iZyNY4onEI5SMjJPFiDRlDH0F48D0jRDeiZYaoFeVSE08M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 36D6E1A2CC0;
+	Mon, 25 May 2026 08:42:20 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id F13141A20F6;
+	Mon, 25 May 2026 08:42:19 +0200 (CEST)
+Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id A59061800071;
+	Mon, 25 May 2026 14:42:18 +0800 (+08)
+From: Lakshay Piplani <lakshay.piplani@nxp.com>
+To: linux-kernel@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	broonie@kernel.org,
+	lee@kernel.org,
+	Frank.Li@nxp.com,
+	lgirdwood@gmail.com
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	aman.kumarpandey@nxp.com,
+	Lakshay Piplani <lakshay.piplani@nxp.com>
+Subject: [PATCH v10 0/9] Add support for NXP P3H2x4x I3C hub driver
+Date: Mon, 25 May 2026 12:12:00 +0530
+Message-Id: <20260525064209.2263045-1-lakshay.piplani@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260524-maili-watchdog-v1-1-f7efef781701@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAPjtE2oC/x3MTQqDQAxA4atI1g048RevUrqIY3QC7SgzUgvi3
- Zt2+S3eOyFLUskwFCckeWvWNRrcrQAfOC6COpmBSmrLhmp8sT4VD959mNYFua9c3fZMc+fAoi3
- JrJ//8P4wj5wFx8TRh9/GFgTX9QU5CgDjdwAAAA==
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-3d134
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779691010; l=1021;
- i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
- bh=DVo2xi7RyBHNKdZAZ8GSGGWIbM7R2VtURBEfwF6e5DE=;
- b=AOMlDdCYWLzUVN8VflDsm6CdAGPoXN7FFOxupsnJCEmrJXYSd5um+XYQ6lH1WSLBTPsnyhdBZ
- YYd58qUdCplAtIHIhN24PztfmaNcD13CRcuByqx1fAtCd8zU5XurIQq
-X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
- pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
-X-Proofpoint-GUID: p5kQwH9Ovnx49WiUukFMsXd0EAI6vYRC
-X-Authority-Analysis: v=2.4 cv=Fto1OWrq c=1 sm=1 tr=0 ts=6a13ee04 cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=GWLaZa68QPV-koml5E0A:9 a=QEXdDO2ut3YA:10
- a=scEy_gLbYbu1JhEsrz4S:22
-X-Proofpoint-ORIG-GUID: p5kQwH9Ovnx49WiUukFMsXd0EAI6vYRC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDA2NCBTYWx0ZWRfXyBRozHIFAo7B
- 0XlR647U35cdDrl3PPU66nMY+/yDQaCvFiVaIQfYAnSqA0xsIKehrHvt/ZnJkRfowamzzYWAGgz
- R334I3W49sGokbeMi/Dt8QxMhQTpPrRG4Y6zFHTSZpyra6d/XvLtZlwbf1yh69kW3rOPvHSII9d
- XYdTa7d62jCvNYLpu6jBPwaOSHoKaPmWhhZEFeK5e4QrA6dFdgj8iVHp2/a2/Lvcekqggficm2c
- kTKbmhprRmJ49SNUWtih/265iE6agDR2fJhscxHeuphgOSKt6GIkPrVGc9U8YIttM3267y8+qXR
- qSol519+iai40HavsJU8+O8YY/+KGGvCyyaXvRKwBwhdS+OAaTh7mg+pNahEEJYoQrgLvtqTb/x
- i2vLuBYUH7jTyu6Fm7ZHw3gQaKDbjzHHl3XXwG4G8XEHwVDZDLP39h66I3WeoRgNCcXNPtBL+eP
- I3sCT2D/uJNvj/RlmiQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-25_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 adultscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605250064
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302424-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jingyi.wang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-302426-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.226];
+	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 05F2A5C6A3C
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:mid]
+X-Rspamd-Queue-Id: D48B05C6A82
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add devicetree binding for watchdog present on Qualcomm Maili SoC.
+This series adds a driver for the NXP P3H2x4x family of multiport I3C hub
+devices.
 
-Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
+This is an MFD driver integrating I3C hub and on-die regulators.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index d647bf5f19a4..074b98802adf 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -26,6 +26,7 @@ properties:
-               - qcom,apss-wdt-ipq9574
-               - qcom,apss-wdt-ipq9650
-               - qcom,apss-wdt-kaanapali
-+              - qcom,apss-wdt-maili
-               - qcom,apss-wdt-msm8226
-               - qcom,apss-wdt-msm8974
-               - qcom,apss-wdt-msm8994
+The series introduces:
+- Core I3C master enhancements required for hub support
+- Generic I3C hub framework
+- MFD driver with regulator and I3C hub child drivers for the P3H2x4x I3C hub
 
----
-base-commit: c1ecb239fa3456529a32255359fc78b69eb9d847
-change-id: 20260524-maili-watchdog-a831468a2f71
+Changes in v10:
+- Rename i3c_master_reattach_i3c_dev() to *_locked to reflect required
+  bus locking
+- Rename i3c_master_direct_attach_i3c_dev() and i3c_master_direct_detach_i3c_dev()
+  to *_locked, as these APIs must be called with the bus lock held for write
+- Drop redundant is_p3h2x4x_in_i3c flag from p3h2840.h
+- Remove unnecessary ibi_lock handling in request/enable/disable/free
+  IBI APIs
+- Remove redundant parent pointer from struct i3c_hub and derive upstream 
+  master from hub_dev
+- Split SMBus target/slave mode support, including IBI and MCTP receive handling,
+  into a separate patch
+- Link to v9: https://lore.kernel.org/linux-i3c/20260420105222.1562243-1-lakshay.piplani@nxp.com/T/#u
 
-Best regards,
+Changes in v9:
+- Renamed macros to follow consistent uppercase naming conventions
+- Made REGMAP selects in the P3H2X4X MFD Kconfig conditional, to avoid I3C/I2C dependency issues
+- Referenced i3c.yaml and i2c-controller.yaml for child bus nodes
+- Dropped unnecessary #address-cells and #size-cells from child nodes
+- Added CONFIG_I2C_SLAVE guards where necessary to avoid build errors when I2C slave support is disabled
+- Link to v8: https://lore.kernel.org/linux-i3c/20260323062737.886728-1-lakshay.piplani@nxp.com/T/#u
+
+Changes in v8:
+- Add compatible in i3c example
+- Link to v7: https://lore.kernel.org/linux-i3c/20260319112441.3888957-1-lakshay.piplani@nxp.com/T/#u
+
+Changes in v7:
+- Fix kernel-doc warnings across I3C core and hub code
+- Rework DT binding schema and examples to pass dt_binding_check
+- Update MFD Kconfig to use I3C_OR_I2C
+- Convert CONFIG_I3C_HUB to tristate
+- Remove unnecessary CONFIG_I2C_SLAVE guards
+- Replace custom helpers with find_closest()
+- Use devm_regulator_get_enable_optional()
+- Link to v6: https://lore.kernel.org/linux-i3c/64c5070c-aa9e-427a-933e-91e168f0510c@kernel.org/T/#u
+
+Changes in v6:
+- Update DT binding with vendor-prefixed properties
+- Add generic I3C hub support
+- Remove generic code from P3H2x4x driver
+- Link to v5: https://lore.kernel.org/linux-i3c/20260206120121.856471-1-aman.kumarpandey@nxp.com/T/#u
+
+Changes in v5:
+- Update supply naming and descriptions
+- Improve MFD Kconfig/Makefile ordering
+- Link to v4: https://lore.kernel.org/linux-i3c/20260113114529.1692213-2-aman.kumarpandey@nxp.com/T/#u
+
+Changes in v4:
+- Split driver into MFD, regulator and I3C hub parts
+- Update I3C master for hub support
+- Fix DT binding issues
+- Link to v3: https://lore.kernel.org/linux-i3c/20250811-bittern-of-abstract-prestige-aaeda9@kuoka/T/#u
+
+Changes in v3:
+- Add MFD support for hub and regulators
+- Add regulator integration
+- Link to v2: https://lore.kernel.org/linux-i3c/17145d2f-5d07-4939-8381-74e27cde303c@kernel.org/T/#u
+
+Changes in v2:
+- Fix DT binding warnings
+- Refine DT parsing logic
+- Link to v1: https://lore.kernel.org/linux-i3c/822d6dca-b2c6-4439-ade5-219620ebc435@kernel.org/T/#u
+
+Aman Kumar Pandey (6):
+  i3c: master: Expose the APIs to support I3C hub
+  i3c: master: Add APIs for I3C hub support
+  dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+  mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub and on-die regulator
+  regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x
+    i3c hub
+  i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
+
+Lakshay Piplani (3):
+  i3c: master: rename i3c_master_reattach_i3c_dev() to *_locked
+  i3c: hub: Add support for the I3C interface in the I3C hub
+  i3c: hub: p3h2x4x: Add SMBus slave mode support
+
+ .../devicetree/bindings/i3c/nxp,p3h2840.yaml  | 291 +++++++++++
+ MAINTAINERS                                   |  15 +
+ drivers/i3c/Kconfig                           |  16 +
+ drivers/i3c/Makefile                          |   2 +
+ drivers/i3c/hub.c                             | 465 ++++++++++++++++++
+ drivers/i3c/hub/Kconfig                       |  11 +
+ drivers/i3c/hub/Makefile                      |   4 +
+ drivers/i3c/hub/p3h2840_i3c_hub.h             | 337 +++++++++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_common.c      | 353 +++++++++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_i3c.c         | 141 ++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_smbus.c       | 450 +++++++++++++++++
+ drivers/i3c/master.c                          | 179 ++++++-
+ drivers/mfd/Kconfig                           |  13 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/p3h2840.c                         | 122 +++++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/p3h2840_i3c_hub_regulator.c | 218 ++++++++
+ include/linux/i3c/device.h                    |   1 +
+ include/linux/i3c/hub.h                       |  99 ++++
+ include/linux/i3c/master.h                    |   9 +
+ include/linux/mfd/p3h2840.h                   |  26 +
+ 22 files changed, 2761 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+ create mode 100644 drivers/i3c/hub.c
+ create mode 100644 drivers/i3c/hub/Kconfig
+ create mode 100644 drivers/i3c/hub/Makefile
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub.h
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_common.c
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
+ create mode 100644 drivers/mfd/p3h2840.c
+ create mode 100644 drivers/regulator/p3h2840_i3c_hub_regulator.c
+ create mode 100644 include/linux/i3c/hub.h
+ create mode 100644 include/linux/mfd/p3h2840.h
+
 -- 
-Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+2.25.1
 
 
