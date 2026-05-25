@@ -1,598 +1,161 @@
-Return-Path: <devicetree+bounces-302463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302468-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGY6HxwIFGq6JAcAu9opvQ
-	(envelope-from <devicetree+bounces-302463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 10:28:12 +0200
+	id OJxpCKkJFGrVJAcAu9opvQ
+	(envelope-from <devicetree+bounces-302468-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 10:34:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDA315C7BEB
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 10:28:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D2025C7D18
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 10:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ACF0A303A11F
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:23:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F15C7300D164
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4BB3E16B4;
-	Mon, 25 May 2026 08:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9330E3E3173;
+	Mon, 25 May 2026 08:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dnS3UKKI";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WWGu9FHY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jL1Cyur0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579E631E83C
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 08:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.168.131
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779697404; cv=pass; b=m/C4ZTbcfjkPceOzQXj9z+gTelhPZHShIJFkyMscT7veMmDM61wpca+HkNifrP2LJNACUHFIC2wUQJJiE4V1BaFc4xfc4gSFPGd19hsoY5udHUgON8U0KQWBEJyqHBhHOvnIJAzew15Hr79ny0EOVkzwGdq1ZoyZ5cke6mrHJ3k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779697404; c=relaxed/simple;
-	bh=0achz9n+qw0t1Oo82cOOIyvX9+EU24sy7AuCwSzREkU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b0xTL8WHF8dg/0Tdf/h+rZtOSz1kXzG8HIe9bcvbLSw/e3Yq742FE97OAkZLiu/AnJUE28m/w98MEGP/UKN781ILkgB9IwHpasx6PASY9FLFATkEHycT6wuKnYRgTmoaRX31fbVZ/3RQGe9fQGusWteW2x9ucU8xvjU3Z333vMM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dnS3UKKI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WWGu9FHY; arc=pass smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64P7YvbH1826569
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 08:23:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:to; s=
-	qcppdkim1; bh=Y00jVBsOO5l3g5o3U2vjZ9VsbHwpeMj0hXubWYDZVoE=; b=dn
-	S3UKKIUaiBLrAZwS0idvEBG9uLwSe38I9zNIU0aBjXqnXXGFennybsL2PX9kvf4y
-	XBPwDUKGPZUe/E+Sl2FBLU2WYdrHRyBoibT9UiLwlGuI0/9kZlQld+nbNDhgUPlO
-	X6RdacDuhzmD1uULNM1A4NkKZjcjvldfHFaiVDgfVHc3TWf2ofXypIW8ZBawLv7x
-	bWLg5Yaib53OBZXheovHkGqWKmCmBCCNuknxrjX32gJjLCW5p/QCzqvU32kEZBv4
-	nuPHrAxHPt1ONgp6dJIiIqkGFIpITz1VgqMczdrxZKV8fjhLZ2WYO7BPjS4fx14n
-	gMVF8uufE8IIZqeVWr8w==
-Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com [209.85.128.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eb88w57y8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 08:23:21 +0000 (GMT)
-Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-7cb345d0b29so184207267b3.2
-        for <devicetree@vger.kernel.org>; Mon, 25 May 2026 01:23:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779697401; cv=none;
-        d=google.com; s=arc-20240605;
-        b=RWYDTk9PjtkH3iNoBuRwIhKDj7idU7FzgqXSDua0tI3n87MTB3X1jpbfJzBTW2LAT5
-         t0OkKNZaPPEjd6EQ5/q5trEJkyuPzbJ2eJdJi25PVWJcpAn38jIAcasiRClXoD9M/3o9
-         8BuNrUDv6vUndmXBdRRxjA8KSbYD0hjsbQyUy/KOHCdT+rucR4U/CjK5v/ypRzyZsY+r
-         s4Bw+STocxQwyjOxR3KrJci3HxIA0rg1lag64pE7w3YrIe/JsNB/ZtfvPTyqhpc+RMUh
-         nBmDRJd54Rx7iR0mpkFev/JSgidrCoEMy5njXY+rMyTwodcRaAXLVbbQu8JqcfgFUB73
-         K8jQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:dkim-signature;
-        bh=Y00jVBsOO5l3g5o3U2vjZ9VsbHwpeMj0hXubWYDZVoE=;
-        fh=WvMlCQ6azyHOz/+sgx4vzxu3zSXeVZJ8nyUsIOYoXbI=;
-        b=Jog88Tlsf1S0L3v+9bPD53SMG1bn5n4fVtzkn1XIzN7zyfnc1zxApIT+yRCHvuom3u
-         CPL3rB+m30Hhe5ncTTFyipHPyNA9i30/fE+tHZfFvWduje0VeXJhhRG6xIpgIi4be+xd
-         c6x/Nl8um3qwLZ/lxsj/uiZuC8lsjqWwqa8uL9MsSKFvam1DeZkioH53q3dvOOkchk78
-         4BjgW7M1zeOkyPZPBXO3cPtyJcuxD/SDTeVxM3J+hkyNM/vm8JOtee/fMUSguiSexXJ9
-         SAjxLsEWOF+dQl0fFbzzAqucPeAj8zgvmanzjobAFqsXgu9SxQ7tkZdHil5kypvAidlY
-         zBqA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779697401; x=1780302201; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Y00jVBsOO5l3g5o3U2vjZ9VsbHwpeMj0hXubWYDZVoE=;
-        b=WWGu9FHYdit781ZHLrkIWGZqnw2QsmIJg6I1bT/lZqXLNT9pctH1Uo6eQTVO1DxQac
-         M6BuupWsMUdH8cuhuDVbfe/PRaM8zrxAYjda2IDY82LKaWQTkZB72rQVNZiZJMXkhhDc
-         fvUqcwczHwUwUVsFtIGxznEzqqYuWi1ZDVYYgxs06iRXY+r/XlTfePZdEWt3ga/nVMtZ
-         0nO7T6OR3RsJoy9jJhHCnILH4XHcofLKrbnHeGmU+wWq2oHCcrUCXdpYmQwqnVNR+cig
-         3SZm8ctSenARvfVHHpxINDUF3VhmflNDxcfORyXOpYd8Kr9tpwrZmdMFbymZcpPo4oQ0
-         RndA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779697401; x=1780302201;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y00jVBsOO5l3g5o3U2vjZ9VsbHwpeMj0hXubWYDZVoE=;
-        b=DDjJa3vCyvKV0nov033b6LFwr3w+9Ka5rDMbfwpG9EHDx3mlO8ps42o6iW0Wxcr0Tv
-         ZatMX+YUSDPnx6swJ94vufIXsxUq8FRxhHqcht4Xt2ct/WHsVE/4BU4WCrUHtXAGEK7m
-         EBWwWiePeZ89QMtbK0Xm1YNs/XLNkFMMODqQdFThwCKL09E0OLQ1KjMy2TLOiT7GFe7e
-         CPZzGRCT7lsJIa5gAKBtadMhZvqmntbhApo3Jjg3qAxNnxjHa1/1Zthjn6ROa1Hvtaow
-         97s2R+b6CjJNff/b544OiNh/dzeRLSdndprnmKhOhrgEFn7pCXsXZyQLhRtcIEepPH6N
-         czQA==
-X-Forwarded-Encrypted: i=1; AFNElJ+u9ILGQ6mx8VJjtORX5OU+NpRpozJA9QZKEAklKFDHQ3E3Qc0oUBEARxfFbFx0u0VwEYi6Glf0k1SQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjuzLLcrOsAW9DKI0zX69UMe2yYaPBiJ79DzPE2DHqnwT+EIel
-	aXyG3iYaWErmS8jJWrY/VZUbyXUXxl/dXIZs7J4uoiTRS7oxIeXqvA61mpnuqEbSk4rl+9Vf0x2
-	LWZg6dz60P6oEKsuGa0M5MqBeU1oNEWc61w8/MbSMSaLNs9wwh26I94DiSBX3xvdC6F4SRZiKKq
-	PbG5j2lzkRhwyH/gf8jQle88WlhcLK6orqkJPzGuc=
-X-Gm-Gg: Acq92OHejYza2ppE1SIjQFCIM8WkXSQIy0T/8YOrEkmvCSvFnZxU9PLkcE6NatgCEXv
-	14d2nv5UNpXuN1mUirMDF0SEwjOkCJCBqajlZujmIHbEiir7t1aT/f9NSiIw4mSxw0OdHInPZGM
-	EXj170CktrD227ICzdvfmbi264zXp6Q+GKiRoVy4WIOdlb/o/QWYjjdAiJdqaVHl7ZcE94YrR0z
-	lu7nM0F
-X-Received: by 2002:a05:690c:6b04:b0:7d0:3bbc:c81 with SMTP id 00721157ae682-7d335fbcccamr151394877b3.13.1779697400710;
-        Mon, 25 May 2026 01:23:20 -0700 (PDT)
-X-Received: by 2002:a05:690c:6b04:b0:7d0:3bbc:c81 with SMTP id
- 00721157ae682-7d335fbcccamr151394667b3.13.1779697400112; Mon, 25 May 2026
- 01:23:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EF83E2ABE
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 08:34:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779698084; cv=none; b=KrDqHacDTRiWmGJcL+RnwHCbbMtkZsn/9S1b6KWWpYq+vXDC1J4rFghpp6gRKbhktJSAvE8fuE3tp1vcr2U46HZWd0B//1Z/IKDa+3FnKkkbcz3M+5m5UoEHfof1o3h2fAycvzzlcHZIt6zv6mxhRGsptTeEYbP217A7RnTThgg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779698084; c=relaxed/simple;
+	bh=MVBBHE8SWv91mQiaPGPsaKwZoGbikp5M5b0Fg3fB22E=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jRQIppBcUy428eyRftP1WWRRM8rkThdk4q61fTaQE8J4Ns7iNm5WjYrqDjKokfCloKznFb/AJRZLvP14xuX0BBTiYet5n67COSxL+JjaYmRsTqFrURg+EEKAZSUztwalNygIWgz8HZVzezcFz7vzsUwDCvf5O9LhjL9kU3NoC2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jL1Cyur0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74CE41F000E9;
+	Mon, 25 May 2026 08:34:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779698082;
+	bh=9kakHKwxuA/qioHkLSZ7sGtjQFBNbcwLo9T+lTz4Ht8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=jL1Cyur0+exKFBfzHqk6oO8M/1CA0dkKVPixsCuPm7m0+BWEXB1IWBGnOPmBgXDn4
+	 TWt1tvMof15QCWZ3UJsWE5Zp/bSYRxBqGqpk0Q8kdJhXMRJTLMWiSuzR3pAtp0SFZk
+	 //NG9repbwbPFGUF8TSfLyD8twdag5s5y1K3gkdw8rIRKsbQZL4i2UCwOA7uy4C9BJ
+	 1rVth+jwkmHbqGArkTRvzGjkSTDJ1siBHMWKDuf/AYsjuDZFE/HZubDLMgRwrIi3Fi
+	 Y2P6IoQ8u1uy7CocvnR/iWKDWTTJcbh9GRUPWmNSE3WEbdUPGdFYsu5daZ3XzdE+lY
+	 /Rapf7s4hwb+g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 08/10] drm/bridge: analogix_dp: Rename and simplify
+ is_rockchip()
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Damon Ding" <damon.ding@rock-chips.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260525082033.117569-9-damon.ding@rock-chips.com>
+References: <20260525082033.117569-9-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 25 May 2026 08:34:42 +0000
+Message-Id: <20260525083442.74CE41F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-0-78d3a7ba9dbe@kernel.org> <20260524-ssqosid-cbqri-rqsc-v7-0-v5-16-78d3a7ba9dbe@kernel.org>
-In-Reply-To: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-16-78d3a7ba9dbe@kernel.org>
-Reply-To: sunilvl@oss.qualcomm.com
-From: Sunil V L <sunilvl@oss.qualcomm.com>
-Date: Mon, 25 May 2026 13:53:09 +0530
-X-Gm-Features: AVHnY4I5dwBeqtX2znAoYje4xvPMK0mJtZxt7UsaZlw7JojvDtp7xcPyAAfXdI0
-Message-ID: <CAB19ukE9r_V=0eop3=f8zohhnCavd=9GjDEK1VMMbOb0ReOtDA@mail.gmail.com>
-Subject: Re: [PATCH RFC v5 16/18] ACPI: RISC-V: Parse RISC-V Quality of
- Service Controller (RQSC) table
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-        =?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
-        Samuel Holland <samuel.holland@sifive.com>,
-        Adrien Ricciardi <aricciardi@baylibre.com>,
-        Nicolas Pitre <npitre@baylibre.com>,
-        =?UTF-8?Q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>,
-        Atish Patra <atish.patra@linux.dev>,
-        Atish Kumar Patra <atishp@rivosinc.com>,
-        Vasudevan Srinivasan <vasu@rivosinc.com>,
-        Ved Shanbhogue <ved@rivosinc.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        yunhui cui <cuiyunhui@bytedance.com>,
-        Chen Pei <cp0613@linux.alibaba.com>,
-        Liu Zhiwei <zhiwei_liu@linux.alibaba.com>,
-        Weiwei Li <liwei1518@gmail.com>, guo.wenjia23@zte.com.cn,
-        Gong Shuai <gong.shuai@sanechips.com.cn>,
-        Gong Shuai <gsh517@gmail.com>, liu.qingtao2@zte.com.cn,
-        Reinette Chatre <reinette.chatre@intel.com>,
-        Tony Luck <tony.luck@intel.com>, Babu Moger <babu.moger@amd.com>,
-        Peter Newman <peternewman@google.com>,
-        Fenghua Yu <fenghua.yu@intel.com>, James Morse <james.morse@arm.com>,
-        Ben Horgan <ben.horgan@arm.com>, Dave Martin <Dave.Martin@arm.com>,
-        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-        Robert Moore <robert.moore@intel.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Clark Williams <clrkwllms@kernel.org>,
-        Steven Rostedt <rostedt@goodmis.org>, Jonathan Corbet <corbet@lwn.net>,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        x86@kernel.org, linux-acpi@vger.kernel.org,
-        acpica-devel@lists.linux.dev, devicetree@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Conor Dooley <conor@kernel.org>, linux-rt-devel@lists.linux.dev,
-        linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=S/jpBosP c=1 sm=1 tr=0 ts=6a1406f9 cx=c_pps
- a=g1v0Z557R90hA0UpD/5Yag==:117 a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=eoimf2acIAo5FJnRuUoq:22 a=V1jnuoLLAAAA:20 a=VwQbUJbxAAAA:8
- a=oLomzfTcYbT1FT28YPsA:9 a=QEXdDO2ut3YA:10 a=MFSWADHSvvjO3QEy5MdX:22
- a=bA3UWDv6hWIuX7UZL3qL:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDA4NCBTYWx0ZWRfX/PA+Jn8FqeG8
- Sns7AzK1jeEn5fMWS6vNy26NXZchDTANUzpfouUZj4WcCm5y+22hJQVrwkwbvatwxI0eku353k7
- MP4E9gpP2b3XRkni/pWfvo6RIRWbDDAMiXf6KKVPTkb0tQRxk0Jmrctd1dL6DbcdyjR+SGVumED
- Rpny2BaSmjFyO50QTSH9g+cJKYsgECE83xrADOlWiuSiJWyrqQu55nw9GSBMaNMXYn/w4wvJL+Y
- Gq6fkhk4EKzB0thNRsdpgboG924FrTTpxNIA+72wx8+42OqG7IocILddaTe5pwzLSsOvaEzi5Ar
- QZ6fC6ZOnDs3D0oTjAFjxV6kK1QgzqIGnt8HqyySBaoMbpbzE/4nhx8+mg27ZqTAIA2mzafUNTL
- 4Qeu2DT36EKDjcEELFhb01ahAQVggx58DpvhabENW+AfRZj3pUVTgY2+pR49poAFUlLL5GahBSd
- BtKjpgrFt2OJolFjMMQ==
-X-Proofpoint-ORIG-GUID: o9_K7XDMkKhYcwE1sP_31aj_8KZZpOba
-X-Proofpoint-GUID: o9_K7XDMkKhYcwE1sP_31aj_8KZZpOba
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-25_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1011
- priorityscore=1501 impostorscore=0 adultscore=0 phishscore=0 spamscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605250084
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ventanamicro.com,sifive.com,baylibre.com,semihalf.com,linux.dev,rivosinc.com,microchip.com,bytedance.com,linux.alibaba.com,gmail.com,zte.com.cn,sanechips.com.cn,intel.com,amd.com,google.com,arm.com,redhat.com,alien8.de,linux.intel.com,zytor.com,linutronix.de,goodmis.org,lwn.net,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302468-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302463-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sunilvl@oss.qualcomm.com];
-	RCVD_COUNT_FIVE(0.00)[6];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunilvl@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[57];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:replyto,oss.qualcomm.com:dkim,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim]
-X-Rspamd-Queue-Id: DDA315C7BEB
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid]
+X-Rspamd-Queue-Id: 8D2025C7D18
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Drew,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-On Mon, May 25, 2026 at 5:32=E2=80=AFAM Drew Fustini <fustini@kernel.org> w=
-rote:
->
-> Add a parser for the ACPI RQSC table, which describes the CBQRI
-> controllers in a system. For each table entry, populate a
-> cbqri_controller_info descriptor and hand it to the CBQRI driver via
-> riscv_cbqri_register_controller(). The driver owns all subsequent state,
-> including cpumask resolution at cbqri_resctrl_setup() time.
->
-> Link: https://github.com/riscv-non-isa/riscv-rqsc/blob/main/src/
-> Link: https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
-> Assisted-by: Claude:claude-opus-4-7
-> Signed-off-by: Drew Fustini <fustini@kernel.org>
-> ---
->  MAINTAINERS                   |   2 +
->  arch/riscv/include/asm/acpi.h |  10 +++
->  drivers/acpi/riscv/Makefile   |   1 +
->  drivers/acpi/riscv/rqsc.c     | 194 ++++++++++++++++++++++++++++++++++++=
-++++++
->  drivers/acpi/riscv/rqsc.h     |  63 ++++++++++++++
->  5 files changed, 270 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7821dd5159cb..eab31c7b5e91 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23025,6 +23025,8 @@ S:      Supported
->  F:     arch/riscv/include/asm/qos.h
->  F:     arch/riscv/include/asm/resctrl.h
->  F:     arch/riscv/kernel/qos.c
-> +F:     drivers/acpi/riscv/rqsc.c
-> +F:     drivers/acpi/riscv/rqsc.h
->  F:     drivers/resctrl/cbqri_devices.c
->  F:     drivers/resctrl/cbqri_internal.h
->  F:     drivers/resctrl/cbqri_resctrl.c
-> diff --git a/arch/riscv/include/asm/acpi.h b/arch/riscv/include/asm/acpi.=
-h
-> index 26ab37c171bc..3cfd0102085e 100644
-> --- a/arch/riscv/include/asm/acpi.h
-> +++ b/arch/riscv/include/asm/acpi.h
-> @@ -67,6 +67,16 @@ int acpi_get_riscv_isa(struct acpi_table_header *table=
-,
->
->  void acpi_get_cbo_block_size(struct acpi_table_header *table, u32 *cbom_=
-size,
->                              u32 *cboz_size, u32 *cbop_size);
-> +
-> +#ifdef CONFIG_RISCV_CBQRI_DRIVER
-> +int __init acpi_parse_rqsc(struct acpi_table_header *table);
-> +#else
-> +static inline int acpi_parse_rqsc(struct acpi_table_header *table)
-> +{
-> +       return -EINVAL;
-> +}
-> +#endif /* CONFIG_RISCV_CBQRI_DRIVER */
-> +
->  #else
->  static inline void acpi_init_rintc_map(void) { }
->  static inline struct acpi_madt_rintc *acpi_cpu_get_madt_rintc(int cpu)
-> diff --git a/drivers/acpi/riscv/Makefile b/drivers/acpi/riscv/Makefile
-> index 1284a076fa88..77f8f0101b7e 100644
-> --- a/drivers/acpi/riscv/Makefile
-> +++ b/drivers/acpi/riscv/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  obj-y                                  +=3D rhct.o init.o irq.o
-> +obj-$(CONFIG_RISCV_CBQRI_DRIVER)       +=3D rqsc.o
->  obj-$(CONFIG_ACPI_PROCESSOR_IDLE)      +=3D cpuidle.o
->  obj-$(CONFIG_ACPI_CPPC_LIB)            +=3D cppc.o
->  obj-$(CONFIG_ACPI_RIMT)                        +=3D rimt.o
-> diff --git a/drivers/acpi/riscv/rqsc.c b/drivers/acpi/riscv/rqsc.c
-> new file mode 100644
-> index 000000000000..1cbc5c07e191
-> --- /dev/null
-> +++ b/drivers/acpi/riscv/rqsc.c
-> @@ -0,0 +1,194 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +#define pr_fmt(fmt) "ACPI: RQSC: " fmt
-> +
-> +#include <linux/acpi.h>
-> +#include <linux/bits.h>
-> +#include <linux/riscv_cbqri.h>
-> +
-> +#include "rqsc.h"
-> +
-> +#define CBQRI_CTRL_SIZE 0x1000
-> +
-> +int __init acpi_parse_rqsc(struct acpi_table_header *table)
-> +{
-> +       struct acpi_table_rqsc *rqsc =3D (struct acpi_table_rqsc *)table;
-> +       struct acpi_rqsc_node *end, *node;
-> +       int num_controllers =3D 0;
-> +
-> +       /*
-> +        * Reject revisions newer than this parser was written against.  =
-A
-> +        * future revision could extend the fixed RQSC header before the
-> +        * first node, which would shift the resource subtables and cause=
- the
-> +        * sizeof(*node)-based offset below to point into the wrong place=
-.
-> +        */
-> +       if (rqsc->header.revision !=3D ACPI_RQSC_REVISION) {
-> +               pr_err("RQSC table revision %u, expected %u, aborting\n",
-> +                      rqsc->header.revision, ACPI_RQSC_REVISION);
-> +               return -EINVAL;
-> +       }
-> +
-> +       /* Reject tables shorter than the fixed RQSC header. */
-> +       if (rqsc->header.length < sizeof(struct acpi_table_rqsc)) {
-> +               pr_err("RQSC table truncated: length %u < %zu, aborting\n=
-",
-> +                      rqsc->header.length, sizeof(struct acpi_table_rqsc=
-));
-> +               return -EINVAL;
-> +       }
-> +
-> +       end =3D ACPI_ADD_PTR(struct acpi_rqsc_node, rqsc, rqsc->header.le=
-ngth);
-> +
-> +       for (node =3D ACPI_ADD_PTR(struct acpi_rqsc_node, rqsc,
-> +                                sizeof(struct acpi_table_rqsc));
-> +            node < end;
-> +            node =3D ACPI_ADD_PTR(struct acpi_rqsc_node, node, node->len=
-gth)
-> +       ) {
-> +               const struct acpi_rqsc_resource *res0;
-> +               struct cbqri_controller_info info =3D {};
-> +               int ret;
-> +
-> +               if ((void *)node + sizeof(*node) > (void *)end) {
-> +                       pr_err("truncated entry at end of table, aborting=
-\n");
-> +                       riscv_cbqri_unregister_last(num_controllers);
-> +                       return -EINVAL;
-> +               }
-> +
-> +               if (node->length < sizeof(*node)) {
-> +                       pr_err("malformed RQSC entry: length %u < %zu, ab=
-orting\n",
-> +                              node->length, sizeof(*node));
-> +                       riscv_cbqri_unregister_last(num_controllers);
-> +                       return -EINVAL;
-> +               }
-> +
-> +               /*
-> +                * Without this check, a node whose length claims to exte=
-nd
-> +                * past the end of the table would advance the loop curso=
-r
-> +                * past `end` and silently terminate.  Flag the corruptio=
-n
-> +                * explicitly so a malformed firmware table cannot trunca=
-te
-> +                * the controller list without noise.
-> +                */
-> +               if ((void *)node + node->length > (void *)end) {
-> +                       pr_err("RQSC entry length %u overruns table end, =
-aborting\n",
-> +                              node->length);
-> +                       riscv_cbqri_unregister_last(num_controllers);
-> +                       return -EINVAL;
-> +               }
-> +
-> +               /* GAS must describe system memory. ioremap() consumes it=
- later. */
-> +               if (node->reg.space_id !=3D ACPI_ADR_SPACE_SYSTEM_MEMORY)=
- {
-> +                       pr_warn("controller has unsupported address space=
-_id=3D%u, skipping\n",
-> +                               node->reg.space_id);
-> +                       continue;
-> +               }
-> +
-> +               /* Address 0 would map page 0 (reset vectors, SBI, boot R=
-OM). */
-> +               if (!node->reg.address) {
-> +                       pr_warn("controller has zero address, skipping\n"=
-);
-> +                       continue;
-> +               }
-> +
-> +               info.type =3D node->type;
-> +               /* RQSC v0.9.2 section 2 Table 2: 12-byte GAS-format regi=
-ster interface address */
-> +               info.addr =3D node->reg.address;
-> +               info.size =3D CBQRI_CTRL_SIZE;
-> +               info.rcid_count =3D node->rcid;
-> +               info.mcid_count =3D node->mcid;
-> +
-> +               /* See CBQRI_MAX_RCID/MCID in <linux/riscv_cbqri.h> for t=
-he rationale. */
-> +               if (info.rcid_count > CBQRI_MAX_RCID) {
-> +                       pr_warn("controller at %pa: rcid_count %u exceeds=
- CBQRI_MAX_RCID %u, skipping\n",
-> +                               &info.addr, info.rcid_count, CBQRI_MAX_RC=
-ID);
-> +                       continue;
-> +               }
-> +
-> +               if (info.mcid_count > CBQRI_MAX_MCID) {
-> +                       pr_warn("controller at %pa: mcid_count %u exceeds=
- CBQRI_MAX_MCID %u, skipping\n",
-> +                               &info.addr, info.mcid_count, CBQRI_MAX_MC=
-ID);
-> +                       continue;
-> +               }
-> +
-Do you also want to add a check for the statement in the spec "At
-least one of RCID Count or MCID Count must be non-zero." ?
+Pre-existing issues:
+- [High] The atomic_check callback mutates the global connector->display_in=
+fo structure instead of the proposed atomic state.
+--
 
-> +               if (node->nres =3D=3D 0) {
-> +                       pr_warn("controller at %pa has no resource descri=
-ptors, skipping\n",
-> +                               &info.addr);
-> +                       continue;
-> +               }
-> +
-> +               /*
-> +                * Resources follow the node header in-line. Only res[0] =
-is
-> +                * consumed. Bound it against end before reading its pref=
-ix so
-> +                * a table that ends partway through a resource subtable =
-is
-> +                * rejected rather than read past the mapping.
-> +                */
-> +               res0 =3D (const struct acpi_rqsc_resource *)
-> +                      ((const u8 *)node + sizeof(*node));
-> +               if ((void *)res0 + sizeof(*res0) > (void *)end ||
-> +                   node->length < sizeof(*node) + sizeof(*res0) ||
-> +                   res0->length < sizeof(*res0)) {
-> +                       pr_warn("controller at %pa: node too short for re=
-source descriptor, skipping\n",
-> +                               &info.addr);
-> +                       continue;
-> +               }
-> +
-> +               if (node->nres > 1)
-> +                       pr_warn("controller at %pa has %u resource descri=
-ptors, using first\n",
-> +                               &info.addr, node->nres);
-> +
-> +               /*
-> +                * id1 is u64 on the wire but cache_id and prox_dom are u=
-32
-> +                * downstream (PPTT cache_id, ACPI proximity domain). Rej=
-ect
-> +                * rather than truncate, so a too-large id is not silentl=
-y
-> +                * mapped to the wrong PPTT entry or NUMA node.
-> +                */
-> +               if (res0->id1 > U32_MAX) {
-> +                       pr_warn("controller at %pa: id1 0x%llx exceeds u3=
-2, skipping\n",
-> +                               &info.addr, res0->id1);
-> +                       continue;
-> +               }
-> +
-> +               /*
-> +                * Pair the QoS controller type with the resource descrip=
-tor
-> +                * fields that index id1.  RQSC v0.9.2 Table 4 defines th=
-e
-> +                * mapping: a Capacity controller indexes a Processor Cac=
+commit 5fc8c5d4b78e6b76c23cdd9ac4c790dbc7cd793d
+Author: Damon Ding <damon.ding@rock-chips.com>
+
+drm/bridge: analogix_dp: Rename and simplify is_rockchip()
+
+This commit renames the helper is_rockchip() to analogix_dp_is_rockchip() to
+align with the driver's namespace convention. It also refactors the internal
+comparisons into a switch-case statement to improve readability and make fu=
+ture
+additions easier.
+
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers=
+/gpu/drm/bridge/analogix/analogix_dp_core.c
+> index 8cf6b73bceac0..116de3bd83a30 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> @@ -870,7 +870,7 @@ static int analogix_dp_bridge_atomic_check(struct drm=
+_bridge *bridge,
+>  	struct drm_display_info *di =3D &conn_state->connector->display_info;
+>  	u32 mask =3D BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) | BIT(DRM_OUTPUT_COL=
+OR_FORMAT_YCBCR422);
+> =20
+> -	if (is_rockchip(dp->plat_data->dev_type)) {
+> +	if (analogix_dp_is_rockchip(dp->plat_data->dev_type)) {
+>  		if ((di->color_formats & mask)) {
+>  			DRM_DEBUG_KMS("Swapping display color format from YUV to RGB\n");
+>  			di->color_formats &=3D ~mask;
+>  			di->color_formats |=3D BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444);
+>  			di->bpc =3D 8;
+
+[Severity: High]
+This is a pre-existing issue, but does mutating the global
+connector->display_info structure inside an atomic_check callback violate t=
 he
-> +                * via PPTT cache_id, a Bandwidth controller indexes a Me=
-mory
-> +                * Range via SRAT proximity domain.  Mismatched pairings
-> +                * (e.g. a CC whose first resource is Memory) would other=
-wise
-> +                * route id1 into the wrong downstream lookup.
-> +                */
-> +               switch (info.type) {
-> +               case CBQRI_CONTROLLER_TYPE_CAPACITY:
-> +                       if (res0->type !=3D ACPI_RQSC_RESOURCE_TYPE_CACHE=
- ||
-> +                           res0->id_type !=3D ACPI_RQSC_RESOURCE_ID_TYPE=
-_PROCESSOR_CACHE) {
-> +                               pr_warn("CC at %pa: resource type=3D%u id=
-_type=3D%u not (cache, processor cache), skipping\n",
-> +                                       &info.addr, res0->type, res0->id_=
-type);
-> +                               continue;
-> +                       }
-> +                       info.cache_id =3D (u32)res0->id1;
-> +                       break;
-> +               case CBQRI_CONTROLLER_TYPE_BANDWIDTH:
-> +                       if (res0->type !=3D ACPI_RQSC_RESOURCE_TYPE_MEMOR=
-Y ||
-> +                           res0->id_type !=3D ACPI_RQSC_RESOURCE_ID_TYPE=
-_MEMORY_RANGE) {
-> +                               pr_warn("BC at %pa: resource type=3D%u id=
-_type=3D%u not (memory, memory range), skipping\n",
-> +                                       &info.addr, res0->type, res0->id_=
-type);
-> +                               continue;
-> +                       }
-> +                       info.prox_dom =3D (u32)res0->id1;
-> +                       break;
-> +               default:
-> +                       pr_warn("controller at %pa: unknown type %u, skip=
-ping\n",
-> +                               &info.addr, info.type);
-> +                       continue;
-> +               }
-> +
-> +               pr_debug("registering controller type=3D%u addr=3D%pa rci=
-d=3D%u mcid=3D%u\n",
-> +                        info.type, &info.addr, info.rcid_count, info.mci=
-d_count);
-> +
-> +               ret =3D riscv_cbqri_register_controller(&info);
-> +               if (ret =3D=3D 0)
-> +                       num_controllers++;
-> +               else
-> +                       pr_warn("controller at %pa: registration failed (=
-%d), skipping\n",
-> +                               &info.addr, ret);
-> +       }
-> +
-> +       pr_info("found %d CBQRI controllers\n", num_controllers);
-> +       return 0;
-> +}
-> diff --git a/drivers/acpi/riscv/rqsc.h b/drivers/acpi/riscv/rqsc.h
-> new file mode 100644
-> index 000000000000..f7b556f29e16
-> --- /dev/null
-> +++ b/drivers/acpi/riscv/rqsc.h
-> @@ -0,0 +1,63 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Local definitions for the RISC-V Quality of Service Controller (RQSC)
-> + * ACPI table. Will move to ACPICA's include/acpi/actbl2.h once the spec
-> + * is ratified.
-> + */
-> +#ifndef _DRIVERS_ACPI_RISCV_RQSC_H
-> +#define _DRIVERS_ACPI_RISCV_RQSC_H
-> +
-> +#include <linux/types.h>
-> +#include <acpi/actbl.h>
-> +
-> +#define ACPI_SIG_RQSC  "RQSC"  /* RISC-V Quality of Service Controller *=
-/
-> +
-> +/* RQSC v0.9.2 Table 1: current revision number. */
-> +#define ACPI_RQSC_REVISION     1
-> +
-> +/* RQSC v0.9.2 Table 4: Resource Type values for acpi_rqsc_resource.type=
-. */
-> +#define ACPI_RQSC_RESOURCE_TYPE_CACHE  0
-> +#define ACPI_RQSC_RESOURCE_TYPE_MEMORY 1
-> +
-> +/* RQSC v0.9.2 Table 4: Resource ID Type values for .id_type. */
-> +#define ACPI_RQSC_RESOURCE_ID_TYPE_PROCESSOR_CACHE     0
-> +#define ACPI_RQSC_RESOURCE_ID_TYPE_MEMORY_RANGE                1
-> +
-Memory-Side Cache, ACPI, PCI devices missing?
+atomic API contracts?
 
-Thanks,
-Sunil
+Since atomic_check is designed as a dry-run validation without side effects,
+particularly for TEST_ONLY commits, modifying di->color_formats and di->bpc
+permanently alters the connector's recorded physical capabilities. This str=
+ips
+YUV support from the connector entirely upon the first atomic check, which
+seems like it would lead to incorrect behavior for all subsequent commits.
+
+Could format selection and fallbacks be tracked within the connector_state =
+or
+bridge_state instead of overwriting the global display_info?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525082033.1175=
+69-1-damon.ding@rock-chips.com?part=3D8
 
