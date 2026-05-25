@@ -1,243 +1,227 @@
-Return-Path: <devicetree+bounces-302508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302510-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HO3NDASFGpeJQcAu9opvQ
-	(envelope-from <devicetree+bounces-302508-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:11:12 +0200
+	id gAe4EF0TFGoJJgcAu9opvQ
+	(envelope-from <devicetree+bounces-302510-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:16:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7B25C85F8
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:11:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB2075C86A9
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70F8E3031EB8
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:06:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B5C683003373
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5633E559E;
-	Mon, 25 May 2026 09:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E1D314B77;
+	Mon, 25 May 2026 09:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hnHtIyRj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NwKPDWhc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XammMCRK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C78F13E558E
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345DA30B521
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779700012; cv=none; b=HGK387vUcRS85vO3+fb/FZkjKslNPMdnxAJ3OUVrM8hAEcn4cOTAg89MTyK7BQX3JqMPv9T4fhz3EPamiSYbLgqkX4Xa7DZq+BVRk//nwIfNJBSZmfuWb8rxtrSb+o/pboYXrzKflUiQ4zL3kqCu913iayVTnk/It9ze9+f7tTk=
+	t=1779700569; cv=none; b=SD6gltk5ZP80Rq++rd+pqCCSI1HerIj6lsGxOsCrjD54EgirOohgfI2X1svQwtFk0sbXntMSmAFizcgzG4diPtLLbS9TzSq+I5C25+EV6swvvCCgQxfAr6MbD4UYpphwvht6CYhxMzldBKSiqxiou75bR95tuMB852RUM5g9Dpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779700012; c=relaxed/simple;
-	bh=0NbCr9ayqXyVbPcpj2JAYOhekLerj8YrpBPIkEgQzYI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jKgLw9IAZUUMLDjrRNWTSkkCuoyMTj0HhSFLCA9XUW5vuYRFP0+E4hpThJmmte3SlQoC9q8SdSvM8sDgUskg9hRaLxGNLpkV2ExOOk5FjJIr4Uud9qjEG6HkKmqXDVxetaGfQ8VgppDR5xdLTlIt6hrOM9Ca0B/zrJkbGshXRxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hnHtIyRj; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA4B1F000E9;
-	Mon, 25 May 2026 09:06:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779700010;
-	bh=swdWm/0iTnVS2k9BLL7JZNN87vf5uKigIcWeJkFhvfU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hnHtIyRjdwpHiDKPAGF8OaoEK5y0DeoZMbmjdkNRHYZRvQ0Filzbjj43Brp3DOUTM
-	 f1Qu8X/DLuYiKWc/fQRPEuv6+3CdORYicqk0qqd7i5R3BAofWcI2e1mt1Esvq4Qaq3
-	 Cv6O46FpWkuqcDvk+GUxIMsYsHgaY3LVJWRBzoUzxQoOkAJowtOXcvSN/d4ZnJcs5k
-	 d8AQ9/7TCOw++rt+kgR/0m+ihf0XBtaLF38GVVMp4NAMy25qyceexwLbKlL0jo0Nu+
-	 KitbOv2zIW4sMOqmeot0Vpsh2bJjogUsMxvvoi0Cg4zkVeyeiU/rHgli34vvGaDy8n
-	 5+mllF607GTTw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 6/9] regulator: p3h2x4x: Add driver for on-die
- regulators in NXP P3H2x4x i3c hub
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260525064209.2263045-7-lakshay.piplani@nxp.com>
-References: <20260525064209.2263045-7-lakshay.piplani@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 09:06:49 +0000
-Message-Id: <20260525090650.3DA4B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779700569; c=relaxed/simple;
+	bh=f1Fu0W4/g05J3Xbr4kGQW022COOJPAbs9zyPkKyp5Eg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OMFgrZDAIUpHY+QSFYa3sk2XU4S9hKLZN2o8oD8YtgwnCYzR6pdq8ms0dfHxiY23VG0UAvH8uSjHZZ6+O/OgBKwuw+xJwqH1pw+Q1jV3/zwJXNlL0FchklOL8U4B1fbZ5Sy1uvL/ZNdbhEUB85sFUtPb8lnCyi3taJIXzyxfil4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NwKPDWhc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XammMCRK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64P7FspR419389
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:16:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1c6/1NCI38NvfAimZ+NOaPQCpF+xE7i5bvHagq3NuSQ=; b=NwKPDWhc83dI+WI4
+	mpTmMqX8sh8e0nnx0NKMbFt2VCfCqC7WWv7ZvtsLh4MruPy/eXks98ofEMzjy4yO
+	W8gdjsOOUmtFmn/E9iwmdf/Vz1Bg0SJxAlHVFIh5DG5Afopsu9FCvFMlRM8RidE0
+	k00paFYAZ5kNXIVM/LoA6y3ZKme6zMFdtBGpgACV3w0ZDzDINtMzxnJ1v0dftu1j
+	iCXlPOuYBH7jc3sUvTqPTRoO0iKrWjVMb2KEcCPzGnYQPyxO4yxnrPSmQ+Xg6Jc/
+	ajFfo/hzyLUIYf0YZSIz3PwF7sy1Grzn/9oyAglrH2sI+xQD/BGle0gDEN603YFe
+	dCFlSg==
+Received: from mail-oa1-f70.google.com (mail-oa1-f70.google.com [209.85.160.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eb386p6dj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:16:06 +0000 (GMT)
+Received: by mail-oa1-f70.google.com with SMTP id 586e51a60fabf-43b469c6e24so1567045fac.1
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2026 02:16:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1779700566; x=1780305366; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1c6/1NCI38NvfAimZ+NOaPQCpF+xE7i5bvHagq3NuSQ=;
+        b=XammMCRKUg4D3Q29SXgpiKn5x4+wtkaX7xrOQ5eLqzdGiPIe3HMjuTwaKl30hFFEAm
+         azl3GxBK1mXPzCuArfmXbZ2/+pIsThOe6ZHpATH65woA3tKIIdLoJt4Av11L/fpRrzgV
+         T6gIezNVqcLuEaVBKUzZnDiXp538RFY2a7wmzbvH/wvltkuJZpue/GmVZLHfenTN243T
+         GgkZnnL8eYtyKclEw77R7eYGGfg9Z/QhB4UtCL3JydKTMPOFEAr+5c9sorE9GxFlmbTl
+         JKudCFk1+2xj94uPgGJ6aAK44S2UGO0yFl7ILghoUf1xPtaDfixF/z4Gy8UtmxXOViIZ
+         /vhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779700566; x=1780305366;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1c6/1NCI38NvfAimZ+NOaPQCpF+xE7i5bvHagq3NuSQ=;
+        b=L/yXCZZbSDw3+VxGdxIaEXEulBx2riRiqlwO62HpXDLEKmp9qfwT458z6GljJmpvta
+         YcIJlYnJOPx+eXj1RbAPMAL1gQ4nbpGlL3tK2es/rXGD4+Gy9UwB7Yj+wMtKqy1gQREk
+         OqRds1LUgtnftxDHfrTiQx86meJROlVvNqKE/dhCBWVTZi1iCgdNXXcdwRoWBNo7fQ0D
+         UfD94UQ1pBRgliKF2xvAFNCJk1G4kWIMZg1oEpHVPwB+3VDAlGD24E6BUy6zxAtLkoFZ
+         srmEqU9s/5I6HquLmXRu1wrPj9X9Z9zKYbJidG7kze5/pjqL+lXWKGrpLH86MgMD8cB8
+         Hkfw==
+X-Forwarded-Encrypted: i=1; AFNElJ8bcKSuww+3/9McXA6akkKs7ldXl3Kotv54ljXt7jjYW6qxuGQASgiXod7OB/VRvw4q3zFHT4zbnvG8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5CEoPbnSiBEavUxfyAhvFRXkAziWKZtIoEjeVzUyWel8vNmI2
+	deg781IM8XC2Y/6SR2eDoW/yChcC6kl7KUtKeqzYhntZE9tnM+Bxzyncb/ywkNNfGPiARVHFaNr
+	Npk6lsTYLznGI1e+/NMlSxfwUsXsMqYu2wb5tMvLnMLDa9lt+Uz7B6zRylSWtycuTbrDNh/Hczu
+	Q=
+X-Gm-Gg: Acq92OHWEL3ULvPNTrERgvwO+tHqA0hh+t1XflRxws7BlNsf7nCJnM6U9oOq1wzXL8A
+	kvTRy3wW+eNMchtnDd6KCT1Ouh8isbRhXLYfpXK+k5c4irebDE3HsQo02Dw1t5nVKi63BR3bkcL
+	vH9MfhmKWZQ/6+QAqhWSs1HyPid4ZJTEvgMFpRDTR4M7SqtwGa6WjQOtdHt8le5//l1yhsNofrA
+	Haav1eDeb/2xGve+8r3LuRY1pMMBkR+a41iE5PjbhzM8kOvcUthoGWQQPs6zhBaO/VZ7DKVVsmR
+	cogaehiX1wPeaQX2FPH8qcT/BpLdF/+VnUsVz8kH+a9gehTOQReIKhv5fNSO6BDH99f0db5a6AC
+	nVuuFrugqDLhX2woZlboX7bWmJxJ0KaPi8EwEBeduXD55JHZXHt8oJ0/5iW+OCyyn5Pq3h3L5iL
+	jUz/xPCxcG4UzZtkVc
+X-Received: by 2002:a05:6870:8586:b0:439:c2da:7dd2 with SMTP id 586e51a60fabf-43b5b046657mr7968670fac.31.1779700566319;
+        Mon, 25 May 2026 02:16:06 -0700 (PDT)
+X-Received: by 2002:a05:6a00:cc4:b0:83e:3050:d0b with SMTP id d2e1a72fcca58-8415f0f095emr12883061b3a.1.1779700148333;
+        Mon, 25 May 2026 02:09:08 -0700 (PDT)
+Received: from [10.133.33.202] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8419a140893sm2855272b3a.46.2026.05.25.02.09.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 May 2026 02:09:07 -0700 (PDT)
+Message-ID: <b7cb43c9-53ca-4829-99a8-cd2fbcd5a201@oss.qualcomm.com>
+Date: Mon, 25 May 2026 17:09:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] dt-bindings: soc: qcom: Add Maili soc related
+ bindings
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Guru Das Srinagesh <linux@gurudas.dev>, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chunkai Deng <chunkai.deng@oss.qualcomm.com>
+References: <20260524-maili-soc-binding-v1-0-fdf9f9ff1b23@oss.qualcomm.com>
+ <5k7sh2yooj4yn4wtpifyamaw2dglk6xwbix623rvt6i2idkxr5@63rbo7ncduym>
+Content-Language: en-US
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+In-Reply-To: <5k7sh2yooj4yn4wtpifyamaw2dglk6xwbix623rvt6i2idkxr5@63rbo7ncduym>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: -gYUFvbkyjYn9KBjJ3gTYYBqtVNv5Iux
+X-Proofpoint-GUID: -gYUFvbkyjYn9KBjJ3gTYYBqtVNv5Iux
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDA5MiBTYWx0ZWRfX+EG6SOT/+3NU
+ NTLl/HcY4CuPTeoBfyaVaoth0qK8jMDM5TsdPc/3sWuvbUhvETKUFto8sgdGMgBi7LfURCTf7BV
+ FQjjROlyNGgPo1MmZVxTJr8BLDkamatvE5HwLyInMmuUyFF/FoSjwzg4irU3Z3BxYINwDi2BEQ0
+ tYHmVLpmy+uZ+HJxEYAv+jt0Fd27inPpXJsKtnfYsrnTI02DXUA6J8GPcK0Is53t6Kwf5uZLJ4v
+ VCwm5Nm7DEwOvFiMxz1VKciqJHORac8BiA6/p9CYJSTYKm4NePAqqNJSiUywwahLnSu/e8cNFRA
+ lBWhv7SzjyzhraXLtZEMFHSpmgdSMAAdizIdxSJCcPseINgEAYLAw6avA1vB4MIGaMwopSdZ70d
+ RNXlXEfjW17VxeiDp6iXPP9aXdr0NfubBaqIpwrPG3XtscfWvWcCzn2esUcjzXQQ60Lab4WOcFt
+ opnPMco8gk2ht2kryww==
+X-Authority-Analysis: v=2.4 cv=PJY/P/qC c=1 sm=1 tr=0 ts=6a141356 cx=c_pps
+ a=nSjmGuzVYOmhOUYzIAhsAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=EUspDBNiAAAA:8 a=1JtG_qnnveiJe4rXrqQA:9 a=QEXdDO2ut3YA:10
+ a=1zu1i0D7hVQfj8NKfPKu:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-25_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0 malwarescore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
+ definitions=main-2605250092
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gurudas.dev,oss.qualcomm.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-302510-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[jingyi.wang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 4F7B25C85F8
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: DB2075C86A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Race condition in hardware unlock/lock sequence across regulators
-- [Medium] Silent hardware state mismatch due to unhandled errors in lock g=
-uard
-- [Medium] Missing MODULE_ALIAS prevents automatic module loading
-- [Low] Incorrect use of of_match_ptr() on string literals
---
 
-commit 4a0c2a87632650e322585272d36928a08ab2888d
-Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x i3c hub
+On 5/25/2026 4:35 PM, Dmitry Baryshkov wrote:
+> On Sun, May 24, 2026 at 11:29:43PM -0700, Jingyi Wang wrote:
+>> Add soc related bindings for Kaanapali Platform including aoss_qmp,
+> 
+> So, are you adding Maili or Kaanapali bindings?
+> 
 
-This commit adds a platform driver for the on-die voltage regulators of the
-NXP P3H2x4x multi-function I3C Hub device, registering them through the
-regulator framework via MFD.
+sorry, typo here, it should be Maili as title describe.
 
-[ ... ]
+Thanks,
+Jingyi
 
-> diff --git a/drivers/regulator/p3h2840_i3c_hub_regulator.c b/drivers/regu=
-lator/p3h2840_i3c_hub_regulator.c
-> new file mode 100644
-> index 0000000000000..4f2514d4d928e
-> --- /dev/null
-> +++ b/drivers/regulator/p3h2840_i3c_hub_regulator.c
+>> imem and SCM.
+>>
+>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> ---
+>> Chunkai Deng (1):
+>>        dt-bindings: soc: qcom,aoss-qmp: Document the Maili AOSS side channel
+>>
+>> Jingyi Wang (2):
+>>        dt-bindings: firmware: qcom,scm: Document SCM on Maili SOC
+>>        dt-bindings: sram: Document qcom,maili-imem compatible
+>>
+>>   Documentation/devicetree/bindings/firmware/qcom,scm.yaml      | 2 ++
+>>   Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
+>>   Documentation/devicetree/bindings/sram/sram.yaml              | 1 +
+>>   3 files changed, 4 insertions(+)
+>> ---
+>> base-commit: c1ecb239fa3456529a32255359fc78b69eb9d847
+>> change-id: 20260524-maili-soc-binding-2a2287fce578
+>>
+>> Best regards,
+>> -- 
+>> Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>
+> 
 
-[ ... ]
-
-> +static void p3h2x4x_reg_guard_enter(struct regulator_dev *rdev,
-> +				    struct p3h2x4x_reg_state *state)
-> +{
-> +	state->restore =3D false;
-> +
-> +	if (regmap_read(rdev->regmap,
-> +			P3H2X4X_DEV_REG_PROTECTION_CODE,
-> +			&state->orig))
-> +		return;
-> +
-> +	if (state->orig !=3D P3H2X4X_REGISTERS_UNLOCK_CODE) {
-> +		regmap_write(rdev->regmap,
-> +			     P3H2X4X_DEV_REG_PROTECTION_CODE,
-> +			     P3H2X4X_REGISTERS_UNLOCK_CODE);
-
-[Severity: Medium]
-Does this silently ignore hardware I/O errors?
-
-If the I3C/I2C write to unlock the hardware fails, the hardware remains
-locked. Because guard constructors cannot propagate errors, the caller will
-proceed to modify the regulator configuration. The regmap_update_bits() call
-will succeed in software but fail in hardware, causing the kernel's tracking
-of the regulator's state to diverge from the physical hardware.
-
-> +		state->restore =3D true;
-> +	}
-> +}
-> +
-> +static void p3h2x4x_reg_guard_exit(struct regulator_dev *rdev,
-> +				   struct p3h2x4x_reg_state *state)
-> +{
-> +	if (state->restore)
-> +		regmap_write(rdev->regmap,
-> +			     P3H2X4X_DEV_REG_PROTECTION_CODE,
-> +			     state->orig);
-> +}
-> +
-> +DEFINE_LOCK_GUARD_1(p3h2x4x_reg, struct regulator_dev,
-> +		    p3h2x4x_reg_guard_enter(_T->lock, &_T->state),
-> +		    p3h2x4x_reg_guard_exit(_T->lock, &_T->state),
-> +		    struct p3h2x4x_reg_state state);
-
-[Severity: High]
-Can this cause a race condition between different regulators on the same ch=
-ip?
-
-The p3h2x4x_reg guard is instantiated per-regulator, and the regulator
-subsystem only holds a per-regulator lock. If Thread A unlocks the hardware
-for ldo-cp0, and Thread B concurrently reads the protection register for
-ldo-cp1, Thread B may observe the hardware as already unlocked and skip its
-own unlock/restore sequence.
-
-When Thread A completes, it relocks the device. Thread B's subsequent
-register update will then be written to a locked hardware state, causing
-the write to be discarded and leading to silent state mismatch. Should a
-shared lock from the MFD parent be used to ensure atomicity?
-
-> +
-> +static int p3h2x4x_regulator_enable(struct regulator_dev *rdev)
-> +{
-> +	guard(p3h2x4x_reg)(rdev);
-> +	return regulator_enable_regmap(rdev);
-> +}
-
-[ ... ]
-
-> +static struct regulator_desc p3h2x4x_regulators[] =3D {
-> +	{
-> +		.name =3D "ldo-cp0",
-> +		.of_match =3D of_match_ptr("ldo-cp0"),
-> +		.regulators_node =3D of_match_ptr("regulators"),
-
-[Severity: Low]
-Is it safe to use of_match_ptr() on string literals here?
-
-On non-OF builds, of_match_ptr() evaluates to NULL. This breaks regulator
-matching for systems that use non-OF firmware interfaces (like ACPI PRP0001
-or swnodes) which still rely on these strings to be present. Applying it
-to string literals doesn't save any memory since the strings are already
-compiled in for the name field.
-
-> +		.volt_table =3D p3h2x4x_voltage_table,
-> +		.n_voltages =3D ARRAY_SIZE(p3h2x4x_voltage_table),
-> +		.ops =3D &p3h2x4x_ldo_ops,
-
-[ ... ]
-
-> +static struct platform_driver p3h2x4x_regulator_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "p3h2x4x-regulator",
-> +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +	.probe =3D p3h2x4x_regulator_probe,
-> +};
-> +module_platform_driver(p3h2x4x_regulator_driver);
-> +
-> +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
-> +MODULE_AUTHOR("Vikash Bansal <vikash.bansal@nxp.com>");
-> +MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
-> +MODULE_DESCRIPTION("NXP P3H2X4X I3C HUB Regulator driver");
-> +MODULE_LICENSE("GPL");
-
-[Severity: Medium]
-Does this prevent automatic module loading?
-
-The driver registers as an MFD child device using a platform driver named
-"p3h2x4x-regulator". Because it relies on the platform bus matching by name
-and does not provide an id_table or of_match_table, the MFD core will emit
-a uevent with MODALIAS=3Dplatform:p3h2x4x-regulator. Without a corresponding
-MODULE_ALIAS declaration, udev cannot map the uevent to the kernel module.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525064209.2263=
-045-1-lakshay.piplani@nxp.com?part=3D6
 
