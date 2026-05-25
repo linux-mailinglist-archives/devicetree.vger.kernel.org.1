@@ -1,229 +1,312 @@
-Return-Path: <devicetree+bounces-302446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KXdBQD6E2puHwcAu9opvQ
-	(envelope-from <devicetree+bounces-302446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:28:00 +0200
+	id +EC5JsH8E2qDIQcAu9opvQ
+	(envelope-from <devicetree+bounces-302448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:39:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C1B5C71F3
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:27:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECE5B5C7378
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 95DB03007968
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 07:27:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 14C863007AEC
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 07:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237FB26B764;
-	Mon, 25 May 2026 07:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E2F83D1711;
+	Mon, 25 May 2026 07:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tt9mI5Jf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldSyZB9D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1F326E6F3
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 07:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A18D6FC3
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 07:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779694054; cv=none; b=gj7LmmZ7lPCdvlYedULv004vjPGsJUmDkGk5E6MHi3zKs7a2pQUrhs81Mf1yt49mNMCZ0LyOMCK1iYp2wzUIIdCqJM20vKRchWgk7AdQrTVALZPyS/ai3X7uGYsx8tnFqHvR0iksCwFBwOZD8b2yXP0P3Ecpv/96eR+jxWhJ6A0=
+	t=1779694782; cv=none; b=mdTv0SkGuYhZ8U6/7jlMz7z1SHwUG9xedsr8mNuFZLt7UjkpQwlK8LFftAskpSsl7Ohrnnh2fiEhXK7of2L+srw4j1+Cah84bAgwXlkJFv1EgHOPpBh5/tGw4eHaXyOA+VgDAi2WU9fvaegRcNDqbs3cwW2QWrQk+2+lYxtk12k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779694054; c=relaxed/simple;
-	bh=fbCZWrrnxyX3UOpy1kS0k0np+WQRfl9quRkwn+yl9JI=;
+	s=arc-20240116; t=1779694782; c=relaxed/simple;
+	bh=Ml83agGrwbmcx9wuLB8ydnvu7kuIR1kaEAjSbP4D+Dk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=YmkjvoAWv621tbiYc7nyMgpIKoMea97XH2SJrZojnjN+Oz+t+UOptOCaLYqMlezJv5eFuxFeXjmTlxSsVUlfFLUo9oceRjGNFNNWsL9LawkjzhjXZRUAFi/uIBqhM2X7OqERHKjqqmCIBWMwSjE0KVEaDbGkUL3sf4nOWZygd2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tt9mI5Jf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 566861F000E9;
-	Mon, 25 May 2026 07:27:32 +0000 (UTC)
+	 Message-Id; b=Yr5dkskm/2PjuaH9H7WNSize8ypU6/lRmq03A1YsGvqGPH/+lQbfcHxLWPU0uNuhD/JI7xPEiRjIzXS0HBfBo89ZsEKFxVw/orqcVx+njNjfjPyZtdSiFHL7okgcYkTNNYF8rfL7jUjyFTWoJTrYT2idfMmMzPR5TVcBzT363aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldSyZB9D; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EC7E1F000E9;
+	Mon, 25 May 2026 07:39:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779694052;
-	bh=qvkqjgMBFw6RMy6l8MpL1fw0aEtgmtCmBLx7d6gc4cw=;
+	s=k20260515; t=1779694780;
+	bh=NdjexsjUL8poX7zAsA9UTVY8nB++iAxSgElIGvgMMf0=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Tt9mI5JfHTghJS0vE5XRvC8+wTiPA4240qUy9PehZ7p90vQoaeARDuVQ/vFwXyEW/
-	 StdTNTr5IoOyyv8D96Kx+FAVDhB82PCQfF3baYp3tCBY0F+IKVEBKEZv8oHZ2swuZh
-	 lT+kEl6xzaXniIX45a/cg08zS52Xm8GDifL2pfcGJsM7nEqYBuc7yYX+Jop5MxOeKL
-	 B/Fv/FGKnXIqJbZKCsO+3/f9o781kc1Fgp6xeSNhVTzS3Myi6J5ZLlGchifHHNFKbs
-	 8CzxC6aQkgGNEnwOcZY6QMLEnXJgsYbr/t7mfJJUbR4OOZU4XaX2o6Sv/xu+rEdVoH
-	 JpEZjrFIIdPtg==
+	b=ldSyZB9DC6kouJMQDIfZg1ubLOWyplPNKp3kgJk4KkLELerU/xFPlKgiPqQO2DHmP
+	 KqNR9cKtUDASdmpaPRzgP2wrzWEdWHmaw8HFmYEI1Qs7DX20DMXigzDQAO3kRZ04If
+	 cFmNixFVpFxpcLmDfOz/yBLuGb698Sy/usdRBfGrtcdI31a1SZ/+SFM0TymYyXZ0uu
+	 tL745+NPhNQGCfpm6H5/rALj9wg7mTbhGTTXMlKtu9KKZpehSQyMkN+jSayQyFWBKJ
+	 mfqr28Sbikb4mNsf19ycodsRuck2SmwEhRfH34oDJLXpw34izZVVfBeshQ1luTTaxp
+	 K5Sm044eFle/A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] spi: tegra210-quad: Allocate DMA memory for DMA
- engine
+Subject: Re: [PATCH v10 2/9] i3c: master: Expose the APIs to support I3C hub
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Aaron Kling via B4 Relay" <devnull+webgeek1234.gmail.com@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260525-tegra194-qspi-iommu-v2-1-a11c53f804b2@gmail.com>
-References: <20260525-tegra194-qspi-iommu-v2-1-a11c53f804b2@gmail.com>
+To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260525064209.2263045-3-lakshay.piplani@nxp.com>
+References: <20260525064209.2263045-3-lakshay.piplani@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 07:27:31 +0000
-Message-Id: <20260525072732.566861F000E9@smtp.kernel.org>
+Date: Mon, 25 May 2026 07:39:39 +0000
+Message-Id: <20260525073940.9EC7E1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302446-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302448-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,webgeek1234.gmail.com,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 90C1B5C71F3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: ECE5B5C7378
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
 
+New issues:
+- [Medium] `i3c_master_reattach_i3c_dev_locked()` does not validate slot av=
+ailability despite documentation claiming it returns `-EBUSY`.
+
 Pre-existing issues:
-- [High] Unconditional DMA unmapping in tegra_qspi_dma_unmap_xfer() causes =
-invalid unmaps for unpacked transfers.
-- [High] The error path in tegra_qspi_dma_map_xfer() unmaps tx_dma without =
-verifying if tx_buf was provided.
-- [High] Aligning the DMA transfer length up to a multiple of 4 bytes can c=
-ause the DMA engine to write out of bounds.
-- [High] DMA mappings are leaked when the transfer times out or when DMA se=
-tup fails.
+- [High] `i3c_master_reattach_i3c_dev_locked` corrupts the bus address stat=
+e if the reattach operation fails.
+- [High] Missing synchronization and improper error handling in `i3c_dev_di=
+sable_ibi_locked` and `i3c_dev_free_ibi_locked` lead to Use-After-Free.
+- [High] Missing memory barrier between `reinit_completion()` and `atomic_r=
+ead()` can lead to a deadlock in `i3c_dev_disable_ibi_locked`.
 --
 
-commit 78250c2468331b7f824d5bbb2690d151a21edc13
-Author: Aaron Kling <webgeek1234@gmail.com>
+commit 9189e89cd793462892bddcec9432ec1ed64052bf
+Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-spi: tegra210-quad: Allocate DMA memory for DMA engine
+i3c: master: Expose the APIs to support I3C hub
 
-When the SPI controllers are running in DMA mode, it is the DMA engine
-that performs the memory accesses rather than the SPI controller. Pass
-the DMA engine's struct device pointer to the DMA API to make sure the
-correct DMA operations are used.
+This commit exposes several internal static I3C functions as public APIs
+to support a new I3C hub driver. It adds EXPORT_SYMBOL_GPL and kernel-doc
+comments for functions handling IBI operations and device reattachment.
 
-> diff --git a/drivers/spi/spi-tegra210-quad.c b/drivers/spi/spi-tegra210-q=
-uad.c
-> index db28dd556484b..588a929a97850 100644
-> --- a/drivers/spi/spi-tegra210-quad.c
-> +++ b/drivers/spi/spi-tegra210-quad.c
+> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+> index c45b450af319d..ec3547f75469e 100644
+> --- a/drivers/i3c/master.c
+> +++ b/drivers/i3c/master.c
+[ ... ]
+> -static int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
+> -					      u8 old_dyn_addr)
+> +/**
+> + * i3c_master_reattach_i3c_dev_locked() - reattach an I3C device with a =
+new address
+> + * @dev: I3C device descriptor to reattach
+> + * @old_dyn_addr: previous dynamic address of the device
+> + *
+> + * This function reattaches an existing I3C device to the bus when its d=
+ynamic
+> + * address has changed. It updates the bus address slot status according=
+ly:
+> + * - Marks the new dynamic address as occupied by an I3C device.
+> + * - Frees the old dynamic address slot if applicable.
+> + *
+> + * This function must be called with the bus lock held in write mode.
+> + *
+> + * Return: 0 on success, or a negative error code if reattachment fails
+> + *         (e.g. -EBUSY if the new address slot is not free).
+> + */
+> +int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
+> +				       u8 old_dyn_addr)
+>  {
+>  	struct i3c_master_controller *master =3D i3c_dev_get_master(dev);
+>  	int ret;
+
+[Severity: Medium]
+The kernel-doc mentions returning -EBUSY if the new address slot is not fre=
+e.
+Does the implementation actually check this?
+
+It appears i3c_bus_set_addr_slot_status() is called unconditionally,
+overwriting the slot status without validating if it was previously occupie=
+d.
+
+Since external driver authors may rely on this documented contract, could t=
+his
+lead to masking conflicts if they omit their own slot availability checks?
 
 [ ... ]
-
-> @@ -574,15 +576,15 @@ static int tegra_qspi_dma_map_xfer(struct tegra_qsp=
-i *tqspi, struct spi_transfer
->  	len =3D DIV_ROUND_UP(tqspi->curr_dma_words * tqspi->bytes_per_word, 4) =
-* 4;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but could aligning this length up
-to a multiple of 4 bytes cause the DMA engine to write out of bounds?
-
-If the client requested a transfer length that is not a multiple of 4 bytes,
-the DMA engine will write up to 3 bytes past the end of the client's buffer.
-
-If the buffer lacks sufficient alignment padding, could this cause memory
-corruption?
-
+> @@ -1677,6 +1692,7 @@ static int i3c_master_reattach_i3c_dev_locked(struc=
+t i3c_dev_desc *dev,
 > =20
->  	if (t->tx_buf) {
-> -		t->tx_dma =3D dma_map_single(tqspi->dev, (void *)tx_buf, len, DMA_TO_D=
-EVICE);
-> -		if (dma_mapping_error(tqspi->dev, t->tx_dma))
-> +		t->tx_dma =3D dma_map_single(tqspi->tx_dma_dev, (void *)tx_buf, len, D=
-MA_TO_DEVICE);
-> +		if (dma_mapping_error(tqspi->tx_dma_dev, t->tx_dma))
->  			return -ENOMEM;
->  	}
-> =20
->  	if (t->rx_buf) {
-> -		t->rx_dma =3D dma_map_single(tqspi->dev, (void *)rx_buf, len, DMA_FROM=
-_DEVICE);
-> -		if (dma_mapping_error(tqspi->dev, t->rx_dma)) {
-> -			dma_unmap_single(tqspi->dev, t->tx_dma, len, DMA_TO_DEVICE);
-> +		t->rx_dma =3D dma_map_single(tqspi->rx_dma_dev, (void *)rx_buf, len, D=
-MA_FROM_DEVICE);
-> +		if (dma_mapping_error(tqspi->rx_dma_dev, t->rx_dma)) {
-> +			dma_unmap_single(tqspi->tx_dma_dev, t->tx_dma, len, DMA_TO_DEVICE);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this error path safely
-unmap tx_dma?
-
-If t->tx_buf is NULL during a half-duplex RX-only transfer, t->tx_dma is
-never mapped.  If the rx_dma mapping then fails, we will attempt to unmap an
-uninitialized DMA address here.
-
-Could this corrupt the IOMMU state and trigger faults?
-
->  			return -ENOMEM;
->  		}
->  	}
-> @@ -597,9 +599,9 @@ static void tegra_qspi_dma_unmap_xfer(struct tegra_qs=
-pi *tqspi, struct spi_trans
->  	len =3D DIV_ROUND_UP(tqspi->curr_dma_words * tqspi->bytes_per_word, 4) =
-* 4;
-> =20
->  	if (t->tx_buf)
-> -		dma_unmap_single(tqspi->dev, t->tx_dma, len, DMA_TO_DEVICE);
-> +		dma_unmap_single(tqspi->tx_dma_dev, t->tx_dma, len, DMA_TO_DEVICE);
->  	if (t->rx_buf)
-> -		dma_unmap_single(tqspi->dev, t->rx_dma, len, DMA_FROM_DEVICE);
-> +		dma_unmap_single(tqspi->rx_dma_dev, t->rx_dma, len, DMA_FROM_DEVICE);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but can this cause invalid DMA
-unmaps for unpacked transfers?
-
-For unpacked transfers, tegra_qspi_start_dma_based_transfer() skips mapping
-client buffers and uses a pre-allocated bounce buffer instead.
-
-Since this function is called unconditionally and only checks for the prese=
-nce
-of t->tx_buf and t->rx_buf, it will call dma_unmap_single() on the
-uninitialized t->tx_dma and t->rx_dma fields when tqspi->is_packed is false.
-
+>  	return 0;
 >  }
-> =20
->  static int tegra_qspi_start_dma_based_transfer(struct tegra_qspi *tqspi,=
- struct spi_transfer *t)
+> +EXPORT_SYMBOL_GPL(i3c_master_reattach_i3c_dev_locked);
 
 [Severity: High]
-This isn't a bug introduced by this patch, but are DMA mappings leaked when
-the transfer times out or when DMA setup fails?
+This is a pre-existing issue, but exporting this function exposes an error
+handling path that can corrupt the bus address state. If the hardware reatt=
+ach
+callback fails:
 
-When tegra_qspi_dma_map_xfer() dynamically maps client buffers, if subseque=
-nt
-steps like dmaengine_slave_config() fail in this function, the driver retur=
-ns
-immediately without unmapping the buffers.
+i3c_master_reattach_i3c_dev_locked() {
+    ...
+    if (master->ops->reattach_i3c_dev) {
+        ret =3D master->ops->reattach_i3c_dev(dev, old_dyn_addr);
+        if (ret) {
+            i3c_master_put_i3c_addrs(dev);
+            return ret;
+        }
+    ...
+}
 
-Additionally, if the DMA transfer times out in
-tegra_qspi_transfer_one_message(), it jumps to the exit label and returns
-without calling tegra_qspi_dma_unmap_xfer().
+Calling i3c_master_put_i3c_addrs() marks the device's dynamic and static
+address slots as I3C_ADDR_SLOT_FREE. However, the device is not logically
+detached, remains in the bus list, and retains its dyn_addr.
 
-Could this permanently leak mapped DMA addresses?
+Since the bus allocator now views the slot as free, can subsequent dynamic
+address assignments or hot-joins assign this address to another device, lea=
+ding
+to address collisions on the bus?
+
+[ ... ]
+> +/**
+> + * i3c_dev_disable_ibi_locked() - Disable IBIs coming from a specific de=
+vice
+> + * @dev: device on which IBIs should be disabled
+> + *
+> + * This function disable IBIs coming from a specific device and wait for
+> + * all pending IBIs to be processed.
+> + *
+> + * Context: Must be called with mutex_lock(&dev->desc->ibi_lock) held.
+> + * Return: 0 in case of success, a negative error core otherwise.
+> + */
+>  int i3c_dev_disable_ibi_locked(struct i3c_dev_desc *dev)
+>  {
+>  	struct i3c_master_controller *master;
+> @@ -3216,7 +3242,22 @@ int i3c_dev_disable_ibi_locked(struct i3c_dev_desc=
+ *dev)
+> =20
+>  	return 0;
+>  }
+> +EXPORT_SYMBOL_GPL(i3c_dev_disable_ibi_locked);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does the lack of a memory
+barrier here risk a deadlock?
+
+i3c_dev_disable_ibi_locked() {
+    ...
+    reinit_completion(&dev->ibi->all_ibis_handled);
+    if (atomic_read(&dev->ibi->pending_ibis))
+        wait_for_completion(&dev->ibi->all_ibis_handled);
+    ...
+}
+
+Because there is no full memory barrier between writing the completion stat=
+e in
+reinit_completion() and reading the atomic counter, could store-load reorde=
+ring
+occur?
+
+If a concurrent IBI workqueue handler decrements pending_ibis to 0 and calls
+complete() before the completion reset is globally visible, the
+wait_for_completion() call would block indefinitely.
+
+[Severity: High]
+Also a pre-existing issue, but does this lack synchronization with in-flight
+interrupts?
+
+If an IRQ handler is executing on another CPU right before
+atomic_inc(&dev->ibi->pending_ibis) is called, i3c_dev_disable_ibi_locked()
+could read pending_ibis as 0 and return early.
+
+If i3c_dev_free_ibi_locked() is subsequently called to free dev->ibi, would=
+ the
+delayed IRQ handler then access freed memory?
+
+[ ... ]
+> +/**
+> + * i3c_dev_free_ibi_locked() - Free all resources needed for IBI handling
+> + * @dev: device on which you want to release IBI resources
+> + *
+> + * This function is responsible for de-allocating resources previously
+> + * allocated by i3c_device_request_ibi(). It should be called after disa=
+bling
+> + * IBIs with i3c_device_disable_ibi().
+> + *
+> + * Context: Must be called with mutex_lock(&dev->desc->ibi_lock) held.
+> + */
+>  void i3c_dev_free_ibi_locked(struct i3c_dev_desc *dev)
+>  {
+>  	struct i3c_master_controller *master =3D i3c_dev_get_master(dev);
+> @@ -3301,6 +3366,7 @@ void i3c_dev_free_ibi_locked(struct i3c_dev_desc *d=
+ev)
+>  	kfree(dev->ibi);
+>  	dev->ibi =3D NULL;
+>  }
+> +EXPORT_SYMBOL_GPL(i3c_dev_free_ibi_locked);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but exporting these APIs highlig=
+hts
+a potential use-after-free vector.
+
+i3c_dev_free_ibi_locked() {
+    ...
+    if (dev->ibi->enabled) {
+        ...
+        ret =3D i3c_dev_disable_ibi_locked(dev);
+        ...
+        if (ret)
+            dev_err(&master->dev, "Failed to disable IBI before freeing\n");
+    }
+    ...
+    kfree(dev->ibi);
+}
+
+If i3c_dev_disable_ibi_locked() fails to disable hardware IBIs, this functi=
+on
+logs an error but proceeds to call kfree(dev->ibi) and destroy the workqueu=
+e.
+
+Since the hardware might still be enabled and firing interrupts, won't the
+master's IRQ handler attempt to access the freed dev->ibi when it receives =
+the
+next interrupt?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525-tegra194-q=
-spi-iommu-v2-0-a11c53f804b2@gmail.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525064209.2263=
+045-1-lakshay.piplani@nxp.com?part=3D2
 
