@@ -1,517 +1,344 @@
-Return-Path: <devicetree+bounces-302736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302738-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gH1iIp9OFGqnMQcAu9opvQ
-	(envelope-from <devicetree+bounces-302736-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 15:29:03 +0200
+	id 8HurGoNQFGryMQcAu9opvQ
+	(envelope-from <devicetree+bounces-302738-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 15:37:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBAC5CB1D7
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 15:29:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01D395CB3F4
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 15:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DEDF13004045
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 13:28:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E41CB3025D12
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 13:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DA8384CE2;
-	Mon, 25 May 2026 13:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFF4385D9D;
+	Mon, 25 May 2026 13:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ec2iiQ5j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QSVSSdZX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60ADD19F12D
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 13:28:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862453859E6
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 13:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779715737; cv=none; b=jroQ8pfWvT74c7uROD+H0Y+OEpAPsc4BYivSAH+AoReiiCdWLQvvA+zXbgIA4w7QEEuY8fknuRONpaOXx8nT+9aJPBiXVkR9PTAgL/zB6Padf7iAdMV3rhsmnQ3JsTRzdH9OC+Q3bDxrd4Z5rfh05aYVqhqb2/tkjAMDOnjxrVg=
+	t=1779716038; cv=none; b=W+t/AGBgDrzp3u/OFub/jqrv/KYnpMJIxCcxJqDomYgIQhoV3Gft9gtTv3CnWSpyiv4UPRmI0C1M8Tpi+dIxPv26MWSerqaGw1z659d2FZfnsmQ+arBmriYb+ODtUnX3WpAYl3AQUplqk1iBKkPyo7P0u6PO76EK774GwtOa07Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779715737; c=relaxed/simple;
-	bh=4Idw6ett7Q+VkeRrFKCgv18sDv/49oC59pv/6RHpw1s=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=l/8sw8+QlH6fP+C13rucTXX0jpVCTdBZ8nRL+VXEB90mpGBJD9T3mCDpnunlJjx1VzgXDWqQjuLkm6LfDoD4DakzqHbj+cM0ozkixjmucdTL+Iazshk/nBrDTl5uDXA4xF6JnbjG/UuX6iXTxhnHyX7uCeMHcxIZMqTvl2Noldc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ec2iiQ5j; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCD411F000E9;
-	Mon, 25 May 2026 13:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779715736;
-	bh=SwlGF6gPE1Zk2q86LirVTus6MNstqkwv2RwbP3+btGY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ec2iiQ5jHazJQ9Tsq9FS3RE5qGwLudiHz8kCMS+fV1rc+6sBimhEtWK2t2yCfSZ+d
-	 N91h++y1km/FHZP8cH7AebR3mLdKx0UukwlbX1dg6f0kZaabQ95icSn4R7kmHHJU5t
-	 ZEl+XMYOOJ5/KvRIueEIWH5XCfy6etECSwcSJ+X4c+jwC1X0lTbWg6Ib2WOKcGjmGB
-	 D3NcKVFskplyxl+X9aXb+XjMEoG32lV9QuZocQBxgzxE553pvXgtOATCI0WcLjjgjB
-	 o4IHavnv44LF2ozht1oJSOl3UmYw5ineDKD5sqAbK+7lvLkyibiHNlqhrZHAPFzhXB
-	 s7gRpYkNiITdw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] staging: i3c: add Realtek RTS490x I3C HUB driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: zain_zhou@realsil.com.cn
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260525125128.297-2-zain_zhou@realsil.com.cn>
-References: <20260525125128.297-2-zain_zhou@realsil.com.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 13:28:55 +0000
-Message-Id: <20260525132855.DCD411F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779716038; c=relaxed/simple;
+	bh=E9mJ0ZSaqPkh3BkO8yS/DfFowBkoUmjAGTIbFIbX2Ws=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LuQfIgLCe/72JrRa/SGSTlblTaOeAVFp7C7sMZCLj4Ah0eJzMh0iAublLe+oOgonoIMF7cJejG9HMfTTzQqBSToiiHWyFogMthqBYvZAQuZul6EMrM997QZUYYcK1iEWlNORukfeQvt/YCPjW0grJfOPmbUw4pqu2gHErj2x9R4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QSVSSdZX; arc=none smtp.client-ip=74.125.82.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-1329fc4bf77so6961797c88.1
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2026 06:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779716036; x=1780320836; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WnFay5PIcb5rM2eujuo4gD1l7YH3IarEX6qo/MN+h1g=;
+        b=QSVSSdZXMpOZsTXzmtKO2u56khRZe839rkg5G7yxDItAWI7fd4pQ4MBH/3Xb5HRqLy
+         qt7u7hYFUOfV2r9J4VrnXyGI9quIsRyUi0+AKNHwoebSnnMBfu769e0vBkRWDBEKbR2N
+         KCH28frXR8RXjDNmo5IUviAHaQ6bUsWNalLVCplJPJACBNs/Ay5NxXLUeQtJmpgNsA4S
+         Q3GPugvDzdJwWBhaJ37m/1EhPAnaRs1ZCvlDI9USQlm8cudcUD1NL3EKJt7wU0yXMP8a
+         qp610N+8tFyF0SvD/iuFstEHBkGkvqeFeNmnYsPVB2bq5oQXffZxex/Cos5yTEDTcH2l
+         Lhsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779716036; x=1780320836;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WnFay5PIcb5rM2eujuo4gD1l7YH3IarEX6qo/MN+h1g=;
+        b=VSSsCjsnfbU1aKiJ4UhMfyDZHkDUsxpnhw91Y/wfS92kXfrxNK6f7V575LqGWTdO7d
+         nIfKGPNm4yx0f2isXQ7vXrqry2FC9fVZhlS+huo5PoJzhIfLtBPImuNKFmsoUKbUvr0D
+         IF4V3/j2DkQfdqzgXfKhjVxCUsEB2nRSuM1XD2qugVxvbhQrlvF//UuD7hypRiHlNKA2
+         zbLj9cUVfofBRu4dCG4W34HfCAfVFl3SBFLkEnXh682VU9g4sprZDxYmOEqexMZMQtKJ
+         ShwL/FUqaPSt2LJf5QCjz8J/xQLOvvBUEgF2bF2BKcVo+snFbT6wgrP9UjnYx4+Abjpf
+         Pm1g==
+X-Forwarded-Encrypted: i=1; AFNElJ8D8Wu+XjzBPq9uDySXwgHkhPU/KgvU38bgK4LvzX3uh5EXBmnBMYagom1BwSsNwksPjXD9lRI/dQ7I@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmwhyJvlYTiHPoKwzTJ10yTsrhTYckXoFo2Tp2zZ02P5f7+5z7
+	IlLfCNIEXDw3qzHAUajlTxIkZWHdM+50J0w2569gfobR4p6O/o1Sggsz
+X-Gm-Gg: Acq92OHiFUy4Ns7IrUzct94hlALo6dSr4fQSCcsYekJCbBRVut6ZRMo/2Js/YoapKaf
+	FQOTeVoSBnqhDWrNFnj2EFQuscq/gZx/Sipw5Fn70s/pFRlej6JPyzbE4CHaSC3NX9SAvwFIZoW
+	Th33WokAceWe4aI82DisOjaKdeMZ5UMi+GHOXld9RgGvWLa75wXSl05GDZbuJ/H3/d/X4c+HNMG
+	5Gk7fP2DlyMOWcOhzSuhwF3WCBS1xnm8Of/d/4Wu4/vHUQ3DRRo75kknHwSuZy59wDavHB3TxjL
+	8jMhNkWvOmjWcRf8rGiewRSBh7jkz4LvVYDCTCdUZrvp2/MeGGJ15sa+O88Ie++Gwm9pZdgo5x6
+	VGMAXUYJMx6jKAnHnbu5cRSEW4V3SQDVxNgtkJr4DopaMmOASaNEbmGzCG0is07JTCgYEawGBsU
+	dA1tZngHsuFG1D20k6ozlgmoS+F5gQfTCevJA6
+X-Received: by 2002:a05:7022:4393:b0:12a:949b:b9b with SMTP id a92af1059eb24-1365fb526d4mr5122952c88.23.1779716035456;
+        Mon, 25 May 2026 06:33:55 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-136b3706ad6sm3785990c88.13.2026.05.25.06.33.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 May 2026 06:33:54 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 25 May 2026 06:33:53 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 02/11] dt-bindings: hwmon: Add Apple System Management
+ Controller hwmon schema
+Message-ID: <2571c780-7bb7-4519-92bd-52b82ae6a965@roeck-us.net>
+References: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
+ <20251112-macsmc-subdevs-v5-2-728e4b91fe81@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251112-macsmc-subdevs-v5-2-728e4b91fe81@gmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302736-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302738-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[kernel.org,jannau.net,rosenzweig.io,gompa.dev,bootlin.com,suse.com,gmail.com,lwn.net,lists.linux.dev,lists.infradead.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-0.999];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,realsil.com.cn:email,smtp.kernel.org:mid,sashiko.dev:url,0.0.0.0:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 7FBAC5CB1D7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,roeck-us.net:mid,roeck-us.net:email,gompa.dev:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 01D395CB3F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 13 potential issue=
-(s) to consider:
-- [High] OF node references are not properly managed during DT iteration, c=
-ausing memory leaks and dangling pointers.
-- [High] Probe error paths fail to unregister successfully added I2C adapte=
-rs, leaving dangling pointers to freed memory.
-- [High] Missing `reinit_completion()` before starting SMBus transactions c=
-auses premature completion following a timeout.
-- [High] The driver temporarily overwrites the hub device's `of_node` durin=
-g logical bus registration without restoring it.
-- [High] Incorrect teardown order in `i3c_hub_remove` allows delayed works =
-to execute after resources are destroyed.
-- [High] Concurrent transfers corrupt the shared device descriptor's master=
- pointer and cause bus faults.
-- [High] Dynamic Address Assignment (DAA) fails to open target ports, preve=
-nting devices from receiving addresses.
-- [High] GPIO IRQ callbacks use sleeping regmap operations while the IRQ co=
-re holds raw spinlocks.
-- [High] Dropping a mutex before calling an I2C slave event callback allows=
- concurrent unregistration and freeing of the target driver.
-- [High] Parsing the I3C port ID using `%i` allows negative indices, bypass=
-ing bounds checks.
-- [Medium] SMBus target logic incorrectly drops 0-byte writes (e.g., SMBus =
-Quick Commands) instead of notifying the I2C slave backend.
-- [Medium] Return value of `regmap_write` is ignored before reading buffer =
-length.
-- [Medium] Early returns in `i3c_hub_delayed_work` error paths leak dynamic=
-ally registered logical buses and abort partial initialization.
---
+On Wed, Nov 12, 2025 at 09:16:48PM +1000, James Calligeros wrote:
+> Apple Silicon devices integrate a vast array of sensors, monitoring
+> current, power, temperature, and voltage across almost every part of
+> the system. The sensors themselves are all connected to the System
+> Management Controller (SMC). The SMC firmware exposes the data
+> reported by these sensors via its standard FourCC-based key-value
+> API. The SMC is also responsible for monitoring and controlling any
+> fans connected to the system, exposing them in the same way.
+> 
+> For reasons known only to Apple, each device exposes its sensors with
+> an almost totally unique set of keys. This is true even for devices
+> which share an SoC. An M1 Mac mini, for example, will report its core
+> temperatures on different keys to an M1 MacBook Pro. Worse still, the
+> SMC does not provide a way to enumerate the available keys at runtime,
+> nor do the keys follow any sort of reasonable or consistent naming
+> rules that could be used to deduce their purpose. We must therefore
+> know which keys are present on any given device, and which function
+> they serve, ahead of time.
+> 
+> Add a schema so that we can describe the available sensors for a given
+> Apple Silicon device in the Devicetree.
+> 
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> ---
+>  .../bindings/hwmon/apple,smc-hwmon.yaml  | 86 +++++++++++++++++++++++++
+>  .../bindings/mfd/apple,smc.yaml          | 36 +++++++++++
 
-commit 9f58d1e76a5b04c7b2e855b10a1eea1283c0e9ee
-Author: Yin Zhou <zain_zhou@realsil.com.cn>
+I see that the rest of this series is going to be applied. This patch
+touches bindings in mfd, which I can not apply.
 
-staging: i3c: add Realtek RTS490x I3C HUB driver
+With the assumption that the patch will be applied through some other tree,
+presumably mfd:
 
-Add driver for Realtek RTS490x series I3C HUB devices. It supports DT-based
-configuration, LDO and pull-up management, logical I3C bus registration,
-SMBus agent functionality, and GPIO expansion.
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-> diff --git a/drivers/staging/rts490x/rts490xa-i3c-hub.c b/drivers/staging=
-/rts490x/rts490xa-i3c-hub.c
+Guenter
+
+>  MAINTAINERS                              |  1 +
+>  3 files changed, 123 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
 > new file mode 100644
-> index 0000000000000..fdfff5c6dff5d
+> index 000000000000..2eec317bc4b3
 > --- /dev/null
-> +++ b/drivers/staging/rts490x/rts490xa-i3c-hub.c
-[ ... ]
-> @@ -354,12 +354,6 @@ static void i3c_hub_tp_of_get_setting(struct device =
-*dev,
->  		if (id >=3D priv->dev_info->n_ports) {
->  			dev_warn(dev,
->  				 "Invalid target port index found in DT: %i\n",
->  				 id);
->  			continue;
->  		}
-> =20
->  		priv->smbus_port_adapter[id].of_node =3D tp_node;
-
-[Severity: High]
-Could this lead to dangling pointers? The iterator loop drops the reference
-to the node when it advances, leaving priv->smbus_port_adapter[id].of_node
-pointing to freed memory since of_node_get() isn't called.
-
-[ ... ]
-> @@ -818,12 +818,7 @@ static void i3c_hub_of_get_conf_runtime(struct devic=
-e *dev,
->  	struct device_node *i3c_node;
->  	int i3c_id;
->  	u8 tp_mask;
-> =20
->  	for_each_available_child_of_node(node, i3c_node) {
->  		if (!i3c_node->full_name ||
->  		    (sscanf(i3c_node->full_name, "i3c%i@%hhx", &i3c_id,
->  			    &tp_mask) !=3D 2))
->  			continue;
-> =20
->  		if (i3c_id < priv->dev_info->n_ports) {
-
-[Severity: High]
-Could the use of %i allow negative values like "i3c-1@0" to be parsed?
-
-If i3c_id is negative, it gets promoted to an unsigned value in the bounds
-check (i3c_id < priv->dev_info->n_ports), allowing it to bypass the check
-and write out of bounds.
-
->  			priv->logical_bus[i3c_id].available =3D true;
->  			priv->logical_bus[i3c_id].of_node =3D i3c_node;
-
-[Severity: High]
-Is an of_node_get() missing here as well before saving i3c_node?
-
->  			priv->logical_bus[i3c_id].tp_map =3D tp_mask;
->  			priv->logical_bus[i3c_id].priv =3D priv;
->  			priv->logical_bus[i3c_id].tp_id =3D i3c_id;
->  		}
->  	}
->  }
-[ ... ]
-> @@ -861,15 +861,15 @@ static struct device_node *i3c_hub_get_dt_hub_node(=
-struct device_node *node,
-> =20
->  			if (!found_id) {
->  				/*
->  				 * Just keep reference to first HUB node with no ID in case no ID
->  				 * matching
->  				 */
->  				if (!hub_node_no_id &&
->  				    priv->hub_dt_sel_id =3D=3D -1 &&
->  				    priv->hub_dt_cp1_id =3D=3D -1)
->  					hub_node_no_id =3D hub_node;
->  			} else {
->  				return hub_node;
->  			}
->  		}
->  	}
-> =20
->  	return hub_node_no_id;
->  }
-
-[Severity: High]
-Can returning the node directly from the iterator cause a memory leak?
-
-Returning hub_node without releasing the reference held by the loop iterator
-appears to leak it. Conversely, if it returns hub_node_no_id, isn't that
-pointer already freed since the loop has advanced or completed?
-
-[ ... ]
-> @@ -1429,20 +1429,19 @@ static int i3c_hub_read_transaction_status(struct=
- i3c_hub *priv, u8 target_port,
->  					   u8 target_port_status, u32 data_len)
->  {
->  	unsigned int status_read;
->  	int ret;
->  	struct i2c_adapter_group *smbus =3D
->  		&priv->smbus_port_adapter[target_port];
->  	u32 smbus_clk =3D priv->settings.tp[target_port].clock_frequency / 1000;
->  	u8 status;
->  	u8 ret_code;
-> =20
->  	if (!priv->settings.tp[target_port].poll_interval_ms) {
->  		ret =3D wait_for_completion_timeout(&smbus->completion,
->  						  smbus->i2c.timeout);
-
-[Severity: High]
-Should there be a call to reinit_completion() before starting the SMBus
-transaction?
-
-If a timeout occurs, a delayed hardware interrupt might call complete()
-later. The next transaction would then return immediately from
-wait_for_completion_timeout() because the leftover completion count wasn't
-consumed.
-
-[ ... ]
-> @@ -1664,15 +1664,13 @@ static void i3c_hub_bus_cleanup(struct i3c_master=
-_controller *controller)
->  {
->  	controller->this =3D NULL;
->  }
-> =20
->  static int i3c_hub_attach_i3c_dev(struct i3c_dev_desc *dev)
-[ ... ]
-> @@ -1714,14 +1714,10 @@ static void i3c_hub_detach_i3c_dev(struct i3c_dev=
-_desc *dev)
->  static int i3c_hub_do_daa(struct i3c_master_controller *controller)
->  {
->  	struct i3c_master_controller *parent =3D
->  		parent_from_controller(controller);
->  	int ret;
-> =20
->  	down_write(&parent->bus.lock);
->  	ret =3D parent->ops->do_daa(parent);
->  	up_write(&parent->bus.lock);
->  	return ret;
->  }
-
-[Severity: High]
-Is this missing a call to i3c_hub_trans_pre_cb(bus) before doing DAA?
-
-Without opening the logical bus's target port beforehand, devices on that
-port wouldn't receive ENTDAA broadcasts or dynamic addresses.
-
-[ ... ]
-> @@ -1742,16 +1742,14 @@ static int i3c_hub_send_ccc_cmd(struct i3c_master=
-_controller *controller,
->  static int i3c_hub_priv_xfers(struct i3c_dev_desc *dev,
->  			      struct i3c_xfer *xfers, int nxfers,
->  			      enum i3c_xfer_mode mode)
->  {
->  	struct i3c_master_controller *parent =3D
->  		parent_controller_from_i3c_desc(dev);
->  	struct i3c_master_controller *orig_parent;
->  	struct logical_bus *bus =3D bus_from_i3c_desc(dev);
->  	int res;
-> =20
->  	i3c_hub_trans_pre_cb(bus);
->  	orig_parent =3D update_i3c_i2c_desc_parent(&dev->common, parent);
->  	down_read(&parent->bus.lock);
->  	res =3D parent->ops->i3c_xfers(dev, xfers, nxfers, mode);
->  	up_read(&parent->bus.lock);
->  	restore_i3c_i2c_desc_parent(&dev->common, orig_parent);
->  	i3c_hub_trans_post_cb(bus);
-> =20
->  	return res;
->  }
-
-[Severity: High]
-Could concurrent transfers to the same device cause data corruption and bus
-faults?
-
-Since update_i3c_i2c_desc_parent() modifies the shared desc->master without
-synchronization, and the I3C core holds the bus lock only as a reader,
-concurrent accesses might restore incorrect pointers.
-
-Additionally, if two threads communicate on the same port concurrently, won=
-'t
-the first thread to finish close the target port in i3c_hub_trans_post_cb
-while the second is still communicating?
-
-[ ... ]
-> @@ -2037,21 +2037,18 @@ static void i3c_hub_delayed_work(struct work_stru=
-ct *work)
->  	for (i =3D 0; i < priv->dev_info->n_ports; ++i) {
->  		bus =3D &priv->logical_bus[i];
->  		if (bus->available) {
->  			ret =3D regmap_update_bits(priv->regmap,
->  						 I3C_HUB_TP_NET_CON_CONF,
->  						 GENMASK(bus->tp_id, bus->tp_id),
->  						 bus->tp_map);
->  			if (ret) {
->  				dev_warn(dev,
->  					 "Failed to open Target Port(s)\n");
->  				return;
->  			}
-> =20
->  			dev->of_node =3D bus->of_node;
-
-[Severity: High]
-Does this permanently overwrite the physical hub device's dev->of_node
-pointer?
-
-By not restoring it after registration, it gets left pointing to its last
-processed child port, which might break subsequent DT lookups.
-
->  			ret =3D i3c_hub_logic_register(&bus->controller, dev);
->  			if (ret) {
->  				dev_warn(dev,
->  					 "Failed to register i3c controller - bus id:%i\n",
->  					 i);
->  				return;
->  			}
-
-[Severity: Medium]
-Will returning early here leak any logical buses that were successfully
-registered in previous loop iterations? The early return also aborts the DAA
-sequence and scheduling of the polling works, leaving the hub in a partially
-initialized state.
-
-[ ... ]
-> @@ -2091,18 +2091,18 @@ static int send_smbus_target_data_to_backend(stru=
-ct i2c_adapter_group *smbus,
->  					     u8 address, u8 *local_buffer,
->  					     u8 len)
->  {
->  #if IS_ENABLED(CONFIG_I2C_SLAVE)
->  	struct smbus_backend *backend;
->  	struct i2c_client *client;
->  	int i, ret;
->  	u8 tmp;
-> =20
->  	mutex_lock(&smbus->mutex);
-> =20
->  	list_for_each_entry(backend, &smbus->backend_entry, list) {
->  		client =3D backend->client;
->  		if (client->addr =3D=3D address >> 1) {
->  			mutex_unlock(&smbus->mutex);
->  			ret =3D i2c_slave_event(client, I2C_SLAVE_WRITE_REQUESTED,
->  					      &address);
-
-[Severity: High]
-Can dropping the mutex here lead to a use-after-free?
-
-This breaks synchronization with unreg_i2c_target(), allowing a target
-driver to concurrently unregister and free the backend structure while
-i2c_slave_event() is invoking the callback using the pointer derived from
-the freed backend.
-
-[ ... ]
-> @@ -2126,20 +2126,17 @@ static int read_smbus_target_buffer_page(struct i=
-2c_adapter_group *smbus,
->  					 u8 target_buffer_page, u8 *address,
->  					 u8 *local_buffer, u8 *len)
->  {
->  	struct i3c_hub *hub =3D smbus->priv;
->  	struct device *dev =3D i3cdev_to_dev(hub->i3cdev);
->  	u32 status;
->  	int ret;
-> =20
->  	mutex_lock(&hub->page_mutex);
->  	regmap_write(hub->regmap, I3C_HUB_PAGE_PTR, target_buffer_page);
-
-[Severity: Medium]
-Should the return value of regmap_write() be checked here? If this write
-fails, the subsequent reads will silently operate on whatever page was
-previously selected.
-
-> =20
->  	ret =3D regmap_read(hub->regmap, I3C_HUB_TARGET_BUFF_LENGTH, &status);
->  	if (ret)
->  		goto error;
-> =20
->  	*len =3D status - 1;
->  	if (!*len)
->  		goto error;
-
-[Severity: Medium]
-Will this incorrectly drop 0-byte writes, such as SMBus Quick Commands?
-
-For a quick command containing only the address byte, status is 1, making
-*len evaluate to 0. Jumping to error skips sending the event to the I2C
-slave backend.
-
-[ ... ]
-> @@ -2598,16 +2598,12 @@ static void i3c_hub_gpio_irq_mask(struct irq_data=
- *d)
->  {
->  	struct gpio_chip *gc =3D irq_data_get_irq_chip_data(d);
->  	struct i3c_hub *hub =3D gpiochip_get_data(gc);
->  	struct hub_gpio *gpio =3D &hub->gpio;
->  	u8 reg, hwirq =3D 0, mask =3D 0;
-> =20
->  	hwirq =3D irqd_to_hwirq(d);
-> =20
->  	reg =3D hwirq % GPIO_BANK_SZ ? I3C_HUB_TP_SDA_IN_DETECT_IBI_EN :
->  				     I3C_HUB_TP_SCL_IN_DETECT_IBI_EN;
->  	mask =3D BIT(gpio->tp[hwirq / GPIO_BANK_SZ]);
-> =20
->  	regmap_update_bits(hub->regmap, reg, mask, 0);
->  }
-
-[Severity: High]
-Does calling regmap_update_bits() here cause a "scheduling while atomic" BU=
-G?
-
-The generic IRQ subsystem holds the IRQ descriptor's raw spinlock while
-invoking the irq_mask/irq_unmask/irq_set_type callbacks, but regmap over I3C
-acquires a mutex and can sleep.
-
-[ ... ]
-> @@ -2880,14 +2880,14 @@ static int i3c_hub_probe(struct i3c_device *i3cde=
-v)
-> =20
->  	/* Register logic for native smbus ports */
->  	for (i =3D 0; i < priv->dev_info->n_ports; i++) {
->  		priv->smbus_port_adapter[i].used =3D 0;
->  		if (priv->settings.tp[i].mode =3D=3D I3C_HUB_DT_TP_MODE_SMBUS) {
->  			ret =3D i3c_hub_smbus_tp_algo(priv, i);
->  			if (ret)
->  				dev_warn(dev,
->  					 "Failed to setup SMBus adapter, port: %d\n",
->  					 i);
->  		}
->  	}
-[ ... ]
->  	/* IBI */
->  	ibireq.handler =3D i3c_hub_ibi_handler;
->  	ibireq.max_payload_len =3D IBI_MAX_PAYLOAD_LEN;
->  	ibireq.num_slots =3D IBI_SLOT_NUMS;
-> =20
->  	ret =3D i3c_device_request_ibi(i3cdev, &ibireq);
->  	if (ret) {
->  		dev_err(dev, "Failed to requeset ibi!\n");
->  		goto error;
->  	}
-
-[Severity: High]
-If an error occurs after registering the SMBus adapters, does jumping to the
-error labels bypass unregistering the I2C adapters?
-
-Since priv is managed by devm_kzalloc and gets freed when probe fails,
-wouldn't the I2C subsystem retain references to freed memory?
-
-[ ... ]
-> @@ -2965,11 +2965,11 @@ static void i3c_hub_remove(struct i3c_device *i3c=
-dev)
->  {
->  	struct i3c_hub *priv =3D i3cdev_get_drvdata(i3cdev);
->  	int i;
-> =20
->  	i3c_device_disable_ibi(i3cdev);
->  	i3c_device_free_ibi(i3cdev);
-> =20
->  	for (i =3D 0; i < priv->dev_info->n_ports; i++) {
->  		if (priv->smbus_port_adapter[i].used) {
->  			cancel_delayed_work_sync(&priv->smbus_port_adapter[i].delayed_work_po=
-lling);
->  			i2c_del_adapter(&priv->smbus_port_adapter[i].i2c);
->  		}
-> =20
->  		if (priv->logical_bus[i].registered)
->  			i3c_master_unregister(&priv->logical_bus[i].controller);
->  	}
-> =20
->  	cancel_delayed_work_sync(&priv->delayed_work);
-
-[Severity: High]
-Is this teardown order safe?
-
-By canceling priv->delayed_work after tearing down the polling works and
-logical buses, if priv->delayed_work runs concurrently, it could schedule
-new polling works or register logical buses right before the device is
-removed, leading to resource leaks or use-after-free conditions.
-
->  	debugfs_remove_recursive(priv->debug_dir);
->  }
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525125128.297-=
-1-zain_zhou@realsil.com.cn?part=3D2
+> +++ b/Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/apple,smc-hwmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SMC Hardware Monitoring
+> +
+> +description:
+> +  Apple's System Management Controller (SMC) exposes a vast array of
+> +  hardware monitoring sensors, including temperature probes, current and
+> +  voltage sense, power meters, and fan speeds. It also provides endpoints
+> +  to manually control the speed of each fan individually. Each Apple
+> +  Silicon device exposes a different set of endpoints via SMC keys. This
+> +  is true even when two machines share an SoC. The CPU core temperature
+> +  sensor keys on an M1 Mac mini are different to those on an M1 MacBook
+> +  Pro, for example.
+> +
+> +maintainers:
+> +  - James Calligeros <jcalligeros99@gmail.com>
+> +
+> +$defs:
+> +  sensor:
+> +    type: object
+> +
+> +    properties:
+> +      apple,key-id:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: The SMC FourCC key of the desired sensor.
+> +          Must match the node's suffix.
+> +
+> +      label:
+> +        description: Human-readable name for the sensor
+> +
+> +    required:
+> +      - apple,key-id
+> +
+> +properties:
+> +  compatible:
+> +    const: apple,smc-hwmon
+> +
+> +patternProperties:
+> +  "^current-[A-Za-z0-9]{4}$":
+> +    $ref: "#/$defs/sensor"
+> +    unevaluatedProperties: false
+> +
+> +  "^fan-[A-Za-z0-9]{4}$":
+> +    $ref: "#/$defs/sensor"
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      apple,fan-minimum:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: SMC key containing the fan's minimum speed
+> +
+> +      apple,fan-maximum:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: SMC key containing the fan's maximum speed
+> +
+> +      apple,fan-target:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: Writeable endpoint for setting desired fan speed
+> +
+> +      apple,fan-mode:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        pattern: "^[A-Za-z0-9]{4}$"
+> +        description: Writeable key to enable/disable manual fan control
+> +
+> +
+> +  "^power-[A-Za-z0-9]{4}$":
+> +    $ref: "#/$defs/sensor"
+> +    unevaluatedProperties: false
+> +
+> +  "^temperature-[A-Za-z0-9]{4}$":
+> +    $ref: "#/$defs/sensor"
+> +    unevaluatedProperties: false
+> +
+> +  "^voltage-[A-Za-z0-9]{4}$":
+> +    $ref: "#/$defs/sensor"
+> +    unevaluatedProperties: false
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> index 0410e712c900..34ce048619f5 100644
+> --- a/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> @@ -49,6 +49,9 @@ properties:
+>    rtc:
+>      $ref: /schemas/rtc/apple,smc-rtc.yaml
+>  
+> +  hwmon:
+> +    $ref: /schemas/hwmon/apple,smc-hwmon.yaml
+> +
+>  additionalProperties: false
+>  
+>  required:
+> @@ -89,5 +92,38 @@ examples:
+>            nvmem-cells = <&rtc_offset>;
+>            nvmem-cell-names = "rtc_offset";
+>         };
+> +
+> +        hwmon {
+> +          compatible = "apple,smc-hwmon";
+> +
+> +          current-ID0R {
+> +            apple,key-id = "ID0R";
+> +            label = "AC Input Current";
+> +          };
+> +
+> +          fan-F0Ac {
+> +            apple,key-id = "F0Ac";
+> +            apple,fan-minimum = "F0Mn";
+> +            apple,fan-maximum = "F0Mx";
+> +            apple,fan-target = "F0Tg";
+> +            apple,fan-mode = "F0Md";
+> +            label = "Fan 1";
+> +          };
+> +
+> +          power-PSTR {
+> +            apple,key-id = "PSTR";
+> +            label = "Total System Power";
+> +          };
+> +
+> +          temperature-TW0P {
+> +            apple,key-id = "TW0P";
+> +            label = "WiFi/BT Module Temperature";
+> +          };
+> +
+> +          voltage-VD0R {
+> +            apple,key-id = "VD0R";
+> +            label = "AC Input Voltage";
+> +          };
+> +        };
+>        };
+>      };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 51942a9a9b43..6e5e219c5fe6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2422,6 +2422,7 @@ F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+>  F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
+>  F:	Documentation/devicetree/bindings/gpio/apple,smc-gpio.yaml
+>  F:	Documentation/devicetree/bindings/gpu/apple,agx.yaml
+> +F:	Documentation/devicetree/bindings/hwmon/apple,smc-hwmon.yaml
+>  F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+>  F:	Documentation/devicetree/bindings/input/touchscreen/apple,z2-multitouch.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
 
