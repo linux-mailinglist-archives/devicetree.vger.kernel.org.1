@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-302425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNdpDFXvE2qmHgcAu9opvQ
-	(envelope-from <devicetree+bounces-302425-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:42:29 +0200
+	id IMhgOV/vE2rvHgcAu9opvQ
+	(envelope-from <devicetree+bounces-302430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:42:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A65255C6A54
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:42:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FD1D5C6A6B
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 08:42:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C2EA3006B22
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 06:42:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5686930054C2
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 06:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADE3361DC1;
-	Mon, 25 May 2026 06:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D36DE3A7F40;
+	Mon, 25 May 2026 06:42:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EDB72627;
-	Mon, 25 May 2026 06:42:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1717361DC1;
+	Mon, 25 May 2026 06:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779691347; cv=none; b=XxQd1E87dfQYCriRTmLvK1U6Rkvx0SOML6GTKUcbc5WR0GBztdAmBsB3umpk31TuHmEusUAx4CXp//A0f5phq+UsJlzAhYY+Pj1peQ7xTDLtSi+G4gYL8PLhoWNlM/cfU88kNupdjja/Ckq0Ws3R6vrAw+vlbd1IxMMLD0QOq3E=
+	t=1779691355; cv=none; b=jUmKIUiEQBIVvVk/DPFjAliwiGMVh9esjMixp+6nHt3j7U+KekFGXJT6MpW/68Jr8kYZ5MrszCpYDGSMqkR8wveZgp9wQaiRwREQZxZi8drpbJi8iZ3GLMJjy1+ocU9vg7238qy7g8vvvGk2KJKNsndET9vXQnng/jtaTlis0DU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779691347; c=relaxed/simple;
-	bh=a7vtQ9qt7oY5sHR5KQeEU1L3ZdIzV4u31nOG06jfDFs=;
+	s=arc-20240116; t=1779691355; c=relaxed/simple;
+	bh=KmPb81x8xnYHT3EpLDA51n/PaRQ3KeLNtY7rQVXQbRQ=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Uta8or26pfwZ/dV+EfB9tm553NNQXrx4xBq0MB9bmk5ftGkEZHyd4FvCI5YeH0Q0BW3JzcEX6k2RJl3bJHstvzp2RBMPjw6VmWr9fC+XJLlaBPoC0mDHuiOK2GpXrSY1+kbONICUAVVDgvswUUJGDTx+pWwcG7VM3/m8huSA8O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+	 MIME-Version; b=o45VVa/1Nhi8C97dIkx1kmWGFurjSBdk+dsD0pI9YX9DOCKJgmNoTBu2lbAufAK6B9qLrE3r1W67qfdIS3AogCtlcE4OKG3sHVpuj9CqfRy3yLkXPANINkSAWVqOu2tnbGORB081Dd7Jt2LR1ad+xrJOpycfZWUjNkKDqRHfzbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D90B0202163;
-	Mon, 25 May 2026 08:42:23 +0200 (CEST)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 31BE91A2CD8;
+	Mon, 25 May 2026 08:42:25 +0200 (CEST)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9D02620087D;
-	Mon, 25 May 2026 08:42:23 +0200 (CEST)
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E92C61A2CD6;
+	Mon, 25 May 2026 08:42:24 +0200 (CEST)
 Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 55F2A180004C;
-	Mon, 25 May 2026 14:42:22 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 977AD1800086;
+	Mon, 25 May 2026 14:42:23 +0800 (+08)
 From: Lakshay Piplani <lakshay.piplani@nxp.com>
 To: linux-kernel@vger.kernel.org,
 	linux-i3c@lists.infradead.org,
@@ -57,9 +57,9 @@ Cc: vikash.bansal@nxp.com,
 	priyanka.jain@nxp.com,
 	aman.kumarpandey@nxp.com,
 	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v10 2/9] i3c: master: Expose the APIs to support I3C hub
-Date: Mon, 25 May 2026 12:12:02 +0530
-Message-Id: <20260525064209.2263045-3-lakshay.piplani@nxp.com>
+Subject: [PATCH v10 3/9] i3c: master: Add APIs for I3C hub support
+Date: Mon, 25 May 2026 12:12:03 +0530
+Message-Id: <20260525064209.2263045-4-lakshay.piplani@nxp.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260525064209.2263045-1-lakshay.piplani@nxp.com>
 References: <20260525064209.2263045-1-lakshay.piplani@nxp.com>
@@ -76,7 +76,7 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
@@ -86,39 +86,44 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-302425-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302430-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.091];
+	NEURAL_HAM(-0.00)[-0.036];
 	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A65255C6A54
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nxp.com:mid,nxp.com:email]
+X-Rspamd-Queue-Id: 8FD1D5C6A6B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-Change the below internal static functions to APIs to allow new I3C hub
-driver to use them
+Add helpers for attaching and detaching I3C devices and CCC helpers
+to check CCC support and send CCC commands. These additions prepare
+for I3C hub support.
 
-1) i3c_dev_enable_ibi_locked()
-2) i3c_dev_disable_ibi_locked()
-3) i3c_dev_request_ibi_locked()
-4) i3c_dev_free_ibi_locked()
-5) i3c_master_reattach_i3c_dev_locked()
+The attach and detach helpers must be called with the bus lock held in
+write mode.
+
+1) i3c_master_direct_attach_i3c_dev_locked()
+2) i3c_master_direct_detach_i3c_dev_locked()
+3) i3c_master_send_ccc_cmd()
+4) i3c_master_supports_ccc_cmd()
 
 Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
 
 ---
 Changes in v10:
- - Expose the renamed reattach API.
+ - Rename i3c_master_direct_attach_i3c_dev and i3c_master_direct_detach_i3c_dev
+   APIs to *_locked, as these APIs must be called with the bus lock held in
+   write mode
 
 Changes in v9:
  - No change
@@ -127,161 +132,158 @@ Changes in v8:
  - No change
 
 Changes in v7:
- - Fix kernel-doc warnings for *_locked() APIs
- - Clarify API exposure in commit message
+ - Update commit message to clarify purpose (prepare for I3C hub support)
 
 Changes in v6:
  - Split the patch into two parts:
         1) expose the existing API
         2) add new APIs.
-
-Changes in v5:
- - No change
-
-Changes in v4:
- - Updated I3C master to handle hub support
 ---
 ---
- drivers/i3c/master.c       | 70 ++++++++++++++++++++++++++++++++++++--
- include/linux/i3c/master.h |  2 ++
- 2 files changed, 70 insertions(+), 2 deletions(-)
+ drivers/i3c/master.c       | 107 +++++++++++++++++++++++++++++++++++++
+ include/linux/i3c/master.h |   7 +++
+ 2 files changed, 114 insertions(+)
 
 diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
-index e89d73508b9a..0636e3e21758 100644
+index 0636e3e21758..4e659435df72 100644
 --- a/drivers/i3c/master.c
 +++ b/drivers/i3c/master.c
-@@ -1652,8 +1652,23 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
+@@ -1652,6 +1652,63 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
  	return 0;
  }
  
--static int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
--					      u8 old_dyn_addr)
 +/**
-+ * i3c_master_reattach_i3c_dev_locked() - reattach an I3C device with a new address
-+ * @dev: I3C device descriptor to reattach
-+ * @old_dyn_addr: previous dynamic address of the device
++ * i3c_master_direct_attach_i3c_dev_locked() - attach an I3C device to a master
++ * @master: I3C master controller to attach the device to
++ * @dev: I3C device descriptor representing the device
 + *
-+ * This function reattaches an existing I3C device to the bus when its dynamic
-+ * address has changed. It updates the bus address slot status accordingly:
-+ * - Marks the new dynamic address as occupied by an I3C device.
-+ * - Frees the old dynamic address slot if applicable.
++ * This function attaches an I3C device to its master controller once the
++ * device has a valid address on the bus. Devices without an assigned address
++ * are ignored. The master device itself is never attached through this bus.
 + *
-+ * This function must be called with the bus lock held in write mode.
++ * Context: Caller must hold master->bus.lock in write mode.
 + *
-+ * Return: 0 on success, or a negative error code if reattachment fails
-+ *         (e.g. -EBUSY if the new address slot is not free).
++ * Return: 0 on success, or a negative error code if the attach operation
++ *         fails in the master controller driver.
 + */
-+int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
-+				       u8 old_dyn_addr)
- {
- 	struct i3c_master_controller *master = i3c_dev_get_master(dev);
- 	int ret;
-@@ -1677,6 +1692,7 @@ static int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
- 
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(i3c_master_reattach_i3c_dev_locked);
- 
- static void i3c_master_detach_i3c_dev(struct i3c_dev_desc *dev)
- {
-@@ -3195,6 +3211,16 @@ int i3c_dev_do_xfers_locked(struct i3c_dev_desc *dev, struct i3c_xfer *xfers,
- 	return master->ops->i3c_xfers(dev, xfers, nxfers, mode);
- }
- 
++int i3c_master_direct_attach_i3c_dev_locked(struct i3c_master_controller *master,
++					    struct i3c_dev_desc *dev)
++{
++	int ret = 0;
++
++	/*
++	 * We don't attach devices to the controller until they are
++	 * addressable on the bus.
++	 */
++
++	if (!dev->info.static_addr && !dev->info.dyn_addr)
++		return -EINVAL;
++
++	/* Do not attach the master device itself. */
++	if (master->this != dev && master->ops->attach_i3c_dev)
++		ret = master->ops->attach_i3c_dev(dev);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(i3c_master_direct_attach_i3c_dev_locked);
++
 +/**
-+ * i3c_dev_disable_ibi_locked() - Disable IBIs coming from a specific device
-+ * @dev: device on which IBIs should be disabled
++ * i3c_master_direct_detach_i3c_dev_locked() - Detach an I3C device from its
++ * master controller.
++ * @dev: I3C device descriptor to be detached
 + *
-+ * This function disable IBIs coming from a specific device and wait for
-+ * all pending IBIs to be processed.
++ * This function detaches an I3C device from its master controller.
++ * It ensures that the master itself is not detached. If the device is not
++ * the master and the master controller provides a detach operation,
++ * the detach callback is invoked to perform the actual removal.
 + *
-+ * Context: Must be called with mutex_lock(&dev->desc->ibi_lock) held.
-+ * Return: 0 in case of success, a negative error core otherwise.
++ * Context: Caller must hold master->bus.lock in write mode.
 + */
- int i3c_dev_disable_ibi_locked(struct i3c_dev_desc *dev)
- {
- 	struct i3c_master_controller *master;
-@@ -3216,7 +3242,22 @@ int i3c_dev_disable_ibi_locked(struct i3c_dev_desc *dev)
- 
- 	return 0;
++void i3c_master_direct_detach_i3c_dev_locked(struct i3c_dev_desc *dev)
++{
++	struct i3c_master_controller *master = i3c_dev_get_master(dev);
++
++	/* Do not detach the master device itself. */
++	if (master->this != dev && master->ops->detach_i3c_dev)
++		master->ops->detach_i3c_dev(dev);
++}
++EXPORT_SYMBOL_GPL(i3c_master_direct_detach_i3c_dev_locked);
++
+ /**
+  * i3c_master_reattach_i3c_dev_locked() - reattach an I3C device with a new address
+  * @dev: I3C device descriptor to reattach
+@@ -1816,6 +1873,56 @@ i3c_master_register_new_i3c_devs(struct i3c_master_controller *master)
+ 	}
  }
-+EXPORT_SYMBOL_GPL(i3c_dev_disable_ibi_locked);
  
 +/**
-+ * i3c_dev_enable_ibi_locked() - Enable IBIs from a specific device (lock held)
-+ * @dev: device on which IBIs should be enabled
++ * i3c_master_supports_ccc_cmd() - check CCC command support
++ * @master: I3C master controller
++ * @cmd: CCC command to verify
 + *
-+ * This function enable IBIs coming from a specific device and wait for
-+ * all pending IBIs to be processed. This should be called on a device
-+ * where i3c_device_request_ibi() has succeeded.
++ * This function verifies whether the given I3C master controller supports
++ * the specified Common Command Code (CCC).
 + *
-+ * Note that IBIs from this device might be received before this function
-+ * returns to its caller.
++ * Return: 0 if the CCC command is supported and executed successfully,
++ *         -EINVAL if arguments are invalid,
++ *         -EOPNOTSUPP if the master does not support CCC commands,
++ *         or another negative error code from the master's operation.
++ */
++int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
++				const struct i3c_ccc_cmd *cmd)
++{
++	if (!cmd || !master)
++		return -EINVAL;
++
++	if (!master->ops->supports_ccc_cmd)
++		return -EOPNOTSUPP;
++
++	return master->ops->supports_ccc_cmd(master, cmd);
++}
++EXPORT_SYMBOL_GPL(i3c_master_supports_ccc_cmd);
++
++/**
++ * i3c_master_send_ccc_cmd() - send a CCC command
++ * @master: I3C master controller issuing the command
++ * @cmd: CCC command to be sent
 + *
-+ * Context: Must be called with mutex_lock(&dev->desc->ibi_lock) held.
++ * This function sends a Common Command Code (CCC) command to devices on the
++ * I3C bus. It acquires the bus maintenance lock, executes the command, and
++ * then releases the lock to ensure safe access to the bus.
++ *
 + * Return: 0 on success, or a negative error code on failure.
 + */
- int i3c_dev_enable_ibi_locked(struct i3c_dev_desc *dev)
- {
- 	struct i3c_master_controller *master = i3c_dev_get_master(dev);
-@@ -3231,7 +3272,20 @@ int i3c_dev_enable_ibi_locked(struct i3c_dev_desc *dev)
- 
- 	return ret;
- }
-+EXPORT_SYMBOL_GPL(i3c_dev_enable_ibi_locked);
- 
-+/**
-+ * i3c_dev_request_ibi_locked() - Request an IBI
-+ * @dev: device for which we should enable IBIs
-+ * @req: setup requested for this IBI
-+ *
-+ * This function is responsible for pre-allocating all resources needed to
-+ * process IBIs coming from @dev. When this function returns, the IBI is not
-+ * enabled until i3c_device_enable_ibi() is called.
-+ *
-+ * Context: Must be called with mutex_lock(&dev->desc->ibi_lock) held.
-+ * Return: 0 in case of success, a negative error core otherwise.
-+ */
- int i3c_dev_request_ibi_locked(struct i3c_dev_desc *dev,
- 			       const struct i3c_ibi_setup *req)
- {
-@@ -3270,7 +3324,18 @@ int i3c_dev_request_ibi_locked(struct i3c_dev_desc *dev,
- 
- 	return ret;
- }
-+EXPORT_SYMBOL_GPL(i3c_dev_request_ibi_locked);
- 
-+/**
-+ * i3c_dev_free_ibi_locked() - Free all resources needed for IBI handling
-+ * @dev: device on which you want to release IBI resources
-+ *
-+ * This function is responsible for de-allocating resources previously
-+ * allocated by i3c_device_request_ibi(). It should be called after disabling
-+ * IBIs with i3c_device_disable_ibi().
-+ *
-+ * Context: Must be called with mutex_lock(&dev->desc->ibi_lock) held.
-+ */
- void i3c_dev_free_ibi_locked(struct i3c_dev_desc *dev)
- {
- 	struct i3c_master_controller *master = i3c_dev_get_master(dev);
-@@ -3301,6 +3366,7 @@ void i3c_dev_free_ibi_locked(struct i3c_dev_desc *dev)
- 	kfree(dev->ibi);
- 	dev->ibi = NULL;
- }
-+EXPORT_SYMBOL_GPL(i3c_dev_free_ibi_locked);
- 
- static int __init i3c_init(void)
- {
++int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
++			    struct i3c_ccc_cmd *cmd)
++{
++	int ret;
++
++	i3c_bus_maintenance_lock(&master->bus);
++	ret = i3c_master_send_ccc_cmd_locked(master, cmd);
++	i3c_bus_maintenance_unlock(&master->bus);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(i3c_master_send_ccc_cmd);
++
+ /**
+  * i3c_master_do_daa_ext() - Dynamic Address Assignment (extended version)
+  * @master: controller
 diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
-index 592b646f6134..355e9b3d9ae3 100644
+index 355e9b3d9ae3..1829f2e08bfb 100644
 --- a/include/linux/i3c/master.h
 +++ b/include/linux/i3c/master.h
-@@ -613,6 +613,8 @@ void i3c_master_dma_unmap_single(struct i3c_dma *dma_xfer);
- DEFINE_FREE(i3c_master_dma_unmap_single, void *,
- 	    if (_T) i3c_master_dma_unmap_single(_T))
+@@ -615,6 +615,13 @@ DEFINE_FREE(i3c_master_dma_unmap_single, void *,
  
-+int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
-+				       u8 old_dyn_addr);
+ int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
+ 				       u8 old_dyn_addr);
++int i3c_master_direct_attach_i3c_dev_locked(struct i3c_master_controller *master,
++					    struct i3c_dev_desc *dev);
++void i3c_master_direct_detach_i3c_dev_locked(struct i3c_dev_desc *dev);
++int i3c_master_send_ccc_cmd(struct i3c_master_controller *master,
++			    struct i3c_ccc_cmd *cmd);
++int i3c_master_supports_ccc_cmd(struct i3c_master_controller *master,
++				const struct i3c_ccc_cmd *cmd);
  int i3c_master_set_info(struct i3c_master_controller *master,
  			const struct i3c_device_info *info);
  
