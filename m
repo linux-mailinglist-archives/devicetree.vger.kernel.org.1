@@ -1,304 +1,234 @@
-Return-Path: <devicetree+bounces-302398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302400-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMT3D5SlE2r3EQcAu9opvQ
-	(envelope-from <devicetree+bounces-302398-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 03:27:48 +0200
+	id oPBxG0mrE2q8EgcAu9opvQ
+	(envelope-from <devicetree+bounces-302400-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 03:52:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78435C52C0
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 03:27:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C94CD5C5490
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 03:52:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 50AC63001339
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 01:27:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 05CF530075CC
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 01:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61841F30A4;
-	Mon, 25 May 2026 01:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43F6D21A447;
+	Mon, 25 May 2026 01:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9ZVjL1Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHjC2/nO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ABB2249E5
-	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 01:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B278472
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 01:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779672464; cv=none; b=iKiQ8IzuTCmvBC5XF9NITB+sNmK1rXnPAjiOp0b1zjPpK0x1ECtnFnCnz0HfiHg++QKjbO28FWAN8pq3rS45Vibo95CnWIVd5MboCYVZmYqRXZ4m/GOutqFNeJf9MmhW1IyFnwEJzAs0RQ0jJHHZKUOaQ9OkpWFE7DcYPQfxreo=
+	t=1779673926; cv=none; b=AmCeEqTFZffOdjPvERcH8Y9yNGCe6rpztFSHQXM0qzV3nA3+mEC45WbADepia+fqQ17MvweTUXdQXzAtLnwhJsCWiLIdp8HZIG11f9RBKbrE1MfWqO98M4tzKZLeM7ahYxNi1p9kB8F9OPrieEstFJlpKW7hHs8GeRoEo+QJvcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779672464; c=relaxed/simple;
-	bh=iUhlET6ygopBuCLy2tkk+WarYv1BE3PWgs8sWPkYL9E=;
+	s=arc-20240116; t=1779673926; c=relaxed/simple;
+	bh=nGyGahDPax1e9tUaMRoHqsg0B/l8ZG1A4qKqZNQUUK4=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=X5QyO/+71c2Y5deEfg+ykGmd35ejO+bjftEEPXzfJQK7iQcEUPcNK9gsc4Qu9lq8zwv4l/JtEYQ/cVPMcbqwlqZncSoyQmqhAhV0DvDw1grx+WUGWy0XDc4JSCWoiKDcj2t8NerShlPYHexCC/vsUxLnEZjQKtAov9q8Cxmawkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9ZVjL1Q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7007E1F000E9;
-	Mon, 25 May 2026 01:27:42 +0000 (UTC)
+	 Message-Id; b=pikAeBsNMvwsLlF4SVuL3sdcViSwSKNKuhHzY9y3fRnBShjcj+nijjbe5UbmToqtw/65VFjfULLqk/EgmOufRm0jT3q1Tu71C/9IjIxAex9INJOuVCHC3XFISQHsyxxfSfV2Pj9NvbqBKmI6SIUYz8GfVgd4weEBVYHhCnbyzMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHjC2/nO; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60DE61F000E9;
+	Mon, 25 May 2026 01:52:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779672463;
-	bh=0GzpiMGfemvO6BYqJnS9dgR7JKw8giv8E6pKgmBEIjo=;
+	s=k20260515; t=1779673924;
+	bh=K05Db2tlIovopMJWbbiTbkO6cg/ql8OSHAPpG0cmsfQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=M9ZVjL1QIgWJ4rpJ0+stR7i4RJWVYIXZga5k3mVynBeWEE3/qFN4MaP0IEcUPglrY
-	 RJ88qzveRxMyDuufl+dDq8kNqImmOb6L2yL5p7uOQx47CqM4o2+RHBt2q+CEmrhcBZ
-	 G0qcBD0okIjbszQP+OC2prGpP+I4r68W8wtnP8Iw+Bn7F91Zq98VrgzNFWSt+blaIx
-	 xppSU1ObVyfanwIhkKAQltRSwOiAtVASTrqlLcrLLc1bjdJ9QJko3ozCRr4eg+bvNy
-	 u7pVF7WS6CZ6gNUpWqjpV1cU1GI7pfbDOuE5HmZK5ZwbUbKoMTDNuRVNCFNMg001rS
-	 0pVDSw66Tak6w==
+	b=DHjC2/nOLgUdM5P2NZE+2NuPvHRS8rC8uXQV1IxVFc8vQl8NW0fhk/8KMLkhbAv8l
+	 c9HhNpREYd49mvitZShIWMOrql0bO4/EdNSpX2rkjeRlQjRRBZQylfmND2XRm0uFor
+	 a2vniJ88hFox0hZ3JjQ3CPOT48dhYnjDH9r4Dkv3ZDAkFxvxDHqPMCuN/pVwevKR9w
+	 cr7hx8ZpjvYRJqb9sCbDA3NCEf8oUGS/QmGYJT/JVSlqbdmWLOQGAQHtOpaUcirvb4
+	 yYzTEv7pNRBmDhy2qTWPOVz41Z/DleXDPaiXhcBAm3fqK+GCByK+YPN15uShQoJOw1
+	 DMMXbPvq9eCGw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v5 15/18] riscv_cbqri: resctrl: Add mbm_total_bytes
- bandwidth monitoring
+Subject: Re: [PATCH v12 2/2] drm/bridge: Add Lontium LT7911EXC eDP to MIPI
+ DSI bridge
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Drew Fustini" <fustini@kernel.org>
+To: syyang@lontium.com
 Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-15-78d3a7ba9dbe@kernel.org>
-References: <20260524-ssqosid-cbqri-rqsc-v7-0-v5-15-78d3a7ba9dbe@kernel.org>
+In-Reply-To: <20260525010545.9470-3-syyang@lontium.com>
+References: <20260525010545.9470-3-syyang@lontium.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 25 May 2026 01:27:42 +0000
-Message-Id: <20260525012742.7007E1F000E9@smtp.kernel.org>
+Date: Mon, 25 May 2026 01:52:03 +0000
+Message-Id: <20260525015204.60DE61F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302400-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302398-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: D78435C52C0
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.999];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: C94CD5C5490
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-
-New issues:
-- [Medium] Domain bringup failure and redundant allocations due to bypassed=
- topology validation.
-- [Medium] System RMID capacity artificially crippled by unused Bandwidth C=
-ontrollers.
-
-Pre-existing issues:
-- [Critical] Use-after-free (UAF) execution context upon cpuhp read lock re=
-lease.
-- [High] Out-of-bounds RMID allocations lead to -ERANGE read failures and s=
-tale monitoring state.
+- [High] Dangling pointer created during MIPI DSI host detach if the downst=
+ream device is a bridge rather than a panel.
+- [High] Firmware upgrade CRC mismatch due to unpadded partial page writes.
+- [High] Firmware upgrade workqueue accesses `bridge.dev` without ensuring =
+the DRM device is alive, leading to a Use-After-Free.
+- [High] Regmap page selector cache desynchronization after device reset ca=
+uses firmware upgrade commands to be routed to the wrong register page.
 --
 
-commit 1063299534eebd0856c698cf6583a1b91c07b030
-Author: Drew Fustini <fustini@kernel.org>
+commit 43236ff612b99bc861cbbc490c9d4569107b4d46
+Author: Sunyun Yang <syyang@lontium.com>
+Subject: drm/bridge: Add Lontium LT7911EXC eDP to MIPI DSI bridge
 
-riscv_cbqri: resctrl: Add mbm_total_bytes bandwidth monitoring
+This commit adds support for the Lontium LT7911EXC bridge chip, which conve=
+rts=20
+eDP input to MIPI DSI output. It provides DRM bridge integration, MIPI DSI=
+=20
+host interfaces, I2C firmware upgrade mechanisms, and GPIO resets.
 
-Expose CBQRI bandwidth controller's combined read+write counter as
-the L3 mbm_total_bytes event. A software accumulator keeps the
-64-bit byte total monotonic across the 62-bit hardware counter wrap.
-
-> diff --git a/drivers/resctrl/cbqri_resctrl.c b/drivers/resctrl/cbqri_resc=
-trl.c
-> --- a/drivers/resctrl/cbqri_resctrl.c
-> +++ b/drivers/resctrl/cbqri_resctrl.c
-
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt7911exc.c b/drivers/gpu/drm=
+/bridge/lontium-lt7911exc.c
+> new file mode 100644
+> index 0000000000000..de6953ed1e3b0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/lontium-lt7911exc.c
 [ ... ]
-
-> @@ -305,6 +344,82 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, s=
-truct rdt_domain_hdr *hdr,
->  		mutex_unlock(&ctrl->lock);
->  		break;
-> =20
-> +	case QOS_L3_MBM_TOTAL_EVENT_ID: {
-> +		struct cbqri_controller *bc;
+> +static int lt7911exc_write_data(struct lt7911exc *lt7911exc, const struc=
+t firmware *fw, u64 addr)
+> +{
+> +	struct device *dev =3D lt7911exc->dev;
+> +	int ret;
+> +	int page =3D 0, num =3D 0, page_len =3D 0;
+> +	u64 size, offset;
+> +	const u8 *data;
 > +
-> +		/*
-> +		 * The L3 monitoring domain's id is the L3 cache id. The
-> +		 * matching ctrl domain's hw_dom->paired_bc was cached at
-> +		 * add time to avoid walking cbqri_controllers on every read.
-> +		 */
-> +		d =3D cbqri_find_ctrl_domain(&r->ctrl_domains, hdr->id);
-> +		if (!d) {
-> +			err =3D -ENOENT;
-> +			break;
-> +		}
-> +		hw_dom =3D container_of(d, struct cbqri_resctrl_dom, resctrl_ctrl_dom);
-> +		bc =3D hw_dom->paired_bc;
-> +		if (!bc) {
-> +			err =3D -ENOENT;
-> +			break;
-> +		}
-> +		if (WARN_ON_ONCE(!bc->mbm_total_states)) {
-> +			err =3D -EIO;
-> +			break;
-> +		}
-> +		if (rmid >=3D bc->mcid_count) {
-> +			err =3D -ERANGE;
-> +			break;
-> +		}
+> +	data =3D fw->data;
+> +	size =3D fw->size;
+> +	page =3D (size + LT_PAGE_SIZE - 1) / LT_PAGE_SIZE;
+[ ... ]
+> +	for (num =3D 0; num < page; num++) {
+> +		offset =3D num * LT_PAGE_SIZE;
+> +		page_len =3D (offset + LT_PAGE_SIZE <=3D size) ? LT_PAGE_SIZE : (size =
+- offset);
+> +		ret =3D lt7911exc_prog_init(lt7911exc, addr);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret =3D regmap_raw_write(lt7911exc->regmap, 0xe05d, &data[offset], pag=
+e_len);
 
 [Severity: High]
-This is a pre-existing issue, but will the core allocate out-of-bounds
-RMIDs that trigger this -ERANGE error? Looking at
-cbqri_resctrl_control_init(), num_rmid is bound to the local capacity
-rather than the global minimum (max_rmid). Could this lead to stale
-monitoring state and bypass the max_rmid-bounded reset loop?
+The software CRC in lt7911exc_firmware_upgrade_work() is calculated over a
+buffer padded with 0xff up to FW_SIZE - 4. However, this function writes the
+original unpadded fw->data.
 
-> +
-> +		mutex_lock(&bc->lock);
-
-[ ... ]
-
-> @@ -824,15 +948,54 @@ static int cbqri_resctrl_pick_bw_alloc(void)
->  }
-> =20
->  /*
-> - * Pick one controller per monitoring event.  L3 OCCUP comes from the
-> - * picked L3 CC (if mon_capable).
-> + * Pick one controller per monitoring event. L3 OCCUP comes from the
-> + * picked L3 CC if mon_capable. MBM_TOTAL from the only mon-capable BC,
-> + * but only when the system exposes exactly one L3 cache. Pairing a
-> + * single BC with multiple L3 domains would overcount system bandwidth
-> + * by a factor equal to the L3 domain count.
->   */
->  static void cbqri_resctrl_pick_counters(void)
->  {
->  	struct cbqri_resctrl_res *l3 =3D &cbqri_resctrl_resources[RDT_RESOURCE_=
-L3];
-> +	struct cbqri_controller *ctrl, *prev;
-> +	unsigned int l3_count =3D 0;
-> =20
->  	if (l3->ctrl && l3->ctrl->mon_capable)
->  		cbqri_resctrl_counters[QOS_L3_OCCUP_EVENT_ID] =3D l3->ctrl;
-> +
-> +	/* Count distinct L3 cache_ids */
-> +	list_for_each_entry(ctrl, &cbqri_controllers, list) {
+If fw->size is not a multiple of the 32-byte page size, does the short write
+leave residual data in the hardware's internal page buffer? This could cause
+a CRC mismatch and firmware upgrade failure since the padded bytes are
+actually flashed. Should this function write the padded buffer instead?
 
 [ ... ]
+> +static void lt7911exc_firmware_upgrade_work(struct work_struct *work)
+> +{
+[ ... ]
+> +	lt7911exc_reset(lt7911exc);
+> +	mutex_lock(&lt7911exc->ocm_lock);
+> +	lt7911exc_hw_mcu_halt(lt7911exc);
 
-> +		if (!seen)
-> +			l3_count++;
-> +	}
-> +
-> +	if (l3_count > 1) {
-> +		pr_warn_once("multiple L3 domains (%u) detected. mbm_total_bytes disab=
-led\n",
-> +			     l3_count);
-> +		return;
-> +	}
+[Severity: High]
+When lt7911exc_reset() asserts the reset GPIO, the physical hardware's page
+control register is reset to 0x00.
 
-[Severity: Medium]
-When mbm_total_bytes is disabled here, will the unused Bandwidth
-Controller's smaller mcid_count still artificially clamp the global
-max_rmid in cbqri_resctrl_accumulate_caps()? The unused BC remains
-mon_capable, which might restrict valid occupancy monitoring system-wide.
+Does the regmap cache know about this external reset? If not, regmap might
+assume the hardware is already on page 0xe0 and omit the page control write
+during lt7911exc_hw_mcu_halt().=20
 
-> +
-> +	cbqri_resctrl_counters[QOS_L3_MBM_TOTAL_EVENT_ID] =3D
-> +		cbqri_find_only_mon_bc();
->  }
+Can this route commands to the wrong page and corrupt hardware state? Should
+the regmap cache be synchronized or marked dirty after a reset?
 
 [ ... ]
-
-> @@ -948,6 +1111,26 @@ static int cbqri_attach_cpu_to_l3_mon(struct cbqri_=
-controller *ctrl,
->  	else
->  		list_add_tail(&mon_dom->hdr.list, &res->mon_domains);
-> =20
-> +	/*
-> +	 * Pair this L3 domain with the system's mon-capable BC and
-> +	 * initialise the BC's per-MCID software accumulators before
-> +	 * resctrl_online_mon_domain() exposes the domain to userspace.
-> +	 * A concurrent sysfs read of mbm_total_bytes between online and
-> +	 * BC init would otherwise pass the !bc->mbm_total_states check
-> +	 * with a half-initialised pointer.
-> +	 */
-> +	hw_dom =3D container_of(ctrl_dom, struct cbqri_resctrl_dom, resctrl_ctr=
-l_dom);
+> +out_unlock:
+> +	mutex_lock(&lt7911exc->ocm_lock);
+> +	lt7911exc_hw_mcu_run(lt7911exc);
+> +	lt7911exc->fw_version =3D lt7911exc_read_version(lt7911exc);
+> +	mutex_unlock(&lt7911exc->ocm_lock);
 > +
-> +	hw_dom->paired_bc =3D cbqri_find_only_mon_bc();
-> +	if (hw_dom->paired_bc) {
-> +		err =3D cbqri_init_bc_mon_counters(hw_dom->paired_bc);
+> +	mutex_unlock(&lt7911exc->upgrade_lock);
+> +	/* Notify DRM framework that hardware state changed/needs a modeset */
+> +	if (lt7911exc->bridge.dev)
+> +		drm_kms_helper_hotplug_event(lt7911exc->bridge.dev);
 
-[Severity: Medium]
-If mbm_total_bytes was disabled in cbqri_resctrl_pick_counters() due to
-multiple L3 domains, does this unconditionally allocate memory and issue
-MMIO resets for an unused BC? Could an initialization failure in this unused
-BC cause the entire L3 bringup to abort here?
+[Severity: High]
+Is it possible for lt7911exc->bridge.dev to be a dangling pointer here?
 
-> +		if (err) {
-> +			pr_err("BC @%pa: mon init failed (%d)\n", &hw_dom->paired_bc->addr, e=
-rr);
-> +			hw_dom->paired_bc =3D NULL;
-> +			goto err_listdel;
-> +		}
+The DRM core does not clear bridge->dev on bridge detachment. Since the sys=
+fs
+attribute is tied to the I2C device (which remains bound), could a user
+trigger a firmware upgrade after the KMS driver unbinds? This would lead to=
+ a
+use-after-free when drm_kms_helper_hotplug_event() executes.
+
+[ ... ]
+> +static int lt7911exc_dsi_host_detach(struct mipi_dsi_host *host, struct =
+mipi_dsi_device *dev)
+> +{
+> +	struct lt7911exc *lt7911exc =3D dsi_host_to_lt7911exc(host);
+> +
+> +	if (!lt7911exc->output.dev)
+> +		return 0;
+> +
+> +	if (lt7911exc->output.panel && lt7911exc->output.bridge) {
+> +		drm_panel_bridge_remove(lt7911exc->output.bridge);
+> +		lt7911exc->output.bridge =3D NULL;
+> +		lt7911exc->output.panel =3D NULL;
 > +	}
 > +
->  	err =3D resctrl_online_mon_domain(res, &mon_dom->hdr);
->  	if (err)
->  		goto err_listdel;
-> =20
->  	err =3D cbqri_init_mon_counters(ctrl);
->  	if (err)
->  		goto err_offline;
-> =20
->  	return 0;
-> =20
->  err_offline:
->  	/*
->  	 * cancel_delayed_work (not _sync) avoids deadlocking against the
->  	 * cqm_limbo worker which takes cpus_read_lock while this hotplug
->  	 * callback already holds cpus_write_lock. mbm_over is only
->  	 * INIT_DELAYED_WORK'd when MBM_TOTAL was enabled, so gate the
->  	 * cancel on the same condition to avoid touching a zeroed work
->  	 * struct.
->  	 */
->  	cancel_delayed_work(&mon_dom->cqm_limbo);
-> +	if (resctrl_is_mon_event_enabled(QOS_L3_MBM_TOTAL_EVENT_ID))
-> +		cancel_delayed_work(&mon_dom->mbm_over);
->  	resctrl_offline_mon_domain(res, &mon_dom->hdr);
->  err_listdel:
->  	list_del(&mon_dom->hdr.list);
->  err_free:
->  	kfree(mon_dom);
->  	return err;
->  }
+> +	lt7911exc->output.dev =3D NULL;
+> +
+> +	return 0;
+> +}
 
-[Severity: Critical]
-This is a pre-existing issue, but since this patch introduces a new trigger
-instance for mbm_over, does this create a use-after-free window?
+[Severity: High]
+If the downstream device is a raw bridge instead of a panel, output.panel
+will be NULL, causing this block to be skipped.
 
-Since cancel_delayed_work() is used without _sync, if a worker is currently
-stalled waiting on the cpus_read_lock, won't kfree(mon_dom) execute
-synchronously here? Once the write lock is dropped, couldn't the pending
-worker resume and dereference the freed memory?
+Does this leave output.bridge as a dangling pointer? If the bridge is freed
+and the display pipeline is re-attached, lt7911exc_bridge_attach() might
+dereference this stale pointer and cause a use-after-free.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260524-ssqosid-cb=
-qri-rqsc-v7-0-v5-0-78d3a7ba9dbe@kernel.org?part=3D15
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260525010545.9470=
+-1-syyang@lontium.com?part=3D2
 
