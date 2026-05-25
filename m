@@ -1,167 +1,250 @@
-Return-Path: <devicetree+bounces-302773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gG0LKtJ6FGokNgcAu9opvQ
-	(envelope-from <devicetree+bounces-302773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:37:38 +0200
+	id mAGmGr17FGofNwcAu9opvQ
+	(envelope-from <devicetree+bounces-302775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:41:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E24F5CCF06
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 056765CCF46
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 18:41:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F334330125EB
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 16:37:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 207753016EC9
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 16:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7850538228F;
-	Mon, 25 May 2026 16:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D164D3F44F2;
+	Mon, 25 May 2026 16:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AVKURIBT"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="MGDgWl5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2EA2D592D;
-	Mon, 25 May 2026 16:37:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBFA3F4135;
+	Mon, 25 May 2026 16:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779727056; cv=none; b=HatxhBm5+PCxC4gipDQ9lNrR2HGAxxAHj+1VXiZdbZ+nzeLQakoDHV6XfRSC/cFGFYxW3+k+Nk1RkFPdYuh7FA+cGdIz0sW+Zf3CzGCLN3xZSEzdbkNZ3bQW2w4NveojCOnyXE+oFyyXVWGcoPVKAM9ziSN4/A7Yd5sMwTlmGyA=
+	t=1779727283; cv=none; b=uN8NS7j8wzz9hsfKagcLEnKhhIz8MCSP6pBYaTINuaxTLQbyP/ST06XETglqmu1Sbi6WhXdyk1a1oicY5fqqe2EWQjAVKosc1T+IkucgE4G6Y4basOcBjesZU8zvybVJffhBx5tjrTgyW1CgAtDCK9q1p8cM2pLz5s+56UPoXOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779727056; c=relaxed/simple;
-	bh=AHi7rNNpn/yTAAbk276BCOHZ69vvOQJTiWrJaKnuwvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J813ZnVeco2HekdWC9xj8lp7j6TOqBFY36xWbkuML/UUn+SYZT3Qu5feWEjIlaWGQChqkwerOFdb8dsrvknE5Xb3Dodcv46Ao0tc3a0HFKLE4pJZurVEu2JlXwvQSvNnRpaNvQZecqGXMqiLTInvQs2KiFqEe3bYrHBNqETDSGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AVKURIBT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FC741F000E9;
-	Mon, 25 May 2026 16:37:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779727054;
-	bh=OAXtG9eZJMx69Khid3reGVm+fhOBTP5LDIu/QiAbPyM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=AVKURIBTKW2rhJOBiGcgIuKGFWaPzoF/XIwaoHYWGyAsAAKvzwRb13i6TuU53KX9F
-	 ofJR+9vl8rQ6U5LQmr5vyyyaF2X1Ou+Q7NwJRG8kWYX0qVcMVdZpqQYGyQgyO/VBhA
-	 z+pN79QRVCqlLVHU1cFq38iFqCbipwsx75BHhl+PEKEriLdXFwQoF1CIkC4R8K33/n
-	 kL2PQZSceA3Gcig3AUkCUeFpyFWf1pKp/yUXNTxdwdqjEtJNpBCzhMfZ8/ckXKv2vz
-	 +2m2HOI4fevRxM2W5e5ok+pow2Mu/h0qo3MdzXJsjNqvR7Z4VuZF6GxbDj09u1mNyY
-	 HI5QF5W1S0LLg==
-Date: Mon, 25 May 2026 17:37:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, robh@kernel.org,
-	wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: renesas: div6: Use ZT/ZTR trace
- clock in R-Mobile APE6 example
-Message-ID: <20260525-myth-flanking-667fa0a706ac@spud>
-References: <20260523192622.56605-1-marek.vasut+renesas@mailbox.org>
- <20260523194047.AB7CA1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1779727283; c=relaxed/simple;
+	bh=+YGVxc0rpsonJHPTa6UOETIlDRrA21DSYW3qB9qF7G0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=a4qPstOuf7o6rWLPbyb7psV3GVUnf4LthuUOxE0I2wgQQsy5JMq5okgqhFd2qbPxw8LOzvSgz1o9/5y2K7a3Bmqqm1fgewJFah8+MU0x6Ig9e56fKuc1kxRr6OnxAlRc681nYDd1CZzTNPwAdKqLXSaafF0dkODMXQPPfLJL+YA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=MGDgWl5w; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64PD2YLc3928508;
+	Mon, 25 May 2026 12:41:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=HjZndMQ6/Lw4Bqx+YQN6tihLrNp
+	sUe9oVYfTONLrbAo=; b=MGDgWl5weq+WVhCwAJ4LmMOq0Af5KRgToU5olO+O63J
+	nUimdr6ZFUt3KUPoP6nAQLPyrai0UBpqq1csNUKh4Q+0PThXDJyJ7ZH0j/grI4IP
+	1Sj82F4LUq05wNI16Av21gZEg7wL4ct66Y+akOTF1oI9UrwA8BWrAKteBuWU/M+T
+	E/ST62poOxQXaiTLkV3TlQgfjUys5OHR6XKC2JCqFKYT2zU4+dwT2tZsWebEAJG4
+	N1mYrHmi9DRVoCxFEmc2o5c29CWZlIy27A70IWoxdZn3RIFlUJfSoZd0c5amDc3J
+	/7ZFoUmxjuCYhhaVR9OYM2RFaBLXxfffnmdP6XAgXSA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4eb950f9fx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 May 2026 12:41:19 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 64PGfIdf022271
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 25 May 2026 12:41:18 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Mon, 25 May 2026 12:41:18 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Mon, 25 May 2026 12:41:09 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Mon, 25 May 2026 12:41:09 -0400
+Received: from HYB-MkYHBcJRSnh.ad.analog.com ([10.32.226.85])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 64PGevGx028845;
+	Mon, 25 May 2026 12:40:59 -0400
+From: Liviu Stan <liviu.stan@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+        David Lechner
+	<dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Antoniu
+ Miclaus" <antoniu.miclaus@analog.com>,
+        Francesco Lavra <flavra@baylibre.com>,
+        Liviu Stan <liviu.stan@analog.com>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux@analog.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 0/9] iio: temperature: ltc2983: Add support for ADT7604
+Date: Mon, 25 May 2026 19:39:27 +0300
+Message-ID: <20260525164013.118614-1-liviu.stan@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PHtn3q++te5nap0r"
-Content-Disposition: inline
-In-Reply-To: <20260523194047.AB7CA1F00A3A@smtp.kernel.org>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: hD7D0iDi9LhErwLxoEbU7MlSTF0HjBb-
+X-Proofpoint-GUID: hD7D0iDi9LhErwLxoEbU7MlSTF0HjBb-
+X-Authority-Analysis: v=2.4 cv=TOh1jVla c=1 sm=1 tr=0 ts=6a147baf cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=Z0pTeXoby7EwIRygza74:22 a=pGLkceISAAAA:8 a=drhNbCVVPJFLfvZI_aUA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDE2OCBTYWx0ZWRfX+qzDv0qZLQb2
+ tGMBtejlDaz8bH+fPZotXGT+jeH72pGQxHzz5q4usd9bKDcEqazOcQu9aoWWaSkSaaFS6zsV92I
+ OO9vS7CZoK1ACYIdedRHA9hdnh4XyRyVL4IhS9HpO0J98IuTxlNjcUQHhma4FCTLgyBPMTCZR6F
+ dXWeBIZbarzuCy/e7qQdCu9S2HKdhU7rHibY/diCc4m4EytQxqNPa0sK1bd68ndvY+BCUtbsKeY
+ yXIdwsydIC+Mk4VDci2yS0iGKQ4+EVaeYqUTo911k8Qx6gHRV+9X3xhie5wVcOtFYk/3UBvP0JY
+ CAVtiUDmFN6hwWK4B04ZBZGCe1OCi23Onw/587bnw5wxTEbmwN7QOKasHhcszDhbpXwcDA6Uo9M
+ fhPpmmGbv/Tg9aTEakx0obfv4c/Y2QccV9Xs1KLEmYuB3XTh5OxoUeBQNq2R3FlB2IBQhLyByVu
+ Zj7mkXDc3i3FSGUFg3w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-25_04,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 priorityscore=1501 spamscore=0 clxscore=1015
+ bulkscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605250168
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302773-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302775-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[analog.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mailbox.org:email]
-X-Rspamd-Queue-Id: 2E24F5CCF06
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[liviu.stan@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 056765CCF46
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series adds support for the ADT7604 multi-sensor temperature
+measurement and leak detection system to the existing ltc2983 driver.
 
---PHtn3q++te5nap0r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The ADT7604 shares the same die as the LTC2984, reusing its register
+map and SPI interface. It repurposes the custom RTD sensor type (18)
+as a copper trace resistance sensor and the custom thermistor type (27)
+as a leak detector, removing thermocouple, diode and direct ADC support.
 
-On Sat, May 23, 2026 at 07:40:47PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
-> - [Low] Adding 18 items to `clock-output-names` in the example triggers a=
- `dt_binding_check` schema validation error due to an un-updated top-level =
-constraint in `renesas,cpg-clocks.yaml`.
-> --
->=20
-> commit aaa0ff6ae07f5974071a547fef4a5b41bc484428
-> Author: Marek Vasut <marek.vasut+renesas@mailbox.org>
->=20
-> dt-bindings: clock: renesas: div6: Use ZT/ZTR trace clock in R-Mobile APE=
-6 example
->=20
-> This commit updates the R-Mobile APE6 clock node example to include
-> the "zt" and "ztr" clock-output-names entries. This aligns the example
-> with the expectations documented in a previous commit.
->=20
-> > diff --git a/Documentation/devicetree/bindings/clock/renesas,cpg-div6-c=
-lock.yaml b/Documentation/devicetree/bindings/clock/renesas,cpg-div6-clock.=
-yaml
-> > index 2197c952e21df..b6ee8c8efd46d 100644
-> > --- a/Documentation/devicetree/bindings/clock/renesas,cpg-div6-clock.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/clock/renesas,cpg-div6-clock.ya=
-ml
-> > @@ -60,7 +60,7 @@ examples:
-> >              clock-output-names =3D "main", "pll0", "pll1", "pll2",
-> >                                    "pll2s", "pll2h", "z", "z2",
-> >                                    "i", "m3", "b", "m1", "m2",
-> > -                                  "zx", "zs", "hp";
-> > +                                  "zx", "zs", "hp", "ztr", "zt";
->=20
-> [Severity: Low]
-> Does adding these two items cause a schema validation failure during
-> dt_binding_check?
->=20
-> The top-level clock-output-names property in renesas,cpg-clocks.yaml has a
-> maxItems constraint of 17. Adding "ztr" and "zt" here brings the total
-> item count to 18.
->=20
-> While the underlying limit omission occurred in the earlier commit
-> 2abdc3dcf978, modifying this example to 18 items will now directly
-> trigger the overarching validation limit error.
+Patches 1-6 fix pre-existing bugs in the ltc2983 driver: an n_wires
+default that silently bypassed the current-rotate validation, a
+reinit_completion() call after the hardware conversion was started,
+macro parenthesization and renaming, inconsistent use of the local
+device pointer, inconsistent channel wording in log messages, and
+missing fwnode_property_present() guards for optional properties.
 
-What does renesas,cpg-clocks.yaml have to do with this?
-This is just complete crap, right?
+Patch 7 adds IIO_COVERAGE, a new channel type for sensors reporting
+fractional surface coverage as a percentage.
 
---PHtn3q++te5nap0r
-Content-Type: application/pgp-signature; name="signature.asc"
+Patch 8 updates the device tree bindings: adds adi,adt7604 compatible,
+copper-trace@ and leak-detector@ sensor node types with their respective
+properties, and an ADT7604 example.
 
------BEGIN PGP SIGNATURE-----
+Patch 9 updates the driver: introduces two new software sensor type
+values (LTC2983_SENSOR_COPPER_TRACE = 32, LTC2983_SENSOR_LEAK_DETECTOR
+= 33) with dedicated structs and parser functions rather than extending
+the existing RTD and thermistor paths. The hardware configuration bits
+are fully hardcoded for both sensor types, and several RTD/thermistor
+DT properties have no meaning for them. A u64 supported_sensors bitmask
+in ltc2983_chip_info gates sensor type validation per chip, replacing
+the has_temp bool pattern. BIT_ULL() is used for the new type values
+at bits 32 and 33 to avoid shifting beyond 32 bits on 32-bit builds.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCahR6ywAKCRB4tDGHoIJi
-0s4LAQCN4ZclgsCmp6W9ngXCxKJuTscAuGKFvTYvKJmWuLoMuQEA3zpykWl3tyyA
-+l4vJl3u926PXHJjSRIKT/yR++YsPww=
-=1z7V
------END PGP SIGNATURE-----
+Tested on EVAL-ADT7604-AZ connected to Raspberry Pi 5 via SPI.
 
---PHtn3q++te5nap0r--
+Changes in v4:
+
+The n_wires fix was moved to position 1 and a new reinit_completion()
+fix was inserted at position 2.
+
+Patch 1 - Fix n_wires default bypassing rotation check:
+- Moved to the front of the series
+
+Patch 2 - Fix reinit_completion() called after conversion start:
+- New patch
+
+Patch 3 - macro parenthesization and rename:
+- Added Reviewed-by: Joshua Crofts <joshua.crofts1@gmail.com>
+
+Patch 4 - use local device pointer consistently:
+- Collapsed some wrapped lines that now fit within 80 characters
+- Decided to leave lines that would slightly pass 80 characters
+  wrapped since they looked more readable
+- Updated commit message to reflect the line consolidation
+- Added Reviewed-by: Joshua Crofts <joshua.crofts1@gmail.com>
+
+Patch 5 - fix inconsistent channel wording in messages:
+- Added Reviewed-by: Joshua Crofts <joshua.crofts1@gmail.com>
+
+Patch 7 - IIO_COVERAGE channel type:
+- Renamed the sysfs attribute from in_coverageX_raw to in_coverageY_raw
+  and in_coverageX_scale to in_coverageY_scale to follow ABI convention
+- Updated commit message to reflect the rename
+
+Patch 8 - DT bindings:
+- Added restrictions for adi,sensor-type = <18> in ^rtd@ nodes and
+  adi,sensor-type = <27> in ^thermistor@ nodes for adi,adt7604
+
+Patch 9 - driver:
+- Removed trailing comma from LTC2983_SENSOR_NUM enum sentinel
+- Sorted id_table, of_match, and chip_info_data structs alphabetically
+
+Liviu Stan (9):
+  iio: temperature: ltc2983: Fix n_wires default bypassing rotation
+    check
+  iio: temperature: ltc2983: Fix reinit_completion() called after
+    conversion start
+  iio: temperature: ltc2983: Fix macro parenthesization and rename
+  iio: temperature: ltc2983: Use local device pointer consistently
+  iio: temperature: ltc2983: Fix inconsistent channel wording in
+    messages
+  iio: temperature: ltc2983: Use fwnode_property_present() for optional
+    properties
+  iio: core: Add IIO_COVERAGE channel type
+  dt-bindings: iio: temperature: Add ADT7604 support to adi,ltc2983
+  iio: temperature: ltc2983: Add support for ADT7604
+
+ Documentation/ABI/testing/sysfs-bus-iio       |  17 +
+ .../bindings/iio/temperature/adi,ltc2983.yaml | 217 +++++-
+ drivers/iio/industrialio-core.c               |   1 +
+ drivers/iio/temperature/ltc2983.c             | 621 +++++++++++++++---
+ include/uapi/linux/iio/types.h                |   1 +
+ tools/iio/iio_event_monitor.c                 |   2 +
+ 6 files changed, 752 insertions(+), 107 deletions(-)
+
+-- 
+2.43.0
+
 
