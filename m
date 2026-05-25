@@ -1,198 +1,242 @@
-Return-Path: <devicetree+bounces-302537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302539-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sAmFNNUXFGo4JgcAu9opvQ
-	(envelope-from <devicetree+bounces-302537-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:35:17 +0200
+	id aP0AIUwYFGo4JgcAu9opvQ
+	(envelope-from <devicetree+bounces-302539-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:37:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC5E5C8AD5
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:35:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 224545C8B8B
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 11:37:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2EF743001A7D
-	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:35:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 79487301A7F2
+	for <lists+devicetree@lfdr.de>; Mon, 25 May 2026 09:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876B43E314D;
-	Mon, 25 May 2026 09:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F123E8335;
+	Mon, 25 May 2026 09:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ireRREY2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L8o0RsKP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com [74.125.224.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FF92324B22;
-	Mon, 25 May 2026 09:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779701710; cv=none; b=Otvab/C7qq2clkZ8wkjotDP3qyzn7AfzvPCaI7eEjN25TL/ZHHyrkKi1mbHCEP4qiJjRYtpuv6PIalHGfvw/OHx81m20ZX/jPanPr1nmsW/mLXF1yTtvHOcjp+qFQH9IZLHf1IExXoI6yvMt8wXd+QyBlQ7/FeDvcpRU+pct2eI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779701710; c=relaxed/simple;
-	bh=1cwSj+wuJx/itv+ZmJHrAzksMm7TwoHLYvxftVkfKcc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RNoW/QTJ0X9Fk0LSqpnpLmuf3CdsP2vda4Bae1VLHvHpngIuZGVJguhjuse5CQxefjwjEk3PvFJ3Tj9obI3+K5Fm/8mqo/+5GwJ8QLcjpRtu7qIw044YiqlQoD1+GzS6jBx/fAdar11yJBQ57xinhnWwJXty41/o55/mYcIBNSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ireRREY2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64P9EJ60079191;
-	Mon, 25 May 2026 09:34:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aERorl8PN3gDoNsxGdbl0MdT5E8Sf4bdoBmoK0Ydoe0=; b=ireRREY2UtyHqXP1
-	3p+cmJx/4cYlxX2t2Zwxp30+M17MrGubqOP8uf/eStALGvi5Ol37rQ/ESsqc3kML
-	OKg7NlGxxFmCplDFbEAePb1usqo9Ol++No4uzJvfiCYzGaVSvZdaCuDgnpTd77Yr
-	zxeN69LwZC5yZdF6wG34gpiJ90HL+9ALnKZR/lyIBj4msq6UHjHCUdGclC77zwuF
-	GljtJ63aUfoMlN+0ZuPswS0mvp5vmatN2lpKQvj5NEXVL8jmGh/+PG0U0AzEv/jT
-	uzhJBMosPmdM4QDP25qwE94KmFiNqG7nxrPmIHioWmeWIgHxJDOy2EiNRZSgLN1G
-	RwPqdg==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eckma82ss-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 May 2026 09:34:58 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 64P9Ys8t006777;
-	Mon, 25 May 2026 09:34:54 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4eb5ahteuj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 May 2026 09:34:54 +0000 (GMT)
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 64P9YshP006772;
-	Mon, 25 May 2026 09:34:54 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kotarake-hyd.qualcomm.com [10.213.97.140])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 64P9YsOd006770
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 May 2026 09:34:54 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2389607)
-	id 4C35CB2D; Mon, 25 May 2026 15:04:53 +0530 (+0530)
-Date: Mon, 25 May 2026 15:04:53 +0530
-From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Komal Bajaj <komal.bajaj@oss.qualcomm.com>, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, neil.armstrong@linaro.org,
-        conor+dt@kernel.org, olteanv@gmail.com, vkoul@kernel.org,
-        robh@kernel.org, kamal.wadhwa@oss.qualcomm.com,
-        jishnu.prakash@oss.qualcomm.com
-Subject: Re: [PATCH v3 3/5] arm64: dts: qcom: Add Shikra CQ2390M SoM platform
-Message-ID: <20260525093453.edmqryggp5kcqxxy@hu-kotarake-hyd.qualcomm.com>
-References: <20260522-shikra-dt-v3-3-80ffde8a3dc4@oss.qualcomm.com>
- <20260522191013.23B0C1F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCA03E7145
+	for <devicetree@vger.kernel.org>; Mon, 25 May 2026 09:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779701820; cv=pass; b=MpD6m40J5CeqczUPUXY5yqs8hScZ715EKgBjWBvbaqmnP1PmI1VKgagY/dreXl8b2ivX5HfjW12hxMBdrRlentO04XxnWP2DqXJJUXMl29YnYxgIZC5H8Nw4HADJHrieXlS+zZ0Ec2Ghnyg4kr4Gx3a3eQotd4gBrWxE5qUYCNk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779701820; c=relaxed/simple;
+	bh=bG2lZTq0AlonyzQJsp3hruKHT4bKY6rEQmFhRZ/Om5Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aZcghT5xdFeplHReSkBvj/n8B+ZDLXLx9rILMsl5RTHQNafnbCJuRTKF/+8Vxcr8840MPm0NvOnMmNCvP8UvQ/fL7hdnR9S8KgZ/rR2xeU+boeJ85gAixkX58sJQoxtsvOrkF5bXqSZq17xNcmPH3OtI0+AS/UTsMxV+xbAVloo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L8o0RsKP; arc=pass smtp.client-ip=74.125.224.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-65eb1b25c77so3864310d50.0
+        for <devicetree@vger.kernel.org>; Mon, 25 May 2026 02:36:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779701818; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Wg8Gx71Y0rEC6YI2dDiLzmWlgvOU87blDjB9sUwJvNLXWcYc5stR8TCw99OA5Nc1nh
+         65uKVIqtjBTmnzs173rcs2wyQTGipC8iX5M1JqNMPRT9lGli5ArM5kheIZUKP6bA/Xpp
+         Rv33PlU82sh7hEQ/zZ8mafQHXwbgekeTuHDQQrlcJSLYuD93cKnWJXoaPHIJ5aRhY7pi
+         l1+kyVdixhthvnOdYBRZyI8x5zBMpdnq4tXl3Rdlo5BdcvfB5zT/D88LsqLROHXH3L8H
+         cjBki+ORN+04K7xWWEyp4VKpbmwbzg1J5fXZuGk/iAH4v/uRqAo4pF3QpJdCSmLSKfQF
+         J4Ug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=bG2lZTq0AlonyzQJsp3hruKHT4bKY6rEQmFhRZ/Om5Y=;
+        fh=vw+t/3Raoyne1XInwqH5Ga9McupA7tuBwFgtOIVT9cQ=;
+        b=O5Gx6Lg2FFnWEWsW82JogdPBJt5x2OqcGxSPB26UZShYeJ4+REaseAGNToAzji7jT9
+         gziYqaLhh2jIb4mO39movFZPbBCJrhV/MGXmDkzBYF14KfgH2T7/0jd82KwOdKtb/UCO
+         sn8taoxF8nmfd+qijVR86l5X4ftDBBRcgIsYuRzNVk5X4lUgRNLrVzko/oQ0xSfONUcw
+         R9CCv/jp3BbLtuvCS84oKiR3jCnfHnvPIykTBxdaNguyAiAtEM6pJ8TYeUorAasY0R9D
+         1YHZGHUTcAKJ83tx4c3wj1awrIzldL7X/HSPs7WFAv0rLMK62u9d0FL6A7pWnlfwLXmu
+         KdbA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779701818; x=1780306618; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bG2lZTq0AlonyzQJsp3hruKHT4bKY6rEQmFhRZ/Om5Y=;
+        b=L8o0RsKPN0cnIHtL1LC8UVEOx3Okug9D7cpGaD+fBdAnBtUUE6GrkEZ3yJI2NoPTyU
+         cgQFbJmo4Lkv3zZ4uP2bpbmc+G53eX+w8M85wXGCBNPEA9exX4mU8elTsisgJ+BOBIHR
+         kYWtDhBV5LxYqbF8BRvb+bTUGTwfaojETUxQQEk4JnEiu4/btCirFuqJnH1kMcOrRp+R
+         rf98Z/lSNf5YtmClN75wICZK3OMP16CxgRPlzCt5ruCJ4K1HZWLRCSESTJCqQfNM6awC
+         GtJrV7+ivjoeyB8RBXhO4rR2vc9Qd+fedLNi85AmB2rb+tP32ZPavJxvwYc1ejPq8UpV
+         77xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779701818; x=1780306618;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=bG2lZTq0AlonyzQJsp3hruKHT4bKY6rEQmFhRZ/Om5Y=;
+        b=SD6t0poYEG4n2bSWIlMlff5mvELcM9kblfrkg21eABIrV6JDY8V02n6CkyqVO6BOt3
+         7IRrKVK3O4QZPcKZC/d1876HYgzKJZZR0UL6y+7JznYy3i+R6O5v3Tc01GLSvp3bewoP
+         dZh3c+QL0hZedjyUZsx2oJCTcr6TEY7oj2HzPZca/k9morxfdbUVuDzccXI9Uv/CA4z+
+         1Dc2BC+3P0qGsGYtXVL97tNo1SV4nxNdAuOINaiyJiX3xufS/d0L4USngXDonDtAwE/r
+         4UwsK0+ozklb0FY11FSD18gLfpxESPqvRy7VJSHsfWR5lu43crzOcfy0v/FoUPpDVHxn
+         xxzA==
+X-Forwarded-Encrypted: i=1; AFNElJ8U6T5CpYI/B4UMc4GFcDl+qsVpwPzrYj8op3C8WBrVhExeIw3nvTPr0YdR7qRW/nwL3Zu+kCtsADZN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGkr9IetP805zSegD7MtLF1mzmUCkFX4mjs79Gh57ms3BLEbfD
+	rjDjzQ3xD6shtNMkcSmH70C7SYKBZ4EGGIh3GEWvMg6xAcr1EdnAKRWa9pSSXRUh7WdR3trnhTh
+	iKrGn6pR9vyjMvmFb+i5g4cbxql4pfqo=
+X-Gm-Gg: Acq92OH8BD8BlzG3YGJ+XddkVk3FqVjvcnqzTu621rAU89n8ZhdadXz5C9iyBdBTC2K
+	Xr8i+XnLf9GiMB6G2i4ZEwpvhmCtkRRhnXivbbsBFvDjKWKoHSRIqC4APJBsgFrdGf0wLaqgGsm
+	MBEl/KwdO9r5rnJIXo6g2V1iZaLZMctstDmviEEaWFw9MIPYkb4Cmb9QtXB7dMKsVej7fXxkhiy
+	HRu1CGSJm1DXNne3mkHevH4ee8RPpLw/vlcLHPVa4KkHrtik1FYQRqD893Dwskv9SZROEYa9qjp
+	3c9MX1+bKSySQm+Q+gEmZJIYuohl9g==
+X-Received: by 2002:a05:690e:4383:b0:654:54f2:9e50 with SMTP id
+ 956f58d0204a3-65ec9775082mr9988663d50.25.1779701818177; Mon, 25 May 2026
+ 02:36:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260522191013.23B0C1F000E9@smtp.kernel.org>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Authority-Analysis: v=2.4 cv=cL3QdFeN c=1 sm=1 tr=0 ts=6a1417c2 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=1FUQUpU6QHfrpmvLx8oA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: ExxfN7E2PfhBIgUHJ5awJWAt2ht5vaJv
-X-Proofpoint-GUID: ExxfN7E2PfhBIgUHJ5awJWAt2ht5vaJv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI1MDA5NyBTYWx0ZWRfXwCYTS+ICWKTx
- HOOP85wwTbqkawMl7xtzzultOLy24p5xJuBoNrcsjRihKN/GQFepOLIZYrTR4KrPEdcwGir1q3T
- 7U0jKtiXIcSwYR/rS+iFl4NX/0PuxOMa3L4rSMKqEJCLapdZI8YLEFiMjJBJENs6zNgoy4MvwRB
- oOS4Oz5ODqhzw/qEZ5OXIvQ8twwhOL8uFA+lZEPETTFd23pL/MPwCi59vOHfQ44QCBtt2QQLJev
- 3Opsz72uoSDp24OesO7Fy0HKVly14lBe6aTBSZx+zF0Tq2/D+j7A94zliZikIoEDF4kEc7CyJhY
- 1pz2BfeGQN4kHavB2GIuZqc9dIlGb1/D7M7lq+RYHdsXMXfjNwpLcR4P3frcrXgw0s9aawVI4su
- v9yXk9F1uuDcbBY6iebX9uFEnTISy9ydj4BiVhS/90Xn57hfHo0CziE8uV3Yk1H7VMp5c07I/yR
- qbxPtRqNGwWh0LMIcag==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-25_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 priorityscore=1501 phishscore=0 adultscore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605250097
+References: <20260515-orangepi-sd-card-uhs-v10-0-094af27e310d@gmail.com>
+ <177889984452.2298656.1074391459031404894.b4-ty@b4> <7e68e745-0d70-46db-9475-38d3dd5b9cf4@baylibre.com>
+ <6b945153-5a7b-415e-904a-1c350b7d52ee@gmail.com> <86ac46cd-b7bc-42cc-8c29-996ae21f3654@baylibre.com>
+In-Reply-To: <86ac46cd-b7bc-42cc-8c29-996ae21f3654@baylibre.com>
+From: Iker Pedrosa <ikerpedrosam@gmail.com>
+Date: Mon, 25 May 2026 11:36:46 +0200
+X-Gm-Features: AVHnY4I_k1DJLPTVcDE4dQLLOOZPqA-S_Z9vI3VGZcAzyFnMwYf6XDaI2FWsQUo
+Message-ID: <CABdCQ=M_E1uHU5WTXCn2mXaxf3-+7M9gXCL=tp1qBW50jf7d5Q@mail.gmail.com>
+Subject: Re: (subset) [PATCH v10 0/4] riscv: spacemit: enable SD card support
+ with UHS modes for OrangePi RV2
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Andre Heider <a.heider@gmail.com>, Yixun Lan <dlan@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulfh@kernel.org>, Troy Mitchell <troy.mitchell@linux.dev>, 
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>, 
+	Vincent Legoll <legoll@online.fr>, 
+	Margherita Milani <margherita.milani@amarulasolutions.com>, 
+	Aurelien Jarno <aurelien@aurel32.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,lists.infradead.org,linaro.org,kernel.org,gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-302537-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302539-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,linux.dev,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,online.fr,amarulasolutions.com,aurel32.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: CEC5E5C8AD5
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 224545C8B8B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 22, 2026 at 07:10:12PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] The commit message claims to add PM8005 PMIC regulator definitions, but the patch explicitly disables the PM8005 regulators and provides no configuration.
-> --
-> 
-> commit b8207cdfd80924e291ee52448a105708aa7b6a09
-> Author: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
-> 
-> arm64: dts: qcom: Add Shikra CQ2390M SoM platform
-> 
-> This commit adds the device tree include for the CQ2390M variant of the
-> Shikra System-on-Module. It integrates the Shikra SoC and includes PMIC
-> regulator configurations for the retail SoM.
-> 
-> > The DTSI includes the common shikra.dtsi, adds PM4125 and PM8005 PMIC
-> > regulator definitions specific to this variant.
-> 
-> [ ... ]
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi b/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi
-> > new file mode 100644
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi
-> 
-> [ ... ]
-> 
-> > +&pm8005_regulators {
-> > +	status = "disabled";
-> > +};
-> 
-> [Severity: Medium]
-> Is the commit message inaccurate, or are the definitions for the PM8005
-> regulators missing from this patch?
-> 
-> The commit message states that PM8005 PMIC regulator definitions are
-> added, but the code explicitly disables them without providing any
-> configuration. If the SoM variant requires the PM8005 regulators to power
-> hardware components, will leaving them disabled result in runtime failures?
+Hi,
+
+Sorry, I've been on vacation and I haven't checked my emails.
+
+El mi=C3=A9, 20 may 2026 a las 13:11, Trevor Gamblin
+(<tgamblin@baylibre.com>) escribi=C3=B3:
 >
-Yes, you are right — we will update the commit message to reflect this
-more clearly.
+>
+> On 2026-05-20 03:53, Andre Heider wrote:
+> > Hi Trevor,
+> >
+> > On 16.05.26 2:35 PM, Trevor Gamblin wrote:
+> >>
+> >> On 2026-05-15 22:57, Yixun Lan wrote:
+> >>> On Fri, 15 May 2026 12:48:58 +0200, Iker Pedrosa wrote:
+> >>>> This series enables complete SD card support for the Spacemit K1-bas=
+ed
+> >>>> OrangePi RV2 board, including UHS (Ultra High Speed) modes for
+> >>>> high-performance SD card operation.
+> >>>>
+> >>>> Background
+> >>>>
+> >>>> The Spacemit K1 SoC includes an SDHCI controller capable of supporti=
+ng
+> >>>> SD cards up to UHS-I speeds (SDR104 at 208MHz). However, mainline
+> >>>> currently lacks basic SD controller configuration, SDHCI driver
+> >>>> enhancements for voltage switching and tuning, and power management
+> >>>> infrastructure.
+> >>>>
+> >>>> [...]
+> >>> Hi Iker,
+> >>> I've picked patch 1-3, for [4/4] I think it should be merged after
+> >>> https://lore.kernel.org/all/20260513071958.29574-1-a.heider@gmail.com=
+/
+> >>
+> >> Hi Yixun,
+> >>
+> >> That makes sense. In response to your earlier feedback I had drafted
+> >> a more
+> >> complete dts after another schematic comparison, but Iker and I
+> >> discussed it
+> >> and opted to avoid changing scope too much. Andre's series includes
+> >> the bits I
+> >> wanted to add and more, so that works out.
+> >
+> > I have 4/4 rebased on my series anyway, do you want me to send it?
+>
+> If you have an update to make, please do!
 
-The reason for disabling pm8005_regulators here is that the PM8005
-regulators are controlled by rpmpd and are not expected to be enabled
-from this patch. They are already enabled in pm8005.dtsi, so this change
-does not affect runtime failures.
+So, how has this turned out in the end? Andre, will you take care of
+sending the latest version for the MUSE Pi Pro?
 
-regards
-Rakesh
+>
+> Trevor
+>
+> >
+> > Thanks,
+> > Andre
+> >
+> >>
+> >> Thanks!
+> >>
+> >> Trevor
+> >>
+> >>>
+> >>> Applied, thanks!
+> >>>
+> >>> [1/4] riscv: dts: spacemit: k1: add SD card controller and pinctrl
+> >>> support
+> >>> https://github.com/spacemit-com/linux/commit/2d77e577109967ef65f269c1=
+fc1d6a659d4260fb
+> >>> [2/4] riscv: dts: spacemit: k1-orangepi-rv2: add SD card support
+> >>> with UHS modes
+> >>> https://github.com/spacemit-com/linux/commit/2585c60ce2f977b13f14a67d=
+1e3ed9c73fd7f381
+> >>> [3/4] riscv: dts: spacemit: k1-bananapi-f3: add SD card support with
+> >>> UHS modes
+> >>> https://github.com/spacemit-com/linux/commit/c76e2f058cbcab84e4a703f2=
+6857a58bdf6a0042
+> >>>
+> >>> Best regards,
+> >
 
