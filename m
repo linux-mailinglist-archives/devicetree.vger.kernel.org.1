@@ -1,289 +1,225 @@
-Return-Path: <devicetree+bounces-302981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303011-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCF7GktyFWpbVAcAu9opvQ
-	(envelope-from <devicetree+bounces-302981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:13:31 +0200
+	id 0IGjGYyIFWqFWQcAu9opvQ
+	(envelope-from <devicetree+bounces-303011-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 13:48:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D1F5D3FF6
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:13:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0C05D5224
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 13:48:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97ED2305E2BE
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:07:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D49173143E26
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4626F3DB658;
-	Tue, 26 May 2026 10:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="oFSN00XS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C143E639A;
+	Tue, 26 May 2026 11:41:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2128.outbound.protection.partner.outlook.cn [139.219.17.128])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D9D3D891A
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 10:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779790039; cv=none; b=CKhrVYr2TAvYBPRLTmDP15Imid/0wABPLOvLO/NQsKpnvUD8bJvbArTHmlintyoPpQkffRPAlXaElM5vvNe8D1jZfIJAdZEkAHgKE4OQgiI6mmyCcaiANx1qAmUUJS4PZU23YSQmYQBLqWJRqO4ZLDlS0rlzWZi2+b+ZrkAfRMY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779790039; c=relaxed/simple;
-	bh=Ublks9CuT5syiY4dPX5P5VSog6DvqLq29kO6wrUNPns=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AHOLJ4VRq9WJlHo9ASNGBPMqxbN2sBzC+Hzrb6V3wawCyuoP/5hT33wmLLvUtZtVd2MELb5LOmEhLb2NXQkM6fp9YFcTDHidRM6qZepvuqVT4UnwQqcYp0c+EGuN65Ah9VyH0E0Z532gdMpSarcBsDEkeNP/OrmwUU+76vHZvBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=oFSN00XS; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48a3e9862f0so54919705e9.1
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 03:07:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779790036; x=1780394836; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UBWVkdlUBppiUm4CnKZtDjFMlGPeTrCwu/oPgCeq608=;
-        b=oFSN00XS8JSvgHKTtHxo9tD84tNW1qVETBMBCrdtp2ANYbKYzy55a6Bkm+wvs43f8I
-         cPnEkwoT3LMw1fHJlL5qqBJUfAbQEauY3Zccz7pAuekrLJt+P6iXBiBmMznl2fIwKw1p
-         TZdzFLUGihTaLYkMLrofz+mYEA0DipPVylgFh+PZ3pPat5EpBZ8F5WmGmqXCLblJZaNx
-         XsTPMvCirVmpN7JVz8hNsNTO+GFdwit/u0ZB0KBQRBrJRGQSLmA6YTGCetcfzJ3T18Ii
-         8G3YM/yxCpu65q8IJD4M3yWJzemSUilaKHPvIfSfEManmI4LE1QYOAIEPGKXNZwwKGLQ
-         Z4ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779790036; x=1780394836;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UBWVkdlUBppiUm4CnKZtDjFMlGPeTrCwu/oPgCeq608=;
-        b=lp+t7T6PAycFPxNph2tydUpUf0fRdezROB6q5ccN+ZQUaAHyGiD9I1F9Zz5FVfcDCF
-         YVAMmicl8yagbCaj1zUzP156El+UhtKl2hx7C7jAkwVZeAOrUQg9VrBz6sdVGtmUhTb4
-         bPkHZC9BA8Z8uRm7bI212Iwwb+nzrhnG6TBOy3GmfHxohdF7+aW8BKlGcuieXS3FbZzm
-         dqFw6d4U6EtBQiw/UMpjac9vfKXEIqBPj2vLQCp/cB0AWOMj7sXpxo5+BLQXzUFANZSy
-         uVjS+T0i5/SaeYVyvBRRt6dtMGc2tTjw7L+za7rTvbj77o6bCvkz2cqiFYB6Db5ov4x2
-         TGkw==
-X-Forwarded-Encrypted: i=1; AFNElJ9eM01xUIrx7iCpxmNTMyYaGRQhK+/GEwLPkkVtH4UjS9OHiGz11lx1PksdcV+YSe4le7eTh1yUo5hb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp7JKlQ7K9MD7COwjy0DlGaAfxwG+UdALZmavuD3Ur6b/Ry+EN
-	SgSV6vfJ1eQfIUbIgn3+Nx95n5vyyzygpwoZptXmMXrjlf6m42tD+aRl
-X-Gm-Gg: Acq92OHWFtHf1037XxV6O5kpmGzLGQRDBHBJmLqRprPlx/fPYaBAdegzlSmX/i5UITT
-	+Dkv6yRZY7fz7fqb0+qMkeQFKLDzAu0DewwGoNq6fFKlXZK3cJr5jG3VSHNa4gXXi2KpmhsZ1Ex
-	VrMlwqZKPfl2oLVkr3tYH5cE7eD6eKQU4RxGUbvc1TBtQbcQZe1HkyaMb/5Lr+HowqsT4PcOHNI
-	YC7/nZ8PMtwjEK1jU/Livgss+PsegSlrZklYNLfdbxO1sYvo52ltcuuU6q3O+urdJ2cI1yiwGi9
-	8p0UHcKgEvqMlH5RawIVo+yhujtZ6WQtvRddcTakAHo+NJP4HOt73ZRnu4eV1G8S8ncXTw2KRm6
-	q+H2gCwIupjA9nGU9PR/JnJCu1Jkn+QeK6cbGgtARfw1k0XrWOW4mrxMq2P0Z4KOCBjvz1LABPz
-	vPgi6AqRl2Z9tl+Dr6KcTDBQnwtYAEvtXhk4Sp82olhxpaUT/eiEFfvkpF+Hyzqnxc6ER5owAnJ
-	O2/bHXBrOba3O8POid4MLen/15zSfFx6EMjfOVF/1al7GDPMw==
-X-Received: by 2002:a05:600d:4448:20b0:48f:d620:c27f with SMTP id 5b1f17b1804b1-490422687c3mr181089135e9.4.1779790035539;
-        Tue, 26 May 2026 03:07:15 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454c5eb0sm337780505e9.2.2026.05.26.03.07.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2026 03:07:14 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Tue, 26 May 2026 11:07:09 +0100
-To: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
-	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v5 12/13] Documentation: ABI: testing: add docs for
- ad9910 sysfs entries
-Message-ID: <wyxgririrncvg67bisazndqtlj6ylrzkqfgsi7tptjfv7qopwa@rjmtb2aohbay>
-References: <20260517-ad9910-iio-driver-v5-0-31599c88314a@analog.com>
- <20260517-ad9910-iio-driver-v5-12-31599c88314a@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594FD3E5EC3;
+	Tue, 26 May 2026 11:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.128
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779795659; cv=fail; b=kbEXeHOX4ZYX7NLDUMLytpoNseIFdIrscUZuQgAoGF8fNge2dtIk1a+j8jCR5W9IXvuHZMV5j6I6PWFfrVd2f8muwIbp8/sP/j+Yvejaf8iDDSvJgFPb7Yr0y9Z0JQtbO3ajYKmAR7HcbAZC3tBkiBgRAa5xBc7z3JQLOELfksw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779795659; c=relaxed/simple;
+	bh=p4uc4e1NbZ9SiJy5zXAtujdf/0Pi1x2pzvqz5jeliXk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=SZXRsyCpkhDLbDEIROMBCTj5h66kcpKLSp8GefiwGs0AMWdTp5DuDEa4z1Xy49oLW2h6wh7NeRX5Y/XeYp0WDvkGv4hg97ICqHGi52QvCairG7YmqbtVkeyjxfPfLdsREGYfUXFwgZmgSNwDAyQnVKxWO3uZkHmE2O5AUUromTI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CN4rPx1hXKg8e2UqrOybuRXQyHzxiyYHjEBrei/lRuvZa8ZzNEVEkvfjDdxZk5dziQEk2jM9b0NstfToWVXTI/sykFF1SzkDfHw2DB+yWTNvD8PbGL1+SUo/JQ9MwhQ+jYRARcs7Z+q8Cjd0iuhCCuK0bqCHzcb36YNawU5TxxYRVaxLVE8I8nMo3d9RidUy/n9AfhnEyYrGZU4SvRLzNBYh+uMir701PmfDW+j4igScIpp/Pvqc3lXtXOepPpi8at2Nj00EldU6sW7z/LZzAfK5UJpsC85iZ4FCGbok9n5RxmrngSBehX5aminB3yx4u1/kcuUX6k7ddcD/JQUJKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p4uc4e1NbZ9SiJy5zXAtujdf/0Pi1x2pzvqz5jeliXk=;
+ b=dTlojXLcivQbdcUWd0Vd1AEE8qqwdOW9HMh8jBCN2NYY2Id0/PnuB90PGZUqQybaHHzFA+5ry9e1N8M5I34au0TJpVtfdRlmZYr/MLIuNXCuuU9MTB7//CkCiJ6RcY3rO3gVPksXvvQv1gUKWaHCg5Xa4lkQ36o8YRrjnyjxJGyim3h78QejCDD4BAPcHZlSFiihX1OohtgPdtpl/Hg8dQ7rkJhhx/X6hX6YNsv0CRq5UAuyJ7t7WkuZZA1z6rYSLRoc/E/QuR2V6vuu11tjr2LD4/omX6zSMndW9bgR1nFLFzz54wPmLyE5z3raktcYr/rqVkwFAqksy6xZLchxiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:18::6) by ZQ0PR01MB1256.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:18::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Tue, 26 May
+ 2026 10:07:45 +0000
+Received: from ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
+ ([fe80::973:272c:ab11:7570]) by ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
+ ([fe80::973:272c:ab11:7570%6]) with mapi id 15.21.0048.019; Tue, 26 May 2026
+ 10:07:45 +0000
+From: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mika Westerberg
+	<mika.westerberg@linux.intel.com>, Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>, Jan Dabros <jsd@semihalf.com>
+CC: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject:
+ =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjEgMS8zXSBkdC1iaW5kaW5nczogaTJjOiBzbnBz?=
+ =?utf-8?Q?,dwc-i2c:_Add_StarFive_JHB100_bindings?=
+Thread-Topic: [PATCH v1 1/3] dt-bindings: i2c: snps,dwc-i2c: Add StarFive
+ JHB100 bindings
+Thread-Index: AQHc6NQIO8gFL4A340+9gLOr9hGfsrYY8MeAgAcqjEA=
+Date: Tue, 26 May 2026 10:07:45 +0000
+Message-ID:
+ <ZQ0PR01MB1269F0C3E81C191A716EAE72820B2@ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn>
+References: <20260521034340.27837-1-lianfeng.ouyang@starfivetech.com>
+ <20260521034340.27837-2-lianfeng.ouyang@starfivetech.com>
+ <eb1e7119-9d1c-4efb-9609-3c8f5265084c@kernel.org>
+In-Reply-To: <eb1e7119-9d1c-4efb-9609-3c8f5265084c@kernel.org>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ0PR01MB1269:EE_|ZQ0PR01MB1256:EE_
+x-ms-office365-filtering-correlation-id: 2cbe28b2-afdb-4e80-1527-08debb0ea1f0
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700021|4143699003|3023799007|56012099003|18002099003|22082099003;
+x-microsoft-antispam-message-info:
+ YayzYmcMoxg7GYwz6bMXRs4LQlpHKuODiUe+I5XgezSV32QyfcVO9AELXPuZbNxMTrOP/tHs99R6Du36PBpWIZ40TdAUiYkLKrGoE49Wiui4nAOxVfJ4jQ06dnzP/JixqwPOnEYMxWckxx4gF33x/j2F9ETv8Yx3cbe4t556C1c/u3/hbJjsoMpngKqoKVXKo4g+y+g/l8WNbL07zPScatp9cTB1j/aGfmUROoaUJj4ISKzyTwM0chCEeEwCOX+9oK3OZu5y6oKxpIWm1nSAcp/lsE5WlDvKzWTmRbICAwkr6183c+aewLfNf8TPVYM+3CG1lQMdJxzZD75nR02lbQAGkipZK8BkGtCzuvd8b2I/0Zyu16Dr1/YDSkhrcV+Cw+NgDHQpK7zKsO8dA0mrTGtK9uQirwQSFaWorzqFUnuqM87AgsFi9y/YjRhP/rabCMOngxmMUEs25yn4Wt7xKyjrD4u/HJJ4d15im50W6H4otN/1Qnr9J6FSkBv+ueKExFljSHZjyqHFYK1zCt6ecrnJPtaMM/eKjO1WoKbPGSN+wHOqsbriPRxsdKXE6CPk
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700021)(4143699003)(3023799007)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?NjdLUDBFK3dycHZlaGtMdGRFaXVVSU9tMnFtMlFlZXdlLzM0c1pYTFphVmI2?=
+ =?utf-8?B?OHZINVdmemd4akxCYUZJeU5uVVdNZm4yKy9kOWdic0RaZkJPZDZZQjV0NVlo?=
+ =?utf-8?B?TzlmVENDWlRrbitiYWV0Uk54NWhvdEwyNy9jNmtPbWV3YnhEY0lwSUZMSk1m?=
+ =?utf-8?B?N2hvSU5RNFNrRXllcGFUQys4dlFzVWVJVk85dHVZM09yWHVKS1Vpd3dlSSt2?=
+ =?utf-8?B?OGJpVXowUWlxVHVuRWxkVVN5OS83QkdWK0wyRUthN080TWdXMGh6bXV6MU9P?=
+ =?utf-8?B?Z3lVdFZJOG5PalZmeUhDQXBZandPSGdwUy9uYnFHcHhTN3pJYzVRN2ZEeWRn?=
+ =?utf-8?B?aFBRL2JETStoWFpabVZkZjJ3MHNWRjVCN00wR3BPdTMvNEdENXZsZHYrTTMx?=
+ =?utf-8?B?bTl4b3p2UlN4MWdXS0YyWHZvS2JsbU1tSXJUSStYRmVrS3NKVGh4blg0VjBs?=
+ =?utf-8?B?VjhiVGQ0YVlUcXY3d0Q2ZzA5azAwaWdnMFY4SE5OL21IOVlCR1pjMnIwRXFz?=
+ =?utf-8?B?NW5kMzFhZVFsOXE2eW0wZTd5MXM4NlM2d2ZyUzN4UlY2NkVoV1RhRFJIV2Ux?=
+ =?utf-8?B?MXl0emlWeDN2WGx3RHlhK2R1LzJnaTNvYWJCUkkySUF4NzE1UHRPZWdSQmdP?=
+ =?utf-8?B?Mk5lK0x6VzZPVzJIVk12dXhPMDVLV1ZKcFpHR1BLVjFsZENtK1k4K3Y0MDlT?=
+ =?utf-8?B?ZkRxbGx1YURZN1pZQXRacWlVVXErbW0wUUl1amJTK0RodDNEZlRkMkpDVldt?=
+ =?utf-8?B?ZncrQzcyUWJ6VUMzUm55c1FYS1hxWU9qUThVeTdEWU1CSFpmODlpVTVlM21r?=
+ =?utf-8?B?NEVyUjFQbE1ac004NU54ajFIN01Oc3lMU0wyK2JTaXFKeVkrTnFhQVJFN2cx?=
+ =?utf-8?B?WGlKTjZsQWRNMUhSbzd5dDhPTWs0V0IySkdLc1ZDY3hGaHoySjRTVGo5UEFi?=
+ =?utf-8?B?WmdiRFZoYWlvZ1IybkZSTUE0NDRnRDlEVWMzaW12bngyQTBnc3JqMjN0VjZq?=
+ =?utf-8?B?TUludjhCazFJVTY1czc5K253cm5tRis4c0NMRkhTRmlrSmdhczJRemxCZUFl?=
+ =?utf-8?B?dkt6Wm1TSitLalFOMXlmMG9NeVRnSWRKU3NxTEt0RXZjdThPM1ZUVHN3b3pX?=
+ =?utf-8?B?T2ZWMmd6VE9HWmRkVFIxR28xcGZzeW5LeWZ5YjlURDBBUmVncFRnSHJRWGJQ?=
+ =?utf-8?B?bU1oalVqa2JIYXZ5bzZRWkhBTjI3TklsNHZhWHZ3VFN6REk2bWNlbnViYXBF?=
+ =?utf-8?B?cTU2SEt6SmE5OHlSMUZ0aHNTbTBNNk9JeUNMdHQ1Z2l3aTJ2V0xwOGpwWC96?=
+ =?utf-8?B?RzNxMGxENWRvSHUrbGhiMTloY0k5K3BpYit2Tkh3dEpybWJ2VEJrZ0todlM3?=
+ =?utf-8?B?bG4yOWhoK1pqMW4rSkh2Q25qYXdEUG5wd3ppa0ZPY2VMVUhDNmdZMytQNXVM?=
+ =?utf-8?B?SVpIQVVZTHdCWFBlMTQxUTJ4T1kwM3ZuYlo1cFdMVlI0Nk4yU2VqWTFXQmpQ?=
+ =?utf-8?B?Z08vM0pKNTVld0VhdmtCcU1BVEQ0bU1nRnZZejQrQ05GOEtwTkQyWWZHWlNG?=
+ =?utf-8?B?UlpMMWJBaUIrVWhGQkI2TGY0T2ZUcGpveHJEeW55VWVKbWJ2SnJ3cTV1U2Mr?=
+ =?utf-8?B?c0IrWVdlSG9DaWs0aFBUejNTMVhEeVhJU3RxSDNmQVZFNDlCRm84V3hIVTdv?=
+ =?utf-8?B?SDd6L09sYWZwc1dPMkdzMGFnRnVjMUNDS3plbTQ5VWpXS2xWeTJPWlBsVmw5?=
+ =?utf-8?B?Kzk3U1RtaWgzVnZRTUZlZk0wRFdzWm5CSmdGV1RwczcrOFV1SnZHTVFQcXpz?=
+ =?utf-8?B?dGR5SUNnVUR0eVJ3cnpsNzZrWSsvcnhBclhWa0o5UTQ0enA1UDR4eFBjN0dh?=
+ =?utf-8?B?aEc5aTliNjZwNzNsczdUMWIyMUJCZCtZT29XNWJNZHJVRVJEQXB3UFBKRFRK?=
+ =?utf-8?B?bjdWQ2pPSTNGZjVrdTBLQlNBaklUekw0clRFSVRlZmRVMk9jcVE2NXcxbURz?=
+ =?utf-8?B?Ui8wQ09pd0E3OFRRM3BOZ09lcngrK2ZpbjFScGVKL21WTVJxQXVVVHhFakRK?=
+ =?utf-8?B?bk9NZFErTkRSYlBMQ2FUUk9FSTlXOW12SUxvRnlRVElYRWtDZ0tXYTl4Z3NO?=
+ =?utf-8?B?MENNRkJnWnV1WndiclpMdDVSdUpWNDcxUHFkeS9CZnlHWXZDaS9GV2FDeFJX?=
+ =?utf-8?B?RU1xSW1HcHNCcThpM0x6YlUyYnR6RFVkUlMyL2FOZnF2UGhzYlUvb1RWSnJM?=
+ =?utf-8?B?SmZDV1Q0WnEyak9sTHJGZlIxUmF1RFRoVXo4dGJSd3VIZDJ2NjZnemNWbFY3?=
+ =?utf-8?B?Y3hvNlgwUHI4ZkJEdDdhQ0xYQm1xYjRFTlR4RVoxV2x6SXRuT0lYTFJudmJl?=
+ =?utf-8?Q?RY77xQa/AHidMmlQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260517-ad9910-iio-driver-v5-12-31599c88314a@analog.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cbe28b2-afdb-4e80-1527-08debb0ea1f0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2026 10:07:45.3854
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Yr4n4a3+PlePvtDsZAaKq660dxDNhwt/QDz4dLL2tEMgtnfpKHw+twJSLfi4iYJuNWwi7U1iV9myNzskLbV0d8wgeu6R1N0J+Mm9bRPoD1Ak2HRzqBwFXm5nZLIbnvc/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1256
+X-Spamd-Result: default: False [2.14 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302981-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303011-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lianfeng.ouyang@starfivetech.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.852];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 12D1F5D3FF6
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: CF0C05D5224
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26/05/17 07:37PM, Rodrigo Alencar via B4 Relay wrote:
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
-> Add custom ABI documentation file for the DDS AD9910 with sysfs entries to
-> control Parallel Port, Digital Ramp Generator and OSK parameters.
-
-...
-
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_dwell_en
-> +KernelVersion:
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		For a channel that produces parametric sweeps, this attribute controls
-> +		the sweep behavior at the configured limits. It enables dwell mode at a
-> +		sweep limit when set to 1. Otherwise, the sweep may stop at the initial
-> +		position or restart from that initial position or continue by reversing
-> +		its direction.
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_roc
-> +KernelVersion:
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Frequency rate of change in Hz/s for channels that produce linear
-> +		frequency sweeps. This value may be influenced by the channel's
-> +		sampling_frequency setting.
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_phase_roc
-> +KernelVersion:
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Phase rate of change in rad/s for channels that produce linear
-> +		phase sweeps. This value may be influenced by the channel's
-> +		sampling_frequency setting.
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_scale_roc
-> +KernelVersion:
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Amplitude scale rate of change in 1/s for channels that ramp
-> +		amplitude. This value may be influenced by the channel's
-> +		sampling_frequency setting.
-
-I am thinking about adopting IIO_FREQUENCY and IIO_PHASE to the DRG control
-(It is considered for the Parallel port at this point).
-That would make the destination configuration a bit more clearer:
-
-* out_frequencyY_en
-* out_phaseY_en
-* out_altcurrentY_en
-
-which would enable DRG for a given destination.
-
-I would not want to have 6 channels (3 for ramp up and 3 for ramp down),
-so I would develop the idea here with that in mind. Otherwise, it may
-be ok to have the 6 channels for that.
-
-The DRG have this output pin called DROVER, which indicates when the ramp reaches
-a limit (upper or lower), then I was thinking on bring that to be an iio event.
-At least initially, to treat the configuration as threshold event control, and not
-necessarily having to processs the DROVER interrupt. Mostly because that interrupt
-might be to frequent and would be better handled in hardware (by an FPGA IP).
-In fact, for certain configurations (slower ramps), CPU would be able to handle
-it just fine, specially if user is not very much concerned about deterministic
-timing when handling the event.
-
-DROVER indicates both threshold rising and falling events, so I would have something
-like:
-
-* events/out_frequencyY_thresh_rising_value
-* events/out_frequencyY_thresh_falling_value
-* events/out_phaseY_thresh_rising_value
-* events/out_phaseY_thresh_falling_value
-* events/out_altcurrentY_thresh_rising_value
-* events/out_altcurrentY_thresh_falling_value
-
-to configure the DRG limits (upper and lower), which fits well with the idea that
-DROVER is the event we are interested in.
-
-Now, we are missing two things: step rate (sampling_frequency) and step (configured with roc).
-The problem here is that both of those configuration are applicable to rising (ramp up) and
-falling (ramp down) cases.
-
-There is no RoC threshold event, so I am not sure it would make sense to create an
-event spec to configure the step with:
-
-* events/out_frequencyY_roc_rising_value
-* events/out_frequencyY_roc_falling_value
-* events/out_phaseY_roc_rising_value
-* events/out_phaseY_roc_falling_value
-* events/out_altcurrentY_roc_rising_value
-* events/out_altcurrentY_roc_falling_value
-
-But that would allow to reuse that existing iio core/event code to configure the
-ramp up/down step with new ABI.
-Otherwise, trying to get both ramp up/down configs into a single channel we would
-need:
-
-* directly to the device channel attr group:
-	* out_frequencyY_rising_roc and out_frequencyY_falling_roc
-	* out_phaseY_rising_roc and out_phaseY_falling_roc
-	* out_altcurrentY_rising_roc and out_altcurrentY_falling_roc
-* or, under the event group with a new event info: IIO_EV_INFO_ROC 
-	* events/out_frequencyY_thresh_rising_roc
-	* events/out_frequencyY_thresh_falling_roc
-	* events/out_phaseY_thresh_rising_roc
-	* events/out_phaseY_thresh_falling_roc
-	* events/out_altcurrentY_thresh_rising_roc
-	* events/out_altcurrentY_thresh_falling_roc 
-
-For the sampling_frequency configuration, which would also require new
-ABI to fit both ramp up/down in a single channel:
-
-* directly to the device channel attr group:
-        * out_frequencyY_rising_sampling_frequency and out_frequencyY_falling_sampling_frequency
-        * out_phaseY_rising_sampling_frequency and out_phaseY_falling_sampling_frequency
-        * out_altcurrentY_rising_sampling_frequency and out_altcurrentY_falling_sampling_frequency
-* or, under the event group with a new event info: IIO_EV_INFO_SAMP_FREQ   
-        * events/out_frequencyY_thresh_rising_sampling_frequency
-        * events/out_frequencyY_thresh_falling_sampling_frequency
-        * events/out_phaseY_thresh_rising_sampling_frequency
-        * events/out_phaseY_thresh_falling_sampling_frequency
-        * events/out_altcurrentY_thresh_rising_sampling_frequency
-        * events/out_altcurrentY_thresh_falling_sampling_frequency
-
-Lastly, we also have the dwell enable config:
-
-* directly to the device channel attr group:
-        * out_frequencyY_rising_dwell_en and out_frequencyY_falling_dwell_en
-        * out_phaseY_rising_dwell_en and out_phaseY_falling_dwell_en
-        * out_altcurrentY_rising_dwell_en and out_altcurrentY_falling_dwell_en
-* or, under the event group with a new event info: IIO_EV_INFO_DWELL_EN
-        * events/out_frequencyY_thresh_rising_dwell_en
-        * events/out_frequencyY_thresh_falling_dwell_en
-        * events/out_phaseY_thresh_rising_dwell_en
-        * events/out_phaseY_thresh_falling_dwell_en
-        * events/out_altcurrentY_thresh_rising_dwell_en
-        * events/out_altcurrentY_thresh_falling_dwell_en
-
-For custom event attributes, maybe iio_info.event_attrs can be used instead
-of new event info (or a mix of both).
-Another thing we may consider if going for the 6 channel case, would be having
-new modifiers: IIO_MOD_FALLING and IIO_MOD_RISING, which might simplify things
-a bit.
-
-Let me know about your thoughts on this.
-
--- 
-Kind regards,
-
-Rodrigo Alencar
+DQpCZXN0IFJlZ2FyZHMsDQpMaWFuZmVuZyBPdXlhbmcNCg0KPiAtLS0tLemCruS7tuWOn+S7ti0t
+LS0tDQo+IOWPkeS7tuS6ujogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6a0BrZXJuZWwub3JnPg0K
+PiDlj5HpgIHml7bpl7Q6IDIwMjblubQ15pyIMjLml6UgNDozNA0KPiDmlLbku7bkuro6IExpYW5m
+ZW5nIE91eWFuZyA8bGlhbmZlbmcub3V5YW5nQHN0YXJmaXZldGVjaC5jb20+OyBBbmRpIFNoeXRp
+DQo+IDxhbmRpLnNoeXRpQGtlcm5lbC5vcmc+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3Jn
+PjsgS3J6eXN6dG9mIEtvemxvd3NraQ0KPiA8a3J6aytkdEBrZXJuZWwub3JnPjsgQ29ub3IgRG9v
+bGV5IDxjb25vcitkdEBrZXJuZWwub3JnPjsgTWlrYQ0KPiBXZXN0ZXJiZXJnIDxtaWthLndlc3Rl
+cmJlcmdAbGludXguaW50ZWwuY29tPjsgQW5keSBTaGV2Y2hlbmtvDQo+IDxhbmRyaXkuc2hldmNo
+ZW5rb0BsaW51eC5pbnRlbC5jb20+OyBKYW4gRGFicm9zIDxqc2RAc2VtaWhhbGYuY29tPg0KPiDm
+ioTpgIE6IGxpbnV4LWkyY0B2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwu
+b3JnOw0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+IOS4u+mimDogUmU6IFtQQVRD
+SCB2MSAxLzNdIGR0LWJpbmRpbmdzOiBpMmM6IHNucHMsZHdjLWkyYzogQWRkIFN0YXJGaXZlIEpI
+QjEwMA0KPiBiaW5kaW5ncw0KPiANCj4gT24gMjEvMDUvMjAyNiAwNTo0MywgbGlhbmZlbmcub3V5
+YW5nIHdyb3RlOg0KPiA+ICsNCj4gPiArICBzdGFyZml2ZSxtY3RwLWkyYy1tczoNCj4gPiArICAg
+IGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIFRoZSBwcm9wZXJ0eSBzaG91bGQgY29udGFpbiBy
+ZWZlcmVuY2UgdG8gdGhlIG1hc3RlciBub2RlIGFzc29jaWF0ZWQNCj4gd2l0aCB0aGUgc2xhdmUu
+DQo+IA0KPiBJdCdzIHJlZHVuZGFudCB0byBzYXkgdGhhdCBwcm9wZXJ0eSBpcyAidGhlIHByb3Bl
+cnR5IC4uLiIuIEp1c3QgU0FZDQo+IGRlc2NyaWJlIHRoYXQuDQo+IA0KPiBBbHNvLCB3cmFwIGFj
+Y29yZGluZyB0byBMaW51eCBjb2Rpbmcgc3R5bGUuDQoNCk9rYXksIEkgd2lsbCBvcHRpbWl6ZSB0
+aGlzIHR5cGUgb2YgZGVzY3JpcHRpb24gaW4gdGhlIG5leHQgdmVyc2lvbg0KDQo+IA0KPiA+ICsg
+ICAgICBUaGlzIHZhbHVlIGlzIG9ubHkgdXNlZCBpbiBzbGF2ZSBtb2RlLCBlc3BlY2lhbGx5IGZv
+ciBNQ1RQIGFwcGxpY2F0aW9uLg0KPiA+ICsNCj4gPiArICBkd2MtaTJjLXR4LWZpZm8tZGVwdGg6
+DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzIN
+Cj4gPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIFRoZSBwcm9wZXJ0eSBkZXNjcmli
+ZXMgdGhlIHR4IGZpZm8gZGVwdGguDQo+ID4gKyAgICBkZWZhdWx0OiA4DQo+ID4gKw0KPiA+ICsg
+IGR3Yy1pMmMtcngtZmlmby1kZXB0aDoNCj4gV3JvbmcgbmFtZS4gR2VuZXJpYyBwcm9wZXJ0aWVz
+IERPIE5PVCB1c2UgImR3YyIgbmFtZS4gUGxlYXNlIHVzZQ0KPiBleGlzdGluZyBzdGFuZGFyZCBw
+cm9wZXJ0aWVzIGZyb20gZHRzY2hlbWEsIG90aGVyIGNvbW1vbiBzY2hlbWFzIG9yIGp1c3QNCj4g
+bG9vayBhcm91bmQuDQo+IA0KPiBEbyBub3QgaW52ZW50IHlvdXIgb3duIHN0dWZmIGFuZCB1bmZv
+cnR1bmF0ZWx5IGhhbGYgb2YgdGhpcyBiaW5kaW5nIGlzDQo+IHN1Y2ggaW52ZW50aW9uIC0gZG9u
+ZSBjb21wbGV0ZWx5IGRpZmZlcmVudCB0aGFuIGV2ZXJ5dGhpbmcgZWxzZS4gVGhhdCdzDQo+IGEg
+c2lnbiBvZiBkb3duc3RyZWFtIGNvZGUgYW5kIHdlIHJlYWxseSBkbyBub3QgbGlrZSBzdWNoIGNv
+ZGUuDQoNCkkgY291bGRuJ3QgZmluZCBhIHByb3BlcnR5IHNpbWlsYXIgdG8gZmlmdHkgZGVwdGgg
+aW4gdGhlIG90aGVyIEkyQyBkcml2ZXIuIEkgcGxhbiB0byANCnVzZSBTdGFyZml2ZSxJMkMtdHgt
+Zmlmby1kZXB0aCBpbiB0aGUgbmV4dCB2ZXJzaW9uDQoNCj4gDQo+IEEgbml0LCBzdWJqZWN0OiBk
+cm9wIHNlY29uZC9sYXN0LCByZWR1bmRhbnQgImJpbmRpbmdzIi4gVGhlDQo+ICJkdC1iaW5kaW5n
+cyIgcHJlZml4IGlzIGFscmVhZHkgc3RhdGluZyB0aGF0IHRoZXNlIGFyZSBiaW5kaW5ncy4NCj4g
+U2VlIGFsc286DQo+IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L3Y2LjE3LXJjMy9z
+b3VyY2UvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jpbg0KPiBkaW5ncy9zdWJtaXR0aW5nLXBh
+dGNoZXMucnN0I0wxOA0KPiANCj4gUGxlYXNlIHJlYWQgY2FyZWZ1bGx5IHdyaXRpbmctYmluZGlu
+Z3MgZG9jdW1lbnQgYW5kIHN1Ym1pdHRpbmctcGF0Y2hlcw0KPiBpbiBEVCBkaXIuDQoNClRoYW5r
+IHlvdSBmb3IgdGhlIHJlY29tbWVuZGF0aW9uLiBJIHdpbGwgY2FyZWZ1bGx5IHJlYWQgdGhpcyBk
+b2N1bWVudA0KDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
 
