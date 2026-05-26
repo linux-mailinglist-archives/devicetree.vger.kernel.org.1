@@ -1,189 +1,207 @@
-Return-Path: <devicetree+bounces-303024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303026-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMMCG8KTFWpSWgcAu9opvQ
-	(envelope-from <devicetree+bounces-303024-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:36:18 +0200
+	id gASqCJWTFWpSWgcAu9opvQ
+	(envelope-from <devicetree+bounces-303026-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:35:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F855D5A24
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:36:18 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C4E5D59F0
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6A2DF303F478
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:35:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 473F23010661
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8731D3F9A06;
-	Tue, 26 May 2026 12:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311383F9F20;
+	Tue, 26 May 2026 12:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwVpsN6P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVrWbuS1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1CE3F9F49
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 12:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC33282F1D;
+	Tue, 26 May 2026 12:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779798904; cv=none; b=Gf1Cln9InB2VHQQmddV4cEpTrHWwKiFOX9XKPYgEPc+AGccLEMS/QLQIAFgGaYlfCANW/3gbUAyCVzvEjcUMozpxtzhG3sm8TOMrOfjHkLzrQ6N/NqbmUokl2pDqvUv2e0+nYMcfTxDiSEPUspz+i0VdBsoLnVWsNKUHnB+uoto=
+	t=1779798930; cv=none; b=mV1wPKFzIdbQjFbi14rE/iYJsAbSP9zfK3x5gpN57PO9BjHnYc4LUG/fyoZ5KR5GB7CNwlTeLtWz8zplJWvjhIDDzPcy/ykytuLOTEdEH1SY8n+cB5Sg5saIIIfREnSoEExq1K3OILrttZ4iWJHuYpjJcO2/9gqXEMDTmkS2n8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779798904; c=relaxed/simple;
-	bh=jawOlGnnD26Ppp+JufdrTQn9Lmw7mrNyUF89gdMdb9o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k9TRVsAU/+7fMLbqnwCmzb8q2CgaqaehseKTw29NWOVJdrNXyZcWy0ngmgTkwprcTJEedt85mmM3TutIEXBr1PNV0buZlfxxQx3NBaZUOQXIS1MvrBZkDWo24ZDdIdC0uJMktJzWoXW/OYJ7Ijn/56dB4WLN8OGqPUugEztJgAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwVpsN6P; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F30DA1F00A3E
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 12:35:02 +0000 (UTC)
+	s=arc-20240116; t=1779798930; c=relaxed/simple;
+	bh=n7j2xB/p2/bpJ4PAZFAH2CPKG+pYjXlg/jFOgnW2DLY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ABO4aED5VdF4oSxk/QNAuPmgGCTU24CQHU5AG3n2F+yYGge/1j2frlaQpj0qpbWqJFdNITIY2CJ1+TA0NOCi6LTdNhennFC4+DyflaY7JTQggYYsrSGzaDndJwOmm0Ba+hL7ElX1+Fcr6X1Bn8gemLNpzOEDzcvxW26k9MLn8CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVrWbuS1; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E9121F000E9;
+	Tue, 26 May 2026 12:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779798903;
-	bh=jx8+h1I+icjwj5kn/NeTmz1laMq204QO0s7URIhHUtI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=LwVpsN6P5UEzTeVt5QAJXNyIaW3bUzRSi9pyWqIQCau+pSgBlVl2c0A/uY1byxZ4U
-	 lGfpwYaaxGMaOskeSHnMrKJuwuKbJ0vyczbks7yYqegBu8BfpI/m16r2Sqv2fEufFp
-	 6Pyn+y+DhToXxl4O+wHYlypWvHpBShkloWAsNK9Kbl+p2qWq4iP6RfEeUcqgAxMv3O
-	 eW3dkE0gK80ccpkU4UBYmeUSyg8SDCDToEhBULBI14cX63G/t7Hu1feBHfrZMfmYHM
-	 LsXAB8WKzh4tZkeEPy1K2lcCPvc60NXeOTG5QbuVnNt7fm+3f8tXZfKHTMsm7zWTU7
-	 LMM0+cUoNvDfA==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-395f24a5f2cso26310421fa.2
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 05:35:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+keKwxytZOuLXOi8UlD5ph5e6P2Bub1sKNwbigJMbePfZgD+0aIsiaI97RvQRJdOx2lTe7UPzXeckS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxixL21aCVJ/lhe19Jd2JPjkgPKUwngfdGeD3ozj5kkFV4VjdQq
-	5eE5MMYf40ACs/Ze1jKK/UC2eQ4F4JY+SDWe3xAsEe8kmlzBY5ey+iMKL3hvHtEdu6WOsK49yRl
-	g3Xy59nyAqDsk6qpTsAoQbR73c6f0bFj4s0OWzu3o/A==
-X-Received: by 2002:a05:651c:541:b0:391:1570:b6c6 with SMTP id
- 38308e7fff4ca-395d8c64fd3mr62255981fa.2.1779798901544; Tue, 26 May 2026
- 05:35:01 -0700 (PDT)
+	s=k20260515; t=1779798928;
+	bh=A4I37u3pxMkDLwlxmTpz4QG4dLPJrI76nlF19AT6q0I=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=mVrWbuS1XS8D3hQMpCtLJLpnHf6D6jAOgx476wTlix+2MGFvfbpg1YBsuH9+iOE3M
+	 ehoBHdgaQhjGCN3XnDZiu495rlZ0RS9alDi9zTJGtWSYv06o/tia5kgRIpWvUTomr8
+	 6S/kpe1YRlyltFd7QyJ+a9idd7tpmWMwWnB4DIcn/ch/peJ5jLNgBAWTbn0z+gQnyP
+	 TvygqtFjVDwlMKiXi55/NLyDFTQpbIBnNWfXKrp+NxGsl5hru6fZ/T1QAeXv/yyXW5
+	 W2ujko2fWTBrm/4rbOIoTmgEOL0Cg2nds0hZZo0b8OWj12xabcqpiyKv4Llh49MCaE
+	 WhR4tpzTt0/SA==
+Date: Tue, 26 May 2026 13:35:19 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Janani Sunil <janani.sunil@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, David
+ Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Jonathan
+ Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, Janani Sunil
+ <jan.sun97@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add AD5529R
+Message-ID: <20260526133519.232fd9d6@jic23-huawei>
+In-Reply-To: <20260525-dedicator-strut-6f7618a92180@spud>
+References: <20260519-ad5529r-driver-v3-0-267c0731aa68@analog.com>
+	<20260519-ad5529r-driver-v3-1-267c0731aa68@analog.com>
+	<20260522180207.63b725fb@jic23-huawei>
+	<20260525-dedicator-strut-6f7618a92180@spud>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260523085102.51000-1-clamor95@gmail.com> <20260523085102.51000-2-clamor95@gmail.com>
- <CAMRc=MfXVwD2u0e115RapnyLzf5JRjWMs=2PSNzMnm0GDd7aaQ@mail.gmail.com>
- <CAPVz0n1G5Yu2X5f+=q90RAbnsWi9psMq-L5tWDMM4JRC4R_mPg@mail.gmail.com>
- <CAMRc=Me4G-YqKoFan3epofXk2OWzxY1iPE1mP=uwEjs9wgA6Cw@mail.gmail.com> <CAPVz0n2P-zB1_uetZN9pVcQChK+FkdQowbF4Z0YZOBQBsB76WQ@mail.gmail.com>
-In-Reply-To: <CAPVz0n2P-zB1_uetZN9pVcQChK+FkdQowbF4Z0YZOBQBsB76WQ@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Tue, 26 May 2026 14:34:48 +0200
-X-Gmail-Original-Message-ID: <CAMRc=MfAAE4UtnW4S1=pY+2yvS6Hsd-U9+uveUFtPGoJPrv6aA@mail.gmail.com>
-X-Gm-Features: AVHnY4KHpaK2guCMzD84efob-Fn_1e4ff05aeaWlnbgoKMEGNNeAbfQ9YXcn-6s
-Message-ID: <CAMRc=MfAAE4UtnW4S1=pY+2yvS6Hsd-U9+uveUFtPGoJPrv6aA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: tegra: Document Nvidia Tegra
- modem pwrseq
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303024-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-303026-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 29F855D5A24
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,analog.com:url,analog.com:email]
+X-Rspamd-Queue-Id: D6C4E5D59F0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 26, 2026 at 2:29=E2=80=AFPM Svyatoslav Ryhel <clamor95@gmail.co=
-m> wrote:
->
-> =D0=B2=D1=82, 26 =D1=82=D1=80=D0=B0=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 14=
-:14 Bartosz Golaszewski <brgl@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Tue, 26 May 2026 12:03:59 +0200, Svyatoslav Ryhel <clamor95@gmail.co=
-m> said:
-> > > =D0=B2=D1=82, 26 =D1=82=D1=80=D0=B0=D0=B2. 2026=E2=80=AF=D1=80. =D0=
-=BE 12:51 Bartosz Golaszewski <brgl@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >>
-> > >> On Sat, May 23, 2026 at 10:51=E2=80=AFAM Svyatoslav Ryhel <clamor95@=
-gmail.com> wrote:
-> > >> >
-> > >> > Document the Tegra modem pwseq used by various devices based on th=
-e Nvidia
-> > >> > Tegra SoC, describing its usage. The power sequence provides inter=
-action
-> > >> > between the modem and SoC-specific interface configurations.
-> > >> >
-> > >> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > >> > ---
-> > >>
-> > >> ...
-> > >>
-> > >> > +
-> > >> > +examples:
-> > >> > +  - |
-> > >> > +    #include <dt-bindings/gpio/gpio.h>
-> > >> > +
-> > >> > +    pwrseq-modem {
-> > >> > +        compatible =3D "nvidia,tegra-modem-pwrseq";
-> > >> > +
-> > >> > +        enable-gpios =3D <&gpio 165 GPIO_ACTIVE_HIGH>;
-> > >> > +        power-supply =3D <&vdd_3v3_vbat>;
-> > >> > +
-> > >> > +        nvidia,usb-bus =3D <&usb2>;
-> > >> > +    };
-> > >> > --
-> > >> > 2.51.0
-> > >> >
-> > >>
-> > >> I assume there's no such component as the tegra modem *pwrseq*?
-> > >
-> > > Hardware component, I assume no.
-> > >
-> > >> What is the relationship between this node and the "infineon,xmm6260=
-"
-> > >> compatible node?
-> > >>
-> > >
-> > > The xmm6260 has a phandle reference to it. Since there is consumer
-> > > matching logic in the pwrseq driver I am leaning towards removing thi=
-s
-> > > node entirely. This patches is still in non-final stage and I would
-> > > like to hear any opinions on the way to improving it.
-> > >
-> >
-> > The node attached to the pwrseq provider device should represent a real
-> > hardware component. Are the enable-gpios and power-supply lines connect=
-ed
-> > to the modem package?
->
-> Yes, enable-gpio is connected to the modem and signals that USB is set
-> and ready to work with the modem, while power-supply is an optional
-> supply connected to the modem's vbus input.
->
+On Mon, 25 May 2026 17:30:02 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-The modem is a hard-wired USB device? Do you implement it as a
-platform driver or a USB driver?
+> On Fri, May 22, 2026 at 06:02:07PM +0100, Jonathan Cameron wrote:
+> > On Tue, 19 May 2026 17:42:58 +0200
+> > Janani Sunil <janani.sunil@analog.com> wrote:
+> >  =20
+> > > Devicetree bindings for AD5529R 16 channel 12/16 bit high voltage,
+> > > buffered voltage output digital-to-analog converter (DAC) with an
+> > > integrated precision reference. =20
+> >=20
+> > Note that I'm seeing this as Changes Requested in the DT-binding patchw=
+ork
+> > but didn't see any replies.
+> >=20
+> > Seems I didn't get the sashiko reply - nor did the IIO patchwork.
+> > Hopefully Janani did!
+> > https://patchwork.kernel.org/project/devicetree/patch/20260519-ad5529r-=
+driver-v3-1-267c0731aa68@analog.com/ =20
+>=20
+> The sashiko stuff is per subsystem or something, so dt stuff only goes
+> to us and the submitters. I think that's kinda stupid but also probably
+> required to avoid pissing people off. There's quite a bit of noise
+> generated by it, especially with it repeating the same incorrect stuff
+> on every version.
 
-Is there a connector of any kind that could be used as the HW
-component represented by the pwrseq device?
+When I get on top of the long weekend's backlog I'll start a discussion
+on whether we ask for emails from Sashiko be sent to linux-iio.
 
-Bart
+I was nervous about doing that until I had some experience of how=20
+reliable the reviews are but given I'm either cutting and pasting stuff
+into threads or telling people to go look, might as well have those emails.
+
+Jonathan
+
+>=20
+> >  =20
+> > >=20
+> > > Signed-off-by: Janani Sunil <janani.sunil@analog.com>
+> > > ---
+> > >  .../devicetree/bindings/iio/dac/adi,ad5529r.yaml   | 217 +++++++++++=
+++++++++++
+> > >  MAINTAINERS                                        |   7 +
+> > >  2 files changed, 224 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.ya=
+ml b/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml
+> > > new file mode 100644
+> > > index 000000000000..eb66f6ca063d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml
+> > > @@ -0,0 +1,217 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/dac/adi,ad5529r.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices AD5529R 16-Channel 12/16-bit High Voltage DAC
+> > > +
+> > > +maintainers:
+> > > +  - Janani Sunil <janani.sunil@analog.com>
+> > > +
+> > > +description: |
+> > > +  The AD5529R is a 16-channel, 12-bit or 16-bit, high voltage, buffe=
+red voltage output =20
+> >=20
+> > Long line. Check the wrap.
+> >  =20
+> > > +  digital-to-analog converter (DAC) with an integrated precision ref=
+erence.
+> > > +  The device operates from unipolar and bipolar supplies. It is guar=
+anteed
+> > > +  monotonic and has built-in rail-to-rail output buffers that can so=
+urce or
+> > > +  sink up to 25mA.
+> > > +
+> > > +  Specifications:
+> > > +  * 16 independent 12-bit or 16-bit DAC channels
+> > > +  * Independently programmable output ranges: 0V to 5V, 0V to 10V, 0=
+V to 20V,
+> > > +    0V to 40V, =C2=B15V, =C2=B110V, =C2=B115V, and =C2=B120V
+> > > +  * The device supports SPI communication with Mode 0 and Mode 3.
+> > > +  * 4.096V precision reference, 12ppm/=C2=B0C maximum
+> > > +  * Built-in function generation: Toggle, Sinusoidal Dither, and Ram=
+p waveforms
+> > > +  * Multiplexer for output voltage, load current sense and die tempe=
+rature
+> > > +
+> > > +  Datasheet: https://www.analog.com/media/en/technical-documentation=
+/data-sheets/ad5529r.pdf
+> > > + =20
+> >  =20
+> > > +patternProperties:
+> > > +  "^channel@([0-9]|1[0-5])$": =20
+> >=20
+> > Sashiko commented that this should be hex.  Why the forcing to decimal?
+> >  =20
+
 
