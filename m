@@ -1,113 +1,249 @@
-Return-Path: <devicetree+bounces-303064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIK2Eym8FWrKYQcAu9opvQ
-	(envelope-from <devicetree+bounces-303064-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 17:28:41 +0200
+	id OOpbHbW0FWqLYQcAu9opvQ
+	(envelope-from <devicetree+bounces-303063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:56:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 898135D8B80
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 17:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C87B65D8206
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:56:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B39FF30CFC82
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:51:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE7893005D2C
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CA140313D;
-	Tue, 26 May 2026 14:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B738F3FF1DB;
+	Tue, 26 May 2026 14:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLVmC7Oi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5FAB4014B2;
-	Tue, 26 May 2026 14:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9633988E3
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 14:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779807073; cv=none; b=EhuUDB4farqx9Drxy3azIXExtz3TxIYKv+Hgp7bquHgCw9hmD+q2fdCFFiFvOY9QZQf5cRZPiIx8ODfOKsSanFkbDH1GKg54flv4O3cSn+AuSsXj0KtWoeo1O8eJVGg9RQAM8ijX3Glecg3XcuiSYg1F8XiZ91AH57G8cnTnZXk=
+	t=1779807029; cv=none; b=i/n6RLjWGZ4OFXSUXe3jY/QSQjBx8dwz7OsLoT0TjqDHPh/vV00yqbiWkY8k/J5+PriNjSyJKlit0M5FksA36eQyUcDpnYltMGy4TcsWqysn2d/w73BJuML06Ha8nC66wqaglxwgHpw30udT0oYu4pkeeBBkcGKggx116HmKI6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779807073; c=relaxed/simple;
-	bh=Ell3OK2oueJMjKWXnPrvfH7iafKJAjOOVp1waok2vZc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qAbES5e48H7FkhNQtJNIiTN2OhT0IMhLOkxc0Bnd4doBNvWxqP7sjG/H8/lgQgT02UNxeL2xyENex5u+7RSFhUsKSv/p3govmvSVOWJ8h8/4ssvByVvokPccg1RLMi0B/EVVGTGqGFBVcbQ36XKgx1fY+fnTSm4dx7fDctbFNVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1wRt7c-00015D-00; Tue, 26 May 2026 16:51:08 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 9A4FAC0154; Tue, 26 May 2026 16:42:15 +0200 (CEST)
-Date: Tue, 26 May 2026 16:42:15 +0200
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Enable LPC interrupt controller on MIPS LS7A systems
-Message-ID: <ahWxR7sW7o06IDDX@alpha.franken.de>
-References: <20260411101744.4020216-1-zhengxingda@iscas.ac.cn>
+	s=arc-20240116; t=1779807029; c=relaxed/simple;
+	bh=PHQFwrb1eSX4qnhXMKYkrydy5G35YpeYqUChHi88bMs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=sc1E4o4xa+5DAO9MWbAw2oDc1FrRvFjUyWU54/GMu1W4tROw7L9cSdjJCyH+KOgVbM2G78+AVhjgHmRZBJCU0B0b/CpGfrqt0wqeBpT9LNTnwqbGDn0/lswHTloR/VQtnALBIZuHOQ+utbAdfbhHeLV68ISPL6nKf67p1GewfkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLVmC7Oi; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E03001F000E9;
+	Tue, 26 May 2026 14:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779807028;
+	bh=6fcz21LfB54xwUPloJjUUrB0ctevbM/mZ9snRAVTBSI=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=VLVmC7OiDOaw/yj+HMyeHfLXZ39MOfHjaSraQ/Ij5o+dnQQ1lUe1gIqwgO86fc7ux
+	 8GF6f5UZa/ROWsfidUttNeaNXH0yV8CWhHEiKrjoY/FlpM0b6vaVWi0YKkxqk1P9SQ
+	 47gyFWR1mHjwtpffnUhanhnhyebI4wm2kNa0KLXIleXDGdgphzjTchKU/G1aiTjrII
+	 /Qs5FoBkApsFKe8X2zsLFqIFsIzeYGggCiuj11s888vzFEhTJfiXNEJwPXwXDI/RW9
+	 u8/lOYW5A2FukR8J933GO51jHzL+jt+PrDxQZ9lwmt1acFmRwdga+hTh+1ZxUkVtf2
+	 QWBBAkleknRDA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v9 3/8] media: qcom: venus: add power domain enable
+ logic for Venus cores
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Erikas Bitovtas" <xerikasxx@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260526-msm8939-venus-rfc-v9-3-bb1069f3fe02@gmail.com>
+References: <20260526-msm8939-venus-rfc-v9-3-bb1069f3fe02@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 26 May 2026 14:50:27 +0000
+Message-Id: <20260526145027.E03001F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260411101744.4020216-1-zhengxingda@iscas.ac.cn>
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-303064-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303063-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DMARC_NA(0.00)[franken.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tsbogend@alpha.franken.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.842];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,alpha.franken.de:mid]
-X-Rspamd-Queue-Id: 898135D8B80
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: C87B65D8206
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Apr 11, 2026 at 06:17:42PM +0800, Icenowy Zheng wrote:
-> This patchset tries to enable support for LPC interrupts on MIPS-based
-> Loongson systems with Loongson 7A1000 PCH chip.
-> 
-> The corresponding irqchip support (along with the DT binding) is already
-> added to the tip tree.
-> 
-> Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
-> integrated ones.
-> 
-> This patchset is splitted from the original patchset that contains both
-> driver part and DT part.
-> 
-> Icenowy Zheng (2):
->   MIPS: Loongson64: dts: Sort nodes
->   MIPS: Loongson64: dts: Add node for LS7A PCH LPC
-> 
->  arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-series applied to mips-next
+New issues:
+- [High] NULL Pointer Dereference on `core->pmdomains`
+- [Medium] Teardown Rollback Anti-pattern
+- [Medium] Hardware Initialization Flaw for `vcodec_clks`
 
-Thomas.
+Pre-existing issues:
+- [High] Ignored Error Code in `venc_power_v4()`
+--
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+commit ee1d99aefaee1c4f53ba3c0a0d86c1b9d54963ce
+Author: Erikas Bitovtas <xerikasxx@gmail.com>
+
+media: qcom: venus: add power domain enable logic for Venus cores
+
+This commit adds power domain attachment and enable logic for Venus
+vdec and venc cores. It introduces an array of vcodec clocks that
+are retrieved from the device tree and enabled during decode and
+encode sessions.
+
+> diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c b/drivers/med=
+ia/platform/qcom/venus/pm_helpers.c
+> index 14a4e8311a643..be1cbd5cfe842 100644
+> --- a/drivers/media/platform/qcom/venus/pm_helpers.c
+> +++ b/drivers/media/platform/qcom/venus/pm_helpers.c
+
+[ ... ]
+
+> @@ -309,7 +343,77 @@ static int core_get_v1(struct venus_core *core)
+>  	if (ret)
+>  		return ret;
+> =20
+> +	if (!res->vcodec_pmdomains)
+> +		return 0;
+> +
+> +	ret =3D vcodec_clks_get(core, dev, core->vcodec_clks,
+> +			      res->vcodec_clks);
+
+[Severity: Medium]
+Is it intentional to skip getting vcodec_clks if vcodec_pmdomains is
+not defined?
+
+Clocks and power domains are physically independent hardware resources.
+Tying the initialization of vcodec_clks strictly to the presence of
+vcodec_pmdomains means that if a platform defines vcodec_clks but lacks
+vcodec_pmdomains, the clocks will be silently ignored, which could lead
+to a failure to power up the hardware properly.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int vcodec_domains_enable(struct venus_core *core)
+> +{
+> +	const struct venus_resources *res =3D core->res;
+> +	struct device *pd_dev;
+> +	int i =3D 0, ret;
+> +
+> +	if (!res->vcodec_pmdomains)
+> +		return 0;
+> +
+> +	for (; i < res->vcodec_pmdomains_num; i++) {
+> +		pd_dev =3D core->pmdomains->pd_devs[i];
+
+[Severity: High]
+If CONFIG_PM or CONFIG_PM_GENERIC_DOMAINS is disabled (which is possible
+under COMPILE_TEST), the devm_pm_domain_attach_list() stub returns 0 but
+does not allocate the list pointer, leaving core->pmdomains as NULL.
+
+Since res->vcodec_pmdomains is populated from static device matching data,
+could this loop execute and trigger a NULL pointer dereference on
+core->pmdomains?
+
+> +		ret =3D pm_runtime_resume_and_get(pd_dev);
+> +		if (ret)
+> +			goto err;
+> +	}
+> +
+>  	return 0;
+
+[ ... ]
+
+> +static int vcodec_domains_set_hw(struct venus_core *core, bool is_hw)
+> +{
+> +	const struct venus_resources *res =3D core->res;
+> +	struct device *pd_dev;
+> +	int i =3D 0, ret;
+> +
+> +	for (; i < res->vcodec_pmdomains_num; i++) {
+> +		pd_dev =3D core->pmdomains->pd_devs[i];
+> +		ret =3D dev_pm_genpd_set_hwmode(pd_dev, is_hw);
+> +		if (ret && ret !=3D -EOPNOTSUPP)
+> +			goto err;
+> +	}
+> +
+> +	return 0;
+> +err:
+> +	while (i--) {
+> +		pd_dev =3D core->pmdomains->pd_devs[i];
+> +		dev_pm_genpd_set_hwmode(pd_dev, !is_hw);
+
+[Severity: Medium]
+If setting hardware mode fails while disabling it (is_hw =3D=3D false), the
+error handler loops backward and re-enables hardware mode (!is_hw) for
+previously disabled power domains.
+
+In core_power_v1()'s teardown path, the returned error is ignored, and
+the driver proceeds to manually disable power domains via
+vcodec_domains_disable().
+
+Does this rollback leave the domains in hardware control mode, potentially
+preventing the genpd framework from properly powering them off during
+pm_runtime_put_sync() and resulting in an inconsistent power state?
+
+> +	}
+> +	return ret;
+>  }
+
+[ ... ]
+
+> @@ -875,7 +1011,7 @@ static int venc_power_v4(struct device *dev, int on)
+>  	return ret;
+>  }
+
+[Severity: High]
+This isn't a bug introduced by this patch, but in venc_power_v4(), if
+on =3D=3D POWER_ON, the driver calls vcodec_clks_enable() and stores its
+return value in ret:
+
+	if (on =3D=3D POWER_ON)
+		ret =3D vcodec_clks_enable(core, core->vcodec1_clks);
+	else
+		vcodec_clks_disable(core, core->vcodec1_clks);
+
+	ret =3D vcodec_control_v4(core, VIDC_CORE_ID_2, false);
+
+Could the unconditional call to vcodec_control_v4() overwrite the error
+code from vcodec_clks_enable()? If the clocks fail to enable, the driver
+proceeds to access hardware registers without propagating the error, which
+could cause a bus hang and system panic on ARM platforms.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260526-msm8939-ve=
+nus-rfc-v9-0-bb1069f3fe02@gmail.com?part=3D3
 
