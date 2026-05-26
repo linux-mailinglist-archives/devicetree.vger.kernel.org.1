@@ -1,141 +1,157 @@
-Return-Path: <devicetree+bounces-303023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303025-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOvgGgqTFWovWgcAu9opvQ
-	(envelope-from <devicetree+bounces-303023-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:33:14 +0200
+	id +LrbFsyTFWpSWgcAu9opvQ
+	(envelope-from <devicetree+bounces-303025-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:36:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AED65D5962
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:33:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D44535D5A3A
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B05143004CB0
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:33:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8DEEE3028C3F
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2E63F9F5B;
-	Tue, 26 May 2026 12:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4263F9F37;
+	Tue, 26 May 2026 12:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPyFj7Fi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vbARjkY+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8703A7F5F;
-	Tue, 26 May 2026 12:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE043F8EA1
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 12:35:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779798787; cv=none; b=pMJuQrKEhir1odEVEXhoNJxRxHYsPsXMEDa7By56y6AIV4YiY7pF+Eg+tvkKcbgSrmLWkUktnXu5sshcz/n0ZME06nhk1XUFNIWw9K8/k79L/6EDU6FCPsIcXK3W5TEgvD7oFjOXInLeZ3qdqKd0xznEcnUOMhzt7o+u+npke2s=
+	t=1779798921; cv=none; b=jwR78MXMqvwwpuhnbmOK17MIqRIgRTqaraVKdDBquwv0koUBCOabhpzfVLwrSOjtENzjaq9ucBRlUPpTbKzMfyKt0GIkK6KnXruFHF9p4gQek/TfWO2Cd9o8fe/6xEoZkJB/C/xapMxwSeWmcIIyMPyDl74hqvr4mLY/O/5Iffs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779798787; c=relaxed/simple;
-	bh=YRUex1hghA+tO41he3dHRIZQx/gJ1U/095M/6qHa47E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l0vEhy1X7p1GYFKRGEk5m4Ss0AURWgteqrfI2cEwwvjyZWX/3EJ60zRrWpYuxs4wNdBCJDxp8JJYOSpUVzqOnz/pgK0NEmTCvolvB0pqQAOL+n2pZhLs6squFs8xr6hw5WODEVpVy7C5mr5o+GrhLNvB8m5y+mqzTdGTBM++IG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPyFj7Fi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE7C11F000E9;
-	Tue, 26 May 2026 12:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779798785;
-	bh=UXy+Aq3ip8ggzdAob3fH1MwYAHbx0+lsclrzD0G6o8Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=LPyFj7Fi/8dsVw+6KLIF3BQeHFNvnYUAHDLUn+9cvtKgFfeoJPLCv0wXAUzwY5Rk2
-	 AebALP6aVBQr1C3Qpmswmy+KrWdhLFV0RMdoGZLYVQ4dXipG0If4ZDGpAvtoEb4Rhv
-	 4B2xW/UDP1eYZgKwZUbbVUforJgUFyBidA+Z2cGHT3INUyMchg+239WbgMwt8qbkh9
-	 ShRLuNTbJdzTx73JwXczuKZUYUo/6eq6vBjA+ovnx6/cw3FpkUWghIFjiMvObZQ0Zr
-	 kD1vgyWsH7IfBASq6FvSlO/cZFgIDJHrEJi8k80o8jhAxvthcWSLn9oagATDvk/4Jj
-	 nUDtkvro3rKlA==
-Date: Tue, 26 May 2026 13:32:56 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Piyush Patle <piyushpatle228@gmail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>, Andy
- Shevchenko <andy@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 04/11] dt-bindings: iio: adc: hx711: add HX710B
- support
-Message-ID: <20260526133256.4b781fa6@jic23-huawei>
-In-Reply-To: <CAMB+xkYUC-OqncD+SxOo9K36ZR9iC-5CFUs6wKojz2j+M24K4g@mail.gmail.com>
-References: <20260518220228.63322-1-piyushpatle228@gmail.com>
-	<20260518220228.63322-5-piyushpatle228@gmail.com>
-	<20260520111919.5e99fe72@jic23-huawei>
-	<CAMB+xkYUC-OqncD+SxOo9K36ZR9iC-5CFUs6wKojz2j+M24K4g@mail.gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1779798921; c=relaxed/simple;
+	bh=uPfbrIiekRdi5c+dg2yX1VDpWIrwfNRjnUuAs2MeJ/8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D2m6YM3Ps8K18VpQfb1sPGCdDIlgI+EvT/sZ6shqZvoEwNXS/Rh2uitkmHK/cAknuEgHzBvqKoyXdaOXo8KYIxI/mctN2yqVdLoQ6nLuUizJ47L1zvNFFFIUnU+OiWCGr4UZpa98HQnFV3jB7mzvUChZ58gNpvSn4nxovCIufPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vbARjkY+; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-459bf19e87bso6211691f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 05:35:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1779798919; x=1780403719; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+FnVwdbtAOn6T98aiA6Qvgl3nhPcMwGorw0+JjGTmQs=;
+        b=vbARjkY+VkxTDWDTZz9suVzzwNiP1Z4bwHHksjhXpz0hry5MDWniviPT/x3MJeVYD+
+         9doeTZosUr95wAp070Cr7lqFoe7WRcbAFjtz/B+wKXtPyVcOw/oQXJ5JimrP5DuAn05W
+         0Nom8u4esgTR7AYjYRExXMV0VpEDTiUZM+oCxbskqUpI5svEDXQbyQtcLZStSdLWIKK4
+         BhFRwPsDNnjZ5tQcYZ+WeUIlC47B97XBY9Sn2r6aAnZ/3X7m3wlLV3NsXhswrdOz8+kq
+         vUUIovd80OnOesopANQhwjP/G2LNN7K/BnQsSYaCveDC4NTPW+s24HUnq+lyQAdwIvHT
+         TDvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779798919; x=1780403719;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+FnVwdbtAOn6T98aiA6Qvgl3nhPcMwGorw0+JjGTmQs=;
+        b=a525YXPa11/yA/bbcLZzhIi2bdNibdKQ6PU0FMGgqLSyn4jpkAgOpCT48vLi7wMlKz
+         vJpNzsk3+auETQFkPZ+gQ0gtCVSWKtPvUdrVpGb/2MhH9zZhA0yt6jeDAdZYeQIkzGR4
+         TK5lhEnkUGuQu+qLC49rLKIZn0h12OnRFtPBM57bOicoSdFnMBykNDQ7fXWtq1lubyOy
+         Z+OGabt5KH+Q2yS2r5kLiB0QKB70CW0St2p7TNOENblgzNPupwS/pIkZmVmRamSqmsA7
+         L/1FfCC+QHC9y2qEGmokcvfRYaZGvr8i9K38PDXqSXFzavieYIefv6OEzqlI5lrGgfdc
+         5Jqg==
+X-Forwarded-Encrypted: i=1; AFNElJ+9bBc6btcunO8s/yWNAvriCnCUyg64lq3zLEYzqTOAnGcKbyBbVx+oIL0yJuXJmOOKFUJuTpv5bUs2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdPgZYU9xiNLNGPuWD5ECMHB7y46DORl1ZHYZvyrJUlBgpCimB
+	bWI2f+az5UcOX4lpVPaPMk2fiPE00His60z5SlWQ+pUkl80o0e1QoEowyVbmT8vvsXM=
+X-Gm-Gg: Acq92OE324XtFwuHslLlWLndysqFy5cZlDLhPJWObiKo76AFFT+2rlUZiO+cYWM53xM
+	gJZSHtem13hbOrLEWbaP5W59jtgku0Rttr/9xjwUCZ3nttK8t0YJ58xHzXn7lIHrI1AHiaMQ30Z
+	qULcClQvyJZidAmxvGP+JvW9jz4ftfcVKTwEUzNc/Py+k+QGEvpHNv5PkByT1VshRnB5VOaPJfB
+	xOUHCj8ToAZAN4f9yXWyW/CR2twKbZ9MpWk81Lmk2Z45sAV/8PTb81cpRKrb6xeyF9P4lMMSyyz
+	2AuEuprvszZQy2MxZSeV96QRwYXG+rP88SFSIZM492F3GRiA6Nlu0mwh6dAHV85Qc5lYoP+qNeF
+	3DMOIFE0bR0y0FoEuYNFX6R1n3qADYK5UFhs4zRyjGiameoaGSCSkJPtF/Qh0Y0V/dwbSXtbE72
+	y8n1MDg4z1dkbUWb5nwEg2fS/gkzU9
+X-Received: by 2002:a05:6000:25e3:b0:45e:739c:f187 with SMTP id ffacd0b85a97d-45eb38c5329mr29111131f8f.22.1779798918558;
+        Tue, 26 May 2026 05:35:18 -0700 (PDT)
+Received: from linaro.org ([77.64.147.108])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eb6bc5479sm37517812f8f.0.2026.05.26.05.35.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 May 2026 05:35:18 -0700 (PDT)
+Date: Tue, 26 May 2026 14:34:46 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Maulik Shah <maulik.shah@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+Subject: Re: [PATCH v2 3/8] irqchip/qcom-pdc: Remove pdc_enable_intr() wrapper
+Message-ID: <ahWTZj727RCNZPR9@linaro.org>
+References: <20260526-hamoa_pdc-v2-0-f6857af1ce91@oss.qualcomm.com>
+ <20260526-hamoa_pdc-v2-3-f6857af1ce91@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260526-hamoa_pdc-v2-3-f6857af1ce91@oss.qualcomm.com>
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303023-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303025-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,intel.com:email,microchip.com:email]
-X-Rspamd-Queue-Id: 6AED65D5962
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linaro.org:mid,linaro.org:dkim]
+X-Rspamd-Queue-Id: D44535D5A3A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 24 May 2026 08:15:27 +0530
-Piyush Patle <piyushpatle228@gmail.com> wrote:
+On Tue, May 26, 2026 at 04:24:39PM +0530, Maulik Shah wrote:
+> pdc->enable_intr() function already points to respective version
+> specific enable function. pdc_enable_intr() now only kept as wrapper.
+> Remove the wrapper and invoke pdc->enable_intr() from caller.
+> 
+> Locking in pdc_enable_intr() applies lock to all pdc->enable_intr()
+> however its only required for pdc_enable_intr_bank() which uses
+> a shared bank across all interrupts. pdc_enable_intr_cfg() do not
+> required locking as IRQ_CFG registers are one per interrupt. Move
+> locking accordingly.
 
-> On Wed, May 20, 2026 at 3:49=E2=80=AFPM Jonathan Cameron <jic23@kernel.or=
-g> wrote:
-> >
-> > On Tue, 19 May 2026 03:32:20 +0530
-> > Piyush Patle <piyushpatle228@gmail.com> wrote:
-> > =20
-> > > Add the avia,hx710b compatible and document the HX710B-specific
-> > > DVDD and VREF supplies.
-> > >
-> > > Add constraints that forbid HX711-only properties on HX710B nodes and
-> > > require vref-supply for HX710B, then add a separate HX710B example.
-> > >
-> > > Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
-> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com> =20
-> > FWIW the only thing Sashiko doesn't like is dvdd is enabled for the old
-> > parts. Move it to the earlier supply adding patch for hx711 and we shou=
-ld
-> > be good to go!
-> >
-> > Jonathan =20
->=20
-> Because dvdd-supply now lands in 02/11 as a shared property, I will
-> remove it from 04/11's properties block.  The allOf constraint in
-> 04/11 does NOT gain a dvdd-supply: false in the else (HX711) branch
-> DVDD is valid and meaningful for HX711 nodes too.  The only things
-> forbidden for HX711 remain vref-supply (else branch); the only things
-> forbidden for HX710B remain vsup-supply and rate-gpios (then branch).
-> I think this will be a suitable approach, right ??
+Well, pdc_enable_intr_cfg() is still a read-modify-write. If two CPUs
+read IRQ_i_CFG at the same time and modify different bits (e.g. enable
+and type bits) then write back the modified register one of the
+modifications will get lost. Can we be sure that this won't happen?
 
-Yes. Sounds right to me.
+Perhaps we can since PDC has IRQCHIP_SET_TYPE_MASKED, but personally
+I would keep the lock there to be sure, especially with the new GPIO
+operations you add that also read-modify-write the same register..
 
-Jonathan
-
-
+Thanks,
+Stephan
 
