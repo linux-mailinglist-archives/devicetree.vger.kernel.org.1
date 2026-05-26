@@ -1,292 +1,289 @@
-Return-Path: <devicetree+bounces-302979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302981-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GBNSCtFxFWpbVAcAu9opvQ
-	(envelope-from <devicetree+bounces-302979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:11:29 +0200
+	id CCF7GktyFWpbVAcAu9opvQ
+	(envelope-from <devicetree+bounces-302981-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:13:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 716335D3F85
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D1F5D3FF6
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:13:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B681306570D
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:05:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 97ED2305E2BE
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071D63DA7D6;
-	Tue, 26 May 2026 10:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4626F3DB658;
+	Tue, 26 May 2026 10:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="Mmt65k0S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="oFSN00XS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023119.outbound.protection.outlook.com [40.107.44.119])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A4FF3D3332;
-	Tue, 26 May 2026 10:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.119
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779789909; cv=fail; b=IL/s4SgA9+ebRdDP2dFpdulvzLoPdtsWhCmYvniZHBhJmAov120hzZJwr154aRTa4mVAtvkabw2ns/tfGPqD7u2VKWlhBHlDLwsLAvOiEiK0tZ5hzVMhdMidbqPosZ+GAlLZgtpxQdHPsZAU2LLDNpR/EEs6/rwSiMNdTlUTHqY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779789909; c=relaxed/simple;
-	bh=gIMCloW4Iv7eJU31+gV98mhwv+QKn7LZEYg/VKuzVEM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Y2fRRf2X2Wxjy4WpO/sHEcnfYWiorIqsJLsToqkFUf9u+oKEyJDtMsJFlaO6b+GwM4k7/dRADCgLW4QGkP5cJN9/uNKqn4V4yU/opvmYQ+1HQu9pmUvJyuHsR/SiHNh51NU6p7M8y50x5qeWpH4Fq6sGKht/tST2v4F2Bxdvjw4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=Mmt65k0S; arc=fail smtp.client-ip=40.107.44.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QGPj9DHHKzMD00YbZ+2b6/j7nsIXlGKJO11SbOAHK9PJ1vq0dZsiNYYBTysRoYpvjpHosFux9NH0H9114hI59DThr2Qz+YFh9J+1hxlsEcTnMfNdXeRF/FJNoG/huHs67KryMm9EVz7m8Kx6tbH/EurEPAB2rJTpYYFcjtt4NCZpGMvTk2BGsLz+WQm1GcRwoxb4/vBFklLwiFezxKjfcFikW18aXiulR6iq45P8PHSoXGWM/gUWvAjc62Fi0jdZlQNuHeO4wM0MwrRB+Ib1aITomvvZ61mY4ESxVINFBGQbAzu/HlsDHBuQZ2Z47EtCqlLac+ZsqVXWEEaktwynwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dx/aHakB5b67ZP7m5mxnQWU93moPDO1qqwjeqSIbUsk=;
- b=AKYmFdeKX5Ds3tN73fsupiNd1BryEMleNdJzzbq2Whe95AFgPHSAbl0Ffflq4lt+QwYZ4PQf/4S2UpQd0iSQUhAtVPCPsysj41PXp8ZByiY9JtFNNYDU1fcSipOcrJoipH0u6JSvZQ5MbZ+p5kJWo4JmpWRJ2ReARi4IppbdK5bnjk76z3agh4xQiXgB0UZyZFgkwkrstQW6Rmo8i8xi0A0jnxwMX4mKInFDquGALFClVI9mGDO9tKIIaCTvx5XgnDh65s9u7ihJ0Hv5Hdk7Kh5Pg++Ov9AfBjAyh6ETm4er+FUj61Otb0IUFy1Pj8C8H6tHiezwWN5SAvuYMqqgDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dx/aHakB5b67ZP7m5mxnQWU93moPDO1qqwjeqSIbUsk=;
- b=Mmt65k0Sz4820ht85axiYq9NHQeOZgxGKJtrtRiy/oEIEmAFzgKGTUyz1O9xJfhRDtZ5jm9ZGy4doMZYYTTdrijntp2ApO5FJoMWrZJCrP3VG8ISqcw8zvNr1NHrYBx0b0CBauA/hExJCaU3UU0JUUG+NBP9r00iCDoEfO4LnXJn4f/Ri/Z60mGFRNltPsUOT0M1DysP56pk0dBmVW1NXBAKkdBVycB1c+kO4AP0dspPcLddAJZJdnwM74TLRjkGwXfNWPNz4es4jnPwcQnjXdlboeH6OodJa6RoyUuWEUt0etmYpcrnJYe/KyUoFXn9u9t+Q3m7iqd3hCoSazxVgw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by KL1PR03MB8305.apcprd03.prod.outlook.com (2603:1096:820:115::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.7; Tue, 26 May 2026
- 10:05:03 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.21.0071.005; Tue, 26 May 2026
- 10:05:03 +0000
-Message-ID: <13da0733-32cf-4923-a923-21e517d1594a@amlogic.com>
-Date: Tue, 26 May 2026 18:05:01 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/10] Add support for A9 family clock controller
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
- <1jldd662x1.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <1jldd662x1.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR02CA0131.apcprd02.prod.outlook.com
- (2603:1096:4:188::6) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D9D3D891A
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 10:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779790039; cv=none; b=CKhrVYr2TAvYBPRLTmDP15Imid/0wABPLOvLO/NQsKpnvUD8bJvbArTHmlintyoPpQkffRPAlXaElM5vvNe8D1jZfIJAdZEkAHgKE4OQgiI6mmyCcaiANx1qAmUUJS4PZU23YSQmYQBLqWJRqO4ZLDlS0rlzWZi2+b+ZrkAfRMY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779790039; c=relaxed/simple;
+	bh=Ublks9CuT5syiY4dPX5P5VSog6DvqLq29kO6wrUNPns=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AHOLJ4VRq9WJlHo9ASNGBPMqxbN2sBzC+Hzrb6V3wawCyuoP/5hT33wmLLvUtZtVd2MELb5LOmEhLb2NXQkM6fp9YFcTDHidRM6qZepvuqVT4UnwQqcYp0c+EGuN65Ah9VyH0E0Z532gdMpSarcBsDEkeNP/OrmwUU+76vHZvBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=oFSN00XS; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48a3e9862f0so54919705e9.1
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 03:07:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779790036; x=1780394836; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UBWVkdlUBppiUm4CnKZtDjFMlGPeTrCwu/oPgCeq608=;
+        b=oFSN00XS8JSvgHKTtHxo9tD84tNW1qVETBMBCrdtp2ANYbKYzy55a6Bkm+wvs43f8I
+         cPnEkwoT3LMw1fHJlL5qqBJUfAbQEauY3Zccz7pAuekrLJt+P6iXBiBmMznl2fIwKw1p
+         TZdzFLUGihTaLYkMLrofz+mYEA0DipPVylgFh+PZ3pPat5EpBZ8F5WmGmqXCLblJZaNx
+         XsTPMvCirVmpN7JVz8hNsNTO+GFdwit/u0ZB0KBQRBrJRGQSLmA6YTGCetcfzJ3T18Ii
+         8G3YM/yxCpu65q8IJD4M3yWJzemSUilaKHPvIfSfEManmI4LE1QYOAIEPGKXNZwwKGLQ
+         Z4ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779790036; x=1780394836;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UBWVkdlUBppiUm4CnKZtDjFMlGPeTrCwu/oPgCeq608=;
+        b=lp+t7T6PAycFPxNph2tydUpUf0fRdezROB6q5ccN+ZQUaAHyGiD9I1F9Zz5FVfcDCF
+         YVAMmicl8yagbCaj1zUzP156El+UhtKl2hx7C7jAkwVZeAOrUQg9VrBz6sdVGtmUhTb4
+         bPkHZC9BA8Z8uRm7bI212Iwwb+nzrhnG6TBOy3GmfHxohdF7+aW8BKlGcuieXS3FbZzm
+         dqFw6d4U6EtBQiw/UMpjac9vfKXEIqBPj2vLQCp/cB0AWOMj7sXpxo5+BLQXzUFANZSy
+         uVjS+T0i5/SaeYVyvBRRt6dtMGc2tTjw7L+za7rTvbj77o6bCvkz2cqiFYB6Db5ov4x2
+         TGkw==
+X-Forwarded-Encrypted: i=1; AFNElJ9eM01xUIrx7iCpxmNTMyYaGRQhK+/GEwLPkkVtH4UjS9OHiGz11lx1PksdcV+YSe4le7eTh1yUo5hb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp7JKlQ7K9MD7COwjy0DlGaAfxwG+UdALZmavuD3Ur6b/Ry+EN
+	SgSV6vfJ1eQfIUbIgn3+Nx95n5vyyzygpwoZptXmMXrjlf6m42tD+aRl
+X-Gm-Gg: Acq92OHWFtHf1037XxV6O5kpmGzLGQRDBHBJmLqRprPlx/fPYaBAdegzlSmX/i5UITT
+	+Dkv6yRZY7fz7fqb0+qMkeQFKLDzAu0DewwGoNq6fFKlXZK3cJr5jG3VSHNa4gXXi2KpmhsZ1Ex
+	VrMlwqZKPfl2oLVkr3tYH5cE7eD6eKQU4RxGUbvc1TBtQbcQZe1HkyaMb/5Lr+HowqsT4PcOHNI
+	YC7/nZ8PMtwjEK1jU/Livgss+PsegSlrZklYNLfdbxO1sYvo52ltcuuU6q3O+urdJ2cI1yiwGi9
+	8p0UHcKgEvqMlH5RawIVo+yhujtZ6WQtvRddcTakAHo+NJP4HOt73ZRnu4eV1G8S8ncXTw2KRm6
+	q+H2gCwIupjA9nGU9PR/JnJCu1Jkn+QeK6cbGgtARfw1k0XrWOW4mrxMq2P0Z4KOCBjvz1LABPz
+	vPgi6AqRl2Z9tl+Dr6KcTDBQnwtYAEvtXhk4Sp82olhxpaUT/eiEFfvkpF+Hyzqnxc6ER5owAnJ
+	O2/bHXBrOba3O8POid4MLen/15zSfFx6EMjfOVF/1al7GDPMw==
+X-Received: by 2002:a05:600d:4448:20b0:48f:d620:c27f with SMTP id 5b1f17b1804b1-490422687c3mr181089135e9.4.1779790035539;
+        Tue, 26 May 2026 03:07:15 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454c5eb0sm337780505e9.2.2026.05.26.03.07.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 May 2026 03:07:14 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Tue, 26 May 2026 11:07:09 +0100
+To: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v5 12/13] Documentation: ABI: testing: add docs for
+ ad9910 sysfs entries
+Message-ID: <wyxgririrncvg67bisazndqtlj6ylrzkqfgsi7tptjfv7qopwa@rjmtb2aohbay>
+References: <20260517-ad9910-iio-driver-v5-0-31599c88314a@analog.com>
+ <20260517-ad9910-iio-driver-v5-12-31599c88314a@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|KL1PR03MB8305:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1c58434d-9a35-481b-39ff-08debb0e4177
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|22082099003|56012099003|18002099003|6133799003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info:
-	AApCtd6baxP5EGPCeI2wgy5pVHQslXvU2ESYImQ/hWCXXUyfN8E6g6Li9go+QZryxWerNYEyh3xNrZAnCV5cXNn5GJdXEVg3bJUtPoWKGdZfmYPsU+188bdWF75cNzdbbTRy9oRqDdQZalD4mg33r9t4prbR2vl/Jcfe2qdAMGyfXdKf5pE/n0NuIHpa0oETHWuvNwnbpV6ebj+ipobQ+U22llieWXnsiOjOOYZKkM9he5GdKHPce9zYRTzU0gTkaitV0D8pLdgNApU+fYGTxgVE0gi3snj6jBt7IhZEUcZgr6UpareB3ip2DimZiCMBedyo0uOLbzQknkupwaeYQpKP8LFFt/OEHgOxf/iv0q0Q0A5t7sqBuwCKAR6EX0Lh40OEdLzuFVwCUuFTVS74lChVB6d49HAqR8SxS+00LHR672+vXSiRoInOSfL/szx9zTadPfLmf99uLgt22410dG3+joT5VI3n1QDvSrsPVtXjvJquEFJYV34gjpx8VCpstsCOtqUA5xR2skELa+W9JGP0VsGPV9kPaUH7ZqXVa6s2mKBnxhTjqBOJ+zouUHrTuo0iWDkGOy1ASwEl95jJ+GiaxG6DSIUIKXPrx1wa4y2prYhNLFCTfzi1gMEeknvjSi03ScDA7JEpcwdmaADs5rhGPmJ1O8Jzhkq2HhySEIKUOOSrUcNb6gPzVzhQA/Iv
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(22082099003)(56012099003)(18002099003)(6133799003)(11063799006)(4143699003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eGRKWXBPY2M4dHRSVGRwWUpSbFppK2FvL040NU5UOXBCb3Jrek1XV0pUdXpZ?=
- =?utf-8?B?TUdYeUQzNGs1WGtVKzFiZWZUUWdUZUtzVmdnTHMrcGsxUDJkdjZ2NU9HYnp6?=
- =?utf-8?B?V3JFOW91U0xLK1FKRXI0blVXZ201TUNmenRGckFtQ3RXN0NycUhwS29QazVo?=
- =?utf-8?B?Uk1HK041cCtjbVZEMlpuclRZM2RDWTBtdk1jck9QM28wS2RoN0R5RFhlY1Qx?=
- =?utf-8?B?K1gveVEyYnJrM3RMQm5aU0FReXo5emI2ODF6ek5FY2RwY09Mdkl4eEF0b1ha?=
- =?utf-8?B?WGlFbWtLU3MzOS9Nbnc0UGxFOHRkME1URHhPRklRVGIyVHUyNTBGNmgzYURw?=
- =?utf-8?B?MzUzcmVLeHJkNXp0Q2hVWXFlNkpFYk1VR0w4ajNrejNCUzlsQU1rK1BoUmNM?=
- =?utf-8?B?SUVGUkZ0Uk1weXBTTGFDanFGcXpGTCtmejEvSFM0cnAxN2QvU3BtWHNyNmJv?=
- =?utf-8?B?azBrZmh6TURnZWJ1cC9jOUZNR0p3UzVWbHZQUWNoOE9TL3BmRlNaaGt6NzhL?=
- =?utf-8?B?dkxTQjhpdzFIc3Y4NTB6QTdDYUNxWElQNmdQZm44ZzdiZ2dKMTlGU3R6SUt1?=
- =?utf-8?B?RS9HSlhvRXJuQzZNWFlQS01qekxNNGk3OWxPbEVVK05ldzlzZkc5Rk9pVzRr?=
- =?utf-8?B?L0JXTzVoUDloNFhYNDZPUUszTVhJczZIejYrbitsN2hLY1VaUFBwV2FybGZP?=
- =?utf-8?B?ZWdXR0JvQ2lqaTJML1BCSmowOWtCbXJYMFQ0cEp2U2VxajBjU0FoL2NpR1Vm?=
- =?utf-8?B?aW1oRk5qQllteGxkdFpscHpqN1o1WEVWS0x4Rjl2eEpFYXUwVHY4V1RFM0tG?=
- =?utf-8?B?c21CZzcrZm5ZdERsMjBDQ0xlbnZuTXRVVUFER1NGem1uWExoYUo1R3BETmEz?=
- =?utf-8?B?R1Vqb0pKQTdyWEZVOU5QbFlhcHUwelhIK1JJSTNrSEVNTWI5T1JGcjlwdWlN?=
- =?utf-8?B?TUQ1RjRldXM3dGNtVmFZZmd6czJpTXVWVTRwQjRDaGR2a29zSGt5bXV6eE8z?=
- =?utf-8?B?R254a3NaS0Q2aWt3UlE5ZU9pU2lBSDhBaVJOanFOY2FSL1J4WDIyajkrYjA5?=
- =?utf-8?B?Q1piVVpyQzZiUnpMTXF3c01OVi92L3RZVlR2ZnlrL1NVcGh5MjVPTkY4cExi?=
- =?utf-8?B?dHVPK3FtbDNOM25WU3ZIRGFKUWZTd0ZiYVo3WjRKVHhNMGhaNUlpMDl3YkdM?=
- =?utf-8?B?VVIxZWsyd0FyRStQRkJMUkJKUGd3UmZhZFJpR2ZVL0V0UEJQYmNWRU0xMmdt?=
- =?utf-8?B?bmJrWFJCZG5wZGpobS8vUlNua1BiUzM1RmcwczVMa2s5Z2ttaEpiS3pJVUtj?=
- =?utf-8?B?NEgyRm1uSHY5TmM5ckNRWTRETXZyT1hQZUFjdXRneEJWWHBPV2lRbG9STmhH?=
- =?utf-8?B?ZkhaWnZJc1RnTEhCMUVTYTlaOW9GQllzWCt0Z2ZmK2ZIU0RiVHpwWUFpMFJL?=
- =?utf-8?B?VW5NY2llVnZ0U0RRQU1nUldHK041SmtTN1hzdGYycU5uY3BQT1I4eDc5V1BM?=
- =?utf-8?B?TURySmhrTTdMcTlqZEVrNCtHRFBaVElGWXBrV2FhK0tyV2pqU21WemFVQ3NY?=
- =?utf-8?B?Q2k0bkRvb2JPVnNjYmovL1ZWcTNwUFRzTmg4a1dwMi84SlNVNUg1cXcra1ZN?=
- =?utf-8?B?U1kycnFzWW1rQW02d1VaQ0hjc1JidG9hc2RBb0c2NUovZlpXeDNBTDI5SmRY?=
- =?utf-8?B?UVhXN2tWZHRDK00wb2MwdWJNTG8xK0tPZmdIRVJzeDhEMnNvT1NtUEZ2dzkz?=
- =?utf-8?B?NnpWZUVEOTljSXJLU2dZRGRpV2dNaU82RnJKMTBvUERlRFdMUW5RSEo1MkEz?=
- =?utf-8?B?RzM0YnppOCtpVlk5SlhLSWE0NldOQ1EyVWVLMkFBZ1FTOERsZDJxY3BBVmZo?=
- =?utf-8?B?bjRVbmtVbkFJWFQ1OHhVRjR5bnROV3B5YlpsR3JSU1o3MXlVMGlNMGVsVmZY?=
- =?utf-8?B?VE5EbUN3dDBibEpMcmRnT2EwS0o5MTNGRFdNSXhaeFhUVmJlQWpPZXNTYVNL?=
- =?utf-8?B?MExqMkh4dXJ3b2E2aEtBTTdKeTNQRlloa2RHRVY5SzdRTDJhUTRyN1duYVEr?=
- =?utf-8?B?THhBUFRSZHpGMHQwYkhVeFFFUUZnNE4vclR1a1pYbTVUdm13Q2ZkdlFnY3do?=
- =?utf-8?B?RnNNTkg0Sm1McElyYjNaK2k1dUZQREJwcUFjbWVJUnB4YnU2SkNoQWUrMi9M?=
- =?utf-8?B?dHYyakdldUwvUisrM09TNVliTnlJRDVGcFZkdHdOYUZubUFFVGJTWmJoT1V0?=
- =?utf-8?B?STVBK0ViV09wcjFwL1RjVGgvQzIyTHZycjFWdFN5MnFSU0tOWHZqVit1T3Fx?=
- =?utf-8?B?MFNoZmp5Qi85Sy9sL2lkd3BLTHlybWlZV2drbnRLOU5nNG1MbUF5Zz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c58434d-9a35-481b-39ff-08debb0e4177
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 10:05:03.6568
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7rZl+wUA3ZMmpm5GqFJMwGripan8sfLMhlyEhuHt7flIDW8vKPehyAdFsdxuI0RQ5Nvh/qywZJVttGTa1c7zSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8305
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260517-ad9910-iio-driver-v5-12-31599c88314a@analog.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302979-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302981-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[amlogic.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,3.support:url,amlogic.com:email,amlogic.com:mid,amlogic.com:dkim]
-X-Rspamd-Queue-Id: 716335D3F85
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 12D1F5D3FF6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/26/2026 3:33 PM, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
->
-> On lun. 11 mai 2026 at 20:47, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
->
->> There are 4 clock controllers in A9 SoC:
->> - SCMI clock controller: these clocks are managed by the
->>    Trusted Firmware-A(TF-A) and handled through SCMI.
->> - PLL clock controller.
->> - peripheral clock controller.
->> - AO clock controller.
->>
->> There are reserved register regions placed between individual PLLs, so a
->> separate driver is implemented for each PLL, similar to T7.
->>
->> Compared to previous SoCs PLLs, the A9 PLL controller introduces 4 new features:
->> 1.PLL l_detect signal supports active-high configuration.
->>    Previous A7 and T7 l_detect signals are active-low.
->> 2.PLL reset signal supports active-low configuration.
->>    Previous reset signals are active-high.
->> 3.Support POWER_OF_TWO for the PLL pre-divider N;
->>    the N pre-divider follows the same calculation rule as OD.
->> 4.The PLL input path includes an inherent divide-by-2 divider.
->>
->> Implement the first three features in clk-pll.c (verified on A9 and T7),
->> with no impact to PLL logic on existing SoCs. Add a fixed divide-by-2 to
->> A9 PLL driver for the fourth feature.
->>
->> A9 PLL is composed as follows:
->>
->>                         PLL
->>            +---------------------------------+
->>            |                                 |
->>            |             +--+                |
->>     in/2 >>---[ /2^N ]-->|  |      +-----+   |
->>            |             |  |------| DCO |----->> out
->>            |  +--------->|  |      +--v--+   |
->>            |  |          +--+         |      |
->>            |  |                       |      |
->>            |  +--[ *(M + (F/Fmax) ]<--+      |
->>            |                                 |
->>            +---------------------------------+
->>
->>    out = in / 2  * (m + frac / frac_max) / 2^n
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->> Jian Hu (10):
->>        dt-bindings: clock: Add Amlogic A9 SCMI clock controller
->>        dt-bindings: clock: Add Amlogic A9 PLL clock controller
->>        dt-bindings: clock: Add Amlogic A9 peripherals clock controller
->>        dt-bindings: clock: Add Amlogic A9 AO clock controller
->>        clk: amlogic: PLL l_detect signal supports active-high configuration
->>        clk: amlogic: PLL reset signal supports active-low configuration
->>        clk: amlogic: Support POWER_OF_TWO for PLL pre-divider
->>        clk: amlogic: Add A9 PLL clock controller driver
->>        clk: amlogic: Add A9 peripherals clock controller driver
->>        clk: amlogic: Add A9 AO clock controller driver
->>
->>   .../bindings/clock/amlogic,a9-aoclkc.yaml          |   76 +
->>   .../clock/amlogic,a9-peripherals-clkc.yaml         |  150 ++
->>   .../bindings/clock/amlogic,a9-pll-clkc.yaml        |  110 +
->>   drivers/clk/meson/Kconfig                          |   28 +
->>   drivers/clk/meson/Makefile                         |    2 +
->>   drivers/clk/meson/a9-aoclk.c                       |  494 +++++
->>   drivers/clk/meson/a9-peripherals.c                 | 2317 ++++++++++++++++++++
->>   drivers/clk/meson/a9-pll.c                         |  831 +++++++
->>   drivers/clk/meson/clk-pll.c                        |   79 +-
->>   drivers/clk/meson/clk-pll.h                        |    6 +
->>   include/dt-bindings/clock/amlogic,a9-aoclkc.h      |   76 +
->>   .../clock/amlogic,a9-peripherals-clkc.h            |  352 +++
->>   include/dt-bindings/clock/amlogic,a9-pll-clkc.h    |   55 +
->>   include/dt-bindings/clock/amlogic,a9-scmi-clkc.h   |   51 +
->>   14 files changed, 4609 insertions(+), 18 deletions(-)
-> For the next version, please split things up.
-> There is no hard dependency between the different controllers. This will
-> ease the review.
->
-> The PLL controllers are bringing a new contraints in. The global/static
-> nature of the controllers is something that has been bothering me for a
-> while but there was no real reason to address it so far. Please give me
-> some time to think about. Feel free to re-post the other controllers in the
-> meantime.
+On 26/05/17 07:37PM, Rodrigo Alencar via B4 Relay wrote:
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Add custom ABI documentation file for the DDS AD9910 with sysfs entries to
+> control Parallel Port, Digital Ramp Generator and OSK parameters.
 
+...
 
-Ok. I will split the series and re-post the SCMI, peripherals, and aoclk
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_dwell_en
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		For a channel that produces parametric sweeps, this attribute controls
+> +		the sweep behavior at the configured limits. It enables dwell mode at a
+> +		sweep limit when set to 1. Otherwise, the sweep may stop at the initial
+> +		position or restart from that initial position or continue by reversing
+> +		its direction.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_roc
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Frequency rate of change in Hz/s for channels that produce linear
+> +		frequency sweeps. This value may be influenced by the channel's
+> +		sampling_frequency setting.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_phase_roc
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Phase rate of change in rad/s for channels that produce linear
+> +		phase sweeps. This value may be influenced by the channel's
+> +		sampling_frequency setting.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_scale_roc
+> +KernelVersion:
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Amplitude scale rate of change in 1/s for channels that ramp
+> +		amplitude. This value may be influenced by the channel's
+> +		sampling_frequency setting.
 
-controllers separately.
+I am thinking about adopting IIO_FREQUENCY and IIO_PHASE to the DRG control
+(It is considered for the Parallel port at this point).
+That would make the destination configuration a bit more clearer:
 
+* out_frequencyY_en
+* out_phaseY_en
+* out_altcurrentY_en
 
-Best regards,
+which would enable DRG for a given destination.
 
+I would not want to have 6 channels (3 for ramp up and 3 for ramp down),
+so I would develop the idea here with that in mind. Otherwise, it may
+be ok to have the 6 channels for that.
 
-Jian
+The DRG have this output pin called DROVER, which indicates when the ramp reaches
+a limit (upper or lower), then I was thinking on bring that to be an iio event.
+At least initially, to treat the configuration as threshold event control, and not
+necessarily having to processs the DROVER interrupt. Mostly because that interrupt
+might be to frequent and would be better handled in hardware (by an FPGA IP).
+In fact, for certain configurations (slower ramps), CPU would be able to handle
+it just fine, specially if user is not very much concerned about deterministic
+timing when handling the event.
 
->> ---
->> base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
->> change-id: 20260511-b4-a9_clk-67652c1ae56e
->>
->> Best regards,
-> --
-> Jerome
+DROVER indicates both threshold rising and falling events, so I would have something
+like:
 
+* events/out_frequencyY_thresh_rising_value
+* events/out_frequencyY_thresh_falling_value
+* events/out_phaseY_thresh_rising_value
+* events/out_phaseY_thresh_falling_value
+* events/out_altcurrentY_thresh_rising_value
+* events/out_altcurrentY_thresh_falling_value
 
+to configure the DRG limits (upper and lower), which fits well with the idea that
+DROVER is the event we are interested in.
+
+Now, we are missing two things: step rate (sampling_frequency) and step (configured with roc).
+The problem here is that both of those configuration are applicable to rising (ramp up) and
+falling (ramp down) cases.
+
+There is no RoC threshold event, so I am not sure it would make sense to create an
+event spec to configure the step with:
+
+* events/out_frequencyY_roc_rising_value
+* events/out_frequencyY_roc_falling_value
+* events/out_phaseY_roc_rising_value
+* events/out_phaseY_roc_falling_value
+* events/out_altcurrentY_roc_rising_value
+* events/out_altcurrentY_roc_falling_value
+
+But that would allow to reuse that existing iio core/event code to configure the
+ramp up/down step with new ABI.
+Otherwise, trying to get both ramp up/down configs into a single channel we would
+need:
+
+* directly to the device channel attr group:
+	* out_frequencyY_rising_roc and out_frequencyY_falling_roc
+	* out_phaseY_rising_roc and out_phaseY_falling_roc
+	* out_altcurrentY_rising_roc and out_altcurrentY_falling_roc
+* or, under the event group with a new event info: IIO_EV_INFO_ROC 
+	* events/out_frequencyY_thresh_rising_roc
+	* events/out_frequencyY_thresh_falling_roc
+	* events/out_phaseY_thresh_rising_roc
+	* events/out_phaseY_thresh_falling_roc
+	* events/out_altcurrentY_thresh_rising_roc
+	* events/out_altcurrentY_thresh_falling_roc 
+
+For the sampling_frequency configuration, which would also require new
+ABI to fit both ramp up/down in a single channel:
+
+* directly to the device channel attr group:
+        * out_frequencyY_rising_sampling_frequency and out_frequencyY_falling_sampling_frequency
+        * out_phaseY_rising_sampling_frequency and out_phaseY_falling_sampling_frequency
+        * out_altcurrentY_rising_sampling_frequency and out_altcurrentY_falling_sampling_frequency
+* or, under the event group with a new event info: IIO_EV_INFO_SAMP_FREQ   
+        * events/out_frequencyY_thresh_rising_sampling_frequency
+        * events/out_frequencyY_thresh_falling_sampling_frequency
+        * events/out_phaseY_thresh_rising_sampling_frequency
+        * events/out_phaseY_thresh_falling_sampling_frequency
+        * events/out_altcurrentY_thresh_rising_sampling_frequency
+        * events/out_altcurrentY_thresh_falling_sampling_frequency
+
+Lastly, we also have the dwell enable config:
+
+* directly to the device channel attr group:
+        * out_frequencyY_rising_dwell_en and out_frequencyY_falling_dwell_en
+        * out_phaseY_rising_dwell_en and out_phaseY_falling_dwell_en
+        * out_altcurrentY_rising_dwell_en and out_altcurrentY_falling_dwell_en
+* or, under the event group with a new event info: IIO_EV_INFO_DWELL_EN
+        * events/out_frequencyY_thresh_rising_dwell_en
+        * events/out_frequencyY_thresh_falling_dwell_en
+        * events/out_phaseY_thresh_rising_dwell_en
+        * events/out_phaseY_thresh_falling_dwell_en
+        * events/out_altcurrentY_thresh_rising_dwell_en
+        * events/out_altcurrentY_thresh_falling_dwell_en
+
+For custom event attributes, maybe iio_info.event_attrs can be used instead
+of new event info (or a mix of both).
+Another thing we may consider if going for the 6 channel case, would be having
+new modifiers: IIO_MOD_FALLING and IIO_MOD_RISING, which might simplify things
+a bit.
+
+Let me know about your thoughts on this.
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
