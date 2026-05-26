@@ -1,207 +1,161 @@
-Return-Path: <devicetree+bounces-303026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303051-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gASqCJWTFWpSWgcAu9opvQ
-	(envelope-from <devicetree+bounces-303026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:35:33 +0200
+	id WGWICralFWqJXAcAu9opvQ
+	(envelope-from <devicetree+bounces-303051-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 15:52:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C4E5D59F0
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:35:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 467AF5D6E01
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 15:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 473F23010661
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:35:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E60043012D7A
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 13:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311383F9F20;
-	Tue, 26 May 2026 12:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC55D3FCB32;
+	Tue, 26 May 2026 13:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVrWbuS1"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Mri3/IGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m49204.qiye.163.com (mail-m49204.qiye.163.com [45.254.49.204])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC33282F1D;
-	Tue, 26 May 2026 12:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8FA1FE44A;
+	Tue, 26 May 2026 13:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.204
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779798930; cv=none; b=mV1wPKFzIdbQjFbi14rE/iYJsAbSP9zfK3x5gpN57PO9BjHnYc4LUG/fyoZ5KR5GB7CNwlTeLtWz8zplJWvjhIDDzPcy/ykytuLOTEdEH1SY8n+cB5Sg5saIIIfREnSoEExq1K3OILrttZ4iWJHuYpjJcO2/9gqXEMDTmkS2n8A=
+	t=1779803492; cv=none; b=HY8HEJnjR/klS3xGRDiADwBB5nhmsTMoeWxmXp6ORGgfUFAzhCEXwHOYdQJtyjD4CQvKam7xdd5KWN1DnZ9Sm90JDs3DO/1+oS6xieuPXGDcIfvZRABqR6pNawPmtH31r2AxNr0wzeRJaptDZDs8eVBiYwkC6sQS9hgY/nadb84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779798930; c=relaxed/simple;
-	bh=n7j2xB/p2/bpJ4PAZFAH2CPKG+pYjXlg/jFOgnW2DLY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ABO4aED5VdF4oSxk/QNAuPmgGCTU24CQHU5AG3n2F+yYGge/1j2frlaQpj0qpbWqJFdNITIY2CJ1+TA0NOCi6LTdNhennFC4+DyflaY7JTQggYYsrSGzaDndJwOmm0Ba+hL7ElX1+Fcr6X1Bn8gemLNpzOEDzcvxW26k9MLn8CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVrWbuS1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E9121F000E9;
-	Tue, 26 May 2026 12:35:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779798928;
-	bh=A4I37u3pxMkDLwlxmTpz4QG4dLPJrI76nlF19AT6q0I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=mVrWbuS1XS8D3hQMpCtLJLpnHf6D6jAOgx476wTlix+2MGFvfbpg1YBsuH9+iOE3M
-	 ehoBHdgaQhjGCN3XnDZiu495rlZ0RS9alDi9zTJGtWSYv06o/tia5kgRIpWvUTomr8
-	 6S/kpe1YRlyltFd7QyJ+a9idd7tpmWMwWnB4DIcn/ch/peJ5jLNgBAWTbn0z+gQnyP
-	 TvygqtFjVDwlMKiXi55/NLyDFTQpbIBnNWfXKrp+NxGsl5hru6fZ/T1QAeXv/yyXW5
-	 W2ujko2fWTBrm/4rbOIoTmgEOL0Cg2nds0hZZo0b8OWj12xabcqpiyKv4Llh49MCaE
-	 WhR4tpzTt0/SA==
-Date: Tue, 26 May 2026 13:35:19 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Janani Sunil <janani.sunil@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, David
- Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Jonathan
- Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, Janani Sunil
- <jan.sun97@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add AD5529R
-Message-ID: <20260526133519.232fd9d6@jic23-huawei>
-In-Reply-To: <20260525-dedicator-strut-6f7618a92180@spud>
-References: <20260519-ad5529r-driver-v3-0-267c0731aa68@analog.com>
-	<20260519-ad5529r-driver-v3-1-267c0731aa68@analog.com>
-	<20260522180207.63b725fb@jic23-huawei>
-	<20260525-dedicator-strut-6f7618a92180@spud>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1779803492; c=relaxed/simple;
+	bh=46RWpXRO9zd50PXhD8DzrRlMNyuB8V/vylZui3pvc20=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CSApnlKPQz86863ZeuWjfAGl6if0yWplAnFGtTXmnLfGMLoAM/65jAQhujtiv6iMO+lw9mTpISxv7p9AfVmBK7yyG3/Z9EPBwn2p6mZCkWGvpYCylDaPSWCYGaLJ3mgXlx4SzHwnyWWDgHT9tCYjbyZxpaXoab17oS2GTiLGyxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Mri3/IGc; arc=none smtp.client-ip=45.254.49.204
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3fe38e512;
+	Tue, 26 May 2026 20:35:31 +0800 (GMT+08:00)
+Message-ID: <00565241-3962-4418-8711-859dc98dba13@rock-chips.com>
+Date: Tue, 26 May 2026 20:35:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] drm/bridge: analogix_dp: Add support for optional
+ data-lanes mapping
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, dianders@chromium.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260525094731.121380-1-damon.ding@rock-chips.com>
+ <20260525094731.121380-3-damon.ding@rock-chips.com>
+ <177979727057.297330.10691183273720133245.b4-review@b4>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <177979727057.297330.10691183273720133245.b4-review@b4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e6448786d03a8kunm591ab7c8b8886b
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZHktNVhhKTRhCH0gaHxoaTlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=Mri3/IGcBzNc+G9t8s5zfRoweaS3NFeHeZAVbKn66fIdfriaFiCCbSNgVT9cecYd24uwwupB6hn52vIM91IrI4Vc2uMrMpQwV1SrQ8zA1M2u2YsdZRT9h1lZC4z+ANp/d5pgObI9xFP5vO798m9/dNx7HD/Gkg8btotIad81iTk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=oQ+OHMp99D8xoRZvJBBEvxSuLKoEVBXtdAFFTNEa6Rw=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303026-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303051-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,pengutronix.de,lwn.net,linuxfoundation.org,vger.kernel.org,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,chromium.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,analog.com:url,analog.com:email]
-X-Rspamd-Queue-Id: D6C4E5D59F0
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 467AF5D6E01
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 25 May 2026 17:30:02 +0100
-Conor Dooley <conor@kernel.org> wrote:
+Hi Luca,
 
-> On Fri, May 22, 2026 at 06:02:07PM +0100, Jonathan Cameron wrote:
-> > On Tue, 19 May 2026 17:42:58 +0200
-> > Janani Sunil <janani.sunil@analog.com> wrote:
-> >  =20
-> > > Devicetree bindings for AD5529R 16 channel 12/16 bit high voltage,
-> > > buffered voltage output digital-to-analog converter (DAC) with an
-> > > integrated precision reference. =20
-> >=20
-> > Note that I'm seeing this as Changes Requested in the DT-binding patchw=
-ork
-> > but didn't see any replies.
-> >=20
-> > Seems I didn't get the sashiko reply - nor did the IIO patchwork.
-> > Hopefully Janani did!
-> > https://patchwork.kernel.org/project/devicetree/patch/20260519-ad5529r-=
-driver-v3-1-267c0731aa68@analog.com/ =20
->=20
-> The sashiko stuff is per subsystem or something, so dt stuff only goes
-> to us and the submitters. I think that's kinda stupid but also probably
-> required to avoid pissing people off. There's quite a bit of noise
-> generated by it, especially with it repeating the same incorrect stuff
-> on every version.
+On 5/26/2026 8:07 PM, Luca Ceresoli wrote:
+> On Mon, 25 May 2026 17:47:31 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
+> 
+> Hello Damon,
+> 
+>>
+>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> index 8cf6b73bceac..d53ab25bc57b 100644
+>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> @@ -1234,6 +1234,59 @@ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
+>> [ ... skip 11 lines ... ]
+>> +	int ret, i;
+>> +
+>> +	memcpy(video_info->lane_map, map, sizeof(map));
+>> +
+>> +	num_lanes = drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
+>> +						   video_info->max_lane_count);
+> 
+> Should num_lanes be > 4, the buffers could overflow. I realize it should
+> not happen, but analogix_dp_dt_parse_pdata() can set max_lane_count from
+> the device tree, so a bogus dtb could cause such overflow.
+> 
+> Perhaps you should just (in a separate patch) error out in
+> analogix_dp_dt_parse_pdata() to prevent this. And maybe even adding an
+> BUG_ON(lane_count > 4) here.
+> 
+> Otherwise LGTM.
+> 
 
-When I get on top of the long weekend's backlog I'll start a discussion
-on whether we ask for emails from Sashiko be sent to linux-iio.
+Thank you for the review.
 
-I was nervous about doing that until I had some experience of how=20
-reliable the reviews are but given I'm either cutting and pasting stuff
-into threads or telling people to go look, might as well have those emails.
+I think it would be a better idea to add a separate patch to validate 
+the max_link_rate and max_lane_count values for Exynos DP.
 
-Jonathan
+I checked the Exynos DP related DTS files:
+- The maximum value of samsung,lane-count is 4
+- The maximum value of samsung,link-rate is 0x0a, which corresponds to 
+the HBR lane rate.
 
->=20
-> >  =20
-> > >=20
-> > > Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-> > > ---
-> > >  .../devicetree/bindings/iio/dac/adi,ad5529r.yaml   | 217 +++++++++++=
-++++++++++
-> > >  MAINTAINERS                                        |   7 +
-> > >  2 files changed, 224 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.ya=
-ml b/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml
-> > > new file mode 100644
-> > > index 000000000000..eb66f6ca063d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5529r.yaml
-> > > @@ -0,0 +1,217 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/dac/adi,ad5529r.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Analog Devices AD5529R 16-Channel 12/16-bit High Voltage DAC
-> > > +
-> > > +maintainers:
-> > > +  - Janani Sunil <janani.sunil@analog.com>
-> > > +
-> > > +description: |
-> > > +  The AD5529R is a 16-channel, 12-bit or 16-bit, high voltage, buffe=
-red voltage output =20
-> >=20
-> > Long line. Check the wrap.
-> >  =20
-> > > +  digital-to-analog converter (DAC) with an integrated precision ref=
-erence.
-> > > +  The device operates from unipolar and bipolar supplies. It is guar=
-anteed
-> > > +  monotonic and has built-in rail-to-rail output buffers that can so=
-urce or
-> > > +  sink up to 25mA.
-> > > +
-> > > +  Specifications:
-> > > +  * 16 independent 12-bit or 16-bit DAC channels
-> > > +  * Independently programmable output ranges: 0V to 5V, 0V to 10V, 0=
-V to 20V,
-> > > +    0V to 40V, =C2=B15V, =C2=B110V, =C2=B115V, and =C2=B120V
-> > > +  * The device supports SPI communication with Mode 0 and Mode 3.
-> > > +  * 4.096V precision reference, 12ppm/=C2=B0C maximum
-> > > +  * Built-in function generation: Toggle, Sinusoidal Dither, and Ram=
-p waveforms
-> > > +  * Multiplexer for output voltage, load current sense and die tempe=
-rature
-> > > +
-> > > +  Datasheet: https://www.analog.com/media/en/technical-documentation=
-/data-sheets/ad5529r.pdf
-> > > + =20
-> >  =20
-> > > +patternProperties:
-> > > +  "^channel@([0-9]|1[0-5])$": =20
-> >=20
-> > Sashiko commented that this should be hex.  Why the forcing to decimal?
-> >  =20
+Could Marek please help confirm if we can set these as the upper limits 
+for the checks?
+
+Best regards,
+Damon
 
 
