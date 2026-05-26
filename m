@@ -1,69 +1,58 @@
-Return-Path: <devicetree+bounces-302815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302816-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qC4zLWj/FGp2SAcAu9opvQ
-	(envelope-from <devicetree+bounces-302815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 04:03:20 +0200
+	id 3/qqKBICFWroSAcAu9opvQ
+	(envelope-from <devicetree+bounces-302816-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 04:14:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 104B65CFA8F
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 04:03:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22185CFC3C
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 04:14:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 29E2E30060B3
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 02:03:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 499993008D59
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 02:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6932EA73D;
-	Tue, 26 May 2026 02:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B4212F0680;
+	Tue, 26 May 2026 02:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="vnQ8zd26";
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="vnQ8zd26"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="qg3va+tJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+Received: from canpmsgout07.his.huawei.com (canpmsgout07.his.huawei.com [113.46.200.222])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F3748CFC;
-	Tue, 26 May 2026 02:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4AA2ECD3A;
+	Tue, 26 May 2026 02:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.222
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779760994; cv=none; b=mbmR9abINXpZ3652sEuyzJla4iM6Dggka27KTqhbne3aoNthPuPSvp2SomMeU8cb71aOE2ji6rLHgltZWI5pViOyxKXGMinIUTzWrx6CKcmJL71Huqmp+R9SF7zHPz3I9YN/J9/7ARiINRQvCzBDl45j9zdVPt26HOLzWh7j5zA=
+	t=1779761678; cv=none; b=A5jShNnWP9vriucewES69FIckPilErJVqrgY1ApUfKjzlz0vB074KWjGcLZcxELehE4n8t6zi9Q14IJKmDSjJFCuLiHi/8p0DSUtT48xevESplxWx4SzCZVj9Ws7smiNU3W0dmdmhxht59+31QccO4xFMFSb1Kuwvep/6SXsOKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779760994; c=relaxed/simple;
-	bh=WIDQlFsfAYntqIYwpQpJQuPrepFqZL6mcZYDQG4qvV4=;
+	s=arc-20240116; t=1779761678; c=relaxed/simple;
+	bh=ulb5AzSxdx7KgOOPQ6BMJaYzUf1wZCN79EcIJcw7NqA=;
 	h=Subject:To:CC:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=orGLj1o7fR3NckIhn0OO3JqBQVyqW16TNNFkj4JL7EpEzHwvCDz5N4Btwk0rPeGF54JuM5xl/n9AE0cdeKf6CtSZc9iANoyBcNwC6bBlYsCJn0NDpPFnLuaOh9jGTOIy3WYDWqE8renee+rte4AoFfZzsuejUnLT3z9m1BHYdjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=vnQ8zd26; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=vnQ8zd26; arc=none smtp.client-ip=45.249.212.187
+	 In-Reply-To:Content-Type; b=UR8TAsTrbB25nnm0Xxk+SIjzB5RRbjUouUYaFmSvgP85aeLUfOvg0v4fz7KOhdoMAVzdbMF3H0SGs2Ex0hCwiXhhB6rrcDsS1jI3CbP/Uw70fyJCmXKL5destzkLaboXf21zFuIrKLCNwQKlUcKNq0pfHqSx6bN0rcrN8N4N92g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=qg3va+tJ; arc=none smtp.client-ip=113.46.200.222
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=MKNaIvCnm8qUnyfYhGibyJaJtEQHAb1VhcqtfRguFO4=;
-	b=vnQ8zd26ObL6sz8BBQYf50Rk1KQLIazS4QZSDd4yDPU6l90+E+HaAIdGb5Q0I45iYYIMToehV
-	ENPARSZ4+iuNRTJzjJYVycsMhn/yY4VXCOlaeOWbFUe8MGPg2vWLHngy8ZCDG3pORrmQUxsWXQm
-	WMjSlPKyK4XdFv+cSAxX+nY=
-Received: from canpmsgout10.his.huawei.com (unknown [172.19.92.130])
-	by szxga01-in.huawei.com (SkyGuard) with ESMTPS id 4gPbbl10bmz1BGqR;
-	Tue, 26 May 2026 10:02:11 +0800 (CST)
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=MKNaIvCnm8qUnyfYhGibyJaJtEQHAb1VhcqtfRguFO4=;
-	b=vnQ8zd26ObL6sz8BBQYf50Rk1KQLIazS4QZSDd4yDPU6l90+E+HaAIdGb5Q0I45iYYIMToehV
-	ENPARSZ4+iuNRTJzjJYVycsMhn/yY4VXCOlaeOWbFUe8MGPg2vWLHngy8ZCDG3pORrmQUxsWXQm
-	WMjSlPKyK4XdFv+cSAxX+nY=
-Received: from mail.maildlp.com (unknown [172.19.163.15])
-	by canpmsgout10.his.huawei.com (SkyGuard) with ESMTPS id 4gPbRd2grYz1K9ZR;
-	Tue, 26 May 2026 09:55:09 +0800 (CST)
+	bh=iqoFEqRrz+VITnn7JX0KLSm23oivmL3aruRn9IsfzBM=;
+	b=qg3va+tJlYSUbutvQ+T8srTjCVODQHoKmiJesdJbTqzhOOJYzMN684gmdFepLcNeL++Kd2OeB
+	I3751WyoTMMPTJRT5tKbtx1juWHKwApCX4kKE0ZKgoPbghVrkjIq1P+PNl3iN4cSWuAMgy094ue
+	CLB9cumxvInQKIiU5vKvXYs=
+Received: from mail.maildlp.com (unknown [172.19.163.127])
+	by canpmsgout07.his.huawei.com (SkyGuard) with ESMTPS id 4gPbj22TlDzLlTj;
+	Tue, 26 May 2026 10:06:46 +0800 (CST)
 Received: from dggpemf500002.china.huawei.com (unknown [7.185.36.57])
-	by mail.maildlp.com (Postfix) with ESMTPS id DD2EA40539;
-	Tue, 26 May 2026 10:02:52 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id C9763402AB;
+	Tue, 26 May 2026 10:14:30 +0800 (CST)
 Received: from [10.174.179.24] (10.174.179.24) by
  dggpemf500002.china.huawei.com (7.185.36.57) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 26 May 2026 10:02:50 +0800
-Subject: Re: [PATCH v3 01/17] ACPI: GTDT: Account for GTDTv3 size when walking
- the platform timer descriptors
+ 15.2.1544.11; Tue, 26 May 2026 10:14:27 +0800
+Subject: Re: [PATCH v3 02/17] ACPI: GTDT: Parse information related to the EL2
+ virtual timer
 To: Marc Zyngier <maz@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-acpi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>
@@ -93,10 +82,10 @@ CC: Lorenzo Pieralisi <lpieralisi@kernel.org>, Sudeep Holla
 	<orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Michal
  Simek <michal.simek@amd.com>
 References: <20260523140242.586031-1-maz@kernel.org>
- <20260523140242.586031-2-maz@kernel.org>
+ <20260523140242.586031-3-maz@kernel.org>
 From: Hanjun Guo <guohanjun@huawei.com>
-Message-ID: <4d583ddf-13c0-104b-78c4-3f8d89307e72@huawei.com>
-Date: Tue, 26 May 2026 10:02:49 +0800
+Message-ID: <ed3d35f7-a9db-98d4-de99-313587b15ed1@huawei.com>
+Date: Tue, 26 May 2026 10:14:26 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
  Thunderbird/68.6.0
 Precedence: bulk
@@ -105,17 +94,17 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20260523140242.586031-2-maz@kernel.org>
+In-Reply-To: <20260523140242.586031-3-maz@kernel.org>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
  dggpemf500002.china.huawei.com (7.185.36.57)
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -123,91 +112,95 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[47];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302815-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-302816-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[kernel.org,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,sntech.de,rock-chips.com,linux.alibaba.com,amd.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,huawei.com:mid,huawei.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[guohanjun@huawei.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[huawei.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 104B65CFA8F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,huawei.com:mid,huawei.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: E22185CFC3C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On 2026/5/23 22:02, Marc Zyngier wrote:
-> Since ARMv8.1, the architecture has grown an EL2-private virtual
-> timer. This has been described in ACPI since ACPI v6.3 and revision
-> 3 of the GTDT table.
+> Now that we have a way to identify GTDTv3, allow the information
+> related to the EL2 virtual timer to be retrieved by the interface
+> used by the architected timer driver.
 > 
-> An aditional structure was added in ACPICA, though in a rather
-> bizarre way, and merged in v5.1 as 8f5a14d053100 ("ACPICA: ACPI 6.3:
-> add GTDT Revision 3 support").
-> 
-> Finally plug the table parsing in GTDT, and correct the parsing of
-> the platform timer subtables to account for the expanded size of
-> the base table. This also comes with some extra sanitisation of
-> the table, in the unlikely case someone got it wrong...
-> 
-> Suggested-by: Sudeep Holla <sudeep.holla@kernel.org>
+> Reviewed-by: Sudeep Holla <sudeep.holla@kernel.org>
 > Signed-off-by: Marc Zyngier <maz@kernel.org>
 > ---
->   drivers/acpi/arm64/gtdt.c | 22 ++++++++++++++++++++--
->   1 file changed, 20 insertions(+), 2 deletions(-)
+>   drivers/acpi/arm64/gtdt.c | 20 ++++++++++++++++++++
+>   1 file changed, 20 insertions(+)
 > 
 > diff --git a/drivers/acpi/arm64/gtdt.c b/drivers/acpi/arm64/gtdt.c
-> index ffc867bac2d60..950d5efdf85ea 100644
+> index 950d5efdf85ea..00158c8aa6d90 100644
 > --- a/drivers/acpi/arm64/gtdt.c
 > +++ b/drivers/acpi/arm64/gtdt.c
-> @@ -34,14 +34,25 @@ struct acpi_gtdt_descriptor {
->   	void *platform_timer;
->   };
+> @@ -41,6 +41,14 @@ struct gtdt_v3 {
 >   
-> +struct gtdt_v3 {
-> +	struct acpi_table_gtdt	gtdt_v2;
-> +	struct acpi_gtdt_el2	el2_vtimer;
-> +};
-> +
 >   static struct acpi_gtdt_descriptor acpi_gtdt_desc __initdata;
 >   
+> +static __init struct acpi_gtdt_el2 *gtdt_to_el2_vtimer(struct acpi_table_gtdt *gtdt)
+> +{
+> +	if (gtdt->header.revision < 3)
+> +		return NULL;
+> +
+> +	return &container_of(gtdt, struct gtdt_v3, gtdt_v2)->el2_vtimer;
+> +}
+> +
 >   static __init bool platform_timer_valid(void *platform_timer)
 >   {
 >   	struct acpi_gtdt_header *gh = platform_timer;
-> +	void *platform_timer_begin;
+> @@ -112,6 +120,7 @@ static int __init map_gt_gsi(u32 interrupt, u32 flags)
+>   int __init acpi_gtdt_map_ppi(int type)
+>   {
+>   	struct acpi_table_gtdt *gtdt = acpi_gtdt_desc.gtdt;
+> +	struct acpi_gtdt_el2 *el2_vtimer = gtdt_to_el2_vtimer(gtdt);
 >   
-> -	return (platform_timer >= (void *)(acpi_gtdt_desc.gtdt + 1) &&
-> -		platform_timer < acpi_gtdt_desc.gtdt_end &&
-> +	if (acpi_gtdt_desc.gtdt->header.revision >= 3)
-> +		platform_timer_begin = container_of(acpi_gtdt_desc.gtdt, struct gtdt_v3, gtdt_v2) + 1;
-> +	else
-> +		platform_timer_begin = acpi_gtdt_desc.gtdt + 1;
+>   	switch (type) {
+>   	case ARCH_TIMER_PHYS_NONSECURE_PPI:
+> @@ -124,6 +133,12 @@ int __init acpi_gtdt_map_ppi(int type)
+>   	case ARCH_TIMER_HYP_PPI:
+>   		return map_gt_gsi(gtdt->non_secure_el2_interrupt,
+>   				  gtdt->non_secure_el2_flags);
+> +	case ARCH_TIMER_HYP_VIRT_PPI:
+> +		if (el2_vtimer && el2_vtimer->virtual_el2_timer_gsiv)
+> +			return map_gt_gsi(el2_vtimer->virtual_el2_timer_gsiv,
+> +					  el2_vtimer->virtual_el2_timer_flags);
 > +
-> +	return (platform_timer >= platform_timer_begin &&
-> +		platform_timer + sizeof(*gh) <= acpi_gtdt_desc.gtdt_end &&
->   		gh->length != 0 &&
->   		platform_timer + gh->length <= acpi_gtdt_desc.gtdt_end);
->   }
-> @@ -166,6 +177,13 @@ int __init acpi_gtdt_init(struct acpi_table_header *table,
->   	u32 cnt = 0;
+> +		return 0;
+>   	default:
+>   		pr_err("Failed to map timer interrupt: invalid type.\n");
+>   	}
+> @@ -141,6 +156,7 @@ int __init acpi_gtdt_map_ppi(int type)
+>   bool __init acpi_gtdt_c3stop(int type)
+>   {
+>   	struct acpi_table_gtdt *gtdt = acpi_gtdt_desc.gtdt;
+> +	struct acpi_gtdt_el2 *el2_vtimer = gtdt_to_el2_vtimer(gtdt);
 >   
->   	gtdt = container_of(table, struct acpi_table_gtdt, header);
+>   	switch (type) {
+>   	case ARCH_TIMER_PHYS_NONSECURE_PPI:
+> @@ -152,6 +168,10 @@ bool __init acpi_gtdt_c3stop(int type)
+>   	case ARCH_TIMER_HYP_PPI:
+>   		return !(gtdt->non_secure_el2_flags & ACPI_GTDT_ALWAYS_ON);
+>   
+> +	case ARCH_TIMER_HYP_VIRT_PPI:
+> +		return el2_vtimer && el2_vtimer->virtual_el2_timer_gsiv &&
+> +		       !(el2_vtimer->virtual_el2_timer_flags & ACPI_GTDT_ALWAYS_ON);
 > +
-> +	if ((gtdt->header.revision >= 3 && gtdt->header.length < sizeof(struct gtdt_v3)) ||
-> +	    (gtdt->header.revision == 2 && gtdt->header.length < sizeof(*gtdt))) {
-> +		pr_err(FW_BUG "GTDT with invalid size %d\n", gtdt->header.length);
-> +		return -EINVAL;
-> +	}
-> +
->   	acpi_gtdt_desc.gtdt = gtdt;
->   	acpi_gtdt_desc.gtdt_end = (void *)table + table->length;
->   	acpi_gtdt_desc.platform_timer = NULL;
+>   	default:
+>   		pr_err("Failed to get c3stop info: invalid type.\n");
+>   	}
 
 Reviewed-by: Hanjun Guo <guohanjun@huawei.com>
 
