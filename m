@@ -1,144 +1,113 @@
-Return-Path: <devicetree+bounces-302923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKZtDuRkFWqCUwcAu9opvQ
-	(envelope-from <devicetree+bounces-302923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:16:20 +0200
+	id SNPFFAplFWqCUwcAu9opvQ
+	(envelope-from <devicetree+bounces-302927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:16:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02175D31B2
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:15:48 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446365D321E
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:16:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C33CB305592A
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 09:01:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1D64E3048E90
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 09:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE9135E1A4;
-	Tue, 26 May 2026 09:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D523D1CA7;
+	Tue, 26 May 2026 09:09:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AkWGGHeO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sr4TK/H4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632B72ECD3A
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 09:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BAC356745;
+	Tue, 26 May 2026 09:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779786071; cv=none; b=pUQa5H0AwX6fF3jo1WClDYoGHXaeUqTVNowtdfjvVckeiKAqb19Uj0ngbZiv5vEhKNDNt0db1iX+8B2qDm+FFx6wD7GT9v0Cc+nhimIFvlRqbi3Vk1NxeIThMgwZpCrjKtHiR94IvSqVI9UQTV9k3uhcx43kFpGCAh4TqyNQWt0=
+	t=1779786575; cv=none; b=JuE9/HOMvJXlezxP9j3tion5om9OkRL11YUtDjLz1Pd8jeRQRA+ZDbt2R/nW+1Kx2PZE1NGNPn5XlFXnk+le7SXmjZSgjFBFrvGgEyhx2fAiNAWQSbCefqe8pj6OaqOhtI3Wrca6DlPAq9mlxBbyl1Iw8uhNhckP+w1xn6HawAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779786071; c=relaxed/simple;
-	bh=d/XTvh++ZoVpS7u6HViOmvDD1iqZ9qdptFqdjezHOPQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=SvHT42UOEWLi7dLjA/gAcy95OoA5rQpM89AgOMurdtqbIDavaKKzXBgRZvxPLzrGKN/LDT6wrMYD+8QNOLXT+gW4iB9bJTHARF0zjgXfkbi9sDJr4SbDylDABkJ6zGZgl4N2kDyNqCJUS09yR7ExVcjBDFFQ+HcqZH1Ks5nHsVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AkWGGHeO; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B34E21F000E9;
-	Tue, 26 May 2026 09:01:09 +0000 (UTC)
+	s=arc-20240116; t=1779786575; c=relaxed/simple;
+	bh=8LusY6CJqo8B0HbL2qHzj5F9rCZk3nEy/GM32I00w/M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N/pRQ0DgK9l5R5B3BqUjYAjg4gmo1nKWbWF9p54Tayguu0j6cCYBVrTPdQVkrGamNW9KJzM3vnTR3QJzKAH4A8t3xJoqYCuUJMMS/3GsUt8a1g4aCmQTo/FcBQxVq1BjvlhSD/Hu5S4I5vjtjpSd6LAcQOAzynmbzdyMhi96u7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sr4TK/H4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 560E61F000E9;
+	Tue, 26 May 2026 09:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779786070;
-	bh=a8/mZDWg8lAWNyqLHZzmXiC9XhbVjEZnjJMT4quTgn0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AkWGGHeOhf6fZ38TToyusK87N8QSXpqD1a7eG1e6G2qlTxDf8CSKGqKOtJSUFIDLO
-	 v3nGT+nHyvo/aofAUXNgWR9PIEdjg9kokFx4j9NcqAUG5JedjNes5fM/zlRGToUr21
-	 p8btisyEv4IeOjYNmCzEHv1CU2wN3QWWD6MPsZmNuGAHfE6/1udaaWh99yvs7bcpEx
-	 CW1HN77rEETetrHSNW3BAoKO7DSOJ8cStwax0Uz8RmXB36Vr6YPAhtNoFZMOJp9vA/
-	 5nKhYrIJ1sFVr27n6n/nRHEDQHXgoqsGPcz3FgmXdIVAwi/GPExIi8o7WvJZgfNb18
-	 876BmYCyXmFiQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC RESEND v5 1/6] firmware: meson: sm: Add video
- firmware loading SMC call
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Zhentao Guo via B4 Relay" <devnull+zhentao.guo.amlogic.com@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260526-b4-s4-vdec-upstream-v5-1-33bc817f93f4@amlogic.com>
-References: <20260526-b4-s4-vdec-upstream-v5-1-33bc817f93f4@amlogic.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 26 May 2026 09:01:09 +0000
-Message-Id: <20260526090109.B34E21F000E9@smtp.kernel.org>
+	s=k20260515; t=1779786573;
+	bh=FlSKCiNhqqL+XoMGkk6bTP77IH4btbThHUGNEBoTSgE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Sr4TK/H4THR9CHvd8DogA/JHdxvY7w3cnO+QiBAj/uKbdt553iSIiu9fSYvJrg73A
+	 EDiOoeC/lgyE+1V6D8hWi1JIliEvxGp02r7bUQ2k1/4hCjPijCrg1Vx5JrQtBUspDx
+	 xzJmmGnrvRFiaGddkSROxuqVR6ftWkZEQhlMWYoMGBnT1Ju2mBhdFTtsrCTMaAbvSB
+	 bT7xFPa+rIIFKEvq7u3wtqEQV5zmGetsaiaE8SV4gPNKY4eW81E5C5tYzTKYmy8OAg
+	 n7OVSNQJ1IMk0c/rPuqGNjOBECCPz2nAuCQy/zhF+HebHcDCdDH1HdF8Tb1HlkxsP9
+	 PrPE1nimUfXJA==
+Date: Tue, 26 May 2026 11:09:31 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Cc: robh@kernel.org, srini@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	prasad.kumpatla@oss.qualcomm.com
+Subject: Re: [PATCH V9 1/3] dt-bindings: soundwire: qcom: Increase max data
+ ports to 17
+Message-ID: <20260526-grateful-shiny-buffalo-159db1@quoll>
+References: <20260523085511.2532669-1-sibi.sankar@oss.qualcomm.com>
+ <20260523085511.2532669-2-sibi.sankar@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260523085511.2532669-2-sibi.sankar@oss.qualcomm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302923-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,zhentao.guo.amlogic.com,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-302927-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: A02175D31B2
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 446365D321E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The identifier `SM_LOAD_VIDEO_FW` is used in the `gxbb_chip.cmd` ar=
-ray but is never defined, resulting in a build failure ('undeclared identif=
-ier'). The fix is found later in the series in commit 7da77dd38d2ea56fe7b57=
-e246847b5cd118fd85e ('firmware: meson: sm: video firmware loading via secur=
-e monitor').
---
+On Sat, May 23, 2026 at 02:25:09PM +0530, Sibi Sankar wrote:
+> Bump the maxItems from 16 to 17 for all qcom,ports-* properties to
+> accommodate SoundWire controllers v3.1.0 with 17 data ports.
+> 
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> ---
+>  .../bindings/soundwire/qcom,soundwire.yaml    | 20 +++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
 
-commit 087141e411e53f403ab8bf5aa5ca58a00cc95fd4
-Author: Zhentao Guo <zhentao.guo@amlogic.com>
+v3.1.0 is already listed there, so please provide in the commit msg the
+name of the SoC which has 17 ports.
 
-firmware: meson: sm: Add video firmware loading SMC call
+Best regards,
+Krzysztof
 
-This commit adds the SM_LOAD_VIDEO_FW command to the gxbb_chip command table
-to support loading video firmware.
-
-> diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/m=
-eson_sm.c
-> index 3ab67aaa9e5da..5da6c65d684a0 100644
-> --- a/drivers/firmware/meson/meson_sm.c
-> +++ b/drivers/firmware/meson/meson_sm.c
-> @@ -47,6 +47,7 @@ static const struct meson_sm_chip gxbb_chip =3D {
->  		CMD(SM_GET_CHIP_ID,	0x82000044),
->  		CMD(SM_A1_PWRC_SET,	0x82000093),
->  		CMD(SM_A1_PWRC_GET,	0x82000095),
-> +		CMD(SM_LOAD_VIDEO_FW,	0xb200000f),
-
-[Severity: Low]
-Does this code compile on its own? It appears that SM_LOAD_VIDEO_FW is used
-here but is not declared yet.
-
-While this is resolved later in the series by commit
-7da77dd38d2ea56fe7b57e246847b5cd118fd85e (firmware: meson: sm: video
-firmware loading via secure monitor), each patch in a series needs to
-compile successfully on its own to maintain bisectability.
-
->  		{ /* sentinel */ },
->  	},
->  };
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260526-b4-s4-vdec=
--upstream-v5-0-33bc817f93f4@amlogic.com?part=3D1
 
