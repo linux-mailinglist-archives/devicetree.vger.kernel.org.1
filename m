@@ -1,161 +1,160 @@
-Return-Path: <devicetree+bounces-303051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WGWICralFWqJXAcAu9opvQ
-	(envelope-from <devicetree+bounces-303051-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 15:52:54 +0200
+	id 6D/ACF+UFWpSWgcAu9opvQ
+	(envelope-from <devicetree+bounces-303027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:38:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 467AF5D6E01
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 15:52:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2125D5A88
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:38:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E60043012D7A
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 13:51:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2E5363008C92
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC55D3FCB32;
-	Tue, 26 May 2026 13:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF7F3F9F4B;
+	Tue, 26 May 2026 12:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Mri3/IGc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZuWQH3d9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49204.qiye.163.com (mail-m49204.qiye.163.com [45.254.49.204])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8FA1FE44A;
-	Tue, 26 May 2026 13:51:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.204
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2277B3D8101;
+	Tue, 26 May 2026 12:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779803492; cv=none; b=HY8HEJnjR/klS3xGRDiADwBB5nhmsTMoeWxmXp6ORGgfUFAzhCEXwHOYdQJtyjD4CQvKam7xdd5KWN1DnZ9Sm90JDs3DO/1+oS6xieuPXGDcIfvZRABqR6pNawPmtH31r2AxNr0wzeRJaptDZDs8eVBiYwkC6sQS9hgY/nadb84=
+	t=1779799127; cv=none; b=Gaby2N3/BCyeEy+dt7dyArAFxlNIKF8U9YdWT+CGdJGpeJjvn2kTv9l+uLjU+lEyMK1M5DsVk264FY6BUiIaqltDuDw+Gd3ch7fWMXpwztp6s+8xahJxaFrtPAY0gCVAxrxhAeBqvREOJOVwtL2MJoC6iet/7datyhpzbWMmTSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779803492; c=relaxed/simple;
-	bh=46RWpXRO9zd50PXhD8DzrRlMNyuB8V/vylZui3pvc20=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CSApnlKPQz86863ZeuWjfAGl6if0yWplAnFGtTXmnLfGMLoAM/65jAQhujtiv6iMO+lw9mTpISxv7p9AfVmBK7yyG3/Z9EPBwn2p6mZCkWGvpYCylDaPSWCYGaLJ3mgXlx4SzHwnyWWDgHT9tCYjbyZxpaXoab17oS2GTiLGyxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Mri3/IGc; arc=none smtp.client-ip=45.254.49.204
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.74] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3fe38e512;
-	Tue, 26 May 2026 20:35:31 +0800 (GMT+08:00)
-Message-ID: <00565241-3962-4418-8711-859dc98dba13@rock-chips.com>
-Date: Tue, 26 May 2026 20:35:30 +0800
+	s=arc-20240116; t=1779799127; c=relaxed/simple;
+	bh=t0iydRgSwDFEMK6k1KseNr+3aXo1AV9hjpNXE/rRBq0=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=LAW2PYlOiNdQoWuOh6GHCBGBvBOK083B4pgKuMST06gPxHXecMO3fs6tv2TGkyqLl4FgnbaQmMw7ulKc+BbYN+ANVgLDIVr96YDhd+DX/WtWJRmw/NtURC45zxJyZKWnNmRm43mpFZxbHoZ2yjRhUYjQsk/+K6t8+oF61rj6JWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZuWQH3d9; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B63651F000E9;
+	Tue, 26 May 2026 12:38:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779799126;
+	bh=v5rz1zrwj3KUmzMms6Rb6tw2f15wO4fWp548EcOL5qg=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=ZuWQH3d9Th7sye8V9YEQJDHCRZek6m39I/ZhHhzDm1vhMhidEWOMTIpdHkuzHfxC2
+	 9gNKEKhOfigi3nHn60sVlClViV/kOZTyR0EeKVoKdEj9Eme167hz7VRW/S1AcHwSSK
+	 plV9is1UpaSuZeFWGRwBStja7NYFDwaG2JbEUaY8ZOj4bgYhnf/znwM7WtRmMw8Trl
+	 rvS0UChtFzhjPT4I3UN5hgDMSvkd7cJxZdnAaIHv+e8QXCUqYYfVrcVLm7p7csMHC0
+	 PR7mXzJDZNDd+VcZRsmxEUopdpYwYnKka7nv6MfozfNnr9aTSUw7HO0/VsNFZhjmoy
+	 cM0PkLfA5W0Jw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/bridge: analogix_dp: Add support for optional
- data-lanes mapping
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
- cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
- dmitry.baryshkov@oss.qualcomm.com, dianders@chromium.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260525094731.121380-1-damon.ding@rock-chips.com>
- <20260525094731.121380-3-damon.ding@rock-chips.com>
- <177979727057.297330.10691183273720133245.b4-review@b4>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <177979727057.297330.10691183273720133245.b4-review@b4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9e6448786d03a8kunm591ab7c8b8886b
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZHktNVhhKTRhCH0gaHxoaTlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=Mri3/IGcBzNc+G9t8s5zfRoweaS3NFeHeZAVbKn66fIdfriaFiCCbSNgVT9cecYd24uwwupB6hn52vIM91IrI4Vc2uMrMpQwV1SrQ8zA1M2u2YsdZRT9h1lZC4z+ANp/d5pgObI9xFP5vO798m9/dNx7HD/Gkg8btotIad81iTk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=oQ+OHMp99D8xoRZvJBBEvxSuLKoEVBXtdAFFTNEa6Rw=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Subject: Re: [PATCH v5 3/4] media: qcom: iris: increase H265D_MAX_SLICE to
+ fix H.265 decoding on SC7280
+From: bod@kernel.org
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260327-venus-iris-flip-switch-v5-3-2f4b6c636927@oss.qualcomm.com>
+References: <20260327-venus-iris-flip-switch-v5-0-2f4b6c636927@oss.qualcomm.com>
+ <20260327-venus-iris-flip-switch-v5-3-2f4b6c636927@oss.qualcomm.com>
+Date: Tue, 26 May 2026 13:38:36 +0100
+Message-Id: <177979911665.6300.11726562589723045774.b4-reply@b4>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1342; i=bod@kernel.org;
+ h=from:subject:message-id; bh=t0iydRgSwDFEMK6k1KseNr+3aXo1AV9hjpNXE/rRBq0=;
+ b=owEBbQKS/ZANAwAKASJxO7Ohjcg6AcsmYgBqFZRP+9CvMEbRHbJf9G1PK+YikVxNvu5X6aBb7
+ g7TlpICT3SJAjMEAAEKAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCahWUTwAKCRAicTuzoY3I
+ Ohi3D/4kyw4u5zvpfS8WbdMJlN0aS2llFCcRAL4kYmMR/Sx5HhzhxlPs3d4PzEw/9U5OL7VxsrK
+ vsXoeMfV5w+2QRvINEfKt12RHHRGqDP64zgH+0uPFWcYEsXsZJYQn46lgClB/JF2rgKWsk41qNm
+ 8clZnuVm1CWM5k5MTBQBPgHpQy9xuf18eD0EmTDdpwbn5KPItp74DBGYb/Xsy9ydP2YlQDEjKpl
+ si4TamgqGVYtZemUpv+QVF2IJgiusJ3fmcGS9dN1o3ndUQNKRZ3irNTviqZvHZMq5YGepu8TeM9
+ pWmE9QuZCNdNdvwY/u69zP0+uKeOnXLhPPN8mZvTDHy/Tc7jXq+gcAgx9nJxVz8DXyGgnqfhLuq
+ gX0Q+GxHODWW1YZ1Yk0FV8bx29NXxesbjqnQQOaI3m0nN+i9LRw8J7dsTHeyzD55rtgp3n7/10B
+ UhYpVGXPmZmlH2m5kY706EJ7rKcfQguFYgqDr9lDpzmlkL/1fOVF/iXwNIW+jilPRIdRWu3ZgKZ
+ w8X7kltWF3p7jhmlYJzoU4NxcR0a5yTM9/76KD4+CeSHuiFEz/v852tU80YuobosxV1Yvwe9IUz
+ uohr9AobrfFtFLhlixsvUZGUhsPVM8kc/C5WC95IXx1JLiP4I2LmKTsRKnxbK+isF3eNZiI3+1a
+ 2XHfYzKBUtVIn6w==
+X-Developer-Key: i=bod@kernel.org; a=openpgp;
+ fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-303027-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303051-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,chromium.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 467AF5D6E01
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,linaro.org:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 2E2125D5A88
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Luca,
-
-On 5/26/2026 8:07 PM, Luca Ceresoli wrote:
-> On Mon, 25 May 2026 17:47:31 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
+On 2026-03-27 22:19 +0200, Dmitry Baryshkov wrote:
+> Follow the commit bfe1326573ff ("venus: Fix for H265 decoding failure.")
+> and increase H265D_MAX_SLICE following firmware requirements on that
+> platform. Otherwise decoding of the H.265 streams fails withthe
+> "insufficient scratch_1 buffer size" from the firmware.
 > 
-> Hello Damon,
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  drivers/media/platform/qcom/iris/iris_vpu_buffer.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->>
->> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> index 8cf6b73bceac..d53ab25bc57b 100644
->> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> @@ -1234,6 +1234,59 @@ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
->> [ ... skip 11 lines ... ]
->> +	int ret, i;
->> +
->> +	memcpy(video_info->lane_map, map, sizeof(map));
->> +
->> +	num_lanes = drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
->> +						   video_info->max_lane_count);
+> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_buffer.h b/drivers/media/platform/qcom/iris/iris_vpu_buffer.h
+> index 12640eb5ed8c..8c0d6b7b5de8 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vpu_buffer.h
+> +++ b/drivers/media/platform/qcom/iris/iris_vpu_buffer.h
+> @@ -67,7 +67,7 @@ struct iris_inst;
+>  #define SIZE_DOLBY_RPU_METADATA (41 * 1024)
+>  #define H264_CABAC_HDR_RATIO_HD_TOT	1
+>  #define H264_CABAC_RES_RATIO_HD_TOT	3
+> -#define H265D_MAX_SLICE	1200
+> +#define H265D_MAX_SLICE	3600
+>  #define SIZE_H265D_HW_PIC_T SIZE_H264D_HW_PIC_T
+>  #define H265_CABAC_HDR_RATIO_HD_TOT 2
+>  #define H265_CABAC_RES_RATIO_HD_TOT 2
 > 
-> Should num_lanes be > 4, the buffers could overflow. I realize it should
-> not happen, but analogix_dp_dt_parse_pdata() can set max_lane_count from
-> the device tree, so a bogus dtb could cause such overflow.
+> -- 
+> 2.47.3
 > 
-> Perhaps you should just (in a separate patch) error out in
-> analogix_dp_dt_parse_pdata() to prevent this. And maybe even adding an
-> BUG_ON(lane_count > 4) here.
-> 
-> Otherwise LGTM.
 > 
 
-Thank you for the review.
+This seems fine to me. Vikash, Dikshita, happy enough ?
 
-I think it would be a better idea to add a separate patch to validate 
-the max_link_rate and max_lane_count values for Exynos DP.
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-I checked the Exynos DP related DTS files:
-- The maximum value of samsung,lane-count is 4
-- The maximum value of samsung,link-rate is 0x0a, which corresponds to 
-the HBR lane rate.
-
-Could Marek please help confirm if we can set these as the upper limits 
-for the checks?
-
-Best regards,
-Damon
+---
+bod
 
 
