@@ -1,204 +1,326 @@
-Return-Path: <devicetree+bounces-303007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303100-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YLaVNb+EFWoSWQcAu9opvQ
-	(envelope-from <devicetree+bounces-303007-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 13:32:15 +0200
+	id 4E9EE5PGFWqMbAcAu9opvQ
+	(envelope-from <devicetree+bounces-303100-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:13:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D955D4E58
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 13:32:14 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12ACD5D96F4
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDA0F307D7F3
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:26:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8A46D303C290
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FD93E0738;
-	Tue, 26 May 2026 11:26:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA173AE1A9;
+	Tue, 26 May 2026 16:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=quora.org header.i=@quora.org header.b="ieCZi6Fi"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="T+VFQrdC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m121165.qiye.163.com (mail-m121165.qiye.163.com [115.236.121.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8F33DA7EC
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 11:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504453AEF3E;
+	Tue, 26 May 2026 16:04:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.121.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779794796; cv=none; b=CsCXbCuiLUWIxmnjfJtYU34CHQyDc1hgdVd2WTmja7CzMrcaunPyIUDkimy4/Hn+r07yqsKmGdp6zrNyGCr9vvxmo1pRzWyCc7hQnIi0obghPh1Bda1xb5sy+bJQsvm1VrLXovbUBY5vvdzMhn6HrsEapqyE59ai0XczSMSQEEQ=
+	t=1779811462; cv=none; b=HKp28q8ipKJWhx5fcqtbQb+kuZTauJQV0cGk6Z+JXJ9r9bvzJw9aSN+mUFo9D+trC8nTENo+zVpmWcPGR6rYu+eXNdjyTy01fWFDIwqZPNHiWE+5RQlsbKKR5wDTSlilCVcYjTfe4NuJghlKpPob7Ni9pUR9bF/mc5ClmLsz58c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779794796; c=relaxed/simple;
-	bh=IFm8Dx/iXRffdnKm8nRykcQLPzVQShjAiSz4mRtDJP0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FaFZ9r4MSy+5SFBWF8O3PWLkNjOzCnKJfPkpCveP0BoxSUmC93pZm29sltSsSZnI+YuqTWlmKNkL2zxTcFxAXBwgBonBUjC+lamxJIOgwQI94tZbSK5FzzuqcFUPsUcbObp8OH5HQlZ+QVZkqkf5RvbY82VQxxVx8IpcmeXL5EI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quora.org; spf=pass smtp.mailfrom=quora.org; dkim=pass (1024-bit key) header.d=quora.org header.i=@quora.org header.b=ieCZi6Fi; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quora.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quora.org
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3695bf7d082so9384902a91.0
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 04:26:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quora.org; s=google; t=1779794793; x=1780399593; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F9Hma8PgXDcu3st6AylvLJQOw7l5KSEEmW11TEw/EAA=;
-        b=ieCZi6Ficd1Cy/CzRFl0FAxduLV9M4o8qzLXDG6Vj9liAst4auoevInya8EQoDK1+F
-         QtAIZCyMwrmVbC6db4Y5vG7GFPXHN0+1tTQZvI2aiY+VfEP9Qcpz/rniFiUZr2v8Vc66
-         AODwlOiY5wisEOQYKFnlB+4gLY/qBnrvVCtNw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779794793; x=1780399593;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=F9Hma8PgXDcu3st6AylvLJQOw7l5KSEEmW11TEw/EAA=;
-        b=i2lE5pn+8t2VfHkXHcsp2iSmBQD40dbtwCsH1JfZIDG6ENEHBP9THwmLEl2Hcpdsvi
-         X9DyWyMbT3XJhcWrIlXfrjqdE8rniMi5R9i3J8Ojw1hsP+udw2ZrCEbaUWcLhQmPjIPL
-         +oDFE1B5K5crw9DJJqzH0TbLBMKvybCRRKckNwFXlJk9u750KfEFe32/WdibzUqTV2ST
-         FVIxKUF0e5AU3rpS/w4poieyu7IwABySsdoQR0Cjae16dZrTU0Dh8nIpVrp6tbaelA9w
-         mlj+yrJDGpyXNhPlMytdhkkYFTgfaM2Ymu04wrf77H47bM2Youc8v7T2mHeUWlgdVgRR
-         9yJQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+3Q9omEhhdgW9GUaVCT0qJs/oqzcTneohP8v0/+CcVc0Gh6YMURdk8+SkPSGcZi2IvYCFvc2IZ6l/a@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyvn9WLqFIFnqrk8UqoS5+b+JXbTbLPdgrApMwTzRra+7OMDeRs
-	LOnRJ/9NdUrZcHSYBO4ZA/6R+oknU20o+WPvG/oZmrE+EQVwiThkW/wGkp0Xx9yZiAM=
-X-Gm-Gg: Acq92OGXfqhn404tO0od4QmwgonACIffOjp7CtXKIaUOwuJUMtyyNrz5SjGUYC0fVy4
-	ggoZ4PLKXhNSKheBpRgGpubB6GJAHmfGiP67PW8OU03hX4zlCV9dTIPbTuaycu/BXL7G/Do18PV
-	zYdbQ+Pnja4j/MLIcywiq7NaongyY9JFwq/aPWQyyN/NqMK+dkXVBJMRet5t/cNoHRRNJ1qeyeW
-	FLSMeGBPctR9SaLxO8WwbgvtcM7fV8PcwKwjblrVaHGEmPDp0n6EXm0yoglI2vkS5mNaa1dxagh
-	QVaNkn1dWldE8tB1Baeqb2go2AAE8nC33U9xuWen3iX++vr7RgVzUwZRCMz8i3O2GMNJRBYI0JR
-	jGLNao71XZ7YvzwLgo511bTpArtRmmoMEs5wpE4b2R+S/igZNER2oDY0LRBCqJmPbTEV1kta+a4
-	WkiAXi/A4uXw8zAyQj7IYC0/cXh66f7ocOHLdOTSy616QD5K7GRpFO5RtVzvSbmDTMUgiAd/+C4
-	LRwQE41c/Pdh47f/ZcE4eavIgq0+KztgQMkg5X0nDRIEnohLF6l43NZocd1Mwuv3+R3VnYAOqAX
-	E0rOa7w3yPlvDm57MKeoWAH3PX4AzM4efZ1+sB7MtCVHUwCESGo2eYc/gp0HOvlQC56Z
-X-Received: by 2002:a17:90b:3505:b0:35c:30a8:330 with SMTP id 98e67ed59e1d1-36a671ddedcmr17594019a91.0.1779794793227;
-        Tue, 26 May 2026 04:26:33 -0700 (PDT)
-Received: from aegis ([138.84.66.135])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a721282e7sm12188091a91.0.2026.05.26.04.26.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2026 04:26:32 -0700 (PDT)
-From: Daniel J Blueman <daniel@quora.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	"Sibi Sankar" <sibi.sankar@oss.qualcomm.com>,
-	"Rob Herring" <robh@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Hans de Goede" <hansg@kernel.org>,
-	"Randy Dunlap" <rdunlap@infradead.org>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	"Bjorn Andersson" <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
-	Maya Matuszczyk <maccraft123mc@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>,
-	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
-	Daniel J Blueman <daniel@quora.org>
-Subject: [PATCH v3 2/2] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add Embedded Controller node
-Date: Tue, 26 May 2026 19:24:05 +0800
-Message-ID: <20260526112409.66325-2-daniel@quora.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260526112409.66325-1-daniel@quora.org>
-References: <20260526112409.66325-1-daniel@quora.org>
+	s=arc-20240116; t=1779811462; c=relaxed/simple;
+	bh=V7qiVBCKMtGcMY28JLbDKryZCcnieKMDeEz75mmw6VA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=h86fGnQ3sStRK3u023hbtx9HcfHTJGsW/ry20j2NnEGTOgZfbgkngpUTDG0/ymroH+db9HBr3W8OAoCbEU8OTwS6KT8Bz/AOlkpXmQydUhR88+wYg6rI7HtjDnkYZzptD5bOkxZ7275jdPprVvpbT5YFHTE825uq21VURcSDMc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=T+VFQrdC; arc=none smtp.client-ip=115.236.121.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3fe1e02e5;
+	Tue, 26 May 2026 19:27:56 +0800 (GMT+08:00)
+Message-ID: <0c6299ce-29a6-4443-9877-498d65c8881b@rock-chips.com>
+Date: Tue, 26 May 2026 19:27:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 01/10] dt-bindings: display: rockchip: analogix-dp: Fix
+ hclk as third clock for RK3588
+From: Damon Ding <damon.ding@rock-chips.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260525125331.140059-1-damon.ding@rock-chips.com>
+ <20260525125331.140059-2-damon.ding@rock-chips.com>
+ <20260525-ominous-hurling-c24874030f5a@spud>
+ <f6c2f07b-52b8-4181-aa1d-a7d8dcda245c@rock-chips.com>
+Content-Language: en-US
+In-Reply-To: <f6c2f07b-52b8-4181-aa1d-a7d8dcda245c@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-HM-Tid: 0a9e640a975403a8kunmdb4d9780b82cd9
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDGkofVk8YTUIZSUhJSxkdHlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=T+VFQrdClvcP/O2v5qFlRx6F02LnccpcsGKQOrU6IbQAyoBjW2V40VeklsbdKbglbmXlWV0Mc1N3ctIvC5SxnGJVmgg3qMdzqE0LkrkpCSlEjRp49YhrxykR/EQ3VanMbZ6P3MG3TdfkHMdOQW1k2xXh2v6Ylz6fjsIP6qTG4cQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=CA3vEIesYpDr2R+IgNJm0/KUdwGN/M9rR+d1PmsZUNg=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[quora.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[vger.kernel.org,oss.qualcomm.com,kernel.org,infradead.org,linaro.org,gmail.com,quora.org];
-	TAGGED_FROM(0.00)[bounces-303007-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[quora.org];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-303100-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@quora.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[quora.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 85D955D4E58
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 12ACD5D96F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Lenovo Slim7x uses the same Embedded Controller as the Qualcomm Hamoa
-X1 Customer Reference Device. Use the lenovo,yoga-slim7x-ec compatible
-introduced by patch 1 for fan control, thermal sensor and suspend
-behaviour.
+Hi Conor,
 
-Signed-off-by: Daniel J Blueman <daniel@quora.org>
----
-Changes in v3:
-- use lenovo,yoga-slim7x-ec compatible (introduced by patch 1)
-- v2 link: https://lore.kernel.org/lkml/20260502063518.15153-1-daniel@quora.org/
-Changes in v2:
-- corrected DT compatible node
-- v1 link: https://lore.kernel.org/all/20260429103301.17449-1-daniel@quora.org/
+On 5/26/2026 8:54 AM, Damon Ding wrote:
+> Hi Conor,
+> 
+> On 5/26/2026 12:54 AM, Conor Dooley wrote:
+>> On Mon, May 25, 2026 at 08:53:22PM +0800, Damon Ding wrote:
+>>> RK3588 eDP controller requires HCLK_VO1 to access the VO1 GRF
+>>> registers and enable the video datapath.
+>>>
+>>> Previously, the clock was enabled implicitly via the 'rockchip,vo-grf'
+>>> phandle reference, which allowed the eDP to work without explicitly
+>>> managing the hclk_vo1 clock. However, this is not safe or explicit.
+>>>
+>>> To make the clock dependency explicit, enforce per-SoC clock-names
+>>> requirements:
+>>>   - RK3288: 2 clocks (dp, pclk)
+>>>   - RK3399: 3 clocks (dp, pclk, grf)
+>>>   - RK3588: 3 clocks (dp, pclk, hclk)
+>>>
+>>> Do not reuse the 'grf' clock name for RK3588 because it represents
+>>> a different clock with distinct control logic:
+>>> - The 'grf' clock is only for GRF register access and is toggled
+>>>    dynamically during register access.
+>>> - The 'hclk' clock controls both GRF access and video datapath
+>>>    gating, and must remain enabled during probe.
+>>>
+>>> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: 
+>>> Add support for RK3588")
+>>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>>
+>>> ---
+>>>
+>>> Changes in v4:
+>>> - Modify the commit msg.
+>>>
+>>> Changes in v5:
+>>> - Enforce the correct third clock name on a per-compatible basis.
+>>> - Modify the commit msg simultaneously.
+>>>
+>>> Changes in v6:
+>>> - Expand more detail commit msg about using hclk instead of grf clock.
+>>>
+>>> Changes in v7:
+>>> - List all valid clock names at the top level, and constrain the clock
+>>>    count for each platform with minItems/maxItems in allOf.
+>>>
+>>> Changes in v8:
+>>> - Fix indentation to 10 for enum in clock-names property.
+>>> ---
+>>>   .../rockchip/rockchip,analogix-dp.yaml        | 34 ++++++++++++++++++-
+>>>   1 file changed, 33 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/rockchip/ 
+>>> rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/ 
+>>> display/rockchip/rockchip,analogix-dp.yaml
+>>> index d99b23b88cc5..a1ab7a77bdd3 100644
+>>> --- a/Documentation/devicetree/bindings/display/rockchip/ 
+>>> rockchip,analogix-dp.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/rockchip/ 
+>>> rockchip,analogix-dp.yaml
+>>> @@ -26,7 +26,9 @@ properties:
+>>>       items:
+>>>         - const: dp
+>>>         - const: pclk
+>>> -      - const: grf
+>>> +      - enum:
+>>> +          - grf
+>>> +          - hclk
+>>>     power-domains:
+>>>       maxItems: 1
+>>> @@ -60,6 +62,32 @@ required:
+>>>   allOf:
+>>>     - $ref: /schemas/display/bridge/analogix,dp.yaml#
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - rockchip,rk3288-dp
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          maxItems: 2
+>>> +        clock-names:
+>>> +          maxItems: 2
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - rockchip,rk3399-edp
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 3
+>>> +        clock-names:
+>>> +          minItems: 3
+>>
+>> If you go back to v6, you'll see that I never asked you to remove the
+>> explict clock-names from here or below. Only the one from the 3288
+>> section. The minItems was an addition, not a replacement.
+>>
+>> pw-bot: changes-requested
+>>
+> 
+> Sorry for the misunderstanding. I will restore the explicit clock-names 
+> definitions and fix this in next version.
+> 
 
- .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Sorry to bother you. I attempted to place the explicit clock-names under 
+minItems:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index beb1475d7fa0..1ee2a2296129 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -951,6 +951,22 @@ retimer_ss0_con_sbu_out: endpoint {
- 	};
- };
- 
-+&i2c5 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	embedded-controller@76 {
-+		compatible = "lenovo,yoga-slim7x-ec", "qcom,hamoa-crd-ec";
-+		reg = <0x76>;
-+
-+		interrupts-extended = <&tlmm 66 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&ec_int_n_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &i2c7 {
- 	clock-frequency = <400000>;
- 
-@@ -1352,6 +1368,12 @@ &tlmm {
- 			       <44 4>, /* SPI (TPM) */
- 			       <238 1>; /* UFS Reset */
- 
-+	ec_int_n_default: ec-int-n-state {
-+		pins = "gpio66";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio70";
- 		function = "gpio";
--- 
-2.53.0
+diff --git 
+a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml 
+b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+index a1ab7a77bdd3..ef03edf52de8 100644
+--- 
+a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
++++ 
+b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+@@ -87,6 +87,10 @@ allOf:
+            minItems: 3
+          clock-names:
+            minItems: 3
++          items:
++            - const: dp
++            - const: pclk
++            - const: grf
+
+    - if:
+        properties:
+@@ -100,6 +104,10 @@ allOf:
+            minItems: 3
+          clock-names:
+            minItems: 3
++          items:
++            - const: dp
++            - const: pclk
++            - const: hclk
+          resets:
+            minItems: 2
+          reset-names:
+
+make dt_binding_check 
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+
+Then the following errors occurred:
+
+   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+   CHKDT   ./Documentation/devicetree/bindings
+/home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: 
+allOf:2:then:properties:clock-names: 'oneOf' conditional failed, one 
+must be fixed:
+         False schema does not allow 3
+         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'grf'}] is too long
+         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'grf'}] is too short
+         1 was expected
+         3 is greater than the maximum of 2
+         hint: "minItems" is only needed if less than the "items" list 
+length
+         from schema $id: http://devicetree.org/meta-schemas/items.yaml
+/home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: 
+allOf:3:then:properties:clock-names: 'oneOf' conditional failed, one 
+must be fixed:
+         False schema does not allow 3
+         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'hclk'}] is too long
+         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'hclk'}] is too 
+short
+         1 was expected
+         3 is greater than the maximum of 2
+         hint: "minItems" is only needed if less than the "items" list 
+length
+         from schema $id: http://devicetree.org/meta-schemas/items.yaml
+   LINT    ./Documentation/devicetree/bindings
+   DTEX 
+Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.example.dts
+   DTC [C] 
+Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.example.dtb
+
+Neither keeping only minItems nor only the explicit clock-names causes 
+any errors. Would it be a better idea to keep just the explicit 
+clock-names here?
+
+Best regards,
+Damon
+
+> 
+>>
+>>> +
+>>>     - if:
+>>>         properties:
+>>>           compatible:
+>>> @@ -68,6 +96,10 @@ allOf:
+>>>                 - rockchip,rk3588-edp
+>>>       then:
+>>>         properties:
+>>> +        clocks:
+>>> +          minItems: 3
+>>> +        clock-names:
+>>> +          minItems: 3
+>>>           resets:
+>>>             minItems: 2
+>>>           reset-names:
+>>> -- 
+>>> 2.34.1
+>>>
+>>>
+> 
+> 
+> 
 
 
