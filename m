@@ -1,146 +1,169 @@
-Return-Path: <devicetree+bounces-302907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302909-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BG/DotcFWp7UgcAu9opvQ
-	(envelope-from <devicetree+bounces-302907-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:40:43 +0200
+	id UG/dHINdFWp7UgcAu9opvQ
+	(envelope-from <devicetree+bounces-302909-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:44:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 346865D28ED
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:40:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8E895D2997
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 10:44:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 68A243009823
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 08:40:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B9AC3061093
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 08:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7DB3CEB9B;
-	Tue, 26 May 2026 08:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3545A3CEBA7;
+	Tue, 26 May 2026 08:40:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JH2RhQkO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWeYAlqg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D9C3CC7F1;
-	Tue, 26 May 2026 08:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03613CCA05
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 08:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779784832; cv=none; b=kEBeOp3xdmj7LilncV3b7fpxqip1sioumfqns46+WTugmDDtsZN18FvtNRtBISO84RUiMWN88Cj88odEO5vIx9SabV1i+FqIZc1tCus2XtGWZ7uek8kOmCP1i5uB+FoDnqxtngK1TQOafoPn/Eq2BXZdxQdxrS32SVsMGyqdxQA=
+	t=1779784837; cv=none; b=lwMYsVIU1mT7/Cp6oN5AHSZG2Ya37YtV5e28z0sBEQXiDVt6tPoVnR7dy370vYNE6AApVGpFfCVwJDYT2lIQsK10Yr56wXgfvrBJvLClD2Qn2UhCiTII0jBxcWjrtZIXZpB1Bo+BWlHVQMnsjLw97kLFlkNFKdYNiX/kwdJUvMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779784832; c=relaxed/simple;
-	bh=AyN+JuzMyo4kB6MKCoa08QrCLJ+c+BCADd1S66NVbZg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lEYaUZzVrXXyo8KjBwki6aVy1VR8u8mdLgp15UrIq7i45h2PV3nS2nBlevCH1FrDxAITZqFI4W0cW64tE0d7q8W2MjZl/AVV4S6HLHiojX0oEo+ADUYlhN3eiwDLnKxmVddFwKq68Kr5HI1FwiA5f4l7V/NGpB3ApvY9nSZ460Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JH2RhQkO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F5D1C2BCF7;
-	Tue, 26 May 2026 08:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779784832;
-	bh=AyN+JuzMyo4kB6MKCoa08QrCLJ+c+BCADd1S66NVbZg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JH2RhQkOkx9sbOq4D+6ZIvA0Iem4yAmoKEyGz22nesCG8ICcVMNEPW3/LwLpWIAqF
-	 rUWk2heknduk6fLwbDY/92j3UNG9VcMkE3d0YawT0jsvIP60/OxMiUX0e2BkBEKjk+
-	 mHxkS0xYrjcLCzwry6GRxnMygx7Rcxw3RsrBd3R22qz2Egys2IESJl1+QPceRgrEPS
-	 5tEdMx55WfWMWEeClck6LCzWDEXIrgK4MvlGp/OThS6MeHi/WIP3a1A+0wPBY7lXdK
-	 I/mpRR2LVHjTZnZ0zuMCxe63gI7Csq03o78Jihknf9FGSP1zvMIcO6dYBknNC/gVbi
-	 9ue/NxirjQT1w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38166CD5BDF;
-	Tue, 26 May 2026 08:40:32 +0000 (UTC)
-From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
-Date: Tue, 26 May 2026 16:40:22 +0800
-Subject: [PATCH RFC RESEND v5 6/6] arm64: defconfig: Enable
- CONFIG_VIDEO_AMLOGIC_VDEC
+	s=arc-20240116; t=1779784837; c=relaxed/simple;
+	bh=3+HEPoC6UyIO+L+4nX2r3N4eZ9yqqs+hKK4o/nUL4hI=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sXCpatngkb1kBy0+1Wf61SVPmrScLCTpzonWUKHS775fKAQkrnFQ7tc/cisXMUhFZNPo3nAuLtdFJHvfTkivasNduIhzwzxY7ovlHEl980aSAvnlWmHfGq4EkvLwAgjUB4oma4tSVIYtEVYRvNMu7kv1auL8I/b16l2IVV/Conc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWeYAlqg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 693821F0155F
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 08:40:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779784835;
+	bh=+Ki6uWxNT/B00QDkxwb3Oci7j2KyejSG6wxzHzrChn8=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=DWeYAlqgj5FLsoLgUmVUDmDgShJarvffGYWpmR91ZUTQiAeyLz2Mv9mhOcRT9b6zi
+	 fycwcOlT3oge6cR04gYvbiTFzt+KDEMmTDcaA3Fs4n3lZtB1P6BDmWN9bnLBRCdfsf
+	 91sM2wZYlcLkLL0MV4Q0TkjhRJF01tzmZ08Jvu09WpD2Znol67paALt3ciRB3Mut0K
+	 Bst7gBCEtjiD4R96HXqLbVTbLSXGL/n/DFBtdEknjjj79Qy6HPIVYQ49JE0Vg7LKVo
+	 7zDv2UnHXMmb+BhwniyQmHWidYQtATWSj0J8mpAEy298bvlsUuDdFtpHGAAsmJQlrn
+	 RrDLAy/2BOWIA==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5aa2691db86so9770269e87.3
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 01:40:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8jkNsWON/X1DNrhvv28ahM6QQ5EVF5wgUFiwTaUrgn9GjCK7iLcyJhqvMDVxk2qhojLrUwhf7k4UC+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8QqK9C8wPJ0LFCFVzDgG6kI6PtERqagmByYiUJtYlOsBo1AM8
+	Ob9cakirzSv3hMQlgJZX34KqePSeqI7ED8Dfp5CQSHU0/DfzdpS30z/DgeX3XdZsxpoZwzybOym
+	uM4dbe4jRGPx/NbAdv8Vo026CUupRsb7zMbmQG1ceEg==
+X-Received: by 2002:a05:6512:694:b0:5a8:63e0:cd92 with SMTP id
+ 2adb3069b0e04-5aa323b29f9mr5504025e87.33.1779784834004; Tue, 26 May 2026
+ 01:40:34 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 26 May 2026 04:40:32 -0400
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 26 May 2026 04:40:32 -0400
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260525144629.498630-4-jerrysteve1101@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260526-b4-s4-vdec-upstream-v5-6-33bc817f93f4@amlogic.com>
-References: <20260526-b4-s4-vdec-upstream-v5-0-33bc817f93f4@amlogic.com>
-In-Reply-To: <20260526-b4-s4-vdec-upstream-v5-0-33bc817f93f4@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, Zhentao Guo <zhentao.guo@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779784828; l=768;
- i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
- bh=zpeG8QZ2+jvMHE/2NSqDBdO1rAoUz1HvG8dAn1hwiLI=;
- b=krqDTA/5rT0vhS8B/EHNhikzh4IiLOjfvt0RTIoz1G3q3G12csZ9iasBWch2hcCkHY1n+blkn
- wcWzE9zHvFCDxth6NYuj0qgqsQVBa5KPQ+g6HhJpEnbBKQhJWfSuQW7
-X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
- pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
-X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
- auth_id=555
-X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
-Reply-To: zhentao.guo@amlogic.com
+References: <20260525144629.498630-1-jerrysteve1101@gmail.com> <20260525144629.498630-4-jerrysteve1101@gmail.com>
+Date: Tue, 26 May 2026 04:40:32 -0400
+X-Gmail-Original-Message-ID: <CAMRc=Mearb0F8CSNUqo-J8Zp2bbR6ti1aE4UO1A0v+pfZ9dtUg@mail.gmail.com>
+X-Gm-Features: AVHnY4Kv0sUH774IV01K5ycsVeEWPf8Q4-jYLuoJnpteIVsc5mnJpzvEPaA9BR0
+Message-ID: <CAMRc=Mearb0F8CSNUqo-J8Zp2bbR6ti1aE4UO1A0v+pfZ9dtUg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] gpiolib: of: add quirk for IS31FL319X shutdown line
+To: Jun Yan <jerrysteve1101@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Krzysztof Kozlowski <krzk@kernel.org>, Wei Xu <xuwei5@hisilicon.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Peter Rosin <peda@axentia.se>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, linusw@kernel.org, 
+	dmitry.baryshkov@oss.qualcomm.com, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Vincent Knecht <vincent.knecht@mailoo.org>, Grant Feng <von81@163.com>, 
+	Andre Przywara <andre.przywara@arm.com>, Tony Lindgren <tony@atomide.com>, 
+	Sudeep Holla <sudeep.holla@kernel.org>, Romain Perier <romain.perier@gmail.com>, 
+	Jesper Nilsson <jesper.nilsson@axis.com>, Robert Marko <robert.marko@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302907-lists,devicetree=lfdr.de,zhentao.guo.amlogic.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-302909-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[ucw.cz,kernel.org,hisilicon.com,glider.be,axentia.se,vger.kernel.org,lists.infradead.org,oss.qualcomm.com,lunn.ch,bootlin.com,gmail.com,mailoo.org,163.com,arm.com,atomide.com,axis.com,sartura.hr];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[zhentao.guo@amlogic.com]
-X-Rspamd-Queue-Id: 346865D28ED
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C8E895D2997
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Zhentao Guo <zhentao.guo@amlogic.com>
+On Mon, 25 May 2026 16:46:09 +0200, Jun Yan <jerrysteve1101@gmail.com> said=
+:
+> According to the IS31FL319x datasheet[1], the SDB pin is active=E2=80=91l=
+ow.
+> However, existing device tree incorrectly configure it as active=E2=80=91=
+high.
+>
+> Add a fixup to force the consumer active low for legacy device trees.
+>
+> [1] https://lumissil.com/assets/pdf/core/IS31FL3196_DS.pdf
+>
+> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> ---
+>  drivers/gpio/gpiolib-of.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
+> index ef1ac68b94b7..8a79aaadc9ea 100644
+> --- a/drivers/gpio/gpiolib-of.c
+> +++ b/drivers/gpio/gpiolib-of.c
+> @@ -194,6 +194,16 @@ static void of_gpio_try_fixup_polarity(const struct =
+device_node *np,
+>  		{ "himax,hx8357",	"gpios-reset",	false },
+>  		{ "himax,hx8369",	"gpios-reset",	false },
+>  #endif
+> +#if IS_ENABLED(CONFIG_LEDS_IS31FL319X)
+> +		/*
+> +		 * According to the IS31FL319x datasheet, the SDB pin is active=E2=80=
+=91low.
+> +		 * However, existing device tree incorrectly configure it
+> +		 * as active=E2=80=91high.
+> +		 */
+> +		{ "issi,is31fl3199",	"shutdown-gpios",	false },
+> +		{ "si-en,sn3190",	"shutdown-gpios",	false },
+> +		{ "si-en,sn3193",	"shutdown-gpios",	false },
+> +#endif
+>  #if IS_ENABLED(CONFIG_MTD_NAND_JZ4780)
+>  		/*
+>  		 * The rb-gpios semantics was undocumented and qi,lb60 (along with
+> --
+> 2.54.0
+>
+>
 
-Enable the Amlogic V4L2 stateless video decoder driver as a module
-in the arm64 defconfig. This driver is needed for stateless video
-decoding support on Amlogic SoCs.
-
-Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4567f4b34f29..14caac24d200 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -913,6 +913,7 @@ CONFIG_V4L_PLATFORM_DRIVERS=y
- CONFIG_SDR_PLATFORM_DRIVERS=y
- CONFIG_V4L_MEM2MEM_DRIVERS=y
- CONFIG_VIDEO_AMPHION_VPU=m
-+CONFIG_VIDEO_AMLOGIC_VDEC=m
- CONFIG_VIDEO_CADENCE_CSI2RX=m
- CONFIG_VIDEO_WAVE_VPU=m
- CONFIG_VIDEO_E5010_JPEG_ENC=m
-
--- 
-2.42.0
-
-
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
