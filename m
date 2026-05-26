@@ -1,161 +1,135 @@
-Return-Path: <devicetree+bounces-303067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303069-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLKMFFW6FWrKYQcAu9opvQ
-	(envelope-from <devicetree+bounces-303067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 17:20:53 +0200
+	id cCi2OO61FWrKYQcAu9opvQ
+	(envelope-from <devicetree+bounces-303069-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 17:02:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F0B5D8905
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 17:20:51 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA9485D8371
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 17:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2F2CC30B49EB
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:54:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C147A3024FA5
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4190C40245F;
-	Tue, 26 May 2026 14:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3AC406289;
+	Tue, 26 May 2026 14:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F5vVh/a/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BfEmsYMM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005AC400E10
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 14:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD2A3F8EDA;
+	Tue, 26 May 2026 14:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779807225; cv=none; b=ik3MH+7kBptSsCwAU2df+xLecYIVWOXHPBxBi/qfTomNjBvdAuFy84pv/mRWmljq+rdlryhTbdQ+cPIXuEo6JrocQM7c7NDgOA7I3VE0lUmWkbfgggKwH3+7hc2s80aLC9nBK+yJJRG4WmNJABdh6ujmNsAXCeMFBtLUTZI8iEg=
+	t=1779807256; cv=none; b=tXjcXXa2QoWd0fE5VrUD0dDDU661FTaUb+LuAZsVb027W7c1o75tzos3c8QkHVVamUqJ1Z7T6nxOF0KzEN/k51VF0Qhs+t/HFKnIA5PtCaH2oI6OeRCHRYySgwi5yit2qqu5LdNDGXwLYc8PcMMLtdC6vWBcxX3ZYcdojA01hnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779807225; c=relaxed/simple;
-	bh=Sqbs2OkiSdwuY7yyEzdomyWRGXYA8rO5hY6K9hT0/W4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=NZmdTPgmPWc3is5a6d+3SmqfgUliXQBjUwDORTMFGRNZ/69zxv5cvs4EVl1rKUHP8swrOIx5Q4EUnviA12BUtCPw2OejGST6dd/NZ4zTU2QTNx9KCWfxoBFEyEZ3tzmMk4w9A2T2BKKVJ2zgglBunx7jGXbMcaHGid0B1Zol/pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F5vVh/a/; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-44dd5cb0f81so7674040f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 07:53:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779807221; x=1780412021; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VW3FGEMYl3HtrO5py8lQ+JYd7M0lWOH5Fx7/bpcIlXg=;
-        b=F5vVh/a/1e3jRJftQLFlxC3rNB5bS90muDoj+qFSQvlPVDasatTDMXKYzX0SLIvGND
-         UFeCmVDXH0YJe1J+0pGUeCFagiZ3X7BMte1/eEnkquBGKCwfOIiW00rfryBLErtmGadW
-         XY9HcUEXTe5fVucbf2NvtY1t/tVk0DQ8VZz9BWNgmqJn/GiHxAxzbCh6XmC9r8fW2vsp
-         g/Sd9mMm2nOBZtmuLebxcB6U2LslOpL4F+v2qOzJyBbsMaX9pbJN1anzEopOoNT7NQsf
-         VQ+igFaa2dMZ+U9R6aDj1Mlkz94MW8wMNGgup4OITut1Szr782SQrBrj0YCVZfkotiod
-         Asow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779807221; x=1780412021;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VW3FGEMYl3HtrO5py8lQ+JYd7M0lWOH5Fx7/bpcIlXg=;
-        b=qLyJiNEfL7xGNwxSLKQV5G2q67J06238Znbgj44c9f2/oHE8RhGZWBPvuXf0qZlEa9
-         bEQSHlyLpnvxMGfgdg26NQARcqkkKKT+8NAA5Wn/yd9YyDTREtDSBMKi4qcBFfKimmcz
-         iYvScD6kesW7SPnHoPCHPm0VVxrgE1eyB+OBPWgMMu8SoUYxC4iZNeKJ+dMKeGd5u8NC
-         BbkXfQas3j+63plhIe0r7+yRwYl+O2cJ0kwRQSbRQ3o84JRHy68s1/2tebGGVup7d1BY
-         hUA64wkFsFPi4y7BAVGLI6llamUP3+LjIdrGlsxnmGXoD7J2WUbOad70sXUOMLNMtZ3N
-         1/lA==
-X-Forwarded-Encrypted: i=1; AFNElJ90WLg2OYLNcWiew15l/xAZPvF0jP+yCpJ555iooPH2RYphQBwcsYhH34c4nuMwkAImNKDua4gsZGK1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJI8LwjHKr4nR2EqucSvYKmmKxMBfhzW0rOzs6siGNNeQbUVb4
-	I2F43owAHP6OHPZ33f5/GI1obBXJzz8++7eNT3bpaUKXkUkMx6mvW4d3KistkJkvaJWL4znZ+1k
-	R9UZ7WSc=
-X-Gm-Gg: Acq92OEs6DyLCLAZVx2EVMALhSNAOImVHHjg8fF4UmCIbHXqIgaSzrCpMHOZeyE6QGu
-	UyZsXC99wy8czBn17FMK7COp1CSiLawqWzzRmWS5dQQsrWTzdp4oYuVc7h0llWwvt5+s6k2JOGN
-	1QU3Bmy7j9sS37xGTqX6VDiV/WMdUB2wYP8S9PDpRBwMDbU7GmS/1yYKRCeOQYPW6/DvopSnibb
-	hE5wba2Y5QAID/5Xt/pcOSwMm2Slux2/afYzSB000Qur8Txei7vHHhOrGivDvGuCj8rQA1jyu5C
-	B7fvmQnQ3cLGtFB9QYm4AcqwR+P11o5ba4vGYKfgmXOfKPzzK1DCDIypiw/F8kTc1FrcuG32zTf
-	FxUBvFYbBNkN/QA7oaQze9ABa7xnVE1v6b4fQqqUAqYl+tFlTHbXcmA4M20+8LOBrtHflGrPI3q
-	N6LbSHRtDBDz2iCPdBNQyuGmG0yfFmE6gCNECQn+xgUWea
-X-Received: by 2002:a05:6000:258a:b0:45e:6a3e:1ddb with SMTP id ffacd0b85a97d-45ea3128db3mr35001389f8f.1.1779807220786;
-        Tue, 26 May 2026 07:53:40 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eb6d49132sm36278884f8f.24.2026.05.26.07.53.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2026 07:53:40 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Thierry Reding <thierry.reding@gmail.com>, Vitor Soares <ivitro@gmail.com>
-Cc: Vitor Soares <vitor.soares@toradex.com>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20260522161105.277519-13-ivitro@gmail.com>
-References: <20260522161105.277519-13-ivitro@gmail.com>
-Subject: Re: (subset) [PATCH v3 00/11] arm64: dts: ti: k3-am62-verdin: Add
- display and peripheral overlays
-Message-Id: <177980721984.3070642.16547338359984019493.b4-ty@b4>
-Date: Tue, 26 May 2026 16:53:39 +0200
+	s=arc-20240116; t=1779807256; c=relaxed/simple;
+	bh=2DRfxXU36BYPgfqvTG17wX7EBy71VhHXkRk0PK3DQEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m8TzfhY/DAgh7qi+Noz184PVzw7OsRzF9ILvcRfoS+Af5LWFGsNL82yNRpY3Av4zrCY0QG4cf8JTtgzaX/A2Zn8E4ZNahdippdZS5JgYZBRzutJXVSf92Hml1tihV/wyJOiIRUgyjvLlx8OLStyUFd+YS3J5mBcHIHWqiUmMpZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BfEmsYMM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44AFD1F00A3A;
+	Tue, 26 May 2026 14:54:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779807254;
+	bh=rBDH54hBBSEXkcSCgrKQh5pyfKV2K8yDYsYn2j/E1V0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=BfEmsYMMRG9qUa+cshKYm+dmQ0UTkz4W7xv5Bc4F5yw84C4lWHXvpChiAvpQpruqs
+	 thyMEBVl+KbWJsGI4HMfqTAOM8NnQcPCL9k7K13aWllvXcPymJv/8Ay8PG34UnRLuk
+	 q2XsROryYkRXss2UkOkYFyyO8yusvKHlwAdBCLlrdTA3zdWikJAN2yILEbbygZOtAF
+	 YGNzxAJki70M2ktBXwx8I23QN0IFr4sYy3gMYteUqYTdkIwo1PFhXij//MthLOjv3R
+	 oJ4MkKUlZnxV94OISPU1fas0yNLB91YPracDg9ouRKYKRtN+VWF2KeksSwcsUk0vGW
+	 PcJoCvTu0sjqw==
+Date: Tue, 26 May 2026 16:54:11 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Nitin Rawat <nitin.rawat@oss.qualcomm.com>
+Subject: Re: [PATCH] dt-bindings: mmc: sdhci-msm: qcom: Add Hawi compatible
+Message-ID: <r6c7sdhuziox2hsefxn7mwsbbhnkoi3ao3cko4spf3773whlmx@gdmzjievatsg>
+References: <20260520075445.2146152-1-mukesh.ojha@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15.1
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260520075445.2146152-1-mukesh.ojha@oss.qualcomm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303067-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[ideasonboard.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ti.com,bp.renesas.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-303069-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,linaro.org:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,toradex.com:email]
-X-Rspamd-Queue-Id: 74F0B5D8905
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: CA9485D8371
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-
-On Fri, 22 May 2026 17:11:04 +0100, Vitor Soares wrote:
-> From: Vitor Soares <vitor.soares@toradex.com>
+On Wed, May 20, 2026 at 01:24:45PM +0530, Mukesh Ojha wrote:
+> From: Nitin Rawat <nitin.rawat@oss.qualcomm.com>
 > 
-> This series adds device tree overlays, expanding the hardware support for
-> the Toradex Verdin AM62 SoM. The overlays target displays, cameras, audio,
-> and peripherals available through Toradex carrier boards and the accessory
-> ecosystem.
+> Document the compatible string for the SDHCI controller on the
+> Qualcomm Hawi platform.
 > 
-> [...]
+> Signed-off-by: Nitin Rawat <nitin.rawat@oss.qualcomm.com>
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
 
-[04/11] dt-bindings: display: panel-lvds: Add Riverdi RVT70HSLNWCA0 and RVT101HVLNWC00
-        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3c3c5fb9b36836d279ebe370189d68a0a3387362
+Btw, you forgot to CC linux-arm-msm list.
+
+- Mani
+
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 695a95e8f35d..acbbbeb2be45 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -37,6 +37,7 @@ properties:
+>            - const: qcom,sdhci-msm-v4 # for sdcc versions less than 5.0
+>        - items:
+>            - enum:
+> +              - qcom,hawi-sdhci
+>                - qcom,ipq5018-sdhci
+>                - qcom,ipq5210-sdhci
+>                - qcom,ipq5332-sdhci
+> -- 
+> 2.53.0
+> 
 
 -- 
-Neil
-
+மணிவண்ணன் சதாசிவம்
 
