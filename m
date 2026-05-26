@@ -1,491 +1,768 @@
-Return-Path: <devicetree+bounces-303193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303145-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yP5BLg1OFmqxkgcAu9opvQ
-	(envelope-from <devicetree+bounces-303193-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 03:51:09 +0200
+	id iK9WF4ToFWqXegcAu9opvQ
+	(envelope-from <devicetree+bounces-303145-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 20:37:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181065DE61F
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 03:51:08 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FEAE5DB6F4
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 20:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05346303FFED
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 01:50:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C7D053008FF0
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D5B3290DE;
-	Wed, 27 May 2026 01:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A6C409134;
+	Tue, 26 May 2026 18:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RCXkQE5t"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IBpHRlHN";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jWFGoT2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869E230DD2A
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 01:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55685405C51
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 18:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779846621; cv=none; b=Vl22efvwa8pOwDgjAv0+0wPakV43u61yGDKOjBxxz6gOGv77baB+C1RMr+W3eFp27lwHbIsFpDrDYw5oqFaBRSWDwQ4AFeTIrzmXjOUsiLtSVDR7o4Hrec3ZFQ1/e9DbBLwt0rT4OeuMstM8QLcQI3L6blEM/x7TxsrqS7qdmqk=
+	t=1779820611; cv=none; b=oD9CIyprQ4HORvRq4BohGkZfaRytt3IhFh2S6JoLYyhuD6S6hqi+DmjPC1a3dUoYJwk1DJTGdz0uiPKNDDoAH81LgAlnH7kRBVlWfRyICWOF/h6/RqPGC75ffoskefDpB9TKuLkbMeB21bHfl92H88EjsQeTtBW10kLR84lJS3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779846621; c=relaxed/simple;
-	bh=hkYV74VxugRZRQkHvGHIswKMS+D9k+qkUc2sBRfJHps=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jp7h8WPhRRMXmAAf/q0ZmIxMG8orHYZvRuVGL6maRjbXECWRyQy2zDeab2XD0Toj7vs2D0re3qBHLFFSjhYaTMZCRdQL8ohzxevbB14XyfK/vq6YNf6xsfyK5kRTB5jOIRobr2SwvgUl2zDL80b+5mfIxKKY/fgkcyL0ccqegSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RCXkQE5t; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-44b729aa7c5so1160036f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 18:50:19 -0700 (PDT)
+	s=arc-20240116; t=1779820611; c=relaxed/simple;
+	bh=zEhJKASbHR0/Z2Z5DjxxVOO8x82eneS7xE2fv7Wa3n4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uRWgOYJbTzWRLIieGjx4SQeoi4elTEGOexgrHIOIqcQSDnb3yJd3HzvpBaNq6Yh7fRovqdi3hbeK+jDMitcvw+kR4iLvnoM3woWGWSL4354SF61HMGvwkohyudULCPM2maSKOGsg1E9kokJ8H6XDWKluTdAFtH1JwDZ3KEYhaf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IBpHRlHN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jWFGoT2y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64QH11ZY2022534
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 18:36:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yETUXvOsByL/NAMvrYeNRE4JXbzDCXQucw27T2MpDcY=; b=IBpHRlHNOLYvSVh3
+	OgiE6aeRlXsMHZWPe21H62GNLKm+F9GOrfx2/ezWggOZDWC7LW8lfyqZ6D3rXpYc
+	wYpxzaNaaTBRVt8II2QaN5bjnC6nS8OkLwi9J7QG7W1Q9WDAg6jknARbD+cD04BP
+	0LIC3DeTKSHetzfoCLg2sGDCU6Pj1he5eYknV4dWV7/k0Cqpj4o2ME2sqCq8SA3q
+	LN8HlZfoUR9+EMojyrCbw90dxf3p1mcR/BkVjpJZ5IgnODaB4oJIUUSF8S0rjx+m
+	JT1PFBH/ShxhfVBExnIUc7YD3dJUcgwuIzXLBSM9QbMTEVVpnYRq/P3oKHWsfx6q
+	+UhWdg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4edefugttf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 18:36:48 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-516d51ffb59so9793131cf.3
+        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 11:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779846618; x=1780451418; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TuPyxrPMXcdLQvxGgGrx5Hv2T2guo30OkkHoRafnJGs=;
-        b=RCXkQE5t/50duU80eiU1T9W9i1O7aStbE62UvV0lJO3gn8Hmorhmdjdc/I1+nsAMdF
-         TOUR7mruF4Rzk/1vvHyoi4G54j3QZGi4tK2Dvsm3PKrm2HQNhulaj1ddwPgrgQVmLtKP
-         L2vRLj9JF7XtPiqXu+OZAmD0/ZPHheTjen+qQV3Jl9NWh+PGzRE6JIgChsC6Lce0uuJz
-         bVb0Y0iT80Vq4CVrl8HdIHa1EMcbOi3KPb049ATB/U0Qz1KHF8ceB4BYfsc5nJARIRxv
-         ZaVi+lDl3SC6soVmDV7CPE4qa8qN7q2fcCkBv6YCGHIHeRcB5iQ3sOSyQ394OHG2Eug6
-         m9ZQ==
+        d=oss.qualcomm.com; s=google; t=1779820608; x=1780425408; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yETUXvOsByL/NAMvrYeNRE4JXbzDCXQucw27T2MpDcY=;
+        b=jWFGoT2yQMU06dFztgjwtKh6NcJ8JapGUJLR45EaDbbVLseLp7LoPOmnnFp9vMfvnz
+         52Ga6YEd0fao2O+QBMomouYeDr9iNRwNOs019UrJ2G39JuAEnIaYkdT9rcFBY19O+yNj
+         kF+DYr5/xd9ZvWng8QXcpP53YRplNj6P17/vaffPAoKeV5GVyNSrInfsgt3eZqcxUMsk
+         T8xKrhJUwF7kaAgfPdKU9zh82Rm2sImCOXE3R34xH56NLkEz+1rPlLVeKELJdx+06/2X
+         agsiqsIFdc2HxOpa3v4kBLu7cOx5fCzed7T4hnXbfvEmruIMX83nqUi8G105h0Wn53oZ
+         HExw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779846618; x=1780451418;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TuPyxrPMXcdLQvxGgGrx5Hv2T2guo30OkkHoRafnJGs=;
-        b=RaocKYSDOxOfmpbK6IXi19xuJilqzhRtd98WKlw4riBJF3L8wZ2uq1IWXRmpWpMp1E
-         x87bfahAUN+6gURUUiOdfRUez9NLLNrKTh2XSK+Kc6VDQNbzamvsYwyaxH3ug3g1Rtkp
-         oiRnWWvbI2BmadBBun5ibaS3dTulITOMcKIMIXrHDlNq8NL0BiSsOJDZrUiv1bL8p0VV
-         Z7QTJMGs3RNEy1JO3/4SI4448L6BZ90FU3M9jjbh/a46y19KMaQmuuGa8Jf81aShudjg
-         DQXnXGZripjHxr5F3aRPdrdLrnaBsceypHqkAurFwbgURGBM+D/3dfwGRGIOqFzslN3Q
-         SFmw==
-X-Forwarded-Encrypted: i=1; AFNElJ8NbK7x9zKdrCY2+DQJmYfG2DgaPHR53uTCljqj3JfRZbqmBZ3HGG8f1vaAcYICTcuvMwVTKwcylLCm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFKGaWibUQrQ2Url2CNqdjK7OlS+7acZk/ZFAD/987iq7K2o7x
-	8SQH1tpsdi+86aUSjcPHDIk+df9jT6LrtkC+uCZzYoH1PK/8a+nUjG99
-X-Gm-Gg: Acq92OEV+k9GDkBJV37iXhisLCHy6PVgsaegKWvMpDRSUU6JaRr7xtOEmjpHYMbkMT8
-	u8dVHELQJ1gEus3xa1hcCAkYZTclL2MOUZSLFN9GnGo7Qqe54TZvNaMOuMLQZauTvYAdKSieEZd
-	VsvFl0YPqehuFgF0lAgIjoaO3tWhlP+GRszndEqxEhHklhGopxXLeIJkHuI3FmetjOZt3xfFxQB
-	J4KUu3SWnLQf8//dG8Ido4ks34jBcp3uNDyAt/hiVpL/x3puyoJNAHr6P0EzmAz4emQKxVV6c5p
-	9PxC9sKu1FuZDLgzgn3Bov/lpIZ79eE0Hq0wEIrZrvHcrAoKeLgeVUxN6fOGC+pIYHUijwPmzao
-	Z8BNaLAiJ/V9hTxhYQUTTMbp7C2zhH9lEhG899hzjx5oZ3SD+VMVYJeCnfSVUrr0kD8UYboIBzm
-	haj+OEG9p4tFuQfHZCeQQfId4mPPFvcrX89I+ZusSFuIZCCWbv6ju9Mw==
-X-Received: by 2002:a05:600c:474d:b0:490:3d89:4bd1 with SMTP id 5b1f17b1804b1-49042ae9a03mr146046705e9.5.1779846617614;
-        Tue, 26 May 2026 18:50:17 -0700 (PDT)
-Received: from JSANTO12-L01.ad.analog.com ([187.34.137.115])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490454b7d57sm359399035e9.15.2026.05.26.18.50.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2026 18:50:17 -0700 (PDT)
-Date: Tue, 26 May 2026 15:24:59 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, nuno.sa@analog.com, andy@kernel.org,
-	marcelo.schmitt1@gmail.com
-Subject: Re: [RFC] iio: adc: support for multi-device aggregation
-Message-ID: <ahXle0pZjpldxASF@JSANTO12-L01.ad.analog.com>
-References: <af0EGv172ZMl/6N5@JSANTO12-L01.ad.analog.com>
- <af2gJyG3rDjsjFmo@nsa>
- <agdKRhtywsThg/gT@JSANTO12-L01.ad.analog.com>
- <20260516113738.4103f388@jic23-huawei>
- <fe766c2a-3662-4896-b7ec-b569791630cd@baylibre.com>
+        d=1e100.net; s=20251104; t=1779820608; x=1780425408;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yETUXvOsByL/NAMvrYeNRE4JXbzDCXQucw27T2MpDcY=;
+        b=oRhSLpy/ZeOrE+HiKEKYhC3AjA8xo2x4mE6wL+0ZNmONg13xn4giZ18r40zaSRsNQY
+         ISTD940PKnLL+JhYpyVRLSx+f40ipTBcfy5x5oMpRQgz+/DmnOByczAk2Yvd6faR/9DH
+         Q/LfQ0hZrDD6Hh0gPX8c0j7y/fGXgmx+YPJVvOoSU5dDL6Y+KV9Mei0jKxiUiVTnFd2r
+         MWjydDp8XsXqTqNszeU1Thi3UF3gcSC0V729bK8a/ciSnUa6BtBKB6Aho9+RXzrsG7+L
+         tFlLBuFDfIXt+PE+Anr2GO8sy/NMgEsxsx94K3u7u3ky1krPLUKFDkSvKAvMkonfra58
+         KScg==
+X-Forwarded-Encrypted: i=1; AFNElJ+2YWN1Y6El+Uwo7zyNFsTgbmyLRjR/3IABFXtd3ZuMgESSlNBhVzg7P/IjAqDV0sMrYe7+Gbswbrt5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4rBvluL376Eb9rG6GsgGnPvioi80p9Q4JniVIW/OfA4eswIC4
+	ENOxLLPMor+DrLMRKbGjHaDkzvlkvFg5hOE9vH4R1+dEGw4YrVVxqlJNJ1NcL10zHmUBxzpJX5K
+	vCLNyPO3GZ0SYGhg/DGL6cXcO+Asb2hc9bl8W39k6Er6QKSBIUd5tJa2rBzjuL9xe
+X-Gm-Gg: Acq92OGiJeOimwiQK7R/Baid26xjUUbpFwamzKRuZwxcAa4gXz/FYmc7L0owj93nIRq
+	LAP+NDGIRzV1I/9TUWpDCqX90X3xGjhTiy6P+G6dQhYPNq8R0Z3MsTTjLo8x6UjBD1zt64/jx18
+	t/loOUuspEDTapYFtKVZ/L0WMQCq374bb519TBWjNm1D0JMwqNfSiw1iSE+Rr/g8EHu2BxmSWCO
+	86S3vswIaJHOTZNMiE5BDTsjMPXuDpVT/Q7oTNjS+JJ8M4PEgT1BrKKHOhEnBnIh9lZAjvVnoAq
+	mZHdrsg12FfBg4rhf9eQXbrnp9QArEvsBXtS7U0s44hXW45jEXuJ2Nfkv/SZ4BvIhrNYtBJpRCI
+	2t2WQHhzAcj2gd28ibpIbl5dCn82hU0yphGSQnz9Ka6+90UydJtZQHBdBAQIYlROrwzUSnh95+f
+	e2Pi3rHwL8
+X-Received: by 2002:a05:622a:5a97:b0:516:df5b:432b with SMTP id d75a77b69052e-516df5b49fcmr209849521cf.27.1779820607699;
+        Tue, 26 May 2026 11:36:47 -0700 (PDT)
+X-Received: by 2002:a05:622a:5a97:b0:516:df5b:432b with SMTP id d75a77b69052e-516df5b49fcmr209848861cf.27.1779820606982;
+        Tue, 26 May 2026 11:36:46 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:ae20:597c:99b8:d161? ([2a05:6e02:1041:c10:ae20:597c:99b8:d161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4907e7c1e24sm1607475e9.23.2026.05.26.11.36.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 May 2026 11:36:46 -0700 (PDT)
+Message-ID: <a1b599f9-44a8-4cd6-b4ea-5c28eef9f221@oss.qualcomm.com>
+Date: Tue, 26 May 2026 20:36:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fe766c2a-3662-4896-b7ec-b569791630cd@baylibre.com>
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] powercap: qcom: Add SPEL powercap driver
+To: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+References: <20260519-qcom_spel_driver_upstream-v1-0-75356d1b7f94@oss.qualcomm.com>
+ <20260519-qcom_spel_driver_upstream-v1-2-75356d1b7f94@oss.qualcomm.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+In-Reply-To: <20260519-qcom_spel_driver_upstream-v1-2-75356d1b7f94@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI2MDE2MyBTYWx0ZWRfX2pfyaEN3CScu
+ Bpjye9tB2Q13fhoDp5EIsxQ0ZRZBM/ryZW4LkILS9rSgfU/XCpDSuGhycmUK2YS6za3NYd5hSTR
+ tAFdr+10j2ZygeyUXqRkJrz6mS0c99ScCKX5llewwN59ZTO57ZAohX3+Wa47H/4G/BX5yEt2OgO
+ OOCOHXasZbiV6Gc+Pby8KLvZ87nLsjoBT++6+0y4xzLhv3tyyRe+muKKB1yU5AitpRASgSGDRhc
+ yX83jq72AQWbLKZJal+/roAepmWI8D44Es8Tmum8OTx77vCPInks7cN4UK5XOAzYc3mr2ikoObr
+ zASS8JptULFIIo1IjFs7VCzceVfHJ9RiuluKzLKRP86f8V0ExnTyzx1QxDTU1kfoiIs6VtA5prF
+ zf9GzKagwDGNYoUSbloVoRYNH53Y2PMBDkNijZFNm+rpMclPCd51RHr/YTMAr/uTeeMPFzIiN/7
+ aM2i9OgHba7Uz+Pw6EQ==
+X-Proofpoint-GUID: 5664T-J6BNJDNG_hlQlzl-5Wmw-zuDLa
+X-Proofpoint-ORIG-GUID: 5664T-J6BNJDNG_hlQlzl-5Wmw-zuDLa
+X-Authority-Analysis: v=2.4 cv=cPnQdFeN c=1 sm=1 tr=0 ts=6a15e840 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=EUspDBNiAAAA:8
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=d7Wn-mttVCXQ6RS2d3wA:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-26_04,2026-05-26_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 malwarescore=0 spamscore=0 adultscore=0 phishscore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
+ definitions=main-2605260163
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,metafoo.de,analog.com];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303193-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-303145-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,quicinc.com:email,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonath4nns@gmail.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.3:email,0.0.0.4:email,0.0.0.1:email];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.2:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 181065DE61F
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 4FEAE5DB6F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 05/16, David Lechner wrote:
-> On 5/16/26 5:37 AM, Jonathan Cameron wrote:
-> > On Fri, 15 May 2026 13:31:02 -0300
-> > Jonathan Santos <jonath4nns@gmail.com> wrote:
-> > 
-> >> On 05/08, Nuno Sá wrote:
-> >>> On Thu, May 07, 2026 at 06:28:58PM -0300, Jonathan Santos wrote:  
-> >>>> Hi all,
-> >>>>
-> >>>> We have a request to support multiple devices tied together in a single evaluation
-> >>>> board. The goal is to be able to read them simultaneously via the IIO framework,
-> >>>> while also controlling them individually. Currently we have two ADC devices that
-> >>>> would benefit from this, but there might be more in the future.
-> >>>>
-> >>>> This is the scenario:
-> >>>>
-> >>>> +---------------+                                                 
-> >>>> |     ADC 0     |                                                 
-> >>>> |               |                                                 
-> >>>> |        SYNC_IN|---+---------------------------+                 
-> >>>> |          DRDY0|---|------------------------+  |                 
-> >>>> |               |   |                        |  |   +------------+
-> >>>> |          SCLK0|---|------+                 |  |   |    HOST    |
-> >>>> |           SDI0|---|------|--+              |  |   |            |
-> >>>> |            CS0|---|------|--|-----------+  |  +-->|ADC_SYNC    |
+On 5/19/26 12:49, Manaf Meethalavalappu Pallikunhi wrote:
+> The Qualcomm SoC Power and Electrical Limits (SPEL) provides hardware
+> based power monitoring and limiting capabilities for various power
+> domains including System, SoC, CPU clusters, GPU, and various other
+> subsystems.
 > 
-> 							Is this arrow
-> 							supposed to be
-> 							going the other
-> 							direction?
->
-                                                        Yes, sorry about
-							that.
-
-> >>>> |          DOUT0|---|------|--|--------+  |  |      |            |
-> >>>> |               |   |      |  |        |  |  |      |            |
-> >>>> +---------------+   |      +--|--------|--|--|----->|SCLK        |
-> >>>>                     |      |  +--------|--|--|----->|MOSI        |
-> >>>> +---------------+   |      |  |        |  |  |      |            |
-> >>>> |     ADC 1     |   |      |  |        |  |  |      |            |
-> >>>> |               |   |      |  |        |  |  +----->|DRDY0       |
-> >>>> |        SYNC_IN|---+      |  |        |  +-------->|CS0         |
-> >>>> |          DRDY1|---|------|--|----+   +----------->|MISO0       |
-> >>>> |               |   |      |  |    |                |            |
-> >>>> |          SCLK1|---|------+  |    |                |            |
-> >>>> |           SDI1|---|------|--+    +--------------->|DRDY1       |
-> >>>> |            CS1|---|------|--|-------------------->|CS1         |
-> >>>> |          DOUT1|---|------|--|-------------------->|MISO1       |
-> >>>> |               |   |      |  |                     |            |
-> >>>> +---------------+   |      |  |                     | .          |
-> >>>>                     |      |  |                     | .          |
-> >>>>        ...          |      |  |                     | .          |
-> >>>>                     |      |  |                     |            |
-> >>>> +---------------+   |      |  |            +------->|DRDYN       |
-> >>>> |     ADC N     |   |      |  |            | +----->|CSN         |
-> >>>> |               |   |      |  |            | | +--->|MISON       |
-> >>>> |        SYNC_IN|---+      |  |            | | |    |            |
-> >>>> |          DRDYN|----------|--|------------+ | |    +------------+
-> >>>> |               |          |  |              | |                  
-> >>>> |          SCLKN|----------+  |              | |                  
-> >>>> |           SDIN|-------------+              | |                  
-> >>>> |            CSN|----------------------------+ |                  
-> >>>> |          DOUTN|------------------------------+                  
-> >>>> |               |                                                 
-> >>>> +---------------+                                                                                                    
-> >>>>   
+> The driver integrates with the Linux powercap framework, exposing SPEL
+> capabilities through powercap sysfs interfaces.
 > 
-> Would there actually be 4 DRDY inputs on the host system? I assume that
-> they would be the SPI offload trigger. But there can only be one trigger.
-> So I would expect all DRDY going into an N-input AND gate and the output
-> of that gate used as the trigger.
+> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> ---
+>   MAINTAINERS                  |   1 +
+>   drivers/powercap/Kconfig     |  13 +
+>   drivers/powercap/Makefile    |   1 +
+>   drivers/powercap/qcom_spel.c | 787 +++++++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 802 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c63f147e8c54..5c7542754ab6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22238,6 +22238,7 @@ M:	Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+>   L:	linux-arm-msm@vger.kernel.org
+>   S:	Maintained
+>   F:	Documentation/devicetree/bindings/power/limits/qcom,spel.yaml
+> +F:	drivers/powercap/qcom_spel.c
+>   
+>   QUALCOMM PPE DRIVER
+>   M:	Luo Jie <quic_luoj@quicinc.com>
+> diff --git a/drivers/powercap/Kconfig b/drivers/powercap/Kconfig
+> index 03c4c796d993..e3a47c653499 100644
+> --- a/drivers/powercap/Kconfig
+> +++ b/drivers/powercap/Kconfig
+> @@ -93,4 +93,17 @@ config DTPM_DEVFREQ
+>   	help
+>   	  This enables support for device power limitation based on
+>   	  energy model.
+> +
+> +config QCOM_SPEL
+> +	tristate "Qualcomm SPEL Powercap driver"
+> +	depends on ARM64 || COMPILE_TEST
+> +	help
+> +	  This enables support for the Qualcomm SoC Power and Electrical
+> +	  Limits (SPEL) hardware, which allows power limits to be
+> +	  enforced and monitored on Qualcomm SoCs.
+> +
+> +	  SPEL provides energy monitoring and power capping for multiple
+> +	  domains including system, SoC, CPU clusters, GPU, and various
+> +	  other subsystems.
+> +
+>   endif
+> diff --git a/drivers/powercap/Makefile b/drivers/powercap/Makefile
+> index 5ab0dce565b9..8235fb9d3df6 100644
+> --- a/drivers/powercap/Makefile
+> +++ b/drivers/powercap/Makefile
+> @@ -8,3 +8,4 @@ obj-$(CONFIG_INTEL_RAPL) += intel_rapl_msr.o
+>   obj-$(CONFIG_INTEL_RAPL_TPMI) += intel_rapl_tpmi.o
+>   obj-$(CONFIG_IDLE_INJECT) += idle_inject.o
+>   obj-$(CONFIG_ARM_SCMI_POWERCAP) += arm_scmi_powercap.o
+> +obj-$(CONFIG_QCOM_SPEL) += qcom_spel.o
+> diff --git a/drivers/powercap/qcom_spel.c b/drivers/powercap/qcom_spel.c
+> new file mode 100644
+> index 000000000000..fed5647959a5
+> --- /dev/null
+> +++ b/drivers/powercap/qcom_spel.c
+> @@ -0,0 +1,787 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Qualcomm SPEL (SoC Power and Electrical Limits) Driver
+> + *
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#include <linux/bitmap.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/powercap.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+> +
+> +/* SPEL register bitmasks */
+> +#define ENERGY_STATUS_MASK		0xFFFFFFFF
+> +
+> +#define POWER_LIMIT_MASK		0x00007FFF
+> +#define POWER_LIMIT_ENABLE		BIT(31)
+> +
+> +#define TIME_WINDOW_MASK_L		0x00007FFF	/* bits [14:0] */
+> +#define TIME_WINDOW_MASK_H		0x007F0000	/* bits [22:16] */
+> +
+> +#define ENERGY_UNIT_OFFSET		16
+> +#define ENERGY_UNIT_MASK		0xF0000
+> +
+> +#define TIME_UNIT_OFFSET		8
+> +#define TIME_UNIT_MASK			0xF00
+> +
+> +#define POWER_UNIT_OFFSET		0
+> +#define POWER_UNIT_MASK			0x7
+> +
+> +#define LIMITS_CAPABILITY_OFFSET	0x20
+> +#define ENERGY_RPT_UNIT_OFFSET		0x04
+> +
+> +#define ENERGY_UNIT_SCALE		1000
+> +
+> +#define SPEL_DOMAIN_NAME_LENGTH		16
+> +
+> +/* Domain types */
+> +enum spel_domain_type {
+> +	SPEL_DOMAIN_SYS,
+> +	SPEL_DOMAIN_SOC,
+> +	SPEL_DOMAIN_CL0,
+> +	SPEL_DOMAIN_CL1,
+> +	SPEL_DOMAIN_CL2,
+> +	SPEL_DOMAIN_IGPU,
+> +	SPEL_DOMAIN_DGPU,
+> +	SPEL_DOMAIN_NSP,
+> +	SPEL_DOMAIN_MMCX,
+> +	SPEL_DOMAIN_INFRA,
+> +	SPEL_DOMAIN_DRAM,
+> +	SPEL_DOMAIN_MDM,
+> +	SPEL_DOMAIN_WLAN,
+> +	SPEL_DOMAIN_USB1,
+> +	SPEL_DOMAIN_USB2,
+> +	SPEL_DOMAIN_USB3,
+> +	SPEL_DOMAIN_MAX,
+> +};
+> +
+> +/* Power limit IDs */
+> +enum spel_power_limit_id {
+> +	POWER_LIMIT1,
+> +	POWER_LIMIT2,
+> +	POWER_LIMIT3,
+> +	POWER_LIMIT4,
+> +	NR_POWER_LIMITS,
+> +};
+> +
+> +/* Unit types for conversion */
+> +enum unit_type {
+> +	POWER_UNIT,
+> +	ENERGY_UNIT,
+> +	TIME_UNIT,
+> +};
+> +
+> +/* Power limit operation types */
+> +enum pl_ops_type {
+> +	PL_LIMIT,
+> +	PL_TIME_WINDOW,
+> +};
+> +
+> +static const char *pl_names[NR_POWER_LIMITS] = {
+> +	[POWER_LIMIT1] = "pl1",
+> +	[POWER_LIMIT2] = "pl2",
+> +	[POWER_LIMIT3] = "pl3",
+> +	[POWER_LIMIT4] = "pl4",
+> +};
+
+Do you want to use NR_POWER_LIMITS instead of ARRAY_SIZE() ?
+
+Please unify the naming NR_POWER_LIMITS -> POWER_LIMITS_MAX
+
+> +static const char *const spel_domain_names[] = {
+> +	"sys", "soc", "cl0", "cl1", "cl2", "igpu", "dgpu", "nsp",
+> +	"mmcx", "infra", "dram", "mdm", "wlan", "usb1", "usb2", "usb3",
+> +};
+> +
+> +/* Domain register offsets in node base */
+> +static const u32 domain_offsets[SPEL_DOMAIN_MAX] = {
+> +	[SPEL_DOMAIN_SYS]	= 0x40,
+> +	[SPEL_DOMAIN_SOC]	= 0x00,
+> +	[SPEL_DOMAIN_CL0]	= 0x5C,
+> +	[SPEL_DOMAIN_CL1]	= 0x60,
+> +	[SPEL_DOMAIN_CL2]	= 0x64,
+> +	[SPEL_DOMAIN_IGPU]	= 0x08,
+> +	[SPEL_DOMAIN_DGPU]	= 0x44,
+> +	[SPEL_DOMAIN_NSP]	= 0x0C,
+> +	[SPEL_DOMAIN_MMCX]	= 0x10,
+> +	[SPEL_DOMAIN_INFRA]	= 0x18,
+> +	[SPEL_DOMAIN_DRAM]	= 0x1C,
+> +	[SPEL_DOMAIN_MDM]	= 0x48,
+> +	[SPEL_DOMAIN_WLAN]	= 0x4C,
+> +	[SPEL_DOMAIN_USB1]	= 0x50,
+> +	[SPEL_DOMAIN_USB2]	= 0x54,
+> +	[SPEL_DOMAIN_USB3]	= 0x58,
+> +};
+
+Same comment
+
+> +/**
+> + * struct spel_constraint_info - Power limit constraint information
+> + * @limit_offset:	Register offset for power limit value
+> + * @time_window_offset:	Register offset for time window
+> + * @supported_mask:	Bit mask in capability register
+
+Where is 'supported_mask' initialized?
+
+> + * @domain_id:		Domain this constraint applies to
+> + * @pl_id:		Power limit ID (PL1, PL2, etc.)
+
+[ ... ]
+
+> +
+> +/**
+> + * struct spel_domain - SPEL power domain
+> + * @power_zone:		Powercap zone
+> + * @lock:		Mutex protecting register access
+> + * @sp:			Parent system
+> + * @status_reg:		Energy counter register
+> + * @pl_name:		Power limit names
+> + * @name:		Domain name
+> + * @id:			Domain type ID
+> + */
+> +struct spel_domain {
+
+[ ... ]
+
+> +	struct spel_system *sp;
+
+[ ... ]
+
+> +struct spel_system {
+> +	struct spel_domain *domains;
+
+[ ... ]
+
+> +};
+
+There is a cyclic dependency between struct spel_system <-> struct 
+spel_domain. Could it be solved ?
+
+> +#define power_zone_to_spel_domain(_zone) \
+> +	container_of(_zone, struct spel_domain, power_zone)
+> +
+> +/* Helper functions */
+> +static bool is_pl_valid(struct spel_domain *sd, int pl)
+> +{
+> +	if (pl < POWER_LIMIT1 || pl >= NR_POWER_LIMITS)
+> +		return false;
+
+The call to this function is strange. It is like you don't trust your 
+own code.
+
+> +	return sd->pl_name[pl] ? true : false;
+> +}
+> +
+
+[ ... ]
+
+> +
+> +	switch (pl_op) {
+> +	case PL_LIMIT:
+> +		value &= POWER_LIMIT_MASK;
+> +		if (xlate)
+> +			*data = spel_unit_xlate(sd, POWER_UNIT, value, 0);
+> +		else
+> +			*data = value;
+> +		break;
+> +	case PL_TIME_WINDOW:
+> +		/* Decode time window: bits [22:16] are upper 7 bits, [14:0] are lower 15 bits */
+> +		value = ((value & TIME_WINDOW_MASK_H) >> 16 << 15) |
+> +			(value & TIME_WINDOW_MASK_L);
+
+[ ... ]
+
+> +		reg_val = (reg_val & ~POWER_LIMIT_MASK) | new_val;
+> +
+
+[ ... ]
+
+> +		if (new_val == 0)
+> +			reg_val &= ~POWER_LIMIT_ENABLE;
+> +		else
+> +			reg_val |= POWER_LIMIT_ENABLE;
+> +		break;
+
+[ ... ]
+
+> +	case PL_TIME_WINDOW:
+> +		/*
+> +		 * Encode time window: upper 7 bits to [22:16], lower 15 bits to [14:0]
+> +		 * Time window register is separate from limit register (different offset),
+> +		 * so we write only the time window bits without preserving any enable bit.
+> +		 */
+> +		new_val = spel_unit_xlate(sd, TIME_UNIT, value, 1);
+> +		reg_val = (((new_val >> 15) & 0x7F) << 16) |
+> +			  (new_val & 0x7FFF);
+
+
+The trend today is to use the FIELD_* macros for bits ops
+
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	writel(reg_val, reg_addr);
+> +	return 0;
+> +}
+> +
+> +/* Powercap zone operations */
+> +static int spel_get_energy_counter(struct powercap_zone *power_zone, u64 *energy_raw)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(power_zone);
+> +	u64 value;
+> +
+> +	value = readl(sd->status_reg);
+
+nit: seems an line in between would help for the readability
+
+> +	*energy_raw = spel_unit_xlate(sd, ENERGY_UNIT, value, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int spel_get_max_energy_counter(struct powercap_zone *pcd_dev, u64 *energy)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(pcd_dev);
+> +
+> +	*energy = spel_unit_xlate(sd, ENERGY_UNIT, ENERGY_STATUS_MASK, 0);
+
+nit: missing line
+
+> +	return 0;
+> +}
+> +
+> +static int spel_release_zone(struct powercap_zone *power_zone)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int spel_find_nr_power_limit(struct spel_domain *sd)
+> +{
+> +	int i, nr_pl = 0;
+> +
+> +	for (i = 0; i < NR_POWER_LIMITS; i++) {
+> +		if (is_pl_valid(sd, i))
+> +			nr_pl++;
+> +	}
+> +
+> +	return nr_pl;
+> +}
+> +
+> +static const struct powercap_zone_ops zone_ops = {
+> +	.get_energy_uj = spel_get_energy_counter,
+> +	.get_max_energy_range_uj = spel_get_max_energy_counter,
+> +	.release = spel_release_zone,
+> +};
+> +
+> +/* Constraint operations */
+> +static int spel_constraint_to_pl(struct spel_domain *sd, int cid)
+> +{
+> +	int i, j;
+
+'j' name is misleading because it is usually used for nested 'for' blocks
+
+> +	for (i = POWER_LIMIT1, j = 0; i < NR_POWER_LIMITS; i++) {
+
+Do not rely on POWER_LIMIT1 because if someday it is moved in the enum, 
+all the code assuming it is zero will be broken
+
+> +		if (is_pl_valid(sd, i) && j++ == cid)
+ > +			return i;> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int spel_set_power_limit(struct powercap_zone *power_zone, int cid,
+> +				u64 power_limit)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(power_zone);
+> +	int id;
+> +
+> +	id = spel_constraint_to_pl(sd, cid);
+> +	if (id < 0)
+> +		return id;
+> +
+> +	return spel_write_pl_data(sd, id, PL_LIMIT, power_limit);
+> +}
+> +
+> +static int spel_get_power_limit(struct powercap_zone *power_zone, int cid,
+> +				u64 *data)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(power_zone);
+> +	u64 val;
+> +	int ret, id;
+> +
+> +	id = spel_constraint_to_pl(sd, cid);
+> +	if (id < 0)
+> +		return id;
+> +
+> +	ret = spel_read_pl_data(sd, id, PL_LIMIT, true, &val);
+> +	if (!ret)
+> +		*data = val;
+> +
+> +	return ret;
+> +}
+> +
+> +static int spel_set_time_window(struct powercap_zone *power_zone, int cid,
+> +				u64 window)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(power_zone);
+> +	int id;
+> +
+> +	id = spel_constraint_to_pl(sd, cid);
+> +	if (id < 0)
+> +		return id;
+> +
+> +	return spel_write_pl_data(sd, id, PL_TIME_WINDOW, window);
+> +}
+> +
+> +static int spel_get_time_window(struct powercap_zone *power_zone, int cid,
+> +				u64 *data)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(power_zone);
+> +	u64 val;
+> +	int ret, id;
+> +
+> +	id = spel_constraint_to_pl(sd, cid);
+> +	if (id < 0)
+> +		return id;
+> +
+> +	ret = spel_read_pl_data(sd, id, PL_TIME_WINDOW, true, &val);
+> +	if (!ret)
+> +		*data = val;
+> +
+> +	return ret;
+> +}
+> +
+> +static const char *spel_get_constraint_name(struct powercap_zone *power_zone,
+> +					    int cid)
+> +{
+> +	struct spel_domain *sd = power_zone_to_spel_domain(power_zone);
+> +	int id;
+> +
+> +	id = spel_constraint_to_pl(sd, cid);
+> +	if (id >= 0)
+> +		return sd->pl_name[id];
+> +
+> +	return NULL;
+> +}
+> +
+> +static const struct powercap_zone_constraint_ops constraint_ops = {
+> +	.set_power_limit_uw = spel_set_power_limit,
+> +	.get_power_limit_uw = spel_get_power_limit,
+> +	.set_time_window_us = spel_set_time_window,
+> +	.get_time_window_us = spel_get_time_window,
+> +	.get_name = spel_get_constraint_name,
+> +};
+> +
+> +static void spel_init_domains(struct spel_system *sp)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < SPEL_DOMAIN_MAX; i++) {
+> +		struct spel_domain *sd = &sp->domains[i];
+> +
+> +		sd->sp = sp;
+> +		snprintf(sd->name, SPEL_DOMAIN_NAME_LENGTH, "%s",
+> +			 spel_domain_names[i]);
+> +		sd->id = i;
+> +		sd->status_reg = sp->node_base + domain_offsets[i];
+> +
+> +		/* PL1 is always supported (required for powercap registration) */
+> +		sp->limits[i] = BIT(POWER_LIMIT1);
+> +		sd->pl_name[POWER_LIMIT1] = pl_names[POWER_LIMIT1];
+> +	}
+> +}
+> +
+> +static int spel_check_unit(struct spel_system *sp)
+> +{
+> +	u32 value, shift;
+> +
+> +	/* Read power_unit and time_unit from offset 0x0 */
+> +	value = readl(sp->config_base);
+> +
+> +	/*
+> +	 * Unit calculation: 1 / (2^shift)
+> +	 * Masks limit: TIME_UNIT (4 bits, max 15), POWER_UNIT (3 bits, max 7).
+> +	 */
+> +	shift = (value & POWER_UNIT_MASK) >> POWER_UNIT_OFFSET;
+> +	sp->power_unit = 1000000 / (1 << shift);
+> +
+> +	shift = (value & TIME_UNIT_MASK) >> TIME_UNIT_OFFSET;
+> +	sp->time_unit = 1000000 / (1 << shift);
+> +
+> +	/* Read energy_unit from ENERGY_RPT_UNIT_OFFSET */
+> +	value = readl(sp->config_base + ENERGY_RPT_UNIT_OFFSET);
+> +
+> +	/*
+> +	 * Unit calculation: 1 / (2^shift)
+> +	 * Masks limit: ENERGY_UNIT (4 bits, max 15).
+> +	 */
+> +	shift = (value & ENERGY_UNIT_MASK) >> ENERGY_UNIT_OFFSET;
+> +	sp->energy_unit = ENERGY_UNIT_SCALE * 1000000 / (1 << shift);
+> +
+> +	dev_dbg(sp->dev, "Units: energy=%dnJ, time=%dus, power=%duW\n",
+> +		sp->energy_unit, sp->time_unit, sp->power_unit);
+> +
+> +	return 0;
+> +}
+> +
+> +static void spel_detect_powerlimit(struct spel_domain *sd)
+> +{
+> +	struct spel_system *sp = sd->sp;
+> +	u32 capabilities;
+> +	int i, j;
+> +
+> +	capabilities = readl(sp->config_base + LIMITS_CAPABILITY_OFFSET);
+> +
+> +	/* Detect power limits from hardware capabilities */
+> +	for (i = POWER_LIMIT2; i < NR_POWER_LIMITS; i++) {
+
+For my understanding, why is it starting at POWER_LIMIT2 ?
+
+> +		for (j = 0; j < ARRAY_SIZE(constraints); j++) {
+> +			struct spel_constraint_info *ci = &constraints[j];
+> +
+> +			if (ci->domain_id == sd->id && ci->pl_id == i) {
+> +				if (capabilities & ci->supported_mask) {
+> +					sp->limits[sd->id] |= BIT(i);
+> +					sd->pl_name[i] = pl_names[i];
+
+So, that explains the is_pl_valid()
+
+Please do not use duplicated array with non-NULL pointer checks
+
+Or sd->pl_name[] contains all the *valids* power limits, so its size is 
+different than (or equal to) pl_names. Or it is a fixed array with a 
+structure containing a flag telling if it is enabled or not.
+
+No need to duplicate the array
+
+> +				}
+> +				break;
+> +			}
+> +		}
+> +	}
+> +}
+> +
+
+[ ... ]
+
+> +static void spel_remove(struct platform_device *pdev)
+> +{
+> +	struct spel_system *sp = platform_get_drvdata(pdev);
+> +	int i;
+> +
+> +	if (!sp)
+> +		return;
+
+Why test if the value is correct? There is no reason it changed after 
+'probe' was successful
+
+> +
+> +	/* Unregister in reverse order: children first, then SOC, then SYS */
+> +	for (i = SPEL_DOMAIN_MAX - 1; i >= 0; i--)
+> +		powercap_unregister_zone(sp->control_type, &sp->domains[i].power_zone);
+> +
+> +	powercap_unregister_control_type(sp->control_type);
+> +}
+> +
+> +static const struct of_device_id spel_of_match[] = {
+> +	{ .compatible = "qcom,spel" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, spel_of_match);
+> +
+> +static struct platform_driver spel_driver = {
+> +	.probe = spel_probe,
+> +	.remove = spel_remove,
+> +	.driver = {
+> +		.name = "qcom_spel",
+> +		.of_match_table = spel_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(spel_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm SPEL Powercap Driver");
+> +MODULE_LICENSE("GPL");
 > 
 
-Exactly, the host is combining the 4 DRDYs into an AND gate for the
-offload trigger.
-
-> > Took me a while to get to this. 
-> > 
-> > Another datapoint to perhaps look at is daisychain SPI devices. That's
-> > moderately common on high end ADCs with applications such as electric car battery
-> > monitoring as they need to scale to 100s of devices and separate CS for each would
-> > be a pain.  
-> > 
-> > For those we just handled it in the ADC driver.
-> > 
-> > If we need to have a device specific aggregator driver to make any scheme work
-> > then it might be better to just make it a driver problem.
-> > 
-> >>>
-> >>> Do we have any FPGA IP for high speed transfers? If so, it would be nice
-> >>> to have it in the above diagram.
-> >>>   
-> >>
-> >> We only use the SPI-engine offload with the new multilane data feature.
-> >>
-> >>>> To summarize, the devices share SPI pins such as SCLK and MOSI, but have individual
-> >>>> chip-selects and MOSIs (we can consider individual SPI interfaces). The ideia
-> >>>> is to allow users to aggregate these devices so they can be read simultaneously
-> >>>> from the user space.
-> >>>>
-> >>>> I found a similar case here involving the AD4880 (ad4080 driver), which consists
-> >>>> of two independent ADC channels, each with its own SPI interface for configuration.
-> >>>> In that instance, the ancillary device feature was used because it was considered
-> >>>> the approach of a single device with independent channels rather than independent
-> >>>> devices connected together. Additionally, the backend handled the buffered data
-> >>>> aggregation.
-> >>>>
-> >>>> However, I would like to discuss a more generic approach to support device aggregation
-> >>>> across different drivers. Marcelo suggested a while ago to consider the components
-> >>>> framework. This would allow us to create a virtual device responsible for 
-> >>>> aggregating and controlling the sub-devices in a standard yet flexible manner.  
-> >>>
-> >>> component might fit here but it has it's limitations and I fear (one of
-> >>> the reasons I did not used for the backend stuff) is that it looks too geared for DRM. But yeah,
-> >>> in theory is more or less what we have here with the distinction (I
-> >>> think) that the type of devices are actually different :).
-> >>>   
-> >>
-> >> Yes, they are different, but i did not find something more similar. Here
-> >> the goal is to define a standard way of aggregating multiple devices
-> >> from the same driver.
-> >>
-> >>>>
-> >>>> The aggregate driver could either be an extension to the main driver (e.g. ad7768-1.c),
-> >>>> or a separate file (e.g. ad7768-1-agreegator.c).   
-> >>>
-> >>> I guess we could support this in the main driver (more on this below).
-> >>>   
-> >>>>
-> >>>> Here's an example of how the devicetree would look like: 
-> >>>> (includes the multiple data lanes feature)
-> >>>>
-> >>>> spi {
-> >>>>     #address-cells = <1>;
-> >>>>     #size-cells = <0>;
-> >>>>
-> >>>>     /* AD7768-1 physical devices */
-> >>>>     adaq7768_1_0: adaq7768-1@0 {
-> >>>> 	compatible = "adi,adaq7768-1";
-> >>>> 	reg = <0>;  /* CS0 - First physical device */
-> >>>>         spi-tx-lane-map = <0>;
-> >>>>         spi-rx-lane-map = <0>;
-> >>>> 	/* other properties */
-> >>>>     };
-> >>>>
-> >>>>     adaq7768_1_1: adaq7768-1@1 {
-> >>>>         compatible = "adi,adaq7768-1";
-> >>>>         reg = <1>;  /* CS1 - Second physical device */
-> >>>>         spi-tx-lane-map = <0>;
-> >>>>         spi-rx-lane-map = <1>;
-> >>>>         /* other properties */
-> >>>>     };
-> >>>>
-> >>>>     adaq7768_1_2: adaq7768-1@2 {
-> >>>>         compatible = "adi,adaq7768-1";
-> >>>>         reg = <2>;  /* CS2 - Third physical device */
-> >>>>         spi-tx-lane-map = <0>;
-> >>>>         spi-rx-lane-map = <2>;
-> >>>>         /* other properties */
-> >>>>     };
-> >>>>
-> >>>>     adaq7768_1_3: adaq7768-1@3 {
-> >>>>         compatible = "adi,adaq7768-1";
-> >>>>         reg = <3>;  /* CS3 */
-> >>>>         spi-tx-lane-map = <0>;
-> >>>>         spi-rx-lane-map = <3>;
-> >>>>         /* other properties */
-> >>>>     };
-> >>>>
-> >>>>     /* AD7768-1 aggregator/virtual device */
-> >>>>     quad_adaq7768: ad7768-1-aggregator@4 {
-> >>>>         compatible = "adi,ad7768-1-aggregator";
-> >>>>         reg = <4>; /* ? */
-> >>>>
-> >>>>         adaq7768-components = <&adaq7768_1_0>, <&adaq7768_1_1>, <&adaq7768_1_2>, <&adaq7768_1_3>;
-> >>>>           
-> >>>
-> >>> I guess we can avoid the dummy device! The one having the components
-> >>> with be the main/controller device but I guess we would still need a custom
-> >>> property for the other nodes in case they need to do something specific
-> >>> for this arrangement.
-> >>>   
-> >>
-> >> Yeah, defining one device as the controller looks cleaner, but we still
-> >> have that problem of the main "owning" or using the CS from the other
-> >> devices (if they are registered separately).
-> >>
-> > Long ago I did some thinking about the fidlier problem of aggregating multiple
-> > unrelated device driver buffer outputs - was for sensor fusions stuff.
-> > In the end I concluded it was easier to just do it in user space.  As long
-> > as they ran off the same trigger then the data alignment problem wasn't too hard.
-> > 
-> > Obviously here things are a bit different as the SPI offload IP is doing the
-> > data marshalling.
-> > 
-> >>>   
-> >>>>     };
-> >>>>         
-> >>>> };
-> >>>>
-> >>>> Is it ok to proceed with component helper for this purpose or do we have something
-> >>>> better? If yes, I have some following questions:
-> >>>>   
-> >>>> -> How to read all devices simultaneously in buffer mode given we can't assert   
-> >>>> all CS from the virtual device?  
-> >>>
-> >>> Isn't this also an HW question? Not sure how that can be done
-> >>> simultaneously without some kind of HW synchronization. In SW, I'm not
-> >>> seeing other way other than  N SPI transfers and put them together in the buffer. 
-> >>>   
-> >>
-> >> In HW we have that multiple data lane feature that receives the data
-> >> from eache SDI lane and put them in order (for FIFO mode and offload mode).
-> >> If we are not using offload, we could set N SPI transfers and then
-> >> aggregate them into one buffer. But how to do that in offload? We cannot
-> >> control the CS mask from userspace.
-> > 
-> > If it's not doing hardware offload is it worth the pain?  Easy enough to do
-> > it in userspace - particularly if we have timestamps as a bit of nearest
-> > timestamp maths allows easy buffer alignment.
-> > 
-> 
-
-We had a 'hack' in the HDL where we tied the CS pins to activate them at
-the same time, but since we are aiming to handle each device indually it
-would be nice to at least enable all CS defined in the devicetree. It is
-strange that we can define up to 8 CS for one device, but the spi-engine
-only selects the first one.
-
-> For this type of SPI controller where it can read multiple data
-> channels at the same time, the .dts should look like this:
-> 
-> spi {
->     #address-cells = <1>;
->     #size-cells = <0>;
-> 
->     adc@0 {
-> 	compatible = "adi,adaq7768-1";
-> 	reg = <0>, <1>, <2>, <3>;
->         
->         spi-rx-bus-width = <1>, <1>, <1>, <1>;
-> 
-> 	/* other properties */
->     };
-> };
-> 
-> The reg property is the 4 CS lines and spi-rx-bus-width having 4 items means
-> that the controller has four SDI lines (the value <1> could be different if
-> each data channel/device was dual or quad SPI).
-> 
-> This goes along with what jic23 suggested about making it similar to
-> what we do with daisy-chaining.
-> 
-
-Since last week I have been testing  the approach you and jonathan suggested,
-handling the multiple device support within the driver and using the multiple
-data lane. Additionally, I have included the ancillary device to manage
-the devices individually when required (and to make it easier to write
-and read using regmap), but some other problems came up:
-
-* When addressing the devices/channels individually, I would like to
-select only the respective SDI lane on each transfer, but with the 
-ancillary interface there's no way to define a rx lane mapping.
-
-e.g: If we want to read a register from the device 2 (index 1), the
-ideal scenario is to activate only the SDI1, so the controller writes
-the right value into the read buffer. Without this mapping, we get
-the trash from the lane SDI0.
-
-can we add some new parameter to set the rx/tx lane mapping in the
-devm_spi_new_ancillary_device()?
-
-* This driver registers a regulator and a GPIO provider associated with
-the main SPI device. Can we register them for each ancillary device too
-or this is not allowed? I am still confused on how to handle this kind
-of situation.
-
-> The only tricky part with that is when devices don't share all of the
-> same of another property. For example, in the wiring diagram above, I
-> see that the DRDY lines are not connected together. But I would assume
-> that everything else is the same (all chips share the same power supplies,
-> etc.).
-> 
-
-Yeah, since the DRDYs are reduced to one pin in the controller, this is
-not an issue for now. What concerns me more are the PGA and GPIO provider,
-since each device has it own pins.
-
-> We would need to modify devicetree bindings a bit in cases where a property
-> needed a per-chip value. But I think that this happens rarely enough, that we
-> can just do that on an as-needed basis rather than trying to make every property
-> support multi-device use.
-> 
-> 
-
-> 
-> >>
-> >>> thou>   
-> >>>> -> Should the physical devices be registered in IIO during probe, or should only  
-> >>>> the aggregator be exposed to control attributes and general configuration?  
-> >>>
-> >>> Good question but it would likely make for a better/simpler interface if only
-> >>> one device was registered (with multiple channels - depending on the
-> >>> number of devices). Similar to backends. I guess the idea is also to
-> >>> only have one IIO buffer for all the channels?
-> >>>   
-> >>
-> >> Yes, the ideia is to have a single buffer to allow reading them
-> >> simultaneously from the userspace.
-> >>
-> >>> Or, IIUC, at the very least, only the aggregator could expose a buffer.
-> >>> But again, linking the other device channels to the buffer is not really
-> >>> doable without major changes in the core.
-> >>>
-> >>> Something that also just come to my mind! What about the IIO inkernel
-> >>> interface and things like 
-> >>>
-> >>> industrialio-buffer-cb.c
-> >>> industrialio-hw-consumer.c
-> >>>
-> >>> Maybe they have some limitations but something that we can work on? Not
-> >>> sure though...
-> >>>   
-> >>
-> >> The Inkernel is interesting, I will see what can be done to cover this
-> >> case.
-> > 
-> > How common do we think this requirement is?  If it's just a couple of
-
-For now, only two drivers have this requirement.
-
-> > devices I'd go a similar route to the daisy chaining case and do
-> > something in the specific driver.  Maybe the only point of generalization
-> > is the dt-bindings if we got that way.  Designing that to maybe let
-> > us do a generic answer in the long term might be the right compromise
-> > in not adding complexity to the core until it's proven to be needed.
-> > 
-> > Now if you have customers asking for it on 10 different devices today then
-> > sure let's look at it sooner!  Even then it might be some library code that
-> > the drivers use rather than big changes to the data flow in the IIO core.
-> > 
-> > Jonathan
-> > 
-> >>
-> >>> - Nuno Sá
-> >>>   
-> >>>>
-> >>>> Regards,
-> >>>> Jonathan S.
-> >>>>   
-> >>
-> > 
 
