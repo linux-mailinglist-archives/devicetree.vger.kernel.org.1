@@ -1,149 +1,207 @@
-Return-Path: <devicetree+bounces-303106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303107-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qD9ZAAbLFWqQbgcAu9opvQ
-	(envelope-from <devicetree+bounces-303106-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:32:06 +0200
+	id OFoVA03LFWqQbgcAu9opvQ
+	(envelope-from <devicetree+bounces-303107-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:33:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027175D9BDB
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:32:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C8D5D9C1E
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:33:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AB4473003831
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:17:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2339430074E7
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C646D3B0AF5;
-	Tue, 26 May 2026 16:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD863B27E8;
+	Tue, 26 May 2026 16:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Mc3LCoEV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yo9UtqCi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783E93AFAF5;
-	Tue, 26 May 2026 16:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089503B19C1;
+	Tue, 26 May 2026 16:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779812245; cv=none; b=OCaH8RlHAeyGaTmQ6b6E7ph4aN0ZqEaliBfhI6CLFR22UuFQjEpWaZzEEziDMrD5c977hoiKWzTMC26FMwfCdi1cL0A5AaiHRDcqREoWBRNUW6CHeTon/aXEO7XG0ZxIu3o6z96mbig/a9rrP8PEG200ntXtc0w65vWj7eoE0Bc=
+	t=1779812384; cv=none; b=IkpZ49XB/VP7Blf9M0thRQJXLWxKdKxXECeq7ZO8s51X/xSy35Tiu2HkV/QngNq8hhZQcaxt1TuSQdoiHlzt0vDFRKsxPbNi75z8MaX4VBlhXToVGP4pNSRKt6fYHWhQaWh7On/1aUOH5EhGMG+uaiwXNDPuslWw4lM2VynzHGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779812245; c=relaxed/simple;
-	bh=B1fXvmrxn+xJ9dJrYlmoayWeTadZmztpSQlgKjR61xU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CtT2EhCPlbtA7ghyFUAnF+1yrYyDHBmf4xjqkVo6TNFV4lgHi68JMMEngo/i5mb3Dez1BCM72jF3ZVUnG+3Ze32CjAWJvJttcNFSWhr8iSJ6gp72a+d6NxteEiLgqEx3UzJQexjOQR7U2C6IbG2siHpk3R8hc7+13l3qX4qUVY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Mc3LCoEV; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from killaraus.ideasonboard.com (unknown [146.0.28.163])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1C3FD1176;
-	Tue, 26 May 2026 18:17:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1779812224;
-	bh=B1fXvmrxn+xJ9dJrYlmoayWeTadZmztpSQlgKjR61xU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mc3LCoEV01D+bMLgGQYxAEDMoYrGepDuJiX+BlMhJ2dqnEff7bVB3QpffALLttQCo
-	 N3qLoojUVsJzoNvuPwBW+/xMAOmtljRiUiNuzEifLtsNAYhHHSHGV2eXFero9Yj9D2
-	 BZtiPDyQCnZ+ZEkUeIcjwSDtX+7lPtbLfwPfXrMo=
-Date: Tue, 26 May 2026 18:17:21 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v12 1/2] media: dt-bindings: nxp,imx8-isi: Drop
- fsl,blk-ctrl requirement for i.MX8ULP
-Message-ID: <20260526161721.GF228394@killaraus.ideasonboard.com>
-References: <20260424-csi2_imx8ulp-v12-0-da148eabc035@oss.nxp.com>
- <20260424-csi2_imx8ulp-v12-1-da148eabc035@oss.nxp.com>
+	s=arc-20240116; t=1779812384; c=relaxed/simple;
+	bh=wX2T5ahvstsTUsFSPRjOm+/tVg+aRKBtV87CTIy5V6I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZPGB0kum2T+1EECbL+wI3rfMRtbUSsxux4z8JXkNOFOM+f64hw5NwIWMMjUYLPB789wUKBOvqPoRmZkb/Qd7XGG+4zIxsZo/wHbtPdURTyLf5Lf/Ob11jkq5K3scxfxIEWLAz+HYvqHpK4kkMW/iIkt0+AQI1xzZAXKfNSDJ//w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yo9UtqCi; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D70FF1F000E9;
+	Tue, 26 May 2026 16:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779812379;
+	bh=lAMKO1kZvGxwn34y0wDp/WK+Var13mYqDq3n4y67LBY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Yo9UtqCiNUuq5j6nr2HFIkBedT5GTtHZ0fgXtXtGkTPRaVvdrBfNGGH2cLbaRU0Jg
+	 cbZXrea07Hz2DOfNAjLt4dNwDLBDSrRw4jKKWH6nBSEBVA8juuqa+mAeTC1FtVQX2R
+	 PAplWQUCIxhuTeBTdevFiCz9MEr8wjLNJW2G0/v+bgu83BbkFGc6ywyg94WTnaI+EP
+	 Wu9ShXGnfEYQXtpFqLdby9l8lXOk+tarSoQ4r0Ms392EhilO44LG3IBXdAFLpzsyhG
+	 bxou3+fHdzBORci9n5CB2ECi6eOSgBnY34vp/IAjEswaefCwYlS8WQ45FYWAxn1Z0e
+	 Z/fPVy25Nz58A==
+Date: Tue, 26 May 2026 17:19:30 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Wadim Mueller <wafgo01@gmail.com>
+Cc: lars@metafoo.de, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux@roeck-us.net, jdelvare@suse.com, ak@it-klinger.de,
+ linux-iio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v1 2/4] dt-bindings: iio: flow: add Sensirion SLF3x
+ liquid flow sensor
+Message-ID: <20260526171930.0db4125e@jic23-huawei>
+In-Reply-To: <20260524205112.26638-3-wafgo01@gmail.com>
+References: <20260524205112.26638-1-wafgo01@gmail.com>
+	<20260524205112.26638-3-wafgo01@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260424-csi2_imx8ulp-v12-1-da148eabc035@oss.nxp.com>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303106-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303107-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,ideasonboard.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nxp.com:email,killaraus.ideasonboard.com:mid]
-X-Rspamd-Queue-Id: 027175D9BDB
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.8:email,cmblu.de:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 07C8D5D9C1E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Guoniu,
+On Sun, 24 May 2026 22:49:37 +0200
+Wadim Mueller <wafgo01@gmail.com> wrote:
 
-Thank you for the patch.
+> From: Wadim Mueller <wadim.mueller@cmblu.de>
+>=20
+> Add a DT binding for the Sensirion SLF3x family of I2C liquid-flow
+> sensors.  A single 'sensirion,slf3s' compatible is exposed because
+> the sub-types share the same register map and are detected at
+> runtime via the product-information register.
+>=20
+> Signed-off-by: Wadim Mueller <wadim.mueller@cmblu.de>
+Hi Wadim.
 
-On Fri, Apr 24, 2026 at 02:49:50PM +0800, Guoniu Zhou wrote:
-> The i.MX8ULP variant does not require the fsl,blk-ctrl property. Add
-> fsl,imx8ulp-isi to the exception list alongside fsl,imx91-isi.
-> 
-> Fixes: 288517a3c6c9 ("dt-bindings: media: nxp,imx8-isi: Add i.MX8ULP ISI compatible string")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+A few things inline.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Thanks,
+
+Jonathan
 
 > ---
-> Changes in v12:
-> - New added in v12
-> ---
->  Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> index b59c4ce30b8b..279c9cd3034a 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-> @@ -117,7 +117,9 @@ allOf:
->          compatible:
->            not:
->              contains:
-> -              const: fsl,imx91-isi
-> +              enum:
-> +                - fsl,imx8ulp-isi
-> +                - fsl,imx91-isi
->      then:
->        required:
->          - fsl,blk-ctrl
+>  .../bindings/iio/flow/sensirion,slf3s.yaml    | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/flow/sensirion,=
+slf3s.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/flow/sensirion,slf3s.y=
+aml b/Documentation/devicetree/bindings/iio/flow/sensirion,slf3s.yaml
+> new file mode 100644
+> index 000000000..5ef62435f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/flow/sensirion,slf3s.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/flow/sensirion,slf3s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sensirion SLF3x liquid flow sensor
+> +
+> +maintainers:
+> +  - Wadim Mueller <wadim.mueller@cmblu.de>
+> +
+> +description: |
+> +  Family of digital liquid-flow sensors from Sensirion with I2C interfac=
+e.
+> +  The same register map is shared by all family members; sub-types differ
+> +  only in the flow scale factor exposed by the device and are detected at
+> +  probe time via the product-information register.
 
--- 
-Regards,
+Because that doesn't work for fallback compatibles, we often give devices
+their own compatibles anyway. Fine to also detect in driver but if we get
+something that falls back to an SLF3S-0600F I don't think there is any reas=
+on
+to think the subtype will match, so we have to trust DT to have given us
+all the necessary info.
 
-Laurent Pinchart
+> +
+> +  Supported sub-types:
+> +    - SLF3S-0600F (calibrated range =C2=B12 ml/min)
+> +    - SLF3S-4000B (calibrated range =C2=B180 ml/min)
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sensirion,slf3s
+
+If you don't expect to add  more sensors this in near future would be fine
+as a const rather than an enum.
+
+> +
+> +  reg:
+> +    maxItems: 1
+
+There seems to be an irq. Given bindings should be complete that should
+be here even if the driver doesn't use it.
+
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+vdd-supply presumably needed for device to function so should be here.
+=46rom dt-binding point of view we don't care about the kernel providing
+stub regulators etc.  The supply documentation should reflect what must
+actually be supplied.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      flow-sensor@8 {
+> +        compatible =3D "sensirion,slf3s";
+> +        reg =3D <0x08>;
+> +        vdd-supply =3D <&reg_3v3>;
+> +      };
+> +    };
+
 
