@@ -1,145 +1,277 @@
-Return-Path: <devicetree+bounces-302943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-302946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QGkhMAxoFWqyUwcAu9opvQ
-	(envelope-from <devicetree+bounces-302943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:29:48 +0200
+	id 8OSEKF9nFWqtUwcAu9opvQ
+	(envelope-from <devicetree+bounces-302946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:26:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0358C5D3566
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:29:47 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D245D344D
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 11:26:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 564FB300275C
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 09:24:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BC30030143E8
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 09:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13A43911B8;
-	Tue, 26 May 2026 09:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368103D6CD3;
+	Tue, 26 May 2026 09:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NePOCBvD"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Hv5fxuyb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012046.outbound.protection.outlook.com [52.101.66.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF11359A89
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 09:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779787460; cv=none; b=iGo+85kN9w/yX/mtN0zJTARWgxyzRyGU2PL5ITtYipKYfNeVqF1vnCluHuJbSAcG//cYvfVvQvsddrC+uH/lXjpzQVv871HAA2bPftKFHk3+I2RQQuQ+5XjKVIW9giUkwcM6Mu7nCUNSfaYS1Pn5DliiLOPfpa4A6xmAlWKODug=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779787460; c=relaxed/simple;
-	bh=u9JDp64ZBU3eF18Yxq8s0l7z6aRefWMoRFuu2reX2go=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=rPhaGsCDHfKrs7iNrzICvNk5eZZ1KOfdH2rrxXbJYPIlhBiEnWP3ppGSjLsbPfCqWCUzFVf4/v1CIzhl03vYjndULPSODYooKVpwZGfFE5KlvxOZzxI0pBHq9G2ic28PT23QNQMwt70iMkVpiNdltW2uGgcLJcFk/0v/XfjWQwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NePOCBvD; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 220931F000E9;
-	Tue, 26 May 2026 09:24:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779787459;
-	bh=4Tu4Be7WdjRr+KdhWLALF5Rvb+DVKhcVuTqdv8tkDxQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=NePOCBvD8xRietHAADy7qVg0Z4XSl8jyXxQeLZ4ZCllX9m9lhvw2q3O63YKu5fjeQ
-	 Oklzx53DYrYC+c3DjVyU+4pf0fwtXDOCKkfdnrDn6g8UatDPEx/fZ7e4yTztUet2oS
-	 62t+PPOh5YodagKM3SInHQyEJgLsPCTwRqASZuatkDZBkGnqJqQeF23tkMwQV8IgHZ
-	 WU44y+xqx3/KvgAM9BxXNxxDcvV/GSEmMo8DdFOz+SgdReVIQ0sU5QQblbCgtokRU9
-	 PeIZX24B2uV5h8M5ljXxy4oD+LApZt/bFt6fdTuz8g1i9NmV3+jPrvyx0ixLxlbLBf
-	 7cPva+t3E7oVA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: socfpga: agilex5: replace clocks
- reference with clock-frequency for dw-apb-timer
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Adrian Ng Ho Yin" <adrian.ho.yin.ng@altera.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <43d6d68a74340a5b513972e8b25c1369b31b130a.1779785788.git.adrian.ho.yin.ng@altera.com>
-References: <43d6d68a74340a5b513972e8b25c1369b31b130a.1779785788.git.adrian.ho.yin.ng@altera.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 26 May 2026 09:24:18 +0000
-Message-Id: <20260526092419.220931F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FCEB3ABDA2;
+	Tue, 26 May 2026 09:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779787612; cv=fail; b=BYlh117aorMOKexfbyOG2Cxfe02bU+ka2xBPQHKC31JP/gpb7Nv1W2WguKeDIk7j8yoNKAuqNDYs+a7wH/sLaRfLTmHayxw6DlCWrFBs0KcHtt/znukkWZYVBWepcCrhDaAVjDHdRD+lsoLwH2196LYLrD89rLVi+1zyxNkf7cY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779787612; c=relaxed/simple;
+	bh=9SB0f4foY8Kt7m6hb999ct/CXUlkCx5kir4mjfXbYTk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=oQ0lWTngwojvdbW6+Q/u+JWcGlJIP4OkXn1a7kdbKai0Bqu3DieLIAd3JF4u9VnD3snAvETCipbX5cc9jMzwfFW0WnOG1CB3bAvoso5CRTWI3F8OcNvoGeoh0m9Icayf1MMCx4MalhSgxEjg5QvDPJMN6dpNcMSo8a7bOWbkboY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Hv5fxuyb; arc=fail smtp.client-ip=52.101.66.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=f44vEUKPzsRc6sPZRoxJ1ulMTx9ALI/i9OworrdM5Uw14ln4kL/+3EdE9WfZzNJ5DtjB69URdKnhmUdnNFAdEO/EPJXs9ZF8hhuhAjkPZ4rlJKkZmBZ4QVL6fMCp2075j7wqgFrx2w17bJ6Y1xG91jVmSMyPjZOhVUUoq24NjgT3JsqjOGJB25S22Vv8H9H4WKZXvylU0nj31eYOqTfBdoQt/pS+8MwHx38qk7xuIvb3e6Sw7PnNpuE9SczDT8F1bABiLc1Gm/gEfOBQ13Z93A2VmAd03E+jwJyhB6tRSYrbpO6T8Ihjfea9qgqqUJA+bcWGg2apxJATy0v9esujkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lF3GowPO+XMJ0UCjcpVn1Fz65F1tQJWibav3wFxTdVs=;
+ b=FbsFabxnV9787SLXylOBAPfcnG3UTTh7C6ErTPwzolW7GmSVvQW44z2aun3+o1C+G6xXNTq92/jW2LrELYiGG2hLheYdAdqcoVW7L8+L4WDT1OIT4qZ2lz6dJNkjAfjaRDTxxxlqVam4EGwac0W0Rdne/DdO3HeY0JIqEBEyn+c+favMqdo/duDF4CyUw2y581gnmhnXsNBwjEkio1QSBPP5AVk3kXfr3akgPWxDt/V4AqbBBBXmMk9i143c+TOFxs9f4nRVy9zgNf4OM4qnFnXfxu/ex4BtzKIY1RnoxEIFEtg0Lb81gDzVwqN/2nH4LM6Hm8SxtuQ3thInF+5hyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lF3GowPO+XMJ0UCjcpVn1Fz65F1tQJWibav3wFxTdVs=;
+ b=Hv5fxuybyCxDQyupC8jfsHM3ee+XjPxcwgSOVsDolXlAz9SwafzUel4Lzos7UdYvtDaoJHVEJ5m7MaegZKa4ppQHzn+I5YW5OYUGKq2DNtpF704bBa6beHlfL6TaVW4pDgmPrVGfTsVSJpVyuiVzZleiXQlTBdjBK0qa/xP4Pvrjt9GdhKe71mh9lMvpeCi1yI6rmJCL1wgI9H+1dYJQrKaBmGyPHUy8E0XiO5tErBCjej+JkNCVw+P2nmmcUmjFc88lNJWYdtejmP001BKV0BW9yQxPARZ3xs82k4d6MwHWZ+4Ty4R3j0BD7UwvkqbpU+/3BnnYvsJ6JMoh7yakpw==
+Received: from CWLP123CA0061.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:59::25)
+ by GV2PR10MB6092.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:7e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Tue, 26 May
+ 2026 09:26:44 +0000
+Received: from AMS1EPF00000091.eurprd05.prod.outlook.com
+ (2603:10a6:401:59:cafe::9c) by CWLP123CA0061.outlook.office365.com
+ (2603:10a6:401:59::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.11 via Frontend Transport; Tue, 26
+ May 2026 09:26:43 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ AMS1EPF00000091.mail.protection.outlook.com (10.167.242.88) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 09:26:43 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Tue, 26 May
+ 2026 11:30:24 +0200
+Received: from localhost (10.48.87.93) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Tue, 26 May
+ 2026 11:26:42 +0200
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v7 0/7] Add boot phase tags for STMicroelectronics boards
+Date: Tue, 26 May 2026 11:26:40 +0200
+Message-ID: <20260526-upstream_uboot_properties-v7-0-e17cd424d5db@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFBnFWoC/43QTWrDMBAF4KsEreswM/p1V71HKcGSpUaLREZyT
+ Evw3SsHSl1cTJdvYL43zJ0Vn6Mv7PlwZ9lPscR0rUE/HZg7d9d338S+ZkZAEhGpuQ1lzL67nG4
+ 2pfE05DT4PFaiIRIGLFhh0bG6P2Qf4sfDfn2r+RzLmPLno2rCZfofdcIGGrDYIucawfOXkEo5l
+ vHo0oUt7kRrS+xZVC2ujQhBKdN52Fr821KAYPYsXi2Htu1FIOdNv7XE2mr3LFEtLT0oJbVT8Md
+ dcmUR37NktSQq3VLbyy7IraV+LIJdSy2/74gMeCN6jr+teZ6/AHZsYdNAAgAA
+X-Change-ID: 20251112-upstream_uboot_properties-22480b0b4b1c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Patrick Delaunay <patrick.delaunay@foss.st.com>, Christoph Niedermaier
+	<cniedermaier@dh-electronics.com>, Marek Vasut <marex@denx.de>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kernel@dh-electronics.com>, Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF00000091:EE_|GV2PR10MB6092:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7f8f24d-95d4-4e3b-4f82-08debb08e68e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700016|11063799006|3023799007|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	hMd5tJUBxwZSedEvFkRVZdYa499ADXCVI7YPQvak3YZ4EFJuoB3+rx6Gnq+3SojOfJvyMm6LfLUYZAQjJU0Ij35x/3hf+KccjtaZQVulQfhWeTLeU6BZJQbzURvg6D+rlTZyPxfmBNw9SIhB+0BKtLQLfeEi4oOxM1Jmy3TNwWMh3wxBPIEA6CSjgrhHtf5vTZ/ZKeZGYRCs8w4U73l9zs+HZq4Mow3HwkIxOqfkbPsLF0iYwiXBDrNqLVO4QMH1sJR+XMz4b3v9ypK7mRVlFYkIKbSrDXB/AHQ1i3Y18Tch+Y5icqMxzQtO2ymK4D58EhICWXGwrRLdjk0ZKCSxk0nPdw8Jbzk6pojIq576hOC5q4y3yhuebcW4TjU80NoFcB4ERsvuMLuAB+mVk7Mjuy73OQi8/lQsnzdNCF9ylAVim5FdtKzy10pHIWeISi+0h8+5LpiDBKI5tr0v5E0CjqWAQA0octaJw3UVlD9aGBU9NOFUOJbj+Vup1wOp1x93O3LulUXwnf27XXBP1msqdpjebDqEW1dtusGlCrZiAdHeETIcDIo06QJP0v0J4vDKPPRCRom6b8VES+W3XIJLTJolpcV6cSwPVPccoCghUIB2A4N1QHQfa2aW5wM/zuBPKquXJRg9Ig9vMi2XwDuBeZdKrGrOu8v2MeyNPcRdjAmYOirJYMvpGiws/kv6EiIaXGC2g2JwTl5z/rnbRDyYQP1tBFMbZ8MJLVjlJ07J1j9DkSXOTRO1M3C1RtznVHtX
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700016)(11063799006)(3023799007)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	URprcZgx2kwFe4eBBc7+8STxzs/zy5M2FH0Y3144yPgVAw1dIOleEPF/mw//Y0ADfghYjpKfgmVL2KWywu3S0ZbFWDqzt7+dYq82RVyaXVpgPu29z3UGk2hfhrVO36XusghyfPEuw247e8pfU3hZtws36kwG686Rs0/RHgJrs/SH/53RIHELExUMMEzYUPiunYLeUYNwNy0TE7JiefvImcAcj3a9zf14DCWbe90S893TaJ4rBikunWgRUzC3zi2bgZSqHNxPw192GivuxMe78x8V7SQhHR+a9wDFNLSkWdm9ozBERTSrAUP0xcbdbPGCbImHGzDg9DSsRWmoAGsTG5bxH/oyEcRFSh08SXHbsxuZ1G72Aat/q2nH/Bq3AGvbhXH6C6M0e3KPcGnQD96mGqvD2DhH1C28UT0QgesL0wAUrDqrJofJ7A2ZPlT5IukA
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 09:26:43.4529
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7f8f24d-95d4-4e3b-4f82-08debb08e68e
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF00000091.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR10MB6092
 X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-302943-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-302946-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com,dh-electronics.com,denx.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:mid,foss.st.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,st.com:email];
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[altera.com:email,sashiko.dev:url,10c03000:email,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid]
-X-Rspamd-Queue-Id: 0358C5D3566
+	FROM_NEQ_ENVFROM(0.00)[patrice.chotard@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 12D245D344D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Replacing 'clocks' with a static 'clock-frequency' property to w=
-ork around a Linux driver probe ordering issue violates the principle that =
-Device Tree describes hardware topology, not OS software state.
---
+The bootph-all flag was introduced in dt-schema
+(dtschema/schemas/bootph.yaml) to define node usage across
+different boot phases.
+    
+To ensure SD boot, timer, gpio, syscfg, clock and uart nodes need to be
+present in all boot stages, so add missing bootph-all phase flag
+to these nodes to support SD boot.
 
-commit a7903d7afbf4e7139441f7d02ec41f33a88a0de2
-Author: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+---
+Changes in v7:
+- Rebase on top of stm32-next.
+_ Fix sdmmc2_b4_pins_a's node in stm32mp15xx-dhcom-som.dtsi.
+- Link to v6: https://lore.kernel.org/r/20260203-upstream_uboot_properties-v6-0-0a2280e84d31@foss.st.com
 
-arm64: dts: socfpga: agilex5: replace clocks reference with clock-frequency=
- for dw-apb-timer
+Changes in v6:
+- Add bootph-all property in syscfg node of stm32mp215f-dk.dtsi.
+- Split patch 4 in 2 parts, first part for reordering nodes, second part
+  for adding bootph-all property.
+- Rebase on top of stm32-dt-for-v6.20-1.
+- Link to v5: https://lore.kernel.org/r/20260123-upstream_uboot_properties-v5-0-5167929d5af5@foss.st.com
 
-This commit replaces the clocks and clock-names properties with a hardcoded
-clock-frequency property for the dw-apb-timer nodes in the Agilex5 device
-tree. This is done to bypass a Linux probe ordering issue where the timer
-initialization runs before the clock manager driver.
+Changes in v5:
+- Initial implementation allows to factorize and add bootph-* properties in a limited number of DT files.
+  After internal discussion with Alexandre, choice has been done to add bootph-* properties only
+  in board DT files instead of SoCs/pinctrl/boards DT files.This impacts a greater number of DT boards files.
+- Link to v4: https://lore.kernel.org/r/20260109-upstream_uboot_properties-v4-0-75e06657c600@foss.st.com
 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/=
-boot/dts/intel/socfpga_agilex5.dtsi
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> @@ -430,32 +430,28 @@ timer0: timer0@10c03000 {
->  			compatible =3D "snps,dw-apb-timer";
->  			reg =3D <0x10c03000 0x100>;
->  			interrupts =3D <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks =3D <&clkmgr AGILEX5_L4_SP_CLK>;
-> -			clock-names =3D "timer";
-> +			clock-frequency =3D <100000000>;
->  		};
+Changes in v4:
+- Remove useless nodes in stm32mp15-scmi.dtsi
+- Link to v3: https://lore.kernel.org/r/20260108-upstream_uboot_properties-v3-0-c1b9d4f2ce8d@foss.st.com
 
-[Severity: Medium]
-Is this modifying the device tree to work around an OS software state issue
-rather than describing the hardware topology? Replacing the physical clocks
-reference with a static clock-frequency bypasses the actual hardware link.
+Changes in v3:
+- Remove duplicate bootph-all property in ltdc node
+- Link to v2: https://lore.kernel.org/r/20251114-upstream_uboot_properties-v2-0-3784ff668ae0@foss.st.com
 
-Could the clock provider be registered early using CLK_OF_DECLARE instead
-of removing the clocks property?
+Changes in v2:
+- Fix 'pinmux' is a required property for arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dtb
+- Add bootph-all property for lvds and ltdc nodes for stm32mp2
 
-[ ... ]
+---
+Patrice Chotard (7):
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics f4 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics f7 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics h7 boards
+      ARM: dts: stm32: Sort uart nodes by alphabetical order in stm32mp13xx-dhcor-som.dtsi
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp13 boards
+      ARM: dts: stm32: Add boot phase tags for STMicroelectronics mp15 boards
+      arm64: dts: st: Add boot phase tags for STMicroelectronics mp2 boards
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1779785788.gi=
-t.adrian.ho.yin.ng@altera.com?part=3D1
+ arch/arm/boot/dts/st/stm32429i-eval.dts            |  80 ++++++++++
+ arch/arm/boot/dts/st/stm32746g-eval.dts            |  10 ++
+ arch/arm/boot/dts/st/stm32f429-disco.dts           |  80 ++++++++++
+ arch/arm/boot/dts/st/stm32f469-disco.dts           |  72 +++++++++
+ arch/arm/boot/dts/st/stm32f746-disco.dts           |  75 +++++++++
+ arch/arm/boot/dts/st/stm32f746.dtsi                |   2 +-
+ arch/arm/boot/dts/st/stm32f769-disco.dts           |  76 ++++++++-
+ arch/arm/boot/dts/st/stm32h743i-disco.dts          |  69 ++++++++
+ arch/arm/boot/dts/st/stm32h743i-eval.dts           |  69 ++++++++
+ arch/arm/boot/dts/st/stm32h747i-disco.dts          |  69 ++++++++
+ arch/arm/boot/dts/st/stm32h750i-art-pi.dts         |  69 ++++++++
+ arch/arm/boot/dts/st/stm32mp131.dtsi               |   4 +-
+ arch/arm/boot/dts/st/stm32mp135f-dhcor-dhsbc.dts   |  21 +++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts            | 101 ++++++++++++
+ arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi    | 145 ++++++++++++++---
+ arch/arm/boot/dts/st/stm32mp151.dtsi               |   2 +-
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts      |  19 +++
+ .../st/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts |   1 +
+ .../dts/st/stm32mp157a-icore-stm32mp1-ctouch2.dts  |  25 +++
+ .../dts/st/stm32mp157a-icore-stm32mp1-edimm2.2.dts |  26 +++
+ .../boot/dts/st/stm32mp157a-icore-stm32mp1.dtsi    | 100 ++++++++++++
+ ...m32mp157a-microgea-stm32mp1-microdev2.0-of7.dts |  27 ++++
+ .../stm32mp157a-microgea-stm32mp1-microdev2.0.dts  |  27 ++++
+ .../boot/dts/st/stm32mp157a-microgea-stm32mp1.dtsi |  97 ++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-dk2-scmi.dts      |   5 +
+ arch/arm/boot/dts/st/stm32mp157c-dk2.dts           |   1 +
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts      |  19 +++
+ arch/arm/boot/dts/st/stm32mp157c-ed1.dts           | 151 ++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts      |   5 +
+ arch/arm/boot/dts/st/stm32mp157c-ev1.dts           |  38 +++++
+ arch/arm/boot/dts/st/stm32mp157c-lxa-mc1.dts       |   1 +
+ arch/arm/boot/dts/st/stm32mp157c-odyssey-som.dtsi  | 119 ++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-odyssey.dts       |  21 +++
+ arch/arm/boot/dts/st/stm32mp157c-osd32mp1-red.dts  |   1 +
+ arch/arm/boot/dts/st/stm32mp157f-dk2-scmi.dtsi     |   5 +
+ arch/arm/boot/dts/st/stm32mp157f-dk2.dts           |   1 +
+ arch/arm/boot/dts/st/stm32mp15xx-dhcom-pdk2.dtsi   |   2 +-
+ arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi    | 175 +++++++++++++++++++++
+ .../boot/dts/st/stm32mp15xx-dhcor-avenger96.dtsi   |  55 +++++++
+ .../boot/dts/st/stm32mp15xx-dhcor-drc-compact.dtsi |  50 ++++++
+ arch/arm/boot/dts/st/stm32mp15xx-dhcor-som.dtsi    | 157 ++++++++++++++++++
+ .../boot/dts/st/stm32mp15xx-dhcor-testbench.dtsi   |  50 ++++++
+ arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi          | 122 ++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp211.dtsi             |   4 +-
+ arch/arm64/boot/dts/st/stm32mp215f-dk.dts          |  29 ++++
+ arch/arm64/boot/dts/st/stm32mp231.dtsi             |   4 +-
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts          |  95 +++++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |   4 +-
+ arch/arm64/boot/dts/st/stm32mp255.dtsi             |   2 +-
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts          | 103 ++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         | 105 +++++++++++++
+ 51 files changed, 2552 insertions(+), 38 deletions(-)
+---
+base-commit: a0d6c2a06fffff47bcca4d5bfdab4cc428a315fc
+change-id: 20251112-upstream_uboot_properties-22480b0b4b1c
+
+Best regards,
+-- 
+Patrice Chotard <patrice.chotard@foss.st.com>
+
 
