@@ -1,334 +1,184 @@
-Return-Path: <devicetree+bounces-303112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303114-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFfWAOTNFWoTcAcAu9opvQ
-	(envelope-from <devicetree+bounces-303112-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:44:20 +0200
+	id gMf4AAbOFWoTcAcAu9opvQ
+	(envelope-from <devicetree+bounces-303114-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:44:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F4CE5D9EC4
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:44:18 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A9145D9EE3
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 18:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 056CA30696D4
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:39:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B07173011A69
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 16:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D773CF95C;
-	Tue, 26 May 2026 16:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43373D6478;
+	Tue, 26 May 2026 16:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WV0ha9NB"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="O1S3cvKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71163C9EE5;
-	Tue, 26 May 2026 16:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 828A53D47C0;
+	Tue, 26 May 2026 16:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779813591; cv=none; b=rfcq5M3ts7BDVGwumJEvvgNca6A3zfzWu4v8MTK6sXnbDW9r6xBVNsXEn8idzM5DH0Bt7jUr3p0zdiHN9qyQ/4QfuB+f/iFSGQi63B4C5aSaLbVRUrnhtQgLvH/MqZXY1gBhon9UWZwl81XDS+OyZhvS7vH8llqWQUmUWkF16BE=
+	t=1779813829; cv=none; b=lUad3Tp9pdoFIyx2sr70UehpiADC3rdH0fLMeNoBq1PbmYnqnFCyBq+eV1Ssw3XmV3h263+tlDgkh0a9/ipk/IMmJBvnxVRY7HasfTowea0nBv3VzUra+fetrWmvrqFpc5V2QBfaVUKXysHcZnKm3jg569oe42uji5rla83SxdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779813591; c=relaxed/simple;
-	bh=+frJ8Pa43FttF66gsA7NbEbsqgYo8YOKb2RsU0h6mkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SqF7kLp4ExOxXI7m4nJIgZ45x0ZiK4SWjmNnBZOtkqzcSKQc88goFTqATltucJ6qIs3QZSOQCW1jKIWyAqHcal5bEneBaTKlRjn9/zdz5TzTLgbh+E5jBWjSZ/a4/LUz+EmS8k4MuIvhoEzrokfkLMKKUZiBIabb6bIKx1HGxT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WV0ha9NB; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A92B51F000E9;
-	Tue, 26 May 2026 16:39:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779813589;
-	bh=muQvscvrR0GygbyWY9xTCCnVzYrNRWHq2FyEs8Z2mhg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WV0ha9NBjJDXnyInyw9E6XVFcsb46b1ZidB7yHTv2A+62lesDDMgl4Ymotk9a0Vd6
-	 gdgMrxkfiiZJGFM7Pot5NNyYqyjkfWkhmvm1xZ9Z5+juouZQPlB4Svurg7ThTkimJB
-	 10SKX7kYGXG4sRSwJdYmfM+1TAMz924wXhe0OrXk42QpO+0EkKI2M+1f7qGxtR4GPp
-	 yj5VUIG7Ds8Qmu4CauXb709S45fG7bAZuTjLEeCewOsYnjgwcldzqA4q03TUKCos/k
-	 koeE75BD5mx9DGn4KHXb8E2l6zE69d2n3mzEfI6tjQKNzk8/E0E+EHJz5Bt9c7N6Z3
-	 KUgoUzz4UEDNg==
-Date: Tue, 26 May 2026 17:39:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se, jernej.skrabec@gmail.com,
-	nicolas.frattaroli@collabora.com, cristian.ciocaltea@collabora.com,
-	sebastian.reichel@collabora.com, dmitry.baryshkov@oss.qualcomm.com,
-	luca.ceresoli@bootlin.com, dianders@chromium.org,
-	m.szyprowski@samsung.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 01/10] dt-bindings: display: rockchip: analogix-dp:
- Fix hclk as third clock for RK3588
-Message-ID: <20260526-sizing-slush-ebb20673cdc9@spud>
-References: <20260525125331.140059-1-damon.ding@rock-chips.com>
- <20260525125331.140059-2-damon.ding@rock-chips.com>
- <20260525-ominous-hurling-c24874030f5a@spud>
- <f6c2f07b-52b8-4181-aa1d-a7d8dcda245c@rock-chips.com>
- <0c6299ce-29a6-4443-9877-498d65c8881b@rock-chips.com>
+	s=arc-20240116; t=1779813829; c=relaxed/simple;
+	bh=b+vv3fdajviU31diLGCgiN8TPAbzuV9ZqI0oJ211fKo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Qd7NFEbYU+tuY8ws0CyL0MgfB7pr18zQ76VZTYp+DCBjik5YLoUXqw1y8rMW0YCLzUqo4ilaFdYOkBtjg1nNAiGAJEo9YA26XgogQ1R+LqTGG96oGrDrq/9CgooFWVE2nMMKCxAyyEDd0q0lIj5xyMFOcmXkQwXMpqJhhXwxNYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=O1S3cvKv; arc=none smtp.client-ip=67.231.156.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64QGOCEu2935095;
+	Tue, 26 May 2026 09:43:35 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	pfpt0220; bh=Zz7MftTdMtbpCLnTR6X1mYOZHc1vxcavzEx/I7D1Ds4=; b=O1S
+	3cvKvUUx8rIsQ9NQDIohJ8oDWM7Zvczo9XLwdVdWprvOEHweGj7ZN/XonhuBnkFD
+	zzExY0qOuxfpxkgiOwFQR6+L7itbMK067LJIYOfJ6dU2p03LjJezWUrz5hQxqrTJ
+	OcTYbiZKQieHTpBo7ESf4F5BR6r4o44I5IDQ/lkIwE+Nn5ap1Sk//WLO3I+y2VAF
+	zsHTSeHvGeK2AXY81+uhKGy96uhOh1DCen4eNRqfVjRm03e4AVvf4TCrP8VEaX9t
+	2OUH4b2oQVwTEGUkZqIKybzHkT34a6DchkvHZkza0IlVyu3aHmzdG6zCVVeW8txD
+	IEm1xcqH0y3EPK3oZXw==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 4ebbrf8u9m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 May 2026 09:43:35 -0700 (PDT)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Tue, 26 May 2026 09:43:34 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.25 via Frontend
+ Transport; Tue, 26 May 2026 09:43:34 -0700
+Received: from hyd1soter3.marvell.com (unknown [10.29.37.12])
+	by maili.marvell.com (Postfix) with ESMTP id 5E9713F70C7;
+	Tue, 26 May 2026 09:43:31 -0700 (PDT)
+From: Geetha sowjanya <gakula@marvell.com>
+To: <linux-perf-users@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC: <mark.rutland@arm.com>, <will@kernel.org>, <krzk+dt@kernel.org>
+Subject: [PATCH v6 0/2] perf: marvell: Add CN20K DDR PMU support
+Date: Tue, 26 May 2026 22:13:28 +0530
+Message-ID: <20260526164330.23878-1-gakula@marvell.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Zfz/XMY9sGbWvmeP"
-Content-Disposition: inline
-In-Reply-To: <0c6299ce-29a6-4443-9877-498d65c8881b@rock-chips.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain
+X-Authority-Analysis: v=2.4 cv=epTvCIpX c=1 sm=1 tr=0 ts=6a15cdb7 cx=c_pps
+ a=rEv8fa4AjpPjGxpoe8rlIQ==:117 a=rEv8fa4AjpPjGxpoe8rlIQ==:17
+ a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22 a=l0iWHRpgs5sLHlkKQ1IR:22
+ a=QXcCYyLzdtTjyudCfB6f:22 a=M5GUcnROAAAA:8 a=9AQr2LruEoLi4OK7xoYA:9
+ a=OBjm3rFKGHvpk9ecZwUJ:22
+X-Proofpoint-ORIG-GUID: Tllr-yeZ8g1NOvjYg3bIcSAhhS15GmLs
+X-Proofpoint-GUID: Tllr-yeZ8g1NOvjYg3bIcSAhhS15GmLs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI2MDE0NSBTYWx0ZWRfX8rAeaiuRoXA1
+ oEziy4k/+miTOY1mEridpe9ge8OaJChdfQbFe0FZCcwgxhiZ/fpmwE0elq2IeS9Cr0SlFRXGk6P
+ qy2lVRkOqwfsiTRaPy1ZHDa2mfVANpcA6c8NrJTZ1Lb8CEnzfBQwGsCr7UU0wnZ7pfVMOusBpGI
+ 9IZ4zOvxK4Bz3/crqgArnalYBGhKi4N2k+UzHLpyrNR1pijHBEXa5Wx2RLMNn9drQIb+vmBmS6G
+ Kt4vNnJVOWu27LJtOv0+jXcwFhdsNwqkR5HLrIX50q99PmYGm4IDSOBZ6u2P0fzIKreIVjg8F6q
+ dVtKpEy1RE0B3iurwnnk8SD97dWQWkUYShSIZnMDoqrVZiU9X5SIKBMXavaStLLFboI9ZZ5vWkP
+ OR5WfcD2pxlIJG7+zn9EHEgZxtIoJZItTNqwh7bUGSkyxaUokLPP1YK1AsU3z1bUA+YnMlsEgeY
+ LRWOAbKBMmCO2nxHnwA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-26_04,2026-05-26_03,2025-10-01_01
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[marvell.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[marvell.com:s=pfpt0220];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303112-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[marvell.com:+];
+	TAGGED_FROM(0.00)[bounces-303114-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[gakula@marvell.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-0.995];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 6F4CE5D9EC4
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 9A9145D9EE3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series adds support for the DDR Performance Monitoring Unit (PMU)
+present in Marvell CN20K SoCs.
 
---Zfz/XMY9sGbWvmeP
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The DDR PMU is part of the DRAM Subsystem (DSS) and provides hardware
+counters to monitor DDR traffic and performance events. The block
+implements eight programmable counters and two fixed-function counters
+tracking DDR read and write activity, and is accessed via a dedicated
+MMIO region.
 
-On Tue, May 26, 2026 at 07:27:55PM +0800, Damon Ding wrote:
-> Hi Conor,
->=20
-> On 5/26/2026 8:54 AM, Damon Ding wrote:
-> > Hi Conor,
-> >=20
-> > On 5/26/2026 12:54 AM, Conor Dooley wrote:
-> > > On Mon, May 25, 2026 at 08:53:22PM +0800, Damon Ding wrote:
-> > > > RK3588 eDP controller requires HCLK_VO1 to access the VO1 GRF
-> > > > registers and enable the video datapath.
-> > > >=20
-> > > > Previously, the clock was enabled implicitly via the 'rockchip,vo-g=
-rf'
-> > > > phandle reference, which allowed the eDP to work without explicitly
-> > > > managing the hclk_vo1 clock. However, this is not safe or explicit.
-> > > >=20
-> > > > To make the clock dependency explicit, enforce per-SoC clock-names
-> > > > requirements:
-> > > > =A0 - RK3288: 2 clocks (dp, pclk)
-> > > > =A0 - RK3399: 3 clocks (dp, pclk, grf)
-> > > > =A0 - RK3588: 3 clocks (dp, pclk, hclk)
-> > > >=20
-> > > > Do not reuse the 'grf' clock name for RK3588 because it represents
-> > > > a different clock with distinct control logic:
-> > > > - The 'grf' clock is only for GRF register access and is toggled
-> > > > =A0=A0 dynamically during register access.
-> > > > - The 'hclk' clock controls both GRF access and video datapath
-> > > > =A0=A0 gating, and must remain enabled during probe.
-> > > >=20
-> > > > Fixes: f855146263b1 ("dt-bindings: display: rockchip:
-> > > > analogix-dp: Add support for RK3588")
-> > > > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> > > >=20
-> > > > ---
-> > > >=20
-> > > > Changes in v4:
-> > > > - Modify the commit msg.
-> > > >=20
-> > > > Changes in v5:
-> > > > - Enforce the correct third clock name on a per-compatible basis.
-> > > > - Modify the commit msg simultaneously.
-> > > >=20
-> > > > Changes in v6:
-> > > > - Expand more detail commit msg about using hclk instead of grf clo=
-ck.
-> > > >=20
-> > > > Changes in v7:
-> > > > - List all valid clock names at the top level, and constrain the cl=
-ock
-> > > > =A0=A0 count for each platform with minItems/maxItems in allOf.
-> > > >=20
-> > > > Changes in v8:
-> > > > - Fix indentation to 10 for enum in clock-names property.
-> > > > ---
-> > > > =A0 .../rockchip/rockchip,analogix-dp.yaml=A0=A0=A0=A0=A0=A0=A0 | 3=
-4 ++++++++++++++++++-
-> > > > =A0 1 file changed, 33 insertions(+), 1 deletion(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/display/rockchip/
-> > > > rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/
-> > > > display/rockchip/rockchip,analogix-dp.yaml
-> > > > index d99b23b88cc5..a1ab7a77bdd3 100644
-> > > > --- a/Documentation/devicetree/bindings/display/rockchip/
-> > > > rockchip,analogix-dp.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/rockchip/
-> > > > rockchip,analogix-dp.yaml
-> > > > @@ -26,7 +26,9 @@ properties:
-> > > > =A0=A0=A0=A0=A0 items:
-> > > > =A0=A0=A0=A0=A0=A0=A0 - const: dp
-> > > > =A0=A0=A0=A0=A0=A0=A0 - const: pclk
-> > > > -=A0=A0=A0=A0=A0 - const: grf
-> > > > +=A0=A0=A0=A0=A0 - enum:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - grf
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - hclk
-> > > > =A0=A0=A0 power-domains:
-> > > > =A0=A0=A0=A0=A0 maxItems: 1
-> > > > @@ -60,6 +62,32 @@ required:
-> > > > =A0 allOf:
-> > > > =A0=A0=A0 - $ref: /schemas/display/bridge/analogix,dp.yaml#
-> > > > +=A0 - if:
-> > > > +=A0=A0=A0=A0=A0 properties:
-> > > > +=A0=A0=A0=A0=A0=A0=A0 compatible:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 contains:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 enum:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - rockchip,rk3288-dp
-> > > > +=A0=A0=A0 then:
-> > > > +=A0=A0=A0=A0=A0 properties:
-> > > > +=A0=A0=A0=A0=A0=A0=A0 clocks:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 maxItems: 2
-> > > > +=A0=A0=A0=A0=A0=A0=A0 clock-names:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 maxItems: 2
-> > > > +
-> > > > +=A0 - if:
-> > > > +=A0=A0=A0=A0=A0 properties:
-> > > > +=A0=A0=A0=A0=A0=A0=A0 compatible:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 contains:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 enum:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - rockchip,rk3399-edp
-> > > > +=A0=A0=A0 then:
-> > > > +=A0=A0=A0=A0=A0 properties:
-> > > > +=A0=A0=A0=A0=A0=A0=A0 clocks:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 minItems: 3
-> > > > +=A0=A0=A0=A0=A0=A0=A0 clock-names:
-> > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 minItems: 3
-> > >=20
-> > > If you go back to v6, you'll see that I never asked you to remove the
-> > > explict clock-names from here or below. Only the one from the 3288
-> > > section. The minItems was an addition, not a replacement.
-> > >=20
-> > > pw-bot: changes-requested
-> > >=20
-> >=20
-> > Sorry for the misunderstanding. I will restore the explicit clock-names
-> > definitions and fix this in next version.
-> >=20
->=20
-> Sorry to bother you. I attempted to place the explicit clock-names under
-> minItems:
->=20
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,=
-analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockc=
-hip,analogix-dp.yaml
-> index a1ab7a77bdd3..ef03edf52de8 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogi=
-x-dp.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogi=
-x-dp.yaml
-> @@ -87,6 +87,10 @@ allOf:
->            minItems: 3
->          clock-names:
->            minItems: 3
-> +          items:
-> +            - const: dp
-> +            - const: pclk
-> +            - const: grf
->=20
->    - if:
->        properties:
-> @@ -100,6 +104,10 @@ allOf:
->            minItems: 3
->          clock-names:
->            minItems: 3
-> +          items:
-> +            - const: dp
-> +            - const: pclk
-> +            - const: hclk
->          resets:
->            minItems: 2
->          reset-names:
->=20
-> make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings=
-/display/rockchip/rockchip,analogix-dp.yaml
->=20
-> Then the following errors occurred:
->=20
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   CHKDT   ./Documentation/devicetree/bindings
-> /home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/ro=
-ckchip,analogix-dp.yaml:
-> allOf:2:then:properties:clock-names: 'oneOf' conditional failed, one must=
- be
-> fixed:
->         False schema does not allow 3
->         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'grf'}] is too long
->         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'grf'}] is too sho=
-rt
->         1 was expected
->         3 is greater than the maximum of 2
->         hint: "minItems" is only needed if less than the "items" list len=
-gth
->         from schema $id: http://devicetree.org/meta-schemas/items.yaml
-> /home/ding/drm-misc/Documentation/devicetree/bindings/display/rockchip/ro=
-ckchip,analogix-dp.yaml:
-> allOf:3:then:properties:clock-names: 'oneOf' conditional failed, one must=
- be
-> fixed:
->         False schema does not allow 3
->         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'hclk'}] is too lo=
-ng
->         [{'const': 'dp'}, {'const': 'pclk'}, {'const': 'hclk'}] is too sh=
-ort
->         1 was expected
->         3 is greater than the maximum of 2
->         hint: "minItems" is only needed if less than the "items" list len=
-gth
->         from schema $id: http://devicetree.org/meta-schemas/items.yaml
->   LINT    ./Documentation/devicetree/bindings
->   DTEX Documentation/devicetree/bindings/display/rockchip/rockchip,analog=
-ix-dp.example.dts
->   DTC [C] Documentation/devicetree/bindings/display/rockchip/rockchip,ana=
-logix-dp.example.dtb
->=20
-> Neither keeping only minItems nor only the explicit clock-names causes any
-> errors. Would it be a better idea to keep just the explicit clock-names
-> here?
+CN20K is the successor to CN10K, and the DDR PMU hardware is functionally
+equivalent to the CN10K implementation, with only minor differences in
+register offsets and event mappings. To allow software to distinguish
+between the two silicon variants, this series introduces a specific
+"marvell,cn20k-ddr-pmu" compatible and extends the existing
+marvell_cn10k_ddr_pmu driver to handle CN20K via variant-specific data.
 
-Sure.
+Changes in v6:
+- dt-bindings: Document CN20K in the existing marvell-cn10k-ddr.yaml;
+  add maintainer, description, compatible enum entry, and a CN20K example
+  with unit-address aligned to reg.
+- perf: Route CN20K ZQ events via dedicated sysfs IDs (62/63) and CFG1
+  programming; use (eventid - 42) for CFG1 bit positions and reject those IDs
+  on non-CN20K silicon.
+- perf: Disambiguate CN20K perf width events (58-61) from Odyssey DFI events
+  at the same numeric IDs using an early CN20K branch and fallthrough into the
+  existing DFI + programmable-event path on Odyssey.
+- perf: Run CN20K programmable counters through the same manual-mode / start
+  sequence as Odyssey.
 
-This feels like a bug because I have no idea where the "maximum of 2" is
-coming from. I'll ask Rob about it.
+Changes in v4:
+- Fixed document file name.
 
---Zfz/XMY9sGbWvmeP
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v3:
+- Expanded cover letter and commit message to better describe the DDR PMU
+  hardware and its relationship to CN10K
+- Fixed the file name.
 
------BEGIN PGP SIGNATURE-----
+Changes in v2:
+- Fixed YAML syntax error triggered by a tab character in the examples
+  section, which caused dt_binding_check to fail.
 
-iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCahXMywAKCRB4tDGHoIJi
-0nNxAPdSXs3+yTeA4WF2uX8dr8/6syoPbTc3u7WbdikCLqnCAP41C/X0iWwW3uhW
-CtmWRM45+bFWCcZWdgPOHmBAXes6Ag==
-=H19y
------END PGP SIGNATURE-----
+Changes in v1:
+- Added a description field to the binding.
+- Simplified the compatible property using 'const' instead of 'items/enum'.
+- Updated the example node name to include a unit-address matching the reg base.
 
---Zfz/XMY9sGbWvmeP--
+Signed-off-by: Geetha sowjanya <gakula@marvell.com>
+
+Geetha sowjanya (2):
+  dt-bindings: perf: marvell: Extend CN10K DDR PMU binding for CN20K
+  perf: marvell: Add CN20K DDR PMU support
+
+ .../bindings/perf/marvell-cn10k-ddr.yaml      |  18 +-
+ drivers/perf/marvell_cn10k_ddr_pmu.c          | 197 ++++++++++++++++--
+ 2 files changed, 200 insertions(+), 15 deletions(-)
+
+-- 
+2.25.1
 
