@@ -1,192 +1,151 @@
-Return-Path: <devicetree+bounces-303013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303014-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YEMeEU+LFWrUWQcAu9opvQ
-	(envelope-from <devicetree+bounces-303013-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:00:15 +0200
+	id QO9fG16OFWrUWQcAu9opvQ
+	(envelope-from <devicetree+bounces-303014-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:13:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD235D53E3
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:00:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069415D55A5
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 14:13:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3F036300342C
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:00:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D2D6303A503
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 12:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFA83F6C53;
-	Tue, 26 May 2026 12:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF353F86F1;
+	Tue, 26 May 2026 12:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHwwspWc"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RNU5++s0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699BE3451A7
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 12:00:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3889D3DA7EE
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 12:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779796811; cv=none; b=d37Jp9fdaU8Jac8f7y/TpkXvpg4YbGpSxUlDU5/wPwwxAICo8/5hNBtkN3hSO20F6dMRmDfODa/hzFuMd+W2B4p6kbNynEw+m6ExBphTeXePFv0LtTIN7/075N8OvD7egDZOp06NmkIYvlf3OrMhpdhHI/uHZzmzMEv0bJ49NDY=
+	t=1779797297; cv=none; b=jxhSemZL3KyQO6WuKzx0YxO/SN71w69MFf4+iuGF6SrTCetQ9P8gKeVkuswsAXPDEBpcnbfi4hCR1I2UL8uziAYN1RJjaKyoRLYg87sJJBlqYPy257shPKLXBwopyuec4dcu7Tr6a9PlcUg9iD8wmseTWamOSOP1eCQKmHc/HmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779796811; c=relaxed/simple;
-	bh=hTZYyqvqtGqppwXg4HP3xZpz+TZopttkYVxm+x/q8Jw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b3XqYLlqcEpqkHO7QzNfSGuxkAM8t4HJx71DuxQbXcOzNYNnaAVpXh+zcm7Ax+zX8CH+PJT+CZypnkiwPPSBzGcwjMOM2L3Ejc/P965Vg2swAS5pqu535MMYhecrVSh9ImBvA/aPBCrpEbG39QBHNo28FKV4sZhN8rzjoJlhN2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHwwspWc; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-bcc9fdc959cso1852761566b.2
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 05:00:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779796805; x=1780401605; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CoKLuje7HUGv4pGCvIBQiUOeF+gz3p4jM4FxO+bIdX0=;
-        b=pHwwspWcu5HViVH9PrTg3VZGKAXTnNGteSs54531z1yqAvoQ9iBT7CEw4t9D0baKUH
-         byMt2zeqQnIntjhhwu20JIzFZbDq9LEAweNjSM/QJ+ooJMiyVZM+4a1VFYcCW3lUrfkm
-         e+pPq1JQ46/j0lw0YAKPCxdvoLZFK2ixC8DBCGhSSXq5YXwYfElqzUSc/uNEZQpzVYeQ
-         wpTxmiHgcLyVfyrHBh4ID7utw8G10oFWuFzl3TYMXdPnb8nSgtmebQ+/E1R9DXQ+hpO8
-         JiaYJ2R/MmMxrJlu5caCZgP1L7gh2ei9wZmnkuPZZMArcD2gYwFM+3qbAj6//UKppe7/
-         Askg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779796805; x=1780401605;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CoKLuje7HUGv4pGCvIBQiUOeF+gz3p4jM4FxO+bIdX0=;
-        b=n9dV4b91NaahjarWUUSBdW0/VW/WZJCoOUEkc/L6yTR7XTc/1yaHU6Ik5cdlxzatqe
-         4ittV11GFK3BW/Jq6SZQRsSj04K68LU70FRLYkIlASFRh+Kr2YtEIqD1YWT7Q844X0up
-         BHL90mFFT80ec0uGACRDtulnNFrIemQrjpxu8qANDSeLpFdAemuVU+/CmtfbFe2m7xlX
-         yt7kz3SQGsX/uTKdjv/+/GyCfquMsS2B3Y4GeafPijxV6thtuO65ItA0ak0UvSe5Rnfv
-         IeMuIQ2s3gO4Y7XxCI5w8+Y4G5aNso8sqmFGl7J3OjuqEzWSGfBfKhA1M6TVir8TAFF6
-         h0aQ==
-X-Forwarded-Encrypted: i=1; AFNElJ88028pbxO1PMCDzr5xb/i+72Ok6RVDZTbW0OHBmm5YrseV/MpCtS5z8h5dNti0Xx3ibvCWf3UeXUEH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDC02OBMe9Euf4BmpU1NDpZC2iWyHhzfDggEPQLS4qWGAXdri8
-	CDquRiDSYGk0309SvlePwgtQWC0pHGMnzkwlpDNSdJNvVjlA7NfAF9wc9vtYP527gAY=
-X-Gm-Gg: Acq92OFVUxdgc5u3jWoS4SJ3sPSsV2Rl+JilD/hVnWppwkac/hrPSgFv10Mp/PLjenF
-	p5GuMwRGo2I2kbcJpvxaWHEacBCZK/9nv+/VqcRf9Y2w6RM8PVMLUcuRI9AGZEeMUtkaOp9Syi1
-	qaBAcEerjBpBqf47xB52yskkBK+Km2/N93GQCZj3lUD5T1iW9tnB0pjuSEEH5cXoeDDqfzS57Hw
-	E/4+kQne7oZnV1vOuE39zU1mQrgjTrs6gi4pcOFITDnL9DeZSDlPk9FJpAmfie5LSZxCMJVlhdr
-	FroxsBndfT3VYb1rkXFRYbcFcOYL2iysvDYemfn+xfsz1SXtsM0Yiz5OoskULXwqMxG/RHS7//4
-	8Cfw/p4ydSzrtDxXeTPI6l1/MyY274movogXr8T9PReG85peb+YxC2VquCOlqI5STLV0RrFsS/I
-	2saOziLcoXU3oCF9wanzfFQB1ETxvt
-X-Received: by 2002:a17:907:a80c:b0:bd5:ec9:e063 with SMTP id a640c23a62f3a-bdd267cae6cmr1071905766b.49.1779796804514;
-        Tue, 26 May 2026 05:00:04 -0700 (PDT)
-Received: from linaro.org ([77.64.147.108])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bddc61de4c4sm497740166b.42.2026.05.26.05.00.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2026 05:00:04 -0700 (PDT)
-Date: Tue, 26 May 2026 13:59:59 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Maulik Shah <maulik.shah@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-Subject: Re: [PATCH v2 0/8] x1e80100: Enable PDC wake GPIOs and deepest idle
- state
-Message-ID: <ahWLPy8vg_neYgrX@linaro.org>
-References: <20260526-hamoa_pdc-v2-0-f6857af1ce91@oss.qualcomm.com>
+	s=arc-20240116; t=1779797297; c=relaxed/simple;
+	bh=QzJXSHGVfVeE9SparCy1CIwBuNy5tODp1YbztMvjrN8=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=A/9uQssQdNKYjiUV96itBPkhN2gqM9HIVoHnRv1XKP+3Uiu3X3xnMvq2M+y93MldJf5DuzVotc56A5EUuPhAhqZm7S9j7pus4Ej6ppvavwVYj/7ppfvWLCcw21ReA2tp1ubcOKnTaXMENgLYrfUI5MAkljl0JT6zwRjyPl07hEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RNU5++s0; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id B6FFE1A36D2;
+	Tue, 26 May 2026 12:08:13 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 866A56011D;
+	Tue, 26 May 2026 12:08:13 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7181C10888356;
+	Tue, 26 May 2026 14:07:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1779797292; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=DK8eA9/GN7NzLuxBx/GTovhK/apGoGFfUGeCC5d5iyI=;
+	b=RNU5++s0L9bfnoxU24iB+xsMHm5P0Ae9cOJvZKPHxeM97AF368q8RuNWiwcQLO12P9CZ6o
+	moU9/AUpCKd8iyFRV54iR+l+nhFxSXVFwjQn4i9RbIvM26ms7QueBOCrGZ0MMKChE14P7P
+	HZ4an8aN8PC+KrEOHJu3tLBY7Zi/DIs7l3U2GzxAYnRfA3DEp2mUT0jZPfnbEJn4DAORa7
+	xVj58D97QdBzzHxdheW2w2kq4sIQtzS+j2fdh6rSwYZIdd5EZ0oVBR7inInOpoANc0OCpg
+	LhcQsFUfMpAh+toIhmX2aljXCS2HNweQL5NuMs0i3q0TuPvtlh6+YQ76VYqetA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260526-hamoa_pdc-v2-0-f6857af1ce91@oss.qualcomm.com>
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 2/2] drm/bridge: analogix_dp: Add support for
+ optional data-lanes mapping
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com, 
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com, 
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com, 
+ dianders@chromium.org, m.szyprowski@samsung.com, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20260525094731.121380-3-damon.ding@rock-chips.com>
+References: <20260525094731.121380-1-damon.ding@rock-chips.com>
+ <20260525094731.121380-3-damon.ding@rock-chips.com>
+Date: Tue, 26 May 2026 14:07:50 +0200
+Message-Id: <177979727057.297330.10691183273720133245.b4-review@b4>
+X-Mailer: b4 0.15.2
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-303013-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303014-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linaro.org:mid,linaro.org:dkim]
-X-Rspamd-Queue-Id: CDD235D53E3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 069415D55A5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 26, 2026 at 04:24:36PM +0530, Maulik Shah wrote:
-> There are two modes PDC irqchip can work in
->         - pass through mode
->         - secondary controller mode
-> 
-> Secondary mode is supported depending on SoC using PDC HW Version v3.0
-> or higher.
-> 
-> +------------------------------------------------------------------------+
-> | SoC             |  SM8350, SM8450  | SM8550, Hamoa   | SM8650, SM8750  |
-> |----------------------------------------------------------- ------------|
-> | Version         |        v2.7      |       v3.0        |       v3.2    |
-> |------------------------------------------------------------------------|
-> | Pass through    |        Yes       |       Yes         |       Yes     |
-> |------------------------------------------------------------------------|
-> | Secondary       |        No        |       Yes         |       Yes     |
-> +------------------------------------------------------------------------+
-> 
-> All PDC irqchip supports pass through mode in which both Direct SPIs and
-> GPIO IRQs (as SPIs) are sent to GIC without latching at PDC, PDC only does
-> inversion when needed for falling edge to rising edge or level low to level
-> high, as the GIC do not support falling edge/level low interrupts.
-> 
-> Newer PDCs (v3.0 onwards) also support additional secondary controller mode
-> where PDC latches GPIO IRQs and sends to GIC as level type IRQ. Direct SPIs
-> still works same as pass through mode without latching at PDC even in
-> secondary controller mode.
-> 
-> All the SoCs defaulted to pass through mode with the exception of some x1e.
-> 
-> x1e PDC may be set to secondary controller mode for builds on CRD boards
-> whereas it may be set to pass through mode for IoT-EVK boards. The mode
-> configuration is done in firmware and initially shipped windows firmware
-> did not have SCM interface to read or modify the PDC configuration.
-> Later only write access is opened up for non secure world.
-> 
-> Using the write access available add changes to modify the PDC mode to
-> pass through mode via SCM write. When the write fails (on older firmware)
-> assume to work in secondary mode.
-> 
-> As the deepest idle state as the PDC can now wake up SoC from GPIOs and
-> revert commit 602cb14e310a ("pinctrl: qcom: x1e80100: Bypass PDC wakeup
-> parent for now").
-> 
-> The series has been tested on x1e80100 CRD with both old and new firmware
-> and also on kaanapali.
-> 
+On Mon, 25 May 2026 17:47:31 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
 
-Tested how?
+Hello Damon,
 
-I recommend testing with the tlmm-test module Bjorn added, in all
-supported configurations, to make sure you don't introduce regressions
-for one of them. It would be also good to provide the test results here
-in the cover letter.
+>
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> index 8cf6b73bceac..d53ab25bc57b 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> @@ -1234,6 +1234,59 @@ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
+> [ ... skip 11 lines ... ]
+> +	int ret, i;
+> +
+> +	memcpy(video_info->lane_map, map, sizeof(map));
+> +
+> +	num_lanes = drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
+> +						   video_info->max_lane_count);
 
-Thanks,
-Stephan
+Should num_lanes be > 4, the buffers could overflow. I realize it should
+not happen, but analogix_dp_dt_parse_pdata() can set max_lane_count from
+the device tree, so a bogus dtb could cause such overflow.
+
+Perhaps you should just (in a separate patch) error out in
+analogix_dp_dt_parse_pdata() to prevent this. And maybe even adding an
+BUG_ON(lane_count > 4) here.
+
+Otherwise LGTM.
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
