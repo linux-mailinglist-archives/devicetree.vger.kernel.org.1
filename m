@@ -1,231 +1,142 @@
-Return-Path: <devicetree+bounces-302876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303156-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +I+dJX1KFWq+UAcAu9opvQ
-	(envelope-from <devicetree+bounces-302876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 09:23:41 +0200
+	id wOvQCkX6FWq/gQcAu9opvQ
+	(envelope-from <devicetree+bounces-303156-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 21:53:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA73A5D1AF1
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 09:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7322A5DC24C
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 21:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B1F273009531
-	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 07:23:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDCF13037DC3
+	for <lists+devicetree@lfdr.de>; Tue, 26 May 2026 19:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85AD3C8C47;
-	Tue, 26 May 2026 07:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D1B218C02E;
+	Tue, 26 May 2026 19:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b="khK44me7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iV974A3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545403B5319
-	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 07:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404812853F8
+	for <devicetree@vger.kernel.org>; Tue, 26 May 2026 19:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779780217; cv=none; b=LVuudDXzkYrVOrHs5z5BqQS0hWRiIltino+89zqUEitOkE+fmbF5ybKQN3xO6PCWxVjSiWP/zq0JCZI6SjFjJOHFTPzU21RXko0f8+dQOQxVNNHZi3QY3g9PKsolpJpHRRIf6gA7HBNHEXbMtTy5B2TdfDIW/4XEjke6Yjd8tpU=
+	t=1779825160; cv=none; b=uqwj5ViJU/dGRtfbGnXL//yKWNLDMdu57i9mZV8qURo6IBW/0byjMHBjxPdheAVKoGvWZA1Mf/yz4fZrYID3PU5EE31dm3bzos0fMuxN7zDLJnLSQcLJe59s2rnzRMUqjywL9eOlzPo48sl0715Rr6QmnNkM73YVNR2iGpIa8o8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779780217; c=relaxed/simple;
-	bh=AcRMVTLXj/mukKWgGjOXcht9MzRyV0pMqnBZFRrSKFA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MIBcH8D/803w16Xl3i+z0unryGuQf3biw5an7YaUXhTKGXifV1jsfxRZb4GbmAfzN4OcGZ7o4JjYewWs6iDMav3PhYStOdZXV+1Se/i/M/VBdtww+eWAFsAGQ0HrgypAZ1/KlJFnoyWEcRRcFm44QvNHeBMFpAaSTsHyA7UdHnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=khK44me7; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2b9ea536877so67053345ad.1
-        for <devicetree@vger.kernel.org>; Tue, 26 May 2026 00:23:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1779780216; x=1780385016; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kaTzZIrRiwO1RCeM2bN6zyMtDl6KOzXc9TYKEU25JF4=;
-        b=khK44me7fF8tTHa2d2k45DBategxv4BVaRklv4DX8mRUc6cIHvG6S1nk9oOoGaizuI
-         6PlYT7DiSCcFb9AR8Kah0P4ALYYRbtYk9CRX/hHaFolcSRCwNbz2GH9El4HE7bidy8A1
-         KCtKWXXzu9ZKl8453tXPA4wqpRB3ernzih4q6ikaLUxu/S4VbYecylf65VMtARUqwc5J
-         wq4eHKbF6xEhV/r2jWdhjckR32Dgs1OXWxBvOgN00pfyCPERuqD59V2GzovgcCsPrmBI
-         pvFxrPlWgS2IRjbmlW6oKKWWV3QGE9DEusN3h6oAn1JUujPEGrNq767UoFZ51GtVSUB1
-         r7gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779780216; x=1780385016;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kaTzZIrRiwO1RCeM2bN6zyMtDl6KOzXc9TYKEU25JF4=;
-        b=EJT9aWbkMORx97nh6yaCwN3Aw7odcAFj03SQwYpqkaqmug2bLEwOS/agX9b4ThkYG6
-         yG59bcvGEX4L5f3h4JuoNreGLs+4f8wcfz81Zto+6DpZQSoXBNuSKj0JfOTXRYU9Hr7h
-         NAkKoC6qZ9TUzzg7ev367wXQYq6yPbKetDGl/12IqIKnaTQsAz5VpQXk9bldCXDItSFV
-         x/GhJpDkzcF3P/Fdfofm+yZKl8TecT2dd4ogDqIDaG0Su5191PSBJI6c3193uRVPUsMq
-         qLl2IIjk2ex3KMBVTLvjgMIvdBrg5nGK3xWslUoJofC1UkUydqi1PyQ6CczU6BTLgP8g
-         GhXA==
-X-Gm-Message-State: AOJu0YzXgTEqez8iInmDnrCgDRbgmOsxz/wQiOmSefKfiBldpbNLu0wz
-	3EGYCO2NpZQ7nnD1HRxdgk94ZhiWhHTh6ktbEql1aRlShHSKJqP731FsH063uDG9urk=
-X-Gm-Gg: Acq92OHNZPsc1+tt/4v5jwJizAVR6HW/40Sch75IdWAzNwh1kQzU8yn0GOaiJUc5oGi
-	VuvjO5LlsP2q0o/4xteb+fFBprgHWaUzJ8yS54f5G5vJDbdnjePmle3Flc6iT/NLw+m7VB1eAdR
-	TV/7lzRidni/+m/UXc71dsASaejpjYQs6CTvWMsXzEcXl0/IxU1TKiQrlGue16XY7L/zOah0Ifo
-	NQMjZm6+4wEMLgWOjhYRn04ZU8S+cAIf7pEFV6FrGvnidLF+P2ZWBGjBJmEG6v7+4CIOwoedqdb
-	OFzglTDZudJERAUcXmsQbd/Kiydc8FDQ0S/qpchuqkoyiVx1wV/nX3+4y/TSvLckREh3aZvpvr+
-	8uXyLPQi6GhxTl5ROygTQWLtpVAo0pvS7r0bmL1WMRAp5oGg2k423PaNlC0d03jW8hlP3xJxR+A
-	X/xg9EEF3CcCBBB0uxdWbPnwXTHENxcw5bYqmsttxgFK8=
-X-Received: by 2002:a17:903:1a0d:b0:2b0:91e6:bc18 with SMTP id d9443c01a7336-2beb0878549mr150966255ad.14.1779780215657;
-        Tue, 26 May 2026 00:23:35 -0700 (PDT)
-Received: from [127.0.1.1] ([2a12:a305:4::40e2])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2beb591f63dsm148893365ad.83.2026.05.26.00.23.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 May 2026 00:23:35 -0700 (PDT)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 26 May 2026 15:22:58 -0400
-Subject: [PATCH] riscv: dts: spacemit: k3: Add Ziccrse extension for X100
- cores
+	s=arc-20240116; t=1779825160; c=relaxed/simple;
+	bh=phA/g/Tg7zSPNgIFX92L8f1CSTzVuMPX1fXJOBApHEg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=H6VIJmA9o50/dtBfIoST88mte3yaMBG2eENVN0aNg6MziH2Vth3CQ1AZrF1PpUr7Zd2D7Quinyit7UX4S6lZeHX9rrd8qEElQZ2G8osLFOGQUg18whu8CRml/A3s7IEjzUAl73v/PLcrUqXFKbsrVEvz+P5dRSmMgm2Eis6Dzg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iV974A3o; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7621B1F00A3A;
+	Tue, 26 May 2026 19:52:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779825158;
+	bh=fgta5qpMtYouRXGhJBb+FoBguZBQkyT210Gnc22X8hs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=iV974A3oLoIj2BKpSdk3uiqrmYpagDcK8DsD4qU0dmrZaf9Ul/vEIfjwcyfviOZPE
+	 A5ZMGKJa1sRBVxAjJIVXi81q4GdL6nwZCpDKUc9wlAyxE8nxfKhQ+Nxrb11egoI9AM
+	 CM9Fpov5cw7+ODibcuvPmp0HyjNhNrBKqN1i+/OqecbtYn/d7dnAeAUW5g5w9cP9PX
+	 YnBuM/x9+Ag4cooP/PpI2hsLL6burnzOMuGuzHsr40YDQGnXp2kEIzegtEinjEOJ4I
+	 9csF3mEv/vb3xzV2Gisto9SjCRrzlnzs1GH0VlahC5VdIFkvAFOvL4kSQ9R9dLdhEI
+	 saZjzri+vWagw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 4/4] phy: qcom: qmp-usbc: Add support for "phy" reset
+ used on Shikra
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Pratham Pratap" <pratham.pratap@oss.qualcomm.com>
+Cc: olteanv@gmail.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, vkoul@kernel.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <20260526184401.3959717-5-pratham.pratap@oss.qualcomm.com>
+References: <20260526184401.3959717-5-pratham.pratap@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 26 May 2026 19:52:38 +0000
+Message-Id: <20260526195238.7621B1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260526-k3-ziccrse-v1-1-c759792ca3a3@riscstar.com>
-X-B4-Tracking: v=1; b=H4sIABHzFWoC/yWMQQrCMBAAvxL27EK6KYr9ivSQJqsu0lQ3qRRL/
- 25ojzMws0JmFc7QmRWUv5JlShWak4Hw9OnBKLEykKWzJXvBl8OfhKCZcXBMsY2t8xygBm/luyz
- 77NYfrPyZ67McEgZfszCNo5TOJF4K7t+GrtBv2x/hkXa4jQAAAA==
-X-Change-ID: 20260207-k3-ziccrse-b3e2d4d43aec
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Guodong Xu <docularxu@outlook.com>, Guodong Xu <guodong@riscstar.com>
-X-Mailer: b4 0.15.1
-X-Spamd-Result: default: False [3.94 / 15.00];
-	DATE_IN_FUTURE(4.00)[11];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-302876-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303156-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,outlook.com,riscstar.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guodong@riscstar.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.infradead.org,vger.kernel.org,kernel.org,linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: CA73A5D1AF1
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+X-Rspamd-Queue-Id: 7322A5DC24C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the Ziccrse ISA extension to all eight X100 cores. Ziccrse
-provides a forward progress guarantee on LR/SC sequences in main
-memory regions with cacheability and coherence PMAs.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Critical] Unconditionally adding the 'phy' reset to `usb3dpphy_reset_l` =
+breaks the driver probe for existing QCS615 platforms.
+--
 
-The SpacemiT X100 core supports it per the SpacemiT K3 hardware
-specification.
+commit c8024a0d34e805ada6e128fcb57e931ef7692038
+Author: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
 
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
- arch/riscv/boot/dts/spacemit/k3.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+phy: qcom: qmp-usbc: Add support for "phy" reset used on Shikra
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index d4be8de8fc6cc..ccb483b439c5f 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -36,7 +36,7 @@ cpu_0: cpu@0 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -77,7 +77,7 @@ cpu_1: cpu@1 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -118,7 +118,7 @@ cpu_2: cpu@2 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -159,7 +159,7 @@ cpu_3: cpu@3 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -200,7 +200,7 @@ cpu_4: cpu@4 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -241,7 +241,7 @@ cpu_5: cpu@5 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -282,7 +282,7 @@ cpu_6: cpu@6 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-@@ -323,7 +323,7 @@ cpu_7: cpu@7 {
- 					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
- 					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
- 					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
--					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "ziccamoa", "ziccif", "zicclsm", "ziccrse", "zicntr",
- 					       "zicond", "zicsr", "zifencei", "zihintntl",
- 					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
- 					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
+This patch adds the "phy" reset to the usb3dpphy_reset_l array. This extra
+reset is needed for the operation of the QMP Phy on the Shikra platform.
 
----
-base-commit: 5d67b1f204472df70f7c7189c01fa405f3ccb503
-change-id: 20260207-k3-ziccrse-b3e2d4d43aec
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c b/drivers/phy/qualc=
+omm/phy-qcom-qmp-usbc.c
+> index c342479a37980..067e7f6e56424 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+[ ... ]
+>  static const char * const usb3dpphy_reset_l[] =3D {
+> -	"phy_phy", "dp_phy",
+> +	"phy_phy", "dp_phy", "phy",
 
-Best regards,
---  
-Guodong Xu <guodong@riscstar.com>
+[Severity: Critical]
+Will adding this reset unconditionally cause a probe failure for existing
+QCS615 platforms?
 
+The length of the usb3dpphy_reset_l array is used by ARRAY_SIZE() to define
+the num_resets value for the configuration. Since qmp_usbc_reset_init()
+fetches these resets using devm_reset_control_bulk_get_exclusive(), it
+strictly requires all requested resets to be present in the device tree.
+
+If an older device tree only defines the two original resets, phy_phy and
+dp_phy, won't the driver fail to find the third reset and return -ENOENT,
+causing the probe to abort?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260526184401.3959=
+717-1-pratham.pratap@oss.qualcomm.com?part=3D4
 
