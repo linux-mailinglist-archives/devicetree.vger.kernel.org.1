@@ -1,148 +1,124 @@
-Return-Path: <devicetree+bounces-303192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLduEwVLFmrZkQcAu9opvQ
-	(envelope-from <devicetree+bounces-303192-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 03:38:13 +0200
+	id 8LryAspRFmqPlAcAu9opvQ
+	(envelope-from <devicetree+bounces-303194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 04:07:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A395DE45A
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 03:38:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 671245DE786
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 04:07:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3B238300D760
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 01:38:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 02B96302FB61
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 02:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D54D326941;
-	Wed, 27 May 2026 01:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17DE824DD15;
+	Wed, 27 May 2026 02:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="UAYq4OJV"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="QudllnWK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DCCC32470E;
-	Wed, 27 May 2026 01:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70F91684B0;
+	Wed, 27 May 2026 02:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779845889; cv=none; b=n30TG3d4yXkNCWGgQksgZDcrUDlOhqkvj4lDK40QAdOrE35J/d562twEtNoRLcVF7Z0WhSEk1TNt03MZ4cRJXJg/X1OSd5j5++OOsJ4nL2aUgdLxNRKS+TnjYDTnl0xhxkMNHkZ/djCPpIOS4Fudb4AgCHwpEOiw4wF/xy2akyE=
+	t=1779847622; cv=none; b=oqOyYar1XHodlMqkG/z8ueripll88+NZokHDW4eUBySTX24Jownkq+WjnYipTKWmCBzsJ/M3vLqSE60t2qMHZkeu9/68HdTUG8dckizEdo7lv4Ddh3GDgE5T5/wIsYB8omj5/61kOHXGv1hryjZ05ZFVQdcEovEoGzxdIINkRHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779845889; c=relaxed/simple;
-	bh=2P86mk3pv0uwteCwZB11+2x+psW1tPWVHfVVdaiYzcs=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=knwyNbgFkzBLLsA9yPnFCfxe+96wr2+r4wlsggB9tkdzUxCf6apR7PJliPzifoa9F7IubQoi6W/Xcl9ItcCpoAxntZB/QGDDzeg0Ft8Rq7fytTzS+Y86yFL3bwt5/qTVNQZsVthqG4/Cqe9E/i870e4vsW8qRdUeegS/N3slbVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=UAYq4OJV; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
+	s=arc-20240116; t=1779847622; c=relaxed/simple;
+	bh=aUaXtE7+Lpu6T9R6qedWabPBNZj9Omh3QoTrbc8F0Kc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=rUkOgeubyKxo8MePtg0FgxpTzMP4FTBMrqRiGRXpP7Cclc/x+fVQCAKJNV0wtUoOKeJX9tdonQv1mZHAMdvYzFa+CyOgXXKwsWvMdZiVLxJAcWlV5OR2tejh9g/yKrsPNMPHI+MJbFqubMdWtzsYgHUME1bLLgFcQfh0A2ZswkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=QudllnWK; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=hCqBUCXovA5qatFwbDA89zsE15dhry2it
-	1Or3zG4G6U=; b=UAYq4OJVZONQVr4MdOkrv2w7uMCPz4n3r7FU6uFAx4ucEjoZh
-	A5WBp3m7rbSxGMSOJqlNJ4i1mPYHELCnKiKImSWBue6SQWdleudQFbRScs7rDcWy
-	P4rfQ4NPxQuR7U2Nzg2z/4pPLGE0sMpUD6eu5X34vjs/7g3HnfIgYBf9D4=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnYUL9ShZqJEQGAA--.7868S2;
-	Wed, 27 May 2026 09:38:05 +0800 (CST)
+	d=codeconstruct.com.au; s=2022a; t=1779847611;
+	bh=aUaXtE7+Lpu6T9R6qedWabPBNZj9Omh3QoTrbc8F0Kc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=QudllnWKEx4Ncqd3j/B4pAxENZQG00b/raI64g1WXNXSkyJFxvhRo8OyqKXpXGeXV
+	 l+1vU0zjGRn4lZX4s8ifV7kV43XLXGpUc6CyYaLCjzCp0Exs1mS26XNq49Lw8NJ7EO
+	 Se4Zhsi3oX2QbbXFdyP78MuAnkwKp2yRLxlaDwhJJIcPKd7h9JvUE08KupTqQKQIiA
+	 2S5+jyYwRXl0f1TW1oPd3ny7uEAI/Q2tSgPcgcJmTLV9y3culjJp7JHGBx8N8XBJ10
+	 leeS+c87sfWWQEd0u7C6babUmMi4lQWmXCGyWwhQ59hpFyyA3Upz2hyxQqiUEFCV/4
+	 FQsWPJbFsLS6A==
+Received: from [192.168.68.117] (unknown [180.150.112.11])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9C417607F4;
+	Wed, 27 May 2026 10:06:47 +0800 (AWST)
+Message-ID: <e059b59ecb9b0912ae8a044e3f745450b7095573.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 0/2] Add Meta Rainiera6 BMC support
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Neil Cheng <neilcheng0417@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, 	conor+dt@kernel.org, joel@jms.id.au,
+ geert+renesas@glider.be, 	magnus.damm@gmail.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Date: Wed, 27 May 2026 11:36:46 +0930
+In-Reply-To: <cover.1779157117.git.neilcheng0417@gmail.com>
+References: <cover.1779088499.git.neilcheng0417@gmail.com>
+	 <cover.1779157117.git.neilcheng0417@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 4/9] dt-bindings: pinctrl: Add UltraRISC DP1000 pinctrl
- bindings
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: wangjia@ultrarisc.com, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Bartosz Golaszewski <brgl@kernel.org>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-In-Reply-To: <CAD++jLmjm=Zgs+jNGTVdasy+9O1GvqM6EP=rVRR5mP=L9V13Mw@mail.gmail.com>
-References: <20260515-ultrarisc-pinctrl-v1-0-bf559589ea8a@ultrarisc.com>
- <20260515-ultrarisc-pinctrl-v1-4-bf559589ea8a@ultrarisc.com>
- <CAD++jLmjm=Zgs+jNGTVdasy+9O1GvqM6EP=rVRR5mP=L9V13Mw@mail.gmail.com>
-Date: Wed, 27 May 2026 09:37:25 +0800
-Message-Id: <177984584580.2389245.17509091079717184088.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779845846; l=433;
- i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=2P86mk3pv0uwteCwZB11+2x+psW1tPWVHfVVdaiYzcs=;
- b=xa0uVt8IVP2LldTfzER2o+wVAHR1EpbeF3DOs4wWU6xzCFBekge/b3JD5uoj96lqnqPINencF
- HGJ1VRSZ3ppDQNx9UgdxADZjxgSZb1J5NX+JzVmFc5cOUl8HIcqtIqx
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
-X-CM-TRANSID:AQAAfwAnYUL9ShZqJEQGAA--.7868S2
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYG7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E
-	6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
-	kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8I
-	cVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r1j6r4UM28EF7xvwVC2z280aV
-	CY1x0267AKxVW8JVW8Jr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE
-	5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeV
-	CFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1l
-	FIxGxcIEc7CjxVA2Y2ka0xkIwI1lc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMxAqzxv26x
-	kF7I0En4kS14v26r4a6rW5MxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_
-	Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x
-	0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8
-	JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIx
-	AIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VU122NtUUUUU=
-	=
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAAEWoVGMYADgABs+
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-303192-lists,devicetree=lfdr.de];
-	NEURAL_HAM(-0.00)[-0.996];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-303194-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,jms.id.au,glider.be];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ultrarisc.com:dkim]
-X-Rspamd-Queue-Id: E5A395DE45A
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 671245DE786
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-05-25 11:23 +0200, Linus Walleij wrote:
-> On Fri, May 15, 2026 at 3:18 AM Jia Wang via B4 Relay
-> <devnull+wangjia.ultrarisc.com@kernel.org> wrote:
-> 
-> > +++ b/include/dt-bindings/pinctrl/ultrarisc,dp1000-pinctrl.h
-> 
-> Move this to something like arch/*/dts/vendor/dp1000-pinctrl.dtsi
->
+Hi Neil,
 
-Thanks, this is part of the legacy and will be dropped in v2.
- 
-> Yours,
-> Linus Walleij
-> 
+On Tue, 2026-05-19 at 10:38 +0800, Neil Cheng wrote:
+> Add initial device tree support for the Meta Rainiera6 platform.
+>=20
+> Changes in v2:
+>=20
+> - reorder adc0/adc1 properties
+> - add Acked-by from Conor Dooley
+>=20
+> This series adds:
+> - Meta Rainiera6 compatible entry
+> - Rainiera6 BMC DTS
 
-Best regards,
-Jia Wang
+In the future can you please avoid threading v2 (and later) under your
+prior submissions?
 
+Thanks,
 
+Andrew
 
