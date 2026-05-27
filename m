@@ -1,281 +1,158 @@
-Return-Path: <devicetree+bounces-303301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303302-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPY/ISG3Fmo6pwcAu9opvQ
-	(envelope-from <devicetree+bounces-303301-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:19:29 +0200
+	id SEIVJEq3Fmo6pwcAu9opvQ
+	(envelope-from <devicetree+bounces-303302-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:20:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231665E1B0B
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4615E1B37
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:20:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 21FBD3010D82
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 09:15:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 566AF3058E33
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 09:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400723E7BDA;
-	Wed, 27 May 2026 09:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDBC3E7BB1;
+	Wed, 27 May 2026 09:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NwhGdfPl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NvbgJuBI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9503E7BAB
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 09:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8377B3E7161;
+	Wed, 27 May 2026 09:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779873321; cv=none; b=KwxjwNL5uMqKrrtTeSCTqqDd173vlmug00spo/nKSjC6TAFr6usbviqqj3ze/xLLFlYRQssrCvZqZ+e6Es+rL3d+l41y4Yq0oZCwidPqBFogWL5ZM2eVRNdJE+w6UX5LHHlg3WQkfrVb0ihLuEqzdDNQktw2Dvem7Uluy7x3n/c=
+	t=1779873337; cv=none; b=rZXt5PDQuoO/GTjR1YhZzlVAisQ+DpADgEelK20Hdp1Hvc76Oe3UPVUMamZm5WGDHV8m3CESmWGpZCGzYmJH6ILgdV1Z7QsmOW3PWtF9jaUfLMFEBndO1SdxSJSbb+Ba88O9Dm9f0FtoXEE5JF/ZgssAjcv40NcT7Fx+vii0pzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779873321; c=relaxed/simple;
-	bh=3Dd8Q6qWEhWP9wFNWciEruqR+v4ywenwT34Hvn8250A=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VBGfmxZVrDuym0a9uvG6YfLiJfrXOhMto8YtjAtT3LeDKuGKt4Ay03Ow4vBwLUy1CTq+SrkvQLZNqmNvfQUDrpQCiRW98559S5EFERqfvNrSWF6ieFmNJcjgudGgwN5BgQ7LKqehQiRrTypr9pxnLSWB/l3YZUj8TFqrAoAg6go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NwhGdfPl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 276831F00A3A
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 09:15:16 +0000 (UTC)
+	s=arc-20240116; t=1779873337; c=relaxed/simple;
+	bh=0S9GEXXOXre4z3r+Ir1TCMuiKeUShE8+jciE2dhB59E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K2KxR3sYkx0XCZ+SKVoyaG1gkMJTz1MOwMAif5Do5y7MAiHSY6cROwtLX/0uJxRv5eKbOHw9UKMxwXp8EFIFTCtSUvjtzERQ8pxM/gFebr9O1ttqD30OF6tpYV0gRIcc/wpS6L4SAA6xXj9OgDYt3HBoeqfUKhmhpTi1ndowOG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NvbgJuBI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D87391F000E9;
+	Wed, 27 May 2026 09:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779873316;
-	bh=3Dd8Q6qWEhWP9wFNWciEruqR+v4ywenwT34Hvn8250A=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=NwhGdfPlS2rVpiZc23mgic/3tOE2pnrlUoAbHDyq9O21RZ+Ov7LoQDzw2Sp1bDVYg
-	 en3Wpl3jPt+6HfwnwAYJcvMkUlrU8XSkp5ux+YdyHdkvLpr2ccGnbXiSjQzebNT7AM
-	 YkFmFxV3ytYzJiiaTKj3wwI0Gt/1TSB1iTpe4Ap/O8YoWghQTYJvT9EyKhTjBudVeV
-	 gKSk5xd4hdk3+Cb9mSoniMi0fukY0dPB/WindCoxgS43ZdLLwZC8/B0OeTsV/8IqZI
-	 +yF5ObEUfbiQchwy78DGjFrh6Mqp4UiJNV2DpqHlYU+Iy9uVBk1GSY/kse/FYXgLW4
-	 3cmufO4oRAPyQ==
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-393a49d2e5eso98265871fa.2
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 02:15:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+eg0lHwmehW8EqnNwPgaTQnRCViTAvGDFwL3meA/OeByrbcUhQWacnQR8G/5+EW29XN0ubil02zfiU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwl8UKH7L7+36iNXOWbmYuA2MFHSNsjqa6PngYCJlSyQIomVGp
-	Rf88q3GQJwM2RJgIlehRM1QzscOpRZtGK3Dkmgd17Z8W1TWDw5inoQ5yhTFiUG651xW4+HDxTvD
-	YA3uN8OLqYitVHCpP6ZXkqN0g55SWdvckOv6EWXCXLw==
-X-Received: by 2002:a2e:838c:0:b0:393:5920:2c5d with SMTP id
- 38308e7fff4ca-395d8d4f352mr53853401fa.28.1779873314842; Wed, 27 May 2026
- 02:15:14 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 27 May 2026 05:15:12 -0400
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 27 May 2026 05:15:12 -0400
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <CAPVz0n3_wueX1yeZ=MDfSMy3UaQa80-nGg1b7ZQuCTneOaQDkQ@mail.gmail.com>
+	s=k20260515; t=1779873330;
+	bh=TSTZULIe3wWh/E5sP56eqUogIJMtnNx6SpEWRzhi+WU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=NvbgJuBIw0PVPDh5z1tp8avbRj3xrjFA4gNme4vHofJ6qymcbib19XLd8O1Kjlacx
+	 hdAWplxczLYUXJQaP5vM2OYqxmoircZsyOnn2zdZkWUVUBP2NtbE99GhLo2vpY+dE6
+	 NvyBopLTnx7t4ESBSp5+4Uuzygb2oJq2lCMH1C/pv7qW+yyq2t2m8otL6+25LwXADa
+	 UtPFkcoSF1KCUqykgFTfxPnmlQjrb6dEIgkNkRvgBIvGt2nyAd+42tdJd/YZx3r2BI
+	 1Ff7vNN+9Oco06HBIYqJcXtZ9rIhVw1cG+W7cvcli6Md9fSzRVFmnn/j9fkQWHpyPv
+	 43SJl2L8LDCFQ==
+Date: Wed, 27 May 2026 11:15:23 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Can Guo <can.guo@oss.qualcomm.com>
+Cc: bvanassche@acm.org, beanhuo@micron.com, peter.wang@mediatek.com, 
+	martin.petersen@oracle.com, linux-scsi@vger.kernel.org, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, Zhaoming Luo <zhml@posteo.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Document static TX Equalization
+ settings properties
+Message-ID: <qrqggwpuigevauuzjcvggcmbzkphutemlpsvuymy7qn5yblnsd@djbgzgyeekre>
+References: <20260523134711.323425-1-can.guo@oss.qualcomm.com>
+ <20260523134711.323425-2-can.guo@oss.qualcomm.com>
+ <m6qq3kxgfs73jve2pjmmszymgxb7aizdfo2rwg72o66n2rvov2@xkcvifciwu3z>
+ <96962564-ff25-4d81-a605-3d9c05fa000a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260523085102.51000-1-clamor95@gmail.com> <20260523085102.51000-2-clamor95@gmail.com>
- <CAMRc=MfXVwD2u0e115RapnyLzf5JRjWMs=2PSNzMnm0GDd7aaQ@mail.gmail.com>
- <CAPVz0n1G5Yu2X5f+=q90RAbnsWi9psMq-L5tWDMM4JRC4R_mPg@mail.gmail.com>
- <CAMRc=Me4G-YqKoFan3epofXk2OWzxY1iPE1mP=uwEjs9wgA6Cw@mail.gmail.com>
- <CAPVz0n2P-zB1_uetZN9pVcQChK+FkdQowbF4Z0YZOBQBsB76WQ@mail.gmail.com>
- <CAMRc=MfAAE4UtnW4S1=pY+2yvS6Hsd-U9+uveUFtPGoJPrv6aA@mail.gmail.com>
- <CAPVz0n2COsDL+fNBAuKr1ty_AVe9sK5yNJithkXex6GNa1T_Tw@mail.gmail.com>
- <CAMRc=Mc9g=yezRtAtRMzh7t-pSoyoKQEtxrb5U0oeFAbcjb6Ew@mail.gmail.com>
- <CAPVz0n3X8Gw2Yo9VgwhV0uAqvArGXbvmzw=cZVJw=4BEH_E7_w@mail.gmail.com>
- <CAMRc=Mf4W9hoP7FAbxQTNLaG3M9W+GmvQSMECbzzdQLU_+5D4A@mail.gmail.com>
- <80e102be-04c3-4591-8e75-ddf859d3a877@kernel.org> <CAPVz0n3_wueX1yeZ=MDfSMy3UaQa80-nGg1b7ZQuCTneOaQDkQ@mail.gmail.com>
-Date: Wed, 27 May 2026 05:15:12 -0400
-X-Gmail-Original-Message-ID: <CAMRc=Me+o6qo_r3TBUCrhPp1=r-fMq3jaQW1=H91H1mM5LYAnA@mail.gmail.com>
-X-Gm-Features: AVHnY4LO9N7qH868qzbdIINqstqNuCinw4l5YNVHBZffK7h_X_9w3NYe5pqcE9A
-Message-ID: <CAMRc=Me+o6qo_r3TBUCrhPp1=r-fMq3jaQW1=H91H1mM5LYAnA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: tegra: Document Nvidia Tegra
- modem pwrseq
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <96962564-ff25-4d81-a605-3d9c05fa000a@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	TAGGED_FROM(0.00)[bounces-303301-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-303302-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 231665E1B0B
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 2D4615E1B37
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 27 May 2026 11:06:11 +0200, Svyatoslav Ryhel <clamor95@gmail.com> s=
-aid:
-> =D1=81=D1=80, 27 =D1=82=D1=80=D0=B0=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 11=
-:26 Krzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->>
->> On 27/05/2026 09:55, Bartosz Golaszewski wrote:
->> > On Tue, 26 May 2026 15:41:58 +0200, Svyatoslav Ryhel <clamor95@gmail.c=
-om> said:
->> >> =D0=B2=D1=82, 26 =D1=82=D1=80=D0=B0=D0=B2. 2026=E2=80=AF=D1=80. =D0=
-=BE 16:14 Bartosz Golaszewski <brgl@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->> >>>
->> >>> On Tue, May 26, 2026 at 2:55=E2=80=AFPM Svyatoslav Ryhel <clamor95@g=
-mail.com> wrote:
->> >>>>
->> >>>>>>>
->> >>>>>>> The node attached to the pwrseq provider device should represent=
- a real
->> >>>>>>> hardware component. Are the enable-gpios and power-supply lines =
-connected
->> >>>>>>> to the modem package?
->> >>>>>>
->> >>>>>> Yes, enable-gpio is connected to the modem and signals that USB i=
-s set
->> >>>>>> and ready to work with the modem, while power-supply is an option=
-al
->> >>>>>> supply connected to the modem's vbus input.
->> >>>>>>
->> >>>>>
->> >>>>> The modem is a hard-wired USB device? Do you implement it as a
->> >>>>> platform driver or a USB driver?
->> >>>>>
->> >>>>
->> >>>> It is not a traditional USB device. XMM6260 is an embedded modem us=
-ed
->> >>>> in the Tegra phones, it is linked with the AP using USB line in HSI=
-C
->> >>>> mode. The driver is implemented as a platform device since it does =
-not
->> >>>> interacts with the exposed USB device directly, it just ensures tha=
-t
->> >>>> USB device is properly configured and is ready for IPC.
->> >>>>
->> >>>>> Is there a connector of any kind that could be used as the HW
->> >>>>> component represented by the pwrseq device?
->> >>>>
->> >>>> I assume control over USB line is the HW base, but as I have said, =
-I
->> >>>> can integrate binding in the modem node itself, and pwrseq can get =
-all
->> >>>> it needs from the match. Pwrseq framework states "This framework is
->> >>>> designed to abstract complex power-up sequences that are shared
->> >>>> between multiple logical devices in the Linux kernel." it does not =
-say
->> >>>> that it must represent some specific hardware.
->> >>>>
->> >>>
->> >>> No, not at all. We just can't make up any imaginary, logical "pwrseq=
-"
->> >>> devices and describe them in DT bindings.
->> >>>
->> >>
->> >> Ye, ye, sure, pwrseq framework is quite flexible and I am not stating
->> >> this bindings is mandatory.
->> >>
->> >>>> Using pwrseq allows modem driver to be SoC independent since USB li=
-ne
->> >>>> handling is moved into SoC specific power sequence, and this modem =
-is
->> >>>> used in Exynos and OMAP too with similar setup but they all have
->> >>>> different USB controllers. Maybe you can point me where SoC specifi=
-c
->> >>>> USB controller handling can be implemented?
->> >>>>
->> >>>
->> >>> I'm not sure I'm following. Can you atrephrase or point me where OMA=
-P
->> >>> and Samsung implement it?
->> >>>
->> >>
->> >> They did not.
->> >>
->> >> The XMM6260 modem is used not only in the Tegra phones but in the OMA=
-P
->> >> and Exynos based too. Replicant tried to implement support locally
->> >> with midas devices and they had some progress. From what I have seen
->> >> generic implementation I am proposing will work with any of those 3
->> >> SoCs maybe with some slight tweaks, only part that is totally
->> >> different and SoC specific is how USB controller used by the modem is
->> >> handled (well and IPC but that is out of scope of this patchset
->> >> anyway).
->> >>
->> >> Obviously, non of the 3 vendors have submitted any mainline patches,
->> >> everything is in the downstream forks. I have investigated a bit how
->> >> this modem works on my Tegra phone and re-implemented it to work with
->> >> mainline kernel (I don't have Exynos and OMAP devices to play with). =
-I
->> >> have come up with generic platform driver which handles modem
->> >> configuration and a SoC specific part which performs USB controller
->> >> bind/probe when modem is ready to handle the USB. ATM this SoC
->> >> specific part is available and tested only for Tegra devices.
->> >>
->> >
->> > Are you familiar with the PCI pwrctrl code that lives under
->> > drivers/pci/pwrctrl/? It seems to be solving a somewhat similar issue =
-for
->> > PCI devices that are hardwired and powered externally. Maybe you could=
- use
->> > some of that code for your USB use-case?
->>
->>
->> I pointed to PCI already:
->> https://lore.kernel.org/lkml/20260518-mustard-rabbit-of-ecstasy-eed3b6@q=
-uoll/
->>
->> And emphasized to describe hardware, not drivers. This binding AGAIN
->> describes drivers, so we did not move forward at all.
->>
->>
->> Best regards,
->> Krzysztof
->
-> Krzysztof, why are you so mean? Yes, I misunderstood you and sent this
-> schema. However, I am not stating or arguing that it must be applied
-> or whatever. I am just looking for a proper solution to issue I am
-> currently facing.
->
+On Wed, May 27, 2026 at 04:51:04PM +0800, Can Guo wrote:
+> Hi Mani,
+> 
+> On 5/23/2026 10:14 PM, Manivannan Sadhasivam wrote:
+> > On Sat, May 23, 2026 at 06:47:10AM -0700, Can Guo wrote:
+> > > UFS v5.0/UFSHCI v5.0 add HS-G6 support (46.6 Gbps/lane) via UniPro v3.0
+> > > and M-PHY v6.0. In these specs, TX Equalization is defined for all High
+> > > Speed Gears (not only HS-G6) to compensate channel loss and improve signal
+> > > integrity at high speed operation.
+> > > 
+> > > For HS-G6, M-PHY uses PAM4 1b1b line coding, Pre-Coding may also be
+> > > required depending on channel characteristics.
+> > > 
+> > > Add vendor-neutral DT patternProperties:
+> > > txeq-settings-g[1-6]
+> > > 
+> > > Each property is a uint32 array of per-lane tuples:
+> > > (PreShoot, DeEmphasis, PrecodeEn)
+> > > 
+> > I don't think combining all EQ settings (PreShoot, DeEmphasis, PrecodeEn) in a
+> > single property as opaque tuples is the right approach. These are three
+> > semantically distinct parameters with independent value ranges. So packing
+> > them into a uint32 array makes validation impossible in the schema.
+> > 
+> > AFACIS, PrecodeEn is applicable only to HS-G6 (PAM4), but the proposed
+> > patternProperties forces it into G1-G5 tuples as well, which is semantically
+> > wrong.
+> Point taken for the PrecodeEn.
+> > 
+> > PCIe binding defines one property per data rate for EQ presets:
+> > https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-bus-common.yaml#L193
+> > 
+> > Similarly, UFS should define one property per gear per (like, txeq-preshoot-g6,
+> > txeq-deemphasis-g6, txeq-precode-enable-g6,...) rather than clubbing everything
+> > into opaque tuples.
+> Thanks for the suggestion. I will go with below approach:
+> 
+> txeq-preshoot-g6 = <Host Lane 0 PreShoot, Device Lane 0 PreShoot, Host Lane
+> 1 PreShoot, Device Lane 1 PreShoot>;
+> txeq-deemphasis-g6 = <Host Lane 0 DeEmphasis, Device Lane 0 DeEmphasis, Host
+> Lane 1 DeEmphasis, Device Lane 1 DeEmphasis>;
+> txeq-precode-en-g6 = <Host Lane 0 PrecodeEn, Device Lane 0 PrecodeEn, Host
+> Lane 1 PrecodeEn, Device Lane 1 PrecodeEn>;
+> 
 
-Krzysztof reviews hundreds of patches so his fuse is quite short, don't tak=
-e
-it personally, he's a nice guy in real life. :)
+How about encoding Host and Device values in a single tuple. Like,
 
-> Anyway. That does not matter, what matters is how to organize
-> everything I have regarding this modem into a logic set. This is why I
-> am looking for maintainer suggestions.
->
-> How I see it ATM:
-> - I will remove this schema entirely and add usb-gpio (trigger for
-> modem that USB is ready), vbus supply (yes, modem has this line too
-> you can check in the P895 schematic) and infineon,usb-bus which
-> represents HSIC connection to the modem to the modem schema itself.
-> Obviously, I will add detailed descriptions of each component.
-> - I will resent patch 2 of this pwrseq with the modem patchset to have
-> a bigger picture. Pwrseq will obtain needed data from the modem node
-> itself (Bartosz Golaszewski are you fine with this?)
+	txeq-preshoot-g6 = <Lane_0 Host_PreShoot Device_PreShoot>, <Lane 1...>,
 
-As in: the modem driver will be the pwrseq provider? Sure, sounds good.
+- Mani
 
-> - I will try to get control over Tegra USB controller in the pwrseq
-> without need in externally-controlled flag I have proposed for
-> chipidea driver. I hope my idea will work.
->
-> Will this be acceptable for both of you?
->
-
-Bart
+-- 
+மணிவண்ணன் சதாசிவம்
 
