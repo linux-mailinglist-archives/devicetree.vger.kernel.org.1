@@ -1,160 +1,153 @@
-Return-Path: <devicetree+bounces-303350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303352-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cFxoDGjDFmrOqgcAu9opvQ
-	(envelope-from <devicetree+bounces-303350-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:11:52 +0200
+	id IEZYNzzDFmrOqgcAu9opvQ
+	(envelope-from <devicetree+bounces-303352-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:11:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8104D5E26DB
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:11:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDB65E26AF
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:11:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C4C33067082
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:02:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 43A473056C12
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0F43E7BDF;
-	Wed, 27 May 2026 10:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B413E63AE;
+	Wed, 27 May 2026 10:05:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FR9L7+S7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJzmVl2n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C53F3C2BA8
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 10:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4BB2D97AA
+	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 10:05:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779876163; cv=none; b=PMdLG5JCDYcWZifUtEVatMoZqPolDMNgWeMbgDvNz7DQeTtWyTUGgKolgzU0/wlfh4fbFSrPkXhAuyedPAHVqPi2feGQxm38slxyyzJ93IlaFBxvfbt2YszY9K8c4XM+L/pud0tZl0F3qGOPgq7J8mohK2ob2Y2t9h7ohlmdUNo=
+	t=1779876308; cv=none; b=RjFpM9bLWnuHLe2SqqXZdfh89z6mdCx8pVfMnsVekaucqVvHSRmv2ofuCHclbdmG3/AtTDY2/f9Mi/sdQdZaHvp6MeEWKd2b0zy5s0GFl8YV8+Mars2F4aBRgwNYgqYYImB4V3DleJmfwHXBF6hfGu4N4k7FH9plbc4Lpo9cP7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779876163; c=relaxed/simple;
-	bh=mEQtwxCaDvpgf0b6qFEbiPdETQ+FJRBg1zvn6KDGZSg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=c0w++aJ0DxlXZ5Q5Zco1Rq4d0mS9yYkQWBTwGttaCXhVTybn/VptHwvPj7+2nk4Ch+JFskBch3HBoLDdbRei1x6BZVux9S8v8gOC4xAw9meqseu37+Zvs6DEEAcnBAev3jsiNZAP+2d4JMuKPkWXEFnf+3D5UhApYuNVX4lsWas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FR9L7+S7; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 959731F000E9;
-	Wed, 27 May 2026 10:02:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779876161;
-	bh=JAixvd4gSy3n16REjlIxM512gd/JcsjpopozONmjuhU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=FR9L7+S7cYuFUqTuMuuLnt8XYtMO+b3IwB5gI9cDl/UIN0tvrdde92r+5n+CU1s8h
-	 iwlU6Scm7DZFPatJ1k9R91ShIAOk+OzIuWJEHtRFiHLXhAZ2WW2oA0G/Iteb1OsTnV
-	 JEhw3yGV/7Kb5oyjFHf2JzMF4MDOGuSwzr5luSpCMpy1DEVHKAvXDm9OIR7RZ8Csew
-	 RlQ/vK5lfI+Xd0QEmJ2lEOZH6y+kwoaGvJTPhzn3y06hoHrBO3SLHSnxHwqHFr1UEQ
-	 RTL7KpoJAuunvO7cmGVdRymTFexBQxTeezguBylRXyaksZbsLsjCOnRbdkWjSX/SPK
-	 sHEtEiHWItwGQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 13/24] arm64: dts: qcom: sm8650: Reduce OS PDC DRV
- span to 0x10000
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260527094333.2311731-14-mukesh.ojha@oss.qualcomm.com>
-References: <20260527094333.2311731-14-mukesh.ojha@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 27 May 2026 10:02:41 +0000
-Message-Id: <20260527100241.959731F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779876308; c=relaxed/simple;
+	bh=XeemKR+lU5czrivPSjCoQAtFVuS9QnNVXdN/zCjSJb8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VTXXJ+UgATaSqI+tGV8hQ2+eX65ZcAa4WXNJHvaUAAL654KfcUHpG4OHwJDrBsl8bSSZ86BetCPm9H5HNukFz8n8e8gykfmBDEvxJAof39B+oZehzT1XBWtEVEr7BMt5wlqc7Yf09aqz/hQmQGTBf7AxMWJg53sN4HSBaYybUUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJzmVl2n; arc=none smtp.client-ip=209.85.210.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f196.google.com with SMTP id d2e1a72fcca58-83f674f978fso4488192b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 03:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779876307; x=1780481107; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G42y5I8R+7FiVelwxkSPiySmvc6XEZZzbq1j+Twey98=;
+        b=HJzmVl2nj/wZQoELi+5azQP4hhGy2stGsncFjnwXIyvostouNpIntErpRhJN4qhslP
+         RQKIQ43hXznxCpn0RivbU23sByQzoFGy52Irgxi0usLBf1xpBbSPthM4VtGIliSWzl2M
+         XrL7mRJxMBrcIxaTxV3s06MLH9lpvi3l8shXavjOxbOV1PhEJRJOrgNavN23CE8rV1AO
+         emOqKnQp4Fqh6l6e31qWxuqcjsSdRBSp3zduqcwCbC9yIZH5djN5zpqOXCP5Ed7a5+EV
+         hS8YHMAC2zfLn3eteT0UJtOEFIiPAQ2omKspLhYDjqw6vd6GK6pL5pgvesaIy9T+JNA+
+         Vx7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779876307; x=1780481107;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G42y5I8R+7FiVelwxkSPiySmvc6XEZZzbq1j+Twey98=;
+        b=JH21UbcZgyEEBO7rIrIdaT8h6OoIbW7nCqNBy6S7lCMB/ArUQjeyD7HAP5NX/xkZzk
+         R3RnTb/BY/apQbvy8xV9Mv00K/uS5UqO9BUkYSr0uLB+WVMManfVaNENjBmigZfg+S9V
+         0RLQhVYr+0X+f9Ec0kNtmcYCkJgZ/sCWdyGDNEvRELwQmOPTymAlUQA1BNv7XZHJ9MN0
+         v7Z5RRiZDow9JJVMN0vt8O9MbEgSKUf7PGo5N7lmHRJu+SzaI4QlvgNKO5cduy7e/meN
+         H7RPLT9czdovDbJSk1uWVWqjLB3ZOcwgDnr7Id8um1lIYJKgNk0+gXTIHTi8qWG7/JUg
+         bL0Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9fIj/Xjon3XmtIN0Wsbl9W0oRCni81nqxqmvLc1R3eceuB49IHlA/rfVmVmxKWRFOejqbBIj6iOaAB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAc6h3q7qEuErYcvrXtVT0/Kaai2Oq7lopK9gIlgVvNp7m0mpu
+	GRBqinUVBca042Fq3kScCUrxGHX0cpTOUAaAIGoavQ16GVCaknrZXjs=
+X-Gm-Gg: Acq92OFomXaW3io2FVHSsMKKQH6GZniYLSX0F9sm4TgzqTzpnHX2bpHZ/EYDB6vLP1Q
+	puTlqaVA8fNwmFcG3mkrMEhltB0zyCSGOmWY6vVGYWS2OhVd37lSycZXGckBsZVpqzBNrYOZqdE
+	RZqgtuCBG7cIymXVB2KuTa/VdBDhN35vh2cKA+XqHCyM5QyWc17YvGKFaL9vaqCG4HSXkfyV+JC
+	em7k3oe9o1Z0ewLwRfqfPbIjJbVAQBzZC4fvLWxX+fvuzt+12V1+51A+03Aqvmbj3TQIRCtU5oM
+	9VkEDoyigB7C0VM7RnczcFA5QR2f+hVVkeIwTiZ0Hq9uT/G4vXLbjlP+4Ar0Iv95uHuf3k20gcW
+	3GkCHWqni72VjUJ0vGuPFAco4it6p0mOGmD/l9LiuxNoPQoXiA77E3K35+pdIPUaU0PAMbutHXh
+	TQUNPlJCbWM8Xdh5rVMqWPF1U7nniK3ohO6R8Uh5qojEglPPnoc1/2OO9bnP1UIbMJ/w==
+X-Received: by 2002:a05:6a00:298f:b0:835:3d5e:1dd3 with SMTP id d2e1a72fcca58-8415f586b5bmr20394695b3a.42.1779876306515;
+        Wed, 27 May 2026 03:05:06 -0700 (PDT)
+Received: from localhost.localdomain ([211.196.223.197])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-841d6e806c7sm1951266b3a.1.2026.05.27.03.05.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 May 2026 03:05:06 -0700 (PDT)
+From: Jinseok Kim <always.starving0@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	florian.fainelli@broadcom.com
+Cc: bcm-kernel-feedback-list@broadcom.com,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm: dts: bcm2711: Fix typo in gpio-line-names
+Date: Wed, 27 May 2026 19:04:37 +0900
+Message-ID: <20260527100439.2507-1-always.starving0@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303350-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[alwaysstarving0@gmail.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-303352-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,b220000:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: 8104D5E26DB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5EDB65E26AF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Reducing the PDC `reg` size to 0x10000 in the device tree trigge=
-rs a persistent boot warning and fails to actually reduce the mapped memory=
- region size because the driver enforces a hardcoded minimum size.
+Replace "RGMIO_MDC" with "RGMII_MDC" in gpio-line-names.
+
+Signed-off-by: Jinseok Kim <always.starving0@gmail.com>
+---
+ arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+index 353bb50ce542..5469fa663526 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+@@ -110,7 +110,7 @@ &gpio {
+ 			  "GPIO26",
+ 			  "GPIO27",
+ 			  "RGMII_MDIO",
+-			  "RGMIO_MDC",
++			  "RGMII_MDC",
+ 			  /* Used by BT module */
+ 			  "CTS0",		/* 30 */
+ 			  "RTS0",
 --
-
-commit 5e3df9b8bc840c5ea7f6601a836f855af7f989d4
-Author: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-
-arm64: dts: qcom: sm8650: Reduce OS PDC DRV span to 0x10000
-
-This commit reduces the size of the first reg entry in the PDC interrupt
-controller node from 0x30000 to 0x10000 on the sm8650 platform.
-
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/q=
-com/sm8650.dtsi
-> index 1604bc8cff373..7a66b79ed336c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -5987,7 +5987,7 @@ dispcc: clock-controller@af00000 {
-> =20
->  		pdc: interrupt-controller@b220000 {
->  			compatible =3D "qcom,sm8650-pdc", "qcom,pdc";
-> -			reg =3D <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
-> +			reg =3D <0 0x0b220000 0 0x10000>, <0 0x174000f0 0 0x64>;
-
-[Severity: Medium]
-Will this reduction in the reg size trigger a warning on every boot?
-
-Looking at drivers/irqchip/qcom-pdc.c, the driver has a hardcoded minimum
-size for the PDC resource:
-
-drivers/irqchip/qcom-pdc.c:qcom_pdc_probe() {
-    ...
-    res_size =3D max_t(resource_size_t, resource_size(&res), QCOM_PDC_SIZE);
-    if (res_size > resource_size(&res))
-        pr_warn("%pOF: invalid reg size, please fix DT\n", node);
-    ...
-}
-
-Since QCOM_PDC_SIZE is defined as 0x30000, reducing the DT reg size to
-0x10000 will cause the driver to print this warning.
-
-Additionally, because the driver uses the calculated res_size for its iorem=
-ap
-call, it appears it will still map 0x30000 bytes regardless of this DT
-change.
-
-Does the qcom-pdc driver need to be updated to handle the smaller size
-without forcing this workaround before the DT is changed?
-
-> =20
->  			interrupt-parent =3D <&intc>;
->
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527094333.2311=
-731-1-mukesh.ojha@oss.qualcomm.com?part=3D13
+2.43.0
 
