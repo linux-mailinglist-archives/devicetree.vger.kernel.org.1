@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-303285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UPtCKxmyFmokogcAu9opvQ
-	(envelope-from <devicetree+bounces-303285-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:58:01 +0200
+	id EJkEEZq0FmokogcAu9opvQ
+	(envelope-from <devicetree+bounces-303295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:08:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC055E16E0
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:58:01 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABAE25E1897
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A0A03044812
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 08:51:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 13ED530515B0
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 09:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4543E2ACE;
-	Wed, 27 May 2026 08:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79293E558E;
+	Wed, 27 May 2026 09:06:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2115.outbound.protection.partner.outlook.cn [139.219.17.115])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2113.outbound.protection.partner.outlook.cn [139.219.17.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56092F6560;
-	Wed, 27 May 2026 08:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D730C19E97B;
+	Wed, 27 May 2026 09:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.113
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779871861; cv=fail; b=T9eiYZjcAgWLERTmqxkj27Td7hNBZMeC87THERPXIGNfXAx1caTzTl1F84GQvbcpQqFh+D1kofept/QO74R/tAsuwmC0lNuHz4yjAUhNHzQ3eSzvmr3yxN6aop92eNNsnEsnWpbHYZGpf9pKNqesU3qtVsGbOGXkEM8iPmoq2CE=
+	t=1779872817; cv=fail; b=Rb7vwnmCqX5+dJ8BZ7EcTemAy1kgOtITz5uc4smNeKf+Q9/FiY7ffUtxfjd/lWaHlwFCEr7J/x6BJZHUZHAgokh3uVo0qLPx4N4KMIkT5TwCtP5v1df2Np2G6wBDN1t7xKjTLVnVUWjNr3/M6DIzYb8o9qyyKxMYEAVDuhCxB7Y=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779871861; c=relaxed/simple;
-	bh=oXv4jxfkVoTggzeqeDyhnYCxhrcPRbmdnCmBTxWUn68=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=KfXmOJnAWovZrwN+5Egqra2zxUNht1TsD36T0IIn1yG7htDd7EK60fBrlDmc3JT52k/DwS4yROWaIb4YVlRe02SGAQ1uWre9rNbG5rATI9JiC/i7MhwqBdUp/T+l9OdHfD9SE1lJO2Me0o1SvsSPYCGOji/sM56esoMbfj3XnPQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.115
+	s=arc-20240116; t=1779872817; c=relaxed/simple;
+	bh=68+47IYUtKW+VSkGychc2ZjLUGWhDltJ9/gJVeWN4kI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RHBuXFiXKAIjQyVLydIsFcD0+RNKmEogdTlMlxiDuQ1W9PUx9/gZMp8vXSI+y2f4M/CvQKvCFieJ0TzsO5wTD6az0U6fwHEnnG5uWJtUxtHrN/Gh72Af1oChaJrdIy+rrp8d6KhBJKdGu09H9gmM/z3bsbbqy03gJ8AcK93CNMY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.113
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MR9CDQmTs2u+iJ1dU+Qvv2iHvyjEZmJkoZKh3Fd2PGPudx868V+Kr1EBsLGpZX1GxPqEa4bFRfJWcXRk9MTtkltAoQeCuDvhPG8wsulyckxGDmEVy0jYwuIvyIAH+iUmf3HFgeGTwoWUsOxvIcwbbeysIi2JTiVQcuSZGGdD+m4BEX4rlEa8HciPuIOxyI4bU2l3BaCiTht+z5y+5kaqjteRzumFCjjeW97R4rxQvJcA1fk+1C89oh/aYmuM5LHK7GWFbvoWamk7afnHQ4ZRXa5IDKeMVpo9Ei6Y41K8wsAxOcyzIx4tNjLmBv6SHCpr22v8xvz+P0sK4XSziRwT5A==
+ b=RXAP7YEBrkWMF0E0rve9TXxHhv06LiSSWoFyoH1eoKoaPf+7tN3g3bvd1ZOP7MaMoMXKth+6skBDYFqYTaSVH+bWpiu1A0wTJhYg14YfdFSgruJ8Lo3hR4RQ3/2bkvzuWL+W+Bs6fO1a08WOk5SmeCf7+y4PMFKKYfnZ5u4nqwnr50KYtNP5v3ZXqlpINDYPaJqBLlP4tmHQLLJ9akNtmoWdy1NjtIuaeTOEheVSJ74/TEZ4XTq81M5CyCw8JTWSx9OzqeAR6YX4c/uzPWjn0qqKgOVPZHSnUA6TYOjvEuiKRHuPuyP6a9p9kJ9AzZPnuhnobUApAqboZc/1zvvBMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G4zH7gvgcVzUiEF6rMuXcCvUdgMyX5ebGAhvEoLTKSA=;
- b=N9o6OYAJImgV5zeffQJTqI1w3ozRhO/n2YWwEcy9ekAiKHsT65euRHU9jUHPC+rKlVjtRoxPsZCFg5acHlX6lLI2wQlqoXdwyQkwN/DEIIRasaQ0AyQb19dTQSk9z+XsudKUm5APbi572JQAKl1nVXYcwYGjgQUlYKaVgiQ2NVinjwFBNeeQqQrGsNERf+shFFBhUEUxOGpG3dYumd4OAgEM459AR+BdFgKV7S5NGH3DIZGibPsWld8TQ+vSWHMpdzaxhlBzDxvAF5D0MEStp2pY7osk5oXOnjX97wwM/xVwIwLJ9sMWzFKfaOL5uqMRp/ZrlkhtiIYaoKslKn/cIQ==
+ bh=KlTpH9TWkc0QG8EzGucS4j3sUwmtLBtVwkzY5wIon6Q=;
+ b=EA/SpaY1VR2bUZR4Fj5qofTctOf9uYRAA62vZSHV3ZiihfiuKbO8qPTIvWgeqddPn5SvCpz7ariSOCPKQFa/Ez6qC1dVOygL7RiyJ56Tn8cyvgvQb15BFsar2YL5px1YAxxsfw3odRHlCE42F56mfz8v2WkP+OlnUufYJ5Z/u8PL6LQEV88dkhUFGXdHdI9VpWWx1OtYLqNjw/UvifakCB7RoZgnHx2eFok6QdcQrfiyqeMt5He3M3b/qbiaxHfMrOlb89SC2x7XwXERXAZBhs+DYAA+bbHdpJ+1EUzybTubCzMnDrypdHJ8qJVj/ACqhQBjrHHMWBtCccmvGlJ9MQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=starfivetech.com; dmarc=pass action=none
  header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=starfivetech.com;
 Received: from ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:18::6) by ZQ0PR01MB1285.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1a::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2406:e500:c550:18::6) by ZQ0PR01MB1301.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:1a::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.13; Wed, 27 May
- 2026 08:50:46 +0000
+ 2026 08:50:47 +0000
 Received: from ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
  ([fe80::973:272c:ab11:7570]) by ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
  ([fe80::973:272c:ab11:7570%6]) with mapi id 15.21.0071.011; Wed, 27 May 2026
- 08:50:46 +0000
+ 08:50:47 +0000
 From: "lianfeng.ouyang" <lianfeng.ouyang@starfivetech.com>
 To: Andi Shyti <andi.shyti@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -63,10 +64,12 @@ Cc: linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
-Subject: [PATCH v2 0/3] i2c: Add Starfive JHB100 I2C master/slave support
-Date: Wed, 27 May 2026 16:50:36 +0800
-Message-Id: <20260527085039.44435-1-lianfeng.ouyang@starfivetech.com>
+Subject: [PATCH v2 1/3] dt-bindings: i2c: Add StarFive JHB100 I2C
+Date: Wed, 27 May 2026 16:50:37 +0800
+Message-Id: <20260527085039.44435-2-lianfeng.ouyang@starfivetech.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260527085039.44435-1-lianfeng.ouyang@starfivetech.com>
+References: <20260527085039.44435-1-lianfeng.ouyang@starfivetech.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-ClientProxiedBy: NT0PR01CA0020.CHNPR01.prod.partner.outlook.cn
@@ -79,155 +82,243 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1269:EE_|ZQ0PR01MB1285:EE_
-X-MS-Office365-Filtering-Correlation-Id: b04053c3-20b4-4068-b238-08debbcd0b52
+X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1269:EE_|ZQ0PR01MB1301:EE_
+X-MS-Office365-Filtering-Correlation-Id: a8edcd34-df9f-4912-2b8d-08debbcd0bd3
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|366016|1800799024|18002099003|38350700014|6133799003|56012099006;
+	BCL:0;ARA:13230040|1800799024|52116014|376014|366016|38350700014|3023799007|56012099006|18002099003|22082099003;
 X-Microsoft-Antispam-Message-Info:
-	WenFDlBDfiedwzL6/0ORb1/VBZbLk9xgG90E4qa924CHN3DMwrrFOIiXrUv0hxJW9XfOx7GUnaL4F7Reu921nb8WeWrS2NVxLQPSH6M8Edqeof6z2bRxkZf/owNoiMEmWy2QkwMP8UGJuW5jzTsaSX7pckJwED15PvlgAMvSXPJ8Wg9PeR/4+YxVqXAOa998NYld9zcB59PBnARmM3E7US4SwD55x1r3ao+oWyC70ARR4S//sNPxMcw2KiyD3zqmesgwUnTHx3IdokungOMaaQviqnYWAfg3EWZqkvR1z2exZxj8lrW40YOvcAAFJpsJaygJPPI3Z8Rl0PfUusw6SMQkRgnZjMT7UMBDuF1RhbsW8XjmSxZ/XlB4lyeZTYraYH6q23OKEOXDOwjx5vuuopoxnjSM9f/wLwcQ5YjbfXQRscyrQWmS0mgheMQJfQ25HPiU5RqwM7HYixbqrDDnc6neAHLvYR8zOa/MyEpyZsgD+akJMQ1e7KMfNCk1tR9qZLLw9W5rgHF9J7eZTJj1e92KiyaGkLsPB8ilUEqLuMtWZo3bvZxIiwc8Vyy2tmFY
+	Gp/7lUQHNxMevwavsYzPa0itD2HQnbrfiFmEJHpgBz50fBet+LHmae2yhBqPcR4xsDp0v0K/nJSlzCrGMrJp+gxawCui15lV6nYPBrervJrvPiXJj7pbsBRuJg1SDikbrmXepm02K0IkAaI+P0x7wAyOPRrnImYDkm1Jb8r5dYR0GU3x7EDF/9y/9fr7cGAa9ydS8iYh+iM27av13+VpP58lnyE+IAfITmfSSL5dsHaH1c64Tybgd+RvC+cBi3fPXdn5xnDi8/Z9+NPdTNKSaMVlzCQfcc3fT2egg63jdhJm3YSUW8qL8rmoN/hW8P10+wXByEvR8KLeO+2DypMUcEJJct0S7+2J3Z3wvQ7yep2Hg6x2HBBKhn+rxiCtf7mpAjSL1Gm6Q1XbUiYhqXJfsmODt6do+ihbCieTGyls8AGlnsUfdvos5s0CyiucYr6Y/6JKPptzF3gxSZE1xbDvusPjLGN4lw93M2oObQxzI3sbNEmBeMtiFJkWCTWQ4HDMJZaa5Aoq81DScZxa9GBrzd1DSha69B0Vj42mBmno7ibSC6zNrybCUrGeqd944sv+
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(1800799024)(18002099003)(38350700014)(6133799003)(56012099006);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(366016)(38350700014)(3023799007)(56012099006)(18002099003)(22082099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?3v2tAbGfXy+dxtq//kyTJ81quegIo1qL68faz2QwBURWRjNSaZzDQPmV2+7j?=
- =?us-ascii?Q?MRIwJl9es1tBZ+VxsyjYKnwwESR3kBDLopSPljzr90reQXnJwAmQVbE83GIo?=
- =?us-ascii?Q?zJV2v9LFvGHRXvHQmNsvmbuLWL2Ne1wG2HXDR7GohVEfCbmiMrjx6eKcgtHa?=
- =?us-ascii?Q?9Knsha9gMomhjaTjFnAZ1TnQYdUCizyQWK+XgsdPNOgufmapCogoV/3S8Y5N?=
- =?us-ascii?Q?SQXdGCEqU6Vjj9sjMWHRbdC5OEU2vOubuSlRqViSivbmbBNC0OSR77Tpe7Pj?=
- =?us-ascii?Q?IefUzfMsvk1oRU+4wa7aLImjjUfvi4I1tcCBSHTxDW2PgB2qbTCPOr88p5y+?=
- =?us-ascii?Q?eRNvh3ODFOCIQgnyGX/MZ9wCZgR1XnNVlVabneXzyHuWS5cyYg7edK1dhP3e?=
- =?us-ascii?Q?wV9M+HhwF9ZsS1d1NyoGU2RHyV4mb7eNjlsI2mcKX4Kuh9BsAfWiF3lHJGEa?=
- =?us-ascii?Q?3/xw7j1MSiGGU5Q4kMt+kt5iTK5I/7Hjji4PLZUbVWwQ+iR1l+WtWadMYtAC?=
- =?us-ascii?Q?YaKMfpgVMCs30Sfl5hq7eAkabF4Ebu2xZM2h3wwXWZmxLn8Aard/8jRIuUPr?=
- =?us-ascii?Q?qK6Xkq/bohcHnEdXZn2eXc749lquObbGw97hAxs7mbkbzDE/EyUmupRcDg5F?=
- =?us-ascii?Q?Iymut16epiowhFNFXmEgM47gOoh2QQ2Q47CYyXskPWcDsawJhDutehM93iQK?=
- =?us-ascii?Q?ypsr81KYVYzBJ39Ssus8UCwZceyOccFC4X7YwMfIb4Klheh0CaNpn/wtD/ZJ?=
- =?us-ascii?Q?Ohkp6fRktdaF7loFvC7aA1746IeO5ja8Y5EIdwfJe2/+MX1kWFfJCTyD/Pb/?=
- =?us-ascii?Q?o2BWzinNs/92U2Rl2jE+I1HTc7PoVaJFUWgsvNJLizojh3q7vgWkjDLT5J+/?=
- =?us-ascii?Q?YhDHN68Ib/RjyMEnl84inY26Y1zZgeiDq44Sb2lKBrO0mXBQeVc8KPoY+h4X?=
- =?us-ascii?Q?ONHjQlgkLMqPez2BLzkVdcEGN08E93j5j4VMzVufDR97v94e8eV05NqzesLN?=
- =?us-ascii?Q?QYT+gn6EJxJAtAfjoiFLb0jYlAsaBPQIKxtvIVZAkrDynG8y643wWylKO1vo?=
- =?us-ascii?Q?x5qZRQbOKgmNDLDweQ0Tw8XWMRSmKWWrsccjX9DRqfWL6oABoNXLhDRaQnTc?=
- =?us-ascii?Q?K1g4tj0gin523p8xCHGHEa7UIYewxzceOi7tlVIFOXCbY2Qr5bndxqNDBEMQ?=
- =?us-ascii?Q?Kzfk7FF6SzNcwHMKel919reoSUpTfj6oqO8Dt63pbItLnf0ewgVPsW+zwrHK?=
- =?us-ascii?Q?MBHXscWJa5TG6dd+8Wnoq3T9CgC4tnhGYvKTfDLuCdZnBJDGaV3kLQg4JXbv?=
- =?us-ascii?Q?2ArCeWovmMhJldIOu2l4QUN6XxiiIK4Z8IppzLH+QgIEJX1GhILcWeCMTIZ/?=
- =?us-ascii?Q?URDjqsVCrniUrg4zK9aKhfm+LogjG5zxUnnrJtMHw0PZNMbMQElz58eDQc68?=
- =?us-ascii?Q?uQP+hiVz13ijltB3+ZvWexx0xmESv2Y+VlC61JmqS6JM2Qe+veHW5JSwU+Bf?=
- =?us-ascii?Q?RvpjGXxjQN/dyfAYzHu09cks0/TL5cxfWizbgPOmxug8hILV0oDWlHhQUtxJ?=
- =?us-ascii?Q?/1zGqpu/VJXqZ2tq7/slgcuNkuqwtPjFB6DAUsTGPnvUxmkJmpfdiOQRnMIP?=
- =?us-ascii?Q?IkioNZVjKVFBf4NM5ef0kHRkGzhvYD6+hyFICveRLCevw8JWsh85ARoY5dV0?=
- =?us-ascii?Q?pbWafBTP+wrPO0Yv9L325jFmTPtV6T7Oli7ZC9S+VoQ/Qxubg9Sku+mcvRve?=
- =?us-ascii?Q?YlYlg5W5tEBg//9xIO5i4/y89bzZd2adOjMC+72/D3Z5d5K4t7Z7?=
+	=?us-ascii?Q?M2pBq9jOUM3CyQQOqpyehzExk3JKw5RFaPmznRFGEQPjNN2+WoZzpJxSFbcl?=
+ =?us-ascii?Q?/CjakEtJETPuz84LwK1o7elUlzbbCadBwuZ7zaGa/r6who3V3BLBaxMr6aTk?=
+ =?us-ascii?Q?C3XTKk4JnAa/hmbiKODzzSjsoFsAPJh+Bu0m8gHwduYdNRVGibldZHnjj3kg?=
+ =?us-ascii?Q?9o2GGVclvnlcXAwfmmgYzmFda4sAl1+r4vlddP+4z++LZs4KmS+aoT0Zdgmz?=
+ =?us-ascii?Q?m0b7Jkl49gO33KTvwa244x47LN3S9RlSMikk4N3Qxy7QgQFtncWq+b8y3k/N?=
+ =?us-ascii?Q?bhiYA6eSJvTuJKqXIkl/bLGjBz2UJR0ni2OeoHFHyrFHr5WQrAra/P28hyqd?=
+ =?us-ascii?Q?uAen8AFfTfwkR/LmHBqzQj/j07EM/jRJjdrrNl/e4aM3H6qYEx7y1lyWGdn3?=
+ =?us-ascii?Q?TPX0fP8LWDEucRinxTYCMSclIvzl9oG7xccu7tBO8Gw2fNHIyQCl/ajydE/U?=
+ =?us-ascii?Q?U8NmshQQBrFijmGlt49yzWUdOKMO1C6xV5thLza1rN7L8GBat2n7yyKLD7iv?=
+ =?us-ascii?Q?/ls5G6nwz+tz0oN9RhUvZ8bwi1XG762v4QdA1gvt2lGYe9NpnTkorLZw0rsm?=
+ =?us-ascii?Q?rhdVFrve4xIhMVOekwJV+D2JXY6XXwv7b52PBugywteU3eNO6bFAERlu80Sc?=
+ =?us-ascii?Q?ilbvDnGMlrfy3XNiBHHlVOrl9sj7ruZ7Y7n8x69a6NAOIWugHHvjGb0aPooB?=
+ =?us-ascii?Q?tMEokrlHuX9W9MYWrH6y+fEYDMBxN8/ITnQa+obyp+VHLrPFTpdJUCawA9X+?=
+ =?us-ascii?Q?jmSAQnpdL8LIu+QjfOjVq/hVCJc7YRMZIfORRZGQfGT5IEu20XkwyDQdBdLW?=
+ =?us-ascii?Q?wfDfJ5xcPy/ygSf/PsTiaXrCW/RS+P2oNUgGM/J7woVFSl28xmGI9ewD60Ov?=
+ =?us-ascii?Q?4zA9q2biiHww32CUJblv4eqHNSQpvF9vZporjHOaIc9l6+5vQEEZS3Xwowt9?=
+ =?us-ascii?Q?IEt8o+bSCxJPEMeDOCCY1T7YZ6mcihtnSd2vw+5sZ4dGQraBhOIxfXXw+cve?=
+ =?us-ascii?Q?nuWJDS79Uui0GLL4rrBOcUJ421UpnAwza0ZORm19QTfSOmuumGm+FtuTfV66?=
+ =?us-ascii?Q?9AWUxWDHluMvagl/xNAdWH4aSShxmrA2LxuIV/NO+cWFY4n5Ia2zWbzvvoo1?=
+ =?us-ascii?Q?bdrDw4G3E+W7rs8Xk1xTOctQ8GAdgHLiBqyTsJCMr1kqfj0oUgFtt5C3SMe9?=
+ =?us-ascii?Q?jF7zIC12Qpx8hbs5jDw5t/YMkVyQTIlvqCJ8VJnZFfEyN71b3+iM7NI0FQRv?=
+ =?us-ascii?Q?ABdn+PoCDhgMJhuCFCLO/WcBbRto5n2VISkIfDaIaEJHd9A4kpk8rpZOuu61?=
+ =?us-ascii?Q?RWryuB1laE34ggzDSKYCOZuo21TdIiJWkOvKfvW+dyc2iFuDcVfQjKogyaPT?=
+ =?us-ascii?Q?SFIjoqTg3/8ZamLu9b3UNSAHR9R4c6TrVt/8gGMUphqVUyouCi/Lzkznr0LJ?=
+ =?us-ascii?Q?RrbXN5u+ykiKD8ns8ZNkqu/2iaTnBjiq+dP4Mm5zwwlAODg/VMYU+W2dFysy?=
+ =?us-ascii?Q?UYPCz+biqxfvCOhzqe15ujtfQIQ1LNr8NvbB4s/aeg+nM3rWqr9fcJPLgrTu?=
+ =?us-ascii?Q?thMP+NanhiVeIxGh/TTE4KRL5QCLmW6FeD9BlYnZNkG/IA+Y8irwX3g+J7V7?=
+ =?us-ascii?Q?fxLVNiW1ceaXFPhufYvnqPtPLGwQekR4LJrmIfYo5yEz+KYWuAEGhadGKnMJ?=
+ =?us-ascii?Q?iBqSUOcuRnpchhGq82O8ytLcqthkpIKuEBdMTWAAqem4ep/aohiNe9rH5vVH?=
+ =?us-ascii?Q?mLzJiQI27m1IVr/NJchL8P5bqhZBIpa2Fn9MtrKHFI0qm32vKhIQ?=
 X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b04053c3-20b4-4068-b238-08debbcd0b52
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8edcd34-df9f-4912-2b8d-08debbcd0bd3
 X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 08:50:46.6703
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 08:50:47.5177
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tfPuwX1srCSR5BdCgRG5vXSPPs2b8kusBZYGw/HAjvDuQ9hyabxkXNvHG0XL1GB6ySfNXORd+FOy9+5DHcIFO2DtI8GlAGJV3cWQr957oP82imiPDOQtVCCtfLsegOOB
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1285
+X-MS-Exchange-CrossTenant-UserPrincipalName: wdd5xeEosFF9GCLP4ldvTiv/S5E95GD1V6gfuOoZKSRFXsP0ZJ22yvOrHU7x7dBH/hWb3R5x8vdoXZhI1VACB1EFYEvpA2NhRyq5+5KeJbE2byDXbc9MyPnLcD/nVvt/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1301
 X-Spamd-Result: default: False [3.54 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-303285-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303295-lists,devicetree=lfdr.de];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
+	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lianfeng.ouyang@starfivetech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.973];
 	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.982];
+	DBL_PROHIBIT(0.00)[0.0.7.208:email,0.0.11.184:email,0.0.0.64:email];
 	R_DKIM_NA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,starfivetech.com:mid,starfivetech.com:email]
-X-Rspamd-Queue-Id: 3AC055E16E0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:mid,starfivetech.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: ABAE25E1897
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
 
-The Starfive JHB100 I2C controller is a variant of the widely-used
-DesignWare I2C IP, with a distinct register layout and enhanced features
-such as SMBus Alert and programmable FIFO depths.
+Add device tree bindings for the Starfive I2C controller
+and its implementation
 
-The series is structured as follows:
-1.  Adds the device tree binding document for the starfive,jhb100-i2c
-        compatible.
-2.  Prepares the existing i2c-designware-core by exporting and making
-        certain key functions overridable, allowing code reuse.
-3.  Introduces the new i2c-starfive-* driver, with separate modules for
-        master and slave functionality, based on the 2023-07 revision of
-	the Synopsys IP manual.
+The binding defines two platform-specific compatibles for the StarFive
+JHB100 implementation:
+- "starfive,jhb100-i2c-master"
+- "starfive,jhb100-i2c-slave"
 
-Currently, due to the following differences, i2c designware cannot be
-fully reused
-1.  For high and low level counting settings at different rates, i2c
-        starfive can use IC_SCL-H/LCNT to set SS, FM, FM+, UFM
-2.  Interrupt clearing is achieved by writing 1 to the corresponding
-        bit of INTR_CLR, while designware reads different clearing
-	registers
-3.  Master and slave require separate probe callbacks and cannot rely
-        solely on the runtime mode switching provided by i2c_dw_set_mode()
-4.  The value of FIFO depth is not obtained through registers, but
-        written through DTS
+The controller supports standard I2C and SMBus protocols, programmable
+FIFO depths, and optional SMBus Alert routing. The binding documents
+the necessary clocks, resets, and timing properties.
 
-I have written some poorly styled code to reduce changes to i2c designware
-and reuse its functions by keeping aa always true, for example
-1.  the implementation of i2c-d w_probe_master() differs only for the two
-        IPs in i2c_dw_set_timits_master(). In order to reuse
-	i2c_dw_probe_master(), i2c_dw_set_timits_master is declared as
-	__weak. A better approach is to use a callback function, but using
-	a callback function requires changing more i2c designware files.
-	I don't know what the attitude of the community is
-2.  For the operation of clearing interrupt flags, i2c designware reads
-        and i2c starfive writes. Therefore, in order not to modify the
-	relevant logic of i2c designware, I added a write operation to
-	sf_reg_read()
-So I think this version of the code is not allowed to merge, but I don't
-know how to handle this situation because if i2c designware is not changed
- at all, we will have to write code that is similar to i2c designware.
- Will this type of IP not be allowed to merge?
-
-Lianfeng Ouyang (3):
-  dt-bindings: i2c: Add StarFive JHB100 I2C
-  i2c: designware: Export symbols and add __weak for Starfive I2C driver
-  i2c: starfive: Add StarFive JHB100 I2C master/slave support
-
- .../bindings/i2c/starfive,jhb100-i2c.yaml     | 128 +++++
- MAINTAINERS                                   |   7 +
- drivers/i2c/busses/Kconfig                    |  24 +
- drivers/i2c/busses/Makefile                   |   3 +
- drivers/i2c/busses/i2c-designware-common.c    |  72 ++-
- drivers/i2c/busses/i2c-designware-core.h      |  20 +
- drivers/i2c/busses/i2c-designware-master.c    |   4 +-
- drivers/i2c/busses/i2c-designware-platdrv.c   |   6 +
- drivers/i2c/busses/i2c-designware-slave.c     |   2 +-
- drivers/i2c/busses/i2c-starfive-core.h        | 164 ++++++
- drivers/i2c/busses/i2c-starfive-master.c      | 470 ++++++++++++++++++
- drivers/i2c/busses/i2c-starfive-slave.c       | 180 +++++++
- 12 files changed, 1060 insertions(+), 20 deletions(-)
+Signed-off-by: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+---
+ .../bindings/i2c/starfive,jhb100-i2c.yaml     | 128 ++++++++++++++++++
+ 1 file changed, 128 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/i2c/starfive,jhb100-i2c.yaml
- create mode 100644 drivers/i2c/busses/i2c-starfive-core.h
- create mode 100644 drivers/i2c/busses/i2c-starfive-master.c
- create mode 100644 drivers/i2c/busses/i2c-starfive-slave.c
 
---
+diff --git a/Documentation/devicetree/bindings/i2c/starfive,jhb100-i2c.yaml b/Documentation/devicetree/bindings/i2c/starfive,jhb100-i2c.yaml
+new file mode 100644
+index 000000000000..c8631348121c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/starfive,jhb100-i2c.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2024 StarFive Technology Co., Ltd.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/starfive,jhb100-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: StarFive jhb100 I2C Controller
++
++maintainers:
++  - Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    description: |
++      Must be one of:
++      - "starfive,jhb100-i2c-master" for master mode controller
++      - "starfive,jhb100-i2c-slave" for slave mode controller
++    enum:
++      - starfive,jhb100-i2c-master
++      - starfive,jhb100-i2c-slave
++
++  reg:
++    maxItems: 1
++    description: StarFive I2C controller memory mapped registers
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 2
++    maxItems: 2
++    items:
++      - description: I2C controller reference clock source
++      - description: APB interface clock source
++
++  clock-names:
++    minItems: 2
++    maxItems: 2
++    items:
++      - const: ref
++      - const: pclk
++
++  resets:
++    maxItems: 1
++    description: Phandle to the reset controller for the I2C controller
++
++  clock-frequency:
++    description: Desired I2C bus clock frequency in Hz
++    enum: [100000, 400000, 1000000, 3400000]
++    default: 400000
++
++  i2c-sda-hold-time-ns:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      SDA hold time in nanoseconds, used to compute the value written into
++      the DW_IC_SDA_HOLD register.
++    default: 0
++
++  i2c-scl-falling-time-ns:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      SCL falling time in nanoseconds, used to compute the tLOW period.
++    default: 300
++
++  i2c-sda-falling-time-ns:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      SDA falling time in nanoseconds, used to compute the tHIGH period.
++    default: 300
++
++  starfive,mctp-i2c-ms:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: |
++      Phandle to the master I2C node associated with this slave controller.
++      Only used in slave mode, typically for MCTP applications.
++
++  starfive,i2c-tx-fifo-depth:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      TX FIFO depth of the I2C controller.
++    default: 8
++
++  starfive,i2c-rx-fifo-depth:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      RX FIFO depth of the I2C controller.
++    default: 8
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++
++examples:
++  - |
++    i2c@2000 {
++      compatible = "starfive,jhb100-i2c-master";
++      reg = <0x2000 0x100>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++      clock-frequency = <400000>;
++      clocks = <&i2c_refclk>, <&apb_pclk>;
++      clock-names = "ref", "pclk";
++      interrupts = <0>;
++
++      eeprom@64 {
++        compatible = "atmel,24c02";
++        reg = <0x64>;
++      };
++    };
++    |
++    i2c@3000 {
++      compatible = "starfive,jhb100-i2c-slave";
++      reg = <0x3000 0x100>;
++      clocks = <&i2c_refclk>, <&apb_pclk>;
++      clock-names = "ref", "pclk";
++      interrupts = <1>;
++      starfive,mctp-i2c-ms = <&i2c_master>;
++    };
++...
+-- 
 2.43.0
 
 
