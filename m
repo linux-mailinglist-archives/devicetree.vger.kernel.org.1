@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-303364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303366-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cPyOHb3FFmrOqgcAu9opvQ
-	(envelope-from <devicetree+bounces-303364-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:21:49 +0200
+	id kFyvLBPFFmrOqgcAu9opvQ
+	(envelope-from <devicetree+bounces-303366-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:18:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9AAA5E28C9
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:21:48 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DB025E2843
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:18:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7DB2030C0135
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:12:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4B32E31D18F0
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A673E0095;
-	Wed, 27 May 2026 10:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BBF3ED13E;
+	Wed, 27 May 2026 10:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oaehvxW/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jtFCRlGK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1B28460
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 10:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC88377ECF
+	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 10:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779876747; cv=none; b=d71GheVMbA9XboznNvVYkjcN0yB2BepO2VrvOLq7If4UIH71aXeFmxC+cGFGF72uNNJbYctCQdgeD9JyMjjQ1wkoJNteIL1HTWM5L5IIitU4qFY4gN7IoUBu+IUh5jf5qY5bFYHvryvEpUy6XmF1G8o+pufPY03gZGi0o7w366c=
+	t=1779876759; cv=none; b=FUrGbSgl4RiTsSsSC3otWDU4nfqqpeKyXx4AETCflufMIxw5BakHblJwrFgXA6Uq/2aq0P02RrYW7PqcxdauuWJAem0FAqelthQtUPgPQALjXwiTfzzqbjBzz1F07W12GmspKfcqXWNQC35put9PWMGH/ZrwAgG0lA4Ll7BUKKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779876747; c=relaxed/simple;
-	bh=A7geDkCJhJk7zpvHPIcJfX9bOLRqtB9a2AcECszw5+Q=;
+	s=arc-20240116; t=1779876759; c=relaxed/simple;
+	bh=5hhJZ3Wskkwa8hcoeZLDMhxdsetMcenlnyfJas38k5c=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=uMbujPfXqU95M/cgWo7IfvVpvT3EPdR6f+e5hOWeH8gr+G9fN9GoxCss/ZbdTYEXNEDaRy3UTvF3sLW/b+85O/ASeGMJSp8RkyJ2EFFQ06W5s6fpqi7ua4jLTm1ZtHftq51lmVdSSFyDbXWFlXHaWgGZJBTbEBRleMTucMcCHJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oaehvxW/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF851F00A3A;
-	Wed, 27 May 2026 10:12:13 +0000 (UTC)
+	 Message-Id; b=at8GZI0xlMRdulE2X8DEfClan2DyDxS6tiW1dWNZ5ASM2vcOUQrvBUK/Hgvk2+c4RLCPlTpklDnUkJlC1IXmq4iWl/AL9ipVbjPoeEZxTdQs1T0/jrqCQ+8OCmvXKbDXMwg4fEjfzpg9VmYG9/aFBbnpW95UC9HDAcH4iXFChIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jtFCRlGK; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA2DD1F000E9;
+	Wed, 27 May 2026 10:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779876733;
-	bh=vFOVTeyb9r+ZoLePYy8atx+Tk6L5VttwijcA1yhmpGE=;
+	s=k20260515; t=1779876746;
+	bh=lPlWZmiNVUPg5MoZd2M5bIxt3Qpn+2Evo3PeHnfofsE=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=oaehvxW/lMKYivPbCs8EHtGeK6VrvXZjlrNBCwwuMMOzGcbxwJCocMcrAQuYp9Oxa
-	 flL+fBboBL9IoHRuUobJGVSLbtoaC0unK6sJW9QTtVWcLjgCwWuzyxs78Ix3yApDOC
-	 Kd3yt2JFI+YsymDXXTNbd0y3/EdxRJ0iF8rEOGsYX1n5JMTjuqH89sfBS0E1mdTyhB
-	 1VjbrCht5dN1O/Pu5mEw5TKQQXzuSQ+VtjF0w0CjQ4IbcGQCycsv+CqihzwWe863wf
-	 CfNdjbTYO9kUkoYDSHAyM9AFsU+eMMTDUVz+an6FrwHykehT25IpuQc9YovJQl9RoR
-	 O6si+toZjDuag==
+	b=jtFCRlGKk0aNlN2wrbcj4ZWG6IabN9V8vLJg4babTTlWtogushzDLS6mBFO3b37gn
+	 gZBm/ea6zhKV5qREp0R/lh4AWqOG0iG383bMOiDO0nqVG+EwTcFlqCbg7rocmnAygj
+	 Bu48uf+MyFrCYmyHsxJH6Ow5LIVjfTSnRSS1myAKGxd0A5Tmt2TExtheqOlGDrHSmk
+	 jJpM+SvvzMJLpRnizahyElnILMRMSRjw8ZgBfrKjBAO/ZxNwf638WbRofEgropzE6q
+	 cgZGuO0XQQvrpA1LrVrkfePGJ9gWSgE2UKqe3mpue7EF5gzy6/IWWZGtuDoZJQKL9F
+	 Fityj+5ZS1jNA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 16/24] arm64: dts: qcom: sm6350: Reduce OS PDC DRV
- span to 0x10000
+Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: qcom,pmic-gpio: Add
+ level-shifter function
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260527094333.2311731-17-mukesh.ojha@oss.qualcomm.com>
-References: <20260527094333.2311731-17-mukesh.ojha@oss.qualcomm.com>
+To: "Fenglin Wu" <fenglin.wu@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260527-pinctrl-level-shifter-v1-2-1965461d0a7c@oss.qualcomm.com>
+References: <20260527-pinctrl-level-shifter-v1-2-1965461d0a7c@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 27 May 2026 10:12:13 +0000
-Message-Id: <20260527101213.AAF851F00A3A@smtp.kernel.org>
+Date: Wed, 27 May 2026 10:12:14 +0000
+Message-Id: <20260527101214.BA2DD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,12 +67,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303364-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-303366-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -90,64 +90,74 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,b220000:email,af00000:email]
-X-Rspamd-Queue-Id: C9AAA5E28C9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 3DB025E2843
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Reducing the PDC register size to 0x10000 in the device tree con=
-flicts with a hardcoded minimum size in the qcom-pdc driver, triggering an =
-unconditional boot warning and failing to reduce the actual mapping size.
+- [High] Unconditionally requiring `qcom,rpmh` and `qcom,pmic-id` for the e=
+xisting `qcom,pmh0101-gpio` compatible breaks device tree validation and ba=
+ckward compatibility.
 --
 
-commit 69f94a7d9aef9ae59edc53727a9252af84f188ba
-Author: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+commit 4ef6fb2ad4a4a7f20f7b6195e05c09b5f1ccf313
+Author: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 
-arm64: dts: qcom: sm6350: Reduce OS PDC DRV span to 0x10000
+dt-bindings: pinctrl: qcom,pmic-gpio: Add level-shifter function
 
-This commit reduces the OS PDC DRV register window on the sm6350 platform.
-It changes the size of the first register entry in the device tree from
-0x30000 to 0x10000 bytes.
+This commit adds the level-shifter function and related device tree
+properties for RPMh firmware control. It introduces a parameter to enable
+or disable the level-shifter and defines allowed groups for pmh0101.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/q=
-com/sm6350.dtsi
-> index 034545d2af2d1..771e25c63a2a7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yam=
+l b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+
 [ ... ]
-> @@ -2491,7 +2491,7 @@ dispcc: clock-controller@af00000 {
-> =20
->  		pdc: interrupt-controller@b220000 {
->  			compatible =3D "qcom,sm6350-pdc", "qcom,pdc";
-> -			reg =3D <0x0 0x0b220000 0x0 0x30000>, <0x0 0x17c000f0 0x0 0x64>;
-> +			reg =3D <0x0 0x0b220000 0x0 0x10000>, <0x0 0x17c000f0 0x0 0x64>;
 
-[Severity: Medium]
-Will this size reduction trigger an unconditional boot warning on sm6350?
+> @@ -330,6 +345,25 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,pmh0101-gpio
+> +    then:
+> +      properties:
+> +        gpio-line-names:
+> +          minItems: 18
+> +          maxItems: 18
+> +        gpio-reserved-ranges:
+> +          minItems: 1
+> +          maxItems: 9
+> +        qcom,rpmh: true
+> +        qcom,pmic-id: true
+> +      required:
+> +        - qcom,rpmh
+> +        - qcom,pmic-id
 
-Looking at the qcom-pdc driver probe function, the driver enforces a minimum
-register window size of QCOM_PDC_SIZE, which is defined as 0x30000:
+[Severity: High]
+Does unconditionally requiring these properties break backward compatibility
+with existing device trees?
 
-drivers/irqchip/qcom-pdc.c:qcom_pdc_init() {
-    ...
-    res_size =3D max_t(size_t, resource_size(&res), QCOM_PDC_SIZE);
-    if (res_size > resource_size(&res))
-        pr_warn("%pOF: invalid reg size, please fix DT\n", node);
-    ...
-}
+Existing device trees using the qcom,pmh0101-gpio compatible might not have
+the qcom,rpmh or qcom,pmic-id properties, which would cause validation
+to fail for those older platforms.
 
-Because the device tree specified size is now less than 0x30000, it appears
-the driver will emit this warning on boot and continue to expand the mapping
-back up to 0x30000 anyway.
+Additionally, if the driver unconditionally relies on these properties
+in subsequent changes (such as calling pmic_gpio_register_level_shifters()
+where a missing qcom,rpmh causes rpmh_get_ctrlr_dev() to return -ENODEV),
+this could cause the entire GPIO controller probe to fail on older device
+trees.
 
-Are there accompanying driver changes planned to support a 0x10000 size?
+Could these properties be made optional or strictly conditional on actual u=
+se
+so that the driver can gracefully handle their absence?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527094333.2311=
-731-1-mukesh.ojha@oss.qualcomm.com?part=3D16
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527-pinctrl-le=
+vel-shifter-v1-0-1965461d0a7c@oss.qualcomm.com?part=3D2
 
