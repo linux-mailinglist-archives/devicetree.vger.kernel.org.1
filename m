@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-303353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHdVCc7DFmrOqgcAu9opvQ
-	(envelope-from <devicetree+bounces-303353-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:13:34 +0200
+	id GAMwHjzCFmrOqgcAu9opvQ
+	(envelope-from <devicetree+bounces-303354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:06:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F1E5E2708
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:13:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6740A5E25EF
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:06:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB53D308EB9F
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:06:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 490C13002D24
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8D43EB80E;
-	Wed, 27 May 2026 10:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2313A6F0F;
+	Wed, 27 May 2026 10:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8ImtZ24"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nnq4P+hi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502562236F2
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 10:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E93E3EC2E7
+	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 10:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779876380; cv=none; b=XuSnPcPpL3OLGCmDio8FnKjHdkxJjq2oVxiUefAkaIrMa0onZCCU60S7dNFAJ3CXZZJKtVFOtWFbpwYHRy9FvU/qLypZb/Ah1kZZNCPsI7CdYtN5RP7ylne29z7gqwMSN47jzZtRfH4fCWNGCrTDL+hI9Cw9zPSJglFRCDW5m/I=
+	t=1779876405; cv=none; b=n4UO/o3h00NvOGDCdTqQ7vPdebeXAMhAix5JlUtKYPyRDkGCWSUOhR5++pUvFpdu24eCYxk3pVG/a5gynAFIlqFI/+C35w0P8PBA+5hYNOhw/eFl2KBaZHz2NykjoIsdHvcXRJ0Wnvt9vtgoV+UNI8rGD/bp2QAqt4CBSB5gy8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779876380; c=relaxed/simple;
-	bh=s44+BZ84UhJD8dk98JPenwVhfa45JbZ9RqWRwNEE+8s=;
+	s=arc-20240116; t=1779876405; c=relaxed/simple;
+	bh=zzgJ3StY3k0TRFh7dFt1w+Q3BVUosX0xUI4I7NegnoU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hw+SrVOUgUKTianvuVeFgIWVOzaz3p8/jWPLIHkapurCn4NUxTXlo0yoShAYDZUKr93/VcGfiDui53CweafcriSOqLsV3o1YXvbQmIFj+8UsVDgzeSWGhVEppr31GaP6JcLyOUD4NyGKj5r3tWLKI/RYp9fu8v8GgjyRFoJULW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8ImtZ24; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D25CC1F000E9;
-	Wed, 27 May 2026 10:06:18 +0000 (UTC)
+	 Message-Id; b=G5mReI6LITY3pkiazwij/Kp661tixW64T6IoZ0L5bToATNIO1fJMcEC0gQvvO6cPJkoEAYxzDcmBbTXBQdQ/2V1T07SJ8ohmNVu/y4+YoFpnelFuaMm9e8Dap9vKIJrvqRx11UR0rOzkBoEgoYU3xaEReUSb1fexrKmL9Gigmzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nnq4P+hi; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28B191F000E9;
+	Wed, 27 May 2026 10:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779876379;
-	bh=pGMXttwiKHqhTyDwbj9+lCA7ZsmI80Xd2A+XDl2T+e8=;
+	s=k20260515; t=1779876403;
+	bh=4oXg1RYL5lBTQe1jznI756Zs6t/yRr9AONT2tp0bv2o=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=i8ImtZ24RjLAYLq9FXcNTzCfqM43maL7k1DHCDKt/ET2EyXk8Xtzt7NAvpZVxNcIY
-	 GLhTTwZC65g03wB8wdbgCGnsImJI3Wy1ClPGa0JyVjg0kSQpVbxRA3ropyAAcUlNO/
-	 mGWDXrGqfBQgIEsJx/LvKK+2j3/Vva+qiSUMdfSOlC9nu4STdxzaR9z4dk/wXlp56N
-	 s1fam7Ttl6f6uNS7YWMmbe6tJuqYy0wrDNMTPIJRcJkZKeE0x3MXbTn5Ghi5emLGn2
-	 ykgkz2zSYxUhC/pm+Cc/ra/lyXkyD6XABRIG04E4ofLYQ1LLKFFOCy7/7b+YRaHAe0
-	 /wNgZM8ykMuQQ==
+	b=Nnq4P+hiasbxh3K0VkBSDSYMZEUOS5yIa8fRWA8d3ep3ZjH49ZyI2hYAlmZaYe0Y+
+	 //2RsP+J+cZrlExQBVsYX/075msVxybTMRZFcntSbwL+SlriclElCf0kcMymzVUIxS
+	 13IU/lpLYQtq52SuvAzc2noOfTf5JOFAPf7ABDPeQGy55aS+kjLQJaCjDMpknonZMZ
+	 kbfslQRnbCMpdi3IiH/qw8BkpdXSpndQ75/bRe5XCSKbZuO7/LBYBZw4s38hNNpg8m
+	 V+ZC9C2FVrJoNg1eH/VtjbQpxi1VnHdgHU/12nCZliUw5vUSx53AI5I08WsNWWuXjZ
+	 TbJjii8FmO1fg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 03/24] arm64: dts: qcom: sdm670: Reduce OS PDC DRV
+Subject: Re: [PATCH v2 12/24] arm64: dts: qcom: sm8550: Reduce OS PDC DRV
  span to 0x10000
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260527094333.2311731-4-mukesh.ojha@oss.qualcomm.com>
-References: <20260527094333.2311731-4-mukesh.ojha@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260527094333.2311731-13-mukesh.ojha@oss.qualcomm.com>
+References: <20260527094333.2311731-13-mukesh.ojha@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 27 May 2026 10:06:18 +0000
-Message-Id: <20260527100618.D25CC1F000E9@smtp.kernel.org>
+Date: Wed, 27 May 2026 10:06:42 +0000
+Message-Id: <20260527100643.28B191F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,12 +67,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303353-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-303354-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -85,72 +85,69 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[b220000:email,smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,a600000:email,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 76F1E5E2708
+	DBL_BLOCKED_OPENRESOLVER(0.00)[b220000:email,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: 6740A5E25EF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Reducing the PDC `reg` size to 0x10000 conflicts with the `qcom-=
-pdc` driver, triggering a boot warning.
+- [Medium] Reducing the OS PDC DRV register window to 0x10000 in the DT wit=
+hout updating the qcom-pdc driver triggers a spurious boot warning and null=
+ifies the size reduction.
 --
 
-commit 91616deec930abcc3788af870cfe06cc7cfb6809
+commit af73b863314fd2efa87dbeb8a5636a342659cea6
 Author: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 
-arm64: dts: qcom: sdm670: Reduce OS PDC DRV span to 0x10000
+arm64: dts: qcom: sm8550: Reduce OS PDC DRV span to 0x10000
 
-This commit reduces the size of the PDC register window in the sdm670 device
-tree from 0x30000 to 0x10000.
+This commit reduces the OS PDC DRV register window size from 0x30000 to
+0x10000 in the sm8550 device tree.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/q=
-com/sdm670.dtsi
-> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> @@ -1618,7 +1618,7 @@ usb_1_dwc3: usb@a600000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/q=
+com/sm8550.dtsi
+> index 912525e9bca6f..de04610ef47e8 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -4245,7 +4245,7 @@ usb_1_dwc3_ss: endpoint {
 > =20
 >  		pdc: interrupt-controller@b220000 {
->  			compatible =3D "qcom,sdm670-pdc", "qcom,pdc";
-> -			reg =3D <0 0x0b220000 0 0x30000>;
-> +			reg =3D <0 0x0b220000 0 0x10000>;
+>  			compatible =3D "qcom,sm8550-pdc", "qcom,pdc";
+> -			reg =3D <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+> +			reg =3D <0 0x0b220000 0 0x10000>, <0 0x174000f0 0 0x64>;
 
 [Severity: Medium]
-Will this change trigger a boot warning from the qcom-pdc driver?
+Does this reduction trigger a boot warning and map 0x30000 bytes anyway?
 
-Looking at drivers/irqchip/qcom-pdc.c, the driver enforces a minimum
-mapping size of 0x30000:
+Looking at drivers/irqchip/qcom-pdc.c, QCOM_PDC_SIZE is hardcoded to
+0x30000.
 
-drivers/irqchip/qcom-pdc.c:
-#define QCOM_PDC_SIZE 0x30000
+The driver calculates the actual mapping size using:
+res_size =3D max_t(resource_size_t, resource_size(&res), QCOM_PDC_SIZE);
 
-...
+With the DT size reduced to 0x10000, res_size still evaluates to 0x30000.
+The driver then checks if (res_size > resource_size(&res)), which becomes
+true, and unconditionally emits pr_warn("%pOF: invalid reg size, please fix
+DT\n", node) on boot.
 
-qcom_pdc_probe() {
-	...
-	res_size =3D max_t(resource_size_t, resource_size(&res), QCOM_PDC_SIZE);
-	if (res_size > resource_size(&res))
-		pr_warn("%pOF: invalid reg size, please fix DT\n", node);
-	...
-}
+Furthermore, it proceeds to call ioremap(res.start, res_size), mapping
+0x30000 bytes instead of the intended 0x10000. This seems to nullify the
+size reduction introduced by this patch.
 
-If the device tree size is reduced to 0x10000, won't the driver fall back
-to the 0x30000 minimum anyway and log an "invalid reg size, please fix DT"
-warning during boot?
-
->  			qcom,pdc-ranges =3D <0 480 40>, <41 521 7>, <49 529 4>,
->  					  <54 534 24>, <79 559 15>, <94 609 15>,
->  					  <115 630 7>;
+>  			qcom,pdc-ranges =3D <0 480 94>, <94 609 31>,
+>  					  <125 63 1>, <126 716 12>,
+>  					  <138 251 5>;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527094333.2311=
-731-1-mukesh.ojha@oss.qualcomm.com?part=3D3
+731-1-mukesh.ojha@oss.qualcomm.com?part=3D12
 
