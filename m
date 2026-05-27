@@ -1,143 +1,231 @@
-Return-Path: <devicetree+bounces-303493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303500-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKGiG/MTF2o93gcAu9opvQ
-	(envelope-from <devicetree+bounces-303493-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 17:55:31 +0200
+	id qItYBRcVF2ok3wcAu9opvQ
+	(envelope-from <devicetree+bounces-303500-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 18:00:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0FE5E7410
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 17:55:30 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FAA55E7588
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 18:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 49303304A64E
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:55:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9EE93014127
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 16:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C428C3806C0;
-	Wed, 27 May 2026 15:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0BA0382299;
+	Wed, 27 May 2026 16:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="UiMIzM7o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF2337F8AD
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 15:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F733806C0;
+	Wed, 27 May 2026 16:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779897301; cv=none; b=BC0u3LgNrqwbOPr44cXaF6pg9arImDv9UUn7dJE2C23www0U/oKg3TjSu1JZzqONjtju/AkzzW1PqgKZRZFGGsk9O51Ph8K9S84nIZqwOY+XSd6eD6csXVQGritszF5uep5a+DSJOeGJ2Qi1RlAlw2kgPXg+DDshK/VCnTl/Yu0=
+	t=1779897604; cv=none; b=SHsLe6CycTZMSy/a4v2/btM+58wlm0wuSfMb+8oiiKNczLEzFxf6lS8Ojs524W9smdGfj6kbpbTtzWy4rus6UYiPTf2EbLDK61YwH/Em+v12pFLtKH3OHmqo0D+ZcNq8mKc6PIC8Izu+KgBDK/SgSUlIStajM/JNsE6PVucOIvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779897301; c=relaxed/simple;
-	bh=zfaGEqI6chxhQqt73siO8PNnMavfdzhEHGno2Nsy2aU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T7oNh0gn1FfrKKEOpHmDGd/qJveOSpZuiByRWi6Hwqu8ay1QrwR/OipXj/aSCGL5pa0ILqZGEY9MRon1eQcSg/p/QWGzsmLaD35TmElkYgzaYpQKz2YFQmiANEgKGCZvYrtdoJBRc/w6XN33HW3wkebGhgi1VlSKuKC2zTnNX34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-95fa7cd1392so9007891241.2
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 08:55:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779897299; x=1780502099;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4OvpwYv40ugn5nzb0kctzJjWJ4ravQczj2OqWNZz8Y4=;
-        b=T2isb+0jSLh2Qk7+yScY/VTQCKVy+N1RJKGC8OThkgYQbDdKffjgRpAWNeC3kHeSAr
-         p9Tl5g/TKuCXMO9ubrvfV524iZOH2OACQm8NgVIbFbsi5S2yxoeGv23/lRR8tKR/z8HO
-         m5ssPOIk5xCwfBRq5JZObEO5WXVIeg6U9m/nKi21m0h/7NyK6xyT6gH7bxt9BgEPCBoQ
-         cgE9wwncIKRzix08U2JcQxXGfSDSuyMBRhI92fuCrdW+Nzf4Ry/SaM+wExEodlqf3KRh
-         2UJB1OF2cFn2xqP+UrA8287/ebXqmrldTTmNUqu+tjQOSGc0L3x6PnFrEP0XpT6ICpn9
-         aeGg==
-X-Forwarded-Encrypted: i=1; AFNElJ8lIVhCH2YSIP0+JhEEOJsbW2+zPt92y6wNxloYYKpsknJbL2Yl+hSzSvQXj0Pjqsorf8HUpcP9ygt7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvbjdhvBC0+wdUVIkz+sl6xMMSc0B3uaI7ha3mY6dO/SBL5tqH
-	u/r5y0iiZNZFsRbSxvCkv+c8N3K35QlcXTlp62wvJWIiGHdo+AKtW4k4E4DpjgSTE1s=
-X-Gm-Gg: Acq92OEZyHiQDxR5nEOG8pBO/pz+vjBH8ZR73K5cWxYx1dfi2hF20dmlb+Yxdcth64k
-	V/Ix/swVLKh6rutpLWWqsWP5A9rPDwLpejgzWFNo9me9c2RolC0UXRL5jC9HJhVrjbJKcKfu4A5
-	JWAUr0eVVcIcXYJQAJUEBat3nUlFR75JLlBv3A5Wb9Fak02bgR7COU1xVUJ7YI9yIxjPUDeLhxn
-	qqJHvwXnRWCAurIsDK0ARhqk8hZkQ+074GMpA/gg2rz7YI3cgbknt1I9PivFrKgAvoLcPWoHTxI
-	GNCIhg6KBOROn591ZBqtg1Kvs0otWgY57dP6trMFmWoiwzVkOqvbXnYclSg+uYtxGs+/fBdNK0V
-	CvbD6sk0WWjfkPudOB76M3Xbjzrsl/EME9lfUdJDr9Oy3/Q48BLjQzKvzfKebyzqAmWdytgw1RY
-	MNbTYDhRO2Y9cloUUhwh6dPEvJHSFvUgl92zRHUHR7fPuJlgQMFWEyf1Y/w6YQ+LRqXfGgri0=
-X-Received: by 2002:a05:6102:b07:b0:62f:3abe:907f with SMTP id ada2fe7eead31-67c7cee41cemr13834830137.4.1779897299228;
-        Wed, 27 May 2026 08:54:59 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-67fda9014bfsm16568265137.5.2026.05.27.08.54.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 May 2026 08:54:58 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-63169437ac7so8946872137.1
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 08:54:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9pIG/wGSl8F6AnaeJUglUVFz0JLCh+x//IWLmpvWT9iVRvQh6gGwEW+LCctPgwBMTky+Xvta+hM31r@vger.kernel.org
-X-Received: by 2002:a05:6102:1494:b0:631:28c1:154e with SMTP id
- ada2fe7eead31-67c89aac621mr14097897137.16.1779897298730; Wed, 27 May 2026
- 08:54:58 -0700 (PDT)
+	s=arc-20240116; t=1779897604; c=relaxed/simple;
+	bh=CWU9+TVZMvKFmzx4keG9MJCrmNF/g3ac6eJWxBfwG1Q=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dNMkaMJ7M+BvSRbe18l3yc32OdeiRTh9HzI+/foShShdRwTwwKSg0kQ0fK/Kj1tnwSsg5/Mtn6ghgP9mNm3s0bS/7trQSbwXcgmv8mP5IJm79LMicUuw/6I4lSeR50OT2nfnK0S5RFnSdQmtrPJMV6VjL4mYspL3rk1wZMmvoH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=UiMIzM7o; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64RCDWkG1245420;
+	Wed, 27 May 2026 11:59:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=lm9yM
+	bnRaV8OEEW5Jlctc8JhJAC0mk8dIN9cy9AGNdU=; b=UiMIzM7oXp9TLbR7jx1zn
+	RJkUKV/3VKcwZHNhhdfpih8lS9EnKtuBjeCPwSrjYr69vbtlHgc/CLusYtcN7PR+
+	ZLV5Dld0zoYW41XAdq9W8fgxcifSTaqBC8Rc73yyrpr8zy647wqmj+aoqZ2HA7NF
+	peGKnt+amLWQ8qUWUcBEc/RAuOxfuGFXi2WTtDLZjP6xUVil+gXIH8O44elYTKU7
+	DLo7OiJeqhV5yb80/jcoUXiRdf1Scovtk7n/zebD+OA/IqkfUqiGoU9Xn8lC8HV9
+	lP2l5/Ox2PcwE/3fzgozS0QrrPF5/xthnxkCugRq/i3a71ak05YS9cxzzZMSvsXZ
+	g==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4ed83e57hr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 May 2026 11:59:43 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 64RFxgK6024743
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 27 May 2026 11:59:42 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Wed, 27 May 2026 11:59:42 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Wed, 27 May 2026 11:59:42 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Wed, 27 May 2026 11:59:42 -0400
+Received: from HYB-MkYHBcJRSnh.ad.analog.com ([10.32.226.85])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 64RFxScq024516;
+	Wed, 27 May 2026 11:59:31 -0400
+From: Liviu Stan <liviu.stan@analog.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Liviu Stan <liviu.stan@analog.com>, Jonathan Cameron <jic23@kernel.org>,
+        David Lechner <dlechner@baylibre.com>,
+        Nuno =?iso-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Antoniu
+ Miclaus" <antoniu.miclaus@analog.com>,
+        Francesco Lavra <flavra@baylibre.com>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux@analog.com>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 8/9] dt-bindings: iio: temperature: Add ADT7604 support to adi,ltc2983
+Date: Wed, 27 May 2026 18:59:07 +0300
+Message-ID: <20260527155908.402341-1-liviu.stan@analog.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260526-overexert-mollusk-72b080546d5f@spud>
+References:
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260505123708.134069-1-biju.das.jz@bp.renesas.com> <20260505123708.134069-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20260505123708.134069-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 27 May 2026 17:54:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV49XYzD9fog1z9skeWXfkYLTKfNByMYbY9NeDMPD8Awg@mail.gmail.com>
-X-Gm-Features: AVHnY4K7YiBz400JWSj4tz7v_P3t75Z4hEgU8IL8Jk593kb3giueL-NSNFJMwvY
-Message-ID: <CAMuHMdV49XYzD9fog1z9skeWXfkYLTKfNByMYbY9NeDMPD8Awg@mail.gmail.com>
-Subject: Re: [PATCH 1/5] arm64: dts: renesas: r9a08g046: Add DMAC node
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI3MDE2MSBTYWx0ZWRfX3V5d/gamzGuo
+ XA1PFB9eg+fhfp5w2RyqOaHYIhLvkFldjcom6Ba80sPkSvCGUnJAP15Gn0b28UZo4lApuYfjU0g
+ LaZLIy5rVYiWOTuRzauwfg01fAkLPo4EkYvLa7ESmPh+spg2/NnDNE8AjkAiteZWDYl7uw2Ovsi
+ aisAqc2Hg/mZ4W4okOoR/AAK9sKDQQrH+TV72Gm32TlS1caH1b+2UxrAAso8NevpJjeyoGGjrFW
+ uXs/1DHzmd2i0dBBEu5zeafz/asGVHRXa0ArPOJstslxRdqSpdm5rgANJoCNSOYT17c6AFhJ6H+
+ Hy1JuoWlCRhrRPtG5GNeSz/GKe/B2h2mXUbfw00+Lz3Ztk4I9RdIu71r608EVTqiK9yyrthMkwK
+ RkfzLvSk0O8st8uUvNzs6B5HYl4HTrpaIqUJMLDF9f6Mc37rSBeMv6pbvxJfMnCthrLkxoe62EN
+ mpkpg++34mSkrFcXs/w==
+X-Proofpoint-ORIG-GUID: 70MzinQvcDMp71bXbK6_1rKa59IA_JoL
+X-Authority-Analysis: v=2.4 cv=es3vCIpX c=1 sm=1 tr=0 ts=6a1714f0 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=N--XFCr6TIEc_64PeIT2:22 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=XYAwZIGsAAAA:8
+ a=LB8o0jXiuc9rKahuU8wA:9 a=E8ToXWR_bxluHZ7gmE-Z:22
+X-Proofpoint-GUID: 70MzinQvcDMp71bXbK6_1rKa59IA_JoL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-27_02,2026-05-26_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0
+ adultscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
+ definitions=main-2605270161
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-303500-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-303493-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.983];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0C0FE5E7410
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_NEQ_ENVFROM(0.00)[liviu.stan@analog.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.14:email];
+	DKIM_TRACE(0.00)[analog.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 7FAA55E7588
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 5 May 2026 at 14:37, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Add the DMA controller device tree node for the RZ/G3L (r9a08g046) SoC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Tue, 26 May 2026 17:55:49 +0100 Conor Dooley <conor@kernel.org> wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.2.
+> On Mon, May 25, 2026 at 07:39:35PM +0300, Liviu Stan wrote:
+> > The ADT7604 shares the same die as the LTC2984. It repurposes the
+> > custom RTD sensor type (18) as a copper trace resistance sensor
+> > and the custom thermistor type (27) as a leak detector, and
+> > removes thermocouple, diode and direct ADC sensor types.
+> > 
+> > Add adi,adt7604 to the compatible list and introduce two new
+> > sensor node types specific to this device:
+> > 
+> > - copper-trace@: maps to the custom RTD sensor type (18). Two
+> > variants: sub-ohm (< 1 ohm, adi,copper-trace-sub-ohm boolean,
+> > no custom table and excitation current) and standard (> 1 ohm,
+> > required adi,custom-copper-trace table, optional excitation current
+> > defaulting to the datasheet recommended value). Primary output
+> > is resistance in ohms. For > 1 ohm copper traces with a custom table,
+> > the chip also outputs temperature in millidegrees Celsius.
+> > 
+> > - leak-detector@: maps to the custom thermistor sensor type (27).
+> > Takes a required adi,custom-leak-detector lookup table encoding
+> > resistance (uOhm) against coverage data (%). Two outputs:
+> > resistance in ohms and coverage in percent.
+> > 
+> > Separate node types are used rather than extending the existing
+> > rtd@ and thermistor@ nodes because adi,custom-rtd is required
+> > for sensor type 18, and several properties (adi,number-of-wires,
+> > adi,rtd-curve, adi,rsense-share, adi,single-ended,
+> > adi,current-rotate) have no meaning for the new sensor types, since
+> > the configuration is hardcoded, and would need to be explicitly
+> > forbidden or ignored in the driver.
+> > 
+> > allOf conditions are added to restrict thermocouple, diode, direct
+> > ADC and active temperature nodes to non-ADT7604 devices, and to
+> > restrict copper-trace and leak-detector nodes to the ADT7604
+> > (some parts only).
+> > 
+> > Signed-off-by: Liviu Stan <liviu.stan@analog.com>
+> 
+> If this approach is acceptable to Jonathan, it is acceptable to me.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> pw-bot: not-applicable
+> 
 
-Gr{oetje,eeting}s,
+Thank you!
 
-                        Geert
+> > +            leak-detector@14 {
+> > +                reg = <14>;
+> > +                adi,sensor-type = <33>;
+> > +                adi,rsense-handle = <&r_sense>;
+> > +                adi,excitation-current-nanoamp = <10000>;
+> > +                adi,custom-leak-detector =
+> > +                    /bits/ 64 <          0 100>,
+> > +                    /bits/ 64 <  202020000  99>,
+> > +                    /bits/ 64 <  285710000  70>,
+> > +                    /bits/ 64 <  333330000  60>,
+> > +                    /bits/ 64 <  400000000  50>,
+> > +                    /bits/ 64 <  500000000  40>,
+> > +                    /bits/ 64 <  666670000  30>,
+> > +                    /bits/ 64 < 1000000000  20>,
+> > +                    /bits/ 64 < 2000000000  10>,
+> > +                    /bits/ 64 <1000000000000 0>;
+> 
+> My OCD hates that you have gone to some effort with alignment here, only
+> for this last line's first cell to scupper it completely.
+> 
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Sorry for this, I can fix it if necessary.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Liviu
 
