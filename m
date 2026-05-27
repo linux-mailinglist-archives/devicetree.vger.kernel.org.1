@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-303449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303452-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMbJHqABF2qz0wcAu9opvQ
-	(envelope-from <devicetree+bounces-303449-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 16:37:20 +0200
+	id OD3TNIcBF2o70wcAu9opvQ
+	(envelope-from <devicetree+bounces-303452-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 16:36:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832B65E5FFE
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 16:37:19 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A62BF5E5FE9
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 16:36:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C91E0302BEBC
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 14:36:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 28586304C542
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 14:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1AB426D2E;
-	Wed, 27 May 2026 14:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F3D142DFE0;
+	Wed, 27 May 2026 14:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nS6EeIFz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mqcVKvfO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78EB428820
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 14:35:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961BA3EF66D
+	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 14:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779892527; cv=none; b=E+jAFXXm9Q6irAEvJqaFZgygdG7WFLpEafg7pFFxpL7p8+WGGQygVd3j77UoKufxlGpVSwU0VaBGtpZZNY5dNw3cLIxkVo7rpilZHITxW2vwNZRKqMXdUgoGAxipqI/M1tZBFxkem0RbQ6ePkEulsU4XfHYL58RjP1VNTp+KOO8=
+	t=1779892533; cv=none; b=jqO+eBxeOaEEpBLYmq81EjH31w5DHUAZwUcHjEyiTE3D9r8Fgt9QiTsPR90dZiiWVqJQOfROowrP5ZUWjlP4lNNQpEMG/cCUe8Pi/yMm731Z8J/lf498gUJU98ZwC21jJXuLIklZLLhf1JB54GmAfkR1dGgIleDHktqaQEAm0YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779892527; c=relaxed/simple;
-	bh=WTcPO5jx3m8I3dAcwWfqNAsiqQwEq6XdVKR3O/E/HPo=;
+	s=arc-20240116; t=1779892533; c=relaxed/simple;
+	bh=P4wkV9mEDD23BeKG4vbE2EM7CHolhjJ2JRjQJMeo9kM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R3NyhBZvRvKbZFQmoYqndbyF5C6M+7MEczQET/mhfwF5/Tx+pf05lVx16w+A0XMbAKYI28API+Urn6qR8dc+Qmzncc5lkLQE0DwcojWETLzZnJvyd58lWYdjsBRp5g6+S3D2Ub1DoVc/BzETIBYVby+keskxY9bPYvlOU9nH/K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nS6EeIFz; arc=none smtp.client-ip=209.85.221.41
+	 MIME-Version; b=TOQbDN9HTpipW6O7smeoEzvjNnEFD7Av+eISE2W8XRjuMmYmX3U987I+CHObnhpPOjUy9cv6CzSttP455EhnJpJ7ApY0Tp3h14CFDsXvtBBvmWmanDyA9fPPkqWQv51G5DbZ7EkknMtJVAokBZblNw3XUb/WNnMsIjjGcZWQJ2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mqcVKvfO; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-441209fb77eso7310164f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 07:35:25 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-49068493267so24348495e9.1
+        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 07:35:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779892524; x=1780497324; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779892525; x=1780497325; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mGLUdia9Sn33UtIAjIRo2viP4FX9Z32Gv1ySJx1Aq8o=;
-        b=nS6EeIFz2mphXjAba0hsnvpPilXsQFyq8V5Cv6k20E93+3vK/fNGaaWQSibUZTNNyr
-         NpKlXTSoeh96uEID4c20on51llVXZbkfs94N7cJyyLT1G+DAHsAb9BAnY1JZEsIfNgvu
-         PtL69EY0qz9kVWbXQFPlZ3wOjDAdLVF7+NTZR65qZuP22D7c4Xud8grECU2dH2/n4UKq
-         ACrF6mk7MbQbiTLYhdL80bnwzVq5cM3yxFa6QNe87lwDtSIzEIPlewhrKMriqZBbQnAz
-         XxetIqi6e0Y/HqmsLjbzNl2oTCp9MPUg6KIquwQUyAJeNYdupb5x8emvFMYtk3ykhpOy
-         sjbg==
+        bh=vua8WCuJgrLlWDfrDB827XHjkp+v2MUAOu7XMIUMLuo=;
+        b=mqcVKvfOYp+DM15QeRBAI9Zm4J7Pvam+Az4FOSTiezQonnOybXs8VhnUkeLkTUWcNr
+         xghQa++Kq20M3BHpXk2chPFVwSuQE+YgFqzROMKWjEfSP3v4lwDB+FRrcR9TFXSySGLz
+         alUuw/pmgrcMd4V98cOXlMzZXQPTpChQa7cpH0QbTs9jFawEVq1uwo+FOrQAmyvu6G0P
+         IxXAAJPiIbmxjw6LuDRr1Cy9qOgPhjJeZr+2rPlCyPkfzit2SEWs3MuqxO4XPJqrhC+u
+         8ULbfFoTASPIP9Hmm6ITF5G/4zv4UI2aFV0mGz7jKZl9dYTAckpamhbTmOEHl3e6gcpd
+         F1sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779892524; x=1780497324;
+        d=1e100.net; s=20251104; t=1779892525; x=1780497325;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=mGLUdia9Sn33UtIAjIRo2viP4FX9Z32Gv1ySJx1Aq8o=;
-        b=nj8P50tZ4AiIF7qC1Ky7FhhW55JyYg/NWAomvfMZs8m2lxWZZTs9ApDXguuslJVEJ+
-         yWUIkj4G2Pa+EquMyRI1dLtokTRwMYo44cKCBgQDHqcUeNSSt16YA87PL+8TgePHBGXj
-         kbQjFG4nNcEekxlHR0znLcZx1dGa/MUwR3Cw7Nx1U4k6aDuhNAmq/IelmPq/yzKLLuJr
-         whALwxvx157auEvYFZU4+oRo+zkBaJhrwt5YXvftgsDgpHV9yxNvZdia2VJv0HxzNSha
-         9Z2Kimw0etj2W5tnza5mmBXCCYDi5BY31K8nsLJYNRM8o2e5WhRsIVp2IPTfTcv/5PZi
-         9++g==
-X-Forwarded-Encrypted: i=1; AFNElJ8fNL9SjQES97NY7eijktIpW6zOkyXGxtS3IbWzdNaS64eT6r319PvhSQ7oefuYpst+zKHbB5BQrRxz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdEVMXyDZZd4KQW862lfmqMkqcC0P+Poy8fYiYcEVICkyjLb51
-	mRXOo42ytdCfOBMFG8ykNNCJHp28xM9vp1z29KB4SJeYjrtYuKb/EobH
-X-Gm-Gg: Acq92OFGIjxFf3ptIbB6k/qDdYPn0LUSixM8n9OujzpYMqOunl/3NHno0WChRVMQiRr
-	XPMeIR50Y+j1DUBzW6M6cjEAIfhjN7R5mWFKLSLuCXdigZe4heWFNJbzDM8MKv6r/w/uGC4RL/j
-	F344d/F4QnUqEPE0y0uQBc/CKaECibTNaJvudpWLK2/a94WzP03MCTQjnck2lzTjuWlrmMe4e8n
-	IDhgL6630c/t5B8e0ZvngGTVJjppHHSwgXjllMgkVs+wlzOIK5y5mnAfLL1rk+ySPjlVuPXsIHD
-	pczB1tlT0stF8lMgFaFyiyVT4PuYuxYSVOvfFikFmDX+8m9zfkQGonWNza0pkbYuMLLuqKy4KM6
-	8x9JcRZjWyOzhVrEtpahWqRymQ3VX1GD4zYRrXwiWnqDayRsT7XzB6ivhd/T16kjwwWthy1UcqD
-	8TSuZx5mxGj6KzzDY=
-X-Received: by 2002:a05:6000:26c4:b0:453:9897:76aa with SMTP id ffacd0b85a97d-45ea31a36d2mr42115457f8f.21.1779892523971;
-        Wed, 27 May 2026 07:35:23 -0700 (PDT)
+        bh=vua8WCuJgrLlWDfrDB827XHjkp+v2MUAOu7XMIUMLuo=;
+        b=hTv2sEfggS2zM9H3QakMirmSuBNIeL/zLQNEtkU4+Y5Kji/T6pTMfjSz9oFnKLt4xe
+         AFLT3r4o1s8bCO9Bboe3awKF8EuuN8MOY5mZXRFrLFCvtmmXEACPkJADtZungMQhbbvl
+         J9kM/tKvgMpGsT5o2bnibUs+mSGcTjKXcuo3mxH3/+N4qP3Iw/Zl4hYE0JWk9u/rPXTP
+         m8c4zX3/O+KByEzpxSQkOIUxJoRmgAHpgPHmpNAETZTQWbJ9CuVuumKJzktnV4rtppBm
+         OjOge8UiZNh0i6NZDs1zukf370N9e6b/+uGhZna/UEEE2Chd85mdJKODi48EtfqLtvPg
+         tE8Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9k6Q/g8u6c7GL0BWm13CvTE3zkXvdW+b6j01G4/tefKWvdqnYKrRbEvO0RUhBs5NwZZg5F921L/3zP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzupld8yzd8DGTYWnYyzZ6VuVftHOBPeulbr91lKsTYRq/0Tn8u
+	RTm95ykh+TNSfKJQkLes7RnmjgMxUjA7HR9fFf0HfNb/CMNuWDlMo+0q
+X-Gm-Gg: Acq92OHoXl8XYQr74sjJQUgOKy9KDy5NLWdo2SV6Fc3ZLLWVr8FLq+lriZLv7eenZ1k
+	hTEHk5QD3jCVHHfjA7kua5tw9hVN8uXYX3D5bcsHGMgtTykg/CuZPzlT9DXf2kewj7C5nztwFSr
+	adkVc2uU3PGt1PLnVlDvQ7y3afYtExAS6QpHH2mJGEnOYqBIjPqOVdDy+wsOkZ4cxhIyJINvdSP
+	HfzMV/724h7hfUgBR7ichKtOvc1yPg1+07KBI01QSJeSj5n6h3aWjcWtI7jnH2GrEHCPDQUGN0V
+	oEyx70UMJzFErYz5UEtD0hcgx9P1xqjs5EaMGjB2RtD/ZaL74cBVTIF852pwn9aw+zx1KiGzNsS
+	feKDCXMq2siE6YoFsck4kZDHdb+qVAK73eTiH17nuyZvTru/pWsqkRauzMIDCxHhoT4UumkInEG
+	8CgOvJwPjJj6vFs09Yuj3tWpj3GQ==
+X-Received: by 2002:a05:600c:c4a3:b0:488:ac01:72b6 with SMTP id 5b1f17b1804b1-490426ceed2mr394337305e9.21.1779892525073;
+        Wed, 27 May 2026 07:35:25 -0700 (PDT)
 Received: from sefo-laptop ([2a02:8071:50c5:5c0::361b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45edb5584b8sm6239763f8f.11.2026.05.27.07.35.23
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45edb5584b8sm6239763f8f.11.2026.05.27.07.35.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 May 2026 07:35:23 -0700 (PDT)
+        Wed, 27 May 2026 07:35:24 -0700 (PDT)
 From: Wadim Mueller <wafgo01@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>
 Cc: Guenter Roeck <linux@roeck-us.net>,
@@ -92,12 +92,12 @@ Cc: Guenter Roeck <linux@roeck-us.net>,
 	linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 3/4] iio: flow: add Sensirion SLF3x liquid flow sensor driver
-Date: Wed, 27 May 2026 16:35:04 +0200
-Message-ID: <20260527143515.102794-7-wafgo01@gmail.com>
+Subject: Re: [RFC PATCH v1 1/4] iio: types: add IIO_VOLUMEFLOW channel type
+Date: Wed, 27 May 2026 16:35:05 +0200
+Message-ID: <20260527143515.102794-8-wafgo01@gmail.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260526170618.14f45e2d@jic23-huawei>
-References: <20260524205112.26638-1-wafgo01@gmail.com> <20260524205112.26638-4-wafgo01@gmail.com> <4349f634-dd7b-468a-912c-5ceb8a283954@roeck-us.net> <20260526170618.14f45e2d@jic23-huawei>
+In-Reply-To: <20260526165950.6ebbf673@jic23-huawei>
+References: <20260524205112.26638-1-wafgo01@gmail.com> <20260524205112.26638-2-wafgo01@gmail.com> <95f0914a-cb25-44ea-9cef-d203c624f74d@roeck-us.net> <20260526165950.6ebbf673@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,7 +111,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -121,8 +121,8 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-303449-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-303452-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[wafgo01@gmail.com,devicetree@vger.kernel.org];
@@ -133,45 +133,32 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 832B65E5FFE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: A62BF5E5FE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 26 May 2026 17:06:18 +0100
+On Tue, 26 May 2026 16:59:50 +0100
 Jonathan Cameron <jic23@kernel.org> wrote:
 
-> > > What does the "X" refer to ? Why not "S" ?  
+> > Two questions: Why restricting to liquid (there are also gas flow sensors),
+> > and why litres/second and not per minute which seems to be a more common
+> > unit ?  
 > 
-> Absolutely - no wild cards in file names or indeed in variables etc.
-> Just pick a part to name after.  Wild cards go wrong far too often!
+> I'd rather we went to the SI units where possible.
 
-Done in v2.  Renamed everywhere: slf3x.c -> slf3s.c, SLF3X_* ->
-SLF3S_*, CONFIG_SENSIRION_SLF3X -> CONFIG_SENSIRION_SLF3S,
-MAINTAINERS and binding titles too.
+Agreed - SI in v2.  in_volumeflow_raw / _scale stays in l/s
+(rescaled SI m^3/s, matching the rest of IIO's "kept-small-for-
+userspace" convention).  The ABI doc and a driver comment call
+that out.
 
-> > > +			dev_err(&client->dev,
-> > > +				"unexpected device family 0x%02x\n",
-> > > +				buf[SLF3X_FAMILY_BYTE]);
-> > > +			return -ENODEV;  
-> 
-> Similar to below. This can't be an error or we break fallback
-> compatibles in DT. There are historic drivers that do this that
-> we haven't fixed up yet - but no new ones please!
-
-Done in v2.  Unexpected family byte and unknown sub-type both
-go to dev_dbg() now; the driver keeps the variant the compatible
-/ id_table selected.  Only CRC failures and bus errors fail probe.
-
-> Given the need to support fallback compatibles from device tree we don't
-> fail at all on mismatches as that prevents use supporting a new fully
-> backwards compatible (other than IDs) part in older kernels.
-> 
-> Whether a dev_info() or dev_dbg() is appropriate for such a case is
-> less obvious but definitely dev_err().
-
-Went with dev_dbg() for the unknown-sub-type / fallback path -
-silent by default, discoverable when chasing a quirk.
+On the gas-flow question: rather than adding IIO_MASSFLOW now
+without a driver, I dropped the "liquid" wording from the channel
+type doc.  The SLF3S driver is liquid-only, but the channel type
+itself just means "volumetric flow rate" and could describe a gas
+sensor reporting actual volume rate just as well.  IIO_MASSFLOW
+for standard-volume / mass-equivalent gas flow can come later
+when a driver shows up.
 
 Thanks,
 Wadim
