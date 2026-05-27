@@ -1,312 +1,228 @@
-Return-Path: <devicetree+bounces-303391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303392-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LlVG1XXFmrrtAcAu9opvQ
-	(envelope-from <devicetree+bounces-303391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:36:53 +0200
+	id WKaMC6zYFmpGtQcAu9opvQ
+	(envelope-from <devicetree+bounces-303392-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:42:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19EDD5E3738
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A465E37F5
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:42:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7059930041C2
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:36:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F29CB3006B4A
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E553391E7F;
-	Wed, 27 May 2026 11:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0443FC5B7;
+	Wed, 27 May 2026 11:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6juO9Dz"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Pf9/1xhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010014.outbound.protection.outlook.com [52.101.56.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482423D75B0
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 11:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779881808; cv=none; b=PEfj+JUf+RQWjn6eG+wZrMTEDb2CH89JVqokeeGnFStY0//zLrPgwTJpVIeUZ9c1JBOYTtdVR16uX0SIstQUm54pJwxpatdEZMEr3MC9EhWywa6mswte1YhLDoYs1JKrXjATcfd7Bz3pjGx/YN+rGBibiQrppz4sJ1nsixfGWFA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779881808; c=relaxed/simple;
-	bh=ak6xUzy4W4qUx1S+P/QfnPvzJOT4OdoHRsjdgyeVdOg=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=dIsjAZPfnteVvX3lLm7TI5f9LrY7MFhdS7Hsjv45v0P+Qrsmy4vIWvXkhe+USbaf4LGhwKfzWzJRYiVlRSDq8zFhupQgPsIUlP/nb9RXHbbVpJjhSkPcek8qbdnfwiCrCj102xVFcwwTcEtCRBCXYyUZ9A68/s3H8spMHfREPdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6juO9Dz; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6E281F000E9;
-	Wed, 27 May 2026 11:36:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779881802;
-	bh=UwcLQpld3VejQyb6V934CJ9XfLKgiUS+nazETD3zKzw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=H6juO9DzPp/RmY4CSQ2nFnH+XC/UgMtsiAdmX2eEoHMc9/oQFbMibqsDzsIUp44h5
-	 +e7i0+B9aHAynprUlrSJCzleYNcSAAkSZaezaF+fjhIA6miia3olpXmjIXn6dXB6XO
-	 wyFaBnj4WSAHhlMbRBSScMjvmfZ/YFAjbV8Fws9BNpWRVHa4otDtblpUEEa9Ooz7i1
-	 wPJXc1wQEHhHitqJyqIy/+94T8VX0zDYt6xkecY42G4H53Nob+l/LZwn38kWput3Lb
-	 Z+/xiOuDNPBcxkkCl4I1Qb0bkZuvT9/I60Xex8L7ZuWyev7Fm20M92KlYi3Vz4K0Ba
-	 UfvSbkY74i1cA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/4] pinctrl: qcom: spmi-gpio: Add level-shifter
- function support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Fenglin Wu" <fenglin.wu@oss.qualcomm.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260527-pinctrl-level-shifter-v1-4-1965461d0a7c@oss.qualcomm.com>
-References: <20260527-pinctrl-level-shifter-v1-4-1965461d0a7c@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 27 May 2026 11:36:41 +0000
-Message-Id: <20260527113641.D6E281F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06563FB079;
+	Wed, 27 May 2026 11:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779882152; cv=fail; b=AkwohDjDRblZjo+gCx9SHcVuOUesfQ22FiPjQdsTsFHIJMlydDP0U4W2AA0FG93vL4hdB1EpFWkl0bvaXtB9IFtiYls8rrknF6EA1XZv02lH3aF4bbRYe0hPxeh1Od5dbsIExYSUoqxYbzzFkYV1BMNV1kEhWdAchJIMdFOIDiE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779882152; c=relaxed/simple;
+	bh=zokZxK4RnyisDk+b74C8XkiDhLj53ZJf36lsaXFNxM0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hbgky+MQ2T7oVSb8idWsawmhic6YrnJOvddB8ngR8hbYueVtvz2SwrzBBfdXoTxRsExhWeDfCCz+Kp7Ja4ovcoIQlMJi1RQwnmWvIYHi3QHYfrF9Jn2009lh2428Bisj9LZc+1u67UDW1lUfEtE8lCFCclHPpny5M+1/XAIs7Y8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Pf9/1xhl; arc=fail smtp.client-ip=52.101.56.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Rx+mAJtBxV6Gia3qpvvQavkxbBnjDgGo6vtCOYIfdqJqOKxywcNrlbV2oWi6RFoEOWtjhUFY8rhZzdlGlhTl1emRPXxJQWohv7M6nkSjLXBcuvnsmAX5vcam3O5JzSGQPbtl04ZeCclDFnjMoXh+BRhQAmOUMCG+7BgGMDvNP5Aav0jJKo47bXdXNijZV036mRnTOS05q3VNfT1iarwJhEYIQ6uEnTy0eDCGE3Qg5mWA6dp/P02Q9Y6VXzzLZ1iBwcmlGDHeVC9JBtSq88egOu50U50igsFC71td2wgwO9GWA5a4K16TnUjJ/hMTBhv1opPZnikKbjIn4eix+MpxLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XXmXiGzf3l2EjM0+TkGuHN0boObteez9O6sldl8uTAI=;
+ b=KAlVJBPfRHgGQa5xCBnjcKQyK6FD6pO0UH0oUra3cW6wTS5egHTHKBJJKa69NABnaTr8npWoGzQz6864cKa4H+Jb63C+onKSe1PcK+S0TtLkAVjSUpBr/rq8qlJ3febq4jX8r+Vyk7qS11mbRl3L9n7iQGDhK5RCxS2pvB/4DPmPABMCs5P8ASSrGkwIMC+dGu5704KtePINcOsvobvOQVJCKtH5t437caBmlpygZBTJTZzxoGINd/hzR3lu+JHdIjphQepp/4QPBxq/aAAkPPXcNuxl1ELVFbegOSL0FOO5E81oUYA5e4WAlBtT7vlhxRo+6gOJ9Nz77i85xPxv3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XXmXiGzf3l2EjM0+TkGuHN0boObteez9O6sldl8uTAI=;
+ b=Pf9/1xhlml6EkJE7FLG6P5kuB8y+/oJ/YlkNHHuHsWmcHID3PlNepagb99ItfW8L6QCXIdn6SoYCA9cCibe1bOgLPHRj3u2kVA0uhdescAZtZFzc0Lclts4kspwumy1mVhby6FZgG2Xbgs2skMsoo+FwRnbB3qaPiNujLFMdY84=
+Received: from BY3PR03CA0015.namprd03.prod.outlook.com (2603:10b6:a03:39a::20)
+ by DS0PR12MB9421.namprd12.prod.outlook.com (2603:10b6:8:1a1::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Wed, 27 May
+ 2026 11:42:22 +0000
+Received: from SJ1PEPF00002322.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a:cafe::31) by BY3PR03CA0015.outlook.office365.com
+ (2603:10b6:a03:39a::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.12 via Frontend Transport; Wed, 27
+ May 2026 11:42:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00002322.mail.protection.outlook.com (10.167.242.84) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.71.7 via Frontend Transport; Wed, 27 May 2026 11:42:20 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 27 May
+ 2026 06:42:19 -0500
+Received: from xirsalihe40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Wed, 27 May 2026 06:42:17 -0500
+From: Salih Erim <salih.erim@amd.com>
+To: Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
+CC: David Lechner <dlechner@baylibre.com>, =?UTF-8?q?Nuno=20S=C3=A1?=
+	<nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Conall O'Griofa
+	<conall.ogriofa@amd.com>, Michal Simek <michal.simek@amd.com>, Guenter Roeck
+	<linux@roeck-us.net>, Salih Erim <erimsalih@gmail.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Salih Erim <salih.erim@amd.com>
+Subject: [PATCH v3 0/5] iio: adc: add AMD/Xilinx Versal SysMon driver
+Date: Wed, 27 May 2026 12:42:06 +0100
+Message-ID: <20260527114211.174288-1-salih.erim@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002322:EE_|DS0PR12MB9421:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7bebe3f-a87a-42ba-060b-08debbe502ca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700016|7416014|376014|1800799024|11063799006|56012099006|6133799003|18002099003|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	/IAkOQOunrso0tcm4AOUvuv/AAokJ8pAV9vNvH2Z74iDZgS6q+h7TcbjGZsMUG68GeLrh0bkWZahGB0+baEX2Fuz5DDBFJ/j9hxAeWu4N1q/irkWbkf3PIHydzr/IGdWOiDgf3qdQ9B0UmYIjNB4tfFZ8vfd15F48xi34xnCDApydmyIiEuSNrvR+qGubESTkplpVuSepCWpDGFxP5QpqLHcUfIPnhGGj/iZkL2nH3rxIHbh9XpW+h0BIB6FN6eeLn+xh13DvRMHW2i/h2pqhKMc+dUp7Uxwwkc6Ja0Y3wxvludhj/o1h4RqkZL40V+oY8/hvGXiTb/EmmAphqgqdpDhmVbJVVRqlAoas7I52z7SQV1lSEkb7vLB7gB1tZCvmFlvwlRzIVuNMdc1FeDO/c9q3m3FkrtN3+HzqdsELzrA0yvT2WdCqVjsETOt1Jao63VFULbIb4k5AGgKI0YFd+LN4CdXothZfDOynOyDqhp32w3UJCP1t4BF2ZRXsAL10horqCSTqnDoJl1keUu+0lZA3Q5W5fTZRV6HpM+k2/wX3Ev6aOVcqy5FTDrThgX/oetIwG/fp8eQLIb4vZhpP0qFfyoOoTRP3KarwNKFKm+gKJfr8RUBZjc/qAZduItaicwCCXfzxJx4bFNPVs2+lHunajKMUOKcm9XOVGZVDkQ0FXNKbdNkkPVjMN3/bAIl
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(7416014)(376014)(1800799024)(11063799006)(56012099006)(6133799003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	R5akZwreWvllcO2JhQgoVTxjIHOleotTYcrsPHoOmVhwzytKsuasMO1yCQHU7KrgaeM5Krx2wzUMSDpYML2e/3DaF5yrGZ3p50Fma3oj6BNzy3kKpORS/p3aImp13l8EUCbRy5QN/OX0vvO0SfZ1nhVmEMZXva1vW7LKGjqeJvefV7z8kVSK/PoT0DfW8JJ4aInEytYzMgEiL4Hw5kAv89f83khoX10fVcSSNVqxANWIelXYr925oQF1UQu+kUibNa+g7C794rkdwpy3i7kPATvEX8tl0sJDR3J1NOFlrqc4n4VJ8jFO5Tq7+U+U8ujbb3+AvJ3mcROMuifjAx6/RfzZ+SDR1QNZhou/ObPC4bBufHLd77J28Gt1SASlyLuh7dr0BL0AqvyWGHmFilIUmFBpfQMRlaLfbHe5qKb73NVoLHc6xjo7e4HTSh5+0z9s
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 11:42:20.1222
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7bebe3f-a87a-42ba-060b-08debbe502ca
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002322.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9421
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303391-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303392-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email,lists.linux.dev:replyto,sashiko.dev:url]
-X-Rspamd-Queue-Id: 19EDD5E3738
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: C0A465E37F5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Out-of-bounds array access on the `pmic_gpio_functions` array when=
- reading pin configurations from debugfs.
-- [High] Applying pin configurations to a level-shifter group incorrectly r=
-e-enables the disabled GPIO pads and writes out-of-bounds function values, =
-corrupting hardware mode control registers.
-- [High] The driver fails to properly defer probing if the command DB (`cmd=
--db`) is not yet initialized.
-- [High] The unconditional registration of level shifters breaks the probe =
-sequence for existing devices that do not utilize them.
---
+This series adds a new IIO driver for the AMD/Xilinx Versal System
+Monitor (SysMon), providing on-chip voltage and temperature monitoring.
 
-commit 0ccd51f9c406d2406a12a93ef3944f4bac8c5bdb
-Author: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+The Versal SysMon measures up to 160 supply voltages and reads up to
+64 temperature satellites distributed across the SoC. The hardware
+also provides aggregated device temperature registers: the current
+max and min across all active satellites, and peak/trough values
+recorded since last hardware reset. The device can be accessed via
+memory-mapped I/O or via an I2C interface.
 
-pinctrl: qcom: spmi-gpio: Add level-shifter function support
+The driver is split into a bus-agnostic core module using the regmap
+API, an MMIO platform driver, and an I2C driver. This allows the
+same IIO logic to be shared across different bus transports.
 
-This commit introduces support for bidirectional level shifter modules
-(BIDIR_LVL_SHIFTER) to the SPMI GPIO driver. It adds a new "level-shifter"
-function to manage GPIO pairs that share physical pins with the level shift=
-er,
-controlling their state via RPMh.
+Previous submissions:
+  v2: https://lore.kernel.org/all/cover.1746182670.git.salih.erim@amd.com/
+  v1: https://lore.kernel.org/all/cover.1757061697.git.michal.simek@amd.com/
 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/q=
-com/pinctrl-spmi-gpio.c
-> index f159c56784b4f..d0144dbb7cfc8 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+Changes in v3:
+  - DT binding: single compatible, voltage-channels rename, single
+    quotes, drop label/bipolar/xlnx,aie-temp (Krzysztof)
+  - Core: IWYU throughout, __free(fwnode_handle), sign_extend32(),
+    size_add(), dev_err_probe(), s16 param, remove (int) casts,
+    drop SYSMON_MILLI in favor of (int)MILLI, rename _ext to _name
+    in SYSMON_CHAN_TEMP macro (Andy, Jonathan)
+  - Core: fwnode_irq_get() moved to core_probe, remove sysmon->dev/
+    indio_dev/irq from struct, describe protected data in lock
+    comment, add RAW+PROCESSED comment (Jonathan)
+  - I2C: IWYU, remove wrapper struct, explicit enum values, sizeof()
+    for buffers, = { } initializers, adapt to core_probe interface
+    change (Andy, Krzysztof)
+  - Events: IWYU, FIELD_GET/FIELD_PREP, regmap_set/clear_bits,
+    clamp_t, !!, IRQ_RETVAL(), devm_delayed_work_autocancel,
+    loop var scope, error checks, remove redundant else, logical
+    param splits, spinlock safety comment (Andy)
+  - Events: hysteresis rework -- store as millicelsius, hardcode
+    ALARM_CONFIG to hysteresis mode, compute lower threshold from
+    (upper - hysteresis), remove falling threshold for temperature,
+    single event spec per channel with IIO_EV_DIR_RISING, push
+    IIO_EV_DIR_RISING for temp and IIO_EV_DIR_EITHER for voltage
+    (Jonathan)
 
-[ ... ]
+Tested on VCK190 (single SLR, MMIO path, 7 supplies, 10 temperature
+satellites) and VPK180 (System Controller, I2C path, 7 supplies).
 
-> @@ -137,6 +144,7 @@ enum pmic_gpio_func_index {
->  	PMIC_GPIO_FUNC_INDEX_DTEST2,
->  	PMIC_GPIO_FUNC_INDEX_DTEST3,
->  	PMIC_GPIO_FUNC_INDEX_DTEST4,
-> +	PMIC_GPIO_FUNC_INDEX_LEVEL_SHIFTER,
->  };
+A follow-up series will add thermal zone integration, secure firmware
+access, and I2C remote monitoring.
 
-[Severity: High]
-Does this code cause an out-of-bounds array access when reading pin
-configurations from debugfs?
+Salih Erim (5):
+  dt-bindings: iio: adc: add xlnx,versal-sysmon binding
+  iio: adc: add Versal SysMon driver
+  iio: adc: versal-sysmon: add I2C driver
+  iio: adc: versal-sysmon: add threshold event support
+  iio: adc: versal-sysmon: add oversampling support
 
-If a pin is configured as a level-shifter and its pad is enabled, reading t=
-he
-pin's debugfs node will index pmic_gpio_functions[10] (or [12] for non-LV/MV
-subtypes due to the DTEST offset). Since PMIC_GPIO_FUNC_INDEX_LEVEL_SHIFTER=
- was
-added to the enum but pmic_gpio_functions was not updated, it seems this co=
-uld
-result in an out-of-bounds read that can crash the kernel or leak memory.
+ .../bindings/iio/adc/xlnx,versal-sysmon.yaml  |  154 +++
+ MAINTAINERS                                   |    7 +
+ drivers/iio/adc/Kconfig                       |   33 +
+ drivers/iio/adc/Makefile                      |    3 +
+ drivers/iio/adc/versal-sysmon-core.c          | 1094 +++++++++++++++++
+ drivers/iio/adc/versal-sysmon-i2c.c           |  153 +++
+ drivers/iio/adc/versal-sysmon.c               |   92 ++
+ drivers/iio/adc/versal-sysmon.h               |  125 ++
+ 8 files changed, 1661 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+ create mode 100644 drivers/iio/adc/versal-sysmon-core.c
+ create mode 100644 drivers/iio/adc/versal-sysmon-i2c.c
+ create mode 100644 drivers/iio/adc/versal-sysmon.c
+ create mode 100644 drivers/iio/adc/versal-sysmon.h
 
-[ ... ]
-
-> @@ -705,7 +835,25 @@ static int pmic_gpio_pinconf_group_set(struct pinctr=
-l_dev *pctldev,
->  	if (!group)
->  		return -EINVAL;
-> =20
-> -	/* Iterate over all pins in the group and apply config to each */
-> +	/* Handle group-level LS_ENABLE before iterating per-pin configs */
-> +	for (i =3D 0; i < nconfs; i++) {
-> +		if (pinconf_to_config_param(configs[i]) !=3D PMIC_GPIO_CONF_LS_ENABLE)
-> +			continue;
-> +
-> +		if (!group->data) {
-> +			dev_err(state->dev,
-> +				"qcom,1p2v-1p8v-ls-en is only valid for level-shifter groups\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		ret =3D pmic_gpio_set_ls_rpmh(state,
-> +					    (struct ls_pingroup_data *)group->data,
-> +					    !!pinconf_to_config_argument(configs[i]));
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	/* Apply per-pin configs to each pin in the group */
->  	for (i =3D 0; i < group->grp.npins; i++) {
->  		pin =3D group->grp.pins[i];
-> =20
-> +		ret =3D pmic_gpio_pinconf_pin_set(pctldev, pin, configs, nconfs);
-> +		if (ret < 0)
-> +			return ret;
->  	}
-
-[Severity: High]
-Can applying pin configurations to a level-shifter group incorrectly re-ena=
-ble
-the disabled GPIO pads and write out-of-bounds function values?
-
-In pmic_gpio_set_mux(), level-shifter pins correctly have their pads disabl=
-ed.
-However, when group-level pin configurations are applied
-(e.g., qcom,1p2v-1p8v-ls-en), pmic_gpio_pinconf_group_set() delegates to
-pmic_gpio_pinconf_pin_set().
-
-The per-pin function unconditionally sets pad->is_enabled =3D true and writ=
-es it
-to PMIC_GPIO_REG_EN_CTL, re-enabling the pads. Furthermore, it shifts
-pad->function (10) left by 1 (PMIC_GPIO_REG_MODE_FUNCTION_SHIFT), which
-overflows the 3-bit mode mask and overwrites adjacent bits in
-PMIC_GPIO_REG_MODE_CTL.
-
-[ ... ]
-
-> @@ -1177,6 +1333,96 @@ static const struct irq_chip spmi_gpio_irq_chip =
-=3D {
->  	GPIOCHIP_IRQ_RESOURCE_HELPERS,
->  };
-> =20
-> +/**
-> + * pmic_gpio_register_level_shifters() - Register level-shifter groups a=
-nd function
-> + * @state: PMIC GPIO state
-> + * @hw_data: Hardware-specific data containing level-shifter configurati=
-ons
-> + *
-> + * This function registers level-shifter support by:
-> + * 1. Getting RPMh device reference and PMIC ID from device tree
-> + * 2. Registering each level-shifter pair as a multi-pin group
-> + * 3. Getting RPMh addresses from cmd_db for each level-shifter
-> + * 4. Registering the level-shifter function once with all valid groups
-> + *
-> + * Return: 0 on success, negative error code on failure
-> + */
-> +static int pmic_gpio_register_level_shifters(struct pmic_gpio_state *sta=
-te,
-> +					     const struct pmic_gpio_hw_data *hw_data)
-> +{
-> +	struct device *dev =3D state->dev;
-> +	const char **ls_group_names;
-> +	int ret, i;
-> +
-> +	/* Get RPMh device reference for level shifter control */
-> +	state->rpmh_dev =3D rpmh_get_ctrlr_dev(dev);
-> +	if (IS_ERR(state->rpmh_dev))
-> +		return dev_err_probe(dev, PTR_ERR(state->rpmh_dev),
-> +				     "Level shifter needs rpmh device\n");
-> +
-> +	/* Get PMIC ID from device tree for RPMh resource name composition */
-> +	ret =3D of_property_read_string(dev->of_node, "qcom,pmic-id",
-> +				       &state->pmic_id);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "get qcom,pmic-id failed for rpmh resource\n");
-
-[Severity: High]
-Does the unconditional registration of level shifters break the probe seque=
-nce
-for existing devices that do not utilize them?
-
-pmic_gpio_probe() unconditionally invokes pmic_gpio_register_level_shifters=
-()
-for any device matching qcom,pmh0101-gpio. If rpmh_get_ctrlr_dev(),
-qcom,pmic-id property parsing, or cmd_db_read_addr() fails, the function
-returns an error that aborts the entire GPIO controller probe. Existing dev=
-ices
-do not possess the newly introduced qcom,rpmh or qcom,pmic-id properties,
-causing them to encounter a fatal -ENODEV during probe.
-
-> +
-> +	/* Allocate array to hold all level-shifter group names */
-> +	ls_group_names =3D devm_kcalloc(dev, hw_data->num_ls,
-> +				      sizeof(*ls_group_names), GFP_KERNEL);
-> +	if (!ls_group_names)
-> +		return -ENOMEM;
-> +
-> +	/* Register each level-shifter pair as a multi-pin group */
-> +	for (i =3D 0; i < hw_data->num_ls; i++) {
-> +		struct ls_config *ls =3D &hw_data->ls_config[i];
-> +		struct ls_pingroup_data *ls_group_data;
-> +		char rpmh_resource_name[32];
-> +
-> +		/* Allocate ls_pingroup_data for this level shifter */
-> +		ls_group_data =3D devm_kzalloc(dev, sizeof(*ls_group_data),
-> +					     GFP_KERNEL);
-> +		if (!ls_group_data)
-> +			return -ENOMEM;
-> +
-> +		ls_group_data->config =3D ls;
-> +
-> +		/* Compose RPMh resource name and get address from cmd_db */
-> +		if (state->pmic_id && ls->rpmh_prefix) {
-> +			snprintf(rpmh_resource_name,
-> +				 sizeof(rpmh_resource_name),
-> +				 "%s%s", ls->rpmh_prefix, state->pmic_id);
-> +			ls_group_data->level_shifter_addr =3D
-> +				cmd_db_read_addr(rpmh_resource_name);
-> +			if (!ls_group_data->level_shifter_addr)
-> +				return dev_err_probe(dev, -ENODEV,
-> +						     "RPMh resource %s not found in cmd_db\n",
-> +						     rpmh_resource_name);
-
-[Severity: High]
-Does this code fail to properly defer probing if the command DB (cmd-db) is
-not yet initialized?
-
-If the command database is not yet ready, cmd_db_read_addr() swallows the
--EPROBE_DEFER error and returns 0. The driver misinterprets this 0 as a mis=
-sing
-resource and returns a permanent -ENODEV via dev_err_probe(). The driver mu=
-st
-explicitly check cmd_db_ready() to correctly defer probing. Otherwise, it r=
-aces
-with cmd-db initialization and breaks on early probes.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527-pinctrl-le=
-vel-shifter-v1-0-1965461d0a7c@oss.qualcomm.com?part=3D4
+-- 
+2.48.1
 
