@@ -1,147 +1,187 @@
-Return-Path: <devicetree+bounces-303410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +Mn5G7jqFmrDwgcAu9opvQ
-	(envelope-from <devicetree+bounces-303410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 14:59:36 +0200
+	id 8FFCA5ztFmruvgcAu9opvQ
+	(envelope-from <devicetree+bounces-303411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:11:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70605E4860
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 14:59:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F90F5E4B06
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:11:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 510EE304CA58
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 12:52:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F28E8307E73B
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A717640314D;
-	Wed, 27 May 2026 12:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCACC40626C;
+	Wed, 27 May 2026 13:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0igMXhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF89283FF5
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 12:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84800405C57
+	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 13:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779886322; cv=none; b=N1vLAsz2KdlXHqvbrNEKyRil9s0VLOxnF3/zIB2E66Ghx7OTYOSKJ+nk+eZar8tsxodkV38B+UdfkJsSaapqGJuLZL+rmHPi2pD67iSf7W/mRGkd6M4Jqrqqmamw0OQQbI1Lx9OdgtBaALFKyvE/aBauoIMBQKY1Byf9C9TIpK0=
+	t=1779886909; cv=none; b=GavpgzUESP6FVvO6A2PI8gmePwVnlYoQG2Ucm7a0m6mqWPa9Z8XeG12AHfoj+0D2tW9qn1EJAK3xxj/Q7cUzFCc+kT0ET1c6fsomO16WJ2IrlGU+kN0EJkxYy/WI2cy5ITabagLM1/Gc2bD0Qt/wRnFFZLLYReIGA97xUHfxZ/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779886322; c=relaxed/simple;
-	bh=V9RAf1GqqHMJtgbWs5i0yM5MgVagBGD839DyGgc8I5Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ibSO5fXChWlgqb2ZERl1cErPialWEzMMkLK8RtIfL9xBhpuTn7PRmsICwknieNogFI9n8rNKaeTObSgXIxSIvQdbo3YSsrypkVAS+1awxVvcSQgi3Ef7T1VMa1OkFghtTeQ0GQTGgONcLkHDinAVm5Bm2YfG3+GogIat5NJxH5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-9568159ee07so8300578241.1
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 05:52:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779886320; x=1780491120;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F1s/jtnq+BOH84dbnuPCtGCz4Kb51mjTjZ/fcs+3yeQ=;
-        b=BiTXtcI7mQHJEMQi8+3UZfTEcU0LCQyl1zp4VDdV3EBllPbk+bdskze1A3REORQ/Vz
-         nVP6D1/8Wnr2Qhnujz7M6MQX4hck9Vz5Uq/OdajGMFGKV5bPSXjs4zi7bIiCKx7SU3NY
-         25lLuF5tu56+Jhg6OANfzF4/5KnnNp1ZUUHcezpbJdrUvi7ThVaVICOGr7ZwvwV8gmxa
-         vpKcs7Bup2r8P6IqF3mpBSuyqqOMQF1dcYDkHpO3HkboGjSmo/+sndG2IThzSwyTsSM9
-         L4U9RRaOXPIDO1FiMUeviHQGV2x6Hn4neTrJBf0TK7JnmdZj5Gj/AXS8zeTpB9tb3E3l
-         liwQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+OVnl0bVjrG09hpUUa50DyKp1OOcd4faGjRUNTr/MncvdklQujORYThHL6yJPiQLszTj73f3fAhb3v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3dvAzcNhRwnmRWjBhPOe/uEpjo3GfyBVKgPpNUULQMLq1Vwj7
-	hCQOPYcZp3J/Uy/3q5j0wNaPJD6NcHUttm9wsEOkPjK9cgKjLWfoqYqwQeCKCOs16SA=
-X-Gm-Gg: Acq92OGTJfIP65IydKu5/gB/eCXxIaMKbxCLckZK3VANU1CMx6W2Nyib9I4AUROwsLw
-	9T9nNMlVKVM71I9Xwv6BtWsaAE/TFA42ey8+GhkcKfB0YgUxZxvpZq3ytquLb56DKPOO6XfCa3+
-	7VqR/x5UHmnBHCsDAmVCAZljPQ67hkB3C0d/uammXk3AjFlMvVbhI7lDxeHRJCdgUqEWv3MtA3a
-	PodKwthSsagWCBnYCANjfFDUM9QtrtIbHuJwcXU35FU8y2aQLvHWTRJfvBenukF/55W1S5ngxYn
-	AB2OFmkKxv7EMDGThivwknq3X15gUPXXqruvUW3Ip2rcpzP4AI6hW+Wi4aRoIScUaSk2tzUmfBs
-	N2oy+DQvPe/ElRi95W2wcnKwFPNsXGJR5MooGVd6g6rDxnAAhnLLV2Htnt73xOcz1po8h3AzmqW
-	ZNmMo1rw+Ugf+O5zPu2ljEapjByqvq2huspSgS2FuEs2d0gO0CHSS4S4uC7HYWkD8Ap9tS4/8=
-X-Received: by 2002:a05:6102:4b87:b0:632:d8d5:291b with SMTP id ada2fe7eead31-67c8451a9fdmr12869972137.30.1779886320042;
-        Wed, 27 May 2026 05:52:00 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-961d388f339sm2393384241.12.2026.05.27.05.51.59
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 May 2026 05:51:59 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-95d04f205beso8235858241.3
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 05:51:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+vIColflpGAlU00sKhRHebeyNK4QdDzRZaJHLUB2Pif5E33r3hVU2v56vRBKSUbvmNwiqm+GmGJDTt@vger.kernel.org
-X-Received: by 2002:a05:6102:4b1c:b0:650:94b2:b209 with SMTP id
- ada2fe7eead31-67c70e65631mr13755724137.4.1779886318786; Wed, 27 May 2026
- 05:51:58 -0700 (PDT)
+	s=arc-20240116; t=1779886909; c=relaxed/simple;
+	bh=oJR+lJBquTPnBPSgczBr90MASjyyRV7q2ZheMXLbhcM=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ORsb1mht0LoSeR7jau8sDb72nykaeN18uInrbBmaMuf84W0yep9okYYnXbI9Lyt8Zbct2hRxSy159ufsSjc9KK0Kg4etNzF9m3O+NwnnNqyAbvff8T0I3FO4/LTq5r9KPcaKTKokjiLTrU2iYfSwz2JRtYdg/4Rqmip8i0kOIXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0igMXhl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30D601F000E9;
+	Wed, 27 May 2026 13:01:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779886908;
+	bh=+lsCFcpNni/siMKQ1RY87mU6Y2CuWsDs6RA+pZ0Ygoo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=c0igMXhlrl1lj7Dg0ByaQfidzLWJXYJ+gpuPCBayScI8i7S3yT4oessmlaxAwSfHI
+	 pd0H+IQ+E/fAc8BtqCpdouIZR5m+BD0aJTeP8/0IJ1Kg6/s5O7wShssPnYUkhjsPmm
+	 33nICJVyZqGSCAeGGf7cXrJjsOrg0h2ZF0YxM3kHVnSDnlJoLHuBkg29karq8ZqAQp
+	 T6z0rDO8T2OsN7szfwEYjpz1vcGIWON9KTZFh97kXly/2T0awTAcGwJr3jp5C+45kj
+	 tdc8BNIS4RixZJ2xo+uVcSXoJLHspLp7mSFTyhtgPEJNEanXFZQgi/7cvqgZDZGu+t
+	 TAcX2B3pbgG+Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 3/5] iio: adc: versal-sysmon: add I2C driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Salih Erim" <salih.erim@amd.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260527114211.174288-4-salih.erim@amd.com>
+References: <20260527114211.174288-4-salih.erim@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 27 May 2026 13:01:47 +0000
+Message-Id: <20260527130148.30D601F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260524092016.46346-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20260524092016.46346-1-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 27 May 2026 14:51:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUbnK9LXKgaEpWCosUHLMGQzpe32VxaT4xT5P1FU43NLA@mail.gmail.com>
-X-Gm-Features: AVHnY4K7PEhqL7l-y4HCxD8YtnX5gQi3Kk8WMoT27R9AZcbDgLwF3FI-H1Ufsec
-Message-ID: <CAMuHMdUbnK9LXKgaEpWCosUHLMGQzpe32VxaT4xT5P1FU43NLA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg3e-smarc-som: Sort pinmux entries
- and fix blank line
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-303410-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-303411-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.988];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	R_DKIM_NA(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,glider.be:email,linux-m68k.org:email,renesas.com:email]
-X-Rspamd-Queue-Id: C70605E4860
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: 7F90F5E4B06
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 24 May 2026 at 11:20, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Sort the pinmux entries for both GMAC ctrl nodes in port order (A/B/C and
-> D/E/F respectively) and remove the extra blank line before the second
-> pinmux assignment.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The I2C register read operation splits the write and read phases=
+ into two independent API calls, breaking bus atomicity and introducing an =
+unsafe STOP condition.
+- [Low] The VERSAL_SYSMON_I2C config is missing the architecture dependency=
+ present in the related VERSAL_SYSMON config.
+--
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl for v7.2.
+commit ce68d28f1b162fe7dac253345bd2e5c0af9ee334
+Author: Salih Erim <salih.erim@amd.com>
 
-Gr{oetje,eeting}s,
+iio: adc: versal-sysmon: add I2C driver
 
-                        Geert
+This commit adds an I2C transport driver for the Versal SysMon block,
+allowing reading voltage and temperature measurements over I2C.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index c7f1905748497..8f9fc9de74a54 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+[ ... ]
+> @@ -1963,6 +1963,19 @@ config VERSAL_SYSMON
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called versal-sysmon.
+> =20
+> +config VERSAL_SYSMON_I2C
+> +	tristate "AMD Versal SysMon I2C driver"
+> +	depends on I2C
+> +	select VERSAL_SYSMON_CORE
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[Severity: Low]
+Does this config need an architecture dependency?
+
+The related VERSAL_SYSMON config restricts visibility with
+"depends on ARCH_ZYNQMP || COMPILE_TEST". By omitting this dependency here,
+will VERSAL_SYSMON_I2C be incorrectly presented as an available driver on
+all I2C-enabled architectures?
+
+> +	help
+> +	  Say yes here to have support for the AMD/Xilinx Versal System
+[ ... ]
+> diff --git a/drivers/iio/adc/versal-sysmon-i2c.c b/drivers/iio/adc/versal=
+-sysmon-i2c.c
+> new file mode 100644
+> index 0000000000000..92d149f517e57
+> --- /dev/null
+> +++ b/drivers/iio/adc/versal-sysmon-i2c.c
+[ ... ]
+> +static int sysmon_i2c_reg_read(void *context, unsigned int reg,
+> +			       unsigned int *val)
+> +{
+> +	struct i2c_client *client =3D context;
+> +	u8 write_buf[8] =3D { };
+> +	u8 read_buf[4];
+> +	int ret;
+> +
+> +	write_buf[SYSMON_I2C_OFS_LOW_IDX] =3D
+> +		FIELD_GET(SYSMON_I2C_OFS_LOW_MASK, reg);
+> +	write_buf[SYSMON_I2C_OFS_HIGH_IDX] =3D
+> +		FIELD_GET(SYSMON_I2C_OFS_HIGH_MASK, reg);
+> +	write_buf[SYSMON_I2C_INSTR_IDX] =3D SYSMON_I2C_INSTR_READ;
+> +
+> +	ret =3D i2c_master_send(client, write_buf, sizeof(write_buf));
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret !=3D sizeof(write_buf))
+> +		return -EIO;
+> +
+> +	ret =3D i2c_master_recv(client, read_buf, sizeof(read_buf));
+
+[Severity: Medium]
+Will this sequence of independent send and receive calls break bus atomicit=
+y?
+
+Since i2c_master_send() and i2c_master_recv() independently acquire and
+release the I2C adapter lock, this approach generates a STOP condition on
+the bus after the write phase.
+
+On a shared I2C bus, couldn't this allow transactions for other devices to
+interleave and disrupt the device state or abort the pending read sequence?
+
+Would it be safer to use i2c_transfer() with an array of two i2c_msg
+structures to ensure a Repeated START (Sr) condition?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527114211.1742=
+88-1-salih.erim@amd.com?part=3D3
 
