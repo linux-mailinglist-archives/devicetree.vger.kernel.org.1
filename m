@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-303416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8NJBCsruFmruvgcAu9opvQ
-	(envelope-from <devicetree+bounces-303416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:16:58 +0200
+	id qPlcJFrvFmruvgcAu9opvQ
+	(envelope-from <devicetree+bounces-303417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:19:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 955A45E4C0E
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 281275E4C98
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:19:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1522F305D02B
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:07:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CF70D307247F
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D4740B6C9;
-	Wed, 27 May 2026 13:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B49409DE6;
+	Wed, 27 May 2026 13:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CLLneLrR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k3oWFk+s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2772840B6E4;
-	Wed, 27 May 2026 13:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28818460;
+	Wed, 27 May 2026 13:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779887246; cv=none; b=Y6NRe9YDTPvh+hQOJk2Ns76Z6SfviNXb77THiq+R5wjyNpjh7HUZ4nqAqa6KbB+9/HUA1d2XYPHRoISuEpz88c+18iDvPQ14NDgs+1sIAmDuZQ43JrigdvGhznhpXxibwBEd8Wzx+I0+7eeDrZgGW3PnDObox0bIT1KGIHpJhks=
+	t=1779887562; cv=none; b=TCBy+rT09qYQEvijGA+J3eaEhqNMCG3ax1SnQOocxgzibc57cviXctDJkcAtrEoEB/CdOjme55EeXpGc2jxntaYH/9ATA8tjNOlwIKPVVPBo/prsgS3ZqLVndzEZ1cO9Rw8HsLjq3IxJTEtc/JOhNRRT/WLxlKTP3excny8px4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779887246; c=relaxed/simple;
-	bh=UZHEOT65OA2+OkVHIElNd+UChpjpWmjk6TudWUcEDMc=;
+	s=arc-20240116; t=1779887562; c=relaxed/simple;
+	bh=NJ97lqNuq7JfZOqYauOT3tZNm3oV4Czm4yKscTm5Ruw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d5Yqa+ZJ+5YdZyXEKFJJlUK78wJizb7ub4caQC4bQojks3uGR+4fnse3ldlO/F0wsNYuO2ehfC8A9Tz93+g8DtvSupKuMj2cSZbvk3qNBFv4so2WlzdSXbW13mM1fhbEV7c+E+k33qHFokh4tfs2imNZiXkqfNzFOFEDhyhI6pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CLLneLrR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2930F1F000E9;
-	Wed, 27 May 2026 13:07:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FGnP1ydMMxkTBFFXKUzrE3J3mbBdCTa+Vejymbp6yr/j8ECsU86txvBGc/xJ3Z1DY8vGa9BJHyW8kNboCUCK57LJ94QCr5aYDG/9jgeU2wo6iVknUQHKeGUGWUC7G8S7im5aVITjOaOqopTcAWwLH/XadxHFOZui0TXSmk89Lc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3oWFk+s; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6705D1F000E9;
+	Wed, 27 May 2026 13:12:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779887244;
-	bh=55HiOnX+GUT4QJmR4nYI0Pkn8qfgaD7UAPZyoU9UaVM=;
+	s=k20260515; t=1779887561;
+	bh=cLbYJykxxmiNbVFJWXlDk39IdYaVW6JQ33vfoP0sgFk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=CLLneLrRsv8+xs36uXzdiIs7C7uZ+hRFytAf//1msiW99uV7AaIfLFntzedpxJFN7
-	 XgxPVzgGj0P1FfLGWHdkiGTgcfADFVxA3wsaL5OUt5121dn9oGDcKaU3hN852rD66/
-	 oZhe7FZZ9kgjqECO+rIHkF+lCGmsyUhNUcHJWQ1wxSfLu6PAWebujsRCDViLtLoJ9l
-	 fr2crbEhAqeQIoAlFk/29/Rbx9YU+yzxgnVzZhC1JeUTKPTeKlTP70co+z/4E0e/A4
-	 5vUn7FRge3rh5XMfcm7cYB0rrKt/LrTEreTeam235skWokTFEU5w9KscmomQ4aPf58
-	 9zL/wxW3jLDyQ==
-Message-ID: <c1ae50ab-1228-45a3-b910-4564774f4198@kernel.org>
-Date: Wed, 27 May 2026 15:07:19 +0200
+	b=k3oWFk+ss9eNssB4ePhHoLCJ31SA54KKwbbrawtRt+q+eqJIEDSss7iKqYzNkk0rm
+	 RLbZ/yTsTFexYUZjQspQNOb9llN9oFmmZ9vujUQMDoYhV3rH+Qm8mJ2a/eXwVn52wF
+	 qVOUu1P1ptEtA6igigLuzZTky90WuOdfxB8hHfmFtk1yp8zDbBkLclknBrm+QXsgqx
+	 MXKiR7Uu7vD+gehc7z0JEQNi3BNavfo3zJ0qecduUecwioyAMGjBxdmYJrkKraM6UN
+	 Ds3pw0bA0RYjR6AfBLif3sIlazf1kcuDRH3vurv2SaUEQ8WoHmDo7AJYXpOpGCzFSx
+	 IFrTRW7eSZqiQ==
+Message-ID: <0aeeed5c-062c-4914-8d69-8af90af94683@kernel.org>
+Date: Wed, 27 May 2026 15:12:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] i2c: designware: Export symbols and add __weak for
- Starfive I2C driver
-To: "lianfeng.ouyang" <lianfeng.ouyang@starfivetech.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260527085039.44435-1-lianfeng.ouyang@starfivetech.com>
- <20260527085039.44435-3-lianfeng.ouyang@starfivetech.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: net: bluetooth: Add brcm,bcm4384-bt
+To: kaihsin Chung <kaihsin.chung@synaptics.corp-partner.google.com>,
+ linux-bluetooth@vger.kernel.org
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, devicetree@vger.kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, kaihsin Chung <kaihsin.chung@synaptics.com>
+References: <20260408083217.1915419-1-kaihsin.chung@synaptics.com>
+ <20260527090849.3647601-1-kaihsin.chung@synaptics.com>
+ <20260527090849.3647601-2-kaihsin.chung@synaptics.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,26 +107,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260527085039.44435-3-lianfeng.ouyang@starfivetech.com>
+In-Reply-To: <20260527090849.3647601-2-kaihsin.chung@synaptics.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303416-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[holtmann.org,gmail.com,vger.kernel.org,kernel.org,synaptics.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-303417-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -137,25 +136,20 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 955A45E4C0E
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 281275E4C98
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 27/05/2026 10:50, lianfeng.ouyang wrote:
->  	dev->dev = device;
->  	dev->irq = irq;
->  	dev->flags = flags;
-> @@ -255,6 +259,8 @@ static const struct of_device_id dw_i2c_of_match[] = {
->  	{ .compatible = "mobileye,eyeq6lplus-i2c" },
->  	{ .compatible = "mscc,ocelot-i2c" },
->  	{ .compatible = "snps,designware-i2c" },
-> +	{ .compatible = "starfive,jhb100-i2c-master" },
-> +	{ .compatible = "starfive,jhb100-i2c-slave" },
+On 27/05/2026 11:08, kaihsin Chung wrote:
+> Add the compatible string for the Broadcom BCM4384
+> Bluetooth controller.
+> 
+> Signed-off-by: Kaihsin Chung <kaihsin.chung@synaptics.com>
+> ---
 
-So both devices are the same... Or you miss proper entry in ID table.
-Don't sprinkle compatibles around the code - ID table match data is for
-variant customization.
+You ignored most of my comments and did the same mistakes. Go back to
+previous version and implement the comments.
 
 Best regards,
 Krzysztof
