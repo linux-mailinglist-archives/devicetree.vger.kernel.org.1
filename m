@@ -1,190 +1,190 @@
-Return-Path: <devicetree+bounces-303433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303435-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kCr5KPf0Fmo6ygcAu9opvQ
-	(envelope-from <devicetree+bounces-303433-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:43:19 +0200
+	id mKKzAvH2FmrUywcAu9opvQ
+	(envelope-from <devicetree+bounces-303435-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:51:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23C345E53C1
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:43:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 598385E5597
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:51:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E3F4C300A53F
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:39:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6456930610B1
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA4A3EDAD3;
-	Wed, 27 May 2026 13:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DC8421880;
+	Wed, 27 May 2026 13:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i4eJyQo+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ys+Ks2OR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F7340F8DA
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 13:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A193AE1BD;
+	Wed, 27 May 2026 13:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779889139; cv=none; b=VyQbODhxlow6tatvGIMyC+G8zzpoKp4CYMYeiP3pmdHLH7lqireO5YcHbDf7u9ZyKe16lHARoX6kxLU+dRcQoS1Kn3IbUVeOar43FcYS9YvQBYFANq8VaOUUJQuULYMenJYlwu5dRmKRF1Co3WtzldfVCwZJZtelUVH4OHnKzuo=
+	t=1779889446; cv=none; b=WMJEVKWQp0YeqcsGXVeYqXtCOdq63O5FQ99Kxh40hzIYxdJXbANPA0CTQd3EVPeD8buoCJ5HXeOlpRHC2kY+5NWlOHOqGzqYtVQOcvSQUtnj1CviNbewSoa/c5fN0/SV/fJ4MLHF4fMMVUvYxt1fJzDfuxMepiiDWl6ts3SyEoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779889139; c=relaxed/simple;
-	bh=cCQTpQ4V9iF2hZnK7U8grd1nkoa9AA1qYWqA/7+ThL4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=mUZ2z0B/NWGmSxMUX/SUku9wREZ5uvXcZaQLcKcfLvbFClW9iCBrE8Aau07UoWS4LkGC0Aze3VQ352Kw0nTejfdOiv0RuRlnYcBpmhoyDgVoHAPAPiVgzI8KzZ/GjcwbtWgB/zCtIi3abMI3QLiwZIve2yTtfgSZ6if+GxV0Jxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i4eJyQo+; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94A031F000E9;
-	Wed, 27 May 2026 13:38:55 +0000 (UTC)
+	s=arc-20240116; t=1779889446; c=relaxed/simple;
+	bh=B9uKDCmuE+HIELsxBmZ3MrYYA+QztaM8DICspZlqOKE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cFR8fqqU+RZAShy3SxJ8n4EINIPaM3kMXwETLnISxhz+QWmEkJGSRfREVPnAdMa4re0OBF8rDlWGsKI4E6LCezM+e6cXlziRU1q+q4SKkvLtzE9QF3K6wQ94v85VfcdMr2j1CcRfIMOIzo6ZtJBKYhd91jO1btFpZEysZUnWCHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ys+Ks2OR; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E34E1F000E9;
+	Wed, 27 May 2026 13:43:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779889135;
-	bh=+JadgpGdQHus+W9nuQHoGupRihc55wmjeGTt8KnpKe8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=i4eJyQo+bkkUTUEWK/1xHQfKP2PIRfaGCTtTSZvrFrSf6QWgUBqBGQdmdOTbHKkr8
-	 BHAHXjw2kxmz0e8bErMtC/w/uxyPczLCunkuziRdiTsm3gy90qpQvCZeDYcpekRljJ
-	 ah/B/2WUpI7vszPwlCp+xZwlv9GvrFjXDmK4HH0aV+XL2ONsqB/RpeZ9VTqK5QZEqK
-	 GnJys1agWzGD9YINnR0xJBNlqafMBkg+JmSIZ8FmiDmiZ5jhsD5lFbMaqlx2GF9gjw
-	 +3L2fvGI2GOx6ZuSR5Kqf8V9P/BAJDwl/Tj96yYlbBny0lqkCGdzEbEuICs92soPHK
-	 2jYandUOxlJGA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/2] mfd: arizona: Convert GPIO IRQ handling to
- descriptors
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Linus Walleij" <linusw@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260527-mfd-arizona-irq-v5-2-ebeda2e925da@kernel.org>
-References: <20260527-mfd-arizona-irq-v5-2-ebeda2e925da@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 27 May 2026 13:38:55 +0000
-Message-Id: <20260527133855.94A031F000E9@smtp.kernel.org>
+	s=k20260515; t=1779889438;
+	bh=ManTLR8cnSqPRzXSHvGGL9dszH+Gg40OZ2hHPnTSUFw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Ys+Ks2OREIDkyVb/ydbR35kFybCJlsdSwM5yTaq8bGwg26wBLGRsnay09YHYNqcVs
+	 trcDxvICwyrtJ36NdlKlfZls3xBp0Dcxo8h4TkD32zQbSI4b0v8tLEtc9Bdx6WAUEn
+	 PrMFymT9kF+3D5rtPw/4oOKZ05YvaSV6UtDahcs+nhllzC9I7fijiENsfC5Vkd2JKi
+	 If0ghTVjA9gvk61zq2ghhxZpgtr+7QXh5FELs0SyvQJ075rhK0j5EPr3qibRS8Zknl
+	 j+3Rv+hZeYqJVMzFc70wa3QiaOFapfAxC8TUdEAJ3M1f7z68ZvAC/i651bxg8ElIuW
+	 9EgPq5K9OQvJw==
+Date: Wed, 27 May 2026 14:43:53 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Neo Chang <YLCHANG2@nuvoton.com>
+Cc: lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org,
+	krzk+dt@kernel.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+	neo.chang70@gmail.com, kchsu0@nuvoton.com, sjlin0@nuvoton.com
+Subject: Re: [PATCH v3 2/2] ASoC: codecs: nau8360: Add support for NAU83G60
+ amplifier
+Message-ID: <d4cf4ad9-82fb-4beb-be5b-b3687f822fcf@sirena.org.uk>
+References: <20260526015826.440769-1-YLCHANG2@nuvoton.com>
+ <20260526015826.440769-3-YLCHANG2@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="VqmZj1l8twwgh5fH"
+Content-Disposition: inline
+In-Reply-To: <20260526015826.440769-3-YLCHANG2@nuvoton.com>
+X-Cookie: You are fairminded, just and loving.
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303433-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303435-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,perex.cz,kernel.org,vger.kernel.org,alsa-project.org,nuvoton.com];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: 23C345E53C1
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sirena.org.uk:mid]
+X-Rspamd-Queue-Id: 598385E5597
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
 
-New issues:
-- [High] Migration from legacy gpio to gpiod incorrectly replaces physical =
-line reads with logical value reads, breaking IRQ polling logic for active-=
-low GPIOs.
+--VqmZj1l8twwgh5fH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Pre-existing issues:
-- [High] Negative error codes from GPIO reads are implicitly treated as boo=
-lean true, causing an infinite loop in the IRQ thread on read failure.
---
+On Tue, May 26, 2026 at 09:58:26AM +0800, Neo Chang wrote:
+> Add support for the Nuvoton NAU83G60 audio codec. The NAU83G60 is a
+> stereo 30W+30W smart amplifier with an integrated low-latency
+> Advanced Audio DSP.
 
-commit 2b527ef2c7b9b60397ceb6125cd15341ac4e28ff
-Author: Linus Walleij <linusw@kernel.org>
+A few things below, you also have a bunch of what look like legitimate
+issues picked up by sashiko (some of which overlap with what I've got
+below):
 
-mfd: arizona: Convert GPIO IRQ handling to descriptors
+   https://sashiko.dev/#/patchset/20260526015826.440769-1-YLCHANG2%40nuvoto=
+n.com
 
-This commit converts the arizona polling GPIO handling to use a GPIO descri=
-ptor
-instead of passing a global GPIO number as platform data.
+> +static int nau8360_peq_coeff_get(struct snd_kcontrol *kcontrol,
+> +	struct snd_ctl_elem_value *ucontrol)
+> +{
 
-> diff --git a/drivers/mfd/arizona-irq.c b/drivers/mfd/arizona-irq.c
-> index 544016d420fe2..cf8e42662585a 100644
-> --- a/drivers/mfd/arizona-irq.c
-> +++ b/drivers/mfd/arizona-irq.c
-> @@ -136,21 +136,19 @@ static irqreturn_t arizona_irq_thread(int irq, void=
- *data)
-[ ... ]
->  		if (!arizona->irq_gpiod) {
->  			break;
->  		} else if (arizona->pdata.irq_flags & IRQF_TRIGGER_RISING &&
-> -			   gpio_get_value_cansleep(arizona->pdata.irq_gpio)) {
-> +			   gpiod_get_value_cansleep(arizona->irq_gpiod)) {
+=2E..
 
-[Severity: High]
-Does this incorrectly check the logical value of the GPIO instead of the raw
-physical state?
+> +	snd_soc_component_update_bits(cp, NAU8360_R9D_PEQ_CTL, NAU8360_HW1_MEM_=
+TEST,
+> +		NAU8360_HW1_MEM_TEST);
+> +	for (i =3D 0; i < params->max / sizeof(u16); i++) {
+> +		value =3D snd_soc_component_read(cp, reg + i);
+> +		*(val + i) =3D cpu_to_be16(value);
+> +	}
+> +	snd_soc_component_update_bits(cp, NAU8360_R9D_PEQ_CTL, NAU8360_HW1_MEM_=
+TEST, 0);
+> +
+> +	return 0;
+> +}
 
-The legacy gpio_get_value_cansleep() returned the raw physical state of the
-pin. The new gpiod_get_value_cansleep() returns the logical state, which
-incorporates the ACTIVE_LOW flag from the devicetree or software node.
 
-Because the IRQ trigger flags describe physical voltage transitions, compar=
-ing
-these physical flags against a logical value might be incorrect. For exampl=
-e,
-if a user defines irq-gpios with GPIO_ACTIVE_LOW for a falling edge interru=
-pt,
-a physically low line becomes logically 1, causing the polling condition
-!gpiod_get_value_cansleep() to evaluate to 0, which fails to poll when the
-interrupt is active.
+> +static int nau8360_peq_coeff_put(struct snd_kcontrol *kcontrol,
+> +	struct snd_ctl_elem_value *ucontrol)
+> +{
 
-Conversely, when the line is idle, it evaluates to 1, causing the IRQ handl=
-er
-to poll infinitely.
+> +	snd_soc_component_update_bits(cp, NAU8360_R9D_PEQ_CTL, NAU8360_HW1_MEM_=
+TEST,
+> +		NAU8360_HW1_MEM_TEST);
 
-Should this use gpiod_get_raw_value_cansleep() to preserve the original
-physical semantics?
+=2E..
 
-[Severity: High]
-This is a pre-existing issue, but can this loop forever if the GPIO read
-returns a negative error code?
+> +	snd_soc_component_update_bits(cp, NAU8360_R9D_PEQ_CTL, NAU8360_HW1_MEM_=
+TEST, 0);
 
-gpiod_get_value_cansleep() (and its legacy predecessor) can return a negati=
-ve
-error code (e.g., -EIO) if reading the GPIO state fails over the bus. Since
-negative values are non-zero, this evaluates to true for IRQF_TRIGGER_RISIN=
-G,
-setting poll =3D true and causing an infinite loop in the IRQ handler threa=
-d if
-the read continues to fail.
+We use an rwsem to protect the controls from userspace so we could get
+more than one caller in these, you need some driver local locking.
 
-Conversely, for IRQF_TRIGGER_FALLING, !(-EIO) evaluates to false, which
-immediately aborts the poll.
+> +static int nau8360_set_tdm_slot(struct snd_soc_dai *dai, unsigned int tx=
+_mask,
+> +	unsigned int rx_mask, int slots, int slot_width)
+> +{
+> +	struct snd_soc_component *cp =3D dai->component;
+> +	struct nau8360 *nau8360 =3D snd_soc_component_get_drvdata(cp);
+> +	unsigned int tx_slot_used =3D 0, rx_slot_used =3D 0;
+> +	int ret =3D 0;
+> +
+> +	if (slot_width !=3D 16 && slot_width !=3D 24 && slot_width !=3D 32) {
+> +		dev_err(cp->dev, "Invalid TDM channel length: %d", slot_width);
+> +		return -EINVAL;
+> +	}
 
-Could the return value be stored in an integer and explicitly checked for
-negative errors before evaluating it as a boolean?
+This stops the support for disabling TDM from working, a slot_width is
+required here. =20
 
->  			poll =3D true;
->  		} else if (arizona->pdata.irq_flags & IRQF_TRIGGER_FALLING &&
-> -			   !gpio_get_value_cansleep(arizona->pdata.irq_gpio)) {
-> +			   !gpiod_get_value_cansleep(arizona->irq_gpiod)) {
->  			poll =3D true;
->  		}
->  	} while (poll);
+--VqmZj1l8twwgh5fH
+Content-Type: application/pgp-signature; name="signature.asc"
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527-mfd-arizon=
-a-irq-v5-0-ebeda2e925da@kernel.org?part=3D2
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoW9RkACgkQJNaLcl1U
+h9AOAwf/XCpGenqAsg5VdLiNBYcT/3lty5A1czozWimgLpuXdu6a8xLeqFCYlOfQ
+ECzRk/arz8HxuonhicRhMQ45lzA3O56D67Y1X1ajLIQLkaiqlmSILTesbQ9xFRyQ
+y3LSIqCcZA15FWDEHjFI9y9OpkIiht5PSSzoxEl27991Do8FkGrcizSgU/DTlfiD
+Y5D7Wp5Zbx4BIxwWsxtkG54n207YmMUBETfsaLbmn6rijv9OISrfXFAAdP4YNMmM
+aCF3r7e+lpamW5PAaiUdQp8cKntSu36zHGeY0SmkhAhMU/ClR6TB0ZdnI6YT+DPT
+2axvsMhw+oCPaBVr3+Pb4eQFgzyX+w==
+=IE9q
+-----END PGP SIGNATURE-----
+
+--VqmZj1l8twwgh5fH--
 
