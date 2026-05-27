@@ -1,58 +1,64 @@
-Return-Path: <devicetree+bounces-303420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303421-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YLEpGoLwFmpcxwcAu9opvQ
-	(envelope-from <devicetree+bounces-303420-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:24:18 +0200
+	id CK59NXLvFmruvgcAu9opvQ
+	(envelope-from <devicetree+bounces-303421-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:19:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 056485E4E4D
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:24:17 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9405E4CB8
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 15:19:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8A039305D988
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:17:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B36A3301F7F5
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 13:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9013F164D;
-	Wed, 27 May 2026 13:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034F640626F;
+	Wed, 27 May 2026 13:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADnXHmDZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IbTboMG3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92853DD864;
-	Wed, 27 May 2026 13:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC8940B6DF;
+	Wed, 27 May 2026 13:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779887853; cv=none; b=MJM6Jp9KkWJymoHg70oqPiLKVEdM7fu7m1fRIkVPsa62tLZsz9ewHorJqh6n5Q+UV/xHydIT5uKQCFDf8MZ/sVnGR4/5gP+YMh7Q6Ltjs8TzV0gA6iFAlYRabTX9ELo7I0x6DLzYCu+st7Q/v9OvvreNWwnieGOh2YD/jXWpt3s=
+	t=1779887970; cv=none; b=P1hp6dsUqS7xZVK9v68R/WH80MtaYgkztTQDnR+kRE2gLS2vLBJDqAgKsK2dXs954Q+UFAb+i8xZaRKI8Wiuyk+eXfB7h8C3ILBN+z31oqs4IFy6aakomUHrU3xiYcrKd4pYfVw4Xg+Pe8Wwa42aQbM3qYTOEgs42x9i+/sLZaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779887853; c=relaxed/simple;
-	bh=5KOzMz9F/mwCdOPXai2Be0tOQb6BnSUWJdSzCQ2KSJ4=;
+	s=arc-20240116; t=1779887970; c=relaxed/simple;
+	bh=82cr3OEuGhC6VA1rTHqxuULg4YDVH3kphMyOxqvilqg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QBaCmcVBgFNHWM5vVPcPNUi0axDGF1RftSNo7PLdkNuzAP9VSNAO7BXRkAYTVsQnpf097M/eh/pQ9S5xuQSQSG4qfOwg+cIVdF0ohQnEAtBM7sy0jM18Dkd4MksKFiNgNXdS7YxYmZojRe2JQELvB4a8HW8B9jyLdaC90uUKYVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ADnXHmDZ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F341F000E9;
-	Wed, 27 May 2026 13:17:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZjTDFysyzSFEMSPjaJrDrOwnrUStnGX9CL9OOD/YQ0zFe9PFMuzrCiy4NlO1E1SOK66IHcBgJ6+rCK+Sne9dW3leoYIJ+eaFCmf7EI2obi563GvQC0of3HG9tj6u6QnCVG+WnkS/ReIOK6MRIwwprVunypa+jlxmwq+nXQDAe+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IbTboMG3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2D7B1F000E9;
+	Wed, 27 May 2026 13:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779887851;
-	bh=OmHmZcbL/urkK5w5dchBeSm3Yv1z3BrklCufRKfsrOg=;
+	s=k20260515; t=1779887969;
+	bh=Q7gBymELBCrfCbrF5Z/sbLkfLJFwnO6lYJgd+STHmlc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ADnXHmDZCAiLneJJ2geZruAODk9MWPjgBAC2wA/tCyNsGT1gler5RercExKCwMG4v
-	 hPL4u2eMm8Gmt6lEwNClRst52Umk7uoqZZ5/y6lcVKUXxuxKK9iSGqfK5SWgG6YM6b
-	 35auHjxM/07h3WYJSaqZoYTK1REfLNTiTh0S0PjpIBDP3I/ge6VVjhLwyufBK+rE7M
-	 juleqvU67/RdGZsksqa5W0A2pAkdGsXBet7t1+3qmCFnX9MXRHj9rEoOAEBBM1u5RA
-	 FY8D/cHVHrrt00gXsp2b/rYORKSRCaikVmkaS2pkJ/OdSIPCK/VcANy0MxjRFPvb/m
-	 7XTvfKgIq268Q==
-Date: Wed, 27 May 2026 15:17:26 +0200
+	b=IbTboMG3MVEg45WS42Zwiio8fOKqRvbmN8/hhkoiAevca2Z5ZuEMVMnBb8JgeqDW9
+	 5VB08ry9tOpLXCYgAkXExBW/EqxCwmFh66V+BrN0Eh7iqP+Kzf5eThyknd+RsKwH2H
+	 fIkhQ9VkIcQq9K0SVKzWOXvol56O8WMri7v9Ai331s3xrSpnIDdpdixntonu8G8xVk
+	 vGN4DSGz3zfJvQh3rioXDqnxUVwghbUlbAGl4Hp+xHfZt0TAXCtpCKhh2VkLLNZOOz
+	 37kQmYlVVDmCcipJHj2qHshZkNPvFnyHs5EINCSd3g1UBmZ8/TdukqC6vI0ZJYqSRb
+	 eM1N2PSdCipaw==
+Date: Wed, 27 May 2026 15:19:23 +0200
 From: Drew Fustini <fustini@kernel.org>
-To: sashiko@lists.linux.dev
-Cc: MoeLeak <i@leak.moe>, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org
+To: MoeLeak <i@leak.moe>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2 2/2] riscv: dts: thead: Enable WiFi on Lichee Pi 4A
-Message-ID: <ahbu5h61o5ostry1@gen8>
-References: <20260508-lichee-pi-4a-wifi-v2-2-7acf63559e62@leak.moe>
- <20260508203953.C981AC2BCB4@smtp.kernel.org>
+Message-ID: <ahbvWzodp1SsBb5a@gen8>
+References: <20260508-lichee-pi-4a-wifi-v2-0-7acf63559e62@leak.moe>
+ <20260508-lichee-pi-4a-wifi-v2-2-7acf63559e62@leak.moe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,18 +67,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260508203953.C981AC2BCB4@smtp.kernel.org>
+In-Reply-To: <20260508-lichee-pi-4a-wifi-v2-2-7acf63559e62@leak.moe>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303420-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-303421-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -85,24 +91,31 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
-X-Rspamd-Queue-Id: 056485E4E4D
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 7E9405E4CB8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 08, 2026 at 08:39:53PM +0000, sashiko-bot@kernel.org wrote:
-> > +&sdio1 {
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
+On Fri, May 08, 2026 at 07:44:14PM +0800, MoeLeak wrote:
+> The Lichee Pi 4A has an RTL8723DS WiFi module connected to the TH1520
+> SDIO1 controller. The module reset line is driven through a PCA9557 GPIO
+> expander on the I2C1 bus.
 > 
-> This isn't a bug, but since this node does not contain any child nodes,
-> will including #address-cells and #size-cells trigger the dtc compiler
-> warning for avoid_unnecessary_addr_size?
+> Enable I2C1 for the GPIO expander and configure SDIO1 as a non-removable
+> 4-bit SDIO bus using an mmc-pwrseq-simple reset sequence so the WiFi
+> device can be powered and enumerated.
+> 
+> Signed-off-by: MoeLeak <i@leak.moe>
+> ---
+>  arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 47 +++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 
-There are no dtbs_check W=1 warning or errors.
+Reviewed-by: Drew Fustini <fustini@kernel.org>
+
+Thanks for fixing up previous revision.
 
 Drew
 
