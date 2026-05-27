@@ -1,167 +1,129 @@
-Return-Path: <devicetree+bounces-303228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFULK61qFmrwmAcAu9opvQ
-	(envelope-from <devicetree+bounces-303228-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 05:53:17 +0200
+	id uYQrKtBqFmr3mAcAu9opvQ
+	(envelope-from <devicetree+bounces-303229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 05:53:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B2D5DF0EC
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 05:53:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A795DF106
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 05:53:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 68FA8302C902
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 03:53:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8E7A4300F162
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 03:53:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C58261B8D;
-	Wed, 27 May 2026 03:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF02261B8D;
+	Wed, 27 May 2026 03:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TCXIXO4J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LRjIpeu4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9AB24677B
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 03:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA07D2475CF;
+	Wed, 27 May 2026 03:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779853989; cv=none; b=ETtlT+GOVducgf5z+ESrXMgjbFbmavx4UOND0Bbg2XaPgRsV+0M7w4DpYFxr2kNsi7viOZms/o0hOdsdD/1baihlj0ah9lTA3rQRdk/Vc1jTnecch2vog4o6u0zzHi9/q1E7O20nn32WhOTpNFVB5LQtt6WoUiiPNwiR0q6algg=
+	t=1779854029; cv=none; b=OBll7I/TNsi5E0p08W6el/VXTNJ/04Rq8SHSLHQ4PxZawyupLfQrLZjTRSB/FzvapWhNxT7xq0QlTCnPFTmaDHEqU36QB9yUReeL7xQh1OJtWarENnBgB9nhtZJbTT+/LbtYnbFgfRjzLtrDxTH35OHm5yytlTVgj8uKPUAS6Jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779853989; c=relaxed/simple;
-	bh=E/KybydKZB29FSzO5qgQizYoNcf8NDnywL5dC1V4EcQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=p0MyU4sgSF/DD0hjPyMqKCgsYNTWLI4lcCs0CEVgTuU0b2CtXR1xxFklF47GtI/55C1mDePAE2Geq6Fky/cL2SKsLsGFwoiwuD0NYKG+LyYTClB1UZWn6SAZEeXDN5WfU1br52KW/akoQ6ZsVmWcPdZGbxUknK63L6qkDNaC8cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TCXIXO4J; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E2131F000E9;
-	Wed, 27 May 2026 03:53:07 +0000 (UTC)
+	s=arc-20240116; t=1779854029; c=relaxed/simple;
+	bh=ArXGWaeMxU1LhuajSP8dDdxpvSw3VCO1IkSoT+K4ric=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=lDujYDI3J4Zf25AVAYASgt0WSWpLOZhT/SApbH1J2kPPFXbszW/HjWbIZ/y8+jP2TbmcIL6lvAgNM81esUNE0skUyM7c7+/3epuf8RZtWzoEXqJoqVzCDt0PZL5frF+9l2nPVdGlbGXxVHlE2gVxPLK8mJq0sq6tGss3kJtz1fU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LRjIpeu4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0702D1F000E9;
+	Wed, 27 May 2026 03:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779853987;
-	bh=VG3rolkG8ZpQwQmZtTkNpWE18eJYRObE+EMHzjbte2s=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TCXIXO4JJjsUU5AkR6Z3rmDfjH46vWlM+VijcTnOwK1o+yToczS4u8efZ2X0O/yBD
-	 8mBJ8SrsSM1ELd8j7rVyO1izSj78oZRyNpX58bAgIRIGn/EoI978mcbNk8yexwR4XY
-	 Xe4ipFZqyhtFP1NkSQ2vu58row7L3mt7SE9cU8vUWAdHez+nTb9ghjPDrYpGsG8WWH
-	 mqWgrppv0stT++mVSoU8FQ764OrKH/F4xF9+13X7eDOVyaIi7XOp//v4Hok8djGx/x
-	 62TeLkyQP3JAhnkvMe9P6ExZKxqlGVj2hsGFse1tJeb7TFtM4bLqKL/eG7nUr30wLm
-	 lJ77RK5PvHvKw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 04/11] of: reserved_mem: zero total_reserved_mem_cnt
- if no valid /reserved-memory entry
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Wandun Chen" <chenwandun1@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260527032917.3385849-5-chenwandun1@gmail.com>
-References: <20260527032917.3385849-5-chenwandun1@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 27 May 2026 03:53:06 +0000
-Message-Id: <20260527035307.1E2131F000E9@smtp.kernel.org>
+	s=k20260515; t=1779854028;
+	bh=QBIcUoeF2QoUxoI+VAA/e93kFvC0zK2wjZtsLkFv3jk=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=LRjIpeu4sF5UE+WlO9GH55yMLoByPjC3zOIV+LYg9KXrZFIcwIEePL3Jlo0RGPTbL
+	 nJY5l0i/JYRz2DcyM09q4wjnDb0yd2L3XZq8HOs7hmq86J/KuiltSfjMFGAFPv7PiU
+	 DiAjzBdM9lGYckz6tFsi0DsSAurFnQmMwaQZyAqRoTyZkyB+GN2c2jqMV1WrvJCQKx
+	 wBpS0dHvi7+oIX41tPbaVgnsK/s9qPLBmpHkTVq91XUeiHWM2f1SdPmTkddGj7b51O
+	 y8N8DHWXxoZLOKv1WGGVhiIZf58BQrOiYtGyX8L8tfHhpgX5s2nzqDBqLdUqj87mto
+	 va+5rkrPDPLXg==
+Message-ID: <52cc1c9c-db59-4e0f-8d68-4ade421e87d3@kernel.org>
+Date: Tue, 26 May 2026 22:53:46 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: enable i3c0 and i3c1
+To: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <219d67474c90843f4768cba2598e79cfafcc1ac2.1779778817.git.adrian.ho.yin.ng@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <219d67474c90843f4768cba2598e79cfafcc1ac2.1779778817.git.adrian.ho.yin.ng@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303228-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-303229-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lixiang.com:email,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto,sashiko.dev:url]
-X-Rspamd-Queue-Id: 10B2D5DF0EC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url]
+X-Rspamd-Queue-Id: 32A795DF106
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
 
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but the `dynamic_nod=
-es` stack array in `fdt_scan_reserved_mem()` has a fixed size of `MAX_RESER=
-VED_REGIONS` and lacks a bounds check when storing dynamically-placed reser=
-ved memory regions, leading to a potential stack buffer overflow.
---
 
-commit d26e031d55dfe0dd2c4b24bada22d27eff019795
-Author: Wandun Chen <chenwandun@lixiang.com>
+On 5/26/26 02:03, Adrian Ng Ho Yin wrote:
+> Enable i3c0 and i3c1 for Agilex5 devkit.
+> 
+> Signed-off-by: Adrian Ng Ho Yin <adrian.ho.yin.ng@altera.com>
+> ---
+>   arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> index 262bb3e8e5c7..7f6fab506867 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+> @@ -61,6 +61,14 @@ &gpio1 {
+>   	status = "okay";
+>   };
+>   
+> +&i3c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i3c1 {
+> +	status = "okay";
+> +};
+> +
+>   &osc1 {
+>   	clock-frequency = <25000000>;
+>   };
 
-of: reserved_mem: zero total_reserved_mem_cnt if no valid /reserved-memory =
-entry
+https://sashiko.dev/#/patchset/219d67474c90843f4768cba2598e79cfafcc1ac2.1779778817.git.adrian.ho.yin.ng%40altera.com
 
-Prepare for storing /memreserve/ entries in the reserved_mem array.
-Zero total_reserved_mem_cnt if no valid /reserved-memory entry exists,
-instead of keeping its initial value. This allows accounting for
-/memreserve entries in follow-up patches.
-
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 6d479381ff1fd..05defc91e9015 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -329,11 +329,14 @@ int __init fdt_scan_reserved_mem(void)
->  	const void *fdt =3D initial_boot_params;
-> =20
->  	node =3D fdt_path_offset(fdt, "/reserved-memory");
-> -	if (node < 0)
-> +	if (node < 0) {
-> +		total_reserved_mem_cnt =3D 0;
->  		return -ENODEV;
-> +	}
-> =20
->  	if (__reserved_mem_check_root(node) !=3D 0) {
->  		pr_err("Reserved memory: unsupported node format, ignoring\n");
-> +		total_reserved_mem_cnt =3D 0;
->  		return -EINVAL;
->  	}
-
-[Severity: High]
-This is a pre-existing issue, but does this code overflow the dynamic_nodes=
-[]
-array?
-
-Looking further down in the fdt_for_each_subnode() loop in
-fdt_scan_reserved_mem():
-
-		if (err =3D=3D -ENOENT && of_get_flat_dt_prop(child, "size", NULL)) {
-			dynamic_nodes[dynamic_nodes_cnt] =3D child;
-			dynamic_nodes_cnt++;
-		}
-
-The dynamic_nodes array is allocated on the stack with a fixed size of
-MAX_RESERVED_REGIONS, but there doesn't appear to be a bounds check on
-dynamic_nodes_cnt before saving dynamically-placed regions.
-
-Could a misconfigured or malicious device tree with more than
-MAX_RESERVED_REGIONS dynamically-placed regions cause an out-of-bounds
-write on the stack during the device tree scan?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527032917.3385=
-849-1-chenwandun1@gmail.com?part=3D4
 
