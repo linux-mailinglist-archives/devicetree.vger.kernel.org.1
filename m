@@ -1,238 +1,251 @@
-Return-Path: <devicetree+bounces-303286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303288-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UD3UESSyFmokogcAu9opvQ
-	(envelope-from <devicetree+bounces-303286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:58:12 +0200
+	id +N6sCO2yFmokogcAu9opvQ
+	(envelope-from <devicetree+bounces-303288-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:01:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98AA15E16EE
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 10:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9FF5E1769
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 11:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46E9330480AD
-	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 08:51:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A71F306774E
+	for <lists+devicetree@lfdr.de>; Wed, 27 May 2026 08:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34F93E2AD1;
-	Wed, 27 May 2026 08:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iS6p1WY/";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JDirJV3R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDBC3E4C72;
+	Wed, 27 May 2026 08:55:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741C03E2768
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 08:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BD03E3D99;
+	Wed, 27 May 2026 08:55:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779871873; cv=none; b=gsdc9TssPgV7QX+tpKJ3Hirhak6drtTRKkmdddtUU3X9YSwBIAo/aD9eta4QtdqEkE1neuQ2fXjKoess+YEVAW3h7Z/XQRK+S96bGZTTJRAiOTTa9oabb3VZzJJQ9B5J94UGwtwFYoroWK8YGfy3wal1TraPn+6WAtVD/JHLYs8=
+	t=1779872118; cv=none; b=JL9DObnOqMoJMfX25wxaf13c9rSbh/lGpAH6rGYq75jog0eol5QFeDS5HFONdU8otOzgiPjXRHwRA73cYuAjIcA80u6smCWRL5v2X89FY++5mGal4zvQbPtwNuMUblwImp7zAYbXAgnztcrGbGDdMF7mxansmS2e/vTUea7Wi38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779871873; c=relaxed/simple;
-	bh=DFJoUVD3KvyymoOkoSNQAVLhRnYQDEGBHGGZx7nO70o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=loQ1tk6oWyYjH/DnHYiFwTtD05TGenv96ib+4wi+oZ+yF5rhA8ADNZajaaDQ6DnhINBU2mMxBSEdQUa/lWA78pqYvrpTAcafce7kBdlBcjnUoVIMPFCmUuDPRlk6NH90MEJZ6Jl7pKnvdKsVjLN5nEEXp0EVbBwwlCYE+GJ4CVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iS6p1WY/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JDirJV3R; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64R8mTTl2152267
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 08:51:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/6hNas6apydJkTdrJtwj+iHqEC9GL8SPaeohHHAAp3w=; b=iS6p1WY/yLTgswAO
-	8kWHVQSv0t9Roku2LWMl/84BJ5Sqv5pfrfrBSh+ovc3y19nLMBaTKCexsYkGCcAy
-	YOs7bN9t6X9zclCEJ3ZW6Jn6Quqb+U+84cZM88yvSG70/1UIXF6cVF3PKg43PigB
-	/NjSKa9zqzEsYIZ/jbhl7Sa2axDwlsVZ1EapXYwKtLvxivHIa6qYgoKbYiPJFR7s
-	zfRIp+FuuOoIFcL3VSTJVtSU+ub4xsPa3dC4Cje77AkRU9/lWD+3AKpM7aT0T35F
-	F7KHP1SUBtuMelQkAAuPgIoKr68znGMcwWYhbe7t7Zo9+OBbGLc8sQeqkdatBNXx
-	JyASLA==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4edu6rgkax-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 27 May 2026 08:51:11 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-8353fbc7ad5so5771563b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 27 May 2026 01:51:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779871871; x=1780476671; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/6hNas6apydJkTdrJtwj+iHqEC9GL8SPaeohHHAAp3w=;
-        b=JDirJV3RAK++piRvBQUBCBaaHoo/fAE7s+2YqNGXKtMiLpi7lfYfclWVIYWisTX6fN
-         mFSVn5g5+KMYsMY45wV5mSxepHSRwRz1uTdTuhpgoGs/itz5EtgahH+0lesuwWuvlfbJ
-         EMBFfOr89keS+YyLCf8p1IT86swh0ICmXkcFAk66a88p3OLj7++kzvBOzUlsX7tzLMva
-         jHLkldax5F3HJjl2za4dbZz9xVY6OoRXgGStshtuy5ghFf06l8qro+96jSkuqXqsEHsL
-         /9NPunbhX5c+RcLwFqMFgCedcEii6n+xSMxgeS80pIN7B1RI47doZwklDfQ57sj34yCp
-         JiBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779871871; x=1780476671;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/6hNas6apydJkTdrJtwj+iHqEC9GL8SPaeohHHAAp3w=;
-        b=JDXtwc3gALWIfXzybq40ipIcCgCiwVFB9SaAqjQb62l76Mrg/WDq4zXj9PjWfEOq1X
-         ha1BzIJNM7iydA4TPCyaCpjnBVV6ZYVnWgFpZzWtCIIJBSqj+OE9CkNIxeN1EJW7gIM0
-         K1cs8YIR9yK5bkxR2ML+0DkDYZIIV7ukqB2R5+vXv1VodBbCBrEveD79BbBtRwxbI5LI
-         BJgOvWGtxQDssYoAz1jtci6rqotNN2pPUTSdP1hsMSv6CJHw1dcE4ksRwncpMU8SN/xW
-         kiDviU8H/e7Doi6vXffmwKn0NtJWewaOEX0V+lOKJcZuXIBUMAqKhApanX7xJ9KCxrC8
-         ulRg==
-X-Forwarded-Encrypted: i=1; AFNElJ8g/myuQPGlfrycUirEDDClvLnEE9xFT9DFoW5xKSCYmARosXqFMy+3L/vIp56i7xa7nS3b2G/HwK3d@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEhi73/wpuslyl2qaiYEY3/ZP1SqsI9G8VSDEiO8V8zGs/UMsW
-	W8tDjThoUCIDyolATd9G7dAWen2o658rdc4utRkO2wdz+kiS5l7w3XM3t9bQjLNAt2p0X8LslDN
-	eT9732Ey8zj4i+qMAUQNzXqOZgC6jE3Lz0FjodvTS6wivZyw2wpJPm8UR4BlaowfH
-X-Gm-Gg: Acq92OF02+ArDeRrzJtai4Q5oNxwFVohY+0CobZyL+WrATV3eYQsUNDXTp5STqFSEgA
-	itmi6irnK+5UBmaMPfnW0TMqMw7If7Rqq/nt8W96xmnsb/W7KPHAK7TSbPz3qpAJS0eKpT5v4Ti
-	zGZ49J4msmfG/NUKJivm5VDlwi3Dmm6ox3A7B36FzD4egJhX352VsUd3yOAYOenl+oghsqzwmbY
-	z2TEnD0VybHEH+v4wXozBLxy+ZrsQ6PEBY7cxW7/WhzDI+AQmbZ3xJAQK2F/FQyHd6ndi+CatIn
-	NJEADVbVoKohUOiOpH/i6hDNLnhRAD5F+1mypQCWIpJtEnt0kmwNkDWAF/SxKaOuJRpCqMbYov/
-	ZgD3+FLJau6hvOeBKvX3/U96HUCq+LAeCJtlS6t3SjjThHid1ZlqdTETlUwCO9xP9GGB0T7D0Tf
-	iDPq6hziGAP/23qlEoSudraQ==
-X-Received: by 2002:a05:6a00:8c04:b0:835:cc47:6fe3 with SMTP id d2e1a72fcca58-8415f3b0825mr23559359b3a.45.1779871870742;
-        Wed, 27 May 2026 01:51:10 -0700 (PDT)
-X-Received: by 2002:a05:6a00:8c04:b0:835:cc47:6fe3 with SMTP id d2e1a72fcca58-8415f3b0825mr23559329b3a.45.1779871870245;
-        Wed, 27 May 2026 01:51:10 -0700 (PDT)
-Received: from [10.133.33.247] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-841d6ebb97bsm1659411b3a.23.2026.05.27.01.51.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 May 2026 01:51:09 -0700 (PDT)
-Message-ID: <96962564-ff25-4d81-a605-3d9c05fa000a@oss.qualcomm.com>
-Date: Wed, 27 May 2026 16:51:04 +0800
+	s=arc-20240116; t=1779872118; c=relaxed/simple;
+	bh=NMCfMzlLpagJzJRq9pz1qMTfTzqkM4CV0skvqOiEnmY=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=E22Ufwe3Sg8EGdRClyLAz7bPoPNHEnireyVk0ACeB9QqT81OrtEW4/u2pY78ia4NLkfAiUAFG1QPh3Z0NSkcjJ2UXKBAW056Fff3/ieFs5xNvyDZeaoN1pKcsVV6j6ctLvCBzYcd2AJm7Fn0TOdAA3snUlKdDNrVCKYCQ4wBoSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [10.20.42.101])
+	by gateway (Coremail) with SMTP id _____8CxhnhzsRZqNbYNAA--.14317S3;
+	Wed, 27 May 2026 16:55:15 +0800 (CST)
+Received: from [10.20.42.101] (unknown [10.20.42.101])
+	by front1 (Coremail) with SMTP id qMiowJCx2+BysRZqopqSAA--.15952S3;
+	Wed, 27 May 2026 16:55:14 +0800 (CST)
+Subject: Re: [PATCH v4 2/2] i2c: ls2x: Add clocks property parsing and adjust
+ bus speed
+To: Huacai Chen <chenhuacai@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20260526031021.32662-1-wanghongliang@loongson.cn>
+ <20260526031021.32662-3-wanghongliang@loongson.cn>
+ <CAAhV-H71ZiakZaLVKYg2Qvp8ZJiT7hr9P9bAmXCrjWkHg+-vGg@mail.gmail.com>
+From: Hongliang Wang <wanghongliang@loongson.cn>
+Message-ID: <404a35fa-b126-4ae8-b1c6-3a0d524b7138@loongson.cn>
+Date: Wed, 27 May 2026 16:54:14 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: ufs: Document static TX Equalization
- settings properties
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: bvanassche@acm.org, beanhuo@micron.com, peter.wang@mediatek.com,
-        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
-        Zhaoming Luo
- <zhml@posteo.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20260523134711.323425-1-can.guo@oss.qualcomm.com>
- <20260523134711.323425-2-can.guo@oss.qualcomm.com>
- <m6qq3kxgfs73jve2pjmmszymgxb7aizdfo2rwg72o66n2rvov2@xkcvifciwu3z>
+In-Reply-To: <CAAhV-H71ZiakZaLVKYg2Qvp8ZJiT7hr9P9bAmXCrjWkHg+-vGg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-From: Can Guo <can.guo@oss.qualcomm.com>
-In-Reply-To: <m6qq3kxgfs73jve2pjmmszymgxb7aizdfo2rwg72o66n2rvov2@xkcvifciwu3z>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=MoJiLWae c=1 sm=1 tr=0 ts=6a16b07f cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=YG64nluAAAAA:20 a=eDkNqlp1enX9kxdETvUA:9 a=QEXdDO2ut3YA:10
- a=zc0IvFSfCIW2DFIPzwfm:22 a=bA3UWDv6hWIuX7UZL3qL:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI3MDA4NSBTYWx0ZWRfX0Q/O36hLAdPg
- On5naUe7KSxDAUZ7YtouhJEq5XPlDXQd7x2GWrQgPBgy+5y2wLFqkUJRbp4V8d0i02nZ6ws3iBn
- qcyLmykoXUOjdcieBb2WuNCqnUEUX7jR6Z7Rau+93t4PfFZ4BEbUluxey162zlkmk4bAfOhKjjB
- s3Ppdxt+z9GqcywmgLY+YAaIkc7kgY5MllmQWhqTIj2QLutq9yGzZ7+JyNoTQVjeLPGVmrZ8lvG
- lct2JJfVRQ5+gAJICh7dKSoXbSJuJN6/c3vLHIDl4/Z4BvOStE46RByFvXi+JyI6I+Z3bN29KQr
- M6iU+CMvEmZKPddsStSIfwOCjaQRg8V4QmjvrDXpAVWetCXsMC0m2s31CfXPGCzHFYAynapk+t+
- N4Zte8jGvllZPlrbdpVHWdnIuA7QEqrIJI4K9vg6UPrxemUkBLBqQw5p3MZQCC244LGoqNE5nm2
- /PJtIlHY4UivEmM69kg==
-X-Proofpoint-GUID: 0t0YJ0sziiSoMXuWVBQbAFkQ_4Tuoo0o
-X-Proofpoint-ORIG-GUID: 0t0YJ0sziiSoMXuWVBQbAFkQ_4Tuoo0o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-05-27_01,2026-05-26_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 impostorscore=0 priorityscore=1501
- clxscore=1015 bulkscore=0 adultscore=0 suspectscore=0 phishscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605130000
- definitions=main-2605270085
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-CM-TRANSID:qMiowJCx2+BysRZqopqSAA--.15952S3
+X-CM-SenderInfo: pzdqwxxrqjzxhdqjqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBj93XoWxCFykCF4fZrWkGF17ZF13GFX_yoWruw4xpF
+	WUCFW5KF4qqF12grsIq3W7ZFyYvws5JFW8Cr17t3WxX3Zavrn3Z3WxGrn0kFykuF97u3y8
+	ZayqgrsxuFyqvrgCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUPIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+	6r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+	6r1DMcIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+	1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxG
+	rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14
+	v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkG
+	c2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4U
+	MIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j7BMNUUU
+	UU=
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303286-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[can.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[wanghongliang.loongson.cn:query timed out];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-303288-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DMARC_NA(0.00)[loongson.cn];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.950];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 98AA15E16EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:mid,loongson.cn:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: BC9FF5E1769
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Mani,
+Hi, Huacai,
 
-On 5/23/2026 10:14 PM, Manivannan Sadhasivam wrote:
-> On Sat, May 23, 2026 at 06:47:10AM -0700, Can Guo wrote:
->> UFS v5.0/UFSHCI v5.0 add HS-G6 support (46.6 Gbps/lane) via UniPro v3.0
->> and M-PHY v6.0. In these specs, TX Equalization is defined for all High
->> Speed Gears (not only HS-G6) to compensate channel loss and improve signal
->> integrity at high speed operation.
->>
->> For HS-G6, M-PHY uses PAM4 1b1b line coding, Pre-Coding may also be
->> required depending on channel characteristics.
->>
->> Add vendor-neutral DT patternProperties:
->> txeq-settings-g[1-6]
->>
->> Each property is a uint32 array of per-lane tuples:
->> (PreShoot, DeEmphasis, PrecodeEn)
->>
-> I don't think combining all EQ settings (PreShoot, DeEmphasis, PrecodeEn) in a
-> single property as opaque tuples is the right approach. These are three
-> semantically distinct parameters with independent value ranges. So packing
-> them into a uint32 array makes validation impossible in the schema.
+On 2026/5/27 下午3:05, Huacai Chen wrote:
+> Hi, Hongliang,
 >
-> AFACIS, PrecodeEn is applicable only to HS-G6 (PAM4), but the proposed
-> patternProperties forces it into G1-G5 tuples as well, which is semantically
-> wrong.
-Point taken for the PrecodeEn.
+> On Tue, May 26, 2026 at 11:11 AM Hongliang Wang
+> <wanghongliang@loongson.cn> wrote:
+>> From: wanghongliang <wanghongliang@loongson.cn>
+>>
+>> The i2c-ls2x driver supports dts and acpi parameter passing.
+>>
+>> In dts, uses clock framework, by parsing clocks property to
+>> get i2c bus reference clock, and define the div of reference
+>> clock by device data.
+>>
+>> In acpi, by passing clocks property to describe i2c bus reference
+>> clock and clock-div property to describe the div of reference clock.
+>>
+>> Based on i2c bus reference clock(clock_a), i2c bus speed(clock_s)
+>> and div, calculate the prcescale of i2c divider register. The
+>> calculation formula is
+>>
+>> prcescale = (clock_a*10)/(div*clock_s)-1
+>>
+>> Signed-off-by: wanghongliang <wanghongliang@loongson.cn>
+>> ---
+>>   drivers/i2c/busses/i2c-ls2x.c | 35 ++++++++++++++++++++++++++++++++---
+>>   1 file changed, 32 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/i2c/busses/i2c-ls2x.c b/drivers/i2c/busses/i2c-ls2x.c
+>> index b475dd27b7af..6d332e59452d 100644
+>> --- a/drivers/i2c/busses/i2c-ls2x.c
+>> +++ b/drivers/i2c/busses/i2c-ls2x.c
+>> @@ -12,6 +12,7 @@
+>>
+>>   #include <linux/bitfield.h>
+>>   #include <linux/bits.h>
+>> +#include <linux/clk.h>
+>>   #include <linux/completion.h>
+>>   #include <linux/device.h>
+>>   #include <linux/iopoll.h>
+>> @@ -63,11 +64,18 @@
+>>   /* The default bus frequency, which is an empirical value */
+>>   #define LS2X_I2C_FREQ_STD      (33 * HZ_PER_KHZ)
+>>
+>> +/* The div of i2c reference clock on 2K0500/2K1000/2K2000 */
+> Please use "LS2K0500/2K1000/2K2000".
+OK.
+>> +#define LS2X_I2C_2K_CLOCK_DIV  40
+>> +
+>> +/* The div of i2c reference clock on 7A1000/7A2000 */
+> And "LS7A1000/7A2000".
+OK.
+> BTW, I think this series should be CC stable.
+OK, I will add Cc: stable@vger.kernel.org in the next version patch series.
+> Huacai
 >
-> PCIe binding defines one property per data rate for EQ presets:
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-bus-common.yaml#L193
->
-> Similarly, UFS should define one property per gear per (like, txeq-preshoot-g6,
-> txeq-deemphasis-g6, txeq-precode-enable-g6,...) rather than clubbing everything
-> into opaque tuples.
-Thanks for the suggestion. I will go with below approach:
+>> +#define LS2X_I2C_7A_CLOCK_DIV  50
+>> +
+>>   struct ls2x_i2c_priv {
+>>          struct i2c_adapter      adapter;
+>>          void __iomem            *base;
+>>          struct i2c_timings      i2c_t;
+>>          struct completion       cmd_complete;
+>> +       unsigned int            div;
+>>   };
+>>
+>>   /*
+>> @@ -96,6 +104,8 @@ static irqreturn_t ls2x_i2c_isr(int this_irq, void *dev_id)
+>>   static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
+>>   {
+>>          u16 val;
+>> +       u32 pclk, div;
+>> +       struct clk *clk;
+>>          struct i2c_timings *t = &priv->i2c_t;
+>>          struct device *dev = priv->adapter.dev.parent;
+>>          u32 acpi_speed = i2c_acpi_find_bus_speed(dev);
+>> @@ -107,12 +117,29 @@ static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
+>>          else
+>>                  t->bus_freq_hz = LS2X_I2C_FREQ_STD;
+>>
+>> +       if (dev_of_node(dev)) {
+>> +               clk = devm_clk_get_optional_enabled(dev, NULL);
+>> +               if (clk && !IS_ERR(clk))
+>> +                       pclk = clk_get_rate(clk);
+>> +               else
+>> +                       pclk = LS2X_I2C_PCLK_FREQ;
+>> +
+>> +               div = priv->div;
+>> +
+>> +               val = (pclk * 10) / (div * t->bus_freq_hz) - 1;
+>> +       } else {
+>> +               if (!device_property_read_u32(dev, "clocks", &pclk) &&
+>> +                   !device_property_read_u32(dev, "clock-div", &div))
+>> +                       val = (pclk * 10) / (div * t->bus_freq_hz) - 1;
+>> +               else
+>> +                       val = LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1;
+>> +       }
+>> +
+>>          /*
+>>           * According to the chip manual, we can only access the registers as bytes,
+>>           * otherwise the high bits will be truncated.
+>>           * So set the I2C frequency with a sequential writeb() instead of writew().
+>>           */
+>> -       val = LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1;
+>>          writeb(FIELD_GET(GENMASK(7, 0), val), priv->base + I2C_LS2X_PRER_LO);
+>>          writeb(FIELD_GET(GENMASK(15, 8), val), priv->base + I2C_LS2X_PRER_HI);
+>>   }
+>> @@ -295,6 +322,8 @@ static int ls2x_i2c_probe(struct platform_device *pdev)
+>>          if (!priv)
+>>                  return -ENOMEM;
+>>
+>> +       priv->div = (unsigned int)(unsigned long)device_get_match_data(dev);
+>> +
+>>          /* Map hardware registers */
+>>          priv->base = devm_platform_ioremap_resource(pdev, 0);
+>>          if (IS_ERR(priv->base))
+>> @@ -349,8 +378,8 @@ static DEFINE_RUNTIME_DEV_PM_OPS(ls2x_i2c_pm_ops,
+>>                                   ls2x_i2c_suspend, ls2x_i2c_resume, NULL);
+>>
+>>   static const struct of_device_id ls2x_i2c_id_table[] = {
+>> -       { .compatible = "loongson,ls2k-i2c" },
+>> -       { .compatible = "loongson,ls7a-i2c" },
+>> +       { .compatible = "loongson,ls2k-i2c", .data = (void *)LS2X_I2C_2K_CLOCK_DIV, },
+>> +       { .compatible = "loongson,ls7a-i2c", .data = (void *)LS2X_I2C_7A_CLOCK_DIV, },
+>>          { /* sentinel */ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, ls2x_i2c_id_table);
+>> --
+>> 2.47.2
+>>
+>>
 
-txeq-preshoot-g6 = <Host Lane 0 PreShoot, Device Lane 0 PreShoot, Host 
-Lane 1 PreShoot, Device Lane 1 PreShoot>;
-txeq-deemphasis-g6 = <Host Lane 0 DeEmphasis, Device Lane 0 DeEmphasis, 
-Host Lane 1 DeEmphasis, Device Lane 1 DeEmphasis>;
-txeq-precode-en-g6 = <Host Lane 0 PrecodeEn, Device Lane 0 PrecodeEn, 
-Host Lane 1 PrecodeEn, Device Lane 1 PrecodeEn>;
-
-Thanks,
-Can Guo.
->
-> - Mani
->
+Best regards,
+Hongliang Wang
 
 
