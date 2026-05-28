@@ -1,191 +1,153 @@
-Return-Path: <devicetree+bounces-303757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303759-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uADgFgcNGGpzbAgAu9opvQ
-	(envelope-from <devicetree+bounces-303757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:38:15 +0200
+	id EO/MEI0PGGrmbQgAu9opvQ
+	(envelope-from <devicetree+bounces-303759-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:49:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE6BA5EFBCB
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:38:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 936D15EFE9B
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:48:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C1DA930A7C01
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:27:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 033FE3199875
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691023A2E12;
-	Thu, 28 May 2026 09:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01983379C38;
+	Thu, 28 May 2026 09:37:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="v7zUT13w"
+	dkim=pass (2048-bit key) header.d=tillo.ch header.i=@tillo.ch header.b="DVKDwUoc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mail.mdapi.ch (mail.mdapi.ch [31.3.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3071A3AB282
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 09:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0242FD7D3;
+	Thu, 28 May 2026 09:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=31.3.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779960442; cv=none; b=iNdPnGzGrvmPbp9K/PXSUx/ihFK5LvKj38y0CpreLu0B4Bz3kNt/CgSvvEsnhusUOJoaoKSUp0e9wdaUsBZNmUJd/bD9fDWXluaoJriumiU9SJl1prs7tf5PUodZ6Rm38WYkKNpVhqqLf25CEXR4PnJcYsDRSVAWtiQN9QC07ig=
+	t=1779961056; cv=none; b=LOD8z6t5M1+SzoN5vtPPFyI004+DImIwd0g2vSXervjRXbVFCEgKkk0ez/NbApR2NGEmLnzXjgFVwIZoORNw5k3pHwdPDsmsGSqrcEiZwkwqS5cNOY/5vsw/iZqtjy554t/+4X8xzTTsMam9ifXNzt54gtTiqJGvuyY50CP9W9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779960442; c=relaxed/simple;
-	bh=6MaINiaW9woTpfXqx4l+TlOHzXhBSQQdF1YgxoOLHSQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=LQibloS7+xdc2952cP4Uce27MNddIcg2CtpZYvuoFyhaFNU4xIsfVf7qsxQyGvoEUHaRLX9N3NnBiEopDi6sCy2XduuyIv0Gz1Ktloc3gpwEMxm0h6/147FBrRz3osuWbSBobitVMIVUOrHdHnW7g5tbypq8zdT62UI+ZTyHCOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=v7zUT13w; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id BD8E74E42D78;
-	Thu, 28 May 2026 09:27:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8669460495;
-	Thu, 28 May 2026 09:27:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4677110888C99;
-	Thu, 28 May 2026 11:27:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1779960437; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=aFcPPmXLQabQsc1ycX/dsgPewGocQDCIFeeqSEgvr2A=;
-	b=v7zUT13wBSF/FrDCrr/gSdvw1loLx4i9gR0SQTM1OV/1Re88co7SVpzbcDesEmczBWYGOm
-	35VUfoUIGWVuqRWMNj07kQeYbKoop4ZL19mN4WUZCf1Xun3s5qpJ5mgxoSX13WIfPP+FkN
-	KnBgQ3zi46Mw1jTRbvbeHx4uzrUEJV71e4UmowGcbsoRZPba2SAzIvNp52YnpJdHqdYQ6t
-	dQqeJxLOgsFazm6351UmFSjRMiW0xgeR+lR39rnuGDbPUTgNgAD/wSpe7YtjKX0Q50wl9d
-	/hefaXRUgr2UOro2MFwYNvcFQK5nv0KrwQ05j9Vw96cnU26nuMKZ7wtbwlD/dQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Santhosh Kumar K <s-k6@ti.com>
-Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
-  <pratyush@kernel.org>,  <mwalle@kernel.org>,
-  <takahiro.kuwano@infineon.com>,  <linux-spi@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
-  <linux-mtd@lists.infradead.org>,  <praneeth@ti.com>,  <u-kumar1@ti.com>,
-  <a-dutta@ti.com>
-Subject: Re: [PATCH v3 11/13] mtd: spinand: run PHY tuning after init and
- update dirmap frequencies
-In-Reply-To: <20260527175527.2247679-12-s-k6@ti.com> (Santhosh Kumar K.'s
-	message of "Wed, 27 May 2026 23:25:25 +0530")
-References: <20260527175527.2247679-1-s-k6@ti.com>
-	<20260527175527.2247679-12-s-k6@ti.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Thu, 28 May 2026 11:27:13 +0200
-Message-ID: <87mrxjg9zi.fsf@bootlin.com>
+	s=arc-20240116; t=1779961056; c=relaxed/simple;
+	bh=nqIyhVLUd+i9C/9fgjYlPR4kbUC+9INMd1R/PPtTpwI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R7AHdwE0/jwGxzDGGROseFP/aduSCEmheB5qpdGSZsyKTfJjS6OGNSZl/QaHmVAA0K1AWmrMcdwHEDqFL0Qko8ppC5Y99MuTpc7JlPl5ZdhKn5AuMXoQClgx6eNMzaNrH/6kPkstdO8HoW8Cia1FDDsB67H9U3ETu5AVVF5a8Rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tillo.ch; spf=pass smtp.mailfrom=tillo.ch; dkim=pass (2048-bit key) header.d=tillo.ch header.i=@tillo.ch header.b=DVKDwUoc; arc=none smtp.client-ip=31.3.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tillo.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tillo.ch
+From: Martino Dell'Ambrogio <tillo@tillo.ch>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tillo.ch; s=mail202603;
+	t=1779960544;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=RBWMq60AwDT71lXHyf/bfDDbjfiWdp2HdqQcnoI9g+Y=;
+	b=DVKDwUocZsY6DVhSdwB4+1tZrA5DhMQjw2FZ4v28MoYEf6DUk94N7Yi+DFHdsbkrHDNv2g
+	p8b6dCOeGhVpMgxWmhwdknvwCxnUX3Lr++DQFSdKuruevu6hSH6mp8rngFO9sSs0BxpYAv
+	OUB62kO4EbOLngcXnBTbTqexJgSKRoDK9d6xlv8WztYHovWhwE27GCu8umJskJFEaDCYy8
+	tlBMmKoo4cOEsQWwNI0CNcwjGsRVvNBSn+9AzPbemdRqst5Mqgs1CWBUExuFz/heRKbAjV
+	FmxJAD8Z0DB9UaYAR8ZZv7nv/jhtUcIWtxjeXWygQYlXwLvIGxH5i+MZqKvD7g==
+To: matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com
+Cc: kees@kernel.org,
+	tony.luck@intel.com,
+	gpiccoli@igalia.com,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Martino Dell'Ambrogio <tillo@tillo.ch>
+Subject: [PATCH] arm64: dts: mediatek: mt7988a-bananapi-bpi-r4: add ramoops region
+Date: Thu, 28 May 2026 11:28:07 +0200
+Message-ID: <20260528092807.1936177-1-tillo@tillo.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[tillo.ch,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[tillo.ch:s=mail202603];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303757-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,collabora.com];
+	TAGGED_FROM(0.00)[bounces-303759-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tillo@tillo.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[tillo.ch:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:mid,bootlin.com:dkim,ti.com:email]
-X-Rspamd-Queue-Id: AE6BA5EFBCB
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[42f00000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,tillo.ch:email,tillo.ch:mid,tillo.ch:dkim]
+X-Rspamd-Queue-Id: 936D15EFE9B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Santhosh,
+Reserve 1 MiB of RAM just below the ARM Trusted Firmware secmon region
+(0x42f00000-0x43000000) for persistent kernel log storage via pstore/ramoops,
+allowing post-panic console output and oops dumps to be recovered after a
+reboot. Without it, kernel crash logs on this board are lost when the SoC
+warm-resets and the on-chip console buffer is reinitialised.
 
-On 27/05/2026 at 23:25:25 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+The record sizes (128 KiB kmsg records, 256 KiB rolling console, 64 KiB
+ftrace, 64 KiB pmsg) sum to 512 KiB; the remainder of the 1 MiB carve-out
+is used for the ECC parity blocks (ecc-size=16, one Reed-Solomon block per
+record) which significantly improves dump readability when the panic path
+truncates writes mid-record.
 
-> Run spi_mem_execute_tuning() in spinand_probe() after spinand_init()
-> completes. The read and write op templates are copied into persistent
-> fields in spinand_device so the controller can write the validated
-> frequency directly back into them. On success, propagate that frequency
-> to every dirmap's primary and secondary op templates. Updating the
-> secondary template ensures continuous-read dirmaps also benefit from
-> the validated speed, not just the primary read path.
->
-> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
-> ---
->  drivers/mtd/nand/spi/core.c | 35 +++++++++++++++++++++++++++++++++++
->  include/linux/mtd/spinand.h |  4 ++++
->  2 files changed, 39 insertions(+)
->
-> diff --git a/drivers/mtd/nand/spi/core.c b/drivers/mtd/nand/spi/core.c
-> index f1084d5e04b9..9b54e4607cfe 100644
-> --- a/drivers/mtd/nand/spi/core.c
-> +++ b/drivers/mtd/nand/spi/core.c
-> @@ -2030,6 +2030,41 @@ static int spinand_probe(struct spi_mem *mem)
->  	if (ret)
->  		return ret;
->=20=20
-> +	/*
-> +	 * Copy the read and write op templates into persistent fields so
-> +	 * execute_tuning can write the validated frequency back into them.
-> +	 * Tuning failure is non-fatal; the device operates at base speed.
-> +	 */
-> +	spinand->max_read_op =3D *spinand->op_templates->read_cache;
-> +	spinand->max_write_op =3D *spinand->op_templates->write_cache;
-> +
-> +	ret =3D spi_mem_execute_tuning(mem, &spinand->max_read_op,
-> +				     &spinand->max_write_op);
-> +	if (ret && ret !=3D -EOPNOTSUPP)
-> +		dev_warn(&mem->spi->dev, "Failed to execute PHY tuning: %d\n",
-> +			 ret);
-> +
-> +	/*
-> +	 * Dirmaps were set up in spinand_init() before tuning ran; update
-> +	 * their op templates to use the validated frequency.
-> +	 */
-> +	if (!ret) {
-> +		struct nand_device *nand =3D spinand_to_nand(spinand);
-> +		int i;
-> +
-> +		for (i =3D 0; i < nand->memorg.planes_per_lun; i++) {
-> +			if (spinand->dirmaps[i].rdesc) {
-> +				spinand->dirmaps[i].rdesc->info.primary_op_tmpl.max_freq =3D
-> +					spinand->max_read_op.max_freq;
-> +				spinand->dirmaps[i].rdesc->info.secondary_op_tmpl.max_freq =3D
-> +					spinand->max_read_op.max_freq;
-> +			}
-> +			if (spinand->dirmaps[i].wdesc)
-> +				spinand->dirmaps[i].wdesc->info.primary_op_tmpl.max_freq =3D
-> +					spinand->max_write_op.max_freq;
-> +		}
-> +	}
+The carve-out sits immediately below the ATF region already declared at
+0x43000000 in mt7988a.dtsi, so no other reserved-memory child is moved or
+resized. BPI-R4 ships with at least 4 GiB of DRAM starting at 0x40000000,
+so the region is well within installed memory on every variant.
 
-Unfortunately, hot fixing the dirmaps is invalid. When we take the best
-variant, we select a maximum speed that may be lower than the tuned PHY
-speed. We cannot just overwrite that value without consequence, because
-depending on the boundaries we cross, extra dummy cycles may be
-required.
+For the carve-out to actually preserve content across a reset, the boot
+loader must also avoid touching this region on warm reset; on standard
+BPI-R4 boards with the stock OpenWrt U-Boot fork this already holds.
 
-I believe spinand_select_op_variant() shall be aware of the different
-possible speeds. It should look for the max_speed_hz capability and not
-for the base_speed_hz, and fallback to base_speed_hz in case of
-issue.
+Signed-off-by: Martino Dell'Ambrogio <tillo@tillo.ch>
+---
+ .../boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi   | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Or otherwise, maybe we could go through the whole I/O variant
-selection again after tuning, with the actual maximum speed set.
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
+index 0ff69da..f7d4944 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
+@@ -80,6 +80,18 @@ sfp1: sfp1 {
+ 	};
+ };
+ 
++&{/reserved-memory} {
++	ramoops@42f00000 {
++		compatible = "ramoops";
++		reg = <0 0x42f00000 0 0x100000>;
++		record-size = <0x20000>;
++		console-size = <0x40000>;
++		ftrace-size = <0x10000>;
++		pmsg-size = <0x10000>;
++		ecc-size = <16>;
++	};
++};
++
+ &cci {
+ 	proc-supply = <&rt5190_buck3>;
+ };
+-- 
+2.47.3
 
-
-Thanks,
-Miqu=C3=A8l
 
