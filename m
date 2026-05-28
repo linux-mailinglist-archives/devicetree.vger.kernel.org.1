@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-303767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303768-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGfFBI4PGGrmbQgAu9opvQ
-	(envelope-from <devicetree+bounces-303767-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:49:02 +0200
+	id 4OZuLpYPGGqwbQgAu9opvQ
+	(envelope-from <devicetree+bounces-303768-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:49:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D005EFEA0
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5745E5EFEB1
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4435E3033F42
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:48:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 091833008D72
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C453B3887;
-	Thu, 28 May 2026 09:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A623B2D17;
+	Thu, 28 May 2026 09:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="lYg7Y4RW"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="Hz8PiSFs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-244122.protonmail.ch (mail-244122.protonmail.ch [109.224.244.122])
+Received: from mail-43101.protonmail.ch (mail-43101.protonmail.ch [185.70.43.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901D339021A
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 09:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B563B47FC
+	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 09:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779961728; cv=none; b=iHprc37VOnE+FWB3wd1igENC1seIYKntq7wIHRZ+gi697pMkYl/gC9xZceujCMMIYTaN71w3UK3/uFkzltW14s02uPSdAUm7PafOscgur3pzKWMGHsvcUtNmwCG8zhsPfx6md8QCFJs7QOcFlnA6McqtA0GaidmpgGjekSni2DI=
+	t=1779961732; cv=none; b=FeSjbyh1I55psryhw6snTfREI2N+Wve9B5KfgXD21kJcOeEIUHChomIVVuz5RYU+8nw6Q73/cFwHT85kVUKV/rxEYdMcOpnKpIxAlNmo4RhZJKdq3SijPxQbMY1XzYzMeeuYoOYBpBYg1scHvJPYkh4S9xRNHvwioy5P0+EDQ18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779961728; c=relaxed/simple;
-	bh=/fsT2N/xim+1oKj0wH9AEoxpM7fB+zWQEt4p4+KUxew=;
+	s=arc-20240116; t=1779961732; c=relaxed/simple;
+	bh=EOfkEqoI59XmVVmUQgLQY7QKKEQ7Ln2MOTubLdT2nN8=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oxDLkCbplM93P4cSqGh+odBMv0vrEWvo9Oy87WqscAKS/lVoarbLMllar0ZT9TSeLQP4mNVLlYJU95Lv6a2cHdNE8dB4rmWGU3IVIYlTA0M25M9b5tQV+1LoePj8H761dON7G5t0cUqLaP954qOXti4TdzS/7hPBaEXFu0NKeV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=lYg7Y4RW; arc=none smtp.client-ip=109.224.244.122
+	 MIME-Version:Content-Type; b=pyQLGXHVQnC2aqeaDk9Gy30Wno7/v0MT1zaYRxDYfsXJgyeoie3q210G56NzJtzgDIlrVt90TGCL96YZwFc4DyFFzxIU6DKPOt4+qVewtyMaovdySj9eQMe1ITCQu8Kta+YOZmGu0OCpiNJBMvCC39CIWbGifNh4cfN6IZ3SCKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=Hz8PiSFs; arc=none smtp.client-ip=185.70.43.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1779961718; x=1780220918;
-	bh=l0aCynGdTED5J28htu9O4TbhTVf6MOK84YreJh5isrs=;
+	s=protonmail3; t=1779961722; x=1780220922;
+	bh=6quOadJw0T40j2a2pj1RIqbFfyX3sZvPfSLjCbf9oyo=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=lYg7Y4RWQnecf1Hb1mjWTfOrLJJrxqX7GYeIiwwq4VdQScyDuN/mA+g/cmPFsAz3M
-	 tejIUALdL2rnLrD9DGKTgkKZKxPeEvn8WwgZYIOdHiMgUlGTRLhUStASDijYkfcdTf
-	 FfImasO8gq8ssLQ5cXp4ecsvkmZ8GS63Thh05RwOgkYLxRIg8Ni869DyxL8Euhrn2k
-	 NapTEXM/0SzybfI5D5RKce2Q41vbNGhBB7q4Vzx4DoPJ4qlfQ2wqBR55eASaMPVF8F
-	 8o4Rug75W9P5dQ8Se8dIMSjdlolJhwRcK4vlzDx8bNgZVbmZa39DFgD/1sJWBcwppw
-	 +aGFyL9Q4me9Q==
-Date: Thu, 28 May 2026 09:48:30 +0000
+	b=Hz8PiSFshssZhY+P9tiFU17cGqAmBJOZ3nx3xv9n4sShdSKzYGfwhmU+Gpfeo4yCz
+	 M2x7Sy+apvxVC2Ok+6YKind9vQc45ZRrbIrvWWIAbZxVsib7xZK0DIxHGlsPRPSKiJ
+	 jDUWHeuriJjfRrQ6WiUF//Ru6/PE5hL15CJvUd8thD3v+xU73/lBZKy4SmhlAAbadu
+	 2mLIOUP5FVwWMKQUzxr+jrUo27VX2jjCfqWOfevSpP5AcDt8y4+SGzbCbpABgCSsaF
+	 sdiG3x7lW7rH8OVB06odeU0ApkkW4PtvI8yDo1DFpM8jrazi2DmiNkRCGTse2Vdydn
+	 gjd0D0kjL1/NA==
+Date: Thu, 28 May 2026 09:48:39 +0000
 To: Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Akhil P Oommen <akhilpo@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>
 From: Alexander Koskovich <akoskovich@pm.me>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v7 1/6] dt-bindings: display/msm/gmu: Document Adreno 810 GMU
-Message-ID: <20260528-adreno-810-v7-1-7fe7fdd97fc2@pm.me>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
+Subject: [PATCH v7 2/6] dt-bindings: display/msm/gpu: Document Adreno 810 GPU
+Message-ID: <20260528-adreno-810-v7-2-7fe7fdd97fc2@pm.me>
 In-Reply-To: <20260528-adreno-810-v7-0-7fe7fdd97fc2@pm.me>
 References: <20260528-adreno-810-v7-0-7fe7fdd97fc2@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 4f032d334d990370280c087567951f68f6710d00
+X-Pm-Message-ID: b0700308c569d04cc9deec9ef3d4d5b4f1f32221
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,11 +74,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303767-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-303768-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -92,62 +92,43 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,pm.me:mid,pm.me:dkim,qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: B4D005EFEA0
+X-Rspamd-Queue-Id: 5745E5EFEB1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document Adreno 810 GMU in the dt-binding specification.
+Document the GPU compatible string used for the Adreno 810.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Reviewed-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
- .../devicetree/bindings/display/msm/gmu.yaml       | 30 ++++++++++++++++++=
-++++
- 1 file changed, 30 insertions(+)
+ Documentation/devicetree/bindings/display/msm/gpu.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Docum=
-entation/devicetree/bindings/display/msm/gmu.yaml
-index 93e5e6e19754..8578c2f8122e 100644
---- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-@@ -300,6 +300,36 @@ allOf:
-       required:
-         - qcom,qmp
-=20
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,adreno-gmu-810.0
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: Core GMU registers
-+        reg-names:
-+          items:
-+            - const: gmu
-+        clocks:
-+          items:
-+            - description: GPU AHB clock
-+            - description: GMU clock
-+            - description: GPU CX clock
-+            - description: GPU AXI clock
-+            - description: GPU MEMNOC clock
-+            - description: GMU HUB clock
-+        clock-names:
-+          items:
-+            - const: ahb
-+            - const: gmu
-+            - const: cxo
-+            - const: axi
-+            - const: memnoc
-+            - const: hub
-+
-   - if:
+diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Docum=
+entation/devicetree/bindings/display/msm/gpu.yaml
+index 77caacd0fb3f..a40899e5ea58 100644
+--- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+@@ -415,7 +415,9 @@ allOf:
        properties:
          compatible:
+           contains:
+-            const: qcom,adreno-44070001
++            enum:
++              - qcom,adreno-44010000
++              - qcom,adreno-44070001
+     then:
+       properties:
+         reg:
+@@ -449,6 +451,7 @@ allOf:
+               - qcom,adreno-43050a01
+               - qcom,adreno-43050c01
+               - qcom,adreno-43051401
++              - qcom,adreno-44010000
+               - qcom,adreno-44070001
+=20
+     then: # Starting with A6xx, the clocks are usually defined in the GMU =
+node
 
 --=20
 2.53.0
