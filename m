@@ -1,269 +1,162 @@
-Return-Path: <devicetree+bounces-303876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303879-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2NEHOo5OGGpMiwgAu9opvQ
-	(envelope-from <devicetree+bounces-303876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:17:50 +0200
+	id aJFDBMpMGGomiwgAu9opvQ
+	(envelope-from <devicetree+bounces-303879-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:10:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1755F38D6
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:17:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DBBB5F36CB
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:10:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 719FC30A50AE
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 14:06:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2E8003001029
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 14:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C41348C62;
-	Thu, 28 May 2026 14:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2CF3009E2;
+	Thu, 28 May 2026 14:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLsrV9Yg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MCePkFYk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF669317171;
-	Thu, 28 May 2026 14:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87FA2DFF04
+	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 14:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779977207; cv=none; b=Dr812knkaaJ43BQLnhMNhDODMTePWCnAIxlYGC/rxrX+nkBfb79HDwZ384A0I1NtjNpFseDuXp+Wo5fOsbXgvyrh7XBKYZk0Y/IJ6GFewsXBw6Ws2UppF4j8dXipnz47SqBPFok2DtGeij/N5YFoKvpPxvq+/uy/lQt9kJho3Zs=
+	t=1779977299; cv=none; b=djRN/6+vQkORgxn/DfYcrIeM2sgNxtk6egG5pKt8OYwXZdXZ9ZfNxG/SBtaLB7eBYUmb6YuXOWHa+L0yMMhm/jkD4B3K4FP7bziYcptUbgtX/dL22fKfhWbxFQd8Cu+QWpYFaxx5VvI4IKBUF66jnuERFQf2o3qaYdOEd+LaRAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779977207; c=relaxed/simple;
-	bh=PumwfX3ZSkSKAXww/WfwB8bOJ7+lpDsvlTayOnhJeU0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TDw2Kcs/WNSy47IaGOTxMKqm84UYKR6nH7A0zg8TAesl/5BurfvJGfNPIjQ9/8EkHt7OHF5nGpZMaIe5Uv97bXkSio6x7WdQwGaSUKxGWzn/uCxF8tlIHsxTXwV11ovoV5t5j96WhCGCbDQGAiayyyE5j4XxLF0V1Uf7S1H0C/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLsrV9Yg; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F391F000E9;
-	Thu, 28 May 2026 14:06:41 +0000 (UTC)
+	s=arc-20240116; t=1779977299; c=relaxed/simple;
+	bh=S8iyudqOv6JcpMnVzlrB80GyO1KvtIqWPWPDnwz/lik=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=QYqVW1sQQMpmyDrrjyJBSRKWIHD0755pQ1CgqDXvMxigKQ2oNPnHMJ845dGW9DPdNdfpElMZA/O7WBPoFhbFr0P0cghSUnKtpJQjdiOwSIL+Y4O1r3V02vJrlHQquEBjSkXPtbCF23zIfvogLTlqsNRLAe83C3G9pmj++gXOjas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MCePkFYk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4676F1F000E9;
+	Thu, 28 May 2026 14:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779977205;
-	bh=RKvz/4EOqIVhSz/IJ4p06G8eVomZ5XVVmZ7JKCeU/1I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=ZLsrV9YggTuXZNpn1NshPzPLAnvyndxAL5vPrrinh8KwJukW6nQSAN041PV0SdrPW
-	 eCcNfeq70QZ8KbLLICZXuLZUrFJA0kEerPC75p0LHdn93ZUR1O2BdS3p4vok58Es7D
-	 WTpa7tZbyMIIPqqn7xp+0NccxawIrHxn8Web3MkS7O/ZEyZKJ6RzfpKVq0LFSwi831
-	 ntonJIXh3JeeaWbmZpPmvZoPcEKs59NHR+QRVgiDh2srF1OYX0Sdi54y2DvrI6vL3M
-	 U2yvq3LUNzkUI5ZZ6ObgngPYFs/saQyYKm7i0/WGQH64Ey/GRJ4VQAlWRu5o9Owbnb
-	 Lg7a1qqmz4qjw==
-Date: Thu, 28 May 2026 15:06:36 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jinseob Kim <kimjinseob88@gmail.com>
-Cc: linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC v2 5/7] iio: osf: add UART serdev transport
-Message-ID: <20260528150636.38d8e091@jic23-huawei>
-In-Reply-To: <20260524085312.15369-6-kimjinseob88@gmail.com>
-References: <20260524085312.15369-1-kimjinseob88@gmail.com>
-	<20260524085312.15369-6-kimjinseob88@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1779977298;
+	bh=NYhlbEnr/j86eTtWnVydiHokNs1OtiqtJhFPUqvCKiQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=MCePkFYkoPaxqmrMb2BiiGtAjGcyyY2sq4LsA2emVkqRm8SWjckFjC8BjE0bSgBHL
+	 ZXMWzvlo/sbq4/ngyjVaOtURQ68QRVDQJI/JurETzYr86uzv29pT8w1Gp41BQ+gFtR
+	 DT+l9LNkUtGLX7P+o3CBD/+Of8RGS8ZukeUM414vY8m8qys6emPLmQBo8ULR6aSYuH
+	 WMyqrdIo67jwZjQPnxjTseSuEO4mG0uZbfjdwnnw+VQT6ucS43n6rzSW2EISEryocU
+	 CuspktADEwXcPt6RkFVyL/Es7CKUCV9JbpsRhZ4YW6+nfu4nRglHrJtCrUOxSdFo0V
+	 l6qS3o7OAHsXQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: leds: Document TI LM3533 LED
+ controller
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260528135123.103745-2-clamor95@gmail.com>
+References: <20260528135123.103745-2-clamor95@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 28 May 2026 14:08:17 +0000
+Message-Id: <20260528140818.4676F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303876-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303879-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: EA1755F38D6
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 5DBBB5F36CB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, 24 May 2026 17:53:10 +0900
-Jinseob Kim <kimjinseob88@gmail.com> wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The property `ti,resistor-ohm` does not use the standard DT schema =
+unit suffix (`-ohms`), and its description contains a typo ('resister').
+--
 
-> Add the serdev receive path that feeds decoded OSF0 frames to the core.
-> 
-> Signed-off-by: Jinseob Kim <kimjinseob88@gmail.com>
-Various things inline.
+commit 3710ffb632b560bb2fb8a924f794c4e747f0362b
+Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-> diff --git a/drivers/iio/opensensorfusion/Kconfig b/drivers/iio/opensensorfusion/Kconfig
+dt-bindings: leds: Document TI LM3533 LED controller
+
+This commit documents the LM3533, a complete power source for backlight, ke=
+ypad,
+and indicator LEDs in smartphone handsets. The high-voltage inductive boost
+converter provides power for two series LED strings for the display backlig=
+ht
+and keypad functions.
+
+> diff --git a/Documentation/devicetree/bindings/leds/ti,lm3533.yaml b/Docu=
+mentation/devicetree/bindings/leds/ti,lm3533.yaml
 > new file mode 100644
-> index 000000000..360f25b4f
+> index 0000000000000..6e12e12be08e5
 > --- /dev/null
-> +++ b/drivers/iio/opensensorfusion/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
+> +++ b/Documentation/devicetree/bindings/leds/ti,lm3533.yaml
+> @@ -0,0 +1,170 @@
+[ ... ]
+> +  light-sensor:
+> +    type: object
+> +    additionalProperties: false
 > +
-> +config OPEN_SENSOR_FUSION
-> +	tristate "Open Sensor Fusion UART IIO driver"
-> +	depends on IIO
-> +	depends on SERIAL_DEV_BUS
-> +	select CRC32
-> +	help
-> +	  Build the Open Sensor Fusion UART receive path.
+> +    properties:
+> +      compatible:
+> +        const: ti,lm3533-als
 > +
-> +	  The driver receives OSF0 frames over a serdev UART.
-> +	  Frames are decoded and validated before being passed to the
-> +	  driver core.
-> +	  This patch only adds the transport path.
-> +	  IIO device registration is added separately.
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      ti,resistor-ohm:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Internal configuration resister value when light sensor is in
 
-Why is help text talking about a patch?
+[Severity: Low]
+This isn't a bug, but should this property use the standard dt-schema unit
+suffix -ohms instead of -ohm? Standardizing the unit suffix allows
+dt-schema to automatically infer the property type without needing an
+explicit reference.
 
-> diff --git a/drivers/iio/opensensorfusion/osf_core.c b/drivers/iio/opensensorfusion/osf_core.c
-> new file mode 100644
-> index 000000000..c867b3158
-> --- /dev/null
-> +++ b/drivers/iio/opensensorfusion/osf_core.c
-> @@ -0,0 +1,107 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +#include <linux/errno.h>
-> +#include <linux/string.h>
-> +#include <linux/types.h>
-> +
-> +#include "osf_core.h"
-> +#include "osf_protocol.h"
-> +
-> +#define OSF_RESERVED_MSG_FIRST		0x7f00
-> +#define OSF_RESERVED_MSG_LAST		0x7fff
-> +#define OSF_VENDOR_PRIVATE_FIRST	0x8000
-> +
-> +void osf_core_init(struct osf_device *osf, struct device *dev)
-> +{
-> +	memset(osf, 0, sizeof(*osf));
+Additionally, is there a typo in the description where it says resister
+instead of resistor?
 
-You zero them memory before passing to this.  That seems like a sensible
-pattern in which case this memset is unneeded.
+> +          Analog Sensor mode and PWM mode is disabled. The expectation is
+> +          the input is a current from the external analog light sensor a=
+nd
+> +          this is used to convert it to a voltage within the target rang=
+e.
 
-> +	osf->dev = dev;
-> +}
-
-> +
-> +int osf_core_receive_frame(struct osf_device *osf, const u8 *buf, size_t len)
-> +{
-> +	struct osf_frame frame;
-> +	size_t frame_len;
-> +	int ret;
-> +
-> +	if (!osf || !buf)
-> +		return -EINVAL;
-
-If these can happen add a comment on why. If not remove them as overly cautious
-checking.
-
-> +
-> +	ret = osf_protocol_decode_frame(buf, len, &frame, &frame_len);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (frame_len != len)
-> +		return -EMSGSIZE;
-> +
-> +	switch (frame.message_type) {
-> +	case OSF_MSG_SENSOR_SAMPLE:
-> +		ret = osf_core_validate_sensor_sample(&frame);
-> +		break;
-> +	case OSF_MSG_DEVICE_STATUS:
-> +		ret = osf_core_validate_device_status(&frame);
-> +		break;
-> +	case OSF_MSG_CAPABILITY_REPORT:
-> +		ret = osf_core_validate_capability_report(&frame);
-
-Perhaps check ret in each of these and return early if set. Then we only
-do the shared path below on success.
-
-> +		break;
-> +	default:
-> +		if (frame.message_type >= OSF_RESERVED_MSG_FIRST &&
-> +		    frame.message_type <= OSF_RESERVED_MSG_LAST)
-> +			ret = 0;
-> +		else if (frame.message_type >= OSF_VENDOR_PRIVATE_FIRST)
-> +			ret = 0;
-> +		else
-> +			ret = -EOPNOTSUPP;
-
-Given there is nothing else to do on error, return -EOPNOTSUPP; perhaps.
-
-> +		break;
-> +	}
-> +
-> +	if (!ret)
-> +		osf->last_sequence = frame.sequence;
-> +
-> +	return ret;
-> +}
-
-> diff --git a/drivers/iio/opensensorfusion/osf_serdev.c b/drivers/iio/opensensorfusion/osf_serdev.c
-> new file mode 100644
-> index 000000000..f121089ed
-> --- /dev/null
-> +++ b/drivers/iio/opensensorfusion/osf_serdev.c
-
-
-> +
-> +static int osf_serdev_probe(struct serdev_device *serdev)
-> +{
-> +	struct osf_serdev *osf_uart;
-> +	unsigned int baudrate;
-> +	int ret;
-> +
-> +	osf_uart = devm_kzalloc(&serdev->dev, sizeof(*osf_uart), GFP_KERNEL);
-> +	if (!osf_uart)
-> +		return -ENOMEM;
-> +
-> +	osf_uart->serdev = serdev;
-> +	osf_core_init(&osf_uart->osf, &serdev->dev);
-> +	osf_stream_init(&osf_uart->stream, &osf_uart->osf);
-> +
-> +	serdev_device_set_drvdata(serdev, osf_uart);
-> +	serdev_device_set_client_ops(serdev, &osf_serdev_ops);
-> +
-> +	ret = serdev_device_open(serdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	baudrate = serdev_device_set_baudrate(serdev, OSF_SERDEV_BAUD);
-> +	if (baudrate != OSF_SERDEV_BAUD)
-> +		dev_warn(&serdev->dev, "requested %u baud, controller set %u\n",
-> +			 OSF_SERDEV_BAUD, baudrate);
-> +
-> +	serdev_device_set_flow_control(serdev, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static void osf_serdev_remove(struct serdev_device *serdev)
-> +{
-> +	struct osf_serdev *osf_uart = serdev_device_get_drvdata(serdev);
-> +
-> +	serdev_device_close(serdev);
-> +	osf_stream_reset(&osf_uart->stream);
-> +	osf_core_unregister_iio(&osf_uart->osf);
-
-Given these don't match up with things in probe() please add some comments
-to explain what they are undoing.
-
-> +}
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260528135123.1037=
+45-1-clamor95@gmail.com?part=3D1
 
