@@ -1,103 +1,49 @@
-Return-Path: <devicetree+bounces-304009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304010-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEcbAe7PGGqunggAu9opvQ
-	(envelope-from <devicetree+bounces-304009-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 01:29:50 +0200
+	id 0AtWN1DSGGqTnwgAu9opvQ
+	(envelope-from <devicetree+bounces-304010-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 01:40:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 049FD5FB6D4
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 01:29:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E485FB780
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 01:40:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5A3673013D6B
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 23:29:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EBD9F302C91C
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 23:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 732853176EF;
-	Thu, 28 May 2026 23:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D94A36D517;
+	Thu, 28 May 2026 23:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="VXW1qxgE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCEKvkuQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C651990A7;
-	Thu, 28 May 2026 23:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E78536C5B3;
+	Thu, 28 May 2026 23:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780010983; cv=none; b=lRMmrUcgtXE0Ar+ZzpWW1++r/0oEzRl1nnq64kDhc5OzeWoOk4EN2IGZOk9KzDlfF0yDS6f87hs2axQqlXtjZx89ZserV5UodHm2GvvjZeOi5l9U97YwEi8bU7rUE5Nw4ltYNwU2xVdGtRgyOdtx0iUX1U/Ppd+xxIjOTElUjpk=
+	t=1780011201; cv=none; b=mj1MsAazJ0qy2gd4k7Te1hSFCBe05fRrnQDZ5vTMqtx6uTfXf+ZxM0fyM4G5jm47j8F0pNRiLC7sPmOCqwnnqzoWHGxT0XdNG6TNyOwgXdkkCu4ycqNUYB/GZ6k1d1Q7GeeNWvMQf4v1clCLh5vUmvPLZaFklPUMxRSUKzF0FF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780010983; c=relaxed/simple;
-	bh=bTYmSYrgbnCqJMYC3Dfi+Wl9YqWBHz/yD0xcH6cXHi4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X87Ei8tcdtlWg3xh3r2570CWZETVbzQRFGpjnAu20vnGFQLsmbPtrJPBGH2kJZTOLODsN0OmkxY8Vy6kG4lPP+rbwY6Mk2kEk0um0CjGjO2oKb6ocOInfwC4gjxQgznD62JduKlO3SlxJHJn3xS4cjtsSzHVv48txmiW5jUP8Vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=VXW1qxgE; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=0Jc9Dg7/uw4mInrHAZejSNv7lp5AIrnyTQuFVoQJqhs=; b=VXW1qxgEKrcmlsKlOupkd9a7jA
-	Gxpo4WpuKhKf5tJwDkwzKNyfQ3dGSLjiPYyW1Rq+T4nd+TTpnw3wIBHnhBp+WkbffgqcukroGZvQ7
-	sB1kpes/ZWjTwz859lE/Fy3MpVsWUf4SRRQhDdHevoigwwdGFelIvnmUdU5IFXztUco0dtupIb2kf
-	GXG9Om9Yi3BDubaP0iaf2PtV/NeIZlEz0RWIdxMEpcaRIgKtlmkxTXFJ+HjUKfBr3RKBWYFEK6o6T
-	PELRIs0kD1qQ5GEnvgj8nGQ2d3H9h/p4K2hLtq1OeNzkjzY0AW+BOkmlqKgTnjQTsT80j8tKKoyLf
-	CEa4dJXA==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Marc Zyngier <maz@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Ge Gordon <gordon.ge@bst.ai>,
-	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	Lars Persson <lars.persson@axis.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	=?UTF-8?q?Yu-Chun=20Lin=20=5B=E6=9E=97=E7=A5=90=E5=90=9B=5D?= <eleanor.lin@realtek.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Michal Simek <michal.simek@amd.com>
-Subject: Re: (subset) [PATCH v3 00/17] arm64: Use EL2 virtual timer when running VHE
-Date: Fri, 29 May 2026 01:29:28 +0200
-Message-ID: <178001096324.4059716.11429048314090179300.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
-References: <20260523140242.586031-1-maz@kernel.org>
+	s=arc-20240116; t=1780011201; c=relaxed/simple;
+	bh=IGMMaB0Qag4A6mSQinxKxmlYs9RqTV3nnEC/ufJRwiU=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=TgRNNyPCC0uWyGwnXT8jI/vVKTTliOuYEqQgWeUWEjSh2bbm/m1R4PE37+DoPluwQaZVy67AgfeqjZPACABEEvGmICGSspCZsUft7GMTyEIiMKwAyLUH2BFRgWxF6x8sgsGqeAjDKs1Sfdx1E6iUD5HXNI6LlDHyzgrngKcNrw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCEKvkuQ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C5D11F000E9;
+	Thu, 28 May 2026 23:33:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780011199;
+	bh=faD+n3YHeJB5eX0/saKSEed8ICIvrUcjVlAynOgCZBs=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=kCEKvkuQWBnN3efZRP9lFqZiuHWl5r17p7Oe3rVrFGWWyyjYse6SERpkY5sP5BeP3
+	 vW9Ds/a+oazttmFn6kInY6oprIqVncC3HlGqedG0pf93wPn7WkdBLqcUiPifdtsud5
+	 k98CyKo8Q5hTI6NEE/ucbBA4UPjG/FR82EY1rdfEMBBAhr29VkCaZnoBAk6lXMDY9W
+	 v3EwAe56iVB1AoZ8sCWliDRRZkG8lEnX4LMeo5+nGxa7ZZxF2pTWj7sFDEwxDZbgsl
+	 fkVThkyU44vHG+vObD85lQzzV39/7BU8Xd1e5g/NtWSjzsDKg+ZSLceBsufDgtErRS
+	 lO5geYHaYWTug==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,55 +52,154 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Subject: Re: [PATCH v7 0/5] media: iris: add support for purwa platform
+From: bod@kernel.org
+To: Wangao Wang <wangao.wang@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>, 
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>, 
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <20260514-enable_iris_on_purwa-v7-0-47aa5b026f1a@oss.qualcomm.com>
+References: <20260514-enable_iris_on_purwa-v7-0-47aa5b026f1a@oss.qualcomm.com>
+Date: Fri, 29 May 2026 00:33:12 +0100
+Message-Id: <178001119238.19934.12836659245627484817.b4-reply@b4>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4842; i=bod@kernel.org;
+ h=from:subject:message-id; bh=IGMMaB0Qag4A6mSQinxKxmlYs9RqTV3nnEC/ufJRwiU=;
+ b=owEBbQKS/ZANAwAKASJxO7Ohjcg6AcsmYgBqGNC6zweJE5c4qdBgnIgkO1A4gzQZ/EiPOXnaP
+ A5o0HS/jNCJAjMEAAEKAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCahjQugAKCRAicTuzoY3I
+ OiTiD/42XUBbYDErK4BGNKp4aFXOHyMMXm2f2gk8XJc4zntg238T8fNsnOJI6KJ1iYRdcuGSwMr
+ I/e7fkdLH7CNi8FR0k8Pu9d5gr+jSw8h5KLVtZl/dlVNpt4iC26CosSumdk9C+uLP18hLgvonat
+ y71yQG/jAaP9wBJS0mW6aUHIeYeKCnsYjdbGaryzcsnvq1o2DIsURybG+crBbYN7miXj8++xVXT
+ GYjVtNjzVqWS2gKxaahvikRSU9nyuqIuTizvgt5hI30Bq3tXP5flC6XDYaLu6TsXVGSJgMm0nIB
+ sTkv8lIdoZRmnUZHOlC7Y7uJ/22DFDurHjw7R5WxotuD2PnKylrvbcGfgWxNTUWKgHUKIe4OiSl
+ tJCSNTIkLuJHH4VESJIrFe8SD0A/xyQRKmixUSJrKRq2iNiAuiFYmpSRUxvE9WQCNFyFKVssAkV
+ AV63MFK076BZwpuy1t9NWY88hvJHQkoTMhDSDfHBVCj3yk1WazKMr1BmC09AuHbbmZnIUn7kGly
+ h7CggdkPFeXDJM+NbbPKWdpn7ctgb+N7xDtH7o495YKGl7UCX45GCB4PA/10xS0HDosI3fdnnfX
+ JtTlqtmA3AtDR8OZU0/cmu+Ky5SUI/Iqk5tqjMTPrpUqCvm/4Na9Hr/SiwzuAlAqAlO+U0H9uKn
+ Tju0zinuAruL5MA==
+X-Developer-Key: i=bod@kernel.org; a=openpgp;
+ fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-304010-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304009-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FREEMAIL_CC(0.00)[sntech.de,kernel.org,huawei.com,arm.com,gmail.com,sholland.org,linaro.org,baylibre.com,googlemail.com,bst.ai,bstai.top,axis.com,samsung.com,nxp.com,pengutronix.de,collabora.com,nvidia.com,suse.de,realtek.com,rock-chips.com,linux.alibaba.com,amd.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sntech.de:email,sntech.de:mid,sntech.de:dkim]
-X-Rspamd-Queue-Id: 049FD5FB6D4
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,inspiron14p-linux:email]
+X-Rspamd-Queue-Id: 41E485FB780
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On Sat, 23 May 2026 15:02:25 +0100, Marc Zyngier wrote:
-> This is the third version of the series initially posted at [1],
-> which
+On 2026-05-14 18:09 +0800, Wangao Wang wrote:
+> This series enables the Iris video codec on purwa, allowing purwa to
+> use hardware‑accelerated video encoding and decoding.
 > 
-> - updates the ACPI GTDT parsing to deal the v3 layout and the EL2
->   virtual timer,
-> - moves the architected timer driver to use it when running VHE,
-> - fixes a number of DTs to reflect the reality of the HW.
+> The Iris codec on purwa is nearly identical to the one on hamoa(X1E),
+> except that it requires one additional clock and uses a different OPP
+> table.
 > 
-> [...]
+> Therefore, purwa can reuse the Iris node from hamoa, but the clocks
+> and OPP table need to be redefined.
+> 
+> All patches have been tested with v4l2-compliance and v4l2-ctl on
+> purwa. And it does not affect existing targets.
+> 
+> Dependencies:
+> https://lore.kernel.org/all/20260409-purwa-videocc-camcc-v4-0-5a8e5f2dd4b2@oss.qualcomm.com/
 
-Applied, thanks!
+The engines canne take much more of this Captain !
 
-[15/17] arm64: dts: rockchip: Add EL2 virtual timer interrupt
-        commit: d8d7e7549312c50fa5dcd69a6dc6f0035e770c09
+Doesn't apply.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+deckard@inspiron14p-linux:~/Development/linux-worktrees/b4/bod-media-committers-next-plaform-qcom (*)
+> b4 shazam 20260514-enable_iris_on_purwa-v7-1-47aa5b026f1a@oss.qualcomm.com                                                                                                              next-smoketest [367fd4d05a088] (!) untracked
+Looking up 20260514-enable_iris_on_purwa-v7-1-47aa5b026f1a@oss.qualcomm.com
+Checking for newer revisions
+Grabbing search results from lore.kernel.org
+Analyzing 6 messages in the thread
+Looking for additional code-review trailers on lore.kernel.org
+Analyzing 83 code-review messages
+Checking attestation on all messages, may take a moment...
+---
+  ✗ [PATCH v7 1/5] dt-bindings: media: qcom,sm8550-iris: Add X1P42100 compatible
+    ✗ No key: ed25519/wangao.wang@oss.qualcomm.com
+    ✗ BADSIG: DKIM/oss.qualcomm.com
+    ✗ BADSIG: DKIM/qualcomm.com
+  ✗ [PATCH v7 2/5] media: iris: Add hardware power on/off ops for X1P42100
+    ✗ No key: ed25519/wangao.wang@oss.qualcomm.com
+    ✗ BADSIG: DKIM/oss.qualcomm.com
+    ✓ Signed: DKIM/qualcomm.com (From: wangao.wang@oss.qualcomm.com)
+  ✗ [PATCH v7 3/5] media: iris: Add platform data for X1P42100
+    ✗ No key: ed25519/wangao.wang@oss.qualcomm.com
+    ✗ BADSIG: DKIM/oss.qualcomm.com
+    ✓ Signed: DKIM/qualcomm.com (From: wangao.wang@oss.qualcomm.com)
+  ✗ [PATCH v7 4/5] arm64: dts: qcom: purwa: Override Iris clocks and operating points
+    ✗ No key: ed25519/wangao.wang@oss.qualcomm.com
+    ✗ BADSIG: DKIM/oss.qualcomm.com
+    ✓ Signed: DKIM/qualcomm.com (From: wangao.wang@oss.qualcomm.com)
+  ✗ [PATCH v7 5/5] arm64: dts: qcom: purwa-iot-som: enable video
+    ✗ No key: ed25519/wangao.wang@oss.qualcomm.com
+    ✗ BADSIG: DKIM/oss.qualcomm.com
+    ✓ Signed: DKIM/qualcomm.com (From: wangao.wang@oss.qualcomm.com)
+---
+Total patches: 5
+---
+ Deps: looking for dependencies matching 7 patch-ids
+Grabbing search results from lore.kernel.org
+ Deps: Applying prerequisite patch: [PATCH v3 1/7] dt-bindings: clock: qcom: Add X1P42100 video clock controller
+ Deps: Applying prerequisite patch: [PATCH 2/8] dt-bindings: clock: qcom: Add X1P42100 camera clock controller
+ Deps: Applying prerequisite patch: [PATCH 3/8] clk: qcom: videocc-x1p42100: Add support for video clock controller
+ Deps: Applying prerequisite patch: [PATCH 4/8] clk: qcom: camcc-x1e80100: Add support for camera QDSS debug clocks
+ Deps: Applying prerequisite patch: [PATCH 5/8] clk: qcom: camcc-x1p42100: Add support for camera clock controller
+ Deps: Applying prerequisite patch: [PATCH v4 6/7] arm64: dts: qcom: x1e80100: Add CAMCC block definition
+ Deps: Applying prerequisite patch: [PATCH 8/8] arm64: defconfig: Enable VIDEOCC and CAMCC drivers on Qualcomm X1P42100
+Applying: dt-bindings: clock: qcom: Add X1P42100 video clock controller
+Applying: dt-bindings: clock: qcom: Add X1P42100 camera clock controller
+Applying: clk: qcom: videocc-x1p42100: Add support for video clock controller
+Applying: clk: qcom: camcc-x1e80100: Add support for camera QDSS debug clocks
+Applying: clk: qcom: camcc-x1p42100: Add support for camera clock controller
+Applying: arm64: dts: qcom: x1e80100: Add CAMCC block definition
+Applying: arm64: defconfig: Enable VIDEOCC and CAMCC drivers on Qualcomm X1P42100
+Applying: dt-bindings: media: qcom,sm8550-iris: Add X1P42100 compatible
+Applying: media: iris: Add hardware power on/off ops for X1P42100
+Patch failed at 0009 media: iris: Add hardware power on/off ops for X1P42100
+error: patch failed: drivers/media/platform/qcom/iris/iris_vpu_common.c:292
+error: drivers/media/platform/qcom/iris/iris_vpu_common.c: patch does not apply
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+hint: When you have resolved this problem, run "git am --continue".
+hint: If you prefer to skip this patch, run "git am --skip" instead.
+hint: To restore the original branch and stop patching, run "git am --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+(venv) 
+
 
