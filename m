@@ -1,313 +1,246 @@
-Return-Path: <devicetree+bounces-303684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LcBC6bzF2q5WAgAu9opvQ
-	(envelope-from <devicetree+bounces-303684-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:49:58 +0200
+	id OI9UOVn0F2q5WAgAu9opvQ
+	(envelope-from <devicetree+bounces-303686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:52:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9973F5EDF41
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:49:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A16B5EE042
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:52:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0A6353104DD5
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 07:46:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DF5D3303DAEB
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 07:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A994A352033;
-	Thu, 28 May 2026 07:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639D7348C7E;
+	Thu, 28 May 2026 07:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KMFYtORR"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="Bqvi3nfZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96DC348C7E
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 07:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+Received: from ultrarisc.com (unknown [218.76.62.146])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3383231195C;
+	Thu, 28 May 2026 07:46:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779954383; cv=none; b=D4XTrRg40HSoblvCk5ACbRHIrfdYsk3WLtTVYU9jUUof0XW65orlKgyuwGux34JSMHD0vsff6Vz7HTDhlD8uMDjG0NuZ5Gyl6mUtVoblXcuVW1O6g1f/nO/swkVebpOws23wtlzLnyU6Hv4TUjvxZbcRi9EVHw5rOLoRSmEeHAQ=
+	t=1779954422; cv=none; b=ocnLO3ipWtN7AZH8+SKKQKvntTP7XCPPXkHzPD2Mx57GyHzzCAwiJKJssAwrGXap+14GrSI8AFf7cQVgBmL6kj9GZ8DYqGdHQ3VL7kUXN3dJZtTZ+1l2xl4FX4ak6cuamn0mqRntS8bggQ62AwgalqcV3OdGBSvepXzqKu2UtRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779954383; c=relaxed/simple;
-	bh=T2BbW+F04dL5BYNDF02sLvZ+Bg+ug+6Nq73MnadW3Jg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Vr18yOogNuFmrthMldsz7XFGhkntMg667LbljU/5BMuELYhsamY2pNc02TbRCSWapgnz8pxPIXLqY6QdXO7DxjkyhPIjokJl4DyHjn3F0UH4+2Bzv7J8RQugcty2h3S2Vld3hUs1H3RVzrRaK0YaDqgQNb0BZDU6bbIJ0CwzNCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KMFYtORR; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4891c00e7aeso85297555e9.2
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2026 00:46:21 -0700 (PDT)
+	s=arc-20240116; t=1779954422; c=relaxed/simple;
+	bh=6qhTeT731gNKzW0pmpEUXvrnT0z2djgKgqtSPHx/8Uk=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=k/256hsviJtB791BnjQkQfnOINZzNeJFc8oasqB8sJfraK9XvBX9U4SZdHvdBWLCB30Hq0PTGKDIAnCBOJFqBueRzU4s0yRuXvhvosb6s1Nnhxa3cT1eDIek/D07EmpmK0Wz5a0m8b1de1vy18CpKrtZdzZDTe3bekqLUn9cVjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=Bqvi3nfZ; arc=none smtp.client-ip=218.76.62.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ultrarisc.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779954380; x=1780559180; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x9zM5o3H4qWfdcvyLtZEOcC72mRexEYzz1hosJKfOgA=;
-        b=KMFYtORRUjBrnsqHgY2aCxS5W733hdgjmpedIFujfndvCRQIYpBmrg83fdGeijYwF9
-         rIjpGz6wUdXWsUyugGW+WfbVkjqR5xenXCpvXQ0+dewTudt6WrRMKNneDk9lFxcSKptr
-         J0NbuqaJ+gtRLBFkz8ms2mDYoHt2zbbaBFTxWluTXwZ6xw+SE5Rk0JwnyxIjDKDyRUeI
-         /g8yuC0s+kzB6QNoPtwKfsDwvIGB4fPSlVOxhyO0P8TWB756LqkAb5jMZQwb/Nsqc5ZV
-         UEOBAQKzqSnm42jprAMJFWBiti5I/1k+ZAcgp/BsjZp5rdl8luN3SD5YH17h+oKNYNED
-         GuIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779954380; x=1780559180;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=x9zM5o3H4qWfdcvyLtZEOcC72mRexEYzz1hosJKfOgA=;
-        b=JOZ4BHEnwr3flKnuXWIpwfoISTmuXP5Y9Nw2wU/dcKVD5MmWnkeqn8M4FJPQhZWFWZ
-         IT7TQ5pDf2ulsxYp4QNtXf3L/GqfH6uyMu61PQEMXzh8RKZfJESWxd1UrAuhDxYkHKce
-         8OKUzryE8KBpAAgl6rv1MTNWemCgiR3vBwdI4Wb/Co9+CeZM53pzi6TIBkZ04vqqmjiC
-         Zp8emw/tcktX4HhLM0/VbSTz8e/AgMFbSlQEp/bIHFjm59cvdfpnfAaK3/bDq0r7MHJd
-         0xqiWZoauqY1EgsJdjYrDgIUo9+uTv+umUW7TobSIzlQvRW9iVEsrF8CDv1LeRFPkxe8
-         YuYA==
-X-Forwarded-Encrypted: i=1; AFNElJ/7/XYW7+FY7V5IC4GsPGwr2cfOC5WsBmv9isD4gT8GHMMMctnp3vjuyNdDG+rUp5czpvRNC1daBON4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzT/FiH7GPMrYw/+sqM4u5ANjhI09Z+JoePnaiWhVUnLdTz6ugK
-	kmG23/eUcPIe3bC2eEwdof7XvHFAOeUop2BQ+KxgTi0x5QYHayrNtcEp
-X-Gm-Gg: Acq92OFVkcPrk7GA0L3Paq83/Ccj0L0nQQjMOnYA+Vl+AIqkptSqmABm/z6B1N5Ogae
-	hKUyu4at1po155OwV9c2inZI+PaABYEBhd8vbfNEL/pLY1l2kFl+Xnn6q2OVpgZecVylKL+DO8h
-	VH/C2Lh0StaCeXJ0wc9+4oJ0BUnmUOTxqhENMDfVIC4nyN52NI3IsDHlvOwv+Hir2aUutHRCOUX
-	Rs3mdAku9+Q7WfifilS+S/euhy1AztvAz/v3DyWD69gX5vZf1Y165qo2a1dBqpcy4MeT8SF9iUw
-	TVJ/9lcDkqxi5Rjj9d63TGFGcxxpaAtp4ynHAgj0x9q9qAfOmacVg7DMVEmqsyUtRp/N5EFGC1K
-	7V2gcAk+MkQVcgk3Afrz8clrsy5vYGbEfRsnlIB2+df4BKWmCDpUTquy4qJ8mbChKMxfr9YJZfO
-	qfk2Pl41/pSLF8Dft2pZvXrukWOVN+rCkNzQAMMETkVbSXYhqnHAwRA9k0GE8=
-X-Received: by 2002:a05:600c:8681:b0:490:778:4fe8 with SMTP id 5b1f17b1804b1-490428ce8c7mr305045955e9.25.1779954380059;
-        Thu, 28 May 2026 00:46:20 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:23c4:a700:7301:c724:a823:10ad:6b85])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4908f0a3c2dsm10865885e9.31.2026.05.28.00.46.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2026 00:46:19 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: r9a08g046l48-smarc: Enable audio
-Date: Thu, 28 May 2026 08:45:45 +0100
-Message-ID: <20260528074615.91110-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260528074615.91110-1-biju.das.jz@bp.renesas.com>
-References: <20260528074615.91110-1-biju.das.jz@bp.renesas.com>
+	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
+	References:Date:Message-Id; bh=3ozmfUyjzOAnaVluC3XCx/5HQttU+rVCH
+	mbdD7GWQQI=; b=Bqvi3nfZDnRXAkT1ZvM/i+6gearV9Jbtz6e5bkw6FoPVd90M+
+	AcyYWjd2zYeAJ4fwaHTYtiEHIUnEybE7UF045ZJvUny7EX9akX0q6DMe3s4oIqwK
+	pP9Ir/LBzvA32gHbjFsgW++0uloirpw3RZi5gGO/7YzlpVootpjr3Tsi/k=
+Received: from [127.0.0.1] (unknown [192.168.100.1])
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwAnEkP48hdqs6YGAA--.7963S2;
+	Thu, 28 May 2026 15:47:05 +0800 (CST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Subject: Re: [PATCH 6/9] pinctrl: ultrarisc: Add UltraRISC DP1000 pinctrl
+ driver
+From: Jia Wang <wangjia@ultrarisc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>, wangjia@ultrarisc.com, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org
+In-Reply-To: <20260525-turbojet-theorize-3a7b49f41af0@spud>
+References: <20260515-ultrarisc-pinctrl-v1-0-bf559589ea8a@ultrarisc.com>
+ <20260515-ultrarisc-pinctrl-v1-6-bf559589ea8a@ultrarisc.com>
+ <CAD++jLn=RX2rZ33kD427wR1KBo=YPzCqFaaSot22nJL4Emn_=A@mail.gmail.com>
+ <20260525-turbojet-theorize-3a7b49f41af0@spud>
+Date: Thu, 28 May 2026 15:46:25 +0800
+Message-Id: <177995438556.929162.1470247666821673655.b4-reply@b4>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779954385; l=4818;
+ i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
+ bh=6qhTeT731gNKzW0pmpEUXvrnT0z2djgKgqtSPHx/8Uk=;
+ b=nUsKSsPqAlnTJeS+VvPKD9efnu6SLUq2Jbb4S96xqPFeWfu8YeofAXkii6ZIR7j8uUhAhpTqf
+ oPNjge3dUaQDbyd/uHKfWr1ZvevF7T2urW0p5R7axGLjF4bWWFVQB3s
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
+X-CM-TRANSID:AQAAfwAnEkP48hdqs6YGAA--.7963S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxCF1xArW7JF18uFyDZFyrJFb_yoWrWrW5pF
+	W8Wa15KryUGF4agFWqv395uFyakrZ7Jr15tryUKryUtr95tF93WFW8W3yfZasYkrZ8Gr1U
+	Za15AFya93sxArDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
+	8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+	xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+	AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+	cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
+	4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRNJ5oDUUUU
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAAEWoWakYABgAGsA
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
+	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303684-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-303686-lists,devicetree=lfdr.de];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,2.220.108.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,renesas.com:email]
-X-Rspamd-Queue-Id: 9973F5EDF41
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 8A16B5EE042
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+On 2026-05-25 11:10 +0100, Conor Dooley wrote:
+> On Mon, May 25, 2026 at 11:28:51AM +0200, Linus Walleij wrote:
+> > On Fri, May 15, 2026 at 3:18 AM Jia Wang via B4 Relay
+> > <devnull+wangjia.ultrarisc.com@kernel.org> wrote:
+> 
+> > > +static int ur_legacy_parse_prop(struct pinctrl_dev *pctldev,
+> > > +                               struct device_node *np,
+> > > +                               const char *propname,
+> > > +                               struct ur_legacy_prop_data *prop)
+> > > +static const char *ur_legacy_get_function_name(const struct ur_pinctrl_match_data *match_data,
+> > > +                                              u32 mode)
+> > > +static int ur_legacy_conf_to_configs(struct pinctrl_dev *pctldev, u32 conf,
+> > > +                                    unsigned long **configs,
+> > > +                                    unsigned int *num_configs)
+> > > +static int ur_legacy_add_pinconf_maps(struct pinctrl_dev *pctldev,
+> > > +                                     struct pinctrl_map **map,
+> > > +                                     unsigned int *reserved_maps,
+> > > +                                     unsigned int *num_maps,
+> > > +                                     const struct ur_legacy_prop_data *prop)
+> > > +static int ur_legacy_dt_node_to_map(struct pinctrl_dev *pctldev,
+> > > +                                   struct device_node *np,
+> > > +                                   struct pinctrl_map **map,
+> > > +                                   unsigned int *num_maps)
+> > 
+> > What's up with all this legacy stuff?
+> > 
+> > What is this a legacy of?
+> > 
+> > I thought this was a *new* driver so how can it be "legacy"?
+> 
+> Jia already agreed to drop this stuff :)
+> 
+> > 
+> > > +static int ur_generic_dt_node_to_map(struct pinctrl_dev *pctldev,
+> > > +                                    struct device_node *np_config,
+> > > +                                    struct pinctrl_map **map,
+> > > +                                    unsigned int *num_maps)
+> > > +{
+> > > +       return pinconf_generic_dt_node_to_map(pctldev, np_config, map, num_maps,
+> > > +                                             PIN_MAP_TYPE_INVALID);
+> > > +}
+> > 
+> > Hm I think Conor has new helpers for this so you don't need to wrap
+> > it like this.
+> 
+> Yeah, although "more importantly" the new helpers mean that drivers
+> shouldn't need to do things like calling these home-rolled functions in
+> probe, just so that they can try to use pinconf_generic_dt_node_to_map():
+> | static int ur_add_pin_groups(struct ur_pinctrl *pctldata)
+> | {
+> | 	for (u32 i = 0; i < pctldata->match_data->npins; i++) {
+> | 		int ret;
+> | 
+> | 		pctldata->group_names[i] = pctldata->match_data->pins[i].name;
+> | 		pctldata->group_pins[i] = pctldata->match_data->pins[i].number;
+> | 
+> | 		ret = pinctrl_generic_add_group(pctldata->pctl_dev, pctldata->group_names[i],
+> | 						&pctldata->group_pins[i], 1, NULL);
+> | 		if (ret < 0)
+> | 			return dev_err_probe(pctldata->dev, ret,
+> | 					     "failed to add pin group %s\n",
+> | 					     pctldata->group_names[i]);
+> | 	}
+> | 
+> | 	return 0;
+> | }
+> | 
+> | static int ur_add_functions(struct ur_pinctrl *pctldata)
+> | {
+> | 	for (u32 i = 0; i < pctldata->match_data->num_functions; i++) {
+> | 		const struct ur_function_desc *desc = &pctldata->match_data->functions[i];
+> | 		struct pinfunction func = desc->gpio ?
+> | 			PINCTRL_GPIO_PINFUNCTION(desc->name, pctldata->group_names,
+> | 						 pctldata->match_data->npins) :
+> | 			PINCTRL_PINFUNCTION(desc->name, pctldata->group_names,
+> | 					    pctldata->match_data->npins);
+> | 		int ret;
+> | 
+> | 		ret = pinmux_generic_add_pinfunction(pctldata->pctl_dev, &func, (void *)desc);
+> | 		if (ret < 0)
+> | 			return dev_err_probe(pctldata->dev, ret,
+> | 					     "failed to add function %s\n",
+> | 					     desc->name);
+> | 	}
+> | 
+> | 	return 0;
+> | }
+> (If I had more time, I would probably go looking to see if there are
+> more candidates for conversion)
+> 
+> Jia, the helper in question is pinctrl_generic_pins_functions_dt_node_to_map().
+>
 
-Enable audio on RZ/G3L SMARC EVK by linking SSI0 with DA7212 audio CODEC.
-The SSI0 signals are multiplexed with SD2 and are selected by a switch
-SW_SD2_EN#. Add regulator nodes regulator-{1p8v,3p3v} to SoM DTSI for
-reuse with eMMC.
+I found pinctrl_generic_pins_function_dt_node_to_map() in mainline, but
+there is no pinctrl_generic_pins_functions_dt_node_to_map() as mentioned.
+Did you mean the singular version, and is that the one I should use?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Added guard for snd_rzg3l with the SW_I3C_EN macro.
- * Sorted ssi0_pins.
----
- .../boot/dts/renesas/r9a08g046l48-smarc.dts   | 72 +++++++++++++++++++
- .../boot/dts/renesas/rzg3l-smarc-som.dtsi     | 22 ++++++
- 2 files changed, 94 insertions(+)
+> Cheers,
+> Conor.
+> 
+> Also worth pointing out that this driver has match data but only one
+> supported device:
+> +static const struct of_device_id ur_pinctrl_of_match[] = {
+> +	{ .compatible = "ultrarisc,dp1000-pinctrl", .data = &ur_dp1000_match_data, },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ur_pinctrl_of_match);
+> 
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-index 1512b7df39bd..32d3b08a3cf3 100644
---- a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-@@ -9,6 +9,7 @@
- 
- /* Switch selection settings */
- #define RZ_BOOT_MODE3		1
-+#define SW_SD2_EN		0
- #define SW_DPI_EN		0
- #define SW_GPIO4		1
- #define SW_I3C_EN		0
-@@ -38,6 +39,32 @@ aliases {
- 		i2c3 = &i2c3;
- 		serial3 = &scif0;
- 	};
-+
-+#if !SW_SD2_EN && !SW_I3C_EN
-+	snd_rzg3l: sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "snd_rzg3l";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ssi_link_play: simple-audio-card,dai-link@0 {
-+			reg = <0>;
-+			format = "i2s";
-+			bitclock-master = <&cpu_dai>;
-+			frame-master = <&cpu_dai>;
-+			mclk-fs = <256>;
-+
-+			cpu_dai: cpu {
-+				sound-dai = <&ssi0>;
-+			};
-+
-+			codec_dai: codec {
-+				sound-dai = <&da7212>;
-+				clocks = <&versa3 1>;
-+			};
-+		};
-+	};
-+#endif
- };
- 
- &i2c2 {
-@@ -53,6 +80,27 @@ &i2c3 {
- 	pinctrl-names = "default";
- 
- 	status = "okay";
-+
-+	da7212: codec@1a {
-+		compatible = "dlg,da7212";
-+		reg = <0x1a>;
-+
-+		clocks = <&versa3 1>;
-+		clock-names = "mclk";
-+
-+		#sound-dai-cells = <0>;
-+
-+		dlg,micbias1-lvl = <2500>;
-+		dlg,micbias2-lvl = <2500>;
-+		dlg,dmic-data-sel = "lrise_rfall";
-+		dlg,dmic-samplephase = "between_clkedge";
-+		dlg,dmic-clkrate = <3000000>;
-+
-+		VDDA-supply = <&reg_1p8v>;
-+		VDDSP-supply = <&reg_3p3v>;
-+		VDDMIC-supply = <&reg_3p3v>;
-+		VDDIO-supply = <&reg_1p8v>;
-+	};
- };
- #endif
- 
-@@ -71,6 +119,11 @@ &keys {
- };
- 
- &pinctrl {
-+	audio_clk_pins: audio-clock {
-+		pinmux = <RZG3L_PORT_PINMUX(H, 4, 6)>, /* AUDIO_CLK_B */
-+			 <RZG3L_PORT_PINMUX(H, 5, 6)>; /* AUDIO_CLK_C */
-+	};
-+
- 	i2c2_pins: i2c2 {
- 		pinmux = <RZG3L_PORT_PINMUX(A, 4, 4)>, /* RIIC2_SCL */
- 			 <RZG3L_PORT_PINMUX(A, 5, 4)>; /* RIIC2_SDA */
-@@ -85,9 +138,28 @@ scif0_pins: scif0 {
- 		pins = "SCIF0_TXD", "SCIF0_RXD";
- 		power-source = <1800>;
- 	};
-+
-+	ssi0_pins: ssi0 {
-+		pinmux = <RZG3L_PORT_PINMUX(H, 0, 9)>, /* SSIF0_RXD */
-+			 <RZG3L_PORT_PINMUX(H, 1, 9)>, /* SSIF0_BCK */
-+			 <RZG3L_PORT_PINMUX(H, 2, 9)>, /* SSIF0_RCK */
-+			 <RZG3L_PORT_PINMUX(H, 3, 9)>; /* SSIF0_TXD */
-+	};
- };
- 
- &scif0 {
- 	pinctrl-0 = <&scif0_pins>;
- 	pinctrl-names = "default";
- };
-+
-+#if !SW_SD2_EN
-+&ssi0 {
-+	clocks = <&cpg CPG_MOD R9A08G046_SSI0_PCLK2>,
-+		 <&cpg CPG_MOD R9A08G046_SSI0_PCLK_SFR>,
-+		 <&versa3 2>, <&versa3 3>;
-+	pinctrl-0 = <&audio_clk_pins>, <&ssi0_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+#endif
-diff --git a/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
-index 5e58e08e7fad..091a227233cb 100644
---- a/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
-@@ -13,6 +13,10 @@
-  *      0 - SMARC_I2C_GP is enabled
-  *      1 - I3C is enabled
-  *
-+ * Switch position SYS.4, Macro SW_SD2_EN:
-+ *      0 - Select I2S0
-+ *      1 - Select SD2
-+ *
-  * Switch position SYS.5, Macro SW_DPI_EN:
-  *      0 - Select multiple SMARC signals active
-  *      1 - Select LCD
-@@ -41,6 +45,24 @@ memory@48000000 {
- 		reg = <0x0 0x48000000 0x0 0x78000000>;
- 	};
- 
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	x2_clk: x2-clock {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--- 
-2.43.0
+Ack, I'll remove the match data since there's only one compatible for now.
+
+Best regards,
+Jia Wang
+
 
 
