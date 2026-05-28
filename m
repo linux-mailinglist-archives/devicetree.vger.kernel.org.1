@@ -1,161 +1,172 @@
-Return-Path: <devicetree+bounces-303748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303750-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KB+5BAkHGGrGaQgAu9opvQ
-	(envelope-from <devicetree+bounces-303748-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:12:41 +0200
+	id AIZSO0kHGGq0aggAu9opvQ
+	(envelope-from <devicetree+bounces-303750-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:13:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666365EF4FB
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:12:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 485B35EF57B
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 11:13:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5F22319AABA
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 08:58:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4781E32E2330
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2510C38BF9E;
-	Thu, 28 May 2026 08:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3741F398902;
+	Thu, 28 May 2026 09:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isKFcXyX"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DIRrlmux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578CD38D411;
-	Thu, 28 May 2026 08:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDA5389DFF;
+	Thu, 28 May 2026 09:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779958690; cv=none; b=i8yhw+h8lhevnhuWIBzgqtFY8a6jd3TFWG7CmN709bS/Tcw3NPpV2JORsHKg6QDRiyJpcKP2CN4unDfo4iNi260meb1cqpYUyWJTBhepZ27DYx5DWsVh23MXpLyT49AnbSM84tSQz5eZtQAnolUT3ji983B7vJKT1eqhYZ+YMHI=
+	t=1779958889; cv=none; b=evBZcw4UoeNszfYx3btLfxcD3/IS19kAWc7K/qhItqzm7/z4jNt2P/6CAN12iNuc9j/lSrMuGhslXdqcQ/CpDjkVCw2MMsYheMyb+8/PUntIi9Fl/dH1zFB/ewGYqtJpD9NKs506S4yze/8cMLPt/zk/cuVjkaoSzziNg0Qfz4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779958690; c=relaxed/simple;
-	bh=M4ud8nqkmcdfv/7EMVLmGGhByg/WoWOYFp8Sxswp1m8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=SAzivhy5CFR7q+VYIeNfHknxRQmBQnEiRfm4nePyqItdLOZ/5wZ0BOfuTIuRzDVyAKhvz8sEgW4tJg64K1UDH6NMIK0+DyKbZyvyGcc4OYKcSFEBrqPLfx2DUnTz3MPlHrpR5x2fqarSkg7YkQcRUYwi3uA4boZ48mgWw0WQE/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isKFcXyX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FB601F000E9;
-	Thu, 28 May 2026 08:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779958687;
-	bh=8T8woJbbi3NNsEe3nlXUbIygofrJLaWrhX0VE2ysUqU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=isKFcXyXQUiH91tA0qIZy1Fww7H7UVKE/TUI0FioffnQnz3ZSKG0nNRj0C5sD3dr0
-	 JzpwEuVnWRinyxeRHBWePkBbfPmrFb6Fd++WLYQGWCzibxVxCBaIRY6KckKrD5uXD4
-	 XU8CWxOJQMpFVwX6GZc1vRxtJBKmkxXV4ZRPzWVydXj6GAUGG4UX8nCPFMk5fUiFGR
-	 swADhB/UrAfqk9egNhBBFjDVw1tms6aKwd9UNEuoNO3MaptZIYP97wkivArT33k5zS
-	 CA7yUs9391eqiNFl3QMoEFNsmyvsh6bjeNHSqYtzzgsfHFZAfN07ZEvzfl6fvS3FoH
-	 hvmFRGwz45P0w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 7/7] power: supply: Add charger driver for Asus
- Transformers
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Svyatoslav Ryhel" <clamor95@gmail.com>
-Cc: robh@kernel.org, dmitry.torokhov@gmail.com, conor+dt@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260528053203.9339-8-clamor95@gmail.com>
-References: <20260528053203.9339-8-clamor95@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 28 May 2026 08:58:07 +0000
-Message-Id: <20260528085807.6FB601F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779958889; c=relaxed/simple;
+	bh=LGZwHtKXO5QyApO5t/htkExHdKfimHHVJYs7dxPr7Ms=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ru+lviLDIlM5OSm0lIw7V99g5qKGEqKJNt38bmlist3Fz0TIO/lJL8kUvDFMALHrOFJ8jOvTQRXkexWddNzVWGIwPrm3gnFSaxpTfH8th4tHuxDwZSQsfbJCj1aoTmVobUaLHmEv3Ee+8M+5oxGAhMDcsEjL4n4yNevHOI77fC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DIRrlmux; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 561B64E42D73;
+	Thu, 28 May 2026 09:01:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 22BA060495;
+	Thu, 28 May 2026 09:01:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B81F110888C9D;
+	Thu, 28 May 2026 11:01:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1779958883; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=CJpI4CzMT+8wAw7NoB3I1or94sKydUL6L2mKBp4EKXQ=;
+	b=DIRrlmuxStj9KBs0JSi48AC0JrPQE/twnav1z4XLSjIajztm7yy1shy7cUOhMQ8NpBPH/S
+	1jUK1LKuD3yf2gIauHb/jkxUxTR08HfXpL90lpkhhoo82vyYX4A5KpXkWtVXa4jn1ZLLqH
+	e0DhknVWndP/8vboFIjB/Rmc/cCcw4injCAM3z7AEMo2jfpkntYNskpCL+H/VnCD6MrNA5
+	dwlivWKG6ljsxB0F5daCKxB9oDMODMFj/fXsiUHoUb4j5EoP9ri4gfaBrHHXOPrNktSBU8
+	PYzgr3WrXPXDGhR9o89XHqP456EgMXfxf2dXndriUSA72RkSbNO45KkU8/Q87w==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Santhosh Kumar K <s-k6@ti.com>
+Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
+  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
+  <pratyush@kernel.org>,  <mwalle@kernel.org>,
+  <takahiro.kuwano@infineon.com>,  <linux-spi@vger.kernel.org>,
+  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
+  <linux-mtd@lists.infradead.org>,  <praneeth@ti.com>,  <u-kumar1@ti.com>,
+  <a-dutta@ti.com>
+Subject: Re: [PATCH v3 09/13] spi: cadence-quadspi: reject 2-byte-address
+ DDR ops on PHY-tunable hardware
+In-Reply-To: <20260527175527.2247679-10-s-k6@ti.com> (Santhosh Kumar K.'s
+	message of "Wed, 27 May 2026 23:25:23 +0530")
+References: <20260527175527.2247679-1-s-k6@ti.com>
+	<20260527175527.2247679-10-s-k6@ti.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Thu, 28 May 2026 11:01:19 +0200
+Message-ID: <87y0h3gb6o.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303748-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qmqm.pl:email];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303750-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 666365EF4FB
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 485B35EF57B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Strict equality check on `action` bitmask may cause dropped even=
-ts.
---
+On 27/05/2026 at 23:25:23 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
 
-commit 55ed27a4bfa91a64727ac41721ebdb9163ebef2a
-Author: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
+> Erratum i2383 affects the AM654 OSPI controller: in PHY DDR mode,
+> operations with a 2-byte address cause an internal state machine to
+> mis-compare the transmitted address byte count against 1 instead of 2,
+> locking up the address phase. [0]
+>
+> Add a CQSPI_NO_2BYTE_ADDR_PHY_DDR quirk flag and set it on the am654_ospi
+> platform data. In cqspi_supports_mem_op(), when a controller carries this
+> quirk and has PHY tuning support, reject DDR operations that use 2-byte
+> addressing.
+>
+> [0] https://www.ti.com/lit/er/sprz544c/sprz544c.pdf
+>
+> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+> ---
+>  drivers/spi/spi-cadence-quadspi.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-=
+quadspi.c
+> index 508bc5bc4ab5..72208d376305 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+> @@ -49,6 +49,7 @@ static_assert(CQSPI_MAX_CHIPSELECT <=3D SPI_DEVICE_CS_C=
+NT_MAX);
+>  #define CQSPI_DISABLE_RUNTIME_PM	BIT(10)
+>  #define CQSPI_NO_INDIRECT_MODE		BIT(11)
+>  #define CQSPI_HAS_WR_PROTECT		BIT(12)
+> +#define CQSPI_NO_2BYTE_ADDR_PHY_DDR	BIT(13)
+>=20=20
+>  /* Capabilities */
+>  #define CQSPI_SUPPORTS_OCTAL		BIT(0)
+> @@ -1627,6 +1628,18 @@ static bool cqspi_supports_mem_op(struct spi_mem *=
+mem,
+>  		if (op->data.nbytes && op->data.buswidth !=3D 8)
+>  			return false;
+>=20=20
+> +		/*
+> +		 * Erratum i2383: In PHY DDR mode, 2-byte addressing causes an
+> +		 * internal state machine to mis-compare the transmitted
+> +		 * address byte count against 1 instead of 2, locking up the
+> +		 * address phase. Reject such ops on controllers that need it.
+> +		 */
+> +		if (cqspi->ddata &&
+> +		    (cqspi->ddata->quirks & CQSPI_NO_2BYTE_ADDR_PHY_DDR)) {
+> +			if (op->addr.nbytes =3D=3D 2 && cqspi->ddata->execute_tuning)
+> +				return false;
+> +		}
 
-power: supply: Add charger driver for Asus Transformers
+I don't think this is a valid approach. What we want is to prevent
+tuning in octal DTR mode with 2 bytes addressing, instead of preventing
+reads/writes in octal DTR modes after tuning. Have you tried on an AM62A LP
+SK? I bet probe fails..
 
-This commit adds a new driver to support charger detection capabilities
-provided by the embedded controller on ASUS Transformer devices. It
-reports properties like USB type, charging behaviour, and online status.
+The quirk should be handled at the beginning of the tuning procedure, so
+we skip tuning entirely in this case.
 
-> diff --git a/drivers/power/supply/asus-transformer-ec-charger.c b/drivers=
-/power/supply/asus-transformer-ec-charger.c
-> new file mode 100644
-> index 0000000000000..c7a6bd2ba533f
-> --- /dev/null
-> +++ b/drivers/power/supply/asus-transformer-ec-charger.c
-[ ... ]
-> +static int asus_ec_charger_notify(struct notifier_block *nb,
-> +				  unsigned long action, void *data)
-> +{
-> +	struct asus_ec_charger_data *priv =3D
-> +		container_of(nb, struct asus_ec_charger_data, nb);
-> +
-> +	switch (action) {
-> +	case ASUSEC_SMI_ACTION(POWER_NOTIFY):
-> +	case ASUSEC_SMI_ACTION(ADAPTER_EVENT):
-
-[Severity: Medium]
-Will this strict equality check cause charger events to be dropped if multi=
-ple
-interrupt flags are set simultaneously?
-
-The action parameter appears to be constructed by the parent MFD driver by
-taking the raw ASUSEC_IRQ_STATUS byte and OR'ing it with the SMI code shift=
-ed
-by 8 bits. Since ASUSEC_IRQ_STATUS is a bitmask, if an SMI event occurs
-concurrently with another event (such as a keyboard press), the action bitm=
-ask
-will contain additional bits.
-
-Could this strict switch check be replaced by checking the ASUSEC_SMI_MASK =
-with
-a bitwise AND operation, and then evaluating the SMI code separately?
-
-> +		power_supply_changed(priv->psy);
-> +		break;
-> +	}
-> +
-> +	return NOTIFY_DONE;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260528053203.9339=
--1-clamor95@gmail.com?part=3D7
+Thanks,
+Miqu=C3=A8l
 
