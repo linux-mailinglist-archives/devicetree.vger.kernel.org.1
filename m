@@ -1,218 +1,156 @@
-Return-Path: <devicetree+bounces-303667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303668-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LW3IlnrF2osVQgAu9opvQ
-	(envelope-from <devicetree+bounces-303667-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:14:33 +0200
+	id +IRhF9zsF2p8VwgAu9opvQ
+	(envelope-from <devicetree+bounces-303668-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:21:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158435ED911
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:14:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6507A5ED983
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:20:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CDDA43003635
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 07:14:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7399F3014846
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 07:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2376340A46;
-	Thu, 28 May 2026 07:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A92F313545;
+	Thu, 28 May 2026 07:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kA4H4NBb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHTrvb1X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D71344D85;
-	Thu, 28 May 2026 07:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F222434389C
+	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 07:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779952469; cv=none; b=PBH6ssZ3d+AttHnffAYVYcHUF0XfIg6eYJUcNjPJC3BFjCNCps8NqMj13bKBEK6K3imzlQHlaACWmxags7ZJn1f05tW2ZfaNB5Aji05zyjNB+yabjXXRSQA2FD2JcWBDhH2w2wLq1GpvznRw5fy5nVShBbvvDz4FE77LwE7bWHw=
+	t=1779952854; cv=none; b=GudDJiCGvfV2UHtBY3TsOnkjPznqhxP42TA6Jj6QWUgJ1LV3AFe+f/YZZX2vXdp5Hbx2jiydqH4f8YXTvS+0SCCsqJKTYp5rEm43rAb9jL1J3nxdBOv54fpNtiWcFFKv9dVFXFGe77WVg9L8QYPYKaXlO5SEKYS3JKTczJJv9Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779952469; c=relaxed/simple;
-	bh=x9EyM01FOM43mnA4zeMmNv5Itikmz+R93LlCpHlkeWU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pc9WBgjsP1Ubb7IgpWdhtd4SihbVMcK2pMqlQkj67l97Jzo2xAAOdP9gcUJLuUuO72QCLOKiKWNrRB0aNWN2vzZLCuAEtyXVoRK6nj5DiWwBhRcFkMXVaCJKlhzPgH4ONY2Nb3LGjGGQ1Zp8o4S/DGeEyvdSkoNbh7V1QyFicsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kA4H4NBb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB9C91F00A3A;
-	Thu, 28 May 2026 07:14:27 +0000 (UTC)
+	s=arc-20240116; t=1779952854; c=relaxed/simple;
+	bh=Y+ExnUlSkXN24ar8KBQ7gkDunlMOYhBKNO02zsYXkkc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=elkXRy/JKEvMyyei82Y8MbtvwewafVfc0VL/qQnRAH5TAKHBLNOnMWulwE8ZvyeT9Uo77QTdHhi7k6DqrEXWzMk79L4CJFf7pWQm9O+4uGs/eNOC417iAi5yzlmsWBsursJWZY3By8JXUZRVmCLPx+sLn/50pM2cRgs+TdeMAt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHTrvb1X; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BC741F00A3A;
+	Thu, 28 May 2026 07:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779952468;
-	bh=xKHvp74XNwJ5bs6EzdPM6zlVX4pqjdmFr3KZoKriYbY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kA4H4NBb+COq2/5SwWskSQAUtpSaKavwkDMXoyIBt+3j8A71x6K26diCI/slLSG4m
-	 DjN8+vwGgPnfcuEyoFkl6N683kduvycOv0EECy39J7t/vFSs2dcLqaCochjQpb9oj3
-	 HmkscNFOW4l/g7ZinzHh4cWukVIfQTygCShOxswNb3UBdNjtQC64zZZj52E14X9kkG
-	 89wVXetMWM5a8clf1JWIXOpgq21gMm6hJQdcFi/vEPfJZaG16wUFUCSC18syCMqohc
-	 lHeuViR9qnr1ljmMnRqmbIvmxlHF6eQs4uUs1Scldt5BU04GT1NaJ9tdSZ4TvEh6My
-	 iQpRWsnx1ZQGg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/1] arm64: dts: s32g: add PWM support for s32g2 and
- s32g3
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Khristine Andreea Barbulescu" <khristineandreea.barbulescu@oss.nxp.com>
-Cc: devicetree@vger.kernel.org, Frank.Li@kernel.org, conor+dt@kernel.org, imx@lists.linux.dev, robh@kernel.org
-In-Reply-To: <20260528065228.1300779-2-khristineandreea.barbulescu@oss.nxp.com>
-References: <20260528065228.1300779-2-khristineandreea.barbulescu@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 28 May 2026 07:14:26 +0000
-Message-Id: <20260528071427.BB9C91F00A3A@smtp.kernel.org>
+	s=k20260515; t=1779952853;
+	bh=V1apAwBbXTnA4kcV8SpHiRXdKSXK4QInrTqebc4iAE8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=DHTrvb1XlTlooNIws9kEvYTCwu1OCg/zGUmhIGSLQj/jecDQ9THOt4ZSyojnBMzFy
+	 6QWSWHbIXciIAKg3gYwG6AFu0rgkZAVawpx+QPdGnARl1Bm9yU9iHjK/co8AO2r3qx
+	 q6xxUhF0YNGmdQiTxC18o1q7lGkAePFNF48NzmDyMKEfPOQ8RVVVJM4ioV5ldLhMAt
+	 ZRUHZ+0sFKtsMO5CMUGcwfrGZxuGFc50r4y4SQaXZdMOhGdFgr7Ul79k7/SGyDfbo3
+	 90JczkDkEG0R6ez3eeb+nmvY5LSPsdsmmQVLS8gjlzSAteeEXomn0AmwUNMb70s0t/
+	 yXkNjUjOirBLA==
+Message-ID: <03bc8ec6-714f-4dd0-b873-4994d547dcdd@kernel.org>
+Date: Thu, 28 May 2026 09:20:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCHv2 1/2] dt-bindings: i3c: dw: add resets and reset-names
+To: Dinh Nguyen <dinguyen@kernel.org>, linux-i3c@lists.infradead.org
+Cc: devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, adrian.ho.yin.ng@altera.com,
+ alexandre.belloni@bootlin.com, Frank.Li@nxp.com
+References: <20260527174221.79259-1-dinguyen@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260527174221.79259-1-dinguyen@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303667-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[401f4000:email,sashiko.dev:url,401ec000:email,nxp.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303668-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 158435ED911
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 6507A5ED983
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Low] Pinctrl node and subnode names contain underscores (`_`) instead of=
- hyphens (`-`).
-- [Low] The overriding board-level nodes `&pwm0` and `&pwm1` are appended a=
-t the end of the file rather than being sorted alphabetically.
-- [Low] Inconsistent and misaligned indentation for multi-line properties.
---
+On 27/05/2026 19:42, Dinh Nguyen wrote:
+> The DW I3C driver is already getting the "core_rst" reset name, but it
+> has not been documented.
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+> v2: Added this patch
+> ---
+>  .../devicetree/bindings/i3c/snps,dw-i3c-master.yaml       | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-commit 93bb27d5fd3b95357925ced6b98931cf0038033a
-Author: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.c=
-om>
+This was already sent by Jisheng, I believe.
 
-arm64: dts: s32g: add PWM support for s32g2 and s32g3
-
-This commit adds PWM0 and PWM1 support for the S32G2 and S32G3 SoCs.
-
-> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/d=
-ts/freescale/s32g3.dtsi
-> index e314f3c7d61d0..408bf0b407346 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-[ ... ]
-> @@ -617,6 +617,20 @@ i2c2: i2c@401ec000 {
->  			status =3D "disabled";
->  		};
-> =20
-> +		pwm0: pwm@401f4000 {
-> +			compatible =3D "nxp,s32g3-ftm-pwm",
-> +					 "nxp,s32g2-ftm-pwm";
-
-[Severity: Low]
-This isn't a bug, but could the indentation of the continuation string be
-aligned with spaces instead of tabs? The excessive tabs misalign the second
-string relative to the opening quote of the first value. The same formatting
-question applies to the clock-names property below, as well as the pwm1
-additions.
-
-> +			reg =3D <0x401f4000 0x1000>;
-> +			#pwm-cells =3D <3>;
-> +			clocks =3D <&clks 5>,
-> +				 <&clks 6>,
-> +				 <&clks 5>,
-> +				 <&clks 5>;
-> +			clock-names =3D "ftm_sys", "ftm_ext",
-> +					  "ftm_fix", "ftm_cnt_clk_en";
-> +			status =3D "disabled";
-> +		};
-> +
-[ ... ]
-> diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi b/arch/arm64=
-/boot/dts/freescale/s32gxxxa-evb.dtsi
-> index 803ff45310771..844d2c4fabf76 100644
-> --- a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-[ ... ]
-> @@ -245,6 +245,70 @@ dspi5-grp4 {
->  			bias-pull-up;
->  		};
->  	};
-> +
-> +	ftm0_pins: ftm0_pins {
-> +		ftm0_grp0 {
-> +			pinmux =3D <0x2912>;
-> +		};
-
-[Severity: Low]
-This isn't a bug, but should these pinctrl node and subnode names use hyphe=
-ns
-instead of underscores?
-
-The Device Tree specification and dts-coding-style.rst indicate that node n=
-ames
-should use hyphens (for example, ftm0-pins and ftm0-grp0) rather than
-underscores. This deviation from the existing file conventions might also
-trigger node_name_chars_strict warnings from dtc.
-
-> +
-> +		ftm0_grp1 {
-> +			pinmux =3D <0x122>,
-> +				 <0xb42>;
-> +			output-enable;
-> +			input-enable;
-> +		};
-[ ... ]
-> @@ -304,3 +368,15 @@ &spi5 {
->  	pinctrl-names =3D "default";
->  	status =3D "okay";
->  };
-> +
-> +&pwm0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&ftm0_pins>;
-> +	status =3D "okay";
-> +};
-> +
-> +&pwm1 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&ftm1_pins>;
-> +	status =3D "okay";
-> +};
-
-[Severity: Low]
-This isn't a bug, but would it be better to sort these overriding nodes
-alphabetically?
-
-The official devicetree coding style notes that overriding nodes at the boa=
-rd
-level should be sorted alphabetically. Sorting them correctly would place t=
-he
-&pwm0 and &pwm1 nodes before &spi5 instead of appending them at the end of =
-the
-file.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260528065228.1300=
-779-2-khristineandreea.barbulescu@oss.nxp.com?part=3D1
+Best regards,
+Krzysztof
 
