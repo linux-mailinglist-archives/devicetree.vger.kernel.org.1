@@ -1,192 +1,169 @@
-Return-Path: <devicetree+bounces-303870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iE/ACE9KGGpoiggAu9opvQ
-	(envelope-from <devicetree+bounces-303870-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 15:59:43 +0200
+	id 2H/lOqVMGGomiwgAu9opvQ
+	(envelope-from <devicetree+bounces-303878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:09:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DA15F33EA
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 15:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96CF35F3685
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 183423046211
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 13:59:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E16323042E75
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 14:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC89A26ED33;
-	Thu, 28 May 2026 13:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05402317171;
+	Thu, 28 May 2026 14:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DSTgD5sm"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="gm+D5/fm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6021E285CB4
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 13:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592132D97A6;
+	Thu, 28 May 2026 14:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779976750; cv=none; b=jdyx3YiPEPUh5d3yyU/hMM5NFWNSsdDfbujQOvlv1tdJp+NUobm2G4j64qCIUKcIxr0FGmY05HOKtJz3kbX9M8irSC0QrVV4BLBWkCPG9kETOKh4M6H8yF5X6E5BN9Fai/kbeC9fU7/Wtq0ehaYqTxTrMAguATMDbLyMlDaVR98=
+	t=1779977271; cv=none; b=qVFk0p65/w7gsb3jtR88XAOfxd+G30MFqYHPZ2XbrvO2QoSkERMVHNS05wByDb0M7BdLG/4OEf9nWBxKLR6sin/oB1wi+W0PZt5l7qxSpE59C7bZvQ+VNh7O150b7AB/G1WjnPZaqeeGwGJ3V53OfPDTLRn4g/6SFxq5auIO+Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779976750; c=relaxed/simple;
-	bh=lNm08rhB0P37zDKY3MHl8O/5ILyJpI3S/X8/gA7eptY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=uP/VIZMfS+TPw2pbNp054py0x0mn0yXUdhyDeRoB8kF/100dNX1Cr7avAa5RsdJap/FJ5+P7zGw8+SI8xqspFymqVPtNurRRTJBa5OK0YHmTfoUXc/0qayMvZ4Fme3n5gxLg2IWddKrefLkb4GQHAApE3/2ptHVywTsPy2A7Khs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DSTgD5sm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF7BA1F000E9;
-	Thu, 28 May 2026 13:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779976749;
-	bh=pprix7YZvjrDODTkNGexqYZmlOFIi9eG7FSx12U8XaA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=DSTgD5smVnAL70srcKIhEjPiTxcT1NzT8S5pMh+FWtcF4vucJcefPpXhmGdK46AE7
-	 dg8y9qkYhsLbZsjzrwRgMRqaL3qUtguawC4+LT22X2WTTwzIf1yxhBeCyAa7nLcyi/
-	 1ge+BR+A3So+x2jrVktJQebw8arx4me50LHh4M9cdOE6hFLQ805UlMWo81nsDrP1ET
-	 6/6Zz5dXyQcF51iEHCjDTlpMjEiHC48ZmXxQYgF+W2P1bd/3PWCe0OzbSUofxcHVpk
-	 TOxBC+U/F32xQL5E8JpxPWWq+0mxrrzqaZ7Yi67wN5eBg40B31MArWKaV8G6vkqZY3
-	 yIO1E8WnId+7g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62l: Add HDMI & DSI support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Swamil Jain" <s-jain1@ti.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260528133529.3476499-1-s-jain1@ti.com>
-References: <20260528133529.3476499-1-s-jain1@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 28 May 2026 13:59:08 +0000
-Message-Id: <20260528135908.DF7BA1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1779977271; c=relaxed/simple;
+	bh=0mr5BRvGkaoTeHacl2dJbw6JKOVgJOD8fCl+aCOWO/4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QpKY8cDOLdd65h1DuToVZKTDPbT/IGyndO27SwtMgFtrus06XB/9KK1bofmUN53oqMYDong0H8IfYNp2dr7ytyjnpEkNsKUb6Txyq2d9x601p9Pi+DPe4mhysK4QqxPAqq7NHP2h2ZHuu8CfVswUtAJP0j2uHV7ItKmSvGSDox8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=gm+D5/fm; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3C1B94B2DDC;
+	Thu, 28 May 2026 16:00:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1779976851; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=ymS5IUpgg5ej3Ch5/r/hu+1fuAOsLqa5td+fBTL4yzY=;
+	b=gm+D5/fm59hqPG+SB7ucLNB0jAGQEJ/e6I+X5EdRllNgc13ZT1Tm573zDyDaOPCTpf6BSh
+	hwvr3/A08BBsf7XgrzeD3Lp0OcFChxT85GSRPAi+hBz2CTizMEl8eZwfBkRLtg2SG7/tLX
+	Rd6Q3IqaHhRoJ1oLM6wJ9BpDYKhJxnAFvFnJaz+1zfyoZm9x7LZx8aHPQeBbARXNcQcXyQ
+	h3D4oJQUG7LRPckrXw7WoDx12/eb1b2mb7uWv/waATGRJ3QeN6xiVk4wVnm2fCdVkTUyzl
+	EmFb3HyCxmgmEw7LhVUHQ8rC3gIjFMIjGw1ArOKGqE4JdvjZnI/6TreFUh8AOg==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-mips@vger.kernel.org
+Cc: conor+dt@kernel.org,
+	daniel.lezcano@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	naseefkm@gmail.com,
+	robh@kernel.org,
+	tglx@kernel.org,
+	grandmaster@al2klimov.de,
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH v6 0/5] clocksource/timer-econet-en751221: Support irq number per timer
+Date: Thu, 28 May 2026 14:00:41 +0000
+Message-Id: <20260528140046.2897674-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303870-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,al2klimov.de,cjdns.fr];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303878-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,0.0.0.0:email,0.0.0.23:email,ti.com:email,sashiko.dev:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,3b:email,lists.linux.dev:replyto,1.209.100.160:email]
-X-Rspamd-Queue-Id: B2DA15F33EA
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,cjdns.fr:mid,cjdns.fr:dkim]
+X-Rspamd-Queue-Id: 96CF35F3685
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] The `dpi_pins_default` pinctrl is incorrectly assigned to the ex=
-ternal `sii9022` I2C bridge node instead of the SoC's `dss` node.
-- [Low] The `dsi0` node is missing the required `ports` subnode, which will=
- cause a device tree schema validation failure.
---
+This timer appears on both the EcoNet EN751221 (34Kc) and on the
+EN751627 / EN7528 (1004Kc) SoCs. On the 34Kc the interrupt controller
+uses a percpu interrupt while on the others it uses an individual
+IRQ number for each CPU timer. Add support for EN751627 and EN7528.
+Add support for IRQ number for each CPU timer under the
+econet,en751627-timer compatible.
 
-commit 205ed087663eaf8418e9736e84ff4238caf076de
-Author: Devarsh Thakkar <devarsht@ti.com>
+Changes since v5:
+* Integrate patch fix refcount leak from:
+Link: https://lore.kernel.org/linux-mips/20260526184105.18962-3-grandmaster@al2klimov.de/
+* NULL econet_timer.membase after unmapping
+* NULL check dev->event_handler in case clockevents_config_and_register
+  failed to fully register.
+* v5: https://lore.kernel.org/linux-mips/20260516233943.49502-1-cjd@cjdns.fr/
 
-arm64: dts: ti: k3-am62l: Add HDMI & DSI support
+Changes from v4:
+* Fixed incorrect compatible in DT schema
+* Bracing in out_irq_free if statement
+* I did not move cpuhp_setup_state past the point of no return
+* v4: https://lore.kernel.org/linux-mips/20260516215720.4160831-1-cjd@cjdns.fr
 
-Adds DSS, DSI, DPHY, and HDMI bridge nodes to enable DPI-to-HDMI output on
-AM62L. The DSI functionality is added but kept disabled, as it shares a
-video port with DPI output.
+Changes from v3:
+* off-by-one in out_irq_free
+* Gracefully fail if too many address resources are provided in the DT
+* Allow fewer actual timers than num_possible_cpus, as long as they
+never start
+* v3: https://lore.kernel.org/linux-mips/20260516182648.3987792-1-cjd@cjdns.fr
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/=
-dts/ti/k3-am62l-main.dtsi
-> index 80615ca1e01a2..1d255c9138db9 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+v3 note:
 
-[ ... ]
+I decided to take this patchset in a slightly different direction from
+v2. There is a certain amount of initialization that once it has run,
+it cannot be reverted in case of error. The original driver init was a
+mixture of revertible and non-revertible code which made it too easy
+for code which is designed with best practices in mind to in fact
+introduce a bug. Therefore I start by making the init process more
+legible but without any business logic changes, then fix a race
+condition by keeping IRQ disabled until after cevt is setup, then
+finally add non-percpu IRQ support.
 
-> @@ -584,4 +584,51 @@ scmi_shmem: sram@0 {
-> +	dsi0: dsi@30500000 {
-> +		compatible =3D "ti,j721e-dsi";
-> +		reg =3D <0x0 0x30500000 0x0 0x100000>, <0x0 0x30270000 0x0 0x100>;
-> +		clocks =3D <&scmi_clk 155>, <&scmi_clk 158>;
-> +		clock-names =3D "dsi_p_clk", "dsi_sys_clk";
-> +		power-domains =3D <&scmi_pds 38>;
-> +		interrupt-parent =3D <&gic500>;
-> +		interrupts =3D <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +		phys =3D <&dphy_tx0>;
-> +		phy-names =3D "dphy";
-> +		status =3D "disabled";
-> +	};
+* v2: https://lore.kernel.org/linux-mips/20260514000601.3430262-1-cjd@cjdns.fr
 
-[Severity: Low]
-Does this node need a ports subnode to comply with the device tree schema?
+Changes from v1:
+* Split changes over 3 refactoring patches + main patch
+* Remove driver discussion from dt commit message
+* v1: https://lore.kernel.org/linux-mips/20260416175101.958073-1-cjd@cjdns.fr/
 
-The ti,j721e-dsi compatible string binds to the Cadence DSI schema which
-strictly requires the ports property and its port@1 subnode for the DPI
-input. Even though status is disabled, omitting the required properties in
-the skeleton dtsi might cause dtbs_check to report schema validation errors
-during compilation.
+Alexander A. Klimov (1):
+  clocksource/timer-econet-en751221: fix refcount leak
 
->  };
+Caleb James DeLisle (4):
+  dt-bindings: timer: econet: Update EN751627 for multi-IRQ
+  clocksource/timer-econet-en751221: Init teardown on error if possible
+  clocksource/timer-econet-en751221: Disable IRQ until cevt registered
+  clocksource/timer-econet-en751221: Support EN751627 without percpu IRQ
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/d=
-ts/ti/k3-am62l3-evm.dts
-> index a1af4571a815d..9b04fa6d2cba6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+ .../bindings/timer/econet,en751221-timer.yaml |  31 +--
+ drivers/clocksource/timer-econet-en751221.c   | 181 ++++++++++++++----
+ 2 files changed, 159 insertions(+), 53 deletions(-)
 
-[ ... ]
 
-> @@ -192,6 +204,38 @@ exp2: gpio@23 {
->  		bootph-all;
->  	};
-> =20
-> +	sii9022: bridge-hdmi@3b {
-> +		compatible =3D "sil,sii9022";
-> +		reg =3D <0x3b>;
-> +		interrupt-parent =3D <&exp1>;
-> +		interrupts =3D <20 IRQ_TYPE_EDGE_FALLING>;
-> +		#sound-dai-cells =3D <0>;
-> +		sil,i2s-data-lanes =3D < 0 >;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&dpi_pins_default>;
+base-commit: c8d32a0389fb97873285327ef4543a1431e54733
+-- 
+2.39.5
 
-[Severity: Medium]
-Should these pinctrl properties be placed in the dss node instead of here?
-
-The dpi_pins_default node configures VOUT0 pins which are driven by the
-AM62L internal Display Subsystem (DSS). Placing this pinmux in the external
-sii9022 bridge node seems to create a dependency where the SoC's video
-output pins are only multiplexed when the external I2C device driver loads.
-
-If the bridge driver fails to probe or is unbound, the pins might remain
-unconfigured or floating, even if the DSS attempts to use them.
-
-> +		bootph-all;
-> +
-> +		ports {
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260528133529.3476=
-499-1-s-jain1@ti.com?part=3D1
 
