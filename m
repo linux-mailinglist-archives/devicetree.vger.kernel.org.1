@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-303966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303968-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOHjFQuSGGoMlQgAu9opvQ
-	(envelope-from <devicetree+bounces-303966-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 21:05:47 +0200
+	id MEu9NVeSGGoMlQgAu9opvQ
+	(envelope-from <devicetree+bounces-303968-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 21:07:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5E05F6DA4
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 21:05:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 511235F6E0E
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 21:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B166301FD4D
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:00:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E0013311D7D1
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F9B25A640;
-	Thu, 28 May 2026 19:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50BC733B6C6;
+	Thu, 28 May 2026 19:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="euMM7OOG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OstW3Qcr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF34833BBD0
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 19:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C5E3403EA
+	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 19:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779994823; cv=none; b=SpNPvR/JU4m7z9kKoA7jLTIBg8avKH+R5VNOGne+5wFQCeCfxXKbQ3gWgBX9AJxT4uQ0fuVFbylaWjOfSlRjT2I9p/Ojs1aje5jloY3wjOIXwkLSzKIQMNdDBEqhtliQqOr/Di96MaSPxBTRL/c2ValxdyDW+G4RQVMg8fbZngQ=
+	t=1779994849; cv=none; b=Hd3iPUEkMdheDdI5GA67r3YbbRgcI3Lp/5jYecB3uS+TFN0ed+h77Yj9n4uNq3b5kqXBee6ZeiDaTyyWBnUox009I1r6S8oPyL7tIZ9dxXJV0fRoFaMAVHHpcKBXd8bxuhDjpc7RBL6CwKsM7GnfZlIeSy+0PDyhY76/7qID/ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779994823; c=relaxed/simple;
-	bh=yLGLTQApgZA15AXCEVF0mQJP/6iyVeYZod8UKSi1UK4=;
+	s=arc-20240116; t=1779994849; c=relaxed/simple;
+	bh=G3QQpR8rFP9MtjIXSfetY6TLu8NVajep3IQklei1i4s=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uPm7hx1uPUa2rxuGo/BIWuUcdVmnELkMX2EhwjUS8unbfshS053Y5YhvqRr9TFZB8UACKXWrvYa/SH2RdWcJP/tLn04HvAuuGvleneXvwCn5LWYK8Eaia3udmasd/zgL5IFMQNZn9IEXyx14DfFCsaaP08Enh7R1vS3BDCp3vKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=euMM7OOG; arc=none smtp.client-ip=209.85.221.44
+	 MIME-Version; b=d5VoojOOR6BCSwUdl5PK2Vr6g9/AJ1DAbci5LvvlifTEuymPPnSvYo/5ktvV/6vgOgUUSqHei5QSh25JKHfuIHN85o5Zh1iCDLteG+3YdcxE0RZdta35/RBTmLdI2AWep0heyAlGkfALZzcGfV0+tAm7aEtYgIBIzF3AXe8Zmc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OstW3Qcr; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-44a74032ff8so9804845f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2026 12:00:19 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-43fe608cb92so8089924f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2026 12:00:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779994818; x=1780599618; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1779994820; x=1780599620; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kXrbVY3dHR05UWwisMVSYjDPIQ0+JKmIGqj24ogcC/w=;
-        b=euMM7OOGLUcsxvP0PSFaD1tMmNfo+SGkHxj58A3Hp7NUvr4XOBoUrn5gaTAihBS+K1
-         mkbEDwgA/bfpMEephn3uBGKh/B3+hNM/h1bRU6ZOnmkS8AtPW6ggPcKcT99Dk8m7VdL2
-         MGAReO0PwQRxtnZd99xu3IVo57gyM14huP/QhD1AMpgVNhjzbQSKi7MvU23/luldaFDx
-         XR4jNVgrWbiiD3TJKKYG1191hdeKPvpioqcycsdyOxPNuWvS4tV3dDMInvSD5SkB4p9q
-         sI1ApeXFtppc/TfRmTXCIBvLSZhIcCh0Q2693ahWLNyDjzmrGtFMxq3Pby4YovDiBitt
-         vvxA==
+        bh=HMXXtYGcE9eK212AumCdNI+6/leOGhk7hdPMWy8VAbo=;
+        b=OstW3QcrQtCVFZc2uaEns05VF3FuZ8UMYncjTgWVKxrgQbIawGITqdihbhBySIVBG8
+         GmP3uVljiEoaaDBXKcrnAiBUS+ePi/ec9gBVASI/NlcTUCN6wBcQlDgssNKCgqBoQq5Z
+         L82ErrR1960QihtI8GvTkKzML5joVBtTsJ+SVciOfCNB5ZF84DF07LeQJBYLuZMFpSuW
+         Orow+l5fJbNeS46EPL0t+pgIUZFpXiyTWHpG+pOZmGQ3drzST02V5iV4N850MQLKEqPP
+         D9eK+RWsWovSMjbIFGby5U12MFXGgTdTkPQ44a9ZkCgVHq3oNh6pTGoolbGCYq1Iq+b6
+         z9ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779994818; x=1780599618;
+        d=1e100.net; s=20251104; t=1779994820; x=1780599620;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=kXrbVY3dHR05UWwisMVSYjDPIQ0+JKmIGqj24ogcC/w=;
-        b=qMaVt6SLEaRolpQnVIBYLp0Fg1JSSCxoWbvMAXY3rdyzVthpNEF6rahrb6a8u6x0D4
-         Iw0p71kyr1bdHdZvrGlr0uOL1+rhpJHSi7ZUcjrH1f8CVgbHC/1jiTicn+6yokLiRMWs
-         f8tvsoawlx7fr+wNQZvU0+4iH/WA8aY18Bz7B+jbzHQI6fdr/DAeRoN7SE7mfAiDfd0c
-         Ohw12IpDby8MpaJYbTxI4Lltf5x9j0gR8pKPlBC3vIlo1aNmclOD6onTyVmSzvmO0ZTg
-         BV8UwG4bh8UjCpVgQi6nWpFYIcofa4GRAkPITNIY6la4bKlMWg3zmUp5NqrHMQsm5m5I
-         dNRw==
-X-Forwarded-Encrypted: i=1; AFNElJ+IgUnKSb32LQjVkCFyNxKaSinyO+CwWSCyGpspkP7zQuYZTbGwVaR5VcEHvAe2pWGd1i1GLnDH15ZY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8WrjHBo0H8w2aJYyl3qjhqLBnLQ8cKX2WNqG4AmNdxGdt8bJn
-	HgquVGKNSq76dLXdaSIJJm7H5J4c/Ki6BThoCNLaBW1h5jfm0CNPglAE
-X-Gm-Gg: Acq92OEmGo4B74uZDm+yeUzsoXz2rW2B8gA1OtVhHSMPXw6+dzMPY/UiDoM46p4TwqR
-	WwIi33RbWsFrU9u68/GbLO70Mlqk+ODNAzPFBWsF3fyzF1H11REdLA7in6NuSwcxVBAmNOZL1hK
-	6yaYxs2J5w1sjQnaf90Ff4FaRLbgo2/Kr8BC/9HmnLBIWg2f5DIfrhlsC3sI7BMOW56hhz+zwTu
-	fF8QDX8wtTI6AoeHRgyhmlMZ17Nes/X6MFsM9HqOjSCFip8zNB6AKfUd2FS6pa7JuLP+gjt3WWt
-	2pN3yZCrIjudlTM0wBGD9n5yU/KR/Btr0FSp1qLow27eUoWjOxYTy8XYeW9/4rQqSxClxClDzjY
-	manbqWeBziv2yCSzBtZQI7zk4fWDhZ8eBCyWfCWVfVhC6WH/R5E+69NY3beIubzk85rsjf1HXED
-	F3TVvfxHwCgfZd0wsgOk/IrwNCGG7SgZlPLjL1cKRkK+ZVyKfJEiXJaJOcGvqYAyRvayfCe5Q+R
-	J0awLc=
-X-Received: by 2002:adf:fa4f:0:b0:449:9aee:4575 with SMTP id ffacd0b85a97d-45ef05f6b0amr411382f8f.30.1779994817824;
-        Thu, 28 May 2026 12:00:17 -0700 (PDT)
+        bh=HMXXtYGcE9eK212AumCdNI+6/leOGhk7hdPMWy8VAbo=;
+        b=A7HMGIYZAPsya4mT6IKkJWFPUtUjYH5KA0Q29TxCF//ttfilAnWKwkMjdj63USZ0JO
+         4OqUniJQrvra2GcDHgWr/72RgPNwEsW6qGrhYSfUDtr7KvPuNXClj2+0i+beszIYynqq
+         eH6bkPwuO66WucMMu2WMM6loc/mluAVuGGzQID0+MGX/8v6ejOpc+qHdRZzO4NcZpoUk
+         DNyc11efK4xq84jnDclCV9opYntU6NmK53PbKfwIBAmuvX8ophUs1ib6lFFMokaIe1zt
+         3pId9WO8m59ffyZXhbyMwCEBlAg1okGAFp+dMpphKBOIL52DYLG9tEN9eOLgkE4IfENT
+         A+xw==
+X-Forwarded-Encrypted: i=1; AFNElJ9ClH47W9AuRUAIu4XErGm5Oc81K4K/8uYdiSjsWWgU4DAC9QRrHdV7koSLmW5bASfdkTT0vk5RLz57@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPO+wQSfOtQuDysl3pbYLt5XEgug03danSb24+LodfsFP0FQag
+	sD541yaqGAf0R2Lp/WdBqdboBX17Zd/zYntM/egjvkxbV5RgmblUThkn
+X-Gm-Gg: Acq92OFL/eBwjBUe4AokSeptlxfm5pGdzmD59KOWDsPLRo73fxlu4r1/f7RRFBFfm2K
+	gOOGRr9dY76EhFCPKm25QMkarzpFCC3uCKreXbKWbzDTT1nSFnNq1rgfFXUf87VyhNsMb+U23vK
+	dq2a711Ut0iYt5EwpWgol14pTKkSha8t7EWtgZI1DBQqTvh3f0xgTz+SI9nQmm1TrRYz3dKpqwK
+	ne/XZg0Y9JCuDfYOYmHF0hA0RyT7uKD5fGg4HxCxWy+Riv+EG0B/hyKlzPJDY94jcLOEwc0d4Us
+	cj85HRO4IPfEf3dVs13su8ItQVCZSrHVHu81jzlxih9RO2lBKXhraJp8wV+qyBO95VmCsigb7AK
+	WT+uZwCjNxum92sNDBOxzI1e4pLFeIg960Kn+IXp5YJXfkzKaZBQpU4Jj2f4Sw9mO4eVwHcdzvq
+	DAY4Ae9FiiOTVUlV2nVlPVnuWm0OTkR/lT4quWSdU5efIsihJ3pW/MV/9F0xh+iSP/c6eWihbuC
+	D5ZO1A=
+X-Received: by 2002:a05:6000:1006:b0:45d:817c:b8b2 with SMTP id ffacd0b85a97d-45ef05f84f1mr517631f8f.30.1779994820053;
+        Thu, 28 May 2026 12:00:20 -0700 (PDT)
 Received: from Ansuel-XPS24 (host-79-42-252-49.retail.telecomitalia.it. [79.42.252.49])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-45ee2a12a69sm8625408f8f.16.2026.05.28.12.00.16
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-45ee2a12a69sm8625408f8f.16.2026.05.28.12.00.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2026 12:00:17 -0700 (PDT)
+        Thu, 28 May 2026 12:00:18 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -90,9 +90,9 @@ To: Michael Turquette <mturquette@baylibre.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v5 1/3] dt-bindings: clock: airoha: Document support for AN7583 clock
-Date: Thu, 28 May 2026 20:59:54 +0200
-Message-ID: <20260528190000.9164-2-ansuelsmth@gmail.com>
+Subject: [PATCH v5 2/3] clk: en7523: generalize register clocks function
+Date: Thu, 28 May 2026 20:59:55 +0200
+Message-ID: <20260528190000.9164-3-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260528190000.9164-1-ansuelsmth@gmail.com>
 References: <20260528190000.9164-1-ansuelsmth@gmail.com>
@@ -110,14 +110,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-303966-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-303968-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
@@ -130,147 +130,60 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: ED5E05F6DA4
+X-Rspamd-Queue-Id: 511235F6E0E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document support for Airoha AN7583 clock. This is based on the EN7523
-clock schema with the new requirement of the "airoha,chip-scu".
+Airoha AN7583 SoC will use the same logic used by Airoha EN7581 SoC to
+register clocks. Generalize it to register clocks defined in soc_data.
 
-Add additional binding for additional clock and reset lines.
+Add the clocks definition in EN7581 SoC to support this new implementation.
 
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- .../bindings/clock/airoha,en7523-scu.yaml     | 18 ++++++
- include/dt-bindings/clock/en7523-clk.h        |  3 +
- .../dt-bindings/reset/airoha,an7583-reset.h   | 62 +++++++++++++++++++
- 3 files changed, 83 insertions(+)
- create mode 100644 include/dt-bindings/reset/airoha,an7583-reset.h
+ drivers/clk/clk-en7523.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-index eb24a5687639..6c3c88798515 100644
---- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-+++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-@@ -30,6 +30,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - airoha,an7583-scu
-           - airoha,en7523-scu
-           - airoha,en7581-scu
-           - econet,en751221-scu
-@@ -50,12 +51,29 @@ properties:
-     description: ID of the controller reset line
-     const: 1
+diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+index 1ab0e2eca5d3..087ff4568124 100644
+--- a/drivers/clk/clk-en7523.c
++++ b/drivers/clk/clk-en7523.c
+@@ -115,6 +115,7 @@ struct en_rst_data {
  
-+  airoha,chip-scu:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to Chip SCU
-+
- required:
-   - compatible
-   - reg
-   - '#clock-cells'
+ struct en_clk_soc_data {
+ 	u32 num_clocks;
++	const struct en_clk_desc *base_clks;
+ 	const struct clk_ops pcie_ops;
+ 	int (*hw_init)(struct platform_device *pdev,
+ 		       struct clk_hw_onecell_data *clk_data);
+@@ -711,12 +712,15 @@ static int en7523_clk_hw_init(struct platform_device *pdev,
+ static void en7581_register_clocks(struct device *dev, struct clk_hw_onecell_data *clk_data,
+ 				   struct regmap *map, void __iomem *base)
+ {
++	const struct en_clk_soc_data *soc_data;
+ 	struct clk_hw *hw;
+ 	u32 rate;
+ 	int i;
  
- allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          const: airoha,an7583-scu
+-	for (i = 0; i < ARRAY_SIZE(en7581_base_clks); i++) {
+-		const struct en_clk_desc *desc = &en7581_base_clks[i];
++	soc_data = device_get_match_data(dev);
 +
-+    then:
-+      required:
-+        - airoha,chip-scu
-+
-+    else:
-+      properties:
-+        airoha,chip-scu: false
-+
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings/clock/en7523-clk.h
-index edfa64045f52..0fbbcb7b1b25 100644
---- a/include/dt-bindings/clock/en7523-clk.h
-+++ b/include/dt-bindings/clock/en7523-clk.h
-@@ -14,4 +14,7 @@
++	for (i = 0; i < soc_data->num_clocks - 1; i++) {
++		const struct en_clk_desc *desc = &soc_data->base_clks[i];
+ 		u32 val, reg = desc->div_reg ? desc->div_reg : desc->base_reg;
+ 		int err;
  
- #define EN7581_CLK_EMMC		8
+@@ -991,6 +995,7 @@ static const struct en_clk_soc_data en7523_data = {
+ };
  
-+#define AN7583_CLK_MDIO0	9
-+#define AN7583_CLK_MDIO1	10
-+
- #endif /* _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_ */
-diff --git a/include/dt-bindings/reset/airoha,an7583-reset.h b/include/dt-bindings/reset/airoha,an7583-reset.h
-new file mode 100644
-index 000000000000..7ff07986f8ba
---- /dev/null
-+++ b/include/dt-bindings/reset/airoha,an7583-reset.h
-@@ -0,0 +1,62 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2024 AIROHA Inc
-+ * Author: Christian Marangi <ansuelsmth@gmail.com>
-+ */
-+
-+#ifndef __DT_BINDINGS_RESET_CONTROLLER_AIROHA_AN7583_H_
-+#define __DT_BINDINGS_RESET_CONTROLLER_AIROHA_AN7583_H_
-+
-+/* RST_CTRL2 */
-+#define AN7583_XPON_PHY_RST		 0
-+#define AN7583_GPON_OLT_RST		 1
-+#define AN7583_CPU_TIMER2_RST		 2
-+#define AN7583_HSUART_RST		 3
-+#define AN7583_UART4_RST		 4
-+#define AN7583_UART5_RST		 5
-+#define AN7583_I2C2_RST			 6
-+#define AN7583_XSI_MAC_RST		 7
-+#define AN7583_XSI_PHY_RST		 8
-+#define AN7583_NPU_RST			 9
-+#define AN7583_TRNG_MSTART_RST		10
-+#define AN7583_DUAL_HSI0_RST		11
-+#define AN7583_DUAL_HSI1_RST		12
-+#define AN7583_DUAL_HSI0_MAC_RST	13
-+#define AN7583_DUAL_HSI1_MAC_RST	14
-+#define AN7583_XPON_XFI_RST             15
-+#define AN7583_WDMA_RST			16
-+#define AN7583_WOE0_RST			17
-+#define AN7583_HSDMA_RST		18
-+#define AN7583_TDMA_RST			19
-+#define AN7583_EMMC_RST			20
-+#define AN7583_SOE_RST			21
-+#define AN7583_XFP_MAC_RST		22
-+#define AN7583_MDIO0                    23
-+#define AN7583_MDIO1                    24
-+/* RST_CTRL1 */
-+#define AN7583_PCM1_ZSI_ISI_RST		25
-+#define AN7583_FE_PDMA_RST		26
-+#define AN7583_FE_QDMA_RST		27
-+#define AN7583_PCM_SPIWP_RST		28
-+#define AN7583_CRYPTO_RST		29
-+#define AN7583_TIMER_RST		30
-+#define AN7583_PCM1_RST			31
-+#define AN7583_UART_RST			32
-+#define AN7583_GPIO_RST			33
-+#define AN7583_GDMA_RST			34
-+#define AN7583_I2C_MASTER_RST		35
-+#define AN7583_PCM2_ZSI_ISI_RST		36
-+#define AN7583_SFC_RST			37
-+#define AN7583_UART2_RST		38
-+#define AN7583_GDMP_RST			39
-+#define AN7583_FE_RST			40
-+#define AN7583_USB_HOST_P0_RST		41
-+#define AN7583_GSW_RST			42
-+#define AN7583_SFC2_PCM_RST		43
-+#define AN7583_PCIE0_RST		44
-+#define AN7583_PCIE1_RST		45
-+#define AN7583_CPU_TIMER_RST		46
-+#define AN7583_PCIE_HB_RST		47
-+#define AN7583_XPON_MAC_RST		48
-+
-+#endif /* __DT_BINDINGS_RESET_CONTROLLER_AIROHA_AN7583_H_ */
+ static const struct en_clk_soc_data en7581_data = {
++	.base_clks = en7581_base_clks,
+ 	/* We increment num_clocks by 1 to account for additional PCIe clock */
+ 	.num_clocks = ARRAY_SIZE(en7581_base_clks) + 1,
+ 	.pcie_ops = {
 -- 
 2.53.0
 
